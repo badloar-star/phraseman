@@ -36,45 +36,46 @@ const CARD_W = Math.min(W - 24, 420);
 // ─── Палитры исходов ───────────────────────────────────────────────────────
 const PROMO_COLORS  = { primary: '#34C759', accent: '#FFD24A', glow: '#FFD24A' };
 const DEMO_COLORS   = { primary: '#FF453A', accent: '#FF6B6B', glow: '#FF453A' };
-const CONFETTI_PROMO = ['#FFD24A', '#34C759', '#7BD389', '#FFFFFF', '#22D3EE', '#A78BFA'];
-const CONFETTI_DEMO  = ['#FF6B6B', '#FF453A', '#7A1A1A'];
+const SHARD_PROMO = ['#FFE7A6', '#34C759', '#7BD389', '#FFFFFF', '#22D3EE', '#A78BFA'];
+const SHARD_DEMO  = ['#FF9E9E', '#FF6B6B', '#7A1A1A'];
 
-// ─── Confetti particle ─────────────────────────────────────────────────────
-const ConfettiPiece = memo(function ConfettiPiece({
-  color, delay, startX, drift, size,
-}: { color: string; delay: number; startX: number; drift: number; size: number }) {
-  const y   = useRef(new Animated.Value(-30)).current;
-  const x   = useRef(new Animated.Value(0)).current;
-  const rot = useRef(new Animated.Value(0)).current;
-  const op  = useRef(new Animated.Value(1)).current;
+// ─── Энергошард ────────────────────────────────────────────────────────────
+// Парящий осколок света вместо бумажного конфетти. При повышении (rise=true)
+// взлетает вверх и тает; при понижении — мягко оседает вниз (сдержанно).
+const ShardPiece = memo(function ShardPiece({
+  color, delay, startX, drift, size, rise,
+}: { color: string; delay: number; startX: number; drift: number; size: number; rise: boolean }) {
+  const p  = useRef(new Animated.Value(0)).current;
+  const startY = rise ? H * 0.62 : H * 0.32;
+  const endY = rise ? -H * 0.18 : H * 0.16;
 
   useEffect(() => {
-    const fall = Animated.parallel([
-      Animated.timing(y,   { toValue: H + 40, duration: 2400 + Math.random() * 1100, delay, useNativeDriver: true }),
-      Animated.timing(x,   { toValue: drift,  duration: 2400, delay, useNativeDriver: true }),
-      Animated.timing(rot, { toValue: 1080,   duration: 2200, delay, useNativeDriver: true }),
-      Animated.sequence([
-        Animated.delay(delay + 1700),
-        Animated.timing(op, { toValue: 0, duration: 700, useNativeDriver: true }),
-      ]),
-    ]);
-    fall.start();
-    return () => fall.stop();
-  }, [delay, drift, x, y, rot, op]);
+    const run = Animated.timing(p, {
+      toValue: 1,
+      duration: (rise ? 1300 : 1600) + Math.random() * 500,
+      delay,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: true,
+    });
+    run.start();
+    return () => run.stop();
+  }, [delay, p, rise]);
 
   return (
     <Animated.View
       pointerEvents="none"
       style={{
         position: 'absolute', top: 0, left: startX,
-        width: size, height: size * 0.45,
-        borderRadius: 1.5,
+        width: size * 0.7, height: size,
+        borderRadius: 2,
         backgroundColor: color,
-        opacity: op,
+        shadowColor: color, shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 },
+        opacity: p.interpolate({ inputRange: [0, 0.2, 0.85, 1], outputRange: [0, 1, 0.7, 0] }),
         transform: [
-          { translateY: y },
-          { translateX: x },
-          { rotate: rot.interpolate({ inputRange:[0,1080], outputRange:['0deg','1080deg'] }) },
+          { translateY: p.interpolate({ inputRange: [0, 1], outputRange: [startY, endY] }) },
+          { translateX: p.interpolate({ inputRange: [0, 1], outputRange: [0, drift] }) },
+          { rotate: p.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${drift > 0 ? 90 : -90}deg`] }) },
+          { scale: p.interpolate({ inputRange: [0, 0.25, 1], outputRange: [0.3, 1, 0.85] }) },
         ],
       }}
     />
@@ -519,20 +520,21 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
           />
         </View>
 
-        {/* ─── Конфетти/искры на фоне ────────────────────────────────────── */}
+        {/* ─── Энергошарды на фоне (без бумажного конфетти) ──────────────── */}
         {showConfetti && (
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            {(isPromo ? CONFETTI_PROMO : CONFETTI_DEMO).flatMap((color, ci) =>
-              Array.from({ length: isPromo ? 10 : 6 }, (_, i) => {
+            {(isPromo ? SHARD_PROMO : SHARD_DEMO).flatMap((color, ci) =>
+              Array.from({ length: isPromo ? 8 : 5 }, (_, i) => {
                 const seed = (ci * 17 + i * 31 + confettiSeed * 1000) % 1;
                 return (
-                  <ConfettiPiece
+                  <ShardPiece
                     key={`c-${ci}-${i}`}
                     color={color}
                     delay={i * 80 + ci * 40}
-                    startX={seed * W}
+                    startX={0.12 * W + seed * W * 0.76}
                     drift={(seed - 0.5) * 120}
-                    size={6 + (i % 3) * 3}
+                    size={10 + (i % 3) * 4}
+                    rise={isPromo}
                   />
                 );
               }),

@@ -2,7 +2,8 @@
 // Показывается ~1.2 сек перед переходом на экран результатов, чтобы был МОМЕНТ
 // победы/поражения, а не мгновенный прыжок.
 //
-// Победа → золотой акцент + конфетти; поражение → приглушённо; ничья → нейтрально.
+// Победа → золотой акцент + парящие осколки света и лучи (БЕЗ бумажного конфетти);
+// поражение → приглушённо; ничья → нейтрально.
 
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -16,7 +17,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ArenaMatchOutcome } from '../app/arena_match_drama';
-import ArenaConfettiBurst from './ArenaConfettiBurst';
+import { FloatingShards, RaysHalo } from './modal_fx/ModalFx';
 
 interface ArenaFinalScoreOverlayProps {
   visible: boolean;
@@ -47,8 +48,9 @@ function outcomeTitle(outcome: ArenaMatchOutcome, lang: Lang): string {
   });
 }
 
-const WIN_COLORS = ['#FFD54A', '#FFE9A6', '#FFB23E', '#FFF2C9'];
-const FESTIVE_COLORS = ['#FFD54A', '#39F27A', '#5BE2CD', '#FF8A5B', '#C792FF'];
+// Парящие осколки света при победе (вместо бумажного конфетти).
+const WIN_SHARDS = ['#FFE9A6', '#FFD54A', '#FFB23E', '#FFF2C9'];
+const FESTIVE_SHARDS = ['#FFE7A6', '#5BE2CD', '#7DD3FC', '#C792FF'];
 
 function ArenaFinalScoreOverlay({
   visible,
@@ -94,7 +96,17 @@ function ArenaFinalScoreOverlay({
     <View pointerEvents="none" style={styles.fill}>
       <View style={styles.scrim} />
       {isWin ? (
-        <ArenaConfettiBurst active colors={premium ? WIN_COLORS : FESTIVE_COLORS} count={premium ? 40 : 28} />
+        <>
+          {/* Лучи света позади счёта + парящие осколки вверх — без бумажного конфетти. */}
+          <RaysHalo color={premium ? 'rgba(255,213,74,0.5)' : 'rgba(91,226,205,0.4)'} size={300} rays={4} />
+          <FloatingShards
+            colors={premium ? WIN_SHARDS : FESTIVE_SHARDS}
+            count={premium ? 14 : 10}
+            reach={220}
+            rise={180}
+            bottomOffset={120}
+          />
+        </>
       ) : null}
       <Reanimated.View style={[styles.card, cardStyle]}>
         <Text style={[styles.title, { color: accent }]}>{outcomeTitle(outcome, lang)}</Text>

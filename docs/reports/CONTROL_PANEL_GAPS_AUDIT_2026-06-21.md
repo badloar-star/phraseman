@@ -62,6 +62,29 @@
 
 ---
 
+## ✅ РЕАЛИЗОВАНО (2026-06-21)
+
+Все 4 направления сделаны, закоммичены в master атомарными коммитами:
+
+1. **Забытые ключи в UI** (`df82ecde`): онбординг A/B (3 числа), fallback Компаса
+   (ru/uk/es), weekly_boons_config (JSON-редактор с валидацией). + paywall_timers.
+2. **Экономика** (`c1b2658f`): заморозка серии (streak_freeze_cost_shards) +
+   дроп карточек (шанс/капы/pity/бонус сета — CollectiblesDropConfig). Тесты +5/+2.
+3. **Рефералы** (`1cdde1ba`): дни награды + антифрод-капы (день/месяц) — ReferralConfig.
+4. **Force-update** (`58078261`): флаг + min_app_version + ссылки, ForceUpdateGate,
+   semver-сравнение. Тесты +10.
+5. **Промокоды + промо-баннер** (`0818b09f`): callable promoCodeRedeem/Upsert
+   (коды→дни премиума), экран ввода, firestore.rules; промо-баннер (флаг+тексты+срок).
+   ВЫКЛЮЧЕНО по умолчанию — коды/акции пользователь создаёт позже (от сторов не зависит).
+
+Бэкенд читает remote_config/app.numbers тем же резолвером, что арена
+(resolveCollectiblesDropConfig/resolveReferralConfig). Чистые функции вынесены и покрыты тестами.
+
+НУЖНО: deploy functions (promoCodeRedeem, promoCodeUpsert, collectiblesClaimDrop,
+referral*) + deploy firestore.rules + билд приложения (force-update gate, промо-баннер,
+экран промокода, заморозка серии — это клиентский код). Эффект самих тумблеров/чисел
+для уже выпущенных частей — живьём без релиза.
+
 ## Рекомендация
 
 - **Сделать сразу (дёшево, без правок клиента):** Часть A — вывести 8 забытых ключей в UI.

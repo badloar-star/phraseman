@@ -597,8 +597,35 @@ const getPerWordDistracts = (
     (w: string) => !String(w).includes(' ') && !isConfusingVolumeDistractor(String(w)),
   );
 
+  // Closed-class guard (EN). When the correct word is a function word (preposition, article,
+  // pronoun, to-be, modal, negation) the distractors MUST be from the SAME class — otherwise
+  // the answer is the only word of its kind on screen and is guessable by shape, not meaning
+  // (e.g. "in" surrounded by nouns). This holds even when the lesson content leaves `category`
+  // blank, which is exactly where the leak happened. We also surface an explicit category so the
+  // ranker in smart_distractors reliably detects the closed group.
+  const closedClassGuard = (():
+    | { category: string; pool: string[] }
+    | null => {
+    if (isSpanishTarget || isFrenchTarget) return null; // ES/FR have their own category pools above
+    if (cat) return null; // content already declares a category — trust it
+    if (WORD_POOLS_L1.prepositions.includes(correctLower)) return { category: 'preposition', pool: WORD_POOLS_L1.prepositions };
+    if (WORD_POOLS_L1.articles.includes(correctLower)) return { category: 'article', pool: WORD_POOLS_L1.articles };
+    if (WORD_POOLS_L1.pronouns.map((w) => w.toLowerCase()).includes(correctLower)) return { category: 'pronoun', pool: WORD_POOLS_L1.pronouns };
+    if (WORD_POOLS_L1.toBe.some((w) => w.toLowerCase() === correctLower)) return { category: 'verb', pool: WORD_POOLS_L1.toBe };
+    if (WORD_POOLS_L1.modals.includes(correctLower)) return { category: 'modal', pool: WORD_POOLS_L1.modals };
+    if (WORD_POOLS_L1.negation.includes(correctLower)) return { category: 'negation', pool: WORD_POOLS_L1.negation };
+    return null;
+  })();
+  const effectiveCat = closedClassGuard?.category ?? cat;
+  const closedClassPool = (closedClassGuard?.pool ?? []).filter(
+    (w: string) => !String(w).includes(' ') && optionIdentity(w) !== optionIdentity(currentCorrect),
+  );
+
   const rawCurrentDistractors = Array.isArray(wordData.distractors) ? wordData.distractors : [];
-  const currentDistractors = [...rawCurrentDistractors, ...categoryFallbackPool, ...globalFallbackPool];
+  // For a closed class, do NOT pour in the global noun/verb/adjective pool — keep same-class only.
+  const currentDistractors = closedClassGuard
+    ? [...rawCurrentDistractors, ...closedClassPool]
+    : [...rawCurrentDistractors, ...categoryFallbackPool, ...globalFallbackPool];
 
   // Sliding window: pull distractors from next word too (like competitor)
   const nextWordData = rows[wordIndex + 1];
@@ -619,20 +646,31 @@ const getPerWordDistracts = (
       ...(contractionExpansion ? [contractionExpansion[0]] : []),
     ];
     const nextDistractors = (nextWordData.distractors ?? []).filter((d: string) => d !== nextCorrect);
-    const smartPool = [
-      ...extras.map((value) => ({ value, category: cat, source: 'manual' as const })),
-      ...currentDistractors.map((value: string) => ({ value, source: 'manual' as const })),
-      ...nextDistractors.map((value: string) => ({ value, source: 'nextWord' as const })),
-      ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
-      ...globalFallbackPool.map((value: string) => ({ value, source: 'reserve' as const })),
-    ].filter((candidate) => {
-      if (isConfusingVolumeDistractor(candidate.value)) return false;
-      const k = optionIdentity(candidate.value);
-      return !seen.has(k);
-    });
+    // Closed class: fill ONLY from the same class (no next-word/global leak across parts of speech).
+    const smartPool = closedClassGuard
+      ? [
+          ...extras.map((value) => ({ value, category: effectiveCat, source: 'manual' as const })),
+          ...currentDistractors.map((value: string) => ({ value, category: effectiveCat, source: 'category' as const })),
+          ...closedClassPool.map((value: string) => ({ value, category: effectiveCat, source: 'category' as const })),
+        ].filter((candidate) => {
+          if (isConfusingVolumeDistractor(candidate.value)) return false;
+          const k = optionIdentity(candidate.value);
+          return !seen.has(k);
+        })
+      : [
+          ...extras.map((value) => ({ value, category: cat, source: 'manual' as const })),
+          ...currentDistractors.map((value: string) => ({ value, source: 'manual' as const })),
+          ...nextDistractors.map((value: string) => ({ value, source: 'nextWord' as const })),
+          ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
+          ...globalFallbackPool.map((value: string) => ({ value, source: 'reserve' as const })),
+        ].filter((candidate) => {
+          if (isConfusingVolumeDistractor(candidate.value)) return false;
+          const k = optionIdentity(candidate.value);
+          return !seen.has(k);
+        });
 
     return buildSmartPhraseOptions(String(currentCorrect), smartPool, {
-      category: cat,
+      category: effectiveCat,
       optionCount: 6,
       protectedValues: extras,
     });
@@ -650,17 +688,19 @@ const getPerWordDistracts = (
     return true;
   });
   const protectedValues = contractionExpansion ? [contractionExpansion[0]] : [];
-  const reserveFillers = [...categoryFallbackPool, ...globalFallbackPool].filter(
+  // Closed class: reserves come ONLY from the same class so the answer is never the lone
+  // word of its kind. Open class keeps the broad noun/verb/adjective reserves as before.
+  const reserveFillers = (closedClassGuard ? closedClassPool : [...categoryFallbackPool, ...globalFallbackPool]).filter(
     (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
   );
   const lastWordPool = [
-    ...protectedValues.map((value) => ({ value, category: cat, source: 'manual' as const })),
-    ...uniqueDistractors.map((value: string) => ({ value, source: 'manual' as const })),
-    ...reserveFillers.map((value: string) => ({ value, source: 'reserve' as const })),
-    ...categoryFallbackPool.map((value: string) => ({ value, category: cat, source: 'category' as const })),
+    ...protectedValues.map((value) => ({ value, category: effectiveCat, source: 'manual' as const })),
+    ...uniqueDistractors.map((value: string) => ({ value, category: closedClassGuard ? effectiveCat : undefined, source: closedClassGuard ? ('category' as const) : ('manual' as const) })),
+    ...reserveFillers.map((value: string) => ({ value, category: effectiveCat, source: closedClassGuard ? ('category' as const) : ('reserve' as const) })),
+    ...(closedClassGuard ? [] : categoryFallbackPool).map((value: string) => ({ value, category: cat, source: 'category' as const })),
   ];
   return buildSmartPhraseOptions(String(currentCorrect), lastWordPool, {
-    category: cat,
+    category: effectiveCat,
     optionCount: 6,
     protectedValues,
   });

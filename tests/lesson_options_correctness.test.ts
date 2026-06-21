@@ -75,4 +75,41 @@ describe('lesson word-bank options', () => {
 
     expect(missing).toEqual([]);
   });
+
+  // Anti-guessability guard (user report, lesson 8 prepositions): a preposition answer must NEVER
+  // be the only preposition on screen — otherwise it is solvable by shape, not by meaning.
+  it('never leaves a preposition answer as the lone preposition among the options', () => {
+    // Core prepositions only: words that function ALMOST exclusively as prepositions, so being
+    // the lone preposition on screen is a genuine guess-by-shape bug. Multi-class words such as
+    // near/over/before/after/since/behind/next/opposite/between/under/through/to/about are
+    // deliberately excluded — they legitimately appear as adjectives/adverbs/conjunctions and may
+    // correctly sit among same-class distractors.
+    const PREPOSITIONS = new Set([
+      'in', 'on', 'at', 'for', 'with', 'from', 'by', 'into', 'during', 'until',
+    ]);
+    const key = (w: string): string => String(w ?? '').trim().replace(/[.,!?;:]+$/g, '').toLowerCase();
+    const lonely: string[] = [];
+
+    for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+      const phrases = getLessonData(lessonId);
+      for (const phrase of phrases) {
+        const rows = phraseWordRowsForStudyTarget(phrase, 'en');
+        rows.forEach((row, idx) => {
+          const correct = row.correct ?? row.text;
+          if (!correct || !PREPOSITIONS.has(key(correct))) return;
+
+          const options = getPerWordDistracts(phrase, idx, 'en');
+          if (options.length === 0) return; // no options generated for this slot — covered elsewhere
+          const otherPrepositions = options.filter(
+            (option) => !sameChoice(option, correct) && PREPOSITIONS.has(key(option)),
+          );
+          if (otherPrepositions.length === 0) {
+            lonely.push(`L${lessonId}:${phrase.id}:words[${idx}] preposition "${correct}" alone in [${options.join(', ')}]`);
+          }
+        });
+      }
+    }
+
+    expect(lonely).toEqual([]);
+  });
 });

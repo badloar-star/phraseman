@@ -164,8 +164,22 @@ function stableHash(value: string): number {
   return hash >>> 0;
 }
 
-function stableOptionShuffle(values: string[], salt: string): string[] {
-  return [...values].sort((a, b) => stableHash(`${salt}:${a}`) - stableHash(`${salt}:${b}`));
+// On-screen layout shuffle for option tiles. Uses fresh randomness (Fisher-Yates) so the
+// SAME phrase does NOT always place the correct word in the SAME tile across replays.
+// Rationale: a deterministic layout (stableOptionShuffle) lets students memorise the
+// position ("They is always top-left") instead of the language. Distractor SELECTION stays
+// deterministic via ranking — only the final placement is randomised here.
+// NOTE: callers that need a reproducible layout (e.g. plan "resume to same question") must
+// use personal_plan_option_ordering.stableShuffle, NOT this builder.
+function layoutOptionShuffle(values: string[], random: () => number = Math.random): string[] {
+  const result = [...values];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const roll = random();
+    const safeRoll = Number.isFinite(roll) ? Math.max(0, Math.min(0.999999999999, roll)) : 0;
+    const j = Math.floor(safeRoll * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
 }
 
 function simpleLemma(value: string): string {
@@ -435,7 +449,7 @@ function buildSmartOptions(
     }
   }
 
-  return stableOptionShuffle(result.slice(0, optionCount), correctValue);
+  return layoutOptionShuffle(result.slice(0, optionCount));
 }
 
 export function buildSmartVocabularyOptions(

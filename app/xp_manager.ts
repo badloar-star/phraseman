@@ -21,6 +21,7 @@ import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
 import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
+import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -223,7 +224,11 @@ export const registerXP = async (
       const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
       const leagueChestM = await consumeLeagueChestXpOverrideMultiplier();
 
-      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1);
+      // Ж) Weekly Boons: «Двойной четверг» (×2) + «Ранняя пташка» (×1.1 до 10:00).
+      // Аддитивный вклад в ту же формулу, что и остальные множители.
+      const boonXpContribution = boonXpMultiplierContribution();
+
+      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
       finalDelta = Math.round(amount * totalMultiplier);
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
       try {

@@ -257,35 +257,127 @@ export function buildPersonalPlanSnapshot(input: BuildTodayPlanRuntimeInput): Pe
   };
 }
 
+/**
+ * Чистая функция: пройден ли маршрут до конца. Условие — мы на ПОСЛЕДНЕМ дне
+ * плана, этот день выполнен и нет переноса незавершённых задач прошлых дней.
+ * На этом сигнале показывается финальный экран «маршрут пройден». Экспортируется
+ * для тестов.
+ */
+export function isPersonalPlanFinished(input: BuildTodayPlanRuntimeInput): boolean {
+  const lastDayIndex = input.plan.days.length;
+  const currentDayIndex = clampDayIndex(input.plan, input.state.currentDayIndex);
+  if (currentDayIndex < lastDayIndex) return false;
+  const runtime = buildTodayPlanRuntime(input);
+  return !runtime.isCarryover && runtime.todayDone;
+}
+
+export type PersonalPlanCompletionSummary = {
+  planId: PersonalPlanId;
+  planName: string;
+  totalDays: number;
+  completedTasks: number;
+  activeDays: number;
+};
+
+/**
+ * Чистая функция: итоги пройденного маршрута для финального экрана. Считает
+ * выполненные задания именно этого экземпляра плана (по planInstanceId) и число
+ * уникальных дней, в которые была активность. Экспортируется для тестов.
+ */
+export function buildPersonalPlanCompletionSummary(
+  plan: PersonalPlanDefinition,
+  state: PersonalPlanState,
+  completedTasks: Record<string, PersonalPlanCompletedTask | unknown>,
+): PersonalPlanCompletionSummary {
+  const prefix = `${state.planInstanceId}::`;
+  const ownTasks = Object.entries(completedTasks).filter(([key]) => key.startsWith(prefix));
+  const activeDays = new Set<number>();
+  for (const [, value] of ownTasks) {
+    const dayIndex = (value as PersonalPlanCompletedTask | undefined)?.dayIndex;
+    if (typeof dayIndex === 'number' && Number.isFinite(dayIndex)) activeDays.add(dayIndex);
+  }
+  return {
+    planId: plan.id,
+    planName: plan.name,
+    totalDays: plan.days.length,
+    completedTasks: ownTasks.length,
+    activeDays: activeDays.size,
+  };
+}
+
 let _planStateCache: PersonalPlanState | null | undefined = undefined;
 
 export function getCachedPersonalPlanState(): PersonalPlanState | null | undefined {
   return _planStateCache;
 }
 
+const VALID_PLAN_STATUSES = new Set<PersonalPlanStatus>(['active', 'paused', 'completed']);
+
+/**
+ * Парсит сохранённое состояние плана ЛЮБОГО статуса (active/paused/completed).
+ * Возвращает null только если запись отсутствует или структурно сломана.
+ * Чистая нормализация без записи в кеш — кеш держит ТОЛЬКО активный план,
+ * чтобы не ломать самовосстановление на главной (оно полагается на
+ * readPersonalPlanState() === null как «нет активного плана»).
+ */
+function parseAnyPersonalPlanState(raw: string | null): PersonalPlanState | null {
+  if (!raw) return null;
+  let parsed: Partial<PersonalPlanState> | null = null;
+  try {
+    parsed = JSON.parse(raw) as Partial<PersonalPlanState>;
+  } catch {
+    return null;
+  }
+  if (!parsed || !parsed.planId || !parsed.minutesPerDay) return null;
+  const status: PersonalPlanStatus = VALID_PLAN_STATUSES.has(parsed.status as PersonalPlanStatus)
+    ? (parsed.status as PersonalPlanStatus)
+    : 'active';
+  const plan = getPlanById(parsed.planId);
+  return {
+    id: String(parsed.id || `${parsed.planId}_active`),
+    planInstanceId: String(parsed.planInstanceId || parsed.id || `${parsed.planId}_active`),
+    planId: parsed.planId,
+    status,
+    minutesPerDay: parsed.minutesPerDay,
+    currentDayIndex: clampDayIndex(plan, Number(parsed.currentDayIndex ?? 1)),
+    currentDayStartedAt: String(parsed.currentDayStartedAt || parsed.activatedAt || parsed.createdAt || nowIso()),
+    createdAt: String(parsed.createdAt || nowIso()),
+    activatedAt: String(parsed.activatedAt || parsed.createdAt || nowIso()),
+    updatedAt: String(parsed.updatedAt || parsed.activatedAt || parsed.createdAt || nowIso()),
+  };
+}
+
+/**
+ * Активный план (status === 'active'). Контракт НЕ меняется: paused/completed
+ * план НЕ возвращается (на главной это «нет активного плана»). Для чтения плана
+ * любого статуса — readAnyPersonalPlanState (финальный экран, будущая пауза).
+ */
 export async function readPersonalPlanState(): Promise<PersonalPlanState | null> {
   if (_planStateCache !== undefined) return _planStateCache;
   try {
     const raw = await AsyncStorage.getItem(PERSONAL_PLAN_STATE_KEY);
-    if (!raw) { _planStateCache = null; return null; }
-    const parsed = JSON.parse(raw) as Partial<PersonalPlanState>;
-    if (!parsed || parsed.status !== 'active') return null;
-    if (!parsed.planId || !parsed.minutesPerDay) return null;
-    const plan = getPlanById(parsed.planId);
-    const result: PersonalPlanState = {
-      id: String(parsed.id || `${parsed.planId}_active`),
-      planInstanceId: String(parsed.planInstanceId || parsed.id || `${parsed.planId}_active`),
-      planId: parsed.planId,
-      status: parsed.status,
-      minutesPerDay: parsed.minutesPerDay,
-      currentDayIndex: clampDayIndex(plan, Number(parsed.currentDayIndex ?? 1)),
-      currentDayStartedAt: String(parsed.currentDayStartedAt || parsed.activatedAt || parsed.createdAt || nowIso()),
-      createdAt: String(parsed.createdAt || nowIso()),
-      activatedAt: String(parsed.activatedAt || parsed.createdAt || nowIso()),
-      updatedAt: String(parsed.updatedAt || parsed.activatedAt || parsed.createdAt || nowIso()),
-    };
-    _planStateCache = result;
-    return result;
+    const parsed = parseAnyPersonalPlanState(raw);
+    if (!parsed || parsed.status !== 'active') {
+      if (!raw) _planStateCache = null;
+      return null;
+    }
+    _planStateCache = parsed;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * План ЛЮБОГО статуса (active/paused/completed) — чтобы поставленный на паузу
+ * или пройденный до конца план не «исчезал» из чтения. НЕ пишет общий кеш
+ * активного плана (иначе home увидел бы не-active план как активный).
+ */
+export async function readAnyPersonalPlanState(): Promise<PersonalPlanState | null> {
+  if (_planStateCache) return _planStateCache;
+  try {
+    const raw = await AsyncStorage.getItem(PERSONAL_PLAN_STATE_KEY);
+    return parseAnyPersonalPlanState(raw);
   } catch {
     return null;
   }
@@ -318,6 +410,25 @@ export async function activatePersonalPlan(input: {
   });
   emitAppEvent('personal_plan_updated', { planId: state.planId, snapshot });
   return state;
+}
+
+/**
+ * Помечает текущий план как пройденный (status='completed'). После этого он
+ * перестаёт быть «активным» на главной (readPersonalPlanState → null), но
+ * остаётся читаемым через readAnyPersonalPlanState — финальный экран «маршрут
+ * пройден» показывает итоги и рекомендует следующий план. Идемпотентно: если
+ * активного плана нет или он уже не active — ничего не делает.
+ */
+export async function completePersonalPlan(): Promise<PersonalPlanState | null> {
+  const state = await readAnyPersonalPlanState();
+  if (!state || state.status !== 'active') return state;
+  const timestamp = nowIso();
+  const completed: PersonalPlanState = { ...state, status: 'completed', updatedAt: timestamp };
+  // Пишем напрямую (не savePersonalPlanState): тот кеширует как активный.
+  _planStateCache = null;
+  await AsyncStorage.setItem(PERSONAL_PLAN_STATE_KEY, JSON.stringify(completed));
+  emitAppEvent('personal_plan_updated', undefined);
+  return completed;
 }
 
 export async function readPersonalPlanSnapshot(input?: {

@@ -2203,6 +2203,7 @@ function AppContent() {
       <Stack.Screen name="exam" />
       <Stack.Screen name="daily_tasks_screen" />
       <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />

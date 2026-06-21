@@ -58,3 +58,19 @@ export function recommendPersonalPlan(input: PersonalPlanRecommendationInput): P
 export function getPlanDefaultMinutes(planId: PersonalPlanId): PlanMinutesChoice {
   return getPlanById(planId).minutesDefault;
 }
+
+/**
+ * «Что логично пройти после этого плана» — одна умная рекомендация для финального
+ * экрана «маршрут пройден». Порядок выстроен по нарастанию: от выживания в поездке
+ * к словарному запасу, затем к живому разговору, восприятию речи на слух и, наконец,
+ * к спокойной поддерживающей практике. Берём СЛЕДУЮЩИЙ план в этой цепочке после
+ * пройденного; дойдя до конца — заворачиваем на начало. Так каждый раз предлагается
+ * один осмысленный следующий шаг, а не «выбери сам из пяти».
+ */
+const PLAN_PROGRESSION_ORDER: readonly PersonalPlanId[] = ['voyazh', 'gavan', 'impuls', 'echo', 'mitap'];
+
+export function recommendNextPlanAfter(completedPlanId: PersonalPlanId): PersonalPlanId {
+  const index = PLAN_PROGRESSION_ORDER.indexOf(completedPlanId);
+  if (index === -1) return PLAN_PROGRESSION_ORDER[0];
+  return PLAN_PROGRESSION_ORDER[(index + 1) % PLAN_PROGRESSION_ORDER.length];
+}

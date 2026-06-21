@@ -37,6 +37,7 @@ import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } 
 import {
   buildPersonalPlanSnapshot,
   buildTodayPlanRuntime,
+  isPersonalPlanFinished,
   readPersonalPlanState,
   getCachedPersonalPlanState,
   advancePersonalPlanStateForToday,
@@ -406,6 +407,12 @@ export default function PersonalPlanScreen() {
       duePlanTrainerWeakSpotCount,
       dueFlashcardsCount,
     };
+    // Маршрут пройден до конца — вместо вечного показа последнего дня ведём на
+    // финальный экран «маршрут пройден» (поздравление + следующий план).
+    if (isPersonalPlanFinished(input)) {
+      router.replace('/personal_plan_complete' as any);
+      return;
+    }
     setLoaded({
       plan,
       state: advancedState,

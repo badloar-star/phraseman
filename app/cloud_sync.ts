@@ -17,6 +17,15 @@ import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
+import {
+  INTRO_FULL_ACCESS_STARTED_AT_KEY,
+  INTRO_FULL_ACCESS_ENDS_AT_KEY,
+} from './intro_full_access';
+import {
+  LOYALTY_GIFT_STARTED_AT_KEY,
+  LOYALTY_GIFT_ENDS_AT_KEY,
+  LOYALTY_GIFT_CLAIMED_KEY,
+} from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
@@ -488,6 +497,18 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
   ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
   ...FRENCH_TARGET_SYNC_KEYS,
+  // ── Подарочный доступ (intro / loyalty): зеркалим срок в облако, чтобы при смене
+  //    телефона / переустановке подарок не терялся и восстанавливался (Д2-фикс).
+  //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). claimed —
+  //    чтобы лояльный подарок не выдался повторно на новом устройстве. ВНИМАНИЕ: это
+  //    лёгкий вариант (анти-потеря). Это НЕ серверная защита от ручного продления —
+  //    клиент всё ещё может переписать срок локально; для бесплатного подарка риск
+  //    низкий. Полную защиту (CF-выдача + blocked-ключи) делать отдельно.
+  INTRO_FULL_ACCESS_STARTED_AT_KEY,
+  INTRO_FULL_ACCESS_ENDS_AT_KEY,
+  LOYALTY_GIFT_STARTED_AT_KEY,
+  LOYALTY_GIFT_ENDS_AT_KEY,
+  LOYALTY_GIFT_CLAIMED_KEY,
 ] as const;
 
 export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {

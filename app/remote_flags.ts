@@ -66,6 +66,13 @@ export type RemoteBoolKey =
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
   // очереди соперник не подставляется. Включение возвращает ботов обратно.
   | 'arena_bots_enabled'
+  // Таймеры «срочности» (анонс повышения цены) на всех пейволах A/B/C. Дефолт
+  // TRUE = kill-switch: блок urgency (обратный отсчёт + «Сейчас X / скоро ~2X»
+  // и grace-плашка «цена сохранена») показывается как сейчас. Админ ставит false
+  // в «Пульте» → весь блок прячется у всех живьём (onSnapshot), без релиза. Гейт
+  // стоит в app/paywall_purchase.ts (urgency форсится в неактивное пустое
+  // состояние), сам PaywallPriceUrgency тогда возвращает null во всех режимах.
+  | 'paywall_timers_enabled'
   // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
   // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
   // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
@@ -150,13 +157,15 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // админка может экстренно выключить).
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
-  // Кнопка «Навсегда» (lifetime) на пейволах. Дефолт FALSE — это «sell-switch»,
-  // а НЕ kill-switch: продукт lifetime сначала надо завести в RevenueCat
-  // (LIFETIME_SETUP_GUIDE.md). До этого кнопка скрыта; админ включает её в
-  // «Пульте управления», когда продукт готов. Выключение прячет кнопку у всех
-  // без релиза/OTA — уже купившие сохраняют доступ (премиум держится на
-  // entitlement RevenueCat, а не на видимости кнопки).
-  lifetime_button_enabled: false,
+  // Кнопка «Навсегда» (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
+  // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
+  // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
+  // условие «sell-switch» выполнено. Кнопка всё равно скрывается, если RevenueCat
+  // не вернёт пакет (см. lifetimeAvailable = флаг && !!packages.lifetime), так что
+  // в проде до одобрения Apple-продукта она не сломается. Выключение (Firestore-
+  // override «Пульт») прячет кнопку у всех без релиза/OTA — уже купившие сохраняют
+  // доступ (премиум держится на entitlement RevenueCat, а не на видимости кнопки).
+  lifetime_button_enabled: true,
   // «Объясни как для 5-летнего»: дефолт TRUE = kill-switch семантика (фича едет
   // с релизом во ВСЕХ сборках, не завязана на env-профиль EAS — раньше дефолт был
   // FALSE и фича пропадала в dev/preview-сборках без EXPO_PUBLIC_EXPLAIN_ENABLED).
@@ -190,6 +199,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
   arena_bots_enabled: true,
+  // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
+  // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
+  paywall_timers_enabled: true,
   // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
   // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
   // ключа выше). Меняется у всех живьём из «Пульта».
@@ -373,6 +385,12 @@ export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
 export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
+/**
+ * Таймеры «срочности» (анонс повышения цены) на пейволах A/B/C. Дефолт true =
+ * показываются как сейчас. false (из «Пульта») → блок urgency скрыт у всех живьём.
+ * Гейт применяется в app/paywall_purchase.ts.
+ */
+export const isPaywallTimersEnabled = () => getRemoteBool('paywall_timers_enabled');
 /**
  * Первый экран онбординга «только план»: дефолт false = экран с двумя кнопками
  * (план / просто посмотреть). true → одна кнопка «Составить мой план» в поток

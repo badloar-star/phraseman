@@ -8476,6 +8476,30 @@
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Онбординг: первый экран «только план»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — первый экран с двумя кнопками (составить план / просто посмотреть). Вкл → одна кнопка «Составить мой план» (ведёт в поток плана) и слегка иной текст. Меняется у всех живьём.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-onboarding_plan_only_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
       </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Пейволы: таймеры срочности</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — на пейволах показывается блок обратного отсчёта «старой цены» (и плашка «цена сохранена»). Выкл → блок срочности скрыт на всех пейволах A/B/C у всех живьём, без релиза.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-paywall_timers_enabled" onchange="saveControlPanelBool('paywall_timers_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-paywall_timers_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🗓 НЕДЕЛЬНЫЕ БОНУСЫ (Weekly Boons): расписание бонуса по дню недели -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#fbbf24">🗓 Недельные бонусы — расписание по дням</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      JSON-конфиг расписания «бонуса дня». Пусто = встроенный дефолт. Битый JSON и неизвестные id
+      тихо игнорируются (приложение не падает). Ключ дня: <code style="color:#a78bfa">0</code>=вс …
+      <code style="color:#a78bfa">6</code>=сб. Значение — id бонуса или массив (чередование по неделям).
+      <br/>Допустимые id: <code style="color:#86efac">streak_saver, energy_free_window, arena_saturday, mystery_monday, double_xp, flashcard_friday, speaking_saturday, turbo_regen</code>.
+      Always-on модификаторы (modifiersEnabled): <code style="color:#86efac">early_bird, perfect_week</code>.
+      Поле <code style="color:#a78bfa">enabled</code> — точечно выключить бонус (<code>{"double_xp": false}</code>).
+    </div>
+    <textarea id="cp-boons-json" rows="9" placeholder='(пусто = встроенный дефолт)' spellcheck="false"
+      style="width:100%;margin-top:12px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button type="button" onclick="saveControlPanelBoons()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить расписание</button>
+      <button type="button" onclick="insertDefaultBoonsJson()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">↩ Вставить дефолт</button>
+      <span id="cp-boons-status" style="font-size:12px;color:#6b7280"></span>
     </div>
   </div>
 
@@ -8520,6 +8544,42 @@
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
       <button type="button" onclick="saveControlPanelPremium()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить всё</button>
       <button type="button" onclick="loadControlPanelPremium()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
+    </div>
+  </div>
+
+  <!-- 🎁 WEEKLY BOONS: бонусы дня недели для фри-юзеров (расписание + вкл/выкл) -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#f472b6">🎁 Бонусы дня недели (Weekly Boons)</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Для каждого дня недели выбери бонус (или «—нет—»). Можно поставить <b style="color:#f9a8d4">несколько через ротацию</b>
+      — тогда бонусы чередуются по неделям (одна суббота — один, следующая — другой). Ниже — общий
+      вкл/выкл каждого бонуса и постоянных модификаторов. Пишется в <code style="color:#818cf8">remote_config/app.texts.weekly_boons_config</code>,
+      клиенты подхватывают за секунды.
+    </div>
+    <div id="wb-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+
+    <div style="margin-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#cbd5e1">📅 Расписание по дням</div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:3px">Для ротации добавь второй бонус кнопкой «+ ротация» — он встанет на следующую неделю того же дня.</div>
+      <div id="wb-schedule" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+
+    <div style="margin-top:18px;border-top:1px solid #2a2a3a;padding-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#cbd5e1">🔘 Включён / выключен (глобально)</div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:3px">Выключенный бонус не выдаётся, даже если стоит в расписании.</div>
+      <div id="wb-enabled" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px"></div>
+    </div>
+
+    <div style="margin-top:18px;border-top:1px solid #2a2a3a;padding-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#cbd5e1">♾️ Постоянные модификаторы</div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:3px">Работают каждый день, вне расписания: ранняя пташка (до 10:00) и трекер «идеальная неделя».</div>
+      <div id="wb-modifiers" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px"></div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <button type="button" onclick="saveWeeklyBoons()" style="background:#9d174d;border:1px solid #db2777;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить расписание</button>
+      <button type="button" onclick="loadWeeklyBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
+      <button type="button" onclick="resetWeeklyBoonsDefault()" style="background:#3f3f46;border:1px solid #52525b;color:#d4d4d8;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">↩️ Дефолт</button>
     </div>
   </div>
 
@@ -9428,6 +9488,7 @@
       <option value="choice_explanations">Объяснения вариантов (упражнение «Выбери фразу»)</option>
       <option value="phrase_explanations">Объяснения фраз («Объясни просто»)</option>
       <option value="mistake_explanations">Разборы ошибок (урок «Собери фразу»)</option>
+      <option value="quiz_explanations">ИИ-разборы тематических квизов (Кухня/Дом/…)</option>
     </select>
     <select id="xc-filter-status" onchange="filterExplainCache()">
       <option value="">Все статусы</option>
@@ -9474,6 +9535,26 @@
     </p>
     <div id="cm-toggles" style="display:flex;flex-direction:column;gap:8px"></div>
     <div id="cm-toggles-status" style="font-size:12px;margin-top:8px;color:#6b7280"></div>
+  </div>
+
+  <div style="padding:8px 24px;max-width:1000px">
+    <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Запасной «голос дня» (fallback)</h3>
+    <p style="font-size:12px;color:#888;margin-bottom:10px;line-height:1.5">
+      Этот текст показывается, когда ИИ-голос дня выключен или исчерпан дневной бюджет.
+      Пусто = берётся встроенный текст по Библии. Пишется в <code style="color:#818cf8">remote_config/app.texts</code>.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇷🇺 Русский
+        <textarea id="cp-compass-fallback-ru" rows="2" placeholder="(пусто = встроенный текст)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇺🇦 Українська
+        <textarea id="cp-compass-fallback-uk" rows="2" placeholder="(порожньо = вбудований текст)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇪🇸 Español
+        <textarea id="cp-compass-fallback-es" rows="2" placeholder="(vacío = texto integrado)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+      <button type="button" onclick="saveCompassFallback()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить fallback</button>
+      <span id="cp-compass-fallback-status" style="font-size:12px;color:#6b7280"></span>
+    </div>
   </div>
 
   <div style="padding:8px 24px 32px;max-width:1000px">
@@ -20444,18 +20525,23 @@
       const phrase = escapeHtml(items[0].phraseEn || counter.phraseEn || '(фраза неизвестна)');
       const lang = escapeHtml(items[0].lang || counter.lang || '?');
       const distinct = Number(counter.reportCount || 0);
-      // kind: 'mistake' (разбор ошибки) или 'phrase' (объяснение фразы). Старые жалобы без поля = phrase.
+      // kind: 'mistake' (разбор ошибки), 'quiz' (ИИ-разбор квиза) или 'phrase' (объяснение фразы).
+      // Старые жалобы без поля = phrase.
       const kind = items[0].kind || counter.kind || 'phrase';
       const isMistake = kind === 'mistake';
+      const isQuiz = kind === 'quiz';
       // Кэш-коллекция, из которой удаляет «Убрать из кэша». Старые доки без поля → phrase_explanations.
-      const cacheColl = items[0].cacheCollection || counter.cacheCollection || (isMistake ? 'mistake_explanations' : 'phrase_explanations');
+      const cacheColl = items[0].cacheCollection || counter.cacheCollection
+        || (isMistake ? 'mistake_explanations' : isQuiz ? 'quiz_explanations' : 'phrase_explanations');
       const userAnswer = items.find(e => e.userAnswer)?.userAnswer || counter.userAnswer || '';
       const kindChip = isMistake
         ? '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#3a1a00;color:#fdba74">разбор ошибки</span>'
-        : '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a3a;color:#7dd3fc">объяснение фразы</span>';
-      const wrongAnswerBlock = (isMistake && userAnswer) ? `
+        : isQuiz
+          ? '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a3a;color:#c4b5fd">ИИ-разбор квиза</span>'
+          : '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a3a;color:#7dd3fc">объяснение фразы</span>';
+      const wrongAnswerBlock = ((isMistake || isQuiz) && userAnswer) ? `
         <div style="background:#2a1212;border:1px solid #4a2424;border-radius:8px;padding:8px 12px;margin:6px 0">
-          <div style="color:#fca5a5;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">Неправильный ответ юзера</div>
+          <div style="color:#fca5a5;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">${isQuiz ? 'Вариант, выбранный юзером' : 'Неправильный ответ юзера'}</div>
           <div style="color:#fecaca;font-size:13px;line-height:1.4;white-space:pre-wrap">${escapeHtml(String(userAnswer))}</div>
         </div>` : '';
       const cache = window._explainCache[hash] || {};
@@ -20593,6 +20679,26 @@
   }
 
   function xcBodyHtml(d) {
+    // quiz: questionPrompt + confirm (верный) + options map (каждый неверный вариант).
+    if (d.options && typeof d.options === 'object') {
+      let html = '';
+      if (d.questionPrompt) {
+        html += `<div style="background:#0d1726;border:1px solid #1e2f45;border-radius:8px;padding:8px 12px;margin:8px 0 0">
+          <div style="color:#7dd3fc;font-size:11px;font-weight:700;margin-bottom:2px">Вопрос (смысл)</div>
+          <div style="color:#cfe6ff;font-size:13px;line-height:1.45">${escapeHtml(String(d.questionPrompt))}</div></div>`;
+      }
+      if (d.confirm) {
+        html += `<div style="background:#0f2018;border:1px solid #1f4030;border-radius:8px;padding:8px 12px;margin:8px 0 0">
+          <div style="color:#4ade80;font-size:11px;font-weight:700;margin-bottom:2px">✓ ${escapeHtml(String(d.correctEn || 'верный ответ'))}</div>
+          <div style="color:#dbeafe;font-size:13px;line-height:1.45">${escapeHtml(String(d.confirm))}</div></div>`;
+      }
+      for (const [opt, line] of Object.entries(d.options)) {
+        html += `<div style="background:#1c1212;border:1px solid #3a2222;border-radius:8px;padding:8px 12px;margin:6px 0 0">
+          <div style="color:#f87171;font-size:12px;font-weight:700;margin-bottom:2px">✗ «${escapeHtml(opt)}»</div>
+          <div style="color:#d8c4c4;font-size:13px;line-height:1.45">${escapeHtml(String(line))}</div></div>`;
+      }
+      return html;
+    }
     // mistake: full breakdown + (optional) eli5. choice: confirm + distractors. phrase: text.
     if (d.full !== undefined || d.eli5 !== undefined || d.targetEn !== undefined) {
       let html = '';
@@ -20709,6 +20815,9 @@
       if (coll === 'choice_explanations') {
         return { id: d.id, lang: d.lang || null, status: d.status || null, correct: d.correctEn || null, confirm: d.confirm || null, distractors: d.distractors || null };
       }
+      if (coll === 'quiz_explanations') {
+        return { id: d.id, lang: d.lang || null, status: d.status || null, question_meaning: d.questionPrompt || null, correct: d.correctEn || null, confirm: d.confirm || null, wrong_options: d.options || null };
+      }
       return { id: d.id, lang: d.lang || null, status: d.status || null, phrase: d.phraseEn || d.correctEn || null, text: d.text || null };
     });
 
@@ -20757,7 +20866,8 @@
     window._compassAdminLoaded = true;
     cmStatus('Загрузка…');
     renderCompassToggles();
-    await Promise.all([loadCompassToggleStates(), loadCompassAnalytics(), loadCompassCache()]);
+    const loadFallback = typeof window.loadCompassFallback === 'function' ? window.loadCompassFallback() : Promise.resolve();
+    await Promise.all([loadCompassToggleStates(), loadCompassAnalytics(), loadCompassCache(), loadFallback]);
     cmStatus('Загружено', '#4ade80');
   };
 
@@ -21252,6 +21362,9 @@
     { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
     { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
+    { key: 'onboarding_ab_welcome_pct', label: 'A/B онбординг: вариант «welcome» %', def: 34, min: 0, max: 100 },
+    { key: 'onboarding_ab_builder_pct', label: 'A/B онбординг: вариант «builder» %', def: 33, min: 0, max: 100 },
+    { key: 'onboarding_ab_quiz_pct', label: 'A/B онбординг: вариант «quiz» %', def: 33, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
     { key: 'arena_sr_win', label: 'Арена: SR за победу', def: 25, min: 0, max: 999 },
@@ -21265,10 +21378,11 @@
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: false },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
-    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
+    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год премиума за идею)', def: false },
     { key: 'arena_bots_enabled', label: 'Арена: боты-соперники (выкл = только реальные игроки)', def: true },
     { key: 'onboarding_plan_only_enabled', label: 'Онбординг: первый экран «только план» (вкл = одна кнопка)', def: false },
+    { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
   ];
 
   function rcSetStatus(msg, color) {
@@ -21414,10 +21528,11 @@
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: false, hint: 'Кнопка объяснения фразы (платный ИИ).' },
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: false, hint: 'Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
-    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },
+    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: true, hint: 'Продукт phraseman_premium_lifetime_v1 заведён в RC (2026-06-21). Покажется, когда RevenueCat вернёт пакет.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»).' },
     { key: 'arena_bots_enabled',       label: 'Арена: боты-соперники',          def: true,  hint: 'Вкл по умолчанию. Выкл → только реальные игроки матчатся друг с другом, при пустой очереди соперник не подставляется.' },
     { key: 'onboarding_plan_only_enabled', label: 'Онбординг: первый экран «только план»', def: false, hint: 'Выкл = две кнопки (план / просто посмотреть). Вкл → одна кнопка «Составить мой план» + иной текст.' },
+    { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
@@ -21465,6 +21580,7 @@
     if (typeof window.loadControlPanelAiJobs === 'function') void window.loadControlPanelAiJobs();
     if (typeof window.loadControlPanelMaintenance === 'function') void window.loadControlPanelMaintenance();
     if (typeof window.loadControlPanelPremium === 'function') void window.loadControlPanelPremium();
+    if (typeof window.loadControlPanelBoons === 'function') void window.loadControlPanelBoons();
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя
@@ -21504,6 +21620,110 @@
 
   // Совместимость: старый онколл lifetime-тумблера → общий обработчик.
   window.saveControlPanelLifetime = function(checked) { return window.saveControlPanelBool('lifetime_button_enabled', checked); };
+
+  // Обобщённый писатель текстовых ключей в remote_config/app.texts. Принимает
+  // patch { key: value, ... } и мерджит его в texts, сохраняя numbers/bools/прочие
+  // texts (merge:false с ручным слиянием, как у saveControlPanelBool/Maintenance).
+  // Возвращает список реальных изменений (для истории), либо бросает ошибку.
+  window.saveControlPanelTexts = async function(patch) {
+    let prev = {};
+    try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+    const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
+    const bools = (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {};
+    const texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});
+    const changes = [];
+    for (const k of Object.keys(patch || {})) {
+      const nextVal = String(patch[k] == null ? '' : patch[k]);
+      const wasVal = String(texts[k] == null ? '' : texts[k]);
+      if (nextVal !== wasVal) changes.push(k + ': изменён');
+      texts[k] = nextVal;
+    }
+    const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+    await setDoc(doc(db, 'remote_config', 'app'), { numbers, bools, texts, updatedAt: Date.now(), updatedBy: who }, { merge: false });
+    if (changes.length) {
+      try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), numbers, bools }); } catch (_) {}
+      if (typeof logAction === 'function') logAction('control_panel_texts', 'remote_config/app', { keys: Object.keys(patch || {}) });
+    }
+    if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
+    return changes;
+  };
+
+  // Запасной «голос дня» Компаса (3 локали) → remote_config/app.texts.
+  window.saveCompassFallback = async function() {
+    const st = document.getElementById('cp-compass-fallback-status');
+    if (st) { st.textContent = 'Сохранение…'; st.style.color = '#6b7280'; }
+    try {
+      const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').slice(0, 500) : ''; };
+      await window.saveControlPanelTexts({
+        compass_voice_fallback_ru: get('cp-compass-fallback-ru'),
+        compass_voice_fallback_uk: get('cp-compass-fallback-uk'),
+        compass_voice_fallback_es: get('cp-compass-fallback-es'),
+      });
+      if (st) { st.textContent = '✅ Сохранено. Клиенты подхватят за секунды.'; st.style.color = '#4ade80'; }
+    } catch (e) {
+      if (st) { st.textContent = 'Ошибка: ' + (e && e.message ? e.message : e); st.style.color = '#f87171'; }
+    }
+  };
+
+  // Подгрузка fallback-текстов Компаса в поля (вызывается из loadCompassAdmin).
+  window.loadCompassFallback = async function() {
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+      set('cp-compass-fallback-ru', texts.compass_voice_fallback_ru);
+      set('cp-compass-fallback-uk', texts.compass_voice_fallback_uk);
+      set('cp-compass-fallback-es', texts.compass_voice_fallback_es);
+    } catch (_) { /* некритично */ }
+  };
+
+  // ── Недельные бонусы (weekly_boons_config, JSON-текст) ─────────────────────
+  // Встроенный дефолт — зеркало app/boons/boon_config.ts DEFAULT_WEEKLY_BOONS_CONFIG.
+  const CP_BOONS_DEFAULT_JSON = JSON.stringify({
+    schedule: { 0: 'streak_saver', 1: 'mystery_monday', 2: 'turbo_regen', 3: 'energy_free_window', 4: 'double_xp', 5: 'flashcard_friday', 6: ['arena_saturday', 'speaking_saturday'] },
+    enabled: {},
+    modifiersEnabled: {},
+  }, null, 2);
+
+  function cpBoonsStatus(msg, color) {
+    const el = document.getElementById('cp-boons-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  window.insertDefaultBoonsJson = function() {
+    const ta = document.getElementById('cp-boons-json');
+    if (ta) { ta.value = CP_BOONS_DEFAULT_JSON; cpBoonsStatus('Вставлен дефолт — не забудь «Сохранить».', '#93c5fd'); }
+  };
+  window.loadControlPanelBoons = async function() {
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      const ta = document.getElementById('cp-boons-json');
+      if (ta) ta.value = texts.weekly_boons_config || '';
+    } catch (_) { /* некритично */ }
+  };
+  window.saveControlPanelBoons = async function() {
+    const ta = document.getElementById('cp-boons-json');
+    const raw = ta ? String(ta.value || '').trim() : '';
+    // Пусто = сброс к дефолту (валидно). Иначе обязан быть валидный JSON-объект.
+    if (raw) {
+      let parsed;
+      try { parsed = JSON.parse(raw); }
+      catch (e) { cpBoonsStatus('❌ Невалидный JSON: ' + (e && e.message ? e.message : e), '#f87171'); return; }
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        cpBoonsStatus('❌ Ожидается JSON-объект { schedule, enabled, modifiersEnabled }.', '#f87171');
+        return;
+      }
+    }
+    cpBoonsStatus('Сохранение…');
+    try {
+      await window.saveControlPanelTexts({ weekly_boons_config: raw });
+      cpBoonsStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+    } catch (e) {
+      cpBoonsStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
 
   // ══ Пульт: ПРЕМИУМ / ФРИ — фичи, лимиты, поурочная разблокировка ════════════
   // Всё пишется в один документ remote_config/app:
@@ -21764,6 +21984,162 @@
     } catch (e) {
       cpPremSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
     }
+  };
+
+  // ── Пульт: Weekly Boons (бонусы дня недели) — texts.weekly_boons_config (JSON) ──
+  // Зеркалит app/boons/boon_types.ts + boon_config.ts. День 0=вс..6=сб (UTC).
+  var WB_BOONS = [
+    { id: 'streak_saver',       label: 'Серия под щитом (заморозка)' },
+    { id: 'mystery_monday',     label: 'Сундук недели (модал-награда)' },
+    { id: 'turbo_regen',        label: 'Заряд на максимум (×2 энергия)' },
+    { id: 'energy_free_window', label: 'Вечер без лимитов (19–22)' },
+    { id: 'double_xp',          label: 'Двойной опыт (×2 XP)' },
+    { id: 'flashcard_friday',   label: 'Колода в подарок (48ч триал)' },
+    { id: 'arena_saturday',     label: 'Бой за рейтинг (+попытки арены)' },
+    { id: 'speaking_saturday',  label: 'День голоса (открыт speaking)' },
+  ];
+  var WB_MODIFIERS = [
+    { id: 'early_bird',   label: 'Ранняя пташка (×1.1 до 10:00)' },
+    { id: 'perfect_week', label: 'Идеальная неделя (приз за 7/7)' },
+  ];
+  var WB_DAYS = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+  var WB_DEFAULT_SCHEDULE = { '0':'streak_saver','1':'mystery_monday','2':'turbo_regen','3':'energy_free_window','4':'double_xp','5':'flashcard_friday','6':['arena_saturday','speaking_saturday'] };
+  var _wbState = { schedule: {}, enabled: {}, modifiersEnabled: {} };
+
+  function wbSetStatus(msg, color) {
+    var el = document.getElementById('wb-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  function wbSlotArray(day) {
+    var v = _wbState.schedule[String(day)];
+    if (Array.isArray(v)) return v.slice();
+    if (typeof v === 'string') return [v];
+    return [];
+  }
+  function wbSetSlot(day, arr) {
+    var clean = (arr || []).filter(function(x){ return WB_BOONS.some(function(b){ return b.id === x; }); });
+    if (clean.length === 0) delete _wbState.schedule[String(day)];
+    else if (clean.length === 1) _wbState.schedule[String(day)] = clean[0];
+    else _wbState.schedule[String(day)] = clean;
+  }
+  function wbBoonOptions(selected) {
+    var html = '<option value="">—нет—</option>';
+    WB_BOONS.forEach(function(b){ html += '<option value="' + b.id + '"' + (b.id === selected ? ' selected' : '') + '>' + b.label + '</option>'; });
+    return html;
+  }
+  function wbRenderSchedule() {
+    var box = document.getElementById('wb-schedule');
+    if (!box) return;
+    var html = '';
+    for (var d = 0; d < 7; d++) {
+      var arr = wbSlotArray(d);
+      html += '<div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;background:#0f0f17;border:1px solid #23232f;border-radius:9px;padding:8px 10px">';
+      html += '<div style="min-width:104px;font-size:12.5px;font-weight:700;color:#e5e7eb;padding-top:6px">' + WB_DAYS[d] + '</div>';
+      html += '<div style="display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0">';
+      if (arr.length === 0) {
+        html += '<select onchange="wbOnSlotChange(' + d + ',0,this.value)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:7px;color:#e0e0e0;padding:6px 9px;font-size:12.5px">' + wbBoonOptions('') + '</select>';
+      } else {
+        arr.forEach(function(id, idx){
+          html += '<div style="display:flex;align-items:center;gap:3px">';
+          if (idx > 0) html += '<span style="font-size:11px;color:#71717a">нед.' + (idx+1) + '→</span>';
+          html += '<select onchange="wbOnSlotChange(' + d + ',' + idx + ',this.value)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:7px;color:#e0e0e0;padding:6px 9px;font-size:12.5px">' + wbBoonOptions(id) + '</select>';
+          if (arr.length > 1) html += '<button type="button" onclick="wbRemoveRot(' + d + ',' + idx + ')" title="Убрать из ротации" style="background:#3f1d1d;border:1px solid #5b2121;color:#fca5a5;border-radius:6px;cursor:pointer;padding:4px 7px;font-size:12px">✕</button>';
+          html += '</div>';
+        });
+      }
+      html += '</div>';
+      if (arr.length >= 1 && arr.length < WB_BOONS.length) {
+        html += '<button type="button" onclick="wbAddRot(' + d + ')" style="background:#1e293b;border:1px solid #334155;color:#7dd3fc;border-radius:7px;cursor:pointer;padding:6px 9px;font-size:12px;font-weight:700">+ ротация</button>';
+      }
+      html += '</div>';
+    }
+    box.innerHTML = html;
+  }
+  function wbRenderToggles() {
+    var eb = document.getElementById('wb-enabled');
+    if (eb) {
+      eb.innerHTML = WB_BOONS.map(function(b){
+        var on = _wbState.enabled[b.id] !== false;
+        return '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#0f0f17;border:1px solid #23232f;border-radius:8px;padding:7px 10px;font-size:12px;color:#cbd5e1">'
+          + '<input type="checkbox"' + (on ? ' checked' : '') + ' onchange="wbToggleEnabled(\'' + b.id + '\',this.checked)" style="width:34px;height:20px;cursor:pointer"/>' + b.label + '</label>';
+      }).join('');
+    }
+    var mb = document.getElementById('wb-modifiers');
+    if (mb) {
+      mb.innerHTML = WB_MODIFIERS.map(function(m){
+        var on = _wbState.modifiersEnabled[m.id] !== false;
+        return '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#0f0f17;border:1px solid #23232f;border-radius:8px;padding:7px 10px;font-size:12px;color:#cbd5e1">'
+          + '<input type="checkbox"' + (on ? ' checked' : '') + ' onchange="wbToggleModifier(\'' + m.id + '\',this.checked)" style="width:34px;height:20px;cursor:pointer"/>' + m.label + '</label>';
+      }).join('');
+    }
+  }
+  function wbRenderAll() { wbRenderSchedule(); wbRenderToggles(); }
+
+  window.wbOnSlotChange = function(day, idx, val) {
+    var arr = wbSlotArray(day);
+    if (idx >= arr.length) { if (val) arr.push(val); }
+    else if (!val) { arr.splice(idx, 1); }
+    else { arr[idx] = val; }
+    wbSetSlot(day, arr); wbRenderSchedule();
+  };
+  window.wbAddRot = function(day) {
+    var arr = wbSlotArray(day);
+    var next = WB_BOONS.map(function(b){ return b.id; }).find(function(id){ return arr.indexOf(id) < 0; });
+    if (next) { arr.push(next); wbSetSlot(day, arr); wbRenderSchedule(); }
+  };
+  window.wbRemoveRot = function(day, idx) { var arr = wbSlotArray(day); arr.splice(idx, 1); wbSetSlot(day, arr); wbRenderSchedule(); };
+  window.wbToggleEnabled = function(id, checked) { if (checked) delete _wbState.enabled[id]; else _wbState.enabled[id] = false; };
+  window.wbToggleModifier = function(id, checked) { if (checked) delete _wbState.modifiersEnabled[id]; else _wbState.modifiersEnabled[id] = false; };
+
+  function wbParse(raw) {
+    if (!raw || !String(raw).trim()) return { schedule: Object.assign({}, WB_DEFAULT_SCHEDULE), enabled: {}, modifiersEnabled: {} };
+    try {
+      var o = JSON.parse(raw);
+      if (!o || typeof o !== 'object' || Array.isArray(o)) throw 0;
+      return {
+        schedule: (o.schedule && typeof o.schedule === 'object') ? o.schedule : {},
+        enabled: (o.enabled && typeof o.enabled === 'object') ? o.enabled : {},
+        modifiersEnabled: (o.modifiersEnabled && typeof o.modifiersEnabled === 'object') ? o.modifiersEnabled : {},
+      };
+    } catch (_) { return { schedule: Object.assign({}, WB_DEFAULT_SCHEDULE), enabled: {}, modifiersEnabled: {} }; }
+  }
+
+  window.loadWeeklyBoons = async function() {
+    wbSetStatus('Загрузка…');
+    try {
+      var snap = await getDoc(doc(db, 'remote_config', 'app'));
+      var data = snap.exists() ? (snap.data() || {}) : {};
+      var texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      _wbState = wbParse(texts.weekly_boons_config);
+      wbRenderAll();
+      wbSetStatus(snap.exists() ? ('Загружено · обновлял: ' + (data.updatedBy || '—')) : 'Документа ещё нет — «Сохранить» создаст его.', '#4ade80');
+    } catch (e) { wbSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171'); }
+  };
+  window.resetWeeklyBoonsDefault = function() {
+    _wbState = { schedule: Object.assign({}, WB_DEFAULT_SCHEDULE), enabled: {}, modifiersEnabled: {} };
+    wbRenderAll(); wbSetStatus('Сброшено к дефолту (не забудь «Сохранить»).', '#fbbf24');
+  };
+  window.saveWeeklyBoons = async function() {
+    wbSetStatus('Сохранение…');
+    try {
+      var prev = {};
+      try { var ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      var numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
+      var bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
+      var texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});
+      var cfg = { schedule: _wbState.schedule, enabled: _wbState.enabled, modifiersEnabled: _wbState.modifiersEnabled };
+      var nextStr = JSON.stringify(cfg);
+      var changed = (texts.weekly_boons_config || '') !== nextStr;
+      texts.weekly_boons_config = nextStr;
+      var who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      await setDoc(doc(db, 'remote_config', 'app'), { numbers, bools, texts, updatedAt: Date.now(), updatedBy: who }, { merge: false });
+      if (changed) {
+        try { await addDoc(collection(db, 'remote_config_history'), { changes: ['weekly_boons_config'], by: who, at: new Date().toISOString(), texts: { weekly_boons_config: nextStr } }); } catch (_) {}
+        if (typeof logAction === 'function') logAction('weekly_boons_save', 'remote_config/app', { config: nextStr });
+      }
+      wbSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
+    } catch (e) { wbSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171'); }
   };
 
   // ── Пульт: управление ИИ (Theo) — те же CF, что во вкладке OpenAI budget ───

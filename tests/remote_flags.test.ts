@@ -14,6 +14,7 @@ import {
   isMaintenanceBanner,
   isMaintenanceBlock,
   getMaintenanceText,
+  isPaywallTimersEnabled,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -36,6 +37,7 @@ describe('remote_flags', () => {
       expect(isReferralEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
+      expect(isPaywallTimersEnabled()).toBe(true);
     });
   });
 
@@ -126,6 +128,15 @@ describe('remote_flags', () => {
       expect(getRemoteBool('explain_enabled')).toBe(true);
       applyRemoteConfigSnapshot({ bools: { explain_enabled: false } });
       expect(getRemoteBool('explain_enabled')).toBe(false);
+    });
+
+    it('paywall_timers_enabled defaults true (kill-switch), snapshot can disable', () => {
+      expect(isPaywallTimersEnabled()).toBe(true);
+      applyRemoteConfigSnapshot({ bools: { paywall_timers_enabled: false } });
+      expect(isPaywallTimersEnabled()).toBe(false);
+      // повторный снапшот без ключа возвращает дефолт (полная замена)
+      applyRemoteConfigSnapshot({ bools: { referral_enabled: true } });
+      expect(isPaywallTimersEnabled()).toBe(true);
     });
   });
 

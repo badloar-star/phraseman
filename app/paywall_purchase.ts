@@ -18,7 +18,7 @@ import { useRouter } from 'expo-router';
 import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
-import { isLifetimeButtonEnabled } from './remote_flags';
+import { isLifetimeButtonEnabled, isPaywallTimersEnabled } from './remote_flags';
 import {
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
@@ -83,10 +83,17 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
 
   // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
   // состояние. Тик раз в секунду живёт в PaywallPriceUrgency — здесь только старт.
+  // Гейт «Пульта»: при выключенном paywall_timers_enabled НЕ запускаем окно и
+  // держим пустое неактивное состояние — тогда PaywallPriceUrgency возвращает
+  // null во всех режимах (включая grace), и блок срочности скрыт у всех живьём.
   useEffect(() => {
     let dead = false;
     void (async () => {
       try {
+        if (!isPaywallTimersEnabled()) {
+          if (!dead) setUrgency({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
+          return;
+        }
         await activateUrgencyIfNeeded();
         const s = await getUrgencyState();
         if (!dead) setUrgency(s);

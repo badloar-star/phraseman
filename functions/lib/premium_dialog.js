@@ -33,7 +33,11 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.premiumDialogSend = void 0;
+exports.premiumDialogTranslate = exports.premiumDialogSend = void 0;
+exports.asInterfaceLang = asInterfaceLang;
+exports.buildScenarioSystemPrompt = buildScenarioSystemPrompt;
+exports.parseGameEnvelope = parseGameEnvelope;
+exports.buildCompanionSystemPrompt = buildCompanionSystemPrompt;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
@@ -42,6 +46,7 @@ const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
+const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * Premium AI dialogue — Phase 0 (scenario-only, text MVP).
@@ -55,6 +60,7 @@ const REGION = 'us-central1';
 const RATE_COLLECTION = 'premium_dialog_rate_limits';
 const QUOTA_COLLECTION = 'premium_dialog_quotas';
 const BILLING_COLLECTION = 'premium_dialog_billing';
+const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';
 const MAX_USER_TEXT = 2000;
 const MAX_HISTORY_TURNS = 8;
 const MAX_OUTPUT_TOKENS = 200;
@@ -222,12 +228,35 @@ async function releaseLifetimeFreeDialog(authUid, stableUid) {
         tx.set(ref, { freeDialogUsed: false, releasedAtMs: Date.now() }, { merge: true });
     });
 }
+const DIALOG_LEARNER_LANG_NAME = {
+    ru: 'Russian',
+    uk: 'Ukrainian',
+    es: 'Spanish',
+    'pt-BR': 'Brazilian Portuguese',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    tr: 'Turkish',
+    pl: 'Polish',
+    en: 'English',
+};
+function asInterfaceLang(value) {
+    return (0, ai_language_contract_1.resolveAiOutputLang)(text(value, 8) || 'ru', 'premium_dialog');
+}
+function renderLanguageTemplate(template, interfaceLang) {
+    const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
+    return template
+        .replace(/\{LEARNER_LANG_NAME\}/g, learnerLangName)
+        .replace(/\{LEARNER_LANG_CODE\}/g, interfaceLang);
+}
+function renderGlobalRules(cefr, interfaceLang) {
+    return renderLanguageTemplate(GLOBAL_RULES.replace('{CEFR}', cefr), interfaceLang);
+}
 const GLOBAL_RULES = `You are "Компас", a warm, patient English-speaking partner inside the Phraseman app.
-The learner is a Russian speaker, often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
+The learner's interface/native-help language is {LEARNER_LANG_NAME} ({LEARNER_LANG_CODE}). Do not assume Russian unless this value is Russian. The learner is often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
 Keep YOUR replies SHORT: 1-2 sentences, max ~25 words. Long replies overwhelm beginners.
 Speak natural everyday English. Avoid slang, idioms, and rare words unless the learner is B2+.
 Adapt to the learner's CEFR level: {CEFR}. Speak slightly above it (i+1), introducing at most ONE new word per turn, always understandable from context.
-SOFT CORRECTION (recast): if the learner makes an error, naturally restate the correct form inside your reply WITHOUT stopping the conversation and WITHOUT meta-commentary. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?"
+SOFT CORRECTION (recast): if the learner makes an error, naturally restate the correct form inside your reply WITHOUT stopping the conversation and WITHOUT meta-commentary. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?" Just model the correct form; NEVER speculate WHY they erred (do not say they "translated literally" or "got confused"), and never mock or shame the slip.
 NEVER break character to lecture. If the learner uses any language other than English, accept it and gently bridge back to English with one simple model phrase. Do not refuse to continue.
 NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
 End most replies with a simple question or prompt to keep the conversation going.
@@ -249,21 +278,106 @@ function personaBlock(persona) {
     return `\nYour character: ${persona}`;
 }
 function buildScenarioSystemPrompt(cefr, data) {
+    const interfaceLang = asInterfaceLang(data.interfaceLang);
     const block = SCENARIO_BLOCK
         .replace('{ROLE}', text(data.role, 120) || 'a friendly barista')
         .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
         .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
         .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
         .replace('{CEFR}', cefr);
-    return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${block}${cefrReinjection(cefr)}`;
+    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data)}${cefrReinjection(cefr)}`;
+}
+function sanitizeObjectives(value) {
+    if (!Array.isArray(value))
+        return [];
+    const out = [];
+    for (const raw of value.slice(0, 6)) {
+        const item = (raw ?? {});
+        const id = text(item.id, 64);
+        const en = text(item.en, 120);
+        if (id && en)
+            out.push({ id, en });
+    }
+    return out;
+}
+function sanitizePatience(value) {
+    const v = text(value, 8);
+    return v === 'high' || v === 'low' ? v : 'medium';
+}
+function startMoodForPatience(patience) {
+    return patience === 'high' ? 85 : patience === 'low' ? 55 : 70;
+}
+/** true — клиент прислал под-цели, значит активируем игровой конверт. */
+function isGameMode(data) {
+    return sanitizeObjectives(data.objectives).length > 0;
+}
+/**
+ * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
+ * формат JSON-ответа. Пусто, если клиент не прислал objectives.
+ */
+function gameBlock(data) {
+    const objectives = sanitizeObjectives(data.objectives);
+    if (objectives.length === 0)
+        return '';
+    const temp = (data.temperament ?? {});
+    const patience = sanitizePatience(temp.patience);
+    const warmth = text(temp.warmth, 8) || 'neutral';
+    const startMood = startMoodForPatience(patience);
+    const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
+    return `
+
+GAME STATE (you secretly track this and report it as JSON — the learner never sees the raw numbers):
+- Sub-goals for this scene (mark each done when the learner accomplishes it):
+${objLines}
+- Your patience level is ${patience} and your warmth is ${warmth}. Start your inner "mood" at about ${startMood} (0..100).
+- RAISE mood when the learner is polite and moves toward a sub-goal. LOWER mood for rudeness, off-topic talk, or endless repetition. If your patience is "low", also lower it for stalling and waffling.
+- LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour lowers mood.
+- Decide the outcome each turn:
+  - "success" = ALL sub-goals are done → warmly close the scene in character.
+  - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).
+  - "stalled" = about 8+ exchanges with no new sub-goal progress → let the scene fade.
+  - "ongoing" = otherwise, keep going.
+- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time.
+
+OUTPUT FORMAT: respond with a single JSON object and nothing else:
+{"reply": "<your spoken reply, with [[key phrases]] as usual>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
+The "reply" field must contain ONLY your spoken line (the learner sees just this). Keep all the character, brevity and CEFR rules above.`;
+}
+/** Разбор игрового JSON-конверта. Возвращает reply + сырой turnState (или null). */
+function parseGameEnvelope(content) {
+    const trimmed = content.trim();
+    // Снимаем возможные ```json … ``` ограждения.
+    const unfenced = trimmed.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+    let parsed;
+    try {
+        parsed = JSON.parse(unfenced);
+    }
+    catch {
+        return null;
+    }
+    if (!parsed || typeof parsed !== 'object')
+        return null;
+    const reply = text(parsed.reply, 1500);
+    if (!reply)
+        return null;
+    return {
+        reply,
+        turnState: {
+            mood: parsed.mood,
+            objectivesMet: parsed.objectivesMet,
+            outcome: parsed.outcome,
+            characterReaction: parsed.characterReaction,
+            coachTips: parsed.coachTips,
+        },
+    };
 }
 const COMPANION_BLOCK = `MODE: OPEN COMPANION CONVERSATION.
 You are NOT playing a fixed scenario. You are the learner's warm English-speaking friend having a real, open conversation.
 - Talk like a genuine friend with light personality and humour - NOT a servile assistant, NOT an interviewer firing questions.
 - Follow the learner's interest and let them lead where they can; show real curiosity with natural follow-ups.
-- They may ask for explanations, examples, progress, weak spots, or the next useful step. Use only the memory and data provided; if data is missing, say that briefly and suggest a small next action.
+- They may ask for explanations, examples, progress, weak spots, or the next useful step. Use only the memory and data provided; if data is missing, say that briefly and suggest a small next action. If the weak-words and summary are EMPTY, you do NOT know their stats — say you have not tracked enough yet and invite a short practice; NEVER invent numbers, streaks, or past lessons.
 - Stay inside language learning, communication practice, learner progress, and safe everyday topics. Do not become a general-purpose assistant for unrelated tasks.
-- If the learner asks in Russian about an explanation or their progress, you may answer briefly in Russian, then give one short English phrase they can say next.
+- If the learner asks in their interface language ({LEARNER_LANG_NAME}) about an explanation or their progress, you may answer briefly in {LEARNER_LANG_NAME} — always address them informally for that language, keep it short (≤2 sentences) and free of grammar jargon — then give one short English phrase they can say next.
 - Your hidden coaching goal: gently steer the chat so the learner naturally PRODUCES speech using the words/phrases they struggle with (provided below). Do not list them or announce this - weave them into your questions.
 - The conversation is open and ongoing - do NOT try to "wrap it up" after a few turns. Keep it alive.`;
 /**
@@ -287,8 +401,9 @@ function buildMemoryBlock(memory) {
         return '';
     return `\n\nWHAT YOU REMEMBER ABOUT THIS LEARNER:\n${lines.join('\n')}`;
 }
-function buildCompanionSystemPrompt(cefr, memory) {
-    return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${COMPANION_BLOCK}${buildMemoryBlock(memory)}${cefrReinjection(cefr)}`;
+function buildCompanionSystemPrompt(cefr, memory, rawInterfaceLang) {
+    const interfaceLang = asInterfaceLang(rawInterfaceLang);
+    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${renderLanguageTemplate(COMPANION_BLOCK, interfaceLang)}${buildMemoryBlock(memory)}${cefrReinjection(cefr)}`;
 }
 exports.premiumDialogSend = (0, https_1.onCall)({
     region: REGION,
@@ -350,15 +465,19 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         remaining = 0;
     }
     const systemPrompt = mode === 'companion'
-        ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory))
+        ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang)
         : buildScenarioSystemPrompt(cefr, data);
     const messages = [
         { role: 'system', content: systemPrompt },
         ...history,
         { role: 'user', content: userText },
     ];
+    // Игровой режим (есть под-цели): просим JSON-конверт и разбираем его. Конверт
+    // длиннее обычной реплики → больше токенов на вывод.
+    const gameMode = mode === 'scenario' && isGameMode(data);
     let json;
     let assistantMessage;
+    let turnState = null;
     try {
         const response = await fetch(OPENAI_CHAT_URL, {
             method: 'POST',
@@ -369,8 +488,9 @@ exports.premiumDialogSend = (0, https_1.onCall)({
             body: JSON.stringify({
                 model: dialogModel,
                 messages,
-                max_tokens: MAX_OUTPUT_TOKENS,
+                max_tokens: gameMode ? MAX_OUTPUT_TOKENS + 220 : MAX_OUTPUT_TOKENS,
                 temperature: 0.8,
+                ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
             }),
         });
         if (!response.ok) {
@@ -385,7 +505,25 @@ exports.premiumDialogSend = (0, https_1.onCall)({
             throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
         }
         json = (await response.json());
-        assistantMessage = text(json.choices?.[0]?.message?.content, 1500);
+        const rawContent = text(json.choices?.[0]?.message?.content, 1800);
+        if (gameMode) {
+            // Парсим конверт. Если JSON битый — фолбэк: весь текст = реплика, без
+            // игрового состояния (диалог идёт как обычный чат, фича «молчит» этот ход).
+            const env = parseGameEnvelope(rawContent);
+            if (env) {
+                assistantMessage = env.reply;
+                turnState = env.turnState;
+            }
+            else {
+                console.warn('premium_dialog game envelope parse failed — falling back to plain reply', {
+                    scenarioId: text(data.scenarioId, 80) || null,
+                });
+                assistantMessage = rawContent;
+            }
+        }
+        else {
+            assistantMessage = rawContent;
+        }
         if (!assistantMessage) {
             console.error('premium_dialog empty reply', {
                 model: dialogModel,
@@ -440,6 +578,166 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         assistantMessage,
         remainingQuota: remaining,
         model: dialogModel,
+        // Игровое состояние хода (null, если не игровой режим или JSON не распарсился).
+        // Клиент разбирает через parseTurnState с собственным фолбэком.
+        turnState,
     };
+});
+// ── Перевод реплики собеседника на язык интерфейса ──────────────────────────
+// Реплики ИИ генерируются на лету, готового перевода нет. Кнопка «Показать
+// перевод» под репликой зовёт эту функцию ЛЕНИВО — только для реально открытых
+// реплик (клиент держит лимит 3 на диалог). Повторный флип той же реплики
+// обслуживается клиентским кэшем и сюда не приходит; на случай повтора с другого
+// устройства есть серверный кэш по hash(text|lang) — без повторного вызова OpenAI.
+const MAX_TRANSLATE_TEXT = 1200;
+const MAX_TRANSLATE_OUTPUT_TOKENS = 320;
+/**
+ * Имя целевого языка интерфейса для промпта перевода. Коды совпадают с
+ * `Lang` на клиенте (constants/i18n). Неизвестный код → English как безопасный
+ * дефолт (лучше отдать хоть что-то, чем падать).
+ */
+const TARGET_LANG_NAME = {
+    ru: 'Russian',
+    uk: 'Ukrainian',
+    es: 'Spanish',
+    'pt-BR': 'Brazilian Portuguese',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    tr: 'Turkish',
+    pl: 'Polish',
+    en: 'English',
+};
+function asTargetLang(value) {
+    return (0, ai_language_contract_1.resolveAiOutputLang)(text(value, 8), 'premium_dialog_translate');
+}
+function translationCacheId(sourceText, targetLang) {
+    const hash = (0, crypto_1.createHash)('sha256')
+        .update(`${targetLang}|${sourceText}`)
+        .digest('hex')
+        .slice(0, 48);
+    return `tr_${hash}`;
+}
+exports.premiumDialogTranslate = (0, https_1.onCall)({
+    region: REGION,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
+    timeoutSeconds: 20,
+    memory: '256MiB',
+    maxInstances: 20,
+    secrets: [OPENAI_API_KEY],
+}, async (request) => {
+    if (!request.auth?.uid) {
+        console.warn('premium_dialog_translate rejected', { reason: 'auth_required' });
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    }
+    const data = (request.data ?? {});
+    const sourceText = text(data.text, MAX_TRANSLATE_TEXT);
+    if (!sourceText) {
+        console.warn('premium_dialog_translate rejected', { reason: 'text_required' });
+        throw new https_1.HttpsError('invalid-argument', 'text_required');
+    }
+    const targetLang = asTargetLang(data.targetLang);
+    const targetLangName = TARGET_LANG_NAME[targetLang];
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
+    // Кэш ПЕРЕД любой платной работой: одинаковая реплика+язык переводится один раз
+    // на всё приложение. Повторный флип/повтор с другого устройства — бесплатно.
+    const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang));
+    const cached = await cacheRef.get().catch(() => null);
+    const cachedData = cached?.data();
+    const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
+    if (cachedTranslation && cachedData?.languageContractVersion === ai_language_contract_1.LANGUAGE_CONTRACT_VERSION) {
+        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: cachedTranslation, targetLang, feature: 'premium_dialog_translate' });
+        return { ok: true, translation: cachedTranslation, cached: true };
+    }
+    // Rate-limit (та же коллекция/окно, что у send) — против абьюза перевода.
+    await enforceRateLimit(authUid, stableUid);
+    const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
+    if (!apiKey) {
+        console.error('premium_dialog_translate rejected', { reason: 'openai_key_missing' });
+        throw new https_1.HttpsError('failed-precondition', 'openai_key_missing');
+    }
+    const dialogModel = await (0, openai_dialog_model_config_1.resolveConfiguredDialogModel)(db, process.env.OPENAI_DIALOG_MODEL);
+    const systemPrompt = `You are a precise translator inside a language-learning app. ` +
+        `Translate the user's English message into ${targetLangName}. ` +
+        `Return ONLY the translation — natural, conversational, faithful to tone. ` +
+        `No quotes, no notes, no explanations, no transliteration. Keep it the same length range.`;
+    const messages = [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: sourceText },
+    ];
+    let json;
+    let translation;
+    try {
+        const response = await fetch(OPENAI_CHAT_URL, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: dialogModel,
+                messages,
+                max_tokens: MAX_TRANSLATE_OUTPUT_TOKENS,
+                temperature: 0.2,
+            }),
+        });
+        if (!response.ok) {
+            const detail = await response.text().catch(() => '');
+            console.error('premium_dialog_translate chat failed', {
+                status: response.status,
+                model: dialogModel,
+                targetLang,
+                detail: detail.slice(0, 500),
+            });
+            throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
+        }
+        json = (await response.json());
+        translation = text(json.choices?.[0]?.message?.content, MAX_TRANSLATE_TEXT);
+        if (!translation) {
+            console.error('premium_dialog_translate empty reply', { model: dialogModel, targetLang });
+            throw new https_1.HttpsError('unavailable', 'dialog_empty_reply');
+        }
+        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: translation, targetLang, feature: 'premium_dialog_translate' });
+    }
+    catch (error) {
+        if (error instanceof https_1.HttpsError)
+            throw error;
+        console.error('premium_dialog_translate provider exception', {
+            model: dialogModel,
+            targetLang,
+            error: String(error?.message ?? error).slice(0, 500),
+        });
+        throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
+    }
+    // Кэшируем перевод (best-effort — сбой записи не должен ломать ответ юзеру).
+    await cacheRef.set({
+        translation,
+        targetLang,
+        languageContractVersion: ai_language_contract_1.LANGUAGE_CONTRACT_VERSION,
+        sourceText,
+        scenarioId: text(data.scenarioId, 80) || null,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAtMs: Date.now(),
+    }, { merge: true }).catch((writeError) => {
+        console.error('premium_dialog_translate cache write failed', {
+            error: String(writeError?.message ?? writeError).slice(0, 300),
+        });
+    });
+    const usage = json.usage ?? {};
+    await db.collection(BILLING_COLLECTION).doc().set({
+        uid: stableUid,
+        authUid,
+        mode: 'translate',
+        model: dialogModel,
+        targetLang,
+        scenarioId: text(data.scenarioId, 80) || null,
+        promptTokens: Number(usage.prompt_tokens ?? 0),
+        completionTokens: Number(usage.completion_tokens ?? 0),
+        totalTokens: Number(usage.total_tokens ?? 0),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAtMs: Date.now(),
+    }).catch(() => { });
+    return { ok: true, translation, cached: false };
 });
 //# sourceMappingURL=premium_dialog.js.map

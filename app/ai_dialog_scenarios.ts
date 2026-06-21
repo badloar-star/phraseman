@@ -6,6 +6,28 @@ import { triLang, type Lang } from '../constants/i18n';
 
 export type DialogScenarioCategory = 'everyday' | 'travel' | 'social';
 
+/**
+ * Проверяемая под-цель диалога. `id` — стабильный ключ для галочек в чек-листе
+ * (его же возвращает сервер в objectivesMet). Метка показывается юзеру.
+ */
+export interface DialogObjective {
+  id: string;
+  labelRu: string;
+  labelEs?: string;
+}
+
+/**
+ * Темперамент персонажа — как быстро он теряет терпение (управляет скрытым
+ * mood-счётчиком на сервере). Языковые ошибки терпение НЕ роняют; роняют
+ * грубость/оффтоп/повторы, а у нетерпеливых — ещё и затягивание.
+ */
+export interface DialogTemperament {
+  /** 'high' терпит почти всё (бариста) · 'medium' · 'low' нетерпелив (очередь). */
+  patience: 'high' | 'medium' | 'low';
+  /** Насколько легко расположить: 'warm' · 'neutral' · 'cold'. */
+  warmth: 'warm' | 'neutral' | 'cold';
+}
+
 export interface DialogScenario {
   id: string;
   category: DialogScenarioCategory;
@@ -32,6 +54,14 @@ export interface DialogScenario {
   sourceLessonId?: number;
   hiddenFromHome?: boolean;
   requiredPhraseIds?: string[];
+  /**
+   * Явные под-цели сцены. Если не заданы — выводятся из goalEn (см.
+   * scenarioObjectives ниже), чтобы фича работала для всех сценариев без правки
+   * каждого объекта контента.
+   */
+  objectives?: DialogObjective[];
+  /** Явный темперамент. Если не задан — выводится из persona (scenarioTemperament). */
+  temperament?: DialogTemperament;
 }
 
 export interface DialogScenarioGroup {
@@ -170,6 +200,29 @@ type ScenarioUiCopyEs = {
   goalEs: string;
   nextStepHintEs: string;
 };
+
+type ScenarioBatchLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+type ScenarioBatchCopies = Record<ScenarioBatchLocale, ScenarioUiCopy>;
+
+const scenarioCopy = (title: string, goal: string, nextStepHint: string): ScenarioUiCopy => ({
+  title,
+  goal,
+  nextStepHint,
+});
+
+const scenarioBatchCopies = (
+  ptBR: ScenarioUiCopy,
+  vi: ScenarioUiCopy,
+  id: ScenarioUiCopy,
+  tr: ScenarioUiCopy,
+  pl: ScenarioUiCopy,
+): ScenarioBatchCopies => ({
+  'pt-BR': ptBR,
+  vi,
+  id,
+  tr,
+  pl,
+});
 
 const DIALOG_SCENARIO_COPY_ES: Record<string, ScenarioUiCopyEs> = {
   coffee: {
@@ -379,10 +432,328 @@ const DIALOG_SCENARIO_COPY_ES: Record<string, ScenarioUiCopyEs> = {
   },
 };
 
+const DIALOG_SCENARIO_COPY_BATCH: Record<string, ScenarioBatchCopies> = {
+  coffee: scenarioBatchCopies(
+    scenarioCopy('Peça um café', 'Peça um cappuccino, confirme o tamanho e pergunte o preço', 'Peça um cappuccino, confirme o tamanho ou pergunte o preço com suas próprias palavras.'),
+    scenarioCopy('Gọi cà phê', 'Gọi cappuccino, xác nhận cỡ và hỏi giá', 'Hãy gọi cappuccino, xác nhận cỡ hoặc hỏi giá bằng lời của bạn.'),
+    scenarioCopy('Pesan kopi', 'Pesan cappuccino, pastikan ukuran, dan tanyakan harganya', 'Minta cappuccino, pastikan ukuran, atau tanyakan harga dengan kata-katamu sendiri.'),
+    scenarioCopy('Kahve sipariş et', 'Bir cappuccino sipariş et, boyunu netleştir ve fiyatını sor', 'Kendi sözlerinle cappuccino iste, boyunu netleştir veya fiyatını sor.'),
+    scenarioCopy('Zamów kawę', 'Zamów cappuccino, ustal rozmiar i zapytaj o cenę', 'Poproś o cappuccino, doprecyzuj rozmiar albo zapytaj o cenę własnymi słowami.'),
+  ),
+  grocery: scenarioBatchCopies(
+    scenarioCopy('No mercado', 'Encontre leite, pergunte sobre pão fresco e pague a compra', 'Pergunte onde fica o leite ou se há pão fresco.'),
+    scenarioCopy('Ở cửa hàng thực phẩm', 'Tìm sữa, hỏi về bánh mì mới và thanh toán', 'Hỏi sữa ở đâu hoặc có bánh mì mới không.'),
+    scenarioCopy('Di toko bahan makanan', 'Temukan susu, tanyakan roti segar, dan bayar belanjaan', 'Tanyakan di mana susu atau apakah ada roti segar.'),
+    scenarioCopy('Markette', 'Sütü bul, taze ekmek sor ve alışverişi öde', 'Sütün nerede olduğunu sor veya taze ekmek olup olmadığını netleştir.'),
+    scenarioCopy('W sklepie spożywczym', 'Znajdź mleko, zapytaj o świeży chleb i zapłać za zakupy', 'Zapytaj, gdzie jest mleko, albo czy jest świeży chleb.'),
+  ),
+  clothes_shop: scenarioBatchCopies(
+    scenarioCopy('Loja de roupas', 'Peça outro tamanho, o provador e pergunte o preço', 'Peça outro tamanho ou pergunte se pode experimentar a peça.'),
+    scenarioCopy('Cửa hàng quần áo', 'Xin cỡ khác, hỏi phòng thử đồ và hỏi giá', 'Xin cỡ khác hoặc hỏi có thể thử món đồ không.'),
+    scenarioCopy('Toko pakaian', 'Minta ukuran lain, ruang ganti, dan tanyakan harga', 'Minta ukuran lain atau tanyakan apakah boleh mencoba pakaiannya.'),
+    scenarioCopy('Giyim mağazası', 'Başka beden iste, kabini sor ve fiyatı öğren', 'Başka beden iste veya ürünü deneyip deneyemeyeceğini sor.'),
+    scenarioCopy('Sklep odzieżowy', 'Poproś o inny rozmiar, przymierzalnię i zapytaj o cenę', 'Poproś o inny rozmiar albo zapytaj, czy możesz przymierzyć rzecz.'),
+  ),
+  pharmacy: scenarioBatchCopies(
+    scenarioCopy('Na farmácia', 'Explique um problema simples e pergunte como tomar o remédio', 'Descreva um problema simples e pergunte com que frequência tomar o remédio.'),
+    scenarioCopy('Ở hiệu thuốc', 'Giải thích một vấn đề đơn giản và hỏi cách dùng thuốc', 'Mô tả vấn đề đơn giản và hỏi nên uống thuốc bao lâu một lần.'),
+    scenarioCopy('Di apotek', 'Jelaskan masalah sederhana dan tanyakan cara minum obat', 'Jelaskan masalah sederhana dan tanyakan seberapa sering obat diminum.'),
+    scenarioCopy('Eczanede', 'Basit bir sorunu açıkla ve ilacı nasıl kullanacağını sor', 'Basit bir sorunu anlat ve ilacı ne sıklıkla alacağını sor.'),
+    scenarioCopy('W aptece', 'Wyjaśnij prosty problem i zapytaj, jak brać lek', 'Opisz prosty problem i zapytaj, jak często brać lek.'),
+  ),
+  restaurant: scenarioBatchCopies(
+    scenarioCopy('No restaurante', 'Peça uma mesa, faça o pedido e pergunte pela conta', 'Peça uma mesa, peça um prato ou peça a conta.'),
+    scenarioCopy('Ở nhà hàng', 'Xin bàn, gọi món và hỏi hóa đơn', 'Xin bàn, gọi món hoặc xin hóa đơn.'),
+    scenarioCopy('Di restoran', 'Minta meja, pesan makanan, dan tanyakan tagihan', 'Minta meja, pesan makanan, atau minta tagihan.'),
+    scenarioCopy('Restoranda', 'Masa iste, yemek sipariş et ve hesabı sor', 'Masa iste, yemek sipariş et veya hesabı iste.'),
+    scenarioCopy('W restauracji', 'Poproś o stolik, zamów danie i zapytaj o rachunek', 'Poproś o stolik, zamów danie albo poproś o rachunek.'),
+  ),
+  doctor_visit: scenarioBatchCopies(
+    scenarioCopy('No médico', 'Conte seus sintomas, responda perguntas e confirme o próximo passo', 'Conte o que dói e há quanto tempo, depois pergunte o que fazer em seguida.'),
+    scenarioCopy('Đi khám bác sĩ', 'Kể triệu chứng, trả lời câu hỏi và hỏi bước tiếp theo', 'Nói chỗ nào đau và đau bao lâu, rồi hỏi tiếp theo nên làm gì.'),
+    scenarioCopy('Ke dokter', 'Ceritakan gejala, jawab pertanyaan, dan pastikan langkah berikutnya', 'Ceritakan apa yang sakit dan sejak kapan, lalu tanyakan apa yang harus dilakukan berikutnya.'),
+    scenarioCopy('Doktorda', 'Belirtileri anlat, soruları cevapla ve sonraki adımı netleştir', 'Nerenin ne zamandır ağrıdığını söyle, sonra ne yapman gerektiğini sor.'),
+    scenarioCopy('U lekarza', 'Opowiedz o objawach, odpowiedz na pytania i ustal następny krok', 'Powiedz, co boli i od kiedy, potem zapytaj, co robić dalej.'),
+  ),
+  phone_delivery: scenarioBatchCopies(
+    scenarioCopy('Entrega', 'Ligue para o entregador, confirme o endereço e o horário de entrega', 'Diga o endereço e confirme quando o entregador chegará.'),
+    scenarioCopy('Giao hàng', 'Gọi cho người giao hàng, xác nhận địa chỉ và thời gian giao', 'Nói địa chỉ và hỏi khi nào người giao hàng sẽ đến.'),
+    scenarioCopy('Pengiriman', 'Telepon kurir, pastikan alamat dan waktu pengiriman', 'Sebutkan alamat dan pastikan kapan kurir akan datang.'),
+    scenarioCopy('Teslimat', 'Kuryeyi ara, adresi ve teslimat saatini netleştir', 'Adresi söyle ve kuryenin ne zaman geleceğini sor.'),
+    scenarioCopy('Dostawa', 'Zadzwoń do kuriera, potwierdź adres i czas dostawy', 'Podaj adres i ustal, kiedy kurier przyjedzie.'),
+  ),
+  hotel_checkin: scenarioBatchCopies(
+    scenarioCopy('Check-in no hotel', 'Faça o check-in, pergunte sobre o café da manhã e o Wi-Fi', 'Diga que tem uma reserva e pergunte sobre o café da manhã ou o Wi-Fi.'),
+    scenarioCopy('Nhận phòng khách sạn', 'Làm thủ tục nhận phòng, hỏi về bữa sáng và Wi-Fi', 'Nói rằng bạn có đặt phòng và hỏi về bữa sáng hoặc Wi-Fi.'),
+    scenarioCopy('Check-in hotel', 'Check-in, tanyakan sarapan dan Wi-Fi', 'Katakan kamu punya reservasi dan tanyakan sarapan atau Wi-Fi.'),
+    scenarioCopy('Otele giriş', 'Giriş yap, kahvaltıyı ve Wi-Fi bilgilerini sor', 'Rezervasyonun olduğunu söyle ve kahvaltı ya da Wi-Fi hakkında sor.'),
+    scenarioCopy('Meldunek w hotelu', 'Zamelduj się, zapytaj o śniadanie i Wi-Fi', 'Powiedz, że masz rezerwację, i zapytaj o śniadanie albo Wi-Fi.'),
+  ),
+  airport_checkin: scenarioBatchCopies(
+    scenarioCopy('No aeroporto', 'Faça o check-in do voo, despache a bagagem e pergunte pelo portão', 'Mostre o passaporte, pergunte sobre a bagagem ou o número do portão.'),
+    scenarioCopy('Ở sân bay', 'Làm thủ tục chuyến bay, gửi hành lý và hỏi cửa ra máy bay', 'Đưa hộ chiếu, hỏi về hành lý hoặc số cửa ra máy bay.'),
+    scenarioCopy('Di bandara', 'Check-in penerbangan, titipkan bagasi, dan tanyakan gerbang', 'Tunjukkan paspor, tanyakan bagasi atau nomor gerbang.'),
+    scenarioCopy('Havaalanında', 'Uçuş check-in’i yap, bagajı teslim et ve kapıyı sor', 'Pasaportunu göster, bagajı veya kapı numarasını sor.'),
+    scenarioCopy('Na lotnisku', 'Odpraw się na lot, nadaj bagaż i zapytaj o bramkę', 'Pokaż paszport, zapytaj o bagaż albo numer bramki.'),
+  ),
+  taxi: scenarioBatchCopies(
+    scenarioCopy('Táxi', 'Diga o endereço, confirme o preço e peça para ir mais devagar', 'Diga o endereço e pergunte o preço aproximado da viagem.'),
+    scenarioCopy('Taxi', 'Nói địa chỉ, hỏi giá và xin đi chậm hơn', 'Nói địa chỉ và hỏi giá ước tính của chuyến đi.'),
+    scenarioCopy('Taksi', 'Sebutkan alamat, pastikan harga, dan minta pelan-pelan', 'Sebutkan alamat dan tanyakan perkiraan harga perjalanan.'),
+    scenarioCopy('Taksi', 'Adresi söyle, fiyatı netleştir ve daha yavaş gitmesini iste', 'Adresi söyle ve yolculuğun yaklaşık fiyatını sor.'),
+    scenarioCopy('Taksówka', 'Podaj adres, ustal cenę i poproś, żeby jechać wolniej', 'Podaj adres i zapytaj o przybliżoną cenę przejazdu.'),
+  ),
+  train_station: scenarioBatchCopies(
+    scenarioCopy('Na estação', 'Compre uma passagem, confirme a plataforma e o horário de partida', 'Peça uma passagem e confirme a plataforma ou o horário de partida.'),
+    scenarioCopy('Ở ga tàu', 'Mua vé, hỏi sân ga và giờ khởi hành', 'Xin mua vé và hỏi sân ga hoặc giờ khởi hành.'),
+    scenarioCopy('Di stasiun', 'Beli tiket, pastikan peron dan waktu keberangkatan', 'Minta tiket dan pastikan peron atau jam keberangkatan.'),
+    scenarioCopy('Tren istasyonunda', 'Bilet al, peronu ve kalkış saatini netleştir', 'Bilet iste ve peronu ya da kalkış saatini sor.'),
+    scenarioCopy('Na dworcu', 'Kup bilet, ustal peron i godzinę odjazdu', 'Poproś o bilet i ustal peron albo godzinę odjazdu.'),
+  ),
+  lost_luggage: scenarioBatchCopies(
+    scenarioCopy('Bagagem perdida', 'Descreva a mala, deixe seus contatos e pergunte quando esperar resposta', 'Diga que a bagagem sumiu e descreva a mala.'),
+    scenarioCopy('Mất hành lý', 'Mô tả vali, để lại liên hệ và hỏi khi nào có phản hồi', 'Nói rằng hành lý bị mất và mô tả vali.'),
+    scenarioCopy('Bagasi hilang', 'Jelaskan koper, tinggalkan kontak, dan tanyakan kapan ada kabar', 'Katakan bagasi hilang dan jelaskan kopernya.'),
+    scenarioCopy('Kayıp bagaj', 'Valizi tarif et, iletişim bilgilerini bırak ve ne zaman haber alacağını sor', 'Bagajının kaybolduğunu söyle ve valizi tarif et.'),
+    scenarioCopy('Zagubiony bagaż', 'Opisz walizkę, zostaw kontakt i zapytaj, kiedy czekać na odpowiedź', 'Powiedz, że bagaż zaginął, i opisz walizkę.'),
+  ),
+  tourist_info: scenarioBatchCopies(
+    scenarioCopy('Centro turístico', 'Pergunte o caminho, os horários do museu e a melhor rota', 'Pergunte como chegar ao lugar ou quais são os horários.'),
+    scenarioCopy('Trung tâm du lịch', 'Hỏi đường, giờ mở cửa bảo tàng và tuyến đường tốt nhất', 'Hỏi đường đến địa điểm hoặc giờ mở cửa.'),
+    scenarioCopy('Pusat informasi turis', 'Tanyakan arah, jam buka museum, dan rute terbaik', 'Tanyakan arah ke tempat itu atau jam bukanya.'),
+    scenarioCopy('Turist danışma', 'Yol tarifi, müze saatleri ve en iyi rotayı sor', 'Gideceğin yere nasıl gidileceğini veya çalışma saatlerini sor.'),
+    scenarioCopy('Centrum turystyczne', 'Zapytaj o drogę, godziny muzeum i najlepszą trasę', 'Zapytaj o drogę do miejsca albo godziny otwarcia.'),
+  ),
+  car_rental: scenarioBatchCopies(
+    scenarioCopy('Aluguel de carro', 'Reserve um carro, confirme o seguro e o horário de devolução', 'Fale da reserva do carro e pergunte se o seguro está incluído.'),
+    scenarioCopy('Thuê xe', 'Đặt xe, hỏi bảo hiểm và thời gian trả xe', 'Nói về việc đặt xe và hỏi bảo hiểm có bao gồm không.'),
+    scenarioCopy('Sewa mobil', 'Pesan mobil, pastikan asuransi dan waktu pengembalian', 'Sebutkan reservasi mobil dan tanyakan apakah asuransi termasuk.'),
+    scenarioCopy('Araç kiralama', 'Araba rezerve et, sigortayı ve dönüş saatini netleştir', 'Araba rezervasyonundan bahset ve sigortanın dahil olup olmadığını sor.'),
+    scenarioCopy('Wynajem auta', 'Zarezerwuj auto, ustal ubezpieczenie i godzinę zwrotu', 'Powiedz o rezerwacji auta i zapytaj, czy ubezpieczenie jest w cenie.'),
+  ),
+  first_meeting: scenarioBatchCopies(
+    scenarioCopy('Apresentação', 'Cumprimente, fale um pouco de você e faça uma pergunta simples', 'Cumprimente, diga seu nome e faça uma pergunta simples.'),
+    scenarioCopy('Làm quen', 'Chào hỏi, giới thiệu bản thân và đặt một câu hỏi đơn giản', 'Chào, nói tên của bạn và đặt một câu hỏi đơn giản.'),
+    scenarioCopy('Berkenalan', 'Sapa, ceritakan sedikit tentang diri, dan ajukan pertanyaan sederhana', 'Sapa, sebutkan namamu, dan ajukan pertanyaan sederhana.'),
+    scenarioCopy('Tanışma', 'Selam ver, kendinden bahset ve basit bir soru sor', 'Selam ver, adını söyle ve basit bir soru sor.'),
+    scenarioCopy('Poznanie się', 'Przywitaj się, opowiedz o sobie i zadaj proste pytanie', 'Przywitaj się, podaj swoje imię i zadaj proste pytanie.'),
+  ),
+  small_talk_neighbor: scenarioBatchCopies(
+    scenarioCopy('Vizinho', 'Mantenha uma conversa curta sobre o tempo, o prédio e o bairro', 'Puxe conversa leve: tempo, prédio ou bairro.'),
+    scenarioCopy('Hàng xóm', 'Duy trì cuộc trò chuyện ngắn về thời tiết, nhà và khu vực', 'Nói chuyện xã giao về thời tiết, nhà hoặc khu phố.'),
+    scenarioCopy('Tetangga', 'Lakukan obrolan singkat tentang cuaca, rumah, dan lingkungan', 'Lakukan small talk: cuaca, rumah, atau lingkungan.'),
+    scenarioCopy('Komşu', 'Hava durumu, bina ve mahalle hakkında kısa sohbet et', 'Kısa sohbeti sürdür: hava, ev veya mahalle.'),
+    scenarioCopy('Sąsiad', 'Podtrzymaj krótką rozmowę o pogodzie, domu i okolicy', 'Podtrzymaj small talk: pogoda, dom albo okolica.'),
+  ),
+  work_call: scenarioBatchCopies(
+    scenarioCopy('Chamada de trabalho', 'Cumprimente, explique o status da tarefa e combine o próximo passo', 'Diga o status da tarefa e proponha o próximo passo.'),
+    scenarioCopy('Cuộc gọi công việc', 'Chào hỏi, giải thích trạng thái nhiệm vụ và thống nhất bước tiếp theo', 'Nói trạng thái nhiệm vụ và đề xuất bước tiếp theo.'),
+    scenarioCopy('Panggilan kerja', 'Sapa, jelaskan status tugas, dan sepakati langkah berikutnya', 'Sebutkan status tugas dan usulkan langkah berikutnya.'),
+    scenarioCopy('İş görüşmesi', 'Selam ver, görevin durumunu açıkla ve sonraki adımı kararlaştır', 'Görevin durumunu söyle ve sonraki adımı öner.'),
+    scenarioCopy('Rozmowa służbowa', 'Przywitaj się, wyjaśnij status zadania i ustal następny krok', 'Powiedz status zadania i zaproponuj następny krok.'),
+  ),
+  ask_for_help: scenarioBatchCopies(
+    scenarioCopy('Pedir ajuda', 'Peça ajuda com educação, explique o problema e agradeça', 'Peça ajuda com educação e explique brevemente o problema.'),
+    scenarioCopy('Nhờ giúp đỡ', 'Lịch sự nhờ giúp đỡ, giải thích vấn đề và cảm ơn', 'Lịch sự nhờ giúp và giải thích ngắn gọn vấn đề.'),
+    scenarioCopy('Meminta bantuan', 'Minta bantuan dengan sopan, jelaskan masalah, dan ucapkan terima kasih', 'Minta bantuan dengan sopan dan jelaskan masalah secara singkat.'),
+    scenarioCopy('Yardım istemek', 'Kibarca yardım iste, sorunu açıkla ve teşekkür et', 'Kibarca yardım iste ve sorunu kısaca açıkla.'),
+    scenarioCopy('Poprosić o pomoc', 'Uprzejmie poproś o pomoc, wyjaśnij problem i podziękuj', 'Uprzejmie poproś o pomoc i krótko wyjaśnij problem.'),
+  ),
+  invite_friend: scenarioBatchCopies(
+    scenarioCopy('Convidar um amigo', 'Convide alguém para se encontrar, sugira hora e lugar', 'Convide para se encontrar e sugira uma hora ou um lugar.'),
+    scenarioCopy('Mời bạn bè', 'Mời một người gặp nhau, đề xuất thời gian và địa điểm', 'Mời gặp nhau và đề xuất thời gian hoặc địa điểm.'),
+    scenarioCopy('Mengajak teman', 'Ajak seseorang bertemu, usulkan waktu dan tempat', 'Ajak bertemu dan usulkan waktu atau tempat.'),
+    scenarioCopy('Arkadaşını davet et', 'Birini buluşmaya davet et, zaman ve yer öner', 'Buluşmaya davet et ve zaman ya da yer öner.'),
+    scenarioCopy('Zaprosić znajomego', 'Zaproś kogoś na spotkanie, zaproponuj czas i miejsce', 'Zaproś na spotkanie i zaproponuj czas albo miejsce.'),
+  ),
+  complaint_order: scenarioBatchCopies(
+    scenarioCopy('Problema com o pedido', 'Explique o problema com calma e peça troca ou reembolso', 'Explique com calma o que há de errado no pedido e peça uma solução.'),
+    scenarioCopy('Vấn đề với đơn hàng', 'Bình tĩnh giải thích vấn đề, yêu cầu đổi hàng hoặc hoàn tiền', 'Bình tĩnh nói đơn hàng có vấn đề gì và yêu cầu giải pháp.'),
+    scenarioCopy('Masalah pesanan', 'Jelaskan masalah dengan tenang, minta penggantian atau pengembalian dana', 'Jelaskan dengan tenang apa yang salah dengan pesanan dan minta solusi.'),
+    scenarioCopy('Sipariş sorunu', 'Sorunu sakin şekilde açıkla, değişim veya iade iste', 'Siparişte neyin yanlış olduğunu sakin anlat ve çözüm iste.'),
+    scenarioCopy('Problem z zamówieniem', 'Spokojnie wyjaśnij problem, poproś o wymianę albo zwrot', 'Spokojnie wyjaśnij, co jest nie tak z zamówieniem, i poproś o rozwiązanie.'),
+  ),
+  lesson18_restaurant_table: scenarioBatchCopies(
+    scenarioCopy('Mesa no restaurante', 'Reserve uma mesa, confirme o horário e responda uma pergunta curta', 'Peça uma mesa e confirme o horário com uma frase curta.'),
+    scenarioCopy('Bàn ở nhà hàng', 'Đặt bàn, xác nhận giờ và trả lời một câu hỏi ngắn', 'Xin bàn và xác nhận giờ bằng một câu ngắn.'),
+    scenarioCopy('Meja di restoran', 'Pesan meja, pastikan waktu, dan jawab satu pertanyaan singkat', 'Minta meja dan pastikan waktunya dengan satu kalimat pendek.'),
+    scenarioCopy('Restoranda masa', 'Masa ayırt, saati netleştir ve kısa bir soruya cevap ver', 'Kısa bir cümleyle masa iste ve saati netleştir.'),
+    scenarioCopy('Stolik w restauracji', 'Zarezerwuj stolik, potwierdź godzinę i odpowiedz na krótkie pytanie', 'Poproś o stolik i potwierdź godzinę jednym krótkim zdaniem.'),
+  ),
+  lesson20_lost_bag: scenarioBatchCopies(
+    scenarioCopy('Bolsa perdida', 'Diga que perdeu uma bolsa, onde ela estava e confirme uma opção', 'Diga que objeto foi perdido e onde estava.'),
+    scenarioCopy('Túi bị mất', 'Nói bạn có một chiếc túi, nó đã ở đâu và xác nhận lựa chọn', 'Nói món đồ nào bị mất và nó đã ở đâu.'),
+    scenarioCopy('Tas hilang', 'Katakan tas apa yang kamu punya, di mana tadi, dan pastikan opsi', 'Sebutkan barang apa yang hilang dan di mana tadi berada.'),
+    scenarioCopy('Kayıp çanta', 'Çantan olduğunu, nerede olduğunu söyle ve seçeneği netleştir', 'Hangi eşyanın kaybolduğunu ve nerede olduğunu söyle.'),
+    scenarioCopy('Zgubiona torba', 'Powiedz, że masz torbę, gdzie była, i doprecyzuj opcję', 'Powiedz, jaka rzecz zginęła i gdzie była.'),
+  ),
+  seat_stolen_cafe: scenarioBatchCopies(
+    scenarioCopy('Ocuparam sua mesa', 'Explique com calma que a mesa era sua e proponha uma solução justa', 'Diga que você já estava sentado ali e peça para resolver com calma.'),
+    scenarioCopy('Bàn của bạn bị chiếm', 'Bình tĩnh giải thích bàn đó là của bạn và đề xuất cách giải quyết hợp lý', 'Nói rằng bạn đã ngồi ở đây và yêu cầu giải quyết bình tĩnh.'),
+    scenarioCopy('Mejamu ditempati orang', 'Jelaskan dengan tenang bahwa meja itu milikmu dan usulkan solusi yang wajar', 'Katakan kamu sudah duduk di sini dan minta diselesaikan dengan tenang.'),
+    scenarioCopy('Masanı aldılar', 'Masanın senin olduğunu sakin anlat ve makul bir çözüm öner', 'Zaten burada oturduğunu söyle ve sakin çözüm iste.'),
+    scenarioCopy('Ktoś zajął twój stolik', 'Spokojnie wyjaśnij, że stolik był twój, i zaproponuj rozsądne rozwiązanie', 'Powiedz, że już tu siedziałeś, i poproś o spokojne rozwiązanie.'),
+  ),
+  taxi_wrong_way: scenarioBatchCopies(
+    scenarioCopy('O taxista vai pelo caminho errado', 'Confirme a rota, pare o erro e não deixe que confundam você', 'Pergunte por que estão indo para lá e peça para voltar à rota certa.'),
+    scenarioCopy('Tài xế taxi đi sai đường', 'Làm rõ tuyến đường, chặn lỗi và đừng để bị làm rối', 'Hỏi tại sao đang đi hướng đó và yêu cầu quay lại đúng đường.'),
+    scenarioCopy('Sopir taksi salah jalan', 'Pastikan rute, hentikan kesalahan, dan jangan sampai bingung', 'Tanyakan kenapa menuju ke sana dan minta kembali ke rute yang benar.'),
+    scenarioCopy('Taksici yanlış yola gidiyor', 'Rotayı netleştir, hatayı durdur ve kafanı karıştırmasına izin verme', 'Neden oraya gittiklerini sor ve doğru rotaya dönmesini iste.'),
+    scenarioCopy('Taksówkarz jedzie nie tam', 'Ustal trasę, zatrzymaj błąd i nie daj się zmylić', 'Zapytaj, dlaczego jedziecie tamtędy, i poproś o powrót na właściwą trasę.'),
+  ),
+  party_fast_talk: scenarioBatchCopies(
+    scenarioCopy('Todos falam rápido demais', 'Entre na conversa, peça para repetirem e faça uma boa pergunta', 'Peça para repetirem, reaja brevemente e faça uma pergunta sobre o assunto.'),
+    scenarioCopy('Mọi người nói quá nhanh', 'Tham gia cuộc trò chuyện, xin nhắc lại và đặt một câu hỏi hay', 'Xin họ nhắc lại, phản hồi ngắn và hỏi một câu về chủ đề.'),
+    scenarioCopy('Semua orang bicara terlalu cepat', 'Masuk ke percakapan, minta diulang, dan ajukan pertanyaan bagus', 'Minta mereka mengulang, tanggapi singkat, lalu tanyakan sesuatu tentang topiknya.'),
+    scenarioCopy('Herkes çok hızlı konuşuyor', 'Sohbete gir, tekrar etmelerini iste ve iyi bir soru sor', 'Tekrar etmelerini iste, kısa tepki ver ve konuyla ilgili soru sor.'),
+    scenarioCopy('Wszyscy mówią za szybko', 'Wejdź w rozmowę, poproś o powtórzenie i zadaj dobre pytanie', 'Poproś o powtórzenie, krótko zareaguj i zadaj pytanie do tematu.'),
+  ),
+  late_excuse_meeting: scenarioBatchCopies(
+    scenarioCopy('Você se atrasou e todos estão irritados', 'Peça desculpas, explique o motivo e proponha como recuperar o atraso', 'Peça desculpas, explique brevemente o motivo e diga o que fará depois.'),
+    scenarioCopy('Bạn đến muộn và mọi người bực mình', 'Xin lỗi, giải thích lý do và đề xuất cách bắt kịp', 'Xin lỗi, giải thích ngắn gọn lý do và nói bạn sẽ làm gì tiếp theo.'),
+    scenarioCopy('Kamu terlambat dan semua kesal', 'Minta maaf, jelaskan alasannya, dan usulkan cara mengejar ketertinggalan', 'Minta maaf, jelaskan singkat alasannya, lalu katakan apa yang akan kamu lakukan berikutnya.'),
+    scenarioCopy('Geç kaldın ve herkes kızgın', 'Özür dile, sebebi açıkla ve nasıl telafi edeceğini öner', 'Özür dile, sebebi kısaca açıkla ve sonra ne yapacağını söyle.'),
+    scenarioCopy('Spóźniłeś się i wszyscy są źli', 'Przeproś, wyjaśnij powód i zaproponuj, jak nadrobisz', 'Przeproś, krótko wyjaśnij powód i powiedz, co zrobisz dalej.'),
+  ),
+  bill_argument: scenarioBatchCopies(
+    scenarioCopy('Discussão sobre a conta', 'Explique o erro na conta e peça correção sem conflito', 'Diga exatamente o que está errado na conta e peça para verificarem de novo.'),
+    scenarioCopy('Tranh cãi về hóa đơn', 'Làm rõ lỗi trong hóa đơn và yêu cầu sửa mà không gây căng thẳng', 'Nói chính xác hóa đơn sai chỗ nào và xin kiểm tra lại.'),
+    scenarioCopy('Perdebatan soal tagihan', 'Jelaskan kesalahan tagihan dan minta diperbaiki tanpa konflik', 'Katakan tepatnya apa yang salah di tagihan dan minta dicek lagi.'),
+    scenarioCopy('Hesap tartışması', 'Hesaptaki hatayı açıkla ve çatışmadan düzeltilmesini iste', 'Hesapta tam olarak neyin yanlış olduğunu söyle ve tekrar kontrol etmelerini iste.'),
+    scenarioCopy('Spór o rachunek', 'Wyjaśnij błąd w rachunku i poproś o poprawkę bez konfliktu', 'Powiedz dokładnie, co jest nie tak w rachunku, i poproś o ponowne sprawdzenie.'),
+  ),
+  upsell_trap: scenarioBatchCopies(
+    scenarioCopy('Tentam vender algo desnecessário', 'Faça perguntas de esclarecimento e recuse com educação', 'Pergunte o que está incluído no preço e recuse o desnecessário com calma.'),
+    scenarioCopy('Bạn bị gạ mua thứ không cần thiết', 'Đặt câu hỏi làm rõ và lịch sự từ chối', 'Hỏi giá bao gồm những gì và bình tĩnh từ chối phần không cần thiết.'),
+    scenarioCopy('Kamu ditawari hal tidak perlu', 'Ajukan pertanyaan klarifikasi dan tolak dengan sopan', 'Tanyakan apa saja yang termasuk dalam harga dan tolak tambahan yang tidak perlu dengan tenang.'),
+    scenarioCopy('Gereksiz şey satmaya çalışıyorlar', 'Netleştirici sorular sor ve kibarca reddet', 'Fiyata nelerin dahil olduğunu sor ve gereksiz olanı sakin reddet.'),
+    scenarioCopy('Wciskają ci coś zbędnego', 'Zadaj pytania doprecyzowujące i uprzejmie odmów', 'Zapytaj, co wchodzi w cenę, i spokojnie odmów zbędnych dodatków.'),
+  ),
+  neighbor_noise: scenarioBatchCopies(
+    scenarioCopy('O vizinho veio reclamar', 'Não brigue: escute, explique-se e combine algo', 'Escute o vizinho, explique-se e ofereça um compromisso concreto.'),
+    scenarioCopy('Hàng xóm đến phàn nàn', 'Đừng cãi nhau: lắng nghe, giải thích và thỏa thuận', 'Lắng nghe hàng xóm, giải thích và đề xuất một thỏa hiệp cụ thể.'),
+    scenarioCopy('Tetangga datang mengeluh', 'Jangan bertengkar: dengarkan, jelaskan, dan buat kesepakatan', 'Dengarkan tetangga, jelaskan, dan tawarkan kompromi konkret.'),
+    scenarioCopy('Komşu şikâyete geldi', 'Kavga etme: dinle, açıklama yap ve anlaş', 'Komşuyu dinle, kendini açıkla ve somut bir uzlaşma öner.'),
+    scenarioCopy('Sąsiad przyszedł narzekać', 'Nie pokłóć się: wysłuchaj, wyjaśnij i ustal kompromis', 'Wysłuchaj sąsiada, wyjaśnij się i zaproponuj konkretny kompromis.'),
+  ),
+  condescending_interviewer: scenarioBatchCopies(
+    scenarioCopy('O entrevistador diminui você', 'Responda com confiança, esclareça a posição dele e não perca a calma', 'Dê uma resposta calma com exemplo e esclareça exatamente o que a pessoa quer dizer.'),
+    scenarioCopy('Người phỏng vấn xem thường bạn', 'Trả lời tự tin, làm rõ quan điểm và giữ bình tĩnh', 'Đưa câu trả lời bình tĩnh kèm ví dụ và hỏi rõ người kia muốn nói gì.'),
+    scenarioCopy('Pewawancara meremehkanmu', 'Jawab dengan percaya diri, klarifikasi posisinya, dan tetap tenang', 'Berikan jawaban tenang dengan contoh dan tanyakan tepatnya apa yang ia maksud.'),
+    scenarioCopy('Görüşmeci seni küçümsüyor', 'Güvenle cevap ver, duruşunu netleştir ve sakin kal', 'Örnekli sakin bir cevap ver ve karşıdakinin tam olarak ne demek istediğini sor.'),
+    scenarioCopy('Rozmówca cię lekceważy', 'Odpowiedz pewnie, doprecyzuj jego stanowisko i nie trać spokoju', 'Daj spokojną odpowiedź z przykładem i doprecyzuj, co dokładnie rozmówca ma na myśli.'),
+  ),
+  mistaken_celebrity: scenarioBatchCopies(
+    scenarioCopy('Confundiram você com uma celebridade', 'Explique com educação que não é você, sem decepcionar o fã', 'Diga com um sorriso que não é você e ofereça algo simpático ao fã em troca.'),
+    scenarioCopy('Bạn bị nhầm là người nổi tiếng', 'Lịch sự giải thích đó không phải bạn, nhưng đừng làm fan thất vọng', 'Mỉm cười nói rằng đó không phải bạn và đáp lại fan bằng điều gì đó dễ thương.'),
+    scenarioCopy('Kamu dikira selebritas', 'Jelaskan dengan sopan bahwa itu bukan kamu tanpa mengecewakan penggemar', 'Katakan sambil tersenyum bahwa itu bukan kamu dan tawarkan sesuatu yang baik sebagai gantinya.'),
+    scenarioCopy('Seni ünlü sandılar', 'O kişi olmadığını kibarca açıkla ama hayranı üzme', 'Gülümseyerek o kişi olmadığını söyle ve hayrana hoş bir şey öner.'),
+    scenarioCopy('Pomylił cię z celebrytą', 'Uprzejmie wyjaśnij, że to nie ty, ale nie rozczaruj fana', 'Powiedz z uśmiechem, że to nie ty, i zaproponuj fanowi coś miłego w zamian.'),
+  ),
+  wrong_dish_better: scenarioBatchCopies(
+    scenarioCopy('Trouxeram o prato errado, mas é mais gostoso', 'Diga honestamente que houve erro e decida se fica com o prato', 'Diga que pediu outra coisa e pergunte se pode ficar com este prato.'),
+    scenarioCopy('Mang nhầm món nhưng ngon hơn', 'Thành thật nói có nhầm lẫn và quyết định có giữ món không', 'Nói rằng bạn gọi món khác và hỏi có thể giữ món này không.'),
+    scenarioCopy('Makanan salah, tapi lebih enak', 'Jujur katakan ada kesalahan dan putuskan apakah tetap mengambilnya', 'Katakan kamu memesan yang lain dan tanyakan apakah boleh tetap mengambil hidangan ini.'),
+    scenarioCopy('Yanlış yemek geldi ama daha lezzetli', 'Hatayı dürüstçe söyle ve yemeği tutup tutmayacağına karar ver', 'Başka bir şey sipariş ettiğini söyle ve bu yemeği tutup tutamayacağını sor.'),
+    scenarioCopy('Przynieśli coś innego, ale smaczniejsze', 'Uczciwie powiedz o pomyłce i zdecyduj, czy zostawić danie', 'Powiedz, że zamówiłeś coś innego, i zapytaj, czy możesz zostawić to danie.'),
+  ),
+  neighbor_cat_accusation: scenarioBatchCopies(
+    scenarioCopy('O vizinho acha que você esconde o gato dele', 'Prove com calma que é inocente e ajude a encontrar o gato', 'Diga com calma que não está com o gato e ofereça ajuda para procurá-lo.'),
+    scenarioCopy('Hàng xóm nghĩ bạn giấu mèo của họ', 'Bình tĩnh chứng minh bạn vô tội và giúp tìm mèo', 'Bình tĩnh nói rằng bạn không giữ mèo và đề nghị giúp tìm.'),
+    scenarioCopy('Tetangga mengira kamu menyembunyikan kucingnya', 'Buktikan dengan tenang kamu tidak bersalah dan bantu cari kucingnya', 'Katakan dengan tenang bahwa kucingnya tidak ada padamu dan tawarkan bantuan mencarinya.'),
+    scenarioCopy('Komşu kedisini sakladığını düşünüyor', 'Sakin şekilde masum olduğunu göster ve kediyi bulmaya yardım et', 'Kedinin sende olmadığını sakin söyle ve aramaya yardım etmeyi öner.'),
+    scenarioCopy('Sąsiad myśli, że ukrywasz jego kota', 'Spokojnie udowodnij niewinność i pomóż znaleźć kota', 'Spokojnie powiedz, że kota u ciebie nie ma, i zaproponuj pomoc w szukaniu.'),
+  ),
+  wrong_wedding: scenarioBatchCopies(
+    scenarioCopy('Você entrou no casamento errado', 'Perceba que errou o salão e saia da situação com elegância', 'Admita que parece ter entrado no casamento errado e explique com educação como aconteceu.'),
+    scenarioCopy('Bạn vào nhầm đám cưới', 'Nhận ra bạn nhầm sảnh và thoát khỏi tình huống một cách lịch sự', 'Thừa nhận có vẻ bạn vào nhầm đám cưới và lịch sự giải thích chuyện đã xảy ra.'),
+    scenarioCopy('Kamu masuk ke pesta pernikahan yang salah', 'Sadari kamu salah ruangan dan keluar dari situasi dengan elegan', 'Akui sepertinya kamu salah pesta pernikahan dan jelaskan dengan sopan bagaimana itu terjadi.'),
+    scenarioCopy('Yanlış düğüne girdin', 'Salonu karıştırdığını fark et ve durumdan zarifçe çık', 'Galiba yanlış düğüne geldiğini kabul et ve bunun nasıl olduğunu kibarca açıkla.'),
+    scenarioCopy('Trafiłeś na nie to wesele', 'Zorientuj się, że pomyliłeś salę, i wyjdź z sytuacji z klasą', 'Przyznaj, że chyba pomyliłeś wesele, i uprzejmie wyjaśnij, jak do tego doszło.'),
+  ),
+  salesman_talks_you_out: scenarioBatchCopies(
+    scenarioCopy('O vendedor desaconselha a compra', 'Descubra por que ele é contra e tome uma decisão sensata', 'Pergunte diretamente por que ele não recomenda comprar isso.'),
+    scenarioCopy('Người bán khuyên bạn đừng mua', 'Tìm hiểu vì sao họ phản đối và đưa ra quyết định hợp lý', 'Hỏi thẳng vì sao họ không khuyên mua món này.'),
+    scenarioCopy('Penjual malah melarangmu membeli', 'Cari tahu kenapa ia tidak setuju dan ambil keputusan masuk akal', 'Tanyakan langsung kenapa ia tidak menyarankan membelinya.'),
+    scenarioCopy('Satıcı satın almaktan vazgeçirmeye çalışıyor', 'Neden karşı olduğunu öğren ve mantıklı karar ver', 'Bunu almanı neden önermediğini doğrudan sor.'),
+    scenarioCopy('Sprzedawca odradza zakup', 'Dowiedz się, dlaczego jest przeciw, i podejmij rozsądną decyzję', 'Zapytaj wprost, dlaczego nie poleca tego kupować.'),
+  ),
+  dramatic_taxi_actor: scenarioBatchCopies(
+    scenarioCopy('O taxista é um ator dramático', 'Traga a conversa de volta ao assunto e chegue onde precisa', 'Elogie-o, mas volte ao assunto: diga o endereço e peça para dirigir.'),
+    scenarioCopy('Tài xế taxi là diễn viên kịch', 'Đưa cuộc trò chuyện trở lại việc chính và đến nơi cần đến', 'Khen ông ấy, nhưng quay lại việc chính: nói địa chỉ và xin lái xe tiếp.'),
+    scenarioCopy('Sopir taksi aktor dramatis', 'Kembalikan percakapan ke tujuan dan sampai ke tempat yang kamu perlukan', 'Puji dia, lalu kembali ke urusan utama: sebutkan alamat dan minta ia mengemudi.'),
+    scenarioCopy('Taksici dramatik bir aktör', 'Sohbeti konuya döndür ve gitmen gereken yere var', 'Onu öv ama konuya dön: adresi söyle ve sürmesini iste.'),
+    scenarioCopy('Taksówkarz jest dramatycznym aktorem', 'Sprowadź rozmowę do sedna i dotrzyj tam, gdzie trzeba', 'Pochwal go, ale wróć do sprawy: podaj adres i poproś, żeby jechał.'),
+  ),
+  surprise_guest_speech: scenarioBatchCopies(
+    scenarioCopy('Entregaram o microfone para você', 'Improvise um discurso curto e caloroso diante do público', 'Comece cumprimentando a sala e diga uma frase sincera.'),
+    scenarioCopy('Bạn được đưa micro', 'Ứng biến một bài phát biểu ngắn và ấm áp trước mọi người', 'Bắt đầu bằng lời chào khán phòng và nói một câu chân thành.'),
+    scenarioCopy('Kamu diberi mikrofon', 'Improvisasi pidato singkat dan hangat di depan penonton', 'Mulai dengan menyapa ruangan dan ucapkan satu kalimat tulus.'),
+    scenarioCopy('Mikrofon sana verildi', 'Salonun bakışları önünde kısa ve sıcak bir konuşma doğaçla', 'Salonu selamlayarak başla ve içten bir cümle söyle.'),
+    scenarioCopy('Wręczono ci mikrofon', 'Zaimprowizuj krótką, ciepłą przemowę przed publicznością', 'Zacznij od przywitania sali i powiedz jedno szczere zdanie.'),
+  ),
+  broken_robot_waiter: scenarioBatchCopies(
+    scenarioCopy('O robô garçom quebrou', 'Entenda-se com o robô com defeito e consiga seu pedido', 'Diga o pedido em uma frase muito curta e simples, item por item.'),
+    scenarioCopy('Robot phục vụ bị lỗi', 'Trao đổi với robot trục trặc và lấy được món bạn gọi', 'Nói đơn hàng bằng câu thật ngắn và đơn giản, từng món một.'),
+    scenarioCopy('Robot pelayan rusak', 'Berkomunikasi dengan robot yang bermasalah dan dapatkan pesananmu', 'Ucapkan pesanan dengan frasa sangat pendek dan sederhana, satu per satu.'),
+    scenarioCopy('Robot garson bozuldu', 'Arızalı robotla anlaş ve siparişini al', 'Siparişi çok kısa ve basit cümlelerle, tek tek söyle.'),
+    scenarioCopy('Robot-kelner się zepsuł', 'Dogadaj się z glitchującym robotem i zdobądź zamówienie', 'Powiedz zamówienie bardzo krótką, prostą frazą, punkt po punkcie.'),
+  ),
+  conspiracy_seatmate: scenarioBatchCopies(
+    scenarioCopy('Colega de assento conspiracionista', 'Evite educadamente entrar em uma discussão pelo voo inteiro', 'Não confronte diretamente; mude suavemente para um tema neutro.'),
+    scenarioCopy('Người ngồi cạnh tin thuyết âm mưu', 'Lịch sự tránh bị kéo vào tranh luận suốt chuyến bay dài', 'Đừng tranh cãi trực diện; nhẹ nhàng đổi sang chủ đề trung lập.'),
+    scenarioCopy('Teman duduk penganut teori konspirasi', 'Hindari dengan sopan debat sepanjang penerbangan', 'Jangan membantah langsung; alihkan pelan-pelan ke topik netral.'),
+    scenarioCopy('Uçaktaki komşun komplo meraklısı', 'Uzun uçuş boyunca tartışmaya kibarca girmekten kaçın', 'Doğrudan tartışma; konuyu yumuşakça nötr bir şeye çevir.'),
+    scenarioCopy('Sąsiad w samolocie to fan teorii spiskowych', 'Uprzejmie nie wdawaj się w spór przez cały długi lot', 'Nie spieraj się wprost — łagodnie zmień temat na neutralny.'),
+  ),
+  mistaken_for_boss: scenarioBatchCopies(
+    scenarioCopy('Confundiram você com o novo chefe', 'Resolva o mal-entendido sem constranger ninguém', 'Diga com cuidado que você não é o novo chefe e explique quem é.'),
+    scenarioCopy('Bạn bị nhầm là sếp mới', 'Gỡ hiểu lầm mà không làm ai mất mặt', 'Nhẹ nhàng nói bạn không phải sếp mới của họ và giải thích bạn là ai.'),
+    scenarioCopy('Kamu dikira bos baru', 'Luruskan kesalahpahaman tanpa membuat siapa pun malu', 'Katakan dengan lembut bahwa kamu bukan bos baru mereka dan jelaskan siapa kamu.'),
+    scenarioCopy('Seni yeni patron sandılar', 'Kimseyi zor durumda bırakmadan yanlış anlamayı çöz', 'Yeni patronları olmadığını yumuşakça söyle ve kim olduğunu açıkla.'),
+    scenarioCopy('Pomyślano, że jesteś nowym szefem', 'Wyjaśnij nieporozumienie, nie zawstydzając nikogo', 'Delikatnie powiedz, że nie jesteś ich nowym szefem, i wyjaśnij, kim jesteś.'),
+  ),
+  looping_support_bot: scenarioBatchCopies(
+    scenarioCopy('O bot de suporte fica dando voltas', 'Quebre o roteiro e consiga uma solução real', 'Repita o problema com clareza e peça uma solução ou um atendente humano.'),
+    scenarioCopy('Bot hỗ trợ cứ lặp vòng', 'Thoát khỏi kịch bản và đạt được giải pháp thật', 'Nhắc lại vấn đề thật rõ và yêu cầu giải pháp hoặc nhân viên thật.'),
+    scenarioCopy('Bot dukungan berputar-putar', 'Patahkan skripnya dan dapatkan solusi nyata', 'Ulangi masalah dengan jelas dan minta solusi atau operator manusia.'),
+    scenarioCopy('Destek botu döngüye girdi', 'Senaryoyu kır ve gerçek bir çözüm al', 'Sorunu açıkça tekrarla ve çözüm ya da canlı operatör iste.'),
+    scenarioCopy('Bot wsparcia kręci się w kółko', 'Przebij się przez skrypt i uzyskaj realne rozwiązanie', 'Jasno powtórz problem i poproś o rozwiązanie albo żywego konsultanta.'),
+  ),
+};
+
 const FALLBACK_DIALOG_SCENARIO_COPY_ES: ScenarioUiCopyEs = {
   titleEs: 'Diálogo',
   goalEs: 'Practica esta situación en inglés.',
   nextStepHintEs: 'Responde con una frase sencilla y pide aclaración si hace falta.',
+};
+
+const FALLBACK_DIALOG_SCENARIO_COPY_BATCH: ScenarioBatchCopies = {
+  'pt-BR': scenarioCopy(
+    'Diálogo',
+    'Pratique esta situação em inglês.',
+    'Responda com uma frase simples e peça esclarecimento se precisar.',
+  ),
+  vi: scenarioCopy(
+    'Đối thoại',
+    'Luyện tình huống này bằng tiếng Anh.',
+    'Trả lời bằng một câu đơn giản và hỏi lại nếu cần làm rõ.',
+  ),
+  id: scenarioCopy(
+    'Dialog',
+    'Latih situasi ini dalam bahasa Inggris.',
+    'Jawab dengan kalimat sederhana dan minta klarifikasi jika perlu.',
+  ),
+  tr: scenarioCopy(
+    'Diyalog',
+    'Bu durumu İngilizce pratik et.',
+    'Basit bir cümleyle cevap ver ve gerekirse açıklama iste.',
+  ),
+  pl: scenarioCopy(
+    'Dialog',
+    'Przećwicz tę sytuację po angielsku.',
+    'Odpowiedz prostym zdaniem i poproś o wyjaśnienie, jeśli trzeba.',
+  ),
 };
 
 const DIALOG_SCENARIO_GROUP_COPY_ES: Record<
@@ -398,30 +769,52 @@ function dialogScenarioCopyEs(scenario: DialogScenario): ScenarioUiCopyEs {
   return DIALOG_SCENARIO_COPY_ES[scenario.id] ?? FALLBACK_DIALOG_SCENARIO_COPY_ES;
 }
 
+function dialogScenarioBatchCopy(scenario: DialogScenario): ScenarioBatchCopies {
+  return DIALOG_SCENARIO_COPY_BATCH[scenario.id] ?? FALLBACK_DIALOG_SCENARIO_COPY_BATCH;
+}
+
 export function dialogScenarioTitle(scenario: DialogScenario, lang: Lang): string {
   const esCopy = dialogScenarioCopyEs(scenario);
+  const batchCopy = dialogScenarioBatchCopy(scenario);
   return triLang(lang, {
     ru: scenario.titleRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.title ?? scenario.titleRu,
     es: scenario.titleEs ?? esCopy.titleEs,
+    'pt-BR': batchCopy['pt-BR'].title,
+    vi: batchCopy.vi.title,
+    id: batchCopy.id.title,
+    tr: batchCopy.tr.title,
+    pl: batchCopy.pl.title,
   });
 }
 
 export function dialogScenarioGoal(scenario: DialogScenario, lang: Lang): string {
   const esCopy = dialogScenarioCopyEs(scenario);
+  const batchCopy = dialogScenarioBatchCopy(scenario);
   return triLang(lang, {
     ru: scenario.goalRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.goal ?? scenario.goalRu,
     es: scenario.goalEs ?? esCopy.goalEs,
+    'pt-BR': batchCopy['pt-BR'].goal,
+    vi: batchCopy.vi.goal,
+    id: batchCopy.id.goal,
+    tr: batchCopy.tr.goal,
+    pl: batchCopy.pl.goal,
   });
 }
 
 export function dialogScenarioNextStepHint(scenario: DialogScenario, lang: Lang): string {
   const esCopy = dialogScenarioCopyEs(scenario);
+  const batchCopy = dialogScenarioBatchCopy(scenario);
   return triLang(lang, {
     ru: scenario.nextStepHintRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.nextStepHint ?? scenario.nextStepHintRu,
     es: scenario.nextStepHintEs ?? esCopy.nextStepHintEs,
+    'pt-BR': batchCopy['pt-BR'].nextStepHint,
+    vi: batchCopy.vi.nextStepHint,
+    id: batchCopy.id.nextStepHint,
+    tr: batchCopy.tr.nextStepHint,
+    pl: batchCopy.pl.nextStepHint,
   });
 }
 
@@ -1274,4 +1667,81 @@ export function getChallengeDialogScenarios(): DialogScenario[] {
 
 export function getScenariosByCategory(category: DialogScenarioCategory): DialogScenario[] {
   return getCourseDialogScenarios().filter((scenario) => scenario.category === category);
+}
+
+// ── Цели и темперамент (для «диалога как игры») ─────────────────────────────
+// Чтобы фича работала для ВСЕХ сценариев без правки каждого объекта контента,
+// под-цели выводим из goalEn, а темперамент — из persona/role. Явные поля
+// scenario.objectives / scenario.temperament всегда переопределяют вывод.
+
+/** Простой slug-ключ под-цели из её английского текста (стабильный id для галочек). */
+function objectiveSlug(text: string, index: number): string {
+  const slug = text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .split('_')
+    .slice(0, 3)
+    .join('_');
+  return slug || `step_${index + 1}`;
+}
+
+/**
+ * Разбивает goalEn на 1-4 под-цели по союзам/запятым.
+ * «order a cappuccino, choose a size, and ask the price» →
+ *   [order a cappuccino] [choose a size] [ask the price].
+ * goalRu разбиваем тем же числом частей для русской метки (грубо, но достаточно
+ * для чек-листа — точные метки можно задать явным scenario.objectives).
+ */
+function splitGoalParts(goal: string): string[] {
+  return goal
+    .split(/\s*,\s*|\s+and\s+|\s+then\s+|\s*;\s*|\s+и\s+/i)
+    .map((p) => p.trim())
+    .filter((p) => p.length > 1)
+    .slice(0, 4);
+}
+
+function capitalize(s: string): string {
+  return s.length > 0 ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
+/**
+ * Под-цели сценария: явные scenario.objectives, иначе выведенные из goalEn.
+ * Английский текст части идёт в id (slug) и как fallback-метка; русская метка —
+ * из goalRu (если разбилось ровно), иначе из английской части.
+ */
+export function scenarioObjectives(scenario: DialogScenario): DialogObjective[] {
+  if (scenario.objectives && scenario.objectives.length > 0) return scenario.objectives;
+  const enParts = splitGoalParts(scenario.goalEn);
+  const ruParts = splitGoalParts(scenario.goalRu);
+  const ruAligned = ruParts.length === enParts.length;
+  return enParts.map((en, i) => ({
+    id: objectiveSlug(en, i),
+    labelRu: capitalize(ruAligned ? ruParts[i] : en),
+  }));
+}
+
+/**
+ * Темперамент: явный scenario.temperament, иначе эвристика по persona/role.
+ * Нетерпеливые роли (очередь, чиновник, спешка) → patience 'low'; тёплые
+ * сервисные роли (бариста, продавец, помощник) → 'high'/'warm'.
+ */
+export function scenarioTemperament(scenario: DialogScenario): DialogTemperament {
+  if (scenario.temperament) return scenario.temperament;
+  const hay = `${scenario.role} ${scenario.persona ?? ''} ${scenario.setting}`.toLowerCase();
+
+  const impatient = /(officer|official|queue|line|airport|security|police|border|inspector|rush|busy|strict|guard|customs)/.test(hay);
+  const cold = /(strict|stern|cold|annoyed|impatient|official|officer|guard|inspector)/.test(hay);
+  const warm = /(warm|cheerful|friendly|kind|gentle|helpful|fatherly|reassuring|upbeat|happy)/.test(hay);
+
+  const patience: DialogTemperament['patience'] = impatient ? 'low' : warm ? 'high' : 'medium';
+  const warmth: DialogTemperament['warmth'] = cold ? 'cold' : warm ? 'warm' : 'neutral';
+  return { patience, warmth };
+}
+
+/** Стартовое настроение по темпераменту (сервер использует как seed mood). */
+export function temperamentStartMood(temp: DialogTemperament): number {
+  const base = temp.patience === 'high' ? 85 : temp.patience === 'medium' ? 70 : 55;
+  const warmthAdj = temp.warmth === 'warm' ? 5 : temp.warmth === 'cold' ? -5 : 0;
+  return Math.max(0, Math.min(100, base + warmthAdj));
 }

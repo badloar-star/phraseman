@@ -54,6 +54,12 @@ import {
 } from '../constants/arena_i18n';
 import { isArenaDuelReactionEmoji, randomArenaDuelReactionEmoji } from '../constants/arena_duel_reaction_emojis';
 import { sendArenaDuelReact } from './services/arena_db';
+import ArenaFinalScoreOverlay from '../components/ArenaFinalScoreOverlay';
+import {
+  hasOpponentAnswered,
+  isLastQuestionDrama,
+  resolveMatchOutcome,
+} from './arena_match_drama';
 import { pickRandomBotNameForLang } from './constants/bot_names';
 import { triLang, type Lang } from '../constants/i18n';
 import { ensureArenaAuthUid } from './user_id_policy';
@@ -63,6 +69,9 @@ function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): st
   if (dn) return dn;
   return pickRandomBotNameForLang(lang);
 }
+
+/** Сколько держим финальный экран матча (счёт X:Y) перед переходом в результаты. */
+const FINAL_OVERLAY_MS = 1200;
 
 export default function DuelGameScreen() {
   const { sessionId, userId: paramUserId, fromLobby, ghostChallengeId: routeGhostChallengeId, hillMode, roomCode } = useLocalSearchParams<{
@@ -298,6 +307,68 @@ export default function DuelGameScreen() {
     });
   }, [players, useMock, mockReactByPlayer]);
 
+  // ─── ДРАМА МАТЧА ───────────────────────────────────────────────────────────
+  const meScore = useMemo(
+    () => effectivePlayers.find((p) => p.playerId === userId)?.score ?? 0,
+    [effectivePlayers, userId],
+  );
+  const oppPlayer = useMemo(
+    () => effectivePlayers.find((p) => p.playerId !== userId) ?? null,
+    [effectivePlayers, userId],
+  );
+  const oppScore = oppPlayer?.score ?? 0;
+
+  /** Соперник сдал ответ на текущий вопрос → подсветка в табло. */
+  const opponentAnswered = hasOpponentAnswered(oppPlayer, currentQuestionIndex);
+  /** Решающий последний вопрос при близком счёте. */
+  const lastQuestionDrama =
+    phase === 'question' &&
+    isLastQuestionDrama({
+      currentQuestionIndex,
+      totalQuestions: totalQuestions || QUESTIONS_PER_MATCH,
+      myScore: meScore,
+      opponentScore: oppScore,
+      closeThreshold: SCORE_CONFIG.correctBase,
+    });
+
+  /** Пульс счёта при его изменении (золото для меня, красный для соперника). */
+  const myScorePulse = useSharedValue(1);
+  const oppScorePulse = useSharedValue(1);
+  const prevMyScoreRef = useRef(meScore);
+  const prevOppScoreRef = useRef(oppScore);
+  useEffect(() => {
+    if (meScore > prevMyScoreRef.current) {
+      myScorePulse.value = withSequence(
+        withTiming(1.28, { duration: 160, easing: Easing.out(Easing.quad) }),
+        withTiming(1, { duration: 220, easing: Easing.inOut(Easing.ease) }),
+      );
+    }
+    prevMyScoreRef.current = meScore;
+  }, [meScore, myScorePulse]);
+  useEffect(() => {
+    if (oppScore > prevOppScoreRef.current) {
+      oppScorePulse.value = withSequence(
+        withTiming(1.28, { duration: 160, easing: Easing.out(Easing.quad) }),
+        withTiming(1, { duration: 220, easing: Easing.inOut(Easing.ease) }),
+      );
+    }
+    prevOppScoreRef.current = oppScore;
+  }, [oppScore, oppScorePulse]);
+  const myScorePulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: myScorePulse.value }] }));
+  const oppScorePulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: oppScorePulse.value }] }));
+
+  /** Финальный экран матча перед переходом на результаты. */
+  const [finalOverlay, setFinalOverlay] = useState<{ my: number; opp: number } | null>(null);
+  /** Хаптик-пульс при наступлении решающего вопроса (один раз). */
+  const dramaPulsedRef = useRef(false);
+  useEffect(() => {
+    if (lastQuestionDrama && !dramaPulsedRef.current) {
+      dramaPulsedRef.current = true;
+      void hapticMediumImpact();
+    }
+    if (!lastQuestionDrama) dramaPulsedRef.current = false;
+  }, [lastQuestionDrama]);
+
   useEffect(() => {
     lastOppReactAtRef.current = -1;
     setFlyEmojis([]);
@@ -487,8 +558,21 @@ export default function DuelGameScreen() {
     void submitLobbyChoice('accept');
   }, [phase, sessionType, myLobbyChoice, submitLobbyChoice, useMock]);
 
+  const finalNavTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (phase === 'finished') {
+      // Финальный экран матча: показываем счёт ~1.2с, потом уходим в результаты.
+      // Это даёт МОМЕНТ победы/поражения вместо мгновенного прыжка.
+      const me = effectivePlayers.find((p) => p.playerId === userId);
+      const opp = effectivePlayers.find((p) => p.playerId !== userId);
+      const myFinal = me?.score ?? meScore;
+      const oppFinal = opp?.score ?? oppScore;
+      if (!finalOverlay && finalNavTimerRef.current == null) {
+        setFinalOverlay({ my: myFinal, opp: oppFinal });
+        const outcome = resolveMatchOutcome(myFinal, oppFinal);
+        if (outcome === 'win') void hapticSuccess();
+        else if (outcome === 'loss') void hapticMediumImpact();
+      }
       const params: Record<string, string> = {
         sessionId,
         userId,
@@ -518,8 +602,19 @@ export default function DuelGameScreen() {
         params.mockBonusOutspeed = String(myBonusBreakdown.current.outspeed);
         params.mockReviewData = JSON.stringify(reviewDataRef.current);
       }
-      router.replace({ pathname: '/arena_results', params });
+      // Уходим в результаты после финального экрана (один раз).
+      if (finalNavTimerRef.current == null) {
+        finalNavTimerRef.current = setTimeout(() => {
+          router.replace({ pathname: '/arena_results', params });
+        }, FINAL_OVERLAY_MS);
+      }
     }
+    return () => {
+      if (phase !== 'finished' && finalNavTimerRef.current != null) {
+        clearTimeout(finalNavTimerRef.current);
+        finalNavTimerRef.current = null;
+      }
+    };
   }, [cleanRoomCode, fromLobbyFlow, lang, opponentForfeited, phase, players, router, sessionId, useHill, useMock, useRoom, userId]);
 
   useEffect(() => {
@@ -912,6 +1007,8 @@ export default function DuelGameScreen() {
         </View>
         {effectivePlayers.slice(0, 2).map((p, idx) => {
           const isMe = p.playerId === userId;
+          // Соперник уже сдал ответ на текущий вопрос → зелёная галочка-точка.
+          const showAnswered = !isMe && phase === 'question' && opponentAnswered;
           return (
             <View key={p.playerId} style={[styles.playerChip, isMe && { borderBottomWidth: 2, borderBottomColor: t.accent }]}>
               <View style={styles.playerNameRow}>
@@ -928,14 +1025,40 @@ export default function DuelGameScreen() {
                     pl: `Gracz ${idx + 1}`,
                   }))}
                 </Text>
+                {showAnswered ? (
+                  <View style={[styles.answeredDot, { backgroundColor: t.correct }]}>
+                    <Ionicons name="checkmark" size={10} color="#06210F" />
+                  </View>
+                ) : null}
               </View>
-              <Text style={[styles.playerScore, { color: t.textPrimary, fontSize: f.body }]}>
-                {p.score}
-              </Text>
+              <Reanimated.View style={isMe ? myScorePulseStyle : oppScorePulseStyle}>
+                <Text style={[styles.playerScore, { color: t.textPrimary, fontSize: f.body }]}>
+                  {p.score}
+                </Text>
+              </Reanimated.View>
             </View>
           );
         })}
       </View>
+
+      {/* Решающий вопрос: баннер драмы */}
+      {lastQuestionDrama ? (
+        <View style={[styles.dramaBanner, { backgroundColor: t.wrongBg, borderColor: t.wrong }]}>
+          <Ionicons name="flame" size={14} color={t.wrong} />
+          <Text style={[styles.dramaBannerText, { color: t.wrong, fontSize: f.caption }]}>
+            {triLang(lang, {
+              ru: 'Решающий вопрос!',
+              uk: 'Вирішальне питання!',
+              es: '¡Pregunta decisiva!',
+              'pt-BR': 'Pergunta decisiva!',
+              vi: 'Câu hỏi quyết định!',
+              id: 'Pertanyaan penentu!',
+              tr: 'Belirleyici soru!',
+              pl: 'Decydujące pytanie!',
+            })}
+          </Text>
+        </View>
+      ) : null}
 
       {/* Вопрос */}
       <View style={styles.questionWrap}>
@@ -1078,6 +1201,16 @@ export default function DuelGameScreen() {
           </Pressable>
         </Pressable>
       )}
+      {/* Финальный экран матча: счёт X:Y + исход, держится ~1.2с перед результатами. */}
+      {finalOverlay ? (
+        <ArenaFinalScoreOverlay
+          visible
+          outcome={resolveMatchOutcome(finalOverlay.my, finalOverlay.opp)}
+          myScore={finalOverlay.my}
+          opponentScore={finalOverlay.opp}
+          lang={lang}
+        />
+      ) : null}
     </ScreenGradient>
   );
 }
@@ -1147,6 +1280,16 @@ const styles = StyleSheet.create({
   playerNameRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, maxWidth: '100%' },
   playerLabel: { fontWeight: '600' },
   playerScore: { fontWeight: '800' },
+  answeredDot: {
+    width: 16, height: 16, borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginLeft: 2,
+  },
+
+  dramaBanner: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    alignSelf: 'center', paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999,
+    borderWidth: 1, marginTop: 10,
+  },
+  dramaBannerText: { fontWeight: '800', letterSpacing: 0.3 },
 
   questionWrap: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8, gap: 10 },
   questionMeta: {

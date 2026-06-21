@@ -14,6 +14,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
+import ArenaConfettiBurst from '../components/ArenaConfettiBurst';
 import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRematchStatus } from './services/arena_db';
 import { ArenaSession, RematchOffer, REMATCH_TTL_MS, SessionPlayer, type RankTier } from './types/arena';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -1416,6 +1417,8 @@ export default function DuelResultsScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
+      {/* Победный конфетти-салют (играет один раз при входе на экран после победы). */}
+      <ArenaConfettiBurst active={isWinner && !isDraw && !isForfeited} colors={['#FFD54A', '#39F27A', '#5BE2CD', '#FF8A5B', '#C792FF']} />
       <BouncyWrap style={bouncyStyle}>
       <Animated.ScrollView
         decelerationRate="normal"

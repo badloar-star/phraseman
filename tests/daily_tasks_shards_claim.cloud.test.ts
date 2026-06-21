@@ -80,8 +80,10 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
     await expect(claimDailyTasksAllShardsReward('2026-08-11')).resolves.toBe(false);
     // Маркер выставлен → UI садится в «получено», повторов больше нет.
     expect(mockStorage['daily_tasks_all_shards_2026-08-11']).toBe('1');
-    // Баланс не трогаем — осколок уже был начислен на сервере.
-    expect(mockStorage.shards_balance).toBe('1');
+    // Баланс ПОДТЯГИВАЕТСЯ к серверному значению (10), а не остаётся локальным (1).
+    // Это фикс рассинхрона «осколки уменьшились/не совпадают» из баг-репортов:
+    // при alreadyClaimed сервер — источник правды, локальный баланс выравнивается.
+    expect(mockStorage.shards_balance).toBe('10');
   });
 });
 

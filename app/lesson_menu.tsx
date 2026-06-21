@@ -55,6 +55,7 @@ import {
   lessonPassCountKey,
   lessonPrepositionProgressKey,
   lessonProgressKey,
+  lessonTheoryXpClaimedKey,
   lessonWordsKey,
   storageStudyTarget,
   type RuntimeStudyTarget,
@@ -295,6 +296,11 @@ export default function LessonMenu() {
   const [irregularLearned, setIrregularLearned] = useState(cachedMenu?.irregularLearned ?? 0);
   const [prepositionAnswered, setPrepositionAnswered] = useState(cachedMenu?.prepositionAnswered ?? 0);
   const [prepositionTotal, setPrepositionTotal] = useState(cachedMenu?.prepositionTotal ?? 0);
+  // Теория «пройдена» = XP за теорию урока забран (флаг theory_xp_claimed_{id}).
+  // Нужно, чтобы у плитки «Теория» появилась галочка/кольцо — юзеры жаловались,
+  // что теория «не ставит 100%» и думали, что из-за этого урок не закрывается
+  // (баг-репорты theory_lesson_*). Урок по-прежнему завершается по 50/50 упражнениям.
+  const [theoryClaimed, setTheoryClaimed] = useState(false);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
@@ -516,6 +522,9 @@ export default function LessonMenu() {
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
     });
+    AsyncStorage.getItem(lessonTheoryXpClaimedKey(lessonId, studyTarget))
+      .then(v => setTheoryClaimed(v === '1' || v === 'true'))
+      .catch(() => setTheoryClaimed(false));
   }, [lessonId, studyTarget]);
 
   useEffect(() => {
@@ -864,6 +873,11 @@ export default function LessonMenu() {
   pl: 'Zasady i wyjaśnienia',
 }),
       icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
+      // Кольцо/галочка на теории: 100% когда XP за теорию забран, иначе 0%.
+      // Снимает путаницу «теория не ставит 100%» (баг-репорты). На теории «на
+      // проверке» кольца нет. Завершение урока по-прежнему по 50/50 упражнениям —
+      // это кольцо лишь отражает «теория прочитана», не гейтит закрытие урока.
+      pct: frenchTheorySourceGated ? undefined : (theoryClaimed ? 100 : 0),
       onPress: () => {
         hapticTap();
         if (frenchTheorySourceGated) {

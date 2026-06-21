@@ -149,6 +149,19 @@ function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'l
   return 'monthly';
 }
 
+/**
+ * Деактивировать ли Premium на «inactive»-событии (EXPIRATION / REFUND).
+ *
+ * REFUND — всегда да (вернули деньги, доступ снять даже у lifetime). EXPIRATION на
+ * lifetime — НЕТ: non-renewing «Навсегда» не может законно истечь, и спурьёзный
+ * EXPIRATION иначе молча даунгрейднул бы платящего lifetime-клиента до free (аудит #24).
+ * Чистая функция — тестируемая в отрыве от Firestore-транзакции.
+ */
+export function shouldDeactivateOnInactiveEvent(eventType: string, plan: string): boolean {
+  if (eventType === 'EXPIRATION' && plan === 'lifetime') return false;
+  return true;
+}
+
 function eventMs(raw: unknown): number | null {
   const n = typeof raw === 'number' ? raw : Number(raw);
   if (!Number.isFinite(n) || n <= 0) return null;
@@ -264,8 +277,13 @@ async function handlePremiumSubscriptionEvent(
           progressPatch.premium_rc_cancelled_at = String(now);
         }
       } else if (inactiveEvent) {
-        progressPatch.premium_plan = '';
-        progressPatch.premium_expiry = String(expiryMs ?? now);
+        // EXPIRATION на lifetime НЕ деактивируем (см. shouldDeactivateOnInactiveEvent):
+        // спурьёзный EXPIRATION иначе молча даунгрейднул бы платящего lifetime до free.
+        // REFUND снимает доступ как обычно (вернули деньги).
+        if (shouldDeactivateOnInactiveEvent(eventType, plan)) {
+          progressPatch.premium_plan = '';
+          progressPatch.premium_expiry = String(expiryMs ?? now);
+        }
       }
 
       tx.set(processedRef, {

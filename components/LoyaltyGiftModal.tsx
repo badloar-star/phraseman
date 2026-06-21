@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import type { PlannedInterfaceLang } from '../constants/i18n';
 import {
   RewardModalBackdrop,
   RewardModalPanelBackdrop,
@@ -57,7 +58,8 @@ type ModalCopy = {
 
 // Текст обновления + подарок за лояльность. Намеренно «мощный»: сначала вау-фичи,
 // затем эмоциональный подарок «спасибо за то, что ты с нами с самого начала».
-const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
+// Ключи: обязательны ru/uk/es, остальные языки интерфейса — опционально (как triLang).
+const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterfaceLang, ModalCopy>> = {
   ru: {
     eyebrow: 'Новая версия',
     title: 'Phraseman, которого ты ещё не видел',
@@ -142,12 +144,152 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     announcePrimaryCta: 'Ver las novedades',
     announceFooter: 'Gracias por seguir aquí. Todo lo nuevo ya está abierto en tu Premium.',
   },
+  'pt-BR': {
+    eyebrow: 'Nova versão',
+    title: 'O Phraseman que você ainda não viu',
+    intro: 'Metade do app foi reescrita do zero. Ficou mais claro, mais vivo e mais gostoso de estudar. Veja o que você sente logo de cara:',
+    highlightsTitle: 'O que mudou',
+    highlights: [
+      { icon: 'compass', title: 'Mostra o que estudar hoje', body: 'Você não precisa mais decidir por onde começar. O app vê o que está indo bem, o que ainda falha, e sugere todos os dias o treino certo para você.' },
+      { icon: 'sparkles', title: 'Muitas práticas novas', body: 'Entraram milhares de frases para o dia a dia: trabalho, casa, saúde, viagens, sentimentos. Dura bastante — e tudo soa vida real, não livro didático.' },
+      { icon: 'chatbubbles', title: 'Diálogos: conversa por papéis', body: 'Escolha uma situação — café, médico, entrevista — e converse com o personagem dentro do app, como num mensageiro. Cada um responde com seu próprio estilo.' },
+      { icon: 'volume-high', title: 'Voz natural e agradável', body: 'As frases são faladas por uma voz agradável, não por um robô. Não ouviu bem? Diminua a velocidade e repita no seu ritmo.' },
+      { icon: 'trophy', title: 'Compita com outras pessoas', body: 'Quer mais emoção? Jogue contra um rival real. Pareamento em segundos, ranking e recompensas bonitas pelas vitórias.' },
+      { icon: 'bulb', title: 'Explica os erros com clareza', body: 'Errou uma resposta? O app mostra com calma o motivo. Se ainda estiver confuso, um botão explica em palavras bem simples.' },
+      { icon: 'diamond', title: 'Coleção de cartas bonitas', body: 'Ao praticar, você recebe cartas bonitas com imagens — pequenas recompensas para colecionar e abrir com prazer.' },
+    ],
+    personalNoteTitle: 'Com honestidade',
+    personalNoteBody: 'Eu digo “nós”, embora por trás disso esteja uma só pessoa. Sozinho, esse volume parece inacreditável. Mas é isso mesmo: noites sem dormir e tempo pessoal para esta atualização chegar até você. Obrigado por estar aqui.',
+    ideasTitle: 'Um ano de acesso completo — por uma ideia',
+    ideasBody: 'Tem uma ideia para melhorar o Phraseman? Conte para mim — e por uma ideia viva e original eu libero um ano inteiro de acesso completo. Configurações → “Ideias”. Sério, vale a pena.',
+    giftEyebrow: 'Obrigado por estar desde o começo',
+    giftTitle: 'Pegue 3 dias — tudo aberto',
+    giftBody: 'Você já estava com o Phraseman antes desta atualização, e isso vale muito. Como agradecimento, dou 3 dias com tudo aberto — sem cadeados e sem limites. É só um presente: nada será cobrado, a assinatura não será ativada. Entre e sinta o app renovado em força total.',
+    giftChips: ['Tudo aberto', 'Sem cadeados', 'Sem limites', 'Todos os temas', 'Dicas', 'Estilos escuros'],
+    primaryCta: 'Pegar meus 3 dias',
+    secondaryCta: 'Talvez depois',
+    footer: 'É um presente. Nada será cobrado, a assinatura não será ativada.',
+    announcePrimaryCta: 'Ver novidades',
+    announceFooter: 'Obrigado por continuar por perto. Tudo novo já está aberto no seu Premium.',
+  },
+  vi: {
+    eyebrow: 'Phiên bản mới',
+    title: 'Phraseman mà bạn chưa từng thấy',
+    intro: 'Một nửa ứng dụng đã được viết lại từ đầu. Việc học giờ rõ ràng hơn, sống động hơn và dễ chịu hơn. Đây là những điều bạn sẽ cảm nhận ngay:',
+    highlightsTitle: 'Có gì thay đổi',
+    highlights: [
+      { icon: 'compass', title: 'Gợi ý hôm nay nên học gì', body: 'Bạn không cần tự nghĩ bắt đầu từ đâu nữa. Ứng dụng xem phần nào bạn làm tốt, phần nào còn yếu, rồi mỗi ngày gợi ý đúng thứ bạn cần.' },
+      { icon: 'sparkles', title: 'Rất nhiều bài luyện mới', body: 'Đã thêm hàng nghìn cụm từ hằng ngày: công việc, nhà cửa, sức khỏe, du lịch, cảm xúc. Học được lâu — và đều là đời thực, không phải sách giáo khoa.' },
+      { icon: 'chatbubbles', title: 'Đối thoại: nhắn tin theo vai', body: 'Chọn một tình huống — quán cà phê, bác sĩ, phỏng vấn — rồi trò chuyện với nhân vật ngay trong app như trong messenger. Mỗi nhân vật có cá tính riêng.' },
+      { icon: 'volume-high', title: 'Giọng nói tự nhiên dễ nghe', body: 'Các cụm từ được đọc bằng giọng dễ nghe, không phải giọng máy. Chưa nghe kịp? Giảm tốc độ và lặp lại theo nhịp của bạn.' },
+      { icon: 'trophy', title: 'Thi đấu với người khác', body: 'Muốn thêm cảm giác thử thách? Chơi với đối thủ thật. Ghép trận trong vài giây, có bảng xếp hạng và phần thưởng đẹp khi thắng.' },
+      { icon: 'bulb', title: 'Giải thích lỗi dễ hiểu', body: 'Trả lời sai thì app sẽ bình tĩnh chỉ ra lý do. Nếu vẫn chưa rõ, một nút sẽ giải thích bằng lời thật đơn giản.' },
+      { icon: 'diamond', title: 'Bộ sưu tập thẻ đẹp', body: 'Sau các buổi luyện, bạn nhận được thẻ đẹp có hình — như những phần thưởng nhỏ. Mở thẻ mới và sưu tầm rất vui.' },
+    ],
+    personalNoteTitle: 'Thật lòng',
+    personalNoteBody: 'Tôi nói “chúng tôi”, dù phía sau tất cả chỉ có một người. Một mình làm khối lượng này nghe có vẻ khó tin. Nhưng đúng là vậy: những đêm thiếu ngủ và thời gian cá nhân để bản cập nhật này đến được với bạn. Cảm ơn bạn đã ở đây.',
+    ideasTitle: 'Một năm truy cập đầy đủ — đổi lấy một ý tưởng',
+    ideasBody: 'Bạn có ý tưởng giúp Phraseman tốt hơn? Hãy chia sẻ — và với một ý tưởng sống động, đáng giá, tôi sẽ mở cho bạn cả năm truy cập đầy đủ. Cài đặt → “Ý tưởng”. Thật đấy, rất đáng.',
+    giftEyebrow: 'Cảm ơn vì đã ở đây từ đầu',
+    giftTitle: 'Nhận 3 ngày — mở toàn bộ',
+    giftBody: 'Bạn đã ở cùng Phraseman trước bản cập nhật này, và điều đó rất đáng quý. Để cảm ơn, tôi tặng bạn 3 ngày mở toàn bộ — không khóa, không giới hạn. Chỉ là quà tặng: không trừ tiền, không tự bật đăng ký. Hãy vào và cảm nhận bản cập nhật trọn vẹn.',
+    giftChips: ['Mở toàn bộ', 'Không khóa', 'Không giới hạn', 'Tất cả chủ đề', 'Gợi ý', 'Giao diện tối'],
+    primaryCta: 'Nhận 3 ngày',
+    secondaryCta: 'Có thể để sau',
+    footer: 'Đây là quà tặng. Không trừ tiền, đăng ký không tự bật.',
+    announcePrimaryCta: 'Xem có gì mới',
+    announceFooter: 'Cảm ơn bạn vẫn ở lại. Tất cả điều mới đã mở trong Premium của bạn.',
+  },
+  id: {
+    eyebrow: 'Versi baru',
+    title: 'Phraseman yang belum pernah kamu lihat',
+    intro: 'Setengah aplikasi ditulis ulang dari awal. Sekarang belajar terasa lebih jelas, lebih hidup, dan lebih nyaman. Ini yang akan langsung terasa:',
+    highlightsTitle: 'Yang berubah',
+    highlights: [
+      { icon: 'compass', title: 'Menyarankan apa yang dipelajari hari ini', body: 'Kamu tidak perlu bingung mulai dari mana. Aplikasi melihat apa yang sudah bagus dan apa yang masih lemah, lalu setiap hari menyarankan latihan yang tepat untukmu.' },
+      { icon: 'sparkles', title: 'Banyak latihan baru', body: 'Ada ribuan frasa baru untuk keseharian: kerja, rumah, kesehatan, perjalanan, perasaan. Cukup untuk waktu lama — dan semuanya terasa nyata, bukan dari buku teks.' },
+      { icon: 'chatbubbles', title: 'Dialog: chat sesuai peran', body: 'Pilih situasi — kafe, dokter, wawancara — lalu chat dengan tokohnya langsung di app, seperti di messenger. Setiap tokoh punya gaya dan karakter sendiri.' },
+      { icon: 'volume-high', title: 'Suara alami yang nyaman', body: 'Frasa dibacakan oleh suara yang enak didengar, bukan robot. Kurang jelas? Perlambat dan ulangi dengan tempo yang nyaman.' },
+      { icon: 'trophy', title: 'Bersaing dengan orang lain', body: 'Mau lebih seru? Main melawan lawan sungguhan. Pencocokan dalam hitungan detik, papan peringkat, dan hadiah cantik untuk kemenangan.' },
+      { icon: 'bulb', title: 'Menjelaskan kesalahan dengan jelas', body: 'Jawaban salah? Aplikasi menunjukkan alasannya dengan tenang. Kalau masih belum paham, satu tombol menjelaskan dengan kata-kata paling sederhana.' },
+      { icon: 'diamond', title: 'Koleksi kartu cantik', body: 'Setelah latihan, kamu mendapat kartu cantik bergambar — seperti hadiah kecil. Menyenangkan untuk dikumpulkan dan dibuka.' },
+    ],
+    personalNoteTitle: 'Jujur saja',
+    personalNoteBody: 'Aku menulis “kami”, walau di balik semua ini hanya ada satu orang. Kalau sendirian, volume sebesar ini terdengar tidak masuk akal. Tapi memang begitu: malam tanpa tidur dan waktu pribadi agar pembaruan ini sampai kepadamu. Terima kasih sudah di sini.',
+    ideasTitle: 'Akses penuh setahun — untuk satu ide',
+    ideasBody: 'Punya ide untuk membuat Phraseman lebih baik? Ceritakan — dan untuk ide yang hidup dan menarik, aku akan membuka akses penuh selama setahun. Pengaturan → “Ide”. Serius, ini sepadan.',
+    giftEyebrow: 'Terima kasih sudah bersama sejak awal',
+    giftTitle: 'Ambil 3 hari — semua terbuka',
+    giftBody: 'Kamu sudah bersama Phraseman sebelum pembaruan ini, dan itu sangat berarti. Sebagai terima kasih, aku memberimu 3 hari dengan semua terbuka — tanpa kunci dan tanpa batas. Hanya hadiah: tidak ada biaya, langganan tidak aktif. Masuk dan rasakan pembaruan ini sepenuhnya.',
+    giftChips: ['Semua terbuka', 'Tanpa kunci', 'Tanpa batas', 'Semua tema', 'Petunjuk', 'Gaya gelap'],
+    primaryCta: 'Ambil 3 hari saya',
+    secondaryCta: 'Mungkin nanti',
+    footer: 'Ini hadiah. Tidak ada biaya, langganan tidak aktif.',
+    announcePrimaryCta: 'Lihat yang baru',
+    announceFooter: 'Terima kasih tetap di sini. Semua yang baru sudah terbuka di Premium-mu.',
+  },
+  tr: {
+    eyebrow: 'Yeni sürüm',
+    title: 'Henüz görmediğin Phraseman',
+    intro: 'Uygulamanın yarısı baştan yazıldı. Öğrenmek artık daha anlaşılır, daha canlı ve daha keyifli. İlk fark edeceğin şeyler:',
+    highlightsTitle: 'Neler değişti',
+    highlights: [
+      { icon: 'compass', title: 'Bugün ne çalışacağını söyler', body: 'Nereden başlayacağını düşünmene gerek yok. Uygulama nelerde iyi olduğunu, nelerin aksadığını görür ve her gün tam ihtiyacın olan çalışmayı önerir.' },
+      { icon: 'sparkles', title: 'Çok sayıda yeni çalışma', body: 'Günlük hayat için binlerce yeni ifade eklendi: iş, ev, sağlık, seyahat, duygular. Uzun süre yeter — hepsi gerçek hayat gibi, ders kitabı gibi değil.' },
+      { icon: 'chatbubbles', title: 'Diyaloglar: role göre yazışma', body: 'Bir durum seç — kafe, doktor, mülakat — ve karakteriyle uygulamanın içinde mesajlaş. Her karakter kendi tarzıyla, kendi havasıyla cevap verir.' },
+      { icon: 'volume-high', title: 'Hoş ve doğal ses', body: 'İfadeleri robot değil, hoş bir ses okur. Duyamadın mı? Yavaşlat ve kendi temponda tekrar et.' },
+      { icon: 'trophy', title: 'Başkalarıyla yarış', body: 'Biraz heyecan istiyorsan gerçek bir rakibe karşı oyna. Saniyeler içinde eşleşme, lider tablosu ve galibiyetler için güzel ödüller.' },
+      { icon: 'bulb', title: 'Hataları net açıklar', body: 'Yanlış cevap verdiğinde uygulama sakince nedenini gösterir. Hâlâ net değilse, tek tuşla çok basit sözlerle açıklar.' },
+      { icon: 'diamond', title: 'Güzel kart koleksiyonu', body: 'Çalışmalardan sonra resimli güzel kartlar düşer — küçük ödüller gibi. Toplaması ve yenilerini açması keyifli.' },
+    ],
+    personalNoteTitle: 'Dürüstçe',
+    personalNoteBody: '“Biz” diyorum, ama tüm bunların arkasında tek bir kişi var. Tek başına bu hacim pek inandırıcı gelmiyor. Ama öyle: uykusuz geceler ve kişisel zaman, bu güncelleme sana ulaşsın diye. Burada olduğun için teşekkürler.',
+    ideasTitle: 'Bir fikir karşılığında bir yıl tam erişim',
+    ideasBody: 'Phraseman’i daha iyi yapacak bir fikrin var mı? Anlat — canlı ve özgün bir fikir için sana bir yıl tam erişim açarım. Ayarlar → “Fikirler”. Ciddiyim, buna değer.',
+    giftEyebrow: 'En başından beri burada olduğun için teşekkürler',
+    giftTitle: '3 gün al — her şey açık',
+    giftBody: 'Bu güncellemeden önce de Phraseman’leydin ve bu çok değerli. Teşekkür olarak sana 3 gün boyunca her şeyin açık olduğu erişim veriyorum — kilit yok, sınır yok. Sadece hediye: ücret alınmaz, abonelik başlamaz. Gir ve yenilenmiş uygulamayı tam gücüyle hisset.',
+    giftChips: ['Her şey açık', 'Kilit yok', 'Sınır yok', 'Tüm temalar', 'İpuçları', 'Koyu stiller'],
+    primaryCta: '3 günümü al',
+    secondaryCta: 'Belki sonra',
+    footer: 'Bu bir hediye. Ücret alınmaz, abonelik başlamaz.',
+    announcePrimaryCta: 'Yeniliklere bak',
+    announceFooter: 'Burada kalmaya devam ettiğin için teşekkürler. Tüm yenilikler Premium’unda zaten açık.',
+  },
+  pl: {
+    eyebrow: 'Nowa wersja',
+    title: 'Phraseman, którego jeszcze nie widziałeś',
+    intro: 'Połowa aplikacji została przepisana od nowa. Nauka jest teraz jaśniejsza, żywsza i przyjemniejsza. To poczujesz od razu:',
+    highlightsTitle: 'Co się zmieniło',
+    highlights: [
+      { icon: 'compass', title: 'Podpowie, czego uczyć się dziś', body: 'Nie musisz już myśleć, od czego zacząć. Aplikacja widzi, co wychodzi, co jeszcze kuleje, i codziennie proponuje dokładnie to, czego potrzebujesz.' },
+      { icon: 'sparkles', title: 'Mnóstwo nowych ćwiczeń', body: 'Dodano tysiące nowych fraz na co dzień: praca, dom, zdrowie, podróże, emocje. Wystarczy na długo — i wszystko brzmi jak prawdziwe życie, nie podręcznik.' },
+      { icon: 'chatbubbles', title: 'Dialogi: rozmowa w rolach', body: 'Wybierasz sytuację — kawiarnia, lekarz, rozmowa kwalifikacyjna — i piszesz z jej bohaterem w aplikacji jak w komunikatorze. Każdy odpowiada po swojemu.' },
+      { icon: 'volume-high', title: 'Przyjemny naturalny głos', body: 'Frazy czyta przyjemny głos, nie robot. Nie zdążyłeś usłyszeć? Zwolnij i powtórz w wygodnym tempie.' },
+      { icon: 'trophy', title: 'Rywalizuj z innymi', body: 'Chcesz trochę emocji? Zagraj z prawdziwym przeciwnikiem. Dobór w kilka sekund, tabela najlepszych i ładne nagrody za wygrane.' },
+      { icon: 'bulb', title: 'Jasno tłumaczy błędy', body: 'Odpowiesz źle — aplikacja spokojnie pokaże dlaczego. Jeśli nadal coś jest niejasne, jeden przycisk wyjaśni bardzo prostymi słowami.' },
+      { icon: 'diamond', title: 'Kolekcja ładnych kart', body: 'Za ćwiczenia wypadają ładne karty z obrazkami — małe nagrody. Miło je zbierać i otwierać nowe.' },
+    ],
+    personalNoteTitle: 'Szczerze',
+    personalNoteBody: 'Piszę „my”, chociaż za tym wszystkim stoi jedna osoba. Samemu taka skala brzmi niewiarygodnie. Ale tak właśnie jest: nieprzespane noce i prywatny czas, żeby ta aktualizacja dotarła do ciebie. Dzięki, że tu jesteś.',
+    ideasTitle: 'Rok pełnego dostępu — za pomysł',
+    ideasBody: 'Masz pomysł, jak ulepszyć Phraseman? Podziel się — za żywy, ciekawy pomysł otworzę ci cały rok pełnego dostępu. Ustawienia → „Pomysły”. Serio, warto.',
+    giftEyebrow: 'Dzięki, że jesteś od początku',
+    giftTitle: 'Weź 3 dni — wszystko otwarte',
+    giftBody: 'Byłeś z Phrasemanem jeszcze przed tą aktualizacją i to naprawdę dużo znaczy. W podziękowaniu daję ci 3 dni, gdy wszystko jest otwarte — bez kłódek i bez limitów. Po prostu prezent: nic nie zostanie pobrane, subskrypcja się nie włączy. Wejdź i poczuj odnowioną aplikację w pełnej sile.',
+    giftChips: ['Wszystko otwarte', 'Bez kłódek', 'Bez limitów', 'Wszystkie motywy', 'Podpowiedzi', 'Ciemne style'],
+    primaryCta: 'Odbierz 3 dni',
+    secondaryCta: 'Może później',
+    footer: 'To prezent. Nic nie zostanie pobrane, subskrypcja się nie włączy.',
+    announcePrimaryCta: 'Zobacz nowości',
+    announceFooter: 'Dzięki, że zostajesz. Wszystko nowe jest już otwarte w twoim Premium.',
+  },
 };
 
 function LoyaltyGiftModal({ visible, variant = 'gift', onPrimaryPress, onSecondaryPress, onIdeasPress }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
-  const copy = lang === 'uk' ? COPY.uk : lang === 'es' ? COPY.es : COPY.ru;
+  const copy = COPY[lang as keyof typeof COPY] ?? COPY.ru;
   // Премиум/VIP видят ТОЛЬКО текст обновления: без блока подарка и без кнопки получения.
   const isGift = variant === 'gift';
 

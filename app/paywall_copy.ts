@@ -227,6 +227,10 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Premium abre un análisis personal de cada punto débil. Explicación clara, forma correcta y práctica con frases parecidas.',
   },
   mastery: {
+    // ВНИМАНИЕ (аудит #22): этот контекст пейвола НЕДОСТИЖИМ — гейт mastery не триггерится
+    // (повтор урока бесплатный для всех, см. mastery.ts). Тексты ниже НИКОМУ не показываются.
+    // НЕ подключай context:'mastery' к навигации, не вернув реальный премиум-замок на повтор —
+    // иначе будешь обещать платным то, что бесплатно. Решение: mastery остаётся бесплатным.
     // Библия: «урок»→«раунд», убрана «цена», ≤10 слов, gain-framing.
     titleRu: 'Повторяй раунды без ограничений',
     titleUk: 'Повторюй раунди без обмежень',

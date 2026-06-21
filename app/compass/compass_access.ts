@@ -15,7 +15,7 @@
  * (из usePremium → hasPremiumAccess), модуль сам в контекст не лезет.
  */
 
-import { isFeatureFreeForEveryone } from '../feature_gates';
+import { shouldGateFeature } from '../feature_gates';
 
 export interface PlanAccessInput {
   /** Итоговый доступ: реальный premium ИЛИ vip ИЛИ intro-доступ (usePremium). */
@@ -32,9 +32,14 @@ export type PlanAccessDecision =
  * запуска плана. Так дыра закрыта во ВСЕХ точках активации единообразно.
  */
 export function decidePlanAccess(input: PlanAccessInput): PlanAccessDecision {
-  if (input.hasPremiumAccess) return { allowed: true };
-  // «Пульт»: если админ перевёл персональный план в «Фри» — замок снят для всех.
-  if (isFeatureFreeForEveryone('personal_plan')) return { allowed: true };
+  // Делегируем в shouldGateFeature('personal_plan', …) — ТОТ ЖЕ предикат, что и
+  // useFeatureAccess на входе. Раньше тут была отдельная проверка (premium ИЛИ
+  // isFeatureFreeForEveryone), которая НЕ учитывала weekly-boon-грант: если будущий
+  // бонус откроет personal_plan, вход пускал бы, а activate() упирался в пейвол →
+  // мини-петля setup→paywall. Единый предикат это исключает (аудит P3 #19).
+  // shouldGateFeature=false (не гейтить) при: premium-доступе, ИЛИ грант бонусом недели,
+  // ИЛИ админ перевёл фичу в «Фри».
+  if (!shouldGateFeature('personal_plan', input.hasPremiumAccess)) return { allowed: true };
   return { allowed: false, reason: 'premium_required' };
 }
 

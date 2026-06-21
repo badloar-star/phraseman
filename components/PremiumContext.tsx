@@ -28,6 +28,7 @@ import { ensureAnonUser, ensureStableAuthLinkForStableId, restoreFromCloud } fro
 import { getIntroFullAccessState } from '../app/intro_full_access';
 import { getLoyaltyGiftState } from '../app/loyalty_gift';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
+import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -70,14 +71,24 @@ export function usePremium(): PremiumContextValue {
  */
 export function useFeatureAccess(feature: FeatureGate): boolean {
   const { hasPremiumAccess } = usePremium();
-  const [freeForAll, setFreeForAll] = useState(() => isFeatureFreeForEveryone(feature));
+  // freeForAll = админ перевёл в «Фри»; grantedByBoon = бонус дня открыл фичу
+  // (напр. «День голоса» открывает speaking). Оба пересчитываются на смену
+  // remote-config; boon ещё зависит от дня, поэтому пересчитываем и при ремаунте.
+  const [access, setAccess] = useState(() => ({
+    freeForAll: isFeatureFreeForEveryone(feature),
+    grantedByBoon: isFeatureGrantedByWeeklyBoon(feature),
+  }));
   useEffect(() => {
-    const recompute = () => setFreeForAll(isFeatureFreeForEveryone(feature));
+    const recompute = () =>
+      setAccess({
+        freeForAll: isFeatureFreeForEveryone(feature),
+        grantedByBoon: isFeatureGrantedByWeeklyBoon(feature),
+      });
     recompute();
     const sub = onAppEvent('remote_config_changed', recompute);
     return () => sub.remove();
   }, [feature]);
-  return hasPremiumAccess || freeForAll;
+  return hasPremiumAccess || access.freeForAll || access.grantedByBoon;
 }
 
 function getFirestoreForPremiumListener(): unknown | null {

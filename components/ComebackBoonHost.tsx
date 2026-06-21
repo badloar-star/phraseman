@@ -7,8 +7,7 @@
  * видимость — через useOverlayVisible('comebackDay', …).
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Animated, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -18,6 +17,8 @@ import { emitAppEvent } from '../app/events';
 import { getTodayKey } from '../app/daily_tasks';
 import { checkComebackEligible, markComebackGranted } from '../app/boons/comeback';
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
+import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
+import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 
 function makeL(lang: Lang) {
   return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
@@ -25,7 +26,7 @@ function makeL(lang: Lang) {
 }
 
 export default function ComebackBoonHost() {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -58,11 +59,18 @@ export default function ComebackBoonHost() {
   const claim = async () => {
     if (grantedRef.current) return;
     grantedRef.current = true;
+    // Повторная проверка против стора (защита от двойной выдачи, если хост
+    // перемонтировался или приложение закрылось до markComebackGranted).
+    if (!(await checkComebackEligible())) return;
     const todayKey = getTodayKey();
-    // Бесплатная заморозка серии на сегодня + осколки.
+    // Бесплатная заморозка серии на сегодня + осколки. Не перетираем уже активную
+    // заморозку (платную) — если сегодня уже защищён, оставляем как есть.
     try {
-      await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
-      emitAppEvent('streak_freeze_updated', { active: true });
+      const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
+      if (!isStreakFreezeActiveToday(existing, todayKey)) {
+        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
+        emitAppEvent('streak_freeze_updated', { active: true });
+      }
     } catch {
       // best-effort
     }
@@ -82,6 +90,7 @@ export default function ComebackBoonHost() {
     ?? (t as { bgPrimary?: string }).bgPrimary ?? '#15181a';
   const textPrimary = (t as { textPrimary?: string }).textPrimary ?? '#FFFFFF';
   const textSecond = (t as { textSecond?: string }).textSecond ?? 'rgba(255,255,255,0.7)';
+  const iconSource = weeklyBoonIconSource('comeback', themeMode);
 
   const title = L(
     'Ты вернулся. Хорошо.', 'Ти повернувся. Добре.', 'Volviste. Bien.', 'Você voltou. Que bom.',
@@ -108,8 +117,8 @@ export default function ComebackBoonHost() {
             testID="comeback-boon-card"
             style={[styles.card, { backgroundColor: bgCard, transform: [{ scale }], opacity }]}
           >
-            <View style={[styles.badge, { backgroundColor: accent }]}>
-              <Ionicons name="sparkles" size={30} color="#fff" />
+            <View style={styles.badge}>
+              <Image source={iconSource} resizeMode="contain" style={styles.boonIcon} />
             </View>
             <Text style={[styles.title, { color: textPrimary }]}>{title}</Text>
             <Text style={[styles.body, { color: textSecond }]}>{body}</Text>
@@ -131,7 +140,8 @@ export default function ComebackBoonHost() {
 const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', justifyContent: 'center', padding: 24 },
   card: { width: '100%', maxWidth: 360, borderRadius: 22, paddingHorizontal: 22, paddingVertical: 26, alignItems: 'center' },
-  badge: { width: 60, height: 60, borderRadius: 30, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  badge: { width: 76, height: 76, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  boonIcon: { width: 76, height: 76 },
   title: { fontSize: 21, fontWeight: '900', textAlign: 'center', marginBottom: 10 },
   body: { fontSize: 15, lineHeight: 22, textAlign: 'center', marginBottom: 22 },
   primaryBtn: { alignSelf: 'stretch', height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },

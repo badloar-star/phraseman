@@ -8,8 +8,7 @@
  * через арбитр, не через свой visible» (иначе риск фриза, см. OverlayArbiter.tsx).
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Animated, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
@@ -23,6 +22,7 @@ import {
   grantBoonReward,
   type BoonReward,
 } from '../app/boons/boon_rewards';
+import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 
 const CLAIM_KEY = 'boon_mystery_monday_claimed_v1';
 
@@ -42,7 +42,7 @@ function rollFromWeek(weekId: string): number {
 }
 
 export default function MysteryMondayHost() {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -77,16 +77,19 @@ export default function MysteryMondayHost() {
     ]).start();
   }, [visible, scale, opacity]);
 
-  const open = () => {
+  const open = async () => {
     if (opened || !reward) return;
     setOpened(true);
     const week = currentWeekId();
-    void markClaimed(CLAIM_KEY, week);
-    void grantBoonReward(reward, 'boon_mystery_monday');
+    // Помечаем claim ДО выдачи и в строгом порядке (await), чтобы повторный показ/
+    // перемонтирование не выдали награду дважды. Если уже заклеймлено — выходим.
+    if (await isClaimed(CLAIM_KEY, week)) return;
+    await markClaimed(CLAIM_KEY, week);
+    await grantBoonReward(reward, 'boon_mystery_monday');
   };
 
   const close = () => {
-    if (!opened) open(); // если закрыл не открыв — всё равно отдаём награду
+    if (!opened) void open(); // если закрыл не открыв — всё равно отдаём награду
     setWantShow(false);
   };
 
@@ -97,6 +100,7 @@ export default function MysteryMondayHost() {
     ?? (t as { bgPrimary?: string }).bgPrimary ?? '#15181a';
   const textPrimary = (t as { textPrimary?: string }).textPrimary ?? '#FFFFFF';
   const textSecond = (t as { textSecond?: string }).textSecond ?? 'rgba(255,255,255,0.7)';
+  const iconSource = weeklyBoonIconSource('mystery_monday', themeMode);
 
   const title = L(
     'Сундук недели', 'Скриня тижня', 'Cofre de la semana', 'Baú da semana',
@@ -135,8 +139,8 @@ export default function MysteryMondayHost() {
             testID="mystery-monday-card"
             style={[styles.card, { backgroundColor: bgCard, transform: [{ scale }], opacity }]}
           >
-            <View style={[styles.badge, { backgroundColor: accent }]}>
-              <Ionicons name={opened ? 'gift' : 'cube'} size={32} color="#fff" />
+            <View style={styles.badge}>
+              <Image source={iconSource} resizeMode="contain" style={styles.boonIcon} />
             </View>
             <Text style={[styles.title, { color: textPrimary }]}>{title}</Text>
             <Text style={[styles.body, { color: textSecond }]}>{sub}</Text>
@@ -158,7 +162,8 @@ export default function MysteryMondayHost() {
 const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', justifyContent: 'center', padding: 24 },
   card: { width: '100%', maxWidth: 360, borderRadius: 22, paddingHorizontal: 22, paddingVertical: 26, alignItems: 'center' },
-  badge: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  badge: { width: 76, height: 76, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  boonIcon: { width: 76, height: 76 },
   title: { fontSize: 21, fontWeight: '900', textAlign: 'center', marginBottom: 10 },
   body: { fontSize: 15, lineHeight: 22, textAlign: 'center', marginBottom: 22 },
   primaryBtn: { alignSelf: 'stretch', height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },

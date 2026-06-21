@@ -6,6 +6,7 @@ import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
+import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons/boon_effects_energy';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '../app/notifications';
 import type { Lang } from '../constants/i18n';
@@ -66,13 +67,26 @@ async function readUnlimited(): Promise<boolean> {
   ]);
   // getVerifiedPremiumStatus handles: tester_no_limits, __DEV__, RevenueCat
   const isPremium = await getVerifiedPremiumStatus();
+  // Weekly Boon «окно без энергии»: в активный вечерний час энергия не тратится у всех.
+  // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
+  // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
+  if (isEnergyFreeWindowActive()) return true;
   return isPremium || tester === 'true' || noLimits === 'true';
 }
 
 async function readRecoveryIntervalMs(): Promise<number> {
   try {
-    const leagueChestMs = await readLeagueChestEnergyOverrideMs();
-    if (leagueChestMs) return leagueChestMs;
+    // Override-ы интервала: league-chest и weekly-boon (turbo_regen). Берём наименьший
+    // (быстрейшее восстановление). EnergyContext — основной читатель интервала, поэтому
+    // boon-override ОБЯЗАН учитываться здесь (energy_system.ts даёт его только spendEnergy).
+    const [leagueChestMs, boonMs] = await Promise.all([
+      readLeagueChestEnergyOverrideMs(),
+      readBoonEnergyOverrideMs(),
+    ]);
+    const overrides = [leagueChestMs, boonMs].filter(
+      (v): v is number => typeof v === 'number' && v > 0,
+    );
+    if (overrides.length > 0) return Math.min(...overrides);
     return getRecoveryIntervalMs();
   } catch {
     return getRecoveryIntervalMs();

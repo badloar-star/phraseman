@@ -11,6 +11,7 @@ import { getTodayKey } from '../daily_tasks';
 import { emitAppEvent } from '../events';
 import { addArenaPlaysBonusForToday } from '../arena_daily_limit';
 import { getPackGiftTrial, setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
+import { isStreakFreezeActiveToday, parseStreakFreeze } from '../streak_freeze';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { getTodaysBoons } from './boon_engine';
 import { applyTurboRegenOverride } from './boon_effects_energy';
@@ -41,10 +42,15 @@ async function markGrantedToday(boon: string, todayKey: string): Promise<void> {
   }
 }
 
-/** Streak-Saver: бесплатная заморозка серии на сегодня (без траты осколков). */
+/**
+ * Streak-Saver: бесплатная заморозка серии на сегодня (без траты осколков).
+ * НЕ перетираем уже активную заморозку (платную/премиум) — если на сегодня
+ * заморозка уже есть, делать нечего. Так бонус не «съедает» купленную заморозку.
+ */
 async function applyStreakSaver(todayKey: string): Promise<void> {
   try {
-    // Ключ streak_freeze уже date-scoped — перезапись тем же значением безопасна.
+    const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
+    if (isStreakFreezeActiveToday(existing, todayKey)) return; // уже защищён сегодня — не трогаем
     await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
     emitAppEvent('streak_freeze_updated', { active: true });
   } catch {

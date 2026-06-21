@@ -16,6 +16,10 @@ import {
   getMaintenanceText,
   isPaywallTimersEnabled,
   getStreakFreezeCostShards,
+  isVersionBelow,
+  shouldForceUpdate,
+  isForceUpdateEnabled,
+  getMinAppVersion,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -212,6 +216,57 @@ describe('remote_flags', () => {
       expect(getOnboardingAbVariant('x')).toBe('builder');
       applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 0, onboarding_ab_quiz_pct: 100 } });
       expect(getOnboardingAbVariant('x')).toBe('quiz');
+    });
+  });
+
+  describe('force-update', () => {
+    it('флаг по умолчанию выключен, min_app_version пуст', () => {
+      expect(isForceUpdateEnabled()).toBe(false);
+      expect(getMinAppVersion()).toBe('');
+    });
+
+    describe('isVersionBelow (semver)', () => {
+      it('строго ниже → true', () => {
+        expect(isVersionBelow('1.2.2', '1.2.3')).toBe(true);
+        expect(isVersionBelow('1.1.9', '1.2.0')).toBe(true);
+        expect(isVersionBelow('0.9', '1.0.0')).toBe(true);
+        expect(isVersionBelow('1.2', '1.2.1')).toBe(true); // недостающий сегмент = 0
+      });
+      it('равно или выше → false', () => {
+        expect(isVersionBelow('1.2.3', '1.2.3')).toBe(false);
+        expect(isVersionBelow('1.2.4', '1.2.3')).toBe(false);
+        expect(isVersionBelow('2.0.0', '1.9.9')).toBe(false);
+        expect(isVersionBelow('1.2.0', '1.2')).toBe(false); // 1.2.0 == 1.2
+      });
+      it('пустой/мусорный ввод → false (не блокируем при мусоре)', () => {
+        expect(isVersionBelow('', '1.2.3')).toBe(false);
+        expect(isVersionBelow('1.2.3', '')).toBe(false);
+        expect(isVersionBelow('abc', '1.0.0')).toBe(false);
+      });
+    });
+
+    describe('shouldForceUpdate', () => {
+      it('блокирует только при enabled + заданной min + версии ниже', () => {
+        expect(shouldForceUpdate({ enabled: true, currentVersion: '1.0.0', minVersion: '1.2.0' })).toBe(true);
+      });
+      it('выключенный флаг → не блокирует, даже если версия ниже', () => {
+        expect(shouldForceUpdate({ enabled: false, currentVersion: '1.0.0', minVersion: '1.2.0' })).toBe(false);
+      });
+      it('пустая min_app_version → не блокирует (защита)', () => {
+        expect(shouldForceUpdate({ enabled: true, currentVersion: '1.0.0', minVersion: '' })).toBe(false);
+      });
+      it('версия не ниже → не блокирует', () => {
+        expect(shouldForceUpdate({ enabled: true, currentVersion: '1.3.0', minVersion: '1.2.0' })).toBe(false);
+      });
+    });
+
+    it('снапшот включает флаг и задаёт версию/ссылки', () => {
+      applyRemoteConfigSnapshot({
+        bools: { force_update_enabled: true },
+        texts: { min_app_version: '2.0.0', store_url_ios: 'https://apps.apple.com/x', store_url_android: 'https://play.google.com/x' },
+      });
+      expect(isForceUpdateEnabled()).toBe(true);
+      expect(getMinAppVersion()).toBe('2.0.0');
     });
   });
 });

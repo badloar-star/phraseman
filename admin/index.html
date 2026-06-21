@@ -8822,6 +8822,33 @@
     </div>
   </div>
 
+  <!-- 🚀 FORCE-UPDATE: принудительное обновление по минимальной версии -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#f87171">🚀 Принудительное обновление (force-update)</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Когда <b style="color:#f87171">включено</b> и версия приложения <b>ниже</b> указанной — у пользователя
+      полноэкранный блок «обнови приложение» с кнопкой в стор. <b style="color:#fbbf24">Осторожно:</b> при
+      пустой версии блок не покажется (защита). Версия в формате <code style="color:#a78bfa">1.2.3</code>.
+      Применяется у всех живьём (onSnapshot), без релиза.
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:12px 0 4px;margin-top:6px;border-top:1px solid #23232f">
+      <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Force-update включён</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Главный выключатель. Выкл = блок никогда не показывается.</div></div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-force_update_enabled" onchange="saveControlPanelBool('force_update_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-force_update_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Минимальная версия (semver, напр. 1.2.3)
+        <input type="text" id="cp-force-min-version" placeholder="(пусто = блок выключен)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Ссылка App Store (iOS)
+        <input type="text" id="cp-force-url-ios" placeholder="https://apps.apple.com/app/id..." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Ссылка Google Play (Android)
+        <input type="text" id="cp-force-url-android" placeholder="https://play.google.com/store/apps/details?id=..." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+      <button type="button" onclick="saveForceUpdateConfig()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить версию и ссылки</button>
+      <span id="cp-force-status" style="font-size:12px;color:#6b7280"></span>
+    </div>
+  </div>
+
   <!-- 💎 ПРЕМИУМ / ФРИ: единый контроль платных фич, лимитов и поурочной разблокировки -->
   <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
     <div style="font-size:15px;font-weight:800;color:#fbbf24">💎 Премиум / Фри — что платно, а что бесплатно</div>
@@ -21912,6 +21939,7 @@
     if (typeof window.loadControlPanelPremium === 'function') void window.loadControlPanelPremium();
     if (typeof window.loadControlPanelBoons === 'function') void window.loadControlPanelBoons();
     if (typeof window.loadWeeklyBoons === 'function') void window.loadWeeklyBoons();
+    if (typeof window.loadControlPanelForceUpdate === 'function') void window.loadControlPanelForceUpdate();
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя
@@ -22053,6 +22081,50 @@
       cpBoonsStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
     } catch (e) {
       cpBoonsStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Force-update (флаг + min_app_version + ссылки на сторы) ─────────────────
+  function cpForceStatus(msg, color) {
+    const el = document.getElementById('cp-force-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  window.loadControlPanelForceUpdate = async function() {
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const bools = (data && data.bools && typeof data.bools === 'object') ? data.bools : {};
+      const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      // Тумблер (не входит в CP_FEATURE_TOGGLES — рендерим тут отдельно).
+      const on = bools.force_update_enabled === true;
+      const cb = document.getElementById('cp-bool-force_update_enabled');
+      const lbl = document.getElementById('cp-bool-label-force_update_enabled');
+      if (cb) { cb.checked = on; cb.disabled = false; }
+      if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#f87171' : '#9ca3af'; }
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+      set('cp-force-min-version', texts.min_app_version);
+      set('cp-force-url-ios', texts.store_url_ios);
+      set('cp-force-url-android', texts.store_url_android);
+    } catch (_) { /* некритично */ }
+  };
+  window.saveForceUpdateConfig = async function() {
+    const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
+    const ver = get('cp-force-min-version');
+    // Версия (если задана) должна быть semver-подобной (цифры через точку).
+    if (ver && !/^\d+(\.\d+){0,3}$/.test(ver)) {
+      cpForceStatus('❌ Версия в формате 1.2.3 (только цифры и точки).', '#f87171');
+      return;
+    }
+    cpForceStatus('Сохранение…');
+    try {
+      await window.saveControlPanelTexts({
+        min_app_version: ver,
+        store_url_ios: get('cp-force-url-ios'),
+        store_url_android: get('cp-force-url-android'),
+      });
+      cpForceStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+    } catch (e) {
+      cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
   };
 

@@ -34,6 +34,7 @@ import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import MaintenanceGate from '../components/MaintenanceGate';
+import ForceUpdateGate from '../components/ForceUpdateGate';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
@@ -2442,6 +2443,9 @@ function AppContent() {
 
     {/* Режим обслуживания — самый верхний слой (поверх всего, даже сплеша). */}
     <MaintenanceGate />
+
+    {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
+    <ForceUpdateGate />
 
     </View>
   );

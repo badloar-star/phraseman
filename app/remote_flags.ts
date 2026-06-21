@@ -76,6 +76,11 @@ export type RemoteBoolKey =
   // стоит в app/paywall_purchase.ts (urgency форсится в неактивное пустое
   // состояние), сам PaywallPriceUrgency тогда возвращает null во всех режимах.
   | 'paywall_timers_enabled'
+  // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
+  // от случайной блокировки всех). Когда true И версия приложения < min_app_version
+  // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
+  // ссылки на сторы — в текстовых ключах ниже. Управляется из «Пульта» живьём.
+  | 'force_update_enabled'
   // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
   // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
   // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
@@ -118,7 +123,14 @@ export type RemoteTextKey =
   // { schedule: {weekday: BoonId | BoonId[]}, enabled: {...}, modifiersEnabled: {...} }.
   // Пусто/невалидно = встроенный дефолт (см. boons/boon_config.ts). Парсится
   // защищённо: мусор тихо отбрасывается, приложение не падает.
-  | 'weekly_boons_config';
+  | 'weekly_boons_config'
+  // Force-update: минимальная допустимая версия приложения (semver "1.2.3"). Когда
+  // force_update_enabled=true и текущая версия < этой — показываем блок. Пусто =
+  // блок не показывается даже при включённом флаге (защита от пустого значения).
+  | 'min_app_version'
+  // Ссылки на сторы для кнопки «Обновить» в блоке force-update (по платформе).
+  | 'store_url_ios'
+  | 'store_url_android';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -206,6 +218,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
   // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
   paywall_timers_enabled: true,
+  // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
+  // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
+  force_update_enabled: false,
   // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
   // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
   // ключа выше). Меняется у всех живьём из «Пульта».
@@ -239,6 +254,9 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   free_lessons_extra: '',
   premium_lessons_extra: '',
   weekly_boons_config: '',
+  min_app_version: '',
+  store_url_ios: '',
+  store_url_android: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -398,6 +416,67 @@ export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
  * Гейт применяется в app/paywall_purchase.ts.
  */
 export const isPaywallTimersEnabled = () => getRemoteBool('paywall_timers_enabled');
+
+// ── Force-update (минимальная версия) ───────────────────────────────────────
+/** Включён ли force-update. Дефолт false. */
+export const isForceUpdateEnabled = () => getRemoteBool('force_update_enabled');
+/** Минимальная допустимая версия (semver "1.2.3"). Пусто = блок не показывать. */
+export const getMinAppVersion = () => getRemoteText('min_app_version');
+/** Ссылка на App Store для кнопки «Обновить». */
+export const getStoreUrlIos = () => getRemoteText('store_url_ios');
+/** Ссылка на Google Play для кнопки «Обновить». */
+export const getStoreUrlAndroid = () => getRemoteText('store_url_android');
+
+/**
+ * Сравнение semver: true, если `current` строго НИЖЕ `minimum`. Сравнивает по
+ * числовым сегментам (мажор.минор.патч…), недостающие сегменты = 0. Любой пустой/
+ * нечисловой ввод → false (НЕ блокируем при мусоре — force-update это страховка,
+ * а не способ случайно запереть всех). Чистая функция, экспортируется для тестов.
+ */
+export function isVersionBelow(current: string, minimum: string): boolean {
+  const parse = (v: string): number[] | null => {
+    const s = String(v || '').trim();
+    if (!s) return null;
+    const segments = s.split('.');
+    const parts: number[] = [];
+    for (const seg of segments) {
+      const digits = seg.replace(/[^0-9].*$/, ''); // обрезаем хвост от первого не-цифрового символа
+      if (digits === '') return null;               // сегмент без ведущей цифры ("abc") = невалидно
+      const n = Math.trunc(Number(digits));
+      if (!Number.isFinite(n)) return null;
+      parts.push(n);
+    }
+    return parts.length ? parts : null;
+  };
+  const a = parse(current);
+  const b = parse(minimum);
+  if (!a || !b) return false;
+  const len = Math.max(a.length, b.length);
+  for (let i = 0; i < len; i += 1) {
+    const ai = a[i] ?? 0;
+    const bi = b[i] ?? 0;
+    if (ai < bi) return true;
+    if (ai > bi) return false;
+  }
+  return false; // равны
+}
+
+/**
+ * Решение force-update: показывать ли блок «обнови приложение». Чистая функция —
+ * принимает флаг/версии явно, чтобы тестировать без Firestore. Блокируем только
+ * когда флаг включён, min задана и текущая версия строго ниже min.
+ */
+export function shouldForceUpdate(params: {
+  enabled: boolean;
+  currentVersion: string;
+  minVersion: string;
+}): boolean {
+  const { enabled, currentVersion, minVersion } = params;
+  if (!enabled) return false;
+  if (!String(minVersion || '').trim()) return false;
+  return isVersionBelow(currentVersion, minVersion);
+}
+
 /**
  * Первый экран онбординга «только план»: дефолт false = экран с двумя кнопками
  * (план / просто посмотреть). true → одна кнопка «Составить мой план» в поток

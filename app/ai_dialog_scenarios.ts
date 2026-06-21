@@ -1714,12 +1714,18 @@ function capitalize(s: string): string {
  */
 export function scenarioObjectives(scenario: DialogScenario): DialogObjective[] {
   if (scenario.objectives && scenario.objectives.length > 0) return scenario.objectives;
-  const enParts = splitGoalParts(scenario.goalEn);
+  let enParts = splitGoalParts(scenario.goalEn);
   const ruParts = splitGoalParts(scenario.goalRu);
+  // Защита от пустого/односложного goalEn (аудит H9): без этого objectives=[] и
+  // игра молча выключается. Дефолтная одиночная под-цель из goalEn целиком.
+  if (enParts.length === 0) {
+    const wholeEn = scenario.goalEn.trim();
+    enParts = wholeEn.length > 0 ? [wholeEn] : ['complete the conversation'];
+  }
   const ruAligned = ruParts.length === enParts.length;
   return enParts.map((en, i) => ({
     id: objectiveSlug(en, i),
-    labelRu: capitalize(ruAligned ? ruParts[i] : en),
+    labelRu: capitalize(ruAligned ? ruParts[i] : scenario.goalRu.trim() || en),
     en,
   }));
 }
@@ -1733,9 +1739,11 @@ export function scenarioTemperament(scenario: DialogScenario): DialogTemperament
   if (scenario.temperament) return scenario.temperament;
   const hay = `${scenario.role} ${scenario.persona ?? ''} ${scenario.setting}`.toLowerCase();
 
-  const impatient = /(officer|official|queue|line|airport|security|police|border|inspector|rush|busy|strict|guard|customs)/.test(hay);
-  const cold = /(strict|stern|cold|annoyed|impatient|official|officer|guard|inspector)/.test(hay);
-  const warm = /(warm|cheerful|friendly|kind|gentle|helpful|fatherly|reassuring|upbeat|happy)/.test(hay);
+  // Границы слов \b (аудит H8): без них 'line' ловил 'airline', ложно делая
+  // дружелюбного агента нетерпеливым.
+  const impatient = /\b(officer|official|queue|line|airport|security|police|border|inspector|rush|busy|strict|guard|customs)\b/.test(hay);
+  const cold = /\b(strict|stern|cold|annoyed|impatient|official|officer|guard|inspector)\b/.test(hay);
+  const warm = /\b(warm|cheerful|friendly|kind|gentle|helpful|fatherly|reassuring|upbeat|happy)\b/.test(hay);
 
   const patience: DialogTemperament['patience'] = impatient ? 'low' : warm ? 'high' : 'medium';
   const warmth: DialogTemperament['warmth'] = cold ? 'cold' : warm ? 'warm' : 'neutral';

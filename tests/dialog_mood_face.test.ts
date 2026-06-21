@@ -45,6 +45,10 @@ describe('dialog_mood_face — смайл настроения собеседн�
       expect(clampMood(undefined)).toBe(DEFAULT_MOOD);
     });
 
+    it('пустая строка → DEFAULT_MOOD (аудит M7: явная ветка кода)', () => {
+      expect(clampMood('')).toBe(DEFAULT_MOOD);
+    });
+
     it('числовая строка парсится', () => {
       expect(clampMood('80')).toBe(80);
     });

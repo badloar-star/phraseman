@@ -26,6 +26,7 @@ import {
   getScenarioById,
   scenarioObjectives,
   scenarioTemperament,
+  temperamentStartMood,
   type DialogObjective,
   type DialogScenario,
 } from './ai_dialog_scenarios';
@@ -34,6 +35,7 @@ import {
   parseTurnState,
   isTerminalOutcome,
   outcomeTitle,
+  objectiveLabel,
   type DialogOutcome,
 } from './dialog_outcome';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
@@ -60,6 +62,10 @@ import {
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { safeRouterBack } from './navigation_back';
+import { registerXP } from './xp_manager';
+import { MAX_DIALOG_XP } from './config';
+import { outcomeXpMultiplier } from './dialog_outcome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -209,7 +215,11 @@ export default function AiDialogSession() {
 
   // mood — настроение собеседника 0..100 (смайл в шапке). objectivesMet — id
   // выполненных под-целей (галочки). outcome — исход (модал при терминальном).
-  const [mood, setMood] = useState(DEFAULT_MOOD);
+  // Стартуем от темперамента (аудит L2), чтобы тёплая бариста с первого кадра
+  // показывала 😊, а не нейтральное 😐 до первого ответа сервера.
+  const [mood, setMood] = useState(() =>
+    gameEnabled ? temperamentStartMood(temperament) : DEFAULT_MOOD,
+  );
   const [objectivesMet, setObjectivesMet] = useState<Set<string>>(() => new Set());
   const [outcome, setOutcome] = useState<DialogOutcome>('ongoing');
   const [characterReaction, setCharacterReaction] = useState('');
@@ -293,6 +303,31 @@ export default function AiDialogSession() {
     return messages.map((m) => ({ role: m.role, content: m.text }));
   }, [messages]);
 
+  // Начисление XP по исходу (аудит H3: outcomeXpMultiplier раньше был мёртвым кодом).
+  // База MAX_DIALOG_XP × множитель исхода (успех 1 / заглох 0.6 / провал 0.4).
+  // Дедуп по сценарию: «Ещё раз» того же диалога XP повторно НЕ начисляет (анти-фарм).
+  const awardDialogXp = useCallback(
+    async (terminalOutcome: DialogOutcome) => {
+      const mult = outcomeXpMultiplier(terminalOutcome);
+      if (mult <= 0) return;
+      const amount = Math.round(MAX_DIALOG_XP * mult);
+      if (amount <= 0) return;
+      const dedupeKey = `dialog_xp_awarded_${scenario.id}`;
+      try {
+        if (await AsyncStorage.getItem(dedupeKey)) return; // уже начисляли за этот сценарий
+        const userName = (await AsyncStorage.getItem('user_name')) || '';
+        await registerXP(amount, 'dialog_complete', userName, lang, undefined, {
+          eventId: `dialog_complete:${scenario.id}:${terminalOutcome}`,
+          payload: { scenarioId: scenario.id, outcome: terminalOutcome },
+        });
+        await AsyncStorage.setItem(dedupeKey, '1');
+      } catch {
+        // best-effort: сбой начисления XP не должен ломать показ модала-вердикта
+      }
+    },
+    [scenario.id, lang],
+  );
+
   // Применяет turnState из ответа сервера: настроение, выполненные цели, исход.
   // При терминальном исходе сохраняем реакцию персонажа + советы и завершаем
   // диалог (модал-вердикт). Битый/пустой turnState → нейтральный, диалог идёт.
@@ -314,10 +349,17 @@ export default function AiDialogSession() {
         setCoachTips(ts.coachTips);
         setEnded(true);
         void trackEvent('ai_dialog_outcome', { scenarioId: scenario.id, outcome: ts.outcome });
-        void markDialogCompleted(scenario.id);
+        // «Пройдено» ставим ТОЛЬКО при успехе (аудит H2): провал по терпению или
+        // заглохший диалог не помечаем — иначе юзер не вернётся переиграть, а в
+        // списке провал выглядел бы как «Пройдено».
+        if (ts.outcome === 'success') {
+          void markDialogCompleted(scenario.id);
+        }
+        // XP начисляем при любом исходе (больше за успех, меньше за провал/заглох).
+        void awardDialogXp(ts.outcome);
       }
     },
-    [gameEnabled, scenario.id],
+    [gameEnabled, scenario.id, awardDialogXp],
   );
 
   // Игровые поля для запроса (под-цели в формате сервера + темперамент).
@@ -1127,7 +1169,7 @@ export default function AiDialogSession() {
                 }}
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                  <Text style={{ fontSize: f.h2 }}>
+                  <Text style={{ fontSize: f.h2 }} maxFontSizeMultiplier={1.2}>
                     {outcome === 'success' ? '🎉' : outcome === 'lost_patience' ? '😠' : '💤'}
                   </Text>
                   <Text
@@ -1136,6 +1178,24 @@ export default function AiDialogSession() {
                     maxFontSizeMultiplier={1.2}
                   >
                     {outcomeTitle(outcome, lang)}
+                  </Text>
+                  {/* Финальное настроение собеседника (аудит M4: дизайн обещал
+                      финальный смайл в модале). */}
+                  <Text
+                    style={{ fontSize: f.bodyLg }}
+                    maxFontSizeMultiplier={1.2}
+                    accessibilityLabel={triLang(lang, {
+                      ru: 'Финальное настроение собеседника',
+                      uk: 'Фінальний настрій співрозмовника',
+                      es: 'Ánimo final del interlocutor',
+                      'pt-BR': 'Humor final do interlocutor',
+                      vi: 'Tâm trạng cuối của người kia',
+                      id: 'Suasana hati akhir lawan bicara',
+                      tr: 'Karşıdakinin son ruh hâli',
+                      pl: 'Końcowy nastrój rozmówcy',
+                    })}
+                  >
+                    {moodToFace(mood)}
                   </Text>
                 </View>
 
@@ -1172,6 +1232,7 @@ export default function AiDialogSession() {
                         lineHeight: Math.round(f.sub * 1.4),
                       }}
                       maxFontSizeMultiplier={1.2}
+                      numberOfLines={6}
                     >
                       {personaName ? `${personaName}: ` : ''}
                       {characterReaction}
@@ -1203,7 +1264,7 @@ export default function AiDialogSession() {
                             }}
                             numberOfLines={2}
                           >
-                            {o.labelRu}
+                            {objectiveLabel(o, lang)}
                           </Text>
                         </View>
                       );
@@ -1370,10 +1431,10 @@ export default function AiDialogSession() {
                       paddingVertical: 14,
                       alignItems: 'center',
                       marginTop: 14,
-                      backgroundColor: '#4A9EFF',
+                      backgroundColor: t.accent,
                     }}
                   >
-                    <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>
+                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                       {triLang(lang, {
                         ru: 'Продолжить без лимита',
                         uk: 'Продовжити без ліміту',

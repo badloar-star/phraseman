@@ -74,6 +74,8 @@ import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
+import MysteryMondayHost from '../components/MysteryMondayHost';
+import ComebackBoonHost from '../components/ComebackBoonHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
@@ -2485,6 +2487,8 @@ export default function RootLayout() {
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
+                    <MysteryMondayHost />
+                    <ComebackBoonHost />
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />

@@ -53,4 +53,25 @@ describe('scenarioTemperament — характер из persona или явны�
     expect(high).toBeLessThanOrEqual(100);
     expect(low).toBeGreaterThanOrEqual(0);
   });
+
+  it('H8: regex с границами слов НЕ ловит подстроки (airline ≠ нетерпеливый)', () => {
+    const base = getScenarioById('coffee')!;
+    const airline: DialogScenario = {
+      ...base,
+      temperament: undefined,
+      role: 'an airline check-in agent',
+      persona: 'You are a calm, helpful airline check-in agent.',
+      setting: 'an airline check-in desk',
+    };
+    // 'line' внутри 'airline' больше НЕ делает агента нетерпеливым (patience low).
+    expect(scenarioTemperament(airline).patience).not.toBe('low');
+  });
+
+  it('H9: пустой/односложный goalEn не выключает игру молча', () => {
+    const base = getScenarioById('coffee')!;
+    const empty: DialogScenario = { ...base, objectives: undefined, goalEn: '', goalRu: '' };
+    const single: DialogScenario = { ...base, objectives: undefined, goalEn: 'Ask', goalRu: 'Спроси' };
+    expect(scenarioObjectives(empty).length).toBeGreaterThan(0);
+    expect(scenarioObjectives(single).length).toBeGreaterThan(0);
+  });
 });

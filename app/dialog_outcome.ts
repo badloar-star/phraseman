@@ -92,6 +92,20 @@ export function isTerminalOutcome(outcome: DialogOutcome): boolean {
 }
 
 /**
+ * Метка под-цели для чек-листа на языке интерфейса (аудит H5: раньше всегда
+ * показывался labelRu). ru→labelRu; es→labelEs; остальные языки→английская
+ * формулировка цели (en) — осмысленно, т.к. диалог про английский; фолбэк labelRu.
+ */
+export function objectiveLabel(
+  objective: { labelRu: string; labelEs?: string; en?: string },
+  lang: Lang,
+): string {
+  if (lang === 'ru' || lang === 'uk') return objective.labelRu;
+  if (lang === 'es') return objective.labelEs || objective.en || objective.labelRu;
+  return objective.en || objective.labelRu;
+}
+
+/**
  * Множитель XP по исходу. Юзер выбрал «больше XP за успех»; провал/заглох —
  * меньше, но НЕ ноль (попытка ценна). Применяется к базовому XP диалога.
  */

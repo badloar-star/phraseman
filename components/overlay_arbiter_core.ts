@@ -15,6 +15,10 @@ export type OverlayKey =
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
+  | 'mysteryMondayChest'
+  | 'comebackDay'
+  | 'perfectWeekReward'
+  | 'boonEarlyPlashka'
   | 'compassBriefing'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
@@ -46,7 +50,11 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
+  'mysteryMondayChest',
+  'comebackDay',
+  'perfectWeekReward',
   'compassBriefing',
+  'boonEarlyPlashka',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
   'shardsEarned',
@@ -76,6 +84,10 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
+  mysteryMondayChest: false,
+  comebackDay: false,
+  perfectWeekReward: false,
+  boonEarlyPlashka: false,
   compassBriefing: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,

@@ -4,6 +4,7 @@ import {
   isTerminalOutcome,
   outcomeXpMultiplier,
   outcomeTitle,
+  objectiveLabel,
   type DialogOutcome,
 } from '../app/dialog_outcome';
 
@@ -102,6 +103,25 @@ describe('dialog_outcome — контракт исхода диалога', () =
     });
     it('русский заголовок успеха корректен', () => {
       expect(outcomeTitle('success', 'ru')).toBe('Получилось!');
+    });
+  });
+
+  describe('objectiveLabel — метка цели по языку (H5)', () => {
+    const obj = { labelRu: 'Заказать напиток', labelEs: 'Pedir bebida', en: 'order a drink' };
+    it('ru/uk → labelRu', () => {
+      expect(objectiveLabel(obj, 'ru')).toBe('Заказать напиток');
+      expect(objectiveLabel(obj, 'uk')).toBe('Заказать напиток');
+    });
+    it('es → labelEs', () => {
+      expect(objectiveLabel(obj, 'es')).toBe('Pedir bebida');
+    });
+    it('прочие языки → английская формулировка (не русская заглушка)', () => {
+      expect(objectiveLabel(obj, 'tr')).toBe('order a drink');
+      expect(objectiveLabel(obj, 'vi')).toBe('order a drink');
+      expect(objectiveLabel(obj, 'pl')).toBe('order a drink');
+    });
+    it('фолбэк на labelRu, если нет en', () => {
+      expect(objectiveLabel({ labelRu: 'Цель' }, 'tr')).toBe('Цель');
     });
   });
 });

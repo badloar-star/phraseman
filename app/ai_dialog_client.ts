@@ -53,7 +53,12 @@ export interface PremiumDialogResponse {
   assistantMessage: string;
   remainingQuota: number;
   model: string;
-  /** Игровое состояние хода (null/undefined вне игрового режима). Разбирается parseTurnState. */
+  /**
+   * Игровое состояние хода (null/undefined вне игрового режима). Сервер шлёт
+   * частично-валидный объект; клиент ОБЯЗАН прогнать его через parseTurnState
+   * (dialog_outcome.ts), который безопасно разбирает недостающие/битые поля.
+   * Тип намеренно `unknown` — контракт защищён парсером, а не структурой.
+   */
   turnState?: unknown;
 }
 

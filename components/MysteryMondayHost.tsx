@@ -1,0 +1,166 @@
+/**
+ * MysteryMondayHost — модал «Загадочный понедельник» (Weekly Boon mystery_monday).
+ *
+ * Первый вход в день с активным бонусом mystery_monday → открыть «сундук недели» с
+ * переменной наградой (осколки). Раз в неделю (claim-ключ по weekId). Монтируется из
+ * _layout.tsx внутри OverlayArbiterProvider; видимостью управляет арбитр через
+ * useOverlayVisible('mysteryMondayChest', …) — правило «авто-модалка главной идёт
+ * через арбитр, не через свой visible» (иначе риск фриза, см. OverlayArbiter.tsx).
+ */
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
+import { useOverlayVisible } from './OverlayArbiter';
+import { triLang, type Lang } from '../constants/i18n';
+import { getTodaysBoons } from '../app/boons/boon_engine';
+import {
+  pickMysteryReward,
+  currentWeekId,
+  isClaimed,
+  markClaimed,
+  grantBoonReward,
+  type BoonReward,
+} from '../app/boons/boon_rewards';
+
+const CLAIM_KEY = 'boon_mystery_monday_claimed_v1';
+
+function makeL(lang: Lang) {
+  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+}
+
+// Псевдослучайный roll из weekId — стабилен в пределах недели, без Math.random в рендере.
+function rollFromWeek(weekId: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < weekId.length; i++) {
+    h ^= weekId.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return ((h >>> 0) % 1000) / 1000;
+}
+
+export default function MysteryMondayHost() {
+  const { theme: t } = useTheme();
+  const { lang } = useLang();
+  const L = makeL(lang as Lang);
+
+  const [wantShow, setWantShow] = useState(false);
+  const [reward, setReward] = useState<BoonReward | null>(null);
+  const [opened, setOpened] = useState(false);
+  const visible = useOverlayVisible('mysteryMondayChest', wantShow);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      if (getTodaysBoons().primary !== 'mystery_monday') return;
+      const week = currentWeekId();
+      if (await isClaimed(CLAIM_KEY, week)) return;
+      if (alive) {
+        setReward(pickMysteryReward(rollFromWeek(week)));
+        setWantShow(true);
+      }
+    })().catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const scale = useRef(new Animated.Value(0.9)).current;
+  const opacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (!visible) return;
+    Animated.parallel([
+      Animated.spring(scale, { toValue: 1, useNativeDriver: true, friction: 7, tension: 80 }),
+      Animated.timing(opacity, { toValue: 1, duration: 180, useNativeDriver: true }),
+    ]).start();
+  }, [visible, scale, opacity]);
+
+  const open = () => {
+    if (opened || !reward) return;
+    setOpened(true);
+    const week = currentWeekId();
+    void markClaimed(CLAIM_KEY, week);
+    void grantBoonReward(reward, 'boon_mystery_monday');
+  };
+
+  const close = () => {
+    if (!opened) open(); // если закрыл не открыв — всё равно отдаём награду
+    setWantShow(false);
+  };
+
+  if (!visible || !reward) return null;
+
+  const accent = (t as { accent?: string }).accent ?? '#7C5CFF';
+  const bgCard = (t as { bgCard?: string; bgPrimary?: string }).bgCard
+    ?? (t as { bgPrimary?: string }).bgPrimary ?? '#15181a';
+  const textPrimary = (t as { textPrimary?: string }).textPrimary ?? '#FFFFFF';
+  const textSecond = (t as { textSecond?: string }).textSecond ?? 'rgba(255,255,255,0.7)';
+
+  const title = L(
+    'Загадочный понедельник', 'Загадковий понеділок', 'Lunes misterioso', 'Segunda misteriosa',
+    'Thứ Hai bí ẩn', 'Senin misteri', 'Gizemli Pazartesi', 'Tajemniczy poniedziałek',
+  );
+  const sub = opened
+    ? L(
+        `Внутри ${reward.shards} осколков — забирай!`,
+        `Усередині ${reward.shards} осколків — забирай!`,
+        `¡Dentro hay ${reward.shards} fragmentos!`,
+        `Tem ${reward.shards} fragmentos dentro!`,
+        `Bên trong có ${reward.shards} mảnh — nhận đi!`,
+        `Ada ${reward.shards} serpihan di dalam!`,
+        `İçinde ${reward.shards} parça var — al!`,
+        `W środku ${reward.shards} odłamków — bierz!`,
+      )
+    : L(
+        'Открой сундук недели — внутри что-то приятное.',
+        'Відкрий скриню тижня — всередині щось приємне.',
+        'Abre el cofre de la semana: hay algo bueno.',
+        'Abra o baú da semana: tem algo bom.',
+        'Mở rương tuần — bên trong có điều bất ngờ.',
+        'Buka peti minggu ini — ada kejutan.',
+        'Haftanın sandığını aç — güzel bir şey var.',
+        'Otwórz skrzynię tygodnia — coś miłego w środku.',
+      );
+  const cta = opened
+    ? L('Забрать', 'Забрати', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz')
+    : L('Открыть сундук', 'Відкрити скриню', 'Abrir cofre', 'Abrir baú', 'Mở rương', 'Buka peti', 'Sandığı aç', 'Otwórz skrzynię');
+
+  return (
+    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
+      <Pressable style={styles.backdrop} onPress={close}>
+        <Pressable onPress={(e) => e.stopPropagation()}>
+          <Animated.View
+            testID="mystery-monday-card"
+            style={[styles.card, { backgroundColor: bgCard, transform: [{ scale }], opacity }]}
+          >
+            <View style={[styles.badge, { backgroundColor: accent }]}>
+              <Ionicons name={opened ? 'gift' : 'cube'} size={32} color="#fff" />
+            </View>
+            <Text style={[styles.title, { color: textPrimary }]}>{title}</Text>
+            <Text style={[styles.body, { color: textSecond }]}>{sub}</Text>
+            <Pressable
+              testID="mystery-monday-cta"
+              onPress={opened ? close : open}
+              style={[styles.primaryBtn, { backgroundColor: accent }]}
+              accessibilityRole="button"
+            >
+              <Text style={styles.primaryBtnText}>{cta}</Text>
+            </Pressable>
+          </Animated.View>
+        </Pressable>
+      </Pressable>
+    </Modal>
+  );
+}
+
+const styles = StyleSheet.create({
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', justifyContent: 'center', padding: 24 },
+  card: { width: '100%', maxWidth: 360, borderRadius: 22, paddingHorizontal: 22, paddingVertical: 26, alignItems: 'center' },
+  badge: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  title: { fontSize: 21, fontWeight: '900', textAlign: 'center', marginBottom: 10 },
+  body: { fontSize: 15, lineHeight: 22, textAlign: 'center', marginBottom: 22 },
+  primaryBtn: { alignSelf: 'stretch', height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  primaryBtnText: { color: '#fff', fontSize: 16, fontWeight: '900' },
+});

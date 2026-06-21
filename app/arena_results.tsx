@@ -14,7 +14,6 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
-import { FloatingShards, RaysHalo } from '../components/modal_fx/ModalFx';
 import { addBattlePassPoints } from './arena_battle_pass_store';
 import { bpForMatch } from './arena_battle_pass';
 import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRematchStatus } from './services/arena_db';
@@ -1431,21 +1430,6 @@ export default function DuelResultsScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
-      {/* Победа: лучи света + парящие осколки (без бумажного конфетти), один раз при входе. */}
-      {isWinner && !isDraw && !isForfeited ? (
-        <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <View style={{ position: 'absolute', top: 90, left: 0, right: 0, alignItems: 'center' }}>
-            <RaysHalo color="rgba(255,213,74,0.42)" size={280} rays={4} />
-          </View>
-          <FloatingShards
-            colors={['#FFE7A6', '#5BE2CD', '#7DD3FC', '#C792FF']}
-            count={12}
-            reach={260}
-            rise={220}
-            bottomOffset={160}
-          />
-        </View>
-      ) : null}
       <BouncyWrap style={bouncyStyle}>
       <Animated.ScrollView
         decelerationRate="normal"

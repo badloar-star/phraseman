@@ -17,7 +17,6 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ArenaMatchOutcome } from '../app/arena_match_drama';
-import { FloatingShards, RaysHalo } from './modal_fx/ModalFx';
 
 interface ArenaFinalScoreOverlayProps {
   visible: boolean;
@@ -48,9 +47,6 @@ function outcomeTitle(outcome: ArenaMatchOutcome, lang: Lang): string {
   });
 }
 
-// Парящие осколки света при победе (вместо бумажного конфетти).
-const WIN_SHARDS = ['#FFE9A6', '#FFD54A', '#FFB23E', '#FFF2C9'];
-const FESTIVE_SHARDS = ['#FFE7A6', '#5BE2CD', '#7DD3FC', '#C792FF'];
 
 function ArenaFinalScoreOverlay({
   visible,
@@ -95,19 +91,6 @@ function ArenaFinalScoreOverlay({
   return (
     <View pointerEvents="none" style={styles.fill}>
       <View style={styles.scrim} />
-      {isWin ? (
-        <>
-          {/* Лучи света позади счёта + парящие осколки вверх — без бумажного конфетти. */}
-          <RaysHalo color={premium ? 'rgba(255,213,74,0.5)' : 'rgba(91,226,205,0.4)'} size={300} rays={4} />
-          <FloatingShards
-            colors={premium ? WIN_SHARDS : FESTIVE_SHARDS}
-            count={premium ? 14 : 10}
-            reach={220}
-            rise={180}
-            bottomOffset={120}
-          />
-        </>
-      ) : null}
       <Reanimated.View style={[styles.card, cardStyle]}>
         <Text style={[styles.title, { color: accent }]}>{outcomeTitle(outcome, lang)}</Text>
         <Reanimated.View style={[styles.scoreRow, scoreStyle]}>

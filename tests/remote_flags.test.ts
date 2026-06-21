@@ -24,6 +24,10 @@ import {
   shouldShowPromoBanner,
   isPromoBannerEnabled,
   getPromoBannerText,
+  getFlagRolloutPct,
+  isFlagEnabledForUser,
+  isInRolloutBucket,
+  matchesPromoSegment,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -223,6 +227,77 @@ describe('remote_flags', () => {
     });
   });
 
+  describe('rollout % (поэтапный выкат bool-флагов)', () => {
+    describe('isInRolloutBucket (чистый бакетинг)', () => {
+      it('100% → все попадают, 0% → никто', () => {
+        expect(isInRolloutBucket('u1', 'force_update_enabled', 100)).toBe(true);
+        expect(isInRolloutBucket('u1', 'force_update_enabled', 0)).toBe(false);
+      });
+      it('детерминирован для одного юзера', () => {
+        const a = isInRolloutBucket('user-42', 'k', 50);
+        const b = isInRolloutBucket('user-42', 'k', 50);
+        expect(a).toBe(b);
+      });
+      it('примерно соблюдает долю на большой выборке (~30%)', () => {
+        let hit = 0;
+        for (let i = 0; i < 3000; i += 1) if (isInRolloutBucket(`u${i}`, 'flagX', 30)) hit += 1;
+        const frac = hit / 3000;
+        expect(frac).toBeGreaterThan(0.24);
+        expect(frac).toBeLessThan(0.36);
+      });
+      it('расширение выката монотонно: попавший при 30% остаётся при 60%', () => {
+        for (let i = 0; i < 500; i += 1) {
+          const u = `mono${i}`;
+          if (isInRolloutBucket(u, 's', 30)) expect(isInRolloutBucket(u, 's', 60)).toBe(true);
+        }
+      });
+    });
+
+    describe('getFlagRolloutPct', () => {
+      it('по умолчанию 100 (ключа нет)', () => {
+        expect(getFlagRolloutPct('force_update_enabled')).toBe(100);
+      });
+      it('читает <flag>_rollout_pct из numbers, клампит 0..100', () => {
+        applyRemoteConfigSnapshot({ numbers: { force_update_enabled_rollout_pct: 25 } });
+        expect(getFlagRolloutPct('force_update_enabled')).toBe(25);
+        applyRemoteConfigSnapshot({ numbers: { force_update_enabled_rollout_pct: 250 } });
+        expect(getFlagRolloutPct('force_update_enabled')).toBe(100);
+      });
+    });
+
+    describe('isFlagEnabledForUser', () => {
+      it('флаг выключен → false для всех, даже при rollout 100', () => {
+        applyRemoteConfigSnapshot({ bools: { force_update_enabled: false }, numbers: { force_update_enabled_rollout_pct: 100 } });
+        expect(isFlagEnabledForUser('force_update_enabled', 'u1')).toBe(false);
+      });
+      it('флаг включён + rollout не задан → true для всех (100%)', () => {
+        applyRemoteConfigSnapshot({ bools: { force_update_enabled: true } });
+        expect(isFlagEnabledForUser('force_update_enabled', 'u1')).toBe(true);
+        expect(isFlagEnabledForUser('force_update_enabled', null)).toBe(true);
+      });
+      it('флаг включён + rollout 0 → false для всех', () => {
+        applyRemoteConfigSnapshot({ bools: { force_update_enabled: true }, numbers: { force_update_enabled_rollout_pct: 0 } });
+        expect(isFlagEnabledForUser('force_update_enabled', 'u1')).toBe(false);
+      });
+      it('частичный выкат без userId → false (аноним не в бакете)', () => {
+        applyRemoteConfigSnapshot({ bools: { force_update_enabled: true }, numbers: { force_update_enabled_rollout_pct: 50 } });
+        expect(isFlagEnabledForUser('force_update_enabled', null)).toBe(false);
+      });
+      it('частичный выкат с userId → совпадает с бакетом', () => {
+        applyRemoteConfigSnapshot({ bools: { force_update_enabled: true }, numbers: { force_update_enabled_rollout_pct: 50 } });
+        expect(isFlagEnabledForUser('force_update_enabled', 'u7')).toBe(isInRolloutBucket('u7', 'force_update_enabled', 50));
+      });
+    });
+
+    it('смена rollout-процента меняет сигнатуру конфига (сброс кэша A/B)', () => {
+      const { getRemoteConfigSignature } = require('../app/remote_flags');
+      applyRemoteConfigSnapshot({ numbers: { force_update_enabled_rollout_pct: 10 } });
+      const a = getRemoteConfigSignature();
+      applyRemoteConfigSnapshot({ numbers: { force_update_enabled_rollout_pct: 80 } });
+      expect(getRemoteConfigSignature()).not.toBe(a);
+    });
+  });
+
   describe('force-update', () => {
     it('флаг по умолчанию выключен, min_app_version пуст', () => {
       expect(isForceUpdateEnabled()).toBe(false);
@@ -304,6 +379,43 @@ describe('remote_flags', () => {
       });
       it('включён + срок истёк → не показывать', () => {
         expect(shouldShowPromoBanner({ enabled: true, untilRaw: '1000', nowMs: 5000 })).toBe(false);
+      });
+    });
+
+    describe('matchesPromoSegment (таргетинг)', () => {
+      it('audience пусто/all → всем', () => {
+        expect(matchesPromoSegment({ audience: '', isPremium: true, platformFilter: '', platform: 'ios' })).toBe(true);
+        expect(matchesPromoSegment({ audience: 'all', isPremium: false, platformFilter: '', platform: 'ios' })).toBe(true);
+      });
+      it('free → только не-премиум', () => {
+        expect(matchesPromoSegment({ audience: 'free', isPremium: false, platformFilter: '', platform: 'ios' })).toBe(true);
+        expect(matchesPromoSegment({ audience: 'free', isPremium: true, platformFilter: '', platform: 'ios' })).toBe(false);
+      });
+      it('premium → только премиум', () => {
+        expect(matchesPromoSegment({ audience: 'premium', isPremium: true, platformFilter: '', platform: 'ios' })).toBe(true);
+        expect(matchesPromoSegment({ audience: 'premium', isPremium: false, platformFilter: '', platform: 'ios' })).toBe(false);
+      });
+      it('фильтр платформы', () => {
+        expect(matchesPromoSegment({ audience: '', isPremium: false, platformFilter: 'ios', platform: 'ios' })).toBe(true);
+        expect(matchesPromoSegment({ audience: '', isPremium: false, platformFilter: 'ios', platform: 'android' })).toBe(false);
+      });
+      it('неизвестная аудитория → показать (мягко, опечатка не прячет акцию)', () => {
+        expect(matchesPromoSegment({ audience: 'vipx', isPremium: false, platformFilter: '', platform: 'ios' })).toBe(true);
+      });
+    });
+
+    describe('shouldShowPromoBanner с таргетингом', () => {
+      it('audience=free + премиум → не показывать (даже при включённом и в срок)', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '', nowMs: 1, audience: 'free', isPremium: true })).toBe(false);
+      });
+      it('audience=free + не-премиум → показывать', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '', nowMs: 1, audience: 'free', isPremium: false })).toBe(true);
+      });
+      it('platformFilter=android на ios → не показывать', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '', nowMs: 1, platformFilter: 'android', platform: 'ios' })).toBe(false);
+      });
+      it('без сегмент-параметров → как раньше (всем), обратная совместимость', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '', nowMs: 1 })).toBe(true);
       });
     });
 

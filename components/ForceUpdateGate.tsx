@@ -18,8 +18,9 @@ import Constants from 'expo-constants';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
+import { getStableId } from '../app/stable_id';
 import {
-  isForceUpdateEnabled,
+  isFlagEnabledForUser,
   getMinAppVersion,
   getStoreUrlIos,
   getStoreUrlAndroid,
@@ -38,13 +39,15 @@ function storeUrlForPlatform(): string {
   return String((Platform.OS === 'ios' ? getStoreUrlIos() : getStoreUrlAndroid()) || '').trim();
 }
 
-function readShouldBlock(): boolean {
+// userId учитывает поэтапный выкат (force_update_enabled_rollout_pct): можно
+// выкатить блок сначала на N% устаревших, а не сразу на 100%.
+function readShouldBlock(userId: string | null): boolean {
   // Защита от наглухо-блока: если для текущей платформы НЕ задана ссылка на стор,
   // блокирующий экран был бы без кнопки выхода (нечем обновиться) → не блокируем.
   // Это страхует от ошибки админа (включил force-update, но забыл ссылку).
   if (!storeUrlForPlatform()) return false;
   return shouldForceUpdate({
-    enabled: isForceUpdateEnabled(),
+    enabled: isFlagEnabledForUser('force_update_enabled', userId),
     currentVersion: currentAppVersion(),
     minVersion: getMinAppVersion(),
   });
@@ -52,14 +55,23 @@ function readShouldBlock(): boolean {
 
 export default function ForceUpdateGate() {
   const { lang } = useLang();
-  const [blocked, setBlocked] = useState<boolean>(() => readShouldBlock());
+  const [userId, setUserId] = useState<string | null>(null);
+  const [blocked, setBlocked] = useState<boolean>(false);
 
-  // Перечитываем при каждом снапшоте remote_config (админ включил/выключил живьём).
+  // Стабильный userId для бакетинга rollout (один раз).
   useEffect(() => {
-    setBlocked(readShouldBlock());
-    const sub = onAppEvent('remote_config_changed', () => setBlocked(readShouldBlock()));
-    return () => sub.remove();
+    let dead = false;
+    void getStableId().then((id) => { if (!dead) setUserId(id || null); }).catch(() => {});
+    return () => { dead = true; };
   }, []);
+
+  // Перечитываем при каждом снапшоте remote_config (админ включил/выключил живьём)
+  // и при появлении userId (для частичного выката).
+  useEffect(() => {
+    setBlocked(readShouldBlock(userId));
+    const sub = onAppEvent('remote_config_changed', () => setBlocked(readShouldBlock(userId)));
+    return () => sub.remove();
+  }, [userId]);
 
   if (!blocked) return null;
 

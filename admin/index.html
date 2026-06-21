@@ -8840,6 +8840,9 @@
         <input type="text" id="cp-force-url-ios" placeholder="https://apps.apple.com/app/id..." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Ссылка Google Play (Android)
         <input type="text" id="cp-force-url-android" placeholder="https://play.google.com/store/apps/details?id=..." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Поэтапный выкат, % (100 = всем сразу)
+        <input type="number" id="cp-force-rollout" min="0" max="100" placeholder="100" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+        <span style="font-size:11px;color:#6b7280">Доля устаревших, кому показать блок (стабильна по юзеру). Начни с 10–20% и наблюдай.</span></label>
     </div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
       <button type="button" onclick="saveForceUpdateConfig()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить версию и ссылки</button>
@@ -8899,6 +8902,18 @@
         <input type="text" id="cp-promo-banner-url" placeholder="https://… (пусто = баннер некликабельный)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Действует до (пусто = ∞)
         <input type="date" id="cp-promo-banner-until" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Кому показывать (аудитория)
+        <select id="cp-promo-banner-audience" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px">
+          <option value="">Всем</option>
+          <option value="free">Только бесплатным (не платящим)</option>
+          <option value="premium">Только премиум</option>
+        </select></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Платформа
+        <select id="cp-promo-banner-platform" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px">
+          <option value="">Обе</option>
+          <option value="ios">Только iOS</option>
+          <option value="android">Только Android</option>
+        </select></label>
     </div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
       <button type="button" onclick="savePromoBanner()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить баннер</button>
@@ -21787,10 +21802,10 @@
     { key: 'referral_max_claims_day', label: 'Рефералы: кап наград/день (анти-фарм)', def: 3, min: 0, max: 100000 },
   ];
   const RC_BOOL_FIELDS = [
-    { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
+    { key: 'referral_enabled', label: 'Реферальная программа включена', def: true },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
-    { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: false },
+    { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год премиума за идею)', def: false },
@@ -21942,8 +21957,8 @@
   const CP_FEATURE_TOGGLES = [
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков и арены.' },
-    { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: false, hint: 'Кнопка объяснения фразы (платный ИИ).' },
-    { key: 'referral_enabled',         label: 'Реферальная программа',          def: false, hint: 'Нужна задеплоенная invite-страница.' },
+    { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
+    { key: 'referral_enabled',         label: 'Реферальная программа',          def: true,  hint: 'Дефолт ON (kill-switch). Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: true, hint: 'Продукт phraseman_premium_lifetime_v1 заведён в RC (2026-06-21). Покажется, когда RevenueCat вернёт пакет.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»).' },
@@ -22076,6 +22091,39 @@
     return changes;
   };
 
+  // Обобщённый писатель ЧИСЛОВЫХ ключей в remote_config/app.numbers (для динамических
+  // ключей вроде "<flag>_rollout_pct", которых нет в RC_NUMBER_FIELDS-форме). Значение
+  // null/'' → УДАЛЯЕТ ключ (вернуть к 100% выкату). Та же merge:false-логика с
+  // сохранением соседних веток; чтение без глушилки (см. saveControlPanelTexts).
+  window.saveControlPanelNumbers = async function(patch) {
+    let prev = {};
+    const ps = await getDoc(doc(db, 'remote_config', 'app'));
+    if (ps.exists()) prev = ps.data() || {};
+    const numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
+    const bools = (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {};
+    const texts = (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {};
+    const changes = [];
+    for (const k of Object.keys(patch || {})) {
+      const v = patch[k];
+      if (v == null || v === '') {
+        if (k in numbers) { delete numbers[k]; changes.push(k + ': удалён'); }
+      } else {
+        const n = Number(v);
+        if (!Number.isFinite(n)) continue;
+        if (numbers[k] !== n) changes.push(k + ': ' + (numbers[k] ?? '∅') + ' → ' + n);
+        numbers[k] = n;
+      }
+    }
+    const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+    await setDoc(doc(db, 'remote_config', 'app'), { numbers, bools, texts, updatedAt: Date.now(), updatedBy: who }, { merge: false });
+    if (changes.length) {
+      try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), numbers, bools }); } catch (_) {}
+      if (typeof logAction === 'function') logAction('control_panel_numbers', 'remote_config/app', { keys: Object.keys(patch || {}) });
+    }
+    if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
+    return changes;
+  };
+
   // Запасной «голос дня» Компаса (3 локали) → remote_config/app.texts.
   window.saveCompassFallback = async function() {
     const st = document.getElementById('cp-compass-fallback-status');
@@ -22146,6 +22194,10 @@
       set('cp-force-min-version', texts.min_app_version);
       set('cp-force-url-ios', texts.store_url_ios);
       set('cp-force-url-android', texts.store_url_android);
+      // Rollout-процент (numbers.force_update_enabled_rollout_pct). Пусто = 100% (всем).
+      const numbers = (data && data.numbers && typeof data.numbers === 'object') ? data.numbers : {};
+      const rEl = document.getElementById('cp-force-rollout');
+      if (rEl) rEl.value = (typeof numbers.force_update_enabled_rollout_pct === 'number') ? numbers.force_update_enabled_rollout_pct : '';
     } catch (_) { /* некритично */ }
   };
   window.saveForceUpdateConfig = async function() {
@@ -22156,6 +22208,13 @@
       cpForceStatus('❌ Версия в формате 1.2.3 (только цифры и точки).', '#f87171');
       return;
     }
+    const rolloutRaw = get('cp-force-rollout');
+    let rollout = ''; // пусто = 100% (ключ удаляется)
+    if (rolloutRaw !== '') {
+      const n = Math.round(Number(rolloutRaw));
+      if (!(n >= 0 && n <= 100)) { cpForceStatus('❌ Выкат: число 0–100.', '#f87171'); return; }
+      rollout = (n >= 100) ? '' : String(n); // 100 = полный выкат → ключ не нужен
+    }
     cpForceStatus('Сохранение…');
     try {
       await window.saveControlPanelTexts({
@@ -22163,6 +22222,8 @@
         store_url_ios: get('cp-force-url-ios'),
         store_url_android: get('cp-force-url-android'),
       });
+      // Rollout пишем отдельно в numbers (пусто → удаление ключа = 100%).
+      await window.saveControlPanelNumbers({ force_update_enabled_rollout_pct: rollout });
       cpForceStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
@@ -22247,6 +22308,8 @@
       set('cp-promo-banner-uk', texts.promo_banner_text_uk);
       set('cp-promo-banner-es', texts.promo_banner_text_es);
       set('cp-promo-banner-url', texts.promo_banner_url);
+      set('cp-promo-banner-audience', texts.promo_banner_audience);
+      set('cp-promo-banner-platform', texts.promo_banner_platform);
       // until хранится как ms (или ISO); в поле date кладём YYYY-MM-DD.
       const until = String(texts.promo_banner_until || '');
       const dEl = document.getElementById('cp-promo-banner-until');
@@ -22275,6 +22338,8 @@
         promo_banner_text_es: get('cp-promo-banner-es'),
         promo_banner_url: get('cp-promo-banner-url'),
         promo_banner_until: untilMs,
+        promo_banner_audience: get('cp-promo-banner-audience'),
+        promo_banner_platform: get('cp-promo-banner-platform'),
       });
       cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
     } catch (e) {
@@ -22682,8 +22747,13 @@
   window.saveWeeklyBoons = async function() {
     wbSetStatus('Сохранение…');
     try {
+      // ВАЖНО: pre-read НЕ заворачиваем в try/catch. Ниже идёт setDoc({merge:false}),
+      // который ПОЛНОСТЬЮ перезаписывает remote_config/app. Если чтение упадёт, prev
+      // останется {} и merge:false СОТРЁТ все numbers/bools/texts. Поэтому сбой чтения
+      // должен прервать сохранение (улетит в внешний catch), а не писать пустой документ.
       var prev = {};
-      try { var ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      var ps = await getDoc(doc(db, 'remote_config', 'app'));
+      if (ps.exists()) prev = ps.data() || {};
       var numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
       var bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
       var texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});

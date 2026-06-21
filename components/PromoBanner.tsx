@@ -12,10 +12,11 @@
 // MaintenanceGate: живое обновление на remote_config_changed.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, Linking } from 'react-native';
+import { View, Text, Pressable, Linking, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useLang } from './LangContext';
+import { usePremium } from './PremiumContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import {
@@ -23,6 +24,8 @@ import {
   getPromoBannerText,
   getPromoBannerUrl,
   getPromoBannerUntil,
+  getPromoBannerAudience,
+  getPromoBannerPlatform,
   shouldShowPromoBanner,
 } from '../app/remote_flags';
 
@@ -32,12 +35,16 @@ interface PromoState {
   url: string;
 }
 
-function readState(lang: string, nowMs: number): PromoState {
+function readState(lang: string, nowMs: number, isPremium: boolean): PromoState {
   return {
     visible: shouldShowPromoBanner({
       enabled: isPromoBannerEnabled(),
       untilRaw: getPromoBannerUntil(),
       nowMs,
+      audience: getPromoBannerAudience(),
+      isPremium,
+      platformFilter: getPromoBannerPlatform(),
+      platform: Platform.OS,
     }),
     text: getPromoBannerText(lang),
     url: getPromoBannerUrl(),
@@ -46,17 +53,18 @@ function readState(lang: string, nowMs: number): PromoState {
 
 export default function PromoBanner() {
   const { lang } = useLang();
+  const { hasPremiumAccess } = usePremium();
   const insets = useSafeAreaInsets();
-  const [state, setState] = useState<PromoState>(() => readState(lang, Date.now()));
+  const [state, setState] = useState<PromoState>(() => readState(lang, Date.now(), hasPremiumAccess));
 
   useEffect(() => {
-    setState(readState(lang, Date.now()));
-    const sub = onAppEvent('remote_config_changed', () => setState(readState(lang, Date.now())));
+    setState(readState(lang, Date.now(), hasPremiumAccess));
+    const sub = onAppEvent('remote_config_changed', () => setState(readState(lang, Date.now(), hasPremiumAccess)));
     // Срок акции может истечь, пока экран открыт → периодически перечитываем
     // видимость со свежим Date.now(), чтобы баннер сам пропал по окончании.
-    const iv = setInterval(() => setState(readState(lang, Date.now())), 60_000);
+    const iv = setInterval(() => setState(readState(lang, Date.now(), hasPremiumAccess)), 60_000);
     return () => { sub.remove(); clearInterval(iv); };
-  }, [lang]);
+  }, [lang, hasPremiumAccess]);
 
   if (!state.visible) return null;
 

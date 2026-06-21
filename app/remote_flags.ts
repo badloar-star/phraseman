@@ -142,7 +142,12 @@ export type RemoteTextKey =
   | 'promo_banner_text_uk'
   | 'promo_banner_text_es'
   | 'promo_banner_url'
-  | 'promo_banner_until';
+  | 'promo_banner_until'
+  // Таргетинг промо-баннера: кому показывать. 'all' (или пусто) = всем,
+  // 'free' = только не-премиум, 'premium' = только премиум. Опц. фильтр платформы:
+  // 'ios'|'android' (пусто = обе). Применяется в shouldShowPromoBanner вместе с флагом.
+  | 'promo_banner_audience'
+  | 'promo_banner_platform';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -276,6 +281,8 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   promo_banner_text_es: '',
   promo_banner_url: '',
   promo_banner_until: '',
+  promo_banner_audience: '',
+  promo_banner_platform: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -318,7 +325,13 @@ const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
 let _numberOverrides: Partial<Record<RemoteNumberKey, number>> = {};
 let _boolOverrides: Partial<Record<RemoteBoolKey, boolean>> = {};
 let _textOverrides: Partial<Record<RemoteTextKey, string>> = {};
+// Rollout-проценты поэтапного выката: динамические ключи "<flag>_rollout_pct" в
+// numbers. Не объявляем каждый в RemoteNumberKey (их было бы ~30) — храним сырыми
+// здесь, заполняются из снапшота. Отсутствие ключа = 100% (флаг как обычный bool).
+let _rolloutOverrides: Record<string, number> = {};
 let _configSignature = 'defaults';
+
+const ROLLOUT_SUFFIX = '_rollout_pct';
 
 function clampNumber(key: RemoteNumberKey, value: number): number {
   const { min, max } = NUMBER_BOUNDS[key];
@@ -384,9 +397,23 @@ export function applyRemoteConfigSnapshot(snapshot: {
     if (typeof raw === 'string') nextTexts[key] = raw;
   }
 
+  // Rollout-проценты: динамические ключи "<flag>_rollout_pct" из numbers, не
+  // входящие в DEFAULT_NUMBERS (иначе цикл выше их бы уже подобрал). Клампим 0..100.
+  const nextRollouts: Record<string, number> = {};
+  if (snapshot.numbers) {
+    for (const [k, raw] of Object.entries(snapshot.numbers)) {
+      if (!k.endsWith(ROLLOUT_SUFFIX)) continue;
+      if (k in DEFAULT_NUMBERS) continue; // обычный числовой ключ — не rollout
+      if (typeof raw === 'number' && Number.isFinite(raw)) {
+        nextRollouts[k] = Math.max(0, Math.min(100, raw));
+      }
+    }
+  }
+
   _numberOverrides = nextNumbers;
   _boolOverrides = nextBools;
   _textOverrides = nextTexts;
+  _rolloutOverrides = nextRollouts;
   _configSignature = buildSignature();
   return _configSignature;
 }
@@ -399,7 +426,45 @@ function buildSignature(): string {
   for (const key of Object.keys(DEFAULT_FLAGS) as RemoteBoolKey[]) {
     parts.push(`${key}=${getRemoteBool(key)}`);
   }
+  // Rollout-проценты тоже в сигнатуру: их смена должна сбросить кэш A/B-групп.
+  for (const k of Object.keys(_rolloutOverrides).sort()) {
+    parts.push(`${k}=${_rolloutOverrides[k]}`);
+  }
   return parts.join('|');
+}
+
+/**
+ * Rollout-процент для флага (ключ "<flag>_rollout_pct" в numbers). Отсутствие → 100
+ * (полный выкат = флаг ведёт себя как обычный bool). Клампится 0..100.
+ */
+export function getFlagRolloutPct(flagKey: RemoteBoolKey): number {
+  const v = _rolloutOverrides[`${flagKey}${ROLLOUT_SUFFIX}`];
+  return typeof v === 'number' ? Math.max(0, Math.min(100, v)) : 100;
+}
+
+/**
+ * Поэтапный выкат: включён ли флаг для КОНКРЕТНОГО юзера с учётом rollout-процента.
+ *  - флаг выключен (getRemoteBool=false) → false для всех;
+ *  - флаг включён + rollout>=100 (или не задан) → true для всех;
+ *  - флаг включён + rollout<100 → детерминированный бакет по userId (стабилен между
+ *    запусками, пока не меняется процент). Без userId → консервативно false при <100
+ *    (аноним до идентификации не попадает в частичный выкат, чтобы не «мигало»).
+ * Чистый бакетинг вынесен в isInRolloutBucket для тестируемости.
+ */
+export function isFlagEnabledForUser(flagKey: RemoteBoolKey, userId: string | null): boolean {
+  if (!getRemoteBool(flagKey)) return false;
+  const pct = getFlagRolloutPct(flagKey);
+  if (pct >= 100) return true;
+  if (pct <= 0) return false;
+  if (!userId) return false;
+  return isInRolloutBucket(userId, flagKey, pct);
+}
+
+/** Чистый детерминированный бакет: true, если юзер попадает в первые pct% выката. */
+export function isInRolloutBucket(userId: string, salt: string, pct: number): boolean {
+  if (pct >= 100) return true;
+  if (pct <= 0) return false;
+  return hashToUnit(`${userId}:rollout:${salt}`) * 100 < pct;
 }
 
 export function getRemoteConfigSignature(): string {
@@ -503,6 +568,10 @@ export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
 export const getPromoBannerUrl = () => getRemoteText('promo_banner_url');
 /** Срок окончания акции: ISO-дата "2026-07-01" или ms-таймстамп. Пусто = бессрочно. */
 export const getPromoBannerUntil = () => getRemoteText('promo_banner_until');
+/** Аудитория баннера: 'all'|'free'|'premium' (пусто = all). */
+export const getPromoBannerAudience = () => getRemoteText('promo_banner_audience');
+/** Фильтр платформы баннера: 'ios'|'android' (пусто = обе). */
+export const getPromoBannerPlatform = () => getRemoteText('promo_banner_platform');
 /**
  * Кастомный текст баннера для языка. Поля задаются только для ru/uk/es. Для прочих
  * языков (pt-BR/vi/id/tr/pl) возвращаем '' — НЕ русский: тогда PromoBanner покажет
@@ -533,20 +602,56 @@ export function parsePromoUntilMs(raw: string): number | null {
 }
 
 /**
- * Решение: показывать ли промо-баннер. Чистая функция (флаг/срок/now явно — для
- * тестов без Firestore). Показываем при включённом флаге И если срок не задан
- * либо ещё не истёк. Пустой срок = бессрочная акция.
+ * Чистый матчер таргета баннера: подходит ли текущий юзер/платформа под аудиторию.
+ * audience: 'all'|''(=all)|'free'|'premium'; platform-фильтр: 'ios'|'android'|''(=обе).
+ * Неизвестные значения трактуются мягко как «без ограничения» (показать), чтобы
+ * опечатка админа не спрятала акцию молча. Экспортируется для тестов.
+ */
+export function matchesPromoSegment(params: {
+  audience: string;
+  isPremium: boolean;
+  platformFilter: string;
+  platform: string; // текущая платформа: 'ios'|'android'
+}): boolean {
+  const aud = String(params.audience || '').trim().toLowerCase();
+  if (aud === 'free' && params.isPremium) return false;
+  if (aud === 'premium' && !params.isPremium) return false;
+  const pf = String(params.platformFilter || '').trim().toLowerCase();
+  if ((pf === 'ios' || pf === 'android') && pf !== String(params.platform || '').toLowerCase()) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Решение: показывать ли промо-баннер. Чистая функция (всё явно — для тестов без
+ * Firestore). Показываем при включённом флаге, не истёкшем сроке И совпадении
+ * таргета (аудитория/платформа). Поля сегмента опциональны — если не переданы,
+ * таргет считается «всем» (обратная совместимость старых вызовов/тестов).
  */
 export function shouldShowPromoBanner(params: {
   enabled: boolean;
   untilRaw: string;
   nowMs: number;
+  audience?: string;
+  isPremium?: boolean;
+  platformFilter?: string;
+  platform?: string;
 }): boolean {
   const { enabled, untilRaw, nowMs } = params;
   if (!enabled) return false;
   const until = parsePromoUntilMs(untilRaw);
-  if (until == null) return true; // бессрочно
-  return nowMs < until;
+  if (until != null && nowMs >= until) return false; // срок истёк
+  // Таргет проверяем только если заданы сегмент-параметры (иначе — всем).
+  if (params.audience !== undefined || params.platformFilter !== undefined) {
+    if (!matchesPromoSegment({
+      audience: params.audience || '',
+      isPremium: !!params.isPremium,
+      platformFilter: params.platformFilter || '',
+      platform: params.platform || '',
+    })) return false;
+  }
+  return true;
 }
 
 /**
@@ -733,6 +838,7 @@ export function __resetRemoteFlagsForTest(): void {
   _numberOverrides = {};
   _boolOverrides = {};
   _textOverrides = {};
+  _rolloutOverrides = {};
   _configSignature = 'defaults';
 }
 

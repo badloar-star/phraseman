@@ -55,7 +55,13 @@ export function isAcceptableDayKey(dayKey: unknown, nowMs: number): boolean {
 export const dailyTasksAllShardsClaim = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Not authenticated');
   const db = admin.firestore();
-  const uid = await resolveStableUidForAuth(db, request.auth.uid);
+  // Резолвим тот же документ, под которым клиент хранит осколки (getCanonicalUserId
+  // === stableId). Без проброса stableId сервер падал на db.doc(authUid)/lookup по
+  // firebaseAuthUid (auth_identity.ts) → для юзеров с релинком (анон→Google, мердж
+  // аккаунтов) claim писал/читал ДРУГОЙ документ: маркер reward_claims оседал не там,
+  // сервер вечно возвращал alreadyClaimed, а баланс на видимом доке не менялся →
+  // «не забрать осколки уже который день» + «осколки уменьшились» (баг-репорты).
+  const uid = await resolveStableUidForAuth(db, request.auth.uid, request.data?.stableId);
 
   const dayKey = request.data?.dayKey;
   if (typeof dayKey !== 'string' || !DAY_KEY_RE.test(dayKey)) {

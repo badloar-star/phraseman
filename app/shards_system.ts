@@ -353,32 +353,47 @@ export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): 
 };
 
 /**
+ * Исход «забрать осколок за все дневные задания»:
+ *  - 'granted' — осколок только что начислен (+1);
+ *  - 'already' — уже забрано ранее (этим устройством, другим устройством или
+ *                прерванным прошлым вызовом). НЕ ошибка: кнопку надо погасить молча;
+ *  - 'failed'  — реальный сбой (сеть/CF/auth). Можно показать «попробуй ещё раз».
+ */
+export type ClaimDailyTrioResult = 'granted' | 'already' | 'failed';
+
+/**
  * +1 осколок за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
  * При включённом облаке: одна Firestore-транзакция (маркер + баланс) — без дублей между устройствами.
  * Иначе: локальный ключ AsyncStorage + addShards (как раньше).
+ *
+ * Возвращает три исхода, чтобы экран НЕ показывал «Осколки не загрузились», когда
+ * сервер уже выдал осколок (alreadyClaimed) — это была причина бесконечной ошибки
+ * «не забрать осколки уже который день» в баг-репортах.
  */
-export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<boolean> => {
+export const claimDailyTasksAllShardsRewardDetailed = async (
+  dayKey: string,
+): Promise<ClaimDailyTrioResult> => {
   const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
   const amount = SHARD_REWARDS.daily_tasks_all;
-  if (!Number.isFinite(amount) || amount <= 0) return false;
+  if (!Number.isFinite(amount) || amount <= 0) return 'failed';
 
   try {
     const existing = await AsyncStorage.getItem(rewardKey);
-    if (existing) return false;
+    if (existing) return 'already';
 
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
       const n = await addShards('daily_tasks_all');
-      if (n <= 0) return false;
+      if (n <= 0) return 'failed';
       await AsyncStorage.setItem(rewardKey, '1');
-      return true;
+      return 'granted';
     }
 
     const uid = await getCanonicalUserId();
     if (!uid) {
       const n = await addShards('daily_tasks_all');
-      if (n <= 0) return false;
+      if (n <= 0) return 'failed';
       await AsyncStorage.setItem(rewardKey, '1');
-      return true;
+      return 'granted';
     }
 
     // Выдача через Cloud Function — обходит Firestore-правило hasNoShardWrites()
@@ -392,7 +407,11 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
     const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
     const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
     const updatedAtMs = Date.now();
-    const cfResult = await cfCall({ dayKey });
+    // Шлём ТОТ ЖЕ id, под которым клиент хранит осколки (getCanonicalUserId === stableId),
+    // чтобы CF читал/писал users/{stableId}, а не db.doc(authUid). Без этого для юзеров
+    // с релинком (анон→Google, мердж) маркер reward_claims оседал на чужом доке и сервер
+    // вечно отвечал alreadyClaimed → «не забрать осколки» (баг-репорты daily_tasks).
+    const cfResult = await cfCall({ dayKey, stableId: uid });
     const { alreadyClaimed, newBalance } = cfResult.data;
 
     if (alreadyClaimed) {
@@ -401,7 +420,20 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
       // кнопка «Забрать» зависает в активном состоянии и каждый повтор снова даёт
       // «Осколки не загрузились. Попробуй ещё раз.» (см. баг-репорты daily_tasks).
       await AsyncStorage.setItem(rewardKey, '1').catch(() => {});
-      return false;
+      // Подтягиваем серверный баланс локально, чтобы не было расхождения
+      // («осколки уменьшились» из баг-репортов).
+      if (Number.isFinite(newBalance) && newBalance >= 0) {
+        await withStorageLock(async () => {
+          const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' };
+          await AsyncStorage.multiSet([
+            [STORAGE_KEY, String(newBalance)],
+            [BALANCE_META_KEY, JSON.stringify(meta)],
+          ]);
+        }).catch(() => {});
+        setShardsBalanceMemory(newBalance);
+        await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' }).catch(() => {});
+      }
+      return 'already';
     }
 
     await withStorageLock(async () => {
@@ -418,11 +450,20 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
     logShardTransaction('earn', amount, 'daily_tasks_all', newBalance, newBalance - amount);
     await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' });
     emitAppEvent('shards_earned', { amount, reasonKey: 'daily_tasks_all' });
-    return true;
+    return 'granted';
   } catch (error) {
     DebugLogger.error('shards_system.ts:claimDailyTasksAllShardsReward', error, 'warning');
-    return false;
+    return 'failed';
   }
+};
+
+/**
+ * Обратная совместимость: булева обёртка над {@link claimDailyTasksAllShardsRewardDetailed}.
+ * true только при фактическом начислении ('granted'). 'already'/'failed' → false.
+ * Предпочитай детальную версию, чтобы отличать «уже забрано» от реального сбоя.
+ */
+export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<boolean> => {
+  return (await claimDailyTasksAllShardsRewardDetailed(dayKey)) === 'granted';
 };
 
 export type SpendShardsOptions = {

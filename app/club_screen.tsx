@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import * as Haptics from 'expo-haptics';
@@ -104,8 +104,11 @@ const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
-const CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE = 148;
-const CLUB_LEAGUE_PREVIEW_ICON_SIZE = 122;
+const CLUB_LEAGUE_PREVIEW_CARD_RADIUS = 20;
+const CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO = 16 / 9;
+const CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH = 520;
+const CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE = 104;
+const CLUB_LEAGUE_PREVIEW_ICON_SIZE = 96;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -193,20 +196,8 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
 
 // ── League icon renderer ──────────────────────────────────────────────────────
 const LEAGUE_ICON_SOURCE_SIZE = 384;
-const LEAGUE_ICON_CONTENT_OFFSETS: Record<number, { x: number; y: number }> = {
-  0: { x: -13, y: -14 },
-  1: { x: 1, y: -20 },
-  2: { x: 14.5, y: -12.5 },
-  3: { x: 21.5, y: -19 },
-  4: { x: -12.5, y: -1.5 },
-  5: { x: -1, y: -1 },
-  6: { x: 13, y: -1.5 },
-  7: { x: 17.5, y: -0.5 },
-  8: { x: -14.5, y: 16.5 },
-  9: { x: 2.5, y: 11.5 },
-  10: { x: 11.5, y: 13.5 },
-  11: { x: 16.5, y: 13 },
-};
+const LEAGUE_ICON_RENDER_SAFE_SCALE = 0.94;
+const LEAGUE_ICON_CONTENT_OFFSETS: Record<number, { x: number; y: number }> = {};
 
 function getLeagueIconContentOffset(leagueId: number, size: number): { x: number; y: number } {
   const offset = LEAGUE_ICON_CONTENT_OFFSETS[leagueId];
@@ -231,6 +222,11 @@ function LeagueIconImageWithFallback({
   contentOffset?: { x: number; y: number };
 }) {
   const [failed, setFailed] = useState(false);
+  const renderSize = Math.max(1, Math.round(size * LEAGUE_ICON_RENDER_SAFE_SCALE));
+  const safeContentOffset = {
+    x: contentOffset.x * LEAGUE_ICON_RENDER_SAFE_SCALE,
+    y: contentOffset.y * LEAGUE_ICON_RENDER_SAFE_SCALE,
+  };
 
   useEffect(() => {
     setFailed(false);
@@ -241,7 +237,7 @@ function LeagueIconImageWithFallback({
       {(!source || failed) ? (
         <Ionicons
           name={iconName as any}
-          size={Math.max(14, Math.round(size * 0.8))}
+          size={Math.max(14, Math.round(renderSize * 0.8))}
           color={color}
           style={{ position: 'absolute', opacity }}
         />
@@ -250,12 +246,12 @@ function LeagueIconImageWithFallback({
         <Image
           source={source}
           style={{
-            width: size,
-            height: size,
+            width: renderSize,
+            height: renderSize,
             opacity,
             transform: [
-              { translateX: contentOffset.x },
-              { translateY: contentOffset.y },
+              { translateX: safeContentOffset.x },
+              { translateY: safeContentOffset.y },
             ],
           }}
           contentFit="contain"
@@ -402,7 +398,7 @@ export default function ClubScreen() {
 
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
   const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
-  const [group, setGroup]               = useState<GroupMember[]>(() => initialLeagueState?.group ?? []);
+  const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
@@ -611,14 +607,17 @@ export default function ClubScreen() {
         const promotedLeague = LEAGUES.find(l => l.id === state.leagueId);
         if (promotedLeague) logLeaguePromoted(promotedLeague.nameRU);
       }
-      setGroup(state.group);
+      // Защита: даже после санитизации у источника гарантируем массив локально, иначе
+      // [...safeGroup] / .sort упадут TypeError и глобальный ErrorBoundary уронит всё приложение.
+      const safeGroup = Array.isArray(state.group) ? state.group : [];
+      setGroup(safeGroup);
       // Если пришёл свежий результат недели (после смены ISO-недели) — показываем модалку
       // прямо здесь. Раньше модалка жила только на home.tsx, поэтому захождение в Лиги
       // в понедельник не давало анимацию.
       if (result) maybeShowPending(result);
       if (!fromRemote) return;
       // Считаем delta только когда данные пришли из Firestore (не кеш).
-      const sorted = [...state.group].sort((a, b) => b.points - a.points);
+      const sorted = [...safeGroup].sort((a, b) => b.points - a.points);
       const newRank = sorted.findIndex(m => m.isMe) + 1;
       if (newRank <= 0) return;
 
@@ -800,6 +799,7 @@ export default function ClubScreen() {
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
   const leaguePreviewState = getLeagueSwipePreviewState(myLeagueId, previewLeagueId);
   const previewLeague = LEAGUES[leaguePreviewState.previewLeagueId] ?? myLeague;
+  const previewLeagueCardImage = (previewLeague as any).cardImageUri;
 
   useEffect(() => {
     setPreviewLeagueId(myLeagueId);
@@ -831,7 +831,7 @@ export default function ClubScreen() {
     },
   }), [animateLeaguePreviewSwipe]);
 
-  const sortedGroup = [...group].sort((a, b) => b.points - a.points);
+  const sortedGroup = (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points);
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
@@ -1232,29 +1232,71 @@ export default function ClubScreen() {
         <View
           {...leaguePreviewPanResponder.panHandlers}
         >
-        <LinearGradient
-          colors={[leagueBonusPalette.modal.card[0], leagueBonusPalette.modal.card[1], leagueBonusPalette.modal.card[2]]}
-          locations={leagueBonusPalette.modal.cardLocations}
-          start={{ x:0, y:0 }}
-          end={{ x:1, y:1 }}
-          style={{ borderRadius:20, borderWidth:0.5, borderColor:leagueBonusPalette.border, paddingHorizontal:16, paddingTop:18, paddingBottom:18, overflow:'hidden', minHeight:204 }}
+        <View
+          style={{
+            width:'100%',
+            maxWidth:CLUB_LEAGUE_PREVIEW_CARD_MAX_WIDTH,
+            aspectRatio:CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO,
+            alignSelf:'center',
+            borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS,
+            borderWidth:0.5,
+            borderColor:leagueBonusPalette.border,
+            overflow:'hidden',
+            backgroundColor:leagueBonusPalette.modal.card[1],
+          }}
         >
-          <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
-          <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
+          <LinearGradient
+            pointerEvents="none"
+            colors={[leagueBonusPalette.modal.card[0], leagueBonusPalette.modal.card[1], leagueBonusPalette.modal.card[2]]}
+            locations={leagueBonusPalette.modal.cardLocations}
+            start={{ x:0, y:0 }}
+            end={{ x:1, y:1 }}
+            style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
+          />
+          {previewLeagueCardImage ? (
+            <>
+              <Image
+                pointerEvents="none"
+                source={previewLeagueCardImage}
+                contentFit="cover"
+                transition={180}
+                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
+              />
+              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS, backgroundColor:themeMode === 'gold' ? 'rgba(36,23,6,0.22)' : 'rgba(0,0,0,0.18)' }]} />
+              <LinearGradient
+                pointerEvents="none"
+                colors={['rgba(0,0,0,0.02)', 'rgba(0,0,0,0.42)']}
+                locations={[0.42, 1]}
+                start={{ x:0.5, y:0 }}
+                end={{ x:0.5, y:1 }}
+                style={[StyleSheet.absoluteFillObject, { borderRadius:CLUB_LEAGUE_PREVIEW_CARD_RADIUS }]}
+              />
+            </>
+          ) : (
+            <>
+              <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
+              <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
+            </>
+          )}
           <View
             testID="league-current-icon"
             accessibilityLabel={leagueNameForLang(previewLeague, lang)}
-            style={{ width:'100%', alignItems:'center', justifyContent:'center', gap:11, paddingHorizontal:0, paddingTop:2 }}
+            style={[StyleSheet.absoluteFillObject, { alignItems:'center', justifyContent:'center', gap:6, paddingHorizontal:14, paddingVertical:10 }]}
           >
             <View style={{ width:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, height:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, alignItems:'center', justifyContent:'center' }}>
               <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} />
             </View>
-            <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:56 }} numberOfLines={2}>
+            <Text
+              style={{ color:previewLeagueCardImage ? '#FFFFFF' : t.textPrimary, fontSize:Math.min(f.h2, 22), lineHeight:Math.max(24, Math.min(f.h2, 22) + 3), fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:50, textShadowColor:previewLeagueCardImage ? 'rgba(0,0,0,0.46)' : 'transparent', textShadowRadius:previewLeagueCardImage ? 9 : 0, textShadowOffset:{ width:0, height:previewLeagueCardImage ? 2 : 0 } }}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.72}
+            >
               {leagueNameForLang(previewLeague, lang)}
             </Text>
             {!!leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK) && (
-              <View style={{ paddingHorizontal:10, paddingVertical:5, borderRadius:999, backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:leagueBonusPalette.modal.metaBorder }}>
-                <Text style={{ color:leagueBonusPalette.modal.eyebrow, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1}>
+              <View style={{ maxWidth:'86%', paddingHorizontal:10, paddingVertical:4, borderRadius:999, backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.54)' : leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.24)' : leagueBonusPalette.modal.metaBorder }}>
+                <Text style={{ color:previewLeagueCardImage ? '#F8FAFC' : leagueBonusPalette.modal.eyebrow, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
                   {leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK)}
                 </Text>
               </View>
@@ -1279,11 +1321,11 @@ export default function ClubScreen() {
               setChatModalVisible(true);
               void Haptics.selectionAsync().catch(() => {});
             }}
-            style={{ position:'absolute', top:14, right:14, width:46, height:46, borderRadius:23, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}
+            style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
           >
             <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
             {leagueChatUnreadCount > 0 && (
-              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:1.5, borderColor:t.bgCard }}>
+              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:1.5, borderColor:previewLeagueCardImage ? '#0B0F14' : t.bgCard }}>
                 <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
                   {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
                 </Text>
@@ -1291,7 +1333,7 @@ export default function ClubScreen() {
             )}
           </TouchableOpacity>
           )}
-        </LinearGradient>
+        </View>
         <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:5, marginTop:8, minHeight:10 }}>
           {LEAGUES.map((league) => (
             <View
@@ -1365,13 +1407,49 @@ export default function ClubScreen() {
               <View style={{ flex:1, minWidth:0 }}>
                 <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }} numberOfLines={2}>
                   {activeGroupBoost
-                    ? triLang(lang, { ru: 'Общий буст лиги ×2', uk: 'Спільний буст ліги ×2', es: 'Impulso de liga común ×2' })
-                    : triLang(lang, { ru: '×2 XP для всей лиги', uk: '×2 XP для всієї ліги', es: '×2 XP para toda la liga' })}
+                    ? triLang(lang, {
+                      ru: 'Общий буст лиги ×2',
+                      uk: 'Спільний буст ліги ×2',
+                      es: 'Impulso de liga común ×2',
+                      'pt-BR': 'Impulso coletivo da liga ×2',
+                      vi: 'Tăng lực chung của giải đấu ×2',
+                      id: 'Boost liga bersama ×2',
+                      tr: 'Ortak lig desteği ×2',
+                      pl: 'Wspólny boost ligi ×2',
+                    })
+                    : triLang(lang, {
+                      ru: '×2 XP для всей лиги',
+                      uk: '×2 XP для всієї ліги',
+                      es: '×2 XP para toda la liga',
+                      'pt-BR': '×2 XP para toda a liga',
+                      vi: '×2 XP cho cả giải đấu',
+                      id: '×2 XP untuk seluruh liga',
+                      tr: 'Tüm lig için ×2 XP',
+                      pl: '×2 XP dla całej ligi',
+                    })}
                 </Text>
                 <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), lineHeight:Math.max(13, f.caption + 1), fontWeight:'700', marginTop:2 }} numberOfLines={2}>
                   {activeGroupBoost
-                    ? triLang(lang, { ru: `Осталось ${groupBoostTimeLeft || '...'}`, uk: `Залишилось ${groupBoostTimeLeft || '...'}`, es: `Quedan ${groupBoostTimeLeft || '...'}` })
-                    : triLang(lang, { ru: '3 часа для всех участников', uk: '3 години для всіх учасників', es: '3 horas para todos los participantes' })}
+                    ? triLang(lang, {
+                      ru: `Осталось ${groupBoostTimeLeft || '...'}`,
+                      uk: `Залишилось ${groupBoostTimeLeft || '...'}`,
+                      es: `Quedan ${groupBoostTimeLeft || '...'}`,
+                      'pt-BR': `Restam ${groupBoostTimeLeft || '...'}`,
+                      vi: `Còn ${groupBoostTimeLeft || '...'}`,
+                      id: `Tersisa ${groupBoostTimeLeft || '...'}`,
+                      tr: `${groupBoostTimeLeft || '...'} kaldı`,
+                      pl: `Zostało ${groupBoostTimeLeft || '...'}`,
+                    })
+                    : triLang(lang, {
+                      ru: '3 часа для всех участников',
+                      uk: '3 години для всіх учасників',
+                      es: '3 horas para todos los participantes',
+                      'pt-BR': '3 horas para todos os participantes',
+                      vi: '3 giờ cho tất cả người tham gia',
+                      id: '3 jam untuk semua peserta',
+                      tr: 'Tüm katılımcılar için 3 saat',
+                      pl: '3 godziny dla wszystkich uczestników',
+                    })}
                 </Text>
               </View>
             </View>
@@ -1397,15 +1475,51 @@ export default function ClubScreen() {
             >
               <Text numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
                 {activeGroupBoost
-                  ? triLang(lang, { ru: 'Активен', uk: 'Активний', es: 'Activo' })
+                  ? triLang(lang, {
+                    ru: 'Активен',
+                    uk: 'Активний',
+                    es: 'Activo',
+                    'pt-BR': 'Ativo',
+                    vi: 'Đang bật',
+                    id: 'Aktif',
+                    tr: 'Aktif',
+                    pl: 'Aktywny',
+                  })
                   : (groupBoostBuying
-                    ? triLang(lang, { ru: 'Включаем...', uk: 'Вмикаємо...', es: 'Activando...' })
-                    : triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar' }))}
+                    ? triLang(lang, {
+                      ru: 'Включаем...',
+                      uk: 'Вмикаємо...',
+                      es: 'Activando...',
+                      'pt-BR': 'Ativando...',
+                      vi: 'Đang bật...',
+                      id: 'Mengaktifkan...',
+                      tr: 'Açılıyor...',
+                      pl: 'Włączamy...',
+                    })
+                    : triLang(lang, {
+                      ru: 'Купить',
+                      uk: 'Купити',
+                      es: 'Comprar',
+                      'pt-BR': 'Comprar',
+                      vi: 'Mua',
+                      id: 'Beli',
+                      tr: 'Satın al',
+                      pl: 'Kup',
+                    }))}
               </Text>
               {!activeGroupBoost && (
                 freeBoostGiftReady ? (
                   <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                    {triLang(lang, { ru: '🎁 бесплатно', uk: '🎁 безкоштовно', es: '🎁 gratis' })}
+                    {triLang(lang, {
+                      ru: '🎁 бесплатно',
+                      uk: '🎁 безкоштовно',
+                      es: '🎁 gratis',
+                      'pt-BR': '🎁 grátis',
+                      vi: '🎁 miễn phí',
+                      id: '🎁 gratis',
+                      tr: '🎁 ücretsiz',
+                      pl: '🎁 za darmo',
+                    })}
                   </Text>
                 ) : (
                   <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
@@ -1454,7 +1568,16 @@ export default function ClubScreen() {
                       {activeGroupBoost.buyerName}
                     </Text>
                     <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'700' }} numberOfLines={1}>
-                      {triLang(lang, { ru: 'Купил буст для лиги', uk: 'Купив буст для ліги', es: 'Compró un impulso para la liga' })}
+                      {triLang(lang, {
+                        ru: 'Купил буст для лиги',
+                        uk: 'Купив буст для ліги',
+                        es: 'Compró un impulso para la liga',
+                        'pt-BR': 'Comprou um impulso para a liga',
+                        vi: 'Đã mua tăng lực cho giải đấu',
+                        id: 'Membeli boost untuk liga',
+                        tr: 'Lig için destek satın aldı',
+                        pl: 'Kupił boost dla ligi',
+                      })}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -1879,7 +2002,16 @@ export default function ClubScreen() {
 
       <ThemedConfirmModal
         visible={groupBoostConfirmVisible}
-        title={triLang(lang, { ru: 'Включить буст лиги?', uk: 'Увімкнути буст ліги?', es: '¿Activar impulso de liga?' })}
+        title={triLang(lang, {
+          ru: 'Включить буст лиги?',
+          uk: 'Увімкнути буст ліги?',
+          es: '¿Activar impulso de liga?',
+          'pt-BR': 'Ativar impulso da liga?',
+          vi: 'Bật tăng lực giải đấu?',
+          id: 'Aktifkan boost liga?',
+          tr: 'Lig desteği açılsın mı?',
+          pl: 'Włączyć boost ligi?',
+        })}
         messageNode={(
           <View style={{ gap:10 }}>
             <Text style={{ color:t.textMuted, fontSize:f.body, lineHeight:f.body * 1.45, fontWeight:'700' }}>
@@ -1887,11 +2019,25 @@ export default function ClubScreen() {
                 ru: 'Все участники лиги будут получать ×2 XP в течение 3 часов.',
                 uk: 'Усі учасники ліги отримуватимуть ×2 XP протягом 3 годин.',
                 es: 'Todos los participantes de la liga recibirán ×2 XP durante 3 horas.',
+                'pt-BR': 'Todos os participantes da liga receberão ×2 XP por 3 horas.',
+                vi: 'Tất cả thành viên giải đấu sẽ nhận ×2 XP trong 3 giờ.',
+                id: 'Semua peserta liga akan mendapat ×2 XP selama 3 jam.',
+                tr: 'Tüm lig katılımcıları 3 saat boyunca ×2 XP alacak.',
+                pl: 'Wszyscy uczestnicy ligi będą dostawać ×2 XP przez 3 godziny.',
               })}
             </Text>
             <View style={{ flexDirection:'row', alignItems:'center', gap:7 }}>
               <Text style={{ color:t.textMuted, fontSize:f.body, fontWeight:'800' }}>
-                {triLang(lang, { ru: 'Стоимость:', uk: 'Вартість:', es: 'Precio:' })}
+                {triLang(lang, {
+                  ru: 'Стоимость:',
+                  uk: 'Вартість:',
+                  es: 'Precio:',
+                  'pt-BR': 'Custo:',
+                  vi: 'Chi phí:',
+                  id: 'Biaya:',
+                  tr: 'Ücret:',
+                  pl: 'Koszt:',
+                })}
               </Text>
               {freeBoostGiftReady ? (
                 <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
@@ -1899,6 +2045,11 @@ export default function ClubScreen() {
                     ru: 'Бесплатно — подарок за уровень 🎁',
                     uk: 'Безкоштовно — подарунок за рівень 🎁',
                     es: 'Gratis, regalo de nivel 🎁',
+                    'pt-BR': 'Grátis — presente de nível 🎁',
+                    vi: 'Miễn phí — quà cấp độ 🎁',
+                    id: 'Gratis — hadiah level 🎁',
+                    tr: 'Ücretsiz — seviye hediyesi 🎁',
+                    pl: 'Za darmo — prezent za poziom 🎁',
                   })}
                 </Text>
               ) : (
@@ -1916,15 +2067,47 @@ export default function ClubScreen() {
             </View>
           </View>
         )}
-        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+        cancelLabel={triLang(lang, {
+          ru: 'Отмена',
+          uk: 'Скасувати',
+          es: 'Cancelar',
+          'pt-BR': 'Cancelar',
+          vi: 'Hủy',
+          id: 'Batal',
+          tr: 'İptal',
+          pl: 'Anuluj',
+        })}
         confirmLabel={groupBoostBuying
-          ? triLang(lang, { ru: 'Включаем...', uk: 'Вмикаємо...', es: 'Activando...' })
+          ? triLang(lang, {
+            ru: 'Включаем...',
+            uk: 'Вмикаємо...',
+            es: 'Activando...',
+            'pt-BR': 'Ativando...',
+            vi: 'Đang bật...',
+            id: 'Mengaktifkan...',
+            tr: 'Açılıyor...',
+            pl: 'Włączamy...',
+          })
           : (freeBoostGiftReady
-            ? triLang(lang, { ru: 'Включить бесплатно', uk: 'Увімкнути безкоштовно', es: 'Activar gratis' })
+            ? triLang(lang, {
+              ru: 'Включить бесплатно',
+              uk: 'Увімкнути безкоштовно',
+              es: 'Activar gratis',
+              'pt-BR': 'Ativar grátis',
+              vi: 'Bật miễn phí',
+              id: 'Aktifkan gratis',
+              tr: 'Ücretsiz aç',
+              pl: 'Włącz za darmo',
+            })
             : triLang(lang, {
               ru: `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               uk: `Увімкнути за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               es: `Activar por ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              'pt-BR': `Ativar por ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              vi: `Bật với ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              id: `Aktifkan seharga ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              tr: `${LEAGUE_GROUP_BOOST_COST_SHARDS} karşılığında aç`,
+              pl: `Włącz za ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
             }))}
         confirmVariant="accent"
         testIDPrefix="league-group-boost-confirm"

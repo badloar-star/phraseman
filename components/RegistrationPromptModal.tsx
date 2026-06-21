@@ -15,8 +15,10 @@
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image as ExpoImage } from 'expo-image';
+import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
@@ -86,7 +88,10 @@ function RegistrationPromptModal({
     setInlineError(`${title}\n${message}`);
   }, []);
 
-  const headerEmoji = context === 'lesson1' ? '🛡️' : '🔐';
+  // Сапфировый медальон вместо эмодзи-замка (контекст доверия/безопасности).
+  const headerIcon: React.ComponentProps<typeof Ionicons>['name'] =
+    context === 'lesson1' ? 'shield-checkmark' : 'lock-closed';
+  const TRUST_ACCENT = '#6EA8FF';
 
   const defaultTitle = triLang(lang, {
     ru:
@@ -397,7 +402,16 @@ function RegistrationPromptModal({
               accessible={false}
             />
           ) : (
-            <Text style={[styles.emoji]}>{headerEmoji}</Text>
+            <View style={[styles.medallion, { borderColor: `${TRUST_ACCENT}55` }]}>
+              <LinearGradient
+                pointerEvents="none"
+                colors={[`${TRUST_ACCENT}30`, 'transparent']}
+                start={{ x: 0.5, y: 0 }}
+                end={{ x: 0.5, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <Ionicons name={headerIcon} size={34} color={TRUST_ACCENT} />
+            </View>
           )}
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{finalTitle}</Text>
           <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>{finalSubtitle}</Text>
@@ -527,10 +541,15 @@ const styles = StyleSheet.create({
     padding: 28,
     alignItems: 'center',
   },
-  emoji: {
-    fontSize: 56,
-    marginBottom: 12,
-    textAlign: 'center',
+  medallion: {
+    width: 72,
+    height: 72,
+    borderRadius: 20,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginBottom: 14,
   },
   authIcon: {
     width: 86,

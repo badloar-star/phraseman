@@ -17,6 +17,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
+import { isFeatureGrantedByWeeklyBoon } from './boons/boon_feature_grants';
 
 /** Каноничные имена фич, у которых есть премиум-замок. */
 export type FeatureGate =
@@ -80,6 +81,8 @@ export function isFeatureFreeForEveryone(feature: FeatureGate): boolean {
  */
 export function shouldGateFeature(feature: FeatureGate, hasPremiumAccess: boolean): boolean {
   if (hasPremiumAccess) return false;
+  // Weekly Boon может временно открыть фичу всем (напр. «Speaking-суббота»).
+  if (isFeatureGrantedByWeeklyBoon(feature)) return false;
   return isFeaturePremiumGated(feature);
 }
 

@@ -9,6 +9,8 @@
  */
 import React, { memo, useCallback } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -17,8 +19,6 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import {
   RewardModalBackdrop,
   rewardModalSoftSurface,
-  rewardModalPanelBorder,
-  rewardModalAccentColor,
 } from './RewardModalBackdrop';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 
@@ -45,9 +45,7 @@ function SeasonResultModal({
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
 
-  const accent = rewardModalAccentColor(themeMode, t);
   const soft = rewardModalSoftSurface(themeMode, t);
-  const border = rewardModalPanelBorder(themeMode, t);
 
   const goLeaderboard = useCallback(() => {
     hapticTap();
@@ -62,44 +60,55 @@ function SeasonResultModal({
   }, [onClose]);
 
   const content = buildContent({ kind, sr, rankLabel, finalPlace, daysLeft, lang });
+  // Цвет-по-контексту: достижение/итог = золото, «скоро конец» = янтарь (не тревога).
+  const tone = content.tone === 'amber'
+    ? { accent: '#F4D889', cta: ['#FBE6A4', '#E0A124'] as [string, string], ink: '#3A2C06' }
+    : { accent: '#E8C36C', cta: ['#FFE7A6', '#E0A124'] as [string, string], ink: '#3A2606' };
+  const eyebrow = triLang(lang, {
+    ru: 'Сезон', uk: 'Сезон', es: 'Temporada', 'pt-BR': 'Temporada',
+    vi: 'Mùa giải', id: 'Musim', tr: 'Sezon', pl: 'Sezon',
+  });
+  const isAction = kind === 'season_ended' || kind === 'ceiling_reached';
+  const onPrimary = isAction
+    ? () => { hapticSuccess(); goLeaderboard(); }
+    : () => { hapticTap(); dismiss(); };
 
   return (
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={dismiss}>
       <View style={styles.overlay}>
         <RewardModalBackdrop themeMode={themeMode} />
-        <View style={[styles.panel, { backgroundColor: soft, borderColor: border }]}>
-          <Text style={[styles.emoji]}>{content.emoji}</Text>
+        <View style={[styles.panel, { backgroundColor: soft, borderColor: `${tone.accent}55` }]}>
+          {/* Верхняя линия-свечение акцента */}
+          <View pointerEvents="none" style={[styles.topGlow, { backgroundColor: tone.accent }]} />
+
+          {/* Медальон-иконка вместо эмодзи */}
+          <View style={[styles.medallion, { borderColor: `${tone.accent}66` }]}>
+            <LinearGradient
+              pointerEvents="none"
+              colors={[`${tone.accent}33`, 'transparent']}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <Ionicons name={content.icon} size={34} color={tone.accent} />
+          </View>
+
+          <Text style={[styles.eyebrow, { color: tone.accent }]}>{eyebrow}</Text>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{content.title}</Text>
           <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>
             {content.subtitle}
           </Text>
 
-          {kind === 'season_ended' && (
-            <Pressable
-              style={[styles.btn, { backgroundColor: accent }]}
-              onPress={() => { hapticSuccess(); goLeaderboard(); }}
-            >
-              <Text style={[styles.btnText, { fontSize: f.body }]}>{content.actionLabel}</Text>
-            </Pressable>
-          )}
-
-          {kind === 'ceiling_reached' && (
-            <Pressable
-              style={[styles.btn, { backgroundColor: accent }]}
-              onPress={() => { hapticSuccess(); goLeaderboard(); }}
-            >
-              <Text style={[styles.btnText, { fontSize: f.body }]}>{content.actionLabel}</Text>
-            </Pressable>
-          )}
-
-          {kind === 'ending_soon' && (
-            <Pressable
-              style={[styles.btn, { backgroundColor: accent }]}
-              onPress={() => { hapticTap(); dismiss(); }}
-            >
-              <Text style={[styles.btnText, { fontSize: f.body }]}>{content.actionLabel}</Text>
-            </Pressable>
-          )}
+          <Pressable style={styles.btn} onPress={onPrimary}>
+            <LinearGradient
+              colors={tone.cta}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <View pointerEvents="none" style={styles.btnTopSheen} />
+            <Text style={[styles.btnText, { color: tone.ink, fontSize: f.body }]}>{content.actionLabel}</Text>
+          </Pressable>
 
           <Pressable onPress={dismiss} style={styles.close} hitSlop={12}>
             <Text style={[styles.closeText, { color: t.textSecond, fontSize: f.sub }]}>
@@ -118,7 +127,8 @@ function buildContent({
 }: Pick<Props, 'kind' | 'sr' | 'rankLabel' | 'finalPlace' | 'daysLeft'> & { lang: any }) {
   if (kind === 'ceiling_reached') {
     return {
-      emoji: '🏆',
+      icon: 'trophy' as const,
+      tone: 'gold' as const,
       title: triLang(lang, {
         ru: 'Добрался до Legend III',
         uk: 'Досяг Legend III',
@@ -167,7 +177,8 @@ function buildContent({
       : '';
     const rankText = rankLabel ? ` · ${rankLabel}` : '';
     return {
-      emoji: '🎖',
+      icon: 'medal' as const,
+      tone: 'gold' as const,
       title: triLang(lang, {
         ru: 'Сезон завершён',
         uk: 'Сезон завершено',
@@ -203,7 +214,8 @@ function buildContent({
 
   // ending_soon
   return {
-    emoji: '⏳',
+    icon: 'time' as const,
+    tone: 'amber' as const,
     title: triLang(lang, {
       ru: `До конца сезона ${daysLeft} дн.`,
       uk: `До кінця сезону ${daysLeft} дн.`,
@@ -249,42 +261,75 @@ const styles = StyleSheet.create({
   panel: {
     width: '100%',
     maxWidth: 360,
+    borderRadius: 24,
+    borderWidth: 1,
+    paddingTop: 24,
+    paddingBottom: 20,
+    paddingHorizontal: 26,
+    alignItems: 'center',
+    gap: 8,
+    overflow: 'hidden',
+  },
+  topGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 30,
+    right: 30,
+    height: 1.5,
+    opacity: 0.5,
+  },
+  medallion: {
+    width: 72,
+    height: 72,
     borderRadius: 20,
     borderWidth: 1,
-    padding: 28,
     alignItems: 'center',
-    gap: 12,
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginBottom: 4,
   },
-  emoji: {
-    fontSize: 52,
-    lineHeight: 60,
+  eyebrow: {
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
   },
   title: {
-    fontWeight: '700',
+    fontWeight: '800',
     textAlign: 'center',
     lineHeight: 28,
   },
   subtitle: {
     textAlign: 'center',
     lineHeight: 22,
+    marginTop: 2,
   },
   btn: {
-    marginTop: 4,
-    borderRadius: 14,
-    paddingVertical: 14,
+    marginTop: 14,
+    borderRadius: 16,
+    paddingVertical: 15,
     paddingHorizontal: 28,
     alignSelf: 'stretch',
     alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  btnTopSheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   btnText: {
-    color: '#fff',
-    fontWeight: '700',
+    fontWeight: '800',
   },
   close: {
-    marginTop: 4,
+    marginTop: 10,
     paddingVertical: 4,
   },
   closeText: {
-    textDecorationLine: 'underline',
+    fontWeight: '600',
   },
 });

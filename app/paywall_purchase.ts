@@ -37,6 +37,14 @@ import {
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { DEV_IAP_BYPASS } from './config';
+import {
+  DEV_PREVIEW_MONTHLY_PRICE,
+  DEV_PREVIEW_YEARLY_PRICE,
+  DEV_PREVIEW_YEARLY_PER_MONTH,
+  DEV_PREVIEW_LIFETIME_PRICE,
+  DEV_PREVIEW_LIFETIME_PACKAGE,
+  DEV_PREVIEW_URGENCY,
+} from './paywall_dev_preview';
 import { trackEvent } from './analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
@@ -96,7 +104,9 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
         }
         await activateUrgencyIfNeeded();
         const s = await getUrgencyState();
-        if (!dead) setUrgency(s);
+        // dev-превью: показываем таймер всегда, даже если 77ч-окно у этого
+        // устройства уже истекло (в стор-сборке используем реальный s).
+        if (!dead) setUrgency(DEV_IAP_BYPASS && !s.isActive ? DEV_PREVIEW_URGENCY : s);
       } catch { /* некритично */ }
     })();
     return () => { dead = true; };
@@ -145,15 +155,19 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     void loadOfferings(deadRef);
   }, [loadOfferings]);
 
-  // ── цены (только стор) ─────────────────────────────────────────────────────
-  const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString);
-  const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString);
-  const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString);
-  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly);
+  // ── цены ───────────────────────────────────────────────────────────────────
+  // В стор-сборке — ТОЛЬКО из стора (никаких хардкодов). В dev-сборке стор не
+  // опрашивается (DEV_IAP_BYPASS), поэтому подставляем плейсхолдеры, чтобы таймер
+  // и кнопка «Навсегда» были видны и в Metro. В покупку плейсхолдеры не уходят.
+  const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PRICE : '');
+  const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_MONTHLY_PRICE : '');
+  const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PRICE : '');
+  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly) || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
-  // Кнопка «Навсегда» показывается, только когда админ-флаг включён И пакет
-  // lifetime реально пришёл из RevenueCat (продукт заведён). Иначе — скрыта.
-  const lifetimeAvailable = isLifetimeButtonEnabled() && !!packages.lifetime;
+  // Кнопка «Навсегда» показывается, когда админ-флаг включён И пакет lifetime
+  // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —
+  // показываем превью кнопки, чтобы вёрстка была видна и в Metro.
+  const lifetimeAvailable = isLifetimeButtonEnabled() && (!!packages.lifetime || DEV_IAP_BYPASS);
 
   const savingsPct = useMemo(() => computeSavingsPct({
     yearlyPerMonth: (packages.yearly?.product as { pricePerMonth?: number } | undefined)?.pricePerMonth ?? null,
@@ -167,7 +181,8 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     (packages.yearly?.product as { price?: number } | undefined)?.price ?? null,
   ), [packages, yearlyPrice]);
 
-  const selectedPkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
+  const lifetimePkg = packages.lifetime ?? (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PACKAGE : undefined);
+  const selectedPkg = selected === 'lifetime' ? lifetimePkg : selected === 'yearly' ? packages.yearly : packages.monthly;
   const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
   const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);

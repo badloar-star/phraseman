@@ -15,6 +15,7 @@ const SHARD_PACKS_BY_PRODUCT_ID: Record<string, { packId: string; shards: number
 
 const PREMIUM_ACTIVE_EVENTS = new Set([
   'INITIAL_PURCHASE',
+  'NON_RENEWING_PURCHASE', // lifetime / one-time non-consumable (e.g. phraseman_premium_lifetime_v1)
   'RENEWAL',
   'UNCANCELLATION',
   'PRODUCT_CHANGE',
@@ -141,8 +142,9 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
   return /premium|subscription|sub/.test(offeringId);
 }
 
-function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' {
+function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' {
   const productId = cleanId(event.product_id).toLowerCase();
+  if (/lifetime|forever|one.?time|onetime|perpetual/.test(productId)) return 'lifetime';
   if (/year|yearly|annual|12.?month/.test(productId)) return 'yearly';
   return 'monthly';
 }

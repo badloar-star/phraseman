@@ -141,7 +141,6 @@ import {
   markLoyaltyGiftOfferSeen,
   startLoyaltyGift,
 } from './loyalty_gift';
-import { RaysHalo, FloatingShards, BreathHalo } from '../components/modal_fx/ModalFx';
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -763,21 +762,17 @@ function GlobalLevelUpHandler() {
               }}>
               {USE_ELITE_LEVEL_UP_MODAL && <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
-              {/* Праздничный слой повышения уровня: лучи + парящие осколки + дыхание ореола (без конфетти). */}
-              {USE_ELITE_LEVEL_UP_MODAL && showLevelUp && (
-                <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 230, alignItems: 'center', justifyContent: 'flex-start', overflow: 'hidden' }}>
-                  <View style={{ position: 'absolute', top: 78, alignItems: 'center', justifyContent: 'center' }}>
-                    <RaysHalo color="rgba(246,200,95,0.34)" size={260} rays={4} />
-                    <BreathHalo color="rgba(246,200,95,0.4)" size={150} />
-                  </View>
-                  <FloatingShards
-                    colors={['#FFE7A6', '#F6C85F', '#FFF2C9', '#E0A124']}
-                    count={9}
-                    reach={200}
-                    rise={150}
-                    bottomOffset={20}
-                  />
-                </View>
+              {/* Тёплое золотое свечение сверху панели — СТАТИЧНОЕ. Внутри глобального
+                  Modal анимированные (Reanimated) лупы = риск freeze/краша на Android
+                  (как и автоплей webp у LevelBadge), поэтому никакого движения тут. */}
+              {USE_ELITE_LEVEL_UP_MODAL && (
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={[`${levelUpAccent}40`, `${levelUpAccent}12`, 'transparent']}
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
+                  style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 200 }}
+                />
               )}
               {USE_ELITE_LEVEL_UP_MODAL && (
                 <>
@@ -810,18 +805,18 @@ function GlobalLevelUpHandler() {
                 </>
               )}
               {/* Static first frame: animated webp inside a global Modal was a freeze risk on Android. */}
-              <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale: levelUpModalScale }] }}>
+              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 {USE_ELITE_LEVEL_UP_MODAL && (
                   <LinearGradient
                     pointerEvents="none"
                     colors={[`${levelUpAccent}33`, 'transparent']}
                     start={{ x: 0.5, y: 0.5 }}
                     end={{ x: 1, y: 1 }}
-                    style={{ position: 'absolute', width: 150, height: 150, borderRadius: 75 }}
+                    style={{ position: 'absolute', width: 150, height: 150, borderRadius: 75, alignSelf: 'center' }}
                   />
                 )}
                 <LevelBadge level={currentLevel} size={USE_ELITE_LEVEL_UP_MODAL ? 108 : 100} autoplay={false} />
-              </Animated.View>
+              </View>
               <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.numLg + 2 : f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
                 {lang === 'uk' ? `РІВЕНЬ ${currentLevel}!` : lang === 'es' ? `¡NIVEL ${currentLevel}!` : `УРОВЕНЬ ${currentLevel}!`}
               </Text>
@@ -2166,7 +2161,14 @@ function AppContent() {
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const introFullAccessModalVisible = useOverlayVisible('introFullAccess', introFullAccessModal !== null);
   const loyaltyGiftModalVisible = useOverlayVisible('loyaltyGift', loyaltyGiftModal !== null);
-  const dailyPlanModalVisible = useOverlayVisible('dailyPlan', dailyPlanModalDue);
+  // ⚠️ Модалка «задания дня при первом входе» ОТКЛЮЧЕНА (DailyTasksFirstVisitModal в проде
+  // всегда возвращает null — её заменил брифинг Компаса). Поэтому ключ 'dailyPlan' НЕ ДОЛЖЕН
+  // просить единственный слот арбитра: dailyPlanModalDue становился true раз в сутки, арбитр
+  // отдавал слот ключу 'dailyPlan', но модалка не рендерилась → её никто не закрывал →
+  // closeDailyPlanModal() не вызывался → слот завис на весь день → ВСЕ тосты (они ниже по
+  // приоритету) глобально переставали показываться. Передаём false, пока модалка отключена.
+  // dailyPlanModalDue/closeDailyPlanModal оставлены для админ-превью и возможного возврата модалки.
+  const dailyPlanModalVisible = useOverlayVisible('dailyPlan', false);
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],

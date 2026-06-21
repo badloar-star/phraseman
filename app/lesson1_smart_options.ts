@@ -543,6 +543,44 @@ const getPerWordDistracts = (
   const cat = String(wordData.category ?? '').toLowerCase();
   const correctLower = String(currentCorrect).toLowerCase();
   const isSpanishTarget = ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es';
+
+  // ── FALSE-NEGATIVE GUARD (EN only) ──────────────────────────────────────────────
+  // Removes distractors that are ALSO a correct answer for the same prompt, so a learner
+  // who taps a genuinely-right word is never marked wrong. Three confirmed equivalence
+  // classes (audit 2026-06-21):
+  //   1. Deixis it/this/that/these/those — interchangeable for a BARE Russian "это/то"
+  //      subject ("Это важно" = "It is important" = "That is important"). Gated on the
+  //      Russian: a demonstrative source ("этот стол") forces this/that, so we DON'T strip.
+  //   2. Polite request can/could (and offer will/would) — "Can you…?" = "Could you…?".
+  //   3. (handled separately via month guard below.)
+  const enOnlyGuards = !isSpanishTarget && !isFrenchTarget;
+  const ruPrompt = String(phrase?.russian ?? phrase?.ukrainian ?? '').toLowerCase();
+  const correctKey = optionIdentity(currentCorrect);
+  const DEIXIS = new Set(['it', 'this', 'that', 'these', 'those']);
+  // Bare deictic source: contains это/то/эти as a standalone word, WITHOUT a gender/number
+  // demonstrative that would pin a specific English demonstrative.
+  const hasBareDeicticSource =
+    /(^|[^а-яё])(это|то|эти|это́)([^а-яё]|$)/.test(ruPrompt) &&
+    !/(этот|эта|эту|этой|этим|тот|та|ту|той|тем|те |тех|теми|той)/.test(ruPrompt);
+  const REQUEST_MODAL_EQUIV: Record<string, string[]> = {
+    can: ['could'], could: ['can'], will: ['would'], would: ['will'],
+  };
+  // A polite request: interrogative whose FIRST token is the modal and which addresses "you".
+  const isRequestFrame =
+    enSurface.trim().endsWith('?') &&
+    enSurface.trim().toLowerCase().startsWith(correctLower + ' ') &&
+    /\byou\b/i.test(enSurface);
+  const forbiddenEquivalents = new Set<string>();
+  if (enOnlyGuards) {
+    if (DEIXIS.has(correctKey) && hasBareDeicticSource) {
+      DEIXIS.forEach((w) => { if (w !== correctKey) forbiddenEquivalents.add(w); });
+    }
+    if (REQUEST_MODAL_EQUIV[correctKey] && isRequestFrame) {
+      REQUEST_MODAL_EQUIV[correctKey].forEach((w) => forbiddenEquivalents.add(w));
+    }
+  }
+  const isForbiddenEquivalent = (w: string): boolean =>
+    forbiddenEquivalents.size > 0 && forbiddenEquivalents.has(optionIdentity(w));
   const sameLanguageCategoryPool = (): string[] => {
     if (isSpanishTarget) {
       if (cat.includes('articulo') || cat === 'article') return ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas'];
@@ -594,7 +632,7 @@ const getPerWordDistracts = (
   };
 
   const categoryFallbackPool = sameLanguageCategoryPool().filter(
-    (w: string) => !String(w).includes(' ') && !isConfusingVolumeDistractor(String(w)),
+    (w: string) => !String(w).includes(' ') && !isConfusingVolumeDistractor(String(w)) && !isForbiddenEquivalent(String(w)),
   );
 
   // Closed-class guard (EN). When the correct word is a function word (preposition, article,
@@ -607,6 +645,13 @@ const getPerWordDistracts = (
     | { category: string; pool: string[] }
     | null => {
     if (isSpanishTarget || isFrenchTarget) return null; // ES/FR have their own category pools above
+    // Month homograph fix (e.g. "We meet in May"): "May" collides with modal "may", and
+    // "January"/"October" otherwise fall to the global pool and get look-alike nouns
+    // (junior/jaguar/octopus). A month in a phrase must get OTHER months as distractors.
+    // Detect by capitalized surface token matching the month list (proper-noun use).
+    if (WORD_POOLS_L1.months.includes(String(currentCorrect))) {
+      return { category: 'noun', pool: WORD_POOLS_L1.months };
+    }
     if (cat) return null; // content already declares a category — trust it
     if (WORD_POOLS_L1.prepositions.includes(correctLower)) return { category: 'preposition', pool: WORD_POOLS_L1.prepositions };
     if (WORD_POOLS_L1.articles.includes(correctLower)) return { category: 'article', pool: WORD_POOLS_L1.articles };
@@ -654,6 +699,7 @@ const getPerWordDistracts = (
           ...closedClassPool.map((value: string) => ({ value, category: effectiveCat, source: 'category' as const })),
         ].filter((candidate) => {
           if (isConfusingVolumeDistractor(candidate.value)) return false;
+          if (isForbiddenEquivalent(candidate.value)) return false;
           const k = optionIdentity(candidate.value);
           return !seen.has(k);
         })
@@ -665,6 +711,7 @@ const getPerWordDistracts = (
           ...globalFallbackPool.map((value: string) => ({ value, source: 'reserve' as const })),
         ].filter((candidate) => {
           if (isConfusingVolumeDistractor(candidate.value)) return false;
+          if (isForbiddenEquivalent(candidate.value)) return false;
           const k = optionIdentity(candidate.value);
           return !seen.has(k);
         });
@@ -682,6 +729,7 @@ const getPerWordDistracts = (
   if (contractionExpansion) seenLast.add(optionIdentity(contractionExpansion[0]));
   const uniqueDistractors = currentDistractors.filter((d: string) => {
     if (isConfusingVolumeDistractor(d)) return false;
+    if (isForbiddenEquivalent(d)) return false;
     const k = optionIdentity(d);
     if (seenLast.has(k)) return false;
     seenLast.add(k);
@@ -691,7 +739,7 @@ const getPerWordDistracts = (
   // Closed class: reserves come ONLY from the same class so the answer is never the lone
   // word of its kind. Open class keeps the broad noun/verb/adjective reserves as before.
   const reserveFillers = (closedClassGuard ? closedClassPool : [...categoryFallbackPool, ...globalFallbackPool]).filter(
-    (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
+    (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w) && !isForbiddenEquivalent(w),
   );
   const lastWordPool = [
     ...protectedValues.map((value) => ({ value, category: effectiveCat, source: 'manual' as const })),

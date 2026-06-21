@@ -272,14 +272,28 @@ function WordBankMode({ item, onResult }: WordBankProps) {
       </TouchableOpacity>
 
       {/* [SPEAKING] Произнести фразу вслух (premium). Говорение — необязательная
-          надстройка над уже отвеченной фразой, поэтому XP не начисляем (нет двойного
-          счёта и обещания XP на пейволе); фиксируем успех только в аналитике. */}
+          надстройка: XP не начисляем (нет двойного счёта и обещания XP на пейволе);
+          фиксируем успех только в аналитике.
+          Как в уроке (lesson1 → handleSpeakingFillAnswer): верный устный ответ САМ
+          раскладывает правильные слова по ячейкам и засчитывает фразу — юзеру не
+          надо после «Готово» вручную собирать слова. */}
       <SpeakingButton
         targetText={correctTokens.join(' ')}
         lang={lang}
         variant="pill"
         onPass={({ score }) => {
           void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
+          if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
+          // Заполняем поле ответа каноническими словами (как setSelectedWords в уроке)
+          // и очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
+          setSelected(correctTokens.map((text, slot) => ({ slot, text })));
+          setBank([]);
+          // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
+          // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
+          setFeedback('correct');
+          hapticSuccess();
+          playCorrect();
+          setTimeout(() => onResult(true), 700);
         }}
       />
     </View>

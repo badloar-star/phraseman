@@ -9674,7 +9674,8 @@
         <div class="pr-title" style="color:#86efac">08.06 — VipCelebrationModal</div>
         <div class="report-context" style="margin-top:8px;line-height:1.7">
           &nbsp;• Маркер AsyncStorage: <code>vip_celebration_pending_v1</code><br>
-          &nbsp;• Пишется Cloud Function <code>grantVip</code> при выдаче VIP из этой вкладки<br>
+          &nbsp;• VIP пишется в <code>users/{uid}.progress.vip_*</code> при выдаче из этой вкладки<br>
+          &nbsp;• Если uid осиротевший (identityHidden) — триггер <code>vipReconcileOrphanGrant</code> авто-переносит VIP на canonical-аккаунт<br>
           &nbsp;• Показывается один раз при первом запуске после выдачи VIP<br>
           &nbsp;• Не появляется у настоящих Premium-пользователей (у них PremiumCelebrationModal)<br>
           &nbsp;• Анимация: зелёное конфетти / «звёздочки», соответствует VIP-цвету<br>

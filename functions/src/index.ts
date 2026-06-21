@@ -1308,6 +1308,9 @@ export { syncFriendActivityMirrorCron } from './friend_activity_mirror';
 // ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
 export { premiumExpiryCron } from './premium_expiry_cron';
 
+// ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
+export { vipReconcileOrphanGrant } from './vip_orphan_reconcile';
+
 export { friendSendGift } from './friend_gifts';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────

@@ -65,8 +65,11 @@ exports.LOCK_TTL_MS = 30000;
  *  v2 (2026-06-10): prompt rewritten to explain ENGLISH grammar instead of restating the meaning.
  *  v3 (2026-06-10): explanation became LONGER and structured (short paragraphs, quoted English
  *  words for client-side highlighting) — v2 short texts are stale and must be regenerated.
+ *  v4 (2026-06-20): prompt re-aimed to teach the SINGLE most-confusable distinction of THIS phrase
+ *  (e.g. "it" vs "that") with a minimal pair, instead of narrating every obvious word — the old
+ *  90-word "walk through every word" texts are watered-down and must be regenerated.
  *  A doc whose schemaVersion is below this is treated as absent (see isCurrentSchema). */
-exports.EXPLAIN_SCHEMA_VERSION = 3;
+exports.EXPLAIN_SCHEMA_VERSION = 4;
 /** The `reason` written when the REPORT threshold rejects a phrase (explain_reports.ts).
  *  Report-rejected docs are STICKY: they never auto-regenerate (mass-report regen abuse) and can
  *  only be reset by an admin. Judge-rejected docs, by contrast, retry after a TTL — the judge has

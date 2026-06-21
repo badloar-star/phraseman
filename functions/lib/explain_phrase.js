@@ -65,8 +65,9 @@ const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'explain_billing';
 const MODEL_DEFAULT = 'gpt-4o-mini';
-// 90–140 words in Cyrillic ≈ 350–420 tokens; headroom so the model never cuts mid-sentence.
-const GEN_MAX_TOKENS = 520;
+// Single-contrast explanation (≤~110 words) in Cyrillic ≈ 150–250 tokens; 320 leaves headroom for
+// a rare two-part nuance without cutting mid-pair, and trims cost vs. the old word-by-word target.
+const GEN_MAX_TOKENS = 320;
 const GEN_TEMPERATURE = 0.7;
 function asText(value, max) {
     return String(value ?? '').trim().slice(0, max);

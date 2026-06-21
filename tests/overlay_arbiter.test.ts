@@ -1,4 +1,5 @@
 import {
+  decideWantsWrite,
   hasOtherWaiters,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
@@ -62,5 +63,48 @@ describe('OverlayArbiter starvation watchdog (H-ARBITER)', () => {
     // форсить нечего — владельца не трогаем (solo-модалку юзер просто долго читает)
     expect(resolveNextOverlayExcluding('update', wants('update'))).toBeNull();
     expect(resolveNextOverlayExcluding('update', {})).toBeNull();
+  });
+});
+
+describe('OverlayArbiter forcibly-released quarantine (anti ping-pong)', () => {
+  it('обычная запись wants проходит, когда ключ не в карантине', () => {
+    const r = decideWantsWrite('update', true, new Set<OverlayKey>());
+    expect(r.apply).toBe(true);
+    expect(r.nextForciblyReleased.has('update')).toBe(false);
+  });
+
+  it('зависший владелец НЕ может вернуть себе слот (wants:true игнорируется в карантине)', () => {
+    const quarantined = new Set<OverlayKey>(['update']);
+    const r = decideWantsWrite('update', true, quarantined);
+    expect(r.apply).toBe(false); // ← ключевое: пинг-понга не будет
+    expect(r.nextForciblyReleased.has('update')).toBe(true); // остаётся в карантине
+  });
+
+  it('настоящий релиз (wants:false) снимает карантин и применяется', () => {
+    const quarantined = new Set<OverlayKey>(['update']);
+    const r = decideWantsWrite('update', false, quarantined);
+    expect(r.apply).toBe(true);
+    expect(r.nextForciblyReleased.has('update')).toBe(false); // карантин снят
+  });
+
+  it('после снятия карантина ключ снова может занять слот', () => {
+    // релиз снимает карантин
+    const released = decideWantsWrite('update', false, new Set<OverlayKey>(['update']));
+    // следующая попытка занять слот уже проходит
+    const reacquire = decideWantsWrite('update', true, released.nextForciblyReleased);
+    expect(reacquire.apply).toBe(true);
+  });
+
+  it('карантин одного ключа не влияет на другие', () => {
+    const quarantined = new Set<OverlayKey>(['update']);
+    const r = decideWantsWrite('achievementToast', true, quarantined);
+    expect(r.apply).toBe(true);
+    expect(r.nextForciblyReleased.has('update')).toBe(true); // чужой карантин не тронут
+  });
+
+  it('не мутирует переданное множество (иммутабельность)', () => {
+    const original = new Set<OverlayKey>(['update']);
+    decideWantsWrite('update', false, original);
+    expect(original.has('update')).toBe(true); // вход не изменён
   });
 });

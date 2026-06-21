@@ -25,9 +25,11 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import {
+  decideWantsWrite,
   EMPTY_OVERLAY_WANTS,
   hasOtherWaiters,
   resolveNextOverlay,
@@ -58,7 +60,20 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
   const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
   const [active, setActive] = useState<OverlayKey | null>(null);
 
+  // Ключи, у которых сторож (H-ARBITER) принудительно отобрал слот, потому что владелец
+  // завис (ownState застрял true). Пока ключ здесь, его `wants:true` ИГНОРИРУЕТСЯ — иначе
+  // зависший владелец каждые 15с забирал бы слот обратно (пинг-понг). Очищается, только
+  // когда модалка реально освободит слот: setWants(key, false) (закрытие/размонтирование).
+  const forciblyReleasedRef = useRef<Set<OverlayKey>>(new Set());
+
   const setWants = useCallback((key: OverlayKey, wants: boolean) => {
+    const { apply, nextForciblyReleased } = decideWantsWrite(
+      key,
+      wants,
+      forciblyReleasedRef.current,
+    );
+    forciblyReleasedRef.current = nextForciblyReleased;
+    if (!apply) return;
     setWantsMap((prev) => (prev[key] === wants ? prev : { ...prev, [key]: wants }));
   }, []);
 
@@ -75,13 +90,19 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
   // И есть другие желающие, держим таймер; если за OVERLAY_MAX_HOLD_WITH_WAITERS_MS
   // владелец так и не освободил слот (его ownState завис true), принудительно передаём
   // слот следующему по приоритету — иначе тосты/алерты ниже навсегда заморожены.
+  // Важно: зависшего владельца кладём в карантин (forciblyReleased) И обнуляем его wants,
+  // чтобы слот не вернулся к нему через 15с (без этого был пинг-понг каждые 15с).
   useEffect(() => {
     if (!active || !hasOtherWaiters(active, wantsMap)) return;
     const t = setTimeout(() => {
       setActive((prev) => {
         if (!prev) return prev;
         const next = resolveNextOverlayExcluding(prev, wantsMap);
-        return next && next !== prev ? next : prev;
+        if (!next || next === prev) return prev;
+        // Карантин для зависшего владельца + снятие его wants, чтобы не было пинг-понга.
+        forciblyReleasedRef.current = new Set(forciblyReleasedRef.current).add(prev);
+        setWantsMap((m) => (m[prev] ? { ...m, [prev]: false } : m));
+        return next;
       });
     }, OVERLAY_MAX_HOLD_WITH_WAITERS_MS);
     return () => clearTimeout(t);

@@ -6,7 +6,7 @@ import {
   type OverlayKey,
 } from '../components/overlay_arbiter_core';
 
-const NEW_KEYS: OverlayKey[] = ['mysteryMondayChest', 'comebackDay', 'perfectWeekReward', 'boonEarlyPlashka'];
+const NEW_KEYS: OverlayKey[] = ['mysteryMondayChest', 'comebackDay', 'perfectWeekReward'];
 
 describe('boon overlay keys — согласованность структур', () => {
   it('каждый новый ключ есть в OVERLAY_PRIORITY', () => {
@@ -27,8 +27,34 @@ describe('boon overlay keys — согласованность структур'
     expect(resolveNextOverlay(null, { mysteryMondayChest: true })).toBe('mysteryMondayChest');
   });
 
-  it('reward-модалы приоритетнее ранней плашки', () => {
-    const chosen = resolveNextOverlay(null, { boonEarlyPlashka: true, comebackDay: true });
+  it('comebackDay приоритетнее перехватчиков-тостов ниже по очереди', () => {
+    const chosen = resolveNextOverlay(null, { comebackDay: true, achievementToast: true });
     expect(chosen).toBe('comebackDay');
+  });
+});
+
+describe('intro/loyalty overlay keys — гейтятся через арбитр (P1: anti-ANR)', () => {
+  it('introFullAccess и loyaltyGift есть во всех 3 структурах арбитра', () => {
+    for (const k of ['introFullAccess', 'loyaltyGift'] as OverlayKey[]) {
+      expect(OVERLAY_PRIORITY).toContain(k);
+      expect(EMPTY_OVERLAY_WANTS[k]).toBe(false);
+    }
+  });
+
+  it('системные модалы (update) приоритетнее intro/loyalty', () => {
+    expect(resolveNextOverlay(null, { update: true, introFullAccess: true })).toBe('update');
+    expect(resolveNextOverlay(null, { update: true, loyaltyGift: true })).toBe('update');
+  });
+
+  it('intro/loyalty приоритетнее dailyPlan/levelUp (welcome-поток раньше рутины)', () => {
+    expect(resolveNextOverlay(null, { introFullAccess: true, dailyPlan: true })).toBe('introFullAccess');
+    expect(resolveNextOverlay(null, { loyaltyGift: true, levelUp: true })).toBe('loyaltyGift');
+  });
+
+  it('удалённые мёртвые ключи отсутствуют в арбитре', () => {
+    const all = new Set<string>(OVERLAY_PRIORITY);
+    for (const dead of ['releaseWave', 'firstLessonSheet', 'boonEarlyPlashka']) {
+      expect(all.has(dead)).toBe(false);
+    }
   });
 });

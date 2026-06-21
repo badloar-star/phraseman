@@ -520,6 +520,13 @@ function GlobalLevelUpHandler() {
 
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
+  /**
+   * Удержание слота арбитра в окне перехода level-up → подарок. Между setShowLevelUp(false)
+   * и setShowGiftModal(true) идут await-ы (registerXP / премиум-проверка) + таймер 180-260мс,
+   * в это время обе модалки false. Без этого флага арбитр отдал бы слот любому ждущему тосту,
+   * и сундук-награда мигал бы за чужой модалкой. Ставится в dismissLevelUp, снимается в onGiftClose.
+   */
+  const [levelUpTransitioning, setLevelUpTransitioning] = useState(false);
   /** Премиум: два сундука (F2P + premium) вместо одного */
   const [levelGiftDualMode, setLevelGiftDualMode] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -541,6 +548,7 @@ function GlobalLevelUpHandler() {
   const showNext = useCallback(() => {
     if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
     dismissingLevelUpRef.current = false;
+    setLevelUpTransitioning(false);
     const lvl = queueRef.current[0];
     setCurrentLevel(lvl);
     setShowLevelUp(true);
@@ -629,6 +637,8 @@ function GlobalLevelUpHandler() {
   const dismissLevelUp = () => {
     if (dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
+    // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
+    setLevelUpTransitioning(true);
     Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setShowLevelUp(false);
@@ -667,6 +677,8 @@ function GlobalLevelUpHandler() {
   const onGiftClose = (_claimed: boolean) => {
     setShowGiftModal(false);
     dismissingLevelUpRef.current = false;
+    // Переход завершён — отпускаем слот арбитра.
+    setLevelUpTransitioning(false);
     queueRef.current = queueRef.current.slice(1);
     if (queueRef.current.length > 0) {
       queueMicrotask(showNext);
@@ -698,7 +710,7 @@ function GlobalLevelUpHandler() {
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
-  const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal);
+  const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal || levelUpTransitioning);
   const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
   const levelUpAccent = rewardModalAccentColor(themeMode, t);
@@ -2109,13 +2121,19 @@ function AppContent() {
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > releaseNotes > broadcast > notifNudge (releaseWave не подключён).
+  // Приоритет: update > releaseNotes > broadcast > notifNudge > introFullAccess >
+  // loyaltyGift > dailyPlan > levelUp.
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
+  // introFullAccess / loyaltyGift — нативные <Modal statusBarTranslucent>: их обязательно
+  // гейтить через арбитр, иначе на холодном старте они могут наложиться на другую такую же
+  // модалку (update/broadcast/levelUp/dailyPlan) → мерцание/зависание System UI (ANR) на Android.
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
+  const introFullAccessModalVisible = useOverlayVisible('introFullAccess', introFullAccessModal !== null);
+  const loyaltyGiftModalVisible = useOverlayVisible('loyaltyGift', loyaltyGiftModal !== null);
   const dailyPlanModalVisible = useOverlayVisible('dailyPlan', dailyPlanModalDue);
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
@@ -2370,7 +2388,7 @@ function AppContent() {
 
     {/* Bottomsheet первого урока после онбординга */}
     <IntroFullAccessModal
-      visible={appOverlaysEnabled && introFullAccessModal !== null}
+      visible={appOverlaysEnabled && introFullAccessModalVisible}
       variant={introFullAccessModal ?? 'welcome'}
       onPrimaryPress={() => {
         // Один и тот же модал 'ended' обслуживает и intro новичка, и подарок лояльности —
@@ -2393,7 +2411,7 @@ function AppContent() {
     />
 
     <LoyaltyGiftModal
-      visible={appOverlaysEnabled && loyaltyGiftModal !== null}
+      visible={appOverlaysEnabled && loyaltyGiftModalVisible}
       variant={loyaltyGiftModal === 'announce' ? 'announce' : 'gift'}
       onPrimaryPress={() => {
         // free → выдаём подарок; премиум/VIP → просто закрываем анонс.

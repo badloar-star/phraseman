@@ -1,11 +1,11 @@
 export type OverlayKey =
   | 'update'
   | 'releaseNotes'
-  | 'releaseWave'
   | 'broadcast'
   | 'leagueBonusAvailable'
   | 'notifNudge'
-  | 'firstLessonSheet'
+  | 'introFullAccess'
+  | 'loyaltyGift'
   | 'dailyPlan'
   | 'levelUp'
   | 'themedAlert'
@@ -18,7 +18,6 @@ export type OverlayKey =
   | 'mysteryMondayChest'
   | 'comebackDay'
   | 'perfectWeekReward'
-  | 'boonEarlyPlashka'
   | 'compassBriefing'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
@@ -36,11 +35,11 @@ export type WantsMap = Record<OverlayKey, boolean>;
 export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'update',
   'releaseNotes',
-  'releaseWave',
   'broadcast',
   'leagueBonusAvailable',
   'notifNudge',
-  'firstLessonSheet',
+  'introFullAccess',
+  'loyaltyGift',
   'dailyPlan',
   'levelUp',
   'themedAlert',
@@ -54,7 +53,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'comebackDay',
   'perfectWeekReward',
   'compassBriefing',
-  'boonEarlyPlashka',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
   'shardsEarned',
@@ -70,11 +68,11 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   update: false,
   releaseNotes: false,
-  releaseWave: false,
   broadcast: false,
   leagueBonusAvailable: false,
   notifNudge: false,
-  firstLessonSheet: false,
+  introFullAccess: false,
+  loyaltyGift: false,
   dailyPlan: false,
   levelUp: false,
   themedAlert: false,
@@ -87,7 +85,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   mysteryMondayChest: false,
   comebackDay: false,
   perfectWeekReward: false,
-  boonEarlyPlashka: false,
   compassBriefing: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,
@@ -141,4 +138,32 @@ export function resolveNextOverlayExcluding(
     if (k !== current && wantsMap[k]) return k;
   }
   return null;
+}
+
+/**
+ * Решение, можно ли записать `wants` для ключа с учётом «карантина» зависших владельцев.
+ *
+ * Сторож (H-ARBITER) кладёт зависшего владельца в `forciblyReleased`. Пока он там, его
+ * попытка снова занять слот (`wants:true`) ДОЛЖНА игнорироваться — иначе зависший владелец
+ * каждые 15с забирает слот обратно (пинг-понг), голодя нижние модалки. Карантин снимается
+ * только настоящим релизом (`wants:false`) — закрытием/размонтированием модалки.
+ *
+ * Чистая функция: возвращает следующее состояние множества карантина и применять ли запись.
+ * Провайдер вызывает её в setWants, тесты — напрямую.
+ */
+export function decideWantsWrite(
+  key: OverlayKey,
+  wants: boolean,
+  forciblyReleased: ReadonlySet<OverlayKey>,
+): { apply: boolean; nextForciblyReleased: Set<OverlayKey> } {
+  const next = new Set(forciblyReleased);
+  if (forciblyReleased.has(key)) {
+    if (wants) {
+      // Зависший владелец пытается снова занять слот, не освободив его — игнорируем.
+      return { apply: false, nextForciblyReleased: next };
+    }
+    // Настоящее освобождение — снимаем карантин, дальше запись применяется штатно.
+    next.delete(key);
+  }
+  return { apply: true, nextForciblyReleased: next };
 }

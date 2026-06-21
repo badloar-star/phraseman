@@ -75,3 +75,6 @@ export function resolveMatchOutcome(myScore: number, opponentScore: number): Are
   if (me < opp) return 'loss';
   return 'draw';
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

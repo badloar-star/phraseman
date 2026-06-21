@@ -17,7 +17,7 @@ import {
 } from '../app/arena_daily_limit';
 import { getShardsBalance, spendShards } from '../app/shards_system';
 import { emitAppEvent } from '../app/events';
-import { hapticTap, hapticWarning, hapticSuccess } from '../hooks/use-haptics';
+import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
@@ -40,6 +40,10 @@ interface Props {
 }
 
 const { height: SCREEN_H } = Dimensions.get('window');
+
+// Лимит арены — это НЕ наказание, а «доступно с Premium». Поэтому акцент янтарный,
+// а не красный (см. ALL_MODALS_AUDIT §3.2: красный портил семантику и конверсию).
+const ARENA_LIMIT_ACCENT = '#F4D889';
 
 function opaqueArenaLimitSurface(color: string): string {
   const trimmed = color.trim();
@@ -77,7 +81,7 @@ function ArenaLimitModal({
 
   useEffect(() => {
     if (visible) {
-      hapticWarning();
+      hapticTap();
       iconScale.setValue(0.6);
       titleY.setValue(20);
       titleOp.setValue(0);
@@ -213,7 +217,7 @@ function ArenaLimitModal({
 
         {/* Внутренний радиальный отблеск сверху листа */}
         <LinearGradient
-          colors={[t.wrong + '22', 'transparent']}
+          colors={[ARENA_LIMIT_ACCENT + '22', 'transparent']}
           start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
           style={styles.sheetGlow}
           pointerEvents="none"
@@ -229,15 +233,17 @@ function ArenaLimitModal({
             style={[
               styles.iconHalo,
               {
-                backgroundColor: t.wrong,
+                backgroundColor: ARENA_LIMIT_ACCENT,
                 opacity: iconPulse.interpolate({ inputRange: [0, 1], outputRange: [0.18, 0.42] }),
                 transform: [{ scale: iconPulse.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1.15] }) }],
               },
             ]}
           />
-          <Animated.Text style={[styles.emoji, { transform: [{ scale: iconScale }] }]}>⚔️</Animated.Text>
-          <View style={[styles.badgeRed, { backgroundColor: t.wrong }]}>
-            <Ionicons name="lock-closed" size={14} color={t.correctText} />
+          <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+            <Ionicons name="time-outline" size={56} color={ARENA_LIMIT_ACCENT} />
+          </Animated.View>
+          <View style={[styles.badgeRed, { backgroundColor: ARENA_LIMIT_ACCENT }]}>
+            <Ionicons name="time" size={14} color="#3A2C06" />
           </View>
         </View>
 
@@ -309,12 +315,12 @@ function ArenaLimitModal({
                 style={[
                   styles.dot,
                   {
-                    backgroundColor: used ? t.wrong : t.bgSurface,
-                    borderColor: used ? t.wrong : t.border,
+                    backgroundColor: used ? ARENA_LIMIT_ACCENT : t.bgSurface,
+                    borderColor: used ? ARENA_LIMIT_ACCENT : t.border,
                   },
                   isLastUsed && {
                     transform: [{ scale: dotPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.3] }) }],
-                    shadowColor: t.wrong,
+                    shadowColor: ARENA_LIMIT_ACCENT,
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: 0.9,
                     shadowRadius: 6,

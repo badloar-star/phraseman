@@ -1,10 +1,15 @@
 import React, { memo } from 'react';
-import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import CompassDepthSurface from './CompassDepthSurface';
+
+// Тайм-аут — не наказание, а «время вышло»: тёплый коралловый акцент, без loss-framing.
+const TIMEOUT_ACCENT = '#F0A35E';
 
 interface Props {
   visible: boolean;
@@ -49,29 +54,44 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
             ]}
           >
             {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
-            <Text style={{ fontSize: 52, marginBottom: 12 }}>⏰</Text>
+            {/* Верхняя линия-свечение акцента */}
+            <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 28, right: 28, height: 1.5, backgroundColor: TIMEOUT_ACCENT, opacity: 0.5 }} />
+            {/* Медальон-иконка вместо эмодзи ⏰ */}
+            <View style={{ width: 70, height: 70, borderRadius: 20, borderWidth: 1, borderColor: `${TIMEOUT_ACCENT}55`, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', marginBottom: 12 }}>
+              <LinearGradient
+                pointerEvents="none"
+                colors={[`${TIMEOUT_ACCENT}30`, 'transparent']}
+                start={{ x: 0.5, y: 0 }}
+                end={{ x: 0.5, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <Ionicons name="time-outline" size={34} color={TIMEOUT_ACCENT} />
+            </View>
+            <Text style={{ color: TIMEOUT_ACCENT, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 6 }}>
+              {triLang(lang, { ru: 'Время', uk: 'Час', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas' })}
+            </Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
-                ru: 'Время вышло!',
-                uk: 'Час вийшов!',
-                es: '¡Se acabó el tiempo!',
-                'pt-BR': 'O tempo acabou!',
-                vi: 'Hết giờ!',
-                id: 'Waktu habis!',
-                tr: 'Süre doldu!',
-                pl: 'Czas minął!',
+                ru: 'Время вышло',
+                uk: 'Час вийшов',
+                es: 'Se acabó el tiempo',
+                'pt-BR': 'O tempo acabou',
+                vi: 'Hết giờ',
+                id: 'Waktu habis',
+                tr: 'Süre doldu',
+                pl: 'Czas minął',
               })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: hardMode ? 8 : 24 }}>
               {triLang(lang, {
-                ru: 'Почти! Попробуй ещё раз.',
-                uk: 'Дуже шкода 😔 Спробуй ще раз!',
-                es: '¡Qué pena! 😔 ¡Inténtalo de nuevo!',
-                'pt-BR': 'Que pena 😔 Tente de novo!',
-                vi: 'Tiếc quá 😔 Hãy thử lại!',
-                id: 'Sayang sekali 😔 Coba lagi!',
-                tr: 'Üzgünüm 😔 Tekrar dene!',
-                pl: 'Szkoda 😔 Spróbuj jeszcze raz!',
+                ru: 'Почти получилось — попробуй ещё раз.',
+                uk: 'Майже вийшло — спробуй ще раз.',
+                es: 'Casi lo logras: inténtalo de nuevo.',
+                'pt-BR': 'Quase lá — tente de novo.',
+                vi: 'Suýt rồi — hãy thử lại.',
+                id: 'Hampir berhasil — coba lagi.',
+                tr: 'Az kaldı — tekrar dene.',
+                pl: 'Prawie się udało — spróbuj jeszcze raz.',
               })}
             </Text>
             {hardMode && (
@@ -91,12 +111,12 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
             <TouchableOpacity
               style={[
                 {
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
                   borderRadius: buttonRadius,
-                  paddingVertical: 14,
+                  paddingVertical: 15,
                   paddingHorizontal: 32,
                   width: '100%',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   overflow: 'hidden',
                   borderWidth: isCompassTheme ? 1 : 0,
                   borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
@@ -105,8 +125,21 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
               ]}
               onPress={onClose}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }}>
+              {isCompassTheme ? (
+                <CompassDepthSurface radius={buttonRadius} cream />
+              ) : (
+                <>
+                  <LinearGradient
+                    pointerEvents="none"
+                    colors={['#F6C79E', '#E0883E']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={StyleSheet.absoluteFill}
+                  />
+                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
+                </>
+              )}
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#3A2206', fontSize: f.body, fontWeight: '800' }}>
                 {triLang(lang, {
                   ru: 'Понятно',
                   uk: 'Зрозуміло',

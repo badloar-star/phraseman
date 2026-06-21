@@ -45,7 +45,7 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             testID="vip-survey-review-close"
             activeOpacity={0.76}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Close', 'pt-BR': 'Close', vi: 'Close', id: 'Close', tr: 'Close', pl: 'Close' })}
+            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             onPress={close}
             style={[styles.closeButton, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isDark ? '#17202A' : '#EEF2F7', borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border, borderRadius: isCompassTheme ? 8 : 17, overflow: 'hidden' }]}
           >
@@ -61,24 +61,24 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             {triLang(lang, {
               ru: 'Ваш VIP активирован',
               uk: 'Ваш VIP активовано',
-              es: 'Your VIP is active',
-              'pt-BR': 'Your VIP is active',
-              vi: 'Your VIP is active',
-              id: 'Your VIP is active',
-              tr: 'Your VIP is active',
-              pl: 'Your VIP is active',
+              es: 'Tu VIP está activo',
+              'pt-BR': 'Seu VIP está ativo',
+              vi: 'VIP của bạn đã kích hoạt',
+              id: 'VIP-mu sudah aktif',
+              tr: 'VIP’in aktif',
+              pl: 'Twój VIP jest aktywny',
             })}
           </Text>
           <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
               ru: 'Хотите поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
               uk: 'Хочете поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
-              es: 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
-              'pt-BR': 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
-              vi: 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
-              id: 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
-              tr: 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
-              pl: 'Would you like to share your impression of Phraseman? An honest review helps other people know what to expect from the app.',
+              es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
+              'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
+              vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
+              id: 'Mau berbagi kesanmu tentang Phraseman? Ulasan yang jujur membantu orang lain tahu apa yang bisa diharapkan dari aplikasi ini.',
+              tr: 'Phraseman hakkındaki izlenimini paylaşmak ister misin? Dürüst bir değerlendirme, başkalarının uygulamadan ne bekleyeceğini anlamasına yardımcı olur.',
+              pl: 'Chcesz podzielić się wrażeniami o Phraseman? Szczera recenzja pomoże innym zrozumieć, czego oczekiwać od aplikacji.',
             })}
           </Text>
           <TouchableOpacity
@@ -91,7 +91,7 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             {isCompassTheme && <CompassDepthSurface radius={9} cream />}
             <Ionicons name="create-outline" size={19} color={isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF'} />
             <Text style={[styles.primaryText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF' }]}>
-              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Write a review', 'pt-BR': 'Write a review', vi: 'Write a review', id: 'Write a review', tr: 'Write a review', pl: 'Write a review' })}
+              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </TouchableOpacity>
         </View>

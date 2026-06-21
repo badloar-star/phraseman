@@ -76,6 +76,7 @@ import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
+import PerfectWeekHost from '../components/PerfectWeekHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
@@ -2489,6 +2490,7 @@ export default function RootLayout() {
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />
                     <ComebackBoonHost />
+                    <PerfectWeekHost />
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />

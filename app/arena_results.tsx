@@ -21,6 +21,7 @@ import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRemat
 import { ArenaSession, RematchOffer, REMATCH_TTL_MS, SessionPlayer, type RankTier } from './types/arena';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import AvatarView from '../components/AvatarView';
+import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import { getLevelFromXP, screenTextOnGradient } from '../constants/theme';
 import { onArenaWin, addShards, loadShardsFromCloud } from './shards_system';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
@@ -274,6 +275,12 @@ export default function DuelResultsScreen() {
   }, [pendingCardDrop, shownCardDrop, showRatingModal, rankCinematic]);
   const [hillResult, setHillResult] = useState<ArenaHillAttemptResult | null>(null);
   const [clubWarResult, setClubWarResult] = useState<ArenaClubWarContributionResult | null>(null);
+  /** Профиль соперника после матча (профиль + «Добавить в друзья»/реванш). Только реальный PvP-соперник. */
+  const [opponentProfile, setOpponentProfile] = useState<PlayerInfo | null>(null);
+  const [myProfileName, setMyProfileName] = useState<string>('');
+  useEffect(() => {
+    AsyncStorage.getItem('user_name').then((n) => { if (n && n.trim()) setMyProfileName(n.trim()); }).catch(() => {});
+  }, []);
   const [xpGainedServer, setXpGainedServer] = useState<number | null>(null);
   const [isDrawServer, setIsDrawServer] = useState<boolean>(false);
   const [resultCardW, setResultCardW] = useState(0);
@@ -1789,9 +1796,25 @@ export default function DuelResultsScreen() {
             {sorted.map((p, idx) => {
               const isMe = p.playerId === userId;
               const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}.`;
+              // Профиль соперника доступен только для реального PvP (не бот, не друг, есть uid).
+              const canOpenProfile = !isMe && !isMockSession && !isFriendMatch && !!p.playerId;
+              const openOpponentProfile = () => {
+                if (!canOpenProfile) return;
+                setOpponentProfile({
+                  name: p.displayName ?? 'Соперник',
+                  points: 0,
+                  isMe: false,
+                  avatar: p.avatar ?? String(p.avatarLevel ?? 1),
+                  aura: p.aura,
+                  uid: p.playerId,
+                });
+              };
               return (
-                <View
+                <TouchableOpacity
                   key={p.playerId}
+                  activeOpacity={canOpenProfile ? 0.7 : 1}
+                  disabled={!canOpenProfile}
+                  onPress={openOpponentProfile}
                   style={[
                     styles.leaderboardRow,
                     { borderTopColor: t.border },
@@ -1846,7 +1869,10 @@ export default function DuelResultsScreen() {
                       );
                     })()}
                   </View>
-                </View>
+                  {canOpenProfile ? (
+                    <Ionicons name="person-circle-outline" size={18} color={t.textMuted} style={{ marginLeft: 4 }} />
+                  ) : null}
+                </TouchableOpacity>
               );
             })}
           </View>
@@ -2382,6 +2408,13 @@ export default function DuelResultsScreen() {
         kind="ceiling_reached"
         sr={seasonCeilingModal?.sr ?? 0}
         onClose={() => setSeasonCeilingModal(null)}
+      />
+
+      {/* Профиль соперника после матча: добавить в друзья / вызвать на реванш. */}
+      <PlayerProfileModal
+        player={opponentProfile}
+        myInfo={{ name: myProfileName || 'Я', avatar: '', frame: '', aura: '', totalXP: 0, streak: null }}
+        onClose={() => setOpponentProfile(null)}
       />
     </ScreenGradient>
   );

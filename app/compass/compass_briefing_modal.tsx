@@ -11,10 +11,12 @@
  */
 import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
+import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { compassOn } from './compass_flags';
 import type { CompassDay, CompassTask, CompassTaskKind } from './compass_brain';
 import { useCompassVoice } from './use_compass_voice';
@@ -46,7 +48,7 @@ interface CompassBriefingModalProps {
 }
 
 export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress }: CompassBriefingModalProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
   // Хук вызывается всегда (правила хуков) и сам безопасно обрабатывает day=null.
@@ -68,6 +70,13 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
             <Text style={[styles.title, { color: t.textPrimary }]} numberOfLines={1}>
               {dayLabel}
             </Text>
+            {/* Иконка компаса темы — свой ассет на каждую тему (правый верхний угол). */}
+            <Image
+              source={compassIconSource(themeMode)}
+              style={styles.themeGlyph}
+              contentFit="contain"
+              accessibilityIgnoresInvertColors
+            />
           </View>
 
           <Text style={[styles.comment, { color: t.textSecond }]}>{comment}</Text>
@@ -126,6 +135,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   badge: { width: 38, height: 38, borderRadius: 12, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontSize: 17, fontWeight: '800' },
+  themeGlyph: { width: 40, height: 40, marginLeft: 6 },
   comment: { fontSize: 14, lineHeight: 20, fontWeight: '600' },
   tasks: { gap: 8 },
   task: { flexDirection: 'row', alignItems: 'center', gap: 11, borderWidth: 1, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 12 },

@@ -11,7 +11,7 @@
  * Показ «раз в день» хранится локально (AsyncStorage), чтобы не всплывать при
  * каждом возврате на главную.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
@@ -33,6 +33,15 @@ function todayKey(nowMs: number): string {
   return `${SEEN_KEY_PREFIX}${y}-${m}-${day}`;
 }
 
+// МОДУЛЬНЫЙ latch (живёт всю сессию JS-бандла, переживает ПЕРЕМОНТИРОВАНИЕ хоста).
+// Прошлый фикс держал «показано» в useRef — но ref сбрасывается при remount хоста
+// (мигание hasPremiumAccess при фоновом cloud-refresh, ремаунт поддерева home,
+// навигация), поэтому модал «всплывал, пропадал и снова всплывал бесконечно».
+// AsyncStorage-маркер асинхронный → при быстром remount checkedSeen успевал
+// прочитаться как «ещё не видели» до записи. Модульный latch снимает оба случая
+// синхронно: один раз показали/закрыли за день — больше не открываем до смены дня.
+let _compassBriefingShownForDay: string | null = null;
+
 interface CompassBriefingHostProps {
   /** Колбэк «начать день» — навигация решается вызывающим экраном (home). */
   onStartDay?: () => void;
@@ -50,12 +59,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const { day, loading } = useCompassDay(now);
   const [visible, setVisible] = useState(false);
   const [checkedSeen, setCheckedSeen] = useState(false);
-  // Один показ за сессию хоста. Без него эффект показа ниже снова выставлял бы
-  // visible=true при КАЖДОЙ пересборке `day`/смене `loading` (useCompassDay
-  // перезагружает день при изменении studyTarget) — модал «всплывал несколько раз
-  // сам и сам закрывался». checkedSeen остаётся true до перемонтирования, поэтому
-  // одного локального маркера AsyncStorage в рамках сессии недостаточно.
-  const shownThisSessionRef = useRef(false);
+  const dayKey = todayKey(now);
   // Онбординг должен быть завершён: иначе брифинг всплывает поверх онбординга
   // (экран home смонтирован под оверлеем). null = ещё не проверили.
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
@@ -88,16 +92,21 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   }, [hasPremiumAccess]);
 
   const markSeen = useCallback(() => {
-    void AsyncStorage.setItem(todayKey(now), '1').catch(() => {});
-  }, [now]);
+    // Латчим СИНХРОННО в модульной переменной (переживает remount), потом пишем в
+    // AsyncStorage (переживает перезапуск приложения). Синхронный латч — главное:
+    // он гасит повторный показ до того, как асинхронная запись успеет завершиться.
+    _compassBriefingShownForDay = dayKey;
+    void AsyncStorage.setItem(dayKey, '1').catch(() => {});
+  }, [dayKey]);
 
   // Показываем, только когда: онбординг завершён, день готов, есть реальная история
   // (тип ≠ first_day) и сегодня ещё не показывали. Чистый лист брифингом не дёргаем.
-  // ВАЖНО: показываем РОВНО ОДИН РАЗ за сессию (shownThisSessionRef). Иначе эффект
-  // повторно открывал бы модал на каждой пересборке `day`/смене `loading` уже ПОСЛЕ
-  // того, как пользователь его закрыл — модал «всплывал сам несколько раз».
+  // ВАЖНО: латч `_compassBriefingShownForDay` — МОДУЛЬНЫЙ (не ref): он переживает
+  // перемонтирование хоста (мигание hasPremiumAccess / ремаунт home / навигация),
+  // поэтому модал больше не «всплывает, пропадает и снова всплывает бесконечно».
+  // Латч ставим СИНХРОННО в том же кадре, что и setVisible(true), до любого await.
   useEffect(() => {
-    if (shownThisSessionRef.current) return;
+    if (_compassBriefingShownForDay === dayKey) return;
     if (
       compassOn() &&
       hasPremiumAccess &&
@@ -107,11 +116,10 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       day &&
       day.type !== 'first_day'
     ) {
-      shownThisSessionRef.current = true;
       markSeen();
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, markSeen]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, markSeen, dayKey]);
 
   const handleStart = useCallback(() => {
     markSeen();

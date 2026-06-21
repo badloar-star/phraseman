@@ -171,7 +171,22 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   }
   if (legacyAdminGrant) return cacheReal(false);
   if (!storePlan) return cacheReal(false);
+  // КРИТИЧНО (защита от ложной потери оплаченного премиума): сюда мы попадаем, когда
+  // RevenueCat НЕ ОТВЕТИЛ (таймаут 8с или исключение) — в Expo Go или при сбое сети.
+  // Это НЕ то же самое, что «RC сказал: не премиум» (та ветка выше, строки ~149-160).
+  // Если RENEWAL уже прошёл, но облако ещё не обновило premium_rc_expiry_ms (webhook
+  // опоздал), локальный expiry/rcExpiry может выглядеть «истёкшим», хотя подписка
+  // активна. Снять премиум здесь = отобрать оплаченный доступ у платящего из-за обрыва
+  // связи. Поэтому: пока был недавний реальный премиум (premium_active='true' + свежий
+  // RC_LAST_SEEN в пределах RC_STALE_GRACE_MS), держим доступ, а не снимаем.
   if (rcExpiryExpired || (expiry > 0 && expiry < now)) {
+    if (active === 'true') {
+      const lastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY);
+      const lastSeen = parseInt(lastSeenRaw || '0') || 0;
+      if (lastSeen > 0 && now - lastSeen <= RC_STALE_GRACE_MS) {
+        return cacheReal(true);
+      }
+    }
     await AsyncStorage.setItem('premium_active', 'false');
     return cacheReal(false);
   }

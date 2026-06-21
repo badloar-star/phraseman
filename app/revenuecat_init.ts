@@ -11,6 +11,12 @@ import {
   revenueCatPremiumMetadata,
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
+import { invalidatePremiumCache } from './premium_guard';
+
+// Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
+// восстановлении. Без слушателя клиент узнаёт о продлении только через 5-мин кэш или
+// рестарт (риск «оплатил/продлилось, а премиум виден с задержкой»). Вешаем ОДИН раз.
+let _customerInfoListenerAttached = false;
 
 /**
  * Из общего `availablePackages` возвращает monthly + yearly + (опционально) lifetime.
@@ -196,6 +202,33 @@ export async function syncRevenueCatIdentity(): Promise<boolean> {
   return identityReady;
 }
 
+/**
+ * Применяет CustomerInfo, пришедший пушем от RevenueCat (покупка/RENEWAL/restore).
+ * Лёгкий путь: при активном премиуме — записываем store-премиум и сбрасываем кэш,
+ * чтобы UI мгновенно показал доступ. При неактивном — только инвалидируем кэш (не
+ * снимаем агрессивно: фактическое снятие проходит штатную проверку в premium_guard
+ * с grace-окнами, чтобы не отобрать оплаченное из-за гонки). Тестерский kill-switch
+ * tester_no_premium уважаем — не воскрешаем премиум.
+ */
+async function applyPushedCustomerInfo(info: unknown): Promise<void> {
+  try {
+    const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+    if (noPremium === 'true') return;
+    const entitlementsActive = Object.keys((info as any)?.entitlements?.active ?? {}).length > 0;
+    const subs = (info as any)?.activeSubscriptions;
+    const isActive = entitlementsActive || (Array.isArray(subs) && subs.length > 0);
+    if (isActive) {
+      const metadata = revenueCatPremiumMetadata(info as any);
+      const plan = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
+      await persistStorePremiumLocally(plan, metadata); // внутри invalidatePremiumCache + RC_LAST_SEEN
+    } else {
+      invalidatePremiumCache();
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[RevenueCat] applyPushedCustomerInfo error:', e);
+  }
+}
+
 async function _doInit(): Promise<void> {
   configureRevenueCatLogging();
 
@@ -219,6 +252,16 @@ async function _doInit(): Promise<void> {
       Purchases.configure({ apiKey: RC_API_KEY });
     }
     await syncRevenueCatIdentity();
+    // Мгновенная доставка: подхватываем покупки/RENEWAL без ожидания 5-мин кэша/рестарта.
+    if (!_customerInfoListenerAttached) {
+      _customerInfoListenerAttached = true;
+      try {
+        Purchases.addCustomerInfoUpdateListener((info) => { void applyPushedCustomerInfo(info); });
+      } catch (e) {
+        _customerInfoListenerAttached = false;
+        if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
+      }
+    }
     // Параллельно с getCustomerInfo: прогрев getOfferings → кэш цен для мгновенного магазина
     if (DEV_STORE_BILLING_OPTIONAL) {
       return;

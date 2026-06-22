@@ -13,9 +13,10 @@ export const RELEASE_NOTES_MIN_BUILD_ID = 73;
 
 /**
  * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.
- * Для текущего релиза новые установки 23 мая 2026 и позже не видят окно.
+ * Окно «что нового» видят ТОЛЬКО те, у кого приложение стояло ДО 22 июня 2026; установки
+ * 22 июня 2026 и позже (новые юзеры) окно не видят.
  */
-export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 4, 23, 0, 0, 0, 0);
+export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 5, 22, 0, 0, 0, 0);
 
 const DISMISS_KEY = 'release_notes_dismissed_2026_05_23_polish_v1';
 

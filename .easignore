@@ -109,7 +109,12 @@ assets/images/arena_actions_sources/
 assets/paywall_preview_v2.html
 assets/*Copy.txt
 assets/images/streak_overlays/*source*
+assets/images/streak_overlays/*-source.*
 assets/images/league/*_source.*
+**/*-source.png
+**/*_source.png
+**/*-source.webp
+**/*_source.webp
 assets/images/quizzes/medals/*sheet.png
 assets/images/personal_plan_tasks/*.png
 
@@ -119,3 +124,17 @@ ios/build/
 
 # Let EAS regenerate android/ via expo prebuild for clean dependency resolution
 android/
+
+# Personal-plan listening audio now streams from Firebase Storage (plan-audio/**)
+# and is disk-cached on device — see app/plan_audio_url_map.generated.ts. The local
+# mp3 are kept on disk only as a backup/regen source, so they must NOT be uploaded
+# to EAS (the require() map was neutralized; nothing bundles them). ~126 MB saved
+# from every EAS upload archive.
+assets/audio/personal-plans-runtime/
+
+# Collectible card art now streams from Firebase Storage (collectible-images/**)
+# and is disk-cached on device — see app/collectibles/collectible_image_url_map.generated.ts.
+# The local webp are the regen/backup source (full-res q90), no longer bundled
+# (removed from app.json assetPatternsToBeBundled; CollectibleArt uses URLs + SVG
+# fallback). ~71 MB saved from every EAS upload archive.
+assets/images/collectibles/dalli/

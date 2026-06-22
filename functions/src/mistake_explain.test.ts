@@ -107,6 +107,12 @@ jest.mock('./openai_dialog_model_config', () => ({
 }));
 
 import { explainMistake as explainMistakeRaw } from './mistake_explain';
+import {
+  mistakeHashFor,
+  MISTAKE_COLLECTION,
+  MISTAKE_SCHEMA_VERSION,
+} from './explain/mistake_explain_cache';
+import { resolvePromptLangKey } from './explain/explain_prompts';
 
 type CallableRequest = { auth?: { uid: string }; data: DocData };
 type ExplainMistakeResponse = { ok: true; text: string; remainingQuota: number; model: string; fromCache: boolean; variant: string };
@@ -264,5 +270,49 @@ describe('explainMistake', () => {
     expect(second.text).toBe(first.text);
     // No new provider call for the cached repeat.
     expect((global.fetch as jest.Mock).mock.calls.length).toBe(fetchCallsAfterFirst);
+  });
+
+  // Regression (audit 2026-06-22): a breakdown the user is SHOWN must always be cached, even when
+  // this request lost the generation lock — else the phrase reads as «нет в кэше» in admin while
+  // the user already saw a real explanation. Persistence must not be gated on winning the lock.
+  function hashFor(payload: typeof validPayload): string {
+    return mistakeHashFor(payload.targetAnswer, payload.userAnswer, resolvePromptLangKey(payload.interfaceLang));
+  }
+
+  // Seed a FRESH pending doc written by "another request", so claimMistakePendingLock returns false.
+  function seedFreshPendingLock(payload: typeof validPayload) {
+    docs.set(`${MISTAKE_COLLECTION}/${hashFor(payload)}`, {
+      status: 'pending',
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      reason: null,
+      createdAtMs: Date.now(), // fresh (now) → not stale → our request loses the lock
+      updatedAtMs: Date.now(),
+    });
+  }
+
+  it('FULL: caches the breakdown even when the generation lock is lost (no «нет в кэше» for shown text)', async () => {
+    seedFreshPendingLock(validPayload);
+
+    const res = await callExplain(validPayload);
+    expect(res.fromCache).toBe(false);
+    expect(res.text).toContain('have'); // the user IS shown a real breakdown
+    // ...and it was persisted as ready (lock loss must not drop the cache write).
+    expect(cacheDocs().some((d) => d.status === 'ready' && d.full)).toBe(true);
+
+    // A later identical request is now free.
+    const again = await callExplain(validPayload, 'auth-2');
+    expect(again.fromCache).toBe(true);
+    expect(again.text).toBe(res.text);
+  });
+
+  it('ELI5-before-full: materializes the ready doc even when the lock is lost', async () => {
+    seedFreshPendingLock(validPayload);
+    mockOkProvider('Маленькая правка: скажи "have", не "has".');
+
+    const res = await callExplain({ ...validPayload, variant: 'eli5' });
+    expect(res.variant).toBe('eli5');
+    expect(res.fromCache).toBe(false);
+    // The doc must end up ready WITH an eli5 even though we lost the full-breakdown lock.
+    expect(cacheDocs().some((d) => d.status === 'ready' && d.full && d.eli5)).toBe(true);
   });
 });

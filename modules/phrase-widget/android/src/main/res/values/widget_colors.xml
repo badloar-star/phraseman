@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Light-mode widget palette. Dark-mode overrides live in values-night/. -->
+<!--
+  Widget picker-preview palette. Matches the DEFAULT `dark` chrome from
+  daily_phrase_chrome.ts so the gallery thumbnail looks like the real placed
+  widget. The LIVE widget reads its palette from the RN snapshot (per active
+  theme); these resources only color the static preview/initialLayout.
+-->
 <resources>
-    <color name="phrase_widget_bg">#FFF7F5FF</color>
-    <color name="phrase_widget_primary">#FF1A1726</color>
-    <color name="phrase_widget_secondary">#FF5B5570</color>
-    <color name="phrase_widget_accent">#FF7C5CFF</color>
+    <color name="phrase_widget_bg">#FF13241C</color>
+    <color name="phrase_widget_primary">#FFFFFFFF</color>
+    <color name="phrase_widget_secondary">#FFB8D9C2</color>
+    <color name="phrase_widget_kicker">#FFD9FFE5</color>
+    <color name="phrase_widget_accent">#FF58CC89</color>
 </resources>

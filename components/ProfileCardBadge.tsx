@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { Text, View, ViewStyle } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { ENABLE_PROFILE_CARD } from '../app/config';
-import {
-  profileCardLevelRoman,
-  resolveProfileCardDisplay,
-} from '../app/profile_card_system';
+import { useLang } from './LangContext';
+import { resolveProfileCardDisplay } from '../app/profile_card_system';
+import { profileCardLevelLabel } from './profileCardLabel';
 
 type Props = {
   /** Raw stored card level (0–5). Anything <= 0 renders nothing. */
@@ -17,13 +17,15 @@ type Props = {
 };
 
 /**
- * Compact "CARD V" prestige pill shown next to a player's name in lists (friends, arena
- * leaderboard, club roster) and the arena/PvP versus screen. This is the public payoff
+ * Compact prestige pill shown next to a player's name in lists (friends, arena
+ * leaderboard, club roster) and the arena/PvP versus screen. The label is the localized
+ * level name (Russian product names, or "Lv N" elsewhere) — no "CARD" prefix. This is the public payoff
  * of upgrading the profile card: previously the level was synced and stored but never
  * drawn in any list — so a higher card gave the owner no visible status anywhere except
  * deep inside the profile modal. Level 0 renders null to keep lists clean.
  */
 function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
+  const { lang } = useLang();
   // Gated on the same kill-switch as the upgrade flow: flipping ENABLE_PROFILE_CARD off
   // must remove the public footprint everywhere (lists still carry synced levels), not
   // just block new upgrades.
@@ -33,6 +35,10 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
 
   const compact = size === 'sm';
   const fontSize = compact ? 9 : 10;
+  // Топ-уровни (4 Prestige, 5 Elite) получают искру-иконку и более сильную тень,
+  // чтобы выделяться в списках друзей/арены — это публичный «payoff» апгрейда.
+  const isTopTier = cardLevel >= 4;
+  const iconSize = compact ? 9 : 11;
 
   return (
     <View
@@ -42,6 +48,7 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
         {
           flexDirection: 'row',
           alignItems: 'center',
+          gap: isTopTier ? 3 : 0,
           alignSelf: 'flex-start',
           borderRadius: 999,
           backgroundColor: colors.accentSoft,
@@ -50,15 +57,18 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
           paddingHorizontal: compact ? 6 : 8,
           paddingVertical: compact ? 2 : 3,
           shadowColor: colors.shadowColor,
-          shadowOpacity: cardLevel >= 3 ? 0.5 : 0,
-          shadowRadius: cardLevel >= 3 ? 5 : 0,
+          shadowOpacity: cardLevel >= 5 ? 0.7 : cardLevel >= 3 ? 0.5 : 0,
+          shadowRadius: cardLevel >= 5 ? 7 : cardLevel >= 3 ? 5 : 0,
           shadowOffset: { width: 0, height: 0 },
         },
         style,
       ]}
     >
+      {isTopTier ? (
+        <Ionicons name={cardLevel >= 5 ? 'diamond' : 'sparkles'} size={iconSize} color={colors.accent} />
+      ) : null}
       <Text style={{ color: colors.accent, fontSize, fontWeight: '900', letterSpacing: 0.4 }}>
-        CARD {profileCardLevelRoman(cardLevel)}
+        {profileCardLevelLabel(cardLevel, lang === 'ru')}
       </Text>
     </View>
   );

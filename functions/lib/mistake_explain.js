@@ -43,6 +43,7 @@ const auth_identity_1 = require("./auth_identity");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const mistake_explain_cache_1 = require("./explain/mistake_explain_cache");
+const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
@@ -75,12 +76,11 @@ function docId(prefix, authUid, stableUid) {
     return `${prefix}_${hash}`;
 }
 function sanitizeLang(value) {
-    const lang = text(value, 16);
-    return /^[a-z]{2}(?:-[A-Z]{2})?$/.test(lang) ? lang : 'ru';
+    return (0, ai_language_contract_1.resolveAiOutputLang)(text(value, 16) || 'ru', 'mistake_explain');
 }
 function sanitizeStudyTarget(value) {
-    const target = text(value, 12).toLowerCase();
-    return ['en', 'ru', 'uk', 'es', 'pt-br', 'vi', 'id', 'tr', 'pl'].includes(target) ? target : 'en';
+    const target = (0, ai_language_contract_1.resolveStudyTarget)(value);
+    return target === 'fr' ? 'fr' : 'en';
 }
 function sanitizeVariant(value) {
     return text(value, 8) === 'eli5' ? 'eli5' : 'full';
@@ -177,6 +177,17 @@ function buildFullMessages(payload) {
                 'direction relative to the speaker, or a fixed form English simply requires. Do not reuse the axis ' +
                 'from another swap or from the worked example below — pick the axis that fits THESE two words.\n\n' +
                 'Then handle each swap by its TYPE:\n\n' +
+                'C) ANTONYM or plain WRONG-WORD swaps (e.g. "bad" instead of "good", "tired" instead of "happy", ' +
+                '"big" instead of "small", "open" instead of "close"): these two words are simply OPPOSITES or ' +
+                'plainly different meanings — there is NO subtle governing axis, no minimal pair, no clever test. ' +
+                'Do NOT manufacture one. Do NOT reason about what the sentence "implies" or what answer the ' +
+                'question "expects", and do NOT guess WHY they picked it ("you translated literally", "you didn\'t ' +
+                'think about the context") — that is exactly the water (and the false mind-reading) we are killing. ' +
+                'Just say, in ONE short, friendly line, what each word means and that the learner needs the other ' +
+                'one here, then give the fix. Example shape: \'"goodbye" is the word for leaving, but here you mean ' +
+                '"thanks" — the thank-you word. So: "I\'m fine, thanks."\'. One or two sentences, no more. If the ' +
+                'only mistake is an antonym/wrong-word swap, the WHOLE answer is this one short line plus the ' +
+                'corrected sentence.\n\n' +
                 'A) WORD-CHOICE swaps (e.g. "that"/"it", "this"/"that", "make"/"do", "say"/"tell", "since"/"for", ' +
                 '"much"/"many", "a"/"the", "in"/"on"/"at", "borrow"/"lend", "bring"/"take"):\n' +
                 '- Name the ONE deciding contrast in plain words. Pick the single most important distinction; do ' +
@@ -190,7 +201,10 @@ function buildFullMessages(payload) {
                 'vocabulary, is visible. Example shape: "I bought a book" (a new one, first time I mention it) ' +
                 'versus "I read the book" (the one we both already know).\n' +
                 '- Tie it to THIS sentence in one short clause (why the learner\'s situation needs the right ' +
-                'word).\n\n' +
+                'word).\n' +
+                '- For "it" vs "that" the deciding axis is GIVENNESS (already-in-focus vs set-apart), NOT distance: ' +
+                'do NOT say "that" means "far away" or "further off" here — reserve the near/far picture only for ' +
+                '"this" vs "that".\n\n' +
                 'B) FORM / AGREEMENT errors (e.g. "he don\'t" -> "he doesn\'t", missing "am" / "I" -> "I\'m", ' +
                 '"I\'m" -> "I", a wrong verb ending): these have NO semantic contrast — the wrong form is simply ' +
                 'not correct English. Do NOT invent a context where the wrong form works, and do NOT drift into ' +
@@ -203,20 +217,40 @@ function buildFullMessages(payload) {
                 'rule that is reliably true and give the correction — never fabricate a pair, a context, or a rule ' +
                 'to fill the shape.\n\n' +
                 'HARD BANS:\n' +
-                '- Never just say "X is wrong, Y is right" without the deciding contrast (word-choice) or the ' +
-                'fixed rule (form). That bare swap is the failure you exist to replace.\n' +
+                '- For word-choice swaps (type A), never just say "X is wrong, Y is right" without the deciding ' +
+                'contrast. (For antonyms/wrong words, type C, the short "what each means + fix" line IS the answer ' +
+                '— do not bolt a fake contrast onto it.)\n' +
                 '- No generic filler: not "this is a common mistake", "English is tricky", "remember the rule", ' +
                 '"with practice it comes". If a sentence does not help the learner choose next time, delete it.\n' +
+                '- Do NOT explain why the SENTENCE or QUESTION calls for a certain answer ("the question expects a ' +
+                'positive answer", "the context implies…"). The learner asked about WORDS, not about reading ' +
+                'comprehension. That meta-talk is pure water — cut it entirely.\n' +
+                '- NEVER guess or assert WHY the learner made the mistake. You do NOT know their reason — they may ' +
+                'have mis-tapped, guessed, or slipped. Banned openings: "this happened because you…", "you ' +
+                'translated literally", "you didn\'t think about the context", "you confused…". Accusing them of ' +
+                'a thought process they may not have had is both false and unkind. State what the words mean and ' +
+                'the fix — never a diagnosis of their mind.\n' +
+                '- You MAY add ONE short, warm or lightly playful line of reassurance that does NOT blame and does ' +
+                'NOT invent a cause (e.g. "easy mix-up — here is the one to keep"). Optional, never padding.\n' +
                 "- Do not restate or translate the phrase's meaning — the learner already knows it.\n" +
                 '- Do not copy the reference contrasts above as your answer; apply the contrast to THESE specific ' +
                 'words.\n' +
                 '- If several swaps share one root cause, group them and teach the distinction once.\n\n' +
                 'FORMAT:\n' +
                 '- Plain running text only. No markdown, no headings, no bullet or numbered lists, no tables.\n' +
+                '- Keep sentences short — aim for under ~10 words each, one idea per sentence; break a long ' +
+                'explanation into several short sentences rather than one long one with dashes.\n' +
+                '- Never call it a "mistake"/"wrong"/«ошибка»/«неправильно» in a harsh way in the output — frame ' +
+                'it gently as a near-miss ("почти", "easy mix-up") and just give the fix, no verdict on the learner.\n' +
                 '- Wrap EVERY English word or fragment in double quotes.\n' +
                 '- Grammar-term budget is PER SWAP: at most one light grammar term per distinction, only if it ' +
                 'genuinely sharpens it, and gloss it immediately in plain words. Prefer plain words throughout.\n' +
-                '- Warm, calm, direct, never condescending — talk to one smart adult.\n' +
+                '- Address the learner informally, as "ты" (use the informal second person of the target ' +
+                'language — du/tu/ты, never the polite "вы"/Sie/vous form). Talk to one smart friend, never down ' +
+                'to them.\n' +
+                '- Warm, calm, direct, friendly, with a LIGHT touch of humor where it fits naturally — one small ' +
+                'wink, never a comedy act, never at the learner\'s expense. The joke must never replace the actual ' +
+                'teaching or add length.\n' +
                 '- Length: as long as the nuance needs, and no longer. A single clean word-choice swap is usually ' +
                 'two or three sentences; a form error is one line; several swaps run longer. Never pad to fill ' +
                 'space, and never cut the deciding contrast or its minimal pair to be brief.\n' +
@@ -224,12 +258,10 @@ function buildFullMessages(payload) {
                 'WORKED EXAMPLE — shape and depth to imitate (written in English HERE for illustration ONLY; you ' +
                 'must write your reply in the learner\'s language). Swap "that" -> "it", correct answer "I read ' +
                 'the book and I liked it.":\n' +
-                'You reached for "that", but the deciding question here is: is this thing already what we are ' +
-                'talking about, or is it something set apart? "it" is for the thing already in focus — the book ' +
-                'we are both already on — while "that" points at something singled out or further off. Compare ' +
-                '"I liked it" (the book we are already discussing) with "I liked that" (that thing over there, the ' +
-                'one I just pointed out). Your sentence is all about the book you just named, so it stays "it". ' +
-                'Correct sentence: "I read the book and I liked it."\n\n' +
+                'Here the choice is "it" or "that". "it" is the thing we are already talking about. "that" sets ' +
+                'something apart, as a whole just brought up. Compare "I liked it" (the book we are on) with "I ' +
+                'liked that" (the whole thing I just pointed out). Your sentence is all about the book you named. ' +
+                'So it stays "it". Correct sentence: "I read the book and I liked it."\n\n' +
                 'Match that depth — pick the right axis, name the one contrast, hand over the test, show the ' +
                 'trigger-tagged minimal pair, tie it to the sentence — for every word-choice swap; use the form ' +
                 'shape for form errors.\n\n' +
@@ -247,14 +279,20 @@ function buildFullMessages(payload) {
                 `LEARNER_ANSWER: ${payload.userAnswer}\n` +
                 `CORRECT_ANSWER: ${payload.targetAnswer}\n` +
                 (allDiffs ? `Wrong→right word swaps to teach (learner's word -> correct word): ${allDiffs}\n` : '') +
-                'For EACH swap above: first decide which single axis governs it (space, time, givenness, person ' +
-                'on the receiving end, countable or not, direction, or a required form). If it is a word choice, ' +
-                'name the one deciding contrast, hand the learner the test they can run next time on any words, ' +
-                'and prove it with one tiny minimal pair whose two fragments are each tagged with the trigger that ' +
-                'makes them right. If it is a form/agreement error, state the fixed rule and show the broken form ' +
-                'beside the fixed one — do not invent a context where the wrong form works. Tie each word-choice ' +
-                'swap to this sentence in a short clause. No filler, no restating the meaning, no parroting ' +
-                'generic category labels. Then end on its own line with the full corrected sentence. ' +
+                'For EACH swap above: first decide its TYPE. If the two words are simply OPPOSITES or plainly ' +
+                'different meanings (an antonym / wrong-word swap, type C — e.g. "bad" vs "good"), there is NO ' +
+                'governing axis and NO minimal pair: give ONE short friendly line saying what each means and that ' +
+                'the opposite one is needed here, then the fix — nothing more. Do NOT explain what the sentence or ' +
+                'question "implies" or "expects". If it is a real word choice (type A), name the one deciding ' +
+                'contrast, hand the learner the test they can run next time on any words, and prove it with one ' +
+                'tiny minimal pair whose two fragments are each tagged with the trigger that makes them right; tie ' +
+                'it to this sentence in a short clause. If it is a form/agreement error (type B), state the fixed ' +
+                'rule and show the broken form beside the fixed one — do not invent a context where the wrong form ' +
+                'works. NEVER guess WHY the learner picked the wrong word (no "you translated literally", no "you ' +
+                'didn\'t think about the context") — you do not know their reason, they may have just mis-tapped. ' +
+                'No filler, no restating the meaning, no parroting generic category labels. Speak to the learner as ' +
+                '"ты" (informal), warm and friendly; one light, non-blaming reassuring touch is welcome. Then end ' +
+                'on its own line with the full corrected sentence. ' +
                 writeIn,
         },
     ];
@@ -276,6 +314,15 @@ function buildEli5Messages(payload) {
                 'teaches nothing. There is almost always ONE real difference that decides which word is right. Find ' +
                 'THAT difference and make it click — with a tiny picture or a tiny pretend moment a five-year-old ' +
                 'can see in their head.\n\n' +
+                'NEVER GUESS WHY they chose the wrong word. You do not know — maybe their finger slipped, maybe they ' +
+                'guessed. Banned: "you translated it word-for-word", "you didn\'t think about it", "you got ' +
+                'confused". That is making up a story about their head, and it can be wrong and a little hurtful. ' +
+                'Just show what each word means and which one fits. A tiny kind wink is fine ("oops, almost!"), but ' +
+                'never blame.\n\n' +
+                'WHEN THE TWO WORDS ARE JUST DIFFERENT WORDS WITH DIFFERENT MEANINGS (like "goodbye" vs "thanks", ' +
+                '"hello" vs "thanks"): there is no hidden rule and no picture — just say super simply what each one ' +
+                'means and which one is needed here, then the right phrase. Like: \'"goodbye" is what you say when ' +
+                'you leave, but here you mean "thanks" — the thank-you word!\'. That tiny bit IS the whole answer.\n\n' +
                 'USE THIS CONTRAST BANK (kid words, all TRUE — when the swap matches an entry, teach exactly this ' +
                 'idea; if no entry fits, give the simpler safe thing rather than invent a clever rule):\n' +
                 '- "it" vs "that": "it" is the thing we are ALREADY talking about, the one we both already have in ' +
@@ -304,14 +351,23 @@ function buildEli5Messages(payload) {
                 'it to someone else for a while.\n' +
                 '- "bring" vs "take": "bring" is toward where you are. "take" is away from here, off somewhere ' +
                 'else. Pair: "bring it here to me" / "take it there with you".\n\n' +
+                'WHEN THE TWO WORDS ARE JUST OPPOSITES OR PLAINLY DIFFERENT (like "bad" vs "good", "big" vs ' +
+                '"small", "tired" vs "happy"): there is NO hidden rule and NO near/far picture. Do NOT invent one, ' +
+                'and do NOT explain what the question or sentence "wanted" — that is boring grown-up talk. Just say, ' +
+                'super simply, what each little word means and that here you need the other one, then say the right ' +
+                'phrase. Like: \'"bad" is the not-nice one, but here you mean "good" — the happy one!\'. That tiny ' +
+                'bit IS the whole answer.\n\n' +
                 'WHEN IT IS A FORM MISTAKE, NOT A MEANING MISTAKE (like "he don\'t" vs "he doesn\'t", or "I" with ' +
                 'a missing "am" vs "I\'m"): do NOT invent a meaning difference and do NOT do the when-to-use-each ' +
                 'picture — it does not apply. Instead, gently show the small fixed change as a copyable pair: e.g. ' +
                 '"with he, she, or it, the word gets a tiny tail: not \'he don\'t\' but \'he doesn\'t\'", or "we ' +
                 'don\'t leave \'am\' out — not \'I happy\' but \'I\'m happy\'". Short and plain.\n\n' +
                 'HOW TO SOUND:\n' +
-                '- Simplest possible words. Very short sentences. Warm, like kneeling next to a small kid you ' +
-                'like.\n' +
+                '- Talk to the learner as "ты" (the informal second person of the target language — du/tu/ты, ' +
+                'never the polite "вы"/Sie/vous). Warm and friendly, like kneeling next to a small kid you like.\n' +
+                '- A tiny wink of humor is welcome when it fits — one playful image, never silly for its own sake ' +
+                'and never longer than the lesson it carries.\n' +
+                '- Simplest possible words. Very short sentences.\n' +
                 '- ZERO grammar words. Never say "pronoun", "article", "verb", "tense", "countable", ' +
                 '"preposition", "auxiliary", "object". If you want to name a rule, instead show two tiny examples ' +
                 'and let the difference be felt.\n' +
@@ -345,11 +401,16 @@ function buildEli5Messages(payload) {
                 `CORRECT_ANSWER: ${payload.targetAnswer}\n` +
                 (allDiffs ? `Wrong→right word swaps: ${allDiffs}\n` : '') +
                 'Pick the ONE swap above that, once the child understands it, would stop the most future ' +
-                'mistakes. Name the word they picked and the word that fits here. Then make the single real ' +
-                'difference click — using the contrast bank idea if it matches, with a tiny picture or, for a ' +
-                'shape/form mistake, the small fixed change shown as a copyable pair. Use these exact words, not ' +
-                'other examples. No grammar words, no comfort-water. Keep every English word in double quotes. End ' +
-                'with the whole correct phrase to keep, in quotes. Only as long as that one difference needs. ' +
+                'mistakes. Name the word they picked and the word that fits here. Then: if the two words are just ' +
+                'opposites or plainly different (like "bad" vs "good"), give one tiny line of what each means and ' +
+                'that the other one is needed — do NOT invent a rule or explain what the question "wanted". ' +
+                'Otherwise make the single real difference click — using the contrast bank idea if it matches, ' +
+                'with a tiny picture, or for a shape/form mistake the small fixed change shown as a copyable pair. ' +
+                'Use these exact words, not other examples. Speak as "ты" (informal), warm and friendly. NEVER ' +
+                'guess why they picked it ("you translated it", "you didn\'t think") — you do not know, a finger ' +
+                'can slip. No grammar words, no comfort-water, no blaming. Keep every English word in double ' +
+                'quotes. End with the whole correct phrase to keep, in quotes. Only as long as that one difference ' +
+                'needs. ' +
                 writeIn,
         },
     ];
@@ -378,6 +439,18 @@ async function generate(apiKey, model, messages) {
     if (!answer)
         throw new https_1.HttpsError('unavailable', 'mistake_explain_empty_reply');
     return { answer, usage: json.usage ?? {} };
+}
+function assertMistakeGeneratedText(answer, payload) {
+    (0, ai_language_contract_1.assertAiOutputLanguage)({
+        text: answer,
+        targetLang: payload.interfaceLang,
+        feature: 'mistake_explain',
+    });
+}
+async function generateCheckedMistakeText(apiKey, model, payload, messages) {
+    const gen = await generate(apiKey, model, messages);
+    assertMistakeGeneratedText(gen.answer, payload);
+    return gen;
 }
 async function recordBilling(db, params) {
     await db.collection(BILLING_COLLECTION).doc().set({
@@ -425,7 +498,7 @@ exports.explainMistake = (0, https_1.onCall)({
             return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
         }
         await enforceRateLimit(db, authUid, stableUid);
-        const gen = await generate(apiKey, model, buildEli5Messages(payload));
+        const gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
         if (cached?.status === 'ready') {
             // FULL doc exists — just attach ELI5 to it.
             await (0, mistake_explain_cache_1.writeEli5MistakeExplanation)(mistakeHash, gen.answer);
@@ -436,7 +509,14 @@ exports.explainMistake = (0, https_1.onCall)({
             // Materialize the ready doc once (full + eli5) so all later readers are free.
             const claimed = await (0, mistake_explain_cache_1.claimMistakePendingLock)(mistakeHash, Date.now());
             if (claimed) {
-                const fullGen = await generate(apiKey, model, buildFullMessages(payload));
+                let fullGen;
+                try {
+                    fullGen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
+                }
+                catch (error) {
+                    await (0, mistake_explain_cache_1.writeRejectedMistakeExplanation)(mistakeHash, 'non_target_language');
+                    throw error;
+                }
                 await (0, mistake_explain_cache_1.writeReadyMistakeExplanation)(mistakeHash, fullGen.answer, {
                     lang: payload.interfaceLang,
                     targetEn: payload.targetAnswer,
@@ -463,7 +543,16 @@ exports.explainMistake = (0, https_1.onCall)({
     // Claim the generation lock (anti-duplicate). If someone else is generating, still serve
     // the user a live answer — we just don't write the cache.
     const claimed = await (0, mistake_explain_cache_1.claimMistakePendingLock)(mistakeHash, Date.now());
-    const gen = await generate(apiKey, model, buildFullMessages(payload));
+    let gen;
+    try {
+        gen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
+    }
+    catch (error) {
+        if (claimed) {
+            await (0, mistake_explain_cache_1.writeRejectedMistakeExplanation)(mistakeHash, 'non_target_language');
+        }
+        throw error;
+    }
     if (claimed) {
         await (0, mistake_explain_cache_1.writeReadyMistakeExplanation)(mistakeHash, gen.answer, {
             lang: payload.interfaceLang,

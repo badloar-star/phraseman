@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Dark-mode widget palette. -->
+<!--
+  Dark-mode preview palette. The default chrome is already dark, so night mode
+  matches the day values — the picker preview must not flip to a foreign purple.
+-->
 <resources>
-    <color name="phrase_widget_bg">#FF161325</color>
-    <color name="phrase_widget_primary">#FFF3F1FA</color>
-    <color name="phrase_widget_secondary">#FFB9B2CC</color>
-    <color name="phrase_widget_accent">#FF9D86FF</color>
+    <color name="phrase_widget_bg">#FF13241C</color>
+    <color name="phrase_widget_primary">#FFFFFFFF</color>
+    <color name="phrase_widget_secondary">#FFB8D9C2</color>
+    <color name="phrase_widget_kicker">#FFD9FFE5</color>
+    <color name="phrase_widget_accent">#FF58CC89</color>
 </resources>

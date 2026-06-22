@@ -55,7 +55,9 @@ const admin = __importStar(require("firebase-admin"));
 const crypto_1 = require("crypto");
 exports.COMPASS_COLLECTION = 'compass_briefings';
 exports.COMPASS_LOCK_TTL_MS = 30000;
-exports.COMPASS_SCHEMA_VERSION = 1;
+// v2 (2026-06-21): audit fixes — ≤10 words/sentence, few-shot per dayType, ban filler words,
+// ban inventing numbers, allow one light human touch. Old v1 lines predate these, regenerate.
+exports.COMPASS_SCHEMA_VERSION = 2;
 exports.COMPASS_REJECTED_RETRY_TTL_MS = 10 * 60000;
 function isCurrentSchema(data) {
     return Number(data?.schemaVersion ?? 0) >= exports.COMPASS_SCHEMA_VERSION;

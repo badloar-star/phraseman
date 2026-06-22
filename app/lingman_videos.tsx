@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
-  ActivityIndicator,
   Linking,
   RefreshControl,
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -295,8 +295,10 @@ export default function LingmanVideosScreen() {
         ) : null}
 
         {loading ? (
-          <View style={styles.loading}>
-            <ActivityIndicator color={chrome.accent} />
+          <View style={{ gap: 14, paddingHorizontal: 2 }}>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <SkeletonBlock key={`lingman-video-skeleton-${i}`} width="100%" height={96} borderRadius={18} />
+            ))}
           </View>
         ) : (
           <FlashList
@@ -404,11 +406,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 12,
     fontWeight: '700',
-  },
-  loading: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   list: {
     paddingBottom: 28,

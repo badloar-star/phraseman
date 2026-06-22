@@ -34,7 +34,7 @@ exports.JUDGE_REASONS = [
  * 'ru' — mirroring the bundleLang fallback in app/i18n.ts (the app's default audience is RU).
  *
  * Covers ALL 8 app UI languages (audit 2026-06-10: previously only ru+en — Spanish/Turkish/… users
- * silently got RUSSIAN explanations). Keys are 2-letter codes after slice(0,2): 'pt-BR' → 'pt'.
+ * silently got RUSSIAN explanations). Regional keys such as 'pt-BR' stay exact.
  * The map key is ALSO the cache-key language component (see resolvePromptLangKey + phraseHashFor):
  * one cached explanation per (phrase, language).
  */
@@ -53,14 +53,27 @@ exports.PROMPT_LANGUAGES = {
 /** Fallback UI language when `lang` is unknown — matches i18n.ts bundleLang default. */
 exports.DEFAULT_PROMPT_LANG = 'ru';
 /**
- * Canonical language KEY for a raw client `lang` ('pt-BR' → 'pt', unknown → 'ru').
+ * Canonical language KEY for a raw client `lang` (regional keys such as 'pt-BR' stay exact; unknown fails closed).
  * Single source of truth for BOTH the generation language and the cache key:
  * phraseHashFor(phraseEn, resolvePromptLangKey(lang)) — so an es-user can never be served the
  * ru-cached explanation of the same phrase (audit bug 2026-06-10).
  */
 function resolvePromptLangKey(lang) {
-    const code = String(lang ?? '').slice(0, 2).toLowerCase();
-    return exports.PROMPT_LANGUAGES[code] ? code : exports.DEFAULT_PROMPT_LANG;
+    const raw = String(lang ?? '').trim();
+    if (exports.PROMPT_LANGUAGES[raw])
+        return raw;
+    const lower = raw.toLowerCase();
+    const exact = Object.keys(exports.PROMPT_LANGUAGES).find((key) => key.toLowerCase() === lower);
+    if (exact)
+        return exact;
+    if (/^[a-z]{2}-/.test(lower)) {
+        const base = lower.split('-')[0];
+        if (exports.PROMPT_LANGUAGES[base])
+            return base;
+    }
+    if (/^[a-z]{2}$/.test(lower) && exports.PROMPT_LANGUAGES[lower])
+        return lower;
+    throw new Error(`unsupported_prompt_language:${raw || 'empty'}`);
 }
 /** Soft UPPER target so the model keeps it short; the deterministic gate enforces hard limits.
  *  History: 75→140 (2026-06-10) when the goal was a word-by-word walk-through. 2026-06-20: the
@@ -90,7 +103,7 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
     const phrase = String(phraseEn ?? '').trim();
     const meaning = String(phraseMeaning ?? '').trim();
     return [
-        `You are "Компас", a warm, patient English teacher inside the Phraseman app. The learner is a beginner, often aged 50+, whose native language is not English. NEVER condescend. Speak in plain, everyday kid words.`,
+        `You are "Компас", a warm, patient English teacher inside the Phraseman app. The learner is a beginner, often aged 50+, whose native language is not English. NEVER condescend. Speak in plain, everyday kid words. Address the learner informally, as "ты" — use the informal second person of ${target.name} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form), like a friend sitting next to them, and allow yourself one light, friendly wink of humor where it fits naturally (never forced, never longer than the point it carries).`,
         ``,
         `YOUR ONE JOB: this phrase has ONE thing a learner like this is most likely to get wrong. Find exactly that one thing and teach it so well they could choose right next time. Do NOT walk through every word — nobody needs to be told what "I" or "ready" means. Spend almost all your words on the one tricky spot.`,
         ``,
@@ -107,10 +120,11 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
         `- "in"/"on"/"at": "at" for a clock point or exact spot ("at 6", "at the door"), "on" for a day or surface ("on Monday", "on the table"), "in" for a longer stretch or enclosed space ("in May", "in the room") — and add one honest line that a few set phrases ("at night", "in the morning") simply have to be learned.`,
         `- "borrow" = you TAKE it from someone (comes toward you). "lend" = you GIVE it to someone (goes from you).`,
         `- "bring" = movement TOWARD the speaker. "take" = movement AWAY from the speaker.`,
-        `- missing "am": "I'm" is simply the short way to say "I am" — the "am" is hidden inside "I'm", so "I'm ready" already contains it; "I ready" is missing it.`,
-        `If the phrase's trap is NOT in this bank, reason to a contrast you are SURE is true and teach it the same way: name the right word, name the wrong cousin, show a tiny pair.`,
+        `- missing "am": "I'm" is the short way to say "I am" — the "am" is hidden inside "I'm", so "I'm ready" already contains it; "I ready" is missing it.`,
+        `If the phrase's trap is NOT in this bank, teach a contrast ONLY if you are certain it is standard, textbook-true English; if you have ANY doubt, fall back to the NO-TRAP line instead of inventing a contrast. When you do teach one: name the right word, name the wrong cousin, show a tiny pair.`,
+        `If the phrase has two equally tricky spots, you may name the second in one short clause, but still spend almost all your words on the first.`,
         ``,
-        `NO-TRAP CASE: if the phrase honestly has no confusable cousin and no commonly-dropped word (e.g. "Thank you very much", "My name is Anna"), say so plainly in one honest line and BRIEFLY teach the single real thing to notice — that these words simply go together in this order as a fixed, friendly set phrase. Never invent a rule just to have something to say.`,
+        `NO-TRAP CASE: if the phrase honestly has no confusable cousin and no commonly-dropped word (e.g. "Thank you very much", "My name is Anna"), say so plainly in one honest line and BRIEFLY teach the single real thing to notice — that these words go together in this order as a fixed, friendly set phrase. Never invent a rule just to have something to say.`,
         ``,
         `SHAPE — 2–4 tiny paragraphs separated by ONE empty line (never labels, lists, or numbers):`,
         `- One warm sentence pointing gently at the tricky spot.`,
@@ -121,6 +135,8 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
         `ALWAYS wrap every English word or fragment you mention in double quotes, like "it" or "I am ready" — never leave English unquoted.`,
         `Every claim must be TRUE. If unsure of a fine point, say the simpler reliable thing instead of inventing a rule; never misstate what a short form stands for ("I'm" is short for "I am").`,
         `You MAY use ONE light grammar-flavoured phrase only if it genuinely sharpens a structural trap (e.g. "tell" is always followed by the person you tell) — and immediately put it in plain words. No "verb", "subject", "auxiliary", "pronoun", "article", "preposition".`,
+        `Avoid filler words in your prose: never use the ${target.name} equivalents of "просто/just", "также/also", "в принципе", "на самом деле", "кстати". State the point directly.`,
+        `If you ever refer to studying, use the ${target.name} for "осваивать/прокачивать", not "учить/изучать"; never call the learner's choice an "ошибка" — if you mention getting it wrong, frame it as "легко перепутать".`,
         `${target.writeIn}`,
         `Length: as long as the ONE nuance genuinely needs and no longer — often well under ${MAX_WORDS} words; never pad to fill space, never cram in a second point. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no quotes around the whole answer. One empty line between paragraphs.`,
         ``,

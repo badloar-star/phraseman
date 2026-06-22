@@ -17,6 +17,7 @@ function readAdminManifest(): {
   jesseReworkedIds: string[];
   legacyNeedsReworkIds: string[];
   jesseReworkedMarker: string;
+  sourceLocales: string[];
   trainings: Array<{
     id: string;
     status: string;
@@ -60,6 +61,7 @@ describe('admin personal trainings manifest', () => {
     expect([...manifest.activeIds].sort()).toEqual(activeIds);
     expect([...manifest.jesseReworkedIds].sort()).toEqual(activeIds);
     expect(manifest.jesseReworkedMarker).toBe(JESSE_REWORKED_MARKER);
+    expect(manifest.sourceLocales).toEqual(HEISENBERG_BATCH_SOURCE_LOCALES);
 
     for (const id of activeIds) {
       const training = manifest.trainings.find((item) => item.id === id);

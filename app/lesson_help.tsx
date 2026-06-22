@@ -16,7 +16,7 @@ import XpGainBadge from '../components/XpGainBadge';
 import { updateTaskProgress } from './daily_tasks';
 import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { screenTextOnGradient } from '../constants/theme';
+import { screenTextOnGradient, type Theme, type ThemeMode } from '../constants/theme';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
@@ -42,12 +42,40 @@ import { safeRouterBack } from './navigation_back';
  * - Не задаем цвета внутри контента. Визуальный смысл задают компоненты ниже.
  */
 
-const THEORY_ACCENT_WORDS = /\b(am|is|are|not|do|does|will|I|you|he|she|it|we|they|Am|Is|Are|Do|Does|To Be)\b|am\/is\/are/g;
+// Разделитель текста по акцентным словам (group capture → совпадения остаются в split).
+const THEORY_ACCENT_SPLIT = /\b(am|is|are|not|do|does|will|I|you|he|she|it|we|they|Am|Is|Are|Do|Does|To Be)\b|am\/is\/are/g;
+// Проверка одного куска БЕЗ /g-состояния (исправляет хрупкость lastIndex у .test()).
+const THEORY_ACCENT_SET = new Set(
+  ['am', 'is', 'are', 'not', 'do', 'does', 'will', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'to be', 'am/is/are'],
+);
+function isAccentWord(part: string): boolean {
+  return THEORY_ACCENT_SET.has(part.trim().toLowerCase());
+}
+
+// Модульные наборы ролевых слов (стабильные ссылки → честная мемоизация в ColoredPhrase,
+// без пересоздания Set из инлайн-литералов на каждый рендер).
+const ROLE_LINK_BE = ['am', 'is', 'are'] as const;
+const ROLE_LINK_IS_ARE = ['is', 'are'] as const;
+const ROLE_LINK_IS_ARE_NOT = ['is', 'are', 'not'] as const;
 const TABLE_COL_MIN_W = 132;
 
-function theoryColors(t: any, themeMode: any) {
+// Светлость определяем по реальной яркости фона карточки, а не по именам тем
+// (ocean/sakura — легаси, в типе ThemeMode их нет; раньше ветка была мёртвой).
+function isLightSurface(bg?: string): boolean {
+  if (typeof bg !== 'string') return false;
+  const hex = bg.replace('#', '');
+  if (hex.length < 6) return false;
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  if ([r, g, b].some(Number.isNaN)) return false;
+  // относительная яркость (luminance)
+  return (0.299 * r + 0.587 * g + 0.114 * b) > 150;
+}
+
+function theoryColors(t: Theme, themeMode: ThemeMode) {
   const sx = screenTextOnGradient(t, themeMode);
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura' || false;
+  const isLight = isLightSurface(t?.bgCard);
   return {
     primary: sx.primary,
     body: sx.primary,
@@ -64,6 +92,19 @@ function theoryColors(t: any, themeMode: any) {
     successBg: isLight ? 'rgba(64,192,128,0.12)' : 'rgba(64,192,128,0.10)',
     danger: t.wrong ?? '#FB7185',
     dangerBg: isLight ? 'rgba(251,113,133,0.12)' : 'rgba(251,113,133,0.10)',
+    // ── Ролевые цвета для цветового кодирования грамматики (новый дизайн) ──
+    // Ролевые цвета для цветового кодирования грамматики (3 роли всегда различимы).
+    // ВАЖНО: НЕ берём из t.gold/t.correct — на некоторых темах (gold) они совпадают,
+    // и две роли сливались бы в один цвет. Фиксированная палитра фиолет/янтарь/бирюза
+    // со светлым и тёмным вариантом контрастна на любой карточке (8 тем).
+    // Роль 1 «подлежащее/предмет» — фиолетовый; роль 2 «связка/служебное» — янтарный;
+    // роль 3 «смысловая форма (V3/-ing/...)» — бирюзовый. Фоны-чипы полупрозрачные.
+    roleSubject: isLight ? '#6D28D9' : '#C4B5FD',
+    roleSubjectBg: isLight ? 'rgba(109,40,217,0.12)' : 'rgba(196,181,253,0.12)',
+    roleLink: isLight ? '#B45309' : '#FBBF24',
+    roleLinkBg: isLight ? 'rgba(180,83,9,0.14)' : 'rgba(251,191,36,0.13)',
+    roleVerb: isLight ? '#0F766E' : '#40C080',
+    roleVerbBg: isLight ? 'rgba(15,118,110,0.14)' : 'rgba(64,192,128,0.13)',
   };
 }
 
@@ -77,7 +118,7 @@ function TheoryInlineText({
   weight = '400',
 }: {
   text: string;
-  t: any;
+  t: Theme;
   f: any;
   size?: number;
   lineHeight?: number;
@@ -86,12 +127,11 @@ function TheoryInlineText({
 }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
-  const parts = text.split(THEORY_ACCENT_WORDS).filter(Boolean);
+  const parts = text.split(THEORY_ACCENT_SPLIT).filter(Boolean);
   return (
     <Text style={{ color: baseColor ?? c.body, fontSize: size ?? f.body, lineHeight: lineHeight ?? 24, fontWeight: weight }} maxFontSizeMultiplier={1.2}>
       {parts.map((part, i) => {
-        const isAccent = part === 'am/is/are' || THEORY_ACCENT_WORDS.test(part);
-        THEORY_ACCENT_WORDS.lastIndex = 0;
+        const isAccent = isAccentWord(part);
         return (
           <Text key={`${part}-${i}`} style={isAccent ? { color: c.formula, fontWeight: '800' } : undefined}>
             {part}
@@ -102,7 +142,7 @@ function TheoryInlineText({
   );
 }
 
-function Section({ title, t, f }: { title: string; t: any; f: any }) {
+function Section({ title, t, f }: { title: string; t: Theme; f: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
@@ -112,7 +152,7 @@ function Section({ title, t, f }: { title: string; t: any; f: any }) {
   );
 }
 
-function Body({ text, t, f }: { text: string; t: any; f: any }) {
+function Body({ text, t, f }: { text: string; t: Theme; f: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
@@ -122,7 +162,7 @@ function Body({ text, t, f }: { text: string; t: any; f: any }) {
   );
 }
 
-function Example({ eng, rus, t, f }: { eng: string; rus: string; t: any; f: any }) {
+function Example({ eng, rus, t, f }: { eng: string; rus: string; t: Theme; f: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
@@ -135,7 +175,7 @@ function Example({ eng, rus, t, f }: { eng: string; rus: string; t: any; f: any 
   );
 }
 
-function Warn({ text, t, f }: { text: string; t: any; f: any }) {
+function Warn({ text, t, f }: { text: string; t: Theme; f: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
@@ -148,7 +188,7 @@ function Warn({ text, t, f }: { text: string; t: any; f: any }) {
   );
 }
 
-function Tip({ text, t, f }: { text: string; t: any; f: any }) {
+function Tip({ text, t, f }: { text: string; t: Theme; f: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
@@ -162,7 +202,7 @@ function Tip({ text, t, f }: { text: string; t: any; f: any }) {
 }
 
 // Таблица: массив строк, каждая строка — массив ячеек
-function Table({ rows, t, f }: { rows: string[][]; t: any; f?: any }) {
+function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -228,10 +268,269 @@ function Table({ rows, t, f }: { rows: string[][]; t: any; f?: any }) {
   );
 }
 
+// ─── Новые компоненты дизайна (формула-блоки, аккордеон, карточки) ────────────
+
+/**
+ * Подсветка ролей внутри английской фразы по словам.
+ * subject/link/verb — массивы слов (без учёта регистра), которые красятся
+ * соответствующим ролевым цветом. Остальной текст — обычный.
+ */
+function ColoredPhrase({
+  text,
+  t,
+  f,
+  size,
+  subject = [],
+  link = [],
+  verb = [],
+}: {
+  text: string;
+  t: Theme;
+  f: any;
+  size?: number;
+  subject?: readonly string[];
+  link?: readonly string[];
+  verb?: readonly string[];
+}) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  // Мемоизация по СОДЕРЖИМОМУ (join), а не по ссылке массива-литерала — иначе useMemo бесполезен.
+  const subjSet = useMemo(() => new Set(subject.map((s) => s.toLowerCase())), [subject.join('|')]);
+  const linkSet = useMemo(() => new Set(link.map((s) => s.toLowerCase())), [link.join('|')]);
+  const verbSet = useMemo(() => new Set(verb.map((s) => s.toLowerCase())), [verb.join('|')]);
+  const tokens = text.split(/(\s+)/);
+  return (
+    <Text
+      accessible
+      accessibilityLabel={text}
+      style={{ color: c.body, fontSize: size ?? f.body, lineHeight: Math.round((size ?? f.body) * 1.4), fontWeight: '400' }}
+      maxFontSizeMultiplier={1.2}
+    >
+      {tokens.map((tok, i) => {
+        const bare = tok.replace(/[.,!?;:]/g, '').toLowerCase();
+        let color: string | undefined;
+        let weight: '400' | '700' = '400';
+        if (subjSet.has(bare)) { color = c.roleSubject; weight = '700'; }
+        else if (linkSet.has(bare)) { color = c.roleLink; weight = '700'; }
+        else if (verbSet.has(bare)) { color = c.roleVerb; weight = '700'; }
+        return color
+          ? <Text key={`${tok}-${i}`} style={{ color, fontWeight: weight }}>{tok}</Text>
+          : <Text key={`${tok}-${i}`}>{tok}</Text>;
+      })}
+    </Text>
+  );
+}
+
+/** Цветная формула из блоков-ролей: [предмет] + [связка] + [V3] → пример. */
+type FormulaSlot = { text: string; sub?: string; role: 'subject' | 'link' | 'verb' | 'neutral' };
+function Formula({ slots, example, t, f }: { slots: FormulaSlot[]; example?: string; t: Theme; f: any }) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  const isLight = isLightSurface(t?.bgCard);
+  const roleStyle = (role: FormulaSlot['role']) => {
+    if (role === 'subject') return { fg: c.roleSubject, bg: c.roleSubjectBg };
+    if (role === 'link') return { fg: c.roleLink, bg: c.roleLinkBg };
+    if (role === 'verb') return { fg: c.roleVerb, bg: c.roleVerbBg };
+    return { fg: c.muted, bg: isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.05)' };
+  };
+  // Доступность: озвучиваем формулу словами (роль + текст), затем пример.
+  const a11y = slots.map((s) => (s.sub ? `${s.text} (${s.sub})` : s.text)).join(' плюс ')
+    + (example ? `. Пример: ${example}` : '');
+  return (
+    <View
+      accessible
+      accessibilityLabel={a11y}
+      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 1, borderColor: c.border, padding: 14, marginVertical: 10 }}
+    >
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
+        {slots.map((s, i) => {
+          const rs = roleStyle(s.role);
+          // На светлых темах добавляем тонкий бордер цвета роли, чтобы «кубик» читался при бледной заливке.
+          const chipBorder = isLight && s.role !== 'neutral'
+            ? { borderWidth: 1, borderColor: `${rs.fg}55` }
+            : {};
+          return (
+            <React.Fragment key={`${s.text}-${i}`}>
+              <View style={{ backgroundColor: rs.bg, borderRadius: 9, paddingHorizontal: 11, paddingVertical: 7, alignItems: 'center', ...chipBorder }}>
+                <Text style={{ color: rs.fg, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={1.15}>{s.text}</Text>
+                {s.sub ? <Text style={{ color: rs.fg, fontSize: 10, opacity: 0.85, marginTop: 3 }} maxFontSizeMultiplier={1.1}>{s.sub}</Text> : null}
+              </View>
+              {i < slots.length - 1 ? <Text style={{ color: c.muted, fontSize: 16, fontWeight: '700' }}>+</Text> : null}
+            </React.Fragment>
+          );
+        })}
+      </View>
+      {example ? (
+        <View style={{ marginTop: 11, paddingTop: 10, borderTopWidth: 0.5, borderTopColor: c.border }}>
+          <Text style={{ color: c.body, fontSize: f.sub, textAlign: 'center' }} maxFontSizeMultiplier={1.2}>→ <Text style={{ fontWeight: '700', color: c.primary }}>{example}</Text></Text>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+/** Мини-схема трансформации: верхняя строка → стрелка вниз → нижняя (для вопросов/отрицаний). */
+function Transform({ from, to, t, label }: { from: React.ReactNode; to: React.ReactNode; t: Theme; label?: string }) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  return (
+    <View
+      accessible={!!label}
+      accessibilityLabel={label}
+      style={{ backgroundColor: c.cardBg, borderRadius: 14, borderWidth: 1, borderColor: c.border, padding: 13, marginVertical: 10, alignItems: 'center' }}
+    >
+      <View style={{ alignItems: 'center' }}>{from}</View>
+      <Ionicons name="arrow-down" size={18} color={c.muted} style={{ marginVertical: 5 }} />
+      <View style={{ alignItems: 'center' }}>{to}</View>
+    </View>
+  );
+}
+
+/** Карточка примера eng→ru с цветовым разбором ролей. */
+function ExampleCard({
+  eng,
+  rus,
+  t,
+  f,
+  subject = [],
+  link = [],
+  verb = [],
+}: {
+  eng: string;
+  rus: string;
+  t: Theme;
+  f: any;
+  subject?: readonly string[];
+  link?: readonly string[];
+  verb?: readonly string[];
+}) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  return (
+    <View
+      accessible
+      accessibilityLabel={`${eng}. ${rus}`}
+      style={{ backgroundColor: c.cardBg, borderRadius: 10, borderWidth: 0.5, borderColor: c.border, borderLeftWidth: 3, borderLeftColor: `${c.roleVerb}99`, paddingVertical: 9, paddingHorizontal: 11, marginBottom: 7 }}
+    >
+      <ColoredPhrase text={eng} t={t} f={f} subject={subject} link={link} verb={verb} />
+      <Text style={{ color: c.muted, fontSize: f.sub - 1, marginTop: 2 }} maxFontSizeMultiplier={1.2}>{rus}</Text>
+    </View>
+  );
+}
+
+/** Две карточки рядом (например is / are) — каждая с тегом, описанием и списком. */
+type DuoColumn = { tag: string; tagRole?: 'subject' | 'link' | 'verb'; desc: string; items: string[]; highlight?: string };
+function DuoCards({ left, right, t, f }: { left: DuoColumn; right: DuoColumn; t: Theme; f: any }) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  const tagColors = (role?: DuoColumn['tagRole']) => {
+    if (role === 'link') return { fg: c.roleLink, bg: c.roleLinkBg };
+    if (role === 'verb') return { fg: c.roleVerb, bg: c.roleVerbBg };
+    return { fg: c.roleSubject, bg: c.roleSubjectBg };
+  };
+  const renderCol = (col: DuoColumn) => {
+    const tc = tagColors(col.tagRole);
+    const hi = col.highlight?.toLowerCase();
+    return (
+      <View style={{ flex: 1, backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0.5, borderColor: c.border, padding: 11 }}>
+        <View style={{ alignSelf: 'flex-start', backgroundColor: tc.bg, borderRadius: 6, paddingHorizontal: 8, paddingVertical: 2, marginBottom: 6 }}>
+          <Text style={{ color: tc.fg, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.15}>{col.tag}</Text>
+        </View>
+        <Text style={{ color: c.muted, fontSize: f.caption, marginBottom: 7 }} maxFontSizeMultiplier={1.2}>{col.desc}</Text>
+        {col.items.map((it, i) => {
+          const tokens = it.split(/(\s+)/);
+          return (
+            <Text
+              key={i}
+              accessibilityLabel={it}
+              style={{ color: c.body, fontSize: f.sub - 1, paddingVertical: 2.5, lineHeight: Math.round(f.sub * 1.3) }}
+              maxFontSizeMultiplier={1.15}
+            >
+              {tokens.map((tok, j) => {
+                const bare = tok.replace(/[.,!?;:]/g, '').toLowerCase();
+                return hi && bare === hi
+                  ? <Text key={`${tok}-${j}`} style={{ color: tc.fg, fontWeight: '700' }}>{tok}</Text>
+                  : <Text key={`${tok}-${j}`}>{tok}</Text>;
+              })}
+            </Text>
+          );
+        })}
+      </View>
+    );
+  };
+  return (
+    <View style={{ flexDirection: 'row', gap: 10, marginVertical: 10 }}>
+      {renderCol(left)}
+      {renderCol(right)}
+    </View>
+  );
+}
+
+/** Раскрывающаяся секция (аккордеон). defaultOpen — раскрыт по умолчанию (гибрид). */
+function Accordion({
+  title,
+  count,
+  icon = 'list',
+  iconColor,
+  defaultOpen = false,
+  t,
+  f,
+  children,
+}: {
+  title: string;
+  count?: string;
+  icon?: keyof typeof Ionicons.glyphMap;
+  iconColor?: string;
+  defaultOpen?: boolean;
+  t: Theme;
+  f: any;
+  children: React.ReactNode;
+}) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <View style={{ backgroundColor: c.cardBg, borderRadius: 12, borderWidth: 0.5, borderColor: c.border, marginVertical: 8, overflow: 'hidden' }}>
+      <TouchableOpacity
+        onPress={() => setOpen((v) => !v)}
+        activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityState={{ expanded: open }}
+        accessibilityLabel={title}
+        style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14, paddingVertical: 12, backgroundColor: defaultOpen ? c.surfaceBg : 'transparent' }}
+      >
+        <Ionicons name={icon} size={17} color={iconColor ?? c.accent} />
+        <Text style={{ flex: 1, color: c.primary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2} numberOfLines={2}>{title}</Text>
+        {count ? <Text style={{ color: c.muted, fontSize: f.caption }} maxFontSizeMultiplier={1.1}>{count}</Text> : null}
+        <Ionicons name="chevron-down" size={17} color={c.muted} style={{ transform: [{ rotate: open ? '180deg' : '0deg' }] }} />
+      </TouchableOpacity>
+      {open ? <View style={{ paddingHorizontal: 14, paddingBottom: 13, paddingTop: 2 }}>{children}</View> : null}
+    </View>
+  );
+}
+
+/** Чип-форма глагола вида «base → form» для сеток V3/-ing. */
+function FormChips({ pairs, t, f }: { pairs: Array<[string, string]>; t: Theme; f: any }) {
+  const { themeMode } = useTheme();
+  const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
+  return (
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+      {pairs.map(([base, form]) => (
+        <View key={base} style={{ backgroundColor: c.surfaceBg, borderRadius: 7, paddingHorizontal: 9, paddingVertical: 5 }}>
+          <Text style={{ fontSize: f.sub - 1 }} maxFontSizeMultiplier={1.15}>
+            <Text style={{ color: c.muted }}>{base} → </Text>
+            <Text style={{ color: c.roleVerb, fontWeight: '700' }}>{form}</Text>
+          </Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 // ─── Контент уроков ───────────────────────────────────────────────────────────
 
 /** Урок 1 — местоимения и To Be: полная теория на испанском. */
-function renderLesson1TheoryEs(t: any, f: any): React.ReactNode[] {
+function renderLesson1TheoryEs(t: Theme, f: any): React.ReactNode[] {
   return [
     <Section key="s1" t={t} f={f} title="1. La idea principal de la lección" />,
 
@@ -397,8 +696,8 @@ type TheoryContent = {
   titleTr?: string;
   titlePl?: string;
   spanishStatus?: 'ready' | 'missing';
-  render: (t: any, isUK: boolean, f: any) => React.ReactNode[];
-  renderES?: (t: any, f: any) => React.ReactNode[];
+  render: (t: Theme, isUK: boolean, f: any) => React.ReactNode[];
+  renderES?: (t: Theme, f: any) => React.ReactNode[];
 };
 
 function theoryTitleEsFor(lessonId: number, theory?: TheoryContent): string {
@@ -614,7 +913,7 @@ function introExampleTranslation(example: any, lang: Lang): string {
 
 function renderFrenchTheoryFromIntroScreens(
   screens: LessonIntroScreen[],
-  t: any,
+  t: Theme,
   lang: Lang,
   f: any,
 ): React.ReactNode[] {
@@ -4019,15 +4318,9 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       rows={[
-        ['a', 'an'],
-        ['a problem', 'an idea'],
-        ['a question', ''],
-        ['a phone', ''],
-        ['a key', ''],
-        ['a ticket', ''],
-        ['a bag', ''],
-        ['a charger', ''],
-        ['a plan', ''],
+        [isUK ? 'Артикль' : 'Артикль', isUK ? 'Перед яким звуком' : 'Перед каким звуком', isUK ? 'Приклади' : 'Примеры'],
+        ['a', isUK ? 'приголосний' : 'согласный', 'a problem, a question, a phone, a key, a ticket, a bag, a charger, a plan'],
+        ['an', isUK ? 'голосний' : 'гласный', 'an idea, an app, an option, an umbrella'],
       ]}
     />,
 
@@ -9792,7 +10085,6 @@ const THEORY: Record<number, TheoryContent> = {
       f={f}
       rows={[
         ['an + noun', isUK ? 'Приклад з уроку' : 'Пример из урока'],
-        ['an idea', 'He has an idea / We chose an option'],
         ['an idea', 'He has an idea'],
         ['an app', 'We use an app'],
         ['an umbrella', 'I brought an umbrella'],
@@ -9895,7 +10187,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['The ticket is in my wallet', isUK ? 'ticket уже конкретний' : 'ticket уже конкретный'],
         ['The charger is near the phone', isUK ? 'charger і phone уже конкретні' : 'charger и phone уже конкретные'],
         ['The passport is in the bag', isUK ? 'passport і bag уже зрозумілі' : 'passport и bag уже понятны'],
-        ['The umbrella is near the door', isUK ? 'umbrella уже конкретна' : 'umbrella уже конкретный'],
+        ['The umbrella is near the door', isUK ? 'парасолька вже конкретна' : 'зонт уже конкретный'],
         ['The cup is on the desk', isUK ? 'cup уже конкретна' : 'cup уже конкретная'],
       ]}
     />,
@@ -10011,7 +10303,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['We bought a ticket', isUK ? 'один новий ticket' : 'один новый ticket'],
         ['They found a charger', isUK ? 'один новий charger' : 'один новый charger'],
         ['She wrote a letter', isUK ? 'один новий лист' : 'одно новое письмо'],
-        ['I brought an umbrella', isUK ? 'одна нова umbrella' : 'один новый umbrella'],
+        ['I brought an umbrella', isUK ? 'одна нова парасолька' : 'один новый зонт'],
         ['I saw a man near the hotel', isUK ? 'один новий man' : 'один новый man'],
         ['She found a wallet outside the shop', isUK ? 'один новий wallet' : 'один новый wallet'],
         ['We chose an option', isUK ? 'один новий option' : 'один новый option'],
@@ -11011,7 +11303,7 @@ const THEORY: Record<number, TheoryContent> = {
     />,
 
     <Tip
-      key="tip2"
+      key="tipFinal"
       t={t}
       f={f}
       text={isUK
@@ -11879,18 +12171,16 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t2"
+    <Formula
+      key="f2"
       t={t}
       f={f}
-      rows={[
-        [isUK ? 'Предмет' : 'Предмет', 'is/are', 'V3', isUK ? 'Фраза' : 'Фраза'],
-        ['The room', 'is', 'cleaned', 'The room is cleaned every day'],
-        ['The documents', 'are', 'checked', 'The documents are checked every morning'],
-        ['The tickets', 'are', 'sold', 'The tickets are sold online'],
-        ['The food', 'is', 'cooked', 'The food is cooked here'],
-        ['The coffee', 'is', 'made', 'The coffee is made in the morning'],
+      slots={[
+        { text: isUK ? 'предмет' : 'предмет', sub: 'The room', role: 'subject' },
+        { text: 'is / are', sub: isUK ? 'звʼязка' : 'связка', role: 'link' },
+        { text: 'V3', sub: 'cleaned', role: 'verb' },
       ]}
+      example="The room is cleaned every day"
     />,
 
     <Warn
@@ -11903,34 +12193,58 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Section key="s3" t={t} f={f} title={isUK ? '3. Is для одного предмета' : '3. Is для одного предмета'} />,
+    <Section key="s34" t={t} f={f} title={isUK ? '3-4. Is для одного, are для множини' : '3-4. Is для одного, are для множественного'} />,
 
     <Body
       key="b3a"
       t={t}
       f={f}
       text={isUK
-        ? 'Якщо предмет один або слово сприймається як одне ціле, використовуй is: the room is cleaned, the food is cooked, the coffee is made.'
-        : 'Если предмет один или слово воспринимается как одно целое, используй is: the room is cleaned, the food is cooked, the coffee is made.'
+        ? 'Якщо предмет один або слово сприймається як одне ціле, використовуй is. Якщо предметів кілька, використовуй are.'
+        : 'Если предмет один или слово воспринимается как одно целое, используй is. Если предметов несколько, используй are.'
       }
     />,
 
-    <Table
-      key="t3"
+    <DuoCards
+      key="duo34"
       t={t}
       f={f}
-      rows={[
-        [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Природний переклад' : 'Естественный перевод'],
-        ['The room is cleaned every day', isUK ? 'Кімната прибирається щодня' : 'Комната убирается каждый день'],
-        ['The food is cooked here', isUK ? 'Їжа готується тут' : 'Еда готовится здесь'],
-        ['The coffee is made in the morning', isUK ? 'Кава готується вранці' : 'Кофе готовится утром'],
-        ['The door is closed at night', isUK ? 'Двері зачиняються вночі' : 'Дверь закрывается ночью'],
-        ['The app is used by many people', isUK ? 'Додаток використовується багатьма людьми' : 'Приложение используется многими людьми'],
-        ['The password is changed often', isUK ? 'Пароль часто змінюється' : 'Пароль часто меняется'],
-        ['The plan is discussed every week', isUK ? 'План обговорюється щотижня' : 'План обсуждается каждую неделю'],
-        ['The problem is solved quickly', isUK ? 'Проблема швидко вирішується' : 'Проблема быстро решается'],
-        ['The work is finished on time', isUK ? 'Робота закінчується вчасно' : 'Работа заканчивается вовремя'],
-      ]}
+      left={{
+        tag: 'is',
+        tagRole: 'link',
+        desc: isUK ? 'один предмет / одне ціле' : 'один предмет / одно целое',
+        highlight: 'is',
+        items: [
+          'The room is cleaned',
+          'The food is cooked',
+          'The coffee is made',
+          'The door is closed',
+          'The app is used',
+          'The password is changed',
+          'The plan is discussed',
+          'The problem is solved',
+          'The work is finished',
+        ],
+      }}
+      right={{
+        tag: 'are',
+        tagRole: 'link',
+        desc: isUK ? 'кілька предметів' : 'несколько предметов',
+        highlight: 'are',
+        items: [
+          'The documents are checked',
+          'The tickets are sold',
+          'The windows are opened',
+          'The messages are sent',
+          'The phones are charged',
+          'The bags are checked',
+          'The keys are kept',
+          'The questions are answered',
+          'The rules are explained',
+          'The answers are checked',
+          'The ideas are supported',
+        ],
+      }}
     />,
 
     <Warn
@@ -11943,24 +12257,38 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Section key="s4" t={t} f={f} title={isUK ? '4. Are для множини' : '4. Are для множественного числа'} />,
-
-    <Body
-      key="b4a"
+    <Warn
+      key="w3"
       t={t}
       f={f}
       text={isUK
-        ? 'Якщо предметів кілька, використовуй are: documents are checked, tickets are sold, messages are sent.'
-        : 'Если предметов несколько, используй are: documents are checked, tickets are sold, messages are sent.'
+        ? '❌ The documents is checked → ✅ The documents are checked. Documents - множина, тому are.'
+        : '❌ The documents is checked → ✅ The documents are checked. Documents - множественное число, поэтому are.'
       }
     />,
 
-    <Table
-      key="t4"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Природний переклад' : 'Естественный перевод'],
+    <Section key="s3" t={t} f={f} title={isUK ? '3. Повні приклади з is' : '3. Полные примеры с is'} />,
+
+    <Accordion key="acc-is" t={t} f={f} defaultOpen icon="list" title={isUK ? 'Фрази з is' : 'Фразы с is'} count={isUK ? '9 фраз' : '9 фраз'}>
+      {([
+        ['The room is cleaned every day', isUK ? 'Кімната прибирається щодня' : 'Комната убирается каждый день'],
+        ['The food is cooked here', isUK ? 'Їжа готується тут' : 'Еда готовится здесь'],
+        ['The coffee is made in the morning', isUK ? 'Кава готується вранці' : 'Кофе готовится утром'],
+        ['The door is closed at night', isUK ? 'Двері зачиняються вночі' : 'Дверь закрывается ночью'],
+        ['The app is used by many people', isUK ? 'Додаток використовується багатьма людьми' : 'Приложение используется многими людьми'],
+        ['The password is changed often', isUK ? 'Пароль часто змінюється' : 'Пароль часто меняется'],
+        ['The plan is discussed every week', isUK ? 'План обговорюється щотижня' : 'План обсуждается каждую неделю'],
+        ['The problem is solved quickly', isUK ? 'Проблема швидко вирішується' : 'Проблема быстро решается'],
+        ['The work is finished on time', isUK ? 'Робота закінчується вчасно' : 'Работа заканчивается вовремя'],
+      ] as Array<[string, string]>).map(([eng, rus], i) => (
+        <ExampleCard key={i} t={t} f={f} eng={eng} rus={rus} link={['is']} />
+      ))}
+    </Accordion>,
+
+    <Section key="s4" t={t} f={f} title={isUK ? '4. Повні приклади з are' : '4. Полные примеры с are'} />,
+
+    <Accordion key="acc-are" t={t} f={f} defaultOpen icon="list" title={isUK ? 'Фрази з are' : 'Фразы с are'} count={isUK ? '11 фраз' : '11 фраз'}>
+      {([
         ['The documents are checked every morning', isUK ? 'Документи перевіряються кожного ранку' : 'Документы проверяются каждое утро'],
         ['The tickets are sold online', isUK ? 'Квитки продаються онлайн' : 'Билеты продаются онлайн'],
         ['The windows are opened in the morning', isUK ? 'Вікна відкриваються вранці' : 'Окна открываются утром'],
@@ -11972,18 +12300,10 @@ const THEORY: Record<number, TheoryContent> = {
         ['The answers are checked carefully', isUK ? 'Відповіді уважно перевіряються' : 'Ответы внимательно проверяются'],
         ['The rules are explained clearly', isUK ? 'Правила пояснюються зрозуміло' : 'Правила объясняются понятно'],
         ['The ideas are supported here', isUK ? 'Ідеї тут підтримуються' : 'Идеи здесь поддерживаются'],
-      ]}
-    />,
-
-    <Warn
-      key="w3"
-      t={t}
-      f={f}
-      text={isUK
-        ? '❌ The documents is checked → ✅ The documents are checked. Documents - множина, тому are.'
-        : '❌ The documents is checked → ✅ The documents are checked. Documents - множественное число, поэтому are.'
-      }
-    />,
+      ] as Array<[string, string]>).map(([eng, rus], i) => (
+        <ExampleCard key={i} t={t} f={f} eng={eng} rus={rus} link={['are']} />
+      ))}
+    </Accordion>,
 
     <Section key="s5" t={t} f={f} title={isUK ? '5. Третя форма дієслова: cleaned, checked, sold' : '5. Третья форма глагола: cleaned, checked, sold'} />,
 
@@ -11997,40 +12317,27 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t5"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Базова дія' : 'Базовое действие', 'V3', isUK ? 'Приклад з уроку' : 'Пример из урока'],
-        ['clean', 'cleaned', 'The room is cleaned every day'],
-        ['check', 'checked', 'The documents are checked every morning'],
-        ['cook', 'cooked', 'The food is cooked here'],
-        ['close', 'closed', 'The door is closed at night'],
-        ['open', 'opened', 'The windows are opened in the morning'],
-        ['charge', 'charged', 'The phones are charged here'],
-        ['change', 'changed', 'The password is changed often'],
-        ['answer', 'answered', 'The questions are answered quickly'],
-        ['explain', 'explained', 'The rules are explained clearly'],
-        ['discuss', 'discussed', 'The plan is discussed every week'],
-        ['solve', 'solved', 'The problem is solved quickly'],
-        ['finish', 'finished', 'The work is finished on time'],
-      ]}
-    />,
+    <Accordion key="acc-v3reg" t={t} f={f} icon="text-outline" title={isUK ? 'Правильні: + ed' : 'Правильные: + ed'} count={isUK ? '12 — натисни' : '12 — нажми'}>
+      <FormChips
+        t={t}
+        f={f}
+        pairs={[
+          ['clean', 'cleaned'], ['check', 'checked'], ['cook', 'cooked'], ['close', 'closed'],
+          ['open', 'opened'], ['charge', 'charged'], ['change', 'changed'], ['answer', 'answered'],
+          ['explain', 'explained'], ['discuss', 'discussed'], ['solve', 'solved'], ['finish', 'finished'],
+        ]}
+      />
+    </Accordion>,
 
-    <Table
-      key="t6"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Базова дія' : 'Базовое действие', 'V3', isUK ? 'Приклад з уроку' : 'Пример из урока'],
-        ['sell', 'sold', 'The tickets are sold online'],
-        ['make', 'made', 'The coffee is made in the morning'],
-        ['send', 'sent', 'The messages are sent every day'],
-        ['use', 'used', 'The app is used by many people'],
-        ['keep', 'kept', 'The keys are kept inside'],
-      ]}
-    />,
+    <Accordion key="acc-v3irr" t={t} f={f} icon="star" title={isUK ? 'Особливі форми (запамʼятати)' : 'Особые формы (запомнить)'} count={isUK ? '5 — натисни' : '5 — нажми'}>
+      <FormChips
+        t={t}
+        f={f}
+        pairs={[
+          ['sell', 'sold'], ['make', 'made'], ['send', 'sent'], ['use', 'used'], ['keep', 'kept'],
+        ]}
+      />
+    </Accordion>,
 
     <Warn
       key="w4"
@@ -12064,24 +12371,30 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t7"
+    <Transform
+      key="tr-q"
       t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Твердження' : 'Утверждение', isUK ? 'Питання' : 'Вопрос'],
-        ['The room is cleaned every day', 'Is the room cleaned every day?'],
-        ['The documents are checked every morning', 'Are the documents checked every morning?'],
-        ['The tickets are sold online', 'Are the tickets sold online?'],
-        ['The food is cooked here', 'Is the food cooked here?'],
-        ['The door is closed at night', 'Is the door closed at night?'],
-        ['The messages are sent every day', 'Are the messages sent every day?'],
-        ['The app is used by many people', 'Is the app used by many people?'],
-        ['The bags are checked here', 'Are the bags checked here?'],
-        ['The password is changed often', 'Is the password changed often?'],
-        ['The rules are explained clearly', 'Are the rules explained clearly?'],
-      ]}
+      label={isUK ? 'З твердження The room is cleaned виходить питання Is the room cleaned?' : 'Из утверждения The room is cleaned получается вопрос Is the room cleaned?'}
+      from={<ColoredPhrase text="The room is cleaned" t={t} f={f} subject={['the', 'room']} link={['is']} verb={['cleaned']} />}
+      to={<ColoredPhrase text="Is the room cleaned?" t={t} f={f} subject={['the', 'room']} link={['is']} verb={['cleaned']} />}
     />,
+
+    <Accordion key="acc-q" t={t} f={f} defaultOpen icon="help-circle" title={isUK ? 'Усі питання уроку' : 'Все вопросы урока'} count={isUK ? '10 фраз' : '10 фраз'}>
+      {([
+        ['Is the room cleaned every day?', isUK ? 'Кімнату прибирають щодня?' : 'Комнату убирают каждый день?'],
+        ['Are the documents checked every morning?', isUK ? 'Документи перевіряють кожного ранку?' : 'Документы проверяют каждое утро?'],
+        ['Are the tickets sold online?', isUK ? 'Квитки продають онлайн?' : 'Билеты продают онлайн?'],
+        ['Is the food cooked here?', isUK ? 'Їжу готують тут?' : 'Еду готовят здесь?'],
+        ['Is the door closed at night?', isUK ? 'Двері зачиняють вночі?' : 'Дверь закрывают ночью?'],
+        ['Are the messages sent every day?', isUK ? 'Повідомлення надсилають щодня?' : 'Сообщения отправляют каждый день?'],
+        ['Is the app used by many people?', isUK ? 'Додатком користується багато людей?' : 'Приложением пользуется много людей?'],
+        ['Are the bags checked here?', isUK ? 'Сумки перевіряють тут?' : 'Сумки проверяют здесь?'],
+        ['Is the password changed often?', isUK ? 'Пароль часто міняють?' : 'Пароль часто меняют?'],
+        ['Are the rules explained clearly?', isUK ? 'Правила пояснюють зрозуміло?' : 'Правила объясняют понятно?'],
+      ] as Array<[string, string]>).map(([q, rus], i) => (
+        <ExampleCard key={i} t={t} f={f} eng={q} rus={rus} link={ROLE_LINK_IS_ARE} />
+      ))}
+    </Accordion>,
 
     <Warn
       key="w6"
@@ -12115,24 +12428,35 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t8"
+    <Formula
+      key="f7"
       t={t}
       f={f}
-      rows={[
-        [isUK ? 'Твердження' : 'Утверждение', isUK ? 'Заперечення' : 'Отрицание'],
-        ['The room is cleaned every day', 'The room is not cleaned every day'],
-        ['The documents are checked here', 'The documents are not checked here'],
-        ['The tickets are sold online', 'The tickets are not sold online'],
-        ['The food is cooked here', 'The food is not cooked here'],
-        ['The door is closed at night', 'The door is not closed at night'],
-        ['The messages are sent on weekends', 'The messages are not sent on weekends'],
-        ['The app is used often', 'The app is not used often'],
-        ['The bags are checked inside', 'The bags are not checked inside'],
-        ['The password is changed often', 'The password is not changed often'],
-        ['The rules are explained clearly', 'The rules are not explained clearly'],
+      slots={[
+        { text: isUK ? 'предмет' : 'предмет', sub: 'The room', role: 'subject' },
+        { text: 'is / are', role: 'link' },
+        { text: 'not', sub: isUK ? 'заперечення' : 'отрицание', role: 'neutral' },
+        { text: 'V3', sub: 'cleaned', role: 'verb' },
       ]}
+      example="The room is not cleaned every day"
     />,
+
+    <Accordion key="acc-neg" t={t} f={f} icon="remove-circle-outline" title={isUK ? 'Усі заперечення уроку' : 'Все отрицания урока'} count={isUK ? '10 — натисни' : '10 — нажми'}>
+      {([
+        ['The room is not cleaned every day', isUK ? 'Кімнату не прибирають щодня' : 'Комнату не убирают каждый день'],
+        ['The documents are not checked here', isUK ? 'Документи тут не перевіряють' : 'Документы здесь не проверяют'],
+        ['The tickets are not sold online', isUK ? 'Квитки не продають онлайн' : 'Билеты не продают онлайн'],
+        ['The food is not cooked here', isUK ? 'Їжу тут не готують' : 'Еду здесь не готовят'],
+        ['The door is not closed at night', isUK ? 'Двері вночі не зачиняють' : 'Дверь ночью не закрывают'],
+        ['The messages are not sent on weekends', isUK ? 'Повідомлення не надсилають у вихідні' : 'Сообщения не отправляют по выходным'],
+        ['The app is not used often', isUK ? 'Додаток використовують нечасто' : 'Приложение используют нечасто'],
+        ['The bags are not checked inside', isUK ? 'Сумки всередині не перевіряють' : 'Сумки внутри не проверяют'],
+        ['The password is not changed often', isUK ? 'Пароль міняють нечасто' : 'Пароль меняют нечасто'],
+        ['The rules are not explained clearly', isUK ? 'Правила пояснюють незрозуміло' : 'Правила объясняют непонятно'],
+      ] as Array<[string, string]>).map(([eng, rus], i) => (
+        <ExampleCard key={i} t={t} f={f} eng={eng} rus={rus} link={ROLE_LINK_IS_ARE_NOT} />
+      ))}
+    </Accordion>,
 
     <Warn
       key="w8"
@@ -12216,20 +12540,18 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t10"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Фраза з уроку' : 'Фраза из урока', isUK ? 'Природний переклад' : 'Естественный перевод'],
+    <Accordion key="acc-people" t={t} f={f} defaultOpen icon="people-outline" title={isUK ? 'Люди в пасиві' : 'Люди в пассиве'} count={isUK ? '6 фраз' : '6 фраз'}>
+      {([
         ['I am invited often', isUK ? 'Мене часто запрошують' : 'Меня часто приглашают'],
         ['You are invited too', isUK ? 'Тебе теж запрошують' : 'Тебя тоже приглашают'],
         ['He is called every day', isUK ? 'Йому телефонують щодня' : 'Ему звонят каждый день'],
         ['She is helped here', isUK ? 'Їй тут допомагають' : 'Ей здесь помогают'],
         ['We are asked many questions', isUK ? 'Нам ставлять багато запитань' : 'Нам задают много вопросов'],
         ['They are invited every week', isUK ? 'Їх запрошують щотижня' : 'Их приглашают каждую неделю'],
-      ]}
-    />,
+      ] as Array<[string, string]>).map(([eng, rus], i) => (
+        <ExampleCard key={i} t={t} f={f} eng={eng} rus={rus} link={ROLE_LINK_BE} />
+      ))}
+    </Accordion>,
 
     <Warn
       key="w10"
@@ -12251,6 +12573,18 @@ const THEORY: Record<number, TheoryContent> = {
         ? 'У кінці уроку пасив зʼявляється після must і can. Після модального слова ставимо be, а потім третю форму дієслова.'
         : 'В конце урока пассив появляется после must и can. После модального слова ставим be, а потом третью форму глагола.'
       }
+    />,
+
+    <Formula
+      key="f11"
+      t={t}
+      f={f}
+      slots={[
+        { text: 'must / can', sub: isUK ? 'модальне' : 'модальное', role: 'subject' },
+        { text: 'be', role: 'link' },
+        { text: 'V3', sub: 'signed', role: 'verb' },
+      ]}
+      example="This document must be signed today"
     />,
 
     <Table
@@ -12286,15 +12620,22 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t12"
+    <ExampleCard
+      key="ec12a"
       t={t}
       f={f}
-      rows={[
-        [isUK ? 'Фраза' : 'Фраза', isUK ? 'Що означає' : 'Что означает'],
-        ['The room is being cleaned now', isUK ? 'кімнату прибирають зараз, дія в процесі' : 'комнату убирают сейчас, действие в процессе'],
-        ['The documents were checked yesterday', isUK ? 'документи були перевірені вчора, минулий час' : 'документы были проверены вчера, прошедшее время'],
-      ]}
+      eng="The room is being cleaned now"
+      rus={isUK ? 'кімнату прибирають зараз, дія в процесі' : 'комнату убирают сейчас, действие в процессе'}
+      link={['is', 'being']}
+    />,
+    <ExampleCard
+      key="ec12b"
+      t={t}
+      f={f}
+      eng="The documents were checked yesterday"
+      rus={isUK ? 'документи були перевірені вчора, минулий час' : 'документы были проверены вчера, прошедшее время'}
+      link={['were']}
+      verb={['checked']}
     />,
 
     <Section key="s13" t={t} f={f} title={isUK ? '13. Готові блоки з уроку' : '13. Готовые блоки из урока'} />,
@@ -12309,41 +12650,33 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Table
-      key="t13"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Блок' : 'Блок', isUK ? 'Значення' : 'Значение'],
-        ['is cleaned', isUK ? 'прибирається' : 'убирается'],
-        ['are checked', isUK ? 'перевіряються' : 'проверяются'],
-        ['are sold', isUK ? 'продаються' : 'продаются'],
-        ['is cooked', isUK ? 'готується' : 'готовится'],
-        ['is made', isUK ? 'готується / робиться' : 'готовится / делается'],
-        ['is closed', isUK ? 'зачиняється / закрита' : 'закрывается / закрыта'],
-        ['are opened', isUK ? 'відкриваються' : 'открываются'],
-        ['are sent', isUK ? 'надсилаються' : 'отправляются'],
-        ['is used', isUK ? 'використовується' : 'используется'],
-        ['are charged', isUK ? 'заряджаються' : 'заряжаются'],
-      ]}
-    />,
-
-    <Table
-      key="t14"
-      t={t}
-      f={f}
-      rows={[
-        [isUK ? 'Блок' : 'Блок', isUK ? 'Значення' : 'Значение'],
-        ['are kept inside', isUK ? 'зберігаються всередині' : 'хранятся внутри'],
-        ['is changed often', isUK ? 'часто змінюється' : 'часто меняется'],
-        ['are answered quickly', isUK ? 'на них швидко відповідають' : 'на них быстро отвечают'],
-        ['are checked carefully', isUK ? 'уважно перевіряються' : 'внимательно проверяются'],
-        ['are explained clearly', isUK ? 'зрозуміло пояснюються' : 'понятно объясняются'],
-        ['is discussed every week', isUK ? 'обговорюється щотижня' : 'обсуждается каждую неделю'],
-        ['is solved quickly', isUK ? 'швидко вирішується' : 'быстро решается'],
-        ['is finished on time', isUK ? 'закінчується вчасно' : 'заканчивается вовремя'],
-      ]}
-    />,
+    <Accordion key="acc-blocks" t={t} f={f} icon="grid-outline" title={isUK ? 'Готові блоки' : 'Готовые блоки'} count={isUK ? '18 — натисни' : '18 — нажми'}>
+      <Table
+        t={t}
+        f={f}
+        rows={[
+          [isUK ? 'Блок' : 'Блок', isUK ? 'Значення' : 'Значение'],
+          ['is cleaned', isUK ? 'прибирається' : 'убирается'],
+          ['are checked', isUK ? 'перевіряються' : 'проверяются'],
+          ['are sold', isUK ? 'продаються' : 'продаются'],
+          ['is cooked', isUK ? 'готується' : 'готовится'],
+          ['is made', isUK ? 'готується / робиться' : 'готовится / делается'],
+          ['is closed', isUK ? 'зачиняється / закрита' : 'закрывается / закрыта'],
+          ['are opened', isUK ? 'відкриваються' : 'открываются'],
+          ['are sent', isUK ? 'надсилаються' : 'отправляются'],
+          ['is used', isUK ? 'використовується' : 'используется'],
+          ['are charged', isUK ? 'заряджаються' : 'заряжаются'],
+          ['are kept inside', isUK ? 'зберігаються всередині' : 'хранятся внутри'],
+          ['is changed often', isUK ? 'часто змінюється' : 'часто меняется'],
+          ['are answered quickly', isUK ? 'на них швидко відповідають' : 'на них быстро отвечают'],
+          ['are checked carefully', isUK ? 'уважно перевіряються' : 'внимательно проверяются'],
+          ['are explained clearly', isUK ? 'зрозуміло пояснюються' : 'понятно объясняются'],
+          ['is discussed every week', isUK ? 'обговорюється щотижня' : 'обсуждается каждую неделю'],
+          ['is solved quickly', isUK ? 'швидко вирішується' : 'быстро решается'],
+          ['is finished on time', isUK ? 'закінчується вчасно' : 'заканчивается вовремя'],
+        ]}
+      />
+    </Accordion>,
 
     <Section key="s14" t={t} f={f} title={isUK ? '14. Найчастіші помилки' : '14. Самые частые ошибки'} />,
 
@@ -12400,7 +12733,7 @@ const THEORY: Record<number, TheoryContent> = {
     />,
 
     <Tip
-      key="tip2"
+      key="tipFinal"
       t={t}
       f={f}
       text={isUK
@@ -13408,7 +13741,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['rain', 'raining', 'It was raining'],
         ['study', 'studying', 'She was studying'],
         ['eat', 'eating', 'We were eating'],
-        ['come', 'coming', 'I came in'],
+        ['come', 'coming', 'She was coming home'],
       ]}
     />,
 

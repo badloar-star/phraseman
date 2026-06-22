@@ -3,6 +3,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { triLang } from '../constants/i18n';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
@@ -29,6 +30,7 @@ function LeagueBonusAvailableModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
@@ -71,7 +73,18 @@ function LeagueBonusAvailableModal({
             onClose();
           }}
         />
-        <View style={styles.center} pointerEvents="box-none">
+        <View
+          style={[
+            styles.center,
+            {
+              paddingTop: Math.max(18, insets.top + 8),
+              paddingBottom: Math.max(18, insets.bottom + 8),
+              paddingLeft: Math.max(18, insets.left + 8),
+              paddingRight: Math.max(18, insets.right + 8),
+            },
+          ]}
+          pointerEvents="box-none"
+        >
           <Animated.View style={[styles.shell, { opacity, transform: [{ scale }] }]}>
             <LinearGradient
               colors={modalTheme.frame}
@@ -148,7 +161,7 @@ function LeagueBonusAvailableModal({
                 </Text>
                 <View style={[styles.meta, { borderColor: modalTheme.metaBorder, backgroundColor: modalTheme.metaBg }]}>
                   <Ionicons name="podium-outline" size={18} color={modalTheme.eyebrow} />
-                  <Text style={[styles.metaText, { color: t.textSecond }]} numberOfLines={1}>
+                  <Text style={[styles.metaText, { color: t.textSecond }]}>
                     {triLang(lang, { ru: `Корона: ${crownName}`, uk: `Корона: ${crownName}`, es: `Corona: ${crownName}`, 'pt-BR': `Coroa: ${crownName}`, vi: `Vương miện: ${crownName}`, id: `Mahkota: ${crownName}`, tr: `Taç: ${crownName}`, pl: `Korona: ${crownName}` })}
                   </Text>
                 </View>

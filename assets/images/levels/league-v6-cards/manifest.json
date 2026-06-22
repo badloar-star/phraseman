@@ -1,0 +1,221 @@
+{
+  "version": "league-v6-codex-dalli-cards",
+  "generatedAt": "2026-06-21T22:15:23.143Z",
+  "source": ".codex-tmp/league-assets/dalli-sources/league_cards_v1/league_cards_atlas_v1.png",
+  "grid": {
+    "columns": 3,
+    "rows": 4,
+    "tileWidth": 512,
+    "tileHeight": 256,
+    "trimX": 6,
+    "trimY": 10
+  },
+  "output": {
+    "width": 768,
+    "height": 363,
+    "aspectRatio": 2.115702479338843,
+    "fit": "native atlas tile crop",
+    "format": "webp",
+    "quality": 94
+  },
+  "designRules": [
+    "DALL-E/Codex atlas is used as background art only; UI text stays native and localized.",
+    "Each card keeps the native atlas tile crop; final assets must not add padding, seams, or cover-crop extensions.",
+    "Each card keeps a centered safe area for the existing transparent league heraldry overlay.",
+    "No text, numbers, logos, characters, or foreground crests are allowed in card backgrounds."
+  ],
+  "leagues": [
+    {
+      "id": 0,
+      "slug": "med",
+      "title": "Copper league",
+      "file": "league-card-med.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-med.webp",
+      "crop": {
+        "left": 6,
+        "top": 10,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 84256
+    },
+    {
+      "id": 1,
+      "slug": "bronz",
+      "title": "Bronze league",
+      "file": "league-card-bronz.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-bronz.webp",
+      "crop": {
+        "left": 518,
+        "top": 10,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 75070
+    },
+    {
+      "id": 2,
+      "slug": "serebro",
+      "title": "Silver league",
+      "file": "league-card-serebro.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-serebro.webp",
+      "crop": {
+        "left": 1030,
+        "top": 10,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 81892
+    },
+    {
+      "id": 3,
+      "slug": "zoloto",
+      "title": "Gold league",
+      "file": "league-card-zoloto.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-zoloto.webp",
+      "crop": {
+        "left": 6,
+        "top": 266,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 86240
+    },
+    {
+      "id": 4,
+      "slug": "platina",
+      "title": "Platinum league",
+      "file": "league-card-platina.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-platina.webp",
+      "crop": {
+        "left": 518,
+        "top": 266,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 69692
+    },
+    {
+      "id": 5,
+      "slug": "izumrud",
+      "title": "Emerald league",
+      "file": "league-card-izumrud.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-izumrud.webp",
+      "crop": {
+        "left": 1030,
+        "top": 266,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 78232
+    },
+    {
+      "id": 6,
+      "slug": "sapfir",
+      "title": "Sapphire league",
+      "file": "league-card-sapfir.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-sapfir.webp",
+      "crop": {
+        "left": 6,
+        "top": 522,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 81786
+    },
+    {
+      "id": 7,
+      "slug": "rubin",
+      "title": "Ruby league",
+      "file": "league-card-rubin.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-rubin.webp",
+      "crop": {
+        "left": 518,
+        "top": 522,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 74638
+    },
+    {
+      "id": 8,
+      "slug": "almaz",
+      "title": "Diamond league",
+      "file": "league-card-almaz.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-almaz.webp",
+      "crop": {
+        "left": 1030,
+        "top": 522,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 92756
+    },
+    {
+      "id": 9,
+      "slug": "cherniy-almaz",
+      "title": "Black diamond league",
+      "file": "league-card-cherniy-almaz.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-cherniy-almaz.webp",
+      "crop": {
+        "left": 6,
+        "top": 778,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 73396
+    },
+    {
+      "id": 10,
+      "slug": "efir",
+      "title": "Ether league",
+      "file": "league-card-efir.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-efir.webp",
+      "crop": {
+        "left": 518,
+        "top": 778,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 80302
+    },
+    {
+      "id": 11,
+      "slug": "vishaya",
+      "title": "Supreme league",
+      "file": "league-card-vishaya.webp",
+      "path": "assets/images/levels/league-v6-cards/league-card-vishaya.webp",
+      "crop": {
+        "left": 1030,
+        "top": 778,
+        "width": 500,
+        "height": 236
+      },
+      "width": 768,
+      "height": 363,
+      "bytes": 92868
+    }
+  ]
+}

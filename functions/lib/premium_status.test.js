@@ -24,6 +24,21 @@ describe('premium_status — серверный источник правды п
         it('lifetime без поля expiry (по умолчанию бессрочный) → премиум', () => {
             expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'lifetime' }, NOW)).toBe(true);
         });
+        // ── rc_expiry leak (утечка дохода при потерянном EXPIRATION-вебхуке) ──
+        it('expiry=0 но rc_expiry истёк ДАВНО (>72ч grace) → НЕ премиум (закрыта утечка)', () => {
+            const rcExpiry = NOW - 80 * 60 * 60 * 1000; // 80ч назад > 72ч grace
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: String(rcExpiry) }, NOW)).toBe(false);
+        });
+        it('expiry=0 и rc_expiry истёк НЕДАВНО (в пределах 72ч grace) → ещё премиум', () => {
+            const rcExpiry = NOW - 10 * 60 * 60 * 1000; // 10ч назад < 72ч grace (опоздавший RENEWAL)
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: String(rcExpiry) }, NOW)).toBe(true);
+        });
+        it('expiry=0 и rc_expiry в будущем → премиум', () => {
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'yearly', premium_expiry: '0', premium_rc_expiry_ms: String(FUTURE) }, NOW)).toBe(true);
+        });
+        it('lifetime: expiry=0 и НЕТ rc_expiry → премиум (бессрочный, не трогаем)', () => {
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'lifetime', premium_expiry: '0' }, NOW)).toBe(true);
+        });
     });
     describe('админский грант', () => {
         it('admin_premium_override=true бессрочно → премиум', () => {

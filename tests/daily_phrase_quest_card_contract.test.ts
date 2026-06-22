@@ -55,4 +55,20 @@ describe('DailyPhraseCard quest contract', () => {
   it('does not show the AI explain button inside the daily phrase quest flow', () => {
     expect(source).not.toContain('<ExplainButton');
   });
+
+  it('hides the meaning on the home plaque until the quest is answered', () => {
+    // The homeAdditional plaque must gate the translation behind cardQuestAnswered
+    // so the daily quiz keeps its "guess the meaning" point.
+    expect(source).toContain('cardQuestAnswered');
+    expect(source).toContain('hasDailyPhraseQuestAnswered({ phraseId, date })');
+    // Before answering: a teaser CTA, not the meaning.
+    expect(source).toContain('questTeaser');
+    // The meaning text is rendered only in the answered branch.
+    const answeredIdx = source.indexOf('cardQuestAnswered ? (');
+    const meaningIdx = source.indexOf('{homeAdditionalMeaning}');
+    const teaserIdx = source.indexOf('{questTeaser}');
+    expect(answeredIdx).toBeGreaterThan(-1);
+    expect(answeredIdx).toBeLessThan(meaningIdx);
+    expect(meaningIdx).toBeLessThan(teaserIdx);
+  });
 });

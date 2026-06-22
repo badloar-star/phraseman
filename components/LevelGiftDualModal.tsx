@@ -946,7 +946,6 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, 
         />
       </View>
       <Text
-        numberOfLines={2}
         style={{
           color:            t.textPrimary,
           fontSize:         f.body,

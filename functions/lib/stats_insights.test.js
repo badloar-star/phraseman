@@ -42,6 +42,16 @@ describe('stats_insights parseAndGuardResult', () => {
     it('throws when every note is empty', () => {
         expect(() => parseAndGuardResult(JSON.stringify({ balance: '', rhythm: '', year: '', percentiles: '', lifetime: '' }))).toThrow();
     });
+    it('throws when generated notes are not in the requested language', () => {
+        const english = JSON.stringify({
+            balance: 'Today you keep a good small practice step with your phrases.',
+            rhythm: 'This week your practice rhythm is steady.',
+        });
+        expect(() => parseAndGuardResult(english, 'ru')).toThrow('stats_insights_wrong_language');
+    });
+    it('throws when a Latin-script language receives Cyrillic notes', () => {
+        expect(() => parseAndGuardResult(fullNotes(), 'es')).toThrow('stats_insights_wrong_language');
+    });
     it('caps note length', () => {
         const long = 'а'.repeat(1000);
         const result = parseAndGuardResult(JSON.stringify({ balance: long }));

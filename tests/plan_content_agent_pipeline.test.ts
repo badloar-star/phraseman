@@ -3,21 +3,35 @@ import {
   CHECKER_ROLES,
   type PipelineRun,
 } from '../app/plan_content_agent_pipeline';
-import { buildPlanContentGenerationJob } from '../app/plan_content_generation_job';
+import { buildPlanContentGenerationJob, describeJobBrief } from '../app/plan_content_generation_job';
+import type { LocalizedText } from '../app/plan_content_schema';
 import type { PlanContentDay, PlanContentPhrase } from '../app/plan_content_schema';
+
+function localized(label: string): LocalizedText {
+  return {
+    ru: `ru ${label}`,
+    uk: `uk ${label}`,
+    es: `es ${label}`,
+    'pt-BR': `pt ${label}`,
+    vi: `vi ${label}`,
+    id: `id ${label}`,
+    tr: `tr ${label}`,
+    pl: `pl ${label}`,
+  };
+}
 
 function phrase(id: string, constructions: string[]): PlanContentPhrase {
   const isHere = id === 'p1';
   return {
     id,
     english: isHere ? "I'm here." : 'I need help.',
-    meaning: { ru: isHere ? 'Я здесь.' : 'Мне нужна помощь.' },
+    meaning: localized(isHere ? 'i am here' : 'i need help'),
     constructions,
     explanation: {
-      title: { ru: 'Коротко' },
-      rule: { ru: 'Маленькое правило.' },
-      why: { ru: 'Почему так.' },
-      commonMistake: { ru: 'Частая ошибка.' },
+      title: localized(`${id} title`),
+      rule: localized(`${id} rule`),
+      why: localized(`${id} why`),
+      commonMistake: localized(`${id} mistake`),
     },
     words: isHere
       ? [
@@ -36,11 +50,16 @@ function goodDay(): PlanContentDay {
   return {
     planId: 'voyazh',
     dayIndex: 1,
-    topic: { ru: 'Аэропорт' },
-    outcome: { ru: 'Сможешь попросить помощь.' },
+    topic: localized('airport'),
+    outcome: localized('ask for help'),
     level: 'A1',
     prerequisiteLessons: [1],
-    intro: [{ kind: 'why', title: { ru: 't' }, body: { ru: 'b' } }],
+    intro: [{
+      kind: 'why',
+      title: localized('intro title'),
+      body: localized('intro body'),
+      examples: [{ en: "I'm here.", gloss: localized('example gloss') }],
+    }],
     phrases: [
       phrase('p1', ['to-be']),
       phrase('p2', ['present-simple']),
@@ -49,11 +68,11 @@ function goodDay(): PlanContentDay {
       phrase('p5', ['present-simple']),
     ],
     vocabulary: [
-      { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'здесь' }, example: "I'm here." },
-      { word: 'need', partOfSpeech: 'verb', translation: { ru: 'нужно' }, example: 'I need help.' },
-      { word: 'help', partOfSpeech: 'noun', translation: { ru: 'помощь' }, example: 'I need help.' },
-      { word: 'i', partOfSpeech: 'pronoun', translation: { ru: 'я' }, example: "I'm here." },
-      { word: "i'm", partOfSpeech: 'to-be', translation: { ru: 'я (есть)' }, example: "I'm here." },
+      { word: 'here', partOfSpeech: 'adverb', translation: localized('here'), example: "I'm here." },
+      { word: 'need', partOfSpeech: 'verb', translation: localized('need'), example: 'I need help.' },
+      { word: 'help', partOfSpeech: 'noun', translation: localized('help'), example: 'I need help.' },
+      { word: 'i', partOfSpeech: 'pronoun', translation: localized('i'), example: "I'm here." },
+      { word: "i'm", partOfSpeech: 'to-be', translation: localized('i am'), example: "I'm here." },
     ],
   };
 }
@@ -90,6 +109,14 @@ describe('plan content agent pipeline gate', () => {
     const result = evaluatePipelineRun(fullRun({ judged: day }));
     expect(result.accepted).toBe(false);
     expect(result.blockers.some((b) => b.startsWith('schema:too_few_phrases'))).toBe(true);
+  });
+
+  it('blocks when a generated day does not isolate every source locale', () => {
+    const day = goodDay();
+    delete day.phrases[0].meaning['pt-BR'];
+    const result = evaluatePipelineRun(fullRun({ judged: day }));
+    expect(result.accepted).toBe(false);
+    expect(result.blockers).toContain('locale:missing_locale:phrases[0].meaning:pt-BR');
   });
 
   it('blocks when a phrase exceeds the grammar gate', () => {
@@ -139,5 +166,15 @@ describe('plan content agent pipeline gate', () => {
   it('blocks when the adversarial pass never ran', () => {
     const result = evaluatePipelineRun(fullRun({ adversarial: undefined }));
     expect(result.blockers).toContain('adversarial_missing');
+  });
+
+  it('puts source-locale isolation rules into the AI generation brief', () => {
+    const brief = describeJobBrief(job);
+    expect(brief).toContain('Source locales: ru, uk, es, pt-BR, vi, id, tr, pl');
+    expect(brief).toContain('Locale isolation: ru text only in ru');
+    expect(brief).toContain('Do not copy RU/UK/ES into planned locales');
+    expect(brief).toContain('Do not use alias keys like ptBr/pt_BR/vn');
+    expect(brief).toContain('Protected English anchors');
+    expect(brief).toContain('keep those English anchors exactly in every locale');
   });
 });

@@ -123,6 +123,7 @@ jest.mock('firebase-admin', () => {
 // Хэш считаем тем же каноническим способом, что и CF — чтобы проверять doc id'ы кэша/счётчика.
 const { phraseHashFor } = require('./explain_cache');
 const { mistakeHashFor, MISTAKE_COLLECTION } = require('./mistake_explain_cache');
+const { quizHashFor, QUIZ_COLLECTION } = require('./quiz_explain_cache');
 const { submitExplainReport, REPORT_REJECT_THRESHOLD, REPORT_RATE_MAX, REPORTS_COLLECTION, REPORT_ENTRIES_COLLECTION, REPORT_COMMENT_MAX_LEN, normalizeReportReason, normalizeReportKind, sanitizeReportComment, } = require('./explain_reports');
 const EXPLAIN_COLLECTION = 'phrase_explanations';
 function entryDocs() {
@@ -351,9 +352,10 @@ describe('submitExplainReport — server derives hash, ignores client-supplied h
     });
 });
 describe('normalizeReportKind — чистый хелпер', () => {
-    test('пропускает только phrase/mistake, всё чужое → phrase', () => {
+    test('пропускает только phrase/mistake/quiz, всё чужое → phrase', () => {
         expect(normalizeReportKind('phrase')).toBe('phrase');
         expect(normalizeReportKind('mistake')).toBe('mistake');
+        expect(normalizeReportKind('quiz')).toBe('quiz');
         expect(normalizeReportKind(undefined)).toBe('phrase'); // старые клиенты
         expect(normalizeReportKind('')).toBe('phrase');
         expect(normalizeReportKind('nonsense')).toBe('phrase');
@@ -408,6 +410,59 @@ describe('submitExplainReport — kind="mistake" (разбор ошибки)', (
         expect(otherHash).not.toBe(MISTAKE_HASH);
         expect(docs.get(`${REPORTS_COLLECTION}/${MISTAKE_HASH}`)).toMatchObject({ reportCount: 1 });
         expect(docs.get(`${REPORTS_COLLECTION}/${otherHash}`)).toMatchObject({ reportCount: 1 });
+    });
+});
+describe('submitExplainReport — kind="quiz" (ИИ-разбор тематического квиза)', () => {
+    const CORRECT = 'Knife';
+    const CHOICES = ['Knife', 'Cup', 'Bowl', 'Chair'];
+    // Хэш квиза учитывает правильный ответ И весь набор вариантов (порядок не важен — набор сортируется).
+    const QUIZ_HASH = quizHashFor(CORRECT, CHOICES, 'ru');
+    test('требует choices для quiz-репорта', async () => {
+        await expect(callReport({ kind: 'quiz', phraseEn: CORRECT, lang: 'ru' })).rejects.toMatchObject({
+            code: 'invalid-argument',
+            message: 'choices_required',
+        });
+    });
+    test('счётчик и кэш-ссылка бьют в quiz_explanations под quizHash', async () => {
+        // Кэш-док квиза: confirm (правильный) + options (карта по неверным вариантам).
+        docs.set(`${QUIZ_COLLECTION}/${QUIZ_HASH}`, {
+            status: 'ready', schemaVersion: 1,
+            confirm: 'Knife — это нож.',
+            options: { Cup: 'Cup — чашка.', Bowl: 'Bowl — миска.', Chair: 'Chair — стул.' },
+        });
+        const res = await callReport({ kind: 'quiz', phraseEn: CORRECT, choices: CHOICES, userAnswer: 'Cup', lang: 'ru', reason: 'incorrect' }, 'auth-r0');
+        expect(res).toMatchObject({ ok: true, reportCount: 1, kind: 'quiz' });
+        // Счётчик — под quizHash в quiz_explanations.
+        const counter = docs.get(`${REPORTS_COLLECTION}/${QUIZ_HASH}`);
+        expect(counter).toMatchObject({
+            reportCount: 1,
+            kind: 'quiz',
+            cacheCollection: QUIZ_COLLECTION,
+            userAnswer: 'Cup',
+        });
+        // Снимок текста кэша склеен из confirm + строк options.
+        expect(String(counter?.latestExplanationText || '')).toContain('Knife — это нож.');
+        expect(String(counter?.latestExplanationText || '')).toContain('Cup — чашка.');
+        // Лента: запись с kind/cacheCollection/choices.
+        const entries = entryDocs();
+        expect(entries).toHaveLength(1);
+        expect(entries[0]).toMatchObject({
+            kind: 'quiz',
+            cacheCollection: QUIZ_COLLECTION,
+            phraseHash: QUIZ_HASH,
+            userAnswer: 'Cup',
+        });
+        expect(entries[0].choices).toEqual(CHOICES);
+        // Кэш-док НЕ удаляется автоматически.
+        expect(docs.get(`${QUIZ_COLLECTION}/${QUIZ_HASH}`)).toMatchObject({ status: 'ready' });
+    });
+    test('порядок вариантов не меняет хэш (варианты тасуются в рантайме)', async () => {
+        await callReport({ kind: 'quiz', phraseEn: CORRECT, choices: CHOICES, lang: 'ru' }, 'auth-r0');
+        const shuffled = ['Chair', 'Knife', 'Bowl', 'Cup'];
+        expect(quizHashFor(CORRECT, shuffled, 'ru')).toBe(QUIZ_HASH);
+        await callReport({ kind: 'quiz', phraseEn: CORRECT, choices: shuffled, lang: 'ru' }, 'auth-r1');
+        // Оба репорта попали в ОДИН счётчик (2 разных юзера).
+        expect(docs.get(`${REPORTS_COLLECTION}/${QUIZ_HASH}`)).toMatchObject({ reportCount: 2 });
     });
 });
 //# sourceMappingURL=explain_reports.test.js.map

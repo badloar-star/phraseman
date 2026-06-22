@@ -1,6 +1,7 @@
 import type { PlanContentDay } from './plan_content_schema';
 import { validatePlanContentDay } from './plan_content_schema';
 import { checkPlanContentGate } from './plan_content_gate_check';
+import { auditPlanContentLocaleIsolation } from './plan_content_locale_gate';
 import type { PlanContentGenerationJob } from './plan_content_generation_job';
 
 /**
@@ -94,6 +95,13 @@ export function evaluatePipelineRun(run: PipelineRun): PipelineGateResult {
   if (!gate.withinGate) {
     for (const warning of gate.warnings) {
       blockers.push(`gate:${warning.phraseId}:${warning.aboveGateConstructions.join('+')}`);
+    }
+  }
+
+  const localeIssues = auditPlanContentLocaleIsolation(run.judged);
+  for (const issue of localeIssues) {
+    if (issue.severity === 'blocker') {
+      blockers.push(`locale:${issue.code}:${issue.path}${issue.locale ? `:${issue.locale}` : ''}`);
     }
   }
 

@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Static preview shown in the widget picker before placement. The live widget is
-  rendered by Glance; this is only the picker thumbnail / initial loading view.
+  Static preview shown in the widget picker before placement (and the initial
+  loading view). The live widget is rendered by Glance; this is only the picker
+  thumbnail. It is painted in the DEFAULT dark theme so the gallery thumbnail and
+  the placement flash match the real placed widget — not a foreign light/purple
+  card. Colors mirror daily_phrase_chrome.ts `dark` chrome.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="14dp"
-    android:background="#FFF7F5FF">
+    android:padding="18dp"
+    android:background="@color/phrase_widget_bg">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Break the ice"
-        android:textColor="#FF1A1726"
+        android:text="@string/phrase_widget_kicker"
+        android:textColor="@color/phrase_widget_kicker"
         android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="10sp"
+        android:letterSpacing="0.06" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Растопить лёд"
-        android:textColor="#FF5B5570"
+        android:layout_marginTop="10dp"
+        android:text="Break the ice"
+        android:textColor="@color/phrase_widget_primary"
+        android:textStyle="bold"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Растопить лёд — снять напряжение"
+        android:textColor="@color/phrase_widget_secondary"
         android:textSize="13sp" />
 </LinearLayout>

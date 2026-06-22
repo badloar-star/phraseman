@@ -22,10 +22,12 @@ import PremiumGoldUserName from '../../components/PremiumGoldUserName';
 import VipGreenUserName from '../../components/VipGreenUserName';
 import LeagueCrownName from '../../components/LeagueCrownName';
 import ProfileCardBadge from '../../components/ProfileCardBadge';
+import { StreakChainIcon } from '../../components/StreakChainIcon';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
+import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -469,13 +471,34 @@ function MiniXpBar({ xp, color }: { xp: number; color: string }) {
 
 const FRIEND_ROW_AVATAR_SIZE = 60;
 
+function FriendsThemeIcon({
+  themeMode,
+  size,
+  accessibilityLabel,
+}: {
+  themeMode: ThemeMode;
+  size: number;
+  accessibilityLabel: string;
+}) {
+  return (
+    <Image
+      source={getSocialFriendsIcon(themeMode)}
+      style={{ width: size, height: size }}
+      contentFit="contain"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityIgnoresInvertColors
+    />
+  );
+}
+
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, referralStatus,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, referralStatus,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
+  themeMode: ThemeMode;
   /** Статус приглашения, если друг пришёл по твоему коду. */
   referralStatus?: 'pending' | 'qualified' | 'rewarded';
 }) {
@@ -543,7 +566,7 @@ function FriendRow({
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0 }}>
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
-            <Text style={{ fontSize: 13 }}>🔥</Text>
+            <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={16} />
             <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
@@ -570,7 +593,7 @@ function FriendRow({
 
 // ── Request row ───────────────────────────────────────────────────────────────
 
-function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
+function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMode }: {
   profile: FriendProfile;
   onAccept: () => void;
   onDecline: () => void;
@@ -578,6 +601,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
   t: any;
   f: any;
   chrome: FriendsChrome;
+  themeMode: ThemeMode;
 }) {
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
   const hasLeagueCrown = leagueCrownCount > 0 || Number(profile.leagueCrownExpiresAt) > Date.now();
@@ -610,7 +634,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
-            <Text style={{ fontSize: 12 }}>🔥</Text>
+            <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
             <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
@@ -670,10 +694,11 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
 
 // ── Found user card ───────────────────────────────────────────────────────────
 
-function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }: {
+function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, themeMode }: {
   profile: FriendProfile; onAdd: () => void; onClose: () => void;
   isAdding: boolean; lang: string; t: any; f: any;
   chrome: FriendsChrome;
+  themeMode: ThemeMode;
 }) {
   const level = getLevelFromXP(profile.totalXp);
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
@@ -704,18 +729,21 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
             Lv {level} • {profile.totalXp.toLocaleString()} XP
           </Text>
           {profile.streak > 0 && (
-            <Text style={{ color: '#FF9500', fontSize: f.sub, marginTop: 2 }}>
-              🔥 {profile.streak} {triLang(lang as any, {
-                ru: 'дней подряд',
-                uk: 'днів поспіль',
-                es: 'días seguidos',
-                'pt-BR': 'dias seguidos',
-                vi: 'ngày liên tiếp',
-                id: 'hari berturut-turut',
-                tr: 'gün üst üste',
-                pl: 'dni z rzędu',
-              })}
-            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+              <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
+              <Text style={{ color: '#FF9500', fontSize: f.sub }}>
+                {profile.streak} {triLang(lang as any, {
+                  ru: 'дней подряд',
+                  uk: 'днів поспіль',
+                  es: 'días seguidos',
+                  'pt-BR': 'dias seguidos',
+                  vi: 'ngày liên tiếp',
+                  id: 'hari berturut-turut',
+                  tr: 'gün üst üste',
+                  pl: 'dni z rzędu',
+                })}
+              </Text>
+            </View>
           )}
         </View>
         <TapScale onPress={onClose} hitSlop={8}>
@@ -919,20 +947,21 @@ function eventIconColor(type: FriendEvent['type'], accent: string): string {
 // ── Activity tab ──────────────────────────────────────────────────────────────
 
 function FriendQuestStartedModal({
-  visible, onClose, L, f,
+  visible, onClose, L, f, themeMode,
 }: {
   visible: boolean;
   onClose: () => void;
   L: (...args: string[]) => string;
   f: any;
+  themeMode: ThemeMode;
 }) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
         <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(232,195,106,0.42)']} style={{ padding: 22, gap: 14 }}>
-            <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#2A2115' }}>
-              <Ionicons name="people-circle-outline" size={38} color="#FFE5A6" />
+            <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 82, height: 82 }}>
+              <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
             </View>
             <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
@@ -987,12 +1016,13 @@ function FriendQuestCompletedModal({
 }
 
 function ActivityTab({
-  friendUids, profiles, lang, t, f, chrome,
+  friendUids, profiles, lang, t, f, chrome, themeMode,
 }: {
   friendUids: string[];
   profiles: Record<string, FriendProfile>;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
+  themeMode: ThemeMode;
 }) {
   const [events, setEvents] = useState<FriendEvent[]>([]);
   const [loading, setLoading] = useState(false);
@@ -1089,7 +1119,7 @@ function ActivityTab({
   if (friendUids.length === 0) {
     return (
       <View testID="friends-activity-empty-no-friends" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
-        <Ionicons name="people-outline" size={40} color={t.textMuted} />
+        <FriendsThemeIcon themeMode={themeMode} size={58} accessibilityLabel="Friends" />
         <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
           {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad', 'Adicione amigos para ver a atividade deles', 'Thêm bạn bè để xem hoạt động của họ', 'Tambahkan teman untuk melihat aktivitas mereka', 'Etkinliklerini görmek için arkadaş ekle', 'Dodaj znajomych, aby widzieć ich aktywność')}
         </Text>
@@ -1328,6 +1358,7 @@ function AddFriendModal({
               <FoundUserCard
                 profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
                 isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
+                themeMode={themeMode}
               />
             )}
 
@@ -2414,6 +2445,7 @@ export default function FriendsTabScreen() {
                     }}
                     onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
                     lang={lang} t={t} f={f} chrome={chrome}
+                    themeMode={themeMode}
                   />
                 ))}
               </>
@@ -2431,14 +2463,7 @@ export default function FriendsTabScreen() {
 
             {sortedFriends.length === 0 ? (
               <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8, paddingHorizontal: 12, gap: 10 }}>
-                <View style={{
-                  width: 72, height: 72, borderRadius: 36,
-                  alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: t.accent + '22',
-                  borderWidth: 1, borderColor: t.accent + '55',
-                }}>
-                  <Ionicons name="people" size={34} color={t.accent} />
-                </View>
+                <FriendsThemeIcon themeMode={themeMode} size={86} accessibilityLabel="Friends" />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
@@ -2538,6 +2563,7 @@ export default function FriendsTabScreen() {
                   onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
                   onGift={() => openGiftPicker(profile)}
                   lang={lang} t={t} f={f} chrome={chrome}
+                  themeMode={themeMode}
                   referralStatus={referralStatusByUid.get(profile.uid)}
                 />
             ))}
@@ -2549,6 +2575,7 @@ export default function FriendsTabScreen() {
             profiles={profiles}
             lang={lang} t={t} f={f}
             chrome={chrome}
+            themeMode={themeMode}
           />
         )}
 
@@ -3003,6 +3030,7 @@ export default function FriendsTabScreen() {
         onClose={() => setFriendQuestStarted(null)}
         L={L}
         f={f}
+        themeMode={themeMode}
       />
 
       <FriendQuestCompletedModal

@@ -56,6 +56,10 @@ type Packet = {
     canContinueArchitectureWork: boolean;
     tk1UnknownClassificationClean: boolean;
     tk2LocalCloudContractsClean: boolean;
+    tk3P3StoreContractsClean: boolean;
+    tk4AchievementStatsCloudPolicyClean: boolean;
+    tk5SurfaceRawGuardsClean: boolean;
+    targetKeyFinalReconciliationClean: boolean;
     recommendedNextSafeSlice: string;
     slices: number;
   };
@@ -194,6 +198,10 @@ function renderMarkdown(packet: Packet): string {
     `- Can continue architecture work: ${packet.summary.canContinueArchitectureWork ? 'yes' : 'no'}`,
     `- TK1 unknown classification clean: ${packet.summary.tk1UnknownClassificationClean ? 'yes' : 'no'}`,
     `- TK2 local/cloud contracts clean: ${packet.summary.tk2LocalCloudContractsClean ? 'yes' : 'no'}`,
+    `- TK3 P3 store contracts clean: ${packet.summary.tk3P3StoreContractsClean ? 'yes' : 'no'}`,
+    `- TK4 achievement/stats/cloud policy clean: ${packet.summary.tk4AchievementStatsCloudPolicyClean ? 'yes' : 'no'}`,
+    `- TK5 surface/raw guards clean: ${packet.summary.tk5SurfaceRawGuardsClean ? 'yes' : 'no'}`,
+    `- Target key final reconciliation clean: ${packet.summary.targetKeyFinalReconciliationClean ? 'yes' : 'no'}`,
     `- Recommended next safe slice: \`${packet.summary.recommendedNextSafeSlice}\``,
     `- Slices: ${packet.summary.slices}`,
     '',
@@ -260,10 +268,18 @@ function main(): void {
     readinessBlockerReductionPacket: path.join(auditDir, 'readiness_blocker_reduction_packet.json'),
     tk1UnknownTargetStorageClassificationPacket: path.join(auditDir, 'tk1_unknown_target_storage_classification_packet.json'),
     tk2LocalCloudDecisionContractsPacket: path.join(auditDir, 'tk2_local_cloud_decision_contracts_packet.json'),
+    tk3P3StoreContractsPacket: path.join(auditDir, 'tk3_p3_store_contracts_packet.json'),
+    tk4AchievementStatsCloudPolicyPacket: path.join(auditDir, 'tk4_achievement_stats_cloud_policy_packet.json'),
+    tk5SurfaceRawGuardsPacket: path.join(auditDir, 'tk5_surface_raw_guards_packet.json'),
+    targetKeyFinalReconciliationPacket: path.join(auditDir, 'target_key_final_reconciliation_packet.json'),
   };
   const optionalArtifacts = new Set([
     'tk1UnknownTargetStorageClassificationPacket',
     'tk2LocalCloudDecisionContractsPacket',
+    'tk3P3StoreContractsPacket',
+    'tk4AchievementStatsCloudPolicyPacket',
+    'tk5SurfaceRawGuardsPacket',
+    'targetKeyFinalReconciliationPacket',
   ]);
 
   const sourceArtifacts = Object.fromEntries(
@@ -301,10 +317,43 @@ function main(): void {
     n(tk2Summary, 'localCloudHighRisks') === 0 &&
     n(tk2Summary, 'cloudBlockUnknown') === 0 &&
     n(tk2Summary, 'cloudTargetSensitiveMissingFromCloud') === 0;
+  const tk3Summary = sourceArtifacts.tk3P3StoreContractsPacket.summary;
+  const tk3P3StoreContractsClean =
+    sourceArtifacts.tk3P3StoreContractsPacket.status === 'PASS' &&
+    b(tk3Summary, 'tk3ContractsClean') &&
+    n(tk3Summary, 'contracts') === n(tk3Summary, 'contractsDrafted') &&
+    n(tk3Summary, 'unassignedCloudTargetKeys') === 0;
+  const tk4Summary = sourceArtifacts.tk4AchievementStatsCloudPolicyPacket.summary;
+  const tk4AchievementStatsCloudPolicyClean =
+    sourceArtifacts.tk4AchievementStatsCloudPolicyPacket.status === 'PASS' &&
+    b(tk4Summary, 'tk4PolicyClean') &&
+    b(tk4Summary, 'canPassRDY030Now') &&
+    n(tk4Summary, 'mixedCloudPayloadBlockers') === 0 &&
+    n(tk4Summary, 'mixedCloudPayloadMixedFields') === 0;
+  const tk5Summary = sourceArtifacts.tk5SurfaceRawGuardsPacket.summary;
+  const tk5SurfaceRawGuardsClean =
+    sourceArtifacts.tk5SurfaceRawGuardsPacket.status === 'PASS' &&
+    b(tk5Summary, 'tk5SurfaceGuardsClean') &&
+    b(tk5Summary, 'canPassRDY060Now') &&
+    n(tk5Summary, 'uncoveredBlockers') === 0;
+  const finalReconciliationSummary = sourceArtifacts.targetKeyFinalReconciliationPacket.summary;
+  const targetKeyFinalReconciliationClean =
+    sourceArtifacts.targetKeyFinalReconciliationPacket.status === 'PASS' &&
+    b(finalReconciliationSummary, 'finalReconciliationClean') &&
+    b(finalReconciliationSummary, 'canPassRDY050Now') &&
+    n(finalReconciliationSummary, 'uncoveredBlockers') === 0;
   const recommendedNextSafeSlice = !tk1UnknownClassificationClean
     ? 'TK1_UNKNOWN_TARGET_STORAGE_CLASSIFICATION'
     : tk2LocalCloudContractsClean
-      ? 'TK3_P3_STORE_CONTRACTS'
+      ? tk3P3StoreContractsClean
+        ? tk4AchievementStatsCloudPolicyClean
+          ? tk5SurfaceRawGuardsClean
+            ? targetKeyFinalReconciliationClean
+              ? 'TRANSLATION_START_GATE_RECHECK'
+              : 'TARGET_KEY_PLAN_FINAL_RECONCILIATION'
+            : 'TK5_SURFACE_AND_RAW_GUARDS'
+          : 'TK4_ACHIEVEMENTS_STATS_CLOUD_POLICY'
+        : 'TK3_P3_STORE_CONTRACTS'
       : 'TK2_LOCAL_CLOUD_DECISION_CONTRACTS';
 
   const sliceDefinitions: Array<Omit<DomainSlice, 'blockerCount' | 'rawTargetStorageRecords' | 'topFiles'>> = [
@@ -438,6 +487,10 @@ function main(): void {
       canContinueArchitectureWork: b(readinessSummary, 'canContinueArchitectureWork'),
       tk1UnknownClassificationClean,
       tk2LocalCloudContractsClean,
+      tk3P3StoreContractsClean,
+      tk4AchievementStatsCloudPolicyClean,
+      tk5SurfaceRawGuardsClean,
+      targetKeyFinalReconciliationClean,
       recommendedNextSafeSlice,
       slices: slices.length,
     },

@@ -42,6 +42,7 @@ const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
 const openai_jobs_config_1 = require("./openai_jobs_config");
+const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * AI mistake review — turns the learner's ALREADY-COMPUTED mistake analytics into
@@ -246,8 +247,14 @@ ABSOLUTE RULES:
 - NEVER invent numbers, categories, lessons, words, or facts that are not in the briefing.
 - NEVER recommend a grammar topic or lesson that is not in "recommendedLessons". If that list is empty, give general encouragement instead and recommend nothing.
 - Do NOT draw causal links between effort stats (streak, time, XP) and language knowledge. Use effort only for warm acknowledgement.
+- NEVER speculate WHY the learner slipped — do NOT say they confused things, translated literally, rushed, did not think, or misunderstood. You only see counts, not reasons. State the fact (which category, which example phrases) and the path forward — nothing about their motive.
+- WORD CHOICE in the output: never use the ${langName} word for "mistake/error/wrong" (in Russian: NOT «ошибка»/«ошибся»/«неправильно»). Frame slips gently as «почти» / a near-miss / «давай закрепим». Say the ${langName} word for "session/round" instead of "lesson", "your results" instead of "statistics", "phrase" instead of "word" where natural.
+- No grammar jargon (no "auxiliary verb", "definite article", "perfect tense", «вспомогательный глагол», «определённый артикль»). Name weak spots in plain everyday words a 50+ beginner instantly understands.
+- Frame everything as gain — what the learner is building or can unlock next, never as loss ("you will forget", "you will lose progress"). No fake urgency.
 - Be specific and kind. Mention concrete weak categories and the example words from topWords. Celebrate strong/recovered categories by name.
-- Tone: a supportive coach. Short, clear sentences. The learner is often a beginner and 50+. Never condescend, never shame mistakes.
+- Address the learner informally, as "ты" — use the informal second person of ${langName} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form). Talk like a friend who is on their side.
+- Keep sentences short: aim for ~10 words each, one idea per sentence. The greeting is 5-6 words max. Avoid filler words (the ${langName} equivalents of «просто», «также», «кстати», «в принципе», «на самом деле»).
+- Tone: a warm, friendly coach with a LIGHT touch of humor where it fits naturally — one small wink, never forced, never at the learner's expense. Short, clear sentences. The learner is often a beginner and 50+. Never condescend, never shame mistakes.
 
 OUTPUT FORMAT — respond with STRICT JSON only, no markdown, matching exactly:
 {
@@ -279,6 +286,11 @@ function parseAndGuardResult(rawContent, briefing) {
     if (!greeting || paragraphs.length === 0) {
         throw new https_1.HttpsError('unavailable', 'weekly_review_empty');
     }
+    (0, ai_language_contract_1.assertAiJsonTextFieldsLanguage)({
+        texts: [greeting, ...paragraphs],
+        targetLang: briefing.lang,
+        feature: 'weekly_review',
+    });
     // Allowlist of authorized ids from the briefing.
     const allowed = new Map(briefing.recommendedLessons.map((r) => [r.microDiagnosisId, r.label]));
     const recsRaw = Array.isArray(parsed.recommendations) ? parsed.recommendations : [];

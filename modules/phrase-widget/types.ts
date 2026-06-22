@@ -21,6 +21,7 @@ export interface WidgetThemePayload {
   accent: string;
   chipBg: string;
   chipBorder: string;
+  glow: string;
 }
 
 /** Snapshot written to shared storage and read by the native widgets. */

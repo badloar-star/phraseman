@@ -53,6 +53,7 @@ import { getPersonalPlanPronunciationRepeatItems } from './personal_plan_pronunc
 import { getPersonalPlanPhraseRecallItems, type PersonalPlanPhraseRecallItem } from './personal_plan_phrase_recall_items';
 import { buildPlanListeningPlaybackSource } from './personal_plan_listening_playback_contract';
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
+import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 import {
   buildPlanPronunciationAttemptPayload,
 } from './personal_plan_pronunciation_recording_contract';
@@ -375,10 +376,13 @@ function PlanPronunciationRecorder({
   // Тема нужна, чтобы кольцо результата (SpeakingScoreRing) выглядело ТОЧНО как в
   // уроках «Устно» (SpeakingPanel): тот же цвет трека/текста/центра и pass/fail-цвета.
   const { theme: ringTheme } = useTheme();
-  // MP3-плеер целевой фразы (тот же вшитый ассет, что и в «На слух»). Грузим только
-  // если есть uri; resolve через тот же runtime-asset-module map, иначе по строке uri.
+  // MP3-плеер целевой фразы (тот же ассет, что и в «На слух»). Грузим только если
+  // есть uri. Сначала пробуем серверный URL (стримится+кэшируется expo-audio, не
+  // в бандле); если его ещё нет в карте — фолбэк на вшитый ассет, иначе по uri.
   const targetAudioPlayerSource = useMemo(() => {
     if (!audioUri) return null;
+    const remoteUrl = getPlanAudioUrl(audioUri);
+    if (remoteUrl) return remoteUrl;
     const assetModule = getPersonalPlanRuntimeAudioAssetModule(audioUri);
     return assetModule ? { assetId: assetModule } : audioUri;
   }, [audioUri]);
@@ -974,6 +978,30 @@ function PlanExerciseFeedbackInline({
   const toneColor = isError ? '#FF8A92' : accent;
   const borderColor = isError ? '#FF6E7866' : accent + '55';
   const buttonTextColor = isSuccess ? actionText : toneColor;
+
+  // ВЕРНЫЙ ОТВЕТ без тела и без эха ответа = на экране нужна ТОЛЬКО кнопка «Дальше».
+  // Тогда не оборачиваем её в плашку (это был «контейнер вокруг контейнера»), а
+  // показываем большую объёмную 3D-кнопку — как CTA на интро-скринах урока.
+  const showBareCta = isSuccess && hideBody && !loading && !children;
+  if (showBareCta) {
+    return (
+      <DuoPressable
+        accessibilityLabel={actionLabel}
+        onPress={onAction}
+        gradientColors={[accent, accent + 'BB']}
+        gradientStart={{ x: 0, y: 0 }}
+        gradientEnd={{ x: 1, y: 1 }}
+        edgeColor={accent + '99'}
+        edgeHeight={7}
+        style={styles.bareCtaSurface}
+      >
+        <Text style={[styles.bareCtaText, { color: actionText }]}>{actionLabel}</Text>
+        <View style={styles.bareCtaIcon}>
+          <Ionicons name="arrow-forward" size={18} color={actionText} />
+        </View>
+      </DuoPressable>
+    );
+  }
 
   return (
     <View style={[styles.inlineFeedback, { borderLeftColor: toneColor, backgroundColor: surfaceColor }]}>
@@ -2024,6 +2052,9 @@ type PersonalPlanExerciseStyles = {
   primaryButton: ViewStyle;
   primaryButtonGradient: ViewStyle;
   primaryButtonText: TextStyle;
+  bareCtaSurface: ViewStyle;
+  bareCtaText: TextStyle;
+  bareCtaIcon: ViewStyle;
   optionBadge: ViewStyle;
   optionBadgeText: TextStyle;
 };
@@ -2340,6 +2371,27 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     overflow: 'hidden',
   },
   primaryButtonText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  // Голая объёмная CTA «Дальше» (как на интро-скринах урока): большая, без рамок
+  // и без плашки-контейнера. Объём даёт DuoPressable (нижняя цветная кромка).
+  bareCtaSurface: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    minHeight: 64,
+    borderRadius: 20,
+    paddingVertical: 18,
+    paddingHorizontal: 24,
+  },
+  bareCtaText: { fontSize: 18, lineHeight: 22, fontWeight: '800', letterSpacing: 0.4 },
+  bareCtaIcon: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.18)',
+  },
   optionBadge: {
     width: 30,
     height: 30,

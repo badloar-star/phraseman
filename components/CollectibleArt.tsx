@@ -1,17 +1,19 @@
 // Единый рендер арта карточки «Сокровищницы».
-// Приоритет: сгенерированная webp-картинка (DALL-E, 1024×819) → инлайн-SVG из
-// каталога → буквенный/звёздочный фолбэк. Так экран и модалки рисуют арт
-// одинаково, а подключение картинок — в одном месте.
-import React from 'react';
+// Приоритет: webp-картинка с сервера (Firebase Storage, грузится по URL и
+// дисково кэшируется) → инлайн-SVG из каталога (офлайн-фолбэк) → буквенный/
+// звёздочный фолбэк. webp больше НЕ бандлятся в приложение (−71 МБ): арт лежит
+// в облаке (collectible_image_url_map.generated.ts), а при отсутствии сети или
+// URL карточка показывает свой инлайн-SVG.
+import React, { useState } from 'react';
 import { View, type DimensionValue } from 'react-native';
 import { Image } from 'expo-image';
 import { SvgXml } from 'react-native-svg';
-import { collectibleCardImage } from '../app/collectibles/card_images.generated';
+import { getCollectibleImageUrl } from '../app/collectibles/collectible_image_url_map.generated';
 
 interface CollectibleArtProps {
   /** id карточки из каталога (ключ к webp-картинке). */
   cardId: string;
-  /** Инлайн-SVG из каталога — фолбэк, если картинки нет. */
+  /** Инлайн-SVG из каталога — фолбэк, если картинки нет/нет сети. */
   svg?: string | null;
   /** Размеры области рендера. */
   width: DimensionValue;
@@ -32,7 +34,9 @@ interface CollectibleArtProps {
 /**
  * Арт карточки коллекции. webp-картинки имеют пропорцию 1024×819 ≈ 200×160,
  * совпадающую с контейнерами карточек, поэтому 'cover' заполняет ячейку почти
- * без обрезки и убирает зазор между картинкой и рамкой.
+ * без обрезки и убирает зазор между картинкой и рамкой. Картинка стримится с
+ * сервера и кэшируется на диск (expo-image cachePolicy memory-disk) — первый
+ * показ требует сети, дальше работает офлайн; пока её нет — рисуется инлайн-SVG.
  */
 export default function CollectibleArt({
   cardId,
@@ -44,22 +48,26 @@ export default function CollectibleArt({
   fallback = null,
   accessibilityLabel,
 }: CollectibleArtProps) {
-  const image = collectibleCardImage(cardId);
+  const url = getCollectibleImageUrl(cardId);
+  const [failed, setFailed] = useState(false);
 
-  if (image) {
+  // 1) URL есть и загрузка не падала → удалённая webp (стрим + дисковый кэш).
+  if (url && !failed) {
     return (
       <Image
-        source={image}
+        source={{ uri: url }}
         style={{ width, height, borderRadius }}
         contentFit={contentFit}
         cachePolicy="memory-disk"
         accessibilityLabel={accessibilityLabel}
         accessible={!!accessibilityLabel}
         transition={120}
+        onError={() => setFailed(true)}
       />
     );
   }
 
+  // 2) Нет URL / нет сети / ошибка загрузки → инлайн-SVG из каталога.
   if (svg) {
     return (
       <View style={{ width, height, alignItems: 'center', justifyContent: 'center' }}>
@@ -68,5 +76,6 @@ export default function CollectibleArt({
     );
   }
 
+  // 3) Совсем ничего нет → буквенный фолбэк.
   return <>{fallback}</>;
 }

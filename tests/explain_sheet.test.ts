@@ -102,14 +102,13 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(loadingLineForLang('es')).toBeTruthy();
   });
 
-  it('degraded=false на настоящем объяснении (ok и live-rejected), true на фолбэках', () => {
+  it('degraded=false на настоящем объяснении (ok), true на fallback-статусах', () => {
     // ok — настоящий текст.
     expect(resolveExplainDisplay({ ...baseState, status: 'ok', text: 'т' }, 'ru').degraded).toBe(false);
-    // live-rejected (fromCache=false) несёт НАСТОЯЩИЙ сгенерированный текст — не degraded.
     expect(
       resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: false, text: 'т' }, 'ru').degraded,
-    ).toBe(false);
-    // Фолбэк-пути: rejected из кэша / exhausted / pending / сетевая ошибка.
+    ).toBe(true);
+    // Фолбэк-пути: rejected / exhausted / pending / сетевая ошибка.
     expect(
       resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: true, text: 'fb' }, 'ru').degraded,
     ).toBe(true);
@@ -204,7 +203,7 @@ describe('Lesson explain footer contract', () => {
 
   it('spends explain credit only for successful live generations', () => {
     expect(src).toContain('if (info.error || info.fromCache) return;');
-    expect(src).toContain("if (info.status !== 'ok' && info.status !== 'rejected') return;");
+    expect(src).toContain("if (info.status !== 'ok') return;");
     expect(src).toContain('onConsumeExplainCredit();');
   });
 });

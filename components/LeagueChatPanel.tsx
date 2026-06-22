@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View, type KeyboardEvent } from 'react-native';
+import { Image } from 'expo-image';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,6 +9,8 @@ import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
 import { triLang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { getSocialChatIcon } from '../constants/socialIconAssets';
+import type { ThemeMode } from '../constants/theme';
 import {
   authorizeLeagueChatRoom,
   blockLeagueChatUser,
@@ -50,6 +53,24 @@ const REPORT_REASONS = [
   { id: 'unsafe', ru: 'Опасный контент', uk: 'Небезпечний контент', es: 'Contenido peligroso', 'pt-BR': 'Conteúdo perigoso', ptBR: 'Conteúdo perigoso', vi: 'Nội dung nguy hiểm', idText: 'Konten berbahaya', tr: 'Tehlikeli içerik', pl: 'Niebezpieczne treści' },
 ]
 
+function LeagueChatThemeIcon({
+  themeMode,
+  size,
+}: {
+  themeMode: ThemeMode;
+  size: number;
+}) {
+  return (
+    <Image
+      source={getSocialChatIcon(themeMode)}
+      style={{ width: size, height: size }}
+      contentFit="contain"
+      accessibilityLabel="League chat"
+      accessibilityIgnoresInvertColors
+    />
+  );
+}
+
 function sameRoom(a: LeagueChatRoom | null | undefined, b: LeagueChatRoom | null | undefined): boolean {
   return !!a && !!b && a.groupId === b.groupId && a.weekId === b.weekId && a.leagueId === b.leagueId;
 }
@@ -85,7 +106,7 @@ function LeagueChatPanel({
   myTotalXP?: number;
   onToast?: (message: string, type?: 'success' | 'error' | 'info') => void;
 }) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
   const initialRoomRef = useRef<LeagueChatRoom | null | undefined>(undefined);
@@ -603,7 +624,7 @@ function LeagueChatPanel({
   if (connectionUi.showBlockingConnectionState) {
     return (
       <View testID="league-chat-resolving" style={{ flex: 1, padding: 18, justifyContent: 'center', alignItems: 'center', gap: 8 }}>
-        <Ionicons name="chatbubbles-outline" size={28} color={t.textGhost} />
+        <LeagueChatThemeIcon themeMode={themeMode} size={58} />
         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center' }}>
           {triLang(lang, {
   ru: 'Подключаем чат лиги',
@@ -814,7 +835,7 @@ function LeagueChatPanel({
         >
           {visibleMessages.length === 0 ? (
             <View testID="league-chat-empty" style={{ alignItems: 'center', paddingHorizontal: 24, gap: 8 }}>
-              <Ionicons name="chatbubble-ellipses-outline" size={28} color={t.textGhost} />
+              <LeagueChatThemeIcon themeMode={themeMode} size={58} />
               <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
                 {triLang(lang, {
   ru: 'Пока тихо. Можно первым пожелать удачи.',

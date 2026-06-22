@@ -580,7 +580,7 @@ function LevelGiftModal({
                           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
                             {giftDisplayTitleForLang(choice, lang)}
                           </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={2}>
+                          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                             {giftDisplayDescForLang(choice, lang)}
                           </Text>
                         </View>

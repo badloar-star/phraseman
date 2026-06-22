@@ -30,6 +30,9 @@ import {
 } from 'react-native';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
+import ExplainReportButton from '../../components/ExplainReportButton';
+import SkeletonBlock from '../../components/SkeletonShimmer';
+import { useQuizExplain } from '../use_quiz_explain';
 import BonusXPCard from '../../components/BonusXPCard';
 import CoachToast from '../../components/CoachToast';
 import ContentWrap from '../../components/ContentWrap';
@@ -60,6 +63,7 @@ import EnergyBar from '../../components/EnergyBar';
 import NoEnergyModal from '../../components/NoEnergyModal';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
+import { StreakChainIcon } from '../../components/StreakChainIcon';
 
 import { useAudio } from '../../hooks/use-audio';
 import DuoPressable from '../../components/DuoPressable';
@@ -206,7 +210,6 @@ const LEVEL_CONFIG = {
     tagID: 'Frasa berguna untuk sehari-hari',
     tagTR: 'Günlük hayatta kullanılan pratik ifadeler',
     tagPL: 'Przydatne zwroty na co dzień',
-    icon: '🌿',
   },
   medium: {
     labelRU: 'Средне', labelUK: 'Середньо', labelES: 'Medio', labelPTBR: 'Médio', labelVI: 'Trung bình', labelID: 'Sedang', labelTR: 'Orta', labelPL: 'Średni', sub: 'B1-B2', color: '#FB923C', pts: 2,
@@ -218,7 +221,6 @@ const LEVEL_CONFIG = {
     tagID: 'Lebih sulit: lebih banyak XP jika streak-mu berlanjut',
     tagTR: 'Daha zor: seriyi korursan daha fazla XP',
     tagPL: 'Trudniej: więcej XP, jeśli utrzymasz serię',
-    icon: '🔥',
   },
   hard: {
     labelRU: 'Сложно', labelUK: 'Складно', labelES: 'Difícil', labelPTBR: 'Difícil', labelVI: 'Khó', labelID: 'Sulit', labelTR: 'Zor', labelPL: 'Trudny', sub: 'C1-C2', color: '#A78BFA', pts: 3,
@@ -230,7 +232,6 @@ const LEVEL_CONFIG = {
     tagID: 'Level ahli: XP maksimal',
     tagTR: 'Uzman seviyesi: maksimum XP',
     tagPL: 'Poziom ekspercki: maksymalne XP',
-    icon: '💎',
   },
 };
 type Level = 'easy'|'medium'|'hard';
@@ -512,6 +513,7 @@ function BaseQuizLevelCard({
               fallbackName={QUIZ_LEVEL_FALLBACK_ICONS[level]}
               accent={accent}
               locked={locked}
+              showFallbackIcon={false}
               size={QUIZ_CARD_ICON_SIZE}
               fallbackSize={QUIZ_CARD_ICON_FALLBACK_SIZE}
               fallbackIconSize={QUIZ_CARD_ICON_FALLBACK_ICON_SIZE}
@@ -770,7 +772,7 @@ function ThematicQuizLevelCard({
 
 
 // ── Множитель-бейдж ──────────────────────────────────────────────────────────
-function MultBadge({ streak, t, f }: { streak:number; t:any; f:any }) {
+function MultBadge({ streak, themeMode, t, f }: { streak:number; themeMode: ThemeMode; t:any; f:any }) {
   const scale = useRef(new Animated.Value(1)).current;
   const prev  = useRef(streak);
   const mult  = streakMultiplier(streak);
@@ -797,15 +799,15 @@ function MultBadge({ streak, t, f }: { streak:number; t:any; f:any }) {
       backgroundColor:t.accentBg, borderRadius:10,
       paddingHorizontal:8, paddingVertical:4, marginRight:6,
     }}>
-      <Ionicons name="flame" size={13} color={t.textSecond}/>
-      <Text style={{ color:t.textSecond, fontWeight:'700', fontSize: f.body, marginLeft:2 }}>{streak}</Text>
+      <StreakChainIcon themeMode={themeMode} streakDays={streak} size={15} style={{ marginRight: 2 }}/>
+      <Text style={{ color:t.textSecond, fontWeight:'700', fontSize: f.body }}>{streak}</Text>
       {mult > 1 && <Text style={{ color:t.textSecond, fontSize: f.caption }}> +{Math.round((mult-1)*100)}%</Text>}
     </Animated.View>
   );
 }
 
 // ── Анимация сброса цепочки ───────────────────────────────────────────────────
-function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:any }) {
+function StreakBreak({ show, old, themeMode, t, f }: { show:boolean; old:number; themeMode: ThemeMode; t:any; f:any }) {
   const y   = useRef(new Animated.Value(0)).current;
   const opa = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -823,7 +825,7 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
       transform:[{translateY:y}], opacity:opa,
       flexDirection:'row', alignItems:'center', gap:4,
     }}>
-      <Ionicons name="flame" size={14} color={t.wrong}/>
+      <StreakChainIcon themeMode={themeMode} streakDays={old} size={15} inactive/>
       <Text style={{ color:t.wrong, fontSize: f.body, fontWeight:'700', textDecorationLine:'line-through' }}>
         +{Math.round((streakMultiplier(old)-1)*100)}%
       </Text>
@@ -1704,6 +1706,43 @@ function QuizGame({
 
   const current = reviewing ? reviewQ[rIdx] : (idx < phrases.length ? phrases[idx] : undefined);
 
+  // ИИ-разбор ТЕМАТИЧЕСКОГО квиза (Кухня/Дом/…). Изолировано: для квизов легко/средне/сложно
+  // (thematicCategoryId отсутствует) хук неактивен и используются статичные разборы.
+  const isThematicQuiz = !!thematicCategoryId;
+  const answered = chosen !== null || typedOk !== null;
+  // Локализованный смысл вопроса (тот же источник, что заголовок вопроса) — для модели, не показывается.
+  const quizQuestionPrompt = current
+    ? triLang(lang, {
+        ru: current.ru,
+        uk: current.uk,
+        es: current.es,
+        'pt-BR': quizSourceTextForPlanned(current, 'pt-BR'),
+        vi: quizSourceTextForPlanned(current, 'vi'),
+        id: quizSourceTextForPlanned(current, 'id'),
+        tr: quizSourceTextForPlanned(current, 'tr'),
+        pl: quizSourceTextForPlanned(current, 'pl'),
+      })
+    : '';
+  const quizCorrectIndex = current ? quizPrimaryCorrectIndex(current.correct) : 0;
+  const quizCorrectEn = current ? (current.choices[quizCorrectIndex] ?? current.answer ?? '') : '';
+  const quizWrongOptions = useMemo(
+    () => current
+      ? current.choices.filter((_, i) => !isQuizChoiceCorrect(i, current.correct))
+      : [],
+    [current],
+  );
+  const quizExplainQuestionKey = current
+    ? `${quizCorrectEn}|${[...current.choices].sort().join('|')}|${lang}`
+    : '';
+  const quizExplain = useQuizExplain({
+    active: isThematicQuiz && answered && !!current,
+    questionKey: quizExplainQuestionKey,
+    correctEn: quizCorrectEn,
+    questionPrompt: quizQuestionPrompt,
+    wrongOptions: quizWrongOptions,
+    lang,
+  });
+
   if (!quizBankAvailable) {
     return <FrenchQuizUnavailable />;
   }
@@ -1991,14 +2030,14 @@ function QuizGame({
     const shareLang = quizShareMessageLang(lang);
     const _qp = (a: string[]) => a[Math.floor(Math.random() * a.length)];
     const rankInfo = pct === 100
-      ? { icon:'🏆', labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь! 🔥','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь! 🔥','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo! 🔥','¡Eres una leyenda!']), labelPTBR: _qp(['Impecável!','Perfeito!','Genial!','Que nível! 🔥','Lenda!']), labelVI: _qp(['Hoàn hảo!','Tuyệt đối!','Xuất sắc!','Quá đỉnh! 🔥','Huyền thoại!']), labelID: _qp(['Sempurna!','Mantap sekali!','Jenius!','Level tinggi! 🔥','Legenda!']), labelTR: _qp(['Kusursuz!','Mükemmel!','Harika!','Çok iyi! 🔥','Efsane!']), labelPL: _qp(['Bezbłędnie!','Idealnie!','Genialnie!','Ale poziom! 🔥','Legenda!']), color:'#D4A017' }
+      ? { labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь!','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь!','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo!','¡Eres una leyenda!']), labelPTBR: _qp(['Impecável!','Perfeito!','Genial!','Que nível!','Lenda!']), labelVI: _qp(['Hoàn hảo!','Tuyệt đối!','Xuất sắc!','Quá đỉnh!','Huyền thoại!']), labelID: _qp(['Sempurna!','Mantap sekali!','Jenius!','Level tinggi!','Legenda!']), labelTR: _qp(['Kusursuz!','Mükemmel!','Harika!','Çok iyi!','Efsane!']), labelPL: _qp(['Bezbłędnie!','Idealnie!','Genialnie!','Ale poziom!','Legenda!']), color:'#D4A017' }
       : pct >= 90
-      ? { icon:'🥇', labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), labelPTBR: _qp(['Excelente!','Magnífico!','Que ritmo!','É assim mesmo!','Impressionante!']), labelVI: _qp(['Xuất sắc!','Tuyệt vời!','Nhịp tốt quá!','Cứ thế nhé!','Ấn tượng!']), labelID: _qp(['Luar biasa!','Hebat!','Ritmamu bagus!','Begitu caranya!','Mengesankan!']), labelTR: _qp(['Harika!','Muhteşem!','Ritmin çok iyi!','Aynen böyle!','Etkileyici!']), labelPL: _qp(['Świetnie!','Znakomicie!','Dobry rytm!','Tak trzymać!','Imponująco!']), color:'#D4A017' }
+      ? { labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), labelPTBR: _qp(['Excelente!','Magnífico!','Que ritmo!','É assim mesmo!','Impressionante!']), labelVI: _qp(['Xuất sắc!','Tuyệt vời!','Nhịp tốt quá!','Cứ thế nhé!','Ấn tượng!']), labelID: _qp(['Luar biasa!','Hebat!','Ritmamu bagus!','Begitu caranya!','Mengesankan!']), labelTR: _qp(['Harika!','Muhteşem!','Ritmin çok iyi!','Aynen böyle!','Etkileyici!']), labelPL: _qp(['Świetnie!','Znakomicie!','Dobry rytm!','Tak trzymać!','Imponująco!']), color:'#D4A017' }
       : pct >= 70
-      ? { icon:'🥈', labelRU: _qp(['Хорошо!','Неплохо!','Молодец!','Растёшь!','Продолжай!']), labelUK: _qp(['Добре!','Непогано!','Молодець!','Зростаєш!','Продовжуй!']), labelES: _qp(['¡Bien!','¡No está mal!','¡Buen trabajo!','¡Vas mejorando!','¡Sigue así!']), labelPTBR: _qp(['Bom!','Nada mal!','Bom trabalho!','Você está melhorando!','Continue assim!']), labelVI: _qp(['Tốt!','Không tệ!','Làm tốt lắm!','Bạn đang tiến bộ!','Tiếp tục nhé!']), labelID: _qp(['Bagus!','Lumayan!','Kerja bagus!','Kamu makin maju!','Lanjutkan!']), labelTR: _qp(['İyi!','Fena değil!','İyi iş!','Gelişiyorsun!','Devam et!']), labelPL: _qp(['Dobrze!','Nieźle!','Dobra robota!','Robisz postępy!','Tak dalej!']), color:t.textSecond }
+      ? { labelRU: _qp(['Хорошо!','Неплохо!','Молодец!','Растёшь!','Продолжай!']), labelUK: _qp(['Добре!','Непогано!','Молодець!','Зростаєш!','Продовжуй!']), labelES: _qp(['¡Bien!','¡No está mal!','¡Buen trabajo!','¡Vas mejorando!','¡Sigue así!']), labelPTBR: _qp(['Bom!','Nada mal!','Bom trabalho!','Você está melhorando!','Continue assim!']), labelVI: _qp(['Tốt!','Không tệ!','Làm tốt lắm!','Bạn đang tiến bộ!','Tiếp tục nhé!']), labelID: _qp(['Bagus!','Lumayan!','Kerja bagus!','Kamu makin maju!','Lanjutkan!']), labelTR: _qp(['İyi!','Fena değil!','İyi iş!','Gelişiyorsun!','Devam et!']), labelPL: _qp(['Dobrze!','Nieźle!','Dobra robota!','Robisz postępy!','Tak dalej!']), color:t.textSecond }
       : pct >= 50
-      ? { icon:'🥉', labelRU: _qp(['Неплохо','Можно лучше!','Ещё немного!','Почти!']), labelUK: _qp(['Непогано','Можна краще!','Ще трохи!','Майже!']), labelES: _qp(['¡No está mal!','¡Se puede mejorar!','¡Un poco más!','¡Casi!','¡Tú puedes!']), labelPTBR: _qp(['Nada mal','Dá para melhorar!','Mais um pouco!','Quase!']), labelVI: _qp(['Không tệ','Có thể tốt hơn!','Thêm chút nữa!','Gần được rồi!']), labelID: _qp(['Lumayan','Masih bisa lebih baik!','Sedikit lagi!','Hampir!']), labelTR: _qp(['Fena değil','Daha iyi olabilir!','Biraz daha!','Neredeyse!']), labelPL: _qp(['Nieźle','Może być lepiej!','Jeszcze trochę!','Prawie!']), color:t.textSecond }
-      : { icon:'📚', labelRU: _qp(['Практикуйся!','Не сдавайся!','Повтори и попробуй снова!','Учимся!']), labelUK: _qp(['Тренуйся!','Не здавайся!','Повтори і спробуй знову!','Навчаємось!']), labelES: _qp(['¡Sigue practicando!','¡No te rindas!','¡Repasa e inténtalo de nuevo!','¡Ánimo, tú puedes!']), labelPTBR: _qp(['Continue praticando!','Não desista!','Revise e tente de novo!','Vamos aprender!']), labelVI: _qp(['Tiếp tục luyện tập!','Đừng bỏ cuộc!','Ôn lại rồi thử lại!','Mình học tiếp nhé!']), labelID: _qp(['Terus berlatih!','Jangan menyerah!','Ulangi dan coba lagi!','Kita belajar!']), labelTR: _qp(['Pratik yapmaya devam et!','Vazgeçme!','Tekrar et ve yeniden dene!','Öğreniyoruz!']), labelPL: _qp(['Ćwicz dalej!','Nie poddawaj się!','Powtórz i spróbuj jeszcze raz!','Uczymy się!']), color:t.textMuted };
+      ? { labelRU: _qp(['Неплохо','Можно лучше!','Ещё немного!','Почти!']), labelUK: _qp(['Непогано','Можна краще!','Ще трохи!','Майже!']), labelES: _qp(['¡No está mal!','¡Se puede mejorar!','¡Un poco más!','¡Casi!','¡Tú puedes!']), labelPTBR: _qp(['Nada mal','Dá para melhorar!','Mais um pouco!','Quase!']), labelVI: _qp(['Không tệ','Có thể tốt hơn!','Thêm chút nữa!','Gần được rồi!']), labelID: _qp(['Lumayan','Masih bisa lebih baik!','Sedikit lagi!','Hampir!']), labelTR: _qp(['Fena değil','Daha iyi olabilir!','Biraz daha!','Neredeyse!']), labelPL: _qp(['Nieźle','Może być lepiej!','Jeszcze trochę!','Prawie!']), color:t.textSecond }
+      : { labelRU: _qp(['Практикуйся!','Не сдавайся!','Повтори и попробуй снова!','Учимся!']), labelUK: _qp(['Тренуйся!','Не здавайся!','Повтори і спробуй знову!','Навчаємось!']), labelES: _qp(['¡Sigue practicando!','¡No te rindas!','¡Repasa e inténtalo de nuevo!','¡Ánimo, tú puedes!']), labelPTBR: _qp(['Continue praticando!','Não desista!','Revise e tente de novo!','Vamos aprender!']), labelVI: _qp(['Tiếp tục luyện tập!','Đừng bỏ cuộc!','Ôn lại rồi thử lại!','Mình học tiếp nhé!']), labelID: _qp(['Terus berlatih!','Jangan menyerah!','Ulangi dan coba lagi!','Kita belajar!']), labelTR: _qp(['Pratik yapmaya devam et!','Vazgeçme!','Tekrar et ve yeniden dene!','Öğreniyoruz!']), labelPL: _qp(['Ćwicz dalej!','Nie poddawaj się!','Powtórz i spróbuj jeszcze raz!','Uczymy się!']), color:t.textMuted };
     const rankLabel = triLang(lang, {
   ru: rankInfo.labelRU,
   uk: rankInfo.labelUK,
@@ -2086,18 +2125,21 @@ function QuizGame({
                   setReviewQ(wrongPhrases); setRIdx(0); setReviewing(true); setDone(false);
                 }}
               >
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : '#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
-                  {triLang(lang, {
-  ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
-  uk: `🔄 Виправити помилки (${wrongPhrases.length})`,
-  es: `🔄 Repasar errores (${wrongPhrases.length})`,
-  "pt-BR": `🔄 Corrigir erros (${wrongPhrases.length})`,
-  vi: `🔄 Sửa lỗi (${wrongPhrases.length})`,
-  id: `🔄 Perbaiki kesalahan (${wrongPhrases.length})`,
-  tr: `🔄 Hataları düzelt (${wrongPhrases.length})`,
-  pl: `🔄 Popraw błędy (${wrongPhrases.length})`,
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  <Ionicons name="refresh" size={18} color={isCompassTheme ? COMPASS_RICH.peach : '#F87171'}/>
+                  <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : '#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
+                    {triLang(lang, {
+  ru: `Исправить ошибки (${wrongPhrases.length})`,
+  uk: `Виправити помилки (${wrongPhrases.length})`,
+  es: `Repasar errores (${wrongPhrases.length})`,
+  "pt-BR": `Corrigir erros (${wrongPhrases.length})`,
+  vi: `Sửa lỗi (${wrongPhrases.length})`,
+  id: `Perbaiki kesalahan (${wrongPhrases.length})`,
+  tr: `Hataları düzelt (${wrongPhrases.length})`,
+  pl: `Popraw błędy (${wrongPhrases.length})`,
 })}
-                </Text>
+                  </Text>
+                </View>
               </TouchableOpacity>
             );
           })()}
@@ -2299,8 +2341,8 @@ function QuizGame({
                 </Text>
               </View>
             )}
-            <MultBadge streak={streak} t={t} f={f}/>
-            <StreakBreak show={showBreak} old={prevStr} t={t} f={f}/>
+            <MultBadge streak={streak} themeMode={rawThemeMode as ThemeMode} t={t} f={f}/>
+            <StreakBreak show={showBreak} old={prevStr} themeMode={rawThemeMode as ThemeMode} t={t} f={f}/>
             <View style={{ flexDirection:'row', alignItems:'center', gap:3 }}>
               <Ionicons name="star" size={13} color={onGradSecondary}/>
               <Text style={{ color:onGradSecondary, fontWeight:'600', fontSize: f.body }}>{Math.round(score * 10) / 10}</Text>
@@ -2451,6 +2493,72 @@ function QuizGame({
           )}
           {/* РАЗБОР ОТВЕТА */}
           {(chosen !== null || typedOk !== null) && current.explanations && (() => {
+            const correct =
+              (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
+
+            // Тематический квиз → ИИ-разбор (изолированно). Статичные explanations не используются.
+            if (isThematicQuiz) {
+              // Пока генерируется — скрываем блок (без статичного fallback'а, по требованию).
+              if (quizExplain.state === 'unavailable') return null;
+              const pickedOptionText = chosen !== null ? current.choices[chosen] : (typedOk === true ? quizCorrectEn : '');
+              const aiExplanation = quizExplain.explanationFor(pickedOptionText ?? '', correct);
+              const loading = quizExplain.state !== 'ready' || !aiExplanation;
+              const headerColor = correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017');
+              return (
+                <Animated.View style={{
+                  opacity: insertAnim,
+                  transform: [{ scale: insertScale }],
+                  backgroundColor: correct
+                    ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
+                    : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
+                  borderRadius: 14,
+                  padding: planQuizId ? 10 : 16,
+                  marginBottom: planQuizId ? 10 : 16,
+                  borderLeftWidth: 4,
+                  borderLeftColor: correct ? '#1565C0' : '#F59E0B',
+                }}>
+                  <Text style={{ color: headerColor, fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
+                    {triLang(lang, {
+  ru: 'РАЗБОР',
+  uk: 'ПОЯСНЕННЯ',
+  es: 'EXPLICACIÓN',
+  "pt-BR": 'EXPLICAÇÃO',
+  vi: 'GIẢI THÍCH',
+  id: 'PENJELASAN',
+  tr: 'AÇIKLAMA',
+  pl: 'WYJAŚNIENIE',
+})}
+                  </Text>
+                  {loading ? (
+                    <View style={{ gap: 8 }}>
+                      <SkeletonBlock width="100%" height={14} borderRadius={7} />
+                      <SkeletonBlock width="92%" height={14} borderRadius={7} />
+                      <SkeletonBlock width="78%" height={14} borderRadius={7} />
+                    </View>
+                  ) : (
+                    <>
+                      <Text
+                        numberOfLines={planQuizId ? 2 : undefined}
+                        style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
+                      >
+                        {aiExplanation}
+                      </Text>
+                      {!planQuizId && (
+                        <ExplainReportButton
+                          kind="quiz"
+                          phraseEn={quizCorrectEn}
+                          userAnswer={pickedOptionText || undefined}
+                          choices={current.choices}
+                          lang={lang}
+                        />
+                      )}
+                    </>
+                  )}
+                </Animated.View>
+              );
+            }
+
+            // Квизы легко/средне/сложно → статичные разборы (как было).
             const explanationIdx = quizExplanationIndexForAnswer(current, chosen, typedOk);
             const plannedSourceExplanations = isPlannedInterfaceLang(lang)
               ? quizSourceExplanationsForPlanned(current, lang)
@@ -2464,8 +2572,6 @@ function QuizGame({
                     ? plannedSourceExplanations
                     : current.explanations;
             const explanation = explanationsArr[explanationIdx];
-            const correct =
-              (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
             if (!explanation) return null;
             return (
               <Animated.View style={{

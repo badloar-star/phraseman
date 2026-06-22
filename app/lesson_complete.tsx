@@ -4,7 +4,7 @@ import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Modal, Pressable, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
@@ -918,10 +918,57 @@ export default function LessonComplete() {
     }
   };
 
-  const goBackFromComplete = () => {
+  const goBackFromComplete = useCallback(() => {
     hapticTap();
     router.replace({ pathname: '/lesson_menu', params: { id: lessonId } });
-  };
+  }, [router, lessonId]);
+
+  // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
+  // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на
+  // экран lesson1, который при полном прогрессе тут же снова делал replace на
+  // lesson_complete → бесконечная петля «завершение ⇆ урок». Теперь «Назад»:
+  //   1) если открыт оверлей (награда/ревью/карточка/регистрация/премиум-баннер) —
+  //      закрываем его, не уходя с экрана;
+  //   2) иначе уходим туда же, куда и кнопка «Назад» в шапке — в меню урока.
+  // Это детерминированный выход без возврата в урок, что и разрывает цикл.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (showPremiumBanner) {
+        setShowPremiumBanner(false);
+        premiumBannerAnim.setValue(0);
+        return true;
+      }
+      if (shownCardDrop) {
+        setShownCardDrop(null);
+        setPendingCardDrop(null);
+        return true;
+      }
+      if (showAuthPrompt) {
+        setShowAuthPrompt(false);
+        return true;
+      }
+      if (showReview) {
+        setShowReview(false);
+        return true;
+      }
+      if (activeNotif) {
+        dismissNotif();
+        return true;
+      }
+      goBackFromComplete();
+      return true;
+    });
+    return () => sub.remove();
+  }, [
+    showPremiumBanner,
+    premiumBannerAnim,
+    shownCardDrop,
+    showAuthPrompt,
+    showReview,
+    activeNotif,
+    goBackFromComplete,
+  ]);
 
   return (
     <ScreenGradient>
@@ -1099,13 +1146,16 @@ export default function LessonComplete() {
             </Animated.View>
           )}
 
-          {/* Повторить урок — Duolingo-кнопка */}
+          {/* Повторить урок — Duolingo-кнопка.
+              Фон/текст берём из bgCard+textPrimary (не accentBg+accent): в золотой
+              теме accentBg — бронзовая дымка, а accent-текст на ней сливался в
+              «пустую» плитку. Акцент сохраняем через accent-кромку, рамку и иконку. */}
           <DuoPressable
             testID="lesson-complete-repeat"
             edgeColor={isCompassTheme ? COMPASS_RICH.hairline : t.accent}
             wrapStyle={{ marginBottom: 14 }}
             style={{
-              width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.accentBg,
+              width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderRadius: isCompassTheme ? 9 : 16, padding: 16,
               borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
               flexDirection: 'row', justifyContent: 'center', gap: 8,
@@ -1116,7 +1166,7 @@ export default function LessonComplete() {
             }}
           >
             {isCompassTheme && <CompassDepthSurface radius={9} selected />}
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.accent, fontSize: 16, fontWeight: '600' }}>
+            <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary, fontSize: 16, fontWeight: '600' }}>
               ↺ {c.repeatLesson}
             </Text>
           </DuoPressable>

@@ -133,3 +133,8 @@ export function getLevelGiftRewardIcon(
     LEVEL_GIFT_REWARD_ICONS[FALLBACK_LEVEL_GIFT_REWARD_ICON_ID]
   );
 }
+
+/** Тематическая иконка осколка (награда-орб для сундука недели и др. shard-наград). */
+export function getThemedShardIcon(themeMode: ThemeMode = DEFAULT_SHARD_ICON_THEME): ImageSourcePropType {
+  return THEMED_SHARD_GIFT_ICONS[themeMode] ?? THEMED_SHARD_GIFT_ICONS[DEFAULT_SHARD_ICON_THEME];
+}

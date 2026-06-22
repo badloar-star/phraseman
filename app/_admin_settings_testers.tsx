@@ -103,6 +103,7 @@ import {
   scheduleUpsellNotifications,
   cancelIntroExpiringNotification,
   cancelUpsellNotifications,
+  type ConversionPushResult,
 } from './notifications';
 import type { GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { seedLocalVipSurveyTestMessage } from './app_messages';
@@ -205,6 +206,27 @@ const AppInfoDialog = {
   },
 };
 
+/**
+ * Человеко-читаемая причина, почему конверсионный пуш не запланировался.
+ * Раньше QA-кнопки всегда показывали «запланирован», даже когда планирование
+ * молча падало (нет разрешения / Expo-триггер упал) → тестер думал, что баг в
+ * пушах. Теперь показываем точную причину.
+ */
+function describeConversionPushFailure(res: Extract<ConversionPushResult, { ok: false }>): string {
+  switch (res.reason) {
+    case 'no_module':
+      return 'Модуль уведомлений недоступен (Expo Go или web). Нужен dev/прод-билд.';
+    case 'no_permission':
+      return 'Уведомления не разрешены в системе. Разреши их в настройках телефона и повтори.';
+    case 'too_soon':
+      return 'Время пуша уже прошло либо все слоты уже были запланированы ранее. Сначала нажми «Отменить все конверсионные пуши».';
+    case 'schedule_failed':
+      return `Expo не смог запланировать уведомление${res.error ? `: ${res.error}` : '.'}`;
+    default:
+      return 'Неизвестная причина.';
+  }
+}
+
 const ADMIN_PROFILE_VIP_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
 function getAdminFirestoreDb(): any | null {
@@ -281,7 +303,18 @@ const ADMIN_RESET_ACHIEVEMENT_KEYS = [
 ];
 const ADMIN_RESET_FRAME_KEYS = ['user_frame', 'user_avatar', 'unlocked_frames'];
 const ADMIN_RESET_SHARED_SYSTEM_KEYS = ['user_total_xp', 'current_energy', 'last_energy_recovery'];
-const ADMIN_RESET_SHARED_STATS_KEYS = ['streak_count', 'login_bonus_v1', 'daily_stats', 'streak_freeze'];
+const ADMIN_RESET_SHARED_STATS_KEYS = [
+  'streak_count', 'login_bonus_v1', 'daily_stats', 'streak_freeze',
+  // Недельная сетка дней (гейт «Идеальной недели»/недельного сундука). Без явной
+  // очистки «Сброс всех данных» оставлял week_days_done=[7×true] от прошлого
+  // аккаунта, а claim-маркер boon_perfect_week_claimed_v1 (он в SYNC_KEYS) удалялся
+  // → золотой недельный сундук всплывал на первом экране онбординга у «нового» юзера.
+  // Зеркалит resetAllStats() в hall_of_fame_utils.
+  'week_days_done', 'week_days_week_key', 'streak_week_day_markers_v1',
+  // Штамп дня онбординга (гейт «недельный бонус только со 2-го дня»). Сбрасываем вместе
+  // с недельной сеткой, иначе «новый» юзер после сброса унаследует старый день онбординга.
+  'perfect_week_onboarding_day_v1',
+];
 const ADMIN_RESET_LEAGUE_KEYS = ['league_state_v3', 'league_result_pending', 'week_leaderboard', 'my_week_points'];
 const ADMIN_RESET_TESTER_KEYS = ['tester_no_limits', 'tester_energy_disabled', 'tester_no_premium'];
 const ADMIN_QA_FRIEND_UID = 'admin_qa_friend_buddy';
@@ -4534,10 +4567,14 @@ export default function SettingsTestersFunctions() {
                     await cancelIntroExpiringNotification();
                     // QA: fakeEndsAt = now + 2ч + 5сек → пуш через 5 сек
                     const fakeEndsAt = Date.now() + 2 * 60 * 60 * 1000 + 5_000;
-                    await scheduleIntroExpiringNotification(fakeEndsAt, lang, { minSeconds: 0 });
-                    AppInfoDialog.alert('Пуш запланирован', 'Через ~5 сек придёт пуш «Premium истекает через 2 часа».\nУбедись что уведомления разрешены.');
+                    const res = await scheduleIntroExpiringNotification(fakeEndsAt, lang, { minSeconds: 0 });
+                    if (res.ok) {
+                      AppInfoDialog.alert('Пуш запланирован', 'Через ~5 сек придёт пуш «Premium истекает через 2 часа».');
+                    } else {
+                      AppInfoDialog.alert('Пуш НЕ запланирован', describeConversionPushFailure(res));
+                    }
                   } catch (e) {
-                    AppInfoDialog.alert('Ошибка', String(e));
+                    AppInfoDialog.alert('Ошибка', e instanceof Error ? e.message : String(e));
                   }
                 })();
               }}
@@ -4555,10 +4592,14 @@ export default function SettingsTestersFunctions() {
                     await cancelUpsellNotifications();
                     // QA: introEndedAt = now - 4 дня + 5 сек → D+4 через 5 сек
                     const fakeIntroEndedAt = Date.now() - 4 * 24 * 60 * 60 * 1000 + 5_000;
-                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
-                    AppInfoDialog.alert('D+4 запланирован', 'Через ~5 сек придёт upsell D+4.');
+                    const res = await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    if (res.ok) {
+                      AppInfoDialog.alert('D+4 запланирован', 'Через ~5 сек придёт upsell D+4.');
+                    } else {
+                      AppInfoDialog.alert('D+4 НЕ запланирован', describeConversionPushFailure(res));
+                    }
                   } catch (e) {
-                    AppInfoDialog.alert('Ошибка', String(e));
+                    AppInfoDialog.alert('Ошибка', e instanceof Error ? e.message : String(e));
                   }
                 })();
               }}
@@ -4575,10 +4616,14 @@ export default function SettingsTestersFunctions() {
                   try {
                     await cancelUpsellNotifications();
                     const fakeIntroEndedAt = Date.now() - 7 * 24 * 60 * 60 * 1000 + 5_000;
-                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
-                    AppInfoDialog.alert('D+7 запланирован', 'Через ~5 сек придёт upsell D+7.');
+                    const res = await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    if (res.ok) {
+                      AppInfoDialog.alert('D+7 запланирован', 'Через ~5 сек придёт upsell D+7.');
+                    } else {
+                      AppInfoDialog.alert('D+7 НЕ запланирован', describeConversionPushFailure(res));
+                    }
                   } catch (e) {
-                    AppInfoDialog.alert('Ошибка', String(e));
+                    AppInfoDialog.alert('Ошибка', e instanceof Error ? e.message : String(e));
                   }
                 })();
               }}
@@ -4595,10 +4640,14 @@ export default function SettingsTestersFunctions() {
                   try {
                     await cancelUpsellNotifications();
                     const fakeIntroEndedAt = Date.now() - 14 * 24 * 60 * 60 * 1000 + 5_000;
-                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
-                    AppInfoDialog.alert('D+14 запланирован', 'Через ~5 сек придёт upsell D+14.');
+                    const res = await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    if (res.ok) {
+                      AppInfoDialog.alert('D+14 запланирован', 'Через ~5 сек придёт upsell D+14.');
+                    } else {
+                      AppInfoDialog.alert('D+14 НЕ запланирован', describeConversionPushFailure(res));
+                    }
                   } catch (e) {
-                    AppInfoDialog.alert('Ошибка', String(e));
+                    AppInfoDialog.alert('Ошибка', e instanceof Error ? e.message : String(e));
                   }
                 })();
               }}

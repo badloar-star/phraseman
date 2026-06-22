@@ -145,8 +145,18 @@ export interface GenerateStatsInsightsOptions {
   nowMs?: number;
 }
 
-function localText(lang: Lang, ru: string, uk: string, es: string): string {
-  return triLang(lang, { ru, uk, es });
+function localText(
+  lang: Lang,
+  ru: string,
+  uk: string,
+  es: string,
+  ptBR: string,
+  vi: string,
+  id: string,
+  tr: string,
+  pl: string,
+): string {
+  return triLang(lang, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 }
 
 function hasEnoughStatsSignal(briefing: StatsInsightsBriefing): boolean {
@@ -172,24 +182,44 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           `Пока мало данных для честного вывода: за 7 дней было ${briefing.balance.active7} активных дн. Продолжай короткими сессиями.`,
           `Поки мало даних для чесного висновку: за 7 днів було ${briefing.balance.active7} активних дн. Продовжуй короткими сесіями.`,
           `Aún hay pocos datos: en 7 días tuviste ${briefing.balance.active7} días activos. Sigue con sesiones cortas.`,
+          `Ainda há poucos dados: em 7 dias você teve ${briefing.balance.active7} dias ativos. Continue com sessões curtas.`,
+          `Vẫn còn ít dữ liệu: trong 7 ngày bạn có ${briefing.balance.active7} ngày hoạt động. Hãy tiếp tục với các phiên ngắn.`,
+          `Data masih sedikit: dalam 7 hari kamu punya ${briefing.balance.active7} hari aktif. Lanjutkan dengan sesi singkat.`,
+          `Henüz az veri var: son 7 günde ${briefing.balance.active7} aktif günün oldu. Kısa oturumlarla devam et.`,
+          `Na razie jest mało danych: w 7 dni było ${briefing.balance.active7} aktywnych dni. Kontynuuj krótkimi sesjami.`,
         )
       : localText(
           briefing.lang,
           `За 7 дней у тебя ${briefing.balance.active7} активных дн., средняя сессия — ${Math.round(briefing.balance.avgMinutes)} мин. Лучше держать короткий фокус, чем растягивать практику.`,
           `За 7 днів у тебе ${briefing.balance.active7} активних дн., середня сесія — ${Math.round(briefing.balance.avgMinutes)} хв. Краще тримати короткий фокус, ніж розтягувати практику.`,
           `En 7 días tuviste ${briefing.balance.active7} días activos; sesión media: ${Math.round(briefing.balance.avgMinutes)} min. Mejor foco corto que práctica alargada.`,
+          `Em 7 dias você teve ${briefing.balance.active7} dias ativos; sessão média: ${Math.round(briefing.balance.avgMinutes)} min. Melhor foco curto do que prática alongada.`,
+          `Trong 7 ngày bạn có ${briefing.balance.active7} ngày hoạt động; phiên trung bình: ${Math.round(briefing.balance.avgMinutes)} phút. Tập trung ngắn vẫn tốt hơn kéo dài buổi học.`,
+          `Dalam 7 hari kamu punya ${briefing.balance.active7} hari aktif; sesi rata-rata ${Math.round(briefing.balance.avgMinutes)} menit. Fokus singkat lebih baik daripada latihan yang terlalu panjang.`,
+          `Son 7 günde ${briefing.balance.active7} aktif günün var; ortalama oturum ${Math.round(briefing.balance.avgMinutes)} dk. Uzatılmış pratiktense kısa odak daha iyi.`,
+          `W 7 dni masz ${briefing.balance.active7} aktywnych dni; średnia sesja to ${Math.round(briefing.balance.avgMinutes)} min. Lepszy krótki fokus niż przeciąganie nauki.`,
         ),
     rhythm: localText(
       briefing.lang,
       `За 7 дней: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} мин. Лучший день: ${bestDay}.`,
       `За 7 днів: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} хв. Найкращий день: ${bestDay}.`,
       `En 7 días: ${briefing.rhythm.active7} días activos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Mejor día: ${bestDay}.`,
+      `Em 7 dias: ${briefing.rhythm.active7} dias ativos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Melhor dia: ${bestDay}.`,
+      `Trong 7 ngày: ${briefing.rhythm.active7} ngày hoạt động, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} phút. Ngày tốt nhất: ${bestDay}.`,
+      `Dalam 7 hari: ${briefing.rhythm.active7} hari aktif, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} menit. Hari terbaik: ${bestDay}.`,
+      `Son 7 gün: ${briefing.rhythm.active7} aktif gün, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} dk. En iyi gün: ${bestDay}.`,
+      `W 7 dni: ${briefing.rhythm.active7} aktywnych dni, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Najlepszy dzień: ${bestDay}.`,
     ),
     year: localText(
       briefing.lang,
       `Годовой ритм: ${briefing.year.activeDays} активных дней, серия ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Лучший месяц: ${bestMonth}.`,
       `Річний ритм: ${briefing.year.activeDays} активних днів, серія ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Найкращий місяць: ${bestMonth}.`,
       `Ritmo anual: ${briefing.year.activeDays} días activos, racha ${briefing.year.currentStreak}, récord ${briefing.year.longestStreak}. Mejor mes: ${bestMonth}.`,
+      `Ritmo anual: ${briefing.year.activeDays} dias ativos, sequência ${briefing.year.currentStreak}, recorde ${briefing.year.longestStreak}. Melhor mês: ${bestMonth}.`,
+      `Nhịp trong năm: ${briefing.year.activeDays} ngày hoạt động, chuỗi ${briefing.year.currentStreak}, kỷ lục ${briefing.year.longestStreak}. Tháng tốt nhất: ${bestMonth}.`,
+      `Ritme tahunan: ${briefing.year.activeDays} hari aktif, rentetan ${briefing.year.currentStreak}, rekor ${briefing.year.longestStreak}. Bulan terbaik: ${bestMonth}.`,
+      `Yıllık ritim: ${briefing.year.activeDays} aktif gün, seri ${briefing.year.currentStreak}, rekor ${briefing.year.longestStreak}. En iyi ay: ${bestMonth}.`,
+      `Roczny rytm: ${briefing.year.activeDays} aktywnych dni, seria ${briefing.year.currentStreak}, rekord ${briefing.year.longestStreak}. Najlepszy miesiąc: ${bestMonth}.`,
     ),
     percentiles: pct == null
       ? localText(
@@ -197,12 +227,22 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           'Процентили появятся после большего объёма. Пока сравнивай себя с прошлой неделей, а не с другими.',
           'Процентилі зʼявляться після більшого обсягу. Поки порівнюй себе з минулим тижнем, а не з іншими.',
           'Los percentiles aparecerán con más volumen. Por ahora compárate con tu semana anterior, no con otros.',
+          'Os percentis aparecerão com mais volume. Por enquanto, compare-se com a semana passada, não com outras pessoas.',
+          'Phần trăm xếp hạng sẽ xuất hiện khi có nhiều dữ liệu hơn. Bây giờ hãy so với tuần trước của bạn, không phải với người khác.',
+          'Persentil akan muncul setelah datanya lebih banyak. Untuk sekarang, bandingkan dirimu dengan minggu lalu, bukan dengan orang lain.',
+          'Yüzdelikler daha fazla veriyle görünecek. Şimdilik kendini başkalarıyla değil, geçen haftanla karşılaştır.',
+          'Percentyle pojawią się po większej liczbie danych. Na razie porównuj się z poprzednim tygodniem, nie z innymi.',
         )
       : localText(
           briefing.lang,
           `Ты примерно в топ-${100 - Math.round(pct)}% по общему XP. Следующий прирост даст стабильность, а не рывок.`,
           `Ти приблизно в топ-${100 - Math.round(pct)}% за загальним XP. Наступний приріст дасть стабільність, а не ривок.`,
           `Estás cerca del top-${100 - Math.round(pct)}% por XP total. El siguiente salto viene de la constancia.`,
+          `Você está perto do top-${100 - Math.round(pct)}% em XP total. O próximo avanço vem da constância.`,
+          `Bạn đang gần top-${100 - Math.round(pct)}% theo tổng XP. Bước tăng tiếp theo đến từ sự đều đặn.`,
+          `Kamu kira-kira di top-${100 - Math.round(pct)}% berdasarkan total XP. Kenaikan berikutnya datang dari konsistensi.`,
+          `Toplam XP'de yaklaşık ilk ${100 - Math.round(pct)}% içindesin. Bir sonraki artış sıçramadan değil, istikrardan gelir.`,
+          `Jesteś mniej więcej w top-${100 - Math.round(pct)}% według łącznego XP. Kolejny wzrost da regularność, nie zryw.`,
         ),
     lifetime: weak
       ? localText(
@@ -210,12 +250,22 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           `Всего закреплено ${totalItems} слов/фраз. Слабая зона: ${weak.label} (${Math.round(weak.pct)}%) — начни с неё.`,
           `Усього закріплено ${totalItems} слів/фраз. Слабка зона: ${weak.label} (${Math.round(weak.pct)}%) — почни з неї.`,
           `Tienes ${totalItems} palabras/frases trabajadas. Zona débil: ${weak.label} (${Math.round(weak.pct)}%); empieza ahí.`,
+          `Você trabalhou ${totalItems} palavras/frases. Zona fraca: ${weak.label} (${Math.round(weak.pct)}%); comece por ela.`,
+          `Bạn đã ôn ${totalItems} từ/cụm từ. Vùng yếu: ${weak.label} (${Math.round(weak.pct)}%); hãy bắt đầu từ đó.`,
+          `Total sudah dilatih: ${totalItems} kata/frasa. Area lemah: ${weak.label} (${Math.round(weak.pct)}%); mulai dari sana.`,
+          `Toplam ${totalItems} kelime/ifade pekiştirildi. Zayıf alan: ${weak.label} (${Math.round(weak.pct)}%); buradan başla.`,
+          `Łącznie utrwalono ${totalItems} słów/fraz. Słabszy obszar: ${weak.label} (${Math.round(weak.pct)}%); zacznij od niego.`,
         )
       : localText(
           briefing.lang,
           `Всего закреплено ${totalItems} слов/фраз и ${briefing.lifetime.quizzes} квизов. Продолжай маленькими повторениями.`,
           `Усього закріплено ${totalItems} слів/фраз і ${briefing.lifetime.quizzes} квізів. Продовжуй малими повтореннями.`,
           `Tienes ${totalItems} palabras/frases y ${briefing.lifetime.quizzes} quizzes. Sigue con repasos pequeños.`,
+          `Você trabalhou ${totalItems} palavras/frases e ${briefing.lifetime.quizzes} quizzes. Continue com pequenas revisões.`,
+          `Bạn đã ôn ${totalItems} từ/cụm từ và ${briefing.lifetime.quizzes} bài quiz. Hãy tiếp tục với các lượt ôn nhỏ.`,
+          `Kamu sudah melatih ${totalItems} kata/frasa dan ${briefing.lifetime.quizzes} kuis. Lanjutkan dengan pengulangan kecil.`,
+          `Toplam ${totalItems} kelime/ifade ve ${briefing.lifetime.quizzes} quiz pekişti. Küçük tekrarlarla devam et.`,
+          `Łącznie utrwalono ${totalItems} słów/fraz i ${briefing.lifetime.quizzes} quizów. Kontynuuj małymi powtórkami.`,
         ),
   };
 }

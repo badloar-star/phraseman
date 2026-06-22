@@ -14,7 +14,7 @@ if (!args.rollout) {
 }
 
 if (!args.rollout) {
-  console.error('Usage: node scripts/export-codex-dalli-results.mjs --rollout <rollout.jsonl> [--queue <queue.jsonl>] [--source-root <dir>] [--webp] [--width 1024] [--height 819]');
+  console.error('Usage: node scripts/export-codex-dalli-results.mjs --rollout <rollout.jsonl> [--queue <queue.jsonl>] [--source-root <dir>] [--only-set <setId>] [--webp] [--width 1024] [--height 819] [--report <path>] [--stdout-records]');
   process.exit(1);
 }
 
@@ -26,6 +26,15 @@ const shouldWriteWebp = Boolean(args.webp);
 const width = Number(args.width || 1024);
 const height = Number(args.height || 819);
 const queueById = queuePath ? loadQueue(queuePath) : new Map();
+const reportPath = path.resolve(
+  ROOT,
+  args.report || path.join(
+    '.codex-tmp',
+    'collectibles-dalli',
+    'reports',
+    `${timestamp()}_${path.basename(rolloutPath).replace(/\.jsonl$/i, '')}.export.json`,
+  ),
+);
 
 if (!fs.existsSync(rolloutPath)) {
   console.error(`rollout not found: ${rolloutPath}`);
@@ -39,6 +48,7 @@ if (shouldWriteWebp && (!Number.isInteger(width) || !Number.isInteger(height) ||
 
 const seenCalls = new Set();
 const latestById = new Map();
+let fallbackImageIndex = 0;
 
 const lines = readline.createInterface({
   input: fs.createReadStream(rolloutPath, { encoding: 'utf8' }),
@@ -61,20 +71,26 @@ for await (const line of lines) {
   if (payload.call_id) seenCalls.add(payload.call_id);
 
   const prompt = payload.revised_prompt || '';
-  const id = matchFirst(prompt, /Card id:\s*([^\n]+)/i);
-  if (!id) continue;
+  const cardId = matchFirst(prompt, /Card id:\s*([^\n]+)/i);
+  const id = cardId || payload.call_id || `image_${String(++fallbackImageIndex).padStart(4, '0')}`;
 
-  latestById.set(id, { id, payload, prompt });
+  const queueItem = queueById.get(id);
+  const setId = queueItem?.setId || matchFirst(prompt, /Set:\s*[^\n(]*\(([^)\n]+)\)/i) || (cardId ? inferSetId(id) : 'uncategorized');
+  if (args.onlySet && setId !== args.onlySet) continue;
+
+  latestById.set(id, { id, cardId, payload, prompt });
 }
 
 const records = [];
 
-for (const { id, payload, prompt } of latestById.values()) {
+for (const { id, cardId, payload, prompt } of latestById.values()) {
   const queueItem = queueById.get(id);
-  const setId = queueItem?.setId || matchFirst(prompt, /Set:\s*[^\n(]*\(([^)\n]+)\)/i) || inferSetId(id);
+  const setId = queueItem?.setId || matchFirst(prompt, /Set:\s*[^\n(]*\(([^)\n]+)\)/i) || (cardId ? inferSetId(id) : 'uncategorized');
+  if (args.onlySet && setId !== args.onlySet) continue;
+
   const sourcePath = queueItem?.sourcePath
     ? path.resolve(ROOT, queueItem.sourcePath)
-    : path.join(sourceRoot, setId, `${id}.png`);
+    : path.join(sourceRoot, setId, `${safeFileName(id)}.png`);
 
   const png = Buffer.from(payload.result, 'base64');
   if (png.length < 24 || !png.subarray(0, 8).equals(PNG_SIGNATURE)) {
@@ -84,11 +100,20 @@ for (const { id, payload, prompt } of latestById.values()) {
 
   fs.mkdirSync(path.dirname(sourcePath), { recursive: true });
   fs.writeFileSync(sourcePath, png);
+  const promptPath = prompt
+    ? sourcePath.replace(/\.png$/i, '.prompt.txt')
+    : null;
+  if (promptPath) {
+    fs.writeFileSync(promptPath, `${prompt}\n`, 'utf8');
+  }
 
   const record = {
     id,
+    cardId: cardId || null,
     setId,
     sourcePath: path.relative(ROOT, sourcePath).replaceAll('\\', '/'),
+    promptPath: promptPath ? path.relative(ROOT, promptPath).replaceAll('\\', '/') : null,
+    promptPreview: prompt ? compact(prompt).slice(0, 220) : '',
     sourceBytes: png.length,
     sourceWidth: png.readUInt32BE(16),
     sourceHeight: png.readUInt32BE(20),
@@ -125,7 +150,18 @@ const summary = {
   bySet: countBy(successfulRecords, 'setId'),
 };
 
-console.log(JSON.stringify(args.summary ? summary : { ...summary, records }, null, 2));
+const report = { ...summary, records };
+fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+
+const stdoutSummary = {
+  ...summary,
+  reportPath: path.relative(ROOT, reportPath).replaceAll('\\', '/'),
+  records: records.length,
+  skipped: records.length - successfulRecords.length,
+};
+
+console.log(JSON.stringify(args.stdoutRecords ? report : stdoutSummary, null, 2));
 
 function parseArgs(rawArgs) {
   const parsed = {};
@@ -137,6 +173,10 @@ function parseArgs(rawArgs) {
     }
     if (arg === '--summary') {
       parsed.summary = true;
+      continue;
+    }
+    if (arg === '--stdout-records') {
+      parsed.stdoutRecords = true;
       continue;
     }
     if (!arg.startsWith('--')) continue;
@@ -198,9 +238,24 @@ function inferSetId(id) {
   return `unknown_${prefix}`;
 }
 
+function safeFileName(value) {
+  return String(value)
+    .replace(/[^a-z0-9._-]+/gi, '_')
+    .replace(/^_+|_+$/g, '')
+    .slice(0, 120) || 'image';
+}
+
+function compact(value) {
+  return String(value).replace(/\s+/g, ' ').trim();
+}
+
 function countBy(items, key) {
   return items.reduce((counts, item) => {
     counts[item[key]] = (counts[item[key]] || 0) + 1;
     return counts;
   }, {});
+}
+
+function timestamp() {
+  return new Date().toISOString().replace(/[-:]/g, '').replace(/\..+/, '').replace('T', '_');
 }

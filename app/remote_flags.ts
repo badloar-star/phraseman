@@ -147,7 +147,14 @@ export type RemoteTextKey =
   // 'free' = только не-премиум, 'premium' = только премиум. Опц. фильтр платформы:
   // 'ios'|'android' (пусто = обе). Применяется в shouldShowPromoBanner вместе с флагом.
   | 'promo_banner_audience'
-  | 'promo_banner_platform';
+  | 'promo_banner_platform'
+  // Тексты приветствия-«знакомства» (онбординг-спотлайт) и модала Компаса —
+  // редактируются из «Пульта» ПОСЛЕ релиза без пересборки. JSON-объект с
+  // переопределениями отдельных полей; отсутствующее поле = встроенный текст из
+  // кода (welcome_steps.ts / compass_copy.ts). Парсится защищённо: мусор тихо
+  // отбрасывается. Сейчас редактируется русский; прочие языки — из кода.
+  | 'welcome_copy_overrides'
+  | 'compass_copy_overrides';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -283,6 +290,8 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   promo_banner_until: '',
   promo_banner_audience: '',
   promo_banner_platform: '',
+  welcome_copy_overrides: '',
+  compass_copy_overrides: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.

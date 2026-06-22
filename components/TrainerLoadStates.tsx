@@ -1,10 +1,11 @@
 import React from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from './ScreenGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { triLang, type Lang } from '../constants/i18n';
 import { TRAINER_LOAD_COPY } from './trainer_load_copy';
+import SkeletonBlock from './SkeletonShimmer';
 
 const LOADING_LABEL = TRAINER_LOAD_COPY.loading;
 const ERROR_TITLE = TRAINER_LOAD_COPY.errorTitle;
@@ -17,16 +18,26 @@ interface LoadingProps {
   accent?: string;
 }
 
-/** Видимый индикатор загрузки тренажёра вместо пустого экрана. */
+/** Скелетон загрузки тренажёра: повторяет форму будущего вопроса (карточка-вопрос
+    + варианты ответа), а не крутит спиннер. */
 export function TrainerLoadingView({ lang, accent = '#4A9EFF' }: LoadingProps) {
   return (
     <ScreenGradient>
       <SafeAreaView
         testID="trainer-loading"
-        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24 }}
       >
-        <ActivityIndicator size="large" color={accent} />
-        <Text style={{ color: '#888', marginTop: 14, fontSize: 15, fontWeight: '600' }}>
+        <View style={{ alignItems: 'center', marginBottom: 28, gap: 12 }}>
+          <SkeletonBlock width="70%" height={18} borderRadius={9} />
+          <SkeletonBlock width="50%" height={14} borderRadius={7} />
+        </View>
+        <View style={{ gap: 12 }}>
+          <SkeletonBlock width="100%" height={52} borderRadius={16} />
+          <SkeletonBlock width="100%" height={52} borderRadius={16} />
+          <SkeletonBlock width="100%" height={52} borderRadius={16} />
+          <SkeletonBlock width="100%" height={52} borderRadius={16} />
+        </View>
+        <Text style={{ color: '#888', marginTop: 24, fontSize: 15, fontWeight: '600', textAlign: 'center' }}>
           {triLang(lang, LOADING_LABEL)}
         </Text>
       </SafeAreaView>

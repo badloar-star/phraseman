@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="phrase_widget_description">Dzisiejsza fraza z Phraseman</string>
+    <string name="phrase_widget_kicker">FRAZA DNIA</string>
+</resources>

@@ -119,7 +119,7 @@ beforeEach(() => {
     docs.clear();
     autoId = 0;
     global.fetch = jest.fn();
-    mockOkProvider('Use "have" after "I": say "I have a reservation."');
+    mockOkProvider('После "I" здесь нужно "have": скажи "I have a reservation."');
 });
 afterEach(() => {
     jest.useRealTimers();
@@ -153,6 +153,16 @@ describe('explainMistake', () => {
         // Still only ONE provider call total — the cache absorbed the second reader.
         expect(global.fetch).toHaveBeenCalledTimes(1);
     });
+    it('rejects wrong-language fresh text before any ready cache write', async () => {
+        mockOkProvider('Today you keep a good small practice step with your phrases.');
+        await expect(callExplain(validPayload)).rejects.toMatchObject({
+            code: 'unavailable',
+            message: 'mistake_explain_wrong_language',
+        });
+        expect(cacheDocs().some((d) => d.status === 'ready')).toBe(false);
+        expect(cacheDocs().some((d) => d.status === 'rejected')).toBe(true);
+        expect(billingDocs()).toHaveLength(0);
+    });
     it('builds a prompt that targets the WHOLE error and lists every wrong→right swap', async () => {
         const res = await callExplain(validPayload);
         expect(res).toMatchObject({ ok: true, model: 'gpt-4.1', variant: 'full', fromCache: false });
@@ -177,17 +187,17 @@ describe('explainMistake', () => {
     });
     it('generates a separate ELI5 text on the eli5 variant and caches it onto the ready doc', async () => {
         await callExplain(validPayload); // warm the full breakdown first
-        mockOkProvider('You said "has" but say "have". "Have" is the friend word for "I". Say: I have a reservation.');
+        mockOkProvider('Почти: после "I" скажи "have", не "has". Это слово-друг для "I". Скажи "I have a reservation."');
         const eli5 = await callExplain({ ...validPayload, variant: 'eli5' });
         expect(eli5.variant).toBe('eli5');
-        expect(eli5.text).toContain('friend word');
+        expect(eli5.text).toContain('слово-друг');
         // Second eli5 read for the same mistake comes from cache ($0).
         const eli5Again = await callExplain({ ...validPayload, variant: 'eli5' }, 'auth-3');
         expect(eli5Again.fromCache).toBe(true);
         expect(eli5Again.text).toBe(eli5.text);
     });
     it('persists ELI5 even when it is requested BEFORE the full breakdown (no money leak on repeat)', async () => {
-        mockOkProvider('Tiny words: say "have", not "has". "Have" is the buddy of "I".');
+        mockOkProvider('Маленькая правка: скажи "have", не "has". Для "I" подходит "have".');
         // ELI5 first — no full breakdown cached yet.
         const first = await callExplain({ ...validPayload, variant: 'eli5' });
         expect(first.variant).toBe('eli5');

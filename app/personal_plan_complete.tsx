@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -82,8 +83,14 @@ export default function PersonalPlanCompleteScreen() {
   if (!view) {
     return (
       <ScreenGradient>
-        <View style={[styles.safe, { paddingTop: insets.top }]}>
-          <ActivityIndicator color={t.accent} />
+        <View style={[styles.safe, { paddingTop: insets.top, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }]}>
+          <View style={{ alignItems: 'center', gap: 12, marginBottom: 12 }}>
+            <SkeletonBlock width={64} height={64} borderRadius={32} />
+            <SkeletonBlock width="62%" height={20} borderRadius={10} />
+            <SkeletonBlock width="44%" height={14} borderRadius={7} />
+          </View>
+          <SkeletonBlock width="100%" height={92} borderRadius={18} />
+          <SkeletonBlock width="100%" height={54} borderRadius={16} />
         </View>
       </ScreenGradient>
     );

@@ -17,14 +17,20 @@
 
 import type { CefrBand } from './lesson_grammar_map';
 import { isWordCategory } from './pos_taxonomy';
+import type { SourceLocale } from './source_locales';
 
-export type UiLang = 'ru' | 'uk' | 'es';
+export type UiLang = SourceLocale;
 
-/** A localized teaching text. ru is required; uk/es optional (UI falls back to ru). */
+/** A localized teaching text. ru is required; other source locales fall back to ru. */
 export type LocalizedText = {
   ru: string;
   uk?: string;
   es?: string;
+  'pt-BR'?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
 };
 
 export const PLAN_CONTENT_SPANISH_FIELD_MARKER = 'spanish' as const;

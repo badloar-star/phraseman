@@ -5,24 +5,36 @@ const DEFAULT_DATA_DIR = path.join(process.cwd(), '.codex-tmp', 'telegram-premiu
 const DEFAULT_CONFIG_PATH = path.join(DEFAULT_DATA_DIR, 'config.json');
 const DEFAULT_STATE_PATH = path.join(DEFAULT_DATA_DIR, 'state.json');
 const DEFAULT_ORDERS_PATH = path.join(DEFAULT_DATA_DIR, 'orders.jsonl');
-const MONTHLY_PRICE_RU_LABEL = '500 Stars';
-const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 
+// Статичная часть плана без цены. Цена для пользователя строится из config
+// (config.monthly/yearlyStars), чтобы текст всегда совпадал с реально
+// списываемой суммой — никаких вшитых '500 Stars' / '2500 Stars'.
 const PLANS = {
   monthly: {
     title: 'Phraseman Premium',
     label: 'Phraseman Premium: месяц',
-    description: `Месячная подписка Phraseman Premium. ${MONTHLY_PRICE_RU_LABEL}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
     durationLabel: 'месяц',
   },
   yearly: {
     title: 'Phraseman Premium',
     label: 'Phraseman Premium: год',
-    description: `Годовой доступ Phraseman Premium. ${YEARLY_PRICE_RU_LABEL}. Разовая оплата на 12 месяцев.`,
     durationLabel: 'год',
   },
 };
+
+/** Ярлык цены из конфигурируемой суммы Stars. */
+function priceLabelForPlan(config, plan) {
+  return `${getStarsForPlan(config, plan)} Stars`;
+}
+
+/** Описание счёта для пользователя с актуальной ценой из конфига. */
+function planDescription(config, plan) {
+  if (plan === 'yearly') {
+    return `Годовой доступ Phraseman Premium. ${priceLabelForPlan(config, 'yearly')}. Разовая оплата на 12 месяцев.`;
+  }
+  return `Месячная подписка Phraseman Premium. ${priceLabelForPlan(config, 'monthly')}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`;
+}
 
 const START_MESSAGE_RU = [
   'Phraseman Premium',
@@ -245,7 +257,7 @@ function buildPremiumInvoice({ config, chatId, userId, plan, appNickname, payloa
   const invoice = {
     chat_id: chatId,
     title: planInfo.title,
-    description: planInfo.description,
+    description: planDescription(config, plan),
     payload: payload || buildInvoicePayload({ plan, userId, chatId, appNickname }),
     provider_token: '',
     currency: 'XTR',
@@ -431,8 +443,8 @@ async function sendPlanChoice(api, chatId, config, state, userId, appNickname) {
       '',
       'Проверьте, что ник написан точно так же, как в Phraseman.',
       '',
-      `Месяц: ${MONTHLY_PRICE_RU_LABEL}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
-      `Год: ${YEARLY_PRICE_RU_LABEL}, разовая оплата на 12 месяцев.`,
+      `Месяц: ${priceLabelForPlan(config, 'monthly')}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
+      `Год: ${priceLabelForPlan(config, 'yearly')}, разовая оплата на 12 месяцев.`,
       '',
       'Выберите вариант:',
     ].join('\n'),

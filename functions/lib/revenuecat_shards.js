@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.__revenueCatWebhookTestHooks = exports.revenueCatShardsWebhook = void 0;
+exports.shouldDeactivateOnInactiveEvent = shouldDeactivateOnInactiveEvent;
 exports.transferTargetIds = transferTargetIds;
 exports.transferSourceIds = transferSourceIds;
 const admin = __importStar(require("firebase-admin"));
@@ -50,6 +51,7 @@ const SHARD_PACKS_BY_PRODUCT_ID = {
 };
 const PREMIUM_ACTIVE_EVENTS = new Set([
     'INITIAL_PURCHASE',
+    'NON_RENEWING_PURCHASE', // lifetime / one-time non-consumable (e.g. phraseman_premium_lifetime_v1)
     'RENEWAL',
     'UNCANCELLATION',
     'PRODUCT_CHANGE',
@@ -141,9 +143,24 @@ function looksLikePremiumSubscription(event) {
 }
 function premiumPlanFromEvent(event) {
     const productId = cleanId(event.product_id).toLowerCase();
+    if (/lifetime|forever|one.?time|onetime|perpetual/.test(productId))
+        return 'lifetime';
     if (/year|yearly|annual|12.?month/.test(productId))
         return 'yearly';
     return 'monthly';
+}
+/**
+ * Деактивировать ли Premium на «inactive»-событии (EXPIRATION / REFUND).
+ *
+ * REFUND — всегда да (вернули деньги, доступ снять даже у lifetime). EXPIRATION на
+ * lifetime — НЕТ: non-renewing «Навсегда» не может законно истечь, и спурьёзный
+ * EXPIRATION иначе молча даунгрейднул бы платящего lifetime-клиента до free (аудит #24).
+ * Чистая функция — тестируемая в отрыве от Firestore-транзакции.
+ */
+function shouldDeactivateOnInactiveEvent(eventType, plan) {
+    if (eventType === 'EXPIRATION' && plan === 'lifetime')
+        return false;
+    return true;
 }
 function eventMs(raw) {
     const n = typeof raw === 'number' ? raw : Number(raw);
@@ -244,8 +261,15 @@ async function handlePremiumSubscriptionEvent(event, eventType, productId, res) 
                 }
             }
             else if (inactiveEvent) {
-                progressPatch.premium_plan = '';
-                progressPatch.premium_expiry = String(expiryMs ?? now);
+                // EXPIRATION на lifetime НЕ деактивируем: non-renewing «Навсегда» не может законно
+                // истечь (магазины такого не шлют), а спурьёзный EXPIRATION молча даунгрейднул бы
+                // платящего lifetime-клиента до free. REFUND обрабатываем как обычно — вернули
+                // деньги, доступ снять (даже у lifetime). Аналог исключения в premium_expiry_cron.
+                const isLifetimeExpiration = eventType === 'EXPIRATION' && plan === 'lifetime';
+                if (!isLifetimeExpiration) {
+                    progressPatch.premium_plan = '';
+                    progressPatch.premium_expiry = String(expiryMs ?? now);
+                }
             }
             tx.set(processedRef, {
                 uid,

@@ -28,6 +28,28 @@ function joinLocalized(parts: Array<LocalizedText | undefined>, lang: 'ru' | 'uk
     .join(' ');
 }
 
+function localizedPart(part: LocalizedText | undefined, lang: keyof LocalizedText): string {
+  return part ? (part[lang] ?? part.ru).trim() : '';
+}
+
+function joinPlannedLocalized(parts: Array<LocalizedText | undefined>, lang: Exclude<keyof LocalizedText, 'ru' | 'uk' | 'es'>): string {
+  return parts
+    .map((part) => localizedPart(part, lang))
+    .filter(Boolean)
+    .join(' ');
+}
+
+function lessonSourceLocales(text: LocalizedText): NonNullable<LessonPhrase['sourceLocales']> | undefined {
+  const sourceLocales = {
+    'pt-BR': text['pt-BR'],
+    vi: text.vi,
+    id: text.id,
+    tr: text.tr,
+    pl: text.pl,
+  };
+  return Object.values(sourceLocales).some((value) => !!value?.trim()) ? sourceLocales : undefined;
+}
+
 /** Collapse a full PhraseExplanation into the runtime teaching note shape. */
 export function explanationToTeachingNote(
   id: string,
@@ -36,17 +58,37 @@ export function explanationToTeachingNote(
   const correctRu = joinLocalized([explanation.rule, explanation.why], 'ru');
   const correctUk = joinLocalized([explanation.rule, explanation.why], 'uk');
   const correctEs = joinLocalized([explanation.rule, explanation.why], 'es');
+  const correctPtBr = joinPlannedLocalized([explanation.rule, explanation.why], 'pt-BR');
+  const correctVi = joinPlannedLocalized([explanation.rule, explanation.why], 'vi');
+  const correctId = joinPlannedLocalized([explanation.rule, explanation.why], 'id');
+  const correctTr = joinPlannedLocalized([explanation.rule, explanation.why], 'tr');
+  const correctPl = joinPlannedLocalized([explanation.rule, explanation.why], 'pl');
   return {
     id,
     titleRu: explanation.title.ru,
     ...(explanation.title.uk ? { titleUk: explanation.title.uk } : {}),
     ...(explanation.title.es ? { titleEs: explanation.title.es } : {}),
+    ...(explanation.title['pt-BR'] ? { titlePtBr: explanation.title['pt-BR'] } : {}),
+    ...(explanation.title.vi ? { titleVi: explanation.title.vi } : {}),
+    ...(explanation.title.id ? { titleId: explanation.title.id } : {}),
+    ...(explanation.title.tr ? { titleTr: explanation.title.tr } : {}),
+    ...(explanation.title.pl ? { titlePl: explanation.title.pl } : {}),
     correctRu,
     ...(correctUk && correctUk !== correctRu ? { correctUk } : {}),
     ...(correctEs && correctEs !== correctRu ? { correctEs } : {}),
+    ...(correctPtBr && correctPtBr !== correctRu ? { correctPtBr } : {}),
+    ...(correctVi && correctVi !== correctRu ? { correctVi } : {}),
+    ...(correctId && correctId !== correctRu ? { correctId } : {}),
+    ...(correctTr && correctTr !== correctRu ? { correctTr } : {}),
+    ...(correctPl && correctPl !== correctRu ? { correctPl } : {}),
     wrongRu: explanation.commonMistake.ru,
     ...(explanation.commonMistake.uk ? { wrongUk: explanation.commonMistake.uk } : {}),
     ...(explanation.commonMistake.es ? { wrongEs: explanation.commonMistake.es } : {}),
+    ...(explanation.commonMistake['pt-BR'] ? { wrongPtBr: explanation.commonMistake['pt-BR'] } : {}),
+    ...(explanation.commonMistake.vi ? { wrongVi: explanation.commonMistake.vi } : {}),
+    ...(explanation.commonMistake.id ? { wrongId: explanation.commonMistake.id } : {}),
+    ...(explanation.commonMistake.tr ? { wrongTr: explanation.commonMistake.tr } : {}),
+    ...(explanation.commonMistake.pl ? { wrongPl: explanation.commonMistake.pl } : {}),
   };
 }
 
@@ -72,6 +114,7 @@ export function contentPhraseToLessonPhrase(phrase: PlanContentPhrase): LessonPh
     russian: phrase.meaning.ru,
     ukrainian: phrase.meaning.uk ?? phrase.meaning.ru,
     ...(phrase.meaning.es ? { spanish: phrase.meaning.es } : {}),
+    ...(lessonSourceLocales(phrase.meaning) ? { sourceLocales: lessonSourceLocales(phrase.meaning) } : {}),
     words: wordsForPhrase(phrase),
   };
 }
@@ -88,6 +131,7 @@ export type RuntimeVocabularyCard = {
   translationRu: string;
   translationUk: string;
   translationEs?: string;
+  sourceLocales?: NonNullable<LessonPhrase['sourceLocales']>;
   example: string;
 };
 
@@ -98,9 +142,19 @@ export function contentIntroToLessonIntroScreen(screen: PlanIntroScreen): Lesson
     titleRU: screen.title.ru,
     ...(screen.title.uk ? { titleUK: screen.title.uk } : {}),
     ...(screen.title.es ? { titleES: screen.title.es } : {}),
+    ...(screen.title['pt-BR'] ? { titlePtBr: screen.title['pt-BR'] } : {}),
+    ...(screen.title.vi ? { titleVi: screen.title.vi } : {}),
+    ...(screen.title.id ? { titleId: screen.title.id } : {}),
+    ...(screen.title.tr ? { titleTr: screen.title.tr } : {}),
+    ...(screen.title.pl ? { titlePl: screen.title.pl } : {}),
     textRU: screen.body.ru,
     ...(screen.body.uk ? { textUK: screen.body.uk } : {}),
     ...(screen.body.es ? { textES: screen.body.es } : {}),
+    ...(screen.body['pt-BR'] ? { textPtBr: screen.body['pt-BR'] } : {}),
+    ...(screen.body.vi ? { textVi: screen.body.vi } : {}),
+    ...(screen.body.id ? { textId: screen.body.id } : {}),
+    ...(screen.body.tr ? { textTr: screen.body.tr } : {}),
+    ...(screen.body.pl ? { textPl: screen.body.pl } : {}),
     ...(screen.examples && screen.examples.length > 0
       ? {
           examples: screen.examples.map((example) => ({
@@ -108,6 +162,11 @@ export function contentIntroToLessonIntroScreen(screen: PlanIntroScreen): Lesson
             trRU: example.gloss.ru,
             trUK: example.gloss.uk ?? example.gloss.ru,
             ...(example.gloss.es ? { trES: example.gloss.es } : {}),
+            ...(example.gloss['pt-BR'] ? { trPtBr: example.gloss['pt-BR'] } : {}),
+            ...(example.gloss.vi ? { trVi: example.gloss.vi } : {}),
+            ...(example.gloss.id ? { trId: example.gloss.id } : {}),
+            ...(example.gloss.tr ? { trTr: example.gloss.tr } : {}),
+            ...(example.gloss.pl ? { trPl: example.gloss.pl } : {}),
           })),
         }
       : {}),
@@ -128,6 +187,7 @@ export function contentVocabularyToRuntimeCards(day: PlanContentDay): RuntimeVoc
       translationRu: vocab.translation.ru,
       translationUk: vocab.translation.uk ?? vocab.translation.ru,
       ...(vocab.translation.es ? { translationEs: vocab.translation.es } : {}),
+      ...(lessonSourceLocales(vocab.translation) ? { sourceLocales: lessonSourceLocales(vocab.translation) } : {}),
       example: vocab.example,
     };
   });

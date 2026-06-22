@@ -98,6 +98,7 @@ jest.mock('./explain/explain_judge', () => ({
     judgeExplanation: (...args) => mockJudge(...args),
 }));
 const explain_phrase_1 = require("./explain_phrase");
+const ai_language_gate_1 = require("./ai_language_gate");
 const explain_cache_1 = require("./explain/explain_cache");
 const explainPhrase = explain_phrase_1.explainPhrase;
 const AUTH_UID = 'auth-1';
@@ -257,15 +258,15 @@ describe('explainPhrase — full miss path', () => {
             published: true,
         });
     });
-    it('judge ok:FALSE ⇒ writeRejected, but the live caller STILL receives the generated text', async () => {
+    it('judge ok:FALSE writes rejected evidence and returns only fallback to the live caller', async () => {
         mockOpenAiChat.mockResolvedValue(genReply('Сырой непроверенный текст объяснения фразы.'));
         mockJudge.mockResolvedValue(verdict(false, 'off_topic'));
         const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
-        // The cache is protected (rejected), NOT the trigger user.
         expect(explanationDoc(PHRASE)).toMatchObject({ status: 'rejected', reason: 'off_topic' });
         expect(res.status).toBe('rejected');
         expect(res.fromCache).toBe(false);
-        expect(res.text).toBe('Сырой непроверенный текст объяснения фразы.'); // caller still sees it
+        expect(res.text).toBe((0, explain_phrase_1.buildFallback)(MEANING));
+        expect(res.text).not.toContain('Сырой');
         expect(billingDocs()[0]).toMatchObject({ verdict: 'off_topic', published: false });
     });
     it('sanitizes markdown out of the generated text before judging and caching', async () => {
@@ -341,6 +342,18 @@ describe('buildFallback — neutral, never echoes the meaning/translation', () =
         expect((0, explain_phrase_1.buildFallback)('')).toBe(neutral);
         expect((0, explain_phrase_1.buildFallback)('что угодно')).toBe(neutral);
         expect((0, explain_phrase_1.buildFallback)()).toBe(neutral);
+    });
+    it('localizes the neutral fallback for every explain output language', () => {
+        const cyrillic = /[\u0400-\u052f]/;
+        const plannedLocales = ['es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+        for (const [lang, expected] of Object.entries(explain_phrase_1.EXPLAIN_FALLBACK_BY_LANG)) {
+            const text = (0, explain_phrase_1.buildFallback)('Привет, как дела', lang);
+            expect(text).toBe(expected);
+            expect(text).not.toContain('Привет');
+            expect((0, ai_language_gate_1.rejectGeneratedLanguageText)(text, lang)).toBeNull();
+            if (plannedLocales.includes(lang))
+                expect(text).not.toMatch(cyrillic);
+        }
     });
 });
 //# sourceMappingURL=explain_phrase.test.js.map

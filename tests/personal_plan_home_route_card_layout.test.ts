@@ -8,14 +8,30 @@ describe('personal plan home route card layout', () => {
   const homeSource = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
   it('keeps the route title readable instead of forcing a one-line ellipsis', () => {
-    const titleStart = source.indexOf('<Text style={[styles.title');
-    const titleEnd = source.indexOf('</Text>', titleStart);
+    const titleStart = source.indexOf('<Text style={[styles.title,');
+    const titleEnd = source.indexOf('</Text>', source.indexOf('styles.titleDay'));
     const titleBlock = source.slice(titleStart, titleEnd);
 
     expect(titleStart).toBeGreaterThanOrEqual(0);
-    expect(titleBlock).toContain("{snapshot.planName}{'\\n'}день {snapshot.dayIndex}");
+    // Название плана и день — на разных строках, день выделен отдельным акцентным <Text>.
+    expect(titleBlock).toContain('{snapshot.planName}');
+    expect(titleBlock).toContain("{'\\n'}");
+    expect(titleBlock).toContain('день {snapshot.dayIndex}');
+    expect(titleBlock).toContain('styles.titleDay');
+    expect(titleBlock).toContain('color: actionAccent');
     expect(titleBlock).not.toContain('numberOfLines={1}');
     expect(titleBlock).not.toContain('ellipsizeMode');
+  });
+
+  it('hides the "Мой план" kicker in the default state', () => {
+    // В обычном состоянии верхняя надпись пустая (kicker: ''), но «План на сегодня готов»
+    // и «Продолжить план» остаются.
+    expect(source).toContain("kicker: ''");
+    expect(source).toContain("kicker: 'План на сегодня готов'");
+    expect(source).toContain("kicker: 'Продолжить план'");
+    expect(source).not.toContain("kicker: 'Мой план'");
+    // Пустой kicker не рендерит лишнюю строку.
+    expect(source).toContain('copy.kicker ? (');
   });
 
   it('renders from the active plan snapshot instead of preview constants', () => {

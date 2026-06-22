@@ -834,20 +834,33 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
 // INTRO_EXPIRING_NOTIF_ID_KEY is declared near NOTIFICATION_SCHEDULE_STORAGE_KEYS
 // above, which references it at module load (avoids used-before-declaration).
 
+/**
+ * Результат планирования конверсионного пуша. Раньше функции возвращали void и
+ * молча глушили любую ошибку (только console.warn в DEV) — из-за этого QA-кнопки
+ * в админке всегда показывали «Пуш запланирован», даже когда пуш на самом деле НЕ
+ * планировался (нет разрешения / Expo-триггер упал). Теперь возвращаем явный итог,
+ * чтобы вызывающая сторона (особенно QA) видела ПРАВДУ, а не ложный успех.
+ * Обратная совместимость: прод-вызовы игнорируют возвращаемое значение (.catch(()=>{})),
+ * для них поведение не меняется.
+ */
+export type ConversionPushResult =
+  | { ok: true; scheduled: number }
+  | { ok: false; reason: 'no_module' | 'no_permission' | 'too_soon' | 'schedule_failed'; error?: string };
+
 export const scheduleIntroExpiringNotification = async (
   endsAtMs: number,
   lang: Lang = 'ru',
   opts: { minSeconds?: number } = {},
-): Promise<void> => {
+): Promise<ConversionPushResult> => {
   try {
     const N = await getNotifications();
-    if (!N) return;
+    if (!N) return { ok: false, reason: 'no_module' };
     const hasPermission = await canUseNotifications(true);
-    if (!hasPermission) return;
+    if (!hasPermission) return { ok: false, reason: 'no_permission' };
 
     const twoHoursBeforeMs = endsAtMs - 2 * 60 * 60 * 1000;
     const secondsUntil = Math.floor((twoHoursBeforeMs - Date.now()) / 1000);
-    if (secondsUntil <= (opts.minSeconds ?? 60)) return;
+    if (secondsUntil <= (opts.minSeconds ?? 60)) return { ok: false, reason: 'too_soon' };
 
     const prev = await AsyncStorage.getItem(INTRO_EXPIRING_NOTIF_ID_KEY);
     if (prev) await N.cancelScheduledNotificationAsync(prev).catch(() => {});
@@ -878,8 +891,10 @@ export const scheduleIntroExpiringNotification = async (
       trigger: triggerInterval(secondsUntil),
     });
     await AsyncStorage.setItem(INTRO_EXPIRING_NOTIF_ID_KEY, id);
+    return { ok: true, scheduled: 1 };
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
+    return { ok: false, reason: 'schedule_failed', error: e instanceof Error ? e.message : String(e) };
   }
 };
 
@@ -908,12 +923,12 @@ export const scheduleUpsellNotifications = async (
   introEndedAtMs: number,
   lang: Lang = 'ru',
   opts: { minSeconds?: number } = {},
-): Promise<void> => {
+): Promise<ConversionPushResult> => {
   try {
     const N = await getNotifications();
-    if (!N) return;
+    if (!N) return { ok: false, reason: 'no_module' };
     const hasPermission = await canUseNotifications(true);
-    if (!hasPermission) return;
+    if (!hasPermission) return { ok: false, reason: 'no_permission' };
 
     const nowMs = Date.now();
 
@@ -1001,6 +1016,7 @@ export const scheduleUpsellNotifications = async (
       },
     ];
 
+    let scheduled = 0;
     for (const slot of slots) {
       const alreadyScheduled = await AsyncStorage.getItem(UPSELL_NOTIF_KEYS[slot.key]);
       if (alreadyScheduled) continue;
@@ -1014,9 +1030,14 @@ export const scheduleUpsellNotifications = async (
         trigger: triggerInterval(secondsUntil),
       });
       await AsyncStorage.setItem(UPSELL_NOTIF_KEYS[slot.key], String(nowMs));
+      scheduled++;
     }
+    // 0 запланировано без ошибки = все слоты уже были запланированы ранее или
+    // их время уже прошло (too_soon). Для QA это важная разница с реальным успехом.
+    return scheduled > 0 ? { ok: true, scheduled } : { ok: false, reason: 'too_soon' };
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
+    return { ok: false, reason: 'schedule_failed', error: e instanceof Error ? e.message : String(e) };
   }
 };
 

@@ -452,7 +452,6 @@ export default function CardPackShardPaywallModal({
                               </Text>
                               <Text
                                 style={{ color: t.textPrimary, fontSize: f.h2 + 1, fontWeight: '900', marginTop: 2 }}
-                                numberOfLines={3}
                               >
                                 {title}
                               </Text>
@@ -645,7 +644,6 @@ export default function CardPackShardPaywallModal({
                               </Text>
                               <Text
                                 style={{ color: t.textPrimary, fontSize: f.h2 + 1, fontWeight: '900', marginTop: 2 }}
-                                numberOfLines={3}
                               >
                                 {title}
                               </Text>
@@ -742,7 +740,6 @@ export default function CardPackShardPaywallModal({
                               </Text>
                               <Text
                                 style={{ color: t.textPrimary, fontSize: f.h2 + 1, fontWeight: '900', marginTop: 2 }}
-                                numberOfLines={3}
                               >
                                 {title}
                               </Text>

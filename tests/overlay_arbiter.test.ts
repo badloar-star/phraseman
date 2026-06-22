@@ -1,8 +1,10 @@
 import {
   decideWantsWrite,
+  EMPTY_OVERLAY_WANTS,
   FORCE_EVICTABLE_KEYS,
   hasOtherWaiters,
   isForceEvictable,
+  OVERLAY_PRIORITY,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
   type OverlayKey,
@@ -34,6 +36,35 @@ describe('OverlayArbiter queue resolution', () => {
   it('returns null when nothing is waiting', () => {
     expect(resolveNextOverlay('achievementToast', {})).toBeNull();
     expect(resolveNextOverlay(null, {})).toBeNull();
+  });
+
+  it('onboardingWelcome выигрывает у наградных/update-модалок сразу после онбординга', () => {
+    // Регрессия (iOS): welcome рендерился МИМО арбитра → презентовался одновременно с
+    // perfectWeekReward/compassBriefing/update → первый схлопывался, стек виснул (фриз).
+    // Теперь welcome — высший приоритет: при одновременном запросе берут именно его.
+    expect(resolveNextOverlay(null, wants('onboardingWelcome', 'perfectWeekReward', 'update')))
+      .toBe('onboardingWelcome');
+    expect(resolveNextOverlay(null, wants('onboardingWelcome', 'compassBriefing')))
+      .toBe('onboardingWelcome');
+    // …а когда welcome закрылся (освободил слот) — слот уходит следующему по приоритету.
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'update', 'compassBriefing')))
+      .toBe('update');
+    // welcome — непреемптивный владелец: пока держит слот, другие ждут.
+    expect(resolveNextOverlay('onboardingWelcome', wants('onboardingWelcome', 'update')))
+      .toBe('onboardingWelcome');
+  });
+
+  it('perfectWeekReward (недельный бонус) показывается САМЫМ ПОСЛЕДНИМ из всего', () => {
+    // Требование: недельный бонус не перебивает НИ ОДНО другое окно — он ждёт, пока
+    // закроются все (приветствие, обновление, что-нового, компас, праздники, тосты).
+    // Проверяем, что при конкуренции с любым другим ключом слот уходит НЕ ему.
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'actionToast'))).toBe('actionToast');
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'coachToast'))).toBe('coachToast');
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'compassBriefing'))).toBe('compassBriefing');
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'onboardingWelcome'))).toBe('onboardingWelcome');
+    // perfectWeekReward = последний элемент приоритета → берётся, только когда он один.
+    expect(OVERLAY_PRIORITY[OVERLAY_PRIORITY.length - 1]).toBe('perfectWeekReward');
+    expect(resolveNextOverlay(null, wants('perfectWeekReward'))).toBe('perfectWeekReward');
   });
 
   it('slots entitlementExpired below streakRevive but above toasts', () => {
@@ -118,6 +149,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
 
   it('крупные пользовательские модалки НЕ подлежат принудительному выселению', () => {
     const protectedKeys: OverlayKey[] = [
+      'onboardingWelcome',
       'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
       'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
@@ -133,6 +165,9 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
     const evictable: OverlayKey[] = [
       'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+      // boonActivated — информационная плашка «бонус дня» (награды по тапу нет),
+      // её можно выселять: иначе незакрытая плашка душит все тосты до перезапуска.
+      'boonActivated',
     ];
     for (const k of evictable) {
       expect(isForceEvictable(k)).toBe(true);
@@ -154,5 +189,87 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
     expect(hasOtherWaiters('levelUp', wants('levelUp', 'actionToast'))).toBe(true);
     // …но т.к. levelUp НЕ force-evictable, сторож не запускается → модалка остаётся.
     expect(isForceEvictable('levelUp')).toBe(false);
+  });
+
+  // Регрессия «ВСЕ тосты пропали глобально»: информационная плашка boonActivated стоит
+  // ВЫШЕ тостов и не несёт награды по тапу. Если юзер не закрыл её (свернул/ушёл), её
+  // wantShow застревает true → слот занят. Раньше boonActivated НЕ был force-evictable →
+  // сторож не выселял → achievementToast/dailyTaskRewardToast мертвы до перезапуска.
+  it('сценарий рецидива: boonActivated залип, тост достижения ждёт — сторож ВЫСЕЛЯЕТ boonActivated', () => {
+    // Предусловие сторожа выполнено: владелец + waiter ниже по приоритету.
+    expect(hasOtherWaiters('boonActivated', wants('boonActivated', 'achievementToast'))).toBe(true);
+    // boonActivated force-evictable → сторож запускается и освобождает слот.
+    expect(isForceEvictable('boonActivated')).toBe(true);
+    // Слот передаётся ждущему тосту, минуя залипшего владельца.
+    expect(resolveNextOverlayExcluding('boonActivated', wants('boonActivated', 'achievementToast', 'dailyTaskRewardToast')))
+      .toBe('achievementToast');
+  });
+
+  it('сундуки с наградой (mystery/comeback/perfectWeek) остаются НЕ-выселяемыми', () => {
+    // Защита от регресса в обратную сторону: их закрывает юзер (там осколки), сторож не трогает.
+    for (const k of ['mysteryMondayChest', 'comebackDay', 'perfectWeekReward'] as OverlayKey[]) {
+      expect(isForceEvictable(k)).toBe(false);
+    }
+  });
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+// СТРАЖ ОТ РЕЦИДИВА: каждый overlay-ключ ОБЯЗАН быть осознанно классифицирован как
+// выселяемый (транзиентный/информационный, без награды по тапу) ИЛИ защищённый
+// (закрывает юзер: сундук с осколками / крупное окно). Именно ПРОПУСК классификации
+// нового ключа `boonActivated` убил все тосты (он стал невыселяемым душителем по
+// умолчанию). Эти списки — ЕДИНСТВЕННЫЙ источник правды; ниже проверяем, что они
+// покрывают OVERLAY_PRIORITY РОВНО (без пропусков и лишних). Добавил новый ключ в
+// арбитр → ДОБАВЬ его в ОДИН из списков, иначе этот тест упадёт и подскажет, что делать.
+// ════════════════════════════════════════════════════════════════════════════
+describe('OverlayArbiter: исчерпывающая классификация ключей (страж от рецидива)', () => {
+  // Выселяемые сторожем: транзиентные авто-тосты + информационные плашки без награды-по-тапу.
+  const EVICTABLE_REGISTRY: readonly OverlayKey[] = [
+    'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
+    'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+    'boonActivated',
+  ];
+  // Защищённые: закрывает ЮЗЕР (сундук с осколками / крупное окно / user-dismissed уведомление).
+  // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
+  const PROTECTED_REGISTRY: readonly OverlayKey[] = [
+    'onboardingWelcome',
+    'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
+    'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
+    'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
+    'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+    'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+  ];
+
+  it('каждый ключ OVERLAY_PRIORITY классифицирован РОВНО в одном реестре (нет пропущенных)', () => {
+    const classified = new Set<OverlayKey>([...EVICTABLE_REGISTRY, ...PROTECTED_REGISTRY]);
+    const missing = OVERLAY_PRIORITY.filter((k) => !classified.has(k));
+    // Если упало: ты добавил overlay-ключ и НЕ решил, выселяемый он или защищённый.
+    // Добавь его в EVICTABLE_REGISTRY (если транзиентный/без награды) или PROTECTED_REGISTRY.
+    expect(missing).toEqual([]);
+    const stale = [...classified].filter((k) => !OVERLAY_PRIORITY.includes(k));
+    expect(stale).toEqual([]); // реестр не должен содержать удалённые ключи
+  });
+
+  it('реестры не пересекаются (ключ не может быть и выселяемым, и защищённым)', () => {
+    const overlap = EVICTABLE_REGISTRY.filter((k) => PROTECTED_REGISTRY.includes(k));
+    expect(overlap).toEqual([]);
+  });
+
+  it('EVICTABLE_REGISTRY точно соответствует FORCE_EVICTABLE_KEYS в коде', () => {
+    // Реестр теста и реальный Set в core не должны разъезжаться.
+    expect(new Set(EVICTABLE_REGISTRY)).toEqual(FORCE_EVICTABLE_KEYS);
+  });
+
+  it('PROTECTED_REGISTRY = ровно те ключи, что НЕ выселяемы', () => {
+    for (const k of PROTECTED_REGISTRY) expect(isForceEvictable(k)).toBe(false);
+    for (const k of EVICTABLE_REGISTRY) expect(isForceEvictable(k)).toBe(true);
+  });
+
+  it('EMPTY_OVERLAY_WANTS покрывает ровно OVERLAY_PRIORITY (рассинхрон ломал бы резолвер)', () => {
+    const wantsKeys = new Set(Object.keys(EMPTY_OVERLAY_WANTS));
+    const prioKeys = new Set<string>(OVERLAY_PRIORITY);
+    expect(wantsKeys).toEqual(prioKeys);
+    // и все дефолты — false (никто не «хочет» слот на старте)
+    expect(Object.values(EMPTY_OVERLAY_WANTS).every((v) => v === false)).toBe(true);
   });
 });

@@ -17,6 +17,7 @@ import {
   type CustomAvatarGradient,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
@@ -322,6 +323,7 @@ function LeagueChestOpenModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
   const scale = useRef(new Animated.Value(0.72)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const crownFloat = useRef(new Animated.Value(0)).current;
@@ -407,7 +409,18 @@ function LeagueChestOpenModal({
             onClose();
           }}
         />
-        <View style={styles.center} pointerEvents="box-none">
+        <View
+          style={[
+            styles.center,
+            {
+              paddingTop: Math.max(18, insets.top + 8),
+              paddingBottom: Math.max(18, insets.bottom + 8),
+              paddingLeft: Math.max(18, insets.left + 8),
+              paddingRight: Math.max(18, insets.right + 8),
+            },
+          ]}
+          pointerEvents="box-none"
+        >
           <Animated.View style={[styles.shell, { opacity, transform: [{ scale }] }]} pointerEvents="auto">
             <LinearGradient
               colors={modalTheme.frame}
@@ -487,14 +500,12 @@ function LeagueChestOpenModal({
                       <RewardIcon card={card} drop={drop} />
                       <Text
                         style={[styles.rewardTitle, { color: t.textPrimary }]}
-                        numberOfLines={2}
                       >
                         {card.title}
                       </Text>
                       {card.subtitle ? (
                         <Text
                           style={[styles.rewardSubtitle, { color: card.accent }]}
-                          numberOfLines={1}
                         >
                           {card.subtitle}
                         </Text>

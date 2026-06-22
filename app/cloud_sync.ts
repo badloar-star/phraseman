@@ -772,6 +772,30 @@ function cloudProgressStorageValue(key: string, value: unknown): string {
   return String(value);
 }
 
+/**
+ * Гарантирует, что КАЖДАЯ пара перед AsyncStorage.multiSet — это [string, string].
+ *
+ * Native AsyncStorage (SQLite) биндит и ключ, и значение как строковый параметр и
+ * падает с `IllegalArgumentException: the bind value at index N is null`, если в пару
+ * просочился null/undefined. При восстановлении из облака значение собирается из
+ * десятков источников (cloudProgressStorageValue / mergeLessonRestoreValue / merge*),
+ * поэтому страхуемся на самой границе записи, fail-closed:
+ *   - пара с пустым/нестроковым КЛЮЧОМ отбрасывается (писать некуда);
+ *   - null/undefined ЗНАЧЕНИЕ нормализуется в '' (пустую строку), а не теряется как краш.
+ * Immutable: возвращается новый массив, вход не мутируется.
+ */
+function sanitizeStoragePairs(pairs: ReadonlyArray<readonly [unknown, unknown]>): [string, string][] {
+  const safe: [string, string][] = [];
+  for (const pair of pairs) {
+    const key = pair?.[0];
+    if (typeof key !== 'string' || key.length === 0) continue;
+    const rawValue = pair[1];
+    const value = rawValue === null || rawValue === undefined ? '' : String(rawValue);
+    safe.push([key, value]);
+  }
+  return safe;
+}
+
 export function shouldSyncPremiumProgressField(
   key: string,
   value: string | null,
@@ -1703,7 +1727,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
     }
     if (stickyPairs.length > 0) {
-      await AsyncStorage.multiSet(stickyPairs);
+      await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
@@ -1771,7 +1795,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     }
   }
   if (pairs.length > 0) {
-    await AsyncStorage.multiSet(pairs);
+    await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (cloudVipActive !== null) {
@@ -1783,7 +1807,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
     ];
     if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
-    await AsyncStorage.multiSet(vipPairs);
+    await AsyncStorage.multiSet(sanitizeStoragePairs(vipPairs));
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (fullRestoreDailyTargets.length > 0) {

@@ -2,80 +2,33 @@
 
 Run: `2026-05-19_fr_inventory_v0a1`
 
-Decision: `HOLD`
+Decision: `GO`
 
-Generated at: 2026-06-20T22:03:31.979Z
+Generated at: 2026-06-21T00:00:52.764Z
 
 ## Readiness
 
-- Can start French generation: no
+- Can start French generation: yes
 - Can start production apply: no
 - Can continue architecture work: yes
-- Next recommended mode: `architecture`
+- Next recommended mode: `generate`
 
 Next recommended work:
-- Resolve target-safe migration adapters for storage, cloud sync, achievements, lessons, quiz, trainer, flashcards and My Practice surfaces.
-- Source graph input is approved; next remove target-isolation blockers in storage, cloud sync, achievements and user-facing surfaces.
-- Do not generate French until remaining architecture gates pass.
+- Start French generation in a closed run container.
+- Generate sourceLocale=ru and sourceLocale=uk materials from approved English source graph.
+- Run generated content audit before any apply plan.
 
 ## Summary
 
 - Checks: 57
-- Passed: 51
-- Failed: 6
-- Blockers: 6
+- Passed: 55
+- Failed: 2
+- Blockers: 2
 - Warnings: 0
-- Generation blockers: 4
-- Apply blockers: 6
+- Generation blockers: 0
+- Apply blockers: 2
 
 ## Failed Checks
-
-### RDY-002: Run verdict allows generation
-
-Severity: `blocker`
-Blocks: `generation`, `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\verdict.json`
-
-Run verdict is HOLD, so generation/apply work is not allowed.
-
-Required before work:
-- Resolve run verdict blockers or keep working in architecture/research mode.
-
-### RDY-030: Achievements are globally/target classified
-
-Severity: `blocker`
-Blocks: `generation`, `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\achievement_taxonomy.json`
-
-Achievement taxonomy is HOLD with 42 blockers, 116 target achievements and 42 mixed achievements.
-
-Required before work:
-- Implement achievement state split or policy decisions before French can affect achievements.
-
-### RDY-050: Production target key architecture exists
-
-Severity: `blocker`
-Blocks: `generation`, `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\target_key_integration_plan.json`
-
-Target key integration plan is HOLD with 13 blocker domains and 0 raw target-sensitive storage records.
-
-Required before work:
-- Create production StudyTarget model.
-- Create target_storage_keys builder.
-- Route highest-risk lesson/trainer/quiz/flashcard stores through target-aware APIs.
-
-### RDY-060: User-facing surfaces are target-safe
-
-Severity: `blocker`
-Blocks: `generation`, `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\surface_route_inventory.json`
-
-Surface inventory is HOLD with 66 blocker surfaces, 18 user-facing target surfaces and 9 dev StudyTarget surfaces.
-
-Required before work:
-- Add route-level target-aware adapters for lesson, quiz, trainer, flashcards, achievements and progress surfaces.
-- Isolate dev StudyTargetLang from production StudyTarget.
 
 ### RDY-080: Generated content audit passed
 
@@ -83,7 +36,7 @@ Severity: `blocker`
 Blocks: `apply`
 Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\generated_content_audit.json`
 
-No generated content audit exists. This is expected before generation starts, but it blocks production apply.
+Generated content audit is HOLD with rows=1600, rowsWithFrench=1600, readyForReviewer=true, readyForApply=false and mayModifyProductionAppFiles=false. Production apply remains blocked.
 
 Required before work:
 - After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape.
@@ -102,10 +55,14 @@ Required before work:
 ## Passed Checks
 
 - `RDY-001`: Run artifacts validate structurally
+- `RDY-002`: Run verdict allows generation
 - `RDY-010`: Storage is target-safe
 - `RDY-020`: Cloud sync is target-safe
 - `RDY-021`: Mixed cloud payloads are split
+- `RDY-030`: Achievements are globally/target classified
 - `RDY-040`: Local-only and cloud-synced target keys are decided
+- `RDY-050`: Production target key architecture exists
+- `RDY-060`: User-facing surfaces are target-safe
 - `RDY-055`: Migration adapter plan exists
 - `RDY-070`: Source graph is extracted and approved
 - `RDY-071`: Source graph quality audit approves generation input

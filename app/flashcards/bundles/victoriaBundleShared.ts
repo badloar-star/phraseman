@@ -1,4 +1,5 @@
 import type { FlashcardMarketPack, FlashcardPackCategory } from '../marketplace';
+import type { FlashcardSourceLocaleMap } from '../types';
 import type { CardItem } from '../types';
 import { marketplaceEsOverlayForId } from './flashcardMarketplaceEsOverlay';
 
@@ -59,6 +60,7 @@ export type VictoriaRow = {
   vi?: string;
   tr?: string;
   pl?: string;
+  sourceLocales?: FlashcardSourceLocaleMap;
   literalRu?: string;
   literalUk?: string;
   literalEs?: string;
@@ -143,6 +145,7 @@ export function victoriaMetaFromPackJson(p: VictoriaPackFile['pack']): Flashcard
 export function mapVictoriaRowsToCardItems(packId: string, cards: VictoriaRow[]): CardItem[] {
   return cards.map((c) => {
     const ov = marketplaceEsOverlayForId(c.id);
+    const sourceLocales = c.sourceLocales ?? {};
     return {
       id: c.id,
       en: c.en,
@@ -150,10 +153,11 @@ export function mapVictoriaRowsToCardItems(packId: string, cards: VictoriaRow[])
       uk: c.uk,
       es: c.es ?? ov?.es,
       sourceLocales: {
-        'pt-BR': c['pt-BR'],
-        vi: c.vi,
-        tr: c.tr,
-        pl: c.pl,
+        'pt-BR': sourceLocales['pt-BR'] ?? c['pt-BR'],
+        vi: sourceLocales.vi ?? c.vi,
+        id: sourceLocales.id,
+        tr: sourceLocales.tr ?? c.tr,
+        pl: sourceLocales.pl ?? c.pl,
       },
       transcription: c.transcription,
       categoryId: 'custom',

@@ -56,9 +56,12 @@ import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_pla
 import { resolvePersonalPlanForGoal, type PersonalPlanSetupGoal } from '../app/personal_plan_recommendation';
 import { getOnboardingAbVariant, isOnboardingPlanOnly, type OnboardingAbVariant } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
-import { getStableId } from '../app/stable_id';
+import { getStableId, peekStableId } from '../app/stable_id';
 import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
+import WelcomeSlides from '../app/onboarding_welcome/WelcomeSlides';
+import { markWelcomeSeen, readWelcomeSeen, type WelcomeBranch } from '../app/onboarding_welcome/welcome_gate';
+import { readPersonalPlanState } from '../app/personal_plan_state';
 
 /**
  * Скролл онбординга — БЕЗ резинки/overscroll.
@@ -96,6 +99,13 @@ interface Props {
   onLangSelect?: (lang: Lang) => void;
   onIntroFullAccessStart?: () => Promise<boolean> | boolean;
   onPersonalPlanPaywallStart?: () => Promise<void> | void;
+  /**
+   * Онбординг переоткрыт на шаге «Имя» сразу после пейвола (continue-free /
+   * покупка). Тогда стартуем прямо на 'name' без блокирующего async-резолва A/B:
+   * экран имени рисуется в первом кадре, без пустого «resolving»-экрана и без
+   * ожидания Keychain в getStableId — это и есть «думает» после кнопки.
+   */
+  startAtNameStep?: boolean;
 }
 
 
@@ -146,9 +156,10 @@ const LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS = new Set<OnboardingStepKey>([
   'planDetails',
 ]);
 
-function onboardingSimpleStepForVariant(variant: OnboardingAbVariant): OnboardingAbSimpleStep {
-  if (variant === 'builder') return 'demo2';
-  if (variant === 'quiz') return 'demo';
+function onboardingSimpleStepForVariant(_variant: OnboardingAbVariant): OnboardingAbSimpleStep {
+  // После кнопки «Просто посмотреть приложение» всегда сразу идёт ввод имени.
+  // Демо-квиз-экраны ('demo'/'demo2', напр. «I'm fed up with this job») удалены из
+  // флоу — на них больше не маршрутизируем ни для одного A/B-варианта.
   return 'name';
 }
 
@@ -637,7 +648,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   },
 ];
 
-function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props) {
+function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtNameStep }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const [onboardingAbVariant, setOnboardingAbVariant] = useState<OnboardingAbVariant>('welcome');
@@ -733,10 +744,22 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props)
   };
 
   type OnboardingStep = OnboardingStepKey;
-  const [onboardingEntryReady, setOnboardingEntryReady] = useState(false);
+  // Быстрый старт на «Имя» (переоткрытие после пейвола): A/B-вариант берём
+  // синхронно из уже загруженного кэша (peekStableId — без await/Keychain), и
+  // НЕ блокируем рендер пустым «resolving»-экраном.
+  const synchronousNameEntry = startAtNameStep === true;
+  const initialSimpleStep: OnboardingAbSimpleStep = (() => {
+    if (!synchronousNameEntry) return ONBOARDING_AB_FALLBACK_SIMPLE_STEP;
+    const cachedStableId = peekStableId();
+    if (!cachedStableId) return ONBOARDING_AB_FALLBACK_SIMPLE_STEP;
+    return onboardingSimpleStepForVariant(getOnboardingAbVariant(cachedStableId));
+  })();
+  const [onboardingEntryReady, setOnboardingEntryReady] = useState(synchronousNameEntry);
   const onboardingEntryStepRef = useRef<OnboardingAbEntryStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP);
-  const onboardingSimpleStepRef = useRef<OnboardingAbSimpleStep>(ONBOARDING_AB_FALLBACK_SIMPLE_STEP);
-  const [step, setStepRaw]    = useState<OnboardingStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP);
+  const onboardingSimpleStepRef = useRef<OnboardingAbSimpleStep>(initialSimpleStep);
+  const [step, setStepRaw]    = useState<OnboardingStep>(
+    synchronousNameEntry ? 'name' : ONBOARDING_AB_FALLBACK_ENTRY_STEP,
+  );
   const stepRef = useRef(step);
   const setStep = useCallback((next: OnboardingStep) => {
     stepRef.current = next;
@@ -1445,18 +1468,54 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props)
   // модалку «Начнём первый урок?» уже после нажатия «Поехали».
   const finishingRef = useRef(false);
   const closingRef = useRef(false);
+
+  // КОМПАС КАК ЧАСТЬ ОНБОРДИНГА (релиз-фикс мелькания/фриза):
+  // раньше компас-приветствие был отдельным <Modal> поверх ГЛАВНОЙ — после онбординга
+  // главная монтировалась, и компас презентовался вторым нативным Modal → на iOS мелькал,
+  // схлопывался, прозрачный слой висел перехватчиком касаний (скролл есть, кнопки мертвы).
+  // Теперь компас — ФИНАЛЬНЫЙ ШАГ онбординга: главную НЕ показываем (onDone не зовём), пока
+  // компас не закрыт. На экране в этот момент только онбординг — второй модалки нет, гонки нет.
+  const [compassBranch, setCompassBranch] = useState<WelcomeBranch | null>(null);
+
+  // Реальное завершение: пишем флаги, планируем напоминание, отдаём управление _layout.
+  const completeOnboarding = useCallback(async () => {
+    await AsyncStorage.removeItem('onboarding_step');
+    scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
+    onDone();
+  }, [lang, onDone]);
+
+  // Закрытие компаса (прошёл до конца / «Пропущу, разберусь сам») → метим как показанный
+  // и только теперь завершаем онбординг (монтируем главную).
+  const handleCompassClose = useCallback(() => {
+    setCompassBranch(null);
+    void markWelcomeSeen();
+    void completeOnboarding();
+  }, [completeOnboarding]);
+
   const handleFinishOnboarding = async () => {
     if (finishingRef.current) return;
     finishingRef.current = true;
     await saveUserProfile();
     await AsyncStorage.setItem('onboarding_done', '1');
-    await AsyncStorage.removeItem('onboarding_step');
-    // Включаем напоминание по умолчанию в 20:00 — пользователь может сменить в настройках.
-    // requestPermission: false — НЕ дёргаем системный диалог push на онбординге.
-    // Нативный запрос разрешения идёт строго через NotificationPermissionModal в _layout.tsx
-    // по разработанным условиям (missedDays > 0, антиспам 1 раз в день и т.п.).
-    scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
-    onDone();
+    // Решаем, показать ли компас как финальный шаг (один раз за всё время).
+    let showCompass = false;
+    let branch: WelcomeBranch = 'free';
+    try {
+      const [seenRaw, planState] = await Promise.all([
+        readWelcomeSeen().catch(() => null),
+        readPersonalPlanState().catch(() => null),
+      ]);
+      branch = planState ? 'plan' : 'free';
+      showCompass = seenRaw == null; // ещё не видели приветствие
+    } catch {
+      showCompass = false;
+    }
+    if (showCompass) {
+      // Главную НЕ открываем: показываем компас поверх онбординга, onDone — после его закрытия.
+      setCompassBranch(branch);
+      return;
+    }
+    await completeOnboarding();
   };
 
   const handleCloseOnboarding = async () => {
@@ -3510,19 +3569,29 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props)
 
   // ── Шаг auth: Сохрани прогресс через Google / Apple (опционально) ────────────
   if (step === 'auth') {
-    return renderScreen(
-      'onboarding-auth-screen',
-      ONBOARDING_BG_AUTH,
-      (
-        <AuthOnboardingStep
-          isUK={isUK}
-          lang={lang}
-          renderProgressBar={renderProgressBar}
-          onComplete={handleFinishOnboarding}
-          styles={styles}
-          theme={theme}
-        />
-      ),
+    return (
+      <>
+        {renderScreen(
+          'onboarding-auth-screen',
+          ONBOARDING_BG_AUTH,
+          (
+            <AuthOnboardingStep
+              isUK={isUK}
+              lang={lang}
+              renderProgressBar={renderProgressBar}
+              onComplete={handleFinishOnboarding}
+              styles={styles}
+              theme={theme}
+            />
+          ),
+        )}
+        {/* Компас как ФИНАЛЬНЫЙ ШАГ онбординга: показывается ПОВЕРХ экрана auth (главная
+            ещё НЕ смонтирована — onDone отложен до закрытия компаса). На экране одна модалка,
+            гонки презентаций нет → нет мелькания/фриза. */}
+        {compassBranch != null && (
+          <WelcomeSlides branch={compassBranch} onClose={handleCompassClose} />
+        )}
+      </>
     );
   }
 

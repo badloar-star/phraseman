@@ -67,7 +67,7 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
             <View style={[styles.badge, { backgroundColor: t.accent + '1A', borderColor: t.accent + '55' }]}>
               <Ionicons name="compass-outline" size={20} color={t.accent} />
             </View>
-            <Text style={[styles.title, { color: t.textPrimary }]} numberOfLines={1}>
+            <Text style={[styles.title, { color: t.textPrimary }]}>
               {dayLabel}
             </Text>
             {/* Иконка компаса темы — свой ассет на каждую тему (правый верхний угол). */}
@@ -93,7 +93,7 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
                 <View style={[styles.taskIcon, { backgroundColor: t.accent + '14' }]}>
                   <Ionicons name={TASK_ICON[task.kind]} size={16} color={t.accent} />
                 </View>
-                <Text style={[styles.taskText, { color: t.textPrimary }]} numberOfLines={1}>
+                <Text style={[styles.taskText, { color: t.textPrimary }]}>
                   {triLang(lang, COMPASS_TASK_TITLE[task.kind])}
                 </Text>
                 <Text style={[styles.taskMin, { color: t.textMuted }]}>{task.minutes} мин</Text>

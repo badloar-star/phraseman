@@ -519,7 +519,7 @@ export default function DailyTasksFirstVisitModal({
                         <Image source={getTaskIcon(task)} contentFit="contain" style={styles.taskIcon} />
                       </View>
                       <View style={styles.taskTextBlock}>
-                        <Text style={[styles.taskTitle, { color: theme.textPrimary, fontSize: f.body }]} numberOfLines={2}>
+                        <Text style={[styles.taskTitle, { color: theme.textPrimary, fontSize: f.body }]}>
                           {taskTitle(task, lang)}
                         </Text>
                         <Text style={[styles.taskMeta, { color: theme.textSecond, fontSize: f.caption }]}>

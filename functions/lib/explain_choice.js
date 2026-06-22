@@ -61,6 +61,7 @@ const choice_explain_prompts_1 = require("./explain/choice_explain_prompts");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const explain_provider_1 = require("./explain/explain_provider");
 const explain_judge_1 = require("./explain/explain_judge");
+const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'choice_explain_billing';
@@ -90,7 +91,7 @@ exports.explainChoice = (0, https_1.onCall)({
     const correctEn = asText(data.correctEn, 1000);
     const phraseMeaning = asText(data.phraseMeaning, 2000);
     const rawDistractors = Array.isArray(data.distractors) ? data.distractors : [];
-    const lang = asText(data.lang, 12) || 'ru';
+    const lang = (0, ai_language_contract_1.resolveAiOutputLang)(asText(data.lang, 12) || 'ru', 'choice');
     const db = admin.firestore();
     const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'choice');
     const authUid = request.auth.uid;
@@ -174,11 +175,13 @@ exports.explainChoice = (0, https_1.onCall)({
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         createdAtMs: Date.now(),
     });
+    if (!verdict.ok)
+        return emptyBatch('rejected', false);
     return {
         ok: true,
         confirm: parsed.confirm,
         distractors: parsed.distractors,
-        status: verdict.ok ? 'ok' : 'rejected',
+        status: 'ok',
         fromCache: false,
     };
 });

@@ -63,12 +63,77 @@ const COPY = {
     endedSecondary: 'Continuar gratis',
     chips: ['Lecciones', 'Planes', 'Sin energía', 'Temas', 'Análisis'],
   },
+  'pt-BR': {
+    welcomeEyebrow: 'Presente inicial',
+    welcomeTitle: 'Três dias com tudo aberto',
+    welcomeBody: 'Abrimos lições, planos, temas, análise de erros e modo sem energia. Você pode testar tudo com calma: quase um método científico.',
+    welcomeCta: 'Vamos, tudo aberto',
+    welcomeFooter: 'É um presente. A assinatura não é ativada automaticamente.',
+    endedEyebrow: 'O presente terminou',
+    endedTitle: 'O modo grátis continua com você',
+    endedBody: 'Seus três dias de acesso completo terminaram. Você ainda pode aprender grátis: lições, frases e progresso continuam aqui. O Premium volta a guardar os recursos avançados se quiser deixar tudo aberto.',
+    endedPrimary: 'Manter acesso completo',
+    endedSecondary: 'Continuar grátis',
+    chips: ['Lições', 'Planos', 'Sem energia', 'Temas', 'Análise'],
+  },
+  vi: {
+    welcomeEyebrow: 'Quà khởi đầu',
+    welcomeTitle: 'Ba ngày mở toàn bộ ứng dụng',
+    welcomeBody: 'Chúng tôi đã mở bài học, kế hoạch, chủ đề, phân tích lỗi và chế độ không giới hạn năng lượng. Bạn có thể thử mọi thứ thật thoải mái: gần như một phương pháp khoa học.',
+    welcomeCta: 'Bắt đầu, mọi thứ đã mở',
+    welcomeFooter: 'Đây là quà tặng. Gói đăng ký không tự động bật.',
+    endedEyebrow: 'Quà tặng đã kết thúc',
+    endedTitle: 'Chế độ miễn phí vẫn ở lại với bạn',
+    endedBody: 'Ba ngày truy cập đầy đủ đã kết thúc. Bạn vẫn có thể học miễn phí: bài học, cụm từ và tiến độ vẫn ở đây. Premium sẽ giữ lại các tính năng nâng cao nếu bạn muốn mở tất cả.',
+    endedPrimary: 'Giữ quyền truy cập đầy đủ',
+    endedSecondary: 'Tiếp tục miễn phí',
+    chips: ['Bài học', 'Kế hoạch', 'Không năng lượng', 'Chủ đề', 'Phân tích'],
+  },
+  id: {
+    welcomeEyebrow: 'Hadiah awal',
+    welcomeTitle: 'Tiga hari dengan semua terbuka',
+    welcomeBody: 'Pelajaran, rencana, tema, analisis kesalahan, dan mode tanpa energi sudah kami buka. Kamu bisa mencoba semuanya dengan tenang: hampir seperti metode ilmiah.',
+    welcomeCta: 'Mulai, semuanya terbuka',
+    welcomeFooter: 'Ini hadiah. Langganan tidak aktif otomatis.',
+    endedEyebrow: 'Hadiah selesai',
+    endedTitle: 'Mode gratis tetap bersamamu',
+    endedBody: 'Tiga hari akses penuhmu selesai. Kamu masih bisa belajar gratis: pelajaran, frasa, dan progres tetap ada. Premium kembali menyimpan fitur lanjutan kalau kamu ingin semuanya tetap terbuka.',
+    endedPrimary: 'Pertahankan akses penuh',
+    endedSecondary: 'Lanjut gratis',
+    chips: ['Pelajaran', 'Rencana', 'Tanpa energi', 'Tema', 'Analisis'],
+  },
+  tr: {
+    welcomeEyebrow: 'Başlangıç hediyesi',
+    welcomeTitle: 'Üç gün boyunca her şey açık',
+    welcomeBody: 'Dersleri, planları, temaları, hata analizini ve enerjisiz modu açtık. Her şeyi sakin sakin deneyebilirsin: neredeyse bilimsel yöntem.',
+    welcomeCta: 'Başla, her şey açık',
+    welcomeFooter: 'Bu bir hediye. Abonelik otomatik başlamaz.',
+    endedEyebrow: 'Hediye bitti',
+    endedTitle: 'Ücretsiz mod seninle kalıyor',
+    endedBody: 'Üç günlük tam erişimin sona erdi. Yine de ücretsiz öğrenebilirsin: dersler, ifadeler ve ilerleme burada kalır. Her şeyi açık tutmak istersen gelişmiş özellikler yeniden Premium’da.',
+    endedPrimary: 'Tam erişimi koru',
+    endedSecondary: 'Ücretsiz devam et',
+    chips: ['Dersler', 'Planlar', 'Enerjisiz', 'Temalar', 'Analiz'],
+  },
+  pl: {
+    welcomeEyebrow: 'Prezent na start',
+    welcomeTitle: 'Trzy dni z całą aplikacją otwartą',
+    welcomeBody: 'Otworzyliśmy lekcje, plany, motywy, analizę błędów i tryb bez energii. Możesz spokojnie sprawdzić wszystko: prawie metoda naukowa.',
+    welcomeCta: 'Start, wszystko otwarte',
+    welcomeFooter: 'To prezent. Subskrypcja nie włącza się automatycznie.',
+    endedEyebrow: 'Prezent się skończył',
+    endedTitle: 'Tryb darmowy zostaje z tobą',
+    endedBody: 'Trzy dni pełnego dostępu dobiegły końca. Nadal możesz uczyć się za darmo: lekcje, frazy i postęp zostają tutaj. Premium znów przechowuje funkcje zaawansowane, jeśli chcesz mieć wszystko otwarte.',
+    endedPrimary: 'Zachowaj pełny dostęp',
+    endedSecondary: 'Kontynuuj za darmo',
+    chips: ['Lekcje', 'Plany', 'Bez energii', 'Motywy', 'Analiza'],
+  },
 };
 
 function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
-  const copy = lang === 'uk' ? COPY.uk : lang === 'es' ? COPY.es : COPY.ru;
+  const copy = COPY[lang as keyof typeof COPY] ?? COPY.ru;
   const isWelcome = variant === 'welcome';
 
   // Воронка: показ модалок intro — раньше не трекались. `intro_ended` — главный

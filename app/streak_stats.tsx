@@ -27,6 +27,7 @@ import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
+import TodaysBoonStrip from '../components/TodaysBoonStrip';
 import { StreakChainIcon } from '../components/StreakChainIcon';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { hapticTap } from '../hooks/use-haptics';
@@ -3462,6 +3463,9 @@ export default function StreakStats() {
       <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
+
+        {/* [WEEKLY BOONS] Плашка «бонус сегодня» — перенесена с главной. Отступ берёт gap контейнера. */}
+        <TodaysBoonStrip marginTop={0}/>
 
         {/* XP MULTIPLIERS BLOCK */}
         {(() => {

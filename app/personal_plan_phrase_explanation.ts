@@ -12,8 +12,8 @@
 
 import { findIdiomExplanation } from './personal_plan_idiom_dictionary';
 
-/** Одна строка во всех активных языках интерфейса (RU / UK / ES). */
-export type LocalizedText = { ru: string; uk: string; es: string };
+/** Одна строка во всех активных языках интерфейса. */
+export type LocalizedText = { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string };
 
 export type PhraseExplanation = {
   /** Short title shown above the explanation. */
@@ -88,11 +88,21 @@ const PATTERNS: GrammarPattern[] = [
       ru: 'Вопрос со словом-вопросом',
       uk: 'Питання зі словом-питанням',
       es: 'Pregunta con palabra interrogativa',
+      'pt-BR': 'Pergunta com palavra interrogativa',
+      vi: 'Câu hỏi với từ để hỏi',
+      id: 'Pertanyaan dengan kata tanya',
+      tr: 'Soru kelimesiyle soru',
+      pl: 'Pytanie ze słowem pytającym',
     },
     why: (en) => ({
       ru: `«${en}» начинается с вопросительного слова, а дальше идёт глагол. Это обычный порядок для вопросов: сначала «что/где/как», потом действие.`,
       uk: `«${en}» починається з питального слова, а далі йде дієслово. Це звичайний порядок для питань: спершу «що/де/як», потім дія.`,
       es: `«${en}» empieza con una palabra interrogativa y luego viene el verbo. Es el orden normal de las preguntas: primero «qué/dónde/cómo», después la acción.`,
+      'pt-BR': `«${en}» começa com uma palavra interrogativa e depois vem o verbo. É a ordem normal das perguntas: primeiro «o quê/onde/como», depois a ação.`,
+      vi: `«${en}» bắt đầu bằng từ để hỏi, rồi đến động từ. Đây là thứ tự bình thường của câu hỏi: trước là “cái gì/ở đâu/như thế nào”, sau đó là hành động.`,
+      id: `«${en}» dimulai dengan kata tanya, lalu diikuti kata kerja. Ini urutan normal pertanyaan: pertama “apa/di mana/bagaimana”, lalu tindakan.`,
+      tr: `«${en}» bir soru kelimesiyle başlar, ardından fiil gelir. Sorularda normal sıra budur: önce “ne/nerede/nasıl”, sonra eylem.`,
+      pl: `«${en}» zaczyna się od słowa pytającego, a potem idzie czasownik. To normalny szyk pytań: najpierw „co/gdzie/jak”, potem działanie.`,
     }),
   },
   {
@@ -102,11 +112,21 @@ const PATTERNS: GrammarPattern[] = [
       ru: 'Да/нет вопрос',
       uk: 'Так/ні питання',
       es: 'Pregunta de sí o no',
+      'pt-BR': 'Pergunta de sim/não',
+      vi: 'Câu hỏi có/không',
+      id: 'Pertanyaan ya/tidak',
+      tr: 'Evet/hayır sorusu',
+      pl: 'Pytanie tak/nie',
     },
     why: (en) => ({
       ru: `«${en}» — вопрос, где вспомогательный глагол стоит первым. Поэтому фраза начинается не с «я», а со слова вроде can/do/is.`,
       uk: `«${en}» — питання, де допоміжне дієслово стоїть першим. Тому фраза починається не з «я», а зі слова на кшталт can/do/is.`,
       es: `«${en}» es una pregunta donde el verbo auxiliar va primero. Por eso la frase no empieza con «yo», sino con una palabra como can/do/is.`,
+      'pt-BR': `«${en}» é uma pergunta em que o verbo auxiliar vem primeiro. Por isso a frase não começa com “eu”, mas com uma palavra como can/do/is.`,
+      vi: `«${en}» là câu hỏi mà trợ động từ đứng trước. Vì vậy câu không bắt đầu bằng “tôi”, mà bằng một từ như can/do/is.`,
+      id: `«${en}» adalah pertanyaan yang menaruh auxiliary verb di depan. Jadi frasa tidak dimulai dengan “saya”, melainkan kata seperti can/do/is.`,
+      tr: `«${en}» yardımcı fiilin başta olduğu bir sorudur. Bu yüzden cümle “ben” ile değil, can/do/is gibi bir kelimeyle başlar.`,
+      pl: `«${en}» to pytanie, w którym czasownik pomocniczy stoi pierwszy. Dlatego fraza nie zaczyna się od „ja”, tylko od słowa typu can/do/is.`,
     }),
   },
   {
@@ -116,11 +136,21 @@ const PATTERNS: GrammarPattern[] = [
       ru: 'Отрицание',
       uk: 'Заперечення',
       es: 'Negación',
+      'pt-BR': 'Negação',
+      vi: 'Phủ định',
+      id: 'Negasi',
+      tr: 'Olumsuzluk',
+      pl: 'Przeczenie',
     },
     why: (en) => ({
       ru: `«${en}» содержит отрицание (not / don't). Частица отрицания ставится после вспомогательного глагола, а не в конец фразы.`,
       uk: `«${en}» містить заперечення (not / don't). Частка заперечення ставиться після допоміжного дієслова, а не в кінець фрази.`,
       es: `«${en}» contiene una negación (not / don't). La negación va después del verbo auxiliar, no al final de la frase.`,
+      'pt-BR': `«${en}» contém negação (not / don't). A partícula negativa vem depois do verbo auxiliar, não no fim da frase.`,
+      vi: `«${en}» có phủ định (not / don't). Phần phủ định đứng sau trợ động từ, không đặt ở cuối câu.`,
+      id: `«${en}» mengandung negasi (not / don't). Kata negatif diletakkan setelah auxiliary verb, bukan di akhir frasa.`,
+      tr: `«${en}» olumsuzluk içerir (not / don't). Olumsuzluk eki/kelimesi yardımcı fiilden sonra gelir, cümlenin sonuna gitmez.`,
+      pl: `«${en}» zawiera przeczenie (not / don't). Przeczenie stoi po czasowniku pomocniczym, nie na końcu frazy.`,
     }),
   },
   {
@@ -130,11 +160,21 @@ const PATTERNS: GrammarPattern[] = [
       ru: 'Намерение или необходимость',
       uk: 'Намір або необхідність',
       es: 'Intención o necesidad',
+      'pt-BR': 'Intenção ou necessidade',
+      vi: 'Ý định hoặc nhu cầu',
+      id: 'Niat atau kebutuhan',
+      tr: 'Niyet veya gereklilik',
+      pl: 'Zamiar albo potrzeba',
     },
     why: (en) => ({
       ru: `«${en}» строится по схеме «кто + need/can/will + действие». Сначала кто, потом модальное слово, потом что сделать.`,
       uk: `«${en}» будується за схемою «хто + need/can/will + дія». Спершу хто, потім модальне слово, потім що зробити.`,
       es: `«${en}» sigue el esquema «quién + need/can/will + acción». Primero quién, luego la palabra modal y después qué hacer.`,
+      'pt-BR': `«${en}» segue o esquema “quem + need/can/will + ação”. Primeiro vem quem faz, depois a palavra modal, depois o que fazer.`,
+      vi: `«${en}» đi theo mẫu “ai + need/can/will + hành động”. Trước tiên là người làm, rồi từ modal, rồi việc cần làm.`,
+      id: `«${en}» mengikuti pola “siapa + need/can/will + tindakan”. Pertama subjeknya, lalu kata modal, lalu apa yang dilakukan.`,
+      tr: `«${en}» “kim + need/can/will + eylem” düzeniyle kurulur. Önce kim, sonra modal kelime, sonra yapılacak şey gelir.`,
+      pl: `«${en}» ma schemat „kto + need/can/will + działanie”. Najpierw kto, potem słowo modalne, potem co zrobić.`,
     }),
   },
   {
@@ -144,11 +184,21 @@ const PATTERNS: GrammarPattern[] = [
       ru: 'Есть / имеется',
       uk: 'Є / наявне',
       es: 'Hay / existe',
+      'pt-BR': 'Há / existe',
+      vi: 'Có / tồn tại',
+      id: 'Ada / terdapat',
+      tr: 'Var / mevcut',
+      pl: 'Jest / znajduje się',
     },
     why: (en) => ({
       ru: `«${en}» использует оборот there is/are — так по-английски говорят «есть / имеется». Он всегда стоит в начале.`,
       uk: `«${en}» використовує зворот there is/are — так англійською кажуть «є / наявне». Він завжди стоїть на початку.`,
       es: `«${en}» usa la construcción there is/are — así se dice «hay / existe» en inglés. Siempre va al principio.`,
+      'pt-BR': `«${en}» usa a construção there is/are — é assim que o inglês diz “há / existe”. Ela sempre fica no começo.`,
+      vi: `«${en}» dùng cấu trúc there is/are — tiếng Anh dùng nó để nói “có / tồn tại”. Cấu trúc này luôn đứng ở đầu câu.`,
+      id: `«${en}» memakai konstruksi there is/are — begini cara bahasa Inggris mengatakan “ada / terdapat”. Konstruksi ini selalu di awal.`,
+      tr: `«${en}» there is/are yapısını kullanır — İngilizcede “var / mevcut” böyle söylenir. Bu yapı her zaman başta durur.`,
+      pl: `«${en}» używa konstrukcji there is/are — tak po angielsku mówi się „jest / znajduje się”. Ona zawsze stoi na początku.`,
     }),
   },
 ];
@@ -159,11 +209,21 @@ const DEFAULT_PATTERN: GrammarPattern = {
     ru: 'Утвердительная фраза',
     uk: 'Стверджувальна фраза',
     es: 'Frase afirmativa',
+    'pt-BR': 'Frase afirmativa',
+    vi: 'Câu khẳng định',
+    id: 'Kalimat afirmatif',
+    tr: 'Olumlu cümle',
+    pl: 'Zdanie twierdzące',
   },
   why: (en) => ({
     ru: `«${en}» построена по базовой схеме «кто → действие → остальное». Держи этот порядок слов, когда собираешь фразу.`,
     uk: `«${en}» побудована за базовою схемою «хто → дія → решта». Тримай цей порядок слів, коли збираєш фразу.`,
     es: `«${en}» se construye con el esquema básico «quién → acción → lo demás». Mantén ese orden de palabras al armar la frase.`,
+    'pt-BR': `«${en}» segue o esquema básico “quem → ação → o resto”. Mantenha essa ordem das palavras ao montar a frase.`,
+    vi: `«${en}» được xây theo mẫu cơ bản “ai → hành động → phần còn lại”. Hãy giữ thứ tự này khi ghép câu.`,
+    id: `«${en}» dibangun dengan pola dasar “siapa → tindakan → sisanya”. Pertahankan urutan kata ini saat menyusun frasa.`,
+    tr: `«${en}» temel “kim → eylem → kalan kısım” düzeniyle kurulur. Cümleyi kurarken bu kelime sırasını koru.`,
+    pl: `«${en}» ma podstawowy schemat „kto → działanie → reszta”. Trzymaj ten szyk słów, gdy składasz frazę.`,
   }),
 };
 
@@ -195,12 +255,17 @@ export function detectPhrasePattern(english: string): GrammarPattern {
 // (non-literal) and the learner gets a heads-up even if no idiom matched.
 const DIVERGENCE_THRESHOLD = 0.5;
 
-// «Что собрать»: одна и та же подводка к фразе во всех трёх языках.
+// «Что собрать»: одна и та же подводка к фразе во всех языках интерфейса.
 function assembleLine(english: string, russian: string): LocalizedText {
   return {
     ru: `Нужно собрать: «${russian}» → «${english}».`,
     uk: `Треба зібрати: «${russian}» → «${english}».`,
     es: `Hay que armar: «${russian}» → «${english}».`,
+    'pt-BR': `É preciso montar: «${russian}» → «${english}».`,
+    vi: `Cần ghép: «${russian}» → «${english}».`,
+    id: `Yang perlu disusun: «${russian}» → «${english}».`,
+    tr: `Kurman gereken: «${russian}» → «${english}».`,
+    pl: `Trzeba ułożyć: „${russian}” → „${english}”.`,
   };
 }
 
@@ -228,6 +293,36 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
         ? `Empieza por la palabra «${first}» y mantén el orden de palabras como en la frase en inglés.`
         : 'Elige la palabra que mejor transmita el significado.',
     ].join(' '),
+    'pt-BR': [
+      `Vamos montar de novo com calma. Sentido: «${russian}».`,
+      wordCount > 1
+        ? `Comece pela palavra «${first}» e mantenha a ordem das palavras como na frase em inglês.`
+        : 'Escolha a palavra que transmite melhor o sentido.',
+    ].join(' '),
+    vi: [
+      `Hãy ghép lại thật bình tĩnh. Nghĩa: «${russian}».`,
+      wordCount > 1
+        ? `Bắt đầu bằng từ «${first}» và giữ thứ tự từ như trong câu tiếng Anh.`
+        : 'Chọn từ truyền đạt nghĩa chính xác nhất.',
+    ].join(' '),
+    id: [
+      `Susun ulang dengan tenang. Makna: «${russian}».`,
+      wordCount > 1
+        ? `Mulai dari kata «${first}» dan pertahankan urutan kata seperti dalam frasa Inggris.`
+        : 'Pilih kata yang paling tepat menyampaikan maknanya.',
+    ].join(' '),
+    tr: [
+      `Sakin şekilde yeniden kuralım. Anlam: «${russian}».`,
+      wordCount > 1
+        ? `«${first}» kelimesiyle başla ve İngilizce cümledeki kelime sırasını koru.`
+        : 'Anlamı en doğru veren kelimeyi seç.',
+    ].join(' '),
+    pl: [
+      `Ułóżmy to jeszcze raz spokojnie. Sens: „${russian}”.`,
+      wordCount > 1
+        ? `Zacznij od słowa „${first}” i trzymaj szyk słów jak w angielskiej frazie.`
+        : 'Wybierz słowo, które najdokładniej oddaje sens.',
+    ].join(' '),
   };
 
   // 1. Highest priority: a known fixed/idiomatic construction.
@@ -239,6 +334,11 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
         ru: [assemble.ru, idiom.explanationRu].join(' '),
         uk: [assemble.uk, 'Це стійкий вислів — запам’ятай його цілком, не по окремих словах.'].join(' '),
         es: [assemble.es, idiom.explanationEs].join(' '),
+        'pt-BR': [assemble['pt-BR'], 'É uma expressão fixa: memorize como um bloco inteiro, não palavra por palavra.'].join(' '),
+        vi: [assemble.vi, 'Đây là cụm cố định — hãy nhớ cả cụm, không tách từng từ.'].join(' '),
+        id: [assemble.id, 'Ini ungkapan tetap — hafalkan sebagai satu kesatuan, bukan kata per kata.'].join(' '),
+        tr: [assemble.tr, 'Bu kalıp bir ifadedir — tek tek kelimelerle değil, bütün olarak ezberle.'].join(' '),
+        pl: [assemble.pl, 'To stałe wyrażenie — zapamiętaj je jako całość, nie słowo po słowie.'].join(' '),
       },
       wrong,
     };
@@ -252,6 +352,11 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
         ru: 'Перевод по смыслу',
         uk: 'Переклад за змістом',
         es: 'Traducción por sentido',
+        'pt-BR': 'Tradução pelo sentido',
+        vi: 'Dịch theo nghĩa',
+        id: 'Terjemahan berdasarkan makna',
+        tr: 'Anlama göre çeviri',
+        pl: 'Tłumaczenie według sensu',
       },
       correct: {
         ru: [
@@ -265,6 +370,26 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
         es: [
           assemble.es,
           'Aquí la traducción es por sentido, no palabra por palabra: las frases dicen lo mismo, pero se construyen de forma distinta. Guíate por el significado de toda la frase, no por las palabras sueltas.',
+        ].join(' '),
+        'pt-BR': [
+          assemble['pt-BR'],
+          'Aqui a tradução é pelo sentido, não palavra por palavra: as frases dizem a mesma coisa, mas são construídas de formas diferentes. Guie-se pelo sentido da frase inteira, não por palavras soltas.',
+        ].join(' '),
+        vi: [
+          assemble.vi,
+          'Ở đây dịch theo nghĩa, không dịch từng từ: hai câu truyền đạt cùng một ý, nhưng được xây khác nhau. Hãy bám vào nghĩa của cả câu, không phải từng từ riêng lẻ.',
+        ].join(' '),
+        id: [
+          assemble.id,
+          'Di sini terjemahannya berdasarkan makna, bukan kata per kata: kedua frasa menyampaikan hal yang sama, tetapi dibangun dengan cara berbeda. Ikuti makna seluruh frasa, bukan kata-kata terpisah.',
+        ].join(' '),
+        tr: [
+          assemble.tr,
+          'Burada çeviri kelime kelime değil, anlama göredir: iki cümle aynı şeyi söyler ama farklı kurulur. Tek tek kelimelere değil, tüm cümlenin anlamına odaklan.',
+        ].join(' '),
+        pl: [
+          assemble.pl,
+          'Tutaj tłumaczenie idzie według sensu, nie słowo w słowo: frazy mówią to samo, ale są zbudowane inaczej. Kieruj się sensem całej frazy, nie pojedynczymi słowami.',
         ].join(' '),
       },
       wrong,
@@ -280,6 +405,11 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
       ru: [assemble.ru, why.ru].join(' '),
       uk: [assemble.uk, why.uk].join(' '),
       es: [assemble.es, why.es].join(' '),
+      'pt-BR': [assemble['pt-BR'], why['pt-BR']].join(' '),
+      vi: [assemble.vi, why.vi].join(' '),
+      id: [assemble.id, why.id].join(' '),
+      tr: [assemble.tr, why.tr].join(' '),
+      pl: [assemble.pl, why.pl].join(' '),
     },
     wrong,
   };

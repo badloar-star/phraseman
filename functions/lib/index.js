@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.vipReconcileOrphanGrant = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -106,7 +106,7 @@ const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated, referralClaimVipReward, referralListMyInvites, } = require('./referral');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { premiumDialogSend } = require('./premium_dialog');
+const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -114,6 +114,8 @@ const { statsInsightsGenerate } = require('./stats_insights');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 const { explainChoice } = require('./explain_choice');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainQuiz } = require('./explain_quiz');
 const { compassGenerate } = require('./compass');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
@@ -190,10 +192,12 @@ exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
+exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
+exports.explainQuiz = explainQuiz;
 exports.compassGenerate = compassGenerate;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
@@ -1146,11 +1150,18 @@ Object.defineProperty(exports, "syncFriendActivityMirrorCron", { enumerable: tru
 // ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
 var premium_expiry_cron_1 = require("./premium_expiry_cron");
 Object.defineProperty(exports, "premiumExpiryCron", { enumerable: true, get: function () { return premium_expiry_cron_1.premiumExpiryCron; } });
+// ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
+var vip_orphan_reconcile_1 = require("./vip_orphan_reconcile");
+Object.defineProperty(exports, "vipReconcileOrphanGrant", { enumerable: true, get: function () { return vip_orphan_reconcile_1.vipReconcileOrphanGrant; } });
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });
+// ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
+var promo_codes_1 = require("./promo_codes");
+Object.defineProperty(exports, "promoCodeRedeem", { enumerable: true, get: function () { return promo_codes_1.promoCodeRedeem; } });
+Object.defineProperty(exports, "promoCodeUpsert", { enumerable: true, get: function () { return promo_codes_1.promoCodeUpsert; } });
 var openai_budget_dashboard_1 = require("./openai_budget_dashboard");
 Object.defineProperty(exports, "openAiBudgetDashboard", { enumerable: true, get: function () { return openai_budget_dashboard_1.openAiBudgetDashboard; } });
 var openai_dialog_model_config_1 = require("./openai_dialog_model_config");

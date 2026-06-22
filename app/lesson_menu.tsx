@@ -303,6 +303,7 @@ export default function LessonMenu() {
   const [theoryClaimed, setTheoryClaimed] = useState(false);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
+  const [uiReady, setUiReady] = useState(Boolean(cachedMenu));
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
@@ -529,6 +530,7 @@ export default function LessonMenu() {
 
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
+      setUiReady(true);
       void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
       loadLockState();
       // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
@@ -1101,6 +1103,10 @@ export default function LessonMenu() {
       </SafeAreaView>
       </ScreenGradient>
     );
+  }
+
+  if (!uiReady && !cachedMenu) {
+    return <View style={{ flex: 1 }} />;
   }
 
   return (

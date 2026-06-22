@@ -211,7 +211,7 @@ function ShardRewardModal({ rewards, visible, onClose }: Props) {
               : (isAdminGrant ? tx.labelAdmin : tx.label)}
           </Text>
           {!multipleReports && firstDataText && (
-            <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={4}>
+            <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
               {firstDataText}
             </Text>
           )}

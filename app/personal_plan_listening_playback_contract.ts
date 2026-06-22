@@ -1,6 +1,7 @@
 import type { PersonalPlanListenChooseItem, PersonalPlanListenChooseBlockedReason } from './personal_plan_listen_choose_items';
 import type { PersonalPlanListenBuildItem, PersonalPlanListenBuildBlockedReason } from './personal_plan_listen_build_items';
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
+import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 
 export type PlanListeningPlaybackIssue =
   | PersonalPlanListenChooseBlockedReason
@@ -49,12 +50,22 @@ export function buildPlanListeningPlaybackSource(
       issues: ['missing_audio_uri'],
     };
   }
-  const assetModule = getPersonalPlanRuntimeAudioAssetModule(uri);
+  // Prefer the server-hosted clip (streamed + disk-cached by expo-audio) so the
+  // ~126 MB of mp3 no longer ship in the binary. Fall back to the bundled local
+  // asset only if this uri isn't in the uploaded map yet (keeps the app working
+  // before/while the upload script runs). Mirrors hooks/phrase_audio_player.ts.
+  const remoteUrl = getPlanAudioUrl(uri);
+  const assetModule = remoteUrl ? undefined : getPersonalPlanRuntimeAudioAssetModule(uri);
+  const playerSource: string | { assetId: number } = remoteUrl
+    ? remoteUrl
+    : assetModule
+      ? { assetId: assetModule }
+      : uri;
 
   return {
     source: 'in_app_audio',
     uri,
-    playerSource: assetModule ? { assetId: assetModule } : uri,
+    playerSource,
     options: {
       downloadFirst: true,
       updateInterval: 250,

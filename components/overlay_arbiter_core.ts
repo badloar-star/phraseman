@@ -1,4 +1,5 @@
 export type OverlayKey =
+  | 'onboardingWelcome'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -18,6 +19,7 @@ export type OverlayKey =
   | 'mysteryMondayChest'
   | 'comebackDay'
   | 'perfectWeekReward'
+  | 'boonActivated'
   | 'compassBriefing'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
@@ -33,6 +35,13 @@ export type OverlayKey =
 export type WantsMap = Record<OverlayKey, boolean>;
 
 export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
+  // onboardingWelcome — приветствие-«знакомство» сразу после онбординга. Должно идти
+  // ПЕРВЫМ: новичок сначала осваивается, потом получает награды/обновления. Раньше оно
+  // рендерилось мимо арбитра (полноэкранный <Modal>) и презентовалось ОДНОВРЕМЕННО с
+  // наградной/update-модалкой, которую отдавал арбитр → на iOS два present подряд = первый
+  // (welcome) схлопывался («мелькнул и пропал»), стек презентаций зависал (фриз). Через
+  // арбитр welcome держит единственный слот первым, остальные ждут очереди.
+  'onboardingWelcome',
   'update',
   'releaseNotes',
   'broadcast',
@@ -51,7 +60,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'referralWelcome',
   'mysteryMondayChest',
   'comebackDay',
-  'perfectWeekReward',
+  'boonActivated',
   'compassBriefing',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
@@ -63,6 +72,12 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
+  // perfectWeekReward — недельный бонус («Идеальная неделя»). По требованию показывается
+  // САМЫМ ПОСЛЕДНИМ: дожидается, пока закроются ВСЕ остальные окна (приветствие, обновление,
+  // «что нового», компас, праздники, тосты) — и только тогда занимает слот. Награда уже
+  // начислена в PerfectWeekHost при eligibility (claim до рендера), поэтому ждать слот
+  // безопасно: даже если юзер уйдёт раньше, осколки не теряются — модалка лишь сообщает.
+  'perfectWeekReward',
 ];
 
 // Транзиентный «тост-ярус»: оверлеи, которые сами по себе автозакрываются по таймеру
@@ -87,6 +102,13 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
   'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
+  // boonActivated — ИНФОРМАЦИОННАЯ плашка «бонус дня активирован» (бонус уже включён,
+  // закрытие НЕ выдаёт награду — см. BoonActivatedHost.close: только markShown+wantShow=false).
+  // Поэтому её ОБЯЗАТЕЛЬНО можно выселять сторожем: если юзер не нажал «Отлично», а свернул
+  // приложение / ушёл навигацией, wantShow застревает true → слот занят → все тосты ниже по
+  // приоритету мертвы до перезапуска (рецидив бага «все тосты глобально пропали»). В отличие
+  // от сундуков (mystery/comeback/perfectWeek) тут терять нечего — плашка лишь информирует.
+  'boonActivated',
 ]);
 
 /**
@@ -99,6 +121,7 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 }
 
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
+  onboardingWelcome: false,
   update: false,
   releaseNotes: false,
   broadcast: false,
@@ -118,6 +141,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   mysteryMondayChest: false,
   comebackDay: false,
   perfectWeekReward: false,
+  boonActivated: false,
   compassBriefing: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,

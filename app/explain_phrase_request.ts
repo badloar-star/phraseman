@@ -101,7 +101,7 @@ export function resolveExplainDisplay(
   const degraded =
     state.status === 'exhausted' ||
     state.status === 'pending' ||
-    (state.status === 'rejected' && state.fromCache);
+    state.status === 'rejected';
   return { showSkeleton: false, text: state.text, degraded };
 }
 

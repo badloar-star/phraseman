@@ -14,6 +14,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -50,7 +51,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
   const [expanded, setExpanded] = useState(false);
 
   const refreshState = useCallback(async () => {
-    const next = await getWeeklyReviewState(studyTarget);
+    const next = await getWeeklyReviewState(studyTarget, lang);
     setState(next);
     // Авто-генерация при первом заходе или когда окно открылось.
     const shouldAutoGenerate =
@@ -99,8 +100,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
           busy
           onPress={() => setExpanded((value) => !value)}
         />
-        <View style={styles.loadingRow}>
-          <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.champagne : GOLD} />
+        <View style={{ gap: 10, paddingVertical: 8 }}>
           <Text style={[styles.loadingText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
               ru: 'Компас готовит подсказки…', uk: 'Компас готує підказки…', es: 'Compass está preparando pistas…',
@@ -108,6 +108,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
               id: 'Compass sedang menyiapkan arahan…', tr: 'Compass ipuçlarını hazırlıyor…', pl: 'Compass przygotowuje wskazówki…',
             })}
           </Text>
+          <SkeletonBlock width="100%" height={13} borderRadius={6} />
+          <SkeletonBlock width="86%" height={13} borderRadius={6} />
+          <SkeletonBlock width="92%" height={13} borderRadius={6} />
         </View>
       </CardShell>
     );
@@ -132,8 +135,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
           busy={busy}
           onPress={() => setExpanded((value) => !value)}
         />
-        <View style={styles.loadingRow}>
-          <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.champagne : GOLD} />
+        <View style={{ gap: 10, paddingVertical: 8 }}>
           <Text style={[styles.loadingText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
               ru: 'Компас готовит подсказки…', uk: 'Компас готує підказки…', es: 'Compass está preparando pistas…',
@@ -141,6 +143,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
               id: 'Compass sedang menyiapkan arahan…', tr: 'Compass ipuçlarını hazırlıyor…', pl: 'Compass przygotowuje wskazówki…',
             })}
           </Text>
+          <SkeletonBlock width="100%" height={13} borderRadius={6} />
+          <SkeletonBlock width="86%" height={13} borderRadius={6} />
+          <SkeletonBlock width="92%" height={13} borderRadius={6} />
         </View>
       </CardShell>
     );
@@ -426,7 +431,6 @@ const styles = StyleSheet.create({
   cardSub: { marginTop: 3, lineHeight: 17, fontWeight: '600' },
   greeting: { fontWeight: '800', letterSpacing: -0.3, lineHeight: 26 },
   paragraph: { lineHeight: 23, letterSpacing: 0.1 },
-  loadingRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8 },
   loadingText: { flex: 1, lineHeight: 22 },
   teaser: { flexDirection: 'row', alignItems: 'center', gap: 8, borderWidth: 1, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 12 },
   teaserText: { flex: 1, fontWeight: '600' },

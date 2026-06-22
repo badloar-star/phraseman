@@ -35,6 +35,8 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useSpeakAnswer } from '../hooks/use-speak-answer';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   getDueItems,
   markTrainerResult,
@@ -101,7 +103,9 @@ function WordBankMode({ item, onResult }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
   const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
@@ -131,6 +135,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
+      speakAnswer(item.key, studyTarget);
       setTimeout(() => onResult(true), 700);
     } else {
       hapticError();
@@ -293,6 +298,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
           setFeedback('correct');
           hapticSuccess();
           playCorrect();
+          speakAnswer(item.key, studyTarget);
           setTimeout(() => onResult(true), 700);
         }}
       />
@@ -310,7 +316,9 @@ function FillGapMode({ item, onResult }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { flashKey, flash } = useWordFlash();
   const errorWord = item.errorWord ?? '';
   const [options] = useState(() => buildTrainerFillGapOptions({
@@ -333,6 +341,7 @@ function FillGapMode({ item, onResult }: FillGapProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
+      speakAnswer(item.key, studyTarget);
       setTimeout(() => onResult(true), 700);
     } else {
       hapticError();

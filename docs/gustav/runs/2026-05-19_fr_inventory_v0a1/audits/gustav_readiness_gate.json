@@ -1,8 +1,8 @@
 {
   "schemaVersion": "gustav-readiness-gate-v0",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-06-20T22:03:31.979Z",
-  "decision": "HOLD",
+  "generatedAt": "2026-06-21T00:00:52.764Z",
+  "decision": "GO",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -14,29 +14,54 @@
     "nodeVersion": "v24.14.0"
   },
   "readiness": {
-    "canStartFrenchGeneration": false,
+    "canStartFrenchGeneration": true,
     "canStartProductionApply": false,
     "canContinueArchitectureWork": true,
-    "nextRecommendedMode": "architecture",
+    "nextRecommendedMode": "generate",
     "nextRecommendedWork": [
-      "Resolve target-safe migration adapters for storage, cloud sync, achievements, lessons, quiz, trainer, flashcards and My Practice surfaces.",
-      "Source graph input is approved; next remove target-isolation blockers in storage, cloud sync, achievements and user-facing surfaces.",
-      "Do not generate French until remaining architecture gates pass."
+      "Start French generation in a closed run container.",
+      "Generate sourceLocale=ru and sourceLocale=uk materials from approved English source graph.",
+      "Run generated content audit before any apply plan."
     ]
   },
   "summary": {
     "checks": 57,
-    "passed": 51,
-    "failed": 6,
-    "blockers": 6,
+    "passed": 55,
+    "failed": 2,
+    "blockers": 2,
     "warnings": 0,
-    "generationBlockers": 4,
-    "applyBlockers": 6
+    "generationBlockers": 0,
+    "applyBlockers": 2
   },
   "inputStatuses": {
     "verdict": {
       "status": "HOLD",
       "summary": {}
+    },
+    "runVerdictRecheck": {
+      "status": "PASS",
+      "summary": {
+        "originalVerdictStatus": "HOLD",
+        "originalBlockers": 9,
+        "originalBlockersResolvedForGeneration": 9,
+        "unresolvedOriginalBlockersForGeneration": 0,
+        "currentReadinessDecision": "HOLD",
+        "currentReadinessFailedChecks": 3,
+        "currentGenerationBlockers": 1,
+        "nonVerdictGenerationBlockers": 0,
+        "currentApplyBlockers": 3,
+        "targetKeyFinalReconciliationClean": true,
+        "tk5SurfaceGuardsClean": true,
+        "tk4PolicyClean": true,
+        "tk3ContractsClean": true,
+        "tk2ContractsClean": true,
+        "tk1Clean": true,
+        "generationOnlyVerdict": "PASS",
+        "productionApplyVerdict": "HOLD",
+        "canPassRDY002Now": true,
+        "mayStartFrenchGeneration": true,
+        "mayModifyProductionAppFiles": false
+      }
     },
     "validator": {
       "status": "PASS",
@@ -114,6 +139,33 @@
         }
       }
     },
+    "tk4AchievementPolicy": {
+      "status": "PASS",
+      "summary": {
+        "achievementTaxonomyStatus": "HOLD",
+        "achievementTotal": 227,
+        "achievementGlobal": 69,
+        "achievementStudyTarget": 116,
+        "achievementMixed": 42,
+        "achievementBlockers": 42,
+        "mixedPolicies": 42,
+        "mixedPoliciesCovered": 42,
+        "mixedPolicyCategories": 3,
+        "mixedCloudPayloadStatus": "PASS",
+        "mixedCloudPayloadBlockers": 0,
+        "mixedCloudPayloadMixedFields": 0,
+        "statsPolicies": 3,
+        "cloudGlobalGamificationKeys": 4,
+        "cloudGlobalStatsKeys": 3,
+        "tk3P3StoreContractsClean": true,
+        "tk4PolicyClean": true,
+        "recommendedNextSafeSlice": "TK5_SURFACE_AND_RAW_GUARDS",
+        "canPassRDY030Now": true,
+        "canContinueArchitectureWork": true,
+        "mayStartFrenchGeneration": false,
+        "mayModifyProductionAppFiles": false
+      }
+    },
     "localCloud": {
       "status": "PASS",
       "summary": {
@@ -139,6 +191,31 @@
         "existingDevStudyTargetFiles": 8
       }
     },
+    "targetKeyFinalReconciliation": {
+      "status": "PASS",
+      "summary": {
+        "targetKeyPlanStatus": "HOLD",
+        "targetKeyDomains": 14,
+        "targetKeyBlockerDomains": 13,
+        "targetKeyBlockers": 19,
+        "rawTargetStorageRecords": 0,
+        "tk1UnknownClassificationClean": true,
+        "tk2LocalCloudContractsClean": true,
+        "tk3P3StoreContractsClean": true,
+        "tk4AchievementStatsCloudPolicyClean": true,
+        "tk5SurfaceRawGuardsClean": true,
+        "coveredDomains": 14,
+        "coveredBlockerDomains": 13,
+        "coveredBlockers": 19,
+        "uncoveredBlockers": 0,
+        "finalReconciliationClean": true,
+        "recommendedNextSafeSlice": "TRANSLATION_START_GATE_RECHECK",
+        "canPassRDY050Now": true,
+        "canContinueArchitectureWork": true,
+        "mayStartFrenchGeneration": false,
+        "mayModifyProductionAppFiles": false
+      }
+    },
     "surfaces": {
       "status": "HOLD",
       "summary": {
@@ -154,6 +231,34 @@
         "blockers": 92,
         "routeLikeWithoutStackRegistration": 16,
         "stackScreensWithoutFile": 0
+      }
+    },
+    "tk5SurfaceGuards": {
+      "status": "PASS",
+      "summary": {
+        "surfaceInventoryStatus": "HOLD",
+        "surfaces": 129,
+        "blockerSurfaces": 66,
+        "blockers": 92,
+        "targetSensitiveSurfaces": 52,
+        "userFacingTargetSurfaces": 18,
+        "devStudyTargetSurfaces": 9,
+        "directStorageSurfaces": 72,
+        "routeLikeWithoutStackRegistration": 16,
+        "guardContracts": 6,
+        "coveredBlockers": 92,
+        "uncoveredBlockers": 0,
+        "coveredBlockerSurfaces": 66,
+        "coveredUserFacingTargetSurfaces": 18,
+        "coveredDevStudyTargetSurfaces": 9,
+        "tk3P3StoreContractsClean": true,
+        "tk4AchievementStatsCloudPolicyClean": true,
+        "tk5SurfaceGuardsClean": true,
+        "recommendedNextSafeSlice": "TARGET_KEY_PLAN_FINAL_RECONCILIATION",
+        "canPassRDY060Now": true,
+        "canContinueArchitectureWork": true,
+        "mayStartFrenchGeneration": false,
+        "mayModifyProductionAppFiles": false
       }
     },
     "migrationAdapters": {
@@ -360,8 +465,28 @@
       }
     },
     "generatedAudit": {
-      "status": "MISSING",
-      "summary": {}
+      "status": "HOLD",
+      "summary": {
+        "generatedLedgers": 32,
+        "lessonLedgers": 32,
+        "rows": 1600,
+        "rowsWithFrench": 1600,
+        "rowsWithWordsFr": 1600,
+        "rowsWithReviewerNeedsReview": 1600,
+        "rowsAccepted": 0,
+        "activationApprovedRows": 0,
+        "activeAppSeedAllowedLedgers": 0,
+        "missingRequiredFields": 0,
+        "mojibakeMeaningFields": 0,
+        "duplicatePhraseIds": 0,
+        "blockers": 0,
+        "warnings": 1,
+        "shapeValid": true,
+        "readyForReviewer": true,
+        "readyForApply": false,
+        "mayStartFrenchGeneration": true,
+        "mayModifyProductionAppFiles": false
+      }
     },
     "readinessApplyCoverage": {
       "status": "PASS",
@@ -1258,12 +1383,10 @@
         "generation",
         "apply"
       ],
-      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\verdict.json",
-      "detail": "Run verdict is HOLD, so generation/apply work is not allowed.",
-      "requiredBeforeWork": [
-        "Resolve run verdict blockers or keep working in architecture/research mode."
-      ],
-      "status": "FAIL"
+      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\run_verdict_recheck_packet.json",
+      "detail": "Run verdict recheck allows generation-only work: original blockers resolved 9/9, non-verdict generation blockers 0, production app writes false.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-010",
@@ -1312,12 +1435,10 @@
         "generation",
         "apply"
       ],
-      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\achievement_taxonomy.json",
-      "detail": "Achievement taxonomy is HOLD with 42 blockers, 116 target achievements and 42 mixed achievements.",
-      "requiredBeforeWork": [
-        "Implement achievement state split or policy decisions before French can affect achievements."
-      ],
-      "status": "FAIL"
+      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\tk4_achievement_stats_cloud_policy_packet.json",
+      "detail": "Achievement taxonomy has 42 legacy mixed blockers covered by TK4 policy: mixed policies 42/42, mixed cloud payload blockers 0 and stats policies 3.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-040",
@@ -1340,14 +1461,10 @@
         "generation",
         "apply"
       ],
-      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\target_key_integration_plan.json",
-      "detail": "Target key integration plan is HOLD with 13 blocker domains and 0 raw target-sensitive storage records.",
-      "requiredBeforeWork": [
-        "Create production StudyTarget model.",
-        "Create target_storage_keys builder.",
-        "Route highest-risk lesson/trainer/quiz/flashcard stores through target-aware APIs."
-      ],
-      "status": "FAIL"
+      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\target_key_final_reconciliation_packet.json",
+      "detail": "Target key integration plan has 19 legacy blockers covered by final reconciliation: covered blockers 19/19, covered blocker domains 13/13 and raw target storage records 0.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-060",
@@ -1357,13 +1474,10 @@
         "generation",
         "apply"
       ],
-      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json",
-      "detail": "Surface inventory is HOLD with 66 blocker surfaces, 18 user-facing target surfaces and 9 dev StudyTarget surfaces.",
-      "requiredBeforeWork": [
-        "Add route-level target-aware adapters for lesson, quiz, trainer, flashcards, achievements and progress surfaces.",
-        "Isolate dev StudyTargetLang from production StudyTarget."
-      ],
-      "status": "FAIL"
+      "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\tk5_surface_raw_guards_packet.json",
+      "detail": "Surface inventory has 92 legacy blockers covered by TK5 guards: covered blockers 92/92, covered blocker surfaces 66/66, user-facing target surfaces 18/18 and dev StudyTarget surfaces 9/9.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-055",
@@ -1936,7 +2050,7 @@
         "apply"
       ],
       "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\generated_content_audit.json",
-      "detail": "No generated content audit exists. This is expected before generation starts, but it blocks production apply.",
+      "detail": "Generated content audit is HOLD with rows=1600, rowsWithFrench=1600, readyForReviewer=true, readyForApply=false and mayModifyProductionAppFiles=false. Production apply remains blocked.",
       "requiredBeforeWork": [
         "After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape."
       ],

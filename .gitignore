@@ -290,3 +290,7 @@ _frames/
 # Случайный дамп админ-панели (мусор, не для релиза)
 .codex-tmp-admin-live.html
 /SECURITY_AUDIT_*.md
+.rc_key.local
+
+# debug screenshots (transient)
+.shots/

@@ -25,6 +25,8 @@ export type AppEventMap = {
   vip_deactivated: undefined;
   premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
   intro_full_access_changed: undefined;
+  /** Приветствие-«знакомство» (компас-слайды) закрыто юзером — можно показывать подарок 3 дня. */
+  welcome_closed: undefined;
   /** Подарок лояльности (72ч для существующих free-юзеров) активирован/откатан — пересчитать доступ. */
   loyalty_gift_changed: undefined;
   gold_theme_unlocked: { source: string };

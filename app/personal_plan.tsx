@@ -14,6 +14,7 @@ import { useTheme } from '../components/ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useFeatureAccess } from '../components/PremiumContext';
+import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -324,10 +325,26 @@ export default function PersonalPlanScreen() {
 
   // Премиум-замок: нет доступа → на пейвол (replace, чтобы «Назад» не возвращал в план).
   // Реагирует и на потерю доступа в открытом экране (снятие премиума/VIP).
+  //
+  // ВАЖНО: не бросаем на пейвол по транзиентно-ложному `planAccess` (провайдер ещё не
+  // успел сделать первый runReload на холодном старте). Если провайдер уже говорит «да» —
+  // никогда не уводим. Если «нет» — перепроверяем СВЕЖИМ источником (тем же, что и
+  // диспетчер пейвола), сбросив кэш, чтобы обе стороны читали одну истину и не
+  // расходились → это и закрывает петлю plan↔paywall↔thank-you.
   useEffect(() => {
-    if (!planAccess) {
-      router.replace({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
-    }
+    if (planAccess) return;
+    let cancelled = false;
+    void (async () => {
+      invalidatePremiumCache();
+      const fresh = await getVerifiedPremiumAccessStatus().catch(() => false);
+      if (cancelled) return;
+      if (!fresh) {
+        router.replace({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
+      }
+      // fresh === true: доступ есть, провайдер догонит через premium_activated/reload —
+      // не уводим, иначе вернёмся к рассинхрону.
+    })();
+    return () => { cancelled = true; };
   }, [planAccess, router]);
 
   // Entrance animation

@@ -2359,14 +2359,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     accessible
                     accessibilityRole="button"
                     accessibilityLabel={triLang(lang, {
-                      ru: 'Боевой пропуск Арены',
-                      uk: 'Бойова перепустка Арени',
-                      es: 'Pase de batalla de Arena',
-                      'pt-BR': 'Passe de batalha da Arena',
-                      vi: 'Vé chiến đấu Đấu trường',
-                      id: 'Tiket pertempuran Arena',
-                      tr: 'Arena savaş bileti',
-                      pl: 'Karnet bojowy Areny',
+                      ru: 'Награды сезона Арены',
+                      uk: 'Нагороди сезону Арени',
+                      es: 'Recompensas de temporada de Arena',
+                      'pt-BR': 'Recompensas da temporada da Arena',
+                      vi: 'Phần thưởng mùa giải Đấu trường',
+                      id: 'Hadiah musim Arena',
+                      tr: 'Arena sezon ödülleri',
+                      pl: 'Nagrody sezonu Areny',
                     })}
                     onPress={() => { hapticTap(); router.push('/arena_pass' as any); }}
                     edgeColor={arenaGlass.commandEdge}
@@ -2378,14 +2378,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     <View style={styles.arenaCommandCopy}>
                       <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
                         {triLang(lang, {
-                          ru: 'Боевой пропуск',
-                          uk: 'Бойова перепустка',
-                          es: 'Pase de batalla',
-                          'pt-BR': 'Passe de batalha',
-                          vi: 'Vé chiến đấu',
-                          id: 'Tiket pertempuran',
-                          tr: 'Savaş bileti',
-                          pl: 'Karnet bojowy',
+                          ru: 'Награды сезона',
+                          uk: 'Нагороди сезону',
+                          es: 'Recompensas de temporada',
+                          'pt-BR': 'Recompensas da temporada',
+                          vi: 'Phần thưởng mùa giải',
+                          id: 'Hadiah musim',
+                          tr: 'Sezon ödülleri',
+                          pl: 'Nagrody sezonu',
                         })}
                       </Text>
                       <Text style={[styles.arenaCommandSub, { color: screenMuted, fontSize: f.caption }]}>

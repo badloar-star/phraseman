@@ -23,11 +23,11 @@ import {
   StyleSheet,
   Animated,
   Dimensions,
-  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
+import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -167,7 +167,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
           </View>
           <View style={styles.header}>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={2}>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
               {title}
             </Text>
             <Pressable
@@ -198,13 +198,13 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
           >
             {display.showSkeleton ? (
               <View style={styles.skeleton}>
-                <ActivityIndicator color={t.accent} />
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
                   {loadingLineForLang(effLang)}
                 </Text>
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '92%' }]} />
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '78%' }]} />
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '85%' }]} />
+                <SkeletonBlock width="92%" height={14} borderRadius={7} />
+                <SkeletonBlock width="78%" height={14} borderRadius={7} />
+                <SkeletonBlock width="85%" height={14} borderRadius={7} />
+                <SkeletonBlock width="64%" height={14} borderRadius={7} />
               </View>
             ) : (
               <>
@@ -375,11 +375,6 @@ const styles = StyleSheet.create({
   },
   skeletonText: {
     fontWeight: '700',
-  },
-  skeletonBar: {
-    height: 14,
-    borderRadius: 7,
-    opacity: 0.7,
   },
   footer: {
     borderTopWidth: 1,

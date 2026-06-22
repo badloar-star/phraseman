@@ -33,8 +33,10 @@ function cardCopy(snapshot: PersonalPlanHomeSnapshot): {
       subtitle: `Незакрытые задания · ${snapshot.minutesPerDay} минут`,
     };
   }
+  // Обычное состояние: верхнюю надпись «Мой план» не показываем (kicker пустой),
+  // название плана и день ниже сами несут смысл.
   return {
-    kicker: 'Мой план',
+    kicker: '',
     subtitle: `${snapshot.todayTitle} · ${snapshot.minutesPerDay} минут`,
   };
 }
@@ -112,11 +114,15 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot, onPress }: 
             />
           </View>
           <View style={styles.copy}>
-            <Text style={[styles.kicker, { color: cardMuted }]} numberOfLines={1}>{copy.kicker}</Text>
+            {copy.kicker ? (
+              <Text style={[styles.kicker, { color: cardMuted }]} numberOfLines={1}>{copy.kicker}</Text>
+            ) : null}
             <Text style={[styles.title, { color: cardText }]}>
-              {snapshot.planName}{'\n'}день {snapshot.dayIndex}
+              {snapshot.planName}
+              {'\n'}
+              <Text style={[styles.titleDay, { color: actionAccent }]}>день {snapshot.dayIndex}</Text>
             </Text>
-            <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={1}>
+            <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={2}>
               {copy.subtitle}
             </Text>
             {__DEV__ ? (
@@ -150,6 +156,7 @@ const styles = StyleSheet.create<{
   copy: ViewStyle;
   kicker: TextStyle;
   title: TextStyle;
+  titleDay: TextStyle;
   subtitle: TextStyle;
   devChip: ViewStyle;
   devText: TextStyle;
@@ -198,6 +205,11 @@ const styles = StyleSheet.create<{
     fontWeight: '900',
     lineHeight: 28,
     marginTop: 1,
+  },
+  titleDay: {
+    fontSize: 25,
+    fontWeight: '900',
+    lineHeight: 28,
   },
   subtitle: {
     marginTop: 1,

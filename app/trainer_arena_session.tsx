@@ -25,6 +25,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import {
   getCachedDueItems,
   getDueItems,
@@ -63,6 +64,7 @@ export default function TrainerArenaSession() {
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const instantItems = useMemo(
     () => hasReservedTrainerSessionEntrySync('/trainer_arena_session', studyTarget)
@@ -132,6 +134,7 @@ export default function TrainerArenaSession() {
     if (isOk) {
       hapticSuccess();
       playCorrect();
+      speakAnswer(item.key, studyTarget);
       setCorrect(c => c + 1);
     } else {
       hapticError();
@@ -172,7 +175,7 @@ export default function TrainerArenaSession() {
       }
       if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
     }, isOk ? 700 : 1100);
-  }, [locked, items, current, correct, wrong, flash, studyTarget]);
+  }, [locked, items, current, correct, wrong, flash, studyTarget, playCorrect, speakAnswer]);
 
   if (!accessReady || loading) {
     return (

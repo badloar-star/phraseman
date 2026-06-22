@@ -3,6 +3,8 @@ import {
   LOYALTY_GIFT_ALL_KEYS,
   LOYALTY_GIFT_CLAIMED_KEY,
   LOYALTY_GIFT_DURATION_MS,
+  LOYALTY_GIFT_ENDS_AT_KEY,
+  LOYALTY_GIFT_STARTED_AT_KEY,
   getLoyaltyGiftState,
   isLoyaltyGiftActive,
   isLoyaltyGiftClaimed,
@@ -86,5 +88,66 @@ describe('loyalty_gift', () => {
     // Платный премиум и VIP не затронуты ни выдачей, ни откатом подарка.
     expect(store.get('premium_active')).toBe('true');
     expect(store.get('vip_active')).toBe('true');
+  });
+
+  // ── Концерн «не продлевается больше 3 дней» ──────────────────────────────
+  // Окно подарка привязано к АБСОЛЮТНОМУ endsAt, а не к started_at+duration.
+  // Эти тесты фиксируют, что никакая подмена started_at / повторный старт не
+  // удлиняют доступ сверх исходных 72 часов.
+
+  it('binds the window to absolute endsAt — tampering started_at does NOT extend it', async () => {
+    const now = 1_000_000_000_000;
+    await startLoyaltyGift(now, 'ru');
+    const originalEndsAt = now + LOYALTY_GIFT_DURATION_MS;
+
+    // Злонамеренно «переставляем» started_at вперёд (как будто подарок только начался),
+    // НЕ трогая endsAt — состояние обязано игнорировать started_at для срока.
+    store.set(LOYALTY_GIFT_STARTED_AT_KEY, String(now + LOYALTY_GIFT_DURATION_MS));
+
+    const state = await getLoyaltyGiftState(now);
+    expect(state.endsAt).toBe(originalEndsAt); // срок не сдвинулся
+    // Сразу после исходного окончания доступа уже нет — продления не случилось.
+    expect(await isLoyaltyGiftActive(originalEndsAt + 1)).toBe(false);
+  });
+
+  it('a second start after restore re-wrote claimed/started does NOT stack a new 72h window', async () => {
+    const now = 1_000_000_000_000;
+    await startLoyaltyGift(now, 'ru');
+    const originalEndsAt = now + LOYALTY_GIFT_DURATION_MS;
+
+    // Имитируем restore из облака: claimed/started уже стоят (зеркало с другого устройства).
+    // Повторный старт спустя время обязан вернуть false и НЕ переписать endsAt вперёд.
+    const later = now + LOYALTY_GIFT_DURATION_MS / 2;
+    expect(await startLoyaltyGift(later, 'ru')).toBe(false);
+    expect(store.get(LOYALTY_GIFT_ENDS_AT_KEY)).toBe(String(originalEndsAt));
+  });
+
+  it('existingStart guard blocks re-grant even if claimed key was cleared (no second window)', async () => {
+    const now = 1_000_000_000_000;
+    await startLoyaltyGift(now, 'ru');
+    const originalEndsAt = now + LOYALTY_GIFT_DURATION_MS;
+
+    // Стираем только метку claimed (started/ends остаются) — второй независимый
+    // предохранитель existingStart обязан всё равно запретить повторную выдачу.
+    store.delete(LOYALTY_GIFT_CLAIMED_KEY);
+    expect(await startLoyaltyGift(now + 1000, 'ru')).toBe(false);
+    expect(store.get(LOYALTY_GIFT_ENDS_AT_KEY)).toBe(String(originalEndsAt));
+  });
+
+  // ── Концерн «корректно начисляется» — fail-closed на битых данных ────────
+
+  it('fail-closed: a corrupted (non-numeric) endsAt reads as inactive, never grants forever', async () => {
+    store.set(LOYALTY_GIFT_STARTED_AT_KEY, '1000000000000');
+    store.set(LOYALTY_GIFT_ENDS_AT_KEY, 'not-a-number');
+    const state = await getLoyaltyGiftState(1_000_000_000_001);
+    expect(state.active).toBe(false);
+    expect(state.endsAt).toBeNull();
+    expect(await isLoyaltyGiftActive(1_000_000_000_001)).toBe(false);
+  });
+
+  it('fail-closed: a negative endsAt reads as inactive', async () => {
+    store.set(LOYALTY_GIFT_STARTED_AT_KEY, '1000000000000');
+    store.set(LOYALTY_GIFT_ENDS_AT_KEY, '-5');
+    expect(await isLoyaltyGiftActive(1_000_000_000_001)).toBe(false);
   });
 });

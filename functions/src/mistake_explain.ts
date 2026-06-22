@@ -509,6 +509,21 @@ async function generateCheckedMistakeText(
   return gen;
 }
 
+/** Persist a checked FULL breakdown as the global ready doc (merge:true → idempotent under races). */
+async function persistReadyMistake(
+  mistakeHash: string,
+  full: string,
+  payload: ExplainMistakePayload,
+  model: string,
+): Promise<void> {
+  await writeReadyMistakeExplanation(mistakeHash, full, {
+    lang: payload.interfaceLang,
+    targetEn: payload.targetAnswer,
+    userAnswer: payload.userAnswer,
+    model,
+  });
+}
+
 async function recordBilling(
   db: FirebaseFirestore.Firestore,
   params: {
@@ -579,27 +594,26 @@ export const explainMistake = onCall({
       // FULL doc exists — just attach ELI5 to it.
       await writeEli5MistakeExplanation(mistakeHash, gen.answer);
     } else {
-      // ELI5 requested BEFORE the full breakdown was ever cached. Without this branch the ELI5
-      // text would never persist and every repeat of the same mistake would re-pay (money leak).
-      // Materialize the ready doc once (full + eli5) so all later readers are free.
+      // ELI5 requested BEFORE the full breakdown was ever cached. Without this the ELI5 text would
+      // never persist and every repeat of the same mistake would re-pay (money leak). Materialize
+      // the ready doc once (full + eli5) so all later readers are free. The lock only de-dupes the
+      // generation; persistence must NOT be gated on winning it, or a breakdown the user already
+      // saw would read as «нет в кэше» in admin (audit 2026-06-22). On a lost lock, finalize only
+      // if there is still no ready doc (don't clobber the winner). Writes are merge:true → idempotent.
       const claimed = await claimMistakePendingLock(mistakeHash, Date.now());
-      if (claimed) {
-        let fullGen: GenerateResult;
-        try {
-          fullGen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
-        } catch (error) {
-          await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
-          throw error;
-        }
-        await writeReadyMistakeExplanation(mistakeHash, fullGen.answer, {
-          lang: payload.interfaceLang,
-          targetEn: payload.targetAnswer,
-          userAnswer: payload.userAnswer,
-          model,
-        });
-        await writeEli5MistakeExplanation(mistakeHash, gen.answer);
-        await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: fullGen.usage });
+      let fullGen: GenerateResult;
+      try {
+        fullGen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
+      } catch (error) {
+        if (claimed) await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+        throw error;
       }
+      const latest = claimed ? null : await readCachedMistakeExplanation(mistakeHash);
+      if (claimed || !(latest?.status === 'ready' && latest.full)) {
+        await persistReadyMistake(mistakeHash, fullGen.answer, payload, model);
+      }
+      await writeEli5MistakeExplanation(mistakeHash, gen.answer);
+      await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: fullGen.usage });
     }
     await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
     return { ok: true, text: gen.answer, remainingQuota: RQ, model, fromCache: false, variant: 'eli5' };
@@ -617,8 +631,8 @@ export const explainMistake = onCall({
   // Anti-abuse rate-limit (cache miss only).
   await enforceRateLimit(db, authUid, stableUid);
 
-  // Claim the generation lock (anti-duplicate). If someone else is generating, still serve
-  // the user a live answer — we just don't write the cache.
+  // Claim the generation lock (anti-duplicate). If someone else is generating, still serve the
+  // user a live answer; we persist it below too (only the duplicate generation is avoided).
   const claimed = await claimMistakePendingLock(mistakeHash, Date.now());
 
   let gen: GenerateResult;
@@ -631,13 +645,17 @@ export const explainMistake = onCall({
     throw error;
   }
 
+  // The user is shown gen.answer regardless — so it MUST end up cached, else a phrase the user
+  // already saw explained reads as «нет в кэше» in admin (audit 2026-06-22). The lock only avoids
+  // a DUPLICATE generation; it must not gate persistence. If we lost the lock, finalize only when
+  // there is still no ready doc (don't clobber the winner's text); writes are merge:true → idempotent.
   if (claimed) {
-    await writeReadyMistakeExplanation(mistakeHash, gen.answer, {
-      lang: payload.interfaceLang,
-      targetEn: payload.targetAnswer,
-      userAnswer: payload.userAnswer,
-      model,
-    });
+    await persistReadyMistake(mistakeHash, gen.answer, payload, model);
+  } else {
+    const latest = await readCachedMistakeExplanation(mistakeHash);
+    if (!(latest?.status === 'ready' && latest.full)) {
+      await persistReadyMistake(mistakeHash, gen.answer, payload, model);
+    }
   }
   await recordBilling(db, { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage });
 

@@ -20,7 +20,7 @@ function resolvePromptLang(lang) {
  * Build the batched generation prompt. The model is asked to return STRICT JSON:
  *   { "confirm": "<praise for the correct answer>",
  *     "distractors": { "<exact distractor text>": "<why it doesn't fit>", ... } }
- * Each line is ONE short sentence (max ~18 words), warm with a touch of humour, in `lang`.
+ * Each line is ONE short sentence (max ~12 words, ideally under 10), warm with a touch of humour, in `lang`.
  */
 function buildChoicePrompt(correctEn, phraseMeaning, distractors, lang) {
     const target = resolvePromptLang(lang);
@@ -29,13 +29,15 @@ function buildChoicePrompt(correctEn, phraseMeaning, distractors, lang) {
     const list = distractors.map((d) => String(d ?? '').trim()).filter(Boolean);
     return [
         `You are a warm, upbeat English teacher in the Phraseman app for beginners (often aged 50+). NEVER condescend, NEVER use grammar jargon — plain, kind, everyday words, with a light touch of friendly humour and encouragement.`,
+        `Address the learner informally, as "ты" — use the informal second person of ${target.name} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form).`,
+        `NEVER guess WHY a learner might pick a wrong option ("you translated literally", "you didn't think about the context"). You don't know their reason — they may simply mis-tap. Say only what each word means and why it doesn't fit here.`,
         `A learner is doing a multiple-choice exercise. They must pick the English phrase that fits this meaning: "${meaning}".`,
         `The CORRECT option is: "${correct}".`,
-        `The WRONG options (distractors) are:`,
+        `The OTHER options (these simply do not fit this meaning) are:`,
         ...list.map((d) => `- "${d}"`),
         ``,
-        `Produce, for EACH wrong option, ONE short friendly sentence explaining WHY it does not fit here (what it actually means or why it's wrong in this spot) — max ~18 words, warm, a little playful, never mean. Quote any English you mention in double quotes.`,
-        `Also produce ONE short cheerful confirmation for when the learner picks the correct option — celebrate briefly and say in one breath why "${correct}" is the natural choice.`,
+        `Produce, for EACH other option, ONE short friendly sentence saying what it means and why it does not fit here — max ~12 words, ideally under 10, one simple clause, warm, a little playful, never mean. NEVER call the learner's pick "wrong"/"incorrect"/«ошибка» — just explain the difference. If you are not certain what an option means, say only that it does not fit this meaning — do NOT invent a definition. Quote any English you mention in double quotes.`,
+        `Also produce ONE short cheerful confirmation for when the learner picks the correct option — start with a warm marker (the ${target.name} equivalent of "Верно!"/"Точно!"), say in one short sentence why "${correct}" is the natural choice, and end with a tiny forward nudge (the ${target.name} for "идём дальше").`,
         `${target.writeIn}`,
         ``,
         `Output STRICT JSON and NOTHING else, exactly this shape:`,

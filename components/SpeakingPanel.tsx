@@ -373,34 +373,54 @@ export function SpeakingPanel({
           ru: 'Нажми на микрофон и произнеси фразу',
           uk: 'Натисни на мікрофон і вимов фразу',
           es: 'Toca el micrófono y di la frase',
+          'pt-BR': 'Toque no microfone e diga a frase',
+          vi: 'Nhấn vào micrô và nói cụm từ',
+          id: 'Ketuk mikrofon dan ucapkan frasa',
+          tr: 'Mikrofona dokun ve ifadeyi söyle',
+          pl: 'Dotknij mikrofonu i wypowiedz frazę',
         });
       case 'requesting':
-        return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…' });
+        return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
       case 'listening':
-        return L(lang, { ru: 'Слушаю… говори', uk: 'Слухаю… говори', es: 'Escuchando… habla' });
+        return L(lang, { ru: 'Слушаю… говори', uk: 'Слухаю… говори', es: 'Escuchando… habla', 'pt-BR': 'Escutando… fale', vi: 'Đang nghe… hãy nói', id: 'Mendengarkan… bicara', tr: 'Dinliyorum… konuş', pl: 'Słucham… mów' });
       case 'scoring':
-        return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…' });
+        return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
-        return L(lang, { ru: 'Отлично! Чисто сказано', uk: 'Чудово! Чітко сказано', es: '¡Genial! Bien dicho' });
+        return L(lang, { ru: 'Отлично! Чисто сказано', uk: 'Чудово! Чітко сказано', es: '¡Genial! Bien dicho', 'pt-BR': 'Ótimo! Bem pronunciado', vi: 'Tuyệt! Nói rất rõ', id: 'Bagus! Diucapkan dengan jelas', tr: 'Harika! Temiz söyledin', pl: 'Świetnie! Powiedziane czysto' });
       case 'failed':
-        return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez' });
+        return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
       case 'no_speech':
         return L(lang, {
           ru: 'Не расслышал. Скажи чуть громче',
           uk: 'Не розчув. Скажи трохи гучніше',
           es: 'No te oí. Habla un poco más alto',
+          'pt-BR': 'Não ouvi bem. Fale um pouco mais alto',
+          vi: 'Không nghe rõ. Hãy nói to hơn một chút',
+          id: 'Tidak terdengar. Ucapkan sedikit lebih keras',
+          tr: 'Duyamadım. Biraz daha yüksek sesle söyle',
+          pl: 'Nie dosłyszałem. Powiedz trochę głośniej',
         });
       case 'denied':
         return L(lang, {
           ru: 'Нужен доступ к микрофону',
           uk: 'Потрібен доступ до мікрофона',
           es: 'Se necesita el micrófono',
+          'pt-BR': 'É preciso acesso ao microfone',
+          vi: 'Cần quyền truy cập micrô',
+          id: 'Perlu akses mikrofon',
+          tr: 'Mikrofon izni gerekiyor',
+          pl: 'Potrzebny jest dostęp do mikrofonu',
         });
       case 'unavailable':
         return L(lang, {
           ru: 'Это устройство не умеет распознавать речь. Остальные упражнения доступны',
           uk: 'Цей пристрій не вміє розпізнавати мовлення. Інші вправи доступні',
           es: 'Este dispositivo no reconoce voz. Los demás ejercicios están disponibles',
+          'pt-BR': 'Este dispositivo não reconhece voz. Os outros exercícios estão disponíveis',
+          vi: 'Thiết bị này không nhận dạng giọng nói. Các bài tập khác vẫn dùng được',
+          id: 'Perangkat ini tidak bisa mengenali suara. Latihan lain tetap tersedia',
+          tr: 'Bu cihaz konuşmayı tanıyamıyor. Diğer alıştırmalar kullanılabilir',
+          pl: 'To urządzenie nie rozpoznaje mowy. Pozostałe ćwiczenia są dostępne',
         });
       default:
         return '';
@@ -419,13 +439,13 @@ export function SpeakingPanel({
           {/* Header */}
           <View style={styles.headerRow}>
             <Text style={[styles.title, { color: theme.textPrimary }]}>
-              {L(lang, { ru: 'Скажи вслух', uk: 'Скажи вголос', es: 'Dilo en voz alta' })}
+              {L(lang, { ru: 'Скажи вслух', uk: 'Скажи вголос', es: 'Dilo en voz alta', 'pt-BR': 'Diga em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Powiedz na głos' })}
             </Text>
             <Pressable
               onPress={handleClose}
               hitSlop={12}
               accessibilityRole="button"
-              accessibilityLabel={L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
+              accessibilityLabel={L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             >
               <Ionicons name="close" size={24} color={theme.textMuted} />
             </Pressable>
@@ -470,6 +490,11 @@ export function SpeakingPanel({
                   ru: `Результат ${score} процентов из ${passThreshold} нужных, ${status === 'passed' ? 'засчитано' : 'не засчитано'}`,
                   uk: `Результат ${score} відсотків із ${passThreshold} потрібних, ${status === 'passed' ? 'зараховано' : 'не зараховано'}`,
                   es: `Resultado ${score} por ciento de ${passThreshold} necesarios, ${status === 'passed' ? 'aprobado' : 'no aprobado'}`,
+                  'pt-BR': `Resultado ${score} por cento de ${passThreshold} necessários, ${status === 'passed' ? 'aprovado' : 'não aprovado'}`,
+                  vi: `Kết quả ${score} phần trăm trên ${passThreshold} cần thiết, ${status === 'passed' ? 'đã đạt' : 'chưa đạt'}`,
+                  id: `Hasil ${score} persen dari ${passThreshold} yang diperlukan, ${status === 'passed' ? 'lulus' : 'belum lulus'}`,
+                  tr: `Sonuç gerekli ${passThreshold} üzerinden yüzde ${score}, ${status === 'passed' ? 'geçti' : 'geçmedi'}`,
+                  pl: `Wynik ${score} procent z wymaganych ${passThreshold}, ${status === 'passed' ? 'zaliczone' : 'niezaliczone'}`,
                 })}
               >
                 <SpeakingScoreRing
@@ -485,6 +510,11 @@ export function SpeakingPanel({
                     ru: `нужно ${passThreshold}%`,
                     uk: `потрібно ${passThreshold}%`,
                     es: `se necesita ${passThreshold}%`,
+                    'pt-BR': `precisa de ${passThreshold}%`,
+                    vi: `cần ${passThreshold}%`,
+                    id: `butuh ${passThreshold}%`,
+                    tr: `%${passThreshold} gerekli`,
+                    pl: `potrzeba ${passThreshold}%`,
                   })}
                 </Text>
               </View>
@@ -525,8 +555,8 @@ export function SpeakingPanel({
               accessibilityRole="button"
               accessibilityLabel={
                 listening
-                  ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener' })
-                  : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar' })
+                  ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener', 'pt-BR': 'Parar gravação', vi: 'Dừng ghi âm', id: 'Hentikan rekaman', tr: 'Kaydı durdur', pl: 'Zatrzymaj nagrywanie' })
+                  : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar', 'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai bicara', tr: 'Konuşmaya başla', pl: 'Zacznij mówić' })
               }
               accessibilityState={{ disabled: micDisabled, busy: status === 'requesting' || status === 'scoring' }}
               style={[
@@ -557,11 +587,11 @@ export function SpeakingPanel({
                 handleClose();
               }}
               accessibilityRole="button"
-              accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+              accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               style={[styles.actionBtn, { backgroundColor: theme.correct }]}
             >
               <Text style={styles.actionBtnText}>
-                {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+                {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               </Text>
             </Pressable>
           )}
@@ -570,7 +600,7 @@ export function SpeakingPanel({
           {(status === 'failed' || status === 'passed' || status === 'no_speech') && (
             <Pressable onPress={startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: theme.accent }]}>
-                {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo' })}
+                {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>
             </Pressable>
           )}
@@ -583,7 +613,7 @@ export function SpeakingPanel({
               style={[styles.actionBtn, { backgroundColor: theme.accent }]}
             >
               <Text style={styles.actionBtnText}>
-                {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes' })}
+                {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
               </Text>
             </Pressable>
           )}
@@ -596,7 +626,7 @@ export function SpeakingPanel({
               style={[styles.actionBtn, { backgroundColor: theme.accent }]}
             >
               <Text style={styles.actionBtnText}>
-                {L(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
+                {L(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
               </Text>
             </Pressable>
           )}

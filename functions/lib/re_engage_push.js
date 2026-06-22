@@ -183,35 +183,38 @@ const SUPPORTED_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 function normLang(lang) {
     return SUPPORTED_LANGS.includes(lang) ? lang : 'ru';
 }
+// Gain-framing (Phraseman Bible: loss-framing only for streak 7+; the at-risk trigger fires from
+// streak 3, so we keep the copy positive — the series "is waiting", grows with one session — for
+// every streak length, no «под угрозой»/«не теряй». One emoji, no extra «!».
 const STREAK_AT_RISK_COPY = {
-    ru: (s) => ({ title: `🔥 Серия ${s} дней под угрозой!`, body: 'Один урок сегодня — и цепочка цела. Не теряй прогресс!' }),
-    uk: (s) => ({ title: `🔥 Серія ${s} днів під загрозою!`, body: 'Один урок сьогодні — і ланцюжок цілий. Не втрачай прогрес!' }),
-    es: (s) => ({ title: `🔥 ¡Tu racha de ${s} días está en peligro!`, body: 'Una lección hoy y la mantienes viva. ¡No pierdas tu progreso!' }),
-    'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias está em risco!`, body: 'Uma lição hoje e a corrente continua. Não perca seu progresso!' }),
-    vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày sắp mất!`, body: 'Một bài học hôm nay là giữ được chuỗi. Đừng để mất tiến độ!' }),
-    id: (s) => ({ title: `🔥 Streak ${s} hari dalam bahaya!`, body: 'Satu pelajaran hari ini menjaga streak. Jangan hilangkan progresmu!' }),
-    tr: (s) => ({ title: `🔥 ${s} günlük serin tehlikede!`, body: 'Bugün bir ders ve seri devam eder. İlerlemeni kaybetme!' }),
-    pl: (s) => ({ title: `🔥 Twoja seria ${s} dni jest zagrożona!`, body: 'Jedna lekcja dziś i seria trwa. Nie trać postępu!' }),
+    ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Одна сессия сегодня — и серия растёт.' }),
+    uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Одна сесія сьогодні — і серія росте.' }),
+    es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Una sesión hoy y tu racha crece.' }),
+    'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Uma sessão hoje e sua sequência cresce.' }),
+    vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Một buổi hôm nay là chuỗi dài thêm.' }),
+    id: (s) => ({ title: `🔥 Seri ${s} hari menantimu`, body: 'Satu sesi hari ini, serimu bertambah.' }),
+    tr: (s) => ({ title: `🔥 ${s} günlük serin seni bekliyor`, body: 'Bugün bir oturum, serin uzar.' }),
+    pl: (s) => ({ title: `🔥 Twoja seria ${s} dni czeka`, body: 'Jedna sesja dziś i seria rośnie.' }),
 };
 const INACTIVE_RETURN_COPY = {
-    ru: { title: `👋 Давно тебя не было!`, body: `Пять минут практики вернут тебя в форму. Продолжим?` },
-    uk: { title: `👋 Давно тебе не було!`, body: `П'ять хвилин практики повернуть тебе у форму. Продовжимо?` },
-    es: { title: `👋 ¡Cuánto tiempo!`, body: `Cinco minutos de práctica y vuelves a tu ritmo. ¿Seguimos?` },
-    'pt-BR': { title: `👋 Quanto tempo!`, body: `Cinco minutos de prática e você volta ao ritmo. Vamos?` },
-    vi: { title: `👋 Lâu rồi không gặp!`, body: `Năm phút luyện tập là bạn trở lại phong độ. Tiếp tục nhé?` },
-    id: { title: `👋 Sudah lama tidak bertemu!`, body: `Lima menit latihan dan kamu kembali ke ritme. Lanjut?` },
-    tr: { title: `👋 Seni özledik!`, body: `Beş dakikalık pratikle eski formuna dönersin. Devam edelim mi?` },
-    pl: { title: `👋 Dawno cię nie było!`, body: `Pięć minut praktyki i wracasz do formy. Kontynuujemy?` },
+    ru: { title: `👋 Давно тебя не было`, body: `Пять минут практики — и ты снова в ритме. Продолжим?` },
+    uk: { title: `👋 Давно тебе не було`, body: `П'ять хвилин практики — і ти знову в ритмі. Продовжимо?` },
+    es: { title: `👋 Cuánto tiempo`, body: `Cinco minutos de práctica y vuelves a tu ritmo. ¿Seguimos?` },
+    'pt-BR': { title: `👋 Quanto tempo`, body: `Cinco minutos de prática e você volta ao ritmo. Vamos?` },
+    vi: { title: `👋 Lâu rồi không gặp`, body: `Năm phút luyện tập là bạn trở lại nhịp. Tiếp tục nhé?` },
+    id: { title: `👋 Sudah lama tidak bertemu`, body: `Lima menit latihan dan kamu kembali ke ritme. Lanjut?` },
+    tr: { title: `👋 Seni özledik`, body: `Beş dakikalık pratikle eski ritmine dönersin. Devam edelim mi?` },
+    pl: { title: `👋 Dawno cię nie było`, body: `Pięć minut praktyki i wracasz do rytmu. Kontynuujemy?` },
 };
 const INACTIVE_LONG_COPY = {
-    ru: { title: `💡 Всё ещё помним тебя!`, body: `Давай с чистого листа — пара фраз, и слова снова начнут оседать.` },
-    uk: { title: `💡 Ми всі ще пам'ятаємо тебе!`, body: `Давай з чистого аркуша — пара фраз, і слова знову почнуть осідати.` },
-    es: { title: `💡 ¡Aún te recordamos!`, body: `Empecemos de cero — un par de frases y las palabras vuelven a fluir.` },
-    'pt-BR': { title: `💡 Ainda lembramos de você!`, body: `Vamos recomeçar — algumas frases e as palavras voltam a fazer sentido.` },
-    vi: { title: `💡 Chúng tôi vẫn nhớ bạn!`, body: `Bắt đầu lại thôi — vài câu là từ ngữ lại quen tay ngay.` },
-    id: { title: `💡 Kami masih ingat kamu!`, body: `Mulai lagi dari awal — beberapa frasa dan kata-kata langsung terasa familiar.` },
-    tr: { title: `💡 Seni hâlâ hatırlıyoruz!`, body: `Sıfırdan başlayalım — birkaç cümle ve kelimeler tekrar yerli yerine oturur.` },
-    pl: { title: `💡 Wciąż o Tobie pamiętamy!`, body: `Zacznijmy od nowa — kilka zdań i słowa znów wejdą w pamięć.` },
+    ru: { title: `💡 Мы всё ещё помним тебя`, body: `Начнём с малого — пара фраз, и слова снова приходят сами.` },
+    uk: { title: `💡 Ми все ще пам'ятаємо тебе`, body: `Почнімо з малого — пара фраз, і слова знову приходять самі.` },
+    es: { title: `💡 Aún te recordamos`, body: `Empecemos con poco — un par de frases y las palabras vuelven solas.` },
+    'pt-BR': { title: `💡 Ainda lembramos de você`, body: `Vamos com calma — algumas frases e as palavras voltam sozinhas.` },
+    vi: { title: `💡 Chúng tôi vẫn nhớ bạn`, body: `Bắt đầu nhẹ nhàng — vài câu là từ ngữ tự quay lại.` },
+    id: { title: `💡 Kami masih ingat kamu`, body: `Mulai dari kecil — beberapa frasa dan kata-kata kembali sendiri.` },
+    tr: { title: `💡 Seni hâlâ hatırlıyoruz`, body: `Küçük başlayalım — birkaç cümle ve kelimeler kendiliğinden döner.` },
+    pl: { title: `💡 Wciąż o tobie pamiętamy`, body: `Zacznijmy spokojnie — kilka zdań i słowa wracają same.` },
 };
 /** Локализованное сообщение для кандидата (чистая функция). */
 function buildExpoPushMessage(c) {

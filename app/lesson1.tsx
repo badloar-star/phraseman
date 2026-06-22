@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   ActivityIndicator,
@@ -71,6 +71,7 @@ import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer,
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
+import type { LessonPhrase } from './lesson_data_types';
 import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
 import { isFlexiblePlanNameAnswer, shouldSkipPlanGrammarAnalytics } from './personal_plan_mistake_context';
@@ -133,6 +134,27 @@ const GRAMMAR_HINTS = [
       'Some y any salen aquí antes de la lección 21, donde las explicamos a fondo. Por ahora empléalas tal como ves en la frase.',
   },
 ];
+
+function isPlannedLessonSourceLang(lang: Lang): lang is 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl' {
+  return lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl';
+}
+
+function lessonPhraseMeaningForLang(
+  phrase: Pick<LessonPhrase, 'russian' | 'ukrainian' | 'spanish' | 'english' | 'sourceLocales'>,
+  lang: Lang,
+  studyTarget: StudyTargetLang,
+): string {
+  if (isPlannedLessonSourceLang(lang)) {
+    return phrase.sourceLocales?.[lang]?.trim() || phrase.russian || phrase.ukrainian || phrase.spanish || '';
+  }
+  if (lang === 'uk') return phrase.ukrainian || phrase.russian || '';
+  if (spanishStudyActive(studyTarget)) {
+    if (lang === 'es') return phrase.spanish ?? phrase.russian ?? '';
+    return phrase.russian ?? '';
+  }
+  if (lang === 'es') return phrase.russian || phrase.ukrainian || phrase.english || '';
+  return phrase.russian ?? '';
+}
 
 // Strip special article/marker symbols from display text.
 // Bare standalone '-' (zero-article marker) → '' (empty, skip).
@@ -669,7 +691,7 @@ const LessonContent = React.memo(function LessonContent({
   const onExplainResolved = useCallback(
     (info: { fromCache: boolean; status: string; error: boolean }) => {
       if (info.error || info.fromCache) return;
-      if (info.status !== 'ok' && info.status !== 'rejected') return; // exhausted/pending не списываем
+      if (info.status !== 'ok') return; // rejected/exhausted/pending do not spend a credit
       onConsumeExplainCredit();
     },
     [onConsumeExplainCredit],
@@ -852,13 +874,7 @@ const LessonContent = React.memo(function LessonContent({
     : '';
   const sourcePromptLine = useMemo(() => {
     if (!phrase) return '';
-    if (lang === 'uk') return phrase.ukrainian || phrase.russian || '';
-    if (spanishStudyActive(studyTarget)) {
-      if (lang === 'es') return phrase.spanish ?? phrase.russian ?? '';
-      return phrase.russian ?? '';
-    }
-    if (lang === 'es') return phrase.russian || phrase.ukrainian || phrase.english || '';
-    return phrase.russian ?? '';
+    return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
   }, [phrase, lang, studyTarget]);
   const aiMistakeAnswerLine = reportUserAnswer || acceptedUserAnswerLine;
   const aiMistakeTargetLine = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
@@ -1039,13 +1055,7 @@ const LessonContent = React.memo(function LessonContent({
             maxFontSizeMultiplier={1.2}
           >{(() => {
             if (!phrase) return '';
-            if (lang === 'uk') return (phrase.ukrainian || phrase.russian);
-            if (spanishStudyActive(studyTarget)) {
-              if (lang === 'es') return (phrase.spanish ?? phrase.russian);
-              return phrase.russian;
-            }
-            if (lang === 'es') return (phrase.russian || phrase.ukrainian || phrase.english);
-            return phrase.russian;
+            return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
           })()}</Text>
 
           <View style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
@@ -1142,6 +1152,8 @@ const LessonContent = React.memo(function LessonContent({
                   en={resultCorrectLine}
                   ru={phrase.russian}
                   uk={phrase.ukrainian || phrase.russian}
+                  es={spanishSurfacesEnabled(lang, studyTarget) ? phrase.spanish : undefined}
+                  sourceLocales={phrase.sourceLocales}
                   source="lesson" sourceId={String(lessonId)}
                 />
               </View>
@@ -1606,7 +1618,7 @@ const LessonContent = React.memo(function LessonContent({
             onClose={() => setExplainOpen(false)}
             onResolved={onExplainResolved}
             phraseEn={aiMistakeTargetLine || ((status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang))}
-            phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
+            phraseMeaning={lessonPhraseMeaningForLang(phrase, lang, studyTarget)}
             lang={lang}
           />
         )}
@@ -2051,7 +2063,7 @@ export default function LessonScreen() {
     }
   }, [currentEnergy]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setFailedTapCount(0);
     // Перезагружаем доступные кнопки при смене фразы/ячейки
     // BUGFIX: используем overridePhraseCell если есть (replay), иначе cellIndex

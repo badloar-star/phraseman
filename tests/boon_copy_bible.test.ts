@@ -16,6 +16,11 @@ describe('boon_copy — Библия Phraseman', () => {
         expect(c.title.trim().length).toBeGreaterThan(0);
         expect(c.subtitle.trim().length).toBeGreaterThan(0);
         expect(c.emoji.trim().length).toBeGreaterThan(0);
+        // Развёрнутое описание для модалки: минимум 1 непустой абзац на каждом языке.
+        expect(c.detail.length).toBeGreaterThan(0);
+        for (const paragraph of c.detail) {
+          expect(paragraph.trim().length).toBeGreaterThan(0);
+        }
       }
     }
   });
@@ -28,8 +33,10 @@ describe('boon_copy — Библия Phraseman', () => {
       /\bподписк/i, /\bпрощени/i, /\bгрех/i, /\bне упусти/i, /\bпотеряеш/i, /\bскучали/i,
     ];
     for (const c of allCopies('ru')) {
+      // Проверяем и короткие тексты, и развёрнутое описание модалки.
+      const fullText = `${c.title} ${c.subtitle} ${c.detail.join(' ')}`;
       for (const pat of forbidden) {
-        expect(`${c.title} ${c.subtitle}`).not.toMatch(pat);
+        expect(fullText).not.toMatch(pat);
       }
     }
   });

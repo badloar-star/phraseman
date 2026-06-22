@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { getStreakFreezeCostShards } from '../remote_flags';
@@ -23,7 +23,6 @@ import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
-import TodaysBoonStrip from '../../components/TodaysBoonStrip';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
@@ -60,6 +59,7 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import WelcomeHost from '../onboarding_welcome/WelcomeHost';
 import { activatePendingPersonalPlanAfterPremium, clearPendingPersonalPlanActivation, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -372,6 +372,8 @@ export default function HomeScreen() {
     const { studyTarget } = useStudyTarget();
     const insets = useSafeAreaInsets();
     const topFadeScroll = useTopFadeScroll();
+    // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
+    const homeScrollRef = useRef<ScrollView | null>(null);
     const { goToTab, activeIdx, focusTick } = useTabNav();
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
@@ -1575,6 +1577,13 @@ export default function HomeScreen() {
         if (marker === 'revive' || marker === 'repair' || weekDone[index]) return weekDotTheme.completeBorder;
         return fallback;
     };
+    // Подсветка текущего дня в полосе: явное кольцо (толще рамка) у незавершённого
+    // «сегодня» + акцентная подпись. Делает текущий день заметным во всех вариантах.
+    const isToday = (index: number) => index === todayIdx;
+    const weekDayLabelColor = (index: number, activeColor: string, mutedColor: string) =>
+        isWeekDayMarked(index) || isToday(index) ? activeColor : mutedColor;
+    const todayRingWidth = (index: number, marker: StreakWeekDayMarkerKind | null) =>
+        isToday(index) && marker == null && !weekDone[index] ? 2 : null;
     const renderWeekMarkerContent = (
         marker: StreakWeekDayMarkerKind | null,
         size: number,
@@ -1961,12 +1970,12 @@ export default function HomeScreen() {
                     justifyContent: 'center',
                     overflow: 'hidden',
                     backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                    borderWidth: marker === 'freeze' ? 1 : marked ? 0 : 1,
+                    borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),
                     borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                 }}>
                       {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={weekDotTheme.checkColor}/>)}
                     </View>
-                    <Text style={{ color: marked || i === todayIdx ? homeThemePanelText : homeThemePanelMuted, fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
+                    <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
                       {d}
                     </Text>
                   </View>);
@@ -1983,10 +1992,8 @@ export default function HomeScreen() {
                 }}>
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
-              {/* [WEEKLY BOONS] Плашка «бонус сегодня» под полосой дней недели. */}
-              <TodaysBoonStrip />
             </Animated.View>);
-        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
+        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
           {/* ХЕДЕР */}
           <Animated.View style={sectionStyle(0)}>
@@ -2202,7 +2209,7 @@ export default function HomeScreen() {
                         justifyContent: 'center',
                         overflow: 'hidden',
                         backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, weekDotTheme.freezeBg) : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                        borderWidth: marker === 'freeze' ? 1 : marked && !isGoldTheme ? 0 : 1,
+                        borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked && !isGoldTheme ? 0 : 1),
                         borderColor: isGoldTheme
                             ? weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder)
                             : weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
@@ -2213,7 +2220,7 @@ export default function HomeScreen() {
                             </>)}
                           {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={weekDotTheme.checkColor}/>)}
                         </View>
-                        <Text style={{ color: marked || i === todayIdx ? t.textPrimary : t.textMuted, fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
+                        <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
                       </View>);
                     })}
                   </View>
@@ -2228,8 +2235,6 @@ export default function HomeScreen() {
                     }}>
                       {s.home.statsPulseHint}
                     </Animated.Text>)}
-                  {/* [WEEKLY BOONS] Плашка «бонус сегодня». */}
-                  <TodaysBoonStrip />
                 </Animated.View>)) : (<>
               {/* Верхняя строка: Уровень + Цепочка */}
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
@@ -2332,7 +2337,7 @@ export default function HomeScreen() {
                     }}>
                       {renderWeekMarkerContent(marker, 22, 14, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={weekDotTheme.checkColor}/>)}
                     </View>
-                    <Text style={{ color: marked ? t.textPrimary : t.textMuted, fontSize: 12, fontWeight: '600' }}>{d}</Text>
+                    <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: 12, fontWeight: i === todayIdx ? '800' : '600' }}>{d}</Text>
                   </View>);
                 })}
               </View>
@@ -2347,8 +2352,6 @@ export default function HomeScreen() {
                     }}>
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
-              {/* [WEEKLY BOONS] Плашка «бонус сегодня». */}
-              <TodaysBoonStrip />
               </>)}
             </LinearGradient>
           </TouchableOpacity>
@@ -3696,5 +3699,7 @@ export default function HomeScreen() {
       {/* Компас: брифинг дня при входе (заменяет модалку заданий дня). Сам null-safe —
           выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
       <CompassBriefingHost onStartDay={openPersonalPlan} />
+      {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
+      <WelcomeHost />
     </View>);
 }

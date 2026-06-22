@@ -1,6 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const referral_1 = require("./referral");
+describe('prunePeriodCounter — анти-рост счётчиков в progress (M1)', () => {
+    it('оставляет N самых свежих периодов (дни)', () => {
+        const map = { '2026-06-01': 1, '2026-06-02': 2, '2026-06-03': 3, '2026-06-04': 4 };
+        const out = (0, referral_1.prunePeriodCounter)(map, 2);
+        expect(Object.keys(out).sort()).toEqual(['2026-06-03', '2026-06-04']);
+    });
+    it('оставляет N самых свежих месяцев (YYYY-MM сортируется хронологически)', () => {
+        const map = { '2026-01': 5, '2026-02': 3, '2026-03': 7, '2026-04': 1 };
+        const out = (0, referral_1.prunePeriodCounter)(map, 3);
+        expect(Object.keys(out).sort()).toEqual(['2026-02', '2026-03', '2026-04']);
+        expect(out['2026-01']).toBeUndefined();
+    });
+    it('меньше периодов чем keep → возвращает всё', () => {
+        const map = { '2026-06': 2 };
+        expect((0, referral_1.prunePeriodCounter)(map, 3)).toEqual({ '2026-06': 2 });
+    });
+    it('пустая карта → пустая карта', () => {
+        expect((0, referral_1.prunePeriodCounter)({}, 3)).toEqual({});
+    });
+});
 describe('referralClaimSlotsLeft — анти-фарм: сколько наград можно выдать (день+месяц кап)', () => {
     // Защита от фарминга свежими аккаунтами: даже при бесконечных «новых» рефералах
     // пригласивший выбирает не больше дневного лимита в день и месячного — в месяц.
@@ -26,6 +46,37 @@ describe('referralClaimSlotsLeft — анти-фарм: сколько нагр�
     });
     it('дневной кап строго меньше месячного (иначе бессмысленно)', () => {
         expect(referral_1.MAX_REFERRER_CLAIMS_PER_DAY).toBeLessThan(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH);
+    });
+    it('принимает капы из «Пульта» параметрами (override дефолтов)', () => {
+        // день=1, месяц=10 → минимум остатка = 1
+        expect((0, referral_1.referralClaimSlotsLeft)(0, 0, 10, 1)).toBe(1);
+        // месяц исчерпан (5/5) при свободном дне
+        expect((0, referral_1.referralClaimSlotsLeft)(5, 0, 5, 3)).toBe(0);
+    });
+});
+describe('referralConfigFromData — тюнинг рефералов из remote_config/app.numbers', () => {
+    it('пусто/undefined → дефолты (7 дней, 3/день, 30/мес)', () => {
+        expect((0, referral_1.referralConfigFromData)(undefined)).toEqual(referral_1.REFERRAL_DEFAULTS);
+        expect((0, referral_1.referralConfigFromData)({})).toEqual(referral_1.REFERRAL_DEFAULTS);
+        expect(referral_1.REFERRAL_DEFAULTS.rewardDays).toBe(referral_1.REFERRAL_REWARD_DAYS);
+    });
+    it('читает заданные значения', () => {
+        const cfg = (0, referral_1.referralConfigFromData)({
+            referral_reward_days: 14,
+            referral_max_claims_month: 50,
+            referral_max_claims_day: 5,
+        });
+        expect(cfg).toEqual({ rewardDays: 14, maxClaimsPerMonth: 50, maxClaimsPerDay: 5 });
+    });
+    it('мусор/нечисло → дефолт по полю (не роняет)', () => {
+        const cfg = (0, referral_1.referralConfigFromData)({ referral_reward_days: 'seven', referral_max_claims_day: NaN });
+        expect(cfg.rewardDays).toBe(referral_1.REFERRAL_DEFAULTS.rewardDays);
+        expect(cfg.maxClaimsPerDay).toBe(referral_1.REFERRAL_DEFAULTS.maxClaimsPerDay);
+    });
+    it('отрицательные клампятся: rewardDays к минимуму 1, капы к 0 (не уходят в минус)', () => {
+        const cfg = (0, referral_1.referralConfigFromData)({ referral_reward_days: -10, referral_max_claims_day: -3 });
+        expect(cfg.rewardDays).toBe(1); // min=1: 0 дней = бессмысленная награда
+        expect(cfg.maxClaimsPerDay).toBe(0);
     });
 });
 describe('isSnapshotMigrationWrite — миграция снапшота НЕ должна квалифицировать реферал', () => {

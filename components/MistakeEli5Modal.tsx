@@ -17,11 +17,11 @@ import {
   StyleSheet,
   Animated,
   Dimensions,
-  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
+import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -149,7 +149,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
             <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
           </View>
           <View style={styles.header}>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={2}>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
               {title}
             </Text>
             <Pressable
@@ -170,13 +170,13 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
           >
             {showSkeleton ? (
               <View style={styles.skeleton}>
-                <ActivityIndicator color={t.accent} />
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
                   {loadingLine}
                 </Text>
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '92%' }]} />
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '78%' }]} />
-                <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '85%' }]} />
+                <SkeletonBlock width="92%" height={14} borderRadius={7} />
+                <SkeletonBlock width="78%" height={14} borderRadius={7} />
+                <SkeletonBlock width="85%" height={14} borderRadius={7} />
+                <SkeletonBlock width="64%" height={14} borderRadius={7} />
               </View>
             ) : state === 'error' ? (
               <View style={styles.skeleton}>
@@ -293,10 +293,6 @@ const styles = StyleSheet.create({
   },
   skeletonText: {
     fontWeight: '700',
-  },
-  skeletonBar: {
-    height: 14,
-    borderRadius: 7,
   },
   retryBtn: {
     flexDirection: 'row',

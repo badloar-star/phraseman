@@ -20,6 +20,25 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Public, read-only personal-plan listening audio (one mp3 per plan/day/phrase).
+    // Same model as phrase-audio: served to the app over HTTPS and disk-cached so
+    // the ~126 MB of clips no longer ship inside the native binary. Uploaded only by
+    // scripts/upload_plan_audio_to_storage.mjs via the Admin SDK (bypasses rules).
+    match /plan-audio/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Public, read-only collectible card art (one webp per cardId). Same model as
+    // the audio buckets: streamed to the app over HTTPS and disk-cached so the
+    // ~71 MB of card images no longer ship inside the native binary (compressed to
+    // ~13 MB and served on demand; inline SVG is the offline fallback). Uploaded
+    // only by scripts/upload_collectible_images_to_storage.mjs (bypasses rules).
+    match /collectible-images/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
     // Default deny for any other path.
     match /{allPaths=**} {
       allow read, write: if false;

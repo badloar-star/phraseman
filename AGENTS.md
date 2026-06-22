@@ -24,6 +24,14 @@
 - Never keep huge command output in the active response context. Summarize the important lines and write bulky logs only to ignored temp/report directories.
 - When the user reports slowness, first check active processes, Codex/VS Code log database size, hook configuration, and temp/plugin caches before touching app functionality.
 
+## Codex Bulk Image Safety
+
+- Do not run large DALL-E/image-generation batches through Codex's in-thread image generation because every base64 image result is stored in `.codex/sessions/*.jsonl` and can crash Codex with `RangeError: Invalid string length`.
+- For collection cards, thumbnails, captions, or other bulk visual generation, use a file-based script/API pipeline that writes images, prompts, captions, manifests, and checkpoints to ignored folders such as `.codex-tmp/`, `output/`, `qa-artifacts/`, or the intended asset directory.
+- Wrap long-running generators with `node scripts/codex-safe-run.mjs -- <command>` so stdout/stderr go to log files and Codex receives only short progress summaries.
+- When extracting images already generated inside Codex, use `node scripts/export-codex-dalli-results.mjs --rollout <path> --summary`; the full record report must stay in `.codex-tmp/collectibles-dalli/reports/`, not in stdout.
+- Before continuing a session that already generated many images, export the existing `image_generation_end` results, confirm the exported files/checkpoints, then continue in a fresh or compacted session. Preserve the original rollout file until the export has been verified.
+
 ## Do Not Delete Functionality Without Explicit Request
 
 - Never remove, disable, hide, bypass, or replace an existing feature, screen, button, flow, state, storage key, API contract, asset mapping, test coverage, or user-visible behavior as a side effect of fixing another issue.

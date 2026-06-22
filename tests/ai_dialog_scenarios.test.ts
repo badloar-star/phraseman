@@ -109,4 +109,24 @@ describe('ai_dialog_scenarios', () => {
       expect(shortLabel).not.toBe(group.shortLabelRu);
     }
   });
+
+  it('localizes scenario menu copy into Heisenberg batch locales without Russian fallbacks', () => {
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      for (const scenario of DIALOG_SCENARIOS) {
+        const title = dialogScenarioTitle(scenario, lang);
+        const goal = dialogScenarioGoal(scenario, lang);
+        const nextStepHint = dialogScenarioNextStepHint(scenario, lang);
+
+        expect(title).not.toMatch(CYRILLIC_PATTERN);
+        expect(goal).not.toMatch(CYRILLIC_PATTERN);
+        expect(nextStepHint).not.toMatch(CYRILLIC_PATTERN);
+        expect(title).not.toBe(scenario.titleRu);
+        expect(goal).not.toBe(scenario.goalRu);
+        expect(nextStepHint).not.toBe(scenario.nextStepHintRu);
+        expect(title.length).toBeGreaterThanOrEqual(4);
+        expect(goal.length).toBeGreaterThan(12);
+        expect(nextStepHint.length).toBeGreaterThan(18);
+      }
+    }
+  });
 });

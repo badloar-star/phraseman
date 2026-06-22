@@ -23,6 +23,11 @@ describe('RevenueCat webhook premium matching', () => {
         expect(looksLikePremiumSubscription(monthly)).toBe(true);
         expect(premiumPlanFromEvent(monthly)).toBe('monthly');
     });
+    it('detects lifetime product and infers plan=lifetime', () => {
+        const lifetime = { product_id: 'phraseman_premium_lifetime_v1', type: 'NON_RENEWING_PURCHASE' };
+        expect(looksLikePremiumSubscription(lifetime)).toBe(true);
+        expect(premiumPlanFromEvent(lifetime)).toBe('lifetime');
+    });
     it('does not classify shard products or unknown products as premium', () => {
         expect(looksLikePremiumSubscription({
             type: 'NON_RENEWING_PURCHASE',

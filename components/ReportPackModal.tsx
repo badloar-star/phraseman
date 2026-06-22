@@ -290,7 +290,7 @@ function ReportPackModal({
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6 }}>
                   {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14 }} numberOfLines={2}>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14 }}>
                   {packTitle}
                 </Text>
 

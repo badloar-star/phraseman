@@ -63,18 +63,35 @@ function parseProgressMs(value) {
     }
     return cleanMs(value);
 }
-/** Store-премиум (RevenueCat monthly/yearly/annual). expiry<=0 = бессрочный активный. */
+/**
+ * Запас после premium_rc_expiry_ms, прежде чем сервер перестаёт давать доступ.
+ * ЗЕРКАЛО premium_expiry_cron.RC_GRACE_MS (72ч): покрывает billing retry и
+ * опоздавший RENEWAL-вебхук. Держать в синхроне с кроном, чтобы окно «после
+ * rc-срока, но до следующего sweep» трактовалось одинаково сервером и кроном.
+ */
+const SERVER_RC_GRACE_MS = 72 * 60 * 60 * 1000;
+/** Store-премиум (RevenueCat monthly/yearly/annual/lifetime). expiry<=0 = бессрочный активный. */
 function isStorePremiumActive(progress, now) {
     const data = progress ?? {};
     const plan = cleanPlan(data.premium_plan);
     const override = cleanStr(data.admin_premium_override).toLowerCase();
     const expiryMs = parseProgressMs(data.premium_expiry);
+    const rcExpiryMs = parseProgressMs(data.premium_rc_expiry_ms);
     if (!hasMeaningfulPlan(plan))
         return false;
     // admin_grant / override обрабатываются отдельной веткой (isAdminGrantActive).
     if (override === 'true' || plan === 'admin_grant' || !isStorePremiumPlan(plan))
         return false;
-    return expiryMs <= 0 || expiryMs > now;
+    // premium_expiry='0' = «активна, срок ведёт вебхук». Авторитет — premium_rc_expiry_ms.
+    // КРИТИЧНО (утечка дохода): без этой проверки потерянный EXPIRATION-вебхук оставляет
+    // premium_expiry='0' навсегда → сервер вечно отдаёт платный OpenAI бесплатно.
+    // rcExpiry<=0 (нет rc-срока) = бессрочный store-премиум (lifetime / ручная выдача) → активен.
+    if (expiryMs <= 0) {
+        if (rcExpiryMs > 0 && rcExpiryMs + SERVER_RC_GRACE_MS < now)
+            return false;
+        return true;
+    }
+    return expiryMs > now;
 }
 /** Админский грант премиума (admin_premium_override='true' или plan='admin_grant'). */
 function isAdminGrantActive(progress, now) {

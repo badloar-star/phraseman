@@ -202,7 +202,7 @@ function hasMeaningfulPlan(plan) {
     return plan !== '' && plan !== 'null' && plan !== 'undefined';
 }
 function isStorePremiumPlan(plan) {
-    return plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+    return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
 }
 function realPremiumStrength(progress, now) {
     const plan = cleanStr(progress.premium_plan).toLowerCase();

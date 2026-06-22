@@ -124,11 +124,11 @@ function FeatureRow({ feature, lang, lit, palette, f }: {
         <Text style={styles.rowEmoji}>{feature.emoji}</Text>
       </View>
       <View style={styles.rowText}>
-        <Text style={[styles.rowTitle, { color: palette.rowText, fontSize: f.bodyLg }]} numberOfLines={1}>
+        <Text style={[styles.rowTitle, { color: palette.rowText, fontSize: f.bodyLg }]}>
           {localeText(feature.title, lang)}
         </Text>
         {sub ? (
-          <Text style={[styles.rowSub, { color: palette.rowSub, fontSize: f.caption }]} numberOfLines={1}>
+          <Text style={[styles.rowSub, { color: palette.rowSub, fontSize: f.caption }]}>
             {sub}
           </Text>
         ) : null}

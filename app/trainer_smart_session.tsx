@@ -18,6 +18,8 @@ import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useSpeakAnswer } from '../hooks/use-speak-answer';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import { registerXP } from './xp_manager';
@@ -550,6 +552,8 @@ export default function TrainerSmartSession() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
+  const { studyTarget } = useStudyTarget();
   const mode = modeFromParam(params.mode);
   const meta = MODE_META[mode];
   const modeAccent = isCompassTheme ? compassSmartAccent(mode) : meta.accent;
@@ -662,7 +666,7 @@ export default function TrainerSmartSession() {
     hapticTap();
     setPicked(option);
     setState(correct ? 'correct' : 'wrong');
-    if (correct) { hapticSuccess(); playCorrect(); }
+    if (correct) { hapticSuccess(); playCorrect(); speakAnswer(current.item.key, studyTarget); }
     else hapticError();
 
     await markTrainerResult(current.item.key, current.item.queue, correct);

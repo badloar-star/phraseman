@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="phrase_widget_description">Phrase of the day from Phraseman</string>
+    <string name="phrase_widget_description">Сегодняшняя фраза из Phraseman</string>
+    <string name="phrase_widget_kicker">ФРАЗА ДНЯ</string>
 </resources>

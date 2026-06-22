@@ -79,8 +79,8 @@ describe('lifetime «Навсегда» — purchase plumbing', () => {
   describe('isLifetimeButtonEnabled (админ-флаг)', () => {
     beforeEach(() => __resetRemoteFlagsForTest());
 
-    it('по умолчанию выключен (sell-switch, не kill-switch)', () => {
-      expect(isLifetimeButtonEnabled()).toBe(false);
+    it('по умолчанию включён (продукт заведён в RC с 2026-06-21)', () => {
+      expect(isLifetimeButtonEnabled()).toBe(true);
     });
     it('включается из remote_config', () => {
       applyRemoteConfigSnapshot({ bools: { lifetime_button_enabled: true } });
@@ -100,7 +100,8 @@ describe('lifetime «Навсегда» — purchase plumbing', () => {
     const withLifetime = resolvePremiumPackages([pkg('LIFETIME', 'phraseman_lifetime')]);
     const withoutLifetime = resolvePremiumPackages([pkg('MONTHLY', 'phraseman_monthly')]);
 
-    it('флаг off + пакет есть → скрыта', () => {
+    it('флаг off (явно выключен в Пульте) + пакет есть → скрыта', () => {
+      applyRemoteConfigSnapshot({ bools: { lifetime_button_enabled: false } });
       expect(isLifetimeButtonEnabled() && !!withLifetime.lifetime).toBe(false);
     });
     it('флаг on + пакета нет → скрыта (продукт не заведён в RC)', () => {

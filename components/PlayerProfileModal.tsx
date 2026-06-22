@@ -9,6 +9,7 @@
  *   onClose     — called when modal should close (parent sets player to null immediately)
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'expo-router';
 import {
   Animated,
   Easing,
@@ -49,14 +50,17 @@ import { getCanonicalUserId } from '../app/user_id_policy';
 import { hapticTap } from '../hooks/use-haptics';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
-import ProfileCardUpgradeModal from './ProfileCardUpgradeModal';
+import ProfileCardMotionFx from './ProfileCardMotionFx';
+import { profileCardLevelLabel } from './profileCardLabel';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
+  fxKindForProfileCard,
   getProfileCardLevelDef,
   getProfileCardSnapshot,
+  PROFILE_CARD_LEVEL_NAME_RU,
   normalizeProfileCardMotion,
   normalizeProfileCardLevel,
   normalizeProfileCardPublicFocus,
@@ -238,6 +242,7 @@ function PlayerProfileModalBody({
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const router = useRouter();
   const isCompassTheme = false;
   const profileUpgradeAccent = '#FACC15';
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
@@ -246,7 +251,6 @@ function PlayerProfileModalBody({
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
-  const [cardUpgradeOpen, setCardUpgradeOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
   // Owner-only upgrade entry + modal. Card visuals (gradient/motion/badge) render
   // for everyone regardless of this flag; only the "upgrade my card" controls are gated.
@@ -323,17 +327,8 @@ function PlayerProfileModalBody({
   }, [isMe, player.friendUid, player.uid]);
 
   const shimmerOpacity = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] });
-  const prestigeGlowOpacity = shimmerAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: cardVisual.motion === 'none' ? [0.18, 0.18] : [0.18, 0.44],
-  });
-  const prestigeGlowScale = shimmerAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: cardVisual.motion === 'pulse' || cardVisual.motion === 'elite' ? [0.98, 1.035] : [1, 1],
-  });
-  const prestigeGlintX = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [-180, 260] });
-  const prestigeParticleY = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [8, -10] });
-  const prestigeParticleOpacity = shimmerAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.18, 0.78, 0.18] });
+  // Анимацию карточки рисует теперь ProfileCardMotionFx (единый движок) — старые
+  // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
   const prestigeActive = profileCardLevel > 0;
   const compassProfileSurface = isCompassTheme && !prestigeActive;
   const prestigeSurfaceStyle = prestigeActive
@@ -352,7 +347,6 @@ function PlayerProfileModalBody({
 
   useEffect(() => {
     let cancelled = false;
-    setCardUpgradeOpen(false);
     if (!isMe) {
       setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel({
         profileCardLevel: rawProfileCardLevel,
@@ -690,7 +684,7 @@ function PlayerProfileModalBody({
       id: "Kartu",
       tr: "Kart",
       pl: "Karta",
-    }), value: `CARD ${profileCardLevelRoman(profileCardLevel)}` },
+    }), value: profileCardLevelLabel(profileCardLevel as 0|1|2|3|4|5, lang === 'ru') },
   ];
 
   return (
@@ -811,20 +805,6 @@ function PlayerProfileModalBody({
               end={{ x: 1, y: 1 }}
               style={StyleSheet.absoluteFill}
             />
-            <Animated.View
-              pointerEvents="none"
-              style={{
-                position: 'absolute',
-                top: -90,
-                alignSelf: 'center',
-                width: 260,
-                height: 170,
-                borderRadius: 130,
-                backgroundColor: cardVisual.accentSoft,
-                opacity: prestigeGlowOpacity,
-                transform: [{ scale: prestigeGlowScale }],
-              }}
-            />
             {profileCardLevel >= 2 && (
               <View pointerEvents="none" style={{
                 position: 'absolute',
@@ -835,40 +815,16 @@ function PlayerProfileModalBody({
                 backgroundColor: cardVisual.accentStrong,
               }} />
             )}
-            {profileCardLevel >= 3 && cardVisual.motion !== 'none' && (
-              <Animated.View
-                pointerEvents="none"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: -140,
-                  width: 140,
-                  height: 3,
-                  borderRadius: 999,
-                  backgroundColor: cardVisual.secondary,
-                  opacity: cardVisual.motion === 'elite' ? 0.95 : 0.72,
-                  transform: [{ translateX: prestigeGlintX }],
-                }}
-              />
-            )}
-            {(cardVisual.motion === 'particles' || cardVisual.motion === 'elite') && (
-              <Animated.View pointerEvents="none" style={{ ...StyleSheet.absoluteFillObject, opacity: prestigeParticleOpacity, transform: [{ translateY: prestigeParticleY }] }}>
-                {[0, 1, 2, 3, 4, 5].map((idx) => (
-                  <View
-                    key={idx}
-                    style={{
-                      position: 'absolute',
-                      top: 26 + (idx % 2) * 22,
-                      left: `${12 + idx * 14}%`,
-                      width: idx % 3 === 0 ? 5 : 4,
-                      height: idx % 3 === 0 ? 5 : 4,
-                      borderRadius: 999,
-                      backgroundColor: idx % 2 === 0 ? cardVisual.accent : cardVisual.secondary,
-                    }}
-                  />
-                ))}
-              </Animated.View>
-            )}
+            {/* Единый движок анимаций (тот же, что в превью «Моя карточка») — чтобы
+                владелец и другие игроки видели ОДИН и тот же эффект уровня. Заменил
+                старые inline Animated glint/частицы. */}
+            <ProfileCardMotionFx
+              kind={fxKindForProfileCard(profileCardSnapshot.level, profileCardSnapshot.motion)}
+              radius={0}
+              accent={cardVisual.accent}
+              secondary={cardVisual.secondary}
+              accentSoft={cardVisual.accentSoft}
+            />
           </>
         )}
         <ScrollView
@@ -922,7 +878,7 @@ function PlayerProfileModalBody({
           }}>
             <Ionicons name="sparkles" size={13} color="#111827" />
             <Text style={{ color: '#111827', fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
-              CARD {profileCardLevelRoman(profileCardLevel)} · {cardDef.name}
+              {profileCardLevelRoman(profileCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[profileCardLevel as 0|1|2|3|4|5] : cardDef.name}
             </Text>
           </LinearGradient>
         )}
@@ -1151,7 +1107,6 @@ function PlayerProfileModalBody({
                 </Text>
                 <Text
                   style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 1 }}
-                  numberOfLines={1}
                 >
                   {profileFocusConfig.value}
                 </Text>
@@ -1180,7 +1135,6 @@ function PlayerProfileModalBody({
                   </Text>
                   <Text
                     style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', marginTop: 2 }}
-                    numberOfLines={1}
                   >
                     {fact.value}
                   </Text>
@@ -1412,7 +1366,10 @@ function PlayerProfileModalBody({
             activeOpacity={0.84}
             onPress={() => {
               hapticTap();
-              setCardUpgradeOpen(true);
+              // Прокачка теперь на отдельном полноэкранном экране (старое окно снесено).
+              // Закрываем профиль и переходим туда — экран сам перечитает актуальный уровень.
+              onClose();
+              router.push('/profile_card_upgrade' as any);
             }}
             style={{
               marginTop: 2,
@@ -1497,16 +1454,6 @@ function PlayerProfileModalBody({
       onCancel={() => setRemoveFriendConfirmOpen(false)}
       onConfirm={handleRemoveFriendConfirm}
     />
-    {showProfileCardControls ? (
-      <ProfileCardUpgradeModal
-        visible={cardUpgradeOpen}
-        level={profileCardLevel}
-        snapshot={profileCardSnapshot}
-        onClose={() => setCardUpgradeOpen(false)}
-        onUpgraded={(nextLevel) => setProfileCardSnapshot((prev) => ({ ...prev, level: nextLevel }))}
-        onChanged={setProfileCardSnapshot}
-      />
-    ) : null}
     </>
   );
 }

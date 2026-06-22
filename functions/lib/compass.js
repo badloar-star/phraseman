@@ -59,6 +59,7 @@ const explain_prompts_1 = require("./explain/explain_prompts");
 const explain_provider_1 = require("./explain/explain_provider");
 const explain_judge_1 = require("./explain/explain_judge");
 const compass_prompts_1 = require("./compass/compass_prompts");
+const ai_language_contract_1 = require("./ai_language_contract");
 const compass_cache_1 = require("./compass/compass_cache");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
@@ -93,7 +94,7 @@ exports.compassGenerate = (0, https_1.onCall)({
         ? data.topics.map((t) => asText(t, 40)).filter(Boolean).slice(0, 6)
         : [];
     const level = Math.max(0, Math.min(10, Math.floor(Number(data.level) || 0)));
-    const lang = asText(data.lang, 12) || 'ru';
+    const lang = (0, ai_language_contract_1.resolveAiOutputLang)(asText(data.lang, 12) || 'ru', 'compass');
     const db = admin.firestore();
     const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'compass');
     const authUid = request.auth.uid;
@@ -161,6 +162,8 @@ exports.compassGenerate = (0, https_1.onCall)({
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         createdAtMs: Date.now(),
     });
-    return { ok: true, comment, status: verdict.ok ? 'ok' : 'rejected', fromCache: false };
+    return verdict.ok
+        ? { ok: true, comment, status: 'ok', fromCache: false }
+        : empty('rejected', false);
 });
 //# sourceMappingURL=compass.js.map

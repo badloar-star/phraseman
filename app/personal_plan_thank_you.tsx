@@ -27,8 +27,11 @@ export default function PersonalPlanThankYouScreen() {
       <View style={[styles.safe, { paddingTop: insets.top }]}>
         <BounceView style={styles.safe}>
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-          <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
-            <Ionicons name="checkmark" size={34} color={t.correctText} />
+          {/* Галочку красим в ЯРКИЙ t.correct, а не t.correctText: correctText —
+              это тёмный текст для ЗАЛИТЫХ CTA, на полупрозрачной correctBg-плашке он
+              сливается с фоном и иконка пропадает (была «пустая» зелёная плашка). */}
+          <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.correct + '55' }]}>
+            <Ionicons name="checkmark" size={40} color={t.correct} />
           </View>
 
           <Text style={[styles.kicker, { color: t.textGhost }]}>
@@ -58,22 +61,6 @@ export default function PersonalPlanThankYouScreen() {
               pl: 'Premium jest aktywny, a plan osobisty zapisany. Połącz konto, aby nie stracić postępów po zmianie telefonu.',
             })}
           </Text>
-
-          <View style={[styles.supportBox, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
-            <Ionicons name="help-buoy-outline" size={20} color={t.textMuted} />
-            <Text style={[styles.supportText, { color: t.textMuted }]}>
-              {triLang(lang, {
-                ru: 'Если покупка не подтянется, поддержка поможет по чеку из магазина.',
-                uk: 'Якщо покупка не підтягнеться, підтримка допоможе за чеком із магазину.',
-                es: 'Si la compra no aparece, soporte puede ayudarte con el recibo de la tienda.',
-                'pt-BR': 'Se a compra não aparecer, o suporte ajuda com o recibo da loja.',
-                vi: 'Nếu giao dịch mua chưa hiện, hỗ trợ có thể giúp bằng hóa đơn từ cửa hàng.',
-                id: 'Jika pembelian belum muncul, dukungan bisa membantu lewat struk dari toko.',
-                tr: 'Satın alma görünmezse destek, mağaza fişiyle yardımcı olur.',
-                pl: 'Jeśli zakup się nie pojawi, pomoc techniczna pomoże na podstawie rachunku ze sklepu.',
-              })}
-            </Text>
-          </View>
 
           <TouchableOpacity
             testID="personal-plan-thank-you-auth"
@@ -179,22 +166,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     marginBottom: 18,
-  },
-  supportBox: {
-    width: '100%',
-    borderWidth: 1,
-    borderRadius: 14,
-    padding: 14,
-    flexDirection: 'row',
-    gap: 10,
-    alignItems: 'flex-start',
-    marginBottom: 20,
-  },
-  supportText: {
-    flex: 1,
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '700',
   },
   primary: {
     width: '100%',

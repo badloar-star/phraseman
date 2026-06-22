@@ -181,13 +181,27 @@ export default function DialogsTabContent({
           accountLevel,
         });
         Alert.alert(
-          triLang(lang, { ru: 'Пока закрыто', uk: 'Поки закрито', es: 'Bloqueado por ahora' }),
+          triLang(lang, {
+            ru: 'Пока закрыто',
+            uk: 'Поки закрито',
+            es: 'Bloqueado por ahora',
+            'pt-BR': 'Bloqueado por enquanto',
+            vi: 'Tạm thời bị khóa',
+            id: 'Masih terkunci',
+            tr: 'Şimdilik kilitli',
+            pl: 'Na razie zablokowane',
+          }),
           triLang(lang, {
             ru: `Открывается на уровне ${requiredLevel}. Проходи уроки и вызовы — откроется автоматически.`,
             uk: `Відкривається на рівні ${requiredLevel}. Проходь уроки та виклики — відкриється автоматично.`,
             es: `Se desbloquea en el nivel ${requiredLevel}. Completa lecciones y desafíos para llegar.`,
+            'pt-BR': `Desbloqueia no nível ${requiredLevel}. Complete lições e desafios — vai abrir automaticamente.`,
+            vi: `Mở ở cấp ${requiredLevel}. Hãy hoàn thành bài học và thử thách — nó sẽ tự mở.`,
+            id: `Terbuka di level ${requiredLevel}. Selesaikan pelajaran dan tantangan — nanti terbuka otomatis.`,
+            tr: `${requiredLevel}. seviyede açılır. Dersleri ve meydan okumaları tamamla — otomatik açılır.`,
+            pl: `Otwiera się na poziomie ${requiredLevel}. Przechodź lekcje i wyzwania — odblokuje się automatycznie.`,
           }),
-          [{ text: triLang(lang, { ru: 'Ок', uk: 'Ок', es: 'Ok' }) }],
+          [{ text: triLang(lang, { ru: 'Ок', uk: 'Ок', es: 'Ok', 'pt-BR': 'Ok', vi: 'Ok', id: 'Ok', tr: 'Tamam', pl: 'Ok' }) }],
         );
         return;
       }
@@ -215,6 +229,11 @@ export default function DialogsTabContent({
               ru: `Откроется на уровне ${scenario.cefr} — или сразу с Premium`,
               uk: `Відкриється на рівні ${scenario.cefr} — або одразу з Premium`,
               es: `Se abre en el nivel ${scenario.cefr} — o ya con Premium`,
+              'pt-BR': `Abre no nível ${scenario.cefr} — ou agora com Premium`,
+              vi: `Mở ở cấp ${scenario.cefr} — hoặc mở ngay với Premium`,
+              id: `Terbuka di level ${scenario.cefr} — atau langsung dengan Premium`,
+              tr: `${scenario.cefr} seviyesinde açılır — ya da Premium ile hemen`,
+              pl: `Otwiera się na poziomie ${scenario.cefr} — albo od razu z Premium`,
             }),
             onPress: () => openCourseScenario(scenario),
           };
@@ -235,11 +254,25 @@ export default function DialogsTabContent({
         return {
           scenario,
           status,
-          levelChip: triLang(lang, { ru: `ур. ${requiredLevel}`, uk: `рів. ${requiredLevel}`, es: `niv. ${requiredLevel}` }),
+          levelChip: triLang(lang, {
+            ru: `ур. ${requiredLevel}`,
+            uk: `рів. ${requiredLevel}`,
+            es: `niv. ${requiredLevel}`,
+            'pt-BR': `nív. ${requiredLevel}`,
+            vi: `cấp ${requiredLevel}`,
+            id: `lvl. ${requiredLevel}`,
+            tr: `sv. ${requiredLevel}`,
+            pl: `poz. ${requiredLevel}`,
+          }),
           lockedText: triLang(lang, {
             ru: `Откроется на уровне аккаунта ${requiredLevel}`,
             uk: `Відкриється на рівні акаунта ${requiredLevel}`,
             es: `Se abre en el nivel de cuenta ${requiredLevel}`,
+            'pt-BR': `Abre no nível de conta ${requiredLevel}`,
+            vi: `Mở ở cấp tài khoản ${requiredLevel}`,
+            id: `Terbuka di level akun ${requiredLevel}`,
+            tr: `Hesap seviyesi ${requiredLevel} olunca açılır`,
+            pl: `Otwiera się na poziomie konta ${requiredLevel}`,
           }),
           onPress: () => openChallengeScenario(scenario),
         };
@@ -275,11 +308,21 @@ export default function DialogsTabContent({
                 ru: `${dialogScenarioTitle(scenario, lang)} — закрыто`,
                 uk: `${dialogScenarioTitle(scenario, lang)} — закрито`,
                 es: `${dialogScenarioTitle(scenario, lang)} — bloqueado`,
+                'pt-BR': `${dialogScenarioTitle(scenario, lang)} — bloqueado`,
+                vi: `${dialogScenarioTitle(scenario, lang)} — bị khóa`,
+                id: `${dialogScenarioTitle(scenario, lang)} — terkunci`,
+                tr: `${dialogScenarioTitle(scenario, lang)} — kilitli`,
+                pl: `${dialogScenarioTitle(scenario, lang)} — zablokowane`,
               })
             : triLang(lang, {
                 ru: `Открыть сценарий ${dialogScenarioTitle(scenario, lang)}`,
                 uk: `Відкрити сценарій ${dialogScenarioTitle(scenario, lang)}`,
                 es: `Abrir escenario ${dialogScenarioTitle(scenario, lang)}`,
+                'pt-BR': `Abrir cenário ${dialogScenarioTitle(scenario, lang)}`,
+                vi: `Mở kịch bản ${dialogScenarioTitle(scenario, lang)}`,
+                id: `Buka skenario ${dialogScenarioTitle(scenario, lang)}`,
+                tr: `${dialogScenarioTitle(scenario, lang)} senaryosunu aç`,
+                pl: `Otwórz scenariusz ${dialogScenarioTitle(scenario, lang)}`,
               })
         }
         activeOpacity={0.84}
@@ -376,7 +419,16 @@ export default function DialogsTabContent({
                 >
                   <Ionicons name="checkmark-circle" size={12} color={accent} />
                   <Text style={{ color: accent, fontSize: f.label, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'Пройдено', uk: 'Пройдено', es: 'Hecho' })}
+                    {triLang(lang, {
+                      ru: 'Пройдено',
+                      uk: 'Пройдено',
+                      es: 'Hecho',
+                      'pt-BR': 'Concluído',
+                      vi: 'Đã xong',
+                      id: 'Selesai',
+                      tr: 'Tamamlandı',
+                      pl: 'Ukończono',
+                    })}
                   </Text>
                 </View>
               ) : (
@@ -401,7 +453,16 @@ export default function DialogsTabContent({
                     }}
                   >
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
-                      {triLang(lang, { ru: 'Новое', uk: 'Нове', es: 'Nuevo' })}
+                      {triLang(lang, {
+                        ru: 'Новое',
+                        uk: 'Нове',
+                        es: 'Nuevo',
+                        'pt-BR': 'Novo',
+                        vi: 'Mới',
+                        id: 'Baru',
+                        tr: 'Yeni',
+                        pl: 'Nowe',
+                      })}
                     </Text>
                   </View>
                 </>
@@ -425,8 +486,26 @@ export default function DialogsTabContent({
     const { scenario, status } = vm;
     const kicker =
       status === 'done'
-        ? triLang(lang, { ru: 'ПРОЙДЕНО · ПРОЙТИ ЕЩЁ РАЗ', uk: 'ПРОЙДЕНО · ЩЕ РАЗ', es: 'HECHO · OTRA VEZ' })
-        : triLang(lang, { ru: 'НА ОЧЕРЕДИ', uk: 'НА ЧЕРЗІ', es: 'SIGUIENTE' });
+        ? triLang(lang, {
+          ru: 'ПРОЙДЕНО · ПРОЙТИ ЕЩЁ РАЗ',
+          uk: 'ПРОЙДЕНО · ЩЕ РАЗ',
+          es: 'HECHO · OTRA VEZ',
+          'pt-BR': 'CONCLUÍDO · FAZER DE NOVO',
+          vi: 'ĐÃ XONG · LÀM LẠI',
+          id: 'SELESAI · ULANGI',
+          tr: 'TAMAMLANDI · TEKRAR YAP',
+          pl: 'UKOŃCZONO · ZRÓB JESZCZE RAZ',
+        })
+        : triLang(lang, {
+          ru: 'НА ОЧЕРЕДИ',
+          uk: 'НА ЧЕРЗІ',
+          es: 'SIGUIENTE',
+          'pt-BR': 'PRÓXIMO',
+          vi: 'TIẾP THEO',
+          id: 'BERIKUTNYA',
+          tr: 'SIRADA',
+          pl: 'NASTĘPNE',
+        });
     return (
       <View style={{ paddingHorizontal: 14, marginTop: 16 }}>
         <Text
@@ -438,7 +517,16 @@ export default function DialogsTabContent({
             marginLeft: 4,
           }}
         >
-          {triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar' })}
+          {triLang(lang, {
+            ru: 'Продолжить',
+            uk: 'Продовжити',
+            es: 'Continuar',
+            'pt-BR': 'Continuar',
+            vi: 'Tiếp tục',
+            id: 'Lanjutkan',
+            tr: 'Devam et',
+            pl: 'Kontynuuj',
+          })}
         </Text>
         <TouchableOpacity
           accessibilityRole="button"
@@ -446,6 +534,11 @@ export default function DialogsTabContent({
             ru: `Продолжить: ${dialogScenarioTitle(scenario, lang)}`,
             uk: `Продовжити: ${dialogScenarioTitle(scenario, lang)}`,
             es: `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
+            'pt-BR': `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
+            vi: `Tiếp tục: ${dialogScenarioTitle(scenario, lang)}`,
+            id: `Lanjutkan: ${dialogScenarioTitle(scenario, lang)}`,
+            tr: `Devam et: ${dialogScenarioTitle(scenario, lang)}`,
+            pl: `Kontynuuj: ${dialogScenarioTitle(scenario, lang)}`,
           })}
           activeOpacity={0.86}
           onPress={vm.onPress}
@@ -559,8 +652,8 @@ export default function DialogsTabContent({
         }}
       >
         {([
-          { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' }), icon: 'school-outline' as const },
-          { key: 'situations' as const, label: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones' }), icon: 'flame-outline' as const },
+          { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }), icon: 'school-outline' as const },
+          { key: 'situations' as const, label: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }), icon: 'flame-outline' as const },
         ]).map((seg) => {
           const activeTab = tab === seg.key;
           return (
@@ -605,7 +698,16 @@ export default function DialogsTabContent({
       <View>
         <View style={{ paddingHorizontal: 18, paddingTop: 18, paddingBottom: 2 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
-            {triLang(lang, { ru: 'Диалоги по урокам', uk: 'Діалоги за уроками', es: 'Diálogos por lecciones' })}
+            {triLang(lang, {
+              ru: 'Диалоги по урокам',
+              uk: 'Діалоги за уроками',
+              es: 'Diálogos por lecciones',
+              'pt-BR': 'Diálogos por lições',
+              vi: 'Đối thoại theo bài học',
+              id: 'Dialog per pelajaran',
+              tr: 'Derslere göre diyaloglar',
+              pl: 'Dialogi według lekcji',
+            })}
           </Text>
           <Text
             style={{
@@ -619,6 +721,11 @@ export default function DialogsTabContent({
               ru: `Открыты по прогрессу курса: сейчас ${reachedLevel}`,
               uk: `Відкриті за прогресом курсу: зараз ${reachedLevel}`,
               es: `Se abren con el curso: ahora ${reachedLevel}`,
+              'pt-BR': `Abertos pelo progresso do curso: agora ${reachedLevel}`,
+              vi: `Mở theo tiến độ khóa học: hiện tại ${reachedLevel}`,
+              id: `Terbuka sesuai progres kursus: sekarang ${reachedLevel}`,
+              tr: `Kurs ilerlemesine göre açılır: şu an ${reachedLevel}`,
+              pl: `Otwarte według postępu kursu: teraz ${reachedLevel}`,
             })}
           </Text>
         </View>
@@ -638,10 +745,10 @@ export default function DialogsTabContent({
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
             <View style={{ width: 3, height: 18, borderRadius: 2, backgroundColor: accent }} />
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', flex: 1 }}>
-              {triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones' })}
+              {triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' })}
             </Text>
             <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>
-              {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}` })}
+              {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
             </Text>
           </View>
           <Text
@@ -656,6 +763,11 @@ export default function DialogsTabContent({
               ru: 'Сложные и смешные сцены. Чем выше уровень аккаунта, тем жёстче разговор.',
               uk: 'Складні й кумедні сцени. Що вищий рівень акаунта, то гостріша розмова.',
               es: 'Escenas raras y difíciles. Cuanto más nivel tengas, más dura será la conversación.',
+              'pt-BR': 'Cenas difíceis e engraçadas. Quanto maior o nível da conta, mais intensa fica a conversa.',
+              vi: 'Các cảnh khó và vui. Cấp tài khoản càng cao, cuộc trò chuyện càng căng hơn.',
+              id: 'Adegan sulit dan lucu. Makin tinggi level akun, makin tajam percakapannya.',
+              tr: 'Zor ve komik sahneler. Hesap seviyen yükseldikçe konuşma daha sertleşir.',
+              pl: 'Trudne i zabawne sceny. Im wyższy poziom konta, tym ostrzejsza rozmowa.',
             })}
           </Text>
         </View>
@@ -671,6 +783,11 @@ export default function DialogsTabContent({
             ru: 'Открыть все уровни диалогов с Premium',
             uk: 'Відкрити всі рівні діалогів з Premium',
             es: 'Abrir todos los niveles de diálogos con Premium',
+            'pt-BR': 'Abrir todos os níveis de diálogos com Premium',
+            vi: 'Mở mọi cấp độ đối thoại với Premium',
+            id: 'Buka semua level dialog dengan Premium',
+            tr: 'Tüm diyalog seviyelerini Premium ile aç',
+            pl: 'Otwórz wszystkie poziomy dialogów z Premium',
           })}
           activeOpacity={0.86}
           onPress={() => {
@@ -709,6 +826,11 @@ export default function DialogsTabContent({
                 ru: 'Открой больше диалогов по урокам',
                 uk: 'Відкрий більше діалогів за уроками',
                 es: 'Abre más diálogos por lecciones',
+                'pt-BR': 'Abra mais diálogos por lições',
+                vi: 'Mở thêm đối thoại theo bài học',
+                id: 'Buka lebih banyak dialog per pelajaran',
+                tr: 'Derslere göre daha fazla diyalog aç',
+                pl: 'Otwórz więcej dialogów według lekcji',
               })}
             </Text>
             <Text
@@ -720,6 +842,11 @@ export default function DialogsTabContent({
                 ru: 'Проходи курс — уровни открываются сами. Или открой все сразу с Premium.',
                 uk: 'Проходь курс — рівні відкриваються самі. Або відкрий усі одразу з Premium.',
                 es: 'Avanza en el curso y los niveles se abren solos. O ábrelos todos con Premium.',
+                'pt-BR': 'Avance no curso — os níveis abrem sozinhos. Ou abra todos de uma vez com Premium.',
+                vi: 'Học tiếp khóa học — các cấp sẽ tự mở. Hoặc mở tất cả ngay với Premium.',
+                id: 'Ikuti kursus — level akan terbuka sendiri. Atau buka semuanya sekaligus dengan Premium.',
+                tr: 'Kursa devam et — seviyeler kendiliğinden açılır. Ya da hepsini Premium ile hemen aç.',
+                pl: 'Przechodź kurs — poziomy otwierają się same. Albo otwórz wszystkie od razu z Premium.',
               })}
             </Text>
           </View>
@@ -748,11 +875,21 @@ export default function DialogsTabContent({
                   ru: '1 диалог бесплатно — попробуй, дальше Premium',
                   uk: '1 діалог безкоштовно — спробуй, далі Premium',
                   es: '1 diálogo gratis — pruébalo, luego Premium',
+                  'pt-BR': '1 diálogo grátis — experimente, depois Premium',
+                  vi: '1 đối thoại miễn phí — thử trước, sau đó Premium',
+                  id: '1 dialog gratis — coba dulu, lalu Premium',
+                  tr: '1 diyalog ücretsiz — dene, sonrası Premium',
+                  pl: '1 dialog za darmo — spróbuj, potem Premium',
                 })
               : triLang(lang, {
                   ru: 'Пробный диалог использован · дальше Premium',
                   uk: 'Пробний діалог використано · далі Premium',
                   es: 'Diálogo de prueba usado · luego Premium',
+                  'pt-BR': 'Diálogo de teste usado · depois Premium',
+                  vi: 'Đã dùng đối thoại thử · tiếp theo là Premium',
+                  id: 'Dialog percobaan sudah digunakan · selanjutnya Premium',
+                  tr: 'Deneme diyaloğu kullanıldı · sonrası Premium',
+                  pl: 'Dialog próbny wykorzystany · dalej Premium',
                 })}
           </Text>
         </View>

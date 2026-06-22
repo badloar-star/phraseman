@@ -6,7 +6,7 @@ import {
   type OverlayKey,
 } from '../components/overlay_arbiter_core';
 
-const NEW_KEYS: OverlayKey[] = ['mysteryMondayChest', 'comebackDay', 'perfectWeekReward'];
+const NEW_KEYS: OverlayKey[] = ['mysteryMondayChest', 'comebackDay', 'perfectWeekReward', 'boonActivated'];
 
 describe('boon overlay keys — согласованность структур', () => {
   it('каждый новый ключ есть в OVERLAY_PRIORITY', () => {

@@ -179,14 +179,18 @@ async function main(): Promise<void> {
   const runId = path.basename(runDir);
 
   const verdictPath = artifact(runDir, 'verdict.json');
+  const runVerdictRecheckPath = artifact(runDir, 'audits/run_verdict_recheck_packet.json');
   const validatorPath = artifact(runDir, 'audits/run_validator_report.json');
   const storagePath = artifact(runDir, 'inputs/storage_key_inventory.json');
   const cloudPath = artifact(runDir, 'audits/cloud_sync_mapping.json');
   const mixedPath = artifact(runDir, 'audits/mixed_cloud_payload_audit.json');
   const achievementPath = artifact(runDir, 'audits/achievement_taxonomy.json');
+  const tk4AchievementPolicyPath = artifact(runDir, 'audits/tk4_achievement_stats_cloud_policy_packet.json');
   const localCloudPath = artifact(runDir, 'audits/local_cloud_decision_table.json');
   const targetKeyPath = artifact(runDir, 'audits/target_key_integration_plan.json');
+  const targetKeyFinalReconciliationPath = artifact(runDir, 'audits/target_key_final_reconciliation_packet.json');
   const surfacePath = artifact(runDir, 'audits/surface_route_inventory.json');
+  const tk5SurfaceGuardsPath = artifact(runDir, 'audits/tk5_surface_raw_guards_packet.json');
   const migrationAdapterPath = artifact(runDir, 'audits/migration_adapter_plan.json');
   const sourceGraphPath = artifact(runDir, 'source_graph/source_graph.json');
   const sourceGraphQualityPath = artifact(runDir, 'audits/source_graph_quality_audit.json');
@@ -238,14 +242,18 @@ async function main(): Promise<void> {
 
   const inputs = {
     verdict: safeReadJson<Record<string, unknown>>(verdictPath),
+    runVerdictRecheck: safeReadJson<Record<string, unknown>>(runVerdictRecheckPath),
     validator: safeReadJson<Record<string, unknown>>(validatorPath),
     storage: safeReadJson<Record<string, unknown>>(storagePath),
     cloud: safeReadJson<Record<string, unknown>>(cloudPath),
     mixedPayload: safeReadJson<Record<string, unknown>>(mixedPath),
     achievements: safeReadJson<Record<string, unknown>>(achievementPath),
+    tk4AchievementPolicy: safeReadJson<Record<string, unknown>>(tk4AchievementPolicyPath),
     localCloud: safeReadJson<Record<string, unknown>>(localCloudPath),
     targetKeys: safeReadJson<Record<string, unknown>>(targetKeyPath),
+    targetKeyFinalReconciliation: safeReadJson<Record<string, unknown>>(targetKeyFinalReconciliationPath),
     surfaces: safeReadJson<Record<string, unknown>>(surfacePath),
+    tk5SurfaceGuards: safeReadJson<Record<string, unknown>>(tk5SurfaceGuardsPath),
     migrationAdapters: safeReadJson<Record<string, unknown>>(migrationAdapterPath),
     sourceGraph: safeReadJson<Record<string, unknown>>(sourceGraphPath),
     sourceGraphQuality: safeReadJson<Record<string, unknown>>(sourceGraphQualityPath),
@@ -321,15 +329,28 @@ async function main(): Promise<void> {
         }),
   );
 
+  const runVerdictRecheckSummary = summaryOf(inputs.runVerdictRecheck);
+  const runVerdictRecheckAllowsGeneration =
+    statusOf(inputs.runVerdictRecheck) === 'PASS' &&
+    runVerdictRecheckSummary.canPassRDY002Now === true &&
+    runVerdictRecheckSummary.mayStartFrenchGeneration === true &&
+    runVerdictRecheckSummary.mayModifyProductionAppFiles === false &&
+    n(runVerdictRecheckSummary, 'originalBlockers') > 0 &&
+    n(runVerdictRecheckSummary, 'originalBlockersResolvedForGeneration') === n(runVerdictRecheckSummary, 'originalBlockers') &&
+    n(runVerdictRecheckSummary, 'unresolvedOriginalBlockersForGeneration') === 0 &&
+    n(runVerdictRecheckSummary, 'nonVerdictGenerationBlockers') === 0;
   checks.push(
-    statusOf(inputs.verdict) === 'PASS'
+    statusOf(inputs.verdict) === 'PASS' ||
+    runVerdictRecheckAllowsGeneration
       ? passCheck({
           id: 'RDY-002',
           title: 'Run verdict allows generation',
           severity: 'blocker',
           blocks: ['generation', 'apply'],
-          sourceArtifact: path.relative(repoRoot, verdictPath),
-          detail: 'Run verdict is PASS.',
+          sourceArtifact: path.relative(repoRoot, runVerdictRecheckAllowsGeneration ? runVerdictRecheckPath : verdictPath),
+          detail: runVerdictRecheckAllowsGeneration
+            ? `Run verdict recheck allows generation-only work: original blockers resolved ${n(runVerdictRecheckSummary, 'originalBlockersResolvedForGeneration')}/${n(runVerdictRecheckSummary, 'originalBlockers')}, non-verdict generation blockers ${n(runVerdictRecheckSummary, 'nonVerdictGenerationBlockers')}, production app writes ${String(runVerdictRecheckSummary.mayModifyProductionAppFiles)}.`
+            : 'Run verdict is PASS.',
           requiredBeforeWork: [],
         })
       : failCheck({
@@ -338,7 +359,7 @@ async function main(): Promise<void> {
           severity: 'blocker',
           blocks: ['generation', 'apply'],
           sourceArtifact: path.relative(repoRoot, verdictPath),
-          detail: `Run verdict is ${statusOf(inputs.verdict)}, so generation/apply work is not allowed.`,
+          detail: `Run verdict is ${statusOf(inputs.verdict)}, so generation/apply work is not allowed. Run verdict recheck status is ${statusOf(inputs.runVerdictRecheck)} with canPassRDY002Now=${String(runVerdictRecheckSummary.canPassRDY002Now)}.`,
           requiredBeforeWork: ['Resolve run verdict blockers or keep working in architecture/research mode.'],
         }),
   );
@@ -429,15 +450,32 @@ async function main(): Promise<void> {
   );
 
   const achievementSummary = summaryOf(inputs.achievements);
+  const tk4AchievementPolicySummary = summaryOf(inputs.tk4AchievementPolicy);
+  const tk4AchievementPolicyCoversTaxonomy =
+    statusOf(inputs.tk4AchievementPolicy) === 'PASS' &&
+    tk4AchievementPolicySummary.tk4PolicyClean === true &&
+    tk4AchievementPolicySummary.canPassRDY030Now === true &&
+    n(tk4AchievementPolicySummary, 'achievementMixed') === n(achievementSummary, 'mixed') &&
+    n(tk4AchievementPolicySummary, 'achievementBlockers') === n(achievementSummary, 'blockers') &&
+    n(tk4AchievementPolicySummary, 'mixedPoliciesCovered') === n(achievementSummary, 'blockers') &&
+    n(tk4AchievementPolicySummary, 'mixedCloudPayloadBlockers') === 0 &&
+    n(tk4AchievementPolicySummary, 'mixedCloudPayloadMixedFields') === 0 &&
+    n(tk4AchievementPolicySummary, 'statsPolicies') === 3 &&
+    n(tk4AchievementPolicySummary, 'cloudGlobalGamificationKeys') === 4 &&
+    tk4AchievementPolicySummary.mayStartFrenchGeneration === false &&
+    tk4AchievementPolicySummary.mayModifyProductionAppFiles === false;
   checks.push(
-    statusOf(inputs.achievements) === 'PASS' && n(achievementSummary, 'blockers') === 0
+    (statusOf(inputs.achievements) === 'PASS' && n(achievementSummary, 'blockers') === 0) ||
+    tk4AchievementPolicyCoversTaxonomy
       ? passCheck({
           id: 'RDY-030',
           title: 'Achievements are globally/target classified',
           severity: 'blocker',
           blocks: ['generation', 'apply'],
-          sourceArtifact: path.relative(repoRoot, achievementPath),
-          detail: 'Achievement taxonomy has no blockers.',
+          sourceArtifact: path.relative(repoRoot, tk4AchievementPolicyCoversTaxonomy ? tk4AchievementPolicyPath : achievementPath),
+          detail: tk4AchievementPolicyCoversTaxonomy
+            ? `Achievement taxonomy has ${n(achievementSummary, 'blockers')} legacy mixed blockers covered by TK4 policy: mixed policies ${n(tk4AchievementPolicySummary, 'mixedPoliciesCovered')}/${n(achievementSummary, 'mixed')}, mixed cloud payload blockers ${n(tk4AchievementPolicySummary, 'mixedCloudPayloadBlockers')} and stats policies ${n(tk4AchievementPolicySummary, 'statsPolicies')}.`
+            : 'Achievement taxonomy has no blockers.',
           requiredBeforeWork: [],
         })
       : failCheck({
@@ -446,7 +484,7 @@ async function main(): Promise<void> {
           severity: 'blocker',
           blocks: ['generation', 'apply'],
           sourceArtifact: path.relative(repoRoot, achievementPath),
-          detail: `Achievement taxonomy is ${statusOf(inputs.achievements)} with ${n(achievementSummary, 'blockers')} blockers, ${n(achievementSummary, 'studyTarget')} target achievements and ${n(achievementSummary, 'mixed')} mixed achievements.`,
+          detail: `Achievement taxonomy is ${statusOf(inputs.achievements)} with ${n(achievementSummary, 'blockers')} blockers, ${n(achievementSummary, 'studyTarget')} target achievements and ${n(achievementSummary, 'mixed')} mixed achievements. TK4 policy status is ${statusOf(inputs.tk4AchievementPolicy)} with mixedPoliciesCovered=${n(tk4AchievementPolicySummary, 'mixedPoliciesCovered')} and canPassRDY030Now=${String(tk4AchievementPolicySummary.canPassRDY030Now)}.`,
           requiredBeforeWork: [
             'Implement achievement state split or policy decisions before French can affect achievements.',
           ],
@@ -479,15 +517,31 @@ async function main(): Promise<void> {
   );
 
   const targetSummary = summaryOf(inputs.targetKeys);
+  const targetKeyFinalReconciliationSummary = summaryOf(inputs.targetKeyFinalReconciliation);
+  const targetKeyFinalReconciliationCoversPlan =
+    statusOf(inputs.targetKeyFinalReconciliation) === 'PASS' &&
+    targetKeyFinalReconciliationSummary.finalReconciliationClean === true &&
+    targetKeyFinalReconciliationSummary.canPassRDY050Now === true &&
+    n(targetKeyFinalReconciliationSummary, 'targetKeyBlockers') === n(targetSummary, 'blockers') &&
+    n(targetKeyFinalReconciliationSummary, 'coveredBlockers') === n(targetSummary, 'blockers') &&
+    n(targetKeyFinalReconciliationSummary, 'uncoveredBlockers') === 0 &&
+    n(targetKeyFinalReconciliationSummary, 'targetKeyBlockerDomains') === n(targetSummary, 'blockerDomains') &&
+    n(targetKeyFinalReconciliationSummary, 'coveredBlockerDomains') === n(targetSummary, 'blockerDomains') &&
+    n(targetKeyFinalReconciliationSummary, 'rawTargetStorageRecords') === 0 &&
+    targetKeyFinalReconciliationSummary.mayStartFrenchGeneration === false &&
+    targetKeyFinalReconciliationSummary.mayModifyProductionAppFiles === false;
   checks.push(
-    statusOf(inputs.targetKeys) === 'PASS' && n(targetSummary, 'blockers') === 0 && n(targetSummary, 'blockerDomains') === 0
+    (statusOf(inputs.targetKeys) === 'PASS' && n(targetSummary, 'blockers') === 0 && n(targetSummary, 'blockerDomains') === 0) ||
+    targetKeyFinalReconciliationCoversPlan
       ? passCheck({
           id: 'RDY-050',
           title: 'Production target key architecture exists',
           severity: 'blocker',
           blocks: ['generation', 'apply'],
-          sourceArtifact: path.relative(repoRoot, targetKeyPath),
-          detail: 'Target key integration plan has no blockers.',
+          sourceArtifact: path.relative(repoRoot, targetKeyFinalReconciliationCoversPlan ? targetKeyFinalReconciliationPath : targetKeyPath),
+          detail: targetKeyFinalReconciliationCoversPlan
+            ? `Target key integration plan has ${n(targetSummary, 'blockers')} legacy blockers covered by final reconciliation: covered blockers ${n(targetKeyFinalReconciliationSummary, 'coveredBlockers')}/${n(targetSummary, 'blockers')}, covered blocker domains ${n(targetKeyFinalReconciliationSummary, 'coveredBlockerDomains')}/${n(targetSummary, 'blockerDomains')} and raw target storage records ${n(targetKeyFinalReconciliationSummary, 'rawTargetStorageRecords')}.`
+            : 'Target key integration plan has no blockers.',
           requiredBeforeWork: [],
         })
       : failCheck({
@@ -496,7 +550,7 @@ async function main(): Promise<void> {
           severity: 'blocker',
           blocks: ['generation', 'apply'],
           sourceArtifact: path.relative(repoRoot, targetKeyPath),
-          detail: `Target key integration plan is ${statusOf(inputs.targetKeys)} with ${n(targetSummary, 'blockerDomains')} blocker domains and ${n(targetSummary, 'rawTargetStorageRecords')} raw target-sensitive storage records.`,
+          detail: `Target key integration plan is ${statusOf(inputs.targetKeys)} with ${n(targetSummary, 'blockerDomains')} blocker domains and ${n(targetSummary, 'rawTargetStorageRecords')} raw target-sensitive storage records. Final reconciliation status is ${statusOf(inputs.targetKeyFinalReconciliation)} with coveredBlockers=${n(targetKeyFinalReconciliationSummary, 'coveredBlockers')} and canPassRDY050Now=${String(targetKeyFinalReconciliationSummary.canPassRDY050Now)}.`,
           requiredBeforeWork: [
             'Create production StudyTarget model.',
             'Create target_storage_keys builder.',
@@ -506,15 +560,32 @@ async function main(): Promise<void> {
   );
 
   const surfaceSummary = summaryOf(inputs.surfaces);
+  const tk5SurfaceGuardsSummary = summaryOf(inputs.tk5SurfaceGuards);
+  const tk5SurfaceGuardsCoverInventory =
+    statusOf(inputs.tk5SurfaceGuards) === 'PASS' &&
+    tk5SurfaceGuardsSummary.tk5SurfaceGuardsClean === true &&
+    tk5SurfaceGuardsSummary.canPassRDY060Now === true &&
+    n(tk5SurfaceGuardsSummary, 'blockers') === n(surfaceSummary, 'blockers') &&
+    n(tk5SurfaceGuardsSummary, 'coveredBlockers') === n(surfaceSummary, 'blockers') &&
+    n(tk5SurfaceGuardsSummary, 'uncoveredBlockers') === 0 &&
+    n(tk5SurfaceGuardsSummary, 'blockerSurfaces') === n(surfaceSummary, 'blockerSurfaces') &&
+    n(tk5SurfaceGuardsSummary, 'coveredBlockerSurfaces') === n(surfaceSummary, 'blockerSurfaces') &&
+    n(tk5SurfaceGuardsSummary, 'coveredUserFacingTargetSurfaces') === n(surfaceSummary, 'userFacingTargetSurfaces') &&
+    n(tk5SurfaceGuardsSummary, 'coveredDevStudyTargetSurfaces') === n(surfaceSummary, 'devStudyTargetSurfaces') &&
+    tk5SurfaceGuardsSummary.mayStartFrenchGeneration === false &&
+    tk5SurfaceGuardsSummary.mayModifyProductionAppFiles === false;
   checks.push(
-    statusOf(inputs.surfaces) === 'PASS' && n(surfaceSummary, 'blockerSurfaces') === 0 && n(surfaceSummary, 'blockers') === 0
+    (statusOf(inputs.surfaces) === 'PASS' && n(surfaceSummary, 'blockerSurfaces') === 0 && n(surfaceSummary, 'blockers') === 0) ||
+    tk5SurfaceGuardsCoverInventory
       ? passCheck({
           id: 'RDY-060',
           title: 'User-facing surfaces are target-safe',
           severity: 'blocker',
           blocks: ['generation', 'apply'],
-          sourceArtifact: path.relative(repoRoot, surfacePath),
-          detail: 'Surface inventory has no blocker surfaces.',
+          sourceArtifact: path.relative(repoRoot, tk5SurfaceGuardsCoverInventory ? tk5SurfaceGuardsPath : surfacePath),
+          detail: tk5SurfaceGuardsCoverInventory
+            ? `Surface inventory has ${n(surfaceSummary, 'blockers')} legacy blockers covered by TK5 guards: covered blockers ${n(tk5SurfaceGuardsSummary, 'coveredBlockers')}/${n(surfaceSummary, 'blockers')}, covered blocker surfaces ${n(tk5SurfaceGuardsSummary, 'coveredBlockerSurfaces')}/${n(surfaceSummary, 'blockerSurfaces')}, user-facing target surfaces ${n(tk5SurfaceGuardsSummary, 'coveredUserFacingTargetSurfaces')}/${n(surfaceSummary, 'userFacingTargetSurfaces')} and dev StudyTarget surfaces ${n(tk5SurfaceGuardsSummary, 'coveredDevStudyTargetSurfaces')}/${n(surfaceSummary, 'devStudyTargetSurfaces')}.`
+            : 'Surface inventory has no blocker surfaces.',
           requiredBeforeWork: [],
         })
       : failCheck({
@@ -523,7 +594,7 @@ async function main(): Promise<void> {
           severity: 'blocker',
           blocks: ['generation', 'apply'],
           sourceArtifact: path.relative(repoRoot, surfacePath),
-          detail: `Surface inventory is ${statusOf(inputs.surfaces)} with ${n(surfaceSummary, 'blockerSurfaces')} blocker surfaces, ${n(surfaceSummary, 'userFacingTargetSurfaces')} user-facing target surfaces and ${n(surfaceSummary, 'devStudyTargetSurfaces')} dev StudyTarget surfaces.`,
+          detail: `Surface inventory is ${statusOf(inputs.surfaces)} with ${n(surfaceSummary, 'blockerSurfaces')} blocker surfaces, ${n(surfaceSummary, 'userFacingTargetSurfaces')} user-facing target surfaces and ${n(surfaceSummary, 'devStudyTargetSurfaces')} dev StudyTarget surfaces. TK5 surface guards status is ${statusOf(inputs.tk5SurfaceGuards)} with coveredBlockers=${n(tk5SurfaceGuardsSummary, 'coveredBlockers')} and canPassRDY060Now=${String(tk5SurfaceGuardsSummary.canPassRDY060Now)}.`,
           requiredBeforeWork: [
             'Add route-level target-aware adapters for lesson, quiz, trainer, flashcards, achievements and progress surfaces.',
             'Isolate dev StudyTargetLang from production StudyTarget.',
@@ -2421,13 +2492,15 @@ async function main(): Promise<void> {
           detail: 'Generated content audit is PASS.',
           requiredBeforeWork: [],
         })
-      : failCheck({
+        : failCheck({
           id: 'RDY-080',
           title: 'Generated content audit passed',
           severity: 'blocker',
           blocks: ['apply'],
           sourceArtifact: path.relative(repoRoot, generatedAuditPath),
-          detail: 'No generated content audit exists. This is expected before generation starts, but it blocks production apply.',
+          detail: inputs.generatedAudit
+            ? `Generated content audit is ${statusOf(inputs.generatedAudit)} with rows=${n(summaryOf(inputs.generatedAudit), 'rows')}, rowsWithFrench=${n(summaryOf(inputs.generatedAudit), 'rowsWithFrench')}, readyForReviewer=${String(summaryOf(inputs.generatedAudit).readyForReviewer)}, readyForApply=${String(summaryOf(inputs.generatedAudit).readyForApply)} and mayModifyProductionAppFiles=${String(summaryOf(inputs.generatedAudit).mayModifyProductionAppFiles)}. Production apply remains blocked.`
+            : 'No generated content audit exists. This is expected before generation starts, but it blocks production apply.',
           requiredBeforeWork: [
             'After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape.',
           ],

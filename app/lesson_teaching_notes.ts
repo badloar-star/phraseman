@@ -53,10 +53,27 @@ function hasSeenNote(seenIds: SeenTeachingNoteIds, id: string): boolean {
   return seenIds.includes(id);
 }
 
-function pickLang(lang: Lang, ru: string | undefined, uk: string | undefined, es: string | undefined): string {
-  if (lang === 'uk') return uk || ru || es || '';
-  if (lang === 'es') return es || ru || uk || '';
-  return ru || uk || es || '';
+function pickLang(
+  lang: Lang,
+  values: {
+    ru?: string;
+    uk?: string;
+    es?: string;
+    'pt-BR'?: string;
+    vi?: string;
+    id?: string;
+    tr?: string;
+    pl?: string;
+  },
+): string {
+  if (lang === 'uk') return values.uk || values.ru || values.es || '';
+  if (lang === 'es') return values.es || values.ru || values.uk || '';
+  if (lang === 'pt-BR') return values['pt-BR'] || values.ru || values.uk || values.es || '';
+  if (lang === 'vi') return values.vi || values.ru || values.uk || values.es || '';
+  if (lang === 'id') return values.id || values.ru || values.uk || values.es || '';
+  if (lang === 'tr') return values.tr || values.ru || values.uk || values.es || '';
+  if (lang === 'pl') return values.pl || values.ru || values.uk || values.es || '';
+  return values.ru || values.uk || values.es || '';
 }
 
 function renderTeachingNote(
@@ -66,11 +83,38 @@ function renderTeachingNote(
 ): ResolvedLessonTeachingNote {
   return {
     id: note.id,
-    title: pickLang(lang, note.titleRu, note.titleUk, note.titleEs)
+    title: pickLang(lang, {
+      ru: note.titleRu,
+      uk: note.titleUk,
+      es: note.titleEs,
+      'pt-BR': note.titlePtBr,
+      vi: note.titleVi,
+      id: note.titleId,
+      tr: note.titleTr,
+      pl: note.titlePl,
+    })
       || (wasWrong ? 'Разберём спокойно' : 'Почему так работает'),
     body: wasWrong
-      ? pickLang(lang, note.wrongRu, note.wrongUk, note.wrongEs)
-      : pickLang(lang, note.correctRu, note.correctUk, note.correctEs),
+      ? pickLang(lang, {
+          ru: note.wrongRu,
+          uk: note.wrongUk,
+          es: note.wrongEs,
+          'pt-BR': note.wrongPtBr,
+          vi: note.wrongVi,
+          id: note.wrongId,
+          tr: note.wrongTr,
+          pl: note.wrongPl,
+        })
+      : pickLang(lang, {
+          ru: note.correctRu,
+          uk: note.correctUk,
+          es: note.correctEs,
+          'pt-BR': note.correctPtBr,
+          vi: note.correctVi,
+          id: note.correctId,
+          tr: note.correctTr,
+          pl: note.correctPl,
+        }),
     tone: wasWrong ? 'wrong' : 'correct',
   };
 }

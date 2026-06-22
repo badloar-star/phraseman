@@ -105,6 +105,15 @@ const storeReleaseDevModules = new Set([
   './_admin_intro_preview',
   './_admin_review_test',
   './_admin_premium_delivery_test',
+  // DEV/QA-лаборатории: их роут-стабы делают `if (ENABLE_DEV_TOOLS) require('./_admin_*')`.
+  // ENABLE_DEV_TOOLS — РАНТАЙМ-флаг (process.env), Metro его не сворачивает в dead code,
+  // поэтому без явной подмены здесь реальный код лабы физически уезжает в стор-бандл
+  // (подтверждено source-map'ом prod-сборки). Держим список синхронным со всеми
+  // `_admin_*`-роутами под `if (ENABLE_DEV_TOOLS)`.
+  './_admin_celebration_lab',
+  './_admin_compass_lab',
+  './_admin_speaking_lab',
+  './_admin_referral_lab',
   './_pos_analytics_audit',
   './flashcards_market_dev',
 ]);

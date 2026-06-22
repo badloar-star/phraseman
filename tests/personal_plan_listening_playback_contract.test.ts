@@ -116,14 +116,73 @@ describe('personal plan listening playback contract', () => {
     });
   });
 
-  it('resolves bundled personal plan runtime mp3 paths to Expo asset modules', () => {
-    expect(buildPlanListeningPlaybackSource(item({
-      audioUri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3',
-    }))).toEqual(expect.objectContaining({
+  it('falls back to the raw uri for a runtime path NOT in the uploaded map', () => {
+    // A runtime path not present in the URL map (e.g. a freshly added clip before
+    // the next upload) is no longer bundled (the require() map was neutralized to
+    // drop ~126 MB), so the resolver passes the uri through as a string for the
+    // player to load directly. We mock an empty URL map to exercise this path
+    // regardless of what the real generated map currently contains.
+    jest.resetModules();
+    jest.doMock('../app/plan_audio_url_map.generated', () => ({
+      PLAN_AUDIO_URL_MAP: {},
+      getPlanAudioUrl: () => undefined,
+    }));
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { buildPlanListeningPlaybackSource: build } =
+      require('../app/personal_plan_listening_playback_contract') as typeof import('../app/personal_plan_listening_playback_contract');
+    const runtimeUri =
+      'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3';
+    const result = build({
+      ...item(),
+      audioUri: runtimeUri,
+    });
+    expect(result).toEqual(expect.objectContaining({
       source: 'in_app_audio',
-      uri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3',
-      playerSource: { assetId: expect.anything() },
+      uri: runtimeUri,
+      playerSource: runtimeUri,
       issues: [],
     }));
+    jest.resetModules();
+    jest.unmock('../app/plan_audio_url_map.generated');
+  });
+});
+
+describe('personal plan listening playback prefers the server URL once uploaded', () => {
+  const RUNTIME_URI =
+    'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3';
+  const SERVER_URL =
+    'https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/plan-audio%2Fgavan%2Fgavan-d001-listen-audio%2Fgavan-d001-content-unit-phrase-1.mp3?alt=media&token=abc';
+
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
+  afterEach(() => {
+    jest.resetModules();
+    jest.unmock('../app/plan_audio_url_map.generated');
+  });
+
+  it('returns the Firebase Storage URL (not the bundled assetId) when the uri is in the uploaded map', () => {
+    jest.doMock('../app/plan_audio_url_map.generated', () => ({
+      PLAN_AUDIO_URL_MAP: { [RUNTIME_URI]: SERVER_URL },
+      getPlanAudioUrl: (uri: string) => (uri === RUNTIME_URI ? SERVER_URL : undefined),
+    }));
+    // Re-require the module under test so it picks up the mocked map.
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { buildPlanListeningPlaybackSource: build } =
+      require('../app/personal_plan_listening_playback_contract') as typeof import('../app/personal_plan_listening_playback_contract');
+
+    const result = build({
+      ...item(),
+      audioUri: RUNTIME_URI,
+    });
+    expect(result).toEqual(
+      expect.objectContaining({
+        source: 'in_app_audio',
+        uri: RUNTIME_URI,
+        playerSource: SERVER_URL,
+        issues: [],
+      }),
+    );
   });
 });

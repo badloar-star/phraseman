@@ -16,6 +16,7 @@ import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { safeRouterBack } from './navigation_back';
@@ -23,7 +24,7 @@ import { checkAchievements } from './achievements';
 import { areAllDailyTaskObjectivesDone, claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
-import { claimDailyTasksAllShardsReward, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
+import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
 import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
@@ -1670,6 +1671,9 @@ export default function DailyTasksScreen() {
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
     const [tasks, setTasks] = useState<DailyTask[]>([]);
     const [progress, setProgress] = useState<TaskProgress[]>([]);
+    /** Идёт первая/текущая загрузка набора заданий. Пока true и список пуст —
+        показываем shimmer-скелетоны вместо пустого экрана (анти-мигание «ноль заданий»). */
+    const [loadingTasks, setLoadingTasks] = useState(true);
     const [userName, setUserName] = useState('');
     const [claimedXP, setClaimedXP] = useState<number | null>(null);
     /** Награда «3 осколка за тройку дня» уже забрана сегодня (AsyncStorage / облако). */
@@ -1742,6 +1746,9 @@ export default function DailyTasksScreen() {
                 if (gen !== refreshGen.current)
                     return;
                 setTasks(list);
+                // Список есть — скелетоны больше не нужны (прогресс/осколки/реролл
+                // догружаются ниже и не должны держать shimmer).
+                setLoadingTasks(false);
                 const p = await loadTodayProgress(list, studyTarget);
                 if (gen !== refreshGen.current)
                     return;
@@ -1762,6 +1769,7 @@ export default function DailyTasksScreen() {
                 setTasks(backupTaskList);
                 setProgress(backupTaskList.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false })));
                 setRerollsLeft(0);
+                setLoadingTasks(false);
             }
         })();
     }, [studyTarget]);
@@ -1871,8 +1879,12 @@ export default function DailyTasksScreen() {
         setReadyToNavigateTaskId(null);
         expandedTaskAnim.setValue(0);
         taskConfirmAnim.setValue(0);
+        // Показываем скелетоны только если ещё нет загруженных заданий: при первом
+        // входе/холодном старте — да; при возврате на экран с уже готовым списком
+        // не мигаем (список перерисуется тихо).
+        setLoadingTasks((prev) => (tasks.length === 0 ? true : prev));
         refreshTasksAndProgress();
-    }, [expandedTaskAnim, refreshTasksAndProgress, taskConfirmAnim]));
+    }, [expandedTaskAnim, refreshTasksAndProgress, taskConfirmAnim, tasks.length]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
         return () => sub.remove();
@@ -1970,13 +1982,23 @@ export default function DailyTasksScreen() {
         if (!done || trioShardsClaimed)
             return;
         try {
-            const ok = await claimDailyTasksAllShardsReward(getTodayKey());
-            if (ok) {
+            const outcome = await claimDailyTasksAllShardsRewardDetailed(getTodayKey());
+            if (outcome === 'granted') {
                 setTrioShardsClaimed(true);
                 void hapticSuccess();
                 refreshTasksAndProgress();
                 return;
             }
+            if (outcome === 'already') {
+                // Сервер уже выдал осколок (другое устройство / прошлый прерванный вызов).
+                // Это НЕ ошибка — гасим кнопку молча, без тоста «не загрузились»,
+                // который раньше всплывал бесконечно (баг-репорты daily_tasks).
+                setTrioShardsClaimed(true);
+                refreshTasksAndProgress();
+                return;
+            }
+            // outcome === 'failed' — реальный сбой. Перепроверяем локальный маркер на
+            // случай, если осколок всё же забран ранее, иначе показываем «попробуй ещё раз».
             const synced = await isDailyTasksAllShardsRewardClaimedForDay(getTodayKey());
             setTrioShardsClaimed(synced);
             if (!synced) {
@@ -2262,6 +2284,38 @@ export default function DailyTasksScreen() {
 
       <BouncyWrap>
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+
+        {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
+            нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
+            в Instagram), а не пустой экран. Как только setTasks отработал —
+            loadingTasks=false и ниже рендерятся настоящие карточки. */}
+        {loadingTasks && tasks.length === 0 && (
+          <>
+            {[0, 1, 2, 3].map((i) => (
+              <View
+                key={`daily-task-skeleton-${i}`}
+                style={[
+                  dailyTaskStyles.taskCard,
+                  {
+                    borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.08)',
+                    borderRadius: isGoldTheme ? 16 : 18,
+                  },
+                ]}
+              >
+                <View style={dailyTaskStyles.taskMainRow}>
+                  <SkeletonBlock width={40} height={40} borderRadius={12} />
+                  <View style={[dailyTaskStyles.taskTextBlock, { gap: 7 }]}>
+                    <SkeletonBlock width={i === 0 ? '52%' : '68%'} height={12} borderRadius={6} />
+                    <SkeletonBlock width={i === 0 ? '80%' : '44%'} height={10} borderRadius={5} />
+                  </View>
+                  <View style={dailyTaskStyles.taskRightColumn}>
+                    <SkeletonBlock width={56} height={28} borderRadius={14} />
+                  </View>
+                </View>
+              </View>
+            ))}
+          </>
+        )}
 
         {/* Бонус за день: показываем ВСЕГДА (пока есть задания) — с прогресс-баром и
             тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка

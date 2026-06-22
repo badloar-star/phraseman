@@ -1,4 +1,4 @@
-// ARENA BATTLE PASS — экран сезонного боевого пропуска.
+// ARENA SEASON REWARDS — экран сезонных наград Арены.
 //
 // Лестница из двух треков: БЕСПЛАТНЫЙ (всем) и ПРЕМИУМ (с подпиской).
 // За матчи копятся BP-очки → новые уровни → награды. Премиум-награды залочены без подписки
@@ -174,9 +174,9 @@ export default function ArenaBattlePassScreen() {
         </TouchableOpacity>
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
           {triLang(lang, {
-            ru: 'Боевой пропуск', uk: 'Бойова перепустка', es: 'Pase de batalla',
-            'pt-BR': 'Passe de batalha', vi: 'Vé chiến đấu', id: 'Tiket pertempuran',
-            tr: 'Savaş bileti', pl: 'Karnet bojowy',
+            ru: 'Награды сезона', uk: 'Нагороди сезону', es: 'Recompensas de temporada',
+            'pt-BR': 'Recompensas da temporada', vi: 'Phần thưởng mùa giải', id: 'Hadiah musim',
+            tr: 'Sezon ödülleri', pl: 'Nagrody sezonu',
           })}
         </Text>
         <View style={styles.backBtn} />

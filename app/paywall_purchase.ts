@@ -214,8 +214,10 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
           [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
         ]);
         await AsyncStorage.removeItem('onboarding_done');
+        // Возврат в онбординг на шаг «Имя»: слушатель _layout синхронно поднимает
+        // непрозрачный оверлей. Намеренно НЕ навигируем на «Главную» — иначе кадр с
+        // home + монтаж тяжёлого экрана (см. handleClose ниже).
         emitAppEvent('personal_plan_onboarding_nickname_ready');
-        router.replace('/(tabs)/home' as any);
         return;
       }
     } catch {
@@ -495,8 +497,12 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
           ]);
           await AsyncStorage.removeItem('onboarding_done');
         } catch { /* best-effort */ }
+        // НЕ навигируем на '/(tabs)/home'. Слушатель в _layout по этому событию
+        // синхронно поднимает непрозрачный онбординг-оверлей (absoluteFill, zIndex 50) —
+        // он перекрывает оставшийся под ним пейвол. Навигация на «Главную» здесь
+        // монтировала тяжёлый домашний экран (≈4с «думает») и на кадр показывала
+        // «Главную» до подъёма оверлея (мелькание home перед экраном имени).
         emitAppEvent('personal_plan_onboarding_nickname_ready');
-        router.replace('/(tabs)/home' as any);
       })();
       return;
     }

@@ -12,6 +12,7 @@ import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import TapScale from '../components/TapScale';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -360,8 +361,10 @@ export default function ReferralsScreen() {
           )}
 
           {loading ? (
-            <View style={{ paddingVertical: 36, alignItems: 'center' }}>
-              <ActivityIndicator color={t.accent} />
+            <View style={{ gap: 12 }}>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <SkeletonBlock key={`referral-skeleton-${i}`} width="100%" height={76} borderRadius={18} />
+              ))}
             </View>
           ) : invites.length > 0 ? (
             <View style={{ gap: 12 }}>

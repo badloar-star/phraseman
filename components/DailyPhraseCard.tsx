@@ -65,6 +65,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
   const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
   const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
+  // Whether today's quest has been answered — gates revealing the meaning on the
+  // home card itself (the homeAdditional plaque). Before answering we show a
+  // teaser CTA instead of the translation so the quiz keeps its "guess" point.
+  const [cardQuestAnswered, setCardQuestAnswered] = useState(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
@@ -131,6 +135,24 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     explanationAnim.setValue(0);
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
+
+  // Mirror today's answered-state onto the card so the homeAdditional plaque can
+  // hide the meaning until the quest is solved. Re-checks whenever the phrase
+  // changes (new day / new phrase => fresh quiz, meaning hidden again).
+  useEffect(() => {
+    if (studyTarget === 'fr' || !phrase) {
+      setCardQuestAnswered(false);
+      return;
+    }
+    let cancelled = false;
+    setCardQuestAnswered(false);
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+    hasDailyPhraseQuestAnswered({ phraseId, date })
+      .then((answered) => { if (!cancelled && answered) setCardQuestAnswered(true); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [phrase?.id, phrase?.date, phrase?.scheduledDate, phrase, studyTarget]);
 
   useEffect(() => {
     if (studyTarget === 'fr' || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
@@ -203,6 +225,16 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     id: 'Frasa hari ini',
     tr: 'Günün ifadesi',
     pl: 'Fraza dnia',
+  });
+  const questTeaser = triLang(lang, {
+    uk: 'Натисни й вгадай значення → +XP',
+    ru: 'Нажми и угадай значение → +XP',
+    es: 'Toca y adivina el significado → +XP',
+    'pt-BR': 'Toque e adivinhe o significado → +XP',
+    vi: 'Chạm để đoán nghĩa → +XP',
+    id: 'Ketuk dan tebak artinya → +XP',
+    tr: 'Dokun ve anlamını tahmin et → +XP',
+    pl: 'Dotknij i odgadnij znaczenie → +XP',
   });
   const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
@@ -308,6 +340,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
     if (alreadyAnswered) {
       setQuestAnswered(true);
+      setCardQuestAnswered(true);
       setShowQuestExplanation(true);
       setQuestPreviouslyAnswered(true);
       setSelectedQuestOptionId(null);
@@ -334,6 +367,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     answeredQuestKeysRef.add(questKey);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
+    setCardQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
     revealQuestExplanation();
     markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
@@ -410,9 +444,15 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               {phrase.english}
             </Text>
             {homeAdditional && (
-              <Text style={[styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}>
-                {homeAdditionalMeaning}
-              </Text>
+              cardQuestAnswered ? (
+                <Text style={[styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}>
+                  {homeAdditionalMeaning}
+                </Text>
+              ) : (
+                <Text style={[styles.homeAdditionalTeaser, { color: chrome.title, fontSize: Math.max(13, f.label) }]} numberOfLines={2}>
+                  {questTeaser}
+                </Text>
+              )
             )}
           </View>
         </View>
@@ -775,6 +815,14 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 5,
     minHeight: 38,
+  },
+  homeAdditionalTeaser: {
+    fontWeight: '900',
+    lineHeight: 18,
+    letterSpacing: 0.2,
+    marginTop: 7,
+    minHeight: 38,
+    opacity: 0.92,
   },
   modalRoot: {
     flex: 1,

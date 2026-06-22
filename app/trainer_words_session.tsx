@@ -44,6 +44,7 @@ import { isFeatureFreeForEveryone } from './feature_gates';
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import TrainerSessionReport from './trainer_session_report';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
@@ -235,6 +236,7 @@ export default function TrainerWordsSession() {
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
 
   const [deck, setDeck] = useState<CardData[]>([]);
   const [current, setCurrent] = useState(0);
@@ -322,6 +324,7 @@ export default function TrainerWordsSession() {
     }
     if (answeredCorrectly) {
       playCorrect();
+      speakAnswer(card.item.key, studyTarget);
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
@@ -342,7 +345,7 @@ export default function TrainerWordsSession() {
       setCurrent(next);
     }
     if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget]);
+  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
     hapticTap();

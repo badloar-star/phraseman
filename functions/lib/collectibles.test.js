@@ -30,9 +30,23 @@ describe('rollCollectibleDrop', () => {
         const second = (0, collectibles_1.rollCollectibleDrop)(params);
         expect(second).toEqual(first);
     });
-    test('первый дроп дня гарантирован', () => {
+    test('самая первая карточка за всё время гарантирована (total === 0)', () => {
         const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: 'x', kind: 'lesson', owned: {}, state: freshState(), isPremium: false, pool: POOL });
         expect(res.dropped).toBe(true);
+    });
+    test('первый дроп дня БОЛЬШЕ не гарантирован, если карточки уже были (total > 0)', () => {
+        // total > 0, drops === 0 — раньше был бы гарант, теперь подчиняется шансу 15%.
+        const state = freshState({ total: 5 });
+        let dropped = 0;
+        const n = 400;
+        for (let i = 0; i < n; i += 1) {
+            const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: `firstday${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
+            if (res.dropped)
+                dropped += 1;
+        }
+        expect(dropped).toBeLessThan(n); // не 100%
+        expect(dropped / n).toBeGreaterThan(0.08); // в районе 15%
+        expect(dropped / n).toBeLessThan(0.24);
     });
     test('дневной кап: 3 для free, 4 для premium', () => {
         const state = freshState({ drops: 3 });
@@ -80,7 +94,7 @@ describe('rollCollectibleDrop', () => {
     });
     test('счётчики pity растут, когда выпала обычная карточка', () => {
         const state = freshState({ sinceEpic: 3, sinceLegendary: 8 });
-        // Гарантированный первый дроп дня; ищем seed с common/rare исходом.
+        // total === 0 → дроп гарантирован (первая карточка за всё время); ищем seed с common/rare исходом.
         for (let i = 0; i < 30; i += 1) {
             const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: `grow${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
             if (res.dropped && res.card.rarity !== 'epic' && res.card.rarity !== 'legendary') {
@@ -132,8 +146,8 @@ describe('rollCollectibleDrop', () => {
             expect(res.bonusShards).toBe(15);
         }
     });
-    test('шанс ~28%: не первый дроп дня выпадает не всегда', () => {
-        const state = freshState({ drops: 1, attempts: 1 });
+    test('шанс ~15%: после первой карточки за всё время выпадает не всегда', () => {
+        const state = freshState({ drops: 1, attempts: 1, total: 1 });
         let dropped = 0;
         const n = 400;
         for (let i = 0; i < n; i += 1) {
@@ -141,27 +155,74 @@ describe('rollCollectibleDrop', () => {
             if (res.dropped)
                 dropped += 1;
         }
-        expect(dropped / n).toBeGreaterThan(0.18);
-        expect(dropped / n).toBeLessThan(0.38);
+        expect(dropped / n).toBeGreaterThan(0.08);
+        expect(dropped / n).toBeLessThan(0.24);
     });
-    test('pronounce/dialog дроп не дают — даже на «гарантированном» первом дропе дня', () => {
+    test('pronounce/dialog дроп не дают — даже на гарантированной первой карточке за всё время', () => {
         for (const kind of ['pronounce', 'dialog']) {
             const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: `${kind}-x`, kind, owned: {}, state: freshState(), isPremium: false, pool: POOL });
             expect(res).toEqual({ dropped: false, reason: 'no_luck' });
         }
     });
-    test('экзамен даёт дроп чаще урока (kind-шанс) на одних и тех же сидах', () => {
-        const state = freshState({ drops: 1, attempts: 1 });
-        let exam = 0;
-        let lesson = 0;
-        const n = 400;
+    test('единый шанс 15%: урок/квиз/экзамен/арена/план дают одинаковый исход на одних сидах', () => {
+        // После первой карточки за всё время (total > 0) шанс одинаков для всех видов.
+        const state = freshState({ drops: 1, attempts: 1, total: 3 });
+        const kinds = ['lesson', 'quiz', 'exam', 'arena', 'plan'];
+        const n = 200;
         for (let i = 0; i < n; i += 1) {
-            if ((0, collectibles_1.rollCollectibleDrop)({ seedBase: `k${i}`, kind: 'exam', owned: {}, state, isPremium: false, pool: POOL }).dropped)
-                exam += 1;
-            if ((0, collectibles_1.rollCollectibleDrop)({ seedBase: `k${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL }).dropped)
-                lesson += 1;
+            const seedBase = `flat${i}`;
+            const outcomes = kinds.map((kind) => (0, collectibles_1.rollCollectibleDrop)({ seedBase, kind, owned: {}, state, isPremium: false, pool: POOL }).dropped);
+            // Один и тот же seed → один и тот же исход «выпало/нет» для всех видов.
+            expect(new Set(outcomes).size).toBe(1);
         }
-        expect(exam).toBeGreaterThan(lesson);
+    });
+});
+describe('collectiblesDropConfigFromData (тюнинг из Пульта)', () => {
+    test('пусто/undefined → дефолты', () => {
+        expect((0, collectibles_1.collectiblesDropConfigFromData)(undefined)).toEqual(collectibles_1.COLLECTIBLES_DROP_DEFAULTS);
+        expect((0, collectibles_1.collectiblesDropConfigFromData)({})).toEqual(collectibles_1.COLLECTIBLES_DROP_DEFAULTS);
+    });
+    test('читает шанс в процентах и капы', () => {
+        const cfg = (0, collectibles_1.collectiblesDropConfigFromData)({
+            collectibles_drop_chance_pct: 50,
+            collectibles_daily_cap_free: 1,
+            collectibles_daily_cap_premium: 9,
+            collectibles_attempt_cap: 100,
+            collectibles_pity_epic_at: 5,
+            collectibles_pity_legendary_at: 10,
+            collectibles_set_bonus_shards: 99,
+        });
+        expect(cfg.flatDropChance).toBeCloseTo(0.5, 5);
+        expect(cfg.dailyDropCapFree).toBe(1);
+        expect(cfg.dailyDropCapPremium).toBe(9);
+        expect(cfg.dailyAttemptCap).toBe(100);
+        expect(cfg.pityEpicAt).toBe(5);
+        expect(cfg.pityLegendaryAt).toBe(10);
+        expect(cfg.setBonusShards).toBe(99);
+    });
+    test('мусор/вне границ → дефолт по полю (не роняет)', () => {
+        const cfg = (0, collectibles_1.collectiblesDropConfigFromData)({
+            collectibles_drop_chance_pct: 'nope',
+            collectibles_daily_cap_free: -5, // клампится к 0
+            collectibles_pity_epic_at: 0, // ниже min=1 → клампится к 1
+        });
+        expect(cfg.flatDropChance).toBeCloseTo(collectibles_1.COLLECTIBLES_DROP_DEFAULTS.flatDropChance, 5);
+        expect(cfg.dailyDropCapFree).toBe(0);
+        expect(cfg.pityEpicAt).toBe(1);
+    });
+    test('config=0% шанс → дроп не выпадает (кроме гарантии первой за всё время)', () => {
+        const zero = (0, collectibles_1.collectiblesDropConfigFromData)({ collectibles_drop_chance_pct: 0 });
+        // total>0 (первая уже была) + 0% → не выпадает ни на одном сиде
+        const state = freshState({ total: 5 });
+        for (let i = 0; i < 50; i += 1) {
+            const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: `z${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL, config: zero });
+            expect(res.dropped).toBe(false);
+        }
+    });
+    test('config кап free=0 → daily_cap сразу (total>0)', () => {
+        const cfg = (0, collectibles_1.collectiblesDropConfigFromData)({ collectibles_daily_cap_free: 0 });
+        const res = (0, collectibles_1.rollCollectibleDrop)({ seedBase: 'cap', kind: 'lesson', owned: {}, state: freshState({ total: 2 }), isPremium: false, pool: POOL, config: cfg });
+        expect(res).toEqual({ dropped: false, reason: 'daily_cap' });
     });
 });
 //# sourceMappingURL=collectibles.test.js.map

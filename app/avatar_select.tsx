@@ -56,12 +56,9 @@ import { triLang } from '../constants/i18n';
 import CustomAvatarBadge from '../components/CustomAvatarBadge';
 import AvatarView from '../components/AvatarView';
 import AvatarAura from '../components/AvatarAura';
-import ProfileCardUpgradeModal from '../components/ProfileCardUpgradeModal';
-import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { getTitleString } from '../constants/titles';
 import { ENABLE_PROFILE_CARD } from './config';
 import { getShardsBalance, spendShards } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
@@ -81,16 +78,13 @@ import {
   normalizeProfileCardMotion,
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
-  PROFILE_CARD_LEVEL_KEY,
-  PROFILE_CARD_MOTION_KEY,
-  PROFILE_CARD_PUBLIC_FOCUS_KEY,
-  PROFILE_CARD_THEME_KEY,
-  profileCardLevelRoman,
+  PROFILE_CARD_LEVEL_NAME_RU,
   type ProfileCardLevel,
   type ProfileCardMotion,
   type ProfileCardSnapshot,
   type ProfileCardTheme,
 } from './profile_card_system';
+import { profileCardLevelLabel } from '../components/profileCardLabel';
 
 type OwnedAvatars = Record<string, string>;
 type OwnedAuras = Record<string, true>;
@@ -177,21 +171,6 @@ const PROFILE_CARD_PREVIEW_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardPre
   },
 };
 
-const LEAGUE_SHORT_RU = [
-  'Медная лига',
-  'Бронза',
-  'Серебро',
-  'Золото',
-  'Платина',
-  'Изумруд',
-  'Сапфир',
-  'Рубин',
-  'Алмаз',
-  'Черный алмаз',
-  'Эфир',
-  'Легенда',
-];
-
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
 const decodeOwnedStyle = (value?: string | null): { gradientId: string; logoColor: CustomAvatarLogoColor } => {
   if (!value) return { gradientId: CUSTOM_AVATAR_GRADIENTS[0].id, logoColor: 'black' };
@@ -233,14 +212,6 @@ const getProfileCardPreviewVisual = (snapshot: ProfileCardSnapshot): ProfileCard
       ? snapshot.motion
       : 'none';
   return { theme, motion, ...PROFILE_CARD_PREVIEW_VISUALS[theme] };
-};
-
-const formatCompact = (value: number) => {
-  const safe = Math.max(0, Math.floor(Number(value) || 0));
-  if (safe >= 1_000_000) return `${(safe / 1_000_000).toFixed(safe >= 10_000_000 ? 0 : 1)}M`;
-  if (safe >= 10_000) return `${Math.round(safe / 1000)}k`;
-  if (safe >= 1000) return `${(safe / 1000).toFixed(1)}k`;
-  return String(safe);
 };
 
 function ShardCost({
@@ -383,24 +354,17 @@ export default function AvatarSelect() {
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   const [leagueId, setLeagueId] = useState(0);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(DEFAULT_PROFILE_CARD_SNAPSHOT);
-  const [profileCardUpgradeOpen, setProfileCardUpgradeOpen] = useState(false);
-  const [profilePreviewOpen, setProfilePreviewOpen] = useState(false);
 
   const activeCustom = useMemo(() => parseCustomAvatarValue(activeAvatar), [activeAvatar]);
   const showProfileCardSection = ENABLE_PROFILE_CARD;
-  const showProfileCardDevTools = showProfileCardSection;
   const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
   const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
   const profileCardVisual = useMemo(() => getProfileCardPreviewVisual(profileCardSnapshot), [profileCardSnapshot]);
-  const profileCardDef = useMemo(() => getProfileCardLevelDef(profileCardSnapshot.level), [profileCardSnapshot.level]);
   const nextProfileCardLevel = useMemo(() => getNextProfileCardLevel(profileCardSnapshot.level), [profileCardSnapshot.level]);
   const nextProfileCardDef = useMemo(
     () => (nextProfileCardLevel === null ? null : getProfileCardLevelDef(nextProfileCardLevel)),
     [nextProfileCardLevel],
   );
-  const leagueName = LEAGUE_SHORT_RU[Math.max(0, Math.min(LEAGUE_SHORT_RU.length - 1, leagueId))] ?? LEAGUE_SHORT_RU[0];
-  const profileTitle = getTitleString(level, 'ru');
-  const cardLevelText = profileCardSnapshot.level > 0 ? profileCardLevelRoman(profileCardSnapshot.level) : '0';
   const auraName = useCallback(
     (aura: AvatarAuraDef) => triLang(lang, {
       ru: aura.nameRu,
@@ -414,56 +378,6 @@ export default function AvatarSelect() {
     }),
     [lang],
   );
-  const profileCardStats = useMemo(
-    () => [
-      { label: 'Лига', value: leagueName },
-      { label: 'XP', value: formatCompact(totalXp) },
-      { label: 'Серия', value: String(streak) },
-      { label: 'Лайки', value: formatCompact(activityLikeTotal) },
-    ],
-    [activityLikeTotal, leagueName, streak, totalXp],
-  );
-  const previewFrameId = useMemo(() => getBestFrameForLevel(level).id, [level]);
-  const profilePreviewPlayer = useMemo<PlayerInfo>(() => ({
-    name: userName,
-    points: totalXp,
-    totalXp,
-    weekXp: weekPoints,
-    isMe: false,
-    avatar: activeAvatar,
-    frame: previewFrameId,
-    aura: effectiveAuraId ?? undefined,
-    streak,
-    leagueId,
-    isPremium,
-    profileCardLevel: profileCardSnapshot.level,
-    profileCardTheme: profileCardSnapshot.theme,
-    profileCardMotion: profileCardSnapshot.motion,
-    profileCardPublicFocus: profileCardSnapshot.publicFocus,
-  }), [
-    activeAvatar,
-    effectiveAuraId,
-    isPremium,
-    leagueId,
-    previewFrameId,
-    profileCardSnapshot.level,
-    profileCardSnapshot.motion,
-    profileCardSnapshot.publicFocus,
-    profileCardSnapshot.theme,
-    streak,
-    totalXp,
-    userName,
-    weekPoints,
-  ]);
-  const profilePreviewMyInfo = useMemo(() => ({
-    name: userName,
-    avatar: activeAvatar,
-    frame: previewFrameId,
-    aura: effectiveAuraId ?? undefined,
-    totalXP: totalXp,
-    leagueId,
-    streak,
-  }), [activeAvatar, effectiveAuraId, leagueId, previewFrameId, streak, totalXp, userName]);
   const visibleCustomAvatars = useMemo(
     () => [
       ...CUSTOM_AVATAR_SHOP,
@@ -728,55 +642,6 @@ export default function AvatarSelect() {
     }
   };
 
-  const resetProfileCardUpgradesDev = async () => {
-    if (busy || !showProfileCardDevTools) return;
-    hapticTap();
-    setBusy(true);
-    try {
-      const resetSnapshot = normalizeProfileCardSnapshotForPreview({
-        level: 0,
-        theme: 'classic',
-        motion: 'none',
-        publicFocus: 'balanced',
-      });
-      await AsyncStorage.multiSet([
-        [PROFILE_CARD_LEVEL_KEY, '0'],
-        [PROFILE_CARD_THEME_KEY, 'classic'],
-        [PROFILE_CARD_MOTION_KEY, 'none'],
-        [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
-      ]);
-      setProfileCardSnapshot(resetSnapshot);
-      emitAppEvent('xp_changed');
-      void syncToCloud({ forceNow: true });
-      void writeProfileAvatarSnapshot(activeAvatar, level, activeAuraId);
-      showToast('success', 'DEV: карточка сброшена до Standard');
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const openProfileCardUpgrade = () => {
-    if (!showProfileCardSection) return;
-    hapticTap();
-    setProfileCardUpgradeOpen(true);
-  };
-
-  const openProfilePreview = () => {
-    if (!showProfileCardSection) return;
-    hapticTap();
-    setProfilePreviewOpen(true);
-  };
-
-  const handleProfileCardChanged = (snapshot: ProfileCardSnapshot) => {
-    setProfileCardSnapshot(normalizeProfileCardSnapshotForPreview(snapshot));
-    void writeProfileAvatarSnapshot(activeAvatar, level, activeAuraId);
-  };
-
-  const handleProfileCardUpgraded = (nextLevel: ProfileCardLevel) => {
-    setProfileCardSnapshot((prev) => normalizeProfileCardSnapshotForPreview({ ...prev, level: nextLevel }));
-    getShardsBalance().then(setShards).catch(() => {});
-  };
-
   return (
     <ScreenGradient>
       <View testID="screen-avatar-select" style={{ flex: 1 }}>
@@ -816,167 +681,47 @@ export default function AvatarSelect() {
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 8 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Моя карточка</Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>как видят другие</Text>
-          </View>
-          <Pressable
-            testID="avatar-profile-card-preview"
-            onPress={openProfilePreview}
-            accessibilityRole="button"
-            accessibilityLabel="Моя карточка"
-            style={({ pressed }) => ({ opacity: pressed ? 0.94 : 1 })}
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Карточка профиля</Text>
+          {/* Компактная строка-вход в полноэкранный экран прокачки карточки. Большое превью
+              «Моя карточка» / «как видят другие» убрано — оно жило в кривом окне; теперь весь
+              просмотр и апгрейд на отдельном экране (живая галерея всех уровней). */}
+          <TouchableOpacity
+            testID="avatar-profile-card-entry"
+            activeOpacity={0.86}
+            onPress={() => { hapticTap(); router.push('/profile_card_upgrade' as any); }}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 12,
+              borderRadius: 16,
+              borderWidth: 1,
+              borderColor: profileCardVisual.accentStrong,
+              backgroundColor: t.bgCard,
+              paddingHorizontal: 14,
+              paddingVertical: 13,
+            }}
           >
-            <LinearGradient
-              colors={profileCardVisual.gradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{
-                borderRadius: 20,
-                borderWidth: 1,
-                borderColor: profileCardVisual.accentStrong,
-                padding: 14,
-                overflow: 'hidden',
-                shadowColor: profileCardVisual.shadowColor,
-                shadowOpacity: profileCardSnapshot.level > 0 ? 0.26 : 0.12,
-                shadowRadius: profileCardSnapshot.level > 0 ? 16 : 8,
-                shadowOffset: { width: 0, height: 8 },
-                elevation: profileCardSnapshot.level > 0 ? 4 : 1,
-              }}
-            >
-            {profileCardSnapshot.level >= 3 ? (
-              <View
-                pointerEvents="none"
-                style={{
-                  position: 'absolute',
-                  top: -24,
-                  right: -34,
-                  width: 136,
-                  height: 136,
-                  borderRadius: 68,
-                  backgroundColor: profileCardVisual.accentSoft,
-                }}
-              />
-            ) : null}
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13 }}>
-              <View
-                style={{
-                  width: 82,
-                  height: 82,
-                  borderRadius: 24,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: profileCardSnapshot.level > 0 ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.045)',
-                  borderWidth: 1,
-                  borderColor: profileCardVisual.surfaceBorder,
-                }}
-              >
-                <AvatarView avatar={activeAvatar} level={level} size={68} auraId={effectiveAuraId} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text style={{ color: '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900', flex: 1 }} numberOfLines={1}>
-                    {userName}
-                  </Text>
-                  <View
-                    style={{
-                      borderRadius: 999,
-                      backgroundColor: profileCardVisual.accentSoft,
-                      borderWidth: 1,
-                      borderColor: profileCardVisual.surfaceBorder,
-                      paddingHorizontal: 9,
-                      paddingVertical: 4,
-                    }}
-                  >
-                    <Text style={{ color: profileCardVisual.secondary, fontSize: 11, fontWeight: '900' }}>
-                      Lv.{level}
-                    </Text>
-                  </View>
-                </View>
-                <Text style={{ color: profileCardVisual.secondary, fontSize: f.caption, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
-                  {profileTitle}
-                </Text>
-                <Text style={{ color: 'rgba(255,255,255,0.46)', fontSize: 11, fontWeight: '800', marginTop: 5 }} numberOfLines={1}>
-                  {profileCardDef.name}{profileCardSnapshot.level > 0 ? ` · CARD ${cardLevelText}` : ''}
-                </Text>
-              </View>
-              <TouchableOpacity
-                testID="avatar-profile-card-upgrade-open"
-                activeOpacity={0.84}
-                onPress={(event) => {
-                  event.stopPropagation();
-                  openProfileCardUpgrade();
-                }}
-                style={{
-                  minWidth: 92,
-                  borderRadius: 16,
-                  backgroundColor: profileCardVisual.accent,
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  alignItems: 'center',
-                }}
-              >
-                <Text style={{ color: '#111827', fontSize: f.sub, fontWeight: '900' }}>
-                  {nextProfileCardDef ? 'Апгрейд' : 'Настроить'}
-                </Text>
-                {nextProfileCardDef ? (
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 }}>
-                    <Text style={{ color: '#111827', fontSize: 10, fontWeight: '900' }}>{nextProfileCardDef.cost}</Text>
-                    <Image source={oskolokImageForPackShards(nextProfileCardDef.cost)} style={{ width: 12, height: 12 }} contentFit="contain" />
-                  </View>
-                ) : null}
-              </TouchableOpacity>
+            <View style={{ width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: profileCardVisual.accentSoft, borderWidth: 1, borderColor: profileCardVisual.accentStrong }}>
+              <Ionicons name="card" size={22} color={profileCardVisual.accent} />
             </View>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 }}>
-              {profileCardStats.map((item) => (
-                <View
-                  key={item.label}
-                  style={{
-                    flexGrow: 1,
-                    flexBasis: '47%',
-                    minHeight: 58,
-                    borderRadius: 14,
-                    borderWidth: 1,
-                    borderColor: profileCardVisual.surfaceBorder,
-                    backgroundColor: profileCardVisual.surface,
-                    paddingHorizontal: 11,
-                    paddingVertical: 8,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: 'rgba(255,255,255,0.54)', fontSize: 10, fontWeight: '900' }} numberOfLines={1}>
-                    {item.label}
-                  </Text>
-                  <Text style={{ color: '#FFFFFF', fontSize: f.sub, fontWeight: '900', marginTop: 4 }} numberOfLines={1}>
-                    {item.value}
-                  </Text>
-                </View>
-              ))}
-            </View>
-            </LinearGradient>
-          </Pressable>
-          {showProfileCardDevTools ? (
-            <TouchableOpacity
-              testID="avatar-profile-card-dev-reset"
-              activeOpacity={0.82}
-              onPress={resetProfileCardUpgradesDev}
-              disabled={busy}
-              style={{
-                marginTop: 10,
-                borderRadius: 14,
-                borderWidth: 1,
-                borderColor: 'rgba(248,113,113,0.32)',
-                backgroundColor: 'rgba(248,113,113,0.10)',
-                paddingVertical: 10,
-                alignItems: 'center',
-                opacity: busy ? 0.6 : 1,
-              }}
-            >
-              <Text style={{ color: '#FCA5A5', fontSize: f.caption, fontWeight: '900' }}>
-                DEV: сбросить апгрейды карточки
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                {profileCardLevelLabel(profileCardSnapshot.level, lang === 'ru')}
               </Text>
-            </TouchableOpacity>
-          ) : null}
+              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
+                {nextProfileCardDef
+                  ? `Дальше: ${lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[nextProfileCardLevel as ProfileCardLevel] : (nextProfileCardDef.name)} · ${nextProfileCardDef.cost}`
+                  : 'Максимальный уровень'}
+              </Text>
+            </View>
+            {nextProfileCardDef ? (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: profileCardVisual.accent, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
+                <Text style={{ color: '#111827', fontSize: f.sub, fontWeight: '900' }}>Открыть</Text>
+              </View>
+            ) : (
+              <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+            )}
+          </TouchableOpacity>
         </View>
         ) : null}
 
@@ -1105,25 +850,6 @@ export default function AvatarSelect() {
       </ScrollView>
       </BouncyWrap>
       </Reanimated.View>
-
-      {showProfileCardSection ? (
-        <>
-          <ProfileCardUpgradeModal
-            visible={profileCardUpgradeOpen}
-            level={profileCardSnapshot.level}
-            snapshot={profileCardSnapshot}
-            onClose={() => setProfileCardUpgradeOpen(false)}
-            onUpgraded={handleProfileCardUpgraded}
-            onChanged={handleProfileCardChanged}
-          />
-
-          <PlayerProfileModal
-            player={profilePreviewOpen ? profilePreviewPlayer : null}
-            myInfo={profilePreviewMyInfo}
-            onClose={() => setProfilePreviewOpen(false)}
-          />
-        </>
-      ) : null}
 
       <ThemedConfirmModal
         visible={!!pendingAuraPurchase}

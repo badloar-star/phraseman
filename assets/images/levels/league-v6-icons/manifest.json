@@ -1,0 +1,252 @@
+{
+  "version": "league-v6-codex-dalli-icons",
+  "generatedAt": "2026-06-21T21:36:12.330Z",
+  "source": ".codex-tmp/league-assets/icon-dalli-sources/league_icons_v1/league_icons_atlas_v1.png",
+  "grid": {
+    "columns": 3,
+    "rows": 4,
+    "gutterTrim": 14
+  },
+  "output": {
+    "width": 384,
+    "height": 384,
+    "innerSize": 312,
+    "format": "webp",
+    "quality": 96
+  },
+  "designRules": [
+    "Codex/DALL-E atlas is used only as raw source; final app icons are transparent WebP cutouts.",
+    "Icons are centered on a stable 384x384 canvas to avoid legacy per-league offsets.",
+    "No text, numbers, logos, characters, or UI are allowed in league icons."
+  ],
+  "leagues": [
+    {
+      "id": 0,
+      "slug": "med",
+      "title": "Copper league",
+      "file": "league-icon-med.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-med.webp",
+      "crop": {
+        "left": 14,
+        "top": 14,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 246,
+      "sourceVisibleHeight": 323,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 44986
+    },
+    {
+      "id": 1,
+      "slug": "bronz",
+      "title": "Bronze league",
+      "file": "league-icon-bronz.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-bronz.webp",
+      "crop": {
+        "left": 355,
+        "top": 14,
+        "width": 314,
+        "height": 356
+      },
+      "sourceVisibleWidth": 259,
+      "sourceVisibleHeight": 324,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 47770
+    },
+    {
+      "id": 2,
+      "slug": "serebro",
+      "title": "Silver league",
+      "file": "league-icon-serebro.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-serebro.webp",
+      "crop": {
+        "left": 697,
+        "top": 14,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 260,
+      "sourceVisibleHeight": 324,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 49240
+    },
+    {
+      "id": 3,
+      "slug": "zoloto",
+      "title": "Gold league",
+      "file": "league-icon-zoloto.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-zoloto.webp",
+      "crop": {
+        "left": 14,
+        "top": 398,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 258,
+      "sourceVisibleHeight": 334,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 45642
+    },
+    {
+      "id": 4,
+      "slug": "platina",
+      "title": "Platinum league",
+      "file": "league-icon-platina.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-platina.webp",
+      "crop": {
+        "left": 355,
+        "top": 398,
+        "width": 314,
+        "height": 356
+      },
+      "sourceVisibleWidth": 257,
+      "sourceVisibleHeight": 335,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 41326
+    },
+    {
+      "id": 5,
+      "slug": "izumrud",
+      "title": "Emerald league",
+      "file": "league-icon-izumrud.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-izumrud.webp",
+      "crop": {
+        "left": 697,
+        "top": 398,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 258,
+      "sourceVisibleHeight": 335,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 57624
+    },
+    {
+      "id": 6,
+      "slug": "sapfir",
+      "title": "Sapphire league",
+      "file": "league-icon-sapfir.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-sapfir.webp",
+      "crop": {
+        "left": 14,
+        "top": 782,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 254,
+      "sourceVisibleHeight": 337,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 44762
+    },
+    {
+      "id": 7,
+      "slug": "rubin",
+      "title": "Ruby league",
+      "file": "league-icon-rubin.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-rubin.webp",
+      "crop": {
+        "left": 355,
+        "top": 782,
+        "width": 314,
+        "height": 356
+      },
+      "sourceVisibleWidth": 258,
+      "sourceVisibleHeight": 340,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 45212
+    },
+    {
+      "id": 8,
+      "slug": "almaz",
+      "title": "Diamond league",
+      "file": "league-icon-almaz.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-almaz.webp",
+      "crop": {
+        "left": 697,
+        "top": 782,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 257,
+      "sourceVisibleHeight": 337,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 48058
+    },
+    {
+      "id": 9,
+      "slug": "cherniy-almaz",
+      "title": "Black diamond league",
+      "file": "league-icon-cherniy-almaz.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp",
+      "crop": {
+        "left": 14,
+        "top": 1166,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 249,
+      "sourceVisibleHeight": 332,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 43290
+    },
+    {
+      "id": 10,
+      "slug": "efir",
+      "title": "Ether league",
+      "file": "league-icon-efir.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-efir.webp",
+      "crop": {
+        "left": 355,
+        "top": 1166,
+        "width": 314,
+        "height": 356
+      },
+      "sourceVisibleWidth": 268,
+      "sourceVisibleHeight": 332,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 43852
+    },
+    {
+      "id": 11,
+      "slug": "vishaya",
+      "title": "Supreme league",
+      "file": "league-icon-vishaya.webp",
+      "path": "assets/images/levels/league-v6-icons/league-icon-vishaya.webp",
+      "crop": {
+        "left": 697,
+        "top": 1166,
+        "width": 313,
+        "height": 356
+      },
+      "sourceVisibleWidth": 275,
+      "sourceVisibleHeight": 335,
+      "width": 384,
+      "height": 384,
+      "hasAlpha": true,
+      "bytes": 48954
+    }
+  ]
+}

@@ -383,6 +383,255 @@ export function getNextProfileCardLevel(level: ProfileCardLevel): ProfileCardLev
   return (level + 1) as ProfileCardLevel;
 }
 
+/**
+ * Конкретный визуальный эффект карточки по уровню + выбранному motion. Единый
+ * источник истины для превью (avatar_select), публичной карточки (PlayerProfileModal)
+ * и анимаций (ProfileCardMotionFx) — чтобы маппинг не расходился между файлами.
+ *
+ *   1 polished  → 'sheen'   мягкий проблеск канта
+ *   2 signature → 'breath'  дыхание акцент-ореола
+ *   3 motion    → 'runner'  бегущий луч по периметру + искры (если motion !== none)
+ *   4 prestige  → 'holo'    голографический перелив + параллакс-блик
+ *   5 elite     → 'elite'   призма-скан + аура-частицы
+ */
+export type ProfileCardFxKind = 'none' | 'sheen' | 'breath' | 'runner' | 'holo' | 'elite';
+
+export function fxKindForProfileCard(level: ProfileCardLevel, motion: ProfileCardMotion): ProfileCardFxKind {
+  // Выбор «Calm» (motion==='none') УВАЖАЕТСЯ на всех уровнях, где motion доступен (>=3):
+  //  - ур.3 → совсем без движения ('none'), юзер явно отключил;
+  //  - ур.4-5 → не полный holo/elite, а спокойное 'breath' (карточка не «мёртвая», но
+  //    без агрессивного движения) — престиж сохраняется, выбор пользователя слышен.
+  if (level >= 5) return motion === 'none' ? 'breath' : 'elite';
+  if (level >= 4) return motion === 'none' ? 'breath' : 'holo';
+  if (level >= 3) return motion === 'none' ? 'none' : 'runner';
+  if (level >= 2) return 'breath';
+  if (level >= 1) return 'sheen';
+  return 'none';
+}
+
+/** Русские «продуктовые» имена уровней для UI (англ. `name` в LEVELS — служебное). */
+export const PROFILE_CARD_LEVEL_NAME_RU: Record<ProfileCardLevel, string> = {
+  0: 'Стандарт',
+  1: 'Гранёная',
+  2: 'Фирменная',
+  3: 'Движение',
+  4: 'Престиж',
+  5: 'Элита',
+};
+
+/**
+ * Продающий буллет уровня. `text` локализован на все 8 языков приложения (как unlock*
+ * в LEVELS), `isNew` помечает фичи, которые добавляет именно этот уровень (тег NEW).
+ * Тексты на «ты», коротко, в духе сторовых преимуществ.
+ */
+export type ProfileCardSellingText = {
+  ru: string;
+  uk: string;
+  es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+};
+export type ProfileCardSellingPoint = { text: ProfileCardSellingText; isNew: boolean };
+
+/**
+ * Достаёт буллет на нужном языке. Тексты есть для всех 8 поддерживаемых языков; для
+ * неизвестного кода языка возвращаем русский как ведущий (это не runtime-аудит-резолвер,
+ * а простая выборка локали из полного словаря).
+ */
+export function sellingPointText(point: ProfileCardSellingPoint, lang: string): string {
+  const t = point.text;
+  const byLang = (t as Record<string, string>)[lang];
+  return byLang || t.ru;
+}
+
+export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSellingPoint[]> = {
+  0: [
+    { isNew: false, text: {
+      ru: 'Базовая карточка профиля',
+      uk: 'Базова картка профілю',
+      es: 'Tarjeta de perfil base',
+      'pt-BR': 'Cartão de perfil básico',
+      vi: 'Thẻ hồ sơ cơ bản',
+      id: 'Kartu profil dasar',
+      tr: 'Temel profil kartı',
+      pl: 'Podstawowa karta profilu',
+    } },
+    { isNew: false, text: {
+      ru: 'Видна в профиле и списках',
+      uk: 'Видно в профілі та списках',
+      es: 'Visible en el perfil y las listas',
+      'pt-BR': 'Visível no perfil e nas listas',
+      vi: 'Hiển thị trong hồ sơ và danh sách',
+      id: 'Terlihat di profil dan daftar',
+      tr: 'Profilde ve listelerde görünür',
+      pl: 'Widoczna w profilu i listach',
+    } },
+  ],
+  1: [
+    { isNew: true, text: {
+      ru: 'Премиальная компоновка и тонкий кант-фольга',
+      uk: 'Преміальна композиція та тонкий кант-фольга',
+      es: 'Diseño premium y borde de lámina fina',
+      'pt-BR': 'Layout premium e borda de folha fina',
+      vi: 'Bố cục cao cấp và viền ánh kim mảnh',
+      id: 'Tata letak premium dan tepi foil tipis',
+      tr: 'Premium düzen ve ince folyo kenar',
+      pl: 'Premium układ i cienki kant-folia',
+    } },
+    { isNew: true, text: {
+      ru: 'Бейдж «CARD I» у имени в друзьях, арене и клубе',
+      uk: 'Бейдж «CARD I» біля імені у друзях, арені та клубі',
+      es: 'Insignia «CARD I» junto a tu nombre en amigos, arena y club',
+      'pt-BR': 'Selo «CARD I» ao lado do nome em amigos, arena e clube',
+      vi: 'Huy hiệu «CARD I» cạnh tên trong bạn bè, đấu trường và câu lạc bộ',
+      id: 'Lencana «CARD I» di samping nama di teman, arena, dan klub',
+      tr: 'Arkadaşlar, arena ve kulüpte adının yanında «CARD I» rozeti',
+      pl: 'Odznaka «CARD I» przy imieniu w znajomych, arenie i klubie',
+    } },
+    { isNew: true, text: {
+      ru: 'Мягкий проблеск по канту при появлении',
+      uk: 'М’який проблиск по канту під час появи',
+      es: 'Brillo suave por el borde al aparecer',
+      'pt-BR': 'Brilho suave na borda ao aparecer',
+      vi: 'Ánh sáng nhẹ lướt qua viền khi xuất hiện',
+      id: 'Kilau lembut di tepi saat muncul',
+      tr: 'Belirirken kenarda yumuşak bir parıltı',
+      pl: 'Delikatny błysk po krawędzi przy pojawieniu',
+    } },
+  ],
+  2: [
+    { isNew: true, text: {
+      ru: '4 темы-материала: золото, кристалл, жар, аврора',
+      uk: '4 теми-матеріали: золото, кристал, жар, аврора',
+      es: '4 materiales: oro, cristal, brasa, aurora',
+      'pt-BR': '4 materiais: ouro, cristal, brasa, aurora',
+      vi: '4 chất liệu: vàng, pha lê, lửa, cực quang',
+      id: '4 material: emas, kristal, bara, aurora',
+      tr: '4 malzeme: altın, kristal, kor, aurora',
+      pl: '4 materiały: złoto, kryształ, żar, zorza',
+    } },
+    { isNew: true, text: {
+      ru: 'Цветной кант и тень-ореол под выбранный материал',
+      uk: 'Кольоровий кант і тінь-ореол під обраний матеріал',
+      es: 'Borde de color y halo de sombra según el material',
+      'pt-BR': 'Borda colorida e halo de sombra conforme o material',
+      vi: 'Viền màu và quầng bóng theo chất liệu đã chọn',
+      id: 'Tepi berwarna dan halo bayangan sesuai material',
+      tr: 'Seçilen malzemeye göre renkli kenar ve gölge halesi',
+      pl: 'Kolorowy kant i cień-aureola pod wybrany materiał',
+    } },
+    { isNew: true, text: {
+      ru: 'Спокойное «дыхание» акцента — карточка живая',
+      uk: 'Спокійне «дихання» акценту — картка жива',
+      es: 'Una «respiración» suave del acento: la tarjeta cobra vida',
+      'pt-BR': 'Uma «respiração» suave do destaque: o cartão ganha vida',
+      vi: 'Điểm nhấn «thở» nhẹ nhàng — tấm thẻ trở nên sống động',
+      id: 'Aksen yang «bernapas» lembut — kartu jadi hidup',
+      tr: 'Vurgunun yumuşak «nefesi» — kart canlanır',
+      pl: 'Spokojne „oddychanie” akcentu — karta żyje',
+    } },
+  ],
+  3: [
+    { isNew: true, text: {
+      ru: 'Анимированная рамка — луч света бежит по периметру',
+      uk: 'Анімована рамка — промінь світла біжить по периметру',
+      es: 'Marco animado: un haz de luz recorre el borde',
+      'pt-BR': 'Moldura animada: um feixe de luz percorre a borda',
+      vi: 'Khung động — tia sáng chạy quanh viền',
+      id: 'Bingkai beranimasi — seberkas cahaya berlari di tepi',
+      tr: 'Animasyonlu çerçeve — bir ışık huzmesi kenarda dolaşır',
+      pl: 'Animowana ramka — promień światła biegnie po krawędzi',
+    } },
+    { isNew: true, text: {
+      ru: 'Парящие искры над карточкой',
+      uk: 'Ширяючі іскри над карткою',
+      es: 'Chispas flotando sobre la tarjeta',
+      'pt-BR': 'Faíscas flutuando sobre o cartão',
+      vi: 'Những tia lửa bay lơ lửng trên thẻ',
+      id: 'Percikan melayang di atas kartu',
+      tr: 'Kartın üzerinde süzülen kıvılcımlar',
+      pl: 'Unoszące się iskry nad kartą',
+    } },
+    { isNew: false, text: {
+      ru: 'Движение видно даже в чужом списке — ты выделяешься',
+      uk: 'Рух видно навіть у чужому списку — ти вирізняєшся',
+      es: 'El movimiento se ve incluso en listas ajenas: destacas',
+      'pt-BR': 'O movimento aparece até em listas alheias: você se destaca',
+      vi: 'Chuyển động hiện rõ cả trong danh sách của người khác — bạn nổi bật',
+      id: 'Gerakan terlihat bahkan di daftar orang lain — kamu menonjol',
+      tr: 'Hareket başkalarının listesinde bile görünür — öne çıkarsın',
+      pl: 'Ruch widać nawet na cudzej liście — wyróżniasz się',
+    } },
+  ],
+  4: [
+    { isNew: true, text: {
+      ru: 'Расширенная публичная статистика — 3 метрики вместо 2',
+      uk: 'Розширена публічна статистика — 3 метрики замість 2',
+      es: 'Estadísticas públicas ampliadas: 3 métricas en vez de 2',
+      'pt-BR': 'Estatísticas públicas ampliadas: 3 métricas em vez de 2',
+      vi: 'Thống kê công khai mở rộng — 3 chỉ số thay vì 2',
+      id: 'Statistik publik diperluas — 3 metrik, bukan 2',
+      tr: 'Genişletilmiş herkese açık istatistik — 2 yerine 3 gösterge',
+      pl: 'Rozszerzone publiczne statystyki — 3 metryki zamiast 2',
+    } },
+    { isNew: true, text: {
+      ru: 'Выбор фокуса: XP, серия, лига или арена в центре',
+      uk: 'Вибір фокусу: XP, серія, ліга або арена в центрі',
+      es: 'Elige el foco: XP, racha, liga o arena en el centro',
+      'pt-BR': 'Escolha o foco: XP, sequência, liga ou arena em destaque',
+      vi: 'Chọn điểm nhấn: XP, chuỗi ngày, giải đấu hay đấu trường ở trung tâm',
+      id: 'Pilih fokus: XP, rentetan, liga, atau arena di tengah',
+      tr: 'Odağı seç: XP, seri, lig veya arena merkezde',
+      pl: 'Wybór fokusu: XP, seria, liga lub arena na środku',
+    } },
+    { isNew: true, text: {
+      ru: 'Голографический отлив фона и параллакс-блик',
+      uk: 'Голографічний відлив фону та паралакс-відблиск',
+      es: 'Reflejo holográfico del fondo y brillo parallax',
+      'pt-BR': 'Reflexo holográfico do fundo e brilho parallax',
+      vi: 'Ánh phản chiếu hologram của nền và lóe sáng parallax',
+      id: 'Kilau holografik latar dan kilatan parallax',
+      tr: 'Arka planın holografik yansıması ve parallax parıltısı',
+      pl: 'Holograficzny odblask tła i błysk parallax',
+    } },
+  ],
+  5: [
+    { isNew: true, text: {
+      ru: 'Кинематографичный вход — карточка влетает со вспышкой',
+      uk: 'Кінематографічний вхід — картка влітає зі спалахом',
+      es: 'Entrada cinematográfica: la tarjeta irrumpe con un destello',
+      'pt-BR': 'Entrada cinematográfica: o cartão surge com um flash',
+      vi: 'Hiệu ứng xuất hiện như phim — tấm thẻ lao vào kèm tia chớp',
+      id: 'Kemunculan sinematik — kartu melesat dengan kilatan',
+      tr: 'Sinematik giriş — kart bir parlamayla içeri süzülür',
+      pl: 'Kinowe wejście — karta wlatuje z błyskiem',
+    } },
+    { isNew: true, text: {
+      ru: 'Аура-частицы и призма-скан по holo-канту',
+      uk: 'Аура-частинки та призма-скан по holo-канту',
+      es: 'Partículas de aura y escaneo de prisma por el borde holo',
+      'pt-BR': 'Partículas de aura e varredura de prisma na borda holo',
+      vi: 'Hạt hào quang và quét lăng kính dọc viền holo',
+      id: 'Partikel aura dan pindaian prisma di tepi holo',
+      tr: 'Aura parçacıkları ve holo kenarda prizma taraması',
+      pl: 'Cząsteczki aury i skan pryzmatu po holo-kancie',
+    } },
+    { isNew: true, text: {
+      ru: 'Максимальный визуальный статус в игре',
+      uk: 'Максимальний візуальний статус у грі',
+      es: 'El máximo estatus visual del juego',
+      'pt-BR': 'O máximo status visual do jogo',
+      vi: 'Trạng thái hình ảnh đỉnh cao nhất trong trò chơi',
+      id: 'Status visual tertinggi dalam game',
+      tr: 'Oyundaki en yüksek görsel statü',
+      pl: 'Najwyższy status wizualny w grze',
+    } },
+  ],
+};
+
 export async function getProfileCardLevel(): Promise<ProfileCardLevel> {
   try {
     return normalizeProfileCardLevel(await AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY));
@@ -612,6 +861,39 @@ export async function upgradeProfileCardLevel(): Promise<
 
 export function profileCardLevelRoman(level: ProfileCardLevel): string {
   return ['0', 'I', 'II', 'III', 'IV', 'V'][level] ?? '0';
+}
+
+
+/**
+ * DEV-ONLY: bumps the local card level by one WITHOUT spending shards and without the
+ * server-validated path. This exists purely so we can preview every tier on a dev build;
+ * it is gated behind __DEV__ and is a no-op in release builds, so it can never grant a
+ * real player a paid CARD badge. Returns the new snapshot (or the unchanged one at max).
+ */
+export async function devGrantProfileCardLevel(): Promise<ProfileCardSnapshot> {
+  if (!__DEV__) return getProfileCardSnapshot();
+  const current = await getProfileCardLevel();
+  const next = getNextProfileCardLevel(current);
+  if (next === null) return getProfileCardSnapshot();
+  await applyProfileCardLevelLocally(next);
+  emitAppEvent('xp_changed');
+  return getProfileCardSnapshot();
+}
+
+/**
+ * DEV-ONLY: resets the local card back to level 0 (Standard) so we can re-test the upgrade
+ * flow from scratch. Theme/motion/focus are reset to their defaults too. No-op in release.
+ */
+export async function devResetProfileCard(): Promise<ProfileCardSnapshot> {
+  if (!__DEV__) return getProfileCardSnapshot();
+  await AsyncStorage.multiSet([
+    [PROFILE_CARD_LEVEL_KEY, '0'],
+    [PROFILE_CARD_THEME_KEY, 'classic'],
+    [PROFILE_CARD_MOTION_KEY, 'none'],
+    [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
+  ]);
+  emitAppEvent('xp_changed');
+  return getProfileCardSnapshot();
 }
 
 /**

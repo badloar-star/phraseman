@@ -79,6 +79,7 @@ import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
 import PerfectWeekHost from '../components/PerfectWeekHost';
+import BoonActivatedHost from '../components/BoonActivatedHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
@@ -126,6 +127,8 @@ import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { installInterFontPatch } from './font_family_patch';
+import { willShowWelcomeNow } from './onboarding_welcome/welcome_gate';
+import { readPersonalPlanState } from './personal_plan_state';
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
@@ -931,6 +934,10 @@ function AppContent() {
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  // Онбординг переоткрывается на шаге «Имя» после пейвола (continue-free / покупка):
+  // монтируем сразу на 'name' без блокирующего async-резолва A/B (иначе пустой
+  // «resolving»-экран + ожидание Keychain getStableId = «думает» после кнопки).
+  const [onboardingStartAtName, setOnboardingStartAtName] = useState(false);
   // true, пока активен онбординг-пейвол (роут paywall_a/b/c, source=onboarding_plan).
   // Управляет presentation статических <Stack.Screen> ниже: онбординг открывает пейвол
   // как ОБЫЧНЫЙ экран (card, без выезда снизу), все прочие источники — modal slide_from_bottom.
@@ -1977,6 +1984,9 @@ function AppContent() {
     // «Позже»/«Войти» onDone() мог вызваться дважды → два setTimeout → модалка повторно открывалась.
     if (onboardingDoneHandledRef.current) return;
     onboardingDoneHandledRef.current = true;
+    // Онбординг завершён — сбрасываем разовый флаг «стартовать с имени», чтобы
+    // следующий (QA-reset / новый пользователь) показ шёл штатным резолвом A/B.
+    setOnboardingStartAtName(false);
     const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip();
     if (!hasPaidOrVipAfterOnboarding) {
       await startIntroFullAccessAfterOnboarding(Date.now(), lang);
@@ -1991,7 +2001,12 @@ function AppContent() {
     setFirstContentReady(true);
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
-    setShow(false);
+    // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
+    // если под оверлеем активен маршрут пейвола (план-ветка: handleOnboardingPersonalPlanPaywall
+    // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
+    // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
+    // пока навигация не встала на /home).
+    setTimeout(() => setShow(false), 60);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // UX-003: Запрашиваем пуш-разрешение в конце онбординга (не раньше — иначе система не даст
@@ -2004,10 +2019,34 @@ function AppContent() {
         await requestNotificationPermissionWithFallback().catch(() => {});
       }
     })();
-    // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
-    const showWelcome = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
-    if (showWelcome) {
-      setTimeout(() => setIntroFullAccessModal('welcome'), 320);
+    // Подарок 3 дня (introFullAccess 'welcome'). Требование: в первый день новичок видит
+    // ТОЛЬКО компас-приветствие (онбординг-слайды), а подарок 3 дня — СТРОГО ПОСЛЕ его
+    // закрытия. Раньше подарок ставился по слепому setTimeout(320) и мог занять слот
+    // арбитра раньше компаса (гонка) → компас «мелькал и пропадал» + фриз.
+    const showIntroGift = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
+    if (showIntroGift) {
+      const planState = await readPersonalPlanState().catch(() => null);
+      const compassWillShow = await willShowWelcomeNow(hasPaidOrVipAfterOnboarding, !!planState).catch(() => false);
+      if (compassWillShow) {
+        // Ждём закрытия компаса → только потом показываем подарок. Одноразовая подписка
+        // с таймаут-фолбэком: если событие почему-то не придёт (компас не смонтировался),
+        // подарок всё равно покажется, чтобы новичок его не потерял.
+        let fired = false;
+        const fire = () => {
+          if (fired) return;
+          fired = true;
+          sub.remove();
+          clearTimeout(fallback);
+          // Небольшая задержка: дать нативной модалке компаса докрыться до present подарка
+          // (на iOS два present подряд ломают стек презентаций).
+          setTimeout(() => setIntroFullAccessModal('welcome'), 380);
+        };
+        const sub = onAppEvent('welcome_closed', fire);
+        const fallback = setTimeout(fire, 60_000);
+      } else {
+        // Компас не покажется (уже виден ранее / премиум-ветка) → подарок как раньше.
+        setTimeout(() => setIntroFullAccessModal('welcome'), 320);
+      }
     }
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
@@ -2081,17 +2120,31 @@ function AppContent() {
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
-    const sub = onAppEvent('personal_plan_onboarding_nickname_ready', async () => {
+    const sub = onAppEvent('personal_plan_onboarding_nickname_ready', () => {
       onboardingDoneHandledRef.current = false;
       // Онбординг-пейвол отыграл (continue-free / покупка) → возвращаемся в оверлей
       // онбординга на шаг «Имя». Снимаем флаг, чтобы будущие открытия пейвола
       // (winback и т.п.) снова были модалкой с выездом снизу.
       setOnboardingPaywallActive(false);
-      await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
-      await AsyncStorage.setItem('onboarding_step', 'name');
-      await AsyncStorage.removeItem('onboarding_done');
       setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
+      // СИНХРОННО поднимаем непрозрачный оверлей в ближайшем кадре — пейвол под
+      // ним мгновенно перекрыт, кадра с «Главной» (мелькание) нет. Раньше тут шли
+      // три await AsyncStorage ДО setShow(true): окно, в которое был виден
+      // нижележащий маршрут. Ключи онбординга уже выставлены в paywall_purchase
+      // перед эмитом события, так что эти записи — лишь страховка fire-and-forget.
+      // startAtName=true → онбординг монтируется прямо на 'name' без async-гейта
+      // (без пустого «resolving»-экрана и без ожидания Keychain в getStableId).
+      setOnboardingStartAtName(true);
       setShow(true);
+      void (async () => {
+        try {
+          await AsyncStorage.multiSet([
+            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+            ['onboarding_step', 'name'],
+          ]);
+          await AsyncStorage.removeItem('onboarding_done');
+        } catch { /* best-effort: paywall_purchase уже записал эти ключи */ }
+      })();
     });
     return () => sub.remove();
   }, []);
@@ -2465,6 +2518,7 @@ function AppContent() {
     {ready && effectiveShowOnboarding && (
       <View style={styles.appFullScreenOverlay}>
         <Onboarding
+          startAtNameStep={onboardingStartAtName}
           onDone={handleOnboardingDone}
           onLangSelect={handleLangSelect}
           onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
@@ -2552,6 +2606,7 @@ export default function RootLayout() {
                     <MysteryMondayHost />
                     <ComebackBoonHost />
                     <PerfectWeekHost />
+                    <BoonActivatedHost />
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />

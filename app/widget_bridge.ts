@@ -21,6 +21,7 @@ import { getTodayPhraseForTarget } from './daily_phrase_system';
 import { dailyPhraseCopyForLang } from './daily_phrase_system';
 import type { DailyPhrase, DailyPhraseInterfaceLang } from './daily_phrase_system';
 import { dailyPhraseChromeFor } from './daily_phrase_chrome';
+import { getTranscription } from './transcription';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { ThemeMode } from '../constants/theme';
 import PhraseWidget from '../modules/phrase-widget';
@@ -51,6 +52,8 @@ export interface WidgetTheme {
   chipBg: string;
   /** Icon/accent chip border. */
   chipBorder: string;
+  /** Soft ambient accent glow behind the card (top-right bloom). */
+  glow: string;
 }
 
 /**
@@ -119,6 +122,7 @@ function themeFromMode(mode: ThemeMode): WidgetTheme {
     accent: c.ornament,
     chipBg: c.iconBg,
     chipBorder: c.iconBorder,
+    glow: c.glow,
   };
 }
 
@@ -141,7 +145,11 @@ export function buildWidgetPayload(
     english: firstNonEmpty(phrase.english),
     meaning: firstNonEmpty(copy.meaning),
     literal: firstNonEmpty(copy.literal),
-    transcription: firstNonEmpty((phrase as { transcription?: string }).transcription),
+    // The DailyPhrase type carries no transcription, so derive it on-device from
+    // the offline IPA generator (pure, no I/O — safe inside this pure builder).
+    // This finally lights up the medium-widget transcription line, which was
+    // permanently empty because nothing ever populated this field.
+    transcription: firstNonEmpty(getTranscription(phrase.english)),
     kicker: KICKER_BY_LANG[lang] ?? KICKER_BY_LANG.ru,
     deepLink: `${SCHEME}://phrase/${encodedId}`,
     playDeepLink: `${SCHEME}://phrase/${encodedId}?play=1`,

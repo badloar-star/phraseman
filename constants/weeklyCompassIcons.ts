@@ -1,7 +1,7 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { ThemeMode } from './theme';
 
-const FALLBACK_COMPASS_ICON = require('../assets/images/theo/theo-phrase-compass-v1.png');
+const FALLBACK_COMPASS_ICON = require('../assets/images/theo/theo-phrase-compass-v1.webp');
 
 export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   dark: 'assets/images/weekly_compass_icons/dark.webp',

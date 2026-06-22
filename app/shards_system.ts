@@ -246,6 +246,29 @@ const logShardTransaction = async (
 
 export type AddShardOpts = { suppressEarnEvent?: boolean };
 
+// Сколько ждём ответа Firestore при списании/начислении осколков, прежде чем
+// считать облако недоступным. В регионах с заблокированным Firebase транзакция
+// без таймаута висит бесконечно и держит покупку в состоянии «Подождите…».
+// По истечении срока трактуем как 'unavailable' (НЕ 'insufficient') — вызывающий
+// уходит в локальную ветку: списывает локально и до-синхронизирует в фоне.
+const SHARD_CLOUD_TX_TIMEOUT_MS = 6000;
+
+const SHARD_CLOUD_TIMEOUT_SIGNAL = Symbol('shard_cloud_timeout');
+
+const runWithTimeout = async <T>(promise: Promise<T>, ms: number): Promise<T> => {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => reject(SHARD_CLOUD_TIMEOUT_SIGNAL), ms);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+};
+
 const applyShardDeltaToCloud = async (
   delta: number,
   type: 'earn' | 'spend',
@@ -259,20 +282,23 @@ const applyShardDeltaToCloud = async (
     const db = firestore();
     const userRef = db.collection('users').doc(uid);
     const updatedAtMs = Date.now();
-    const txResult = await db.runTransaction(async (transaction): Promise<{ next: number } | { insufficientBase: number }> => {
-      const snap = await transaction.get(userRef);
-      const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
-      const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
-      const next = base + delta;
-      if (next < 0) return { insufficientBase: base };
-      transaction.set(userRef, {
-        shards: next,
-        shards_updated_at_ms: updatedAtMs,
-        shards_updated_op: type,
-        shards_updated_reason: reason,
-      }, { merge: true });
-      return { next };
-    });
+    const txResult = await runWithTimeout(
+      db.runTransaction(async (transaction): Promise<{ next: number } | { insufficientBase: number }> => {
+        const snap = await transaction.get(userRef);
+        const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
+        const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
+        const next = base + delta;
+        if (next < 0) return { insufficientBase: base };
+        transaction.set(userRef, {
+          shards: next,
+          shards_updated_at_ms: updatedAtMs,
+          shards_updated_op: type,
+          shards_updated_reason: reason,
+        }, { merge: true });
+        return { next };
+      }),
+      SHARD_CLOUD_TX_TIMEOUT_MS,
+    );
     if ('insufficientBase' in txResult) {
       // Облако — источник истины. Возвращаем фактический облачный баланс, чтобы
       // вызывающий мог сверить локальный (возможно завышенный) баланс с реальным.
@@ -845,17 +871,23 @@ const syncShardsToCloud = async (balance: number, meta?: ShardBalanceMeta | null
     const db = firestore();
     const userRef = db.collection('users').doc(uid);
     const effectiveMeta = meta ?? await readBalanceMeta() ?? localWriteStamp('replace', 'sync');
-    await db.runTransaction(async (transaction) => {
-      const snap = await transaction.get(userRef);
-      const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
-      if (cloudUpdatedAt !== null && cloudUpdatedAt > effectiveMeta.updatedAtMs) return;
-      transaction.set(userRef, {
-        shards: safeBalance,
-        shards_updated_at_ms: effectiveMeta.updatedAtMs,
-        shards_updated_op: effectiveMeta.op,
-        shards_updated_reason: effectiveMeta.reason,
-      }, { merge: true });
-    });
+    // Таймаут, чтобы фоновый синк не висел вечно на заблокированном Firebase и не
+    // копил зависшие транзакции при каждой покупке. Best-effort: при таймауте просто
+    // выходим, локальный баланс до-синхронизируется при следующем сетевом вызове.
+    await runWithTimeout(
+      db.runTransaction(async (transaction) => {
+        const snap = await transaction.get(userRef);
+        const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
+        if (cloudUpdatedAt !== null && cloudUpdatedAt > effectiveMeta.updatedAtMs) return;
+        transaction.set(userRef, {
+          shards: safeBalance,
+          shards_updated_at_ms: effectiveMeta.updatedAtMs,
+          shards_updated_op: effectiveMeta.op,
+          shards_updated_reason: effectiveMeta.reason,
+        }, { merge: true });
+      }),
+      SHARD_CLOUD_TX_TIMEOUT_MS,
+    );
   } catch (e) {
     if (__DEV__) console.warn('[shards_system]', e);
   }

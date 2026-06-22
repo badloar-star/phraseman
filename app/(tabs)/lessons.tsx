@@ -16,7 +16,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
 import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
 import type { ThemeMode } from '../../constants/theme';
@@ -218,6 +218,22 @@ function rgbaHex(hex: string, alpha: number): string {
     const b = parseInt(hex.slice(5, 7), 16);
     return `rgba(${r},${g},${b},${alpha})`;
 }
+// Кеш результатов darkenHex и rgbaHex — детерминированные функции, результат постоянный.
+const _darkenCache = new Map<string, string>();
+const _rgbaCache = new Map<string, string>();
+
+function darkenHexCached(hex: string, factor: number): string {
+    const k = `${hex}:${factor}`;
+    let v = _darkenCache.get(k);
+    if (!v) { v = darkenHex(hex, factor); _darkenCache.set(k, v); }
+    return v;
+}
+function rgbaHexCached(hex: string, alpha: number): string {
+    const k = `${hex}:${alpha}`;
+    let v = _rgbaCache.get(k);
+    if (!v) { v = rgbaHex(hex, alpha); _rgbaCache.set(k, v); }
+    return v;
+}
 // ── Medal images ────────────────────────────────────────────────────────────
 const MEDAL_IMAGES: Record<string, any> = {
     bronze: require('../../assets/images/levels/bronza.webp'),
@@ -335,6 +351,220 @@ function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize
     );
 }
 
+// ── LessonCard — мемоизированный тайл урока ──────────────────────────────────
+interface LessonCardProps {
+    num: number;
+    name: string;
+    isUnlocked: boolean;
+    bg: string;
+    darkBg: string;
+    progPct: number;
+    isComplete: boolean;
+    isCurrent: boolean;
+    lessonLevel: CourseLevel;
+    lessonGoldLevel: ReturnType<typeof goldCefrAccent>;
+    lessonAccent: string;
+    prevLessonLevel: CourseLevel | null;
+    levelLockedByExam: boolean;
+    premiumRequired: boolean;
+    showLessonProgressFill: boolean;
+    cardRadius: number;
+    lockedCardBaseColor: string;
+    cardLayerStyle: { position: 'absolute'; left: number; top: number; right: number; bottom: number; borderRadius: number; overflow: 'hidden' };
+    lessonTextColor: string;
+    lessonMetaColor: string;
+    // внешние props из замыкания
+    isGoldTheme: boolean;
+    isCoralTheme: boolean;
+    themeMode: ThemeMode;
+    goldSurface: string;
+    goldHairline: string;
+    goldAntique: string;
+    goldBright: string;
+    scaleAnim: null;
+    lang: Lang;
+    f: ReturnType<typeof import('../../components/ThemeContext').useTheme>['f'];
+    openLessonPaywall: (lessonNum: number) => void;
+    setGateModal: React.Dispatch<React.SetStateAction<null | { kind: 'exam'; level: string } | { kind: 'lesson'; prevNum: number } | { kind: 'levelGate'; level: string; prevLevel: string } | { kind: 'frenchExam'; level: string } | { kind: 'premium'; lessonNum: number }>>;
+    router: ReturnType<typeof import('expo-router').useRouter>;
+    studyTarget: string;
+    isPremium: boolean;
+    DEV_CONTENT_UNLOCK: boolean;
+    noLimits: boolean;
+    textPrimary: string;
+    textMuted: string;
+}
+
+const LessonCard = React.memo(function LessonCard({
+    num, name, isUnlocked, bg, darkBg, progPct, isComplete, isCurrent,
+    lessonLevel, lessonGoldLevel, lessonAccent, prevLessonLevel,
+    levelLockedByExam, premiumRequired, showLessonProgressFill,
+    cardRadius, lockedCardBaseColor, cardLayerStyle,
+    lessonTextColor, lessonMetaColor,
+    isGoldTheme, isCoralTheme, themeMode: _themeMode,
+    goldSurface: _gs, goldHairline, goldAntique, goldBright,
+    scaleAnim, lang, f,
+    openLessonPaywall, setGateModal, router, studyTarget,
+    isPremium, DEV_CONTENT_UNLOCK, noLimits,
+    textPrimary: _tp, textMuted,
+}: LessonCardProps) {
+    const lockedCardHasLightFill = false;
+    return (<Animated.View style={{
+            marginTop: 5,
+            marginHorizontal: 14,
+            borderRadius: cardRadius,
+            transform: [{ scale: scaleAnim ?? 1 }],
+            shadowColor: isGoldTheme ? '#000' : darkenHexCached(bg, isCoralTheme ? 0.18 : 0.28),
+            shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
+            shadowOpacity: USE_ELITE_LESSONS_MAP
+                ? (isCurrent ? 0.20 : isUnlocked ? 0.11 : 0.05)
+                : useSketchLessonVisual ? (isUnlocked ? 0.14 : 0.08) : (isUnlocked ? 0.28 : 0.15),
+            shadowRadius: USE_ELITE_LESSONS_MAP
+                ? (isCurrent ? 14 : isUnlocked ? 9 : 4)
+                : useSketchLessonVisual ? (isUnlocked ? 10 : 5) : (isUnlocked ? 8 : 4),
+            elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
+            ...(isGoldTheme ? goldShadow(isCurrent ? 2 : 1) : {}),
+            ...({}),
+        }}>
+      <TouchableOpacity testID={`lessons-row-${num}`} activeOpacity={0.82} onPress={() => {
+            hapticTap();
+            const access = resolveLessonAccess({
+                lessonId: num,
+                unlocked: isUnlocked,
+                isPremium,
+                devMode: DEV_CONTENT_UNLOCK,
+                noLimits,
+            });
+            if (access === 'available') {
+                void prefetchLessonMenuCache(num, studyTarget);
+                router.push({ pathname: '/lesson_menu', params: { id: num } });
+            }
+            else if (access === 'premium_required') {
+                openLessonPaywall(num);
+            }
+            else if (levelLockedByExam && prevLessonLevel) {
+                setGateModal({ kind: 'levelGate', level: lessonLevel, prevLevel: prevLessonLevel });
+            }
+            else {
+                setGateModal({ kind: 'lesson', prevNum: num - 1 });
+            }
+            }} style={{
+            height: BOOK_H,
+            borderRadius: cardRadius,
+            overflow: 'hidden',
+            backgroundColor: isUnlocked ? 'transparent' : lockedCardBaseColor,
+            borderWidth: isGoldTheme ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
+            borderColor: isGoldTheme
+                ? (isCurrent ? GOLD_RICH.hairlineStrong : isUnlocked ? goldHairline : GOLD_RICH.hairlineQuiet)
+                :
+                    USE_ELITE_LESSONS_MAP
+                        ? rgbaHexCached(lessonAccent, isCurrent ? 0.70 : isUnlocked ? 0.36 : 0.16)
+                        : useSketchLessonVisual && isUnlocked ? rgbaHexCached(lessonAccent, 0.44) : 'transparent',
+        }}>
+          {/* Card background */}
+          {isUnlocked ? (<LinearGradient colors={isGoldTheme
+                  ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
+                  :
+                      isCoralTheme
+                          ? [darkenHexCached(bg, 0.62), darkenHexCached(bg, 0.43), darkenHexCached(bg, 0.30)]
+                          : [darkenHexCached(bg, 0.52), darkBg, darkenHexCached(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
+                  ? goldCardGradient('muted')
+                  :
+                      isCoralTheme
+                          ? [darkenHexCached(bg, 0.34), darkenHexCached(bg, 0.28), darkenHexCached(bg, 0.23)]
+                          : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
+          {isGoldTheme && (<LinearGradient colors={[
+                  rgbaHexCached(lessonAccent, isUnlocked ? 0.22 : 0.08),
+                  'rgba(0,0,0,0)',
+                  rgbaHexCached(lessonAccent, isCurrent ? 0.20 : 0.10),
+              ]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={cardLayerStyle}/>)}
+          {isGoldTheme && <GoldBevel radius={cardRadius} intensity={isCurrent ? 'strong' : isUnlocked ? 'normal' : 'quiet'}/>}
+          {/* Progress fill */}
+          {showLessonProgressFill && (<LinearGradient colors={isGoldTheme
+                  ? [goldAntique, goldBright, lessonAccent] as [string, string, string]
+                  :
+                      isCoralTheme
+                          ? [darkenHexCached(bg, 0.84), bg]
+                          : [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
+                  position: 'absolute',
+                  left: 0, top: 0, bottom: 0,
+                  width: `${progPct}%`,
+                  opacity: isGoldTheme ? (levelLockedByExam ? 0.16 : 0.22) : levelLockedByExam ? 0.28 : 1,
+                  borderTopLeftRadius: cardRadius,
+                  borderBottomLeftRadius: cardRadius,
+                  borderTopRightRadius: cardRadius,
+                  borderBottomRightRadius: cardRadius,
+              }}/>)}
+          {/* Subtle inner highlight on filled part top edge */}
+          {showLessonProgressFill && (<View style={{
+                  position: 'absolute', left: 0, top: 0,
+                  width: `${progPct}%`, height: 1.5,
+                  backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
+                  opacity: levelLockedByExam ? 0.24 : 1,
+                  borderTopLeftRadius: cardRadius,
+                  borderTopRightRadius: cardRadius,
+              }}/>)}
+          <View style={{
+                  position: 'absolute', left: 0, right: 0, top: 0,
+                  height: 2,
+                  backgroundColor: lessonAccent,
+                  opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
+              }}/>
+          {/* Content */}
+          <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+              <Text style={{
+                  color: lessonMetaColor,
+                  fontSize: f.label,
+                  fontWeight: '700',
+                  letterSpacing: 0.8,
+              }} maxFontSizeMultiplier={1}>
+                {triLang(lang, {
+                    ru: `УРОК ${num}`,
+                    uk: `УРОК ${num}`,
+                    es: `LECCIÓN ${num}`,
+                    'pt-BR': `LIÇÃO ${num}`,
+                    vi: `BÀI ${num}`,
+                    id: `PELAJARAN ${num}`,
+                    tr: `DERS ${num}`,
+                    pl: `LEKCJA ${num}`,
+                })}
+              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                {premiumRequired
+                    ? <PremiumBadge label={triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}/>
+                    : !isUnlocked
+                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : isCoralTheme ? rgbaHexCached(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'}/>
+                    : USE_ELITE_LESSONS_MAP && isComplete
+                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent}/>
+                        : progPct > 0
+                            ? (<Text style={{
+                                    color: isGoldTheme
+                                        ? (isComplete ? goldBright : textMuted)
+                                        :
+                                            isCoralTheme
+                                                ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
+                                                : (isComplete ? lessonAccent : rgbaHexCached(lessonAccent, 0.82)),
+                                    fontSize: f.label,
+                                    fontWeight: '800',
+                                }} maxFontSizeMultiplier={1}>
+                              {progPct}%
+                            </Text>)
+                            : null}
+              </View>
+            </View>
+            <Text style={{
+                color: lessonTextColor,
+                fontSize: f.body,
+                fontWeight: '700',
+            }} numberOfLines={1} maxFontSizeMultiplier={1}>
+              {name}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Animated.View>);
+});
+
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
     const tabContentBottomPad = useTabContentBottomPad();
@@ -410,7 +640,7 @@ export default function LessonsTab() {
     }, []);
     useEffect(() => {
         if (activeIdx === 1 && scrollRef.current) {
-            scrollRef.current.scrollTo({ y: 0, animated: false });
+            scrollRef.current.scrollToOffset({ offset: 0, animated: false });
         }
     }, [activeIdx]);
     const loadScores = useCallback(async () => {
@@ -626,16 +856,41 @@ export default function LessonsTab() {
       {/* Страница «Уроки» (держим смонтированной, прячем при показе диалогов) */}
       <View style={{ flex: 1, display: dialogsEnabled && page === 'dialogs' ? 'none' : 'flex' }}>
       <BouncyWrap style={bouncyStyle}>
-      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
+      <Animated.FlatList ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad }}
         decelerationRate="normal"
         bounces
         alwaysBounceVertical
         overScrollMode="always"
-      >
-
-        {/* Items */}
-        {listData.map((item, i) => {
+        data={listData}
+        keyExtractor={(item, index) => item.kind === 'lesson' ? `l-${(item as any).index + 1}` : item.kind === 'header' ? `h-${(item as any).label}-${index}` : item.kind === 'exam' ? `e-${(item as any).level}` : 'attestation'}
+        initialNumToRender={12}
+        windowSize={5}
+        maxToRenderPerBatch={8}
+        removeClippedSubviews={true}
+        ListFooterComponent={<>
+          <View style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8 }}>
+            <Text style={{ fontSize: 18, fontWeight: '700', color: '#ffffff', opacity: 0.15, letterSpacing: 0.5 }}>
+              {triLang(lang, { ru: '· · ·', uk: '· · ·', es: '· · ·', 'pt-BR': '· · ·', vi: '· · ·', id: '· · ·', tr: '· · ·', pl: '· · ·' })}
+            </Text>
+            <Text style={{ fontSize: 13, fontWeight: '600', color: '#ffffff', opacity: 0.2, marginTop: 8 }}>
+              {triLang(lang, { ru: 'Продолжение скоро', uk: 'Продовження незабаром', es: 'Próximamente', 'pt-BR': 'Continuação em breve', vi: 'Sắp có tiếp', id: 'Segera hadir', tr: 'Devamı yakında', pl: 'Ciąg dalszy wkrótce' })}
+            </Text>
+          </View>
+          <View style={{ alignItems: 'center', paddingVertical: 20 }}>
+            <ReportErrorButton screen="lessons_tab" dataId="lessons_list" dataText={triLang(lang, {
+              ru: 'Список уроков',
+              uk: 'Список уроків',
+              es: 'Lista de lecciones',
+              'pt-BR': 'Lista de lições',
+              vi: 'Danh sách bài học',
+              id: 'Daftar pelajaran',
+              tr: 'Ders listesi',
+              pl: 'Lista lekcji',
+            })}/>
+          </View>
+        </>}
+        renderItem={({ item, index: i }) => {
             const scaleAnim = itemAnims[i];
             // ── CEFR divider ─────────────────────────────────────────────
             if (item.kind === 'header') {
@@ -912,7 +1167,7 @@ export default function LessonsTab() {
             const num = index + 1;
             const isUnlocked = unlockedLessons[index];
             const bg = bookPalette(num, themeMode);
-            const darkBg = darkenHex(bg, 0.42);
+            const darkBg = darkenHexCached(bg, 0.42);
             const progPct = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
             const isComplete = progPct >= 100;
             const isCurrent = currentLessonNum === num;
@@ -921,19 +1176,14 @@ export default function LessonsTab() {
             const lessonAccent = bg;
             const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
             const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
-            // Плашка «Premium» на премиум-уроках для фри-юзера. НАМЕРЕННО без !DEV_CONTENT_UNLOCK:
-            // DEV_CONTENT_UNLOCK открывает ДОСТУП (для проверки Google Play), но значок Premium
-            // должен оставаться видимым — иначе фри-юзер не понимает, какие уроки платные.
-            // Доступ при этом не трогаем (урок открывается) — гасится только пейвол, не бейдж.
             const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num);
             const showLessonProgressFill = isUnlocked && progPct > 0;
-            const lockedCardHasLightFill = false;
             const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
             const lockedCardBaseColor = isGoldTheme
                 ? goldSurface
                 : isCoralTheme
-                    ? darkenHex(bg, 0.23)
-                    : darkenHex(bg, 0.28);
+                    ? darkenHexCached(bg, 0.23)
+                    : darkenHexCached(bg, 0.28);
             const cardLayerStyle = {
                 position: 'absolute' as const,
                 left: 0,
@@ -951,13 +1201,9 @@ export default function LessonsTab() {
                             ? 'rgba(255,248,244,0.44)'
                             : levelLockedByExam
                             ? 'rgba(255,255,255,0.42)'
-                            : (lockedCardHasLightFill ? 'rgba(42,34,24,0.76)' : 'rgba(255,255,255,0.35)')
+                            : 'rgba(255,255,255,0.35)'
                         : isCoralTheme
                             ? '#FFF8F4'
-                            // Единый стандарт: фон плашки тёмный (darkenHex) во ВСЕХ
-                            // не-gold/не-coral темах → заголовок урока всегда белый.
-                            // (cinema + sketch: Форест/Графит и пр. — раньше sketch был
-                            // почти чёрным rgba(22,28,26) и плохо читался.)
                             : 'rgba(255,255,255,0.97)';
             const lessonMetaColor = isGoldTheme
                 ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
@@ -967,198 +1213,31 @@ export default function LessonsTab() {
                             ? 'rgba(255,214,204,0.34)'
                             : levelLockedByExam
                             ? 'rgba(255,255,255,0.30)'
-                            : (lockedCardHasLightFill ? 'rgba(42,34,24,0.62)' : 'rgba(255,255,255,0.30)')
+                            : 'rgba(255,255,255,0.30)'
                         : isCoralTheme
                             ? 'rgba(255,214,204,0.72)'
-                            // Единый стандарт: подпись «УРОК N» — светлый акцент темы
-                            // (зелёный у Форест, голубой у Графит, синий у Полночи…),
-                            // читается на тёмном фоне плашки. Раньше sketch давал тёмный
-                            // darkenHex(bg) → сливался с фоном.
-                            : rgbaHex(lessonAccent, 0.82);
-            return (<Animated.View key={`l-${num}`} style={{
-                    marginTop: 5,
-                    marginHorizontal: 14,
-                    borderRadius: cardRadius,
-                    transform: [{ scale: scaleAnim ?? 1 }],
-                    shadowColor: isGoldTheme ? '#000' : darkenHex(bg, isCoralTheme ? 0.18 : 0.28),
-                    shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
-                    shadowOpacity: USE_ELITE_LESSONS_MAP
-                        ? (isCurrent ? 0.20 : isUnlocked ? 0.11 : 0.05)
-                        : useSketchLessonVisual ? (isUnlocked ? 0.14 : 0.08) : (isUnlocked ? 0.28 : 0.15),
-                    shadowRadius: USE_ELITE_LESSONS_MAP
-                        ? (isCurrent ? 14 : isUnlocked ? 9 : 4)
-                        : useSketchLessonVisual ? (isUnlocked ? 10 : 5) : (isUnlocked ? 8 : 4),
-                    elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
-                    ...(isGoldTheme ? goldShadow(isCurrent ? 2 : 1) : {}),
-                    ...({}),
-                }}>
-              <TouchableOpacity testID={`lessons-row-${num}`} activeOpacity={0.82} onPress={() => {
-                    hapticTap();
-                    const access = resolveLessonAccess({
-                        lessonId: num,
-                        unlocked: isUnlocked,
-                        isPremium,
-                        devMode: DEV_CONTENT_UNLOCK,
-                        noLimits,
-                    });
-                    if (access === 'available') {
-                        // Navigation must be instant; prefetch runs in background.
-                        void prefetchLessonMenuCache(num, studyTarget);
-                        router.push({ pathname: '/lesson_menu', params: { id: num } });
-                    }
-                    else if (access === 'premium_required') {
-                        openLessonPaywall(num);
-                    }
-                    else if (levelLockedByExam && prevLessonLevel) {
-                        setGateModal({ kind: 'levelGate', level: lessonLevel, prevLevel: prevLessonLevel });
-                    }
-                    else {
-                        setGateModal({ kind: 'lesson', prevNum: num - 1 });
-                    }
-                    }} style={{
-                    height: BOOK_H,
-                    borderRadius: cardRadius,
-                    overflow: 'hidden',
-                    backgroundColor: isUnlocked ? 'transparent' : lockedCardBaseColor,
-                    borderWidth: isGoldTheme ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
-                    borderColor: isGoldTheme
-                        ? (isCurrent ? GOLD_RICH.hairlineStrong : isUnlocked ? goldHairline : GOLD_RICH.hairlineQuiet)
-                        :
-                            USE_ELITE_LESSONS_MAP
-                                ? rgbaHex(lessonAccent, isCurrent ? 0.70 : isUnlocked ? 0.36 : 0.16)
-                                : useSketchLessonVisual && isUnlocked ? rgbaHex(lessonAccent, 0.44) : 'transparent',
-                }}>
-                {/* Card background */}
-                {isUnlocked ? (<LinearGradient colors={isGoldTheme
-                        ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
-                        :
-                            isCoralTheme
-                                ? [darkenHex(bg, 0.62), darkenHex(bg, 0.43), darkenHex(bg, 0.30)]
-                                : [darkenHex(bg, 0.52), darkBg, darkenHex(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
-                        ? goldCardGradient('muted')
-                        :
-                            isCoralTheme
-                                ? [darkenHex(bg, 0.34), darkenHex(bg, 0.28), darkenHex(bg, 0.23)]
-                                : [darkenHex(bg, 0.36), darkenHex(bg, 0.31), darkenHex(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHex(bg, 0.30), darkenHex(bg, 0.25), darkenHex(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
-                {isGoldTheme && (<LinearGradient colors={[
-                        rgbaHex(lessonAccent, isUnlocked ? 0.22 : 0.08),
-                        'rgba(0,0,0,0)',
-                        rgbaHex(lessonAccent, isCurrent ? 0.20 : 0.10),
-                    ]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={cardLayerStyle}/>)}
-                {isGoldTheme && <GoldBevel radius={cardRadius} intensity={isCurrent ? 'strong' : isUnlocked ? 'normal' : 'quiet'}/>}
-                {/* Progress fill — left-to-right gradient bg → lightenHex(bg) */}
-                {showLessonProgressFill && (<LinearGradient colors={isGoldTheme
-                        ? [goldAntique, goldBright, lessonAccent] as [
-                            string,
-                            string,
-                            string
-                        ]
-                        :
-                            isCoralTheme
-                                ? [darkenHex(bg, 0.84), bg]
-                                : [bg, lightenHex(bg, 1.28)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
-                        position: 'absolute',
-                        left: 0, top: 0, bottom: 0,
-                        width: `${progPct}%`,
-                        opacity: isGoldTheme ? (levelLockedByExam ? 0.16 : 0.22) : levelLockedByExam ? 0.28 : 1,
-                        borderTopLeftRadius: cardRadius,
-                        borderBottomLeftRadius: cardRadius,
-                        borderTopRightRadius: cardRadius,
-                        borderBottomRightRadius: cardRadius,
-                    }}/>)}
-                {/* Subtle inner highlight on filled part top edge */}
-                {showLessonProgressFill && (<View style={{
-                        position: 'absolute', left: 0, top: 0,
-                        width: `${progPct}%`, height: 1.5,
-                        backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
-                        opacity: levelLockedByExam ? 0.24 : 1,
-                        borderTopLeftRadius: cardRadius,
-                        borderTopRightRadius: cardRadius,
-                    }}/>)}
-                <View style={{
-                        position: 'absolute', left: 0, right: 0, top: 0,
-                        height: 2,
-                        backgroundColor: lessonAccent,
-                        opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
-                    }}/>
-
-                {/* Content */}
-                <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-                    <Text style={{
-                    color: lessonMetaColor,
-                    fontSize: f.label,
-                    fontWeight: '700',
-                    letterSpacing: 0.8,
-                }} maxFontSizeMultiplier={1}>
-                      {triLang(lang, {
-                    ru: `УРОК ${num}`,
-                    uk: `УРОК ${num}`,
-                    es: `LECCIÓN ${num}`,
-                    'pt-BR': `LIÇÃO ${num}`,
-                    vi: `BÀI ${num}`,
-                    id: `PELAJARAN ${num}`,
-                    tr: `DERS ${num}`,
-                    pl: `LEKCJA ${num}`,
-                })}
-                    </Text>
-                    {/* Right side: premium badge / percentage / lock */}
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                      {premiumRequired
-                    ? <PremiumBadge label={triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}/>
-                    : !isUnlocked
-                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : 'rgba(255,255,255,0.55)'}/>
-                    : USE_ELITE_LESSONS_MAP && isComplete
-                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent}/>
-                        : progPct > 0
-                            ? (<Text style={{
-                                    color: isGoldTheme
-                                        ? (isComplete ? goldBright : t.textMuted)
-                                        :
-                                            isCoralTheme
-                                                ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
-                                                // Единый стандарт: процент — светлый акцент темы.
-                                                : (isComplete ? lessonAccent : rgbaHex(lessonAccent, 0.82)),
-                                    fontSize: f.label,
-                                    fontWeight: '800',
-                                }} maxFontSizeMultiplier={1}>
-                              {progPct}%
-                            </Text>)
-                            : null}
-                    </View>
-                  </View>
-                  <Text style={{
-                    color: lessonTextColor,
-                    fontSize: f.body,
-                    fontWeight: '700',
-                }} numberOfLines={1} maxFontSizeMultiplier={1}>
-                    {name}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </Animated.View>);
-        })}
-        <View style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8 }}>
-          <Text style={{ fontSize: 18, fontWeight: '700', color: '#ffffff', opacity: 0.15, letterSpacing: 0.5 }}>
-            {triLang(lang, { ru: '· · ·', uk: '· · ·', es: '· · ·', 'pt-BR': '· · ·', vi: '· · ·', id: '· · ·', tr: '· · ·', pl: '· · ·' })}
-          </Text>
-          <Text style={{ fontSize: 13, fontWeight: '600', color: '#ffffff', opacity: 0.2, marginTop: 8 }}>
-            {triLang(lang, { ru: 'Продолжение скоро', uk: 'Продовження незабаром', es: 'Próximamente', 'pt-BR': 'Continuação em breve', vi: 'Sắp có tiếp', id: 'Segera hadir', tr: 'Devamı yakında', pl: 'Ciąg dalszy wkrótce' })}
-          </Text>
-        </View>
-        <View style={{ alignItems: 'center', paddingVertical: 20 }}>
-          <ReportErrorButton screen="lessons_tab" dataId="lessons_list" dataText={triLang(lang, {
-            ru: 'Список уроков',
-            uk: 'Список уроків',
-            es: 'Lista de lecciones',
-            'pt-BR': 'Lista de lições',
-            vi: 'Danh sách bài học',
-            id: 'Daftar pelajaran',
-            tr: 'Ders listesi',
-            pl: 'Lista lekcji',
-        })}/>
-        </View>
-      </Animated.ScrollView>
+                            : rgbaHexCached(lessonAccent, 0.82);
+            return (<LessonCard key={`l-${num}`}
+                num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
+                progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}
+                lessonLevel={lessonLevel} lessonGoldLevel={lessonGoldLevel}
+                lessonAccent={lessonAccent} prevLessonLevel={prevLessonLevel}
+                levelLockedByExam={levelLockedByExam} premiumRequired={premiumRequired}
+                showLessonProgressFill={showLessonProgressFill}
+                cardRadius={cardRadius} lockedCardBaseColor={lockedCardBaseColor}
+                cardLayerStyle={cardLayerStyle}
+                lessonTextColor={lessonTextColor} lessonMetaColor={lessonMetaColor}
+                isGoldTheme={isGoldTheme} isCoralTheme={isCoralTheme} themeMode={themeMode}
+                goldSurface={goldSurface} goldHairline={goldHairline}
+                goldAntique={goldAntique} goldBright={goldBright}
+                scaleAnim={scaleAnim} lang={lang} f={f}
+                openLessonPaywall={openLessonPaywall} setGateModal={setGateModal}
+                router={router} studyTarget={studyTarget}
+                isPremium={isPremium} DEV_CONTENT_UNLOCK={DEV_CONTENT_UNLOCK} noLimits={noLimits}
+                textPrimary={t.textPrimary} textMuted={t.textMuted}
+            />);
+        }}
+      />
       </BouncyWrap>
       </View>
 

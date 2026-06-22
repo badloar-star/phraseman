@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import SkeletonBlock from './SkeletonShimmer';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
 import BilingualMistakeText from './BilingualMistakeText';
@@ -102,8 +103,10 @@ export default function AiMistakeCard({
       </View>
 
       {isBusy ? (
-        <View style={styles.busyRow}>
-          <ActivityIndicator size="small" color={t.accent} />
+        <View style={styles.busyCol}>
+          <SkeletonBlock width="94%" height={13} borderRadius={6} />
+          <SkeletonBlock width="80%" height={13} borderRadius={6} />
+          <SkeletonBlock width="88%" height={13} borderRadius={6} />
         </View>
       ) : isReadyExplanation ? (
         // Английский (ключевой язык) — акцентным цветом, перевод — обычным, чтобы
@@ -183,9 +186,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 34,
   },
-  busyRow: {
-    alignItems: 'flex-start',
+  busyCol: {
+    alignSelf: 'stretch',
     paddingVertical: 4,
+    gap: 8,
   },
   reportRow: {
     alignItems: 'flex-start',

@@ -185,9 +185,20 @@ export const explainPhrase = onCall({
   // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
   //    text regardless of verdict — we risk showing raw text to one user, never to all.
   if (verdict.ok) {
-    await writeReadyExplanation(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
+    // The judge approved this text and the user will be shown it (line ~215) — it MUST persist,
+    // else the phrase reads as «нет в кэше» in admin even though it was generated (audit 2026-06-22).
+    // A transient Firestore blip must not discard an already-paid-for, approved generation: retry
+    // once. (claimPendingLock left a `pending` doc, so a total failure self-heals after LOCK_TTL_MS.)
+    try {
+      await writeReadyExplanation(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
+    } catch (writeErr) {
+      console.error('explain writeReady failed, retrying once', phraseHash, writeErr);
+      await writeReadyExplanation(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model })
+        .catch((retryErr) => console.error('explain writeReady retry failed', phraseHash, retryErr));
+    }
   } else {
-    await writeRejectedExplanation(phraseHash, verdict.reason);
+    await writeRejectedExplanation(phraseHash, verdict.reason)
+      .catch((rejErr) => console.error('explain writeRejected failed', phraseHash, rejErr));
   }
 
   // 9. Billing doc on EVERY miss: gen + judge token usage, model, verdict, identity (stable uid).

@@ -1,0 +1,139 @@
+import { existsSync, readFileSync } from 'fs';
+import path from 'path';
+import { ALL_BOON_IDS, ALL_BOON_MODIFIER_IDS } from '../app/boons/boon_types';
+import {
+  WEEKLY_BOON_ICON_ASSET_PATHS,
+  WEEKLY_BOON_ICON_THEMES,
+  type WeeklyBoonIconId,
+  weeklyBoonIconSource,
+} from '../constants/boonIconAssets';
+
+const sharp = require('sharp');
+
+const WEEKLY_BOON_ICON_IDS: readonly WeeklyBoonIconId[] = [
+  ...ALL_BOON_IDS,
+  ...ALL_BOON_MODIFIER_IDS,
+  'comeback',
+];
+
+describe('weekly boon DALL-E icon assets', () => {
+  it('has a generated icon for every bonus and every app theme', async () => {
+    const seen = new Set<string>();
+
+    for (const themeMode of WEEKLY_BOON_ICON_THEMES) {
+      for (const id of WEEKLY_BOON_ICON_IDS) {
+        const rel = WEEKLY_BOON_ICON_ASSET_PATHS[themeMode][id];
+        const abs = path.join(process.cwd(), rel);
+        expect(existsSync(abs)).toBe(true);
+        expect(seen.has(rel)).toBe(false);
+        seen.add(rel);
+
+        const meta = await sharp(abs).metadata();
+        expect(meta.format).toBe('webp');
+        expect(meta.width).toBe(256);
+        expect(meta.height).toBe(256);
+        expect(meta.hasAlpha).toBe(true);
+
+        const { data, info } = await sharp(abs).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+        let minX = info.width;
+        let minY = info.height;
+        let maxX = -1;
+        let maxY = -1;
+        for (let y = 0; y < info.height; y++) {
+          for (let x = 0; x < info.width; x++) {
+            if (data[(y * info.width + x) * 4 + 3] > 8) {
+              minX = Math.min(minX, x);
+              minY = Math.min(minY, y);
+              maxX = Math.max(maxX, x);
+              maxY = Math.max(maxY, y);
+            }
+          }
+        }
+        const objectW = maxX - minX + 1;
+        const objectH = maxY - minY + 1;
+        const minEdgePadding = Math.min(minX, minY, info.width - 1 - maxX, info.height - 1 - maxY);
+        const centerOffset = Math.max(
+          Math.abs((minX + maxX) / 2 - (info.width - 1) / 2),
+          Math.abs((minY + maxY) / 2 - (info.height - 1) / 2),
+        );
+        expect(Math.max(objectW, objectH)).toBeLessThanOrEqual(176);
+        expect(minEdgePadding).toBeGreaterThanOrEqual(40);
+        expect(centerOffset).toBeLessThanOrEqual(8);
+      }
+    }
+
+    expect(seen.size).toBe(WEEKLY_BOON_ICON_IDS.length * WEEKLY_BOON_ICON_THEMES.length);
+  });
+
+  it('exposes static image sources for Metro bundling', () => {
+    for (const themeMode of WEEKLY_BOON_ICON_THEMES) {
+      for (const id of WEEKLY_BOON_ICON_IDS) {
+        expect(weeklyBoonIconSource(id, themeMode)).toBeTruthy();
+      }
+    }
+  });
+
+  it('renders TodaysBoonStrip through generated Image assets only', () => {
+    const source = readFileSync(path.join(process.cwd(), 'components', 'TodaysBoonStrip.tsx'), 'utf8');
+    expect(source).toContain('weeklyBoonIconSource(primary, themeMode)');
+    expect(source).toContain('<Image source={iconSource}');
+    expect(source).toContain("overflow: 'visible'");
+    expect(source).toContain('width: 50');
+    expect(source).toContain('height: 50');
+    expect(source).not.toContain('Ionicons');
+    expect(source).not.toContain('{copy.emoji}');
+    expect(source).not.toContain('boonVisualForTheme');
+  });
+
+  it('все 3 модала-награды бонусов открываются объёмным сундуком (BoonChestModal), а не плоской иконкой/текстом', () => {
+    // Сундук недели / День возвращения / Идеальная неделя — единый дорогой сундук:
+    // делегируют в общий BoonChestModal и дают награду-орб через сгенерированный
+    // shard-ассет (getThemedShardIcon). Без плоской иконки бонуса, Ionicons, emoji.
+    const hosts = ['MysteryMondayHost.tsx', 'ComebackBoonHost.tsx', 'PerfectWeekHost.tsx'] as const;
+    for (const file of hosts) {
+      const source = readFileSync(path.join(process.cwd(), 'components', file), 'utf8');
+      expect(source).toContain('BoonChestModal');
+      expect(source).toContain('getThemedShardIcon(themeMode)');
+      expect(source).not.toContain('Ionicons');
+      expect(source).not.toContain('{copy.emoji}');
+      // Плоскую иконку бонуса в наградном модале больше не показываем.
+      expect(source).not.toContain('weeklyBoonIconSource');
+    }
+  });
+
+  it('BoonChestModal использует объёмный сундук GiftBox3D с палитрой по редкости', () => {
+    const source = readFileSync(path.join(process.cwd(), 'components', 'BoonChestModal.tsx'), 'utf8');
+    expect(source).toContain('GiftBox3D');
+    expect(source).toContain('paletteForRarity');
+    expect(source).toContain('<Image source={rewardIcon}');
+    expect(source).not.toContain('Ionicons');
+  });
+
+  it('«тихие» бонусы показывают модал активации через сгенерированную иконку (без Ionicons/emoji)', () => {
+    // BoonActivatedModal — яркое уведомление для бонусов-режимов (без осколков):
+    // парящая иконка бонуса (DALL-E webp) + свечение + название/описание.
+    const modal = readFileSync(path.join(process.cwd(), 'components', 'BoonActivatedModal.tsx'), 'utf8');
+    expect(modal).toContain('weeklyBoonIconSource(boon, themeMode)');
+    expect(modal).toContain('<Image source={iconSource}');
+    expect(modal).toContain("overflow: 'visible'");
+    expect(modal).not.toContain('Ionicons');
+    expect(modal).not.toContain('{copy.emoji}');
+    // Хост: mystery (со своим сундуком) исключён, чтобы не дублировать показ.
+    const host = readFileSync(path.join(process.cwd(), 'components', 'BoonActivatedHost.tsx'), 'utf8');
+    expect(host).toContain('mystery_monday');
+    expect(host).toContain("useOverlayVisible('boonActivated'");
+  });
+
+  it('renders the weekly boon detail modal without clipping or backplate around the generated icon', () => {
+    const source = readFileSync(path.join(process.cwd(), 'components', 'WeeklyBoonDetailModal.tsx'), 'utf8');
+    expect(source).toContain('weeklyBoonIconSource(boon, themeMode)');
+    expect(source).toContain('<Image source={iconSource}');
+    expect(source).toContain("overflow: 'visible'");
+    expect(source).toContain('width: 96');
+    expect(source).toContain('height: 96');
+    expect(source).not.toContain('Ionicons');
+    expect(source).not.toContain('copy.emoji');
+    expect(source).not.toContain('t.accentBg');
+    expect(source).not.toContain("overflow: 'hidden',\n  },\n  iconImage");
+  });
+});

@@ -99,10 +99,11 @@ export default function AiCompanionSession() {
         cefr: DEFAULT_CEFR,
         history,
         memory,
+        interfaceLang: lang,
         isPremium: hasPremiumAccess,
       });
     },
-    [ensureMemory, hasPremiumAccess],
+    [ensureMemory, hasPremiumAccess, lang],
   );
 
   const send = useCallback(

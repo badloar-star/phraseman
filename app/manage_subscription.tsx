@@ -21,6 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Purchases, { type CustomerInfo, PRORATION_MODE } from 'react-native-purchases';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
@@ -45,15 +46,31 @@ type ManageSubscriptionCopy = {
   pl: string;
 };
 
-// Восемь пунктов «что включено» — сжатые формулировки по Библии Phraseman.
+// «Что включено» — полный список привилегий Premium. Каждый пункт соответствует
+// реальному гейту в коде (см. feature_gates.ts: 15 фич за премиум-замком) либо
+// конкретной механике (energy_system, ai_dialog, compass, stats, home freeze).
+// Формулировки сжатые, по Библии Phraseman, без хардкода чисел/цен.
 const INCLUDED: ManageSubscriptionCopy[] = [
+  // — Доступ и лимиты —
   { ru: 'Безлимитная энергия — уроки, квизы и экзамены без ожидания', uk: 'Безлімітна енергія — уроки, квізи та іспити без очікування', es: 'Energía ilimitada: lecciones, quizzes y exámenes sin esperas', 'pt-BR': 'Energia ilimitada: aulas, quizzes e exames sem espera', vi: 'Năng lượng không giới hạn: bài học, quiz và bài kiểm tra không phải chờ', id: 'Energi tak terbatas: pelajaran, kuis, dan ujian tanpa menunggu', tr: 'Sınırsız enerji: dersler, quizler ve sınavlar beklemeden', pl: 'Nielimitowana energia: lekcje, quizy i egzaminy bez czekania' },
-  { ru: 'Арена без дневного лимита и без затрат энергии', uk: 'Арена без денного ліміту й без витрат енергії', es: 'Arena sin límite diario ni gasto de energía', 'pt-BR': 'Arena sem limite diário nem gasto de energia', vi: 'Arena không giới hạn ngày và không tốn năng lượng', id: 'Arena tanpa batas harian dan tanpa biaya energi', tr: 'Günlük limitsiz ve enerji harcamayan arena', pl: 'Arena bez dziennego limitu i bez zużycia energii' },
   { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas', 'pt-BR': 'Todas as aulas do nível atual totalmente abertas', vi: 'Tất cả bài học của cấp hiện tại được mở đầy đủ', id: 'Semua pelajaran level saat ini terbuka penuh', tr: 'Mevcut seviyedeki tüm dersler tamamen açık', pl: 'Wszystkie lekcje bieżącego poziomu są w pełni otwarte' },
   { ru: 'Квизы без дневного лимита', uk: 'Квізи без денного ліміту', es: 'Cuestionarios sin límite diario', 'pt-BR': 'Quizzes sem limite diário', vi: 'Quiz không giới hạn ngày', id: 'Kuis tanpa batas harian', tr: 'Günlük limitsiz quizler', pl: 'Quizy bez dziennego limitu' },
+  { ru: 'Арена без дневного лимита и без затрат энергии', uk: 'Арена без денного ліміту й без витрат енергії', es: 'Arena sin límite diario ni gasto de energía', 'pt-BR': 'Arena sem limite diário nem gasto de energia', vi: 'Arena không giới hạn ngày và không tốn năng lượng', id: 'Arena tanpa batas harian dan tanpa biaya energi', tr: 'Günlük limitsiz ve enerji harcamayan arena', pl: 'Arena bez dziennego limitu i bez zużycia energii' },
+  // — Живая практика —
+  { ru: 'Безлимитные диалоги по сценариям', uk: 'Безлімітні діалоги за сценаріями', es: 'Diálogos por escenarios sin límite', 'pt-BR': 'Diálogos por cenários sem limite', vi: 'Hội thoại theo kịch bản không giới hạn', id: 'Dialog berbasis skenario tanpa batas', tr: 'Senaryolu diyaloglar sınırsız', pl: 'Nielimitowane dialogi według scenariuszy' },
+  { ru: 'Собеседник «Компас» — общайся без ограничений', uk: 'Співрозмовник «Компас» — спілкуйся без обмежень', es: 'Compañero «Compás»: conversa sin límites', 'pt-BR': 'Parceiro «Bússola»: converse sem limites', vi: 'Người bạn «La bàn» — trò chuyện không giới hạn', id: 'Teman «Kompas» — mengobrol tanpa batas', tr: 'Sohbet arkadaşı «Pusula» — sınırsız konuş', pl: 'Rozmówca „Kompas” — rozmawiaj bez ograniczeń' },
+  { ru: 'Доступ ко всем уровням сценариев диалогов', uk: 'Доступ до всіх рівнів сценаріїв діалогів', es: 'Acceso a todos los niveles de los diálogos', 'pt-BR': 'Acesso a todos os níveis dos diálogos', vi: 'Mở mọi cấp độ kịch bản hội thoại', id: 'Akses ke semua level skenario dialog', tr: 'Tüm diyalog senaryosu seviyelerine erişim', pl: 'Dostęp do wszystkich poziomów scenariuszy dialogów' },
+  // — Персональное обучение —
+  { ru: 'Личный план обучения под твою цель', uk: 'Особистий план навчання під твою ціль', es: 'Plan de estudio personal según tu meta', 'pt-BR': 'Plano de estudo pessoal para a sua meta', vi: 'Lộ trình học cá nhân theo mục tiêu của bạn', id: 'Rencana belajar pribadi sesuai targetmu', tr: 'Hedefine göre kişisel öğrenme planı', pl: 'Osobisty plan nauki pod twój cel' },
+  { ru: 'Умный тренажёр и все режимы тренировки', uk: 'Розумний тренажер і всі режими тренування', es: 'Entrenador inteligente y todos los modos', 'pt-BR': 'Treinador inteligente e todos os modos', vi: 'Trình luyện thông minh và mọi chế độ', id: 'Latihan cerdas dan semua mode latihan', tr: 'Akıllı antrenör ve tüm çalışma modları', pl: 'Inteligentny trener i wszystkie tryby treningu' },
+  { ru: 'Тренажёр говорения с распознаванием речи', uk: 'Тренажер говоріння з розпізнаванням мовлення', es: 'Práctica de habla con reconocimiento de voz', 'pt-BR': 'Treino de fala com reconhecimento de voz', vi: 'Luyện nói với nhận diện giọng nói', id: 'Latihan bicara dengan pengenalan suara', tr: 'Ses tanımalı konuşma alıştırması', pl: 'Trener mówienia z rozpoznawaniem mowy' },
+  // — Аналитика —
+  { ru: 'Глубокая статистика, разбор недели и инсайты практики', uk: 'Глибока статистика, розбір тижня та інсайти практики', es: 'Estadística avanzada, resumen semanal e insights', 'pt-BR': 'Estatísticas avançadas, resumo semanal e insights', vi: 'Thống kê chuyên sâu, phân tích tuần và insight luyện tập', id: 'Statistik mendalam, ulasan mingguan, dan insight latihan', tr: 'Derin istatistik, haftalık analiz ve pratik içgörüleri', pl: 'Zaawansowane statystyki, tygodniowy przegląd i wnioski z praktyki' },
+  // — Контент и серия —
   { ru: 'Неограниченные сохранённые карточки', uk: 'Необмежені збережені картки', es: 'Tarjetas guardadas ilimitadas', 'pt-BR': 'Cartões salvos ilimitados', vi: 'Thẻ đã lưu không giới hạn', id: 'Kartu tersimpan tak terbatas', tr: 'Sınırsız kayıtlı kart', pl: 'Nielimitowane zapisane fiszki' },
-  { ru: 'Защита серии и заморозка', uk: 'Захист серії та заморозка', es: 'Protección de racha y congelación', 'pt-BR': 'Proteção de sequência e congelamento', vi: 'Bảo vệ chuỗi ngày và đóng băng', id: 'Perlindungan streak dan pembekuan', tr: 'Seri koruması ve dondurma', pl: 'Ochrona serii i zamrożenie' },
-  { ru: 'Премиум-темы оформления', uk: 'Преміум-теми оформлення', es: 'Temas premium', 'pt-BR': 'Temas premium', vi: 'Giao diện premium', id: 'Tema premium', tr: 'Premium temalar', pl: 'Motywy premium' },
+  { ru: 'Защита серии: бесплатная заморозка', uk: 'Захист серії: безкоштовна заморозка', es: 'Protección de racha: congelación gratis', 'pt-BR': 'Proteção de sequência: congelamento grátis', vi: 'Bảo vệ chuỗi ngày: đóng băng miễn phí', id: 'Perlindungan streak: pembekuan gratis', tr: 'Seri koruması: ücretsiz dondurma', pl: 'Ochrona serii: darmowe zamrożenie' },
+  // — Косметика и статус —
+  { ru: 'Премиум-темы и эксклюзивная аура аватара', uk: 'Преміум-теми та ексклюзивна аура аватара', es: 'Temas premium y aura de avatar exclusiva', 'pt-BR': 'Temas premium e aura de avatar exclusiva', vi: 'Giao diện premium và hào quang avatar độc quyền', id: 'Tema premium dan aura avatar eksklusif', tr: 'Premium temalar ve özel avatar aurası', pl: 'Motywy premium i ekskluzywna aura awatara' },
   { ru: 'Премиальная подсветка профиля в лидербордах', uk: 'Преміальне підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones', 'pt-BR': 'Perfil premium destacado nos rankings', vi: 'Hồ sơ Premium nổi bật trên bảng xếp hạng', id: 'Sorotan profil premium di papan peringkat', tr: 'Liderlik tablolarında premium profil vurgusu', pl: 'Wyróżnienie profilu Premium w rankingach' },
 ];
 
@@ -203,7 +220,11 @@ export default function ManageSubscription() {
           <Text style={[S.title, { color: chrome.textPrimary }]}>{planLabel}</Text>
 
           {loading ? (
-            <ActivityIndicator color={chrome.tc.heroAccent} style={{ marginTop: 18 }} />
+            <View style={{ marginTop: 18, gap: 12 }}>
+              <SkeletonBlock width="100%" height={64} borderRadius={16} />
+              <SkeletonBlock width="100%" height={64} borderRadius={16} />
+              <SkeletonBlock width="70%" height={48} borderRadius={14} />
+            </View>
           ) : (
             <>
               {!isLifetime && nextDate && (

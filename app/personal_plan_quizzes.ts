@@ -20,6 +20,16 @@ function fillName(text: string, userName: string): string {
   return text.replace(/\{\{name\}\}/g, userName);
 }
 
+type QuizSourceLocaleCopy = NonNullable<QuizPhrase['sourceLocales']>[keyof NonNullable<QuizPhrase['sourceLocales']>];
+
+function fillSourceLocaleCopy(copy: QuizSourceLocaleCopy | undefined, userName: string): QuizSourceLocaleCopy | undefined {
+  if (!copy) return undefined;
+  return {
+    prompt: fillName(copy.prompt, userName),
+    explanations: copy.explanations.map((text) => fillName(text, userName)),
+  };
+}
+
 function q(
   id: string,
   ru: string,
@@ -293,6 +303,14 @@ export function getPersonalPlanQuizPhrases(quizId: string | string[] | undefined
     ru: fillName(item.ru, safeName),
     uk: fillName(item.uk, safeName),
     es: fillName(item.es, safeName),
+    sourceLocales: {
+      es: fillSourceLocaleCopy(item.sourceLocales?.es, safeName),
+      'pt-BR': fillSourceLocaleCopy(item.sourceLocales?.['pt-BR'], safeName),
+      vi: fillSourceLocaleCopy(item.sourceLocales?.vi, safeName),
+      id: fillSourceLocaleCopy(item.sourceLocales?.id, safeName),
+      tr: fillSourceLocaleCopy(item.sourceLocales?.tr, safeName),
+      pl: fillSourceLocaleCopy(item.sourceLocales?.pl, safeName),
+    },
     choices: item.choices.map((choice) => fillName(choice, safeName)),
     answer: fillName(item.answer, safeName),
     explanations: item.explanations.map((text) => fillName(text, safeName)),

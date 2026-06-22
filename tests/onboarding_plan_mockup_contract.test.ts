@@ -24,13 +24,15 @@ describe('personal plan onboarding mockup contract', () => {
       'LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS',
       'onboardingSimpleStepForVariant',
       'onboardingSimpleStepRef',
-      "return 'demo2'",
       "return 'demo'",
       "return 'name'",
       'normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep)',
       "restored === 'beta' || LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS.has(restored)",
       "restored === 'welcome' || restored === 'demo2' || restored === 'demo'",
-      "useState<OnboardingStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP)",
+      // Дефолтный (не-быстрый) старт по-прежнему = ONBOARDING_AB_FALLBACK_ENTRY_STEP
+      // ('planEntry'). На быстром пути переоткрытия после пейвола стартуем сразу на
+      // 'name' (synchronousNameEntry) — см. onboarding_paywall_return_no_home_flash.
+      "synchronousNameEntry ? 'name' : ONBOARDING_AB_FALLBACK_ENTRY_STEP",
       'goToStep(onboardingSimpleStepRef.current)',
       "next === 'welcome' ? onboardingEntryStepRef.current : next",
       "if (step === 'welcome') setStep(onboardingEntryStepRef.current)",
@@ -56,6 +58,26 @@ describe('personal plan onboarding mockup contract', () => {
     ].forEach((text) => {
       expect(source).not.toContain(text);
     });
+  });
+
+  it('routes the "just look at the app" path straight to nickname entry for every A/B variant (no demo quiz)', () => {
+    // Кнопка «Просто посмотреть приложение» зовёт goToStep(onboardingSimpleStepRef.current),
+    // а ref берётся из onboardingSimpleStepForVariant(...). Эта функция теперь ВСЕГДА
+    // отдаёт 'name' — демо-квиз-экраны ('demo'/'demo2', напр. «I'm fed up with this job»)
+    // удалены из реального флоу и больше не маршрутизируются ни для одного варианта.
+    const fnStart = source.indexOf('function onboardingSimpleStepForVariant');
+    expect(fnStart).toBeGreaterThan(-1);
+    const fnEnd = source.indexOf('\n}', fnStart);
+    const fnBody = source.slice(fnStart, fnEnd);
+
+    expect(fnBody).toContain("return 'name'");
+    expect(fnBody).not.toContain("return 'demo2'");
+    expect(fnBody).not.toContain("return 'demo'");
+    expect(fnBody).not.toContain("variant === 'builder'");
+    expect(fnBody).not.toContain("variant === 'quiz'");
+
+    // Демо-фразы «fed up» больше не должны попадаться пользователю по этому пути —
+    // сам экран можно держать в коде как мёртвый, но роутинг на него снят выше.
   });
 
   it('keeps the polished plan-flow copy and removes the intermediate app copy', () => {

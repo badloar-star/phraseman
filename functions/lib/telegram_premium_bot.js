@@ -34,6 +34,20 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.telegramPremiumActivationNotifier = exports.telegramPremiumWebhook = void 0;
+// ============================================================================
+// ⛔ STRICT POLICY — Telegram premium bot. ОБЯЗАТЕЛЬНО К СОБЛЮДЕНИЮ ВО ВСЕХ СЕССИЯХ.
+// ----------------------------------------------------------------------------
+// 1. ВЫДАЧА ПРЕМИУМА/VIP ПО TELEGRAM-ОПЛАТЕ — ТОЛЬКО ВРУЧНУЮ (через admin/testers.html).
+//    НЕ автоматизировать активацию по successful_payment. Бот пишет ТОЛЬКО заявку
+//    (telegram_premium_orders, status='paid_pending_manual_activation') и уведомляет
+//    админов. Реальную выдачу делает человек. Это осознанное требование владельца.
+// 2. В КЛИЕНТСКОМ ПРИЛОЖЕНИИ (app/, components/) — НИКАКИХ упоминаний оплаты в
+//    Telegram: ни кнопок, ни текста, ни ссылок, ни «оплатить в Telegram». App Store /
+//    Google Play БАНЯТ за внешние способы оплаты. Любой код/текст про Telegram-оплату
+//    в приложении = риск бана. Telegram-оплата существует ТОЛЬКО здесь, на сервере/в боте.
+// 3. Деньги не должны теряться: при сбое записи заявки апдейт уходит в dead-letter
+//    (telegram_premium_dead_letter) и webhook возвращает 500, чтобы Telegram повторил.
+// ============================================================================
 const admin = __importStar(require("firebase-admin"));
 const params_1 = require("firebase-functions/params");
 const firestore_1 = require("firebase-functions/v2/firestore");
@@ -45,22 +59,27 @@ const PHRASEMAN_PREMIUM_BOT_TOKEN = (0, params_1.defineSecret)('PHRASEMAN_PREMIU
 const PHRASEMAN_PREMIUM_ADMIN_SETUP_CODE = (0, params_1.defineSecret)('PHRASEMAN_PREMIUM_ADMIN_SETUP_CODE');
 const PHRASEMAN_PREMIUM_WEBHOOK_SECRET = (0, params_1.defineSecret)('PHRASEMAN_PREMIUM_WEBHOOK_SECRET');
 const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000;
-const MONTHLY_PRICE_RU_LABEL = '500 Stars';
-const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 const SHORT_NICKNAME_PROMPT_RU = 'Напишите Ваш ник ниже';
+// Ярлык цены строится из конфигурируемой суммы Stars (monthlyStars/yearlyStars),
+// чтобы текст, который видит пользователь, всегда совпадал с реально списываемой
+// суммой (env PHRASEMAN_PREMIUM_*_STARS). Никаких вшитых чисел.
+function priceLabelForPlan(plan) {
+    return `${starsForPlan(plan)} Stars`;
+}
+// Статичная часть плана (без цены — цена подставляется в planDescription лениво,
+// когда уже доступны monthly/yearlyStars()).
 const PLANS = {
-    monthly: {
-        label: 'Phraseman Premium: месяц',
-        description: `Месячная подписка Phraseman Premium. ${MONTHLY_PRICE_RU_LABEL}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
-        durationLabel: 'месяц',
-    },
-    yearly: {
-        label: 'Phraseman Premium: год',
-        description: `Годовой доступ Phraseman Premium. ${YEARLY_PRICE_RU_LABEL}. Разовая оплата на 12 месяцев.`,
-        durationLabel: 'год',
-    },
+    monthly: { label: 'Phraseman Premium: месяц', durationLabel: 'месяц' },
+    yearly: { label: 'Phraseman Premium: год', durationLabel: 'год' },
 };
+/** Описание счёта для пользователя с актуальной ценой из конфига. */
+function planDescription(plan) {
+    if (plan === 'monthly') {
+        return `Месячная подписка Phraseman Premium. ${priceLabelForPlan('monthly')}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`;
+    }
+    return `Годовой доступ Phraseman Premium. ${priceLabelForPlan('yearly')}. Разовая оплата на 12 месяцев.`;
+}
 const START_MESSAGE_RU = [
     'Phraseman Premium',
     '',
@@ -209,7 +228,7 @@ function sendInvoice(token, chatId, input) {
     const invoice = {
         chat_id: chatId,
         title: 'Phraseman Premium',
-        description: planInfo.description,
+        description: planDescription(plan),
         payload: buildInvoicePayload(input),
         provider_token: '',
         currency: 'XTR',
@@ -231,7 +250,7 @@ function sendInvoicePayload(input) {
     const planInfo = PLANS[plan];
     const invoice = {
         title: 'Phraseman Premium',
-        description: planInfo.description,
+        description: planDescription(plan),
         payload: buildInvoicePayload(input),
         provider_token: '',
         currency: 'XTR',
@@ -271,6 +290,29 @@ async function sendMonthlyInvoiceLink(token, chatId, input) {
     });
 }
 const db = admin.firestore();
+// Dead-letter: сырой апдейт Telegram, который не удалось обработать (особенно
+// successful_payment, где Stars уже списаны). Пишем ДО проброса ошибки, чтобы факт
+// оплаты не пропал, даже если основная запись заявки упала. Best-effort: если и
+// сюда не записалось — ошибка всё равно пробросится и webhook вернёт 500 → Telegram
+// повторит апдейт. См. STRICT POLICY п.3 в шапке файла.
+async function writeDeadLetter(reason, update, error) {
+    try {
+        const charge = update.message?.successful_payment?.telegram_payment_charge_id;
+        const id = charge ? `charge-${charge}` : `dl-${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
+        await db.collection('telegram_premium_dead_letter').doc(id).set({
+            reason,
+            hasSuccessfulPayment: Boolean(update.message?.successful_payment),
+            rawUpdate: update,
+            errorMessage: String(error?.message ?? error).slice(0, 500),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAtIso: new Date().toISOString(),
+            resolved: false,
+        }, { merge: true });
+    }
+    catch (dlError) {
+        console.error('telegramPremium writeDeadLetter failed', dlError);
+    }
+}
 function sessionRef(userId) {
     return db.collection('telegram_premium_bot_sessions').doc(String(userId));
 }
@@ -468,7 +510,19 @@ async function handleMessage(token, message) {
                 ? new Date(payment.subscription_expiration_date * 1000).toISOString()
                 : null,
         };
-        await db.collection('telegram_premium_orders').doc(chargeId).set(order, { merge: true });
+        // КРИТИЧНО: запись заявки = единственный след оплаты (Stars уже списаны). Если
+        // упадёт — пробрасываем ошибку, чтобы webhook вернул 500 и Telegram повторил
+        // доставку (выдача всё равно ручная — см. STRICT POLICY п.1/п.3 в шапке файла).
+        try {
+            await db.collection('telegram_premium_orders').doc(chargeId).set(order, { merge: true });
+        }
+        catch (orderError) {
+            console.error('telegramPremium order write failed', orderError);
+            throw orderError;
+        }
+        // Сообщение юзеру и админам — best-effort: заявка уже записана, сбой уведомления
+        // не должен ронять webhook в 500 (иначе Telegram повторит апдейт и создаст дубль
+        // обработки на уже записанной заявке).
         await sendMessage(token, chatId, [
             MANUAL_ACTIVATION_MESSAGE_RU,
             '',
@@ -481,8 +535,8 @@ async function handleMessage(token, message) {
             reply_markup: {
                 inline_keyboard: [[{ text: telegram_support_1.SUPPORT_BUTTON_TEXT_RU, callback_data: telegram_support_1.SUPPORT_CALLBACK_START }]],
             },
-        });
-        await notifyAdmins(token, order);
+        }).catch((e) => console.error('telegramPremium user notify failed', e));
+        await notifyAdmins(token, order).catch((e) => console.error('telegramPremium admin notify failed', e));
         return;
     }
     const text = String(message.text || '').trim();
@@ -542,8 +596,8 @@ async function handleMessage(token, message) {
             '',
             'Проверьте, что ник написан точно так же, как в Phraseman.',
             '',
-            `Месяц: ${MONTHLY_PRICE_RU_LABEL}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
-            `Год: ${YEARLY_PRICE_RU_LABEL}, разовая оплата на 12 месяцев.`,
+            `Месяц: ${priceLabelForPlan('monthly')}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
+            `Год: ${priceLabelForPlan('yearly')}, разовая оплата на 12 месяцев.`,
             '',
             'Выберите вариант:',
         ].join('\n'), {
@@ -661,13 +715,24 @@ exports.telegramPremiumWebhook = (0, https_1.onRequest)({
         res.status(401).send('Unauthorized');
         return;
     }
+    const update = (req.body || {});
     try {
-        await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), req.body);
+        await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), update);
         res.status(200).send('ok');
     }
     catch (error) {
         console.error('telegramPremiumWebhook failed', error);
-        res.status(200).send('ok');
+        // Сохраняем сырой апдейт, чтобы факт оплаты не пропал (см. STRICT POLICY п.3).
+        await writeDeadLetter('webhook_handler_failed', update, error);
+        // Если в апдейте была успешная оплата — отвечаем 500, чтобы Telegram ПОВТОРИЛ
+        // доставку (Stars списаны, заявку нужно записать). Для прочих апдейтов — 200,
+        // чтобы не зацикливать неплатёжные ошибки бесконечными ретраями.
+        if (update.message?.successful_payment) {
+            res.status(500).send('payment update retry requested');
+        }
+        else {
+            res.status(200).send('ok');
+        }
     }
 });
 exports.telegramPremiumActivationNotifier = (0, firestore_1.onDocumentUpdated)({

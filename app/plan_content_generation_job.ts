@@ -1,6 +1,7 @@
 import type { CefrBand } from './lesson_grammar_map';
 import { lessonGateForDay, allowedConstructionsForDay } from './plan_lesson_gate';
 import { constructionsUpToLesson } from './lesson_grammar_map';
+import { SOURCE_LOCALES, type SourceLocale } from './source_locales';
 
 /**
  * A generation job: the brief handed to the content-agent pipeline for ONE plan day.
@@ -26,6 +27,8 @@ export type PlanContentGenerationJob = {
   allowedConstructions: string[];
   /** Lessons the learner is expected to have available by this day. */
   availableLessons: number[];
+  /** Source locales that every LocalizedText block must fill without fallback. */
+  sourceLocales: SourceLocale[];
   /** How many phrases the day should contain (within schema bounds). */
   targetPhraseCount: number;
   /** How many key vocabulary words the day should surface. */
@@ -58,6 +61,7 @@ export function buildPlanContentGenerationJob(input: BuildJobInput): PlanContent
     lessonGate,
     allowedConstructions,
     availableLessons,
+    sourceLocales: [...SOURCE_LOCALES],
     targetPhraseCount: input.targetPhraseCount ?? DEFAULT_PHRASE_COUNT,
     targetVocabCount: input.targetVocabCount ?? DEFAULT_VOCAB_COUNT,
   };
@@ -76,6 +80,10 @@ export function describeJobBrief(job: PlanContentGenerationJob): string {
     `Уровень: ${job.level}. Можно опираться на уроки 1–${job.lessonGate}.`,
     `Разрешённые конструкции: ${constructions}.`,
     `Нужно ${job.targetPhraseCount} живых фраз и ${job.targetVocabCount} ключевых слов.`,
+    `Source locales: ${job.sourceLocales.join(', ')}. Every LocalizedText must fill exactly these canonical keys.`,
+    'Locale isolation: ru text only in ru, uk only in uk, es only in es, pt-BR only in pt-BR, vi only in vi, id only in id, tr only in tr, pl only in pl.',
+    'Do not copy RU/UK/ES into planned locales. Do not use alias keys like ptBr/pt_BR/vn. English learning phrases live only in english/en fields; short English grammar tokens may appear inside native explanations.',
+    'Protected English anchors: when native explanations mention English grammar words, formulas, wrong examples, or phrase snippets (for example am/is/are, This is, at home, I am not), keep those English anchors exactly in every locale; translate only the surrounding explanation.',
     'Стиль: дружелюбный тренер, на «ты», полные объяснения (правило+почему+ошибка), ≤24 слов.',
   ].join('\n');
 }

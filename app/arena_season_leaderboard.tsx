@@ -4,7 +4,8 @@
  */
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlashList } from '@shopify/flash-list';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -190,10 +191,22 @@ export default function ArenaSeasonLeaderboardScreen() {
               </View>
             )}
 
-            {/* loading */}
+            {/* loading: скелетон строк рейтинга (форма SeasonRow), а не спиннер */}
             {loading && (
-              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator color={t.textPrimary} />
+              <View style={{ paddingTop: 4 }}>
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <View
+                    key={`season-skeleton-${i}`}
+                    style={{ height: ROW_H, flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 8 }}
+                  >
+                    <SkeletonBlock width={28} height={28} borderRadius={14} />
+                    <SkeletonBlock width={34} height={34} borderRadius={17} />
+                    <View style={{ flex: 1 }}>
+                      <SkeletonBlock width={`${70 - i * 4}%`} height={13} borderRadius={6} />
+                    </View>
+                    <SkeletonBlock width={44} height={16} borderRadius={8} />
+                  </View>
+                ))}
               </View>
             )}
 

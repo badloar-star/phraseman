@@ -1,12 +1,11 @@
 // Секция QA-панели: наградные модалки, которых не было в панели до редизайна
 // 2026-06. Все превью — с мок-данными, без реальных начислений.
 import React, { useState } from 'react';
+import { useRouter } from 'expo-router';
 import ReleaseWaveBonusModal from '../../ReleaseWaveBonusModal';
 import ShardRewardModal, { type ShardReward } from '../../ShardRewardModal';
 import EnergyRefillShardModal from '../../EnergyRefillShardModal';
-import ProfileCardUpgradeModal from '../../ProfileCardUpgradeModal';
 import { AccordionSection, AdminHint, ButtonRow } from '../ui';
-import { qaToast } from '../qa_utils';
 
 const SHARD_REWARD_PRESETS: { label: string; sub: string; rewards: ShardReward[] }[] = [
   {
@@ -39,10 +38,10 @@ interface Props {
 }
 
 export default function RewardModalsExtraSection({ open, onToggle }: Props) {
+  const router = useRouter();
   const [releaseWaveVisible, setReleaseWaveVisible] = useState(false);
   const [shardRewards, setShardRewards] = useState<ShardReward[] | null>(null);
   const [energyRefillVisible, setEnergyRefillVisible] = useState(false);
-  const [profileCardVisible, setProfileCardVisible] = useState(false);
 
   return (
     <AccordionSection
@@ -82,9 +81,9 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
       <ButtonRow
         testID="admin-extra-profile-card-upgrade"
         icon="id-card-outline"
-        label="ProfileCardUpgradeModal (уровень 2)"
-        sub="Bottom-sheet апгрейда карточки профиля. Рендерится только при ENABLE_DEV_TOOLS."
-        onPress={() => setProfileCardVisible(true)}
+        label="Карточка профиля (экран)"
+        sub="Полноэкранный экран прокачки карточки — живая галерея уровней. Открывает реальный экран."
+        onPress={() => router.push('/profile_card_upgrade' as any)}
       />
 
       <ReleaseWaveBonusModal
@@ -100,16 +99,6 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
       <EnergyRefillShardModal
         visible={energyRefillVisible}
         onClose={() => setEnergyRefillVisible(false)}
-      />
-      <ProfileCardUpgradeModal
-        visible={profileCardVisible}
-        level={2}
-        snapshot={{ level: 2, theme: 'gold', motion: 'gleam', publicFocus: 'xp' }}
-        onClose={() => setProfileCardVisible(false)}
-        onUpgraded={(level) => {
-          setProfileCardVisible(false);
-          qaToast('success', `Карточка профиля улучшена до уровня ${level} (QA)`);
-        }}
       />
     </AccordionSection>
   );

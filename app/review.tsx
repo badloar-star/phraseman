@@ -64,6 +64,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import {
   getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT,
   getTrainerItems, type TrainerMode,
@@ -642,6 +643,7 @@ export default function ReviewScreen() {
   const { studyTarget } = useStudyTarget();
   const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
+  const { speakAnswer } = useSpeakAnswer();
   const { flashKey, flash } = useWordFlash();
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
   const params = useLocalSearchParams<{
@@ -917,7 +919,7 @@ export default function ReviewScreen() {
     setWasCorrect(ok);
     setStatus('result');
 
-    if (ok) { void hapticSuccess(); playCorrect(); }
+    if (ok) { void hapticSuccess(); playCorrect(); speakAnswer(englishRecallSurface(item.phrase), studyTarget); }
     else void hapticError();
 
     Animated.spring(resultAnim, { toValue: 1, useNativeDriver: true, friction: 8 }).start();
@@ -1017,7 +1019,7 @@ export default function ReviewScreen() {
     }
 
     checkingRef.current = false;
-  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget]);
+  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode, studyTarget, playCorrect, speakAnswer]);
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
     if (status !== 'playing' || burning) return;

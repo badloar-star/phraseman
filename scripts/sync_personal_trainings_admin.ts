@@ -8,6 +8,7 @@ import {
   PERSONAL_TRAINING_TAXONOMY,
 } from '../app/personal_training_taxonomy';
 import { getPersonalTrainingSummarySourceLocales } from '../app/personal_training_source_locales';
+import { HEISENBERG_BATCH_SOURCE_LOCALES } from '../app/source_locales';
 
 const root = process.cwd();
 const outputPath = path.join(root, 'admin', 'personal-trainings.js');
@@ -67,6 +68,7 @@ const payload = {
   registryPath: 'app/diagnosis_trainings.ts',
   taxonomyPath: 'app/personal_training_taxonomy.ts',
   jesseReworkedMarker: JESSE_REWORKED_MARKER,
+  sourceLocales: HEISENBERG_BATCH_SOURCE_LOCALES,
   activeIds,
   jesseReworkedIds,
   legacyNeedsReworkIds,

@@ -1,5 +1,9 @@
 // Lesson Data Type Definitions
 
+import type { HeisenbergSourceLocale } from './source_locales';
+
+export type LessonPhraseSourceLocales = Partial<Record<HeisenbergSourceLocale, string>>;
+
 export interface LessonWord {
   text: string;           // The word
   correct: string;        // Same as text (for validation)
@@ -13,12 +17,27 @@ export interface LessonTeachingNote {
   titleRu?: string;
   titleUk?: string;
   titleEs?: string;
+  titlePtBr?: string;
+  titleVi?: string;
+  titleId?: string;
+  titleTr?: string;
+  titlePl?: string;
   correctRu: string;
   correctUk?: string;
   correctEs?: string;
+  correctPtBr?: string;
+  correctVi?: string;
+  correctId?: string;
+  correctTr?: string;
+  correctPl?: string;
   wrongRu: string;
   wrongUk?: string;
   wrongEs?: string;
+  wrongPtBr?: string;
+  wrongVi?: string;
+  wrongId?: string;
+  wrongTr?: string;
+  wrongPl?: string;
 }
 
 export interface LessonPhrase {
@@ -32,6 +51,8 @@ export interface LessonPhrase {
   ukrainian: string;
   /** Подсказка-перевод для локали es; до заполнения UI обычно использует russian. */
   spanish?: string;
+  /** Source-language prompt for planned Heisenberg interface locales. */
+  sourceLocales?: LessonPhraseSourceLocales;
   /** Target-language French surface. It is separate from source-locale RU/UK prompts. */
   french?: string;
   /**

@@ -36,17 +36,25 @@ import { asLang } from '../app/explain_phrase_request';
 
 interface Props {
   /**
-   * Какой кэш репортим: 'phrase' (объяснение фразы, дефолт) или 'mistake' (разбор ошибки).
-   * От kind зависит, какую кэш-запись на сервере затронет жалоба.
+   * Какой кэш репортим: 'phrase' (объяснение фразы, дефолт), 'mistake' (разбор ошибки) или
+   * 'quiz' (ИИ-разбор тематического квиза). От kind зависит, какую кэш-запись затронет жалоба.
    */
-  kind?: 'phrase' | 'mistake';
+  kind?: 'phrase' | 'mistake' | 'quiz';
   /**
-   * Для kind='phrase' — английская фраза. Для kind='mistake' — ПРАВИЛЬНЫЙ (целевой) ответ.
+   * Для kind='phrase' — английская фраза. Для kind='mistake'/'quiz' — ПРАВИЛЬНЫЙ (целевой) ответ.
    * Сервер сам выведет хэш; клиент хэш НЕ шлёт.
    */
   phraseEn: string;
-  /** Только для kind='mistake': неправильный ответ юзера (кэш per-(target,userAnswer,lang)). */
+  /**
+   * Для kind='mistake' — неправильный ответ юзера (кэш per-(target,userAnswer,lang)).
+   * Для kind='quiz' — необязательно: выбранный вариант (контекст для админа).
+   */
   userAnswer?: string;
+  /**
+   * Только для kind='quiz': ВСЕ варианты вопроса (правильный + неверные). Кэш квиза
+   * per-(correct, option-set, lang) — без набора жалоба попадёт не в тот док.
+   */
+  choices?: string[];
   /** Язык объяснения, на которое жалуемся (кэш per-(…,lang)). Дефолт — язык интерфейса. */
   lang?: string;
 }
@@ -106,7 +114,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
   }
 }
 
-function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: langProp }: Props) {
+function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, lang: langProp }: Props) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
   const insets = useSafeAreaInsets();
@@ -138,8 +146,11 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
       await callSubmitExplainReport({
         kind,
         phraseEn,
-        // userAnswer нужен только для разбора ошибки (per-(target,userAnswer,lang)).
-        userAnswer: kind === 'mistake' ? userAnswer : undefined,
+        // userAnswer: для разбора ошибки — обязателен (per-(target,userAnswer,lang));
+        // для квиза — необязательный контекст (выбранный вариант).
+        userAnswer: kind === 'mistake' || kind === 'quiz' ? userAnswer : undefined,
+        // choices: только для квиза — весь набор вариантов (кэш per-(correct, option-set, lang)).
+        choices: kind === 'quiz' ? choices : undefined,
         lang,
         reason,
         comment: comment.trim().slice(0, COMMENT_MAX_LEN),

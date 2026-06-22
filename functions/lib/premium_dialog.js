@@ -46,6 +46,7 @@ const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
+const remote_gates_1 = require("./remote_gates");
 const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
@@ -531,12 +532,24 @@ exports.premiumDialogSend = (0, https_1.onCall)({
     const isNewDialog = history.length === 0;
     // Limits BEFORE the paid API call.
     await enforceRateLimit(authUid, stableUid);
-    // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри).
+    // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
+    // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
+    // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
+    // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
+    // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
+    // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
+    const aiDialogGatedByPremium = await (0, remote_gates_1.resolveRemoteBool)(db, 'gate_ai_dialog_premium', true);
+    // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
+    //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
     // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
     let remaining;
     let freeMarkedNow = false;
     if (isPremium) {
         remaining = await enforceDailyQuota(authUid, stableUid, true, dialogQuota.premiumDailyReplies);
+    }
+    else if (!aiDialogGatedByPremium) {
+        // Фича переведена в «Фри»: безлимит по диалогам, но дневной кап реплик от абьюза.
+        remaining = await enforceDailyQuota(authUid, stableUid, false, dialogQuota.freeDailyReplies);
     }
     else {
         const gate = await enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog);

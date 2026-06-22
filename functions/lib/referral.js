@@ -33,13 +33,16 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.referralClaimVipReward = exports.referralListMyInvites = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.MAX_REFERRER_CLAIMS_PER_DAY = exports.MAX_REFERRER_CLAIMS_PER_MONTH = exports.REFERRAL_REWARD_DAYS = void 0;
+exports.referralClaimVipReward = exports.referralListMyInvites = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.REFERRAL_DEFAULTS = exports.MAX_REFERRER_CLAIMS_PER_DAY = exports.MAX_REFERRER_CLAIMS_PER_MONTH = exports.REFERRAL_REWARD_DAYS = void 0;
+exports.referralConfigFromData = referralConfigFromData;
+exports.resolveReferralConfig = resolveReferralConfig;
 exports.referralClaimSlotsLeft = referralClaimSlotsLeft;
 exports.hasCompletedFirstLesson = hasCompletedFirstLesson;
 exports.isSnapshotMigrationWrite = isSnapshotMigrationWrite;
 exports.vipUntilFromProgress = vipUntilFromProgress;
 exports.stackVipUntilMs = stackVipUntilMs;
 exports.buildReferralVipProgressPatch = buildReferralVipProgressPatch;
+exports.prunePeriodCounter = prunePeriodCounter;
 /**
  * Вирусный реферал (7 дней другу + 7 дней пригласившему, экономия Firebase-лимитов).
  * Крючок: «друг установил приложение, ввёл код и прошёл первый урок — вы оба получаете
@@ -69,10 +72,12 @@ const REGION = 'us-central1';
 const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
+// ── Тюнинг реферальной программы (крутится из «Пульта» без релиза) ───────────
+// Дефолты = прежние хардкоды. Читаются из remote_config/app.numbers тем же
+// async-резолвером, что у арены/карточек (см. resolveReferralConfig). Денежная
+// математика: при отсутствии/мусоре → дефолт по полю, поведение не меняется.
 /** Referral reward: 7 days for the invited friend and 7 days for the referrer. */
 exports.REFERRAL_REWARD_DAYS = 7;
-const REFERRER_VIP_DAYS = exports.REFERRAL_REWARD_DAYS;
-const REFEREE_VIP_DAYS = exports.REFERRAL_REWARD_DAYS;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
 exports.MAX_REFERRER_CLAIMS_PER_MONTH = 30;
@@ -84,13 +89,55 @@ exports.MAX_REFERRER_CLAIMS_PER_MONTH = 30;
  * остаются 'qualified' и обналичиваются на следующий день. Честный юзер редко зовёт >3/день.
  */
 exports.MAX_REFERRER_CLAIMS_PER_DAY = 3;
+exports.REFERRAL_DEFAULTS = {
+    rewardDays: exports.REFERRAL_REWARD_DAYS,
+    maxClaimsPerMonth: exports.MAX_REFERRER_CLAIMS_PER_MONTH,
+    maxClaimsPerDay: exports.MAX_REFERRER_CLAIMS_PER_DAY,
+};
+function referralClampInt(value, min, max, fallback) {
+    const n = Math.trunc(Number(value));
+    if (!Number.isFinite(n))
+        return fallback;
+    return Math.max(min, Math.min(max, n));
+}
+/**
+ * Чистый парсер конфига рефералов из remote_config/app.numbers. Отсутствие/мусор/
+ * вне границ → дефолт по полю. НИКОГДА не бросает. Экспортируется для тестов.
+ */
+function referralConfigFromData(numbers) {
+    const n = numbers ?? {};
+    const d = exports.REFERRAL_DEFAULTS;
+    return {
+        // rewardDays min=1: 0 дней = бессмысленная награда, которая всё равно сожгла бы
+        // слот капа и пометила реферал 'rewarded' без эффекта. Минимум — 1 день.
+        rewardDays: referralClampInt(n.referral_reward_days, 1, 3650, d.rewardDays),
+        maxClaimsPerMonth: referralClampInt(n.referral_max_claims_month, 0, 100000, d.maxClaimsPerMonth),
+        maxClaimsPerDay: referralClampInt(n.referral_max_claims_day, 0, 100000, d.maxClaimsPerDay),
+    };
+}
+/**
+ * Читает конфиг рефералов из remote_config/app.numbers. НИКОГДА не бросает:
+ * при ошибке/отсутствии → дефолты (поведение как до фичи).
+ */
+async function resolveReferralConfig(db) {
+    try {
+        const snap = await db.collection('remote_config').doc('app').get();
+        const data = snap.data();
+        return referralConfigFromData(data?.numbers);
+    }
+    catch (e) {
+        console.warn('resolveReferralConfig failed, using defaults', e);
+        return { ...exports.REFERRAL_DEFAULTS };
+    }
+}
 /**
  * Чистая функция: сколько наград можно выдать прямо сейчас с учётом дневного И месячного капов.
- * Берёт минимум из остатков, не уходит в минус. Экспортируется для тестов.
+ * Берёт минимум из остатков, не уходит в минус. Капы по умолчанию = дефолтные (обратная
+ * совместимость и тесты); вызовы из callable передают значения из «Пульта». Экспортируется.
  */
-function referralClaimSlotsLeft(usedThisMonth, usedToday) {
-    const monthLeft = exports.MAX_REFERRER_CLAIMS_PER_MONTH - Math.max(0, Math.floor(usedThisMonth));
-    const dayLeft = exports.MAX_REFERRER_CLAIMS_PER_DAY - Math.max(0, Math.floor(usedToday));
+function referralClaimSlotsLeft(usedThisMonth, usedToday, maxPerMonth = exports.MAX_REFERRER_CLAIMS_PER_MONTH, maxPerDay = exports.MAX_REFERRER_CLAIMS_PER_DAY) {
+    const monthLeft = maxPerMonth - Math.max(0, Math.floor(usedThisMonth));
+    const dayLeft = maxPerDay - Math.max(0, Math.floor(usedToday));
     return Math.max(0, Math.min(monthLeft, dayLeft));
 }
 /** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
@@ -220,13 +267,22 @@ function yyyymmddNow() {
     const d = new Date();
     return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
 }
-/** Оставляет только N самых свежих дней (ключи YYYY-MM-DD сортируются лексикографически = хронологически). */
-function pruneDailyCounter(map, keepDays = 10) {
-    const keys = Object.keys(map).sort().reverse().slice(0, keepDays);
+/**
+ * Оставляет только N самых свежих периодов. Ключи дат (YYYY-MM-DD или YYYY-MM)
+ * сортируются лексикографически = хронологически. Используется и для дневного
+ * (keepDays=10), и для месячного (keepMonths=3) счётчика — иначе map растёт в
+ * progress-документе бесконечно (M1).
+ */
+function prunePeriodCounter(map, keep) {
+    const keys = Object.keys(map).sort().reverse().slice(0, keep);
     const out = {};
     for (const k of keys)
         out[k] = map[k];
     return out;
+}
+/** @deprecated имя оставлено для совместимости тестов — делегирует prunePeriodCounter. */
+function pruneDailyCounter(map, keepDays = 10) {
+    return prunePeriodCounter(map, keepDays);
 }
 /**
  * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
@@ -247,6 +303,8 @@ async function markRefereeQualified(db, userId) {
     const referrerId = String(att0.referrerStableId ?? '').trim();
     if (!referrerId)
         return;
+    // Тюнинг из «Пульта» (дней награды). Читаем ДО транзакции (отдельный документ).
+    const cfg = await resolveReferralConfig(db);
     const uref = (uid) => db.collection(USERS).doc(uid);
     await db.runTransaction(async (tx) => {
         const attR = await tx.get(attRef);
@@ -261,14 +319,14 @@ async function markRefereeQualified(db, userId) {
         const nowMs = Date.now();
         const refereeData = refeeSnap.data() ?? {};
         const refereeProgress = refereeData.progress ?? {};
-        const refereeVipPatch = buildReferralVipProgressPatch(refereeProgress, nowMs, REFEREE_VIP_DAYS, 'referee');
+        const refereeVipPatch = buildReferralVipProgressPatch(refereeProgress, nowMs, cfg.rewardDays, 'referee');
         // Помечаем attribution готовым к обналичиванию referrer'ом.
         // Приглашённый получает свои 7 дней сразу; пригласивший забирает свои 7 дней по кнопке.
         tx.set(attRef, {
             status: 'qualified',
             qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
             qualifiedBy: 'lesson1_pass_count',
-            refereeVipDays: REFEREE_VIP_DAYS,
+            refereeVipDays: cfg.rewardDays,
             refereeRewardedAtMs: nowMs,
             rewardKind: 'vip_days_both',
         }, { merge: true });
@@ -481,11 +539,12 @@ exports.referralListMyInvites = (0, https_1.onCall)(CALLABLE_BASE, async (reques
         };
     });
     const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
+    const cfg = await resolveReferralConfig(db);
     return {
         ok: true,
         invites,
         qualifiedCount,
-        claimableVipDays: qualifiedCount * REFERRER_VIP_DAYS,
+        claimableVipDays: qualifiedCount * cfg.rewardDays,
     };
 });
 /**
@@ -506,6 +565,8 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
     }
     const db = admin.firestore();
     await assertAuthStableLink(db, authUid, referrerStableId);
+    // Тюнинг из «Пульта» (дней награды + капы). Читаем ДО транзакции (отд. документ).
+    const cfg = await resolveReferralConfig(db);
     // Какие приглашения этого referrer'а готовы к обналичиванию (ещё не rewarded).
     // Включаем и legacy 'skipped_referrer_cap' — раньше эти строки застревали навсегда (M1);
     // теперь они тоже claimable (восстановление ранее потерянных наград).
@@ -555,39 +616,41 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
             // Принимаем qualified и legacy skipped_referrer_cap; 'rewarded'/прочее — пропуск (гонка).
             if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap')
                 continue;
-            if (referralClaimSlotsLeft(usedThisMonth, usedToday) <= 0) {
+            if (referralClaimSlotsLeft(usedThisMonth, usedToday, cfg.maxClaimsPerMonth, cfg.maxClaimsPerDay) <= 0) {
                 // Достигнут кап (день или месяц). НЕ понижаем статус — оставляем 'qualified',
                 // эти 7 дней не теряются: дожмёт «Открыть» позже (на след. день / след. месяц).
                 // Раньше ставили 'skipped_referrer_cap' и они терялись НАВСЕГДА (M1).
-                if (usedThisMonth >= exports.MAX_REFERRER_CLAIMS_PER_MONTH)
+                if (usedThisMonth >= cfg.maxClaimsPerMonth)
                     cappedThisMonth = true;
                 else
                     cappedToday = true; // дневной throttle (анти-фарм свежими аккаунтами)
                 tx.set(attRefs[i], { lastCappedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
                 break; // остаток qualified-друзей сейчас тоже за капом — выходим.
             }
-            // Стак: +7 дней от текущего конца окна (или от now, если окна не было).
-            vipUntil = stackVipUntilMs(vipUntil, nowMs, REFERRER_VIP_DAYS);
+            // Стак: +N дней от текущего конца окна (или от now, если окна не было).
+            vipUntil = stackVipUntilMs(vipUntil, nowMs, cfg.rewardDays);
             usedThisMonth += 1;
             usedToday += 1;
-            claimed.push({ refereeStableId: snap.id, daysGranted: REFERRER_VIP_DAYS });
+            claimed.push({ refereeStableId: snap.id, daysGranted: cfg.rewardDays });
             tx.set(attRefs[i], {
                 status: 'rewarded',
                 rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
-                referrerVipDays: REFERRER_VIP_DAYS,
+                referrerVipDays: cfg.rewardDays,
                 rewardKind: 'vip_days_both',
             }, { merge: true });
         }
         if (claimed.length > 0) {
             // Пишем VIP теми же полями, что admin-grant — премиум-механику не меняем.
             // vip_admin_grant_at — маркер для клиентской анимации (vip_celebration_state).
-            const referrerVipPatch = buildReferralVipProgressPatch(userData.progress, nowMs, claimed.length * REFERRER_VIP_DAYS, 'referrer');
+            const referrerVipPatch = buildReferralVipProgressPatch(userData.progress, nowMs, claimed.length * cfg.rewardDays, 'referrer');
             tx.set(userRef, {
                 progress: {
                     ...referrerVipPatch,
-                    referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
+                    // Месячный счётчик: чистим старые месяцы (храним ~3 последних), иначе
+                    // map рос бесконечно в progress-документе (M1, аудит 2026-06-21).
+                    referral_vip_claims_monthly: prunePeriodCounter({ ...monthly, [ym]: usedThisMonth }, 3),
                     // Дневной счётчик: чистим старые дни, чтобы map не рос бесконечно (храним ~10 последних).
-                    referral_vip_claims_daily: pruneDailyCounter({ ...daily, [ymd]: usedToday }),
+                    referral_vip_claims_daily: prunePeriodCounter({ ...daily, [ymd]: usedToday }, 10),
                 },
                 updatedAt: nowMs,
             }, { merge: true });
@@ -597,15 +660,15 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
                 reason: 'referral_referrer_vip',
                 rewardType: 'vip_days',
                 amount: 0,
-                days: claimed.length * REFERRER_VIP_DAYS,
+                days: claimed.length * cfg.rewardDays,
                 friends: claimed.length,
-                label: `💎 +${claimed.length * REFERRER_VIP_DAYS} дней VIP`,
+                label: `💎 +${claimed.length * cfg.rewardDays} дней VIP`,
                 seen: false,
             });
         }
         return {
             ok: true,
-            granted: claimed.length * REFERRER_VIP_DAYS,
+            granted: claimed.length * cfg.rewardDays,
             claimed,
             vipUntilMs: vipUntil,
             cappedThisMonth,

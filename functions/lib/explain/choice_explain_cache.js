@@ -61,8 +61,14 @@ exports.CHOICE_COLLECTION = 'choice_explanations';
 /** Generation lock TTL — slightly above the CF timeout so a crashed generation is re-claimable. */
 exports.CHOICE_LOCK_TTL_MS = 30000;
 /** Bump to invalidate stale cached choice explanations on read.
- *  v1 (2026-06-20): initial batched correct-confirm + per-distractor explanations. */
-exports.CHOICE_SCHEMA_VERSION = 1;
+ *  v1 (2026-06-20): initial batched correct-confirm + per-distractor explanations.
+ *  v2 (2026-06-21): prompt now addresses the learner as "ты" (Phraseman Bible) and BANS guessing the
+ *  reason a wrong option was picked ("you translated literally") — old v1 batches may use "вы" and
+ *  invented causes, so regenerate.
+ *  v3 (2026-06-21): audit fixes — dropped the "WRONG option" framing (no «ошибка»/«wrong» to the
+ *  learner), tightened length to ≤12 words, added "don't invent a definition you're unsure of", warm
+ *  marker + forward nudge in the confirm — old v2 batches predate these, regenerate. */
+exports.CHOICE_SCHEMA_VERSION = 3;
 /** How long a judge-rejected batch serves nothing before one request may retry generation. */
 exports.CHOICE_REJECTED_RETRY_TTL_MS = 10 * 60000;
 function isCurrentSchema(data) {

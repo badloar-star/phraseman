@@ -202,4 +202,53 @@ describe('reported content regressions', () => {
     const firstPronoun = phrase?.wordsEn?.find((word) => word.correct === 'this');
     expect(firstPronoun).toBeTruthy();
   });
+
+  it('shows readable Cyrillic (no mojibake) for lesson 18 phrase 31 reserve a table', () => {
+    const phrase = LESSON_DATA[18].phrases.find((row) => row.id === 'lesson18_phrase_31');
+
+    expect(phrase).toBeTruthy();
+    expect(phrase?.russian).toBe('Ты можешь забронировать столик?');
+    expect(phrase?.ukrainian).toBe('Ти можеш забронювати столик?');
+    expect(phrase?.spanish).toBe('¿Puedes reservar una mesa?');
+    // Mojibake guard: the corrupted form contained the Latin-1 marker "Ð".
+    expect(phrase?.russian).not.toContain('Ð');
+    expect(phrase?.ukrainian).not.toContain('Ð');
+  });
+
+  it('maps "рядом с / поруч з" to near consistently in lesson 19 phrases 7 and 31', () => {
+    const p7 = LESSON_DATA[19].phrases.find((row) => row.id === 'lesson19_phrase_7');
+    const p31 = LESSON_DATA[19].phrases.find((row) => row.id === 'lesson19_phrase_31');
+
+    expect(p7?.english).toBe('The chair is near the table');
+    expect(p31?.english).toBe('Put the bag near the door');
+    // "near" — not "next to" — must be the correct chip (lesson's dominant mapping).
+    expect(p7?.wordsEn?.find((w) => w.correct === 'near')).toBeTruthy();
+    expect(p31?.wordsEn?.find((w) => w.correct === 'near')).toBeTruthy();
+    expect(p7?.wordsEn?.some((w) => w.correct === 'next to')).toBe(false);
+    expect(p31?.wordsEn?.some((w) => w.correct === 'next to')).toBe(false);
+    expect(
+      isCorrectAnswer('The chair is near the table', phraseCanonicalAnswer(p7!, 'en'), phraseAnswerAlternatives(p7!, 'en')),
+    ).toBe(true);
+  });
+
+  it('uses "втрачати" (losing) not "витрачати" (spending) for lesson 22 phrase 27 hates losing money', () => {
+    const phrase = LESSON_DATA[22].phrases.find((row) => row.id === 'lesson22_phrase_27');
+
+    expect(phrase?.english).toBe('She hates losing money');
+    expect(phrase?.ukrainian).toBe('Вона ненавидить втрачати гроші');
+    // "витрачати" means "spending" — must not be reused for "losing".
+    expect(phrase?.ukrainian).not.toContain('витрачати');
+  });
+
+  it('uses grammatical Russian/Ukrainian prompts for lesson 13 phrase 40 and lesson 14 phrase 24', () => {
+    const cash = LESSON_DATA[13].phrases.find((row) => row.id === 'lesson13_phrase_40');
+    const phone = LESSON_DATA[14].phrases.find((row) => row.id === 'lesson14_phrase_24');
+
+    // singular "готівка" needs singular verb "знадобиться", not plural "знадобляться".
+    expect(cash?.ukrainian).toBe('Мені знадобиться готівка?');
+    expect(cash?.ukrainian).not.toContain('знадобляться');
+    // normative comparative is "старше", not colloquial "старее".
+    expect(phone?.russian).toBe('Тот телефон старше');
+    expect(phone?.russian).not.toContain('старее');
+  });
 });

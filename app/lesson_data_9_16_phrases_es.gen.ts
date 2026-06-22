@@ -4914,7 +4914,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     id: 'lesson13_phrase_40',
     english: 'Will I need cash?',
     russian: 'Мне понадобятся наличные?',
-    ukrainian: 'Мені знадобляться готівка?',
+    ukrainian: 'Мені знадобиться готівка?',
     spanish: '¿Necesitaré dinero en efectivo?',
     words: [
       { text: '¿', correct: '¿', distractors: ['¡', '?', '!', '.', ','], category: 'puntuacion' },
@@ -5622,7 +5622,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson14_phrase_24',
     english: 'That phone is older',
-    russian: 'Тот телефон старее',
+    russian: 'Тот телефон старше',
     ukrainian: 'Той телефон старший',
     spanish: 'Ese teléfono es más viejo.',
     words: [

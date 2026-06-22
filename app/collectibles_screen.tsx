@@ -204,7 +204,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
         backgroundColor: t.bgCard,
         borderWidth: 1,
         borderColor: complete ? `${SECRET_GOLD}55` : t.border,
-        marginBottom: 12,
+        marginBottom: 8,
         overflow: 'hidden',
       }}
     >
@@ -529,8 +529,9 @@ export default function CollectiblesScreen() {
   // появятся карточки» (иначе оно мелькает до прихода данных из хранилища).
   const [loaded, setLoaded] = useState(cached != null);
   const [detail, setDetail] = useState<DetailTarget | null>(null);
-  // Какие сеты раскрыты (по умолчанию все свёрнуты → экран открывается мгновенно).
-  const [expandedSets, setExpandedSets] = useState<Set<string>>(() => new Set());
+  // Раскрыт ВСЕГДА только один сет (или ни одного). Открытие одного закрывает
+  // предыдущий — так список остаётся компактным, без длинных простыней.
+  const [expandedSet, setExpandedSet] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const map = await getCollectiblesOwnedMap();
@@ -590,14 +591,10 @@ export default function CollectiblesScreen() {
 
   const toggleSet = useCallback((setId: string) => {
     hapticTap();
-    // Плавная анимация высоты строки при раскрытии/сворачивании.
+    // Плавная анимация высоты строк при раскрытии/сворачивании.
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setExpandedSets((prev) => {
-      const next = new Set(prev);
-      if (next.has(setId)) next.delete(setId);
-      else next.add(setId);
-      return next;
-    });
+    // Тап по уже открытому — закрыть; иначе открыть его и закрыть остальные.
+    setExpandedSet((prev) => (prev === setId ? null : setId));
   }, []);
 
   return (
@@ -701,7 +698,7 @@ export default function CollectiblesScreen() {
                   set={item.set}
                   ownedCards={item.ownedCards}
                   secretOwned={item.secretOwned}
-                  expanded={expandedSets.has(item.set.setId)}
+                  expanded={expandedSet === item.set.setId}
                   onToggle={toggleSet}
                   onOpenCard={openDetail}
                   t={t}

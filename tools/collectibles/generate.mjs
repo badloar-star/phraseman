@@ -23,6 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CATALOG_PATH = path.join(HERE, 'catalog_seed.json');
@@ -629,6 +630,18 @@ ${setCardIds.join('\n')}
   console.log(`build-app OK: ${live.length} live-сетов, ${cardCount} карточек + ${live.length} секреток`);
   console.log(`  client → ${APP_CATALOG_OUT} (${(fs.statSync(APP_CATALOG_OUT).size / 1024).toFixed(0)} КБ)`);
   console.log(`  server → ${SERVER_CATALOG_OUT} (${(fs.statSync(SERVER_CATALOG_OUT).size / 1024).toFixed(0)} КБ)`);
+
+  // Перегенерировать карту require() webp-картинок, чтобы она не отстала от
+  // каталога. Падение карты (нет арта на часть карточек) НЕ валит build-app —
+  // только предупреждаем, чтобы тексты/SVG всё равно собрались.
+  const imgScript = path.join(HERE, 'build-image-map.mjs');
+  const res = spawnSync(process.execPath, [imgScript], { encoding: 'utf8' });
+  if (res.status === 0) {
+    console.log(`  images → ${(res.stdout || '').trim()}`);
+  } else {
+    console.warn('  ВНИМАНИЕ: build-image-map не прошёл (карта картинок не обновлена):');
+    console.warn((res.stderr || res.stdout || '').trim());
+  }
 }
 
 /* ── placeholders ─────────────────────────────────────────── */

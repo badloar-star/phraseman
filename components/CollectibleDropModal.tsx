@@ -3,8 +3,8 @@
 // готовые ярусы GiftOpenEffects; legendary получает premium-ярус.
 import React, { useEffect, useMemo } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
+import CollectibleArt from './CollectibleArt';
 import { GiftOpenBurst, type GiftAnimTier } from './GiftOpenEffects';
 import HoloFoilCard from './HoloFoilCard';
 import { useTheme } from './ThemeContext';
@@ -25,7 +25,8 @@ import type { CollectibleDropOutcome } from '../app/collectibles/storage';
 function dropAnimTier(rarity: string): GiftAnimTier {
   if (rarity === 'legendary') return 'premium';
   if (rarity === 'epic') return 'epic';
-  if (rarity === 'rare') return 'confetti';
+  // rare раньше выдавал 'confetti' — конфетти-салют убран по просьбе, теперь искры.
+  if (rarity === 'rare') return 'sparkle';
   return 'sparkle';
 }
 
@@ -77,13 +78,18 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               height={160}
               style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
             >
-              {card.svg ? (
-                <SvgXml xml={card.svg} width={184} height={147} />
-              ) : (
-                <Text style={[styles.artFallback, { color: rarityColor }]}>
-                  {card.en.slice(0, 1).toUpperCase()}
-                </Text>
-              )}
+              <CollectibleArt
+                cardId={card.id}
+                svg={card.svg}
+                width={184}
+                height={147}
+                accessibilityLabel={card.en}
+                fallback={
+                  <Text style={[styles.artFallback, { color: rarityColor }]}>
+                    {card.en.slice(0, 1).toUpperCase()}
+                  </Text>
+                }
+              />
             </HoloFoilCard>
             <GiftOpenBurst tier={tier} size={210} />
           </View>

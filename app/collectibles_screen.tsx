@@ -8,8 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Modal, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { SvgXml } from 'react-native-svg';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import CollectibleArt from '../components/CollectibleArt';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
@@ -32,6 +32,7 @@ import {
   type CollectibleSetData,
 } from './collectibles/catalog';
 import {
+  devUnlockAllCollectibles,
   getCollectiblesOwnedMap,
   markCollectiblesSeen,
   type CollectiblesOwnedMap,
@@ -74,15 +75,18 @@ const CardCell = React.memo(function CardCell({
           overflow: 'hidden',
         }}
       >
-        {card.svg ? (
-          <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
-            <SvgXml xml={card.svg} width="100%" height="100%" />
-          </View>
-        ) : (
-          <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
-            {card.en.slice(0, 1).toUpperCase()}
-          </Text>
-        )}
+        <CollectibleArt
+          cardId={card.id}
+          svg={card.svg}
+          width="92%"
+          height="100%"
+          accessibilityLabel={card.en}
+          fallback={
+            <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
+              {card.en.slice(0, 1).toUpperCase()}
+            </Text>
+          }
+        />
       </View>
       <Text
         numberOfLines={1}
@@ -128,13 +132,14 @@ const SecretCell = React.memo(function SecretCell({
           overflow: 'hidden',
         }}
       >
-        {secret.svg ? (
-          <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
-            <SvgXml xml={secret.svg} width="100%" height="100%" />
-          </View>
-        ) : (
-          <Ionicons name="star" size={26} color={SECRET_GOLD} />
-        )}
+        <CollectibleArt
+          cardId={secret.id}
+          svg={secret.svg}
+          width="92%"
+          height="100%"
+          accessibilityLabel={secret.en}
+          fallback={<Ionicons name="star" size={26} color={SECRET_GOLD} />}
+        />
       </View>
       <Text
         numberOfLines={1}
@@ -234,6 +239,7 @@ function CardDetailModal({
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { speak } = useAudio();
+  const insets = useSafeAreaInsets();
 
   if (!target) return null;
   const { card, set } = target;
@@ -277,8 +283,8 @@ function CardDetailModal({
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
       <View style={{ flex: 1, backgroundColor: 'rgba(2,3,6,0.92)' }}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingTop: 6 }}>
+        <View style={{ flex: 1, paddingTop: insets.top }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingTop: 8, paddingBottom: 4 }}>
             <View
               style={{
                 paddingHorizontal: 10,
@@ -294,8 +300,21 @@ function CardDetailModal({
             <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginLeft: 10, flex: 1 }} numberOfLines={1}>
               {setTitle}
             </Text>
-            <TapScale onPress={onClose} hitSlop={12}>
-              <Ionicons name="close" size={26} color={t.textPrimary} />
+            <TapScale onPress={onClose} hitSlop={14}>
+              <View
+                style={{
+                  width: 34,
+                  height: 34,
+                  borderRadius: 17,
+                  backgroundColor: t.bgCard,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="close" size={22} color={t.textPrimary} />
+              </View>
             </TapScale>
           </View>
 
@@ -314,13 +333,18 @@ function CardDetailModal({
                 overflow: 'hidden',
               }}
             >
-              {card.svg ? (
-                <SvgXml xml={card.svg} width={222} height={178} />
-              ) : (
-                <Text style={{ color: rarityColor, fontSize: 52, fontWeight: '900' }}>
-                  {card.en.slice(0, 1).toUpperCase()}
-                </Text>
-              )}
+              <CollectibleArt
+                cardId={card.id}
+                svg={card.svg}
+                width={222}
+                height={178}
+                accessibilityLabel={card.en}
+                fallback={
+                  <Text style={{ color: rarityColor, fontSize: 52, fontWeight: '900' }}>
+                    {card.en.slice(0, 1).toUpperCase()}
+                  </Text>
+                }
+              />
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 16 }}>
@@ -383,9 +407,23 @@ function CardDetailModal({
                     pl: 'Przykład',
                   })}
                 </Text>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 21, marginTop: 4, fontWeight: '700' }}>
-                  {card.exampleEn}
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 4 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 21, fontWeight: '700', flex: 1 }}>
+                    {card.exampleEn}
+                  </Text>
+                  <TapScale
+                    onPress={() => {
+                      hapticTap();
+                      const ex = card.exampleEn.trim();
+                      if (ex) speak(ex);
+                    }}
+                    hitSlop={10}
+                  >
+                    <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: `${rarityColor}26`, alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
+                      <Ionicons name="volume-high" size={16} color={rarityColor} />
+                    </View>
+                  </TapScale>
+                </View>
                 <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 21, marginTop: 2 }}>
                   {cardText.example}
                 </Text>
@@ -403,7 +441,7 @@ function CardDetailModal({
             }), cardText.origin)}
           </ScrollView>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingBottom: 14 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingTop: 8, paddingBottom: Math.max(insets.bottom, 14) }}>
             <TapScale
               onPress={() => {
                 if (index > 0) onNavigate(siblings[index - 1]);
@@ -421,7 +459,7 @@ function CardDetailModal({
               <Ionicons name="chevron-forward-circle" size={34} color={index < siblings.length - 1 ? t.textSecond : `${String(t.textMuted)}55`} />
             </TapScale>
           </View>
-        </SafeAreaView>
+        </View>
       </View>
     </Modal>
   );
@@ -496,6 +534,30 @@ export default function CollectiblesScreen() {
                 pl: 'Kolekcja',
               })}
             </Text>
+            {__DEV__ && (
+              <TouchableOpacity
+                testID="collectibles-dev-unlock-all"
+                onPress={async () => {
+                  hapticTap();
+                  await devUnlockAllCollectibles();
+                }}
+                style={{
+                  paddingHorizontal: 9,
+                  paddingVertical: 5,
+                  borderRadius: 999,
+                  backgroundColor: '#FBBF2422',
+                  borderWidth: 1,
+                  borderColor: '#FBBF2477',
+                  marginRight: 8,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 4,
+                }}
+              >
+                <Ionicons name="bug" size={13} color="#FBBF24" />
+                <Text style={{ color: '#FBBF24', fontSize: f.sub, fontWeight: '900' }}>DEV: всё</Text>
+              </TouchableOpacity>
+            )}
             <View
               style={{
                 paddingHorizontal: 10,

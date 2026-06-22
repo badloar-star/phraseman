@@ -26,6 +26,7 @@
         "assets/images/arena_tickets/*",
         "assets/images/achievements/*",
         "assets/images/avatars/*",
+        "assets/images/collectibles/dalli/**/*.webp",
         "assets/images/daily_task_icons/**/*",
         "assets/images/energy/*",
         "assets/images/flashcard_backs/*",
@@ -40,6 +41,8 @@
         "assets/images/levels/league-v4/*",
         "assets/images/levels/league-v5-heraldry/*.png",
         "assets/images/levels/league-v5-heraldry/*.webp",
+        "assets/images/levels/league-v6-icons/*.webp",
+        "assets/images/levels/league-v6-cards/*.webp",
         "assets/images/levels/generated-v5-dalle/*.webp",
         "assets/images/levels/*.webp",
         "assets/images/lesson_intro/*",
@@ -60,6 +63,7 @@
         "assets/images/splash-icon.png",
         "assets/images/streak_overlays/*",
         "assets/images/theo/*",
+        "assets/images/weekly_boon_icons/png/**/*",
         "assets/images/trainer_theme_icons/**/*"
       ]
     },

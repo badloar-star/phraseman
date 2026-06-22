@@ -8,7 +8,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  FlatList,
   LayoutAnimation,
   Modal,
   Platform,
@@ -16,6 +15,7 @@ import {
   Text,
   TouchableOpacity,
   UIManager,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -71,37 +71,37 @@ const CardCell = React.memo(function CardCell({
   card,
   onPress,
   textPrimary,
+  cellW,
 }: {
   card: CollectibleCardData;
   onPress: () => void;
   textPrimary: string;
+  /** Ширина арта в px (считается родителем по ширине окна) — без onLayout,
+   *  чтобы высота строки была стабильной с первого кадра. */
+  cellW: number;
 }) {
   const rarityColor = COLLECTIBLE_RARITY_COLORS[card.rarity];
-  const [cellW, setCellW] = useState(0);
 
   return (
     <TouchableOpacity
       activeOpacity={0.75}
       onPress={onPress}
-      style={{ width: '31%', marginBottom: 10 }}
-      onLayout={(e) => setCellW(e.nativeEvent.layout.width)}
+      style={{ width: cellW, marginBottom: 10 }}
     >
-      {cellW > 0 && (
-        <CollectibleArtFrame
-          cardId={card.id}
-          svg={card.svg}
-          tier={card.rarity as CollectibleArtTier}
-          width={cellW}
-          accessibilityLabel={card.en}
-          fallback={
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
-                {card.en.slice(0, 1).toUpperCase()}
-              </Text>
-            </View>
-          }
-        />
-      )}
+      <CollectibleArtFrame
+        cardId={card.id}
+        svg={card.svg}
+        tier={card.rarity as CollectibleArtTier}
+        width={cellW}
+        accessibilityLabel={card.en}
+        fallback={
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
+              {card.en.slice(0, 1).toUpperCase()}
+            </Text>
+          </View>
+        }
+      />
       <Text
         numberOfLines={1}
         style={{
@@ -123,34 +123,31 @@ const SecretCell = React.memo(function SecretCell({
   secret,
   onPress,
   textPrimary,
+  cellW,
 }: {
   secret: CollectibleSecretData;
   onPress: () => void;
   textPrimary: string;
+  cellW: number;
 }) {
-  const [cellW, setCellW] = useState(0);
-
   return (
     <TouchableOpacity
       activeOpacity={0.75}
       onPress={onPress}
-      style={{ width: '31%', marginBottom: 10 }}
-      onLayout={(e) => setCellW(e.nativeEvent.layout.width)}
+      style={{ width: cellW, marginBottom: 10 }}
     >
-      {cellW > 0 && (
-        <CollectibleArtFrame
-          cardId={secret.id}
-          svg={secret.svg}
-          tier="secret"
-          width={cellW}
-          accessibilityLabel={secret.en}
-          fallback={
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="star" size={26} color={SECRET_GOLD} />
-            </View>
-          }
-        />
-      )}
+      <CollectibleArtFrame
+        cardId={secret.id}
+        svg={secret.svg}
+        tier="secret"
+        width={cellW}
+        accessibilityLabel={secret.en}
+        fallback={
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name="star" size={26} color={SECRET_GOLD} />
+          </View>
+        }
+      />
       <Text
         numberOfLines={1}
         style={{
@@ -196,6 +193,15 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
   const complete = totalOwned >= set.cards.length + 1;
   const setTitle = collectibleSetTitleForLang(set, lang);
   const accent = complete ? SECRET_GOLD : t.textSecond;
+
+  // Ширина ячейки в px: 3 колонки. Внутренняя ширина строки = окно − padding
+  // ScrollView(16×2) − borderWidth(1×2) − paddingHorizontal сетки(12×2). Между
+  // колонками 2 зазора по GRID_GAP. Считаем сами → высота строки стабильна
+  // с первого кадра (без onLayout-скачка, который усиливал «дыру»).
+  const { width: winW } = useWindowDimensions();
+  const GRID_GAP = 8;
+  const innerW = Math.max(0, winW - 16 * 2 - 1 * 2 - 12 * 2);
+  const cellW = Math.floor((innerW - GRID_GAP * 2) / 3);
 
   return (
     <View
@@ -257,15 +263,16 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'flex-start',
-            gap: '3.5%',
+            gap: GRID_GAP,
             paddingHorizontal: 12,
-            paddingBottom: 4,
+            paddingBottom: 12,
           }}
         >
           {ownedCards.map((card) => (
             <CardCell
               key={card.id}
               card={card}
+              cellW={cellW}
               onPress={() => onOpenCard({ kind: 'card', set, card })}
               textPrimary={t.textPrimary}
             />
@@ -273,6 +280,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
           {secretOwned && (
             <SecretCell
               secret={set.secret}
+              cellW={cellW}
               onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
               textPrimary={t.textPrimary}
             />
@@ -690,11 +698,16 @@ export default function CollectiblesScreen() {
               </Text>
             </View>
           ) : (
-            <FlatList
-              data={visibleSets}
-              keyExtractor={(item) => item.set.setId}
-              renderItem={({ item }) => (
+            // Сетов мало (≤30) → виртуализация не нужна. Обычный ScrollView
+            // корректно работает с LayoutAnimation (FlatList оставлял «дыру»
+            // под раскрытым сетом, пока пересчитывал позиции виртуализации).
+            <ScrollView
+              contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+              showsVerticalScrollIndicator={false}
+            >
+              {visibleSets.map((item) => (
                 <SetAccordionRow
+                  key={item.set.setId}
                   set={item.set}
                   ownedCards={item.ownedCards}
                   secretOwned={item.secretOwned}
@@ -705,14 +718,8 @@ export default function CollectiblesScreen() {
                   f={f}
                   lang={lang}
                 />
-              )}
-              contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-              showsVerticalScrollIndicator={false}
-              initialNumToRender={10}
-              windowSize={11}
-              removeClippedSubviews
-              decelerationRate="normal"
-            />
+              ))}
+            </ScrollView>
           )}
         </ContentWrap>
       </SafeAreaView>

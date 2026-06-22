@@ -9,6 +9,7 @@ import { isCollectiblesEnabled } from '../remote_flags';
 import { replaceShardsBalanceLocal } from '../shards_system';
 import { emitAppEvent } from '../events';
 import {
+  COLLECTIBLE_SETS,
   CollectibleRarity,
   collectiblesTotalCount,
   findCollectibleCard,
@@ -58,11 +59,24 @@ function parseOwnedMap(raw: unknown): CollectiblesOwnedMap {
   }
 }
 
+// Синхронный кэш в памяти: чтение AsyncStorage асинхронно, поэтому экран при
+// КАЖДОМ открытии мелькал пустым состоянием до прихода данных. После первой
+// загрузки держим карту в памяти → повторные открытия рисуют сразу правильно,
+// без вспышки. Кэш обновляется на каждом успешном чтении/записи инвентаря.
+let ownedMapCache: CollectiblesOwnedMap | null = null;
+
+/** Синхронный снимок инвентаря (или null, если ещё ни разу не читали). */
+export function getCollectiblesOwnedMapSync(): CollectiblesOwnedMap | null {
+  return ownedMapCache;
+}
+
 export async function getCollectiblesOwnedMap(): Promise<CollectiblesOwnedMap> {
   try {
-    return parseOwnedMap(await AsyncStorage.getItem(COLLECTIBLES_OWNED_KEY));
+    const map = parseOwnedMap(await AsyncStorage.getItem(COLLECTIBLES_OWNED_KEY));
+    ownedMapCache = map;
+    return map;
   } catch {
-    return {};
+    return ownedMapCache ?? {};
   }
 }
 
@@ -127,9 +141,37 @@ async function applyDropLocally(outcome: CollectibleDropOutcome): Promise<void> 
     const next: CollectiblesOwnedMap = { ...owned, [outcome.cardId]: now };
     if (outcome.secretCardId) next[outcome.secretCardId] = now;
     await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
+    ownedMapCache = next;
     emitAppEvent('collectibles_changed');
   } catch {
     /* облако — источник правды, локальный кэш догонит restore */
+  }
+}
+
+/**
+ * DEV-ONLY: открыть ВСЕ карточки каталога (все сеты + секретки) в локальном кэше.
+ * Гейт __DEV__ — в проде это no-op, чтобы случайно не выдать всё в релизе.
+ * Не пишет в облако (collectibles_owned_v1 — server-owned); это чисто локальный
+ * UI-кэш для проверки экрана коллекции. Эмитит collectibles_changed → экран перерисуется.
+ */
+export async function devUnlockAllCollectibles(): Promise<number> {
+  if (!__DEV__) return 0;
+  try {
+    const owned = await getCollectiblesOwnedMap();
+    const next: CollectiblesOwnedMap = { ...owned };
+    const now = Date.now();
+    for (const set of COLLECTIBLE_SETS) {
+      for (const card of set.cards) {
+        if (!next[card.id]) next[card.id] = now;
+      }
+      if (!next[set.secret.id]) next[set.secret.id] = now;
+    }
+    await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
+    ownedMapCache = next;
+    emitAppEvent('collectibles_changed');
+    return Object.keys(next).length;
+  } catch {
+    return 0;
   }
 }
 

@@ -48,6 +48,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { frenchFlashcardsGateCopy } from '../flashcards_target_gate';
 import { isCollectiblesEnabled } from '../remote_flags';
+import { getCollectiblesOwnedMap } from '../collectibles/storage';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -472,6 +473,12 @@ export default function FlashcardsCategoryHub({
     AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => sub.remove();
+  }, []);
+
+  // Прогрев кэша инвентаря «Сокровищницы»: отсюда открывается экран коллекции,
+  // и к моменту тапа карта уже в памяти → коллекция откроется сразу, без лага.
+  useEffect(() => {
+    if (isCollectiblesEnabled()) void getCollectiblesOwnedMap();
   }, []);
 
   const openOwnedPack = async (pack: FlashcardMarketPack) => {

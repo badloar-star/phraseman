@@ -4,6 +4,9 @@ import {
   FORCE_EVICTABLE_KEYS,
   hasOtherWaiters,
   isForceEvictable,
+  isNativeModal,
+  NATIVE_MODAL_KEYS,
+  needsHandoffGap,
   OVERLAY_PRIORITY,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
@@ -271,5 +274,42 @@ describe('OverlayArbiter: исчерпывающая классификация 
     expect(wantsKeys).toEqual(prioKeys);
     // и все дефолты — false (никто не «хочет» слот на старте)
     expect(Object.values(EMPTY_OVERLAY_WANTS).every((v) => v === false)).toBe(true);
+  });
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+// NATIVE-MODAL HANDOFF GAP — защита от present-during-dismiss фриза на iOS.
+// Зазор нужен ТОЛЬКО при переходе одной нативной модалки в ДРУГУЮ нативную.
+// ════════════════════════════════════════════════════════════════════════════
+describe('OverlayArbiter native-modal handoff gap', () => {
+  it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
+    for (const k of ['onboardingWelcome', 'update', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration'] as OverlayKey[]) {
+      expect(isNativeModal(k)).toBe(true);
+    }
+    for (const k of ['actionToast', 'coachToast', 'streakRevive'] as OverlayKey[]) {
+      expect(isNativeModal(k)).toBe(false);
+    }
+    expect(isNativeModal(null)).toBe(false);
+  });
+
+  it('needsHandoffGap: ДА только для разных нативных модалок', () => {
+    // нативная → другая нативная = нужен зазор (present-after-dismiss)
+    expect(needsHandoffGap('onboardingWelcome', 'introFullAccess')).toBe(true);
+    expect(needsHandoffGap('update', 'releaseNotes')).toBe(true);
+    expect(needsHandoffGap('leagueResult', 'perfectWeekReward')).toBe(true);
+  });
+
+  it('needsHandoffGap: НЕТ для первого показа, закрытия в никуда, тех же и не-нативных', () => {
+    expect(needsHandoffGap(null, 'update')).toBe(false);            // первый показ
+    expect(needsHandoffGap('update', null)).toBe(false);            // закрытие в никуда
+    expect(needsHandoffGap('update', 'update')).toBe(false);        // тот же ключ
+    expect(needsHandoffGap('actionToast', 'coachToast')).toBe(false); // оба не-нативные (in-place)
+    expect(needsHandoffGap('update', 'actionToast')).toBe(false);   // нативная → тост (тост не present-stack)
+    expect(needsHandoffGap('actionToast', 'update')).toBe(false);   // тост → нативная
+    expect(needsHandoffGap(null, null)).toBe(false);
+  });
+
+  it('каждый NATIVE_MODAL_KEYS реально существует в OVERLAY_PRIORITY (нет опечаток/мусора)', () => {
+    for (const k of NATIVE_MODAL_KEYS) expect(OVERLAY_PRIORITY).toContain(k);
   });
 });

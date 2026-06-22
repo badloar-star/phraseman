@@ -111,6 +111,57 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
   'boonActivated',
 ]);
 
+// ════════════════════════════════════════════════════════════════════════════
+// NATIVE-MODAL HANDOFF GAP (защита от present-during-dismiss фриза на iOS)
+//
+// Эти оверлеи рендерятся нативным <Modal>. На iOS нельзя начинать present одного
+// Modal, пока другой ещё закрывается (dismiss) — стек презентаций ломается: первый
+// «мелькает и схлопывается», второй виснет полупрезентованным → ЗАВИСАНИЕ (скролл
+// есть, кнопки/табы мертвы). Арбитр переключал active СИНХРОННО (в один кадр
+// dismiss A + present B), поэтому КАЖДЫЙ переход нативная→нативная модалка был
+// риском фриза. Решение: при переходе active с одной нативной модалки на ДРУГУЮ
+// нативную сначала закрываем текущую (active=null), ждём докрытия, потом отдаём
+// слот следующей. Переходы из/в НЕ-нативные оверлеи (тосты, in-place) и первый
+// показ из null безопасны и идут мгновенно.
+//
+// Оверлеи НЕ из этого списка (streakRevive, тосты actionToast/coachToast и пр.)
+// рендерятся обычными View поверх экрана, не нативным Modal — им зазор не нужен.
+// ════════════════════════════════════════════════════════════════════════════
+export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
+  'onboardingWelcome',
+  'update',
+  'releaseNotes',
+  'broadcast',
+  'leagueBonusAvailable',
+  'introFullAccess',
+  'loyaltyGift',
+  'premiumCelebration',
+  'vipCelebration',
+  'leagueResult',
+  'themedAlert',
+  'mysteryMondayChest',
+  'comebackDay',
+  'perfectWeekReward',
+  'boonActivated',
+  'compassBriefing',
+  'achievementToast',
+]);
+
+/** Рендерится ли ключ нативным <Modal> (нужен ли зазор при передаче слота). */
+export function isNativeModal(key: OverlayKey | null): boolean {
+  return key != null && NATIVE_MODAL_KEYS.has(key);
+}
+
+/**
+ * Нужен ли «зазор закрытия» при переходе слота prev → next. true только когда обе
+ * стороны — нативные модалки и это РАЗНЫЕ ключи (т.е. реальная передача present от
+ * одного Modal другому). Первый показ (prev=null), закрытие в никуда (next=null) и
+ * любые переходы с участием не-нативного оверлея зазора НЕ требуют.
+ */
+export function needsHandoffGap(prev: OverlayKey | null, next: OverlayKey | null): boolean {
+  return prev != null && next != null && prev !== next && isNativeModal(prev) && isNativeModal(next);
+}
+
 /**
  * Можно ли сторожу (H-ARBITER) принудительно отобрать слот у этого владельца.
  * true — только для транзиентных тостов/уведомлений (см. FORCE_EVICTABLE_KEYS);

@@ -33,6 +33,7 @@ import {
   EMPTY_OVERLAY_WANTS,
   hasOtherWaiters,
   isForceEvictable,
+  needsHandoffGap,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
   type OverlayKey,
@@ -48,6 +49,13 @@ export { resolveNextOverlay };
 // тосты/алерты ниже по приоритету). Срабатывает только при наличии очереди — модалку,
 // которую юзер просто долго читает в одиночестве, не трогаем.
 const OVERLAY_MAX_HOLD_WITH_WAITERS_MS = 15_000;
+
+// Зазор между закрытием одной нативной модалки и показом следующей нативной модалки.
+// На iOS present не должен начинаться, пока идёт dismiss предыдущего Modal — иначе стек
+// презентаций ломается (фриз). Сначала закрываем текущую (active=null), ждём этот зазор
+// (с запасом на анимацию закрытия ~250мс + кадр), потом отдаём слот следующей. См.
+// needsHandoffGap в overlay_arbiter_core.
+const NATIVE_MODAL_HANDOFF_GAP_MS = 360;
 
 type Ctx = {
   active: OverlayKey | null;
@@ -67,6 +75,13 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
   // когда модалка реально освободит слот: setWants(key, false) (закрытие/размонтирование).
   const forciblyReleasedRef = useRef<Set<OverlayKey>>(new Set());
 
+  // Идёт ли «зазор закрытия» нативной модалки (active уже null, ждём докрытия перед
+  // показом следующей). Пока true — не отдаём слот, чтобы present не наложился на dismiss.
+  const handoffGapRef = useRef(false);
+  // Таймер зазора держим в ref (не в cleanup эффекта): при active→null эффект
+  // перезапускается, и cleanup прошлого прогона иначе отменил бы зазор досрочно.
+  const handoffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const setWants = useCallback((key: OverlayKey, wants: boolean) => {
     const { apply, nextForciblyReleased } = decideWantsWrite(
       key,
@@ -80,12 +95,37 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
 
   // Non-preemptive queue: the current owner keeps the slot until it releases it.
   // Priority is used only when choosing the next overlay from waiting candidates.
+  //
+  // NATIVE-MODAL HANDOFF GAP: если слот переходит с одной нативной модалки на ДРУГУЮ
+  // нативную (present-after-dismiss риск на iOS), сначала закрываем текущую (active=null)
+  // и ждём NATIVE_MODAL_HANDOFF_GAP_MS, только потом отдаём слот следующей. Эффект
+  // зависит и от active: после того как зазор сбросит active в null, он перезапустится и
+  // отдаст слот ждущей модалке штатно. Первый показ (prev=null), закрытие в никуда и
+  // переходы с не-нативными оверлеями идут мгновенно, как раньше.
   useEffect(() => {
-    setActive((prev) => {
-      const next = resolveNextOverlay(prev, wantsMap);
-      return next === prev ? prev : next;
-    });
-  }, [wantsMap]);
+    if (handoffGapRef.current) return; // идёт зазор — не трогаем слот до его конца
+    const next = resolveNextOverlay(active, wantsMap);
+    if (next === active) return;
+    if (needsHandoffGap(active, next)) {
+      // Закрываем текущую нативную модалку и держим паузу перед показом следующей.
+      handoffGapRef.current = true;
+      setActive(null);
+      if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
+      handoffTimerRef.current = setTimeout(() => {
+        handoffTimerRef.current = null;
+        handoffGapRef.current = false;
+        // Перерезолвим по актуальному wantsMap: за время зазора очередь могла измениться.
+        setActive((prev) => resolveNextOverlay(prev, wantsMap));
+      }, NATIVE_MODAL_HANDOFF_GAP_MS);
+      return;
+    }
+    setActive(next);
+  }, [wantsMap, active]);
+
+  // Снять таймер зазора при размонтировании провайдера (анти-утечка).
+  useEffect(() => () => {
+    if (handoffTimerRef.current) clearTimeout(handoffTimerRef.current);
+  }, []);
 
   // H-ARBITER: сторож от залипшего владельца слота. Пока активный оверлей держит слот
   // И есть другие желающие, держим таймер; если за OVERLAY_MAX_HOLD_WITH_WAITERS_MS

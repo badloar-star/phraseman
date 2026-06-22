@@ -1081,7 +1081,28 @@ const PODIUM_COLORS  = {
   2: { primary: '#C7CCD1', glow: '#C7CCD1' },
   3: { primary: '#E0915C', glow: '#E0915C' },
 } as const;
-const PODIUM_MEDAL  = { 1: '🥇', 2: '🥈', 3: '🥉' } as const;
+// Металлические жетоны мест (золото/серебро/бронза) вместо эмодзи-медалей.
+const MEDAL_TOKEN: Record<1 | 2 | 3, { grad: [string, string]; ink: string; ring: string }> = {
+  1: { grad: ['#FFE89A', '#E0A124'], ink: '#5A3C06', ring: '#FFF1CC' },
+  2: { grad: ['#EAEEF3', '#A9B2BD'], ink: '#3A4150', ring: '#FFFFFF' },
+  3: { grad: ['#F0C29A', '#B4774A'], ink: '#4A2D14', ring: '#FBE0CC' },
+};
+
+/** Круглый металлический жетон места — замена эмодзи-медали. */
+const MedalToken = memo(function MedalToken({ place, size = 22 }: { place: 1 | 2 | 3; size?: number }) {
+  const cfg = MEDAL_TOKEN[place];
+  return (
+    <View style={{
+      width: size, height: size, borderRadius: size / 2, overflow: 'hidden',
+      borderWidth: 1.5, borderColor: cfg.ring, alignItems: 'center', justifyContent: 'center',
+      shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
+    }}>
+      <LinearGradient colors={cfg.grad} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={StyleSheet.absoluteFill} />
+      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '45%', backgroundColor: 'rgba(255,255,255,0.35)' }} />
+      <Text style={{ color: cfg.ink, fontSize: size * 0.55, fontWeight: '900' }}>{place}</Text>
+    </View>
+  );
+});
 
 const PodiumColumn = memo(function PodiumColumn({
   member, place, themeMode, t, f, lang,
@@ -1117,9 +1138,9 @@ const PodiumColumn = memo(function PodiumColumn({
             auraId={usesPremiumAura ? undefined : effectiveAura}
           />
         </PremiumAvatarHalo>
-        <Text style={{ position: 'absolute', top: -8, right: -8, fontSize: 18 }}>
-          {PODIUM_MEDAL[place]}
-        </Text>
+        <View style={{ position: 'absolute', top: -8, right: -8 }}>
+          <MedalToken place={place} size={place === 1 ? 24 : 20} />
+        </View>
       </View>
 
       {/* Имя */}
@@ -1232,9 +1253,7 @@ const GroupRow = memo(function GroupRow({
       {/* Место */}
       <View style={{ width: 28, alignItems: 'center', marginRight: 6 }}>
         {isTop3 ? (
-          <Text style={{ fontSize: 18 }}>
-            {place === 1 ? '🥇' : place === 2 ? '🥈' : '🥉'}
-          </Text>
+          <MedalToken place={place as 1 | 2 | 3} size={22} />
         ) : (
           <Text style={{
             color: t.textMuted, fontSize: f.body, fontWeight: '700',

@@ -69,7 +69,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 86,
+      "versionCode": 87,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -119,7 +119,7 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "86",
+      "buildNumber": "87",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -239,7 +239,6 @@
       "./plugins/withAndroidDevClientAutoMetro",
       "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure",
-      "./plugins/withAndroidDailyPhraseWidget",
       "@bacons/apple-targets"
     ],
     "experiments": {

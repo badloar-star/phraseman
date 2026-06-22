@@ -1597,6 +1597,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_34',
     english: 'I must go now',
+    alternatives: ['I have to go now'],
     russian: 'Я должен идти сейчас',
     ukrainian: 'Я мушу йти зараз',
     spanish: 'Debo irme ahora.',
@@ -1616,6 +1617,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_35',
     english: 'You must listen',
+    alternatives: ['You have to listen'],
     russian: 'Ты должен слушать',
     ukrainian: 'Ти мусиш слухати',
     spanish: 'Debes escuchar.',
@@ -1633,6 +1635,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_36',
     english: 'He must finish work',
+    alternatives: ['He has to finish work'],
     russian: 'Он должен закончить работу',
     ukrainian: 'Він мусить закінчити роботу',
     spanish: 'Él debe terminar el trabajo.',
@@ -1654,6 +1657,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_37',
     english: 'She must check messages',
+    alternatives: ['She has to check messages'],
     russian: 'Она должна проверить сообщения',
     ukrainian: 'Вона мусить перевірити повідомлення',
     spanish: 'Ella debe revisar los mensajes.',
@@ -1675,6 +1679,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_38',
     english: 'We must pay today',
+    alternatives: ['We have to pay today'],
     russian: 'Мы должны заплатить сегодня',
     ukrainian: 'Ми мусимо заплатити сьогодні',
     spanish: 'Debemos pagar hoy.',
@@ -1694,6 +1699,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_39',
     english: 'They must wait here',
+    alternatives: ['They have to wait here'],
     russian: 'Они должны ждать здесь',
     ukrainian: 'Вони мусять чекати тут',
     spanish: 'Deben esperar aquí.',
@@ -1713,6 +1719,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_40',
     english: 'Must I sign it?',
+    alternatives: ['Do I have to sign it?'],
     russian: 'Я должен это подписать?',
     ukrainian: 'Я мушу це підписати?',
     spanish: '¿Debo firmarlo?',
@@ -1732,6 +1739,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_41',
     english: 'Must we start now?',
+    alternatives: ['Do we have to start now?'],
     russian: 'Мы должны начать сейчас?',
     ukrainian: 'Ми мусимо почати зараз?',
     spanish: '¿Debemos empezar ahora?',
@@ -1752,6 +1760,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_42',
     english: 'Must they show documents?',
+    alternatives: ['Do they have to show documents?'],
     russian: 'Они должны показать документы?',
     ukrainian: 'Вони мусять показати документи?',
     spanish: '¿Deben mostrar documentos?',
@@ -1772,6 +1781,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_43',
     english: 'You must not smoke here',
+    alternatives: ['You cannot smoke here'],
     russian: 'Тебе нельзя курить здесь',
     ukrainian: 'Тобі не можна курити тут',
     spanish: 'No debes fumar aquí.',
@@ -1793,6 +1803,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_44',
     english: 'He must not share passwords',
+    alternatives: ['He cannot share passwords'],
     russian: 'Ему нельзя делиться паролями',
     ukrainian: 'Йому не можна ділитися паролями',
     spanish: 'Él no debe compartir contraseñas.',
@@ -1815,6 +1826,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_45',
     english: 'They must not enter this room',
+    alternatives: ['They cannot enter this room'],
     russian: 'Им нельзя входить в эту комнату',
     ukrainian: 'Їм не можна входити до цієї кімнати',
     spanish: 'No deben entrar en esta habitación.',
@@ -1839,6 +1851,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_46',
     english: 'I have to work today',
+    alternatives: ['I need to work today'],
     russian: 'Мне нужно работать сегодня',
     ukrainian: 'Мені потрібно працювати сьогодні',
     spanish: 'Tengo que trabajar hoy.',
@@ -1860,6 +1873,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_47',
     english: 'Do you have to go now?',
+    alternatives: ['Do you need to go now?'],
     russian: 'Тебе нужно идти сейчас?',
     ukrainian: 'Тобі потрібно іти зараз?',
     spanish: '¿Tienes que irte ahora?',
@@ -1883,6 +1897,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_48',
     english: 'She does not have to wait',
+    alternatives: ['She does not need to wait'],
     russian: 'Ей не нужно ждать',
     ukrainian: 'Їй не потрібно чекати',
     spanish: 'Ella no tiene que esperar.',
@@ -1906,6 +1921,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_49',
     english: 'We have to pay rent',
+    alternatives: ['We need to pay rent'],
     russian: 'Нам нужно платить аренду',
     ukrainian: 'Нам потрібно платити оренду',
     spanish: 'Tenemos que pagar el alquiler.',
@@ -1928,6 +1944,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_50',
     english: 'You do not have to answer now',
+    alternatives: ['You do not need to answer now'],
     russian: 'Тебе не нужно отвечать сейчас',
     ukrainian: 'Тобі не потрібно відповідати зараз',
     spanish: 'No tienes que responder ahora.',

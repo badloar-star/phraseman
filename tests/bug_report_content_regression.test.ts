@@ -251,4 +251,64 @@ describe('reported content regressions', () => {
     expect(phone?.russian).toBe('Тот телефон старше');
     expect(phone?.russian).not.toContain('старее');
   });
+
+  it('accepts both "have to" and "need to" for lesson 10 modal-necessity phrases (нужно is ambiguous)', () => {
+    // Russian "нужно / не нужно" maps equally to "have to" and "need to".
+    // The lesson teaches "have to" (modal verbs), but a user typing the equally
+    // valid "need to" must also be accepted.
+    const cases: Array<[string, string, string]> = [
+      ['lesson10_phrase_46', 'I have to work today', 'I need to work today'],
+      ['lesson10_phrase_47', 'Do you have to go now?', 'Do you need to go now?'],
+      ['lesson10_phrase_48', 'She does not have to wait', 'She does not need to wait'],
+      ['lesson10_phrase_49', 'We have to pay rent', 'We need to pay rent'],
+      ['lesson10_phrase_50', 'You do not have to answer now', 'You do not need to answer now'],
+    ];
+    for (const [id, haveTo, needTo] of cases) {
+      const phrase = LESSON_DATA[10].phrases.find((row) => row.id === id);
+      expect(phrase).toBeTruthy();
+      const canon = phraseCanonicalAnswer(phrase!, 'en');
+      const alts = phraseAnswerAlternatives(phrase!, 'en');
+      // The taught "have to" form still validates.
+      expect(isCorrectAnswer(haveTo, canon, alts)).toBe(true);
+      // The equally valid "need to" form is now accepted too.
+      expect(isCorrectAnswer(needTo, canon, alts)).toBe(true);
+      // And the contracted form a user would type also validates.
+      expect(isCorrectAnswer(needTo.replace('does not', "doesn't").replace('do not', "don't"), canon, alts)).toBe(true);
+    }
+  });
+
+  it('accepts "have to" for lesson 10 "должен"=must phrases (obligation is ambiguous)', () => {
+    const cases: Array<[string, string, string]> = [
+      ['lesson10_phrase_34', 'I must go now', 'I have to go now'],
+      ['lesson10_phrase_36', 'He must finish work', 'He has to finish work'],
+      ['lesson10_phrase_37', 'She must check messages', 'She has to check messages'],
+      ['lesson10_phrase_40', 'Must I sign it?', 'Do I have to sign it?'],
+      ['lesson10_phrase_42', 'Must they show documents?', 'Do they have to show documents?'],
+    ];
+    for (const [id, must, haveTo] of cases) {
+      const phrase = LESSON_DATA[10].phrases.find((row) => row.id === id);
+      expect(phrase).toBeTruthy();
+      const canon = phraseCanonicalAnswer(phrase!, 'en');
+      const alts = phraseAnswerAlternatives(phrase!, 'en');
+      expect(isCorrectAnswer(must, canon, alts)).toBe(true);
+      expect(isCorrectAnswer(haveTo, canon, alts)).toBe(true);
+    }
+  });
+
+  it('accepts "cannot" for lesson 10 "нельзя"=must not prohibition phrases', () => {
+    const cases: Array<[string, string, string]> = [
+      ['lesson10_phrase_43', 'You must not smoke here', 'You cannot smoke here'],
+      ['lesson10_phrase_44', 'He must not share passwords', 'He cannot share passwords'],
+      ['lesson10_phrase_45', 'They must not enter this room', 'They cannot enter this room'],
+    ];
+    for (const [id, mustNot, cannot] of cases) {
+      const phrase = LESSON_DATA[10].phrases.find((row) => row.id === id);
+      expect(phrase).toBeTruthy();
+      const canon = phraseCanonicalAnswer(phrase!, 'en');
+      const alts = phraseAnswerAlternatives(phrase!, 'en');
+      expect(isCorrectAnswer(mustNot, canon, alts)).toBe(true);
+      expect(isCorrectAnswer(cannot, canon, alts)).toBe(true);
+      expect(isCorrectAnswer(cannot.replace('cannot', "can't"), canon, alts)).toBe(true);
+    }
+  });
 });

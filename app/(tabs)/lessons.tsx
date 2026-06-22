@@ -18,6 +18,8 @@ import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
+import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
+import type { ThemeMode } from '../../constants/theme';
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -116,62 +118,60 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
 const EXAM_META_SKETCH: Record<string, {
     bg: string;
     accent: string;
-    icon: string;
 }> = {
-    A1: { bg: '#3F3D39', accent: '#F3F0E8', icon: 'school-outline' },
-    A2: { bg: '#353638', accent: '#ECEFF3', icon: 'school-outline' },
-    B1: { bg: '#2C3035', accent: '#E5E9EF', icon: 'school-outline' },
-    B2: { bg: '#242932', accent: '#EEF2F8', icon: 'trophy' },
+    A1: { bg: '#3F3D39', accent: '#F3F0E8' },
+    A2: { bg: '#353638', accent: '#ECEFF3' },
+    B1: { bg: '#2C3035', accent: '#E5E9EF' },
+    B2: { bg: '#242932', accent: '#EEF2F8' },
 };
 const EXAM_META_CORAL: Record<string, {
     bg: string;
     accent: string;
-    icon: string;
 }> = {
-    A1: { bg: '#4B3432', accent: '#F8E1DC', icon: 'school-outline' },
-    A2: { bg: '#4A352E', accent: '#F6DDD2', icon: 'school-outline' },
-    B1: { bg: '#4A3B2E', accent: '#F6E6D3', icon: 'school-outline' },
-    B2: { bg: '#432C34', accent: '#F6DDE5', icon: 'trophy' },
+    A1: { bg: '#4B3432', accent: '#F8E1DC' },
+    A2: { bg: '#4A352E', accent: '#F6DDD2' },
+    B1: { bg: '#4A3B2E', accent: '#F6E6D3' },
+    B2: { bg: '#432C34', accent: '#F6DDE5' },
 };
 const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
     minimalDark: {
-        A1: { bg: '#1D2636', accent: '#D7E7FF', icon: 'school-outline' },
-        A2: { bg: '#161F2E', accent: '#6EA8FF', icon: 'school-outline' },
-        B1: { bg: '#171B24', accent: '#9CA3AF', icon: 'school-outline' },
-        B2: { bg: '#151827', accent: '#A78BFA', icon: 'trophy' },
+        A1: { bg: '#1D2636', accent: '#D7E7FF' },
+        A2: { bg: '#161F2E', accent: '#6EA8FF' },
+        B1: { bg: '#171B24', accent: '#9CA3AF' },
+        B2: { bg: '#151827', accent: '#A78BFA' },
     },
     dark: {
-        A1: { bg: '#344637', accent: '#E2F4E3', icon: 'school-outline' },
-        A2: { bg: '#304333', accent: '#DDF2E1', icon: 'school-outline' },
-        B1: { bg: '#41472D', accent: '#F0F7D7', icon: 'school-outline' },
-        B2: { bg: '#2F3F34', accent: '#D9EFDF', icon: 'trophy' },
+        A1: { bg: '#344637', accent: '#E2F4E3' },
+        A2: { bg: '#304333', accent: '#DDF2E1' },
+        B1: { bg: '#41472D', accent: '#F0F7D7' },
+        B2: { bg: '#2F3F34', accent: '#D9EFDF' },
     },
     coral: EXAM_META_CORAL,
     // ─── «Чёрное кино» — плашки зачётов в тон спектру (см. cinemaThemes.ts) ───
     // bg: тёмная подложка с подтоном спектра; accent: светлый голос спектра.
     midnight: {
-        A1: { bg: '#1B1F36', accent: '#C9D2FF', icon: 'school-outline' },
-        A2: { bg: '#232948', accent: '#D8CCFF', icon: 'school-outline' },
-        B1: { bg: '#2A2B3F', accent: '#FFE3B0', icon: 'school-outline' },
-        B2: { bg: '#26203F', accent: '#D9B5FF', icon: 'trophy' },
+        A1: { bg: '#1B1F36', accent: '#C9D2FF' },
+        A2: { bg: '#232948', accent: '#D8CCFF' },
+        B1: { bg: '#2A2B3F', accent: '#FFE3B0' },
+        B2: { bg: '#26203F', accent: '#D9B5FF' },
     },
     ember: {
-        A1: { bg: '#281B10', accent: '#FFD9A8', icon: 'school-outline' },
-        A2: { bg: '#332215', accent: '#FFE6C9', icon: 'school-outline' },
-        B1: { bg: '#1F2A1C', accent: '#BFF5DA', icon: 'school-outline' },
-        B2: { bg: '#33161F', accent: '#FFB5C4', icon: 'trophy' },
+        A1: { bg: '#281B10', accent: '#FFD9A8' },
+        A2: { bg: '#332215', accent: '#FFE6C9' },
+        B1: { bg: '#1F2A1C', accent: '#BFF5DA' },
+        B2: { bg: '#33161F', accent: '#FFB5C4' },
     },
     aurora: {
-        A1: { bg: '#15241C', accent: '#9FF2CF', icon: 'school-outline' },
-        A2: { bg: '#1C2F24', accent: '#C7F7E5', icon: 'school-outline' },
-        B1: { bg: '#2A2A1C', accent: '#F7E6B0', icon: 'school-outline' },
-        B2: { bg: '#162636', accent: '#A8D8FF', icon: 'trophy' },
+        A1: { bg: '#15241C', accent: '#9FF2CF' },
+        A2: { bg: '#1C2F24', accent: '#C7F7E5' },
+        B1: { bg: '#2A2A1C', accent: '#F7E6B0' },
+        B2: { bg: '#162636', accent: '#A8D8FF' },
     },
     volt: {
-        A1: { bg: '#20250E', accent: '#EFFF9E', icon: 'school-outline' },
-        A2: { bg: '#2A3013', accent: '#F4FFC4', icon: 'school-outline' },
-        B1: { bg: '#16251C', accent: '#B5F5D8', icon: 'school-outline' },
-        B2: { bg: '#1A2A1E', accent: '#A8F0C8', icon: 'trophy' },
+        A1: { bg: '#20250E', accent: '#EFFF9E' },
+        A2: { bg: '#2A3013', accent: '#F4FFC4' },
+        B1: { bg: '#16251C', accent: '#B5F5D8' },
+        B2: { bg: '#1A2A1E', accent: '#A8F0C8' },
     },
 };
 function cefrKey(num: number): string {
@@ -243,7 +243,14 @@ function MedalDots({ dots }: {
                 height: SIZE,
                 zIndex: dots.length - i,
             }} contentFit="contain"/>))}
-    </View>);
+  </View>);
+}
+function LessonExamThemeIcon({ themeMode, size, label }: {
+    themeMode: ThemeMode;
+    size: number;
+    label: string;
+}) {
+    return (<Image source={getLessonExamIcon(themeMode)} style={{ width: size, height: size, flexShrink: 0 }} contentFit="contain" accessibilityLabel={label} accessibilityIgnoresInvertColors/>);
 }
 /**
  * Маленькая золотая плашка «Premium» в правом верхнем углу карточки урока.
@@ -685,7 +692,7 @@ export default function LessonsTab() {
                 const sketchMeta = themeExamMeta[lvl];
                 const goldLevel = goldCefrAccent(lvl);
                 const meta = isGoldTheme
-                    ? { bg: goldSurface, accent: goldLevel.accent, icon: sketchMeta.icon }
+                    ? { bg: goldSurface, accent: goldLevel.accent }
                     :
                         sketchMeta;
                 const [from, to] = lvl === 'A1' ? [1, 8] : lvl === 'A2' ? [9, 18] : lvl === 'B1' ? [19, 28] : [29, 32];
@@ -811,7 +818,11 @@ export default function LessonsTab() {
                     <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : meta.accent + '30' }}/>
                     <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineDark : meta.accent + '30' }}/>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                      <Ionicons name={result?.passed ? 'checkmark-circle' : allDone || isPremium ? (meta.icon as any) : 'lock-closed-outline'} size={isB2 ? 26 : 22} color={meta.accent}/>
+                      {result?.passed
+                        ? <Ionicons name="checkmark-circle" size={isB2 ? 26 : 22} color={meta.accent}/>
+                        : allDone || isPremium
+                            ? <LessonExamThemeIcon themeMode={themeMode} size={isB2 ? 34 : 30} label={label}/>
+                            : <Ionicons name="lock-closed-outline" size={isB2 ? 26 : 22} color={meta.accent}/>}
                       <View style={{ flex: 1 }}>
                         <Text style={{ color: meta.accent, fontSize: isB2 ? f.h2 : f.bodyLg, fontWeight: '800' }} maxFontSizeMultiplier={1}>
                           {label}
@@ -1028,7 +1039,7 @@ export default function LessonsTab() {
                         :
                             isCoralTheme
                                 ? [darkenHex(bg, 0.34), darkenHex(bg, 0.28), darkenHex(bg, 0.23)]
-                                : [darkenHex(bg, 0.36), darkenHex(bg, 0.31), darkenHex(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : ['#1c1c1e', '#242426', '#1a1a1c']} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
+                                : [darkenHex(bg, 0.36), darkenHex(bg, 0.31), darkenHex(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHex(bg, 0.30), darkenHex(bg, 0.25), darkenHex(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
                 {isGoldTheme && (<LinearGradient colors={[
                         rgbaHex(lessonAccent, isUnlocked ? 0.22 : 0.08),
                         'rgba(0,0,0,0)',
@@ -1096,7 +1107,7 @@ export default function LessonsTab() {
                       {premiumRequired
                     ? <PremiumBadge label={triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}/>
                     : !isUnlocked
-                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
+                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : 'rgba(255,255,255,0.55)'}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
                         ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent}/>
                         : progPct > 0

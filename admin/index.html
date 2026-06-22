@@ -581,6 +581,8 @@
     .u360-empty { color: #6b7280; font-size: 12px; padding: 6px 0; }
 
     .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    /* Revenue analytics: вертикальный список широких карточек (стиль RevenueCat) */
+    #revenue-analytics-grid { display: flex; flex-direction: column; gap: 14px; max-width: 1100px; }
     .chart-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 18px; }
     .chart-card h3 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
     .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
@@ -1416,8 +1418,8 @@
       gap: 10px;
     }
     body[data-admin-skin="onboarding"] #revenue-analytics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 12px;
       overflow: hidden;
     }
@@ -1478,6 +1480,126 @@
     body[data-admin-skin="onboarding"] .revenue-series-bar:last-child .revenue-series-bar-label {
       display: block;
     }
+
+    /* ============================================================
+       ЦВЕТНЫЕ ГРАФИКИ АНАЛИТИКИ (rsv-*) — СТИЛЬ RevenueCat
+       Широкие горизонтальные карточки-строки на всю ширину.
+       Слева — название + крупное число + чипы, справа — график.
+       ============================================================ */
+    .rsv-card {
+      display: flex !important; flex-direction: row; align-items: stretch;
+      position: relative; overflow: hidden; width: 100%;
+      padding: 0 !important; gap: 0;
+      background: #14161d !important; border: 1px solid #262a35 !important;
+      border-radius: 14px !important;
+    }
+    .rsv-card::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: var(--rsv-accent, #6366f1);
+      opacity: .9; z-index: 2;
+    }
+    /* Левая колонка — «личность» метрики */
+    .rsv-side {
+      flex: 0 0 230px; min-width: 230px; box-sizing: border-box;
+      padding: 20px 22px 20px 26px;
+      border-right: 1px solid rgba(255,255,255,.06);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .rsv-card .label {
+      font-size: 10px !important; color: #7b8490 !important; text-transform: uppercase;
+      letter-spacing: .06em; margin: 0;
+    }
+    .rsv-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+    .rsv-total,
+    #revenue-analytics-grid .stat-card .value.rsv-total,
+    body[data-admin-skin="onboarding"] #revenue-analytics-grid .stat-card .value.rsv-total {
+      font-size: 38px !important; font-weight: 800; line-height: 1; letter-spacing: -1px;
+      color: #fff !important; margin: 0 !important;
+    }
+    .rsv-title,
+    #revenue-analytics-grid .stat-card .value.rsv-title,
+    body[data-admin-skin="onboarding"] #revenue-analytics-grid .stat-card .value.rsv-title {
+      font-size: 15px !important; font-weight: 600; color: #e4e7ec !important;
+      opacity: 1; margin: 2px 0 0 !important; line-height: 1.3;
+    }
+    .rsv-chips { display: flex; gap: 7px; margin: 12px 0 0; flex-wrap: wrap; }
+    .rsv-chip {
+      font-size: 11px; color: #aab2bd; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 4px 9px;
+    }
+    .rsv-chip b { color: var(--rsv-accent, #fff); font-weight: 700; margin-right: 4px; text-transform: uppercase; font-size: 9px; letter-spacing: .04em; }
+    /* Правая колонка — сам график, занимает всё оставшееся место */
+    .rsv-plot {
+      flex: 1 1 auto; min-width: 0; box-sizing: border-box;
+      padding: 18px 24px; display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .rsv-bars {
+      display: flex; gap: 4px; align-items: flex-end;
+      min-height: 120px; padding-top: 16px; width: 100%;
+    }
+    .rsv-bar {
+      flex: 1 1 0; min-width: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end; gap: 4px; position: relative;
+    }
+    .rsv-bar-val {
+      font-size: 10px; font-weight: 700; color: var(--rsv-accent, #fff);
+      line-height: 1; height: 12px; white-space: nowrap;
+    }
+    .rsv-bar-track { width: 100%; display: flex; align-items: flex-end; height: 92px; }
+    .rsv-bar-fill {
+      width: 100%; min-width: 2px; border-radius: 4px 4px 2px 2px;
+      transition: filter .15s ease;
+    }
+    .rsv-bar:hover .rsv-bar-fill { filter: brightness(1.25); }
+    .rsv-bar.is-peak .rsv-bar-fill { box-shadow: 0 0 14px var(--rsv-accent, #fff) !important; }
+    .rsv-bar-label { display: none; }
+    .rsv-axis {
+      display: flex; justify-content: space-between; margin-top: 8px;
+      font-size: 10px; color: #6b7280; letter-spacing: .02em;
+    }
+
+    /* Воронка — широкие пропорциональные цветные полосы */
+    .rsv-funnel { display: grid; gap: 13px; width: 100%; }
+    .rsv-funnel-row { display: grid; gap: 6px; }
+    .rsv-funnel-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .rsv-funnel-k { font-size: 13px; color: #c0c6d0; }
+    .rsv-funnel-v { font-size: 16px; font-weight: 800; color: #fff; }
+    .rsv-funnel-track {
+      height: 14px; border-radius: 7px; background: rgba(255,255,255,.05);
+      overflow: hidden;
+    }
+    .rsv-funnel-fill {
+      height: 100%; border-radius: 7px; min-width: 6px;
+      transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Кольца процентов (conversion / cta rate) */
+    .rsv-meters {
+      display: flex; flex-wrap: wrap; gap: 28px;
+      align-items: center; justify-content: flex-start; width: 100%;
+    }
+    .rsv-meter { display: flex; align-items: center; gap: 14px; }
+    .rsv-ring {
+      width: 92px; height: 92px; border-radius: 50%; flex: none;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rsv-ring-hole {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: #14161d;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rsv-ring-hole b { font-size: 20px; font-weight: 800; color: #fff; }
+    .rsv-meter-label {
+      font-size: 13px; color: #c0c6d0; letter-spacing: .02em;
+      text-align: left; max-width: 160px;
+    }
+
+    @media (max-width: 760px) {
+      .rsv-card { flex-direction: column; }
+      .rsv-side { flex-basis: auto; min-width: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+    }
+
     body[data-admin-skin="onboarding"] .revenue-zero-panel {
       grid-column: 1 / -1;
       display: grid;
@@ -3802,6 +3924,257 @@
         max-height: 42vh;
         margin: 10px 12px 12px;
       }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       MOBILE VERSION — dedicated phone layout (<=768px)
+       Built as a separate presentation layer: same HTML/data, mobile-first
+       chrome. The .tabs section list becomes an off-canvas drawer (it already
+       holds the search box + grouped labels + active states + switchTab wiring),
+       a hamburger (.pm-mnav-burger, injected by JS) opens it, tables get a
+       usable sticky-identity horizontal scroll, fixed grids collapse to one
+       column, modals go full-width, and all desktop-width inline styles are
+       defensively neutralised. Everything here is additive and scoped to the
+       768px breakpoint, so desktop is untouched. Placed last so it wins the
+       cascade over earlier head rules and the onboarding-skin overrides.
+       ════════════════════════════════════════════════════════════════════ */
+
+    /* Hamburger button — hidden on desktop, shown in header on mobile. */
+    .pm-mnav-burger { display: none; }
+    /* Scrim behind the drawer (injected by JS). */
+    .pm-mnav-scrim {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 9000; opacity: 0; visibility: hidden;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pm-mnav-scrim.pm-open { opacity: 1; visibility: visible; }
+
+    @media (max-width: 768px) {
+      /* ── Page: stop horizontal page scroll, keep table-wrap's own scroll ── */
+      html { -webkit-text-size-adjust: 100%; }
+      body { overflow-x: hidden !important; max-width: 100vw !important; }
+
+      /* ── Header: compact two-row layout with room for the burger ── */
+      header,
+      body[data-admin-skin="onboarding"] header {
+        flex-wrap: wrap; gap: 8px; row-gap: 8px; padding: 10px 12px;
+        align-items: center;
+      }
+      header h1,
+      body[data-admin-skin="onboarding"] header h1 {
+        font-size: 16px; flex: 1 1 auto; min-width: 0;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .pm-mnav-burger {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 42px; height: 42px; flex: 0 0 42px; padding: 0;
+        font-size: 20px; line-height: 1; border-radius: 10px;
+        background: rgba(var(--acc-rgb,228,228,231),0.10);
+        border: 1px solid var(--panel-border); color: var(--acc-soft);
+        cursor: pointer; order: -2;
+      }
+      .pm-mnav-burger:active { background: rgba(var(--acc-rgb,228,228,231),0.18); }
+      .header-right,
+      body[data-admin-skin="onboarding"] .header-right {
+        margin-left: 0 !important; flex: 1 1 100%; order: 2;
+        flex-wrap: wrap; gap: 8px; justify-content: flex-start; align-items: center;
+        width: 100%; max-width: 100%;
+      }
+      #status-text { order: -1; flex: 1 1 100%; font-size: 12px; }
+      /* UID lookup input + its relative wrapper span the full controls row. */
+      .header-right > div[style*="position:relative"],
+      body[data-admin-skin="onboarding"] .header-right > div[style*="position:relative"] {
+        flex: 1 1 100%; min-width: 0; width: 100%;
+      }
+      #uid-lookup,
+      body[data-admin-skin="onboarding"] #uid-lookup {
+        width: 100% !important; box-sizing: border-box; min-width: 0;
+        font-size: 16px; padding: 9px 12px;
+      }
+      #uid-lookup-dropdown { width: 100% !important; left: 0; right: 0; }
+      .header-right > button { flex: 0 0 auto; }
+
+      /* ── .tabs → off-canvas drawer (reuses search + grouped list + actives) ──
+         Override BOTH the base flex bar and the onboarding fixed-sidebar/relative
+         variants. The drawer is hidden off-screen until JS adds .pm-open. */
+      .tabs,
+      body[data-admin-skin="onboarding"] .tabs {
+        position: fixed !important;
+        top: 0 !important; left: 0 !important; bottom: 0 !important; right: auto !important;
+        width: 86vw !important; max-width: 340px !important; max-height: none !important;
+        margin: 0 !important;
+        z-index: 9001 !important;
+        display: flex !important; flex-direction: column !important; flex-wrap: nowrap !important;
+        gap: 3px !important;
+        padding: 12px 12px max(16px, env(safe-area-inset-bottom)) !important;
+        border: 0 !important; border-right: 1px solid var(--panel-border) !important;
+        border-radius: 0 !important;
+        background: var(--panel-bg, #111318) !important;
+        box-shadow: 2px 0 28px rgba(0,0,0,0.55) !important;
+        overflow-y: auto !important; overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+        transform: translateX(-104%);
+        transition: transform 0.26s cubic-bezier(0.4,0,0.2,1);
+        backdrop-filter: blur(16px);
+      }
+      .tabs.pm-open,
+      body[data-admin-skin="onboarding"] .tabs.pm-open { transform: translateX(0); }
+      /* The "Sections/Разделы" ::before stays as the drawer title. */
+      body[data-admin-skin="onboarding"] .tabs::before {
+        top: -12px !important; margin: -12px -12px 8px !important;
+        padding: 13px 40px 10px 12px !important;
+      }
+      .admin-tab-search-wrap { display: block; margin-bottom: 8px; }
+      #admin-tab-search { width: 100%; min-height: 40px; font-size: 15px !important; }
+      /* Bigger touch targets for section rows inside the drawer. */
+      .tabs .tab,
+      body[data-admin-skin="onboarding"] .tabs .tab {
+        padding: 12px 12px !important; font-size: 15px !important; border-radius: 8px !important;
+        min-height: 44px; display: flex; align-items: center;
+      }
+      /* Content panels no longer offset for the (now off-canvas) sidebar. */
+      header, #stats-bar, .stats, .toolbar, .table-wrap,
+      .users-tab, .analytics, .reports-tab,
+      body[data-admin-skin="onboarding"] header,
+      body[data-admin-skin="onboarding"] #stats-bar,
+      body[data-admin-skin="onboarding"] .stats,
+      body[data-admin-skin="onboarding"] .toolbar,
+      body[data-admin-skin="onboarding"] .table-wrap,
+      body[data-admin-skin="onboarding"] .users-tab,
+      body[data-admin-skin="onboarding"] .analytics,
+      body[data-admin-skin="onboarding"] .reports-tab {
+        margin-left: 0 !important; margin-right: 0 !important;
+      }
+      .reports-tab, .analytics, .users-tab,
+      body[data-admin-skin="onboarding"] .reports-tab,
+      body[data-admin-skin="onboarding"] .analytics,
+      body[data-admin-skin="onboarding"] .users-tab {
+        max-width: 100vw; overflow-x: hidden; padding: 12px;
+      }
+
+      /* ── Login form fits the phone ── */
+      .admin-login-screen { padding: 16px; }
+      .admin-login-form {
+        max-width: 100%; width: 100%; padding: 24px 18px; border-radius: 14px;
+      }
+
+      /* ── Stats / toolbar / league-console shells ── */
+      .stats { padding: 12px 14px; gap: 8px; }
+      .stat-card { flex: 1 1 calc(50% - 4px); min-width: 0 !important; padding: 10px 12px; }
+      .stat-card .value { font-size: 18px; }
+      .toolbar { padding: 10px 14px; gap: 8px; }
+      .toolbar input[type="text"], .toolbar select {
+        width: 100%; flex: 1 1 100%; box-sizing: border-box;
+      }
+      .lc-shell { padding: 14px 14px 24px; }
+      .lc-topbar { flex-direction: column; align-items: stretch; gap: 10px; }
+      .lc-actions { justify-content: flex-start; gap: 8px; }
+      .lc-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
+      .lc-kpi { padding: 9px 10px; min-height: 60px; }
+      .lc-kpi .value { font-size: 18px; }
+      .lc-kpi .hint { white-space: normal; }
+      .lc-filterbar { grid-template-columns: 1fr !important; }
+      .lc-modebar { flex-wrap: wrap !important; }
+
+      /* ── Defensive: form controls full-width, media capped ── */
+      input[type="text"], input[type="search"], input[type="number"],
+      input[type="email"], input[type="url"], input[type="tel"],
+      input[type="password"], input:not([type]), select, textarea {
+        width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+      }
+      input[type="checkbox"], input[type="radio"], input[type="range"], input[type="color"] {
+        width: auto !important; max-width: 100% !important;
+      }
+      img, canvas, svg, video, iframe { max-width: 100%; height: auto; }
+      .lc-kpi, .h-btn { min-width: 0 !important; }
+      .stats, .lc-actions { flex-wrap: wrap !important; }
+
+      /* ── Fixed multi-column grids → single column ── */
+      .app-msg-shell, .app-msg-grid, .app-msg-poll-toolbar, .app-msg-poll-options,
+      .app-msg-card, .review-promo-store-row, .review-promo-lang-row,
+      .dp-form-grid, .dp-row, .pg-grid, #clubs-wrap,
+      body[data-admin-skin="onboarding"] .app-msg-shell,
+      body[data-admin-skin="onboarding"] #tab-app-messages .app-msg-shell,
+      body[data-admin-skin="onboarding"] .admin-overview-hero,
+      body[data-admin-skin="onboarding"] .admin-overview-actions,
+      body[data-admin-skin="onboarding"] .admin-overview-row,
+      body[data-admin-skin="onboarding"] .revenue-zero-panel,
+      body[data-admin-skin="onboarding"] #push-panel-uid,
+      body[data-admin-skin="onboarding"] #push-panel-segment,
+      body[data-admin-skin="onboarding"] #push-panel-reactivate,
+      body[data-admin-skin="onboarding"] #push-panel-scheduled,
+      #league-chest-archive > div {
+        grid-template-columns: 1fr !important;
+      }
+      .dp-form-section.full { grid-column: auto !important; }
+      .pg-grid button.pg-forever { grid-column: auto !important; }
+      body[data-admin-skin="onboarding"] #tab-arena-bets .arena-bets-shell {
+        grid-template-columns: 1fr !important; padding: 16px !important; max-width: 100% !important;
+      }
+
+      /* ── Tables: usable horizontal scroll with pinned identity column ── */
+      .table-wrap {
+        -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+        padding-bottom: 14px;
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent);
+      }
+      table { font-size: 12px; min-width: max-content; }
+      th { padding: 7px 9px; font-size: 9px; letter-spacing: 0.3px; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
+      td { padding: 8px 9px; font-size: 12px; }
+      /* Pin the identity (first) column on the standard tables. #users-table is
+         excluded — it manages its own two sticky columns (checkbox + name). */
+      table:not(#users-table) td:first-child,
+      table:not(#users-table) .name-cell {
+        position: sticky; left: 0; z-index: 5;
+        background: #0a0a12; box-shadow: 2px 0 6px rgba(0,0,0,0.55);
+      }
+      table:not(#users-table) thead th:first-child {
+        position: sticky; left: 0; top: 0; z-index: 12; background: #1a1a24;
+      }
+      .name-cell { gap: 7px; min-width: 132px; max-width: 168px; }
+      .name-cell .avatar, td .avatar { width: 26px; height: 26px; font-size: 13px; }
+      .uid-small { display: none; }
+
+      /* Users table is table-layout:fixed clamped to the container on desktop;
+         on mobile that crams 6 columns into 375px. Restore horizontal scroll and
+         let columns use natural widths; its own sticky checkbox+name columns
+         (defined in the desktop skin rules) keep working as left anchors. */
+      body[data-admin-skin="onboarding"] #tab-users .table-wrap {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+      }
+      body[data-admin-skin="onboarding"] #users-table {
+        table-layout: auto !important; width: auto !important; min-width: max-content !important;
+        /* The desktop skin sets overflow:hidden on the table itself; that creates
+           a clip context that BREAKS position:sticky on its checkbox+name columns
+           once the wrap actually scrolls. Reset to visible so the sticky anchors
+           hold while scrolling horizontally on mobile. */
+        overflow: visible !important;
+      }
+      body[data-admin-skin="onboarding"] #users-table th,
+      body[data-admin-skin="onboarding"] #users-table td { width: auto !important; }
+      body[data-admin-skin="onboarding"] #users-table th:nth-child(2),
+      body[data-admin-skin="onboarding"] #users-table td:nth-child(2) { max-width: 200px; }
+
+      /* ── Modals / overlays go full-width and self-scroll ── */
+      #help-modal-overlay { padding: 8px !important; align-items: flex-start !important; }
+      #help-modal-overlay > div {
+        max-width: 100% !important; width: 100% !important; border-radius: 12px !important;
+        padding: 18px 14px 22px !important; max-height: 92vh !important;
+        overflow-y: auto !important; -webkit-overflow-scrolling: touch;
+      }
+      #help-modal-overlay .h-btn { grid-template-columns: 1fr !important; gap: 4px 0 !important; }
+      #help-modal-overlay .h-btn-name { white-space: normal !important; }
+      .umodal-overlay { padding: 8px; align-items: flex-start; }
+      .umodal {
+        min-width: 0 !important; width: 100% !important; max-width: 100% !important;
+        padding: 20px 16px 16px !important; border-radius: 12px !important;
+        max-height: 92vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      }
+      .detail { width: 100% !important; border-left: none !important; }
+      #ar-detail-panel { width: 96vw !important; max-width: 96vw !important; padding: 18px !important; max-height: 90vh !important; }
     }
   </style>
 </head>
@@ -24959,31 +25332,135 @@
     return series.reduce((s, x) => s + Number(x.value || 0), 0);
   }
 
+  // Палитра графиков: каждой метрике — свой узнаваемый цвет (hue),
+  // чтобы карточки читались с первого взгляда, а не сливались в серое.
+  function revenueHue(key) {
+    const map = {
+      paywall_settings_views: 265, paywall_auto_views: 200, paywall_onboarding_views: 175,
+      purchase_settings: 145, purchase_auto: 145, purchase_onboarding: 145,
+      shards_shop_opened: 38, shards_product_clicked: 26, shards_purchase_completed: 145,
+      intro_ended_shown: 280, intro_ended_cta: 200, afterwin_shown: 320,
+      winback_shown: 190, abandoned_push: 10,
+    };
+    if (map[key] != null) return map[key];
+    // Стабильный детерминированный hue из строки ключа.
+    let h = 0; for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) % 360;
+    return h;
+  }
+
   function revenueSeriesCard(key, title, hint, series, suffix = '') {
-    const max = Math.max(1, ...series.map((x) => Number(x.value || 0)));
+    const vals = series.map((x) => Number(x.value || 0));
+    const max = Math.max(1, ...vals);
     const total = revenueSum(series);
-    const bars = series.map((x) => {
-      const h = Math.max(3, Math.round((Number(x.value || 0) / max) * 62));
-      return `<div class="revenue-series-bar" title="${x.label}: ${x.value}${suffix}">
-        <div class="revenue-series-bar-track"><div class="revenue-series-bar-fill" style="height:${h}px"></div></div>
-        <span class="revenue-series-bar-label">${escapeHtml(x.label)}</span>
+    const peakIdx = vals.indexOf(Math.max(...vals));
+    const avg = vals.length ? (total / vals.length) : 0;
+    const hue = revenueHue(key);
+    const accent = `hsl(${hue} 85% 62%)`;
+    const accentDim = `hsl(${hue} 60% 40%)`;
+    const bars = series.map((x, i) => {
+      const v = Number(x.value || 0);
+      const h = v <= 0 ? 3 : Math.max(6, Math.round((v / max) * 96));
+      const isPeak = i === peakIdx && v > 0;
+      const showVal = v > 0 && (isPeak || vals.filter((n) => n > 0).length <= 10);
+      const fillStyle = v <= 0
+        ? 'background:rgba(148,163,184,.16)'
+        : `background:linear-gradient(180deg, hsl(${hue} 90% 66%), hsl(${hue} 78% 46%));box-shadow:0 0 10px hsla(${hue},85%,55%,.35)`;
+      return `<div class="rsv-bar${isPeak ? ' is-peak' : ''}" title="${escapeHtml(x.label)}: ${v}${suffix}">
+        <div class="rsv-bar-val">${showVal ? v : ''}</div>
+        <div class="rsv-bar-track"><div class="rsv-bar-fill" style="height:${h}px;${fillStyle}"></div></div>
+        <span class="rsv-bar-label">${escapeHtml(x.label)}</span>
       </div>`;
     }).join('');
-    return `<div class="stat-card" data-revenue-chart="${key}">
-      <div class="label">${escapeHtml(hint)}</div>
-      <div class="value">${escapeHtml(title)}: ${total}${suffix}</div>
-      <div class="revenue-series-bars">${bars}</div>
+    const first = series.length ? series[0].label : '';
+    const last = series.length ? series[series.length - 1].label : '';
+    return `<div class="stat-card rsv-card" data-revenue-chart="${key}" style="--rsv-accent:${accent};--rsv-accent-dim:${accentDim}">
+      <div class="rsv-side">
+        <div class="label">${escapeHtml(title)}</div>
+        <div class="rsv-head">
+          <div class="value rsv-total">${total}${suffix}</div>
+        </div>
+        <div class="rsv-title">${escapeHtml(hint)}</div>
+        <div class="rsv-chips">
+          <span class="rsv-chip"><b>peak</b> ${vals[peakIdx] || 0}${suffix}</span>
+          <span class="rsv-chip"><b>avg</b> ${Math.round(avg * 10) / 10}${suffix}/day</span>
+        </div>
+      </div>
+      <div class="rsv-plot">
+        <div class="rsv-bars">${bars}</div>
+        <div class="rsv-axis"><span>${escapeHtml(first)}</span><span>${escapeHtml(last)}</span></div>
+      </div>
     </div>`;
   }
 
+  // Распознаём «процентные» строки (cta rate, conversion, shown→buy) — рисуем их
+  // как цветной мини-индикатор; счётчики воронки — как пропорциональные полосы.
+  function revenueIsPct(r) {
+    return typeof r.value === 'string' && r.value.trim().endsWith('%');
+  }
+  function revenuePctNum(r) {
+    const n = parseFloat(String(r.value).replace('%', ''));
+    return Number.isFinite(n) ? n : 0;
+  }
+
   function revenueListCard(key, title, hint, rows) {
-    const body = rows.length
-      ? rows.map((r) => `<div class="drow" style="display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.06);padding:7px 0"><span class="k">${escapeHtml(r.label)}</span><span class="v" style="font-weight:800">${escapeHtml(String(r.value))}</span></div>`).join('')
-      : '<div class="reports-empty" style="padding:16px 0">No data</div>';
-    return `<div class="stat-card" data-revenue-chart="${key}">
-      <div class="label">${escapeHtml(hint)}</div>
-      <div class="value">${escapeHtml(title)}</div>
-      <div style="margin-top:10px">${body}</div>
+    const hue = revenueHue(key);
+    const accent = `hsl(${hue} 85% 62%)`;
+    if (!rows.length) {
+      return `<div class="stat-card rsv-card" data-revenue-chart="${key}" style="--rsv-accent:${accent}">
+        <div class="rsv-side">
+          <div class="label">${escapeHtml(title)}</div>
+          <div class="rsv-title">${escapeHtml(hint)}</div>
+        </div>
+        <div class="rsv-plot"><div class="reports-empty" style="padding:8px 0">No data</div></div>
+      </div>`;
+    }
+
+    // Чистый процентный кейс (1 строка с %) — крупное кольцо.
+    const pctRows = rows.filter(revenueIsPct);
+    const countRows = rows.filter((r) => !revenueIsPct(r));
+
+    // Заголовочное число слева: первый процент (если карточка про конверсию)
+    // иначе — самый большой счётчик воронки.
+    let headline = '';
+    if (pctRows.length) headline = String(pctRows[0].value);
+    else if (countRows.length) headline = String(Math.max(...countRows.map((r) => Number(r.value) || 0)));
+
+    let body = '';
+
+    // Воронка: счётчики рисуем пропорциональными полосами от самого большого шага.
+    if (countRows.length) {
+      const maxCount = Math.max(1, ...countRows.map((r) => Number(r.value) || 0));
+      body += '<div class="rsv-funnel">' + countRows.map((r, i) => {
+        const v = Number(r.value) || 0;
+        const w = Math.max(4, Math.round((v / maxCount) * 100));
+        const h2 = (hue + i * 14) % 360;
+        return `<div class="rsv-funnel-row">
+          <div class="rsv-funnel-top"><span class="rsv-funnel-k">${escapeHtml(r.label)}</span><span class="rsv-funnel-v">${escapeHtml(String(r.value))}</span></div>
+          <div class="rsv-funnel-track"><div class="rsv-funnel-fill" style="width:${w}%;background:linear-gradient(90deg,hsl(${h2} 85% 58%),hsl(${h2} 78% 48%))"></div></div>
+        </div>`;
+      }).join('') + '</div>';
+    }
+
+    // Проценты — кольца/метры.
+    if (pctRows.length) {
+      body += '<div class="rsv-meters">' + pctRows.map((r) => {
+        const p = Math.max(0, Math.min(100, revenuePctNum(r)));
+        const col = p >= 50 ? 145 : p >= 20 ? 45 : 0; // зелёный / янтарь / красный
+        const ring = `conic-gradient(hsl(${col} 80% 55%) ${p * 3.6}deg, rgba(255,255,255,.08) 0deg)`;
+        return `<div class="rsv-meter">
+          <div class="rsv-ring" style="background:${ring}"><div class="rsv-ring-hole"><b>${escapeHtml(String(r.value))}</b></div></div>
+          <span class="rsv-meter-label">${escapeHtml(r.label)}</span>
+        </div>`;
+      }).join('') + '</div>';
+    }
+
+    return `<div class="stat-card rsv-card" data-revenue-chart="${key}" style="--rsv-accent:${accent}">
+      <div class="rsv-side">
+        <div class="label">${escapeHtml(title)}</div>
+        ${headline ? `<div class="rsv-head"><div class="value rsv-total">${escapeHtml(headline)}</div></div>` : ''}
+        <div class="rsv-title">${escapeHtml(hint)}</div>
+      </div>
+      <div class="rsv-plot">${body}</div>
     </div>`;
   }
 
@@ -25179,25 +25656,12 @@
       }
 
       grid.innerHTML = [
-        revenueSeriesCard('paywall_settings_views', 'Settings views', 'Paywall opened from settings, daily', revenueCountByDay(settingsViews, days)),
-        revenueSeriesCard('paywall_auto_views', 'Auto views', 'Paywall opened automatically, daily', revenueCountByDay(autoViews, days)),
-        revenueSeriesCard('paywall_onboarding_views', 'Onboarding views', 'Onboarding paywall views, daily', revenueCountByDay(onboardingViews, days)),
-        revenueSeriesCard('purchase_settings', 'Settings purchases', 'Purchases from settings paywall', revenueCountByDay(settingsPurchases, days)),
-        revenueSeriesCard('purchase_auto', 'Auto purchases', 'Purchases from automatic paywall', revenueCountByDay(autoPurchases, days)),
-        revenueSeriesCard('purchase_onboarding', 'Onboarding purchases', 'Purchases from onboarding paywall', revenueCountByDay(onboardingPurchases, days)),
-        revenueListCard('conversion_settings', 'Settings conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(settingsPurchases.length, settingsViews.length) + '%' }]),
-        revenueListCard('conversion_auto', 'Automatic conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(autoPurchases.length, autoViews.length) + '%' }]),
-        revenueListCard('conversion_onboarding', 'Onboarding conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(onboardingPurchases.length, onboardingViews.length) + '%' }]),
+        // ════════════════════════════════════════════════════════════
+        // ОТСОРТИРОВАНО ПО ВАЖНОСТИ — самое важное (деньги/конверсия) сверху.
+        // ════════════════════════════════════════════════════════════
+
+        // ── 1. ГЛАВНОЕ: итоговая конверсия и ключевые воронки ──
         revenueListCard('trial_to_paid', 'Trial to paid conversion', 'trial accepted -> paid purchase', [{ label: 'conversion', value: revenuePct(paywallPurchases.length, trialAccepted.length) + '%' }, { label: 'trial signals', value: trialAccepted.length }, { label: 'paid purchases', value: paywallPurchases.length }]),
-        revenueSeriesCard('shards_shop_opened', 'Shop opened', 'Shards shop opened', revenueCountByDay(shardOpens, days)),
-        revenueSeriesCard('shards_product_clicked', 'Product clicked', 'Shards product clicked', revenueCountByDay(shardClicks, days)),
-        revenueSeriesCard('shards_purchase_completed', 'Shards bought', 'Shards purchase completed', revenueCountByDay([...rows.shards, ...shardActivityPurchases], days)),
-        revenueListCard('paywall_repeat_views_before_purchase', 'Repeat views before purchase', 'buyer average', [{ label: 'avg paywall views', value: repeatAvg }, { label: 'buyers', value: repeatCounts.length }]),
-        revenueListCard('best_app_screen_before_purchase', 'Best app screen before purchase', 'top source/context', bestScreens),
-        revenueListCard('cohort_onboarding_purchase', 'Onboarding cohort purchase', 'purchase within 1 / 7 / 28 days', cohortRows),
-        // ── Конец intro (72ч) — главный момент конверсии ──
-        revenueSeriesCard('intro_ended_shown', 'Intro ended shown', 'Модалка «72ч закончились», daily', revenueCountByDay(introEndedShown, days)),
-        revenueSeriesCard('intro_ended_cta', 'Intro ended → CTA', 'Нажал «Открыть полный доступ»', revenueCountByDay(introEndedCta, days)),
         revenueListCard('intro_ended_funnel', 'Intro ended funnel', 'shown → cta → dismiss → purchase', [
           { label: 'shown', value: introEndedShown.length },
           { label: 'cta', value: introEndedCta.length },
@@ -25206,8 +25670,9 @@
           { label: 'purchases (intro_ended)', value: purchaseByContext('intro_ended').length },
           { label: 'shown→buy', value: revenuePct(purchaseByContext('intro_ended').length, introEndedShown.length) + '%' },
         ]),
-        // ── After-win апсейл (level-up) ──
-        revenueSeriesCard('afterwin_shown', 'After-win shown', 'Апсейл после level-up, daily', revenueCountByDay(afterWinShown, days)),
+        revenueListCard('conversion_onboarding', 'Onboarding conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(onboardingPurchases.length, onboardingViews.length) + '%' }]),
+        revenueListCard('conversion_auto', 'Automatic conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(autoPurchases.length, autoViews.length) + '%' }]),
+        revenueListCard('conversion_settings', 'Settings conversion', 'view -> purchase', [{ label: 'conversion', value: revenuePct(settingsPurchases.length, settingsViews.length) + '%' }]),
         revenueListCard('afterwin_funnel', 'After-win funnel', 'shown → cta → purchase', [
           { label: 'shown', value: afterWinShown.length },
           { label: 'cta', value: afterWinCta.length },
@@ -25215,15 +25680,33 @@
           { label: 'purchases (level_up)', value: levelUpPurchases.length },
           { label: 'shown→buy', value: revenuePct(levelUpPurchases.length, afterWinShown.length) + '%' },
         ]),
-        // ── Re-engagement (winback + abandoned-push) ──
-        revenueSeriesCard('winback_shown', 'Winback shown', 'Оффер вернувшимся 7+ дней, daily', revenueCountByDay(winbackShown, days)),
-        revenueSeriesCard('abandoned_push', 'Abandoned-push sent', 'Пуш «ты почти открыл Premium»', revenueCountByDay(abandonedPush, days)),
         revenueListCard('reengage_funnel', 'Re-engagement', 'winback / abandoned totals', [
           { label: 'winback shown', value: winbackShown.length },
           // winback-покупка идёт с context=streak, source=winback → матчим по source в tags
           { label: 'winback→buy', value: paywallPurchases.filter((r) => String(revenueTags(r).source || '').toLowerCase() === 'winback').length },
           { label: 'abandoned pushes', value: abandonedPush.length },
         ]),
+
+        // ── 2. ПОКУПКИ и поведение покупателей ──
+        revenueSeriesCard('shards_purchase_completed', 'Shards bought', 'Shards purchase completed', revenueCountByDay([...rows.shards, ...shardActivityPurchases], days)),
+        revenueSeriesCard('purchase_onboarding', 'Onboarding purchases', 'Purchases from onboarding paywall', revenueCountByDay(onboardingPurchases, days)),
+        revenueSeriesCard('purchase_auto', 'Auto purchases', 'Purchases from automatic paywall', revenueCountByDay(autoPurchases, days)),
+        revenueSeriesCard('purchase_settings', 'Settings purchases', 'Purchases from settings paywall', revenueCountByDay(settingsPurchases, days)),
+        revenueListCard('cohort_onboarding_purchase', 'Onboarding cohort purchase', 'purchase within 1 / 7 / 28 days', cohortRows),
+        revenueListCard('paywall_repeat_views_before_purchase', 'Repeat views before purchase', 'buyer average', [{ label: 'avg paywall views', value: repeatAvg }, { label: 'buyers', value: repeatCounts.length }]),
+        revenueListCard('best_app_screen_before_purchase', 'Best app screen before purchase', 'top source/context', bestScreens),
+
+        // ── 3. ТРАФИК и показы (диагностика) ──
+        revenueSeriesCard('paywall_onboarding_views', 'Onboarding views', 'Onboarding paywall views, daily', revenueCountByDay(onboardingViews, days)),
+        revenueSeriesCard('paywall_auto_views', 'Auto views', 'Paywall opened automatically, daily', revenueCountByDay(autoViews, days)),
+        revenueSeriesCard('paywall_settings_views', 'Settings views', 'Paywall opened from settings, daily', revenueCountByDay(settingsViews, days)),
+        revenueSeriesCard('shards_shop_opened', 'Shop opened', 'Shards shop opened', revenueCountByDay(shardOpens, days)),
+        revenueSeriesCard('shards_product_clicked', 'Product clicked', 'Shards product clicked', revenueCountByDay(shardClicks, days)),
+        revenueSeriesCard('intro_ended_shown', 'Intro ended shown', 'Модалка «72ч закончились», daily', revenueCountByDay(introEndedShown, days)),
+        revenueSeriesCard('intro_ended_cta', 'Intro ended → CTA', 'Нажал «Открыть полный доступ»', revenueCountByDay(introEndedCta, days)),
+        revenueSeriesCard('afterwin_shown', 'After-win shown', 'Апсейл после level-up, daily', revenueCountByDay(afterWinShown, days)),
+        revenueSeriesCard('winback_shown', 'Winback shown', 'Оффер вернувшимся 7+ дней, daily', revenueCountByDay(winbackShown, days)),
+        revenueSeriesCard('abandoned_push', 'Abandoned-push sent', 'Пуш «ты почти открыл Premium»', revenueCountByDay(abandonedPush, days)),
       ].join('');
     } catch (e) {
       console.warn('loadRevenueAnalytics', e);
@@ -29629,5 +30112,109 @@
   </div>
 </div>
 
+<script>
+/* ════════════════════════════════════════════════════════════════════════
+   MOBILE NAVIGATION — hamburger + off-canvas section drawer (<=768px)
+   Reuses the existing .tabs section list (search box, grouped labels, active
+   states, switchTab wiring) as the drawer. On desktop this code is inert:
+   the burger/scrim are display:none via CSS and the body scroll-lock only
+   engages while the drawer is actually open. No desktop behaviour changes.
+   ──────────────────────────────────────────────────────────────────────── */
+(function setupMobileNav() {
+  if (window.__pmMobileNavReady) return;
+  function init() {
+    var header = document.querySelector('header');
+    var tabs = document.querySelector('.tabs');
+    if (!header || !tabs || window.__pmMobileNavReady) return;
+    window.__pmMobileNavReady = true;
+
+    /* Hamburger button — first child of header so CSS order:-2 keeps it left. */
+    var burger = document.createElement('button');
+    burger.type = 'button';
+    burger.className = 'pm-mnav-burger';
+    burger.setAttribute('aria-label', 'Open sections menu');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.innerHTML = '☰'; /* ☰ */
+    header.insertBefore(burger, header.firstChild);
+
+    /* Scrim behind the drawer. */
+    var scrim = document.createElement('div');
+    scrim.className = 'pm-mnav-scrim';
+    document.body.appendChild(scrim);
+
+    /* Close (✕) affordance pinned inside the drawer's sticky title. */
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.setAttribute('aria-label', 'Close sections menu');
+    closeBtn.textContent = '✕'; /* ✕ */
+    closeBtn.style.cssText = 'position:absolute;top:8px;right:8px;z-index:3;'
+      + 'width:34px;height:34px;border-radius:8px;border:1px solid var(--panel-border);'
+      + 'background:rgba(255,255,255,0.06);color:var(--acc-soft,#e4e4e7);font-size:16px;'
+      + 'line-height:1;cursor:pointer;display:none;';
+    tabs.appendChild(closeBtn);
+
+    var isOpen = false;
+    function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+
+    function open() {
+      if (!isMobile()) return;
+      isOpen = true;
+      tabs.classList.add('pm-open');
+      scrim.classList.add('pm-open');
+      burger.setAttribute('aria-expanded', 'true');
+      closeBtn.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      /* Bring the active section into view inside the drawer. */
+      var active = tabs.querySelector('.tab.active');
+      if (active && active.scrollIntoView) {
+        try { active.scrollIntoView({ block: 'center' }); } catch (e) { active.scrollIntoView(); }
+      }
+    }
+    function close() {
+      isOpen = false;
+      tabs.classList.remove('pm-open');
+      scrim.classList.remove('pm-open');
+      burger.setAttribute('aria-expanded', 'false');
+      closeBtn.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    function toggle() { isOpen ? close() : open(); }
+
+    burger.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    scrim.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) close();
+    });
+
+    /* Auto-close after picking a section. switchTab updates location.hash on
+       every navigation (taps in the drawer, deep links, shortcuts, programmatic
+       jumps), so closing on hashchange covers all of them — and unlike wrapping
+       window.switchTab, it survives switchTab being (re)assigned by later scripts. */
+    window.addEventListener('hashchange', function () { if (isOpen) close(); });
+    /* Belt-and-braces: also close on any tap of a .tab inside the drawer, in
+       case a tab navigates without changing the hash. */
+    tabs.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('.tab');
+      if (t && isOpen) setTimeout(close, 0);
+    });
+
+    /* Leaving mobile width: ensure the drawer is dismissed and scroll restored. */
+    window.addEventListener('resize', function () {
+      if (!isMobile() && isOpen) close();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  /* switchTab is defined later in another script; if init ran before that,
+     re-attempt the wrap once on next tick. */
+  setTimeout(init, 0);
+  setTimeout(init, 1200);
+})();
+</script>
 </body>
 </html>

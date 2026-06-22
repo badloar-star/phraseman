@@ -9,7 +9,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Modal, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import CollectibleArt from '../components/CollectibleArt';
+import CollectibleArtFrame, { type CollectibleArtTier } from '../components/CollectibleArtFrame';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
@@ -56,38 +56,31 @@ const CardCell = React.memo(function CardCell({
   textPrimary: string;
 }) {
   const rarityColor = COLLECTIBLE_RARITY_COLORS[card.rarity];
+  const [cellW, setCellW] = useState(0);
 
   return (
     <TouchableOpacity
       activeOpacity={0.75}
       onPress={onPress}
       style={{ width: '31%', marginBottom: 10 }}
+      onLayout={(e) => setCellW(e.nativeEvent.layout.width)}
     >
-      <View
-        style={{
-          aspectRatio: 200 / 160,
-          borderRadius: 13,
-          backgroundColor: `${rarityColor}14`,
-          borderWidth: 1,
-          borderColor: `${rarityColor}55`,
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        <CollectibleArt
+      {cellW > 0 && (
+        <CollectibleArtFrame
           cardId={card.id}
           svg={card.svg}
-          width="92%"
-          height="100%"
+          tier={card.rarity as CollectibleArtTier}
+          width={cellW}
           accessibilityLabel={card.en}
           fallback={
-            <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
-              {card.en.slice(0, 1).toUpperCase()}
-            </Text>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
+                {card.en.slice(0, 1).toUpperCase()}
+              </Text>
+            </View>
           }
         />
-      </View>
+      )}
       <Text
         numberOfLines={1}
         style={{
@@ -114,33 +107,29 @@ const SecretCell = React.memo(function SecretCell({
   onPress: () => void;
   textPrimary: string;
 }) {
+  const [cellW, setCellW] = useState(0);
+
   return (
     <TouchableOpacity
       activeOpacity={0.75}
       onPress={onPress}
       style={{ width: '31%', marginBottom: 10 }}
+      onLayout={(e) => setCellW(e.nativeEvent.layout.width)}
     >
-      <View
-        style={{
-          aspectRatio: 200 / 160,
-          borderRadius: 13,
-          backgroundColor: `${SECRET_GOLD}16`,
-          borderWidth: 1,
-          borderColor: `${SECRET_GOLD}66`,
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        <CollectibleArt
+      {cellW > 0 && (
+        <CollectibleArtFrame
           cardId={secret.id}
           svg={secret.svg}
-          width="92%"
-          height="100%"
+          tier="secret"
+          width={cellW}
           accessibilityLabel={secret.en}
-          fallback={<Ionicons name="star" size={26} color={SECRET_GOLD} />}
+          fallback={
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name="star" size={26} color={SECRET_GOLD} />
+            </View>
+          }
         />
-      </View>
+      )}
       <Text
         numberOfLines={1}
         style={{
@@ -319,33 +308,22 @@ function CardDetailModal({
           </View>
 
           <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-            <View
-              style={{
-                alignSelf: 'center',
-                width: 240,
-                height: 192,
-                borderRadius: 22,
-                backgroundColor: `${rarityColor}18`,
-                borderWidth: 1,
-                borderColor: `${rarityColor}55`,
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
-              }}
-            >
-              <CollectibleArt
-                cardId={card.id}
-                svg={card.svg}
-                width={222}
-                height={178}
-                accessibilityLabel={card.en}
-                fallback={
+            <CollectibleArtFrame
+              cardId={card.id}
+              svg={card.svg}
+              tier={isSecret ? 'secret' : ((card as CollectibleCardData).rarity as CollectibleArtTier)}
+              width={240}
+              borderRadius={22}
+              accessibilityLabel={card.en}
+              style={{ alignSelf: 'center' }}
+              fallback={
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ color: rarityColor, fontSize: 52, fontWeight: '900' }}>
                     {card.en.slice(0, 1).toUpperCase()}
                   </Text>
-                }
-              />
-            </View>
+                </View>
+              }
+            />
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 16 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '900', textAlign: 'center', flexShrink: 1 }}>

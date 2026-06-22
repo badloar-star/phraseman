@@ -81,8 +81,10 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               <CollectibleArt
                 cardId={card.id}
                 svg={card.svg}
-                width={184}
-                height={147}
+                width={200}
+                height={160}
+                contentFit="cover"
+                borderRadius={16}
                 accessibilityLabel={card.en}
                 fallback={
                   <Text style={[styles.artFallback, { color: rarityColor }]}>

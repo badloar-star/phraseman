@@ -13,23 +13,34 @@ interface CollectibleArtProps {
   cardId: string;
   /** Инлайн-SVG из каталога — фолбэк, если картинки нет. */
   svg?: string | null;
-  /** Размеры области рендера. Картинка вписывается contain. */
+  /** Размеры области рендера. */
   width: DimensionValue;
   height: DimensionValue;
+  /**
+   * Как вписывать webp-картинку. 'cover' — заполнить ячейку без полей (грид,
+   * модалки), 'contain' — вписать целиком (если важны края рисунка).
+   * SVG-фолбэк всегда рисуется contain (у него прозрачный фон).
+   */
+  contentFit?: 'cover' | 'contain';
+  /** Скругление углов картинки (совпадает со скруглением контейнера-карточки). */
+  borderRadius?: number;
   /** Чем рисовать букву-фолбэк, когда нет ни картинки, ни SVG. */
   fallback?: React.ReactNode;
   accessibilityLabel?: string;
 }
 
 /**
- * Арт карточки коллекции. Картинки имеют viewBox-пропорцию 1024×819 ≈ 200×160,
- * совпадающую с контейнерами карточек, поэтому contentFit="contain" не искажает.
+ * Арт карточки коллекции. webp-картинки имеют пропорцию 1024×819 ≈ 200×160,
+ * совпадающую с контейнерами карточек, поэтому 'cover' заполняет ячейку почти
+ * без обрезки и убирает зазор между картинкой и рамкой.
  */
 export default function CollectibleArt({
   cardId,
   svg,
   width,
   height,
+  contentFit = 'cover',
+  borderRadius = 0,
   fallback = null,
   accessibilityLabel,
 }: CollectibleArtProps) {
@@ -39,8 +50,8 @@ export default function CollectibleArt({
     return (
       <Image
         source={image}
-        style={{ width, height }}
-        contentFit="contain"
+        style={{ width, height, borderRadius }}
+        contentFit={contentFit}
         cachePolicy="memory-disk"
         accessibilityLabel={accessibilityLabel}
         accessible={!!accessibilityLabel}

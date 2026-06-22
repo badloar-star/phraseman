@@ -105,19 +105,19 @@ describe('resolvePromptLangKey — канонический язык для пр
   const { resolvePromptLangKey, PROMPT_LANGUAGES } = require('./explain_prompts');
 
   it('покрывает все 8 языков приложения (+en) — раньше было только ru/en', () => {
-    for (const code of ['ru', 'en', 'uk', 'es', 'pt', 'vi', 'id', 'tr', 'pl']) {
+    for (const code of ['ru', 'en', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
       expect(PROMPT_LANGUAGES[code]).toBeDefined();
       expect(resolvePromptLangKey(code)).toBe(code);
     }
   });
 
-  it("региональные коды режутся до базового: 'pt-BR' → 'pt'", () => {
-    expect(resolvePromptLangKey('pt-BR')).toBe('pt');
+  it("региональные коды остаются точным prompt/cache ключом: 'pt-BR' → 'pt-BR'", () => {
+    expect(resolvePromptLangKey('pt-BR')).toBe('pt-BR');
   });
 
   it("неизвестный/пустой язык падает в 'ru' (дефолтная аудитория)", () => {
-    expect(resolvePromptLangKey('xx')).toBe('ru');
-    expect(resolvePromptLangKey('')).toBe('ru');
+    expect(() => resolvePromptLangKey('xx')).toThrow('unsupported_prompt_language');
+    expect(() => resolvePromptLangKey('')).toThrow('unsupported_prompt_language');
   });
 });
 

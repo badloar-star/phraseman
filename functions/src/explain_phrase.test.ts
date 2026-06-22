@@ -119,7 +119,13 @@ jest.mock('./explain/explain_judge', () => ({
   judgeExplanation: (...args: unknown[]) => mockJudge(...args),
 }));
 
-import { explainPhrase as explainPhraseRaw, buildFallback, type ExplainResponse } from './explain_phrase';
+import {
+  explainPhrase as explainPhraseRaw,
+  buildFallback,
+  EXPLAIN_FALLBACK_BY_LANG,
+  type ExplainResponse,
+} from './explain_phrase';
+import { rejectGeneratedLanguageText } from './ai_language_gate';
 import { phraseHashFor, EXPLAIN_SCHEMA_VERSION } from './explain/explain_cache';
 
 // The mocked onCall returns the raw handler; type it as the callable for the tests.
@@ -313,17 +319,17 @@ describe('explainPhrase — full miss path', () => {
     });
   });
 
-  it('judge ok:FALSE ⇒ writeRejected, but the live caller STILL receives the generated text', async () => {
+  it('judge ok:FALSE writes rejected evidence and returns only fallback to the live caller', async () => {
     mockOpenAiChat.mockResolvedValue(genReply('Сырой непроверенный текст объяснения фразы.'));
     mockJudge.mockResolvedValue(verdict(false, 'off_topic'));
 
     const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
 
-    // The cache is protected (rejected), NOT the trigger user.
     expect(explanationDoc(PHRASE)).toMatchObject({ status: 'rejected', reason: 'off_topic' });
     expect(res.status).toBe('rejected');
     expect(res.fromCache).toBe(false);
-    expect(res.text).toBe('Сырой непроверенный текст объяснения фразы.'); // caller still sees it
+    expect(res.text).toBe(buildFallback(MEANING));
+    expect(res.text).not.toContain('Сырой');
     expect(billingDocs()[0]).toMatchObject({ verdict: 'off_topic', published: false });
   });
 
@@ -415,5 +421,18 @@ describe('buildFallback — neutral, never echoes the meaning/translation', () =
     expect(buildFallback('')).toBe(neutral);
     expect(buildFallback('что угодно')).toBe(neutral);
     expect(buildFallback()).toBe(neutral);
+  });
+
+  it('localizes the neutral fallback for every explain output language', () => {
+    const cyrillic = /[\u0400-\u052f]/;
+    const plannedLocales = ['es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+
+    for (const [lang, expected] of Object.entries(EXPLAIN_FALLBACK_BY_LANG)) {
+      const text = buildFallback('Привет, как дела', lang);
+      expect(text).toBe(expected);
+      expect(text).not.toContain('Привет');
+      expect(rejectGeneratedLanguageText(text, lang)).toBeNull();
+      if (plannedLocales.includes(lang)) expect(text).not.toMatch(cyrillic);
+    }
   });
 });

@@ -95,23 +95,30 @@ type InvoicePayload = {
 };
 
 const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000;
-const MONTHLY_PRICE_RU_LABEL = '500 Stars';
-const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 const SHORT_NICKNAME_PROMPT_RU = 'Напишите Ваш ник ниже';
 
-const PLANS: Record<PremiumPlan, { label: string; description: string; durationLabel: string }> = {
-  monthly: {
-    label: 'Phraseman Premium: месяц',
-    description: `Месячная подписка Phraseman Premium. ${MONTHLY_PRICE_RU_LABEL}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
-    durationLabel: 'месяц',
-  },
-  yearly: {
-    label: 'Phraseman Premium: год',
-    description: `Годовой доступ Phraseman Premium. ${YEARLY_PRICE_RU_LABEL}. Разовая оплата на 12 месяцев.`,
-    durationLabel: 'год',
-  },
+// Ярлык цены строится из конфигурируемой суммы Stars (monthlyStars/yearlyStars),
+// чтобы текст, который видит пользователь, всегда совпадал с реально списываемой
+// суммой (env PHRASEMAN_PREMIUM_*_STARS). Никаких вшитых чисел.
+function priceLabelForPlan(plan: PremiumPlan): string {
+  return `${starsForPlan(plan)} Stars`;
+}
+
+// Статичная часть плана (без цены — цена подставляется в planDescription лениво,
+// когда уже доступны monthly/yearlyStars()).
+const PLANS: Record<PremiumPlan, { label: string; durationLabel: string }> = {
+  monthly: { label: 'Phraseman Premium: месяц', durationLabel: 'месяц' },
+  yearly: { label: 'Phraseman Premium: год', durationLabel: 'год' },
 };
+
+/** Описание счёта для пользователя с актуальной ценой из конфига. */
+function planDescription(plan: PremiumPlan): string {
+  if (plan === 'monthly') {
+    return `Месячная подписка Phraseman Premium. ${priceLabelForPlan('monthly')}. Продлевается автоматически каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`;
+  }
+  return `Годовой доступ Phraseman Premium. ${priceLabelForPlan('yearly')}. Разовая оплата на 12 месяцев.`;
+}
 
 const START_MESSAGE_RU = [
   'Phraseman Premium',
@@ -279,7 +286,7 @@ function sendInvoice(token: string, chatId: number | string, input: InvoicePaylo
   const invoice: Record<string, unknown> = {
     chat_id: chatId,
     title: 'Phraseman Premium',
-    description: planInfo.description,
+    description: planDescription(plan),
     payload: buildInvoicePayload(input),
     provider_token: '',
     currency: 'XTR',
@@ -303,7 +310,7 @@ function sendInvoicePayload(input: InvoicePayload): Record<string, unknown> {
   const planInfo = PLANS[plan];
   const invoice: Record<string, unknown> = {
     title: 'Phraseman Premium',
-    description: planInfo.description,
+    description: planDescription(plan),
     payload: buildInvoicePayload(input),
     provider_token: '',
     currency: 'XTR',
@@ -674,8 +681,8 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
       '',
       'Проверьте, что ник написан точно так же, как в Phraseman.',
       '',
-      `Месяц: ${MONTHLY_PRICE_RU_LABEL}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
-      `Год: ${YEARLY_PRICE_RU_LABEL}, разовая оплата на 12 месяцев.`,
+      `Месяц: ${priceLabelForPlan('monthly')}, автопродление каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
+      `Год: ${priceLabelForPlan('yearly')}, разовая оплата на 12 месяцев.`,
       '',
       'Выберите вариант:',
     ].join('\n'), {

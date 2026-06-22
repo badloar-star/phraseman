@@ -6,6 +6,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
+import { assertAiJsonTextFieldsLanguage } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -55,7 +56,9 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const GLOBAL_DAILY_CAP = 5000;
 
 const MAX_OUTPUT_TOKENS = 600;
-const MAX_NOTE_CHARS = 400;
+// Notes are 1-2 short sentences (Bible: ≤10 words/sentence). 400 allowed wordy paragraphs;
+// 160 keeps them tight for the 50+ audience without cutting a normal two-sentence note.
+const MAX_NOTE_CHARS = 160;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4o-mini';
@@ -318,10 +321,13 @@ ABSOLUTE RULES:
 - Write ENTIRELY in ${langName}. Every word must be in ${langName}.
 - You receive a JSON briefing of ALREADY-COMPUTED numbers. Describe ONLY what is in it.
 - NEVER invent numbers, streaks, words, categories, or facts not present in the briefing.
-- Each note is 1–2 short sentences. Be specific: refer to the actual numbers for that block.
-- Never expose internal product metrics or labels to the learner: do not mention numeric ratings, points, scoring labels, or the internal block name as a learner-visible rating.
+- Each note is 1–2 short sentences, each sentence ≤10 words, plain words. Be specific: refer to the actual numbers for that block.
+- Never expose internal product metrics or labels to the learner: do not mention numeric ratings, points, scoring labels, or the internal block name as a learner-visible rating. Speak in plain human words, not jargon — avoid "percentile", "XP", "daily7"; say e.g. the ${langName} for "you are ahead of most".
 - Do NOT claim that effort (streak, time, XP) causes language knowledge. Use effort only for warm acknowledgement.
-- Tone: a supportive coach. Plain, kind, concrete. Learners are often beginners and 50+. Never condescend, never shame.
+- Always frame as what the learner HAS or can gain, never as loss. Loss-framing (e.g. the ${langName} for "don't lose your streak") is allowed ONLY in the "year" note AND only when currentStreak >= 7. For shorter streaks use pure encouragement. Never create false urgency (the ${langName} for "hurry, today only").
+- WORD CHOICE: never say the ${langName} word for "statistics" to the learner — say "your results" (in Russian: «твои результаты», NOT «статистика»). Prefer "phrase" over "word"; "series" for streak, never "lesson". Avoid filler words (the ${langName} equivalents of «просто», «также», «кстати», «в принципе», «на самом деле»).
+- Address the learner informally, as "ты" — use the informal second person of ${langName} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form). Talk like a friend who is on their side.
+- Tone: a warm, friendly coach with a LIGHT touch of humor where it fits naturally — one small wink, never forced, never at the learner's expense. Plain, kind, concrete. Learners are often beginners and 50+. Never condescend, never shame.
 - If a block has almost no data (zeros / warmup), write a gentle one-line nudge instead of pretending there is progress.
 
 THE FIVE BLOCKS (write a note for each):
@@ -355,7 +361,7 @@ interface StatsInsightsResult {
  * keys become '' (the client simply hides an empty note). Throws only if the
  * output is not JSON or every note is empty.
  */
-function parseAndGuardResult(rawContent: string): StatsInsightsResult {
+function parseAndGuardResult(rawContent: string, lang?: SupportedLang): StatsInsightsResult {
   let parsed: Record<string, unknown>;
   try {
     parsed = JSON.parse(rawContent) as Record<string, unknown>;
@@ -373,6 +379,13 @@ function parseAndGuardResult(rawContent: string): StatsInsightsResult {
 
   if (nonEmpty === 0) {
     throw new HttpsError('unavailable', 'stats_insights_empty');
+  }
+  if (lang) {
+    assertAiJsonTextFieldsLanguage({
+      texts: Object.values(notes).filter(Boolean),
+      targetLang: lang,
+      feature: 'stats_insights',
+    });
   }
 
   return { notes };
@@ -465,7 +478,7 @@ export const statsInsightsGenerate = onCall({
   const content = text(json.choices?.[0]?.message?.content, 4000);
   if (!content) throw new HttpsError('unavailable', 'stats_insights_empty_reply');
 
-  const result = parseAndGuardResult(content);
+  const result = parseAndGuardResult(content, briefing.lang);
 
   // Generation succeeded — NOW commit the window (so failures above never burn it).
   const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);

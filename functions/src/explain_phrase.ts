@@ -31,6 +31,7 @@ import { validateExplainInput, sanitizeExplanationOutput } from './explain/expla
 import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
+import { resolveAiOutputLang } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -62,6 +63,19 @@ function asText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
+export const EXPLAIN_FALLBACK_BY_LANG: Record<string, string> = {
+  ru: 'Не получилось подготовить объяснение. Попробуйте позже.',
+  uk: 'Не вдалося підготувати пояснення. Спробуйте пізніше.',
+  es: 'No se pudo preparar la explicación. Inténtalo más tarde.',
+  pt: 'Não foi possível preparar a explicação. Tenta de novo mais tarde.',
+  'pt-BR': 'Não foi possível preparar a explicação. Tenta de novo mais tarde.',
+  vi: 'Chưa thể chuẩn bị phần giải thích. Hãy thử lại sau.',
+  id: 'Penjelasan belum bisa disiapkan. Coba lagi nanti.',
+  tr: 'Açıklama hazırlanamadı. Daha sonra tekrar dene.',
+  pl: 'Nie udało się przygotować wyjaśnienia. Spróbuj ponownie później.',
+  en: 'Could not prepare the explanation. Try again later.',
+};
+
 /**
  * Deterministic, AI-free fallback the CF returns when it will not (or cannot) generate: rejected
  * cache, exhausted budget, or a lost lock race. Never calls the model; the client never builds this.
@@ -72,8 +86,13 @@ function asText(value: unknown, max: number): string {
  * "Russian re-telling" we were fixing). `_phraseMeaning` is kept in the signature only so callers
  * don't have to change and so a future localized fallback could use the lang, never the meaning.
  */
-export function buildFallback(_phraseMeaning?: string): string {
-  return 'Не получилось подготовить объяснение. Попробуйте позже.';
+export function buildFallback(_phraseMeaning?: string, lang = 'ru'): string {
+  try {
+    const langKey = resolvePromptLangKey(lang);
+    return EXPLAIN_FALLBACK_BY_LANG[langKey] ?? EXPLAIN_FALLBACK_BY_LANG.ru;
+  } catch {
+    return EXPLAIN_FALLBACK_BY_LANG.ru;
+  }
 }
 
 export const explainPhrase = onCall({
@@ -93,7 +112,7 @@ export const explainPhrase = onCall({
   const data = (request.data ?? {}) as ExplainRequestData;
   const phraseEn = asText(data.phraseEn, 1000);
   const phraseMeaning = asText(data.phraseMeaning, 2000);
-  const lang = asText(data.lang, 12) || 'ru';
+  const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'explain');
 
   const db = admin.firestore();
   // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
@@ -121,13 +140,13 @@ export const explainPhrase = onCall({
     // judge rejects stay sticky only until REJECTED_RETRY_TTL_MS — then ONE request falls through
     // to the generation path below (claimPendingLock flips rejected→pending atomically), because
     // the judge has false positives and must not poison a phrase forever.
-    return { ok: true, text: buildFallback(phraseMeaning), status: 'rejected', fromCache: true };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: true };
   }
 
   // Kill-switch: если explain выключен админом — НЕ генерируем (экономим OpenAI),
   // отдаём бесплатный fallback (как при exhausted). Кэш выше уже обслужен бесплатно.
   if (!jobCfg.enabled) {
-    return { ok: true, text: buildFallback(phraseMeaning), status: 'exhausted', fromCache: false };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
   }
 
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
@@ -137,7 +156,7 @@ export const explainPhrase = onCall({
     await enforceGlobalBudget(jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-      return { ok: true, text: buildFallback(phraseMeaning), status: 'exhausted', fromCache: false };
+      return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
     }
     throw err;
   }
@@ -146,7 +165,7 @@ export const explainPhrase = onCall({
   //    fallback now (status:pending) rather than generating a duplicate.
   const claimed = await claimPendingLock(phraseHash, Date.now());
   if (!claimed) {
-    return { ok: true, text: buildFallback(phraseMeaning), status: 'pending', fromCache: true };
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'pending', fromCache: true };
   }
 
   // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
@@ -160,7 +179,8 @@ export const explainPhrase = onCall({
 
   // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
   const sanitized = sanitizeExplanationOutput(gen.text);
-  const verdict = await judgeExplanation({ text: sanitized, phraseEn, lang, apiKey });
+  const judgeText = sanitized;
+  const verdict = await judgeExplanation({ text: judgeText, phraseEn, lang, apiKey });
 
   // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
   //    text regardless of verdict — we risk showing raw text to one user, never to all.
@@ -187,10 +207,10 @@ export const explainPhrase = onCall({
     createdAtMs: Date.now(),
   });
 
-  return {
-    ok: true,
-    text: sanitized,
-    status: verdict.ok ? 'ok' : 'rejected',
-    fromCache: false,
-  };
+  if (!verdict.ok) {
+    return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'rejected', fromCache: false };
+  }
+
+  const approvedText = sanitized;
+  return { ok: true, text: approvedText, status: 'ok', fromCache: false };
 });

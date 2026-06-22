@@ -65,10 +65,19 @@ describe('weekly_review parseAndGuardResult', () => {
     expect(() => parseAndGuardResult(empty, baseBriefing())).toThrow();
   });
 
+  it('throws when the model returns a different language than the briefing requested', () => {
+    const english = JSON.stringify({
+      greeting: 'Good start!',
+      paragraphs: ['Today you keep a good small practice step with your phrases.'],
+      recommendations: [],
+    });
+    expect(() => parseAndGuardResult(english, baseBriefing())).toThrow('weekly_review_wrong_language');
+  });
+
   it('caps paragraphs at the max', () => {
     const many = JSON.stringify({
-      greeting: 'Hi',
-      paragraphs: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+      greeting: 'Привет!',
+      paragraphs: ['Раз.', 'Два.', 'Три.', 'Четыре.', 'Пять.', 'Шесть.', 'Семь.'],
       recommendations: [],
     });
     const result = parseAndGuardResult(many, baseBriefing());

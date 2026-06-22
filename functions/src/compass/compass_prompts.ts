@@ -33,8 +33,12 @@ export function buildCompassPrompt(input: CompassBriefingInput): string {
     `Write ONE short, warm line (max 2 tiny sentences) for today's briefing.`,
     `Today is ${mood[input.dayType] ?? mood.easy}.`,
     topicList ? `Today's focus topics: ${topicList}.` : ``,
-    `Rules (strict): gain-framing (what they gain, never what they lose). Plain, simple words. No grammar jargon. Encourage, don't pressure. No fake urgency, no scaring. At most one emoji (🔥), usually none.`,
+    `Rules (strict): gain-framing (what they gain, never what they lose). Plain, simple words. Each sentence ≤10 words, one thought per sentence. No grammar jargon. Encourage, don't pressure. No fake urgency, no scaring. At most one emoji (🔥), usually none.`,
     `Do NOT use the words "lesson", "mistake", "statistics", "buy", "price". Speak about a "session", "your phrases", "your path".`,
+    `Do NOT invent numbers, dates, or specifics not given above (no "yesterday you learned 12").`,
+    `Avoid filler words (the ${target.name} equivalents of «просто», «кстати», «также», «в принципе», «на самом деле»).`,
+    `Sound like a real person who learns languages too — one light, human touch is welcome; never clownish, never at the learner's expense.`,
+    `EXAMPLES of the right voice (${input.dayType}, write your OWN line, do not copy): easy → "Сегодня спокойно. Освежи вчерашние фразы — и день твой." | deep_dive → "Готов копнуть глубже? Одна сессия — и новое уже твоё." | repair → "Пара фраз ускользает. Поймаем их вместе, без спешки." | comeback → "Рад, что ты вернулся. Начнём с малого."`,
     `${target.writeIn}`,
     `Output ONLY the line — plain text, no quotes, no markdown, no labels.`,
   ]

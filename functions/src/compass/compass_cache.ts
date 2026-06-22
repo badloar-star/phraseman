@@ -13,7 +13,9 @@ import { createHash } from 'crypto';
 
 export const COMPASS_COLLECTION = 'compass_briefings';
 export const COMPASS_LOCK_TTL_MS = 30_000;
-export const COMPASS_SCHEMA_VERSION = 1;
+// v2 (2026-06-21): audit fixes — ≤10 words/sentence, few-shot per dayType, ban filler words,
+// ban inventing numbers, allow one light human touch. Old v1 lines predate these, regenerate.
+export const COMPASS_SCHEMA_VERSION = 2;
 export const COMPASS_REJECTED_RETRY_TTL_MS = 10 * 60_000;
 
 export type CompassCacheStatus = 'pending' | 'ready' | 'rejected';

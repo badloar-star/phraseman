@@ -20,8 +20,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -51,6 +51,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Компас: дешёвый тёплый комментарий дня. nano-модель + кэш 1-на-продукт
   // (подписей дня мало, повторяются между учениками) → почти бесплатно.
   compass: { model: 'gpt-4.1-nano', globalDailyCap: 5000 },
+  // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
+  // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
+  quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
 };
 
 export interface JobConfig {

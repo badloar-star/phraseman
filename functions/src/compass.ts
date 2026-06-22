@@ -23,6 +23,7 @@ import { resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { buildCompassPrompt } from './compass/compass_prompts';
+import { resolveAiOutputLang } from './ai_language_contract';
 import {
   compassSignature,
   compassHashFor,
@@ -87,7 +88,7 @@ export const compassGenerate = onCall(
       ? data.topics.map((t) => asText(t, 40)).filter(Boolean).slice(0, 6)
       : [];
     const level = Math.max(0, Math.min(10, Math.floor(Number(data.level) || 0)));
-    const lang = asText(data.lang, 12) || 'ru';
+    const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'compass');
 
     const db = admin.firestore();
     const jobCfg = await resolveJobConfig(db, 'compass');
@@ -161,6 +162,8 @@ export const compassGenerate = onCall(
       createdAtMs: Date.now(),
     });
 
-    return { ok: true, comment, status: verdict.ok ? 'ok' : 'rejected', fromCache: false };
+    return verdict.ok
+      ? { ok: true, comment, status: 'ok', fromCache: false }
+      : empty('rejected', false);
   },
 );

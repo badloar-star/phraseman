@@ -28,8 +28,13 @@ export const LOCK_TTL_MS = 30_000;
  *  v4 (2026-06-20): prompt re-aimed to teach the SINGLE most-confusable distinction of THIS phrase
  *  (e.g. "it" vs "that") with a minimal pair, instead of narrating every obvious word — the old
  *  90-word "walk through every word" texts are watered-down and must be regenerated.
+ *  v5 (2026-06-21): prompt now addresses the learner as "ты" with a light, friendly touch of humor
+ *  (Phraseman Bible voice) — older texts use a neutral/formal tone and are regenerated for consistency.
+ *  v6 (2026-06-21): audit fixes — removed "simply" (leaked into «просто», a banned filler), banned
+ *  filler words, tightened anti-hallucination for out-of-bank traps, softened the single-trap rule,
+ *  added the Phraseman word-swap bridge — older texts predate these, regenerate.
  *  A doc whose schemaVersion is below this is treated as absent (see isCurrentSchema). */
-export const EXPLAIN_SCHEMA_VERSION = 4;
+export const EXPLAIN_SCHEMA_VERSION = 6;
 
 /** The `reason` written when the REPORT threshold rejects a phrase (explain_reports.ts).
  *  Report-rejected docs are STICKY: they never auto-regenerate (mass-report regen abuse) and can

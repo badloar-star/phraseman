@@ -33,8 +33,16 @@ export const MISTAKE_LOCK_TTL_MS = 35_000;
  *  v3 (2026-06-20): prompts re-aimed to teach the SINGLE governing distinction behind each wrong
  *  word (e.g. "that" vs "it") with a minimal pair + a runnable test, on the strong model tier,
  *  instead of generic "short rule, max 4 sentences" filler — old breakdowns AND old ELI5 text are
- *  watered-down and must be regenerated. */
-export const MISTAKE_SCHEMA_VERSION = 3;
+ *  watered-down and must be regenerated.
+ *  v4 (2026-06-21): prompts now (a) address the learner as "ты" with a light, friendly touch of humor
+ *  (Phraseman Bible voice), and (b) added an ANTONYM / plain-wrong-word branch so trivial opposites
+ *  like "bad"→"good" get ONE short line instead of водянистые tirades about "what the question
+ *  implies" — old cached breakdowns/ELI5 for such cases are exactly that water and must regenerate.
+ *  v5 (2026-06-21): prompts now BAN guessing the learner's reason for the mistake ("you translated
+ *  literally", "you didn't think about the context") — a false, unkind mind-read when the learner may
+ *  have simply mis-tapped (user report: goodbye→thanks). Old v3/v4 breakdowns contain exactly this
+ *  invented-cause water and must regenerate. */
+export const MISTAKE_SCHEMA_VERSION = 6;
 
 /** How long a judge-rejected breakdown serves nothing before one request may retry generation. */
 export const MISTAKE_REJECTED_RETRY_TTL_MS = 10 * 60_000;

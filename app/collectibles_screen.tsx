@@ -7,7 +7,17 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FlatList, Modal, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  LayoutAnimation,
+  Modal,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  UIManager,
+  View,
+} from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CollectibleArtFrame, { type CollectibleArtTier } from '../components/CollectibleArtFrame';
 import ContentWrap from '../components/ContentWrap';
@@ -15,7 +25,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { onAppEvent } from './events';
@@ -34,12 +44,23 @@ import {
 import {
   devUnlockAllCollectibles,
   getCollectiblesOwnedMap,
+  getCollectiblesOwnedMapSync,
   markCollectiblesSeen,
   type CollectiblesOwnedMap,
 } from './collectibles/storage';
+import { ioniconForSetIcon } from './collectibles/set_icons';
 import { isCollectiblesEnabled } from './remote_flags';
 
 const SECRET_GOLD = '#FBBF24';
+
+// Плавное раскрытие/сворачивание аккордеона штатными средствами RN (без либ).
+// На Android LayoutAnimation нужно явно включить.
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 type DetailTarget =
   | { kind: 'card'; set: CollectibleSetData; card: CollectibleCardData }
@@ -146,31 +167,35 @@ const SecretCell = React.memo(function SecretCell({
   );
 });
 
-/* ── секция сета ──────────────────────────────────────────── */
-function SetSection({
+/* ── строка сета (аккордеон) ──────────────────────────────────
+   Свёрнут по умолчанию: рисуем только лёгкую шапку (иконка + название +
+   прогресс + шеврон). Сетка карточек монтируется ТОЛЬКО когда сет раскрыт —
+   поэтому открытие экрана не грузит все 330 картинок разом. */
+const SetAccordionRow = React.memo(function SetAccordionRow({
   set,
-  ownedMap,
+  ownedCards,
+  secretOwned,
+  expanded,
+  onToggle,
   onOpenCard,
   t,
   f,
   lang,
 }: {
   set: CollectibleSetData;
-  ownedMap: CollectiblesOwnedMap;
+  ownedCards: CollectibleCardData[];
+  secretOwned: boolean;
+  expanded: boolean;
+  onToggle: (setId: string) => void;
   onOpenCard: (target: DetailTarget) => void;
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
-  lang: string;
+  lang: Lang;
 }) {
-  // Показываем ТОЛЬКО собранные карточки — коллекция, а не чек-лист.
-  const ownedCards = set.cards.filter((c) => ownedMap[c.id] != null);
-  const secretOwned = ownedMap[set.secret.id] != null;
   const totalOwned = ownedCards.length + (secretOwned ? 1 : 0);
-  // Сет без единой карточки не рисуем вовсе.
-  if (totalOwned === 0) return null;
-
   const complete = totalOwned >= set.cards.length + 1;
   const setTitle = collectibleSetTitleForLang(set, lang);
+  const accent = complete ? SECRET_GOLD : t.textSecond;
 
   return (
     <View
@@ -179,41 +204,84 @@ function SetSection({
         backgroundColor: t.bgCard,
         borderWidth: 1,
         borderColor: complete ? `${SECRET_GOLD}55` : t.border,
-        paddingHorizontal: 12,
-        paddingTop: 12,
-        paddingBottom: 4,
         marginBottom: 12,
+        overflow: 'hidden',
       }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, gap: 8 }}>
-        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }} numberOfLines={1}>
-          {setTitle}
-        </Text>
+      <TouchableOpacity
+        testID={`collectibles-set-row-${set.setId}`}
+        activeOpacity={0.75}
+        onPress={() => onToggle(set.setId)}
+        accessibilityRole="button"
+        accessibilityState={{ expanded }}
+        style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 12, paddingVertical: 12 }}
+      >
+        <View
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: 12,
+            backgroundColor: complete ? `${SECRET_GOLD}1F` : `${String(t.textMuted)}1A`,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Ionicons name={ioniconForSetIcon(set.icon)} size={20} color={accent} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+            {setTitle}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 1 }}>
+            {complete
+              ? triLang(lang, {
+                  ru: 'Сет собран',
+                  uk: 'Сет зібрано',
+                  es: 'Set completo',
+                  'pt-BR': 'Set completo',
+                  vi: 'Đã hoàn thành bộ',
+                  id: 'Set lengkap',
+                  tr: 'Set tamamlandı',
+                  pl: 'Zestaw kompletny',
+                })
+              : `${totalOwned}/${set.cards.length + 1}`}
+          </Text>
+        </View>
         {complete && <Ionicons name="checkmark-circle" size={16} color={SECRET_GOLD} />}
-        <Text style={{ color: complete ? SECRET_GOLD : t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
-          {totalOwned}/{set.cards.length + 1}
-        </Text>
-      </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: '3.5%' }}>
-        {ownedCards.map((card) => (
-          <CardCell
-            key={card.id}
-            card={card}
-            onPress={() => onOpenCard({ kind: 'card', set, card })}
-            textPrimary={t.textPrimary}
-          />
-        ))}
-        {secretOwned && (
-          <SecretCell
-            secret={set.secret}
-            onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
-            textPrimary={t.textPrimary}
-          />
-        )}
-      </View>
+        <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.textSecond} />
+      </TouchableOpacity>
+
+      {expanded && (
+        <View
+          style={{
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-start',
+            gap: '3.5%',
+            paddingHorizontal: 12,
+            paddingBottom: 4,
+          }}
+        >
+          {ownedCards.map((card) => (
+            <CardCell
+              key={card.id}
+              card={card}
+              onPress={() => onOpenCard({ kind: 'card', set, card })}
+              textPrimary={t.textPrimary}
+            />
+          ))}
+          {secretOwned && (
+            <SecretCell
+              secret={set.secret}
+              onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
+              textPrimary={t.textPrimary}
+            />
+          )}
+        </View>
+      )}
     </View>
   );
-}
+});
 
 /* ── полноэкранная деталка (как «Фраза дня») ──────────────── */
 function CardDetailModal({
@@ -453,12 +521,21 @@ export default function CollectiblesScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f } = useTheme();
-  const [ownedMap, setOwnedMap] = useState<CollectiblesOwnedMap>({});
+  // Стартуем из синхронного кэша в памяти (если экран уже открывали в этой
+  // сессии) — тогда грид рисуется сразу, без мелькания пустого состояния.
+  const cached = getCollectiblesOwnedMapSync();
+  const [ownedMap, setOwnedMap] = useState<CollectiblesOwnedMap>(cached ?? {});
+  // Загружено ли хоть раз: пока false, не показываем пустое состояние «здесь
+  // появятся карточки» (иначе оно мелькает до прихода данных из хранилища).
+  const [loaded, setLoaded] = useState(cached != null);
   const [detail, setDetail] = useState<DetailTarget | null>(null);
+  // Какие сеты раскрыты (по умолчанию все свёрнуты → экран открывается мгновенно).
+  const [expandedSets, setExpandedSets] = useState<Set<string>>(() => new Set());
 
   const load = useCallback(async () => {
     const map = await getCollectiblesOwnedMap();
     setOwnedMap(map);
+    setLoaded(true);
     // Открыли экран — все текущие карточки считаются «увиденными» (бейдж NEW гаснет).
     void markCollectiblesSeen(Object.keys(map));
   }, []);
@@ -491,6 +568,37 @@ export default function CollectiblesScreen() {
     const owned = ownedMap[next.card.id] != null;
     if (owned) setDetail(next);
   }, [ownedMap]);
+
+  // Только сеты, где собрана хотя бы одна карточка. Считаем собранные карточки
+  // один раз тут, чтобы строки-аккордеоны были «тупыми» и не фильтровали сами.
+  type VisibleSet = {
+    set: CollectibleSetData;
+    ownedCards: CollectibleCardData[];
+    secretOwned: boolean;
+  };
+  const visibleSets = useMemo<VisibleSet[]>(() => {
+    const out: VisibleSet[] = [];
+    for (const set of COLLECTIBLE_SETS) {
+      const ownedCards = set.cards.filter((c) => ownedMap[c.id] != null);
+      const secretOwned = ownedMap[set.secret.id] != null;
+      if (ownedCards.length + (secretOwned ? 1 : 0) > 0) {
+        out.push({ set, ownedCards, secretOwned });
+      }
+    }
+    return out;
+  }, [ownedMap]);
+
+  const toggleSet = useCallback((setId: string) => {
+    hapticTap();
+    // Плавная анимация высоты строки при раскрытии/сворачивании.
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setExpandedSets((prev) => {
+      const next = new Set(prev);
+      if (next.has(setId)) next.delete(setId);
+      else next.add(setId);
+      return next;
+    });
+  }, []);
 
   return (
     <ScreenGradient>
@@ -552,7 +660,11 @@ export default function CollectiblesScreen() {
             </View>
           </View>
 
-          {ownedCount === 0 ? (
+          {!loaded ? (
+            // Первая загрузка инвентаря из хранилища: пустой фон без текста,
+            // чтобы не мелькало «здесь появятся карточки» до прихода данных.
+            <View style={{ flex: 1 }} />
+          ) : ownedCount === 0 ? (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32 }}>
               <Ionicons name="sparkles-outline" size={48} color={t.textMuted} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', textAlign: 'center', marginTop: 14 }}>
@@ -582,15 +694,25 @@ export default function CollectiblesScreen() {
             </View>
           ) : (
             <FlatList
-              data={COLLECTIBLE_SETS}
-              keyExtractor={(s) => s.setId}
+              data={visibleSets}
+              keyExtractor={(item) => item.set.setId}
               renderItem={({ item }) => (
-                <SetSection set={item} ownedMap={ownedMap} onOpenCard={openDetail} t={t} f={f} lang={lang} />
+                <SetAccordionRow
+                  set={item.set}
+                  ownedCards={item.ownedCards}
+                  secretOwned={item.secretOwned}
+                  expanded={expandedSets.has(item.set.setId)}
+                  onToggle={toggleSet}
+                  onOpenCard={openDetail}
+                  t={t}
+                  f={f}
+                  lang={lang}
+                />
               )}
               contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
               showsVerticalScrollIndicator={false}
-              initialNumToRender={3}
-              windowSize={7}
+              initialNumToRender={10}
+              windowSize={11}
               removeClippedSubviews
               decelerationRate="normal"
             />

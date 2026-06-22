@@ -6754,10 +6754,10 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson30_phrase_43',
-    english: 'Is she the woman whose bag is here?',
+    english: 'Is this the woman whose bag is here?',
     russian: 'Это та женщина, чья сумка здесь?',
     ukrainian: 'Це та жінка, чия сумка тут?',
-    spanish: '¿Es ella la mujer cuya bolsa está aquí?',
+    spanish: '¿Es esta la mujer cuya bolsa está aquí?',
     words: [
       { text: 'Это', correct: 'Это', distractors: ['Этот', 'Эта', 'Эти', 'я', 'ты'], category: 'pronouns' },
       { text: 'женщина', correct: 'женщина', distractors: ['женщины', 'женщине', 'женщиной', 'время', 'день'], category: 'nouns' },
@@ -6767,8 +6767,8 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['Are', 'Am', 'Be', 'was', 'were'], category: 'irregular_verbs' },
-      { text: 'she', correct: 'she', distractors: ['this', 'that', 'some', 'any', 'other'], category: 'pronouns' },
-      { text: 'the', correct: 'the', distractors: ['a', 'an', 'one', 'this', 'that'], category: 'pronouns' },
+      { text: 'this', correct: 'this', distractors: ['she', 'that', 'some', 'any', 'other'], category: 'pronouns' },
+      { text: 'the', correct: 'the', distractors: ['a', 'an', 'one', 'these', 'those'], category: 'pronouns' },
       { text: 'woman', correct: 'woman', distractors: ['women', 'man', 'girl', 'time', 'day'], category: 'nouns' },
       { text: 'whose', correct: 'whose', distractors: ['who', 'whom', 'which', 'that', 'where'], category: 'pronouns' },
       { text: 'bag', correct: 'bag', distractors: ['bags', 'bagged', 'bagging', 'time', 'day'], category: 'nouns' },

@@ -181,4 +181,25 @@ describe('reported content regressions', () => {
     expect(source).toContain("['I will call you', 'He said that he would call me']");
     expect(source).not.toContain("['I will call me', 'He said that he would call me']");
   });
+
+  it('aligns English with the Russian "Это" (this, not she) for lesson 30 phrase 43', () => {
+    const phrase = LESSON_DATA[30].phrases.find((row) => row.id === 'lesson30_phrase_43');
+
+    expect(phrase).toBeTruthy();
+    // Russian "Это та женщина..." means "Is THIS the woman...", not "Is SHE...".
+    // A faithful translation of the shown Russian must be accepted.
+    expect(phrase?.russian).toBe('Это та женщина, чья сумка здесь?');
+    expect(phrase?.english).toBe('Is this the woman whose bag is here?');
+    expect(phrase?.english).not.toContain('Is she the woman');
+    expect(
+      isCorrectAnswer(
+        'Is this the woman whose bag is here?',
+        phraseCanonicalAnswer(phrase!, 'en'),
+        phraseAnswerAlternatives(phrase!, 'en'),
+      ),
+    ).toBe(true);
+    // The first English chip must now offer "this" as the correct token.
+    const firstPronoun = phrase?.wordsEn?.find((word) => word.correct === 'this');
+    expect(firstPronoun).toBeTruthy();
+  });
 });

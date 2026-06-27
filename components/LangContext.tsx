@@ -58,7 +58,7 @@ const RU = {
   quizzes: {
     selectLevel: 'Выбери уровень', easy: 'Легко', medium: 'Средне', hard: 'Сложно',
     done: 'Вызов завершён!', again: 'Пройти снова',
-    back: 'Выбери уровень', fixErrors: 'Исправь ошибки', timeUp: 'Время вышло',
+    back: 'Выбери уровень', fixErrors: 'Закрепи промахи', timeUp: 'Время вышло',
     perAnswer: 'балл/ответ',
   },
   leagues: [

@@ -197,8 +197,8 @@ export default function QuizResultView({
                 )}
                 <Text style={{ color: '#F87171', fontSize: f.bodyLg, fontWeight: '600' }}>
                   {triLang(effectiveLang, {
-                    ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
-                    uk: `🔄 Виправити помилки (${wrongPhrases.length})`,
+                    ru: `🔄 Закрепить промахи (${wrongPhrases.length})`,
+                    uk: `🔄 Закріпити промахи (${wrongPhrases.length})`,
                     es: `🔄 Corregir errores (${wrongPhrases.length})`,
                     'pt-BR': `🔄 Corrigir erros (${wrongPhrases.length})`,
                     vi: `🔄 Sửa lỗi (${wrongPhrases.length})`,

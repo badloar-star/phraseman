@@ -1236,14 +1236,14 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             >
               <Text style={{ color:'#fff', fontSize:f.body, fontWeight:'800' }}>
                 {triLang(lang, {
-  ru: 'Понятно',
-  uk: 'Зрозуміло',
-  es: 'Entendido',
-  "pt-BR": 'Entendi',
-  vi: 'Đã hiểu',
-  id: 'Mengerti',
-  tr: 'Anladım',
-  pl: 'Rozumiem',
+  ru: 'Закрыть',
+  uk: 'Закрити',
+  es: 'Cerrar',
+  "pt-BR": 'Fechar',
+  vi: 'Đóng',
+  id: 'Tutup',
+  tr: 'Kapat',
+  pl: 'Zamknij',
 })}
               </Text>
             </TapScale>
@@ -2129,8 +2129,8 @@ function QuizGame({
                   <Ionicons name="refresh" size={18} color={isCompassTheme ? COMPASS_RICH.peach : '#F87171'}/>
                   <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : '#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
                     {triLang(lang, {
-  ru: `Исправить ошибки (${wrongPhrases.length})`,
-  uk: `Виправити помилки (${wrongPhrases.length})`,
+  ru: `Закрепить промахи (${wrongPhrases.length})`,
+  uk: `Закріпити промахи (${wrongPhrases.length})`,
   es: `Repasar errores (${wrongPhrases.length})`,
   "pt-BR": `Corrigir erros (${wrongPhrases.length})`,
   vi: `Sửa lỗi (${wrongPhrases.length})`,
@@ -2465,8 +2465,8 @@ function QuizGame({
                 <>
                   <Text style={{ color: t.wrong, fontSize: f.label, fontWeight: '700', marginTop: 10, marginBottom: 4, letterSpacing: 0.3 }}>
                     {triLang(lang, {
-  ru: 'ВАШ ВАРИАНТ:',
-  uk: 'ВАШ ВАРІАНТ:',
+  ru: 'ТВОЙ ВАРИАНТ:',
+  uk: 'ТВІЙ ВАРІАНТ:',
   es: 'TU RESPUESTA:',
   "pt-BR": 'SUA RESPOSTA:',
   vi: 'CÂU TRẢ LỜI CỦA BẠN:',
@@ -2633,12 +2633,12 @@ function QuizGame({
             >
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                 {triLang(lang, {
-  ru: 'Далее',
-  uk: 'Далі',
-  es: 'Siguiente',
-  "pt-BR": 'Próximo',
-  vi: 'Tiếp',
-  id: 'Lanjut',
+  ru: 'Следующая фраза',
+  uk: 'Наступна фраза',
+  es: 'Siguiente frase',
+  "pt-BR": 'Próxima frase',
+  vi: 'Câu tiếp theo',
+  id: 'Frasa berikutnya',
   tr: 'İleri',
   pl: 'Dalej',
 })}
@@ -2820,14 +2820,14 @@ function QuizGame({
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: settings.hardMode ? 8 : 24 }}>
               {triLang(lang, {
-  ru: 'Очень жаль 😔 Попробуй ещё раз!',
-  uk: 'Дуже шкода 😔 Спробуй ще раз!',
-  es: '¡Qué pena! 😔 ¡Inténtalo otra vez!',
-  "pt-BR": 'Que pena 😔 Tente novamente!',
-  vi: 'Tiếc quá 😔 Thử lại nhé!',
-  id: 'Sayang sekali 😔 Coba lagi!',
-  tr: 'Yazık oldu 😔 Tekrar dene!',
-  pl: 'Szkoda 😔 Spróbuj jeszcze raz!',
+  ru: 'Почти! Давай ещё заход — ты близко 💪',
+  uk: 'Майже! Ще один захід — ти близько 💪',
+  es: '¡Casi! Otro intento — ya casi lo tienes 💪',
+  "pt-BR": 'Quase! Mais uma tentativa — você está perto 💪',
+  vi: 'Gần rồi! Thử thêm lần nữa — bạn sắp được rồi 💪',
+  id: 'Hampir! Coba sekali lagi — kamu sudah dekat 💪',
+  tr: 'Az kaldı! Bir deneme daha — çok yakınsın 💪',
+  pl: 'Prawie! Jeszcze jedno podejście — jesteś blisko 💪',
 })}
             </Text>
             {settings.hardMode && (
@@ -2850,11 +2850,11 @@ function QuizGame({
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
-  ru: 'Понятно',
-  uk: 'Зрозуміло',
-  es: 'Entendido',
-  "pt-BR": 'Entendi',
-  vi: 'Đã hiểu',
+  ru: 'Вернуться',
+  uk: 'Повернутися',
+  es: 'Volver',
+  "pt-BR": 'Voltar',
+  vi: 'Quay lại',
   id: 'Mengerti',
   tr: 'Anladım',
   pl: 'Rozumiem',

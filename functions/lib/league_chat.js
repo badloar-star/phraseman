@@ -206,12 +206,21 @@ async function assertActiveChatUser(db, stableUid, authUid, room) {
     return { member, userData: userSnap?.data() || {} };
 }
 async function grantRoomReadAccess(db, authUid, stableUid, room) {
-    await db
+    const ref = db
         .collection('league_chat_members')
         .doc(authUid)
         .collection('rooms')
-        .doc(room.groupId)
-        .set({
+        .doc(room.groupId);
+    const existing = await ref.get().catch(() => null);
+    const data = existing?.data() || {};
+    if (existing?.exists &&
+        data.weekId === room.weekId &&
+        Math.trunc(Number(data.leagueId) || 0) === room.leagueId &&
+        String(data.authUid || '') === authUid &&
+        String(data.stableUid || '') === stableUid) {
+        return;
+    }
+    await ref.set({
         ...room,
         authUid,
         stableUid,

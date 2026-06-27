@@ -19,6 +19,8 @@ const THROTTLE_PREFIX = 'app_health_last_';
 const DEFAULT_THROTTLE_MS = 30 * 60 * 1000;
 const MAX_MESSAGE_LEN = 500;
 const MAX_STACK_LEN = 4000;
+const THROTTLE_CACHE_LIMIT = 128;
+const healthThrottleCache = new Map<string, number>();
 
 function normalizeError(error: unknown) {
   if (error instanceof Error) {
@@ -56,16 +58,30 @@ function cleanTags(tags: AppHealthMeta['tags']) {
   return out;
 }
 
+function rememberThrottle(key: string, lastAt: number) {
+  healthThrottleCache.set(key, lastAt);
+  if (healthThrottleCache.size <= THROTTLE_CACHE_LIMIT) return;
+  const oldest = healthThrottleCache.keys().next().value;
+  if (oldest) healthThrottleCache.delete(oldest);
+}
+
 async function shouldSend(fingerprint: string, severity: AppHealthSeverity, sampleRate?: number) {
   if (severity === 'info') return false;
   if (sampleRate != null && sampleRate < 1 && Math.random() > sampleRate) return false;
 
   const key = `${THROTTLE_PREFIX}${fingerprint}`;
+  const now = Date.now();
+  const throttleMs = severity === 'critical' ? 10 * 60 * 1000 : DEFAULT_THROTTLE_MS;
+  const cachedLast = healthThrottleCache.get(key) ?? 0;
+  if (now - cachedLast < throttleMs) return false;
+
   const lastRaw = await AsyncStorage.getItem(key).catch(() => null);
   const last = parseInt(lastRaw || '0', 10) || 0;
-  const throttleMs = severity === 'critical' ? 10 * 60 * 1000 : DEFAULT_THROTTLE_MS;
-  if (Date.now() - last < throttleMs) return false;
-  await AsyncStorage.setItem(key, String(Date.now())).catch(() => {});
+  rememberThrottle(key, last);
+  if (now - last < throttleMs) return false;
+
+  rememberThrottle(key, now);
+  await AsyncStorage.setItem(key, String(now)).catch(() => {});
   return true;
 }
 

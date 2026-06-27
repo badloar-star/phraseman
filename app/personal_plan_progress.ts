@@ -27,10 +27,15 @@ export async function readCompletedPlanTasks(): Promise<Record<string, PersonalP
 
 export async function markPersonalPlanTaskCompleted(input: Omit<PersonalPlanCompletedTask, 'completedAt'>): Promise<void> {
   const current = await readCompletedPlanTasks();
-  current[planTaskCompletionKey(input.planInstanceId, input.taskId)] = {
+  const key = planTaskCompletionKey(input.planInstanceId, input.taskId);
+  if (current[key]) return;
+  current[key] = {
     ...input,
     completedAt: new Date().toISOString(),
   };
   await AsyncStorage.setItem(COMPLETED_PLAN_TASKS_KEY, JSON.stringify(current));
+  void import('./stats_daily_breakdown')
+    .then(({ bumpStatsDaily }) => bumpStatsDaily('plan_tasks_completed', 1))
+    .catch(() => {});
   emitAppEvent('personal_plan_updated', { planId: input.planId, taskId: input.taskId });
 }

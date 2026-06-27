@@ -12,7 +12,7 @@ import { callExplainQuiz, type ExplainQuizResponse } from './explain_quiz_client
  *
  * Хук дёргает CF при появлении `answered=true` для текущего `questionKey`. Пока генерируется —
  * state='loading' (UI рисует шиммер). Если другой запрос уже генерирует (status='pending') —
- * один раз перезапрашивает через короткую паузу, чтобы поймать только что прогретый кэш.
+ * повторно опрашивает кэш через короткую паузу, чтобы поймать только что прогретый AI-батч.
  */
 export type QuizExplainState = 'idle' | 'loading' | 'ready' | 'unavailable';
 
@@ -43,6 +43,7 @@ export interface UseQuizExplainResult {
 }
 
 const PENDING_RETRY_DELAY_MS = 1600;
+const TRANSIENT_RETRY_DELAY_MS = 4000;
 
 export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult {
   const { active, questionKey, correctEn, questionPrompt, wrongOptions, lang } = input;
@@ -54,17 +55,41 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
   const questionKeyRef = useRef(questionKey);
   questionKeyRef.current = questionKey;
   const inFlightRef = useRef(false);
+  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const activeRef = useRef(active);
+  activeRef.current = active;
+
+  const clearRetryTimer = useCallback(() => {
+    if (retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+  }, []);
 
   // Сброс при смене вопроса.
   useEffect(() => {
+    clearRetryTimer();
     setState('idle');
     setBatch(null);
     inFlightRef.current = false;
-  }, [questionKey]);
+  }, [clearRetryTimer, questionKey]);
 
-  const run = useCallback(async (allowPendingRetry: boolean) => {
+  useEffect(() => {
+    if (!active) clearRetryTimer();
+  }, [active, clearRetryTimer]);
+
+  useEffect(() => clearRetryTimer, [clearRetryTimer]);
+
+  const run = useCallback(async () => {
     if (inFlightRef.current) return;
     const myKey = questionKeyRef.current;
+    const scheduleRetry = (delayMs: number) => {
+      clearRetryTimer();
+      retryTimerRef.current = setTimeout(() => {
+        retryTimerRef.current = null;
+        if (activeRef.current && questionKeyRef.current === myKey) void run();
+      }, delayMs);
+    };
     inFlightRef.current = true;
     setState('loading');
     try {
@@ -75,29 +100,30 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
         setState('ready');
         return;
       }
-      // 'pending' — другой запрос генерирует прямо сейчас. Подождём и заберём из кэша один раз.
-      if (res.status === 'pending' && allowPendingRetry) {
+      // 'pending' — другой запрос генерирует прямо сейчас. Продолжаем опрашивать кэш до готового AI-батча.
+      if (res.status === 'pending') {
         inFlightRef.current = false;
-        setTimeout(() => {
-          if (questionKeyRef.current === myKey) void run(false);
-        }, PENDING_RETRY_DELAY_MS);
+        scheduleRetry(PENDING_RETRY_DELAY_MS);
         return;
       }
       // 'rejected' / 'exhausted' / пусто — разбор недоступен; UI тихо скрывает блок.
       setState('unavailable');
     } catch {
-      if (questionKeyRef.current === myKey) setState('unavailable');
+      if (questionKeyRef.current === myKey) {
+        inFlightRef.current = false;
+        scheduleRetry(TRANSIENT_RETRY_DELAY_MS);
+      }
     } finally {
       inFlightRef.current = false;
     }
-  }, [correctEn, questionPrompt, wrongOptions, lang]);
+  }, [clearRetryTimer, correctEn, questionPrompt, wrongOptions, lang]);
 
   // Автозапуск, когда тематический квиз показал результат.
   useEffect(() => {
     if (!active) return;
     if (state !== 'idle') return;
     if (!correctEn || wrongOptions.length === 0) return;
-    void run(true);
+    void run();
   }, [active, state, correctEn, wrongOptions.length, run]);
 
   const explanationFor = useCallback((optionText: string, isCorrect: boolean): string | null => {
@@ -109,10 +135,11 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
   }, [state, batch]);
 
   const retry = useCallback(() => {
+    clearRetryTimer();
     setState('idle');
     setBatch(null);
     inFlightRef.current = false;
-  }, []);
+  }, [clearRetryTimer]);
 
   return { state, explanationFor, retry };
 }

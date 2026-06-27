@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const stats_insights_1 = require("./stats_insights");
-const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt, hasEnoughSignal } = stats_insights_1.__statsInsightsTestHooks;
+const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt, hasEnoughSignal, briefingHashForReplay, decideStatsInsightsReplay, readStoredStatsInsightsNotes, } = stats_insights_1.__statsInsightsTestHooks;
 function fullNotes() {
     return JSON.stringify({
         balance: 'Ты занимаешься ровно — 5 активных дней из 7.',
@@ -121,6 +121,62 @@ describe('stats_insights buildSystemPrompt', () => {
         expect(prompt).toContain('practice consistency card');
         expect(prompt).toContain('Do NOT mention the score');
         expect(prompt).not.toContain('practice balance score');
+    });
+});
+describe('stats_insights quota replay helpers', () => {
+    const briefing = () => sanitizeBriefing({
+        balance: { active7: 5, avgMinutes: 10 },
+        rhythm: { active7: 5, xp7: 320, minutes7: 50 },
+        lifetime: { words: 12, daysActive: 3 },
+    });
+    it('returns stored notes for the same briefing while the window is closed', () => {
+        const clean = briefing();
+        const hash = briefingHashForReplay(clean);
+        const decision = decideStatsInsightsReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: hash,
+            lastModel: 'test-model',
+            lastNotes: {
+                balance: 'Five active days this week.',
+                rhythm: 'Your rhythm is steady.',
+            },
+        }, hash, 1000);
+        expect(decision.kind).toBe('replay');
+        if (decision.kind !== 'replay')
+            throw new Error('expected replay');
+        expect(decision.notes.balance).toBe('Five active days this week.');
+        expect(decision.notes.rhythm).toBe('Your rhythm is steady.');
+        expect(decision.notes.year).toBe('');
+        expect(decision.nextAllowedAtMs).toBe(2000);
+        expect(decision.model).toBe('test-model');
+    });
+    it('keeps a different briefing gated until the window opens', () => {
+        const clean = briefing();
+        const hash = briefingHashForReplay(clean);
+        const decision = decideStatsInsightsReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: 'different-hash',
+            lastNotes: { balance: 'Five active days this week.' },
+        }, hash, 1000);
+        expect(decision).toEqual({ kind: 'not_ready', nextAllowedAtMs: 2000 });
+    });
+    it('opens generation after the stored window expires', () => {
+        const clean = briefing();
+        const hash = briefingHashForReplay(clean);
+        const decision = decideStatsInsightsReplay({
+            nextAllowedAtMs: 1000,
+            lastBriefingHash: hash,
+            lastNotes: { balance: 'Five active days this week.' },
+        }, hash, 2000);
+        expect(decision).toEqual({ kind: 'open' });
+    });
+    it('reuses the learner-facing guard when reading stored notes', () => {
+        const notes = readStoredStatsInsightsNotes({
+            balance: '44 score for balance.',
+            rhythm: 'Your rhythm is steady.',
+        });
+        expect(notes?.balance).toBe('');
+        expect(notes?.rhythm).toBe('Your rhythm is steady.');
     });
 });
 //# sourceMappingURL=stats_insights.test.js.map

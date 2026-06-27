@@ -210,6 +210,7 @@ const HOME_WEEK_DAYS: Record<Lang, readonly string[]> = {
 const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
 const STATS_PULSE_HINT_DONE_KEY = 'phraseman_home_stats_pulse_hint_done_v1';
 const STATS_PULSE_MIN_USAGE_MS = 3 * 60 * 60 * 1000;
+const STATS_PULSE_RECHECK_MIN_MS = 30_000;
 function localCalendarDay(): string {
     const d = new Date();
     const y = d.getFullYear();
@@ -486,6 +487,10 @@ export default function HomeScreen() {
     // Premium celebration: после IAP-покупки или admin-grant с timestamp новее last seen.
     const [celebrationVisible, setCelebrationVisible] = useState(false);
     const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
+    // Гард сессии: pending теперь гасится только в onClose, поэтому isCelebrationPending()
+    // остаётся true до показа. Этот ref не даёт повторно ставить модалку/таймер на каждом
+    // прогоне loadData до закрытия (раньше эту роль играл преждевременный consume).
+    const celebrationQueuedRef = useRef(false);
     const celebrationOverlayVisible = useOverlayVisible('premiumCelebration', celebrationVisible);
     const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
     const [vipCelebrationMarker, setVipCelebrationMarker] = useState<string | null>(null);
@@ -705,12 +710,11 @@ export default function HomeScreen() {
         transform: [{ translateY: sectionSlide[i] }],
     });
     useEffect(() => {
-        loadData();
         fadeAnim.setValue(0);
         Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
     }, [lang, studyTarget]);
     useEffect(() => {
-        if (!USE_ELITE_HOME_STATUS)
+        if (!USE_ELITE_HOME_STATUS || activeIdx !== 0)
             return;
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
@@ -724,7 +728,7 @@ export default function HomeScreen() {
         return () => {
             shimmerLoop.stop();
         };
-    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
+    }, [activeIdx, eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
     // Миграция v2: пороги XP удвоены — умножаем сохранённый XP на 2 (один раз).
     // Новые пользователи помечаются как "мигрированные" в handleOnboardingDone (_layout.tsx),
     // поэтому сюда попадают только старые пользователи со старой формулой XP.
@@ -780,6 +784,7 @@ export default function HomeScreen() {
         const dailyTaskCompletedSub = onAppEvent('daily_task_completed', () => { void refreshDailyTaskSummary(); });
         const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', () => { void refreshDailyTaskSummary(); });
         const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', () => { void refreshDailyTaskSummary(); });
+        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', () => { void refreshDailyTaskSummary(); });
         const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
             if (payload?.snapshot) {
                 setHasActivePersonalPlanState(true);
@@ -844,6 +849,7 @@ export default function HomeScreen() {
             dailyTaskCompletedSub.remove();
             dailyTaskClaimedSub.remove();
             dailyTaskRerolledSub.remove();
+            dailyTaskSetRerolledSub.remove();
             personalPlanSub.remove();
             leagueStateSub.remove();
             crownSub.remove();
@@ -943,6 +949,8 @@ export default function HomeScreen() {
     const deferredReloadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const deferredReloadTaskRef = useRef<{ cancel?: () => void } | null>(null);
     const deferredReadyTaskRef = useRef<{ cancel?: () => void } | null>(null);
+    const homeRefreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const lastHomeRefreshRef = useRef<{ key: string; at: number }>({ key: '', at: 0 });
     const markHomeStatsReady = useCallback(() => {
         deferredReadyTaskRef.current?.cancel?.();
         deferredReadyTaskRef.current = InteractionManager.runAfterInteractions(() => {
@@ -952,13 +960,28 @@ export default function HomeScreen() {
         });
     }, []);
     useEffect(() => {
-        void Promise.all([refreshDailyTaskSummary(), loadData()]);
-    }, [focusTick, studyTarget, refreshDailyTaskSummary]);
-    useEffect(() => {
-        if (activeIdx === 0) {
-            void Promise.all([refreshDailyTaskSummary(), loadData()]);
+        if (activeIdx !== 0) return;
+        if (homeRefreshTimerRef.current) {
+            clearTimeout(homeRefreshTimerRef.current);
+            homeRefreshTimerRef.current = null;
         }
-    }, [activeIdx, studyTarget, refreshDailyTaskSummary]);
+        homeRefreshTimerRef.current = setTimeout(() => {
+            homeRefreshTimerRef.current = null;
+            const key = `${studyTarget}:${lang}`;
+            const now = Date.now();
+            if (lastHomeRefreshRef.current.key === key && now - lastHomeRefreshRef.current.at < 750) {
+                return;
+            }
+            lastHomeRefreshRef.current = { key, at: now };
+            void Promise.all([refreshDailyTaskSummary(), loadData()]);
+        }, 80);
+        return () => {
+            if (homeRefreshTimerRef.current) {
+                clearTimeout(homeRefreshTimerRef.current);
+                homeRefreshTimerRef.current = null;
+            }
+        };
+    }, [activeIdx, focusTick, studyTarget, lang, refreshDailyTaskSummary]);
     useEffect(() => {
         let cancelled = false;
         void ensureAnonUser()
@@ -989,9 +1012,19 @@ export default function HomeScreen() {
         if (!homeStatsReady || activeIdx !== 0)
             return;
         let cancelled = false;
-        let pollId: ReturnType<typeof setInterval> | null = null;
+        let recheckTimer: ReturnType<typeof setTimeout> | null = null;
         let hideTimer: ReturnType<typeof setTimeout> | null = null;
         let pulseLoop: Animated.CompositeAnimation | null = null;
+        const scheduleRecheck = (total: number, retryDelayMs?: number) => {
+            if (cancelled || recheckTimer)
+                return;
+            const remaining = Math.max(0, STATS_PULSE_MIN_USAGE_MS - total);
+            const delay = retryDelayMs ?? Math.max(STATS_PULSE_RECHECK_MIN_MS, remaining);
+            recheckTimer = setTimeout(() => {
+                recheckTimer = null;
+                void check();
+            }, delay);
+        };
         const startPulse = () => {
             if (statsPulseSessionRef.current || cancelled)
                 return;
@@ -1022,20 +1055,19 @@ export default function HomeScreen() {
                     return;
                 if (total >= STATS_PULSE_MIN_USAGE_MS) {
                     startPulse();
-                    if (pollId) {
-                        clearInterval(pollId);
-                        pollId = null;
-                    }
+                    return;
                 }
+                scheduleRecheck(total);
             }
-            catch { /* */ }
+            catch {
+                scheduleRecheck(0, STATS_PULSE_RECHECK_MIN_MS);
+            }
         };
         void check();
-        pollId = setInterval(() => { void check(); }, 30000);
         return () => {
             cancelled = true;
-            if (pollId)
-                clearInterval(pollId);
+            if (recheckTimer)
+                clearTimeout(recheckTimer);
             if (hideTimer)
                 clearTimeout(hideTimer);
             pulseLoop?.stop();
@@ -1087,15 +1119,18 @@ export default function HomeScreen() {
                     }
                 }
             } catch { /* best-effort: не блокируем загрузку главной */ }
-            const [name, streakVal, weekData, currentWeekMarkers, weekPts, xpStored, shardsBal, storedTitleKey, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([
-                AsyncStorage.getItem('user_name'),
-                AsyncStorage.getItem('streak_count'),
-                AsyncStorage.getItem('week_days_done'),
+            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([
+                AsyncStorage.multiGet([
+                    'user_name',
+                    'streak_count',
+                    'week_days_done',
+                    'user_total_xp',
+                    HOME_SELECTED_TITLE_KEY,
+                    'streak_last_shown',
+                ]),
                 readCurrentStreakWeekMarkers(),
                 getMyWeekPoints(),
-                AsyncStorage.getItem('user_total_xp'),
                 getShardsBalance(),
-                AsyncStorage.getItem(HOME_SELECTED_TITLE_KEY),
                 readPersonalPlanState(),
                 getTrainerTotalDue(studyTarget)
                     .then((dueCount) => readPersonalPlanSnapshot({
@@ -1105,6 +1140,13 @@ export default function HomeScreen() {
                     .catch(() => readPersonalPlanSnapshot()),
                 AsyncStorage.multiGet(['onboarding_plan_billing', 'had_premium_ever', 'premium_active']),
             ]);
+            const homeStorage = new Map(homeStoragePairs);
+            const name = homeStorage.get('user_name') ?? null;
+            const streakVal = homeStorage.get('streak_count') ?? null;
+            const weekData = homeStorage.get('week_days_done') ?? null;
+            const xpStored = homeStorage.get('user_total_xp') ?? null;
+            const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null;
+            const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null;
             const premiumSignals = new Map(premiumSignalPairs);
             // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
             if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
@@ -1128,7 +1170,7 @@ export default function HomeScreen() {
             const currentStreakNum = parseInt(streakVal || '0') || 0;
             if (streakVal)
                 setStreak(currentStreakNum);
-            const lastStreakShown = parseInt(await AsyncStorage.getItem('streak_last_shown') || '0') || 0;
+            const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;
             if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
                 await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
                 if (lastStreakShown > 0 && currentStreakNum > lastStreakShown) {
@@ -1155,16 +1197,19 @@ export default function HomeScreen() {
             else {
                 setDisplayStreak(currentStreakNum);
             }
+            const xpSnap = parseInt(xpStored || '0', 10) || 0;
+            const curLvlSnap = getLevelFromXP(xpSnap);
+            const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
+            const avatarSnap = isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : getBestAvatarForLevel(curLvlSnap);
+            const frameSnap = savedFrSnap || getBestFrameForLevel(curLvlSnap).id;
             if (xpStored) {
-                const newXP = parseInt(xpStored) || 0;
+                const newXP = xpSnap;
                 setTotalXP(newXP);
-                const curLvl = getLevelFromXP(newXP);
                 // Обновляем UI аватара/рамки по текущему уровню
                 // (запись в AsyncStorage и детект level-up делает xp_manager.ts)
-                const [[, savedAv], [, savedFr], [, savedAura]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
-                setUserAvatar(isCustomAvatarValue(savedAv) ? savedAv! : getBestAvatarForLevel(curLvl));
-                setUserAvatarAura(normalizeAvatarAuraId(savedAura) ?? null);
-                setUserFrame(savedFr || getBestFrameForLevel(curLvl).id);
+                setUserAvatar(avatarSnap);
+                setUserAvatarAura(normalizeAvatarAuraId(savedAuraSnap) ?? null);
+                setUserFrame(frameSnap);
                 // Мини-бейдж перцентиля — глобальные пороги из leaderboard_stats/global
                 if (newXP > 0) {
                     computeAllPercentiles({ myXp: newXP, myStreak: 0, myWeekXp: 0, myDaily7xp: 0, myDaily7timeMs: 0, myArenaXp: 0 }).then((p) => {
@@ -1173,11 +1218,6 @@ export default function HomeScreen() {
                     }).catch(() => { });
                 }
             }
-            const xpSnap = parseInt(xpStored || '0', 10) || 0;
-            const curLvlSnap = getLevelFromXP(xpSnap);
-            const [[, savedAvSnap], [, savedFrSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame']);
-            const avatarSnap = isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : getBestAvatarForLevel(curLvlSnap);
-            const frameSnap = savedFrSnap || getBestFrameForLevel(curLvlSnap).id;
             let weekParsedForSnap: boolean[] = new Array(7).fill(false);
             if (weekData) {
                 try {
@@ -1195,11 +1235,14 @@ export default function HomeScreen() {
                 }
             }
             setWeekPoints(weekPts);
-            const [helpfulReportsRaw, dailyAllDoneRaw, achievementStates] = await Promise.all([
-                AsyncStorage.getItem(HELPFUL_REPORTS_CONFIRMED_KEY),
-                AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey(studyTarget)),
+            const dailyAllDoneKey = dailyTasksAchievementAllDoneStreakKey(studyTarget);
+            const [specialTitleStoragePairs, achievementStates] = await Promise.all([
+                AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey]),
                 loadAchievementStates().catch(() => []),
             ]);
+            const specialTitleStorage = new Map(specialTitleStoragePairs);
+            const helpfulReportsRaw = specialTitleStorage.get(HELPFUL_REPORTS_CONFIRMED_KEY) ?? null;
+            const dailyAllDoneRaw = specialTitleStorage.get(dailyAllDoneKey) ?? null;
             if (mountedRef.current) {
                 setSpecialTitleStats({
                     helpfulReportsConfirmed: parseStoredCount(helpfulReportsRaw),
@@ -1214,8 +1257,11 @@ export default function HomeScreen() {
                     setGreeting(phrase);
             }
             let done = 0;
+            const lastOpenedKey = lastOpenedLessonKey(studyTarget);
             const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
-            const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
+            const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
+            const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
+            const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
             for (const [, saved] of lessonEntries) {
                 if (saved) {
                     const p: string[] = JSON.parse(saved);
@@ -1229,11 +1275,10 @@ export default function HomeScreen() {
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
-            const lastLessonIdKey = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
             const lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
-                const saved = await AsyncStorage.getItem(lessonProgressKey(lastId, studyTarget));
+                const saved = lessonEntries[lastId - 1]?.[1] ?? null;
                 snapLastLessonId = lastId;
                 if (saved) {
                     const p: string[] = JSON.parse(saved);
@@ -1253,11 +1298,13 @@ export default function HomeScreen() {
                 setLastLesson(null);
             }
             // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі, SRS — щоб не ловити вічний спінер.
-            const [freezeRaw, freeFreezeRaw, baseMulti] = await Promise.all([
-                AsyncStorage.getItem('streak_freeze'),
-                AsyncStorage.getItem('premium_free_freeze_used'),
+            const [freezeStoragePairs, baseMulti] = await Promise.all([
+                AsyncStorage.multiGet(['streak_freeze', 'premium_free_freeze_used']),
                 getCurrentMultiplier(),
             ]);
+            const freezeStorage = new Map(freezeStoragePairs);
+            const freezeRaw = freezeStorage.get('streak_freeze') ?? null;
+            const freeFreezeRaw = freezeStorage.get('premium_free_freeze_used') ?? null;
             const parsedFreeze = freezeRaw ? JSON.parse(freezeRaw) : null;
             const freezeIsActive = isStreakFreezeActiveToday(parsedFreeze);
             setFreezeActive(freezeIsActive);
@@ -1298,7 +1345,7 @@ export default function HomeScreen() {
                     const lvl = getXPProgress(xpNum).level;
                     return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
                 })();
-            const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bonusRaw, comebackRaw, pbRaw] = await Promise.all([
+            const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
                 loadTodayProgress(taskList, studyTarget),
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
@@ -1309,10 +1356,12 @@ export default function HomeScreen() {
                 getTrainerTotalDue(studyTarget).then(n => Array(n).fill(null)).catch(() => []),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
-                AsyncStorage.getItem('login_bonus_pending'),
-                AsyncStorage.getItem('comeback_pending'),
-                AsyncStorage.getItem('weekly_pb_v1'),
+                AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1']),
             ]);
+            const bannerStorage = new Map(bannerStoragePairs);
+            const bonusRaw = bannerStorage.get('login_bonus_pending') ?? null;
+            const comebackRaw = bannerStorage.get('comeback_pending') ?? null;
+            const pbRaw = bannerStorage.get('weekly_pb_v1') ?? null;
             const leagueState = leagueOpenResult?.state ?? null;
             // Если checkLeagueOnAppOpen упал/таймаутнул — читаем pending напрямую,
             // чтобы при следующем открытии (когда state уже сохранён) модалка всё равно вылезла.
@@ -1426,10 +1475,14 @@ export default function HomeScreen() {
             }
             // Premium celebration: pending выставлен в premium_modal (IAP) или cloud_sync (admin grant).
             const pending = await isCelebrationPending();
-            if (pending && mountedRef.current) {
+            if (pending && mountedRef.current && !celebrationQueuedRef.current) {
+                celebrationQueuedRef.current = true;
                 const marker = await getPendingCelebrationMarker();
+                // Marker запоминаем для показа, но pending НЕ гасим здесь: модалка идёт
+                // через OverlayArbiter и может быть отложена за нативной модалкой. Если
+                // погасить сейчас, а юзер уйдёт до показа — celebration пропадёт навсегда.
+                // consumeCelebration вызывается в onClose, когда юзер реально увидел и закрыл.
                 setCelebrationMarker(marker);
-                void consumeCelebration(marker);
                 // Не показываем одновременно с revive-модалкой — celebration важнее, revive отложится до закрытия.
                 if (!offer)
                     setCelebrationVisible(true);
@@ -1445,7 +1498,8 @@ export default function HomeScreen() {
                 if (vipCelebrationQueuedMarkerRef.current !== queueKey) {
                     vipCelebrationQueuedMarkerRef.current = queueKey;
                     setVipCelebrationMarker(marker);
-                    void consumeVipCelebration(marker);
+                    // pending НЕ гасим здесь — см. комментарий в premium-ветке выше.
+                    // consumeVipCelebration вызывается в onClose, после реального показа.
                     if (!offer && !pending)
                         setVipCelebrationVisible(true);
                     else {
@@ -3606,7 +3660,7 @@ export default function HomeScreen() {
               <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
-                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
+                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
                         <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20', borderWidth: 1, borderColor: titleColor + '55' }}>
                           <Ionicons name={item.current ? 'ribbon' : 'checkmark-circle'} size={20} color={titleColor}/>
                         </View>
@@ -3659,6 +3713,8 @@ export default function HomeScreen() {
             // Consume the exact event marker so the same admin grant does not re-open on next sync.
             const marker = celebrationMarker;
             setCelebrationMarker(null);
+            // Сброс гарда сессии: после закрытия новый grant (новый pending) снова сможет встать в очередь.
+            celebrationQueuedRef.current = false;
             void consumeCelebration(marker);
             void isVipCelebrationPending().then((pending) => {
                 if (!pending)

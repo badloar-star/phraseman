@@ -1,4 +1,4 @@
-# GUSTAV P1A Rollback Checkpoint
+﻿# GUSTAV P1A Rollback Checkpoint
 
 Run: `2026-05-19_fr_inventory_v0a1`
 
@@ -72,7 +72,7 @@ Safe rollback:
 - Rollback must not delete or modify any pre-existing user/app file.
 - Rollback must keep French generation artifacts absent.
 
-Manual review required when:
+LLM official-source review required when:
 - Any P1A packet file existed before apply.
 - Any file outside the four-file packet changed during P1A.
 - Any content, cloud, lesson, quiz, source graph or generated artifact was created.

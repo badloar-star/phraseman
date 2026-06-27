@@ -43,6 +43,7 @@ import {
   frenchFlashcardsGateCopy,
 } from './flashcards_target_gate';
 import BouncyScrollView from '../components/BouncyScrollView';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -370,9 +371,13 @@ export default function PackOpeningScreen() {
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
 
+  // Честный «назад»: возвращаемся на реальный предыдущий экран из стека
+  // (хаб наборов / paywall-источник), а не жёстко на главную. Хардкод replace на
+  // home раньше уводил из набора в неожиданное место и в паре с пустым packId давал
+  // тупик «Неизвестный набор» с кнопкой, замкнутой саму на себя.
   useEffect(() => {
     const onBackPress = () => {
-      router.replace('/(tabs)/home' as any);
+      safeRouterBack(router, '/flashcards' as any);
       return true;
     };
     const sub = BackHandler.addEventListener('hardwareBackPress', onBackPress);
@@ -486,6 +491,10 @@ export default function PackOpeningScreen() {
 
   const onGoToCards = useCallback(() => {
     void hapticTap();
+    // Церемония открытия — одноразовый экран: уходим через replace, чтобы «назад»
+    // из коллекции не возвращал на открытый набор. Помечаем переход как replace,
+    // иначе наш стек «назад» оставил бы pack_opening поверх коллекции.
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/flashcards_collection', params: { pack: packId } } as any);
   }, [router, packId]);
 
@@ -522,7 +531,7 @@ export default function PackOpeningScreen() {
             {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
           </Text>
           <Pressable
-            onPress={() => router.replace('/(tabs)/home' as any)}
+            onPress={() => safeRouterBack(router, '/flashcards' as any)}
             style={[styles.primaryBtn, { backgroundColor: accent }]}
           >
             <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
@@ -543,7 +552,7 @@ export default function PackOpeningScreen() {
 
       {/* Заголовок */}
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-        <Pressable onPress={() => router.replace('/flashcards')} hitSlop={12}>
+        <Pressable onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={12}>
           <Ionicons name="close" size={26} color={t.textMuted} />
         </Pressable>
         <View style={{ flex: 1, alignItems: 'center' }}>

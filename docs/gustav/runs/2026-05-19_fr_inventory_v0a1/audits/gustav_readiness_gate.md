@@ -4,7 +4,7 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Decision: `GO`
 
-Generated at: 2026-06-21T00:00:52.764Z
+Generated at: 2026-06-27T12:18:02.014Z
 
 ## Readiness
 

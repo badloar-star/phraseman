@@ -1,8 +1,11 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
 const COL = 'arena_hill_thrones';
 const FUNCTIONS_REGION = 'us-central1';
-const THRONE_POLL_MS = 5 * 60 * 1000;
+const THRONE_POLL_MS = 15 * 60 * 1000;
+const ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1';
+const ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000;
 
 export type ArenaHillThrone = {
   id: string;
@@ -140,6 +143,38 @@ export async function recordArenaHillAttempt(params: {
 // а сеть лишь обновляет в фоне. Валиден только в пределах текущего dayKey.
 let lastArenaHillTopCache: ArenaHillDailyTopResult | null = null;
 
+function normalizeDailyTop(raw: Partial<ArenaHillDailyTopResult> | null | undefined): ArenaHillDailyTopResult {
+  return {
+    dayKey: String(raw?.dayKey ?? arenaHillDayKey()),
+    rewardShards: Math.max(0, Math.trunc(Number(raw?.rewardShards) || 0)),
+    entries: Array.isArray(raw?.entries) ? raw.entries.slice(0, 1) : [],
+  };
+}
+
+async function readStoredArenaHillTopCache(now = Date.now()): Promise<ArenaHillDailyTopResult | null> {
+  try {
+    const raw = await AsyncStorage.getItem(ARENA_HILL_TOP_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { ts?: number; data?: Partial<ArenaHillDailyTopResult> };
+    if (!parsed?.data) return null;
+    const result = normalizeDailyTop(parsed.data);
+    if (result.dayKey !== arenaHillDayKey()) return null;
+    if (now - Number(parsed.ts ?? 0) > ARENA_HILL_TOP_CACHE_TTL_MS) return null;
+    lastArenaHillTopCache = result;
+    return result;
+  } catch {
+    return null;
+  }
+}
+
+async function writeStoredArenaHillTopCache(result: ArenaHillDailyTopResult): Promise<void> {
+  try {
+    await AsyncStorage.setItem(ARENA_HILL_TOP_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: result }));
+  } catch {
+    // Best-effort cache only.
+  }
+}
+
 /** Мгновенно отдать закэшированный «Трон дня», если он за сегодняшний день. */
 export function peekLastKnownArenaHillTop(): ArenaHillDailyTopResult | null {
   if (lastArenaHillTopCache && lastArenaHillTopCache.dayKey === arenaHillDayKey()) {
@@ -149,13 +184,15 @@ export function peekLastKnownArenaHillTop(): ArenaHillDailyTopResult | null {
 }
 
 export async function getTodayArenaHillTop(): Promise<ArenaHillDailyTopResult> {
+  const cached = lastArenaHillTopCache?.dayKey === arenaHillDayKey()
+    ? lastArenaHillTopCache
+    : await readStoredArenaHillTopCache();
+  if (cached) return cached;
+
   const fn = callable<Record<string, never>, ArenaHillDailyTopResult>('arenaHillGetDailyTop');
   const { data } = await fn({});
-  const result: ArenaHillDailyTopResult = {
-    dayKey: String(data?.dayKey ?? arenaHillDayKey()),
-    rewardShards: Math.max(0, Math.trunc(Number(data?.rewardShards) || 0)),
-    entries: Array.isArray(data?.entries) ? data.entries.slice(0, 1) : [],
-  };
+  const result = normalizeDailyTop(data);
   lastArenaHillTopCache = result;
+  void writeStoredArenaHillTopCache(result);
   return result;
 }

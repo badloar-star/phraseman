@@ -3,25 +3,36 @@ import path from 'path';
 
 const ROOT = path.resolve(__dirname, '..');
 
-describe('trainer_weak_spot smart trainer completion contract', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'trainer_smart_session.tsx'), 'utf8');
+function read(relativePath: string): string {
+  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+}
 
-  it('reads plan trainer params and filters the session by current plan instance', () => {
-    expect(source).toContain('planTrainerTask?: string');
-    expect(source).toContain("const planTrainerTaskId = params.planTrainerTask === '1' ? params.planTaskId : undefined");
-    expect(source).toContain('const planTrainerRequiredItems = Math.max(1, Math.min(12, parseInt(params.requiredItems ?? \'3\', 10) || 3))');
-    expect(source).toContain('getTrainerPremiumItemsForPlan(params.planInstanceId, mode, planTrainerRequiredItems)');
+describe('trainer_weak_spot plan trainer completion contract', () => {
+  const navigationSource = read('app/personal_plan_navigation.ts');
+  const planRouterSource = read('app/trainer_plan_session.tsx');
+  const helperSource = read('app/trainer_plan_task_route.ts');
+  const wordsSource = read('app/trainer_words_session.tsx');
+  const phrasesSource = read('app/trainer_phrases_session.tsx');
+  const arenaSource = read('app/trainer_arena_session.tsx');
+
+  it('routes plan trainer tasks through the live trainer-plan router, not legacy smart session', () => {
+    expect(navigationSource).toContain("pathname: '/trainer_plan_session'");
+    expect(planRouterSource).toContain('getTrainerPremiumItemsForPlan(');
+    expect(planRouterSource).toContain("if (queue === 'words') return '/trainer_words_session'");
+    expect(planRouterSource).toContain("if (queue === 'arena') return '/trainer_arena_session'");
+    expect(planRouterSource).toContain("return '/trainer_phrases_session'");
   });
 
-  it('marks the plan trainer task complete only after the trainer session is done', () => {
-    const doneIndex = source.indexOf('if (!done || !planTrainerTaskId || planTrainerCompletionTracked.current) return;');
-    const markIndex = source.indexOf('markPersonalPlanTaskCompleted({');
+  it('keeps plan trainer params and marks completion from live session screens', () => {
+    expect(helperSource).toContain('planTrainerTask?: string | string[]');
+    expect(helperSource).toContain("routeParamString(params.planTrainerTask) === '1'");
+    expect(helperSource).toContain('markPersonalPlanTaskCompleted({');
 
-    expect(doneIndex).toBeGreaterThan(0);
-    expect(markIndex).toBeGreaterThan(doneIndex);
-    expect(source).toContain('planTrainerCompletionTracked.current = true');
-    expect(source).toContain('taskId: planTrainerTaskId');
-    expect(source).toContain('planInstanceId: params.planInstanceId');
-    expect(source).toContain('dayIndex: planTrainerDayIndex');
+    for (const source of [wordsSource, phrasesSource, arenaSource]) {
+      expect(source).toContain('readTrainerPlanTaskContext({');
+      expect(source).toContain('getTrainerPremiumItemsForPlanQueue(');
+      expect(source).toContain('planTrainerCompletionTracked.current = true');
+      expect(source).toContain('markTrainerPlanTaskCompleted(planTrainerContext)');
+    }
   });
 });

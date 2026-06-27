@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Dimensions, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View, type KeyboardEvent } from 'react-native';
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
@@ -38,8 +38,6 @@ import {
   createOptimisticLeagueChatMessage,
   getLeagueChatConnectionUi,
   getLeagueChatKeyboardAvoidingBehavior,
-  getLeagueChatKeyboardOverlapInset,
-  getLeagueChatKeyboardTopY,
   isOptimisticLeagueChatMessage,
   mergeLeagueChatOptimisticMessages,
   type OptimisticLeagueChatMessage,
@@ -136,10 +134,7 @@ function LeagueChatPanel({
   const [reportReason, setReportReason] = useState(REPORT_REASONS[0].id);
   const [reportDetails, setReportDetails] = useState('');
   const [reportSubmitting, setReportSubmitting] = useState(false);
-  const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
-  const panelRef = useRef<View | null>(null);
   const scrollRef = useRef<ScrollView | null>(null);
-  const keyboardMeasureTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const hideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const forbiddenRoomKeyRef = useRef('');
   const optimisticMessageSeqRef = useRef(0);
@@ -156,62 +151,9 @@ function LeagueChatPanel({
     }).catch(() => {});
   }, []);
 
-  const clearKeyboardMeasureTimers = useCallback(() => {
-    keyboardMeasureTimersRef.current.forEach((timer) => clearTimeout(timer));
-    keyboardMeasureTimersRef.current = [];
-  }, []);
-
-  const measureKeyboardInset = useCallback((keyboardTopY: number) => {
-    requestAnimationFrame(() => {
-      panelRef.current?.measureInWindow((_x, y, _width, height) => {
-        const panelBottomY = y + height;
-        setKeyboardBottomInset(getLeagueChatKeyboardOverlapInset(panelBottomY, keyboardTopY));
-        scrollToLatestMessage();
-      });
-    });
-  }, [scrollToLatestMessage]);
-
-  const scheduleKeyboardInsetMeasure = useCallback((event?: KeyboardEvent | null) => {
-    const resolveKeyboardTopY = () => getLeagueChatKeyboardTopY(
-      event?.endCoordinates ?? Keyboard.metrics(),
-      Dimensions.get('screen').height,
-    );
-    clearKeyboardMeasureTimers();
-    [0, 60, 180, 320].forEach((delay) => {
-      if (delay === 0) {
-        measureKeyboardInset(resolveKeyboardTopY());
-        return;
-      }
-      const timer = setTimeout(() => measureKeyboardInset(resolveKeyboardTopY()), delay);
-      keyboardMeasureTimersRef.current.push(timer);
-    });
-  }, [clearKeyboardMeasureTimers, measureKeyboardInset]);
-
   const handleComposerFocus = useCallback(() => {
-    scheduleKeyboardInsetMeasure(null);
-  }, [scheduleKeyboardInsetMeasure]);
-
-  useEffect(() => {
-    const showSub = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillChangeFrame' : 'keyboardDidShow',
-      (event) => {
-        scheduleKeyboardInsetMeasure(event);
-      },
-    );
-    const hideSub = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
-      () => {
-        clearKeyboardMeasureTimers();
-        setKeyboardBottomInset(0);
-        scrollToLatestMessage();
-      },
-    );
-    return () => {
-      clearKeyboardMeasureTimers();
-      showSub.remove();
-      hideSub.remove();
-    };
-  }, [clearKeyboardMeasureTimers, scheduleKeyboardInsetMeasure, scrollToLatestMessage]);
+    setTimeout(scrollToLatestMessage, 80);
+  }, [scrollToLatestMessage]);
 
   useEffect(() => {
     let cancelled = false;
@@ -299,7 +241,7 @@ function LeagueChatPanel({
     draft,
     draftBlocked,
   });
-  const composerBottomPadding = keyboardBottomInset > 0 ? 8 : Math.max(14, insets.bottom + 10);
+  const composerBottomPadding = Math.max(14, insets.bottom + 10);
 
   useEffect(() => {
     if (!room) {
@@ -360,7 +302,7 @@ function LeagueChatPanel({
   useEffect(() => {
     const hasPending = Object.keys(pendingHideUntilByUid).length > 0;
     if (!hasPending) return;
-    const id = setInterval(() => setHideTimerNow(Date.now()), 250);
+    const id = setInterval(() => setHideTimerNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, [pendingHideUntilByUid]);
 
@@ -810,12 +752,9 @@ function LeagueChatPanel({
     </Modal>
     <View style={{ flex: 1 }}>
       <View
-        ref={panelRef}
-        collapsable={false}
         testID="league-chat-panel"
         style={{
           flex: 1,
-          paddingBottom: keyboardBottomInset,
         }}
       >
         <ScrollView
@@ -823,6 +762,7 @@ function LeagueChatPanel({
           style={{ flex: 1 }}
           nestedScrollEnabled
           keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           contentContainerStyle={{
             flexGrow: 1,
             justifyContent: visibleMessages.length === 0 ? 'center' : 'flex-start',

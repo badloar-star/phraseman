@@ -1874,7 +1874,6 @@ export default function FlashcardsScreen() {
         <View ref={listViewportRef} collapsable={false} style={{ flex: 1 }} onLayout={(e) => setScrollViewH(e.nativeEvent.layout.height)}>
         <FlashList
           ref={flatListRef as any}
-          estimatedItemSize={200}
           style={{ flex: 1 }}
           data={filteredCards}
           keyExtractor={(item) => item.id}
@@ -1956,21 +1955,6 @@ export default function FlashcardsScreen() {
             detailsEscortProgrammaticRef.current = false;
             detailsEscortIgnoreScrollUntilRef.current = 0;
             detailsEscortUserDragRef.current = true;
-          }}
-          onScrollToIndexFailed={({ index, averageItemLength }) => {
-            const list = flatListRef.current;
-            if (!list || averageItemLength == null || averageItemLength <= 0) return;
-            const maxIdx = Math.max(0, filteredCards.length - 1);
-            const safe = Math.min(Math.max(0, index), maxIdx);
-            const offset = Math.max(0, safe * averageItemLength - 24);
-            (list as any).scrollToOffset({ offset, animated: true });
-            setTimeout(() => {
-              try {
-                (list as any).scrollToIndex({ index: safe, viewPosition: 0.5, viewOffset: 0, animated: true });
-              } catch {
-                // ignore
-              }
-            }, 100);
           }}
           onScroll={(e) => {
             listScrollYRef.current = e.nativeEvent.contentOffset.y;

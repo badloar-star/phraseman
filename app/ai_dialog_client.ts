@@ -8,6 +8,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
+const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
+const premiumDialogTranslateInFlight = new Map<string, Promise<PremiumDialogTranslateResponse>>();
 
 export type DialogChatRole = 'user' | 'assistant';
 
@@ -191,14 +193,44 @@ export function getPremiumDialogErrorMessage(
   }
 }
 
+function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
+  return JSON.stringify({
+    mode: req.mode,
+    userText: req.userText,
+    cefr: req.cefr,
+    history: req.history,
+    role: req.role,
+    setting: req.setting,
+    goalEn: req.goalEn,
+    persona: req.persona,
+    scenarioId: req.scenarioId,
+    interfaceLang: req.interfaceLang,
+    memory: req.memory,
+    isPremium: req.isPremium,
+    objectives: req.objectives,
+    temperament: req.temperament,
+  });
+}
+
 export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<PremiumDialogRequest, PremiumDialogResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'premiumDialogSend',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = premiumDialogSendRequestKey(req);
+  const existing = premiumDialogSendInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<PremiumDialogRequest, PremiumDialogResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'premiumDialogSend',
+    );
+    const res = await fn(req);
+    return res.data;
+  })().finally(() => {
+    premiumDialogSendInFlight.delete(key);
+  });
+
+  premiumDialogSendInFlight.set(key, request);
+  return request;
 }
 
 /** Запрос на перевод одной реплики собеседника на язык интерфейса. */
@@ -217,6 +249,14 @@ export interface PremiumDialogTranslateResponse {
   cached?: boolean;
 }
 
+function premiumDialogTranslateRequestKey(req: PremiumDialogTranslateRequest): string {
+  return JSON.stringify({
+    text: req.text,
+    targetLang: req.targetLang,
+    scenarioId: req.scenarioId,
+  });
+}
+
 /**
  * Переводит реплику собеседника на язык интерфейса (ленивый перевод по нажатию
  * кнопки «Показать перевод»). Лимит «3 на диалог» держит вызывающий экран —
@@ -225,11 +265,22 @@ export interface PremiumDialogTranslateResponse {
 export async function callPremiumDialogTranslate(
   req: PremiumDialogTranslateRequest,
 ): Promise<PremiumDialogTranslateResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<PremiumDialogTranslateRequest, PremiumDialogTranslateResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'premiumDialogTranslate',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = premiumDialogTranslateRequestKey(req);
+  const existing = premiumDialogTranslateInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<PremiumDialogTranslateRequest, PremiumDialogTranslateResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'premiumDialogTranslate',
+    );
+    const res = await fn(req);
+    return res.data;
+  })().finally(() => {
+    premiumDialogTranslateInFlight.delete(key);
+  });
+
+  premiumDialogTranslateInFlight.set(key, request);
+  return request;
 }

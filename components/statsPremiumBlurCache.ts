@@ -1,4 +1,4 @@
-export type StatsPremiumBlurPresentation = 'live-blur' | 'cached-image';
+export type StatsPremiumBlurPresentation = 'flat-veil';
 
 export function selectStatsPremiumBlurPresentation({
   cachedUri,
@@ -9,5 +9,8 @@ export function selectStatsPremiumBlurPresentation({
   width: number;
   height: number;
 }): StatsPremiumBlurPresentation {
-  return cachedUri && width > 0 && height > 0 ? 'cached-image' : 'live-blur';
+  void cachedUri;
+  void width;
+  void height;
+  return 'flat-veil';
 }

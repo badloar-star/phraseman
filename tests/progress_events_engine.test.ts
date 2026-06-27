@@ -241,6 +241,48 @@ describe('progress_events engine', () => {
     expect(patch['level_exams_v2::fr::level_exam_A1_passed']).toBe('true');
   });
 
+  it('uses fresh client streak evidence to repair stale server streak state', () => {
+    const result = applyProgressEvent({
+      user_total_xp: '1000',
+      streak_count: '3',
+      last_active_date: '2026-06-23',
+    }, {
+      eventId: 'lesson:answer:streak-repair',
+      type: 'lesson_answer',
+      clientLocalDate: '2026-06-24',
+      payload: {
+        xpDelta: 10,
+        clientStreakCount: '60',
+        clientLastActiveDate: '2026-06-23',
+      },
+    }, new Date('2026-06-24T09:00:00.000Z'));
+
+    expect(result.streakCount).toBe(61);
+    expect(result.progressPatch.streak_count).toBe('61');
+    expect(result.progressPatch.last_active_date).toBe('2026-06-24');
+  });
+
+  it('ignores stale client streak evidence after a real missed-day break', () => {
+    const result = applyProgressEvent({
+      user_total_xp: '1000',
+      streak_count: '3',
+      last_active_date: '2026-06-23',
+    }, {
+      eventId: 'lesson:answer:streak-break',
+      type: 'lesson_answer',
+      clientLocalDate: '2026-06-26',
+      payload: {
+        xpDelta: 10,
+        clientStreakCount: '60',
+        clientLastActiveDate: '2026-06-23',
+      },
+    }, new Date('2026-06-26T09:00:00.000Z'));
+
+    expect(result.streakCount).toBe(1);
+    expect(result.progressPatch.streak_count).toBe('1');
+    expect(result.progressPatch.last_active_date).toBe('2026-06-26');
+  });
+
   it('migrates lesson counters and exam fields with monotonic conflict resolution', () => {
     const patch = buildMigrationPatch({
       lesson8_pass_count: '3',

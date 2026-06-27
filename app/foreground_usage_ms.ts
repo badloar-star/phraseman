@@ -4,9 +4,9 @@ import { AppState, type AppStateStatus } from 'react-native';
 const STORAGE_KEY = 'phraseman_foreground_usage_ms_v1';
 /** UTC-календарный день → миллисекунды только в foreground (активное окно). */
 const DAILY_STORAGE_KEY = 'phraseman_foreground_daily_ms_v1';
-const FLUSH_INTERVAL_MS = 60_000;
+const FLUSH_INTERVAL_MS = 5 * 60_000;
 /** Не начислять больше за один интервал (защита от скачков часов). */
-const MAX_CHUNK_MS = 65_000;
+const MAX_CHUNK_MS = FLUSH_INTERVAL_MS + 5_000;
 const MAX_DAILY_KEYS = 500;
 
 let activeSince: number | null = null;

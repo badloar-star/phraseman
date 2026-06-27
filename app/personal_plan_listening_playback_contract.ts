@@ -24,7 +24,7 @@ export type PlanListeningPlaybackSource =
       audioMode: {
         playsInSilentMode: true;
         shouldPlayInBackground: false;
-        interruptionMode: 'mixWithOthers';
+        interruptionMode: 'duckOthers';
       };
       issues: [];
     }
@@ -73,7 +73,7 @@ export function buildPlanListeningPlaybackSource(
     audioMode: {
       playsInSilentMode: true,
       shouldPlayInBackground: false,
-      interruptionMode: 'mixWithOthers',
+      interruptionMode: 'duckOthers',
     },
     issues: [],
   };

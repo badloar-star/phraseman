@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MAX_CHOICE_DISTRACTORS = void 0;
+exports.MAX_CHOICE_EXPLANATION_CHARS = exports.MAX_CHOICE_DISTRACTORS = void 0;
 exports.validateChoiceInput = validateChoiceInput;
 exports.parseChoiceBatch = parseChoiceBatch;
 /**
@@ -11,6 +11,8 @@ exports.parseChoiceBatch = parseChoiceBatch;
 const explain_gates_1 = require("./explain_gates");
 /** Max number of distractors we will explain in one batch (matches the exercise option cap). */
 exports.MAX_CHOICE_DISTRACTORS = 8;
+/** UI-sized hard cap for one generated choice line; prompts ask for 150 chars, parser enforces headroom. */
+exports.MAX_CHOICE_EXPLANATION_CHARS = 180;
 function asString(value) {
     return typeof value === 'string' ? value : '';
 }
@@ -47,7 +49,20 @@ function validateChoiceInput(input) {
     return { ok: true, distractors: cleaned };
 }
 function clampLine(text) {
-    return asString(text).replace(/\s+/g, ' ').trim().slice(0, 400);
+    const clean = asString(text).replace(/\s+/g, ' ').trim();
+    if (clean.length <= exports.MAX_CHOICE_EXPLANATION_CHARS)
+        return clean;
+    const clipped = clean.slice(0, exports.MAX_CHOICE_EXPLANATION_CHARS);
+    const sentenceEnd = Math.max(clipped.lastIndexOf('. '), clipped.lastIndexOf('! '), clipped.lastIndexOf('? '), clipped.lastIndexOf('… '));
+    const wordEnd = clipped.lastIndexOf(' ');
+    const boundary = sentenceEnd >= 40 ? sentenceEnd + 1 : (wordEnd >= 40 ? wordEnd : exports.MAX_CHOICE_EXPLANATION_CHARS - 1);
+    const base = clipped
+        .slice(0, boundary)
+        .replace(/[\s,;:–-]+$/u, '')
+        .trim();
+    if (/[.!?…]["»”')\]]*$/u.test(base))
+        return base;
+    return `${base.slice(0, exports.MAX_CHOICE_EXPLANATION_CHARS - 1).trim()}…`;
 }
 /**
  * Parse the model's STRICT-JSON batch reply into { confirm, distractors }.

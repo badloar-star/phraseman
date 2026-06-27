@@ -12,8 +12,19 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withExplainCallableTimeout } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
+const explainQuizInFlight = new Map<string, Promise<ExplainQuizResponse>>();
+
+function explainQuizRequestKey(req: ExplainQuizRequest): string {
+  return JSON.stringify({
+    correctEn: req.correctEn,
+    questionPrompt: req.questionPrompt,
+    wrongOptions: req.wrongOptions,
+    lang: req.lang,
+  });
+}
 
 export interface ExplainQuizRequest {
   /** Правильный английский вариант (как показан пользователю). */
@@ -49,11 +60,22 @@ export interface ExplainQuizResponse {
  * вопрос, видит готовый текст мгновенно ($0).
  */
 export async function callExplainQuiz(req: ExplainQuizRequest): Promise<ExplainQuizResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<ExplainQuizRequest, ExplainQuizResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'explainQuiz',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = explainQuizRequestKey(req);
+  const existing = explainQuizInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<ExplainQuizRequest, ExplainQuizResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'explainQuiz',
+    );
+    const res = await withExplainCallableTimeout(fn(req), 'explainQuiz');
+    return res.data;
+  })().finally(() => {
+    explainQuizInFlight.delete(key);
+  });
+
+  explainQuizInFlight.set(key, request);
+  return request;
 }

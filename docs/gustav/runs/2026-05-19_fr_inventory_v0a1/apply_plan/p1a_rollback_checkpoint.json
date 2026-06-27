@@ -80,7 +80,7 @@
       "Rollback must not delete or modify any pre-existing user/app file.",
       "Rollback must keep French generation artifacts absent."
     ],
-    "manualReviewRequiredWhen": [
+    "llmOfficialSourceReviewRequiredWhen": [
       "Any P1A packet file existed before apply.",
       "Any file outside the four-file packet changed during P1A.",
       "Any content, cloud, lesson, quiz, source graph or generated artifact was created."

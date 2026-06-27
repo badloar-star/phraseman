@@ -661,6 +661,7 @@ export const LESSON_25_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson25_phrase_32',
     english: 'We were not discussing the problem',
+    alternatives: ['We were not discussing this problem'],
     russian: 'Мы не обсуждали эту проблему',
     ukrainian: 'Ми не обговорювали цю проблему',
     spanish: 'No estábamos discutiendo el problema',

@@ -8,9 +8,10 @@ describe('home title picker source contract', () => {
 
   it('persists the selected earned title and uses it as the current displayed title', () => {
     expect(source).toContain("const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1'");
-    expect(source).toContain('AsyncStorage.getItem(HOME_SELECTED_TITLE_KEY)');
+    expect(source).toContain('const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null');
     expect(source).toContain('AsyncStorage.setItem(HOME_SELECTED_TITLE_KEY, item.key)');
-    expect(source).toContain('currentHomeTitle?.titleEN ?? getTitleString(level, lang)');
+    expect(source).toContain('const currentTitleKey = selectedTitleRow?.key ?? fallbackTitleKey;');
+    expect(source).toContain('current: title.key === currentTitleKey');
   });
 
   it('keeps the title list scrollable and makes unlocked rows selectable', () => {

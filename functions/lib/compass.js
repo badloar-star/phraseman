@@ -114,9 +114,9 @@ exports.compassGenerate = (0, https_1.onCall)({
     if (!jobCfg.enabled)
         return empty('exhausted', false);
     // 3) Бюджет (промах кэша). Юзер → глобал.
+    let budgetReservation = null;
     try {
-        await (0, explain_budget_1.enforceUserGenLimit)(authUid, stableUid);
-        await (0, explain_budget_1.enforceGlobalBudget)(jobCfg.globalDailyCap);
+        budgetReservation = await (0, explain_budget_1.reserveExplainBudget)(authUid, stableUid, jobCfg.globalDailyCap);
     }
     catch (err) {
         if (err instanceof https_1.HttpsError && err.code === 'resource-exhausted')
@@ -125,16 +125,27 @@ exports.compassGenerate = (0, https_1.onCall)({
     }
     // 4) Лок (анти-дубль).
     const claimed = await (0, compass_cache_1.claimCompassLock)(hash, Date.now());
-    if (!claimed)
+    if (!claimed) {
+        await (0, explain_budget_1.refundExplainBudgetReservation)(budgetReservation, 'lock_not_claimed');
+        budgetReservation = null;
         return empty('pending', true);
+    }
     // 5) Генерация одной фразы.
-    const gen = await (0, explain_provider_1.openAiChat)({
-        apiKey,
-        model: jobCfg.model,
-        messages: [{ role: 'user', content: (0, compass_prompts_1.buildCompassPrompt)({ dayType, topics, lang }) }],
-        maxTokens: GEN_MAX_TOKENS,
-        temperature: GEN_TEMPERATURE,
-    });
+    let gen;
+    try {
+        gen = await (0, explain_provider_1.openAiChat)({
+            apiKey,
+            model: jobCfg.model,
+            messages: [{ role: 'user', content: (0, compass_prompts_1.buildCompassPrompt)({ dayType, topics, lang }) }],
+            maxTokens: GEN_MAX_TOKENS,
+            temperature: GEN_TEMPERATURE,
+        });
+    }
+    catch (err) {
+        await (0, explain_budget_1.refundExplainBudgetReservation)(budgetReservation, 'provider_failed');
+        budgetReservation = null;
+        throw err;
+    }
     const comment = gen.text.trim();
     // 6) Лёгкая проверка (язык/связность/безопасность). Fail-closed.
     const verdict = comment

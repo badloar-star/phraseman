@@ -1014,7 +1014,7 @@ export const OBJECT_ORDER_GIVE_ME_IT_TRAINING: DiagnosisTraining = {
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=syntax&microDiagnosisId=object_order_give_me_it',
     problemCoachRoute: '/problem_coach?category=syntax&microDiagnosisId=object_order_give_me_it',
-    smartTrainerRoute: '/trainer_smart_session?mode=weak&source=diagnosis_training&category=syntax&microDiagnosisId=object_order_give_me_it',
+    smartTrainerRoute: '/problem_coach?category=syntax&microDiagnosisId=object_order_give_me_it',
     fallbackIfTrainingMissing: '/problem_coach?category=syntax',
   },
   qualityChecklist: {

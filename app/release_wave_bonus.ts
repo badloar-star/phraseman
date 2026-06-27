@@ -5,10 +5,9 @@ import firestore from '@react-native-firebase/firestore';
 import { RELEASE_WAVE_BONUS_SHARDS, RELEASE_WAVE_BONUS_VERSION, CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getAppReleaseBuildId } from './app_build_id';
 import { getCanonicalUserId } from './user_id_policy';
-import { withStorageLock } from './storage_mutex';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
-import { addShardsRaw, getShardsBalance } from './shards_system';
+import { addShardsRaw, getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 
@@ -242,6 +241,7 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
 
   const localBalance = await getShardsBalance();
   const db = firestore();
+  const updatedAtMs = Date.now();
 
   try {
     const newBalance = await db.runTransaction(async (transaction) => {
@@ -269,7 +269,12 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
         createdAt: firestore.FieldValue.serverTimestamp(),
       });
 
-      transaction.set(userRef, { shards: next }, { merge: true });
+      transaction.set(userRef, {
+        shards: next,
+        shards_updated_at_ms: updatedAtMs,
+        shards_updated_op: 'earn',
+        shards_updated_reason: 'release_wave_bonus',
+      }, { merge: true });
       return next;
     });
 
@@ -278,18 +283,17 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
       return false;
     }
 
-    const storageKey = 'shards_balance';
-    await withStorageLock(async () => {
-      await AsyncStorage.multiSet([
-        [storageKey, String(newBalance)],
-        [claimKey(wave), '1'],
-      ]);
+    await replaceShardsBalanceLocal(newBalance, {
+      updatedAtMs,
+      op: 'earn',
+      reason: 'release_wave_bonus',
     });
+    await AsyncStorage.setItem(claimKey(wave), '1');
 
-    await getShardsBalance();
-    await logReleaseWaveToShardLog(amount, newBalance);
+    const currentBalance = await getShardsBalance();
+    await logReleaseWaveToShardLog(amount, currentBalance);
     emitAppEvent('shards_earned', { amount, reasonKey: 'release_wave_bonus' });
-    emitAppEvent('shards_balance_updated', { balance: newBalance });
+    emitAppEvent('shards_balance_updated', { balance: currentBalance });
     return true;
   } catch (e) {
     DebugLogger.error('release_wave_bonus:claim tx', e, 'warning');

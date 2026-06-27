@@ -39,7 +39,7 @@ type ReviewBatch = {
   rowsWithValidQuiz: number;
   rowsNeedingReview: number;
   rowsBlocked: number;
-  reviewerStatus: 'ready_for_human_review';
+  reviewerStatus: 'ready_for_llm_official_source_review';
   activationStatus: 'blocked';
   reviewerDecisionRequired: true;
 };
@@ -155,7 +155,7 @@ function renderBatchesMarkdown(report: Report): string {
     lines.push(`- \`${batch.batchId}\`: lesson ${batch.lessonId}, rows ${batch.rowCount}, queue ${batch.queueStartIndex}-${batch.queueEndIndex}, ${batch.firstPhraseId}..${batch.lastPhraseId}`);
   }
   lines.push('', '## Safety', '');
-  lines.push('- These batches are navigation for human review only.');
+  lines.push('- These batches are navigation for LLM official-source review only.');
   lines.push('- They do not accept rows and do not approve app apply.');
   lines.push('');
   return lines.join('\n');
@@ -308,7 +308,7 @@ function main(): void {
       rowsWithValidQuiz: lessonRows.filter(hasValidQuiz).length,
       rowsNeedingReview: lessonRows.filter((row) => row.currentReviewerStatus === 'needs_review').length,
       rowsBlocked: lessonRows.filter((row) => row.currentActivationStatus === 'blocked').length,
-      reviewerStatus: 'ready_for_human_review',
+      reviewerStatus: 'ready_for_llm_official_source_review',
       activationStatus: 'blocked',
       reviewerDecisionRequired: true,
     });

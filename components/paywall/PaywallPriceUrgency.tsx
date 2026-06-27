@@ -12,7 +12,7 @@
 //  • grace (77ч прошли, remainingMs>0): «цену сохранили, ещё ~2 недели».
 // Нет реальной цены или futurePrice=null → блок не рендерится.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -40,20 +40,27 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
   const { tc, textPrimary, textMuted, cardBorder } = chrome;
   const [timer, setTimer] = useState(urgency.remainingFormatted || formatCountdown(urgency.remainingMs));
 
-  // Живой тик раз в секунду только пока окно активно.
-  const activeRef = useRef(urgency.isActive);
-  activeRef.current = urgency.isActive;
+  // Живой тик раз в секунду считает время локально; storage проверяем только при истечении окна.
   useEffect(() => {
     if (!urgency.isActive) return;
     let dead = false;
-    const iv = setInterval(async () => {
-      const s = await getUrgencyState();
-      if (dead) return;
-      setTimer(s.remainingFormatted);
-      if (!s.isActive) clearInterval(iv);
+    const endsAt = Date.now() + Math.max(0, urgency.remainingMs);
+    const updateFromClock = () => {
+      const remainingMs = Math.max(0, endsAt - Date.now());
+      setTimer(formatCountdown(remainingMs));
+      return remainingMs > 0;
+    };
+
+    updateFromClock();
+    const iv = setInterval(() => {
+      if (updateFromClock()) return;
+      clearInterval(iv);
+      void getUrgencyState().then((s) => {
+        if (!dead) setTimer(s.remainingFormatted);
+      });
     }, 1000);
     return () => { dead = true; clearInterval(iv); };
-  }, [urgency.isActive]);
+  }, [urgency.isActive, urgency.remainingMs]);
 
   // Нет реальной цены — ничего не показываем (без «NaN»/выдуманных значений).
   if (!currentPrice || !futurePrice) return null;

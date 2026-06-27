@@ -867,7 +867,7 @@ export const MODIFIER_VERY_REALLY_QUITE_TRAINING: DiagnosisTraining = {
     webPath: '/problem-coach/modifier/very-really-quite',
     deepLink: 'phraseman://problem-coach/modifier/very-really-quite',
     diagnosisTrainerRoute: '/problem_coach?category=modifier&microDiagnosisId=modifier_very_really_quite',
-    smartTrainerRoute: '/smart_trainer?source=diagnosis_training&microDiagnosisId=modifier_very_really_quite',
+    smartTrainerRoute: '/problem_coach?category=modifier&microDiagnosisId=modifier_very_really_quite',
   },
   qualityChecklist: {
     hasContrastiveMinimalPairs: true,

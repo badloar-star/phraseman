@@ -43,6 +43,7 @@ import CompassBevel from '../components/CompassBevel';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
+import { safeRouterBack } from './navigation_back';
 import {
   getWarmShardsPackagesMap,
   isCompleteShardsPackageMap,
@@ -527,6 +528,7 @@ export default function ShardsShopScreen() {
   /** Баланс при первом зчитуванні після відкриття з цим `need` — щоб показати залишок після покупки. */
   const shopEntryBalanceRef = useRef<number | null>(null);
   type ShopTab = 'catalog' | 'paid';
+  const firestoreOpenTabsRef = useRef<Set<ShopTab>>(new Set());
   const [shopTab, setShopTab] = useState<ShopTab>(() =>
     params.tab === 'paid' || params.tab === 'cards' ? 'paid' : 'catalog',
   );
@@ -551,7 +553,10 @@ export default function ShardsShopScreen() {
   useFocusEffect(
     useCallback(() => {
       const onBackPress = () => {
-        router.replace('/(tabs)/home' as any);
+        // Честный «назад»: магазин осколков открывается из 8+ мест (аватар, друзья,
+        // серия, задания, набор-paywall, профиль-карточка, тап по балансу). Хардкод
+        // replace на home возвращал в неожиданное место мимо точки входа.
+        safeRouterBack(router, '/(tabs)/home' as any);
         return true;
       };
       const sub = BackHandler.addEventListener('hardwareBackPress', onBackPress);
@@ -682,11 +687,13 @@ export default function ShardsShopScreen() {
   useFocusEffect(
     useCallback(() => {
       void trackShardsShopOpen().catch(() => {});
+      const shouldWriteOpenToFirestore = !firestoreOpenTabsRef.current.has(shopTab);
+      if (shouldWriteOpenToFirestore) firestoreOpenTabsRef.current.add(shopTab);
       void trackActivity('shards_shop:open', {
         feature: 'revenue',
         screen: 'shards_shop',
         result: 'info',
-        writeToFirestore: true,
+        writeToFirestore: shouldWriteOpenToFirestore,
         tags: { tab: shopTab },
       }).catch(() => {});
       void refreshPackTrial();
@@ -1228,7 +1235,7 @@ export default function ShardsShopScreen() {
               paddingBottom: 12,
             }}
           >
-            <PressableScale onPress={() => router.replace('/(tabs)/home' as any)} scaleTo={0.92} withHaptic>
+            <PressableScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} scaleTo={0.92} withHaptic>
               <View
                 style={{
                   width: 46,

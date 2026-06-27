@@ -6,6 +6,55 @@ Purpose: define how PhraseMan must think about a language the user learns, separ
 
 This document is a design contract only. It does not authorize app code changes.
 
+This contract must be read together with:
+
+- `docs/specs/2026-06-26-bootstrap-course-pack-master-audit.md`;
+- `docs/specs/2026-06-26-language-pack-retrofit-plan.md`.
+
+Continuation rule:
+
+Every architecture pass must improve the target-language contract with more
+verified coverage than the previous pass: more mapped surfaces, more explicit
+source/target boundaries, more loader/storage/cloud/admin risks classified,
+more focused tests/checks, or more blockers resolved. Each pass must end with a
+`Next Pass Plan`. If the architecture cannot safely expand, the pass must record
+blocker evidence and the smallest-safe unblock plan instead of repeating the
+same verdict.
+
+## 2026-06-27 Course-Pack Gate Snapshot
+
+The current plan-content server copy is staging/shadow only. It has passed
+remote verification, server-shadow dual-read, disabled manifest/runtime/cache,
+offline, rollback, storage/cloud isolation and reviewer/locale intake safety
+reports, but production activation is still `HOLD`.
+
+Current activation-readiness state:
+
+- completed gates: `11`;
+- blocked gates: `3`;
+- remaining blockers: reviewer approval `0/546`, locale gates `0/546`, and
+  product-owner activation approval;
+- `COURSE_PACK_REMOTE_LOADING_ENABLED=false`;
+- `activationApproved=false`;
+- bundled `plan_content_*` payloads remain in the app.
+
+Gustav must not infer reviewer approval, locale-gate pass, target-pack
+readiness or app activation from generated rows, parity success, server upload
+success or dual-read success. The report-only explicit reviewer/locale approval
+packet now exists at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-packet.json`
+with `546` queued rows, reviewer approved rows `0/546`, locale passed rows
+`0/546` and filled artifact validation `missing`. The explicit approval intake
+dry-run exists at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-intake-dry-run.json`
+and is `HOLD` only because no external filled artifact exists. The next approved
+process step is based on the reviewer/locale decision work-order at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-decision-work-order-batches.json`.
+That work-order is `PASS`/`READY_FOR_REVIEW` with `546` rows and `22` batches,
+but reviewer approved rows and locale passed rows remain `0/546`. The next
+pipeline step must validate externally filled batches; it must not generate
+approvals, fake evidence ids or clear activation by itself.
+
 ## 1. Current reality in PhraseMan
 
 PhraseMan currently has two different concepts that must not be merged:
@@ -149,6 +198,65 @@ Hard rule:
 
 Content for one `studyTarget` cannot be loaded by another target unless it is explicitly marked as shared metadata.
 
+## 5.1 Downloadable Target Pack Contract
+
+Future production target languages must be represented as downloadable pack
+candidates before they can become app-active content.
+
+Minimum pack identity:
+
+```ts
+type TargetPackManifest = {
+  packId: string;
+  studyTarget: StudyTargetId;
+  sourceLocales: SourceLocaleId[];
+  schemaVersion: string;
+  contentVersion: string;
+  minAppVersion: string;
+  sourceGraphHash: string;
+  researchPackHash: string;
+  pedagogyBlueprintVersion: string;
+  domainRegistryVersion: string;
+  byteSize: number;
+  sha256: string;
+  createdAt: string;
+  activationApproved: false | {
+    approvedAt: string;
+    approvalRef: string;
+  };
+};
+```
+
+Minimum generated-row metadata:
+
+```ts
+type TargetPackRowMetadata = {
+  studyTarget: StudyTargetId;
+  sourceLocaleCoverage: SourceLocaleId[];
+  researchEvidenceIds: string[];
+  pedagogyBlueprintId: string;
+  grammarClusterId: string;
+  transformationType:
+    | 'adapted_expression'
+    | 'grammar_rebuild'
+    | 'quiz_rebuild'
+    | 'example_rewrite'
+    | 'direct_equivalent';
+  antiCalqueDecision: 'pass' | 'hold' | 'block';
+  reviewerStatus: 'unreviewed' | 'needs_fix' | 'approved' | 'blocked';
+  activationApproved: false;
+};
+```
+
+Hard rules:
+
+- rows without the required metadata are `HOLD`;
+- direct translation is not the default strategy;
+- `direct_equivalent` requires evidence and anti-calque pass;
+- pack activation is separate from generation and reviewer preparation;
+- a target pack cannot be app-active until storage/cloud, AI, admin and runtime
+  loader gates pass.
+
 ## 6. Loader contract
 
 Future loaders should be target-aware:
@@ -183,6 +291,16 @@ type TargetContentResult<T> = {
 Hard rule:
 
 A loader must receive both `studyTarget` and `sourceLocale`. If one is missing, it must fail closed.
+
+For downloadable packs, loaders must also receive or resolve:
+
+- pack manifest id;
+- schema/content version;
+- hash-verified cache status;
+- explicit missing/downloading/ready/corrupt/stale/offline-fallback state.
+
+Missing target/source context must never silently fall back to English, Russian,
+Ukrainian or any other language.
 
 ## 7. Progress and storage boundary
 

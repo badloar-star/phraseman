@@ -79,9 +79,9 @@ function resolvePromptLangKey(lang) {
  *  History: 75→140 (2026-06-10) when the goal was a word-by-word walk-through. 2026-06-20: the
  *  word-by-word walk-through WAS the filler — re-aimed to teach the ONE most-confusable distinction
  *  of the phrase (e.g. "it" vs "that") with a minimal pair. There is NO minimum any more: a single
- *  clean contrast is often well under 90 words, and the old 90-word floor forced padding. Keep only
- *  an upper bound so a rare two-part nuance is not cut mid-pair. */
-const MAX_WORDS = 110;
+ *  clean contrast is often well under 60 words, and the old 90-word floor forced padding. Keep only
+ *  a tight upper bound so the model writes a human micro-explanation, not a mini textbook. */
+const MAX_WORDS = 55;
 /** Resolve a raw client lang to its prompt-language entry, falling back to RU. */
 function resolvePromptLang(lang) {
     return exports.PROMPT_LANGUAGES[resolvePromptLangKey(lang)];
@@ -109,8 +109,8 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
         ``,
         `SILENTLY pick the single teachable spot (do not write this part). It is usually a word easily swapped for a close cousin that is wrong here — "it"/"that", "this"/"that", "make"/"do", "say"/"tell", "since"/"for", "much"/"many", "few"/"little", "a"/"the", "in"/"on"/"at", "borrow"/"lend", "bring"/"take" — or a small word/form beginners drop or get wrong (the missing "am" in "I'm", "he doesn't" not "he don't", why "sounds" not "sound", the little "to"/"do"/"it"). Commit to the ONE highest-value spot.`,
         ``,
-        `CONTRAST BANK — when the phrase contains one of these, teach THIS exact governing line (in plain words, never the grammar label), then show it with a tiny real pair:`,
-        `- "it" = the thing already in focus, close, in hand, known. "that" = something set apart — further off, or a whole idea just mentioned. (Pair: "I love it" = the thing right here; "I love that you came" = the whole idea.)`,
+        `CONTRAST BANK — when the phrase contains one of these, teach THIS exact governing line (in plain words, never the grammar label). Add one tiny pair only if it makes the answer clearer, not longer:`,
+        `- "it" = the thing already in focus, already in our little scene. "that" = something set apart, pointed at as a whole idea. Do NOT explain "it"/"that" as near/far; save near/far for "this"/"that".`,
         `- "this" = near / right now. "that" = farther off / back then.`,
         `- "make" = you bring a thing or result into being ("make a cake"). "do" = you carry out an activity or task ("do the dishes"). A few set pairings just have to be remembered ("make your bed", "do a favour").`,
         `- "say" needs no listener named ("say it again"); "tell" is always followed by the person who hears it ("tell me"). Plain words: "tell" needs a person, "say" does not.`,
@@ -121,16 +121,16 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
         `- "borrow" = you TAKE it from someone (comes toward you). "lend" = you GIVE it to someone (goes from you).`,
         `- "bring" = movement TOWARD the speaker. "take" = movement AWAY from the speaker.`,
         `- missing "am": "I'm" is the short way to say "I am" — the "am" is hidden inside "I'm", so "I'm ready" already contains it; "I ready" is missing it.`,
-        `If the phrase's trap is NOT in this bank, teach a contrast ONLY if you are certain it is standard, textbook-true English; if you have ANY doubt, fall back to the NO-TRAP line instead of inventing a contrast. When you do teach one: name the right word, name the wrong cousin, show a tiny pair.`,
+        `If the phrase's trap is NOT in this bank, teach a contrast ONLY if you are certain it is standard, textbook-true English; if you have ANY doubt, fall back to the NO-TRAP line instead of inventing a contrast. When you do teach one: name the right word and the near-miss cousin; use a tiny pair only when it is the shortest route to clarity.`,
         `If the phrase has two equally tricky spots, you may name the second in one short clause, but still spend almost all your words on the first.`,
         ``,
         `NO-TRAP CASE: if the phrase honestly has no confusable cousin and no commonly-dropped word (e.g. "Thank you very much", "My name is Anna"), say so plainly in one honest line and BRIEFLY teach the single real thing to notice — that these words go together in this order as a fixed, friendly set phrase. Never invent a rule just to have something to say.`,
         ``,
-        `SHAPE — 2–4 tiny paragraphs separated by ONE empty line (never labels, lists, or numbers):`,
-        `- One warm sentence pointing gently at the tricky spot.`,
-        `- The heart (almost all your words go here): name the one contrast in plain words, then a tiny concrete pair — the right word here versus the near-miss cousin — each a short quoted English bit with a plain everyday gloss of when each is used.`,
-        `- A tiny everyday picture that MATCHES the kind of contrast: a near/far or in-hand image ONLY for "it"/"this"/"that" and direction words; a time-line image (a starting dot vs a stretch) for "since"/"for"; counting separate things vs one pile for "much"/"many". Do NOT force a near/far cup image onto a time or counting contrast.`,
-        `- If a real cousin exists, end on a one-line memory hook: so here you want X, not Y. On a no-trap phrase, drop this line.`,
+        `SHAPE — one compact human answer, 2–4 short sentences, no labels/lists/numbers:`,
+        `- Start with the useful point immediately. No "let's break it down", no intro.`,
+        `- Explain ONE contrast or fixed chunk in plain words. Do not explain every word.`,
+        `- Add ONE tiny scene, word-origin clue, or playful wink only if it makes the idea click in fewer words. Never add all three.`,
+        `- End with the phrase or the tiny memory hook only if it naturally fits. No summary paragraph.`,
         ``,
         `ALWAYS wrap every English word or fragment you mention in double quotes, like "it" or "I am ready" — never leave English unquoted.`,
         `Every claim must be TRUE. If unsure of a fine point, say the simpler reliable thing instead of inventing a rule; never misstate what a short form stands for ("I'm" is short for "I am").`,
@@ -138,7 +138,7 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
         `Avoid filler words in your prose: never use the ${target.name} equivalents of "просто/just", "также/also", "в принципе", "на самом деле", "кстати". State the point directly.`,
         `If you ever refer to studying, use the ${target.name} for "осваивать/прокачивать", not "учить/изучать"; never call the learner's choice an "ошибка" — if you mention getting it wrong, frame it as "легко перепутать".`,
         `${target.writeIn}`,
-        `Length: as long as the ONE nuance genuinely needs and no longer — often well under ${MAX_WORDS} words; never pad to fill space, never cram in a second point. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no quotes around the whole answer. One empty line between paragraphs.`,
+        `Length: hard cap ~${MAX_WORDS} words; 25–45 is better. Never pad, never cram in a second point, never sound like a generated lesson. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no quotes around the whole answer.`,
         ``,
         `ABSOLUTE RULE: Do NOT explain, restate, or translate what the phrase MEANS in ${target.name}. The learner already knows the meaning; use it only to PICK the tricky spot. Even if the answer word's translation sits in that sense, do not echo it. If all you do is say what it means, you have FAILED.`,
         ``,

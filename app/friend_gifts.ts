@@ -7,6 +7,8 @@ import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 import { replaceShardsBalanceLocal } from './shards_system';
 
 const FUNCTIONS_REGION = 'us-central1';
+const friendGiftSendInFlight = new Map<string, Promise<FriendGiftSendResponse>>();
+const friendGiftThanksInFlight = new Map<string, Promise<{ ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }>>();
 
 export type FriendGiftId = 'arena_extra_5' | 'chain_shield_1' | 'xp_boost_2x_24h';
 
@@ -111,7 +113,10 @@ export type FriendGiftSendResponse = {
   giftId: FriendGiftId;
   costShards: number;
   senderBalanceAfter: number;
+  shardsUpdatedAtMs?: number;
   dailyRemaining?: number;
+  idempotencyKey?: string;
+  idempotentReplay?: boolean;
   questStarted?: boolean;
   questBlockedReason?: 'active' | 'weekly' | null;
   quest?: {
@@ -130,6 +135,25 @@ export type FriendGiftSendResponse = {
   } | null;
 };
 
+function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
+  const now = Date.now().toString(36);
+  const a = Math.random().toString(36).slice(2, 10);
+  const b = Math.random().toString(36).slice(2, 10);
+  return `${prefix}_${now}_${a}_${b}`;
+}
+
+function friendGiftSendRequestKey(data: {
+  friendStableId: string;
+  giftId: FriendGiftId;
+  senderDisplayName?: string;
+}): string {
+  return JSON.stringify({
+    friendStableId: data.friendStableId,
+    giftId: data.giftId,
+    senderDisplayName: data.senderDisplayName ?? '',
+  });
+}
+
 export async function sendFriendGiftWithShards(data: {
   friendStableId: string;
   giftId: FriendGiftId;
@@ -138,58 +162,100 @@ export async function sendFriendGiftWithShards(data: {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
   }
-  const senderStableId = await ensureAnonUser();
-  if (!senderStableId) {
-    throw new Error('sender_unavailable');
-  }
-  await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = callable<
-    { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string },
-    FriendGiftSendResponse
-  >('friendSendGift');
-  const res = await fn({
-    senderStableId,
+  const key = friendGiftSendRequestKey(data);
+  const existing = friendGiftSendInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    const senderStableId = await ensureAnonUser();
+    if (!senderStableId) {
+      throw new Error('sender_unavailable');
+    }
+    await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const idempotencyKey = makeFriendGiftIdempotencyKey();
+    const fn = callable<
+      { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
+      FriendGiftSendResponse
+    >('friendSendGift');
+    const res = await fn({
+      senderStableId,
+      friendStableId: data.friendStableId,
+      giftId: data.giftId,
+      senderDisplayName: data.senderDisplayName ?? '',
+      idempotencyKey,
+    });
+    if (Number.isFinite(res.data.senderBalanceAfter)) {
+      await replaceShardsBalanceLocal(res.data.senderBalanceAfter, {
+        updatedAtMs: res.data.shardsUpdatedAtMs,
+        op: 'spend',
+        reason: 'friend_gift',
+      });
+    }
+    if (Number.isFinite(res.data.costShards) && res.data.costShards > 0) {
+      void bumpLifetimeShardsSpent(res.data.costShards);
+    }
+    const { checkAchievements } = await import('./achievements');
+    void checkAchievements({ type: 'gift_sent' });
+    return res.data;
+  })().finally(() => {
+    friendGiftSendInFlight.delete(key);
+  });
+
+  friendGiftSendInFlight.set(key, request);
+  return request;
+}
+
+function friendGiftThanksRequestKey(data: {
+  friendStableId: string;
+  giftId: FriendGiftId;
+  senderDisplayName?: string;
+}): string {
+  return JSON.stringify({
     friendStableId: data.friendStableId,
     giftId: data.giftId,
     senderDisplayName: data.senderDisplayName ?? '',
   });
-  if (Number.isFinite(res.data.senderBalanceAfter)) {
-    await replaceShardsBalanceLocal(res.data.senderBalanceAfter);
-  }
-  if (Number.isFinite(res.data.costShards) && res.data.costShards > 0) {
-    void bumpLifetimeShardsSpent(res.data.costShards);
-  }
-  const { checkAchievements } = await import('./achievements');
-  void checkAchievements({ type: 'gift_sent' });
-  return res.data;
 }
 
 export async function sendFriendGiftThanks(data: {
   friendStableId: string;
   giftId: FriendGiftId;
   senderDisplayName?: string;
-}): Promise<{ ok: boolean }> {
+}): Promise<{ ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }> {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
   }
-  const senderStableId = await ensureAnonUser();
-  if (!senderStableId) {
-    throw new Error('sender_unavailable');
-  }
-  await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = callable<
-    { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string },
-    { ok: boolean }
-  >('friendThankGift');
-  const res = await fn({
-    senderStableId,
-    friendStableId: data.friendStableId,
-    giftId: data.giftId,
-    senderDisplayName: data.senderDisplayName ?? '',
+  const key = friendGiftThanksRequestKey(data);
+  const existing = friendGiftThanksInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    const senderStableId = await ensureAnonUser();
+    if (!senderStableId) {
+      throw new Error('sender_unavailable');
+    }
+    await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const idempotencyKey = makeFriendGiftIdempotencyKey('fgt');
+    const fn = callable<
+      { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
+      { ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }
+    >('friendThankGift');
+    const res = await fn({
+      senderStableId,
+      friendStableId: data.friendStableId,
+      giftId: data.giftId,
+      senderDisplayName: data.senderDisplayName ?? '',
+      idempotencyKey,
+    });
+    return res.data;
+  })().finally(() => {
+    friendGiftThanksInFlight.delete(key);
   });
-  return res.data;
+
+  friendGiftThanksInFlight.set(key, request);
+  return request;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

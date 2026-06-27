@@ -63,7 +63,7 @@ describe('personal plan listening playback contract', () => {
       audioMode: {
         playsInSilentMode: true,
         shouldPlayInBackground: false,
-        interruptionMode: 'mixWithOthers',
+        interruptionMode: 'duckOthers',
       },
       issues: [],
     });

@@ -1465,7 +1465,7 @@ export const CONJUNCTION_LOGIC_TRAINING: DiagnosisTraining = {
     webPath: '/problem-coach/conjunction/logic',
     deepLink: 'phraseman://problem-coach/conjunction/logic',
     diagnosisTrainerRoute: '/problem_coach?category=conjunction&microDiagnosisId=conjunction_logic',
-    smartTrainerRoute: '/smart_trainer?source=diagnosis_training&microDiagnosisId=conjunction_logic',
+    smartTrainerRoute: '/problem_coach?category=conjunction&microDiagnosisId=conjunction_logic',
   },
   qualityChecklist: {
     hasContrastiveMinimalPairs: true,

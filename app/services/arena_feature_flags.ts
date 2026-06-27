@@ -1,6 +1,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
-const FEATURE_FLAGS_POLL_MS = 30 * 60 * 1000;
+const FEATURE_FLAGS_POLL_MS = 6 * 60 * 60 * 1000;
 
 export type ArenaFeatureFlags = {
   rankedWagerEnabled: boolean;

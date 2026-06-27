@@ -1,4 +1,9 @@
-import { validateChoiceInput, parseChoiceBatch, MAX_CHOICE_DISTRACTORS } from './choice_explain_gates';
+import {
+  validateChoiceInput,
+  parseChoiceBatch,
+  MAX_CHOICE_DISTRACTORS,
+  MAX_CHOICE_EXPLANATION_CHARS,
+} from './choice_explain_gates';
 
 describe('choice_explain_gates — input validation', () => {
   it('accepts a normal correct + meaning + distractors', () => {
@@ -61,6 +66,20 @@ describe('choice_explain_gates — batch parsing', () => {
     const raw = JSON.stringify({ confirm: 'Yes', distractors: { 'we are all okay.': 'plural' } });
     const r = parseChoiceBatch(raw, distractors);
     expect(r.distractors['We are all okay.']).toBe('plural');
+  });
+
+  it('clamps overlong generated lines to a UI-sized human hint', () => {
+    const long = 'Это слишком длинное машинное объяснение, которое пытается разобрать все слова подряд и поэтому расползается по экрану '.repeat(5);
+    const raw = JSON.stringify({
+      confirm: long,
+      distractors: { 'We are all okay.': long },
+    });
+
+    const r = parseChoiceBatch(raw, distractors);
+
+    expect(r.confirm.length).toBeLessThanOrEqual(MAX_CHOICE_EXPLANATION_CHARS);
+    expect(r.distractors['We are all okay.'].length).toBeLessThanOrEqual(MAX_CHOICE_EXPLANATION_CHARS);
+    expect(r.confirm).toMatch(/…$/);
   });
 
   it('fails on unparseable JSON', () => {

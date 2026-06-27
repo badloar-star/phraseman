@@ -1001,7 +1001,7 @@ function buildUnresolved(graphParts: {
       id: 'SG-008',
       severity: 'blocker',
       title: 'Source graph is extracted but not pedagogically approved',
-      detail: 'This first graph proves extraction and links, but it still needs a human/agent quality pass before French curriculum generation is allowed.',
+      detail: 'This first graph proves extraction and links, but it still needs a LLM/agent quality pass before French curriculum generation is allowed.',
       sourceRefs: [{ file: 'docs/gustav/GUSTAV_SOURCE_GRAPH_EXTRACTOR_PLAN.md', line: 1, provenance: 'audit' }],
     });
   }

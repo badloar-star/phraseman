@@ -292,6 +292,9 @@ describe('mergeStableAccounts', () => {
         expect(winner.progress.user_total_xp).toBe('6812');
         expect(winner.progress.streak_count).toBe('9'); // best-of
         expect(winner.shards).toBe(1325); // max
+        expect(winner.shards_updated_at_ms).toBe(NOW);
+        expect(winner.shards_updated_op).toBe('replace');
+        expect(winner.shards_updated_reason).toBe('account_merge');
         expect(winner.firebaseAuthUid).toBe('google-1');
         const loser = store.users['stable-phone'];
         expect(loser.identityHidden).toBe(true);
@@ -377,6 +380,8 @@ describe('mergeStableAccounts', () => {
         const winner = store.users['stable-mine'];
         expect(winner.progress.streak_count).toBe('7'); // absorbed from anon
         expect(winner.shards).toBe(100); // max(100,40)
+        expect(winner.shards_updated_at_ms).toBe(NOW);
+        expect(winner.shards_updated_reason).toBe('account_merge');
         expect(store.users['stable-anon'].identityHidden).toBe(true);
     });
     it('rejects absorbing an unowned account with NO claim', async () => {

@@ -258,7 +258,7 @@ const EXAM_POOL: ExamQuestion[] = [
   // ── LESSON 23: Passive Voice ──────────────────────────────────────────────
   {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'The letter ___ by her.',            opts:['wrote','is written','was written','had written'],                                correct:2},
   {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'Cars ___ made in factories.',       opts:['is','am','are','were'],                                                         correct:2},
-  {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'The report ___ submitted by Friday.', opts:['must be','must have','should','is going'],                                   correct:0},
+  {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'The documents ___ checked today.', opts:['must be','must have','should','is going'],                                     correct:0},
   {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'Which sentence is correct?',        opts:['The book wrote by him.','The book was written by him.','The book has write by him.','The book been written.'], correct:1, type:'choice4'},
   {lessonNum:23, topic:'Passive Voice',          topicUK:'Passive Voice',            q:'Correct: The letter [write] yesterday.', opts:['was written','write','written','wrote'],                                  correct:0, type:'error'},
   // ── LESSON 24: Present Perfect ────────────────────────────────────────────
@@ -276,7 +276,7 @@ const EXAM_POOL: ExamQuestion[] = [
   // ── LESSON 26: Conditionals ───────────────────────────────────────────────
   {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'If it rains, I ___ stay home.',     opts:['will','would','shall','should'],                                                 correct:0},
   {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'If I ___ rich, I would travel.',    opts:['am','was','were','be'],                                                         correct:2},
-  {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'If she had tried, she ___ passed.', opts:['will have','would have','had','did'],                                           correct:1},
+  {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'If we had started earlier, we ___ finished.', opts:['will have','would have','had','did'],                                 correct:1},
   {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'Which sentence is correct?',        opts:['If it will rain, I stay.','If it rains, I will stay.','If it rained, I will stay.','If it rain, I would stay.'], correct:1, type:'choice4'},
   {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'Correct: If I [am] rich, I would travel.', opts:['were','am','is','be'],                                                 correct:0, type:'error'},
   // ── LESSON 27: Reported speech ────────────────────────────────────────────

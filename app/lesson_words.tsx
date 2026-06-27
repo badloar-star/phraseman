@@ -28,7 +28,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
-import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
@@ -2797,8 +2797,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
       playCorrect();
-    } else if (hapticsOn) {
-      void hapticError();
+      // Тост опыта — СРАЗУ после ответа, синхронно: не ждём ни задержку
+      // обратной связи (setTimeout ниже), ни сетевой round-trip registerXP.
+      const prevCountNow = Math.min(Math.max(Number(countsRef.current[wordEn] ?? 0), 0), REQUIRED);
+      const xpNow = vocabularyStepBaseXP(prevCountNow);
+      const wordJustCompletedNow = prevCountNow < REQUIRED;
+      if (xpNow > 0 && wordJustCompletedNow) showXpToast(xpNow);
     }
 
     setTimeout(() => {
@@ -2851,13 +2855,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               newCount,
               completed: wordJustCompleted,
             },
-          })
-            .then((result) => {
-              if (wordJustCompleted) showXpToast(result.finalDelta);
-            })
-            .catch(() => {
-              if (wordJustCompleted) showXpToast(xpThisStep);
-            });
+          });
+          // Тост опыта показан синхронно при выборе ответа (см. handleChoice
+          // выше) — здесь его НЕ дублируем, чтобы не появлялся повторно/поздно.
         }
 
         if (wordJustCompleted) {
@@ -3144,6 +3144,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         {current.options.map((opt, i) => {
           const isCorrect  = isLessonWordOptionCorrect(opt, current.correctOption);
           const isSelected = opt === chosen;
+          const hasStatusIcon = chosen !== null && (isCorrect || isSelected);
+          const optionFontSize = Math.min(f.h2, 22);
+          const optionLineHeight = Math.round(optionFontSize * 1.18);
           let bg = t.bgCard, borderColor = t.border, tc = t.textSecond, bw = 1;
           if (chosen !== null) {
             if (isCorrect)       { bg = t.correctBg; borderColor = t.correct; tc = t.correct; bw = 1.5; }
@@ -3156,9 +3159,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               edgeHeight={5}
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-              wrapStyle={{ width:'48%' }}
-              style={{ minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor }}
-              onPress={() => { if (chosen !== null) return; flash(`${i}`); requestAnimationFrame(() => { void hapticTap(); }); handleChoice(opt); }}
+              wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}
+              style={{ height:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
+              onPress={() => { if (chosen !== null) return; flash(`${i}`); if (hapticsOn) requestAnimationFrame(() => { void hapticTap(); }); handleChoice(opt); }}
               disabled={chosen !== null}
             >
               {chosen !== null && isCorrect && (
@@ -3171,7 +3174,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
                   <Ionicons name="close-circle" size={15} color={t.wrong} />
                 </View>
               )}
-              <Text style={{ color: on ? (t.correctText ?? '#fff') : tc, fontSize:f.h2, fontWeight: on ? '700' : '500', textAlign:'center' }} numberOfLines={2}>{opt}</Text>
+              <Text
+                style={{ width:'100%', minWidth:0, flexShrink:1, color: on ? (t.correctText ?? '#fff') : tc, fontSize:optionFontSize, lineHeight:optionLineHeight, fontWeight: on ? '700' : '500', textAlign:'center' }}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {opt}
+              </Text>
             </DuoPressable>
           );
         })}

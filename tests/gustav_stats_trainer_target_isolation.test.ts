@@ -9,7 +9,6 @@ describe('Gustav statistics trainer target isolation', () => {
     const streakStats = fs.readFileSync(path.join(ROOT, 'app', 'streak_stats.tsx'), 'utf8');
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const trainerStore = fs.readFileSync(path.join(ROOT, 'app', 'trainer_store.ts'), 'utf8');
-    const trainerSmartSession = fs.readFileSync(path.join(ROOT, 'app', 'trainer_smart_session.tsx'), 'utf8');
     const posWorkoutEngine = fs.readFileSync(path.join(ROOT, 'app', 'pos_workout_engine.ts'), 'utf8');
 
     expect(statsCache).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
@@ -30,7 +29,6 @@ describe('Gustav statistics trainer target isolation', () => {
 
     expect(home).toContain('getTrainerTotalDue(studyTarget)');
     expect(trainerStore).toContain('getPosMasterySnapshot(studyTarget)');
-    expect(trainerSmartSession).toContain('recordPosWorkoutResult(current.category, correct, studyTarget)');
     expect(posWorkoutEngine).toContain("import { posMasteryKey, type RuntimeStudyTarget } from './target_storage_keys'");
   });
 });

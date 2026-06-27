@@ -1,0 +1,23 @@
+{
+  "carouselId": "brc_001_netflix_understand_life_zero_words",
+  "status": "dalle_final_ready_editorial_bible",
+  "rule": "Each slide uses a unique DALL-E image generated through Codex. Only article copy is overlaid; no visible pipeline label, CTA button, or corner brand stamp is drawn on the slides. The final slide may mention the Phraseman bio link as part of the article copy.",
+  "editorialBible": "docs/pipelines/buyer-radar-editorial-bible.ru.md",
+  "generatedAt": "2026-06-26T17:01:30.079Z",
+  "backgrounds": [
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_01_background.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_02_background.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_03_background.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_04_background.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_05_background.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/backgrounds/slide_06_background.png"
+  ],
+  "slides": [
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_01.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_02.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_03.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_04.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_05.png",
+    "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/slides/slide_06.png"
+  ]
+}

@@ -17,6 +17,7 @@ type Props = {
 };
 
 const TYPE_MS = 18;
+const TYPE_FRAME_MS = 33;
 const MAX_TYPE_MS = 1650;
 const COMPASS_ICON_SIZE = 64;
 const COMPASS_EMBEDDED_ICON_SIZE = 58;
@@ -83,13 +84,15 @@ function HomeTheoAdvisorCard({ advice, onAction, embedded = false, label }: Prop
       return;
     }
     setTypedText('');
-    const stepMs = Math.max(10, Math.min(TYPE_MS, Math.floor(MAX_TYPE_MS / Math.max(text.length, 1))));
+    const targetDurationMs = Math.max(TYPE_FRAME_MS, Math.min(MAX_TYPE_MS, text.length * TYPE_MS));
+    const totalFrames = Math.max(1, Math.ceil(targetDurationMs / TYPE_FRAME_MS));
+    const charsPerFrame = Math.max(1, Math.ceil(text.length / totalFrames));
     let index = 0;
     const timer = setInterval(() => {
-      index += 1;
+      index = Math.min(text.length, index + charsPerFrame);
       setTypedText(text.slice(0, index));
       if (index >= text.length) clearInterval(timer);
-    }, stepMs);
+    }, TYPE_FRAME_MS);
     return () => clearInterval(timer);
   }, [isExpanded, text, reduceMotion]);
 

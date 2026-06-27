@@ -18,7 +18,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveJobConfig } from './openai_jobs_config';
-import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
+import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
@@ -112,9 +112,9 @@ export const compassGenerate = onCall(
     if (!jobCfg.enabled) return empty('exhausted', false);
 
     // 3) Бюджет (промах кэша). Юзер → глобал.
+    let budgetReservation: ExplainBudgetReservation | null = null;
     try {
-      await enforceUserGenLimit(authUid, stableUid);
-      await enforceGlobalBudget(jobCfg.globalDailyCap);
+      budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
     } catch (err) {
       if (err instanceof HttpsError && err.code === 'resource-exhausted') return empty('exhausted', false);
       throw err;
@@ -122,16 +122,27 @@ export const compassGenerate = onCall(
 
     // 4) Лок (анти-дубль).
     const claimed = await claimCompassLock(hash, Date.now());
-    if (!claimed) return empty('pending', true);
+    if (!claimed) {
+      await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
+      budgetReservation = null;
+      return empty('pending', true);
+    }
 
     // 5) Генерация одной фразы.
-    const gen = await openAiChat({
-      apiKey,
-      model: jobCfg.model,
-      messages: [{ role: 'user', content: buildCompassPrompt({ dayType, topics, lang }) }],
-      maxTokens: GEN_MAX_TOKENS,
-      temperature: GEN_TEMPERATURE,
-    });
+    let gen: Awaited<ReturnType<typeof openAiChat>>;
+    try {
+      gen = await openAiChat({
+        apiKey,
+        model: jobCfg.model,
+        messages: [{ role: 'user', content: buildCompassPrompt({ dayType, topics, lang }) }],
+        maxTokens: GEN_MAX_TOKENS,
+        temperature: GEN_TEMPERATURE,
+      });
+    } catch (err) {
+      await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
+      budgetReservation = null;
+      throw err;
+    }
     const comment = gen.text.trim();
 
     // 6) Лёгкая проверка (язык/связность/безопасность). Fail-closed.

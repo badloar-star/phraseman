@@ -1,0 +1,29 @@
+{
+  "carouselId": "brc_005_saved_words_do_not_speak",
+  "prompts": [
+    {
+      "slide": 1,
+      "dallePrompt": "Vertical cinematic editorial image, a person at night staring at a phone full of saved language-learning posts and phrase cards shown only as abstract unreadable rectangles, in the background a real conversation is happening through a doorway, the person looks stuck and silent, no readable text, no logos, no flags, no books, dramatic contrast, empty lower-left space for Russian overlay text"
+    },
+    {
+      "slide": 2,
+      "dallePrompt": "Vertical conceptual scene, a saved bookmark icon made of light dissolves into empty air before reaching a person’s mouth, language phrase cards stay trapped behind glass, no readable text, no logos, modern editorial style, cinematic shadows, space for overlay text"
+    },
+    {
+      "slide": 3,
+      "dallePrompt": "Vertical cinematic image, a person reaches into a dark mental archive of glowing phrase blocks, one block moves toward their mouth while many saved cards remain dim on shelves, no letters, no readable text, no UI, emotional but clean, high contrast, space for overlay"
+    },
+    {
+      "slide": 4,
+      "dallePrompt": "Vertical editorial scene, a long wall of abstract vocabulary cards collapses into silence while two people wait in a real conversation, the learner has words floating behind them but none leaving the mouth, no readable text, no logos, dramatic realism, space for overlay"
+    },
+    {
+      "slide": 5,
+      "dallePrompt": "Vertical cinematic image, abstract phrase blocks travel from a person’s head to their mouth like a practiced path, a conversation scene waits ahead, no readable text, no logos, bright focused path, serious editorial mood, space for overlay text"
+    },
+    {
+      "slide": 6,
+      "dallePrompt": "Vertical final editorial image, a saved post icon fades in the background while clear glowing phrase blocks finally leave a person’s mouth into a real conversation, emotional urgency, no readable text, no logos, no app screen, cinematic light, strong empty text area"
+    }
+  ]
+}

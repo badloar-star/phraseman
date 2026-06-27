@@ -218,6 +218,7 @@ describe('community pack callable ownership', () => {
             buyerDisplayName: 'Alice',
         }, 'auth-victim');
         expect(result).toMatchObject({ alreadyOwned: false, buyerBalanceAfter: 190 });
+        expect(result.shardsUpdatedAtMs).toBeGreaterThan(0);
         expect(mockDocs.get('users/victim')?.shards).toBe(190);
         expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
             buyerStableId: 'victim',

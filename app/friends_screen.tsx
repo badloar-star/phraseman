@@ -461,7 +461,8 @@ export default function FriendsScreen() {
         friendStableId: giftTarget.uid,
         giftId,
       });
-      setGiftBalance(res.senderBalanceAfter);
+      const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+      setGiftBalance(guardedBalance);
       setGiftTarget(null);
       showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
       await trackActivity('friends:send_gift', {
@@ -1047,6 +1048,7 @@ export default function FriendsScreen() {
                 <Text style={styles.giftBalanceText}>{giftBalance}</Text>
               </View>
               {FRIEND_GIFT_CATALOG.map((gift) => {
+                const sendingThisGift = giftBusyId === gift.id;
                 const disabled = giftBalance < gift.costShards || giftBusyId !== null;
                 return (
                   <TouchableOpacity
@@ -1063,12 +1065,18 @@ export default function FriendsScreen() {
                       <Text style={styles.giftOptionDesc}>{giftDescription(gift)}</Text>
                     </View>
                     <View style={styles.giftCostRow}>
-                      <Text style={styles.giftCost}>{gift.costShards}</Text>
-                      <Image
-                        source={oskolokImageForPackShards(gift.costShards)}
-                        style={styles.giftCostShardImg}
-                        contentFit="contain"
-                      />
+                      {sendingThisGift ? (
+                        <ActivityIndicator size="small" color={t.accent} />
+                      ) : (
+                        <>
+                          <Text style={styles.giftCost}>{gift.costShards}</Text>
+                          <Image
+                            source={oskolokImageForPackShards(gift.costShards)}
+                            style={styles.giftCostShardImg}
+                            contentFit="contain"
+                          />
+                        </>
+                      )}
                     </View>
                   </TouchableOpacity>
                 );

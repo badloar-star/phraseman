@@ -9,6 +9,7 @@ import { useLang } from '../components/LangContext';
 export type RoomRunPhase = 'loading' | 'countdown' | 'question' | 'reveal' | 'finished' | 'aborted';
 
 const QUESTION_TIME_MS = 40_000;
+const QUESTION_UI_TICK_MS = 1000;
 const REVEAL_TIME_MS = 900;
 const COUNTDOWN_FROM = 3;
 
@@ -40,6 +41,7 @@ export function useArenaRoomRun(roomCode: string, userId: string) {
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasAnsweredRef = useRef(false);
   const qIndexRef = useRef(0);
   const roomRef = useRef<ArenaLiveRoom | null>(null);
@@ -47,6 +49,7 @@ export function useArenaRoomRun(roomCode: string, userId: string) {
   const startedRef = useRef(false);
   const correctStreakRef = useRef(0);
   const firstCorrectDoneRef = useRef(false);
+  const lastShownSecRef = useRef<number | null>(null);
   const startQuestionRef = useRef<(idx: number) => void>(() => {});
   const questionStartedAtRef = useRef<number | null>(null);
 
@@ -61,6 +64,10 @@ export function useArenaRoomRun(roomCode: string, userId: string) {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
+    }
+    if (questionTimeoutRef.current) {
+      clearTimeout(questionTimeoutRef.current);
+      questionTimeoutRef.current = null;
     }
   };
 
@@ -116,19 +123,38 @@ export function useArenaRoomRun(roomCode: string, userId: string) {
     if (intervalRef.current) clearInterval(intervalRef.current);
     const start = Date.now();
     questionStartedAtRef.current = start;
+    lastShownSecRef.current = null;
     setQuestionStartedAt(start);
-    intervalRef.current = setInterval(() => {
+    const updateVisibleTimeLeft = () => {
       const left = Math.max(0, QUESTION_TIME_MS - (Date.now() - start));
-      setTimeLeft(left);
-      if (left > 0) return;
-      clearAll();
-      if (!hasAnsweredRef.current) {
-        hasAnsweredRef.current = true;
-        setHasAnswered(true);
-        setMyAnswer(null);
-        goToReveal(qIndexRef.current);
+      if (left > 0) {
+        const displaySec = Math.ceil(left / 1000) || 0;
+        if (lastShownSecRef.current !== displaySec) {
+          lastShownSecRef.current = displaySec;
+          setTimeLeft(left);
+        }
+        return;
       }
-    }, 250);
+      if (lastShownSecRef.current !== 0) {
+        lastShownSecRef.current = 0;
+        setTimeLeft(0);
+      }
+    };
+    const finishNoAnswer = () => {
+      if (hasAnsweredRef.current) return;
+      if (lastShownSecRef.current !== 0) {
+        lastShownSecRef.current = 0;
+        setTimeLeft(0);
+      }
+      clearAll();
+      hasAnsweredRef.current = true;
+      setHasAnswered(true);
+      setMyAnswer(null);
+      goToReveal(qIndexRef.current);
+    };
+    updateVisibleTimeLeft();
+    intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS);
+    questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50);
   }, [goToReveal]);
 
   useEffect(() => {

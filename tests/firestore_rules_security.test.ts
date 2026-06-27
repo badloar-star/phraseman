@@ -19,6 +19,10 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
     expect(rules).toContain('function newUserDocOwnerMatchesAuth(userId) {');
+    expect(rules).toContain('function authLinkMapsToUser(userId) {');
+    expect(rules).toContain('auth_links/$(request.auth.uid)');
+    expect(rules).toContain('data.stable_id == userId');
+    expect(rules).toContain('stableUserMatchesAuth(userId) || authLinkMapsToUser(userId)');
     // Read/delete stay owner/admin; update is owner/admin AND must not touch premium fields.
     // The update rule may AND additional guards (e.g. hasNoShardWrites()), so match the
     // owner + premium-guard prefix instead of pinning the exact (and growing) full line.
@@ -312,6 +316,10 @@ describe('firestore.rules security baseline', () => {
     expect(authLinksBlock![0]).toContain('allow create: if ownsAuthLinkDoc()');
     expect(authLinksBlock![0]).toContain('&& stableIdOwnedByThisAuth(request.resource.data.stable_id);');
     expect(authLinksBlock![0]).toContain('allow update: if ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)");
+    expect(authLinksBlock![0]).toContain("request.resource.data.provider in ['google', 'apple']");
+    expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)");
+    expect(authLinksBlock![0]).toContain("'providerUid', 'provider', 'linkedAt'");
     expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
     expect(authLinksBlock![0]).not.toContain('allow read: if request.auth != null;');
     expect(authLinksBlock![0]).not.toContain('allow update: if request.auth != null');

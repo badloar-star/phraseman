@@ -1,0 +1,178 @@
+[
+  {
+    "painClusterId": "pain_speaking_freeze_001",
+    "pain": "I understand English content but freeze when I need to speak",
+    "buyerMotivation": "Wants active speaking confidence, not passive recognition of words.",
+    "emotionalState": [
+      "frustration",
+      "embarrassment",
+      "stagnation"
+    ],
+    "competitorEvidence": [
+      "Duolingo",
+      "ELSA",
+      "Babbel"
+    ],
+    "proofSignals": [
+      "sig_20260626_001",
+      "sig_20260626_002",
+      "sig_20260626_003",
+      "sig_20260626_004",
+      "sig_20260626_005",
+      "sig_20260626_006",
+      "sig_20260626_007",
+      "sig_20260626_008",
+      "sig_20260626_009",
+      "sig_20260626_011"
+    ],
+    "evidenceNote": "Initial public evidence from Reddit and App Store reviews. Strong pattern: passive understanding does not become confident speech without active practice.",
+    "productBridge": "Phraseman trains ready-to-use phrases for real speaking moments.",
+    "scoreInputs": {
+      "painScore": 9,
+      "viralityScore": 7,
+      "purchaseScore": 9,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 6,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 8,
+      "subscriptionPredictionScore": 9
+    }
+  },
+  {
+    "painClusterId": "pain_forgetting_001",
+    "pain": "I keep forgetting the English I learn",
+    "buyerMotivation": "Wants a system that makes phrases stick and return at the right time.",
+    "emotionalState": [
+      "annoyance",
+      "self-doubt",
+      "fatigue"
+    ],
+    "competitorEvidence": [
+      "Duolingo",
+      "LingQ"
+    ],
+    "proofSignals": [
+      "sig_20260626_010",
+      "sig_20260626_011",
+      "sig_20260626_012",
+      "sig_20260626_013"
+    ],
+    "evidenceNote": "Initial public evidence from Reddit. Pattern: known words disappear during conversation or soon after learning unless recall is practiced.",
+    "productBridge": "Phraseman uses repeated phrase practice and recall to make useful English stay usable.",
+    "scoreInputs": {
+      "painScore": 8,
+      "viralityScore": 6,
+      "purchaseScore": 7,
+      "evergreenScore": 9,
+      "noveltyScore": 5,
+      "competitionScore": 7,
+      "ctrPredictionScore": 6,
+      "retentionPredictionScore": 7,
+      "subscriptionPredictionScore": 7
+    }
+  },
+  {
+    "painClusterId": "pain_embarrassed_to_speak_001",
+    "pain": "I feel embarrassed speaking English out loud",
+    "buyerMotivation": "Wants private practice before risking mistakes with real people.",
+    "emotionalState": [
+      "shame",
+      "fear",
+      "tension"
+    ],
+    "competitorEvidence": [
+      "ELSA",
+      "Speak",
+      "Babbel"
+    ],
+    "proofSignals": [
+      "sig_20260626_006",
+      "sig_20260626_007",
+      "sig_20260626_009",
+      "sig_20260626_010",
+      "sig_20260626_013"
+    ],
+    "evidenceNote": "Initial public evidence from App Store reviews and Reddit. Paid competitors win when they provide private correction and confidence-building speaking practice.",
+    "productBridge": "Phraseman gives low-pressure phrase rehearsal before real conversations.",
+    "scoreInputs": {
+      "painScore": 9,
+      "viralityScore": 8,
+      "purchaseScore": 8,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 5,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 8,
+      "subscriptionPredictionScore": 8
+    }
+  },
+  {
+    "painClusterId": "pain_years_stuck_001",
+    "pain": "I have studied English for years but still feel stuck",
+    "buyerMotivation": "Wants a visible breakthrough after long, demoralizing effort.",
+    "emotionalState": [
+      "stagnation",
+      "resentment",
+      "hope"
+    ],
+    "competitorEvidence": [
+      "Duolingo",
+      "Babbel",
+      "LingQ"
+    ],
+    "proofSignals": [
+      "sig_20260626_002",
+      "sig_20260626_004",
+      "sig_20260626_013"
+    ],
+    "evidenceNote": "Initial public evidence from Reddit. Pattern: years of input can leave learners stuck if speaking production is not trained directly.",
+    "productBridge": "Phraseman turns knowledge into small usable speaking actions instead of another passive lesson streak.",
+    "scoreInputs": {
+      "painScore": 8,
+      "viralityScore": 6,
+      "purchaseScore": 8,
+      "evergreenScore": 10,
+      "noveltyScore": 5,
+      "competitionScore": 7,
+      "ctrPredictionScore": 6,
+      "retentionPredictionScore": 7,
+      "subscriptionPredictionScore": 8
+    }
+  },
+  {
+    "painClusterId": "pain_work_english_001",
+    "pain": "I need English for work calls and messages",
+    "buyerMotivation": "Has a practical deadline and direct economic reason to improve.",
+    "emotionalState": [
+      "pressure",
+      "urgency",
+      "career anxiety"
+    ],
+    "competitorEvidence": [
+      "Babbel",
+      "Speak",
+      "ELSA"
+    ],
+    "proofSignals": [
+      "sig_20260626_002",
+      "sig_20260626_003"
+    ],
+    "evidenceNote": "Initial public evidence from Reddit. Pattern: work creates direct economic urgency and exposes the gap between comprehension and speaking output. Owner override: prior Phraseman results beat generic market evidence here.",
+    "productBridge": "Phraseman trains phrase patterns that transfer into work calls, chats, and meetings.",
+    "scoreInputs": {
+      "painScore": 9,
+      "viralityScore": 3,
+      "purchaseScore": 2,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 5,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 3,
+      "subscriptionPredictionScore": 2
+    },
+    "ownerDecision": "rejected_owner_signal",
+    "ownerDecisionAt": "2026-06-26",
+    "ownerDecisionReason": "Work calls / meetings angle was tested before and did not work for Phraseman; do not scale without new first-party revenue evidence."
+  }
+]

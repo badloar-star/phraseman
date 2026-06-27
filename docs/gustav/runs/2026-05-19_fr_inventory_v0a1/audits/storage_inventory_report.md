@@ -31,5 +31,5 @@ No high/blocker risks found.
 
 - This is an automated heuristic inventory, not a final migration plan.
 - French generation remains blocked while blocker/high-risk learning keys are unresolved.
-- Dynamic key expressions require manual review or a stronger AST-based scanner.
+- Dynamic key expressions require LLM official-source review or a stronger AST-based scanner.
 - The scanner resolves common local arrays, Array.from template keys, simple string variables and selected storage helper wrappers; it is still not a full TypeScript AST evaluator.

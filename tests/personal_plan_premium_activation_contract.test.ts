@@ -9,6 +9,7 @@ import {
   readPendingPersonalPlanActivation,
 } from '../app/personal_plan_activation';
 import {
+  clearPersonalPlanState,
   PERSONAL_PLAN_STATE_KEY,
   readPersonalPlanState,
 } from '../app/personal_plan_state';
@@ -16,6 +17,7 @@ import {
 describe('personal plan premium activation contract', () => {
   beforeEach(async () => {
     (AsyncStorage as any).__reset?.();
+    await clearPersonalPlanState();
     await AsyncStorage.multiRemove([
       PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
       PERSONAL_PLAN_STATE_KEY,
@@ -122,7 +124,7 @@ describe('personal plan premium activation contract', () => {
     expect(onboarding).toContain("source: 'onboarding'");
     expect(onboarding).toContain('onPersonalPlanPaywallStart');
     expect(onboarding).toContain('openSelectedPlanAbPaywall');
-    expect(onboarding).toContain("['onboarding_plan_billing', paywallPlan]");
+    expect(onboarding).toContain("await AsyncStorage.setItem('onboarding_plan_billing', paywallPlan)");
     expect(onboarding).toContain('Составить план под мою цель');
     expect(onboarding).toContain('Просто посмотреть приложение');
     expect(onboarding).toContain('Это мой план — вперёд');
@@ -147,7 +149,23 @@ describe('personal plan premium activation contract', () => {
     expect(purchase).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
     expect(purchase).toContain("emitAppEvent('personal_plan_onboarding_nickname_ready')");
     expect(purchase).toContain("router.replace('/personal_plan_thank_you' as any)");
-    expect(purchase).toContain("router.replace('/(tabs)/home' as any)");
+    expect(purchase).not.toContain("router.replace('/(tabs)/home' as any)");
+  });
+
+  it('keeps onboarding inline paywall purchase and restore pending states separate', () => {
+    const onboarding = readFileSync(path.join(process.cwd(), 'components', 'onboarding.tsx'), 'utf8');
+
+    expect(onboarding).toContain('const [paywallPurchasing, setPaywallPurchasing] = useState(false)');
+    expect(onboarding).toContain('const [paywallRestoring, setPaywallRestoring] = useState(false)');
+    expect(onboarding).toContain('const paywallBusy = paywallPurchasing || paywallRestoring');
+    expect(onboarding).toContain('disabled={paywallBusy}');
+    expect(onboarding).toContain('pressedExternally={paywallPurchasing}');
+    expect(onboarding).toContain('setPaywallRestoring(true)');
+    expect(onboarding).toContain('setPaywallRestoring(false)');
+    expect(onboarding).toContain('<ActivityIndicator size="small" color={theme.ctaText} />');
+    expect(onboarding).toContain('<ActivityIndicator size="small" color={theme.textMuted} />');
+    expect(onboarding).toContain('accessibilityState={{ disabled: paywallBusy, busy: paywallRestoring }}');
+    expect(onboarding).toContain('styles.planPaywallTrustItemDisabled');
   });
 
   it('does not leave already-premium personal plan users on the paywall manage screen', () => {

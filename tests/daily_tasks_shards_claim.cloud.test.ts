@@ -12,15 +12,22 @@ jest.mock('@react-native-firebase/functions', () => ({
     return jest.fn(async () => {
       const fs = require('@react-native-firebase/firestore').default as any;
       if (fs.__testState.rewardClaimExists) {
-        return { data: { alreadyClaimed: true, newBalance: fs.__testState.userShards ?? 0 } };
+        return {
+          data: {
+            alreadyClaimed: true,
+            newBalance: fs.__testState.userShards ?? 0,
+            shardsUpdatedAtMs: fs.__testState.userShardsUpdatedAtMs,
+          },
+        };
       }
       const next = (fs.__testState.userShards ?? 0) + 1;
+      const shardsUpdatedAtMs = Date.now();
       fs.__testState.rewardClaimExists = true;
       fs.__testState.userShards = next;
-      fs.__testState.userShardsUpdatedAtMs = Date.now();
+      fs.__testState.userShardsUpdatedAtMs = shardsUpdatedAtMs;
       fs.__testState.userShardsUpdatedOp = 'earn';
       fs.__testState.userShardsUpdatedReason = 'daily_tasks_all';
-      return { data: { alreadyClaimed: false, newBalance: next } };
+      return { data: { alreadyClaimed: false, newBalance: next, shardsUpdatedAtMs } };
     });
   }),
 }));
@@ -84,6 +91,47 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
     // Это фикс рассинхрона «осколки уменьшились/не совпадают» из баг-репортов:
     // при alreadyClaimed сервер — источник правды, локальный баланс выравнивается.
     expect(mockStorage.shards_balance).toBe('10');
+  });
+
+  it('does not let an older already-claimed server mirror lower a newer local wallet', async () => {
+    const fs = firestore as any;
+    fs.__testState.rewardClaimExists = true;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 10;
+    fs.__testState.userShardsUpdatedAtMs = 1_000;
+
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'earn',
+      reason: 'newer_local_reward',
+    });
+
+    await expect(claimDailyTasksAllShardsReward('2026-08-12')).resolves.toBe(false);
+
+    expect(mockStorage['daily_tasks_all_shards_2026-08-12']).toBe('1');
+    expect(mockStorage.shards_balance).toBe('80');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(2_000);
+  });
+
+  it('does not let an older granted server mirror lower a newer local wallet', async () => {
+    const fs = firestore as any;
+    fs.__testState.rewardClaimExists = false;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 10;
+
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 9_000_000_000_000,
+      op: 'earn',
+      reason: 'newer_local_reward',
+    });
+
+    await expect(claimDailyTasksAllShardsReward('2026-08-13')).resolves.toBe(true);
+
+    expect(mockStorage['daily_tasks_all_shards_2026-08-13']).toBe('1');
+    expect(mockStorage.shards_balance).toBe('80');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(9_000_000_000_000);
   });
 });
 
@@ -195,5 +243,43 @@ describe('addShardsRaw local-first mode', () => {
     await expect(addShardsRaw(2, 'achievement:test', { skipServerAwait: true })).resolves.toBe(2);
 
     expect(mockStorage.shards_balance).toBe('6');
+  });
+});
+
+describe('core shard cloud mirror freshness', () => {
+  it('does not let an older cloud earn response lower a newer local wallet', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 10;
+
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 9_000_000_000_000,
+      op: 'earn',
+      reason: 'newer_local_reward',
+    });
+
+    await expect(addShardsRaw(2, 'achievement:test')).resolves.toBe(2);
+
+    expect(fs.__testState.userShards).toBe(12);
+    expect(mockStorage.shards_balance).toBe('80');
+  });
+
+  it('does not let an older cloud spend response lower a newer local wallet', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 50;
+
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 9_000_000_000_000,
+      op: 'earn',
+      reason: 'newer_local_reward',
+    });
+
+    await expect(spendShards(10, 'card_pack')).resolves.toBe(true);
+
+    expect(fs.__testState.userShards).toBe(40);
+    expect(mockStorage.shards_balance).toBe('80');
   });
 });

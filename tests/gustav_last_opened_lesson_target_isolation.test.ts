@@ -14,8 +14,9 @@ describe('Gustav last opened lesson target isolation', () => {
     const dailyTasks = readAppFile('daily_tasks_screen.tsx');
     const layout = readAppFile('_layout.tsx');
 
-    expect(home).toContain("import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys'");
-    expect(home).toContain('AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');
+    expect(home).toContain("dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey");
+    expect(home).toContain('const lastOpenedKey = lastOpenedLessonKey(studyTarget)');
+    expect(home).toContain('AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
     expect(home).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
 
     expect(lessonMenu).toContain('AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId))');

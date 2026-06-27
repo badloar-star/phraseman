@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Achievement } from '../app/achievements';
+import { emitAppEvent } from '../app/events';
 
 // H-TOASTQ: верхняя граница жизни одного тоста-достижения. showingRef сбрасывается
 // в false ТОЛЬКО через dismissCurrent → showNext, а dismissCurrent зовёт рендерер
@@ -89,6 +90,7 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
     if (!currentToast) return;
     const t = setTimeout(() => {
       dismissCurrent();
+      setTimeout(() => emitAppEvent('achievement_unlocked'), 520);
     }, TOAST_MAX_LIFETIME_MS);
     return () => clearTimeout(t);
   }, [currentToast, dismissCurrent]);

@@ -194,18 +194,29 @@ async function grantRoomReadAccess(
   stableUid: string,
   room: { groupId: string; weekId: string; leagueId: number },
 ): Promise<void> {
-  await db
+  const ref = db
     .collection('league_chat_members')
     .doc(authUid)
     .collection('rooms')
-    .doc(room.groupId)
-    .set({
-      ...room,
-      authUid,
-      stableUid,
-      authorizedAt: Date.now(),
-      updatedAt: Date.now(),
-    }, { merge: true });
+    .doc(room.groupId);
+  const existing = await ref.get().catch(() => null);
+  const data = existing?.data() || {};
+  if (
+    existing?.exists &&
+    data.weekId === room.weekId &&
+    Math.trunc(Number(data.leagueId) || 0) === room.leagueId &&
+    String(data.authUid || '') === authUid &&
+    String(data.stableUid || '') === stableUid
+  ) {
+    return;
+  }
+  await ref.set({
+    ...room,
+    authUid,
+    stableUid,
+    authorizedAt: Date.now(),
+    updatedAt: Date.now(),
+  }, { merge: true });
 }
 
 export const leagueChatAuthorizeRoom = onCall({ region: REGION }, async (request) => {

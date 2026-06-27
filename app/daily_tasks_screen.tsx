@@ -5,7 +5,7 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
+import { ActivityIndicator, Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -2392,7 +2392,12 @@ export default function DailyTasksScreen() {
                 })}
                 style={[dailyTaskStyles.bonusClaimButton, { backgroundColor: trioActionBg }]}
               >
-                <Text numberOfLines={1} style={{ color: trioActionText, fontSize: f.sub, fontWeight: '900' }}>
+                <Text
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.78}
+                  style={{ color: trioActionText, fontSize: Math.min(f.sub, 13), fontWeight: '900', maxWidth: 82 }}
+                >
                   {triLang(lang, {
                     ru: 'Забрать',
                     uk: 'Забрати',
@@ -2403,11 +2408,10 @@ export default function DailyTasksScreen() {
                     tr: "Al",
                     pl: "Odbierz",
                   })}
-                </Text>
-                <Text numberOfLines={1} style={{ color: trioActionText, fontSize: f.sub, fontWeight: '900' }}>
+                  {' '}
                   {trioRewardCount}
                 </Text>
-                <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 16, height: 16, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain"/>
+                <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain"/>
               </TouchableOpacity>)}
             </View>
           </View>
@@ -2816,6 +2820,7 @@ export default function DailyTasksScreen() {
             rerollStyles.btnPrimary,
             { backgroundColor: isGoldTheme ? goldAccent : t.accent, opacity: rerollBusyId ? 0.6 : 1 },
         ]}>
+              {rerollBusyId ? <ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} /> : null}
               <Text style={[rerollStyles.btnPrimaryText, { color: isGoldTheme ? t.textOnGold : t.correctText, fontSize: f.body }]}>
                 {triLang(lang, {
             ru: `Заменить · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
@@ -3067,7 +3072,7 @@ const dailyTaskStyles = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent: 'center',
         gap: 4,
-        flexShrink: 0,
+        flexShrink: 1,
     },
     compactClaimButton: {
         width: 58,
@@ -3081,13 +3086,15 @@ const dailyTaskStyles = StyleSheet.create({
     // количеством награды («Забрать N») + иконку осколка, тап-таргет ≥44px по высоте.
     bonusClaimButton: {
         minHeight: 44,
-        minWidth: 104,
+        minWidth: 86,
+        maxWidth: 112,
         borderRadius: 14,
-        paddingHorizontal: 14,
+        paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 6,
+        gap: 4,
+        flexShrink: 1,
     },
     compactIconButton: {
         width: 30,
@@ -3185,6 +3192,8 @@ const rerollStyles = StyleSheet.create({
         paddingVertical: 14,
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
+        gap: 8,
         minHeight: 50,
         marginTop: 4,
     },

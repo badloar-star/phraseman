@@ -11,6 +11,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
+const promoRedeemInFlight = new Map<string, Promise<PromoRedeemResult>>();
 
 export type PromoRedeemStatus =
   | 'redeemed'        // успех — выдано rewardDays дней
@@ -47,21 +48,30 @@ interface RedeemResponse {
 export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResult> {
   const code = normalizePromoCodeInput(rawCode);
   if (!CLIENT_CODE_RE.test(code)) return { status: 'bad_code' };
+  const existing = promoRedeemInFlight.get(code);
+  if (existing) return existing;
 
-  try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const fn = httpsCallable<{ code: string }, RedeemResponse>(
-      getFunctions(getApp(), FUNCTIONS_REGION),
-      'promoCodeRedeem',
-    );
-    const res = await fn({ code });
-    const data = res.data;
-    if (data?.ok) return { status: 'redeemed', rewardDays: data.rewardDays };
+  const request = (async () => {
+    try {
+      await initFirebaseAppCheckIfAvailable().catch(() => {});
+      const fn = httpsCallable<{ code: string }, RedeemResponse>(
+        getFunctions(getApp(), FUNCTIONS_REGION),
+        'promoCodeRedeem',
+      );
+      const res = await fn({ code });
+      const data = res.data;
+      if (data?.ok) return { status: 'redeemed', rewardDays: data.rewardDays };
     // Сервер вернул ok:false с reason — маппим в наш статус (если знаем).
-    const reason = String(data?.reason ?? '');
-    const known: PromoRedeemStatus[] = ['not_found', 'disabled', 'expired', 'limit_reached', 'already_redeemed', 'bad_reward'];
-    return { status: (known as string[]).includes(reason) ? (reason as PromoRedeemStatus) : 'error' };
-  } catch {
-    return { status: 'error' };
-  }
+      const reason = String(data?.reason ?? '');
+      const known: PromoRedeemStatus[] = ['not_found', 'disabled', 'expired', 'limit_reached', 'already_redeemed', 'bad_reward'];
+      return { status: (known as string[]).includes(reason) ? (reason as PromoRedeemStatus) : 'error' };
+    } catch {
+      return { status: 'error' };
+    }
+  })().finally(() => {
+    promoRedeemInFlight.delete(code);
+  });
+
+  promoRedeemInFlight.set(code, request);
+  return request;
 }

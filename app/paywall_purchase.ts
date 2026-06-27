@@ -240,7 +240,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       return;
     }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
-    if (!pkg || purchasing) return;
+    if (!pkg || purchasing || restoring) return;
     setPurchasing(true);
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant });
     try {
@@ -360,12 +360,12 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
     hapticTap();
-    if (DEV_IAP_BYPASS || restoring) return;
+    if (DEV_IAP_BYPASS || restoring || purchasing) return;
     setRestoring(true);
     try {
       await initRevenueCat();
@@ -471,7 +471,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setRestoring(false);
     }
-  }, [router, restoring, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
+  }, [router, restoring, purchasing, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Без exit-intent оффера: триал и так виден на самом пейволе (таймлайн/ribbon),

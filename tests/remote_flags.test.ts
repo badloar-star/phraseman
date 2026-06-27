@@ -19,11 +19,19 @@ import {
   isVersionBelow,
   shouldForceUpdate,
   isForceUpdateEnabled,
+  isManualUpdateEnabled,
   getMinAppVersion,
+  getManualUpdateCampaignId,
+  getManualUpdateMode,
+  getManualUpdateTargetBuild,
+  normalizeManualUpdateMode,
+  shouldShowManualUpdate,
   parsePromoUntilMs,
   shouldShowPromoBanner,
   isPromoBannerEnabled,
+  getPromoBannerCampaignId,
   getPromoBannerText,
+  getMaintenanceCampaignId,
   getFlagRolloutPct,
   isFlagEnabledForUser,
   isInRolloutBucket,
@@ -52,6 +60,12 @@ describe('remote_flags', () => {
       expect(isLeagueXpPromotionEnabled()).toBe(false);
       expect(isPaywallTimersEnabled()).toBe(true);
       expect(getStreakFreezeCostShards()).toBe(10);
+      expect(isManualUpdateEnabled()).toBe(false);
+      expect(getManualUpdateCampaignId()).toBe('');
+      expect(getManualUpdateMode()).toBe('optional');
+      expect(getManualUpdateTargetBuild()).toBe('');
+      expect(getPromoBannerCampaignId()).toBe('');
+      expect(getMaintenanceCampaignId()).toBe('');
     });
   });
 
@@ -336,6 +350,99 @@ describe('remote_flags', () => {
       });
       it('версия не ниже → не блокирует', () => {
         expect(shouldForceUpdate({ enabled: true, currentVersion: '1.3.0', minVersion: '1.2.0' })).toBe(false);
+      });
+    });
+
+    describe('manual update modal', () => {
+      it('normalizes mode to optional unless force is explicit', () => {
+        expect(normalizeManualUpdateMode('force')).toBe('force');
+        expect(normalizeManualUpdateMode('FORCE')).toBe('force');
+        expect(normalizeManualUpdateMode('optional')).toBe('optional');
+        expect(normalizeManualUpdateMode('')).toBe('optional');
+      });
+
+      it('does not show without enabled flag or campaign_id', () => {
+        expect(shouldShowManualUpdate({
+          enabled: false,
+          campaignId: 'upd-1',
+          mode: 'optional',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+        })).toBe(false);
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: '',
+          mode: 'optional',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+        })).toBe(false);
+      });
+
+      it('optional campaign shows once, force ignores local seen state', () => {
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'optional',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+          seenCampaignIds: [],
+        })).toBe(true);
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'optional',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+          seenCampaignIds: ['upd-1'],
+        })).toBe(false);
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'force',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+          seenCampaignIds: ['upd-1'],
+        })).toBe(true);
+      });
+
+      it('target_build stops the modal after the user reaches that build/version', () => {
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'force',
+          currentBuild: '1.5.43',
+          targetBuild: '1.5.44',
+        })).toBe(true);
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'force',
+          currentBuild: '1.5.44',
+          targetBuild: '1.5.44',
+        })).toBe(false);
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-1',
+          mode: 'force',
+          currentBuild: '81',
+          targetBuild: '80',
+        })).toBe(false);
+      });
+
+      it('snapshot enables manual update fields independently from min_app_version', () => {
+        applyRemoteConfigSnapshot({
+          bools: { manual_update_enabled: true },
+          texts: {
+            manual_update_campaign_id: 'upd-2026-06-26',
+            manual_update_mode: 'force',
+            manual_update_target_build: '1.5.44',
+          },
+        });
+        expect(isManualUpdateEnabled()).toBe(true);
+        expect(getManualUpdateCampaignId()).toBe('upd-2026-06-26');
+        expect(getManualUpdateMode()).toBe('force');
+        expect(getManualUpdateTargetBuild()).toBe('1.5.44');
+        expect(getMinAppVersion()).toBe('');
       });
     });
 

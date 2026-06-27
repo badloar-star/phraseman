@@ -33,7 +33,6 @@ const TRAINER_BLOCKED_ROUTES = Object.freeze([
   '/trainer_words_session',
   '/trainer_phrases_session',
   '/trainer_arena_session',
-  '/trainer_smart_session',
 ]);
 
 export function trainerSourceGateForTarget(

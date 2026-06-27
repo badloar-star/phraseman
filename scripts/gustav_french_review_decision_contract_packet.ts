@@ -187,7 +187,7 @@ function buildDecisionSchema(runId: string): Record<string, unknown> {
   return {
     schemaVersion: 'gustav-french-review-decision-schema-v0',
     runId,
-    purpose: 'Human review decision import contract for generated French rows. This schema does not approve app apply.',
+    purpose: 'LLM official-source review decision import contract for generated French rows. This schema does not approve app apply.',
     allowedReviewerDecisions: ALLOWED_DECISIONS,
     requiredIdentityFields: ['sourceQueueIndex', 'batchId', 'lessonId', 'phraseId'],
     requiredContextFields: [
@@ -279,7 +279,7 @@ function renderMarkdown(report: Report): string {
     }
   }
   lines.push('', '## Safety', '');
-  lines.push('- This packet defines a future human-review decision format only.');
+  lines.push('- This packet defines a future llm-official-source-review decision format only.');
   lines.push('- It does not write reviewer decisions.');
   lines.push('- It does not accept generated rows.');
   lines.push('- It does not approve or perform app apply.');

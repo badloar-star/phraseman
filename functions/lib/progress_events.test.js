@@ -132,6 +132,23 @@ describe('progress_events engine', () => {
         expect(examResult.progressPatch['level_exams_v2::fr::level_exam_A1_passed']).toBe('true');
         expect(examResult.progressPatch['lesson_progress_v2::fr::unlocked_lessons']).toBe('[8,9]');
     });
+    it('qualifies referral only from a live passed first lesson event', () => {
+        expect((0, progress_events_1.shouldQualifyReferralFromProgressEvent)((0, progress_events_1.normalizeProgressEvent)({
+            eventId: 'lesson:1:complete:ref-ok',
+            type: 'lesson_complete',
+            payload: { lessonId: 1, score: 3, passed: true },
+        }))).toBe(true);
+        expect((0, progress_events_1.shouldQualifyReferralFromProgressEvent)((0, progress_events_1.normalizeProgressEvent)({
+            eventId: 'lesson:2:complete:ref-no',
+            type: 'lesson_complete',
+            payload: { lessonId: 2, score: 5, passed: true },
+        }))).toBe(false);
+        expect((0, progress_events_1.shouldQualifyReferralFromProgressEvent)((0, progress_events_1.normalizeProgressEvent)({
+            eventId: 'lesson:1:complete:ref-fail',
+            type: 'lesson_complete',
+            payload: { lessonId: 1, score: 1, passed: false },
+        }))).toBe(false);
+    });
     it('caps untrusted XP by event type', () => {
         const event = (0, progress_events_1.normalizeProgressEvent)({
             eventId: 'lesson:1:answer:huge',

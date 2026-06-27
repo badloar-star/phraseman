@@ -2343,8 +2343,8 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson19_phrase_14',
     english: "The shoes are under the bed",
-    russian: "Обувь под кроватью",
-    ukrainian: "Взуття під ліжком",
+    russian: "Туфли под кроватью",
+    ukrainian: "Туфлі під ліжком",
     spanish: "Los zapatos están debajo de la cama.",
     words: [
       { text: 'Los', correct: 'Los', distractors: ['Las', 'El', 'La', 'Un', 'Una'], category: 'articulo' },
@@ -2985,8 +2985,8 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson19_phrase_40',
     english: "There are shoes under the bed",
-    russian: "Под кроватью есть обувь",
-    ukrainian: "Під ліжком є взуття",
+    russian: "Под кроватью есть туфли",
+    ukrainian: "Під ліжком є туфлі",
     spanish: "Hay zapatos debajo de la cama.",
     words: [
       { text: 'Hay', correct: 'Hay', distractors: ['Es', 'Está', 'Son', 'Están', 'Había'], category: 'existencial' },
@@ -6433,6 +6433,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_14',
     english: "I found nothing",
+    alternatives: ["I didn't find anything", "I did not find anything"],
     russian: "Я ничего не нашел",
     ukrainian: "Я нічого не знайшов",
     spanish: "No encontré nada.",

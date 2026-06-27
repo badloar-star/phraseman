@@ -6,53 +6,45 @@
  * Date-guard по UTC-дню: один показ за день. Монтируется из _layout.tsx внутри
  * OverlayArbiterProvider; видимость — через useOverlayVisible('boonActivated', …).
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useOverlayVisible } from './OverlayArbiter';
 import { getTodaysBoons } from '../app/boons/boon_engine';
 import { getTodayKey } from '../app/daily_tasks';
+import { isEnergyFreeWindowActive, ENERGY_FREE_WINDOW_START_HOUR } from '../app/boons/boon_effects_energy';
 import type { BoonId } from '../app/boons/boon_types';
 import BoonActivatedModal from './BoonActivatedModal';
+import { usePremium } from './PremiumContext';
 
 /** Бонусы со своим отдельным модалом-наградой — здесь НЕ показываем. */
 const HAS_OWN_MODAL: ReadonlySet<BoonId> = new Set<BoonId>(['mystery_monday']);
+const FREE_ONLY_VISUAL_BOONS: ReadonlySet<BoonId> = new Set<BoonId>([
+  'streak_saver',
+  'energy_free_window',
+  'flashcard_friday',
+  'speaking_saturday',
+  'turbo_regen',
+]);
 
 const SHOWN_KEY = 'boon_activated_shown_v1';
+
+function msUntilLocalHour(hour: number): number | null {
+  const now = new Date();
+  if (now.getHours() >= hour) return null;
+  const target = new Date(now);
+  target.setHours(hour, 0, 0, 0);
+  const delay = target.getTime() - now.getTime();
+  return delay > 0 ? delay : null;
+}
 
 export default function BoonActivatedHost() {
   const [boon, setBoon] = useState<BoonId | null>(null);
   const [wantShow, setWantShow] = useState(false);
   const shownRef = useRef(false);
+  const { hasPremiumAccess } = usePremium();
   const visible = useOverlayVisible('boonActivated', wantShow);
 
-  useEffect(() => {
-    let alive = true;
-    (async () => {
-      const primary = getTodaysBoons().primary;
-      if (!primary || HAS_OWN_MODAL.has(primary)) return;
-      // Во время онбординга праздничный модал не показываем. Гейт ДО setWantShow →
-      // слот арбитра не занимается зря (иначе голодали бы тосты). onboarding_done = '1'.
-      const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch(() => null);
-      if (onboardingDone !== '1') return;
-      const todayKey = getTodayKey();
-      try {
-        const shown = await AsyncStorage.getItem(SHOWN_KEY);
-        if (shown === todayKey) return; // уже показывали сегодня
-      } catch {
-        return;
-      }
-      if (alive) {
-        setBoon(primary);
-        setWantShow(true);
-      }
-    })().catch(() => {});
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  /** Пометить показ за сегодня (идемпотентно). */
-  const markShown = async () => {
+  const markShown = useCallback(async () => {
     if (shownRef.current) return;
     shownRef.current = true;
     try {
@@ -60,7 +52,53 @@ export default function BoonActivatedHost() {
     } catch {
       // best-effort
     }
-  };
+  }, []);
+
+  const evaluate = useCallback(async (alive: () => boolean) => {
+    const primary = getTodaysBoons().primary;
+    if (!primary || HAS_OWN_MODAL.has(primary)) return;
+    if (hasPremiumAccess && FREE_ONLY_VISUAL_BOONS.has(primary)) return;
+    if (primary === 'energy_free_window' && !isEnergyFreeWindowActive()) return;
+    // Во время онбординга праздничный модал не показываем. Гейт ДО setWantShow →
+    // слот арбитра не занимается зря (иначе голодали бы тосты). onboarding_done = '1'.
+    const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+    if (onboardingDone !== '1') return;
+    const todayKey = getTodayKey();
+    try {
+      const shown = await AsyncStorage.getItem(SHOWN_KEY);
+      if (shown === todayKey) return; // уже показывали сегодня
+    } catch {
+      return;
+    }
+    if (alive()) {
+      setBoon(primary);
+      setWantShow(true);
+    }
+  }, [hasPremiumAccess]);
+
+  useEffect(() => {
+    let alive = true;
+    void evaluate(() => alive).catch(() => {});
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    if (getTodaysBoons().primary === 'energy_free_window' && !isEnergyFreeWindowActive()) {
+      const delay = msUntilLocalHour(ENERGY_FREE_WINDOW_START_HOUR);
+      if (delay != null) {
+        timer = setTimeout(() => {
+          void evaluate(() => alive).catch(() => {});
+        }, delay);
+      }
+    }
+    return () => {
+      alive = false;
+      if (timer) clearTimeout(timer);
+    };
+  }, [evaluate]);
+
+  useEffect(() => {
+    if (visible) {
+      void markShown();
+    }
+  }, [markShown, visible]);
 
   const close = () => {
     void markShown();

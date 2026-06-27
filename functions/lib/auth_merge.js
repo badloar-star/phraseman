@@ -454,8 +454,12 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
             // Consume any claim on the survivor so it can't be replayed.
             anon_merge_claim: admin.firestore.FieldValue.delete(),
         };
-        if (mergedShards !== undefined)
+        if (mergedShards !== undefined) {
             update.shards = mergedShards;
+            update.shards_updated_at_ms = now;
+            update.shards_updated_op = 'replace';
+            update.shards_updated_reason = 'account_merge';
+        }
         tx.set(winnerRef, update, { merge: true });
         tx.set(loserRef, {
             identityHidden: true,

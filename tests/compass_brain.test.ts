@@ -88,10 +88,32 @@ describe('compass_brain — сборка дня', () => {
   });
 
   it('день-ремонт ставит разбор ошибок первым', () => {
-    const s = snap({ mistakesByLesson: { 3: 8 }, trainer: { totalDue: 5 } as any });
+    const s = snap({
+      mistakesByLesson: { 3: 8 },
+      trainer: { totalDue: 5 } as any,
+      mistakeRepairTargets: [
+        {
+          microDiagnosisId: 'article_a_an',
+          category: 'article',
+          topWords: ['a'],
+          priorityScore: 90,
+        },
+      ],
+    });
     const day = buildCompassDay(s, NOW);
     expect(day.type).toBe('repair');
-    expect(day.tasks[0].kind).toBe('mistake_repair');
+    expect(day.tasks[0]).toMatchObject({
+      kind: 'mistake_repair',
+      microDiagnosisId: 'article_a_an',
+      weakTopic: 'article',
+    });
+  });
+
+  it('does not create mistake_repair without an available personal-practice diagnosis', () => {
+    const day = buildCompassDay(snap({ mistakesByLesson: { 3: 8 }, trainer: { totalDue: 0 } as any }), NOW);
+    expect(day.type).toBe('repair');
+    expect(day.tasks.some((t) => t.kind === 'mistake_repair')).toBe(false);
+    expect(day.tasks.length).toBeGreaterThan(0);
   });
 
   it('первый день (чистый лист, нет плана) → одна мягкая задача «вслух»', () => {

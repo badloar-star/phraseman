@@ -15,6 +15,15 @@ describe('A/B/C paywall footer locale contract', () => {
     expect(ctaBlock).toContain('onContinueFree');
   });
 
+  it('keeps purchase and restore pending states visible and mutually blocked', () => {
+    expect(ctaBlock).toContain('busy');
+    expect(ctaBlock).toContain('disabled={restoring || busy}');
+    expect(ctaBlock).toContain('accessibilityState={{ disabled: restoring || busy, busy: restoring }}');
+    expect(ctaBlock).toContain('<ActivityIndicator color={tc.ctaText}');
+    expect(ctaBlock).toContain('<ActivityIndicator size="small" color={textMuted}');
+    expect(ctaBlock).toContain('busy && S.footerLinkDisabled');
+  });
+
   it('does not keep the old premium modal legal/footer renderer alive', () => {
     expect(dispatcher).toContain('PremiumModalDispatcher');
     expect(dispatcher).not.toContain('legalPlanned');

@@ -21,6 +21,7 @@ export type FriendActivityLikeResponse = {
   eventId: string;
   activityLikeCount: number;
   targetActivityLikeTotal: number;
+  idempotentReplay?: boolean;
 };
 
 export function isFriendActivityLikesCloudEnabled(): boolean {

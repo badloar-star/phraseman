@@ -54,8 +54,12 @@ jest.mock('firebase-admin', () => {
 import {
   enforceUserGenLimit,
   enforceGlobalBudget,
+  reserveExplainBudget,
+  refundExplainBudgetReservation,
   GLOBAL_DAILY_CAP,
+  GLOBAL_BUDGET_COLLECTION,
   USER_DAILY_GEN_CAP,
+  USER_LIMIT_COLLECTION,
 } from './explain_budget';
 
 beforeEach(() => docs.clear());
@@ -64,6 +68,13 @@ const AUTH = 'auth-1';
 const STABLE = 'stable-1';
 // a fixed "now" inside one UTC day
 const NOW = Date.UTC(2026, 5, 9, 12, 0, 0);
+
+function firstDocIn(collection: string): DocData | undefined {
+  for (const [path, data] of docs.entries()) {
+    if (path.startsWith(`${collection}/`)) return data;
+  }
+  return undefined;
+}
 
 async function callUser(n: number, now = NOW): Promise<number> {
   let thrown = 0;
@@ -125,6 +136,29 @@ describe('enforceGlobalBudget — product-wide daily breaker, atomic', () => {
     let threw = false;
     try { await enforceGlobalBudget(GLOBAL_DAILY_CAP, nextDay); } catch { threw = true; }
     expect(threw).toBe(false);
+  });
+});
+
+describe('reserveExplainBudget / refundExplainBudgetReservation', () => {
+  it('refunds both user and global counters when no generation happens', async () => {
+    const reservation = await reserveExplainBudget(AUTH, STABLE, GLOBAL_DAILY_CAP, NOW);
+
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
+
+    await refundExplainBudgetReservation(reservation, 'test_no_generation');
+
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(0);
+  });
+
+  it('refunds user quota if the global breaker rejects after user reservation', async () => {
+    docs.set(`${GLOBAL_BUDGET_COLLECTION}/2026-06-09`, { genCount: 1 });
+
+    await expect(reserveExplainBudget(AUTH, STABLE, 1, NOW)).rejects.toThrow('explain_global_budget');
+
+    expect(firstDocIn(USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+    expect(firstDocIn(GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
   });
 });
 

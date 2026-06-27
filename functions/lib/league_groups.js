@@ -232,7 +232,7 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true, repairLinks: false });
     await assertCanUseLeague(db, stableUid);
     const weekId = sanitizeString(request.data?.weekId, 16) || getWeekId();
     if (weekId !== getWeekId())
@@ -240,15 +240,18 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
     const leagueId = Math.max(0, Math.min(50, readInt(request.data?.leagueId, 0)));
     const member = sanitizeMember((request.data?.member || {}), stableUid);
     const lbRef = db.collection('leaderboard').doc(stableUid);
-    let groupId = await findExistingGroupForUser(db, weekId, leagueId, stableUid);
+    let groupId = null;
+    let shouldCleanupDuplicates = false;
+    const lbSnap = await lbRef.get().catch(() => null);
+    const savedGroupId = lbSnap?.data()?.groupId;
+    if (typeof savedGroupId === 'string' && lbSnap?.data()?.groupWeekId === weekId && readInt(lbSnap?.data()?.leagueId) === leagueId) {
+        const savedSnap = await db.collection('league_groups').doc(savedGroupId).get().catch(() => null);
+        if (savedSnap?.exists && savedSnap.data()?.members?.[stableUid])
+            groupId = savedGroupId;
+    }
     if (!groupId) {
-        const lbSnap = await lbRef.get().catch(() => null);
-        const savedGroupId = lbSnap?.data()?.groupId;
-        if (typeof savedGroupId === 'string' && lbSnap?.data()?.groupWeekId === weekId && readInt(lbSnap?.data()?.leagueId) === leagueId) {
-            const savedSnap = await db.collection('league_groups').doc(savedGroupId).get().catch(() => null);
-            if (savedSnap?.exists && savedSnap.data()?.members?.[stableUid])
-                groupId = savedGroupId;
-        }
+        groupId = await findExistingGroupForUser(db, weekId, leagueId, stableUid);
+        shouldCleanupDuplicates = Boolean(groupId);
     }
     if (groupId) {
         await db.runTransaction(async (tx) => {
@@ -264,7 +267,9 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
             tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
             tx.set(lbRef, { groupId, groupWeekId: weekId, leagueId }, { merge: true });
         });
-        await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, groupId);
+        if (shouldCleanupDuplicates) {
+            await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, groupId);
+        }
         return { ok: true, groupId, weekId, leagueId };
     }
     for (let attempt = 0; attempt < 4; attempt++) {
@@ -314,7 +319,7 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true, repairLinks: false });
     await assertCanUseLeague(db, stableUid);
     const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
     const groupId = String(lbSnap.data()?.groupId || '');
@@ -360,7 +365,7 @@ exports.leagueSyncMyBoost = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true });
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, { requireKnownIdentity: true, repairLinks: false });
     await assertCanUseLeague(db, stableUid);
     const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
     const groupId = String(lbSnap.data()?.groupId || '');
@@ -418,6 +423,11 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
             ? groupData.groupBoost
             : null;
         if (active && readInt(active.expiresAt, 0) > now) {
+            if (String(active.buyerUid || '') === stableUid) {
+                createdBoost = active;
+                shardsBalance = Math.max(0, readInt(userSnap.data()?.shards, 0));
+                return;
+            }
             throw new https_1.HttpsError('failed-precondition', 'already-active');
         }
         const userData = userSnap.data() || {};
@@ -496,7 +506,7 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
             updatedAt: now,
         }, { merge: true });
     });
-    return { ok: true, groupId, boost: createdBoost, shardsBalance, usedGiftVoucher };
+    return { ok: true, groupId, boost: createdBoost, shardsBalance, shardsUpdatedAtMs: now, usedGiftVoucher };
 }
 // БЫЛО: onRequest с invoker:'public' и stableId из тела — кто угодно мог POST-запросом
 // списать 50 shards у ЛЮБОГО аккаунта (griefing) в обход App Check. Переведено на onCall:
@@ -508,7 +518,7 @@ exports.leagueActivateGroupBoost = (0, https_1.onCall)(callable_options_1.HOT_CA
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
-    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, request.auth.uid, request.data?.stableId, { requireKnownIdentity: true });
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, request.auth.uid, request.data?.stableId, { requireKnownIdentity: true, repairLinks: false });
     return activateLeagueGroupBoostForStableUid(db, stableUid);
 });
 //# sourceMappingURL=league_groups.js.map

@@ -55,6 +55,7 @@ interface UseDuelMockResult {
 }
 
 const QUESTION_TIME_MS = 40_000;
+const QUESTION_UI_TICK_MS = 1000;
 const REVEAL_TIME_MS = 1_500;
 const COUNTDOWN_FROM = 3;
 
@@ -192,6 +193,7 @@ export function useDuelMock(
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const botTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasAnsweredRef = useRef(false);
   const botAnsweredRef = useRef(false);
@@ -226,6 +228,7 @@ export function useDuelMock(
     timers.current.forEach(clearTimeout);
     timers.current = [];
     if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null; }
+    if (questionTimeoutRef.current) { clearTimeout(questionTimeoutRef.current); questionTimeoutRef.current = null; }
   };
 
   const clearBotTimer = () => {
@@ -238,19 +241,12 @@ export function useDuelMock(
     questionStartedAtRef.current = start;
     lastShownSecRef.current = null;
     setQuestionStartedAt(start);
-    intervalRef.current = setInterval(() => {
+    const updateVisibleTimeLeft = () => {
       const left = Math.max(0, QUESTION_TIME_MS - (Date.now() - start));
       if (left <= 0) {
         if (lastShownSecRef.current !== 0) {
           lastShownSecRef.current = 0;
           setTimeLeft(0);
-        }
-        clearAll();
-        if (!hasAnsweredRef.current) {
-          hasAnsweredRef.current = true;
-          setHasAnswered(true);
-          setMyAnswer(null);
-          goToReveal(qIndexRef.current);
         }
         return;
       }
@@ -259,7 +255,22 @@ export function useDuelMock(
         lastShownSecRef.current = displaySec;
         setTimeLeft(left);
       }
-    }, 100);
+    };
+    const finishNoAnswer = () => {
+      if (hasAnsweredRef.current) return;
+      if (lastShownSecRef.current !== 0) {
+        lastShownSecRef.current = 0;
+        setTimeLeft(0);
+      }
+      hasAnsweredRef.current = true;
+      setHasAnswered(true);
+      setMyAnswer(null);
+      clearAll();
+      goToReveal(qIndexRef.current);
+    };
+    updateVisibleTimeLeft();
+    intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS);
+    questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50);
   }, []);
 
   const scheduleBotAnswer = useCallback((idx: number, onBothAnswered: () => void) => {

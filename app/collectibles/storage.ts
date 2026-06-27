@@ -42,6 +42,7 @@ type ClaimResponse = {
   secretCardId?: string | null;
   bonusShards?: number;
   shardsBalance?: number | null;
+  shardsUpdatedAtMs?: number | null;
 };
 
 function parseOwnedMap(raw: unknown): CollectiblesOwnedMap {
@@ -228,7 +229,11 @@ export async function maybeRollCollectibleDrop(
     };
     await applyDropLocally(outcome);
     if (outcome.bonusShards > 0 && typeof data.shardsBalance === 'number') {
-      await replaceShardsBalanceLocal(data.shardsBalance).catch(() => {});
+      await replaceShardsBalanceLocal(data.shardsBalance, {
+        updatedAtMs: data.shardsUpdatedAtMs,
+        op: 'earn',
+        reason: 'collectible_set_bonus',
+      }).catch(() => {});
     }
     return outcome;
   } catch {

@@ -28,9 +28,9 @@ export interface CanShowAfterWinParams {
 export async function canShowAfterWinUpsell({ isPremium, nowMs }: CanShowAfterWinParams): Promise<boolean> {
   if (isPremium) return false;
   try {
-    const [lastRaw, streakShown] = await Promise.all([
-      AsyncStorage.getItem(LAST_SHOWN_KEY),
-      AsyncStorage.getItem('streak_paywall_shown'),
+    const [[, lastRaw], [, streakShown]] = await AsyncStorage.multiGet([
+      LAST_SHOWN_KEY,
+      'streak_paywall_shown',
     ]);
     const last = parseInt(lastRaw ?? '0', 10) || 0;
     if (nowMs - last < AFTER_WIN_UPSELL_COOLDOWN_MS) return false;

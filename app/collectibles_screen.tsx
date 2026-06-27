@@ -521,10 +521,7 @@ function CardDetailModal({
 
 /* ── экран ────────────────────────────────────────────────── */
 export default function CollectiblesScreen() {
-  // Kill-switch из Remote Config (collectibles_enabled, дефолт true).
-  if (!isCollectiblesEnabled()) {
-    return null;
-  }
+  const collectiblesEnabled = isCollectiblesEnabled();
 
   const router = useRouter();
   const { lang } = useLang();
@@ -542,22 +539,25 @@ export default function CollectiblesScreen() {
   const [expandedSet, setExpandedSet] = useState<string | null>(null);
 
   const load = useCallback(async () => {
+    if (!collectiblesEnabled) return;
     const map = await getCollectiblesOwnedMap();
     setOwnedMap(map);
     setLoaded(true);
     // Открыли экран — все текущие карточки считаются «увиденными» (бейдж NEW гаснет).
     void markCollectiblesSeen(Object.keys(map));
-  }, []);
+  }, [collectiblesEnabled]);
 
   useFocusEffect(useCallback(() => {
+    if (!collectiblesEnabled) return undefined;
     void load();
     return undefined;
-  }, [load]));
+  }, [collectiblesEnabled, load]));
 
   useEffect(() => {
+    if (!collectiblesEnabled) return undefined;
     const sub = onAppEvent('collectibles_changed', () => { void load(); });
     return () => sub.remove();
-  }, [load]);
+  }, [collectiblesEnabled, load]);
 
   const ownedCount = useMemo(
     () => Object.keys(ownedMap).filter((id) =>
@@ -604,6 +604,11 @@ export default function CollectiblesScreen() {
     // Тап по уже открытому — закрыть; иначе открыть его и закрыть остальные.
     setExpandedSet((prev) => (prev === setId ? null : setId));
   }, []);
+
+  // Kill-switch из Remote Config (collectibles_enabled, дефолт true).
+  if (!collectiblesEnabled) {
+    return null;
+  }
 
   return (
     <ScreenGradient>

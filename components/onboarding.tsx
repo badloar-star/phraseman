@@ -24,7 +24,7 @@ import { CLOUD_SYNC_ENABLED, FORCE_PREMIUM } from '../app/config';
 // бесплатных тем (вторая — "Скетч"/MINIMAL_LIGHT). Импортируем под алиасом
 // `DARK`, чтобы не править все ~150 ссылок DARK.* по тексту экрана.
 import { MINIMAL_DARK as DARK } from '../constants/theme';
-import { isInterfaceLangEnabled, type Lang } from '../constants/i18n';
+import { getDeviceBootstrapLocale, type Lang } from '../constants/i18n';
 import {
   UserProfile,
   estimateDaysToTarget,
@@ -96,6 +96,7 @@ const AppInfoDialog = {
 
 interface Props {
   onDone: () => void;
+  initialLang?: Lang;
   onLangSelect?: (lang: Lang) => void;
   onIntroFullAccessStart?: () => Promise<boolean> | boolean;
   onPersonalPlanPaywallStart?: () => Promise<void> | void;
@@ -648,7 +649,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   },
 ];
 
-function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtNameStep }: Props) {
+function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallStart, startAtNameStep }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const [onboardingAbVariant, setOnboardingAbVariant] = useState<OnboardingAbVariant>('welcome');
@@ -726,23 +727,6 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
   const streakHeroIconSize = scaleOnboarding(compactOnboarding ? 52 : 76, 44);
   const streakMilestoneIconSize = scaleOnboarding(compactOnboarding ? 38 : 52, 34);
 
-  // Device locale -> enabled interface locale; otherwise RU.
-  const detectLang = (): Lang => {
-    try {
-      const locale = (Intl.DateTimeFormat().resolvedOptions().locale ?? '').toLowerCase();
-      if (locale.startsWith('uk')) return 'uk';
-      if (locale.startsWith('es') && isInterfaceLangEnabled('es')) return 'es';
-      if ((locale.startsWith('pt-br') || locale === 'pt') && isInterfaceLangEnabled('pt-BR')) return 'pt-BR';
-      if (locale.startsWith('vi') && isInterfaceLangEnabled('vi')) return 'vi';
-      if (locale.startsWith('id') && isInterfaceLangEnabled('id')) return 'id';
-      if (locale.startsWith('tr') && isInterfaceLangEnabled('tr')) return 'tr';
-      if (locale.startsWith('pl') && isInterfaceLangEnabled('pl')) return 'pl';
-      return 'ru';
-    } catch {
-      return 'ru';
-    }
-  };
-
   type OnboardingStep = OnboardingStepKey;
   // Быстрый старт на «Имя» (переоткрытие после пейвола): A/B-вариант берём
   // синхронно из уже загруженного кэша (peekStableId — без await/Keychain), и
@@ -786,7 +770,7 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
   const milestoneAnims = useRef([0, 1, 2, 3].map(() => new Animated.Value(0))).current;
   const btnSlide   = useRef(new Animated.Value(30)).current;
   const btnFade    = useRef(new Animated.Value(0)).current;
-  const [lang]       = useState<Lang>(detectLang);
+  const [lang]       = useState<Lang>(() => initialLang ?? getDeviceBootstrapLocale());
   const [name, setName]       = useState('');
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
@@ -817,6 +801,8 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
   // RC-пакеты для inline-покупки на пейволе (грузятся вместе с ценами).
   const storePackagesRef = useRef<{ monthly?: unknown; yearly?: unknown }>({});
   const [paywallPurchasing, setPaywallPurchasing] = useState(false);
+  const [paywallRestoring, setPaywallRestoring] = useState(false);
+  const paywallBusy = paywallPurchasing || paywallRestoring;
   const [nicknameMode, setNicknameMode] = useState<OnboardingNicknameMode>('regular');
   const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
   const [planLoadingCtaReady, setPlanLoadingCtaReady] = useState(false);
@@ -1553,7 +1539,7 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
   // Пейвол пропускаем ТОЛЬКО при реальном Premium (hasPremiumAccess), что у нового
   // онбординг-юзера ложно.
   const openSelectedPlanAbPaywall = async () => {
-    if (paywallPurchasing) return;
+    if (paywallBusy) return;
     setPaywallPurchasing(true);
     try {
       const paywallPlan = selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly';
@@ -1611,7 +1597,7 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
   };
 
   const handlePaywallPurchase = async () => {
-    if (paywallPurchasing) return;
+    if (paywallBusy) return;
 
     void import('../app/analytics').then(({ trackEvent }) =>
       trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial, ob_color: obColor }),
@@ -1791,8 +1777,8 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
 
   // Восстановление покупок с inline-пейвола
   const handlePaywallRestore = async () => {
-    if (paywallPurchasing) return;
-    setPaywallPurchasing(true);
+    if (paywallBusy) return;
+    setPaywallRestoring(true);
     try {
       const [
         Purchases,
@@ -1836,7 +1822,7 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
     } catch {
       AppInfoDialog.alert(pick('Ошибка', 'Помилка', 'Error'), pick('Не удалось восстановить покупки.', 'Не вдалося відновити покупки.', 'No se pudieron restaurar.'));
     } finally {
-      setPaywallPurchasing(false);
+      setPaywallRestoring(false);
     }
   };
 
@@ -2455,8 +2441,9 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
                 {/* Выбор плана */}
                 <View style={styles.planPaywallOptions}>
                   <TouchableOpacity
-                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected]}
+                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected, paywallBusy && styles.planPaywallBuyCardDisabled]}
                     activeOpacity={0.84}
+                    disabled={paywallBusy}
                     onPress={() => setSelectedPlanBilling('annual')}
                   >
                     <View style={styles.planPaywallBuyCardInner}>
@@ -2468,8 +2455,9 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
                     <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>{triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}</Text></View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected]}
+                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected, paywallBusy && styles.planPaywallBuyCardDisabled]}
                     activeOpacity={0.84}
+                    disabled={paywallBusy}
                     onPress={() => setSelectedPlanBilling('monthly')}
                   >
                     <Text style={styles.planPaywallBuyTitle}>{triOb('Месячный', 'Місячний', 'Mensual')}</Text>
@@ -2482,21 +2470,38 @@ function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart, startAtN
                 {/* CTA */}
                 <DuoPressable
                   testID="data-plan-paywall-trial-cta"
-                  style={[styles.eliteWelcomeCta, paywallPurchasing && { opacity: 0.6 }]}
+                  style={[styles.eliteWelcomeCta, paywallBusy && { opacity: 0.6 }]}
                   edgeColor={theme.accentDeep}
+                  disabled={paywallBusy}
+                  pressedExternally={paywallPurchasing}
                   onPress={handlePaywallPurchase}
                 >
-                  <Text style={styles.eliteWelcomeCtaText}>
-                    {paywallPurchasing ? triOb('Оформляем…', 'Оформляємо…', 'Procesando…') : ctaLabel}
-                  </Text>
+                  <View style={styles.planPaywallCtaContent}>
+                    {paywallPurchasing ? <ActivityIndicator size="small" color={theme.ctaText} /> : null}
+                    <Text style={styles.eliteWelcomeCtaText}>
+                      {paywallPurchasing ? triOb('Оформляем…', 'Оформляємо…', 'Procesando…') : ctaLabel}
+                    </Text>
+                  </View>
                 </DuoPressable>
               </>
             )}
 
             {/* Доверие (без рейтинга — не показываем оценку, чтобы не рисковать App Store) */}
             <View style={styles.planPaywallTrustRow}>
-              <TouchableOpacity onPress={handlePaywallRestore} activeOpacity={0.7}>
-                <Text style={styles.planPaywallTrustItem}>{triOb('Восстановить', 'Відновити', 'Restaurar')}</Text>
+              <TouchableOpacity
+                onPress={handlePaywallRestore}
+                activeOpacity={0.7}
+                disabled={paywallBusy}
+                accessibilityState={{ disabled: paywallBusy, busy: paywallRestoring }}
+              >
+                {paywallRestoring ? (
+                  <View style={styles.planPaywallRestoreBusy}>
+                    <ActivityIndicator size="small" color={theme.textMuted} />
+                    <Text style={styles.planPaywallTrustItem}>{triOb('Восстанавливаем…', 'Відновлюємо…', 'Restaurando…')}</Text>
+                  </View>
+                ) : (
+                  <Text style={[styles.planPaywallTrustItem, paywallBusy && styles.planPaywallTrustItemDisabled]}>{triOb('Восстановить', 'Відновити', 'Restaurar')}</Text>
+                )}
               </TouchableOpacity>
               <Text style={styles.planPaywallTrustSep}>·</Text>
               <Text style={styles.planPaywallTrustItem}>{triOb('Отменить всегда', 'Скасувати завжди', 'Cancela siempre')}</Text>
@@ -5209,6 +5214,9 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     backgroundColor: t.accentBg,
     borderColor: t.accentBorder,
   },
+  planPaywallBuyCardDisabled: {
+    opacity: 0.62,
+  },
   planPaywallBuyTitle: {
     color: t.textPrimary,
     fontSize: 14,
@@ -5361,6 +5369,13 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     fontWeight: '800',
   },
   // Строка доверия под CTA
+  planPaywallCtaContent: {
+    minHeight: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
   planPaywallTrustRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -5372,6 +5387,16 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
   planPaywallTrustItem: {
     color: t.textMuted,
     fontSize: 12,
+  },
+  planPaywallTrustItemDisabled: {
+    opacity: 0.45,
+  },
+  planPaywallRestoreBusy: {
+    minWidth: 112,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
   },
   planPaywallTrustSep: {
     color: 'rgba(255,255,255,0.2)',

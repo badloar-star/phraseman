@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView,
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import CollectibleDropModal from '../components/CollectibleDropModal';
-import SeasonResultModal from '../components/SeasonResultModal';
 import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -51,7 +50,7 @@ import { reserveArenaGameEntry } from './arena_access_gate';
 import { recordArenaClubWarContribution, type ArenaClubWarContributionResult } from './services/arena_club_wars';
 import { recordArenaRoomRun, subscribeArenaRoomRuns, type ArenaRoomRun } from './services/arena_rooms_live';
 import { publishArenaPulseEvent } from './services/arena_pulse';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 
 type ArenaReviewItem = {
@@ -262,7 +261,6 @@ export default function DuelResultsScreen() {
       .catch(() => {});
   }, [sessionId, isMockSession]);
   const [showReview, setShowReview] = useState(false);
-  const [seasonCeilingModal, setSeasonCeilingModal] = useState<{ sr: number } | null>(null);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [ratingVariant, setRatingVariant] = useState<ReviewVariant | null>(null);
   useEffect(() => {
@@ -469,7 +467,7 @@ export default function DuelResultsScreen() {
       setRematchSecsLeft(left);
     };
     tick();
-    const id = setInterval(tick, 500);
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [rematchPending, rematchOffer?.ttlAt]);
 
@@ -514,6 +512,8 @@ export default function DuelResultsScreen() {
     rematchNavigateRef.current = true;
     void (async () => {
       await reserveArenaGameEntry(newSessionId, 'rematch');
+      // Реванш → новая игра «вместо» текущих результатов (свап, не push).
+      markNextNavigationAsReplace();
       router.replace({
         pathname: '/arena_game' as any,
         params: { sessionId: newSessionId, userId, fromLobby: '0' },
@@ -647,10 +647,6 @@ export default function DuelResultsScreen() {
               newTier: data.newTier ?? 'bronze',
               newLevel: data.newLevel ?? 'I',
             }), 700);
-          }
-          // Показать SR-модал когда игрок на потолке Legend III и выиграл
-          if (data.atCeiling && data.won && data.sr != null) {
-            setTimeout(() => setSeasonCeilingModal({ sr: data.sr ?? 0 }), 1200);
           }
         }, 200);
 
@@ -2208,7 +2204,7 @@ export default function DuelResultsScreen() {
           {isRoomRun && (
             <TouchableOpacity
               style={[styles.homeBtn, { borderColor: t.accent, backgroundColor: t.accentBg }]}
-              onPress={() => router.replace({ pathname: '/arena_room' as any, params: { code: cleanRoomCode } })}
+              onPress={() => { markNextNavigationAsReplace(); router.replace({ pathname: '/arena_room' as any, params: { code: cleanRoomCode } }); }}
               activeOpacity={0.8}
             >
               <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '700' }]}>
@@ -2398,13 +2394,6 @@ export default function DuelResultsScreen() {
           setPendingCardDrop(null);
           router.push('/collectibles_screen' as any);
         }}
-      />
-
-      <SeasonResultModal
-        visible={!!seasonCeilingModal}
-        kind="ceiling_reached"
-        sr={seasonCeilingModal?.sr ?? 0}
-        onClose={() => setSeasonCeilingModal(null)}
       />
 
       {/* Профиль соперника после матча: добавить в друзья / вызвать на реванш. */}

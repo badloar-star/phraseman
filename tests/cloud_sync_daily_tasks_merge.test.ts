@@ -554,6 +554,26 @@ describe('streak cloud restore safety', () => {
     await expect(AsyncStorage.getItem('login_bonus_v1')).resolves.toBe(cloudLoginBonus);
   });
 
+  it('does not lower a fresher local streak when cloud XP is higher', async () => {
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '90000'],
+      ['streak_count', '60'],
+      ['last_active_date', '2026-06-24'],
+      ['streak_last_date', '2026-06-24'],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '90762',
+      streak_count: '3',
+      last_active_date: '2026-06-24',
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem('user_total_xp')).resolves.toBe('90762');
+    await expect(AsyncStorage.getItem('streak_count')).resolves.toBe('60');
+    await expect(AsyncStorage.getItem('last_active_date')).resolves.toBe('2026-06-24');
+  });
+
   it('keeps newer local lesson replay rewards when cloud restore has stale pass counts', async () => {
     const localPerfect = JSON.stringify(new Array(50).fill('correct'));
     const staleCloudProgress = JSON.stringify([
@@ -581,6 +601,52 @@ describe('streak cloud restore safety', () => {
     await expect(AsyncStorage.getItem('lesson11_best_score')).resolves.toBe('5');
     await expect(AsyncStorage.getItem('lesson11_pass_count')).resolves.toBe('5');
     await expect(AsyncStorage.getItem('lesson11_progress')).resolves.toBe(localPerfect);
+  });
+
+  it('unions unlocked lessons during full cloud restore instead of relocking local progress', async () => {
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '10'],
+      ['streak_count', '0'],
+      ['unlocked_lessons', JSON.stringify([1, 2, 3, 4])],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '12000',
+      streak_count: '14',
+      unlocked_lessons: JSON.stringify([1, 2]),
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem('unlocked_lessons')).resolves.toBe(JSON.stringify([1, 2, 3, 4]));
+  });
+
+  it('keeps stronger local level exam progress during full cloud restore', async () => {
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '10'],
+      ['streak_count', '0'],
+      ['level_exam_A1_pct', '92'],
+      ['level_exam_A1_best_pct', '95'],
+      ['level_exam_A1_passed', 'true'],
+      ['level_exam_A1_pass_count', '2'],
+      ['level_exam_A1_completed_at', '2026-06-20'],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '12000',
+      streak_count: '14',
+      level_exam_A1_pct: '70',
+      level_exam_A1_best_pct: '80',
+      level_exam_A1_passed: 'false',
+      level_exam_A1_pass_count: '1',
+      level_exam_A1_completed_at: '2026-06-10',
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem('level_exam_A1_pct')).resolves.toBe('92');
+    await expect(AsyncStorage.getItem('level_exam_A1_best_pct')).resolves.toBe('95');
+    await expect(AsyncStorage.getItem('level_exam_A1_passed')).resolves.toBe('true');
+    await expect(AsyncStorage.getItem('level_exam_A1_pass_count')).resolves.toBe('2');
+    await expect(AsyncStorage.getItem('level_exam_A1_completed_at')).resolves.toBe('2026-06-20');
   });
 
   it('keeps newer local French lesson state when cloud restore has stale scoped target values', async () => {
@@ -618,6 +684,56 @@ describe('streak cloud restore safety', () => {
     await expect(AsyncStorage.getItem(progressKey)).resolves.toBe(localPerfect);
     await expect(AsyncStorage.getItem(perfectPassEvidenceKey)).resolves.toBe(JSON.stringify([1, 2, 3]));
     await expect(AsyncStorage.getItem('lesson11_progress')).resolves.toBeNull();
+  });
+
+  it('unions French unlocked lessons during restore instead of relocking scoped target progress', async () => {
+    const unlockedKey = targetKey('lesson_progress', 'fr', 'unlocked_lessons');
+
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '10'],
+      ['streak_count', '0'],
+      [unlockedKey, JSON.stringify([1, 2, 3, 4])],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '12000',
+      streak_count: '14',
+      [unlockedKey]: JSON.stringify([1, 2]),
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem(unlockedKey)).resolves.toBe(JSON.stringify([1, 2, 3, 4]));
+  });
+
+  it('keeps stronger French level exam progress during scoped restore', async () => {
+    const pctKey = targetKey('level_exams', 'fr', 'level_exam_A1_pct');
+    const bestKey = targetKey('level_exams', 'fr', 'level_exam_A1_best_pct');
+    const passedKey = targetKey('level_exams', 'fr', 'level_exam_A1_passed');
+    const passCountKey = targetKey('level_exams', 'fr', 'level_exam_A1_pass_count');
+
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '10'],
+      ['streak_count', '0'],
+      [pctKey, '92'],
+      [bestKey, '95'],
+      [passedKey, 'true'],
+      [passCountKey, '2'],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '12000',
+      streak_count: '14',
+      [pctKey]: '70',
+      [bestKey]: '80',
+      [passedKey]: 'false',
+      [passCountKey]: '1',
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem(pctKey)).resolves.toBe('92');
+    await expect(AsyncStorage.getItem(bestKey)).resolves.toBe('95');
+    await expect(AsyncStorage.getItem(passedKey)).resolves.toBe('true');
+    await expect(AsyncStorage.getItem(passCountKey)).resolves.toBe('2');
   });
 
   it('restores missing French target rows even when local shared XP wins restore', async () => {

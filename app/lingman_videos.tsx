@@ -23,10 +23,8 @@ import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import {
   formatLingmanVideoDate,
+  getActiveYoutubeChannel,
   getTrustedLingmanYoutubeUrl,
-  LINGMAN_CHANNEL_DISPLAY_NAME,
-  LINGMAN_CHANNEL_HANDLE,
-  LINGMAN_CHANNEL_URL,
   getLingmanYoutubeSnapshot,
   LingmanYoutubeSnapshot,
   LingmanYoutubeVideo,
@@ -49,6 +47,9 @@ export default function LingmanVideosScreen() {
   const [snapshot, setSnapshot] = useState<LingmanYoutubeSnapshot | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  // Активный канал (дефолт PHRASEMAN или override из «Пульта»). Обновляется при
+  // каждой загрузке снапшота — тогда же, когда могла прийти новая конфигурация.
+  const [channel, setChannel] = useState(() => getActiveYoutubeChannel());
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const copy = useMemo(() => ({
@@ -140,6 +141,7 @@ export default function LingmanVideosScreen() {
     try {
       const next = await getLingmanYoutubeSnapshot();
       setSnapshot(next);
+      setChannel(getActiveYoutubeChannel());
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -254,7 +256,7 @@ export default function LingmanVideosScreen() {
           </TapScale>
           <View style={styles.headerText}>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h1) }]} numberOfLines={1}>
-              {copy.title}
+              {channel.isOverride ? `${triLang(lang, { ru: 'Видео', uk: 'Видео', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' })} ${channel.displayName}` : copy.title}
             </Text>
             <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={2}>
               {copy.subtitle}
@@ -272,14 +274,14 @@ export default function LingmanVideosScreen() {
             <Ionicons name="play" size={26} color={chrome.iconOnAccent} />
           </View>
           <View style={styles.channelText}>
-            <Text style={[styles.channelTitle, { color: t.textPrimary }]}>{LINGMAN_CHANNEL_DISPLAY_NAME}</Text>
-            <Text style={[styles.channelSub, { color: t.textMuted }]} numberOfLines={1}>{LINGMAN_CHANNEL_HANDLE}</Text>
+            <Text style={[styles.channelTitle, { color: t.textPrimary }]}>{channel.displayName}</Text>
+            <Text style={[styles.channelSub, { color: t.textMuted }]} numberOfLines={1}>{channel.handle}</Text>
           </View>
           <TouchableOpacity
             activeOpacity={0.78}
             onPress={() => {
               hapticTap();
-              openExternalUrl(LINGMAN_CHANNEL_URL);
+              openExternalUrl(channel.url);
             }}
             style={styles.channelOpen}
           >
@@ -306,7 +308,6 @@ export default function LingmanVideosScreen() {
             data={videos}
             keyExtractor={(item) => item.id}
             renderItem={renderVideo}
-            estimatedItemSize={96}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.list}
             ListEmptyComponent={(

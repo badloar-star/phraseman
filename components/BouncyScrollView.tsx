@@ -231,7 +231,7 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
     ({ children, style }: { children: React.ReactNode; style?: any }) => {
       const child = React.isValidElement(children)
         ? children
-        : children as React.ReactElement;
+        : <>{children}</>;
       const scrollChild = isAndroid && React.isValidElement(child)
         ? React.cloneElement(child as React.ReactElement<any>, { overScrollMode: 'never' })
         : child;

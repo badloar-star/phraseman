@@ -83,6 +83,12 @@ type ShardBalanceMeta = {
   reason: string;
 };
 
+type ReplaceShardBalanceOptions = {
+  updatedAtMs?: number | null;
+  op?: ShardBalanceMeta['op'];
+  reason?: string;
+};
+
 /** In-memory кэш для мгновенного UI без мигания 0 до AsyncStorage. */
 let shardsBalanceMemory: number | null = null;
 const setShardsBalanceMemory = (n: number) => {
@@ -181,6 +187,12 @@ const localWriteStamp = (op: ShardBalanceMeta['op'], reason: string): ShardBalan
   reason,
 });
 
+const normalizeShardBalanceOp = (value: unknown): ShardBalanceMeta['op'] => (
+  value === 'earn' || value === 'spend' || value === 'admin' || value === 'replace'
+    ? value
+    : 'replace'
+);
+
 /** Последний известный баланс (после чтения/записи в этой сессии). null — ещё не читали с диска. */
 export const peekLastKnownShardsBalance = (): number | null => shardsBalanceMemory;
 
@@ -202,20 +214,48 @@ export const getShardsBalance = async (): Promise<number> => {
 };
 
 /** Локальный баланс = значение с сервера (после Cloud Function, без client-side spend). */
-export const replaceShardsBalanceLocal = async (next: number): Promise<void> => {
+export const replaceShardsBalanceLocal = async (
+  next: number,
+  options?: ReplaceShardBalanceOptions,
+): Promise<void> => {
   const n = Math.max(0, Math.floor(Number(next)));
   if (!Number.isFinite(n)) return;
-  const meta = localWriteStamp('replace', 'server_replace');
+  const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs);
+  const meta: ShardBalanceMeta = {
+    updatedAtMs: serverUpdatedAtMs ?? Date.now(),
+    op: normalizeShardBalanceOp(options?.op),
+    reason: typeof options?.reason === 'string' && options.reason.trim()
+      ? options.reason.trim()
+      : 'server_replace',
+  };
+  let wrote = false;
   try {
-    await AsyncStorage.multiSet([
-      [STORAGE_KEY, String(n)],
-      [BALANCE_META_KEY, JSON.stringify(meta)],
-    ]);
+    await withStorageLock(async () => {
+      if (serverUpdatedAtMs !== null) {
+        const currentMeta = await readBalanceMeta();
+        if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;
+      }
+      await persistLocalBalance(n, meta);
+      wrote = true;
+    });
   } catch {
     return;
   }
+  if (!wrote) return;
   setShardsBalanceMemory(n);
   await emitShardsBalanceUpdated(n, meta);
+};
+
+const mirrorServerShardBalanceLocal = async (
+  next: number,
+  meta: ShardBalanceMeta,
+): Promise<number> => {
+  await replaceShardsBalanceLocal(next, {
+    updatedAtMs: meta.updatedAtMs,
+    op: meta.op,
+    reason: meta.reason,
+  });
+  return getShardsBalance();
 };
 
 // ── Лог транзакций в Firestore ────────────────────────────────────────────
@@ -331,11 +371,9 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', source, localBase);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'earn', reason: source };
-      await persistLocalBalance(cloudApplied.balance, meta);
-      setShardsBalanceMemory(cloudApplied.balance);
+      await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
       void bumpLifetimeShardsEarned(amount);
       logShardTransaction('earn', amount, source, cloudApplied.balance, cloudApplied.balanceBefore);
-      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       if (!opts?.suppressEarnEvent) {
         emitAppEvent('shards_earned', { amount, reasonKey: source });
       }
@@ -428,7 +466,7 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
       httpsCallable: (
         fns: unknown,
         name: string,
-      ) => (data: unknown) => Promise<{ data: { alreadyClaimed: boolean; newBalance: number } }>;
+      ) => (data: unknown) => Promise<{ data: { alreadyClaimed: boolean; newBalance: number; shardsUpdatedAtMs?: number | null } }>;
     };
     const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
     const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
@@ -438,7 +476,8 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
     // с релинком (анон→Google, мердж) маркер reward_claims оседал на чужом доке и сервер
     // вечно отвечал alreadyClaimed → «не забрать осколки» (баг-репорты daily_tasks).
     const cfResult = await cfCall({ dayKey, stableId: uid });
-    const { alreadyClaimed, newBalance } = cfResult.data;
+    const { alreadyClaimed, newBalance, shardsUpdatedAtMs } = cfResult.data;
+    const serverUpdatedAtMs = parseUpdatedAtMs(shardsUpdatedAtMs) ?? updatedAtMs;
 
     if (alreadyClaimed) {
       // Сервер уже выдал осколок (другое устройство / прерванный прошлый вызов
@@ -449,32 +488,27 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
       // Подтягиваем серверный баланс локально, чтобы не было расхождения
       // («осколки уменьшились» из баг-репортов).
       if (Number.isFinite(newBalance) && newBalance >= 0) {
-        await withStorageLock(async () => {
-          const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' };
-          await AsyncStorage.multiSet([
-            [STORAGE_KEY, String(newBalance)],
-            [BALANCE_META_KEY, JSON.stringify(meta)],
-          ]);
+        await replaceShardsBalanceLocal(newBalance, {
+          updatedAtMs: serverUpdatedAtMs,
+          op: 'earn',
+          reason: 'daily_tasks_all',
         }).catch(() => {});
-        setShardsBalanceMemory(newBalance);
-        await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' }).catch(() => {});
       }
       return 'already';
     }
 
-    await withStorageLock(async () => {
-      const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' };
-      await AsyncStorage.multiSet([
-        [STORAGE_KEY, String(newBalance)],
-        [BALANCE_META_KEY, JSON.stringify(meta)],
-        [rewardKey, '1'],
-      ]);
-    });
+    if (Number.isFinite(newBalance) && newBalance >= 0) {
+      await replaceShardsBalanceLocal(newBalance, {
+        updatedAtMs: serverUpdatedAtMs,
+        op: 'earn',
+        reason: 'daily_tasks_all',
+      });
+    }
+    await AsyncStorage.setItem(rewardKey, '1');
 
-    setShardsBalanceMemory(newBalance);
+    const currentBalance = await getShardsBalance();
     void bumpLifetimeShardsEarned(amount);
-    logShardTransaction('earn', amount, 'daily_tasks_all', newBalance, newBalance - amount);
-    await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' });
+    logShardTransaction('earn', amount, 'daily_tasks_all', currentBalance, currentBalance - amount);
     emitAppEvent('shards_earned', { amount, reasonKey: 'daily_tasks_all' });
     return 'granted';
   } catch (error) {
@@ -484,7 +518,7 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
 };
 
 /**
- * Обратная совместимость: булева обёртка над {@link claimDailyTasksAllShardsRewardDetailed}.
+ * Обратная совместимость: булевая обёртка над {@link claimDailyTasksAllShardsRewardDetailed}.
  * true только при фактическом начислении ('granted'). 'already'/'failed' → false.
  * Предпочитай детальную версию, чтобы отличать «уже забрано» от реального сбоя.
  */
@@ -551,14 +585,12 @@ export const addShardsRaw = async (
     const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', logReason, localBase);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'earn', reason: logReason };
-      await persistLocalBalance(cloudApplied.balance, meta);
-      setShardsBalanceMemory(cloudApplied.balance);
+      await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
       if (isStorePurchaseReason(logReason)) {
         await bumpStorePurchasedShardsTotal(amount);
       }
       void bumpLifetimeShardsEarned(amount);
       logShardTransaction('earn', amount, logReason, cloudApplied.balance, cloudApplied.balanceBefore);
-      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       if (options?.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
         emitAppEvent('shards_earned', { amount, reasonKey: k });
@@ -620,12 +652,10 @@ export const spendShards = async (
     const cloudApplied = await applyShardDeltaToCloud(-spendAmount, 'spend', reason, localBase);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'spend', reason };
-      await persistLocalBalance(cloudApplied.balance, meta);
-      setShardsBalanceMemory(cloudApplied.balance);
+      await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
       await consumeStorePurchasedShardsOnSpend(spendAmount);
       void bumpLifetimeShardsSpent(spendAmount);
       logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
-      await emitShardsBalanceUpdated(cloudApplied.balance, meta);
       trackShardsSpentAchievement(spendAmount);
       return true;
     }
@@ -765,21 +795,17 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
           return 0;
         }
 
+        const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: source };
+        await mirrorServerShardBalanceLocal(newBalance, meta);
         await withStorageLock(async () => {
           const events = await getOneTimeEvents();
           events.add(source);
-          const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: source };
-          await AsyncStorage.multiSet([
-            [STORAGE_KEY, String(newBalance)],
-            [BALANCE_META_KEY, JSON.stringify(meta)],
-            [ONE_TIME_KEY, JSON.stringify([...events])],
-          ]);
+          await AsyncStorage.setItem(ONE_TIME_KEY, JSON.stringify([...events]));
         });
 
-        setShardsBalanceMemory(newBalance);
+        const currentBalance = await getShardsBalance();
         void bumpLifetimeShardsEarned(amount);
-        logShardTransaction('earn', amount, source, newBalance, newBalance - amount);
-        await emitShardsBalanceUpdated(newBalance, { updatedAtMs, op: 'earn', reason: source });
+        logShardTransaction('earn', amount, source, currentBalance, currentBalance - amount);
         emitAppEvent('shards_earned', { amount, reasonKey: source });
         return amount;
       }

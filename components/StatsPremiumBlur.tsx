@@ -1,16 +1,12 @@
-import React, { memo, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
-import { captureRef } from 'react-native-view-shot';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { selectStatsPremiumBlurPresentation } from './statsPremiumBlurCache';
 
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
 export type StatsPremiumSnapshotKey =
@@ -112,22 +108,71 @@ function PremiumSnapshotSheen() {
   );
 }
 
+function PremiumStatsPlaceholder({ snapshotKey }: { snapshotKey?: StatsPremiumSnapshotKey }) {
+  const isHeatmap = snapshotKey === 'heatmap';
+  const isChart = snapshotKey === 'pathChart' || snapshotKey === 'lifetimeTotals';
+  const rows = isHeatmap ? 7 : 5;
+  const cols = isHeatmap ? 12 : 6;
+
+  return (
+    <View pointerEvents="none" style={styles.placeholder}>
+      {isHeatmap ? (
+        <View style={styles.heatmapGrid}>
+          {Array.from({ length: rows * cols }).map((_, index) => (
+            <View
+              key={index}
+              style={[
+                styles.heatmapCell,
+                { opacity: 0.18 + ((index * 7) % 5) * 0.055 },
+              ]}
+            />
+          ))}
+        </View>
+      ) : (
+        <>
+          <View style={styles.placeholderHeader}>
+            <View style={styles.placeholderTitle} />
+            <View style={styles.placeholderPill} />
+          </View>
+          <View style={styles.placeholderBody}>
+            {Array.from({ length: rows }).map((_, index) => (
+              <View key={index} style={styles.placeholderRow}>
+                <View style={[styles.placeholderDot, { opacity: 0.24 + index * 0.04 }]} />
+                <View style={[styles.placeholderLine, { width: `${72 - index * 7}%` }]} />
+              </View>
+            ))}
+          </View>
+          <View style={styles.placeholderBars}>
+            {Array.from({ length: cols }).map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.placeholderBar,
+                  {
+                    height: isChart ? 38 + ((index * 13) % 58) : 22 + ((index * 11) % 44),
+                    opacity: 0.18 + ((index * 3) % 4) * 0.07,
+                  },
+                ]}
+              />
+            ))}
+          </View>
+        </>
+      )}
+    </View>
+  );
+}
+
 function StatsPremiumBlur({
   children,
   isPremium,
   context,
+  snapshotKey,
   overrideTitle,
   devUnlock = false,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const captureSourceRef = useRef<View>(null);
-  const captureTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const captureInFlightRef = useRef(false);
-  const captureDoneRef = useRef(false);
-  const [cachedBlurUri, setCachedBlurUri] = useState<string | null>(null);
-  const [captureSize, setCaptureSize] = useState({ width: 0, height: 0 });
 
   const isLight = false;
   const titleCopy = CONTEXT_TITLES[context];
@@ -142,92 +187,11 @@ function StatsPremiumBlur({
     tr: 'Premium ile aç',
     pl: 'Otwórz z Premium',
   });
-  const blurPresentation = selectStatsPremiumBlurPresentation({
-    cachedUri: cachedBlurUri,
-    width: captureSize.width,
-    height: captureSize.height,
-  });
-
-  useEffect(() => {
-    if (isPremium || devUnlock) return undefined;
-    if (captureSize.width <= 0 || captureSize.height <= 0) return undefined;
-    if (captureDoneRef.current) return undefined;
-    if (captureInFlightRef.current) return undefined;
-
-    if (captureTimerRef.current) clearTimeout(captureTimerRef.current);
-    captureTimerRef.current = setTimeout(() => {
-      const node = captureSourceRef.current;
-      if (!node || captureInFlightRef.current) return;
-
-      captureInFlightRef.current = true;
-      captureRef(node, {
-        format: 'jpg',
-        quality: 0.78,
-        result: 'tmpfile',
-      })
-        .then((uri) => {
-          if (uri) {
-            captureDoneRef.current = true;
-            setCachedBlurUri(uri);
-          }
-        })
-        .catch(() => {
-          setCachedBlurUri(null);
-        })
-        .finally(() => {
-          captureInFlightRef.current = false;
-        });
-    }, 120);
-
-    return () => {
-      if (captureTimerRef.current) clearTimeout(captureTimerRef.current);
-    };
-  }, [captureSize.height, captureSize.width, devUnlock, isPremium]);
-
   if (isPremium || devUnlock) return <>{children}</>;
 
   return (
     <View style={[styles.root, context === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
-      {blurPresentation === 'cached-image' ? (
-        <View
-          pointerEvents="none"
-          style={[styles.cachedContentSpacer, { height: captureSize.height }]}
-        />
-      ) : (
-        <View
-          ref={captureSourceRef}
-          pointerEvents="none"
-          collapsable={false}
-          style={styles.contentUnderVeil}
-          onLayout={(event) => {
-            const { width, height } = event.nativeEvent.layout;
-            setCaptureSize((prev) => (
-              Math.round(prev.width) === Math.round(width) && Math.round(prev.height) === Math.round(height)
-                ? prev
-                : { width, height }
-            ));
-          }}
-        >
-          {children}
-        </View>
-      )}
-      {blurPresentation === 'cached-image' ? (
-        <Image
-          source={{ uri: cachedBlurUri! }}
-          contentFit="fill"
-          blurRadius={6}
-          style={styles.cachedBlurImage}
-        />
-      ) : (
-        <BlurView
-          pointerEvents="none"
-          intensity={10}
-          tint="default"
-          blurReductionFactor={4}
-          experimentalBlurMethod="dimezisBlurView"
-          style={styles.blurVeil}
-        />
-      )}
+      <PremiumStatsPlaceholder snapshotKey={snapshotKey} />
       <View pointerEvents="none" style={styles.snapshotScrim} />
       <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, styles.sheenLayer]}>
         <PremiumSnapshotSheen />
@@ -281,24 +245,17 @@ const styles = StyleSheet.create({
   heatmapRoot: {
     minHeight: 252,
   },
-  contentUnderVeil: {
-    opacity: 1,
-  },
-  cachedContentSpacer: {
-    width: '100%',
-  },
-  blurVeil: {
+  placeholder: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 1,
-  },
-  cachedBlurImage: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 1,
+    padding: 18,
+    backgroundColor: 'rgba(8,8,10,0.72)',
+    justifyContent: 'space-between',
   },
   snapshotScrim: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 2,
-    backgroundColor: 'rgba(0,0,0,0.015)',
+    backgroundColor: 'rgba(0,0,0,0.26)',
   },
   sheenLayer: {
     zIndex: 3,
@@ -331,6 +288,73 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255,215,0,0.10)',
     backgroundColor: 'rgba(0,0,0,0.00)',
+  },
+  placeholderHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  placeholderTitle: {
+    height: 16,
+    width: '48%',
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,215,0,0.20)',
+  },
+  placeholderPill: {
+    height: 24,
+    width: 72,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,215,0,0.16)',
+  },
+  placeholderBody: {
+    gap: 10,
+  },
+  placeholderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  placeholderDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 999,
+    backgroundColor: '#FFD700',
+  },
+  placeholderLine: {
+    height: 10,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
+  placeholderBars: {
+    minHeight: 86,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  placeholderBar: {
+    flex: 1,
+    minWidth: 12,
+    borderTopLeftRadius: 9,
+    borderTopRightRadius: 9,
+    backgroundColor: '#FFD700',
+  },
+  heatmapGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignContent: 'center',
+    justifyContent: 'center',
+    gap: 5,
+    flex: 1,
+  },
+  heatmapCell: {
+    width: 12,
+    height: 12,
+    borderRadius: 3,
+    backgroundColor: '#FFD700',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

@@ -1,0 +1,530 @@
+{
+  "generatedAt": "2026-06-26T11:58:49.789Z",
+  "items": [
+    {
+      "campaignId": "camp_20260626_tiktok_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_tiktok_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "tiktok",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dtiktok%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dtiktok_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_reels_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_reels_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "reels",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dreels%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dreels_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_shorts_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_shorts_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "shorts",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dshorts%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dshorts_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_carousel_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_carousel_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "carousel",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dcarousel%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dcarousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_reddit_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_reddit_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "reddit",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dreddit%26utm_medium%3Dcommunity_post%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dreddit_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_x_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_x_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "x",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dx%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dx_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_threads_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_threads_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "threads",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dthreads%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dthreads_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_telegram_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_telegram_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "telegram",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dtelegram%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dtelegram_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_pinterest_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_pinterest_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "pinterest",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dpinterest%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dpinterest_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_linkedin_work_english_001_a",
+      "contentVariantId": "cv_work_english_001_linkedin_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "linkedin",
+      "status": "rejected_owner_signal",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dlinkedin%26utm_medium%3Dorganic_social%26utm_campaign%3Dri_20260626_work_english_001%26utm_content%3Dlinkedin_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "linkNote": "Android URL includes Google Play referrer UTM. iOS needs smart-link/campaign tracker for clean attribution.",
+      "ownerDecisionReason": "Do not schedule: work calls / meetings angle did not work before."
+    },
+    {
+      "campaignId": "camp_20260626_tiktok_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_tiktok_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "tiktok",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_reels_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_reels_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "reels",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_shorts_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_shorts_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "shorts",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_carousel_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_carousel_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "instagram_carousel",
+      "status": "dalle_final_ready_editorial_bible",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dinstagram%26utm_medium%3Dorganic_carousel%26utm_campaign%3Dbuyer_radar_carousel_pack_001%26utm_content%3Dspeaking_freeze_001_carousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "linkNote": "Android URL uses Google Play referrer. iOS needs smart-link/campaign tracker for clean attribution. Last slide tells viewers that the Phraseman app link is in bio.",
+      "finalAssetDir": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words",
+      "finalManifest": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/MANIFEST.json",
+      "finalContactSheet": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/CONTACT_SHEET.png"
+    },
+    {
+      "campaignId": "camp_20260626_reddit_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_reddit_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "reddit",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_x_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_x_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "x",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_threads_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_threads_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "threads",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_telegram_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_telegram_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "telegram",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_pinterest_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_pinterest_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "pinterest",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_linkedin_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_linkedin_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "linkedin",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_tiktok_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_tiktok_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "tiktok",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_reels_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_reels_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "reels",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_shorts_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_shorts_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "shorts",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_carousel_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_carousel_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "instagram_carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dinstagram%26utm_medium%3Dorganic_carousel%26utm_campaign%3Dbuyer_radar_carousel_pack_001%26utm_content%3Dembarrassed_to_speak_001_carousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "linkNote": "Android URL uses Google Play referrer. iOS needs smart-link/campaign tracker for clean attribution. Last slide tells viewers that the Phraseman app link is in bio."
+    },
+    {
+      "campaignId": "camp_20260626_reddit_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_reddit_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "reddit",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_x_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_x_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "x",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_threads_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_threads_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "threads",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_telegram_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_telegram_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "telegram",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_pinterest_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_pinterest_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "pinterest",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_linkedin_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_linkedin_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "linkedin",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_tiktok_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_tiktok_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "tiktok",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_reels_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_reels_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "reels",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_shorts_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_shorts_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "shorts",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_carousel_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_carousel_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "instagram_carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dinstagram%26utm_medium%3Dorganic_carousel%26utm_campaign%3Dbuyer_radar_carousel_pack_001%26utm_content%3Dyears_stuck_001_carousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "linkNote": "Android URL uses Google Play referrer. iOS needs smart-link/campaign tracker for clean attribution. Last slide tells viewers that the Phraseman app link is in bio."
+    },
+    {
+      "campaignId": "camp_20260626_reddit_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_reddit_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "reddit",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_x_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_x_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "x",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_threads_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_threads_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "threads",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_telegram_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_telegram_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "telegram",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_pinterest_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_pinterest_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "pinterest",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_linkedin_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_linkedin_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "linkedin",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_tiktok_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_tiktok_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "tiktok",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_reels_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_reels_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "reels",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_shorts_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_shorts_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "shorts",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_carousel_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_carousel_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "instagram_carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dinstagram%26utm_medium%3Dorganic_carousel%26utm_campaign%3Dbuyer_radar_carousel_pack_001%26utm_content%3Dforgetting_001_carousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "linkNote": "Android URL uses Google Play referrer. iOS needs smart-link/campaign tracker for clean attribution. Last slide tells viewers that the Phraseman app link is in bio."
+    },
+    {
+      "campaignId": "camp_20260626_reddit_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_reddit_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "reddit",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_x_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_x_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "x",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_threads_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_threads_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "threads",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_telegram_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_telegram_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "telegram",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_pinterest_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_pinterest_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "pinterest",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_linkedin_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_linkedin_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "linkedin",
+      "status": "not_scheduled",
+      "publishAt": null,
+      "landingUrl": "TODO"
+    },
+    {
+      "campaignId": "camp_20260626_carousel_saved_words_do_not_speak_001_a",
+      "contentVariantId": "cv_saved_words_do_not_speak_001_carousel_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "instagram_carousel",
+      "status": "dalle_final_ready_editorial_bible",
+      "publishAt": null,
+      "landingUrl": "https://play.google.com/store/apps/details?id=app.phraseman&referrer=utm_source%3Dinstagram%26utm_medium%3Dorganic_carousel%26utm_campaign%3Dbuyer_radar_saved_words_do_not_speak_001%26utm_content%3Dcarousel_a",
+      "iosUrl": "https://apps.apple.com/app/id6764800879",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "linkNote": "Android URL uses Google Play referrer. iOS needs smart-link/campaign tracker for clean attribution. Last slide tells viewers that the Phraseman app link is in bio.",
+      "finalAssetDir": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_005_saved_words_do_not_speak",
+      "finalManifest": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_005_saved_words_do_not_speak/MANIFEST.json",
+      "finalContactSheet": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_005_saved_words_do_not_speak/CONTACT_SHEET.png"
+    }
+  ]
+}

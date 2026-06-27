@@ -6,7 +6,6 @@ import {
   Animated,
   Easing,
   Platform,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -62,12 +61,11 @@ import { safeRouterBack } from './navigation_back';
 type Phase = 'select' | 'play' | 'done';
 type PauseOption = 900 | 1500 | 2300;
 type AudioCardSnapshot = { card: TrainingCard; side: AudioFlashcardSide };
-type AudioCardTransition = { from: AudioCardSnapshot; to: AudioCardSnapshot; direction: 1 | -1 };
+type AudioCardTransition = { from: AudioCardSnapshot; to: AudioCardSnapshot };
 type CardRotateValue = string | Animated.AnimatedInterpolation<string | number>;
 
 const FLIP_DURATION_MS = 300;
-const SWIPE_DURATION_MS = 240;
-const SWIPE_TRAVEL_MULTIPLIER = 1.16;
+const CARD_REPLACE_DURATION_MS = 180;
 const DEFAULT_PAUSE_MS: PauseOption = 1500;
 
 function cardWidthFor(windowWidth: number): number {
@@ -144,6 +142,7 @@ export default function FlashcardsAudioScreen() {
   const fallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runTokenRef = useRef(0);
+  const transitionTokenRef = useRef(0);
 
   const selectedSources = useMemo(
     () => sources.filter((source) => selectedIds.has(source.id)),
@@ -389,23 +388,24 @@ export default function FlashcardsAudioScreen() {
 
   const currentCard = phase === 'play' || phase === 'done' ? deck[cardIndex] : undefined;
   const progress = deck.length > 0 ? (cardIndex + (side === 'back' ? 1 : 0.35)) / deck.length : 0;
-  const swipeDistance = cardWidthFor(width) * SWIPE_TRAVEL_MULTIPLIER;
-  const transitionDirection = cardTransition?.direction ?? 1;
+  const cardWidth = cardWidthFor(width);
+  const cardHeight = Math.max(260, Math.min(360, cardWidth * 0.74));
+  const slideDistance = cardWidth + 48;
+  const outgoingCardOpacity = swipeAnim.interpolate({
+    inputRange: [0, 0.7, 1],
+    outputRange: [1, 0.25, 0],
+  });
+  const incomingCardOpacity = swipeAnim.interpolate({
+    inputRange: [0, 0.4, 1],
+    outputRange: [0, 0.55, 1],
+  });
   const outgoingCardTranslateX = swipeAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, -transitionDirection * swipeDistance],
+    outputRange: [0, -slideDistance],
   });
   const incomingCardTranslateX = swipeAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [transitionDirection * swipeDistance, 0],
-  });
-  const outgoingCardOpacity = swipeAnim.interpolate({
-    inputRange: [0, 0.88, 1],
-    outputRange: [1, 0.94, 0],
-  });
-  const incomingCardOpacity = swipeAnim.interpolate({
-    inputRange: [0, 0.18, 1],
-    outputRange: [0.9, 1, 1],
+    outputRange: [slideDistance, 0],
   });
 
   const registerViewed = useCallback((card: TrainingCard) => {
@@ -427,6 +427,7 @@ export default function FlashcardsAudioScreen() {
   }, [currentCard, phase, registerViewed]);
 
   const resetCardTransition = useCallback(() => {
+    transitionTokenRef.current += 1;
     swipeAnim.stopAnimation(() => {
       swipeAnim.setValue(0);
     });
@@ -444,31 +445,33 @@ export default function FlashcardsAudioScreen() {
   }, [flipAnim, swipeAnim]);
 
   const animateCardReplacement = useCallback(
-    (index: number, nextSide: AudioFlashcardSide, play = true, guardToken?: number) => {
+    (index: number, nextSide: AudioFlashcardSide, play = true) => {
       const targetCard = deck[index];
       if (!currentCard || !targetCard || index === cardIndex) {
         commitPosition(index, nextSide, play);
         return;
       }
 
-      const direction: 1 | -1 = index > cardIndex ? 1 : -1;
-      swipeAnim.stopAnimation(() => {
-        swipeAnim.setValue(0);
-        setCardTransition({
-          from: { card: currentCard, side },
-          to: { card: targetCard, side: nextSide },
-          direction,
-        });
-        Animated.timing(swipeAnim, {
-          toValue: 1,
-          duration: SWIPE_DURATION_MS,
-          easing: Easing.out(Easing.cubic),
-          useNativeDriver: true,
-        }).start(({ finished }) => {
-          if (!finished) return;
-          if (guardToken !== undefined && runTokenRef.current !== guardToken) return;
-          commitPosition(index, nextSide, play);
-        });
+      // The slide owns its own token so a re-created audio effect (which bumps
+      // runTokenRef) can never abort an in-flight card replacement mid-way —
+      // that abort was what left both layers mounted and made the text flicker.
+      const transitionToken = transitionTokenRef.current + 1;
+      transitionTokenRef.current = transitionToken;
+
+      swipeAnim.setValue(0);
+      setCardTransition({
+        from: { card: currentCard, side },
+        to: { card: targetCard, side: nextSide },
+      });
+      Animated.timing(swipeAnim, {
+        toValue: 1,
+        duration: CARD_REPLACE_DURATION_MS,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (transitionTokenRef.current !== transitionToken) return;
+        if (!finished) return;
+        commitPosition(index, nextSide, play);
       });
     },
     [cardIndex, commitPosition, currentCard, deck, side, swipeAnim],
@@ -550,7 +553,7 @@ export default function FlashcardsAudioScreen() {
             if (runTokenRef.current === token) setSide('back');
           });
         } else {
-          animateCardReplacement(next.index, 'front', true, token);
+          animateCardReplacement(next.index, 'front', true);
         }
       }, pauseMs);
     };
@@ -694,8 +697,6 @@ export default function FlashcardsAudioScreen() {
     inputRange: [0, 1],
     outputRange: ['180deg', '360deg'],
   });
-  const cardWidth = cardWidthFor(width);
-  const cardHeight = Math.max(260, Math.min(360, cardWidth * 0.74));
 
   const renderHeader = (onBack: () => void) => (
     <View style={[styles.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 8 }]}>

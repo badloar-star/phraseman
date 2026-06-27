@@ -10,8 +10,22 @@ import { submitClientReport } from './client_reports';
 
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
+let errorReportThrottleCacheTs = 0;
 const safeReportEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+async function isErrorReportThrottled(now: number): Promise<boolean> {
+  if (errorReportThrottleCacheTs > 0 && now - errorReportThrottleCacheTs < THROTTLE_MS) {
+    return true;
+  }
+  const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
+  const last = parseInt(lastRaw || '0', 10) || 0;
+  if (last > 0) {
+    errorReportThrottleCacheTs = last;
+    if (now - last < THROTTLE_MS) return true;
+  }
+  return false;
+}
 
 /**
  * Structured bug report.
@@ -152,8 +166,7 @@ export const submitErrorReport = async (
   const category = payload.category?.trim() || ERROR_REPORT_FREE_TEXT_CATEGORY;
 
   const now = Date.now();
-  const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
-  if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) {
+  if (await isErrorReportThrottled(now)) {
     return 'throttled';
   }
 
@@ -187,6 +200,7 @@ export const submitErrorReport = async (
     return 'failed';
   }
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
+  errorReportThrottleCacheTs = now;
   /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
   void registerXP(10, 'achievement_reward', userName, lang, undefined, {
     eventId: [

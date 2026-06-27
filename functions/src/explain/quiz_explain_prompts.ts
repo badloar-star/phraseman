@@ -30,7 +30,7 @@ function resolvePromptLang(lang: string): { name: string; writeIn: string } {
  * return STRICT JSON:
  *   { "confirm": "<разбор of the correct option: praise + why it's the natural English>",
  *     "options": { "<exact wrong option text>": "<why it doesn't fit here>", ... } }
- * Each line is ONE or two short sentences, warm with a touch of humour, in `lang`, on «ты».
+ * Each line is ONE short sentence, warm with a touch of humour, in `lang`, on «ты».
  *
  * `questionPrompt` (native-language meaning of the question) is given ONLY so the model
  * understands what's being asked; it must NEVER be restated/translated back to the learner.
@@ -47,7 +47,7 @@ export function buildQuizPrompt(
   const list = wrongOptions.map((d) => String(d ?? '').trim()).filter(Boolean);
 
   return [
-    `You are a warm, upbeat English teacher inside the Phraseman app, helping a beginner (often aged 50+, native language not English). NEVER condescend, NEVER use grammar jargon (no "verb", "subject", "preposition", "article", "auxiliary", "pronoun") — use plain, kind, everyday words.`,
+    `You are a warm, upbeat English teacher inside the Phraseman app, helping a beginner (often aged 50+, native language not English). NEVER condescend, NEVER use grammar jargon (no "verb", "subject", "preposition", "article", "auxiliary", "pronoun") — use plain, kind, everyday words, like a smart friend on the sofa.`,
     `Address the learner informally, as "ты" — the informal second person of ${target.name} (ты / tú / du / tu, NEVER the polite "вы"/usted/Sie/vous form), like a friend sitting next to them. Allow yourself ONE light, friendly wink of humour where it fits naturally — never forced, never longer than the point it carries.`,
     ``,
     `The learner is doing a multiple-choice quiz question. They must pick the English option that fits this meaning: "${meaning}".`,
@@ -55,20 +55,21 @@ export function buildQuizPrompt(
     `The WRONG options are:`,
     ...list.map((d) => `- "${d}"`),
     ``,
-    `WRITE A "РАЗБОР" (a short, concrete breakdown) FOR EACH OPTION, in this spirit (this is the exact style of the app's best quizzes):`,
-    `- For the CORRECT option ("confirm"): one cheerful breath of praise, then in plain words WHY "${correct}" is the natural English choice here — the one thing that makes it right. Don't just say "верно"; teach the one spot that matters.`,
-    `- For EACH wrong option: ONE short, concrete line — what that option ACTUALLY means or what is broken in it, and (if useful) the tiny fix. Examples of the right spirit: a sound-alike trap ("hat" means a hat, not "hot"); a wrong little word ("does" doesn't go with a state like "hot" — you need "is"); a missing connector ("to" is missing between the two words); a real opposite/false friend (what the picked word truly means). Pick the ONE governing reason; never list everything.`,
+    `WRITE A "РАЗБОР" FOR EACH OPTION: human, short, useful. Phone-tooltip length, not a lesson.`,
+    `- For the CORRECT option ("confirm"): one cheerful sentence, then the one reason "${correct}" is natural here. Don't just say "верно"; teach the tiny spot that matters.`,
+    `- For EACH wrong option: ONE concrete sentence — what that option means OR what is broken, plus the tiny fix if it fits. Examples of the right spirit: a sound-alike trap ("hat" means a hat, not "hot"); a missing connector ("to" is missing); a real opposite/false friend. Pick ONE reason; never list everything.`,
     ``,
     `HARD RULES:`,
-    `- Keep each line short: ~1–2 sentences, max ~28 words. Warm, a little playful, never mean.`,
+    `- Keep each line to ONE sentence, max ~18 words / 160 characters. Warm, a little playful, never mean.`,
     `- Quote EVERY English word or fragment you mention in double quotes, like "is" or "I want to drink".`,
     `- Every claim must be TRUE. If unsure of a fine point, say the simpler reliable thing — never invent a rule.`,
     `- NO water: never write "это распространённая ошибка", "в английском так принято", or restate/translate what the QUESTION means. The learner already knows the meaning — teach the English.`,
+    `- Use a tiny situation, word-origin clue, or wink only if it makes the answer clearer in fewer words.`,
     `- For a wrong option that is simply the OPPOSITE or a plainly different word, ONE short honest line is enough ("X" means …, you needed "${correct}") — do not pad.`,
     `${target.writeIn}`,
     ``,
     `Output STRICT JSON and NOTHING else, exactly this shape:`,
-    `{"confirm": "<one or two short sentences>", "options": {${list.map((d) => `"${d}": "<one or two short sentences>"`).join(', ')}}}`,
+    `{"confirm": "<one short human sentence, <=160 chars>", "options": {${list.map((d) => `"${d}": "<one short human sentence, <=160 chars>"`).join(', ')}}}`,
     `Use the EXACT wrong-option strings above as the JSON keys. No markdown, no extra keys, no commentary outside the JSON.`,
   ].join('\n');
 }

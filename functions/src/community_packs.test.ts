@@ -279,7 +279,7 @@ describe('community pack callable ownership', () => {
   test('allows buying a pack with the caller own stable id', async () => {
     seedPublishedPack();
 
-    const result = await callCommunity<{ alreadyOwned: boolean; buyerBalanceAfter: number }>('communityPurchasePack', {
+    const result = await callCommunity<{ alreadyOwned: boolean; buyerBalanceAfter: number; shardsUpdatedAtMs: number }>('communityPurchasePack', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
@@ -287,6 +287,7 @@ describe('community pack callable ownership', () => {
     }, 'auth-victim');
 
     expect(result).toMatchObject({ alreadyOwned: false, buyerBalanceAfter: 190 });
+    expect(result.shardsUpdatedAtMs).toBeGreaterThan(0);
     expect(mockDocs.get('users/victim')?.shards).toBe(190);
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
       buyerStableId: 'victim',

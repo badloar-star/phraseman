@@ -9,12 +9,13 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getWeekId } from './league_engine';
 import { moderateLeagueChatMessage, sanitizeLeagueChatText } from './league_chat_moderation';
+import { getLeagueChatAuthTtlMs } from './remote_flags';
 
 const CHAT_COLLECTION = 'league_chat_messages';
 const BLOCKS_KEY = 'league_chat_blocked_users_v1';
 const ROOM_CACHE_KEY = 'league_chat_room_cache_v1';
 const ROOM_AUTH_CACHE_PREFIX = 'league_chat_room_auth_v1:';
-const ROOM_AUTH_TTL_MS = 6 * 60 * 60 * 1000;
+const DEFAULT_ROOM_AUTH_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const MESSAGES_CACHE_PREFIX = 'league_chat_messages_cache_v1:';
 const SEND_THROTTLE_MS = 12_000;
 const MAX_VISIBLE_MESSAGES = 80;
@@ -187,7 +188,8 @@ async function loadCachedLeagueChatAuthorization(room: LeagueChatRoom, stableId:
   } catch {
     authorizedAt = Number(raw);
   }
-  if (!Number.isFinite(authorizedAt) || Date.now() - authorizedAt > ROOM_AUTH_TTL_MS) {
+  const ttlMs = Math.max(60_000, getLeagueChatAuthTtlMs() || DEFAULT_ROOM_AUTH_TTL_MS);
+  if (!Number.isFinite(authorizedAt) || Date.now() - authorizedAt > ttlMs) {
     await forgetCachedLeagueChatAuthorization(room);
     return false;
   }

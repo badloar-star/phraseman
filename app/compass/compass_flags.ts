@@ -19,6 +19,7 @@ import {
   isCompassEnabled,
   isCompassAiVoiceEnabled,
   isCompassDeepDiveEnabled,
+  isCompassLessonInviteEnabled,
   isCompassEconomyEnabled,
   isCompassRetentionEnabled,
   isCompassTopicMapEnabled,
@@ -32,6 +33,11 @@ export function compassOn(): boolean {
 /** Крыло «Учёба»: дни-погружения (Компас зовёт в сессию за глубиной). */
 export function compassDeepDiveOn(): boolean {
   return compassOn() && isCompassDeepDiveEnabled();
+}
+
+/** Lesson invite wing: Compass can suggest a focused lesson while still honoring the main kill-switch. */
+export function compassLessonInviteOn(): boolean {
+  return compassOn() && isCompassLessonInviteEnabled();
 }
 
 /** Крыло «Экономика»: единый вес дня + печать дня. */

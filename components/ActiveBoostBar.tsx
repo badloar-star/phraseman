@@ -30,6 +30,11 @@ function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
   );
 
   const updateTimeRemaining = useCallback((boosts: ActiveBoost[]) => {
+    if (boosts.length === 0) {
+      setTimeRemaining((prev) => (Object.keys(prev).length === 0 ? prev : {}));
+      return;
+    }
+
     const timeMap: { [key: string]: string } = {};
 
     for (let i = 0; i < boosts.length; i++) {
@@ -55,6 +60,8 @@ function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
 
   // Обновляем оставшееся время каждую секунду
   useEffect(() => {
+    if (activeBoosts.length === 0) return;
+
     const interval = setInterval(() => {
       updateTimeRemaining(activeBoosts);
     }, 1000);

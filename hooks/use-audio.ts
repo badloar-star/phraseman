@@ -21,6 +21,7 @@ const UK_MARKERS = /[іїєґІЇЄҐ]/;
 const CYRILLIC_RE = /[\u0400-\u04FF]/;
 const LATIN_LETTER_RE = /[a-zA-ZÀ-ÖØ-öø-ÿĀ-ž]/;
 const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
+const CLIP_START_TIMEOUT_MS = Platform.OS === 'android' ? 4500 : 3500;
 type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
 
 function safeSpeechStop() {
@@ -128,21 +129,33 @@ export function useAudio() {
       // (including the internal catch that also reports onError), so we fall
       // back here exactly once and never double-speak.
       let fellBack = false;
+      let clipStartTimer: ReturnType<typeof setTimeout> | null = null;
+      const clearClipStartTimer = () => {
+        if (clipStartTimer) clearTimeout(clipStartTimer);
+        clipStartTimer = null;
+      };
       const fallbackOnce = () => {
         if (fellBack) return;
         fellBack = true;
+        clearClipStartTimer();
+        stopPhraseAudio();
         speakWithSystemTts();
       };
+      clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS);
       playPhraseByText(
         normalized,
         {
-          onStart: opts?.onStart,
+          onStart: () => {
+            clearClipStartTimer();
+            opts?.onStart?.();
+          },
           onDone: opts?.onDone,
           onError: fallbackOnce,
         },
         safeRate,
       )
         .then((played) => {
+          clearClipStartTimer();
           if (!played) fallbackOnce();
         })
         .catch(fallbackOnce);

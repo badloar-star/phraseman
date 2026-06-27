@@ -16,7 +16,8 @@ service firebase.storage {
 
     // Public, read-only phrase pronunciation audio.
     match /phrase-audio/{allPaths=**} {
-      allow read: if true;
+      allow get: if true;
+      allow list: if false;
       allow write: if false;
     }
 
@@ -25,7 +26,8 @@ service firebase.storage {
     // the ~126 MB of clips no longer ship inside the native binary. Uploaded only by
     // scripts/upload_plan_audio_to_storage.mjs via the Admin SDK (bypasses rules).
     match /plan-audio/{allPaths=**} {
-      allow read: if true;
+      allow get: if true;
+      allow list: if false;
       allow write: if false;
     }
 
@@ -35,7 +37,8 @@ service firebase.storage {
     // ~13 MB and served on demand; inline SVG is the offline fallback). Uploaded
     // only by scripts/upload_collectible_images_to_storage.mjs (bypasses rules).
     match /collectible-images/{allPaths=**} {
-      allow read: if true;
+      allow get: if true;
+      allow list: if false;
       allow write: if false;
     }
 

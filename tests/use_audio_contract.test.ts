@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const audioSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-audio.ts'), 'utf8');
+const phraseAudioSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'phrase_audio_player.ts'), 'utf8');
 
 describe('useAudio TTS resiliency', () => {
   it('guards Speech.stop so a native stop failure cannot kill replay audio', () => {
@@ -16,5 +17,27 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('onError:');
     expect(audioSource).toContain('retrySpeechWithoutVoice');
     expect(audioSource).toContain('voice: undefined');
+  });
+
+  it('falls back to system TTS when a pre-generated clip does not start', () => {
+    expect(audioSource).toContain('CLIP_START_TIMEOUT_MS');
+    expect(audioSource).toContain('clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS)');
+    expect(audioSource).toContain('clearClipStartTimer();');
+    expect(audioSource).toContain('stopPhraseAudio();');
+    expect(audioSource).toContain('speakWithSystemTts();');
+  });
+
+  it('does not leave stalled phrase-audio downloads in the shared in-flight map forever', () => {
+    expect(phraseAudioSource).toContain('DOWNLOAD_TIMEOUT_MS');
+    expect(phraseAudioSource).toContain('downloadFileWithTimeout');
+    expect(phraseAudioSource).toContain('Promise.race([File.downloadFileAsync(url, file), timeout])');
+    expect(phraseAudioSource).toContain('inFlightDownloads.delete(key);');
+  });
+
+  it('restores the loud phrase audio mode on every generated clip playback', () => {
+    expect(phraseAudioSource).toContain("interruptionMode: 'duckOthers'");
+    expect(phraseAudioSource).toContain('await setAudioModeAsync(PHRASE_AUDIO_MODE);');
+    expect(phraseAudioSource).not.toContain('audioModeReady');
+    expect(phraseAudioSource).toContain('player.volume = 1');
   });
 });

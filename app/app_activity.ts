@@ -19,8 +19,10 @@ const MAX_QUEUE = 200;
 const MAX_TAGS = 24;
 const MAX_TEXT = 220;
 const FIRESTORE_SAMPLE_RATE = 0.01;
+const LOCAL_ACTIVITY_QUEUE_ENABLED = false;
 let lastEventKey = '';
 let lastEventAt = 0;
+let activityQueueCache: Array<Record<string, unknown>> | null = null;
 
 function cleanTags(tags: AppActivityMeta['tags']) {
   if (!tags) return {};
@@ -34,12 +36,25 @@ function cleanTags(tags: AppActivityMeta['tags']) {
   return out;
 }
 
+async function readActivityQueueFromStorage(): Promise<Array<Record<string, unknown>>> {
+  try {
+    const raw = await AsyncStorage.getItem(QUEUE_KEY).catch(() => null);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter((item): item is Record<string, unknown> => item != null && typeof item === 'object')
+      : [];
+  } catch {
+    return [];
+  }
+}
+
 async function queueLocal(record: Record<string, unknown>) {
-  const raw = await AsyncStorage.getItem(QUEUE_KEY).catch(() => null);
-  const queue = raw ? JSON.parse(raw) : [];
-  queue.push(record);
-  if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
-  await AsyncStorage.setItem(QUEUE_KEY, JSON.stringify(queue)).catch(() => {});
+  if (activityQueueCache === null) {
+    activityQueueCache = await readActivityQueueFromStorage();
+  }
+  activityQueueCache.push(record);
+  if (activityQueueCache.length > MAX_QUEUE) activityQueueCache.splice(0, activityQueueCache.length - MAX_QUEUE);
+  await AsyncStorage.setItem(QUEUE_KEY, JSON.stringify(activityQueueCache)).catch(() => {});
 }
 
 export async function trackActivity(action: string, meta: AppActivityMeta = {}) {
@@ -70,7 +85,9 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
       createdAt: new Date(now).toISOString(),
     };
 
-    await queueLocal(record);
+    if (LOCAL_ACTIVITY_QUEUE_ENABLED) {
+      await queueLocal(record);
+    }
 
     // Routine product analytics already goes to Firebase Analytics. Firestore is
     // reserved for explicit debug/critical traces, with light sampling for
@@ -148,8 +165,8 @@ export async function trackFeatureError(
 
 export async function getActivityQueue(): Promise<Array<Record<string, unknown>>> {
   try {
-    const raw = await AsyncStorage.getItem(QUEUE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (activityQueueCache !== null) return activityQueueCache.slice();
+    return readActivityQueueFromStorage();
   } catch {
     return [];
   }

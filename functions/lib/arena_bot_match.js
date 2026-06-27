@@ -61,6 +61,37 @@ function cleanName(raw) {
         return null;
     return dn.slice(0, 120);
 }
+function readNumber(raw, fallback = 0) {
+    const n = typeof raw === 'number' ? raw : Number(raw);
+    return Number.isFinite(n) ? n : fallback;
+}
+function readRank(raw) {
+    const r = raw && typeof raw === 'object' ? raw : {};
+    return {
+        tier: String(r.tier ?? 'bronze'),
+        level: String(r.level ?? 'I'),
+        stars: Math.max(0, Math.trunc(readNumber(r.stars, 0))),
+    };
+}
+function replayBotMatchResult(history, profile) {
+    const before = readRank(history.rankBefore);
+    const after = readRank(history.rankAfter);
+    const rankChanged = after.tier !== before.tier || after.level !== before.level;
+    return {
+        xpDelta: Math.max(0, Math.trunc(readNumber(history.xpGained, 0))),
+        oldStars: before.stars,
+        newStars: after.stars,
+        oldTier: before.tier,
+        newTier: after.tier,
+        oldLevel: before.level,
+        newLevel: after.level,
+        rankChanged,
+        promoted: rankChanged && (0, arena_season_1.rankIndex)(after.tier, after.level) > (0, arena_season_1.rankIndex)(before.tier, before.level),
+        sr: readNumber(profile.sr, 0),
+        peakSR: readNumber(profile.peakSR, 0),
+        idempotentReplay: true,
+    };
+}
 exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
@@ -83,9 +114,16 @@ exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (req
     const outcome = isDraw ? 'draw' : won ? 'win' : isLast ? 'loss' : 'neutral';
     // Тюнинг SR из Firestore (fallback = дефолты). Читаем до транзакции.
     const seasonCfg = await (0, arena_season_config_1.resolveArenaSeasonConfig)(db);
+    const historyRef = profileRef.collection('match_history').doc(sessionId);
     const result = await db.runTransaction(async (tx) => {
-        const snap = await tx.get(profileRef);
+        const [snap, historySnap] = await Promise.all([
+            tx.get(profileRef),
+            tx.get(historyRef),
+        ]);
         const data = (snap.exists ? snap.data() : {});
+        if (historySnap.exists) {
+            return replayBotMatchResult(historySnap.data() ?? {}, data);
+        }
         const oldStars = data.rank?.stars ?? 0;
         const oldTier = data.rank?.tier ?? 'bronze';
         const oldLevel = data.rank?.level ?? 'I';
@@ -128,7 +166,8 @@ exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (req
             tx.set(db.collection('arena_season_leaderboard').doc(nowSeasonId).collection('entries').doc(uid), { uid, sr: sr.sr, peakSR: sr.peakSR, updatedAt: Date.now() }, { merge: true });
         }
         // История матча (раньше писалась с клиента — теперь серверно).
-        tx.set(profileRef.collection('match_history').doc(sessionId), {
+        tx.set(historyRef, {
+            sessionId,
             createdAt: Date.now(), oppName, myScore, oppScore, won, isDraw,
             xpGained: xpDelta,
             starsChange: rankChanged ? (promoted ? 1 : -1) : newStars - oldStars,

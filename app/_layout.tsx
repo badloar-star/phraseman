@@ -43,7 +43,7 @@ import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
+import { checkAchievements, getPendingNotifications } from './achievements';
 import { ensureAnonUser, ensureStableAuthLink, restoreFromCloud, syncToCloud } from './cloud_sync';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
@@ -218,6 +218,9 @@ DefaultText.defaultProps = {
 
 const STARTUP_SPLASH_BG = '#101214';
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
+const LOYALTY_UPDATE_MODAL_ENABLED = false;
+const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
+const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
 const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
@@ -542,6 +545,13 @@ function GlobalLevelUpHandler() {
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Страховка слота: если переход level-up → подарок «завис» (подарок не открылся/не
+  // закрылся штатно — напр. Android-back в обход onGiftClose или сбой в цепочке выше),
+  // levelUpTransitioning остался бы true НАВСЕГДА → слот арбитра занят, и всё ниже по
+  // приоритету (праздники, leagueResult, ВСЕ тосты) заморожено до перезапуска (levelUp
+  // не force-evictable, сторож его не выселяет). Этот таймер принудительно завершает
+  // зависший переход. Окно = заведомо больше штатного перехода (await-ы + 180-260мс).
+  const levelUpTransitionGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previewLevelUpParamRef = useRef<string | null>(null);
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
@@ -724,6 +734,39 @@ function GlobalLevelUpHandler() {
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
   }, [levelUpOverlayVisible, showLevelUp]);
+
+  // СТОРОЖ перехода level-up → подарок (анти-залипание слота арбитра).
+  // Опасное состояние: levelUpTransitioning=true, но НИ одна модалка не видна
+  // (showLevelUp=false И showGiftModal=false). В норме это длится доли секунды
+  // (await registerXP/премиум + таймер 180-260мс). Если же подарок не открылся/не
+  // закрылся штатно (Android-back в обход onGiftClose, сбой в цепочке) — флаг застрял
+  // бы навсегда, слот не освобождается, и всё ниже по приоритету заморожено до
+  // перезапуска. По истечении заведомо большого окна принудительно завершаем переход.
+  useEffect(() => {
+    const stuckBetween = levelUpTransitioning && !showLevelUp && !showGiftModal;
+    if (!stuckBetween) {
+      if (levelUpTransitionGuardRef.current) {
+        clearTimeout(levelUpTransitionGuardRef.current);
+        levelUpTransitionGuardRef.current = null;
+      }
+      return;
+    }
+    if (levelUpTransitionGuardRef.current) return; // уже взведён
+    levelUpTransitionGuardRef.current = setTimeout(() => {
+      levelUpTransitionGuardRef.current = null;
+      // Если подарок к этому моменту так и не показался — считаем переход сорванным,
+      // отпускаем слот. Если показался (showGiftModal стал true) — stuckBetween уже
+      // false и таймер был снят выше, сюда не попадём.
+      dismissingLevelUpRef.current = false;
+      setLevelUpTransitioning(false);
+    }, 4000);
+    return () => {
+      if (levelUpTransitionGuardRef.current) {
+        clearTimeout(levelUpTransitionGuardRef.current);
+        levelUpTransitionGuardRef.current = null;
+      }
+    };
+  }, [levelUpTransitioning, showLevelUp, showGiftModal]);
 
   return (
     <>
@@ -1233,6 +1276,7 @@ function AppContent() {
   }, [pathname]);
 
   useEffect(() => {
+    if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
     const timer = setTimeout(() => {
       void checkLeagueBonusAvailability()
@@ -1245,6 +1289,7 @@ function AppContent() {
   }, [isBanned, ready, showLeagueBonusAvailableOnce, showOnboarding]);
 
   useEffect(() => {
+    if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
     const unsubscribe = subscribeLeagueBonusAvailability((availability) => {
       void showLeagueBonusAvailableOnce(availability, 'live');
@@ -1337,23 +1382,36 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    void loadFlashcards(studyTarget);
-    void (async () => {
-      try {
-        const last = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
-        const id = parseInt(last || '1', 10) || 1;
-        if (id >= 1) {
-          const m = await import('./lesson_menu');
-          await m.prefetchLessonMenuCache(id, studyTarget);
-        }
-        const wordsCache = await import('./lesson_words');
-        await wordsCache.primeAllLessonWordsFromStorageOnAppLaunch(studyTarget);
-        const tab = await import('./lessons_tab_state');
-        await tab.loadLessonsTabStateFromStorage(studyTarget);
-      } catch (e) {
-        if (__DEV__) console.warn('[_layout]', e);
-      }
-    })();
+    if (!ENABLE_STARTUP_CONTENT_PREWARM) return;
+    let cancelled = false;
+    let prewarmTimer: ReturnType<typeof setTimeout> | null = null;
+    const task = InteractionManager.runAfterInteractions(() => {
+      prewarmTimer = setTimeout(() => {
+        if (cancelled || AppState.currentState !== 'active') return;
+        void loadFlashcards(studyTarget);
+        void (async () => {
+          try {
+            const last = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
+            const id = parseInt(last || '1', 10) || 1;
+            if (id >= 1) {
+              const m = await import('./lesson_menu');
+              await m.prefetchLessonMenuCache(id, studyTarget);
+            }
+            const wordsCache = await import('./lesson_words');
+            await wordsCache.primeAllLessonWordsFromStorageOnAppLaunch(studyTarget);
+            const tab = await import('./lessons_tab_state');
+            await tab.loadLessonsTabStateFromStorage(studyTarget);
+          } catch (e) {
+            if (__DEV__) console.warn('[_layout]', e);
+          }
+        })();
+      }, 8000);
+    });
+    return () => {
+      cancelled = true;
+      task.cancel?.();
+      if (prewarmTimer) clearTimeout(prewarmTimer);
+    };
   }, [studyTarget]);
 
   useEffect(() => {
@@ -1381,8 +1439,6 @@ function AppContent() {
         achievementFlushQueuedRef.current = false;
         const pending = await getPendingNotifications();
         if (pending && pending.length > 0) {
-          // Пометить как notified ДО показа, чтобы повторный вызов не задублировал.
-          await markAchievementsNotified(pending.map(a => a.id));
           pending.forEach(a => showAchievementRef.current(a));
         }
       } while (achievementFlushQueuedRef.current);
@@ -1393,26 +1449,16 @@ function AppContent() {
 
   useEffect(() => {
     let subRemove: (() => void) | undefined;
-    let clipboardTimer: ReturnType<typeof setTimeout> | undefined;
     void import('./referral_bootstrap')
       .then((m) => {
         void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u)).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
         subRemove = m.subscribeReferralUrl((u) => {
           void m.captureReferralFromUrl(u);
         }).remove;
-        // iOS-фолбэк: App Store не передаёт параметры установки — инвайт-страница
-        // кладёт ссылку в буфер. Задержка даёт initial URL отработать первым,
-        // чтобы не показывать промпт вставки, когда код уже пришёл диплинком.
-        clipboardTimer = setTimeout(() => {
-          void import('./referral_clipboard')
-            .then((c) => c.checkClipboardForReferralOnce())
-            .catch(() => {});
-        }, 1500);
       })
       .catch(() => {});
     return () => {
       subRemove?.();
-      if (clipboardTimer) clearTimeout(clipboardTimer);
     };
   }, []);
 
@@ -1629,15 +1675,20 @@ function AppContent() {
 
       let shouldPrimeLessonsAfterReveal = false;
       try {
-        const prevXPRaw = await AsyncStorage.getItem('user_prev_xp');
+        const startupIdentityKeys = forceOnboardingForQA
+          ? ['user_prev_xp', 'user_total_xp']
+          : ['user_prev_xp', 'user_total_xp', 'onboarding_done'];
+        const startupIdentityPairs = await AsyncStorage.multiGet(startupIdentityKeys);
+        const startupIdentity = new Map(startupIdentityPairs);
+        const prevXPRaw = startupIdentity.get('user_prev_xp') ?? null;
         if (!prevXPRaw) {
-          const totalXPRaw = await AsyncStorage.getItem('user_total_xp');
+          const totalXPRaw = startupIdentity.get('user_total_xp') ?? null;
           if (totalXPRaw) {
             await AsyncStorage.setItem('user_prev_xp', totalXPRaw);
           }
         }
 
-        const val = forceOnboardingForQA ? null : await AsyncStorage.getItem('onboarding_done');
+        const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null);
 
         let handledByReferrer = false;
         if (!val && Platform.OS === 'android' && !IS_EXPO_GO) {
@@ -1902,7 +1953,7 @@ function AppContent() {
       if (st?.expiredUnseen) await markLoyaltyGiftEndedSeen().catch(() => {});
       const onboardingDone = (await AsyncStorage.getItem('onboarding_done').catch(() => null)) === '1';
       const announceSeen = await isLoyaltyGiftOfferSeen().catch(() => false);
-      if (onboardingDone && !announceSeen && introFullAccessModal === null && loyaltyGiftModal === null) {
+      if (LOYALTY_UPDATE_MODAL_ENABLED && onboardingDone && !announceSeen && introFullAccessModal === null && loyaltyGiftModal === null) {
         setLoyaltyGiftModal('announce');
       }
       return;
@@ -1928,6 +1979,7 @@ function AppContent() {
     if (introFullAccessModal !== null) return;
     const introState = await getIntroFullAccessState().catch(() => null);
     if (introState?.active) return; // у новичка ещё идёт его подарок — не дублируем
+    if (!LOYALTY_UPDATE_MODAL_ENABLED) return;
     setLoyaltyGiftModal('offer');
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, loyaltyGiftModal, isBanned, ready]);
 
@@ -2272,6 +2324,9 @@ function AppContent() {
 
   return (
     <View style={{ flex: 1, backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG }}>
+    <MaintenanceGate />
+    <PromoBanner />
+
     <Stack
       initialRouteName="(tabs)"
       screenOptions={{
@@ -2366,7 +2421,7 @@ function AppContent() {
       <Stack.Screen name="web_screen" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
-      <Stack.Screen name="trainer_smart_session" />
+      <Stack.Screen name="trainer_plan_session" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="trainer_phrases_session" />
       <Stack.Screen name="trainer_arena_session" />
@@ -2519,6 +2574,7 @@ function AppContent() {
       <View style={styles.appFullScreenOverlay}>
         <Onboarding
           startAtNameStep={onboardingStartAtName}
+          initialLang={lang}
           onDone={handleOnboardingDone}
           onLangSelect={handleLangSelect}
           onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
@@ -2549,14 +2605,8 @@ function AppContent() {
 
     <StartupSplashHold visible={startupSplashVisible} />
 
-    {/* Режим обслуживания — самый верхний слой (поверх всего, даже сплеша). */}
-    <MaintenanceGate />
-
     {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
     <ForceUpdateGate />
-
-    {/* Промо-баннер акции (под блокирующими гейтами) — управляется из «Пульта». */}
-    <PromoBanner />
 
     </View>
   );

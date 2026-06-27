@@ -42,6 +42,10 @@ beforeEach(() => {
     mockStorage[k] = v;
     return Promise.resolve();
   });
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: Array<[string, string]>) => {
+    for (const [k, v] of pairs) mockStorage[k] = v;
+    return Promise.resolve();
+  });
   (AsyncStorage.removeItem as jest.Mock).mockImplementation((k: string) => {
     delete mockStorage[k];
     return Promise.resolve();

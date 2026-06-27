@@ -1394,7 +1394,7 @@ export const VERB_PRESENT_CONTINUOUS_BASIC_TRAINING: DiagnosisTraining = {
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=verb&microDiagnosisId=verb_present_continuous_basic',
     problemCoachRoute: '/problem_coach?category=verb&microDiagnosisId=verb_present_continuous_basic',
-    smartTrainerRoute: '/trainer_smart_session?mode=weak&source=diagnosis_training&category=verb&microDiagnosisId=verb_present_continuous_basic',
+    smartTrainerRoute: '/problem_coach?category=verb&microDiagnosisId=verb_present_continuous_basic',
     fallbackIfTrainingMissing: '/problem_coach?category=verb',
   },
   qualityChecklist: {

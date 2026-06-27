@@ -13,6 +13,8 @@ describe('Fabric background layout guard', () => {
 
     expect(screenGradient).toContain('collapsable={false}');
     expect(screenGradient).toContain("overflow: 'visible'");
+    expect(screenGradient).toContain('const SCREEN_GRADIENT_MOTION_ENABLED = false');
+    expect(screenGradient).toContain('!FABRIC_BACKGROUND_TRANSITIONS_ENABLED || !SCREEN_GRADIENT_MOTION_ENABLED');
     expect(screenGradient).toContain('const defaultEntranceY');
     expect(screenGradient).not.toContain('styles.foreground');
     expect(screenGradient).toContain('staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined');
@@ -32,13 +34,20 @@ describe('Fabric background layout guard', () => {
     expect(topFadeMask).toContain('maskElement=');
     expect(topFadeMask).toContain('LinearGradient');
     expect(topFadeMask).toContain('style={StyleSheet.absoluteFill}');
-    expect((topFadeMask.match(/<BlurView/g) ?? []).length).toBe(1);
+    expect(topFadeMask).not.toContain("from 'expo-blur'");
+    expect(topFadeMask).not.toContain('<BlurView');
+    expect(topFadeMask).not.toContain('dimezisBlurView');
     expect(topFadeMask).not.toContain('FEATHER_INTENSITY_STOPS');
     expect(topFadeMask).not.toContain('feather-');
     expect(tabLayout).toContain('const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;');
     expect(tabLayout).toContain('style={[s.tabBarWrap, { height: tabOverlayHeight }]}');
-    expect(tabLayout).toContain('intensity={isMinimal ? 96 : 100}');
-    expect((tabLayout.match(/intensity=\{100\}/g) ?? []).length).toBeGreaterThanOrEqual(2);
+    expect(tabLayout).not.toContain("from 'expo-blur'");
+    expect(tabLayout).not.toContain('<BlurView');
+    expect(tabLayout).not.toContain('intensity={isMinimal ? 96 : 100}');
+    expect(tabLayout).not.toContain('intensity={100}');
+    expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_ALPHA = 0.95;');
+    expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;');
+    expect(tabLayout).toContain('{ backgroundColor: TAB_UNDERLAY_DIM_BG }');
     expect(tabLayout).toContain("position: 'absolute'");
     expect(tabLayout).toContain('bottom: 0');
     expect(tabLayout).toContain("overflow: 'hidden'");

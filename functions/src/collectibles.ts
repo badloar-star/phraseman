@@ -468,6 +468,7 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
       secretCardId: decision.secretCardId,
       bonusShards: decision.bonusShards,
       shardsBalance: decision.bonusShards > 0 ? afterShards : null,
+      shardsUpdatedAtMs: decision.bonusShards > 0 ? now : null,
       ownedCount: Object.keys(newOwned).length,
       dropsToday: nextState.drops,
       dropsCapToday: isPremium ? dropConfig.dailyDropCapPremium : dropConfig.dailyDropCapFree,

@@ -1,6 +1,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // async_storage_null_bind_guard.ts — глобальная страховка от краша
 //   "java.lang.IllegalArgumentException: the bind value at index N is null"
+// Also guards multiGet/multiRemove because Android SQLite binds batch keys too.
 //
 // Native AsyncStorage (Android SQLite) биндит ключ И значение как строковый
 // параметр и падает, если в пару multiSet/multiMerge просочился null/undefined.
@@ -18,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, TurboModuleRegistry } from 'react-native';
 
 type Pair = readonly [unknown, unknown];
+type Key = unknown;
 
 const isDev = typeof __DEV__ !== 'undefined' && __DEV__;
 
@@ -34,6 +36,14 @@ function findOffenders(pairs: ReadonlyArray<Pair>): Array<{ index: number; key: 
   return offenders;
 }
 
+function findBadKeys(keys: ReadonlyArray<Key>): Array<{ index: number; key: unknown }> {
+  const offenders: Array<{ index: number; key: unknown }> = [];
+  keys.forEach((key, index) => {
+    if (typeof key !== 'string' || key.length === 0) offenders.push({ index, key });
+  });
+  return offenders;
+}
+
 /** Новый массив, где каждый ключ/значение гарантированно строки; битые ключи отброшены. */
 function sanitize(pairs: ReadonlyArray<Pair>): [string, string][] {
   const safe: [string, string][] = [];
@@ -46,6 +56,14 @@ function sanitize(pairs: ReadonlyArray<Pair>): [string, string][] {
   return safe;
 }
 
+function sanitizeKeys(keys: ReadonlyArray<Key>): string[] {
+  const safe: string[] = [];
+  for (const key of keys) {
+    if (typeof key === 'string' && key.length > 0) safe.push(key);
+  }
+  return safe;
+}
+
 let installed = false;
 
 export function installAsyncStorageNullBindGuard(): void {
@@ -53,7 +71,9 @@ export function installAsyncStorageNullBindGuard(): void {
   installed = true;
 
   const store = AsyncStorage as unknown as {
+    multiGet?: (keys: ReadonlyArray<Key>, cb?: unknown) => Promise<unknown>;
     multiSet?: (pairs: ReadonlyArray<Pair>, cb?: unknown) => Promise<unknown>;
+    multiRemove?: (keys: ReadonlyArray<Key>, cb?: unknown) => Promise<unknown>;
     multiMerge?: (pairs: ReadonlyArray<Pair>, cb?: unknown) => Promise<unknown>;
   };
 
@@ -80,6 +100,30 @@ export function installAsyncStorageNullBindGuard(): void {
 
   wrap('multiSet');
   wrap('multiMerge');
+
+  const wrapKeys = (name: 'multiGet' | 'multiRemove') => {
+    const original = store[name];
+    if (typeof original !== 'function') return;
+    store[name] = function patched(this: unknown, keys: ReadonlyArray<Key>, cb?: unknown) {
+      const list = Array.isArray(keys) ? keys : [];
+      if (isDev) {
+        const offenders = findBadKeys(list);
+        if (offenders.length > 0) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            `[asyncstorage-null-bind] ${name}: ${offenders.length} bad key(s) intercepted (sanitized). Offenders:`,
+            offenders,
+          );
+          // eslint-disable-next-line no-console
+          console.warn('[asyncstorage-null-bind] call stack:', new Error(`${name} null-bind source`).stack);
+        }
+      }
+      return (original as (k: ReadonlyArray<Key>, c?: unknown) => Promise<unknown>).call(this, sanitizeKeys(list), cb);
+    } as typeof original;
+  };
+
+  wrapKeys('multiGet');
+  wrapKeys('multiRemove');
 
   // КЛЮЧЕВОЕ: патчим САМ нативный модуль (RNCAsyncStorage) на границе моста.
   // Нативный multiSet принимает [key, value] и биндит в SQLite; если значение
@@ -119,6 +163,32 @@ export function installAsyncStorageNullBindGuard(): void {
       native.multiMerge = function patchedNativeMultiMerge(pairs: ReadonlyArray<Pair>, cb?: unknown) {
         const list = Array.isArray(pairs) ? pairs : [];
         return originalMerge(sanitize(list), cb);
+      };
+    }
+    if (native && typeof native.multiGet === 'function') {
+      const originalGet = native.multiGet.bind(native);
+      native.multiGet = function patchedNativeMultiGet(keys: ReadonlyArray<Key>, cb?: unknown) {
+        const list = Array.isArray(keys) ? keys : [];
+        if (isDev) {
+          const offenders = findBadKeys(list);
+          if (offenders.length > 0) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `[asyncstorage-null-bind] NATIVE multiGet: ${offenders.length} bad key(s) intercepted (sanitized). Offenders:`,
+              offenders,
+            );
+            // eslint-disable-next-line no-console
+            console.warn('[asyncstorage-null-bind] NATIVE call stack:', new Error('native multiGet null-bind source').stack);
+          }
+        }
+        return originalGet(sanitizeKeys(list), cb);
+      };
+    }
+    if (native && typeof native.multiRemove === 'function') {
+      const originalRemove = native.multiRemove.bind(native);
+      native.multiRemove = function patchedNativeMultiRemove(keys: ReadonlyArray<Key>, cb?: unknown) {
+        const list = Array.isArray(keys) ? keys : [];
+        return originalRemove(sanitizeKeys(list), cb);
       };
     }
   } catch {

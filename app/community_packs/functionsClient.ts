@@ -5,6 +5,7 @@ import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
+const communityPurchaseInFlight = new Map<string, Promise<CommunityPurchaseResponse>>();
 
 export function isCommunityPacksCloudEnabled(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -34,6 +35,7 @@ export type CommunityPurchaseResponse = {
   priceShards?: number;
   authorNetShards?: number;
   buyerBalanceAfter?: number;
+  shardsUpdatedAtMs?: number;
   studyTarget?: 'en' | 'fr';
 };
 
@@ -43,7 +45,30 @@ export async function callCommunityPurchasePack(data: {
   studyTarget?: 'en' | 'fr';
   buyerDisplayName: string;
 }): Promise<CommunityPurchaseResponse> {
-  return callFunction<typeof data, CommunityPurchaseResponse>('communityPurchasePack', data);
+  const key = communityPurchaseRequestKey(data);
+  const existing = communityPurchaseInFlight.get(key);
+  if (existing) return existing;
+
+  const request = callFunction<typeof data, CommunityPurchaseResponse>('communityPurchasePack', data)
+    .finally(() => {
+      communityPurchaseInFlight.delete(key);
+    });
+  communityPurchaseInFlight.set(key, request);
+  return request;
+}
+
+function communityPurchaseRequestKey(data: {
+  buyerStableId: string;
+  packId: string;
+  studyTarget?: 'en' | 'fr';
+  buyerDisplayName: string;
+}): string {
+  return JSON.stringify({
+    buyerStableId: data.buyerStableId,
+    packId: data.packId,
+    studyTarget: data.studyTarget ?? 'en',
+    buyerDisplayName: data.buyerDisplayName,
+  });
 }
 
 export type CommunitySellerInboxEvent = {

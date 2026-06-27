@@ -1,7 +1,3 @@
-/**
- * Тесты маршрутизации задач брифинга «Компаса» (compass_task_route).
- * Чистая функция — проверяем маппинг типа задачи в реальный роут + параметры.
- */
 import { compassTaskRoute } from '../app/compass/compass_task_route';
 import type { CompassDay, CompassTask } from '../app/compass/compass_brain';
 
@@ -12,37 +8,46 @@ function task(partial: Partial<CompassTask> & Pick<CompassTask, 'kind'>): Compas
 }
 
 describe('compassTaskRoute', () => {
-  it('lesson_dive с focus → /lesson_menu?id=focus', () => {
+  it('routes lesson_dive with focus to lesson_menu', () => {
     const r = compassTaskRoute(task({ kind: 'lesson_dive', focus: '5' }), day);
     expect(r.pathname).toBe('/lesson_menu');
     expect(r.params).toEqual({ id: '5' });
   });
 
-  it('lesson_dive без focus → общий список уроков', () => {
+  it('routes lesson_dive without focus to lessons tab', () => {
     const r = compassTaskRoute(task({ kind: 'lesson_dive' }), day);
     expect(r.pathname).toBe('/(tabs)/lessons');
     expect(r.params).toBeUndefined();
   });
 
-  it('mistake_repair → тренажёр слабых мест (mode=weak)', () => {
-    const r = compassTaskRoute(task({ kind: 'mistake_repair', weakTopic: 'verb' }), day);
-    expect(r.pathname).toBe('/trainer_smart_session');
-    expect(r.params).toEqual({ mode: 'weak' });
+  it('routes mistake_repair with microDiagnosisId to the live Problem Coach', () => {
+    const r = compassTaskRoute(
+      task({ kind: 'mistake_repair', weakTopic: 'article', microDiagnosisId: 'article_a_an' }),
+      day,
+    );
+    expect(r.pathname).toBe('/problem_coach');
+    expect(r.params).toEqual({ microDiagnosisId: 'article_a_an', category: 'article' });
   });
 
-  it('flashcards_review → /flashcards_swipe', () => {
+  it('routes mistake_repair without microDiagnosisId to My Practice instead of legacy smart trainer', () => {
+    const r = compassTaskRoute(task({ kind: 'mistake_repair', weakTopic: 'verb' }), day);
+    expect(r.pathname).toBe('/trainer');
+    expect(r.params).toBeUndefined();
+  });
+
+  it('routes flashcards_review to flashcards_swipe', () => {
     expect(compassTaskRoute(task({ kind: 'flashcards_review' }), day).pathname).toBe('/flashcards_swipe');
   });
 
-  it('plan_continue → /personal_plan', () => {
+  it('routes plan_continue to personal_plan', () => {
     expect(compassTaskRoute(task({ kind: 'plan_continue' }), day).pathname).toBe('/personal_plan');
   });
 
-  it('pronunciation → fallback /personal_plan (нет отдельного экрана)', () => {
+  it('routes pronunciation to personal_plan fallback', () => {
     expect(compassTaskRoute(task({ kind: 'pronunciation' }), day).pathname).toBe('/personal_plan');
   });
 
-  it('работает при day=null', () => {
+  it('works with day=null', () => {
     expect(compassTaskRoute(task({ kind: 'flashcards_review' }), null).pathname).toBe('/flashcards_swipe');
   });
 });

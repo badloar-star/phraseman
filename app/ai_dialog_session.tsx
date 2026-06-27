@@ -61,7 +61,7 @@ import {
 } from './dialogs_limit_session';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { MAX_DIALOG_XP } from './config';
 import { outcomeXpMultiplier } from './dialog_outcome';
@@ -524,7 +524,9 @@ export default function AiDialogSession() {
     if (!ended && userExchanges > 0) {
       void trackEvent('ai_dialog_abandoned', { scenarioId: scenario.id, atExchange: userExchanges });
     }
-    safeRouterBack(router, '/ai_dialog_home' as any);
+    // Fallback на главную (не на ai_dialog_home — это standalone QA-роут): сессия
+    // открывается из вкладки «Уроки», и при пустом стеке честнее уйти на главную.
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router, ended, userExchanges, scenario.id]);
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
@@ -1319,6 +1321,8 @@ export default function AiDialogSession() {
                     onPress={() => {
                       hapticTap();
                       void trackEvent('ai_dialog_retry_scenario', { scenarioId: scenario.id, outcome });
+                      // Перезапуск того же сценария «вместо» текущего экрана — свап, не push.
+                      markNextNavigationAsReplace();
                       router.replace({
                         pathname: '/ai_dialog_session',
                         params: { scenarioId: scenario.id },

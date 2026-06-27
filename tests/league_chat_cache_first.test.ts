@@ -140,14 +140,17 @@ describe('league chat cache-first behavior', () => {
     ]);
   });
 
-  it('measures keyboard overlap and pads the composer above the keyboard', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+  it('keeps the composer keyboard-safe through the fullscreen chat shell', () => {
+    const panelSource = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+    const screenSource = fs.readFileSync(path.join(ROOT, 'app', 'club_screen.tsx'), 'utf8');
 
-    expect(source).toContain('measureInWindow');
-    expect(source).toContain('paddingBottom: keyboardBottomInset');
-    expect(source).toContain('onFocus={handleComposerFocus}');
-    expect(source).toContain('Keyboard.metrics()');
-    expect(source).toContain('testID="league-chat-composer"');
+    expect(screenSource).toContain('presentationStyle="fullScreen"');
+    expect(screenSource).toContain('testID="league-chat-fullscreen"');
+    expect(screenSource).toContain("behavior={Platform.OS === 'ios' ? 'padding' : 'height'}");
+    expect(panelSource).toContain('onFocus={handleComposerFocus}');
+    expect(panelSource).toContain('testID="league-chat-composer"');
+    expect(panelSource).not.toContain('measureInWindow');
+    expect(panelSource).not.toContain('keyboardBottomInset');
   });
 
   it('adds optimistic chat rows before awaiting Firestore send', () => {
@@ -178,7 +181,8 @@ describe('league chat cache-first behavior', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'firestore_league_chat.ts'), 'utf8');
 
     expect(source).toContain('ROOM_AUTH_CACHE_PREFIX');
-    expect(source).toContain('ROOM_AUTH_TTL_MS');
+    expect(source).toContain('DEFAULT_ROOM_AUTH_TTL_MS');
+    expect(source).toContain('getLeagueChatAuthTtlMs');
     expect(source).toContain('loadCachedLeagueChatAuthorization');
     expect(source).toContain('forgetCachedLeagueChatAuthorization');
     expect(source).toContain('cachedStableId !== stableId');

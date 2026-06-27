@@ -39,6 +39,7 @@ export type BotArenaMatchResult = {
   newLevel: string;
   rankChanged: boolean;
   promoted: boolean;
+  idempotentReplay?: boolean;
 };
 
 function sleep(ms: number): Promise<void> {

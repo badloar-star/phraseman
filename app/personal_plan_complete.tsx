@@ -22,6 +22,7 @@ import {
 } from './personal_plan_state';
 import { readCompletedPlanTasks } from './personal_plan_progress';
 import { recommendNextPlanAfter, getPlanDefaultMinutes } from './personal_plan_recommendation';
+import { markNextNavigationAsReplace } from './navigation_back';
 
 type CompleteView = {
   summary: PersonalPlanCompletionSummary;
@@ -48,7 +49,10 @@ export default function PersonalPlanCompleteScreen() {
     void (async () => {
       const state = await readAnyPersonalPlanState();
       if (!state) {
-        if (!cancelled) router.replace('/(tabs)/home' as any);
+        if (!cancelled) {
+          markNextNavigationAsReplace();
+          router.replace('/(tabs)/home' as any);
+        }
         return;
       }
       const plan = getPlanById(state.planId);
@@ -72,13 +76,20 @@ export default function PersonalPlanCompleteScreen() {
         planId: view.nextPlan.id,
         minutesPerDay: getPlanDefaultMinutes(view.nextPlan.id),
       });
+      // Свапаем экран завершения на новый план. Пометка replace убирает экран
+      // завершения из честного стека — иначе «назад» из плана вернул бы на него,
+      // а он (план уже не active) снова сделал бы replace на план → петля.
+      markNextNavigationAsReplace();
       router.replace('/personal_plan' as any);
     } catch {
       setStarting(false);
     }
   };
 
-  const goHome = () => router.replace('/(tabs)/home' as any);
+  const goHome = () => {
+    markNextNavigationAsReplace();
+    router.replace('/(tabs)/home' as any);
+  };
 
   if (!view) {
     return (

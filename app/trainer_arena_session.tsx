@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -29,18 +29,25 @@ import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import {
   getCachedDueItems,
   getDueItems,
+  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry, hasReservedTrainerSessionEntrySync } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { safeRouterBack } from './navigation_back';
 import TrainerSessionReport from './trainer_session_report';
 import { checkAchievements } from './achievements';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { shuffle } from './utils_shuffle';
+import {
+  markTrainerPlanTaskCompleted,
+  readTrainerPlanTaskContext,
+  type TrainerPlanTaskRouteParams,
+} from './trainer_plan_task_route';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
 
@@ -58,6 +65,7 @@ function shuffleArenaOptions(items: TrainerItem[]): TrainerItem[] {
 
 export default function TrainerArenaSession() {
   const router = useRouter();
+  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const { lang } = useLang();
@@ -66,11 +74,28 @@ export default function TrainerArenaSession() {
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
+    mode: params.mode,
+    planDayIndex: params.planDayIndex,
+    planId: params.planId,
+    planInstanceId: params.planInstanceId,
+    planTaskId: params.planTaskId,
+    planTrainerTask: params.planTrainerTask,
+    requiredItems: params.requiredItems,
+  }), [
+    params.mode,
+    params.planDayIndex,
+    params.planId,
+    params.planInstanceId,
+    params.planTaskId,
+    params.planTrainerTask,
+    params.requiredItems,
+  ]);
   const instantItems = useMemo(
-    () => hasReservedTrainerSessionEntrySync('/trainer_arena_session', studyTarget)
+    () => !planTrainerContext.taskId && hasReservedTrainerSessionEntrySync('/trainer_arena_session', studyTarget)
       ? shuffleArenaOptions(getCachedDueItems('arena', 15, studyTarget))
       : [],
-    [studyTarget],
+    [planTrainerContext.taskId, studyTarget],
   );
 
   const [items, setItems] = useState<TrainerItem[]>(() => instantItems);
@@ -84,6 +109,7 @@ export default function TrainerArenaSession() {
   const [accessReady, setAccessReady] = useState(instantItems.length > 0);
   const flashAnim = useRef(new Animated.Value(1)).current;
   const dailySessionTracked = useRef(false);
+  const planTrainerCompletionTracked = useRef(false);
 
   useEffect(() => {
     void (async () => {
@@ -92,20 +118,37 @@ export default function TrainerArenaSession() {
         setLoading(false);
         return;
       }
-      const allowed = await consumeTrainerSessionEntry('/trainer_arena_session', studyTarget);
-      // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
-      if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
-        logTrainerDirectGateBlocked('/trainer_arena_session');
-        router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-        return;
+      if (planTrainerContext.taskId) {
+        const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
+        if (!planAllowed) {
+          logTrainerDirectGateBlocked('/trainer_arena_session');
+          router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
+          return;
+        }
+      } else {
+        const allowed = await consumeTrainerSessionEntry('/trainer_arena_session', studyTarget);
+        // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
+        if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
+          logTrainerDirectGateBlocked('/trainer_arena_session');
+          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+          return;
+        }
       }
       setAccessReady(true);
-      const loaded = await getDueItems('arena', 15, studyTarget);
+      const loaded = planTrainerContext.taskId
+        ? await getTrainerPremiumItemsForPlanQueue(
+            planTrainerContext.planInstanceId,
+            planTrainerContext.mode,
+            'arena',
+            planTrainerContext.requiredItems,
+            studyTarget,
+          )
+        : await getDueItems('arena', 15, studyTarget);
       if (loaded.length === 0) { setDone(true); setLoading(false); return; }
       setItems(shuffleArenaOptions(loaded));
       setLoading(false);
     })();
-  }, [router, studyTarget, trainerGateOpen]);
+  }, [planTrainerContext, router, studyTarget, trainerGateOpen]);
 
   const flash = useCallback((ok: boolean) => {
     Animated.sequence([
@@ -177,6 +220,12 @@ export default function TrainerArenaSession() {
     }, isOk ? 700 : 1100);
   }, [locked, items, current, correct, wrong, flash, studyTarget, playCorrect, speakAnswer]);
 
+  useEffect(() => {
+    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
+    planTrainerCompletionTracked.current = true;
+    void markTrainerPlanTaskCompleted(planTrainerContext);
+  }, [done, planTrainerContext]);
+
   if (!accessReady || loading) {
     return (
       <ScreenGradient>
@@ -217,7 +266,7 @@ export default function TrainerArenaSession() {
               wrong={wrong}
               total={items.length || correct + wrong}
               accent="#E05050"
-              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
             </BounceView>
@@ -238,7 +287,7 @@ export default function TrainerArenaSession() {
           <BounceView style={{ flex: 1 }}>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <Text style={{ color: sx.muted, fontSize: f.caption }}>

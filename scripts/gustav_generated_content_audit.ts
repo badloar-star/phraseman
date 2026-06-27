@@ -229,8 +229,8 @@ function main(): void {
   if (rowsWithReviewerNeedsReview > 0) {
     findings.push({
       severity: 'warning',
-      code: 'rows_need_human_review',
-      message: `${rowsWithReviewerNeedsReview} generated rows need review before apply.`,
+      code: 'rows_need_llm_official_source_review',
+      message: `${rowsWithReviewerNeedsReview} generated rows need LLM official-source review before apply.`,
     });
   }
   if (mojibakeMeaningFields > 0) {

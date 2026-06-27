@@ -25,6 +25,7 @@ export type StatsDailyMetric =
   | 'arena_wins'
   | 'arena_losses'
   | 'daily_tasks_claimed'
+  | 'plan_tasks_completed'
   | 'shards_earned'
   | 'shards_spent';
 
@@ -36,6 +37,7 @@ const METRICS_LIST: StatsDailyMetric[] = [
   'arena_wins',
   'arena_losses',
   'daily_tasks_claimed',
+  'plan_tasks_completed',
   'shards_earned',
   'shards_spent',
 ];
@@ -231,6 +233,9 @@ export async function bumpStatsDaily(
     store[day] = row;
     const pruned = pruneStore(store);
     await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
+    void import('./activity_365_analytics')
+      .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
+      .catch(() => {});
   } catch {
     /* ignore */
   }
@@ -293,6 +298,7 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
         arena_wins: randIntInclusive(0, 6),
         arena_losses: randIntInclusive(0, 6),
         daily_tasks_claimed: randIntInclusive(0, 5),
+        plan_tasks_completed: randIntInclusive(0, 5),
         shards_earned: randIntInclusive(0, 90),
         shards_spent: randIntInclusive(0, 55),
       };

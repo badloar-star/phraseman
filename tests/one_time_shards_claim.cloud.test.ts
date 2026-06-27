@@ -64,4 +64,24 @@ describe('awardOneTime (Firestore claim)', () => {
     expect(fs.__testState.rewardClaimExists).toBe(true);
     expect(fs.__testState.userShards).toBe(7);
   });
+
+  it('does not let an older cloud claim mirror overwrite a newer local wallet', async () => {
+    const fs = firestore as any;
+    fs.__testState.rewardClaimExists = false;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 10;
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 9_000_000_000_000,
+      op: 'earn',
+      reason: 'newer_local_reward',
+    });
+
+    await expect(awardOneTime('exam_excellent')).resolves.toBe(3);
+
+    expect(mockStorage.shards_balance).toBe('80');
+    expect(JSON.parse(mockStorage.shards_one_time_events)).toContain('exam_excellent');
+    expect(fs.__testState.rewardClaimExists).toBe(true);
+    expect(fs.__testState.userShards).toBe(83);
+  });
 });

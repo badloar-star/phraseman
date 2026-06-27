@@ -275,7 +275,7 @@ export default function ReferralsScreen() {
             <TapScale
               accessibilityRole="button"
               accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+              onPress={() => safeRouterBack(router, '/(tabs)/friends' as any)}
               style={{
                 width: 44,
                 height: 44,

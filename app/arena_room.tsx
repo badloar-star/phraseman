@@ -512,12 +512,16 @@ export default function ArenaRoomScreen() {
   }, [room?.code]);
 
   const handleOpenChat = useCallback(() => {
+    // Не открываем чат, пока на экране висит подтверждение (выход/кик). Чат —
+    // нативный pageSheet-<Modal>, confirm — нативный fade-<Modal>; два present
+    // одновременно на iOS ломают стек модалок (фриз / одно окно само пропадает).
+    if (confirmDialog) return;
     hapticTap();
     setUnreadChat(0);
     lastReadChatCount.current = chatMessages.length;
     setShowChat(true);
     setTimeout(() => chatListRef.current?.scrollToEnd({ animated: false }), 150);
-  }, [chatMessages.length]);
+  }, [chatMessages.length, confirmDialog]);
 
   const handleSendChat = useCallback(async () => {
     const text = chatInput.trim();
@@ -1077,7 +1081,7 @@ export default function ArenaRoomScreen() {
       </BouncyWrap>
 
       {/* ─── Модалка чата ─────────────────────────────────────────────────────── */}
-      <Modal visible={showChat} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowChat(false)}>
+      <Modal visible={showChat && !confirmDialog} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowChat(false)}>
         <ScreenGradient artBackdrop="arenaMatch">
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
           {/* Шапка чата */}

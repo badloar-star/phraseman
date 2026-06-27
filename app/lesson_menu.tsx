@@ -21,7 +21,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
@@ -1079,10 +1079,15 @@ export default function LessonMenu() {
                   },
                 } as any);
               } else if (lockReason === 'level' && prevLevel) {
+                // Свапаем заблокированное по уровню меню на зачёт. Без пометки replace
+                // это меню осталось бы в стеке и «назад» из зачёта возвращало бы на тот же
+                // заблокированный экран, снова предлагающий этот зачёт → петля.
+                markNextNavigationAsReplace();
                 router.replace({ pathname: '/level_exam', params: { level: prevLevel } });
               } else {
                 void (async () => {
                   await prefetchLessonMenuCache(prevId, studyTarget);
+                  markNextNavigationAsReplace();
                   router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
                 })();
               }

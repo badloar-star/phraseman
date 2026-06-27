@@ -244,6 +244,31 @@
     }
     .app-msg-preview-title { color:#f8fafc; font-size:16px; font-weight:900; margin-bottom:8px; }
     .app-msg-preview-body { color:#b9c2d0; font-size:13px; line-height:1.5; white-space:pre-wrap; }
+    .app-msg-translations {
+      margin: 8px 0 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      background: rgba(255,255,255,.02);
+      padding: 4px 12px 12px;
+    }
+    .app-msg-translations > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 8px 0;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      user-select: none;
+    }
+    .app-msg-translations > summary::-webkit-details-marker { display:none; }
+    .app-msg-translations[open] > summary { color:#f8fafc; }
+    .app-msg-translations-fields { display:flex; flex-direction:column; gap:14px; }
+    .app-msg-lang-block { border-top:1px solid rgba(255,255,255,.06); padding-top:10px; }
+    .app-msg-lang-block:first-child { border-top:none; padding-top:0; }
+    .app-msg-lang-title { color:#94a3b8; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+    .app-msg-lang-block .app-msg-field { margin-bottom:8px; }
+    .app-msg-lang-poll { display:none; }
+    .app-msg-translations.is-poll .app-msg-lang-poll { display:block; }
     .app-msg-poll-box {
       margin: 6px 0 12px;
       padding: 12px;
@@ -9217,6 +9242,48 @@
         <input type="number" id="cp-force-rollout" min="0" max="100" placeholder="100" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
         <span style="font-size:11px;color:#6b7280">Доля устаревших, кому показать блок (стабильна по юзеру). Начни с 10–20% и наблюдай.</span></label>
     </div>
+
+    <div style="margin-top:14px;border-top:1px solid #23232f;padding-top:14px">
+      <div style="display:flex;align-items:center;gap:14px;padding:0 0 10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13.5px;font-weight:800;color:#e5e7eb">Manual update modal</div>
+          <div style="font-size:11.5px;color:#9ca3af;margin-top:2px">Показывается по решению админа независимо от min_app_version и наличия обновы в repo.</div>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none">
+          <input type="checkbox" id="cp-bool-manual_update_enabled" onchange="saveManualUpdateConfig(false)" disabled style="width:42px;height:24px;cursor:pointer"/>
+          <span id="cp-bool-label-manual_update_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span>
+        </label>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Режим
+          <select id="cp-manual-update-mode" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px">
+            <option value="force">Force: не закрывается до обновления</option>
+            <option value="optional">Voluntary: показать 1 раз</option>
+          </select></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Campaign ID
+          <input type="text" id="cp-manual-update-campaign" placeholder="manual_update_2026_06_26_a" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Target build / version
+          <input type="text" id="cp-manual-update-target-build" placeholder="1.5.44 или 81" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+          <span style="font-size:11px;color:#6b7280">Если текущая сборка уже >= цели, модалка не показывается.</span></label>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Заголовок RU
+          <input type="text" id="cp-manual-update-title-ru" placeholder="Доступно обновление" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Текст RU
+          <textarea id="cp-manual-update-body-ru" rows="2" placeholder="Мы улучшили приложение. Обновите его в сторе." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Кнопка RU
+          <input type="text" id="cp-manual-update-cta-ru" placeholder="Обновить" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap">
+        <button type="button" onclick="saveManualUpdateConfig(false)" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">Сохранить manual modal</button>
+        <button type="button" onclick="saveManualUpdateConfig(true)" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Показать окно обновления</button>
+        <button type="button" onclick="disableManualUpdateModal()" style="background:#1f2937;border:1px solid #374151;color:#fca5a5;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">Выключить manual modal</button>
+      </div>
+      <div style="font-size:11.5px;color:#9ca3af;margin-top:8px;line-height:1.45">
+        Force-режим держит окно на экране, пока пользователь не обновится. Voluntary-режим сохраняет просмотр по campaign_id и не повторяется.
+      </div>
+    </div>
+
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
       <button type="button" onclick="saveForceUpdateConfig()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить версию и ссылки</button>
       <span id="cp-force-status" style="font-size:12px;color:#6b7280"></span>
@@ -9275,6 +9342,9 @@
         <input type="text" id="cp-promo-banner-url" placeholder="https://… (пусто = баннер некликабельный)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Действует до (пусто = ∞)
         <input type="date" id="cp-promo-banner-until" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Campaign ID для dismiss
+        <input type="text" id="cp-promo-banner-campaign" placeholder="promo_2026_06_offer_a" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+        <span style="font-size:11px;color:#6b7280">Если пользователь закрыл плашку, она не вернется для этого campaign_id.</span></label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Кому показывать (аудитория)
         <select id="cp-promo-banner-audience" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px">
           <option value="">Всем</option>
@@ -9448,6 +9518,9 @@
         <textarea id="cp-maint-text-uk" rows="2" placeholder="Тривають технічні роботи. Скоро повернемось." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
       <label style="display:grid;gap:5px;color:#cbd5e1;font-size:12px;font-weight:700">Текст (ES)
         <textarea id="cp-maint-text-es" rows="2" placeholder="Estamos en mantenimiento. Volvemos pronto." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+      <label style="display:grid;gap:5px;color:#cbd5e1;font-size:12px;font-weight:700">Campaign ID для dismiss
+        <input type="text" id="cp-maint-campaign" placeholder="maintenance_2026_06_26_a" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+        <span style="font-size:11px;color:#6b7280">Новый campaign_id снова покажет плашку тем, кто закрыл старую.</span></label>
     </div>
     <button type="button" onclick="saveControlPanelMaintenance()" style="margin-top:10px;background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить текст</button>
   </div>
@@ -10119,6 +10192,11 @@
         <label data-i18n-es="Mensaje">Сообщение</label>
         <textarea id="am-message-ru" aria-label="App message body" placeholder="Текст письма для пользователя" data-i18n-es="Texto del mensaje para el usuario" oninput="updateAppMessagePreview()"></textarea>
       </div>
+      <details id="am-translations" class="app-msg-translations">
+        <summary data-i18n-es="🌐 Traducciones (opcional)">🌐 Переводы на другие языки (необязательно)</summary>
+        <div class="hint" style="margin:6px 0 10px" data-i18n-es="Si dejas un idioma vacío, ese usuario verá el texto en ruso. Rellena solo los idiomas que necesites.">Если язык оставить пустым — пользователь увидит русский текст. Заполняй только нужные языки.</div>
+        <div id="am-translations-fields" class="app-msg-translations-fields"></div>
+      </details>
       <div id="am-poll-fields" class="app-msg-poll-box" style="display:none">
         <div class="app-msg-field">
           <label data-i18n-es="Pregunta de la encuesta">Вопрос голосования</label>
@@ -10547,7 +10625,7 @@
         <div class="report-context" style="margin-top:8px;line-height:1.7">
           &nbsp;• Маркер AsyncStorage: <code>vip_celebration_pending_v1</code><br>
           &nbsp;• VIP пишется в <code>users/{uid}.progress.vip_*</code> при выдаче из этой вкладки<br>
-          &nbsp;• Если uid осиротевший (identityHidden) — триггер <code>vipReconcileOrphanGrant</code> авто-переносит VIP на canonical-аккаунт<br>
+          &nbsp;• Если uid осиротевший (identityHidden), админка пишет VIP сразу в canonical-аккаунт<br>
           &nbsp;• Показывается один раз при первом запуске после выдачи VIP<br>
           &nbsp;• Не появляется у настоящих Premium-пользователей (у них PremiumCelebrationModal)<br>
           &nbsp;• Анимация: зелёное конфетти / «звёздочки», соответствует VIP-цвету<br>
@@ -12539,6 +12617,8 @@
       userStats: u.userStats || null,
       linkedAuth: u.linkedAuth || null,
       firebaseAuthUid: u.firebaseAuthUid || null,
+      identityHidden: u.identityHidden === true,
+      canonicalStableId: u.canonicalStableId || null,
     };
   }
 
@@ -13020,6 +13100,8 @@
       userStats: tryJson(p.user_stats_v1, null),
       linkedAuth: data.linkedAuth || null,
       firebaseAuthUid: data.firebaseAuthUid || null,
+      identityHidden: data.identityHidden === true,
+      canonicalStableId: data.canonicalStableId || null,
       raw: p,
     };
   }
@@ -13087,6 +13169,8 @@
         userStats: tryJson(p.user_stats_v1, null),
         linkedAuth: snap.data().linkedAuth || null,
         firebaseAuthUid: snap.data().firebaseAuthUid || null,
+        identityHidden: snap.data().identityHidden === true,
+        canonicalStableId: snap.data().canonicalStableId || null,
         raw: p,
       };
       if (!window._users) window._users = [];
@@ -14608,6 +14692,8 @@
           userStats: tryJson(p.user_stats_v1, null),
           linkedAuth: doc.data().linkedAuth || null,
           firebaseAuthUid: doc.data().firebaseAuthUid || null,
+          identityHidden: doc.data().identityHidden === true,
+          canonicalStableId: doc.data().canonicalStableId || null,
           raw: p,
         });
       });
@@ -15347,6 +15433,50 @@
     return prev > Date.now() ? prev : Date.now();
   }
 
+  function _cachedUser(uid) {
+    return (window._users || []).find(x => x.uid === uid) || null;
+  }
+
+  async function resolveAdminVipWriteTarget(uid) {
+    const requestedUid = String(uid || '').trim();
+    if (!requestedUid) return { uid: requestedUid, requestedUid, canonicalized: false };
+    let data = null;
+    try {
+      const snap = await getDoc(doc(db, 'users', requestedUid));
+      if (snap.exists()) {
+        data = snap.data() || {};
+        if (typeof userRowFromDocSnap === 'function') upsertUserRowToCache(userRowFromDocSnap(snap));
+      }
+    } catch (e) {
+      console.warn('vip target lookup failed', requestedUid, e);
+    }
+    const cached = _cachedUser(requestedUid);
+    const hidden = data ? data.identityHidden === true : cached?.identityHidden === true;
+    const canonical = String((data?.canonicalStableId ?? cached?.canonicalStableId ?? '') || '').trim();
+    if (!hidden || !canonical || canonical === requestedUid) {
+      return { uid: requestedUid, requestedUid, canonicalized: false };
+    }
+    try {
+      const canonicalSnap = await getDoc(doc(db, 'users', canonical));
+      if (!canonicalSnap.exists()) {
+        console.warn('vip canonical target missing', { requestedUid, canonical });
+        return { uid: requestedUid, requestedUid, canonicalized: false, canonicalMissing: canonical };
+      }
+      if (typeof userRowFromDocSnap === 'function') upsertUserRowToCache(userRowFromDocSnap(canonicalSnap));
+      return { uid: canonical, requestedUid, canonicalized: true };
+    } catch (e) {
+      console.warn('vip canonical target lookup failed', requestedUid, canonical, e);
+      return { uid: requestedUid, requestedUid, canonicalized: false };
+    }
+  }
+
+  function applyVipPatchToCachedUser(uid, patch) {
+    const row = _cachedUser(uid);
+    if (!row) return;
+    row.raw = row.raw || {};
+    Object.assign(row.raw, patch || {});
+  }
+
   window.closePremiumGrantModal = function closePremiumGrantModal() {
     document.getElementById('pg-overlay').classList.remove('visible');
     window._pgGrantUid = null;
@@ -15380,16 +15510,27 @@
     const u = window._users.find(x => x.uid === uid);
     if (!u) return;
     try {
-      u.raw = u.raw || {};
-      const oldPlan = u.raw.vip_plan || '';
-      const oldEx = String(u.raw.vip_until || '');
+      const target = await resolveAdminVipWriteTarget(uid);
+      const writeUid = target.uid || uid;
+      const writeUser = _cachedUser(writeUid) || u;
+      writeUser.raw = writeUser.raw || {};
+      const oldPlan = writeUser.raw.vip_plan || '';
+      const oldEx = String(writeUser.raw.vip_until || '');
       let plan = 'admin_vip';
       let expiryStr = '0';
       const grantAt = String(Date.now());
       const fromStr = grantAt;
+      const patch = {
+        vip_active: 'true',
+        vip_plan: plan,
+        vip_from: fromStr,
+        vip_until: '0',
+        vip_admin_override: 'true',
+        vip_admin_grant_at: grantAt,
+      };
       if (spec.kind === 'forever') {
         expiryStr = '0';
-        await updateDoc(doc(db, 'users', uid), {
+        await updateDoc(doc(db, 'users', writeUid), {
           'progress.vip_active': 'true',
           'progress.vip_plan': plan,
           'progress.vip_from': fromStr,
@@ -15398,11 +15539,12 @@
           'progress.vip_admin_grant_at': grantAt,
         });
       } else {
-        const base = _premiumGrantBaseTs(u.raw);
+        const base = _premiumGrantBaseTs(writeUser.raw);
         const d = new Date(base);
         d.setMonth(d.getMonth() + spec.n);
         expiryStr = String(d.getTime());
-        await updateDoc(doc(db, 'users', uid), {
+        patch.vip_until = expiryStr;
+        await updateDoc(doc(db, 'users', writeUid), {
           'progress.vip_active': 'true',
           'progress.vip_plan': plan,
           'progress.vip_from': fromStr,
@@ -15411,20 +15553,18 @@
           'progress.vip_admin_grant_at': grantAt,
         });
       }
-      u.raw.vip_active = 'true';
-      u.raw.vip_plan = plan;
-      u.raw.vip_from = fromStr;
-      u.raw.vip_until = expiryStr;
-      u.raw.vip_admin_override = 'true';
-      u.raw.vip_admin_grant_at = grantAt;
-      logAction('edit_field', uid, {
+      patch.vip_until = expiryStr;
+      applyVipPatchToCachedUser(writeUid, patch);
+      logAction('edit_field', writeUid, {
         field: 'vip_plan',
         old: `${oldPlan} / expiry ${oldEx}`,
         new: `${plan} / expiry ${expiryStr}`,
         admin_vip_grant: spec,
+        requestedUid: uid,
+        canonicalized: target.canonicalized === true,
       });
       closePremiumGrantModal();
-      openDetail(uid);
+      openDetail(writeUid);
       renderTable();
       if (typeof renderPremiumList === 'function') renderPremiumList();
       if (typeof renderVipList === 'function') renderVipList();
@@ -15450,19 +15590,29 @@
     if (!ok) return;
     try {
       const now = String(Date.now());
-      await updateDoc(doc(db, 'users', uid), {
+      const target = await resolveAdminVipWriteTarget(uid);
+      const writeUid = target.uid || uid;
+      await updateDoc(doc(db, 'users', writeUid), {
         'progress.vip_active': 'false',
         'progress.vip_admin_override': 'false',
         'progress.vip_until': now,
         'progress.vip_revoked_at': now,
       });
-      u.raw = u.raw || {};
-      u.raw.vip_active = 'false';
-      u.raw.vip_admin_override = 'false';
-      u.raw.vip_until = now;
-      u.raw.vip_revoked_at = now;
-      logAction('edit_field', uid, { field: 'vip_active', old: 'true', new: 'false', admin_vip_revoke: true });
-      openDetail(uid);
+      applyVipPatchToCachedUser(writeUid, {
+        vip_active: 'false',
+        vip_admin_override: 'false',
+        vip_until: now,
+        vip_revoked_at: now,
+      });
+      logAction('edit_field', writeUid, {
+        field: 'vip_active',
+        old: 'true',
+        new: 'false',
+        admin_vip_revoke: true,
+        requestedUid: uid,
+        canonicalized: target.canonicalized === true,
+      });
+      openDetail(writeUid);
       renderTable();
       if (typeof renderPremiumList === 'function') renderPremiumList();
       if (typeof renderVipList === 'function') renderVipList();
@@ -19237,6 +19387,8 @@
         userStats: tryJson(p.user_stats_v1, null),
           linkedAuth: data.linkedAuth || null,
           firebaseAuthUid: data.firebaseAuthUid || null,
+          identityHidden: data.identityHidden === true,
+          canonicalStableId: data.canonicalStableId || null,
         raw: p,
       };
       if (!window._users) window._users = [];
@@ -21868,6 +22020,57 @@
   const APP_MESSAGE_POLL_MAX_OPTIONS = 6;
   const APP_MESSAGE_POLL_OPTION_NUMBERS = Array.from({ length: APP_MESSAGE_POLL_MAX_OPTIONS }, (_, index) => index + 1);
 
+  // Переводы письма на другие языки. RU — основной (отдельные поля выше, всегда обязателен);
+  // здесь — необязательные переводы. Если язык пуст, приложение покажет RU (фолбэк в
+  // app/app_messages.ts → pickAppMessageText). suffix — для id полей (am-title-<suffix> и т.д.)
+  // и совпадает с суффиксом ключей Firestore (titleUk, titlePtBr, …).
+  const APP_MESSAGE_TRANSLATION_LANGS = [
+    { suffix: 'Uk', label: 'UK · Українська' },
+    { suffix: 'Es', label: 'ES · Español' },
+    { suffix: 'PtBr', label: 'PT-BR · Português' },
+    { suffix: 'Vi', label: 'VI · Tiếng Việt' },
+    { suffix: 'Id', label: 'ID · Bahasa Indonesia' },
+    { suffix: 'Tr', label: 'TR · Türkçe' },
+    { suffix: 'Pl', label: 'PL · Polski' },
+  ];
+  // id-суффикс для DOM-полей: titleUk → am-title-uk, messagePtBr → am-message-ptbr.
+  function appMessageLangIdPart(suffix) {
+    return suffix.toLowerCase();
+  }
+
+  function buildAppMessageTranslationFields() {
+    const host = document.getElementById('am-translations-fields');
+    if (!host || host.dataset.built === '1') return;
+    host.innerHTML = APP_MESSAGE_TRANSLATION_LANGS.map((langDef) => {
+      const idPart = appMessageLangIdPart(langDef.suffix);
+      const pollOptionRows = APP_MESSAGE_POLL_OPTION_NUMBERS.map((n) => `
+            <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="${n}">
+              <label>Вариант ${n}</label>
+              <input id="am-poll-option-${n}-${idPart}" type="text" aria-label="Poll option ${n} ${langDef.suffix}" placeholder="—" oninput="updateAppMessagePreview()">
+            </div>`).join('');
+      return `
+        <div class="app-msg-lang-block">
+          <div class="app-msg-lang-title">${escapeHtml(langDef.label)}</div>
+          <div class="app-msg-field">
+            <label>Тема</label>
+            <input id="am-title-${idPart}" type="text" aria-label="Title ${langDef.suffix}" placeholder="—" oninput="updateAppMessagePreview()">
+          </div>
+          <div class="app-msg-field">
+            <label>Сообщение</label>
+            <textarea id="am-message-${idPart}" aria-label="Message ${langDef.suffix}" placeholder="—" oninput="updateAppMessagePreview()"></textarea>
+          </div>
+          <div class="app-msg-lang-poll">
+            <div class="app-msg-field">
+              <label>Вопрос голосования</label>
+              <input id="am-poll-question-${idPart}" type="text" aria-label="Poll question ${langDef.suffix}" placeholder="—" oninput="updateAppMessagePreview()">
+            </div>
+            <div class="app-msg-poll-options">${pollOptionRows}</div>
+          </div>
+        </div>`;
+    }).join('');
+    host.dataset.built = '1';
+  }
+
   function appMessageFieldValue(id) {
     return String(document.getElementById(id)?.value || '').trim();
   }
@@ -21895,19 +22098,22 @@
 
   function updateAppMessagePollOptionRows() {
     const count = appMessageGetPollOptionCount();
+    // Скрываем/показываем строки вариантов и в основном (RU) блоке, и во всех языковых
+    // переводах. querySelectorAll ловит все одноимённые data-am-poll-option-row="n".
     APP_MESSAGE_POLL_OPTION_NUMBERS.forEach((n) => {
-      const row = document.querySelector(`[data-am-poll-option-row="${n}"]`);
-      if (!row) return;
       const visible = n <= count;
-      row.hidden = !visible;
-      row.setAttribute('aria-hidden', String(!visible));
+      document.querySelectorAll(`[data-am-poll-option-row="${n}"]`).forEach((row) => {
+        row.hidden = !visible;
+        row.setAttribute('aria-hidden', String(!visible));
+      });
     });
   }
 
-  function appMessageReadPollOptionTexts() {
+  function appMessageReadPollOptionTexts(suffix) {
+    const idPart = suffix ? `-${appMessageLangIdPart(suffix)}` : '';
     return APP_MESSAGE_POLL_OPTION_NUMBERS
       .slice(0, appMessageGetPollOptionCount())
-      .map((n) => appMessageFieldValue(`am-poll-option-${n}`));
+      .map((n) => appMessageFieldValue(`am-poll-option-${n}${idPart}`));
   }
 
   function appMessageBuildPollPayload(titleRu, messageRu) {
@@ -21920,19 +22126,28 @@
     if (optionTexts.length < 2) {
       throw new Error('Для опроса нужны минимум 2 варианта');
     }
-    const options = optionTexts.map((text, index) => ({
-      id: `opt_${index + 1}`,
-      textRu: text,
-      textUk: text,
-      textEs: text,
-    }));
-    return {
+    // Переводы вариантов по языкам: каждый вариант фолбэчит на RU, если перевод пуст.
+    const translatedOptionTexts = {};
+    APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+      translatedOptionTexts[langDef.suffix] = appMessageReadPollOptionTexts(langDef.suffix);
+    });
+    const options = optionTexts.map((text, index) => {
+      const option = { id: `opt_${index + 1}`, textRu: text };
+      APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+        const translated = (translatedOptionTexts[langDef.suffix] || [])[index];
+        option[`text${langDef.suffix}`] = translated || text;
+      });
+      return option;
+    });
+    const poll = {
       questionRu,
-      questionUk: questionRu,
-      questionEs: questionRu,
       options,
       optionIds: options.map((option) => option.id),
     };
+    APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+      poll[`question${langDef.suffix}`] = appMessageFieldValue(`am-poll-question-${appMessageLangIdPart(langDef.suffix)}`) || questionRu;
+    });
+    return poll;
   }
 
   function appMessageEmptyPollCounts(poll) {
@@ -21991,6 +22206,7 @@
   }
 
   window.updateAppMessagePreview = function() {
+    buildAppMessageTranslationFields();
     const title = String(document.getElementById('am-title-ru')?.value || '').trim() || 'Тема сообщения';
     const body = String(document.getElementById('am-message-ru')?.value || '').trim() || 'Текст появится здесь.';
     const titleEl = document.getElementById('am-preview-title');
@@ -22003,6 +22219,8 @@
     if (bodyEl) bodyEl.textContent = body;
     const isPoll = appMessageIsPollDraft();
     if (pollFields) pollFields.style.display = isPoll ? 'block' : 'none';
+    const translations = document.getElementById('am-translations');
+    if (translations) translations.classList.toggle('is-poll', isPoll);
     updateAppMessagePollOptionRows();
     if (!pollPreview || !pollOptions) return;
     if (!isPoll) {
@@ -22567,6 +22785,17 @@
       set('cp-force-min-version', texts.min_app_version);
       set('cp-force-url-ios', texts.store_url_ios);
       set('cp-force-url-android', texts.store_url_android);
+      const manualOn = bools.manual_update_enabled === true;
+      const manualCb = document.getElementById('cp-bool-manual_update_enabled');
+      const manualLbl = document.getElementById('cp-bool-label-manual_update_enabled');
+      if (manualCb) { manualCb.checked = manualOn; manualCb.disabled = false; }
+      if (manualLbl) { manualLbl.textContent = manualOn ? 'Вкл' : 'Выкл'; manualLbl.style.color = manualOn ? '#fbbf24' : '#9ca3af'; }
+      set('cp-manual-update-mode', texts.manual_update_mode || 'optional');
+      set('cp-manual-update-campaign', texts.manual_update_campaign_id);
+      set('cp-manual-update-target-build', texts.manual_update_target_build);
+      set('cp-manual-update-title-ru', texts.manual_update_title_ru);
+      set('cp-manual-update-body-ru', texts.manual_update_body_ru);
+      set('cp-manual-update-cta-ru', texts.manual_update_cta_ru);
       // Rollout-процент (numbers.force_update_enabled_rollout_pct). Пусто = 100% (всем).
       const numbers = (data && data.numbers && typeof data.numbers === 'object') ? data.numbers : {};
       const rEl = document.getElementById('cp-force-rollout');
@@ -22601,6 +22830,71 @@
     } catch (e) {
       cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
+  };
+
+  function cpManualUpdateReadForm() {
+    const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
+    const cb = document.getElementById('cp-bool-manual_update_enabled');
+    return {
+      enabled: !!(cb && cb.checked),
+      mode: get('cp-manual-update-mode') === 'force' ? 'force' : 'optional',
+      campaignId: get('cp-manual-update-campaign'),
+      targetBuild: get('cp-manual-update-target-build'),
+      titleRu: get('cp-manual-update-title-ru'),
+      bodyRu: get('cp-manual-update-body-ru'),
+      ctaRu: get('cp-manual-update-cta-ru'),
+    };
+  }
+
+  function cpManualUpdateGeneratedCampaignId() {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return 'manual_update_' + d.getFullYear() + '_' + pad(d.getMonth() + 1) + '_' + pad(d.getDate()) + '_' + pad(d.getHours()) + pad(d.getMinutes());
+  }
+
+  window.saveManualUpdateConfig = async function(enableNow) {
+    const data = cpManualUpdateReadForm();
+    if (!data.campaignId && enableNow) {
+      data.campaignId = cpManualUpdateGeneratedCampaignId();
+      const el = document.getElementById('cp-manual-update-campaign');
+      if (el) el.value = data.campaignId;
+    }
+    const willEnable = !!enableNow || data.enabled;
+    if (willEnable && !/^[A-Za-z0-9_.:-]{3,80}$/.test(data.campaignId)) {
+      cpForceStatus('❌ Manual update: campaign_id 3–80 символов: A-Z, 0-9, _, ., :, -.', '#f87171');
+      return;
+    }
+    if (data.targetBuild && !/^\d+(\.\d+){0,3}$/.test(data.targetBuild)) {
+      cpForceStatus('❌ Target build/version: например 1.5.44 или 81.', '#f87171');
+      return;
+    }
+    cpForceStatus('Сохранение manual update…');
+    try {
+      await window.saveControlPanelTexts({
+        manual_update_campaign_id: data.campaignId,
+        manual_update_mode: data.mode,
+        manual_update_target_build: data.targetBuild,
+        manual_update_title_ru: data.titleRu,
+        manual_update_body_ru: data.bodyRu,
+        manual_update_cta_ru: data.ctaRu,
+      });
+      const cb = document.getElementById('cp-bool-manual_update_enabled');
+      if (cb) cb.checked = willEnable;
+      await window.saveControlPanelBool('manual_update_enabled', willEnable);
+      const lbl = document.getElementById('cp-bool-label-manual_update_enabled');
+      if (lbl) { lbl.textContent = willEnable ? 'Вкл' : 'Выкл'; lbl.style.color = willEnable ? '#fbbf24' : '#9ca3af'; }
+      cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят за секунды.' : '✅ Manual update сохранен и выключен.', '#4ade80');
+    } catch (e) {
+      cpForceStatus('Ошибка manual update: ' + (e && e.message ? e.message : e), '#f87171');
+      const cb = document.getElementById('cp-bool-manual_update_enabled');
+      if (cb) cb.disabled = false;
+    }
+  };
+
+  window.disableManualUpdateModal = async function() {
+    const cb = document.getElementById('cp-bool-manual_update_enabled');
+    if (cb) cb.checked = false;
+    await window.saveManualUpdateConfig(false);
   };
 
   // ── Промокоды-награды (callable promoCodeUpsert + список promo_codes) ───────
@@ -22681,6 +22975,7 @@
       set('cp-promo-banner-uk', texts.promo_banner_text_uk);
       set('cp-promo-banner-es', texts.promo_banner_text_es);
       set('cp-promo-banner-url', texts.promo_banner_url);
+      set('cp-promo-banner-campaign', texts.promo_banner_campaign_id);
       set('cp-promo-banner-audience', texts.promo_banner_audience);
       set('cp-promo-banner-platform', texts.promo_banner_platform);
       // until хранится как ms (или ISO); в поле date кладём YYYY-MM-DD.
@@ -22711,6 +23006,7 @@
         promo_banner_text_es: get('cp-promo-banner-es'),
         promo_banner_url: get('cp-promo-banner-url'),
         promo_banner_until: untilMs,
+        promo_banner_campaign_id: get('cp-promo-banner-campaign'),
         promo_banner_audience: get('cp-promo-banner-audience'),
         promo_banner_platform: get('cp-promo-banner-platform'),
       });
@@ -23273,6 +23569,7 @@
       const ru = document.getElementById('cp-maint-text-ru'); if (ru) ru.value = texts.maintenance_ru || '';
       const uk = document.getElementById('cp-maint-text-uk'); if (uk) uk.value = texts.maintenance_uk || '';
       const es = document.getElementById('cp-maint-text-es'); if (es) es.value = texts.maintenance_es || '';
+      const campaign = document.getElementById('cp-maint-campaign'); if (campaign) campaign.value = texts.maintenance_campaign_id || '';
       const active = bools.maintenance_block === true ? 'ЖЁСТКИЙ БЛОК активен' : bools.maintenance_banner === true ? 'баннер активен' : 'выключен';
       cpMaintSetStatus('Сейчас: ' + active + ' · обновлял: ' + (data.updatedBy || '—'), bools.maintenance_block ? '#f87171' : bools.maintenance_banner ? '#fbbf24' : '#9ca3af');
     } catch (e) {
@@ -23299,6 +23596,7 @@
       const ru = document.getElementById('cp-maint-text-ru'); if (ru) texts.maintenance_ru = String(ru.value || '').slice(0, 500);
       const uk = document.getElementById('cp-maint-text-uk'); if (uk) texts.maintenance_uk = String(uk.value || '').slice(0, 500);
       const es = document.getElementById('cp-maint-text-es'); if (es) texts.maintenance_es = String(es.value || '').slice(0, 500);
+      const campaign = document.getElementById('cp-maint-campaign'); if (campaign) texts.maintenance_campaign_id = String(campaign.value || '').trim().slice(0, 80);
       const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
       await setDoc(doc(db, 'remote_config', 'app'), {
         numbers, bools, texts, updatedAt: Date.now(), updatedBy: who,
@@ -23767,15 +24065,18 @@
       audience: ['all','free','premium'].includes(val('am-audience')) ? val('am-audience') : 'all',
       priority: Math.max(0, Math.min(99, Math.floor(Number(val('am-priority') || 0)))),
       titleRu,
-      titleUk: val('am-title-uk') || titleRu,
-      titleEs: val('am-title-es') || titleRu,
       messageRu,
-      messageUk: val('am-message-uk') || messageRu,
-      messageEs: val('am-message-es') || messageRu,
       updatedAt: nowIso,
       updatedAtMs: nowMs,
       updatedBy: auth.currentUser?.email || 'unknown',
     };
+    // Переводы темы/сообщения по языкам: пустой перевод фолбэчит на RU. Так у не-RU
+    // аудитории письмо никогда не приходит пустым (app/app_messages.ts → pickAppMessageText).
+    APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+      const idPart = appMessageLangIdPart(langDef.suffix);
+      payload[`title${langDef.suffix}`] = val(`am-title-${idPart}`) || titleRu;
+      payload[`message${langDef.suffix}`] = val(`am-message-${idPart}`) || messageRu;
+    });
     if (poll) {
       payload.poll = poll;
       if (shouldResetPollEngagement || !editId) {
@@ -23832,6 +24133,7 @@
   window.editAppMessage = async function(id) {
     const row = (window._appMessages || []).find((m) => m.id === id);
     if (!row) { showToast('Сообщение не найдено', 'warn'); return; }
+    buildAppMessageTranslationFields();
     document.getElementById('am-edit-id').value = row.id;
     document.getElementById('am-active').value = row.active === false ? 'false' : 'true';
     document.getElementById('am-audience').value = row.audience || 'all';
@@ -23845,6 +24147,28 @@
       const option = row.poll?.options?.[n - 1];
       const el = document.getElementById(`am-poll-option-${n}`);
       if (el) el.value = option?.textRu || '';
+    });
+    // Заполняем переводы по языкам. Если в Firestore перевод равен RU (фолбэк при сохранении),
+    // показываем его пустым, чтобы оператор видел, что отдельного перевода нет, и форма при
+    // повторном сохранении снова корректно зафолбэчила пустое поле на RU.
+    APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+      const idPart = appMessageLangIdPart(langDef.suffix);
+      const titleVal = row[`title${langDef.suffix}`] || '';
+      const messageVal = row[`message${langDef.suffix}`] || '';
+      const titleEl = document.getElementById(`am-title-${idPart}`);
+      const messageEl = document.getElementById(`am-message-${idPart}`);
+      if (titleEl) titleEl.value = titleVal === (row.titleRu || '') ? '' : titleVal;
+      if (messageEl) messageEl.value = messageVal === (row.messageRu || '') ? '' : messageVal;
+      const questionVal = row.poll?.[`question${langDef.suffix}`] || '';
+      const questionEl = document.getElementById(`am-poll-question-${idPart}`);
+      if (questionEl) questionEl.value = questionVal === (row.poll?.questionRu || '') ? '' : questionVal;
+      APP_MESSAGE_POLL_OPTION_NUMBERS.forEach((n) => {
+        const option = row.poll?.options?.[n - 1];
+        const optEl = document.getElementById(`am-poll-option-${n}-${idPart}`);
+        if (!optEl) return;
+        const optVal = option?.[`text${langDef.suffix}`] || '';
+        optEl.value = optVal === (option?.textRu || '') ? '' : optVal;
+      });
     });
     appMessageSetPollOptionCount(row.poll?.options?.length || APP_MESSAGE_POLL_MIN_OPTIONS);
     document.getElementById('am-form-title').textContent = 'Редактирование сообщения';
@@ -29658,7 +29982,9 @@
     for (const uid of uids) {
       try {
         const grantAt = String(Date.now());
-        await updateDoc(doc(db, 'users', uid), {
+        const target = await resolveAdminVipWriteTarget(uid);
+        const writeUid = target.uid || uid;
+        await updateDoc(doc(db, 'users', writeUid), {
           'progress.vip_active': 'true',
           'progress.vip_plan': 'admin_vip',
           'progress.vip_from': grantAt,
@@ -29666,7 +29992,20 @@
           'progress.vip_admin_override': 'true',
           'progress.vip_admin_grant_at': grantAt,
         });
-        logAction('bulk_grant_vip', uid, { grantAt, plan: 'admin_vip' });
+        applyVipPatchToCachedUser(writeUid, {
+          vip_active: 'true',
+          vip_plan: 'admin_vip',
+          vip_from: grantAt,
+          vip_until: '0',
+          vip_admin_override: 'true',
+          vip_admin_grant_at: grantAt,
+        });
+        logAction('bulk_grant_vip', writeUid, {
+          grantAt,
+          plan: 'admin_vip',
+          requestedUid: uid,
+          canonicalized: target.canonicalized === true,
+        });
         done++;
       } catch(e) { console.warn('bulk premium error', uid, e); }
     }

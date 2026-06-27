@@ -41,6 +41,7 @@ import {
   lessonBonusGrantedKey,
   lessonIntroShownKey,
   lessonIrregularShardsGrantedKey,
+  lessonListeningProgressKey,
   lastOpenedLessonKey,
   lessonPassCountKey,
   lessonPerfectMilestoneKey,
@@ -119,6 +120,7 @@ describe('target storage key contract', () => {
     expect(() => assertTargetKey('theory_xp_claimed_1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_best_score')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_pass_count')).toThrow(/Raw target-sensitive key/);
+    expect(() => assertTargetKey('lesson1_listening_progress')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_words_shards_granted')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_irregular_shards_granted')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_intro_shown')).toThrow(/Raw target-sensitive key/);
@@ -192,6 +194,8 @@ describe('target storage key contract', () => {
     expect(lessonProgressKey(1, 'fr')).toBe('lesson_progress_v2::fr::1');
     expect(lessonBestScoreKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_best_score');
     expect(lessonPassCountKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_pass_count');
+    expect(lessonListeningProgressKey(1, 'en')).toBe('lesson1_listening_progress');
+    expect(lessonListeningProgressKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_listening_progress');
     expect(lessonWordsKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_words');
     expect(lessonWordsShardsGrantedKey(1, 'fr')).toBe('lesson_rewards_v2::fr::lesson1_words_shards_granted');
     expect(lessonIrregularShardsGrantedKey(1, 'en')).toBe('lesson1_irregular_shards_granted');

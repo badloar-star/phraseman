@@ -206,7 +206,7 @@ function main(): void {
         ? 'expected_present_aspect_collapse'
         : 'reviewer_attention';
       const reviewerNote = disposition === 'expected_present_aspect_collapse'
-        ? 'French present naturally covers these English simple-present and present-progressive source variants; keep for human review, not app apply.'
+        ? 'French present naturally covers these English simple-present and present-progressive source variants; keep for LLM official-source review, not app apply.'
         : 'Duplicate French value needs reviewer attention before any future apply decision.';
       return {
         proposedFrench: groupRows[0].proposedFrench,

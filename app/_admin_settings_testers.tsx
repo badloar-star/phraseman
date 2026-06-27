@@ -1292,16 +1292,6 @@ export default function SettingsTestersFunctions() {
     router.push('/trainer' as any);
   };
 
-  const openTrainerReportPreview = async () => {
-    if (!(await prepareWeakTrainerQa())) return;
-    router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'report' } } as any);
-  };
-
-  const openTrainerMistakePreview = async () => {
-    if (!(await prepareWeakTrainerQa())) return;
-    router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'mistake' } } as any);
-  };
-
   const openStats365RandomQa = async () => {
     await ensureQaPremiumAccess();
     await devSeedActivity365Scenario('random');
@@ -2588,26 +2578,6 @@ export default function SettingsTestersFunctions() {
               doHaptic={doHaptic}
             />
             <ButtonRow
-              testID="trainer-quick-report-preview"
-              icon="analytics-outline"
-              label="Trainer: premium report preview"
-              sub="Seed weak TrainerStore, open Smart Trainer report preview"
-              onPress={openTrainerReportPreview}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="trainer-quick-mistake-preview"
-              icon="bug-outline"
-              label="Trainer: mistake drill preview"
-              sub="Seed weak TrainerStore, open a wrong-answer drill preview"
-              onPress={openTrainerMistakePreview}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
               testID="stats-quick-365-random-open"
               icon="pulse-outline"
               label="Stats 365: random seeded year"
@@ -3785,43 +3755,6 @@ export default function SettingsTestersFunctions() {
               label="Arena practice session"
               sub="/trainer_arena_session — актуальная сессия арены без давления"
               onPress={() => router.push('/trainer_arena_session' as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="sparkles-outline"
-              label="Smart Trainer — Smart Mix"
-              sub="/trainer_smart_session?mode=smart_mix"
-              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'smart_mix' } } as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="pulse-outline"
-              label="Smart Trainer — Weak"
-              sub="/trainer_smart_session?mode=weak"
-              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak' } } as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="flame-outline"
-              label="Smart Trainer — Hard"
-              sub="/trainer_smart_session?mode=hard"
-              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'hard' } } as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="analytics-outline"
-              testID="trainer-qa-open-report-preview"
-              label="Trainer: premium report preview"
-              sub="/trainer_smart_session?mode=weak&preview=report"
-              onPress={openTrainerReportPreview}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="bug-outline"
-              testID="trainer-qa-open-mistake-preview"
-              label="Trainer: mistake drill preview"
-              sub="/trainer_smart_session?mode=weak&preview=mistake"
-              onPress={openTrainerMistakePreview}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow

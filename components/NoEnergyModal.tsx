@@ -15,7 +15,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { lessonEnergyMessages } from '../app/lesson_locale_utils';
 import { useTheme } from './ThemeContext';
-import { useEnergy } from './EnergyContext';
+import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
@@ -194,7 +194,8 @@ function NoEnergyModal({
   const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
   const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
-  const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
+  const { energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
+  const { formattedTime } = useEnergyCountdown();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const totalAvailable = energy + bonusEnergy;

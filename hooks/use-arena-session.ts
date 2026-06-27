@@ -53,6 +53,7 @@ interface UseArenaSessionResult {
 }
 
 const COUNTDOWN_SECONDS = 3;
+const QUESTION_UI_TICK_MS = 1000;
 /** После старта вопроса ждём столько, прежде чем считать соперника «не вышел на связь» (без сетевых get).
  * Должно быть > questionTimeoutMs (40 с) + Firestore latency. Иначе при нормальном завершении раунда
  * оба клиента могут ошибочно считать друг друга «ушедшим» (lastSeen < qStart из-за clock skew). */
@@ -87,6 +88,7 @@ export function useArenaSession(
   const me = players.find(p => p.playerId === userId);
 
   const questionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const countdownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const sessionRef = useRef<ArenaSession | null>(null);
   const playersRef = useRef<SessionPlayer[]>([]);
@@ -107,6 +109,10 @@ export function useArenaSession(
     if (questionTimerRef.current) {
       clearInterval(questionTimerRef.current);
       questionTimerRef.current = null;
+    }
+    if (questionTimeoutRef.current) {
+      clearTimeout(questionTimeoutRef.current);
+      questionTimeoutRef.current = null;
     }
   };
 
@@ -305,16 +311,13 @@ export function useArenaSession(
     const startedAt = s.questionStartedAt ?? Date.now();
 
     clearQuestionTimer();
-    // 100ms — точна межа "час вийшов"; setQuestionTimeLeft лише ~1/s — менше re-render, без ривків смужки
-    questionTimerRef.current = setInterval(() => {
+    const updateVisibleTimeLeft = () => {
       const left = Math.max(0, timeoutMs - (Date.now() - startedAt));
       if (left <= 0) {
         if (lastShownSecRef.current !== 0) {
           lastShownSecRef.current = 0;
           setQuestionTimeLeft(0);
         }
-        clearQuestionTimer();
-        handleNoAnswer(sessionId, userId, questionId);
         return;
       }
       const displaySec = Math.ceil(left / 1000) || 0;
@@ -322,7 +325,20 @@ export function useArenaSession(
         lastShownSecRef.current = displaySec;
         setQuestionTimeLeft(left);
       }
-    }, 100);
+    };
+    const finishNoAnswer = () => {
+      if (hasAnsweredRef.current) return;
+      if (lastShownSecRef.current !== 0) {
+        lastShownSecRef.current = 0;
+        setQuestionTimeLeft(0);
+      }
+      clearQuestionTimer();
+      handleNoAnswer(sessionId, userId, questionId);
+    };
+    updateVisibleTimeLeft();
+    questionTimerRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS);
+    const timeoutDelayMs = Math.max(0, timeoutMs - (Date.now() - startedAt));
+    questionTimeoutRef.current = setTimeout(finishNoAnswer, timeoutDelayMs + 50);
   }
 
   const handleNoAnswer = (sid: string, uid: string, qid: string) => {

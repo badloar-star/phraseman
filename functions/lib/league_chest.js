@@ -525,6 +525,7 @@ exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION }, async (reques
             claimed: true,
             crown,
             balance: afterShards,
+            shardsUpdatedAtMs: shardReward > 0 ? now : readInt(user.shards_updated_at_ms, 0),
             rewards: {
                 drops: rewardDrops,
                 shards: shardReward,

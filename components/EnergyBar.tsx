@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Animated, Text, useWindowDimensions, View } from 'react-native';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
-import { useEnergy } from './EnergyContext';
+import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -20,7 +20,8 @@ interface Props {
 const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
 function EnergyBar({ size = 30, maxWidth }: Props) {
-  const { energy, bonusEnergy, maxEnergy, formattedTime, isUnlimited } = useEnergy();
+  const { energy, bonusEnergy, maxEnergy, isUnlimited } = useEnergy();
+  const { formattedTime } = useEnergyCountdown();
   const { hasPremiumAccess } = usePremium();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();

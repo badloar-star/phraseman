@@ -21,11 +21,12 @@
  *  - план:        personal_plan_state (readPersonalPlanSnapshot)
  *  - пройдено:    plan_day_lesson_recommendation (readPassedLessonIds)
  */
-import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { PhraseMistakeCategoryStat } from '../mistake_log';
 import type { TrainerDashboard } from '../trainer_store';
 import type { PosMasteryEntry } from '../pos_workout_engine';
 import type { PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import type { WordCategory, WordCategoryStat } from '../phrase_analytics';
 
 import { compassOn } from './compass_flags';
 import { getTopMistakePhraseDetails, getMistakeCountByLesson } from '../mistake_log';
@@ -33,6 +34,16 @@ import { getTrainerDashboard } from '../trainer_store';
 import { getPosMasterySnapshot } from '../pos_workout_engine';
 import { readPersonalPlanSnapshot } from '../personal_plan_state';
 import { readPassedLessonIds } from '../plan_day_lesson_recommendation';
+import { computePhraseAnalytics } from '../phrase_analytics';
+import { loadResolvedPersonalTrainings } from '../diagnosis_training_progress';
+import { chooseAvailableDiagnosisForCategory } from '../personal_practice_lesson_router';
+
+export interface CompassMistakeRepairTarget {
+  microDiagnosisId: string;
+  category: WordCategory;
+  topWords: string[];
+  priorityScore: number;
+}
 
 /** Снимок всего пути ученика. Всё — из готовых систем, ничего нового не считается. */
 export interface CompassSnapshot {
@@ -48,6 +59,7 @@ export interface CompassSnapshot {
   planDay: PersonalPlanHomeSnapshot | null;
   /** Пройденные сессии (id), чтобы не звать туда, где ученик уже силён. */
   passedLessons: number[];
+  mistakeRepairTargets?: CompassMistakeRepairTarget[];
   /** Когда снят (мс), для воспроизводимости/кэша. */
   collectedAtMs: number;
 }
@@ -59,6 +71,44 @@ async function safe<T>(read: () => Promise<T>, fallback: T): Promise<T> {
   } catch {
     return fallback;
   }
+}
+
+function isWeakCategory(stat: WordCategoryStat): boolean {
+  const priority = stat.priorityScore ?? stat.weaknessScore;
+  const recovery = stat.recoveryScore ?? 0;
+  return priority >= 55 || (stat.pct >= 15 && recovery < 25);
+}
+
+async function collectMistakeRepairTargets(
+  studyTarget: RuntimeStudyTarget,
+): Promise<CompassMistakeRepairTarget[]> {
+  if (storageStudyTarget(studyTarget) !== 'en') return [];
+
+  const [analytics, resolved] = await Promise.all([
+    computePhraseAnalytics(),
+    loadResolvedPersonalTrainings({ studyTarget }),
+  ]);
+  const seen = new Set<string>();
+  const targets: CompassMistakeRepairTarget[] = [];
+
+  for (const stat of analytics.categoryStats.filter(isWeakCategory)) {
+    const microDiagnosisId = chooseAvailableDiagnosisForCategory(
+      { category: stat.category, topWords: stat.topWords },
+      resolved,
+      studyTarget,
+    );
+    if (!microDiagnosisId || seen.has(microDiagnosisId)) continue;
+    seen.add(microDiagnosisId);
+    targets.push({
+      microDiagnosisId,
+      category: stat.category,
+      topWords: stat.topWords.slice(0, 3),
+      priorityScore: stat.priorityScore ?? stat.weaknessScore,
+    });
+    if (targets.length >= 3) break;
+  }
+
+  return targets;
 }
 
 /**
@@ -73,7 +123,7 @@ export async function collectCompassSnapshot(
 ): Promise<CompassSnapshot | null> {
   if (!compassOn()) return null;
 
-  const [mistakes, mistakesByLesson, trainer, posMastery, planDay, passedLessons] =
+  const [mistakes, mistakesByLesson, trainer, posMastery, planDay, passedLessons, mistakeRepairTargets] =
     await Promise.all([
       safe(() => getTopMistakePhraseDetails(20, 1, studyTarget), [] as PhraseMistakeCategoryStat[]),
       safe(() => getMistakeCountByLesson(studyTarget), {} as Record<number, number>),
@@ -81,6 +131,7 @@ export async function collectCompassSnapshot(
       safe(() => getPosMasterySnapshot(studyTarget), [] as PosMasteryEntry[]),
       safe(() => readPersonalPlanSnapshot(), null as PersonalPlanHomeSnapshot | null),
       safe(() => readPassedLessonIds(studyTarget), [] as number[]),
+      safe(() => collectMistakeRepairTargets(studyTarget), [] as CompassMistakeRepairTarget[]),
     ]);
 
   return {
@@ -90,6 +141,7 @@ export async function collectCompassSnapshot(
     posMastery,
     planDay,
     passedLessons,
+    mistakeRepairTargets,
     collectedAtMs: nowMs,
   };
 }

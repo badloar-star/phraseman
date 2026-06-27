@@ -15,6 +15,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -91,6 +92,17 @@ const FALLBACK_SNAPSHOT: ProfileCardSnapshot = {
   motion: 'none',
   publicFocus: 'balanced',
 };
+const PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
+
+type ProfileCardDisplayCloudSyncMode = 'immediate' | 'deferred';
+
+function syncProfileCardDisplayToCloud(mode: ProfileCardDisplayCloudSyncMode): void {
+  if (mode === 'immediate') {
+    void syncToCloud({ forceNow: true });
+    return;
+  }
+  void syncToCloud({ deferMs: PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS });
+}
 
 function formatCompact(value: number): string {
   const safe = Math.max(0, Math.floor(Number(value) || 0));
@@ -211,7 +223,7 @@ export default function ProfileCardUpgradeScreen() {
         setShards(result.balance);
         const next = await getProfileCardSnapshot();
         setSnapshot(next);
-        void syncToCloud({ forceNow: true });
+        syncProfileCardDisplayToCloud('immediate');
         notify('success', `Карточка улучшена: ${profileCardLevelLabel(result.level, true)}`);
         // Доскроллим галерею к только что открытому уровню.
         requestAnimationFrame(() => {
@@ -229,7 +241,7 @@ export default function ProfileCardUpgradeScreen() {
       }
       if (result.reason === 'cloud_error') {
         // Сервер мог уже применить апгрейд — перечитываем реальное состояние, не угадываем.
-        void syncToCloud({ forceNow: true });
+        syncProfileCardDisplayToCloud('immediate');
         getShardsBalance().then(setShards).catch(() => {});
         getProfileCardSnapshot().then(setSnapshot).catch(() => {});
         notify('error', 'Нет связи с сервером. Проверь соединение и попробуй снова.');
@@ -248,7 +260,7 @@ export default function ProfileCardUpgradeScreen() {
     try {
       const next = await setProfileCardTheme(theme);
       setSnapshot(next);
-      void syncToCloud({ forceNow: true });
+      syncProfileCardDisplayToCloud('deferred');
     } catch {
       notify('error', 'Этот стиль пока закрыт');
     } finally {
@@ -263,7 +275,7 @@ export default function ProfileCardUpgradeScreen() {
     try {
       const next = await setProfileCardMotion(motion);
       setSnapshot(next);
-      void syncToCloud({ forceNow: true });
+      syncProfileCardDisplayToCloud('deferred');
     } catch {
       notify('error', 'Эта анимация пока закрыта');
     } finally {
@@ -278,7 +290,7 @@ export default function ProfileCardUpgradeScreen() {
     try {
       const next = await setProfileCardPublicFocus(focus);
       setSnapshot(next);
-      void syncToCloud({ forceNow: true });
+      syncProfileCardDisplayToCloud('deferred');
     } catch {
       notify('error', 'Этот фокус пока закрыт');
     } finally {
@@ -571,7 +583,11 @@ export default function ProfileCardUpgradeScreen() {
                     vi: 'Cấp tối đa', id: 'Level maksimum', tr: 'Maksimum seviye', pl: 'Maksymalny poziom',
                   })}
             </Text>
-            {nextDef ? <Image source={oskolokImageForPackShards(nextDef.cost)} style={{ width: 18, height: 18 }} contentFit="contain" /> : null}
+            {busy ? (
+              <ActivityIndicator size="small" color="#1A1205" />
+            ) : nextDef ? (
+              <Image source={oskolokImageForPackShards(nextDef.cost)} style={{ width: 18, height: 18 }} contentFit="contain" />
+            ) : null}
           </TouchableOpacity>
         </View>
       </View>

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BlurView } from 'expo-blur';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from './SafeLinearGradient';
 
@@ -10,7 +9,7 @@ const DEFAULT_FEATHER_HEIGHT = 36;
 export interface TopFadeMaskProps {
   /**
    * Optional visible header height below the safe area. Default screens use 0,
-   * so only the top safe zone is blurred.
+   * so only the top safe zone is tinted.
    */
   headerHeight?: number;
   /**
@@ -18,7 +17,7 @@ export interface TopFadeMaskProps {
    * not stacked blur bands.
    */
   extra?: number;
-  /** Blur/tint strength 0..1. */
+  /** Static tint strength 0..1. */
   maxOpacity?: number;
   /** Kept for API compatibility with the previous feathered implementation. */
   solidRatio?: number;
@@ -69,10 +68,8 @@ export default function TopFadeMask({
 
   const animatedOpacity = scrollY ? maskOpacity : undefined;
   const resolvedTone = tone ?? 'dark';
-  const blurTint = resolvedTone === 'light' ? 'light' : 'dark';
   const rgb = resolvedTone === 'light' ? '255,255,255' : '0,0,0';
   const strength = Math.min(1, Math.max(0, maxOpacity));
-  const baseIntensity = strength <= 0 ? 0 : Math.max(82, Math.round(100 * strength));
   const scrim = rgbaWithAlpha(rgb, strength * 0.62);
   const featherStart = Math.max(0, Math.min(1, (height - extra) / height));
 
@@ -91,12 +88,6 @@ export default function TopFadeMask({
           />
         }
       >
-        <BlurView
-          intensity={baseIntensity}
-          tint={blurTint}
-          experimentalBlurMethod="dimezisBlurView"
-          style={StyleSheet.absoluteFill}
-        />
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: scrim }]} />
       </MaskedView>
     </Animated.View>

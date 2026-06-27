@@ -46,11 +46,41 @@ export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang 
   return INTERFACE_LANG_READY_FOR_PROD.includes(lang);
 }
 
+function normalizeInterfaceLangCandidate(value: string): InterfaceLanguageOptionCode | null {
+  const raw = value.trim();
+  if (!raw) return null;
+  const lower = raw.replace(/_/g, '-').toLowerCase();
+  if (lower === 'pt' || lower === 'pt-br') return 'pt-BR';
+  const base = lower.split('-')[0];
+  if (base === 'ru') return 'ru';
+  if (base === 'uk') return 'uk';
+  if (base === 'es') return 'es';
+  if (base === 'vi') return 'vi';
+  if (base === 'id') return 'id';
+  if (base === 'tr') return 'tr';
+  if (base === 'pl') return 'pl';
+  return null;
+}
+
 export function coerceInterfaceLang(value: unknown): Lang | null {
   if (typeof value !== 'string') return null;
-  const normalized = value === 'pt_BR' || value.toLowerCase() === 'pt-br' ? 'pt-BR' : value;
-  if (!(INTERFACE_LANGUAGE_OPTIONS as readonly { code: string; native: string }[]).some((item) => item.code === normalized)) return null;
-  return isInterfaceLangEnabled(normalized as InterfaceLanguageOptionCode) ? (normalized as Lang) : null;
+  const normalized = normalizeInterfaceLangCandidate(value);
+  return normalized && isInterfaceLangEnabled(normalized) ? normalized : null;
+}
+
+export function resolveBootstrapLocaleFromDeviceLocale(deviceLocale: unknown): Lang {
+  const normalized = typeof deviceLocale === 'string'
+    ? normalizeInterfaceLangCandidate(deviceLocale)
+    : null;
+  return normalized && isInterfaceLangEnabled(normalized) ? normalized : 'ru';
+}
+
+export function getDeviceBootstrapLocale(): Lang {
+  try {
+    return resolveBootstrapLocaleFromDeviceLocale(Intl.DateTimeFormat().resolvedOptions().locale);
+  } catch {
+    return 'ru';
+  }
 }
 
 export type InterfaceLanguageOption = (typeof INTERFACE_LANGUAGE_OPTIONS)[number];

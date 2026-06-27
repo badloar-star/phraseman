@@ -16,4 +16,10 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).toContain('numberOfLines={messageRead ? 1 : 2}');
     expect(inboxSource).toContain('onPress={() => selectMessage(message)}');
   });
+
+  it('opens the Firestore messages subscription only while the inbox modal is visible', () => {
+    expect(inboxSource).toContain('if (!visible) return;');
+    expect(inboxSource).toContain('subscribeUserAppMessages');
+    expect(inboxSource).toContain('}, [hasPremiumAccess, visible]);');
+  });
 });

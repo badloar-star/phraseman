@@ -911,6 +911,7 @@ export const communityPurchasePack = onCall(async (request) => {
       priceShards: price,
       authorNetShards: net,
       buyerBalanceAfter,
+      shardsUpdatedAtMs: now,
       studyTarget,
     };
   });

@@ -84,6 +84,14 @@
       ]
     },
     {
+      "collectionGroup": "daily_phrases",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "scheduledDate", "order": "ASCENDING" },
+        { "fieldPath": "order", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "subscription_cancel_surveys",
       "queryScope": "COLLECTION",
       "fields": [

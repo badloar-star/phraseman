@@ -12,7 +12,7 @@ describe('OpenAI runtime cost controls', () => {
     const scenario = read('app/ai_dialog_session.tsx');
     const companion = read('app/ai_companion_session.tsx');
 
-    expect(scenario).toContain('LOCAL_SCENARIO_GREETING');
+    expect(scenario).toContain('buildScenarioGreeting(scenario)');
     expect(companion).toContain('LOCAL_COMPANION_GREETING');
     expect(scenario).not.toContain('(start the conversation with your greeting)');
     expect(companion).not.toContain('sendToTheo(null, [])');
@@ -31,6 +31,45 @@ describe('OpenAI runtime cost controls', () => {
     expect(stats).not.toContain('"statsInsightsGenerate"');
   });
 
+  test('cache-warm AI clients dedupe identical in-flight callable requests', () => {
+    const clients = [
+      { source: read('app/ai_dialog_client.ts'), map: 'premiumDialogSendInFlight', key: 'premiumDialogSendRequestKey' },
+      { source: read('app/ai_dialog_client.ts'), map: 'premiumDialogTranslateInFlight', key: 'premiumDialogTranslateRequestKey' },
+      { source: read('app/ai_mistake_explain_client.ts'), map: 'explainMistakeInFlight', key: 'explainMistakeRequestKey' },
+      { source: read('app/explain_phrase_client.ts'), map: 'explainPhraseInFlight', key: 'explainPhraseRequestKey' },
+      { source: read('app/explain_choice_client.ts'), map: 'explainChoiceInFlight', key: 'explainChoiceRequestKey' },
+      { source: read('app/explain_quiz_client.ts'), map: 'explainQuizInFlight', key: 'explainQuizRequestKey' },
+      { source: read('app/compass/compass_voice_client.ts'), map: 'compassVoiceInFlight', key: 'compassVoiceRequestKey' },
+    ];
+
+    for (const { source, map, key } of clients) {
+      expect(source).toContain(`const ${map} = new Map`);
+      expect(source).toContain(`function ${key}`);
+      expect(source).toContain(`const existing = ${map}.get(key);`);
+      expect(source).toContain('if (existing) return existing;');
+      expect(source).toContain(`${map}.set(key, request);`);
+      expect(source).toContain(`${map}.delete(key);`);
+    }
+  });
+
+  test('explain callable clients time out stalled requests so retry can recover', () => {
+    const timeout = read('app/explain_callable_timeout.ts');
+    expect(timeout).toContain('ExplainCallableTimeoutError');
+    expect(timeout).toContain('explain_callable_timeout');
+    expect(timeout).toContain('Promise.race([promise, timeout])');
+
+    for (const { source, callable } of [
+      { source: read('app/ai_mistake_explain_client.ts'), callable: 'explainMistake' },
+      { source: read('app/explain_phrase_client.ts'), callable: 'explainPhrase' },
+      { source: read('app/explain_choice_client.ts'), callable: 'explainChoice' },
+      { source: read('app/explain_quiz_client.ts'), callable: 'explainQuiz' },
+    ]) {
+      expect(source).toContain("import { withExplainCallableTimeout } from './explain_callable_timeout'");
+      expect(source).toContain(`withExplainCallableTimeout(fn(req), '${callable}')`);
+      expect(source).toContain('finally(() =>');
+    }
+  });
+
   test('legacy pronunciation OpenAI callable is no longer exported from Cloud Functions', () => {
     const index = read('functions/src/index.ts');
 
@@ -38,12 +77,11 @@ describe('OpenAI runtime cost controls', () => {
     expect(index).not.toContain('scorePronunciationAttempt');
   });
 
-  test('Theo runtime defaults to the cheapest GPT-4.1 nano model and records the exact model billed', () => {
+  test('Theo runtime uses admin-configured model/quota and records the exact model billed', () => {
     const premiumDialog = read('functions/src/premium_dialog.ts');
     const modelConfig = read('functions/src/openai_dialog_model_config.ts');
     const functionsIndex = read('functions/src/index.ts');
 
-    expect(premiumDialog).toContain("const MODEL_DEFAULT = 'gpt-4.1-nano'");
     expect(premiumDialog).toContain('process.env.OPENAI_DIALOG_MODEL');
     expect(premiumDialog).toContain('resolveConfiguredDialogModel');
     expect(premiumDialog).toContain('const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);');
@@ -52,8 +90,11 @@ describe('OpenAI runtime cost controls', () => {
     expect(premiumDialog).toContain('dialogQuota.freeDailyReplies');
     expect(premiumDialog).toContain('dialogQuota.premiumDailyReplies');
     expect(premiumDialog).toContain('model: dialogModel');
+    expect(premiumDialog).toContain('modelSupportsJsonObject(dialogModel)');
+    expect(modelConfig).toContain("const MODEL_DEFAULT = 'gpt-4o-mini'");
     expect(modelConfig).toContain('ALLOWED_DIALOG_MODELS');
-    expect(modelConfig).toContain('DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10');
+    expect(modelConfig).toContain("'gpt-4.1-nano': false");
+    expect(modelConfig).toContain('DIALOG_FREE_DAILY_REPLIES_DEFAULT = 3');
     expect(modelConfig).toContain('DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100');
     expect(modelConfig).toContain('admin_runtime_config');
     expect(modelConfig).toContain('openAiDialogModelConfig');
@@ -73,27 +114,43 @@ describe('OpenAI runtime cost controls', () => {
     }
   });
 
-  test('admin has an OpenAI budget dashboard backed by billing collections', () => {
+  test('admin v2 has a read-only OpenAI budget dashboard backed by billing collections', () => {
     const adminHtml = read('admin/index.html');
+    const adminFirebase = read('admin/v2/scripts/admin-firebase.js');
+    const adminCore = read('admin/v2/scripts/admin-core.js');
+    const adminRouter = read('admin/v2/scripts/admin-router.js');
+    const legacyAdmin = read('admin/legacy/index.html');
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
-    expect(adminHtml).toContain("switchTab('openai-budget')");
-    expect(adminHtml).toContain('id="tab-openai-budget"');
-    expect(adminHtml).toContain('OPENAI_MODEL_PRICES');
-    expect(adminHtml).toContain('loadOpenAiBudgetDashboard');
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
-    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
-    expect(adminHtml).toContain('id="openai-dialog-model"');
-    expect(adminHtml).toContain('id="openai-dialog-free-daily-replies"');
-    expect(adminHtml).toContain('id="openai-dialog-premium-daily-replies"');
-    expect(adminHtml).toContain('saveOpenAiDialogModel');
-    expect(adminHtml).toContain('saveOpenAiDialogQuota');
+    expect(adminRouter).toContain("'openai-budget': 'diagnostics'");
+    expect(adminCore).toContain("'load-openai-budget'");
+    expect(adminHtml).toContain('id="openAiBudgetTitle"');
+    expect(adminHtml).toContain('data-action="load-openai-budget"');
+    expect(adminHtml).toContain('id="openAiBudgetKpis"');
+    expect(adminHtml).toContain('id="openAiBudgetFeatureList"');
+    expect(adminHtml).toContain('id="openAiBudgetModelList"');
+    expect(adminHtml).toContain('id="openAiBudgetContractList"');
+    expect(adminHtml).toContain('OpenAI estimated month');
+    expect(adminFirebase).toContain("const functionsUs = getFunctions(app, 'us-central1')");
+    expect(adminFirebase).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
+    expect(adminFirebase).toContain('function loadOpenAiBudgetDashboard');
+    expect(adminFirebase).toContain('rangeDays: 30');
+    expect(adminFirebase).toContain('renderOpenAiBudgetContract');
+    expect(adminFirebase).not.toContain("collection(db, 'premium_dialog_billing'");
+    expect(adminFirebase).not.toContain('collection(db, "premium_dialog_billing"');
+    expect(adminFirebase).not.toContain("collection(db, 'explain_billing'");
+    expect(adminFirebase).not.toContain('collection(db, "explain_billing"');
+    expect(adminFirebase).not.toContain("collection(db, 'weekly_review_billing'");
+    expect(adminFirebase).not.toContain('collection(db, "weekly_review_billing"');
+    expect(adminFirebase).not.toContain("collection(db, 'stats_insights_billing'");
+    expect(adminFirebase).not.toContain('collection(db, "stats_insights_billing"');
+    expect(legacyAdmin).toContain('id="tab-openai-budget"');
+    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
+    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
     expect(budgetFn).toContain("request.auth?.token?.admin");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('premium_dialog_billing'");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('explain_billing'");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('weekly_review_billing'");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('stats_insights_billing'");
-    expect(adminHtml).toContain('OpenAI estimated month');
   });
 });

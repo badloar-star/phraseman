@@ -161,7 +161,7 @@ export default function AiCompanionSession() {
   const onBack = useCallback(() => {
     hapticTap();
     if (userTurns > 0) void trackEvent('ai_dialog_abandoned', { scenarioId: 'companion', atExchange: userTurns });
-    safeRouterBack(router, '/ai_dialog_home' as any);
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router, userTurns]);
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';

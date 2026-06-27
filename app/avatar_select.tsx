@@ -97,6 +97,17 @@ const CELL_W = Math.floor((SCREEN_W - GRID_PAD * 2 - GRID_GAP * (GRID_COLS - 1))
 const CUSTOM_AVATAR_CELL_H = Math.max(124, Math.round(CELL_W * 1.22));
 const CUSTOM_AVATAR_SLOT_SIZE = Math.min(96, Math.round(CELL_W * 0.82));
 const CUSTOM_AVATAR_BADGE_SIZE = Math.min(82, Math.round(CELL_W * 0.68));
+const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
+
+type AvatarDisplayCloudSyncMode = 'immediate' | 'deferred';
+
+function syncAvatarDisplayToCloud(mode: AvatarDisplayCloudSyncMode): void {
+  if (mode === 'immediate') {
+    void syncToCloud({ forceNow: true });
+    return;
+  }
+  void syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS });
+}
 
 type ProfileCardPreviewVisual = {
   theme: ProfileCardTheme;
@@ -489,7 +500,11 @@ export default function AvatarSelect() {
     setDraftLogoColor(currentLogoColor);
   };
 
-  const persistAvatar = async (nextAvatar: string, nextOwned: OwnedAvatars) => {
+  const persistAvatar = async (
+    nextAvatar: string,
+    nextOwned: OwnedAvatars,
+    cloudSyncMode: AvatarDisplayCloudSyncMode = 'deferred',
+  ) => {
     const frameId = getBestFrameForLevel(level).id;
     await AsyncStorage.multiSet([
       ['user_avatar', nextAvatar],
@@ -501,7 +516,7 @@ export default function AvatarSelect() {
     setActiveAvatar(nextAvatar);
     setOwned(nextOwned);
     emitAppEvent('xp_changed');
-    void syncToCloud({ forceNow: true });
+    syncAvatarDisplayToCloud(cloudSyncMode);
     void writeProfileAvatarSnapshot(nextAvatar, level, activeAuraId);
   };
 
@@ -547,7 +562,7 @@ export default function AvatarSelect() {
       }
       const nextOwned = { ...owned, [avatarId]: encodeOwnedStyle(draftGradientId, draftLogoColor) };
       const nextAvatar = makeCustomAvatarValue(avatarId, draftGradientId, draftLogoColor);
-      await persistAvatar(nextAvatar, nextOwned);
+      await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred');
       setShards(await getShardsBalance());
       setDraftAvatar(null);
       showToast('success', wasOwned ? 'Аватар применен' : 'Аватар куплен');
@@ -570,7 +585,7 @@ export default function AvatarSelect() {
         await invalidateAvatarDependentCaches(activeAvatar, NO_AVATAR_AURA_ID);
         setActiveAuraId(NO_AVATAR_AURA_ID);
         emitAppEvent('xp_changed');
-        void syncToCloud({ forceNow: true });
+        syncAvatarDisplayToCloud('deferred');
         void writeProfileAvatarSnapshot(activeAvatar, level, NO_AVATAR_AURA_ID);
         showToast('success', 'Аура выключена');
         return;
@@ -580,6 +595,7 @@ export default function AvatarSelect() {
       const isVipAura = aura.vipOnly === true;
       const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
       const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+      let purchasedAura = false;
       if (!isOwned) {
         if (isPremiumAura) {
           router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
@@ -615,13 +631,14 @@ export default function AvatarSelect() {
         await AsyncStorage.setItem(AVATAR_AURA_OWNED_KEY, JSON.stringify(nextOwnedAuras));
         setOwnedAuras(nextOwnedAuras);
         setShards(await getShardsBalance());
+        purchasedAura = true;
       }
 
       await AsyncStorage.setItem(USER_AVATAR_AURA_KEY, aura.id);
       await invalidateAvatarDependentCaches(activeAvatar, aura.id);
       setActiveAuraId(aura.id);
       emitAppEvent('xp_changed');
-      void syncToCloud({ forceNow: true });
+      syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred');
       void writeProfileAvatarSnapshot(activeAvatar, level, aura.id);
       showToast('success', isOwned ? 'Аура применена' : 'Аура открыта');
     } finally {

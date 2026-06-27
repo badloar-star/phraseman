@@ -174,7 +174,8 @@ describe('leaderboard identity and weekly league membership contract', () => {
     const leagues = read('app/firestore_leagues.ts');
 
     expect(leagues).toContain("const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';");
-    expect(leagues).toContain('LEAGUE_POINTS_SYNC_MIN_DELTA');
+    expect(leagues).toContain('getLeagueSyncMinDelta');
+    expect(leagues).toContain('function shouldSkipLeaguePointsCallable');
     expect(leagues).toContain('function shouldSkipLeagueMemberCallable');
     expect(leagues).toContain('profileHash !== cache.profileHash');
     expect(leagues).toContain("await ensureStableAuthLink().catch(() => false);");

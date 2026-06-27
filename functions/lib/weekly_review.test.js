@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const weekly_review_1 = require("./weekly_review");
-const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt } = weekly_review_1.__weeklyReviewTestHooks;
+const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt, briefingHashForReplay, decideWeeklyReviewReplay, readStoredWeeklyReview, } = weekly_review_1.__weeklyReviewTestHooks;
 function baseBriefing() {
     return {
         lang: 'ru',
@@ -119,6 +119,53 @@ describe('weekly_review buildSystemPrompt', () => {
         expect(prompt).toContain('Russian');
         expect(prompt).toContain('NEVER recommend');
         expect(prompt).toContain('STRICT JSON');
+    });
+});
+describe('weekly_review quota replay helpers', () => {
+    it('returns the stored review for the same briefing while the window is closed', () => {
+        const briefing = baseBriefing();
+        const hash = briefingHashForReplay(briefing);
+        const decision = decideWeeklyReviewReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: hash,
+            lastModel: 'test-model',
+            lastReview: {
+                greeting: 'Cached hello',
+                paragraphs: ['Cached paragraph'],
+                recommendations: [{ microDiagnosisId: 'verb_present_perfect_basic', label: 'Present Perfect' }],
+            },
+        }, hash, 1000);
+        expect(decision.kind).toBe('replay');
+        if (decision.kind !== 'replay')
+            throw new Error('expected replay');
+        expect(decision.review.greeting).toBe('Cached hello');
+        expect(decision.review.recommendations[0].microDiagnosisId).toBe('verb_present_perfect_basic');
+        expect(decision.nextAllowedAtMs).toBe(2000);
+        expect(decision.model).toBe('test-model');
+    });
+    it('keeps a different briefing gated until the window opens', () => {
+        const briefing = baseBriefing();
+        const hash = briefingHashForReplay(briefing);
+        const decision = decideWeeklyReviewReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: 'different-hash',
+            lastReview: { greeting: 'Cached hello', paragraphs: ['Cached paragraph'], recommendations: [] },
+        }, hash, 1000);
+        expect(decision).toEqual({ kind: 'not_ready', nextAllowedAtMs: 2000 });
+    });
+    it('opens generation after the stored window expires', () => {
+        const briefing = baseBriefing();
+        const hash = briefingHashForReplay(briefing);
+        const decision = decideWeeklyReviewReplay({
+            nextAllowedAtMs: 1000,
+            lastBriefingHash: hash,
+            lastReview: { greeting: 'Cached hello', paragraphs: ['Cached paragraph'], recommendations: [] },
+        }, hash, 2000);
+        expect(decision).toEqual({ kind: 'open' });
+    });
+    it('does not replay malformed stored review payloads', () => {
+        const review = readStoredWeeklyReview({ greeting: '', paragraphs: [] });
+        expect(review).toBeNull();
     });
 });
 //# sourceMappingURL=weekly_review.test.js.map

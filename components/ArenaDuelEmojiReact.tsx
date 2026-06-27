@@ -46,7 +46,7 @@ function ArenaDuelEmojiReact({
   const { width } = useWindowDimensions();
   const [open, setOpen] = useState(false);
   const [cooldownUntil, setCooldownUntil] = useState(0);
-  const [tick, setTick] = useState(0);
+  const [, setTick] = useState(0);
 
   useEffect(() => {
     setCooldownUntil(0);
@@ -54,10 +54,16 @@ function ArenaDuelEmojiReact({
   }, [sessionKey]);
 
   useEffect(() => {
-    if (Date.now() >= cooldownUntil) return;
-    const id = setInterval(() => setTick((n) => n + 1), 320);
-    return () => clearInterval(id);
-  }, [cooldownUntil, tick]);
+    const remainingMs = cooldownUntil - Date.now();
+    if (remainingMs <= 0) return;
+    const update = () => setTick((n) => n + 1);
+    const intervalId = setInterval(update, 1000);
+    const doneId = setTimeout(update, remainingMs + 50);
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(doneId);
+    };
+  }, [cooldownUntil]);
 
   const cdLeft =
     cooldownUntil > Date.now() ? Math.ceil((cooldownUntil - Date.now()) / 1000) : 0;

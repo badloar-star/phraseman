@@ -1,5 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { XMLParser } from 'fast-xml-parser';
+import {
+  getYoutubeChannelHandleOverride,
+  getYoutubeChannelIdOverride,
+  getYoutubeChannelNameOverride,
+  getYoutubeChannelUrlOverride,
+} from './remote_flags';
 
 export type LingmanYoutubeVideo = {
   id: string;
@@ -20,13 +26,99 @@ export type LingmanYoutubeSnapshot = {
   error?: string;
 };
 
+// ── Канал по умолчанию (PHRASEMAN). Используется, пока «Пульт» не задал свой ──
+// channelId. Экспортируется под историческими именами LINGMAN_CHANNEL_* для
+// обратной совместимости импортов; реальный «текущий» канал берётся через
+// getActiveYoutubeChannel() ниже (учитывает remote_config override).
 export const LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA';
-const LINGMAN_FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${LINGMAN_CHANNEL_ID}`;
-const LINGMAN_FEED_TIMEOUT_MS = 10000;
 export const LINGMAN_CHANNEL_DISPLAY_NAME = 'PHRASEMAN';
 export const LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH';
 export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@PhrasemanENGLISH/videos';
+const LINGMAN_FEED_TIMEOUT_MS = 10000;
 export const LINGMAN_YOUTUBE_EMBED_BASE_URL = 'https://app.phraseman/';
+
+/** Описание активного канала (дефолт PHRASEMAN или override из «Пульта»). */
+export type ActiveYoutubeChannel = {
+  /** YouTube channelId (UC…) — по нему строится RSS-фид. */
+  channelId: string;
+  /** Отображаемое имя в шапке/кнопке. */
+  displayName: string;
+  /** @handle (всегда с ведущим @). */
+  handle: string;
+  /** Прямая ссылка на канал (videos). */
+  url: string;
+  /** true, если канал переопределён из «Пульта» (а не дефолт). */
+  isOverride: boolean;
+};
+
+/**
+ * Извлекает валидный YouTube channelId (UC + 22 символа base64url) из любого
+ * ввода админа: голый id, ссылка на /channel/UC…, или строка, где он встречается.
+ * Возвращает '' если канал-id не найден (тогда канал остаётся дефолтным).
+ * Чистая функция — экспортируется для тестов и переиспользуется в админке.
+ */
+export function parseYoutubeChannelId(raw: string | null | undefined): string {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  const match = s.match(/UC[0-9A-Za-z_-]{22}/);
+  return match ? match[0] : '';
+}
+
+/**
+ * Нормализует @handle из ввода админа (ссылка /@name, "@name" или "name").
+ * Возвращает '' если ничего вменяемого не нашлось. Без ведущего @.
+ */
+export function parseYoutubeHandle(raw: string | null | undefined): string {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  // Ссылка вида youtube.com/@handle(/videos|/...) — берём сегмент после @.
+  const fromUrl = s.match(/youtube\.com\/@([0-9A-Za-z._-]+)/i);
+  if (fromUrl) return fromUrl[1];
+  // Голый "@handle" или "handle" (без пробелов и слешей).
+  const bare = s.replace(/^@/, '');
+  if (/^[0-9A-Za-z._-]+$/.test(bare)) return bare;
+  return '';
+}
+
+/**
+ * Активный канал с учётом remote_config override. channelId-override обязателен
+ * для смены канала: без него (пусто/мусор) возвращается дефолтный PHRASEMAN, а
+ * остальные override-поля игнорируются (чтобы не показать чужое имя на дефолтном
+ * канале). handle/name/url пустые → выводятся из id/дефолта. Чистого Firestore
+ * здесь нет — значения уже разрешены слоем remote_flags.
+ */
+export function getActiveYoutubeChannel(): ActiveYoutubeChannel {
+  const overrideId = parseYoutubeChannelId(getYoutubeChannelIdOverride());
+  if (!overrideId) {
+    return {
+      channelId: LINGMAN_CHANNEL_ID,
+      displayName: LINGMAN_CHANNEL_DISPLAY_NAME,
+      handle: LINGMAN_CHANNEL_HANDLE,
+      url: LINGMAN_CHANNEL_URL,
+      isOverride: false,
+    };
+  }
+  const handleRaw = parseYoutubeHandle(getYoutubeChannelHandleOverride());
+  const handle = handleRaw ? `@${handleRaw}` : '';
+  const name = String(getYoutubeChannelNameOverride() ?? '').trim();
+  // url: доверенная ссылка из «Пульта» (https + youtube.com), иначе из handle.
+  const urlOverride = getTrustedLingmanYoutubeUrl(String(getYoutubeChannelUrlOverride() ?? '').trim() || null);
+  const url = urlOverride
+    || (handleRaw ? `https://www.youtube.com/@${handleRaw}/videos` : `https://www.youtube.com/channel/${overrideId}/videos`);
+  return {
+    channelId: overrideId,
+    displayName: name || LINGMAN_CHANNEL_DISPLAY_NAME,
+    handle: handle || `@${LINGMAN_CHANNEL_DISPLAY_NAME.toLowerCase()}`,
+    url,
+    isOverride: true,
+  };
+}
+
+/** RSS-фид активного канала. */
+function getActiveFeedUrl(): string {
+  const { channelId } = getActiveYoutubeChannel();
+  return `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
+}
 const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v2';
 const STORAGE_LAST_OPENED_AT = 'lingman_youtube_last_opened_at_ms_v2';
 const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = 'lingman_youtube_last_successful_snapshot_v2';
@@ -202,7 +294,11 @@ async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[] };
+    const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[]; channelId?: string };
+    // Кэш привязан к channelId: если «Пульт» переключил канал, старый список не
+    // показываем (иначе под новым именем висели бы видео прошлого канала).
+    const activeChannelId = getActiveYoutubeChannel().channelId;
+    if (parsed.channelId && parsed.channelId !== activeChannelId) return null;
     const videos = Array.isArray(parsed.videos) ? parsed.videos.filter(isLingmanLongFormVideo) : [];
     return videos.length ? videos : null;
   } catch {
@@ -212,7 +308,8 @@ async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
 
 async function cacheSuccessfulVideos(videos: LingmanYoutubeVideo[]): Promise<void> {
   try {
-    await AsyncStorage.setItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT, JSON.stringify({ videos, fetchedAtMs: Date.now() }));
+    const channelId = getActiveYoutubeChannel().channelId;
+    await AsyncStorage.setItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT, JSON.stringify({ videos, channelId, fetchedAtMs: Date.now() }));
   } catch {
     // Cache is best-effort; the fallback list still keeps the catalog usable.
   }
@@ -222,7 +319,7 @@ export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), LINGMAN_FEED_TIMEOUT_MS);
   try {
-    const response = await fetch(LINGMAN_FEED_URL, {
+    const response = await fetch(getActiveFeedUrl(), {
       headers: {
         Accept: 'application/atom+xml, application/xml, text/xml',
       },
@@ -258,7 +355,11 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       fetchedAtMs: Date.now(),
     };
   } catch (error) {
-    const videos = (await readCachedVideos()) ?? FALLBACK_VIDEOS;
+    // Встроенный fallback-список — это видео PHRASEMAN. Показываем его только когда
+    // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
+    // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
+    const isDefaultChannel = !getActiveYoutubeChannel().isOverride;
+    const videos = (await readCachedVideos()) ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
     const latestVideoId = videos[0]?.id ?? null;
     return {
       videos,

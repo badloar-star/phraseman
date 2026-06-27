@@ -155,9 +155,9 @@ exports.explainPhrase = (0, https_1.onCall)({
     }
     // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
     //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
+    let budgetReservation = null;
     try {
-        await (0, explain_budget_1.enforceUserGenLimit)(authUid, stableUid);
-        await (0, explain_budget_1.enforceGlobalBudget)(jobCfg.globalDailyCap);
+        budgetReservation = await (0, explain_budget_1.reserveExplainBudget)(authUid, stableUid, jobCfg.globalDailyCap);
     }
     catch (err) {
         if (err instanceof https_1.HttpsError && err.code === 'resource-exhausted') {
@@ -169,16 +169,26 @@ exports.explainPhrase = (0, https_1.onCall)({
     //    fallback now (status:pending) rather than generating a duplicate.
     const claimed = await (0, explain_cache_1.claimPendingLock)(phraseHash, Date.now());
     if (!claimed) {
+        await (0, explain_budget_1.refundExplainBudgetReservation)(budgetReservation, 'lock_not_claimed');
+        budgetReservation = null;
         return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'pending', fromCache: true };
     }
     // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
-    const gen = await (0, explain_provider_1.openAiChat)({
-        apiKey,
-        model: jobCfg.model,
-        messages: [{ role: 'user', content: (0, explain_prompts_1.buildExplainPrompt)(phraseEn, phraseMeaning, lang) }],
-        maxTokens: GEN_MAX_TOKENS,
-        temperature: GEN_TEMPERATURE,
-    });
+    let gen;
+    try {
+        gen = await (0, explain_provider_1.openAiChat)({
+            apiKey,
+            model: jobCfg.model,
+            messages: [{ role: 'user', content: (0, explain_prompts_1.buildExplainPrompt)(phraseEn, phraseMeaning, lang) }],
+            maxTokens: GEN_MAX_TOKENS,
+            temperature: GEN_TEMPERATURE,
+        });
+    }
+    catch (err) {
+        await (0, explain_budget_1.refundExplainBudgetReservation)(budgetReservation, 'provider_failed');
+        budgetReservation = null;
+        throw err;
+    }
     // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
     const sanitized = (0, explain_gates_1.sanitizeExplanationOutput)(gen.text);
     const judgeText = sanitized;
@@ -186,10 +196,22 @@ exports.explainPhrase = (0, https_1.onCall)({
     // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
     //    text regardless of verdict — we risk showing raw text to one user, never to all.
     if (verdict.ok) {
-        await (0, explain_cache_1.writeReadyExplanation)(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
+        // The judge approved this text and the user will be shown it (line ~215) — it MUST persist,
+        // else the phrase reads as «нет в кэше» in admin even though it was generated (audit 2026-06-22).
+        // A transient Firestore blip must not discard an already-paid-for, approved generation: retry
+        // once. (claimPendingLock left a `pending` doc, so a total failure self-heals after LOCK_TTL_MS.)
+        try {
+            await (0, explain_cache_1.writeReadyExplanation)(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
+        }
+        catch (writeErr) {
+            console.error('explain writeReady failed, retrying once', phraseHash, writeErr);
+            await (0, explain_cache_1.writeReadyExplanation)(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model })
+                .catch((retryErr) => console.error('explain writeReady retry failed', phraseHash, retryErr));
+        }
     }
     else {
-        await (0, explain_cache_1.writeRejectedExplanation)(phraseHash, verdict.reason);
+        await (0, explain_cache_1.writeRejectedExplanation)(phraseHash, verdict.reason)
+            .catch((rejErr) => console.error('explain writeRejected failed', phraseHash, rejErr));
     }
     // 9. Billing doc on EVERY miss: gen + judge token usage, model, verdict, identity (stable uid).
     await db.collection(BILLING_COLLECTION).doc().set({

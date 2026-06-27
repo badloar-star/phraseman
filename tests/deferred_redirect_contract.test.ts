@@ -29,10 +29,11 @@ describe('deferred redirect route contract', () => {
     'app/admin_intro_preview.tsx',
     'app/admin_review_test.tsx',
     'app/settings_testers.tsx',
-  ])('%s uses DeferredRedirect rather than calling router.replace in render', (relativePath) => {
+  ])('%s avoids calling router.replace in render', (relativePath) => {
     const source = read(relativePath);
+    const isPureRouteAlias = /^export \{ default \} from ['"].+['"];?$/.test(source.trim());
 
-    expect(source).toContain('DeferredRedirect');
+    expect(source.includes('DeferredRedirect') || isPureRouteAlias).toBe(true);
     expect(source).not.toContain('useRouter');
     expect(source).not.toMatch(/router\.replace\(/);
   });

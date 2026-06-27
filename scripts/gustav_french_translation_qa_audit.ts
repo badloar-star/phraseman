@@ -629,7 +629,7 @@ function main(): void {
 
   pushFinding(findings, {
     severity: 'warning',
-    code: 'rows_need_human_review',
+    code: 'rows_need_llm_official_source_review',
     message: 'All generated rows intentionally remain reviewerStatus=needs_review and are not approved for app apply.',
   });
 

@@ -3007,8 +3007,8 @@ function validateP1ARollbackCheckpoint(runDir: string, runId: string | null, fin
   const rollbackPolicy = checkpoint.rollbackPolicy && typeof checkpoint.rollbackPolicy === 'object'
     ? checkpoint.rollbackPolicy as Record<string, unknown>
     : null;
-  if (!rollbackPolicy || rollbackPolicy.mode !== 'additive_files_only' || !Array.isArray(rollbackPolicy.safeRollback) || !Array.isArray(rollbackPolicy.manualReviewRequiredWhen)) {
-    pushFinding(findings, 'blocker', 'p1a_rollback_checkpoint_policy_invalid', 'P1A rollback checkpoint must include additive_files_only rollback policy with safe/manual-review rules.', checkpointPath);
+  if (!rollbackPolicy || rollbackPolicy.mode !== 'additive_files_only' || !Array.isArray(rollbackPolicy.safeRollback) || !Array.isArray(rollbackPolicy.llmOfficialSourceReviewRequiredWhen)) {
+    pushFinding(findings, 'blocker', 'p1a_rollback_checkpoint_policy_invalid', 'P1A rollback checkpoint must include additive_files_only rollback policy with safe/LLM-official-source-review rules.', checkpointPath);
   }
   if (!Array.isArray(checkpoint.findings)) {
     pushFinding(findings, 'blocker', 'p1a_rollback_checkpoint_findings_missing', 'P1A rollback checkpoint findings must be an array.', checkpointPath);
@@ -7852,7 +7852,7 @@ function validateLesson916ReconciliationAudit(runDir: string, runId: string | nu
   if (typeof summary.canAutoPromoteHistoricalCandidate !== 'boolean') {
     pushFinding(findings, 'blocker', 'lesson_916_reconciliation_approval_boolean_missing', 'Lesson 9-16 reconciliation audit summary.canAutoPromoteHistoricalCandidate must be boolean.', auditPath);
   }
-  if (!['do_not_auto_merge', 'manual_review_required', 'approved'].includes(String(summary.recommendedPolicy))) {
+  if (!['do_not_auto_merge', 'llm_official_source_review_required', 'approved'].includes(String(summary.recommendedPolicy))) {
     pushFinding(findings, 'blocker', 'lesson_916_reconciliation_policy_invalid', `Lesson 9-16 reconciliation audit summary.recommendedPolicy is invalid: ${String(summary.recommendedPolicy)}`, auditPath);
   }
 
@@ -8600,11 +8600,11 @@ async function main(): Promise<void> {
     const safeRollbackCount = checkpoint && checkpoint.rollbackPolicy && typeof checkpoint.rollbackPolicy === 'object' && Array.isArray((checkpoint.rollbackPolicy as Record<string, unknown>).safeRollback)
       ? ((checkpoint.rollbackPolicy as Record<string, unknown>).safeRollback as unknown[]).length
       : 0;
-    const manualReviewCount = checkpoint && checkpoint.rollbackPolicy && typeof checkpoint.rollbackPolicy === 'object' && Array.isArray((checkpoint.rollbackPolicy as Record<string, unknown>).manualReviewRequiredWhen)
-      ? ((checkpoint.rollbackPolicy as Record<string, unknown>).manualReviewRequiredWhen as unknown[]).length
+    const llmOfficialSourceReviewCount = checkpoint && checkpoint.rollbackPolicy && typeof checkpoint.rollbackPolicy === 'object' && Array.isArray((checkpoint.rollbackPolicy as Record<string, unknown>).llmOfficialSourceReviewRequiredWhen)
+      ? ((checkpoint.rollbackPolicy as Record<string, unknown>).llmOfficialSourceReviewRequiredWhen as unknown[]).length
       : 0;
     const findingCount = checkpoint && Array.isArray(checkpoint.findings) ? checkpoint.findings.length : 0;
-    counters.checks += 34 + snapshotCount * 10 + safeRollbackCount * 4 + manualReviewCount * 4 + findingCount * 6;
+    counters.checks += 34 + snapshotCount * 10 + safeRollbackCount * 4 + llmOfficialSourceReviewCount * 4 + findingCount * 6;
     if (checkpoint) validateP1ARollbackCheckpoint(runDir, runId, findings);
   }
   const p1aExpoRouteSafetyPath = path.join(runDir, 'audits', 'p1a_expo_route_safety_audit.json');

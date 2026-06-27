@@ -38,7 +38,7 @@ const FLASHCARDS_MARKET_DEV_OWNED_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}
 const FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}_active_pack_v1`;
 
 const RAW_TARGET_SENSITIVE_PATTERNS = [
-  /^lesson\d+_(?:progress|best_score|pass_count|words|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
+  /^lesson\d+_(?:progress|best_score|pass_count|words|listening_progress|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
   /^lesson\d+_words_shards_granted$/,
   /^lesson\d+_irregular_shards_granted$/,
   /^lesson_finished_once_v1_\d+$/,
@@ -197,6 +197,11 @@ export function lessonPassCountKey(lessonId: string | number, studyTarget?: Runt
 
 export function lessonWordsKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
   const raw = `lesson${lessonId}_words`;
+  return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
+}
+
+export function lessonListeningProgressKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
+  const raw = `lesson${lessonId}_listening_progress`;
   return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
 }
 

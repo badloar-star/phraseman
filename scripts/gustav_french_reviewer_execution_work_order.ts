@@ -48,7 +48,7 @@ type WorkOrder = {
   };
   reviewOrder: Array<{
     step: string;
-    mode: 'human-review' | 'dry-run' | 'gate' | 'blocked';
+    mode: 'llm-official-source-review' | 'dry-run' | 'gate' | 'blocked';
     inputArtifacts: string[];
     outputExpectation: string;
     mayModifyProductionAppFiles: false;
@@ -309,14 +309,14 @@ function main(): void {
     reviewOrder: [
       {
         step: 'Review high-priority French rows first, preserving source identity fields exactly.',
-        mode: 'human-review',
+        mode: 'llm-official-source-review',
         inputArtifacts: [sourceArtifacts.priorityQueueJsonl, sourceArtifacts.priorityBatchesManifest],
         outputExpectation: 'Reviewer decisions are written only into a separate reviewed decision file, never into generated ledgers.',
         mayModifyProductionAppFiles: false,
       },
       {
         step: 'Review medium-priority rows, then low-priority rows, keeping all targetLocale=fr rows isolated.',
-        mode: 'human-review',
+        mode: 'llm-official-source-review',
         inputArtifacts: [sourceArtifacts.priorityQueueJsonl],
         outputExpectation: 'Every reviewed row uses one allowed reviewerDecision and includes reviewerName/reviewedAt.',
         mayModifyProductionAppFiles: false,
@@ -350,7 +350,7 @@ function main(): void {
       'P1A approval receipt and active hash-lock are still absent; apply blockers remain intentional.',
     ],
     nextAllowedActions: [
-      'Human reviewer can fill a separate decision file from french_review_decision_template.jsonl or TSV.',
+      'LLM official-source reviewer can fill a separate decision file from french_review_decision_template.jsonl or TSV.',
       'Run gustav_french_review_decision_import_dry_run.ts with --decisions <reviewed-file> after reviewer decisions exist.',
       'Continue architecture-only audits and reviewer workflow hardening.',
       'Request exact P1A approval text only if the user explicitly wants to unlock P1A.',

@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -33,6 +33,7 @@ import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
+  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
@@ -41,12 +42,18 @@ import { safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import TrainerSessionReport from './trainer_session_report';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import {
+  markTrainerPlanTaskCompleted,
+  readTrainerPlanTaskContext,
+  type TrainerPlanTaskRouteParams,
+} from './trainer_plan_task_route';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_W * 0.3;
@@ -229,6 +236,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerWordsSession() {
   const router = useRouter();
+  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -249,6 +257,24 @@ export default function TrainerWordsSession() {
   const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>([]);
   const dailySessionTracked = useRef(false);
+  const planTrainerCompletionTracked = useRef(false);
+  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
+    mode: params.mode,
+    planDayIndex: params.planDayIndex,
+    planId: params.planId,
+    planInstanceId: params.planInstanceId,
+    planTaskId: params.planTaskId,
+    planTrainerTask: params.planTrainerTask,
+    requiredItems: params.requiredItems,
+  }), [
+    params.mode,
+    params.planDayIndex,
+    params.planId,
+    params.planInstanceId,
+    params.planTaskId,
+    params.planTrainerTask,
+    params.requiredItems,
+  ]);
   // Ref к функции swipeOut текущей карточки — для кнопок
   const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
 
@@ -264,16 +290,34 @@ export default function TrainerWordsSession() {
           setLoading(false);
           return;
         }
-        const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
-        if (cancelled) return;
-        // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
-        if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
-          logTrainerDirectGateBlocked('/trainer_words_session');
-          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-          return;
+        if (planTrainerContext.taskId) {
+          const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
+          if (cancelled) return;
+          if (!planAllowed) {
+            logTrainerDirectGateBlocked('/trainer_words_session');
+            router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
+            return;
+          }
+        } else {
+          const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
+          if (cancelled) return;
+          // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
+          if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
+            logTrainerDirectGateBlocked('/trainer_words_session');
+            router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+            return;
+          }
         }
         setAccessReady(true);
-        const items = await getDueItems('words', 20, studyTarget);
+        const items = planTrainerContext.taskId
+          ? await getTrainerPremiumItemsForPlanQueue(
+              planTrainerContext.planInstanceId,
+              planTrainerContext.mode,
+              'words',
+              planTrainerContext.requiredItems,
+              studyTarget,
+            )
+          : await getDueItems('words', 20, studyTarget);
         if (cancelled) return;
         allItemsRef.current = items;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
@@ -305,7 +349,7 @@ export default function TrainerWordsSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang, router, studyTarget, trainerGateOpen, reloadKey]);
+  }, [lang, planTrainerContext, router, studyTarget, trainerGateOpen, reloadKey]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -353,6 +397,12 @@ export default function TrainerWordsSession() {
     swipeOutRef.current?.(dir);
   }, []);
 
+  useEffect(() => {
+    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
+    planTrainerCompletionTracked.current = true;
+    void markTrainerPlanTaskCompleted(planTrainerContext);
+  }, [done, planTrainerContext]);
+
   if (loadError) {
     return (
       <TrainerErrorView
@@ -398,7 +448,7 @@ export default function TrainerWordsSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#4A9EFF"
-              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -413,7 +463,7 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <Text style={[{ color: sx.muted, fontSize: f.caption }]}>

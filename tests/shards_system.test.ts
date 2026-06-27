@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, spendShards } from '../app/shards_system';
+import { addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -60,5 +60,45 @@ describe('shards_system guards and one-time awards', () => {
 
     await expect(getShardsBalance()).resolves.toBe(100);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(100);
+  });
+
+  it('ignores an older server replace over a newer local shard operation', async () => {
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'earn',
+      reason: 'daily_tasks_all',
+    });
+
+    await replaceShardsBalanceLocal(30, {
+      updatedAtMs: 1_000,
+      op: 'earn',
+      reason: 'friend_quest_reward',
+    });
+
+    await expect(getShardsBalance()).resolves.toBe(80);
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(2_000);
+  });
+
+  it('applies a newer server replace even when the balance decreases after a spend', async () => {
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'earn',
+      reason: 'daily_tasks_all',
+    });
+
+    await replaceShardsBalanceLocal(30, {
+      updatedAtMs: 3_000,
+      op: 'spend',
+      reason: 'friend_gift',
+    });
+
+    await expect(getShardsBalance()).resolves.toBe(30);
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({
+      updatedAtMs: 3_000,
+      op: 'spend',
+      reason: 'friend_gift',
+    });
   });
 });

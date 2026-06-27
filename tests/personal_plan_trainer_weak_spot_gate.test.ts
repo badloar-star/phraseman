@@ -102,7 +102,7 @@ describe('trainer_weak_spot gate and route', () => {
     expect(visible.tasks.map((task) => task.id)).toEqual(['gavan_d003_trainer_weak_spot']);
   });
 
-  it('opens the real smart trainer with plan completion context', () => {
+  it('opens the plan trainer router with plan completion context', () => {
     const router = { push: jest.fn() };
 
     expect(planTaskDestinationLabel(trainerTask.destination)).toBe('Тренер · слабое место');
@@ -110,7 +110,7 @@ describe('trainer_weak_spot gate and route', () => {
     openPersonalPlanTask(router as any, plan, plan.days[0], trainerTask, 'gavan_instance_1');
 
     expect(router.push).toHaveBeenCalledWith({
-      pathname: '/trainer_smart_session',
+      pathname: '/trainer_plan_session',
       params: {
         mode: 'weak',
         planTrainerTask: '1',

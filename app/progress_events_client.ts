@@ -6,8 +6,10 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
+import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
 import { getCurrentWeekStartIso } from './weekly_xp';
+import { getLevelFromXP } from '../constants/theme';
 
 export type ProgressEventType =
   | 'lesson_answer'
@@ -191,6 +193,22 @@ async function writeQueue(queue: QueuedProgressEvent[]): Promise<void> {
   await AsyncStorage.setItem(PROGRESS_EVENT_QUEUE_KEY, JSON.stringify(queue.slice(0, 100)));
 }
 
+function parseNonNegativeNumber(raw: unknown): number {
+  const n = Number(raw);
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
+}
+
+function sameWeekPoints(raw: unknown, weekKey: string): number | null {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    const parsed = JSON.parse(raw) as { weekKey?: unknown; points?: unknown };
+    if (parsed?.weekKey !== weekKey) return null;
+    return parseNonNegativeNumber(parsed.points);
+  } catch {
+    return null;
+  }
+}
+
 // Prevents two concurrent flush loops from racing on the same queue.
 let flushInFlight: Promise<number> | null = null;
 
@@ -216,17 +234,48 @@ export async function ensureProgressSnapshotMigrated(): Promise<void> {
 
 export async function mirrorProgressResultToLocal(result: ProgressEventResult): Promise<void> {
   const weekStart = getCurrentWeekStartIso(new Date(`${result.activeDate}T00:00:00.000Z`));
+  const [
+    [, localStreak],
+    [, localLastActive],
+    [, localStreakLast],
+    [, localTotalXp],
+    [, localWeeklyXp],
+    [, localWeeklyPeriodStart],
+    [, localWeekPointsV2],
+  ] = await AsyncStorage.multiGet([
+    'streak_count',
+    'last_active_date',
+    'streak_last_date',
+    'user_total_xp',
+    'weekly_xp',
+    'weekly_xp_period_start',
+    'week_points_v2',
+  ]);
+  const mergedStreak = mergeStreakByActivityDate(
+    { streak: localStreak, lastActive: localLastActive, streakLast: localStreakLast },
+    { streak: result.streakCount, lastActive: result.activeDate },
+  );
+  const mergedTotalXp = Math.max(
+    parseNonNegativeNumber(localTotalXp),
+    parseNonNegativeNumber(result.totalXp),
+  );
+  const currentWeekCandidates = [
+    parseNonNegativeNumber(result.weekXp),
+    localWeeklyPeriodStart === weekStart ? parseNonNegativeNumber(localWeeklyXp) : 0,
+    sameWeekPoints(localWeekPointsV2, result.weekKey) ?? 0,
+  ];
+  const mergedWeekXp = Math.max(...currentWeekCandidates);
   await AsyncStorage.multiSet([
-    ['user_total_xp', String(result.totalXp)],
-    ['user_prev_xp', String(result.totalXp)],
-    ['user_level', String(result.level)],
-    ['weekly_xp', String(result.weekXp)],
+    ['user_total_xp', String(mergedTotalXp)],
+    ['user_prev_xp', String(mergedTotalXp)],
+    ['user_level', String(getLevelFromXP(mergedTotalXp))],
+    ['weekly_xp', String(mergedWeekXp)],
     ['weekly_xp_period_start', weekStart],
-    ['week_points', String(Math.round(result.weekXp))],
-    ['week_points_v2', JSON.stringify({ weekKey: result.weekKey, points: result.weekXp })],
-    ['streak_count', String(result.streakCount)],
-    ['last_active_date', result.activeDate],
-    ['streak_last_date', result.activeDate],
+    ['week_points', String(Math.round(mergedWeekXp))],
+    ['week_points_v2', JSON.stringify({ weekKey: result.weekKey, points: mergedWeekXp })],
+    ['streak_count', String(mergedStreak.streak)],
+    ['last_active_date', mergedStreak.lastActive ?? result.activeDate],
+    ['streak_last_date', mergedStreak.lastActive ?? result.activeDate],
   ]);
 }
 
@@ -273,6 +322,11 @@ export async function submitProgressEvent(request: ProgressEventRequest): Promis
   await ensureProgressSnapshotMigrated();
   const stableId = await getCanonicalUserId();
   if (!stableId) throw new Error('progress_stable_id_unavailable');
+  const [[, clientStreakCount], [, clientLastActive], [, clientStreakLast]] = await AsyncStorage.multiGet([
+    'streak_count',
+    'last_active_date',
+    'streak_last_date',
+  ]);
   const event: QueuedProgressEvent = {
     eventId: request.eventId || makeEventId(request.type),
     type: request.type,
@@ -281,7 +335,11 @@ export async function submitProgressEvent(request: ProgressEventRequest): Promis
     appVersion: appVersion(),
     platform: Platform.OS,
     stableId,
-    payload: request.payload,
+    payload: {
+      ...request.payload,
+      clientStreakCount: clientStreakCount ?? undefined,
+      clientLastActiveDate: clientLastActive ?? clientStreakLast ?? undefined,
+    },
   };
   try {
     await flushPendingProgressEvents();

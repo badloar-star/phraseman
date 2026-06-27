@@ -158,6 +158,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
       'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+      'arenaInvite',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -166,7 +167,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
 
   it('транзиентные тосты/уведомления подлежат выселению (защита нижних от залипшего тоста)', () => {
     const evictable: OverlayKey[] = [
-      'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
+      'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
       // boonActivated — информационная плашка «бонус дня» (награды по тапу нет),
       // её можно выселять: иначе незакрытая плашка душит все тосты до перезапуска.
@@ -175,6 +176,20 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
     for (const k of evictable) {
       expect(isForceEvictable(k)).toBe(true);
     }
+  });
+
+  // Регрессия «приглашение в Арену само закрывается»: arenaInvite живёт 60с
+  // (INVITE_TIMEOUT_MS), а сторож выселяет force-evictable владельца через 15с при
+  // наличии waiter'а. Раньше arenaInvite был force-evictable → любой тост в очереди
+  // выселял ЖИВОЕ приглашение через 15с, юзер не успевал принять. Теперь arenaInvite
+  // защищён: сторож его не трогает, окно держится все 60с до принятия/отклонения, а
+  // залипания нет — его собственный авто-decline освободит слот.
+  it('arenaInvite НЕ выселяется сторожем (его 60с авто-decline > 15с окна сторожа)', () => {
+    expect(isForceEvictable('arenaInvite')).toBe(false);
+    expect(FORCE_EVICTABLE_KEYS.has('arenaInvite')).toBe(false);
+    // Предусловие сторожа есть (waiter ниже), но т.к. arenaInvite не force-evictable —
+    // сторож не запускается, приглашение остаётся на экране.
+    expect(hasOtherWaiters('arenaInvite', wants('arenaInvite', 'achievementToast'))).toBe(true);
   });
 
   it('lessonCompleteNotif (закрывает юзер тапом) НЕ выселяется', () => {
@@ -228,7 +243,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
 describe('OverlayArbiter: исчерпывающая классификация ключей (страж от рецидива)', () => {
   // Выселяемые сторожем: транзиентные авто-тосты + информационные плашки без награды-по-тапу.
   const EVICTABLE_REGISTRY: readonly OverlayKey[] = [
-    'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
+    'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast',
     'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
     'boonActivated',
   ];
@@ -241,6 +256,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
     'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+    'arenaInvite',
   ];
 
   it('каждый ключ OVERLAY_PRIORITY классифицирован РОВНО в одном реестре (нет пропущенных)', () => {
@@ -283,7 +299,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'update', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration', 'arenaRoomConfirm'] as OverlayKey[]) {
+      // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }
     for (const k of ['actionToast', 'coachToast', 'streakRevive'] as OverlayKey[]) {

@@ -36,9 +36,9 @@ export async function recordLastActive(nowMs: number): Promise<void> {
 export async function shouldShowWinback({ isPremium, nowMs }: ShouldShowWinbackParams): Promise<boolean> {
   if (isPremium) return false;
   try {
-    const [lastRaw, shownRaw] = await Promise.all([
-      AsyncStorage.getItem(LAST_ACTIVE_KEY),
-      AsyncStorage.getItem(WINBACK_SHOWN_AT_KEY),
+    const [[, lastRaw], [, shownRaw]] = await AsyncStorage.multiGet([
+      LAST_ACTIVE_KEY,
+      WINBACK_SHOWN_AT_KEY,
     ]);
     const last = parseInt(lastRaw ?? '0', 10) || 0;
     if (!last) return false; // нет данных об активности — не навязываемся

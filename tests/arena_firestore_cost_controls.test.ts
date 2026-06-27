@@ -27,7 +27,10 @@ describe('arena Firestore cost controls', () => {
     expect(source).not.toContain("const DAILY_TOP = 'arena_hill_daily_top'");
     expect(source).not.toContain('function mergeDailyTopEntries');
     expect(source).not.toContain(".collection(PLAYER_WINS).where('dayKey', '==', today).get()");
-    expect(read('app/services/arena_hill.ts')).toContain('data.entries.slice(0, 1)');
+    const clientSource = read('app/services/arena_hill.ts');
+    expect(clientSource).toContain('entries: Array.isArray(raw?.entries) ? raw.entries.slice(0, 1) : []');
+    expect(clientSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
+    expect(clientSource).toContain('readStoredArenaHillTopCache');
     expect(read('app/arena_lobby.tsx')).toContain("ru: 'Текущий чемпион за сегодня'");
   });
 

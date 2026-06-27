@@ -9,6 +9,8 @@ const LEAGUE_GROUPS = 'league_groups';
 const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
 const IDENTITY_CLEANUP_THROTTLE_MS = 6 * 60 * 60 * 1000;
 
+type AuthProvider = 'google' | 'apple';
+
 type IdentityCleanupStats = {
   leaderboardMerged: number;
   leaderboardHidden: number;
@@ -19,6 +21,24 @@ type IdentityCleanupStats = {
   leagueMembersHidden: number;
   skipped: boolean;
 };
+
+type ResolveStableUidForAuthOptions = {
+  requireKnownIdentity?: boolean;
+  allowProviderRelink?: boolean;
+  allowAnonRelink?: boolean;
+  repairLinks?: boolean;
+};
+
+type AuthLinkMetadata = {
+  email?: string | null;
+  displayName?: string | null;
+  lastSignInAt?: number;
+  devicePlatform?: 'ios' | 'android' | 'web';
+};
+
+function shouldRepairIdentityLinks(options?: ResolveStableUidForAuthOptions): boolean {
+  return options?.repairLinks !== false;
+}
 
 function readHeaderValue(value: unknown): string {
   if (Array.isArray(value)) return String(value[0] ?? '');
@@ -47,6 +67,69 @@ export function describeAppCheckHeader(value: unknown): Record<string, unknown> 
 
 function normalizeStableId(value: unknown): string {
   return String(value ?? '').trim();
+}
+
+function cleanNullableString(value: unknown, maxLength: number): string | null | undefined {
+  if (value === undefined) return undefined;
+  if (value === null) return null;
+  const clean = String(value).trim();
+  return clean ? clean.slice(0, maxLength) : null;
+}
+
+function normalizeAuthLinkMetadata(value: unknown): AuthLinkMetadata | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  const raw = value as Record<string, unknown>;
+  const out: AuthLinkMetadata = {};
+  const email = cleanNullableString(raw.email, 320);
+  const displayName = cleanNullableString(raw.displayName, 160);
+  if (email !== undefined) out.email = email;
+  if (displayName !== undefined) out.displayName = displayName;
+  const lastSignInAt = typeof raw.lastSignInAt === 'number' && Number.isFinite(raw.lastSignInAt)
+    ? raw.lastSignInAt
+    : 0;
+  if (lastSignInAt > 0) out.lastSignInAt = lastSignInAt;
+  if (raw.devicePlatform === 'ios' || raw.devicePlatform === 'android' || raw.devicePlatform === 'web') {
+    out.devicePlatform = raw.devicePlatform;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function readProgressXp(data: FirebaseFirestore.DocumentData | undefined): number {
+  const raw = (data?.progress as { user_total_xp?: unknown } | undefined)?.user_total_xp;
+  const n = parseInt(String(raw ?? '0'), 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
+async function findStableUidForProviderAuth(
+  db: admin.firestore.Firestore,
+  authUid: string,
+): Promise<string | null> {
+  const snap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get().catch(() => null);
+  const docs = snap?.docs ?? [];
+  if (docs.length === 0) return null;
+
+  const ranked = docs
+    .map((doc) => {
+      const data = doc.data() ?? {};
+      const canonicalStableId = normalizeStableId(data.canonicalStableId);
+      const hidden = data.identityHidden === true;
+      const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
+      return {
+        id: hidden && canonicalStableId ? canonicalStableId : doc.id,
+        hidden,
+        hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
+        xp: readProgressXp(data),
+      };
+    })
+    .filter((candidate) => candidate.id);
+
+  ranked.sort((a, b) => {
+    if (a.hidden !== b.hidden) return a.hidden ? 1 : -1;
+    if (a.hasProviderLink !== b.hasProviderLink) return a.hasProviderLink ? -1 : 1;
+    return b.xp - a.xp;
+  });
+
+  return ranked[0]?.id ?? null;
 }
 
 async function assertStableOwner(
@@ -113,13 +196,68 @@ export async function ensureAuthLinkDoc(
   db: admin.firestore.Firestore,
   authUid: string,
   stableId: string,
+  provider?: AuthProvider | null,
+  metadata?: AuthLinkMetadata,
 ): Promise<void> {
   const linkRef = db.collection(AUTH_LINKS).doc(authUid);
   const linkSnap = await linkRef.get().catch(() => null);
   const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
-  if (!linkSnap?.exists || currentLinkStableId !== stableId) {
-    await linkRef.set({ stable_id: stableId, updatedAt: Date.now() }, { merge: true });
+  const current = linkSnap?.data() ?? {};
+  const now = Date.now();
+  const patch: Record<string, unknown> = { stable_id: stableId, updatedAt: now };
+  if (provider) {
+    patch.providerUid = authUid;
+    patch.provider = provider;
+    if (typeof current.linkedAt !== 'number' || current.linkedAt <= 0) {
+      patch.linkedAt = now;
+    }
+    patch.lastSignInAt = metadata?.lastSignInAt ?? now;
+    if (metadata?.devicePlatform) patch.devicePlatform = metadata.devicePlatform;
+    if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'email')) {
+      patch.email = metadata.email ?? null;
+    }
+    if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')) {
+      patch.displayName = metadata.displayName ?? null;
+    }
   }
+  const providerNeedsBackfill =
+    Boolean(provider) &&
+    (
+      String(current.providerUid ?? '').trim() !== authUid ||
+      String(current.provider ?? '').trim() !== provider ||
+      typeof current.linkedAt !== 'number' ||
+      current.linkedAt <= 0
+    );
+  const metadataNeedsRefresh = Boolean(provider && metadata && Object.keys(metadata).length > 0);
+  if (!linkSnap?.exists || currentLinkStableId !== stableId || providerNeedsBackfill || metadataNeedsRefresh) {
+    await linkRef.set(patch, { merge: true });
+  }
+}
+
+async function ensureProviderLinkedAuth(
+  db: admin.firestore.Firestore,
+  stableId: string,
+  authUid: string,
+  provider: AuthProvider | null,
+  metadata?: AuthLinkMetadata,
+): Promise<void> {
+  if (!provider) return;
+  const now = Date.now();
+  await db.collection(USERS).doc(stableId).set({
+    firebaseAuthUid: authUid,
+    linkedAuth: {
+      provider,
+      providerUid: authUid,
+      email: metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? metadata.email ?? null : null,
+      displayName: metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')
+        ? metadata.displayName ?? null
+        : null,
+      linkedAt: now,
+      lastSignInAt: metadata?.lastSignInAt ?? now,
+      devicePlatform: metadata?.devicePlatform ?? 'web',
+    },
+    updatedAt: now,
+  }, { merge: true });
 }
 
 export async function linkStableAuthUid(
@@ -536,7 +674,7 @@ export async function resolveStableUidForAuth(
   db: admin.firestore.Firestore,
   authUid: string,
   requestedStableId?: unknown,
-  options?: { requireKnownIdentity?: boolean; allowProviderRelink?: boolean; allowAnonRelink?: boolean },
+  options?: ResolveStableUidForAuthOptions,
 ): Promise<string> {
   const stableId = normalizeStableId(requestedStableId);
   if (stableId) {
@@ -545,11 +683,15 @@ export async function resolveStableUidForAuth(
     const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
     if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== stableId) {
       await assertStableOwner(db, authUid, canonicalStableId, options);
-      await linkStableAuthUid(db, canonicalStableId, authUid);
+      if (shouldRepairIdentityLinks(options)) {
+        await linkStableAuthUid(db, canonicalStableId, authUid);
+      }
       return canonicalStableId;
     }
     await assertStableOwner(db, authUid, stableId, options);
-    await linkStableAuthUid(db, stableId, authUid);
+    if (shouldRepairIdentityLinks(options)) {
+      await linkStableAuthUid(db, stableId, authUid);
+    }
     return stableId;
   }
 
@@ -563,6 +705,49 @@ export async function resolveStableUidForAuth(
   return authUid;
 }
 
+export async function ensureStableLinkForAuth(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  requestedStableId: unknown,
+  signInProvider: string,
+  metadata?: AuthLinkMetadata,
+): Promise<{ ok: true; stableUid: string; authUid: string }> {
+  const stableId = normalizeStableId(requestedStableId);
+  const provider: AuthProvider | null =
+    signInProvider === 'google.com'
+      ? 'google'
+      : signInProvider === 'apple.com'
+        ? 'apple'
+        : null;
+  const allowProviderRelink = Boolean(provider);
+  const allowAnonRelink = !allowProviderRelink;
+
+  if (provider) {
+    const existingLinkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);
+    const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
+    if (linkedStableId && linkedStableId !== stableId) {
+      const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, { allowProviderRelink: true });
+      await ensureAuthLinkDoc(db, authUid, linkedStableUid, provider, metadata);
+      await ensureProviderLinkedAuth(db, linkedStableUid, authUid, provider, metadata);
+      return { ok: true, stableUid: linkedStableUid, authUid };
+    }
+    if (!linkedStableId) {
+      const existingUserStableUid = await findStableUidForProviderAuth(db, authUid);
+      if (existingUserStableUid && existingUserStableUid !== stableId) {
+        const stableUid = await resolveStableUidForAuth(db, authUid, existingUserStableUid, { allowProviderRelink: true });
+        await ensureAuthLinkDoc(db, authUid, stableUid, provider, metadata);
+        await ensureProviderLinkedAuth(db, stableUid, authUid, provider, metadata);
+        return { ok: true, stableUid, authUid };
+      }
+    }
+  }
+
+  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
+  await ensureAuthLinkDoc(db, authUid, stableUid, provider, metadata);
+  await ensureProviderLinkedAuth(db, stableUid, authUid, provider, metadata);
+  return { ok: true, stableUid, authUid };
+}
+
 export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) {
@@ -574,23 +759,9 @@ export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request)
   }
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableId = normalizeStableId(request.data?.stableId);
   const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
-  const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
-  const allowAnonRelink = !allowProviderRelink;
-  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
-
-  // Достраиваем auth_links/{authUid} (см. ensureAuthLinkDoc) — без этого реф-код и
-  // прочие auth_links-зависимые callable падают у анонимного юзера. Best-effort.
-  await ensureAuthLinkDoc(db, authUid, stableUid).catch((e) => {
-    console.warn(JSON.stringify({
-      event: 'auth_link_ensure_failed',
-      authUid,
-      message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
-    }));
-  });
-
-  return { ok: true, stableUid, authUid };
+  const metadata = normalizeAuthLinkMetadata(request.data?.linkMetadata);
+  return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata);
 });
 
 // ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────

@@ -25,7 +25,7 @@ import {
   writeRejectedExplanation,
   isRetryableRejected,
 } from './explain/explain_cache';
-import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
+import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
 import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
@@ -151,9 +151,9 @@ export const explainPhrase = onCall({
 
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
   //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
+  let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    await enforceUserGenLimit(authUid, stableUid);
-    await enforceGlobalBudget(jobCfg.globalDailyCap);
+    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
@@ -165,17 +165,26 @@ export const explainPhrase = onCall({
   //    fallback now (status:pending) rather than generating a duplicate.
   const claimed = await claimPendingLock(phraseHash, Date.now());
   if (!claimed) {
+    await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
+    budgetReservation = null;
     return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'pending', fromCache: true };
   }
 
   // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
-  const gen = await openAiChat({
-    apiKey,
-    model: jobCfg.model,
-    messages: [{ role: 'user', content: buildExplainPrompt(phraseEn, phraseMeaning, lang) }],
-    maxTokens: GEN_MAX_TOKENS,
-    temperature: GEN_TEMPERATURE,
-  });
+  let gen: Awaited<ReturnType<typeof openAiChat>>;
+  try {
+    gen = await openAiChat({
+      apiKey,
+      model: jobCfg.model,
+      messages: [{ role: 'user', content: buildExplainPrompt(phraseEn, phraseMeaning, lang) }],
+      maxTokens: GEN_MAX_TOKENS,
+      temperature: GEN_TEMPERATURE,
+    });
+  } catch (err) {
+    await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
+    budgetReservation = null;
+    throw err;
+  }
 
   // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
   const sanitized = sanitizeExplanationOutput(gen.text);

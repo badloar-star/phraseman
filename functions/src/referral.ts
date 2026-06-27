@@ -303,7 +303,7 @@ function pruneDailyCounter(map: Record<string, number>, keepDays = 10): Record<s
  * Пригласивший получает отдельные 7 дней по кнопке, чтобы не писать в чужой документ
  * на каждое обновление прогресса. 7+7 — это два отдельных человека, не 14 дней одному.
  */
-async function markRefereeQualified(
+export async function markRefereeQualified(
   db: admin.firestore.Firestore,
   userId: string,
 ): Promise<void> {

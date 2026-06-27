@@ -2119,7 +2119,7 @@ export default function LessonScreen() {
         router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
       };
       void import('./lesson_menu')
-        .then((m) => m.prefetchLessonMenuCache(lessonId))
+        .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
         .catch(() => {});
       popToMenu();
       return;

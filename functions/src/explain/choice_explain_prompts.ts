@@ -18,7 +18,7 @@ function resolvePromptLang(lang: string): { name: string; writeIn: string } {
  * Build the batched generation prompt. The model is asked to return STRICT JSON:
  *   { "confirm": "<praise for the correct answer>",
  *     "distractors": { "<exact distractor text>": "<why it doesn't fit>", ... } }
- * Each line is ONE short sentence (max ~12 words, ideally under 10), warm with a touch of humour, in `lang`.
+ * Each line is ONE short sentence (phone-tooltip length), warm with a touch of humour, in `lang`.
  */
 export function buildChoicePrompt(
   correctEn: string,
@@ -32,7 +32,7 @@ export function buildChoicePrompt(
   const list = distractors.map((d) => String(d ?? '').trim()).filter(Boolean);
 
   return [
-    `You are a warm, upbeat English teacher in the Phraseman app for beginners (often aged 50+). NEVER condescend, NEVER use grammar jargon — plain, kind, everyday words, with a light touch of friendly humour and encouragement.`,
+    `You are a warm, upbeat English teacher in the Phraseman app for beginners (often aged 50+). NEVER condescend, NEVER use grammar jargon — plain, kind, everyday words, like a smart friend on the sofa.`,
     `Address the learner informally, as "ты" — use the informal second person of ${target.name} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form).`,
     `NEVER guess WHY a learner might pick a wrong option ("you translated literally", "you didn't think about the context"). You don't know their reason — they may simply mis-tap. Say only what each word means and why it doesn't fit here.`,
     `A learner is doing a multiple-choice exercise. They must pick the English phrase that fits this meaning: "${meaning}".`,
@@ -40,12 +40,13 @@ export function buildChoicePrompt(
     `The OTHER options (these simply do not fit this meaning) are:`,
     ...list.map((d) => `- "${d}"`),
     ``,
-    `Produce, for EACH other option, ONE short friendly sentence saying what it means and why it does not fit here — max ~12 words, ideally under 10, one simple clause, warm, a little playful, never mean. NEVER call the learner's pick "wrong"/"incorrect"/«ошибка» — just explain the difference. If you are not certain what an option means, say only that it does not fit this meaning — do NOT invent a definition. Quote any English you mention in double quotes.`,
-    `Also produce ONE short cheerful confirmation for when the learner picks the correct option — start with a warm marker (the ${target.name} equivalent of "Верно!"/"Точно!"), say in one short sentence why "${correct}" is the natural choice, and end with a tiny forward nudge (the ${target.name} for "идём дальше").`,
+    `STYLE CONTRACT: every value must read like a human micro-explanation, not model prose. ONE sentence only, max ~16 words / 150 characters. No intro, no "let's break it down", no "common mistake", no second reason.`,
+    `For EACH other option: say what it means OR what breaks, then why it does not fit here. Use a tiny situation, word-origin clue, or wink only if it helps in fewer words. NEVER call the learner's pick "wrong"/"incorrect"/«ошибка». If you are not certain what an option means, say only that it does not fit this meaning — do NOT invent a definition. Quote any English you mention in double quotes.`,
+    `For the correct option: one cheerful sentence with a warm marker (the ${target.name} equivalent of "Верно!"/"Точно!") and the one reason "${correct}" works. No extra forward-nudge sentence.`,
     `${target.writeIn}`,
     ``,
     `Output STRICT JSON and NOTHING else, exactly this shape:`,
-    `{"confirm": "<one short sentence>", "distractors": {${list.map((d) => `"${d}": "<one short sentence>"`).join(', ')}}}`,
+    `{"confirm": "<one short human sentence, <=150 chars>", "distractors": {${list.map((d) => `"${d}": "<one short human sentence, <=150 chars>"`).join(', ')}}}`,
     `Use the EXACT distractor strings above as the JSON keys. No markdown, no extra keys, no commentary outside the JSON.`,
   ].join('\n');
 }

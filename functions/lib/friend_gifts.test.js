@@ -95,6 +95,19 @@ async function sendGift(overrides = {}) {
         },
     });
 }
+async function thankGift(overrides = {}) {
+    const { friendThankGift } = require('./friend_gifts');
+    return friendThankGift({
+        auth: { uid: 'auth-sender' },
+        data: {
+            senderStableId: 'sender',
+            friendStableId: 'recipient',
+            giftId: 'chain_shield_1',
+            senderDisplayName: 'Sender',
+            ...overrides,
+        },
+    });
+}
 beforeEach(() => {
     jest.useFakeTimers().setSystemTime(new Date('2026-06-12T10:00:00.000Z'));
     jest.resetModules();
@@ -110,6 +123,7 @@ test('friendSendGift starts one weekly friend quest after a successful gift', as
     expect(result).toMatchObject({
         ok: true,
         giftId: 'chain_shield_1',
+        shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
         questStarted: true,
         quest: {
             participantUids: ['sender', 'recipient'],
@@ -131,6 +145,68 @@ test('friendSendGift starts one weekly friend quest after a successful gift', as
     expect(docs.get('users/recipient/friend_quest_meta/current')).toMatchObject({ questId, status: 'active' });
     expect(docs.get('users/sender/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
     expect(docs.get('users/recipient/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
+});
+test('friendSendGift replays the same idempotency key without a second spend or gift', async () => {
+    const first = await sendGift({ idempotencyKey: 'fg_test_1234567890' });
+    const second = await sendGift({ idempotencyKey: 'fg_test_1234567890' });
+    expect(first).toMatchObject({
+        ok: true,
+        senderBalanceAfter: 92,
+        idempotencyKey: 'fg_test_1234567890',
+    });
+    expect(second).toMatchObject({
+        ok: true,
+        senderBalanceAfter: 92,
+        idempotencyKey: 'fg_test_1234567890',
+        idempotentReplay: true,
+    });
+    expect(docs.get('users/sender')).toMatchObject({ shards: 92 });
+    expect(docs.get('users/sender/friend_gift_daily_limits/2026-06-12')).toMatchObject({
+        totalSent: 1,
+        recipients: { recipient: 1 },
+    });
+    expect(Array.from(docs.keys()).filter(path => path.startsWith('users/sender/friend_gifts_sent/'))).toHaveLength(1);
+    expect(Array.from(docs.keys()).filter(path => path.startsWith('users/recipient/friend_gifts_received/'))).toHaveLength(1);
+});
+test('friendSendGift rejects reusing an idempotency key for a different gift', async () => {
+    await sendGift({ idempotencyKey: 'fg_test_1234567890' });
+    await expect(sendGift({
+        giftId: 'arena_extra_5',
+        idempotencyKey: 'fg_test_1234567890',
+    })).rejects.toMatchObject({
+        code: 'already-exists',
+        message: 'Idempotency key already used for another friend gift',
+    });
+    expect(docs.get('users/sender')).toMatchObject({ shards: 92 });
+});
+test('friendThankGift replays the same idempotency key without a second thanks event', async () => {
+    const first = await thankGift({ idempotencyKey: 'fgt_test_1234567890' });
+    const second = await thankGift({ idempotencyKey: 'fgt_test_1234567890' });
+    expect(first).toMatchObject({
+        ok: true,
+        idempotencyKey: 'fgt_test_1234567890',
+    });
+    expect(second).toMatchObject({
+        ok: true,
+        idempotencyKey: 'fgt_test_1234567890',
+        idempotentReplay: true,
+    });
+    expect(docs.get('users/sender/friend_gift_thanks_idempotency/fgt_test_1234567890')).toMatchObject({
+        senderStableId: 'sender',
+        friendStableId: 'recipient',
+        giftId: 'chain_shield_1',
+    });
+    expect(Array.from(docs.keys()).filter(path => path.startsWith('users/recipient/my_events/friend_gift_thanks_'))).toHaveLength(1);
+});
+test('friendThankGift rejects reusing an idempotency key for another thanks gift', async () => {
+    await thankGift({ idempotencyKey: 'fgt_test_1234567890' });
+    await expect(thankGift({
+        giftId: 'arena_extra_5',
+        idempotencyKey: 'fgt_test_1234567890',
+    })).rejects.toMatchObject({
+        code: 'already-exists',
+        message: 'Idempotency key already used for another friend gift thanks',
+    });
 });
 test('friendSendGift does not start another quest while either user has an active quest', async () => {
     docs.set('users/sender/friend_quest_meta/current', {
@@ -170,8 +246,22 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
         auth: { uid: 'auth-sender' },
         data: { stableId: 'sender', questId },
     });
-    expect(first).toMatchObject({ ok: true, questId, rewardApplied: true, callerShards: 14, callerXp: 5100 });
-    expect(second).toMatchObject({ ok: true, questId, rewardApplied: false, callerShards: 14, callerXp: 5100 });
+    expect(first).toMatchObject({
+        ok: true,
+        questId,
+        rewardApplied: true,
+        callerShards: 14,
+        shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
+        callerXp: 5100,
+    });
+    expect(second).toMatchObject({
+        ok: true,
+        questId,
+        rewardApplied: false,
+        callerShards: 14,
+        shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
+        callerXp: 5100,
+    });
     expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
     expect(docs.get('users/recipient')).toMatchObject({ shards: 19, progress: { user_total_xp: '4900' } });
     expect(docs.get(`friend_quests/${questId}`)).toMatchObject({

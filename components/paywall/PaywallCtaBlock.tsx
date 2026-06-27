@@ -63,10 +63,14 @@ export default function PaywallCtaBlock({
 
       {hideFooter ? null : (
       <View style={S.footer}>
-        <TouchableOpacity onPress={onRestore} disabled={restoring}>
+        <TouchableOpacity
+          onPress={onRestore}
+          disabled={restoring || busy}
+          accessibilityState={{ disabled: restoring || busy, busy: restoring }}
+        >
           {restoring
             ? <ActivityIndicator size="small" color={textMuted} style={{ width: 80 }} />
-            : <Text style={[S.footerLink, { color: textMuted }]}>
+            : <Text style={[S.footerLink, { color: textMuted }, busy && S.footerLinkDisabled]}>
                 {triLang(lang, {
                   ru: 'Восстановить',
                   uk: 'Відновити',
@@ -141,6 +145,7 @@ const S = StyleSheet.create({
   subLine: { textAlign: 'center', fontSize: 11.5, lineHeight: 15.5, marginTop: 9, fontVariant: ['tabular-nums'] },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 11 },
   footerLink: { fontSize: 11, opacity: 0.7 },
+  footerLinkDisabled: { opacity: 0.35 },
   footerDot: { fontSize: 11, opacity: 0.4 },
   ghost: { alignSelf: 'center', marginTop: 9, paddingVertical: 4, paddingHorizontal: 8 },
   ghostText: { fontSize: 12, textDecorationLine: 'underline', opacity: 0.55 },

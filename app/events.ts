@@ -8,11 +8,8 @@ import type { RuntimeStudyTarget } from './target_storage_keys';
 let _lastActionToastKey = '';
 let _lastActionToastEmitAt = 0;
 const ACTION_TOAST_EMIT_BURST_MS = 400;
+const TRACK_INTERNAL_APP_EVENTS = false;
 let appFirstContentReadyFired = false;
-
-function isJestRuntime(): boolean {
-  return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
-}
 
 export type AppEventMap = {
   xp_changed: undefined;
@@ -138,7 +135,6 @@ export function emitAppEvent<K extends keyof AppEventMap>(
   event: K,
   payload?: AppEventMap[K]
 ): void {
-  const shouldTrackEvent = event !== 'app_first_content_ready';
   if (event === 'app_first_content_ready') {
     appFirstContentReadyFired = true;
   }
@@ -154,21 +150,10 @@ export function emitAppEvent<K extends keyof AppEventMap>(
   }
   if (payload === undefined) {
     DeviceEventEmitter.emit(event);
-    if (shouldTrackEvent && !isJestRuntime()) {
-      void import('./app_activity')
-        .then(({ trackActivity }) =>
-          trackActivity(`event:${String(event)}`, {
-            feature: 'app_event',
-            result: 'info',
-            tags: { hasPayload: false },
-          }),
-        )
-        .catch(() => {});
-    }
     return;
   }
   DeviceEventEmitter.emit(event, payload);
-  if (shouldTrackEvent && !isJestRuntime()) {
+  if (TRACK_INTERNAL_APP_EVENTS) {
     void import('./app_activity')
       .then(({ trackActivity }) =>
         trackActivity(`event:${String(event)}`, {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, KeyboardAvoidingView, Platform, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import * as Haptics from 'expo-haptics';
@@ -1944,14 +1944,24 @@ export default function ClubScreen() {
 
       <Modal
         visible={chatModalVisible}
-        transparent
         animationType="slide"
+        presentationStyle="fullScreen"
         onRequestClose={() => setChatModalVisible(false)}
       >
-        <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.56)', justifyContent:'flex-end' }}>
-          <View style={{ height:'86%', borderTopLeftRadius:22, borderTopRightRadius:22, overflow:'hidden', backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}>
-            <View style={{ minHeight:54, paddingHorizontal:14, flexDirection:'row', alignItems:'center', justifyContent:'space-between', borderBottomWidth:0.5, borderBottomColor:t.border }}>
-              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
+        <KeyboardAvoidingView
+          testID="league-chat-fullscreen"
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={0}
+          style={{ flex:1, backgroundColor:t.bgCard }}
+        >
+          <SafeAreaView edges={['top', 'left', 'right']} style={{ flex:1, backgroundColor:t.bgCard }}>
+            <View style={{ minHeight:64, paddingHorizontal:12, paddingVertical:8, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
+              <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
+                <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}>
+                  <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
+                </View>
+                <View style={{ flex:1, minWidth:0 }}>
+                  <Text style={{ color:t.textPrimary, fontSize:f.body, lineHeight:Math.round(f.body * 1.2), fontWeight:'900' }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Чат лиги',
                   uk: 'Чат ліги',
@@ -1962,18 +1972,24 @@ export default function ClubScreen() {
                   tr: 'Lig sohbeti',
                   pl: 'Czat ligi',
                 })}
-              </Text>
+                  </Text>
+                  <Text style={{ color:t.textMuted, fontSize:f.caption, lineHeight:Math.round(f.caption * 1.25), fontWeight:'800' }} numberOfLines={1}>
+                    {leagueNameForLang(myLeague, lang)}
+                  </Text>
+                </View>
+              </View>
               <TouchableOpacity
                 accessibilityRole="button"
                 accessibilityLabel="Close"
                 activeOpacity={0.82}
                 onPress={() => setChatModalVisible(false)}
-                style={{ width:40, height:40, borderRadius:20, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
+                testID="league-chat-close"
+                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
               >
                 <Ionicons name="close" size={22} color={t.textPrimary} />
               </TouchableOpacity>
             </View>
-            <View style={{ flex:1, minHeight:0 }}>
+            <View style={{ flex:1, minHeight:0, backgroundColor:t.bgCard }}>
               <LeagueChatPanel
                 initialRoom={leagueGroupMeta}
                 myUid={arenaClubStableUid}
@@ -1983,8 +1999,8 @@ export default function ClubScreen() {
                 onToast={showLeagueToast}
               />
             </View>
-          </View>
-        </View>
+          </SafeAreaView>
+        </KeyboardAvoidingView>
       </Modal>
 
       <UnifiedPlayerModal

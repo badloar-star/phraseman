@@ -43,6 +43,7 @@ exports.vipUntilFromProgress = vipUntilFromProgress;
 exports.stackVipUntilMs = stackVipUntilMs;
 exports.buildReferralVipProgressPatch = buildReferralVipProgressPatch;
 exports.prunePeriodCounter = prunePeriodCounter;
+exports.markRefereeQualified = markRefereeQualified;
 /**
  * Вирусный реферал (7 дней другу + 7 дней пригласившему, экономия Firebase-лимитов).
  * Крючок: «друг установил приложение, ввёл код и прошёл первый урок — вы оба получаете

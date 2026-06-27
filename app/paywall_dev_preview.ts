@@ -17,8 +17,8 @@ import type { UrgencyState } from './paywall_urgency';
 
 /**
  * Активное urgency-состояние для dev-превью: фиксированный таймер «осталось ~76:00:00».
- * Тикать он не будет (живой тик в PaywallPriceUrgency запускается из getUrgencyState,
- * который в dev может вернуть «истекло»), но блок таймера будет виден всегда.
+ * PaywallPriceUrgency считает живой тик локально от remainingMs; storage/state
+ * проверяется только при истечении окна, поэтому dev-блок таймера остаётся лёгким.
  */
 export const DEV_PREVIEW_URGENCY: UrgencyState = {
   isActive: true,

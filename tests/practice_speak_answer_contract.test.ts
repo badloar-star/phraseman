@@ -8,7 +8,6 @@ const hookSrc = read('hooks/use-speak-answer.ts');
 const wordsSrc = read('app/trainer_words_session.tsx');
 const phrasesSrc = read('app/trainer_phrases_session.tsx');
 const arenaSrc = read('app/trainer_arena_session.tsx');
-const smartSrc = read('app/trainer_smart_session.tsx');
 const reviewSrc = read('app/review.tsx');
 
 describe('"My practice" speaks the correct answer out loud', () => {
@@ -39,11 +38,6 @@ describe('"My practice" speaks the correct answer out loud', () => {
   it('trainer (arena) voices the phrase on a correct answer', () => {
     expect(arenaSrc).toContain("import { useSpeakAnswer } from '../hooks/use-speak-answer'");
     expect(arenaSrc).toContain('speakAnswer(item.key, studyTarget)');
-  });
-
-  it('trainer (smart session) voices the phrase on a correct answer', () => {
-    expect(smartSrc).toContain("import { useSpeakAnswer } from '../hooks/use-speak-answer'");
-    expect(smartSrc).toContain('speakAnswer(current.item.key, studyTarget)');
   });
 
   it('review (SRS practice) voices the English surface of the phrase on a correct answer', () => {

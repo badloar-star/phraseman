@@ -89,7 +89,8 @@ function duelRankInfoFromArenaProfile(data: ArenaProfile): DuelRankInfo {
 
 export type ArenaRankHookResult = DuelRankInfo & { isHydrated: boolean };
 
-export function useArenaRank(): ArenaRankHookResult {
+export function useArenaRank(options: { enabled?: boolean } = {}): ArenaRankHookResult {
+  const enabled = options.enabled !== false;
   const [info, setInfo] = useState<DuelRankInfo | null>(() => {
     const mem = getRememberedArenaLobbyProfile();
     if (mem) return duelRankInfoFromArenaProfile(mem);
@@ -97,6 +98,7 @@ export function useArenaRank(): ArenaRankHookResult {
   });
 
   useEffect(() => {
+    if (!enabled) return undefined;
     let unsub: (() => void) | null = null;
     let cancelled = false;
     const load = async () => {
@@ -149,7 +151,7 @@ export function useArenaRank(): ArenaRankHookResult {
       cancelled = true;
       unsub?.();
     };
-  }, []);
+  }, [enabled]);
 
   const isHydrated = info != null;
   return { ...(info ?? DEFAULT), isHydrated };

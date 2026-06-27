@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MAX_QUIZ_WRONG_OPTIONS = void 0;
+exports.MAX_QUIZ_EXPLANATION_CHARS = exports.MAX_QUIZ_WRONG_OPTIONS = void 0;
 exports.validateQuizInput = validateQuizInput;
 exports.parseQuizBatch = parseQuizBatch;
 /**
@@ -11,6 +11,8 @@ exports.parseQuizBatch = parseQuizBatch;
 const explain_gates_1 = require("./explain_gates");
 /** Max number of wrong options we will explain in one batch (a quiz question shows 4 = 3 wrong). */
 exports.MAX_QUIZ_WRONG_OPTIONS = 6;
+/** UI-sized hard cap for one generated quiz line; prompts ask for 160 chars, parser enforces headroom. */
+exports.MAX_QUIZ_EXPLANATION_CHARS = 190;
 function asString(value) {
     return typeof value === 'string' ? value : '';
 }
@@ -50,7 +52,20 @@ function validateQuizInput(input) {
     return { ok: true, wrongOptions: cleaned };
 }
 function clampLine(text) {
-    return asString(text).replace(/\s+/g, ' ').trim().slice(0, 400);
+    const clean = asString(text).replace(/\s+/g, ' ').trim();
+    if (clean.length <= exports.MAX_QUIZ_EXPLANATION_CHARS)
+        return clean;
+    const clipped = clean.slice(0, exports.MAX_QUIZ_EXPLANATION_CHARS);
+    const sentenceEnd = Math.max(clipped.lastIndexOf('. '), clipped.lastIndexOf('! '), clipped.lastIndexOf('? '), clipped.lastIndexOf('… '));
+    const wordEnd = clipped.lastIndexOf(' ');
+    const boundary = sentenceEnd >= 40 ? sentenceEnd + 1 : (wordEnd >= 40 ? wordEnd : exports.MAX_QUIZ_EXPLANATION_CHARS - 1);
+    const base = clipped
+        .slice(0, boundary)
+        .replace(/[\s,;:–-]+$/u, '')
+        .trim();
+    if (/[.!?…]["»”')\]]*$/u.test(base))
+        return base;
+    return `${base.slice(0, exports.MAX_QUIZ_EXPLANATION_CHARS - 1).trim()}…`;
 }
 /**
  * Parse the model's STRICT-JSON batch reply into { confirm, options }.

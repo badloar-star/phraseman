@@ -12,6 +12,35 @@ const parseIntSafe = (value: unknown): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
+export type StreakRestoreState = {
+  streak: unknown;
+  lastActive?: unknown;
+  streakLast?: unknown;
+};
+
+const dateKeyOrNull = (value: unknown): string | null =>
+  isDateKey(value) ? value : null;
+
+export function mergeStreakByActivityDate(
+  local: StreakRestoreState,
+  incoming: StreakRestoreState,
+): { streak: number; lastActive: string | null } {
+  const localStreak = Math.max(0, parseIntSafe(local.streak));
+  const incomingStreak = Math.max(0, parseIntSafe(incoming.streak));
+  const localDate = dateKeyOrNull(local.lastActive) ?? dateKeyOrNull(local.streakLast);
+  const incomingDate = dateKeyOrNull(incoming.lastActive) ?? dateKeyOrNull(incoming.streakLast);
+
+  if (localDate && incomingDate) {
+    if (incomingDate > localDate) return { streak: incomingStreak, lastActive: incomingDate };
+    if (localDate > incomingDate) return { streak: localStreak, lastActive: localDate };
+    return { streak: Math.max(localStreak, incomingStreak), lastActive: localDate };
+  }
+
+  if (incomingDate) return { streak: incomingStreak, lastActive: incomingDate };
+  if (localDate) return { streak: localStreak, lastActive: localDate };
+  return { streak: Math.max(localStreak, incomingStreak), lastActive: null };
+}
+
 function hasDevSeedFingerprint(data: ProgressMap): boolean {
   let score = 0;
   if (parseIntSafe(data.user_total_xp) === 100000) score += 1;

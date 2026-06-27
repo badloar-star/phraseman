@@ -171,13 +171,31 @@ describe('friendLikeActivity', () => {
             lastActivityLikeFromUid: 'sender',
         });
     });
-    test('blocks a second like from the same sender on the same UTC day without incrementing', async () => {
+    test('replays a duplicate like for the same event without incrementing', async () => {
         await callLike();
-        await expect(callLike({ eventId: 'event-1' })).rejects.toMatchObject({
+        await expect(callLike({ eventId: 'event-1' })).resolves.toMatchObject({
+            ok: true,
+            idempotentReplay: true,
+            activityLikeCount: 1,
+            targetActivityLikeTotal: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    });
+    test('blocks a second like for a different event on the same UTC day without incrementing', async () => {
+        await callLike();
+        docs.set('users/target/my_events/event-2', {
+            uid: 'target',
+            type: 'level_up',
+            ts: Date.now() - 500,
+            payload: { level: 4 },
+        });
+        await expect(callLike({ eventId: 'event-2' })).rejects.toMatchObject({
             code: 'resource-exhausted',
             message: 'Daily activity like limit reached',
         });
         expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+        expect(docs.get('users/target/my_events/event-2')).not.toMatchObject({ activityLikeCount: 1 });
         expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
     });
     test('mirrors league group boost event likes into the league group document', async () => {

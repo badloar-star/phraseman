@@ -15,15 +15,8 @@
  *  (admin «Пульт») и env могут выключить её явно. */
 export const EXPLAIN_ENABLED_DEFAULT = true;
 
-function numFromEnv(name: string): number | undefined {
-  const raw = process.env[name];
-  if (raw == null || raw === '') return undefined;
-  const n = Number(raw);
-  return Number.isFinite(n) ? n : undefined;
-}
-
-function boolFromEnv(name: string): boolean | undefined {
-  const raw = process.env[name];
+function explainEnabledFromEnv(): boolean | undefined {
+  const raw = process.env.EXPO_PUBLIC_EXPLAIN_ENABLED;
   if (raw == null || raw === '') return undefined;
   return raw === 'true' || raw === '1';
 }
@@ -37,5 +30,5 @@ export function isExplainEnabled(): boolean {
     const { getRemoteBool } = require('./remote_flags') as { getRemoteBool: (k: string) => boolean };
     if (getRemoteBool('explain_enabled')) return true;
   } catch { /* remote_flags недоступен — падаем на env */ }
-  return boolFromEnv('EXPO_PUBLIC_EXPLAIN_ENABLED') ?? EXPLAIN_ENABLED_DEFAULT;
+  return explainEnabledFromEnv() ?? EXPLAIN_ENABLED_DEFAULT;
 }

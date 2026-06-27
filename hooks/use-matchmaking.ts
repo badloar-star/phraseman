@@ -30,6 +30,7 @@ interface UseMatchmakingResult {
 
 // TEMPORARY: 3s in dev for quick bot testing. Remove __DEV__ branch before launch.
 const DEFAULT_TIMEOUT_MS = __DEV__ ? 3_000 : 10 * 60 * 1000;
+const MATCHMAKING_ELAPSE_TICK_MS = 1000;
 
 export function useMatchmaking({
   userId,
@@ -86,7 +87,7 @@ export function useMatchmaking({
           setStatus('timeout');
         }
       }
-    }, 100);
+    }, MATCHMAKING_ELAPSE_TICK_MS);
 
     try {
       await joinMatchmakingQueue(entry);

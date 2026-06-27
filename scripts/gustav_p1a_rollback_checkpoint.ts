@@ -19,7 +19,7 @@ type Snapshot = {
   parentDirExists: boolean;
   sizeBytes: number | null;
   sha256: string | null;
-  rollbackAction: 'delete_if_created_by_p1a' | 'manual_review_required';
+  rollbackAction: 'delete_if_created_by_p1a' | 'llm_official_source_review_required';
   rollbackNote: string;
 };
 
@@ -55,7 +55,7 @@ type Audit = {
   rollbackPolicy: {
     mode: 'additive_files_only';
     safeRollback: string[];
-    manualReviewRequiredWhen: string[];
+    llmOfficialSourceReviewRequiredWhen: string[];
   };
   findings: Finding[];
   notes: string[];
@@ -137,8 +137,8 @@ function renderMarkdown(audit: Audit): string {
   lines.push(`Mode: \`${audit.rollbackPolicy.mode}\``);
   lines.push('', 'Safe rollback:');
   for (const item of audit.rollbackPolicy.safeRollback) lines.push(`- ${item}`);
-  lines.push('', 'Manual review required when:');
-  for (const item of audit.rollbackPolicy.manualReviewRequiredWhen) lines.push(`- ${item}`);
+  lines.push('', 'LLM official-source review required when:');
+  for (const item of audit.rollbackPolicy.llmOfficialSourceReviewRequiredWhen) lines.push(`- ${item}`);
 
   lines.push('', '## Findings', '');
   if (audit.findings.length === 0) {
@@ -230,7 +230,7 @@ async function main(): Promise<void> {
       parentDirExists,
       sizeBytes,
       sha256: hash,
-      rollbackAction: existsNow ? 'manual_review_required' : 'delete_if_created_by_p1a',
+      rollbackAction: existsNow ? 'llm_official_source_review_required' : 'delete_if_created_by_p1a',
       rollbackNote: existsNow
         ? 'File existed before P1A; do not delete automatically.'
         : 'If approved P1A creates this file and rollback is needed, remove this newly created file only.',
@@ -289,7 +289,7 @@ async function main(): Promise<void> {
         'Rollback must not delete or modify any pre-existing user/app file.',
         'Rollback must keep French generation artifacts absent.',
       ],
-      manualReviewRequiredWhen: [
+      llmOfficialSourceReviewRequiredWhen: [
         'Any P1A packet file existed before apply.',
         'Any file outside the four-file packet changed during P1A.',
         'Any content, cloud, lesson, quiz, source graph or generated artifact was created.',

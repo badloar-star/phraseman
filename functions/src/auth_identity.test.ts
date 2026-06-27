@@ -1,4 +1,4 @@
-import { ensureAuthLinkDoc, linkStableAuthUid, resolveStableUidForAuth } from './auth_identity';
+import { ensureAuthLinkDoc, ensureStableLinkForAuth, linkStableAuthUid, resolveStableUidForAuth } from './auth_identity';
 
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;
@@ -11,7 +11,7 @@ function makeDbStub(initial: Store = {}) {
     league_groups: { ...(initial.league_groups ?? {}) },
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
   };
-  const sets: Array<{ path: string; data: DocData; options: unknown }> = [];
+  const sets: { path: string; data: DocData; options: unknown }[] = [];
 
   const snapFor = (id: string, data: DocData | undefined) => ({
     id,
@@ -161,6 +161,38 @@ describe('ensureAuthLinkDoc', () => {
     });
   });
 
+  it('creates a provider-shaped auth link during provider sign-in', async () => {
+    const { db, store } = makeDbStub();
+
+    await ensureAuthLinkDoc(db as any, 'google-auth-1', 'stable-1', 'google');
+
+    expect(store.auth_links['google-auth-1']).toEqual({
+      stable_id: 'stable-1',
+      updatedAt: 1_777_000_000_000,
+      providerUid: 'google-auth-1',
+      provider: 'google',
+      linkedAt: 1_777_000_000_000,
+      lastSignInAt: 1_777_000_000_000,
+    });
+  });
+
+  it('backfills provider fields on an existing minimal provider link', async () => {
+    const { db, store } = makeDbStub({
+      auth_links: { 'google-auth-1': { stable_id: 'stable-1', updatedAt: 1 } },
+    });
+
+    await ensureAuthLinkDoc(db as any, 'google-auth-1', 'stable-1', 'google');
+
+    expect(store.auth_links['google-auth-1']).toEqual({
+      stable_id: 'stable-1',
+      updatedAt: 1_777_000_000_000,
+      providerUid: 'google-auth-1',
+      provider: 'google',
+      linkedAt: 1_777_000_000_000,
+      lastSignInAt: 1_777_000_000_000,
+    });
+  });
+
   it('rewrites stable_id when the link points to a different stable id', async () => {
     const { db, store } = makeDbStub({
       auth_links: { 'auth-1': { stable_id: 'old-stable', updatedAt: 1 } },
@@ -239,6 +271,110 @@ describe('resolveStableUidForAuth', () => {
     ).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'stable_id_mismatch',
+    });
+  });
+});
+
+describe('ensureStableLinkForAuth', () => {
+  beforeEach(() => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_777_000_000_000);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('preserves an existing provider auth link when the client requests a new local stable id', async () => {
+    const { db, store } = makeDbStub({
+      auth_links: {
+        'google-auth-1': {
+          stable_id: 'remote-stable',
+          providerUid: 'google-auth-1',
+          provider: 'google',
+          linkedAt: 111,
+        },
+      },
+      users: {
+        'remote-stable': { firebaseAuthUid: 'old-auth', updatedAt: 222 },
+      },
+    });
+
+    const result = await ensureStableLinkForAuth(db as any, 'google-auth-1', 'local-stable', 'google.com');
+
+    expect(result).toEqual({ ok: true, stableUid: 'remote-stable', authUid: 'google-auth-1' });
+    expect(store.auth_links['google-auth-1']).toMatchObject({
+      stable_id: 'remote-stable',
+      providerUid: 'google-auth-1',
+      provider: 'google',
+      linkedAt: 111,
+    });
+    expect(store.users['remote-stable']).toMatchObject({
+      firebaseAuthUid: 'google-auth-1',
+      updatedAt: 1_777_000_000_000,
+    });
+    expect(store.users['local-stable']).toBeUndefined();
+  });
+
+  it('recovers an existing provider-owned user when auth_links is missing', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'remote-stable': {
+          firebaseAuthUid: 'google-auth-1',
+          linkedAuth: { providerUid: 'google-auth-1' },
+          progress: { user_total_xp: '123' },
+          updatedAt: 222,
+        },
+      },
+    });
+
+    const result = await ensureStableLinkForAuth(db as any, 'google-auth-1', 'local-stable', 'google.com');
+
+    expect(result).toEqual({ ok: true, stableUid: 'remote-stable', authUid: 'google-auth-1' });
+    expect(store.auth_links['google-auth-1']).toMatchObject({
+      stable_id: 'remote-stable',
+      providerUid: 'google-auth-1',
+      provider: 'google',
+      linkedAt: 1_777_000_000_000,
+    });
+    expect(store.users['local-stable']).toBeUndefined();
+  });
+
+  it('writes provider linkedAuth and auth_link metadata on the server', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-1': { firebaseAuthUid: 'old-anon-auth', updatedAt: 111 },
+      },
+    });
+
+    const result = await ensureStableLinkForAuth(db as any, 'google-auth-1', 'stable-1', 'google.com', {
+      email: 'user@example.com',
+      displayName: 'User Name',
+      lastSignInAt: 1_777_000_001_234,
+      devicePlatform: 'android',
+    });
+
+    expect(result).toEqual({ ok: true, stableUid: 'stable-1', authUid: 'google-auth-1' });
+    expect(store.auth_links['google-auth-1']).toMatchObject({
+      stable_id: 'stable-1',
+      providerUid: 'google-auth-1',
+      provider: 'google',
+      email: 'user@example.com',
+      displayName: 'User Name',
+      lastSignInAt: 1_777_000_001_234,
+      devicePlatform: 'android',
+    });
+    expect(store.users['stable-1']).toMatchObject({
+      firebaseAuthUid: 'google-auth-1',
+      linkedAuth: {
+        provider: 'google',
+        providerUid: 'google-auth-1',
+        email: 'user@example.com',
+        displayName: 'User Name',
+        linkedAt: 1_777_000_000_000,
+        lastSignInAt: 1_777_000_001_234,
+        devicePlatform: 'android',
+      },
+      updatedAt: 1_777_000_000_000,
     });
   });
 });

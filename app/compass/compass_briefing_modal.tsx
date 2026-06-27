@@ -52,7 +52,8 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
   const { lang } = useLang();
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
   // Хук вызывается всегда (правила хуков) и сам безопасно обрабатывает day=null.
-  const comment = useCompassVoice(day);
+  // Keep hooks unconditional, but avoid the AI voice callable while the modal is hidden.
+  const comment = useCompassVoice(visible ? day : null);
 
   if (!compassOn() || !day) return null;
 

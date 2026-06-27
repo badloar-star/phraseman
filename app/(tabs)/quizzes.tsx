@@ -2492,13 +2492,11 @@ function QuizGame({
             </Animated.View>
           )}
           {/* РАЗБОР ОТВЕТА */}
-          {(chosen !== null || typedOk !== null) && current.explanations && (() => {
+          {(chosen !== null || typedOk !== null) && (isThematicQuiz || current.explanations) && (() => {
             const correct =
               (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
-
-            // Тематический квиз → ИИ-разбор (изолированно). Статичные explanations не используются.
+            // Тематический квиз → только ИИ-разбор; статичные explanations тут не используются.
             if (isThematicQuiz) {
-              // Пока генерируется — скрываем блок (без статичного fallback'а, по требованию).
               if (quizExplain.state === 'unavailable') return null;
               const pickedOptionText = chosen !== null ? current.choices[chosen] : (typedOk === true ? quizCorrectEn : '');
               const aiExplanation = quizExplain.explanationFor(pickedOptionText ?? '', correct);
@@ -2559,6 +2557,7 @@ function QuizGame({
             }
 
             // Квизы легко/средне/сложно → статичные разборы (как было).
+            if (!current.explanations) return null;
             const explanationIdx = quizExplanationIndexForAnswer(current, chosen, typedOk);
             const plannedSourceExplanations = isPlannedInterfaceLang(lang)
               ? quizSourceExplanationsForPlanned(current, lang)

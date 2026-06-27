@@ -20,12 +20,18 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/users/$(stableUid)).data.firebaseAuthUid == request.auth.uid;
     }
 
+    function authLinkMapsToUser(userId) {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
+        && get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id == userId;
+    }
+
     function canonicalUserMatchesAuth(stableUid) {
       return stableUserMatchesAuth(stableUid);
     }
 
     function userDocOwnerMatchesAuth(userId) {
-      return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
+      return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId) || authLinkMapsToUser(userId);
     }
 
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
@@ -1540,10 +1546,12 @@ service cloud.firestore {
       // Update: Ð¿Ñ€Ð¸ relogin Ð¸Ð»Ð¸ swap Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°. ÐœÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ»Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹.
       // providerUid Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ.
       allow update: if ownsAuthLinkDoc()
-        && resource.data.providerUid == providerUid
+        && (!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)
         && request.resource.data.providerUid == providerUid
+        && request.resource.data.provider in ['google', 'apple']
+        && (!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)
         && request.resource.data.diff(resource.data).affectedKeys()
-           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])
+           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform', 'providerUid', 'provider', 'linkedAt'])
         && (
           request.resource.data.stable_id == resource.data.stable_id
           || stableIdOwnedByThisAuth(request.resource.data.stable_id)

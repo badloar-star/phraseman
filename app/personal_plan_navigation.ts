@@ -172,7 +172,7 @@ export function openPersonalPlanTask(
   }
   if (destination.type === 'trainer') {
     go({
-      pathname: '/trainer_smart_session',
+      pathname: '/trainer_plan_session',
       params: {
         mode: destination.mode,
         planTrainerTask: '1',

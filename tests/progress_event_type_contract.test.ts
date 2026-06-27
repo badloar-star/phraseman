@@ -39,16 +39,23 @@ describe('progress event type contract', () => {
     expect(xpManager).toMatch(/case 'wager_bet':\s*return null;/);
   });
 
-  it('covers direct non-XP progress events for lesson and level exam completion', () => {
+  it('covers direct lesson completion and registerXP-backed exam completion', () => {
     const lessonComplete = readFileSync(path.join(repoRoot, 'app/lesson_complete.tsx'), 'utf8');
     const levelExam = readFileSync(path.join(repoRoot, 'app/level_exam.tsx'), 'utf8');
+    const finalExam = readFileSync(path.join(repoRoot, 'app/exam.tsx'), 'utf8');
 
     expect(lessonComplete).toContain("type: 'lesson_complete'");
     expect(lessonComplete).toContain("xpDelta: 0");
     expect(lessonComplete).toContain('studyTarget');
-    expect(levelExam).toContain("type: 'exam_complete'");
-    expect(levelExam).toContain("xpDelta: 0");
+
+    expect(levelExam).toContain("registerXP(examXp, 'exam_complete'");
+    expect(levelExam).toContain('safeLevelExamEventPart(studyTarget)');
+    expect(levelExam).toContain('attemptNumber');
     expect(levelExam).toContain('studyTarget');
+
+    expect(finalExam).toContain("registerXP(xp, 'exam_complete'");
+    expect(finalExam).toContain('safeExamEventPart(studyTarget)');
+    expect(finalExam).toContain('studyTarget');
   });
 
   it('keeps client migration snapshot scoped to server-owned progress only', () => {

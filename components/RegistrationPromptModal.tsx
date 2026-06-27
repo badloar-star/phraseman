@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image as ExpoImage } from 'expo-image';
@@ -24,7 +24,7 @@ import { useLang } from './LangContext';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
 import {
   signInWithProvider,
-  signOutCurrentProvider,
+  signOutAndWipeForAccountSwitch,
   isAppleSignInAvailable,
   isGoogleSignInAvailable,
   AUTH_PROMPT_SHOWN_KEY,
@@ -32,8 +32,6 @@ import {
   type SignInResult,
   type AuthProviderId,
 } from '../app/auth_provider';
-import { clearStableId } from '../app/stable_id';
-import { ensureAnonUser } from '../app/cloud_sync';
 import { logEvent } from '../app/firebase';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
@@ -67,8 +65,9 @@ function RegistrationPromptModal({
   onClose,
   onSignedIn,
 }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { height: viewportHeight } = useWindowDimensions();
   const isCompassTheme = false;
 
   const [appleAvail, setAppleAvail] = useState(false);
@@ -197,6 +196,11 @@ function RegistrationPromptModal({
 
   const finalTitle = title ?? defaultTitle;
   const finalSubtitle = subtitle ?? defaultSubtitle;
+  const titleLineHeight = Math.round(f.h1 * 1.12);
+  const bodyLineHeight = Math.round(f.body * 1.32);
+  const captionLineHeight = Math.max(18, Math.round(f.caption * 1.4));
+  const cardMaxHeight = Math.max(280, viewportHeight - 64);
+  const cardPadding = viewportHeight < 720 ? 20 : 24;
 
   const labelGoogle = triLang(lang, { ru: 'Войти через Google', uk: 'Війти з Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' });
   const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
@@ -352,9 +356,8 @@ function RegistrationPromptModal({
   const handleResetAndRetry = useCallback(async () => {
     setLoadingProvider('google');
     try {
-      try { await signOutCurrentProvider(); } catch { /* ignore */ }
-      try { await clearStableId(); } catch { /* ignore */ }
-      try { await ensureAnonUser(); } catch { /* ignore */ }
+      const reset = await signOutAndWipeForAccountSwitch();
+      if (reset.ok === false) throw new Error(reset.detail || reset.reason || 'account_switch_reset_failed');
       showInlineError(
         'Сброс выполнен',
         'Identity-state очищен. Теперь нажми "Войти через Google" — должен появиться picker аккаунтов.',
@@ -362,7 +365,7 @@ function RegistrationPromptModal({
     } finally {
       setLoadingProvider(null);
     }
-  }, []);
+  }, [showInlineError]);
 
   const handleLater = useCallback(async () => {
     logEvent('auth_prompt_dismissed', { context });
@@ -387,11 +390,19 @@ function RegistrationPromptModal({
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
               borderRadius: isCompassTheme ? 14 : 24,
+              maxHeight: cardMaxHeight,
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(3) : null),
             },
           ]}
         >
+          <ScrollView
+            style={styles.cardScroll}
+            contentContainerStyle={[styles.cardContent, { padding: cardPadding }]}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+          >
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           {context === 'onboarding' ? (
             <ExpoImage
@@ -413,8 +424,12 @@ function RegistrationPromptModal({
               <Ionicons name={headerIcon} size={34} color={TRUST_ACCENT} />
             </View>
           )}
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{finalTitle}</Text>
-          <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>{finalSubtitle}</Text>
+          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1, lineHeight: titleLineHeight }]}>
+            {finalTitle}
+          </Text>
+          <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body, lineHeight: bodyLineHeight }]}>
+            {finalSubtitle}
+          </Text>
 
           <View style={styles.buttons}>
             {googleAvail && (
@@ -505,18 +520,19 @@ function RegistrationPromptModal({
             </Text>
           </Pressable>
 
-          <Text style={[styles.privacy, { color: t.textGhost, fontSize: f.caption }]}>
+          <Text style={[styles.privacy, { color: t.textGhost, fontSize: f.caption, lineHeight: captionLineHeight }]}>
             {labelPrivacy}
           </Text>
           <View style={styles.legalLinks}>
             <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL)} hitSlop={8}>
-              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption }]}>Privacy Policy</Text>
+              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>Privacy Policy</Text>
             </Pressable>
-            <Text style={{ color: t.textGhost, fontSize: f.caption }}>|</Text>
+            <Text style={{ color: t.textGhost, fontSize: f.caption, lineHeight: captionLineHeight }}>|</Text>
             <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_TERMS_URL)} hitSlop={8}>
-              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption }]}>Terms of Use</Text>
+              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>Terms of Use</Text>
             </Pressable>
           </View>
+          </ScrollView>
         </Pressable>
       </Pressable>
     </Modal>
@@ -538,42 +554,47 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     borderRadius: 24,
     borderWidth: 0.5,
-    padding: 28,
+    padding: 0,
+    alignItems: 'center',
+  },
+  cardScroll: {
+    width: '100%',
+  },
+  cardContent: {
     alignItems: 'center',
   },
   medallion: {
-    width: 72,
-    height: 72,
-    borderRadius: 20,
+    width: 64,
+    height: 64,
+    borderRadius: 18,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    marginBottom: 14,
+    marginBottom: 12,
   },
   authIcon: {
-    width: 86,
-    height: 86,
-    marginBottom: 12,
+    width: 76,
+    height: 76,
+    marginBottom: 10,
   },
   title: {
     fontWeight: '800',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   subtitle: {
     textAlign: 'center',
-    lineHeight: 22,
-    marginBottom: 24,
+    marginBottom: 20,
   },
   buttons: {
     width: '100%',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   laterButton: {
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 18,
-    marginTop: 4,
+    marginTop: 2,
   },
   laterText: {
     fontWeight: '600',
@@ -582,18 +603,22 @@ const styles = StyleSheet.create({
   privacy: {
     textAlign: 'center',
     marginTop: 6,
-    paddingHorizontal: 8,
-    lineHeight: 16,
+    paddingHorizontal: 6,
+    width: '100%',
   },
   legalLinks: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    marginTop: 8,
+    columnGap: 8,
+    rowGap: 2,
+    marginTop: 6,
+    width: '100%',
   },
   legalLink: {
     fontWeight: '700',
+    textAlign: 'center',
   },
   errorNote: {
     textAlign: 'center',

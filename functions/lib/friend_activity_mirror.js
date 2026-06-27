@@ -168,10 +168,10 @@ async function syncFriendActivityMirrorBatch() {
     console.log(JSON.stringify({ event: 'friend_activity_mirror_sync_done', scanned, updated, events }));
     return { scanned, updated, events };
 }
-// memory: 1GiB + timeout 540s — полный постраничный скан users/ каждые 6ч с появлением
+// memory: 1GiB + timeout 540s — полный постраничный скан users/ каждые 12ч с появлением
 // событий ленты друзей. На дефолтных 256MiB падал OOM (лента активности переставала
 // обновляться). На росте базы дополнительно нужен стриминг, но память — первый барьер.
-exports.syncFriendActivityMirrorCron = functions.scheduler.onSchedule({ schedule: 'every 6 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 }, async () => {
+exports.syncFriendActivityMirrorCron = functions.scheduler.onSchedule({ schedule: 'every 12 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 }, async () => {
     await syncFriendActivityMirrorBatch();
 });
 //# sourceMappingURL=friend_activity_mirror.js.map

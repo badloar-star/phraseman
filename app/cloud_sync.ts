@@ -16,7 +16,7 @@ import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaA
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
-import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
+import { mergeStreakByActivityDate, normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
@@ -27,6 +27,7 @@ import {
   LOYALTY_GIFT_CLAIMED_KEY,
 } from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { getAuthLinkCacheTtlMs } from './remote_flags';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
@@ -76,6 +77,7 @@ import {
   lessonBonusGrantedKey,
   lessonIntroShownKey,
   lessonIrregularShardsGrantedKey,
+  lessonListeningProgressKey,
   lessonPassCountKey,
   lessonPerfectMilestoneKey,
   lessonPrepositionProgressKey,
@@ -199,6 +201,7 @@ export const FRENCH_TARGET_SYNC_KEYS = [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
     lessonProgressKey(lessonId, 'fr'),
+    lessonListeningProgressKey(lessonId, 'fr'),
     lessonWordsKey(lessonId, 'fr'),
     lessonWordsShardsGrantedKey(lessonId, 'fr'),
     lessonIrregularShardsGrantedKey(lessonId, 'fr'),
@@ -522,6 +525,22 @@ export const SYNC_KEYS = [
   'boon_granted_streak_saver_v1',
 ] as const;
 
+export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {
+  const safe: string[] = [];
+  const bad: Array<{ index: number; key: unknown }> = [];
+  keys.forEach((key, index) => {
+    if (typeof key === 'string' && key.length > 0) {
+      safe.push(key);
+    } else {
+      bad.push({ index, key });
+    }
+  });
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && bad.length > 0) {
+    console.warn('[cloud_sync] skipped invalid sync key(s)', bad);
+  }
+  return safe;
+}
+
 export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
     dailyTasksProgressKey(todayKey, target),
@@ -552,7 +571,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
   ]);
 
   return Array.from(new Set([
-    ...SYNC_KEYS,
+    ...getRuntimeSyncKeys(),
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
@@ -593,7 +612,8 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
 const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
-const STABLE_AUTH_LINK_CACHE_TTL_MS = 24 * 60 * 60_000;
+const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
+const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
@@ -609,7 +629,23 @@ let syncInFlight: Promise<void> | null = null;
 let pendingSync = false;
 let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
-let stableAuthLinkPromise: Promise<boolean> | null = null;
+export type StableAuthLinkEnsureResult = {
+  ok: boolean;
+  requestedStableId: string;
+  stableUid: string | null;
+  authUid: string | null;
+  source: 'disabled' | 'cache' | 'callable' | 'firestore_fallback' | 'unavailable';
+};
+
+export type StableAuthLinkMetadata = {
+  provider?: 'google' | 'apple';
+  email?: string | null;
+  displayName?: string | null;
+  lastSignInAt?: number;
+  devicePlatform?: 'ios' | 'android' | 'web';
+};
+
+let stableAuthLinkPromise: Promise<StableAuthLinkEnsureResult> | null = null;
 let stableAuthLinkKey = '';
 
 async function readStableAuthLinkCache(key: string): Promise<boolean> {
@@ -618,7 +654,8 @@ async function readStableAuthLinkCache(key: string): Promise<boolean> {
     if (!raw) return false;
     const parsed = JSON.parse(raw) as { key?: unknown; linkedAt?: unknown };
     const linkedAt = typeof parsed.linkedAt === 'number' ? parsed.linkedAt : 0;
-    return parsed.key === key && linkedAt > 0 && Date.now() - linkedAt < STABLE_AUTH_LINK_CACHE_TTL_MS;
+    const ttlMs = Math.max(60_000, getAuthLinkCacheTtlMs() || DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS);
+    return parsed.key === key && linkedAt > 0 && Date.now() - linkedAt < ttlMs;
   } catch {
     return false;
   }
@@ -807,20 +844,33 @@ export function shouldSyncPremiumProgressField(
   return premiumValuePresent(value);
 }
 
-const LESSON_RESTORE_MERGE_KEYS = Array.from({ length: 32 }, (_, i) => {
-  const lessonId = i + 1;
-  return [
-    `lesson${lessonId}_best_score`,
-    `lesson${lessonId}_pass_count`,
-    `lesson${lessonId}_progress`,
-    achievementLessonPerfectPassesKey(lessonId, 'en'),
-    lessonBestScoreKey(lessonId, 'fr'),
-    lessonPassCountKey(lessonId, 'fr'),
-    lessonProgressKey(lessonId, 'fr'),
-    achievementLessonPerfectPassesKey(lessonId, 'fr'),
-  ];
-}).flat();
-const LESSON_RESTORE_MERGE_KEY_SET = new Set<string>(LESSON_RESTORE_MERGE_KEYS);
+const LESSON_RESTORE_MERGE_KEYS = [
+  'unlocked_lessons',
+  unlockedLessonsKey('fr'),
+  ...Array.from({ length: 32 }, (_, i) => {
+    const lessonId = i + 1;
+    return [
+      `lesson${lessonId}_best_score`,
+      `lesson${lessonId}_pass_count`,
+      `lesson${lessonId}_progress`,
+      achievementLessonPerfectPassesKey(lessonId, 'en'),
+      lessonBestScoreKey(lessonId, 'fr'),
+      lessonPassCountKey(lessonId, 'fr'),
+      lessonProgressKey(lessonId, 'fr'),
+      achievementLessonPerfectPassesKey(lessonId, 'fr'),
+    ];
+  }).flat(),
+];
+const LEVEL_EXAM_RESTORE_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
+const LEVEL_EXAM_RESTORE_FIELDS = ['passed', 'available', 'pct', 'best_pct', 'pass_count', 'attempt_count', 'medal_tier'] as const;
+const LEVEL_EXAM_RESTORE_MERGE_KEYS = LEVEL_EXAM_RESTORE_LEVELS.flatMap((level) => [
+  ...LEVEL_EXAM_RESTORE_FIELDS.map((field) => levelExamKey(level, field, 'en')),
+  ...LEVEL_EXAM_RESTORE_FIELDS.map((field) => levelExamKey(level, field, 'fr')),
+]);
+const RESTORE_MERGE_KEY_SET = new Set<string>([
+  ...LESSON_RESTORE_MERGE_KEYS,
+  ...LEVEL_EXAM_RESTORE_MERGE_KEYS,
+]);
 
 // #10 multi-device: strictly-additive lifetime counters (bumpStoredCounter only
 // ever increases them). On restore they take the max of cloud/local so a
@@ -893,6 +943,29 @@ function mergeNumberSetRestoreValue(cloudValue: string, localValue: string | nul
   return JSON.stringify([...new Set([...cloud, ...local])].sort((a, b) => a - b));
 }
 
+function parseProgressBool(value: unknown): boolean {
+  const s = String(value ?? '').trim().toLowerCase();
+  return value === true || s === 'true' || s === '1' || s === 'yes';
+}
+
+function mergeLevelExamRestoreValue(
+  restoreId: string,
+  cloudValue: string,
+  localValue: string | null | undefined,
+): string {
+  if (/^level_exam_[A-Za-z0-9_-]+_(?:passed|available)$/.test(restoreId)) {
+    return parseProgressBool(cloudValue) || parseProgressBool(localValue) ? 'true' : 'false';
+  }
+  if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|pass_count|attempt_count|medal_tier)$/.test(restoreId)) {
+    return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+  }
+  if (/^level_exam_[A-Za-z0-9_-]+_completed_at$/.test(restoreId)) {
+    if (isDateKey(cloudValue) && isDateKey(localValue) && localValue > cloudValue) return localValue;
+    return cloudValue;
+  }
+  return cloudValue;
+}
+
 function targetScopedRestoreInfo(key: string): { domain: string; id: string } | null {
   const match = /^([a-z_]+)_v2::(?:en|fr)::(.+)$/.exec(key);
   if (!match) return null;
@@ -917,6 +990,12 @@ function mergeLessonRestoreValue(
   const scoped = targetScopedRestoreInfo(key);
   const restoreId = scoped?.id ?? key;
   const isScopedLessonProgress = scoped?.domain === 'lesson_progress';
+  if (restoreId === 'unlocked_lessons') {
+    return mergeNumberSetRestoreValue(cloudValue, localValue);
+  }
+  if (/^level_exam_[A-Za-z0-9_-]+_/.test(restoreId)) {
+    return mergeLevelExamRestoreValue(restoreId, cloudValue, localValue);
+  }
   if (/^lesson\d+_pass_count$/.test(restoreId)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
   }
@@ -953,7 +1032,7 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     if (val === null || val === undefined) continue;
     const localValue = localMap[key];
     const storageValue = cloudProgressStorageValue(key, val);
-    if (LESSON_RESTORE_MERGE_KEY_SET.has(key)) {
+    if (RESTORE_MERGE_KEY_SET.has(key)) {
       const merged = mergeLessonRestoreValue(key, storageValue, localValue);
       if (merged !== localValue) pairs.push([key, merged]);
       continue;
@@ -1132,27 +1211,55 @@ function callable<TReq, TRes>(name: string, options?: CallableOptions) {
   return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name, options);
 }
 
-export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Promise<boolean> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
+export async function ensureStableAuthLinkForStableIdDetailed(
+  stableIdRaw: string,
+  metadata?: StableAuthLinkMetadata,
+): Promise<StableAuthLinkEnsureResult> {
+  const requestedStableId = String(stableIdRaw || '').trim();
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    return { ok: true, requestedStableId, stableUid: requestedStableId || null, authUid: null, source: 'disabled' };
+  }
   const stableId = String(stableIdRaw || '').trim();
   const authUid = await waitForFirebaseAuthUid();
-  if (!stableId || !authUid) return false;
+  if (!stableId || !authUid) {
+    return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
+  }
 
   const key = `${stableId}:${authUid}`;
-  if (await readStableAuthLinkCache(key)) return true;
-  if (stableAuthLinkPromise && stableAuthLinkKey === key) return stableAuthLinkPromise;
+  const hasFreshMetadata = metadata != null && Object.keys(metadata).length > 0;
+  if (!hasFreshMetadata && await readStableAuthLinkCache(key)) {
+    return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'cache' };
+  }
+  const promiseKey = hasFreshMetadata ? `${key}:metadata` : key;
+  if (stableAuthLinkPromise && stableAuthLinkKey === promiseKey) return stableAuthLinkPromise;
 
-  stableAuthLinkKey = key;
+  stableAuthLinkKey = promiseKey;
   stableAuthLinkPromise = (async () => {
     try {
       await initFirebaseAppCheckIfAvailable().catch(() => {});
-      const fn = callable<{ stableId: string }, { ok: boolean; stableUid: string; authUid: string }>('authEnsureStableLink');
-      await withTimeout(fn({ stableId }), STABLE_AUTH_LINK_TIMEOUT_MS, 'auth_link_callable');
-      writeStableAuthLinkCache(key).catch(() => {});
-      return true;
+      const fn = callable<
+        { stableId: string; linkMetadata?: StableAuthLinkMetadata },
+        { ok: boolean; stableUid: string; authUid: string }
+      >('authEnsureStableLink');
+      const res = await withTimeout(
+        fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) }),
+        STABLE_AUTH_LINK_TIMEOUT_MS,
+        'auth_link_callable',
+      );
+      const actualStableUid = String(res?.data?.stableUid ?? '').trim();
+      const actualAuthUid = String(res?.data?.authUid ?? authUid).trim() || authUid;
+      const cacheStableUid = actualStableUid || stableId;
+      writeStableAuthLinkCache(`${cacheStableUid}:${actualAuthUid}`).catch(() => {});
+      return {
+        ok: res?.data?.ok === true,
+        requestedStableId: stableId,
+        stableUid: actualStableUid || stableId,
+        authUid: actualAuthUid,
+        source: 'callable',
+      };
     } catch {
       const db = getFirestore();
-      if (!db) return false;
+      if (!db) return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
       try {
         await withTimeout(
           db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
@@ -1160,9 +1267,9 @@ export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Prom
           'auth_link_firestore',
         );
         writeStableAuthLinkCache(key).catch(() => {});
-        return true;
+        return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'firestore_fallback' };
       } catch {
-        return false;
+        return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
       }
     } finally {
       stableAuthLinkPromise = null;
@@ -1170,6 +1277,11 @@ export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Prom
   })();
 
   return stableAuthLinkPromise;
+}
+
+export async function ensureStableAuthLinkForStableId(stableIdRaw: string): Promise<boolean> {
+  const result = await ensureStableAuthLinkForStableIdDetailed(stableIdRaw);
+  return result.ok;
 }
 
 export async function ensureStableAuthLink(): Promise<boolean> {
@@ -1345,12 +1457,6 @@ function loginBonusMergeValue(localRaw: string | null, cloudRaw: string | null |
   return null;
 }
 
-function newerDateKeyValue(localRaw: string | null, cloudRaw: string | null | undefined): string | null {
-  if (!isDateKey(cloudRaw)) return null;
-  if (!isDateKey(localRaw) || cloudRaw > localRaw) return cloudRaw;
-  return null;
-}
-
 async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string | null>): Promise<[string, string][]> {
   const pairs: [string, string][] = [];
 
@@ -1406,7 +1512,7 @@ async function doSyncToCloud(): Promise<void> {
   if (!uid) return;
   try {
     await repairDevSeededStreakInStorage();
-    const pairs = await AsyncStorage.multiGet([...SYNC_KEYS]);
+    const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) {
       data[key] = value;
@@ -1600,12 +1706,20 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     'vip_admin_override', 'vip_admin_grant_at', 'vip_grant_at',
   ]);
 
-  const localXPRaw = await AsyncStorage.getItem('user_total_xp');
-  const localStreakRaw = await AsyncStorage.getItem('streak_count');
+  const [localXPRaw, localStreakRaw, localLastActiveRaw, localStreakLastRaw] = await Promise.all([
+    AsyncStorage.getItem('user_total_xp'),
+    AsyncStorage.getItem('streak_count'),
+    AsyncStorage.getItem('last_active_date'),
+    AsyncStorage.getItem('streak_last_date'),
+  ]);
   const localXP = parseProgressInt(localXPRaw);
   const cloudXP = parseProgressInt(cloudData['user_total_xp']);
   const localStreak = parseProgressInt(localStreakRaw);
   const cloudStreak = parseProgressInt(cloudData['streak_count']);
+  const mergedStreak = mergeStreakByActivityDate(
+    { streak: localStreakRaw, lastActive: localLastActiveRaw, streakLast: localStreakLastRaw },
+    { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
+  );
   const shouldRestoreCloudProgress =
     cloudXP > localXP || (cloudXP === localXP && cloudStreak > localStreak);
   if (!shouldRestoreCloudProgress) {
@@ -1655,11 +1769,13 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localCounterMap[key]);
       if (merged !== localCounterMap[key]) stickyPairs.push([key, merged]);
     }
-    const cloudLastActive = cloudData['last_active_date'];
-    const localLastActive = await AsyncStorage.getItem('last_active_date');
-    const mergedLastActive = newerDateKeyValue(localLastActive, cloudLastActive);
-    if (mergedLastActive !== null) {
-      stickyPairs.push(['last_active_date', mergedLastActive]);
+    const localStreakNormalized = localStreakRaw == null ? null : String(parseProgressInt(localStreakRaw));
+    if (String(mergedStreak.streak) !== localStreakNormalized && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
+      stickyPairs.push(['streak_count', String(mergedStreak.streak)]);
+    }
+    if (mergedStreak.lastActive && mergedStreak.lastActive !== localLastActiveRaw) {
+      stickyPairs.push(['last_active_date', mergedStreak.lastActive]);
+      stickyPairs.push(['streak_last_date', mergedStreak.lastActive]);
     }
     const cloudLoginBonus = cloudData['login_bonus_v1'];
     const localLoginBonus = await AsyncStorage.getItem('login_bonus_v1');
@@ -1738,16 +1854,19 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
 
   const pairs: [string, string][] = [];
   const localLessonRestoreMap = Object.fromEntries(
-    await AsyncStorage.multiGet([...LESSON_RESTORE_MERGE_KEYS, ...MONOTONIC_COUNTER_RESTORE_KEYS]),
+    await AsyncStorage.multiGet([...RESTORE_MERGE_KEY_SET, ...MONOTONIC_COUNTER_RESTORE_KEYS]),
   ) as Record<string, string | null>;
   const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
   const cloudConsumedSig = cloudData['league_result_consumed_sig'];
-  for (const key of SYNC_KEYS) {
+  for (const key of getRuntimeSyncKeys()) {
     if (
       key === CLOUD_DAILY_TASKS_PROGRESS_KEY ||
       key === CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
       key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY ||
-      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY
+      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
+      key === 'streak_count' ||
+      key === 'last_active_date' ||
+      key === 'streak_last_date'
     ) {
       continue;
     }
@@ -1764,6 +1883,13 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       const storageValue = cloudProgressStorageValue(key, val);
       pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);
     }
+  }
+  if (mergedStreak.streak > 0 || cloudData['streak_count'] != null) {
+    pairs.push(['streak_count', String(mergedStreak.streak)]);
+  }
+  if (mergedStreak.lastActive) {
+    pairs.push(['last_active_date', mergedStreak.lastActive]);
+    pairs.push(['streak_last_date', mergedStreak.lastActive]);
   }
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
   if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
@@ -1900,7 +2026,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     // doSyncToCloud глотает ошибки внутри, так что обернём напрямую без try-catch фасада:
     // повторим логику записи минимально-инвазивно, ловя ошибки явно.
     await repairDevSeededStreakInStorage();
-    const pairs = await AsyncStorage.multiGet([...SYNC_KEYS]);
+    const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) data[key] = value;
     removeCloudOnlyDailyTaskSnapshots(data);
@@ -1997,6 +2123,25 @@ export async function forceSyncToCloud(): Promise<boolean> {
 // (язык, тема, размер шрифта, haptics) — это per-device preferences, а не per-account.
 //
 // ВАЖНО: stable_id не трогаем тут — это делает clearStableId() в stable_id.ts.
+export async function saveAccountSwitchEmergencyBackup(reason: string): Promise<void> {
+  try {
+    const keys = accountLocalDataKeysForToday();
+    const pairs = (await AsyncStorage.multiGet(keys)).filter(([, value]) => value != null);
+    const stableId = await getCanonicalUserId().catch(() => null);
+    await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, JSON.stringify({
+      version: 1,
+      createdAt: Date.now(),
+      reason: String(reason || 'unknown').slice(0, 80),
+      stableId,
+      pairs,
+    }));
+  } catch (e) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      console.warn('[cloud_sync] account switch emergency backup failed', e);
+    }
+  }
+}
+
 export async function wipeLocalAccountData(): Promise<void> {
   const accountKeys = new Set<string>(accountLocalDataKeysForToday());
   // Сохраняем НЕ-аккаунтные настройки устройства:

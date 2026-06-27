@@ -6,7 +6,7 @@ import {
   type GavanCanonicalDay,
   type GavanCanonicalPhrase,
 } from './personal_plan_gavan_week1_canonical_plan';
-import { getAuthoredPlanContentDay } from './plan_content_registry';
+import { resolveBundledCompatibilityPlanContentPhraseLesson } from './plan_content_readiness';
 import { contentDayToLessonPhrases } from './plan_content_runtime_adapter';
 
 export type PersonalPlanPhraseLesson = {
@@ -790,8 +790,9 @@ function buildGeneratedPlanPhraseLesson(id: string): PersonalPlanPhraseLesson | 
   // Prefer real agent-authored content from the new pipeline (full explanations,
   // authored POS + distractors, day vocabulary). Falls back to the old template path
   // for days that have not been authored yet.
-  const authored = getAuthoredPlanContentDay(planId, dayIndex);
-  if (authored) {
+  const contentResolution = resolveBundledCompatibilityPlanContentPhraseLesson(planId, dayIndex);
+  if (contentResolution.kind === 'authored_day') {
+    const authored = contentResolution.day;
     // The catalog/navigation request content units by position: `${id}_phrase_${N}`.
     // The exercise item builders filter lesson.phrases by those ids. So the authored
     // phrases MUST be re-keyed to the same positional scheme (their internal ids like
@@ -810,6 +811,10 @@ function buildGeneratedPlanPhraseLesson(id: string): PersonalPlanPhraseLesson | 
       rationale: day?.theory ?? authored.outcome.ru,
       phrases,
     };
+  }
+
+  if (contentResolution.kind === 'blocked') {
+    return null;
   }
 
   const templates = GENERATED_DAY1_PHRASE_TEMPLATES[id] ?? GENERATED_PLAN_PHRASE_TEMPLATES[planId];

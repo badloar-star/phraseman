@@ -27,7 +27,7 @@ import {
   writeRejectedQuizExplanation,
   isRetryableRejectedQuiz,
 } from './explain/quiz_explain_cache';
-import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
+import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateQuizInput, parseQuizBatch } from './explain/quiz_explain_gates';
 import { buildQuizPrompt, quizBatchToJudgeText } from './explain/quiz_explain_prompts';
@@ -127,9 +127,9 @@ export const explainQuiz = onCall({
   if (!jobCfg.enabled) return emptyBatch('exhausted', false);
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
+  let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    await enforceUserGenLimit(authUid, stableUid);
-    await enforceGlobalBudget(jobCfg.globalDailyCap);
+    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return emptyBatch('exhausted', false);
@@ -139,17 +139,28 @@ export const explainQuiz = onCall({
 
   // 5. Claim the generation lock (anti-duplicate).
   const claimed = await claimQuizPendingLock(quizHash, Date.now());
-  if (!claimed) return emptyBatch('pending', true);
+  if (!claimed) {
+    await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
+    budgetReservation = null;
+    return emptyBatch('pending', true);
+  }
 
   // 6. Generate the whole batch as STRICT JSON.
-  const gen = await openAiChat({
-    apiKey,
-    model: jobCfg.model,
-    messages: [{ role: 'user', content: buildQuizPrompt(correctEn, questionPrompt, wrongOptions, lang) }],
-    maxTokens: GEN_MAX_TOKENS,
-    temperature: GEN_TEMPERATURE,
-    responseFormat: { type: 'json_object' },
-  });
+  let gen: Awaited<ReturnType<typeof openAiChat>>;
+  try {
+    gen = await openAiChat({
+      apiKey,
+      model: jobCfg.model,
+      messages: [{ role: 'user', content: buildQuizPrompt(correctEn, questionPrompt, wrongOptions, lang) }],
+      maxTokens: GEN_MAX_TOKENS,
+      temperature: GEN_TEMPERATURE,
+      responseFormat: { type: 'json_object' },
+    });
+  } catch (err) {
+    await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
+    budgetReservation = null;
+    throw err;
+  }
 
   const parsed = parseQuizBatch(gen.text, wrongOptions);
 
@@ -161,11 +172,20 @@ export const explainQuiz = onCall({
 
   // 8. Verdict gates the SHARED CACHE. Live caller still receives whatever was generated.
   if (verdict.ok) {
-    await writeReadyQuizExplanation(
-      quizHash,
-      { confirm: parsed.confirm, options: parsed.options },
-      { lang, correctEn, questionPrompt, model: jobCfg.model },
-    );
+    try {
+      await writeReadyQuizExplanation(
+        quizHash,
+        { confirm: parsed.confirm, options: parsed.options },
+        { lang, correctEn, questionPrompt, model: jobCfg.model },
+      );
+    } catch (writeErr) {
+      console.error('explainQuiz writeReady failed, retrying once', quizHash, writeErr);
+      await writeReadyQuizExplanation(
+        quizHash,
+        { confirm: parsed.confirm, options: parsed.options },
+        { lang, correctEn, questionPrompt, model: jobCfg.model },
+      );
+    }
   } else {
     await writeRejectedQuizExplanation(quizHash, verdict.reason);
   }

@@ -32,6 +32,7 @@ export interface CompassTask {
   minutes: number;
   /** Слабая тема, к которой привязана задача (для карты тем / зова в сессию). */
   weakTopic?: string;
+  microDiagnosisId?: string;
 }
 
 export interface CompassDay {
@@ -118,13 +119,24 @@ function hardestLessonId(snapshot: CompassSnapshot): number | undefined {
   return bestId;
 }
 
+function mistakeRepairTask(snapshot: CompassSnapshot, minutes: number): CompassTask | null {
+  const target = snapshot.mistakeRepairTargets?.[0];
+  if (!target?.microDiagnosisId) return null;
+  return {
+    kind: 'mistake_repair',
+    minutes,
+    weakTopic: target.category,
+    microDiagnosisId: target.microDiagnosisId,
+  };
+}
+
 /**
  * Собрать день: тип + 3–5 задач. Каждый тип дня даёт свой набор, но все задачи —
  * это зов в РЕАЛЬНЫЕ части приложения. Прогресс частей не трогается (только зов).
  */
 export function buildCompassDay(snapshot: CompassSnapshot, nowMs: number): CompassDay {
   const type = decideDayType(snapshot, nowMs);
-  const weakTopic = weakestTopic(snapshot);
+  const weakTopic = snapshot.mistakeRepairTargets?.[0]?.category ?? weakestTopic(snapshot);
   const lessonInviteId = hardestLessonId(snapshot);
   const planDayIndex = snapshot.planDay?.dayIndex;
   const srsDue = snapshot.trainer?.totalDue ?? 0;
@@ -138,14 +150,17 @@ export function buildCompassDay(snapshot: CompassSnapshot, nowMs: number): Compa
   } else if (type === 'comeback') {
     // Тёплый короткий день: чуть-чуть почти забытого.
     tasks.push({ kind: 'flashcards_review', minutes: 2, focus: 'recall' });
-    if (srsDue > 0) tasks.push({ kind: 'mistake_repair', minutes: 2, weakTopic });
+    const repair = mistakeRepairTask(snapshot, 2);
+    if (srsDue > 0 && repair) tasks.push(repair);
   } else if (type === 'repair') {
-    tasks.push({ kind: 'mistake_repair', minutes: 3, weakTopic });
+    const repair = mistakeRepairTask(snapshot, 3);
+    if (repair) tasks.push(repair);
     if (srsDue > 0) tasks.push({ kind: 'flashcards_review', minutes: 2 });
     if (planDayIndex) tasks.push({ kind: 'plan_continue', minutes: 3 });
   } else if (type === 'deep_dive') {
     if (lessonInviteId) tasks.push({ kind: 'lesson_dive', minutes: 5, focus: String(lessonInviteId), weakTopic });
-    tasks.push({ kind: 'mistake_repair', minutes: 3, weakTopic });
+    const repair = mistakeRepairTask(snapshot, 3);
+    if (repair) tasks.push(repair);
     if (srsDue > 0) tasks.push({ kind: 'flashcards_review', minutes: 2 });
     tasks.push({ kind: 'pronunciation', minutes: 1 });
   } else {
@@ -153,6 +168,10 @@ export function buildCompassDay(snapshot: CompassSnapshot, nowMs: number): Compa
     if (planDayIndex) tasks.push({ kind: 'plan_continue', minutes: 4 });
     if (srsDue > 0) tasks.push({ kind: 'flashcards_review', minutes: 2 });
     tasks.push({ kind: 'pronunciation', minutes: 1 });
+  }
+
+  if (tasks.length === 0) {
+    tasks.push(planDayIndex ? { kind: 'plan_continue', minutes: 3 } : { kind: 'pronunciation', minutes: 1 });
   }
 
   return {

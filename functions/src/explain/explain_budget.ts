@@ -93,3 +93,98 @@ export async function enforceGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs:
     }, { merge: true });
   });
 }
+
+export interface ExplainBudgetReservation {
+  authUid: string;
+  stableUid: string;
+  globalCap: number;
+  nowMs: number;
+  userReserved: boolean;
+  globalReserved: boolean;
+}
+
+async function refundUserGenLimit(authUid: string, stableUid: string, nowMs: number): Promise<void> {
+  const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId('gen', authUid, stableUid));
+  await admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const resetAtMs = Number(data.resetAtMs ?? 0);
+    const fresh = nowMs >= resetAtMs;
+    const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+    tx.set(ref, {
+      dailyCount: Math.max(0, current - 1),
+      updatedAtMs: nowMs,
+    }, { merge: true });
+  });
+}
+
+async function refundGlobalBudget(cap: number, nowMs: number): Promise<void> {
+  if (cap <= 0) return;
+  const ref = admin.firestore().collection(GLOBAL_BUDGET_COLLECTION).doc(utcDateKey(nowMs));
+  await admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const current = Number(data.genCount ?? 0);
+    tx.set(ref, {
+      genCount: Math.max(0, current - 1),
+      updatedAtMs: nowMs,
+    }, { merge: true });
+  });
+}
+
+/**
+ * Reserves both user and global generation budget for a cache miss. If the
+ * global breaker fails after the user counter increments, the user counter is
+ * refunded immediately so a wallet-wide cap does not consume personal quota.
+ */
+export async function reserveExplainBudget(
+  authUid: string,
+  stableUid: string,
+  globalCap: number = GLOBAL_DAILY_CAP,
+  nowMs: number = Date.now(),
+): Promise<ExplainBudgetReservation> {
+  const reservation: ExplainBudgetReservation = {
+    authUid,
+    stableUid,
+    globalCap,
+    nowMs,
+    userReserved: false,
+    globalReserved: false,
+  };
+
+  try {
+    await enforceUserGenLimit(authUid, stableUid, nowMs);
+    reservation.userReserved = true;
+    await enforceGlobalBudget(globalCap, nowMs);
+    reservation.globalReserved = globalCap > 0;
+    return reservation;
+  } catch (err) {
+    if (reservation.userReserved && !reservation.globalReserved) {
+      await refundUserGenLimit(authUid, stableUid, nowMs)
+        .catch((refundErr) => console.error('explain budget user refund failed', refundErr));
+      reservation.userReserved = false;
+    }
+    throw err;
+  }
+}
+
+/**
+ * Returns reserved budget when no generation happened, for example a lost cache
+ * lock race or an OpenAI provider failure before a usable response.
+ */
+export async function refundExplainBudgetReservation(
+  reservation: ExplainBudgetReservation | null | undefined,
+  reason: string,
+): Promise<void> {
+  if (!reservation) return;
+  const failures: unknown[] = [];
+  if (reservation.globalReserved) {
+    await refundGlobalBudget(reservation.globalCap, reservation.nowMs)
+      .catch((err) => failures.push(err));
+  }
+  if (reservation.userReserved) {
+    await refundUserGenLimit(reservation.authUid, reservation.stableUid, reservation.nowMs)
+      .catch((err) => failures.push(err));
+  }
+  if (failures.length > 0) {
+    console.error('explain budget refund failed', reason, failures);
+  }
+}

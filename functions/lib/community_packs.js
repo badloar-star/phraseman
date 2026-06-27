@@ -820,6 +820,7 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
             priceShards: price,
             authorNetShards: net,
             buyerBalanceAfter,
+            shardsUpdatedAtMs: now,
             studyTarget,
         };
     });

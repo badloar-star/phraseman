@@ -403,7 +403,7 @@ async function main(): Promise<void> {
       sourceArtifacts: [path.relative(repoRoot, canonicalDraftPath), path.relative(repoRoot, reconciliationAuditPath)],
       evidence: [
         'Available if clean draft review rejects runtime-derived source truth.',
-        'Would require human/pedagogical reconstruction before French generation.',
+        'Would require LLM official-source/pedagogical reconstruction before French generation.',
       ],
       blockers: [
         'No manual rebuild artifact exists yet.',

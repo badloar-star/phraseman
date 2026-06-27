@@ -25,7 +25,7 @@ import {
   writeRejectedChoiceExplanation,
   isRetryableRejectedChoice,
 } from './explain/choice_explain_cache';
-import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
+import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateChoiceInput, parseChoiceBatch } from './explain/choice_explain_gates';
 import { buildChoicePrompt, choiceBatchToJudgeText } from './explain/choice_explain_prompts';
@@ -121,9 +121,9 @@ export const explainChoice = onCall({
   if (!jobCfg.enabled) return emptyBatch('exhausted', false);
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
+  let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    await enforceUserGenLimit(authUid, stableUid);
-    await enforceGlobalBudget(jobCfg.globalDailyCap);
+    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return emptyBatch('exhausted', false);
@@ -133,17 +133,28 @@ export const explainChoice = onCall({
 
   // 5. Claim the generation lock (anti-duplicate).
   const claimed = await claimChoicePendingLock(choiceHash, Date.now());
-  if (!claimed) return emptyBatch('pending', true);
+  if (!claimed) {
+    await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
+    budgetReservation = null;
+    return emptyBatch('pending', true);
+  }
 
   // 6. Generate the whole batch as STRICT JSON.
-  const gen = await openAiChat({
-    apiKey,
-    model: jobCfg.model,
-    messages: [{ role: 'user', content: buildChoicePrompt(correctEn, phraseMeaning, distractors, lang) }],
-    maxTokens: GEN_MAX_TOKENS,
-    temperature: GEN_TEMPERATURE,
-    responseFormat: { type: 'json_object' },
-  });
+  let gen: Awaited<ReturnType<typeof openAiChat>>;
+  try {
+    gen = await openAiChat({
+      apiKey,
+      model: jobCfg.model,
+      messages: [{ role: 'user', content: buildChoicePrompt(correctEn, phraseMeaning, distractors, lang) }],
+      maxTokens: GEN_MAX_TOKENS,
+      temperature: GEN_TEMPERATURE,
+      responseFormat: { type: 'json_object' },
+    });
+  } catch (err) {
+    await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
+    budgetReservation = null;
+    throw err;
+  }
 
   const parsed = parseChoiceBatch(gen.text, distractors);
 

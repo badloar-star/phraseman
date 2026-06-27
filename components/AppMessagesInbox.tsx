@@ -225,13 +225,14 @@ function AppMessagesInbox() {
   );
 
   useEffect(() => {
+    if (!visible) return;
     const sub = subscribeUserAppMessages((snapshot) => {
       const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
       setMessages(filtered.messages);
       setUnreadCount(filtered.unreadCount);
     });
     return () => sub.remove();
-  }, [hasPremiumAccess]);
+  }, [hasPremiumAccess, visible]);
 
   useEffect(() => {
     if (!hasPremiumAccess || !surveyTarget) return;

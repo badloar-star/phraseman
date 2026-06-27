@@ -44,9 +44,16 @@ type ActivateLeagueGroupBoostResponse = {
   groupId: string;
   boost: LeagueGroupBoostState;
   shardsBalance: number;
+  shardsUpdatedAtMs?: number;
   /** true — сервер погасил подарочный ваучер «буст бесплатно» (club_boost_free). */
   usedGiftVoucher?: boolean;
 };
+
+type BuyLeagueGroupBoostResult =
+  | { ok: true; boost: LeagueGroupBoostState; shardsBalance: number; usedGiftVoucher: boolean }
+  | { ok: false; reason: 'unavailable' | 'auth_required' | 'not_deployed' | 'active' | 'not_enough_shards' | 'no_current_group' | 'unknown' };
+
+const leagueGroupBoostBuyInFlight = new Map<string, Promise<BuyLeagueGroupBoostResult>>();
 
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
@@ -263,45 +270,56 @@ export async function fetchLeagueGroupBoostLikedToday(boost: LeagueGroupBoostSta
   return state?.targetUid === boost.buyerUid && state?.eventId === boost.likeEventId;
 }
 
-export async function buyLeagueGroupBoost(): Promise<
-  | { ok: true; boost: LeagueGroupBoostState; shardsBalance: number; usedGiftVoucher: boolean }
-  | { ok: false; reason: 'unavailable' | 'auth_required' | 'not_deployed' | 'active' | 'not_enough_shards' | 'no_current_group' | 'unknown' }
-> {
+export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return { ok: false, reason: 'unavailable' };
   const stableId = await ensureAnonUser();
   if (!stableId) return { ok: false, reason: 'unavailable' };
-  await ensureCallableAuthReady().catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  try {
-    const fn = callable<{ stableId?: string }, ActivateLeagueGroupBoostResponse>('leagueActivateGroupBoost');
-    const res = await fn({ stableId });
-    const boost = normalizeBoost(res.data?.boost, res.data?.groupId);
-    if (!boost) return { ok: false, reason: 'unknown' };
-    await cacheLeagueGroupBoost(boost);
-    const balance = Math.max(0, Math.floor(Number(res.data?.shardsBalance) || 0));
-    await replaceShardsBalanceLocal(balance);
-    const usedGiftVoucher = res.data?.usedGiftVoucher === true;
-    if (usedGiftVoucher) {
+  const existing = leagueGroupBoostBuyInFlight.get(stableId);
+  if (existing) return existing;
+
+  const request: Promise<BuyLeagueGroupBoostResult> = (async () => {
+    await ensureCallableAuthReady().catch(() => false);
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    try {
+      const fn = callable<{ stableId?: string }, ActivateLeagueGroupBoostResponse>('leagueActivateGroupBoost');
+      const res = await fn({ stableId });
+      const boost = normalizeBoost(res.data?.boost, res.data?.groupId);
+      if (!boost) return { ok: false, reason: 'unknown' };
+      await cacheLeagueGroupBoost(boost);
+      const balance = Math.max(0, Math.floor(Number(res.data?.shardsBalance) || 0));
+      const usedGiftVoucher = res.data?.usedGiftVoucher === true;
+      await replaceShardsBalanceLocal(balance, {
+        updatedAtMs: res.data?.shardsUpdatedAtMs,
+        op: 'spend',
+        reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
+      });
+      if (usedGiftVoucher) {
       // Сервер погасил ваучер — убираем локальный флаг, чтобы cloud_sync не вернул его обратно.
-      await clearClubGiftFreeBoostFromLevel().catch(() => {});
+        await clearClubGiftFreeBoostFromLevel().catch(() => {});
+      }
+      return { ok: true, boost, shardsBalance: balance, usedGiftVoucher };
+    } catch (e: any) {
+      const code = String(e?.code || '');
+      const message = String(e?.message || '');
+      const details = String(e?.details || '');
+      const errorText = `${code} ${message} ${details}`.toLowerCase();
+      console.warn('[league_group_boosts] buy failed', {
+        code,
+        message: message.slice(0, 240),
+        details: details.slice(0, 240),
+      });
+      if (errorText.includes('not-found')) return { ok: false, reason: 'not_deployed' };
+      if (errorText.includes('already-active')) return { ok: false, reason: 'active' };
+      if (errorText.includes('insufficient-shards')) return { ok: false, reason: 'not_enough_shards' };
+      if (errorText.includes('no-current-group')) return { ok: false, reason: 'no_current_group' };
+      return { ok: false, reason: 'unknown' };
     }
-    return { ok: true, boost, shardsBalance: balance, usedGiftVoucher };
-  } catch (e: any) {
-    const code = String(e?.code || '');
-    const message = String(e?.message || '');
-    const details = String(e?.details || '');
-    const errorText = `${code} ${message} ${details}`.toLowerCase();
-    console.warn('[league_group_boosts] buy failed', {
-      code,
-      message: message.slice(0, 240),
-      details: details.slice(0, 240),
-    });
-    if (errorText.includes('not-found')) return { ok: false, reason: 'not_deployed' };
-    if (errorText.includes('already-active')) return { ok: false, reason: 'active' };
-    if (errorText.includes('insufficient-shards')) return { ok: false, reason: 'not_enough_shards' };
-    if (errorText.includes('no-current-group')) return { ok: false, reason: 'no_current_group' };
-    return { ok: false, reason: 'unknown' };
-  }
+  })().finally(() => {
+    leagueGroupBoostBuyInFlight.delete(stableId);
+  });
+
+  leagueGroupBoostBuyInFlight.set(stableId, request);
+  return request;
 }
 
 export async function likeLeagueGroupBoostBuyer(boost: LeagueGroupBoostState, senderDisplayName?: string): Promise<number> {
@@ -310,7 +328,9 @@ export async function likeLeagueGroupBoostBuyer(boost: LeagueGroupBoostState, se
     eventId: boost.likeEventId,
     senderDisplayName,
   });
-  const next = Math.max(res.activityLikeCount, boost.likeCount + 1);
+  const next = res.idempotentReplay
+    ? Math.max(0, Math.floor(Number(res.activityLikeCount) || 0))
+    : Math.max(res.activityLikeCount, boost.likeCount + 1);
   await cacheLeagueGroupBoost({ ...boost, likeCount: next });
   return next;
 }

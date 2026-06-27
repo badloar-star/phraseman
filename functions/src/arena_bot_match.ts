@@ -27,6 +27,43 @@ function cleanName(raw: unknown): string | null {
   return dn.slice(0, 120);
 }
 
+function readNumber(raw: unknown, fallback = 0): number {
+  const n = typeof raw === 'number' ? raw : Number(raw);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function readRank(raw: unknown): { tier: string; level: string; stars: number } {
+  const r = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+  return {
+    tier: String(r.tier ?? 'bronze'),
+    level: String(r.level ?? 'I'),
+    stars: Math.max(0, Math.trunc(readNumber(r.stars, 0))),
+  };
+}
+
+function replayBotMatchResult(
+  history: Record<string, unknown>,
+  profile: { sr?: number; peakSR?: number },
+) {
+  const before = readRank(history.rankBefore);
+  const after = readRank(history.rankAfter);
+  const rankChanged = after.tier !== before.tier || after.level !== before.level;
+  return {
+    xpDelta: Math.max(0, Math.trunc(readNumber(history.xpGained, 0))),
+    oldStars: before.stars,
+    newStars: after.stars,
+    oldTier: before.tier,
+    newTier: after.tier,
+    oldLevel: before.level,
+    newLevel: after.level,
+    rankChanged,
+    promoted: rankChanged && rankIndex(after.tier, after.level) > rankIndex(before.tier, before.level),
+    sr: readNumber(profile.sr, 0),
+    peakSR: readNumber(profile.peakSR, 0),
+    idempotentReplay: true,
+  };
+}
+
 export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const uid = request.auth.uid; // запись ТОЛЬКО в свой профиль
@@ -48,9 +85,13 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
   const outcome: MatchOutcome = isDraw ? 'draw' : won ? 'win' : isLast ? 'loss' : 'neutral';
   // Тюнинг SR из Firestore (fallback = дефолты). Читаем до транзакции.
   const seasonCfg = await resolveArenaSeasonConfig(db);
+  const historyRef = profileRef.collection('match_history').doc(sessionId);
 
   const result = await db.runTransaction(async (tx) => {
-    const snap = await tx.get(profileRef);
+    const [snap, historySnap] = await Promise.all([
+      tx.get(profileRef),
+      tx.get(historyRef),
+    ]);
     const data = (snap.exists ? snap.data() : {}) as {
       rank?: { stars?: number; tier?: string; level?: string };
       xp?: number; sr?: number; peakSR?: number; seasonId?: string; seasonPeakRankIndex?: number;
@@ -60,6 +101,9 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
         winStreak?: number; bestWinStreak?: number;
       };
     };
+    if (historySnap.exists) {
+      return replayBotMatchResult(historySnap.data() ?? {}, data);
+    }
     const oldStars = data.rank?.stars ?? 0;
     const oldTier = data.rank?.tier ?? 'bronze';
     const oldLevel = data.rank?.level ?? 'I';
@@ -115,7 +159,8 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
     }
 
     // История матча (раньше писалась с клиента — теперь серверно).
-    tx.set(profileRef.collection('match_history').doc(sessionId), {
+    tx.set(historyRef, {
+      sessionId,
       createdAt: Date.now(), oppName, myScore, oppScore, won, isDraw,
       xpGained: xpDelta,
       starsChange: rankChanged ? (promoted ? 1 : -1) : newStars - oldStars,

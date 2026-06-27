@@ -1062,7 +1062,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_direction',
     problemCoachRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_direction',
-    smartTrainerRoute: '/trainer_smart_session?mode=weak&source=diagnosis_training&category=preposition&microDiagnosisId=preposition_direction',
+    smartTrainerRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_direction',
     fallbackIfTrainingMissing: '/problem_coach?category=preposition',
   },
   qualityChecklist: {

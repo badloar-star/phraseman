@@ -681,6 +681,21 @@ export async function getTrainerPremiumItemsForPlan(
   return items.filter((item) => item.planInstanceId === instanceId).slice(0, limit);
 }
 
+export async function getTrainerPremiumItemsForPlanQueue(
+  planInstanceId: string | null | undefined,
+  mode: TrainerPremiumMode,
+  queue: TrainerQueue,
+  limit = 12,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<TrainerItem[]> {
+  const instanceId = planInstanceId?.trim();
+  if (!instanceId) return [];
+  const items = await getTrainerPremiumItems(mode, Math.max(limit, 48), studyTarget);
+  return items
+    .filter((item) => item.planInstanceId === instanceId && item.queue === queue)
+    .slice(0, limit);
+}
+
 export async function getTrainerPlanWeakSpotDueCount(
   planInstanceId: string | null | undefined,
   mode: TrainerPremiumMode = 'weak',

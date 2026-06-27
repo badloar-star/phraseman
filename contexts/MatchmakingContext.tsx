@@ -93,8 +93,8 @@ const SEARCH_TIMEOUT_MS = ARENA_MATCHMAKING_SEARCH_MS;
 const RANGE_EXPAND_MS    = 30 * 1000; // расширяем диапазон рангов через 30 c
 const INITIAL_RANGE      = 2;
 const EXPANDED_RANGE     = 4;
-/** 200ms — тише, чем 1s, при лаге JS/Native; `elapsed` пересчитываем от `Date.now()` */
-const ELAPSE_TICK_MS     = 200;
+/** 1s is enough for visible elapsed time; exact bot/search deadlines use wall-clock checks. */
+const ELAPSE_TICK_MS     = 1000;
 
 const MATCHMAKING_RESUME_KEY = 'arena_matchmaking_resume_v1';
 

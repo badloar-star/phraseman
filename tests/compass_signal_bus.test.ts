@@ -16,6 +16,36 @@ jest.mock('../app/personal_plan_state', () => ({
 jest.mock('../app/plan_day_lesson_recommendation', () => ({
   readPassedLessonIds: jest.fn(async () => [1, 2, 3]),
 }));
+jest.mock('../app/phrase_analytics', () => ({
+  computePhraseAnalytics: jest.fn(async () => ({
+    categoryStats: [
+      {
+        category: 'article',
+        topWords: ['a', 'an'],
+        priorityScore: 90,
+        weaknessScore: 80,
+        recoveryScore: 0,
+        pct: 20,
+      },
+      {
+        category: 'verb',
+        topWords: ['is'],
+        priorityScore: 10,
+        weaknessScore: 10,
+        recoveryScore: 50,
+        pct: 5,
+      },
+    ],
+  })),
+}));
+jest.mock('../app/diagnosis_training_progress', () => ({
+  loadResolvedPersonalTrainings: jest.fn(async () => ({ diagnoses: {} })),
+}));
+jest.mock('../app/personal_practice_lesson_router', () => ({
+  chooseAvailableDiagnosisForCategory: jest.fn((stat: { category?: string }) =>
+    stat.category === 'article' ? 'article_a_an' : null,
+  ),
+}));
 
 import { collectCompassSnapshot } from '../app/compass/signal_bus';
 import { getTopMistakePhraseDetails } from '../app/mistake_log';
@@ -46,6 +76,14 @@ describe('compass signal_bus — isolation + aggregation', () => {
     expect(snap!.posMastery).toHaveLength(1);
     expect(snap!.planDay).toEqual({ dayIndex: 12 });
     expect(snap!.passedLessons).toEqual([1, 2, 3]);
+    expect(snap!.mistakeRepairTargets).toEqual([
+      {
+        microDiagnosisId: 'article_a_an',
+        category: 'article',
+        topWords: ['a', 'an'],
+        priorityScore: 90,
+      },
+    ]);
   });
 
   it('сбой одного источника не валит снимок (safe fallback)', async () => {

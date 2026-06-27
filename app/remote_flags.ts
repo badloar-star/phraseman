@@ -33,6 +33,12 @@ export type RemoteNumberKey =
   | 'onboarding_ab_quiz_pct'
   | 'paywall_v2_pct'
   | 'league_xp_promotion_threshold'
+  | 'league_sync_min_delta'
+  | 'league_sync_min_interval_ms'
+  | 'league_sync_force_interval_ms'
+  | 'league_startup_registration_interval_ms'
+  | 'auth_link_cache_ttl_ms'
+  | 'league_chat_auth_ttl_ms'
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
@@ -46,6 +52,8 @@ export type RemoteBoolKey =
   | 'speaking_enabled'
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
+  | 'league_startup_registration_enabled'
+  | 'league_realtime_members_enabled'
   | 'lifetime_button_enabled'
   | 'explain_enabled'
   | 'ideas_enabled'
@@ -81,10 +89,17 @@ export type RemoteBoolKey =
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
   // ссылки на сторы — в текстовых ключах ниже. Управляется из «Пульта» живьём.
   | 'force_update_enabled'
+  | 'manual_update_enabled'
   // Промо-баннер (акция). Дефолт FALSE. true → в приложении показывается
   // управляемый из «Пульта» баннер акции (текст/ссылка/срок в текстовых ключах).
   // Сама скидка на подписку настраивается в сторах отдельно — баннер только зовёт.
   | 'promo_banner_enabled'
+  // Кнопка «Видео PHRASEMAN» на главной (иконка-плей в шапке) + сам экран видео.
+  // Дефолт TRUE = kill-switch: кнопка показывается как сейчас. Админ ставит false
+  // в «Пульте» → кнопка прячется у всех живьём (onSnapshot), без релиза. Экран
+  // /lingman_videos при этом всё равно существует, просто на него нет входа из
+  // шапки. Какой канал показывать — отдельные текстовые ключи youtube_channel_*.
+  | 'video_button_enabled'
   // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
   // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
   // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
@@ -135,6 +150,18 @@ export type RemoteTextKey =
   // Ссылки на сторы для кнопки «Обновить» в блоке force-update (по платформе).
   | 'store_url_ios'
   | 'store_url_android'
+  | 'manual_update_campaign_id'
+  | 'manual_update_mode'
+  | 'manual_update_target_build'
+  | 'manual_update_title_ru'
+  | 'manual_update_title_uk'
+  | 'manual_update_title_es'
+  | 'manual_update_body_ru'
+  | 'manual_update_body_uk'
+  | 'manual_update_body_es'
+  | 'manual_update_cta_ru'
+  | 'manual_update_cta_uk'
+  | 'manual_update_cta_es'
   // Промо-баннер (акция): локализованный текст (ru/uk/es), необяз. ссылка по тапу
   // и срок окончания (ISO-дата "2026-07-01" или ms). Пусто = текст по умолчанию /
   // без ссылки / бессрочно. Баннер виден только при promo_banner_enabled=true.
@@ -143,18 +170,36 @@ export type RemoteTextKey =
   | 'promo_banner_text_es'
   | 'promo_banner_url'
   | 'promo_banner_until'
+  | 'promo_banner_campaign_id'
   // Таргетинг промо-баннера: кому показывать. 'all' (или пусто) = всем,
   // 'free' = только не-премиум, 'premium' = только премиум. Опц. фильтр платформы:
   // 'ios'|'android' (пусто = обе). Применяется в shouldShowPromoBanner вместе с флагом.
   | 'promo_banner_audience'
   | 'promo_banner_platform'
+  | 'maintenance_campaign_id'
   // Тексты приветствия-«знакомства» (онбординг-спотлайт) и модала Компаса —
   // редактируются из «Пульта» ПОСЛЕ релиза без пересборки. JSON-объект с
   // переопределениями отдельных полей; отсутствующее поле = встроенный текст из
   // кода (welcome_steps.ts / compass_copy.ts). Парсится защищённо: мусор тихо
   // отбрасывается. Сейчас редактируется русский; прочие языки — из кода.
   | 'welcome_copy_overrides'
-  | 'compass_copy_overrides';
+  | 'compass_copy_overrides'
+  // ── YouTube-канал для экрана «Видео» и кнопки на главной ────────────────────
+  // Управляется из «Пульта» → можно подключить ЛЮБОЙ канал без релиза. Пусто =
+  // встроенный дефлот PHRASEMAN (LINGMAN_CHANNEL_* в app/lingman_youtube.ts).
+  // youtube_channel_id — обязателен для смены канала: ровно YouTube channelId
+  // вида "UCxxxx…" (фид строится по channel_id). Если пусто/мусор → весь канал
+  // остаётся дефолтным PHRASEMAN (handle/name/url ниже тоже игнорируются).
+  | 'youtube_channel_id'
+  // @handle канала (с @ или без) — для подписи и ссылки на канал. Пусто →
+  // выводится из id как заглушка. Чисто косметический.
+  | 'youtube_channel_handle'
+  // Отображаемое имя канала в шапке экрана видео и на кнопке. Пусто → 'PHRASEMAN'.
+  | 'youtube_channel_name'
+  // Прямая ссылка на канал (кнопка «открыть в YouTube» в шапке). Пусто →
+  // строится из handle: https://www.youtube.com/@handle/videos. Должна быть
+  // https и на youtube.com, иначе приложение её отбросит и построит из handle.
+  | 'youtube_channel_url';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -180,6 +225,12 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   onboarding_ab_quiz_pct: 33,
   paywall_v2_pct: 100,
   league_xp_promotion_threshold: 1000,
+  league_sync_min_delta: 75,
+  league_sync_min_interval_ms: 15 * 60 * 1000,
+  league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
+  league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
+  auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
+  league_chat_auth_ttl_ms: 7 * 24 * 60 * 60 * 1000,
   arena_sr_win: 25,
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
@@ -197,6 +248,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // админка может экстренно выключить).
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
+  league_startup_registration_enabled: true,
+  league_realtime_members_enabled: true,
   // Кнопка «Навсегда» (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
   // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
   // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
@@ -245,8 +298,12 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
+  manual_update_enabled: false,
   // Промо-баннер (акция): дефолт FALSE. Включается из «Пульта» на время акции.
   promo_banner_enabled: false,
+  // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
+  // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
+  video_button_enabled: true,
   // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
   // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
   // ключа выше). Меняется у всех живьём из «Пульта».
@@ -283,15 +340,33 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   min_app_version: '',
   store_url_ios: '',
   store_url_android: '',
+  manual_update_campaign_id: '',
+  manual_update_mode: 'optional',
+  manual_update_target_build: '',
+  manual_update_title_ru: '',
+  manual_update_title_uk: '',
+  manual_update_title_es: '',
+  manual_update_body_ru: '',
+  manual_update_body_uk: '',
+  manual_update_body_es: '',
+  manual_update_cta_ru: '',
+  manual_update_cta_uk: '',
+  manual_update_cta_es: '',
   promo_banner_text_ru: '',
   promo_banner_text_uk: '',
   promo_banner_text_es: '',
   promo_banner_url: '',
   promo_banner_until: '',
+  promo_banner_campaign_id: '',
   promo_banner_audience: '',
   promo_banner_platform: '',
+  maintenance_campaign_id: '',
   welcome_copy_overrides: '',
   compass_copy_overrides: '',
+  youtube_channel_id: '',
+  youtube_channel_handle: '',
+  youtube_channel_name: '',
+  youtube_channel_url: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -312,6 +387,12 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   onboarding_ab_quiz_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
   league_xp_promotion_threshold: { min: 1, max: 1000000 },
+  league_sync_min_delta: { min: 0, max: 1000000 },
+  league_sync_min_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
+  league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
+  league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
+  auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
+  league_chat_auth_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
   arena_sr_win: { min: 0, max: 999 },
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
@@ -492,6 +573,12 @@ export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recover
 export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_sessions_per_day');
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
 export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
+export const getLeagueSyncMinDelta = () => getRemoteNumber('league_sync_min_delta');
+export const getLeagueSyncMinIntervalMs = () => getRemoteNumber('league_sync_min_interval_ms');
+export const getLeagueSyncForceIntervalMs = () => getRemoteNumber('league_sync_force_interval_ms');
+export const getLeagueStartupRegistrationIntervalMs = () => getRemoteNumber('league_startup_registration_interval_ms');
+export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_ms');
+export const getLeagueChatAuthTtlMs = () => getRemoteNumber('league_chat_auth_ttl_ms');
 export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
@@ -519,6 +606,39 @@ export const getMinAppVersion = () => getRemoteText('min_app_version');
 export const getStoreUrlIos = () => getRemoteText('store_url_ios');
 /** Ссылка на Google Play для кнопки «Обновить». */
 export const getStoreUrlAndroid = () => getRemoteText('store_url_android');
+
+export type ManualUpdateMode = 'force' | 'optional';
+
+export const isManualUpdateEnabled = () => getRemoteBool('manual_update_enabled');
+export const getManualUpdateCampaignId = () => getRemoteText('manual_update_campaign_id');
+export const getManualUpdateTargetBuild = () => getRemoteText('manual_update_target_build');
+
+export function normalizeManualUpdateMode(raw: string): ManualUpdateMode {
+  return String(raw || '').trim().toLowerCase() === 'force' ? 'force' : 'optional';
+}
+
+export const getManualUpdateMode = (): ManualUpdateMode => normalizeManualUpdateMode(getRemoteText('manual_update_mode'));
+
+export function getManualUpdateTitle(lang: string): string {
+  const l = String(lang || '').toLowerCase();
+  if (l.startsWith('uk')) return getRemoteText('manual_update_title_uk');
+  if (l.startsWith('es')) return getRemoteText('manual_update_title_es');
+  return getRemoteText('manual_update_title_ru');
+}
+
+export function getManualUpdateBody(lang: string): string {
+  const l = String(lang || '').toLowerCase();
+  if (l.startsWith('uk')) return getRemoteText('manual_update_body_uk');
+  if (l.startsWith('es')) return getRemoteText('manual_update_body_es');
+  return getRemoteText('manual_update_body_ru');
+}
+
+export function getManualUpdateCta(lang: string): string {
+  const l = String(lang || '').toLowerCase();
+  if (l.startsWith('uk')) return getRemoteText('manual_update_cta_uk');
+  if (l.startsWith('es')) return getRemoteText('manual_update_cta_es');
+  return getRemoteText('manual_update_cta_ru');
+}
 
 /**
  * Сравнение semver: true, если `current` строго НИЖЕ `minimum`. Сравнивает по
@@ -570,6 +690,36 @@ export function shouldForceUpdate(params: {
   return isVersionBelow(currentVersion, minVersion);
 }
 
+export function shouldShowManualUpdate(params: {
+  enabled: boolean;
+  campaignId: string;
+  mode: string;
+  currentBuild: string;
+  targetBuild: string;
+  seenCampaignIds?: readonly string[];
+}): boolean {
+  if (!params.enabled) return false;
+  const campaignId = String(params.campaignId || '').trim();
+  if (!campaignId) return false;
+  const targetBuild = String(params.targetBuild || '').trim();
+  if (targetBuild && !isVersionBelow(params.currentBuild, targetBuild)) return false;
+  const mode = normalizeManualUpdateMode(params.mode);
+  if (mode === 'optional' && (params.seenCampaignIds || []).includes(campaignId)) return false;
+  return true;
+}
+
+// ── Кнопка «Видео» + YouTube-канал ───────────────────────────────────────────
+/** Кнопка «Видео PHRASEMAN» на главной. Дефолт true = показывается как сейчас. */
+export const isVideoButtonEnabled = () => getRemoteBool('video_button_enabled');
+/** Сырой channelId канала из «Пульта» (UC…). Пусто = встроенный дефолт. */
+export const getYoutubeChannelIdOverride = () => getRemoteText('youtube_channel_id');
+/** Сырой @handle канала из «Пульта». Пусто = вывести из дефолта/id. */
+export const getYoutubeChannelHandleOverride = () => getRemoteText('youtube_channel_handle');
+/** Сырое отображаемое имя канала из «Пульта». Пусто = дефолт PHRASEMAN. */
+export const getYoutubeChannelNameOverride = () => getRemoteText('youtube_channel_name');
+/** Сырая ссылка на канал из «Пульта». Пусто = построить из handle. */
+export const getYoutubeChannelUrlOverride = () => getRemoteText('youtube_channel_url');
+
 // ── Промо-баннер (акция) ─────────────────────────────────────────────────────
 /** Включён ли промо-баннер. Дефолт false. */
 export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
@@ -577,6 +727,7 @@ export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
 export const getPromoBannerUrl = () => getRemoteText('promo_banner_url');
 /** Срок окончания акции: ISO-дата "2026-07-01" или ms-таймстамп. Пусто = бессрочно. */
 export const getPromoBannerUntil = () => getRemoteText('promo_banner_until');
+export const getPromoBannerCampaignId = () => getRemoteText('promo_banner_campaign_id');
 /** Аудитория баннера: 'all'|'free'|'premium' (пусто = all). */
 export const getPromoBannerAudience = () => getRemoteText('promo_banner_audience');
 /** Фильтр платформы баннера: 'ios'|'android' (пусто = обе). */
@@ -670,6 +821,8 @@ export function shouldShowPromoBanner(params: {
  */
 export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
+export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
+export const isLeagueRealtimeMembersEnabled = () => getRemoteBool('league_realtime_members_enabled');
 /** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
@@ -689,6 +842,7 @@ export const isCompassTopicMapEnabled = () => getRemoteBool('compass_topic_map_e
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');
+export const getMaintenanceCampaignId = () => getRemoteText('maintenance_campaign_id');
 
 // ── Премиум-гейты фич ───────────────────────────────────────────────────────
 // true = фича за премиум-замком (дефолт), false = бесплатна для всех. Используются

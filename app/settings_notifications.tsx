@@ -237,7 +237,8 @@ export default function SettingsNotifications() {
         <TapScale
           onPress={() => {
           hapticTap();
-          safeRouterBack(router, '/(tabs)/home' as any);
+          // Экран открывается из вкладки «Настройки» — fallback на settings, не на home.
+          safeRouterBack(router, '/(tabs)/settings' as any);
         }}
           style={{
             width: 38,

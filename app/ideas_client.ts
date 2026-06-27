@@ -17,6 +17,13 @@ export interface IdeaInput {
 }
 
 type SubmitUserIdeaResult = { ok: boolean; id?: string };
+type SubmitUserIdeaRequest = { payload: Record<string, unknown> };
+type SubmitUserIdeaCallable = (
+  data: SubmitUserIdeaRequest,
+) => Promise<{ data: SubmitUserIdeaResult }>;
+
+let submitUserIdeaCallable: SubmitUserIdeaCallable | null = null;
+let ideaAppCheckWarmupInFlight: Promise<void> | null = null;
 
 function callable<TReq, TRes>(name: string) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -26,15 +33,34 @@ function callable<TReq, TRes>(name: string) {
   return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
 }
 
+function getSubmitUserIdeaCallable(): SubmitUserIdeaCallable {
+  if (!submitUserIdeaCallable) {
+    submitUserIdeaCallable = callable<SubmitUserIdeaRequest, SubmitUserIdeaResult>('submitUserIdea');
+  }
+  return submitUserIdeaCallable;
+}
+
+function warmIdeasAppCheck(): Promise<void> {
+  if (!ideaAppCheckWarmupInFlight) {
+    ideaAppCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()
+      .catch(() => false)
+      .then(() => undefined)
+      .finally(() => {
+        ideaAppCheckWarmupInFlight = null;
+      });
+  }
+  return ideaAppCheckWarmupInFlight;
+}
+
 /**
  * Отправить идею пользователя. Бросает ошибку при сбое/лимите (экран показывает
  * соответствующую модалку). Возвращает null только если облако недоступно.
  */
 export async function submitUserIdea(input: IdeaInput): Promise<SubmitUserIdeaResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await warmIdeasAppCheck();
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
-  const fn = callable<{ payload: Record<string, unknown> }, SubmitUserIdeaResult>('submitUserIdea');
+  const fn = getSubmitUserIdeaCallable();
   const res = await fn({
     payload: {
       title: input.title,

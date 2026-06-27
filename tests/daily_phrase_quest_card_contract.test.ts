@@ -71,4 +71,9 @@ describe('DailyPhraseCard quest contract', () => {
     expect(answeredIdx).toBeLessThan(meaningIdx);
     expect(meaningIdx).toBeLessThan(teaserIdx);
   });
+
+  it('loads the daily phrase as a one-shot value instead of keeping a live listener open', () => {
+    expect(source).toContain('getTodayPhraseForTarget(studyTarget)');
+    expect(source).not.toContain('subscribeTodayPhraseForTarget');
+  });
 });

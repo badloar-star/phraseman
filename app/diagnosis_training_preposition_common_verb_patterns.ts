@@ -1053,7 +1053,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_common_verb_patterns',
     problemCoachRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_common_verb_patterns',
-    smartTrainerRoute: '/trainer_smart_session?mode=weak&source=diagnosis_training&category=preposition&microDiagnosisId=preposition_common_verb_patterns',
+    smartTrainerRoute: '/problem_coach?category=preposition&microDiagnosisId=preposition_common_verb_patterns',
     fallbackIfTrainingMissing: '/problem_coach?category=preposition',
   },
   qualityChecklist: {

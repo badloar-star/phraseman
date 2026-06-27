@@ -1555,7 +1555,7 @@ export const QUANTIFIER_SOME_ANY_TRAINING: DiagnosisTraining = {
     webPath: '/problem-coach/determiner/some-any',
     deepLink: 'phraseman://problem-coach/determiner/some-any',
     diagnosisTrainerRoute: '/problem_coach?category=determiner&microDiagnosisId=quantifier_some_any',
-    smartTrainerRoute: '/smart_trainer?source=diagnosis_training&microDiagnosisId=quantifier_some_any',
+    smartTrainerRoute: '/problem_coach?category=determiner&microDiagnosisId=quantifier_some_any',
   },
   qualityChecklist: {
     hasContrastiveMinimalPairs: true,

@@ -4,6 +4,130 @@ Heisenberg is the repo-level pipeline for adding a new source language for users
 
 It does not write a new language directly into existing `ru` / `uk` / `es` fields. The first stage is always isolated: inventory, research checklist, guard report, and translation blocks under `docs/heisenberg/<locale>/<run-id>/`.
 
+## Final Production Goal
+
+Heisenberg's final goal is not "some translations exist". Its final goal is a
+fully production-ready source/interface language for `studyTarget=en`.
+
+For every Heisenberg language, for example `es`, `pt-BR`, `vi`, `id`, `tr`,
+`pl` or a future source locale, Heisenberg may say `ready` only when that
+language is complete end-to-end:
+
+- all user-facing UI/source-locale copy in scope is present and natural;
+- English-learning explanations are rewritten for that source-language learner,
+  not mechanically translated;
+- lessons, quizzes, personal plan content, daily phrase, practice, flashcards,
+  admin/reviewer surfaces and relevant AI prompt outputs have source-locale
+  coverage;
+- all future large language payloads are isolated source-locale pack candidates,
+  not new app-bundled growth;
+- pack manifests, hashes, byte sizes, schema/content versions, review status,
+  semantic gates and provenance/evidence are valid;
+- server/downloadable delivery is ready only after runtime loaders, cache states,
+  offline fallback and no-splash-download rules pass;
+- storage, cloud sync, cache keys, prompts and admin tools cannot mix this source
+  locale with another source locale or with `studyTarget`;
+- every required reviewer/gate/test returns `GO` or `PASS`;
+- activation is explicitly approved and recorded.
+
+`ready` is forbidden while any content is fallback, copied from another language,
+wrong-language, unreviewed, app-bundled by default, or able to leak across
+source locales. Heisenberg must never convert a source locale into a study
+target; `sourceLocale=pl, studyTarget=en` means Polish explanations for learning
+English, not a Polish course.
+
+## 2026-06-26 Downloadable Pack Retrofit Rule
+
+Before any new Heisenberg language work or continuation of batch locale work,
+Heisenberg must read and obey:
+
+- `docs/specs/2026-06-26-bootstrap-course-pack-master-audit.md`;
+- `docs/specs/2026-06-26-language-pack-retrofit-plan.md`.
+
+New large source-locale content must not be added directly to the initial app
+bundle as the default path. Future Heisenberg output must first be an isolated
+source-locale pack candidate with:
+
+- `sourceLocale`;
+- `studyTarget=en`;
+- surface id;
+- schema/content version;
+- item counts;
+- hash/byte size;
+- provenance/research evidence;
+- semantic gate status;
+- review status;
+- explicit no-fallback/no-copy verdict.
+
+Existing app-bundled batch work is legacy compatibility input, not automatic
+proof of app readiness. It must be re-audited and classified as one of:
+
+- reusable pack candidate;
+- repair-needed isolated packet;
+- blocked from activation.
+
+Heisenberg must never treat `sourceLocale` as `studyTarget`. For example,
+`sourceLocale=pl` means Polish explanations for learning English, not a Polish
+course.
+
+## 2026-06-27 Course-Pack Gate Snapshot
+
+The current plan-content server copy is staging/shadow only. It has passed
+remote verification, server-shadow dual-read, disabled manifest/runtime/cache,
+offline, rollback, storage/cloud isolation and reviewer/locale intake safety
+reports, but production activation is still `HOLD`.
+
+Current activation-readiness state:
+
+- completed gates: `11`;
+- blocked gates: `3`;
+- remaining blockers: reviewer approval `0/546`, locale gates `0/546`, and
+  product-owner activation approval;
+- `COURSE_PACK_REMOTE_LOADING_ENABLED=false`;
+- `activationApproved=false`;
+- bundled `plan_content_*` payloads remain in the app.
+
+Heisenberg must not infer reviewer or locale approval from translation
+coverage, parity success, server upload success or dual-read success. The
+report-only explicit reviewer/locale approval packet now exists at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-packet.json`
+with `546` queued rows, reviewer approved rows `0/546`, locale passed rows
+`0/546` and filled artifact validation `missing`. The explicit approval intake
+dry-run exists at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-intake-dry-run.json`
+and is `HOLD` only because no external filled artifact exists. The next approved
+process step is based on the reviewer/locale decision work-order at
+`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-decision-work-order-batches.json`.
+That work-order is `PASS`/`READY_FOR_REVIEW` with `546` rows and `22` batches,
+but reviewer approved rows and locale passed rows remain `0/546`. The next
+pipeline step must validate externally filled batches; it must not generate
+approvals, fake evidence ids or clear activation by itself.
+
+## Mandatory Iteration Escalation Rule
+
+Every Heisenberg continuation pass must leave the pipeline in a stronger state
+than it found it, within the currently approved scope.
+
+Each pass must:
+
+- read the latest handoff, previous verdicts and relevant run artifacts before
+  acting;
+- name the exact scope for the pass before editing or generating;
+- increase useful coverage compared with the previous pass by doing at least one
+  real expansion: more surfaces audited, more blocks classified, more language
+  tails mapped, more focused tests/checks added or run, more blockers resolved,
+  or more pack metadata/evidence completed;
+- treat "more work" as more verified progress, not wider unsafe edits;
+- never increase volume by touching unrelated app code, bypassing gates, adding
+  unapproved production content, or weakening language isolation;
+- record completed work, commands/checks, blockers and residual risk in the run
+  artifact or handoff;
+- end with a `Next Pass Plan` that lists the next objective, exact files or
+  artifacts to inspect, expected checks, and the stop conditions.
+
+If no safe expansion is possible, the pass must produce blocker evidence and a
+smallest-safe unblock plan instead of repeating the same verdict.
+
 ## Command
 
 ```bash
@@ -44,6 +168,19 @@ The app currently has many hard-coded `ru` / `uk` / `es` contracts:
 - Reports, rewards, arena, daily tasks, public web/admin/legal surfaces.
 
 Because of that, a new language must first be created outside those fields and integrated through a deliberate locale registry/refactor. This prevents a new language from overwriting or mixing with existing content.
+
+As of the 2026-06-26 retrofit plan, the deliberate integration path is:
+
+1. audit existing surfaces;
+2. produce isolated source-locale pack candidates;
+3. validate manifests, hashes, coverage, semantic isolation and bundle boundary;
+4. integrate runtime loaders only after the app has course-pack manifest/cache
+   architecture;
+5. apply to production files only with explicit approval and focused gates.
+
+Directly expanding huge `app/` TypeScript payloads for future locales is a legacy
+path and should be treated as `HOLD` unless explicitly approved for a narrow
+compatibility shim.
 
 For existing app locales, Heisenberg switches to production-audit mode. Spanish is the important case right now:
 
@@ -127,6 +264,20 @@ No generated target language should be applied to production app files until:
 - Existing localization tests still pass.
 - A new locale architecture is added instead of expanding ad hoc `ru` / `uk` / `es` triples in-place.
 - Existing-locale HTML-only gaps are reported as `HTML Coverage Backlog`; they are website/admin localization backlog, not app UI activation blockers.
+
+For downloadable source-locale packs, the following additional gates are
+mandatory before activation:
+
+- pack manifest schema validates;
+- content hash, byte size and item counts match;
+- the pack declares `sourceLocale` and `studyTarget=en`;
+- no runtime resolver silently falls back to Russian, Ukrainian, Spanish or any
+  other source locale;
+- no non-trivial localized field is copied from another source locale unless it
+  is explicitly allowlisted as a valid shared proper noun/anchor;
+- adding the pack does not add large content modules to the initial app bundle;
+- runtime loader states exist for missing, downloading, ready, corrupt, stale and
+  offline fallback.
 
 ## Regression Contract
 

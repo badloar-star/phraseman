@@ -45,6 +45,11 @@ export function hasAuthoredPlanContent(planId: string, dayIndex: number): boolea
   return CONTENT_BY_KEY.has(keyFor(planId, dayIndex));
 }
 
+/** All authored compatibility content for local dry-run pack parity tooling. */
+export function listAuthoredPlanContentDays(): readonly PlanContentDay[] {
+  return ALL_CONTENT_DAYS;
+}
+
 /** Number of day-specific theory screens authored for a plan day (0 if none). */
 export function authoredPlanIntroCount(planId: string, dayIndex: number): number {
   return getAuthoredPlanContentDay(planId, dayIndex)?.intro.length ?? 0;

@@ -110,6 +110,10 @@ function docId(prefix: string, authUid: string, stableUid: string): string {
   return `${prefix}_${hash}`;
 }
 
+function briefingHashForReplay(briefing: WeeklyReviewBriefing): string {
+  return createHash('sha256').update(JSON.stringify(briefing)).digest('hex');
+}
+
 /**
  * Sanitizes the untrusted client briefing into a known-good shape. Crucially,
  * recommendation ids are kept verbatim (they're opaque ids the client already
@@ -217,18 +221,84 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
  * fails — otherwise one provider hiccup would lock the user out for a week.
  * Throws 'weekly_review_not_ready' with nextAllowedAtMs in details if too soon.
  */
-async function assertWindowOpen(authUid: string, stableUid: string): Promise<void> {
+type WeeklyReviewReplayDecision =
+  | { kind: 'open' }
+  | { kind: 'not_ready'; nextAllowedAtMs: number }
+  | { kind: 'replay'; review: WeeklyReviewResult; nextAllowedAtMs: number; model: string };
+
+function readStoredWeeklyReview(raw: unknown): WeeklyReviewResult | null {
+  const data = (raw ?? {}) as Record<string, unknown>;
+  const greeting = text(data.greeting, 200);
+  const paragraphs = (Array.isArray(data.paragraphs) ? data.paragraphs : [])
+    .slice(0, MAX_PARAGRAPHS)
+    .map((p) => text(p, 800))
+    .filter(Boolean);
+  if (!greeting || paragraphs.length === 0) return null;
+
+  const recommendations = (Array.isArray(data.recommendations) ? data.recommendations : [])
+    .slice(0, MAX_RECOMMENDATIONS)
+    .map((item) => {
+      const c = (item ?? {}) as Record<string, unknown>;
+      return { microDiagnosisId: text(c.microDiagnosisId, 80), label: text(c.label, 120) };
+    })
+    .filter((r) => r.microDiagnosisId && r.label);
+
+  return { greeting, paragraphs, recommendations };
+}
+
+function decideWeeklyReviewReplay(
+  quotaData: Record<string, unknown>,
+  expectedBriefingHash: string,
+  nowMs: number,
+): WeeklyReviewReplayDecision {
+  const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
+  if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
+    return { kind: 'open' };
+  }
+
+  if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
+    const review = readStoredWeeklyReview(quotaData.lastReview);
+    if (review) {
+      return {
+        kind: 'replay',
+        review,
+        nextAllowedAtMs,
+        model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
+      };
+    }
+  }
+
+  return { kind: 'not_ready', nextAllowedAtMs };
+}
+
+async function readReplayOrAssertWindowOpen(
+  authUid: string,
+  stableUid: string,
+  expectedBriefingHash: string,
+): Promise<Extract<WeeklyReviewReplayDecision, { kind: 'replay' }> | null> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('wkrq', authUid, stableUid));
   const snap = await ref.get();
-  const nextAllowedAtMs = Number(snap.data()?.nextAllowedAtMs ?? 0);
-  if (now < nextAllowedAtMs) {
-    throw new HttpsError('resource-exhausted', 'weekly_review_not_ready', { nextAllowedAtMs });
+  const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now);
+  if (decision.kind === 'open') return null;
+  if (decision.kind === 'replay') return decision;
+  if (decision.kind === 'not_ready') {
+    throw new HttpsError('resource-exhausted', 'weekly_review_not_ready', {
+      nextAllowedAtMs: decision.nextAllowedAtMs,
+    });
   }
+  return null;
 }
 
-async function commitWindow(authUid: string, stableUid: string, isPremium: boolean): Promise<number> {
+async function commitWindow(
+  authUid: string,
+  stableUid: string,
+  isPremium: boolean,
+  briefingHash: string,
+  review: WeeklyReviewResult,
+  model: string,
+): Promise<number> {
   const db = admin.firestore();
   const now = Date.now();
   const windowDays = isPremium ? PREMIUM_WINDOW_DAYS : FREE_WINDOW_DAYS;
@@ -248,6 +318,9 @@ async function commitWindow(authUid: string, stableUid: string, isPremium: boole
       stableUid,
       isPremium,
       lastGeneratedAtMs: now,
+      lastBriefingHash: briefingHash,
+      lastReview: review,
+      lastModel: model,
       nextAllowedAtMs: newNext,
       updatedAtMs: now,
     }, { merge: true });
@@ -387,11 +460,23 @@ export const weeklyReviewGenerate = onCall({
   // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
   const isPremium = await resolvePremiumAccess(db, stableUid);
 
-  // Limits BEFORE the paid API call. Window is only CHECKED here (read-only) —
-  // it is committed after a successful generation so a provider failure does
-  // not lock the user out for a week.
+  // Replay/window check BEFORE rate limits and the paid API call. Same briefing
+  // retries get the cached server result; different briefing remains gated.
+  const briefingHash = briefingHashForReplay(briefing);
+  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+  if (replay) {
+    return {
+      ok: true,
+      review: replay.review,
+      nextAllowedAtMs: replay.nextAllowedAtMs,
+      model: replay.model,
+      idempotentReplay: true,
+    };
+  }
+
+  // Limits BEFORE the paid API call. Window is committed after a successful
+  // generation so a provider failure does not lock the user out for a week.
   await enforceRateLimit(authUid, stableUid);
-  await assertWindowOpen(authUid, stableUid);
 
   const messages = [
     { role: 'system' as const, content: buildSystemPrompt(briefing.lang) },
@@ -426,7 +511,7 @@ export const weeklyReviewGenerate = onCall({
   const result = parseAndGuardResult(content, briefing);
 
   // Generation succeeded — NOW commit the window (so failures above never burn it).
-  const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);
+  const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium, briefingHash, result, jobCfg.model);
 
   const usage = json.usage ?? {};
   await db.collection(BILLING_COLLECTION).doc().set({
@@ -458,5 +543,8 @@ export const __weeklyReviewTestHooks = {
   sanitizeBriefing,
   parseAndGuardResult,
   buildSystemPrompt,
+  briefingHashForReplay,
+  decideWeeklyReviewReplay,
+  readStoredWeeklyReview,
 };
 export type { WeeklyReviewBriefing, WeeklyReviewResult };

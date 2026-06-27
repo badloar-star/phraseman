@@ -25,7 +25,7 @@ export interface CompassRoute {
  *
  * Соответствия (с доказательством, что роут+параметры реальны):
  *  - lesson_dive       → /lesson_menu?id=<focus>   (lessons.tsx:922)
- *  - mistake_repair    → /trainer_smart_session?mode=weak  (personal_plan_navigation.ts:161)
+ *  - mistake_repair    → /problem_coach?microDiagnosisId=<id> or /trainer fallback
  *  - flashcards_review → /flashcards_swipe          (flashcards.tsx:186)
  *  - plan_continue     → /personal_plan             (home.tsx:2384)
  *  - pronunciation     → /personal_plan (fallback). «Повтори вслух» есть в каждом
@@ -42,7 +42,15 @@ export function compassTaskRoute(task: CompassTask, _day: CompassDay | null): Co
         ? { pathname: '/lesson_menu', params: { id: task.focus } }
         : { pathname: '/(tabs)/lessons' };
     case 'mistake_repair':
-      return { pathname: '/trainer_smart_session', params: { mode: 'weak' } };
+      return task.microDiagnosisId
+        ? {
+            pathname: '/problem_coach',
+            params: {
+              microDiagnosisId: task.microDiagnosisId,
+              ...(task.weakTopic ? { category: task.weakTopic } : {}),
+            },
+          }
+        : { pathname: '/trainer' };
     case 'flashcards_review':
       return { pathname: '/flashcards_swipe' };
     case 'plan_continue':

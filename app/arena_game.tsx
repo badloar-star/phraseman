@@ -39,6 +39,7 @@ import { IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
 import { consumeArenaGameEntry } from './arena_access_gate';
+import { markNextNavigationAsReplace } from './navigation_back';
 import { recordMistakeFromArena } from './active_recall';
 import {
   arenaBilingualFirst,
@@ -196,7 +197,7 @@ export default function DuelGameScreen() {
 
   useEffect(() => {
     if (phase !== 'acceptance') return;
-    const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 500);
+    const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 1000);
     const sub = AppState.addEventListener('change', (nextState) => {
       if (nextState !== 'active') clearInterval(id);
     });
@@ -605,6 +606,10 @@ export default function DuelGameScreen() {
       // Уходим в результаты после финального экрана (один раз).
       if (finalNavTimerRef.current == null) {
         finalNavTimerRef.current = setTimeout(() => {
+          // Игра завершена → свапаем экран игры на результаты. Без пометки replace
+          // экран игры остаётся в честном стеке, и «назад» с результатов вернул бы
+          // на уже завершённую игровую сессию → петля.
+          markNextNavigationAsReplace();
           router.replace({ pathname: '/arena_results', params });
         }, FINAL_OVERLAY_MS);
       }
@@ -757,6 +762,8 @@ export default function DuelGameScreen() {
       params.mockBonusOutspeed = String(myBonusBreakdown.current.outspeed);
       params.mockReviewData = JSON.stringify(reviewDataRef.current);
     }
+    // Сдача/форфейт → результаты «вместо» игры (свап, не push).
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/arena_results', params });
   };
 

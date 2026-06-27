@@ -217,6 +217,10 @@ export type NameAvailabilityStatus = 'available' | 'taken' | 'error';
 export type NameAvailabilityResult = {
   status: NameAvailabilityStatus;
 };
+type NameIndexSnapshot = {
+  exists?: boolean;
+  data?: () => Record<string, unknown>;
+};
 
 // ── Атомарно зарезервировать ник через транзакцию ───────────────────────────
 // Возвращает 'ok' | 'taken' | 'error'
@@ -312,8 +316,8 @@ async function checkNameIndexAvailabilityFast(name: string, readyStableId?: stri
   const authReady = await waitForAnonAuth(NAME_CHECK_AUTH_TIMEOUT_MS);
   if (!authReady) return null;
   try {
-    const snap = await withTimeout(
-      db.collection('name_index').doc(nameLower).get(),
+    const snap = await withTimeout<NameIndexSnapshot>(
+      db.collection('name_index').doc(nameLower).get() as Promise<NameIndexSnapshot>,
       NAME_CHECK_TIMEOUT_MS,
       'name_index_check',
     );

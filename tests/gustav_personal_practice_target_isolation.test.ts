@@ -95,7 +95,6 @@ describe('Gustav personal practice target isolation', () => {
     const analyticsScreenSource = fs.readFileSync(path.join(ROOT, 'app', 'phrase_analytics_screen.tsx'), 'utf8');
     const quizzesSource = fs.readFileSync(path.join(ROOT, 'app', 'quizzes.tsx'), 'utf8');
     const problemCoachSource = fs.readFileSync(path.join(ROOT, 'app', 'problem_coach.tsx'), 'utf8');
-    const smartTrainerSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_smart_session.tsx'), 'utf8');
     const phrasesTrainerSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_phrases_session.tsx'), 'utf8');
     const lessonWordsSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_words.tsx'), 'utf8');
     const coachToastSource = fs.readFileSync(path.join(ROOT, 'app', 'coach_toast_trigger.ts'), 'utf8');
@@ -127,11 +126,6 @@ describe('Gustav personal practice target isolation', () => {
     expect(problemCoachSource).toContain('markPersonalTrainingResolved({');
     expect(problemCoachSource).toContain("router.replace('/trainer' as any)");
     expect(problemCoachSource).toContain('}, studyTarget)');
-    expect(smartTrainerSource).toContain("const profile = studyTarget === 'fr' ? null : getPosWorkoutProfile(category)");
-    expect(smartTrainerSource).toContain('buildCard(item, items, lang, studyTarget)');
-    expect(smartTrainerSource).toContain('targetPhraseRecallHelper(lang, studyTarget)');
-    expect(smartTrainerSource).toContain('wordLinkMistakeWhy(picked, lang, studyTarget)');
-    expect(smartTrainerSource).toContain('current.profile && current.category');
     expect(phrasesTrainerSource).toContain('buildDeck(items, studyTarget)');
     expect(phrasesTrainerSource).toContain("const fallbackFillers = studyTarget === 'fr' ? [] : ENGLISH_DECOY_FILLERS");
     expect(quizzesSource).toContain("checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru')");

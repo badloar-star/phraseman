@@ -1,4 +1,4 @@
-# GUSTAV P1A Blueprint Hash Lock Audit
+﻿# GUSTAV P1A Blueprint Hash Lock Audit
 
 Run: `2026-05-19_fr_inventory_v0a1`
 
@@ -75,7 +75,7 @@ Generated at: 2026-05-19T21:42:44.884Z
 
 - After exact P1A approval, each target file must be copied byte-for-byte from the locked blueprint path.
 - If any blueprint file changes, rerun P1A implementation blueprint audit, hash lock audit, readiness gate and run validator before apply.
-- If a target file already exists before approval, stop and perform manual review instead of overwriting it.
+- If a target file already exists before approval, stop and perform LLM official-source review instead of overwriting it.
 - No broad 83-file apply plan is approved by this lock.
 - French generation remains blocked after P1A hash lock; this only prepares the first target-isolation slice.
 

@@ -8,7 +8,7 @@ import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
-import { hasAuthoredPlanContent } from './plan_content_registry';
+import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness';
 import ReportErrorButton from '../components/ReportErrorButton';
 
 function firstParam(v: string | string[] | undefined): string {
@@ -83,7 +83,7 @@ export default function PersonalPlanTaskDoneScreen() {
             <Ionicons name="close" size={22} color={t.textMuted} />
           </TouchableOpacity>
           <View style={{ flex: 1 }} />
-          {hasAuthoredPlanContent(planId, dayIndex) ? (
+          {hasBundledCompatibilityPlanContentDay(planId, dayIndex) ? (
             <ReportErrorButton
               variant="icon-flag"
               screen="personal_plan_task_done"

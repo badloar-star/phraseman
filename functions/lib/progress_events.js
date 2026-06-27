@@ -39,6 +39,7 @@ exports.getWeekStartIso = getWeekStartIso;
 exports.resolveClientDateKey = resolveClientDateKey;
 exports.normalizeProgressEvent = normalizeProgressEvent;
 exports.isServerOwnedProgressKey = isServerOwnedProgressKey;
+exports.shouldQualifyReferralFromProgressEvent = shouldQualifyReferralFromProgressEvent;
 exports.applyProgressEvent = applyProgressEvent;
 exports.buildMigrationPatch = buildMigrationPatch;
 const admin = __importStar(require("firebase-admin"));
@@ -46,6 +47,7 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const xp_levels_1 = require("./xp_levels");
+const referral_1 = require("./referral");
 exports.PROGRESS_EVENT_TYPES = [
     'lesson_answer',
     'lesson_complete',
@@ -393,6 +395,32 @@ function applyDailyStreak(progress, patch, activeDate) {
     patch.streak_count = String(next);
     return next;
 }
+function applyClientStreakEvidence(progress, patch, event, activeDate) {
+    const clientLast = cleanString(event.payload.clientLastActiveDate, 10);
+    const clientStreak = clampInt(event.payload.clientStreakCount, 0, 100000);
+    if (!clientLast || clientStreak <= 0)
+        return progress;
+    const diffToEventDate = dayDiff(activeDate, clientLast);
+    if (diffToEventDate == null || diffToEventDate < 0 || diffToEventDate > 1) {
+        return progress;
+    }
+    const serverLast = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
+    const serverStreak = Math.max(0, readInt(progress.streak_count, 0));
+    const clientBeatsServer = !serverLast ||
+        clientLast > serverLast ||
+        (clientLast === serverLast && clientStreak > serverStreak);
+    if (!clientBeatsServer)
+        return progress;
+    patch.last_active_date = clientLast;
+    patch.streak_last_date = clientLast;
+    patch.streak_count = String(clientStreak);
+    return {
+        ...progress,
+        last_active_date: clientLast,
+        streak_last_date: clientLast,
+        streak_count: String(clientStreak),
+    };
+}
 function applyLessonFields(progress, patch, event) {
     const lessonId = clampInt(event.payload.lessonId, 0, 500);
     if (lessonId <= 0)
@@ -419,6 +447,15 @@ function applyLessonFields(progress, patch, event) {
         const cellKey = lessonFieldKey(lessonId, 'cellIndex', target);
         patch[cellKey] = String(Math.max(readInt(progress[cellKey], 0), cellIndex));
     }
+}
+function shouldQualifyReferralFromProgressEvent(event) {
+    if (event.type !== 'lesson_complete')
+        return false;
+    const lessonId = clampInt(event.payload.lessonId, 0, 500);
+    if (lessonId !== 1)
+        return false;
+    const score = Number(event.payload.score ?? event.payload.bestScore ?? 0);
+    return boolish(event.payload.passed) || (Number.isFinite(score) && score >= 2.5);
 }
 function applyExamFields(progress, patch, event, activeDate) {
     const level = cleanString(event.payload.level ?? event.payload.examLevel, 12).toLowerCase();
@@ -473,7 +510,10 @@ function applyProgressEvent(progress, event, now = new Date(), daily) {
         patch.week_points = String(Math.round(nextWeekPoints));
         patch.week_points_v2 = JSON.stringify({ weekKey, points: nextWeekPoints });
     }
-    const streakCount = xpDelta > 0 ? applyDailyStreak(progress, patch, activeDate) : Math.max(0, readInt(progress.streak_count, 0));
+    const progressWithClientStreak = xpDelta > 0
+        ? applyClientStreakEvidence(progress, patch, event, activeDate)
+        : progress;
+    const streakCount = xpDelta > 0 ? applyDailyStreak(progressWithClientStreak, patch, activeDate) : Math.max(0, readInt(progress.streak_count, 0));
     if (event.type === 'lesson_complete') {
         applyLessonFields(progress, patch, event);
     }
@@ -602,13 +642,14 @@ exports.progressSubmitEvent = (0, https_1.onCall)(callable_options_1.HOT_CALLABL
     const db = admin.firestore();
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId, {
         requireKnownIdentity: true,
+        repairLinks: false,
     });
     const userRef = db.collection('users').doc(stableUid);
     const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));
     const now = new Date();
     const todayKey = isoDateUtc(now);
     const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
-    return db.runTransaction(async (tx) => {
+    const result = await db.runTransaction(async (tx) => {
         const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
             tx.get(userRef),
             tx.get(ledgerRef),
@@ -682,6 +723,12 @@ exports.progressSubmitEvent = (0, https_1.onCall)(callable_options_1.HOT_CALLABL
         });
         return result;
     });
+    if (shouldQualifyReferralFromProgressEvent(event)) {
+        await (0, referral_1.markRefereeQualified)(db, stableUid).catch((e) => {
+            console.warn('[progress_events] referral qualification failed', e);
+        });
+    }
+    return result;
 });
 exports.progressMigrateSnapshot = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     const authUid = request.auth?.uid;

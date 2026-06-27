@@ -1,0 +1,354 @@
+{
+  "packId": "buyer_radar_carousel_pack_001",
+  "date": "2026-06-26",
+  "status": "requires_codex_dalle_final_generation",
+  "designSystem": {
+    "name": "Research-led revenue carousels",
+    "format": "1080x1350 Instagram carousel",
+    "style": "research-led editorial over unique DALL-E scenes",
+    "principles": [
+      "One pain per carousel",
+      "One useful research-backed argument per slide",
+      "DALL-E through Codex generates one unique scene per slide; final text is rendered separately",
+      "Template-only cards are rejected and cannot be called final",
+      "Every carousel uses contradiction as the hook",
+      "No visible pipeline labels, CTA buttons, or brand stamps on final slides",
+      "High contrast article text, no filler copy"
+    ],
+    "palette": {
+      "background": "#F5F7FB",
+      "text": "#0E1116",
+      "muted": "#5C6675",
+      "ink": "#15171C",
+      "accent": "#B9F227",
+      "accentText": "#07110A",
+      "danger": "#FF4D4D",
+      "blue": "#335CFF"
+    },
+    "typography": {
+      "headline": "Inter Black / system sans",
+      "body": "Inter Semibold / system sans",
+      "note": "Inter Medium / system sans"
+    }
+  },
+  "carousels": [
+    {
+      "carouselId": "brc_001_netflix_understand_life_zero_words",
+      "painClusterId": "pain_speaking_freeze_001",
+      "campaignId": "camp_20260626_carousel_speaking_freeze_001_a",
+      "contentVariantId": "cv_speaking_freeze_001_carousel_a",
+      "title": "Язык понимаешь. Фразы не выходят.",
+      "platform": "instagram_carousel",
+      "targetMetric": "trial_started",
+      "visualConcept": "Противоречие: человек понимает язык на видео, но в живом разговоре не может достать готовую фразу голосом.",
+      "caption": "Главная ловушка изучения языков: понимание кажется почти речью. Но понимание тренирует узнавание, а разговор требует быстрого доступа к фразам без подсказки. Если фразы не выходят голосом, знание остаётся зрительским. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "slides": [
+        {
+          "slide": 1,
+          "overlayText": "Язык понимаешь на видео. В жизни — ноль фраз.",
+          "layout": "big_centered_headline",
+          "dallePrompt": "A cinematic vertical image, a tired young adult watching a streaming show on a laptop at night, English subtitles are visible only as abstract white lines, no readable text, cozy dark room, the person looks confident while watching, modern editorial style, high contrast, empty space for text overlay, no logos, no flags, no books",
+          "subText": "Это не только про английский: мозг может узнавать речь глазами и всё равно не доставать фразу голосом."
+        },
+        {
+          "slide": 2,
+          "overlayText": "Ты думал: ещё немного понимания — и заговорю.",
+          "subText": "Но понимание тренирует узнавание. Разговор требует доступа без паузы и без подсказки.",
+          "layout": "split_equation",
+          "dallePrompt": "A vertical conceptual scene split in two: left side a calm person understanding a movie with abstract subtitles, right side the same person frozen in a real conversation, words dissolving into noise, modern editorial illustration, no readable text, no logos, space for overlay"
+        },
+        {
+          "slide": 3,
+          "overlayText": "Память крепнет в момент доставания.",
+          "layout": "text_left_visual_right",
+          "dallePrompt": "A surreal vertical scene: familiar English words represented as glowing blocks behind glass, a hand reaches for them but cannot grab them, clean modern style, emotional frustration, no readable letters, no text, high contrast, space for overlay",
+          "subText": "Не когда слово снова показали. Поэтому знакомая фраза может пропасть именно в живом разговоре."
+        },
+        {
+          "slide": 4,
+          "overlayText": "Сказать вслух — не украшение к уроку.",
+          "subText": "Голос меняет след в памяти: прочитанное молча и произнесённое ртом ведут себя по-разному.",
+          "layout": "bold_statement_with_small_note",
+          "dallePrompt": "A vertical image of scattered abstract grammar papers fading into the background while three clean phrase blocks float forward like tools, no readable text, modern minimal editorial, bright accent color, high contrast, empty space for overlay"
+        },
+        {
+          "slide": 5,
+          "overlayText": "Речь часто собирается не из слов, а из готовых кусков.",
+          "layout": "contrast_card",
+          "dallePrompt": "A vertical conceptual image: a big messy cloud of language learning material transforms into one clear speech bubble shape, no readable text, modern visual metaphor, energetic but clean, space for overlay",
+          "subText": "В разговоре выигрывает не тот, кто знает больше, а тот, у кого нужная фраза выходит быстрее."
+        },
+        {
+          "slide": 6,
+          "overlayText": "Ты всё понял — но завтра снова можешь промолчать.",
+          "layout": "cta_slide",
+          "dallePrompt": "A vertical uplifting scene: phrase blocks move from a person's head toward their mouth like a clean path, confidence returning, modern app campaign style, no text, no logos, bright but not childish, space for final CTA overlay",
+          "subText": "Если фразы не выходят голосом, знание остаётся зрительским. Ссылка на приложение Phraseman — в био."
+        }
+      ],
+      "status": "dalle_final_ready_editorial_bible",
+      "researchSources": [
+        {
+          "name": "Swain & Lapkin, 1995 — output makes learners notice gaps",
+          "url": "https://academic.oup.com/applij/article/16/3/371/184113"
+        },
+        {
+          "name": "Roediger & Butler, 2011 — retrieval practice improves long-term retention",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20951630/"
+        },
+        {
+          "name": "MacLeod et al., 2010 — production effect: saying aloud improves memory",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20804284/"
+        },
+        {
+          "name": "Boers et al., 2006 — formulaic sequences and perceived oral proficiency",
+          "url": "https://journals.sagepub.com/doi/10.1191/1362168806lr195oa"
+        }
+      ]
+    },
+    {
+      "carouselId": "brc_002_words_disappear",
+      "painClusterId": "pain_forgetting_001",
+      "campaignId": "camp_20260626_carousel_forgetting_001_a",
+      "contentVariantId": "cv_forgetting_001_carousel_a",
+      "title": "Слова знаешь. В разговоре они исчезают.",
+      "platform": "instagram_carousel",
+      "targetMetric": "trial_started",
+      "visualConcept": "Противоречие: слово кажется знакомым в списке, но исчезает, когда его нужно достать голосом.",
+      "caption": "Если слово исчезает в разговоре, это не всегда плохая память. Часто это слабый доступ. Узнавать слово глазами и доставать фразу голосом — разные маршруты. Phraseman нужен именно для второго маршрута. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "slides": [
+        {
+          "slide": 1,
+          "overlayText": "Слова языка знаешь. В разговоре они исчезают.",
+          "layout": "big_centered_headline",
+          "dallePrompt": "A vertical surreal scene: a person reaches toward a bright word-shaped object that fades away just before they touch it, no readable text, emotional but clean, modern editorial style, muted background, space for overlay",
+          "subText": "Это не дырка в голове. Это слабый доступ: слово узнаётся глазами, но не выходит голосом."
+        },
+        {
+          "slide": 2,
+          "overlayText": "Ты думал, проблема в памяти. Часто проблема в маршруте.",
+          "layout": "microphone_pressure",
+          "dallePrompt": "A vertical close-up of a person near a microphone, calm but tense, abstract word shapes evaporating from their mouth before forming, no readable letters, high contrast, space for overlay",
+          "subText": "От глаза к узнаванию путь натоптан. От мысли к фразе — почти пустой."
+        },
+        {
+          "slide": 3,
+          "overlayText": "Повторное чтение даёт знакомость. Доставание даёт доступ.",
+          "subText": "Мозг учится вытаскивать ответ, а не кивать на него, когда он уже лежит перед глазами.",
+          "layout": "myth_buster",
+          "dallePrompt": "A vertical visual metaphor: a locked drawer full of glowing phrase blocks, a key almost turning, clean editorial composition, no readable text, no logos, space for overlay"
+        },
+        {
+          "slide": 4,
+          "overlayText": "Поэтому списки слов обманывают.",
+          "subText": "В списке слово кажется твоим. В разговоре ему нужно выйти без списка, без перевода и без времени.",
+          "layout": "two_line_emphasis",
+          "dallePrompt": "A vertical scene: flashcards seen on one side, a hand actively pulling a phrase block out of memory on the other side, no readable text, modern educational campaign style, space for overlay"
+        },
+        {
+          "slide": 5,
+          "overlayText": "Тренировать нужно не слово, а фразу в моменте.",
+          "layout": "contrast_card",
+          "dallePrompt": "A vertical conceptual image: a long chaotic list collapses into three strong reusable phrase blocks, no readable text, minimal high contrast, modern graphic style, space for overlay",
+          "subText": "Не “agree”. А “I see what you mean”. Не “busy”. А “I’m tied up right now”."
+        },
+        {
+          "slide": 6,
+          "overlayText": "Ты можешь знать слово — и снова потерять его завтра.",
+          "layout": "cta_slide",
+          "dallePrompt": "A vertical image of phrase blocks moving along a repetition loop and becoming brighter each cycle, no readable text, clean modern app marketing visual, green accent, space for CTA overlay",
+          "subText": "Если не доставать фразы голосом, память останется витринной. Ссылка на приложение Phraseman — в био."
+        }
+      ],
+      "status": "editorial_bible_ready_requires_codex_dalle"
+    },
+    {
+      "carouselId": "brc_003_three_years_still_not_speaking",
+      "painClusterId": "pain_years_stuck_001",
+      "campaignId": "camp_20260626_carousel_years_stuck_001_a",
+      "contentVariantId": "cv_years_stuck_001_carousel_a",
+      "title": "Три года учишь язык. Рот всё равно молчит.",
+      "platform": "instagram_carousel",
+      "targetMetric": "trial_started",
+      "visualConcept": "Противоречие: годы обучения были настоящими, но они могли тренировать узнавание вместо выхода фраз голосом.",
+      "caption": "Три года занятий не гарантируют речь. Они гарантируют только то, что ты тренировал. Если тренировал тесты, чтение и узнавание, разговор всё равно может ломаться. Нужны фразы, которые выходят голосом под давлением. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "slides": [
+        {
+          "slide": 1,
+          "overlayText": "Три года учишь язык. Рот всё равно молчит.",
+          "layout": "big_centered_headline",
+          "dallePrompt": "A vertical image of a person standing beside a tall stack of completed language lessons and app streak symbols, but their mouth is covered by a soft shadow, no readable text, modern editorial, emotional stagnation, space for overlay",
+          "subText": "Это больно именно потому, что усилия были настоящими. Но усилие могло идти не в тот навык."
+        },
+        {
+          "slide": 2,
+          "overlayText": "Ты думал, часы обучения складываются в речь.",
+          "layout": "quiet_truth",
+          "dallePrompt": "A vertical scene of many checkmarks and completed modules fading into the background while the person still looks unable to speak, no readable text, clean visual metaphor, space for overlay",
+          "subText": "Они складываются в то, что ты тренировал: тесты, чтение, узнавание, перевод."
+        },
+        {
+          "slide": 3,
+          "overlayText": "Говорение — отдельный навык доступа.",
+          "layout": "two_column_truth",
+          "dallePrompt": "A vertical split scene: eyes recognizing many symbols on one side, mouth practicing only a few phrase blocks on the other, no readable text, modern high contrast, space for overlay",
+          "subText": "Мозгу нужно достать фразу под давлением, когда собеседник ждёт, а не когда учебник открыт."
+        },
+        {
+          "slide": 4,
+          "overlayText": "Ещё один урок может дать ещё одно знание.",
+          "layout": "strong_metaphor",
+          "dallePrompt": "A vertical conceptual visual: a speech bubble shaped like a muscle being trained with small phrase blocks, no readable text, clean bold style, not cartoonish, space for overlay",
+          "subText": "Но он не гарантирует, что фраза выйдет изо рта в нужную секунду."
+        },
+        {
+          "slide": 5,
+          "overlayText": "Нужны короткие фразы, которые выдерживают давление.",
+          "layout": "phrase_blocks",
+          "dallePrompt": "A vertical image of small phrase blocks being repeated like reps in a workout, minimal modern editorial, no text, green accent, space for overlay",
+          "subText": "Сначала они звучат базово. Потом именно они спасают разговор."
+        },
+        {
+          "slide": 6,
+          "overlayText": "Можно учиться ещё год — и снова молчать.",
+          "layout": "cta_slide",
+          "dallePrompt": "A vertical hopeful scene: a person finally speaks a simple phrase, the background clears from fog into a clean path, no readable text, warm confident emotion, space for overlay",
+          "subText": "Если не тренировать выход фраз голосом, время не станет речью. Ссылка на приложение Phraseman — в био."
+        }
+      ],
+      "status": "editorial_bible_ready_requires_codex_dalle"
+    },
+    {
+      "carouselId": "brc_004_embarrassed_to_speak",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "campaignId": "camp_20260626_carousel_embarrassed_to_speak_001_a",
+      "contentVariantId": "cv_embarrassed_to_speak_001_carousel_a",
+      "title": "Боишься звучать глупо. Поэтому язык молчит.",
+      "platform": "instagram_carousel",
+      "targetMetric": "trial_started",
+      "visualConcept": "Противоречие: человеку есть что сказать, но страх ошибки превращает живой язык в тишину.",
+      "caption": "Стеснение в разговоре часто выглядит как слабый характер. Но внутри это механика защиты: мозг выбирает тишину, когда не уверен, что фраза выйдет быстро и безопасно. Уверенность появляется после отработанных фраз, не до них. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "slides": [
+        {
+          "slide": 1,
+          "overlayText": "На другом языке боишься звучать глупо. И молчишь.",
+          "layout": "big_centered_headline",
+          "dallePrompt": "A vertical emotional scene: a person with many thoughts represented as soft glowing shapes inside their head, but their mouth remains closed, no readable text, gentle but high contrast, space for overlay",
+          "subText": "Не потому что нечего сказать. Потому что каждая фраза кажется экзаменом перед человеком."
+        },
+        {
+          "slide": 2,
+          "overlayText": "Ты думал, страх уйдёт после идеальной грамматики.",
+          "layout": "fear_closeup",
+          "dallePrompt": "A vertical close-up of a hesitant person about to speak, red abstract doubt marks around them, no readable text, modern editorial, emotional but not dark, space for overlay",
+          "subText": "Но страх часто уходит после повторяемых фраз, которые рот уже знает."
+        },
+        {
+          "slide": 3,
+          "overlayText": "Молчание — не характер. Это защита.",
+          "layout": "minimal_dark",
+          "dallePrompt": "A vertical minimal scene: a speech bubble dissolves into silence, person in a quiet room, no readable text, clean negative space, dramatic lighting, space for overlay",
+          "subText": "Мозг выбирает тишину, когда не уверен, что фраза выйдет быстро и безопасно."
+        },
+        {
+          "slide": 4,
+          "overlayText": "Сначала нужна не смелость. Нужна первая фраза.",
+          "layout": "private_practice",
+          "dallePrompt": "A vertical calm scene: a person practicing softly alone with phrase blocks floating nearby, safe private environment, no text, no logos, warm light, space for overlay",
+          "subText": "Та, которую можно сказать без сборки предложения с нуля."
+        },
+        {
+          "slide": 5,
+          "overlayText": "Фразы, отработанные одному, легче выходят при людях.",
+          "layout": "transition",
+          "dallePrompt": "A vertical transition scene: private practice phrase blocks become a confident small conversation in real life, no readable text, modern clean visual metaphor, space for overlay",
+          "subText": "Разговор становится не прыжком в пустоту, а повторением знакомого действия."
+        },
+        {
+          "slide": 6,
+          "overlayText": "Ты можешь ждать уверенности — и снова выбрать тишину.",
+          "layout": "cta_slide",
+          "dallePrompt": "A vertical app campaign visual: phrase blocks forming a safe practice path from mind to speech, no readable text, clean modern, green accent, space for CTA overlay",
+          "subText": "Уверенность приходит после выхода фраз, не до него. Ссылка на приложение Phraseman — в био."
+        }
+      ],
+      "status": "editorial_bible_ready_requires_codex_dalle"
+    },
+    {
+      "carouselId": "brc_005_saved_words_do_not_speak",
+      "painClusterId": "pain_forgetting_001",
+      "campaignId": "camp_20260626_carousel_saved_words_do_not_speak_001_a",
+      "contentVariantId": "cv_saved_words_do_not_speak_001_carousel_a",
+      "title": "Сохраняешь слова. Во рту всё равно пусто.",
+      "platform": "instagram_carousel",
+      "targetMetric": "trial_started",
+      "visualConcept": "Противоречие: человек сохраняет слова, скриншоты и посты о языке, но в живом разговоре не может достать ни одной готовой фразы.",
+      "caption": "Сохранённый пост даёт ощущение прогресса. Но речь появляется не в момент сохранения, а в момент доставания фразы без подсказки. Если фраза ни разу не вышла голосом, она ещё не стала твоей. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "status": "dalle_final_ready_editorial_bible",
+      "researchSources": [
+        {
+          "name": "Roediger & Butler, 2011 — retrieval practice improves long-term retention",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20951630/"
+        },
+        {
+          "name": "MacLeod et al., 2010 — production effect: saying aloud improves memory",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20804284/"
+        },
+        {
+          "name": "Boers et al., 2006 — formulaic sequences and perceived oral proficiency",
+          "url": "https://journals.sagepub.com/doi/10.1191/1362168806lr195oa"
+        }
+      ],
+      "slides": [
+        {
+          "slide": 1,
+          "overlayText": "Сохраняешь слова языка. Во рту всё равно пусто.",
+          "subText": "Папка “выучить потом” создаёт ощущение прогресса. Но сохранённая фраза ещё не умеет выходить голосом.",
+          "layout": "language_context_contradiction",
+          "dallePrompt": "Vertical cinematic editorial image, a person at night staring at a phone full of saved language-learning posts and phrase cards shown only as abstract unreadable rectangles, in the background a real conversation is happening through a doorway, the person looks stuck and silent, no readable text, no logos, no flags, no books, dramatic contrast, empty lower-left space for Russian overlay text"
+        },
+        {
+          "slide": 2,
+          "overlayText": "Ты думал: сохранить — почти выучить.",
+          "subText": "На самом деле это только узнавание. Речь начинается там, где подсказка исчезает.",
+          "layout": "false_belief_reframe",
+          "dallePrompt": "Vertical conceptual scene, a saved bookmark icon made of light dissolves into empty air before reaching a person’s mouth, language phrase cards stay trapped behind glass, no readable text, no logos, modern editorial style, cinematic shadows, space for overlay text"
+        },
+        {
+          "slide": 3,
+          "overlayText": "Память крепнет, когда ты достаёшь ответ.",
+          "subText": "Не когда он снова лежит перед глазами. Поэтому знакомая фраза может исчезнуть именно в разговоре.",
+          "layout": "research_mechanism",
+          "dallePrompt": "Vertical cinematic image, a person reaches into a dark mental archive of glowing phrase blocks, one block moves toward their mouth while many saved cards remain dim on shelves, no letters, no readable text, no UI, emotional but clean, high contrast, space for overlay"
+        },
+        {
+          "slide": 4,
+          "overlayText": "Список слов обманывает сильнее, чем кажется.",
+          "subText": "В списке слово твоё. В разговоре ему нужно выйти без списка, перевода и времени.",
+          "layout": "consequence",
+          "dallePrompt": "Vertical editorial scene, a long wall of abstract vocabulary cards collapses into silence while two people wait in a real conversation, the learner has words floating behind them but none leaving the mouth, no readable text, no logos, dramatic realism, space for overlay"
+        },
+        {
+          "slide": 5,
+          "overlayText": "Тренировать надо не слово. Тренировать надо выход фразы.",
+          "subText": "Не “agree”. А готовый кусок, который рот может произнести до того, как разговор ушёл дальше.",
+          "layout": "new_category",
+          "dallePrompt": "Vertical cinematic image, abstract phrase blocks travel from a person’s head to their mouth like a practiced path, a conversation scene waits ahead, no readable text, no logos, bright focused path, serious editorial mood, space for overlay text"
+        },
+        {
+          "slide": 6,
+          "overlayText": "Ты можешь сохранить этот пост — и снова промолчать.",
+          "subText": "Сохранённая мысль не станет речью, пока фраза не выйдет голосом. Ссылка на приложение Phraseman — в био.",
+          "layout": "closing_contradiction_bio_link",
+          "dallePrompt": "Vertical final editorial image, a saved post icon fades in the background while clear glowing phrase blocks finally leave a person’s mouth into a real conversation, emotional urgency, no readable text, no logos, no app screen, cinematic light, strong empty text area"
+        }
+      ]
+    }
+  ],
+  "generatedAt": "2026-06-26T12:08:32.560Z"
+}

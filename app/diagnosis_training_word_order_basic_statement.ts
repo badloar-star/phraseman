@@ -765,7 +765,7 @@ export const WORD_ORDER_BASIC_STATEMENT_TRAINING: DiagnosisTraining = {
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=syntax&microDiagnosisId=word_order_basic_statement',
     problemCoachRoute: '/problem_coach?category=syntax&microDiagnosisId=word_order_basic_statement',
-    smartTrainerRoute: '/trainer_smart_session?mode=weak&source=diagnosis_training&category=syntax&microDiagnosisId=word_order_basic_statement',
+    smartTrainerRoute: '/problem_coach?category=syntax&microDiagnosisId=word_order_basic_statement',
     fallbackIfTrainingMissing: '/problem_coach?category=syntax',
   },
   qualityChecklist: {

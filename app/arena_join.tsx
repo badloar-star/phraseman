@@ -11,7 +11,7 @@ import { triLang } from '../constants/i18n';
 import { useEnergy } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
@@ -61,6 +61,9 @@ export default function DuelJoinScreen() {
         messageUk: 'Матч готовий. Успіхів!',
         messageEs: '¡La partida está lista! ¡Mucha suerte!',
       });
+      // Принят join → игра «вместо» экрана join (свап). Иначе «назад» из игры/
+      // результатов вернёт на join с уже устаревшим roomId.
+      markNextNavigationAsReplace();
       router.replace({ pathname: '/arena_game' as any, params: { sessionId: res.sessionId, userId: res.uid } });
       return;
     }

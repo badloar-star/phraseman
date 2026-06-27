@@ -567,7 +567,7 @@ function main(): void {
     }
 
     if (reasons.length === 0) {
-      addReason(reasons, reviewFocus, reasonCounts, 'standard_human_review', 'Perform normal source, French, and quiz review.');
+      addReason(reasons, reviewFocus, reasonCounts, 'standard_llm_official_source_review', 'Perform normal source, French, and quiz review.');
     }
 
     priorityRows.push({

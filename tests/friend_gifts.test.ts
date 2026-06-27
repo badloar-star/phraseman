@@ -4,6 +4,7 @@ const mockCallableInvoker = jest.fn(async () => ({
     giftId: 'arena_extra_5',
     costShards: 5,
     senderBalanceAfter: 95,
+    shardsUpdatedAtMs: 3_000,
     dailyRemaining: 2,
   },
 }));
@@ -73,10 +74,16 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
     friendStableId: 'friend-123',
     giftId: 'arena_extra_5',
     senderDisplayName: 'Ada',
+    idempotencyKey: expect.stringMatching(/^fg_[a-z0-9]+_[a-z0-9]+_[a-z0-9]+$/),
   });
   expect(mockEnsureAnonUser.mock.invocationCallOrder[0]).toBeLessThan(
     mockCallableInvoker.mock.invocationCallOrder[0],
   );
+  expect(mockReplaceShardsBalanceLocal).toHaveBeenCalledWith(95, {
+    updatedAtMs: 3_000,
+    op: 'spend',
+    reason: 'friend_gift',
+  });
 });
 
 test('sendFriendGiftThanks calls the thanks function for the gift sender', async () => {
@@ -93,5 +100,6 @@ test('sendFriendGiftThanks calls the thanks function for the gift sender', async
     friendStableId: 'friend-123',
     giftId: 'chain_shield_1',
     senderDisplayName: 'Ada',
+    idempotencyKey: expect.stringMatching(/^fgt_[a-z0-9]+_[a-z0-9]+_[a-z0-9]+$/),
   });
 });

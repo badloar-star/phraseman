@@ -47,6 +47,7 @@ const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 const FUNCTIONS_REGION = 'us-central1';
+const leagueChestClaimInFlight = new Map<string, Promise<LeagueChestClaim>>();
 
 function getCurrentWeekId(): string {
   const d = new Date();
@@ -108,6 +109,8 @@ export type LeagueChestRewardDrop = {
 export type LeagueChestClaim = {
   claimed: boolean;
   crown?: LeagueCrown | null;
+  balance?: number;
+  shardsUpdatedAtMs?: number;
   rewards?: {
     drops: LeagueChestRewardDrop[];
     shards?: number;
@@ -229,6 +232,10 @@ function claimDocId(uid: string, weekId: string, groupId: string): string {
 
 function localClaimKey(uid: string, weekId: string, groupId: string): string {
   return `league_chest_claimed_${claimDocId(uid, weekId, groupId)}`;
+}
+
+function leagueChestClaimRequestKey(uid: string, weekId: string, groupId: string): string {
+  return `${safeId(weekId)}:${safeId(groupId)}:${safeId(uid)}`;
 }
 
 function parseMembers(raw: unknown): LeagueChestMember[] {
@@ -449,6 +456,7 @@ async function grantCustomAvatarReward(drop: LeagueChestRewardDrop): Promise<voi
 async function applyLocalRewardPack(
   rewardPack: NonNullable<LeagueChestClaim['rewards']>,
   balance?: number,
+  shardsUpdatedAtMs?: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   const drops = Array.isArray(rewardPack.drops) ? rewardPack.drops : [];
@@ -458,7 +466,11 @@ async function applyLocalRewardPack(
     .reduce((sum, drop) => sum + rewardAmount(drop), 0);
 
   if (typeof balance === 'number' && Number.isFinite(balance)) {
-    await replaceShardsBalanceLocal(balance);
+    await replaceShardsBalanceLocal(balance, {
+      updatedAtMs: shardsUpdatedAtMs,
+      op: 'earn',
+      reason: 'league_chest',
+    });
     if (shardAmount > 0) emitAppEvent('shards_earned', { amount: shardAmount, reasonKey: 'league_chest' });
   }
 
@@ -541,22 +553,32 @@ export async function ensureLeagueChestRewards(params: {
     LeagueChestClaim & { ok?: boolean; balance?: number; alreadyClaimed?: boolean }
   >('leagueChestClaim');
   if (!fn) return { claimed: false };
+  const key = leagueChestClaimRequestKey(myUid, params.weekId, params.groupId);
+  const existing = leagueChestClaimInFlight.get(key);
+  if (existing) return existing;
 
-  try {
-    const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
-    if (data.claimed) await AsyncStorage.setItem(claimKey, '1');
-    if (data.crown?.uid === myUid) {
-      emitAppEvent('league_crown_updated', {
-        uid: myUid,
-        expiresAt: data.crown.expiresAt,
-        crownCount: Math.max(1, Math.floor(Number(data.crown.crownCount) || 1)),
-      });
+  const request = (async () => {
+    try {
+      const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
+      if (data.claimed) await AsyncStorage.setItem(claimKey, '1');
+      if (data.crown?.uid === myUid) {
+        emitAppEvent('league_crown_updated', {
+          uid: myUid,
+          expiresAt: data.crown.expiresAt,
+          crownCount: Math.max(1, Math.floor(Number(data.crown.crownCount) || 1)),
+        });
+      }
+      if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance, data.shardsUpdatedAtMs, params.studyTarget);
+      return data;
+    } catch {
+      return { claimed: false };
     }
-    if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance, params.studyTarget);
-    return data;
-  } catch {
-    return { claimed: false };
-  }
+  })().finally(() => {
+    leagueChestClaimInFlight.delete(key);
+  });
+
+  leagueChestClaimInFlight.set(key, request);
+  return request;
 }
 
 export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<string, LeagueCrown>> {

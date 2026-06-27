@@ -319,11 +319,11 @@ export const incrementSessionCount = async (): Promise<void> => {
 
 export const canShowReview = async (): Promise<boolean> => {
   try {
-    const [sessRaw, lastRaw, ratedRaw, showCountRaw] = await Promise.all([
-      AsyncStorage.getItem(KEY_SESSIONS),
-      AsyncStorage.getItem(KEY_LAST_PROMPTED),
-      AsyncStorage.getItem(KEY_RATED),
-      AsyncStorage.getItem(KEY_SHOW_COUNT),
+    const [[, sessRaw], [, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([
+      KEY_SESSIONS,
+      KEY_LAST_PROMPTED,
+      KEY_RATED,
+      KEY_SHOW_COUNT,
     ]);
     if (ratedRaw === '1') return false;
     const sessions = parseInt(sessRaw || '0');

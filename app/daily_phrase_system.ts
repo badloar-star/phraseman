@@ -37,6 +37,7 @@ const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v3';
 const REMOTE_DAILY_PHRASE_CACHE_KEY = 'daily_phrase_remote_cache_v1';
 const DAILY_PHRASES_COLLECTION = 'daily_phrases';
 const FUNCTIONS_REGION = 'us-central1';
+const REMOTE_DAILY_PHRASE_QUERY_LIMIT = 10;
 
 type RemoteDailyPhraseDoc = Partial<Omit<DailyPhrase, 'date'>> & {
   id?: string;
@@ -223,17 +224,17 @@ async function readRemoteTodayPhrase(date: string): Promise<DailyPhrase | null> 
     await ensureCloudAuth();
     const snap = await db
       .collection(DAILY_PHRASES_COLLECTION)
+      .where('scheduledDate', '==', date)
       .orderBy('order', 'asc')
-      .limit(500)
+      .limit(REMOTE_DAILY_PHRASE_QUERY_LIMIT)
       .get();
-    const rows: DailyPhrase[] = [];
+    let phrase: DailyPhrase | null = null;
     snap.forEach((docSnap: { id: string; data: () => RemoteDailyPhraseDoc }) => {
+      if (phrase) return;
       const raw = docSnap.data();
       if (!raw || raw.active === false || raw.scheduledDate !== date) return;
-      const phrase = normalizeRemotePhrase(docSnap.id, raw, date);
-      if (phrase) rows.push(phrase);
+      phrase = normalizeRemotePhrase(docSnap.id, raw, date);
     });
-    const phrase = rows.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))[0] ?? null;
     if (phrase) {
       await AsyncStorage.setItem(REMOTE_DAILY_PHRASE_CACHE_KEY, JSON.stringify({ date, phrase }));
     }
@@ -307,23 +308,23 @@ export function subscribeTodayPhrase(onPhrase: (phrase: DailyPhrase) => void): (
   const db = getFirestore();
   if (!db) return () => {};
   let unsub: (() => void) | undefined;
+  const today = todayKey();
   void ensureCloudAuth();
   try {
     unsub = db
       .collection(DAILY_PHRASES_COLLECTION)
+      .where('scheduledDate', '==', today)
       .orderBy('order', 'asc')
-      .limit(500)
+      .limit(REMOTE_DAILY_PHRASE_QUERY_LIMIT)
       .onSnapshot(
         (snap: { forEach: (cb: (docSnap: { id: string; data: () => RemoteDailyPhraseDoc }) => void) => void }) => {
-          const today = todayKey();
-          const rows: DailyPhrase[] = [];
+          let phrase: DailyPhrase | null = null;
           snap.forEach((docSnap) => {
+            if (phrase) return;
             const raw = docSnap.data();
             if (!raw || raw.active === false || raw.scheduledDate !== today) return;
-            const phrase = normalizeRemotePhrase(docSnap.id, raw, today);
-            if (phrase) rows.push(phrase);
+            phrase = normalizeRemotePhrase(docSnap.id, raw, today);
           });
-          const phrase = rows.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))[0] ?? null;
           if (phrase) {
             void AsyncStorage.setItem(REMOTE_DAILY_PHRASE_CACHE_KEY, JSON.stringify({ date: today, phrase })).catch(() => {});
             onPhrase(phrase);

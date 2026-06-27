@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.vipReconcileOrphanGrant = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -104,7 +104,7 @@ const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('.
 // Legacy paid pronunciation-scoring callable удалён: 0 клиентских вызовов, OpenAI-эндпоинт
 // без App Check был доступен любому. Оценка произношения теперь on-device. (B1 audit)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated, referralClaimVipReward, referralListMyInvites, } = require('./referral');
+const { referralEnsureMyCode, referralApply, referralClaimVipReward, referralListMyInvites, } = require('./referral');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -188,7 +188,6 @@ exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
-exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
@@ -1151,8 +1150,6 @@ Object.defineProperty(exports, "syncFriendActivityMirrorCron", { enumerable: tru
 var premium_expiry_cron_1 = require("./premium_expiry_cron");
 Object.defineProperty(exports, "premiumExpiryCron", { enumerable: true, get: function () { return premium_expiry_cron_1.premiumExpiryCron; } });
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
-var vip_orphan_reconcile_1 = require("./vip_orphan_reconcile");
-Object.defineProperty(exports, "vipReconcileOrphanGrant", { enumerable: true, get: function () { return vip_orphan_reconcile_1.vipReconcileOrphanGrant; } });
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
 // ── Admin grant (типизированные награды из админки) ───────────────────────────

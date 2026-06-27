@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { FlashList } from '@shopify/flash-list';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -189,7 +189,7 @@ export default function ArenaLeaderboardScreen() {
   const [arenaXpPercentile, setArenaXpPercentile] = useState<number | null>(null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
   const [reportTarget, setReportTarget] = useState<{ uid: string; name: string } | null>(null);
-  const listRef = useRef<FlashList<ArenaLbRow> | null>(null);
+  const listRef = useRef<FlashListRef<ArenaLbRow> | null>(null);
   const didAutoScrollToMeRef = useRef<string | null>(null);
   const reloadSeqRef = useRef(0);
 
@@ -401,11 +401,18 @@ export default function ArenaLeaderboardScreen() {
     if (didAutoScrollToMeRef.current === scrollKey) return;
     didAutoScrollToMeRef.current = scrollKey;
     const id = setTimeout(() => {
-      listRef.current?.scrollToIndex({
-        index: myBoardIndex,
-        animated: false,
-        viewPosition: 0.38,
-      });
+      try {
+        listRef.current?.scrollToIndex({
+          index: myBoardIndex,
+          animated: false,
+          viewPosition: 0.38,
+        });
+      } catch {
+        listRef.current?.scrollToOffset({
+          offset: Math.max(0, myBoardIndex * ARENA_ROW_HEIGHT),
+          animated: false,
+        });
+      }
     }, 80);
     return () => clearTimeout(id);
   }, [displayRows, loading, myBoardIndex]);
@@ -492,16 +499,7 @@ export default function ArenaLeaderboardScreen() {
                 ref={listRef}
                 data={displayRows}
                 keyExtractor={(item) => item.uid}
-                estimatedItemSize={ARENA_ROW_HEIGHT}
                 extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}|${myIsVip ? 1 : 0}`}
-                onScrollToIndexFailed={(info) => {
-                  setTimeout(() => {
-                    listRef.current?.scrollToOffset({
-                      offset: Math.max(0, info.averageItemLength * info.index),
-                      animated: false,
-                    });
-                  }, 80);
-                }}
                 contentContainerStyle={{
                   paddingBottom: showMyRankFooter
                     ? 16 + stickyRankBarHeight + insets.bottom

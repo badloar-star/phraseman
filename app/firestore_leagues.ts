@@ -23,6 +23,14 @@ import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { emitAppEvent } from './events';
+import {
+  getLeagueStartupRegistrationIntervalMs,
+  getLeagueSyncForceIntervalMs,
+  getLeagueSyncMinDelta,
+  getLeagueSyncMinIntervalMs,
+  isLeagueRealtimeMembersEnabled,
+  isLeagueStartupRegistrationEnabled,
+} from './remote_flags';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
 import {
   PROFILE_CARD_LEVEL_KEY,
@@ -67,9 +75,11 @@ const COL_LB = 'leaderboard';
 const GROUP_SIZE = 30;
 const LEAGUE_STATE_V3_KEY = 'league_state_v3';
 const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';
-const LEAGUE_MEMBER_SYNC_CACHE_TTL_MS = 6 * 60 * 60_000;
-const LEAGUE_POINTS_SYNC_MIN_DELTA = 10;
-const LEAGUE_POINTS_SYNC_MAX_DELAY_MS = 5 * 60_000;
+const LEAGUE_STARTUP_REG_CACHE_KEY = 'league_startup_registration_cache_v1';
+const DEFAULT_LEAGUE_MEMBER_SYNC_FORCE_INTERVAL_MS = 6 * 60 * 60_000;
+const DEFAULT_LEAGUE_POINTS_SYNC_MIN_DELTA = 75;
+const DEFAULT_LEAGUE_POINTS_SYNC_MIN_INTERVAL_MS = 15 * 60_000;
+const DEFAULT_LEAGUE_STARTUP_REG_INTERVAL_MS = 24 * 60 * 60_000;
 /** Сколько league_groups максимум читаем на неделю+клуб, чтобы не создавать сольные группы из-за .limit(100) */
 const BROAD_GROUP_QUERY_LIMIT = 500;
 
@@ -81,6 +91,13 @@ type LeagueMemberSyncCache = {
   profileHash: string;
   points: number;
   updatedAt: number;
+};
+
+type LeagueStartupRegistrationCache = {
+  weekId: string;
+  leagueId: number;
+  points: number;
+  registeredAt: number;
 };
 
 function countMembersInData(data: any): number {
@@ -143,6 +160,63 @@ async function writeLeagueMemberSyncCache(
   await AsyncStorage.setItem(LEAGUE_MEMBER_SYNC_CACHE_KEY, JSON.stringify({ ...cache, updatedAt: Date.now() }));
 }
 
+function leagueSyncMinDelta(): number {
+  const value = getLeagueSyncMinDelta();
+  return Math.max(0, Math.trunc(Number.isFinite(value) ? value : DEFAULT_LEAGUE_POINTS_SYNC_MIN_DELTA));
+}
+
+function leagueSyncMinIntervalMs(): number {
+  const value = getLeagueSyncMinIntervalMs();
+  return Math.max(10_000, Number.isFinite(value) ? value : DEFAULT_LEAGUE_POINTS_SYNC_MIN_INTERVAL_MS);
+}
+
+function leagueSyncForceIntervalMs(): number {
+  const value = getLeagueSyncForceIntervalMs();
+  return Math.max(60_000, Number.isFinite(value) ? value : DEFAULT_LEAGUE_MEMBER_SYNC_FORCE_INTERVAL_MS);
+}
+
+function leagueStartupRegistrationIntervalMs(): number {
+  const value = getLeagueStartupRegistrationIntervalMs();
+  return Math.max(60_000, Number.isFinite(value) ? value : DEFAULT_LEAGUE_STARTUP_REG_INTERVAL_MS);
+}
+
+async function readLeagueStartupRegistrationCache(): Promise<LeagueStartupRegistrationCache | null> {
+  try {
+    const raw = await AsyncStorage.getItem(LEAGUE_STARTUP_REG_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<LeagueStartupRegistrationCache>;
+    return {
+      weekId: String(parsed.weekId || ''),
+      leagueId: normLeagueIdData(parsed.leagueId, 0),
+      points: Math.max(0, Number(parsed.points) || 0),
+      registeredAt: Math.max(0, Number(parsed.registeredAt) || 0),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function writeLeagueStartupRegistrationCache(weekId: string, leagueId: number, points: number): Promise<void> {
+  await AsyncStorage.setItem(LEAGUE_STARTUP_REG_CACHE_KEY, JSON.stringify({
+    weekId,
+    leagueId: normLeagueIdData(leagueId, 0),
+    points: Math.max(0, Math.trunc(points) || 0),
+    registeredAt: Date.now(),
+  }));
+}
+
+function shouldSkipLeagueStartupRegistration(
+  cache: LeagueStartupRegistrationCache | null,
+  weekId: string,
+  leagueId: number,
+  points: number,
+): boolean {
+  if (!cache?.registeredAt) return false;
+  if (cache.weekId !== weekId || normLeagueIdData(cache.leagueId, 0) !== normLeagueIdData(leagueId, 0)) return false;
+  if (Date.now() - cache.registeredAt > leagueStartupRegistrationIntervalMs()) return false;
+  return Math.abs(points - cache.points) < leagueSyncMinDelta();
+}
+
 function shouldSkipLeagueMemberCallable(
   cache: LeagueMemberSyncCache | null,
   weekId: string,
@@ -153,10 +227,24 @@ function shouldSkipLeagueMemberCallable(
   if (!cache?.groupId) return false;
   const now = Date.now();
   if (cache.weekId !== weekId || normLeagueIdData(cache.leagueId, 0) !== normLeagueIdData(leagueId, 0)) return false;
-  if (now - cache.updatedAt > LEAGUE_MEMBER_SYNC_CACHE_TTL_MS) return false;
+  if (now - cache.updatedAt > leagueSyncForceIntervalMs()) return false;
   if (profileHash !== cache.profileHash) return false;
-  if (Math.abs(points - cache.points) >= LEAGUE_POINTS_SYNC_MIN_DELTA) return false;
-  return now - cache.updatedAt < LEAGUE_POINTS_SYNC_MAX_DELAY_MS;
+  if (Math.abs(points - cache.points) >= leagueSyncMinDelta()) return false;
+  return true;
+}
+
+function shouldSkipLeaguePointsCallable(
+  cache: LeagueMemberSyncCache | null,
+  weekId: string,
+  leagueId: number,
+  points: number,
+): boolean {
+  if (!cache?.groupId) return false;
+  const now = Date.now();
+  if (cache.weekId !== weekId || normLeagueIdData(cache.leagueId, 0) !== normLeagueIdData(leagueId, 0)) return false;
+  if (now - cache.updatedAt > leagueSyncForceIntervalMs()) return false;
+  if (now - cache.updatedAt < leagueSyncMinIntervalMs()) return true;
+  return Math.abs(points - cache.points) < leagueSyncMinDelta();
 }
 
 function makeLeagueGroupDocId(weekId: string, leagueId: number, uid: string): string {
@@ -863,14 +951,28 @@ export function updateMyGroupPoints(weekPoints: number): Promise<void> {
   });
 }
 
-async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
+async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boolean } = {}): Promise<void> {
   const db = getFirestore();
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
-  await ensureStableAuthLink().catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   try {
+    const weekId = getWeekId();
+    let leagueId = 0;
+    try {
+      const leagueRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
+      const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;
+      leagueId = normLeagueIdData(leagueState?.leagueId, 0);
+    } catch {
+      leagueId = 0;
+    }
+
+    const cachedBeforeAuth = await readLeagueMemberSyncCache();
+    if (!options.force && shouldSkipLeaguePointsCallable(cachedBeforeAuth, weekId, leagueId, weekPoints)) return;
+
+    await ensureStableAuthLink().catch(() => false);
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+
     const [
       [, avatarRaw],
       [, frameRaw],
@@ -900,14 +1002,6 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
     ]);
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
-    let leagueId = 0;
-    try {
-      const leagueRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
-      const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;
-      leagueId = normLeagueIdData(leagueState?.leagueId, 0);
-    } catch {
-      leagueId = 0;
-    }
     const member = withoutUndefinedFields({
       name: memberName || undefined,
       points: weekPoints,
@@ -924,11 +1018,10 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
       streak: streakRaw ? parseInt(streakRaw, 10) : 0,
       totalXp: memberTotalXp,
     });
-    const weekId = getWeekId();
     const memberHash = leagueMemberHash(member);
     const profileHash = leagueMemberHash(member, false);
     const cachedSync = await readLeagueMemberSyncCache();
-    if (shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, weekPoints)) return;
+    if (!options.force && shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, weekPoints)) return;
 
     const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean; groupId?: string }>('leagueUpdateMyMember');
     await fn({
@@ -964,7 +1057,7 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
       }
       await getOrCreateLeagueGroup(getWeekId(), leagueId, name, weekPoints).catch(() => null);
     }
-    await _doUpdateGroupPoints(weekPoints);
+    await _doUpdateGroupPoints(weekPoints, { force: true });
   } catch {}
 }
 
@@ -973,6 +1066,7 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
 // даже если он никогда не открывал экран клубов.
 export async function registerInLeagueGroupSilently(isPremium?: boolean): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
+  if (!isLeagueStartupRegistrationEnabled()) return;
   try {
     const [[, nameRaw], [, leagueRaw]] =
       await AsyncStorage.multiGet(['user_name', 'league_state_v3']);
@@ -994,8 +1088,13 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
     const weekId = getWeekId();
 
     const weekPoints = await getMyWeekPoints();
+    const cachedRegistration = await readLeagueStartupRegistrationCache();
+    if (shouldSkipLeagueStartupRegistration(cachedRegistration, weekId, leagueId, weekPoints)) return;
 
     const group = await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);
+    if (group && group.length > 0) {
+      writeLeagueStartupRegistrationCache(weekId, leagueId, weekPoints).catch(() => {});
+    }
     // Первый запуск: пока в multiGet не было league_state_v3, сохраняем снимок группы из облака,
     // чтобы на Главной сразу был виден клуб с другими игроками (без захода на экран клуба).
     const hadLocalLeague = !!(leagueRaw && String(leagueRaw).trim());
@@ -1074,6 +1173,36 @@ export function subscribeToLeagueGroupMembers(
   if (!CLOUD_SYNC_ENABLED) return () => {};
   const db = getFirestore();
   if (!db) return () => {};
+  if (!isLeagueRealtimeMembersEnabled()) {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const uid = await ensureAnonUser();
+        if (cancelled || !uid) return;
+        const lbSnap = await db.collection(COL_LB).doc(uid).get();
+        const lbData =
+          (lbSnap?.data?.() as { groupId?: string; groupWeekId?: string; leagueId?: number } | undefined) || {};
+        if (!lbSnap?.exists || !lbData.groupId || lbData.groupWeekId !== getWeekId()) {
+          if (!cancelled) onUpdate([]);
+          return;
+        }
+        const [myName, wp, groupSnap] = await Promise.all([
+          AsyncStorage.getItem('user_name').then((x) => (x || '').trim() || 'Игрок'),
+          getMyWeekPoints(),
+          db.collection('league_groups').doc(lbData.groupId).get(),
+        ]);
+        if (cancelled) return;
+        const members: Record<string, any> =
+          (groupSnap?.data?.() as { members?: Record<string, any> } | undefined)?.members ?? {};
+        onUpdate(mapLeagueMembersToGroupList(members, uid, myName, wp));
+      } catch {
+        if (!cancelled) onUpdate([]);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }
   const r: { lb: (() => void) | null; g: (() => void) | null } = { lb: null, g: null };
   let cancelled = false;
   let lastReconcileAt = 0;

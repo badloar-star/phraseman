@@ -20,6 +20,29 @@ describe('account deletion rebuilt flow contract', () => {
     expect(beforeLocalWipe).not.toContain("return { ok: false, reason: 'cloud_delete_failed' }");
   });
 
+  it('blocks immediate same-provider re-login until background deletion is settled', () => {
+    const start = authProvider.indexOf('export async function deleteAccountAndWipe');
+    const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);
+    const captureStable = authProvider.indexOf('const pendingDeleteStableId = await getStableId().catch(() => null);', start);
+    const cloudDelete = authProvider.indexOf('const cloudDeletePromise = deleteCloudData();', start);
+    const asyncStorageClear = authProvider.indexOf('await AsyncStorage.clear()', start);
+    const stableIdClear = authProvider.indexOf('await clearStableId()', start);
+    const markLock = authProvider.indexOf('await markAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId);', start);
+    const clearLock = authProvider.indexOf('.then(() => clearAccountDeletePendingAuth(pendingDeleteProviderUid))', markLock);
+    const ensureAnon = authProvider.indexOf('await ensureAnonUser()', markLock);
+
+    expect(authProvider).toContain("import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout'");
+    expect(authProvider).toContain("const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';");
+    expect(authProvider).toContain('const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS + 60_000;');
+    expect(captureProvider).toBeGreaterThan(start);
+    expect(captureStable).toBeGreaterThan(captureProvider);
+    expect(captureStable).toBeLessThan(cloudDelete);
+    expect(asyncStorageClear).toBeLessThan(markLock);
+    expect(stableIdClear).toBeLessThan(markLock);
+    expect(markLock).toBeLessThan(ensureAnon);
+    expect(clearLock).toBeGreaterThan(markLock);
+  });
+
   it('keeps callable timeout longer than the backend function timeout', () => {
     expect(timeoutSource).toContain('ACCOUNT_DELETE_FUNCTION_TIMEOUT_MS + ACCOUNT_DELETE_TIMEOUT_SAFETY_MARGIN_MS');
     expect(timeoutSource).not.toContain('ACCOUNT_DELETE_FUNCTION_TIMEOUT_MS - ACCOUNT_DELETE_TIMEOUT_SAFETY_MARGIN_MS');

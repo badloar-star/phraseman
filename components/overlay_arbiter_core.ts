@@ -92,12 +92,19 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 // ВАЖНО: сюда входят ТОЛЬКО оверлеи, которые сами автозакрываются по таймеру и потому
 // могут «залипнуть» при сбое. lessonCompleteNotif и arenaRoomConfirm СЮДА НЕ входят — их
 // закрывает юзер тапом (их выселение по таймеру = та же болезнь, что и с level-up).
-// arenaInvite оставлен: у него есть собственный авто-decline по таймеру, он транзиентен.
+//
+// arenaInvite НАМЕРЕННО ИСКЛЮЧЁН (раньше был тут). Его собственный авто-decline = 60с
+// (INVITE_TIMEOUT_MS), а окно сторожа = 15с (OVERLAY_MAX_HOLD_WITH_WAITERS_MS). Пока он
+// был force-evictable, любой тост в очереди (achievement/action/coach/daily) заставлял
+// сторож выселить ЖИВОЕ приглашение через 15с → попап пропадал у юзера за ~45с до
+// авто-decline, и принять приглашение было уже нельзя («окно само закрылось»). У всех
+// остальных force-evictable их авто-таймер < 15с, поэтому сторож их и не трогает.
+// Исключение arenaInvite из этого списка НЕ создаёт залипания: его 60с авто-decline сам
+// освободит слот (topInvite→null). Тосты ниже ждут максимум до принятия/отклонения/60с.
 export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'shardsEarned',
   'matchFoundToastScreen',
   'matchFoundToast',
-  'arenaInvite',
   'achievementToast',
   'dailyTaskRewardToast',
   'coachToast',
@@ -145,6 +152,11 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'boonActivated',
   'compassBriefing',
   'achievementToast',
+  // arenaRoomConfirm = ThemedChoiceModal = НАТИВНЫЙ <Modal> (как themedAlert). Без него
+  // в этом списке передача слота из/в это окно шла без 360мс-зазора → на iOS present
+  // поверх ещё закрывающегося нативного модала (напр. глобального update/introFullAccess
+  // при заходе в комнату) ломал стек модалок (фриз / одно окно пропадало).
+  'arenaRoomConfirm',
 ]);
 
 /** Рендерится ли ключ нативным <Modal> (нужен ли зазор при передаче слота). */

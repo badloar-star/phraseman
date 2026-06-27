@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research Carousel Pack 001</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #0e1116;
+      --muted: #5c6675;
+      --ink: #15171c;
+      --accent: #b9f227;
+      --accent-text: #07110a;
+      --blue: #335cff;
+      --red: #ff4d4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #e7ebf3;
+      color: var(--text);
+      font-family: Inter, Arial, system-ui, sans-serif;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 24px;
+      background: rgba(245, 247, 251, 0.92);
+      border-bottom: 1px solid rgba(14, 17, 22, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .top h1 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .top nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(14, 17, 22, 0.16);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .carousel {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 42px 24px;
+    }
+
+    .carousel-head {
+      margin-bottom: 18px;
+    }
+
+    .carousel-head p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .carousel-head h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .meta span {
+      background: #fff;
+      border: 1px solid rgba(14, 17, 22, 0.12);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #263141;
+      font-weight: 700;
+    }
+
+    .slides {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .slide {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 0;
+      background: var(--bg);
+      box-shadow: 0 18px 45px rgba(23, 31, 45, 0.16);
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,247,251,0.55)),
+        radial-gradient(circle at 12% 10%, rgba(185,242,39,0.5), transparent 32%),
+        radial-gradient(circle at 88% 14%, rgba(51,92,255,0.28), transparent 26%);
+    }
+
+    .theme-1 .scene {
+      background:
+        linear-gradient(135deg, rgba(14,17,22,0.95), rgba(47,55,70,0.82)),
+        radial-gradient(circle at 78% 14%, rgba(185,242,39,0.45), transparent 28%);
+    }
+
+    .theme-2 .scene {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(236,239,245,0.85)),
+        radial-gradient(circle at 18% 15%, rgba(255,77,77,0.28), transparent 30%);
+    }
+
+    .theme-3 .scene {
+      background:
+        linear-gradient(135deg, rgba(247,249,252,0.95), rgba(226,233,246,0.9)),
+        radial-gradient(circle at 85% 82%, rgba(51,92,255,0.26), transparent 32%);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(3px);
+      opacity: 0.95;
+    }
+
+    .orb-a {
+      width: 38%;
+      height: 38%;
+      background: rgba(185, 242, 39, 0.9);
+      right: -9%;
+      bottom: 16%;
+    }
+
+    .orb-b {
+      width: 28%;
+      height: 28%;
+      background: rgba(51, 92, 255, 0.72);
+      left: -8%;
+      top: 14%;
+    }
+
+    .noise {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(14,17,22,0.06) 1px, transparent 1px),
+        linear-gradient(rgba(14,17,22,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.36;
+    }
+
+    .mock {
+      position: absolute;
+      inset: 10% 9% auto;
+      height: 38%;
+      border-radius: 18px;
+      border: 2px solid rgba(14,17,22,0.14);
+      background: rgba(255,255,255,0.36);
+      backdrop-filter: blur(8px);
+    }
+
+    .theme-1 .mock {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card-shape {
+      position: absolute;
+      inset: 16% 12%;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(14,17,22,0.12);
+    }
+
+    .tiny-bars {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 18%;
+      display: grid;
+      gap: 8px;
+    }
+
+    .tiny-bars i {
+      display: block;
+      height: 10px;
+      border-radius: 10px;
+      background: rgba(14,17,22,0.18);
+    }
+
+    .panel {
+      position: absolute;
+      top: 14%;
+      bottom: 14%;
+      width: 38%;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .panel.left { left: 9%; }
+    .panel.right { right: 9%; background: rgba(14,17,22,0.18); }
+
+    .block-stack {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 17%;
+      display: grid;
+      gap: 12px;
+    }
+
+    .block-stack i {
+      display: block;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--accent);
+      box-shadow: 0 10px 20px rgba(7,17,10,0.16);
+    }
+
+    .face {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      left: calc(50% - 36px);
+      top: 20%;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.75);
+      border: 2px solid rgba(14,17,22,0.14);
+    }
+
+    .pulse {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      left: calc(50% - 60px);
+      top: 13%;
+      border-radius: 50%;
+      border: 10px solid rgba(255,77,77,0.28);
+    }
+
+    .path {
+      position: absolute;
+      left: 22%;
+      top: 14%;
+      width: 54%;
+      height: 58%;
+      border: 14px solid var(--accent);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 999px;
+      transform: rotate(18deg);
+    }
+
+    .cta-pill {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 16%;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .copy {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 68px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .theme-1 .eyebrow,
+    .theme-1 .copy h2,
+    .theme-1 .sub,
+    .theme-1 .footer {
+      color: #fff;
+    }
+
+    .copy h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(28px, 9vw, 50px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .sub {
+      margin: 12px 0 0;
+      font-size: 17px;
+      line-height: 1.18;
+      color: #263141;
+      font-weight: 800;
+    }
+
+    .footer {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    details {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid rgba(14,17,22,0.12);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    li {
+      margin: 12px 0;
+      line-height: 1.45;
+      color: #263141;
+    }
+
+    @media (max-width: 720px) {
+      .carousel { padding: 30px 14px; }
+      .slides { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>Research Carousel Pack 001</h1>
+    <nav><a href="#brc-001-netflix-understand-life-zero-words">Язык понимаешь. Фразы не выходят.</a><a href="#brc-002-words-disappear">Слова знаешь. В разговоре они исчезают.</a><a href="#brc-003-three-years-still-not-speaking">Три года учишь язык. Рот всё равно молчит.</a><a href="#brc-004-embarrassed-to-speak">Боишься звучать глупо. Поэтому язык молчит.</a></nav>
+  </header>
+  
+        <section class="carousel" id="brc-001-netflix-understand-life-zero-words">
+          <header class="carousel-head">
+            <p>pain_speaking_freeze_001 / camp_20260626_carousel_speaking_freeze_001_a</p>
+            <h1>Язык понимаешь. Фразы не выходят.</h1>
+            <div class="meta">
+              <span>Противоречие: человек понимает язык на видео, но в живом разговоре не может достать готовую фразу голосом.</span>
+              <span>Ссылка на приложение Phraseman — в био</span>
+            </div>
+          </header>
+          <div class="slides">
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock big_centered_headline">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Язык понимаешь на видео. В жизни — ноль фраз.</h2>
+        <p class="sub">Это не только про английский: мозг может узнавать речь глазами и всё равно не доставать фразу голосом.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock split_equation">
+          <div class="panel left"></div><div class="panel right"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты думал: ещё немного понимания — и заговорю.</h2>
+        <p class="sub">Но понимание тренирует узнавание. Разговор требует доступа без паузы и без подсказки.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-2">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock text_left_visual_right">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Память крепнет в момент доставания.</h2>
+        <p class="sub">Не когда слово снова показали. Поэтому знакомая фраза может пропасть именно в живом разговоре.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-3">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock bold_statement_with_small_note">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Сказать вслух — не украшение к уроку.</h2>
+        <p class="sub">Голос меняет след в памяти: прочитанное молча и произнесённое ртом ведут себя по-разному.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock contrast_card">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Речь часто собирается не из слов, а из готовых кусков.</h2>
+        <p class="sub">В разговоре выигрывает не тот, кто знает больше, а тот, у кого нужная фраза выходит быстрее.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock cta_slide">
+          <div class="path"></div><div class="cta-pill"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты всё понял — но завтра снова можешь промолчать.</h2>
+        <p class="sub">Если фразы не выходят голосом, знание остаётся зрительским. Ссылка на приложение Phraseman — в био.</p>
+      </div>
+    </article></div>
+          <details>
+            <summary>DALL-E prompts</summary>
+            <ol>
+              <li><strong>Slide 1</strong><br />A cinematic vertical image, a tired young adult watching a streaming show on a laptop at night, English subtitles are visible only as abstract white lines, no readable text, cozy dark room, the person looks confident while watching, modern editorial style, high contrast, empty space for text overlay, no logos, no flags, no books</li><li><strong>Slide 2</strong><br />A vertical conceptual scene split in two: left side a calm person understanding a movie with abstract subtitles, right side the same person frozen in a real conversation, words dissolving into noise, modern editorial illustration, no readable text, no logos, space for overlay</li><li><strong>Slide 3</strong><br />A surreal vertical scene: familiar English words represented as glowing blocks behind glass, a hand reaches for them but cannot grab them, clean modern style, emotional frustration, no readable letters, no text, high contrast, space for overlay</li><li><strong>Slide 4</strong><br />A vertical image of scattered abstract grammar papers fading into the background while three clean phrase blocks float forward like tools, no readable text, modern minimal editorial, bright accent color, high contrast, empty space for overlay</li><li><strong>Slide 5</strong><br />A vertical conceptual image: a big messy cloud of language learning material transforms into one clear speech bubble shape, no readable text, modern visual metaphor, energetic but clean, space for overlay</li><li><strong>Slide 6</strong><br />A vertical uplifting scene: phrase blocks move from a person's head toward their mouth like a clean path, confidence returning, modern app campaign style, no text, no logos, bright but not childish, space for final CTA overlay</li>
+            </ol>
+          </details>
+        </section>
+
+        <section class="carousel" id="brc-002-words-disappear">
+          <header class="carousel-head">
+            <p>pain_forgetting_001 / camp_20260626_carousel_forgetting_001_a</p>
+            <h1>Слова знаешь. В разговоре они исчезают.</h1>
+            <div class="meta">
+              <span>Противоречие: слово кажется знакомым в списке, но исчезает, когда его нужно достать голосом.</span>
+              <span>Ссылка на приложение Phraseman — в био</span>
+            </div>
+          </header>
+          <div class="slides">
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock big_centered_headline">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Слова языка знаешь. В разговоре они исчезают.</h2>
+        <p class="sub">Это не дырка в голове. Это слабый доступ: слово узнаётся глазами, но не выходит голосом.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock microphone_pressure">
+          <div class="face"></div><div class="pulse"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты думал, проблема в памяти. Часто проблема в маршруте.</h2>
+        <p class="sub">От глаза к узнаванию путь натоптан. От мысли к фразе — почти пустой.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-2">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock myth_buster">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Повторное чтение даёт знакомость. Доставание даёт доступ.</h2>
+        <p class="sub">Мозг учится вытаскивать ответ, а не кивать на него, когда он уже лежит перед глазами.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-3">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock two_line_emphasis">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Поэтому списки слов обманывают.</h2>
+        <p class="sub">В списке слово кажется твоим. В разговоре ему нужно выйти без списка, без перевода и без времени.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock contrast_card">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Тренировать нужно не слово, а фразу в моменте.</h2>
+        <p class="sub">Не “agree”. А “I see what you mean”. Не “busy”. А “I’m tied up right now”.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock cta_slide">
+          <div class="path"></div><div class="cta-pill"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты можешь знать слово — и снова потерять его завтра.</h2>
+        <p class="sub">Если не доставать фразы голосом, память останется витринной. Ссылка на приложение Phraseman — в био.</p>
+      </div>
+    </article></div>
+          <details>
+            <summary>DALL-E prompts</summary>
+            <ol>
+              <li><strong>Slide 1</strong><br />A vertical surreal scene: a person reaches toward a bright word-shaped object that fades away just before they touch it, no readable text, emotional but clean, modern editorial style, muted background, space for overlay</li><li><strong>Slide 2</strong><br />A vertical close-up of a person near a microphone, calm but tense, abstract word shapes evaporating from their mouth before forming, no readable letters, high contrast, space for overlay</li><li><strong>Slide 3</strong><br />A vertical visual metaphor: a locked drawer full of glowing phrase blocks, a key almost turning, clean editorial composition, no readable text, no logos, space for overlay</li><li><strong>Slide 4</strong><br />A vertical scene: flashcards seen on one side, a hand actively pulling a phrase block out of memory on the other side, no readable text, modern educational campaign style, space for overlay</li><li><strong>Slide 5</strong><br />A vertical conceptual image: a long chaotic list collapses into three strong reusable phrase blocks, no readable text, minimal high contrast, modern graphic style, space for overlay</li><li><strong>Slide 6</strong><br />A vertical image of phrase blocks moving along a repetition loop and becoming brighter each cycle, no readable text, clean modern app marketing visual, green accent, space for CTA overlay</li>
+            </ol>
+          </details>
+        </section>
+
+        <section class="carousel" id="brc-003-three-years-still-not-speaking">
+          <header class="carousel-head">
+            <p>pain_years_stuck_001 / camp_20260626_carousel_years_stuck_001_a</p>
+            <h1>Три года учишь язык. Рот всё равно молчит.</h1>
+            <div class="meta">
+              <span>Противоречие: годы обучения были настоящими, но они могли тренировать узнавание вместо выхода фраз голосом.</span>
+              <span>Ссылка на приложение Phraseman — в био</span>
+            </div>
+          </header>
+          <div class="slides">
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock big_centered_headline">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Три года учишь язык. Рот всё равно молчит.</h2>
+        <p class="sub">Это больно именно потому, что усилия были настоящими. Но усилие могло идти не в тот навык.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock quiet_truth">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты думал, часы обучения складываются в речь.</h2>
+        <p class="sub">Они складываются в то, что ты тренировал: тесты, чтение, узнавание, перевод.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-2">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock two_column_truth">
+          <div class="panel left"></div><div class="panel right"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Говорение — отдельный навык доступа.</h2>
+        <p class="sub">Мозгу нужно достать фразу под давлением, когда собеседник ждёт, а не когда учебник открыт.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-3">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock strong_metaphor">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ещё один урок может дать ещё одно знание.</h2>
+        <p class="sub">Но он не гарантирует, что фраза выйдет изо рта в нужную секунду.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock phrase_blocks">
+          <div class="block-stack"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Нужны короткие фразы, которые выдерживают давление.</h2>
+        <p class="sub">Сначала они звучат базово. Потом именно они спасают разговор.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock cta_slide">
+          <div class="path"></div><div class="cta-pill"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Можно учиться ещё год — и снова молчать.</h2>
+        <p class="sub">Если не тренировать выход фраз голосом, время не станет речью. Ссылка на приложение Phraseman — в био.</p>
+      </div>
+    </article></div>
+          <details>
+            <summary>DALL-E prompts</summary>
+            <ol>
+              <li><strong>Slide 1</strong><br />A vertical image of a person standing beside a tall stack of completed language lessons and app streak symbols, but their mouth is covered by a soft shadow, no readable text, modern editorial, emotional stagnation, space for overlay</li><li><strong>Slide 2</strong><br />A vertical scene of many checkmarks and completed modules fading into the background while the person still looks unable to speak, no readable text, clean visual metaphor, space for overlay</li><li><strong>Slide 3</strong><br />A vertical split scene: eyes recognizing many symbols on one side, mouth practicing only a few phrase blocks on the other, no readable text, modern high contrast, space for overlay</li><li><strong>Slide 4</strong><br />A vertical conceptual visual: a speech bubble shaped like a muscle being trained with small phrase blocks, no readable text, clean bold style, not cartoonish, space for overlay</li><li><strong>Slide 5</strong><br />A vertical image of small phrase blocks being repeated like reps in a workout, minimal modern editorial, no text, green accent, space for overlay</li><li><strong>Slide 6</strong><br />A vertical hopeful scene: a person finally speaks a simple phrase, the background clears from fog into a clean path, no readable text, warm confident emotion, space for overlay</li>
+            </ol>
+          </details>
+        </section>
+
+        <section class="carousel" id="brc-004-embarrassed-to-speak">
+          <header class="carousel-head">
+            <p>pain_embarrassed_to_speak_001 / camp_20260626_carousel_embarrassed_to_speak_001_a</p>
+            <h1>Боишься звучать глупо. Поэтому язык молчит.</h1>
+            <div class="meta">
+              <span>Противоречие: человеку есть что сказать, но страх ошибки превращает живой язык в тишину.</span>
+              <span>Ссылка на приложение Phraseman — в био</span>
+            </div>
+          </header>
+          <div class="slides">
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock big_centered_headline">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>На другом языке боишься звучать глупо. И молчишь.</h2>
+        <p class="sub">Не потому что нечего сказать. Потому что каждая фраза кажется экзаменом перед человеком.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock fear_closeup">
+          <div class="face"></div><div class="pulse"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты думал, страх уйдёт после идеальной грамматики.</h2>
+        <p class="sub">Но страх часто уходит после повторяемых фраз, которые рот уже знает.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-2">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock minimal_dark">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Молчание — не характер. Это защита.</h2>
+        <p class="sub">Мозг выбирает тишину, когда не уверен, что фраза выйдет быстро и безопасно.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-3">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock private_practice">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Сначала нужна не смелость. Нужна первая фраза.</h2>
+        <p class="sub">Та, которую можно сказать без сборки предложения с нуля.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-0">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock transition">
+          <div class="card-shape"></div><div class="tiny-bars"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Фразы, отработанные одному, легче выходят при людях.</h2>
+        <p class="sub">Разговор становится не прыжком в пустоту, а повторением знакомого действия.</p>
+      </div>
+    </article>
+
+    <article class="slide theme-1">
+      <div class="scene">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="noise"></div>
+        <div class="mock cta_slide">
+          <div class="path"></div><div class="cta-pill"></div>
+        </div>
+      </div>
+      <div class="copy">
+        <h2>Ты можешь ждать уверенности — и снова выбрать тишину.</h2>
+        <p class="sub">Уверенность приходит после выхода фраз, не до него. Ссылка на приложение Phraseman — в био.</p>
+      </div>
+    </article></div>
+          <details>
+            <summary>DALL-E prompts</summary>
+            <ol>
+              <li><strong>Slide 1</strong><br />A vertical emotional scene: a person with many thoughts represented as soft glowing shapes inside their head, but their mouth remains closed, no readable text, gentle but high contrast, space for overlay</li><li><strong>Slide 2</strong><br />A vertical close-up of a hesitant person about to speak, red abstract doubt marks around them, no readable text, modern editorial, emotional but not dark, space for overlay</li><li><strong>Slide 3</strong><br />A vertical minimal scene: a speech bubble dissolves into silence, person in a quiet room, no readable text, clean negative space, dramatic lighting, space for overlay</li><li><strong>Slide 4</strong><br />A vertical calm scene: a person practicing softly alone with phrase blocks floating nearby, safe private environment, no text, no logos, warm light, space for overlay</li><li><strong>Slide 5</strong><br />A vertical transition scene: private practice phrase blocks become a confident small conversation in real life, no readable text, modern clean visual metaphor, space for overlay</li><li><strong>Slide 6</strong><br />A vertical app campaign visual: phrase blocks forming a safe practice path from mind to speech, no readable text, clean modern, green accent, space for CTA overlay</li>
+            </ol>
+          </details>
+        </section>
+</body>
+</html>

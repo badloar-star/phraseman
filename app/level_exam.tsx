@@ -407,7 +407,7 @@ const QUESTION_POOL: LevelQ[] = [
   // L23
   {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'The letter ___ by her.',opts:['wrote','is written','was written','had written'],correct:2},
   {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'Cars ___ made in factories.',opts:['is','am','are','were'],correct:2},
-  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'The report ___ submitted by Friday.',opts:['must be','must have','should','is going'],correct:0},
+  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'The documents ___ checked today.',opts:['must be','must have','should','is going'],correct:0},
   // L24
   {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',topicES:'Present Perfect',q:"I ___ never been to Paris.",opts:['have','has','had','was'],correct:0},
   {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',topicES:'Present Perfect',q:'She ___ just finished.',opts:['have','has','had','is'],correct:1},
@@ -419,7 +419,7 @@ const QUESTION_POOL: LevelQ[] = [
   // L26
   {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If it rains, I ___ stay home.',opts:['will','would','shall','should'],correct:0},
   {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If I ___ rich, I would travel.',opts:['am','was','were','be'],correct:2},
-  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If she had tried, she ___ passed.',opts:['will have','would have','had','did'],correct:1},
+  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If we had started earlier, we ___ finished.',opts:['will have','would have','had','did'],correct:1},
   // L27
   {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',topicES:'Estilo indirecto',q:'He said he ___ tired.',opts:['is','was','were','be'],correct:1},
   {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',topicES:'Estilo indirecto',q:'She told me she ___ leave.',opts:['will','would','shall','should'],correct:1},

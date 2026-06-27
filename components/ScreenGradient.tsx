@@ -19,7 +19,7 @@ import type { ThemeMode } from '../constants/theme';
 const GradientActiveCtx = React.createContext(false);
 
 const { width: W, height: H } = Dimensions.get('window');
-const SCREEN_GRADIENT_MOTION_ENABLED = true;
+const SCREEN_GRADIENT_MOTION_ENABLED = false;
 const SCREEN_GRADIENT_USE_NATIVE_DRIVER = true;
 const CINEMA_PARTICLE_MOTION_PX = 10;
 
@@ -641,7 +641,7 @@ function renderBackgroundLayer(
 ) {
   const key = effectsOnly ? `${layer.id}:effects` : layer.id;
 
-  if (!FABRIC_BACKGROUND_TRANSITIONS_ENABLED) {
+  if (!FABRIC_BACKGROUND_TRANSITIONS_ENABLED || !SCREEN_GRADIENT_MOTION_ENABLED) {
     return (
       <View key={key} pointerEvents="none" style={[StyleSheet.absoluteFill, effectsOnly ? { opacity: overlayOpacity } : null]}>
         <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} reduceMotion={reduceMotion} />

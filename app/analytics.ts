@@ -137,6 +137,11 @@ interface EventRecord {
 
 const STORAGE_KEY = 'analytics_queue';
 const MAX_QUEUE = 200; // не накапливать бесконечно
+const DUPLICATE_EVENT_WINDOW_MS = 750;
+const LOCAL_ANALYTICS_QUEUE_ENABLED = false;
+let lastEventKey = '';
+let lastEventAt = 0;
+let eventQueueCache: EventRecord[] | null = null;
 
 /** Firebase-имена событий допускают [a-zA-Z0-9_], начинаются с буквы, ≤40 симв. */
 function firebaseSafeName(event: string): string {
@@ -151,6 +156,28 @@ function firebaseSafeParams(props: Record<string, unknown>): Record<string, stri
     out[k.slice(0, 40)] = typeof v === 'number' ? v : String(v).slice(0, 100);
   }
   return out;
+}
+
+function parseEventQueue(raw: string | null): EventRecord[] {
+  try {
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter((item): item is EventRecord => (
+        item != null
+        && typeof item === 'object'
+        && typeof (item as EventRecord).event === 'string'
+        && typeof (item as EventRecord).props === 'object'
+        && typeof (item as EventRecord).ts === 'number'
+      ))
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+async function readEventQueueFromStorage(): Promise<EventRecord[]> {
+  const raw = await AsyncStorage.getItem(STORAGE_KEY).catch(() => null);
+  return parseEventQueue(raw);
 }
 
 // ── Идентификация пользователя (фасад над posthog_client) ───────────────────────
@@ -186,6 +213,12 @@ export const trackEvent = async (
   event: AnalyticsEvent,
   props: Record<string, unknown> = {},
 ): Promise<void> => {
+  const now = Date.now();
+  const eventKey = `${event}|${JSON.stringify(props)}`;
+  if (eventKey === lastEventKey && now - lastEventAt < DUPLICATE_EVENT_WINDOW_MS) return;
+  lastEventKey = eventKey;
+  lastEventAt = now;
+
   // 1) Firebase — синхронно, не блокирует
   try {
     firebaseLogEvent(firebaseSafeName(event), firebaseSafeParams(props));
@@ -202,11 +235,13 @@ export const trackEvent = async (
 
   // 3) Offline-очередь (резерв/отладка)
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
-    const queue: EventRecord[] = raw ? JSON.parse(raw) : [];
-    queue.push({ event, props, ts: Date.now() });
-    if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
+    if (!LOCAL_ANALYTICS_QUEUE_ENABLED) return;
+    if (eventQueueCache === null) {
+      eventQueueCache = await readEventQueueFromStorage();
+    }
+    eventQueueCache.push({ event, props, ts: now });
+    if (eventQueueCache.length > MAX_QUEUE) eventQueueCache.splice(0, eventQueueCache.length - MAX_QUEUE);
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(eventQueueCache));
   } catch {
     /* no-op */
   }
@@ -215,8 +250,8 @@ export const trackEvent = async (
 // ── Очередь (отладка / резерв) ─────────────────────────────────────────────────
 export const getEventQueue = async (): Promise<EventRecord[]> => {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (eventQueueCache !== null) return eventQueueCache.slice();
+    return readEventQueueFromStorage();
   } catch {
     return [];
   }
@@ -224,6 +259,7 @@ export const getEventQueue = async (): Promise<EventRecord[]> => {
 
 export const clearEventQueue = async (): Promise<void> => {
   try {
+    eventQueueCache = [];
     await AsyncStorage.removeItem(STORAGE_KEY);
   } catch {
     /* no-op */

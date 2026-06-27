@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import {
+  ActivityIndicator,
   View, Text, TouchableOpacity, TextInput, ScrollView, Animated,
   Share, Keyboard, StyleSheet, Modal, InteractionManager,
 } from 'react-native';
@@ -1241,7 +1242,7 @@ function AddFriendModal({
   visible, onClose,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
   isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
-  lang, t, f, chrome,
+  lang, t, f, chrome, themeMode,
 }: {
   visible: boolean; onClose: () => void;
   codeInput: string; setCodeInput: (v: string) => void;
@@ -1250,6 +1251,7 @@ function AddFriendModal({
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
+  themeMode: ThemeMode;
 }) {
   const L = (
     ru: string,
@@ -1384,7 +1386,8 @@ export default function FriendsTabScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const { goHome } = useTabNav();
+  const { goHome, activeIdx, focusTick } = useTabNav();
+  const friendsTabVisible = activeIdx === 3;
   const insets = useSafeAreaInsets();
   const scrollY = useRef(new Animated.Value(0)).current;
   const topFadeScroll = useTopFadeScroll();
@@ -1634,16 +1637,16 @@ export default function FriendsTabScreen() {
     }
   }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      const cancelled = { current: false };
-      void ensureFriendRequestViewerAuthLink();
-      void pollIncomingFriendGifts(cancelled);
-      void refreshFriendQuest(cancelled);
-      void refreshReferralState();
-      return () => { cancelled.current = true; };
-    }, [pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]),
-  );
+  useEffect(() => {
+    if (!friendsTabVisible) return;
+    const cancelled = { current: false };
+    void ensureFriendRequestViewerAuthLink();
+    void startFriendsTabSwrPrime();
+    void pollIncomingFriendGifts(cancelled);
+    void refreshFriendQuest(cancelled);
+    void refreshReferralState();
+    return () => { cancelled.current = true; };
+  }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
@@ -1676,6 +1679,7 @@ export default function FriendsTabScreen() {
   // ──
 
   useEffect(() => {
+    if (!friendsTabVisible) return;
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
@@ -1750,7 +1754,7 @@ export default function FriendsTabScreen() {
       unsubFriends();
       unsubRequests();
     };
-  }, []);
+  }, [friendsTabVisible]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -2012,13 +2016,14 @@ export default function FriendsTabScreen() {
         senderDisplayName: myProfile?.name ?? '',
       });
       const sentGiftName = giftLabel(gift);
-      setGiftBalance(res.senderBalanceAfter);
+      const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+      setGiftBalance(guardedBalance);
       setGiftTarget(null);
       setSentGiftReceipt({
         targetName: target.name,
         giftName: sentGiftName,
         costShards: gift.costShards,
-        balanceAfter: res.senderBalanceAfter,
+        balanceAfter: guardedBalance,
         dailyRemaining: res.dailyRemaining,
       });
       if (res.questStarted && res.quest) {
@@ -2613,7 +2618,7 @@ export default function FriendsTabScreen() {
         onSearch={handleSearch}
         onAddFound={handleAddFound}
         onCloseFoundUser={() => setFoundUser(null)}
-        lang={lang} t={t} f={f} chrome={chrome}
+        lang={lang} t={t} f={f} chrome={chrome} themeMode={themeMode}
       />
 
       <Modal
@@ -2715,6 +2720,7 @@ export default function FriendsTabScreen() {
 
             {FRIEND_GIFT_CATALOG.map(gift => {
               const cannotAfford = giftBalance < gift.costShards;
+              const sendingThisGift = giftBusyId === gift.id;
               const disabled = giftBusyId !== null;
               const displayCost = cannotAfford ? gift.costShards - giftBalance : gift.costShards;
               const displayCostText = cannotAfford ? `+${displayCost}` : `${displayCost}`;
@@ -2732,7 +2738,7 @@ export default function FriendsTabScreen() {
                     padding: 13,
                     borderRadius: 14,
                     backgroundColor: chrome.surface,
-                    opacity: disabled ? 0.45 : cannotAfford ? 0.72 : 1,
+                    opacity: sendingThisGift ? 0.82 : disabled ? 0.45 : cannotAfford ? 0.72 : 1,
                     borderWidth: 0.5,
                     borderColor: chrome.border,
                   }}
@@ -2756,6 +2762,10 @@ export default function FriendsTabScreen() {
                     </Text>
                   </View>
                   <View style={{ minWidth: 62, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4 }}>
+                    {sendingThisGift ? (
+                      <ActivityIndicator size="small" color={t.accent} />
+                    ) : (
+                      <>
                     <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', textAlign: 'right' }}>
                       {displayCostText}
                     </Text>
@@ -2765,6 +2775,8 @@ export default function FriendsTabScreen() {
                       contentFit="contain"
                       accessibilityLabel="Осколки"
                     />
+                      </>
+                    )}
                   </View>
                 </TouchableOpacity>
               );

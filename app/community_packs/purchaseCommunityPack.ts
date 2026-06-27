@@ -160,7 +160,11 @@ export async function purchaseCommunityPackWithShards(
       return 'already_owned';
     }
     if (typeof res.buyerBalanceAfter === 'number') {
-      await replaceShardsBalanceLocal(res.buyerBalanceAfter);
+      await replaceShardsBalanceLocal(res.buyerBalanceAfter, {
+        updatedAtMs: res.shardsUpdatedAtMs,
+        op: 'spend',
+        reason: 'community_pack_purchase',
+      });
     } else {
       const { getShardsBalance } = await import('../shards_system');
       await replaceShardsBalanceLocal(await getShardsBalance());

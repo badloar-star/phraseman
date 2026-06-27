@@ -577,6 +577,7 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
       claimed: true,
       crown,
       balance: afterShards,
+      shardsUpdatedAtMs: shardReward > 0 ? now : readInt(user.shards_updated_at_ms, 0),
       rewards: {
         drops: rewardDrops,
         shards: shardReward,

@@ -74,7 +74,7 @@ type Audit = {
     blockers: number;
     highRisks: number;
     canAutoPromoteHistoricalCandidate: boolean;
-    recommendedPolicy: 'do_not_auto_merge' | 'manual_review_required' | 'approved';
+    recommendedPolicy: 'do_not_auto_merge' | 'llm_official_source_review_required' | 'approved';
   };
   inputArtifacts: {
     currentSourceGraph: string;

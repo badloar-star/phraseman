@@ -9,8 +9,19 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withExplainCallableTimeout } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
+const explainChoiceInFlight = new Map<string, Promise<ExplainChoiceResponse>>();
+
+function explainChoiceRequestKey(req: ExplainChoiceRequest): string {
+  return JSON.stringify({
+    correctEn: req.correctEn,
+    phraseMeaning: req.phraseMeaning,
+    distractors: req.distractors,
+    lang: req.lang,
+  });
+}
 
 export interface ExplainChoiceRequest {
   /** Правильный английский вариант (как показан пользователю). */
@@ -46,11 +57,22 @@ export interface ExplainChoiceResponse {
  * откроет этот вопрос, увидит готовый текст мгновенно.
  */
 export async function callExplainChoice(req: ExplainChoiceRequest): Promise<ExplainChoiceResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<ExplainChoiceRequest, ExplainChoiceResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'explainChoice',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = explainChoiceRequestKey(req);
+  const existing = explainChoiceInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<ExplainChoiceRequest, ExplainChoiceResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'explainChoice',
+    );
+    const res = await withExplainCallableTimeout(fn(req), 'explainChoice');
+    return res.data;
+  })().finally(() => {
+    explainChoiceInFlight.delete(key);
+  });
+
+  explainChoiceInFlight.set(key, request);
+  return request;
 }

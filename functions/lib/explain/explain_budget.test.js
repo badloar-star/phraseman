@@ -45,6 +45,13 @@ const AUTH = 'auth-1';
 const STABLE = 'stable-1';
 // a fixed "now" inside one UTC day
 const NOW = Date.UTC(2026, 5, 9, 12, 0, 0);
+function firstDocIn(collection) {
+    for (const [path, data] of docs.entries()) {
+        if (path.startsWith(`${collection}/`))
+            return data;
+    }
+    return undefined;
+}
 async function callUser(n, now = NOW) {
     let thrown = 0;
     for (let i = 0; i < n; i++) {
@@ -123,6 +130,22 @@ describe('enforceGlobalBudget — product-wide daily breaker, atomic', () => {
             threw = true;
         }
         expect(threw).toBe(false);
+    });
+});
+describe('reserveExplainBudget / refundExplainBudgetReservation', () => {
+    it('refunds both user and global counters when no generation happens', async () => {
+        const reservation = await (0, explain_budget_1.reserveExplainBudget)(AUTH, STABLE, explain_budget_1.GLOBAL_DAILY_CAP, NOW);
+        expect(firstDocIn(explain_budget_1.USER_LIMIT_COLLECTION)?.dailyCount).toBe(1);
+        expect(firstDocIn(explain_budget_1.GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
+        await (0, explain_budget_1.refundExplainBudgetReservation)(reservation, 'test_no_generation');
+        expect(firstDocIn(explain_budget_1.USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+        expect(firstDocIn(explain_budget_1.GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(0);
+    });
+    it('refunds user quota if the global breaker rejects after user reservation', async () => {
+        docs.set(`${explain_budget_1.GLOBAL_BUDGET_COLLECTION}/2026-06-09`, { genCount: 1 });
+        await expect((0, explain_budget_1.reserveExplainBudget)(AUTH, STABLE, 1, NOW)).rejects.toThrow('explain_global_budget');
+        expect(firstDocIn(explain_budget_1.USER_LIMIT_COLLECTION)?.dailyCount).toBe(0);
+        expect(firstDocIn(explain_budget_1.GLOBAL_BUDGET_COLLECTION)?.genCount).toBe(1);
     });
 });
 describe('constants have explicit values (audit blocker)', () => {

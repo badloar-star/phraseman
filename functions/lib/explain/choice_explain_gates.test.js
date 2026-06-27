@@ -55,6 +55,17 @@ describe('choice_explain_gates — batch parsing', () => {
         const r = (0, choice_explain_gates_1.parseChoiceBatch)(raw, distractors);
         expect(r.distractors['We are all okay.']).toBe('plural');
     });
+    it('clamps overlong generated lines to a UI-sized human hint', () => {
+        const long = 'Это слишком длинное машинное объяснение, которое пытается разобрать все слова подряд и поэтому расползается по экрану '.repeat(5);
+        const raw = JSON.stringify({
+            confirm: long,
+            distractors: { 'We are all okay.': long },
+        });
+        const r = (0, choice_explain_gates_1.parseChoiceBatch)(raw, distractors);
+        expect(r.confirm.length).toBeLessThanOrEqual(choice_explain_gates_1.MAX_CHOICE_EXPLANATION_CHARS);
+        expect(r.distractors['We are all okay.'].length).toBeLessThanOrEqual(choice_explain_gates_1.MAX_CHOICE_EXPLANATION_CHARS);
+        expect(r.confirm).toMatch(/…$/);
+    });
     it('fails on unparseable JSON', () => {
         expect((0, choice_explain_gates_1.parseChoiceBatch)('not json at all', distractors).ok).toBe(false);
     });

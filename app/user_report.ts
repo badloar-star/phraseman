@@ -9,6 +9,26 @@ const THROTTLE_MS = 30_000;
 
 export type UserReportReason = 'offensive_nickname';
 
+let reportThrottleCacheTs = 0;
+
+async function isReportThrottled(now: number): Promise<boolean> {
+  if (reportThrottleCacheTs > 0 && now - reportThrottleCacheTs < THROTTLE_MS) {
+    return true;
+  }
+  const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
+  const last = parseInt(lastRaw || '0', 10) || 0;
+  if (last > 0) {
+    reportThrottleCacheTs = last;
+    if (now - last < THROTTLE_MS) return true;
+  }
+  return false;
+}
+
+async function markReportSent(now: number): Promise<void> {
+  await AsyncStorage.setItem(THROTTLE_KEY, String(now));
+  reportThrottleCacheTs = now;
+}
+
 export const submitUserReport = async (params: {
   reportedUid: string;
   reportedName: string;
@@ -16,8 +36,7 @@ export const submitUserReport = async (params: {
   screen: 'leaderboard' | 'arena';
 }): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
-  const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
-  if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
+  if (await isReportThrottled(now)) return 'throttled';
 
   const [reporterName, appVersion] = await Promise.all([
     AsyncStorage.getItem('user_name'),
@@ -38,7 +57,7 @@ export const submitUserReport = async (params: {
     return 'failed';
   }
 
-  await AsyncStorage.setItem(THROTTLE_KEY, String(now));
+  await markReportSent(now);
   return 'sent';
 };
 
@@ -66,8 +85,7 @@ export const submitPackReport = async (params: {
   comment?: string;
 }): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
-  const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY);
-  if (lastRaw && now - parseInt(lastRaw) < THROTTLE_MS) return 'throttled';
+  if (await isReportThrottled(now)) return 'throttled';
 
   const [reporterName, appVersion] = await Promise.all([
     AsyncStorage.getItem('user_name'),
@@ -90,7 +108,7 @@ export const submitPackReport = async (params: {
     return 'failed';
   }
 
-  await AsyncStorage.setItem(THROTTLE_KEY, String(now));
+  await markReportSent(now);
   return 'sent';
 };
 

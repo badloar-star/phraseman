@@ -465,7 +465,7 @@ function main(): void {
       activationApprovedRowsCreated: false,
     },
     instructions: [
-      'Use the priority-ordered decision template as a safer review working copy when human review starts.',
+      'Use the priority-ordered decision template as a safer review working copy when LLM official-source review starts.',
       'Use the focus top-N files only as a reviewer guide; they are partial and intentionally not importable as a full decision file.',
       'Do not write reviewer decisions into generated ledgers or production app files.',
       'After real reviewer decisions are added to a full 1600-row decision file, run the decision import dry-run with --decisions.',

@@ -95,6 +95,23 @@ const GIFT_CATALOG: Record<FriendGiftId, GiftCatalogItem> = {
 
 type PushLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
+type FriendGiftTxResult = {
+  ok: boolean;
+  giftId: FriendGiftId;
+  costShards: number;
+  senderBalanceAfter: number;
+  shardsUpdatedAtMs: number;
+  dailyRemaining: number;
+  questStarted: boolean;
+  questBlockedReason: 'active' | 'weekly' | null;
+  quest: Record<string, unknown> | null;
+  idempotencyKey?: string;
+  idempotentReplay?: boolean;
+  _recipientPushToken?: string;
+  _recipientLang?: PushLang;
+  _senderName?: string;
+};
+
 /** Язык получателя из users/{uid}: cloud_sync зеркалит AsyncStorage 'app_lang'/'lang' в progress. */
 function normalizePushLang(value: unknown): PushLang {
   const raw = String(value ?? '').trim().toLowerCase();
@@ -153,6 +170,15 @@ function cleanDisplayName(value: unknown): string {
   return String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
 }
 
+function cleanIdempotencyKey(value: unknown): string {
+  const raw = String(value ?? '').trim();
+  if (!raw) return '';
+  if (!/^[A-Za-z0-9_-]{12,96}$/.test(raw)) {
+    throw new HttpsError('invalid-argument', 'Invalid idempotency key');
+  }
+  return raw;
+}
+
 function todayStrUtc(): string {
   return new Date().toISOString().slice(0, 10);
 }
@@ -188,6 +214,42 @@ function getProgress(data: FirebaseFirestore.DocumentData | undefined): Record<s
 function getExistingField(data: FirebaseFirestore.DocumentData | undefined, key: string): unknown {
   const progress = getProgress(data);
   return data?.[key] ?? progress[key];
+}
+
+function replayFriendGiftResult(
+  idempotencyData: FirebaseFirestore.DocumentData | undefined,
+  idempotencyKey: string,
+  friendStableId: string,
+  gift: GiftCatalogItem,
+): FriendGiftTxResult {
+  if (String(idempotencyData?.friendStableId ?? '') !== friendStableId ||
+      String(idempotencyData?.giftId ?? '') !== gift.id) {
+    throw new HttpsError('already-exists', 'Idempotency key already used for another friend gift');
+  }
+  const response = parseJsonObject(idempotencyData?.response);
+  if (response.ok !== true) {
+    throw new HttpsError('aborted', 'Idempotency record is incomplete');
+  }
+  const questRaw = response.quest;
+  const quest = questRaw && typeof questRaw === 'object' && !Array.isArray(questRaw)
+    ? questRaw as Record<string, unknown>
+    : null;
+  const questBlockedReason = response.questBlockedReason === 'active' || response.questBlockedReason === 'weekly'
+    ? response.questBlockedReason
+    : null;
+  return {
+    ok: true,
+    giftId: gift.id,
+    costShards: parseProgressInt(response.costShards) || gift.costShards,
+    senderBalanceAfter: parseProgressInt(response.senderBalanceAfter),
+    shardsUpdatedAtMs: parseProgressInt(response.shardsUpdatedAtMs),
+    dailyRemaining: parseProgressInt(response.dailyRemaining),
+    questStarted: response.questStarted === true,
+    questBlockedReason,
+    quest,
+    idempotencyKey,
+    idempotentReplay: true,
+  };
 }
 
 function getTotalXp(data: FirebaseFirestore.DocumentData | undefined): number {
@@ -283,6 +345,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   const friendStableId = cleanId(request.data?.friendStableId);
   const giftId = cleanId(request.data?.giftId) as FriendGiftId;
   const gift = GIFT_CATALOG[giftId];
+  const idempotencyKey = cleanIdempotencyKey(request.data?.idempotencyKey);
 
   if (!senderStableId || !friendStableId || senderStableId === friendStableId) {
     throw new HttpsError('invalid-argument', 'Valid sender and friend ids required');
@@ -305,10 +368,13 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   const recipientCurrentQuestRef = recipientRef.collection('friend_quest_meta').doc('current');
   const senderWeekQuestRef = senderRef.collection('friend_quest_weekly').doc(weekKey);
   const recipientWeekQuestRef = recipientRef.collection('friend_quest_weekly').doc(weekKey);
+  const idempotencyRef = idempotencyKey
+    ? senderRef.collection('friend_gift_idempotency').doc(idempotencyKey)
+    : null;
   const questId = questIdFor(senderStableId, friendStableId, weekKey);
   const questRef = db.collection('friend_quests').doc(questId);
 
-  const result = await db.runTransaction(async (tx) => {
+  const result = await db.runTransaction(async (tx): Promise<FriendGiftTxResult> => {
     const [
       senderSnap,
       recipientSnap,
@@ -319,6 +385,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       recipientCurrentQuestSnap,
       senderWeekQuestSnap,
       recipientWeekQuestSnap,
+      idempotencySnap,
     ] = await Promise.all([
       tx.get(senderRef),
       tx.get(recipientRef),
@@ -329,6 +396,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       tx.get(recipientCurrentQuestRef),
       tx.get(senderWeekQuestRef),
       tx.get(recipientWeekQuestRef),
+      idempotencyRef ? tx.get(idempotencyRef) : Promise.resolve(null),
     ]);
 
     if (!senderSnap.exists || !recipientSnap.exists) {
@@ -347,6 +415,9 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     // directly (doc keyed by the Firebase uid itself).
     if (!userMatchesAuth(senderStableId, senderData, request.auth!.uid)) {
       throw new HttpsError('permission-denied', 'Sender does not match auth user');
+    }
+    if (idempotencySnap?.exists) {
+      return replayFriendGiftResult(idempotencySnap.data(), idempotencyKey, friendStableId, gift);
     }
 
     const senderBalanceBefore = parseShards(senderData.shards);
@@ -413,7 +484,9 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       seen: false,
     });
 
-    const sentGiftRef = senderRef.collection('friend_gifts_sent').doc();
+    const sentGiftRef = idempotencyKey
+      ? senderRef.collection('friend_gifts_sent').doc(`idem_${idempotencyKey}`)
+      : senderRef.collection('friend_gifts_sent').doc();
     const receivedGiftRef = recipientRef.collection('friend_gifts_received').doc(sentGiftRef.id);
 
     tx.set(sentGiftRef, {
@@ -577,15 +650,30 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       getExistingField(recipientSnap.data(), 'app_lang') ?? getExistingField(recipientSnap.data(), 'lang'),
     );
 
-    return {
+    const publicResult: FriendGiftTxResult = {
       ok: true,
       giftId: gift.id,
       costShards: gift.costShards,
       senderBalanceAfter,
+      shardsUpdatedAtMs: now,
       dailyRemaining: Math.max(0, MAX_DAILY_GIFTS_TOTAL - totalSentToday - 1),
       questStarted,
       questBlockedReason,
       quest: questPayload,
+    };
+    if (idempotencyKey) {
+      publicResult.idempotencyKey = idempotencyKey;
+      tx.set(idempotencyRef!, {
+        createdAt: now,
+        senderStableId,
+        friendStableId,
+        giftId: gift.id,
+        response: publicResult,
+      });
+    }
+
+    return {
+      ...publicResult,
       // Для push после commit (не возвращаем клиенту-отправителю).
       _recipientPushToken: recipientPushToken,
       _recipientLang: recipientLang,
@@ -594,26 +682,31 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   });
 
   // Push получателю — только после успешного commit транзакции, на языке получателя.
-  if (result._recipientPushToken) {
-    const pushLang = result._recipientLang;
+  if (!result.idempotentReplay && result._recipientPushToken) {
+    const pushLang = result._recipientLang ?? 'ru';
+    const senderName = result._senderName ?? 'Friend';
     await sendExpoPush(
       result._recipientPushToken,
       GIFT_PUSH_TITLE[pushLang],
-      giftPushBody(pushLang, result._senderName, giftLabelForPushLang(gift, pushLang)),
-      { type: 'friend_gift_received', fromName: result._senderName, giftId: result.giftId },
+      giftPushBody(pushLang, senderName, giftLabelForPushLang(gift, pushLang)),
+      { type: 'friend_gift_received', fromName: senderName, giftId: result.giftId },
     );
   }
 
-  return {
+  const response: Record<string, unknown> = {
     ok: result.ok,
     giftId: result.giftId,
     costShards: result.costShards,
     senderBalanceAfter: result.senderBalanceAfter,
+    shardsUpdatedAtMs: result.shardsUpdatedAtMs,
     dailyRemaining: result.dailyRemaining,
     questStarted: result.questStarted,
     questBlockedReason: result.questBlockedReason,
     quest: result.quest,
   };
+  if (result.idempotencyKey) response.idempotencyKey = result.idempotencyKey;
+  if (result.idempotentReplay) response.idempotentReplay = true;
+  return response;
 });
 
 function buildQuestStatus(
@@ -774,6 +867,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         rewardApplied: false,
         reached: true,
         callerShards: parseShards(callerData.shards),
+        shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
         callerXp: getTotalXp(callerData),
       };
     }
@@ -818,6 +912,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       userDataByUid[uid] = {
         ...data,
         shards: afterShards,
+        shards_updated_at_ms: now,
         progress: { ...getProgress(data), user_total_xp: String(afterXp) },
       };
     }
@@ -836,6 +931,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       rewardApplied: !callerAlreadyClaimed,
       reached: true,
       callerShards: parseShards(callerData.shards),
+      shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
       callerXp: getTotalXp(callerData),
     };
   });
@@ -849,6 +945,7 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
   const friendStableId = cleanId(request.data?.friendStableId);
   const giftId = cleanId(request.data?.giftId) as FriendGiftId;
   const gift = GIFT_CATALOG[giftId];
+  const idempotencyKey = cleanIdempotencyKey(request.data?.idempotencyKey);
   if (!senderStableId || !friendStableId || senderStableId === friendStableId || !gift) {
     throw new HttpsError('invalid-argument', 'Valid sender, friend and gift required');
   }
@@ -857,13 +954,24 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
   const senderRef = db.collection('users').doc(senderStableId);
   const friendRef = db.collection('users').doc(friendStableId);
   const now = Date.now();
+  const idempotencyRef = idempotencyKey
+    ? senderRef.collection('friend_gift_thanks_idempotency').doc(idempotencyKey)
+    : null;
 
-  const result = await db.runTransaction(async (tx) => {
-    const [senderSnap, friendSnap, senderFriendSnap, friendSenderSnap] = await Promise.all([
+  const result: {
+    ok: true;
+    idempotencyKey?: string;
+    idempotentReplay?: boolean;
+    _friendPushToken?: string;
+    _friendLang?: PushLang;
+    _senderName?: string;
+  } = await db.runTransaction(async (tx) => {
+    const [senderSnap, friendSnap, senderFriendSnap, friendSenderSnap, idempotencySnap] = await Promise.all([
       tx.get(senderRef),
       tx.get(friendRef),
       tx.get(senderRef.collection('friends').doc(friendStableId)),
       tx.get(friendRef.collection('friends').doc(senderStableId)),
+      idempotencyRef ? tx.get(idempotencyRef) : Promise.resolve(null),
     ]);
     if (!senderSnap.exists || !friendSnap.exists) {
       throw new HttpsError('not-found', 'User not found');
@@ -874,6 +982,13 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
     if (!userMatchesAuth(senderStableId, senderSnap.data(), request.auth!.uid)) {
       throw new HttpsError('permission-denied', 'Sender does not match auth user');
     }
+    if (idempotencySnap?.exists) {
+      const data = idempotencySnap.data() ?? {};
+      if (String(data.friendStableId ?? '') !== friendStableId || String(data.giftId ?? '') !== gift.id) {
+        throw new HttpsError('already-exists', 'Idempotency key already used for another friend gift thanks');
+      }
+      return { ok: true, idempotencyKey, idempotentReplay: true };
+    }
 
     const senderProgress = getProgress(senderSnap.data());
     const senderName =
@@ -882,7 +997,10 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
       cleanDisplayName(senderProgress.user_name) ||
       'Friend';
 
-    tx.set(friendRef.collection('my_events').doc(`friend_gift_thanks_${senderStableId}_${now}`), {
+    const eventRef = idempotencyKey
+      ? friendRef.collection('my_events').doc(`friend_gift_thanks_${senderStableId}_${idempotencyKey}`)
+      : friendRef.collection('my_events').doc(`friend_gift_thanks_${senderStableId}_${now}`);
+    tx.set(eventRef, {
       type: 'friend_gift_thanks',
       uid: friendStableId,
       ts: now,
@@ -893,6 +1011,14 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
         fromName: senderName,
       },
     });
+    if (idempotencyRef) {
+      tx.set(idempotencyRef, {
+        createdAt: now,
+        senderStableId,
+        friendStableId,
+        giftId: gift.id,
+      });
+    }
 
     const friendPushToken = typeof friendSnap.data()?.expoPushToken === 'string'
       ? (friendSnap.data()?.expoPushToken as string)
@@ -900,10 +1026,10 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
     const friendLang = normalizePushLang(
       getExistingField(friendSnap.data(), 'app_lang') ?? getExistingField(friendSnap.data(), 'lang'),
     );
-    return { ok: true, _friendPushToken: friendPushToken, _friendLang: friendLang, _senderName: senderName };
+    return { ok: true, idempotencyKey, _friendPushToken: friendPushToken, _friendLang: friendLang, _senderName: senderName };
   });
 
-  if (result._friendPushToken) {
+  if (!result.idempotentReplay && result._friendPushToken) {
     const title = result._friendLang === 'ru' ? 'Спасибо за подарок!' : 'Thanks for the gift!';
     const body = result._friendLang === 'ru'
       ? `${result._senderName} поблагодарил тебя за подарок`
@@ -915,5 +1041,8 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
     });
   }
 
-  return { ok: true };
+  const response: { ok: true; idempotencyKey?: string; idempotentReplay?: boolean } = { ok: true };
+  if (result.idempotencyKey) response.idempotencyKey = result.idempotencyKey;
+  if (result.idempotentReplay) response.idempotentReplay = true;
+  return response;
 });

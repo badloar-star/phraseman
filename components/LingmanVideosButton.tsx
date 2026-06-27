@@ -7,8 +7,10 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
-import { getLingmanYoutubeSnapshot } from '../app/lingman_youtube';
+import { getActiveYoutubeChannel, getLingmanYoutubeSnapshot } from '../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
+import { isVideoButtonEnabled } from '../app/remote_flags';
+import { onAppEvent } from '../app/events';
 import type { ThemeMode } from '../constants/theme';
 
 const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {

@@ -7,6 +7,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { replaceShardsBalanceLocal } from './shards_system';
 
 const FUNCTIONS_REGION = 'us-central1';
+const friendQuestClaimInFlight = new Map<string, Promise<FriendQuestClaimResponse>>();
 
 export type FriendQuestStatus = 'active' | 'ready' | 'completed' | 'expired';
 
@@ -36,6 +37,7 @@ export type FriendQuestClaimResponse = {
   rewardApplied: boolean;
   reached?: boolean;
   callerShards?: number;
+  shardsUpdatedAtMs?: number;
   callerXp?: number;
 };
 
@@ -45,6 +47,14 @@ function isFriendQuestsCloudEnabled(): boolean {
 
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
+}
+
+async function mirrorCallerXpWithoutRollback(callerXp: number): Promise<void> {
+  if (!Number.isFinite(callerXp)) return;
+  const serverXp = Math.max(0, Math.floor(callerXp));
+  const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
+  const localXp = Math.max(0, parseInt(localRaw ?? '0', 10) || 0);
+  await AsyncStorage.setItem('user_total_xp', String(Math.max(localXp, serverXp)));
 }
 
 async function getStableIdForQuest(): Promise<string> {
@@ -69,15 +79,34 @@ export async function getActiveFriendQuest(): Promise<FriendQuestStatusResponse>
 
 export async function claimFriendQuestReward(questId: string): Promise<FriendQuestClaimResponse> {
   const stableId = await getStableIdForQuest();
-  const fn = callable<{ stableId: string; questId: string }, FriendQuestClaimResponse>('friendClaimQuestReward');
-  const res = await fn({ stableId, questId });
-  if (Number.isFinite(res.data.callerShards)) {
-    await replaceShardsBalanceLocal(res.data.callerShards as number);
-  }
-  if (Number.isFinite(res.data.callerXp)) {
-    await AsyncStorage.setItem('user_total_xp', String(res.data.callerXp));
-  }
-  return res.data;
+  const key = friendQuestClaimRequestKey(stableId, questId);
+  const existing = friendQuestClaimInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    const fn = callable<{ stableId: string; questId: string }, FriendQuestClaimResponse>('friendClaimQuestReward');
+    const res = await fn({ stableId, questId });
+    if (Number.isFinite(res.data.callerShards)) {
+      await replaceShardsBalanceLocal(res.data.callerShards as number, {
+        updatedAtMs: res.data.shardsUpdatedAtMs,
+        op: 'earn',
+        reason: 'friend_quest_reward',
+      });
+    }
+    if (Number.isFinite(res.data.callerXp)) {
+      await mirrorCallerXpWithoutRollback(res.data.callerXp as number);
+    }
+    return res.data;
+  })().finally(() => {
+    friendQuestClaimInFlight.delete(key);
+  });
+
+  friendQuestClaimInFlight.set(key, request);
+  return request;
+}
+
+function friendQuestClaimRequestKey(stableId: string, questId: string): string {
+  return JSON.stringify({ stableId, questId });
 }
 
 /* expo-router route shim */

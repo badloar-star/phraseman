@@ -27,6 +27,7 @@ export type Activity365Day = {
     phrasesLearned: number;
     flashcardsSaved: number;
     dailyTasksClaimed: number;
+    planTasksCompleted: number;
   };
 };
 
@@ -94,6 +95,7 @@ type DailyBreakdownRow = Partial<{
   arena_wins: number;
   arena_losses: number;
   daily_tasks_claimed: number;
+  plan_tasks_completed: number;
 }>;
 
 type DailyBreakdownStore = Record<string, DailyBreakdownRow>;
@@ -183,6 +185,7 @@ function metricsForRow(row: DailyBreakdownRow | undefined): Activity365Day['metr
   const phrasesLearned = n(row?.phrases_learned);
   const flashcardsSaved = n(row?.flashcards_saved);
   const dailyTasksClaimed = n(row?.daily_tasks_claimed);
+  const planTasksCompleted = n(row?.plan_tasks_completed);
   const arena = n(row?.arena_wins) + n(row?.arena_losses);
   return {
     lessons: wordsLearned + phrasesLearned,
@@ -193,6 +196,7 @@ function metricsForRow(row: DailyBreakdownRow | undefined): Activity365Day['metr
     phrasesLearned,
     flashcardsSaved,
     dailyTasksClaimed,
+    planTasksCompleted,
   };
 }
 

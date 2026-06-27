@@ -16,9 +16,10 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import { hapticTap } from '../hooks/use-haptics';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   getPlanById,
+  allTasksForDay,
   nextTaskAfterVisibleSlice,
   visibleTasksForMinutes,
   type PersonalPlanDefinition,
@@ -31,7 +32,10 @@ import {
   getPlanDayLessonRecommendation,
   type PlanDayLessonRecommendation,
 } from './plan_day_lesson_recommendation';
-import { authoredPlanIntroCount, hasAuthoredPlanContent } from './plan_content_registry';
+import {
+  hasBundledCompatibilityPlanContentDay,
+  hasBundledCompatibilityPlanContentTheoryEntry,
+} from './plan_content_readiness';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { awardPlanDayCompletionReward } from './personal_plan_day_reward';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
@@ -365,6 +369,10 @@ export default function PersonalPlanScreen() {
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
     if (!state) {
+      // Плана нет → свапаем экран плана на онбординг-setup. Пометка replace держит
+      // честный стек согласованным: после активации setup→replace('/personal_plan')
+      // «назад» из плана не вернёт в уже пройденный setup.
+      markNextNavigationAsReplace();
       router.replace('/personal_plan_setup' as any);
       setLoaded(null);
       return;
@@ -427,6 +435,10 @@ export default function PersonalPlanScreen() {
     // Маршрут пройден до конца — вместо вечного показа последнего дня ведём на
     // финальный экран «маршрут пройден» (поздравление + следующий план).
     if (isPersonalPlanFinished(input)) {
+      // Свап на финальный экран. Без пометки replace экран плана остаётся в стеке и
+      // «назад» с экрана завершения вернул бы на план, который снова видит «маршрут
+      // пройден» → опять replace на завершение → петля.
+      markNextNavigationAsReplace();
       router.replace('/personal_plan_complete' as any);
       return;
     }
@@ -540,11 +552,21 @@ export default function PersonalPlanScreen() {
   const addMoreOptions = { planTrainerWeakSpotAvailable: loaded.duePlanTrainerWeakSpotCount > 0 };
   const visibleTasks = visibleTasksForMinutes(day, loaded.state.minutesPerDay, extraVisibleTaskCount, addMoreOptions);
   const addMoreTask = nextTaskAfterVisibleSlice(day, loaded.state.minutesPerDay, extraVisibleTaskCount, addMoreOptions);
+  const isTaskCompleted = (task: PlanDailyTask) =>
+    Boolean(completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)]);
+  const visibleCompletedCount = visibleTasks.filter(isTaskCompleted).length;
+  const visibleProgressPct = visibleTasks.length > 0
+    ? Math.round((visibleCompletedCount / visibleTasks.length) * 100)
+    : snapshot.dayProgressPct;
+  const requiredTaskIds = new Set(runtime.tasks.map((task) => task.id));
+  const optionalCompletedCount = allTasksForDay(day).filter((task) =>
+    !requiredTaskIds.has(task.id) && isTaskCompleted(task)
+  ).length;
   const visibleTasksDone = visibleTasks.length > 0 && visibleTasks.every((task) =>
-    Boolean(completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+    isTaskCompleted(task)
   );
   const canAddMoreTasks = Boolean(addMoreTask);
-  const nextTask = visibleTasks.find((task) => !completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+  const nextTask = visibleTasks.find((task) => !isTaskCompleted(task))
     ?? (visibleTasksDone && addMoreTask ? addMoreTask : visibleTasks[0])
     ?? null;
 
@@ -593,7 +615,7 @@ export default function PersonalPlanScreen() {
               Оставляем только кнопки и «День N». Пустой flex-разделитель держит
               кнопку «назад» слева, а блок кнопок — справа. */}
           <View style={styles.headerCopy} />
-          {hasAuthoredPlanContent(loaded.plan.id, day.dayIndex) ? (
+          {hasBundledCompatibilityPlanContentDay(loaded.plan.id, day.dayIndex) ? (
             <ReportErrorButton
               variant="icon-flag"
               screen="personal_plan_day"
@@ -628,7 +650,7 @@ export default function PersonalPlanScreen() {
           <LinearGradient colors={chrome.hero} style={[styles.heroCard, { borderColor: chrome.border }]}>
             {/* Top row */}
             <View style={styles.heroRow}>
-              <ProgressRing pct={snapshot.dayProgressPct} chrome={chrome} />
+              <ProgressRing pct={visibleProgressPct} chrome={chrome} />
               <View style={styles.heroCopy}>
                 <View style={[styles.timePill, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
@@ -647,10 +669,12 @@ export default function PersonalPlanScreen() {
             <View style={styles.heroStats}>
               <View style={styles.heroStatItem}>
                 <Text style={[styles.heroStatValue, { color: chrome.text }]}>
-                  {visibleTasks.filter((task) => Boolean(completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])).length}
+                  {visibleCompletedCount}
                   /{visibleTasks.length}
                 </Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>задач</Text>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>
+                  {optionalCompletedCount > 0 ? `осн. +${optionalCompletedCount} доп.` : 'задач'}
+                </Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
@@ -660,7 +684,7 @@ export default function PersonalPlanScreen() {
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
                 <Text style={[styles.heroStatValue, { color: chrome.text }]}>
-                  {snapshot.dayProgressPct}%
+                  {visibleProgressPct}%
                 </Text>
                 <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>прогресс</Text>
               </View>
@@ -671,8 +695,8 @@ export default function PersonalPlanScreen() {
               activeOpacity={0.88}
               onPress={() => {
                 if (!nextTask) return;
-                const hasTheory = authoredPlanIntroCount(loaded.plan.id, day.dayIndex) > 0;
-                const dayFresh = snapshot.dayProgressPct === 0;
+                const hasTheory = hasBundledCompatibilityPlanContentTheoryEntry(loaded.plan.id, day.dayIndex);
+                const dayFresh = visibleProgressPct === 0;
                 if (hasTheory && dayFresh) {
                   hapticTap();
                   router.push({

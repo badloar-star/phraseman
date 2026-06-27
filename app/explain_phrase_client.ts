@@ -9,8 +9,18 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withExplainCallableTimeout } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
+const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
+
+function explainPhraseRequestKey(req: ExplainPhraseRequest): string {
+  return JSON.stringify({
+    phraseEn: req.phraseEn,
+    phraseMeaning: req.phraseMeaning,
+    lang: req.lang,
+  });
+}
 
 export interface ExplainPhraseRequest {
   /** Английская фраза, как показана пользователю (сервер её нормализует и хэширует). */
@@ -39,13 +49,24 @@ export interface ExplainPhraseResponse {
 
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
 export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<ExplainPhraseRequest, ExplainPhraseResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'explainPhrase',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = explainPhraseRequestKey(req);
+  const existing = explainPhraseInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<ExplainPhraseRequest, ExplainPhraseResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'explainPhrase',
+    );
+    const res = await withExplainCallableTimeout(fn(req), 'explainPhrase');
+    return res.data;
+  })().finally(() => {
+    explainPhraseInFlight.delete(key);
+  });
+
+  explainPhraseInFlight.set(key, request);
+  return request;
 }
 
 export interface SubmitExplainReportRequest {

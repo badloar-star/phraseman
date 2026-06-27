@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-06-26T09:14:19.589Z",
+  "visualBriefs": [
+    {
+      "visualBriefId": "vb_work_english_001_001",
+      "painClusterId": "pain_work_english_001",
+      "emotion": "work-call pressure, blank mind, urgency, controlled relief after a ready phrase appears",
+      "scene": "Zoom or Meet call starts; colleague asks ?Can you explain the issue??; learner understands the question but freezes; then phrase blocks appear as usable handles: ?Let me clarify?, ?The main issue is?, ?From my side?.",
+      "doNotUse": [
+        "flags",
+        "generic books",
+        "generic classroom",
+        "smiling stock student",
+        "grammar tables as the hero"
+      ],
+      "platformFit": [
+        "tiktok",
+        "reels",
+        "shorts",
+        "carousel",
+        "linkedin"
+      ],
+      "supportsHook": "work English requires fast phrase access, not just passive comprehension",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md"
+    },
+    {
+      "visualBriefId": "vb_speaking_freeze_001_001",
+      "painClusterId": "pain_speaking_freeze_001",
+      "emotion": "TODO: primary emotional state from the pain cluster",
+      "scene": "TODO: visualize the pain, not generic English learning. Pain: I understand English content but freeze when I need to speak",
+      "doNotUse": [
+        "flags",
+        "generic books",
+        "generic classroom",
+        "smiling stock student"
+      ],
+      "platformFit": [
+        "tiktok",
+        "reels",
+        "shorts"
+      ],
+      "supportsHook": "I understand English content but freeze when I need to speak"
+    },
+    {
+      "visualBriefId": "vb_embarrassed_to_speak_001_001",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "emotion": "TODO: primary emotional state from the pain cluster",
+      "scene": "TODO: visualize the pain, not generic English learning. Pain: I feel embarrassed speaking English out loud",
+      "doNotUse": [
+        "flags",
+        "generic books",
+        "generic classroom",
+        "smiling stock student"
+      ],
+      "platformFit": [
+        "tiktok",
+        "reels",
+        "shorts"
+      ],
+      "supportsHook": "I feel embarrassed speaking English out loud"
+    },
+    {
+      "visualBriefId": "vb_years_stuck_001_001",
+      "painClusterId": "pain_years_stuck_001",
+      "emotion": "TODO: primary emotional state from the pain cluster",
+      "scene": "TODO: visualize the pain, not generic English learning. Pain: I have studied English for years but still feel stuck",
+      "doNotUse": [
+        "flags",
+        "generic books",
+        "generic classroom",
+        "smiling stock student"
+      ],
+      "platformFit": [
+        "tiktok",
+        "reels",
+        "shorts"
+      ],
+      "supportsHook": "I have studied English for years but still feel stuck"
+    },
+    {
+      "visualBriefId": "vb_forgetting_001_001",
+      "painClusterId": "pain_forgetting_001",
+      "emotion": "TODO: primary emotional state from the pain cluster",
+      "scene": "TODO: visualize the pain, not generic English learning. Pain: I keep forgetting the English I learn",
+      "doNotUse": [
+        "flags",
+        "generic books",
+        "generic classroom",
+        "smiling stock student"
+      ],
+      "platformFit": [
+        "tiktok",
+        "reels",
+        "shorts"
+      ],
+      "supportsHook": "I keep forgetting the English I learn"
+    }
+  ]
+}

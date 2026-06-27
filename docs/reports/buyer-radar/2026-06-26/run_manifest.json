@@ -1,0 +1,8 @@
+{
+  "pipeline": "BUYER_RADAR",
+  "version": 1,
+  "date": "2026-06-26",
+  "generatedAt": "2026-06-26T08:54:08.240Z",
+  "pipelineDoc": "docs/pipelines/buyer-radar-revenue-intelligence-pipeline.ru.md",
+  "status": "manual-first-mvp"
+}

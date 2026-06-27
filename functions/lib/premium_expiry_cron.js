@@ -194,9 +194,9 @@ async function sweepExpiredPremium(now = Date.now()) {
     return stats;
 }
 // memory 1GiB + timeout 540s: полный постраничный скан users/ (как
-// syncFriendActivityMirrorCron). Каждые 6 часов — просрочка снимается с лагом
-// максимум ~6ч+grace, что для премиум-доступа достаточно.
-exports.premiumExpiryCron = functions.scheduler.onSchedule({ schedule: 'every 6 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 }, async () => {
+// syncFriendActivityMirrorCron). Каждые 12 часов — просрочка снимается с лагом
+// максимум ~12ч+grace; для премиум-доступа это мягче к пользователю и дешевле по full-scan reads.
+exports.premiumExpiryCron = functions.scheduler.onSchedule({ schedule: 'every 12 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 }, async () => {
     await sweepExpiredPremium();
 });
 //# sourceMappingURL=premium_expiry_cron.js.map

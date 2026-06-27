@@ -43,7 +43,7 @@ import SpeakingScoreRing from '../components/SpeakingScoreRing';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
-import { hasAuthoredPlanContent } from './plan_content_registry';
+import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { getPersonalPlanMissingWordItems } from './personal_plan_missing_word_items';
 import { getPersonalPlanChooseNaturalPhraseItems } from './personal_plan_choose_natural_phrase_items';
@@ -275,6 +275,11 @@ function PlanListenChooseAudioButton({
             if (player.playing) {
               player.pause();
               return;
+            }
+            try {
+              player.volume = 1;
+            } catch {
+              // Some runtimes may not expose a writable volume property.
             }
             await player.seekTo(0);
             player.play();
@@ -516,9 +521,14 @@ function PlanPronunciationRecorder({
       void setAudioModeAsync({
         playsInSilentMode: true,
         shouldPlayInBackground: false,
-        interruptionMode: 'mixWithOthers',
+        interruptionMode: 'duckOthers',
       })
         .then(async () => {
+          try {
+            targetAudioPlayer.volume = 1;
+          } catch {
+            // Some runtimes may not expose a writable volume property.
+          }
           await targetAudioPlayer.seekTo(0);
           targetAudioPlayer.play();
           // Снимаем «звучит…» к концу клипа: длительность известна из статуса, иначе
@@ -1539,7 +1549,7 @@ export default function PersonalPlanExerciseScreen() {
           <View style={styles.headerStats}>
             <Text style={[styles.statText, { color: t.correct, fontSize: f.label }]}>●{correctIds.length}</Text>
             <Text style={[styles.statText, { color: t.textMuted, fontSize: f.label }]}>/{targetCorrect}</Text>
-            {hasAuthoredPlanContent(planId, dayIndex) ? (
+            {hasBundledCompatibilityPlanContentDay(planId, dayIndex) ? (
               <ReportErrorButton
                 variant="icon-flag"
                 screen="personal_plan_exercise"

@@ -66,6 +66,17 @@ describe('quiz_explain_gates — batch parsing', () => {
         const r = (0, quiz_explain_gates_1.parseQuizBatch)(raw, wrongOptions);
         expect(r.options['Cup']).toBe('чашка');
     });
+    it('clamps overlong generated lines to a UI-sized human hint', () => {
+        const long = 'Это слишком длинный машинный разбор, который перечисляет всё подряд и перестаёт быть понятной подсказкой для человека '.repeat(5);
+        const raw = JSON.stringify({
+            confirm: long,
+            options: { Cup: long },
+        });
+        const r = (0, quiz_explain_gates_1.parseQuizBatch)(raw, wrongOptions);
+        expect(r.confirm.length).toBeLessThanOrEqual(quiz_explain_gates_1.MAX_QUIZ_EXPLANATION_CHARS);
+        expect(r.options.Cup.length).toBeLessThanOrEqual(quiz_explain_gates_1.MAX_QUIZ_EXPLANATION_CHARS);
+        expect(r.confirm).toMatch(/…$/);
+    });
     it('fails on unparseable JSON', () => {
         expect((0, quiz_explain_gates_1.parseQuizBatch)('not json at all', wrongOptions).ok).toBe(false);
     });

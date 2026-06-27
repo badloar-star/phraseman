@@ -7,6 +7,8 @@ import { MAX_PHRASE_LEN, MAX_MEANING_LEN } from './explain_gates';
 
 /** Max number of distractors we will explain in one batch (matches the exercise option cap). */
 export const MAX_CHOICE_DISTRACTORS = 8;
+/** UI-sized hard cap for one generated choice line; prompts ask for 150 chars, parser enforces headroom. */
+export const MAX_CHOICE_EXPLANATION_CHARS = 180;
 
 export interface ChoiceInput {
   correctEn: string;
@@ -67,7 +69,24 @@ export interface ParsedChoiceBatch {
 }
 
 function clampLine(text: unknown): string {
-  return asString(text).replace(/\s+/g, ' ').trim().slice(0, 400);
+  const clean = asString(text).replace(/\s+/g, ' ').trim();
+  if (clean.length <= MAX_CHOICE_EXPLANATION_CHARS) return clean;
+
+  const clipped = clean.slice(0, MAX_CHOICE_EXPLANATION_CHARS);
+  const sentenceEnd = Math.max(
+    clipped.lastIndexOf('. '),
+    clipped.lastIndexOf('! '),
+    clipped.lastIndexOf('? '),
+    clipped.lastIndexOf('… '),
+  );
+  const wordEnd = clipped.lastIndexOf(' ');
+  const boundary = sentenceEnd >= 40 ? sentenceEnd + 1 : (wordEnd >= 40 ? wordEnd : MAX_CHOICE_EXPLANATION_CHARS - 1);
+  const base = clipped
+    .slice(0, boundary)
+    .replace(/[\s,;:–-]+$/u, '')
+    .trim();
+  if (/[.!?…]["»”')\]]*$/u.test(base)) return base;
+  return `${base.slice(0, MAX_CHOICE_EXPLANATION_CHARS - 1).trim()}…`;
 }
 
 /**

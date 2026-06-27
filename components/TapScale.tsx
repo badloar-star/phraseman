@@ -21,7 +21,7 @@ interface Props extends PassthroughPressableProps {
   /** Scale factor on press. Default 0.88 — tighter than PressableScale (0.94) for small elements */
   scaleTo?: number;
   withHaptic?: boolean;
-  hitSlop?: number;
+  hitSlop?: PressableProps['hitSlop'];
 }
 
 /**

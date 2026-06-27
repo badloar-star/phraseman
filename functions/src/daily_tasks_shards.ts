@@ -31,6 +31,11 @@ function readShardBalance(value: unknown): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+function readUpdatedAtMs(value: unknown): number | null {
+  const n = Math.trunc(Number(value));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
 /** Ключ UTC-дня (YYYY-MM-DD) для произвольного момента времени. */
 export function utcDayKey(ms: number): string {
   const d = new Date(ms);
@@ -80,11 +85,13 @@ export const dailyTasksAllShardsClaim = onCall(HOT_CALLABLE_OPTIONS, async (requ
 
     if (claimSnap.exists) {
       const existingBalance = readShardBalance(userSnap.data()?.shards);
-      return { alreadyClaimed: true, newBalance: existingBalance };
+      const shardsUpdatedAtMs = readUpdatedAtMs(userSnap.data()?.shards_updated_at_ms);
+      return { alreadyClaimed: true, newBalance: existingBalance, shardsUpdatedAtMs };
     }
 
     const currentBalance = readShardBalance(userSnap.data()?.shards);
     const newBalance = currentBalance + DAILY_TASKS_SHARD_AMOUNT;
+    const shardsUpdatedAtMs = Date.now();
     const now = admin.firestore.FieldValue.serverTimestamp();
 
     tx.set(claimRef, {
@@ -96,12 +103,12 @@ export const dailyTasksAllShardsClaim = onCall(HOT_CALLABLE_OPTIONS, async (requ
 
     tx.set(userRef, {
       shards: newBalance,
-      shards_updated_at_ms: Date.now(),
+      shards_updated_at_ms: shardsUpdatedAtMs,
       shards_updated_op: 'earn',
       shards_updated_reason: 'daily_tasks_all',
     }, { merge: true });
 
-    return { alreadyClaimed: false, newBalance };
+    return { alreadyClaimed: false, newBalance, shardsUpdatedAtMs };
   });
 
   return result;

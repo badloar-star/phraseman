@@ -28,7 +28,7 @@ import {
 import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
-import { addShardsRaw, getShardsBalance } from './shards_system';
+import { addShardsRaw, getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
@@ -1071,7 +1071,7 @@ const grantLevelGiftShards = async (amount: number): Promise<void> => {
   // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
   // In production this branch is a no-op because addShardsRaw already persisted.
   if (after < before + safe) {
-    await AsyncStorage.setItem('shards_balance', String(before + safe));
+    await replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' });
   }
 };
 

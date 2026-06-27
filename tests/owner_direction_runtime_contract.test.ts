@@ -1,0 +1,993 @@
+import fs from 'fs';
+import path from 'path';
+
+const ROOT = path.resolve(__dirname, '..');
+
+function read(relativePath: string): string {
+  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+}
+
+function listSourceFiles(relativeDirs: string[]): string[] {
+  const out: string[] = [];
+  const visit = (absoluteDir: string) => {
+    for (const entry of fs.readdirSync(absoluteDir, { withFileTypes: true })) {
+      const absolutePath = path.join(absoluteDir, entry.name);
+      const relativePath = path.relative(ROOT, absolutePath).replace(/\\/g, '/');
+      if (entry.isDirectory()) {
+        if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
+        if (relativePath.includes('/admin_panel/')) continue;
+        visit(absolutePath);
+        continue;
+      }
+      if (!/\.(ts|tsx)$/.test(entry.name)) continue;
+      if (relativePath.includes('/_admin') || relativePath.includes('/admin_')) continue;
+      out.push(relativePath);
+    }
+  };
+  relativeDirs.forEach((dir) => visit(path.join(ROOT, dir)));
+  return out.sort();
+}
+
+describe('owner runtime direction contract', () => {
+  it('keeps startup fast: first UI is not blocked by cloud/network warmups', () => {
+    const source = read('app/_layout.tsx');
+
+    expect(source).toContain('const safetyTimer = setTimeout(() => setReady(true), 1200)');
+    expect(source).toContain('const appCheckWarmup = Promise.race');
+    expect(source).toContain('new Promise<void>((resolve) => setTimeout(resolve, 1200))');
+    expect(source).toContain('const startupLocalHydration = Promise.all');
+    expect(source).toContain('new Promise<void>((resolve) => setTimeout(resolve, 350))');
+    expect(source).toContain('InteractionManager.runAfterInteractions');
+    expect(source).toContain('runHeavyInitRef.current?.()');
+
+    expect(source.indexOf('await restoreFromCloud();')).toBeLessThan(
+      source.indexOf('await syncToCloud().catch'),
+    );
+  });
+
+  it('keeps root startup identity and onboarding storage reads batched', () => {
+    const source = read('app/_layout.tsx');
+    const start = source.indexOf('const bootstrap = async () => {');
+    const end = source.indexOf('let handledByReferrer = false;', start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(end).toBeGreaterThan(start);
+    const startupLocalBlock = source.slice(start, end);
+
+    expect(startupLocalBlock).toContain('const startupIdentityKeys = forceOnboardingForQA');
+    expect(startupLocalBlock).toContain("['user_prev_xp', 'user_total_xp', 'onboarding_done']");
+    expect(startupLocalBlock).toContain('const startupIdentityPairs = await AsyncStorage.multiGet(startupIdentityKeys)');
+    expect(startupLocalBlock).toContain("const prevXPRaw = startupIdentity.get('user_prev_xp') ?? null");
+    expect(startupLocalBlock).toContain("const totalXPRaw = startupIdentity.get('user_total_xp') ?? null");
+    expect(startupLocalBlock).toContain("const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null)");
+    expect(startupLocalBlock).not.toContain("AsyncStorage.getItem('user_prev_xp')");
+    expect(startupLocalBlock).not.toContain("AsyncStorage.getItem('user_total_xp')");
+    expect(startupLocalBlock).not.toContain("AsyncStorage.getItem('onboarding_done')");
+  });
+
+  it('keeps runtime UI free of unapproved expo-blur surfaces after owner removal request', () => {
+    const offenders: string[] = [];
+
+    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts'])) {
+      const source = read(file);
+      const hasRuntimeBlur =
+        source.includes("from 'expo-blur'") ||
+        source.includes('from "expo-blur"') ||
+        source.includes('<BlurView') ||
+        source.includes('dimezisBlurView');
+      if (hasRuntimeBlur) {
+        offenders.push(file);
+      }
+    }
+
+    expect(offenders).toEqual([]);
+  });
+
+  it('keeps broad cloud sync debounced unless a caller explicitly opts into forceNow', () => {
+    const source = read('app/cloud_sync.ts');
+
+    expect(source).toContain('const SYNC_DEBOUNCE_MS = 5 * 60_000');
+    expect(source).toContain('let syncTimer: ReturnType<typeof setTimeout> | null = null');
+    expect(source).toContain('let syncInFlight: Promise<void> | null = null');
+    expect(source).toContain('let pendingSync = false');
+    expect(source).toContain('if (syncInFlight) return');
+    expect(source).toContain('if (options?.forceNow)');
+    expect(source).toContain('if (options?.deferMs !== undefined)');
+    expect(source).toContain('if (syncTimer) return');
+    expect(source).toContain('const elapsed = now - lastSuccessfulSyncAt');
+    expect(source).toContain('const waitMs = Math.max(500, SYNC_DEBOUNCE_MS - elapsed)');
+  });
+
+  it('keeps immediate forceNow cloud sync call sites owner-reviewed', () => {
+    const allowlist: Record<string, number> = {
+      'app/arena_battle_pass_store.ts': 1,
+      'app/auth_provider.ts': 1,
+      'app/avatar_select.tsx': 1,
+      'app/lesson1.tsx': 2,
+      'app/lesson_complete.tsx': 1,
+      'app/premium_revenuecat_state.ts': 1,
+      'app/profile_card_upgrade.tsx': 1,
+      'app/xp_manager.ts': 1,
+    };
+    const pattern = /(?:\b\w+\.)?syncToCloud\s*\(\s*\{\s*forceNow\s*:\s*true\s*\}/g;
+    const found: Record<string, number> = {};
+
+    for (const file of listSourceFiles(['app', 'components', 'hooks'])) {
+      const lines = read(file).split(/\r?\n/);
+      for (const line of lines) {
+        if (line.trim().startsWith('//')) continue;
+        const matches = line.match(pattern);
+        if (matches) found[file] = (found[file] ?? 0) + matches.length;
+      }
+    }
+
+    expect(found).toEqual(allowlist);
+  });
+
+  it('keeps non-critical avatar and profile-card cosmetic sync deferred', () => {
+    const avatarSource = read('app/avatar_select.tsx');
+    const profileCardSource = read('app/profile_card_upgrade.tsx');
+
+    expect(avatarSource).toContain('const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
+    expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
+    expect(avatarSource).toContain("await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred')");
+    expect(avatarSource).toContain("syncAvatarDisplayToCloud('deferred')");
+    expect(avatarSource).toContain("syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred')");
+
+    expect(profileCardSource).toContain('const PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
+    expect(profileCardSource).toContain('syncToCloud({ deferMs: PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS })');
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('immediate'\)/g) ?? []).length).toBe(2);
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('deferred'\)/g) ?? []).length).toBe(3);
+  });
+
+  it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
+    const allowlist: Record<string, number> = {
+      'app/(tabs)/quizzes.tsx': 1,
+      'app/arena_game.tsx': 1,
+      'app/arena_leaderboard.tsx': 1,
+      'app/arena_lobby.tsx': 2,
+      'app/arena_results.tsx': 1,
+      'app/club_screen.tsx': 1,
+      'app/diagnostic_test.tsx': 1,
+      'app/exam.tsx': 1,
+      'app/foreground_usage_ms.ts': 1,
+      'app/services/arena_db.ts': 2,
+      'app/services/arena_feature_flags.ts': 1,
+      'app/services/arena_hill.ts': 1,
+      'app/shards_shop.tsx': 1,
+      'app/streak_stats.tsx': 2,
+      'components/ActiveBoostBar.tsx': 1,
+      'components/ArenaDuelEmojiReact.tsx': 1,
+      'components/EnergyContext.tsx': 1,
+      'components/HomeTheoAdvisorCard.tsx': 1,
+      'components/LeagueChatPanel.tsx': 1,
+      'components/LessonEnergyLightning.tsx': 1,
+      'components/PromoBanner.tsx': 1,
+      'components/StreakReviveModal.tsx': 1,
+      'components/onboarding.tsx': 1,
+      'components/paywall/PaywallPriceUrgency.tsx': 1,
+      'contexts/MatchmakingContext.tsx': 2,
+      'hooks/use-arena-mock.ts': 2,
+      'hooks/use-arena-room-run.ts': 2,
+      'hooks/use-arena-session.ts': 3,
+      'hooks/use-matchmaking.ts': 1,
+    };
+    const found: Record<string, number> = {};
+
+    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts'])) {
+      const lines = read(file).split(/\r?\n/);
+      for (const line of lines) {
+        if (line.trim().startsWith('//')) continue;
+        const matches = line.match(/setInterval\s*\(/g);
+        if (matches) found[file] = (found[file] ?? 0) + matches.length;
+      }
+    }
+
+    expect(found).toEqual(allowlist);
+  });
+
+  it('keeps Home stats pulse hint off polling while waiting for 3 hours usage', () => {
+    const source = read('app/(tabs)/home.tsx');
+
+    expect(source).toContain('const STATS_PULSE_RECHECK_MIN_MS = 30_000');
+    expect(source).toContain('let recheckTimer: ReturnType<typeof setTimeout> | null = null');
+    expect(source).toContain('const scheduleRecheck = (total: number, retryDelayMs?: number) => {');
+    expect(source).toContain('const remaining = Math.max(0, STATS_PULSE_MIN_USAGE_MS - total)');
+    expect(source).toContain('const delay = retryDelayMs ?? Math.max(STATS_PULSE_RECHECK_MIN_MS, remaining)');
+    expect(source).toContain('recheckTimer = setTimeout(() => {');
+    expect(source).toContain('clearTimeout(recheckTimer)');
+    expect(source).not.toContain('pollId = setInterval');
+    expect(source).not.toContain('setInterval(() => { void check(); }, 30000)');
+  });
+
+  it('keeps Home avatar/frame storage hydration to one read in loadData', () => {
+    const source = read('app/(tabs)/home.tsx');
+    const avatarFrameReads = source.match(/AsyncStorage\.multiGet\(\['user_avatar', 'user_frame'(?:, USER_AVATAR_AURA_KEY)?\]\)/g) ?? [];
+
+    expect(avatarFrameReads).toEqual([
+      "AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY])",
+    ]);
+    expect(source).toContain('const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet');
+    expect(source).toContain('setUserAvatar(avatarSnap)');
+    expect(source).toContain('setUserAvatarAura(normalizeAvatarAuraId(savedAuraSnap) ?? null)');
+    expect(source).toContain('setUserFrame(frameSnap)');
+    expect(source).not.toContain("AsyncStorage.multiGet(['user_avatar', 'user_frame'])");
+  });
+
+  it('keeps Home loadData local storage reads batched on hot path', () => {
+    const source = read('app/(tabs)/home.tsx');
+
+    expect(source).toContain('const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([');
+    expect(source).toContain("const homeStorage = new Map(homeStoragePairs)");
+    expect(source).toContain("const name = homeStorage.get('user_name') ?? null");
+    expect(source).toContain("const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null");
+    expect(source).not.toContain("AsyncStorage.getItem('user_name')");
+    expect(source).not.toContain("AsyncStorage.getItem('streak_count')");
+    expect(source).not.toContain("AsyncStorage.getItem('week_days_done')");
+    expect(source).not.toContain("AsyncStorage.getItem('user_total_xp')");
+    expect(source).not.toContain('AsyncStorage.getItem(HOME_SELECTED_TITLE_KEY)');
+    expect(source).not.toContain("AsyncStorage.getItem('streak_last_shown')");
+
+    expect(source).toContain('const [specialTitleStoragePairs, achievementStates] = await Promise.all([');
+    expect(source).toContain('AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey])');
+    expect(source).not.toContain('AsyncStorage.getItem(HELPFUL_REPORTS_CONFIRMED_KEY)');
+    expect(source).not.toContain('AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey(studyTarget))');
+
+    expect(source).toContain('const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
+    expect(source).toContain('const saved = lessonEntries[lastId - 1]?.[1] ?? null');
+    expect(source).not.toContain('AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');
+    expect(source).not.toContain('AsyncStorage.getItem(lessonProgressKey(lastId, studyTarget))');
+
+    expect(source).toContain("AsyncStorage.multiGet(['streak_freeze', 'premium_free_freeze_used'])");
+    expect(source).toContain("AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1'])");
+    expect(source).not.toContain("AsyncStorage.getItem('login_bonus_pending')");
+    expect(source).not.toContain("AsyncStorage.getItem('comeback_pending')");
+    expect(source).not.toContain("AsyncStorage.getItem('weekly_pb_v1')");
+  });
+
+  it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
+    const allowlist: Record<string, number> = {
+      'app/app_messages.ts': 2,
+      'app/arena_friend_room_guest.ts': 1,
+      'app/arena_lobby.tsx': 1,
+      'app/arena_results.tsx': 1,
+      'app/daily_phrase_system.ts': 1,
+      'app/firestore_friend_requests.ts': 2,
+      'app/firestore_league_chat.ts': 1,
+      'app/firestore_leagues.ts': 2,
+      'app/league_group_boosts.ts': 2,
+      'app/remote_config_client.ts': 1,
+      'app/services/arena_club_wars.ts': 2,
+      'app/services/arena_db.ts': 5,
+      'app/services/arena_invites.ts': 2,
+      'app/services/arena_pulse.ts': 1,
+      'app/services/arena_rooms_live.ts': 4,
+      'app/services/league_chest_rewards.ts': 3,
+      'components/PremiumContext.tsx': 1,
+      'hooks/use-arena-rank.ts': 1,
+    };
+    const found: Record<string, number> = {};
+
+    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts'])) {
+      const lines = read(file).split(/\r?\n/);
+      for (const line of lines) {
+        if (line.trim().startsWith('//')) continue;
+        const matches = line.match(/\.onSnapshot\s*\(/g);
+        if (matches) found[file] = (found[file] ?? 0) + matches.length;
+      }
+    }
+
+    expect(found).toEqual(allowlist);
+  });
+
+  it('keeps private arena room question timer on visible-second cadence with exact timeout', () => {
+    const source = read('hooks/use-arena-room-run.ts');
+
+    expect(source).toContain('const QUESTION_UI_TICK_MS = 1000');
+    expect(source).toContain('const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)');
+    expect(source).toContain('const lastShownSecRef = useRef<number | null>(null)');
+    expect(source).toContain('lastShownSecRef.current = null');
+    expect(source).toContain('const updateVisibleTimeLeft = () => {');
+    expect(source).toContain('const displaySec = Math.ceil(left / 1000) || 0');
+    expect(source).toContain('if (lastShownSecRef.current !== displaySec)');
+    expect(source).toContain('lastShownSecRef.current = displaySec');
+    expect(source).toContain('setTimeLeft(left)');
+    expect(source).toContain('const finishNoAnswer = () => {');
+    expect(source).toContain('lastShownSecRef.current = 0');
+    expect(source).toContain('setTimeLeft(0)');
+    expect(source).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
+    expect(source).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
+    expect(source).not.toContain('}, 250);');
+  });
+
+  it('keeps boost countdown timer idle when there are no active boosts', () => {
+    const source = read('components/ActiveBoostBar.tsx');
+
+    expect(source).toContain('if (boosts.length === 0)');
+    expect(source).toContain('Object.keys(prev).length === 0 ? prev : {}');
+    expect(source).toContain('if (activeBoosts.length === 0) return;');
+    expect(source).toContain('const interval = setInterval(() => {');
+    expect(source).toContain('return () => clearInterval(interval);');
+  });
+
+  it('keeps energy recovery polling idle when full, unlimited, or backgrounded', () => {
+    const source = read('components/EnergyContext.tsx');
+
+    expect(source).toContain("const [appActive, setAppActive] = useState(() => AppState.currentState === 'active')");
+    expect(source).toContain('setAppActive(true)');
+    expect(source).toContain('setAppActive(false)');
+    expect(source).toContain('if (!appActive || isUnlimited || energy >= maxEnergy) return;');
+    expect(source).toContain('const remaining = timeUntilNextMs > 0 ? timeUntilNextMs : recoveryIntervalMs;');
+    expect(source).toContain('const delay = Math.max(1000, remaining + 250);');
+    expect(source).toContain('const timeoutId = setTimeout(load, delay);');
+    expect(source).toContain('return () => clearTimeout(timeoutId);');
+    expect(source).toContain('}, [appActive, energy, maxEnergy, isUnlimited, load, recoveryIntervalMs, timeUntilNextMs]);');
+    expect(source).not.toContain('const intervalId = setInterval(load, 30_000);');
+    expect(source).not.toContain('startInterval();');
+  });
+
+  it('keeps online presence heartbeat active-only and cost-capped', () => {
+    const layout = read('app/_layout.tsx');
+    const onlinePresencePath = path.join(ROOT, 'app/online_presence.ts');
+    if (!fs.existsSync(onlinePresencePath)) {
+      expect(layout).not.toContain('installOnlinePresenceHeartbeat');
+      return;
+    }
+
+    const source = read('app/online_presence.ts');
+
+    expect(source).toContain('const HEARTBEAT_MS = 5 * 60_000');
+    expect(source).toContain('function stopHeartbeatTimer()');
+    expect(source).toContain('function startHeartbeatTimer()');
+    expect(source).toContain("if (timer || AppState.currentState !== 'active') return;");
+    expect(source).toContain("if (state === 'active') {");
+    expect(source).toContain('startHeartbeatTimer();');
+    expect(source).toContain('stopHeartbeatTimer();');
+    expect(source).not.toContain('const HEARTBEAT_MS = 60_000');
+  });
+
+  it('keeps arena emoji cooldown timer from recreating sub-second intervals', () => {
+    const source = read('components/ArenaDuelEmojiReact.tsx');
+
+    expect(source).toContain('const remainingMs = cooldownUntil - Date.now()');
+    expect(source).toContain('const intervalId = setInterval(update, 1000)');
+    expect(source).toContain('const doneId = setTimeout(update, remainingMs + 50)');
+    expect(source).toContain('clearInterval(intervalId)');
+    expect(source).toContain('clearTimeout(doneId)');
+    expect(source).toContain('}, [cooldownUntil]);');
+    expect(source).not.toContain('}, [cooldownUntil, tick]);');
+    expect(source).not.toContain('setInterval(() => setTick((n) => n + 1), 320)');
+  });
+
+  it('keeps league chat undo-hide countdown at visible-second cadence', () => {
+    const source = read('components/LeagueChatPanel.tsx');
+
+    expect(source).toContain('const id = setInterval(() => setHideTimerNow(Date.now()), 1000)');
+    expect(source).toContain('return () => clearInterval(id);');
+    expect(source).not.toContain('setInterval(() => setHideTimerNow(Date.now()), 250)');
+  });
+
+  it('keeps arena acceptance and rematch countdowns at visible-second cadence', () => {
+    const game = read('app/arena_game.tsx');
+    const results = read('app/arena_results.tsx');
+
+    expect(game).toContain('const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 1000)');
+    expect(game).not.toContain('setInterval(() => setAcceptTimeTick((n) => n + 1), 500)');
+    expect(results).toContain('const id = setInterval(tick, 1000)');
+    expect(results).not.toContain('const id = setInterval(tick, 500)');
+  });
+
+  it('keeps Home Theo typewriter on a frame-friendly cadence', () => {
+    const source = read('components/HomeTheoAdvisorCard.tsx');
+
+    expect(source).toContain('const TYPE_FRAME_MS = 33');
+    expect(source).toContain('const targetDurationMs = Math.max(TYPE_FRAME_MS, Math.min(MAX_TYPE_MS, text.length * TYPE_MS))');
+    expect(source).toContain('const charsPerFrame = Math.max(1, Math.ceil(text.length / totalFrames))');
+    expect(source).toContain('index = Math.min(text.length, index + charsPerFrame)');
+    expect(source).toContain('}, TYPE_FRAME_MS);');
+    expect(source).not.toContain('Math.max(10, Math.min(TYPE_MS');
+  });
+
+  it('keeps paywall urgency countdown from reading storage every second', () => {
+    const source = read('components/paywall/PaywallPriceUrgency.tsx');
+
+    expect(source).toContain('const endsAt = Date.now() + Math.max(0, urgency.remainingMs)');
+    expect(source).toContain('const updateFromClock = () => {');
+    expect(source).toContain('setTimer(formatCountdown(remainingMs))');
+    expect(source).toContain('void getUrgencyState().then((s) => {');
+    expect(source).not.toContain('setInterval(async () =>');
+  });
+
+  it('keeps matchmaking elapsed timers on a once-per-second cadence', () => {
+    const context = read('contexts/MatchmakingContext.tsx');
+    const legacyHook = read('hooks/use-matchmaking.ts');
+
+    expect(context).toContain('const ELAPSE_TICK_MS     = 1000');
+    expect(context).not.toContain('const ELAPSE_TICK_MS     = 200');
+    expect(legacyHook).toContain('const MATCHMAKING_ELAPSE_TICK_MS = 1000');
+    expect(legacyHook).toContain('}, MATCHMAKING_ELAPSE_TICK_MS);');
+    expect(legacyHook).not.toContain('}, 100);');
+  });
+
+  it('keeps arena question timers on visible-second cadence with exact timeout callbacks', () => {
+    const realArena = read('hooks/use-arena-session.ts');
+    const mockArena = read('hooks/use-arena-mock.ts');
+
+    expect(realArena).toContain('const QUESTION_UI_TICK_MS = 1000');
+    expect(mockArena).toContain('const QUESTION_UI_TICK_MS = 1000');
+    expect(realArena).toContain('questionTimerRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
+    expect(mockArena).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
+    expect(realArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, timeoutDelayMs + 50)');
+    expect(mockArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
+    expect(realArena).not.toContain('}, 100);');
+    expect(mockArena).not.toContain('}, 100);');
+  });
+
+  it('keeps streak stats boost countdowns on one shared interval', () => {
+    const source = read('app/streak_stats.tsx');
+
+    expect(source).toContain('function formatStatsBoostTimeLeft(ms: number): string');
+    expect(source).toContain('const updateBoostCountdowns = () => {');
+    expect(source).toContain('const timer = setInterval(updateBoostCountdowns, 1000)');
+    expect(source).toContain('return () => clearInterval(timer);');
+    expect(source).not.toContain('const timer = setInterval(fmt, 1000)');
+  });
+
+  it('keeps progress server writes queued, idempotent, and serialized', () => {
+    const client = read('app/progress_events_client.ts');
+    const xpManager = read('app/xp_manager.ts');
+    const server = read('functions/src/progress_events.ts');
+
+    expect(client).toContain("const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1'");
+    expect(client).toContain('JSON.stringify(queue.slice(0, 100))');
+    expect(client).toContain('let flushInFlight: Promise<number> | null = null');
+    expect(client).toContain('if (flushInFlight) return flushInFlight');
+    expect(client).toContain('await enqueue(event).catch(() => {})');
+    expect(client).toContain('await mirrorProgressResultToLocal(res.data)');
+
+    expect(xpManager).toContain('let _xpLock: Promise<unknown> = Promise.resolve()');
+    expect(xpManager).toContain('const XP_CLOUD_SYNC_DEFER_MS = 3500');
+    expect(xpManager).toContain('serverAward = await submitProgressEvent');
+    expect(xpManager).toContain("DebugLogger.error('xp_manager.ts:registerXP:server_queued'");
+    expect(xpManager).toContain("DebugLogger.error('xp_manager.ts:registerXP:server_queued_fallback'");
+    expect(xpManager).toContain('syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {})');
+    expect(xpManager).toContain('if (!serverAward) {');
+    expect(xpManager).toContain("await storageSetString('user_total_xp', String(newTotal))");
+    expect(xpManager).toContain('Math.max(0, currentTotal + finalDelta)');
+    expect(xpManager).toContain("emitAppEvent('xp_changed')");
+    expect(xpManager).toContain("emitAppEvent('xp_updated'");
+
+    expect(server).toContain("userRef.collection('progress_events').doc(safeDocId(event.eventId))");
+    expect(server).toContain('if (ledgerSnap.exists)');
+    expect(server).toContain('const DAILY_EVENT_LIMIT = 500');
+    expect(server).toContain('progress_daily_counters');
+  });
+
+  it('keeps analytics and activity writes capped instead of writing every tap to Firestore', () => {
+    const analytics = read('app/analytics.ts');
+    const activity = read('app/app_activity.ts');
+
+    expect(analytics).toContain("const STORAGE_KEY = 'analytics_queue'");
+    expect(analytics).toContain('const MAX_QUEUE = 200');
+    expect(analytics).toContain('const DUPLICATE_EVENT_WINDOW_MS = 750');
+    expect(analytics).toContain('const LOCAL_ANALYTICS_QUEUE_ENABLED = false');
+    expect(analytics).toContain('let lastEventKey =');
+    expect(analytics).toContain('if (eventKey === lastEventKey && now - lastEventAt < DUPLICATE_EVENT_WINDOW_MS) return;');
+    expect(analytics).toContain('let eventQueueCache: EventRecord[] | null = null');
+    expect(analytics).toContain('function parseEventQueue(raw: string | null): EventRecord[]');
+    expect(analytics).toContain('async function readEventQueueFromStorage(): Promise<EventRecord[]>');
+    expect(analytics).toContain('if (eventQueueCache === null)');
+    expect(analytics).toContain('if (!LOCAL_ANALYTICS_QUEUE_ENABLED) return');
+    expect(analytics).toContain('eventQueueCache.push({ event, props, ts: now })');
+    expect(analytics).toContain('AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(eventQueueCache))');
+    expect(analytics).toContain('if (eventQueueCache !== null) return eventQueueCache.slice()');
+    expect(analytics).toContain('eventQueueCache.splice(0, eventQueueCache.length - MAX_QUEUE)');
+    expect(analytics).toContain('eventQueueCache = []');
+
+    expect(activity).toContain("const QUEUE_KEY = 'app_activity_queue_v1'");
+    expect(activity).toContain('const MAX_QUEUE = 200');
+    expect(activity).toContain('const FIRESTORE_SAMPLE_RATE = 0.01');
+    expect(activity).toContain('const LOCAL_ACTIVITY_QUEUE_ENABLED = false');
+    expect(activity).toContain('let activityQueueCache: Array<Record<string, unknown>> | null = null');
+    expect(activity).toContain('async function readActivityQueueFromStorage(): Promise<Array<Record<string, unknown>>>');
+    expect(activity).toContain('if (activityQueueCache === null)');
+    expect(activity).toContain('if (LOCAL_ACTIVITY_QUEUE_ENABLED)');
+    expect(activity).toContain('activityQueueCache.push(record)');
+    expect(activity).toContain('AsyncStorage.setItem(QUEUE_KEY, JSON.stringify(activityQueueCache))');
+    expect(activity).toContain('if (activityQueueCache !== null) return activityQueueCache.slice()');
+    expect(activity).toContain('meta.writeToFirestore === true');
+    expect(activity).toContain('Math.random() < FIRESTORE_SAMPLE_RATE');
+    expect(activity).toContain('activityQueueCache.splice(0, activityQueueCache.length - MAX_QUEUE)');
+  });
+
+  it('keeps app health server diagnostics throttled before repeated storage reads', () => {
+    const source = read('app/app_health.ts');
+
+    expect(source).toContain('const DEFAULT_THROTTLE_MS = 30 * 60 * 1000');
+    expect(source).toContain('const THROTTLE_CACHE_LIMIT = 128');
+    expect(source).toContain('const healthThrottleCache = new Map<string, number>()');
+    expect(source).toContain('function rememberThrottle(key: string, lastAt: number)');
+    expect(source).toContain('if (healthThrottleCache.size <= THROTTLE_CACHE_LIMIT) return;');
+    expect(source).toContain('const cachedLast = healthThrottleCache.get(key) ?? 0');
+    expect(source).toContain('if (now - cachedLast < throttleMs) return false;');
+    expect(source).toContain('rememberThrottle(key, last)');
+    expect(source).toContain('rememberThrottle(key, now)');
+    expect(source).toContain('await AsyncStorage.setItem(key, String(now)).catch(() => {})');
+  });
+
+  it('keeps client report delivery cached without changing report policy', () => {
+    const source = read('app/client_reports.ts');
+
+    expect(source).toContain('type SubmitClientReportCallable = (');
+    expect(source).toContain('let submitClientReportCallable: SubmitClientReportCallable | null = null');
+    expect(source).toContain('let appCheckWarmupInFlight: Promise<void> | null = null');
+    expect(source).toContain('function getSubmitClientReportCallable(): SubmitClientReportCallable');
+    expect(source).toContain('if (!submitClientReportCallable)');
+    expect(source).toContain("callable<SubmitClientReportRequest, SubmitClientReportResult>(");
+    expect(source).toContain("'submitClientReport'");
+    expect(source).toContain('function warmClientReportAppCheck(): Promise<void>');
+    expect(source).toContain('if (!appCheckWarmupInFlight)');
+    expect(source).toContain('appCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()');
+    expect(source).toContain('.finally(() => {');
+    expect(source).toContain('appCheckWarmupInFlight = null;');
+    expect(source).toContain('await warmClientReportAppCheck();');
+    expect(source).toContain('const fn = getSubmitClientReportCallable();');
+    expect(source).toContain('const res = await fn({ kind, payload });');
+    expect(source).not.toContain("const fn = callable<{ kind: ClientReportKind; payload: Record<string, unknown> }, SubmitClientReportResult>(");
+  });
+
+  it('keeps user report throttle cached while preserving awaited delivery', () => {
+    const source = read('app/user_report.ts');
+
+    expect(source).toContain('let reportThrottleCacheTs = 0');
+    expect(source).toContain('async function isReportThrottled(now: number): Promise<boolean>');
+    expect(source).toContain('if (reportThrottleCacheTs > 0 && now - reportThrottleCacheTs < THROTTLE_MS)');
+    expect(source).toContain('const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY)');
+    expect(source).toContain('reportThrottleCacheTs = last');
+    expect(source).toContain('async function markReportSent(now: number): Promise<void>');
+    expect(source).toContain('await AsyncStorage.setItem(THROTTLE_KEY, String(now))');
+    expect(source).toContain('reportThrottleCacheTs = now');
+    expect(source).toContain("await submitClientReportCallable('user_report'");
+    expect(source).toContain("await submitClientReportCallable('community_pack_report'");
+  });
+
+  it('keeps lesson bug report throttle cached without moving XP before delivery', () => {
+    const source = read('app/error_report.ts');
+
+    expect(source).toContain('let errorReportThrottleCacheTs = 0');
+    expect(source).toContain('async function isErrorReportThrottled(now: number): Promise<boolean>');
+    expect(source).toContain('if (errorReportThrottleCacheTs > 0 && now - errorReportThrottleCacheTs < THROTTLE_MS)');
+    expect(source).toContain('const lastRaw = await AsyncStorage.getItem(THROTTLE_KEY)');
+    expect(source).toContain('errorReportThrottleCacheTs = last');
+    expect(source).toContain("await submitClientReport('error_report'");
+    expect(source).toContain('await AsyncStorage.setItem(THROTTLE_KEY, String(now))');
+    expect(source).toContain('errorReportThrottleCacheTs = now');
+    expect(source).toContain("void registerXP(10, 'achievement_reward'");
+    expect(source.indexOf("await submitClientReport('error_report'")).toBeLessThan(
+      source.indexOf('await AsyncStorage.setItem(THROTTLE_KEY, String(now))'),
+    );
+    expect(source.indexOf('await AsyncStorage.setItem(THROTTLE_KEY, String(now))')).toBeLessThan(
+      source.indexOf("void registerXP(10, 'achievement_reward'"),
+    );
+  });
+
+  it('keeps admin user-warning checks locally cooled down before Firestore', () => {
+    const source = read('app/user_warning_check.ts');
+
+    expect(source).toContain('const WARN_FETCH_COOLDOWN_MS = 25 * 60 * 1000');
+    expect(source).toContain('let warningFetchCacheAt = 0');
+    expect(source).toContain('if (warningFetchCacheAt > 0 && now - warningFetchCacheAt < WARN_FETCH_COOLDOWN_MS)');
+    expect(source).toContain('const lastFetchRaw = await AsyncStorage.getItem(WARN_FETCH_AT_KEY)');
+    expect(source).toContain('warningFetchCacheAt = lastFetch');
+    expect(source).toContain("db.collection('user_warnings').where('uid', '==', uid).get()");
+    expect(source).toContain('const fetchedAt = Date.now()');
+    expect(source).toContain('warningFetchCacheAt = fetchedAt');
+    expect(source.indexOf('if (warningFetchCacheAt > 0')).toBeLessThan(
+      source.indexOf("db.collection('user_warnings')"),
+    );
+  });
+
+  it('keeps lightweight prompt gates grouped into single AsyncStorage bridge reads', () => {
+    const afterWin = read('app/after_win_upsell_gate.ts');
+    const winback = read('app/winback_offer.ts');
+    const review = read('app/review_utils.ts');
+
+    expect(afterWin).toContain('const [[, lastRaw], [, streakShown]] = await AsyncStorage.multiGet([');
+    expect(afterWin).toContain('LAST_SHOWN_KEY');
+    expect(afterWin).toContain("'streak_paywall_shown'");
+    expect(afterWin).not.toContain('AsyncStorage.getItem(LAST_SHOWN_KEY)');
+    expect(afterWin).not.toContain("AsyncStorage.getItem('streak_paywall_shown')");
+
+    expect(winback).toContain('const [[, lastRaw], [, shownRaw]] = await AsyncStorage.multiGet([');
+    expect(winback).toContain('LAST_ACTIVE_KEY');
+    expect(winback).toContain('WINBACK_SHOWN_AT_KEY');
+    expect(winback).not.toContain('AsyncStorage.getItem(LAST_ACTIVE_KEY)');
+    expect(winback).not.toContain('AsyncStorage.getItem(WINBACK_SHOWN_AT_KEY)');
+
+    expect(review).toContain('const [[, sessRaw], [, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([');
+    expect(review).toContain('KEY_SESSIONS');
+    expect(review).toContain('KEY_LAST_PROMPTED');
+    expect(review).toContain('KEY_RATED');
+    expect(review).toContain('KEY_SHOW_COUNT');
+  });
+
+  it('keeps non-T0 ideas callable setup cached without changing submit payloads', () => {
+    const source = read('app/ideas_client.ts');
+
+    expect(source).toContain('type SubmitUserIdeaCallable = (');
+    expect(source).toContain('let submitUserIdeaCallable: SubmitUserIdeaCallable | null = null');
+    expect(source).toContain('let ideaAppCheckWarmupInFlight: Promise<void> | null = null');
+    expect(source).toContain('function getSubmitUserIdeaCallable(): SubmitUserIdeaCallable');
+    expect(source).toContain('if (!submitUserIdeaCallable)');
+    expect(source).toContain("callable<SubmitUserIdeaRequest, SubmitUserIdeaResult>('submitUserIdea')");
+    expect(source).toContain('function warmIdeasAppCheck(): Promise<void>');
+    expect(source).toContain('if (!ideaAppCheckWarmupInFlight)');
+    expect(source).toContain('ideaAppCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()');
+    expect(source).toContain('.finally(() => {');
+    expect(source).toContain('ideaAppCheckWarmupInFlight = null;');
+    expect(source).toContain('await warmIdeasAppCheck();');
+    expect(source).toContain('const fn = getSubmitUserIdeaCallable();');
+    expect(source).toContain('const res = await fn({');
+    expect(source).toContain('title: input.title');
+    expect(source).toContain('description: input.description');
+    expect(source).toContain('benefit: input.benefit');
+    expect(source).not.toContain("const fn = callable<{ payload: Record<string, unknown> }, SubmitUserIdeaResult>('submitUserIdea')");
+  });
+
+  it('keeps explicit Firestore telemetry writes owner-reviewed', () => {
+    const allowlist: Record<string, number> = {
+      'app/(tabs)/friends.tsx': 2,
+      'app/app_activity.ts': 1,
+      'app/app_health.ts': 1,
+      'app/firebase.ts': 1,
+      'app/firestore_friend_requests.ts': 1,
+      'app/friends_screen.tsx': 1,
+      'app/shards_shop.tsx': 3,
+      'app/streak_wager.ts': 1,
+      'components/onboarding.tsx': 3,
+    };
+    const found: Record<string, number> = {};
+
+    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts'])) {
+      const lines = read(file).split(/\r?\n/);
+      for (const line of lines) {
+        if (line.trim().startsWith('//')) continue;
+        const matches = line.match(/writeToFirestore\s*:\s*true/g);
+        if (matches) found[file] = (found[file] ?? 0) + matches.length;
+      }
+    }
+
+    expect(found).toEqual(allowlist);
+  });
+
+  it('keeps paywall funnel writes short-term deduped and TTL-bound', () => {
+    const source = read('app/paywall_funnel.ts');
+
+    expect(source).toContain("const COLLECTION = 'paywall_funnel'");
+    expect(source).toContain('const TTL_MS = 90 * 24 * 60 * 60 * 1000');
+    expect(source).toContain('const FUNNEL_DUPLICATE_WINDOW_MS = 750');
+    expect(source).toContain('const FUNNEL_DEDUPE_CACHE_LIMIT = 64');
+    expect(source).toContain('const _recentFunnelEvents = new Map<string, number>()');
+    expect(source).toContain('function paywallFunnelEventKey(step: PaywallFunnelStep, payload: PaywallFunnelPayload): string');
+    expect(source).toContain('function shouldDropDuplicateFunnelEvent(step: PaywallFunnelStep, payload: PaywallFunnelPayload, nowMs: number): boolean');
+    expect(source).toContain('if (nowMs - lastAt < FUNNEL_DUPLICATE_WINDOW_MS) return true;');
+    expect(source).toContain('if (_recentFunnelEvents.size > FUNNEL_DEDUPE_CACHE_LIMIT)');
+    expect(source).toContain('if (shouldDropDuplicateFunnelEvent(step, payload, Date.now())) return;');
+    expect(source).toContain('_recentFunnelEvents.clear();');
+  });
+
+  it('keeps shards shop open telemetry from writing Firestore on every focus', () => {
+    const source = read('app/shards_shop.tsx');
+    const openStart = source.indexOf("trackActivity('shards_shop:open'");
+    const openEnd = source.indexOf('void refreshPackTrial();', openStart);
+    const openBlock = source.slice(openStart, openEnd);
+
+    expect(source).toContain('const firestoreOpenTabsRef = useRef<Set<ShopTab>>(new Set())');
+    expect(source).toContain('const shouldWriteOpenToFirestore = !firestoreOpenTabsRef.current.has(shopTab)');
+    expect(source).toContain('if (shouldWriteOpenToFirestore) firestoreOpenTabsRef.current.add(shopTab)');
+    expect(openBlock).toContain('writeToFirestore: shouldWriteOpenToFirestore');
+    expect(openBlock).not.toContain('writeToFirestore: true');
+  });
+
+  it('keeps progress restore/migration monotonic so late sync cannot roll values back', () => {
+    const progressClient = read('app/progress_events_client.ts');
+    const cloudSync = read('app/cloud_sync.ts');
+    const progressServer = read('functions/src/progress_events.ts');
+
+    expect(progressClient).toContain('mergeStreakByActivityDate');
+    expect(progressClient).toContain('function parseNonNegativeNumber(raw: unknown): number');
+    expect(progressClient).toContain('function sameWeekPoints(raw: unknown, weekKey: string): number | null');
+    expect(progressClient).toContain('const mergedTotalXp = Math.max(');
+    expect(progressClient).toContain('const mergedWeekXp = Math.max(...currentWeekCandidates)');
+    expect(progressClient).toContain("['user_total_xp', String(mergedTotalXp)]");
+    expect(progressClient).toContain("['user_level', String(getLevelFromXP(mergedTotalXp))]");
+    expect(progressClient).toContain("['week_points_v2', JSON.stringify({ weekKey: result.weekKey, points: mergedWeekXp })]");
+    expect(cloudSync).toContain('mergeStreakByActivityDate');
+    expect(cloudSync).toContain("'unlocked_lessons'");
+    expect(cloudSync).toContain("unlockedLessonsKey('fr')");
+    expect(cloudSync).toContain("if (restoreId === 'unlocked_lessons') {");
+    expect(cloudSync).toContain('return mergeNumberSetRestoreValue(cloudValue, localValue);');
+    expect(cloudSync).toContain('const LEVEL_EXAM_RESTORE_MERGE_KEYS = LEVEL_EXAM_RESTORE_LEVELS.flatMap');
+    expect(cloudSync).toContain('function mergeLevelExamRestoreValue(');
+    expect(cloudSync).toContain("parseProgressBool(cloudValue) || parseProgressBool(localValue) ? 'true' : 'false'");
+    expect(cloudSync).toContain('return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)))');
+    expect(cloudSync).toContain("if (/^level_exam_[A-Za-z0-9_-]+_/.test(restoreId)) {");
+
+    const friendQuests = read('app/friend_quests.ts');
+    expect(friendQuests).toContain('async function mirrorCallerXpWithoutRollback(callerXp: number): Promise<void>');
+    expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
+    expect(friendQuests).toContain('String(Math.max(localXp, serverXp))');
+    expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
+
+    expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
+    expect(progressServer).toContain('if (incomingScore > currentScore && typeof snapshot[key] ===');
+    expect(progressServer).toContain('boolish(existing[key]) || boolish(snapshot[key])');
+    expect(read('app/xp_manager.ts')).toContain('if (newXP <= currentXP)');
+  });
+
+  it('keeps server shard balance mirrors timestamp-guarded instead of blind client replaces', () => {
+    const shardsSystem = read('app/shards_system.ts');
+    const friendQuests = read('app/friend_quests.ts');
+    const friendGifts = read('app/friend_gifts.ts');
+    const communityPurchase = read('app/community_packs/purchaseCommunityPack.ts');
+    const communityClient = read('app/community_packs/functionsClient.ts');
+    const leagueBoosts = read('app/league_group_boosts.ts');
+    const leagueChestClient = read('app/services/league_chest_rewards.ts');
+    const collectiblesClient = read('app/collectibles/storage.ts');
+
+    expect(shardsSystem).toContain('type ReplaceShardBalanceOptions = {');
+    expect(shardsSystem).toContain('const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs)');
+    expect(shardsSystem).toContain('if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;');
+    expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
+    expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
+    expect(shardsSystem).toContain('await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);');
+    expect(shardsSystem).not.toContain('await persistLocalBalance(cloudApplied.balance, meta)');
+    expect(shardsSystem).not.toContain('setShardsBalanceMemory(cloudApplied.balance)');
+
+    for (const source of [
+      friendQuests,
+      friendGifts,
+      communityPurchase,
+      leagueBoosts,
+      leagueChestClient,
+      collectiblesClient,
+    ]) {
+      expect(source).toContain('updatedAtMs:');
+    }
+
+    expect(communityClient).toContain('shardsUpdatedAtMs?: number');
+    expect(friendQuests).toContain('shardsUpdatedAtMs?: number');
+    expect(friendGifts).toContain('shardsUpdatedAtMs?: number');
+    expect(leagueBoosts).toContain('shardsUpdatedAtMs?: number');
+    expect(leagueChestClient).toContain('shardsUpdatedAtMs?: number');
+    expect(collectiblesClient).toContain('shardsUpdatedAtMs?: number | null');
+
+    expect(read('functions/src/friend_gifts.ts')).toContain('shardsUpdatedAtMs');
+    expect(read('functions/src/community_packs.ts')).toContain('shardsUpdatedAtMs: now');
+    expect(read('functions/src/league_groups.ts')).toContain('shardsUpdatedAtMs: now');
+    expect(read('functions/src/league_chest.ts')).toContain('shardsUpdatedAtMs: shardReward > 0 ? now');
+    expect(read('functions/src/collectibles.ts')).toContain('shardsUpdatedAtMs: decision.bonusShards > 0 ? now : null');
+  });
+
+  it('keeps selected server-first economy callables idempotent against duplicate retries', () => {
+    const friendClient = read('app/friend_gifts.ts');
+    const friendQuestClient = read('app/friend_quests.ts');
+    const promoClient = read('app/promo_code_client.ts');
+    const communityClient = read('app/community_packs/functionsClient.ts');
+    const leagueChestClient = read('app/services/league_chest_rewards.ts');
+    const friendServer = read('functions/src/friend_gifts.ts');
+    const communityServer = read('functions/src/community_packs.ts');
+    const leagueGroupsServer = read('functions/src/league_groups.ts');
+    const activityLikeServer = read('functions/src/friend_activity_likes.ts');
+    const leagueBoostsClient = read('app/league_group_boosts.ts');
+    const arenaBotServer = read('functions/src/arena_bot_match.ts');
+    const arenaBotClient = read('app/arena_bot_profile_write.ts');
+    const weeklyReviewServer = read('functions/src/weekly_review.ts');
+    const statsInsightsServer = read('functions/src/stats_insights.ts');
+
+    expect(friendClient).toContain("function makeFriendGiftIdempotencyKey(prefix = 'fg')");
+    expect(friendClient).toContain('idempotencyKey,');
+    expect(friendServer).toContain("senderRef.collection('friend_gift_idempotency').doc(idempotencyKey)");
+    expect(friendServer).toContain('return replayFriendGiftResult(idempotencySnap.data(), idempotencyKey, friendStableId, gift);');
+    expect(friendServer).toContain('if (!result.idempotentReplay && result._recipientPushToken)');
+    expect(friendClient).toContain("makeFriendGiftIdempotencyKey('fgt')");
+    expect(friendServer).toContain("senderRef.collection('friend_gift_thanks_idempotency').doc(idempotencyKey)");
+    expect(friendServer).toContain('if (!result.idempotentReplay && result._friendPushToken)');
+    expect(friendClient).toContain('const friendGiftSendInFlight = new Map');
+    expect(friendClient).toContain('const friendGiftThanksInFlight = new Map');
+    expect(friendClient).toContain('function friendGiftSendRequestKey');
+    expect(friendClient).toContain('function friendGiftThanksRequestKey');
+    expect(friendClient).toContain('friendGiftSendInFlight.delete(key)');
+    expect(friendClient).toContain('friendGiftThanksInFlight.delete(key)');
+
+    expect(friendQuestClient).toContain('const friendQuestClaimInFlight = new Map');
+    expect(friendQuestClient).toContain('function friendQuestClaimRequestKey');
+    expect(friendQuestClient).toContain('friendQuestClaimInFlight.delete(key)');
+
+    expect(communityServer).toContain('const purchaseId = `${buyerStableId}__${packId}`;');
+    expect(communityServer).toContain('if (purSnap.exists) {');
+    expect(communityServer).toContain('return { alreadyOwned: true as const, priceShards: price, studyTarget };');
+    expect(communityClient).toContain('const communityPurchaseInFlight = new Map');
+    expect(communityClient).toContain('function communityPurchaseRequestKey');
+    expect(communityClient).toContain('communityPurchaseInFlight.delete(key)');
+
+    expect(leagueGroupsServer).toContain("if (String(active.buyerUid || '') === stableUid) {");
+    expect(leagueGroupsServer).toContain('createdBoost = active;');
+    expect(leagueGroupsServer).toContain("throw new HttpsError('failed-precondition', 'already-active');");
+    expect(leagueBoostsClient).toContain('const leagueGroupBoostBuyInFlight = new Map');
+    expect(leagueBoostsClient).toContain('leagueGroupBoostBuyInFlight.delete(stableId)');
+
+    expect(leagueChestClient).toContain('const leagueChestClaimInFlight = new Map');
+    expect(leagueChestClient).toContain('function leagueChestClaimRequestKey');
+    expect(leagueChestClient).toContain('leagueChestClaimInFlight.delete(key)');
+    expect(promoClient).toContain('const promoRedeemInFlight = new Map');
+    expect(promoClient).toContain('promoRedeemInFlight.delete(code)');
+
+    expect(activityLikeServer).toContain('const alreadyLikedSameEvent =');
+    expect(activityLikeServer).toContain('idempotentReplay: true');
+    expect(activityLikeServer).toContain("throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');");
+    expect(leagueBoostsClient).toContain('const next = res.idempotentReplay');
+
+    expect(arenaBotServer).toContain("const historyRef = profileRef.collection('match_history').doc(sessionId);");
+    expect(arenaBotServer).toContain('if (historySnap.exists) {');
+    expect(arenaBotServer).toContain('return replayBotMatchResult(historySnap.data() ?? {}, data);');
+    expect(arenaBotServer).toContain('idempotentReplay: true');
+    expect(arenaBotServer).toContain('sessionId,');
+    expect(arenaBotClient).toContain('idempotentReplay?: boolean;');
+
+    expect(weeklyReviewServer).toContain('lastBriefingHash: briefingHash');
+    expect(weeklyReviewServer).toContain('lastReview: review');
+    expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);');
+    expect(weeklyReviewServer).toContain('idempotentReplay: true');
+    expect(weeklyReviewServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+      weeklyReviewServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
+    );
+
+    expect(statsInsightsServer).toContain('lastBriefingHash: briefingHash');
+    expect(statsInsightsServer).toContain('lastNotes: notes');
+    expect(statsInsightsServer).toContain('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);');
+    expect(statsInsightsServer).toContain('idempotentReplay: true');
+    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+      statsInsightsServer.indexOf('await enforceRateLimit(authUid, stableUid);'),
+    );
+    expect(statsInsightsServer.indexOf('const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);')).toBeLessThan(
+      statsInsightsServer.indexOf('await enforceGlobalBudget(jobCfg.globalDailyCap);'),
+    );
+  });
+
+  it('keeps OpenAI miss budgets refundable when no generation happens', () => {
+    const explainBudget = read('functions/src/explain/explain_budget.ts');
+    const explainPhrase = read('functions/src/explain_phrase.ts');
+    const explainChoice = read('functions/src/explain_choice.ts');
+    const explainQuiz = read('functions/src/explain_quiz.ts');
+    const compass = read('functions/src/compass.ts');
+    const statsInsights = read('functions/src/stats_insights.ts');
+
+    expect(explainBudget).toContain('export async function reserveExplainBudget');
+    expect(explainBudget).toContain('export async function refundExplainBudgetReservation');
+    expect(explainBudget).toContain('async function refundUserGenLimit');
+    expect(explainBudget).toContain('async function refundGlobalBudget');
+    expect(explainBudget).toContain('if (reservation.userReserved && !reservation.globalReserved)');
+
+    for (const source of [explainPhrase, explainChoice, explainQuiz, compass]) {
+      expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
+      expect(source).toContain('budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap)');
+      expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
+      expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'provider_failed');");
+    }
+
+    expect(statsInsights).toContain('const budgetReservedAtMs = Date.now();');
+    expect(statsInsights).toContain('await enforceGlobalBudget(jobCfg.globalDailyCap);');
+    expect(statsInsights).toContain('await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)');
+    expect(statsInsights.indexOf('const budgetReservedAtMs = Date.now();')).toBeLessThan(
+      statsInsights.indexOf('await enforceGlobalBudget(jobCfg.globalDailyCap);'),
+    );
+  });
+
+  it('keeps reward claim callables protected by deterministic claim markers', () => {
+    const dailyTasks = read('functions/src/daily_tasks_shards.ts');
+    const leagueChest = read('functions/src/league_chest.ts');
+    const collectibles = read('functions/src/collectibles.ts');
+    const profileCard = read('functions/src/profile_card_upgrade.ts');
+    const seasonRewards = read('functions/src/arena_season_rewards.ts');
+    const promoCodes = read('functions/src/promo_codes.ts');
+    const revenueCat = read('functions/src/revenuecat_shards.ts');
+
+    expect(dailyTasks).toContain("userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`daily_tasks_all_${dayKey}`)");
+    expect(dailyTasks).toContain('if (claimSnap.exists) {');
+    expect(dailyTasks).toContain('return { alreadyClaimed: true, newBalance: existingBalance, shardsUpdatedAtMs };');
+    expect(dailyTasks).toContain('return { alreadyClaimed: false, newBalance, shardsUpdatedAtMs };');
+
+    expect(leagueChest).toContain('const claimRef = db.collection(\'league_chest_claims\').doc(claimDocId(stableUid, weekId, groupId));');
+    expect(leagueChest).toContain('return { ok: true, claimed: true, alreadyClaimed: true, crown };');
+
+    expect(collectibles).toContain("userRef.collection('collectible_claims').doc(safeId(eventIdRaw))");
+    expect(collectibles).toContain('alreadyClaimed: true');
+    expect(collectibles).toContain('seedBase: `collect:${stableUid}:${eventIdRaw}`');
+
+    expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
+    expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };');
+
+    expect(seasonRewards).toContain('const claimRef = db.collection(\'arena_season_claims\').doc(`${seasonId}_${uid}`);');
+    expect(seasonRewards).toContain('if (claim.claimed) return { alreadyClaimed: true, rewards: [] };');
+
+    expect(promoCodes).toContain('const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);');
+    expect(promoCodes).toContain('alreadyRedeemed: redemptionSnap.exists');
+
+    expect(revenueCat).toContain("db.collection('revenuecat_premium_events').doc(eventId)");
+    expect(revenueCat).toContain("db.collection('revenuecat_shard_transactions').doc(transactionId)");
+    expect(revenueCat).toContain('if (processedSnap.exists)');
+  });
+
+  it('keeps release-wave shard grants stamped with shard wallet freshness meta', () => {
+    const source = read('app/release_wave_bonus.ts');
+
+    expect(source).toContain('const updatedAtMs = Date.now()');
+    expect(source).toContain("shards_updated_at_ms: updatedAtMs");
+    expect(source).toContain("shards_updated_op: 'earn'");
+    expect(source).toContain("shards_updated_reason: 'release_wave_bonus'");
+    expect(source).toContain('await replaceShardsBalanceLocal(newBalance, {');
+    expect(source).toContain("reason: 'release_wave_bonus'");
+    expect(source).toContain("await AsyncStorage.setItem(claimKey(wave), '1')");
+    expect(source).not.toContain("['shards_balance', String(newBalance)]");
+  });
+
+  it('keeps account merge shard writes stamped so stale local wallets cannot overwrite them', () => {
+    const source = read('functions/src/auth_merge.ts');
+
+    expect(source).toContain('const mergedShards = mergeShards(winnerData.shards, loserData.shards);');
+    expect(source).toContain('update.shards = mergedShards;');
+    expect(source).toContain('update.shards_updated_at_ms = now;');
+    expect(source).toContain("update.shards_updated_op = 'replace';");
+    expect(source).toContain("update.shards_updated_reason = 'account_merge';");
+  });
+
+  it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
+    const source = read('app/level_gift_system.ts');
+
+    expect(source).toContain("replaceShardsBalanceLocal(before + safe, { op: 'earn', reason: 'level_gift_fallback' })");
+    expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
+    expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
+  });
+
+  it('keeps card pack shard purchase CTAs visibly pending while server-first purchase is in flight', () => {
+    const source = read('app/flashcards/CardPackShardPaywallModal.tsx');
+
+    expect(source).toContain('ActivityIndicator');
+    expect(source).toContain('disabled={purchasing}');
+    expect(source).not.toContain('false && purchasing');
+  });
+
+  it('keeps friend gift server-first sends visibly pending without local gift unlock', () => {
+    const friendsTab = read('app/(tabs)/friends.tsx');
+    const legacyFriends = read('app/friends_screen.tsx');
+
+    for (const source of [friendsTab, legacyFriends]) {
+      expect(source).toContain('sendFriendGiftWithShards');
+      expect(source).toContain('setGiftBusyId(giftId)');
+      expect(source).toContain('const sendingThisGift = giftBusyId === gift.id');
+      expect(source).toContain('<ActivityIndicator size="small" color={t.accent} />');
+      expect(source).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
+      expect(source).toContain('setGiftBalance(guardedBalance)');
+      expect(source).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+    }
+
+    expect(friendsTab).toContain('const disabled = giftBusyId !== null');
+    expect(friendsTab).toContain('balanceAfter: guardedBalance');
+    expect(legacyFriends).toContain('const disabled = giftBalance < gift.costShards || giftBusyId !== null');
+  });
+
+  it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {
+    const profileUpgrade = read('app/profile_card_upgrade.tsx');
+    const dailyTasks = read('app/daily_tasks_screen.tsx');
+
+    expect(profileUpgrade).toContain('upgradeProfileCardLevel()');
+    expect(profileUpgrade).toContain('testID="profile-card-upgrade-submit"');
+    expect(profileUpgrade).toContain('disabled={busy || !nextDef}');
+    expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
+
+    expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');
+    expect(dailyTasks).toContain('setRerollBusyId(target.id)');
+    expect(dailyTasks).toContain('disabled={!!rerollBusyId}');
+    expect(dailyTasks).toContain('<ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} />');
+  });
+});

@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-06-26T09:27:15.219Z",
+  "formula": "purchase*0.30 + subscription*0.25 + retention*0.15 + pain*0.15 + evergreen*0.10 + novelty*0.05 - competition*0.10",
+  "note": "Virality is tracked but does not directly increase priorityScore.",
+  "opportunities": [
+    {
+      "painClusterId": "pain_speaking_freeze_001",
+      "pain": "I understand English content but freeze when I need to speak",
+      "buyerMotivation": "Wants active speaking confidence, not passive recognition of words.",
+      "productBridge": "Phraseman trains ready-to-use phrases for real speaking moments.",
+      "painScore": 9,
+      "viralityScore": 7,
+      "purchaseScore": 9,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 6,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 8,
+      "subscriptionPredictionScore": 9,
+      "priorityScore": 8.2,
+      "decision": "generate_content_package",
+      "reasons": [
+        "high purchase intent",
+        "high subscription prediction",
+        "likely retention fit"
+      ]
+    },
+    {
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "pain": "I feel embarrassed speaking English out loud",
+      "buyerMotivation": "Wants private practice before risking mistakes with real people.",
+      "productBridge": "Phraseman gives low-pressure phrase rehearsal before real conversations.",
+      "painScore": 9,
+      "viralityScore": 8,
+      "purchaseScore": 8,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 5,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 8,
+      "subscriptionPredictionScore": 8,
+      "priorityScore": 7.75,
+      "decision": "generate_content_package",
+      "reasons": [
+        "high purchase intent",
+        "high subscription prediction",
+        "likely retention fit",
+        "strong attention potential"
+      ]
+    },
+    {
+      "painClusterId": "pain_years_stuck_001",
+      "pain": "I have studied English for years but still feel stuck",
+      "buyerMotivation": "Wants a visible breakthrough after long, demoralizing effort.",
+      "productBridge": "Phraseman turns knowledge into small usable speaking actions instead of another passive lesson streak.",
+      "painScore": 8,
+      "viralityScore": 6,
+      "purchaseScore": 8,
+      "evergreenScore": 10,
+      "noveltyScore": 5,
+      "competitionScore": 7,
+      "ctrPredictionScore": 6,
+      "retentionPredictionScore": 7,
+      "subscriptionPredictionScore": 8,
+      "priorityScore": 7.2,
+      "decision": "generate_content_package",
+      "reasons": [
+        "high purchase intent",
+        "high subscription prediction"
+      ]
+    },
+    {
+      "painClusterId": "pain_forgetting_001",
+      "pain": "I keep forgetting the English I learn",
+      "buyerMotivation": "Wants a system that makes phrases stick and return at the right time.",
+      "productBridge": "Phraseman uses repeated phrase practice and recall to make useful English stay usable.",
+      "painScore": 8,
+      "viralityScore": 6,
+      "purchaseScore": 7,
+      "evergreenScore": 9,
+      "noveltyScore": 5,
+      "competitionScore": 7,
+      "ctrPredictionScore": 6,
+      "retentionPredictionScore": 7,
+      "subscriptionPredictionScore": 7,
+      "priorityScore": 6.55,
+      "decision": "manual_review",
+      "reasons": [
+        "balanced but unproven opportunity"
+      ]
+    },
+    {
+      "painClusterId": "pain_work_english_001",
+      "pain": "I need English for work calls and messages",
+      "buyerMotivation": "Has a practical deadline and direct economic reason to improve.",
+      "productBridge": "Phraseman trains phrase patterns that transfer into work calls, chats, and meetings.",
+      "painScore": 9,
+      "viralityScore": 3,
+      "purchaseScore": 2,
+      "evergreenScore": 10,
+      "noveltyScore": 6,
+      "competitionScore": 5,
+      "ctrPredictionScore": 7,
+      "retentionPredictionScore": 3,
+      "subscriptionPredictionScore": 2,
+      "priorityScore": 3.7,
+      "decision": "hold_low_purchase_intent",
+      "reasons": [
+        "balanced but unproven opportunity"
+      ]
+    }
+  ]
+}

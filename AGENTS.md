@@ -1,5 +1,18 @@
 # Project Rules
 
+## Admin UI Bible
+
+- Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
+- Admin UI must stay simple, categorized, icon-supported, tooltip-rich, accessible, and free of visual clutter. Do not add admin buttons, colors, overlays, menus, or text patterns that violate the Bible.
+
+## MAYMAY — CapCut phrase/TTS pipeline
+
+- If the user mentions **"MAYMAY"**, "меймей", "найди пайплайн меймей", or asks for a new MAYMAY video/package,
+  read `content/MAYMAY.md` FIRST and follow its step-by-step instructions exactly.
+- MAYMAY builds 30 short English-learning CapCut videos from 30 sets of 20 phrase/preposition/phrasal-verb items,
+  generates OpenAI TTS audio, and produces ready CapCut JSON while preserving all template timing, positions, styles,
+  and element counts except the explicitly replaced audio/text.
+
 ## MASON — content scriptwriter pipeline
 
 - If the user mentions **"MASON"**, "мейсон", "подними мейсон", or "пишем новый ролик", load the
@@ -7,6 +20,15 @@
 - MASON writes ready-to-voice short-video scripts (RU, Clarkson's-Farm style) about building Phraseman.
   All its state lives in `content/` (MASON.md, DOSSIER.md, CLARKSON_STYLE.md, scripts/). It is
   self-contained — any AI in any session continues from those files.
+
+## BUYER RADAR — revenue article/carousel pipeline
+
+- If the user mentions **"BUYER RADAR"**, "баер радар", "buyer radar", buyer-search content, revenue carousels,
+  or asks for Phraseman buyer-finding articles/carousels, read `docs/pipelines/buyer-radar-revenue-intelligence-pipeline.ru.md`
+  and `docs/pipelines/buyer-radar-editorial-bible.ru.md` FIRST.
+- All BUYER RADAR articles and carousels must follow the editorial bible: first slide instantly signals language learning,
+  every slide advances a research-backed contradiction, and the last slide uses a closing contradiction plus
+  "Ссылка на приложение Phraseman — в био."
 
 ## UI Contrast Rule
 
@@ -40,6 +62,16 @@
 - If a fix seems easier by removing functionality, keep the functionality and fix the broken behavior instead.
 - If two existing features conflict and one appears impossible to preserve, stop and report the conflict before editing. Do not choose a deletion yourself.
 - When editing shared UI, image/icon systems, navigation, localization, purchases, account deletion, gifts, stats, league, chat, lessons, or onboarding, preserve existing capabilities unless the current user request explicitly says to remove a specific capability.
+
+## Auth Identity And Account Deletion Invariants
+
+- Before changing auth/account flows, read this section. It applies to `app/auth_provider.ts`, `app/cloud_sync.ts`, `functions/src/auth_identity.ts`, `functions/src/account_delete.ts`, `firestore.rules`, auth modals, and their tests.
+- Provider sign-in must not use a client Firestore transaction to create/update `users/*` or `auth_links/*`. Stable-link writes and repair belong on server callables. A return of `transaction_[firestore/permission-denied]` from `signInWithProvider` is a regression.
+- `auth_links/{providerUid}` is the provider identity anchor. If server/callable discovers an existing provider-linked `stableUid`, it wins over the local anonymous `stable_id`; do not silently create a new account from an unverified Firestore fallback.
+- `deleteAccountAndWipe()` intentionally starts `deleteCloudData()` in the background, then signs out, wipes local account data, clears `stable_id`, and writes the local `account_delete_pending_auth_v1` guard. Do not make account deletion wait synchronously on the cloud delete before local exit.
+- `signInWithProvider()` must check `readAccountDeletePendingAuth(firebaseProviderUid)` immediately after `signInWithCredential` and before reading/writing `auth_links`. If the same provider UID is still pending deletion, it must `signOutCurrentProvider()`, best-effort `ensureAnonUser()`, and return `account_delete_pending` without writing Critical App Health.
+- Account switch/reset flows must use `signOutAndWipeForAccountSwitch()` rather than composing `signOutCurrentProvider()`, `clearStableId()`, and `ensureAnonUser()` manually; otherwise old account data can leak into a new account.
+- When touching this area, run the narrow guards: `tests/auth_provider_stable_link.test.ts`, `tests/account_delete_flow_contract.test.ts`, `tests/firestore_rules_security.test.ts`, `tests/stable_id.test.ts`, and `tests/auth_identity_anon_relink.test.ts`.
 
 ## Tests Are Read-Only Guards
 

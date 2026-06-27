@@ -191,10 +191,10 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
 }
 
 // memory 1GiB + timeout 540s: полный постраничный скан users/ (как
-// syncFriendActivityMirrorCron). Каждые 6 часов — просрочка снимается с лагом
-// максимум ~6ч+grace, что для премиум-доступа достаточно.
+// syncFriendActivityMirrorCron). Каждые 12 часов — просрочка снимается с лагом
+// максимум ~12ч+grace; для премиум-доступа это мягче к пользователю и дешевле по full-scan reads.
 export const premiumExpiryCron = functions.scheduler.onSchedule(
-  { schedule: 'every 6 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 },
+  { schedule: 'every 12 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 },
   async () => {
     await sweepExpiredPremium();
   },

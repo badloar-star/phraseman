@@ -50,7 +50,7 @@ describe('safeRouterBack', () => {
     expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
   });
 
-  it('allows native back only when an in-app previous route was recorded', () => {
+  it('replaces to the recorded previous route instead of using native back', () => {
     const navigation = loadNavigationBack();
     const router = makeRouter(true);
 
@@ -58,13 +58,13 @@ describe('safeRouterBack', () => {
     navigation.rememberNavigationPath('/streak_stats');
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
-    expect(router.canGoBack).toHaveBeenCalledTimes(1);
-    expect(router.back).toHaveBeenCalledTimes(1);
-    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.canGoBack).not.toHaveBeenCalled();
+    expect(router.back).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
 
     navigation.rememberNavigationPath('/(tabs)/home');
     jest.advanceTimersByTime(300);
 
-    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledTimes(1);
   });
 });

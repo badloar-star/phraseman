@@ -7,7 +7,7 @@ import { useTheme } from '../components/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { safeRouterBack } from './navigation_back';
 import LessonIntroScreens from './lesson_intro_screens';
-import { getAuthoredPlanContentDay } from './plan_content_registry';
+import { getBundledCompatibilityPlanContentTheoryDay } from './plan_content_readiness';
 import { contentDayToLessonIntroScreens } from './plan_content_runtime_adapter';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
@@ -34,7 +34,7 @@ export default function PersonalPlanTheoryScreen() {
   const planInstanceId = firstParam(params.planInstanceId);
 
   const introScreens = useMemo(() => {
-    const day = getAuthoredPlanContentDay(planId, dayIndex);
+    const day = getBundledCompatibilityPlanContentTheoryDay(planId, dayIndex);
     return day ? contentDayToLessonIntroScreens(day) : [];
   }, [planId, dayIndex]);
 

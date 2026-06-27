@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -39,6 +39,7 @@ import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   getDueItems,
+  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
@@ -53,10 +54,16 @@ import {
 import { getLessonData } from './lesson_data_all';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import type { LessonWord } from './lesson_data_types';
+import {
+  markTrainerPlanTaskCompleted,
+  readTrainerPlanTaskContext,
+  type TrainerPlanTaskRouteParams,
+} from './trainer_plan_task_route';
 
 type SessionMode = 'word_bank' | 'fill_gap';
 
@@ -430,10 +437,12 @@ function FillGapMode({ item, onResult }: FillGapProps) {
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerPhrasesSession() {
   const router = useRouter();
+  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
 
   const [deck, setDeck] = useState<SessionCard[]>([]);
   const [current, setCurrent] = useState(0);
@@ -445,6 +454,24 @@ export default function TrainerPhrasesSession() {
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const dailySessionTracked = useRef(false);
+  const planTrainerCompletionTracked = useRef(false);
+  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
+    mode: params.mode,
+    planDayIndex: params.planDayIndex,
+    planId: params.planId,
+    planInstanceId: params.planInstanceId,
+    planTaskId: params.planTaskId,
+    planTrainerTask: params.planTrainerTask,
+    requiredItems: params.requiredItems,
+  }), [
+    params.mode,
+    params.planDayIndex,
+    params.planId,
+    params.planInstanceId,
+    params.planTaskId,
+    params.planTrainerTask,
+    params.requiredItems,
+  ]);
 
   useEffect(() => {
     let cancelled = false;
@@ -452,16 +479,34 @@ export default function TrainerPhrasesSession() {
     setLoading(true);
     void (async () => {
       try {
-        const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
-        if (cancelled) return;
-        // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
-        if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
-          logTrainerDirectGateBlocked('/trainer_phrases_session');
-          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-          return;
+        if (planTrainerContext.taskId) {
+          const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
+          if (cancelled) return;
+          if (!planAllowed) {
+            logTrainerDirectGateBlocked('/trainer_phrases_session');
+            router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
+            return;
+          }
+        } else {
+          const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session', studyTarget);
+          if (cancelled) return;
+          // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
+          if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
+            logTrainerDirectGateBlocked('/trainer_phrases_session');
+            router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+            return;
+          }
         }
         setAccessReady(true);
-        const items = await getDueItems('phrases', 15);
+        const items = planTrainerContext.taskId
+          ? await getTrainerPremiumItemsForPlanQueue(
+              planTrainerContext.planInstanceId,
+              planTrainerContext.mode,
+              'phrases',
+              planTrainerContext.requiredItems,
+              studyTarget,
+            )
+          : await getDueItems('phrases', 15, studyTarget);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
         setDeck(buildDeck(items));
@@ -474,7 +519,7 @@ export default function TrainerPhrasesSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [router, reloadKey]);
+    }, [planTrainerContext, router, reloadKey, studyTarget]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -485,7 +530,7 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly);
+    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly, studyTarget);
     const updates: { type: TaskType; increment: number }[] = [];
     if (!dailySessionTracked.current) {
       dailySessionTracked.current = true;
@@ -494,7 +539,7 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_phrases', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
+      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     }
 
     const next = current + 1;
@@ -505,20 +550,27 @@ export default function TrainerPhrasesSession() {
         correct: nextCorrect,
         wrong: nextWrong,
         total: deck.length,
+        studyTarget,
       }).catch(() => {});
       setDone(true);
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
-  }, [deck, current, correct, wrong]);
+    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
+  }, [deck, current, correct, wrong, studyTarget]);
+
+  useEffect(() => {
+    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
+    planTrainerCompletionTracked.current = true;
+    void markTrainerPlanTaskCompleted(planTrainerContext);
+  }, [done, planTrainerContext]);
 
   if (loadError) {
     return (
       <TrainerErrorView
         lang={lang}
         onRetry={() => { hapticTap(); setReloadKey(k => k + 1); }}
-        onExit={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+        onExit={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
       />
     );
   }
@@ -538,7 +590,7 @@ export default function TrainerPhrasesSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#40C080"
-              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer'); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -576,7 +628,7 @@ export default function TrainerPhrasesSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, '/trainer')} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>

@@ -99,7 +99,6 @@ const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('.
 const {
   referralEnsureMyCode,
   referralApply,
-  referralOnUserProgressUpdated,
   referralClaimVipReward,
   referralListMyInvites,
 } = require('./referral');
@@ -195,7 +194,6 @@ exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
-exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
@@ -1313,7 +1311,6 @@ export { syncFriendActivityMirrorCron } from './friend_activity_mirror';
 export { premiumExpiryCron } from './premium_expiry_cron';
 
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
-export { vipReconcileOrphanGrant } from './vip_orphan_reconcile';
 
 export { friendSendGift } from './friend_gifts';
 

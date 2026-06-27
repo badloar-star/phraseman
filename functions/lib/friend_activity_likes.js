@@ -100,13 +100,27 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
         if (linkedAuthUid !== request.auth.uid && senderStableId !== request.auth.uid) {
             throw new https_1.HttpsError('permission-denied', 'Sender does not match auth user');
         }
+        const eventData = eventSnap.data() ?? {};
         if (dailyLimitSnap.exists) {
+            const dailyLimitData = dailyLimitSnap.data() ?? {};
+            const alreadyLikedSameEvent = cleanDocId(dailyLimitData.targetUid) === targetStableId &&
+                cleanDocId(dailyLimitData.eventId) === eventId;
+            if (alreadyLikedSameEvent) {
+                return {
+                    ok: true,
+                    date: today,
+                    targetUid: targetStableId,
+                    eventId,
+                    activityLikeCount: parseCount(eventData.activityLikeCount),
+                    targetActivityLikeTotal: parseCount(statsSnap.data()?.total),
+                    idempotentReplay: true,
+                };
+            }
             throw new https_1.HttpsError('resource-exhausted', 'Daily activity like limit reached');
         }
         if (!targetFriendSnap.exists) {
             throw new https_1.HttpsError('failed-precondition', 'Users are not friends');
         }
-        const eventData = eventSnap.data() ?? {};
         const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
         const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
         const eventType = cleanId(eventData.type);

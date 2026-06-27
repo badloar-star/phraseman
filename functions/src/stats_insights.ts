@@ -145,6 +145,10 @@ function docId(prefix: string, authUid: string, stableUid: string): string {
   return `${prefix}_${hash}`;
 }
 
+function briefingHashForReplay(briefing: StatsInsightsBriefing): string {
+  return createHash('sha256').update(JSON.stringify(briefing)).digest('hex');
+}
+
 function utcDayKey(nowMs: number): string {
   return new Date(nowMs).toISOString().slice(0, 10);
 }
@@ -260,22 +264,90 @@ async function enforceGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs: number
   });
 }
 
+async function refundGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs: number = Date.now()): Promise<void> {
+  if (cap <= 0) return;
+  const db = admin.firestore();
+  const ref = db.collection(GLOBAL_BUDGET_COLLECTION).doc(utcDayKey(nowMs));
+  await db.runTransaction(async (tx) => {
+    const genCount = Number((await tx.get(ref)).data()?.genCount ?? 0);
+    tx.set(ref, { genCount: Math.max(0, genCount - 1), updatedAtMs: nowMs }, { merge: true });
+  });
+}
+
 /**
  * Window quota. Split into a READ-ONLY check (before the paid call) and a
  * COMMIT (after success) so a provider failure never burns the user's window.
  */
-async function assertWindowOpen(authUid: string, stableUid: string): Promise<void> {
+type StatsInsightsReplayDecision =
+  | { kind: 'open' }
+  | { kind: 'not_ready'; nextAllowedAtMs: number }
+  | { kind: 'replay'; notes: StatsInsightsNotes; nextAllowedAtMs: number; model: string };
+
+function readStoredStatsInsightsNotes(raw: unknown): StatsInsightsNotes | null {
+  const data = (raw ?? {}) as Record<string, unknown>;
+  const notes = {} as StatsInsightsNotes;
+  let nonEmpty = 0;
+  for (const key of BLOCK_KEYS) {
+    const note = guardLearnerFacingNote(key, text(data[key], MAX_NOTE_CHARS));
+    notes[key] = note;
+    if (note) nonEmpty += 1;
+  }
+  return nonEmpty > 0 ? notes : null;
+}
+
+function decideStatsInsightsReplay(
+  quotaData: Record<string, unknown>,
+  expectedBriefingHash: string,
+  nowMs: number,
+): StatsInsightsReplayDecision {
+  const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
+  if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
+    return { kind: 'open' };
+  }
+
+  if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
+    const notes = readStoredStatsInsightsNotes(quotaData.lastNotes);
+    if (notes) {
+      return {
+        kind: 'replay',
+        notes,
+        nextAllowedAtMs,
+        model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
+      };
+    }
+  }
+
+  return { kind: 'not_ready', nextAllowedAtMs };
+}
+
+async function readReplayOrAssertWindowOpen(
+  authUid: string,
+  stableUid: string,
+  expectedBriefingHash: string,
+): Promise<Extract<StatsInsightsReplayDecision, { kind: 'replay' }> | null> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
   const snap = await ref.get();
-  const nextAllowedAtMs = Number(snap.data()?.nextAllowedAtMs ?? 0);
-  if (now < nextAllowedAtMs) {
-    throw new HttpsError('resource-exhausted', 'stats_insights_not_ready', { nextAllowedAtMs });
+  const decision = decideStatsInsightsReplay(snap.data() ?? {}, expectedBriefingHash, now);
+  if (decision.kind === 'open') return null;
+  if (decision.kind === 'replay') return decision;
+  if (decision.kind === 'not_ready') {
+    throw new HttpsError('resource-exhausted', 'stats_insights_not_ready', {
+      nextAllowedAtMs: decision.nextAllowedAtMs,
+    });
   }
+  return null;
 }
 
-async function commitWindow(authUid: string, stableUid: string, isPremium: boolean): Promise<number> {
+async function commitWindow(
+  authUid: string,
+  stableUid: string,
+  isPremium: boolean,
+  briefingHash: string,
+  notes: StatsInsightsNotes,
+  model: string,
+): Promise<number> {
   const db = admin.firestore();
   const now = Date.now();
   const windowDays = isPremium ? PREMIUM_WINDOW_DAYS : FREE_WINDOW_DAYS;
@@ -292,6 +364,9 @@ async function commitWindow(authUid: string, stableUid: string, isPremium: boole
       stableUid,
       isPremium,
       lastGeneratedAtMs: now,
+      lastBriefingHash: briefingHash,
+      lastNotes: notes,
+      lastModel: model,
       nextAllowedAtMs: newNext,
       updatedAtMs: now,
     }, { merge: true });
@@ -441,11 +516,26 @@ export const statsInsightsGenerate = onCall({
   // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
   const isPremium = await resolvePremiumAccess(db, stableUid);
 
-  // Limits BEFORE the paid call. Window is only CHECKED here (read-only) — it is
-  // committed after a successful generation so a provider failure does not lock
-  // the user out for the whole window.
+  // Replay/window check BEFORE rate, global budget, and the paid API call.
+  // Same briefing retries get the cached server result; different briefing
+  // remains gated until the window opens.
+  const briefingHash = briefingHashForReplay(briefing);
+  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+  if (replay) {
+    return {
+      ok: true,
+      notes: replay.notes,
+      nextAllowedAtMs: replay.nextAllowedAtMs,
+      model: replay.model,
+      idempotentReplay: true,
+    };
+  }
+
+  // Limits BEFORE the paid call. Window is committed after a successful
+  // generation so a provider failure does not lock the user out for the whole
+  // window.
   await enforceRateLimit(authUid, stableUid);
-  await assertWindowOpen(authUid, stableUid);
+  const budgetReservedAtMs = Date.now();
   await enforceGlobalBudget(jobCfg.globalDailyCap);
 
   const messages = [
@@ -453,24 +543,33 @@ export const statsInsightsGenerate = onCall({
     { role: 'user' as const, content: JSON.stringify(briefing) },
   ];
 
-  const response = await fetch(OPENAI_CHAT_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: jobCfg.model,
-      messages,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.7,
-      response_format: { type: 'json_object' },
-    }),
-  });
+  let response: Awaited<ReturnType<typeof fetch>>;
+  try {
+    response = await fetch(OPENAI_CHAT_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: jobCfg.model,
+        messages,
+        max_tokens: MAX_OUTPUT_TOKENS,
+        temperature: 0.7,
+        response_format: { type: 'json_object' },
+      }),
+    });
+  } catch (err) {
+    await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)
+      .catch((refundErr) => console.error('stats_insights global budget refund failed', refundErr));
+    throw err;
+  }
 
   if (!response.ok) {
     const detail = await response.text().catch(() => '');
     console.error('stats_insights chat failed', response.status, detail.slice(0, 500));
+    await refundGlobalBudget(jobCfg.globalDailyCap, budgetReservedAtMs)
+      .catch((refundErr) => console.error('stats_insights global budget refund failed', refundErr));
     throw new HttpsError('unavailable', 'stats_insights_provider_failed');
   }
 
@@ -481,7 +580,7 @@ export const statsInsightsGenerate = onCall({
   const result = parseAndGuardResult(content, briefing.lang);
 
   // Generation succeeded — NOW commit the window (so failures above never burn it).
-  const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);
+  const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium, briefingHash, result.notes, jobCfg.model);
 
   const usage = json.usage ?? {};
   await db.collection(BILLING_COLLECTION).doc().set({
@@ -512,5 +611,8 @@ export const __statsInsightsTestHooks = {
   parseAndGuardResult,
   buildSystemPrompt,
   hasEnoughSignal,
+  briefingHashForReplay,
+  decideStatsInsightsReplay,
+  readStoredStatsInsightsNotes,
 };
 export type { StatsInsightsBriefing, StatsInsightsResult, StatsInsightsNotes, BlockKey };

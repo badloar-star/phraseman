@@ -107,6 +107,14 @@ describe('reported content regressions', () => {
     expect(isCorrectAnswer('someone told me a story', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
   });
 
+  it('accepts the natural "anything" negative form for lesson 21 phrase 14 found nothing', () => {
+    const phrase = LESSON_DATA[21].phrases.find((row) => row.id === 'lesson21_phrase_14');
+
+    expect(phrase).toBeTruthy();
+    expect(isCorrectAnswer("I didn't find anything", phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
+    expect(isCorrectAnswer('I did not find anything', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
+  });
+
   it('accepts someone and somebody for lesson 21 phrase 32 found your keys', () => {
     const phrase = LESSON_DATA[21].phrases.find((row) => row.id === 'lesson21_phrase_32');
 
@@ -238,6 +246,42 @@ describe('reported content regressions', () => {
     expect(phrase?.ukrainian).toBe('Вона ненавидить втрачати гроші');
     // "витрачати" means "spending" — must not be reused for "losing".
     expect(phrase?.ukrainian).not.toContain('витрачати');
+  });
+
+  it('keeps lesson 19 shoes prompts plural so users are not pushed toward "is"', () => {
+    const underBed = LESSON_DATA[19].phrases.find((row) => row.id === 'lesson19_phrase_14');
+    const thereAre = LESSON_DATA[19].phrases.find((row) => row.id === 'lesson19_phrase_40');
+
+    expect(underBed?.english).toBe('The shoes are under the bed');
+    expect(underBed?.russian).toBe('Туфли под кроватью');
+    expect(underBed?.ukrainian).toBe('Туфлі під ліжком');
+    expect(underBed?.russian).not.toContain('Обувь');
+    expect(underBed?.wordsEn?.find((w) => w.correct === 'are')).toBeTruthy();
+
+    expect(thereAre?.english).toBe('There are shoes under the bed');
+    expect(thereAre?.russian).toBe('Под кроватью есть туфли');
+    expect(thereAre?.ukrainian).toBe('Під ліжком є туфлі');
+    expect(thereAre?.russian).not.toContain('обувь');
+    expect(thereAre?.wordsEn?.find((w) => w.correct === 'are')).toBeTruthy();
+  });
+
+  it('accepts "this problem" for lesson 25 phrase 32 because the prompt says эту проблему', () => {
+    const phrase = LESSON_DATA[25].phrases.find((row) => row.id === 'lesson25_phrase_32');
+
+    expect(phrase).toBeTruthy();
+    expect(isCorrectAnswer('We were not discussing this problem', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
+  });
+
+  it('keeps level exam questions on already taught wording for passive voice and third conditional', () => {
+    const levelExamSource = fs.readFileSync(path.join(process.cwd(), 'app', 'level_exam.tsx'), 'utf8');
+    const legacyExamSource = fs.readFileSync(path.join(process.cwd(), 'app', 'exam.tsx'), 'utf8');
+
+    for (const source of [levelExamSource, legacyExamSource]) {
+      expect(source).toContain("q:'The documents ___ checked today.'");
+      expect(source).toContain("q:'If we had started earlier, we ___ finished.'");
+      expect(source).not.toContain("q:'The report ___ submitted by Friday.'");
+      expect(source).not.toContain("q:'If she had tried, she ___ passed.'");
+    }
   });
 
   it('uses grammatical Russian/Ukrainian prompts for lesson 13 phrase 40 and lesson 14 phrase 24', () => {

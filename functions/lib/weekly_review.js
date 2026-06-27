@@ -93,6 +93,9 @@ function docId(prefix, authUid, stableUid) {
     const hash = (0, crypto_1.createHash)('sha256').update(`${prefix}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);
     return `${prefix}_${hash}`;
 }
+function briefingHashForReplay(briefing) {
+    return (0, crypto_1.createHash)('sha256').update(JSON.stringify(briefing)).digest('hex');
+}
 /**
  * Sanitizes the untrusted client briefing into a known-good shape. Crucially,
  * recommendation ids are kept verbatim (they're opaque ids the client already
@@ -180,26 +183,60 @@ async function enforceRateLimit(authUid, stableUid) {
         }, { merge: true });
     });
 }
-/**
- * Window quota — everyone can regenerate once per day.
- * SERVER is the source of truth (client gate is bypassable).
- *
- * Split into a READ-ONLY check (before the paid call) and a COMMIT (after a
- * successful generation). This avoids burning the daily window when OpenAI
- * fails — otherwise one provider hiccup would lock the user out for a week.
- * Throws 'weekly_review_not_ready' with nextAllowedAtMs in details if too soon.
- */
-async function assertWindowOpen(authUid, stableUid) {
+function readStoredWeeklyReview(raw) {
+    const data = (raw ?? {});
+    const greeting = text(data.greeting, 200);
+    const paragraphs = (Array.isArray(data.paragraphs) ? data.paragraphs : [])
+        .slice(0, MAX_PARAGRAPHS)
+        .map((p) => text(p, 800))
+        .filter(Boolean);
+    if (!greeting || paragraphs.length === 0)
+        return null;
+    const recommendations = (Array.isArray(data.recommendations) ? data.recommendations : [])
+        .slice(0, MAX_RECOMMENDATIONS)
+        .map((item) => {
+        const c = (item ?? {});
+        return { microDiagnosisId: text(c.microDiagnosisId, 80), label: text(c.label, 120) };
+    })
+        .filter((r) => r.microDiagnosisId && r.label);
+    return { greeting, paragraphs, recommendations };
+}
+function decideWeeklyReviewReplay(quotaData, expectedBriefingHash, nowMs) {
+    const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
+    if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
+        return { kind: 'open' };
+    }
+    if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
+        const review = readStoredWeeklyReview(quotaData.lastReview);
+        if (review) {
+            return {
+                kind: 'replay',
+                review,
+                nextAllowedAtMs,
+                model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
+            };
+        }
+    }
+    return { kind: 'not_ready', nextAllowedAtMs };
+}
+async function readReplayOrAssertWindowOpen(authUid, stableUid, expectedBriefingHash) {
     const db = admin.firestore();
     const now = Date.now();
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('wkrq', authUid, stableUid));
     const snap = await ref.get();
-    const nextAllowedAtMs = Number(snap.data()?.nextAllowedAtMs ?? 0);
-    if (now < nextAllowedAtMs) {
-        throw new https_1.HttpsError('resource-exhausted', 'weekly_review_not_ready', { nextAllowedAtMs });
+    const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now);
+    if (decision.kind === 'open')
+        return null;
+    if (decision.kind === 'replay')
+        return decision;
+    if (decision.kind === 'not_ready') {
+        throw new https_1.HttpsError('resource-exhausted', 'weekly_review_not_ready', {
+            nextAllowedAtMs: decision.nextAllowedAtMs,
+        });
     }
+    return null;
 }
-async function commitWindow(authUid, stableUid, isPremium) {
+async function commitWindow(authUid, stableUid, isPremium, briefingHash, review, model) {
     const db = admin.firestore();
     const now = Date.now();
     const windowDays = isPremium ? PREMIUM_WINDOW_DAYS : FREE_WINDOW_DAYS;
@@ -219,6 +256,9 @@ async function commitWindow(authUid, stableUid, isPremium) {
             stableUid,
             isPremium,
             lastGeneratedAtMs: now,
+            lastBriefingHash: briefingHash,
+            lastReview: review,
+            lastModel: model,
             nextAllowedAtMs: newNext,
             updatedAtMs: now,
         }, { merge: true });
@@ -341,11 +381,22 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
     // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
     // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
     const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid);
-    // Limits BEFORE the paid API call. Window is only CHECKED here (read-only) —
-    // it is committed after a successful generation so a provider failure does
-    // not lock the user out for a week.
+    // Replay/window check BEFORE rate limits and the paid API call. Same briefing
+    // retries get the cached server result; different briefing remains gated.
+    const briefingHash = briefingHashForReplay(briefing);
+    const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+    if (replay) {
+        return {
+            ok: true,
+            review: replay.review,
+            nextAllowedAtMs: replay.nextAllowedAtMs,
+            model: replay.model,
+            idempotentReplay: true,
+        };
+    }
+    // Limits BEFORE the paid API call. Window is committed after a successful
+    // generation so a provider failure does not lock the user out for a week.
     await enforceRateLimit(authUid, stableUid);
-    await assertWindowOpen(authUid, stableUid);
     const messages = [
         { role: 'system', content: buildSystemPrompt(briefing.lang) },
         { role: 'user', content: JSON.stringify(briefing) },
@@ -375,7 +426,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
         throw new https_1.HttpsError('unavailable', 'weekly_review_empty_reply');
     const result = parseAndGuardResult(content, briefing);
     // Generation succeeded — NOW commit the window (so failures above never burn it).
-    const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);
+    const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium, briefingHash, result, jobCfg.model);
     const usage = json.usage ?? {};
     await db.collection(BILLING_COLLECTION).doc().set({
         uid: stableUid,
@@ -404,5 +455,8 @@ exports.__weeklyReviewTestHooks = {
     sanitizeBriefing,
     parseAndGuardResult,
     buildSystemPrompt,
+    briefingHashForReplay,
+    decideWeeklyReviewReplay,
+    readStoredWeeklyReview,
 };
 //# sourceMappingURL=weekly_review.js.map

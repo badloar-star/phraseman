@@ -259,6 +259,12 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
         pl: `${h} godz. ${m} min`,
     });
 }
+function formatStatsBoostTimeLeft(ms: number): string {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return h > 0 ? `${h}ч ${m.toString().padStart(2, '0')}м` : `${m}м ${s.toString().padStart(2, '0')}с`;
+}
 type LearningRhythmDay = DayData & {
     minutes: number;
     combined: number;
@@ -3129,91 +3135,88 @@ export default function StreakStats() {
         });
         return () => sub.remove();
     }, [loadAll]);
-    // Таймер обратного отсчёта для клубного буста XP
+    // One shared countdown loop for all active boost rows on this screen.
     useEffect(() => {
-        if (!clubBoostExpiresAt || clubBoostMultiplier <= 1) {
-            setClubBoostTimeLeft('');
-            return;
-        }
-        const fmt = () => {
-            const ms = clubBoostExpiresAt - Date.now();
-            if (ms <= 0) {
+        const updateBoostCountdowns = () => {
+            let hasActiveCountdown = false;
+
+            if (!clubBoostExpiresAt || clubBoostMultiplier <= 1) {
                 setClubBoostTimeLeft('');
-                setClubBoostMultiplier(1);
-                return;
             }
-            const h = Math.floor(ms / 3600000);
-            const m = Math.floor((ms % 3600000) / 60000);
-            const s = Math.floor((ms % 60000) / 1000);
-            setClubBoostTimeLeft(h > 0 ? `${h}ч ${m.toString().padStart(2, '0')}м` : `${m}м ${s.toString().padStart(2, '0')}с`);
-        };
-        fmt();
-        const timer = setInterval(fmt, 1000);
-        return () => clearInterval(timer);
-    }, [clubBoostExpiresAt, clubBoostMultiplier]);
-    // Таймер обратного отсчёта для персонального буста лиги
-    useEffect(() => {
-        if (!leagueBoostExpiresAt || leagueBoostMultiplier <= 1) {
-            setLeagueBoostTimeLeft('');
-            return;
-        }
-        const fmt = () => {
-            const ms = leagueBoostExpiresAt - Date.now();
-            if (ms <= 0) {
+            else {
+                const ms = clubBoostExpiresAt - Date.now();
+                if (ms <= 0) {
+                    setClubBoostTimeLeft('');
+                    setClubBoostMultiplier(1);
+                }
+                else {
+                    hasActiveCountdown = true;
+                    setClubBoostTimeLeft(formatStatsBoostTimeLeft(ms));
+                }
+            }
+
+            if (!leagueBoostExpiresAt || leagueBoostMultiplier <= 1) {
                 setLeagueBoostTimeLeft('');
-                setLeagueBoostMultiplier(1);
-                return;
             }
-            const h = Math.floor(ms / 3600000);
-            const m = Math.floor((ms % 3600000) / 60000);
-            const s = Math.floor((ms % 60000) / 1000);
-            setLeagueBoostTimeLeft(h > 0 ? `${h}ч ${m.toString().padStart(2, '0')}м` : `${m}м ${s.toString().padStart(2, '0')}с`);
-        };
-        fmt();
-        const timer = setInterval(fmt, 1000);
-        return () => clearInterval(timer);
-    }, [leagueBoostExpiresAt, leagueBoostMultiplier]);
-    // Timer for the shared league boost shown in active multipliers.
-    useEffect(() => {
-        if (!leagueGroupBoostExpiresAt || leagueGroupBoostMultiplier <= 1) {
-            setLeagueGroupBoostTimeLeft('');
-            return;
-        }
-        const fmt = () => {
-            const ms = leagueGroupBoostExpiresAt - Date.now();
-            if (ms <= 0) {
+            else {
+                const ms = leagueBoostExpiresAt - Date.now();
+                if (ms <= 0) {
+                    setLeagueBoostTimeLeft('');
+                    setLeagueBoostMultiplier(1);
+                }
+                else {
+                    hasActiveCountdown = true;
+                    setLeagueBoostTimeLeft(formatStatsBoostTimeLeft(ms));
+                }
+            }
+
+            if (!leagueGroupBoostExpiresAt || leagueGroupBoostMultiplier <= 1) {
                 setLeagueGroupBoostTimeLeft('');
-                setLeagueGroupBoostMultiplier(1);
-                return;
             }
-            setLeagueGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(leagueGroupBoostExpiresAt));
-        };
-        fmt();
-        const timer = setInterval(fmt, 1000);
-        return () => clearInterval(timer);
-    }, [leagueGroupBoostExpiresAt, leagueGroupBoostMultiplier]);
-    // Таймер обратного отсчёта для подарочного множителя XP
-    useEffect(() => {
-        if (!giftExpiresAt || giftMultiplier <= 1) {
-            setGiftTimeLeft('');
-            return;
-        }
-        const fmt = () => {
-            const ms = giftExpiresAt - Date.now();
-            if (ms <= 0) {
+            else {
+                const ms = leagueGroupBoostExpiresAt - Date.now();
+                if (ms <= 0) {
+                    setLeagueGroupBoostTimeLeft('');
+                    setLeagueGroupBoostMultiplier(1);
+                }
+                else {
+                    hasActiveCountdown = true;
+                    setLeagueGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(leagueGroupBoostExpiresAt));
+                }
+            }
+
+            if (!giftExpiresAt || giftMultiplier <= 1) {
                 setGiftTimeLeft('');
-                setGiftMultiplier(1);
-                return;
             }
-            const h = Math.floor(ms / 3600000);
-            const m = Math.floor((ms % 3600000) / 60000);
-            const s = Math.floor((ms % 60000) / 1000);
-            setGiftTimeLeft(h > 0 ? `${h}ч ${m.toString().padStart(2, '0')}м` : `${m}м ${s.toString().padStart(2, '0')}с`);
+            else {
+                const ms = giftExpiresAt - Date.now();
+                if (ms <= 0) {
+                    setGiftTimeLeft('');
+                    setGiftMultiplier(1);
+                }
+                else {
+                    hasActiveCountdown = true;
+                    setGiftTimeLeft(formatStatsBoostTimeLeft(ms));
+                }
+            }
+
+            return hasActiveCountdown;
         };
-        fmt();
-        const timer = setInterval(fmt, 1000);
+
+        const hasActiveCountdown = updateBoostCountdowns();
+        if (!hasActiveCountdown) return;
+        const timer = setInterval(updateBoostCountdowns, 1000);
         return () => clearInterval(timer);
-    }, [giftExpiresAt, giftMultiplier]);
+    }, [
+        clubBoostExpiresAt,
+        clubBoostMultiplier,
+        leagueBoostExpiresAt,
+        leagueBoostMultiplier,
+        leagueGroupBoostExpiresAt,
+        leagueGroupBoostMultiplier,
+        giftExpiresAt,
+        giftMultiplier,
+    ]);
     const handleFreezeStreak = () => {
         hapticTap();
         if (!isPremium) {

@@ -7,6 +7,7 @@ const SEEN_KEY = 'seen_warning_ids';
 const WARN_FETCH_AT_KEY = 'user_warnings_last_fetch_at_v1';
 /** Не дергать Firestore на каждом заходе на Home — предупреждения от админа редки. */
 const WARN_FETCH_COOLDOWN_MS = 25 * 60 * 1000;
+let warningFetchCacheAt = 0;
 
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -30,9 +31,17 @@ export async function checkUserWarning(): Promise<UserWarning | null> {
   if (!uid) return null;
 
   try {
+    const now = Date.now();
+    if (warningFetchCacheAt > 0 && now - warningFetchCacheAt < WARN_FETCH_COOLDOWN_MS) {
+      return null;
+    }
+
     const lastFetchRaw = await AsyncStorage.getItem(WARN_FETCH_AT_KEY);
     const lastFetch = parseInt(lastFetchRaw || '0', 10) || 0;
-    if (Date.now() - lastFetch < WARN_FETCH_COOLDOWN_MS) {
+    if (lastFetch > 0) {
+      warningFetchCacheAt = lastFetch;
+    }
+    if (now - lastFetch < WARN_FETCH_COOLDOWN_MS) {
       return null;
     }
 
@@ -40,7 +49,9 @@ export async function checkUserWarning(): Promise<UserWarning | null> {
     const seen: string[] = seenRaw ? JSON.parse(seenRaw) : [];
 
     const snap = await db.collection('user_warnings').where('uid', '==', uid).get();
-    await AsyncStorage.setItem(WARN_FETCH_AT_KEY, String(Date.now())).catch(() => {});
+    const fetchedAt = Date.now();
+    warningFetchCacheAt = fetchedAt;
+    await AsyncStorage.setItem(WARN_FETCH_AT_KEY, String(fetchedAt)).catch(() => {});
     if (snap.empty) return null;
 
     for (const doc of snap.docs) {

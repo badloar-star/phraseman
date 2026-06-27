@@ -185,6 +185,25 @@ function activeDaysLabel(days: number, lang: Lang): string {
   return `${n} ${word}`;
 }
 
+function compactDaysLabel(days: number, lang: Lang): string {
+  const n = Math.max(0, Math.floor(days));
+  return triLang(lang, {
+    ru: `${n} дн.`,
+    uk: `${n} дн.`,
+    es: `${n} d.`,
+    'pt-BR': `${n} d.`,
+    vi: `${n} ngày`,
+    id: `${n} hr`,
+    tr: `${n} gün`,
+    pl: `${n} dni`,
+  });
+}
+
+function goalProgressCompactLabel(activeDays: number, goal: number, chosen: boolean, lang: Lang): string {
+  if (!chosen) return compactDaysLabel(activeDays, lang);
+  return `${Math.max(0, Math.floor(activeDays))}/${Math.max(1, Math.floor(goal))} ${compactDaysLabel(0, lang).replace(/^0\s*/, '')}`;
+}
+
 function activityStatus(activeDays: number, lang: Lang): string {
   if (activeDays >= 180) return triLang(lang, {
     ru: 'Сильный годовой ритм',
@@ -1069,7 +1088,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
                 </Text>
               </View>
               <Text style={{ color: !safeAnalytics.goal.chosen ? t.textMuted : safeAnalytics.goal.onTrack ? activeAccent : weakAccent, fontSize: f.body, fontWeight: '900' }}>
-                {safeAnalytics.goal.chosen ? `${safeAnalytics.goal.activeDays}/${safeAnalytics.goal.goal}` : safeAnalytics.goal.activeDays}
+                {goalProgressCompactLabel(safeAnalytics.goal.activeDays, safeAnalytics.goal.goal, safeAnalytics.goal.chosen, lang)}
               </Text>
             </View>
             <View style={[styles.goalTrack, { backgroundColor: t.bgSurface2 }]}>
@@ -1087,7 +1106,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
                     onPress={() => void updateGoal(goal)}
                     style={[styles.goalBtn, { backgroundColor: selected ? (isGoldTheme ? GOLD_RICH.paleGold : activeAccent) : 'transparent', borderColor: selected ? activeAccent : activityHairline }]}
                   >
-                    <Text style={{ color: selected ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{goal}</Text>
+                    <Text style={{ color: selected ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{compactDaysLabel(goal, lang)}</Text>
                   </TouchableOpacity>
                 );
               })}

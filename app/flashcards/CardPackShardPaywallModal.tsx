@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice } from '../community_packs/communityPackHiddenStorage';
 import {
+  ActivityIndicator,
   Modal,
   Pressable,
   ScrollView,
@@ -930,8 +931,8 @@ export default function CardPackShardPaywallModal({
                                   gap: 10,
                                 }}
                               >
-                                {false && purchasing ? (
-                                  <View />
+                                {purchasing ? (
+                                  <ActivityIndicator size="small" color={t.bgPrimary} />
                                 ) : null}
                                 <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.voucherCta}
@@ -992,8 +993,8 @@ export default function CardPackShardPaywallModal({
                                   gap: 10,
                                 }}
                               >
-                                {false && purchasing ? (
-                                  <View />
+                                {purchasing ? (
+                                  <ActivityIndicator size="small" color={paywallVisual.ctaForeground} />
                                 ) : (
                                   <Image source={shardPriceImg} style={{ width: 24, height: 24 }} contentFit="contain" />
                                 )}

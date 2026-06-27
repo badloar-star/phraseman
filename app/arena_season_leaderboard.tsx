@@ -215,7 +215,6 @@ export default function ArenaSeasonLeaderboardScreen() {
               <FlashList
                 data={rows}
                 keyExtractor={(item) => item.uid}
-                estimatedItemSize={ROW_H}
                 renderItem={({ item }) => <SeasonRow item={item} t={t} f={f} />}
               />
             )}

@@ -1229,14 +1229,14 @@ export default function SettingsMain() {
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
               {L(
-                'Перед выходом сохраним всё в облако. Если нет интернета — выход будет отменён.',
-                'Перед виходом ми збережемо все в хмарі. Якщо немає інтернету — вихід буде відкладено.',
-                'Antes de cerrar sesión guardamos todo en la nube. Sin conexión, se cancelará el cierre de sesión.',
-                'Antes de sair, vamos salvar tudo na nuvem. Sem internet, a saída será cancelada.',
-                'Trước khi đăng xuất, chúng tôi sẽ lưu mọi thứ lên đám mây. Nếu không có internet, việc đăng xuất sẽ bị hủy.',
-                'Sebelum keluar, semuanya akan disimpan ke cloud. Jika tidak ada internet, proses keluar akan dibatalkan.',
-                'Çıkmadan önce her şeyi buluta kaydedeceğiz. İnternet yoksa çıkış iptal edilir.',
-                'Przed wylogowaniem zapiszemy wszystko w chmurze. Bez internetu wylogowanie zostanie anulowane.',
+                'Перед выходом попробуем сохранить всё в облако. Если сервер не ответит — сделаем аварийную копию на устройстве и всё равно дадим выбрать аккаунт.',
+                'Перед виходом спробуємо зберегти все в хмарі. Якщо сервер не відповість — зробимо аварійну копію на пристрої й усе одно дамо вибрати акаунт.',
+                'Antes de cerrar sesión intentaremos guardar todo en la nube. Si el servidor no responde, haremos una copia de emergencia en el dispositivo y podrás elegir cuenta.',
+                'Antes de sair, vamos tentar salvar tudo na nuvem. Se o servidor não responder, criaremos uma cópia de emergência no dispositivo e você poderá escolher a conta.',
+                'Trước khi đăng xuất, chúng tôi sẽ thử lưu mọi thứ lên đám mây. Nếu máy chủ không phản hồi, chúng tôi sẽ tạo bản sao khẩn cấp trên thiết bị và vẫn cho bạn chọn tài khoản.',
+                'Sebelum keluar, kami akan mencoba menyimpan semuanya ke cloud. Jika server tidak merespons, kami membuat salinan darurat di perangkat dan tetap membiarkan kamu memilih akun.',
+                'Çıkmadan önce her şeyi buluta kaydetmeyi deneyeceğiz. Sunucu yanıt vermezse cihazda acil bir kopya oluşturup yine de hesap seçmene izin vereceğiz.',
+                'Przed wylogowaniem spróbujemy zapisać wszystko w chmurze. Jeśli serwer nie odpowie, zrobimy awaryjną kopię na urządzeniu i nadal pozwolimy wybrać konto.',
               )}
             </Text>
 
@@ -1261,23 +1261,27 @@ export default function SettingsMain() {
                   if (!res.ok) {
                     showInfoAlert(
                       L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
-                      res.reason === 'sync_failed'
-                        ? L(
-                            'Нет связи с сервером. Прогресс не сохранён в облако — попробуй позже, когда появится интернет.',
-                            "Немає зв\'язку з сервером. Прогрес не збережено в хмару — спробуй пізніше, коли з\'явиться інтернет.",
-                            'Sin conexión con el servidor: el progreso no se guardó en la nube. Inténtalo de nuevo cuando tengas internet.',
-                            'Sem conexão com o servidor: o progresso não foi salvo na nuvem. Tente de novo quando tiver internet.',
-                            'Không có kết nối với máy chủ: tiến độ chưa được lưu lên đám mây. Hãy thử lại khi có internet.',
-                            'Tidak ada koneksi ke server: progres belum disimpan ke cloud. Coba lagi saat internet tersedia.',
-                            'Sunucuyla bağlantı yok: ilerleme buluta kaydedilmedi. İnternet olduğunda tekrar dene.',
-                            'Brak połączenia z serwerem: postęp nie został zapisany w chmurze. Spróbuj ponownie, gdy będzie internet.',
-                          )
-                        : L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
+                      L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
                     );
                     return;
                   }
                   setLinkedAuth(null);
                   setAuthPromptVisible(true);
+                  if (!res.synced) {
+                    showInfoAlert(
+                      L('Можно выбрать аккаунт', 'Можна вибрати акаунт', 'Puedes elegir cuenta', 'Você pode escolher a conta', 'Bạn có thể chọn tài khoản', 'Kamu bisa memilih akun', 'Hesap seçebilirsin', 'Możesz wybrać konto'),
+                      L(
+                        'Сервер не ответил перед выходом, поэтому мы сохранили аварийную копию на устройстве. Теперь войди в нужный Google-аккаунт.',
+                        'Сервер не відповів перед виходом, тому ми зберегли аварійну копію на пристрої. Тепер увійди в потрібний Google-акаунт.',
+                        'El servidor no respondió antes de salir, así que guardamos una copia de emergencia en el dispositivo. Ahora entra con la cuenta de Google correcta.',
+                        'O servidor não respondeu antes de sair, então salvamos uma cópia de emergência no dispositivo. Agora entre na conta Google correta.',
+                        'Máy chủ không phản hồi trước khi đăng xuất, nên chúng tôi đã lưu bản sao khẩn cấp trên thiết bị. Bây giờ hãy đăng nhập vào tài khoản Google đúng.',
+                        'Server tidak merespons sebelum keluar, jadi kami menyimpan salinan darurat di perangkat. Sekarang masuk ke akun Google yang benar.',
+                        'Çıkmadan önce sunucu yanıt vermedi, bu yüzden cihazda acil bir kopya sakladık. Şimdi doğru Google hesabıyla giriş yap.',
+                        'Serwer nie odpowiedział przed wylogowaniem, więc zapisaliśmy awaryjną kopię na urządzeniu. Teraz zaloguj się na właściwe konto Google.',
+                      ),
+                    );
+                  }
                 }}
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >

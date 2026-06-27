@@ -1,14 +1,16 @@
 {
   "schemaVersion": "gustav-readiness-gate-v0",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-06-21T00:00:52.764Z",
+  "generatedAt": "2026-06-27T12:18:02.014Z",
   "decision": "GO",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
       "C:\\appsprojects\\phraseman\\scripts\\gustav_readiness_gate.ts",
       "--run",
-      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
+      "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1",
+      "--target",
+      "fr"
     ],
     "cwd": "C:\\appsprojects\\phraseman",
     "nodeVersion": "v24.14.0"
@@ -45,11 +47,11 @@
         "originalBlockers": 9,
         "originalBlockersResolvedForGeneration": 9,
         "unresolvedOriginalBlockersForGeneration": 0,
-        "currentReadinessDecision": "HOLD",
-        "currentReadinessFailedChecks": 3,
-        "currentGenerationBlockers": 1,
+        "currentReadinessDecision": "GO",
+        "currentReadinessFailedChecks": 2,
+        "currentGenerationBlockers": 0,
         "nonVerdictGenerationBlockers": 0,
-        "currentApplyBlockers": 3,
+        "currentApplyBlockers": 2,
         "targetKeyFinalReconciliationClean": true,
         "tk5SurfaceGuardsClean": true,
         "tk4PolicyClean": true,
@@ -66,7 +68,7 @@
     "validator": {
       "status": "PASS",
       "summary": {
-        "checks": 27102,
+        "checks": 27122,
         "blockers": 0,
         "warnings": 0
       }
@@ -1300,8 +1302,8 @@
     "frenchResearchJsonFirewall": {
       "status": "PASS",
       "summary": {
-        "scannedJsonFiles": 14,
-        "scannedResearchJsonFiles": 14,
+        "scannedJsonFiles": 19,
+        "scannedResearchJsonFiles": 19,
         "rowLedgerFiles": 2,
         "blockerFindings": 0,
         "warningFindings": 0,
@@ -2026,7 +2028,7 @@
         "generation"
       ],
       "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\french_research_json_firewall_audit.json",
-      "detail": "French research JSON firewall is PASS: 14 research JSON files scanned, forbiddenOutputFields=0, falseApprovalFlags=0 and mayStartFrenchGeneration=false.",
+      "detail": "French research JSON firewall is PASS: 19 research JSON files scanned, forbiddenOutputFields=0, falseApprovalFlags=0 and mayStartFrenchGeneration=false.",
       "requiredBeforeWork": [],
       "status": "PASS"
     },

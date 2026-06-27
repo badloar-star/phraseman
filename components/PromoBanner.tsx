@@ -1,53 +1,70 @@
-// ════════════════════════════════════════════════════════════════════════════
-// PromoBanner.tsx — промо-баннер акции, управляемый из «Пульта» (remote_config).
-//
-// База под маркетинговые акции. Показывается ТОЛЬКО когда админ включил
-// promo_banner_enabled И (срок не задан или ещё не истёк) — см.
-// shouldShowPromoBanner (remote_flags). Текст/ссылка/срок берутся из
-// remote_config/app.texts (promo_banner_*). Дефолт — выключено, поэтому пустая
-// база ничего не показывает, пока пользователь сам не настроит акцию.
-//
-// Сама скидка на подписку настраивается в App Store/Google Play отдельно —
-// баннер только зовёт (по ссылке/в пейвол). По образцу мягкого баннера
-// MaintenanceGate: живое обновление на remote_config_changed.
-// ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, Linking, Platform } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import {
-  isPromoBannerEnabled,
-  getPromoBannerText,
-  getPromoBannerUrl,
-  getPromoBannerUntil,
   getPromoBannerAudience,
+  getPromoBannerCampaignId,
   getPromoBannerPlatform,
+  getPromoBannerText,
+  getPromoBannerUntil,
+  getPromoBannerUrl,
+  isPromoBannerEnabled,
   shouldShowPromoBanner,
 } from '../app/remote_flags';
+import {
+  campaignDismissalKey,
+  isCampaignDismissed,
+  markCampaignDismissed,
+} from '../app/campaign_dismissals';
 
 interface PromoState {
   visible: boolean;
   text: string;
   url: string;
+  dismissalKey: string;
 }
 
-function readState(lang: string, nowMs: number, isPremium: boolean): PromoState {
+function defaultText(lang: string): string {
+  return triLang(lang as Lang, {
+    ru: 'Специальное предложение — успей!',
+    uk: 'Спеціальна пропозиція — встигни!',
+    es: 'Oferta especial, aprovecha',
+    'pt-BR': 'Oferta especial, aproveite',
+    vi: 'Ưu đãi đặc biệt — nhanh tay',
+    id: 'Penawaran spesial — buruan',
+    tr: 'Özel teklif — kaçırma',
+    pl: 'Oferta specjalna — zdąż',
+  });
+}
+
+async function readState(lang: string, nowMs: number, isPremium: boolean): Promise<PromoState> {
+  const text = getPromoBannerText(lang);
+  const url = getPromoBannerUrl();
+  const untilRaw = getPromoBannerUntil();
+  const audience = getPromoBannerAudience();
+  const platformFilter = getPromoBannerPlatform();
+  const fingerprint = [text, url, untilRaw, audience, platformFilter].join('|');
+  const dismissalKey = campaignDismissalKey('promo_banner', getPromoBannerCampaignId(), fingerprint);
+  const dismissed = await isCampaignDismissed(dismissalKey);
   return {
-    visible: shouldShowPromoBanner({
+    visible: !dismissed && shouldShowPromoBanner({
       enabled: isPromoBannerEnabled(),
-      untilRaw: getPromoBannerUntil(),
+      untilRaw,
       nowMs,
-      audience: getPromoBannerAudience(),
+      audience,
       isPremium,
-      platformFilter: getPromoBannerPlatform(),
+      platformFilter,
       platform: Platform.OS,
     }),
-    text: getPromoBannerText(lang),
-    url: getPromoBannerUrl(),
+    text,
+    url,
+    dismissalKey,
   };
 }
 
@@ -55,59 +72,141 @@ export default function PromoBanner() {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const insets = useSafeAreaInsets();
-  const [state, setState] = useState<PromoState>(() => readState(lang, Date.now(), hasPremiumAccess));
+  const translateX = useRef(new Animated.Value(0)).current;
+  const [state, setState] = useState<PromoState>({
+    visible: false,
+    text: '',
+    url: '',
+    dismissalKey: '',
+  });
+
+  const refresh = useCallback(() => {
+    void readState(lang, Date.now(), hasPremiumAccess).then(setState);
+  }, [lang, hasPremiumAccess]);
 
   useEffect(() => {
-    setState(readState(lang, Date.now(), hasPremiumAccess));
-    const sub = onAppEvent('remote_config_changed', () => setState(readState(lang, Date.now(), hasPremiumAccess)));
-    // Срок акции может истечь, пока экран открыт → периодически перечитываем
-    // видимость со свежим Date.now(), чтобы баннер сам пропал по окончании.
-    const iv = setInterval(() => setState(readState(lang, Date.now(), hasPremiumAccess)), 60_000);
+    refresh();
+    const sub = onAppEvent('remote_config_changed', refresh);
+    const iv = setInterval(refresh, 60_000);
     return () => { sub.remove(); clearInterval(iv); };
-  }, [lang, hasPremiumAccess]);
+  }, [refresh]);
+
+  const dismiss = useCallback(() => {
+    if (state.dismissalKey) void markCampaignDismissed(state.dismissalKey);
+    Animated.timing(translateX, {
+      toValue: 420,
+      duration: 180,
+      useNativeDriver: true,
+    }).start(() => {
+      translateX.setValue(0);
+      setState((prev) => ({ ...prev, visible: false }));
+    });
+  }, [state.dismissalKey, translateX]);
+
+  const panResponder = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponder: (_, gesture) => Math.abs(gesture.dx) > 14 && Math.abs(gesture.dx) > Math.abs(gesture.dy),
+    onPanResponderMove: (_, gesture) => {
+      translateX.setValue(gesture.dx);
+    },
+    onPanResponderRelease: (_, gesture) => {
+      if (Math.abs(gesture.dx) > 84) {
+        dismiss();
+        return;
+      }
+      Animated.spring(translateX, { toValue: 0, useNativeDriver: true, friction: 7 }).start();
+    },
+    onPanResponderTerminate: () => {
+      Animated.spring(translateX, { toValue: 0, useNativeDriver: true, friction: 7 }).start();
+    },
+  }), [dismiss, translateX]);
 
   if (!state.visible) return null;
 
+  const message = state.text && state.text.trim() ? state.text.trim() : defaultText(lang);
   const hasUrl = !!(state.url && state.url.trim());
 
-  const defaultText = triLang(lang as Lang, {
-    ru: '🎉 Специальное предложение — успей!', uk: '🎉 Спеціальна пропозиція — встигни!',
-    es: '🎉 Oferta especial, ¡aprovecha!', 'pt-BR': '🎉 Oferta especial, aproveite!',
-    vi: '🎉 Ưu đãi đặc biệt — nhanh tay!', id: '🎉 Penawaran spesial — buruan!',
-    tr: '🎉 Özel teklif — kaçırma!', pl: '🎉 Oferta specjalna — zdąż!',
-  });
-  const message = state.text && state.text.trim() ? state.text.trim() : defaultText;
-
-  const onPress = () => {
-    if (hasUrl) {
-      void Linking.openURL(state.url.trim()).catch(() => { /* кривая ссылка — игнор */ });
-    }
+  const openUrl = () => {
+    if (!hasUrl) return;
+    void Linking.openURL(state.url.trim()).catch(() => {});
   };
 
-  const barStyle = {
-    marginTop: insets.top,
-    backgroundColor: '#3b1d6e',
-    borderBottomWidth: 1, borderBottomColor: '#5b21b6',
-    paddingHorizontal: 16, paddingVertical: 10,
-  } as const;
-  const label = (
-    <Text style={{ color: '#e9d5ff', fontSize: 13, fontWeight: '700', textAlign: 'center' }}>
+  const content = (
+    <Text
+      numberOfLines={2}
+      style={{
+        color: '#f3e8ff',
+        fontSize: 13,
+        lineHeight: 18,
+        fontWeight: '800',
+        textAlign: 'center',
+      }}
+    >
       {message}
     </Text>
   );
 
   return (
-    <View
-      pointerEvents="box-none"
-      style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 9997, elevation: 9997 }}
+    <Animated.View
+      {...panResponder.panHandlers}
+      style={{
+        transform: [{ translateX }],
+        paddingTop: Math.max(insets.top, 8),
+        paddingBottom: 8,
+        paddingHorizontal: 12,
+        backgroundColor: '#3b1d6e',
+        borderBottomWidth: 1,
+        borderBottomColor: '#5b21b6',
+        zIndex: 20,
+        elevation: 20,
+      }}
     >
-      {hasUrl ? (
-        // Кликабельный баннер (есть ссылка).
-        <Pressable onPress={onPress} style={barStyle}>{label}</Pressable>
-      ) : (
-        // Без ссылки — НЕ перехватываем касания, чтобы не блокировать шапку под баннером.
-        <View pointerEvents="none" style={barStyle}>{label}</View>
-      )}
-    </View>
+      <View style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        {hasUrl ? (
+          <Pressable
+            accessibilityRole="link"
+            onPress={openUrl}
+            style={({ pressed }) => ({
+              flex: 1,
+              minHeight: 44,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 12,
+              opacity: pressed ? 0.82 : 1,
+            })}
+          >
+            {content}
+          </Pressable>
+        ) : (
+          <View style={{ flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
+            {content}
+          </View>
+        )}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang as Lang, {
+            ru: 'Закрыть предложение',
+            uk: 'Закрити пропозицію',
+            es: 'Cerrar oferta',
+            'pt-BR': 'Fechar oferta',
+            vi: 'Đóng ưu đãi',
+            id: 'Tutup penawaran',
+            tr: 'Teklifi kapat',
+            pl: 'Zamknij ofertę',
+          })}
+          hitSlop={10}
+          onPress={dismiss}
+          style={({ pressed }) => ({
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
+          })}
+        >
+          <Ionicons name="close" size={20} color="#f3e8ff" />
+        </Pressable>
+      </View>
+    </Animated.View>
   );
 }

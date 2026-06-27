@@ -31,7 +31,6 @@ import {
   dailyPhraseCopyForLang,
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
-  subscribeTodayPhraseForTarget,
   DailyPhrase,
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
@@ -75,15 +74,17 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
 
   useEffect(() => {
+    let cancelled = false;
     if (studyTarget === 'fr') {
       setPhrase(null);
       setDetailsVisible(false);
-      return;
+      return () => { cancelled = true; };
     }
     setPhrase(getTodayPhraseSyncForTarget(studyTarget));
-    void getTodayPhraseForTarget(studyTarget).then(p => { if (p) setPhrase(p); }).catch(() => {});
-    const unsubscribe = subscribeTodayPhraseForTarget(p => { if (p) setPhrase(p); }, studyTarget);
-    return unsubscribe;
+    void getTodayPhraseForTarget(studyTarget).then(p => {
+      if (!cancelled && p) setPhrase(p);
+    }).catch(() => {});
+    return () => { cancelled = true; };
   }, [studyTarget]);
 
   // React to "phrase of the day" widget deep links:

@@ -743,7 +743,7 @@ function main(): void {
       'P8-RDY-081',
       'Existing',
       'production_apply',
-      'Human reviewer decisions must be imported before production apply.',
+      'LLM official-source reviewer decisions must be imported before production apply.',
       rel(repoRoot, artifactPaths.generatedContentAudit),
       checkStatus(b(generatedSummary, 'readyForApply'), true),
       ['production-apply'],
@@ -754,7 +754,7 @@ function main(): void {
         `Rows accepted: ${n(generatedSummary, 'rowsAccepted')}`,
         `Activation-approved rows: ${n(generatedSummary, 'activationApprovedRows')}`,
       ],
-      'The French package has rows, but human decisions are still required before activation.',
+      'The French package has rows, but LLM official-source decisions are still required before activation.',
     ),
     check(
       'P8-RDY-082',
@@ -800,7 +800,7 @@ function main(): void {
       applyBlockedBy: blockedBy(checks, 'production-apply'),
       notes: [
         'Existing 1600 French lesson rows are generated and reviewer-ready.',
-        'Production activation still requires human review/import and apply approval.',
+        'Production activation still requires LLM official-source review/import and apply approval.',
       ],
     },
     {
@@ -923,7 +923,7 @@ function main(): void {
       'P8 may recommend readiness checks, but it does not edit `scripts/gustav_readiness_gate.ts`.',
       'New app-domain French generation requires dedicated generation packets for personal plans, dialogs, flashcard bundles, and collectible text.',
       'Dirty state surfaces and collectible image assets are activation/apply gates; they do not by themselves generate translations.',
-      'Production apply remains blocked until human reviewer decisions, apply blocker resolution, clean/approved dirty overlap, and explicit app-write approval exist.',
+      'Production apply remains blocked until LLM official-source reviewer decisions, apply blocker resolution, clean/approved dirty overlap, and explicit app-write approval exist.',
     ],
     requiredNextArtifacts: [
       'P9 expanded algorithm master manifest indexing P0-P8 plus existing French reviewer artifacts.',
@@ -932,7 +932,7 @@ function main(): void {
       'French flashcard bundle generation packet before translating marketplace bundle content.',
       'French collectible text sidecar contract before activating localized collectible reward text.',
       'Target-aware state/storage/cloud/source-locale test results before app-domain activation.',
-      'Human reviewer decision import before any production apply.',
+      'LLM official-source reviewer decision import before any production apply.',
       'Explicit production app write approval before any source file mutation.',
     ],
     findings,

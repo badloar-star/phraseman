@@ -39,8 +39,11 @@ import {
   wipeLocalAccountData,
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
-  ensureStableAuthLinkForStableId,
+  ensureStableAuthLinkForStableIdDetailed,
   mergeStableAccountsViaServer,
+  saveAccountSwitchEmergencyBackup,
+  type StableAuthLinkMetadata,
+  type StableAuthLinkEnsureResult,
 } from './cloud_sync';
 import { invalidatePremiumCache } from './premium_guard';
 import { loadShardsFromCloud } from './shards_system';
@@ -48,6 +51,7 @@ import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
 import { unlockedLessonsKey } from './target_storage_keys';
+import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -110,17 +114,6 @@ export type AuthProviderId = 'google' | 'apple';
 export interface LinkedAuth {
   provider: AuthProviderId;
   providerUid: string;
-  email: string | null;
-  displayName: string | null;
-  linkedAt: number;
-  lastSignInAt: number;
-  devicePlatform: 'ios' | 'android' | 'web';
-}
-
-export interface AuthLinkDoc {
-  providerUid: string;
-  provider: AuthProviderId;
-  stable_id: string;
   email: string | null;
   displayName: string | null;
   linkedAt: number;
@@ -325,6 +318,87 @@ const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
  * await restoreFromCloud/syncToCloud не разрешался → onboarding блокировал даже «Позже».
  */
 const SIGNIN_CLOUD_SYNC_TIMEOUT_MS = 20_000;
+
+const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
+const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS + 60_000;
+
+interface AccountDeletePendingAuthLock {
+  providerUid: string;
+  stableId: string | null;
+  createdAt: number;
+  expiresAt: number;
+}
+
+function cleanAccountDeleteLockId(raw: string | null | undefined): string | null {
+  const v = typeof raw === 'string' ? raw.trim() : '';
+  return v.length > 0 ? v : null;
+}
+
+async function markAccountDeletePendingAuth(providerUidRaw: string | null | undefined, stableIdRaw: string | null | undefined): Promise<void> {
+  const providerUid = cleanAccountDeleteLockId(providerUidRaw);
+  if (!providerUid) return;
+  const now = Date.now();
+  const lock: AccountDeletePendingAuthLock = {
+    providerUid,
+    stableId: cleanAccountDeleteLockId(stableIdRaw),
+    createdAt: now,
+    expiresAt: now + ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
+  };
+  try {
+    await AsyncStorage.setItem(ACCOUNT_DELETE_PENDING_AUTH_KEY, JSON.stringify(lock));
+    logAuthEvent('auth_account_delete_pending_lock_set', { ttlMs: ACCOUNT_DELETE_PENDING_AUTH_TTL_MS });
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] account delete pending lock set failed', e);
+  }
+}
+
+async function clearAccountDeletePendingAuth(providerUidRaw?: string | null): Promise<void> {
+  try {
+    const expectedProviderUid = cleanAccountDeleteLockId(providerUidRaw ?? null);
+    if (expectedProviderUid) {
+      const raw = await AsyncStorage.getItem(ACCOUNT_DELETE_PENDING_AUTH_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Partial<AccountDeletePendingAuthLock>;
+      if (parsed.providerUid !== expectedProviderUid) return;
+    }
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY);
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] account delete pending lock clear failed', e);
+  }
+}
+
+async function readAccountDeletePendingAuth(providerUidRaw: string): Promise<AccountDeletePendingAuthLock | null> {
+  const providerUid = cleanAccountDeleteLockId(providerUidRaw);
+  if (!providerUid) return null;
+  try {
+    const raw = await AsyncStorage.getItem(ACCOUNT_DELETE_PENDING_AUTH_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<AccountDeletePendingAuthLock>;
+    const createdAt = Number(parsed.createdAt);
+    const expiresAt = Number(parsed.expiresAt);
+    if (
+      parsed.providerUid !== providerUid ||
+      !Number.isFinite(createdAt) ||
+      !Number.isFinite(expiresAt)
+    ) {
+      return null;
+    }
+    if (expiresAt <= Date.now()) {
+      await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY);
+      return null;
+    }
+    return {
+      providerUid,
+      stableId: cleanAccountDeleteLockId(parsed.stableId ?? null),
+      createdAt,
+      expiresAt,
+    };
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] account delete pending lock read failed', e);
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+    return null;
+  }
+}
 
 function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
   if (raw == null) return defaultTime;
@@ -758,6 +832,24 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     return { result: 'error', error: errStr };
   }
 
+  const pendingDelete = await readAccountDeletePendingAuth(firebaseProviderUid);
+  if (pendingDelete) {
+    const ageMs = Math.max(0, Date.now() - pendingDelete.createdAt);
+    logAuthEvent('auth_signin_blocked_account_delete_pending', { provider, ageMs });
+    try {
+      await signOutCurrentProvider();
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] account-delete-pending signOut failed', e);
+      try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+    }
+    try {
+      await ensureAnonUser();
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] account-delete-pending ensureAnonUser failed', e);
+    }
+    return { result: 'error', error: 'account_delete_pending' };
+  }
+
   // 3. Lookup auth_links → link OR auto-merge by XP
   const localStableId = await getStableId();
   const now = Date.now();
@@ -766,11 +858,14 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   const providerDisplayName: string | null = null;
 
   const linkRef = db.collection('auth_links').doc(firebaseProviderUid);
-  const usersRef = db.collection('users');
 
   let remoteStableId: string | null = null;
+  let linkLookupCompleted = false;
+  let linkLookupFound = false;
   try {
     const linkSnap = await withTimeout<any>(linkRef.get(), LINKED_AUTH_FIRESTORE_TIMEOUT_MS, 'link_lookup');
+    linkLookupCompleted = true;
+    linkLookupFound = Boolean(linkSnap.exists);
     const linkedStableId = linkSnap.exists ? linkSnap.data()?.stable_id : null;
     if (typeof linkedStableId === 'string' && linkedStableId.trim() && linkedStableId !== localStableId) {
       remoteStableId = linkedStableId.trim();
@@ -786,20 +881,28 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     | { kind: 'merged_swap_to_remote'; remoteStableId: string; mergedFromStableId: string };
 
   let outcome: Outcome;
+  const authLinkMetadata: StableAuthLinkMetadata = {
+    provider,
+    email: firebaseEmail,
+    displayName: providerDisplayName,
+    lastSignInAt: now,
+    devicePlatform,
+  };
 
   // Стадия auth_link часто падала «local_stable_link_failed» на ХОЛОДНОМ старте
   // Android: anon-auth/сеть/App Check ещё не поднялись, waitForFirebaseAuthUid
   // (≈1.4с) истекает → ensureStableAuthLinkForStableId возвращает false → весь
   // вход прерывался с Critical-алертом. Операция идемпотентна и самолечится —
   // не сдаёмся с первой попытки, ретраим с нарастающей паузой.
-  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<boolean> => {
+  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<StableAuthLinkEnsureResult | null> => {
     for (let attempt = 0; attempt < 3; attempt += 1) {
-      if (await ensureStableAuthLinkForStableId(stableId)) return true;
+      const result = await ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
+      if (result.ok && result.stableUid) return result;
       if (attempt < 2) {
         await new Promise((resolve) => setTimeout(resolve, 800 * (attempt + 1)));
       }
     }
-    return false;
+    return null;
   };
 
   if (remoteStableId) {
@@ -807,231 +910,39 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     // returning-user/new-device path. Do not try to relink the local anonymous
     // stable_id first: authEnsureStableLink correctly rejects that as
     // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
-    const remoteAuthLinked = await ensureStableAuthLinkWithRetry(remoteStableId);
-    if (!remoteAuthLinked) {
+    const linkedRemote = await ensureStableAuthLinkWithRetry(remoteStableId);
+    if (!linkedRemote?.stableUid) {
       captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
     }
     outcome = {
       kind: 'merged_swap_to_remote',
-      remoteStableId,
+      remoteStableId: linkedRemote.stableUid,
       mergedFromStableId: localStableId,
     };
   } else {
-    const localAuthLinked = await ensureStableAuthLinkWithRetry(localStableId);
-    if (!localAuthLinked) {
+    const linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
+    if (!linkedLocal?.stableUid) {
       captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
     }
-
-    try {
-      outcome = await withTimeout(db.runTransaction(async (tx: any) => {
-      const linkSnap = await tx.get(linkRef);
-
-      if (linkSnap.exists) {
-        const remoteStableId = linkSnap.data()?.stable_id as string | undefined;
-        if (!remoteStableId) {
-          // Corrupted link — overwrite with local stable_id
-          tx.update(linkRef, {
-            stable_id: localStableId,
-            email: firebaseEmail,
-            displayName: providerDisplayName,
-            lastSignInAt: now,
-            devicePlatform,
-          });
-          return { kind: 'linked_existing' as const };
-        }
-
-        if (remoteStableId === localStableId) {
-          // Бэкенд может потереть users/{stable_id} (удаление аккаунта через
-          // админку, либо сценарий «delete account → re-login» когда локальный
-          // stable_id ещё совпадает со старым). Если облачного дока нет — это
-          // НЕ "linked_existing", это свежий аккаунт с тем же ID. Лечим как
-          // created_new: записываем linkedAuth обратно в users/{stable_id},
-          // иначе post-transaction restoreFromCloud улетит в no-op и в UI
-          // получится бесконечная загрузка / зомби-сессия.
-          const localUserSnap = await tx.get(usersRef.doc(localStableId));
-          if (!localUserSnap.exists) {
-            tx.update(linkRef, {
-              email: firebaseEmail,
-              displayName: providerDisplayName,
-              lastSignInAt: now,
-              devicePlatform,
-            });
-            const linkedAuth: LinkedAuth = {
-              provider,
-              providerUid: firebaseProviderUid,
-              email: firebaseEmail,
-              displayName: providerDisplayName,
-              linkedAt: now,
-              lastSignInAt: now,
-              devicePlatform,
-            };
-            tx.set(
-              usersRef.doc(localStableId),
-              { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now, created_at: now },
-              { merge: true },
-            );
-            return { kind: 'created_new' as const };
-          }
-          tx.update(linkRef, {
-            email: firebaseEmail,
-            displayName: providerDisplayName,
-            lastSignInAt: now,
-            devicePlatform,
-          });
-          return { kind: 'linked_existing' as const };
-        }
-
-        // Different stable_id → auto-merge by XP
-        const localUserSnap = await tx.get(usersRef.doc(localStableId));
-        const remoteUserSnap = await tx.get(usersRef.doc(remoteStableId));
-
-        // ЕСЛИ remote stable_id указывает на удалённый/несуществующий док
-        // (типичный orphan после "delete account" из приложения или удаления
-        // юзера через админку — auth_links доку допилить нельзя из клиента
-        // по rules), — то это, по сути, "висячий" линк. Чиним: переписываем
-        // линк на текущий localStableId и идём по ветке created_new.
-        // Без этой проверки старый remoteStableId выигрывал «по XP=0»,
-        // mergeSwapToRemote свапал stable_id обратно на удалённый, и
-        // restoreFromCloud в постхуке возвращал 404 → юзер залипал.
-        if (!remoteUserSnap.exists) {
-          tx.update(linkRef, {
-            stable_id: localStableId,
-            email: firebaseEmail,
-            displayName: providerDisplayName,
-            lastSignInAt: now,
-            devicePlatform,
-          });
-          // Записываем linkedAuth в users/{localStableId} (как в "created_new").
-          const linkedAuth: LinkedAuth = {
-            provider,
-            providerUid: firebaseProviderUid,
-            email: firebaseEmail,
-            displayName: providerDisplayName,
-            linkedAt: now,
-            lastSignInAt: now,
-            devicePlatform,
-          };
-          tx.set(
-            usersRef.doc(localStableId),
-            { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now, created_at: now },
-            { merge: true },
-          );
-          return { kind: 'created_new' as const };
-        }
-
-        // Владеем ли мы remote-доком? Правила Firestore (stableUserMatchesAuth)
-        // разрешают запись в users/{remoteStableId} ТОЛЬКО если его firebaseAuthUid
-        // == текущему auth.uid (firebaseProviderUid). Если remote-док чужой/осиротевший
-        // (другой firebaseAuthUid, или поля нет вовсе после старого delete-account),
-        // tx.set в него = update → permission-denied → ВЕСЬ вход падал (Critical auth).
-        // Не лезем в чужой док: идём по ветке "local wins" — пишем в СВОЙ
-        // users/{localStableId}, на который права есть всегда.
-        const remoteFirebaseAuthUid = remoteUserSnap.data()?.firebaseAuthUid;
-        const remoteOwnedByThisAuth =
-          typeof remoteFirebaseAuthUid === 'string' && remoteFirebaseAuthUid === firebaseProviderUid;
-
-        const localXP = parseInt(localUserSnap.data()?.progress?.user_total_xp ?? '0', 10) || 0;
-        const remoteXP = parseInt(remoteUserSnap.data()?.progress?.user_total_xp ?? '0', 10) || 0;
-
-        // Сборка LinkedAuth (та же форма используется в любой merge-ветке).
-        const mergedLinkedAuth: LinkedAuth = {
-          provider,
-          providerUid: firebaseProviderUid,
-          email: firebaseEmail,
-          displayName: providerDisplayName,
-          linkedAt: now,
-          lastSignInAt: now,
-          devicePlatform,
-        };
-
-        if (remoteOwnedByThisAuth && remoteXP >= localXP) {
-          // Remote (existing) wins — клиент после транзакции свапнет stable_id.
-          // ТОЛЬКО если remote-док реально наш (remoteOwnedByThisAuth): иначе свап
-          // на чужой stable_id запрещён правилами и не имеет смысла.
-          tx.update(linkRef, {
-            email: firebaseEmail,
-            displayName: providerDisplayName,
-            lastSignInAt: now,
-            devicePlatform,
-          });
-          // КРИТИЧНО: обязательно записать linkedAuth в users/{remoteStableId}.
-          // Сценарий-боль: после старого delete-account flow + повторного логина
-          // remote-док мог пересоздаться через restoreAndMigrateFromCloud → syncToCloud
-          // БЕЗ поля linkedAuth. Тогда getLinkedAuthInfo() возвращает null, и Settings
-          // вечно показывает "Не прив\'язано" хотя юзер реально залогинен.
-          tx.set(
-            usersRef.doc(remoteStableId),
-            { linkedAuth: mergedLinkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
-            { merge: true },
-          );
-          return {
-            kind: 'merged_swap_to_remote' as const,
-            remoteStableId,
-            mergedFromStableId: localStableId,
-          };
-        }
-
-        // Local wins — переписываем link на local
-        tx.update(linkRef, {
-          stable_id: localStableId,
-          email: firebaseEmail,
-          displayName: providerDisplayName,
-          lastSignInAt: now,
-          devicePlatform,
-        });
-        // То же самое: если у локального юзера в облаке нет поля linkedAuth
-        // (сирота после delete-account), без этой записи UI Settings не увидит
-        // что мы залогинены.
-        tx.set(
-          usersRef.doc(localStableId),
-          { linkedAuth: mergedLinkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
-          { merge: true },
-        );
-        return { kind: 'merged_keep_local' as const, mergedFromStableId: remoteStableId };
-      }
-
-      // Создаём новый link
-      const linkData: AuthLinkDoc = {
-        providerUid: firebaseProviderUid,
-        provider,
-        stable_id: localStableId,
-        email: firebaseEmail,
-        displayName: providerDisplayName,
-        linkedAt: now,
-        lastSignInAt: now,
-        devicePlatform,
+    if (linkedLocal.stableUid !== localStableId) {
+      outcome = {
+        kind: 'merged_swap_to_remote',
+        remoteStableId: linkedLocal.stableUid,
+        mergedFromStableId: localStableId,
       };
-      tx.set(linkRef, linkData);
-
-      // Записываем linkedAuth в users/{localStableId}
-      const linkedAuth: LinkedAuth = {
-        provider,
-        providerUid: firebaseProviderUid,
-        email: firebaseEmail,
-        displayName: providerDisplayName,
-        linkedAt: now,
-        lastSignInAt: now,
-        devicePlatform,
+    } else if (linkedLocal.source === 'firestore_fallback') {
+      captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_unverified');
+      return { result: 'error', error: 'auth_link_unverified' };
+    } else {
+      outcome = {
+        kind: linkLookupCompleted && !linkLookupFound ? 'created_new' : 'linked_existing',
       };
-      tx.set(
-        usersRef.doc(localStableId),
-        { linkedAuth, firebaseAuthUid: firebaseProviderUid, updatedAt: now },
-        { merge: true },
-      );
-      return { kind: 'created_new' as const };
-    }), LINKED_AUTH_FIRESTORE_TIMEOUT_MS, 'signin_transaction');
-  } catch (e: any) {
-    if (__DEV__) console.warn('[auth_provider] transaction failed', e);
-    logAuthEvent('auth_signin_error', { provider, stage: 'transaction', error: String(e?.message ?? e).slice(0, 80) });
-    const errStr = `transaction_${e?.message ?? 'unknown'}`.slice(0, 80);
-    captureAuthSignInFailure(provider, 'transaction', errStr);
-    return { result: 'error', error: errStr };
     }
   }
 
-  // 4. Post-transaction: handle stable_id swap if needed
+  // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
     try {
       // Сразу синкаем текущий локальный прогресс в облако
@@ -1255,8 +1166,8 @@ async function hasMeaningfulLocalProgress(): Promise<boolean> {
  * Полный flow "Сменить аккаунт" по схеме Variant 2 (clean device on switch).
  *
  * Шаги:
- *   1. forceSyncToCloud() — гарантируем что текущий прогресс записан в users/{stable_id}.
- *      Если нет интернета / Firestore недоступен — НЕ выходим, возвращаем ошибку.
+ *   1. forceSyncToCloud() — пробуем записать текущий прогресс в users/{stable_id}.
+ *      Если нет интернета / Firestore недоступен — сохраняем аварийную локальную копию и продолжаем switch.
  *   2. signOutCurrentProvider() — Google revoke + Firebase Auth signOut.
  *   3. wipeLocalAccountData() — стираем все account-level ключи AsyncStorage.
  *      Сохраняем только device-level настройки (язык интерфейса, тема, шрифт).
@@ -1274,8 +1185,8 @@ async function hasMeaningfulLocalProgress(): Promise<boolean> {
  * через свой Google).
  */
 export type SignOutSwitchResult =
-  | { ok: true }
-  | { ok: false; reason: 'sync_failed' | 'unknown'; detail?: string };
+  | { ok: true; synced: boolean }
+  | { ok: false; reason: 'unknown'; detail?: string };
 
 export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchResult> {
   if (!CLOUD_SYNC_ENABLED) {
@@ -1284,7 +1195,7 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
       await wipeLocalAccountData();
       await clearStableId();
       logAuthEvent('auth_signout_wipe', { mode: 'no_cloud' });
-      return { ok: true };
+      return { ok: true, synced: true };
     } catch (e: any) {
       return { ok: false, reason: 'unknown', detail: String(e?.message ?? e).slice(0, 80) };
     }
@@ -1293,8 +1204,8 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
     // 1. Гарантируем что весь локальный прогресс ушёл в облако.
     const synced = await forceSyncToCloud();
     if (!synced) {
-      logAuthEvent('auth_signout_wipe_failed', { stage: 'sync' });
-      return { ok: false, reason: 'sync_failed' };
+      logAuthEvent('auth_signout_wipe_sync_failed_continue', { stage: 'sync' });
+      await saveAccountSwitchEmergencyBackup('force_sync_failed_before_account_switch');
     }
     // 2. Выходим из Google и Firebase Auth.
     await signOutCurrentProvider();
@@ -1305,7 +1216,7 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
     // 5. Поднимаем чистую анонимную Firebase сессию + новый stable_id.
     await ensureAnonUser();
     logAuthEvent('auth_signout_wipe', { mode: 'switch' });
-    return { ok: true };
+    return { ok: true, synced };
   } catch (e: any) {
     if (__DEV__) console.warn('[auth_provider] signOutAndWipeForAccountSwitch failed', e);
     logAuthEvent('auth_signout_wipe_failed', { stage: 'unknown', error: String(e?.message ?? e).slice(0, 80) });
@@ -1347,6 +1258,8 @@ export type DeleteAccountResult =
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
+  const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
+  const pendingDeleteStableId = await getStableId().catch(() => null);
   const cloudDeletePromise = deleteCloudData();
   void cloudDeletePromise
     .then(() => logAuthEvent('auth_account_delete_cloud_late_success'))
@@ -1387,6 +1300,10 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: clearStableId failed', e);
   }
+  await markAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId);
+  void cloudDeletePromise
+    .then(() => clearAccountDeletePendingAuth(pendingDeleteProviderUid))
+    .catch(() => {});
 
   // 6. Поднимаем чистую анонимную Firebase сессию + сгенерится новый stable_id
   //    при первом getStableId(). ensureAnonUser в конце — best-effort, не валим

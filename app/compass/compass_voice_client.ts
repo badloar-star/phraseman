@@ -12,6 +12,16 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './../app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
+const compassVoiceInFlight = new Map<string, Promise<CompassVoiceResponse>>();
+
+function compassVoiceRequestKey(req: CompassVoiceRequest): string {
+  return JSON.stringify({
+    dayType: req.dayType,
+    topics: req.topics,
+    level: req.level,
+    lang: req.lang,
+  });
+}
 
 export interface CompassVoiceRequest {
   /** Тип дня: easy | deep_dive | repair | comeback. */
@@ -32,11 +42,22 @@ export interface CompassVoiceResponse {
 }
 
 export async function callCompassVoice(req: CompassVoiceRequest): Promise<CompassVoiceResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<CompassVoiceRequest, CompassVoiceResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'compassGenerate',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = compassVoiceRequestKey(req);
+  const existing = compassVoiceInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<CompassVoiceRequest, CompassVoiceResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'compassGenerate',
+    );
+    const res = await fn(req);
+    return res.data;
+  })().finally(() => {
+    compassVoiceInFlight.delete(key);
+  });
+
+  compassVoiceInFlight.set(key, request);
+  return request;
 }

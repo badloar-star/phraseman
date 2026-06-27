@@ -261,12 +261,10 @@ async function handlePremiumSubscriptionEvent(event, eventType, productId, res) 
                 }
             }
             else if (inactiveEvent) {
-                // EXPIRATION на lifetime НЕ деактивируем: non-renewing «Навсегда» не может законно
-                // истечь (магазины такого не шлют), а спурьёзный EXPIRATION молча даунгрейднул бы
-                // платящего lifetime-клиента до free. REFUND обрабатываем как обычно — вернули
-                // деньги, доступ снять (даже у lifetime). Аналог исключения в premium_expiry_cron.
-                const isLifetimeExpiration = eventType === 'EXPIRATION' && plan === 'lifetime';
-                if (!isLifetimeExpiration) {
+                // EXPIRATION на lifetime НЕ деактивируем (см. shouldDeactivateOnInactiveEvent):
+                // спурьёзный EXPIRATION иначе молча даунгрейднул бы платящего lifetime до free.
+                // REFUND снимает доступ как обычно (вернули деньги).
+                if (shouldDeactivateOnInactiveEvent(eventType, plan)) {
                     progressPatch.premium_plan = '';
                     progressPatch.premium_expiry = String(expiryMs ?? now);
                 }

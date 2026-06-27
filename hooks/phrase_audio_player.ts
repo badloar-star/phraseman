@@ -24,13 +24,13 @@ type PlayCallbacks = {
 // learner. The clips are recorded at a calm pace, so 1.0 already sounds natural.
 const MIN_CLIP_RATE = 0.8;
 const MAX_CLIP_RATE = 1.3;
+const DOWNLOAD_TIMEOUT_MS = 4500;
 function clampPlaybackRate(rate: number | undefined): number {
   if (typeof rate !== 'number' || !isFinite(rate)) return 1;
   return Math.min(MAX_CLIP_RATE, Math.max(MIN_CLIP_RATE, rate));
 }
 
 let currentPlayer: AudioPlayer | null = null;
-let audioModeReady = false;
 const inFlightDownloads = new Map<string, Promise<string | null>>();
 
 // Monotonic token: every stopPhraseAudio() / new playPhraseByText() bumps it.
@@ -48,22 +48,33 @@ function cacheFileFor(key: string): File {
   return new File(cacheDir(), `${safe}.mp3`);
 }
 
+function downloadFileWithTimeout(url: string, file: File): Promise<File | null> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), DOWNLOAD_TIMEOUT_MS);
+  });
+  return Promise.race([File.downloadFileAsync(url, file), timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
+const PHRASE_AUDIO_MODE = {
+  playsInSilentMode: true,
+  shouldPlayInBackground: false,
+  // 'duckOthers' keeps our voice at full playback volume while only briefly
+  // lowering other apps' audio. 'mixWithOthers' put iOS in an ambient/mix
+  // session that plays our clip noticeably quieter than the old expo-speech
+  // path — which is why phrases sounded ~half as loud after the switch.
+  interruptionMode: 'duckOthers' as const,
+};
+
 async function ensureAudioMode(): Promise<void> {
-  if (audioModeReady) return;
   try {
-    await setAudioModeAsync({
-      playsInSilentMode: true,
-      shouldPlayInBackground: false,
-      // 'duckOthers' keeps our voice at full playback volume while only briefly
-      // lowering other apps' audio. 'mixWithOthers' put iOS in an ambient/mix
-      // session that plays our clip noticeably quieter than the old expo-speech
-      // path — which is why phrases sounded ~half as loud after the switch.
-      interruptionMode: 'duckOthers',
-    });
-    audioModeReady = true;
+    // Other screens can change the shared native audio session after phrase
+    // audio has played once, so restore the phrase mode on every clip.
+    await setAudioModeAsync(PHRASE_AUDIO_MODE);
   } catch {
     // Non-fatal; playback may still work with default mode.
-    audioModeReady = true;
   }
 }
 
@@ -81,7 +92,8 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
     try {
       const dir = cacheDir();
       if (!dir.exists) dir.create({ intermediates: true });
-      const downloaded = await File.downloadFileAsync(url, file);
+      const downloaded = await downloadFileWithTimeout(url, file);
+      if (!downloaded) return null;
       if (downloaded.exists && (downloaded.size ?? 0) > 200) return downloaded.uri;
       return null;
     } catch {

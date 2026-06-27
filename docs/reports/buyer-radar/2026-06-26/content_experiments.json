@@ -1,0 +1,1367 @@
+{
+  "generatedAt": "2026-06-26T11:58:49.787Z",
+  "experiments": [
+    {
+      "contentVariantId": "cv_work_english_001_tiktok_a",
+      "campaignId": "camp_20260626_tiktok_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "tiktok",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "?? ????????? ??????? ??????????. ?? ????? ???? ???????? ?? ?????? ? ????? ?????.",
+      "first3Seconds": "Zoom-??????: ?Can you explain what happened?? ??????? ????? ??????, ?? ??????. On-screen: ?? ?????. ?? ?? ???? ????????.?",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "?? ?????? ???????? ??????, ?????? Slack ? ???????? ????? ?? ??????????. ?? ?? ??????? ??? ???????? ?? ??-?? ??????????, ? ??-?? ???????? ??????? ? ??????. ???? ????? ??????? ??????? ?????: ?Let me clarify one thing?, ?The main issue is?, ?I suggest we do this first?. Phraseman ????????? ????? ????? ?? ???????????.",
+      "cta": "?????? Phraseman ? ?????????? 5 ??????? ???? ???????.",
+      "utm": {
+        "source": "tiktok",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "tiktok_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_reels_a",
+      "campaignId": "camp_20260626_reels_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "reels",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "???? ?? ??????? ?? ?????????? ????????, ???????? ?? ?????? ? ????? ??????.",
+      "first3Seconds": "Split screen: ?I understand everything? vs ?Can you share your opinion?? ? ??????.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "??????? ?????? ?? ????, ???? ?? ????????? ???????. ??? ????? ??????? ?????: ?From my side?, ?What I mean is?, ?I can check that and get back to you?. ??? ?????? ???? ??????????? ?? ??????????? ??????????, ? ????? ??? ???????? ????????. Phraseman ???????? ??????? ?? ?? ???????????.",
+      "cta": "?????? Phraseman ? ?????????? ????? ??? ??????? ??????????.",
+      "utm": {
+        "source": "reels",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "reels_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_shorts_a",
+      "campaignId": "camp_20260626_shorts_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "shorts",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "??????? ?????????? ? ??? ?? ?????? ????. ??? ???????? ??????.",
+      "first3Seconds": "?????? 3 ???????. ??????: ?Any updates?? ????? ???????? ?? ?yes... so...?",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "?? ?????? ?? ?? ???????????? ??-?? ????? ?update?. ?? ???????????? ??-?? ????? ????? ????. ???????? ?????: ?Quick update from my side?, ?We are still checking?, ?The blocker is?. ?? ????????? ?????. ?????, ??????? ????? ??????? ?????? ?? ??????.",
+      "cta": "????? 5 ??????? ???? ? Phraseman ????? ????????? ????????.",
+      "utm": {
+        "source": "shorts",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "shorts_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "carousel",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "?? ????????? ??????? ??????????, ?? ??????? ?? ????????",
+      "first3Seconds": "Slide 1 immediately shows the meeting freeze: ?Can you explain?? / ?...?",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "7-slide carousel: 1) ?? ?????????, ?? ???????. 2) ??? ?? ?????? ?????? ??????????. 3) ?????? ?? ???? Present Perfect. 4) ???????? ?????-?????. 5) ???? ????? = ?????? ??????. 6) ???? ? ??????? ????? ???????. 7) Phraseman ????????? ?????, ??????? ??????? ????.",
+      "cta": "??????? ? ?????????? ??? ????? ? Phraseman.",
+      "utm": {
+        "source": "carousel",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "carousel_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_reddit_a",
+      "campaignId": "camp_20260626_reddit_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "reddit",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "Understanding work English and speaking in meetings feel like two different skills",
+      "first3Seconds": "Open with the observation: people read Slack and understand colleagues, but freeze when asked to explain an issue quickly.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "I keep seeing the same pattern: learners can read Slack, understand colleagues and watch technical videos, but collapse into very basic sentences when asked to speak in a meeting. My current theory: the issue is phrase access under pressure. Work calls need reusable sentence blocks like ?Quick update from my side?, ?The main issue is?, ?Let me clarify one thing?, ?I can check that and get back to you?. Curious: which work phrase do you wish came out automatically?",
+      "cta": "Community-safe CTA: no hard promo in the post body. If self-promotion is allowed, add one transparent comment with the Phraseman link and campaign ID.",
+      "utm": {
+        "source": "reddit",
+        "medium": "community_post",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "reddit_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_x_a",
+      "campaignId": "camp_20260626_x_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "x",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "You can understand English at work and still freeze when you need to speak.",
+      "first3Seconds": "Thread starts with the gap between comprehension and phrase access under pressure.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "Thread: 1) Understanding work English is not the same as answering fast. 2) A meeting needs an opening phrase, not a textbook chapter. 3) Train blocks like ?Quick update from my side?, ?The blocker is?, ?Let me clarify one thing?. 4) Simple phrases at the right moment beat advanced English that arrives late. 5) The goal is to answer clearly before the meeting moves on. 6) Phraseman trains useful phrases until they are easier to say out loud.",
+      "cta": "Train phrases that help you answer under pressure: Phraseman.",
+      "utm": {
+        "source": "x",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "x_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_threads_a",
+      "campaignId": "camp_20260626_threads_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "threads",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "????? ??????????? ?????? ???????????: ?? ????????? ??????, ?? ?? ?????? ????????.",
+      "first3Seconds": "Text-only punch: ?yes... I think... maybe...? after a normal work question.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "?? ????????? ??????, ????????? ? ?????? ?? ???????. ?? ????? ???? ????????, ???? ??????? ?????? ?yes... I think... maybe...?. ??? ?????? ???? ??????????? ?? ?????????? ??????, ? ??????? ?????: ?Quick update from my side?, ?The blocker is?, ?Let me clarify one thing?. ??? ???????. ??????? ? ????????. Phraseman ???????? ???????? ????? ????? ?? ???????????.",
+      "cta": "????? ????????? ???????? ?????????? 5 ??????? ???? ? Phraseman.",
+      "utm": {
+        "source": "threads",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "threads_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_telegram_a",
+      "campaignId": "camp_20260626_telegram_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "telegram",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "??????? ?????????? ???????? ? ?????? 2 ??????? ????? ???????.",
+      "first3Seconds": "Telegram opening line names the exact meeting moment: ?Any updates?? / ?Can you explain the issue??",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "??????? ?????????? ???????? ?? ? ????? meeting ? ?? ? Present Perfect. ?? ???????? ????? ???????? ?Any updates??, ?Can you explain the issue??, ?What do you suggest??. ???? ??? ???????? ??????, ???? ???????? ??????????? ? ????. ????????: ?Quick update from my side?, ?The main issue is?, ?Let me clarify one thing?, ?I suggest we start with?, ?I can check that and get back to you?. ??? ??????? ?????, ?? ??????? ???? ????????? ?? ???????.",
+      "cta": "????? ????????? ???????? ???????????? 5 ???? ? Phraseman.",
+      "utm": {
+        "source": "telegram",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "telegram_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_pinterest_a",
+      "campaignId": "camp_20260626_pinterest_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "pinterest",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "5 English phrases for work calls when your brain freezes",
+      "first3Seconds": "Pin overlay: ?English at work: what to say when you freeze?.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "Save these simple English phrases for meetings: ?Quick update from my side?, ?The main issue is?, ?Let me clarify one thing?, ?I can check that and get back to you?. Practice useful English phrases in Phraseman.",
+      "cta": "Save the pin and practice the phrases in Phraseman.",
+      "utm": {
+        "source": "pinterest",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "pinterest_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_work_english_001_linkedin_a",
+      "campaignId": "camp_20260626_linkedin_work_english_001_a",
+      "painClusterId": "pain_work_english_001",
+      "platform": "linkedin",
+      "status": "rejected_owner_signal",
+      "targetMetric": "trial_started",
+      "hook": "A lot of non-native English speakers do not struggle at work because they ?do not know English?.",
+      "first3Seconds": "Professional opening: reading Slack, understanding colleagues and answering live questions are different skills.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "Many non-native speakers struggle because work conversations require instant phrase access. Reading Slack is one skill. Understanding colleagues is one skill. Answering a live question in a meeting is another skill. Useful training units are reusable phrases: ?Quick update from my side?, ?The main issue is?, ?Let me clarify one thing?, ?I can check that and get back to you?. Simple phrases give the speaker a stable first step. This is the product idea behind Phraseman: practice the phrases people actually need to say, not just the words they can recognize.",
+      "cta": "If English is part of your work, train phrases that help you answer under pressure.",
+      "utm": {
+        "source": "linkedin",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_work_english_001",
+        "content": "linkedin_a"
+      },
+      "notes": "Ready to publish from BUYER RADAR ready pack. Reddit uses soft/community-safe CTA.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_READY_PACK_WORK_ENGLISH_001.md",
+      "ownerDecisionReason": "Work calls / meetings angle did not work before; not for publication."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_tiktok_a",
+      "campaignId": "camp_20260626_tiktok_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "tiktok",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "tiktok",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "tiktok_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_reels_a",
+      "campaignId": "camp_20260626_reels_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "reels",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reels",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "reels_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_shorts_a",
+      "campaignId": "camp_20260626_shorts_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "shorts",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "shorts",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "shorts_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "carousel",
+      "status": "dalle_final_ready_editorial_bible",
+      "targetMetric": "trial_started",
+      "hook": "Язык понимаешь на видео. В жизни — ноль фраз.",
+      "first3Seconds": "Это не только про английский: мозг может узнавать речь глазами и всё равно не доставать фразу голосом.",
+      "bodyStructure": [
+        "language context contradiction",
+        "reframe false belief",
+        "research-backed mechanism",
+        "consequence of old learning method",
+        "new category: phrase access",
+        "closing contradiction plus bio link"
+      ],
+      "body": "Slide 1: Язык понимаешь на видео. В жизни — ноль фраз.\nЭто не только про английский: мозг может узнавать речь глазами и всё равно не доставать фразу голосом.\n\nSlide 2: Ты думал: ещё немного понимания — и заговорю.\nНо понимание тренирует узнавание. Разговор требует доступа без паузы и без подсказки.\n\nSlide 3: Память крепнет в момент доставания.\nНе когда слово снова показали. Поэтому знакомая фраза может пропасть именно в живом разговоре.\n\nSlide 4: Сказать вслух — не украшение к уроку.\nГолос меняет след в памяти: прочитанное молча и произнесённое ртом ведут себя по-разному.\n\nSlide 5: Речь часто собирается не из слов, а из готовых кусков.\nВ разговоре выигрывает не тот, кто знает больше, а тот, у кого нужная фраза выходит быстрее.\n\nSlide 6: Ты всё понял — но завтра снова можешь промолчать.\nЕсли фразы не выходят голосом, знание остаётся зрительским. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "utm": {
+        "source": "carousel",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "carousel_a"
+      },
+      "notes": "Rewritten against docs/pipelines/buyer-radar-editorial-bible.ru.md. First slide frames language learning; last slide uses a closing contradiction and says the Phraseman app link is in bio.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html",
+      "finalAssetDir": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words",
+      "finalManifest": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/MANIFEST.json",
+      "finalContactSheet": "docs/reports/buyer-radar/2026-06-26/dalle_final/brc_001_netflix_understand_life_zero_words/CONTACT_SHEET.png"
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_reddit_a",
+      "campaignId": "camp_20260626_reddit_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "reddit",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reddit",
+        "medium": "community_post",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "reddit_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_x_a",
+      "campaignId": "camp_20260626_x_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "x",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "x",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "x_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_threads_a",
+      "campaignId": "camp_20260626_threads_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "threads",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "threads",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "threads_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_telegram_a",
+      "campaignId": "camp_20260626_telegram_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "telegram",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "telegram",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "telegram_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_pinterest_a",
+      "campaignId": "camp_20260626_pinterest_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "pinterest",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "pinterest",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "pinterest_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_speaking_freeze_001_linkedin_a",
+      "campaignId": "camp_20260626_linkedin_speaking_freeze_001_a",
+      "painClusterId": "pain_speaking_freeze_001",
+      "platform": "linkedin",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I understand English content but freeze when I need to speak",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "linkedin",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_speaking_freeze_001",
+        "content": "linkedin_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_tiktok_a",
+      "campaignId": "camp_20260626_tiktok_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "tiktok",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "tiktok",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "tiktok_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_reels_a",
+      "campaignId": "camp_20260626_reels_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "reels",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reels",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "reels_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_shorts_a",
+      "campaignId": "camp_20260626_shorts_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "shorts",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "shorts",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "shorts_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "targetMetric": "trial_started",
+      "hook": "На другом языке боишься звучать глупо. И молчишь.",
+      "first3Seconds": "Не потому что нечего сказать. Потому что каждая фраза кажется экзаменом перед человеком.",
+      "bodyStructure": [
+        "language context contradiction",
+        "reframe false belief",
+        "research-backed mechanism",
+        "consequence of old learning method",
+        "new category: phrase access",
+        "closing contradiction plus bio link"
+      ],
+      "body": "Slide 1: На другом языке боишься звучать глупо. И молчишь.\nНе потому что нечего сказать. Потому что каждая фраза кажется экзаменом перед человеком.\n\nSlide 2: Ты думал, страх уйдёт после идеальной грамматики.\nНо страх часто уходит после повторяемых фраз, которые рот уже знает.\n\nSlide 3: Молчание — не характер. Это защита.\nМозг выбирает тишину, когда не уверен, что фраза выйдет быстро и безопасно.\n\nSlide 4: Сначала нужна не смелость. Нужна первая фраза.\nТа, которую можно сказать без сборки предложения с нуля.\n\nSlide 5: Фразы, отработанные одному, легче выходят при людях.\nРазговор становится не прыжком в пустоту, а повторением знакомого действия.\n\nSlide 6: Ты можешь ждать уверенности — и снова выбрать тишину.\nУверенность приходит после выхода фраз, не до него. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "utm": {
+        "source": "carousel",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "carousel_a"
+      },
+      "notes": "Rewritten against docs/pipelines/buyer-radar-editorial-bible.ru.md. First slide frames language learning; last slide uses a closing contradiction and says the Phraseman app link is in bio.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html"
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_reddit_a",
+      "campaignId": "camp_20260626_reddit_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "reddit",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reddit",
+        "medium": "community_post",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "reddit_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_x_a",
+      "campaignId": "camp_20260626_x_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "x",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "x",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "x_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_threads_a",
+      "campaignId": "camp_20260626_threads_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "threads",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "threads",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "threads_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_telegram_a",
+      "campaignId": "camp_20260626_telegram_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "telegram",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "telegram",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "telegram_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_pinterest_a",
+      "campaignId": "camp_20260626_pinterest_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "pinterest",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "pinterest",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "pinterest_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_embarrassed_to_speak_001_linkedin_a",
+      "campaignId": "camp_20260626_linkedin_embarrassed_to_speak_001_a",
+      "painClusterId": "pain_embarrassed_to_speak_001",
+      "platform": "linkedin",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I feel embarrassed speaking English out loud",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "linkedin",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_embarrassed_to_speak_001",
+        "content": "linkedin_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_tiktok_a",
+      "campaignId": "camp_20260626_tiktok_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "tiktok",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "tiktok",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "tiktok_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_reels_a",
+      "campaignId": "camp_20260626_reels_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "reels",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reels",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "reels_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_shorts_a",
+      "campaignId": "camp_20260626_shorts_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "shorts",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "shorts",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "shorts_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "targetMetric": "trial_started",
+      "hook": "Три года учишь язык. Рот всё равно молчит.",
+      "first3Seconds": "Это больно именно потому, что усилия были настоящими. Но усилие могло идти не в тот навык.",
+      "bodyStructure": [
+        "language context contradiction",
+        "reframe false belief",
+        "research-backed mechanism",
+        "consequence of old learning method",
+        "new category: phrase access",
+        "closing contradiction plus bio link"
+      ],
+      "body": "Slide 1: Три года учишь язык. Рот всё равно молчит.\nЭто больно именно потому, что усилия были настоящими. Но усилие могло идти не в тот навык.\n\nSlide 2: Ты думал, часы обучения складываются в речь.\nОни складываются в то, что ты тренировал: тесты, чтение, узнавание, перевод.\n\nSlide 3: Говорение — отдельный навык доступа.\nМозгу нужно достать фразу под давлением, когда собеседник ждёт, а не когда учебник открыт.\n\nSlide 4: Ещё один урок может дать ещё одно знание.\nНо он не гарантирует, что фраза выйдет изо рта в нужную секунду.\n\nSlide 5: Нужны короткие фразы, которые выдерживают давление.\nСначала они звучат базово. Потом именно они спасают разговор.\n\nSlide 6: Можно учиться ещё год — и снова молчать.\nЕсли не тренировать выход фраз голосом, время не станет речью. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "utm": {
+        "source": "carousel",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "carousel_a"
+      },
+      "notes": "Rewritten against docs/pipelines/buyer-radar-editorial-bible.ru.md. First slide frames language learning; last slide uses a closing contradiction and says the Phraseman app link is in bio.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html"
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_reddit_a",
+      "campaignId": "camp_20260626_reddit_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "reddit",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reddit",
+        "medium": "community_post",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "reddit_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_x_a",
+      "campaignId": "camp_20260626_x_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "x",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "x",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "x_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_threads_a",
+      "campaignId": "camp_20260626_threads_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "threads",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "threads",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "threads_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_telegram_a",
+      "campaignId": "camp_20260626_telegram_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "telegram",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "telegram",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "telegram_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_pinterest_a",
+      "campaignId": "camp_20260626_pinterest_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "pinterest",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "pinterest",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "pinterest_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_years_stuck_001_linkedin_a",
+      "campaignId": "camp_20260626_linkedin_years_stuck_001_a",
+      "painClusterId": "pain_years_stuck_001",
+      "platform": "linkedin",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I have studied English for years but still feel stuck",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "linkedin",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_years_stuck_001",
+        "content": "linkedin_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_tiktok_a",
+      "campaignId": "camp_20260626_tiktok_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "tiktok",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "tiktok",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "tiktok_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_reels_a",
+      "campaignId": "camp_20260626_reels_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "reels",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reels",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "reels_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_shorts_a",
+      "campaignId": "camp_20260626_shorts_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "shorts",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "shorts",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "shorts_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "carousel",
+      "status": "editorial_bible_ready_requires_codex_dalle",
+      "targetMetric": "trial_started",
+      "hook": "Слова языка знаешь. В разговоре они исчезают.",
+      "first3Seconds": "Это не дырка в голове. Это слабый доступ: слово узнаётся глазами, но не выходит голосом.",
+      "bodyStructure": [
+        "language context contradiction",
+        "reframe false belief",
+        "research-backed mechanism",
+        "consequence of old learning method",
+        "new category: phrase access",
+        "closing contradiction plus bio link"
+      ],
+      "body": "Slide 1: Слова языка знаешь. В разговоре они исчезают.\nЭто не дырка в голове. Это слабый доступ: слово узнаётся глазами, но не выходит голосом.\n\nSlide 2: Ты думал, проблема в памяти. Часто проблема в маршруте.\nОт глаза к узнаванию путь натоптан. От мысли к фразе — почти пустой.\n\nSlide 3: Повторное чтение даёт знакомость. Доставание даёт доступ.\nМозг учится вытаскивать ответ, а не кивать на него, когда он уже лежит перед глазами.\n\nSlide 4: Поэтому списки слов обманывают.\nВ списке слово кажется твоим. В разговоре ему нужно выйти без списка, без перевода и без времени.\n\nSlide 5: Тренировать нужно не слово, а фразу в моменте.\nНе “agree”. А “I see what you mean”. Не “busy”. А “I’m tied up right now”.\n\nSlide 6: Ты можешь знать слово — и снова потерять его завтра.\nЕсли не доставать фразы голосом, память останется витринной. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "utm": {
+        "source": "carousel",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "carousel_a"
+      },
+      "notes": "Rewritten against docs/pipelines/buyer-radar-editorial-bible.ru.md. First slide frames language learning; last slide uses a closing contradiction and says the Phraseman app link is in bio.",
+      "readyPack": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PACK_001.md",
+      "preview": "docs/reports/buyer-radar/2026-06-26/BUYER_RADAR_CAROUSEL_PREVIEW_001.html"
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_reddit_a",
+      "campaignId": "camp_20260626_reddit_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "reddit",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "reddit",
+        "medium": "community_post",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "reddit_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_x_a",
+      "campaignId": "camp_20260626_x_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "x",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "x",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "x_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_threads_a",
+      "campaignId": "camp_20260626_threads_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "threads",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "threads",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "threads_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_telegram_a",
+      "campaignId": "camp_20260626_telegram_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "telegram",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "telegram",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "telegram_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_pinterest_a",
+      "campaignId": "camp_20260626_pinterest_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "pinterest",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "pinterest",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "pinterest_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_forgetting_001_linkedin_a",
+      "campaignId": "camp_20260626_linkedin_forgetting_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "linkedin",
+      "status": "draft",
+      "targetMetric": "trial_started",
+      "hook": "TODO: Name the pain fast: I keep forgetting the English I learn",
+      "first3Seconds": "TODO: Show the emotional moment before explaining anything.",
+      "bodyStructure": [
+        "pain recognition",
+        "emotional proof",
+        "tiny insight",
+        "Phraseman bridge",
+        "measurable CTA"
+      ],
+      "body": "TODO",
+      "cta": "TODO: Send to a measured install/trial path.",
+      "utm": {
+        "source": "linkedin",
+        "medium": "organic_social",
+        "campaign": "ri_20260626_forgetting_001",
+        "content": "linkedin_a"
+      },
+      "notes": "Fill copy manually or with an LLM after checking that this pain still has buyer-intent evidence."
+    },
+    {
+      "contentVariantId": "cv_saved_words_do_not_speak_001_carousel_a",
+      "campaignId": "camp_20260626_carousel_saved_words_do_not_speak_001_a",
+      "painClusterId": "pain_forgetting_001",
+      "platform": "carousel",
+      "status": "dalle_final_ready_editorial_bible",
+      "targetMetric": "trial_started",
+      "hook": "Сохраняешь слова языка. Во рту всё равно пусто.",
+      "first3Seconds": "Папка “выучить потом” создаёт ощущение прогресса. Но сохранённая фраза ещё не умеет выходить голосом.",
+      "bodyStructure": [
+        "language context contradiction",
+        "false belief reframe",
+        "retrieval practice mechanism",
+        "consequence of list learning",
+        "new category: phrase output",
+        "closing contradiction plus bio link"
+      ],
+      "body": "Slide 1: Сохраняешь слова языка. Во рту всё равно пусто.\nПапка “выучить потом” создаёт ощущение прогресса. Но сохранённая фраза ещё не умеет выходить голосом.\n\nSlide 2: Ты думал: сохранить — почти выучить.\nНа самом деле это только узнавание. Речь начинается там, где подсказка исчезает.\n\nSlide 3: Память крепнет, когда ты достаёшь ответ.\nНе когда он снова лежит перед глазами. Поэтому знакомая фраза может исчезнуть именно в разговоре.\n\nSlide 4: Список слов обманывает сильнее, чем кажется.\nВ списке слово твоё. В разговоре ему нужно выйти без списка, перевода и времени.\n\nSlide 5: Тренировать надо не слово. Тренировать надо выход фразы.\nНе “agree”. А готовый кусок, который рот может произнести до того, как разговор ушёл дальше.\n\nSlide 6: Ты можешь сохранить этот пост — и снова промолчать.\nСохранённая мысль не станет речью, пока фраза не выйдет голосом. Ссылка на приложение Phraseman — в био.",
+      "cta": "Ссылка на приложение Phraseman — в био",
+      "utm": {
+        "source": "instagram",
+        "medium": "organic_carousel",
+        "campaign": "buyer_radar_saved_words_do_not_speak_001",
+        "content": "carousel_a"
+      },
+      "notes": "Created against docs/pipelines/buyer-radar-editorial-bible.ru.md. Final images must use unique DALL-E scenes generated through Codex."
+    }
+  ]
+}

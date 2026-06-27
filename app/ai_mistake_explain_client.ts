@@ -1,8 +1,10 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withExplainCallableTimeout } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
+const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
 
 export type MistakeExplainVariant = 'full' | 'eli5';
 
@@ -37,12 +39,40 @@ export interface ExplainMistakeResponse {
   variant?: MistakeExplainVariant;
 }
 
+function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
+  return JSON.stringify({
+    lessonId: req.lessonId,
+    phraseId: req.phraseId,
+    studyTarget: req.studyTarget,
+    interfaceLang: req.interfaceLang,
+    prompt: req.prompt,
+    userAnswer: req.userAnswer,
+    targetAnswer: req.targetAnswer,
+    phraseMeaning: req.phraseMeaning,
+    selectedWrongWord: req.selectedWrongWord,
+    expectedWord: req.expectedWord,
+    diffPairs: req.diffPairs,
+    variant: req.variant,
+  });
+}
+
 export async function callExplainMistake(req: ExplainMistakeRequest): Promise<ExplainMistakeResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<ExplainMistakeRequest, ExplainMistakeResponse>(
-    getFunctions(getApp(), FUNCTIONS_REGION),
-    'explainMistake',
-  );
-  const res = await fn(req);
-  return res.data;
+  const key = explainMistakeRequestKey(req);
+  const existing = explainMistakeInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<ExplainMistakeRequest, ExplainMistakeResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'explainMistake',
+    );
+    const res = await withExplainCallableTimeout(fn(req), 'explainMistake');
+    return res.data;
+  })().finally(() => {
+    explainMistakeInFlight.delete(key);
+  });
+
+  explainMistakeInFlight.set(key, request);
+  return request;
 }

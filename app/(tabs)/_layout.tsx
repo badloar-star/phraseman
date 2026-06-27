@@ -3,7 +3,6 @@ import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router
 import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useScreen } from '../../hooks/use-screen';
@@ -118,6 +117,7 @@ const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
 const ENABLE_TAB_PRESS_LIFT = true;
 const TAB_ACTIVE_PILL_WIDTH = 48;
 const TAB_ACTIVE_PILL_HEIGHT = 36;
+const ENABLE_DEFERRED_TAB_PREWARM = false;
 const DEFERRED_TAB_PREWARM_FALLBACK_MS = 4000;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
 // native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
@@ -130,7 +130,8 @@ const TAB_SCROLL_DIRECTION_EPSILON = 5;
 const TAB_SCROLL_COLLAPSE_MS = 220;
 const TAB_SCROLL_EXPAND_MS = 260;
 const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
-const TAB_DARK_CHROME_BG_ALPHA = 0.78;
+const TAB_UNDERLAY_DIM_ALPHA = 0.95;
+const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
 const TAB_DARK_CHROME_BORDER_ALPHA = 0.34;
 const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
 const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
@@ -206,15 +207,13 @@ type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: bool
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
 function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
-  const { theme: t, ds, themeMode, statusBarLight } = useTheme();
+  const { theme: t, ds, statusBarLight } = useTheme();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  const isMinimal = false || themeMode === 'minimalDark';
-  /** Тон-подложка плавающей капсулы поверх blur: тёмный стеклянный chrome,
-   *  но с цветной обводкой/иконками от текущей темы интерфейса. */
-  const tabPillTintBg = withAlpha(t.bgCard, TAB_DARK_CHROME_BG_ALPHA);
+  /** Подложка плавающей капсулы: 95% затемнение контента под таббаром
+   *  без runtime blur, с цветной обводкой/иконками от текущей темы. */
   const tabPillBorder = withAlpha(t.accent, TAB_DARK_CHROME_BORDER_ALPHA);
   const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabActiveBg = withAlpha(t.accent, TAB_DARK_ACTIVE_BG_ALPHA);
@@ -390,7 +389,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
               </TabSlider>
             </GestureHandlerRootView>
           </View>
-          {/* Плавающая капсула поверх контента: нижняя safe-area тоже блюрится, без отдельной полосы. */}
+          {/* Плавающая капсула поверх контента: нижняя safe-area остаётся без отдельной полосы. */}
           <View
             style={[s.tabBarWrap, { height: tabOverlayHeight }]}
             pointerEvents="box-none"
@@ -415,25 +414,8 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                 },
               ]}
             >
-              <BlurView
-                intensity={isMinimal ? 96 : 100}
-                tint="dark"
-                style={s.tabPillFill}
-              />
-              <BlurView
-                pointerEvents="none"
-                intensity={100}
-                tint="dark"
-                style={s.tabPillFill}
-              />
-              <BlurView
-                pointerEvents="none"
-                intensity={100}
-                tint="dark"
-                style={s.tabPillFill}
-              />
-              {/* Полупрозрачная подложка-тон поверх blur — стабильный вид на Android, где blur слабее. */}
-              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillTintBg }]} />
+              {/* 95% scrim: контент едва просвечивает, но затемняется без runtime blur. */}
+              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
 
               {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && (
                 <Animated.View
@@ -547,6 +529,7 @@ export default function TabLayout() {
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
   useEffect(() => {
+    if (!ENABLE_DEFERRED_TAB_PREWARM) return;
     let prewarmTimer: ReturnType<typeof setTimeout> | null = null;
     const startPrewarm = () => {
       prewarmTimer = null;
@@ -653,7 +636,7 @@ const s = StyleSheet.create({
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },
-  /** Нижний overlay не резервирует место: контент уходит под него и блюрится всей safe-area зоной. */
+  /** Нижний overlay не резервирует место: контент уходит под него без отдельной safe-area полосы. */
   tabBarWrap: {
     position: 'absolute',
     left: 0,
@@ -664,7 +647,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
-  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со своим blur-фоном. */
+  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со статичным фоном. */
   tabPill: {
     position: 'absolute',
     left: 0,

@@ -18,6 +18,18 @@ type SubmitClientReportResult = {
   collection?: string;
 };
 
+type SubmitClientReportRequest = {
+  kind: ClientReportKind;
+  payload: Record<string, unknown>;
+};
+
+type SubmitClientReportCallable = (
+  data: SubmitClientReportRequest,
+) => Promise<{ data: SubmitClientReportResult }>;
+
+let submitClientReportCallable: SubmitClientReportCallable | null = null;
+let appCheckWarmupInFlight: Promise<void> | null = null;
+
 function callable<TReq, TRes>(name: string) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getApp } = require('@react-native-firebase/app');
@@ -26,15 +38,34 @@ function callable<TReq, TRes>(name: string) {
   return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
 }
 
+function getSubmitClientReportCallable(): SubmitClientReportCallable {
+  if (!submitClientReportCallable) {
+    submitClientReportCallable = callable<SubmitClientReportRequest, SubmitClientReportResult>(
+      'submitClientReport',
+    );
+  }
+  return submitClientReportCallable;
+}
+
+function warmClientReportAppCheck(): Promise<void> {
+  if (!appCheckWarmupInFlight) {
+    appCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()
+      .catch(() => false)
+      .then(() => undefined)
+      .finally(() => {
+        appCheckWarmupInFlight = null;
+      });
+  }
+  return appCheckWarmupInFlight;
+}
+
 export async function submitClientReport(
   kind: ClientReportKind,
   payload: Record<string, unknown>,
 ): Promise<SubmitClientReportResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = callable<{ kind: ClientReportKind; payload: Record<string, unknown> }, SubmitClientReportResult>(
-    'submitClientReport',
-  );
+  await warmClientReportAppCheck();
+  const fn = getSubmitClientReportCallable();
   const res = await fn({ kind, payload });
   return res.data;
 }

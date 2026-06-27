@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { getLevelFromXP } from './xp_levels';
+import { markRefereeQualified } from './referral';
 
 export type ProgressMap = Record<string, unknown>;
 
@@ -430,6 +431,36 @@ function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate:
   return next;
 }
 
+function applyClientStreakEvidence(progress: ProgressMap, patch: ProgressMap, event: ProgressEventInput, activeDate: string): ProgressMap {
+  const clientLast = cleanString(event.payload.clientLastActiveDate, 10);
+  const clientStreak = clampInt(event.payload.clientStreakCount, 0, 100000);
+  if (!clientLast || clientStreak <= 0) return progress;
+
+  const diffToEventDate = dayDiff(activeDate, clientLast);
+  if (diffToEventDate == null || diffToEventDate < 0 || diffToEventDate > 1) {
+    return progress;
+  }
+
+  const serverLast = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
+  const serverStreak = Math.max(0, readInt(progress.streak_count, 0));
+  const clientBeatsServer =
+    !serverLast ||
+    clientLast > serverLast ||
+    (clientLast === serverLast && clientStreak > serverStreak);
+
+  if (!clientBeatsServer) return progress;
+
+  patch.last_active_date = clientLast;
+  patch.streak_last_date = clientLast;
+  patch.streak_count = String(clientStreak);
+  return {
+    ...progress,
+    last_active_date: clientLast,
+    streak_last_date: clientLast,
+    streak_count: String(clientStreak),
+  };
+}
+
 function applyLessonFields(progress: ProgressMap, patch: ProgressMap, event: ProgressEventInput): void {
   const lessonId = clampInt(event.payload.lessonId, 0, 500);
   if (lessonId <= 0) return;
@@ -458,6 +489,14 @@ function applyLessonFields(progress: ProgressMap, patch: ProgressMap, event: Pro
     const cellKey = lessonFieldKey(lessonId, 'cellIndex', target);
     patch[cellKey] = String(Math.max(readInt(progress[cellKey], 0), cellIndex));
   }
+}
+
+export function shouldQualifyReferralFromProgressEvent(event: ProgressEventInput): boolean {
+  if (event.type !== 'lesson_complete') return false;
+  const lessonId = clampInt(event.payload.lessonId, 0, 500);
+  if (lessonId !== 1) return false;
+  const score = Number(event.payload.score ?? event.payload.bestScore ?? 0);
+  return boolish(event.payload.passed) || (Number.isFinite(score) && score >= 2.5);
 }
 
 function applyExamFields(progress: ProgressMap, patch: ProgressMap, event: ProgressEventInput, activeDate: string): void {
@@ -521,7 +560,10 @@ export function applyProgressEvent(
     patch.week_points_v2 = JSON.stringify({ weekKey, points: nextWeekPoints });
   }
 
-  const streakCount = xpDelta > 0 ? applyDailyStreak(progress, patch, activeDate) : Math.max(0, readInt(progress.streak_count, 0));
+  const progressWithClientStreak = xpDelta > 0
+    ? applyClientStreakEvidence(progress, patch, event, activeDate)
+    : progress;
+  const streakCount = xpDelta > 0 ? applyDailyStreak(progressWithClientStreak, patch, activeDate) : Math.max(0, readInt(progress.streak_count, 0));
 
   if (event.type === 'lesson_complete') {
     applyLessonFields(progress, patch, event);
@@ -649,6 +691,7 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const db = admin.firestore();
   const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, {
     requireKnownIdentity: true,
+    repairLinks: false,
   });
 
   const userRef = db.collection('users').doc(stableUid);
@@ -657,7 +700,7 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
 
-  return db.runTransaction(async (tx) => {
+  const result = await db.runTransaction(async (tx) => {
     const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(ledgerRef),
@@ -734,6 +777,14 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     });
     return result;
   });
+
+  if (shouldQualifyReferralFromProgressEvent(event)) {
+    await markRefereeQualified(db, stableUid).catch((e) => {
+      console.warn('[progress_events] referral qualification failed', e);
+    });
+  }
+
+  return result;
 });
 
 export const progressMigrateSnapshot = onCall(HOT_CALLABLE_OPTIONS, async (request) => {

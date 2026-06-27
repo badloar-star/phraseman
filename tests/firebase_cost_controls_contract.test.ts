@@ -24,14 +24,13 @@ describe('Firebase cost controls', () => {
 
   // Реферальная система (Фаза 2, односторонний VIP) — теперь штатная: контракт
   // защищает конвейер от случайного выпиливания при cleanup (как было с VIP-кнопкой).
-  it('keeps the referral pipeline wired into exports and the deploy whitelist', () => {
+  it('keeps the referral callables wired into exports and the deploy whitelist', () => {
     const indexSource = read('functions/src/index.ts');
     const packageJson = read('functions/package.json');
 
     for (const name of [
       'referralEnsureMyCode',
       'referralApply',
-      'referralOnUserProgressUpdated',
       'referralClaimVipReward',
       'referralListMyInvites',
     ]) {
@@ -40,7 +39,7 @@ describe('Firebase cost controls', () => {
     }
   });
 
-  it('keeps referral cost guardrails: no code generation on sign-in, no referral reads in friends sync', () => {
+  it('keeps referral cost guardrails: no code generation on sign-in, lazy invite link on share, no referral reads in friends sync', () => {
     const authProviderSource = read('app/auth_provider.ts');
     const inviteSource = read('app/settings_invite_friend.tsx');
     const friendsSource = read('app/firestore_friends.ts');
@@ -48,8 +47,9 @@ describe('Firebase cost controls', () => {
     // Код выдаётся лениво (по «Пригласить»), а не на каждый вход.
     expect(authProviderSource).not.toContain("import('./referral_system')");
     expect(authProviderSource).not.toContain('generateReferralCode');
-    // Экран настроек шарит без референции на referral cloud (дешёвый путь).
-    expect(inviteSource).not.toContain('buildCloudReferralInviteShare');
+    // Экран настроек делает cloud invite только по явному нажатию Share, не при render/load.
+    expect(inviteSource).toContain('const onSendInvite = useCallback(async () => {');
+    expect(inviteSource).toContain('await buildCloudReferralInviteShare');
     expect(inviteSource).not.toContain('isReferralCloudEnabled');
     // Синк друзей не читает реферальные коллекции.
     expect(friendsSource).not.toContain("collection('referral_codes')");
@@ -117,15 +117,32 @@ describe('Firebase cost controls', () => {
     expect(rulesSource).toContain('allow create, update: if canonicalUserMatchesAuth(userId);');
   });
 
-  it('updates percentile stats daily and friend activity snapshots every six hours', () => {
+  it('defers non-critical avatar/profile cosmetics while keeping paid economy sync immediate', () => {
+    const avatarSource = read('app/avatar_select.tsx');
+    const profileCardSource = read('app/profile_card_upgrade.tsx');
+
+    expect(avatarSource).toContain('AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
+    expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
+    expect(avatarSource).toContain("cost > 0 ? 'immediate' : 'deferred'");
+    expect(avatarSource).toContain("purchasedAura ? 'immediate' : 'deferred'");
+
+    expect(profileCardSource).toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
+    expect(profileCardSource).toContain('syncToCloud({ deferMs: PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS })');
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('immediate'\)/g) ?? []).length).toBe(2);
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('deferred'\)/g) ?? []).length).toBe(3);
+  });
+
+  it('updates percentile stats daily and keeps full-scan friend/premium cron cadence modest', () => {
     const indexSource = read('functions/src/index.ts');
     const friendActivitySource = read('functions/src/friend_activity_mirror.ts');
+    const premiumExpirySource = read('functions/src/premium_expiry_cron.ts');
     const friendsFeedSource = read('app/firestore_friend_activity.ts');
     const friendsScreenSource = read('app/(tabs)/friends.tsx');
 
     expect(indexSource).toContain("schedule: '0 3 * * *'");
     expect(indexSource).toContain('syncFriendActivityMirrorCron');
-    expect(friendActivitySource).toContain("schedule: 'every 6 hours'");
+    expect(friendActivitySource).toContain("schedule: 'every 12 hours'");
+    expect(premiumExpirySource).toContain("schedule: 'every 12 hours'");
     expect(friendsFeedSource).toContain('const CACHE_TTL_MS = 6 * 60 * 60 * 1000');
     expect(friendsScreenSource).toContain('useEffect(() => { void load(false); }, [load]);');
   });
@@ -135,9 +152,112 @@ describe('Firebase cost controls', () => {
       'react-native'?: { app_check_token_auto_refresh?: boolean };
     };
     const appCheckSource = read('app/app_check_init.ts');
+    const layoutSource = read('app/_layout.tsx');
+    const callableOptionsSource = read('functions/src/callable_options.ts');
+    const indexSource = read('functions/src/index.ts');
+    const accountDeleteSource = read('functions/src/account_delete.ts');
+    const vipRevokeSource = read('functions/src/vip_revoke.ts');
+    const premiumDialogSource = read('functions/src/premium_dialog.ts');
+    const explainPhraseSource = read('functions/src/explain_phrase.ts');
 
     expect(firebaseJson['react-native']?.app_check_token_auto_refresh).toBe(false);
+    expect(appCheckSource).toContain('APP_CHECK_TOKEN_TIMEOUT_MS = 3500');
+    expect(appCheckSource).toContain('EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN');
+    expect(appCheckSource).toContain('EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG');
+    expect(appCheckSource).toContain("provider: 'debug'");
+    expect(appCheckSource).toContain("provider: 'playIntegrity'");
+    expect(appCheckSource).toContain("provider: 'appAttestWithDeviceCheckFallback'");
+    expect(appCheckSource).toContain('appCheck().getToken(false)');
+    expect(appCheckSource).toContain('appCheck().getToken(true)');
+    expect(appCheckSource).toContain('isJwtLikeToken');
+    expect(appCheckSource).toContain('isTokenAutoRefreshEnabled: false');
     expect(appCheckSource).toContain('setAppCheckAutoRefreshEnabled(false)');
     expect(appCheckSource).toContain('setAppCheckAutoRefreshEnabled(true)');
+    expect(appCheckSource).toContain('appCheckInitPromise = null');
+
+    expect(layoutSource).toContain('const appCheckWarmup = Promise.race([');
+    expect(layoutSource).toContain('initFirebaseAppCheckIfAvailable(),');
+    expect(layoutSource).toContain('new Promise<void>((resolve) => setTimeout(resolve, 1200))');
+
+    expect(callableOptionsSource).toContain("ENFORCE_APP_CHECK = process.env.ENFORCE_APP_CHECK === 'true'");
+    expect(callableOptionsSource).toContain("appCheckGroup('ENFORCE_APP_CHECK_SENSITIVE')");
+    expect(callableOptionsSource).toContain("appCheckGroup('ENFORCE_APP_CHECK_OPENAI')");
+    expect(callableOptionsSource).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(accountDeleteSource).toContain('ENFORCE_APP_CHECK_SENSITIVE');
+    expect(vipRevokeSource).toContain('ENFORCE_APP_CHECK_SENSITIVE');
+    expect(premiumDialogSource).toContain('ENFORCE_APP_CHECK_OPENAI');
+    expect(explainPhraseSource).toContain('ENFORCE_APP_CHECK_OPENAI');
+
+    expect(indexSource).toContain("req.headers['x-firebase-appcheck']");
+    expect(indexSource).toContain('admin.appCheck().verifyToken(appCheckToken)');
+  });
+
+  it('keeps second-layer cost guards for low-value reads and callables', () => {
+    const dailyPhraseSource = read('app/daily_phrase_system.ts');
+    const compassModalSource = read('app/compass/compass_briefing_modal.tsx');
+    const arenaHillSource = read('app/services/arena_hill.ts');
+    const indexes = read('firestore.indexes.json');
+
+    expect(dailyPhraseSource).toContain("where('scheduledDate', '==', date)");
+    expect(dailyPhraseSource).toContain("where('scheduledDate', '==', today)");
+    expect(dailyPhraseSource).toContain('REMOTE_DAILY_PHRASE_QUERY_LIMIT = 10');
+    expect(dailyPhraseSource).not.toContain('.limit(500)');
+    expect(indexes).toContain('"collectionGroup": "daily_phrases"');
+    expect(indexes).toContain('"fieldPath": "scheduledDate"');
+
+    expect(compassModalSource).toContain('useCompassVoice(visible ? day : null)');
+
+    expect(arenaHillSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
+    expect(arenaHillSource).toContain('ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000');
+    expect(arenaHillSource).toContain('readStoredArenaHillTopCache');
+    expect(arenaHillSource).toContain('writeStoredArenaHillTopCache');
+  });
+
+  it('keeps hot progress and league callables from repairing identity links on every call', () => {
+    const identitySource = read('functions/src/auth_identity.ts');
+    const progressSource = read('functions/src/progress_events.ts');
+    const leagueSource = read('functions/src/league_groups.ts');
+
+    expect(identitySource).toContain('repairLinks?: boolean');
+    expect(identitySource).toContain('options?.repairLinks !== false');
+    expect(progressSource).toContain('repairLinks: false');
+    expect((leagueSource.match(/repairLinks: false/g) ?? []).length).toBeGreaterThanOrEqual(4);
+  });
+
+  it('lets live progress events qualify referrals before removing the broad users trigger', () => {
+    const referralSource = read('functions/src/referral.ts');
+    const progressSource = read('functions/src/progress_events.ts');
+
+    expect(referralSource).toContain('export async function markRefereeQualified');
+    expect(progressSource).toContain("import { markRefereeQualified } from './referral'");
+    expect(progressSource).toContain('shouldQualifyReferralFromProgressEvent(event)');
+    expect(progressSource).toContain('await markRefereeQualified(db, stableUid)');
+  });
+
+  it('retires broad users document triggers from source exports and safe deploys', () => {
+    const indexSource = read('functions/src/index.ts');
+    const packageJson = read('functions/package.json');
+
+    expect(indexSource).not.toContain('exports.referralOnUserProgressUpdated');
+    expect(indexSource).not.toContain("export { vipReconcileOrphanGrant }");
+    expect(packageJson).not.toContain('functions:referralOnUserProgressUpdated');
+    expect(packageJson).not.toContain('functions:vipReconcileOrphanGrant');
+  });
+
+  it('keeps admin VIP writes canonical so the orphan reconcile trigger can be retired', () => {
+    const adminSource = read('admin/legacy/index.html');
+    const adminV2Source = read('admin/index.html');
+    const adminV2RuntimeSource = read('admin/v2/scripts/admin-firebase.js');
+
+    expect(adminSource).toContain('resolveAdminVipWriteTarget');
+    expect(adminSource).toContain('identityHidden: data.identityHidden === true');
+    expect(adminSource).toContain('canonicalStableId: data.canonicalStableId || null');
+    expect(adminSource).toContain('requestedUid: uid');
+    expect(adminSource.split("updateDoc(doc(db, 'users', writeUid)").length - 1).toBeGreaterThanOrEqual(3);
+    expect(adminV2Source).toContain('Money v2');
+    expect(adminV2RuntimeSource).toContain('VIP grant/revoke');
+    expect(adminV2RuntimeSource).toContain('RevenueCat Premium');
+    expect(adminV2RuntimeSource).toContain('hasAdminClaim');
+    expect(adminV2RuntimeSource).toContain('moneySafetyList');
   });
 });

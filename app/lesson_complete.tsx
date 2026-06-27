@@ -4,7 +4,7 @@ import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Modal, Platform, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
@@ -488,6 +488,8 @@ export default function LessonComplete() {
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
+  const [repeatOpening, setRepeatOpening] = useState(false);
+  const repeatOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
   const premiumBannerNextLesson = useRef(0);
 
@@ -923,6 +925,19 @@ export default function LessonComplete() {
     router.replace({ pathname: '/lesson_menu', params: { id: lessonId } });
   }, [router, lessonId]);
 
+  const handleRepeatLesson = useCallback(() => {
+    if (repeatOpeningRef.current) return;
+    repeatOpeningRef.current = true;
+    setRepeatOpening(true);
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    try {
+      router.replace({ pathname: '/lesson1', params: { id: lessonId } });
+    } catch {
+      repeatOpeningRef.current = false;
+      setRepeatOpening(false);
+    }
+  }, [lessonId, router, studyTarget]);
+
   // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на
   // экран lesson1, который при полном прогрессе тут же снова делал replace на
@@ -1153,7 +1168,10 @@ export default function LessonComplete() {
           <DuoPressable
             testID="lesson-complete-repeat"
             edgeColor={isCompassTheme ? COMPASS_RICH.hairline : t.accent}
-            wrapStyle={{ marginBottom: 14 }}
+            disabled={repeatOpening}
+            accessibilityState={{ busy: repeatOpening }}
+            pressedExternally={repeatOpening}
+            wrapStyle={{ marginBottom: 14, opacity: repeatOpening ? 0.72 : 1 }}
             style={{
               width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderRadius: isCompassTheme ? 9 : 16, padding: 16,
@@ -1161,9 +1179,7 @@ export default function LessonComplete() {
               flexDirection: 'row', justifyContent: 'center', gap: 8,
               overflow: 'hidden',
             }}
-            onPress={() => {
-              void (async () => { await primeLessonScreenFromStorage(lessonId, studyTarget); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })();
-            }}
+            onPress={handleRepeatLesson}
           >
             {isCompassTheme && <CompassDepthSurface radius={9} selected />}
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary, fontSize: 16, fontWeight: '600' }}>

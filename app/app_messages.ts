@@ -347,15 +347,18 @@ export function pickAppMessageText(
   >,
   lang: AppMessageLang,
 ): { title: string; body: string } {
+  // RU всегда заполнен в админке и служит универсальным фолбэком: если перевода на
+  // язык пользователя нет, показываем RU, а не пустую карточку. Раньше pt-BR/vi/id/tr/pl
+  // без перевода давали пустые заголовок и тело — письмо открывалось пустым.
   const byLang: Record<AppMessageLang, { title: string; body: string }> = {
     ru: { title: message.titleRu, body: message.messageRu },
     uk: { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu },
     es: { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu },
-    'pt-BR': { title: message.titlePtBr, body: message.messagePtBr },
-    vi: { title: message.titleVi, body: message.messageVi },
-    id: { title: message.titleId, body: message.messageId },
-    tr: { title: message.titleTr, body: message.messageTr },
-    pl: { title: message.titlePl, body: message.messagePl },
+    'pt-BR': { title: message.titlePtBr || message.titleRu, body: message.messagePtBr || message.messageRu },
+    vi: { title: message.titleVi || message.titleRu, body: message.messageVi || message.messageRu },
+    id: { title: message.titleId || message.titleRu, body: message.messageId || message.messageRu },
+    tr: { title: message.titleTr || message.titleRu, body: message.messageTr || message.messageRu },
+    pl: { title: message.titlePl || message.titleRu, body: message.messagePl || message.messageRu },
   };
   return byLang[lang];
 }
@@ -365,11 +368,11 @@ export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessag
     ru: poll.questionRu,
     uk: poll.questionUk || poll.questionRu,
     es: poll.questionEs || poll.questionRu,
-    'pt-BR': poll.questionPtBr,
-    vi: poll.questionVi,
-    id: poll.questionId,
-    tr: poll.questionTr,
-    pl: poll.questionPl,
+    'pt-BR': poll.questionPtBr || poll.questionRu,
+    vi: poll.questionVi || poll.questionRu,
+    id: poll.questionId || poll.questionRu,
+    tr: poll.questionTr || poll.questionRu,
+    pl: poll.questionPl || poll.questionRu,
   };
   return byLang[lang];
 }
@@ -379,11 +382,11 @@ export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang:
     ru: option.textRu,
     uk: option.textUk || option.textRu,
     es: option.textEs || option.textRu,
-    'pt-BR': option.textPtBr,
-    vi: option.textVi,
-    id: option.textId,
-    tr: option.textTr,
-    pl: option.textPl,
+    'pt-BR': option.textPtBr || option.textRu,
+    vi: option.textVi || option.textRu,
+    id: option.textId || option.textRu,
+    tr: option.textTr || option.textRu,
+    pl: option.textPl || option.textRu,
   };
   return byLang[lang];
 }

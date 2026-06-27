@@ -619,8 +619,14 @@ export default function TrainerScreen() {
         hapticTap();
         if (total <= 0)
             return;
-        router.push({ pathname: '/trainer_smart_session', params: { mode: 'smart_mix' } } as any);
-    }, [router, total]);
+        const targetQueue = dashboard.nextQueue && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
+            ? dashboard.nextQueue
+            : SECTIONS.find(section => (dashboard.due[section.queue] ?? 0) > 0)?.queue;
+        const section = SECTIONS.find(item => item.queue === targetQueue);
+        if (!section)
+            return;
+        router.push(section.route as any);
+    }, [dashboard, router, total]);
     const startQueue = useCallback(async (section: SectionInfo) => {
         const count = dashboard?.due[section.queue] ?? 0;
         hapticTap();

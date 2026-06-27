@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { coerceInterfaceLang, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
+import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 
 export type { Lang };
@@ -1187,7 +1187,7 @@ export function stringsForLang(lang: Lang): Strings {
 }
 
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
-  const [lang, setLangState] = useState<Lang>('ru');
+  const [lang, setLangState] = useState<Lang>(() => getDeviceBootstrapLocale());
   const [langHydrated, setLangHydrated] = useState(false);
 
   useEffect(() => {

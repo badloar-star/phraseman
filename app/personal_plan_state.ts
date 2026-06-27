@@ -469,6 +469,7 @@ export async function readPersonalPlanSnapshot(input?: {
 }
 
 export async function clearPersonalPlanState(): Promise<void> {
+  _planStateCache = null;
   await AsyncStorage.removeItem(PERSONAL_PLAN_STATE_KEY);
   emitAppEvent('personal_plan_updated', undefined);
 }

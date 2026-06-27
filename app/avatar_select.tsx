@@ -870,7 +870,16 @@ export default function AvatarSelect() {
 
       <ThemedConfirmModal
         visible={!!pendingAuraPurchase}
-        title="Подтвердить покупку?"
+        title={triLang(lang, {
+          ru: 'Открыть ауру?',
+          uk: 'Відкрити ауру?',
+          es: '¿Desbloquear el aura?',
+          'pt-BR': 'Abrir a aura?',
+          vi: 'Mở hào quang?',
+          id: 'Buka aura?',
+          tr: 'Aurayı aç?',
+          pl: 'Odblokować aurę?',
+        })}
         messageNode={pendingAuraPurchase ? (
           <View style={{ marginBottom: 22 }}>
             <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.5 }}>

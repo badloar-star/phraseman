@@ -489,13 +489,13 @@ function NoEnergyModal({
                     pl: 'Na stronę główną',
                   })
                 : triLang(lang, {
-                    ru: 'Понятно',
-                    uk: 'Зрозуміло',
-                    es: 'Entendido',
-                    'pt-BR': 'Entendi',
-                    vi: 'Đã hiểu',
-                    id: 'Mengerti',
-                    tr: 'Anladım',
+                    ru: 'Закрыть',
+                    uk: 'Закрити',
+                    es: 'Cerrar',
+                    'pt-BR': 'Fechar',
+                    vi: 'Đóng',
+                    id: 'Tutup',
+                    tr: 'Kapat',
                     pl: 'Rozumiem',
                   })}
             </Text>

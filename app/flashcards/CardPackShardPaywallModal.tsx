@@ -167,19 +167,19 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   }
   return {
     cancel: 'Отмена',
-    buy: 'Купить',
-    buyShards: 'Купить осколки',
-    forShards: (n: number) => `Купить за ${n} осколков`,
+    buy: 'Открыть',
+    buyShards: 'Пополнить осколки',
+    forShards: (n: number) => `Открыть за ${n} осколков`,
     insufficientTitle: 'Недостаточно осколков',
     insufficientIntro:
-      'Пополните баланс в магазине осколков — кнопка ниже откроет вкладку с пакетами.',
+      'Пополни баланс в магазине осколков — кнопка ниже откроет вкладку с пакетами.',
     balanceBlockTitle: 'Для этого набора',
-    ctaSub: 'Покупка в одно касание',
+    ctaSub: 'Откроется в одно касание',
     shopCtaSub: 'Пакеты осколков в магазине',
-    voucherKicker: '🎁 Бесплатный набор',
+    voucherKicker: '🎁 Набор в подарок',
     voucherTitle: 'Использовать подарок?',
     voucherIntro:
-      'Этот набор добавится в «Карточки» бесплатно — цену осколков платить не нужно.',
+      'Этот набор добавится в «Карточки» бесплатно — осколки тратить не нужно.',
     voucherWarn:
       '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
     voucherCta: '🎁 Использовать подарок',
@@ -189,8 +189,8 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     metaCards: (n: number) => `${n} карточек`,
     shortageRemaining: (n: number) => `Не хватает ещё ${n} осколков`,
     needLabel: 'Нужно',
-    youHaveLabel: 'У вас',
-    costLabel: 'Стоимость',
+    youHaveLabel: 'У тебя',
+    costLabel: 'Нужно осколков',
     shardsUnit: 'осколков',
     waitBusy: '',
     reportPack: '⚐ Пожаловаться на набор',

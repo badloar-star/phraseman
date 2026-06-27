@@ -345,7 +345,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
             <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
               {variant === 'vip'
                 ? triLang(lang, { ru: 'VIP-доступ открыт: энергия и все функции', uk: 'VIP-доступ відкрито: енергія й усі функції', es: 'Acceso VIP: energía y todo desbloqueado', 'pt-BR': 'Acesso VIP: energia e tudo liberado', vi: 'VIP: năng lượng và mọi tính năng', id: 'Akses VIP: energi dan semua fitur', tr: 'VIP: enerji ve tüm özellikler', pl: 'Dostęp VIP: energia i wszystkie funkcje' })
-                : triLang(lang, { ru: 'Всё открыто. Учи без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
+                : triLang(lang, { ru: 'Всё открыто. Прокачивайся без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
             </Text>
           </View>
         </Reanimated.View>
@@ -404,7 +404,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
               <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>
                 {variant === 'vip'
                   ? triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Vamos', 'pt-BR': 'Vamos', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi', pl: 'Zaczynamy' })
-                  : triLang(lang, { ru: 'Начать учиться', uk: 'Почати вчитися', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu học', id: 'Mulai belajar', tr: 'Öğrenmeye başla', pl: 'Zacznij naukę' })}
+                  : triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' })}
               </Text>
               <View style={styles.shimmerMask} pointerEvents="none">
                 <Reanimated.View style={[styles.shimmer, shimmerStyle]}>

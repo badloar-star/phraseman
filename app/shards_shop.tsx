@@ -418,8 +418,8 @@ export default function ShardsShopScreen() {
       return {
         icon: 'logo-apple-appstore',
         cardPurchase: triLang(lang, {
-          ru: 'Покупка — в App Store',
-          uk: 'Покупка — в App Store',
+          ru: 'Оплата — в App Store',
+          uk: 'Оплата — в App Store',
           es: 'Compra — App Store',
           'pt-BR': 'Compra — App Store',
           vi: 'Mua hàng — App Store',
@@ -438,7 +438,7 @@ export default function ShardsShopScreen() {
           pl: 'Płatność w App Store',
         }),
         notReady: triLang(lang, {
-          ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в App Store Connect.',
+          ru: 'Магазин временно недоступен. Попробуй позже.',
           uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.',
           es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.',
           'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no App Store Connect.',
@@ -473,7 +473,7 @@ export default function ShardsShopScreen() {
           pl: 'Płatność w Google Play',
         }),
         notReady: triLang(lang, {
-          ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в Google Play.',
+          ru: 'Магазин временно недоступен. Попробуй позже.',
           uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.',
           es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.',
           'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no Google Play.',
@@ -487,8 +487,8 @@ export default function ShardsShopScreen() {
     return {
       icon: 'shield-checkmark',
       cardPurchase: triLang(lang, {
-        ru: 'Покупка — в магазине приложений',
-        uk: 'Покупка — у магазині застосунків',
+        ru: 'Оплата — в магазине приложений',
+        uk: 'Оплата — у магазині застосунків',
         es: 'Compra — tienda de apps',
         'pt-BR': 'Compra — loja de apps',
         vi: 'Mua hàng — cửa hàng ứng dụng',
@@ -507,7 +507,7 @@ export default function ShardsShopScreen() {
         pl: 'Płatność w sklepie z aplikacjami',
       }),
       notReady: triLang(lang, {
-        ru: 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в магазине приложений.',
+        ru: 'Магазин временно недоступен. Попробуй позже.',
         uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в магазині застосунків.',
         es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.',
         'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos na loja de apps.',
@@ -947,8 +947,8 @@ export default function ShardsShopScreen() {
         }).catch(() => {});
         emitAppEvent('action_toast', {
           type: 'info',
-          messageRu: 'Покупка подтверждена.',
-          messageUk: 'Покупку підтверджено.',
+          messageRu: 'Оплата подтверждена.',
+          messageUk: 'Оплату підтверджено.',
           messageEs: 'Compra confirmada.',
           messagePtBr: 'Compra confirmada.',
           messageVi: 'Đã xác nhận giao dịch mua.',
@@ -979,22 +979,22 @@ export default function ShardsShopScreen() {
         } else {
           emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Покупка принята. Осколки появятся после webhook RevenueCat.',
-            messageUk: 'Покупку прийнято. Осколки з\'являться після webhook RevenueCat.',
-            messageEs: 'Compra recibida. Los fragmentos aparecerán tras el webhook de RevenueCat.',
-            messagePtBr: 'Compra recebida. Os fragmentos aparecerão após o webhook do RevenueCat.',
-            messageVi: 'Đã nhận giao dịch mua. Mảnh sẽ xuất hiện sau webhook RevenueCat.',
-            messageId: 'Pembelian diterima. Shard akan muncul setelah webhook RevenueCat.',
-            messageTr: 'Satın alma alındı. Parçalar RevenueCat webhook sonrasında görünecek.',
-            messagePl: 'Zakup przyjęty. Odłamki pojawią się po webhooku RevenueCat.',
+            messageRu: 'Оплата принята. Осколки появятся через пару минут.',
+            messageUk: 'Оплату прийнято. Осколки з\'являться за пару хвилин.',
+            messageEs: 'Pago recibido. Los fragmentos aparecerán en un par de minutos.',
+            messagePtBr: 'Pagamento recebido. Os fragmentos aparecerão em alguns minutos.',
+            messageVi: 'Đã nhận thanh toán. Mảnh sẽ xuất hiện sau vài phút.',
+            messageId: 'Pembayaran diterima. Shard akan muncul dalam beberapa menit.',
+            messageTr: 'Ödeme alındı. Parçalar birkaç dakika içinde görünecek.',
+            messagePl: 'Płatność przyjęta. Odłamki pojawią się za kilka minut.',
           });
         }
       } catch (e: any) {
         if (e?.userCancelled) return;
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: 'Ошибка покупки. Попробуй ещё раз.',
-          messageUk: 'Помилка покупки. Спробуйте ще раз.',
+          messageRu: 'Не получилось оформить. Давай ещё раз.',
+          messageUk: 'Не вдалося оформити. Спробуй ще раз.',
           messageEs: 'Error en la compra. Inténtalo de nuevo.',
           messagePtBr: 'Erro na compra. Tente novamente.',
           messageVi: 'Lỗi khi mua. Hãy thử lại.',
@@ -1608,8 +1608,8 @@ export default function ShardsShopScreen() {
                                       pl: '🎁 Użyj prezentu',
                                     })
                                     : triLang(lang, {
-                                      ru: `Купить за ${pack.priceShards} осколков`,
-                                      uk: `Купити за ${pack.priceShards} осколків`,
+                                      ru: `Открыть за ${pack.priceShards} осколков`,
+                                      uk: `Відкрити за ${pack.priceShards} осколків`,
                                       es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
                                       'pt-BR': `Comprar por ${pack.priceShards} fragmentos`,
                                       vi: `Mua với ${pack.priceShards} mảnh`,
@@ -1730,8 +1730,8 @@ export default function ShardsShopScreen() {
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Осколки (оплата)',
-                  uk: 'Осколки (оплата)',
+                  ru: 'Осколки за деньги',
+                  uk: 'Осколки за гроші',
                   es: `${BRAND_SHARDS_ES} (pago)`,
                   'pt-BR': 'Fragmentos (pagamento)',
                   vi: 'Mảnh (thanh toán)',

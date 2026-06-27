@@ -17,14 +17,14 @@ export function periodLabelFor(lang: Lang, plan: PaywallPlan): string {
 export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false): string {
   if (isLifetime) {
     return triLang(lang, {
-      ru: 'Купить навсегда',
-      uk: 'Купити назавжди',
-      es: 'Comprar para siempre',
-      'pt-BR': 'Comprar para sempre',
-      vi: 'Mua trọn đời',
-      id: 'Beli selamanya',
-      tr: 'Sonsuza dek satın al',
-      pl: 'Kup na zawsze',
+      ru: 'Открыть навсегда',
+      uk: 'Відкрити назавжди',
+      es: 'Abrir para siempre',
+      'pt-BR': 'Abrir para sempre',
+      vi: 'Mở trọn đời',
+      id: 'Buka selamanya',
+      tr: 'Sonsuza dek aç',
+      pl: 'Otwórz na zawsze',
     });
   }
   if (trialDays) {
@@ -59,7 +59,7 @@ export function ctaSubLineFor(
   if (args.isLifetime) {
     if (!args.price) {
       return triLang(lang, {
-        ru: 'Точная сумма появится перед покупкой.',
+        ru: 'Точная сумма появится перед оформлением.',
         uk: 'Точна сума з’явиться перед покупкою.',
         es: 'El precio exacto aparecerá antes de comprar.',
         'pt-BR': 'O preço exato aparecerá antes da compra.',
@@ -134,7 +134,7 @@ export function stickyStringsFor(
   // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
   // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Купить навсегда»).
   const button = args.isLifetime
-    ? triLang(lang, { ru: 'Купить навсегда', uk: 'Купити назавжди', es: 'Comprar para siempre', 'pt-BR': 'Comprar para sempre', vi: 'Mua trọn đời', id: 'Beli selamanya', tr: 'Sonsuza dek al', pl: 'Kup na zawsze' })
+    ? triLang(lang, { ru: 'Открыть навсегда', uk: 'Відкрити назавжди', es: 'Abrir para siempre', 'pt-BR': 'Abrir para sempre', vi: 'Mở trọn đời', id: 'Buka selamanya', tr: 'Sonsuza dek aç', pl: 'Otwórz na zawsze' })
     : args.trialDays
     ? triLang(lang, {
         ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',

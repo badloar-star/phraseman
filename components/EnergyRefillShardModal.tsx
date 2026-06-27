@@ -124,8 +124,8 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
     pl: 'Masz energię bez limitu (Premium albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
   });
   const hintFull = triLang(lang, {
-    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в уроке или вызове — тогда сможешь купить полное восстановление за осколки.`,
-    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у уроці або квізі — тоді зможеш купити повне відновлення за осколки.`,
+    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за осколки.`,
+    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за осколки.`,
     es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`,
     'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com fragmentos.`,
     vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng mảnh.`,

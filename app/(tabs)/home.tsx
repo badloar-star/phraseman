@@ -1835,8 +1835,8 @@ export default function HomeScreen() {
                 kind: 'tasks' as const,
                 iconKey: 'dayTasks' as const,
                 label: triLang(lang, {
-                    ru: 'Задания дня',
-                    uk: 'Завдання дня',
+                    ru: 'Вызовы дня',
+                    uk: 'Виклики дня',
                     es: 'Tareas del día',
                     'pt-BR': "Tarefas do dia",
                     vi: "Nhiệm vụ hôm nay",
@@ -2940,8 +2940,8 @@ export default function HomeScreen() {
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
                     {triLang(lang, {
-                    ru: 'Задания дня',
-                    uk: 'Завдання дня',
+                    ru: 'Вызовы дня',
+                    uk: 'Виклики дня',
                     es: 'Tareas del día',
                     'pt-BR': "Tarefas do dia",
                     vi: "Nhiệm vụ hôm nay",

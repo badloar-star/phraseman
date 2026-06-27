@@ -1019,8 +1019,8 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Moje ćwiczenie",
             }),
             label: triLang(lang, {
-                ru: 'Быстрые ошибки',
-                uk: 'Швидкі помилки',
+                ru: 'Быстрые промахи',
+                uk: 'Швидкі промахи',
                 es: "Errores rápidos",
                 'pt-BR': "Erros rápidos",
                 vi: "Lỗi nhanh",
@@ -1029,8 +1029,8 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Szybkie błędy",
             }),
             reason: triLang(lang, {
-                ru: 'Разбирает быстрые ошибки без давления, чтобы следующий ответ был увереннее.',
-                uk: 'Розбирає швидкі помилки без тиску, щоб наступна відповідь була впевненішою.',
+                ru: 'Разбирает быстрые промахи без давления, чтобы следующий ответ был увереннее.',
+                uk: 'Розбирає швидкі промахи без тиску, щоб наступна відповідь була впевненішою.',
                 es: "Revisa errores rápidos sin presión.",
                 'pt-BR': "Revisa erros rápidos sem pressão.",
                 vi: "Ôn các lỗi nhanh mà không bị áp lực.",
@@ -1039,8 +1039,8 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Powtarza szybkie błędy bez presji.",
             }),
             cta: triLang(lang, {
-                ru: 'Разобрать ошибки',
-                uk: 'Розібрати помилки',
+                ru: 'Разобрать промахи',
+                uk: 'Розібрати промахи',
                 es: "Revisar errores",
                 'pt-BR': "Revisar erros",
                 vi: "Ôn lỗi sai",
@@ -2802,8 +2802,8 @@ export default function DailyTasksScreen() {
 
             <Text style={[rerollStyles.hint, { color: t.textMuted }]}>
               {triLang(lang, {
-            ru: 'Лимит — 1 замена в сутки. Прогресс старого задания не сохранится.',
-            uk: 'Ліміт — 1 заміна на добу. Прогрес старого завдання не збережеться.',
+            ru: 'Лимит — 1 замена в сутки. Старый вызов начнётся заново.',
+            uk: 'Ліміт — 1 заміна на добу. Старий виклик почнеться заново.',
             es: 'Límite: 1 reemplazo por día. El progreso de la tarea anterior se perderá.',
             'pt-BR': "Limite: 1 substituição por dia. O progresso da tarefa anterior será perdido.",
             vi: "Giới hạn: 1 lần đổi mỗi ngày. Tiến độ của nhiệm vụ cũ sẽ bị mất.",

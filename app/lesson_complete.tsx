@@ -333,8 +333,8 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
       pl: '🎓 Egzamin Lingmana odblokowany!',
     });
     modalSub = triLang(lang, {
-      ru: 'Все уроки = 5.0 и все зачёты сданы! Финальный экзамен открыт.',
-      uk: 'Всі уроки = 5.0 та всі заліки здано! Фінальний іспит відкрито.',
+      ru: 'Все занятия = 5.0 и все зачёты сданы! Финальный экзамен открыт.',
+      uk: 'Всі заняття = 5.0 та всі заліки здано! Фінальний іспит відкрито.',
       es: '¡Todas las lecciones a 5,0 y todos los exámenes de nivel superados! Examen final abierto.',
       'pt-BR': 'Todas as lições = 5,0 e todas as avaliações concluídas! O exame final está aberto.',
       vi: 'Tất cả bài học đạt 5,0 và mọi bài kiểm tra đã hoàn thành! Kỳ thi cuối đã mở.',

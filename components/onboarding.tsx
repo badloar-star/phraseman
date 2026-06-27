@@ -3777,7 +3777,7 @@ function AuthOnboardingStep({
             ]}
             maxFontSizeMultiplier={1.08}
           >
-            {authPick('Сохрани прогресс', 'Збережи прогрес', 'Guarda tu progreso')}
+            {authPick('Сохрани свой путь', 'Збережи свій шлях', 'Guarda tu camino')}
           </Text>
           <Text
             maxFontSizeMultiplier={1.08}
@@ -3791,7 +3791,7 @@ function AuthOnboardingStep({
             }}
           >
             {authPick(
-              'Можно пропустить. Но если сменить телефон — прогресс останется только на этом устройстве.',
+              'Можно пропустить. А если привяжешь аккаунт — твой путь будет с тобой на любом телефоне.',
               'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.',
               'Puedes seguir sin iniciar sesión, pero si eliminas la app sin vincular tu cuenta, podrías perder el progreso. Puedes vincularla más tarde en Ajustes.',
             )}

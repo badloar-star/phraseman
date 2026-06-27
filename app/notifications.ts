@@ -210,20 +210,20 @@ const canUseNotifications = async (requestIfNeeded: boolean): Promise<boolean> =
 
 // ── Мотивационные сообщения ──────────────────────────────────────────────────
 const MESSAGES_RU = [
-  { title: '🔥 Цепочка ждёт тебя!',        body: 'Не прерывай серию — 5 минут в день изменят всё' },
-  { title: '📚 Время для English',         body: 'Один урок сегодня — уверенность на всю жизнь' },
-  { title: '⭐ Обгони соперника!',          body: 'Кто-то обошёл тебя в лиге. Ответный ход?' },
-  { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения заданий!' },
-  { title: '💪 Не останавливайся!',        body: 'Ты уже столько прошёл. Продолжи сегодня' },
+  { title: '🔥 Серия ждёт тебя!',          body: '5 минут в день — и серия растёт' },
+  { title: '📚 Время для English',         body: 'Один раунд сегодня — уверенность на всю жизнь' },
+  { title: '⭐ Верни лидерство!',           body: 'Один раунд — и ты снова выше в лиге' },
+  { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения вызовов!' },
+  { title: '💪 Так держать!',              body: 'Ты уже столько прошёл. Продолжи сегодня' },
   { title: '🧠 Повтори вчерашнее',         body: 'Лучшее время для повторения — сейчас' },
 ];
 
 const MESSAGES_UK = [
-  { title: '🔥 Стрік чекає тебе!',         body: 'Не переривай серію — 5 хвилин на день змінять все' },
-  { title: '📚 Час для English',            body: 'Один урок сьогодні — впевненість на все життя' },
-  { title: '⭐ Виперед суперника!',          body: 'Хтось обійшов тебе в лізі. Час дати відповідь?' },
-  { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення завдань!' },
-  { title: '💪 Не зупиняйся!',             body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
+  { title: '🔥 Серія чекає тебе!',         body: '5 хвилин на день — і серія росте' },
+  { title: '📚 Час для English',            body: 'Один раунд сьогодні — впевненість на все життя' },
+  { title: '⭐ Поверни лідерство!',          body: 'Один раунд — і ти знову вище в лізі' },
+  { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення викликів!' },
+  { title: '💪 Так тримати!',              body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
   { title: '🧠 Повтори вчорашнє',          body: 'Найкращий час для повторення — зараз' },
 ];
 
@@ -584,51 +584,51 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
     if (!canShowNow) return;
 
     const _p = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-    const ruTitle = [`🔥 Цепочка ${streak} дней под угрозой!`, `⚠️ Твоя цепочка ${streak} дней может исчезнуть сегодня!`, `😱 ${streak} дней подряд в опасности — зайди сейчас!`, `🚨 Не сломай серию из ${streak} дней!`];
-    const ukTitle = [`🔥 Стрік ${streak} днів під загрозою!`, `⚠️ Твій стрік ${streak} днів може зникнути сьогодні!`, `😱 ${streak} днів у небезпеці — зайди зараз!`, `🚨 Не зламай серію з ${streak} днів!`];
+    const ruTitle = [`🔥 Защити серию ${streak} дней`, `⭐ Серия ${streak} дней ждёт тебя сегодня`, `💪 Продолжи серию ${streak} дней — один раунд`, `🔥 Серия ${streak} дней — сохрани её сегодня`];
+    const ukTitle = [`🔥 Захисти серію ${streak} днів`, `⭐ Серія ${streak} днів чекає на тебе сьогодні`, `💪 Продовж серію ${streak} днів — один раунд`, `🔥 Серія ${streak} днів — збережи її сьогодні`];
     const esTitle = [
-      `🔥 ¡Tu racha de ${streak} días puede romperse!`,
-      `⚠️ Vas ${streak} días seguidos; hoy no la desperdicies`,
-      `😱 ¡${streak} días de constancia — no tires la toalla ahora!`,
-      `🚨 No pierdas una racha de ${streak} días`,
+      `🔥 Protege tu racha de ${streak} días`,
+      `⭐ Tu racha de ${streak} días te espera hoy`,
+      `💪 Continúa tu racha de ${streak} días — una ronda`,
+      `🔥 Racha de ${streak} días — consérvala hoy`,
     ];
     const _title = pickNotif(lang, notificationCopy({
       ru: _p(ruTitle),
       uk: _p(ukTitle),
       es: _p(esTitle),
       'pt-BR': _p([
-        `🔥 Sua sequência de ${streak} dias está em risco!`,
-        `⚠️ Sua sequência de ${streak} dias pode acabar hoje!`,
-        `😱 ${streak} dias seguidos em perigo — entre agora!`,
-        `🚨 Não quebre uma sequência de ${streak} dias!`,
+        `🔥 Proteja sua sequência de ${streak} dias`,
+        `⭐ Sua sequência de ${streak} dias espera por você hoje`,
+        `💪 Continue sua sequência de ${streak} dias — uma rodada`,
+        `🔥 Sequência de ${streak} dias — mantenha-a hoje`,
       ]),
       vi: _p([
-        `🔥 Chuỗi ${streak} ngày của bạn đang gặp nguy!`,
-        `⚠️ Chuỗi ${streak} ngày có thể mất hôm nay!`,
-        `😱 ${streak} ngày liên tiếp đang nguy hiểm — vào học ngay!`,
-        `🚨 Đừng làm đứt chuỗi ${streak} ngày!`,
+        `🔥 Bảo vệ chuỗi ${streak} ngày của bạn`,
+        `⭐ Chuỗi ${streak} ngày đang chờ bạn hôm nay`,
+        `💪 Tiếp tục chuỗi ${streak} ngày — một vòng thôi`,
+        `🔥 Chuỗi ${streak} ngày — giữ vững hôm nay`,
       ]),
       id: _p([
-        `🔥 Streak ${streak} harimu terancam!`,
-        `⚠️ Streak ${streak} hari bisa hilang hari ini!`,
-        `😱 ${streak} hari berturut-turut dalam bahaya — buka sekarang!`,
-        `🚨 Jangan putuskan streak ${streak} hari!`,
+        `🔥 Lindungi streak ${streak} harimu`,
+        `⭐ Streak ${streak} hari menunggumu hari ini`,
+        `💪 Lanjutkan streak ${streak} hari — satu ronde`,
+        `🔥 Streak ${streak} hari — jaga hari ini`,
       ]),
       tr: _p([
-        `🔥 ${streak} günlük serin riskte!`,
-        `⚠️ ${streak} günlük serin bugün bitebilir!`,
-        `😱 ${streak} gün üst üste emek tehlikede — şimdi gir!`,
-        `🚨 ${streak} günlük seriyi bozma!`,
+        `🔥 ${streak} günlük serini koru`,
+        `⭐ ${streak} günlük serin bugün seni bekliyor`,
+        `💪 ${streak} günlük serini sürdür — bir tur`,
+        `🔥 ${streak} günlük seri — bugün koru`,
       ]),
       pl: _p([
-        `🔥 Twoja seria ${streak} dni jest zagrożona!`,
-        `⚠️ Seria ${streak} dni może dziś przepaść!`,
-        `😱 ${streak} dni z rzędu wisi na włosku — wejdź teraz!`,
-        `🚨 Nie przerwij serii ${streak} dni!`,
+        `🔥 Chroń swoją serię ${streak} dni`,
+        `⭐ Seria ${streak} dni czeka na ciebie dziś`,
+        `💪 Kontynuuj serię ${streak} dni — jedna runda`,
+        `🔥 Seria ${streak} dni — zachowaj ją dziś`,
       ]),
     }));
-    const ruBody = ['Ещё несколько часов и серия прервётся. Зайди сейчас!', 'Один урок — и цепочка сохранена. Ты можешь это! 💪', 'Не дай огню погаснуть! Один урок решает всё 🔥', '5 минут — и серия жива. Не останавливайся!'];
-    const ukBody = ['Ще кілька годин і серія зірветься. Зайди зараз!', 'Один урок — і стрік збережено. Ти можеш це зробити! 💪', 'Не дай вогню згаснути! Один урок вирішує все 🔥', '5 хвилин — і серія жива. Не зупиняйся!'];
+    const ruBody = ['Ещё есть время продолжить — один раунд, и день твой 🔥', 'Один раунд — и серия с тобой. Ты справишься! 💪', 'Заходи на 5 минут — и серия живёт 🔥', '5 минут сегодня — и серия растёт дальше!'];
+    const ukBody = ['Ще є час продовжити — один раунд, і день твій 🔥', 'Один раунд — і серія з тобою. Ти впораєшся! 💪', 'Зайди на 5 хвилин — і серія живе 🔥', '5 хвилин сьогодні — і серія росте далі!'];
     const esBody = [
       'En unas horas se cortará la racha; entra cuando puedas.',
       'Con una sola lección la salvas. Vamos 💪',
@@ -1275,16 +1275,16 @@ export const scheduleStreakWarningIfNeeded = async (
     if (streak >= 15) {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🚨 Невероятная цепочка из ${streak} дней под угрозой!`,
-          `😱 ${streak} дней — и всё может исчезнуть сегодня!`,
-          `🏆 Легендарная цепочка ${streak} дней в опасности!`,
-          `⚡ Не дай погаснуть ${streak}-дневной серии!`,
+          `🏆 Сбереги легендарную серию ${streak} дней`,
+          `⭐ ${streak} дней подряд — продолжи сегодня`,
+          `🔥 Серия ${streak} дней ждёт тебя — один раунд`,
+          `⚡ Один раунд — и серия ${streak} дней с тобой`,
         ]),
         uk: _ps([
-          `🚨 Неймовірний стрік ${streak} днів під загрозою!`,
-          `😱 ${streak} днів — і все може зникнути сьогодні!`,
-          `🏆 Стрік-легенда ${streak} днів у небезпеці!`,
-          `⚡ Не дай згаснути ${streak}-денній серії!`,
+          `🏆 Збережи легендарну серію ${streak} днів`,
+          `⭐ ${streak} днів поспіль — продовж сьогодні`,
+          `🔥 Серія ${streak} днів чекає на тебе — один раунд`,
+          `⚡ Один раунд — і серія ${streak} днів з тобою`,
         ]),
         es: _ps([
           `🚨 ¡Tu racha de ${streak} días corre peligro!`,
@@ -1325,16 +1325,16 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `Твой результат на грани! Один урок — и серия спасена 🔥`,
-          `Столько усилий! Не останавливайся — один урок решает всё 💪`,
-          `${streak} дней труда — не дай им исчезнуть! Зайди сейчас 🚀`,
-          `Ты почти легенда. Один урок — и цепочка жива! ⭐`,
+          `Один раунд — и серия с тобой 🔥`,
+          `Столько усилий уже позади! Один раунд — и день твой 💪`,
+          `${streak} дней труда — продолжи сегодня! Заходи 🚀`,
+          `Ты почти легенда. Один раунд — и серия жива! ⭐`,
         ]),
         uk: _ps([
-          `Твій результат на межі! Один урок — і серія спасена 🔥`,
-          `Стільки зусиль! Не зупиняйся тепер — один урок вирішує все 💪`,
-          `${streak} днів праці — не дай їм зникнути! Зайди зараз 🚀`,
-          `Ти майже легенда. Один урок — і стрік живий! ⭐`,
+          `Один раунд — і серія з тобою 🔥`,
+          `Стільки зусиль уже позаду! Один раунд — і день твій 💪`,
+          `${streak} днів праці — продовж сьогодні! Заходь 🚀`,
+          `Ти майже легенда. Один раунд — і серія жива! ⭐`,
         ]),
         es: _ps([
           `Estás al filo: con una lección la salvas 🔥`,
@@ -1376,16 +1376,16 @@ export const scheduleStreakWarningIfNeeded = async (
     } else if (streak >= 7) {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🔥 Твоя цепочка ${streak} дней в опасности!`,
-          `⚠️ ${streak} дней подряд под угрозой — действуй!`,
-          `😤 Не сдавай ${streak}-дневную серию!`,
-          `🎯 Цепочка из ${streak} дней ждёт тебя сегодня!`,
+          `🔥 Продолжи серию ${streak} дней сегодня`,
+          `⚡ ${streak} дней подряд — не упусти ритм, заходи`,
+          `💪 Защити серию ${streak} дней — один раунд`,
+          `🎯 Серия из ${streak} дней ждёт тебя сегодня!`,
         ]),
         uk: _ps([
-          `🔥 Твій стрік ${streak} днів у небезпеці!`,
-          `⚠️ ${streak} дні під загрозою — діяй!`,
-          `😤 Не здавай ${streak}-денню серію!`,
-          `🎯 Стрік ${streak} днів чекає тебе сьогодні!`,
+          `🔥 Продовж серію ${streak} днів сьогодні`,
+          `⚡ ${streak} днів поспіль — не втрать ритм, заходь`,
+          `💪 Захисти серію ${streak} днів — один раунд`,
+          `🎯 Серія з ${streak} днів чекає тебе сьогодні!`,
         ]),
         es: _ps([
           `🔥 Racha de ${streak} días en la cuerda floja`,
@@ -1426,15 +1426,15 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `Не теряй накопленное! Один урок — и всё сохранено 💪`,
-          `7+ дней усилий — не останавливайся сейчас! 🔥`,
-          `Твоя цепочка заслуживает продолжения. Один урок — и ты молодец! ⭐`,
+          `Сохрани накопленное! Один раунд — и всё с тобой 💪`,
+          `7+ дней усилий — продолжи сегодня! 🔥`,
+          `Твоя серия заслуживает продолжения. Один раунд — и ты молодец! ⭐`,
           `Зайди на 5 минут — и серия жива! 🚀`,
         ]),
         uk: _ps([
-          `Не втрачай накопичене! Один урок — і все збережено 💪`,
-          `7+ днів зусиль — не зупиняйся зараз! 🔥`,
-          `Твій стрік заслуговує продовження. Один урок — і ти молодець! ⭐`,
+          `Збережи накопичене! Один раунд — і все з тобою 💪`,
+          `7+ днів зусиль — продовж сьогодні! 🔥`,
+          `Твоя серія заслуговує продовження. Один раунд — і ти молодець! ⭐`,
           `Зайди на 5 хвилин — і серія жива! 🚀`,
         ]),
         es: _ps([
@@ -1477,16 +1477,16 @@ export const scheduleStreakWarningIfNeeded = async (
     } else {
       title = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `🔥 Цепочка ${streak} дней — не прерывай сегодня!`,
-          `💪 ${streak} дней подряд — не останавливайся!`,
-          `📚 Один урок — и цепочка сохранена!`,
-          `⚡ Не пропусти сегодняшний урок!`,
+          `🔥 Серия ${streak} дней растёт — продолжи сегодня!`,
+          `💪 ${streak} дней подряд — так держать!`,
+          `📚 Один раунд — и серия растёт!`,
+          `⚡ Зайди на 5 минут — серия жива!`,
         ]),
         uk: _ps([
-          `🔥 Стрік ${streak} днів — не переривай сьогодні!`,
-          `💪 ${streak} дні поспіль — не зупиняйся!`,
-          `📚 Один урок — і стрік збережено!`,
-          `⚡ Не пропусти сьогоднішній урок!`,
+          `🔥 Серія ${streak} днів росте — продовж сьогодні!`,
+          `💪 ${streak} дні поспіль — так тримати!`,
+          `📚 Один раунд — і серія росте!`,
+          `⚡ Зайди на 5 хвилин — серія жива!`,
         ]),
         es: _ps([
           `🔥 ${streak} días de racha: no la cortes hoy`,
@@ -1527,16 +1527,16 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `Ещё есть время! Один урок сохранит серию.`,
-          `Начни — и уже через 5 минут цепочка будет сохранена! 🎯`,
+          `Ещё есть время! Один раунд — и серия растёт.`,
+          `Начни — и уже через 5 минут серия станет длиннее! 🎯`,
           `Маленький шаг сегодня — большой результат завтра 🚀`,
-          `Не давай привычке сломаться — зайди и сделай урок! 💪`,
+          `Закрепи привычку — зайди и сделай короткий раунд! 💪`,
         ]),
         uk: _ps([
-          `Ще є час! Один урок збереже серію.`,
-          `Почни — і вже за 5 хвилин стрік буде збережено! 🎯`,
+          `Ще є час! Один раунд — і серія росте.`,
+          `Почни — і вже за 5 хвилин серія стане довшою! 🎯`,
           `Маленький крок сьогодні — великий результат завтра 🚀`,
-          `Не давай звичці зламатися — зайди і зроби урок! 💪`,
+          `Закріпи звичку — зайди і зроби короткий раунд! 💪`,
         ]),
         es: _ps([
           `Aún queda margen; una clase la mantiene viva.`,
@@ -1934,8 +1934,8 @@ export const checkLeagueOvertakeNotification = async (
     if (!canShowNow) return;
 
     const _po = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-    const ruT = [`😤 ${leaderName} обогнал тебя в клубе!`, `⚔️ ${leaderName} вырвался вперёд! Твой ход!`, `🔥 ${leaderName} наступает — не сдавай позиции!`, `😱 Тебя обошли! ${leaderName} теперь впереди.`];
-    const ukT = [`😤 ${leaderName} обігнав тебе в клубі!`, `⚔️ ${leaderName} вирвався вперед! Твоя черга!`, `🔥 ${leaderName} наступає — не здавай позиції!`, `😱 Тебе обійшли! ${leaderName} тепер попереду.`];
+    const ruT = [`⚔️ ${leaderName} вырвался вперёд — твой ход!`, `🔥 Верни лидерство одним раундом!`, `⚡ Догони ${leaderName} — один раунд решает!`, `🎯 ${leaderName} впереди — покажи класс!`];
+    const ukT = [`⚔️ ${leaderName} вирвався вперед — твоя черга!`, `🔥 Поверни лідерство одним раундом!`, `⚡ Наздожени ${leaderName} — один раунд вирішує!`, `🎯 ${leaderName} попереду — покажи клас!`];
     const esT = [`😤 ${leaderName} te adelantó en el club`, `⚔️ ${leaderName} se colocó por delante: te toca responder`, `🔥 ${leaderName} escala posiciones — no pierdas el ritmo`, `😱 ¡Te han superado! ${leaderName} va ahora por delante.`];
     const title = pickNotif(lang, notificationCopy({
       ru: _po(ruT),

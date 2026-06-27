@@ -121,7 +121,7 @@ export default function WelcomeSlides({ branch, onClose }: Props) {
               ))}
             </View>
             <Pressable style={[styles.primaryBtn, { backgroundColor: accent }]} onPress={next}>
-              <Text style={[styles.primaryTxt, { color: onAccent }]}>{last ? script.primaryStart : 'Далее'}</Text>
+              <Text style={[styles.primaryTxt, { color: onAccent }]}>{last ? script.primaryStart : 'Дальше →'}</Text>
             </Pressable>
             {!last && (
               <Pressable style={styles.skipBtn} onPress={() => close(false)}>

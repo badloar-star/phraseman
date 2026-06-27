@@ -1347,6 +1347,6 @@ export default function LessonsTab() {
                     onPress: () => { },
                 },
             ]
-            : [{ label: triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' }), onPress: () => { } }]} onRequestClose={() => setGateModal(null)}/>
+            : [{ label: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }), onPress: () => { } }]} onRequestClose={() => setGateModal(null)}/>
     </>);
 }

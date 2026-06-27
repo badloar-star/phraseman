@@ -221,8 +221,8 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Zamknij',
     }),
     chip: triLang(lang, {
-      ru: 'Задания дня',
-      uk: 'Завдання дня',
+      ru: 'Вызовы дня',
+      uk: 'Виклики дня',
       es: 'Tareas del día',
       'pt-BR': 'Tarefas do dia',
       vi: 'Nhiệm vụ hôm nay',

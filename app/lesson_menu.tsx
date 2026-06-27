@@ -1496,14 +1496,14 @@ export default function LessonMenu() {
               : ''
         }
         choices={[{ label: triLang(lang, {
-  ru: 'Понятно',
-  uk: 'Зрозуміло',
-  es: 'Entendido',
-  "pt-BR": 'Entendi',
-  vi: 'Đã hiểu',
-  id: 'Mengerti',
-  tr: 'Anladım',
-  pl: 'Rozumiem',
+  ru: 'Закрыть',
+  uk: 'Закрити',
+  es: 'Cerrar',
+  "pt-BR": 'Fechar',
+  vi: 'Đóng',
+  id: 'Tutup',
+  tr: 'Kapat',
+  pl: 'Zamknij',
 }), onPress: () => {} }]}
         onRequestClose={() => setSoonOpen(null)}
       />

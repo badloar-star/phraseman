@@ -1497,14 +1497,14 @@ export default function ClubScreen() {
                       pl: 'Włączamy...',
                     })
                     : triLang(lang, {
-                      ru: 'Купить',
-                      uk: 'Купити',
-                      es: 'Comprar',
-                      'pt-BR': 'Comprar',
-                      vi: 'Mua',
-                      id: 'Beli',
-                      tr: 'Satın al',
-                      pl: 'Kup',
+                      ru: 'Открыть',
+                      uk: 'Відкрити',
+                      es: 'Desbloquear',
+                      'pt-BR': 'Abrir',
+                      vi: 'Mở',
+                      id: 'Buka',
+                      tr: 'Aç',
+                      pl: 'Odblokuj',
                     }))}
               </Text>
               {!activeGroupBoost && (

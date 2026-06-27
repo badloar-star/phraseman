@@ -2245,8 +2245,8 @@ export default function DailyTasksScreen() {
         <View style={{ flex: 1 }}>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, {
-            ru: 'Задания дня',
-            uk: 'Завдання дня',
+            ru: 'Вызовы дня',
+            uk: 'Виклики дня',
             es: 'Tareas del día',
             'pt-BR': "Tarefas do dia",
             vi: "Nhiệm vụ hôm nay",

@@ -626,7 +626,7 @@ export function SpeakingPanel({
               style={[styles.actionBtn, { backgroundColor: theme.accent }]}
             >
               <Text style={styles.actionBtnText}>
-                {L(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                {L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </Pressable>
           )}

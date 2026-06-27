@@ -403,8 +403,8 @@ function ArenaLimitModal({
         >
           <Text style={[styles.btnSecondaryText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Понятно',
-              uk: 'Зрозуміло',
+              ru: 'Закрыть',
+              uk: 'Закрити',
               es: 'Entendido',
               'pt-BR': 'Entendi',
               vi: 'Đã hiểu',

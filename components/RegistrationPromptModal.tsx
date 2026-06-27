@@ -207,7 +207,7 @@ function RegistrationPromptModal({
   const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
   const labelPrivacy = triLang(lang, {
     ru: 'Твой email остаётся у тебя — никакого спама.',
-    uk: 'Ми не публікуємо ваш email і не надсилаємо спам.',
+    uk: 'Твій email залишається в тебе — жодного спаму.',
     es: 'No publicamos tu correo electrónico ni enviamos spam.',
     'pt-BR': 'Não publicamos seu email nem enviamos spam.',
     vi: 'Chúng tôi không công khai email của bạn và không gửi spam.',

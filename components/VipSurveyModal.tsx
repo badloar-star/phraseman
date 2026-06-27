@@ -140,7 +140,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
     completedTitle: triLang(lang, { ru: 'Спасибо за помощь!', uk: 'Дякуємо за допомогу!', es: '¡Gracias por tu ayuda!', 'pt-BR': 'Obrigado pela ajuda!', vi: 'Cảm ơn bạn đã giúp đỡ!', id: 'Terima kasih atas bantuanmu!', tr: 'Yardımın için teşekkürler!', pl: 'Dziękujemy za pomoc!' }),
     completedBody: triLang(lang, {
       ru: 'Твои ответы помогут сделать Phraseman лучше. Нажми «Завершить опрос» — и VIP активируется.',
-      uk: 'Ваші відповіді допоможуть зробити Phraseman зрозумілішим і кориснішим. Натисніть «Завершити опитування», щоб надіслати відповіді й активувати VIP.',
+      uk: 'Твої відповіді допоможуть зробити Phraseman кращим. Натисни «Завершити опитування» — і VIP активується.',
       es: 'Tus respuestas ayudarán a mejorar Phraseman. Toca «Finalizar encuesta» y se activará tu VIP.',
       'pt-BR': 'Suas respostas vão ajudar a melhorar o Phraseman. Toque em «Concluir pesquisa» e o VIP será ativado.',
       vi: 'Câu trả lời của bạn sẽ giúp Phraseman tốt hơn. Nhấn «Hoàn tất khảo sát» và VIP sẽ được kích hoạt.',

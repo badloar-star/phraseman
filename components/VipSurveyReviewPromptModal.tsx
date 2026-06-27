@@ -59,8 +59,8 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h2) }]}>
             {triLang(lang, {
-              ru: 'Ваш VIP активирован',
-              uk: 'Ваш VIP активовано',
+              ru: 'Твой VIP активирован',
+              uk: 'Твій VIP активовано',
               es: 'Tu VIP está activo',
               'pt-BR': 'Seu VIP está ativo',
               vi: 'VIP của bạn đã kích hoạt',

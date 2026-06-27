@@ -68,8 +68,8 @@ function WeeklyBoonDetailModal({ visible, boon, onClose }: WeeklyBoonDetailModal
   const copy = getBoonCopy(boon, lang);
   const iconSource = weeklyBoonIconSource(boon, themeMode);
   const closeLabel = triLang(lang, {
-    ru: 'Понятно',
-    uk: 'Зрозуміло',
+    ru: 'Закрыть',
+    uk: 'Закрити',
     es: 'Entendido',
     'pt-BR': 'Entendi',
     vi: 'Đã hiểu',

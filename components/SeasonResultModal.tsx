@@ -237,8 +237,8 @@ function buildContent({
       pl: 'Zwiększ swój SR przed końcem — to decyduje o nagrodzie.',
     }),
     actionLabel: triLang(lang, {
-      ru: 'Понятно',
-      uk: 'Зрозуміло',
+      ru: 'В бой',
+      uk: 'У бій',
       es: 'Entendido',
       'pt-BR': 'Entendido',
       vi: 'Đã hiểu',

@@ -141,8 +141,8 @@ function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
               )}
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#3A2206', fontSize: f.body, fontWeight: '800' }}>
                 {triLang(lang, {
-                  ru: 'Понятно',
-                  uk: 'Зрозуміло',
+                  ru: 'Вернуться',
+                  uk: 'Повернутися',
                   es: 'Entendido',
                   'pt-BR': 'Entendi',
                   vi: 'Đã hiểu',

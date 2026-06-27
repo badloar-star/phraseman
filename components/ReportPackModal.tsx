@@ -172,7 +172,7 @@ function ReportPackModal({
                 <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
                     uk: 'Ваша скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєте зробити каталог безпечнішим.',
-                    ru: 'Ваша жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаете сделать каталог безопаснее.',
+                    ru: 'Твоя жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаешь сделать каталог безопаснее.',
                     es: 'Tu reporte quedó registrado. Lo revisaremos pronto. Gracias por ayudar a mantener el catálogo seguro.',
                     'pt-BR': 'Sua denúncia foi registrada. Vamos analisá-la em breve. Obrigado por ajudar a manter o catálogo mais seguro.',
                     vi: 'Báo cáo của bạn đã được lưu. Chúng tôi sẽ xem xét sớm. Cảm ơn bạn đã giúp danh mục an toàn hơn.',

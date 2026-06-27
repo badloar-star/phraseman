@@ -22,7 +22,7 @@ function UserWarningModal({ visible, message, lang, onClose }: Props) {
       : lang === 'es'
         ? 'Aviso importante'
         : 'Важное уведомление';
-  const okLabel = lang === 'uk' ? 'Зрозуміло' : lang === 'es' ? 'Entendido' : 'Понятно';
+  const okLabel = lang === 'uk' ? 'Закрити' : lang === 'es' ? 'Cerrar' : 'Закрыть';
   React.useEffect(() => {
     if (visible) hapticWarning();
   }, [visible]);

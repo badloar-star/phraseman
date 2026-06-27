@@ -237,8 +237,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
                     pl: payload.reviewCtaPl,
                   })
                   : triLang(lang, {
-                    ru: 'Понятно',
-                    uk: 'Зрозуміло',
+                    ru: 'Закрыть',
+                    uk: 'Закрити',
                     es: 'Entendido',
                     'pt-BR': 'Entendi',
                     vi: 'Đã hiểu',

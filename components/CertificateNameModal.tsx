@@ -93,8 +93,8 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Pro
                 value={value}
                 onChangeText={(txt) => setValue(txt.slice(0, LINGMAN_CERT_NAME_MAX_LEN))}
                 placeholder={triLang(lang as Lang, {
-                  ru: 'Ваше имя или ник',
-                  uk: 'Ваше ім\'я або нік',
+                  ru: 'Твоё имя или ник',
+                  uk: 'Твоє ім\'я або нік',
                   es: 'Tu nombre o apodo',
                   'pt-BR': 'Seu nome ou apelido',
                   vi: 'Tên hoặc biệt danh của bạn',

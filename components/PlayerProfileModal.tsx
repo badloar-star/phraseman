@@ -416,8 +416,8 @@ function PlayerProfileModalBody({
       } else if (result === 'already_friends') {
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Вы уже друзья',
-            uk: 'Ви вже друзі',
+            ru: 'Уже друзья',
+            uk: 'Уже друзі',
             es: 'Ya son amigos',
             'pt-BR': "Vocês já são amigos",
             vi: "Hai bạn đã là bạn bè",
@@ -444,8 +444,8 @@ function PlayerProfileModalBody({
       } else if (result === 'self') {
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Это ваш профиль',
-            uk: 'Це ваш профіль',
+            ru: 'Это твой профиль',
+            uk: 'Це твій профіль',
             es: 'Es tu perfil',
             'pt-BR': "Este é seu perfil",
             vi: "Đây là hồ sơ của bạn",

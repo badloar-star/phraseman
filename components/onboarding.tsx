@@ -60,6 +60,7 @@ import { getStableId, peekStableId } from '../app/stable_id';
 import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
 import { readPersonalPlanState } from '../app/personal_plan_state';
+import { useOnboardingSounds } from '../hooks/use-onboarding-sounds';
 
 /**
  * Скролл онбординга — БЕЗ резинки/overscroll.
@@ -757,6 +758,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     AsyncStorage.setItem('onboarding_step', next).catch(() => {});
   }, []);
   const nameForProfileRef = useRef('');
+  const { playDemoCorrect, playPlanReady, playPurchaseSuccess } = useOnboardingSounds();
   const [demoAnswered, setDemoAnswered] = useState(false);
   const [demoCorrect, setDemoCorrect]   = useState(false);
   const [demoSelected, setDemoSelected] = useState<number>(-1);
@@ -1249,6 +1251,10 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   }, [planLoadingAnswerKey, planLoadingBuildAnims, planLoadingButtonAnim, planLoadingMeter, step]);
 
   useEffect(() => {
+    if (step === 'planResult') playPlanReady();
+  }, [step, playPlanReady]);
+
+  useEffect(() => {
     if (step !== 'planResult' && step !== 'planDetails') return;
     const total = selectedPlan.days;
     let countTimer: ReturnType<typeof setInterval> | null = null;
@@ -1710,6 +1716,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
         },
       });
       logOnboardingFunnel('purchase_completed');
+      playPurchaseSuccess();
 
       if (pkgTrial.hasTrial) {
         void trackEvent('trial_started', { context: 'onboarding', plan: selectedPlanBilling, ob_color: obColor });
@@ -2918,7 +2925,9 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
                     if (demoAnswered) return;
                     setDemoSelected(i);
                     setDemoAnswered(true);
-                    setDemoCorrect(i === correctIndex);
+                    const correct = i === correctIndex;
+                    setDemoCorrect(correct);
+                    if (correct) playDemoCorrect();
                     animateBtn();
                   }}
                   activeOpacity={demoAnswered ? 1 : 0.8}

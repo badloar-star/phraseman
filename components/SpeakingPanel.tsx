@@ -28,11 +28,6 @@ import {
   type LoudnessSample,
   type StressFeedback,
 } from '../app/speaking_prosody';
-import {
-  isBorderline,
-  isSecondOpinionAvailable,
-  maybeSecondOpinion,
-} from '../app/speaking_second_opinion';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -193,9 +188,6 @@ export function SpeakingPanel({
   // Loudness contour for prosody (rhythm/stress) — collected from volumechange.
   const prosodySamplesRef = useRef<LoudnessSample[]>([]);
   const attemptStartRef = useRef(0);
-  // Path to the persisted recording of the last attempt, for the optional
-  // whisper.rn second opinion. Null until a build provisions audio persistence.
-  const lastAudioPathRef = useRef<string | null>(null);
   const [stress, setStress] = useState<StressFeedback>('unknown');
 
   const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
@@ -250,34 +242,6 @@ export function SpeakingPanel({
         setFailedTranscript(text);
         setStatus('failed');
         hapticError();
-        // Borderline second opinion: if a heavier on-device model (whisper.rn)
-        // is provisioned, re-check the captured audio and rescue a false fail.
-        // No-op (and zero cost) when the native module isn't installed — the app
-        // behaves exactly as before until a build provisions it.
-        if (isSecondOpinionAvailable() && isBorderline(result.score, result.threshold)) {
-          void maybeSecondOpinion({
-            audioPath: lastAudioPathRef.current,
-            fastScore: result.score,
-            threshold: result.threshold,
-            scoreTranscript: (t) => scorePlanPronunciationTranscript({ targetText, transcript: t }).score,
-          })
-            .then((second) => {
-              if (!mountedRef.current || second.reason !== 'improved' || !second.transcript) return;
-              const upgraded = scorePlanPronunciationTranscript({ targetText, transcript: second.transcript });
-              if (!upgraded.passed) {
-                setScore(upgraded.score);
-                return;
-              }
-              setScore(upgraded.score);
-              setFailedTranscript('');
-              setStatus('passed');
-              hapticSuccess();
-              onPass?.({ score: upgraded.score, transcript: second.transcript! });
-            })
-            .catch(() => {
-              /* never let the rescue path break the UI */
-            });
-        }
       }
     },
     [targetText, onPass],

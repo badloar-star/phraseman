@@ -280,12 +280,12 @@ export function SettingsRow({
       <View style={{ flex: 1, marginLeft: ROW_GAP, marginRight: 8 }}>
         <Text
           style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg }}
-          numberOfLines={1}
+          numberOfLines={2}
         >
           {label}
         </Text>
         {sub ? (
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={2}>
             {sub}
           </Text>
         ) : null}

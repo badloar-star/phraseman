@@ -125,12 +125,13 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             handleClose();
         }}
       >
-        <TouchableOpacity activeOpacity={1} onPress={() => {}}>
+        <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
           <View style={{
             backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
             borderRadius: isCompassTheme ? 14 : 16,
             padding: 24,
-            width: 280,
+            width: '100%',
+            maxWidth: 320,
             borderWidth: 1,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             alignItems: 'center',
@@ -149,7 +150,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             ) : (
               <>
                 <Text
-                  numberOfLines={1}
+                  numberOfLines={2}
                   style={{
                     color: t.textPrimary,
                     fontSize: f.h3,

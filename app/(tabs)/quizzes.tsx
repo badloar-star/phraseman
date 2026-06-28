@@ -529,7 +529,8 @@ function BaseQuizLevelCard({
           accessibilityRole="button"
           onPress={() => { onStart(level, fillAnim); }}
           style={{
-            height: 46,
+            minHeight: 46,
+            paddingVertical: 8,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
             borderWidth: 2,
             borderTopWidth: 0,
@@ -555,7 +556,7 @@ function BaseQuizLevelCard({
               transform: [{ translateX: fillTx }],
             }}
           />
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
+          <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1, textAlign: 'center' }}>
             {triLang(lang, {
   ru: 'Начать вызов',
   uk: 'Почати квіз',
@@ -726,7 +727,8 @@ function ThematicQuizLevelCard({
           accessibilityRole="button"
           onPress={() => { onStart(category.id, fillAnim); }}
           style={{
-            height: 46,
+            minHeight: 46,
+            paddingVertical: 8,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
             borderWidth: 2,
             borderTopWidth: 0,
@@ -751,7 +753,7 @@ function ThematicQuizLevelCard({
               transform: [{ translateX: fillTx }],
             }}
           />
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
+          <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1, textAlign: 'center' }}>
             {triLang(lang, {
   ru: 'Начать вызов',
   uk: 'Почати квіз',
@@ -1418,6 +1420,7 @@ function QuizGame({
           taskId: planTaskId,
           planInstanceId,
           planId,
+          studyTarget,
           dayIndex: planDayIndex || 1,
         });
       }

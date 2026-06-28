@@ -4,7 +4,7 @@ import TapScale from '../components/TapScale';
 import { View, Text, ScrollView, TouchableOpacity, Modal, KeyboardAvoidingView, Platform, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import * as Haptics from 'expo-haptics';
+import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -46,7 +46,8 @@ import { getTitleString } from '../constants/titles';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP, screenTextOnGradient } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import {
@@ -312,6 +313,7 @@ function LeagueIcon({
   active = false,
   locked = false,
   alignContent = true,
+  themeMode,
 }: {
   league: any;
   size?: number;
@@ -319,6 +321,7 @@ function LeagueIcon({
   active?: boolean;
   locked?: boolean;
   alignContent?: boolean;
+  themeMode?: ThemeMode;
 }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -346,7 +349,7 @@ function LeagueIcon({
     <LeagueIconImageWithFallback
       source={imageUri}
       iconName={iconName}
-      color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
+      color={monoIcon(themeMode ?? 'dark', locked ? '#7A7A7A' : (active ? league.color : '#7F8793'))}
       size={size}
       opacity={locked ? 0.55 : (active ? 1 : 0.65)}
       contentOffset={contentOffset}
@@ -355,7 +358,7 @@ function LeagueIcon({
     <Ionicons
       name={iconName}
       size={Math.max(14, Math.round(size * 0.8))}
-      color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
+      color={monoIcon(themeMode ?? 'dark', locked ? '#7A7A7A' : (active ? league.color : '#7F8793'))}
     />
   );
 
@@ -807,7 +810,7 @@ export default function ClubScreen() {
 
   const animateLeaguePreviewSwipe = useCallback((direction: number) => {
     setPreviewLeagueId((current) => swipeLeaguePreview(current, direction, LEAGUES.length));
-    void Haptics.selectionAsync().catch(() => {});
+    void hapticTap();
   }, []);
 
   const leaguePreviewPanResponder = useMemo(() => PanResponder.create({
@@ -1156,7 +1159,7 @@ export default function ClubScreen() {
           })}
           hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
           onPress={() => {
-            Haptics.selectionAsync().catch(() => {});
+            void hapticTap();
             safeRouterBack(router, '/(tabs)/home' as any);
           }}
           style={{ width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}
@@ -1222,7 +1225,7 @@ export default function ClubScreen() {
               gap: 9,
             }}
           >
-            <Ionicons name="trending-up" size={18} color="#34C759" />
+            <Ionicons name="trending-up" size={18} color={monoIcon(themeMode, '#34C759')} />
             <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
               {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
             </Text>
@@ -1284,7 +1287,7 @@ export default function ClubScreen() {
             style={[StyleSheet.absoluteFillObject, { alignItems:'center', justifyContent:'center', gap:6, paddingHorizontal:14, paddingVertical:10 }]}
           >
             <View style={{ width:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, height:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, alignItems:'center', justifyContent:'center' }}>
-              <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} />
+              <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} themeMode={themeMode} />
             </View>
             <Text
               style={{ color:previewLeagueCardImage ? '#FFFFFF' : t.textPrimary, fontSize:Math.min(f.h2, 22), lineHeight:Math.max(24, Math.min(f.h2, 22) + 3), fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:50, textShadowColor:previewLeagueCardImage ? 'rgba(0,0,0,0.46)' : 'transparent', textShadowRadius:previewLeagueCardImage ? 9 : 0, textShadowOffset:{ width:0, height:previewLeagueCardImage ? 2 : 0 } }}
@@ -1319,7 +1322,7 @@ export default function ClubScreen() {
             activeOpacity={0.86}
             onPress={() => {
               setChatModalVisible(true);
-              void Haptics.selectionAsync().catch(() => {});
+              void hapticTap();
             }}
             style={{ position:'absolute', top:12, right:12, width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:previewLeagueCardImage ? 'rgba(5,7,10,0.50)' : leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:previewLeagueCardImage ? 'rgba(255,255,255,0.22)' : leagueBonusPalette.modal.metaBorder }}
           >
@@ -1402,7 +1405,7 @@ export default function ClubScreen() {
           >
             <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
               <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0.5, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
-                <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent} />
+                <Ionicons name={activeGroupBoost ? 'flash' : 'flash-outline'} size={19} color={monoIcon(themeMode, activeGroupBoost ? '#FFD43B' : leagueBonusPalette.accent)} />
               </View>
               <View style={{ flex:1, minWidth:0 }}>
                 <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }} numberOfLines={2}>
@@ -1599,8 +1602,8 @@ export default function ClubScreen() {
                     opacity: activeGroupBoost.buyerUid === arenaClubStableUid ? 0.55 : 1,
                   }}
                 >
-                  <Ionicons name={groupBoostLikedToday ? 'heart' : 'heart-outline'} size={17} color="#FF5B7C" />
-                  <Text style={{ color:'#FF8FA3', fontSize:f.caption, fontWeight:'900' }}>
+                  <Ionicons name={groupBoostLikedToday ? 'heart' : 'heart-outline'} size={17} color={monoIcon(themeMode, '#FF5B7C')} />
+                  <Text style={{ color:monoIcon(themeMode, '#FF8FA3'), fontSize:f.caption, fontWeight:'900' }}>
                     {Math.max(groupBoostLikeTotal, activeGroupBoost.likeCount)}
                   </Text>
                 </TouchableOpacity>
@@ -1889,7 +1892,7 @@ export default function ClubScreen() {
                     testID={`league-xp-promotion-badge-${p.uid || i}`}
                     style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(52, 199, 89, 0.16)', borderWidth: 0.5, borderColor: 'rgba(52, 199, 89, 0.45)' }}
                   >
-                    <Text style={{ color: '#34C759', fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }} numberOfLines={1}>
+                    <Text style={{ color: monoIcon(themeMode, '#34C759'), fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }} numberOfLines={1}>
                       {triLang(lang, {
                         ru: 'Переход',
                         uk: 'Перехід',

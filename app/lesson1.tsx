@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -31,6 +30,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
@@ -50,7 +50,7 @@ import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import { isSpeakingEnabled } from './remote_flags';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
-import { hapticTap } from '../hooks/use-haptics';
+import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { recordMistake } from './active_recall';
@@ -1027,7 +1027,7 @@ const LessonContent = React.memo(function LessonContent({
             }}
           >
             {xpToastVisible && (
-              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
+              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: monoIcon(themeMode, '#F5A623'), fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
                 +{xpToastAmount} XP
               </Animated.Text>
             )}
@@ -2923,8 +2923,11 @@ export default function LessonScreen() {
 
     if (isRight) {
       playCorrect();
-    } else if (settings.haptics) {
-      try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
+      // Хаптик «успех» через общий слой — попадает под единый ограничитель,
+      // не складывается с tap'ом выбора плитки.
+      void hapticSuccess();
+    } else {
+      void hapticError();
     }
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).

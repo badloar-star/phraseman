@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
+import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -244,7 +244,7 @@ export default function CardPackShardPaywallModal({
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
   const closeAfterSwipe = useCallback(() => {
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    void hapticLightImpact();
     onCloseRef.current();
   }, []);
 
@@ -319,7 +319,7 @@ export default function CardPackShardPaywallModal({
 
   const handleClose = () => {
     if (purchasing) return;
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    void hapticLightImpact();
     onClose();
   };
 
@@ -855,7 +855,7 @@ export default function CardPackShardPaywallModal({
                             <Pressable
                               onPress={() => {
                                 if (purchasing) return;
-                                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                                void hapticMediumImpact();
                                 onGoToShards();
                               }}
                               disabled={purchasing}
@@ -908,7 +908,7 @@ export default function CardPackShardPaywallModal({
                             <Pressable
                               onPress={() => {
                                 if (purchasing) return;
-                                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                                void hapticMediumImpact();
                                 void onConfirmPurchase();
                               }}
                               disabled={purchasing}
@@ -970,7 +970,7 @@ export default function CardPackShardPaywallModal({
                             <Pressable
                               onPress={() => {
                                 if (purchasing) return;
-                                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                                void hapticMediumImpact();
                                 void onConfirmPurchase();
                               }}
                               disabled={purchasing}

@@ -55,6 +55,21 @@ export const DEFAULT_TOPIC_ACCENT: TopicAccent = {
   soft: 'rgba(94,163,255,0.10)',
 };
 
+/**
+ * Уроки, контент которых уже переписан на новый интерактивный формат
+ * (есть interaction/topicAccent в экранах). Тайл «Теория» для них ведёт на
+ * новый аккордеон-экран (lesson_theory_v2), остальные — на старый lesson_help.
+ * По мере переписывания уроков добавляем их id сюда.
+ */
+export const INTERACTIVE_THEORY_LESSONS: ReadonlySet<number> = new Set<number>([
+  1,
+]);
+
+/** Готов ли урок к показу через новый аккордеон-путь. */
+export function isInteractiveTheoryLesson(lessonId: number): boolean {
+  return INTERACTIVE_THEORY_LESSONS.has(lessonId);
+}
+
 /** Семантические цвета, с которыми accent НЕ должен совпадать. */
 const SEMANTIC_GUARD = {
   danger: '#dc5050',

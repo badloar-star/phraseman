@@ -363,15 +363,65 @@
       return progress.user_name || data.user_name || data.displayName || docSnap.id;
     }
 
-    async function findUserByNickname(nickname) {
+    // Все документы users с данным ником (а НЕ первый попавшийся). «Таня» — частое имя:
+    // в базе несколько профилей с одинаковым user_name (вкл. старые осиротевшие после
+    // переустановки). Молчаливый docs[0] приводил к выдаче VIP в чужой/мёртвый документ.
+    // Заявка telegram_premium_orders несёт telegramUserId, но приложение НЕ хранит его в
+    // users/{stableId}, поэтому искать по id нельзя — отдаём админу выбор из кандидатов.
+    async function findUserMatches(nickname) {
       const clean = String(nickname || '').trim();
-      if (!clean) return null;
-      const byProgress = await getDocs(query(collection(db, 'users'), where('progress.user_name', '==', clean), limit(1)));
-      if (!byProgress.empty) return byProgress.docs[0];
-      const byRoot = await getDocs(query(collection(db, 'users'), where('user_name', '==', clean), limit(1)));
-      if (!byRoot.empty) return byRoot.docs[0];
-      const direct = await getDoc(doc(db, 'users', clean));
-      return direct.exists() ? direct : null;
+      if (!clean) return [];
+      const seen = new Map();
+      const collect = (snap) => {
+        snap.docs.forEach((d) => { if (!seen.has(d.id)) seen.set(d.id, d); });
+      };
+      collect(await getDocs(query(collection(db, 'users'), where('progress.user_name', '==', clean), limit(20))));
+      collect(await getDocs(query(collection(db, 'users'), where('user_name', '==', clean), limit(20))));
+      if (!seen.size) {
+        const direct = await getDoc(doc(db, 'users', clean));
+        if (direct.exists()) seen.set(direct.id, direct);
+      }
+      return Array.from(seen.values()).sort((a, b) => candidateLiveScore(b) - candidateLiveScore(a));
+    }
+
+    // «Живость» документа: чем выше — тем вероятнее это настоящий активный аккаунт.
+    // Сортируем кандидатов так, чтобы живой профиль был сверху списка выбора.
+    function candidateLiveScore(docSnap) {
+      const data = docSnap.data() || {};
+      const p = readProgress(data);
+      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
+      const lastActive = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
+      // last_active_at доминирует (мс), XP — вторичный сигнал.
+      return lastActive + Math.min(xp, 1_000_000);
+    }
+
+    function premiumMsLocal(v) {
+      if (v == null || v === '') return 0;
+      if (typeof v === 'object') {
+        if (typeof v.toMillis === 'function') return Math.max(0, v.toMillis() || 0);
+        if (typeof v.seconds === 'number') return Math.max(0, v.seconds * 1000);
+      }
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0;
+    }
+
+    function candidateMeta(docSnap) {
+      const data = docSnap.data() || {};
+      const p = readProgress(data);
+      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
+      const platform = String(p.device_platform || data.device_platform || p.platform || '').trim() || '—';
+      const version = String(p.app_version || data.app_version || '').trim() || '—';
+      const vipActive = String(p.vip_active || '').trim() === 'true' && String(p.vip_admin_override || '').trim() !== 'false';
+      const lastActiveMs = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
+      const lastActive = lastActiveMs > 0 ? new Date(lastActiveMs).toLocaleString('ru-RU') : '—';
+      return { id: docSnap.id, level: levelFromXp(xp), xp, platform, version, vipActive, lastActive };
+    }
+
+    // Сохранена для обратной совместимости (refreshOpenTesterDetailFromRows и др.):
+    // возвращает самого «живого» кандидата.
+    async function findUserByNickname(nickname) {
+      const matches = await findUserMatches(nickname);
+      return matches[0] || null;
     }
 
     function levelFromXp(xp) {
@@ -412,22 +462,30 @@
       window.location.href = target.toString();
     }
 
-    function renderTesterDetail(tester, userDoc) {
+    function renderTesterDetail(tester, userDoc, hasOtherCandidates = false) {
       const data = userDoc.data() || {};
       const progress = readProgress(data);
       const name = userNameFromDoc(userDoc);
       const xp = Number(progress.user_total_xp || data.user_total_xp || 0) || 0;
       const activeUntil = progress.vip_until ? new Date(parseInt(String(progress.vip_until), 10) || 0).toLocaleString('ru-RU') : '-';
+      const meta = candidateMeta(userDoc);
       const period = normalizePeriod(tester);
       const status = testerActivationStatus(tester);
+      // Если у ника были другие кандидаты — даём вернуться к выбору, чтобы не выдать в не тот профиль.
+      const backBtn = hasOtherCandidates
+        ? '<button type="button" id="back-to-picker" style="margin-bottom:10px;background:#2a3142">← к выбору профиля</button>'
+        : '';
 
       $('detail-title').textContent = name || tester.appNickname || 'Пользователь';
       $('detail-body').innerHTML = `
+        ${backBtn}
         <div class="dsec">
           <h3>Профиль</h3>
           <div class="drow"><span class="k">Ник</span><span class="v">${escapeHtml(name)}</span></div>
           <div class="drow"><span class="k">UID</span><span class="v">${escapeHtml(userDoc.id)}</span></div>
-          <div class="drow"><span class="k">Уровень</span><span class="v">${levelFromXp(xp)}</span></div>
+          <div class="drow"><span class="k">Уровень</span><span class="v">${levelFromXp(xp)} · ${meta.xp} XP</span></div>
+          <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(meta.platform)} · v${escapeHtml(meta.version)}</span></div>
+          <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(meta.lastActive)}</span></div>
           <div class="drow"><span class="k">Текущий срок</span><span class="v">${escapeHtml(activeUntil)}</span></div>
         </div>
         <div class="dsec">
@@ -445,6 +503,10 @@
         </div>
       `;
 
+      if (hasOtherCandidates) {
+        const back = $('back-to-picker');
+        if (back) back.onclick = () => openTesterUserCard(tester.id);
+      }
       $('activate-selected').onclick = () => activateTesterPeriod(tester.id, userDoc.id, tester.plan || 'monthly');
       $('activate-month').onclick = () => activateTesterPeriod(tester.id, userDoc.id, 'monthly');
       $('activate-year').onclick = () => activateTesterPeriod(tester.id, userDoc.id, 'yearly');
@@ -481,7 +543,13 @@
     async function activateTesterPeriod(orderId, uid, plan) {
       const tester = testerRows.find((row) => row.id === orderId);
       if (!tester) return;
-      const ok = window.confirm('Активировать выбранный период для этого пользователя?');
+      const preSnap = await getDoc(doc(db, 'users', uid)).catch(() => null);
+      // Показываем АДРЕСАТА (ник/платформа/UID) прямо в подтверждении — последняя страховка
+      // от выдачи VIP в не тот документ при совпадении ников.
+      const who = preSnap && preSnap.exists()
+        ? (() => { const m = candidateMeta(preSnap); return `${userNameFromDoc(preSnap)} · Lvl ${m.level} · ${m.platform} v${m.version}\nUID: ${m.id}`; })()
+        : `UID: ${uid}`;
+      const ok = window.confirm(`Активировать VIP (${plan}) для:\n${who}\n\nПроверь, что это НУЖНЫЙ профиль.`);
       if (!ok) return;
       try {
         setActivationButtonsBusy(true);
@@ -519,6 +587,37 @@
       }
     }
 
+    // Выбор кандидата, когда по нику найдено НЕСКОЛЬКО документов. Не выдаём вслепую —
+    // показываем админу список (платформа/версия/уровень/активность/VIP), он жмёт нужный.
+    function renderCandidatePicker(tester, matches) {
+      $('detail-title').textContent = (tester?.appNickname || 'Пользователь') + ' — выбор профиля';
+      const rows = matches.map((d, i) => {
+        const m = candidateMeta(d);
+        const vipBadge = m.vipActive ? '<span class="pill" style="background:#1f6f4a;color:#bdf5d6">VIP</span>' : '';
+        const top = i === 0 ? '<span class="pill" style="background:#2a3550;color:#cfe0ff">самый активный</span>' : '';
+        return `
+          <div class="dsec" style="cursor:pointer;border:1px solid #2a3142;border-radius:10px;padding:10px;margin-bottom:8px" data-pick-uid="${escapeHtml(m.id)}">
+            <div class="drow"><span class="k">Профиль</span><span class="v">Lvl ${m.level} · ${m.xp} XP ${top} ${vipBadge}</span></div>
+            <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(m.platform)} · v${escapeHtml(m.version)}</span></div>
+            <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(m.lastActive)}</span></div>
+            <div class="drow"><span class="k">UID</span><span class="v" style="font-size:11px;opacity:.7">${escapeHtml(m.id)}</span></div>
+          </div>`;
+      }).join('');
+      $('detail-body').innerHTML = `
+        <div class="dsec">
+          <h3>Найдено профилей с этим ником: ${matches.length}</h3>
+          <div class="muted" style="margin-bottom:10px">Имя совпадает у нескольких аккаунтов. Выбери НАСТОЯЩИЙ (обычно самый активный, со свежей активностью и прогрессом), чтобы VIP не ушёл в чужой/старый профиль.</div>
+        </div>
+        ${rows}`;
+      document.querySelectorAll('[data-pick-uid]').forEach((el) => {
+        el.addEventListener('click', async () => {
+          const uid = el.getAttribute('data-pick-uid') || '';
+          const picked = await getDoc(doc(db, 'users', uid));
+          if (picked.exists()) renderTesterDetail(tester, picked, true);
+        });
+      });
+    }
+
     window.openTesterUserCard = async function openTesterUserCard(orderId) {
       const tester = testerRows.find((row) => row.id === orderId);
       const nickname = tester?.appNickname || '';
@@ -527,13 +626,18 @@
       $('detail-overlay').style.display = 'block';
       $('detail').classList.add('open');
 
-      const userDoc = await findUserByNickname(nickname);
-      if (!userDoc) {
+      const matches = await findUserMatches(nickname);
+      if (!matches.length) {
         $('detail-body').innerHTML = '<div class="dsec"><h3>Профиль</h3><div class="muted">Пользователь с таким ником не найден.</div></div>';
         return;
       }
 
-      renderTesterDetail(tester, userDoc);
+      if (matches.length > 1) {
+        renderCandidatePicker(tester, matches);
+        return;
+      }
+
+      renderTesterDetail(tester, matches[0]);
     };
 
     function closeDetail() {

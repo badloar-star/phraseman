@@ -13,7 +13,13 @@ export { compassOn } from './compass_flags';
 export { useCompassDay } from './use_compass_day';
 export { default as CompassBriefingModal } from './compass_briefing_modal';
 export { default as CompassBriefingHost } from './compass_briefing_host';
-export type { CompassDay, CompassTask, CompassDayType, CompassTaskKind } from './compass_brain';
+export type { CompassDay, CompassTask, CompassDayType, CompassTaskKind, CompassInductionFeature } from './compass_brain';
+export { pickInductionFeature } from './compass_brain';
+// Персональное приветствие первого дня (имя + обещание под цель + индакшн).
+export { readCompassOnboardingProfile } from './compass_onboarding_profile';
+export type { CompassOnboardingProfile, CompassGoal, CompassLevel } from './compass_onboarding_profile';
+export { buildCompassGreeting, buildCompassInduction } from './compass_copy';
+export { compassInductionRoute } from './compass_induction_route';
 // Премиум-гейт плана (чинит дыру; работает независимо от флага Компаса).
 export { canActivatePlan, decidePlanAccess } from './compass_access';
 // Крыло «Экономика»: справедливый вес дня + анти-фарм (рекомендации, не начисление).

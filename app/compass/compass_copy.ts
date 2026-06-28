@@ -26,7 +26,10 @@ export interface CompassText {
   pl: string;
 }
 
-import type { CompassDayType } from './compass_brain';
+import type { Lang } from '../../constants/i18n';
+import { triLang } from '../../constants/i18n';
+import type { CompassDayType, CompassDay, CompassInductionFeature } from './compass_brain';
+import type { CompassGoal } from './compass_onboarding_profile';
 
 /** Заголовок брифинга дня. «День N» подставляет вызывающий код. */
 export const COMPASS_BRIEFING_TITLE: CompassText = {
@@ -354,6 +357,279 @@ export const COMPASS_TOPIC_STATUS: Record<'confident' | 'growing' | 'guided', Co
   },
 };
 
+// ── Приветствие первого дня: ЖИВОЙ голос Компаса от первого лица (канон юзера) ──
+//
+// Компас знакомится сам, как человек: «меня звать Компас, я тут чтобы ты не
+// потерялся». Текст — АБЗАЦ-обращение из частей (знакомство + благодарность/роль +
+// цель своими словами + «не навязываю» + вопрос), а НЕ стопка слоганов. Запрещено:
+// пафос («поведу»), пустые связки, враньё о юзере («база у тебя есть»).
+
+/** Знакомство с именем. «{name}» подставляет билдер. */
+export const COMPASS_HELLO_NAMED: CompassText = {
+  ru: 'Привет, {name}. Меня звать Компас — я тут, чтобы ты не потерялся.',
+  uk: 'Привіт, {name}. Мене звати Компас — я тут, щоб ти не загубився.',
+  es: 'Hola, {name}. Me llamo Brújula y estoy aquí para que no te pierdas.',
+  'pt-BR': 'Oi, {name}. Meu nome é Bússola e estou aqui pra você não se perder.',
+  vi: 'Chào {name}. Mình tên La bàn — ở đây để bạn không lạc lối.',
+  id: 'Halo, {name}. Namaku Kompas — aku di sini biar kamu tak tersesat.',
+  tr: 'Merhaba {name}. Adım Pusula — kaybolmayasın diye buradayım.',
+  pl: 'Cześć, {name}. Mam na imię Kompas — jestem tu, żebyś się nie zgubił.',
+};
+
+/** Знакомство без имени. */
+export const COMPASS_HELLO: CompassText = {
+  ru: 'Привет. Меня звать Компас — я тут, чтобы ты не потерялся.',
+  uk: 'Привіт. Мене звати Компас — я тут, щоб ти не загубився.',
+  es: 'Hola. Me llamo Brújula y estoy aquí para que no te pierdas.',
+  'pt-BR': 'Oi. Meu nome é Bússola e estou aqui pra você não se perder.',
+  vi: 'Chào bạn. Mình tên La bàn — ở đây để bạn không lạc lối.',
+  id: 'Halo. Namaku Kompas — aku di sini biar kamu tak tersesat.',
+  tr: 'Merhaba. Adım Pusula — kaybolmayasın diye buradayım.',
+  pl: 'Cześć. Mam na imię Kompas — jestem tu, żebyś się nie zgubił.',
+};
+
+/** Если купил доступ на онбординге: благодарность + честно, чем это помогает. */
+export const COMPASS_THANKS_PREMIUM: CompassText = {
+  ru: 'Спасибо, что открыл полный доступ — так я смогу стать для тебя умнее.',
+  uk: 'Дякую, що відкрив повний доступ — так я зможу стати для тебе розумнішим.',
+  es: 'Gracias por abrir el acceso completo: así podré volverme más listo para ti.',
+  'pt-BR': 'Obrigado por abrir o acesso completo — assim eu fico mais esperto pra você.',
+  vi: 'Cảm ơn bạn đã mở quyền đầy đủ — nhờ vậy mình thông minh hơn với bạn.',
+  id: 'Terima kasih sudah membuka akses penuh — jadi aku bisa makin pintar untukmu.',
+  tr: 'Tam erişimi açtığın için sağ ol — böylece senin için daha akıllı olabilirim.',
+  pl: 'Dzięki, że otworzyłeś pełny dostęp — dzięki temu stanę się dla ciebie mądrzejszy.',
+};
+
+/** Роль Компаса (всем): что он будет делать каждый день. Честно, без давления. */
+export const COMPASS_ROLE: CompassText = {
+  ru: 'Каждый день я буду смотреть, как у тебя идут дела, и подсказывать, что лучше сделать дальше.',
+  uk: 'Щодня я дивитимусь, як у тебе справи, і підказуватиму, що краще зробити далі.',
+  es: 'Cada día miraré cómo te va y te sugeriré qué conviene hacer después.',
+  'pt-BR': 'Todo dia vou ver como você está indo e sugerir o que é melhor fazer depois.',
+  vi: 'Mỗi ngày mình sẽ xem bạn ra sao và gợi ý điều nên làm tiếp theo.',
+  id: 'Tiap hari aku akan melihat perkembanganmu dan menyarankan langkah berikutnya.',
+  tr: 'Her gün nasıl gittiğine bakıp sonra ne yapman iyi olur diye öneririm.',
+  pl: 'Każdego dnia będę patrzeć, jak ci idzie, i podpowiadać, co warto zrobić dalej.',
+};
+
+/** Куда ведём — цель ученика, сказанная по-человечески (НЕ слоган). */
+export const COMPASS_GOAL_LINE = {
+  series: {
+    ru: 'А раз ты хочешь смотреть фильмы без субтитров — туда и будем держать курс.',
+    uk: 'А раз ти хочеш дивитися фільми без субтитрів — туди й триматимемо курс.',
+    es: 'Y como quieres ver pelis sin subtítulos, hacia allí pondremos rumbo.',
+    'pt-BR': 'E como você quer ver filmes sem legenda, é pra lá que vamos.',
+    vi: 'Và vì bạn muốn xem phim không phụ đề — mình sẽ hướng về đó.',
+    id: 'Karena kamu ingin nonton film tanpa subtitel, ke sanalah kita menuju.',
+    tr: 'Madem filmleri altyazısız izlemek istiyorsun, rotayı oraya kıralım.',
+    pl: 'A skoro chcesz oglądać filmy bez napisów — tam właśnie wytyczymy kurs.',
+  },
+  everyday: {
+    ru: 'А раз ты хочешь свободно говорить в жизни — будем держать курс туда.',
+    uk: 'А раз ти хочеш вільно говорити в житті — триматимемо курс туди.',
+    es: 'Y como quieres hablar con soltura en el día a día, hacia allí vamos.',
+    'pt-BR': 'E como você quer falar à vontade no dia a dia, é pra lá que vamos.',
+    vi: 'Và vì bạn muốn nói tự nhiên trong đời sống — mình hướng về đó.',
+    id: 'Karena kamu ingin bicara lancar sehari-hari, ke sanalah kita menuju.',
+    tr: 'Madem günlük hayatta rahat konuşmak istiyorsun, rotamız orası.',
+    pl: 'A skoro chcesz swobodnie mówić na co dzień — tam trzymamy kurs.',
+  },
+  travel: {
+    ru: 'А раз тебе нужен английский для дороги — туда и будем держать курс.',
+    uk: 'А раз тобі потрібна англійська для дороги — туди й триматимемо курс.',
+    es: 'Y como necesitas inglés para viajar, hacia allí pondremos rumbo.',
+    'pt-BR': 'E como você precisa de inglês pra viajar, é pra lá que vamos.',
+    vi: 'Và vì bạn cần tiếng Anh cho chuyến đi — mình sẽ hướng về đó.',
+    id: 'Karena kamu butuh Inggris untuk perjalanan, ke sanalah kita menuju.',
+    tr: 'Madem yolculuk için İngilizce istiyorsun, rotayı oraya kıralım.',
+    pl: 'A skoro angielski jest ci potrzebny w podróży — tam wytyczymy kurs.',
+  },
+  words: {
+    ru: 'А раз тебе нужны живые, нужные фразы — за ними и пойдём.',
+    uk: 'А раз тобі потрібні живі, потрібні фрази — за ними й підемо.',
+    es: 'Y como buscas frases vivas y útiles, a por ellas vamos.',
+    'pt-BR': 'E como você quer frases vivas e úteis, é atrás delas que vamos.',
+    vi: 'Và vì bạn cần những câu sống động, hữu ích — mình sẽ đi tìm chúng.',
+    id: 'Karena kamu mau frasa yang hidup dan berguna, itu yang kita kejar.',
+    tr: 'Madem canlı, işe yarar ifadeler istiyorsun, peşlerine düşeriz.',
+    pl: 'A skoro chcesz żywych, przydatnych fraz — po nie właśnie idziemy.',
+  },
+  mind: {
+    ru: 'А раз ты учишь для себя — спешить некуда, пойдём в своём ритме.',
+    uk: 'А раз ти вчиш для себе — поспішати нікуди, підемо у своєму ритмі.',
+    es: 'Y como estudias para ti, sin prisa: iremos a tu ritmo.',
+    'pt-BR': 'E como você estuda pra si, sem pressa: vamos no seu ritmo.',
+    vi: 'Và vì bạn học cho chính mình — không vội, mình đi theo nhịp của bạn.',
+    id: 'Karena kamu belajar untuk dirimu, santai saja: kita ikut iramamu.',
+    tr: 'Madem kendin için öğreniyorsun, acele yok: senin ritminde gideriz.',
+    pl: 'A skoro uczysz się dla siebie — bez pośpiechu, pójdziemy w twoim rytmie.',
+  },
+} satisfies Record<string, CompassText>;
+
+/** Снятие давления — Компас только советует. */
+export const COMPASS_NO_PRESSURE: CompassText = {
+  ru: 'Ничего не навязываю — всё, что скажу, это просто совет. Решаешь всегда ты.',
+  uk: 'Нічого не нав’язую — усе, що скажу, це лише порада. Вирішуєш завжди ти.',
+  es: 'No te obligo a nada: lo que diga es solo un consejo. Tú decides siempre.',
+  'pt-BR': 'Não imponho nada — o que eu disser é só um conselho. Quem decide é você.',
+  vi: 'Mình không ép gì cả — mọi điều mình nói chỉ là gợi ý. Bạn luôn là người quyết.',
+  id: 'Aku tak memaksa apa pun — semua yang kukatakan hanya saran. Kamu yang menentukan.',
+  tr: 'Hiçbir şey dayatmam — söylediklerim sadece öneri. Kararı hep sen verirsin.',
+  pl: 'Niczego nie narzucam — wszystko, co powiem, to tylko rada. Zawsze decydujesz ty.',
+};
+
+/** Кнопка-завершение приветствия (на welcome-днях вместо «Начать день»). */
+export const COMPASS_LETS_GO: CompassText = {
+  ru: 'Поехали',
+  uk: 'Поїхали',
+  es: 'Vamos',
+  'pt-BR': 'Vamos lá',
+  vi: 'Bắt đầu thôi',
+  id: 'Ayo mulai',
+  tr: 'Hadi başlayalım',
+  pl: 'Ruszamy',
+};
+
+/** Вопрос-приглашение в конце (над кнопками-фичами). */
+export const COMPASS_WHERE_START: CompassText = {
+  ru: 'С чего хочешь начать знакомство?',
+  uk: 'З чого хочеш почати знайомство?',
+  es: '¿Por dónde quieres empezar?',
+  'pt-BR': 'Por onde você quer começar?',
+  vi: 'Bạn muốn bắt đầu làm quen từ đâu?',
+  id: 'Mau mulai kenalan dari mana?',
+  tr: 'Tanışmaya nereden başlamak istersin?',
+  pl: 'Od czego chcesz zacząć poznawanie?',
+};
+
+// ── Возврат после паузы: тёплое «я тебя помню» (тот же живой голос) ──
+
+export const COMPASS_BACK_NAMED: CompassText = {
+  ru: '{name}, ты вернулся — а я и не уходил. Всё твоё на месте: фразы, прогресс, путь.',
+  uk: '{name}, ти повернувся — а я й не йшов. Усе твоє на місці: фрази, прогрес, шлях.',
+  es: '{name}, has vuelto, y yo no me fui. Todo lo tuyo sigue aquí: frases, avance, camino.',
+  'pt-BR': '{name}, você voltou — e eu nem saí. Tudo seu está aqui: frases, avanço, caminho.',
+  vi: '{name}, bạn đã quay lại — mà mình có đi đâu. Mọi thứ của bạn vẫn còn: câu chữ, tiến độ, hành trình.',
+  id: '{name}, kamu kembali — aku pun tak pergi. Semua milikmu masih ada: frasa, kemajuan, jalanmu.',
+  tr: '{name}, geri döndün — ben zaten gitmemiştim. Her şeyin yerinde: ifadeler, ilerleme, yol.',
+  pl: '{name}, wróciłeś — a ja nigdzie nie zniknąłem. Wszystko twoje czeka: frazy, postęp, droga.',
+};
+
+export const COMPASS_BACK: CompassText = {
+  ru: 'Ты вернулся — а я и не уходил. Всё твоё на месте: фразы, прогресс, путь.',
+  uk: 'Ти повернувся — а я й не йшов. Усе твоє на місці: фрази, прогрес, шлях.',
+  es: 'Has vuelto, y yo no me fui. Todo lo tuyo sigue aquí: frases, avance, camino.',
+  'pt-BR': 'Você voltou — e eu nem saí. Tudo seu está aqui: frases, avanço, caminho.',
+  vi: 'Bạn đã quay lại — mà mình có đi đâu. Mọi thứ của bạn vẫn còn: câu chữ, tiến độ, hành trình.',
+  id: 'Kamu kembali — aku pun tak pergi. Semua milikmu masih ada: frasa, kemajuan, jalanmu.',
+  tr: 'Geri döndün — ben zaten gitmemiştim. Her şeyin yerinde: ifadeler, ilerleme, yol.',
+  pl: 'Wróciłeś — a ja nigdzie nie zniknąłem. Wszystko twoje czeka: frazy, postęp, droga.',
+};
+
+/** Возврат: тёплое приглашение продолжить. Без темы вины/паузы/упрёков. */
+export const COMPASS_BACK_INVITE: CompassText = {
+  ru: 'Продолжим с того же места?',
+  uk: 'Продовжимо з того ж місця?',
+  es: '¿Seguimos donde lo dejaste?',
+  'pt-BR': 'Continuamos de onde parou?',
+  vi: 'Tiếp tục từ chỗ cũ nhé?',
+  id: 'Lanjut dari tempat tadi?',
+  tr: 'Kaldığın yerden devam edelim mi?',
+  pl: 'Ruszamy z tego samego miejsca?',
+};
+
+// ── Индакшн: «что классного попробовать первым» (зов в одну фичу) ──
+
+/** Подпись индакшн-блока (заголовок над подсказкой). */
+export const COMPASS_INDUCTION_LABEL: CompassText = {
+  ru: 'С чего здорово начать',
+  uk: 'З чого добре почати',
+  es: 'Por dónde empezar',
+  'pt-BR': 'Por onde começar',
+  vi: 'Nên bắt đầu từ đâu',
+  id: 'Mulai dari mana',
+  tr: 'Nereden başlamalı',
+  pl: 'Od czego zacząć',
+};
+
+/** Текст подсказки по фиче (CompassInductionFeature). Тёплый зов, ≤10 слов. */
+export const COMPASS_INDUCTION_TEXT = {
+  level_test: {
+    ru: 'Пройди короткий тест — узнаем твой уровень.',
+    uk: 'Пройди короткий тест — дізнаємось твій рівень.',
+    es: 'Haz una prueba corta: sabremos tu nivel.',
+    'pt-BR': 'Faça um teste curto: vamos saber seu nível.',
+    vi: 'Làm bài kiểm tra ngắn — biết trình độ của bạn.',
+    id: 'Ikuti tes singkat — ketahui levelmu.',
+    tr: 'Kısa bir test çöz — seviyeni öğrenelim.',
+    pl: 'Zrób krótki test — poznamy twój poziom.',
+  },
+  dialogs: {
+    ru: 'Поговори вживую — Диалоги отвечают как человек.',
+    uk: 'Поговори наживо — Діалоги відповідають як людина.',
+    es: 'Habla en vivo: los Diálogos responden como humano.',
+    'pt-BR': 'Fale ao vivo: os Diálogos respondem como gente.',
+    vi: 'Trò chuyện trực tiếp — Hội thoại trả lời như người.',
+    id: 'Ngobrol langsung — Dialog menjawab seperti manusia.',
+    tr: 'Canlı konuş — Diyaloglar insan gibi yanıtlar.',
+    pl: 'Pogadaj na żywo — Dialogi odpowiadają jak człowiek.',
+  },
+  flashcards: {
+    ru: 'Пролистай карточки — фразы цепляются быстро.',
+    uk: 'Погортай картки — фрази чіпляються швидко.',
+    es: 'Pasa las tarjetas: las frases se pegan rápido.',
+    'pt-BR': 'Passe os cartões: as frases grudam rápido.',
+    vi: 'Lướt thẻ — câu chữ bám nhanh.',
+    id: 'Geser kartu — frasa nempel cepat.',
+    tr: 'Kartları kaydır — ifadeler hızlı yapışır.',
+    pl: 'Przeglądaj fiszki — frazy szybko wchodzą.',
+  },
+  lessons: {
+    ru: 'Открой первую сессию — пойдём по шагам.',
+    uk: 'Відкрий першу сесію — підемо по кроках.',
+    es: 'Abre la primera sesión: vamos por pasos.',
+    'pt-BR': 'Abra a primeira sessão: vamos por etapas.',
+    vi: 'Mở buổi đầu — đi theo từng bước.',
+    id: 'Buka sesi pertama — kita jalan bertahap.',
+    tr: 'İlk oturumu aç — adım adım gidelim.',
+    pl: 'Otwórz pierwszą sesję — pójdziemy po krokach.',
+  },
+  daily_tasks: {
+    ru: 'Загляни в задания дня — лёгкий тёплый старт.',
+    uk: 'Зазирни в завдання дня — легкий теплий старт.',
+    es: 'Mira las misiones del día: un arranque suave.',
+    'pt-BR': 'Veja as missões do dia: um começo leve.',
+    vi: 'Xem nhiệm vụ hôm nay — khởi đầu nhẹ nhàng.',
+    id: 'Lihat misi harian — awal yang ringan.',
+    tr: 'Günün görevlerine bak — yumuşak bir başlangıç.',
+    pl: 'Zajrzyj w zadania dnia — łagodny start.',
+  },
+} satisfies Record<string, CompassText>;
+
+/** Кнопка открытия индакшн-фичи (глагол + объект). */
+export const COMPASS_INDUCTION_CTA = {
+  level_test: {
+    ru: 'Пройти тест', uk: 'Пройти тест', es: 'Hacer la prueba', 'pt-BR': 'Fazer o teste',
+    vi: 'Làm bài test', id: 'Ikuti tes', tr: 'Testi çöz', pl: 'Zrób test',
+  },
+  dialogs: {
+    ru: 'Открыть Диалоги', uk: 'Відкрити Діалоги', es: 'Abrir Diálogos', 'pt-BR': 'Abrir Diálogos',
+    vi: 'Mở Hội thoại', id: 'Buka Dialog', tr: 'Diyaloglar’ı aç', pl: 'Otwórz Dialogi',
+  },
+  flashcards: {
+    ru: 'Открыть карточки', uk: 'Відкрити картки', es: 'Abrir tarjetas', 'pt-BR': 'Abrir cartões',
+    vi: 'Mở thẻ', id: 'Buka kartu', tr: 'Kartları aç', pl: 'Otwórz fiszki',
+  },
+  lessons: {
+    ru: 'Открыть сессию', uk: 'Відкрити сесію', es: 'Abrir sesión', 'pt-BR': 'Abrir sessão',
+    vi: 'Mở buổi học', id: 'Buka sesi', tr: 'Oturumu aç', pl: 'Otwórz sesję',
+  },
+  daily_tasks: {
+    ru: 'Открыть задания', uk: 'Відкрити завдання', es: 'Abrir misiones', 'pt-BR': 'Abrir missões',
+    vi: 'Mở nhiệm vụ', id: 'Buka misi', tr: 'Görevleri aç', pl: 'Otwórz zadania',
+  },
+} satisfies Record<string, CompassText>;
+
 /** Человеческие подписи грамматических тем (POS) по Библии. Ключ = WordCategory. */
 export const COMPASS_TOPIC_LABEL: Record<string, CompassText> = {
   verb: { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos', 'pt-BR': 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
@@ -367,3 +643,71 @@ export const COMPASS_TOPIC_LABEL: Record<string, CompassText> = {
   conjunction: { ru: 'Союзы', uk: 'Сполучники', es: 'Conjunciones', 'pt-BR': 'Conjunções', vi: 'Liên từ', id: 'Konjungsi', tr: 'Bağlaçlar', pl: 'Spójniki' },
   syntax: { ru: 'Порядок слов', uk: 'Порядок слів', es: 'Orden de palabras', 'pt-BR': 'Ordem das palavras', vi: 'Trật tự từ', id: 'Urutan kata', tr: 'Kelime sırası', pl: 'Szyk zdania' },
 };
+
+// ── Билдеры: собирают финальные строки приветствия/индакшна по дню + языку ──
+
+/** Подставить имя в шаблон с «{name}» (имя уже очищено ридером онбординга). */
+function withName(template: string, name: string): string {
+  return template.replace('{name}', name);
+}
+
+/**
+ * Собрать живое приветствие-обращение Компаса (АБЗАЦ из коротких предложений,
+ * каждое — отдельная строка массива для красивого переноса в модале).
+ *
+ * Первый день:
+ *   1) знакомство (с именем / без);
+ *   2) если купил доступ — благодарность + чем помогает; иначе — роль Компаса;
+ *      (роль показываем всегда, после благодарности тоже);
+ *   3) куда держим курс — цель ученика своими словами (если известна);
+ *   4) «ничего не навязываю»;
+ *   5) «с чего хочешь начать знакомство?».
+ *
+ * Возврат: тёплое «я тебя помню» + мягкое приглашение продолжить.
+ *
+ * Обычные дни (easy/deep_dive/repair) → [] (комментарий берётся из COMPASS_DAY_COMMENT).
+ */
+export function buildCompassGreeting(day: CompassDay, lang: Lang): string[] {
+  const name = (day.greetingName ?? '').trim();
+  const lines: string[] = [];
+
+  if (day.type === 'first_day') {
+    const hello = triLang(lang, name ? COMPASS_HELLO_NAMED : COMPASS_HELLO);
+    lines.push(name ? withName(hello, name) : hello);
+
+    // Купил на онбординге — сначала благодарим (честно, чем покупка помогает).
+    if (day.hasPremium) lines.push(triLang(lang, COMPASS_THANKS_PREMIUM));
+    // Роль Компаса — всем.
+    lines.push(triLang(lang, COMPASS_ROLE));
+
+    // Куда держим курс — цель ученика по-человечески (если выбрана в онбординге).
+    const goal = day.goal as CompassGoal | null | undefined;
+    if (goal && COMPASS_GOAL_LINE[goal]) lines.push(triLang(lang, COMPASS_GOAL_LINE[goal]));
+
+    lines.push(triLang(lang, COMPASS_NO_PRESSURE));
+    lines.push(triLang(lang, COMPASS_WHERE_START));
+    return lines;
+  }
+
+  if (day.type === 'comeback') {
+    const back = triLang(lang, name ? COMPASS_BACK_NAMED : COMPASS_BACK);
+    lines.push(name ? withName(back, name) : back);
+    lines.push(triLang(lang, COMPASS_BACK_INVITE));
+    return lines;
+  }
+
+  return [];
+}
+
+/** Тексты индакшн-блока (заголовок, подсказка, кнопка) или null, если фичи нет. */
+export function buildCompassInduction(
+  feature: CompassInductionFeature | undefined,
+  lang: Lang,
+): { label: string; text: string; cta: string } | null {
+  if (!feature) return null;
+  return {
+    label: triLang(lang, COMPASS_INDUCTION_LABEL),
+    text: triLang(lang, COMPASS_INDUCTION_TEXT[feature]),
+    cta: triLang(lang, COMPASS_INDUCTION_CTA[feature]),
+  };
+}

@@ -16,12 +16,14 @@ import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
+import { hapticSuccess, hapticCelebrate } from '../../hooks/use-haptics';
 import { compassOn } from './compass_flags';
 import { useCompassDay } from './use_compass_day';
 import { compassTaskRoute } from './compass_task_route';
+import { compassInductionRoute } from './compass_induction_route';
 import { resolvePronunciationRoute } from './compass_pronunciation_route';
 import CompassBriefingModal from './compass_briefing_modal';
-import type { CompassTask } from './compass_brain';
+import type { CompassTask, CompassDay } from './compass_brain';
 
 const SEEN_KEY_PREFIX = 'compass_briefing_seen_';
 
@@ -33,14 +35,20 @@ function todayKey(nowMs: number): string {
   return `${SEEN_KEY_PREFIX}${y}-${m}-${day}`;
 }
 
-// МОДУЛЬНЫЙ latch (живёт всю сессию JS-бандла, переживает ПЕРЕМОНТИРОВАНИЕ хоста).
-// Прошлый фикс держал «показано» в useRef — но ref сбрасывается при remount хоста
-// (мигание hasPremiumAccess при фоновом cloud-refresh, ремаунт поддерева home,
-// навигация), поэтому модал «всплывал, пропадал и снова всплывал бесконечно».
-// AsyncStorage-маркер асинхронный → при быстром remount checkedSeen успевал
-// прочитаться как «ещё не видели» до записи. Модульный latch снимает оба случая
-// синхронно: один раз показали/закрыли за день — больше не открываем до смены дня.
-let _compassBriefingShownForDay: string | null = null;
+// МОДУЛЬНЫЙ latch ЗАКРЫТИЯ (живёт всю сессию JS-бандла, переживает ПЕРЕМОНТИРОВАНИЕ
+// хоста). Ставится ТОЛЬКО когда юзер намеренно закрыл брифинг (Начать день / Позже /
+// тап по задаче) — см. markSeen. Пока он не стоит за сегодня, показ ВОССТАНАВЛИВАЕТСЯ
+// после ремаунта (мигание hasPremiumAccess при фоновом cloud-refresh, Fast Refresh,
+// ремаунт поддерева home, навигация). Раньше латч ставился синхронно в момент ПОКАЗА —
+// тогда первый же ремаунт хоста гасил модалку через cleanup useOverlayVisible
+// (setWants(false)), а латч не давал ей вернуться → «открылась и сразу закрылась сама».
+let _compassBriefingClosedForDay: string | null = null;
+
+// МОДУЛЬНЫЙ latch ПОКАЗА в этой JS-сессии. Нужен, чтобы авто-показ сработал РОВНО один
+// раз: если что-то снаружи гасит модалку (не юзер), мы НЕ переоткрываем её по кругу
+// (анти-мигание). Сбрасывается в false при намеренном закрытии не нужно — день уже
+// латчится _compassBriefingClosedForDay. Живёт до перезапуска бандла.
+let _compassBriefingAutoShownForDay: string | null = null;
 
 interface CompassBriefingHostProps {
   /** Колбэк «начать день» — навигация решается вызывающим экраном (home). */
@@ -64,9 +72,11 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // (экран home смонтирован под оверлеем). null = ещё не проверили.
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
 
-  // Один показ в день: проверяем локальный маркер.
+  // Один показ в день: проверяем локальный маркер. Не гейтим премиумом — само
+  // решение «показывать ли» учитывает премиум ниже (приветственные дни видны всем,
+  // план-дни — только премиуму). Чтение маркера дешёвое и безвредное.
   useEffect(() => {
-    if (!compassOn() || !hasPremiumAccess) return;
+    if (!compassOn()) return;
     let cancelled = false;
     void (async () => {
       const seen = await AsyncStorage.getItem(todayKey(now)).catch(() => null);
@@ -76,11 +86,11 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [now, hasPremiumAccess]);
+  }, [now]);
 
-  // Завершён ли онбординг (читаем один раз).
+  // Завершён ли онбординг (читаем один раз). Без премиум-гейта — см. выше.
   useEffect(() => {
-    if (!compassOn() || !hasPremiumAccess) return;
+    if (!compassOn()) return;
     let cancelled = false;
     void (async () => {
       const done = await AsyncStorage.getItem('onboarding_done').catch(() => null);
@@ -89,43 +99,66 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [hasPremiumAccess]);
+  }, []);
 
   const markSeen = useCallback(() => {
+    // Вызывается ТОЛЬКО при намеренном закрытии юзером (Начать/Позже/тап по задаче).
     // Латчим СИНХРОННО в модульной переменной (переживает remount), потом пишем в
     // AsyncStorage (переживает перезапуск приложения). Синхронный латч — главное:
     // он гасит повторный показ до того, как асинхронная запись успеет завершиться.
-    _compassBriefingShownForDay = dayKey;
+    _compassBriefingClosedForDay = dayKey;
     void AsyncStorage.setItem(dayKey, '1').catch(() => {});
   }, [dayKey]);
 
   // Показываем, только когда: онбординг завершён, день готов, есть реальная история
-  // (тип ≠ first_day) и сегодня ещё не показывали. Чистый лист брифингом не дёргаем.
-  // ВАЖНО: латч `_compassBriefingShownForDay` — МОДУЛЬНЫЙ (не ref): он переживает
-  // перемонтирование хоста (мигание hasPremiumAccess / ремаунт home / навигация),
-  // поэтому модал больше не «всплывает, пропадает и снова всплывает бесконечно».
-  // Латч ставим СИНХРОННО в том же кадре, что и setVisible(true), до любого await.
+  // (тип ≠ first_day) и сегодня ещё не закрывали. Чистый лист брифингом не дёргаем.
+  //
+  // ДВА МОДУЛЬНЫХ ЛАТЧА (оба переживают ремаунт хоста — мигание hasPremiumAccess при
+  // фоновом cloud-refresh, Fast Refresh, ремаунт home, навигация):
+  //  • _compassBriefingClosedForDay — юзер закрыл брифинг сегодня → больше не показываем.
+  //  • _compassBriefingAutoShownForDay — авто-показ сегодня уже случался. Используем его,
+  //    чтобы ВОССТАНОВИТЬ visible после ремаунта (когда локальный setVisible(false)
+  //    сбросился, а юзер ещё не закрывал) — но РОВНО один раз восстанавливаем, без
+  //    повторного запуска всей проверки. Это снимает и «открылось-и-сразу-пропало»
+  //    (теперь показ переживает ремаунт), и старое «бесконечное мигание» (не
+  //    переоткрываем по кругу, если модалку гасит что-то снаружи, а не юзер).
   useEffect(() => {
-    if (_compassBriefingShownForDay === dayKey) return;
+    if (_compassBriefingClosedForDay === dayKey) return;
+    // Восстановление после ремаунта: авто-показ за сегодня уже был, юзер не закрывал —
+    // вернуть видимость, не перезапуская проверку условий.
+    if (_compassBriefingAutoShownForDay === dayKey) {
+      setVisible(true);
+      return;
+    }
+    // Приветственные дни (первый день / возврат после паузы) — персональный
+    // привет от Компаса: показываем ВСЕМ, включая бесплатных (это знакомство с
+    // Компасом и индакшн в фичу, а не план-фича). Остальные дни (easy/deep_dive/
+    // repair) ведут по плану — они только для премиума, как и раньше.
+    const isWelcomeDay = day?.type === 'first_day' || day?.type === 'comeback';
     if (
       compassOn() &&
-      hasPremiumAccess &&
       onboardingDone === true &&
       checkedSeen &&
       !loading &&
       day &&
-      day.type !== 'first_day'
+      (isWelcomeDay || hasPremiumAccess)
     ) {
-      markSeen();
+      _compassBriefingAutoShownForDay = dayKey;
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, markSeen, dayKey]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey]);
 
   const handleStart = useCallback(() => {
+    // Кульминация брифинга — сильный тёплый отклик на ФАКТ старта дня.
+    // Приветственные дни (первая встреча / возврат) заслуживают праздничной
+    // двойной вибрации; обычный день — обычный «успех». Анти-наложение и
+    // уважение к настройке хаптика — внутри слоя use-haptics.
+    const isWelcomeStart = day?.type === 'first_day' || day?.type === 'comeback';
+    void (isWelcomeStart ? hapticCelebrate() : hapticSuccess());
     markSeen();
     setVisible(false);
     onStartDay?.();
-  }, [markSeen, onStartDay]);
+  }, [markSeen, onStartDay, day]);
 
   const handleLater = useCallback(() => {
     markSeen();
@@ -136,6 +169,10 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // Для «повтори вслух» пытаемся открыть задачу произношения текущего дня плана
   // напрямую (она есть в каждом дне плана); если активного плана нет — fallback.
   const handleTaskPress = useCallback((task: CompassTask) => {
+    // Тап по конкретной задаче — тоже старт дела дня: тёплый «успех».
+    // Лёгкий tap нажатия уже сыграл в модалке (onPressIn); анти-наложение в
+    // слое не даст им слиться в один сильный удар.
+    void hapticSuccess();
     markSeen();
     setVisible(false);
     void (async () => {
@@ -155,7 +192,21 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // модалку: брифинг ждёт своей очереди и не стекается с другими.
   const arbitratedVisible = useOverlayVisible('compassBriefing', visible);
 
-  if (!compassOn() || !hasPremiumAccess) return null;
+  // Рендерим, если Компас включён И (есть премиум ИЛИ это приветственный день).
+  // Приветствие первого дня/возврата — знакомство с Компасом, доступно бесплатным;
+  // план-дни остаются премиумными (для них visible не выставится выше).
+  const isWelcomeDay = day?.type === 'first_day' || day?.type === 'comeback';
+  if (!compassOn() || (!hasPremiumAccess && !isWelcomeDay)) return null;
+
+  // Тап по индакшн-подсказке «попробуй первым»: закрываем брифинг и ведём в фичу.
+  const handleInductionPress = (feature: NonNullable<CompassDay['inductionFeature']>) => {
+    // Зов «попробуй первым» — старт знакомства с фичей: тёплый «успех».
+    void hapticSuccess();
+    markSeen();
+    setVisible(false);
+    const route = compassInductionRoute(feature);
+    router.push(route.params ? { pathname: route.pathname, params: route.params } as never : route.pathname as never);
+  };
 
   return (
     <CompassBriefingModal
@@ -164,6 +215,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       onStart={handleStart}
       onLater={handleLater}
       onTaskPress={handleTaskPress}
+      onInductionPress={handleInductionPress}
     />
   );
 }

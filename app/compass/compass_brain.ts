@@ -12,9 +12,22 @@
  * вызывается внутри. Никаких сайд-эффектов.
  */
 import type { CompassSnapshot } from './signal_bus';
+import type { CompassGoal } from './compass_onboarding_profile';
 
 /** Тип дня — выбирается правилами по снимку. */
 export type CompassDayType = 'first_day' | 'easy' | 'deep_dive' | 'repair' | 'comeback';
+
+/**
+ * Индакшн — «что классного попробовать первым». Лёгкая подсказка одной фичи в
+ * приветствии (НЕ задача дня, а зов «загляни сюда»). Выбирается под ситуацию
+ * ученика: цель + уровень + есть ли премиум. Все варианты ведут в реальный экран.
+ */
+export type CompassInductionFeature =
+  | 'level_test' // узнать свой уровень (когда стартовал с нуля)
+  | 'dialogs' // ИИ-диалоги — разговор вживую (вау-фича)
+  | 'flashcards' // карточки — быстрый набор фраз
+  | 'lessons' // сессии-уроки — по шагам
+  | 'daily_tasks'; // задания дня — лёгкий ритуал
 
 /** Вид задачи дня — ссылается на реальные части приложения (куда зовёт Компас). */
 export type CompassTaskKind =
@@ -44,6 +57,19 @@ export interface CompassDay {
   lessonInviteId?: number;
   /** День плана (если есть активный план), чтобы подписать «День N». */
   planDayIndex?: number;
+  /** Имя ученика для приветствия (из онбординга), '' если не задано. */
+  greetingName?: string;
+  /** Цель ученика — для обещания в приветствии. */
+  goal?: CompassGoal | null;
+  /** Уровень ученика — для штриха приветствия. */
+  level?: string | null;
+  /** Куплен ли полный доступ (влияет на первый шаг и индакшн). */
+  hasPremium?: boolean;
+  /**
+   * Индакшн-подсказка «попробуй первым» (only first_day/comeback). Тип фичи —
+   * подпись и маршрут собираются в copy/route. undefined → подсказки нет.
+   */
+  inductionFeature?: CompassInductionFeature;
 }
 
 /** Сколько мс без активности считаем «паузой» → день-возврат. */
@@ -131,6 +157,49 @@ function mistakeRepairTask(snapshot: CompassSnapshot, minutes: number): CompassT
 }
 
 /**
+ * Выбрать «что попробовать первым» под ситуацию ученика. Лёгкий индакшн в одну
+ * фичу — показываем ТОЛЬКО в приветственные дни (first_day / comeback), где у
+ * человека ещё нет своего маршрута. В обычные дни маршрут диктует прогресс, и
+ * подсказка лишняя (возвращаем undefined).
+ *
+ * Правила (детерминированно, 0 ИИ):
+ *  1. Стартовал с нуля и уровень неясен → «узнай свой уровень» (тест) — самый
+ *     полезный первый шаг, не угадываем за ученика.
+ *  2. Иначе по цели:
+ *     - everyday / series → Диалоги (живой разговор — вау-эффект, держит);
+ *     - travel / words    → Карточки (быстрый набор полезных фраз);
+ *     - mind              → Сессии-уроки (по шагам, для «для себя»).
+ *  3. Возврат (comeback): без перегруза — лёгкий ритуал Заданий дня.
+ *  4. Нет данных цели → Диалоги как сильная универсальная витрина.
+ */
+export function pickInductionFeature(
+  snapshot: CompassSnapshot,
+  dayType: CompassDayType,
+): CompassInductionFeature | undefined {
+  if (dayType !== 'first_day' && dayType !== 'comeback') return undefined;
+
+  const { goal, level } = snapshot.onboarding;
+
+  if (dayType === 'comeback') return 'daily_tasks';
+
+  // Стартовал с нуля / уровень не выбран — сперва замерить, куда вести.
+  if (level === 'a0' || level == null) return 'level_test';
+
+  switch (goal) {
+    case 'everyday':
+    case 'series':
+      return 'dialogs';
+    case 'travel':
+    case 'words':
+      return 'flashcards';
+    case 'mind':
+      return 'lessons';
+    default:
+      return 'dialogs';
+  }
+}
+
+/**
  * Собрать день: тип + 3–5 задач. Каждый тип дня даёт свой набор, но все задачи —
  * это зов в РЕАЛЬНЫЕ части приложения. Прогресс частей не трогается (только зов).
  */
@@ -180,5 +249,10 @@ export function buildCompassDay(snapshot: CompassSnapshot, nowMs: number): Compa
     topicFocus: weakTopic,
     lessonInviteId: type === 'deep_dive' ? lessonInviteId : undefined,
     planDayIndex,
+    greetingName: snapshot.onboarding.name || undefined,
+    goal: snapshot.onboarding.goal,
+    level: snapshot.onboarding.level,
+    hasPremium: snapshot.onboarding.hasPremium,
+    inductionFeature: pickInductionFeature(snapshot, type),
   };
 }

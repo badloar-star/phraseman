@@ -37,6 +37,11 @@ import { readPassedLessonIds } from '../plan_day_lesson_recommendation';
 import { computePhraseAnalytics } from '../phrase_analytics';
 import { loadResolvedPersonalTrainings } from '../diagnosis_training_progress';
 import { chooseAvailableDiagnosisForCategory } from '../personal_practice_lesson_router';
+import {
+  readCompassOnboardingProfile,
+  EMPTY_ONBOARDING_PROFILE,
+  type CompassOnboardingProfile,
+} from './compass_onboarding_profile';
 
 export interface CompassMistakeRepairTarget {
   microDiagnosisId: string;
@@ -60,6 +65,12 @@ export interface CompassSnapshot {
   /** Пройденные сессии (id), чтобы не звать туда, где ученик уже силён. */
   passedLessons: number[];
   mistakeRepairTargets?: CompassMistakeRepairTarget[];
+  /**
+   * Выборы ученика из онбординга (имя, цель, уровень, премиум, план). Нужны для
+   * персонального приветствия первого дня и индакшна. Не влияют на прогресс —
+   * только на тёплый текст и подсказку «попробуй первым».
+   */
+  onboarding: CompassOnboardingProfile;
   /** Когда снят (мс), для воспроизводимости/кэша. */
   collectedAtMs: number;
 }
@@ -123,7 +134,7 @@ export async function collectCompassSnapshot(
 ): Promise<CompassSnapshot | null> {
   if (!compassOn()) return null;
 
-  const [mistakes, mistakesByLesson, trainer, posMastery, planDay, passedLessons, mistakeRepairTargets] =
+  const [mistakes, mistakesByLesson, trainer, posMastery, planDay, passedLessons, mistakeRepairTargets, onboarding] =
     await Promise.all([
       safe(() => getTopMistakePhraseDetails(20, 1, studyTarget), [] as PhraseMistakeCategoryStat[]),
       safe(() => getMistakeCountByLesson(studyTarget), {} as Record<number, number>),
@@ -132,6 +143,7 @@ export async function collectCompassSnapshot(
       safe(() => readPersonalPlanSnapshot(), null as PersonalPlanHomeSnapshot | null),
       safe(() => readPassedLessonIds(studyTarget), [] as number[]),
       safe(() => collectMistakeRepairTargets(studyTarget), [] as CompassMistakeRepairTarget[]),
+      safe(() => readCompassOnboardingProfile(), { ...EMPTY_ONBOARDING_PROFILE }),
     ]);
 
   return {
@@ -142,6 +154,7 @@ export async function collectCompassSnapshot(
     planDay,
     passedLessons,
     mistakeRepairTargets,
+    onboarding,
     collectedAtMs: nowMs,
   };
 }

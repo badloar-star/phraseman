@@ -9,13 +9,14 @@
  * ИЗОЛЯЦИЯ: компонент рендерит null, если Компас выключен или дня нет. Вызывающий
  * экран (home) монтирует его за флагом — при off ничего не появляется.
  */
-import React from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
+import { hapticTap } from '../../hooks/use-haptics';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { compassOn } from './compass_flags';
 import type { CompassDay, CompassTask, CompassTaskKind } from './compass_brain';
@@ -23,8 +24,11 @@ import { useCompassVoice } from './use_compass_voice';
 import {
   COMPASS_BRIEFING_TITLE,
   COMPASS_START_DAY,
+  COMPASS_LETS_GO,
   COMPASS_LATER,
   COMPASS_TASK_TITLE,
+  buildCompassGreeting,
+  buildCompassInduction,
 } from './compass_copy';
 
 const TASK_ICON: Record<CompassTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -45,9 +49,11 @@ interface CompassBriefingModalProps {
    * строки задач остаются некликабельными (поведение «только просмотр»).
    */
   onTaskPress?: (task: CompassTask) => void;
+  /** Тап по индакшн-подсказке «попробуй первым» (открыть фичу). Необязателен. */
+  onInductionPress?: (feature: NonNullable<CompassDay['inductionFeature']>) => void;
 }
 
-export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress }: CompassBriefingModalProps) {
+export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress, onInductionPress }: CompassBriefingModalProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
@@ -55,10 +61,25 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
   // Keep hooks unconditional, but avoid the AI voice callable while the modal is hidden.
   const comment = useCompassVoice(visible ? day : null);
 
+  // Тактильный «стук» Компаса при появлении брифинга: мягкий tap (не success —
+  // чтобы открытие не спамило сильной вибрацией). Анти-наложение и уважение к
+  // настройке хаптика — внутри hapticTap. Вызывается один раз на показ.
+  useEffect(() => {
+    if (visible && day) void hapticTap();
+  }, [visible, day]);
+
   if (!compassOn() || !day) return null;
 
   const title = triLang(lang, COMPASS_BRIEFING_TITLE);
   const dayLabel = day.planDayIndex ? `${title} · ${dayWord(lang)} ${day.planDayIndex}` : title;
+
+  // Приветственные дни (первый день / возврат) — живое обращение Компаса от
+  // первого лица (знакомство + благодарность/роль + цель + «не навязываю» +
+  // вопрос). Обычные дни приветствия не имеют — там говорит комментарий по типу
+  // дня (как раньше). Индакшн «с чего начать» — только новичкам/возврату.
+  const greeting = buildCompassGreeting(day, lang);
+  const induction = buildCompassInduction(day.inductionFeature, lang);
+  const isWelcome = greeting.length > 0;
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onLater}>
@@ -80,35 +101,85 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
             />
           </View>
 
-          <Text style={[styles.comment, { color: t.textSecond }]}>{comment}</Text>
-
-          <View style={styles.tasks}>
-            {day.tasks.map((task, i) => (
-              <TouchableOpacity
-                key={`${task.kind}-${i}`}
-                style={[styles.task, { borderColor: t.border }]}
-                activeOpacity={onTaskPress ? 0.7 : 1}
-                disabled={!onTaskPress}
-                onPress={onTaskPress ? () => onTaskPress(task) : undefined}
-              >
-                <View style={[styles.taskIcon, { backgroundColor: t.accent + '14' }]}>
-                  <Ionicons name={TASK_ICON[task.kind]} size={16} color={t.accent} />
-                </View>
-                <Text style={[styles.taskText, { color: t.textPrimary }]}>
-                  {triLang(lang, COMPASS_TASK_TITLE[task.kind])}
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollBody}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+          >
+          {/* Приветственные дни: живое обращение Компаса (абзац из строк). */}
+          {/* Обычные дни: один комментарий по типу дня (гибрид-голос). */}
+          {isWelcome ? (
+            <View style={styles.greeting}>
+              {greeting.map((line, i) => (
+                <Text
+                  key={`greet-${i}`}
+                  style={[i === 0 ? styles.greetLead : styles.greetLine, { color: i === 0 ? t.textPrimary : t.textSecond }]}
+                >
+                  {line}
                 </Text>
-                <Text style={[styles.taskMin, { color: t.textMuted }]}>{task.minutes} мин</Text>
-                {onTaskPress && (
-                  <Ionicons name="chevron-forward" size={15} color={t.textMuted} style={{ marginLeft: 6 }} />
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
+              ))}
+            </View>
+          ) : (
+            <Text style={[styles.comment, { color: t.textSecond }]}>{comment}</Text>
+          )}
 
-          <TouchableOpacity activeOpacity={0.85} onPress={onStart} style={[styles.cta, { backgroundColor: t.accent }]}>
-            <Text style={styles.ctaText}>{triLang(lang, COMPASS_START_DAY)}</Text>
+          {/* Индакшн «с чего здорово начать»: одна крутая фича под ситуацию. */}
+          {induction && (
+            <TouchableOpacity
+              activeOpacity={onInductionPress ? 0.8 : 1}
+              disabled={!onInductionPress || !day.inductionFeature}
+              onPressIn={onInductionPress && day.inductionFeature ? () => hapticTap() : undefined}
+              onPress={onInductionPress && day.inductionFeature ? () => onInductionPress(day.inductionFeature!) : undefined}
+              style={[styles.induction, { backgroundColor: t.accent + '12', borderColor: t.accent + '44' }]}
+            >
+              <View style={styles.inductionHead}>
+                <Ionicons name="sparkles-outline" size={14} color={t.accent} />
+                <Text style={[styles.inductionLabel, { color: t.accent }]}>{induction.label}</Text>
+              </View>
+              <Text style={[styles.inductionText, { color: t.textPrimary }]}>{induction.text}</Text>
+              {onInductionPress && (
+                <View style={styles.inductionCta}>
+                  <Text style={[styles.inductionCtaText, { color: t.accent }]}>{induction.cta}</Text>
+                  <Ionicons name="chevron-forward" size={14} color={t.accent} />
+                </View>
+              )}
+            </TouchableOpacity>
+          )}
+
+          {/* Список задач дня — только в обычные дни. В приветствии новичка/возврата */}
+          {/* ведёт живой текст + индакшн «с чего начать», список тут лишний шум. */}
+          {!isWelcome && (
+            <View style={styles.tasks}>
+              {day.tasks.map((task, i) => (
+                <TouchableOpacity
+                  key={`${task.kind}-${i}`}
+                  style={[styles.task, { borderColor: t.border }]}
+                  activeOpacity={onTaskPress ? 0.7 : 1}
+                  disabled={!onTaskPress}
+                  onPressIn={onTaskPress ? () => hapticTap() : undefined}
+                  onPress={onTaskPress ? () => onTaskPress(task) : undefined}
+                >
+                  <View style={[styles.taskIcon, { backgroundColor: t.accent + '14' }]}>
+                    <Ionicons name={TASK_ICON[task.kind]} size={16} color={t.accent} />
+                  </View>
+                  <Text style={[styles.taskText, { color: t.textPrimary }]}>
+                    {triLang(lang, COMPASS_TASK_TITLE[task.kind])}
+                  </Text>
+                  <Text style={[styles.taskMin, { color: t.textMuted }]}>{task.minutes} мин</Text>
+                  {onTaskPress && (
+                    <Ionicons name="chevron-forward" size={15} color={t.textMuted} style={{ marginLeft: 6 }} />
+                  )}
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+          </ScrollView>
+
+          <TouchableOpacity activeOpacity={0.85} onPressIn={() => hapticTap()} onPress={onStart} style={[styles.cta, { backgroundColor: t.accent }]}>
+            <Text style={styles.ctaText}>{triLang(lang, isWelcome ? COMPASS_LETS_GO : COMPASS_START_DAY)}</Text>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.7} onPress={onLater} style={styles.later}>
+          <TouchableOpacity activeOpacity={0.7} onPressIn={() => hapticTap()} onPress={onLater} style={styles.later}>
             <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, COMPASS_LATER)}</Text>
           </TouchableOpacity>
         </View>
@@ -132,12 +203,23 @@ function dayWord(lang: string): string {
 
 const styles = StyleSheet.create({
   backdrop: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: 12, paddingBottom: 18, backgroundColor: 'rgba(0,0,0,0.55)' },
-  sheet: { width: '100%', maxWidth: 520, alignSelf: 'center', borderRadius: 22, borderWidth: 1, padding: 18, gap: 12 },
+  sheet: { width: '100%', maxWidth: 520, maxHeight: '88%', alignSelf: 'center', borderRadius: 22, borderWidth: 1, padding: 18, gap: 12 },
   header: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   badge: { width: 38, height: 38, borderRadius: 12, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontSize: 17, fontWeight: '800' },
   themeGlyph: { width: 40, height: 40, marginLeft: 6 },
+  scroll: { flexGrow: 0 },
+  scrollBody: { gap: 12, paddingBottom: 2 },
   comment: { fontSize: 14, lineHeight: 20, fontWeight: '600' },
+  greeting: { gap: 7 },
+  greetLead: { fontSize: 16, lineHeight: 23, fontWeight: '800' },
+  greetLine: { fontSize: 14.5, lineHeight: 21, fontWeight: '600' },
+  induction: { borderWidth: 1, borderRadius: 14, padding: 12, gap: 6 },
+  inductionHead: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  inductionLabel: { fontSize: 11, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.4 },
+  inductionText: { fontSize: 13.5, lineHeight: 19, fontWeight: '600' },
+  inductionCta: { flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 },
+  inductionCtaText: { fontSize: 13, fontWeight: '700' },
   tasks: { gap: 8 },
   task: { flexDirection: 'row', alignItems: 'center', gap: 11, borderWidth: 1, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 12 },
   taskIcon: { width: 30, height: 30, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },

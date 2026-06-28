@@ -55,6 +55,8 @@ interface PreviewDay {
   desc: string;
   icon: string;
   build: () => CompassDay;
+  /** Соц-сводка «Кстати…» для этого превью (если показываем блок заявок/лайков). */
+  social?: string[];
 }
 
 /** Синтетические дни — по одному на каждый тип, чтобы проверить голос и вёрстку. */
@@ -122,6 +124,87 @@ const PREVIEW_DAYS: readonly PreviewDay[] = [
       ],
     }),
   },
+  // ── Приветствия (живой голос Компаса) ────────────────────────────────────
+  {
+    type: 'first_day',
+    title: 'Первый день — знакомство',
+    desc: 'Живое приветствие новичка: имя + цель + «с чего начать»',
+    icon: 'happy-outline',
+    build: () => ({
+      type: 'first_day',
+      greetingName: 'Олег',
+      goal: 'travel',
+      level: 'beginner',
+      hasPremium: true,
+      inductionFeature: 'dialogs',
+      tasks: [],
+    }),
+  },
+  {
+    type: 'first_day',
+    title: 'Первый день — без имени/без премиума',
+    desc: 'Тот же экран, но юзер не назвал имя и не купил доступ',
+    icon: 'person-outline',
+    build: () => ({
+      type: 'first_day',
+      greetingName: '',
+      goal: 'words',
+      hasPremium: false,
+      inductionFeature: 'flashcards',
+      tasks: [],
+    }),
+  },
+  // ── Соц-сводка «Кстати…» (заявки в друзья / приняли заявку / лайки) ───────
+  {
+    type: 'easy',
+    title: 'Обычный день + соц-сводка',
+    desc: 'Блок «Кстати…»: приняли заявку + лайк',
+    icon: 'people-outline',
+    build: () => ({
+      type: 'easy',
+      planDayIndex: 4,
+      tasks: [
+        { kind: 'flashcards_review', minutes: 2 },
+        { kind: 'pronunciation', minutes: 1 },
+      ],
+    }),
+    social: ['Аня приняла твою заявку в друзья 🤝', 'Боб поставил тебе лайк ❤️'],
+  },
+  {
+    type: 'comeback',
+    title: 'Возврат + соц-сводка',
+    desc: 'Приветствие возврата вместе с блоком «Кстати…»',
+    icon: 'people-circle-outline',
+    build: () => ({
+      type: 'comeback',
+      greetingName: 'Олег',
+      tasks: [
+        { kind: 'plan_continue', minutes: 4 },
+        { kind: 'flashcards_review', minutes: 2 },
+      ],
+    }),
+    social: ['Катя хочет добавить тебя в друзья 👋'],
+  },
+  {
+    type: 'deep_dive',
+    title: 'Соц-сводка: много событий',
+    desc: 'Три строки + свёртка «и ещё N»',
+    icon: 'notifications-outline',
+    build: () => ({
+      type: 'deep_dive',
+      planDayIndex: 9,
+      topicFocus: 'article',
+      tasks: [
+        { kind: 'lesson_dive', minutes: 5, focus: '5' },
+        { kind: 'flashcards_review', minutes: 2 },
+      ],
+    }),
+    social: [
+      'Аня приняла твою заявку в друзья 🤝',
+      'Боб хочет добавить тебя в друзья 👋',
+      'Лена поставила тебе лайк ❤️ и ещё 3',
+    ],
+  },
 ];
 
 export default function AdminCompassLab() {
@@ -137,13 +220,16 @@ export default function AdminCompassLab() {
 
   // Какой день сейчас показан в модале (синтетический или реальный); null = закрыто.
   const [shownDay, setShownDay] = useState<CompassDay | null>(null);
+  // Соц-сводка «Кстати…» для текущего превью (пусто = блок не показывается).
+  const [shownSocial, setShownSocial] = useState<string[]>([]);
   const [visible, setVisible] = useState(false);
   const [resetMsg, setResetMsg] = useState<string | null>(null);
 
-  const showDay = (day: CompassDay | null) => {
+  const showDay = (day: CompassDay | null, social: string[] = []) => {
     hapticTap();
     if (!day) return;
     setShownDay(day);
+    setShownSocial(social);
     setVisible(true);
   };
 
@@ -202,10 +288,10 @@ export default function AdminCompassLab() {
           </Text>
         </View>
 
-        {/* Превью брифинга по типам дня */}
-        <Text style={styles.sectionLabel}>Превью брифинга — по типу дня</Text>
+        {/* Превью брифинга — типы дня, приветствия, соц-сводка «Кстати…» */}
+        <Text style={styles.sectionLabel}>Превью модалок — разные ситуации</Text>
         {PREVIEW_DAYS.map((d) => (
-          <TouchableOpacity key={d.type} style={styles.row} onPress={() => showDay(d.build())} activeOpacity={0.6}>
+          <TouchableOpacity key={`${d.type}-${d.title}`} style={styles.row} onPress={() => showDay(d.build(), d.social)} activeOpacity={0.6}>
             <Ionicons name={d.icon as any} size={22} color={LAB_ACCENT} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={styles.rowTitle}>{d.title}</Text>
@@ -255,6 +341,7 @@ export default function AdminCompassLab() {
       <CompassBriefingModal
         visible={visible}
         day={shownDay}
+        socialLines={shownSocial}
         onStart={closeModal}
         onLater={closeModal}
         onTaskPress={handleTaskPress}

@@ -80,7 +80,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^stats_daily_breakdown_v1$/,
   /^irregular_verbs_global$/,
   /^irregular_verbs_srs_v1$/,
-  /^verb_of_day_v1$/,
   /^lingman_certificate_v1$/,
   /^custom_flashcards_v2$/,
   /^flashcard_delete_hint_seen$/,
@@ -224,11 +223,6 @@ export function irregularVerbsGlobalKey(studyTarget?: RuntimeStudyTarget): strin
 /** SRS-состояние неправильных глаголов (streak + nextDue по каждой base). */
 export function irregularVerbsSrsKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('irregular_verbs_srs_v1', 'lesson_progress', studyTarget);
-}
-
-/** «Глагол дня»: состояние дневного мини-челленджа + стрик по глаголам. */
-export function verbOfDayKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('verb_of_day_v1', 'daily_tasks', studyTarget);
 }
 
 export function lessonPrepositionProgressKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {

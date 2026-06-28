@@ -80,11 +80,12 @@ export const EXPLAIN_FALLBACK_BY_LANG: Record<string, string> = {
  * Deterministic, AI-free fallback the CF returns when it will not (or cannot) generate: rejected
  * cache, exhausted budget, or a lost lock race. Never calls the model; the client never builds this.
  *
- * IMPORTANT (locked with the user 2026-06-10): this feature explains the ENGLISH grammar, it must
- * NEVER restate the phrase's meaning/translation. So the fallback is a NEUTRAL "try again" message —
- * it deliberately does NOT echo phraseMeaning (the old fallback did, which reproduced the very
- * "Russian re-telling" we were fixing). `_phraseMeaning` is kept in the signature only so callers
- * don't have to change and so a future localized fallback could use the lang, never the meaning.
+ * NOTE: the ERROR fallback stays a NEUTRAL "try again" message — it must not echo `phraseMeaning`,
+ * because a fallback is shown when generation failed (no real explanation to give), and a bare
+ * meaning-echo there would look like a broken answer. This is about the failure path only; the live
+ * explanation itself (re-scoped 2026-06-28) MAY use the phrase's meaning as one valid angle.
+ * `_phraseMeaning` is kept in the signature so callers don't change and a future localized fallback
+ * could use the lang.
  */
 export function buildFallback(_phraseMeaning?: string, lang = 'ru'): string {
   try {

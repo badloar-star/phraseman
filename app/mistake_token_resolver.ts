@@ -141,23 +141,101 @@ export interface MistakeDiffPair {
 }
 
 /**
- * EVERY mismatched word pair between the correct phrase and the learner's answer —
- * not just the first. Feeds the AI breakdown so it can explain the WHOLE error.
- * Pairs are aligned by position; trailing extra/missing words are reported with ∅.
+ * Contractions expanded BEFORE diffing so a short form and its full form compare
+ * as identical — otherwise "don't" vs "do not" shifts every following word by one
+ * position and the positional diff invents false pairs (audit 2026-06-28). Keys are
+ * normalized (lowercased, punctuation-stripped) to match {@link normalizeTokenKey}.
+ */
+const CONTRACTION_EXPANSIONS: Record<string, string[]> = {
+  "don't": ['do', 'not'], "doesn't": ['does', 'not'], "didn't": ['did', 'not'],
+  "isn't": ['is', 'not'], "aren't": ['are', 'not'], "wasn't": ['was', 'not'], "weren't": ['were', 'not'],
+  "can't": ['can', 'not'], cannot: ['can', 'not'], "couldn't": ['could', 'not'], "won't": ['will', 'not'],
+  "wouldn't": ['would', 'not'], "shouldn't": ['should', 'not'], "mustn't": ['must', 'not'],
+  "haven't": ['have', 'not'], "hasn't": ['has', 'not'], "hadn't": ['had', 'not'],
+  "i'm": ['i', 'am'], "you're": ['you', 'are'], "he's": ['he', 'is'], "she's": ['she', 'is'],
+  "it's": ['it', 'is'], "we're": ['we', 'are'], "they're": ['they', 'are'],
+  "i've": ['i', 'have'], "you've": ['you', 'have'], "we've": ['we', 'have'], "they've": ['they', 'have'],
+  "i'll": ['i', 'will'], "you'll": ['you', 'will'], "he'll": ['he', 'will'], "she'll": ['she', 'will'],
+  "we'll": ['we', 'will'], "they'll": ['they', 'will'],
+  "i'd": ['i', 'would'], "you'd": ['you', 'would'], "let's": ['let', 'us'],
+};
+
+/** Token stream with every contraction replaced by its full-form words (normalized keys). */
+function expandContractions(tokens: string[]): string[] {
+  const out: string[] = [];
+  for (const tok of tokens) {
+    const key = normalizeTokenKey(tok);
+    const full = CONTRACTION_EXPANSIONS[key];
+    if (full) out.push(...full);
+    else out.push(key);
+  }
+  return out;
+}
+
+/**
+ * EVERY genuinely mismatched word pair between the correct phrase and the learner's
+ * answer — not just the first. Feeds the AI breakdown so it can explain the WHOLE error.
+ *
+ * Alignment is via longest-common-subsequence over CONTRACTION-EXPANDED tokens, NOT by
+ * raw position: a contraction (don't = do + not) or a missing/extra word no longer
+ * shifts the whole tail and fabricates false pairs (audit 2026-06-28). A real
+ * substitution surfaces as {expected, picked}; a missing word as {expected, picked:''};
+ * an extra word as {expected:'', picked:''+word}. Equivalent phrases → empty list.
  */
 export function resolveAllMistakeTokens(
   expectedPhrase: string,
   actualPhrase?: string | null,
 ): MistakeDiffPair[] {
-  const expectedTokens = splitPhrase(expectedPhrase);
-  const actualTokens = splitPhrase(actualPhrase ?? '');
-  const len = Math.max(expectedTokens.length, actualTokens.length);
+  const expected = expandContractions(splitPhrase(expectedPhrase));
+  const actual = expandContractions(splitPhrase(actualPhrase ?? ''));
+  const n = expected.length;
+  const m = actual.length;
+
+  // LCS length table (dp[i][j] = LCS of expected[i:] and actual[j:]).
+  const dp: number[][] = Array.from({ length: n + 1 }, () => new Array<number>(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i -= 1) {
+    for (let j = m - 1; j >= 0; j -= 1) {
+      dp[i]![j] = expected[i] === actual[j]
+        ? dp[i + 1]![j + 1]! + 1
+        : Math.max(dp[i + 1]![j]!, dp[i]![j + 1]!);
+    }
+  }
+
+  // Backtrack into delete (expected-only) / insert (actual-only) operations.
+  const ops: Array<{ type: 'del'; word: string } | { type: 'ins'; word: string }> = [];
+  let i = 0;
+  let j = 0;
+  while (i < n && j < m) {
+    if (expected[i] === actual[j]) {
+      i += 1;
+      j += 1;
+    } else if (dp[i + 1]![j]! >= dp[i]![j + 1]!) {
+      ops.push({ type: 'del', word: expected[i]! });
+      i += 1;
+    } else {
+      ops.push({ type: 'ins', word: actual[j]! });
+      j += 1;
+    }
+  }
+  while (i < n) ops.push({ type: 'del', word: expected[i++]! });
+  while (j < m) ops.push({ type: 'ins', word: actual[j++]! });
+
+  // Pair an adjacent delete+insert as a substitution (the common "wrong word" case);
+  // lone deletes are missing words, lone inserts are extra words.
   const pairs: MistakeDiffPair[] = [];
-  for (let i = 0; i < len; i += 1) {
-    const expected = expectedTokens[i] ?? '';
-    const picked = actualTokens[i] ?? '';
-    if (!sameToken(expected, picked)) {
-      pairs.push({ expected, picked });
+  for (let k = 0; k < ops.length; k += 1) {
+    const cur = ops[k]!;
+    const next = ops[k + 1];
+    if (cur.type === 'del' && next && next.type === 'ins') {
+      pairs.push({ expected: cur.word, picked: next.word });
+      k += 1;
+    } else if (cur.type === 'ins' && next && next.type === 'del') {
+      pairs.push({ expected: next.word, picked: cur.word });
+      k += 1;
+    } else if (cur.type === 'del') {
+      pairs.push({ expected: cur.word, picked: '' });
+    } else {
+      pairs.push({ expected: '', picked: cur.word });
     }
   }
   return pairs;

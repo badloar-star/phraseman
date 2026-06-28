@@ -227,7 +227,11 @@ describe('explainMistake', () => {
     expect(prompt).toContain('has');
     expect(prompt).toContain('have');
     expect(prompt).toContain('→');
-    expect(prompt).toContain('EVERY word that differs');
+    // Post-2026-06-28 audit: the prompt no longer blindly orders "explain EVERY word that
+    // differs" (that forced the model to teach false positional-diff pairs). It now treats the
+    // swap list as an UNRELIABLE hint and makes the two full sentences the source of truth.
+    expect(prompt).toContain('SOURCE OF TRUTH');
+    expect(prompt).toContain('UNRELIABLE');
     expect(billingDocs()[0]).toMatchObject({
       uid: 'stable-auth-1',
       authUid: 'auth-1',

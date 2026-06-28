@@ -6,16 +6,19 @@ describe('AI explanation prompt style contracts', () => {
   it('keeps explain-like-I-am-five compact and human, not essay-shaped', () => {
     const prompt = buildExplainPrompt("I'm ready.", 'Я готов.', 'ru');
 
-    expect(prompt).toContain('one compact human answer');
+    // Re-scoped 2026-06-28: "Объяснить" explains the PHRASE from the best angle (meaning, rule,
+    // true fact/origin, or how-to-use) — its own feature, not a mistake breakdown.
+    expect(prompt).toContain('one compact, human answer');
     expect(prompt).toContain('This is NOT a mistake breakdown');
-    expect(prompt).toContain('ONE simple rule or phrase-mechanism');
-    expect(prompt).toContain('hard cap ~55 words');
-    expect(prompt).toContain('word-origin clue');
-    expect(prompt).toContain('memory hack');
+    expect(prompt).toContain('PICK THE ONE most useful and interesting angle');
+    expect(prompt).toContain('MEANING / WHEN IT IS SAID');
+    expect(prompt).toContain('A TRUE FACT or WORD-ORIGIN');
+    expect(prompt).toContain('HOW / WHERE TO USE IT');
+    expect(prompt).toContain('hard cap ~70 words');
     expect(prompt).toContain('never sound like a generated lesson');
-    expect(prompt).not.toContain('2–4 tiny paragraphs');
-    expect(prompt).not.toContain('most likely to get wrong');
-    expect(prompt).not.toContain('show it with a tiny real pair:');
+    // The old absolute ban on stating meaning is gone — meaning is now an allowed angle.
+    expect(prompt).not.toContain('ABSOLUTE RULE: Do NOT explain, restate, or translate');
+    expect(prompt).not.toContain('CONTRAST BANK');
   });
 
   it('keeps choice explanations as one-sentence micro-hints', () => {

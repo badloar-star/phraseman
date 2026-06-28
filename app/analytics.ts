@@ -127,7 +127,14 @@ export type AnalyticsEvent =
   | 'change_plan_started'          // нажал «перейти на годовой»
   | 'change_plan_completed'
   | 'change_plan_failed'
-  | 'winback_shown';
+  | 'winback_shown'
+  // Plan-content remote pack runtime: which source served a plan day, and why.
+  // Lets us watch (in admin) how often we serve from the verified server pack vs
+  // fall back to the bundled copy, and what triggered each fallback (no cache,
+  // integrity failure / corruption, network unavailable, registration missing,
+  // etc.). See app/plan_content_remote_telemetry.ts.
+  | 'plan_content_source'
+  | 'plan_content_fallback';
 
 interface EventRecord {
   event: AnalyticsEvent;

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { safeRouterBack } from './navigation_back';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getBundledCompatibilityPlanContentTheoryDay } from './plan_content_readiness';
+import { fetchPlanContentDayForScreen } from './plan_content_remote_facade';
+import type { PlanContentDay } from './plan_content_schema';
 import { contentDayToLessonIntroScreens } from './plan_content_runtime_adapter';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
@@ -33,10 +35,34 @@ export default function PersonalPlanTheoryScreen() {
   const startTaskId = firstParam(params.startTaskId);
   const planInstanceId = firstParam(params.planInstanceId);
 
-  const introScreens = useMemo(() => {
-    const day = getBundledCompatibilityPlanContentTheoryDay(planId, dayIndex);
-    return day ? contentDayToLessonIntroScreens(day) : [];
-  }, [planId, dayIndex]);
+  // Paint the bundled day immediately so the screen never blocks on the network.
+  // In parallel ask the remote facade for the verified server day; if it returns
+  // something better (verified server copy), upgrade the state. Telemetry inside
+  // the facade records which source actually served this view.
+  const bundledDay = useMemo<PlanContentDay | null>(
+    () => getBundledCompatibilityPlanContentTheoryDay(planId, dayIndex) ?? null,
+    [planId, dayIndex],
+  );
+  const [day, setDay] = useState<PlanContentDay | null>(bundledDay);
+  useEffect(() => {
+    setDay(bundledDay);
+    // Only chase a server upgrade when the bundled gate already says theory
+    // exists for this day — that preserves the existing empty-state behavior
+    // for days the gate intentionally hides.
+    if (!bundledDay) return;
+    let cancelled = false;
+    fetchPlanContentDayForScreen(planId, dayIndex, 'theory')
+      .then((result) => {
+        if (cancelled) return;
+        if (result.day) setDay(result.day);
+      })
+      .catch(() => { /* facade swallows; just keep bundled */ });
+    return () => { cancelled = true; };
+  }, [planId, dayIndex, bundledDay]);
+  const introScreens = useMemo(
+    () => (day ? contentDayToLessonIntroScreens(day) : []),
+    [day],
+  );
 
   const goBack = () => safeRouterBack(router, '/personal_plan');
 

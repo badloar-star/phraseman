@@ -36,6 +36,7 @@ import {
   hasBundledCompatibilityPlanContentDay,
   hasBundledCompatibilityPlanContentTheoryEntry,
 } from './plan_content_readiness';
+import { ensurePlanContentPackReady } from './plan_content_remote_facade';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { awardPlanDayCompletionReward } from './personal_plan_day_reward';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
@@ -124,6 +125,14 @@ function resolvePlanChrome(themeMode: ThemeMode, t: ReturnType<typeof useTheme>[
 function ProgressRing({ pct, chrome }: { pct: number; chrome: PlanChrome }) {
   const animPct = useRef(new Animated.Value(0)).current;
   const prevPct = useRef(0);
+
+  // Warm up the remote plan-content pack cache as soon as the personal-plan
+  // screen mounts. ensurePlanContentPackReady() is idempotent, deduplicated, and
+  // a no-op when remote loading is disabled — so this is safe to fire on every
+  // mount and costs nothing while the pack is already cached locally.
+  useEffect(() => {
+    void ensurePlanContentPackReady().catch(() => { /* facade swallows; bundled fallback handles it */ });
+  }, []);
 
   useEffect(() => {
     Animated.timing(animPct, {

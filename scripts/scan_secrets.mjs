@@ -114,6 +114,7 @@ const ALLOWLIST_FILES = new Set([
 const FIREBASE_CLIENT_CONFIG_FILES = new Set([
   'admin/index.html',
   'admin/testers.html',
+  'admin/full.html',
 ]);
 const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
 function isExemptFinding(ruleId, line, relPath) {

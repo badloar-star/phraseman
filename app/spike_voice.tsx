@@ -150,10 +150,16 @@ export default function SpikeVoice() {
       if (!permission.granted) return;
       speakStartRef.current = nowMs();
       setListening(true);
+      // Dev latency harness: NO contextualStrings on purpose (we measure raw ASR
+      // without phrase biasing), but request alternatives + the dictation hint so
+      // the numbers reflect the engine's real best-case, not an under-tuned call.
       speechModule.start({
         lang: 'en-US',
         interimResults: false,
         continuous: false,
+        maxAlternatives: 5,
+        iosTaskHint: 'dictation',
+        addsPunctuation: true,
         ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
       });
     } catch {

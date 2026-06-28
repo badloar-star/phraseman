@@ -48,6 +48,7 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
@@ -884,6 +885,10 @@ export default function LessonMenu() {
         hapticTap();
         if (frenchTheorySourceGated) {
           setSoonOpen('frenchTheory');
+          return;
+        }
+        if (isInteractiveTheoryLesson(lessonId)) {
+          router.push({ pathname: '/lesson_theory_v2', params: { id: lessonId } });
           return;
         }
         router.push({ pathname: '/lesson_help', params: { id: lessonId } });

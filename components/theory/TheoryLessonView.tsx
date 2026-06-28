@@ -254,6 +254,17 @@ export default function TheoryLessonView({
     });
   }, []);
 
+  // XP: после тапа показываем визуальный отклик («Получено»), второй тап — выход.
+  const [claimed, setClaimed] = useState(false);
+  const handleClaimPress = useCallback(() => {
+    if (claimed) {
+      onBack?.();
+      return;
+    }
+    setClaimed(true);
+    onClaimXP?.();
+  }, [claimed, onClaimXP, onBack]);
+
   // Прогресс: «открытых из всех». Полоса заполняется по доле открытых разделов.
   const openCount = sections.reduce((acc, s) => acc + (openSet.has(s.num) ? 1 : 0), 0);
   const total = sections.length || 1;
@@ -471,6 +482,11 @@ export default function TheoryLessonView({
     uk: `Забрати +${xpAmount} XP`,
     es: `Recibir +${xpAmount} XP`,
   });
+  const claimedLabel = triLang(lang, {
+    ru: `+${xpAmount} XP получено · Готово`,
+    uk: `+${xpAmount} XP отримано · Готово`,
+    es: `+${xpAmount} XP recibido · Listo`,
+  });
 
   const metricLabels = {
     sections: triLang(lang, { ru: 'разделов', uk: 'розділів', es: 'secciones' }),
@@ -597,17 +613,24 @@ export default function TheoryLessonView({
           pointerEvents="box-none"
         >
           <TapScale
-            onPress={onClaimXP}
+            onPress={handleClaimPress}
             accessibilityRole="button"
-            accessibilityLabel={claimLabel}
+            accessibilityLabel={claimed ? claimedLabel : claimLabel}
             style={[
               styles.ctaBtn,
-              { backgroundColor: t.gold },
+              { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : t.gold },
               getVolumetricShadow(themeMode, t, 2),
             ]}
           >
-            <Ionicons name="star" size={18} color={textOnGold} style={styles.ctaIcon} />
-            <Text style={[styles.ctaText, { color: textOnGold }]}>{claimLabel}</Text>
+            <Ionicons
+              name={claimed ? 'checkmark-circle' : 'star'}
+              size={18}
+              color={textOnGold}
+              style={styles.ctaIcon}
+            />
+            <Text style={[styles.ctaText, { color: textOnGold }]}>
+              {claimed ? claimedLabel : claimLabel}
+            </Text>
           </TapScale>
         </View>
       </SafeAreaView>

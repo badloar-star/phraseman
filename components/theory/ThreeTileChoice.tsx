@@ -5,6 +5,8 @@ import { hapticSuccess } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroChoiceInteraction } from '../../app/lesson_data_types';
+import type { ThemeMode } from '../../constants/theme';
+import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 
 /**
  * «Выбери форму» — 3-Tile Choice. Один пропуск, 2-3 кнопки.
@@ -16,10 +18,14 @@ interface Props {
   lang: Lang;
   accent: string;
   theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
+  themeMode?: ThemeMode;
   onSolved?: () => void;
 }
 
-export default function ThreeTileChoice({ data, lang, accent, theme, onSolved }: Props) {
+export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, onSolved }: Props) {
+  // В теме business тёмный текст на ярких плашках обесцвечиваем (см. monoIcon).
+  const onBrightText = (color: string): string =>
+    themeMode ? monoIcon(themeMode, color, MONO_ICON.onLight) : color;
   const [picked, setPicked] = useState<string | null>(null);
   const [showWhy, setShowWhy] = useState(false);
   const isCorrect = picked === data.answer;
@@ -51,7 +57,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, onSolved }:
           style={[
             styles.gap,
             isCorrect
-              ? { color: '#0F1115', backgroundColor: theme.correct }
+              ? { color: onBrightText('#0F1115'), backgroundColor: theme.correct }
               : picked
                 ? { color: theme.wrong, borderColor: theme.wrong, borderWidth: 1 }
                 : { color: theme.textMuted, borderColor: accent, borderWidth: 1 },
@@ -83,7 +89,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, onSolved }:
                 },
               ]}
             >
-              <Text style={[styles.tileText, { color: thisOk ? '#0F1115' : theme.textPrimary }]}>
+              <Text style={[styles.tileText, { color: thisOk ? onBrightText('#0F1115') : theme.textPrimary }]}>
                 {opt}
               </Text>
             </TapScale>

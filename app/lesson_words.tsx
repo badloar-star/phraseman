@@ -3160,7 +3160,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               withHaptic={false}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}
-              style={{ height:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
+              style={{ minHeight:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
               onPress={() => { if (chosen !== null) return; flash(`${i}`); if (hapticsOn) requestAnimationFrame(() => { void hapticTap(); }); handleChoice(opt); }}
               disabled={chosen !== null}
             >
@@ -3176,7 +3176,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               )}
               <Text
                 style={{ width:'100%', minWidth:0, flexShrink:1, color: on ? (t.correctText ?? '#fff') : tc, fontSize:optionFontSize, lineHeight:optionLineHeight, fontWeight: on ? '700' : '500', textAlign:'center' }}
-                numberOfLines={1}
+                numberOfLines={2}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
                 ellipsizeMode="tail"
               >
                 {opt}

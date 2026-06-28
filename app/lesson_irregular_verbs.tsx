@@ -673,7 +673,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
                     backgroundColor: bg, borderWidth: 1.5, borderColor: border,
                   }}
                 >
-                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={1}>
+                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.75}>
                     {word}
                   </Text>
                 </TouchableOpacity>
@@ -979,7 +979,7 @@ export default function LessonIrregularVerbs() {
             <TapScale onPress={() => { hapticTap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
-            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1}>{lessonId}. {title}</Text>
+            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{lessonId}. {title}</Text>
             <View style={{ width: 28 }} />
           </View>
 

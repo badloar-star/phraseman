@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, AppState, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
@@ -169,6 +169,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }>();
     const { theme: t, f, themeMode } = useTheme();
     const arenaTabVisible = !isTab || activeIdx === 2;
+    // Пауза вечных лупов лобби при сворачивании приложения (таб-гарда мало: при
+    // свёрнутом приложении с активным табом «Арена» они продолжали крутиться в фоне).
+    const [appActive, setAppActive] = useState(AppState.currentState === 'active');
+    useEffect(() => {
+        const sub = AppState.addEventListener('change', (s) => setAppActive(s === 'active'));
+        return () => sub.remove();
+    }, []);
     const screenTitleColor = t.textPrimary;
     const screenMuted = t.textMuted;
     const { lang } = useLang();
@@ -604,7 +611,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }, [arenaTabVisible, phase]);
     useEffect(() => {
         const inQueue = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
-        if (!arenaTabVisible || !USE_ELITE_ARENA_LOBBY || inQueue) {
+        if (!arenaTabVisible || !appActive || !USE_ELITE_ARENA_LOBBY || inQueue) {
             eliteCtaPulse.setValue(0);
             return;
         }
@@ -614,7 +621,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         ]));
         ctaLoop.start();
         return () => ctaLoop.stop();
-    }, [arenaTabVisible, eliteCtaPulse, phase, status]);
+    }, [arenaTabVisible, appActive, eliteCtaPulse, phase, status]);
     useEffect(() => {
         const visible = !isTab || activeIdx === 2;
         if (!visible || phase !== 'idle') {
@@ -633,7 +640,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }, [activeIdx, arenaHeroEntrance, isTab, phase]);
     useEffect(() => {
         const queueVisible = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
-        if (!arenaTabVisible || !USE_ELITE_ARENA_LOBBY || !queueVisible) {
+        if (!arenaTabVisible || !appActive || !USE_ELITE_ARENA_LOBBY || !queueVisible) {
             eliteRadarPulse.setValue(0);
             eliteRadarSweep.setValue(0);
             return;
@@ -653,7 +660,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             radarLoop.stop();
             sweepLoop.stop();
         };
-    }, [arenaTabVisible, eliteRadarPulse, eliteRadarSweep, phase, status]);
+    }, [arenaTabVisible, appActive, eliteRadarPulse, eliteRadarSweep, phase, status]);
     // Лобби в табе смонтировано постоянно (TabSlider). Тост «матч найден» душился на всіх екранах,
     // бо isLobbyActive лишався true після перходу на інші вкладки — тримаємо active лише коли видно таб «Арена» (2).
     useEffect(() => {

@@ -2,10 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { ActivityIndicator, Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
+import { ActivityIndicator, Animated, AppState, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -1658,6 +1659,7 @@ export default function DailyTasksScreen() {
     const { theme: t, f, themeMode } = useTheme();
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const isGoldTheme = themeMode === 'gold';
+    const isBusinessTheme = themeMode === 'business';
     const goldAccent = GOLD_RICH.metalGold;
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
@@ -1697,19 +1699,42 @@ export default function DailyTasksScreen() {
     // Анимации для премиум-плашки
     const premiumPulse = useRef(new Animated.Value(1)).current;
     const premiumSparkle = useRef(new Animated.Value(0)).current;
+    // Экран pushed (freezeOnBlur:false): при навигации глубже он остаётся active под
+    // верхним, и без focus-гарда обе бесконечные анимации продолжают крутиться. AppState
+    // добавляет паузу при сворачивании приложения.
+    const screenFocused = useIsScreenFocused();
     useEffect(() => {
-        const pulse = Animated.loop(Animated.sequence([
-            Animated.timing(premiumPulse, { toValue: 1.08, duration: 700, useNativeDriver: true }),
-            Animated.timing(premiumPulse, { toValue: 1.0, duration: 700, useNativeDriver: true }),
-        ]));
-        const sparkle = Animated.loop(Animated.sequence([
-            Animated.timing(premiumSparkle, { toValue: 1, duration: 900, useNativeDriver: true }),
-            Animated.timing(premiumSparkle, { toValue: 0, duration: 900, useNativeDriver: true }),
-        ]));
-        pulse.start();
-        sparkle.start();
-        return () => { pulse.stop(); sparkle.stop(); };
-    }, [premiumPulse, premiumSparkle]);
+        if (!screenFocused) {
+            premiumPulse.stopAnimation(); premiumPulse.setValue(1);
+            premiumSparkle.stopAnimation(); premiumSparkle.setValue(0);
+            return undefined;
+        }
+        let pulse: Animated.CompositeAnimation | null = null;
+        let sparkle: Animated.CompositeAnimation | null = null;
+        const start = () => {
+            if (pulse) return;
+            pulse = Animated.loop(Animated.sequence([
+                Animated.timing(premiumPulse, { toValue: 1.08, duration: 700, useNativeDriver: true }),
+                Animated.timing(premiumPulse, { toValue: 1.0, duration: 700, useNativeDriver: true }),
+            ]));
+            sparkle = Animated.loop(Animated.sequence([
+                Animated.timing(premiumSparkle, { toValue: 1, duration: 900, useNativeDriver: true }),
+                Animated.timing(premiumSparkle, { toValue: 0, duration: 900, useNativeDriver: true }),
+            ]));
+            pulse.start();
+            sparkle.start();
+        };
+        const stop = () => {
+            pulse?.stop(); pulse = null;
+            sparkle?.stop(); sparkle = null;
+        };
+        if (AppState.currentState === 'active') start();
+        const appSub = AppState.addEventListener('change', (state) => {
+            if (state === 'active') start();
+            else stop();
+        });
+        return () => { appSub.remove(); stop(); };
+    }, [premiumPulse, premiumSparkle, screenFocused]);
     // Инициализируем анимации при изменении tasks (useEffect, не в теле рендера)
     useEffect(() => {
         (tasks ?? []).forEach(task => {
@@ -2030,6 +2055,8 @@ export default function DailyTasksScreen() {
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
     const bonusAccent = isGoldTheme
         ? (trioClaimButtonEnabled ? GOLD_RICH.champagne : GOLD_RICH.paleGold)
+        : isBusinessTheme
+            ? (trioShardsClaimed ? '#9A9A9A' : t.accent)
         :
             trioShardsClaimed ? '#9CA3AF' : '#63D98F';
     // Фон кнопки «Забрать бонус за день»: ЗЕЛЁНЫЙ (активный) только когда все задания
@@ -2463,8 +2490,9 @@ export default function DailyTasksScreen() {
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
-                :
-                    meta.tone;
+                : isBusinessTheme
+                    ? t.accent
+                    : meta.tone;
             const progressLabel = isArenaCombo && comboReq
                 ? `${Math.round(pct)}%`
                 : `${Math.min(current, task.target)}/${task.target}`;
@@ -2475,7 +2503,7 @@ export default function DailyTasksScreen() {
             const taskFillColor = isGoldTheme
                 ? taskAccent
                 : `${taskAccent}${completed || claimed ? '34' : '18'}`;
-            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : 'rgba(15,14,18,0.90)';
+            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
             const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
@@ -2513,13 +2541,13 @@ export default function DailyTasksScreen() {
                     }}>
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', gap: 4,
-                        backgroundColor: isGoldTheme ? '#16120A' : '#B8860B',
-                        borderWidth: 1, borderColor: isGoldTheme ? goldHairline : '#FFD700',
+                        backgroundColor: isGoldTheme ? '#16120A' : isBusinessTheme ? '#1C1C1C' : '#B8860B',
+                        borderWidth: 1, borderColor: isGoldTheme ? goldHairline : isBusinessTheme ? 'rgba(255,255,255,0.2)' : '#FFD700',
                         borderBottomRightRadius: 18, borderTopLeftRadius: 10,
                         paddingHorizontal: 10, paddingVertical: 5,
                     }}>
                       <Animated.Text style={{ fontSize: 11, opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }}>✨</Animated.Text>
-                      <Text style={{ color: isGoldTheme ? goldBright : '#FFD700', fontSize: 11, fontWeight: '800', letterSpacing: 0.5 }}>PREMIUM</Text>
+                      <Text style={{ color: isGoldTheme ? goldBright : isBusinessTheme ? '#F2F2F2' : '#FFD700', fontSize: 11, fontWeight: '800', letterSpacing: 0.5 }}>PREMIUM</Text>
                       <Animated.Text style={{ fontSize: 11, opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [1, 0.6] }) }}>✨</Animated.Text>
                     </View>
                   </Animated.View>)}
@@ -2563,7 +2591,7 @@ export default function DailyTasksScreen() {
                         setRerollConfirm({ task });
                     }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
                         ru: 'Заменить вызов за осколки',
-                        uk: 'Замінити завдання за осколки',
+                        uk: 'Замінити завдання за уламки',
                         es: 'Reemplazar tarea por fragmentos',
                         'pt-BR': "Substituir tarefa por fragmentos",
                         vi: "Đổi nhiệm vụ bằng mảnh",
@@ -2600,7 +2628,7 @@ export default function DailyTasksScreen() {
                             setRerollConfirm({ task });
                         }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
                             ru: 'Заменить вызов за осколки',
-                            uk: 'Замінити завдання за осколки',
+                            uk: 'Замінити завдання за уламки',
                             es: 'Reemplazar tarea por fragmentos',
                             'pt-BR': "Substituir tarefa por fragmentos",
                             vi: "Đổi nhiệm vụ bằng mảnh",

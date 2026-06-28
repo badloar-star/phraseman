@@ -2,6 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { useCorrectSound } from '../../hooks/use-correct-sound';
+import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import BouncyScrollView, { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
@@ -14,6 +15,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ImageSourcePropType } from 'react-native';
 import {
   Animated,
+  AppState,
   Easing,
   InteractionManager,
   KeyboardAvoidingView,
@@ -322,31 +324,53 @@ function QuizCardLogoImageWithFallback({
 
 function useQuizCardIconPulse(enabled: boolean) {
   const pulseAnim = useRef(new Animated.Value(1)).current;
+  // Таб квизов остаётся смонтированным (freezeOnBlur:false), поэтому без focus-гарда
+  // пульс КАЖДОЙ карточки крутится и когда юзер на другой вкладке. AppState добавляет
+  // паузу при сворачивании приложения. Иначе — накопительный нагрев (по loop на карточку).
+  const focused = useIsScreenFocused();
 
   useEffect(() => {
-    if (!enabled || !QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
+    if (!enabled || !QUIZ_ENTRY_REPEATING_MOTION_ENABLED || !focused) {
       pulseAnim.stopAnimation();
       pulseAnim.setValue(1);
       return undefined;
     }
 
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, {
-          toValue: MOTION_SCALE.nudge,
-          duration: 740,
-          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-        }),
-        Animated.timing(pulseAnim, {
-          toValue: 1,
-          duration: 740,
-          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-        }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [enabled, pulseAnim]);
+    let loop: Animated.CompositeAnimation | null = null;
+    const start = () => {
+      if (loop) return;
+      loop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, {
+            toValue: MOTION_SCALE.nudge,
+            duration: 740,
+            useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+          }),
+          Animated.timing(pulseAnim, {
+            toValue: 1,
+            duration: 740,
+            useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+          }),
+        ])
+      );
+      loop.start();
+    };
+    const stop = () => {
+      loop?.stop();
+      loop = null;
+      pulseAnim.setValue(1);
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      stop();
+    };
+  }, [enabled, focused, pulseAnim]);
 
   return pulseAnim;
 }

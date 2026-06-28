@@ -1,4 +1,4 @@
-import type { IrregularVerb } from './irregular_verbs_data';
+import { acceptedFormsFor, type IrregularVerb } from './irregular_verbs_data';
 
 export type IrregularVerbFormKey = 'past' | 'pp' | 'base';
 
@@ -41,7 +41,10 @@ export function buildIrregularVerbOptions(
 ): string[] {
   const cleanCorrect = cleanOption(correct) ?? cleanOption(verb[formKey]) ?? cleanOption(verb.base) ?? 'answer';
   const correctLow = cleanCorrect.toLowerCase();
-  const seen = new Set<string>([correctLow]);
+  // Все допустимые формы (включая варианты вроде were/got) не должны попадать в дистракторы.
+  const accepted = new Set<string>(acceptedFormsFor(verb, formKey).map(f => f.toLowerCase()));
+  accepted.add(correctLow);
+  const seen = new Set<string>(accepted);
 
   const score = (w: string) => {
     let s = 0;

@@ -6,6 +6,10 @@ export interface IrregularVerb {
   base: string;
   past: string;
   pp: string;
+  /** Дополнительные допустимые формы past simple (напр. be → was|were, burn → burned|burnt). */
+  altPast?: readonly string[];
+  /** Дополнительные допустимые формы past participle (напр. get → gotten|got в BrE). */
+  altPp?: readonly string[];
   ru: string;
   uk: string;
   es: string;
@@ -17,7 +21,16 @@ export interface IrregularVerb {
   sourceLocales?: IrregularVerbSourceLocaleMap;
 }
 
+/** Все допустимые ответы для целевой формы глагола (включая варианты). */
+export function acceptedFormsFor(verb: IrregularVerb, formKey: 'past' | 'pp' | 'base'): string[] {
+  if (formKey === 'base') return [verb.base];
+  if (formKey === 'past') return [verb.past, ...(verb.altPast ?? [])];
+  return [verb.pp, ...(verb.altPp ?? [])];
+}
+
 const IRREGULAR_VERB_GLOSSARY: Record<string, IrregularVerb> = {
+  be: { base: 'be', past: 'was', pp: 'been', ru: 'Быть (тж. were во мн.ч.)', uk: 'Бути (тж. were у мн.)', es: 'Ser / estar (tb. were en plural)', 'pt-BR': 'Ser / estar (tb. were no plural)', vi: 'Thì / là / ở (số nhiều: were)', id: 'Menjadi / ada (jamak: were)', tr: 'Olmak (çoğul: were)', pl: 'Być (w l.mn. were)', altPast: ['were'] },
+  do: { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити', es: 'Hacer', 'pt-BR': 'Fazer', vi: 'Làm', id: 'Melakukan', tr: 'Yapmak / etmek', pl: 'Robić' },
   break: { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Ламати', es: 'Romper', 'pt-BR': 'Quebrar / romper', vi: 'Làm vỡ / phá vỡ', id: 'Memecahkan / merusak', tr: 'Kırmak', pl: 'Łamać / zepsuć' },
   bring: { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити', es: 'Traer', 'pt-BR': 'Trazer', vi: 'Mang đến', id: 'Membawa', tr: 'Getirmek', pl: 'Przynosić' },
   build: { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати', es: 'Construir', 'pt-BR': 'Construir', vi: 'Xây dựng', id: 'Membangun', tr: 'İnşa etmek', pl: 'Budować' },
@@ -32,7 +45,7 @@ const IRREGULAR_VERB_GLOSSARY: Record<string, IrregularVerb> = {
   feel: { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Відчувати', es: 'Sentir', 'pt-BR': 'Sentir', vi: 'Cảm thấy', id: 'Merasa', tr: 'Hissetmek', pl: 'Czuć' },
   find: { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити', es: 'Encontrar', 'pt-BR': 'Encontrar', vi: 'Tìm thấy', id: 'Menemukan', tr: 'Bulmak', pl: 'Znajdować' },
   forget: { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати', es: 'Olvidar', 'pt-BR': 'Esquecer', vi: 'Quên', id: 'Melupakan', tr: 'Unutmak', pl: 'Zapominać' },
-  get: { base: 'get', past: 'got', pp: 'gotten', ru: 'Получать', uk: 'Отримувати', es: 'Conseguir', 'pt-BR': 'Conseguir / receber', vi: 'Nhận / có được', id: 'Mendapatkan', tr: 'Almak / elde etmek', pl: 'Dostać / uzyskać' },
+  get: { base: 'get', past: 'got', pp: 'gotten', altPp: ['got'], ru: 'Получать', uk: 'Отримувати', es: 'Conseguir', 'pt-BR': 'Conseguir / receber', vi: 'Nhận / có được', id: 'Mendapatkan', tr: 'Almak / elde etmek', pl: 'Dostać / uzyskać' },
   give: { base: 'give', past: 'gave', pp: 'given', ru: 'Давать', uk: 'Давати', es: 'Dar', 'pt-BR': 'Dar', vi: 'Đưa / cho', id: 'Memberi', tr: 'Vermek', pl: 'Dawać' },
   go: { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати', es: 'Ir', 'pt-BR': 'Ir', vi: 'Đi', id: 'Pergi', tr: 'Gitmek', pl: 'Iść / jechać' },
   have: { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати', es: 'Tener', 'pt-BR': 'Ter', vi: 'Có', id: 'Mempunyai', tr: 'Sahip olmak', pl: 'Mieć' },
@@ -72,6 +85,8 @@ const IRREGULAR_VERB_GLOSSARY: Record<string, IrregularVerb> = {
 };
 
 const IRREGULAR_VERB_SOURCE_LOCALES: Record<string, IrregularVerbSourceLocaleMap> = {
+  be: { es: 'Ser / estar (tb. were en plural)', 'pt-BR': 'Ser / estar (tb. were no plural)', vi: 'Thì / là / ở (số nhiều: were)', id: 'Menjadi / ada (jamak: were)', tr: 'Olmak (çoğul: were)', pl: 'Być (w l.mn. were)' },
+  do: { es: 'Hacer', 'pt-BR': 'Fazer', vi: 'Làm', id: 'Melakukan', tr: 'Yapmak / etmek', pl: 'Robić' },
   break: { es: 'Romper', 'pt-BR': 'Quebrar / romper', vi: 'Làm vỡ / phá vỡ', id: 'Memecahkan / merusak', tr: 'Kırmak', pl: 'Łamać / zepsuć' },
   bring: { es: 'Traer', 'pt-BR': 'Trazer', vi: 'Mang đến', id: 'Membawa', tr: 'Getirmek', pl: 'Przynosić' },
   build: { es: 'Construir', 'pt-BR': 'Construir', vi: 'Xây dựng', id: 'Membangun', tr: 'İnşa etmek', pl: 'Budować' },
@@ -126,8 +141,8 @@ const IRREGULAR_VERB_SOURCE_LOCALES: Record<string, IrregularVerbSourceLocaleMap
 };
 
 const LESSON_IRREGULAR_BASES = {
-  1: [],
-  2: [],
+  1: ['be'],
+  2: ['do'],
   3: ['buy', 'come', 'cost', 'drink', 'drive', 'eat', 'feel', 'forget', 'hear', 'know', 'read', 'speak', 'take', 'understand', 'wear', 'write'],
   4: ['break', 'lose', 'pay', 'see', 'sell', 'send'],
   5: ['find', 'sing', 'sleep'],
@@ -182,6 +197,36 @@ export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(
 export const IRREGULAR_VERB_COUNT_BY_LESSON: Record<number, number> = Object.fromEntries(
   Object.entries(IRREGULAR_VERBS_BY_LESSON).map(([lessonId, verbs]) => [Number(lessonId), verbs.length])
 );
+
+// ── Порции (chunking) ──────────────────────────────────────────────────────────
+// Большие списки глаголов учим волнами по ~5-6, чтобы снизить когнитивную нагрузку
+// (урок 3 — 16 глаголов). Если в уроке мало глаголов, порция одна.
+
+/** Целевой размер одной порции тренировки. */
+export const IRREGULAR_VERB_PORTION_SIZE = 6;
+
+/** Порог, при котором список вообще делится на порции (иначе одна порция). */
+const PORTION_MIN_TO_SPLIT = 8;
+
+/**
+ * Делит глаголы урока на порции по ~IRREGULAR_VERB_PORTION_SIZE.
+ * Балансирует так, чтобы не было хвоста из 1 глагола (16 → 6+5+5, а не 6+6+4).
+ */
+export function portionsForVerbs(verbs: IrregularVerb[], size = IRREGULAR_VERB_PORTION_SIZE): IrregularVerb[][] {
+  if (verbs.length < PORTION_MIN_TO_SPLIT) return verbs.length > 0 ? [verbs] : [];
+  const portionCount = Math.ceil(verbs.length / size);
+  const balanced = Math.ceil(verbs.length / portionCount);
+  const out: IrregularVerb[][] = [];
+  for (let i = 0; i < verbs.length; i += balanced) {
+    out.push(verbs.slice(i, i + balanced));
+  }
+  return out;
+}
+
+/** Кол-во порций тренировки для урока. */
+export function portionCountForLesson(lessonId: number): number {
+  return portionsForVerbs(IRREGULAR_VERBS_BY_LESSON[lessonId] ?? []).length;
+}
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

@@ -38,8 +38,8 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   pl: string;
 }> = {
   stats: {
-    ru: 'Разбор твоего прогресса',
-    uk: 'Розбір твого прогресу',
+    ru: 'Разбор твоего пути',
+    uk: 'Розбір твого шляху',
     es: 'Análisis de tu progreso',
     'pt-BR': 'Análise do seu progresso',
     vi: 'Phân tích tiến độ của bạn',

@@ -880,7 +880,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'quizzes_completed', numValue: data.quizzesTotal, label: triLang(lang, { ru: 'Вызовов пройдено', uk: 'Квізів пройдено', es: 'Cuestionarios hechos', 'pt-BR': 'Quizzes feitos', vi: 'Quiz đã làm', id: 'Kuis dikerjakan', tr: 'Yapılan quizler', pl: 'Zrobione quizy' }) },
         { kind: 'arena_wins', numValue: data.arenaWins, label: triLang(lang, { ru: 'Побед на Арене', uk: 'Перемог на Арені', es: 'Victorias en Arena', 'pt-BR': 'Vitórias na Arena', vi: 'Thắng ở Đấu trường', id: 'Kemenangan di Arena', tr: 'Arena zaferleri', pl: 'Zwycięstwa na Arenie' }) },
         { kind: 'arena_losses', numValue: data.arenaLosses, label: triLang(lang, { ru: 'Поражений на Арене', uk: 'Поразок на Арені', es: 'Derrotas en Arena', 'pt-BR': 'Derrotas na Arena', vi: 'Thua ở Đấu trường', id: 'Kekalahan di Arena', tr: 'Arena yenilgileri', pl: 'Porażki na Arenie' }) },
-        { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Заданий дня выполнено', uk: 'Завдань дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
+        { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Вызовов дня выполнено', uk: 'Викликів дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
         { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Осколков заработано', uk: 'Осколків зароблено', es: 'Fragmentos ganados', 'pt-BR': 'Fragmentos ganhos', vi: 'Mảnh đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan parçalar', pl: 'Zdobyte odłamki' }) },
         { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Осколков потрачено', uk: 'Осколків витрачено', es: 'Fragmentos gastados', 'pt-BR': 'Fragmentos gastos', vi: 'Mảnh đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan parçalar', pl: 'Wydane odłamki' }) },
     ];
@@ -1249,8 +1249,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
             <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
               {triLang(lang, {
-                ru: 'Прогресс пари',
-                uk: 'Прогрес парі',
+                ru: 'Ход пари',
+                uk: 'Хід парі',
                 es: 'Progreso',
                 'pt-BR': "Progresso",
                 vi: "Tiến độ",
@@ -3393,8 +3393,8 @@ export default function StreakStats() {
           numberOfLines={1}
         >
           {triLang(lang, {
-            ru: 'Статистика',
-            uk: 'Статистика',
+            ru: 'Твои результаты',
+            uk: 'Твої результати',
             es: 'Estadísticas',
             'pt-BR': "Estatísticas",
             vi: "Thống kê",
@@ -4025,8 +4025,8 @@ export default function StreakStats() {
 
         <View style={{ alignItems: 'center', paddingVertical: 12 }}>
           <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
-            ru: 'Цепочки и статистика',
-            uk: 'Стріки та статистика',
+            ru: 'Цепочки и результаты',
+            uk: 'Стріки та результати',
             es: 'Rachas y estadísticas',
             'pt-BR': "Sequências e estatísticas",
             vi: "Chuỗi và thống kê",

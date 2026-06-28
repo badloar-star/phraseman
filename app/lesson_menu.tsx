@@ -800,8 +800,8 @@ export default function LessonMenu() {
 }),
       sub: prepositionTotal > 0
         ? triLang(lang, {
-            ru: `${prepositionAnswered}/${prepositionTotal} заданий`,
-            uk: `${prepositionAnswered}/${prepositionTotal} завдань`,
+            ru: `${prepositionAnswered}/${prepositionTotal} вызовов`,
+            uk: `${prepositionAnswered}/${prepositionTotal} викликів`,
             es: `${prepositionAnswered}/${prepositionTotal} ejercicios`,
             'pt-BR': `${prepositionAnswered}/${prepositionTotal} exercícios`,
             vi: `${prepositionAnswered}/${prepositionTotal} bài tập`,

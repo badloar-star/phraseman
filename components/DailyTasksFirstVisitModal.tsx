@@ -161,7 +161,7 @@ function taskTitle(task: DailyTask, lang: Lang): string {
   const titleEs = lang === 'es' ? task.titleES : undefined;
   const localized = localizedDailyTaskStrings(lang, task).title;
   return localized || titleEs || task.titleRU || task.titleUK || triLang(lang, {
-    ru: 'Задание дня',
+    ru: 'Вызов дня',
     uk: 'Завдання дня',
     es: 'Tarea del día',
     'pt-BR': 'Tarefa do dia',
@@ -201,7 +201,7 @@ export default function DailyTasksFirstVisitModal({
   const title = useMemo(() => getDailyTitle(lang), [lang, visible]);
   const copy = useMemo(() => ({
     closeA11y: triLang(lang, {
-      ru: 'Закрыть задания дня',
+      ru: 'Закрыть вызовы дня',
       uk: 'Закрити завдання дня',
       es: 'Cerrar tareas del día',
       'pt-BR': 'Fechar tarefas do dia',
@@ -231,7 +231,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Zadania dnia',
     }),
     loadError: triLang(lang, {
-      ru: 'Не получилось открыть задания. Попробуй ещё раз.',
+      ru: 'Не получилось открыть вызовы. Попробуй ещё раз.',
       uk: 'Не вдалося відкрити завдання. Спробуй ще раз.',
       es: 'No se pudieron abrir las tareas. Inténtalo de nuevo.',
       'pt-BR': 'Não foi possível abrir as tarefas. Tente de novo.',
@@ -241,7 +241,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Nie udało się otworzyć zadań. Spróbuj ponownie.',
     }),
     replaceLimit: triLang(lang, {
-      ru: 'Сегодня задания уже заменены.',
+      ru: 'Сегодня вызовы уже заменены.',
       uk: 'Сьогодні завдання вже замінені.',
       es: 'Hoy las tareas ya fueron reemplazadas.',
       'pt-BR': 'As tarefas de hoje já foram trocadas.',
@@ -251,7 +251,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Dzisiejsze zadania już wymieniono.',
     }),
     taskStarted: triLang(lang, {
-      ru: 'Ты уже начал одно из заданий. Сейчас лучше оставить их как есть.',
+      ru: 'Ты уже начал один из вызовов. Сейчас лучше оставить их как есть.',
       uk: 'Ти вже почав одне із завдань. Зараз краще залишити їх як є.',
       es: 'Ya empezaste una de las tareas. Ahora es mejor dejarlas como están.',
       'pt-BR': 'Você já começou uma das tarefas. Agora é melhor deixá-las como estão.',
@@ -261,7 +261,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Jedno z zadań już rozpoczęto. Teraz lepiej zostawić je bez zmian.',
     }),
     replaceError: triLang(lang, {
-      ru: 'Не получилось заменить задания.',
+      ru: 'Не получилось заменить вызовы.',
       uk: 'Не вдалося замінити завдання.',
       es: 'No se pudieron reemplazar las tareas.',
       'pt-BR': 'Não foi possível trocar as tarefas.',
@@ -271,7 +271,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Nie udało się wymienić zadań.',
     }),
     loading: triLang(lang, {
-      ru: 'Открываю задания…',
+      ru: 'Открываю вызовы…',
       uk: 'Відкриваю завдання…',
       es: 'Abriendo tareas…',
       'pt-BR': 'Abrindo tarefas…',
@@ -291,7 +291,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Zacznij',
     }),
     replacing: triLang(lang, {
-      ru: 'Меняю задания…',
+      ru: 'Меняю вызовы…',
       uk: 'Міняю завдання…',
       es: 'Cambiando tareas…',
       'pt-BR': 'Trocando tarefas…',
@@ -301,7 +301,7 @@ export default function DailyTasksFirstVisitModal({
       pl: 'Zmieniam zadania…',
     }),
     replace: triLang(lang, {
-      ru: 'Заменить задания',
+      ru: 'Заменить вызовы',
       uk: 'Замінити завдання',
       es: 'Reemplazar tareas',
       'pt-BR': 'Trocar tarefas',

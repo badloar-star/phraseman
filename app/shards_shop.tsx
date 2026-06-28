@@ -44,6 +44,7 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
+import { clearPendingShardGrant, recordPendingShardGrant, resumePendingShardGrants } from './shards_pending_grants';
 import {
   getWarmShardsPackagesMap,
   isCompleteShardsPackageMap,
@@ -453,8 +454,8 @@ export default function ShardsShopScreen() {
       return {
         icon: 'logo-google-playstore',
         cardPurchase: triLang(lang, {
-          ru: 'Покупка — в Google Play',
-          uk: 'Покупка — у Google Play',
+          ru: 'Оплата — в Google Play',
+          uk: 'Оплата — у Google Play',
           es: 'Compra — Google Play',
           'pt-BR': 'Compra — Google Play',
           vi: 'Mua hàng — Google Play',
@@ -705,6 +706,10 @@ export default function ShardsShopScreen() {
         if (shopEntryBalanceRef.current === null && needFromRoute > 0) {
           shopEntryBalanceRef.current = next;
         }
+        // Дотягиваем pending-начисления из прошлых покупок (если вебхук задержался
+        // дольше окна waitForServerShardGrant ~18с). resumePendingShardGrants сам
+        // обновит баланс и покажет toast «+N осколков», когда облако подтвердит.
+        void resumePendingShardGrants().catch(() => {});
       })();
       // Повторный визит на экран: тихо обновляем список наборов; первый fetch только из useEffect ниже.
       if (shopTab === 'paid' && cardMarketFetchedOnce.current) {
@@ -935,7 +940,20 @@ export default function ShardsShopScreen() {
           return;
         }
         const beforePurchaseBalance = await getShardsBalance();
-        await Purchases.purchasePackage(pkg);
+        const purchaseResult = await Purchases.purchasePackage(pkg);
+        // СРАЗУ записываем pending — даже если вебхук задержится или упадёт,
+        // `resumePendingShardGrants` при следующем заходе в магазин/на главную
+        // дотянет осколки. Без этого деньги списывались, а осколки молча терялись.
+        const purchaseTxId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
+          ?.transaction?.transactionIdentifier
+          ?? `${productId}:${Date.now()}`;
+        await recordPendingShardGrant({
+          productId,
+          transactionId: purchaseTxId,
+          expectedShards: shards,
+          beforeBalance: beforePurchaseBalance,
+          createdAtMs: Date.now(),
+        }).catch(() => {});
         logShardsPurchased(productId, shards);
         void trackShardPackPurchase(packId).catch(() => {});
         void trackActivity('shards_shop:purchase_success', {
@@ -965,6 +983,8 @@ export default function ShardsShopScreen() {
           eligibleAchievementBalance: await getShardAchievementEligibleBalance(nextBalance),
         });
         if (nextBalance >= beforePurchaseBalance + shards) {
+          // Дошёл — закрываем pending запись.
+          void clearPendingShardGrant(purchaseTxId).catch(() => {});
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `Готово: +${shards} осколков`,

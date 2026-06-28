@@ -479,7 +479,7 @@ function LevelGiftModal({
             {triLang(lang, { ru: 'Подарок за уровень', uk: 'Твій подарунок', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
-            {triLang(lang, { ru: 'Награда за прогресс', uk: 'Нагорода за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
+            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
           {phase !== 'reveal' ? (
@@ -659,8 +659,8 @@ function LevelGiftModal({
               {storesOnly && (
                 <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginBottom: 18 }}>
                   {triLang(lang, {
-                    ru: 'Сохранено в разделе «Подарки» в статистике',
-                    uk: 'Збережено в розділі «Подарунки» у статистиці',
+                    ru: 'Сохранено в разделе «Подарки» в результатах',
+                    uk: 'Збережено в розділі «Подарунки» у результатах',
                     es: 'Guardado en Regalos dentro de Estadísticas',
                     'pt-BR': 'Salvo em Presentes nas Estatísticas',
                     vi: 'Đã lưu trong Quà ở Thống kê',

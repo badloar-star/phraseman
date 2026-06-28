@@ -119,8 +119,8 @@ export async function purchaseCommunityPackWithShards(
   const buyerStableId = await getCanonicalUserId();
   if (!buyerStableId) {
     emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Нет профиля для покупки.',
-      uk: 'Немає профілю для покупки.',
+      ru: 'Нужен профиль, чтобы открыть набор.',
+      uk: 'Потрібен профіль, щоб відкрити набір.',
       es: 'No hay perfil para completar la compra.',
       'pt-BR': 'Não há perfil para concluir a compra.',
       vi: 'Không có hồ sơ để hoàn tất giao dịch mua.',

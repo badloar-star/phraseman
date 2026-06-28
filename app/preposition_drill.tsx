@@ -516,7 +516,7 @@ export default function PrepositionDrillScreen() {
               <Text style={{ color: sx.muted, fontSize: f.sub, marginBottom: 8 }}>
                 {triLang(lang, {
                   uk: 'Завдання',
-                  ru: 'Задание',
+                  ru: 'Вызов',
                   es: 'Ejercicio',
                   'pt-BR': 'Exercício',
                   vi: 'Bài tập',
@@ -635,7 +635,7 @@ export default function PrepositionDrillScreen() {
                   }),
                   triLang(lang, {
                     uk: `Завдання: ${item.sentenceTemplate}`,
-                    ru: `Задание: ${item.sentenceTemplate}`,
+                    ru: `Вызов: ${item.sentenceTemplate}`,
                     es: `Ejercicio: ${item.sentenceTemplate}`,
                     'pt-BR': `Exercício: ${item.sentenceTemplate}`,
                     vi: `Bài tập: ${item.sentenceTemplate}`,

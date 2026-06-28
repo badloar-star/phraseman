@@ -70,8 +70,8 @@ export default function PersonalPlanThankYouScreen() {
           >
             <Text style={[styles.primaryText, { color: t.correctText }]}>
               {triLang(lang, {
-                ru: 'Сохранить прогресс',
-                uk: 'Зберегти прогрес',
+                ru: 'Сохранить свой путь',
+                uk: 'Зберегти свій шлях',
                 es: 'Guardar progreso',
                 'pt-BR': 'Salvar progresso',
                 vi: 'Lưu tiến độ',

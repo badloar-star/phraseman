@@ -842,7 +842,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   streak: [
     { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
     { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía', 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda karena energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
-    { ru: 'Стабильный ежедневный прогресс', uk: 'Стабільний щоденний прогрес', es: 'Avance estable cada día', 'pt-BR': 'Progresso diário estável', vi: 'Tiến bộ hằng ngày ổn định', id: 'Progres harian stabil', tr: 'İstikrarlı günlük ilerleme', pl: 'Stabilny codzienny postęp' },
+    { ru: 'Стабильный ежедневный путь', uk: 'Стабільний щоденний шлях', es: 'Avance estable cada día', 'pt-BR': 'Progresso diário estável', vi: 'Tiến bộ hằng ngày ổn định', id: 'Progres harian stabil', tr: 'İstikrarlı günlük ilerleme', pl: 'Stabilny codzienny postęp' },
   ],
   theme: [
     { ru: 'Персональный стиль приложения', uk: 'Персональний стиль застосунку', es: 'Estilo visual a tu medida', 'pt-BR': 'Estilo visual do seu jeito', vi: 'Phong cách giao diện theo bạn', id: 'Gaya visual sesuai seleramu', tr: 'Kişisel uygulama stili', pl: 'Osobisty styl aplikacji' },
@@ -947,13 +947,13 @@ CONTEXT_BENEFITS.smart_trainer = [
 CONTEXT_BENEFITS.premium_expired = [
   { ru: 'Продолжаешь ровно с того места, где остановился', uk: 'Продовжуєш саме з того місця, де зупинився', es: 'Sigues justo donde lo dejaste', 'pt-BR': 'Você continua exatamente de onde parou', vi: 'Tiếp tục đúng chỗ bạn đã dừng', id: 'Lanjut tepat dari tempat terakhir', tr: 'Tam kaldığın yerden devam edersin', pl: 'Kontynuujesz dokładnie tam, gdzie skończyłeś' },
   { ru: 'Снова без лимитов и вынужденных пауз', uk: 'Знову без лімітів і вимушених пауз', es: 'De nuevo sin límites ni pausas forzadas', 'pt-BR': 'De novo sem limites nem pausas forçadas', vi: 'Lại không giới hạn và không bị dừng ép buộc', id: 'Lagi tanpa batas dan jeda paksa', tr: 'Yeniden sınırsız ve zorunlu arasız', pl: 'Znów bez limitów i wymuszonych przerw' },
-  { ru: 'Весь твой прогресс и материалы на месте', uk: 'Весь твій прогрес і матеріали на місці', es: 'Todo tu progreso y materiales siguen ahí', 'pt-BR': 'Todo o seu progresso e materiais continuam lá', vi: 'Toàn bộ tiến trình và tài liệu vẫn còn đó', id: 'Semua progres dan materimu tetap ada', tr: 'Tüm ilerlemen ve materyallerin yerinde', pl: 'Cały twój postęp i materiały są na miejscu' },
+  { ru: 'Весь твой путь и материалы на месте', uk: 'Весь твій шлях і матеріали на місці', es: 'Todo tu progreso y materiales siguen ahí', 'pt-BR': 'Todo o seu progresso e materiais continuam lá', vi: 'Toàn bộ tiến trình và tài liệu vẫn còn đó', id: 'Semua progres dan materimu tetap ada', tr: 'Tüm ilerlemen ve materyallerin yerinde', pl: 'Cały twój postęp i materiały są na miejscu' },
 ];
 
 CONTEXT_BENEFITS.vip_expired = [
   { ru: 'Сохрани всё, что открыл VIP, — теперь навсегда', uk: 'Збережи все, що відкрив VIP, — тепер назавжди', es: 'Conserva todo lo del VIP, ahora para siempre', 'pt-BR': 'Mantenha tudo do VIP, agora para sempre', vi: 'Giữ mọi thứ VIP đã mở — giờ là mãi mãi', id: 'Pertahankan semua dari VIP, kini selamanya', tr: 'VIP’nin açtığı her şeyi koru — artık kalıcı', pl: 'Zachowaj wszystko z VIP — teraz na zawsze' },
   { ru: 'Без лимитов на уроки, квизы и практику', uk: 'Без лімітів на уроки, квізи і практику', es: 'Sin límites en lecciones, quizzes y práctica', 'pt-BR': 'Sem limites em lições, quizzes e prática', vi: 'Không giới hạn bài học, quiz và luyện tập', id: 'Tanpa batas pelajaran, kuis, dan latihan', tr: 'Derslerde, quizlerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje, quizy i praktykę' },
-  { ru: 'Стабильный прогресс без пауз', uk: 'Стабільний прогрес без пауз', es: 'Progreso estable sin pausas', 'pt-BR': 'Progresso estável sem pausas', vi: 'Tiến bộ ổn định không gián đoạn', id: 'Progres stabil tanpa jeda', tr: 'Arasız istikrarlı ilerleme', pl: 'Stabilny postęp bez przerw' },
+  { ru: 'Стабильный путь без пауз', uk: 'Стабільний шлях без пауз', es: 'Progreso estable sin pausas', 'pt-BR': 'Progresso estável sem pausas', vi: 'Tiến bộ ổn định không gián đoạn', id: 'Progres stabil tanpa jeda', tr: 'Arasız istikrarlı ilerleme', pl: 'Stabilny postęp bez przerw' },
 ];
 
 CONTEXT_BENEFITS.notification_upsell = [

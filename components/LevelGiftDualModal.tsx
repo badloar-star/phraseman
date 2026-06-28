@@ -629,7 +629,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
             {triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai phần quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 12 }}>
-            {triLang(lang, { ru: 'Награда за прогресс', uk: 'Нагорода за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
+            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
           {phase === 'pair' && (

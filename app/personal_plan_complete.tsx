@@ -154,7 +154,7 @@ export default function PersonalPlanCompleteScreen() {
               <View style={[styles.statBox, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
                 <Text style={[styles.statValue, { color: t.textPrimary }]}>{summary.completedTasks}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>
-                  {triLang(lang, { ru: 'заданий', uk: 'завдань', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
+                  {triLang(lang, { ru: 'вызовов', uk: 'викликів', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
                 </Text>
               </View>
             </View>

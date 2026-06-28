@@ -283,8 +283,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               pl: '🔥 Passa i dni z rzędu',
             }),
             L({
-              ru: '📚 Прогресс по всем урокам',
-              uk: '📚 Прогрес по всіх уроках',
+              ru: '📚 Твой путь по всем урокам',
+              uk: '📚 Твій шлях по всіх уроках',
               es: '📚 Progreso en todas las lecciones',
               'pt-BR': '📚 Progresso em todas as aulas',
               vi: '📚 Tiến độ trong tất cả bài học',

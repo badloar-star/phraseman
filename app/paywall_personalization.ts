@@ -156,8 +156,8 @@ const GENERIC_TAGS: PersonalizedTag[] = [
   {
     key: 'generic_quizhard',
     emoji: '🥇',
-    ru: 'Вызовы без дневного лимита и расширенные задания',
-    uk: 'Квізи без денного ліміту та розширені завдання',
+    ru: 'Вызовы без дневного лимита и расширенная практика',
+    uk: 'Квізи без денного ліміту та розширена практика',
     es: 'Cuestionarios sin límite diario y tareas avanzadas',
     'pt-BR': 'Quizzes sem limite diário e tarefas avançadas',
     vi: 'Quiz không giới hạn mỗi ngày và bài tập nâng cao',

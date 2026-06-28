@@ -209,8 +209,8 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
                   if (!canRefill) {
                     emitAppEvent('action_toast', {
                       type: 'info',
-                      messageRu: 'База уже полная — сначала потрать ⚡ в уроке или вызове.',
-                      messageUk: 'База вже повна — спочатку витрать ⚡ в уроці або квізі.',
+                      messageRu: 'База уже полная — сначала потрать ⚡ в раунде или вызове.',
+                      messageUk: 'База вже повна — спочатку витрать ⚡ в раунді або виклику.',
                       messageEs:
                         'Ya tienes la energía al máximo: primero gasta ⚡ en una lección o un cuestionario.',
                       messagePtBr: 'A energia base já está cheia: primeiro gaste ⚡ em uma lição ou quiz.',

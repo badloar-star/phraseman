@@ -434,8 +434,8 @@ export default function AiCompanionSession() {
               value={input}
               onChangeText={setInput}
               placeholder={triLang(lang, {
-                ru: 'Спроси о фразе или прогрессе',
-                uk: 'Запитай про фразу або прогрес',
+                ru: 'Спроси о фразе или своём пути',
+                uk: 'Запитай про фразу або свій шлях',
                 es: 'Pregunta por una frase o tu progreso',
                 'pt-BR': 'Pergunte sobre uma frase ou seu progresso',
                 vi: 'Hỏi về một cụm từ hoặc tiến độ',

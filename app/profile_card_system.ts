@@ -568,8 +568,8 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   4: [
     { isNew: true, text: {
-      ru: 'Расширенная публичная статистика — 3 метрики вместо 2',
-      uk: 'Розширена публічна статистика — 3 метрики замість 2',
+      ru: 'Расширенные публичные результаты — 3 метрики вместо 2',
+      uk: 'Розширені публічні результати — 3 метрики замість 2',
       es: 'Estadísticas públicas ampliadas: 3 métricas en vez de 2',
       'pt-BR': 'Estatísticas públicas ampliadas: 3 métricas em vez de 2',
       vi: 'Thống kê công khai mở rộng — 3 chỉ số thay vì 2',

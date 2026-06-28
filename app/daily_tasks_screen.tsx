@@ -5,7 +5,7 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { ActivityIndicator, Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
+import { ActivityIndicator, Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -34,12 +34,14 @@ import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
-import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 
 const safeDailyTaskEventPart = (value: unknown): string =>
     String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
+
+const markTaskClaimedForUi = (rows: TaskProgress[], taskId: string): TaskProgress[] =>
+    rows.map((row) => (row.taskId === taskId ? { ...row, completed: true, claimed: true } : row));
 
 type DailyTaskUiMeta = {
     stage: string;
@@ -1643,7 +1645,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
     // downstream render reads meta.tone/.label and would red-screen the whole list.
     return byType[type] ?? {
         stage: '',
-        label: triLang(lang, { ru: 'Задание', uk: 'Завдання', es: 'Tarea', 'pt-BR': 'Tarefa', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görev', pl: 'Zadanie' }),
+        label: triLang(lang, { ru: 'Вызов', uk: 'Виклик', es: 'Tarea', 'pt-BR': 'Tarefa', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görev', pl: 'Zadanie' }),
         reason: '',
         cta: triLang(lang, { ru: 'Открыть', uk: 'Відкрити', es: 'Abrir', 'pt-BR': 'Abrir', vi: 'Mở', id: 'Buka', tr: 'Aç', pl: 'Otwórz' }),
         minutes: '1 мин',
@@ -1688,12 +1690,10 @@ export default function DailyTasksScreen() {
     const [rerollBusyId, setRerollBusyId] = useState<string | null>(null);
     /** Антидребезг клейма: свежий getTodayTasksSafe + registerXP не дают второго тапа «в никуда». */
     const [claimBusyId, setClaimBusyId] = useState<string | null>(null);
-    const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
-    const [readyToNavigateTaskId, setReadyToNavigateTaskId] = useState<string | null>(null);
-    const expandedTaskAnim = useRef(new Animated.Value(0)).current;
-    const taskConfirmAnim = useRef(new Animated.Value(0)).current;
+    const [trioClaimBusy, setTrioClaimBusy] = useState(false);
     const xpAnim = useRef(new Animated.Value(0)).current;
     const claimAnims = useRef<Record<string, Animated.Value>>({});
+    const pendingClaimIdsRef = useRef<Set<string>>(new Set());
     // Анимации для премиум-плашки
     const premiumPulse = useRef(new Animated.Value(1)).current;
     const premiumSparkle = useRef(new Animated.Value(0)).current;
@@ -1710,19 +1710,6 @@ export default function DailyTasksScreen() {
         sparkle.start();
         return () => { pulse.stop(); sparkle.stop(); };
     }, [premiumPulse, premiumSparkle]);
-    useEffect(() => {
-        setReadyToNavigateTaskId(null);
-        taskConfirmAnim.setValue(0);
-        Animated.timing(expandedTaskAnim, {
-            toValue: expandedTaskId ? 1 : 0,
-            duration: expandedTaskId ? 240 : 170,
-            useNativeDriver: false,
-        }).start(({ finished }) => {
-            if (finished && expandedTaskId) {
-                setReadyToNavigateTaskId(expandedTaskId);
-            }
-        });
-    }, [expandedTaskAnim, expandedTaskId, taskConfirmAnim]);
     // Инициализируем анимации при изменении tasks (useEffect, не в теле рендера)
     useEffect(() => {
         (tasks ?? []).forEach(task => {
@@ -1735,6 +1722,26 @@ export default function DailyTasksScreen() {
         AsyncStorage.getItem('user_name').then(n => { if (n)
             setUserName(n); });
     }, []);
+    const mergePendingClaimProgress = useCallback((rows: TaskProgress[]): TaskProgress[] => {
+        if (pendingClaimIdsRef.current.size === 0) return rows;
+        return rows.map((row) => (
+            pendingClaimIdsRef.current.has(row.taskId)
+                ? { ...row, completed: true, claimed: true }
+                : row
+        ));
+    }, []);
+    const showClaimedXpBadge = useCallback((amount: number) => {
+        const value = Math.max(0, Math.round(amount));
+        if (value <= 0) return;
+        setClaimedXP(value);
+        xpAnim.stopAnimation();
+        xpAnim.setValue(0);
+        Animated.sequence([
+            Animated.timing(xpAnim, { toValue: 1, duration: 220, useNativeDriver: true }),
+            Animated.delay(1200),
+            Animated.timing(xpAnim, { toValue: 0, duration: 360, useNativeDriver: true }),
+        ]).start(() => setClaimedXP(null));
+    }, [xpAnim]);
     // Список заданий и прогресс с экрана должны ссылаться на один и тот же набор task id
     // (после смены уровня/премиума/подмен заданий), и прогресс в storage — быть с ним согласован.
     const refreshGen = useRef(0);
@@ -1752,7 +1759,7 @@ export default function DailyTasksScreen() {
                 const p = await loadTodayProgress(list, studyTarget);
                 if (gen !== refreshGen.current)
                     return;
-                setProgress(p);
+                setProgress(mergePendingClaimProgress(p));
                 const trio = await isDailyTasksAllShardsRewardClaimedForDay(getTodayKey());
                 if (gen !== refreshGen.current)
                     return;
@@ -1767,12 +1774,12 @@ export default function DailyTasksScreen() {
                     return;
                 const backupTaskList = filterDailyTasksForStudyTarget(getTodayTasks(), studyTarget);
                 setTasks(backupTaskList);
-                setProgress(backupTaskList.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false })));
+                setProgress(mergePendingClaimProgress(backupTaskList.map((x) => ({ taskId: x.id, current: 0, completed: false, claimed: false }))));
                 setRerollsLeft(0);
                 setLoadingTasks(false);
             }
         })();
-    }, [studyTarget]);
+    }, [mergePendingClaimProgress, studyTarget]);
     const handleRerollConfirm = useCallback(async () => {
         const target = rerollConfirm?.task;
         if (!target || rerollBusyId)
@@ -1832,7 +1839,7 @@ export default function DailyTasksScreen() {
                     pl: 'Dzisiejsza wymiana została już użyta. Jutro będzie kolejna próba.',
                 },
                 task_already_completed: {
-                    ru: 'Это задание уже выполнено — заменять нечего.',
+                    ru: 'Этот вызов уже выполнен — заменять нечего.',
                     uk: 'Це завдання вже виконане — замінювати нема чого.',
                     es: 'Esta tarea ya está completada, no hay nada que reemplazar.',
                     'pt-BR': 'Esta tarefa já foi concluída. Não há nada para trocar.',
@@ -1842,7 +1849,7 @@ export default function DailyTasksScreen() {
                     pl: 'To zadanie jest już ukończone, nie ma czego wymieniać.',
                 },
                 no_candidates: {
-                    ru: 'Замены нет — выбери другое задание.',
+                    ru: 'Замены нет — выбери другой вызов.',
                     uk: 'Не знайшлось гідної заміни — спробуй інше завдання.',
                     es: 'No hay reemplazo disponible. Prueba con otra tarea.',
                     'pt-BR': 'Não há uma troca adequada. Tente outra tarefa.',
@@ -1875,16 +1882,12 @@ export default function DailyTasksScreen() {
         }
     }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router, studyTarget]);
     useFocusEffect(useCallback(() => {
-        setExpandedTaskId(null);
-        setReadyToNavigateTaskId(null);
-        expandedTaskAnim.setValue(0);
-        taskConfirmAnim.setValue(0);
         // Показываем скелетоны только если ещё нет загруженных заданий: при первом
         // входе/холодном старте — да; при возврате на экран с уже готовым списком
         // не мигаем (список перерисуется тихо).
         setLoadingTasks((prev) => (tasks.length === 0 ? true : prev));
         refreshTasksAndProgress();
-    }, [expandedTaskAnim, refreshTasksAndProgress, taskConfirmAnim, tasks.length]));
+    }, [refreshTasksAndProgress, tasks.length]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
         return () => sub.remove();
@@ -1893,10 +1896,19 @@ export default function DailyTasksScreen() {
         if (claimBusyId)
             return;
         setClaimBusyId(taskId);
+        pendingClaimIdsRef.current.add(taskId);
+        setProgress((prev) => markTaskClaimedForUi(prev, taskId));
+        void hapticSuccess();
+        showClaimedXpBadge(xpBase);
+        const anim = claimAnims.current[taskId];
+        if (anim) {
+            Animated.sequence([
+                Animated.timing(anim, { toValue: 1.1, duration: 100, useNativeDriver: true }),
+                Animated.timing(anim, { toValue: 1, duration: 150, useNativeDriver: true }),
+            ]).start();
+        }
         try {
-            const freshList = await getTodayTasksSafe(studyTarget);
-            const tasksForClaim = freshList.length > 0 ? freshList : tasks;
-            const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
+            const { claimed } = await claimTaskWithReward(taskId, async () => {
                 // registerXP сам резолвит имя из canonical UID + уровня, если userName пустой.
                 // Раньше тут был ранний return при !userName — это и был баг "опыт не начислен"
                 // когда пользователь жмёт Забрать до того, как AsyncStorage.getItem('user_name') резолвится.
@@ -1925,7 +1937,8 @@ export default function DailyTasksScreen() {
                     // Не блокируем выдачу награды из-за transient-сбоя XP-пайплайна.
                     throw new Error('daily_task_reward_failed');
                 }
-            }, { tasksForClaim, studyTarget });
+            }, { tasksForClaim: tasks, studyTarget });
+            pendingClaimIdsRef.current.delete(taskId);
             // Снимаем спиннер сразу после клейма: дальше могут быть медленные getTodayTasksSafe/loadTodayProgress.
             setClaimBusyId(null);
             if (!claimed) {
@@ -1941,29 +1954,16 @@ export default function DailyTasksScreen() {
             const t = await getTodayTasksSafe(studyTarget);
             setTasks(t);
             const newProgress = await loadTodayProgress(t, studyTarget);
-            setProgress(newProgress);
+            setProgress(mergePendingClaimProgress(newProgress));
             const allDone = newProgress.length > 0 && newProgress.every(p => p.claimed);
             const noReroll = allDone
                 ? (await getDailyRerollsLeftToday(studyTarget).catch(() => rerollsLeft)) >= DAILY_TASK_REROLL_MAX_PER_DAY
                 : false;
             checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).catch(() => { });
-            void hapticSuccess();
-            const anim = claimAnims.current[taskId];
-            if (anim) {
-                Animated.sequence([
-                    Animated.timing(anim, { toValue: 1.1, duration: 100, useNativeDriver: true }),
-                    Animated.timing(anim, { toValue: 1, duration: 150, useNativeDriver: true }),
-                ]).start();
-            }
-            setClaimedXP(awardedXp);
-            xpAnim.setValue(0);
-            Animated.sequence([
-                Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.delay(1200),
-                Animated.timing(xpAnim, { toValue: 0, duration: 400, useNativeDriver: true }),
-            ]).start(() => setClaimedXP(null));
         }
         catch {
+            pendingClaimIdsRef.current.delete(taskId);
+            refreshTasksAndProgress();
             emitAppEvent('action_toast', {
                 type: 'error',
                 messageRu: 'Награду забрать не получилось. Попробуй ещё раз.',
@@ -1979,13 +1979,14 @@ export default function DailyTasksScreen() {
         if (tasks.length === 0)
             return;
         const done = areAllDailyTaskObjectivesDone(tasks, progress);
-        if (!done || trioShardsClaimed)
+        if (!done || trioShardsClaimed || trioClaimBusy)
             return;
+        setTrioClaimBusy(true);
+        setTrioShardsClaimed(true);
+        void hapticSuccess();
         try {
             const outcome = await claimDailyTasksAllShardsRewardDetailed(getTodayKey());
             if (outcome === 'granted') {
-                setTrioShardsClaimed(true);
-                void hapticSuccess();
                 refreshTasksAndProgress();
                 return;
             }
@@ -2011,6 +2012,7 @@ export default function DailyTasksScreen() {
             }
         }
         catch {
+            setTrioShardsClaimed(false);
             emitAppEvent('action_toast', {
                 type: 'error',
                 messageRu: 'Осколки не загрузились. Проверь соединение.',
@@ -2018,11 +2020,14 @@ export default function DailyTasksScreen() {
                 messageEs: 'Error al obtener fragmentos.',
             });
         }
-    }, [tasks, progress, trioShardsClaimed, refreshTasksAndProgress]);
+        finally {
+            setTrioClaimBusy(false);
+        }
+    }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress]);
     const claimedCount = countClaimedForTaskList(tasks, progress);
     const allTasksObjectivesDone = areAllDailyTaskObjectivesDone(tasks, progress);
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
-    const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed;
+    const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed && !trioClaimBusy;
     const bonusAccent = isGoldTheme
         ? (trioClaimButtonEnabled ? GOLD_RICH.champagne : GOLD_RICH.paleGold)
         :
@@ -2197,24 +2202,8 @@ export default function DailyTasksScreen() {
     };
     // Сортировка: готово к награде → в процессе → завершено
     const handleTaskCardPress = (task: DailyTask) => {
-        const intent = getDailyTaskCardPressIntent(readyToNavigateTaskId, task.id);
-        if (intent === 'expand') {
-            hapticTap();
-            expandedTaskAnim.setValue(0);
-            taskConfirmAnim.setValue(0);
-            setReadyToNavigateTaskId(null);
-            setExpandedTaskId(task.id);
-            return;
-        }
         hapticTap();
-        Animated.timing(taskConfirmAnim, {
-            toValue: 1,
-            duration: 260,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-        }).start(() => {
-            void handleTaskNav(task);
-        });
+        void handleTaskNav(task);
     };
     const sortedTasks = [...tasks].sort((a, b) => {
         const pa = progress.find(p => p.taskId === a.id);
@@ -2359,7 +2348,7 @@ export default function DailyTasksScreen() {
               </Text>
               <Text numberOfLines={2} style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)', fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                 {triLang(lang, {
-            ru: `Выполни все задания и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
+            ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
             uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
             es: `Completa todas las tareas y reclama ${trioRewardCount} fragmentos.`,
             'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} fragmentos.`,
@@ -2468,7 +2457,7 @@ export default function DailyTasksScreen() {
                 ? Math.min(100, (comboPlaysDisp / comboReq.minPlays) * 50 + (comboWinsDisp >= comboReq.minWins ? 50 : 0))
                 : Math.min((current / task.target) * 100, 100);
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
-            const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
+            const { title: taskTitle } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const meta = getDailyTaskUiMeta(task.type, lang);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
@@ -2491,30 +2480,13 @@ export default function DailyTasksScreen() {
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
             const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
-            const isExpanded = expandedTaskId === task.id && !completed && !claimed;
-            const expandedDescriptionLineHeight = f.body * 1.28;
-            const expandedDescriptionLines = Math.min(3, Math.max(1, Math.ceil(taskDesc.length / 32)));
-            const expandedDescriptionBlockHeight = Math.ceil(expandedDescriptionLineHeight * expandedDescriptionLines + 14);
-            const expandedCardTargetHeight = 92 + expandedDescriptionBlockHeight + 46;
-            const expandedCardHeight = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [92, expandedCardTargetHeight] })
-                : 92;
-            const expandedPanelHeight = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [0, expandedDescriptionBlockHeight] })
-                : 0;
-            const expandedPanelTranslateY = isExpanded
-                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] })
-                : 0;
-            const confirmFillTranslateX = isExpanded
-                ? taskConfirmAnim.interpolate({ inputRange: [0, 1], outputRange: [-520, 0] })
-                : -520;
             return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null, null]}>
             <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskCardPress(task))}>
             <Animated.View style={[
                     dailyTaskStyles.taskCard,
                     dailyTaskStyles.taskCapsuleCard,
                     {
-                        height: expandedCardHeight as any,
+                        height: 92,
                         borderColor: taskHairline,
                         backgroundColor: taskTrackColor,
                     }]}
@@ -2590,7 +2562,7 @@ export default function DailyTasksScreen() {
                         hapticTap();
                         setRerollConfirm({ task });
                     }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                        ru: 'Заменить задание за осколки',
+                        ru: 'Заменить вызов за осколки',
                         uk: 'Замінити завдання за осколки',
                         es: 'Reemplazar tarea por fragmentos',
                         'pt-BR': "Substituir tarefa por fragmentos",
@@ -2603,52 +2575,6 @@ export default function DailyTasksScreen() {
                     </TouchableOpacity>)}
                   </View>
                 </View>
-
-                {/* Прогресс-бар */}
-                {isExpanded && (<Animated.View style={[
-                    dailyTaskStyles.taskExpandedPanel,
-                    {
-                        height: expandedPanelHeight as any,
-                        opacity: expandedTaskAnim,
-                        transform: [{ translateY: expandedPanelTranslateY as any }],
-                    },
-                ]}>
-                  <Text numberOfLines={expandedDescriptionLines} style={[dailyTaskStyles.taskExpandedDescription, { color: isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)', fontSize: f.body, lineHeight: expandedDescriptionLineHeight }]}>
-                    {taskDesc}
-                  </Text>
-                </Animated.View>)}
-                {isExpanded && (<Animated.View style={[
-                    dailyTaskStyles.taskConfirmTrack,
-                    {
-                        opacity: expandedTaskAnim,
-                        backgroundColor: isGoldTheme ? GOLD_RICH.washStrong : `${taskAccent}22`,
-                        borderColor: isGoldTheme ? goldHairline : taskAccent,
-                    },
-                  ]}>
-                    <Animated.View
-                        pointerEvents="none"
-                        style={[
-                            dailyTaskStyles.taskConfirmFill,
-                            {
-                                width: '100%',
-                                backgroundColor: isGoldTheme ? GOLD_RICH.champagne : taskAccent,
-                                transform: [{ translateX: confirmFillTranslateX as any }],
-                            },
-                        ]}
-                    />
-                    <Text numberOfLines={1} style={[dailyTaskStyles.taskExpandedHint, { color: isGoldTheme ? GOLD_RICH.champagne : taskAccent, fontSize: f.body }]}>
-                    {triLang(lang, {
-                      ru: 'Нажми ещё раз, чтобы перейти',
-                      uk: 'Натисни ще раз, щоб перейти',
-                      es: 'Toca otra vez para ir',
-                      'pt-BR': 'Toque de novo para abrir',
-                      vi: 'Nhấn lần nữa để mở',
-                      id: 'Ketuk lagi untuk membuka',
-                      tr: 'Açmak için tekrar dokun',
-                      pl: 'Stuknij ponownie, aby przejść',
-                    })}
-                    </Text>
-                </Animated.View>)}
 
                 {false && (<View style={dailyTaskStyles.taskProgressBlock}>
                   <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
@@ -2673,7 +2599,7 @@ export default function DailyTasksScreen() {
                             hapticTap();
                             setRerollConfirm({ task });
                         }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                            ru: 'Заменить задание за осколки',
+                            ru: 'Заменить вызов за осколки',
                             uk: 'Замінити завдання за осколки',
                             es: 'Reemplazar tarea por fragmentos',
                             'pt-BR': "Substituir tarefa por fragmentos",
@@ -2722,7 +2648,7 @@ export default function DailyTasksScreen() {
             <Text style={{ fontSize: f.numLg + 12 }}>🎉</Text>
             <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {
-                ru: 'Все задания выполнены!',
+                ru: 'Все вызовы выполнены!',
                 uk: 'Всі завдання виконано!',
                 es: '¡Has completado todas las tareas!',
                 'pt-BR': "Você concluiu todas as tarefas!",
@@ -2736,7 +2662,7 @@ export default function DailyTasksScreen() {
 
         <View style={{ alignItems: 'center', paddingVertical: 8 }}>
           <ReportErrorButton screen="daily_tasks" dataId="daily_tasks_main" dataText={triLang(lang, {
-            ru: 'Ежедневные задания',
+            ru: 'Ежедневные вызовы',
             uk: 'Щоденні завдання',
             es: 'Tareas diarias',
             'pt-BR': "Tarefas diárias",
@@ -2770,7 +2696,7 @@ export default function DailyTasksScreen() {
             <Text style={rerollStyles.emoji}>🔄</Text>
             <Text style={[rerollStyles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
               {triLang(lang, {
-            ru: 'Заменить задание?',
+            ru: 'Заменить вызов?',
             uk: 'Замінити завдання?',
             es: '¿Reemplazar la tarea?',
             'pt-BR': "Substituir a tarefa?",
@@ -2784,7 +2710,7 @@ export default function DailyTasksScreen() {
                 «{localizedDailyTaskStrings(lang, rerollConfirm.task).title}»
                 {' — '}
                 {triLang(lang, {
-                ru: 'будет заменено на случайное задание из той же категории.',
+                ru: 'будет заменён на случайный вызов из той же категории.',
                 uk: 'буде замінено на випадкове завдання з тієї ж категорії.',
                 es: 'se reemplazará por una tarea aleatoria de la misma categoría.',
                 'pt-BR': "será substituída por uma tarefa aleatória da mesma categoria.",
@@ -2974,44 +2900,6 @@ const dailyTaskStyles = StyleSheet.create({
         justifyContent: 'flex-end',
         gap: 8,
         flexShrink: 0,
-    },
-    taskExpandedPanel: {
-        overflow: 'hidden',
-        paddingTop: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        gap: 14,
-        zIndex: 1,
-    },
-    taskExpandedDescription: {
-        fontWeight: '800',
-        marginLeft: 24,
-        marginRight: 18,
-    },
-    taskConfirmTrack: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 46,
-        borderWidth: 2,
-        borderTopWidth: 0,
-        borderBottomLeftRadius: 24,
-        borderBottomRightRadius: 24,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    taskConfirmFill: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
-    taskExpandedHint: {
-        fontWeight: '800',
-        zIndex: 1,
     },
     taskProgressValuePill: {
         width: 66,

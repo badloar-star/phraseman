@@ -548,6 +548,8 @@ export default function LevelExam() {
   const [examAttemptNumber, setExamAttemptNumber] = useState(1);
   const [medalImproved, setMedalImproved] = useState(false);
   const [exitExamConfirm, setExitExamConfirm] = useState(false);
+  // Блокировка двойного тапа по «Начать тест» (H12): второй тап не должен повторно списать энергию.
+  const [examStarting, setExamStarting] = useState(false);
   const [accessState, setAccessState] = useState<'checking' | 'allowed' | 'blocked'>('checking');
   const [blockedText, setBlockedText] = useState('');
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
@@ -679,30 +681,36 @@ export default function LevelExam() {
   const chosen = choices[idx] ?? null;
 
   const startExam = useCallback(async () => {
+    if (examStarting) return; // двойной тап — игнор
     if (frenchExamBlocked) {
       void trackFeatureBlocked('level_exam', 'start', 'french_exam_source_gate', { level: lvl, studyTarget }, 'level_exam');
       return;
     }
-    // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
-    if (!energyUnlimited) {
-      if (energy + bonusEnergy < LEVEL_EXAM_ENERGY) {
-        void trackFeatureBlocked('level_exam', 'start', 'no_energy', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
-        setNoEnergy(true);
-        return;
+    setExamStarting(true);
+    try {
+      // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
+      if (!energyUnlimited) {
+        if (energy + bonusEnergy < LEVEL_EXAM_ENERGY) {
+          void trackFeatureBlocked('level_exam', 'start', 'no_energy', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
+          setNoEnergy(true);
+          return;
+        }
+        const ok = await spendAmount(LEVEL_EXAM_ENERGY);
+        if (!ok) {
+          void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
+          setNoEnergy(true);
+          return;
+        }
       }
-      const ok = await spendAmount(LEVEL_EXAM_ENERGY);
-      if (!ok) {
-        void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
-        setNoEnergy(true);
-        return;
-      }
+      void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
+      setChoices(new Array(questions.length).fill(null));
+      setIdx(0);
+      setShowAnswer(false);
+      setPhase('quiz');
+    } finally {
+      setExamStarting(false);
     }
-    void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
-    setChoices(new Array(questions.length).fill(null));
-    setIdx(0);
-    setShowAnswer(false);
-    setPhase('quiz');
-  }, [frenchExamBlocked, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
+  }, [examStarting, frenchExamBlocked, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
 
@@ -1130,7 +1138,8 @@ export default function LevelExam() {
               <TouchableOpacity
                 activeOpacity={0.92}
                 onPress={() => { hapticTap(); void startExam(); }}
-                style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4 }}
+                disabled={examStarting}
+                style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4, opacity: examStarting ? 0.6 : 1 }}
               >
                 <LinearGradient
                   colors={['#FFE9A8', '#E8C040', '#C99516']}
@@ -1664,9 +1673,9 @@ export default function LevelExam() {
           pl: "Wyjść z testu?",
         })}
         message={triLang(lang, {
-          ru: 'Прогресс зачёта будет потерян',
-          uk: 'Прогрес заліку буде втрачено',
-          es: 'Perderás el progreso de este examen.',
+          ru: 'Зачёт начнётся заново',
+          uk: 'Залік почнеться заново',
+          es: 'El examen empezará de nuevo.',
           'pt-BR': "O progresso deste teste será perdido.",
           vi: "Tiến trình bài kiểm tra sẽ bị mất.",
           id: "Progres ujian ini akan hilang.",

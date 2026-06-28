@@ -944,8 +944,8 @@ export const scheduleUpsellNotifications = async (
         delayDays: 4,
         type: 'upsell_d4',
         title: pickNotif(lang, notificationCopy({
-          ru: 'Твой прогресс продолжается 🔥',
-          uk: 'Твій прогрес продовжується 🔥',
+          ru: 'Твой путь продолжается 🔥',
+          uk: 'Твій шлях продовжується 🔥',
           es: 'Tu progreso continúa 🔥',
           'pt-BR': 'Seu progresso continua 🔥',
           vi: 'Tiến trình của bạn tiếp tục 🔥',
@@ -1080,8 +1080,8 @@ export const schedulePaywallAbandonedNotification = async (
       pl: 'Prawie odblokowałeś pełny dostęp',
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: 'Твой прогресс ждёт. Продолжим?',
-      uk: 'Твій прогрес чекає. Продовжимо?',
+      ru: 'Твой путь ждёт. Продолжим?',
+      uk: 'Твій шлях чекає. Продовжимо?',
       es: 'Tu progreso te espera. ¿Seguimos?',
       'pt-BR': 'Seu progresso espera. Continuamos?',
       vi: 'Tiến trình đang chờ bạn. Tiếp tục nhé?',

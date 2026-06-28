@@ -92,8 +92,8 @@ export function ctaSubLineFor(
   });
   if (!args.price) {
     return triLang(lang, {
-      ru: 'Точная сумма появится перед покупкой.',
-      uk: 'Точна сума з’явиться перед покупкою.',
+      ru: 'Точная сумма появится перед оформлением.',
+      uk: 'Точна сума з’явиться перед оформленням.',
       es: 'El precio exacto aparecerá antes de comprar.',
       'pt-BR': 'O preço exato aparecerá antes da compra.',
       vi: 'Giá chính xác sẽ hiện trước khi mua.',

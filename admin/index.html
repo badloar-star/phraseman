@@ -13229,12 +13229,11 @@
   async function findUserByExactNameToCache(name) {
     const cleanName = String(name || '').trim();
     if (!cleanName) return null;
-    // Firestore `==` регистрозависим, а пользователь часто вводит имя строчными
-    // ("таня" вместо "Таня"). Пробуем несколько вариантов регистра и берём первый.
+    // Firestore `==` регистрозависим: пробуем как ввели и с заглавной буквы
+    // ("таня" → "Таня").
     const lower = cleanName.toLowerCase();
-    const upper = cleanName.toUpperCase();
-    const cap = cleanName.charAt(0).toUpperCase() + cleanName.slice(1).toLowerCase();
-    const variants = [...new Set([cleanName, cap, lower, upper])];
+    const cap = lower.charAt(0).toUpperCase() + lower.slice(1);
+    const variants = [...new Set([cleanName, cap, lower])];
     const tryVariant = (val) => getDocs(query(
       collection(db, 'users'),
       where('progress.user_name', '==', val),
@@ -13242,12 +13241,6 @@
     )).then(s => s.docs[0] || null).catch(() => null);
     const results = await Promise.all(variants.map(tryVariant));
     const first = results.find(Boolean);
-    // Если точного совпадения по регистру нет — мягкий клиентский поиск по подстроке
-    // среди уже загруженного снапшота (частичный/неточный ввод имени).
-    if (!first && Array.isArray(window._users) && window._users.length) {
-      const local = window._users.find(u => (u.name || '').toLowerCase().includes(lower));
-      if (local) return local;
-    }
     return first ? upsertUserRowToCache(userRowFromDocSnap(first)) : null;
   }
 
@@ -14757,44 +14750,27 @@
         : 'Preparing users snapshot...';
     }
     try {
-      const usersQuery = collection(db, 'users');
-      // withTimeout: главный getDocs(users) не должен висеть вечно (иначе статус
-      // навсегда застревает на "Preparing users snapshot..."). Вспомогательные
-      // коллекции (arena_profiles/banned_users) делаем НЕблокирующими: если они
-      // зависнут или упадут — список пользователей всё равно отрисуется.
-      const withTimeout = (promise, ms, label) => Promise.race([
-        promise,
-        new Promise((_, reject) => setTimeout(
-          () => reject(new Error('Таймаут загрузки ' + label + ' (' + Math.round(ms / 1000) + 'с). Проверь сеть/правила Firestore.')),
-          ms,
-        )),
-      ]);
-      const optional = (promise, label) => withTimeout(promise, 20000, label)
-        .catch((err) => { console.warn('admin: optional collection failed', label, err); return null; });
-      // Вспомогательные коллекции тянем параллельно и НЕблокирующе.
-      const [arenaSnap, bannedSnap] = await Promise.all([
-        optional(getDocs(collection(db, 'arena_profiles')), 'arena_profiles'),
-        optional(getDocs(collection(db, 'banned_users')), 'banned_users'),
-      ]);
-      const _bannedUids = new Set((bannedSnap ? bannedSnap.docs : []).map(d => d.id));
+      // Вспомогательные коллекции — в try/catch, чтобы не валили список.
+      const _bannedUids = new Set();
       _arenaProfiles = {};
-      if (arenaSnap) arenaSnap.forEach(doc => { _arenaProfiles[doc.id] = doc.data(); });
-      // База большая (10k+). Один getDocs(users) тянет всё разом и вешает вкладку,
-      // поэтому грузим страницами через orderBy+startAfter и показываем прогресс.
+      try {
+        const arenaSnap = await getDocs(collection(db, 'arena_profiles'));
+        arenaSnap.forEach(doc => { _arenaProfiles[doc.id] = doc.data(); });
+      } catch (e) { console.warn('arena_profiles skipped', e); }
+      try {
+        const bannedSnap = await getDocs(collection(db, 'banned_users'));
+        bannedSnap.forEach(doc => _bannedUids.add(doc.id));
+      } catch (e) { console.warn('banned_users skipped', e); }
+      // База большая (10k+): один getDocs(users) вешает вкладку, грузим страницами.
       const userDocs = [];
-      const PAGE = 1000;
       let cursor = null;
-      // eslint-disable-next-line no-constant-condition
       while (true) {
         const pageQuery = cursor
-          ? query(collection(db, 'users'), orderBy('__name__'), startAfter(cursor), limit(PAGE))
-          : query(collection(db, 'users'), orderBy('__name__'), limit(PAGE));
-        const pageSnap = await withTimeout(getDocs(pageQuery), 45000, 'users page');
+          ? query(collection(db, 'users'), orderBy('__name__'), startAfter(cursor), limit(1000))
+          : query(collection(db, 'users'), orderBy('__name__'), limit(1000));
+        const pageSnap = await getDocs(pageQuery);
         pageSnap.forEach(d => userDocs.push(d));
-        if (!options.background && statusEl && !hadSnapshot) {
-          statusEl.textContent = 'Loading users... ' + userDocs.length;
-        }
-        if (pageSnap.size < PAGE) break;
+        if (pageSnap.size < 1000) break;
         cursor = pageSnap.docs[pageSnap.docs.length - 1];
       }
       const users = [];

@@ -8,7 +8,13 @@
  */
 import type { Lang } from '../../constants/i18n';
 
-export type CelebrationVariant = 'premium' | 'vip';
+// Варианты празднования:
+//  - 'premium' → рекуррентный Plus (жёлтая палитра)
+//  - 'vip'     → Plus, выданный за опрос/рефералку/админкой (зелёная палитра)
+//  - 'pro'     → разовая покупка «Навсегда» = Pro (синяя палитра)
+// Внутренние ключи ('premium'/'vip') не меняем — это сломало бы вызовы и тесты;
+// пользователю показываем только новые названия (Plus/Pro) в заголовках/эмблемах.
+export type CelebrationVariant = 'premium' | 'vip' | 'pro';
 
 export interface CelebrationFeature {
   emoji: string;
@@ -47,7 +53,7 @@ export const CELEBRATION_FEATURES: CelebrationFeature[] = [
   { emoji: '🎨', title: L8('Тема Forest', 'Тема Forest', 'Tema Forest', 'Tema Forest', 'Chủ đề Forest', 'Tema Forest', 'Forest teması', 'Motyw Forest'), sub: L8('Хвойный лес', 'Хвойний ліс', 'Bosque de coníferas', 'Floresta de coníferas', 'Rừng thông', 'Hutan pinus', 'Çam ormanı', 'Las iglasty') },
   { emoji: '🌃', title: L8('Тема Neon', 'Тема Neon', 'Tema Neon', 'Tema Neon', 'Chủ đề Neon', 'Tema Neon', 'Neon teması', 'Motyw Neon'), sub: L8('Неоновые огни', 'Неонові вогні', 'Luces de neón', 'Luzes neon', 'Ánh đèn neon', 'Lampu neon', 'Neon ışıkları', 'Neonowe światła') },
   { emoji: '👑', title: L8('Золотое имя', 'Золоте ім’я', 'Nombre dorado', 'Nome dourado', 'Tên vàng', 'Nama emas', 'Altın isim', 'Złote imię'), sub: L8('В лидербордах', 'У лідербордах', 'En las clasificaciones', 'Nos rankings', 'Trong bảng xếp hạng', 'Di papan peringkat', 'Sıralamalarda', 'W rankingach') },
-  { emoji: '✨', title: L8('Премиум-подсветка', 'Преміум-підсвітка', 'Realce premium', 'Destaque premium', 'Nổi bật premium', 'Sorotan premium', 'Premium vurgu', 'Premiumowe podświetlenie'), sub: L8('Твой профиль выделяется', 'Твій профіль вирізняється', 'Tu perfil destaca', 'Seu perfil se destaca', 'Hồ sơ của bạn nổi bật', 'Profilmu menonjol', 'Profilin öne çıkar', 'Twój profil wyróżnia się') },
+  { emoji: '✨', title: L8('Plus-подсветка', 'Plus-підсвітка', 'Realce Plus', 'Destaque Plus', 'Nổi bật Plus', 'Sorotan Plus', 'Plus vurgu', 'Podświetlenie Plus'), sub: L8('Твой профиль выделяется', 'Твій профіль вирізняється', 'Tu perfil destaca', 'Seu perfil se destaca', 'Hồ sơ của bạn nổi bật', 'Profilmu menonjol', 'Profilin öne çıkar', 'Twój profil wyróżnia się') },
   { emoji: '📋', title: L8('Персональный план', 'Персональний план', 'Plan personal', 'Plano pessoal', 'Kế hoạch cá nhân', 'Rencana pribadi', 'Kişisel plan', 'Osobisty plan'), sub: L8('Уроки, фразы и повторы', 'Уроки, фрази й повтори', 'Lecciones, frases y repasos', 'Lições, frases e revisões', 'Bài học, cụm từ và ôn tập', 'Pelajaran, frasa, ulangan', 'Dersler, ifadeler, tekrarlar', 'Lekcje, frazy i powtórki') },
 ];
 
@@ -103,6 +109,20 @@ export const CELEBRATION_PALETTES: Record<CelebrationVariant, CelebrationPalette
     cta: ['#047857', '#34D399', '#065F46'],
     ctaText: '#04140d',
     auroraRgb: ['52,211,153', '16,185,129', '134,239,172'],
-    emblem: 'VIP',
+    emblem: '✨', // раньше был текст «VIP»; теперь нейтральная эмблема Plus (зелёная палитра)
+  },
+  // Pro = разовая покупка «Навсегда». Синяя «дорогая» палитра, отличная от Plus.
+  pro: {
+    bg: ['#08203a', '#04101f', '#02060d'],
+    main: '#38BDF8',
+    bright: '#7DD3FC',
+    titleGrad: ['#EAF7FF', '#38BDF8', '#0369A1'],
+    text: '#D6F0FF',
+    rowText: '#EAF6FF',
+    rowSub: '#9FCBE6',
+    cta: ['#0369A1', '#38BDF8', '#075985'],
+    ctaText: '#04101f',
+    auroraRgb: ['56,189,248', '14,165,233', '125,211,252'],
+    emblem: '💎',
   },
 };

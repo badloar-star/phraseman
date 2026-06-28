@@ -15,8 +15,15 @@ import { DebugLogger } from './debug-logger';
 
 const PENDING_KEY = 'premium_celebration_pending_v1';
 const PENDING_MARKER_KEY = 'premium_celebration_pending_marker_v1';
+const PENDING_VARIANT_KEY = 'premium_celebration_pending_variant_v1';
 const SEEN_KEY = 'premium_celebration_seen_v1';
 const ADMIN_SEEN_KEY = 'premium_celebration_admin_seen_v1';
+
+// Какую анимацию показать у этого pending-празднования.
+//  - 'premium' → рекуррентный Plus (жёлтая)
+//  - 'pro'     → разовая покупка «Навсегда» = Pro (синяя)
+// Зелёный Plus (бывший VIP) идёт отдельным путём через vip_celebration_state.ts.
+export type PremiumCelebrationVariant = 'premium' | 'pro';
 
 function normalizeMarker(marker: string | null | undefined): string | null {
   const trimmed = String(marker ?? '').trim();
@@ -56,16 +63,34 @@ export async function getPendingCelebrationMarker(): Promise<string | null> {
 }
 
 /**
+ * Вариант анимации для текущего pending-празднования. По умолчанию 'premium'
+ * (жёлтый Plus). 'pro' выставляется при покупке плана «Навсегда» (lifetime).
+ */
+export async function getPendingCelebrationVariant(): Promise<PremiumCelebrationVariant> {
+  try {
+    const v = await AsyncStorage.getItem(PENDING_VARIANT_KEY);
+    return v === 'pro' ? 'pro' : 'premium';
+  } catch (error) {
+    DebugLogger.error('premium_celebration_state:getPendingCelebrationVariant', error, 'warning');
+    return 'premium';
+  }
+}
+
+/**
  * Выставить pending. Вызывается из:
  *  - A/B/C paywall purchase hook after a successful IAP purchase,
  *  - legacy callers only; admin/index.html now issues VIP, not Premium.
  */
-export async function markCelebrationPending(marker?: string | null): Promise<void> {
+export async function markCelebrationPending(
+  marker?: string | null,
+  variant: PremiumCelebrationVariant = 'premium',
+): Promise<void> {
   try {
     const resolvedMarker = normalizeMarker(marker) ?? `local_${Date.now()}`;
     await AsyncStorage.multiSet([
       [PENDING_KEY, '1'],
       [PENDING_MARKER_KEY, resolvedMarker],
+      [PENDING_VARIANT_KEY, variant],
     ]);
   } catch (error) {
     DebugLogger.error('premium_celebration_state:markCelebrationPending', error, 'warning');
@@ -89,6 +114,7 @@ export async function consumeCelebration(seenMarker?: string | null): Promise<vo
     const pairs: [string, string][] = [
       [PENDING_KEY, ''], // пустая строка надёжнее чем removeItem (некоторые backend cache путают null/missing)
       [PENDING_MARKER_KEY, ''],
+      [PENDING_VARIANT_KEY, ''],
       [SEEN_KEY, marker],
     ];
     if (isAdminGrantMarker(marker)) {
@@ -97,6 +123,7 @@ export async function consumeCelebration(seenMarker?: string | null): Promise<vo
     await AsyncStorage.multiSet(pairs);
     await AsyncStorage.removeItem(PENDING_KEY);
     await AsyncStorage.removeItem(PENDING_MARKER_KEY);
+    await AsyncStorage.removeItem(PENDING_VARIANT_KEY);
   } catch (error) {
     DebugLogger.error('premium_celebration_state:consumeCelebration', error, 'warning');
   }

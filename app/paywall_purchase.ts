@@ -11,7 +11,7 @@
 //    «напомним за день до списания» — лучший повод дать разрешение)
 //  - реальное планирование напоминания
 // ════════════════════════════════════════════════════════════════════════════
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Alert, InteractionManager } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
@@ -27,6 +27,7 @@ import {
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getTrialInfo, trialDaysOrDefault, type TrialInfo } from './paywall_trial_info';
 import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
+import { shouldShowExitTrialOffer } from './paywall_trial_offer';
 import { logPaywallFunnel } from './paywall_funnel';
 import type { PaywallAbVariant } from './paywall_variant';
 import {
@@ -59,6 +60,9 @@ import {
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
+/** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
+const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
+
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
   return raw.replace(/\s*\/\s*(mo|month|мес|місяць|месяц)\b.*/i, '').trim();
@@ -74,9 +78,16 @@ export interface PaywallPurchaseArgs {
   context: string;
   source: string;
   lang: Lang;
+  /**
+   * DEV/QA: форс «триал-режима» из тест-меню (_force_trial_ui=1). В Metro стора
+   * нет (DEV_IAP_BYPASS) → trialDays обычно null, и триал-зависимое (trust-бейдж
+   * «платить не нужно», exit-оффер, trial-таймлайн) не показать. Этот флаг
+   * включает превью-триал ТОЛЬКО в dev-бандле. В сторе игнорируется.
+   */
+  forceTrialUI?: boolean;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI }: PaywallPurchaseArgs) {
   const router = useRouter();
   const { reload: reloadEnergy } = useEnergy();
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
@@ -184,7 +195,10 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   const lifetimePkg = packages.lifetime ?? (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PACKAGE : undefined);
   const selectedPkg = selected === 'lifetime' ? lifetimePkg : selected === 'yearly' ? packages.yearly : packages.monthly;
   const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
-  const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : null;
+  // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
+  // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
+  const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
+  const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 3 : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
 
   // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
@@ -277,7 +291,8 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
       await persistStorePremiumLocally(confirmedPlan, metadata);
       if (context !== 'personal_plan') {
-        await markCelebrationPending();      // покажем празднование при возврате на экран
+        // Разовая покупка «Навсегда» (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
+        await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
         emitAppEvent('premium_activated');
         void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
       }
@@ -474,11 +489,8 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   }, [router, restoring, purchasing, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
-  // Без exit-intent оффера: триал и так виден на самом пейволе (таймлайн/ribbon),
-  // дублировать всплывашкой не нужно. При закрытии планируем мягкое re-engage
-  // напоминание через ~1ч (один раз за окно, кулдаун 23ч — не спамит).
-  const handleClose = useCallback((reason: 'close' | 'continue_free') => {
-    hapticTap();
+  // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
+  const doClose = useCallback((reason: 'close' | 'continue_free') => {
     void trackEvent('paywall_close', { context, source, paywall: variant, reason });
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
@@ -508,6 +520,103 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     }
     safeRouterBack(router);
   }, [router, context, source, variant, selected, lang]);
+
+  // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
+  // сторе реально есть бесплатный триал, мягко спрашиваем «может, всё-таки 3 дня
+  // бесплатно?» — без давления, с честным «платить не нужно, отмени за день».
+  // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
+  // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
+  const exitOfferShownRef = useRef(false);
+  const handleClose = useCallback((reason: 'close' | 'continue_free') => {
+    hapticTap();
+    // Перехват на выходе: показываем тёплый оффер один раз за сессию экрана.
+    // DEV/QA: при форс-триале (_force_trial_ui) показываем на ЛЮБОМ контексте и без
+    // «уже видели», чтобы можно было проверять многократно из тест-меню.
+    const exitEligible = devForceTrial
+      ? source !== 'onboarding_plan' && (reason === 'close' || reason === 'continue_free') && !!trialDays
+      : shouldShowExitTrialOffer({
+          context,
+          closeReason: reason,
+          viewMode: 'purchase',
+          openManageFromSettings: false,
+          purchasing,
+          restoring,
+          hasStoreTrial: !!trialDays,
+          alreadySeen: false,
+          forceTrialUI: false,
+        });
+    if (
+      !exitOfferShownRef.current &&
+      source !== 'onboarding_plan' &&
+      exitEligible
+    ) {
+      exitOfferShownRef.current = true;
+      void (async () => {
+        try {
+          const seen = await AsyncStorage.getItem(EXIT_TRIAL_OFFER_SEEN_KEY);
+          // В dev-форсе кулдаун-ключ игнорируем — пусть показывается каждый раз.
+          if (seen === '1' && !devForceTrial) { doClose(reason); return; }
+          if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(() => {});
+        } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
+        void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant });
+        const days = trialDays ?? 3;
+        Alert.alert(
+          triLang(lang, {
+            ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
+            uk: `Точно йдеш? ${days} дні доступу — безкоштовно`,
+            es: `¿Seguro que te vas? ${days} días de acceso gratis`,
+            'pt-BR': `Tem certeza? ${days} dias de acesso grátis`,
+            vi: `Bạn chắc muốn rời đi? ${days} ngày dùng thử miễn phí`,
+            id: `Yakin mau keluar? ${days} hari akses gratis`,
+            tr: `Gerçekten çıkıyor musun? ${days} gün ücretsiz erişim`,
+            pl: `Na pewno wychodzisz? ${days} dni dostępu za darmo`,
+          }),
+          triLang(lang, {
+            ru: 'Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.',
+            uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
+            es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',
+            'pt-BR': 'Você não paga agora: basta cancelar a assinatura um dia antes do fim do teste e nada será cobrado.',
+            vi: 'Chưa phải trả tiền — chỉ cần hủy đăng ký trước khi hết hạn dùng thử một ngày là không bị tính phí.',
+            id: 'Belum bayar sekarang — cukup batalkan langganan sehari sebelum masa uji coba berakhir, tak ada tagihan.',
+            tr: 'Şimdi ödeme yok — deneme bitmeden bir gün önce aboneliği iptal et, hiçbir ücret alınmaz.',
+            pl: 'Teraz nie płacisz — wystarczy anulować subskrypcję dzień przed końcem okresu próbnego i nic nie pobierzemy.',
+          }),
+          [
+            {
+              text: triLang(lang, {
+                ru: `Попробовать ${days} дня бесплатно`,
+                uk: `Спробувати ${days} дні безкоштовно`,
+                es: `Probar ${days} días gratis`,
+                'pt-BR': `Testar ${days} dias grátis`,
+                vi: `Dùng thử ${days} ngày miễn phí`,
+                id: `Coba ${days} hari gratis`,
+                tr: `${days} gün ücretsiz dene`,
+                pl: `Wypróbuj ${days} dni za darmo`,
+              }),
+              onPress: () => {
+                void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant });
+                void handlePurchase();
+              },
+            },
+            {
+              text: triLang(lang, {
+                ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
+                vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
+              }),
+              style: 'cancel',
+              onPress: () => {
+                void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant });
+                doClose(reason);
+              },
+            },
+          ],
+          { cancelable: false },
+        );
+      })();
+      return;
+    }
+    doClose(reason);
+  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial]);
 
   return {
     selected, selectPlan,

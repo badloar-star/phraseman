@@ -156,13 +156,30 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
   const [litCount, setLitCount] = useState(0);
   const [finaleLit, setFinaleLit] = useState(false);
   const [skipped, setSkipped] = useState(false);
+  // Реальная высота hero-блока (эмблема + заголовок + подзаголовок). Меряем
+  // через onLayout, потому что она «плавает»: insets.top (чёлка/Dynamic Island),
+  // f-scale крупного шрифта и перенос длинного RU-подзаголовка на 2-3 строки
+  // делают фиксированный HERO_OFFSET ненадёжным — лента наезжала на заголовок.
+  const [heroH, setHeroH] = useState(0);
   const stepTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const onHeroLayout = useCallback((e: { nativeEvent: { layout: { height: number } } }) => {
+    const h = e.nativeEvent.layout.height;
+    setHeroH((prev) => (Math.abs(prev - h) > 1 ? h : prev));
+  }, []);
+
   const ctaBottom = 28 + insets.bottom;
   const reelBottom = ctaBottom + 78;
-  const reelTop = HERO_OFFSET;
+  // Лента начинается ПОД фактическим низом hero + зазор. HERO_OFFSET остаётся
+  // лишь как fallback до первого замера, чтобы лента не прыгала на 1-м кадре.
+  const heroTop = insets.top + 36;
+  const reelTop = heroH > 0 ? heroTop + heroH + 18 : HERO_OFFSET;
   const reelViewport = Math.max(180, winH - reelTop - reelBottom);
+  // Авто-прокрутка читает вьюпорт из ref, а не из замыкания useEffect (его deps —
+  // [visible, variant], он не перезапускается после onLayout-замера heroH).
+  const reelViewportRef = useRef(reelViewport);
+  reelViewportRef.current = reelViewport;
 
   // hero / emblem / cta анимации
   const ringSpin = useSharedValue(0);
@@ -209,9 +226,10 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
     let i = 0;
     const totalRows = features.length;
     const fullHeight = totalRows * ROW_HEIGHT + 120; // + финал
-    const maxScroll = Math.max(0, fullHeight - reelViewport);
 
     const lightNext = () => {
+      const viewport = reelViewportRef.current;
+      const maxScroll = Math.max(0, fullHeight - viewport);
       if (i >= totalRows) {
         // финал
         scrollRef.current?.scrollTo({ y: maxScroll, animated: true });
@@ -224,7 +242,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
       setLitCount(i);
       hapticTap();
       // камера держит подсвеченную строку около 46% вьюпорта
-      const target = Math.min(maxScroll, Math.max(0, (i - 1) * ROW_HEIGHT - reelViewport * 0.42));
+      const target = Math.min(maxScroll, Math.max(0, (i - 1) * ROW_HEIGHT - viewport * 0.42));
       scrollRef.current?.scrollTo({ y: target, animated: true });
       stepTimer.current = setTimeout(lightNext, ROW_STEP_MS);
     };
@@ -310,7 +328,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
         ) : null}
 
         {/* ── HERO ── */}
-        <Reanimated.View pointerEvents="none" style={[styles.hero, { top: insets.top + 36 }, heroStyle]}>
+        <Reanimated.View pointerEvents="none" onLayout={onHeroLayout} style={[styles.hero, { top: heroTop }, heroStyle]}>
           <View style={styles.emblemRing}>
             <Reanimated.View style={[styles.ringConic, ringSpinStyle]}>
               <LinearGradient
@@ -328,9 +346,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
                 end={{ x: 0.6, y: 1 }}
                 style={StyleSheet.absoluteFill}
               />
-              {palette.emblem === 'VIP'
-                ? <Text style={[styles.emblemVip, { color: palette.bright }]}>VIP</Text>
-                : <Text style={styles.emblemEmoji}>{palette.emblem}</Text>}
+              <Text style={styles.emblemEmoji}>{palette.emblem}</Text>
             </View>
           </View>
 
@@ -338,13 +354,15 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
               всплывающие за буквами, чтобы текст не «кашился» с анимацией. */}
           <View style={styles.heroTextPlate}>
             <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(25, f.h1 + 3), textShadowColor: `${palette.main}80` }]}>
-              {variant === 'vip'
-                ? triLang(lang, { ru: 'VIP активирован', uk: 'VIP активовано', es: 'VIP activado', 'pt-BR': 'VIP ativado', vi: 'Đã kích hoạt VIP', id: 'VIP aktif', tr: 'VIP etkinleştirildi', pl: 'VIP aktywowany' })
-                : triLang(lang, { ru: 'Premium активирован', uk: 'Premium активовано', es: 'Premium activado', 'pt-BR': 'Premium ativado', vi: 'Đã kích hoạt Premium', id: 'Premium aktif', tr: 'Premium etkin', pl: 'Premium aktywowany' })}
+              {variant === 'pro'
+                ? triLang(lang, { ru: 'Pro активирован', uk: 'Pro активовано', es: 'Pro activado', 'pt-BR': 'Pro ativado', vi: 'Đã kích hoạt Pro', id: 'Pro aktif', tr: 'Pro etkinleştirildi', pl: 'Pro aktywowany' })
+                : triLang(lang, { ru: 'Plus активирован', uk: 'Plus активовано', es: 'Plus activado', 'pt-BR': 'Plus ativado', vi: 'Đã kích hoạt Plus', id: 'Plus aktif', tr: 'Plus etkinleştirildi', pl: 'Plus aktywowany' })}
             </Text>
             <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
-              {variant === 'vip'
-                ? triLang(lang, { ru: 'VIP-доступ открыт: энергия и все функции', uk: 'VIP-доступ відкрито: енергія й усі функції', es: 'Acceso VIP: energía y todo desbloqueado', 'pt-BR': 'Acesso VIP: energia e tudo liberado', vi: 'VIP: năng lượng và mọi tính năng', id: 'Akses VIP: energi dan semua fitur', tr: 'VIP: enerji ve tüm özellikler', pl: 'Dostęp VIP: energia i wszystkie funkcje' })
+              {variant === 'pro'
+                ? triLang(lang, { ru: 'Доступ навсегда: энергия и все функции — без подписки', uk: 'Доступ назавжди: енергія й усі функції — без підписки', es: 'Acceso para siempre: energía y todo, sin suscripción', 'pt-BR': 'Acesso para sempre: energia e tudo, sem assinatura', vi: 'Truy cập trọn đời: năng lượng và mọi tính năng', id: 'Akses selamanya: energi dan semua fitur', tr: 'Sonsuza dek erişim: enerji ve tüm özellikler', pl: 'Dostęp na zawsze: energia i wszystkie funkcje' })
+                : variant === 'vip'
+                ? triLang(lang, { ru: 'Plus-доступ открыт: энергия и все функции', uk: 'Plus-доступ відкрито: енергія й усі функції', es: 'Acceso Plus: energía y todo desbloqueado', 'pt-BR': 'Acesso Plus: energia e tudo liberado', vi: 'Plus: năng lượng và mọi tính năng', id: 'Akses Plus: energi dan semua fitur', tr: 'Plus: enerji ve tüm özellikler', pl: 'Dostęp Plus: energia i wszystkie funkcje' })
                 : triLang(lang, { ru: 'Всё открыто. Прокачивайся без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
             </Text>
           </View>
@@ -402,9 +420,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
           >
             <LinearGradient colors={palette.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ctaGradient}>
               <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>
-                {variant === 'vip'
-                  ? triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Vamos', 'pt-BR': 'Vamos', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi', pl: 'Zaczynamy' })
-                  : triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' })}
+                {triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' })}
               </Text>
               <View style={styles.shimmerMask} pointerEvents="none">
                 <Reanimated.View style={[styles.shimmer, shimmerStyle]}>
@@ -440,7 +456,6 @@ const styles = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
   emblemEmoji: { fontSize: 52 },
-  emblemVip: { fontSize: 30, fontWeight: '900', letterSpacing: 1 },
   title: {
     fontWeight: '900', textAlign: 'center', letterSpacing: 0.3,
     textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12,

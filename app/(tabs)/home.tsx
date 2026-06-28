@@ -26,7 +26,7 @@ import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
-import { consumeCelebration, getPendingCelebrationMarker, isCelebrationPending, } from '../premium_celebration_state';
+import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationVariant, isCelebrationPending, type PremiumCelebrationVariant, } from '../premium_celebration_state';
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
@@ -486,6 +486,8 @@ export default function HomeScreen() {
     // Premium celebration: после IAP-покупки или admin-grant с timestamp новее last seen.
     const [celebrationVisible, setCelebrationVisible] = useState(false);
     const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
+    // Какую анимацию покупки показать: 'premium' (жёлтый Plus, подписка) или 'pro' (синий, «Навсегда»).
+    const [celebrationVariant, setCelebrationVariant] = useState<PremiumCelebrationVariant>('premium');
     // Гард сессии: pending теперь гасится только в onClose, поэтому isCelebrationPending()
     // остаётся true до показа. Этот ref не даёт повторно ставить модалку/таймер на каждом
     // прогоне loadData до закрытия (раньше эту роль играл преждевременный consume).
@@ -1503,11 +1505,13 @@ export default function HomeScreen() {
             if (pending && mountedRef.current && !celebrationQueuedRef.current) {
                 celebrationQueuedRef.current = true;
                 const marker = await getPendingCelebrationMarker();
+                const variant = await getPendingCelebrationVariant();
                 // Marker запоминаем для показа, но pending НЕ гасим здесь: модалка идёт
                 // через OverlayArbiter и может быть отложена за нативной модалкой. Если
                 // погасить сейчас, а юзер уйдёт до показа — celebration пропадёт навсегда.
                 // consumeCelebration вызывается в onClose, когда юзер реально увидел и закрыл.
                 setCelebrationMarker(marker);
+                setCelebrationVariant(variant);
                 // Не показываем одновременно с revive-модалкой — celebration важнее, revive отложится до закрытия.
                 if (!offer)
                     setCelebrationVisible(true);
@@ -2109,7 +2113,7 @@ export default function HomeScreen() {
                         <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
                       </View>))}
                     {energyBonus > 0 && Array.from({ length: energyBonus }).map((_, i) => (<View key={`bonus_${i}`} style={{ marginLeft: homeEnergyIconOverlap }}>
-                        <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR}/>
+                        <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={themeMode === 'business' ? undefined : BONUS_ENERGY_COLOR}/>
                       </View>))}
                   </View>
                   {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: homeEnergyHeaderStacked ? Math.max(10, f.label - 1) : f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: homeEnergyHeaderStacked ? 0 : 6, flexShrink: 1, maxWidth: '100%', textAlign: 'right' }} numberOfLines={1}>
@@ -2471,25 +2475,25 @@ export default function HomeScreen() {
                 <Text style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>
                   {!hasPremiumAccess
                         ? triLang(lang, {
-                            ru: 'Доступно только для Premium',
-                            uk: 'Доступно лише для Premium',
-                            es: 'Solo disponible con Premium',
-                            'pt-BR': "Disponível apenas com Premium",
-                            vi: "Chỉ có với Premium",
-                            id: "Hanya tersedia dengan Premium",
-                            tr: "Yalnızca Premium ile kullanılabilir",
-                            pl: "Dostępne tylko z Premium",
+                            ru: 'Доступно только для Plus',
+                            uk: 'Доступно лише для Plus',
+                            es: 'Solo disponible con Plus',
+                            'pt-BR': "Disponível apenas com Plus",
+                            vi: "Chỉ có với Plus",
+                            id: "Hanya tersedia dengan Plus",
+                            tr: "Yalnızca Plus ile kullanılabilir",
+                            pl: "Dostępne tylko z Plus",
                         })
                         : !premiumFreezeUsed
                             ? triLang(lang, {
-                                ru: 'Заморозить бесплатно — бонус Premium',
-                                uk: 'Заморозити безкоштовно — бонус Premium',
-                                es: 'Primera congelación gratis con Premium',
-                                'pt-BR': "Primeiro congelamento grátis com Premium",
-                                vi: "Lần đóng băng đầu miễn phí với Premium",
-                                id: "Pembekuan pertama gratis dengan Premium",
-                                tr: "Premium ile ilk dondurma ücretsiz",
-                                pl: "Pierwsze zamrożenie gratis z Premium",
+                                ru: 'Заморозить бесплатно — бонус Plus',
+                                uk: 'Заморозити безкоштовно — бонус Plus',
+                                es: 'Primera congelación gratis con Plus',
+                                'pt-BR': "Primeiro congelamento grátis com Plus",
+                                vi: "Lần đóng băng đầu miễn phí với Plus",
+                                id: "Pembekuan pertama gratis dengan Plus",
+                                tr: "Plus ile ilk dondurma ücretsiz",
+                                pl: "Pierwsze zamrożenie gratis z Plus",
                             })
                             : triLang(lang, {
                                 ru: `Заморозить за ${FREEZE_COST_SHARDS} 💎`,
@@ -2505,7 +2509,7 @@ export default function HomeScreen() {
               </View>
               <View style={{ alignItems: 'flex-end', gap: 2 }}>
                 {!hasPremiumAccess
-                        ? <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFB74D', fontSize: 11, fontWeight: '700' }}>Premium</Text>
+                        ? <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFB74D', fontSize: 11, fontWeight: '700' }}>Plus</Text>
                         : hasPremiumAccess && !premiumFreezeUsed
                             ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 12, fontWeight: '700' }}>
                         {triLang(lang, {
@@ -2646,7 +2650,7 @@ export default function HomeScreen() {
                     </View>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
                       <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, lineHeight: 15 }} numberOfLines={1}>
-                        {hasPremiumAccess ? 'Premium' : triLang(lang, {
+                        {hasPremiumAccess ? 'Plus' : triLang(lang, {
                         ru: 'Мой план',
                         uk: 'Мій план',
                         es: 'Mi plan',
@@ -2693,7 +2697,7 @@ export default function HomeScreen() {
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0 }}>
-                    {hasPremiumAccess ? 'Premium' : triLang(lang, {
+                    {hasPremiumAccess ? 'Plus' : triLang(lang, {
                         ru: 'Мой план',
                         uk: 'Мій план',
                         es: 'Mi plan',
@@ -2701,7 +2705,7 @@ export default function HomeScreen() {
                         vi: "Kế hoạch của tôi",
                         id: "Rencanaku",
                         tr: "Planım",
-                        pl: "Mój plan",
+                        pl: "Mój план",
                     })}
                   </Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }} numberOfLines={2}>
@@ -3733,7 +3737,7 @@ export default function HomeScreen() {
         }}/>
 
       {/* Premium celebration: запускается после IAP / admin-grant. Pending консумируется на close. */}
-      <PremiumCelebrationModal visible={celebrationOverlayVisible} onClose={() => {
+      <PremiumCelebrationModal visible={celebrationOverlayVisible} variant={celebrationVariant} onClose={() => {
             setCelebrationVisible(false);
             // Consume the exact event marker so the same admin grant does not re-open on next sync.
             const marker = celebrationMarker;

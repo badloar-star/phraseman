@@ -557,7 +557,7 @@ const LessonCard = React.memo(function LessonCard({
                 color: lessonTextColor,
                 fontSize: f.body,
                 fontWeight: '700',
-            }} numberOfLines={1} maxFontSizeMultiplier={1}>
+            }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} maxFontSizeMultiplier={1}>
               {name}
             </Text>
           </View>
@@ -1052,7 +1052,7 @@ export default function LessonsTab() {
                             setGateModal({ kind: 'exam', level: lvl });
                         }
                     }} style={{
-                        height: 78,
+                        minHeight: 78,
                         marginHorizontal: isGoldTheme ? 14 : 0,
                         borderRadius: isGoldTheme ? 14 : 0,
                         borderWidth: isGoldTheme ? 1 : 0,
@@ -1122,7 +1122,7 @@ export default function LessonsTab() {
                         hapticTap();
                         router.push('/diagnostic_test');
                     }} style={{
-                        height: 126,
+                        minHeight: 126,
                         borderRadius: 18,
                         borderWidth: 1,
                         borderColor: attestationBorder,
@@ -1151,7 +1151,7 @@ export default function LessonsTab() {
                       <Text style={{ color: attestationMuted, fontSize: Math.max(12, f.label), fontWeight: '800', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
                         B2 / CEFR
                       </Text>
-                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1}>
+                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
                         {s.home.attestTile}
                       </Text>
                     </View>

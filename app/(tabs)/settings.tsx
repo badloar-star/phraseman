@@ -834,7 +834,7 @@ export default function SettingsMain() {
                     fontWeight: '700',
                     color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
                   }}>A</Text>
-                  <Text numberOfLines={1} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                  <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                     {L(
                       sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                       sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',

@@ -131,7 +131,7 @@ const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { compassChatDailyCron } = require('./compass_chat_cron');
+const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -227,6 +227,7 @@ exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
+exports.compassChatRunNow = compassChatRunNow;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

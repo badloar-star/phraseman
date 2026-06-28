@@ -18,6 +18,7 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import {
   buildDailySummaryPost,
   buildIcebreakerPost,
@@ -137,17 +138,14 @@ function buildMessagePayload(
   return payload;
 }
 
-export const compassChatDailyCron = onSchedule(
-  {
-    schedule: 'every day 09:00',
-    timeZone: 'UTC',
-    timeoutSeconds: 540,
-    memory: '512MiB',
-    region: 'us-central1',
-  },
-  async () => {
+/**
+ * Ядро дневной публикации Компаса. Вынесено, чтобы запускать из планировщика
+ * и из ручного админ-триггера (compassChatRunNow) одним и тем же кодом.
+ */
+export async function runCompassChatDailyPost(
+  now: Date = new Date(),
+): Promise<{ weekId: string; daySeed: number; kind: string; processed: number; written: number; summaries: number; skipped: number }> {
     const db = admin.firestore();
-    const now = new Date();
     const weekId = getCurrentWeekId(now);
     const daySeed = getDaySeed(now);
     const post = pickCompassPostForDay(daySeed);
@@ -247,6 +245,30 @@ export const compassChatDailyCron = onSchedule(
 
     await flushBatch();
     console.log(`compassChatDailyCron: processed=${processed} groups, written=${written}, summaries=${summaries}, skipped=${skipped}`);
-    return;
+    return { weekId, daySeed, kind: post.kind, processed, written, summaries, skipped };
+}
+
+export const compassChatDailyCron = onSchedule(
+  {
+    schedule: 'every day 09:00',
+    timeZone: 'UTC',
+    timeoutSeconds: 540,
+    memory: '512MiB',
+    region: 'us-central1',
+  },
+  async () => {
+    await runCompassChatDailyPost(new Date());
   },
 );
+
+/**
+ * Ручной триггер для проверки в деве/проде. Только админ (custom claim admin).
+ * Запускает ту же публикацию, что и планировщик, и возвращает статистику.
+ */
+export const compassChatRunNow = onCall({ region: 'us-central1', timeoutSeconds: 540, memory: '512MiB' }, async (request) => {
+  if (request.auth?.token?.admin !== true) {
+    throw new HttpsError('permission-denied', 'admin_required');
+  }
+  const stats = await runCompassChatDailyPost(new Date());
+  return { ok: true, ...stats };
+});

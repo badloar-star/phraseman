@@ -410,6 +410,29 @@ export default function ClubScreen() {
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
   const [chatModalVisible, setChatModalVisible] = useState(false);
+  // Вход «сразу в чат» из шапки home: при openChat=1 открываем модалку чата один раз.
+  // Модалка — fullScreen, поэтому экран лиги под ней не мелькает.
+  const openChatHandledRef = useRef(false);
+  // true — чат открыт «в обход» прямо с главной (openChat=1). Тогда закрытие чата
+  // должно вести НАЗАД на главную, а не показывать экран лиги под модалкой.
+  const directChatFromHomeRef = useRef(false);
+  useEffect(() => {
+    if (openChatHandledRef.current) return;
+    if (String(openChatParam ?? '') === '1') {
+      openChatHandledRef.current = true;
+      directChatFromHomeRef.current = true;
+      setChatModalVisible(true);
+    }
+  }, [openChatParam]);
+  // Единая точка закрытия чата: прямой вход с главной → возврат на главную;
+  // обычный вход (с экрана лиги) → просто скрыть модалку.
+  const closeChatModal = useCallback(() => {
+    setChatModalVisible(false);
+    if (directChatFromHomeRef.current) {
+      directChatFromHomeRef.current = false;
+      safeRouterBack(router, '/(tabs)/home' as any);
+    }
+  }, [router]);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
@@ -1956,7 +1979,7 @@ export default function ClubScreen() {
         visible={chatModalVisible}
         animationType="slide"
         presentationStyle="fullScreen"
-        onRequestClose={() => setChatModalVisible(false)}
+        onRequestClose={closeChatModal}
       >
         <KeyboardAvoidingView
           testID="league-chat-fullscreen"
@@ -1992,7 +2015,7 @@ export default function ClubScreen() {
                 accessibilityRole="button"
                 accessibilityLabel="Close"
                 activeOpacity={0.82}
-                onPress={() => setChatModalVisible(false)}
+                onPress={closeChatModal}
                 testID="league-chat-close"
                 style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
               >

@@ -2103,7 +2103,7 @@ export default function HomeScreen() {
             <View style={{ flex: 1, minWidth: 0 }}>
               {/* Иконки (шарды+видео+инбокс) — при отсутствии энергии выходят отдельной строкой наверху */}
               {homeHeaderAccessLayout && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 10, marginBottom: 6 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginBottom: 6 }}>
                   <TouchableOpacity activeOpacity={0.75} onPress={() => {
                     hapticTap();
                     router.push('/shards_shop');
@@ -2160,7 +2160,7 @@ export default function HomeScreen() {
             }}>{shardsBonusText}</Animated.Text>
               {/* Строка 2: шарды + видео + инбокс — отдельной строкой ниже (когда энергия видна) */}
               {!homeHeaderAccessLayout && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 10, marginTop: 6 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 6 }}>
                 <TouchableOpacity activeOpacity={0.75} onPress={() => {
                 hapticTap();
                 router.push('/shards_shop');

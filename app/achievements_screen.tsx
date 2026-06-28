@@ -1185,7 +1185,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
             textAlign: 'center',
             width: shieldOuter,
           }}
-          numberOfLines={1}
+          numberOfLines={2}
           ellipsizeMode="tail"
           maxFontSizeMultiplier={1}
         >

@@ -229,7 +229,7 @@ function CategoryRow({
         <Text style={[styles.catPctSign, { color: t.textMuted, fontSize: f.caption }]}>%</Text>
       </View>
       <View style={styles.catBody}>
-        <Text style={[styles.catLabel, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+        <Text style={[styles.catLabel, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={2}>
           {label}
         </Text>
         <ProgressBar pct={stat.pct} />
@@ -868,7 +868,7 @@ const styles = StyleSheet.create({
   catMeta: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    width: 52,
+    minWidth: 52,
     flexShrink: 0,
     justifyContent: 'flex-end',
   },

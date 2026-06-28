@@ -1182,7 +1182,7 @@ export default function ShardsShopScreen() {
                       flexShrink: 1,
                       minWidth: 0,
                     }}
-                    numberOfLines={1}
+                    numberOfLines={2}
                   >
                     {totalShards} {shardsLabel}
                   </Text>

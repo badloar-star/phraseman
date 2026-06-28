@@ -17,7 +17,9 @@ import PremiumGoldUserName from '../components/PremiumGoldUserName';
 import TapScale from '../components/TapScale';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
+import { type ThemeMode } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { fetchSeasonTop, type SeasonTopEntry, type SeasonTopResult } from './services/arena_season_client';
@@ -42,7 +44,20 @@ type RowItem = SeasonTopEntry & { isSelf?: boolean };
 
 const AVATAR_SIZE = 44;
 
-function SeasonRow({ item, t, f }: { item: RowItem; t: any; f: any }) {
+function seasonRatingShortLabel(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'сез. рейтинг',
+    uk: 'сез. рейтинг',
+    es: 'rating temp.',
+    'pt-BR': 'rating temp.',
+    vi: 'điểm mùa',
+    id: 'rating musim',
+    tr: 'sezon puanı',
+    pl: 'ranking sez.',
+  });
+}
+
+function SeasonRow({ item, t, f, lang, themeMode }: { item: RowItem; t: any; f: any; lang: Lang; themeMode: ThemeMode }) {
   const pc = placeColor(item.place);
   const bgSelf = item.isSelf ? 'rgba(255,210,74,0.08)' : 'transparent';
   return (
@@ -73,17 +88,23 @@ function SeasonRow({ item, t, f }: { item: RowItem; t: any; f: any }) {
         enabled={!!item.isPremium}
         avatarSize={AVATAR_SIZE}
         maskColor={bgSelf || t.bgCard}
+        animateShimmer={false}
       >
-        <AvatarView avatar={item.avatar ?? undefined} size={AVATAR_SIZE} />
+        <AvatarView avatar={item.avatar ?? undefined} size={AVATAR_SIZE} animateAura={false} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, marginLeft: 10 }}>
         {item.isPremium
           ? <PremiumGoldUserName text={item.name} fontSize={f.body} />
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }} numberOfLines={1}>{item.name}</Text>}
       </View>
-      <Text style={{ color: '#FFD24A', fontSize: f.body, fontWeight: '700' }}>
-        {item.sr} SR
-      </Text>
+      <View style={{ alignItems: 'flex-end', marginLeft: 8, minWidth: 72 }}>
+        <Text style={{ color: monoIcon(themeMode, '#FFD24A'), fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>
+          {item.sr}
+        </Text>
+        <Text style={{ color: t.textMuted, fontSize: f.caption - 2, fontWeight: '700' }} numberOfLines={1}>
+          {seasonRatingShortLabel(lang)}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -91,7 +112,7 @@ function SeasonRow({ item, t, f }: { item: RowItem; t: any; f: any }) {
 export default function ArenaSeasonLeaderboardScreen() {
   const router = useRouter();
   const { lang } = useLang();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const [data, setData] = useState<SeasonTopResult | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -130,14 +151,14 @@ export default function ArenaSeasonLeaderboardScreen() {
 
   const myPlaceLabel = data?.myPlace
     ? triLang(lang, {
-        ru: `Твоё место: #${data.myPlace} · ${data.mySR} SR`,
-        uk: `Твоє місце: #${data.myPlace} · ${data.mySR} SR`,
-        es: `Tu posición: #${data.myPlace} · ${data.mySR} SR`,
-        'pt-BR': `Sua posição: #${data.myPlace} · ${data.mySR} SR`,
-        vi: `Vị trí của bạn: #${data.myPlace} · ${data.mySR} SR`,
-        id: `Posisimu: #${data.myPlace} · ${data.mySR} SR`,
-        tr: `Sıran: #${data.myPlace} · ${data.mySR} SR`,
-        pl: `Twoja pozycja: #${data.myPlace} · ${data.mySR} SR`,
+        ru: `Твоё место: #${data.myPlace} · сезонный рейтинг ${data.mySR}`,
+        uk: `Твоє місце: #${data.myPlace} · сезонний рейтинг ${data.mySR}`,
+        es: `Tu posición: #${data.myPlace} · rating de temporada ${data.mySR}`,
+        'pt-BR': `Sua posição: #${data.myPlace} · rating da temporada ${data.mySR}`,
+        vi: `Vị trí của bạn: #${data.myPlace} · điểm mùa ${data.mySR}`,
+        id: `Posisimu: #${data.myPlace} · rating musim ${data.mySR}`,
+        tr: `Sıran: #${data.myPlace} · sezon puanı ${data.mySR}`,
+        pl: `Twoja pozycja: #${data.myPlace} · ranking sezonu ${data.mySR}`,
       })
     : '';
 
@@ -178,7 +199,7 @@ export default function ArenaSeasonLeaderboardScreen() {
             {/* моё место */}
             {myPlaceLabel ? (
               <View style={{ marginHorizontal: 16, marginBottom: 8, backgroundColor: 'rgba(255,210,74,0.1)', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 10 }}>
-                <Text style={{ color: '#FFD24A', fontSize: f.body, fontWeight: '700' }}>{myPlaceLabel}</Text>
+                <Text style={{ color: monoIcon(themeMode, '#FFD24A'), fontSize: f.body, fontWeight: '700' }}>{myPlaceLabel}</Text>
               </View>
             ) : null}
 
@@ -215,7 +236,7 @@ export default function ArenaSeasonLeaderboardScreen() {
               <FlashList
                 data={rows}
                 keyExtractor={(item) => item.uid}
-                renderItem={({ item }) => <SeasonRow item={item} t={t} f={f} />}
+                renderItem={({ item }) => <SeasonRow item={item} t={t} f={f} lang={lang as Lang} themeMode={themeMode} />}
               />
             )}
 

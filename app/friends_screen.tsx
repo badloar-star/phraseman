@@ -11,7 +11,6 @@ import {
   Pressable,
   Share,
   StyleSheet,
-  InteractionManager,
   ActivityIndicator,
 } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -28,7 +27,7 @@ import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname } from './firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends } from './firestore_friends';
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
 import {
   sendFriendRequest,
@@ -189,15 +188,15 @@ export default function FriendsScreen() {
 
   useEffect(() => {
     let cancelled = false;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void (async () => {
-        const code = await ensureMyInviteCodeForFriends('');
-        if (!cancelled && code) setMyCode(code);
-      })();
+    void readCachedMyInviteCodeForFriends().then(cached => {
+      if (!cancelled && cached) setMyCode(prev => prev ?? cached);
     });
+    void (async () => {
+      const code = await ensureMyInviteCodeForFriends('');
+      if (!cancelled && code) setMyCode(code);
+    })();
     return () => {
       cancelled = true;
-      task.cancel();
     };
   }, []);
 
@@ -792,7 +791,7 @@ export default function FriendsScreen() {
     const name = profile?.name ?? 'Phraseman';
     return (
       <View key={req.fromUid} testID={`friends-request-${req.fromUid}`} style={styles.personRow}>
-        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} />
+        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} animateAura={false} />
         <View style={styles.personInfo}>
           <Text style={styles.personName}>{name}</Text>
           <Text style={styles.personXp}>{xp} XP</Text>
@@ -830,7 +829,7 @@ export default function FriendsScreen() {
     const name = profile?.name ?? 'Phraseman';
     return (
       <View key={friend.uid} testID={`friends-row-${friend.uid}`} style={styles.personRow}>
-        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} />
+        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} animateAura={false} />
         <View style={styles.personInfo}>
           <Text style={styles.personName}>{name}</Text>
           <Text style={styles.personXp}>{xp} XP</Text>

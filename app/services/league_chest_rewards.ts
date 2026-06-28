@@ -346,20 +346,30 @@ export function subscribeLeagueBonusAvailability(
     myUid = String(resolved[1] ?? '');
     if (!meta || !myUid) return;
     locallyClaimed = (await AsyncStorage.getItem(localClaimKey(myUid, meta.weekId, meta.groupId)).catch(() => null)) === '1';
+    if (closed) return;
     const arenaDocId = `${safeId(meta.weekId)}_${safeId(meta.groupId)}`;
-    unsubs.push(
+    // Защита от гонки: teardown мог отработать, пока выше шли await'ы. В этом случае
+    // unsubs уже очищены, поэтому каждый новый onSnapshot отзываем немедленно, а не складываем.
+    const track = (unsub: () => void) => {
+      if (closed) {
+        try { unsub(); } catch {}
+        return;
+      }
+      unsubs.push(unsub);
+    };
+    track(
       db.collection('league_groups').doc(meta.groupId).onSnapshot((snap) => {
         groupData = snap.exists ? (snap.data() as Record<string, unknown>) : null;
         maybeEmit();
       }, () => {}),
     );
-    unsubs.push(
+    track(
       db.collection('arena_club_events').doc(arenaDocId).onSnapshot((snap) => {
         arenaData = snap.exists ? (snap.data() as Record<string, unknown>) : null;
         maybeEmit();
       }, () => {}),
     );
-    unsubs.push(
+    track(
       db.collection('league_chest_claims').doc(claimDocId(myUid, meta.weekId, meta.groupId)).onSnapshot((snap) => {
         claimExists = snap.exists;
         maybeEmit();
@@ -388,6 +398,26 @@ export async function readLeagueChestEnergyOverrideMs(): Promise<number | null> 
     return Number.isFinite(recoveryMs) && recoveryMs > 0 ? recoveryMs : null;
   } catch {
     return null;
+  }
+}
+
+/**
+ * Read-only вариант (для UI getCurrentMultiplier): возвращает текущий множитель
+ * без потребления заряда. Сам consume происходит только в registerXP, иначе UI
+ * прожжёт бонус при простом отображении. Зеркалирует логику consume в части
+ * валидности (expiresAt, remainingUses, multiplier>1), но не мутирует storage.
+ */
+export async function peekLeagueChestXpOverrideMultiplier(): Promise<number> {
+  try {
+    const raw = await AsyncStorage.getItem(XP_OVERRIDE_KEY);
+    if (!raw) return 1;
+    const parsed = JSON.parse(raw) as { expiresAt?: number; multiplier?: number; remainingUses?: number };
+    const remainingUses = Math.floor(Number(parsed.remainingUses) || 0);
+    const multiplier = Number(parsed.multiplier) || 1;
+    if (!parsed.expiresAt || Date.now() >= parsed.expiresAt || remainingUses <= 0 || multiplier <= 1) return 1;
+    return multiplier;
+  } catch {
+    return 1;
   }
 }
 

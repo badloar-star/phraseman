@@ -31,6 +31,10 @@ function clampPlaybackRate(rate: number | undefined): number {
 }
 
 let currentPlayer: AudioPlayer | null = null;
+// Слушатель playbackStatusUpdate текущего плеера. Держим ссылку, чтобы снять его
+// при остановке/смене фразы — иначе каждый прерванный клип оставляет висящую
+// подписку (утечка, копящаяся за урок: десятки фраз → десятки слушателей).
+let currentSub: { remove: () => void } | null = null;
 const inFlightDownloads = new Map<string, Promise<string | null>>();
 
 // Monotonic token: every stopPhraseAudio() / new playPhraseByText() bumps it.
@@ -53,7 +57,13 @@ function downloadFileWithTimeout(url: string, file: File): Promise<File | null> 
   const timeout = new Promise<null>((resolve) => {
     timer = setTimeout(() => resolve(null), DOWNLOAD_TIMEOUT_MS);
   });
-  return Promise.race([File.downloadFileAsync(url, file), timeout]).finally(() => {
+  // expo-file-system ships two structurally-identical `File` declarations
+  // (FileSystem vs ExpoFileSystem.types); downloadFileAsync resolves to the
+  // latter, so cast back to the imported `File` to keep the signature aligned.
+  return Promise.race([
+    File.downloadFileAsync(url, file) as Promise<File>,
+    timeout,
+  ]).finally(() => {
     if (timer) clearTimeout(timer);
   });
 }
@@ -110,6 +120,11 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
 export function stopPhraseAudio(): void {
   // Invalidate any in-flight playPhraseByText so a pending download won't start.
   playGeneration += 1;
+  // Снимаем слушатель ДО player.remove(), иначе подписка остаётся висеть.
+  if (currentSub) {
+    try { currentSub.remove(); } catch {}
+    currentSub = null;
+  }
   if (currentPlayer) {
     try {
       currentPlayer.pause();
@@ -177,12 +192,16 @@ export async function playPhraseByText(
         // superseded clip's late finish must not re-trigger caller auto-advance.
         if (!superseded()) cb?.onDone?.();
         try { sub?.remove(); } catch {}
+        if (currentSub === sub) currentSub = null;
         if (currentPlayer === player) {
           try { player.remove(); } catch {}
           currentPlayer = null;
         }
       }
     });
+    // Регистрируем активную подписку, чтобы stopPhraseAudio() мог её снять при
+    // прерывании (смена фразы) — а не только естественное завершение клипа.
+    currentSub = sub;
     player.play();
     return true;
   } catch (e) {

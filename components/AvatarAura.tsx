@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, View, ViewStyle } from 'react-native';
+import { Animated, AppState, Easing, View, ViewStyle } from 'react-native';
 import { LinearGradient as ExpoLinearGradient } from './SafeLinearGradient';
 import Svg, { Circle, Polygon, Polyline } from 'react-native-svg';
 import { getAvatarAuraById, PREMIUM_AVATAR_AURA_ID, VIP_AVATAR_AURA_ID } from '../constants/avatar_auras';
@@ -9,9 +9,16 @@ type Props = {
   size: number;
   children: React.ReactNode;
   style?: ViewStyle;
+  /**
+   * Когда false — аура рендерится статично, без бесконечного loop.
+   * Списки (лента/лиги/арена) монтируют десятки аватарок; каждый активный loop
+   * перерисовывает тяжёлые тени/градиенты каждый кадр и греет телефон. Передавай
+   * animate={false} для мелких аватарок в прокручиваемых списках.
+   */
+  animate?: boolean;
 };
 
-function AvatarAura({ auraId, size, children, style }: Props) {
+function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
   const aura = getAvatarAuraById(auraId);
   const auraPhase = useRef(new Animated.Value(0)).current;
   const isPremiumAura = aura?.id === PREMIUM_AVATAR_AURA_ID;
@@ -21,7 +28,7 @@ function AvatarAura({ auraId, size, children, style }: Props) {
   const isStarVortexAura = aura?.effect === 'starvortex';
   const isVoidAmethystAura = aura?.effect === 'voidamethyst';
   const isRichEffect = isFlameAura || isStormAura || isStarVortexAura || isVoidAmethystAura;
-  const shouldAnimate = ((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42);
+  const shouldAnimate = animate && (((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42));
 
   useEffect(() => {
     if (!shouldAnimate) {
@@ -29,31 +36,48 @@ function AvatarAura({ auraId, size, children, style }: Props) {
       return;
     }
 
-    auraPhase.setValue(0);
-    const loop = isPremiumAura || isVipAura
-      ? Animated.loop(Animated.sequence([
-        Animated.timing(auraPhase, {
+    let loop: Animated.CompositeAnimation | null = null;
+    const start = () => {
+      if (loop) return;
+      auraPhase.setValue(0);
+      loop = isPremiumAura || isVipAura
+        ? Animated.loop(Animated.sequence([
+          Animated.timing(auraPhase, {
+            toValue: 1,
+            duration: 2200,
+            easing: Easing.inOut(Easing.sin),
+            useNativeDriver: true,
+          }),
+          Animated.timing(auraPhase, {
+            toValue: 0,
+            duration: 2200,
+            easing: Easing.inOut(Easing.sin),
+            useNativeDriver: true,
+          }),
+        ]))
+        : Animated.loop(Animated.timing(auraPhase, {
           toValue: 1,
-          duration: 2200,
+          duration: isStormAura ? 3200 : isStarVortexAura ? 4600 : isVoidAmethystAura ? 4000 : 2600,
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: true,
-        }),
-        Animated.timing(auraPhase, {
-          toValue: 0,
-          duration: 2200,
-          easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
-      ]))
-      : Animated.loop(Animated.timing(auraPhase, {
-        toValue: 1,
-        duration: isStormAura ? 3200 : isStarVortexAura ? 4600 : isVoidAmethystAura ? 4000 : 2600,
-        easing: Easing.inOut(Easing.sin),
-        useNativeDriver: true,
-      }));
+        }));
+      loop.start();
+    };
+    const stop = () => {
+      loop?.stop();
+      loop = null;
+    };
 
-    loop.start();
-    return () => loop.stop();
+    // Анимируем только на переднем плане — в фоне нет смысла перерисовывать тени.
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      stop();
+    };
   }, [auraPhase, isPremiumAura, isStormAura, isStarVortexAura, isVoidAmethystAura, isVipAura, shouldAnimate]);
 
   if (!aura || size < 36) {

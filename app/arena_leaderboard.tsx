@@ -668,12 +668,14 @@ export default function ArenaLeaderboardScreen() {
                         avatarSize={LEADERBOARD_AVATAR_SIZE}
                         maskColor={isMe ? t.accentBg : t.bgCard}
                         style={{ marginRight: 10 }}
+                        animateShimmer={false}
                       >
                         <AvatarView
                           avatar={rowAvatar}
                           totalXP={totalXp}
                           size={LEADERBOARD_AVATAR_SIZE}
                           auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
+                          animateAura={false}
                         />
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>

@@ -1307,27 +1307,35 @@ function AppContent() {
     }
   }, [pathname]);
 
+  // Колбэк держим в ref, чтобы подписка/таймер НЕ пересоздавались на каждой навигации
+  // (showLeagueBonusAvailableOnce зависит от pathname). Иначе каждый переход экрана
+  // открывал бы заново 3 Firestore onSnapshot — утечка realtime-слушателей.
+  const showLeagueBonusAvailableOnceRef = useRef(showLeagueBonusAvailableOnce);
+  useEffect(() => {
+    showLeagueBonusAvailableOnceRef.current = showLeagueBonusAvailableOnce;
+  }, [showLeagueBonusAvailableOnce]);
+
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
     const timer = setTimeout(() => {
       void checkLeagueBonusAvailability()
         .then((availability) => {
-          if (availability) void showLeagueBonusAvailableOnce(availability, 'startup');
+          if (availability) void showLeagueBonusAvailableOnceRef.current(availability, 'startup');
         })
         .catch(() => {});
     }, 1800);
     return () => clearTimeout(timer);
-  }, [isBanned, ready, showLeagueBonusAvailableOnce, showOnboarding]);
+  }, [isBanned, ready, showOnboarding]);
 
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
     const unsubscribe = subscribeLeagueBonusAvailability((availability) => {
-      void showLeagueBonusAvailableOnce(availability, 'live');
+      void showLeagueBonusAvailableOnceRef.current(availability, 'live');
     });
     return unsubscribe;
-  }, [isBanned, ready, showLeagueBonusAvailableOnce, showOnboarding]);
+  }, [isBanned, ready, showOnboarding]);
 
   useEffect(() => installForegroundUsageMsTracker(), []);
 
@@ -1498,6 +1506,12 @@ function AppContent() {
     // Startup must reveal the first screen quickly; optional warmups continue below.
     const safetyTimer = setTimeout(() => setReady(true), 1200);
 
+    // Remote Config: ссылку на отписку держим в scope эффекта.
+    // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
+    // эффект мог уже размонтироваться, тогда подписку сразу закрываем.
+    let effectDisposed = false;
+    let remoteConfigUnsub: (() => void) | null = null;
+
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
     let cloudHydratePromise: Promise<void> | null = null;
@@ -1517,7 +1531,15 @@ function AppContent() {
       void import('./remote_config_client')
         .then((m) => {
           void m.loadRemoteConfig().catch(() => {});
-          m.subscribeRemoteConfig();
+          // Сохраняем подписку, чтобы закрыть её в cleanup эффекта (иначе Firestore
+          // onSnapshot на remote_config живёт вечно).
+          const sub = m.subscribeRemoteConfig();
+          if (effectDisposed) {
+            // эффект уже размонтирован к моменту резолва импорта — сразу закрываем
+            try { sub.remove(); } catch {}
+          } else {
+            remoteConfigUnsub = sub.remove;
+          }
         })
         .catch(() => {});
       // Идентификация PostHog для воронки (no-op без ключа/пакета, безопасна при любой сборке).
@@ -1829,11 +1851,13 @@ function AppContent() {
       setShow(true);
     });
     return () => {
+      effectDisposed = true;
       clearTimeout(safetyTimer);
       runHeavyInitRef.current = null;
       sub.remove();
       subShards.remove();
       subDelete.remove();
+      remoteConfigUnsub?.();
     };
   }, [flushPending]);
 

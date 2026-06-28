@@ -110,6 +110,10 @@ const USE_ELITE_HOME_STATUS = true;
 const HOME_STATUS_DENSE_PROGRESS_EXPERIMENT = true;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = false;
+// Бесконечный shimmer прогресс-бара гоняем на НАТИВНОМ драйвере: это чистый transform
+// (translateX), безопасный для Fabric, и он НЕ должен крутиться на JS-потоке всю сессию —
+// иначе главный экран (всегда смонтирован) греет телефон и тормозит нажатия кнопок.
+const HOME_SHIMMER_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
 const FREE_HOME_PLAN_CTA_MODE_KEY = 'free_home_plan_cta_mode_v1';
 type FreeHomePlanCtaMode = 'choosePlan' | 'continueLesson';
@@ -720,14 +724,29 @@ export default function HomeScreen() {
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
         eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
-        const shimmerLoop = Animated.loop(Animated.sequence([
-            Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-            Animated.delay(1100),
-            Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-        ]));
-        shimmerLoop.start();
+        let shimmerLoop: Animated.CompositeAnimation | null = null;
+        const startShimmer = () => {
+            if (shimmerLoop) return;
+            shimmerLoop = Animated.loop(Animated.sequence([
+                Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
+                Animated.delay(1100),
+                Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
+            ]));
+            shimmerLoop.start();
+        };
+        const stopShimmer = () => {
+            shimmerLoop?.stop();
+            shimmerLoop = null;
+        };
+        // Крутим только когда приложение на переднем плане — нет смысла греть телефон в кармане.
+        if (AppState.currentState === 'active') startShimmer();
+        const appSub = AppState.addEventListener('change', (state) => {
+            if (state === 'active') startShimmer();
+            else stopShimmer();
+        });
         return () => {
-            shimmerLoop.stop();
+            appSub.remove();
+            stopShimmer();
         };
     }, [activeIdx, eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
     // Миграция v2: пороги XP удвоены — умножаем сохранённый XP на 2 (один раз).
@@ -1590,7 +1609,7 @@ export default function HomeScreen() {
             if (!ok) {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
                     ru: 'Недостаточно осколков',
-                    uk: 'Недостатньо осколків',
+                    uk: 'Недостатньо уламків',
                     es: `No tienes suficientes ${BRAND_SHARDS_ES}`,
                     'pt-BR': "Você não tem fragmentos suficientes",
                     vi: "Bạn không có đủ mảnh",

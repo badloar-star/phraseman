@@ -529,8 +529,8 @@ function FriendRow({
       <Text style={{ minWidth: 28, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
         {rank}
       </Text>
-      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={FRIEND_ROW_AVATAR_SIZE} maskColor={chrome.mask}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={FRIEND_ROW_AVATAR_SIZE} auraId={usesPremiumAura ? undefined : effectiveAura} />
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={FRIEND_ROW_AVATAR_SIZE} maskColor={chrome.mask} animateShimmer={false}>
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={FRIEND_ROW_AVATAR_SIZE} auraId={usesPremiumAura ? undefined : effectiveAura} animateAura={false} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
@@ -618,8 +618,8 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
       backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
       borderWidth: 0.5, borderColor: chrome.border, gap: 12,
     }}>
-      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} />
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={44} maskColor={chrome.mask} animateShimmer={false}>
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} animateAura={false} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>

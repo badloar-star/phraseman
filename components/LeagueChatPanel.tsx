@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AppState, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,11 +10,13 @@ import AvatarView from './AvatarView';
 import { triLang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getSocialChatIcon } from '../constants/socialIconAssets';
+import { monoIcon } from '../constants/monoIcon';
 import type { ThemeMode } from '../constants/theme';
 import {
   authorizeLeagueChatRoom,
   blockLeagueChatUser,
   cacheLeagueChatRoom,
+  deleteLeagueChatMessage,
   forgetCachedLeagueChatAuthorization,
   forgetCachedLeagueChatRoom,
   getCachedLeagueChatMessagesSync,
@@ -120,6 +122,7 @@ function LeagueChatPanel({
   const [optimisticMessages, setOptimisticMessages] = useState<OptimisticLeagueChatMessage[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<Record<string, boolean>>({});
   const [pendingHideUntilByUid, setPendingHideUntilByUid] = useState<Record<string, number>>({});
+  const [deletingMessageIds, setDeletingMessageIds] = useState<Record<string, boolean>>({});
   const [hideTimerNow, setHideTimerNow] = useState(Date.now());
   const [draft, setDraft] = useState('');
   const [draftBlocked, setDraftBlocked] = useState(false);
@@ -135,6 +138,7 @@ function LeagueChatPanel({
   const [reportDetails, setReportDetails] = useState('');
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const scrollRef = useRef<ScrollView | null>(null);
+  const inputRef = useRef<TextInput | null>(null);
   const hideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const forbiddenRoomKeyRef = useRef('');
   const optimisticMessageSeqRef = useRef(0);
@@ -241,7 +245,19 @@ function LeagueChatPanel({
     draft,
     draftBlocked,
   });
-  const composerBottomPadding = Math.max(14, insets.bottom + 10);
+  const composerBottomPadding = Math.max(18, insets.bottom + 14);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') {
+        inputRef.current?.blur();
+        Keyboard.dismiss();
+        return;
+      }
+      setTimeout(scrollToLatestMessage, 80);
+    });
+    return () => sub.remove();
+  }, [scrollToLatestMessage]);
 
   useEffect(() => {
     if (!room) {
@@ -411,6 +427,54 @@ function LeagueChatPanel({
       setSending(false);
     }
   }, [draft, draftBlocked, lang, myAuraId, myAvatar, myUid, room, scrollToLatestMessage, sending, showToast]);
+
+  const deleteOwnMessage = useCallback(async (message: LeagueChatMessage | OptimisticLeagueChatMessage) => {
+    hapticTap();
+    if (isOptimisticLeagueChatMessage(message)) {
+      setOptimisticMessages((cur) => cur.filter((row) => row.id !== message.id));
+      return;
+    }
+    if (!myUid || message.authorUid !== myUid || deletingMessageIds[message.id]) return;
+
+    const messageId = message.id;
+    setDeletingMessageIds((cur) => ({ ...cur, [messageId]: true }));
+    setMessages((cur) => cur.filter((row) => row.id !== messageId));
+    try {
+      await deleteLeagueChatMessage(message);
+      showToast(triLang(lang, {
+  ru: 'Сообщение удалено',
+  uk: 'Повідомлення видалено',
+  es: 'Mensaje eliminado',
+  "pt-BR": 'Mensagem apagada',
+  vi: 'Đã xóa tin nhắn',
+  id: 'Pesan dihapus',
+  tr: 'Mesaj silindi',
+  pl: 'Wiadomość usunięta',
+}), 'success');
+    } catch {
+      setMessages((cur) => (
+        cur.some((row) => row.id === messageId)
+          ? cur
+          : [...cur, message].sort((a, b) => a.createdAt - b.createdAt)
+      ));
+      showToast(triLang(lang, {
+  ru: 'Не удалось удалить сообщение',
+  uk: 'Не вдалося видалити повідомлення',
+  es: 'No se pudo eliminar el mensaje',
+  "pt-BR": 'Não foi possível apagar a mensagem',
+  vi: 'Không xóa được tin nhắn',
+  id: 'Pesan gagal dihapus',
+  tr: 'Mesaj silinemedi',
+  pl: 'Nie udało się usunąć wiadomości',
+}), 'error');
+    } finally {
+      setDeletingMessageIds((cur) => {
+        const next = { ...cur };
+        delete next[messageId];
+        return next;
+      });
+    }
+  }, [deletingMessageIds, lang, myUid, showToast]);
 
   const openReportModal = useCallback((message: LeagueChatMessage) => {
     hapticTap();
@@ -851,9 +915,10 @@ function LeagueChatPanel({
                 totalXP={myTotalXP}
                 size={avatarSize}
                 auraId={myAuraId ?? m.authorAura}
+                animateAura={false}
               />
             ) : (
-              <AvatarView avatar={avatar} size={avatarSize} auraId={m.authorAura} />
+              <AvatarView avatar={avatar} size={avatarSize} auraId={m.authorAura} animateAura={false} />
             );
             return (
               <View
@@ -926,10 +991,10 @@ function LeagueChatPanel({
                     marginLeft: isMine ? 0 : sideOffset,
                     paddingHorizontal: 4,
                   }}
-                >
-                  {!isMine && (
-                    <>
-                      <TouchableOpacity
+                  >
+                    {!isMine && (
+                      <>
+                        <TouchableOpacity
                         testID={`league-chat-report-${m.id}`}
                         accessibilityLabel={`qa-league-chat-report-${m.id}`}
                         onPress={() => openReportModal(m)}
@@ -980,7 +1045,26 @@ function LeagueChatPanel({
                           <Ionicons name="eye-off-outline" size={14} color={t.textMuted} />
                         )}
                       </TouchableOpacity>
-                    </>
+                      </>
+                    )}
+                  {isMine && (
+                    <TouchableOpacity
+                      testID={`league-chat-delete-${m.id}`}
+                      accessibilityRole="button"
+                      accessibilityLabel="Delete message"
+                      disabled={Boolean(deletingMessageIds[m.id])}
+                      onPress={() => deleteOwnMessage(m)}
+                      style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: 12,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        opacity: deletingMessageIds[m.id] ? 0.45 : 1,
+                      }}
+                    >
+                      <Ionicons name={deletingMessageIds[m.id] ? 'time-outline' : 'trash-outline'} size={14} color={t.textMuted} />
+                    </TouchableOpacity>
                   )}
                 </View>
               </View>
@@ -993,7 +1077,7 @@ function LeagueChatPanel({
           style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}
         >
           {draftBlocked && (
-            <Text style={{ color: '#E05252', fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
+            <Text style={{ color: monoIcon(themeMode, '#E05252'), fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
               {triLang(lang, {
   ru: 'Сообщение содержит запрещённые слова',
   uk: 'Повідомлення містить заборонені слова',
@@ -1009,6 +1093,7 @@ function LeagueChatPanel({
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
             <TextInput
               testID="league-chat-input"
+              ref={inputRef}
               value={draft}
               onChangeText={handleDraftChange}
               editable={connectionUi.canEditDraft}

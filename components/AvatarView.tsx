@@ -18,6 +18,12 @@ interface Props {
   size?: number;
   style?: any;
   auraId?: string | null;
+  /**
+   * false → аура статична (без бесконечной анимации). Передавай в прокручиваемых
+   * списках (лента/лиги/арена), где одновременно видно много аватарок, иначе каждая
+   * крутит свой loop и греет телефон при скролле.
+   */
+  animateAura?: boolean;
 }
 
 function AvatarImageWithFallback({
@@ -60,12 +66,12 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, totalXP, level, size = 44, style, auraId }: Props) {
+function AvatarView({ avatar, totalXP, level, size = 44, style, auraId, animateAura = true }: Props) {
   const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
   const customAvatar = parseCustomAvatarValue(avatar);
   if (customAvatar) {
     return (
-      <AvatarAura auraId={auraId} size={size} style={style}>
+      <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura}>
         <CustomAvatarBadge value={avatar} size={size} />
       </AvatarAura>
     );
@@ -77,7 +83,7 @@ function AvatarView({ avatar, totalXP, level, size = 44, style, auraId }: Props)
   const material = getLevelAvatarMaterial(avatarIndex);
 
   return (
-    <AvatarAura auraId={auraId} size={size} style={style}>
+    <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura}>
       {avatarImage
         ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} overlayLevel={avatarIndex} tint={avatarDef?.tint} material={material} />
         : <LevelBadge level={fallbackLevel} size={size} />

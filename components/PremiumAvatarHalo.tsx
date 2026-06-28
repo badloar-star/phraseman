@@ -18,13 +18,14 @@ function PremiumAvatarHalo({
   avatarSize,
   children,
   style,
+  animateShimmer = true,
 }: Props) {
   if (!enabled) {
     return <View style={style}>{children}</View>;
   }
 
   return (
-    <AvatarAura auraId={PREMIUM_AVATAR_AURA_ID} size={avatarSize} style={style}>
+    <AvatarAura auraId={PREMIUM_AVATAR_AURA_ID} size={avatarSize} style={style} animate={animateShimmer}>
       {children}
     </AvatarAura>
   );

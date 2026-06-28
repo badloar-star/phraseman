@@ -834,7 +834,12 @@ export default function ClubScreen() {
     },
   }), [animateLeaguePreviewSwipe]);
 
-  const sortedGroup = (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points);
+  // useMemo: иначе массив пересоздаётся и пересортировывается на КАЖДЫЙ ре-рендер экрана
+  // (смена profile/фокус/обновления), и следом заново прогоняется весь .map по ~30 строкам лиги.
+  const sortedGroup = useMemo(
+    () => (Array.isArray(group) ? [...group] : []).sort((a, b) => b.points - a.points),
+    [group],
+  );
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
@@ -1635,7 +1640,7 @@ export default function ClubScreen() {
                   <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
                     {triLang(lang, {
                       ru: 'Гонка за корону',
-                      uk: 'Гонка за корону',
+                      uk: 'Перегони за корону',
                       es: 'Carrera por la corona',
                       'pt-BR': "Corrida pela coroa",
                       vi: "Cuộc đua giành vương miện",
@@ -1843,12 +1848,14 @@ export default function ClubScreen() {
                       enabled={rowUsesPremiumAura}
                       avatarSize={CLUB_LEADERBOARD_AVATAR_SIZE}
                       maskColor={rowMask}
+                      animateShimmer={false}
                     >
                       <AvatarView
                         avatar={rowAvatar}
                         totalXP={rowXp}
                         size={CLUB_LEADERBOARD_AVATAR_SIZE}
                         auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
+                        animateAura={false}
                       />
                     </PremiumAvatarHalo>
                   </View>

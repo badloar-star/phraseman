@@ -20,6 +20,7 @@ import {
   speakingTargetTokens,
 } from '../app/speaking_word_match';
 import { buildSpeakingStartOptions } from '../app/speaking_recognition_options';
+import { diffPhonemes } from '../app/speaking_phoneme_diff';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -165,6 +166,8 @@ export function SpeakingPanel({
   const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const [transcript, setTranscript] = useState('');
+  // Final heard text of a FAILED attempt, kept for the "which word sounded off" hint.
+  const [failedTranscript, setFailedTranscript] = useState('');
   // Latest raw `volumechange` sample (~ -2..10) for the equalizer; the
   // VoiceEqualizer turns it into loudness + tone-driven bar heights itself.
   const [voiceSample, setVoiceSample] = useState(0);
@@ -180,6 +183,11 @@ export function SpeakingPanel({
   const matched = useMemo(
     () => speakingMatchedFlags(targetText, transcript),
     [targetText, transcript],
+  );
+  // Word-level "which word sounded off" hint, only for a failed attempt.
+  const phonemeDiff = useMemo(
+    () => (status === 'failed' && failedTranscript ? diffPhonemes(targetText, failedTranscript) : null),
+    [status, failedTranscript, targetText],
   );
 
   const cleanupListeners = useCallback(() => {
@@ -210,10 +218,13 @@ export function SpeakingPanel({
       });
       setScore(result.score);
       if (result.passed) {
+        setFailedTranscript('');
         setStatus('passed');
         hapticSuccess();
         onPass?.({ score: result.score, transcript: text });
       } else {
+        // Keep the heard text so the failed view can show "which word sounded off".
+        setFailedTranscript(text);
         setStatus('failed');
         hapticError();
       }
@@ -237,6 +248,7 @@ export function SpeakingPanel({
     }
     hapticTap();
     setTranscript('');
+    setFailedTranscript('');
     setScore(null);
     setVoiceSample(0);
     setStatus('requesting');
@@ -575,6 +587,38 @@ export function SpeakingPanel({
             {statusLine}
           </Text>
 
+          {/* "Which word sounded off" — calm, word-level hint after a failed
+              attempt. Fully local (phonetic diff). Only the words that didn't
+              come through are listed, so the learner knows exactly what to retry. */}
+          {phonemeDiff?.hasIssues && (
+            <View style={styles.diffWrap} accessibilityRole="text">
+              <Text style={[styles.diffLabel, { color: theme.textMuted }]}>
+                {L(lang, {
+                  ru: 'Поработай над:',
+                  uk: 'Попрацюй над:',
+                  es: 'Trabaja en:',
+                  'pt-BR': 'Pratique:',
+                  vi: 'Luyện thêm:',
+                  id: 'Latih lagi:',
+                  tr: 'Şunları çalış:',
+                  pl: 'Popracuj nad:',
+                })}
+              </Text>
+              <View style={styles.diffWords}>
+                {phonemeDiff.words
+                  .filter((w) => w.status !== 'ok')
+                  .map((w, idx) => (
+                    <Text
+                      key={`diff-${idx}`}
+                      style={[styles.diffWord, { color: theme.wrong, borderColor: theme.wrong }]}
+                    >
+                      {w.target}
+                    </Text>
+                  ))}
+              </View>
+            </View>
+          )}
+
           {/* Mic button — hidden when blocked (denied/unavailable) or already
               passed: there the mic can't help / isn't needed, so a clear action
               button takes its place. */}
@@ -690,6 +734,17 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: { fontSize: 18, fontWeight: '700' },
+  diffWrap: { alignItems: 'center', marginBottom: 8, marginTop: -8 },
+  diffLabel: { fontSize: 13, marginBottom: 6 },
+  diffWords: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 6 },
+  diffWord: {
+    fontSize: 15,
+    fontWeight: '600',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
   phraseWrap: {
     flexDirection: 'row',
     flexWrap: 'wrap',

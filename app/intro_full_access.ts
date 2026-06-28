@@ -6,6 +6,7 @@ import {
   cancelUpsellNotifications,
 } from './notifications';
 import type { Lang } from '../constants/i18n';
+import { persistGiftAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
 
 export const INTRO_FULL_ACCESS_DURATION_MS = 72 * 60 * 60 * 1000;
 
@@ -47,6 +48,29 @@ export async function startIntroFullAccessAfterOnboarding(
   const existingStart = parsePositiveMs(await AsyncStorage.getItem(INTRO_FULL_ACCESS_STARTED_AT_KEY));
   if (existingStart) return;
 
+  // H4 cloud-guard: после переустановки AsyncStorage чист, но Firestore помнит
+  // что подарок уже выдавался → НЕ выдаём повторно. Если cloud-grant ещё активен —
+  // восстанавливаем endsAt в локальный стор, юзер докатает оставшиеся часы.
+  // Best-effort: при оффлайне/ошибке падаем на обычный локальный путь (выдача).
+  const cloudState = await readGiftAccessFromCloud('intro');
+  if (cloudState?.grantedAtMs) {
+    const remainingEndsAt = cloudState.endsAtMs && cloudState.endsAtMs > nowMs ? cloudState.endsAtMs : null;
+    if (remainingEndsAt) {
+      await AsyncStorage.multiSet([
+        [INTRO_FULL_ACCESS_STARTED_AT_KEY, String(cloudState.grantedAtMs)],
+        [INTRO_FULL_ACCESS_ENDS_AT_KEY, String(remainingEndsAt)],
+        [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'], // уже видел приветствие в прошлой установке
+        [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
+      ]);
+      scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(() => {});
+      scheduleUpsellNotifications(remainingEndsAt, lang).catch(() => {});
+    } else {
+      // Подарок выдан и истёк — пишем только started_at чтобы запомнить факт выдачи.
+      await AsyncStorage.setItem(INTRO_FULL_ACCESS_STARTED_AT_KEY, String(cloudState.grantedAtMs));
+    }
+    return;
+  }
+
   const endsAt = nowMs + INTRO_FULL_ACCESS_DURATION_MS;
 
   await AsyncStorage.multiSet([
@@ -55,6 +79,11 @@ export async function startIntroFullAccessAfterOnboarding(
     [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'false'],
     [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
   ]);
+
+  // Пишем в облако ПОСЛЕ AsyncStorage — UI не блокируем. Сервер увидит подарок и
+  // ИИ-функции откроются. Если запись упадёт (offline) — попробуем при следующем
+  // sync (TODO опционально: добавить в cloud_sync SYNC_KEYS, но достаточно одного push).
+  void persistGiftAccessOnCloud('intro', nowMs, endsAt);
 
   scheduleIntroExpiringNotification(endsAt, lang).catch(() => {});
   scheduleUpsellNotifications(endsAt, lang).catch(() => {});

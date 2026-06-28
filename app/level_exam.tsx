@@ -15,7 +15,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
-import { hapticTap } from '../hooks/use-haptics';
+import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import ContentWrap from '../components/ContentWrap';
@@ -43,6 +43,7 @@ import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
+import { monoIcon } from '../constants/monoIcon';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -476,11 +477,13 @@ function FrenchLevelExamUnavailable({
   onBack,
   onLessons,
   f,
+  themeMode,
 }: {
   lang: string;
   onBack: () => void;
   onLessons: () => void;
   f: ReturnType<typeof useTheme>['f'];
+  themeMode: ReturnType<typeof useTheme>['themeMode'];
 }) {
   const copy = frenchExamGateCopy('level', lang);
   return (
@@ -503,7 +506,7 @@ function FrenchLevelExamUnavailable({
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name="shield-checkmark-outline" size={38} color={LX.gold} />
+              <Ionicons name="shield-checkmark-outline" size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
             <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {copy.title}
@@ -716,7 +719,9 @@ export default function LevelExam() {
 
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
-    hapticTap();
+    // Результат ответа: успех на верном, ошибка на неверном
+    // (раньше был общий tap без сигнала результата).
+    if (q && ci === q.correct) void hapticSuccess(); else void hapticError();
     if (q && ci !== q.correct) {
       const hints = buildLevelExamHintPair(q);
       const phrase = buildLevelExamEnglish(q);
@@ -842,6 +847,7 @@ export default function LevelExam() {
         onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
         onLessons={() => { hapticTap(); router.replace('/(tabs)/lessons' as any); }}
         f={f}
+        themeMode={themeMode}
       />
     );
   }
@@ -868,7 +874,7 @@ export default function LevelExam() {
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
+              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={monoIcon(themeMode, LX.gold)} />
             </View>
             <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {checking
@@ -1072,7 +1078,7 @@ export default function LevelExam() {
                     alignItems: 'center',
                   }}
                 >
-                  <Ionicons name="diamond-outline" size={26} color={LX.gold} />
+                  <Ionicons name="diamond-outline" size={26} color={monoIcon(themeMode, LX.gold)} />
                 </View>
                 <View style={{ flex: 1, paddingTop: 2 }}>
                   <Text style={{ color: '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
@@ -1097,7 +1103,7 @@ export default function LevelExam() {
                       borderColor: LX.cardLine,
                     }}
                   >
-                    <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
+                    <Ionicons name={s.icon} size={18} color={monoIcon(themeMode, LX.gold)} style={{ marginBottom: 8 }} />
                     <Text style={{ color: LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
                     <Text
                       style={{
@@ -1130,7 +1136,7 @@ export default function LevelExam() {
                     borderColor: LX.cardLine,
                   }}
                 >
-                  <Ionicons name="sparkles-outline" size={20} color={LX.gold} style={{ marginTop: 2 }} />
+                  <Ionicons name="sparkles-outline" size={20} color={monoIcon(themeMode, LX.gold)} style={{ marginTop: 2 }} />
                   <Text style={{ flex: 1, color: 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
                 </View>
               ) : null}

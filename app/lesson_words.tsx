@@ -21,6 +21,7 @@ import ContentWrap from '../components/ContentWrap';
 import { triLang as pickTriLang, type Lang } from '../constants/i18n';
 import { isCorrectAnswer } from '../constants/contractions';
 import { screenTextOnGradient } from '../constants/theme';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
@@ -28,7 +29,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
-import { hapticTap } from '../hooks/use-haptics';
+import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
@@ -2794,6 +2795,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
+    // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
+    // Раньше на главном экране урока был только общий tap, без сигнала результата.
+    if (isRight) void hapticSuccess(); else void hapticError();
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
       playCorrect();
@@ -3161,7 +3165,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}
               style={{ minHeight:68, paddingVertical:12, paddingLeft:10, paddingRight:hasStatusIcon ? 28 : 10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor, overflow:'hidden' }}
-              onPress={() => { if (chosen !== null) return; flash(`${i}`); if (hapticsOn) requestAnimationFrame(() => { void hapticTap(); }); handleChoice(opt); }}
+              onPress={() => { if (chosen !== null) return; flash(`${i}`); handleChoice(opt); }}
               disabled={chosen !== null}
             >
               {chosen !== null && isCorrect && (
@@ -3337,7 +3341,7 @@ function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () 
         activeOpacity={0.82}
         style={{ marginTop: ds.spacing.sm, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
       >
-        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
+        <Text style={{ color: monoIcon(themeMode, '#06111f', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '800' }}>
           {copy.action}
         </Text>
       </TouchableOpacity>

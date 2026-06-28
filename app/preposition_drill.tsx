@@ -18,7 +18,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
-import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useAudio } from '../hooks/use-audio';
 import { getLessonPrepositionPack } from './lesson_prepositions';
@@ -33,6 +33,7 @@ import {
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import { safeRouterBack } from './navigation_back';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -67,7 +68,7 @@ function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBac
         activeOpacity={0.82}
         style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
       >
-        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
+        <Text style={{ color: monoIcon(themeMode, '#06111f', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '800' }}>
           {copy.action}
         </Text>
       </TouchableOpacity>
@@ -379,7 +380,7 @@ export default function PrepositionDrillScreen() {
     setIsCorrect(ok);
     speakSentenceEn(item.sentenceTemplate, item.correct);
     if (ok) {
-      hapticTap();
+      hapticSuccess();
       playCorrect();
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);

@@ -21,6 +21,7 @@ import {
 } from '../app/speaking_word_match';
 import { buildSpeakingStartOptions } from '../app/speaking_recognition_options';
 import { diffPhonemes } from '../app/speaking_phoneme_diff';
+import { TranscriptAccumulator } from '../app/speaking_transcript_accumulator';
 import {
   analyzeProsody,
   expectedStressPosition,
@@ -292,6 +293,11 @@ export function SpeakingPanel({
     let best = '';
     let bestScore = -1;
     let bestSegments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined;
+    // Накопитель всех услышанных слов за попытку: при БЫСТРОЙ речи нейтива движок
+    // сегментирует фразу и присылает обрывки, заменяющие друг друга ("I would" …
+    // потом хвост "coffee please"). Объединение слов за всю попытку собирает
+    // фразу целиком, иначе засчитывалось бы «только последнее слово».
+    const acc = new TranscriptAccumulator();
     const considerBest = (
       candidate: string,
       segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
@@ -315,8 +321,16 @@ export function SpeakingPanel({
         // segments live only on results[0] per the package; pass when present.
         if (t) considerBest(t, Array.isArray(alt?.segments) ? alt.segments : undefined);
       }
-      // Для живой подсветки берём топ-гипотезу (она ведёт по словам).
-      const next = String(alternatives[0]?.transcript ?? '').trim();
+      // Копим объединение слов ТОЛЬКО из топ-гипотезы (не из всех альтернатив —
+      // иначе притащим слова из неверных вариантов). Union — ещё один кандидат
+      // на скоринг (порядок слов сохраняется, поэтому orderAccuracy не страдает,
+      // и перемешанная речь НЕ получит ложный проход).
+      acc.add(String(alternatives[0]?.transcript ?? ''));
+      const union = acc.union();
+      if (union) considerBest(union);
+      // Живая подсветка по union: слово, раз загоревшись, больше не гаснет, когда
+      // следующий interim заменяет строку только хвостом.
+      const next = union || String(alternatives[0]?.transcript ?? '').trim();
       if (next) {
         latest = next;
         if (mountedRef.current) setTranscript(next);

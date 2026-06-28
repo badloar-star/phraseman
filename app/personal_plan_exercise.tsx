@@ -40,6 +40,7 @@ import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { VoiceEqualizer } from './voice_equalizer';
 import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
+import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import SpeakingScoreRing from '../components/SpeakingScoreRing';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -422,6 +423,9 @@ function PlanPronunciationRecorder({
   const bestConfidenceRef = useRef<number | undefined>(undefined);
   const bestSegmentsRef = useRef<ReadonlyArray<{ segment?: string; confidence?: number }> | undefined>(undefined);
   const scoredRef = useRef(false);
+  // Union of all words heard this attempt — reassembles fast segmented speech so
+  // it isn't scored as "only the last word". See TranscriptAccumulator.
+  const accRef = useRef(new TranscriptAccumulator());
   const pronunciationScoring = pronunciationScoringLocal;
 
   const setPronunciationScoring = useCallback((scoring: boolean) => {
@@ -449,6 +453,7 @@ function PlanPronunciationRecorder({
     bestScoreRef.current = -1;
     bestConfidenceRef.current = undefined;
     bestSegmentsRef.current = undefined;
+    accRef.current.reset();
     scoredRef.current = false;
     setBlocked(speechModule ? null : 'unavailable');
   }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
@@ -508,9 +513,15 @@ function PlanPronunciationRecorder({
     const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
       const alternatives = Array.isArray(event?.results) ? event.results : [];
       considerAlternatives(alternatives);
-      // Live word-by-word reveal follows the top hypothesis.
+      // Накопить объединение слов из ТОП-гипотезы и тоже скорить — иначе быструю
+      // сегментированную речь нейтива засчитывает «только последнее слово».
       const top = (alternatives[0]?.transcript ?? '').trim();
-      if (top) setTranscript(top);
+      accRef.current.add(top);
+      const union = accRef.current.union();
+      if (union) considerAlternatives([{ transcript: union }]);
+      // Живая подсветка по union: загоревшееся слово не гаснет на хвостовом interim.
+      const reveal = union || top;
+      if (reveal) setTranscript(reveal);
       // Score only on the final result; interim just feeds the reveal + best-pick.
       if (event?.isFinal === false) return;
       finishAttempt();
@@ -631,6 +642,7 @@ function PlanPronunciationRecorder({
       bestScoreRef.current = -1;
       bestConfidenceRef.current = undefined;
       bestSegmentsRef.current = undefined;
+      accRef.current.reset();
       scoredRef.current = false;
       equalizerRef.current?.setSample(0);
       // Hand the audio session from playback ("Послушать") to capture BEFORE

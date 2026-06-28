@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Easing } from 'react-native';
+import { Easing } from 'react-native';
 
 import CircularProgress from './CircularProgress';
 
@@ -11,10 +11,23 @@ import CircularProgress from './CircularProgress';
  * intentionally left untouched (other screens depend on it), so the animation
  * lives here only.
  *
- * Driven by an Animated.Value whose listener mirrors the rounded value into
- * state, because CircularProgress takes a plain `pct` number (it is not an
- * Animated-aware component).
+ * PERF: CircularProgress is NOT an SVG — it draws the arc with three rotated
+ * Views, so every `pct` change forces a JS-thread re-layout of those rotated
+ * layers. The previous version drove the fill from an Animated.Value whose
+ * listener fired on EVERY frame (~60/s) and called setState each time, which
+ * meant ~60–90 full re-layouts in 600ms → visible stutter, worst on Android.
+ *
+ * Fix: drive the fill with a small fixed number of quantised steps on a timer.
+ * The eye reads ~20 steps as perfectly smooth, but that is ~4× fewer JS
+ * re-layouts, so the ring no longer lags. No native module / SVG / Reanimated
+ * dependency is introduced; the shared CircularProgress stays untouched.
  */
+
+// Cap the number of state updates during the fill. 20 frames over the default
+// 600ms (~33ms/frame, ~30fps of *state* updates) looks smooth to the eye while
+// keeping the rotated-View re-layouts cheap. Easing is applied per step so the
+// motion still decelerates like the old cubic-out tween.
+const FILL_STEPS = 20;
 
 export interface SpeakingScoreRingProps {
   /** Final score 0..100 to fill to. */
@@ -49,26 +62,32 @@ function SpeakingScoreRing({
   animate = true,
 }: SpeakingScoreRingProps) {
   const target = Math.max(0, Math.min(100, Math.round(score)));
-  const progress = useRef(new Animated.Value(animate ? 0 : target)).current;
   const [shown, setShown] = useState(animate ? 0 : target);
 
   useEffect(() => {
-    const id = progress.addListener(({ value }) => setShown(Math.round(value)));
-    if (animate) {
-      progress.setValue(0);
-      Animated.timing(progress, {
-        toValue: target,
-        duration: durationMs,
-        easing: Easing.out(Easing.cubic),
-        // Numeric tween read via listener -> JS driver required.
-        useNativeDriver: false,
-      }).start();
-    } else {
-      progress.setValue(target);
+    if (!animate) {
       setShown(target);
+      return undefined;
     }
-    return () => progress.removeListener(id);
-  }, [target, animate, durationMs, progress]);
+    // Quantised, timer-driven fill: a fixed, small number of state updates with
+    // cubic-out easing per step. This replaces the per-frame Animated listener
+    // that re-rendered the rotated-View ring ~60–90 times in 600ms (the lag).
+    setShown(0);
+    let step = 0;
+    const tick = () => {
+      step += 1;
+      const t = step / FILL_STEPS; // 0..1 progress through the fill
+      const eased = Easing.out(Easing.cubic)(t);
+      setShown(Math.round(eased * target));
+      if (step >= FILL_STEPS) {
+        clearInterval(id);
+        // Guarantee we land exactly on the target (rounding can fall 1 short).
+        setShown(target);
+      }
+    };
+    const id = setInterval(tick, Math.max(16, Math.round(durationMs / FILL_STEPS)));
+    return () => clearInterval(id);
+  }, [target, animate, durationMs]);
 
   return (
     <CircularProgress

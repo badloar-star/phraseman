@@ -1542,6 +1542,14 @@ export default function PersonalPlanExerciseScreen() {
   const finishTaskAndAdvance = async (practicedPhraseIds: string[]) => {
     // Подавляем финал-модал дня на время вычисления/перехода — иначе он мелькнёт.
     setAdvancing(true);
+
+    // КРИТИЧЕСКИЙ ПУТЬ перехода = только «отметить задание выполненным» →
+    // «вычислить следующее задание». Всё остальное — best-effort side-effects,
+    // которые по дизайну НЕ должны задерживать смену экрана (иначе на медленном
+    // диске/сети последний правильный ответ выглядит как зависание перед
+    // переходом). markCompleted держим в await ПЕРЕД resolveNextPlanTask, потому
+    // что resolveNextPlanTask читает completed-флаги (хотя текущее задание он и
+    // так исключает по id — но так следующий заход на план увидит его закрытым).
     await markPersonalPlanTaskCompleted({
       taskId: planTaskId,
       planId,
@@ -1549,19 +1557,25 @@ export default function PersonalPlanExerciseScreen() {
       studyTarget,
       dayIndex,
     }).catch(() => undefined);
+
+    // XP/streak/leaderboard/lifetime-статистика — в ФОН. Эти ошибки и так
+    // глотаются («stats must never block the learner's progress»), а внутри —
+    // 5+ обращений к AsyncStorage и сетевой registerXP. Держать их в await
+    // означало бы тормозить переход на сотни мс — пускаем не блокируя экран.
     // Передаём САМИ id отработанных фраз (item.id === id фразы): lifetime-метрика
     // phrases_learned дедуплицируется по плану, поэтому одна фраза дня в разных
     // заданиях/бонус-заданиях не раздувает «выучено».
-    await awardPlanTaskCompletion({
+    void awardPlanTaskCompletion({
       lang,
       studyTarget,
       practicedPhraseIds,
       phrasesPracticed: practicedPhraseIds.length,
       planInstanceId,
       planTaskId,
-    });
-    // resume этому заданию больше не нужен — оно закрыто.
-    await clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
+    }).catch(() => undefined);
+    // resume этому заданию больше не нужен — оно закрыто. Тоже в фон: его
+    // отсутствие не влияет на выбор следующего задания.
+    void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
 
     const nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget }).catch(() => null);
     if (nextTask) {
@@ -1615,8 +1629,12 @@ export default function PersonalPlanExerciseScreen() {
     const scored = pronunciationScore;
     if (!speechBlocked && (!scored || !scored.passed)) return;
     setSaving(true);
+    // ВАЖНО: НЕ играем здесь playCorrect() повторно. Звук «правильно» уже
+    // прозвучал в момент оценки (PlanPronunciationRecorder.finishAttempt при
+    // result.passed). Дубль на этом «Готово/дальше»-переходе давал двойной звук:
+    // один при зачёте фразы, второй при переходе на следующую. Оставляем только
+    // тактильный отклик на само нажатие.
     hapticSuccess();
-    if (!speechBlocked) playCorrect();
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: 'completed',

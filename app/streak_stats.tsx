@@ -1329,7 +1329,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
           <Ionicons name={wagerInfoOpen ? 'chevron-up' : 'chevron-down'} size={18} color={t.textGhost}/>
         </TouchableOpacity>
         {wagerInfoOpen ? (<View style={{ marginTop: 8, borderRadius: 12, borderWidth: 1, borderColor: statsHairline(themeMode, 'wager'), padding: 10 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 18 }}>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}>
               {triLang(lang, {
                     ru: 'Заходи и удерживай цепочку каждый день до конца срока. Если серия не сорвется, ставка вернется вместе с призом и опытом.',
                     uk: 'Заходь і тримай ланцюжок щодня до кінця строку. Якщо серія не зірветься, ставка повернеться разом із призом і досвідом.',
@@ -1367,7 +1367,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             pl: "Zakład",
         })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 18, marginTop: 2 }} numberOfLines={2}>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
               {triLang(lang, {
             ru: 'Вклад осколками — удержи серию и забери награду',
             uk: 'Внесок осколками — утримай серію й забери нагороду',
@@ -1511,7 +1511,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                     <ShardsInline n={`+${sel.rewardShards - effectiveBetShards}`} size={f.body} textColor={wagerAccent}/>
                   </View>
                 </View>
-                <Text style={{ color: t.textGhost, fontSize: f.label, lineHeight: 16 }}>
+                <Text style={{ color: t.textGhost, fontSize: f.label, lineHeight: Math.round(f.label * 1.4) }}>
                   {triLang(lang, {
             ru: 'Чем длиннее срок, тем выше награда. Выбирай вызов, который действительно сможешь удержать.',
             uk: 'Що довший строк, то вища нагорода. Обирай виклик, який справді зможеш утримати.',

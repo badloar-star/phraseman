@@ -319,8 +319,8 @@ function StatPill({ label, value, t, f }: { label: string; value: string | numbe
   const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
   return (
     <View style={[styles.statPill, { backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
-      <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }} numberOfLines={1}>{label}</Text>
-      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>{value}</Text>
+      <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }} numberOfLines={2}>{label}</Text>
+      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{value}</Text>
     </View>
   );
 }
@@ -920,7 +920,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>
               {monthGrid.month ? `${monthName(monthGrid.month, lang)} ${monthGrid.year}` : '-'}
             </Text>
             <TouchableOpacity

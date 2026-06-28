@@ -549,8 +549,8 @@ function DailyTaskRewardToast() {
       if (!claimed) {
         emitAppEvent('action_toast', {
           type: 'info',
-          messageRu: 'Награда уже получена или задание обновилось.',
-          messageUk: 'Нагороду вже отримано або завдання оновилося.',
+          messageRu: 'Награда уже получена или вызов обновился.',
+          messageUk: 'Нагороду вже отримано або виклик оновився.',
           messageEs: 'La recompensa ya está reclamada o la tarea cambió.',
         });
         return;
@@ -590,8 +590,8 @@ function DailyTaskRewardToast() {
     pl: 'Odbierz',
   });
   const title = triLang(lang, {
-    ru: 'Задание дня выполнено',
-    uk: 'Завдання дня виконано',
+    ru: 'Вызов дня выполнен',
+    uk: 'Виклик дня виконано',
     es: 'Tarea diaria completada',
     'pt-BR': 'Tarefa diária concluída',
     vi: 'Đã hoàn thành nhiệm vụ ngày',

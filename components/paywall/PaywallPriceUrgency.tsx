@@ -130,7 +130,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Ionicons name="time" size={14} color={tc.urgencyTimerText} style={{ marginRight: 7 }} />
         <Text style={[S.headline, { color: tc.urgencyLabelText }]} numberOfLines={2}>
           {triLang(lang, {
-            ru: 'Эту цену скоро поднимаем — успей закрепить', uk: 'Цю ціну скоро піднімемо — встигни закріпити',
+            ru: 'Это предложение скоро меняется — успей закрепить', uk: 'Ця пропозиція скоро зміниться — встигни закріпити',
             es: 'Pronto subimos este precio — asegúralo', 'pt-BR': 'Em breve aumentamos este preço — garanta já',
             vi: 'Sắp tăng giá này — kịp giữ ngay', id: 'Harga ini segera naik — kunci sekarang',
             tr: 'Bu fiyatı yakında artıracağız — hemen sabitle', pl: 'Wkrótce podnosimy tę cenę — zdąż ją zablokować',

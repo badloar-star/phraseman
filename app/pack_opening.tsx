@@ -447,7 +447,7 @@ export default function PackOpeningScreen() {
         setLoading(false);
       } catch {
         if (!cancelled) {
-          setError(triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }));
+          setError(triLang(lang, { ru: 'Что-то пошло не так', uk: 'Щось пішло не так', es: 'Algo salió mal', 'pt-BR': 'Algo deu errado', vi: 'Có lỗi xảy ra', id: 'Ada yang salah', tr: 'Bir şeyler ters gitti', pl: 'Coś poszło nie tak' }));
           setLoading(false);
         }
       }

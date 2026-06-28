@@ -37,8 +37,8 @@ export default function AiMistakeCard({
   const isBusy = state === 'loading';
 
   const title = triLang(lang, {
-    ru: 'Разбор ошибки',
-    uk: 'Розбір помилки',
+    ru: 'Разбор промаха',
+    uk: 'Розбір промаху',
     es: 'Análisis del error',
     'pt-BR': 'Análise do erro',
     vi: 'Phân tích lỗi',

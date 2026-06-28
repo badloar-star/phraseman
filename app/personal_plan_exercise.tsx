@@ -1066,6 +1066,14 @@ export default function PersonalPlanExerciseScreen() {
   const dayIndex = Number(firstParam(params.planDayIndex) || 1);
   const requiredCorrect = Math.max(1, Number(firstParam(params.requiredCorrect) || 1));
   const contentUnitIds = useMemo(() => splitIds(firstParam(params.contentUnitIds)), [params.contentUnitIds]);
+  const routeTaskKey = useMemo(() => [
+    planInstanceId,
+    planTaskId,
+    rendererType,
+    lessonId,
+    contentUnitIds.join('|'),
+    String(requiredCorrect),
+  ].join('::'), [contentUnitIds, lessonId, planInstanceId, planTaskId, rendererType, requiredCorrect]);
   const [index, setIndex] = useState(0);
   const [correctIds, setCorrectIds] = useState<string[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
@@ -1177,6 +1185,25 @@ export default function PersonalPlanExerciseScreen() {
   // вопрос проходится заново — это безопасно. Флаг гарантирует разовое
   // применение, чтобы не затирать живой прогресс пользователя.
   const resumeAppliedRef = useRef(false);
+  const activeTaskKeyRef = useRef(routeTaskKey);
+  useEffect(() => {
+    if (activeTaskKeyRef.current === routeTaskKey) return;
+    activeTaskKeyRef.current = routeTaskKey;
+    resumeAppliedRef.current = false;
+    setIndex(0);
+    setCorrectIds([]);
+    setSelected(null);
+    setLastResult(null);
+    setSaving(false);
+    setCompleted(false);
+    setAdvancing(false);
+    setTypedAnswer('');
+    setBuildWords([]);
+    setPronunciationScore(null);
+    setPronunciationScoring(false);
+    setPronunciationBlocked(null);
+  }, [routeTaskKey]);
+
   useEffect(() => {
     if (resumeAppliedRef.current) return;
     if (!planTaskId || items.length === 0 || completed) return;
@@ -1258,8 +1285,8 @@ export default function PersonalPlanExerciseScreen() {
       });
     }
     return triLang(lang, {
-      ru: 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.',
-      uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
+      ru: 'Попробуй ещё раз спокойно: промах уйдёт в повторение.',
+      uk: 'Спробуй ще раз спокійно: промах піде в повторення.',
       es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
       'pt-BR': 'Tente de novo com calma: o erro voltará na revisão.',
       vi: 'Hãy thử lại bình tĩnh: lỗi này sẽ quay lại trong phần ôn tập.',
@@ -1424,6 +1451,7 @@ export default function PersonalPlanExerciseScreen() {
       taskId: planTaskId,
       planId,
       planInstanceId,
+      studyTarget,
       dayIndex,
     }).catch(() => undefined);
     await awardPlanTaskCompletion({
@@ -1955,7 +1983,7 @@ export default function PersonalPlanExerciseScreen() {
           visible={done}
           tone="success"
           title={triLang(lang, { ru: 'День пройден', uk: 'День пройдено', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Hoàn thành ngày', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień ukończony' })}
-          body={triLang(lang, { ru: 'Все задания на сегодня выполнены. Возвращайся завтра за новой порцией.', uk: 'Усі завдання на сьогодні виконано. Повертайся завтра по нову порцію.', es: 'Has completado todas las tareas de hoy. Vuelve mañana por más.', 'pt-BR': 'Você concluiu todas as tarefas de hoje. Volte amanhã para mais.', vi: 'Bạn đã hoàn thành mọi nhiệm vụ hôm nay. Quay lại vào ngày mai nhé.', id: 'Semua tugas hari ini selesai. Kembali besok untuk lanjut.', tr: 'Bugünkü tüm görevleri tamamladın. Yarın yenileri için geri dön.', pl: 'Ukończono wszystkie dzisiejsze zadania. Wróć jutro po więcej.' })}
+          body={triLang(lang, { ru: 'Все вызовы на сегодня выполнены. Возвращайся завтра за новой порцией.', uk: 'Усі виклики на сьогодні виконано. Повертайся завтра по нову порцію.', es: 'Has completado todas las tareas de hoy. Vuelve mañana por más.', 'pt-BR': 'Você concluiu todas as tarefas de hoje. Volte amanhã para mais.', vi: 'Bạn đã hoàn thành mọi nhiệm vụ hôm nay. Quay lại vào ngày mai nhé.', id: 'Semua tugas hari ini selesai. Kembali besok untuk lanjut.', tr: 'Bugünkü tüm görevleri tamamladın. Yarın yenileri için geri dön.', pl: 'Ukończono wszystkie dzisiejsze zadania. Wróć jutro po więcej.' })}
           actionLabel={triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Về kế hoạch', id: 'Ke rencana', tr: 'Plana dön', pl: 'Do planu' })}
           onAction={() => safeRouterBack(router, '/personal_plan')}
           accent={accent}

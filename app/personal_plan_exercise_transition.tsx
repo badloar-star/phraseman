@@ -203,8 +203,8 @@ export default function PersonalPlanExerciseTransitionScreen() {
   const totalCount = Number(firstParam(params.totalCount) || '1');
 
   const nextTaskLabel = triLang(lang, {
-    ru: 'Следующее задание',
-    uk: 'Наступне завдання',
+    ru: 'Следующий вызов',
+    uk: 'Наступний виклик',
     es: 'Siguiente tarea',
     'pt-BR': 'Próxima tarefa',
     vi: 'Nhiệm vụ tiếp theo',

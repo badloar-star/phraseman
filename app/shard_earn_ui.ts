@@ -108,8 +108,8 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Awans po serii zwycięstw: zasłużony wzlot",
   },
   daily_tasks_all: {
-    ru: 'Три дневных задания закрыты — день прожит с пользой',
-    uk: 'Три денні завдання закриті — день прожитий з користю',
+    ru: 'Три дневных вызова закрыты — день прожит с пользой',
+    uk: 'Три денні виклики закриті — день прожитий з користю',
     es: 'Las 3 tareas del día: jornada redonda',
     'pt-BR': "As 3 tarefas do dia: jornada completa",
     vi: "Hoàn tất 3 nhiệm vụ ngày: một ngày trọn vẹn",

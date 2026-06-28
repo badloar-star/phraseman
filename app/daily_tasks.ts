@@ -3153,8 +3153,8 @@ export const updateMultipleTaskProgress = async (
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Прогресс заданий не сохранился. Попробуй ещё раз.',
-          uk: 'Не вдалося зберегти прогрес завдань. Спробуй ще раз.',
+          ru: 'Не удалось сохранить вызовы. Попробуй ещё раз.',
+          uk: 'Не вдалося зберегти виклики. Спробуй ще раз.',
           es: 'No se pudo guardar el progreso. Inténtalo de nuevo.',
           'pt-BR': 'Não foi possível salvar o progresso das tarefas. Tente de novo.',
           vi: 'Không thể lưu tiến độ nhiệm vụ. Hãy thử lại.',

@@ -225,8 +225,8 @@ function SaveProgressBanner() {
               }}
             >
               {triLang(lang, {
-                ru: 'Сохрани свой прогресс',
-                uk: 'Збережи свій прогрес',
+                ru: 'Сохрани свой путь',
+                uk: 'Збережи свій шлях',
                 es: 'Guarda tu progreso',
                 'pt-BR': 'Salve seu progresso',
                 vi: 'Lưu tiến trình của bạn',

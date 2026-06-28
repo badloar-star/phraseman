@@ -1891,14 +1891,21 @@ export default function PersonalPlanExerciseScreen() {
                 onBlocked={setPronunciationBlocked}
               />
 
-              <PlanGradientButton
-                label={pronunciationBlocked ? 'Продолжить' : item.completionLabel}
-                accent={accent}
-                actionText={actionText}
-                disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}
-                onPress={() => void completePronunciation()}
-                style={{ marginTop: 18 }}
-              />
+              {/* Кнопку «Дальше/Продолжить» показываем ТОЛЬКО когда есть что
+                  нажимать: фраза засчитана (passed) ИЛИ движок недоступен и юзеру
+                  дан escape-путь «Продолжить». Пока зачёта нет, раньше тут висел
+                  пустой задизейбленный контейнер (тёмный прямоугольник без видимой
+                  кнопки) — он не нужен, не рендерим его вовсе. */}
+              {(pronunciationBlocked != null || pronunciationScore?.passed === true) && (
+                <PlanGradientButton
+                  label={pronunciationBlocked ? 'Продолжить' : item.completionLabel}
+                  accent={accent}
+                  actionText={actionText}
+                  disabled={saving || pronunciationScoring}
+                  onPress={() => void completePronunciation()}
+                  style={{ marginTop: 18 }}
+                />
+              )}
             </>
           ) : (
             <>

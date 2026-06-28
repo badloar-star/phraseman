@@ -67,4 +67,50 @@ describe('safeRouterBack', () => {
 
     expect(router.replace).toHaveBeenCalledTimes(1);
   });
+
+  // Регрессия: выход из теории/любого экрана урока должен вернуть на меню ИМЕННО
+  // того урока, из которого зашли, а не на меню урока 1. Раньше basePath отрезал
+  // ?id=N, и «назад» делал replace на голый '/lesson_menu' → дефолт parseInt||1 →
+  // меню урока 1. Идентифицирующий id обязан сохраняться в ключе стека.
+  it('preserves the lesson id when going back to a lesson menu', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    // Меню урока 5 → открыли теорию урока 5.
+    navigation.rememberNavigationPath('/lesson_menu?id=5');
+    navigation.rememberNavigationPath('/hint?id=5');
+    navigation.safeRouterBack(router, '/lesson_menu' as any);
+
+    // Возврат — на меню урока 5, а не на голый '/lesson_menu' (= урок 1).
+    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=5');
+  });
+
+  // Косметические query (вкладки/фильтры) внутри одного экрана НЕ должны плодить
+  // записи в стеке: смена ?tab=a → ?tab=b остаётся одним экраном.
+  it('does not stack cosmetic query changes within one screen', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/lesson_words?id=3&tab=list');
+    navigation.rememberNavigationPath('/lesson_words?id=3&tab=grid');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    // Один экран lesson_words (id=3) свернулся в одну запись → «назад» уводит домой,
+    // а не на ту же страницу с прошлой вкладкой.
+    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  // Смена ИДЕНТИФИЦИРУЮЩЕГО параметра (другой урок) — это РАЗНЫЕ экраны, их нельзя
+  // схлопывать: «назад» из меню урока 6 должен вернуть на меню урока 5.
+  it('treats different identity ids as distinct screens', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/lesson_menu?id=5');
+    navigation.rememberNavigationPath('/lesson_menu?id=6');
+    navigation.safeRouterBack(router, '/lesson_menu' as any);
+
+    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=5');
+  });
 });

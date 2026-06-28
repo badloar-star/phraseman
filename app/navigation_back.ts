@@ -71,14 +71,41 @@ function currentPath(): string | null {
   return navigationStack.length > 0 ? navigationStack[navigationStack.length - 1]! : null;
 }
 
+// Параметры, которые ИДЕНТИФИЦИРУЮТ сущность экрана (а не косметику внутри него).
+// Их нужно СОХРАНИТЬ в ключе стека: '/lesson_menu?id=5' и '/lesson_menu?id=6' — это
+// РАЗНЫЕ экраны (меню урока 5 и урока 6), а не два состояния одного экрана. Если их
+// отрезать, «назад» делает replace на голый '/lesson_menu' без id, а тот по дефолту
+// показывает урок 1 — отсюда и баг «выход из теории/урока кидает в меню урока 1».
+// Косметические же параметры (tab, from, replayIntro, filter…) по-прежнему отбрасываем,
+// иначе смена вкладки/фильтра внутри одного экрана плодила бы записи в стеке.
+const IDENTITY_QUERY_KEYS: ReadonlySet<string> = new Set([
+  'id',
+  'lessonId',
+  'level',
+  'planId',
+  'dayIndex',
+  'planInstanceId',
+]);
+
 /**
- * Стек оперирует БАЗОВЫМ путём экрана (без ?query). Иначе смена вкладки/фильтра
- * внутри одного экрана (разные query) плодила бы записи, и «назад» возвращал бы
- * на тот же экран в прошлом состоянии вместо выхода из раздела.
+ * Ключ экрана в стеке: путь + только ИДЕНТИФИЦИРУЮЩИЕ параметры (id и т.п.),
+ * отсортированные для стабильности. Косметические query отбрасываются, поэтому
+ * смена вкладки/фильтра не плодит записи, но «назад» на id-зависимый экран
+ * (меню урока, exam уровня, день плана) сохраняет нужную сущность.
  */
 function basePath(path: string): string {
   const q = path.indexOf('?');
-  return q >= 0 ? path.slice(0, q) : path;
+  if (q < 0) return path;
+  const base = path.slice(0, q);
+  const identityParams = path
+    .slice(q + 1)
+    .split('&')
+    .filter((pair) => {
+      const key = decodeURIComponent(pair.split('=')[0] ?? '');
+      return IDENTITY_QUERY_KEYS.has(key);
+    })
+    .sort();
+  return identityParams.length > 0 ? `${base}?${identityParams.join('&')}` : base;
 }
 
 export function rememberNavigationPath(path: string | null | undefined): void {

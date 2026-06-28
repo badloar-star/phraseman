@@ -181,7 +181,10 @@ export default function LessonTheoryV2Screen() {
       ? 'am, is, are — каркас англійської фрази'
       : 'am, is, are — каркас английской фразы';
 
-  const goBack = useCallback(() => safeRouterBack(router, '/lesson_menu'), [router]);
+  const goBack = useCallback(
+    () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
+    [router, lessonId],
+  );
 
   const handleClaimXP = useCallback(async () => {
     try {

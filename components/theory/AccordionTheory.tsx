@@ -14,6 +14,7 @@ import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { triLang } from '../../constants/i18n';
 import TapScale from '../TapScale';
+import DuoPressable from '../DuoPressable';
 import ScreenGradient from '../ScreenGradient';
 import ReportErrorButton from '../ReportErrorButton';
 import BouncyScrollView from '../BouncyScrollView';
@@ -445,25 +446,27 @@ export default function AccordionTheory({
             );
           })}
 
-          {/* CTA «Начать урок» — всегда видна */}
-          <TapScale
+          {/* CTA «Начать урок» — штатная кнопка приложения (DuoPressable), всегда видна */}
+          <DuoPressable
             testID="accordion-theory-start"
-            accessibilityRole="button"
             accessibilityLabel={startLabel}
             onPress={handleStart}
-            scaleTo={0.96}
+            gradientColors={[`${t.accent}`, `${t.correct}`]}
+            gradientStart={{ x: 0, y: 0 }}
+            gradientEnd={{ x: 1, y: 1 }}
+            edgeColor={t.correct}
             style={[
               styles.ctaBtn,
-              { backgroundColor: topic.accent, borderColor: t.borderHighlight },
+              { borderRadius: 18, borderWidth: 1, borderColor: t.borderHighlight },
             ]}
           >
-            <Text style={[styles.ctaText, { color: '#0F1115', fontSize: f.bodyLg }]}>
+            <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
               {startLabel}
             </Text>
             <View style={styles.ctaIconWrap}>
-              <Ionicons name="arrow-forward" size={18} color="#0F1115" />
+              <Ionicons name="arrow-forward" size={18} color={t.correctText} />
             </View>
-          </TapScale>
+          </DuoPressable>
         </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
@@ -623,6 +626,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   ctaBtn: {
+    position: 'relative',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -633,6 +637,11 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     borderWidth: 0.5,
     minHeight: 56,
+    overflow: 'hidden',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.45,
+    shadowRadius: 16,
+    elevation: 10,
   },
   ctaText: {
     fontWeight: '800',
@@ -644,6 +653,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(15,17,21,0.14)',
+    backgroundColor: 'rgba(255,255,255,0.18)',
   },
 });

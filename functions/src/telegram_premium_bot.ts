@@ -20,6 +20,7 @@ import {
   SUPPORT_BUTTON_TEXT_RU,
   SUPPORT_CALLBACK_START,
   SupportDeps,
+  clearAdminAwaitingReply,
   clearSupportState,
   tryHandleSupportCallback,
   tryHandleSupportMessage,
@@ -266,6 +267,23 @@ function sendPhoto(token: string, chatId: number | string, photo: string, option
   });
 }
 
+function editMessageText(
+  token: string,
+  chatId: number | string,
+  messageId: number | string,
+  text: string,
+  options: Record<string, unknown> = {},
+) {
+  // reply_markup намеренно НЕ передаём по умолчанию → правка убирает inline-кнопку.
+  return telegramRequest(token, 'editMessageText', {
+    chat_id: chatId,
+    message_id: messageId,
+    text,
+    disable_web_page_preview: true,
+    ...options,
+  });
+}
+
 function answerCallbackQuery(token: string, callbackQueryId: string, options: Record<string, unknown> = {}) {
   return telegramRequest(token, 'answerCallbackQuery', {
     callback_query_id: callbackQueryId,
@@ -417,7 +435,7 @@ async function addAdmin(userId: number | string): Promise<void> {
 
 // Чат поддержки (telegram_support.ts) использует тот же Telegram-клиент и
 // реестр админов, что и остальной бот.
-const supportDeps: SupportDeps = { sendMessage, isAdmin, readAdminUserIds };
+const supportDeps: SupportDeps = { sendMessage, isAdmin, readAdminUserIds, editMessageText };
 
 function formatTelegramUser(order: FirebaseFirestore.DocumentData): string {
   return String(order.telegramUserId || '-');
@@ -624,6 +642,14 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
   }
 
   const text = String(message.text || '').trim();
+  // Команды ниже (/myid, /admin*, /orders, /order, /start, /premium, оплата)
+  // делают ранний return и НЕ проходят через tryHandleSupportMessage, поэтому
+  // режим «жду ответ админа» надо гасить здесь — иначе следующий обычный текст
+  // админа уйдёт прошлому адресату (misroute). /reply, /support, /cancel сюда не
+  // входят: их корректно доводит до конца сам модуль поддержки.
+  if (/^\/(myid|admin|orders|order|start|premium)\b/.test(text) || text === PAY_BUTTON_TEXT_RU) {
+    await clearAdminAwaitingReply(userId);
+  }
   if (text === '/myid') {
     await sendMessage(token, chatId, [
       `Ваш Telegram id: ${userId}`,
@@ -703,7 +729,7 @@ async function handleCallbackQuery(token: string, callbackQuery: TelegramCallbac
 
   await answerCallbackQuery(token, callbackId);
 
-  if (await tryHandleSupportCallback(token, data, chatId, callbackQuery.from, supportDeps)) return;
+  if (await tryHandleSupportCallback(token, data, chatId, callbackQuery.from, supportDeps, callbackQuery.message?.message_id)) return;
 
   if (data === 'premium:start') {
     await clearSupportState(userId);

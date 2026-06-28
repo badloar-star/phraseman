@@ -210,6 +210,16 @@ function sendPhoto(token, chatId, photo, options = {}) {
         ...options,
     });
 }
+function editMessageText(token, chatId, messageId, text, options = {}) {
+    // reply_markup намеренно НЕ передаём по умолчанию → правка убирает inline-кнопку.
+    return telegramRequest(token, 'editMessageText', {
+        chat_id: chatId,
+        message_id: messageId,
+        text,
+        disable_web_page_preview: true,
+        ...options,
+    });
+}
 function answerCallbackQuery(token, callbackQueryId, options = {}) {
     return telegramRequest(token, 'answerCallbackQuery', {
         callback_query_id: callbackQueryId,
@@ -342,7 +352,7 @@ async function addAdmin(userId) {
 }
 // Чат поддержки (telegram_support.ts) использует тот же Telegram-клиент и
 // реестр админов, что и остальной бот.
-const supportDeps = { sendMessage, isAdmin, readAdminUserIds };
+const supportDeps = { sendMessage, isAdmin, readAdminUserIds, editMessageText };
 function formatTelegramUser(order) {
     return String(order.telegramUserId || '-');
 }
@@ -540,6 +550,14 @@ async function handleMessage(token, message) {
         return;
     }
     const text = String(message.text || '').trim();
+    // Команды ниже (/myid, /admin*, /orders, /order, /start, /premium, оплата)
+    // делают ранний return и НЕ проходят через tryHandleSupportMessage, поэтому
+    // режим «жду ответ админа» надо гасить здесь — иначе следующий обычный текст
+    // админа уйдёт прошлому адресату (misroute). /reply, /support, /cancel сюда не
+    // входят: их корректно доводит до конца сам модуль поддержки.
+    if (/^\/(myid|admin|orders|order|start|premium)\b/.test(text) || text === PAY_BUTTON_TEXT_RU) {
+        await (0, telegram_support_1.clearAdminAwaitingReply)(userId);
+    }
     if (text === '/myid') {
         await sendMessage(token, chatId, [
             `Ваш Telegram id: ${userId}`,
@@ -615,7 +633,7 @@ async function handleCallbackQuery(token, callbackQuery) {
     if (!callbackId || !chatId || !userId)
         return;
     await answerCallbackQuery(token, callbackId);
-    if (await (0, telegram_support_1.tryHandleSupportCallback)(token, data, chatId, callbackQuery.from, supportDeps))
+    if (await (0, telegram_support_1.tryHandleSupportCallback)(token, data, chatId, callbackQuery.from, supportDeps, callbackQuery.message?.message_id))
         return;
     if (data === 'premium:start') {
         await (0, telegram_support_1.clearSupportState)(userId);

@@ -52,13 +52,19 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SUPPORT_PROMPT_RU = exports.SUPPORT_CALLBACK_CANCEL = exports.SUPPORT_CALLBACK_START = exports.SUPPORT_BUTTON_TEXT_RU = void 0;
+exports.SUPPORT_PROMPT_RU = exports.SUPPORT_CALLBACK_REPLY_PREFIX = exports.SUPPORT_CALLBACK_CANCEL = exports.SUPPORT_CALLBACK_START = exports.SUPPORT_BUTTON_TEXT_RU = void 0;
 exports.truncateForForward = truncateForForward;
 exports.formatUserLabel = formatUserLabel;
 exports.formatSupportForward = formatSupportForward;
 exports.parseReplyCommand = parseReplyCommand;
 exports.supportThreadDocId = supportThreadDocId;
+exports.buildSupportReplyCallback = buildSupportReplyCallback;
+exports.parseSupportReplyCallback = parseSupportReplyCallback;
+exports.supportReplyKeyboard = supportReplyKeyboard;
 exports.clearSupportState = clearSupportState;
+exports.setAdminAwaitingReply = setAdminAwaitingReply;
+exports.readAdminAwaitingReply = readAdminAwaitingReply;
+exports.clearAdminAwaitingReply = clearAdminAwaitingReply;
 exports.startSupportDialog = startSupportDialog;
 exports.tryHandleSupportMessage = tryHandleSupportMessage;
 exports.tryHandleSupportCallback = tryHandleSupportCallback;
@@ -66,6 +72,8 @@ const admin = __importStar(require("firebase-admin"));
 exports.SUPPORT_BUTTON_TEXT_RU = 'Связаться с поддержкой';
 exports.SUPPORT_CALLBACK_START = 'support:start';
 exports.SUPPORT_CALLBACK_CANCEL = 'support:cancel';
+/** Префикс callback'а кнопки «Ответить» под пересланным сообщением. */
+exports.SUPPORT_CALLBACK_REPLY_PREFIX = 'sr:';
 exports.SUPPORT_PROMPT_RU = [
     'Напишите ваше сообщение — мы передадим его в центр поддержки.',
     'Ответ придёт прямо в этот чат.',
@@ -75,8 +83,14 @@ const SUPPORT_CANCELLED_RU = 'Вы вышли из чата поддержки.'
 const SUPPORT_UNAVAILABLE_RU = 'Не удалось отправить сообщение. Попробуйте, пожалуйста, позже.';
 const SUPPORT_TEXT_ONLY_RU = 'Пока поддержка принимает только текстовые сообщения. Напишите, пожалуйста, текстом.';
 const SUPPORT_REPLY_PREFIX_RU = 'Ответ поддержки:';
+const SUPPORT_ADMIN_REPLY_CANCELLED_RU = 'Ответ отменён.';
+const SUPPORT_ADMIN_REPLY_TEXT_ONLY_RU = 'Напишите ответ текстом — он уйдёт пользователю. /cancel — отмена.';
+const SUPPORT_ADMIN_REPLY_THREAD_GONE_RU = '⚠️ Не удалось открыть ответ. Напишите так: /reply <id> <текст>';
 const STATE_COLLECTION = 'telegram_support_state';
 const THREADS_COLLECTION = 'telegram_support_threads';
+const ADMIN_REPLY_COLLECTION = 'telegram_support_admin_reply';
+/** Сколько режим «жду ответ админа» живёт, пока админ не написал текст. */
+const ADMIN_REPLY_TTL_MS = 30 * 60 * 1000;
 /** Лимит текста юзера в пересылке: 4096 (Telegram) минус обвязка с запасом. */
 const FORWARD_TEXT_MAX = 3500;
 // ── Чистые хелперы (покрыты тестами) ─────────────────────────────────────────
@@ -119,6 +133,34 @@ function parseReplyCommand(text) {
 function supportThreadDocId(adminUserId, adminMessageId) {
     return `${adminUserId}_${adminMessageId}`;
 }
+/**
+ * Callback кнопки «Ответить». Кодируем ТОЛЬКО message_id админа (он маленький,
+ * per-chat), id юзера НИКОГДА не кладём в callback_data — он может быть огромным.
+ * Юзер восстанавливается из telegram_support_threads/{adminId}_{messageId}.
+ * Если message_id отсутствует — возвращаем заведомо невалидную строку, чтобы
+ * parseSupportReplyCallback её отверг (никаких «sr:undefined»).
+ */
+function buildSupportReplyCallback(adminMessageId) {
+    return `${exports.SUPPORT_CALLBACK_REPLY_PREFIX}${adminMessageId ?? ''}`;
+}
+/** Разбор «sr:<message_id>». Оба конца заякорены, только цифры. null = не наш. */
+function parseSupportReplyCallback(data) {
+    const match = /^sr:(\d+)$/.exec(String(data ?? ''));
+    return match ? { adminMessageId: match[1] } : null;
+}
+/**
+ * Inline-клавиатура с одной кнопкой «✍️ Ответить <Имя>». Имя живёт ТОЛЬКО в
+ * тексте кнопки, в callback_data его нет — поэтому эмодзи/кавычки/длинное имя не
+ * могут переполнить или сломать callback. Без message_id кнопку не строим.
+ */
+function supportReplyKeyboard(adminMessageId, name) {
+    if (adminMessageId == null || String(adminMessageId).trim() === '')
+        return null;
+    const safeName = String(name ?? '').trim() || 'пользователю';
+    return {
+        inline_keyboard: [[{ text: `✍️ Ответить ${safeName}`, callback_data: buildSupportReplyCallback(adminMessageId) }]],
+    };
+}
 // ── Firestore-состояние ───────────────────────────────────────────────────────
 function db() {
     return admin.firestore();
@@ -137,6 +179,54 @@ async function clearSupportState(userId) {
     }
     catch (e) {
         console.error('telegram_support: clearSupportState failed', userId, e);
+    }
+}
+function adminReplyStateRef(adminId) {
+    return db().collection(ADMIN_REPLY_COLLECTION).doc(String(adminId));
+}
+/** Включает режим «жду текст ответа» для админа, нацеленный на одного юзера. */
+async function setAdminAwaitingReply(adminId, payload) {
+    await adminReplyStateRef(adminId).set({
+        mode: 'awaiting_admin_reply',
+        targetUserId: payload.targetUserId,
+        targetChatId: payload.targetChatId,
+        targetName: payload.targetName,
+        originAdminChatId: payload.originAdminChatId,
+        originAdminMessageId: payload.originAdminMessageId,
+        updatedAtMs: Date.now(),
+    }, { merge: true });
+}
+/**
+ * Читает активный режим ответа админа. Возвращает null, если режим не включён
+ * ИЛИ протух (TTL) — чтобы забытый режим никогда не «съедал» обычные сообщения.
+ */
+async function readAdminAwaitingReply(adminId) {
+    const snap = await adminReplyStateRef(adminId).get();
+    if (!snap.exists)
+        return null;
+    const data = snap.data() || {};
+    if (data.mode !== 'awaiting_admin_reply')
+        return null;
+    if (!data.targetUserId)
+        return null;
+    const updatedAtMs = Number(data.updatedAtMs || 0);
+    if (Date.now() - updatedAtMs > ADMIN_REPLY_TTL_MS)
+        return null;
+    return {
+        targetUserId: String(data.targetUserId),
+        targetChatId: String(data.targetChatId || data.targetUserId),
+        targetName: String(data.targetName || ''),
+        originAdminChatId: String(data.originAdminChatId || ''),
+        originAdminMessageId: Number(data.originAdminMessageId || 0),
+    };
+}
+/** Сбрасывает режим ответа админа (one-shot после доставки, /cancel, /start и т.п.). */
+async function clearAdminAwaitingReply(adminId) {
+    try {
+        await adminReplyStateRef(adminId).set({ mode: 'idle', updatedAtMs: Date.now() }, { merge: true });
+    }
+    catch (e) {
+        console.error('telegram_support: clearAdminAwaitingReply failed', adminId, e);
     }
 }
 // ── Диалоги ───────────────────────────────────────────────────────────────────
@@ -169,6 +259,7 @@ async function forwardToAdmins(token, message, deps) {
         return false;
     }
     const forwardText = formatSupportForward(user, String(message.text ?? ''));
+    const buttonName = String(user?.first_name || user?.username || (user?.id ?? '')).trim();
     let delivered = 0;
     for (const adminId of adminIds) {
         try {
@@ -186,6 +277,14 @@ async function forwardToAdmins(token, message, deps) {
                     createdAtMs: Date.now(),
                     lastUserText: truncateForForward(String(message.text ?? ''), 500),
                 }, { merge: true });
+                // Кнопку «Ответить» можно прикрепить только зная message_id, который
+                // известен лишь после отправки → добавляем её правкой того же сообщения.
+                // Best-effort: если правка не прошла, у админа остаётся /reply и свайп.
+                const keyboard = supportReplyKeyboard(adminMessageId, buttonName);
+                if (keyboard) {
+                    await deps.editMessageText(token, adminId, adminMessageId, forwardText, { reply_markup: keyboard })
+                        .catch((e) => console.error('telegram_support: attach reply button failed', adminId, e));
+                }
             }
         }
         catch (e) {
@@ -194,14 +293,22 @@ async function forwardToAdmins(token, message, deps) {
     }
     return delivered > 0;
 }
-async function deliverAdminReply(token, adminChatId, targetChatId, targetUserId, replyText, deps) {
+/**
+ * Доставляет ответ админа юзеру и подтверждает админу.
+ * @returns true, если сообщение реально ушло юзеру (false при сбое доставки).
+ * Возвращаемое значение нужно, чтобы пометку «✅ Отвечено» на карточке ставить
+ * ТОЛЬКО после подтверждённой доставки. Старые call-site'ы значение игнорируют.
+ */
+async function deliverAdminReply(token, adminChatId, targetChatId, targetUserId, replyText, deps, confirmLabel) {
     try {
         await deps.sendMessage(token, targetChatId, `${SUPPORT_REPLY_PREFIX_RU}\n${truncateForForward(replyText)}`);
-        await deps.sendMessage(token, adminChatId, `✅ Отправлено пользователю ${targetUserId}.`);
+        await deps.sendMessage(token, adminChatId, confirmLabel || `✅ Отправлено пользователю ${targetUserId}.`);
+        return true;
     }
     catch (e) {
         console.error('telegram_support: deliver reply failed', targetUserId, e);
         await deps.sendMessage(token, adminChatId, `Не удалось доставить ответ пользователю ${targetUserId} (возможно, он заблокировал бота).`).catch(() => undefined);
+        return false;
     }
 }
 // ── Точки входа для бот-файла ────────────────────────────────────────────────
@@ -237,6 +344,35 @@ async function tryHandleSupportMessage(token, message, deps) {
         await deliverAdminReply(token, chatId, targetChatId, parsed.targetUserId, parsed.replyText, deps);
         return true;
     }
+    // Админ в режиме «жду ответ» (нажал кнопку «Ответить»): следующий ТЕКСТ —
+    // это ответ юзеру. Стоит ВЫШЕ свайп-reply и user-forwarding, но ниже команд.
+    if (await deps.isAdmin(userId)) {
+        const awaiting = await readAdminAwaitingReply(userId);
+        if (awaiting) {
+            // Команда вместо текста (/start, /orders, /cancel…): выходим из режима.
+            if (text.startsWith('/')) {
+                await clearAdminAwaitingReply(userId);
+                if (text === '/cancel' || text === '/отмена') {
+                    await deps.sendMessage(token, chatId, SUPPORT_ADMIN_REPLY_CANCELLED_RU);
+                    return true;
+                }
+                return false; // пусть команду обработает бот-файл
+            }
+            // Не-текст / пусто: не отправляем пустой ответ, режим держим.
+            if (!text) {
+                await deps.sendMessage(token, chatId, SUPPORT_ADMIN_REPLY_TEXT_ONLY_RU);
+                return true;
+            }
+            const nameLabel = awaiting.targetName || awaiting.targetUserId;
+            const delivered = await deliverAdminReply(token, chatId, awaiting.targetChatId, awaiting.targetUserId, text, deps, `✅ Отправлено ${nameLabel}`);
+            // Карточку помечаем «Отвечено» ТОЛЬКО при подтверждённой доставке.
+            if (delivered && awaiting.originAdminChatId && awaiting.originAdminMessageId) {
+                await deps.editMessageText(token, awaiting.originAdminChatId, awaiting.originAdminMessageId, `✅ Отвечено · ${nameLabel}`).catch((e) => console.error('telegram_support: mark answered failed', userId, e));
+            }
+            await clearAdminAwaitingReply(userId); // one-shot в любом случае
+            return true;
+        }
+    }
     // Админ отвечает reply'ем на пересланное сообщение поддержки.
     const repliedToId = message.reply_to_message?.message_id;
     if (repliedToId != null && text && (await deps.isAdmin(userId))) {
@@ -270,8 +406,10 @@ async function tryHandleSupportMessage(token, message, deps) {
 /**
  * Пытается обработать callback inline-кнопок поддержки.
  * true = обработано (callback уже отвечен бот-файлом до вызова).
+ * originMessageId — message_id того сообщения, под которым нажата кнопка
+ * (нужно для кнопки «Ответить», чтобы найти тред и потом пометить «Отвечено»).
  */
-async function tryHandleSupportCallback(token, data, chatId, user, deps) {
+async function tryHandleSupportCallback(token, data, chatId, user, deps, originMessageId) {
     if (data === exports.SUPPORT_CALLBACK_START) {
         await startSupportDialog(token, chatId, user, deps);
         return true;
@@ -279,6 +417,34 @@ async function tryHandleSupportCallback(token, data, chatId, user, deps) {
     if (data === exports.SUPPORT_CALLBACK_CANCEL) {
         if (user?.id != null)
             await cancelSupportDialog(token, chatId, user.id, deps);
+        return true;
+    }
+    // Кнопка «✍️ Ответить <Имя>» под пересланным сообщением.
+    const replyTarget = parseSupportReplyCallback(data);
+    if (replyTarget) {
+        const adminId = user?.id;
+        // Только админ может войти в режим ответа.
+        if (adminId == null || !(await deps.isAdmin(adminId)))
+            return false;
+        // Восстанавливаем юзера из треда «адмін + message_id».
+        const threadSnap = await db().collection(THREADS_COLLECTION)
+            .doc(supportThreadDocId(adminId, replyTarget.adminMessageId))
+            .get();
+        const thread = threadSnap.exists ? (threadSnap.data() || {}) : null;
+        const targetUserId = String(thread?.userTelegramId || '');
+        if (!thread || !targetUserId) {
+            await deps.sendMessage(token, chatId, SUPPORT_ADMIN_REPLY_THREAD_GONE_RU);
+            return true;
+        }
+        const targetName = String(thread.firstName || thread.username || targetUserId).trim() || targetUserId;
+        await setAdminAwaitingReply(adminId, {
+            targetUserId,
+            targetChatId: String(thread.userChatId || targetUserId),
+            targetName,
+            originAdminChatId: String(chatId),
+            originAdminMessageId: Number(originMessageId || replyTarget.adminMessageId),
+        });
+        await deps.sendMessage(token, chatId, `✍️ Напишите ответ для ${targetName} одним сообщением — он уйдёт пользователю. /cancel — отмена.`);
         return true;
     }
     return false;

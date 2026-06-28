@@ -79,6 +79,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^user_stats_v1$/,
   /^stats_daily_breakdown_v1$/,
   /^irregular_verbs_global$/,
+  /^irregular_verbs_srs_v1$/,
   /^lingman_certificate_v1$/,
   /^custom_flashcards_v2$/,
   /^flashcard_delete_hint_seen$/,
@@ -217,6 +218,11 @@ export function lessonIrregularShardsGrantedKey(lessonId: string | number, study
 
 export function irregularVerbsGlobalKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('irregular_verbs_global', 'lesson_progress', studyTarget);
+}
+
+/** SRS-состояние неправильных глаголов (streak + nextDue по каждой base). */
+export function irregularVerbsSrsKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('irregular_verbs_srs_v1', 'lesson_progress', studyTarget);
 }
 
 export function lessonPrepositionProgressKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {

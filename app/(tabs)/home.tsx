@@ -2871,7 +2871,7 @@ export default function HomeScreen() {
                             ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconImageSize, height: homeQuickIconImageSize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>}
                       </View>
-                      <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
+                      <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
                     </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
                   {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                   <View style={{ position: 'relative' }}>
@@ -2879,7 +2879,7 @@ export default function HomeScreen() {
                             ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconLegacySize, height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>}
                   </View>
-                  <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
                   </LinearGradient>)}
                 </TouchableOpacity>
                 </Animated.View>);
@@ -2914,7 +2914,7 @@ export default function HomeScreen() {
                   <LightSketchMenuImage source={menuImages.practice} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
                     {triLang(lang, {
                     ru: 'Моя практика',
                     uk: 'Моя практика',
@@ -2926,7 +2926,7 @@ export default function HomeScreen() {
                     pl: "Moje ćwiczenie",
                 })}
                   </Text>
-                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={2}>
                     {dueCount > 0
                         ? triLang(lang, {
                             ru: `${dueCount} ждут сегодня`,
@@ -2964,7 +2964,7 @@ export default function HomeScreen() {
                   <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
                     {triLang(lang, {
                     ru: 'Вызовы дня',
                     uk: 'Виклики дня',
@@ -3057,7 +3057,7 @@ export default function HomeScreen() {
                     <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                    <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={2}>
                       {triLang(lang, {
                     ru: 'Цель лиги',
                     uk: 'Ціль ліги',
@@ -3069,7 +3069,7 @@ export default function HomeScreen() {
                     pl: "Cel ligi",
                 })}
                     </Text>
-                    <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
+                    <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={2}>
                       {homeLeagueChest.leagueName}
                     </Text>
                   </View>

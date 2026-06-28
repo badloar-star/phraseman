@@ -177,12 +177,6 @@ export type RemoteTextKey =
   | 'promo_banner_audience'
   | 'promo_banner_platform'
   | 'maintenance_campaign_id'
-  // Тексты приветствия-«знакомства» (онбординг-спотлайт) и модала Компаса —
-  // редактируются из «Пульта» ПОСЛЕ релиза без пересборки. JSON-объект с
-  // переопределениями отдельных полей; отсутствующее поле = встроенный текст из
-  // кода (welcome_steps.ts / compass_copy.ts). Парсится защищённо: мусор тихо
-  // отбрасывается. Сейчас редактируется русский; прочие языки — из кода.
-  | 'welcome_copy_overrides'
   | 'compass_copy_overrides'
   // ── YouTube-канал для экрана «Видео» и кнопки на главной ────────────────────
   // Управляется из «Пульта» → можно подключить ЛЮБОЙ канал без релиза. Пусто =
@@ -196,6 +190,12 @@ export type RemoteTextKey =
   | 'youtube_channel_handle'
   // Отображаемое имя канала в шапке экрана видео и на кнопке. Пусто → 'PHRASEMAN'.
   | 'youtube_channel_name'
+  // Пришпиленные («ручные») видео — JSON-массив объектов { id, title?, url? }.
+  // Появляются В НАЧАЛЕ ленты как «новые», поверх RSS-фида канала, и могут быть
+  // с ЛЮБОГО канала. Управляются из «Пульта» (список с превью + удалить). Пусто/
+  // мусор = нет пиннов. id обязателен (11-симв. videoId); title/url необязательны
+  // (обложка и watch-url строятся из id, если не заданы).
+  | 'youtube_pinned_videos'
   // Прямая ссылка на канал (кнопка «открыть в YouTube» в шапке). Пусто →
   // строится из handle: https://www.youtube.com/@handle/videos. Должна быть
   // https и на youtube.com, иначе приложение её отбросит и построит из handle.
@@ -361,12 +361,12 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   promo_banner_audience: '',
   promo_banner_platform: '',
   maintenance_campaign_id: '',
-  welcome_copy_overrides: '',
   compass_copy_overrides: '',
   youtube_channel_id: '',
   youtube_channel_handle: '',
   youtube_channel_name: '',
   youtube_channel_url: '',
+  youtube_pinned_videos: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -719,6 +719,8 @@ export const getYoutubeChannelHandleOverride = () => getRemoteText('youtube_chan
 export const getYoutubeChannelNameOverride = () => getRemoteText('youtube_channel_name');
 /** Сырая ссылка на канал из «Пульта». Пусто = построить из handle. */
 export const getYoutubeChannelUrlOverride = () => getRemoteText('youtube_channel_url');
+/** Сырой JSON пришпиленных видео из «Пульта» (парсится в lingman_youtube.ts). */
+export const getYoutubePinnedVideosRaw = () => getRemoteText('youtube_pinned_videos');
 
 // ── Промо-баннер (акция) ─────────────────────────────────────────────────────
 /** Включён ли промо-баннер. Дефолт false. */

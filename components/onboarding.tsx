@@ -59,8 +59,6 @@ import { onAppEvent } from '../app/events';
 import { getStableId, peekStableId } from '../app/stable_id';
 import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
-import WelcomeSlides from '../app/onboarding_welcome/WelcomeSlides';
-import { markWelcomeSeen, readWelcomeSeen, type WelcomeBranch } from '../app/onboarding_welcome/welcome_gate';
 import { readPersonalPlanState } from '../app/personal_plan_state';
 
 /**
@@ -536,15 +534,19 @@ const PLAN_GOAL_CHOICES: Array<{
   iconAsset: PlanIconSource;
   title: string;
   subtitle: string;
+  titleUk: string;
+  subtitleUk: string;
+  titleEs: string;
+  subtitleEs: string;
 }> = [
   // Иконки: в пределах экрана без повторов; арт темы совпадает с артом её плана.
   // ВАЖНО: имена ассетов исторические и не совпадают с картинками
   // (work = пузырь диалога с точками, phrase/speaking = один и тот же пузырь с кавычками).
-  { id: 'series', iconAsset: ONBOARDING_PLAN_ICONS.phrase, title: 'Понимать кино и сериалы', subtitle: 'Живая речь на слух — без субтитров' },
-  { id: 'everyday', iconAsset: ONBOARDING_PLAN_ICONS.work, title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора' },
-  { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Путешествовать', subtitle: 'Аэропорт, отель, кафе и дорога' },
-  { id: 'words', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'Знать нужные слова', subtitle: 'Запас на каждый день — и сразу в речь' },
-  { id: 'mind', iconAsset: ONBOARDING_PLAN_ICONS.path, title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума' },
+  { id: 'series', iconAsset: ONBOARDING_PLAN_ICONS.phrase, title: 'Понимать кино и сериалы', subtitle: 'Живая речь на слух - без субтитров', titleUk: 'Розуміти фільми й серіали', subtitleUk: 'Жива мова на слух - без субтитрів', titleEs: 'Entender pelis y series', subtitleEs: 'Habla real de oído, sin subtítulos' },
+  { id: 'everyday', iconAsset: ONBOARDING_PLAN_ICONS.work, title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора', titleUk: 'Говорити у звичайному житті', subtitleUk: 'Відповідати в розмові без ступору', titleEs: 'Hablar en la vida diaria', subtitleEs: 'Responder sin bloquearte' },
+  { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Путешествовать', subtitle: 'Аэропорт, отель, кафе и дорога', titleUk: 'Подорожувати', subtitleUk: 'Аеропорт, готель, кафе і дорога', titleEs: 'Viajar', subtitleEs: 'Aeropuerto, hotel, cafetería y ruta' },
+  { id: 'words', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'Знать нужные слова', subtitle: 'Запас на каждый день - и сразу в речь', titleUk: 'Знати потрібні слова', subtitleUk: 'Запас на щодень - і одразу в мовлення', titleEs: 'Saber palabras útiles', subtitleEs: 'Vocabulario diario y uso inmediato' },
+  { id: 'mind', iconAsset: ONBOARDING_PLAN_ICONS.path, title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума', titleUk: 'Займатися для себе', subtitleUk: 'Спокійний темп і користь для розуму', titleEs: 'Estudiar para mí', subtitleEs: 'Ritmo tranquilo y mente activa' },
 ];
 
 const PLAN_LEVEL_CHOICES: Array<{
@@ -552,11 +554,15 @@ const PLAN_LEVEL_CHOICES: Array<{
   iconAsset: PlanIconSource;
   title: string;
   subtitle: string;
+  titleUk: string;
+  subtitleUk: string;
+  titleEs: string;
+  subtitleEs: string;
 }> = [
-  { id: 'a0', iconAsset: ONBOARDING_PLAN_ICONS.beginner, title: 'A0: начинаю с нуля', subtitle: 'Первые слова и простые фразы' },
-  { id: 'a1', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'A1: знаю базу', subtitle: 'Хочу быстрее собирать фразы' },
-  { id: 'a2', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'A2: понимаю, но молчу', subtitle: 'Хочу начать отвечать увереннее' },
-  { id: 'b1', iconAsset: ONBOARDING_PLAN_ICONS.confidence, title: 'B1: говорю, но хочу лучше', subtitle: 'Нужен ритм и более сложные задачи' },
+  { id: 'a0', iconAsset: ONBOARDING_PLAN_ICONS.beginner, title: 'A0: начинаю с нуля', subtitle: 'Первые слова и простые фразы', titleUk: 'A0: починаю з нуля', subtitleUk: 'Перші слова і прості фрази', titleEs: 'A0: empiezo de cero', subtitleEs: 'Primeras palabras y frases simples' },
+  { id: 'a1', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'A1: знаю базу', subtitle: 'Хочу быстрее собирать фразы', titleUk: 'A1: знаю базу', subtitleUk: 'Хочу швидше збирати фрази', titleEs: 'A1: sé lo básico', subtitleEs: 'Quiero construir frases más rápido' },
+  { id: 'a2', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'A2: понимаю, но молчу', subtitle: 'Хочу начать отвечать увереннее', titleUk: 'A2: розумію, але мовчу', subtitleUk: 'Хочу відповідати впевненіше', titleEs: 'A2: entiendo, pero me callo', subtitleEs: 'Quiero responder con más confianza' },
+  { id: 'b1', iconAsset: ONBOARDING_PLAN_ICONS.confidence, title: 'B1: говорю, но хочу лучше', subtitle: 'Нужен ритм и более сложные задачи', titleUk: 'B1: говорю, але хочу краще', subtitleUk: 'Потрібен ритм і складніші завдання', titleEs: 'B1: hablo, pero quiero mejorar', subtitleEs: 'Necesito ritmo y retos más complejos' },
 ];
 
 const PLAN_MINUTES_CHOICES: PlanMinutesChoice[] = [5, 10, 15, 20];
@@ -863,6 +869,20 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   }, [pickNameText]);
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
+  const localizedChoiceTitle = (choice: { title: string; titleUk: string; titleEs: string }) =>
+    triOb(choice.title, choice.titleUk, choice.titleEs);
+  const localizedChoiceSubtitle = (choice: { subtitle: string; subtitleUk: string; subtitleEs: string }) =>
+    triOb(choice.subtitle, choice.subtitleUk, choice.subtitleEs);
+  const planMinutesTitle = (choice: PlanMinutesChoice) =>
+    choice === 20
+      ? triOb('20+ минут в день', '20+ хвилин на день', '20+ min/día')
+      : triOb(`${choice} минут в день`, `${choice} хвилин на день`, `${choice} min/día`);
+  const planMinutesSubtitle = (choice: PlanMinutesChoice) => {
+    if (choice <= 5) return triOb('Легкий старт - главное не бросать', 'Легкий старт - головне не кинути', 'Inicio suave: lo importante es seguir');
+    if (choice <= 10) return triOb('Хороший ритм, заметный прогресс', 'Добрий ритм, помітний прогрес', 'Buen ritmo, progreso visible');
+    if (choice <= 15) return triOb('Оптимально - рекомендуем', 'Оптимально - рекомендуємо', 'Óptimo: recomendado');
+    return triOb('Быстрый темп, быстрый результат', 'Швидкий темп, швидкий результат', 'Ritmo rápido, resultado rápido');
+  };
   const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoalForPlan, selectedPlanOverride);
   const selectedPlan = PERSONAL_PLAN_ONBOARDING_PLANS[selectedPlanId];
   const planLoadingAnswerKey = [
@@ -1455,52 +1475,17 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   const finishingRef = useRef(false);
   const closingRef = useRef(false);
 
-  // КОМПАС КАК ЧАСТЬ ОНБОРДИНГА (релиз-фикс мелькания/фриза):
-  // раньше компас-приветствие был отдельным <Modal> поверх ГЛАВНОЙ — после онбординга
-  // главная монтировалась, и компас презентовался вторым нативным Modal → на iOS мелькал,
-  // схлопывался, прозрачный слой висел перехватчиком касаний (скролл есть, кнопки мертвы).
-  // Теперь компас — ФИНАЛЬНЫЙ ШАГ онбординга: главную НЕ показываем (onDone не зовём), пока
-  // компас не закрыт. На экране в этот момент только онбординг — второй модалки нет, гонки нет.
-  const [compassBranch, setCompassBranch] = useState<WelcomeBranch | null>(null);
-
-  // Реальное завершение: пишем флаги, планируем напоминание, отдаём управление _layout.
   const completeOnboarding = useCallback(async () => {
     await AsyncStorage.removeItem('onboarding_step');
     scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
     onDone();
   }, [lang, onDone]);
 
-  // Закрытие компаса (прошёл до конца / «Пропущу, разберусь сам») → метим как показанный
-  // и только теперь завершаем онбординг (монтируем главную).
-  const handleCompassClose = useCallback(() => {
-    setCompassBranch(null);
-    void markWelcomeSeen();
-    void completeOnboarding();
-  }, [completeOnboarding]);
-
   const handleFinishOnboarding = async () => {
     if (finishingRef.current) return;
     finishingRef.current = true;
     await saveUserProfile();
     await AsyncStorage.setItem('onboarding_done', '1');
-    // Решаем, показать ли компас как финальный шаг (один раз за всё время).
-    let showCompass = false;
-    let branch: WelcomeBranch = 'free';
-    try {
-      const [seenRaw, planState] = await Promise.all([
-        readWelcomeSeen().catch(() => null),
-        readPersonalPlanState().catch(() => null),
-      ]);
-      branch = planState ? 'plan' : 'free';
-      showCompass = seenRaw == null; // ещё не видели приветствие
-    } catch {
-      showCompass = false;
-    }
-    if (showCompass) {
-      // Главную НЕ открываем: показываем компас поверх онбординга, onDone — после его закрытия.
-      setCompassBranch(branch);
-      return;
-    }
     await completeOnboarding();
   };
 
@@ -2117,8 +2102,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     return renderPlanFlowScreen(
       'onboarding-plan-goal-screen',
       '',
-      'Зачем тебе английский?',
-      'Скажи — и план сразу подберёт нужные слова и ситуации.',
+      triOb('Зачем тебе английский?', 'Навіщо тобі англійська?', '¿Para qué necesitas inglés?'),
+      triOb('Скажи - и план сразу подберет нужные слова и ситуации.', 'Скажи - і план одразу підбере потрібні слова та ситуації.', 'Dínoslo y el plan elegirá palabras y situaciones útiles.'),
       <View style={styles.planFlowStack}>
         {PLAN_GOAL_CHOICES.map((choice) => {
           const selected = selectedPlanGoal === choice.id;
@@ -2136,8 +2121,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
             >
               <PlanFlowIcon source={choice.iconAsset} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
-                <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
-                <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
+                <Text style={styles.planFlowOptionTitle}>{localizedChoiceTitle(choice)}</Text>
+                <Text style={styles.planFlowOptionSub}>{localizedChoiceSubtitle(choice)}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -2150,7 +2135,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     return renderPlanFlowScreen(
       'onboarding-plan-level-screen',
       '',
-      'С чего начнём?',
+      triOb('С чего начнем?', 'З чого почнемо?', '¿Desde dónde empezamos?'),
       '',
       <View style={styles.planFlowStack}>
         {PLAN_LEVEL_CHOICES.map((choice) => {
@@ -2169,8 +2154,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
             >
               <PlanFlowIcon source={choice.iconAsset} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
-                <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
-                <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
+                <Text style={styles.planFlowOptionTitle}>{localizedChoiceTitle(choice)}</Text>
+                <Text style={styles.planFlowOptionSub}>{localizedChoiceSubtitle(choice)}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -2183,8 +2168,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     return renderPlanFlowScreen(
       'onboarding-plan-minutes-screen',
       '',
-      'Сколько времени удобно?',
-      'Выбери ритм, который реально получится держать каждый день.',
+      triOb('Сколько времени удобно?', 'Скільки часу зручно?', '¿Cuánto tiempo te va bien?'),
+      triOb('Выбери ритм, который реально получится держать каждый день.', 'Обери ритм, який реально тримати щодня.', 'Elige un ritmo que puedas mantener cada día.'),
       <View style={styles.planFlowStack}>
         {PLAN_MINUTES_CHOICES.map((choice) => {
           const selected = selectedPlanMinutes === choice;
@@ -2203,16 +2188,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
             >
               <PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
-                <Text style={styles.planFlowOptionTitle}>{choice === 20 ? '20+ минут в день' : `${choice} минут в день`}</Text>
-                <Text style={styles.planFlowOptionSub}>
-                  {choice <= 5
-                    ? 'Лёгкий старт — главное не бросать'
-                    : choice <= 10
-                      ? 'Хороший ритм, заметный прогресс'
-                      : choice <= 15
-                        ? 'Оптимально — рекомендуем'
-                        : 'Быстрый темп, быстрый результат'}
-                </Text>
+                <Text style={styles.planFlowOptionTitle}>{planMinutesTitle(choice)}</Text>
+                <Text style={styles.planFlowOptionSub}>{planMinutesSubtitle(choice)}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -2275,7 +2252,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           style={{ opacity: planLoadingButtonAnim }}
         >
           <DuoPressable style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} edgeColor={theme.accentDeep} onPress={() => goToStep('planResult')}>
-            <Text style={styles.planMockupPrimaryButtonText}>План готов</Text>
+            <Text style={styles.planMockupPrimaryButtonText}>{triOb('План готов', 'План готовий', 'Plan listo')}</Text>
           </DuoPressable>
         </Animated.View>
       </View>,
@@ -2297,16 +2274,16 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           edgeColor={theme.accentDeep}
           onPress={openSelectedPlanAbPaywall}
         >
-          <Text style={styles.planMockupPrimaryButtonText}>Это мой план — вперёд</Text>
+          <Text style={styles.planMockupPrimaryButtonText}>{triOb('Это мой план - вперед', 'Це мій план - вперед', 'Este es mi plan')}</Text>
         </DuoPressable>
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
-          <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
+          <Text style={styles.planMockupSecondaryButtonText}>{triOb('Другие планы', 'Інші плани', 'Otros planes')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => {
           void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_result', ob_color: obColor }));
           goToStep('name');
         }}>
-          <Text style={styles.freeBtnText}>Продолжить без плана</Text>
+          <Text style={styles.freeBtnText}>{triOb('Продолжить без плана', 'Продовжити без плану', 'Continuar sin plan')}</Text>
         </TouchableOpacity>
         </>
       ),
@@ -2314,8 +2291,10 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   }
 
   if (step === 'planPaywall') {
-    const goalLabel = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoalForPlan)?.title ?? selectedPlanGoalForPlan;
-    const levelLabel = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevelForPlan)?.title ?? selectedPlanLevelForPlan;
+    const goalChoice = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoalForPlan);
+    const levelChoice = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevelForPlan);
+    const goalLabel = goalChoice ? localizedChoiceTitle(goalChoice) : selectedPlanGoalForPlan;
+    const levelLabel = levelChoice ? localizedChoiceTitle(levelChoice) : selectedPlanLevelForPlan;
     const minutesLabel = `${selectedPlanMinutesForPlan === 20 ? '20+' : selectedPlanMinutesForPlan} ${triOb('мин/день', 'хв/день', 'min/día')}`;
     const userName = (nameForProfileRef.current || name).trim();
     const heroTitle = userName
@@ -3589,12 +3568,6 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
               theme={theme}
             />
           ),
-        )}
-        {/* Компас как ФИНАЛЬНЫЙ ШАГ онбординга: показывается ПОВЕРХ экрана auth (главная
-            ещё НЕ смонтирована — onDone отложен до закрытия компаса). На экране одна модалка,
-            гонки презентаций нет → нет мелькания/фриза. */}
-        {compassBranch != null && (
-          <WelcomeSlides branch={compassBranch} onClose={handleCompassClose} />
         )}
       </>
     );

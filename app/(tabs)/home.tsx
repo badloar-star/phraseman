@@ -59,7 +59,6 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import WelcomeHost from '../onboarding_welcome/WelcomeHost';
 import { activatePendingPersonalPlanAfterPremium, clearPendingPersonalPlanActivation, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -3782,6 +3781,5 @@ export default function HomeScreen() {
           выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
       <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
-      <WelcomeHost />
     </View>);
 }

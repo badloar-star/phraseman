@@ -127,8 +127,6 @@ import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { installInterFontPatch } from './font_family_patch';
-import { willShowWelcomeNow } from './onboarding_welcome/welcome_gate';
-import { readPersonalPlanState } from './personal_plan_state';
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
@@ -575,6 +573,25 @@ function GlobalLevelUpHandler() {
     ]).start();
   }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
 
+  const removeShownLevelFromPersistentQueue = useCallback((level: number) => {
+    if (!Number.isFinite(level) || level <= 0) return;
+    void (async () => {
+      try {
+        const raw = await AsyncStorage.getItem('pending_level_up_queue');
+        if (!raw) return;
+        let arr: number[] = [];
+        try { arr = JSON.parse(raw); } catch { arr = []; }
+        if (!Array.isArray(arr) || arr.length === 0) return;
+        const next = arr.filter((item) => item !== level);
+        if (next.length === arr.length) return;
+        if (next.length === 0) await AsyncStorage.removeItem('pending_level_up_queue');
+        else await AsyncStorage.setItem('pending_level_up_queue', JSON.stringify(next));
+      } catch {
+        /* keep the pending level; showing it twice is safer than losing it */
+      }
+    })();
+  }, []);
+
   const flushQueue = useCallback(async () => {
     if (flushQueueBusyRef.current) {
       flushQueueRetryRef.current = true;
@@ -587,7 +604,6 @@ function GlobalLevelUpHandler() {
       let arr: number[] = [];
       try { arr = JSON.parse(raw); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
       if (arr.length === 0) return;
-      await AsyncStorage.removeItem('pending_level_up_queue');
       const name = await AsyncStorage.getItem('user_name');
       if (name) setUserName(name);
       const have = new Set(queueRef.current);
@@ -645,6 +661,21 @@ function GlobalLevelUpHandler() {
   // Best-effort; a native no-op off-device.
   useEffect(() => {
     void syncWidgetData({ studyTarget, lang, themeMode });
+  }, [studyTarget, lang, themeMode]);
+
+  // Re-publish the widget snapshot every time the app comes to the foreground.
+  // The effect above only fires when theme/lang/target change, so without this a
+  // day rollover while the app was backgrounded would leave the widget on
+  // yesterday's phrase (native re-reads the SAME stored snapshot at midnight; it
+  // needs the app to write the new day). Foregrounding is the natural moment to
+  // guarantee the widget shows today's phrase — the exact one the app shows.
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        void syncWidgetData({ studyTarget, lang, themeMode });
+      }
+    });
+    return () => sub.remove();
   }, [studyTarget, lang, themeMode]);
 
   const dismissLevelUp = () => {
@@ -733,7 +764,8 @@ function GlobalLevelUpHandler() {
 
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
-  }, [levelUpOverlayVisible, showLevelUp]);
+    removeShownLevelFromPersistentQueue(currentLevel);
+  }, [currentLevel, levelUpOverlayVisible, removeShownLevelFromPersistentQueue, showLevelUp]);
 
   // СТОРОЖ перехода level-up → подарок (анти-залипание слота арбитра).
   // Опасное состояние: levelUpTransitioning=true, но НИ одна модалка не видна
@@ -1553,6 +1585,12 @@ function AppContent() {
         // См. repairLessonUnlocksAfterRestore() и lesson_unlock_repair_v1 флаг.
         repairLessonUnlocksAfterRestore().catch(() => {});
         await loadShardsFromCloud().catch(() => {});
+        // Дотягиваем pending shard-grants после оплаты: вебхук RC мог задержаться
+        // дольше окна waitForServerShardGrant в магазине. См. shards_pending_grants.ts.
+        void (async () => {
+          const { resumePendingShardGrants } = await import('./shards_pending_grants');
+          await resumePendingShardGrants().catch(() => {});
+        })();
         prefetchArenaRatingCache();
         const freshShards = await AsyncStorage.getItem('shards_balance');
         const parsedShards = Number(freshShards);
@@ -1782,6 +1820,12 @@ function AppContent() {
       // После первого онбординга refs = true; без сброса повторное завершение
       // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
       onboardingDoneHandledRef.current = false;
+      // Удаление аккаунта = ЧИСТЫЙ старт: AsyncStorage.clear() снёс onboarding_step/done/nickname,
+      // значит и React-флаги онбординга надо вернуть к исходному. Иначе залипший
+      // onboardingStartAtName=true (от прошлого пейвол-события nickname_ready) монтирует
+      // новый онбординг сразу на шаге «имя» — минуя план/пейвол/порядок шагов.
+      setOnboardingStartAtName(false);
+      setOnboardingPaywallActive(false);
       setShow(true);
     });
     return () => {
@@ -2071,34 +2115,9 @@ function AppContent() {
         await requestNotificationPermissionWithFallback().catch(() => {});
       }
     })();
-    // Подарок 3 дня (introFullAccess 'welcome'). Требование: в первый день новичок видит
-    // ТОЛЬКО компас-приветствие (онбординг-слайды), а подарок 3 дня — СТРОГО ПОСЛЕ его
-    // закрытия. Раньше подарок ставился по слепому setTimeout(320) и мог занять слот
-    // арбитра раньше компаса (гонка) → компас «мелькал и пропадал» + фриз.
     const showIntroGift = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
     if (showIntroGift) {
-      const planState = await readPersonalPlanState().catch(() => null);
-      const compassWillShow = await willShowWelcomeNow(hasPaidOrVipAfterOnboarding, !!planState).catch(() => false);
-      if (compassWillShow) {
-        // Ждём закрытия компаса → только потом показываем подарок. Одноразовая подписка
-        // с таймаут-фолбэком: если событие почему-то не придёт (компас не смонтировался),
-        // подарок всё равно покажется, чтобы новичок его не потерял.
-        let fired = false;
-        const fire = () => {
-          if (fired) return;
-          fired = true;
-          sub.remove();
-          clearTimeout(fallback);
-          // Небольшая задержка: дать нативной модалке компаса докрыться до present подарка
-          // (на iOS два present подряд ломают стек презентаций).
-          setTimeout(() => setIntroFullAccessModal('welcome'), 380);
-        };
-        const sub = onAppEvent('welcome_closed', fire);
-        const fallback = setTimeout(fire, 60_000);
-      } else {
-        // Компас не покажется (уже виден ранее / премиум-ветка) → подарок как раньше.
-        setTimeout(() => setIntroFullAccessModal('welcome'), 320);
-      }
+      setTimeout(() => setIntroFullAccessModal('welcome'), 320);
     }
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
@@ -2372,7 +2391,7 @@ function AppContent() {
       <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, animation: 'slide_from_bottom', presentation: 'modal' }} />
+      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, animation: 'slide_from_bottom', presentation: 'modal', gestureEnabled: true }} />
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, animation: 'slide_from_right' }} />
@@ -2386,7 +2405,7 @@ function AppContent() {
       <Stack.Screen name="paywall_a" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_b" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_c" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true }} />
       <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="promo_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />

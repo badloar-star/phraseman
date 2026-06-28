@@ -2,13 +2,7 @@
 // celebration-лаба и anim-demo вообще не были доступны из панели.
 import React from 'react';
 import { useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AccordionSection, AdminHint, ButtonRow } from '../ui';
-import {
-  requestForcedWelcome,
-  resetWelcomeSeen,
-  type WelcomeBranch,
-} from '../../../app/onboarding_welcome/welcome_gate';
 
 interface Props {
   open: boolean;
@@ -20,14 +14,6 @@ interface Props {
 export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props) {
   const router = useRouter();
 
-  /** Принудительно запустить приветствие нужной ветки на главной. */
-  const launchWelcome = async (branch: WelcomeBranch) => {
-    // Гейт ждёт onboarding_done — в QA проставим, чтобы запуск точно сработал.
-    await AsyncStorage.setItem('onboarding_done', '1').catch(() => {});
-    await resetWelcomeSeen();
-    await requestForcedWelcome(branch);
-    router.push('/(tabs)/home' as any);
-  };
   return (
     <AccordionSection
       id="labs_hub"
@@ -38,20 +24,6 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
       onToggle={onToggle}
     >
       <AdminHint>Отдельные dev-экраны с изолированными превью.</AdminHint>
-      <ButtonRow
-        testID="admin-welcome-free"
-        icon="compass-outline"
-        label="Знакомство: новичок"
-        sub="Запуск приветствия (без плана) на главной с реальной подсветкой"
-        onPress={() => { void launchWelcome('free'); }}
-      />
-      <ButtonRow
-        testID="admin-welcome-plan"
-        icon="map-outline"
-        label="Знакомство: с планом"
-        sub="Запуск приветствия (платный план) на главной с реальной подсветкой"
-        onPress={() => { void launchWelcome('plan'); }}
-      />
       <ButtonRow
         testID="admin-lab-speaking"
         icon="mic-outline"

@@ -1622,7 +1622,7 @@ export default function ExamScreen() {
             }}>
               {idx+1===questions.length
                 ? t3('Проверить →', 'Перевірити →', 'Revisar →', 'Revisar →', 'Kiểm tra →', 'Tinjau →', 'Kontrol et →', 'Sprawdź →')
-                : t3('Далее →', 'Далі →', 'Siguiente →', 'Próximo →', 'Tiếp →', 'Lanjut →', 'İleri →', 'Dalej →')
+                : t3('Следующий вопрос →', 'Наступне питання →', 'Siguiente pregunta →', 'Próxima pergunta →', 'Câu tiếp →', 'Soal berikutnya →', 'Sonraki soru →', 'Następne pytanie →')
               }
             </Text>
           </TouchableOpacity>

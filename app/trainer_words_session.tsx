@@ -400,8 +400,8 @@ export default function TrainerWordsSession() {
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
     planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext);
-  }, [done, planTrainerContext]);
+    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
+  }, [done, planTrainerContext, studyTarget]);
 
   if (loadError) {
     return (
@@ -516,8 +516,8 @@ export default function TrainerWordsSession() {
               <Ionicons name="close" size={32} color={isCompassTheme ? COMPASS_RICH.peach : '#E05050'} />
               <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.peach : '#E05050', fontSize: f.caption }]}>
                 {triLang(lang, {
-                  ru: 'Неверно',
-                  uk: 'Невірно',
+                  ru: 'Мимо',
+                  uk: 'Мимо',
                   es: 'Incorrecto',
                   'pt-BR': 'Incorreto',
                   vi: 'Sai',

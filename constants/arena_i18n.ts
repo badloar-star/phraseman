@@ -6,6 +6,34 @@ export function arenaUiLang(lang: Lang): ArenaLang {
   return lang;
 }
 
+const CYRILLIC_RE = /[А-Яа-яЁёІіЇїЄєҐґ]/u;
+const LATIN_RE = /[A-Za-z]/;
+
+const LEGACY_RU_ARENA_QUESTION_FALLBACKS: Record<string, string> = {
+  "Which verb means 'to enter a bus or train'?": "Какой глагол означает 'сесть в автобус или поезд'?",
+  "Which verb means 'to put on clothes to see if they fit'?": "Какой глагол означает 'примерить одежду'?",
+  "Which phrasal verb means 'to enter a car'?": "Какой фразовый глагол означает 'сесть в машину'?",
+  "Which phrasal verb means 'to enter a bus'?": "Какой фразовый глагол означает 'сесть в автобус'?",
+  "Which verb means 'to return' (to a place)?": "Какой глагол означает 'вернуться' (в место)?",
+  "Which verb means 'to return something to a shop'?": "Какой глагол означает 'вернуть что-то в магазин'?",
+  "Which verb means 'to return something to its place'?": "Какой глагол означает 'вернуть что-то на место'?",
+  "Which verb means 'to search for info in a book'?": "Какой глагол означает 'искать информацию в книге'?",
+  "Which verb means 'to try to find something'?": "Какой глагол означает 'пытаться что-то найти'?",
+  "Which phrasal verb means 'to have a good relationship'?": "Какой фразовый глагол означает 'быть в хороших отношениях'?",
+  "Which verb means 'to leave a bed after sleeping'?": "Какой глагол означает 'встать с кровати после сна'?",
+  "Which phrasal verb means 'to put something in the trash'?": "Какой фразовый глагол означает 'выбросить что-то в мусор'?",
+  "Which verb means 'to enter a bus or a train'?": "Какой глагол означает 'сесть в автобус или поезд'?",
+  "Which verb means 'to leave a bus or a train'?": "Какой глагол означает 'выйти из автобуса или поезда'?",
+};
+
+function legacyRuArenaQuestionFallback(parts: string[]): string | null {
+  const first = parts[0]?.trim();
+  const second = parts[1]?.trim();
+  if (!first || !second) return null;
+  if (!LATIN_RE.test(first) || CYRILLIC_RE.test(first) || !CYRILLIC_RE.test(second)) return null;
+  return LEGACY_RU_ARENA_QUESTION_FALLBACKS[first] ?? second;
+}
+
 /**
  * Выбор языкового сегмента в строках контента арены.
  * Разделители: « · » (RU · UK · ES) или « / » (как в старых данных).
@@ -25,6 +53,7 @@ export function arenaBilingualFirst(text: string, lang: Lang): string {
   }
   if (lang === 'uk') return parts[1] ?? parts[0] ?? text;
   if (lang === 'es') return parts[2] ?? parts[0] ?? text;
+  if (lang === 'ru') return legacyRuArenaQuestionFallback(parts) ?? parts[0] ?? text;
   return parts[0] ?? text;
 }
 
@@ -42,8 +71,8 @@ const GAME = {
   xpCorrect: { ru: '✓ правильно', uk: '✓ вірно', es: '✓ correcto', 'pt-BR': '✓ correto', vi: '✓ đúng', id: '✓ benar', tr: '✓ doğru', pl: '✓ poprawnie' },
   forfeitTitle: { ru: '🏳️ Сдаться?', uk: '🏳️ Здатися?', es: '🏳️ ¿Te rindes?', 'pt-BR': '🏳️ Desistir?', vi: '🏳️ Đầu hàng?', id: '🏳️ Menyerah?', tr: '🏳️ Peslim mi oluyorsun?', pl: '🏳️ Poddać się?' },
   forfeitSub: {
-    ru: 'Засчитается поражение и потеряешь звезду',
-    uk: 'Зарахується поразка й ти втратиш зірку',
+    ru: 'Сдашься — раунд уйдёт сопернику, звезда останется на потом',
+    uk: 'Здасися — раунд піде сопернику, зірка залишиться на потім',
     es: 'Se contará como derrota y perderás una estrella.',
     'pt-BR': 'Conta como derrota e você perde uma estrela',
     vi: 'Sẽ tính là thua và bạn sẽ mất một ngôi sao',

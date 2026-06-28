@@ -146,8 +146,8 @@ function diagnosticUiCopy(lang: Lang) {
       pl: 'Nie udało się wczytać pytań. Spróbuj później.',
     }),
     back: triLang(lang, {
-      ru: 'Назад',
-      uk: 'Назад',
+      ru: 'Вернуться',
+      uk: 'Повернутися',
       es: 'Volver',
       'pt-BR': 'Voltar',
       vi: 'Quay lại',

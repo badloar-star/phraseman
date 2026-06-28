@@ -103,8 +103,8 @@ export function getPremiumDialogErrorMessage(
     case 'free_limit':
       if (options?.hasPremiumAccess) {
         return triLang(lang, {
-          ru: 'Premium активен в приложении, но сервер ещё не видит его для ИИ-диалога. Обнови статус подписки и попробуй ещё раз.',
-          uk: 'Premium активний у застосунку, але сервер ще не бачить його для AI-діалогу. Онови статус підписки і спробуй ще раз.',
+          ru: 'Полный доступ активен, но ещё не везде подхватился. Обнови статус доступа и попробуй ещё раз.',
+          uk: 'Повний доступ активний, але ще не всюди підхопився. Онови статус доступу і спробуй ще раз.',
           es: 'Premium está activo en la app, pero el servidor aún no lo ve para el diálogo con IA. Actualiza la suscripción e inténtalo otra vez.',
           'pt-BR': 'Premium está ativo no app, mas o servidor ainda não o vê para o diálogo com IA. Atualize o status da assinatura e tente novamente.',
           vi: 'Premium đã hoạt động trong ứng dụng, nhưng máy chủ chưa nhận ra quyền này cho cuộc đối thoại AI. Hãy cập nhật trạng thái đăng ký rồi thử lại.',
@@ -114,8 +114,8 @@ export function getPremiumDialogErrorMessage(
         });
       }
       return triLang(lang, {
-        ru: 'Бесплатный диалог уже использован. Открой все диалоги с Premium.',
-        uk: 'Безкоштовний діалог уже використано. Відкрий усі діалоги з Premium.',
+        ru: 'Пробный диалог уже пройден. Открой все диалоги — полный доступ.',
+        uk: 'Пробний діалог уже пройдено. Відкрий усі діалоги — повний доступ.',
         es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Premium.',
         'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Premium.',
         vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Premium.',
@@ -158,8 +158,8 @@ export function getPremiumDialogErrorMessage(
       });
     case 'provider_unavailable':
       return triLang(lang, {
-        ru: 'ИИ-сервис сейчас не отвечает. Попробуй ещё раз чуть позже.',
-        uk: 'AI-сервіс зараз не відповідає. Спробуй ще раз трохи пізніше.',
+        ru: 'Сейчас не получилось получить ответ. Попробуй ещё раз чуть позже.',
+        uk: 'Зараз не вдалося отримати відповідь. Спробуй ще раз трохи пізніше.',
         es: 'El servicio de IA no responde ahora. Inténtalo un poco más tarde.',
         'pt-BR': 'O serviço de IA não está respondendo agora. Tente de novo um pouco mais tarde.',
         vi: 'Dịch vụ AI hiện không phản hồi. Hãy thử lại sau một chút.',

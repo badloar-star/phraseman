@@ -75,8 +75,8 @@ export async function joinArenaFriendRoomAsGuest(
     if (!charge.ok) {
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Недостаточно энергии для входа в матч.',
-        messageUk: 'Недостатньо енергії для входу в матч.',
+        messageRu: 'Энергия закончилась — восполни её и заходи в бой.',
+        messageUk: 'Енергія закінчилася — поповни її і заходь у бій.',
         messageEs: 'No tienes suficiente energía para unirte a la partida.',
       });
       return { ok: false, code: 'no_energy' };

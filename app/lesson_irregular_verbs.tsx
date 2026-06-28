@@ -521,8 +521,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
         <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
           {triLang(lang, {
-            ru: 'Что-то пошло не так. Вернитесь к уроку или откройте вкладку «Словарь» и нажмите «Начать тренировку» снова.',
-            uk: 'Щось пішло не так. Поверніться до уроку або відкрийте вкладку «Словник» і натисніть «Почати тренування» знову.',
+            ru: 'Что-то пошло не так. Вернись к уроку или открой вкладку «Словарь» и снова нажми «Начать тренировку».',
+            uk: 'Щось пішло не так. Повернись до уроку або відкрий вкладку «Словник» і знову натисни «Почати тренування».',
             es: 'Algo salió mal. Vuelve a la lección o abre «Vocabulario» y pulsa «Empieza a practicar» otra vez.',
             'pt-BR': 'Algo deu errado. Volte à lição ou abra a aba “Vocabulário” e toque em “Começar treino” novamente.',
             vi: 'Đã có lỗi xảy ra. Hãy quay lại bài học hoặc mở tab “Từ vựng” và bấm “Bắt đầu luyện tập” lần nữa.',

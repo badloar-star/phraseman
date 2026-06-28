@@ -576,8 +576,8 @@ export default function PrepositionDrillScreen() {
                         pl: 'Poprawnie',
                       })
                       : triLang(lang, {
-                        uk: 'Неправильно',
-                        ru: 'Неверно',
+                        uk: 'Майже',
+                        ru: 'Почти',
                         es: 'Incorrecto',
                         'pt-BR': 'Incorreto',
                         vi: 'Sai',
@@ -746,9 +746,9 @@ export default function PrepositionDrillScreen() {
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                     {triLang(lang, {
-                      uk: 'Виправити помилки',
-                      ru: 'Исправить ошибки',
-                      es: 'Corregir errores',
+                      uk: 'Закріпити промахи',
+                      ru: 'Закрепить промахи',
+                      es: 'Repasar fallos',
                       'pt-BR': 'Corrigir erros',
                       vi: 'Sửa lỗi',
                       id: 'Perbaiki kesalahan',

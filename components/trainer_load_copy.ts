@@ -22,7 +22,7 @@ export const TRAINER_LOAD_COPY = {
     pl: 'Nie udało się załadować',
   },
   errorBody: {
-    ru: 'Проверьте подключение к интернету и попробуйте снова.',
+    ru: 'Проверь интернет и попробуй ещё раз.',
     uk: 'Перевірте підключення до інтернету та спробуйте знову.',
     es: 'Comprueba tu conexión a internet e inténtalo de nuevo.',
     'pt-BR': 'Verifique sua conexão com a internet e tente novamente.',
@@ -32,8 +32,8 @@ export const TRAINER_LOAD_COPY = {
     pl: 'Sprawdź połączenie z internetem i spróbuj ponownie.',
   },
   retry: {
-    ru: 'Повторить',
-    uk: 'Повторити',
+    ru: 'Попробовать снова',
+    uk: 'Спробувати знову',
     es: 'Reintentar',
     'pt-BR': 'Tentar de novo',
     vi: 'Thử lại',

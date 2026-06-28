@@ -1305,8 +1305,8 @@ export default function LevelExam() {
             <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
               {!passed
                 ? triLang(lang, {
-                  ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
-                  uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за помилками.`,
+                  ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по слабым местам.`,
+                  uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за слабкими місцями.`,
                   es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
                   'pt-BR': `Abaixo de ${PASS_PCT}%, o teste não conta como aprovado — volte a "Teoria", "Vocabulário" e "Formas verbais" nos temas em que errou.`,
                   vi: `Dưới ${PASS_PCT}% thì chưa đạt: hãy quay lại "Lý thuyết", "Từ vựng" và "Dạng động từ" ở các chủ đề bị sai.`,
@@ -1342,9 +1342,9 @@ export default function LevelExam() {
               <View style={{ gap: 8 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: 'Ошибки:',
-                    uk: 'Помилки:',
-                    es: 'Errores:',
+                    ru: 'Что разобрать:',
+                    uk: 'Що розібрати:',
+                    es: 'Qué repasar:',
                     'pt-BR': "Erros:",
                     vi: "Lỗi sai:",
                     id: "Kesalahan:",
@@ -1619,9 +1619,9 @@ export default function LevelExam() {
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
                 {idx + 1 < total
                   ? triLang(lang, {
-                    ru: 'Далее →',
-                    uk: 'Далі →',
-                    es: 'Siguiente →',
+                    ru: 'Следующий вопрос →',
+                    uk: 'Наступне питання →',
+                    es: 'Siguiente pregunta →',
                     'pt-BR': "Próximo →",
                     vi: "Tiếp theo →",
                     id: "Berikutnya →",

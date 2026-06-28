@@ -3008,8 +3008,8 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         title={pickTriLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Pengulangan', tr: 'Tekrar', pl: 'Powtórka' })}
         message={
           pickTriLang(lang, {
-            ru: 'Прогресс сохранён. Это просто тренировка — выученные слова не сбросятся.',
-            uk: 'Прогрес збережено. Це просто тренування — виучені слова не скинуться.',
+            ru: 'Твой путь сохранён. Это тренировка — выученные фразы не сбросятся.',
+            uk: 'Твій шлях збережено. Це тренування — виучені фрази не скинуться.',
             es: 'El progreso está guardado. Es solo práctica: las palabras aprendidas no se reinician.',
             'pt-BR': 'O progresso foi salvo. Isto é só treino: as palavras aprendidas não serão reiniciadas.',
             vi: 'Tiến độ đã được lưu. Đây chỉ là luyện tập: các từ đã học sẽ không bị đặt lại.',
@@ -3100,7 +3100,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         {current.roundType === 'context' ? (
           <View style={{ alignItems:'center', gap:10, paddingHorizontal:4 }}>
             <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
-              {pickTriLang(lang, { ru: 'Вставьте слово в предложение:', uk: 'Вставте слово у речення:', es: 'Coloca la palabra en la frase:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
+              {pickTriLang(lang, { ru: 'Вставь слово в предложение:', uk: 'Встав слово у речення:', es: 'Coloca la palabra en la frase:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
             </Text>
             <View style={{ backgroundColor: round.bg, borderRadius:16, paddingHorizontal:20, paddingVertical:16, borderWidth:1, borderColor: round.color + '40' }}>
               {(() => {

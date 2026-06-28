@@ -4,7 +4,6 @@ import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
 import { Image } from 'expo-image';
-const AnimatedImage = Animated.createAnimatedComponent(Image);
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
@@ -62,6 +61,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import SeasonResultModal from '../components/SeasonResultModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
 import ArenaRankProgressBar from '../components/ArenaRankProgressBar';
 import { buildBattlePassLadder, computeClaimables, countClaimable } from './arena_battle_pass';
 import { getBattlePassPoints, getClaimedFreeLevels, getClaimedPremiumLevels } from './arena_battle_pass_store';
@@ -72,6 +72,7 @@ import {
     IDLE_QUEUE_HINT_TTL_MS,
     sanitizeArenaIdleQueueHintCount,
 } from './arena_queue_hint';
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 const USE_ELITE_ARENA_LOBBY = true;
 const ARENA_HERO_BACKGROUND_FADE_MS = 980;
 const ARENA_HERO_BACKGROUND_FADE_OUT_DELAY_MS = 80;
@@ -191,6 +192,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [arenaLimitModal, setArenaLimitModal] = useState<ArenaLimitMode | null>(null);
     const [noEnergyModal, setNoEnergyModal] = useState(false);
     const [seasonEndedModal, setSeasonEndedModal] = useState<{ sr: number } | null>(null);
+    const seasonResultVisible = useOverlayVisible('arenaSeasonResult', seasonEndedModal !== null);
     const [dailyCount, setDailyCount] = useState(0);
     const [dailyMax, setDailyMax] = useState(ARENA_DAILY_MAX);
     /** non-null = открыт inline-блок вызова другу. */
@@ -982,8 +984,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                             if (!charge.ok) {
                                 friendMatchNavRef.current = false;
                                 emitAppEvent('action_toast', actionToastTri('error', {
-                                    ru: 'Недостаточно энергии для старта матча.',
-                                    uk: 'Недостатньо енергії для старту матчу.',
+                                    ru: 'Энергия закончилась — восполни её и зови друга в бой.',
+                                    uk: 'Енергія закінчилася — поповни її і клич друга в бій.',
                                     es: 'No tienes suficiente energía para empezar la partida.',
                                     'pt-BR': 'Energia insuficiente para iniciar a partida.',
                                     vi: 'Không đủ năng lượng để bắt đầu trận đấu.',
@@ -2685,7 +2687,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         }} onClose={() => setArenaLimitModal(null)}/>
       <NoEnergyModal visible={noEnergyModal} onClose={() => setNoEnergyModal(false)} paywallContext="arena"/>
       <SeasonResultModal
-        visible={!!seasonEndedModal}
+        visible={seasonResultVisible}
         kind="season_ended"
         sr={seasonEndedModal?.sr ?? 0}
         onClose={() => setSeasonEndedModal(null)}

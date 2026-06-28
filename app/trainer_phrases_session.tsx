@@ -562,8 +562,8 @@ export default function TrainerPhrasesSession() {
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
     planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext);
-  }, [done, planTrainerContext]);
+    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
+  }, [done, planTrainerContext, studyTarget]);
 
   if (loadError) {
     return (
@@ -602,8 +602,8 @@ export default function TrainerPhrasesSession() {
   const card = deck[current];
   const modeLabel = card?.mode === 'fill_gap'
     ? triLang(lang, {
-      ru: 'Вставь слово',
-      uk: 'Встав слово',
+      ru: 'Заполни пропуск',
+      uk: 'Заповни пропуск',
       es: 'Completa',
       'pt-BR': 'Complete',
       vi: 'Điền từ',

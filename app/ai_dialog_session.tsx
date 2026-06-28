@@ -139,14 +139,14 @@ function dialogErrorText(lang: Lang): string {
 // Полностью локализованная (8 языков) подпись кнопки «Повторить».
 function dialogRetryLabel(lang: Lang): string {
   return triLang(lang, {
-    ru: 'Повторить',
-    uk: 'Повторити',
-    es: 'Reintentar',
-    'pt-BR': 'Tentar de novo',
-    vi: 'Thử lại',
-    id: 'Coba lagi',
-    tr: 'Tekrar dene',
-    pl: 'Spróbuj ponownie',
+    ru: 'Отправить снова',
+    uk: 'Надіслати знову',
+    es: 'Enviar de nuevo',
+    'pt-BR': 'Enviar de novo',
+    vi: 'Gửi lại',
+    id: 'Kirim lagi',
+    tr: 'Tekrar gönder',
+    pl: 'Wyślij ponownie',
   });
 }
 
@@ -990,8 +990,8 @@ export default function AiDialogSession() {
                               activeOpacity={0.7}
                               accessibilityRole="button"
                               accessibilityLabel={triLang(lang, {
-                                ru: 'Не удалось перевести. Повторить',
-                                uk: 'Не вдалося перекласти. Повторити',
+                                ru: 'Не получилось перевести. Перевести снова',
+                                uk: 'Не вдалося перекласти. Перекласти знову',
                                 es: 'No se pudo traducir. Reintentar',
                                 'pt-BR': 'Não foi possível traduzir. Tentar de novo',
                                 vi: 'Không dịch được. Thử lại',
@@ -1010,8 +1010,8 @@ export default function AiDialogSession() {
                               <Ionicons name="refresh" size={14} color={t.textMuted} />
                               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
                                 {triLang(lang, {
-                                  ru: 'Не удалось · Повторить',
-                                  uk: 'Не вдалося · Повторити',
+                                  ru: 'Сбой · Перевести снова',
+                                  uk: 'Збій · Перекласти знову',
                                   es: 'Error · Reintentar',
                                   'pt-BR': 'Falhou · Tentar de novo',
                                   vi: 'Lỗi · Thử lại',

@@ -31,6 +31,7 @@ import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import BouncyScrollView from '../components/BouncyScrollView';
+import ReportErrorButton from '../components/ReportErrorButton';
 
 type PlannedIntroLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
 
@@ -1150,6 +1151,14 @@ export default function LessonIntroScreens({
   });
 
   const headerLabel = `${lessonWord} ${lessonId}`;
+  // Текущий (последний открытый) слайд — для контекста отчёта об ошибке.
+  const currentIndex = Math.max(0, Math.min(revealedCount - 1, totalBlocks - 1));
+  const currentScreen = introScreens[currentIndex];
+  const currentKind: LessonIntroBlockKind =
+    richKindToLegacyKind(currentScreen?.kind) ?? KIND_BY_INDEX[currentIndex] ?? 'tip';
+  const currentSlideTitle =
+    (currentScreen ? richTitle(currentScreen, lang, studyTarget) : undefined) ??
+    defaultKindTitle(KIND_MAP[currentKind], lang, studyTarget);
   const lvlLabel = lessonLevelLabel(lessonId);
   const lvlColor = levelColor(lessonId, isLight);
   const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;
@@ -1274,26 +1283,45 @@ export default function LessonIntroScreens({
             <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
           </TapScale>
 
-          <View
-            style={[
-              styles.headerPill,
-              {
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
-                borderRadius: isCompassTheme ? 10 : 20,
-                overflow: isCompassTheme ? 'hidden' : 'visible',
-                ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
-              },
-            ]}
-          >
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
-            <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
-              {headerLabel}
-            </Text>
-            <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
-            <Text style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]} numberOfLines={1}>
-              {lvlLabel}
-            </Text>
+          <View style={styles.headerRight}>
+            <View
+              style={[
+                styles.headerPill,
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+                  borderRadius: isCompassTheme ? 10 : 20,
+                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
+                },
+              ]}
+            >
+              {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
+              <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
+                {headerLabel}
+              </Text>
+              <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
+              <Text style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]} numberOfLines={1}>
+                {lvlLabel}
+              </Text>
+            </View>
+
+            <ReportErrorButton
+              variant="icon-flag"
+              screen="lesson_intro"
+              dataId={`lesson_intro_${lessonId ?? 'unknown'}_slide_${currentIndex ?? 0}`}
+              dataText={currentSlideTitle}
+              accessibilityLabel="Сообщить об ошибке в объяснении"
+              testID="lesson-intro-report"
+              style={[
+                styles.reportFlag,
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+                  ...(isCompassTheme ? compassShadow(1) : null),
+                },
+              ]}
+            />
           </View>
         </Animated.View>
 
@@ -1411,6 +1439,13 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 12,
   },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexShrink: 1,
+    justifyContent: 'flex-end',
+  },
   headerPill: {
     position: 'relative',
     flexDirection: 'row',
@@ -1420,6 +1455,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: 20,
+    borderWidth: 0.5,
+  },
+  reportFlag: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 0.5,
   },
   headerText: {

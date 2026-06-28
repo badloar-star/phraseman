@@ -21,6 +21,13 @@ import {
 } from '../app/speaking_word_match';
 import { buildSpeakingStartOptions } from '../app/speaking_recognition_options';
 import { diffPhonemes } from '../app/speaking_phoneme_diff';
+import {
+  analyzeProsody,
+  expectedStressPosition,
+  stressFeedback,
+  type LoudnessSample,
+  type StressFeedback,
+} from '../app/speaking_prosody';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -178,6 +185,10 @@ export function SpeakingPanel({
   );
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const mountedRef = useRef(true);
+  // Loudness contour for prosody (rhythm/stress) — collected from volumechange.
+  const prosodySamplesRef = useRef<LoudnessSample[]>([]);
+  const attemptStartRef = useRef(0);
+  const [stress, setStress] = useState<StressFeedback>('unknown');
 
   const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
   const matched = useMemo(
@@ -216,6 +227,10 @@ export function SpeakingPanel({
         transcript: text,
         segments,
       });
+      // Prosody (rhythm/stress) from the loudness contour we collected — local,
+      // no native module. Surfaces "monotone" / stress-too-early-or-late hints.
+      const prosody = analyzeProsody(prosodySamplesRef.current);
+      setStress(stressFeedback(prosody, expectedStressPosition(targetText)));
       setScore(result.score);
       if (result.passed) {
         setFailedTranscript('');
@@ -251,6 +266,9 @@ export function SpeakingPanel({
     setFailedTranscript('');
     setScore(null);
     setVoiceSample(0);
+    setStress('unknown');
+    prosodySamplesRef.current = [];
+    attemptStartRef.current = Date.now();
     setStatus('requesting');
     try {
       const permission = await speech.requestPermissionsAsync();
@@ -322,7 +340,12 @@ export function SpeakingPanel({
     // loudness + tone-driven bar heights from it.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
       if (!mountedRef.current) return;
-      setVoiceSample(Number(event?.value));
+      const value = Number(event?.value);
+      setVoiceSample(value);
+      // Collect the loudness contour for prosody (cap to keep memory bounded).
+      if (prosodySamplesRef.current.length < 240) {
+        prosodySamplesRef.current.push({ value, atMs: Date.now() - attemptStartRef.current });
+      }
     });
 
     listenersRef.current = [resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
@@ -641,6 +664,34 @@ export function SpeakingPanel({
                 );
               })()}
             </View>
+          )}
+
+          {/* Prosody (rhythm/stress) hint — shown after any scored attempt when
+              we detected a clear pattern. Energy-based, local, build-free. */}
+          {showResult && (stress === 'monotone' || stress === 'too_early' || stress === 'too_late') && (
+            <Text style={[styles.diffSound, { color: theme.textMuted }]}>
+              {stress === 'monotone'
+                ? L(lang, {
+                    ru: 'Звучит ровно — добавь выражения и ударения',
+                    uk: 'Звучить рівно — додай виразності та наголосу',
+                    es: 'Suena plano — añade más énfasis',
+                    'pt-BR': 'Soa monótono — dê mais ênfase',
+                    vi: 'Nghe đều đều — hãy nhấn nhá hơn',
+                    id: 'Terdengar datar — beri lebih banyak penekanan',
+                    tr: 'Tekdüze geldi — vurgu ekle',
+                    pl: 'Brzmi płasko — dodaj akcentu',
+                  })
+                : L(lang, {
+                    ru: 'Обрати внимание на ударение во фразе',
+                    uk: 'Зверни увагу на наголос у фразі',
+                    es: 'Cuida el acento de la frase',
+                    'pt-BR': 'Atenção à ênfase da frase',
+                    vi: 'Chú ý trọng âm của câu',
+                    id: 'Perhatikan penekanan kalimat',
+                    tr: 'Cümledeki vurguya dikkat et',
+                    pl: 'Zwróć uwagę na akcent w zdaniu',
+                  })}
+            </Text>
           )}
 
           {/* Mic button — hidden when blocked (denied/unavailable) or already

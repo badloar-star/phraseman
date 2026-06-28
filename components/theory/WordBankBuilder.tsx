@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
-import { hapticTap, hapticSuccess } from '../../hooks/use-haptics';
+import { hapticSuccess } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroBuildInteraction } from '../../app/lesson_data_types';
@@ -70,7 +70,6 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
       if (usedIds.has(bw.id) || status === 'solved') return;
       const emptyIdx = slots.findIndex((s) => s === null);
       if (emptyIdx === -1) return;
-      hapticTap();
       const next = [...slots];
       next[emptyIdx] = { word: bw.word, bankId: bw.id };
       setSlots(next);
@@ -86,7 +85,6 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
       if (status === 'solved') return;
       const slot = slots[idx];
       if (!slot) return;
-      hapticTap();
       const next = [...slots];
       next[idx] = null;
       setSlots(next);

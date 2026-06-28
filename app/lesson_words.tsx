@@ -3181,8 +3181,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               <Text
                 style={{ width:'100%', minWidth:0, flexShrink:1, color: on ? (t.correctText ?? '#fff') : tc, fontSize:optionFontSize, lineHeight:optionLineHeight, fontWeight: on ? '700' : '500', textAlign:'center' }}
                 numberOfLines={2}
-                adjustsFontSizeToFit
-                minimumFontScale={0.75}
+                maxFontSizeMultiplier={1.2}
                 ellipsizeMode="tail"
               >
                 {opt}

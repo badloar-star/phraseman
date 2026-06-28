@@ -742,7 +742,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
                     backgroundColor: bg, borderWidth: 1.5, borderColor: border,
                   }}
                 >
-                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.75}>
+                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} maxFontSizeMultiplier={1.2}>
                     {word}
                   </Text>
                 </TouchableOpacity>

@@ -52,6 +52,9 @@ app/phrasemen_example.ts
 /android
 service-account*.json
 
+# Recovery backups contain user PII (progress/VIP snapshots) — never commit
+scripts/_recovery/backup_*.json
+
 # WIP notes (не для коммита)
 *_WIP.txt
 

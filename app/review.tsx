@@ -61,6 +61,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -1028,14 +1029,17 @@ export default function ReviewScreen() {
     if (!item) return;
     const n = tokenizeRecallPhrase(item.phrase).length;
     if (tile.slot !== nextSlot) {
-      hapticTap();
+      // Неверная плитка → finishCard сам даст error. Лишний tap убран,
+      // иначе складывается с error в один сильный удар.
       finishCard(false, tile.text);
       return;
     }
-    hapticTap();
     if (nextSlot + 1 >= n) {
+      // Последняя верная плитка → finishCard даст success. Tap не нужен.
       finishCard(true, null);
     } else {
+      // Промежуточная верная плитка — это раскладка, лёгкий tap уместен.
+      hapticTap();
       setNextSlot(s => s + 1);
       setBankTiles(prev => prev.filter(t => t.slot !== tile.slot));
     }
@@ -1044,21 +1048,21 @@ export default function ReviewScreen() {
   const onMeaningPick = useCallback((choice: string) => {
     if (status !== 'playing' || burning) return;
     if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
-    hapticTap();
     const item = items[index];
     if (!item) return;
     const correct = recallTranslationHint(item, lang, studyTarget);
     const ok = meaningChoiceIsCorrect(choice, correct);
+    // Результат (success/error) идёт из finishCard — лишний tap убран.
     finishCard(ok, choice);
   }, [status, burning, items, index, lang, studyTarget, finishCard]);
 
   const onSubmitTyped = useCallback(() => {
     if (status !== 'playing' || burning || mode !== 'recall_type') return;
     if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
-    hapticTap();
     const item = items[index];
     if (!item) return;
     const { ok } = evaluateRecallAnswer(typeText, item.phrase);
+    // Результат (success/error) идёт из finishCard — лишний tap убран.
     finishCard(ok, typeText.trim() || null);
   }, [status, burning, mode, items, index, typeText, finishCard]);
 
@@ -1149,6 +1153,7 @@ export default function ReviewScreen() {
         taskId: planPracticeTaskId,
         planInstanceId: params.planInstanceId,
         planId: params.planId,
+        studyTarget,
         dayIndex: planPracticeDayIndex,
       });
     }
@@ -1297,7 +1302,7 @@ export default function ReviewScreen() {
           </View>
           {totalXP > 0 && (
             <View style={{ marginTop: 20, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 12, alignItems: 'center' }}>
-              <XpGainBadge amount={totalXP} visible={true} style={{ color: '#F5A623', fontSize: f.numMd, fontWeight: '800' }} />
+              <XpGainBadge amount={totalXP} visible={true} style={{ color: monoIcon(themeMode, '#F5A623'), fontSize: f.numMd, fontWeight: '800' }} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                 {triLang(lang, {
                   ru: 'заработано за повторение',
@@ -1761,7 +1766,7 @@ export default function ReviewScreen() {
               {shouldShowBurnHint && (
                 <Animated.Text
                   style={{
-                    color: '#FFB38A',
+                    color: monoIcon(themeMode, '#FFB38A'),
                     fontSize: f.caption,
                     textAlign: 'center',
                     opacity: burnHintAnim,
@@ -1803,7 +1808,7 @@ export default function ReviewScreen() {
                 }}
               >
                 <Text style={{ fontSize: f.bodyLg }}>🔥</Text>
-                <Text style={{ color: '#FF6B2B', fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
+                <Text style={{ color: monoIcon(themeMode, '#FF6B2B'), fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
                   {triLang(lang, {
                     ru: 'Сжечь карточку',
                     uk: 'Спалити картку',

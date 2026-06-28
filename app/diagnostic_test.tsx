@@ -22,7 +22,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -1258,8 +1258,9 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
+      void hapticSuccess();
       awardDiagnosticAnswerXp(cur, idx, 'choice');
-    } else if (hapticsOn) {
+    } else {
       void hapticError();
     }
     if (!isRight) {
@@ -1285,8 +1286,9 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
+      void hapticSuccess();
       if (q) awardDiagnosticAnswerXp(q, idx, 'type');
-    } else if (hapticsOn) {
+    } else {
       void hapticError();
     }
     if (!isRight) {
@@ -1311,8 +1313,9 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
+      void hapticSuccess();
       awardDiagnosticAnswerXp(cur, idx, 'build');
-    } else if (hapticsOn) {
+    } else {
       void hapticError();
     }
     if (!isRight) {
@@ -1812,7 +1815,7 @@ export default function DiagnosticTest() {
                 return (
                   <TouchableOpacity key={ci}
                     style={{ backgroundColor: bg, borderWidth: 1, borderColor: border, borderRadius: 14, padding: 18 }}
-                    onPress={() => { hapticTap(); handleAnswer(ci); }}
+                    onPress={() => { handleAnswer(ci); }}
                     activeOpacity={0.8}
                     disabled={chosen !== null}
                   >

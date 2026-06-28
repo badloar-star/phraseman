@@ -40,6 +40,7 @@ import {
   type VerbSrsMap,
 } from './irregular_verbs_srs';
 import VerbLetterBank from '../components/VerbLetterBank';
+import { markVerbOfDayDone, verbOfDayDateKey, pickVerbOfDay } from './verb_of_day';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
@@ -426,7 +427,16 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         const noErrors = !hadErrorThisVerb.current && isCorrect;
         // SRS: чистый проход двигает по лесенке; «шаткий» (узнавание/угадал) — короткий интервал.
         void recordVerbPass(verb.base, { clean: noErrors, shaky: shakyThisVerb.current }, studyTarget)
-          .then(state => { srsMapRef.current = { ...srsMapRef.current, [verb.base.trim().toLowerCase()]: state }; })
+          .then(state => {
+            srsMapRef.current = { ...srsMapRef.current, [verb.base.trim().toLowerCase()]: state };
+            // «Глагол дня»: если это сегодняшний глагол и он пройден чисто — засчитываем стрик.
+            if (noErrors) {
+              const todays = pickVerbOfDay(srsMapRef.current, verbOfDayDateKey());
+              if (todays && todays.base.toLowerCase() === verb.base.toLowerCase()) {
+                void markVerbOfDayDone(verb.base, studyTarget).catch(() => {});
+              }
+            }
+          })
           .catch(() => {});
         if (noErrors) {
           // Correct — mark as learned

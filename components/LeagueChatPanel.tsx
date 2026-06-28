@@ -29,6 +29,7 @@ import {
   loadCachedLeagueChatMessages,
   loadCachedLeagueChatRoom,
   reportLeagueChatMessage,
+  resolveLeagueChatText,
   resolveMyLeagueChatRoom,
   sendLeagueChatMessage,
   subscribeLeagueChatMessages,
@@ -44,6 +45,8 @@ import {
   mergeLeagueChatOptimisticMessages,
   type OptimisticLeagueChatMessage,
 } from './leagueChatPanelBehavior';
+import LeagueChatCompassPost from './LeagueChatCompassPost';
+import LeagueChatReactions from './LeagueChatReactions';
 
 const HIDE_UNDO_MS = 10_000;
 const CHAT_RETRY_MS = 2_500;
@@ -858,7 +861,23 @@ function LeagueChatPanel({
             //    без аватара и без действий (репорт/скрыть). Явно «не от людей».
             if (isSystemLeagueChatMessage(m)) {
               // Оптимистичные сообщения никогда не системные → безопасно читаем systemType.
-              const systemType = (m as LeagueChatMessage).systemType;
+              const systemMsg = m as LeagueChatMessage;
+              const systemType = systemMsg.systemType;
+              // Богатый пост Компаса (слово/факт/вопрос/опрос) — отдельный рендер
+              // с локализацией и кнопками опроса. Прочие системные события — пилюля.
+              if (systemMsg.compassKind) {
+                return (
+                  <LeagueChatCompassPost
+                    key={m.id}
+                    message={systemMsg}
+                    lang={lang}
+                    t={t}
+                    f={f}
+                    icon={systemMessageIcon(systemType)}
+                    onToast={onToast}
+                  />
+                );
+              }
               return (
                 <View
                   key={m.id}
@@ -892,7 +911,7 @@ function LeagueChatPanel({
                         flexShrink: 1,
                       }}
                     >
-                      {m.text}
+                      {resolveLeagueChatText(systemMsg, lang)}
                     </Text>
                   </View>
                 </View>
@@ -1067,6 +1086,19 @@ function LeagueChatPanel({
                     </TouchableOpacity>
                   )}
                 </View>
+
+                {/* Эмодзи-реакции — только для реально отправленных сообщений
+                    (оптимистичные ещё без id на сервере). */}
+                {!localMessage && (
+                  <View style={{ marginLeft: isMine ? 0 : sideOffset, marginRight: isMine ? sideOffset : 0 }}>
+                    <LeagueChatReactions
+                      message={m as LeagueChatMessage}
+                      align={isMine ? 'flex-end' : 'flex-start'}
+                      t={t}
+                      f={f}
+                    />
+                  </View>
+                )}
               </View>
             );
           })}

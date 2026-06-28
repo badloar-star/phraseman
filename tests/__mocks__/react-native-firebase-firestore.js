@@ -27,6 +27,7 @@ function createRef(path) {
       return createRef(`${path}/${id}`);
     },
     set: jest.fn(() => Promise.resolve()),
+    update: jest.fn(() => Promise.resolve()),
     get: jest.fn(() => {
       if (testState.userDocExists && /^users\/[^/]+$/.test(path)) {
         return Promise.resolve({

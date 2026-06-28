@@ -1486,13 +1486,22 @@ service cloud.firestore {
 
     // League chat UGC: live weekly room messages, moderation queue, reports.
     match /league_chat_messages/{messageId} {
-      allow read: if isAdmin()
-        || (
-          request.auth != null
-          && exists(/databases/$(database)/documents/league_chat_members/$(request.auth.uid)/rooms/$(resource.data.groupId))
-        );
+      // Член комнаты (есть запись в league_chat_members/{uid}/rooms/{groupId}).
+      function isLeagueChatRoomMember() {
+        return request.auth != null
+          && exists(/databases/$(database)/documents/league_chat_members/$(request.auth.uid)/rooms/$(resource.data.groupId));
+      }
+      allow read: if isAdmin() || isLeagueChatRoomMember();
       allow create: if isAdmin();
-      allow update: if isAdmin();
+      // Участник комнаты может менять ТОЛЬКО агрегаты вовлечения (счётчики реакций
+      // и голосов опроса) + updatedAt. Текст/статус/автор/модерация — неприкосновенны.
+      // Значения меняются через increment(±1) на клиенте; объём злоупотребления
+      // ограничен (счётчик ±1 за тап, троттлинг на клиенте).
+      allow update: if isAdmin()
+        || (
+          isLeagueChatRoomMember()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'pollVotes', 'updatedAt'])
+        );
       allow delete: if isAdmin();
     }
 

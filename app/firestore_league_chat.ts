@@ -57,7 +57,27 @@ export interface LeagueChatMessage {
   kind?: 'user' | 'system';
   /** Тип системного события (только при kind === 'system'). Управляет иконкой в UI. */
   systemType?: LeagueChatSystemType;
+  /** Категория поста Компаса (только для системных постов от Компаса). */
+  compassKind?: 'word_of_day' | 'fact' | 'question' | 'poll';
+  /** Локализованный текст поста (все 8 языков). Клиент рендерит i18n[lang] вместо text. */
+  i18n?: Partial<Record<string, string>>;
+  /** Счётчики эмодзи-реакций: { '🔥': 3, '👏': 1 }. Меняются increment(±1). */
+  reactions?: Record<string, number>;
+  /** Варианты опроса Компаса (только при compassKind === 'poll'). */
+  poll?: LeagueChatPollOption[];
+  /** Счётчики голосов опроса: { [optionKey]: number }. Меняются increment(+1). */
+  pollVotes?: Record<string, number>;
 }
+
+export interface LeagueChatPollOption {
+  key: string;
+  label: Partial<Record<string, string>>;
+  correct?: boolean;
+}
+
+/** Эмодзи-реакции, доступные пользователю под чужими сообщениями. */
+export const LEAGUE_CHAT_REACTION_EMOJIS = ['🔥', '👏', '😂', '❤️', '👍'] as const;
+export type LeagueChatReactionEmoji = (typeof LEAGUE_CHAT_REACTION_EMOJIS)[number];
 
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -348,4 +368,106 @@ export async function reportLeagueChatMessage(message: LeagueChatMessage, reason
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ messageId: string; stableId?: string | null; reason: string }, { ok: boolean }>('leagueChatReportMessage');
   await fn({ messageId: message.id, stableId, reason });
+}
+
+// ── Реакции и голоса опроса (дешёвая запись increment, без Cloud Function) ─────
+//
+// Член комнаты пишет напрямую в league_chat_messages, меняя ТОЛЬКО поля
+// reactions/pollVotes через increment(±1) — это разрешено узким правилом в
+// firestore.rules. Свой выбор хранится локально (AsyncStorage), чтобы toggle
+// реакции и «уже проголосовал» работали без серверного состояния.
+
+const MY_REACTIONS_KEY = 'league_chat_my_reactions_v1';
+const MY_POLL_VOTES_KEY = 'league_chat_my_poll_votes_v1';
+
+async function readLocalMap(key: string): Promise<Record<string, string>> {
+  const raw = await AsyncStorage.getItem(key).catch(() => null);
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+async function writeLocalMap(key: string, map: Record<string, string>): Promise<void> {
+  await AsyncStorage.setItem(key, JSON.stringify(map)).catch(() => {});
+}
+
+/** Эмодзи, которым пользователь уже отреагировал на сообщение (или undefined). */
+export async function getMyLeagueChatReaction(messageId: string): Promise<string | undefined> {
+  const map = await readLocalMap(MY_REACTIONS_KEY);
+  return map[messageId];
+}
+
+/** Вариант, за который пользователь уже проголосовал в опросе (или undefined). */
+export async function getMyLeagueChatPollVote(messageId: string): Promise<string | undefined> {
+  const map = await readLocalMap(MY_POLL_VOTES_KEY);
+  return map[messageId];
+}
+
+/**
+ * Поставить/снять/сменить эмодзи-реакцию. Возвращает новое состояние реакции
+ * пользователя (undefined — реакция снята). Меняет счётчики increment(±1).
+ */
+export async function toggleLeagueChatReaction(
+  messageId: string,
+  emoji: string,
+): Promise<string | undefined> {
+  const db = getFirestore();
+  if (!db) return undefined;
+  const map = await readLocalMap(MY_REACTIONS_KEY);
+  const prev = map[messageId];
+  if (prev === emoji) {
+    // Снять текущую реакцию.
+    delete map[messageId];
+    await writeLocalMap(MY_REACTIONS_KEY, map);
+    await db.collection(CHAT_COLLECTION).doc(messageId).update({
+      [`reactions.${emoji}`]: firestore.FieldValue.increment(-1),
+      updatedAt: Date.now(),
+    }).catch(() => {});
+    return undefined;
+  }
+  // Сменить (снять прежнюю, поставить новую) или поставить впервые.
+  const updates: Record<string, unknown> = {
+    [`reactions.${emoji}`]: firestore.FieldValue.increment(1),
+    updatedAt: Date.now(),
+  };
+  if (prev) updates[`reactions.${prev}`] = firestore.FieldValue.increment(-1);
+  map[messageId] = emoji;
+  await writeLocalMap(MY_REACTIONS_KEY, map);
+  await db.collection(CHAT_COLLECTION).doc(messageId).update(updates).catch(() => {});
+  return emoji;
+}
+
+/**
+ * Проголосовать в опросе Компаса. Один голос на сообщение (повторный — игнор).
+ * Возвращает true, если голос засчитан.
+ */
+export async function voteLeagueChatPoll(
+  messageId: string,
+  optionKey: string,
+): Promise<boolean> {
+  const db = getFirestore();
+  if (!db) return false;
+  const map = await readLocalMap(MY_POLL_VOTES_KEY);
+  if (map[messageId]) return false; // уже голосовал
+  map[messageId] = optionKey;
+  await writeLocalMap(MY_POLL_VOTES_KEY, map);
+  await db.collection(CHAT_COLLECTION).doc(messageId).update({
+    [`pollVotes.${optionKey}`]: firestore.FieldValue.increment(1),
+    updatedAt: Date.now(),
+  }).catch(() => {});
+  return true;
+}
+
+/** Локализованный текст поста: i18n[lang] → i18n.ru → text. */
+export function resolveLeagueChatText(message: LeagueChatMessage, lang: string): string {
+  const i18n = message.i18n;
+  if (i18n && typeof i18n === 'object') {
+    const localized = i18n[lang] ?? i18n.ru;
+    if (typeof localized === 'string' && localized) return localized;
+  }
+  return message.text;
 }

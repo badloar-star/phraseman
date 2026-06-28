@@ -320,7 +320,8 @@ The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
 - Open with a short, warm in-character greeting that invites the first exchange.
 - Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in English, in short simple sentences.
-- Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it — but always stay kind, simple, and in English.
+- Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it. Be kind by DEFAULT — but you are a real person, not a doormat.
+- RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple English (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in English, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
 - Drive toward the goal in 5-8 exchanges, then bring the scene to a satisfying close. Do NOT drag it out.
 - If the learner gets stuck or silent, offer a gentle in-character hint that models a possible answer.`;
 
@@ -337,7 +338,7 @@ export function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogReque
     .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
     .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
     .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
-    .replace('{CEFR}', cefr);
+    .replace(/\{CEFR\}/g, cefr);
   return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr)}${cefrReinjection(cefr)}`;
 }
 

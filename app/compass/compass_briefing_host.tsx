@@ -16,6 +16,7 @@ import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
+import { useLang } from '../../components/LangContext';
 import { hapticSuccess, hapticCelebrate } from '../../hooks/use-haptics';
 import { compassOn } from './compass_flags';
 import { useCompassDay } from './use_compass_day';
@@ -23,6 +24,11 @@ import { compassTaskRoute } from './compass_task_route';
 import { compassInductionRoute } from './compass_induction_route';
 import { resolvePronunciationRoute } from './compass_pronunciation_route';
 import CompassBriefingModal from './compass_briefing_modal';
+import {
+  collectCompassSocialNews,
+  markSocialNewsSeen,
+  type CompassSocialEvent,
+} from './compass_social_news';
 import type { CompassTask, CompassDay } from './compass_brain';
 
 const SEEN_KEY_PREFIX = 'compass_briefing_seen_';
@@ -50,6 +56,16 @@ let _compassBriefingClosedForDay: string | null = null;
 // латчится _compassBriefingClosedForDay. Живёт до перезапуска бандла.
 let _compassBriefingAutoShownForDay: string | null = null;
 
+// Признак «брифинг СЕЙЧАС на экране» — читается тостом-фолбэком соц-сводки, чтобы
+// не показать тост одновременно с блоком «Кстати…» в открытой модалке. Живёт в
+// модуле (как и латчи) — общий на JS-сессию.
+let _compassBriefingOnScreen = false;
+
+/** true, если модалка брифинга Компаса сейчас показана (для тоста-фолбэка соц-сводки). */
+export function isCompassBriefingOnScreen(): boolean {
+  return _compassBriefingOnScreen;
+}
+
 interface CompassBriefingHostProps {
   /** Колбэк «начать день» — навигация решается вызывающим экраном (home). */
   onStartDay?: () => void;
@@ -64,9 +80,13 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const now = useMemo(() => nowMs ?? Date.now(), [nowMs]);
   const router = useRouter();
   const { hasPremiumAccess } = usePremium();
+  const { lang } = useLang();
   const { day, loading } = useCompassDay(now);
   const [visible, setVisible] = useState(false);
   const [checkedSeen, setCheckedSeen] = useState(false);
+  // Соц-сводка «Кстати…»: строки для блока + события для markSeen на закрытии.
+  const [socialLines, setSocialLines] = useState<string[]>([]);
+  const [socialEvents, setSocialEvents] = useState<CompassSocialEvent[]>([]);
   const dayKey = todayKey(now);
   // Онбординг должен быть завершён: иначе брифинг всплывает поверх онбординга
   // (экран home смонтирован под оверлеем). null = ещё не проверили.
@@ -101,6 +121,24 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     };
   }, []);
 
+  // Соц-сводка «Кстати…»: грузим РОВНО когда брифинг стал видимым (не раньше —
+  // незачем читать Firestore, если модалка сегодня не покажется). Помечаем seen
+  // только при закрытии (handleStart/handleLater/handleTaskPress → markSeen),
+  // чтобы тост-фолбэк не задвоил, если юзер закрыл, не посмотрев.
+  useEffect(() => {
+    if (!compassOn() || !visible) return;
+    let cancelled = false;
+    void (async () => {
+      const news = await collectCompassSocialNews(lang, now).catch(() => ({ lines: [], events: [] }));
+      if (cancelled) return;
+      setSocialLines(news.lines);
+      setSocialEvents(news.events);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [visible, lang, now]);
+
   const markSeen = useCallback(() => {
     // Вызывается ТОЛЬКО при намеренном закрытии юзером (Начать/Позже/тап по задаче).
     // Латчим СИНХРОННО в модульной переменной (переживает remount), потом пишем в
@@ -108,7 +146,12 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     // он гасит повторный показ до того, как асинхронная запись успеет завершиться.
     _compassBriefingClosedForDay = dayKey;
     void AsyncStorage.setItem(dayKey, '1').catch(() => {});
-  }, [dayKey]);
+    // Соц-сводку, которую юзер увидел в брифинге, помечаем показанной — иначе
+    // тост-фолбэк или завтрашний брифинг повторят те же заявки/лайки.
+    if (socialEvents.length > 0) {
+      void markSocialNewsSeen(socialEvents).catch(() => {});
+    }
+  }, [dayKey, socialEvents]);
 
   // Показываем, только когда: онбординг завершён, день готов, есть реальная история
   // (тип ≠ first_day) и сегодня ещё не закрывали. Чистый лист брифингом не дёргаем.
@@ -192,6 +235,15 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // модалку: брифинг ждёт своей очереди и не стекается с другими.
   const arbitratedVisible = useOverlayVisible('compassBriefing', visible);
 
+  // Сообщаем тосту-фолбэку соц-сводки, что брифинг сейчас на экране — пока модалка
+  // открыта, тост не должен дублировать блок «Кстати…».
+  useEffect(() => {
+    _compassBriefingOnScreen = arbitratedVisible;
+    return () => {
+      _compassBriefingOnScreen = false;
+    };
+  }, [arbitratedVisible]);
+
   // Рендерим, если Компас включён И (есть премиум ИЛИ это приветственный день).
   // Приветствие первого дня/возврата — знакомство с Компасом, доступно бесплатным;
   // план-дни остаются премиумными (для них visible не выставится выше).
@@ -212,6 +264,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     <CompassBriefingModal
       visible={arbitratedVisible}
       day={day}
+      socialLines={socialLines}
       onStart={handleStart}
       onLater={handleLater}
       onTaskPress={handleTaskPress}

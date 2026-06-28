@@ -210,9 +210,13 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     db.collection('users').doc(myUid).collection('friends').doc(fromUid),
     { createdAt: now },
   );
+  // Reverse doc живёт на стороне ОТПРАВИТЕЛЯ заявки (fromUid) — это его друг-запись.
+  // Помечаем acceptedAt, чтобы отправитель мог показать «X принял твою заявку»
+  // (Компас, соц-сводка «Кстати…»). Своя сторона (myUid) маркера не несёт →
+  // там я САМ принял входящую, копия будет нейтральной «теперь вы друзья».
   batch.set(
     db.collection('users').doc(fromUid).collection('friends').doc(myUid),
-    { createdAt: now },
+    { createdAt: now, acceptedAt: now },
   );
   // Удаляем request-документ после принятия — иначе он висит вечно и может блокировать повторные заявки.
   batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(fromUid));

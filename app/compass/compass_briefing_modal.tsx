@@ -30,6 +30,7 @@ import {
   buildCompassGreeting,
   buildCompassInduction,
 } from './compass_copy';
+import { COMPASS_SOCIAL_HEADER } from './compass_social_copy';
 
 const TASK_ICON: Record<CompassTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
   lesson_dive: 'book-outline',
@@ -51,9 +52,14 @@ interface CompassBriefingModalProps {
   onTaskPress?: (task: CompassTask) => void;
   /** Тап по индакшн-подсказке «попробуй первым» (открыть фичу). Необязателен. */
   onInductionPress?: (feature: NonNullable<CompassDay['inductionFeature']>) => void;
+  /**
+   * Локализованные строки соц-сводки «Кстати…» (заявки/принятия/лайки).
+   * Необязательно: пусто/нет — блок не рендерится.
+   */
+  socialLines?: string[];
 }
 
-export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress, onInductionPress }: CompassBriefingModalProps) {
+export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress, onInductionPress, socialLines }: CompassBriefingModalProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
@@ -80,6 +86,8 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
   const greeting = buildCompassGreeting(day, lang);
   const induction = buildCompassInduction(day.inductionFeature, lang);
   const isWelcome = greeting.length > 0;
+  const social = (socialLines ?? []).filter(line => line.trim().length > 0);
+  const socialHeader = triLang(lang, COMPASS_SOCIAL_HEADER);
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onLater}>
@@ -122,6 +130,22 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater, o
             </View>
           ) : (
             <Text style={[styles.comment, { color: t.textSecond }]}>{comment}</Text>
+          )}
+
+          {/* «Кстати…» — тёплая соц-сводка: заявки в друзья / принятия / лайки. */}
+          {/* Отдельный блок-контейнер, не мешается с днём; пусто — не рендерится. */}
+          {social.length > 0 && (
+            <View style={[styles.social, { backgroundColor: t.accent + '10', borderColor: t.accent + '33' }]}>
+              <View style={styles.socialHead}>
+                <Ionicons name="people-outline" size={14} color={t.accent} />
+                <Text style={[styles.socialLabel, { color: t.accent }]}>{socialHeader}</Text>
+              </View>
+              {social.map((line, i) => (
+                <Text key={`social-${i}`} style={[styles.socialLine, { color: t.textPrimary }]}>
+                  {line}
+                </Text>
+              ))}
+            </View>
           )}
 
           {/* Индакшн «с чего здорово начать»: одна крутая фича под ситуацию. */}
@@ -214,6 +238,10 @@ const styles = StyleSheet.create({
   greeting: { gap: 7 },
   greetLead: { fontSize: 16, lineHeight: 23, fontWeight: '800' },
   greetLine: { fontSize: 14.5, lineHeight: 21, fontWeight: '600' },
+  social: { borderWidth: 1, borderRadius: 14, padding: 12, gap: 5 },
+  socialHead: { flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 1 },
+  socialLabel: { fontSize: 11, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.4 },
+  socialLine: { fontSize: 13.5, lineHeight: 19, fontWeight: '600' },
   induction: { borderWidth: 1, borderRadius: 14, padding: 12, gap: 6 },
   inductionHead: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   inductionLabel: { fontSize: 11, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.4 },

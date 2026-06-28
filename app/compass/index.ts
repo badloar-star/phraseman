@@ -13,6 +13,10 @@ export { compassOn } from './compass_flags';
 export { useCompassDay } from './use_compass_day';
 export { default as CompassBriefingModal } from './compass_briefing_modal';
 export { default as CompassBriefingHost } from './compass_briefing_host';
+// Соц-сводка «Кстати…» (заявки/принятия/лайки): сбор + анти-повтор + признак показа.
+export { isCompassBriefingOnScreen } from './compass_briefing_host';
+export { collectCompassSocialNews, markSocialNewsSeen } from './compass_social_news';
+export type { CompassSocialNews, CompassSocialEvent } from './compass_social_news';
 export type { CompassDay, CompassTask, CompassDayType, CompassTaskKind, CompassInductionFeature } from './compass_brain';
 export { pickInductionFeature } from './compass_brain';
 // Персональное приветствие первого дня (имя + обещание под цель + индакшн).

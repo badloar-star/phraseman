@@ -3,6 +3,7 @@ import { Animated, AppState, Easing, View, ViewStyle } from 'react-native';
 import { LinearGradient as ExpoLinearGradient } from './SafeLinearGradient';
 import Svg, { Circle, Polygon, Polyline } from 'react-native-svg';
 import { getAvatarAuraById, PREMIUM_AVATAR_AURA_ID, VIP_AVATAR_AURA_ID } from '../constants/avatar_auras';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 type Props = {
   auraId?: string | null;
@@ -28,7 +29,8 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
   const isStarVortexAura = aura?.effect === 'starvortex';
   const isVoidAmethystAura = aura?.effect === 'voidamethyst';
   const isRichEffect = isFlameAura || isStormAura || isStarVortexAura || isVoidAmethystAura;
-  const shouldAnimate = animate && (((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42));
+  const isFocused = useIsScreenFocused();
+  const shouldAnimate = animate && isFocused && (((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42));
 
   useEffect(() => {
     if (!shouldAnimate) {

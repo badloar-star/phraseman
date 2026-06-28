@@ -115,18 +115,24 @@ describe('personal plan pronunciation-repeat live route', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'personal_plan_exercise.tsx'), 'utf8');
     const clientSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'personal_plan_pronunciation_scoring_client.ts'), 'utf8');
 
-    expect(source).toContain('speechModule.start({');
+    // Recognition is started via the shared, accuracy-tuned options builder
+    // (phrase biasing + alternatives + on-device) — not an inline ad-hoc object.
+    expect(source).toContain('speechModule.start(');
+    expect(source).toContain('buildSpeakingStartOptions({');
     expect(source).toContain("speechModule.addListener('result', applyResult)");
     expect(source).toContain('useAudio()');
     expect(source).toContain('listenPronunciationTarget');
     expect(source).toContain('speakAudio(targetText, 0.86');
     // Прослушивание фразы НЕ обязательно — запись доступна сразу; блок только пока звучит target.
     expect(source).toContain('enabled={!pronunciationSpeakingTarget}');
-    expect(source).toContain('\\u25cf\\u25cf\\u25cf \\u25cf\\u25cf\\u25cf \\u25cf\\u25cf\\u25cf');
+    // Фраза скрыта по буквам (маска '_') и раскрывается пословно по мере того,
+    // как юзер её правильно произнёс — ответ не виден заранее.
+    expect(source).toContain("tok.replace(/[\\p{L}\\p{N}]/gu, '_')");
     expect(source).toContain('scorePlanPronunciationTranscript({');
     expect(source).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
     expect(source).toContain("speechModule.addListener('nomatch'");
-    expect(source).toContain("Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}");
+    // recordingOptions (iOS persist) now lives inside the shared options builder.
+    expect(source).toContain('buildSpeakingStartOptions');
     expect(source).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
     expect(source).toContain('payload: buildPlanPronunciationAttemptPayload({');
     expect(source).toContain('score: scored?.score ?? 0');
@@ -137,6 +143,14 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(clientSource).toContain("PLAN_PRONUNCIATION_SCORING_PROVIDER = 'device_speech_recognition'");
     expect(clientSource).not.toContain('httpsCallable');
     expect(clientSource).not.toContain('scorePronunciationAttempt');
+
+    // The shared options builder keeps recognition fully on-device: phrase
+    // biasing + alternatives + iOS persist live here, and there is no cloud call.
+    const optionsSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'speaking_recognition_options.ts'), 'utf8');
+    expect(optionsSource).toContain('contextualStrings');
+    expect(optionsSource).toContain('maxAlternatives');
+    expect(optionsSource).toContain('recordingOptions');
+    expect(optionsSource).not.toContain('httpsCallable');
   });
 
   it('keeps pronunciation-repeat source copy clean, calm and honest', () => {

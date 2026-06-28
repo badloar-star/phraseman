@@ -11,7 +11,7 @@
 // режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, Linking, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -39,6 +39,7 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { VoiceEqualizer } from './voice_equalizer';
 import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
+import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import SpeakingScoreRing from '../components/SpeakingScoreRing';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -56,6 +57,7 @@ import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_
 import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 import {
   buildPlanPronunciationAttemptPayload,
+  buildPlanPronunciationRecordingContract,
 } from './personal_plan_pronunciation_recording_contract';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
@@ -412,6 +414,13 @@ function PlanPronunciationRecorder({
   const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
   const targetTextRef = useRef(targetText);
   targetTextRef.current = targetText;
+  // Best (highest-scoring) transcript accumulated across all alternatives of all
+  // result events for the current attempt, plus a guard so a result+end pair
+  // doesn't double-score. Reset at the start of every attempt.
+  const bestTranscriptRef = useRef('');
+  const bestScoreRef = useRef(-1);
+  const bestConfidenceRef = useRef<number | undefined>(undefined);
+  const scoredRef = useRef(false);
   const pronunciationScoring = pronunciationScoringLocal;
 
   const setPronunciationScoring = useCallback((scoring: boolean) => {
@@ -434,6 +443,11 @@ function PlanPronunciationRecorder({
     setPronunciationScoring(false);
     setPronunciationScore(null);
     setTranscript('');
+    // Clear per-attempt accumulators so a previous phrase's best can't leak in.
+    bestTranscriptRef.current = '';
+    bestScoreRef.current = -1;
+    bestConfidenceRef.current = undefined;
+    scoredRef.current = false;
     setBlocked(speechModule ? null : 'unavailable');
   }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
 
@@ -441,20 +455,41 @@ function PlanPronunciationRecorder({
   useEffect(() => {
     if (!speechModule) return undefined; // no recognizer: nothing to listen to
 
-    const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
-      const best = event?.results?.[0];
-      const heard = (best?.transcript ?? '').trim();
-      // Промежуточные результаты — обновляем транскрипт для пословной подсветки
-      // (слова «загораются» по мере правильного произношения), но НЕ скорим/останавливаем.
-      if (heard) setTranscript(heard);
-      if (event?.isFinal === false) return;
+    // Consider every alternative of every result event, keeping the one that
+    // scores highest against the target. The engine often puts the correct
+    // phrase in alternative #2/#3, or sends a short final fragment after a fuller
+    // interim — so we pick the BEST match, not results[0] or the last fragment.
+    const considerAlternatives = (
+      alternatives: Array<{ transcript?: string; confidence?: number }>,
+    ) => {
+      for (const alt of alternatives) {
+        const t = String(alt?.transcript ?? '').trim();
+        if (!t) continue;
+        const s = scorePlanPronunciationTranscript({
+          targetText: targetTextRef.current,
+          transcript: t,
+        }).score;
+        if (s > bestScoreRef.current) {
+          bestScoreRef.current = s;
+          bestTranscriptRef.current = t;
+          bestConfidenceRef.current = typeof alt?.confidence === 'number' ? alt.confidence : undefined;
+        }
+      }
+    };
+
+    // Score the accumulated best transcript exactly once per attempt.
+    const finishAttempt = () => {
+      if (scoredRef.current) return;
       setPronunciationListening(false);
       setPronunciationScoring(false);
-      if (!heard) return;
+      equalizerRef.current?.setSample(0);
+      const heard = bestTranscriptRef.current;
+      if (!heard) return; // nothing usable — leave state reset, no 0% punishment
+      scoredRef.current = true;
       const result = scorePlanPronunciationTranscript({
         targetText: targetTextRef.current,
         transcript: heard,
-        recognitionConfidence: typeof best?.confidence === 'number' ? best.confidence : undefined,
+        recognitionConfidence: bestConfidenceRef.current,
       });
       setPronunciationScore(result);
       onScored(result);
@@ -464,16 +499,32 @@ function PlanPronunciationRecorder({
       } else hapticError();
     };
 
+    const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
+      const alternatives = Array.isArray(event?.results) ? event.results : [];
+      considerAlternatives(alternatives);
+      // Live word-by-word reveal follows the top hypothesis.
+      const top = (alternatives[0]?.transcript ?? '').trim();
+      if (top) setTranscript(top);
+      // Score only on the final result; interim just feeds the reveal + best-pick.
+      if (event?.isFinal === false) return;
+      finishAttempt();
+    };
+
     const resultSub = speechModule.addListener('result', applyResult);
     const noMatchSub = speechModule.addListener('nomatch', () => {
       setPronunciationListening(false);
       setPronunciationScoring(false);
     });
+    // `end` is the backstop: if the engine ended without a final `result` event
+    // (early silence cut-off), still score whatever best we captured.
     const endSub = speechModule.addListener('end', () => {
+      finishAttempt();
       setPronunciationListening(false);
       equalizerRef.current?.setSample(0);
     });
     const errorSub = speechModule.addListener('error', () => {
+      // On error, salvage the best transcript if we have one, else just reset.
+      if (bestTranscriptRef.current) finishAttempt();
       setPronunciationListening(false);
       setPronunciationScoring(false);
       equalizerRef.current?.setSample(0);
@@ -490,12 +541,13 @@ function PlanPronunciationRecorder({
       errorSub?.remove?.();
       volumeSub?.remove?.();
       try {
-        speechModule.abort();
+        // stop() flushes a final result; abort() would discard a live attempt.
+        speechModule.stop();
       } catch {
         // recognizer may be unavailable in some builds — safe to ignore on unmount
       }
     };
-  }, [onScored, speechModule]);
+  }, [onScored, speechModule, playCorrect]);
 
   const listenPronunciationTarget = useCallback(() => {
     hapticTap();
@@ -568,21 +620,42 @@ function PlanPronunciationRecorder({
         return;
       }
       setBlocked(null);
+      // Reset per-attempt accumulators BEFORE the mic goes live.
+      bestTranscriptRef.current = '';
+      bestScoreRef.current = -1;
+      bestConfidenceRef.current = undefined;
+      scoredRef.current = false;
       equalizerRef.current?.setSample(0);
+      // Hand the audio session from playback ("Послушать") to capture BEFORE
+      // starting recognition, so iOS doesn't drop the first ~300ms of speech.
+      try {
+        const contract = buildPlanPronunciationRecordingContract();
+        await setAudioModeAsync(contract.audioMode);
+      } catch {
+        // Some runtimes may reject the record-mode switch; recognition still tries.
+      }
+      // Prefer the offline on-device recognizer when the device supports it.
+      let onDevice = false;
+      try {
+        onDevice = (await speechModule.supportsOnDeviceRecognition?.()) === true;
+      } catch {
+        onDevice = false;
+      }
+      // Cue first, then start on a quiet mic, so the chime isn't captured as the
+      // leading audio (which smears the first spoken word during warm-up).
+      playRecordStart();
       setPronunciationListening(true);
       setPronunciationScoring(true);
       setTranscript('');
-      speechModule.start({
-        lang: 'en-US',
-        interimResults: true,
-        continuous: false,
-        // Real-time volume metering feeds the live equalizer (value in
-        // `volumechange`, ~ -2..10). ~100ms cadence is smooth enough.
-        volumeChangeEventOptions: { enabled: true, intervalMillis: 100 },
-        ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
-      });
-      // Mic is live -> canonical "recording started" cue (sound + haptic).
-      playRecordStart();
+      speechModule.start(
+        buildSpeakingStartOptions({
+          lang: 'en-US',
+          targetText: targetTextRef.current,
+          interimResults: true,
+          volumeMeter: true,
+          onDevice,
+        }),
+      );
     } catch {
       setPronunciationListening(false);
       setPronunciationScoring(false);

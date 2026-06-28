@@ -21,6 +21,9 @@ export type PlanSpeechModule = {
     event: string,
     cb: (payload: any) => void,
   ) => { remove?: () => void } | undefined;
+  /** Present on expo-speech-recognition; resolves whether offline recognition
+   *  is available on this device. Optional so older stubs still typecheck. */
+  supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
 };
 
 /**

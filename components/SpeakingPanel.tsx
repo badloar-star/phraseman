@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   Linking,
   Modal,
-  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -20,6 +19,7 @@ import {
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
+import { buildSpeakingStartOptions } from '../app/speaking_recognition_options';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -129,6 +129,7 @@ type SpeechModule = {
   stop: () => void;
   abort: () => void;
   addListener: (event: string, cb: (payload: any) => void) => { remove?: () => void } | undefined;
+  supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
 };
 
 // expo-speech-recognition is a native module; require lazily so the panel can
@@ -249,27 +250,35 @@ export function SpeakingPanel({
 
     cleanupListeners();
     let latest = '';
-    // Лучший (самый ПОЛНЫЙ) распознанный вариант за попытку. При быстрой беглой
-    // речи движок иногда шлёт финальный обрывок ("you") после более полного
-    // interim ("you are late") и рано стреляет `end` → раньше скорилось по
-    // обрывку = 3%. Берём вариант с наибольшим числом слов (а при равенстве —
-    // длиннее), чтобы беглую речь не штрафовать за раннюю остановку движка.
+    // Лучший вариант за попытку = тот, что даёт МАКСИМАЛЬНЫЙ score против цели
+    // среди ВСЕХ альтернатив (maxAlternatives) ВСЕХ result-событий. Движок часто
+    // кладёт правильную фразу не в results[0], а в #2/#3; плюс при беглой речи
+    // шлёт короткий финальный обрывок после более полного interim. Скоринг
+    // дешёвый, поэтому считаем кандидатов на лету и держим лучший.
     let best = '';
-    const wordCount = (s: string) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+    let bestScore = -1;
     const considerBest = (candidate: string) => {
       const c = candidate.trim();
       if (!c) return;
-      if (wordCount(c) > wordCount(best) || (wordCount(c) === wordCount(best) && c.length > best.length)) {
+      const s = scorePlanPronunciationTranscript({ targetText, transcript: c }).score;
+      if (s > bestScore) {
+        bestScore = s;
         best = c;
       }
     };
 
     const resultSub = speech.addListener('result', (event: any) => {
-      const top = event?.results?.[0];
-      const next = String(top?.transcript ?? '').trim();
+      const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
+        ? event.results
+        : [];
+      for (const alt of alternatives) {
+        const t = String(alt?.transcript ?? '').trim();
+        if (t) considerBest(t);
+      }
+      // Для живой подсветки берём топ-гипотезу (она ведёт по словам).
+      const next = String(alternatives[0]?.transcript ?? '').trim();
       if (next) {
         latest = next;
-        considerBest(next);
         if (mountedRef.current) setTranscript(next);
       }
     });
@@ -298,23 +307,34 @@ export function SpeakingPanel({
       Boolean,
     ) as Array<{ remove?: () => void }>;
 
+    // Prefer the device's offline neural recognizer when available (iOS 17+,
+    // Android 13+ with the AOSP model). Cleaner privacy, no network error class,
+    // and biasing/formatting work. Falls back to platform default otherwise.
+    let onDevice = false;
+    try {
+      onDevice = (await speech.supportsOnDeviceRecognition?.()) === true;
+    } catch {
+      onDevice = false;
+    }
+    if (!mountedRef.current) return;
+
     try {
       setStatus('listening');
-      speech.start({
-        lang: recognitionLocale,
-        interimResults: true,
-        continuous: false,
-        // Enable real-time volume metering so the equalizer reacts to the voice.
-        // Value arrives in `volumechange` (-2..10); ~100ms cadence is plenty.
-        volumeChangeEventOptions: { enabled: true, intervalMillis: 100 },
-        ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
-      });
+      speech.start(
+        buildSpeakingStartOptions({
+          lang: recognitionLocale,
+          targetText,
+          interimResults: true,
+          volumeMeter: true,
+          onDevice,
+        }),
+      );
       // Mic is live now -> canonical "recording started" cue (sound + haptic).
       playRecordStart();
     } catch {
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, cleanupListeners, finishAttempt, playRecordStart]);
+  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, finishAttempt, playRecordStart]);
 
   useEffect(() => {
     mountedRef.current = true;

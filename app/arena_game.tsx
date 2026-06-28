@@ -75,8 +75,10 @@ function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): st
 const FINAL_OVERLAY_MS = 1200;
 
 export default function DuelGameScreen() {
+  // H9: sessionId/userId были объявлены как `string`, но Expo Router отдаёт `undefined`
+  // на deep link без params → скрытые TypeError при .startsWith/.slice ниже. Делаем optional.
   const { sessionId, userId: paramUserId, fromLobby, ghostChallengeId: routeGhostChallengeId, hillMode, roomCode } = useLocalSearchParams<{
-    sessionId: string; userId: string; fromLobby?: string; ghostChallengeId?: string; hillMode?: string; roomCode?: string;
+    sessionId?: string; userId?: string; fromLobby?: string; ghostChallengeId?: string; hillMode?: string; roomCode?: string;
   }>();
   const fromLobbyFlow = fromLobby === '1';
   const router = useRouter();
@@ -171,7 +173,7 @@ export default function DuelGameScreen() {
     return () => { cancelled = true; };
   }, [useBotMock]);
 
-  const realSession = useArenaSession(useMock ? '' : sessionId, useMock ? '' : userId);
+  const realSession = useArenaSession(useMock ? '' : (sessionId ?? ''), useMock ? '' : (userId ?? ''));
   const mockSession = useDuelMock(userId, myRank.rankIndex, playerLevel);
   const roomSession = useArenaRoomRun(cleanRoomCode, userId);
 
@@ -460,6 +462,7 @@ export default function DuelGameScreen() {
         }, 4000 + Math.random() * 11000);
         return;
       }
+      if (!sessionId || !userId) return; // H9: defensive guard
       try {
         await sendArenaDuelReact(sessionId, userId, emoji);
         pushFlyEmoji(emoji, 'self');
@@ -575,8 +578,8 @@ export default function DuelGameScreen() {
         else if (outcome === 'loss') void hapticMediumImpact();
       }
       const params: Record<string, string> = {
-        sessionId,
-        userId,
+        sessionId: sessionId ?? '',
+        userId: userId ?? '',
         opponentForfeited: opponentForfeited ? '1' : '0',
         rankedArena: fromLobbyFlow ? '1' : '0',
       };
@@ -734,8 +737,8 @@ export default function DuelGameScreen() {
       }
     }
     const params: Record<string, string> = {
-      sessionId,
-      userId,
+      sessionId: sessionId ?? '',
+      userId: userId ?? '',
       forfeited: '1',
       opponentForfeited: '0',
       rankedArena: fromLobbyFlow ? '1' : '0',
@@ -1111,7 +1114,7 @@ export default function DuelGameScreen() {
                   {['A', 'B', 'C', 'D'][i]}
                 </Text>
               </View>
-              <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={2}>
+              <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }]} numberOfLines={2}>
                 {arenaBilingualFirst(option, lang)}
               </Text>
               {isCorrect && <Text style={{ color: t.correct, fontSize: 20 }}>✓</Text>}
@@ -1285,7 +1288,7 @@ const styles = StyleSheet.create({
   exitBtn: { padding: 8, marginRight: 2 },
   playerChip: { flex: 1, alignItems: 'center', gap: 2, paddingHorizontal: 4, paddingBottom: 4 },
   playerNameRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, maxWidth: '100%' },
-  playerLabel: { fontWeight: '600' },
+  playerLabel: { fontWeight: '600', flexShrink: 1, minWidth: 0 },
   playerScore: { fontWeight: '800' },
   answeredDot: {
     width: 16, height: 16, borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginLeft: 2,
@@ -1316,7 +1319,7 @@ const styles = StyleSheet.create({
     width: 28, height: 28, borderRadius: 8,
     alignItems: 'center', justifyContent: 'center',
   },
-  optionText: { flex: 1, fontWeight: '600', lineHeight: 20 },
+  optionText: { flex: 1, fontWeight: '600' },
 
   ruleBox: {
     marginHorizontal: 16, marginTop: 10,

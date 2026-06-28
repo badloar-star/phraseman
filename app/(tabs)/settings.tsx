@@ -3,7 +3,6 @@ import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
   Linking,
-  Platform,
   Keyboard,
   InteractionManager,
   Pressable,
@@ -240,15 +239,19 @@ export default function SettingsMain() {
   );
 
   /**
-   * Закрыть модалку имени после снятия фокуса с клавиатуры и завершения нативной анимации Modal —
-   * иначе на Android/iOS возможен «слой-призрак», который ест тапы (фон анимируется, скролл мёртв).
+   * Закрыть модалку имени СИНХРОННО. Нативный animationType="fade" самого <Modal> сам
+   * проигрывает выход, а при visible=false React размонтирует всё субдерево модалки
+   * (включая backdrop-Pressable), поэтому «слоя-призрака», который ест тапы, не остаётся.
+   *
+   * ВАЖНО: НЕ откладывать закрытие через InteractionManager.runAfterInteractions+setTimeout.
+   * На тяжёлом экране настроек (анимации + autoFocus-клавиатура) interaction-handle мог не
+   * закрыться никогда → колбэк не выполнялся → модалка не закрывалась. Это и давало два бага:
+   * «Сохранить ничего не делает» (saveName закрывал через этот колбэк) и «после Отмена→Сохранить
+   * всё виснет» (backdrop оставался поверх экрана и съедал все тапы).
    */
   const closeNameModal = useCallback(() => {
     Keyboard.dismiss();
-    const delay = Platform.OS === 'android' ? 220 : 160;
-    InteractionManager.runAfterInteractions(() => {
-      setTimeout(() => setNameModal(false), delay);
-    });
+    setNameModal(false);
   }, []);
   const LANG_NATIVE: Record<string, string> = {
     ru: 'Русский',

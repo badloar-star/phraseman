@@ -523,7 +523,7 @@ function FriendRow({
         gap: 12,
       }}
     >
-      <Text style={{ width: 20, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
+      <Text style={{ minWidth: 28, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
         {rank}
       </Text>
       <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={FRIEND_ROW_AVATAR_SIZE} maskColor={chrome.mask}>
@@ -1575,12 +1575,11 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     mountedRef.current = true;
+    void readCachedMyInviteCodeForFriends().then(cached => {
+      if (mountedRef.current && cached) setMyCode(prev => prev ?? cached);
+    });
+    void syncMyInviteCode();
     const task = InteractionManager.runAfterInteractions(() => {
-      // Show cached code immediately (no loading state), then verify/refresh in background.
-      void readCachedMyInviteCodeForFriends().then(cached => {
-        if (mountedRef.current && cached) setMyCode(cached);
-      });
-      void syncMyInviteCode();
       void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
       // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
       void startFriendsTabSwrPrime().then(() => {
@@ -2507,21 +2506,21 @@ export default function FriendsTabScreen() {
                         onPress={() => { void handleReferralInvite(); }}
                         edgeColor={t.accent}
                         wrapStyle={{ flex: 1 }}
-                        style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
+                        style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12 }}
                       >
                         <Ionicons name="share-social" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
                           {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
                         </Text>
                       </DuoPressable>
                       <TapScale
                         testID="friends-empty-enter-code"
                         onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
-                        style={{ flex: 1, height: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
+                        style={{ flex: 1, minHeight: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
                       >
-                        <View style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
+                        <View style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
                           <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
-                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
                             {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
                           </Text>
                         </View>
@@ -2548,10 +2547,10 @@ export default function FriendsTabScreen() {
                         onPress={() => { hapticTap(); setAddModalOpen(true); }}
                         edgeColor={t.accent}
                         wrapStyle={{ flex: 1 }}
-                        style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
+                        style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12 }}
                       >
                         <Ionicons name="person-add" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
                           {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
                         </Text>
                       </DuoPressable>

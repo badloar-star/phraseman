@@ -473,14 +473,21 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
 }
 
 /**
- * LessonContent: Renders the lesson UI (intro screens, encouragement, or main lesson).
+ * [REVIEW] Одна пройденная фраза для режима «Назад к фразам» (просмотр/сравнение, read-only).
+ */
+interface ReviewPhrase {
+  key: string;
+  position: number;
+  en: string;
+  meaning: string;
+}
+
+/**
+ * LessonContent: Renders the playable lesson UI.
  * Extracted as separate component to ensure SafeAreaView receives exactly ONE child.
  */
 interface LessonContentProps {
-  showIntroScreens: boolean;
   introGateReady: boolean;
-  setShowIntroScreens: (val: boolean) => void;
-  onIntroDone: () => void;
   lessonId: number;
   // All the main lesson UI props
   compact: boolean;
@@ -545,6 +552,10 @@ interface LessonContentProps {
   /** Язык, который учим (dev: en|es); упражнение по словам пока по EN, озвучка/ответ могут быть ES. */
   studyTarget: StudyTargetLang;
   onReplayPhraseAudio: () => void;
+  /** [REVIEW] Уже пройденные фразы урока для просмотра «Назад к фразам» (read-only). */
+  reviewPhrases: ReviewPhrase[];
+  /** [REVIEW] Озвучить произвольную пройденную фразу в окне просмотра. */
+  onPlayReviewAudio: (en: string) => void;
   toastAnim: Animated.Value;
   from?: string;
   onHeaderBack: () => void;
@@ -559,10 +570,7 @@ interface LessonContentProps {
 }
 
 const LessonContent = React.memo(function LessonContent({
-  showIntroScreens,
   introGateReady,
-  setShowIntroScreens,
-  onIntroDone,
   lessonId,
   compact,
   isSmallScreen,
@@ -624,6 +632,8 @@ const LessonContent = React.memo(function LessonContent({
   realPhraseIdx,
   studyTarget,
   onReplayPhraseAudio,
+  reviewPhrases,
+  onPlayReviewAudio,
   toastAnim,
   from,
   onHeaderBack,
@@ -653,6 +663,21 @@ const LessonContent = React.memo(function LessonContent({
   const speakingIsPremium = useFeatureAccess('speaking');
   const speakingFeatureEnabled = isSpeakingEnabled();
   const [speakingOpen, setSpeakingOpen] = useState(false);
+
+  // [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз урока (read-only).
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reviewIndex, setReviewIndex] = useState(0);
+  const reviewCount = reviewPhrases.length;
+  const openReview = useCallback(() => {
+    if (reviewPhrases.length === 0) return;
+    hapticTap();
+    setReviewIndex(reviewPhrases.length - 1); // последняя пройденная — ближайшая
+    setReviewOpen(true);
+  }, [reviewPhrases.length]);
+  const closeReview = useCallback(() => setReviewOpen(false), []);
+  const reviewGoPrev = useCallback(() => setReviewIndex(i => Math.max(0, i - 1)), []);
+  const reviewGoNext = useCallback(() => setReviewIndex(i => Math.min(reviewCount - 1, i + 1)), [reviewCount]);
+  const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
   const openSpeaking = useCallback(() => {
     hapticTap();
     if (!speakingIsPremium) {
@@ -898,18 +923,6 @@ const LessonContent = React.memo(function LessonContent({
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
-  }
-
-  // Show intro screens on first visit
-  if (showIntroScreens) {
-    return (
-      <LessonIntroScreens
-        introScreens={getLessonIntroScreens(lessonId, studyTarget)}
-        lessonId={lessonId}
-        onComplete={onIntroDone}
-        onBack={onHeaderBack}
-      />
-    );
   }
 
   // Main lesson UI
@@ -1453,6 +1466,45 @@ const LessonContent = React.memo(function LessonContent({
             </LessonPressable>
           )}
 
+          {/* [REVIEW] «Назад к фразам» — открыть просмотр уже пройденных фраз урока (read-only).
+              Видна только на экране результата и только если есть хотя бы одна пройденная фраза.
+              Запрошено пользователем: вернуться и сравнить логику прошлых заданий. */}
+          {status === 'result' && reviewPhrases.length > 0 && (
+            <LessonPressable
+              testID="lesson1-review-back"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Посмотреть пройденные фразы',
+                uk: 'Переглянути пройдені фрази',
+                es: 'Ver frases ya completadas',
+                'pt-BR': 'Ver frases já concluídas',
+                vi: 'Xem các câu đã hoàn thành',
+                id: 'Lihat frasa yang sudah selesai',
+                tr: 'Tamamlanan cümleleri gör',
+                pl: 'Zobacz ukończone frazy',
+              })}
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={openReview}
+            >
+              <View style={{ position: 'relative' }}>
+                <Ionicons name="arrow-undo-outline" size={26} color={sx.second} />
+                <View style={{ position: 'absolute', top: -3, right: -8, width: 8, height: 8, borderRadius: 4, backgroundColor: t.correct }} />
+              </View>
+              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+                {triLang(lang, {
+                  ru: 'Назад',
+                  uk: 'Назад',
+                  es: 'Atrás',
+                  'pt-BR': 'Voltar',
+                  vi: 'Xem lại',
+                  id: 'Kembali',
+                  tr: 'Geri',
+                  pl: 'Wstecz',
+                })}
+              </Text>
+            </LessonPressable>
+          )}
+
           {/* [EXPLAIN] «Объясни проще» — в футере на экране результата, НЕЗАВИСИМО от того,
               верно ответил юзер или нет. Объясняет саму фразу простыми словами через общую
               шторку ExplainSheet (CF explainPhrase, глобальный кэш per-(фраза+язык)). */}
@@ -1623,6 +1675,97 @@ const LessonContent = React.memo(function LessonContent({
           />
         )}
 
+        {/* [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз (read-only, свайп/стрелки).
+            Очки НЕ начисляются, текущий ответ не сбивается — это чистое чтение для сравнения. */}
+        <Modal visible={reviewOpen} transparent animationType="fade" onRequestClose={closeReview}>
+          <Pressable
+            onPress={closeReview}
+            style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' }}
+          >
+            <Pressable
+              onPress={() => {}}
+              style={{
+                backgroundColor: t.bgCard,
+                borderTopLeftRadius: 22,
+                borderTopRightRadius: 22,
+                borderWidth: 0.5,
+                borderColor: t.border,
+                paddingHorizontal: 14,
+                paddingTop: 16,
+                paddingBottom: 28,
+              }}
+            >
+              {/* Заголовок + закрыть */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+                <Text style={{ color: sx.primary, fontSize: f.bodyLg, fontWeight: '600' }}>
+                  {triLang(lang, {
+                    ru: 'Пройденные фразы',
+                    uk: 'Пройдені фрази',
+                    es: 'Frases completadas',
+                    'pt-BR': 'Frases concluídas',
+                    vi: 'Câu đã hoàn thành',
+                    id: 'Frasa selesai',
+                    tr: 'Tamamlanan cümleler',
+                    pl: 'Ukończone frazy',
+                  })}
+                </Text>
+                <TapScale onPress={closeReview} accessibilityLabel="Close" style={{ padding: 4 }}>
+                  <Ionicons name="close" size={24} color={sx.second} />
+                </TapScale>
+              </View>
+
+              {/* Карточка фразы со стрелками */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                <TapScale
+                  onPress={reviewGoPrev}
+                  disabled={reviewIndex <= 0}
+                  accessibilityLabel="Previous"
+                  style={{ padding: 6, opacity: reviewIndex <= 0 ? 0.25 : 1 }}
+                >
+                  <Ionicons name="chevron-back" size={28} color={sx.second} />
+                </TapScale>
+
+                <View style={{ flex: 1, alignItems: 'center', paddingVertical: 14 }}>
+                  <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '600', textAlign: 'center', marginBottom: 12 }}>
+                    {reviewCurrent?.en ?? ''}
+                  </Text>
+                  <View style={{ height: 0.5, backgroundColor: t.border, width: '70%', marginBottom: 12 }} />
+                  <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center' }}>
+                    {reviewCurrent?.meaning ?? ''}
+                  </Text>
+                  <TapScale
+                    onPress={() => { if (reviewCurrent?.en) onPlayReviewAudio(reviewCurrent.en); }}
+                    accessibilityLabel={triLang(lang, {
+                      ru: 'Озвучить фразу', uk: 'Озвучити фразу', es: 'Reproducir audio',
+                      'pt-BR': 'Reproduzir audio', vi: 'Phát âm thanh', id: 'Putar audio',
+                      tr: 'Sesi çal', pl: 'Odtwórz dźwięk',
+                    })}
+                    style={{ marginTop: 16, padding: 6 }}
+                  >
+                    <Ionicons name="volume-high" size={26} color={t.correct} />
+                  </TapScale>
+                </View>
+
+                <TapScale
+                  onPress={reviewGoNext}
+                  disabled={reviewIndex >= reviewCount - 1}
+                  accessibilityLabel="Next"
+                  style={{ padding: 6, opacity: reviewIndex >= reviewCount - 1 ? 0.25 : 1 }}
+                >
+                  <Ionicons name="chevron-forward" size={28} color={sx.second} />
+                </TapScale>
+              </View>
+
+              {/* Индикатор позиции */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 10 }}>
+                <Text style={{ color: sx.muted, fontSize: f.label }}>
+                  {reviewCount > 0 ? `${reviewIndex + 1} / ${reviewCount}` : ''}
+                </Text>
+              </View>
+            </Pressable>
+          </Pressable>
+        </Modal>
+
 
     </KeyboardAvoidingView>
 
@@ -1779,6 +1922,10 @@ export default function LessonScreen() {
   const [shuffled,     setShuffled]     = useState<string[]>([]);
   const preparedPhraseStartKeyRef = useRef<string | null>(null);
   const [progress,     setProgress]     = useState<string[]>(() => getInitialProgressArray(effectiveTotal, lessonStorageId, studyTarget));
+  // [REVIEW] Ячейки, реально отвеченные за ТЕКУЩИЙ проход. «Назад к фразам» показывает
+  // только их — нельзя листать фразы, до которых юзер ещё не дошёл в этом проходе
+  // (важно для повторных проходов, где progress[] уже полностью заполнен с прошлого раза).
+  const [passAnsweredCells, setPassAnsweredCells] = useState<ReadonlySet<number>>(() => new Set());
   const [planLessonAnswered, setPlanLessonAnswered] = useState(0);
   const [planLessonDoneVisible, setPlanLessonDoneVisible] = useState(false);
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
@@ -2030,6 +2177,42 @@ export default function LessonScreen() {
     }, Platform.OS === 'android' ? 90 : 30);
   }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
+  // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
+  // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
+  // Только пройденные ячейки (progress[i] непустой), исключая текущую позицию.
+  // Прогресс/XP НЕ трогаем — это чистое чтение, без markTrainerResult/начисления.
+  const reviewPhrases = useMemo<ReviewPhrase[]>(() => {
+    const out: ReviewPhrase[] = [];
+    const activeCell = overridePhraseCell ?? cellIndex;
+    const cellCount = Math.max(effectiveTotal, progress.length);
+    for (let i = 0; i < cellCount; i += 1) {
+      // Только фразы, реально пройденные за ТЕКУЩИЙ проход. Не даём листать вперёд/
+      // к фразам, до которых юзер ещё не дошёл в этом проходе.
+      if (!passAnsweredCells.has(i)) continue;
+      if (i === activeCell) continue; // текущая боевая фраза — её и так видно
+      const p = getPhraseForCell(i);
+      if (!p) continue;
+      const en = phraseAnswerDisplayLine(p, studyTarget, lang);
+      const meaning = lessonPhraseMeaningForLang(p, lang, studyTarget);
+      if (!en) continue;
+      out.push({ key: `${i}:${String(p?.id ?? en)}`, position: i, en, meaning });
+    }
+    return out;
+    // getPhraseForCell зависит от phraseOrderRef (ref) + LESSON_DATA; перечислять ref не нужно.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [passAnsweredCells, progress, effectiveTotal, overridePhraseCell, cellIndex, studyTarget, lang]);
+
+  const onPlayReviewAudio = useCallback((en: string) => {
+    const line = (en ?? '').trim();
+    if (!line) return;
+    stopAudio();
+    if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
+    replayAudioTimerRef.current = setTimeout(() => {
+      replayAudioTimerRef.current = null;
+      speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+    }, Platform.OS === 'android' ? 90 : 30);
+  }, [settings.speechRate, speakAudio, stopAudio, studyTarget]);
+
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
     if (showToBeHint && cellIndex < 2) {
@@ -2213,6 +2396,7 @@ export default function LessonScreen() {
         questionsSinceErrorRef.current = 0;
         setOverridePhraseCell(null);
         setProgress([]);
+        setPassAnsweredCells(new Set()); // [REVIEW]
         setShuffled([]);
         setSelectedWords([]);
         setTypedText('');
@@ -2319,6 +2503,20 @@ export default function LessonScreen() {
       sessionAnswerCount.current = 0;
       isCompletingRef.current = false;
       isReplayRef.current = restoredProgress.every(x => x === 'correct' || x === 'replay_correct');
+
+      // [REVIEW] Сид «пройдено за проход» при загрузке.
+      // Первый проход (не replay): фразы из restoredProgress уже пройдены в этом проходе.
+      // Повтор (все ячейки correct с прошлого раза): начинаем с пустого — нельзя листать
+      // то, что не переотвечено в текущем круге.
+      if (isReplayRef.current) {
+        setPassAnsweredCells(new Set());
+      } else {
+        const seeded = new Set<number>();
+        restoredProgress.forEach((st, i) => {
+          if (st === 'correct' || st === 'replay_correct') seeded.add(i);
+        });
+        setPassAnsweredCells(seeded);
+      }
 
       // Восстанавливаем позицию строго из CELL_KEY — каждый индикатор = конкретная фраза
       const parsedStartCell = ci !== null ? (parseInt(ci, 10) || 0) : 0;
@@ -2504,6 +2702,7 @@ export default function LessonScreen() {
               taskId: planTaskId,
               planInstanceId,
               planId,
+              studyTarget: studyTargetRef.current,
               dayIndex: parseInt(planDayIndexRaw ?? '1', 10) || 1,
             }).catch(() => {});
           }
@@ -2709,6 +2908,17 @@ export default function LessonScreen() {
 
     setWasWrong(!isRight);
     setProgress(np);
+    // [REVIEW] Отмечаем фразу как пройденную за этот проход (для «Назад к фразам»).
+    // Только реально решённые верно — ошибку листать назад смысла нет.
+    if (isRight) {
+      const answeredCell = progressCell;
+      setPassAnsweredCells(prev => {
+        if (prev.has(answeredCell)) return prev;
+        const next = new Set(prev);
+        next.add(answeredCell);
+        return next;
+      });
+    }
     persistErrorReplayToStorage();
 
     if (isRight) {
@@ -2758,6 +2968,7 @@ export default function LessonScreen() {
           AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
           errorQueueRef.current = [];
           questionsSinceErrorRef.current = 0;
+          setPassAnsweredCells(new Set()); // [REVIEW] новый проход — обнуляем «пройдено за проход»
           void AsyncStorage.multiRemove([
             ERROR_REPLAY_QUEUE_KEY,
             ERROR_REPLAY_SINCE_KEY,
@@ -3229,10 +3440,7 @@ export default function LessonScreen() {
         <LessonArtBackdrop variant="practice" />
         <SafeAreaView style={{ flex: 1 }}>
           <LessonContent
-            showIntroScreens={showIntroScreens}
             introGateReady={introGateReady}
-            setShowIntroScreens={setShowIntroScreens}
-            onIntroDone={handleIntroDone}
             lessonId={lessonId}
             compact={compact}
             isSmallScreen={isSmallScreen}
@@ -3294,6 +3502,8 @@ export default function LessonScreen() {
             realPhraseIdx={(() => { const order = phraseOrderRef.current; const cell = overridePhraseCell ?? cellIndex; if (order.length === 0) return cell % (LESSON_DATA?.length || 1); return order[cell] ?? order[cell % order.length]; })()}
             studyTarget={studyTarget}
             onReplayPhraseAudio={replayResultPhraseAudio}
+            reviewPhrases={reviewPhrases}
+            onPlayReviewAudio={onPlayReviewAudio}
             toastAnim={toastAnim}
             from={from}
                 onHeaderBack={handleLessonHeaderBack}

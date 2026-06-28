@@ -3,6 +3,7 @@ import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
   Linking,
+  Alert,
   Keyboard,
   InteractionManager,
   Pressable,
@@ -234,6 +235,30 @@ export default function SettingsMain() {
   const showInfoAlert = React.useCallback(
     (title: string, message: string) => {
       void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'), message, 'OK');
+    },
+    [lang],
+  );
+
+  /**
+   * Алерт, который можно показывать ПОВЕРХ открытой модалки имени.
+   *
+   * showInfoAlert (enqueueThemedBlockingInfoAlert → ThemedBlockingAlertHost → OverlayArbiter)
+   * рендерит themedAlert НАТИВНЫМ <Modal>. Модалка имени тут — тоже нативный <Modal>. На iOS
+   * презентовать один <Modal> поверх другого (present-over-present) ломает стек презентаций:
+   * алерт не появляется ВООБЩЕ («Сохранить ничего не делает»), а экран виснет — кнопки/тапы
+   * мертвы, помогает только выход из приложения. Это воспроизводится на ЛЮБОМ имени, даже
+   * пустом/коротком, потому что валидация зовёт алерт ещё до всякой сети.
+   *
+   * Системный Alert.alert (UIAlertController на iOS) — НЕ RN-<Modal>, он корректно
+   * накладывается поверх открытого <Modal>, конфликта презентаций нет. Поэтому внутри
+   * saveName используем именно его.
+   */
+  const alertOverName = React.useCallback(
+    (message: string) => {
+      Alert.alert(
+        L('Сообщение', 'Повідомлення', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
+        message,
+      );
     },
     [lang],
   );
@@ -505,10 +530,10 @@ export default function SettingsMain() {
 
   const saveName = async () => {
     const trimmed = newName.trim();
-    if (!trimmed) { showInfoAlert('', L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
+    if (!trimmed) { alertOverName(L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (trimmed.length < 2) { alertOverName(L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
+    if (trimmed.length > 20) { alertOverName(L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
+    if (containsBadWord(trimmed)) { alertOverName(L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
 
     const oldName = userName.trim();
     if (trimmed === oldName) {
@@ -528,11 +553,11 @@ export default function SettingsMain() {
     }
 
     if (reservation.status === 'taken') {
-      showInfoAlert('', L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+      alertOverName(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
       return;
     }
     if (reservation.status === 'cooldown') {
-      showInfoAlert('', L(
+      alertOverName(L(
         'Ник можно менять не чаще одного раза в 14 дней.',
         'Нік можна змінювати не частіше одного разу на 14 днів.',
         'Puedes cambiar el nombre solo una vez cada 14 días.',
@@ -545,7 +570,7 @@ export default function SettingsMain() {
       return;
     }
     if (reservation.status !== 'ok') {
-      showInfoAlert('', L(
+      alertOverName(L(
         'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
         'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
         'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
@@ -566,7 +591,7 @@ export default function SettingsMain() {
       closeNameModal();
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
-      showInfoAlert('', L(
+      alertOverName(L(
         'Имя не сохранилось локально. Попробуй ещё раз.',
         'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
         'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',

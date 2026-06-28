@@ -106,6 +106,20 @@ describe('local personal plan pronunciation scoring core', () => {
     }).passed).toBe(true);
   });
 
+  it('credits phonetically-identical spellings via metaphone (centre ~ center)', () => {
+    // These pairs are NOT in the explicit homophone table — only Double Metaphone
+    // rescues them. A learner who says the word right but the engine wrote the
+    // other spelling should still pass.
+    expect(scorePronunciationTranscript({
+      targetText: 'Go to the center',
+      transcript: 'Go to the centre',
+    }).passed).toBe(true);
+    expect(scorePronunciationTranscript({
+      targetText: 'What a nice colour',
+      transcript: 'What a nice color',
+    }).passed).toBe(true);
+  });
+
   it('forgives a single dropped trailing word on a longer phrase', () => {
     // 5-словная фраза, движок срезал хвостовое "is".
     const result = scorePronunciationTranscript({

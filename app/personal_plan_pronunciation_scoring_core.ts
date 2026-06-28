@@ -1,3 +1,5 @@
+import { soundsAlike } from './double_metaphone';
+
 export type PronunciationScoreBreakdown = {
   wordAccuracy: number;
   orderAccuracy: number;
@@ -184,6 +186,11 @@ function wordSimilarity(a: string, b: string): number {
   if (a === b) return 1;
   // Одно слово содержит другое целиком (you're ⊃ you, going ⊃ go) — высокий кредит.
   if (a.length >= 2 && b.length >= 2 && (a.includes(b) || b.includes(a))) return 0.9;
+  // Фонетическое совпадение (Double Metaphone): слова звучат одинаково, но
+  // пишутся по-разному (center/centre, whether/weather, knight/night). Движок
+  // легитимно мог вернуть другое написание безупречно произнесённого слова —
+  // не штрафуем. Ловит то, чего нет в явной таблице омофонов.
+  if (a.length >= 3 && b.length >= 3 && soundsAlike(a, b)) return 0.95;
   const maxLen = Math.max(a.length, b.length);
   if (maxLen === 0) return 1;
   const sim = 1 - charDistance(a, b) / maxLen;

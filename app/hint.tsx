@@ -16,6 +16,16 @@ import {
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import TheoryLessonView, {
+  type TheorySection,
+  type TheoryBlock,
+} from '../components/theory/TheoryLessonView';
+import { LESSON1_THEORY } from './theory_content_lesson1';
+import { isInteractiveTheoryLesson } from './theory_topic_accents';
+import { legacyRuUk } from '../constants/i18n';
+import { registerXP } from './xp_manager';
+import { lessonTheoryXpClaimedKey } from './target_storage_keys';
 
 function L(
   lang: Lang,
@@ -29,6 +39,90 @@ function L(
   pl: string,
 ): string {
   return triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+}
+
+// ─── Новая теория (дорогой минимализм) — экран для урока 1 ──────────────────
+
+/** Добавочные интерактивные тренировки по номеру раздела (грамматика выверена по Cambridge). */
+function drillsForSection(num: string): TheoryBlock[] {
+  switch (num) {
+    case '02':
+      return [{ kind: 'drill', drill: { type: 'choice', before: 'She', after: 'ready', options: ['am', 'is', 'are'], answer: 'is', why: { ru: 'She — это he/she/it, поэтому идёт is.' } } }];
+    case '05':
+      return [{ kind: 'drill', drill: { type: 'word_bank', prompt: { ru: 'Она готова' }, answer: ['She', 'is', 'ready'], slotLabels: [{ ru: 'кто' }, { ru: 'связка' }, { ru: 'описание' }], distractors: ['He', 'busy'] } }];
+    case '14':
+      return [{ kind: 'drill', drill: { type: 'spot_slip', chips: ['I', 'are', 'ready'], answerIndex: 1, hint: { ru: 'Тут не та форма. Тапни лишнее слово.' }, fix: { ru: 'С I всегда am: I am ready.' } } }];
+    case '15':
+      return [{ kind: 'drill', drill: { type: 'binary', question: { ru: 'Где верно?' }, optionA: 'He are busy', optionB: 'He is busy', correct: 'B', explain: { ru: 'С he / she / it нужно is.' } } }];
+    default:
+      return [];
+  }
+}
+
+/** Преобразует контент урока 1 в формат движка теории по текущему языку. */
+function buildLesson1Sections(lang: Lang): TheorySection[] {
+  const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  return LESSON1_THEORY.sections.map((s) => {
+    const blocks: TheoryBlock[] = s.blocks.map((b): TheoryBlock => {
+      if (b.kind === 'examples') {
+        return {
+          kind: 'examples',
+          examples: (b.examples ?? []).map((e) => ({ en: e.en, ru: key === 'uk' ? e.uk : e.ru, hi: e.hi })),
+        };
+      }
+      if (b.kind === 'formula') return { kind: 'formula', formula: b.formula };
+      if (b.kind === 'fix') return { kind: 'fix', fixes: b.fixes };
+      // body / tip
+      return { kind: b.kind, text: key === 'uk' ? (b.uk ?? b.ru) : b.ru };
+    });
+    return {
+      num: s.num,
+      title: key === 'uk' ? s.titleUk : s.titleRu,
+      exampleCount: s.exampleCount,
+      defaultOpen: s.defaultOpen,
+      blocks: [...blocks, ...drillsForSection(s.num)],
+    };
+  });
+}
+
+function LessonTheoryNew({ lessonId }: { lessonId: number }) {
+  const router = useRouter();
+  const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  const sections = React.useMemo(() => buildLesson1Sections(lang), [lang]);
+  const title = key === 'uk' ? LESSON1_THEORY.titleUk : LESSON1_THEORY.titleRu;
+  const subtitle = key === 'uk' ? 'am, is, are — каркас англійської фрази' : 'am, is, are — каркас английской фразы';
+
+  const goBack = React.useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
+
+  const handleClaimXP = React.useCallback(async () => {
+    try {
+      const storeKey = lessonTheoryXpClaimedKey(lessonId, studyTarget);
+      if ((await AsyncStorage.getItem(storeKey)) === '1') return;
+      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+      await registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
+        eventId: ['vocabulary', String(studyTarget ?? 'na'), String(lessonId), 'theory', 'claim'].join(':'),
+        payload: { lessonId, studyTarget, surface: 'lesson_theory' },
+      });
+      await AsyncStorage.setItem(storeKey, '1');
+    } catch {
+      // награда не должна ронять экран
+    }
+  }, [lessonId, studyTarget, lang]);
+
+  return (
+    <TheoryLessonView
+      lessonId={lessonId}
+      kicker="Грамматика"
+      title={title}
+      subtitle={subtitle}
+      sections={sections}
+      xpAmount={25}
+      onClaimXP={handleClaimXP}
+      onBack={goBack}
+    />
+  );
 }
 
 function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
@@ -1322,6 +1416,13 @@ export default function HintScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const lessonId = parseInt(id || '1', 10);
+
+  // Новая теория «дорогой минимализм» — пока для уроков с готовым контентом (L1).
+  // Остальные уроки рендерят прежнюю шпаргалку (ниже), чтобы ничего не сломать.
+  if (isInteractiveTheoryLesson(lessonId)) {
+    return <LessonTheoryNew lessonId={lessonId} />;
+  }
+
   const hint = HINTS[lessonId] || HINTS[1];
   const frenchHintBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
   const frenchHintCopy = frenchHintBlocked ? frenchLessonSupportGateCopy('lesson_hint', lang, lessonId) : null;

@@ -61,6 +61,7 @@ import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
 import { readPersonalPlanState } from '../app/personal_plan_state';
 import { useOnboardingSounds } from '../hooks/use-onboarding-sounds';
+import PremiumCelebrationModal from './PremiumCelebrationModal';
 
 /**
  * Скролл онбординга — БЕЗ резинки/overscroll.
@@ -759,6 +760,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   }, []);
   const nameForProfileRef = useRef('');
   const { playDemoCorrect, playPlanReady, playPurchaseSuccess } = useOnboardingSounds();
+  const [purchaseCelebrationVisible, setPurchaseCelebrationVisible] = useState(false);
   const [demoAnswered, setDemoAnswered] = useState(false);
   const [demoCorrect, setDemoCorrect]   = useState(false);
   const [demoSelected, setDemoSelected] = useState<number>(-1);
@@ -1737,7 +1739,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
         })();
       }
 
-      // Покупка прошла — активируем план и идём к имени
+      // Покупка прошла — активируем план, показываем celebration, потом имя
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
@@ -1750,7 +1752,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
       });
       await activatePendingPersonalPlanAfterPremium();
       setNicknameMode('personal_plan');
-      goToStep('name');
+      setPurchaseCelebrationVisible(true);
     } catch (err: unknown) {
       if ((err as { userCancelled?: boolean })?.userCancelled) {
         void import('../app/analytics').then(({ trackEvent }) =>
@@ -2544,6 +2546,14 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
               </View>
             </View>
           ) : null}
+          <PremiumCelebrationModal
+            visible={purchaseCelebrationVisible}
+            onClose={() => {
+              setPurchaseCelebrationVisible(false);
+              goToStep('name');
+            }}
+            variant="premium"
+          />
         </>
       ),
       styles.eliteWelcomeRoot,

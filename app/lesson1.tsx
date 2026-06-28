@@ -1388,15 +1388,23 @@ const LessonContent = React.memo(function LessonContent({
                   onPress={() => {
                     if (!canUse50) return;
                     hapticTap();
-                    // Настоящее 50/50: затемняем ровно половину НЕВЕРНЫХ плиток (округление
-                    // вверх), правильная всегда остаётся видимой среди других бликующих.
+                    // Настоящее 50/50: оставляем ПОЛОВИНУ ВСЕХ плиток (округление вверх),
+                    // включая правильную. Считаем от общего числа плиток, а НЕ от числа
+                    // неверных — иначе результат «съезжал» при банке из 5 (убирало 2 вместо 3).
+                    // total=6→оставить 3 (убрать 3); total=5→оставить 3 (убрать 2); total=4→оставить 2.
                     const wrongIdx = wordOptionItems.filter(o => !o.isCorrectOption).map(o => o.index);
                     // Страховка: если НИ одна плитка не помечена правильной (рассинхрон состояния),
                     // 50/50 затемнил бы и правильный ответ. В таком случае подсказку не применяем,
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
-                    const dimCount = Math.ceil(wrongIdx.length / 2);
+                    const totalTiles = wordOptionItems.length;
+                    // Оставляем половину всех плиток (округляя вверх), но НИКОГДА меньше 2 —
+                    // иначе при банке из 2 плиток осталась бы одна правильная = показ ответа.
+                    const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
+                    // Гасим столько неверных, чтобы осталось keepCount плиток (1 правильная + остальные неверные).
+                    // Никогда не уходим в минус и не гасим больше, чем есть неверных.
+                    const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));
                     const shuffledWrong = [...wrongIdx];
                     for (let k = shuffledWrong.length - 1; k > 0; k -= 1) {
                       const j = Math.floor(Math.random() * (k + 1));
@@ -2180,7 +2188,8 @@ export default function LessonScreen() {
 
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
-  // Только пройденные ячейки (progress[i] непустой), исключая текущую позицию.
+  // Все ячейки, пройденные за текущий проход (passAnsweredCells). Активную ячейку прячем
+  // только во время immediate-error-replay — на обычном результате её надо показывать.
   // Прогресс/XP НЕ трогаем — это чистое чтение, без markTrainerResult/начисления.
   const reviewPhrases = useMemo<ReviewPhrase[]>(() => {
     const out: ReviewPhrase[] = [];
@@ -2190,7 +2199,11 @@ export default function LessonScreen() {
       // Только фразы, реально пройденные за ТЕКУЩИЙ проход. Не даём листать вперёд/
       // к фразам, до которых юзер ещё не дошёл в этом проходе.
       if (!passAnsweredCells.has(i)) continue;
-      if (i === activeCell) continue; // текущая боевая фраза — её и так видно
+      // Оверлей открывается ТОЛЬКО с экрана результата (status==='result'), где только что
+      // отвеченная фраза — это уже ПРОЙДЕННАЯ фраза текущего прохода, и её надо показывать.
+      // Скрываем активную ячейку лишь когда идёт immediate-error-replay (overridePhraseCell
+      // фиксирует cellIndex на повторяемой фразе) — иначе список схлопывался до одной фразы.
+      if (overridePhraseCell !== null && i === activeCell) continue;
       const p = getPhraseForCell(i);
       if (!p) continue;
       const en = phraseAnswerDisplayLine(p, studyTarget, lang);

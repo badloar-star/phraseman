@@ -31,6 +31,9 @@ export function computeLeagueChatUnreadCount(
   return messages.reduce((count, message) => {
     if (message.status && message.status !== 'visible') return count;
     if (uid && message.authorUid === uid) return count;
+    // Закреплённое приветствие живёт в шапке (а не в ленте) и переписывается
+    // каждый день — не должно надувать счётчик непрочитанного.
+    if ((message as { pinned?: boolean }).pinned) return count;
     return getLeagueChatMessageCreatedAt(message) > lastSeenAt ? count + 1 : count;
   }, 0);
 }

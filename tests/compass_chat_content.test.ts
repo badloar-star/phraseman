@@ -9,6 +9,8 @@
  *  - опросы имеют валидную структуру (≥2 варианта, уникальные ключи).
  */
 import {
+  buildDailySummaryPost,
+  buildIcebreakerPost,
   COMPASS_CHAT_LANGS,
   getDaySeed,
   pickCompassPostForDay,
@@ -74,5 +76,39 @@ describe('compass_chat_content', () => {
     expect(() => pickCompassPostForDay(-5)).not.toThrow();
     expect(() => pickCompassPostForDay(999999)).not.toThrow();
     expect(pickCompassPostForDay(-7).kind).toBe(pickCompassPostForDay(0).kind);
+  });
+});
+
+describe('buildIcebreakerPost', () => {
+  it('закреплённое приветствие локализовано на все 8 языков', () => {
+    const post = buildIcebreakerPost();
+    expect(post.kind).toBe('icebreaker');
+    assertFullyLocalized(post.i18n, 'icebreaker');
+  });
+});
+
+describe('buildDailySummaryPost', () => {
+  it('возвращает null, если хвалить некого', () => {
+    expect(buildDailySummaryPost([])).toBeNull();
+    expect(buildDailySummaryPost(['', '  '])).toBeNull();
+  });
+
+  it('сводка локализована на все 8 языков и содержит имена', () => {
+    const post = buildDailySummaryPost(['Олег', 'Марина']);
+    expect(post).not.toBeNull();
+    assertFullyLocalized(post!.i18n, 'summary');
+    expect(post!.i18n.ru).toContain('Олег');
+    expect(post!.i18n.ru).toContain('Марина');
+  });
+
+  it('при >3 именах показывает «и ещё N» (overflow) на каждом языке', () => {
+    const names = ['A', 'B', 'C', 'D', 'E'];
+    const post = buildDailySummaryPost(names)!;
+    // первые 3 имени видны, остаток (2) — в формулировке «ещё»/«more»/«+»
+    expect(post.i18n.ru).toContain('и ещё 2');
+    expect(post.i18n.es).toContain('2 más');
+    expect(post.i18n['pt-BR']).toContain('mais 2');
+    // 4-е имя НЕ перечислено напрямую
+    expect(post.i18n.ru).not.toContain('D,');
   });
 });

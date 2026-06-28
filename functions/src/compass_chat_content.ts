@@ -26,7 +26,7 @@ export const COMPASS_CHAT_LANGS: readonly CompassChatLang[] = [
 export type CompassI18n = Record<CompassChatLang, string>;
 
 /** Категория дневного поста — управляет иконкой системного сообщения в UI. */
-export type CompassPostKind = 'word_of_day' | 'fact' | 'question' | 'poll';
+export type CompassPostKind = 'word_of_day' | 'fact' | 'question' | 'poll' | 'daily_summary' | 'icebreaker';
 
 export interface CompassPollOption {
   /** Стабильный ключ варианта (для счётчиков голосов: votes[key]). */
@@ -37,10 +37,12 @@ export interface CompassPollOption {
   correct?: boolean;
 }
 
+/** Тип системного сообщения для иконки (см. LeagueChatSystemType в клиенте). */
+export type CompassSystemType = 'generic' | 'chest_unlocked' | 'member_joined';
+
 export interface CompassPost {
   kind: CompassPostKind;
-  /** Тип системного сообщения для иконки (см. LeagueChatSystemType). */
-  systemType: 'generic';
+  systemType: CompassSystemType;
   /** Основной текст поста (локализованный). */
   i18n: CompassI18n;
   /** Варианты для опроса/квиза (только при kind:'poll'). */
@@ -207,3 +209,81 @@ export function pickCompassPostForDay(seed: number): CompassPost {
       return { kind: 'question', systemType: 'generic', i18n: at(QUESTIONS) };
   }
 }
+
+// ── Приветствие-закреп для новичков (icebreaker) ─────────────────────────────
+//
+// Пишется один раз на группу (закреплённое сообщение). Снимает «паралич чистого
+// листа»: даёт новичку простой повод написать первое сообщение.
+
+const ICEBREAKER: CompassI18n = {
+  ru: 'Привет, я Компас — буду рядом по дороге к английскому. Чтобы влиться, напишите одну строчку: откуда вы и зачем взялись за язык. Мне правда интересно.',
+  uk: 'Привіт, я Компас — буду поруч на шляху до англійської. Щоб влитися, напишіть один рядок: звідки ви і навіщо взялися за мову. Мені справді цікаво.',
+  es: 'Hola, soy Compass — os acompañaré en el camino del inglés. Para romper el hielo, escribid una línea: de dónde sois y por qué estudiáis inglés. Me interesa de verdad.',
+  'pt-BR': 'Oi, sou o Compass — vou estar com vocês na jornada do inglês. Pra começar, escrevam uma linha: de onde são e por que estudam inglês. Tenho curiosidade de verdade.',
+  vi: 'Chào, mình là Compass — sẽ đồng hành cùng bạn trên đường học tiếng Anh. Để làm quen, hãy viết một dòng: bạn đến từ đâu và vì sao học tiếng Anh. Mình thật sự tò mò.',
+  id: 'Hai, saya Compass — akan menemani perjalanan bahasa Inggris kalian. Biar cair, tulis satu baris: kalian dari mana dan kenapa belajar bahasa Inggris. Saya penasaran beneran.',
+  tr: 'Merhaba, ben Compass — İngilizce yolculuğunuzda yanınızda olacağım. Buzları kırmak için bir satır yazın: nerelisiniz ve neden İngilizce öğreniyorsunuz. Cidden merak ediyorum.',
+  pl: 'Cześć, jestem Compass — będę z wami na drodze do angielskiego. Żeby przełamać lody, napiszcie jedną linijkę: skąd jesteście i po co uczycie się angielskiego. Naprawdę mnie to ciekawi.',
+};
+
+/** Закреплённый приветственный пост Компаса (один на группу). */
+export function buildIcebreakerPost(): CompassPost {
+  return { kind: 'icebreaker', systemType: 'member_joined', i18n: ICEBREAKER };
+}
+
+// ── Дневная сводка достижений ────────────────────────────────────────────────
+//
+// «Сегодня дневную цель закрыли: Олег, Марина и ещё 6 🎉» — соц-доказательство и
+// мягкий FOMO. Имена считаются сервером (батч), показываются 1 постом на группу.
+
+const MAX_NAMES_IN_SUMMARY = 3;
+
+function joinNames(names: string[], lang: CompassChatLang): string {
+  const head = names.slice(0, MAX_NAMES_IN_SUMMARY);
+  const extra = names.length - head.length;
+  const list = head.join(', ');
+  if (extra <= 0) return list;
+  const more: Record<CompassChatLang, string> = {
+    ru: `${list} и ещё ${extra}`,
+    uk: `${list} і ще ${extra}`,
+    es: `${list} y ${extra} más`,
+    'pt-BR': `${list} e mais ${extra}`,
+    vi: `${list} và ${extra} người nữa`,
+    id: `${list} dan ${extra} lainnya`,
+    tr: `${list} ve ${extra} kişi daha`,
+    pl: `${list} i jeszcze ${extra}`,
+  };
+  return more[lang];
+}
+
+/**
+ * Локализованная сводка «кто сегодня был активен / закрыл цель».
+ * names — отображаемые имена участников (уже отфильтрованы/обрезаны вызывающим
+ * до разумного числа, напр. 12). Возвращает null, если хвалить некого.
+ */
+export function buildDailySummaryPost(names: string[]): CompassPost | null {
+  const clean = names.map((n) => String(n || '').trim()).filter(Boolean);
+  if (clean.length === 0) return null;
+
+  const tpl = (who: string, lang: CompassChatLang): string => {
+    const map: Record<CompassChatLang, string> = {
+      ru: `Заглянул в ваши успехи за сегодня: вперёд продвинулись ${who} 🎉 Если вы пока нет — день ещё не кончился, я подожду.`,
+      uk: `Зазирнув у ваші успіхи за сьогодні: вперед просунулися ${who} 🎉 Якщо ви ще ні — день не скінчився, я зачекаю.`,
+      es: `Eché un vistazo a vuestros avances de hoy: han progresado ${who} 🎉 Si tú todavía no, el día no ha acabado, te espero.`,
+      'pt-BR': `Dei uma olhada nos avanços de hoje: progrediram ${who} 🎉 Se você ainda não, o dia não acabou, eu espero.`,
+      vi: `Tôi ngó qua thành quả hôm nay: đã tiến lên có ${who} 🎉 Nếu bạn chưa, ngày chưa hết đâu, tôi chờ.`,
+      id: `Saya intip kemajuan hari ini: yang maju ada ${who} 🎉 Kalau kamu belum, hari belum usai, saya tunggu.`,
+      tr: `Bugünkü ilerlemenize göz attım: öne çıkanlar ${who} 🎉 Sen henüz değilsen, gün bitmedi, beklerim.`,
+      pl: `Zajrzałem w wasze dzisiejsze postępy: do przodu ruszyli ${who} 🎉 Jeśli ciebie jeszcze nie ma, dzień się nie skończył, poczekam.`,
+    };
+    return map[lang];
+  };
+
+  const i18n = COMPASS_CHAT_LANGS.reduce((acc, lang) => {
+    acc[lang] = tpl(joinNames(clean, lang), lang);
+    return acc;
+  }, {} as CompassI18n);
+
+  return { kind: 'daily_summary', systemType: 'chest_unlocked', i18n };
+}
+

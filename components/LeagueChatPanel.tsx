@@ -312,10 +312,20 @@ function LeagueChatPanel({
     };
   }, [room, currentRoomKey, connectionUi.shouldSubscribe, subscriptionNonce, markVisibleMessagesRead]);
 
-  const visibleMessages = useMemo(
+  const allVisible = useMemo(
     () => mergeLeagueChatOptimisticMessages(messages, optimisticMessages)
       .filter((m) => isOptimisticLeagueChatMessage(m) || m.authorUid === myUid || !blockedUsers[m.authorUid]),
     [messages, optimisticMessages, blockedUsers, myUid],
+  );
+
+  // Закреплённое приветствие Компаса выносим в шапку, из ленты убираем.
+  const pinnedMessage = useMemo(
+    () => allVisible.find((m) => !isOptimisticLeagueChatMessage(m) && (m as LeagueChatMessage).pinned) as LeagueChatMessage | undefined,
+    [allVisible],
+  );
+  const visibleMessages = useMemo(
+    () => allVisible.filter((m) => isOptimisticLeagueChatMessage(m) || !(m as LeagueChatMessage).pinned),
+    [allVisible],
   );
 
   useEffect(() => {
@@ -824,6 +834,21 @@ function LeagueChatPanel({
           flex: 1,
         }}
       >
+        {pinnedMessage ? (
+          <View
+            testID="league-chat-pinned"
+            style={{ paddingHorizontal: 10, paddingTop: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}
+          >
+            <LeagueChatCompassPost
+              message={pinnedMessage}
+              lang={lang}
+              t={t}
+              f={f}
+              icon={systemMessageIcon(pinnedMessage.systemType)}
+              onToast={onToast}
+            />
+          </View>
+        ) : null}
         <ScrollView
           ref={scrollRef}
           style={{ flex: 1 }}

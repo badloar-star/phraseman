@@ -58,7 +58,7 @@ export interface LeagueChatMessage {
   /** Тип системного события (только при kind === 'system'). Управляет иконкой в UI. */
   systemType?: LeagueChatSystemType;
   /** Категория поста Компаса (только для системных постов от Компаса). */
-  compassKind?: 'word_of_day' | 'fact' | 'question' | 'poll';
+  compassKind?: 'word_of_day' | 'fact' | 'question' | 'poll' | 'daily_summary' | 'icebreaker';
   /** Локализованный текст поста (все 8 языков). Клиент рендерит i18n[lang] вместо text. */
   i18n?: Partial<Record<string, string>>;
   /** Счётчики эмодзи-реакций: { '🔥': 3, '👏': 1 }. Меняются increment(±1). */
@@ -67,6 +67,8 @@ export interface LeagueChatMessage {
   poll?: LeagueChatPollOption[];
   /** Счётчики голосов опроса: { [optionKey]: number }. Меняются increment(+1). */
   pollVotes?: Record<string, number>;
+  /** true — закреплённое сообщение (приветствие новичкам), рендерится сверху чата. */
+  pinned?: boolean;
 }
 
 export interface LeagueChatPollOption {

@@ -18,11 +18,19 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
-import { getDaySeed, pickCompassPostForDay } from './compass_chat_content';
+import {
+  buildDailySummaryPost,
+  buildIcebreakerPost,
+  getDaySeed,
+  pickCompassPostForDay,
+  type CompassPost,
+} from './compass_chat_content';
 
 const LEAGUE_CHAT_SYSTEM_UID = '__league_system__';
 const PAGE_SIZE = 200;
 const BATCH_LIMIT = 400;
+/** Сколько участников максимум перечислять в дневной сводке достижений. */
+const MAX_SUMMARY_NAMES = 12;
 
 /** ISO weekId текущей недели (UTC) — совпадает с league_groups.getWeekId. */
 function getCurrentWeekId(now: Date = new Date()): string {
@@ -40,13 +48,93 @@ export function compassPostDocId(weekId: string, groupId: string, daySeed: numbe
   return `compass_${weekId}_${safeGroup}_${daySeed}`;
 }
 
+/** Стабильный id закреплённого приветствия (один на группу, без daySeed). */
+export function compassIcebreakerDocId(weekId: string, groupId: string): string {
+  const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
+  return `compass_pin_${weekId}_${safeGroup}`;
+}
+
+/** Стабильный id дневной сводки достижений (один на группу/день). */
+export function compassSummaryDocId(weekId: string, groupId: string, daySeed: number): string {
+  const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
+  return `compass_sum_${weekId}_${safeGroup}_${daySeed}`;
+}
+
 /** Минимальный размер группы для поста — не засорять одиночные/пустые комнаты. */
 const MIN_MEMBERS_FOR_POST = 2;
 
-function countMembers(data: FirebaseFirestore.DocumentData | undefined): number {
+type MemberRow = Record<string, unknown>;
+
+function membersMap(data: FirebaseFirestore.DocumentData | undefined): Record<string, MemberRow> {
   const members = data?.members;
-  if (!members || typeof members !== 'object' || Array.isArray(members)) return 0;
-  return Object.values(members).filter((m) => (m as Record<string, unknown>)?.identityHidden !== true).length;
+  if (!members || typeof members !== 'object' || Array.isArray(members)) return {};
+  return members as Record<string, MemberRow>;
+}
+
+function countMembers(data: FirebaseFirestore.DocumentData | undefined): number {
+  return Object.values(membersMap(data)).filter((m) => m?.identityHidden !== true).length;
+}
+
+/** Снимок очков участников (uid → points) для сравнения «кто продвинулся за день». */
+function pointsSnapshot(data: FirebaseFirestore.DocumentData | undefined): Record<string, number> {
+  const snap: Record<string, number> = {};
+  for (const [uid, m] of Object.entries(membersMap(data))) {
+    if (m?.identityHidden === true) continue;
+    snap[uid] = Math.max(0, Math.trunc(Number(m?.points ?? 0)) || 0);
+  }
+  return snap;
+}
+
+/** Имена участников, чьи очки выросли с прошлого снимка (= были активны сегодня). */
+function advancedMemberNames(
+  data: FirebaseFirestore.DocumentData | undefined,
+  prev: Record<string, number> | undefined,
+): string[] {
+  if (!prev || typeof prev !== 'object') return [];
+  const names: string[] = [];
+  for (const [uid, m] of Object.entries(membersMap(data))) {
+    if (m?.identityHidden === true) continue;
+    const now = Math.max(0, Math.trunc(Number(m?.points ?? 0)) || 0);
+    const before = Math.max(0, Math.trunc(Number(prev[uid] ?? 0)) || 0);
+    if (now > before) {
+      const name = String(m?.name ?? '').trim();
+      if (name) names.push(name);
+    }
+  }
+  return names.slice(0, MAX_SUMMARY_NAMES);
+}
+
+/** Документ чат-сообщения из поста Компаса. */
+function buildMessagePayload(
+  post: CompassPost,
+  groupId: string,
+  weekId: string,
+  leagueId: number,
+  createdAt: number,
+  extra?: Record<string, unknown>,
+): Record<string, unknown> {
+  const payload: Record<string, unknown> = {
+    groupId,
+    weekId,
+    leagueId,
+    authorUid: LEAGUE_CHAT_SYSTEM_UID,
+    authorName: 'Compass',
+    kind: 'system',
+    systemType: post.systemType,
+    compassKind: post.kind,
+    text: post.i18n.ru, // дефолтный текст; клиент рендерит i18n[lang]
+    i18n: post.i18n,
+    status: 'visible',
+    reportCount: 0,
+    createdAt,
+    updatedAt: createdAt,
+    ...(extra || {}),
+  };
+  if (post.poll) {
+    payload.poll = post.poll;
+    payload.pollVotes = {};
+  }
+  return payload;
 }
 
 export const compassChatDailyCron = onSchedule(
@@ -68,6 +156,7 @@ export const compassChatDailyCron = onSchedule(
 
     let processed = 0;
     let written = 0;
+    let summaries = 0;
     let skipped = 0;
     let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
     let batch = db.batch();
@@ -103,37 +192,52 @@ export const compassChatDailyCron = onSchedule(
         }
 
         const leagueId = Math.max(0, Math.trunc(Number(data.leagueId ?? 0)));
-        const messageRef = db
-          .collection('league_chat_messages')
-          .doc(compassPostDocId(weekId, doc.id, daySeed));
+        const messages = db.collection('league_chat_messages');
 
-        const payload: Record<string, unknown> = {
-          groupId: doc.id,
-          weekId,
-          leagueId,
-          authorUid: LEAGUE_CHAT_SYSTEM_UID,
-          authorName: 'Compass',
-          kind: 'system',
-          systemType: post.systemType,
-          compassKind: post.kind,
-          text: post.i18n.ru, // дефолтный текст; клиент рендерит i18n[lang]
-          i18n: post.i18n,
-          status: 'visible',
-          reportCount: 0,
-          createdAt,
-          updatedAt: createdAt,
-        };
-        if (post.poll) {
-          payload.poll = post.poll;
-          payload.pollVotes = {}; // счётчики голосов: { [optionKey]: number } через increment
-        }
-
-        // merge:false — но id детерминирован, поэтому повторный запуск перезапишет
-        // тем же контентом (идемпотентно). pollVotes сбросится только при повторе
-        // в тот же день, что безопасно (тот же daySeed → тот же пост).
-        batch.set(messageRef, payload, { merge: false });
+        // 1) Дневной пост Компаса (слово/факт/вопрос/опрос). id детерминирован →
+        //    повторный запуск перезапишет тем же контентом (идемпотентно).
+        batch.set(
+          messages.doc(compassPostDocId(weekId, doc.id, daySeed)),
+          buildMessagePayload(post, doc.id, weekId, leagueId, createdAt),
+          { merge: false },
+        );
         batchCount++;
         written++;
+
+        // 2) Закреплённое приветствие новичкам — один документ на группу (pinned).
+        batch.set(
+          messages.doc(compassIcebreakerDocId(weekId, doc.id)),
+          buildMessagePayload(buildIcebreakerPost(), doc.id, weekId, leagueId, createdAt, { pinned: true }),
+          { merge: false },
+        );
+        batchCount++;
+        written++;
+
+        // 3) Дневная сводка достижений: кто продвинулся со вчерашнего снимка очков.
+        const prevSnap = (data.compassPointsSnapshot && typeof data.compassPointsSnapshot === 'object'
+          ? data.compassPointsSnapshot
+          : undefined) as Record<string, number> | undefined;
+        const advanced = advancedMemberNames(data, prevSnap);
+        const summary = buildDailySummaryPost(advanced);
+        if (summary) {
+          batch.set(
+            messages.doc(compassSummaryDocId(weekId, doc.id, daySeed)),
+            buildMessagePayload(summary, doc.id, weekId, leagueId, createdAt),
+            { merge: false },
+          );
+          batchCount++;
+          written++;
+          summaries++;
+        }
+
+        // Обновляем снимок очков на группе для сравнения завтра (admin SDK,
+        // правила не блокируют). Отдельное поле — не трогает members.
+        batch.set(
+          db.collection('league_groups').doc(doc.id),
+          { compassPointsSnapshot: pointsSnapshot(data), compassPointsSnapshotDay: daySeed },
+          { merge: true },
+        );
+        batchCount++;
 
         if (batchCount >= BATCH_LIMIT) {
           await flushBatch();
@@ -142,7 +246,7 @@ export const compassChatDailyCron = onSchedule(
     }
 
     await flushBatch();
-    console.log(`compassChatDailyCron: processed=${processed} groups, written=${written}, skipped=${skipped}`);
+    console.log(`compassChatDailyCron: processed=${processed} groups, written=${written}, summaries=${summaries}, skipped=${skipped}`);
     return;
   },
 );

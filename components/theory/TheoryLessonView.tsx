@@ -507,9 +507,8 @@ export default function TheoryLessonView({
   });
 
   return (
-    <View style={styles.root}>
-      <ScreenGradient />
-      <SafeAreaView style={styles.safe} edges={['top']}>
+    <ScreenGradient>
+      <SafeAreaView style={[styles.safe, { backgroundColor: t.bgPrimary }]} edges={['top']}>
         {/* Шапка */}
         <View style={styles.topBar}>
           <TapScale
@@ -634,7 +633,7 @@ export default function TheoryLessonView({
           </TapScale>
         </View>
       </SafeAreaView>
-    </View>
+    </ScreenGradient>
   );
 }
 

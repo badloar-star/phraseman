@@ -2375,6 +2375,7 @@ function AppContent() {
 
       <Stack.Screen name="hint" />
       <Stack.Screen name="lesson_help" />
+      <Stack.Screen name="lesson_theory_v2" />
       <Stack.Screen name="preposition_drill" />
       <Stack.Screen name="settings_edu" />
       <Stack.Screen name="settings_notifications" />

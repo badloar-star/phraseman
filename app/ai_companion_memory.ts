@@ -13,11 +13,16 @@ import type { DialogMemory } from './ai_dialog_client';
 
 const WEAK_WORDS_LIMIT = 5;
 
-const CEFR_GOAL_RU: Record<string, string> = {
-  A1: 'делает первые шаги в языке',
-  A2: 'учит базовый разговорный',
-  B1: 'хочет говорить увереннее',
-  B2: 'оттачивает беглость',
+// Профиль уходит ВНУТРЬ англоязычного system-промпта собеседника, поэтому он на
+// английском (а не на русском — иначе русский текст в промпте провоцировал срыв
+// ответа на русский, и для украинца/поляка строка «Родной язык — русский» врала).
+// Родной язык ученика серверу и так известен из interfaceLang ({LEARNER_LANG_NAME}
+// в GLOBAL_RULES) — здесь его НЕ дублируем.
+const CEFR_GOAL_EN: Record<string, string> = {
+  A1: 'is taking first steps in the language',
+  A2: 'is learning basic conversation',
+  B1: 'wants to speak more confidently',
+  B2: 'is polishing fluency',
 };
 
 /**
@@ -37,8 +42,8 @@ export async function buildCompanionMemory(
     // SRS недоступна — продолжаем без слабых слов, это не критично.
   }
 
-  const levelNote = CEFR_GOAL_RU[cefr] ?? 'учит английский';
-  const profile = `Уровень ${cefr}, ${levelNote}. Родной язык — русский.`;
+  const levelNote = CEFR_GOAL_EN[cefr] ?? 'is learning English';
+  const profile = `Level ${cefr}, ${levelNote}.`;
 
   return {
     profile,

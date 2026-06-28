@@ -661,6 +661,8 @@ function FlashcardListItemImpl({
                     <Text
                       maxFontSizeMultiplier={1.35}
                       numberOfLines={2}
+                      adjustsFontSizeToFit
+                      minimumFontScale={0.7}
                       style={{
                         color: t.textPrimary,
                         fontSize: f.h1 + 4,
@@ -694,6 +696,8 @@ function FlashcardListItemImpl({
                     <Text
                       maxFontSizeMultiplier={1.35}
                       numberOfLines={item.transcription?.trim() ? 4 : 6}
+                      adjustsFontSizeToFit
+                      minimumFontScale={0.7}
                       style={{
                         color: t.textPrimary,
                         fontSize: f.h1 + 2,

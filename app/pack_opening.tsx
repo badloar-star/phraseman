@@ -286,6 +286,8 @@ function FlippableCard({
               <Text
                 style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
                 numberOfLines={2}
+                adjustsFontSizeToFit
+                minimumFontScale={0.7}
               >
                 {card.en}
               </Text>
@@ -293,6 +295,8 @@ function FlippableCard({
               <Text
                 style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
                 numberOfLines={3}
+                adjustsFontSizeToFit
+                minimumFontScale={0.7}
               >
                 {resolveFlashcardBackText(card, cardLang)}
               </Text>

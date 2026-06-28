@@ -22,7 +22,7 @@ import TheoryLessonView, {
   type TheoryBlock,
 } from '../components/theory/TheoryLessonView';
 import { LESSON1_THEORY } from './theory_content_lesson1';
-import { isInteractiveTheoryLesson } from './theory_topic_accents';
+import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { legacyRuUk } from '../constants/i18n';
 import { registerXP } from './xp_manager';
 import { lessonTheoryXpClaimedKey } from './target_storage_keys';
@@ -59,10 +59,10 @@ function drillsForSection(num: string): TheoryBlock[] {
   }
 }
 
-/** Преобразует контент урока 1 в формат движка теории по текущему языку. */
-function buildLesson1Sections(lang: Lang): TheorySection[] {
+/** Преобразует контент любого урока в формат движка теории по текущему языку. */
+function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySection[] {
   const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
-  return LESSON1_THEORY.sections.map((s) => {
+  return content.sections.map((s) => {
     const blocks: TheoryBlock[] = s.blocks.map((b): TheoryBlock => {
       if (b.kind === 'examples') {
         return {
@@ -72,15 +72,20 @@ function buildLesson1Sections(lang: Lang): TheorySection[] {
       }
       if (b.kind === 'formula') return { kind: 'formula', formula: b.formula };
       if (b.kind === 'fix') return { kind: 'fix', fixes: b.fixes };
+      // drill: тренировка прямо из данных урока (уроки 2-32)
+      if (b.kind === 'drill') return { kind: 'drill', drill: b.drill as TheoryBlock['drill'] };
       // body / tip
       return { kind: b.kind, text: key === 'uk' ? (b.uk ?? b.ru) : b.ru };
     });
+    // Для урока 1 тренировки добавляются из drillsForSection (исторически);
+    // для остальных drill уже лежат в данных, дубль не добавляем.
+    const legacyDrills = content === LESSON1_THEORY ? drillsForSection(s.num) : [];
     return {
       num: s.num,
       title: key === 'uk' ? s.titleUk : s.titleRu,
       exampleCount: s.exampleCount,
       defaultOpen: s.defaultOpen,
-      blocks: [...blocks, ...drillsForSection(s.num)],
+      blocks: [...blocks, ...legacyDrills],
     };
   });
 }
@@ -90,9 +95,10 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
-  const sections = React.useMemo(() => buildLesson1Sections(lang), [lang]);
-  const title = key === 'uk' ? LESSON1_THEORY.titleUk : LESSON1_THEORY.titleRu;
-  const subtitle = key === 'uk' ? 'am, is, are — каркас англійської фрази' : 'am, is, are — каркас английской фразы';
+  const content = getTheoryContent(lessonId) ?? LESSON1_THEORY;
+  const sections = React.useMemo(() => buildTheorySections(content, lang), [content, lang]);
+  const title = key === 'uk' ? content.titleUk : content.titleRu;
+  const subtitle = undefined;
 
   const goBack = React.useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
@@ -1417,9 +1423,9 @@ export default function HintScreen() {
   const { studyTarget } = useStudyTarget();
   const lessonId = parseInt(id || '1', 10);
 
-  // Новая теория «дорогой минимализм» — пока для уроков с готовым контентом (L1).
-  // Остальные уроки рендерят прежнюю шпаргалку (ниже), чтобы ничего не сломать.
-  if (isInteractiveTheoryLesson(lessonId)) {
+  // Новая теория «дорогой минимализм» — для всех уроков с готовым контентом
+  // (реестр theory_content_registry, уроки 1-32). Остальные — прежняя шпаргалка.
+  if (hasTheoryContent(lessonId)) {
     return <LessonTheoryNew lessonId={lessonId} />;
   }
 

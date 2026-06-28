@@ -56,16 +56,15 @@ export const DEFAULT_TOPIC_ACCENT: TopicAccent = {
 };
 
 /**
- * Уроки, контент которых уже переписан на новый интерактивный формат
- * (есть interaction/topicAccent в экранах). Тайл «Теория» для них ведёт на
- * новый аккордеон-экран (lesson_theory_v2), остальные — на старый lesson_help.
- * По мере переписывания уроков добавляем их id сюда.
+ * Уроки, контент которых переписан на новую интерактивную теорию
+ * (theory_content_lessonN.ts). Кнопка «Теория» для них ведёт на новый экран
+ * (/hint → LessonTheoryNew). Сейчас готовы ВСЕ уроки 1-32.
  */
-export const INTERACTIVE_THEORY_LESSONS: ReadonlySet<number> = new Set<number>([
-  1,
-]);
+export const INTERACTIVE_THEORY_LESSONS: ReadonlySet<number> = new Set<number>(
+  Array.from({ length: 32 }, (_, i) => i + 1),
+);
 
-/** Готов ли урок к показу через новый аккордеон-путь. */
+/** Готов ли урок к показу через новый интерактивный экран теории. */
 export function isInteractiveTheoryLesson(lessonId: number): boolean {
   return INTERACTIVE_THEORY_LESSONS.has(lessonId);
 }

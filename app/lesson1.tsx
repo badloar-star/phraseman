@@ -2190,7 +2190,11 @@ export default function LessonScreen() {
       // Только фразы, реально пройденные за ТЕКУЩИЙ проход. Не даём листать вперёд/
       // к фразам, до которых юзер ещё не дошёл в этом проходе.
       if (!passAnsweredCells.has(i)) continue;
-      if (i === activeCell) continue; // текущая боевая фраза — её и так видно
+      // Прячем активную ячейку ТОЛЬКО во время immediate-error-replay: тогда overridePhraseCell
+      // закрепляет activeCell на повторяемой фразе, которая уже в passAnsweredCells, и без этого
+      // условия список «Назад к фразам» схлопывался до одной фразы (см. регрессию строки 2193).
+      // На обычном экране результата только что отвеченную фразу НАДО показывать.
+      if (overridePhraseCell !== null && i === activeCell) continue;
       const p = getPhraseForCell(i);
       if (!p) continue;
       const en = phraseAnswerDisplayLine(p, studyTarget, lang);

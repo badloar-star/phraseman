@@ -29,8 +29,17 @@ import { useCorrectSound } from '../hooks/use-correct-sound';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
-import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb } from './irregular_verbs_data';
+import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
 import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
+import {
+  loadVerbSrs,
+  recordVerbPass,
+  seedSrsFromLegacyCounts,
+  summarizeVerbSrs,
+  daysUntilDue,
+  type VerbSrsMap,
+} from './irregular_verbs_srs';
+import VerbLetterBank from '../components/VerbLetterBank';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
@@ -191,11 +200,12 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
   initCounts: Record<string, number>;
+  initSrs: VerbSrsMap;
   onUpdate: (base: string, count: number) => void;
   onReset: () => void;
   lessonId?: number;
@@ -240,9 +250,20 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
   const [feedbackCorrect, setFeedbackCorrect] = useState(true);
   const hadErrorThisVerb = useRef(false);
+  // «Шаткий» проход: была ошибка ИЛИ глагол ещё незрелый (узнавание) — короткий SRS-интервал.
+  const shakyThisVerb = useRef(false);
   // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
   const verbMistakeCountRef = useRef<Record<string, number>>({});
   const irregularStorageKey = useMemo(() => irregularVerbsGlobalKey(studyTarget), [studyTarget]);
+  // SRS-карта (стрик/повторения по каждой base) — обновляется по ходу сессии.
+  const srsMapRef = useRef<VerbSrsMap>(initSrs);
+  // Зрелые глаголы (streak ≥ 2) тренируем воспроизведением (буквы), новые — узнаванием (кнопки).
+  const RECALL_STREAK_THRESHOLD = 2;
+  const isRecallVerb = useCallback((base: string): boolean => {
+    const st = srsMapRef.current[base.trim().toLowerCase()];
+    return !!st && !st.mastered && st.streak >= RECALL_STREAK_THRESHOLD;
+  }, []);
+  const [letterBankKey, setLetterBankKey] = useState(0);
 
   const xpTranslateY = useRef(new Animated.Value(40)).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
@@ -291,8 +312,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const initVerb = useCallback((verb: IrregularVerb) => {
     setStep(0);
     hadErrorThisVerb.current = false;
+    // Узнавание из 4 кнопок = «шаткий» проход (можно угадать) → короткий SRS-интервал.
+    // Воспроизведение из букв = «крепкий» проход.
+    shakyThisVerb.current = !isRecallVerb(verb.base);
+    setLetterBankKey(k => k + 1);
     buildStep(verb, 0);
-  }, [buildStep]);
+  }, [buildStep, isRecallVerb]);
 
   // До useEffect варианты были [] → первый кадр рисовал пустой низ. useLayoutEffect + начальный state — всегда 4 кнопки.
   useLayoutEffect(() => {
@@ -336,7 +361,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     if (!verb) return;
     const form = FORM_SEQ[step];
     const correct = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
-    const isCorrect = word === correct;
+    // Принимаем и варианты формы (was|were, gotten|got) как верный ответ.
+    const acceptedSet = new Set(acceptedFormsFor(verb, form).map(f => f.toLowerCase()));
+    const isCorrect = acceptedSet.has(word.toLowerCase());
     const activeOptions = ensureCompleteIrregularVerbOptions(options, verb, allVerbs, form);
 
     // Show feedback on buttons
@@ -357,6 +384,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     } else {
       void hapticError();
       hadErrorThisVerb.current = true;
+      shakyThisVerb.current = true;
 
       // Тренер: считаем ошибки на глагол; при 2-й — активируем в очереди
       const vKey = verb.base;
@@ -396,6 +424,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       } else {
         // Verb complete (все 3 формы отвечены)
         const noErrors = !hadErrorThisVerb.current && isCorrect;
+        // SRS: чистый проход двигает по лесенке; «шаткий» (узнавание/угадал) — короткий интервал.
+        void recordVerbPass(verb.base, { clean: noErrors, shaky: shakyThisVerb.current }, studyTarget)
+          .then(state => { srsMapRef.current = { ...srsMapRef.current, [verb.base.trim().toLowerCase()]: state }; })
+          .catch(() => {});
         if (noErrors) {
           // Correct — mark as learned
           const newCount = 3;
@@ -456,6 +488,16 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
 
   const activeVerb = queue[pos % Math.max(queue.length, 1)];
   const activeForm = FORM_SEQ[step];
+  // Зрелый глагол → собираем форму из букв (воспроизведение), новый → 4 кнопки (узнавание).
+  const recallActive = !!activeVerb && isRecallVerb(activeVerb.base);
+  const activeAcceptedForms = useMemo(
+    () => activeVerb ? acceptedFormsFor(activeVerb, activeForm) : [],
+    [activeVerb, activeForm],
+  );
+  const handleRecallSubmit = useCallback((_correct: boolean, assembled: string) => {
+    // Переиспользуем общий путь обработки ответа; корректность пересчитывается внутри по acceptedForms.
+    void handleTap(assembled, -1);
+  }, [handleTap]);
   const displayOptions = useMemo(
     () => activeVerb ? ensureCompleteIrregularVerbOptions(options, activeVerb, allVerbs, activeForm) : options,
     [options, activeVerb, allVerbs, activeForm],
@@ -591,6 +633,22 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>
           </View>
 
+          {/* Режим/подсказка: «сначала попробуй вспомнить» (retrieval-first) или «впиши форму» (recall) */}
+          {phase === 'answering' && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+              <Ionicons
+                name={recallActive ? 'create-outline' : 'bulb-outline'}
+                size={13}
+                color={sx.ghost}
+              />
+              <Text style={{ color: sx.ghost, fontSize: f.label, fontWeight: '600' }}>
+                {recallActive
+                  ? triLang(lang, { ru: 'Собери форму из букв', uk: 'Збери форму з літер', es: 'Forma la palabra con letras', 'pt-BR': 'Monte a forma com letras', vi: 'Ghép dạng từ các chữ cái', id: 'Susun bentuk dari huruf', tr: 'Harflerden formu oluştur', pl: 'Ułóż formę z liter' })
+                  : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' })}
+              </Text>
+            </View>
+          )}
+
           {/* Translation */}
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
             {irregularVerbTranslation(verb, lang)}
@@ -640,14 +698,24 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </View>
       </View>
 
-      {/* ── Bottom buttons (sticky, thumb zone) ── */}
+      {/* ── Bottom: либо сборка из букв (recall), либо 4 кнопки (recognition) ── */}
       <View style={{
         paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
         gap: 10,
         borderTopWidth: 0.5, borderTopColor: t.border,
         backgroundColor: t.bgPrimary,
       }}>
-        {[displayOptions.slice(0, 2), displayOptions.slice(2, 4)].map((row, rowIdx) => (
+        {recallActive ? (
+          <VerbLetterBank
+            key={`${verb?.base}_${activeForm}_${letterBankKey}`}
+            target={correctAnswer}
+            acceptedForms={activeAcceptedForms}
+            disabled={phase !== 'answering'}
+            onSubmit={handleRecallSubmit}
+            resetKey={`${verb?.base}_${activeForm}_${letterBankKey}`}
+          />
+        ) : (
+        [displayOptions.slice(0, 2), displayOptions.slice(2, 4)].map((row, rowIdx) => (
           <View key={rowIdx} style={{ flexDirection: 'row', gap: 10 }}>
             {row.map((word, colIdx) => {
               const idx = rowIdx * 2 + colIdx;
@@ -680,7 +748,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               );
             })}
           </View>
-        ))}
+        ))
+        )}
       </View>
 
       {verb && (
@@ -935,6 +1004,7 @@ export default function LessonIrregularVerbs() {
   const [userTab, setUserTab] = useState<null | 'dict' | 'learn'>(null);
   const tab: 'dict' | 'learn' = userTab !== null ? userTab : 'dict';
   const [globalCounts, setGlobalCounts] = useState<Record<string, number>>({});
+  const [srsMap, setSrsMap] = useState<VerbSrsMap>({});
   const [practiceAll, setPracticeAll] = useState(false);
   const [learnTabKey, setLearnTabKey] = useState(0);
 
@@ -951,14 +1021,45 @@ export default function LessonIrregularVerbs() {
   }, [lessonId]);
 
   useEffect(() => {
-    AsyncStorage.getItem(irregularStorageKey).then(raw => {
-      try { setGlobalCounts(raw ? JSON.parse(raw) : {}); } catch {}
-    });
-  }, [irregularStorageKey]);
+    let cancelled = false;
+    void (async () => {
+      let counts: Record<string, number> = {};
+      try {
+        const raw = await AsyncStorage.getItem(irregularStorageKey);
+        counts = raw ? JSON.parse(raw) : {};
+      } catch { counts = {}; }
+      if (cancelled) return;
+      setGlobalCounts(counts);
+      // SRS: грузим карту; если пусто, но есть старый count-прогресс — мягко мигрируем.
+      let map = await loadVerbSrs(studyTarget);
+      if (Object.keys(map).length === 0 && Object.keys(counts).length > 0) {
+        map = await seedSrsFromLegacyCounts(counts, studyTarget);
+      }
+      if (!cancelled) setSrsMap(map);
+    })();
+    return () => { cancelled = true; };
+  }, [irregularStorageKey, studyTarget]);
 
-  const verbsToLearn = allVerbs.filter(v => (globalCounts[v.base] ?? 0) < REQUIRED);
-  // В режиме practiceAll тренируем все глаголы урока (прогресс не меняется)
-  const verbsForLearnTab = practiceAll ? allVerbs : verbsToLearn;
+  // Порции: большие уроки учим волнами по ~6. Берём первую незавершённую порцию.
+  const portions = useMemo(() => portionsForVerbs(allVerbs), [allVerbs]);
+  // SRS-сводка по всему уроку: что повторять/учить сегодня.
+  const lessonSummary = useMemo(
+    () => summarizeVerbSrs(allVerbs.map(v => v.base), srsMap),
+    [allVerbs, srsMap],
+  );
+  const dueBaseSet = useMemo(() => new Set(lessonSummary.dueBases.map(b => b.toLowerCase())), [lessonSummary]);
+
+  // Первая порция, в которой есть глаголы «на сегодня» (новые или пора повторить).
+  const activePortion = useMemo(() => {
+    for (const portion of portions) {
+      const due = portion.filter(v => dueBaseSet.has(v.base.toLowerCase()));
+      if (due.length > 0) return due;
+    }
+    return [];
+  }, [portions, dueBaseSet]);
+
+  // В режиме practiceAll тренируем все глаголы урока (прогресс/SRS как обычно).
+  const verbsForLearnTab = practiceAll ? allVerbs : activePortion;
   const title = triLang(lang, {
     ru: 'Неправильные глаголы',
     uk: 'Неправильні дієслова',
@@ -996,6 +1097,7 @@ export default function LessonIrregularVerbs() {
                   allVerbs={allVerbsFlat}
                   lang={lang}
                   initCounts={globalCounts}
+                  initSrs={srsMap}
                   lessonId={lessonId}
                   studyTarget={studyTarget}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}

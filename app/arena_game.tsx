@@ -30,9 +30,10 @@ import { useDuelMock } from '../hooks/use-arena-mock';
 import { useArenaRoomRun } from '../hooks/use-arena-room-run';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { getLevelFromXP } from '../constants/theme';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
-import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import DuoPressable from '../components/DuoPressable';
 import { IS_EXPO_GO } from './config';
@@ -641,8 +642,10 @@ export default function DuelGameScreen() {
 
   const handleAnswer = async (option: string) => {
     if (hasAnswered || !currentQuestion) return;
-    await hapticMediumImpact();
     const isCorrect = option === currentQuestion.correct;
+    // Ответ несёт результат: успех на верном, ошибка на неверном
+    // (раньше был одинаковый medium-impact на любой ответ).
+    if (isCorrect) void hapticSuccess(); else void hapticError();
     const to = session.questionTimeoutMs ?? 40_000;
     const st = session.questionStartedAt;
     const elapsed = st != null
@@ -879,6 +882,7 @@ export default function DuelGameScreen() {
                   </Text>
                 </TouchableOpacity>
                 <DuoPressable
+                  withHaptic={false}
                   onPress={async () => {
                     hapticSuccess();
                     try {
@@ -1037,7 +1041,7 @@ export default function DuelGameScreen() {
                 </Text>
                 {showAnswered ? (
                   <View style={[styles.answeredDot, { backgroundColor: t.correct }]}>
-                    <Ionicons name="checkmark" size={10} color="#06210F" />
+                    <Ionicons name="checkmark" size={10} color={monoIcon(themeMode, '#06210F', MONO_ICON.onLight)} />
                   </View>
                 ) : null}
               </View>
@@ -1136,17 +1140,17 @@ export default function DuelGameScreen() {
             </Text>
           )}
           {xpPopup.first > 0 && (
-            <Text style={[styles.xpPopupBonus, { color: '#A78BFA' }]}>
+            <Text style={[styles.xpPopupBonus, { color: monoIcon(themeMode, '#A78BFA') }]}>
               🎯 +{xpPopup.first}  {arenaXpFirst(lang)}
             </Text>
           )}
           {xpPopup.streak > 0 && (
-            <Text style={[styles.xpPopupBonus, { color: '#F97316' }]}>
+            <Text style={[styles.xpPopupBonus, { color: monoIcon(themeMode, '#F97316') }]}>
               🔥 +{xpPopup.streak}  {arenaXpStreak(lang)}
             </Text>
           )}
           {xpPopup.outspeed > 0 && (
-            <Text style={[styles.xpPopupBonus, { color: '#38BDF8' }]}>
+            <Text style={[styles.xpPopupBonus, { color: monoIcon(themeMode, '#38BDF8') }]}>
               💥 +{xpPopup.outspeed}  {arenaXpOutspeed(lang)}
             </Text>
           )}

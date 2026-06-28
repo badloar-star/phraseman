@@ -15,6 +15,7 @@ import {
   View,
 } from 'react-native';
 import TapScale from '../components/TapScale';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -420,7 +421,8 @@ function FillGapMode({ item, onResult }: FillGapProps) {
               ]}
               onPress={() => {
                 flash(opt);
-                requestAnimationFrame(() => { void hapticTap(); });
+                // Результат (success/error) даёт pick — отдельный tap убран,
+                // иначе складывается с сильным сигналом в один удар.
                 pick(opt);
               }}
             >
@@ -646,6 +648,19 @@ export default function TrainerPhrasesSession() {
             <Text style={{ color: sx.muted, fontSize: f.caption }}>
               {current + 1} / {deck.length}
             </Text>
+            {card ? (
+              <ReportErrorButton
+                screen="trainer_phrases"
+                dataId={`trainer_phrase_${card.item.key ?? 'unknown'}`}
+                dataText={`${card.item.key}\n${trainerTranslationForLang(card.item, lang)}`}
+                variant="icon-flag"
+                accessibilityLabel="Сообщить об ошибке во фразе"
+                style={[
+                  { width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border, marginLeft: 8 },
+                  isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
+                ]}
+              />
+            ) : null}
           </View>
 
           {/* Прогресс */}

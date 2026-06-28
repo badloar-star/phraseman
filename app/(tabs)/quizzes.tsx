@@ -1,6 +1,6 @@
 ﻿import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { hapticError, hapticTap } from '../../hooks/use-haptics';
+import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { useCorrectSound } from '../../hooks/use-correct-sound';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -48,6 +48,7 @@ import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i
 import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
 import { getXPProgress, type ThemeMode } from '../../constants/theme';
+import { monoIcon } from '../../constants/monoIcon';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../../constants/motion';
 import { checkAchievements } from '../achievements';
@@ -191,6 +192,7 @@ const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: stri
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral:  { primary: '#FFFFFF', secondary: '#D8C2C5' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
+  business: { primary: '#F2F2F2', secondary: '#9A9A9A' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember:    { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
@@ -401,14 +403,15 @@ function BaseQuizLevelCard({
     tr: c.tagTR,
     pl: c.tagPL,
   });
-  const accent = locked ? t.textMuted : c.color;
+  const isBusinessTheme = themeMode === 'business';
+  const accent = locked ? t.textMuted : isBusinessTheme ? t.accent : c.color;
   const isLightTheme = themeMode === 'light';
   const isCompassTheme = false;
   const pulseAnim = useQuizCardIconPulse(!locked);
   const textCol = locked ? t.textSecond : isLightTheme ? '#1F2933' : '#FFFFFF';
   const textCol2 = locked ? t.textMuted : isLightTheme ? 'rgba(31,41,51,0.66)' : 'rgba(226,232,240,0.78)';
   const gradA = locked ? t.bgCard : isLightTheme ? `${accent}24` : `${accent}22`;
-  const gradB = locked ? t.bgSurface : isLightTheme ? 'rgba(255,255,255,0.92)' : 'rgba(15,23,42,0.88)';
+  const gradB = locked ? t.bgSurface : isLightTheme ? 'rgba(255,255,255,0.92)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,23,42,0.88)';
   const visualSelected = isSelected && !locked;
   const compassRadius = 10;
   const levelLogo = getQuizLevelLogoSource(themeMode, level);
@@ -604,12 +607,13 @@ function ThematicQuizLevelCard({
   const fillAnim = useRef(new Animated.Value(0)).current;
   const title = category.title[lang];
   const subtitle = category.subtitle[lang];
-  const accent = locked ? t.textMuted : category.accent;
+  const isBusinessTheme = themeMode === 'business';
+  const accent = locked ? t.textMuted : isBusinessTheme ? t.accent : category.accent;
   const isLightTheme = themeMode === 'light';
   const textCol = locked ? t.textSecond : isLightTheme ? '#1F2933' : '#FFFFFF';
   const textCol2 = locked ? t.textMuted : isLightTheme ? 'rgba(31,41,51,0.66)' : 'rgba(226,232,240,0.78)';
   const gradA = locked ? t.bgCard : isLightTheme ? '#FFF8ED' : `${accent}24`;
-  const gradB = locked ? t.bgSurface : isLightTheme ? '#EFE1CA' : 'rgba(15,23,42,0.88)';
+  const gradB = locked ? t.bgSurface : isLightTheme ? '#EFE1CA' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,23,42,0.88)';
   const categoryLogo = themedQuizAsset(category.logos, themeMode);
   const visualSelected = isSelected && !locked;
   const isCompassTheme = false;
@@ -1236,7 +1240,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
               withHaptic={false}
               style={{ marginTop:20, paddingHorizontal:28, paddingVertical:12, borderRadius:22, backgroundColor:t.accent }}
             >
-              <Text style={{ color:'#fff', fontSize:f.body, fontWeight:'800' }}>
+              <Text style={{ color:t.correctText, fontSize:f.body, fontWeight:'800' }}>
                 {triLang(lang, {
   ru: 'Закрыть',
   uk: 'Закрити',
@@ -1306,7 +1310,7 @@ function QuizGame({
   );
   const cfg = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
   const quizLevel: Level = LEVEL_CONFIG[level] ? level : 'easy';
-  const levelAccent = thematicCategory?.accent ?? cfg.color;
+  const levelAccent = themeMode === 'business' ? t.accent : (thematicCategory?.accent ?? cfg.color);
   const label = useMemo(
     () => thematicCategory
       ? thematicCategory.title[lang]
@@ -1854,7 +1858,7 @@ function QuizGame({
     const nr = reviewing ? results : [...results, isRight];
     if (!reviewing) { resultsRef.current = nr; setResults(nr); }
 
-    if (!isRight && settings.haptics) hapticError();
+    if (isRight) hapticSuccess(); else hapticError();
 
     if (settings.voiceOut && current?.answer) {
       speakAudio(current.answer, settings.speechRate, { language: 'en-US' });
@@ -2033,9 +2037,9 @@ function QuizGame({
     const shareLang = quizShareMessageLang(lang);
     const _qp = (a: string[]) => a[Math.floor(Math.random() * a.length)];
     const rankInfo = pct === 100
-      ? { labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь!','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь!','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo!','¡Eres una leyenda!']), labelPTBR: _qp(['Impecável!','Perfeito!','Genial!','Que nível!','Lenda!']), labelVI: _qp(['Hoàn hảo!','Tuyệt đối!','Xuất sắc!','Quá đỉnh!','Huyền thoại!']), labelID: _qp(['Sempurna!','Mantap sekali!','Jenius!','Level tinggi!','Legenda!']), labelTR: _qp(['Kusursuz!','Mükemmel!','Harika!','Çok iyi!','Efsane!']), labelPL: _qp(['Bezbłędnie!','Idealnie!','Genialnie!','Ale poziom!','Legenda!']), color:'#D4A017' }
+      ? { labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь!','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь!','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo!','¡Eres una leyenda!']), labelPTBR: _qp(['Impecável!','Perfeito!','Genial!','Que nível!','Lenda!']), labelVI: _qp(['Hoàn hảo!','Tuyệt đối!','Xuất sắc!','Quá đỉnh!','Huyền thoại!']), labelID: _qp(['Sempurna!','Mantap sekali!','Jenius!','Level tinggi!','Legenda!']), labelTR: _qp(['Kusursuz!','Mükemmel!','Harika!','Çok iyi!','Efsane!']), labelPL: _qp(['Bezbłędnie!','Idealnie!','Genialnie!','Ale poziom!','Legenda!']), color:monoIcon(themeMode as ThemeMode, '#D4A017') }
       : pct >= 90
-      ? { labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), labelPTBR: _qp(['Excelente!','Magnífico!','Que ritmo!','É assim mesmo!','Impressionante!']), labelVI: _qp(['Xuất sắc!','Tuyệt vời!','Nhịp tốt quá!','Cứ thế nhé!','Ấn tượng!']), labelID: _qp(['Luar biasa!','Hebat!','Ritmamu bagus!','Begitu caranya!','Mengesankan!']), labelTR: _qp(['Harika!','Muhteşem!','Ritmin çok iyi!','Aynen böyle!','Etkileyici!']), labelPL: _qp(['Świetnie!','Znakomicie!','Dobry rytm!','Tak trzymać!','Imponująco!']), color:'#D4A017' }
+      ? { labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), labelPTBR: _qp(['Excelente!','Magnífico!','Que ritmo!','É assim mesmo!','Impressionante!']), labelVI: _qp(['Xuất sắc!','Tuyệt vời!','Nhịp tốt quá!','Cứ thế nhé!','Ấn tượng!']), labelID: _qp(['Luar biasa!','Hebat!','Ritmamu bagus!','Begitu caranya!','Mengesankan!']), labelTR: _qp(['Harika!','Muhteşem!','Ritmin çok iyi!','Aynen böyle!','Etkileyici!']), labelPL: _qp(['Świetnie!','Znakomicie!','Dobry rytm!','Tak trzymać!','Imponująco!']), color:monoIcon(themeMode as ThemeMode, '#D4A017') }
       : pct >= 70
       ? { labelRU: _qp(['Хорошо!','Неплохо!','Молодец!','Растёшь!','Продолжай!']), labelUK: _qp(['Добре!','Непогано!','Молодець!','Зростаєш!','Продовжуй!']), labelES: _qp(['¡Bien!','¡No está mal!','¡Buen trabajo!','¡Vas mejorando!','¡Sigue así!']), labelPTBR: _qp(['Bom!','Nada mal!','Bom trabalho!','Você está melhorando!','Continue assim!']), labelVI: _qp(['Tốt!','Không tệ!','Làm tốt lắm!','Bạn đang tiến bộ!','Tiếp tục nhé!']), labelID: _qp(['Bagus!','Lumayan!','Kerja bagus!','Kamu makin maju!','Lanjutkan!']), labelTR: _qp(['İyi!','Fena değil!','İyi iş!','Gelişiyorsun!','Devam et!']), labelPL: _qp(['Dobrze!','Nieźle!','Dobra robota!','Robisz postępy!','Tak dalej!']), color:t.textSecond }
       : pct >= 50
@@ -2084,7 +2088,7 @@ function QuizGame({
 })}
           </Animated.Text>
           {bonusXP > 0 && (
-            <XpGainBadge amount={Math.round(bonusXP)} visible={true} style={{ color: '#D4A017', fontSize: f.body, fontWeight: '600', marginBottom: 16 }} />
+            <XpGainBadge amount={Math.round(bonusXP)} visible={true} style={{ color: monoIcon(themeMode as ThemeMode, '#D4A017'), fontSize: f.body, fontWeight: '600', marginBottom: 16 }} />
           )}
           {/* Уровень игрока — с анимированной полоской */}
           {(() => {
@@ -2129,8 +2133,8 @@ function QuizGame({
                 }}
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                  <Ionicons name="refresh" size={18} color={isCompassTheme ? COMPASS_RICH.peach : '#F87171'}/>
-                  <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : '#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
+                  <Ionicons name="refresh" size={18} color={isCompassTheme ? COMPASS_RICH.peach : monoIcon(themeMode as ThemeMode, '#F87171')}/>
+                  <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : monoIcon(themeMode as ThemeMode, '#F87171'), fontSize: f.bodyLg, fontWeight:'600' }}>
                     {triLang(lang, {
   ru: `Закрепить промахи (${wrongPhrases.length})`,
   uk: `Закріпити промахи (${wrongPhrases.length})`,
@@ -2504,19 +2508,22 @@ function QuizGame({
               const pickedOptionText = chosen !== null ? current.choices[chosen] : (typedOk === true ? quizCorrectEn : '');
               const aiExplanation = quizExplain.explanationFor(pickedOptionText ?? '', correct);
               const loading = quizExplain.state !== 'ready' || !aiExplanation;
-              const headerColor = correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017');
+              const isBusinessTheme = themeMode === 'business';
+              const headerColor = isBusinessTheme ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017');
               return (
                 <Animated.View style={{
                   opacity: insertAnim,
                   transform: [{ scale: insertScale }],
-                  backgroundColor: correct
+                  backgroundColor: isBusinessTheme
+                    ? (correct ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)')
+                    : correct
                     ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
                     : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
                   borderRadius: 14,
                   padding: planQuizId ? 10 : 16,
                   marginBottom: planQuizId ? 10 : 16,
                   borderLeftWidth: 4,
-                  borderLeftColor: correct ? '#1565C0' : '#F59E0B',
+                  borderLeftColor: isBusinessTheme ? (correct ? '#FFFFFF' : '#9A9A9A') : correct ? '#1565C0' : '#F59E0B',
                 }}>
                   <Text style={{ color: headerColor, fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
                     {triLang(lang, {
@@ -2581,6 +2588,8 @@ function QuizGame({
                 transform: [{ scale: insertScale }],
               backgroundColor: isCompassTheme
                   ? COMPASS_RICH.charcoalRaised
+                  : themeMode === 'business'
+                  ? (correct ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)')
                   : correct
                   ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
                   : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
@@ -2588,12 +2597,12 @@ function QuizGame({
                 padding: planQuizId ? 10 : 16,
                 marginBottom: planQuizId ? 10 : 16,
                 borderLeftWidth: 4,
-                borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : correct ? '#1565C0' : '#F59E0B',
+                borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : themeMode === 'business' ? (correct ? '#FFFFFF' : '#9A9A9A') : correct ? '#1565C0' : '#F59E0B',
                 borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}>
-                <Text style={{ color: correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
+                <Text style={{ color: themeMode === 'business' ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
                   {triLang(lang, {
   ru: 'РАЗБОР',
   uk: 'ПОЯСНЕННЯ',
@@ -2674,7 +2683,7 @@ function QuizGame({
               {typedOk === null && (
                 <TouchableOpacity
                   style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface, borderRadius: isCompassTheme ? 9 : 14, padding:18, alignItems:'center', borderWidth:0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
-                  onPress={() => { hapticTap(); handleTyped(); }} activeOpacity={0.8}
+                  onPress={() => { handleTyped(); }} activeOpacity={0.8}
                 >
                   <Text style={{ color:t.textPrimary, fontSize: f.bodyLg, fontWeight:'600' }}>
                     {triLang(lang, {
@@ -2711,7 +2720,7 @@ function QuizGame({
                       minHeight: planQuizId ? 52 : undefined,
                       overflow: isCompassTheme ? 'hidden' : 'visible',
                     }, isCompassTheme && compassShadow(1)]}
-                    onPress={() => { flash(`${ci}`); requestAnimationFrame(() => { void hapticTap(); }); handleChoice(ci); }}
+                    onPress={() => { flash(`${ci}`); handleChoice(ci); }}
                   >
                     {isCompassTheme && !on ? <CompassDepthSurface radius={9} quiet /> : null}
                     <Text

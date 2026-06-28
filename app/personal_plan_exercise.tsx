@@ -22,6 +22,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
 import AiMistakeCard from '../components/AiMistakeCard';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -941,6 +942,7 @@ function PlanExerciseFeedbackSurface({
   onAction?: () => void;
   children?: React.ReactNode;
 }) {
+  const { themeMode } = useTheme();
   const isSuccess = tone === 'success';
   const isError = tone === 'error';
   const toneColor = isError ? '#FF8A92' : accent;
@@ -952,7 +954,7 @@ function PlanExerciseFeedbackSurface({
     <View style={[styles.feedbackSurface, { borderColor, backgroundColor: surfaceColor, shadowColor: toneColor }]}>
       <View style={styles.feedbackHeader}>
         <View style={[styles.feedbackIcon, { borderColor, backgroundColor: toneColor + '16' }]}>
-          <Ionicons name={feedbackIconForTone(tone)} size={20} color={toneColor} />
+          <Ionicons name={feedbackIconForTone(tone)} size={20} color={monoIcon(themeMode, toneColor, isError ? MONO_ICON.muted : MONO_ICON.light)} />
         </View>
         <Text style={[styles.feedbackTitle, { color: toneColor }]}>{title}</Text>
       </View>
@@ -1075,6 +1077,7 @@ function PlanExerciseFeedbackInline({
   hideBody?: boolean;
   children?: React.ReactNode;
 }) {
+  const { themeMode } = useTheme();
   const isSuccess = tone === 'success';
   const isError = tone === 'error';
   const toneColor = isError ? '#FF8A92' : accent;
@@ -1109,7 +1112,7 @@ function PlanExerciseFeedbackInline({
     <View style={[styles.inlineFeedback, { borderLeftColor: toneColor, backgroundColor: surfaceColor }]}>
       {!hideBody && (
         <View style={styles.inlineFeedbackHeader}>
-          <Ionicons name={feedbackIconForTone(tone)} size={18} color={toneColor} />
+          <Ionicons name={feedbackIconForTone(tone)} size={18} color={monoIcon(themeMode, toneColor, isError ? MONO_ICON.muted : MONO_ICON.light)} />
           <Text style={[styles.inlineFeedbackTitle, { color: toneColor }]}>{title}</Text>
         </View>
       )}
@@ -2041,7 +2044,7 @@ export default function PersonalPlanExerciseScreen() {
                       ]}
                       onPress={() => {
                         flash(option);
-                        requestAnimationFrame(() => { void hapticTap(); });
+                        // Результат (success/error) даёт submit — отдельный tap убран.
                         void submit(option);
                       }}
                     >

@@ -27,6 +27,7 @@ import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import { triLang, type Lang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import type { ThemeMode } from '../constants/theme';
@@ -48,6 +49,7 @@ import { logTrainerDirectGateBlocked } from './firebase';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import TrainerSessionReport from './trainer_session_report';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import {
   markTrainerPlanTaskCompleted,
@@ -392,8 +394,8 @@ export default function TrainerWordsSession() {
   }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
-    hapticTap();
-    // Запускаем анимацию карточки через ref — она сама вызовет handleSwipe по завершении
+    // Результат (success/error) даёт swipeOut при оценке ответа — отдельный
+    // tap убран, иначе складывался с сигналом результата в один сильный удар.
     swipeOutRef.current?.(dir);
   }, []);
 
@@ -466,9 +468,20 @@ export default function TrainerWordsSession() {
             <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
-            <Text style={[{ color: sx.muted, fontSize: f.caption }]}>
-              {current + 1} / {deck.length}
-            </Text>
+            <View style={styles.headerRight}>
+              <Text style={[{ color: sx.muted, fontSize: f.caption }]}>
+                {current + 1} / {deck.length}
+              </Text>
+              {deck[current] ? (
+                <ReportErrorButton
+                  screen="trainer_words"
+                  variant="icon-flag"
+                  dataId={`trainer_word_${deck[current].item.key}`}
+                  dataText={`${deck[current].item.key} — ${deck[current].shownTranslation}`}
+                  accessibilityLabel="Сообщить об ошибке в слове"
+                />
+              ) : null}
+            </View>
           </View>
 
           {/* Прогресс-бар */}
@@ -513,7 +526,7 @@ export default function TrainerWordsSession() {
               ]}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-              <Ionicons name="close" size={32} color={isCompassTheme ? COMPASS_RICH.peach : '#E05050'} />
+              <Ionicons name="close" size={32} color={isCompassTheme ? COMPASS_RICH.peach : monoIcon(themeMode, '#E05050', MONO_ICON.muted)} />
               <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.peach : '#E05050', fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Мимо',
@@ -543,7 +556,7 @@ export default function TrainerWordsSession() {
               ]}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
-              <Ionicons name="checkmark" size={32} color={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'} />
+              <Ionicons name="checkmark" size={32} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#40C080')} />
               <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.champagne : '#40C080', fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Верно',
@@ -572,6 +585,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
+  },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   progressBar: {
     height: 4,

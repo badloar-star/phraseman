@@ -338,7 +338,7 @@ export function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogReque
     .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
     .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
     .replace('{CEFR}', cefr);
-  return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data)}${cefrReinjection(cefr)}`;
+  return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr)}${cefrReinjection(cefr)}`;
 }
 
 // ── «Диалог как игра»: цель · терпение · исход ──────────────────────────────
@@ -403,7 +403,7 @@ function isGameMode(data: PremiumDialogRequest): boolean {
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data: PremiumDialogRequest): string {
+function gameBlock(data: PremiumDialogRequest, cefr: string): string {
   const objectives = sanitizeObjectives(data.objectives);
   if (objectives.length === 0) return '';
   const temp = (data.temperament ?? {}) as Record<string, unknown>;
@@ -418,8 +418,13 @@ GAME STATE (you secretly track this and report it as JSON — the learner never 
 - Sub-goals for this scene (mark each done when the learner accomplishes it):
 ${objLines}
 - Your patience level is ${patience} and your warmth is ${warmth}. Start your inner "mood" at about ${seedMood} (0..100).
-- RAISE mood when the learner is polite and moves toward a sub-goal. LOWER mood for rudeness, off-topic talk, or endless repetition. If your patience is "low", also lower it for stalling and waffling.
-- LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour lowers mood.
+- Move mood by REAL amounts each turn so the learner clearly feels your reaction (the app shows your face change):
+  - Politeness + progress toward a sub-goal: +5 to +10.
+  - Rudeness, insults, swearing, or hostility: DROP it hard, -25 to -40 in a single turn (more for direct insults). Two rude turns in a row can take you near 0.
+  - Off-topic talk, ignoring you, or endless repetition: -10 to -20. If your patience is "low", make these drops bigger.
+  - A genuine apology or a warm turn after rudeness: recover +10 to +20, but never all the way back at once.
+- React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still English, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
+- LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour (rudeness/hostility/off-topic) lowers mood.
 - Decide the outcome each turn:
   - "success" = ALL sub-goals are done → warmly close the scene in character.
   - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).

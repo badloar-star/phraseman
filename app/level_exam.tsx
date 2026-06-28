@@ -591,14 +591,14 @@ export default function LevelExam() {
         if (!cancelled) {
           setAccessBlockKind('premium');
           setBlockedText(triLang(lang, {
-            ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступен A1, уроки открываются последовательно.',
-            uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступний A1, уроки відкриваються послідовно.',
-            es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium, A1 está disponible paso a paso.',
-            'pt-BR': "O Premium abre as aulas do nível e o acesso ao teste. Sem Premium, o A1 fica disponível passo a passo.",
-            vi: "Premium mở các bài học của cấp độ và quyền truy cập vào bài kiểm tra. Không có Premium, A1 mở từng bài theo tiến độ.",
-            id: "Premium membuka pelajaran level ini dan akses ke ujian. Tanpa Premium, A1 tersedia bertahap.",
-            tr: "Premium, seviyenin derslerini ve sınava erişimi açar. Premium olmadan A1 adım adım kullanılabilir.",
-            pl: "Premium odblokowuje lekcje poziomu i dostęp do testu. Bez Premium A1 jest dostępny krok po kroku.",
+            ru: 'Plus откроет уроки уровня и доступ к зачёту. Без Plus доступен A1, уроки открываются последовательно.',
+            uk: 'Plus відкриє уроки рівня і доступ до заліку. Без Plus доступний A1, уроки відкриваються послідовно.',
+            es: 'Plus abre las lecciones del nivel y el acceso al examen. Sin Plus, A1 está disponible paso a paso.',
+            'pt-BR': "O Plus abre as aulas do nível e o acesso ao teste. Sem Plus, o A1 fica disponível passo a passo.",
+            vi: "Plus mở các bài học của cấp độ và quyền truy cập vào bài kiểm tra. Không có Plus, A1 mở từng bài theo tiến độ.",
+            id: "Plus membuka pelajaran level ini dan akses ke ujian. Tanpa Plus, A1 tersedia bertahap.",
+            tr: "Plus, seviyenin derslerini ve sınava erişimi açar. Plus olmadan A1 adım adım kullanılabilir.",
+            pl: "Plus odblokowuje lekcje poziomu i dostęp do testu. Bez Plus A1 jest dostępny krok po kroku.",
           }));
           setAccessState('blocked');
         }
@@ -926,14 +926,14 @@ export default function LevelExam() {
                 <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>
                   {accessBlockKind === 'premium'
                     ? triLang(lang, {
-                      ru: 'Получить Premium',
-                      uk: 'Отримати Premium',
-                      es: 'Obtener Premium',
-                      'pt-BR': "Obter Premium",
-                      vi: "Mở Premium",
-                      id: "Dapatkan Premium",
-                      tr: "Premium al",
-                      pl: "Kup Premium",
+                      ru: 'Получить Plus',
+                      uk: 'Отримати Plus',
+                      es: 'Obtener Plus',
+                      'pt-BR': "Obter Plus",
+                      vi: "Mở Plus",
+                      id: "Dapatkan Plus",
+                      tr: "Plus al",
+                      pl: "Kup Plus",
                     })
                     : triLang(lang, {
                       ru: 'К урокам',
@@ -1025,14 +1025,14 @@ export default function LevelExam() {
     const premiumNote =
       lvl !== 'B2' && !hasPremiumAccess
         ? triLang(lang, {
-          ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
-          uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
-          es: 'Con Premium todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
-          'pt-BR': "Com Premium, todas as aulas do nível atual ficam abertas de uma vez; o próximo nível será aberto depois que você passar neste teste.",
-          vi: "Với Premium, tất cả bài học của cấp độ hiện tại được mở ngay; cấp độ tiếp theo sẽ mở sau khi bạn vượt qua bài kiểm tra này.",
-          id: "Dengan Premium, semua pelajaran di level saat ini langsung terbuka; level berikutnya akan terbuka setelah kamu lulus ujian ini.",
-          tr: "Premium ile mevcut seviyenin tüm dersleri hemen açılır; bir sonraki seviye bu sınavı geçtikten sonra açılır.",
-          pl: "Z Premium wszystkie lekcje obecnego poziomu są od razu otwarte; następny poziom odblokuje się po zaliczeniu tego testu.",
+          ru: 'С Plus все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
+          uk: 'З Plus усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
+          es: 'Con Plus todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
+          'pt-BR': "Com Plus, todas as aulas do nível atual ficam abertas de uma vez; o próximo nível será aberto depois que você passar neste teste.",
+          vi: "Với Plus, tất cả bài học của cấp độ hiện tại được mở ngay; cấp độ tiếp theo sẽ mở sau khi bạn vượt qua bài kiểm tra này.",
+          id: "Dengan Plus, semua pelajaran di level saat ini langsung terbuka; level berikutnya akan terbuka setelah kamu lulus ujian ini.",
+          tr: "Plus ile mevcut seviyenin tüm dersleri hemen açılır; bir sonraki seviye bu sınavı geçtikten sonra açılır.",
+          pl: "Z Plus wszystkie lekcje obecnego poziomu są od razu otwarte; następny poziom odblokuje się po zaliczeniu tego testu.",
         })
         : null;
 

@@ -194,9 +194,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
               <Ionicons name="lock-closed" size={14} color={GOLD} />
               <Text style={[styles.teaserText, { color: isCompassTheme ? COMPASS_RICH.textDark : GOLD_SOFT, fontSize: f.sub }]}>
                 {triLang(lang, {
-                  ru: 'Полные подсказки и план — в Premium', uk: 'Повні підказки й план — у Premium', es: 'Guía completa y plan — en Premium',
-                  'pt-BR': 'Orientação completa e plano — no Premium', vi: 'Gợi ý đầy đủ và kế hoạch — trong Premium',
-                  id: 'Panduan lengkap dan rencana — di Premium', tr: 'Tam rehber ve plan — Premium\'de', pl: 'Pełne wskazówki i plan — w Premium',
+                  ru: 'Полные подсказки и план — в Plus', uk: 'Повні підказки й план — у Plus', es: 'Guía completa y plan — en Plus',
+                  'pt-BR': 'Orientação completa e plano — no Plus', vi: 'Gợi ý đầy đủ và kế hoạch — trong Plus',
+                  id: 'Panduan lengkap dan rencana — di Plus', tr: 'Tam rehber ve plan — Plus\'de', pl: 'Pełne wskazówki i plan — w Plus',
                 })}
               </Text>
             </TouchableOpacity>

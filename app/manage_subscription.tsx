@@ -70,8 +70,8 @@ const INCLUDED: ManageSubscriptionCopy[] = [
   { ru: 'Неограниченные сохранённые карточки', uk: 'Необмежені збережені картки', es: 'Tarjetas guardadas ilimitadas', 'pt-BR': 'Cartões salvos ilimitados', vi: 'Thẻ đã lưu không giới hạn', id: 'Kartu tersimpan tak terbatas', tr: 'Sınırsız kayıtlı kart', pl: 'Nielimitowane zapisane fiszki' },
   { ru: 'Защита серии: бесплатная заморозка', uk: 'Захист серії: безкоштовна заморозка', es: 'Protección de racha: congelación gratis', 'pt-BR': 'Proteção de sequência: congelamento grátis', vi: 'Bảo vệ chuỗi ngày: đóng băng miễn phí', id: 'Perlindungan streak: pembekuan gratis', tr: 'Seri koruması: ücretsiz dondurma', pl: 'Ochrona serii: darmowe zamrożenie' },
   // — Косметика и статус —
-  { ru: 'Премиум-темы и эксклюзивная аура аватара', uk: 'Преміум-теми та ексклюзивна аура аватара', es: 'Temas premium y aura de avatar exclusiva', 'pt-BR': 'Temas premium e aura de avatar exclusiva', vi: 'Giao diện premium và hào quang avatar độc quyền', id: 'Tema premium dan aura avatar eksklusif', tr: 'Premium temalar ve özel avatar aurası', pl: 'Motywy premium i ekskluzywna aura awatara' },
-  { ru: 'Премиальная подсветка профиля в лидербордах', uk: 'Преміальне підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones', 'pt-BR': 'Perfil premium destacado nos rankings', vi: 'Hồ sơ Premium nổi bật trên bảng xếp hạng', id: 'Sorotan profil premium di papan peringkat', tr: 'Liderlik tablolarında premium profil vurgusu', pl: 'Wyróżnienie profilu Premium w rankingach' },
+  { ru: 'Плюс-темы и эксклюзивная аура аватара', uk: 'Плюс-теми та ексклюзивна аура аватара', es: 'Temas Plus y aura de avatar exclusiva', 'pt-BR': 'Temas Plus e aura de avatar exclusiva', vi: 'Giao diện Plus và hào quang avatar độc quyền', id: 'Tema Plus dan aura avatar eksklusif', tr: 'Plus temalar ve özel avatar aurası', pl: 'Motywy Plus i ekskluzywna aura awatara' },
+  { ru: 'Плюс-подсветка профиля в лидербордах', uk: 'Плюс-підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones', 'pt-BR': 'Perfil Plus destacado nos rankings', vi: 'Hồ sơ Plus nổi bật trên bảng xếp hạng', id: 'Sorotan profil Plus di papan peringkat', tr: 'Liderlik tablolarında Plus profil vurgusu', pl: 'Wyróżnienie profilu Plus w rankingach' },
 ];
 
 // Причины отмены для шит-опроса (logCancelSurvey).
@@ -213,7 +213,7 @@ export default function ManageSubscription() {
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A`, borderColor: `${chrome.tc.heroAccent}40` }]}>
             <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} />
             <Text style={[S.statusText, { color: chrome.tc.heroAccent }]}>
-              {LP('Premium активирован', 'Premium активовано', 'Premium activado', 'Premium ativado', 'Premium đã kích hoạt', 'Premium aktif', 'Premium etkinleştirildi', 'Premium aktywowany')}
+              {LP('Plus активирован', 'Plus активовано', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
             </Text>
           </View>
 
@@ -335,7 +335,7 @@ export default function ManageSubscription() {
               </TouchableOpacity>
               <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(false); }} style={S.sheetSecondary}>
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
-                  {LP('Остаться в Premium', 'Залишитися в Premium', 'Quedarme en Premium', 'Ficar no Premium', 'Ở lại Premium', 'Tetap di Premium', "Premium'da kal", 'Zostań w Premium')}
+                  {LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
                 </Text>
               </TouchableOpacity>
             </View>

@@ -762,14 +762,14 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
     if (!hasPermission) return;
     const _pp = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
     const _premTitle = pickNotif(lang, notificationCopy({
-      ru: _pp(['🎉 Поздравляем с Premium!', '🏆 Premium активирован!', '✨ Ты теперь Premium!', '🚀 Premium — твой новый уровень!']),
-      uk: _pp(['🎉 Вітаємо з Premium!', '🏆 Premium активовано!', '✨ Ти тепер Premium!', '🚀 Premium — твій новий рівень!']),
-      es: _pp(['🎉 ¡Bienvenido a Premium!', '🏆 Premium activado', '✨ Ya eres usuario Premium', '🚀 Premium impulsa tu ritmo']),
-      'pt-BR': _pp(['🎉 Bem-vindo ao Premium!', '🏆 Premium ativado!', '✨ Agora você é Premium!', '🚀 Premium é seu novo nível!']),
-      vi: _pp(['🎉 Chào mừng bạn đến Premium!', '🏆 Premium đã kích hoạt!', '✨ Bạn đã là Premium!', '🚀 Premium mở cấp độ mới!']),
-      id: _pp(['🎉 Selamat datang di Premium!', '🏆 Premium aktif!', '✨ Sekarang kamu Premium!', '🚀 Premium jadi level barumu!']),
-      tr: _pp(['🎉 Premium’a hoş geldin!', '🏆 Premium etkin!', '✨ Artık Premium’sun!', '🚀 Premium yeni seviyen!']),
-      pl: _pp(['🎉 Witaj w Premium!', '🏆 Premium aktywowane!', '✨ Masz już Premium!', '🚀 Premium to twój nowy poziom!']),
+      ru: _pp(['🎉 Поздравляем с Плюс!', '🏆 Плюс активирован!', '✨ Ты теперь Плюс!', '🚀 Плюс — твой новый уровень!']),
+      uk: _pp(['🎉 Вітаємо з Плюс!', '🏆 Плюс активовано!', '✨ Ти тепер Плюс!', '🚀 Плюс — твій новий рівень!']),
+      es: _pp(['🎉 ¡Bienvenido a Plus!', '🏆 Plus activado', '✨ Ya eres usuario Plus', '🚀 Plus impulsa tu ritmo']),
+      'pt-BR': _pp(['🎉 Bem-vindo ao Plus!', '🏆 Plus ativado!', '✨ Agora você é Plus!', '🚀 Plus é seu novo nível!']),
+      vi: _pp(['🎉 Chào mừng bạn đến Plus!', '🏆 Plus đã kích hoạt!', '✨ Bạn đã là Plus!', '🚀 Plus mở cấp độ mới!']),
+      id: _pp(['🎉 Selamat datang di Plus!', '🏆 Plus aktif!', '✨ Sekarang kamu Plus!', '🚀 Plus jadi level barumu!']),
+      tr: _pp(['🎉 Plus’a hoş geldin!', '🏆 Plus etkin!', '✨ Artık Plus’sun!', '🚀 Plus yeni seviyen!']),
+      pl: _pp(['🎉 Witaj w Plus!', '🏆 Plus aktywowane!', '✨ Masz już Plus!', '🚀 Plus to twój nowy poziom!']),
     }));
     const _premBody = pickNotif(lang, notificationCopy({
       ru: _pp([
@@ -866,14 +866,14 @@ export const scheduleIntroExpiringNotification = async (
     if (prev) await N.cancelScheduledNotificationAsync(prev).catch(() => {});
 
     const title = pickNotif(lang, notificationCopy({
-      ru: 'Твой Premium истекает через 2 часа',
-      uk: 'Твій Premium закінчується через 2 години',
-      es: 'Tu Premium expira en 2 horas',
-      'pt-BR': 'Seu Premium expira em 2 horas',
-      vi: 'Premium của bạn hết hạn sau 2 giờ',
-      id: 'Premium kamu berakhir dalam 2 jam',
-      tr: 'Premiuminiz 2 saat sonra bitiyor',
-      pl: 'Twoje Premium wygasa za 2 godziny',
+      ru: 'Твой Плюс истекает через 2 часа',
+      uk: 'Твій Плюс закінчується через 2 години',
+      es: 'Tu Plus expira en 2 horas',
+      'pt-BR': 'Seu Plus expira em 2 horas',
+      vi: 'Plus của bạn hết hạn sau 2 giờ',
+      id: 'Plus kamu berakhir dalam 2 jam',
+      tr: 'Plusiniz 2 saat sonra bitiyor',
+      pl: 'Twoje Plus wygasa za 2 godziny',
     }));
     const body = pickNotif(lang, notificationCopy({
       ru: 'Ты выучил первые фразы — не останавливайся. Сохрани доступ к урокам и энергии навсегда.',
@@ -954,14 +954,14 @@ export const scheduleUpsellNotifications = async (
           pl: 'Twój postęp trwa 🔥',
         })),
         body: pickNotif(lang, notificationCopy({
-          ru: 'С Premium — энергия без лимита и все курсы открыты. Учись без остановок.',
-          uk: 'З Premium — енергія без ліміту і всі курси відкриті. Вчись без зупинок.',
-          es: 'Con Premium — energía ilimitada y todos los cursos abiertos. Sin parar.',
-          'pt-BR': 'Com Premium — energia ilimitada e todos os cursos abertos. Sem parar.',
-          vi: 'Với Premium — năng lượng vô hạn và tất cả khóa học mở. Học không ngừng.',
-          id: 'Dengan Premium — energi tak terbatas dan semua kursus terbuka. Belajar tanpa henti.',
-          tr: 'Premium ile — sınırsız enerji ve tüm kurslar açık. Durmadan öğren.',
-          pl: 'Z Premium — nieograniczona energia i wszystkie kursy otwarte. Ucz się bez przerwy.',
+          ru: 'С Плюс — энергия без лимита и все курсы открыты. Учись без остановок.',
+          uk: 'З Плюс — енергія без ліміту і всі курси відкриті. Вчись без зупинок.',
+          es: 'Con Plus — energía ilimitada y todos los cursos abiertos. Sin parar.',
+          'pt-BR': 'Com Plus — energia ilimitada e todos os cursos abertos. Sem parar.',
+          vi: 'Với Plus — năng lượng vô hạn và tất cả khóa học mở. Học không ngừng.',
+          id: 'Dengan Plus — energi tak terbatas dan semua kursus terbuka. Belajar tanpa henti.',
+          tr: 'Plus ile — sınırsız enerji ve tüm kurslar açık. Durmadan öğren.',
+          pl: 'Z Plus — nieograniczona energia i wszystkie kursy otwarte. Ucz się bez przerwy.',
         })),
       },
       {
@@ -979,14 +979,14 @@ export const scheduleUpsellNotifications = async (
           pl: 'Energia Cię blokuje? ⚡',
         })),
         body: pickNotif(lang, notificationCopy({
-          ru: 'С Premium энергия бесконечная. Никакой перезарядки — учись когда хочешь и сколько хочешь.',
-          uk: 'З Premium енергія безмежна. Ніякої перезарядки — вчись коли хочеш і скільки хочеш.',
-          es: 'Con Premium, energía infinita. Sin esperas — estudia cuando quieras y cuanto quieras.',
-          'pt-BR': 'Com Premium, energia infinita. Sem espera — estude quando e quanto quiser.',
-          vi: 'Với Premium, năng lượng vô hạn. Không cần chờ — học bất cứ lúc nào bạn muốn.',
-          id: 'Dengan Premium, energi tak terbatas. Tanpa menunggu — belajar kapan saja dan sebanyak yang kamu mau.',
-          tr: 'Premium ile sonsuz enerji. Bekleme yok — istediğin zaman, istediğin kadar çalış.',
-          pl: 'Z Premium masz nieskończoną energię. Bez czekania — ucz się kiedy chcesz i ile chcesz.',
+          ru: 'С Плюс энергия бесконечная. Никакой перезарядки — учись когда хочешь и сколько хочешь.',
+          uk: 'З Плюс енергія безмежна. Ніякої перезарядки — вчись коли хочеш і скільки хочеш.',
+          es: 'Con Plus, energía infinita. Sin esperas — estudia cuando quieras y cuanto quieras.',
+          'pt-BR': 'Com Plus, energia infinita. Sem espera — estude quando e quanto quiser.',
+          vi: 'Với Plus, năng lượng vô hạn. Không cần chờ — học bất cứ lúc nào bạn muốn.',
+          id: 'Dengan Plus, energi tak terbatas. Tanpa menunggu — belajar kapan saja dan sebanyak yang kamu mau.',
+          tr: 'Plus ile sonsuz enerji. Bekleme yok — istediğin zaman, istediğin kadar çalış.',
+          pl: 'Z Plus masz nieskończoną energię. Bez czekania — ucz się kiedy chcesz i ile chcesz.',
         })),
       },
       {

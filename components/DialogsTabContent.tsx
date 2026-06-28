@@ -226,14 +226,14 @@ export default function DialogsTabContent({
             status,
             levelChip: scenario.cefr,
             lockedText: triLang(lang, {
-              ru: `Откроется на уровне ${scenario.cefr} — или сразу с Premium`,
-              uk: `Відкриється на рівні ${scenario.cefr} — або одразу з Premium`,
-              es: `Se abre en el nivel ${scenario.cefr} — o ya con Premium`,
-              'pt-BR': `Abre no nível ${scenario.cefr} — ou agora com Premium`,
-              vi: `Mở ở cấp ${scenario.cefr} — hoặc mở ngay với Premium`,
-              id: `Terbuka di level ${scenario.cefr} — atau langsung dengan Premium`,
-              tr: `${scenario.cefr} seviyesinde açılır — ya da Premium ile hemen`,
-              pl: `Otwiera się na poziomie ${scenario.cefr} — albo od razu z Premium`,
+              ru: `Откроется на уровне ${scenario.cefr} — или сразу с Plus`,
+              uk: `Відкриється на рівні ${scenario.cefr} — або одразу з Plus`,
+              es: `Se abre en el nivel ${scenario.cefr} — o ya con Plus`,
+              'pt-BR': `Abre no nível ${scenario.cefr} — ou agora com Plus`,
+              vi: `Mở ở cấp ${scenario.cefr} — hoặc mở ngay với Plus`,
+              id: `Terbuka di level ${scenario.cefr} — atau langsung dengan Plus`,
+              tr: `${scenario.cefr} seviyesinde açılır — ya da Plus ile hemen`,
+              pl: `Otwiera się na poziomie ${scenario.cefr} — albo od razu z Plus`,
             }),
             onPress: () => openCourseScenario(scenario),
           };
@@ -780,14 +780,14 @@ export default function DialogsTabContent({
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Открыть все уровни диалогов с Premium',
-            uk: 'Відкрити всі рівні діалогів з Premium',
-            es: 'Abrir todos los niveles de diálogos con Premium',
-            'pt-BR': 'Abrir todos os níveis de diálogos com Premium',
-            vi: 'Mở mọi cấp độ đối thoại với Premium',
-            id: 'Buka semua level dialog dengan Premium',
-            tr: 'Tüm diyalog seviyelerini Premium ile aç',
-            pl: 'Otwórz wszystkie poziomy dialogów z Premium',
+            ru: 'Открыть все уровни диалогов с Plus',
+            uk: 'Відкрити всі рівні діалогів з Plus',
+            es: 'Abrir todos los niveles de diálogos con Plus',
+            'pt-BR': 'Abrir todos os níveis de diálogos com Plus',
+            vi: 'Mở mọi cấp độ đối thoại với Plus',
+            id: 'Buka semua level dialog dengan Plus',
+            tr: 'Tüm diyalog seviyelerini Plus ile aç',
+            pl: 'Otwórz wszystkie poziomy dialogów z Plus',
           })}
           activeOpacity={0.86}
           onPress={() => {
@@ -839,14 +839,14 @@ export default function DialogsTabContent({
               maxFontSizeMultiplier={1.15}
             >
               {triLang(lang, {
-                ru: 'Проходи курс — уровни открываются сами. Или открой все сразу с Premium.',
-                uk: 'Проходь курс — рівні відкриваються самі. Або відкрий усі одразу з Premium.',
-                es: 'Avanza en el curso y los niveles se abren solos. O ábrelos todos con Premium.',
-                'pt-BR': 'Avance no curso — os níveis abrem sozinhos. Ou abra todos de uma vez com Premium.',
-                vi: 'Học tiếp khóa học — các cấp sẽ tự mở. Hoặc mở tất cả ngay với Premium.',
-                id: 'Ikuti kursus — level akan terbuka sendiri. Atau buka semuanya sekaligus dengan Premium.',
-                tr: 'Kursa devam et — seviyeler kendiliğinden açılır. Ya da hepsini Premium ile hemen aç.',
-                pl: 'Przechodź kurs — poziomy otwierają się same. Albo otwórz wszystkie od razu z Premium.',
+                ru: 'Проходи курс — уровни открываются сами. Или открой все сразу с Plus.',
+                uk: 'Проходь курс — рівні відкриваються самі. Або відкрий усі одразу з Plus.',
+                es: 'Avanza en el curso y los niveles se abren solos. O ábrelos todos con Plus.',
+                'pt-BR': 'Avance no curso — os níveis abrem sozinhos. Ou abra todos de uma vez com Plus.',
+                vi: 'Học tiếp khóa học — các cấp sẽ tự mở. Hoặc mở tất cả ngay với Plus.',
+                id: 'Ikuti kursus — level akan terbuka sendiri. Atau buka semuanya sekaligus dengan Plus.',
+                tr: 'Kursa devam et — seviyeler kendiliğinden açılır. Ya da hepsini Plus ile hemen aç.',
+                pl: 'Przechodź kurs — poziomy otwierają się same. Albo otwórz wszystkie od razu z Plus.',
               })}
             </Text>
           </View>
@@ -872,24 +872,24 @@ export default function DialogsTabContent({
           >
             {freeDialogLeft
               ? triLang(lang, {
-                  ru: '1 диалог бесплатно — попробуй, дальше Premium',
-                  uk: '1 діалог безкоштовно — спробуй, далі Premium',
-                  es: '1 diálogo gratis — pruébalo, luego Premium',
-                  'pt-BR': '1 diálogo grátis — experimente, depois Premium',
-                  vi: '1 đối thoại miễn phí — thử trước, sau đó Premium',
-                  id: '1 dialog gratis — coba dulu, lalu Premium',
-                  tr: '1 diyalog ücretsiz — dene, sonrası Premium',
-                  pl: '1 dialog za darmo — spróbuj, potem Premium',
+                  ru: '1 диалог бесплатно — попробуй, дальше Plus',
+                  uk: '1 діалог безкоштовно — спробуй, далі Plus',
+                  es: '1 diálogo gratis — pruébalo, luego Plus',
+                  'pt-BR': '1 diálogo grátis — experimente, depois Plus',
+                  vi: '1 đối thoại miễn phí — thử trước, sau đó Plus',
+                  id: '1 dialog gratis — coba dulu, lalu Plus',
+                  tr: '1 diyalog ücretsiz — dene, sonrası Plus',
+                  pl: '1 dialog za darmo — spróbuj, potem Plus',
                 })
               : triLang(lang, {
-                  ru: 'Пробный диалог использован · дальше Premium',
-                  uk: 'Пробний діалог використано · далі Premium',
-                  es: 'Diálogo de prueba usado · luego Premium',
-                  'pt-BR': 'Diálogo de teste usado · depois Premium',
-                  vi: 'Đã dùng đối thoại thử · tiếp theo là Premium',
-                  id: 'Dialog percobaan sudah digunakan · selanjutnya Premium',
-                  tr: 'Deneme diyaloğu kullanıldı · sonrası Premium',
-                  pl: 'Dialog próbny wykorzystany · dalej Premium',
+                  ru: 'Пробный диалог использован · дальше Plus',
+                  uk: 'Пробний діалог використано · далі Plus',
+                  es: 'Diálogo de prueba usado · luego Plus',
+                  'pt-BR': 'Diálogo de teste usado · depois Plus',
+                  vi: 'Đã dùng đối thoại thử · tiếp theo là Plus',
+                  id: 'Dialog percobaan sudah digunakan · selanjutnya Plus',
+                  tr: 'Deneme diyaloğu kullanıldı · sonrası Plus',
+                  pl: 'Dialog próbny wykorzystany · dalej Plus',
                 })}
           </Text>
         </View>

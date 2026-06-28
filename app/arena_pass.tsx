@@ -224,9 +224,9 @@ export default function ArenaBattlePassScreen() {
           <Ionicons name="star" size={16} color={t.gold} />
           <Text style={[styles.premiumCtaText, { color: t.gold, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Открой премиум-награды', uk: 'Відкрий преміум-нагороди', es: 'Desbloquea recompensas premium',
-              'pt-BR': 'Desbloqueie recompensas premium', vi: 'Mở khóa thưởng premium', id: 'Buka hadiah premium',
-              tr: 'Premium ödülleri aç', pl: 'Odblokuj nagrody premium',
+              ru: 'Открой плюс-награды', uk: 'Відкрий плюс-нагороди', es: 'Desbloquea recompensas Plus',
+              'pt-BR': 'Desbloqueie recompensas Plus', vi: 'Mở khóa thưởng Plus', id: 'Buka hadiah Plus',
+              tr: 'Plus ödülleri aç', pl: 'Odblokuj nagrody Plus',
             })}
           </Text>
         </TouchableOpacity>

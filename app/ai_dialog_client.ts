@@ -105,23 +105,23 @@ export function getPremiumDialogErrorMessage(
         return triLang(lang, {
           ru: 'Полный доступ активен, но ещё не везде подхватился. Обнови статус доступа и попробуй ещё раз.',
           uk: 'Повний доступ активний, але ще не всюди підхопився. Онови статус доступу і спробуй ще раз.',
-          es: 'Premium está activo en la app, pero el servidor aún no lo ve para el diálogo con IA. Actualiza la suscripción e inténtalo otra vez.',
-          'pt-BR': 'Premium está ativo no app, mas o servidor ainda não o vê para o diálogo com IA. Atualize o status da assinatura e tente novamente.',
-          vi: 'Premium đã hoạt động trong ứng dụng, nhưng máy chủ chưa nhận ra quyền này cho cuộc đối thoại AI. Hãy cập nhật trạng thái đăng ký rồi thử lại.',
-          id: 'Premium sudah aktif di aplikasi, tetapi server belum melihatnya untuk dialog AI. Perbarui status langganan lalu coba lagi.',
-          tr: 'Premium uygulamada aktif, ancak sunucu AI diyaloğu için bunu henüz görmüyor. Abonelik durumunu yenileyip tekrar dene.',
-          pl: 'Premium jest aktywny w aplikacji, ale serwer jeszcze nie widzi go dla dialogu AI. Odśwież status subskrypcji i spróbuj ponownie.',
+          es: 'Plus está activo en la app, pero el servidor aún no lo ve para el diálogo con IA. Actualiza la suscripción e inténtalo otra vez.',
+          'pt-BR': 'Plus está ativo no app, mas o servidor ainda não o vê para o diálogo com IA. Atualize o status da assinatura e tente novamente.',
+          vi: 'Plus đã hoạt động trong ứng dụng, nhưng máy chủ chưa nhận ra quyền này cho cuộc đối thoại AI. Hãy cập nhật trạng thái đăng ký rồi thử lại.',
+          id: 'Plus sudah aktif di aplikasi, tetapi server belum melihatnya untuk dialog AI. Perbarui status langganan lalu coba lagi.',
+          tr: 'Plus uygulamada aktif, ancak sunucu AI diyaloğu için bunu henüz görmüyor. Abonelik durumunu yenileyip tekrar dene.',
+          pl: 'Plus jest aktywny w aplikacji, ale serwer jeszcze nie widzi go dla dialogu AI. Odśwież status subskrypcji i spróbuj ponownie.',
         });
       }
       return triLang(lang, {
         ru: 'Пробный диалог уже пройден. Открой все диалоги — полный доступ.',
         uk: 'Пробний діалог уже пройдено. Відкрий усі діалоги — повний доступ.',
-        es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Premium.',
-        'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Premium.',
-        vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Premium.',
-        id: 'Dialog gratis sudah digunakan. Buka semua dialog dengan Premium.',
-        tr: 'Ücretsiz diyaloğu zaten kullandın. Premium ile tüm diyalogları aç.',
-        pl: 'Darmowy dialog został już wykorzystany. Otwórz wszystkie dialogi z Premium.',
+        es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Plus.',
+        'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Plus.',
+        vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Plus.',
+        id: 'Dialog gratis sudah digunakan. Buka semua dialog dengan Plus.',
+        tr: 'Ücretsiz diyaloğu zaten kullandın. Plus ile tüm diyalogları aç.',
+        pl: 'Darmowy dialog został już wykorzystany. Otwórz wszystkie dialogi z Plus.',
       });
     case 'premium_limit':
       return triLang(lang, {

@@ -191,27 +191,27 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Abra e escolha uma de três recompensas', vi: 'Mở và chọn một trong ba phần thưởng', id: 'Buka dan pilih satu dari tiga hadiah', tr: 'Aç ve üç ödülden birini seç', pl: 'Otwórz i wybierz jedną z trzech nagród' },
   },
   prem_shards_10: {
-    title: { 'pt-BR': '+10 fragmentos (Premium)', vi: '+10 mảnh (Premium)', id: '+10 shard (Premium)', tr: '+10 parça (Premium)', pl: '+10 odłamków (Premium)' },
-    desc: { 'pt-BR': 'Recompensa generosa para Premium', vi: 'Phần thưởng hào phóng cho Premium', id: 'Hadiah besar untuk Premium', tr: 'Premium için cömert ödül', pl: 'Hojna nagroda dla Premium' },
+    title: { 'pt-BR': '+10 fragmentos (Plus)', vi: '+10 mảnh (Plus)', id: '+10 shard (Plus)', tr: '+10 parça (Plus)', pl: '+10 odłamków (Plus)' },
+    desc: { 'pt-BR': 'Recompensa generosa para Plus', vi: 'Phần thưởng hào phóng cho Plus', id: 'Hadiah besar untuk Plus', tr: 'Plus için cömert ödül', pl: 'Hojna nagroda dla Plus' },
   },
   prem_shards_15: {
-    title: { 'pt-BR': '+15 fragmentos (Premium)', vi: '+15 mảnh (Premium)', id: '+15 shard (Premium)', tr: '+15 parça (Premium)', pl: '+15 odłamków (Premium)' },
+    title: { 'pt-BR': '+15 fragmentos (Plus)', vi: '+15 mảnh (Plus)', id: '+15 shard (Plus)', tr: '+15 parça (Plus)', pl: '+15 odłamków (Plus)' },
     desc: { 'pt-BR': 'Recompensa generosa', vi: 'Phần thưởng hào phóng', id: 'Hadiah besar', tr: 'Cömert ödül', pl: 'Hojna nagroda' },
   },
   prem_shards_20: {
-    title: { 'pt-BR': '+20 fragmentos (Premium)', vi: '+20 mảnh (Premium)', id: '+20 shard (Premium)', tr: '+20 parça (Premium)', pl: '+20 odłamków (Premium)' },
+    title: { 'pt-BR': '+20 fragmentos (Plus)', vi: '+20 mảnh (Plus)', id: '+20 shard (Plus)', tr: '+20 parça (Plus)', pl: '+20 odłamków (Plus)' },
     desc: { 'pt-BR': 'Muitos fragmentos por subir de nível', vi: 'Nhiều mảnh khi lên cấp', id: 'Banyak shard karena naik level', tr: 'Seviye atladığın için bol parça', pl: 'Dużo odłamków za poziom' },
   },
   premium_xp_bank_1000: {
-    title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Premium)', vi: 'Thưởng ×2 cho 1000 XP (Premium)', id: 'Bonus ×2 untuk 1000 XP (Premium)', tr: '1000 XP için ×2 bonus (Premium)', pl: 'Bonus ×2 na 1000 XP (Premium)' },
+    title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Plus)', vi: 'Thưởng ×2 cho 1000 XP (Plus)', id: 'Bonus ×2 untuk 1000 XP (Plus)', tr: '1000 XP için ×2 bonus (Plus)', pl: 'Bonus ×2 na 1000 XP (Plus)' },
     desc: { 'pt-BR': 'Os próximos 1000 XP são dobrados. Só é gasto ao estudar', vi: '1000 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '1000 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 1000 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 1000 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
   },
   premium_cosmetic_avatar: {
-    title: { 'pt-BR': 'Avatar Premium grátis', vi: 'Avatar Premium miễn phí', id: 'Avatar Premium gratis', tr: 'Ücretsiz Premium avatar', pl: 'Darmowy awatar Premium' },
+    title: { 'pt-BR': 'Avatar Plus grátis', vi: 'Avatar Plus miễn phí', id: 'Avatar Plus gratis', tr: 'Ücretsiz Plus avatar', pl: 'Darmowy awatar Plus' },
     desc: { 'pt-BR': 'Um avatar aleatório com fundo aleatório será desbloqueado grátis', vi: 'Một avatar ngẫu nhiên với nền ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Avatar acak dengan latar acak terbuka gratis', tr: 'Rastgele arka planlı bir avatar ücretsiz açılır', pl: 'Losowy awatar z losowym tłem zostanie odblokowany za darmo' },
   },
   premium_cosmetic_aura: {
-    title: { 'pt-BR': 'Aura Premium grátis', vi: 'Hào quang Premium miễn phí', id: 'Aura Premium gratis', tr: 'Ücretsiz Premium aura', pl: 'Darmowa aura Premium' },
+    title: { 'pt-BR': 'Aura Plus grátis', vi: 'Hào quang Plus miễn phí', id: 'Aura Plus gratis', tr: 'Ücretsiz Plus aura', pl: 'Darmowa aura Plus' },
     desc: { 'pt-BR': 'Uma aura de avatar aleatória será desbloqueada grátis', vi: 'Một hào quang avatar ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Aura avatar acak terbuka gratis', tr: 'Rastgele bir avatar aurası ücretsiz açılır', pl: 'Losowa aura awatara zostanie odblokowana za darmo' },
   },
   prem_pack_48h: {
@@ -567,39 +567,39 @@ const GIFT_F2P: GiftDef[] = [
 const GIFT_PREMIUM: GiftDef[] = [
   {
     id: 'prem_shards_10', rarity: 'common', icon: '💎', weight: 5,
-    titleRU: '+10 осколков (премиум)', titleUK: '+10 осколків (преміум)', titleES: '+10 fragmentos (Premium)',
-    descRU: 'Щедрая награда для премиум',
-    descUK: 'Щедра нагорода для преміум',
-    descES: 'Recompensa generosa para usuarios Premium',
+    titleRU: '+10 осколков (плюс)', titleUK: '+10 осколків (плюс)', titleES: '+10 fragmentos (Plus)',
+    descRU: 'Щедрая награда для плюс',
+    descUK: 'Щедра нагорода для плюс',
+    descES: 'Recompensa generosa para usuarios Plus',
   },
   {
     id: 'prem_shards_15', rarity: 'rare', icon: '💎', weight: 4,
-    titleRU: '+15 осколков (премиум)', titleUK: '+15 осколків (преміум)', titleES: '+15 fragmentos (Premium)',
+    titleRU: '+15 осколков (плюс)', titleUK: '+15 осколків (плюс)', titleES: '+15 fragmentos (Plus)',
     descRU: 'Щедрая награда', descUK: 'Щедра нагорода', descES: 'Recompensa generosa',
   },
   {
     id: 'prem_shards_20', rarity: 'epic', icon: '💎', weight: 4,
-    titleRU: '+20 осколков (премиум)', titleUK: '+20 осколків (преміум)', titleES: '+20 fragmentos (Premium)',
+    titleRU: '+20 осколков (плюс)', titleUK: '+20 осколків (плюс)', titleES: '+20 fragmentos (Plus)',
     descRU: 'Много осколков за уровень', descUK: 'Багато осколків за рівень',
     descES: 'Muchos fragmentos por subir de nivel',
   },
   {
     id: 'premium_xp_bank_1000', rarity: 'epic', icon: '⚡', weight: 2,
-    titleRU: 'Бонус ×2 на 1000 XP (премиум)', titleUK: 'Бонус ×2 на 1000 XP (преміум)', titleES: 'Bono ×2 para 1000 XP (Premium)',
+    titleRU: 'Бонус ×2 на 1000 XP (плюс)', titleUK: 'Бонус ×2 на 1000 XP (плюс)', titleES: 'Bono ×2 para 1000 XP (Plus)',
     descRU: 'Следующие 1000 XP удваиваются. Расходуется только во время обучения',
     descUK: 'Наступні 1000 XP подвоюються. Витрачається лише під час навчання',
     descES: 'Duplica los siguientes 1000 XP. Solo se consume al estudiar',
   },
   {
     id: 'premium_cosmetic_avatar', rarity: 'epic', icon: '🎨', weight: 2,
-    titleRU: 'Премиум-аватар бесплатно', titleUK: 'Преміум-аватар безкоштовно', titleES: 'Avatar Premium gratis',
+    titleRU: 'Плюс-аватар бесплатно', titleUK: 'Плюс-аватар безкоштовно', titleES: 'Avatar Plus gratis',
     descRU: 'Случайный аватар со случайным фоном откроется бесплатно',
     descUK: 'Випадковий аватар із випадковим фоном відкриється безкоштовно',
     descES: 'Un avatar aleatorio con fondo aleatorio se desbloquea gratis',
   },
   {
     id: 'premium_cosmetic_aura', rarity: 'epic', icon: '✨', weight: 2,
-    titleRU: 'Премиум-аура бесплатно', titleUK: 'Преміум-аура безкоштовно', titleES: 'Aura Premium gratis',
+    titleRU: 'Плюс-аура бесплатно', titleUK: 'Плюс-аура безкоштовно', titleES: 'Aura Plus gratis',
     descRU: 'Случайная аура аватара откроется бесплатно',
     descUK: 'Випадкова аура аватара відкриється безкоштовно',
     descES: 'Un aura de avatar aleatoria se desbloquea gratis',

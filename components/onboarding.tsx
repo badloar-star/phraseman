@@ -699,7 +699,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   {
     key: 'themes',
     iconAsset: ONBOARDING_PAYWALL_ICONS.themes,
-    title: 'Premium-стиль',
+    title: 'Plus-стиль',
     subtitle: 'все темы приложения',
   },
   {
@@ -2626,9 +2626,9 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
                 <Text style={styles.planFreeConfirmTitle}>{triOb('Точно без плана?', 'Точно без плану?', '¿Sin plan?')}</Text>
                 <Text style={styles.planFreeConfirmText}>
                   {triOb(
-                    'Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.',
-                    'Персональний план відкрито в Premium. Решта працює у повному доступі. Аналіз слабких місць і маршрут під ціль — з планом.',
-                    'El plan personal está en Premium. Todo lo demás funciona gratis. Análisis de puntos débiles y ruta a tu objetivo — con el plan.',
+                    'Персональный план открыт в Plus. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.',
+                    'Персональний план відкрито в Plus. Решта працює у повному доступі. Аналіз слабких місць і маршрут під ціль — з планом.',
+                    'El plan personal está en Plus. Todo lo demás funciona gratis. Análisis de puntos débiles y ruta a tu objetivo — con el plan.',
                   )}
                 </Text>
                 <View style={styles.planFreeConfirmActions}>

@@ -31,43 +31,43 @@ const GRAMMAR_HINT_TEXT_FIELD_BY_LANG = {
 } as const satisfies Record<Lang, keyof GrammarHintTrilingual>;
 
 const ENERGY_MESSAGES_PT_BR = [
-  'Dê um tempo para o conteúdo assentar. +1 ⚡ volta em {time}. Com Premium, você continua sem pausas.',
-  'Você mandou bem. +1 ⚡ será recuperado em {time}. No Premium, a energia não acaba.',
-  'Seu cérebro merece uma pausa curta. +1 ⚡ volta em {time}. Quer estudar sem parar? Premium libera o caminho.',
-  'Energia zerada, progresso em alta. +1 ⚡ volta em {time}; com Premium, não precisa esperar.',
-  'Respire um pouco. +1 ⚡ volta em {time}. Ou remova os limites com Premium.',
+  'Dê um tempo para o conteúdo assentar. +1 ⚡ volta em {time}. Com Plus, você continua sem pausas.',
+  'Você mandou bem. +1 ⚡ será recuperado em {time}. No Plus, a energia não acaba.',
+  'Seu cérebro merece uma pausa curta. +1 ⚡ volta em {time}. Quer estudar sem parar? Plus libera o caminho.',
+  'Energia zerada, progresso em alta. +1 ⚡ volta em {time}; com Plus, não precisa esperar.',
+  'Respire um pouco. +1 ⚡ volta em {time}. Ou remova os limites com Plus.',
 ];
 
 const ENERGY_MESSAGES_VI = [
-  'Hãy để kiến thức ngấm thêm một chút. +1 ⚡ sẽ trở lại sau {time}. Với Premium, bạn học tiếp không cần chờ.',
-  'Bạn đã học rất tốt. +1 ⚡ sẽ hồi lại sau {time}. Premium thì năng lượng không hết.',
-  'Não bộ của bạn xứng đáng nghỉ ngắn. +1 ⚡ sẽ trở lại sau {time}. Muốn học liền mạch? Premium mở đường.',
-  'Năng lượng đã về 0, nhưng tiến độ vẫn tốt. +1 ⚡ sẽ hồi lại sau {time}; Premium giúp bạn khỏi chờ.',
-  'Tạm nghỉ một nhịp. +1 ⚡ sẽ trở lại sau {time}. Hoặc gỡ giới hạn bằng Premium.',
+  'Hãy để kiến thức ngấm thêm một chút. +1 ⚡ sẽ trở lại sau {time}. Với Plus, bạn học tiếp không cần chờ.',
+  'Bạn đã học rất tốt. +1 ⚡ sẽ hồi lại sau {time}. Plus thì năng lượng không hết.',
+  'Não bộ của bạn xứng đáng nghỉ ngắn. +1 ⚡ sẽ trở lại sau {time}. Muốn học liền mạch? Plus mở đường.',
+  'Năng lượng đã về 0, nhưng tiến độ vẫn tốt. +1 ⚡ sẽ hồi lại sau {time}; Plus giúp bạn khỏi chờ.',
+  'Tạm nghỉ một nhịp. +1 ⚡ sẽ trở lại sau {time}. Hoặc gỡ giới hạn bằng Plus.',
 ];
 
 const ENERGY_MESSAGES_ID = [
-  'Beri waktu agar materi meresap. +1 ⚡ kembali dalam {time}. Dengan Premium, kamu lanjut tanpa jeda.',
-  'Kerjamu bagus. +1 ⚡ akan pulih dalam {time}. Di Premium, energi tidak habis.',
-  'Otakmu pantas mendapat istirahat singkat. +1 ⚡ kembali dalam {time}. Mau belajar tanpa berhenti? Premium membuka jalan.',
-  'Energi nol, progres tetap tinggi. +1 ⚡ pulih dalam {time}; dengan Premium kamu tidak perlu menunggu.',
-  'Ambil jeda sebentar. +1 ⚡ kembali dalam {time}. Atau hapus batas dengan Premium.',
+  'Beri waktu agar materi meresap. +1 ⚡ kembali dalam {time}. Dengan Plus, kamu lanjut tanpa jeda.',
+  'Kerjamu bagus. +1 ⚡ akan pulih dalam {time}. Di Plus, energi tidak habis.',
+  'Otakmu pantas mendapat istirahat singkat. +1 ⚡ kembali dalam {time}. Mau belajar tanpa berhenti? Plus membuka jalan.',
+  'Energi nol, progres tetap tinggi. +1 ⚡ pulih dalam {time}; dengan Plus kamu tidak perlu menunggu.',
+  'Ambil jeda sebentar. +1 ⚡ kembali dalam {time}. Atau hapus batas dengan Plus.',
 ];
 
 const ENERGY_MESSAGES_TR = [
-  'Bilginin biraz oturmasına izin ver. +1 ⚡ {time} içinde döner. Premium ile beklemeden devam edersin.',
-  'İyi çalıştın. +1 ⚡ {time} içinde yenilenir. Premiumda enerji bitmez.',
-  'Beynin kısa bir molayı hak etti. +1 ⚡ {time} içinde döner. Durmadan çalışmak ister misin? Premium yolu açar.',
-  'Enerji sıfır, ilerleme yüksek. +1 ⚡ {time} içinde yenilenir; Premium ile beklemek yok.',
-  'Kısa bir nefes alalım. +1 ⚡ {time} içinde döner. Ya da Premium ile sınırları kaldır.',
+  'Bilginin biraz oturmasına izin ver. +1 ⚡ {time} içinde döner. Plus ile beklemeden devam edersin.',
+  'İyi çalıştın. +1 ⚡ {time} içinde yenilenir. Plusda enerji bitmez.',
+  'Beynin kısa bir molayı hak etti. +1 ⚡ {time} içinde döner. Durmadan çalışmak ister misin? Plus yolu açar.',
+  'Enerji sıfır, ilerleme yüksek. +1 ⚡ {time} içinde yenilenir; Plus ile beklemek yok.',
+  'Kısa bir nefes alalım. +1 ⚡ {time} içinde döner. Ya da Plus ile sınırları kaldır.',
 ];
 
 const ENERGY_MESSAGES_PL = [
-  'Daj wiedzy chwilę, żeby się ułożyła. +1 ⚡ wróci za {time}. Z Premium uczysz się bez przerw.',
-  'Dobra robota. +1 ⚡ odnowi się za {time}. W Premium energia się nie kończy.',
-  'Twój mózg zasłużył na krótką pauzę. +1 ⚡ wróci za {time}. Chcesz uczyć się bez zatrzymania? Premium otwiera drogę.',
-  'Energia na zerze, ale postęp jest mocny. +1 ⚡ wróci za {time}; z Premium nie czekasz.',
-  'Zróbmy krótki oddech. +1 ⚡ wróci za {time}. Albo zdejmij limity dzięki Premium.',
+  'Daj wiedzy chwilę, żeby się ułożyła. +1 ⚡ wróci za {time}. Z Plus uczysz się bez przerw.',
+  'Dobra robota. +1 ⚡ odnowi się za {time}. W Plus energia się nie kończy.',
+  'Twój mózg zasłużył na krótką pauzę. +1 ⚡ wróci za {time}. Chcesz uczyć się bez zatrzymania? Plus otwiera drogę.',
+  'Energia na zerze, ale postęp jest mocny. +1 ⚡ wróci za {time}; z Plus nie czekasz.',
+  'Zróbmy krótki oddech. +1 ⚡ wróci za {time}. Albo zdejmij limity dzięki Plus.',
 ];
 
 const ENERGY_MESSAGES_BY_LANG = {

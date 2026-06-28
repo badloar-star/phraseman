@@ -114,14 +114,14 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
   });
 
   const hintUnlimited = triLang(lang, {
-    ru: 'У тебя безлимит энергии (Premium или тестовый режим). Осколки на заряд не тратятся.',
-    uk: 'У тебе безліміт енергії (Premium або тестовий режим). Осколки на заряд не витрачаються.',
-    es: 'Tienes energía ilimitada (Premium o modo de prueba). Los fragmentos no se gastan en la recarga.',
-    'pt-BR': 'Você tem energia ilimitada (Premium ou modo de teste). Fragmentos não são gastos na recarga.',
-    vi: 'Bạn có năng lượng không giới hạn (Premium hoặc chế độ thử nghiệm). Mảnh sẽ không bị dùng để nạp.',
-    id: 'Kamu punya energi tanpa batas (Premium atau mode uji). Shard tidak dipakai untuk isi ulang.',
-    tr: 'Sınırsız enerjin var (Premium veya test modu). Yenileme için parça harcanmaz.',
-    pl: 'Masz energię bez limitu (Premium albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
+    ru: 'У тебя безлимит энергии (Plus или тестовый режим). Осколки на заряд не тратятся.',
+    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Осколки на заряд не витрачаються.',
+    es: 'Tienes energía ilimitada (Plus o modo de prueba). Los fragmentos no se gastan en la recarga.',
+    'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Fragmentos não são gastos na recarga.',
+    vi: 'Bạn có năng lượng không giới hạn (Plus hoặc chế độ thử nghiệm). Mảnh sẽ không bị dùng để nạp.',
+    id: 'Kamu punya energi tanpa batas (Plus atau mode uji). Shard tidak dipakai untuk isi ulang.',
+    tr: 'Sınırsız enerjin var (Plus veya test modu). Yenileme için parça harcanmaz.',
+    pl: 'Masz energię bez limitu (Plus albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
   });
   const hintFull = triLang(lang, {
     ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за осколки.`,

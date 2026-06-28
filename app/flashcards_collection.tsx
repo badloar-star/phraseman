@@ -1893,24 +1893,24 @@ export default function FlashcardsScreen() {
                 deleteLabel={s.delete}
                 voiceLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Odsłuchaj' })}
                 premiumExpiredTitle={triLang(lang, {
-                  ru: 'Премиум истёк',
-                  uk: 'Преміум закінчився',
-                  es: 'Premium caducado',
-                  'pt-BR': 'Premium expirou',
-                  vi: 'Premium đã hết hạn',
-                  id: 'Premium kedaluwarsa',
-                  tr: 'Premium süresi doldu',
-                  pl: 'Premium wygasło',
+                  ru: 'Плюс истёк',
+                  uk: 'Плюс закінчився',
+                  es: 'Plus caducado',
+                  'pt-BR': 'Plus expirou',
+                  vi: 'Plus đã hết hạn',
+                  id: 'Plus kedaluwarsa',
+                  tr: 'Plus süresi doldu',
+                  pl: 'Plus wygasło',
                 })}
                 premiumExpiredSubtitle={triLang(lang, {
-                  ru: 'Обновите Премиум чтобы увидеть эти карточки',
-                  uk: 'Поновіть Преміум щоб побачити ці картки',
-                  es: 'Renueva Premium para ver estas tarjetas.',
-                  'pt-BR': 'Renove o Premium para ver estes cartões.',
-                  vi: 'Gia hạn Premium để xem các thẻ này.',
-                  id: 'Perpanjang Premium untuk melihat kartu ini.',
-                  tr: 'Bu kartları görmek için Premium’u yenile.',
-                  pl: 'Odnów Premium, aby zobaczyć te karty.',
+                  ru: 'Обновите Плюс чтобы увидеть эти карточки',
+                  uk: 'Поновіть Плюс щоб побачити ці картки',
+                  es: 'Renueva Plus para ver estas tarjetas.',
+                  'pt-BR': 'Renove o Plus para ver estes cartões.',
+                  vi: 'Gia hạn Plus để xem các thẻ này.',
+                  id: 'Perpanjang Plus untuk melihat kartu ini.',
+                  tr: 'Bu kartları görmek için Plus’u yenile.',
+                  pl: 'Odnów Plus, aby zobaczyć te karty.',
                 })}
                 cardHeight={CARD_H}
                 cardStyle={st.card}

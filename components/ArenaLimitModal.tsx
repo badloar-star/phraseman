@@ -333,14 +333,14 @@ function ArenaLimitModal({
 
         <Text style={[styles.hintPremium, { color: t.textMuted, fontSize: f.sub }]}>
           {triLang(lang, {
-            ru: 'С Premium — безлимитные матчи каждый день',
-            uk: 'З Premium — безлімітні матчі щодня',
-            es: 'Con Premium tienes duelos ilimitados cada día',
-            'pt-BR': 'Com Premium, duelos ilimitados todos os dias',
-            vi: 'Với Premium, bạn có lượt đấu không giới hạn mỗi ngày',
-            id: 'Dengan Premium, duel tak terbatas setiap hari',
-            tr: 'Premium ile her gün sınırsız düello',
-            pl: 'Z Premium masz nielimitowane pojedynki każdego dnia',
+            ru: 'С Plus — безлимитные матчи каждый день',
+            uk: 'З Plus — безлімітні матчі щодня',
+            es: 'Con Plus tienes duelos ilimitados cada día',
+            'pt-BR': 'Com Plus, duelos ilimitados todos os dias',
+            vi: 'Với Plus, bạn có lượt đấu không giới hạn mỗi ngày',
+            id: 'Dengan Plus, duel tak terbatas setiap hari',
+            tr: 'Plus ile her gün sınırsız düello',
+            pl: 'Z Plus masz nielimitowane pojedynki każdego dnia',
           })}
         </Text>
 

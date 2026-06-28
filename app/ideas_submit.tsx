@@ -90,14 +90,14 @@ export default function IdeasSubmitScreen() {
       await enqueueThemedBlockingInfoAlert(
         L('Идея отправлена 🚀', 'Ідею надіслано 🚀', 'Idea enviada 🚀', 'Ideia enviada 🚀', 'Ý tưởng đã gửi 🚀', 'Ide terkirim 🚀', 'Fikir gönderildi 🚀', 'Pomysł wysłany 🚀'),
         L(
-          'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Premium на год.',
-          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Premium на рік.',
-          '¡Gracias! Leeremos tu idea. Si la tomamos, te damos Premium por un año.',
-          'Obrigado! Vamos ler sua ideia. Se ela entrar no trabalho, liberamos Premium por um ano.',
-          'Cảm ơn! Chúng tôi sẽ đọc ý tưởng của bạn. Nếu đưa vào làm, chúng tôi sẽ mở Premium cho bạn trong một năm.',
-          'Terima kasih! Kami akan membaca idemu. Jika kami kerjakan, kami akan membukakan Premium selama setahun.',
-          'Teşekkürler! Fikrini okuyacağız. Üzerinde çalışmaya alırsak sana bir yıllık Premium açacağız.',
-          'Dzięki! Przeczytamy twój pomysł. Jeśli weźmiemy go do pracy, odblokujemy ci Premium na rok.',
+          'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Plus на год.',
+          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.',
+          '¡Gracias! Leeremos tu idea. Si la tomamos, te damos Plus por un año.',
+          'Obrigado! Vamos ler sua ideia. Se ela entrar no trabalho, liberamos Plus por um ano.',
+          'Cảm ơn! Chúng tôi sẽ đọc ý tưởng của bạn. Nếu đưa vào làm, chúng tôi sẽ mở Plus cho bạn trong một năm.',
+          'Terima kasih! Kami akan membaca idemu. Jika kami kerjakan, kami akan membukakan Plus selama setahun.',
+          'Teşekkürler! Fikrini okuyacağız. Üzerinde çalışmaya alırsak sana bir yıllık Plus açacağız.',
+          'Dzięki! Przeczytamy twój pomysł. Jeśli weźmiemy go do pracy, odblokujemy ci Plus na rok.',
         ),
         L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
       );
@@ -227,7 +227,7 @@ export default function IdeasSubmitScreen() {
                 {L('Есть идея? ', 'Є ідея? ', '¿Tienes una idea? ', 'Tem uma ideia? ', 'Bạn có ý tưởng? ', 'Punya ide? ', 'Fikrin mi var? ', 'Masz pomysł? ')}
               </Text>
               <Text style={{ color: t.correct }}>
-                {L('Получи год Premium', 'Отримай рік Premium', 'Gana un año de Premium', 'Ganhe um ano de Premium', 'Nhận một năm Premium', 'Dapatkan Premium setahun', 'Bir yıl Premium kazan', 'Zdobądź rok Premium')}
+                {L('Получи год Plus', 'Отримай рік Plus', 'Gana un año de Plus', 'Ganhe um ano de Plus', 'Nhận một năm Plus', 'Dapatkan Plus setahun', 'Bir yıl Plus kazan', 'Zdobądź rok Plus')}
               </Text>
             </Text>
             <Text
@@ -257,7 +257,7 @@ export default function IdeasSubmitScreen() {
             {[
               { emoji: '✍️', label: L('Опиши\nидею', 'Опиши\nідею', 'Describe\ntu idea', 'Descreva\na ideia', 'Mô tả\ný tưởng', 'Jelaskan\nidemu', 'Fikrini\nyaz', 'Opisz\npomysł'), reward: false },
               { emoji: '👀', label: L('Мы её\nпрочитаем', 'Ми її\nпрочитаємо', 'La\nleemos', 'Vamos\nler', 'Chúng tôi\nsẽ đọc', 'Kami\nbaca', 'Biz\nokuruz', 'My go\nprzeczytamy'), reward: false },
-              { emoji: '🎁', label: L('Год\nPremium', 'Рік\nPremium', 'Año\nPremium', 'Ano\nPremium', 'Một năm\nPremium', 'Premium\nsetahun', 'Bir yıl\nPremium', 'Rok\nPremium'), reward: true },
+              { emoji: '🎁', label: L('Год\nPlus', 'Рік\nPlus', 'Año\nPlus', 'Ano\nPlus', 'Một năm\nPlus', 'Plus\nsetahun', 'Bir yıl\nPlus', 'Rok\nPlus'), reward: true },
             ].map((step, i) => (
               <View
                 key={i}

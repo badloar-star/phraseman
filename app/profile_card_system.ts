@@ -472,14 +472,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   1: [
     { isNew: true, text: {
-      ru: 'Премиальная компоновка и тонкий кант-фольга',
-      uk: 'Преміальна композиція та тонкий кант-фольга',
-      es: 'Diseño premium y borde de lámina fina',
-      'pt-BR': 'Layout premium e borda de folha fina',
-      vi: 'Bố cục cao cấp và viền ánh kim mảnh',
-      id: 'Tata letak premium dan tepi foil tipis',
-      tr: 'Premium düzen ve ince folyo kenar',
-      pl: 'Premium układ i cienki kant-folia',
+      ru: 'Плюс-компоновка и тонкий кант-фольга',
+      uk: 'Плюс-композиція та тонкий кант-фольга',
+      es: 'Diseño Plus y borde de lámina fina',
+      'pt-BR': 'Layout Plus e borda de folha fina',
+      vi: 'Bố cục Plus và viền ánh kim mảnh',
+      id: 'Tata letak Plus dan tepi foil tipis',
+      tr: 'Plus düzen ve ince folyo kenar',
+      pl: 'Plus układ i cienki kant-folia',
     } },
     { isNew: true, text: {
       ru: 'Бейдж «CARD I» у имени в друзьях, арене и клубе',

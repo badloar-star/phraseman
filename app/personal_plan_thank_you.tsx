@@ -51,14 +51,14 @@ export default function PersonalPlanThankYouScreen() {
           </Text>
           <Text style={[styles.subtitle, { color: t.textMuted }]}>
             {triLang(lang, {
-              ru: 'Premium активен, личный план сохранён. Осталось привязать аккаунт, чтобы прогресс не потерялся при смене телефона.',
-              uk: 'Premium активний, особистий план збережено. Залишилося прив’язати акаунт, щоб прогрес не загубився після зміни телефона.',
-              es: 'Premium está activo y tu plan personal está guardado. Vincula una cuenta para no perder el progreso si cambias de teléfono.',
-              'pt-BR': 'Premium está ativo e seu plano pessoal foi salvo. Falta vincular uma conta para não perder o progresso ao trocar de telefone.',
-              vi: 'Premium đã hoạt động và kế hoạch cá nhân đã được lưu. Hãy liên kết tài khoản để không mất tiến độ khi đổi điện thoại.',
-              id: 'Premium aktif dan rencana pribadimu tersimpan. Tautkan akun agar progres tidak hilang saat ganti ponsel.',
-              tr: 'Premium aktif, kişisel planın kaydedildi. Telefon değiştirince ilerlemen kaybolmasın diye hesabını bağla.',
-              pl: 'Premium jest aktywny, a plan osobisty zapisany. Połącz konto, aby nie stracić postępów po zmianie telefonu.',
+              ru: 'Plus активен, личный план сохранён. Осталось привязать аккаунт, чтобы прогресс не потерялся при смене телефона.',
+              uk: 'Plus активний, особистий план збережено. Залишилося прив’язати акаунт, щоб прогрес не загубився після зміни телефона.',
+              es: 'Plus está activo y tu plan personal está guardado. Vincula una cuenta para no perder el progreso si cambias de teléfono.',
+              'pt-BR': 'Plus está ativo e seu plano pessoal foi salvo. Falta vincular uma conta para não perder o progresso ao trocar de telefone.',
+              vi: 'Plus đã hoạt động và kế hoạch cá nhân đã được lưu. Hãy liên kết tài khoản để không mất tiến độ khi đổi điện thoại.',
+              id: 'Plus aktif dan rencana pribadimu tersimpan. Tautkan akun agar progres tidak hilang saat ganti ponsel.',
+              tr: 'Plus aktif, kişisel planın kaydedildi. Telefon değiştirince ilerlemen kaybolmasın diye hesabını bağla.',
+              pl: 'Plus jest aktywny, a plan osobisty zapisany. Połącz konto, aby nie stracić postępów po zmianie telefonu.',
             })}
           </Text>
 
@@ -111,14 +111,14 @@ export default function PersonalPlanThankYouScreen() {
           pl: 'Zapiszemy twój plan',
         })}
         subtitle={triLang(lang, {
-          ru: 'Войди через Google или Apple, чтобы Premium, план и прогресс были привязаны к аккаунту.',
-          uk: 'Увійди через Google або Apple, щоб Premium, план і прогрес були прив’язані до акаунта.',
-          es: 'Accede con Google o Apple para vincular Premium, el plan y el progreso a tu cuenta.',
-          'pt-BR': 'Entre com Google ou Apple para vincular Premium, o plano e o progresso à sua conta.',
-          vi: 'Đăng nhập bằng Google hoặc Apple để gắn Premium, kế hoạch và tiến độ với tài khoản của bạn.',
-          id: 'Masuk dengan Google atau Apple agar Premium, rencana, dan progres tertaut ke akunmu.',
-          tr: 'Premium, plan ve ilerlemenin hesabına bağlanması için Google veya Apple ile giriş yap.',
-          pl: 'Zaloguj się przez Google albo Apple, aby Premium, plan i postępy były przypisane do konta.',
+          ru: 'Войди через Google или Apple, чтобы Plus, план и прогресс были привязаны к аккаунту.',
+          uk: 'Увійди через Google або Apple, щоб Plus, план і прогрес були прив’язані до акаунта.',
+          es: 'Accede con Google o Apple para vincular Plus, el plan y el progreso a tu cuenta.',
+          'pt-BR': 'Entre com Google ou Apple para vincular Plus, o plano e o progresso à sua conta.',
+          vi: 'Đăng nhập bằng Google hoặc Apple để gắn Plus, kế hoạch và tiến độ với tài khoản của bạn.',
+          id: 'Masuk dengan Google atau Apple agar Plus, rencana, dan progres tertaut ke akunmu.',
+          tr: 'Plus, plan ve ilerlemenin hesabına bağlanması için Google veya Apple ile giriş yap.',
+          pl: 'Zaloguj się przez Google albo Apple, aby Plus, plan i postępy były przypisane do konta.',
         })}
         onClose={goToPlan}
         onSignedIn={goToPlan}

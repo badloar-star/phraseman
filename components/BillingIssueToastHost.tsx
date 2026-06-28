@@ -60,14 +60,14 @@ export default function BillingIssueToastHost() {
       ]).catch(() => {});
 
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Premium',
-        uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Premium',
-        es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Premium',
-        'pt-BR': '💳 Problema no pagamento da assinatura — atualize a forma de pagamento para não perder o Premium',
-        vi: '💳 Sự cố thanh toán gói đăng ký — cập nhật phương thức để không mất Premium',
-        id: '💳 Masalah pembayaran langganan — perbarui metode agar tidak kehilangan Premium',
-        tr: '💳 Abonelik ödemesinde sorun var — Premium’u kaybetmemek için ödeme yöntemini güncelle',
-        pl: '💳 Problem z płatnością subskrypcji — zaktualizuj metodę, by nie stracić Premium',
+        ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus',
+        uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Plus',
+        es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Plus',
+        'pt-BR': '💳 Problema no pagamento da assinatura — atualize a forma de pagamento para não perder o Plus',
+        vi: '💳 Sự cố thanh toán gói đăng ký — cập nhật phương thức để không mất Plus',
+        id: '💳 Masalah pembayaran langganan — perbarui metode agar tidak kehilangan Plus',
+        tr: '💳 Abonelik ödemesinde sorun var — Plus’u kaybetmemek için ödeme yöntemini güncelle',
+        pl: '💳 Problem z płatnością subskrypcji — zaktualizuj metodę, by nie stracić Plus',
       }));
     } catch {
       /* ignore — optional enhancement */

@@ -86,7 +86,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Может позже',
     footer: 'Это подарок. Ничего не спишется, подписка не включится.',
     announcePrimaryCta: 'Посмотреть, что нового',
-    announceFooter: 'Спасибо, что остаёшься рядом. Всё новое уже открыто в твоём Premium.',
+    announceFooter: 'Спасибо, что остаёшься рядом. Всё новое уже открыто в твоём Plus.',
   },
   uk: {
     eyebrow: 'Нова версія',
@@ -114,7 +114,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Можливо пізніше',
     footer: 'Це подарунок. Нічого не спишеться, підписка не ввімкнеться.',
     announcePrimaryCta: 'Подивитися, що нового',
-    announceFooter: 'Дякую, що залишаєшся поруч. Усе нове вже відкрите у твоєму Premium.',
+    announceFooter: 'Дякую, що залишаєшся поруч. Усе нове вже відкрите у твоєму Plus.',
   },
   es: {
     eyebrow: 'Nueva versión',
@@ -142,7 +142,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Quizá luego',
     footer: 'Es un regalo. No se cobra nada, la suscripción no se activa.',
     announcePrimaryCta: 'Ver las novedades',
-    announceFooter: 'Gracias por seguir aquí. Todo lo nuevo ya está abierto en tu Premium.',
+    announceFooter: 'Gracias por seguir aquí. Todo lo nuevo ya está abierto en tu Plus.',
   },
   'pt-BR': {
     eyebrow: 'Nova versão',
@@ -170,7 +170,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Talvez depois',
     footer: 'É um presente. Nada será cobrado, a assinatura não será ativada.',
     announcePrimaryCta: 'Ver novidades',
-    announceFooter: 'Obrigado por continuar por perto. Tudo novo já está aberto no seu Premium.',
+    announceFooter: 'Obrigado por continuar por perto. Tudo novo já está aberto no seu Plus.',
   },
   vi: {
     eyebrow: 'Phiên bản mới',
@@ -198,7 +198,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Có thể để sau',
     footer: 'Đây là quà tặng. Không trừ tiền, đăng ký không tự bật.',
     announcePrimaryCta: 'Xem có gì mới',
-    announceFooter: 'Cảm ơn bạn vẫn ở lại. Tất cả điều mới đã mở trong Premium của bạn.',
+    announceFooter: 'Cảm ơn bạn vẫn ở lại. Tất cả điều mới đã mở trong Plus của bạn.',
   },
   id: {
     eyebrow: 'Versi baru',
@@ -226,7 +226,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Mungkin nanti',
     footer: 'Ini hadiah. Tidak ada biaya, langganan tidak aktif.',
     announcePrimaryCta: 'Lihat yang baru',
-    announceFooter: 'Terima kasih tetap di sini. Semua yang baru sudah terbuka di Premium-mu.',
+    announceFooter: 'Terima kasih tetap di sini. Semua yang baru sudah terbuka di Plus-mu.',
   },
   tr: {
     eyebrow: 'Yeni sürüm',
@@ -254,7 +254,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Belki sonra',
     footer: 'Bu bir hediye. Ücret alınmaz, abonelik başlamaz.',
     announcePrimaryCta: 'Yeniliklere bak',
-    announceFooter: 'Burada kalmaya devam ettiğin için teşekkürler. Tüm yenilikler Premium’unda zaten açık.',
+    announceFooter: 'Burada kalmaya devam ettiğin için teşekkürler. Tüm yenilikler Plus’unda zaten açık.',
   },
   pl: {
     eyebrow: 'Nowa wersja',
@@ -282,7 +282,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> & Partial<Record<PlannedInterf
     secondaryCta: 'Może później',
     footer: 'To prezent. Nic nie zostanie pobrane, subskrypcja się nie włączy.',
     announcePrimaryCta: 'Zobacz nowości',
-    announceFooter: 'Dzięki, że zostajesz. Wszystko nowe jest już otwarte w twoim Premium.',
+    announceFooter: 'Dzięki, że zostajesz. Wszystko nowe jest już otwarte w twoim Plus.',
   },
 };
 

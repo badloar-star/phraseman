@@ -33,6 +33,12 @@ import type { CompassTask, CompassDay } from './compass_brain';
 
 const SEEN_KEY_PREFIX = 'compass_briefing_seen_';
 
+// ПОСТОЯННЫЙ латч «знакомство с Компасом состоялось» — ставится один раз, когда
+// пользователь намеренно закрыл ИМЕННО приветствие первой встречи (first_day).
+// НЕ календарный: после установки приветствие first_day больше не авто-показывается
+// никогда. comeback (возврат после паузы) и план-дни этим ключом НЕ затрагиваются.
+const WELCOME_MET_KEY = 'compass_welcome_met_v1';
+
 function todayKey(nowMs: number): string {
   const d = new Date(nowMs);
   const y = d.getFullYear();
@@ -91,6 +97,9 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // Онбординг должен быть завершён: иначе брифинг всплывает поверх онбординга
   // (экран home смонтирован под оверлеем). null = ещё не проверили.
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
+  // Постоянный латч знакомства: было ли уже показано приветствие первой встречи.
+  // null = ещё не прочитали из хранилища (авто-показ не запускаем до чтения).
+  const [welcomeMet, setWelcomeMet] = useState<boolean | null>(null);
 
   // Один показ в день: проверяем локальный маркер. Не гейтим премиумом — само
   // решение «показывать ли» учитывает премиум ниже (приветственные дни видны всем,
@@ -115,6 +124,20 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     void (async () => {
       const done = await AsyncStorage.getItem('onboarding_done').catch(() => null);
       if (!cancelled) setOnboardingDone(done === '1');
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Состоялось ли уже знакомство с Компасом (постоянный латч, читаем один раз).
+  // Пока welcomeMet === null, авто-показ приветствия первой встречи не запускаем.
+  useEffect(() => {
+    if (!compassOn()) return;
+    let cancelled = false;
+    void (async () => {
+      const met = await AsyncStorage.getItem(WELCOME_MET_KEY).catch(() => null);
+      if (!cancelled) setWelcomeMet(met === '1');
     })();
     return () => {
       cancelled = true;
@@ -146,15 +169,25 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     // он гасит повторный показ до того, как асинхронная запись успеет завершиться.
     _compassBriefingClosedForDay = dayKey;
     void AsyncStorage.setItem(dayKey, '1').catch(() => {});
+    // Знакомство засчитываем НАВСЕГДА только для приветствия первой встречи
+    // (first_day). После этого приветствие первой встречи больше не авто-показывается.
+    // comeback (возврат после паузы) сюда НЕ попадает — он должен повторяться.
+    if (day?.type === 'first_day') {
+      setWelcomeMet(true);
+      void AsyncStorage.setItem(WELCOME_MET_KEY, '1').catch(() => {});
+    }
     // Соц-сводку, которую юзер увидел в брифинге, помечаем показанной — иначе
     // тост-фолбэк или завтрашний брифинг повторят те же заявки/лайки.
     if (socialEvents.length > 0) {
       void markSocialNewsSeen(socialEvents).catch(() => {});
     }
-  }, [dayKey, socialEvents]);
+  }, [dayKey, socialEvents, day]);
 
-  // Показываем, только когда: онбординг завершён, день готов, есть реальная история
-  // (тип ≠ first_day) и сегодня ещё не закрывали. Чистый лист брифингом не дёргаем.
+  // Показываем, только когда: онбординг завершён, день готов и сегодня ещё не
+  // закрывали. Приветствие первой встречи (first_day) показываем при чистом листе,
+  // но РОВНО ОДИН РАЗ за всё время — после знакомства его глушит постоянный латч
+  // compass_welcome_met_v1 (welcomeMet). comeback (возврат после паузы) и план-дни
+  // премиума под этот латч НЕ попадают — у них своя дневная логика повтора.
   //
   // ДВА МОДУЛЬНЫХ ЛАТЧА (оба переживают ремаунт хоста — мигание hasPremiumAccess при
   // фоновом cloud-refresh, Fast Refresh, ремаунт home, навигация):
@@ -167,6 +200,11 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   //    переоткрываем по кругу, если модалку гасит что-то снаружи, а не юзер).
   useEffect(() => {
     if (_compassBriefingClosedForDay === dayKey) return;
+    // Знакомство уже состоялось → приветствие первой встречи больше не авто-показываем
+    // (стоит ПЕРЕД веткой восстановления, чтобы ремаунт не вернул уже показанное
+    // приветствие). comeback/план-дни проходят дальше как обычно.
+    const suppressWelcome = welcomeMet === true && day?.type === 'first_day';
+    if (suppressWelcome) return;
     // Восстановление после ремаунта: авто-показ за сегодня уже был, юзер не закрывал —
     // вернуть видимость, не перезапуская проверку условий.
     if (_compassBriefingAutoShownForDay === dayKey) {
@@ -181,6 +219,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     if (
       compassOn() &&
       onboardingDone === true &&
+      welcomeMet !== null &&
       checkedSeen &&
       !loading &&
       day &&
@@ -189,7 +228,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       _compassBriefingAutoShownForDay = dayKey;
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey, welcomeMet]);
 
   const handleStart = useCallback(() => {
     // Кульминация брифинга — сильный тёплый отклик на ФАКТ старта дня.

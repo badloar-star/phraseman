@@ -58,6 +58,32 @@
     .seg.missing { background: var(--bad); }
     .chart .count { color: var(--fg-dim); text-align: right; }
     a.back { color: var(--acc); text-decoration: none; }
+    /* Readiness gauge */
+    .gauge { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .gauge-bar { position: relative; height: 18px; background: var(--line); border-radius: 9px; overflow: hidden; }
+    .gauge-bar > div { height: 100%; background: linear-gradient(90deg, var(--bad), var(--warn) 50%, var(--good));
+                       transition: width 600ms ease; }
+    .gauge-bar > .mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--fg);
+                         opacity: 0.5; pointer-events: none; }
+    .gauge-bar > .mark::after { content: attr(data-label); position: absolute; top: -14px; left: 50%;
+                                transform: translateX(-50%); font-size: 9px; color: var(--fg-dim); white-space: nowrap; }
+    .gauge-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .gauge-header .pct { font-size: 36px; font-weight: 700; }
+    .gauge-header .verdict { font-size: 13px; padding: 4px 10px; border-radius: 999px; }
+    .verdict.go { background: rgba(52,211,153,0.15); color: var(--good); }
+    .verdict.almost { background: rgba(251,191,36,0.15); color: var(--warn); }
+    .verdict.no { background: rgba(248,113,113,0.15); color: var(--bad); }
+    .gauge-meta { font-size: 12px; color: var(--fg-dim); }
+    .criteria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+    .crit { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 8px;
+            padding: 10px 12px; }
+    .crit-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
+    .crit-row .icon { font-size: 16px; line-height: 1; }
+    .crit-row.ok { color: var(--good); } .crit-row.fail { color: var(--bad); }
+    .crit .name { color: var(--fg); font-weight: 500; }
+    .crit .detail { font-size: 11px; color: var(--fg-dim); margin-top: 4px; padding-left: 24px; }
+    .eta { font-size: 13px; color: var(--fg); padding: 10px 12px; background: rgba(129,140,248,0.08);
+           border-left: 3px solid var(--acc); border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -82,6 +108,12 @@
   <main>
     <div id="error" class="err" style="display:none"></div>
     <div class="cards" id="summaryCards"><div class="card"><div class="label">Загрузка…</div></div></div>
+
+    <section id="readinessSection">
+      <h2>Готовность к удалению встроенного контента</h2>
+      <div id="readiness"><div class="empty">Загрузка…</div></div>
+    </section>
+
     <section>
       <h2>По датам</h2>
       <div class="legend">
@@ -194,6 +226,146 @@
       return { total, bySource, byReason, bySurface, byDay, byDayKey, fallbackByPlanDay, corruptCount };
     }
 
+    // ────────────────────────────────────────────────────────────────────────
+    // Готовность к удалению встроенного контента.
+    // Считаем БЕЗ дополнительных Firestore-чтений — только из уже загруженных
+    // events и agg за выбранный период. Никаких новых запросов = нулевая
+    // дополнительная стоимость.
+    //
+    // 4 критерия, все обязаны быть OK:
+    //   1) soak ≥ 14 дней (с первого зафиксированного события)
+    //   2) объём ≥ 1000 событий за soak-период
+    //   3) доля фоллбеков за последние 7 дней < 5%
+    //   4) ни одного «плохого» дня (fallback >20%) за всё время выборки
+    //
+    // 14 дней — компромисс: 7 — слишком короткий хвост (один сбой облака даёт
+    // ложноотрицательный отказ), 30 — слишком долго, юзеры устают ждать
+    // освобождения 20 МБ от бандла.
+    // ────────────────────────────────────────────────────────────────────────
+    const READINESS = {
+      minSoakDays: 14,
+      minEvents: 1000,
+      maxFallbackPctRecent: 5,
+      maxBadDayPct: 20,
+      recentWindowDays: 7,
+    };
+
+    function assessReadiness(events, agg) {
+      // 1) soak length: дни от первого события до сегодня
+      let earliestMs = Infinity;
+      for (const e of events) {
+        const ms = e.at?.toDate ? e.at.toDate().getTime() : NaN;
+        if (Number.isFinite(ms) && ms < earliestMs) earliestMs = ms;
+      }
+      const nowMs = Date.now();
+      const soakDays = Number.isFinite(earliestMs) ? Math.floor((nowMs - earliestMs) / 86400000) : 0;
+
+      // 2) объём
+      const totalEvents = agg.total;
+
+      // 3) доля фоллбеков за последние 7 дней
+      const recentCutoff = nowMs - READINESS.recentWindowDays * 86400000;
+      let recentTotal = 0, recentFallback = 0;
+      for (const e of events) {
+        const ms = e.at?.toDate ? e.at.toDate().getTime() : NaN;
+        if (!Number.isFinite(ms) || ms < recentCutoff) continue;
+        recentTotal += 1;
+        if (e.source !== 'downloaded_pack') recentFallback += 1;
+      }
+      const recentFallbackPct = recentTotal > 0 ? (recentFallback / recentTotal) * 100 : 0;
+
+      // 4) худший день (% фоллбеков) за всю выборку
+      let worstDayPct = 0, worstDayKey = '';
+      for (const [k, c] of Object.entries(agg.byDay)) {
+        const t = c.downloaded_pack + c.bundled_compatibility + c.missing;
+        if (t < 50) continue; // ignore noisy low-volume days
+        const fbPct = ((c.bundled_compatibility + c.missing) / t) * 100;
+        if (fbPct > worstDayPct) { worstDayPct = fbPct; worstDayKey = k; }
+      }
+
+      const c1 = { ok: soakDays >= READINESS.minSoakDays, value: soakDays,
+                   label: 'Срок наблюдения', detail: `${soakDays} из ${READINESS.minSoakDays} дней` };
+      const c2 = { ok: totalEvents >= READINESS.minEvents, value: totalEvents,
+                   label: 'Объём данных', detail: `${totalEvents.toLocaleString()} из ${READINESS.minEvents.toLocaleString()} событий` };
+      const c3 = { ok: recentTotal > 0 && recentFallbackPct < READINESS.maxFallbackPctRecent, value: recentFallbackPct,
+                   label: `Фоллбеки за ${READINESS.recentWindowDays} дн.`,
+                   detail: recentTotal > 0
+                     ? `${recentFallbackPct.toFixed(2)}% (порог < ${READINESS.maxFallbackPctRecent}%)`
+                     : 'нет данных за окно' };
+      const c4 = { ok: worstDayPct < READINESS.maxBadDayPct, value: worstDayPct,
+                   label: 'Худший день',
+                   detail: worstDayKey
+                     ? `${worstDayKey}: ${worstDayPct.toFixed(1)}% фоллбеков (порог < ${READINESS.maxBadDayPct}%)`
+                     : 'данных мало для оценки' };
+      const criteria = [c1, c2, c3, c4];
+
+      // Прогресс по каждому критерию 0..1, потом усреднение для шкалы.
+      // Срок и объём — линейный прогресс. Фоллбеки и худший день — «инверсия»:
+      // 0% = полный успех, threshold% = 0 прогресса (clamp).
+      const p1 = Math.min(1, soakDays / READINESS.minSoakDays);
+      const p2 = Math.min(1, totalEvents / READINESS.minEvents);
+      const p3 = recentTotal > 0
+        ? Math.max(0, 1 - recentFallbackPct / READINESS.maxFallbackPctRecent)
+        : 0;
+      const p4 = Math.max(0, 1 - worstDayPct / READINESS.maxBadDayPct);
+      const overall = (p1 + p2 + p3 + p4) / 4;
+
+      // Verdict
+      const allOk = criteria.every((c) => c.ok);
+      let verdict = 'no', verdictLabel = 'Бандл удалять РАНО';
+      if (allOk) { verdict = 'go'; verdictLabel = 'МОЖНО удалять бандл'; }
+      else if (overall >= 0.7) { verdict = 'almost'; verdictLabel = 'Почти готово'; }
+
+      // ETA: грубая оценка по самому медленному незакрытому критерию
+      let eta = '';
+      if (!allOk) {
+        const todoDays = READINESS.minSoakDays - soakDays;
+        const eventsBehind = READINESS.minEvents - totalEvents;
+        const dailyRate = totalEvents > 0 && soakDays > 0 ? totalEvents / Math.max(1, soakDays) : 0;
+        const eventsEtaDays = eventsBehind > 0 && dailyRate > 0 ? Math.ceil(eventsBehind / dailyRate) : 0;
+        const pieces = [];
+        if (todoDays > 0) pieces.push(`${todoDays} дн. наблюдения`);
+        if (eventsBehind > 0 && eventsEtaDays > 0) pieces.push(`~${eventsEtaDays} дн. до набора объёма (по текущей активности)`);
+        if (!c3.ok && recentTotal > 0) pieces.push(`снизить фоллбеки за ${READINESS.recentWindowDays} дней с ${recentFallbackPct.toFixed(2)}% до <${READINESS.maxFallbackPctRecent}%`);
+        if (!c4.ok && worstDayKey) pieces.push(`нет дней с >${READINESS.maxBadDayPct}% фоллбеков`);
+        if (pieces.length > 0) eta = 'Чтобы дойти до зелёного: ' + pieces.join('; ') + '.';
+      } else {
+        eta = 'Все 4 критерия закрыты. Можно поднимать minAppVersion в релизе и убирать встроенный контент следующим выпуском.';
+      }
+
+      return { overall, verdict, verdictLabel, criteria, eta };
+    }
+
+    function renderReadiness(events, agg) {
+      const r = assessReadiness(events, agg);
+      const pct = Math.round(r.overall * 100);
+      const critsHtml = r.criteria.map((c) => `
+        <div class="crit">
+          <div class="crit-row ${c.ok ? 'ok' : 'fail'}">
+            <span class="icon">${c.ok ? '✓' : '○'}</span>
+            <span class="name">${c.label}</span>
+          </div>
+          <div class="detail">${c.detail}</div>
+        </div>
+      `).join('');
+      $('readiness').innerHTML = `
+        <div class="gauge">
+          <div class="gauge-header">
+            <div class="pct">${pct}%</div>
+            <div class="verdict ${r.verdict}">${r.verdictLabel}</div>
+            <div class="gauge-meta">Оптимальная цель — ${READINESS.minSoakDays} дней наблюдения</div>
+          </div>
+          <div class="gauge-bar">
+            <div style="width:${pct}%"></div>
+            <div class="mark" style="left:70%" data-label="почти"></div>
+            <div class="mark" style="left:100%" data-label="готово"></div>
+          </div>
+          <div class="criteria">${critsHtml}</div>
+          ${r.eta ? `<div class="eta">${r.eta}</div>` : ''}
+        </div>
+      `;
+    }
+
     function renderCards(agg) {
       const t = agg.total;
       const server = agg.bySource.downloaded_pack;
@@ -303,6 +475,7 @@
         const events = await fetchEvents(days);
         const agg = aggregate(events);
         renderCards(agg);
+        renderReadiness(events, agg);
         renderChart(agg, days);
         renderReasons(agg);
         renderSurfaces(agg);

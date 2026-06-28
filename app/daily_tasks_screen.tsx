@@ -2486,7 +2486,7 @@ export default function DailyTasksScreen() {
                     dailyTaskStyles.taskCard,
                     dailyTaskStyles.taskCapsuleCard,
                     {
-                        height: 92,
+                        minHeight: 92,
                         borderColor: taskHairline,
                         backgroundColor: taskTrackColor,
                     }]}
@@ -2902,8 +2902,8 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 0,
     },
     taskProgressValuePill: {
-        width: 66,
-        height: 44,
+        minWidth: 66,
+        minHeight: 44,
         borderRadius: 16,
         borderWidth: 1,
         paddingHorizontal: 10,
@@ -2963,8 +2963,8 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 1,
     },
     compactClaimButton: {
-        width: 58,
-        height: 30,
+        minWidth: 58,
+        minHeight: 30,
         borderRadius: 10,
         paddingHorizontal: 6,
         alignItems: 'center',

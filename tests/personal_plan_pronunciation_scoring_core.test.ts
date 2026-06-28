@@ -137,4 +137,53 @@ describe('local personal plan pronunciation scoring core', () => {
     });
     expect(result.passed).toBe(false);
   });
+
+  it('softens a single wrong word the recognizer itself flagged low-confidence', () => {
+    // "banana" is a genuine miss vs "coffee" (sim < 0.6) — exactly the case the
+    // soft-miss is meant to rescue when the engine itself was unsure.
+    const target = 'I would like coffee';
+    const wrong = 'I would like banana';
+    const withoutConf = scorePronunciationTranscript({ targetText: target, transcript: wrong });
+    const withLowConf = scorePronunciationTranscript({
+      targetText: target,
+      transcript: wrong,
+      segments: [
+        { segment: 'I', confidence: 0.9 },
+        { segment: 'would', confidence: 0.9 },
+        { segment: 'like', confidence: 0.9 },
+        { segment: 'banana', confidence: 0.1 }, // engine unsure → soft miss
+      ],
+    });
+    // The soft-miss must lift the score, never lower it.
+    expect(withLowConf.score).toBeGreaterThan(withoutConf.score);
+  });
+
+  it('does NOT soften when the wrong word was high-confidence (speaker really erred)', () => {
+    const target = 'I would like coffee';
+    const wrong = 'I would like banana';
+    const baseline = scorePronunciationTranscript({ targetText: target, transcript: wrong });
+    const highConf = scorePronunciationTranscript({
+      targetText: target,
+      transcript: wrong,
+      segments: [
+        { segment: 'I', confidence: 0.9 },
+        { segment: 'would', confidence: 0.9 },
+        { segment: 'like', confidence: 0.9 },
+        { segment: 'banana', confidence: 0.95 },
+      ],
+    });
+    expect(highConf.score).toBe(baseline.score);
+  });
+
+  it('ignores confidence === -1 (unavailable on older OS)', () => {
+    const target = 'I would like coffee';
+    const wrong = 'I would like banana';
+    const baseline = scorePronunciationTranscript({ targetText: target, transcript: wrong });
+    const unavailable = scorePronunciationTranscript({
+      targetText: target,
+      transcript: wrong,
+      segments: [{ segment: 'banana', confidence: -1 }],
+    });
+    expect(unavailable.score).toBe(baseline.score);
+  });
 });

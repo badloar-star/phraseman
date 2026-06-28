@@ -188,7 +188,10 @@ export function SpeakingPanel({
   }, []);
 
   const finishAttempt = useCallback(
-    (finalTranscript: string) => {
+    (
+      finalTranscript: string,
+      segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
+    ) => {
       if (!mountedRef.current) return;
       const text = finalTranscript.trim();
       // Attempt finished -> let the equalizer settle to rest before the ring.
@@ -203,6 +206,7 @@ export function SpeakingPanel({
       const result = scorePlanPronunciationTranscript({
         targetText,
         transcript: text,
+        segments,
       });
       setScore(result.score);
       if (result.passed) {
@@ -257,23 +261,29 @@ export function SpeakingPanel({
     // дешёвый, поэтому считаем кандидатов на лету и держим лучший.
     let best = '';
     let bestScore = -1;
-    const considerBest = (candidate: string) => {
+    let bestSegments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined;
+    const considerBest = (
+      candidate: string,
+      segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
+    ) => {
       const c = candidate.trim();
       if (!c) return;
-      const s = scorePlanPronunciationTranscript({ targetText, transcript: c }).score;
+      const s = scorePlanPronunciationTranscript({ targetText, transcript: c, segments }).score;
       if (s > bestScore) {
         bestScore = s;
         best = c;
+        bestSegments = Array.isArray(segments) ? segments : undefined;
       }
     };
 
     const resultSub = speech.addListener('result', (event: any) => {
-      const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
+      const alternatives: Array<{ transcript?: string; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }> = Array.isArray(event?.results)
         ? event.results
         : [];
       for (const alt of alternatives) {
         const t = String(alt?.transcript ?? '').trim();
-        if (t) considerBest(t);
+        // segments live only on results[0] per the package; pass when present.
+        if (t) considerBest(t, Array.isArray(alt?.segments) ? alt.segments : undefined);
       }
       // Для живой подсветки берём топ-гипотезу (она ведёт по словам).
       const next = String(alternatives[0]?.transcript ?? '').trim();
@@ -284,12 +294,12 @@ export function SpeakingPanel({
     });
     const endSub = speech.addListener('end', () => {
       // Скорим по самому полному варианту, а не по последнему обрывку.
-      finishAttempt(best || latest);
+      finishAttempt(best || latest, bestSegments);
     });
     const errorSub = speech.addListener('error', () => {
       if (mountedRef.current) {
         const final = best || latest;
-        if (final) finishAttempt(final);
+        if (final) finishAttempt(final, bestSegments);
         else setStatus('no_speech');
       }
     });

@@ -182,6 +182,16 @@ function charDistance(a: string, b: string): number {
  * иногда чуть искажает слово. Раньше это считалось ПОЛНОЙ ошибкой (бинарно),
  * из-за чего носитель получал 3%. Теперь близкие слова дают частичный кредит.
  */
+// Soft-miss floor for words the RECOGNIZER itself flagged as low-confidence.
+// When the engine is unsure about a transcript word (noise, accent), a full
+// miss likely reflects the engine's weakness, not the speaker's. We floor such
+// a substitution at SOFT_MISS instead of 0. Set per attempt via a module-scoped
+// closure so the shared wordSimilarity stays a 2-arg pure-ish function.
+const SOFT_MISS = 0.5;
+const LOW_CONFIDENCE_THRESHOLD = 0.4;
+// Normalized transcript words the recognizer returned with low confidence.
+let lowConfidenceTranscriptWords: ReadonlySet<string> = new Set();
+
 function wordSimilarity(a: string, b: string): number {
   if (a === b) return 1;
   // Одно слово содержит другое целиком (you're ⊃ you, going ⊃ go) — высокий кредит.
@@ -194,8 +204,12 @@ function wordSimilarity(a: string, b: string): number {
   const maxLen = Math.max(a.length, b.length);
   if (maxLen === 0) return 1;
   const sim = 1 - charDistance(a, b) / maxLen;
-  // Только реально похожие слова получают кредит; разные (sim<0.6) = ошибка.
-  return sim >= 0.6 ? sim : 0;
+  if (sim >= 0.6) return sim;
+  // Иначе слова разные. Но если ИМЕННО распознанное слово (b — токен транскрипта)
+  // движок вернул с низкой уверенностью — это, вероятно, огрех движка, а не
+  // ошибка говорящего: мягкий промах вместо полного нуля.
+  if (lowConfidenceTranscriptWords.has(b)) return SOFT_MISS;
+  return 0;
 }
 
 // Взвешенный Левенштейн по словам: стоимость замены = 1 - похожесть слов,
@@ -243,10 +257,33 @@ function pct(value: number): number {
   return Math.max(0, Math.min(100, Math.round(value * 100)));
 }
 
+/** Per-word recognition segment (subset of the native result). */
+export type TranscriptSegment = {
+  segment?: string;
+  confidence?: number;
+};
+
+// Build the set of NORMALIZED transcript words the recognizer flagged as
+// low-confidence. confidence === -1 means "unavailable" (older OS) → ignore.
+function buildLowConfidenceWordSet(segments: readonly TranscriptSegment[] | undefined): Set<string> {
+  const set = new Set<string>();
+  if (!segments) return set;
+  for (const seg of segments) {
+    const conf = seg?.confidence;
+    if (typeof conf !== 'number' || conf < 0) continue; // -1 / missing = unknown
+    if (conf < LOW_CONFIDENCE_THRESHOLD) {
+      for (const w of words(seg?.segment ?? '')) set.add(w);
+    }
+  }
+  return set;
+}
+
 export function scorePronunciationTranscript(input: {
   targetText: string;
   transcript: string;
   threshold?: number;
+  /** Optional per-word segments (iOS 17+/Android 14+ on-device) for soft-miss. */
+  segments?: readonly TranscriptSegment[];
 }): PronunciationScoreResult {
   const targetWords = words(input.targetText);
   const transcriptWords = words(input.transcript);
@@ -265,6 +302,23 @@ export function scorePronunciationTranscript(input: {
     };
   }
 
+  // Arm the soft-miss closure for this attempt, then clear it in finally so it
+  // never leaks into the next (synchronous) scoring call.
+  lowConfidenceTranscriptWords = buildLowConfidenceWordSet(input.segments);
+  try {
+    return computeScore(targetWords, transcriptWords, normalizedTarget, normalizedTranscript, threshold);
+  } finally {
+    lowConfidenceTranscriptWords = new Set();
+  }
+}
+
+function computeScore(
+  targetWords: readonly string[],
+  transcriptWords: readonly string[],
+  normalizedTarget: string,
+  normalizedTranscript: string,
+  threshold: number,
+): PronunciationScoreResult {
   const distance = levenshtein(targetWords, transcriptWords);
   const wordAccuracy = pct(1 - distance / Math.max(targetWords.length, transcriptWords.length));
   const orderedMatches = longestCommonSubsequence(targetWords, transcriptWords);

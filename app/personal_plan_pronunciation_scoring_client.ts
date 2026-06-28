@@ -1,6 +1,7 @@
 import {
   PRONUNCIATION_PASS_THRESHOLD,
   scorePronunciationTranscript,
+  type TranscriptSegment,
 } from './personal_plan_pronunciation_scoring_core';
 
 export const PLAN_PRONUNCIATION_PASS_THRESHOLD = PRONUNCIATION_PASS_THRESHOLD;
@@ -27,6 +28,8 @@ export type ScorePlanPronunciationTranscriptInput = {
   targetText: string;
   transcript: string;
   recognitionConfidence?: number;
+  /** Optional per-word segments for the low-confidence soft-miss. */
+  segments?: readonly TranscriptSegment[];
 };
 
 export function scorePlanPronunciationTranscript(
@@ -36,6 +39,7 @@ export function scorePlanPronunciationTranscript(
     targetText: input.targetText,
     transcript: input.transcript,
     threshold: PLAN_PRONUNCIATION_PASS_THRESHOLD,
+    segments: input.segments,
   });
   const rawConfidence = typeof input.recognitionConfidence === 'number'
     && Number.isFinite(input.recognitionConfidence)

@@ -420,6 +420,7 @@ function PlanPronunciationRecorder({
   const bestTranscriptRef = useRef('');
   const bestScoreRef = useRef(-1);
   const bestConfidenceRef = useRef<number | undefined>(undefined);
+  const bestSegmentsRef = useRef<ReadonlyArray<{ segment?: string; confidence?: number }> | undefined>(undefined);
   const scoredRef = useRef(false);
   const pronunciationScoring = pronunciationScoringLocal;
 
@@ -447,6 +448,7 @@ function PlanPronunciationRecorder({
     bestTranscriptRef.current = '';
     bestScoreRef.current = -1;
     bestConfidenceRef.current = undefined;
+    bestSegmentsRef.current = undefined;
     scoredRef.current = false;
     setBlocked(speechModule ? null : 'unavailable');
   }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
@@ -460,7 +462,7 @@ function PlanPronunciationRecorder({
     // phrase in alternative #2/#3, or sends a short final fragment after a fuller
     // interim — so we pick the BEST match, not results[0] or the last fragment.
     const considerAlternatives = (
-      alternatives: Array<{ transcript?: string; confidence?: number }>,
+      alternatives: Array<{ transcript?: string; confidence?: number; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }>,
     ) => {
       for (const alt of alternatives) {
         const t = String(alt?.transcript ?? '').trim();
@@ -468,11 +470,14 @@ function PlanPronunciationRecorder({
         const s = scorePlanPronunciationTranscript({
           targetText: targetTextRef.current,
           transcript: t,
+          segments: alt?.segments,
         }).score;
         if (s > bestScoreRef.current) {
           bestScoreRef.current = s;
           bestTranscriptRef.current = t;
           bestConfidenceRef.current = typeof alt?.confidence === 'number' ? alt.confidence : undefined;
+          // segments live only on results[0] per the package; capture when present.
+          bestSegmentsRef.current = Array.isArray(alt?.segments) ? alt.segments : undefined;
         }
       }
     };
@@ -490,6 +495,7 @@ function PlanPronunciationRecorder({
         targetText: targetTextRef.current,
         transcript: heard,
         recognitionConfidence: bestConfidenceRef.current,
+        segments: bestSegmentsRef.current,
       });
       setPronunciationScore(result);
       onScored(result);
@@ -624,6 +630,7 @@ function PlanPronunciationRecorder({
       bestTranscriptRef.current = '';
       bestScoreRef.current = -1;
       bestConfidenceRef.current = undefined;
+      bestSegmentsRef.current = undefined;
       scoredRef.current = false;
       equalizerRef.current?.setSample(0);
       // Hand the audio session from playback ("Послушать") to capture BEFORE

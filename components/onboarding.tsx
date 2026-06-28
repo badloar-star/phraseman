@@ -440,6 +440,14 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
   short: string;
   levelSub: string;
   outcome: string;
+  // Локализация отображаемых полей (укр/исп). Языков всего три: ru/uk/es.
+  // Выбираются через localizedPlan*() по lang; ru-поля выше — фолбэк.
+  nameUk: string; nameEs: string;
+  pitchUk: string; pitchEs: string;
+  horizonUk: string; horizonEs: string;
+  shortUk: string; shortEs: string;
+  levelSubUk: string; levelSubEs: string;
+  outcomeUk: string; outcomeEs: string;
 }> = {
   voyazh: {
     name: 'Атлас',
@@ -454,6 +462,15 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     short: 'Поездки: аэропорт, отель, кафе, дорога.',
     levelSub: 'Рекомендуем A2: план сразу ведёт в реальные сценарии поездки — аэропорт, отель, кафе, просьбы и уточнения.',
     outcome: 'Уже к середине пути ты сможешь спросить, понять ответ, переспросить — и спокойно решить вопрос в поездке.',
+    nameUk: 'Атлас', nameEs: 'Atlas',
+    pitchUk: 'План для подорожей. Щодня — маленький живий діалог: почув, зрозумів, відповів уголос. Спитати дорогу, замовити їжу, заселитися, вирішити питання на місці.',
+    pitchEs: 'Plan para viajar. Cada día, un pequeño diálogo real: escuchas, entiendes y respondes en voz alta. Pedir indicaciones, ordenar comida, registrarte, resolver cualquier asunto allí mismo.',
+    horizonUk: 'близько 12 тижнів', horizonEs: 'unas 12 semanas',
+    shortUk: 'Подорожі: аеропорт, готель, кафе, дорога.', shortEs: 'Viajes: aeropuerto, hotel, cafetería, ruta.',
+    levelSubUk: 'Рекомендуємо A2: план одразу веде в реальні сценарії подорожі — аеропорт, готель, кафе, прохання та уточнення.',
+    levelSubEs: 'Recomendamos A2: el plan te lleva directo a situaciones reales del viaje: aeropuerto, hotel, cafetería, peticiones y aclaraciones.',
+    outcomeUk: 'Вже до середини шляху ти зможеш спитати, зрозуміти відповідь, перепитати — і спокійно вирішити питання в подорожі.',
+    outcomeEs: 'Para la mitad del camino podrás preguntar, entender la respuesta, repreguntar y resolver cualquier asunto del viaje con calma.',
   },
   mitap: {
     name: 'Фокус',
@@ -468,6 +485,15 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     short: 'Язык для себя: слова, слух, речь — понемногу.',
     levelSub: 'A2 даёт комфортный вход, движение к B1 добавляет живые связки для речи и понимания.',
     outcome: 'Уже к середине пути ты заметишь: понимаешь больше, отвечаешь быстрее, а занятия стали спокойной привычкой.',
+    nameUk: 'Фокус', nameEs: 'Enfoque',
+    pitchUk: 'План для тих, хто займається для себе. Рівний мікс: нові слова, розуміння на слух, мовлення вголос. Спокійний темп, потроху про все — як зарядка для розуму.',
+    pitchEs: 'Plan para quien estudia por gusto. Una mezcla equilibrada: palabras nuevas, comprensión auditiva y habla en voz alta. Ritmo tranquilo, un poco de todo, como gimnasia para la mente.',
+    horizonUk: 'близько 16 тижнів', horizonEs: 'unas 16 semanas',
+    shortUk: 'Мова для себе: слова, слух, мовлення — потроху.', shortEs: 'Idioma para ti: palabras, oído, habla, poco a poco.',
+    levelSubUk: 'A2 дає комфортний вхід, рух до B1 додає живі звʼязки для мовлення та розуміння.',
+    levelSubEs: 'A2 ofrece una entrada cómoda; avanzar hacia B1 añade conexiones vivas para hablar y entender.',
+    outcomeUk: 'Вже до середини шляху ти помітиш: розумієш більше, відповідаєш швидше, а заняття стали спокійною звичкою.',
+    outcomeEs: 'Para la mitad del camino notarás que entiendes más, respondes más rápido y estudiar se ha vuelto un hábito tranquilo.',
   },
   gavan: {
     name: 'Запас',
@@ -482,6 +508,15 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     short: 'Нужные слова на каждый день — и сразу в речь.',
     levelSub: 'A1 закрывает базу, A2 добавляет самостоятельность: слова складываются в простые живые фразы.',
     outcome: 'Уже к середине пути у тебя будет рабочий запас слов: они вспоминаются сами и звучат вслух.',
+    nameUk: 'Запас', nameEs: 'Bagaje',
+    pitchUk: 'План про потрібні слова. Щодня — кілька слів із реального життя: дім, місто, справи, покупки. Слово одразу йде в роботу: ти згадуєш його й промовляєш уголос.',
+    pitchEs: 'Plan sobre las palabras que de verdad necesitas. Cada día, unas cuantas palabras de la vida real: casa, ciudad, tareas, compras. La palabra entra en juego enseguida: la recuerdas y la dices en voz alta.',
+    horizonUk: 'близько 18 тижнів', horizonEs: 'unas 18 semanas',
+    shortUk: 'Потрібні слова на щодень — і одразу в мовлення.', shortEs: 'Palabras útiles para cada día, y al habla enseguida.',
+    levelSubUk: 'A1 закриває базу, A2 додає самостійність: слова складаються в прості живі фрази.',
+    levelSubEs: 'A1 cubre la base; A2 añade autonomía: las palabras se unen en frases vivas y simples.',
+    outcomeUk: 'Вже до середини шляху ти матимеш робочий запас слів: вони згадуються самі та звучать уголос.',
+    outcomeEs: 'Para la mitad del camino tendrás un vocabulario funcional: las palabras te vienen solas y suenan en voz alta.',
   },
   impuls: {
     name: 'Реплика',
@@ -496,6 +531,15 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     short: 'Повседневное общение: отвечать быстрее и проще.',
     levelSub: 'A2 собирает каркас ответа, B1 добавляет гибкость: уточнить, согласиться, отказаться, продолжить разговор.',
     outcome: 'Уже к середине пути ты будешь отвечать быстрее и собирать уверенные ответы из знакомых фраз.',
+    nameUk: 'Репліка', nameEs: 'Réplica',
+    pitchUk: 'План про живе мовлення. Розумієш думку, але зависаєш перед відповіддю? Тут щодня тренується мовлення вголос: готові звʼязки, швидкі відповіді, упевнені фрази.',
+    pitchEs: 'Plan sobre el habla viva. ¿Entiendes la idea pero te quedas en blanco antes de responder? Aquí entrenas el habla en voz alta cada día: bloques listos, respuestas rápidas y frases con seguridad.',
+    horizonUk: 'близько 20 тижнів', horizonEs: 'unas 20 semanas',
+    shortUk: 'Повсякденне спілкування: відповідати швидше й простіше.', shortEs: 'Conversación diaria: responder más rápido y fácil.',
+    levelSubUk: 'A2 збирає каркас відповіді, B1 додає гнучкість: уточнити, погодитися, відмовити, продовжити розмову.',
+    levelSubEs: 'A2 arma la estructura de la respuesta; B1 añade flexibilidad: aclarar, aceptar, rechazar, seguir la conversación.',
+    outcomeUk: 'Вже до середини шляху ти відповідатимеш швидше й збиратимеш упевнені відповіді зі знайомих фраз.',
+    outcomeEs: 'Para la mitad del camino responderás más rápido y armarás respuestas seguras con frases que ya conoces.',
   },
   echo: {
     name: 'Эфир',
@@ -510,6 +554,15 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     short: 'Кино и сериалы: понимать речь на слух.',
     levelSub: 'A2 достаточно: короткие реплики, живые фразы и понимание на слух — без перегруза теорией.',
     outcome: 'Уже к середине пути ты будешь ловить смысл живой речи с первого раза и отвечать без долгой паузы.',
+    nameUk: 'Ефір', nameEs: 'Onda',
+    pitchUk: 'План про розуміння на слух. Кіно, серіали, живі голоси. Ти вчишся ловити сенс з першого разу — і відповідати вголос, щоб мовлення не відставало від слуху.',
+    pitchEs: 'Plan sobre la comprensión auditiva. Cine, series, voces reales. Aprendes a captar el sentido a la primera y a responder en voz alta para que el habla no se quede atrás del oído.',
+    horizonUk: 'близько 12 тижнів', horizonEs: 'unas 12 semanas',
+    shortUk: 'Кіно й серіали: розуміти мовлення на слух.', shortEs: 'Cine y series: entender el habla de oído.',
+    levelSubUk: 'A2 достатньо: короткі репліки, живі фрази та розуміння на слух — без перевантаження теорією.',
+    levelSubEs: 'Con A2 basta: réplicas cortas, frases vivas y comprensión auditiva, sin sobrecarga de teoría.',
+    outcomeUk: 'Вже до середини шляху ти ловитимеш сенс живого мовлення з першого разу й відповідатимеш без довгої паузи.',
+    outcomeEs: 'Para la mitad del camino captarás el sentido del habla viva a la primera y responderás sin pausas largas.',
   },
 };
 
@@ -801,11 +854,14 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   const [storePrices, setStorePrices] = useState<{
     monthly: string;
     yearly: string;
+    // Числовые цены из стора — для расчёта % экономии годового и цены/мес.
+    monthlyAmount: number;
+    yearlyAmount: number;
     hasTrial: boolean;
     trialDays: number;
     loaded: boolean;
     failed: boolean;
-  }>({ monthly: '', yearly: '', hasTrial: false, trialDays: 3, loaded: false, failed: false });
+  }>({ monthly: '', yearly: '', monthlyAmount: 0, yearlyAmount: 0, hasTrial: false, trialDays: 3, loaded: false, failed: false });
   // Счётчик ручных ретраев цен — меняем, чтобы перезапустить загрузку при тапе «Повторить».
   const [storePricesRetry, setStorePricesRetry] = useState(0);
   // RC-пакеты для inline-покупки на пейволе (грузятся вместе с ценами).
@@ -877,6 +933,35 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     triOb(choice.title, choice.titleUk, choice.titleEs);
   const localizedChoiceSubtitle = (choice: { subtitle: string; subtitleUk: string; subtitleEs: string }) =>
     triOb(choice.subtitle, choice.subtitleUk, choice.subtitleEs);
+  // Локализованные отображаемые поля плана (укр/исп). ru-поля — фолбэк.
+  type OnboardingPlanShape = (typeof PERSONAL_PLAN_ONBOARDING_PLANS)[PersonalPlanId];
+  const localizedPlanName = (p: OnboardingPlanShape) => triOb(p.name, p.nameUk, p.nameEs);
+  const localizedPlanPitch = (p: OnboardingPlanShape) => triOb(p.pitch, p.pitchUk, p.pitchEs);
+  const localizedPlanHorizon = (p: OnboardingPlanShape) => triOb(p.horizon, p.horizonUk, p.horizonEs);
+  const localizedPlanShort = (p: OnboardingPlanShape) => triOb(p.short, p.shortUk, p.shortEs);
+  const localizedPlanLevelSub = (p: OnboardingPlanShape) => triOb(p.levelSub, p.levelSubUk, p.levelSubEs);
+  const localizedPlanOutcome = (p: OnboardingPlanShape) => triOb(p.outcome, p.outcomeUk, p.outcomeEs);
+  // Переформатировать цену «как в сторе»: берём строку из стора (валюта/символ
+  // оттуда) и подставляем нашу сумму (цена/мес). Символ/буквенный код валюты
+  // и его позицию сохраняем из исходной строки, меняем только число.
+  const formatPriceLikeStore = (storeString: string, amount: number): string => {
+    const rounded = amount.toFixed(2);
+    // Вырезаем числовую часть исходной строки, оставляя префикс/суффикс (валюту).
+    const match = storeString.match(/[\d.,\s]+/);
+    if (!match) return `${rounded}`;
+    const prefix = storeString.slice(0, match.index);
+    const suffix = storeString.slice((match.index ?? 0) + match[0].length);
+    return `${prefix}${rounded}${suffix}`;
+  };
+  // Чек-лист «сборки плана» задан на ru на уровне модуля — локализуем по индексу.
+  const localizedPlanLoadingItem = (index: number): string => {
+    switch (index) {
+      case 0: return triOb('Определяем стартовый уровень', 'Визначаємо стартовий рівень', 'Definimos tu nivel inicial');
+      case 1: return triOb('Учитываем цель и темп', 'Враховуємо мету й темп', 'Tomamos en cuenta tu objetivo y ritmo');
+      case 2: return triOb('Собираем маршрут', 'Збираємо маршрут', 'Armamos tu ruta');
+      default: return '';
+    }
+  };
   const planMinutesTitle = (choice: PlanMinutesChoice) =>
     choice === 20
       ? triOb('20+ минут в день', '20+ хвилин на день', '20+ min/día')
@@ -1184,6 +1269,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
         setStorePrices({
           monthly: resolvedMonthly,
           yearly: resolvedYearly,
+          monthlyAmount: typeof monthly?.product?.price === 'number' ? monthly.product.price : 0,
+          yearlyAmount: typeof yearly?.product?.price === 'number' ? yearly.product.price : 0,
           hasTrial:
             storeProductHasTrialIntro(monthly?.product) || storeProductHasTrialIntro(yearly?.product),
           trialDays: trialDaysOrDefault(trialInfo),
@@ -1921,7 +2008,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     return (
       <View style={styles.planMockupDaysCard}>
         <View style={styles.planMockupDaysTop}>
-          <Text style={styles.planMockupDaysLabel}>Дней занятий</Text>
+          <Text style={styles.planMockupDaysLabel}>{triOb('Дней занятий', 'Днів занять', 'Días de práctica')}</Text>
           <View style={styles.planMockupDaysValueWrap}>
             <Text style={styles.planMockupDaysValue}>
               {visibleDays}
@@ -1953,8 +2040,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           style={styles.planMockupRowIcon}
         />
         <View style={styles.planFlowOptionCopy}>
-          <Text style={styles.planMockupRowTitle}>Рекомендуемый старт: {plan.recommendedLevel}</Text>
-          <Text style={styles.planMockupRowSub}>{plan.levelSub}</Text>
+          <Text style={styles.planMockupRowTitle}>{triOb('Рекомендуемый старт', 'Рекомендований старт', 'Inicio recomendado')}: {plan.recommendedLevel}</Text>
+          <Text style={styles.planMockupRowSub}>{localizedPlanLevelSub(plan)}</Text>
         </View>
       </View>
       <View style={styles.planMockupRow}>
@@ -1963,8 +2050,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           style={styles.planMockupRowIcon}
         />
         <View style={styles.planFlowOptionCopy}>
-          <Text style={styles.planMockupRowTitle}>Уже к середине срока</Text>
-          <Text style={styles.planMockupRowSub}>{plan.outcome}</Text>
+          <Text style={styles.planMockupRowTitle}>{triOb('Уже к середине срока', 'Вже до середини строку', 'Para la mitad del plan')}</Text>
+          <Text style={styles.planMockupRowSub}>{localizedPlanOutcome(plan)}</Text>
         </View>
       </View>
     </View>
@@ -1996,13 +2083,13 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
       >
         {renderMockupPlanTop(brand)}
         <View style={styles.planMockupResultBody}>
-          <Text style={styles.planMockupResultTitle}>{plan.name}</Text>
+          <Text style={styles.planMockupResultTitle}>{localizedPlanName(plan)}</Text>
           <View style={styles.planMockupPitchCard}>
-            <Text style={styles.planMockupPitchText}>{plan.pitch}</Text>
+            <Text style={styles.planMockupPitchText}>{localizedPlanPitch(plan)}</Text>
           </View>
           {renderPlanDaysProgressBlock(plan.days)}
           <View style={styles.planMockupResultHero}>
-            <Text style={styles.planMockupBigNum}>{plan.horizon}</Text>
+            <Text style={styles.planMockupBigNum}>{localizedPlanHorizon(plan)}</Text>
             <Text style={styles.planMockupHeroSub}>{triOb(`ориентир до заметного прогресса при ${minutes === 20 ? '20' : minutes} минутах в день`, `орієнтир до помітного прогресу за ${minutes === 20 ? '20' : minutes} хвилин на день`, `objetivo para progreso notable con ${minutes === 20 ? '20' : minutes} min/día`)}</Text>
           </View>
           {renderPlanRows(plan, todayIconAsset)}
@@ -2145,7 +2232,11 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
       'onboarding-plan-level-screen',
       '',
       triOb('С чего начнем?', 'З чого почнемо?', '¿Desde dónde empezamos?'),
-      '',
+      triOb(
+        'Любой ответ — правильный. Всё с переводом и короткими шагами: справишься с нуля.',
+        'Будь-яка відповідь — правильна. Усе з перекладом і короткими кроками: впораєшся з нуля.',
+        'Cualquier respuesta es válida. Todo con traducción y pasos cortos: lo lograrás desde cero.',
+      ),
       <View style={styles.planFlowStack}>
         {PLAN_LEVEL_CHOICES.map((choice) => {
           const selected = selectedPlanLevel === choice.id;
@@ -2215,7 +2306,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     return renderPlanFlowScreen(
       'onboarding-plan-loading-screen',
       '',
-      'Собираем твой план',
+      triOb('Собираем твой план', 'Збираємо твій план', 'Preparando tu plan'),
       '',
       <View style={styles.planFlowStack}>
         <View style={styles.planProgressRail}>
@@ -2253,7 +2344,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
               source={item.iconAsset}
               style={styles.planLoadingBuildIcon}
             />
-            <Text style={styles.planFlowChecklistText}>{item.title}</Text>
+            <Text style={styles.planFlowChecklistText}>{localizedPlanLoadingItem(index)}</Text>
           </Animated.View>
         ))}
         <Animated.View
@@ -2288,12 +2379,6 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
           <Text style={styles.planMockupSecondaryButtonText}>{triOb('Другие планы', 'Інші плани', 'Otros planes')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => {
-          void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_result', ob_color: obColor }));
-          goToStep('name');
-        }}>
-          <Text style={styles.freeBtnText}>{triOb('Продолжить без плана', 'Продовжити без плану', 'Continuar sin plan')}</Text>
-        </TouchableOpacity>
         </>
       ),
     });
@@ -2317,6 +2402,14 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           `Probar ${trialDays} ${trialDays === 1 ? 'día' : 'días'} gratis`,
         )
       : triOb('Открыть полный доступ', 'Відкрити повний доступ', 'Obtener acceso completo');
+
+    // Экономия годового vs 12×месячный (якорь цены). Считаем только если обе
+    // числовые цены пришли из стора и годовой реально выгоднее.
+    const yearlySavingsPct =
+      storePrices.monthlyAmount > 0 && storePrices.yearlyAmount > 0
+        ? Math.round((1 - storePrices.yearlyAmount / (storePrices.monthlyAmount * 12)) * 100)
+        : 0;
+    const showYearlySavings = yearlySavingsPct >= 5;
 
     return renderScreen(
       'onboarding-plan-paywall-screen',
@@ -2345,7 +2438,7 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
 
             {/* Герой: имя + план */}
             <Text style={styles.planPaywallTitle}>{heroTitle}</Text>
-            <Text style={styles.planPaywallLead}>{selectedPlan.name} · {selectedPlan.horizon}</Text>
+            <Text style={styles.planPaywallLead}>{localizedPlanName(selectedPlan)} · {localizedPlanHorizon(selectedPlan)}</Text>
 
             {/* Пилюли с ответами юзера */}
             <View style={styles.planPaywallPills}>
@@ -2439,8 +2532,19 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
                       <Text style={styles.planPaywallBuyPrice}>
                         {storePrices.yearly ? storePrices.yearly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
                       </Text>
+                      {showYearlySavings && storePrices.yearlyAmount > 0 ? (
+                        <Text style={styles.planPaywallBuyPerMonth}>
+                          ≈ {formatPriceLikeStore(storePrices.yearly, storePrices.yearlyAmount / 12)} {triOb('/ мес', '/ міс', '/ mes')}
+                        </Text>
+                      ) : null}
                     </View>
-                    <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>{triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}</Text></View>
+                    <View style={styles.planPaywallBuyBadge}>
+                      <Text style={styles.planPaywallBuyBadgeText}>
+                        {showYearlySavings
+                          ? triOb(`−${yearlySavingsPct}%`, `−${yearlySavingsPct}%`, `−${yearlySavingsPct}%`)
+                          : triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected, paywallBusy && styles.planPaywallBuyCardDisabled]}
@@ -2564,9 +2668,9 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   if (step === 'planPicker') {
     return renderPlanFlowScreen(
       'onboarding-plan-picker-screen',
-      'Планы',
-      'Выбери свой маршрут',
-      'Оставь рекомендованный план или выбери другой — под ближайшую цель.',
+      triOb('Планы', 'Плани', 'Planes'),
+      triOb('Выбери свой маршрут', 'Обери свій маршрут', 'Elige tu ruta'),
+      triOb('Оставь рекомендованный план или выбери другой — под ближайшую цель.', 'Залиш рекомендований план або обери інший — під найближчу мету.', 'Deja el plan recomendado o elige otro, según tu objetivo más cercano.'),
       <View style={styles.planFlowStack}>
         {PLAN_ENTRIES.map((entry) => {
           const plan = PERSONAL_PLAN_ONBOARDING_PLANS[entry.key];
@@ -2585,9 +2689,9 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
                 style={styles.planMockupPickerIcon}
               />
               <View style={styles.planFlowOptionCopy}>
-                <Text style={styles.planMockupPickerTitle}>{plan.name}</Text>
-                <Text style={styles.planMockupPickerSub}>{entry.short}</Text>
-                <Text style={styles.planMockupPickerMeta}>{plan.horizon} · старт {plan.recommendedLevel}</Text>
+                <Text style={styles.planMockupPickerTitle}>{localizedPlanName(plan)}</Text>
+                <Text style={styles.planMockupPickerSub}>{localizedPlanShort(plan)}</Text>
+                <Text style={styles.planMockupPickerMeta}>{localizedPlanHorizon(plan)} · {triOb('старт', 'старт', 'inicio')} {plan.recommendedLevel}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -2610,14 +2714,14 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           edgeColor={theme.accentDeep}
           onPress={() => goToStep('planResult')}
         >
-          <Text style={styles.planMockupPrimaryButtonText}>Выбрать этот план</Text>
+          <Text style={styles.planMockupPrimaryButtonText}>{triOb('Выбрать этот план', 'Обрати цей план', 'Elegir este plan')}</Text>
         </DuoPressable>
         <TouchableOpacity
           style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]}
           activeOpacity={0.82}
           onPress={() => goToStep('planPicker')}
         >
-          <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
+          <Text style={styles.planMockupSecondaryButtonText}>{triOb('Другие планы', 'Інші плани', 'Otros planes')}</Text>
         </TouchableOpacity>
         </>
       ),
@@ -5221,6 +5325,13 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     lineHeight: 24,
     fontWeight: '900',
     marginTop: 6,
+  },
+  planPaywallBuyPerMonth: {
+    color: t.textMuted,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '700',
+    marginTop: 2,
   },
   // Пилюли с ответами юзера
   planPaywallPills: {

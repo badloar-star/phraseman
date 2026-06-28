@@ -17,14 +17,14 @@ export function periodLabelFor(lang: Lang, plan: PaywallPlan): string {
 export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false): string {
   if (isLifetime) {
     return triLang(lang, {
-      ru: 'Открыть навсегда',
-      uk: 'Відкрити назавжди',
-      es: 'Abrir para siempre',
-      'pt-BR': 'Abrir para sempre',
-      vi: 'Mở trọn đời',
-      id: 'Buka selamanya',
-      tr: 'Sonsuza dek aç',
-      pl: 'Otwórz na zawsze',
+      ru: 'Открыть Pro',
+      uk: 'Відкрити Pro',
+      es: 'Abrir Pro',
+      'pt-BR': 'Abrir Pro',
+      vi: 'Mở Pro',
+      id: 'Buka Pro',
+      tr: 'Pro aç',
+      pl: 'Otwórz Pro',
     });
   }
   if (trialDays) {
@@ -117,7 +117,7 @@ export function stickyStringsFor(
   args: { trialDays: number | null; price: string; period: string; isLifetime?: boolean },
 ): { title: string; sub: string; button: string } {
   const title = args.isLifetime
-    ? triLang(lang, { ru: 'Навсегда', uk: 'Назавжди', es: 'Para siempre', 'pt-BR': 'Para sempre', vi: 'Trọn đời', id: 'Selamanya', tr: 'Sonsuza dek', pl: 'Na zawsze' })
+    ? triLang(lang, { ru: 'Pro', uk: 'Pro', es: 'Pro', 'pt-BR': 'Pro', vi: 'Pro', id: 'Pro', tr: 'Pro', pl: 'Pro' })
     : args.trialDays
     ? triLang(lang, {
         ru: `${args.trialDays} дн. бесплатно`,
@@ -129,12 +129,12 @@ export function stickyStringsFor(
         tr: `${args.trialDays} gün ücretsiz`,
         pl: `${args.trialDays} dni za darmo`,
       })
-    : triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' });
+    : triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' });
   const sub = args.price ? ctaSubLineFor(lang, { price: args.price, period: args.period, hasTrial: !!args.trialDays, isLifetime: args.isLifetime }) : '';
   // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
   // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Купить навсегда»).
   const button = args.isLifetime
-    ? triLang(lang, { ru: 'Открыть навсегда', uk: 'Відкрити назавжди', es: 'Abrir para siempre', 'pt-BR': 'Abrir para sempre', vi: 'Mở trọn đời', id: 'Buka selamanya', tr: 'Sonsuza dek aç', pl: 'Otwórz na zawsze' })
+    ? triLang(lang, { ru: 'Открыть Pro', uk: 'Відкрити Pro', es: 'Abrir Pro', 'pt-BR': 'Abrir Pro', vi: 'Mở Pro', id: 'Buka Pro', tr: 'Pro aç', pl: 'Otwórz Pro' })
     : args.trialDays
     ? triLang(lang, {
         ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',

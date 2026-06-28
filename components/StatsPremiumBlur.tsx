@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticTap } from '../hooks/use-haptics';
 
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
@@ -171,21 +172,21 @@ function StatsPremiumBlur({
   devUnlock = false,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
   const isLight = false;
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const ctaLabel = triLang(lang, {
-    ru: 'Открыть с Premium',
-    uk: 'Відкрити з Premium',
-    es: 'Abrir con Premium',
-    'pt-BR': 'Abrir com Premium',
-    vi: 'Mở bằng Premium',
-    id: 'Buka dengan Premium',
-    tr: 'Premium ile aç',
-    pl: 'Otwórz z Premium',
+    ru: 'Открыть с Plus',
+    uk: 'Відкрити з Plus',
+    es: 'Abrir con Plus',
+    'pt-BR': 'Abrir com Plus',
+    vi: 'Mở bằng Plus',
+    id: 'Buka dengan Plus',
+    tr: 'Plus ile aç',
+    pl: 'Otwórz z Plus',
   });
   if (isPremium || devUnlock) return <>{children}</>;
 
@@ -206,7 +207,7 @@ function StatsPremiumBlur({
         accessibilityLabel={ctaLabel}
       >
         <View style={[styles.lockBadge, { backgroundColor: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(20,16,8,0.85)' }]}>
-          <Ionicons name="lock-closed" size={28} color="#FFD700" />
+          <Ionicons name="lock-closed" size={28} color={monoIcon(themeMode, '#FFD700')} />
         </View>
         <View style={styles.titleCtaBlock}>
           <Text style={[styles.title, { color: isLight ? t.textPrimary : '#FFD700', fontSize: f.bodyLg }]}>
@@ -220,7 +221,7 @@ function StatsPremiumBlur({
               style={styles.ctaGradient}
             >
               <View style={styles.ctaInner}>
-                <Ionicons name="diamond" size={18} color="#1a1208" />
+                <Ionicons name="diamond" size={18} color={monoIcon(themeMode, '#1a1208', MONO_ICON.onLight)} />
                 <Text style={[styles.ctaText, { fontSize: f.body }]}>{ctaLabel}</Text>
               </View>
             </LinearGradient>

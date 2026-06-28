@@ -75,9 +75,9 @@ const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
   titleRu: 'Открой весь текущий уровень',
   titleUk: 'Відкрий весь поточний рівень',
   titleEs: 'Abre todo tu nivel actual',
-  subtitleRu: 'A1 открыт бесплатно и проходится последовательно. Premium открывает весь текущий уровень: все уроки доступны сразу, без блокировок по результату. Следующие уровни открываются через экзамены.',
-  subtitleUk: 'A1 відкритий безкоштовно й проходиться послідовно. Premium відкриває весь поточний рівень: усі уроки доступні одразу, без блокувань за результатом. Наступні рівні відкриваються через екзамени.',
-  subtitleEs: 'A1 es gratis y se avanza paso a paso. Premium abre todo tu nivel actual: todas las lecciones disponibles al instante, sin bloqueos por resultado. Los siguientes niveles se abren con exámenes.',
+  subtitleRu: 'A1 открыт бесплатно и проходится последовательно. Plus открывает весь текущий уровень: все уроки доступны сразу, без блокировок по результату. Следующие уровни открываются через экзамены.',
+  subtitleUk: 'A1 відкритий безкоштовно й проходиться послідовно. Plus відкриває весь поточний рівень: усі уроки доступні одразу, без блокувань за результатом. Наступні рівні відкриваються через екзамени.',
+  subtitleEs: 'A1 es gratis y se avanza paso a paso. Plus abre todo tu nivel actual: todas las lecciones disponibles al instante, sin bloqueos por resultado. Los siguientes niveles se abren con exámenes.',
 };
 const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
   title: {
@@ -88,11 +88,11 @@ const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
     pl: 'Otwórz cały obecny poziom',
   },
   subtitle: {
-    'pt-BR': 'O A1 é grátis e avança passo a passo. Premium abre todo o nível atual: todas as lições disponíveis na hora, sem bloqueios por resultado. Os próximos níveis abrem por exames.',
-    vi: 'A1 miễn phí và mở từng bài theo tiến độ. Premium mở toàn bộ cấp hiện tại: mọi bài học có ngay, không bị khóa theo kết quả. Các cấp tiếp theo mở qua bài kiểm tra.',
-    id: 'A1 gratis dan dibuka bertahap. Premium membuka seluruh level saat ini: semua pelajaran langsung tersedia, tanpa kunci dari hasil. Level berikutnya dibuka lewat ujian.',
-    tr: 'A1 ücretsizdir ve adım adım açılır. Premium mevcut seviyenin tamamını açar: tüm dersler hemen erişilir, sonuç engeli yoktur. Sonraki seviyeler sınavlarla açılır.',
-    pl: 'A1 jest darmowy i odblokowuje się krok po kroku. Premium otwiera cały obecny poziom: wszystkie lekcje od razu, bez blokad za wynik. Kolejne poziomy otwierają się przez egzaminy.',
+    'pt-BR': 'O A1 é grátis e avança passo a passo. Plus abre todo o nível atual: todas as lições disponíveis na hora, sem bloqueios por resultado. Os próximos níveis abrem por exames.',
+    vi: 'A1 miễn phí và mở từng bài theo tiến độ. Plus mở toàn bộ cấp hiện tại: mọi bài học có ngay, không bị khóa theo kết quả. Các cấp tiếp theo mở qua bài kiểm tra.',
+    id: 'A1 gratis dan dibuka bertahap. Plus membuka seluruh level saat ini: semua pelajaran langsung tersedia, tanpa kunci dari hasil. Level berikutnya dibuka lewat ujian.',
+    tr: 'A1 ücretsizdir ve adım adım açılır. Plus mevcut seviyenin tamamını açar: tüm dersler hemen erişilir, sonuç engeli yoktur. Sonraki seviyeler sınavlarla açılır.',
+    pl: 'A1 jest darmowy i odblokowuje się krok po kroku. Plus otwiera cały obecny poziom: wszystkie lekcje od razu, bez blokad za wynik. Kolejne poziomy otwierają się przez egzaminy.',
   },
 };
 
@@ -112,26 +112,26 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Больше дуэлей на Арене каждый день',
     titleUk: 'Більше дуелей на Арені щодня',
     titleEs: 'Más partidas en la Arena cada día',
-    subtitleRu: 'Premium снимает дневной лимит матчей — сражайся в дуэлях, крепи стратегию и рост без ощущения «всё, хватит на сегодня».',
-    subtitleUk: 'Premium знімає денний ліміт матчів — воюй вживу, вдосконалюй стратегію і ріст без «на сьогодні досить».',
+    subtitleRu: 'Plus снимает дневной лимит матчей — сражайся в дуэлях, крепи стратегию и рост без ощущения «всё, хватит на сегодня».',
+    subtitleUk: 'Plus знімає денний ліміт матчів — воюй вживу, вдосконалюй стратегію і ріст без «на сьогодні досить».',
     subtitleEs:
-      'Premium quita el límite diario de partidas: compite cada día, fortalece tu estrategia y tu progreso sin el «ya está bien por hoy».',
+      'Plus quita el límite diario de partidas: compite cada día, fortalece tu estrategia y tu progreso sin el «ya está bien por hoy».',
   },
   no_energy: {
     titleRu: 'Останови паузы из-за энергии',
     titleUk: 'Зупини паузи через енергію',
     titleEs: 'Evita pausas por energía',
-    subtitleRu: 'С Premium — безлимитная энергия: уроки, квизы и финальный экзамен без таймера ожидания, ритм только твой.',
-    subtitleUk: 'З Premium — безлімітна енергія: уроки, квізи та фінальний іспит без таймера — ритм лише твій.',
-    subtitleEs: 'Con Premium tienes energía ilimitada: lecciones, quizzes y examen final sin temporizadores de espera, a tu ritmo.',
+    subtitleRu: 'С Plus — безлимитная энергия: уроки, квизы и финальный экзамен без таймера ожидания, ритм только твой.',
+    subtitleUk: 'З Plus — безлімітна енергія: уроки, квізи та фінальний іспит без таймера — ритм лише твій.',
+    subtitleEs: 'Con Plus tienes energía ilimitada: lecciones, quizzes y examen final sin temporizadores de espera, a tu ritmo.',
   },
   streak: {
     titleRu: 'Не теряй серию, которую уже построил',
     titleUk: 'Не втрачай серію, яку вже побудував',
     titleEs: 'No pierdas la racha que ya llevas',
-    subtitleRu: 'Premium защищает твой ритм: учись без пауз и не откатывайся из-за одного пропуска.',
-    subtitleUk: 'Premium захищає твій ритм: навчайся без пауз і не відкатуйся через один пропуск.',
-    subtitleEs: 'Premium protege tu ritmo: estudia sin pausas y no retrocedas por un solo día sin practicar.',
+    subtitleRu: 'Plus защищает твой ритм: учись без пауз и не откатывайся из-за одного пропуска.',
+    subtitleUk: 'Plus захищає твій ритм: навчайся без пауз і не відкатуйся через один пропуск.',
+    subtitleEs: 'Plus protege tu ritmo: estudia sin pausas y no retrocedas por un solo día sin practicar.',
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_COPY,
   lesson_b1: COURSE_AFTER_LESSON3_COPY,
@@ -139,33 +139,33 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Не останавливай прогресс из-за лимитов',
     titleUk: 'Не зупиняй прогрес через ліміти',
     titleEs: 'No frenes tu progreso por los límites',
-    subtitleRu: 'С Premium учись без пауз и держи ежедневный темп.',
-    subtitleUk: 'З Premium навчайся без пауз і тримай щоденний темп.',
-    subtitleEs: 'Con Premium estudia sin frenos y mantén tu ritmo diario.',
+    subtitleRu: 'С Plus учись без пауз и держи ежедневный темп.',
+    subtitleUk: 'З Plus навчайся без пауз і тримай щоденний темп.',
+    subtitleEs: 'Con Plus estudia sin frenos y mantén tu ritmo diario.',
   },
   quiz_level: {
     titleRu: 'Больше квизов каждый день',
     titleUk: 'Більше квізів щодня',
     titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Plus quita el límite diario para que puedas practicar sin pausas.',
   },
   quiz_medium: {
     titleRu: 'Больше квизов каждый день',
     titleUk: 'Більше квізів щодня',
     titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Plus quita el límite diario para que puedas practicar sin pausas.',
   },
   quiz_hard: {
     titleRu: 'Больше квизов каждый день',
     titleUk: 'Більше квізів щодня',
     titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
+    subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+    subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
+    subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Plus quita el límite diario para que puedas practicar sin pausas.',
   },
   flashcard_limit: {
     titleRu: 'Твоя база карточек не должна иметь лимит',
@@ -179,9 +179,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Персонализируй обучение под себя',
     titleUk: 'Персоналізуй навчання під себе',
     titleEs: 'Adapta la app a tu estilo',
-    subtitleRu: 'С Premium приложение становится твоим: больше вовлеченности, выше регулярность занятий.',
-    subtitleUk: 'З Premium застосунок стає твоїм: більше залучення, вища регулярність занять.',
-    subtitleEs: 'Con Premium la app se siente tuya: más implicación y más constancia en cada sesión.',
+    subtitleRu: 'С Plus приложение становится твоим: больше вовлеченности, выше регулярность занятий.',
+    subtitleUk: 'З Plus застосунок стає твоїм: більше залучення, вища регулярність занять.',
+    subtitleEs: 'Con Plus la app se siente tuya: más implicación y más constancia en cada sesión.',
   },
   club: {
     titleRu: 'Усиль прогресс через клубы и бонусы',
@@ -195,9 +195,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Тренер — персональный план повторения',
     titleUk: 'Тренер — персональний план повторення',
     titleEs: 'Entrenador — tu plan de repaso personal',
-    subtitleRu: 'Слабые места, Smart Mix, По теме, Сложные — 4 режима работают только на Premium. Без лимита сессий.',
-    subtitleUk: 'Слабкі місця, Smart Mix, За темою, Складні — 4 режими лише для Premium. Без ліміту сесій.',
-    subtitleEs: 'Débiles, Smart Mix, Por tema, Difíciles — 4 modos solo para Premium. Sin límite de sesiones.',
+    subtitleRu: 'Слабые места, Smart Mix, По теме, Сложные — 4 режима работают только на Plus. Без лимита сессий.',
+    subtitleUk: 'Слабкі місця, Smart Mix, За темою, Складні — 4 режими лише для Plus. Без ліміту сесій.',
+    subtitleEs: 'Débiles, Smart Mix, Por tema, Difíciles — 4 modos solo para Plus. Sin límite de sesiones.',
   },
   trainer_limit: {
     // Библия Phraseman: gain-framing, без слова «лимит», без хардкода числа сессий
@@ -205,26 +205,26 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Тренируйся сколько хочешь',
     titleUk: 'Тренуйся скільки хочеш',
     titleEs: 'Entrena cuanto quieras',
-    subtitleRu: 'Premium открывает безлимит сессий Тренера во всех режимах. Повторяй фразы столько, сколько нужно — без пауз.',
-    subtitleUk: 'Premium відкриває безліміт сесій Тренера в усіх режимах. Повторюй фрази стільки, скільки треба — без пауз.',
-    subtitleEs: 'Premium abre sesiones del Entrenador sin límite en todos los modos. Repite las frases cuanto necesites, sin pausas.',
+    subtitleRu: 'Plus открывает безлимит сессий Тренера во всех режимах. Повторяй фразы столько, сколько нужно — без пауз.',
+    subtitleUk: 'Plus відкриває безліміт сесій Тренера в усіх режимах. Повторюй фрази стільки, скільки треба — без пауз.',
+    subtitleEs: 'Plus abre sesiones del Entrenador sin límite en todos los modos. Repite las frases cuanto necesites, sin pausas.',
   },
   dialog_limit: {
     titleRu: 'Живая практика в диалогах',
     titleUk: 'Жива практика в діалогах',
     titleEs: 'Práctica real en los diálogos',
-    subtitleRu: 'Premium открывает живую практику английского: новые сценарии, разбор каждой реплики, твои слова из карточек.',
-    subtitleUk: 'Premium відкриває живу практику англійської: нові сценарії, розбір кожної репліки, твої слова з карток.',
-    subtitleEs: 'Premium abre práctica real de inglés: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
+    subtitleRu: 'Plus открывает живую практику английского: новые сценарии, разбор каждой реплики, твои слова из карточек.',
+    subtitleUk: 'Plus відкриває живу практику англійської: нові сценарії, розбір кожної репліки, твої слова з карток.',
+    subtitleEs: 'Plus abre práctica real de inglés: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
   },
   diagnosis_training: {
     // Библия: «ошибка»→«разбор/что подтянуть», ≤10 слов/предложение, gain-framing.
     titleRu: 'Разбирай слабые места без лимита',
     titleUk: 'Розбирай слабкі місця без ліміту',
     titleEs: 'Analiza tus puntos débiles sin límite',
-    subtitleRu: 'Premium открывает персональный разбор каждого слабого места. Понятное объяснение, верный вариант и тренировка на похожих фразах.',
-    subtitleUk: 'Premium відкриває персональний розбір кожного слабкого місця. Зрозуміле пояснення, правильний варіант і тренування на схожих фразах.',
-    subtitleEs: 'Premium abre un análisis personal de cada punto débil. Explicación clara, forma correcta y práctica con frases parecidas.',
+    subtitleRu: 'Plus открывает персональный разбор каждого слабого места. Понятное объяснение, верный вариант и тренировка на похожих фразах.',
+    subtitleUk: 'Plus відкриває персональний розбір кожного слабкого місця. Зрозуміле пояснення, правильний варіант і тренування на схожих фразах.',
+    subtitleEs: 'Plus abre un análisis personal de cada punto débil. Explicación clara, forma correcta y práctica con frases parecidas.',
   },
   mastery: {
     // ВНИМАНИЕ (аудит #22): этот контекст пейвола НЕДОСТИЖИМ — гейт mastery не триггерится
@@ -235,22 +235,22 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Повторяй раунды без ограничений',
     titleUk: 'Повторюй раунди без обмежень',
     titleEs: 'Repite rondas sin límites',
-    subtitleRu: 'Premium открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания осколков.',
-    subtitleUk: 'Premium відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання осколків.',
-    subtitleEs: 'Premium abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar fragmentos.',
+    subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания осколков.',
+    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання осколків.',
+    subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar fragmentos.',
   },
   stats: {
-    titleRu: 'Аналитика прогресса — для Premium',
-    titleUk: 'Аналітика прогресу — для Premium',
-    titleEs: 'Analítica del progreso — Premium',
+    titleRu: 'Аналитика прогресса — для Plus',
+    titleUk: 'Аналітика прогресу — для Plus',
+    titleEs: 'Analítica del progreso — Plus',
     subtitleRu: 'Карта активности за год, паттерны ошибок, сравнение с другими учениками. Видишь чёткую картину своего роста.',
     subtitleUk: 'Карта активності за рік, патерни помилок, порівняння з іншими учнями. Бачиш чітку картину свого зростання.',
     subtitleEs: 'Mapa anual de actividad, patrones de error y comparación. Ves tu progreso con total claridad.',
   },
   heatmap: {
-    titleRu: 'Карта активности — для Premium',
-    titleUk: 'Карта активності — для Premium',
-    titleEs: 'Mapa de actividad — Premium',
+    titleRu: 'Карта активности — для Plus',
+    titleUk: 'Карта активності — для Plus',
+    titleEs: 'Mapa de actividad — Plus',
     subtitleRu: '365 дней занятий на одном экране — увидишь свои сильные и слабые периоды.',
     subtitleUk: '365 днів занять на одному екрані — побач свої сильні й слабкі періоди.',
     subtitleEs: '365 días de estudio en una sola vista: encuentra tus mejores y peores semanas.',
@@ -264,17 +264,17 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Descubre los temas y frases donde más fallas y entrena justo lo que importa.',
   },
   percentiles: {
-    titleRu: 'Сравнение с другими — для Premium',
-    titleUk: 'Порівняння з іншими — для Premium',
-    titleEs: 'Comparación con otros — Premium',
+    titleRu: 'Сравнение с другими — для Plus',
+    titleUk: 'Порівняння з іншими — для Plus',
+    titleEs: 'Comparación con otros — Plus',
     subtitleRu: 'Увидишь, где ты в топе среди всех учеников. Без дизморали — только то, в чём ты крут.',
     subtitleUk: 'Бач куди ти в топі серед усіх учнів. Без дизморалі — лише те, в чому ти крутий.',
     subtitleEs: 'Mira dónde destacas frente a otros estudiantes. Solo lo positivo, sin desmotivar.',
   },
   generic: {
-    titleRu: 'Учись быстрее с Premium',
-    titleUk: 'Навчайся швидше з Premium',
-    titleEs: 'Aprende más rápido con Premium',
+    titleRu: 'Учись быстрее с Plus',
+    titleUk: 'Навчайся швидше з Plus',
+    titleEs: 'Aprende más rápido con Plus',
     subtitleRu: 'Больше практики, меньше ограничений, стабильный прогресс каждый день.',
     subtitleUk: 'Більше практики, менше обмежень, стабільний прогрес щодня.',
     subtitleEs: 'Más práctica, menos frenos y progreso estable cada día.',
@@ -285,18 +285,18 @@ PAYWALL_COPY.quiz_limit = {
   titleRu: 'Лимит квизов на сегодня исчерпан',
   titleUk: 'Ліміт квізів на сьогодні вичерпано',
   titleEs: 'Ya usaste tus 3 cuestionarios gratis de hoy',
-  subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Premium снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-  subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Premium знімає денний ліміт, щоб можна було тренуватися без пауз.',
-  subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Premium quita el límite diario para que puedas practicar sin pausas.',
+  subtitleRu: 'В бесплатной версии доступно 3 квиза в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
+  subtitleUk: 'У безкоштовній версії доступно 3 квізи на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
+  subtitleEs: 'La versión gratis incluye 3 cuestionarios al día. Plus quita el límite diario para que puedas practicar sin pausas.',
 };
 
 PAYWALL_COPY.personal_plan = {
   titleRu: 'Получить персональный план',
   titleUk: 'Отримати персональний план',
   titleEs: 'Activar tu plan personal',
-  subtitleRu: 'Premium включает задания на каждый день: уроки, живые фразы, повторение и проверки под твою цель. План держит темп, а материалы открываются без лишних остановок.',
-  subtitleUk: 'Premium вмикає завдання на кожен день: уроки, живі фрази, повторення й перевірки під твою ціль. План тримає темп, а матеріали відкриваються без зайвих пауз.',
-  subtitleEs: 'Premium activa tareas diarias: lecciones, frases reales, repaso y pruebas según tu meta. El plan mantiene el ritmo y los materiales se abren sin pausas extra.',
+  subtitleRu: 'Plus включает задания на каждый день: уроки, живые фразы, повторение и проверки под твою цель. План держит темп, а материалы открываются без лишних остановок.',
+  subtitleUk: 'Plus вмикає завдання на кожен день: уроки, живі фрази, повторення й перевірки під твою ціль. План тримає темп, а матеріали відкриваються без зайвих пауз.',
+  subtitleEs: 'Plus activa tareas diarias: lecciones, frases reales, repaso y pruebas según tu meta. El plan mantiene el ritmo y los materiales se abren sin pausas extra.',
 };
 
 PAYWALL_COPY.intro_ended = {
@@ -304,9 +304,9 @@ PAYWALL_COPY.intro_ended = {
   titleRu: 'Продолжай в полном доступе',
   titleUk: 'Продовжуй у повному доступі',
   titleEs: 'Sigue con acceso completo',
-  subtitleRu: 'Ты уже почувствовал полный доступ. Premium открывает его насовсем — без пауз и блокировок.',
-  subtitleUk: 'Ти вже відчув повний доступ. Premium відкриває його назавжди — без пауз і блокувань.',
-  subtitleEs: 'Ya probaste el acceso completo. Premium lo abre para siempre, sin pausas ni bloqueos.',
+  subtitleRu: 'Ты уже почувствовал полный доступ. Plus открывает его насовсем — без пауз и блокировок.',
+  subtitleUk: 'Ти вже відчув повний доступ. Plus відкриває його назавжди — без пауз і блокувань.',
+  subtitleEs: 'Ya probaste el acceso completo. Plus lo abre para siempre, sin pausas ni bloqueos.',
 };
 
 // План #3: after-win апсейл при повышении уровня. Стиль 2 Игра + 3 Инвестор, gain-framing.
@@ -314,9 +314,9 @@ PAYWALL_COPY.level_up = {
   titleRu: 'Ты растёшь быстро',
   titleUk: 'Ти ростеш швидко',
   titleEs: 'Estás creciendo rápido',
-  subtitleRu: 'Новый уровень — твой. Premium снимает все лимиты на пути.',
-  subtitleUk: 'Новий рівень — твій. Premium знімає всі ліміти на шляху.',
-  subtitleEs: 'Nuevo nivel desbloqueado. Premium quita todos los límites del camino.',
+  subtitleRu: 'Новый уровень — твой. Plus снимает все лимиты на пути.',
+  subtitleUk: 'Новий рівень — твій. Plus знімає всі ліміти на шляху.',
+  subtitleEs: 'Nuevo nivel desbloqueado. Plus quita todos los límites del camino.',
 };
 
 // План #11: умный микс тренажёра. Стиль 4 Эксперт + 1 Тренер, gain-framing.
@@ -334,30 +334,30 @@ PAYWALL_COPY.speaking = {
   titleRu: 'Начни говорить вслух',
   titleUk: 'Почни говорити вголос',
   titleEs: 'Empieza a hablar en voz alta',
-  subtitleRu: 'Premium открывает режим говорения: произноси фразы вслух, а приложение слушает и подсказывает. Самый быстрый путь заговорить уверенно.',
-  subtitleUk: 'Premium відкриває режим говоріння: вимовляй фрази вголос, а застосунок слухає й підказує. Найшвидший шлях заговорити впевнено.',
-  subtitleEs: 'Premium abre el modo de voz: di las frases en voz alta y la app te escucha y te guía. El camino más rápido para hablar con seguridad.',
+  subtitleRu: 'Plus открывает режим говорения: произноси фразы вслух, а приложение слушает и подсказывает. Самый быстрый путь заговорить уверенно.',
+  subtitleUk: 'Plus відкриває режим говоріння: вимовляй фрази вголос, а застосунок слухає й підказує. Найшвидший шлях заговорити впевнено.',
+  subtitleEs: 'Plus abre el modo de voz: di las frases en voz alta y la app te escucha y te guía. El camino más rápido para hablar con seguridad.',
 };
 
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
   arena: {
     title: { 'pt-BR': 'Mais duelos na Arena todos os dias', vi: 'Thêm trận đấu Arena mỗi ngày', id: 'Lebih banyak duel Arena setiap hari', tr: 'Her gün daha fazla Arena düellosu', pl: 'Więcej pojedynków na Arenie każdego dnia' },
     subtitle: {
-      'pt-BR': 'Premium remove o limite diário de partidas: compita todos os dias, fortaleça sua estratégia e avance sem sentir “por hoje chega”.',
-      vi: 'Premium bỏ giới hạn trận hằng ngày: thi đấu mỗi ngày, tăng chiến thuật và tiến bộ mà không bị chặn giữa nhịp.',
-      id: 'Premium menghapus batas pertandingan harian: bertanding tiap hari, perkuat strategi, dan berkembang tanpa rasa “cukup untuk hari ini”.',
-      tr: 'Premium günlük maç sınırını kaldırır: her gün yarış, stratejini güçlendir ve “bugünlük bu kadar” hissi olmadan ilerle.',
-      pl: 'Premium usuwa dzienny limit meczów: rywalizuj codziennie, wzmacniaj strategię i rośnij bez wrażenia “na dziś koniec”.',
+      'pt-BR': 'Plus remove o limite diário de partidas: compita todos os dias, fortaleça sua estratégia e avance sem sentir “por hoje chega”.',
+      vi: 'Plus bỏ giới hạn trận hằng ngày: thi đấu mỗi ngày, tăng chiến thuật và tiến bộ mà không bị chặn giữa nhịp.',
+      id: 'Plus menghapus batas pertandingan harian: bertanding tiap hari, perkuat strategi, dan berkembang tanpa rasa “cukup untuk hari ini”.',
+      tr: 'Plus günlük maç sınırını kaldırır: her gün yarış, stratejini güçlendir ve “bugünlük bu kadar” hissi olmadan ilerle.',
+      pl: 'Plus usuwa dzienny limit meczów: rywalizuj codziennie, wzmacniaj strategię i rośnij bez wrażenia “na dziś koniec”.',
     },
   },
   no_energy: {
     title: { 'pt-BR': 'Pare as pausas por falta de energia', vi: 'Dừng những lần nghỉ vì hết năng lượng', id: 'Hentikan jeda karena energi habis', tr: 'Enerji yüzünden verilen araları durdur', pl: 'Zatrzymaj przerwy przez energię' },
     subtitle: {
-      'pt-BR': 'Com Premium, energia ilimitada: lições, quizzes e exame final sem temporizador de espera, no seu ritmo.',
-      vi: 'Với Premium, năng lượng không giới hạn: bài học, quiz và bài kiểm tra cuối không cần chờ, theo nhịp của bạn.',
-      id: 'Dengan Premium, energi tanpa batas: pelajaran, kuis, dan ujian akhir tanpa timer tunggu, sesuai ritmemu.',
-      tr: 'Premium ile sınırsız enerji: dersler, quizler ve final sınavı bekleme sayacı olmadan, senin ritminde.',
-      pl: 'Z Premium energia jest bez limitu: lekcje, quizy i egzamin końcowy bez czekania, w twoim rytmie.',
+      'pt-BR': 'Com Plus, energia ilimitada: lições, quizzes e exame final sem temporizador de espera, no seu ritmo.',
+      vi: 'Với Plus, năng lượng không giới hạn: bài học, quiz và bài kiểm tra cuối không cần chờ, theo nhịp của bạn.',
+      id: 'Dengan Plus, energi tanpa batas: pelajaran, kuis, dan ujian akhir tanpa timer tunggu, sesuai ritmemu.',
+      tr: 'Plus ile sınırsız enerji: dersler, quizler ve final sınavı bekleme sayacı olmadan, senin ritminde.',
+      pl: 'Z Plus energia jest bez limitu: lekcje, quizy i egzamin końcowy bez czekania, w twoim rytmie.',
     },
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_PLANNED_COPY,
@@ -365,41 +365,41 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   quiz_limit: {
     title: { 'pt-BR': 'O limite de quizzes de hoje acabou', vi: 'Đã hết lượt quiz hôm nay', id: 'Batas kuis hari ini habis', tr: 'Bugünkü quiz sınırı doldu', pl: 'Dzisiejszy limit quizów został wykorzystany' },
     subtitle: {
-      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Plus remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_level: {
     title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Plus remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_medium: {
     title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Plus remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   quiz_hard: {
     title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
     subtitle: {
-      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Premium remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Premium bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 3 kuis per hari. Premium menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Premium günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Premium usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
+      'pt-BR': 'A versão grátis inclui 3 quizzes por dia. Plus remove o limite diário para você praticar sem pausas.',
+      vi: 'Bản miễn phí có 3 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
+      id: 'Versi gratis mencakup 3 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
+      tr: 'Ücretsiz sürüm günde 3 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
+      pl: 'Wersja darmowa obejmuje 3 quizy dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
     },
   },
   flashcard_limit: {
@@ -415,21 +415,21 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   streak: {
     title: { 'pt-BR': 'Não perca a sequência que você construiu', vi: 'Đừng mất chuỗi bạn đã xây dựng', id: 'Jangan kehilangan streak yang sudah kamu bangun', tr: 'Kurduğun seriyi kaybetme', pl: 'Nie trać serii, którą już zbudowałeś' },
     subtitle: {
-      'pt-BR': 'Premium protege seu ritmo: estude sem pausas e não volte atrás por um dia perdido.',
-      vi: 'Premium bảo vệ nhịp học: học không gián đoạn và không bị tụt lại vì một ngày bỏ lỡ.',
-      id: 'Premium melindungi ritmemu: belajar tanpa jeda dan tidak mundur karena satu hari terlewat.',
-      tr: 'Premium ritmini korur: ara vermeden çalış ve tek bir kaçırılan gün yüzünden geri düşme.',
-      pl: 'Premium chroni twój rytm: ucz się bez przerw i nie cofaj się przez jeden opuszczony dzień.',
+      'pt-BR': 'Plus protege seu ritmo: estude sem pausas e não volte atrás por um dia perdido.',
+      vi: 'Plus bảo vệ nhịp học: học không gián đoạn và không bị tụt lại vì một ngày bỏ lỡ.',
+      id: 'Plus melindungi ritmemu: belajar tanpa jeda dan tidak mundur karena satu hari terlewat.',
+      tr: 'Plus ritmini korur: ara vermeden çalış ve tek bir kaçırılan gün yüzünden geri düşme.',
+      pl: 'Plus chroni twój rytm: ucz się bez przerw i nie cofaj się przez jeden opuszczony dzień.',
     },
   },
   theme: {
     title: { 'pt-BR': 'Personalize o aprendizado do seu jeito', vi: 'Cá nhân hóa việc học theo bạn', id: 'Sesuaikan belajar dengan gayamu', tr: 'Öğrenmeyi kendine göre kişiselleştir', pl: 'Dopasuj naukę do siebie' },
     subtitle: {
-      'pt-BR': 'Com Premium, o app fica mais seu: mais envolvimento e mais regularidade nos estudos.',
-      vi: 'Với Premium, ứng dụng giống của bạn hơn: gắn bó hơn và học đều hơn.',
-      id: 'Dengan Premium, aplikasi terasa lebih milikmu: lebih terlibat dan lebih konsisten.',
-      tr: 'Premium ile uygulama sana ait hisseder: daha fazla bağlılık, daha düzenli çalışma.',
-      pl: 'Z Premium aplikacja staje się bardziej twoja: większe zaangażowanie i regularność.',
+      'pt-BR': 'Com Plus, o app fica mais seu: mais envolvimento e mais regularidade nos estudos.',
+      vi: 'Với Plus, ứng dụng giống của bạn hơn: gắn bó hơn và học đều hơn.',
+      id: 'Dengan Plus, aplikasi terasa lebih milikmu: lebih terlibat dan lebih konsisten.',
+      tr: 'Plus ile uygulama sana ait hisseder: daha fazla bağlılık, daha düzenli çalışma.',
+      pl: 'Z Plus aplikacja staje się bardziej twoja: większe zaangażowanie i regularność.',
     },
   },
   club: {
@@ -445,46 +445,46 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   trainer: {
     title: { 'pt-BR': 'Treinador: seu plano pessoal de revisão', vi: 'Huấn luyện viên: kế hoạch ôn tập cá nhân', id: 'Trainer: rencana pengulangan personalmu', tr: 'Antrenör: kişisel tekrar planın', pl: 'Trener: twój osobisty plan powtórek' },
     subtitle: {
-      'pt-BR': 'Pontos fracos, Smart Mix, Por tema e Difíceis: 4 modos funcionam só no Premium. Sem limite de sessões.',
-      vi: 'Điểm yếu, Smart Mix, Theo chủ đề, Câu khó: 4 chế độ chỉ có trong Premium. Không giới hạn phiên.',
-      id: 'Titik lemah, Smart Mix, Per topik, Sulit: 4 mode hanya berjalan di Premium. Tanpa batas sesi.',
-      tr: 'Zayıf noktalar, Smart Mix, Konuya göre, Zorlar: 4 mod sadece Premium ile çalışır. Seans sınırı yok.',
-      pl: 'Słabe punkty, Smart Mix, Według tematu, Trudne: 4 tryby działają tylko w Premium. Bez limitu sesji.',
+      'pt-BR': 'Pontos fracos, Smart Mix, Por tema e Difíceis: 4 modos funcionam só no Plus. Sem limite de sessões.',
+      vi: 'Điểm yếu, Smart Mix, Theo chủ đề, Câu khó: 4 chế độ chỉ có trong Plus. Không giới hạn phiên.',
+      id: 'Titik lemah, Smart Mix, Per topik, Sulit: 4 mode hanya berjalan di Plus. Tanpa batas sesi.',
+      tr: 'Zayıf noktalar, Smart Mix, Konuya göre, Zorlar: 4 mod sadece Plus ile çalışır. Seans sınırı yok.',
+      pl: 'Słabe punkty, Smart Mix, Według tematu, Trudne: 4 tryby działają tylko w Plus. Bez limitu sesji.',
     },
   },
   trainer_limit: {
     // gain-framing, без хардкода числа бесплатных сессий (A/B-переменное)
     title: { 'pt-BR': 'Treine quanto quiser', vi: 'Luyện tập thỏa thích', id: 'Berlatih sepuasnya', tr: 'İstediğin kadar antrenman', pl: 'Trenuj ile chcesz' },
     subtitle: {
-      'pt-BR': 'Premium abre sessões ilimitadas do Treinador em todos os modos.',
-      vi: 'Premium mở các phiên Huấn luyện viên không giới hạn ở mọi chế độ.',
-      id: 'Premium membuka sesi Trainer tanpa batas di semua mode.',
-      tr: 'Premium tüm modlarda sınırsız Antrenör seansı açar.',
-      pl: 'Premium otwiera nieograniczone sesje Trenera we wszystkich trybach.',
+      'pt-BR': 'Plus abre sessões ilimitadas do Treinador em todos os modos.',
+      vi: 'Plus mở các phiên Huấn luyện viên không giới hạn ở mọi chế độ.',
+      id: 'Plus membuka sesi Trainer tanpa batas di semua mode.',
+      tr: 'Plus tüm modlarda sınırsız Antrenör seansı açar.',
+      pl: 'Plus otwiera nieograniczone sesje Trenera we wszystkich trybach.',
     },
   },
   diagnosis_training: {
-    title: { 'pt-BR': 'Novas análises de erros no Premium', vi: 'Phân tích lỗi mới có trong Premium', id: 'Analisis kesalahan baru ada di Premium', tr: 'Yeni hata analizleri Premium’da', pl: 'Nowe analizy błędów w Premium' },
+    title: { 'pt-BR': 'Novas análises de erros no Plus', vi: 'Phân tích lỗi mới có trong Plus', id: 'Analisis kesalahan baru ada di Plus', tr: 'Yeni hata analizleri Plus’da', pl: 'Nowe analizy błędów w Plus' },
     subtitle: {
-      'pt-BR': 'A primeira análise pessoal é grátis. Premium abre cada erro novo: explicação clara, forma correta e prática com frases parecidas sem limite.',
-      vi: 'Phân tích cá nhân đầu tiên miễn phí. Premium mở từng lỗi mới: giải thích rõ, dạng đúng và luyện câu tương tự không giới hạn.',
-      id: 'Analisis personal pertama gratis. Premium membuka setiap kesalahan baru: penjelasan jelas, bentuk benar, dan latihan frasa mirip tanpa batas.',
-      tr: 'İlk kişisel analiz ücretsiz. Premium her yeni hatayı açar: net açıklama, doğru biçim ve benzer ifadelerle sınırsız pratik.',
-      pl: 'Pierwsza analiza osobista jest darmowa. Premium otwiera każdy nowy błąd: jasne wyjaśnienie, poprawną wersję i ćwiczenia na podobnych frazach bez limitu.',
+      'pt-BR': 'A primeira análise pessoal é grátis. Plus abre cada erro novo: explicação clara, forma correta e prática com frases parecidas sem limite.',
+      vi: 'Phân tích cá nhân đầu tiên miễn phí. Plus mở từng lỗi mới: giải thích rõ, dạng đúng và luyện câu tương tự không giới hạn.',
+      id: 'Analisis personal pertama gratis. Plus membuka setiap kesalahan baru: penjelasan jelas, bentuk benar, dan latihan frasa mirip tanpa batas.',
+      tr: 'İlk kişisel analiz ücretsiz. Plus her yeni hatayı açar: net açıklama, doğru biçim ve benzer ifadelerle sınırsız pratik.',
+      pl: 'Pierwsza analiza osobista jest darmowa. Plus otwiera każdy nowy błąd: jasne wyjaśnienie, poprawną wersję i ćwiczenia na podobnych frazach bez limitu.',
     },
   },
   mastery: {
     title: { 'pt-BR': 'Repita lições sem limites', vi: 'Ôn lại bài học không giới hạn', id: 'Ulang pelajaran tanpa batas', tr: 'Dersleri sınırsız tekrar et', pl: 'Powtarzaj lekcje bez ograniczeń' },
     subtitle: {
-      'pt-BR': 'Com Premium, qualquer lição concluída fica aberta para repetir sem gastar fragmentos, mesmo quando o preço subiria a cada repetição.',
-      vi: 'Với Premium, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn mảnh, kể cả khi giá tăng sau mỗi lần học lại.',
-      id: 'Dengan Premium, semua pelajaran selesai bisa diulang tanpa memakai fragmen, bahkan saat harga naik di tiap pengulangan.',
-      tr: 'Premium ile tamamlanan her dersi parça harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
-      pl: 'Z Premium każda ukończona lekcja jest otwarta do powtórki bez odłamków, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
+      'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar fragmentos, mesmo quando o preço subiria a cada repetição.',
+      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn mảnh, kể cả khi giá tăng sau mỗi lần học lại.',
+      id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai fragmen, bahkan saat harga naik di tiap pengulangan.',
+      tr: 'Plus ile tamamlanan her dersi parça harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
+      pl: 'Z Plus każda ukończona lekcja jest otwarta do powtórki bez odłamków, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
     },
   },
   stats: {
-    title: { 'pt-BR': 'Análises de progresso no Premium', vi: 'Phân tích tiến bộ dành cho Premium', id: 'Analitik progres untuk Premium', tr: 'İlerleme analizi Premium’da', pl: 'Analityka postępu w Premium' },
+    title: { 'pt-BR': 'Análises de progresso no Plus', vi: 'Phân tích tiến bộ dành cho Plus', id: 'Analitik progres untuk Plus', tr: 'İlerleme analizi Plus’da', pl: 'Analityka postępu w Plus' },
     subtitle: {
       'pt-BR': 'Mapa anual de atividade, padrões de erro e comparação com outros alunos. Você vê seu crescimento com clareza.',
       vi: 'Bản đồ hoạt động cả năm, mẫu lỗi và so sánh với học viên khác. Bạn thấy rõ bức tranh tiến bộ của mình.',
@@ -494,7 +494,7 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   heatmap: {
-    title: { 'pt-BR': 'Mapa de atividade no Premium', vi: 'Bản đồ hoạt động dành cho Premium', id: 'Peta aktivitas untuk Premium', tr: 'Etkinlik haritası Premium’da', pl: 'Mapa aktywności w Premium' },
+    title: { 'pt-BR': 'Mapa de atividade no Plus', vi: 'Bản đồ hoạt động dành cho Plus', id: 'Peta aktivitas untuk Plus', tr: 'Etkinlik haritası Plus’da', pl: 'Mapa aktywności w Plus' },
     subtitle: {
       'pt-BR': '365 dias de estudo em uma tela: veja seus períodos fortes e fracos.',
       vi: '365 ngày học trên một màn hình: thấy giai đoạn mạnh và yếu của bạn.',
@@ -514,7 +514,7 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   percentiles: {
-    title: { 'pt-BR': 'Comparação com outros no Premium', vi: 'So sánh với người khác dành cho Premium', id: 'Perbandingan dengan pengguna lain di Premium', tr: 'Diğerleriyle karşılaştırma Premium’da', pl: 'Porównanie z innymi w Premium' },
+    title: { 'pt-BR': 'Comparação com outros no Plus', vi: 'So sánh với người khác dành cho Plus', id: 'Perbandingan dengan pengguna lain di Plus', tr: 'Diğerleriyle karşılaştırma Plus’da', pl: 'Porównanie z innymi w Plus' },
     subtitle: {
       'pt-BR': 'Veja onde você se destaca entre os alunos. Sem desmotivar: só o que mostra sua força.',
       vi: 'Xem bạn nổi bật ở đâu so với học viên khác. Không làm nản: chỉ những điểm bạn mạnh.',
@@ -524,7 +524,7 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   generic: {
-    title: { 'pt-BR': 'Aprenda mais rápido com Premium', vi: 'Học nhanh hơn với Premium', id: 'Belajar lebih cepat dengan Premium', tr: 'Premium ile daha hızlı öğren', pl: 'Ucz się szybciej z Premium' },
+    title: { 'pt-BR': 'Aprenda mais rápido com Plus', vi: 'Học nhanh hơn với Plus', id: 'Belajar lebih cepat dengan Plus', tr: 'Plus ile daha hızlı öğren', pl: 'Ucz się szybciej z Plus' },
     subtitle: {
       'pt-BR': 'Mais prática, menos limites e progresso estável todos os dias.',
       vi: 'Nhiều luyện tập hơn, ít giới hạn hơn và tiến bộ đều mỗi ngày.',
@@ -544,28 +544,28 @@ PAYWALL_PLANNED_COPY.personal_plan = {
     pl: 'Włącz swój plan osobisty',
   },
   subtitle: {
-    'pt-BR': 'Premium libera tarefas diárias: lições, frases reais, revisão e quizzes alinhados ao seu objetivo.',
-    vi: 'Premium mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và quiz theo mục tiêu của bạn.',
-    id: 'Premium membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan kuis sesuai tujuanmu.',
-    tr: 'Premium günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun quizler.',
-    pl: 'Premium otwiera codzienne zadania: lekcje, żywe frazy, powtórki i quizy pod twój cel.',
+    'pt-BR': 'Plus libera tarefas diárias: lições, frases reais, revisão e quizzes alinhados ao seu objetivo.',
+    vi: 'Plus mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và quiz theo mục tiêu của bạn.',
+    id: 'Plus membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan kuis sesuai tujuanmu.',
+    tr: 'Plus günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun quizler.',
+    pl: 'Plus otwiera codzienne zadania: lekcje, żywe frazy, powtórki i quizy pod twój cel.',
   },
 };
 
 PAYWALL_PLANNED_COPY.premium_expired = {
   title: {
-    'pt-BR': 'Recupere o acesso Premium completo',
-    vi: 'Lấy lại quyền truy cập Premium đầy đủ',
-    id: 'Pulihkan akses Premium penuh',
-    tr: 'Tam Premium erişimini geri al',
-    pl: 'Odzyskaj pełny dostęp Premium',
+    'pt-BR': 'Recupere o acesso Plus completo',
+    vi: 'Lấy lại quyền truy cập Plus đầy đủ',
+    id: 'Pulihkan akses Plus penuh',
+    tr: 'Tam Plus erişimini geri al',
+    pl: 'Odzyskaj pełny dostęp Plus',
   },
   subtitle: {
-    'pt-BR': 'Seu Premium acabou. Reative e continue estudando sem limites nem pausas, exatamente de onde parou.',
-    vi: 'Premium của bạn đã hết. Kích hoạt lại và học tiếp không giới hạn, ngay từ chỗ bạn dừng.',
-    id: 'Premium-mu sudah habis. Aktifkan lagi dan lanjut belajar tanpa batas, tepat dari tempat terakhir.',
-    tr: 'Premium’un bitti. Yeniden etkinleştir ve kaldığın yerden sınırsız öğrenmeye devam et.',
-    pl: 'Twój Premium się skończył. Włącz ponownie i ucz się dalej bez limitów, dokładnie od miejsca, gdzie skończyłeś.',
+    'pt-BR': 'Seu Plus acabou. Reative e continue estudando sem limites nem pausas, exatamente de onde parou.',
+    vi: 'Plus của bạn đã hết. Kích hoạt lại và học tiếp không giới hạn, ngay từ chỗ bạn dừng.',
+    id: 'Plus-mu sudah habis. Aktifkan lagi dan lanjut belajar tanpa batas, tepat dari tempat terakhir.',
+    tr: 'Plus’un bitti. Yeniden etkinleştir ve kaldığın yerden sınırsız öğrenmeye devam et.',
+    pl: 'Twój Plus się skończył. Włącz ponownie i ucz się dalej bez limitów, dokładnie od miejsca, gdzie skończyłeś.',
   },
 };
 PAYWALL_PLANNED_COPY.vip_expired = {
@@ -577,11 +577,11 @@ PAYWALL_PLANNED_COPY.vip_expired = {
     pl: 'Twój dostęp VIP się skończył',
   },
   subtitle: {
-    'pt-BR': 'Gostou de tudo sem limites? Ative o Premium e mantenha o acesso completo para sempre, sem pausas.',
-    vi: 'Thích mọi thứ không giới hạn? Kích hoạt Premium để giữ toàn bộ quyền truy cập mãi mãi, không gián đoạn.',
-    id: 'Suka semuanya tanpa batas? Aktifkan Premium dan pertahankan akses penuh selamanya, tanpa jeda.',
-    tr: 'Sınırsız her şeyi sevdin mi? Premium’u aç ve tüm erişimi sonsuza dek koru, arasız.',
-    pl: 'Spodobało ci się wszystko bez limitów? Włącz Premium i zachowaj pełny dostęp na zawsze, bez przerw.',
+    'pt-BR': 'Gostou de tudo sem limites? Ative o Plus e mantenha o acesso completo para sempre, sem pausas.',
+    vi: 'Thích mọi thứ không giới hạn? Kích hoạt Plus để giữ toàn bộ quyền truy cập mãi mãi, không gián đoạn.',
+    id: 'Suka semuanya tanpa batas? Aktifkan Plus dan pertahankan akses penuh selamanya, tanpa jeda.',
+    tr: 'Sınırsız her şeyi sevdin mi? Plus’u aç ve tüm erişimi sonsuza dek koru, arasız.',
+    pl: 'Spodobało ci się wszystko bez limitów? Włącz Plus i zachowaj pełny dostęp na zawsze, bez przerw.',
   },
 };
 PAYWALL_PLANNED_COPY.notification_upsell = {
@@ -593,11 +593,11 @@ PAYWALL_PLANNED_COPY.notification_upsell = {
     pl: 'Kontynuuj swój postęp',
   },
   subtitle: {
-    'pt-BR': 'O Premium abre tudo: lições sem barreiras, prática ilimitada e ritmo estável. O momento perfeito para voltar.',
-    vi: 'Premium mở tất cả: bài học không rào cản, luyện tập không giới hạn và nhịp đều. Thời điểm hoàn hảo để quay lại.',
-    id: 'Premium membuka semuanya: pelajaran tanpa hambatan, latihan tanpa batas, ritme stabil. Saat tepat untuk kembali.',
-    tr: 'Premium her şeyi açar: engelsiz dersler, sınırsız pratik ve istikrarlı ritim. Dönmek için mükemmel an.',
-    pl: 'Premium otwiera wszystko: lekcje bez barier, nieograniczona praktyka i stabilny rytm. Idealny moment, by wrócić.',
+    'pt-BR': 'O Plus abre tudo: lições sem barreiras, prática ilimitada e ritmo estável. O momento perfeito para voltar.',
+    vi: 'Plus mở tất cả: bài học không rào cản, luyện tập không giới hạn và nhịp đều. Thời điểm hoàn hảo để quay lại.',
+    id: 'Plus membuka semuanya: pelajaran tanpa hambatan, latihan tanpa batas, ritme stabil. Saat tepat untuk kembali.',
+    tr: 'Plus her şeyi açar: engelsiz dersler, sınırsız pratik ve istikrarlı ritim. Dönmek için mükemmel an.',
+    pl: 'Plus otwiera wszystko: lekcje bez barier, nieograniczona praktyka i stabilny rytm. Idealny moment, by wrócić.',
   },
 };
 
@@ -612,11 +612,11 @@ PAYWALL_PLANNED_COPY.dialog_limit = {
     pl: 'Prawdziwa praktyka w dialogach',
   },
   subtitle: {
-    'pt-BR': 'O Premium abre prática real de inglês: novos cenários, análise de cada fala e suas palavras dos cartões.',
-    vi: 'Premium mở luyện nói tiếng Anh thật: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
-    id: 'Premium membuka latihan bahasa Inggris nyata: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
-    tr: 'Premium gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
-    pl: 'Premium otwiera prawdziwą praktykę angielskiego: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
+    'pt-BR': 'O Plus abre prática real de inglês: novos cenários, análise de cada fala e suas palavras dos cartões.',
+    vi: 'Plus mở luyện nói tiếng Anh thật: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
+    id: 'Plus membuka latihan bahasa Inggris nyata: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
+    tr: 'Plus gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
+    pl: 'Plus otwiera prawdziwą praktykę angielskiego: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
   },
 };
 PAYWALL_PLANNED_COPY.speaking = {
@@ -628,11 +628,11 @@ PAYWALL_PLANNED_COPY.speaking = {
     pl: 'Zacznij mówić na głos',
   },
   subtitle: {
-    'pt-BR': 'O Premium abre o modo de voz: diga as frases em voz alta e o app escuta e orienta. O caminho mais rápido para falar com confiança.',
-    vi: 'Premium mở chế độ nói: đọc câu thành tiếng, ứng dụng lắng nghe và gợi ý. Cách nhanh nhất để nói tự tin.',
-    id: 'Premium membuka mode bicara: ucapkan frasa dengan lantang, aplikasi mendengarkan dan memandu. Cara tercepat untuk bicara percaya diri.',
-    tr: 'Premium konuşma modunu açar: cümleleri sesli söyle, uygulama dinler ve yönlendirir. Kendinden emin konuşmanın en hızlı yolu.',
-    pl: 'Premium otwiera tryb mówienia: wymawiaj frazy na głos, a aplikacja słucha i podpowiada. Najszybsza droga, by mówić pewnie.',
+    'pt-BR': 'O Plus abre o modo de voz: diga as frases em voz alta e o app escuta e orienta. O caminho mais rápido para falar com confiança.',
+    vi: 'Plus mở chế độ nói: đọc câu thành tiếng, ứng dụng lắng nghe và gợi ý. Cách nhanh nhất để nói tự tin.',
+    id: 'Plus membuka mode bicara: ucapkan frasa dengan lantang, aplikasi mendengarkan dan memandu. Cara tercepat untuk bicara percaya diri.',
+    tr: 'Plus konuşma modunu açar: cümleleri sesli söyle, uygulama dinler ve yönlendirir. Kendinden emin konuşmanın en hızlı yolu.',
+    pl: 'Plus otwiera tryb mówienia: wymawiaj frazy na głos, a aplikacja słucha i podpowiada. Najszybsza droga, by mówić pewnie.',
   },
 };
 PAYWALL_PLANNED_COPY.intro_ended = {
@@ -644,11 +644,11 @@ PAYWALL_PLANNED_COPY.intro_ended = {
     pl: 'Kontynuuj z pełnym dostępem',
   },
   subtitle: {
-    'pt-BR': 'Você já sentiu o acesso completo. O Premium o abre para sempre — sem pausas nem bloqueios.',
-    vi: 'Bạn đã trải nghiệm quyền truy cập đầy đủ. Premium mở nó vĩnh viễn — không dừng, không khoá.',
-    id: 'Kamu sudah merasakan akses penuh. Premium membukanya selamanya — tanpa jeda dan tanpa blokir.',
-    tr: 'Tam erişimi zaten hissettin. Premium onu kalıcı açar — arasız ve engelsiz.',
-    pl: 'Już poczułeś pełny dostęp. Premium otwiera go na zawsze — bez przerw i blokad.',
+    'pt-BR': 'Você já sentiu o acesso completo. O Plus o abre para sempre — sem pausas nem bloqueios.',
+    vi: 'Bạn đã trải nghiệm quyền truy cập đầy đủ. Plus mở nó vĩnh viễn — không dừng, không khoá.',
+    id: 'Kamu sudah merasakan akses penuh. Plus membukanya selamanya — tanpa jeda dan tanpa blokir.',
+    tr: 'Tam erişimi zaten hissettin. Plus onu kalıcı açar — arasız ve engelsiz.',
+    pl: 'Już poczułeś pełny dostęp. Plus otwiera go na zawsze — bez przerw i blokad.',
   },
 };
 PAYWALL_PLANNED_COPY.level_up = {
@@ -660,11 +660,11 @@ PAYWALL_PLANNED_COPY.level_up = {
     pl: 'Rozwijasz się szybko',
   },
   subtitle: {
-    'pt-BR': 'Novo nível desbloqueado. O Premium remove todos os limites do caminho.',
-    vi: 'Mở khoá cấp mới. Premium gỡ mọi giới hạn trên đường đi.',
-    id: 'Level baru terbuka. Premium menghapus semua batas di jalanmu.',
-    tr: 'Yeni seviye açıldı. Premium yoldaki tüm sınırları kaldırır.',
-    pl: 'Odblokowano nowy poziom. Premium usuwa wszystkie limity po drodze.',
+    'pt-BR': 'Novo nível desbloqueado. O Plus remove todos os limites do caminho.',
+    vi: 'Mở khoá cấp mới. Plus gỡ mọi giới hạn trên đường đi.',
+    id: 'Level baru terbuka. Plus menghapus semua batas di jalanmu.',
+    tr: 'Yeni seviye açıldı. Plus yoldaki tüm sınırları kaldırır.',
+    pl: 'Odblokowano nowy poziom. Plus usuwa wszystkie limity po drodze.',
   },
 };
 PAYWALL_PLANNED_COPY.smart_trainer = {
@@ -718,19 +718,19 @@ const WIN_BACK_NATIVE_CONTEXTS = new Set<string>([
 // УЖЕ был (премиум стал фри/истёк). Перекрывает «получить впервые»-заголовки вроде
 // «Получить персональный план», которые звучат неактуально для вернувшегося юзера.
 const WIN_BACK_TITLE: Pick<PaywallCopy, 'titleRu' | 'titleUk' | 'titleEs'> = {
-  titleRu: 'Верни полный доступ Premium',
-  titleUk: 'Поверни повний доступ Premium',
-  titleEs: 'Recupera tu acceso Premium completo',
+  titleRu: 'Верни полный доступ Plus',
+  titleUk: 'Поверни повний доступ Plus',
+  titleEs: 'Recupera tu acceso Plus completo',
 };
 
 // Win-back заголовок для planned-локалей (pt-BR/vi/id/tr/pl), которые берут title
 // из planned-копии, а не из RU/UK/ES.
 const WIN_BACK_PLANNED_TITLE: PremiumPlannedCopy = {
-  'pt-BR': 'Recupere seu acesso Premium completo',
-  vi: 'Lấy lại toàn bộ quyền Premium của bạn',
-  id: 'Pulihkan akses Premium penuh kamu',
-  tr: 'Tüm Premium erişimini geri kazan',
-  pl: 'Odzyskaj pełny dostęp Premium',
+  'pt-BR': 'Recupere seu acesso Plus completo',
+  vi: 'Lấy lại toàn bộ quyền Plus của bạn',
+  id: 'Pulihkan akses Plus penuh kamu',
+  tr: 'Tüm Plus erişimini geri kazan',
+  pl: 'Odzyskaj pełny dostęp Plus',
 };
 
 function isWinBackContext(context: string | undefined, hadPremiumEver: boolean): boolean {
@@ -769,28 +769,28 @@ export function applyWinBackPlannedCopy(
 
 // ── Контексты возврата/ре-энгейджа: заголовки под ситуацию (а не generic) ─────
 PAYWALL_COPY.premium_expired = {
-  titleRu: 'Верни полный доступ Premium',
-  titleUk: 'Поверни повний доступ Premium',
-  titleEs: 'Recupera tu acceso Premium completo',
-  subtitleRu: 'Твой Premium закончился. Подключи снова — и продолжай учиться без лимитов и пауз, ровно с того места, где остановился.',
-  subtitleUk: 'Твій Premium завершився. Підключи знову — і вчись далі без лімітів і пауз, саме з того місця, де зупинився.',
-  subtitleEs: 'Tu Premium terminó. Reactívalo y sigue aprendiendo sin límites ni pausas, justo donde lo dejaste.',
+  titleRu: 'Верни полный доступ Plus',
+  titleUk: 'Поверни повний доступ Plus',
+  titleEs: 'Recupera tu acceso Plus completo',
+  subtitleRu: 'Твой Plus закончился. Подключи снова — и продолжай учиться без лимитов и пауз, ровно с того места, где остановился.',
+  subtitleUk: 'Твій Plus завершився. Підключи знову — і вчись далі без лімітів і пауз, саме з того місця, де зупинився.',
+  subtitleEs: 'Tu Plus terminó. Reactívalo y sigue aprendiendo sin límites ni pausas, justo donde lo dejaste.',
 };
 PAYWALL_COPY.vip_expired = {
   titleRu: 'Твой VIP-доступ закончился',
   titleUk: 'Твій VIP-доступ завершився',
   titleEs: 'Tu acceso VIP ha terminado',
-  subtitleRu: 'Тебе понравились возможности без ограничений? Оформи Premium — и сохрани весь доступ навсегда, без пауз в прогрессе.',
-  subtitleUk: 'Сподобались можливості без обмежень? Оформи Premium — і збережи весь доступ назавжди, без пауз у прогресі.',
-  subtitleEs: '¿Te gustó todo sin límites? Activa Premium y conserva el acceso completo para siempre, sin pausas.',
+  subtitleRu: 'Тебе понравились возможности без ограничений? Оформи Plus — и сохрани весь доступ навсегда, без пауз в прогрессе.',
+  subtitleUk: 'Сподобались можливості без обмежень? Оформи Plus — і збережи весь доступ назавжди, без пауз у прогресі.',
+  subtitleEs: '¿Te gustó todo sin límites? Activa Plus y conserva el acceso completo para siempre, sin pausas.',
 };
 PAYWALL_COPY.notification_upsell = {
   titleRu: 'Продолжи свой прогресс',
   titleUk: 'Продовжуй свій прогрес',
   titleEs: 'Continúa tu progreso',
-  subtitleRu: 'Premium открывает всё сразу: уроки без барьеров, безлимит практики и стабильный ритм. Идеальный момент вернуться.',
-  subtitleUk: 'Premium відкриває все одразу: уроки без бар\'єрів, безліміт практики і стабільний ритм. Ідеальний момент повернутися.',
-  subtitleEs: 'Premium lo abre todo: lecciones sin barreras, práctica ilimitada y ritmo estable. El momento perfecto para volver.',
+  subtitleRu: 'Plus открывает всё сразу: уроки без барьеров, безлимит практики и стабильный ритм. Идеальный момент вернуться.',
+  subtitleUk: 'Plus відкриває все одразу: уроки без бар\'єрів, безліміт практики і стабільний ритм. Ідеальний момент повернутися.',
+  subtitleEs: 'Plus lo abre todo: lecciones sin barreras, práctica ilimitada y ritmo estable. El momento perfecto para volver.',
 };
 
 export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]>> & { generic: ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[] } = {
@@ -857,7 +857,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   generic: [
     { ru: 'Больше практики без ограничений', uk: 'Більше практики без обмежень', es: 'Más práctica sin límites', 'pt-BR': 'Mais prática sem limites', vi: 'Nhiều luyện tập hơn, không giới hạn', id: 'Lebih banyak latihan tanpa batas', tr: 'Sınırsız daha fazla pratik', pl: 'Więcej praktyki bez ograniczeń' },
     { ru: 'Стабильный темп и результат', uk: 'Стабільний темп і результат', es: 'Ritmo estable y resultado', 'pt-BR': 'Ritmo e resultado estáveis', vi: 'Nhịp và kết quả ổn định', id: 'Ritme dan hasil stabil', tr: 'İstikrarlı tempo ve sonuç', pl: 'Stabilne tempo i wynik' },
-    { ru: 'Премиум-опции сразу после активации', uk: 'Преміум-опції одразу після активації', es: 'Funciones Premium al instante', 'pt-BR': 'Funções Premium logo após ativar', vi: 'Tính năng Premium có ngay sau khi kích hoạt', id: 'Fitur Premium langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Premium özellikler', pl: 'Opcje Premium od razu po aktywacji' },
+    { ru: 'Плюс-опции сразу после активации', uk: 'Плюс-опції одразу після активації', es: 'Funciones Plus al instante', 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
   ],
   trainer: [
     { ru: 'Слабые места: фразы с наибольшим числом ошибок', uk: 'Слабкі місця: фрази з найбільшою кількістю помилок', es: 'Puntos débiles: frases con más errores', 'pt-BR': 'Pontos fracos: frases com mais erros', vi: 'Điểm yếu: cụm từ bạn sai nhiều nhất', id: 'Titik lemah: frasa dengan kesalahan terbanyak', tr: 'Zayıf noktalar: en çok hata yapılan ifadeler', pl: 'Słabe punkty: frazy z największą liczbą błędów' },
@@ -1026,7 +1026,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   generic: [
     { 'pt-BR': 'Mais prática sem limites', vi: 'Nhiều luyện tập hơn, không giới hạn', id: 'Lebih banyak latihan tanpa batas', tr: 'Sınırsız daha fazla pratik', pl: 'Więcej praktyki bez ograniczeń' },
     { 'pt-BR': 'Ritmo e resultado estáveis', vi: 'Nhịp và kết quả ổn định', id: 'Ritme dan hasil stabil', tr: 'İstikrarlı tempo ve sonuç', pl: 'Stabilne tempo i wynik' },
-    { 'pt-BR': 'Funções Premium logo após ativar', vi: 'Tính năng Premium có ngay sau khi kích hoạt', id: 'Fitur Premium langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Premium özellikler', pl: 'Opcje Premium od razu po aktywacji' },
+    { 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
   ],
   trainer: [
     { 'pt-BR': 'Pontos fracos: frases com mais erros', vi: 'Điểm yếu: cụm từ bạn sai nhiều nhất', id: 'Titik lemah: frasa dengan kesalahan terbanyak', tr: 'Zayıf noktalar: en çok hata yapılan ifadeler', pl: 'Słabe punkty: frazy z największą liczbą błędów' },

@@ -82,14 +82,14 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
       </View>
       <Text style={[S.mirrorLine, { color: chrome.textPrimary }]}>
         {triLang(lang, {
-          ru: 'Premium держит этот темп.',
-          uk: 'Premium тримає цей темп.',
-          es: 'Premium mantiene este ritmo.',
-          'pt-BR': 'Premium mantém esse ritmo.',
-          vi: 'Premium giữ nhịp này.',
-          id: 'Premium menjaga ritme ini.',
-          tr: 'Premium bu tempoyu korur.',
-          pl: 'Premium utrzymuje to tempo.',
+          ru: 'Plus держит этот темп.',
+          uk: 'Plus тримає цей темп.',
+          es: 'Plus mantiene este ritmo.',
+          'pt-BR': 'Plus mantém esse ritmo.',
+          vi: 'Plus giữ nhịp này.',
+          id: 'Plus menjaga ritme ini.',
+          tr: 'Plus bu tempoyu korur.',
+          pl: 'Plus utrzymuje to tempo.',
         })}
       </Text>
     </ProofCard>
@@ -117,81 +117,98 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
   );
 }
 
-// ── сравнение Free → Premium (копии = реальные лимиты + самые ценные фичи) ─────
-type CompareCell = Record<Lang, string>;
-type CompareRow = { t: CompareCell; free: CompareCell; prem: CompareCell };
-const COMPARE_ROWS: CompareRow[] = [
-  // Самые ценные фичи — сверху (умный разбор, диалоги, личный план, произношение+озвучка).
+// ── что даёт Premium (стиль «итог + чипы» сверху, «польза-в-заголовке» снизу) ──
+// Тексты сверены с реальными лимитами в коде (см. ниже), без «тумана» и неправды:
+//   • Квизы: лимит 3/день ЛЮБОЙ сложности (quiz_daily_limit.ts: FREE_DAILY_QUIZ_LIMIT=3).
+//     НЕ «только Easy» — все уровни блокируются единым дневным лимитом, не сложностью.
+//   • Уроки: free = 1–8 (monetization_policy.ts: FREE_LESSON_LIMIT=8). Правда.
+//   • Энергия free: +1 за ~10 мин. Произношение/диалоги/тренер: закрыты/пробные.
+type LocCell = Record<Lang, string>;
+
+// Стиль 4 — компактные чипы-доказательства под главным итогом.
+type ValueChip = { icon: keyof typeof Ionicons.glyphMap; label: LocCell };
+const VALUE_CHIPS: ValueChip[] = [
+  { icon: 'chatbubbles-outline', label: { ru: 'Диалоги без лимита', uk: 'Діалоги без ліміту', es: 'Diálogos sin límite', 'pt-BR': 'Diálogos sem limite', vi: 'Hội thoại không giới hạn', id: 'Dialog tanpa batas', tr: 'Sınırsız diyalog', pl: 'Dialogi bez limitu' } },
+  { icon: 'mic-outline', label: { ru: 'Оценка речи', uk: 'Оцінка мовлення', es: 'Evaluación de voz', 'pt-BR': 'Avaliação da fala', vi: 'Chấm phát âm', id: 'Penilaian ucapan', tr: 'Konuşma puanı', pl: 'Ocena mowy' } },
+  { icon: 'locate-outline', label: { ru: 'Тренер ошибок', uk: 'Тренер помилок', es: 'Entrenador de errores', 'pt-BR': 'Treinador de erros', vi: 'Luyện điểm yếu', id: 'Pelatih kesalahan', tr: 'Hata antrenörü', pl: 'Trener błędów' } },
+  { icon: 'flash-outline', label: { ru: 'Безлимит квизов', uk: 'Безліміт квізів', es: 'Quizzes sin límite', 'pt-BR': 'Quizzes sem limite', vi: 'Quiz không giới hạn', id: 'Kuis tanpa batas', tr: 'Sınırsız quiz', pl: 'Quizy bez limitu' } },
+  { icon: 'book-outline', label: { ru: 'Весь уровень уроков', uk: 'Весь рівень уроків', es: 'Nivel completo', 'pt-BR': 'Nível completo', vi: 'Toàn bộ cấp độ', id: 'Seluruh level', tr: 'Tüm seviye', pl: 'Cały poziom' } },
+  { icon: 'map-outline', label: { ru: 'Личный план', uk: 'Особистий план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' } },
+];
+
+// Стиль 2 — карточки «польза в заголовке» (продаём результат, а не функцию).
+type ValueCard = { icon: keyof typeof Ionicons.glyphMap; title: LocCell; desc: LocCell };
+const VALUE_CARDS: ValueCard[] = [
   {
-    t: { ru: 'Умный разбор ошибок', uk: 'Розумний розбір помилок', es: 'Análisis de errores', 'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi thông minh', id: 'Analisis kesalahan', tr: 'Akıllı hata analizi', pl: 'Inteligentna analiza błędów' },
-    free: { ru: 'Только ответ', uk: 'Лише відповідь', es: 'Solo la respuesta', 'pt-BR': 'Só a resposta', vi: 'Chỉ đáp án', id: 'Hanya jawaban', tr: 'Sadece cevap', pl: 'Tylko odpowiedź' },
-    prem: { ru: 'Разбор каждой ошибки', uk: 'Розбір кожної помилки', es: 'Explica cada error', 'pt-BR': 'Explica cada erro', vi: 'Giải thích từng lỗi', id: 'Jelaskan tiap kesalahan', tr: 'Her hatayı açıklar', pl: 'Wyjaśnia każdy błąd' },
+    icon: 'chatbubble-ellipses-outline',
+    title: { ru: 'Заговорить, а не зубрить', uk: 'Заговорити, а не зубрити', es: 'Hablar, no memorizar', 'pt-BR': 'Falar, não decorar', vi: 'Nói được, không học vẹt', id: 'Bicara, bukan menghafal', tr: 'Konuş, ezberleme', pl: 'Mówić, nie wkuwać' },
+    desc: { ru: 'Живые диалоги с ИИ без лимита — он поправит каждую реплику и подскажет фразу.', uk: 'Живі діалоги з ШІ без ліміту — він виправить кожну репліку й підкаже фразу.', es: 'Diálogos reales con IA sin límite: corrige cada frase y te sugiere qué decir.', 'pt-BR': 'Diálogos reais com IA sem limite: corrige cada fala e sugere o que dizer.', vi: 'Hội thoại thật với AI không giới hạn — sửa từng câu và gợi ý cách nói.', id: 'Dialog nyata dengan AI tanpa batas — mengoreksi tiap ucapan dan menyarankan frasa.', tr: 'Yapay zekâ ile sınırsız canlı diyalog — her cümleyi düzeltir ve ne diyeceğini önerir.', pl: 'Żywe dialogi z AI bez limitu — poprawia każdą wypowiedź i podpowiada frazę.' },
   },
   {
-    t: { ru: 'Диалоги с ИИ', uk: 'Діалоги з ШІ', es: 'Diálogos con IA', 'pt-BR': 'Diálogos com IA', vi: 'Hội thoại với AI', id: 'Dialog dengan AI', tr: 'Yapay zekâ ile diyalog', pl: 'Dialogi z AI' },
-    free: { ru: '1 раз попробовать', uk: '1 раз спробувати', es: '1 prueba', 'pt-BR': '1 teste', vi: 'Thử 1 lần', id: 'Coba 1 kali', tr: '1 deneme', pl: '1 próba' },
-    prem: { ru: 'Без ограничений', uk: 'Без обмежень', es: 'Sin límites', 'pt-BR': 'Sem limites', vi: 'Không giới hạn', id: 'Tanpa batas', tr: 'Sınırsız', pl: 'Bez limitów' },
+    icon: 'mic-outline',
+    title: { ru: 'Слышать свой английский', uk: 'Чути свою англійську', es: 'Oír tu inglés', 'pt-BR': 'Ouvir seu inglês', vi: 'Nghe tiếng Anh của bạn', id: 'Dengar bahasa Inggrismu', tr: 'Kendi İngilizceni duy', pl: 'Słyszeć swój angielski' },
+    desc: { ru: 'Произноси вслух — приложение оценит речь и покажет, где звук уехал.', uk: 'Вимовляй уголос — застосунок оцінить мовлення й покаже, де звук поїхав.', es: 'Habla en voz alta: la app evalúa tu voz y muestra dónde falla el sonido.', 'pt-BR': 'Fale em voz alta: o app avalia sua fala e mostra onde o som escapou.', vi: 'Nói thành tiếng — ứng dụng chấm phát âm và chỉ chỗ sai.', id: 'Ucapkan dengan lantang — aplikasi menilai ucapan dan menunjukkan letak salahnya.', tr: 'Sesli konuş — uygulama konuşmanı puanlar ve sesin nerede kaydığını gösterir.', pl: 'Mów na głos — aplikacja oceni mowę i pokaże, gdzie dźwięk uciekł.' },
   },
   {
-    t: { ru: 'Личный план', uk: 'Особистий план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' },
-    free: { ru: 'Недоступен', uk: 'Недоступний', es: 'No disponible', 'pt-BR': 'Indisponível', vi: 'Không có', id: 'Tidak tersedia', tr: 'Yok', pl: 'Niedostępny' },
-    prem: { ru: 'План под твою цель', uk: 'План під твою ціль', es: 'Plan a tu medida', 'pt-BR': 'Plano sob medida', vi: 'Lộ trình riêng', id: 'Sesuai targetmu', tr: 'Hedefine özel plan', pl: 'Plan pod twój cel' },
+    icon: 'navigate-outline',
+    title: { ru: 'Перестать топтаться на месте', uk: 'Перестати тупцювати на місці', es: 'Dejar de estancarte', 'pt-BR': 'Parar de empacar', vi: 'Hết giậm chân tại chỗ', id: 'Berhenti jalan di tempat', tr: 'Yerinde saymayı bırak', pl: 'Przestać dreptać w miejscu' },
+    desc: { ru: 'Тренер находит твои слабые фразы и собирает идеальный набор на повтор.', uk: 'Тренер знаходить твої слабкі фрази й збирає ідеальний набір на повтор.', es: 'El entrenador detecta tus frases débiles y arma el set ideal para repasar.', 'pt-BR': 'O treinador acha suas frases fracas e monta o conjunto ideal para revisar.', vi: 'Huấn luyện viên tìm cụm từ yếu và lập bộ ôn hoàn hảo cho bạn.', id: 'Pelatih menemukan frasa lemahmu dan menyusun set latihan ideal.', tr: 'Antrenör zayıf ifadelerini bulur ve tekrar için ideal seti kurar.', pl: 'Trener znajduje twoje słabe frazy i układa idealny zestaw do powtórki.' },
   },
   {
-    t: { ru: 'Произношение и озвучка', uk: 'Вимова й озвучення', es: 'Pronunciación y voz', 'pt-BR': 'Pronúncia e voz', vi: 'Phát âm và lồng tiếng', id: 'Pelafalan dan suara', tr: 'Telaffuz ve seslendirme', pl: 'Wymowa i lektor' },
-    free: { ru: 'Ограничено', uk: 'Обмежено', es: 'Limitado', 'pt-BR': 'Limitado', vi: 'Hạn chế', id: 'Terbatas', tr: 'Sınırlı', pl: 'Ograniczone' },
-    prem: { ru: 'Оценка речи + живой голос', uk: 'Оцінка мовлення + живий голос', es: 'Evalúa tu voz + voz real', 'pt-BR': 'Avalia sua fala + voz real', vi: 'Chấm phát âm + giọng thật', id: 'Nilai ucapan + suara asli', tr: 'Konuşma puanı + gerçek ses', pl: 'Ocena mowy + żywy głos' },
-  },
-  {
-    t: { ru: 'Энергия', uk: 'Енергія', es: 'Energía', 'pt-BR': 'Energia', vi: 'Năng lượng', id: 'Energi', tr: 'Enerji', pl: 'Energia' },
-    free: { ru: '+1 раз в ~10 мин', uk: '+1 раз на ~10 хв', es: '+1 cada ~10 min', 'pt-BR': '+1 a cada ~10 min', vi: '+1 mỗi ~10 phút', id: '+1 tiap ~10 mnt', tr: '~10 dakikada +1', pl: '+1 co ~10 min' },
-    prem: { ru: 'Не заканчивается', uk: 'Не закінчується', es: 'No se agota', 'pt-BR': 'Não acaba', vi: 'Không cạn', id: 'Tak habis', tr: 'Bitmez', pl: 'Nie kończy się' },
-  },
-  {
-    t: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
-    free: { ru: 'Уроки 1–8', uk: 'Уроки 1–8', es: 'Lecciones 1–8', 'pt-BR': 'Lições 1–8', vi: 'Bài 1–8', id: 'Pelajaran 1–8', tr: 'Ders 1–8', pl: 'Lekcje 1–8' },
-    prem: { ru: 'Все уроки уровня', uk: 'Усі уроки рівня', es: 'Todas las del nivel', 'pt-BR': 'Todas do nível', vi: 'Mọi bài của cấp độ', id: 'Semua di level', tr: 'Seviyedeki tüm dersler', pl: 'Wszystkie lekcje poziomu' },
-  },
-  {
-    t: { ru: 'Квизы', uk: 'Квізи', es: 'Quizzes', 'pt-BR': 'Quizzes', vi: 'Quiz', id: 'Kuis', tr: 'Quizler', pl: 'Quizy' },
-    free: { ru: 'Только Easy', uk: 'Лише Easy', es: 'Solo Easy', 'pt-BR': 'Só Easy', vi: 'Chỉ Easy', id: 'Hanya Easy', tr: 'Sadece Easy', pl: 'Tylko Easy' },
-    prem: { ru: 'Все уровни', uk: 'Усі рівні', es: 'Todos los niveles', 'pt-BR': 'Todos os níveis', vi: 'Mọi cấp độ', id: 'Semua level', tr: 'Tüm seviyeler', pl: 'Wszystkie poziomy' },
-  },
-  {
-    t: { ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' },
-    free: { ru: 'До 20 сохранённых', uk: 'До 20 збережених', es: 'Hasta 20 guardadas', 'pt-BR': 'Até 20 salvos', vi: 'Tối đa 20 thẻ', id: 'Maks. 20 tersimpan', tr: 'En çok 20 kayıt', pl: 'Do 20 zapisanych' },
-    prem: { ru: 'Без ограничений', uk: 'Без обмежень', es: 'Sin límites', 'pt-BR': 'Sem limites', vi: 'Không giới hạn', id: 'Tanpa batas', tr: 'Sınırsız', pl: 'Bez limitów' },
-  },
-  {
-    t: { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rentetan', tr: 'Seri', pl: 'Seria' },
-    free: { ru: 'Сгорает за пропуск', uk: 'Згорає за пропуск', es: 'Se pierde al fallar un día', 'pt-BR': 'Some ao faltar um dia', vi: 'Mất khi bỏ lỡ', id: 'Hangus jika bolong', tr: 'Kaçırınca sıfırlanır', pl: 'Znika po przerwie' },
-    prem: { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Protección de racha', 'pt-BR': 'Proteção de sequência', vi: 'Đóng băng chuỗi', id: 'Bekukan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' },
+    icon: 'infinite-outline',
+    title: { ru: 'Учиться без стоп-сигналов', uk: 'Навчатися без стоп-сигналів', es: 'Aprender sin frenos', 'pt-BR': 'Aprender sem freios', vi: 'Học không gặp đèn đỏ', id: 'Belajar tanpa rambu berhenti', tr: 'Dur işareti olmadan öğren', pl: 'Uczyć się bez stop-sygnałów' },
+    desc: { ru: 'Безлимит квизов и энергии, весь уровень уроков открыт сразу — без пауз.', uk: 'Безліміт квізів та енергії, весь рівень уроків відкрито одразу — без пауз.', es: 'Quizzes y energía sin límite y todo el nivel abierto al instante, sin pausas.', 'pt-BR': 'Quizzes e energia sem limite e o nível inteiro aberto na hora, sem pausas.', vi: 'Quiz và năng lượng không giới hạn, mở cả cấp độ ngay — không gián đoạn.', id: 'Kuis dan energi tanpa batas, seluruh level langsung terbuka — tanpa jeda.', tr: 'Sınırsız quiz ve enerji, tüm seviye hemen açık — molasız.', pl: 'Bez limitu quizów i energii, cały poziom otwarty od razu — bez przerw.' },
   },
 ];
 
+// Главный итог сверху (эмоция-результат). Подзаголовок намеренно без числа «2×» —
+// это недоказуемое обещание; вместо него — конкретная фокус-выгода.
+const HERO_LINE: LocCell = {
+  ru: 'Plus ведёт тебя к разговору', uk: 'Plus веде тебе до розмови', es: 'Plus te lleva a hablar', 'pt-BR': 'Plus te leva a falar', vi: 'Plus đưa bạn đến giao tiếp', id: 'Plus membawamu sampai bicara', tr: 'Plus seni konuşmaya götürür', pl: 'Plus prowadzi cię do rozmowy',
+};
+
 export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrome }) {
-  const pick = (d: CompareCell) => triLang(lang, d);
+  const pick = (d: LocCell) => triLang(lang, d);
+  const accent = chrome.tc.heroAccent;
   return (
     <ProofCard title={triLang(lang, {
-      ru: 'Что меняется с Premium',
-      uk: 'Що змінюється з Premium',
-      es: 'Qué cambia con Premium',
-      'pt-BR': 'O que muda com Premium',
-      vi: 'Premium thay đổi điều gì',
-      id: 'Apa yang berubah dengan Premium',
-      tr: 'Premium ile ne değişir',
-      pl: 'Co zmienia Premium',
+      ru: 'Что даёт Plus',
+      uk: 'Що дає Plus',
+      es: 'Qué te da Plus',
+      'pt-BR': 'O que o Plus oferece',
+      vi: 'Plus mang lại gì',
+      id: 'Apa yang Plus berikan',
+      tr: 'Plus ne sunar',
+      pl: 'Co daje Plus',
     })} chrome={chrome}>
-      {COMPARE_ROWS.map((row, i) => (
-        <View key={row.t.ru} style={[S.cmpRow, i < COMPARE_ROWS.length - 1 && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: chrome.cardBorder }]}>
-          <View style={S.cmpLeft}>
-            <Text style={[S.cmpTitle, { color: chrome.textPrimary }]} numberOfLines={2}>{pick(row.t)}</Text>
-            <Text style={[S.cmpFree, { color: chrome.textMuted }]} numberOfLines={2}>{pick(row.free)}</Text>
-          </View>
-          <Ionicons name="arrow-forward" size={12} color={chrome.textMuted} style={S.cmpArrow} />
-          <Text style={[S.cmpPrem, { color: chrome.tc.heroAccent }]} numberOfLines={2}>{pick(row.prem)}</Text>
+      {/* Стиль 4 — главный итог + чипы-доказательства */}
+      <View style={S.valHero}>
+        <View style={[S.valHeroBadge, { backgroundColor: `${accent}1A`, borderColor: `${accent}33` }]}>
+          <Ionicons name="rocket-outline" size={20} color={accent} />
         </View>
-      ))}
+        <Text style={[S.valHeroLine, { color: chrome.textPrimary }]}>{pick(HERO_LINE)}</Text>
+      </View>
+      <View style={S.valChips}>
+        {VALUE_CHIPS.map((chip) => (
+          <View key={chip.label.ru} style={[S.valChip, { backgroundColor: `${accent}14`, borderColor: `${accent}26` }]}>
+            <Ionicons name={chip.icon} size={13} color={accent} style={S.valChipIcon} />
+            <Text style={[S.valChipText, { color: chrome.textPrimary }]} numberOfLines={1}>{pick(chip.label)}</Text>
+          </View>
+        ))}
+      </View>
+
+      {/* Стиль 2 — карточки «польза в заголовке» */}
+      <View style={S.valCards}>
+        {VALUE_CARDS.map((card) => (
+          <View key={card.title.ru} style={[S.valCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+            <View style={S.valCardHead}>
+              <Ionicons name={card.icon} size={17} color={accent} style={S.valCardIcon} />
+              <Text style={[S.valCardTitle, { color: chrome.textPrimary }]} numberOfLines={2}>{pick(card.title)}</Text>
+            </View>
+            <Text style={[S.valCardDesc, { color: chrome.textMuted }]}>{pick(card.desc)}</Text>
+          </View>
+        ))}
+      </View>
     </ProofCard>
   );
 }
@@ -218,14 +235,14 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co będzie po okresie próbnym?',
       }),
       a: triLang(lang, {
-        ru: `${trialDays} дн. всё открыто бесплатно. За день до конца пришлём пуш. Спишется только если не отменишь — ${priceLine}.`,
-        uk: `${trialDays} дн. усе відкрито безкоштовно. За день до кінця надішлемо пуш. Спишеться лише якщо не скасуєш — ${priceLine}.`,
-        es: `${trialDays} días todo gratis. Un día antes te avisamos. Solo se cobra si no cancelas: ${priceLine}.`,
-        'pt-BR': `${trialDays} dias com tudo liberado grátis. Um dia antes, enviaremos um aviso. Só cobraremos se você não cancelar: ${priceLine}.`,
-        vi: `${trialDays} ngày mở tất cả miễn phí. Trước khi kết thúc một ngày, chúng tôi sẽ gửi nhắc nhở. Chỉ tính phí nếu bạn không hủy: ${priceLine}.`,
-        id: `${trialDays} hari semua terbuka gratis. Sehari sebelum berakhir, kami kirim notifikasi. Hanya ditagih jika kamu tidak membatalkan: ${priceLine}.`,
-        tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bitmeden bir gün önce bildirim göndeririz. Yalnızca iptal etmezsen ücret alınır: ${priceLine}.`,
-        pl: `${trialDays} dni wszystko jest otwarte za darmo. Dzień przed końcem wyślemy powiadomienie. Opłata pojawi się tylko, jeśli nie anulujesz: ${priceLine}.`,
+        ru: `${trialDays} дн. всё открыто бесплатно. За день до конца пришлём пуш. Отменишь — деньги не спишутся. Не отменишь — ${priceLine}.`,
+        uk: `${trialDays} дн. усе відкрито безкоштовно. За день до кінця надішлемо пуш. Скасуєш — гроші не спишуться. Не скасуєш — ${priceLine}.`,
+        es: `${trialDays} días todo gratis. Un día antes te avisamos. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
+        'pt-BR': `${trialDays} dias com tudo liberado grátis. Um dia antes, enviaremos um aviso. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
+        vi: `${trialDays} ngày mở tất cả miễn phí. Trước khi kết thúc một ngày, chúng tôi sẽ gửi nhắc nhở. Hủy thì không bị trừ tiền. Không hủy thì ${priceLine}.`,
+        id: `${trialDays} hari semua terbuka gratis. Sehari sebelum berakhir, kami kirim notifikasi. Kalau dibatalkan, tidak ada tagihan. Kalau tidak, ${priceLine}.`,
+        tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bitmeden bir gün önce bildirim göndeririz. İptal edersen ücret alınmaz. Etmezsen ${priceLine}.`,
+        pl: `${trialDays} dni wszystko jest otwarte za darmo. Dzień przed końcem wyślemy powiadomienie. Anulujesz — nic nie pobierzemy. Nie anulujesz — ${priceLine}.`,
       }),
     }] : []),
     {
@@ -252,14 +269,14 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
     },
     {
       q: triLang(lang, {
-        ru: 'Что входит в Premium?',
-        uk: 'Що входить у Premium?',
-        es: '¿Qué incluye Premium?',
-        'pt-BR': 'O que inclui o Premium?',
-        vi: 'Premium bao gồm những gì?',
-        id: 'Apa saja isi Premium?',
-        tr: 'Premium neleri içerir?',
-        pl: 'Co zawiera Premium?',
+        ru: 'Что входит в Plus?',
+        uk: 'Що входить у Plus?',
+        es: '¿Qué incluye Plus?',
+        'pt-BR': 'O que inclui o Plus?',
+        vi: 'Plus bao gồm những gì?',
+        id: 'Apa saja isi Plus?',
+        tr: 'Plus neleri içerir?',
+        pl: 'Co zawiera Plus?',
       }),
       a: triLang(lang, {
         ru: 'Все уроки и уровни, безлимит энергии и карточек, все квизы, заморозка серии, занятия офлайн.',
@@ -322,12 +339,22 @@ const S = StyleSheet.create({
   pctRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   pctText: { flex: 1, fontSize: 12.5, lineHeight: 18 },
 
-  cmpRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8.5, gap: 8 },
-  cmpLeft: { flex: 1, minWidth: 0 },
-  cmpTitle: { fontSize: 12, fontWeight: '700' },
-  cmpFree: { fontSize: 10.5, marginTop: 1 },
-  cmpArrow: { flexShrink: 0 },
-  cmpPrem: { width: 122, textAlign: 'right', fontSize: 11, fontWeight: '700', lineHeight: 14 },
+  // Стиль 4 — главный итог + чипы
+  valHero: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 },
+  valHeroBadge: { width: 38, height: 38, borderRadius: 11, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  valHeroLine: { flex: 1, fontSize: 14.5, fontWeight: '800', letterSpacing: -0.2, lineHeight: 19 },
+  valChips: { flexDirection: 'row', flexWrap: 'wrap', gap: 7 },
+  valChip: { flexDirection: 'row', alignItems: 'center', borderRadius: 20, borderWidth: 1, paddingVertical: 6, paddingHorizontal: 11 },
+  valChipIcon: { marginRight: 5 },
+  valChipText: { fontSize: 12, fontWeight: '600' },
+
+  // Стиль 2 — карточки «польза в заголовке»
+  valCards: { marginTop: 14, gap: 9 },
+  valCard: { borderRadius: 13, borderWidth: 1, paddingHorizontal: 13, paddingVertical: 11 },
+  valCardHead: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 5 },
+  valCardIcon: { flexShrink: 0 },
+  valCardTitle: { flex: 1, fontSize: 13.5, fontWeight: '800', letterSpacing: -0.2 },
+  valCardDesc: { fontSize: 12, lineHeight: 16.5 },
 
   faqQ: { paddingVertical: 10 },
   faqHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },

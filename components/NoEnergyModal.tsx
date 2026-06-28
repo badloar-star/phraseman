@@ -73,6 +73,14 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#F5F7FB',
     subtitleColor: '#A7C7FF',
   },
+  business: {
+    glow: '#FFFFFF',
+    borderColor: 'rgba(255,255,255,0.12)',
+    surfaceColors: ['rgba(28,28,28,0.90)', 'rgba(20,20,20,0.94)', 'rgba(10,10,10,0.96)'],
+    cardGlowColors: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.05)', 'transparent'],
+    titleColor: '#F2F2F2',
+    subtitleColor: '#9A9A9A',
+  },
   midnight: {
     glow: '#8FA0FF',
     borderColor: 'rgba(143,160,255,0.34)',
@@ -111,37 +119,37 @@ const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
 
 type EnergyGateArgs = { required: string; have: string };
 const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Premium remove esse limite.`,
-  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Premium, sem espera.`,
+  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Plus remove esse limite.`,
+  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Plus, sem espera.`,
 ];
 const ENERGY_GATE_MESSAGES_VI: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Premium gỡ giới hạn này.`,
-  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Premium, không cần chờ.`,
+  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Plus gỡ giới hạn này.`,
+  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Plus, không cần chờ.`,
 ];
 const ENERGY_GATE_MESSAGES_ID: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Premium menghapus batas ini.`,
-  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Premium, tanpa menunggu.`,
+  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Plus menghapus batas ini.`,
+  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Plus, tanpa menunggu.`,
 ];
 const ENERGY_GATE_MESSAGES_TR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Premium bu sınırı kaldırır.`,
-  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Premium ile bekleme yok.`,
+  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Plus bu sınırı kaldırır.`,
+  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Plus ile bekleme yok.`,
 ];
 const ENERGY_GATE_MESSAGES_PL: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Premium znosi ten limit.`,
-  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Premium nie czekasz.`,
+  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Plus znosi ten limit.`,
+  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Plus nie czekasz.`,
 ];
 const ENERGY_GATE_MESSAGES_BY_LANG = {
   ru: [
-    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Premium — без лимитов.`,
-    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Premium открывает безлимит.`,
+    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Plus — без лимитов.`,
+    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Plus открывает безлимит.`,
   ],
   uk: [
-    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Premium — без обмежень.`,
-    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Premium прибирає ліміт.`,
+    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Plus — без обмежень.`,
+    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Plus прибирає ліміт.`,
   ],
   es: [
-    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Premium, sin límites.`,
-    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Premium elimina este límite.`,
+    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Plus, sin límites.`,
+    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Plus elimina este límite.`,
   ],
   'pt-BR': ENERGY_GATE_MESSAGES_PT_BR,
   vi: ENERGY_GATE_MESSAGES_VI,
@@ -334,14 +342,14 @@ function NoEnergyModal({
     pl: 'kilka minut',
   });
   const defaultSubtitle = triLang(lang, {
-    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. Хочешь учить без остановок — это Premium.`,
-    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Premium.`,
-    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Premium.`,
-    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Premium.`,
-    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Muốn năng lượng không giới hạn? Hãy thử Premium.`,
-    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Mau energi tanpa batas? Coba Premium.`,
-    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Sınırsız enerji ister misin? Premium'u dene.`,
-    pl: `+1 ⚡ wróci za ${recoveryTimeText}. Chcesz energię bez limitu? Wypróbuj Premium.`,
+    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. Хочешь учить без остановок — это Plus.`,
+    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Plus.`,
+    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Plus.`,
+    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Plus.`,
+    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Muốn năng lượng không giới hạn? Hãy thử Plus.`,
+    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Mau energi tanpa batas? Coba Plus.`,
+    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Sınırsız enerji ister misin? Plus'u dene.`,
+    pl: `+1 ⚡ wróci za ${recoveryTimeText}. Chcesz energię bez limitu? Wypróbuj Plus.`,
   });
   const gateFallback = isGate && minRequired != null
     ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(minRequired), have: String(totalAvailable) })

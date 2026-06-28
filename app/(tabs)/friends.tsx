@@ -31,6 +31,7 @@ import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
+import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
@@ -77,9 +78,11 @@ import { fetchFriendsActivityFeed, invalidateFriendsActivityCache, type FriendEv
 import {
   fetchTodayActivityLikeState,
   fetchActivityLikeTotal,
+  fetchActivityLikesReceived,
   sendFriendActivityLike,
   todayActivityLikeDateKeyUtc,
   type FriendActivityLikeTodayState,
+  type ActivityLikeReceived,
 } from '../friend_activity_likes';
 import {
   bumpActivityLikeCount,
@@ -568,7 +571,7 @@ function FriendRow({
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
             <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={16} />
-            <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
+            <Text style={{ fontSize: f.sub, color: monoIcon(themeMode, '#FF9500'), fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -636,7 +639,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
             <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
-            <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
+            <Text style={{ fontSize: f.sub, color: monoIcon(themeMode, '#FF9500'), fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
       </View>
@@ -732,7 +735,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
           {profile.streak > 0 && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
               <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
-              <Text style={{ color: '#FF9500', fontSize: f.sub }}>
+              <Text style={{ color: monoIcon(themeMode, '#FF9500'), fontSize: f.sub }}>
                 {profile.streak} {triLang(lang as any, {
                   ru: 'дней подряд',
                   uk: 'днів поспіль',
@@ -964,14 +967,14 @@ function FriendQuestStartedModal({
             <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 82, height: 82 }}>
               <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
             </View>
-            <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+            <Text style={{ color: monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
             </Text>
-            <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+            <Text style={{ color: monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
               {L('Наберите оба по 3000 XP за 24 часа и получите по 10 шардов и 1000 XP.', 'Наберіть обидва по 3000 XP за 24 години й отримайте по 10 шардів і 1000 XP.', 'Both of you need 3000 XP in 24 hours to earn 10 shards and 1000 XP each.', 'Ambos precisam de 3000 XP em 24 horas para ganhar 10 shards e 1000 XP.', 'Cả hai cần 3000 XP trong 24 giờ để nhận 10 shards và 1000 XP.', 'Kumpulkan masing-masing 3000 XP dalam 24 jam untuk mendapat 10 shard dan 1000 XP.', '24 saatte ikiniz de 3000 XP toplayın, 10 shard ve 1000 XP kazanın.', 'Zdobądźcie po 3000 XP w 24 godziny, aby dostać po 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}>
-              <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+              <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
                 {L('Вперёд', 'Уперед', 'Let’s go', 'Vamos', 'Bắt đầu', 'Mulai', 'Başla', 'Start')}
               </Text>
             </TouchableOpacity>
@@ -983,12 +986,13 @@ function FriendQuestStartedModal({
 }
 
 function FriendQuestCompletedModal({
-  visible, onClose, L, f,
+  visible, onClose, L, f, themeMode,
 }: {
   visible: boolean;
   onClose: () => void;
   L: (...args: string[]) => string;
   f: any;
+  themeMode: ThemeMode;
 }) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -996,16 +1000,16 @@ function FriendQuestCompletedModal({
         <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
           <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(52,199,89,0.24)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#19351F' }}>
-              <Ionicons name="sparkles-outline" size={38} color="#B9F6C9" />
+              <Ionicons name="sparkles-outline" size={38} color={monoIcon(themeMode, '#B9F6C9')} />
             </View>
-            <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+            <Text style={{ color: monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
             </Text>
-            <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+            <Text style={{ color: monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
               {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#34C759' }}>
-              <Text style={{ color: '#071E0C', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+              <Text style={{ color: monoIcon(themeMode, '#071E0C', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
                 {L('Отлично', 'Чудово', 'Nice', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
               </Text>
             </TouchableOpacity>
@@ -1026,6 +1030,7 @@ function ActivityTab({
   themeMode: ThemeMode;
 }) {
   const [events, setEvents] = useState<FriendEvent[]>([]);
+  const [likesReceived, setLikesReceived] = useState<ActivityLikeReceived[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -1042,14 +1047,24 @@ function ActivityTab({
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const load = useCallback(async (force = false) => {
-    if (friendUids.length === 0) { setEvents([]); setTodayLike(null); return; }
+    // Likes received can come from ANYONE (incl. non-friends who liked you from your card),
+    // so they are loaded even with zero friends — only the friends' event feed needs friends.
+    if (friendUids.length === 0) {
+      setEvents([]);
+      setTodayLike(null);
+      const received = await fetchActivityLikesReceived().catch(() => []);
+      setLikesReceived(received);
+      return;
+    }
     if (force) setRefreshing(true); else setLoading(true);
-    const [result, likeState] = await Promise.all([
+    const [result, likeState, received] = await Promise.all([
       fetchFriendsActivityFeed(friendUids, force),
       fetchTodayActivityLikeState(),
+      fetchActivityLikesReceived().catch(() => []),
     ]);
     setEvents(result);
     setTodayLike(likeState);
+    setLikesReceived(received);
     if (force) setRefreshing(false); else setLoading(false);
     // Check "liked by friend" achievement
     void (async () => {
@@ -1117,7 +1132,27 @@ function ActivityTab({
   // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
   useEffect(() => { void load(false); }, [load]);
 
-  if (friendUids.length === 0) {
+  // Merge friends' events and incoming likes into one time-sorted feed ("X liked you" rows
+  // are interleaved with achievements/level-ups by timestamp, newest first).
+  const feedItems = useMemo<Array<
+    | { kind: 'event'; ts: number; key: string; event: FriendEvent }
+    | { kind: 'like'; ts: number; key: string; like: ActivityLikeReceived }
+  >>(() => {
+    const merged: Array<
+      | { kind: 'event'; ts: number; key: string; event: FriendEvent }
+      | { kind: 'like'; ts: number; key: string; like: ActivityLikeReceived }
+    > = [];
+    for (const event of events) {
+      merged.push({ kind: 'event', ts: event.ts, key: `event:${event.uid}:${event.id}`, event });
+    }
+    for (const like of likesReceived) {
+      merged.push({ kind: 'like', ts: like.ts, key: `like:${like.id}`, like });
+    }
+    merged.sort((a, b) => b.ts - a.ts);
+    return merged;
+  }, [events, likesReceived]);
+
+  if (friendUids.length === 0 && likesReceived.length === 0) {
     return (
       <View testID="friends-activity-empty-no-friends" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <FriendsThemeIcon themeMode={themeMode} size={58} accessibilityLabel="Friends" />
@@ -1128,7 +1163,7 @@ function ActivityTab({
     );
   }
 
-  if (events.length === 0) {
+  if (events.length === 0 && likesReceived.length === 0) {
     return (
       <View testID="friends-activity-empty" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <Ionicons name="pulse-outline" size={40} color={t.textMuted} />
@@ -1154,7 +1189,49 @@ function ActivityTab({
           {L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Làm mới', 'Perbarui', 'Yenile', 'Odśwież')}
         </Text>
       </TapScale>
-      {events.map(event => {
+      {feedItems.map(item => {
+        if (item.kind === 'like') {
+          const like = item.like;
+          const likeColor = '#FF2D55';
+          const likerName = like.fromName || L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn bè', 'Teman', 'Arkadaş', 'Znajomy');
+          return (
+            <View
+              key={item.key}
+              testID={`friends-activity-like-received-${like.id}`}
+              style={{
+                flexDirection: 'row', alignItems: 'flex-start', gap: 12,
+                backgroundColor: chrome.card, borderRadius: 16, padding: 14, marginBottom: 10,
+                borderWidth: 0.5, borderColor: 'rgba(255,45,85,0.35)',
+              }}
+            >
+              <View style={{
+                width: 36, height: 36, borderRadius: 18,
+                backgroundColor: 'rgba(255,45,85,0.14)',
+                justifyContent: 'center', alignItems: 'center', flexShrink: 0,
+              }}>
+                <Ionicons name="heart" size={18} color={likeColor} />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', lineHeight: 20 }}>
+                  {L(
+                    `${likerName} поставил вам лайк`,
+                    `${likerName} поставив вам лайк`,
+                    `${likerName} te dio like`,
+                    `${likerName} curtiu você`,
+                    `${likerName} đã thích bạn`,
+                    `${likerName} menyukai kamu`,
+                    `${likerName} seni beğendi`,
+                    `${likerName} polubił(a) Cię`,
+                  )}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
+                  {formatEventTime(like.ts, lang)}
+                </Text>
+              </View>
+            </View>
+          );
+        }
+        const event = item.event;
         const profile = profiles[event.uid];
         const name = profile?.name ?? L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn bè', 'Teman', 'Arkadaş', 'Znajomy');
         const color = eventIconColor(event.type, t.accent);
@@ -1163,7 +1240,7 @@ function ActivityTab({
         const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
         return (
           <View
-            key={`${event.uid}:${event.id}`}
+            key={item.key}
             testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
               flexDirection: 'row', alignItems: 'flex-start', gap: 12,
@@ -1351,8 +1428,8 @@ function AddFriendModal({
 
             {searchError && (
               <View testID="friends-search-error" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="alert-circle-outline" size={16} color="#FF6B6B" />
-                <Text style={{ color: '#FF6B6B', fontSize: f.sub }}>{searchError}</Text>
+                <Ionicons name="alert-circle-outline" size={16} color={monoIcon(themeMode, '#FF6B6B')} />
+                <Text style={{ color: monoIcon(themeMode, '#FF6B6B'), fontSize: f.sub }}>{searchError}</Text>
               </View>
             )}
 
@@ -1646,6 +1723,21 @@ export default function FriendsTabScreen() {
     void refreshReferralState();
     return () => { cancelled.current = true; };
   }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
+
+  // Реф-код один раз создаётся и НАВСЕГДА закрепляется за аккаунтом в AsyncStorage
+  // (REFERRAL_KEY) — поэтому при каждом монтировании/возврате на вкладку читаем его
+  // СИНХРОННО из кеша и сразу вшиваем в текст. Без этого код стартовал с null и «моргал»:
+  // пропадал при переключении вкладок и всплывал лишь через ~1.5 с после ответа сервера.
+  useEffect(() => {
+    if (!referralEnabled) return;
+    let cancelled = false;
+    void getReferralCode().then(rc => {
+      if (!cancelled && rc && rc.trim().length >= 4) {
+        setReferralCode(prev => prev ?? rc.trim().toUpperCase());
+      }
+    }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
+    return () => { cancelled = true; };
+  }, [referralEnabled]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
@@ -2475,14 +2567,14 @@ export default function FriendsTabScreen() {
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
-                        'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
-                        'Отримайте 7 днів повного Premium-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
-                        'Recibe 7 días de acceso Premium completo a todo por cada amigo invitado que instale la app, introduzca tu código',
-                        'Receba 7 dias de acesso Premium completo a tudo por um amigo convidado que instalar o app, inserir seu código',
-                        'Nhận 7 ngày Premium đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
-                        'Dapatkan 7 hari Premium penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
+                        'Получите 7 дней полного Plus-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
+                        'Отримайте 7 днів повного Plus-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
+                        'Recibe 7 días de acceso Plus completo a todo por cada amigo invitado que instale la app, introduzca tu código',
+                        'Receba 7 dias de acesso Plus completo a tudo por um amigo convidado que instalar o app, inserir seu código',
+                        'Nhận 7 ngày Plus đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
+                        'Dapatkan 7 hari Plus penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
                         'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
-                        'Otrzymasz 7 dni pełnego Premium za znajomego, który zainstaluje aplikację i wpisze twój kod',
+                        'Otrzymasz 7 dni pełnego Plus za znajomego, który zainstaluje aplikację i wpisze twój kod',
                       )}
                       {referralCode ? (
                         <Text testID="friends-referral-code-inline" style={{ color: t.accent, fontWeight: '900', letterSpacing: 1 }}>
@@ -2496,7 +2588,7 @@ export default function FriendsTabScreen() {
                         ' e concluir uma lição. Ele também recebe 7 dias.',
                         ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
                         ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
-                        ' ve bir dersi tamamen bitirirse 7 gün tam Premium erişim kazanırsın. Arkadaşın da 7 gün alır.',
+                        ' ve bir dersi tamamen bitirirse 7 gün tam Plus erişim kazanırsın. Arkadaşın da 7 gün alır.',
                         ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
                       )}
                     </Text>
@@ -2852,7 +2944,7 @@ export default function FriendsTabScreen() {
                         <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
                           {L('Списано', 'Списано', 'Spent', 'Gasto', 'Đã trừ', 'Terpakai', 'Harcanan', 'Pobrano')}
                         </Text>
-                        <Text style={{ color: '#F3C45E', fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
+                        <Text style={{ color: monoIcon(themeMode, '#F3C45E'), fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
                         <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Осколки" />
                       </View>
                       <View style={{ width: 1, height: 14, backgroundColor: 'rgba(255,255,255,0.16)' }} />
@@ -2938,27 +3030,27 @@ export default function FriendsTabScreen() {
                       {iconGiftId ? (
                         <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} contentFit="contain" accessibilityLabel="Иконка подарка" />
                       ) : (
-                        <Ionicons name="gift-outline" size={34} color="#4C3412" />
+                        <Ionicons name="gift-outline" size={34} color={monoIcon(themeMode, '#4C3412', MONO_ICON.onLight)} />
                       )}
                     </LinearGradient>
                   </View>
-                  <Text style={{ color: '#7A5518', fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
+                  <Text style={{ color: monoIcon(themeMode, '#7A5518', MONO_ICON.onLight), fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
                     {L('Подарок от друга', 'Подарунок від друга', 'Friend gift', 'Presente de amigo', 'Quà từ bạn bè', 'Hadiah teman', 'Arkadaş hediyesi', 'Prezent od znajomego')}
                   </Text>
-                  <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                  <Text style={{ color: monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
                     {multi
                       ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
                       : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
                   </Text>
                   <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: 'rgba(255,255,255,0.54)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.14)' }}>
-                    <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
+                    <Text style={{ color: monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {multi
                         ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
                         : L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)}
                     </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                      <Ionicons name="albums-outline" size={15} color="#8A641D" />
-                      <Text style={{ color: '#8A641D', fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+                      <Ionicons name="albums-outline" size={15} color={monoIcon(themeMode, '#8A641D', MONO_ICON.onLight)} />
+                      <Text style={{ color: monoIcon(themeMode, '#8A641D', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
                         {L('Сохранено в разделе «Подарки»', 'Збережено в розділі «Подарунки»', 'Saved in Gifts', 'Salvo em Presentes', 'Đã lưu trong Quà', 'Disimpan di Hadiah', 'Hediyeler bölümüne kaydedildi', 'Zapisano w Prezentach')}
                       </Text>
                     </View>
@@ -2975,7 +3067,7 @@ export default function FriendsTabScreen() {
                     onPress={handleIncomingGiftThanks}
                     style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.16)' }}
                   >
-                    <Text style={{ color: '#3D2B10', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                    <Text style={{ color: monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                       {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
                     </Text>
                   </TouchableOpacity>
@@ -2987,7 +3079,7 @@ export default function FriendsTabScreen() {
                       onPress={() => void handleIncomingGiftReply('chain_shield_1')}
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
                     >
-                      <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                      <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
                       </Text>
                     </TouchableOpacity>
@@ -2998,7 +3090,7 @@ export default function FriendsTabScreen() {
                       onPress={() => void handleIncomingGiftReply('xp_boost_2x_24h')}
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}
                     >
-                      <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                      <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Отправить буст', 'Надіслати буст', 'Send boost', 'Enviar boost', 'Gửi boost', 'Kirim boost', 'Boost gönder', 'Wyślij boost')}
                       </Text>
                     </TouchableOpacity>
@@ -3015,7 +3107,7 @@ export default function FriendsTabScreen() {
                   activeOpacity={0.86}
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
                 >
-                  <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                  <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
                   </Text>
                 </TouchableOpacity>
@@ -3025,7 +3117,7 @@ export default function FriendsTabScreen() {
                   activeOpacity={0.86}
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}
                 >
-                  <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                  <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
                   </Text>
                 </TouchableOpacity>
@@ -3049,6 +3141,7 @@ export default function FriendsTabScreen() {
         onClose={() => setFriendQuestCompleted(null)}
         L={L}
         f={f}
+        themeMode={themeMode}
       />
 
       <ReferralAccessEndedModal

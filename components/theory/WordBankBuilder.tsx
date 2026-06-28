@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
-import { hapticSuccess } from '../../hooks/use-haptics';
+import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroBuildInteraction } from '../../app/lesson_data_types';
@@ -109,6 +109,7 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
       const idx = assembled.findIndex((w, i) => w !== answer[i]);
       setWrongSlot(idx);
       setStatus('wrong');
+      hapticError();
       setMisses((m) => m + 1);
     }
   }, [allFilled, slots, answer, onSolved]);
@@ -196,6 +197,7 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
 
       <TapScale
         onPress={check}
+        withHaptic={false}
         disabled={!allFilled || status === 'solved'}
         accessibilityRole="button"
         accessibilityLabel="Проверить"

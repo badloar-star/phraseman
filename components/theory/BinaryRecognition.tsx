@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
-import { hapticSuccess } from '../../hooks/use-haptics';
+import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroBinaryInteraction } from '../../app/lesson_data_types';
@@ -29,6 +29,8 @@ export default function BinaryRecognition({ data, lang, theme, onSolved }: Props
       if (key === correctKey) {
         hapticSuccess();
         onSolved?.();
+      } else {
+        hapticError();
       }
     },
     [answered, correctKey, onSolved],
@@ -54,6 +56,7 @@ export default function BinaryRecognition({ data, lang, theme, onSolved }: Props
       <TapScale
         key={key}
         onPress={() => choose(key)}
+        withHaptic={false}
         accessibilityRole="button"
         accessibilityLabel={label}
         style={[styles.btn, { backgroundColor: bg }]}

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
-import { hapticSuccess } from '../../hooks/use-haptics';
+import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroChoiceInteraction } from '../../app/lesson_data_types';
@@ -39,6 +39,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, 
         onSolved?.();
       } else {
         setPicked(opt);
+        hapticError();
         setTimeout(() => setPicked((p) => (p === opt ? null : p)), 900);
       }
     },
@@ -76,6 +77,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, 
             <TapScale
               key={opt}
               onPress={() => pick(opt)}
+              withHaptic={false}
               accessibilityRole="button"
               accessibilityLabel={opt}
               style={[

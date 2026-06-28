@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
-import { hapticSuccess } from '../../hooks/use-haptics';
+import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroSpotInteraction } from '../../app/lesson_data_types';
@@ -31,6 +31,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved }: Props) {
         onSolved?.();
       } else {
         setWrongTap(idx);
+        hapticError();
         setTimeout(() => setWrongTap((w) => (w === idx ? null : w)), 600);
       }
     },
@@ -49,6 +50,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved }: Props) {
             <TapScale
               key={`${chip}-${i}`}
               onPress={() => tap(i)}
+              withHaptic={false}
               accessibilityRole="button"
               accessibilityLabel={chip}
               style={[

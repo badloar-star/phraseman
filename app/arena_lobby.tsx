@@ -83,6 +83,7 @@ const ARENA_STAGE_BACKDROPS = {
     gold: require('../assets/images/arena/knowledge-arena-gold.webp'),
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+    business: require('../assets/images/arena/knowledge-arena-business.webp'),
     midnight: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     ember: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     aurora: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
@@ -93,6 +94,7 @@ const ARENA_TICKET_ICONS = {
     gold: require('../assets/images/arena_tickets/ticket-gold.webp'),
     coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
+    business: require('../assets/images/arena_tickets/ticket-business.webp'),
     midnight: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     ember: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     aurora: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
@@ -1289,7 +1291,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         const payout = rankedWagerPending.winPayout;
         return triLang(lang, {
             ru: `В случае выигрыша +${ruWinShardsPhrase(payout)}.`,
-            uk: `У разі перемоги +${payout} осколків.`,
+            uk: `У разі перемоги +${payout} уламків.`,
             es: `Si ganas +${payout} fragmentos.`,
             'pt-BR': `Se vencer, +${payout} fragmentos.`,
             vi: `Nếu thắng, +${payout} mảnh.`,
@@ -1578,6 +1580,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const arenaMatchIconSource = arenaActionIconSource('match', themeMode);
     const arenaFriendIconSource = arenaActionIconSource('friend', themeMode);
     const arenaThroneIconSource = arenaActionIconSource('throne', themeMode);
+    const arenaSeasonRewardIconSource = arenaActionIconSource('seasonReward', themeMode);
     const arenaActionLogoChrome = useMemo(() => {
         const dark = {
             match: { bg: 'rgba(8,42,30,0.72)', border: 'rgba(57,242,122,0.58)', shadow: '#39F27A' },
@@ -1599,6 +1602,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(16,18,25,0.86)', border: 'rgba(133,151,196,0.42)', shadow: '#8597C4' },
             throne: { bg: 'rgba(20,19,17,0.88)', border: 'rgba(179,149,91,0.44)', shadow: '#B3955B' },
         };
+        const business = {
+            match: { bg: 'rgba(28,28,28,0.86)', border: 'rgba(255,255,255,0.14)', shadow: '#6F6F6F' },
+            friend: { bg: 'rgba(28,28,28,0.86)', border: 'rgba(255,255,255,0.12)', shadow: '#6F6F6F' },
+            throne: { bg: 'rgba(28,28,28,0.88)', border: 'rgba(255,255,255,0.14)', shadow: '#6F6F6F' },
+        };
         const midnight = {
             match: { bg: 'rgba(26,29,44,0.86)', border: 'rgba(95,224,176,0.46)', shadow: '#5FE0B0' },
             friend: { bg: 'rgba(24,27,41,0.86)', border: 'rgba(143,160,255,0.44)', shadow: '#8FA0FF' },
@@ -1619,7 +1627,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(27,30,16,0.86)', border: 'rgba(214,255,61,0.44)', shadow: '#D6FF3D' },
             throne: { bg: 'rgba(12,14,6,0.88)', border: 'rgba(255,232,92,0.42)', shadow: '#FFE85C' },
         };
-        const byTheme = { dark, gold, coral, minimalDark, midnight, ember, aurora, volt } as const;
+        const byTheme = { dark, gold, coral, minimalDark, business, midnight, ember, aurora, volt } as const;
         return byTheme[themeMode] ?? dark;
     }, [themeMode]);
     const arenaGlass = useMemo(() => {
@@ -2393,7 +2401,12 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}
                   >
                     <View style={[styles.arenaCommandIcon, { backgroundColor: 'transparent', borderColor: 'transparent' }]}>
-                      <Ionicons name="trophy" size={22} color={t.gold} />
+                      <Image
+                        source={arenaSeasonRewardIconSource}
+                        contentFit="contain"
+                        style={styles.arenaCommandActionIcon}
+                        accessible={false}
+                      />
                     </View>
                     <View style={styles.arenaCommandCopy}>
                       <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
@@ -2593,7 +2606,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
               <Text style={[styles.throneRewardText, { color: screenTitleColor, fontSize: f.caption }]}>
                 {triLang(lang, {
                 ru: `Останешься на троне до полуночи — заберёшь ${throneRewardShards} осколков.`,
-                uk: `Залишишся на троні до півночі — забереш ${throneRewardShards} осколків.`,
+                uk: `Залишишся на троні до півночі — забереш ${throneRewardShards} уламків.`,
                 es: `Quédate en el trono hasta medianoche y llévate ${throneRewardShards} fragmentos.`,
                 'pt-BR': `Fique no trono até meia-noite e leve ${throneRewardShards} fragmentos.`,
                 vi: `Giữ ngai đến nửa đêm để nhận ${throneRewardShards} mảnh.`,
@@ -2629,7 +2642,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     <View style={[styles.throneTopPlace, { borderColor: `${medalColor}88`, backgroundColor: `${medalColor}1F` }]}>
                       <Text style={[styles.throneTopPlaceText, { color: medalColor }]}>{entry.place}</Text>
                     </View>
-                    <AvatarView avatar={avatar} size={44} auraId={entry.aura}/>
+                    <AvatarView avatar={avatar} size={44} auraId={entry.aura} animateAura={false}/>
                     <View style={styles.throneTopCopy}>
                       <Text style={[styles.throneTopName, { color: screenTitleColor, fontSize: f.sub }]} numberOfLines={1}>
                         {entry.name}

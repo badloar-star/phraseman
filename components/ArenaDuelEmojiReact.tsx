@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   Modal,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -8,6 +9,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { ARENA_DUEL_REACTION_EMOJIS } from '../constants/arena_duel_reaction_emojis';
 import { hapticTap, hapticMediumImpact } from '../hooks/use-haptics';
@@ -44,6 +46,12 @@ function ArenaDuelEmojiReact({
   onPick,
 }: Props) {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
+  // На Android жестовая/3-кнопочная навигация НЕ всегда попадает в bottom-inset,
+  // как home-indicator на iOS, поэтому FAB реакций «прятался» за системной панелью.
+  // Поднимаем кнопку над навигацией: на Android держим гарантированный зазор.
+  const androidNavGuard = Platform.OS === 'android' ? 16 : 0;
+  const fabBottom = Math.max(bottomOffset, insets.bottom) + 12 + androidNavGuard;
   const [open, setOpen] = useState(false);
   const [cooldownUntil, setCooldownUntil] = useState(0);
   const [, setTick] = useState(0);
@@ -102,7 +110,7 @@ function ArenaDuelEmojiReact({
         style={[
           styles.fab,
           {
-            bottom: bottomOffset + 12,
+            bottom: fabBottom,
             backgroundColor: theme.bgCard,
             borderColor: theme.border,
             opacity: cdLeft > 0 ? 0.55 : 1,

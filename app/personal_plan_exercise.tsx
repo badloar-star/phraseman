@@ -1539,7 +1539,7 @@ export default function PersonalPlanExerciseScreen() {
   // Завершение всего задания: отметить выполненным, начислить XP, стереть resume
   // и СРАЗУ открыть следующее задание дня (без модала «Задание закрыто»). Если
   // следующего нет — оставляем экран, чтобы показался финал дня (done-плашка).
-  const finishTaskAndAdvance = async (phrasesPracticed: number) => {
+  const finishTaskAndAdvance = async (practicedPhraseIds: string[]) => {
     // Подавляем финал-модал дня на время вычисления/перехода — иначе он мелькнёт.
     setAdvancing(true);
     await markPersonalPlanTaskCompleted({
@@ -1549,10 +1549,14 @@ export default function PersonalPlanExerciseScreen() {
       studyTarget,
       dayIndex,
     }).catch(() => undefined);
+    // Передаём САМИ id отработанных фраз (item.id === id фразы): lifetime-метрика
+    // phrases_learned дедуплицируется по плану, поэтому одна фраза дня в разных
+    // заданиях/бонус-заданиях не раздувает «выучено».
     await awardPlanTaskCompletion({
       lang,
       studyTarget,
-      phrasesPracticed,
+      practicedPhraseIds,
+      phrasesPracticed: practicedPhraseIds.length,
       planInstanceId,
       planTaskId,
     });
@@ -1597,7 +1601,7 @@ export default function PersonalPlanExerciseScreen() {
       return;
     }
 
-    await finishTaskAndAdvance(nextCorrectIds.length);
+    await finishTaskAndAdvance(nextCorrectIds);
   };
 
   const completePronunciation = async () => {
@@ -1649,7 +1653,7 @@ export default function PersonalPlanExerciseScreen() {
       return;
     }
 
-    await finishTaskAndAdvance(nextCorrectIds.length);
+    await finishTaskAndAdvance(nextCorrectIds);
     setSaving(false);
   };
 

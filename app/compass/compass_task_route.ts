@@ -25,7 +25,10 @@ export interface CompassRoute {
  *
  * Соответствия (с доказательством, что роут+параметры реальны):
  *  - lesson_dive       → /lesson_menu?id=<focus>   (lessons.tsx:922)
- *  - mistake_repair    → /problem_coach?microDiagnosisId=<id> or /trainer fallback
+ *  - mistake_repair    → /trainer («Моя практика», актуальный режим разбора).
+ *      Раньше вело прямо в /problem_coach (микро-очередь по microDiagnosisId) мимо
+ *      «Моей практики» — это старый режим. Теперь разбор всегда открывает /trainer;
+ *      сам тренажёр уже зовёт нужный микро-коуч (problem_coach) изнутри.
  *  - flashcards_review → /flashcards_swipe          (flashcards.tsx:186)
  *  - plan_continue     → /personal_plan             (home.tsx:2384)
  *  - pronunciation     → /personal_plan (fallback). «Повтори вслух» есть в каждом
@@ -42,15 +45,10 @@ export function compassTaskRoute(task: CompassTask, _day: CompassDay | null): Co
         ? { pathname: '/lesson_menu', params: { id: task.focus } }
         : { pathname: '/(tabs)/lessons' };
     case 'mistake_repair':
-      return task.microDiagnosisId
-        ? {
-            pathname: '/problem_coach',
-            params: {
-              microDiagnosisId: task.microDiagnosisId,
-              ...(task.weakTopic ? { category: task.weakTopic } : {}),
-            },
-          }
-        : { pathname: '/trainer' };
+      // Разбор фраз ведёт в актуальную «Мою практику» (/trainer). Прямой заход в
+      // /problem_coach (старая микро-очередь по microDiagnosisId) убран: тренажёр
+      // сам открывает нужный микро-коуч изнутри, как и для остальных входов.
+      return { pathname: '/trainer' };
     case 'flashcards_review':
       return { pathname: '/flashcards_swipe' };
     case 'plan_continue':

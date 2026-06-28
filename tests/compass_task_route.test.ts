@@ -20,16 +20,19 @@ describe('compassTaskRoute', () => {
     expect(r.params).toBeUndefined();
   });
 
-  it('routes mistake_repair with microDiagnosisId to the live Problem Coach', () => {
+  it('routes mistake_repair to My Practice (/trainer) even WITH microDiagnosisId — not the old smart-queue', () => {
+    // Раньше с microDiagnosisId вело прямо в /problem_coach (старая «умная очередь»)
+    // мимо «Моей практики». Теперь разбор всегда открывает актуальный /trainer;
+    // нужный микро-коуч тренажёр зовёт изнутри.
     const r = compassTaskRoute(
       task({ kind: 'mistake_repair', weakTopic: 'article', microDiagnosisId: 'article_a_an' }),
       day,
     );
-    expect(r.pathname).toBe('/problem_coach');
-    expect(r.params).toEqual({ microDiagnosisId: 'article_a_an', category: 'article' });
+    expect(r.pathname).toBe('/trainer');
+    expect(r.params).toBeUndefined();
   });
 
-  it('routes mistake_repair without microDiagnosisId to My Practice instead of legacy smart trainer', () => {
+  it('routes mistake_repair without microDiagnosisId to My Practice (/trainer)', () => {
     const r = compassTaskRoute(task({ kind: 'mistake_repair', weakTopic: 'verb' }), day);
     expect(r.pathname).toBe('/trainer');
     expect(r.params).toBeUndefined();

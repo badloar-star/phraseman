@@ -57,7 +57,6 @@ import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import VerbOfDayCard from '../../components/VerbOfDayCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
 import WelcomeHost from '../onboarding_welcome/WelcomeHost';
@@ -3385,9 +3384,6 @@ export default function HomeScreen() {
           </View>
           {studyTarget !== 'fr' && <DailyPhraseCard variant="homeAdditional" />}
           </>) : studyTarget !== 'fr' ? <DailyPhraseCard /> : null}
-
-          {/* Глагол дня — мини-челлендж по неправильным глаголам (само-скрывается, если их нет) */}
-          {studyTarget !== 'fr' && <VerbOfDayCard />}
 
           {/* Подвал */}
           <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>

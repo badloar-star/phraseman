@@ -12,7 +12,8 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
-import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
+import { hapticSuccess, hapticError, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
@@ -109,17 +110,18 @@ export default function ProblemCoach() {
     const option = visibleOptions[idx];
     if (!option) return;
 
-    hapticTap();
     setSelectedIndex(idx);
     setSelectedOptionId(option.id);
     const nextState = applyDiagnosisAnswer(diagnosisTraining, state, option.id);
     const correct = option.id === step.correctAnswerId;
     setState(nextState);
     if (correct) {
+      // Результат ответа: успех. Общий tap убран, иначе складывался с success.
       hapticSuccess();
       playCorrect();
       setCorrectCount((value) => value + 1);
     } else {
+      hapticError();
       setWrongCount((value) => value + 1);
       logMistake(step.sentence, 0, 'coach', 'wrong_pick', {
         tokenText: step.focusWords[0] ?? step.correctAnswerId,
@@ -443,8 +445,8 @@ export default function ProblemCoach() {
                 <Text style={[styles.optionText, { color: optionColor, fontSize: f.body }]}>
                   {option.text}
                 </Text>
-                {hasAnswered && isRight && <Ionicons name="checkmark-circle" size={20} color="#34D399" />}
-                {hasAnswered && !isRight && isSelected && <Ionicons name="close-circle" size={20} color="#FF5B5B" />}
+                {hasAnswered && isRight && <Ionicons name="checkmark-circle" size={20} color={monoIcon(themeMode, '#34D399')} />}
+                {hasAnswered && !isRight && isSelected && <Ionicons name="close-circle" size={20} color={monoIcon(themeMode, '#FF5B5B', MONO_ICON.muted)} />}
               </TouchableOpacity>
             );
           })}
@@ -454,7 +456,7 @@ export default function ProblemCoach() {
           <>
             <View style={[styles.feedbackBox, { backgroundColor: softColor, borderColor }]}>
               <View style={[styles.feedbackIconBox, { backgroundColor: softColor, borderColor }]}>
-                <Ionicons name={feedback.correct ? 'checkmark-circle-outline' : 'alert-circle-outline'} size={24} color={mainColor} />
+                <Ionicons name={feedback.correct ? 'checkmark-circle-outline' : 'alert-circle-outline'} size={24} color={monoIcon(themeMode, mainColor, feedback.correct ? MONO_ICON.light : MONO_ICON.muted)} />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.feedbackTitle, { color: mainColor, fontSize: f.sub }]}>

@@ -17,8 +17,8 @@ describe('admin premium grant contract', () => {
     expect(html).toContain('id="tab-vip"');
     expect(html).toContain('window.renderVipList');
     expect(html).toContain('window.loadVipData');
-    expect(html).toContain('💚 Выдать VIP');
-    expect(html).toContain('Снять VIP');
+    expect(html).toContain('💚 Выдать Plus');
+    expect(html).toContain('Снять Plus');
     expect(html).toContain("if (tab === 'vip'");
     expect(html).toContain("'premium','vip'");
   });
@@ -31,7 +31,7 @@ describe('admin premium grant contract', () => {
 
   it('does not allow new manual admin_grant writes through the Premium debug editor', () => {
     expect(html).toMatch(/allowed\s*=\s*new Set\(\['monthly', 'annual', 'yearly', 'null', ''\]\)/);
-    expect(html).toContain('Для админской выдачи используй VIP');
+    expect(html).toContain('Для админской выдачи используй Plus');
     expect(html).not.toContain("new Set(['monthly', 'annual', 'yearly', 'admin_grant'");
   });
 

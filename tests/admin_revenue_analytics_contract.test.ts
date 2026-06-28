@@ -351,14 +351,14 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-cancel-surveys .report-card button');
     expect(adminHtml).toContain('applyCleanPremiumChrome');
     expect(adminHtml).toContain('pr-pill');
-    expect(adminHtml).toContain('Load Users first to inspect Premium accounts.');
-    expect(adminHtml).toContain('Premium list refreshed');
-    expect(adminHtml).toContain('Premium accounts');
-    expect(adminHtml).toContain('Real Premium only: RevenueCat metadata');
+    expect(adminHtml).toContain('Load Users first to inspect Plus accounts.');
+    expect(adminHtml).toContain('Plus list refreshed');
+    expect(adminHtml).toContain('Plus accounts');
+    expect(adminHtml).toContain('Real Plus only: RevenueCat metadata');
     expect(adminHtml).toContain('Search UID, email, name...');
-    expect(adminHtml).toContain('No Premium users match this filter.');
+    expect(adminHtml).toContain('No Plus users match this filter.');
     expect(adminHtml.lastIndexOf('window.renderPremiumList = function renderPremiumList()')).toBeGreaterThan(adminHtml.indexOf('window.renderPremiumList = function renderPremiumList()'));
-    expect(adminHtml.lastIndexOf('Premium list refreshed')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadPremiumData = async function loadPremiumData(force)'));
+    expect(adminHtml.lastIndexOf('Plus list refreshed')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadPremiumData = async function loadPremiumData(force)'));
     expect(adminHtml).toContain('applyCleanCancelSurveysChrome');
     expect(adminHtml).toContain('cs-pill');
     expect(adminHtml).toContain('Loading cancel surveys...');
@@ -618,14 +618,14 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-review-promo .review-promo-lang');
     expect(adminHtml).toContain('applyCleanVipSurveyChrome');
     expect(adminHtml).toContain('vs-pill');
-    expect(adminHtml).toContain('Loading VIP survey responses...');
-    expect(adminHtml).toContain('VIP survey responses loaded');
-    expect(adminHtml).toContain('No VIP survey responses yet.');
-    expect(adminHtml).toContain('Grant VIP');
-    expect(adminHtml).toContain('Revoke VIP');
+    expect(adminHtml).toContain('Loading Plus survey responses...');
+    expect(adminHtml).toContain('Plus survey responses loaded');
+    expect(adminHtml).toContain('No Plus survey responses yet.');
+    expect(adminHtml).toContain('Grant Plus');
+    expect(adminHtml).toContain('Revoke Plus');
     expect(adminHtml).toContain('Full free tier only');
     expect(adminHtml.lastIndexOf('window.renderVipSurveyResponses = function renderVipSurveyResponses()')).toBeGreaterThan(adminHtml.indexOf('window.renderVipSurveyResponses = function()'));
-    expect(adminHtml.lastIndexOf('Loading VIP survey responses...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadVipSurveyResponses = async function loadVipSurveyResponses(force = false)'));
+    expect(adminHtml.lastIndexOf('Loading Plus survey responses...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadVipSurveyResponses = async function loadVipSurveyResponses(force = false)'));
   });
 
   it('unifies modals, overlays, toasts, and pack preview surfaces', () => {

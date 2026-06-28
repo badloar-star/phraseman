@@ -19,9 +19,9 @@ describe('paywall win-back copy', () => {
     const base = getPaywallCopy('personal_plan');
     expect(base.titleRu).toBe('Получить персональный план');
     const out = applyWinBackCopy(base, 'personal_plan', true);
-    expect(out.titleRu).toBe('Верни полный доступ Premium');
-    expect(out.titleUk).toBe('Поверни повний доступ Premium');
-    expect(out.titleEs).toBe('Recupera tu acceso Premium completo');
+    expect(out.titleRu).toBe('Верни полный доступ Plus');
+    expect(out.titleUk).toBe('Поверни повний доступ Plus');
+    expect(out.titleEs).toBe('Recupera tu acceso Plus completo');
   });
 
   it('keeps the subtitle untouched (it describes what Premium gives)', () => {
@@ -43,15 +43,15 @@ describe('paywall win-back copy', () => {
     for (const ctx of ['arena', 'quiz_limit', 'flashcard_limit', 'streak']) {
       const base = getPaywallCopy(ctx);
       const out = applyWinBackCopy(base, ctx, true);
-      expect(out.titleRu).toBe('Верни полный доступ Premium');
+      expect(out.titleRu).toBe('Верни полный доступ Plus');
     }
   });
 
   it('swaps planned-locale title for returning user, keeps planned subtitle', () => {
     const planned = getHeroPlannedCopy('personal_plan', 0);
     const out = applyWinBackPlannedCopy(planned, 'personal_plan', true);
-    expect(out.title['pt-BR']).toBe('Recupere seu acesso Premium completo');
-    expect(out.title.tr).toBe('Tüm Premium erişimini geri kazan');
+    expect(out.title['pt-BR']).toBe('Recupere seu acesso Plus completo');
+    expect(out.title.tr).toBe('Tüm Plus erişimini geri kazan');
     expect(out.subtitle).toBe(planned.subtitle);
   });
 

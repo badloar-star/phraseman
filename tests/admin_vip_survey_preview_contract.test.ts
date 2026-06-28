@@ -66,7 +66,7 @@ describe('admin VIP survey preview', () => {
     expect(modal).not.toContain('StyleSheet.absoluteFill} onPress={onClose}');
     expect(modal).toContain('setError(copy.error)');
     expect(modal).not.toContain('`${copy.error} (${detail})`');
-    expect(modal).toContain('Нажми «Завершить опрос» — и VIP активируется.');
+    expect(modal).toContain('Нажми «Завершить опрос» — и Plus активируется.');
     expect(modal).not.toContain('VIP-аккаунт активирован');
     expect(modal).not.toContain('VIP account is active');
     expect(surveyClient).toContain('ensureFirebaseAuthUidForVipCallable');
@@ -88,7 +88,7 @@ describe('admin VIP survey preview', () => {
     expect(persistBody).not.toContain('tester_no_premium');
     expect(surveyClient).toContain("if (active) {\n    emitAppEvent('vip_activated');");
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
-    expect(reviewPrompt).toContain('Ваш VIP активирован');
+    expect(reviewPrompt).toContain('Твой Plus активирован');
     expect(reviewPrompt).toContain('Хотите поделиться впечатлением о Phraseman?');
     expect(reviewPrompt).toContain('Написать отзыв');
     expect(reviewPrompt).toContain('vip-survey-review-write');

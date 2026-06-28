@@ -12,7 +12,7 @@ describe('admin VIP survey contract', () => {
   const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
 
   it('rewrites the old Review promo admin surface into a VIP survey campaign', () => {
-    expect(html).toContain('💚 VIP survey');
+    expect(html).toContain('💚 Plus survey');
     expect(html).toContain('sendVipSurveyCampaign');
     expect(html).toContain("kind: 'vip_survey'");
     expect(html).toContain('vip_survey_responses');
@@ -26,7 +26,7 @@ describe('admin VIP survey contract', () => {
     expect(html).toContain('Какой экран перегружен');
     expect(html).toContain('Только full free tier');
     expect(html).toContain("const audience = 'free'");
-    expect(html).toContain('Premium и VIP пользователи не увидят');
+    expect(html).toContain('Plus-пользователи не увидят');
     expect(html).not.toContain('не влияет на награду');
     expect(html).not.toContain('Store-review');
     expect(html).not.toContain('sendReviewPromoModal');

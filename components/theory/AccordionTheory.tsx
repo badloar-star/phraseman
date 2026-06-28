@@ -243,14 +243,12 @@ export default function AccordionTheory({
             >
               <Text
                 style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]}
-                numberOfLines={1}
               >
                 {headerLabel}
               </Text>
               <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
               <Text
                 style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]}
-                numberOfLines={1}
               >
                 {lvlLabel}
               </Text>
@@ -339,7 +337,6 @@ export default function AccordionTheory({
                       styles.chipText,
                       { color: isActive ? '#0F1115' : t.textPrimary, fontSize: f.caption },
                     ]}
-                    numberOfLines={1}
                   >
                     {chipTitle}
                   </Text>
@@ -395,13 +392,11 @@ export default function AccordionTheory({
                   <View style={styles.accHeadTextWrap}>
                     <Text
                       style={[styles.accKindLabel, { color: accent, fontSize: f.caption }]}
-                      numberOfLines={1}
                     >
                       {kindLabel}
                     </Text>
                     <Text
                       style={[styles.accTitle, { color: t.textPrimary, fontSize: f.body }]}
-                      numberOfLines={2}
                     >
                       {accTitle}
                     </Text>

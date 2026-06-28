@@ -132,7 +132,7 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
           if (!slot) {
             return (
               <View key={`empty-${i}`} style={[styles.slotEmpty, { borderColor: `${accent}55` }]}>
-                <Text style={[styles.slotEmptyText, { color: theme.textMuted }]} numberOfLines={1}>
+                <Text style={[styles.slotEmptyText, { color: theme.textMuted }]}>
                   {slotLabel(i) || '—'}
                 </Text>
               </View>

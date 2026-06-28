@@ -336,7 +336,7 @@ function RewardCell({ reward, claimable, claimed, locked, isPremium, onPress, on
       ]}
     >
       <Ionicons name={locked ? 'lock-closed' : rewardIcon(reward)} size={16} color={claimed ? t.textMuted : accent} />
-      <Text style={[styles.rewardText, { color: claimed ? t.textMuted : t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
+      <Text style={[styles.rewardText, { color: claimed ? t.textMuted : t.textPrimary, fontSize: f.caption }]} numberOfLines={2}>
         {rewardLabel(reward, lang)}
       </Text>
       {claimed ? (

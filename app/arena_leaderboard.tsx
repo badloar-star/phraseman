@@ -573,6 +573,8 @@ export default function ArenaLeaderboardScreen() {
                       </Text>
                       <Text
                         numberOfLines={1}
+                        adjustsFontSizeToFit
+                        minimumFontScale={0.8}
                         style={{
                           width: 74,
                           color: t.textGhost,
@@ -821,7 +823,7 @@ export default function ArenaLeaderboardScreen() {
                       </Text>
                     )}
                     {arenaXpPercentile !== null && (
-                      <Text numberOfLines={1} style={{ color: arenaLeaderboardAccent, fontSize: f.label - 1, marginTop: 2, fontWeight: '700' }}>
+                      <Text numberOfLines={2} style={{ color: arenaLeaderboardAccent, fontSize: f.label - 1, marginTop: 2, fontWeight: '700' }}>
                         {triLang(lang, {
                           ru: `Топ ${100 - arenaXpPercentile}% в арене`,
                           uk: `Топ ${100 - arenaXpPercentile}% в арені`,

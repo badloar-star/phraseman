@@ -1146,12 +1146,14 @@ const PodiumColumn = memo(function PodiumColumn({
       {/* Имя */}
       <Text
         numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.8}
         style={memberNameStatusStyle(
           {
             color: member?.isMe ? cfg.primary : t.textPrimary,
             fontSize: f.caption,
             fontWeight: member?.isMe ? '900' : '700',
-            maxWidth: 90,
+            maxWidth: 104,
             textAlign: 'center',
           },
           { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode },

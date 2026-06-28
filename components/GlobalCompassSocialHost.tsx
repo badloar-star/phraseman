@@ -66,7 +66,16 @@ export default function GlobalCompassSocialHost() {
       // Перечитываем: если брифинг уже забрал события (markSeen), здесь будет пусто.
       const news = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], events: [] }));
       if (!news.events.length) return;
+      // Финальная проверка перед показом — последний await позади, брифинг не открыт.
       if (isCompassBriefingOnScreen()) return;
+
+      // MARK-THEN-EMIT (анти-задвоение с модалкой): сначала помечаем seen, ПОТОМ
+      // показываем тост. Если в тот же тик брифинг всё же откроется, его loader
+      // перечитает уже-помеченные события и покажет пустой блок (не дубль), а не
+      // ту же сводку. Обратный порядок (emit→mark) оставлял окно на двойной показ.
+      await markSocialNewsSeen(news.events).catch(() => {});
+      // Между mark и emit нет await и нет шанса для брифинга «забрать» события —
+      // они уже помечены. Тост показываем безусловно (мы их «застолбили»).
 
       // Строки уже собраны на ТЕКУЩЕМ языке (collectCompassSocialNews(lang)).
       // ActionToast выбирает поле по языку и падает на messageRu, если поля нет —
@@ -85,7 +94,6 @@ export default function GlobalCompassSocialHost() {
         messageTr: l === 'tr' ? text : undefined,
         messagePl: l === 'pl' ? text : undefined,
       });
-      await markSocialNewsSeen(news.events).catch(() => {});
     } catch {
       /* ignore — optional enhancement */
     } finally {

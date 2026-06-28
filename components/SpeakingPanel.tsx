@@ -616,6 +616,30 @@ export function SpeakingPanel({
                     </Text>
                   ))}
               </View>
+              {/* Concrete in-word sound contrast, when we could pinpoint it.
+                  Phoneme symbols are language-neutral, so the same hint works
+                  for every UI language. */}
+              {(() => {
+                const hinted = phonemeDiff.words.find(
+                  (w) => w.status === 'mispronounced' && w.soundHints && w.soundHints.length > 0,
+                );
+                const h = hinted?.soundHints?.[0];
+                if (!h) return null;
+                return (
+                  <Text style={[styles.diffSound, { color: theme.textMuted }]}>
+                    {L(lang, {
+                      ru: `звук /${h.expected}/ вместо /${h.said}/ в «${hinted!.target}»`,
+                      uk: `звук /${h.expected}/ замість /${h.said}/ у «${hinted!.target}»`,
+                      es: `sonido /${h.expected}/ en vez de /${h.said}/ en «${hinted!.target}»`,
+                      'pt-BR': `som /${h.expected}/ em vez de /${h.said}/ em «${hinted!.target}»`,
+                      vi: `âm /${h.expected}/ thay vì /${h.said}/ trong «${hinted!.target}»`,
+                      id: `bunyi /${h.expected}/ bukan /${h.said}/ pada «${hinted!.target}»`,
+                      tr: `«${hinted!.target}» sözcüğünde /${h.said}/ yerine /${h.expected}/`,
+                      pl: `dźwięk /${h.expected}/ zamiast /${h.said}/ w «${hinted!.target}»`,
+                    })}
+                  </Text>
+                );
+              })()}
             </View>
           )}
 
@@ -745,6 +769,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
+  diffSound: { fontSize: 12, marginTop: 6, textAlign: 'center' },
   phraseWrap: {
     flexDirection: 'row',
     flexWrap: 'wrap',

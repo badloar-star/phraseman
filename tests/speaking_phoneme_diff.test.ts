@@ -35,6 +35,18 @@ describe('speaking phoneme (word-level) diff', () => {
     expect(r.words[3]!.status).not.toBe('ok'); // window
   });
 
+  it('adds in-word sound hints for a mispronounced word when available', () => {
+    // Engine heard "sink" where target was "think" → TH vs S inside the word.
+    const r = diffPhonemes('think about it', 'sink about it');
+    const think = r.words[0]!;
+    expect(think.status).toBe('mispronounced');
+    // soundHints are best-effort; when present they must name real phonemes.
+    if (think.soundHints && think.soundHints.length > 0) {
+      const hasThS = think.soundHints.some((h) => h.expected === 'TH' && h.said === 'S');
+      expect(hasThS).toBe(true);
+    }
+  });
+
   it('handles empty transcript: every word missed', () => {
     const r = diffPhonemes('hello there', '');
     expect(r.words.every((w) => w.status === 'missed')).toBe(true);

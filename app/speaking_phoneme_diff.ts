@@ -11,9 +11,16 @@
 // recognizer gives no sub-word signal). So feedback only appears on FAIL/borderline
 // and only for words the engine wrote differently or dropped. Pure, testable.
 
-import { doubleMetaphone, soundsAlike } from './double_metaphone';
+import { soundsAlike } from './double_metaphone';
+import { comparePhonemes } from './g2p_arpabet';
 
 export type PhonemeWordStatus = 'ok' | 'mispronounced' | 'missed';
+
+/** Concrete in-word sound feedback, e.g. expected 'TH' but said 'S'. */
+export type SoundHint = {
+  expected: string;
+  said: string;
+};
 
 export type PhonemeWordDiff = {
   /** The target word (original display form). */
@@ -21,6 +28,8 @@ export type PhonemeWordDiff = {
   status: PhonemeWordStatus;
   /** What the recognizer heard in that slot, when it heard something wrong. */
   heard?: string;
+  /** For a mispronounced word: the specific sound(s) that differed (best-effort). */
+  soundHints?: SoundHint[];
 };
 
 export type PhonemeDiffResult = {
@@ -72,11 +81,13 @@ export function diffPhonemes(targetText: string, transcript: string): PhonemeDif
     }
   }
   const matchedTarget = new Array<boolean>(n).fill(false);
+  const matchedHeard = new Array<boolean>(m).fill(false);
   let i = n;
   let j = m;
   while (i > 0 && j > 0) {
     if (equal(targetTokens[i - 1]!, heardNorm[j - 1]!)) {
       matchedTarget[i - 1] = true;
+      matchedHeard[j - 1] = true;
       i -= 1;
       j -= 1;
     } else if (dp[i - 1]![j]! >= dp[i]![j - 1]!) {
@@ -86,31 +97,44 @@ export function diffPhonemes(targetText: string, transcript: string): PhonemeDif
     }
   }
 
-  // For each UNmatched target word, decide mispronounced vs missed: if there is
-  // an unmatched heard word phonetically closest in that region, it's a
-  // substitution (mispronounced); otherwise the word was dropped (missed).
+  // For each UNmatched target word, decide mispronounced vs missed: if some
+  // unused heard word is phonetically CLOSE (the learner attempted it but said
+  // it wrong, e.g. sink for think), it's a substitution; else the word was
+  // dropped (missed). Closeness uses phoneme-level similarity, not spelling.
   const usedHeard = new Set<number>();
   const words: PhonemeWordDiff[] = targetTokens.map((tok) => ({ target: tok, status: 'ok' as PhonemeWordStatus }));
-  const heardTargetKeys = heardNorm.map((w) => doubleMetaphone(w)[0]);
+  const SUBSTITUTION_MIN_SIMILARITY = 0.5;
 
   for (let t = 0; t < n; t += 1) {
     if (matchedTarget[t]) continue;
-    const tgtNorm = normalizeWord(targetTokens[t]!);
-    const tgtKey = doubleMetaphone(tgtNorm)[0];
-    // Find an unused heard word that shares the first phoneme letter (a near
-    // miss the learner attempted) — heuristic for "tried but said it wrong".
+    // Pick the closest unused, unmatched heard word by phoneme similarity.
     let subIdx = -1;
+    let bestSim = -1;
     for (let h = 0; h < m; h += 1) {
-      if (usedHeard.has(h)) continue;
-      const hKey = heardTargetKeys[h] ?? '';
-      if (tgtKey && hKey && tgtKey[0] === hKey[0]) {
+      if (usedHeard.has(h) || matchedHeard[h]) continue;
+      const sim = comparePhonemes(targetTokens[t]!, heardNorm[h]!).similarity;
+      if (sim > bestSim) {
+        bestSim = sim;
         subIdx = h;
-        break;
       }
     }
-    if (subIdx >= 0) {
+    if (subIdx >= 0 && bestSim >= SUBSTITUTION_MIN_SIMILARITY) {
       usedHeard.add(subIdx);
-      words[t] = { target: targetTokens[t]!, status: 'mispronounced', heard: heardNorm[subIdx] };
+      const heardWord = heardNorm[subIdx]!;
+      // In-word phoneme diff: which specific sound(s) differed. Best-effort —
+      // only real substitutions (both sides non-empty), capped to keep the hint
+      // readable. Empty when the diff is too noisy to be useful.
+      const cmp = comparePhonemes(targetTokens[t]!, heardWord);
+      const soundHints = cmp.mismatches
+        .filter((mm) => mm.expected && mm.said)
+        .slice(0, 2)
+        .map((mm) => ({ expected: mm.expected, said: mm.said }));
+      words[t] = {
+        target: targetTokens[t]!,
+        status: 'mispronounced',
+        heard: heardWord,
+        ...(soundHints.length > 0 ? { soundHints } : {}),
+      };
     } else {
       words[t] = { target: targetTokens[t]!, status: 'missed' };
     }

@@ -16,6 +16,9 @@ const DIRECT_PLAN_CONTENT_MODULES = [
 const REGISTRY_IMPORT_ALLOWLIST = [
   'app/plan_content_pack_dry_run.ts',
   'app/plan_content_readiness.ts',
+  // Async remote-or-bundled bridge: reads the registry for the bundled fallback
+  // it serves while remote loading is disabled or a server day is unavailable.
+  'app/plan_content_remote_readiness.ts',
 ] as const;
 
 const ADAPTER_IMPORT_ALLOWLIST = [
@@ -30,6 +33,10 @@ const READINESS_IMPORT_ALLOWLIST = [
   'app/personal_plan_phrase_lessons.ts',
   'app/personal_plan_theory.tsx',
   'app/personal_plan_task_done.tsx',
+  // The remote facade is the screen-facing wrapper that races the verified
+  // server day against the bundled compatibility day inside a 150ms deadline.
+  // It is the one new module allowed to read the readiness bundled-gate.
+  'app/plan_content_remote_facade.ts',
 ] as const;
 
 function listSourceFiles(relativeDir: string): string[] {

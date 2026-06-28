@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { safeRouterBack } from './navigation_back';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getBundledCompatibilityPlanContentTheoryDay } from './plan_content_readiness';
-import { fetchPlanContentDayForScreen } from './plan_content_remote_facade';
+import { fetchPlanContentDayForScreenServerFirst } from './plan_content_remote_facade';
 import type { PlanContentDay } from './plan_content_schema';
 import { contentDayToLessonIntroScreens } from './plan_content_runtime_adapter';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -35,30 +35,50 @@ export default function PersonalPlanTheoryScreen() {
   const startTaskId = firstParam(params.startTaskId);
   const planInstanceId = firstParam(params.planInstanceId);
 
-  // Paint the bundled day immediately so the screen never blocks on the network.
-  // In parallel ask the remote facade for the verified server day; if it returns
-  // something better (verified server copy), upgrade the state. Telemetry inside
-  // the facade records which source actually served this view.
-  const bundledDay = useMemo<PlanContentDay | null>(
+  // Server-first with a 150ms deadline: if the verified server day comes back
+  // in under 150ms (the typical disk-cache-hit path), we paint the server day
+  // straight away — no bundled flash, no swap. If the deadline expires, we
+  // paint the bundled (still the up-to-date corrected version) so the screen
+  // never feels stuck, and atomically upgrade to the server day when it arrives.
+  // The bundled gate still decides whether theory is renderable at all.
+  const bundledGateDay = useMemo<PlanContentDay | null>(
     () => getBundledCompatibilityPlanContentTheoryDay(planId, dayIndex) ?? null,
     [planId, dayIndex],
   );
-  const [day, setDay] = useState<PlanContentDay | null>(bundledDay);
+  const [day, setDay] = useState<PlanContentDay | null>(null);
+  const [resolved, setResolved] = useState<boolean>(false);
   useEffect(() => {
-    setDay(bundledDay);
-    // Only chase a server upgrade when the bundled gate already says theory
-    // exists for this day — that preserves the existing empty-state behavior
-    // for days the gate intentionally hides.
-    if (!bundledDay) return;
     let cancelled = false;
-    fetchPlanContentDayForScreen(planId, dayIndex, 'theory')
-      .then((result) => {
+    setDay(null);
+    setResolved(false);
+    if (!bundledGateDay) {
+      // The bundled gate says theory isn't available for this day — preserve
+      // the existing empty-state behavior and skip the server race entirely.
+      setResolved(true);
+      return;
+    }
+    fetchPlanContentDayForScreenServerFirst(planId, dayIndex, 'theory')
+      .then((screenFetch) => {
         if (cancelled) return;
-        if (result.day) setDay(result.day);
+        // Initial paint: server if it won the race, otherwise bundled.
+        setDay(screenFetch.initial ?? bundledGateDay);
+        setResolved(true);
+        // Background upgrade: bundled → server when the server lost the race
+        // but eventually produced a verified copy.
+        if (screenFetch.pendingUpgrade) {
+          screenFetch.pendingUpgrade.then((later) => {
+            if (cancelled) return;
+            if (later) setDay(later);
+          }).catch(() => { /* keep bundled */ });
+        }
       })
-      .catch(() => { /* facade swallows; just keep bundled */ });
+      .catch(() => {
+        if (cancelled) return;
+        setDay(bundledGateDay);
+        setResolved(true);
+      });
     return () => { cancelled = true; };
-  }, [planId, dayIndex, bundledDay]);
+  }, [planId, dayIndex, bundledGateDay]);
   const introScreens = useMemo(
     () => (day ? contentDayToLessonIntroScreens(day) : []),
     [day],
@@ -88,12 +108,17 @@ export default function PersonalPlanTheoryScreen() {
   };
 
   if (introScreens.length === 0) {
+    // Empty-state only when the server-first race actually finished. While the
+    // race is still running (resolved=false) we show a clean theme-colored
+    // container so the user doesn't see "скоро появится" flash for ~150ms.
     return (
       <View style={[styles.safe, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
-        <View style={styles.center}>
-          <Ionicons name="book-outline" size={40} color={t.textMuted} />
-          <Text style={[styles.emptyText, { color: t.textMuted }]}>Теория для этого дня скоро появится</Text>
-        </View>
+        {resolved ? (
+          <View style={styles.center}>
+            <Ionicons name="book-outline" size={40} color={t.textMuted} />
+            <Text style={[styles.emptyText, { color: t.textMuted }]}>Теория для этого дня скоро появится</Text>
+          </View>
+        ) : null}
       </View>
     );
   }

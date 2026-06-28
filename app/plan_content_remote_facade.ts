@@ -12,6 +12,9 @@
 import { buildCoursePackCacheKey, validateCoursePackManifest } from './course_pack_manifest';
 import { ensureRemoteCoursePack } from './course_pack_remote_loader';
 import {
+  getBundledCompatibilityPlanContentTheoryDay,
+} from './plan_content_readiness';
+import {
   resolveRemoteOrBundledPlanContentDay,
   type PlanContentRemoteDay,
 } from './plan_content_remote_readiness';
@@ -25,6 +28,7 @@ import {
   type PlanContentFallbackReason,
   type PlanContentTelemetrySurface,
 } from './plan_content_remote_telemetry';
+import type { PlanContentDay } from './plan_content_schema';
 
 /**
  * One-shot fetch+cache of the registered plan_content pack. Idempotent and
@@ -93,6 +97,99 @@ export async function fetchPlanContentDayForScreen(
   const result = await resolveRemoteOrBundledPlanContentDay(planId, dayIndex, cacheKey ?? undefined);
   recordPlanContentSource(telemetryFromRemoteDay(planId, dayIndex, surface, result, extraReason));
   return result;
+}
+
+/**
+ * Server-first with a short deadline. The screen sees:
+ *   - `initial`: what to render IMMEDIATELY (either the server day if it came in
+ *     under the deadline, or — if the deadline expired or the server can't help
+ *     — the bundled compatibility day). Never null on a day the bundled gate
+ *     considers renderable.
+ *   - `initialSource`: which one above actually fed `initial`. Drives the
+ *     initial telemetry record.
+ *   - `pendingUpgrade`: when the server lost the race, a Promise that may yield
+ *     the verified server day later. The screen subscribes once and atomically
+ *     upgrades from bundled→server. Resolves to null if the server never
+ *     produces a better answer than the one already rendered.
+ *
+ * Why server-first with a deadline:
+ *   - Cache-hit path (which is the steady state): the server day is read from
+ *     disk in milliseconds — wins the race, no bundled flash, no swap.
+ *   - Cold-cache or slow-network path: bundled paints at the deadline so the
+ *     screen never feels stuck. The server day, when it arrives, upgrades in
+ *     place — the bundled is just the corrected-by-review version anyway.
+ *   - Offline / remote disabled / no registration: bundled wins immediately
+ *     because the bridge resolves synchronously-equivalent in those branches.
+ */
+const SERVER_DEADLINE_MS = 150;
+
+export type PlanContentScreenFetch = {
+  initial: PlanContentDay | null;
+  initialSource: 'downloaded_pack' | 'bundled_compatibility' | 'missing';
+  pendingUpgrade: Promise<PlanContentDay | null> | null;
+};
+
+export async function fetchPlanContentDayForScreenServerFirst(
+  planId: string,
+  dayIndex: number,
+  surface: PlanContentTelemetrySurface,
+): Promise<PlanContentScreenFetch> {
+  // Kick off the real server-or-bundled bridge resolution immediately.
+  // ensurePlanContentPackReady is non-blocking (5-min memo + idempotent),
+  // and resolveRemoteOrBundledPlanContentDay is what knows how to read the
+  // verified cache vs fall back to bundled.
+  const bundledImmediate = (() => {
+    try {
+      return getBundledCompatibilityPlanContentTheoryDay(planId, dayIndex) ?? null;
+    } catch {
+      return null;
+    }
+  })();
+
+  let extraReason: PlanContentFallbackReason = '';
+  const serverPromise = (async () => {
+    let cacheKey: string | null = null;
+    try { cacheKey = await ensurePlanContentPackReady(); } catch { cacheKey = null; }
+    if (!cacheKey) {
+      const reg = getPlanContentRemoteRegistration();
+      extraReason = reg ? 'network_unavailable' : 'remote_disabled';
+    }
+    return resolveRemoteOrBundledPlanContentDay(planId, dayIndex, cacheKey ?? undefined);
+  })();
+
+  // Race the server against the deadline. Whichever finishes first wins the
+  // initial paint. The server promise keeps running in the background regardless.
+  type Tagged = { kind: 'server'; value: PlanContentRemoteDay } | { kind: 'deadline' };
+  const winner: Tagged = await Promise.race<Tagged>([
+    serverPromise.then((r): Tagged => ({ kind: 'server', value: r })),
+    new Promise<Tagged>((resolve) => setTimeout(() => resolve({ kind: 'deadline' }), SERVER_DEADLINE_MS)),
+  ]);
+
+  if (winner.kind === 'server') {
+    // Server beat the deadline — paint server day right away, no swap needed.
+    const r = winner.value;
+    recordPlanContentSource(telemetryFromRemoteDay(planId, dayIndex, surface, r, extraReason));
+    return { initial: r.day, initialSource: r.source, pendingUpgrade: null };
+  }
+
+  // Deadline won — paint bundled now, but keep waiting for the server in the
+  // background. Only emit telemetry for what the screen actually showed first.
+  recordPlanContentSource({
+    planId, dayIndex, surface,
+    source: bundledImmediate ? 'bundled_compatibility' : 'missing',
+    reason: bundledImmediate ? 'pack_not_cached' : 'no_bundled_day',
+    recoveredFromCorruption: false,
+  });
+
+  const pendingUpgrade = serverPromise.then((late) => {
+    if (!late || late.source !== 'downloaded_pack' || !late.day) return null;
+    // The server eventually produced a verified day. Record the transition so
+    // FULL dashboard can see "started as bundled, healed to server".
+    recordPlanContentSource(telemetryFromRemoteDay(planId, dayIndex, surface, late, extraReason));
+    return late.day;
+  }).catch(() => null);
+
+  return { initial: bundledImmediate, initialSource: bundledImmediate ? 'bundled_compatibility' : 'missing', pendingUpgrade };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

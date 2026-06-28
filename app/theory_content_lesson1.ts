@@ -8,13 +8,22 @@
 // Bilingual: every text field carries both Russian (ru) and Ukrainian (uk) variants.
 // `hi` on an example is the To Be form (am / is / are) to highlight in the phrase.
 
+/** Интерактивная тренировка прямо в теории (choice / word_bank / spot_slip / binary). */
+export interface L1Drill {
+  type: 'choice' | 'word_bank' | 'spot_slip' | 'binary'
+  // Слабая типизация намеренна: формы drill соответствуют Intro*Interaction,
+  // рендер защищён, нестыковка данных не роняет экран.
+  [key: string]: unknown
+}
+
 export interface L1Block {
-  kind: 'body' | 'formula' | 'examples' | 'fix' | 'tip'
+  kind: 'body' | 'formula' | 'examples' | 'fix' | 'tip' | 'drill'
   ru?: string
   uk?: string
   formula?: string[]
   examples?: { en: string; ru: string; uk: string; hi?: string }[]
   fixes?: { wrong: string; right: string }[]
+  drill?: L1Drill
 }
 
 export interface L1Section {

@@ -102,8 +102,8 @@ const TEXT = {
       + 'Poprawiliśmy też lekcje, podpowiedzi, quizy, dostęp Premium, synchronizację i kilka błędów, które przeszkadzały z podejrzaną pewnością siebie.',
   },
   cta: {
-    ru: 'Понятно, продолжаем',
-    uk: 'Зрозуміло, продовжуємо',
+    ru: 'Поехали дальше',
+    uk: 'Поїхали далі',
     es: 'Entendido, seguimos',
     'pt-BR': 'Entendi, continuar',
     vi: 'Đã hiểu, tiếp tục',

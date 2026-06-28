@@ -1818,8 +1818,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
               <Text style={{ fontSize: f.body }}>❌</Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, flex: 1 }}>
                 {triLang(lang, {
-                ru: 'Собьёшь цепочку → потеряешь ',
-                uk: 'Зірвеш ланцюжок → втратиш ',
+                ru: 'Пропустишь день → ставка не сыграет, вернётся ',
+                uk: 'Пропустиш день → ставка не зіграє, повернеться ',
                 es: 'Si rompes la racha pierdes ',
                 'pt-BR': "Se quebrar a sequência, você perde ",
                 vi: "Nếu làm đứt chuỗi, bạn mất ",

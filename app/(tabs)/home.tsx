@@ -1264,10 +1264,17 @@ export default function HomeScreen() {
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
             for (const [, saved] of lessonEntries) {
                 if (saved) {
-                    const p: string[] = JSON.parse(saved);
-                    const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                    if (correct >= 45)
-                        done++;
+                    // Inner try/catch: одна порченная запись прогресса (битый JSON в AsyncStorage)
+                    // не должна валить весь loadData → баннер «Обновить» вместо Главной.
+                    try {
+                        const p: unknown = JSON.parse(saved);
+                        if (Array.isArray(p)) {
+                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
+                            if (correct >= 45) done++;
+                        }
+                    } catch {
+                        // битая запись — пропускаем, не считаем как завершённый
+                    }
                 }
             }
             if (mountedRef.current)
@@ -1281,12 +1288,26 @@ export default function HomeScreen() {
                 const saved = lessonEntries[lastId - 1]?.[1] ?? null;
                 snapLastLessonId = lastId;
                 if (saved) {
-                    const p: string[] = JSON.parse(saved);
-                    const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                    const scoreStr = (correct / 50 * 5).toFixed(1);
-                    snapLastLessonProgress = correct;
-                    snapLastLessonScore = scoreStr;
-                    setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
+                    // Inner try/catch (см. цикл выше): битый JSON одного урока не
+                    // должен валить загрузку «последнего урока» на Главной.
+                    try {
+                        const p: unknown = JSON.parse(saved);
+                        if (Array.isArray(p)) {
+                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
+                            const scoreStr = (correct / 50 * 5).toFixed(1);
+                            snapLastLessonProgress = correct;
+                            snapLastLessonScore = scoreStr;
+                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
+                        } else {
+                            snapLastLessonProgress = 0;
+                            snapLastLessonScore = '0.0';
+                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
+                        }
+                    } catch {
+                        snapLastLessonProgress = 0;
+                        snapLastLessonScore = '0.0';
+                        setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
+                    }
                 }
                 else {
                     snapLastLessonProgress = 0;
@@ -1425,7 +1446,12 @@ export default function HomeScreen() {
             setMedalCounts(countMedals(allMedals));
             // [BANNERS] Login bonus, comeback, personal best, streak repair
             if (bonusRaw) {
-                setLoginBonus(JSON.parse(bonusRaw));
+                // Inner try/catch: битый login_bonus_pending не должен ронять loadData.
+                try {
+                    setLoginBonus(JSON.parse(bonusRaw));
+                } catch {
+                    // битая запись — игнорируем, чистим ниже
+                }
                 await AsyncStorage.removeItem('login_bonus_pending');
             }
             if (comebackRaw) {
@@ -2433,8 +2459,8 @@ export default function HomeScreen() {
               <View style={{ flex: 1 }}>
                 <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 13, fontWeight: '700' }}>
                   {triLang(lang, {
-                        ru: `Цепочка ${streak} дней под угрозой`,
-                        uk: `Ланцюжок ${streak} днів під загрозою`,
+                        ru: `Защити цепочку ${streak} дней — заходи сегодня`,
+                        uk: `Захисти ланцюжок ${streak} днів — заходь сьогодні`,
                         es: `Llevas ${streak} días de racha: no la pierdas hoy`,
                         'pt-BR': `Você está há ${streak} dias em sequência: não perca hoje`,
                         vi: `Bạn đã giữ chuỗi ${streak} ngày: đừng để mất hôm nay`,

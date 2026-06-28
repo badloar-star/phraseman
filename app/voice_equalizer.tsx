@@ -72,19 +72,29 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   const MIN_SCALE = MIN_BAR_H / MAX_BAR_H;
   const scaleFor = (v: number) => MIN_SCALE + (1 - MIN_SCALE) * Math.max(0, Math.min(1, v));
 
+  // Last scaleY pushed to each bar, so we can skip native commands when a bar's
+  // target barely moved — cuts the per-sample work (13 bars × ~4/sec) to only
+  // the bars that actually changed, which is the bulk of the lag on quiet/steady
+  // stretches.
+  const lastScaleRef = useRef<number[]>(Array.from({ length: count }, () => MIN_BAR_H / MAX_BAR_H));
+  const SKIP_DELTA = 0.03; // ignore sub-3% moves (invisible, not worth a frame)
+
   const applyRawSample = useRef((value: number) => {
     if (!activeRef.current) return;
     stateRef.current = advanceEqualizer(stateRef.current, value);
     const heights = equalizerBarHeights(stateRef.current);
-    bars.forEach((bar, i) => {
+    for (let i = 0; i < bars.length; i += 1) {
       const h = heights[i % heights.length] ?? 0;
-      Animated.timing(bar, {
-        toValue: scaleFor(h),
-        duration: 90,
+      const target = scaleFor(h);
+      if (Math.abs(target - (lastScaleRef.current[i] ?? 0)) < SKIP_DELTA) continue;
+      lastScaleRef.current[i] = target;
+      Animated.timing(bars[i]!, {
+        toValue: target,
+        duration: 110,
         easing: Easing.out(Easing.quad),
         useNativeDriver: true,
       }).start();
-    });
+    }
   }).current;
 
   // Expose imperative handle so callers can push samples without setState.
@@ -96,7 +106,8 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   useEffect(() => {
     if (active) return;
     stateRef.current = EQ_INITIAL_STATE;
-    bars.forEach((bar) => {
+    bars.forEach((bar, i) => {
+      lastScaleRef.current[i] = MIN_SCALE; // keep skip-cache in sync with reality
       Animated.timing(bar, {
         toValue: MIN_SCALE,
         duration: 220,

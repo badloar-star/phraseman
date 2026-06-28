@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { VoiceEqualizer } from '../app/voice_equalizer';
+import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
   scorePlanPronunciationTranscript,
@@ -176,9 +176,10 @@ export function SpeakingPanel({
   const [transcript, setTranscript] = useState('');
   // Final heard text of a FAILED attempt, kept for the "which word sounded off" hint.
   const [failedTranscript, setFailedTranscript] = useState('');
-  // Latest raw `volumechange` sample (~ -2..10) for the equalizer; the
-  // VoiceEqualizer turns it into loudness + tone-driven bar heights itself.
-  const [voiceSample, setVoiceSample] = useState(0);
+  // Equalizer is driven IMPERATIVELY via a ref (setSample) so each ~250ms
+  // volumechange sample does NOT re-render the whole modal — that re-render storm
+  // was the source of the equalizer lag. Mirrors personal_plan_exercise.
+  const equalizerRef = useRef<VoiceEqualizerRef>(null);
   const [score, setScore] = useState<number | null>(
     isPreview && (previewStatus === 'passed' || previewStatus === 'failed')
       ? previewScore ?? (previewStatus === 'passed' ? 97 : 45)
@@ -214,8 +215,8 @@ export function SpeakingPanel({
     ) => {
       if (!mountedRef.current) return;
       const text = finalTranscript.trim();
-      // Attempt finished -> let the equalizer settle to rest before the ring.
-      setVoiceSample(0);
+      // Attempt finished -> the equalizer collapses itself when `active` turns
+      // false (its own effect), so no per-sample reset needed here.
       setStatus('scoring');
       if (!text) {
         // Nothing recognized -> "didn't catch that", not a 0% failure.
@@ -266,7 +267,7 @@ export function SpeakingPanel({
     setTranscript('');
     setFailedTranscript('');
     setScore(null);
-    setVoiceSample(0);
+    equalizerRef.current?.setSample(0);
     setStress('unknown');
     prosodySamplesRef.current = [];
     attemptStartRef.current = Date.now();
@@ -350,12 +351,12 @@ export function SpeakingPanel({
     const noMatchSub = speech.addListener('nomatch', () => {
       if (mountedRef.current) setStatus('no_speech');
     });
-    // Live volume -> equalizer. Forward the raw sample; the equalizer derives
-    // loudness + tone-driven bar heights from it.
+    // Live volume -> equalizer, pushed IMPERATIVELY (no setState → no re-render
+    // of the modal on every sample). The equalizer derives loudness + tone tilt.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
       if (!mountedRef.current) return;
       const value = Number(event?.value);
-      setVoiceSample(value);
+      equalizerRef.current?.setSample(value);
       // Collect the loudness contour for prosody (cap to keep memory bounded).
       if (prosodySamplesRef.current.length < 240) {
         prosodySamplesRef.current.push({ value, atMs: Date.now() - attemptStartRef.current });
@@ -599,10 +600,10 @@ export function SpeakingPanel({
               </View>
             ) : (
               <VoiceEqualizer
+                {...(isPreview ? {} : { ref: equalizerRef })}
                 active={listening}
                 color={theme.accent}
                 idleColor={theme.border}
-                {...(isPreview ? {} : { rawSample: voiceSample })}
               />
             )}
           </View>

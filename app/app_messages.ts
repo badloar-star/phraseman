@@ -347,18 +347,18 @@ export function pickAppMessageText(
   >,
   lang: AppMessageLang,
 ): { title: string; body: string } {
-  // RU всегда заполнен в админке и служит универсальным фолбэком: если перевода на
-  // язык пользователя нет, показываем RU, а не пустую карточку. Раньше pt-BR/vi/id/tr/pl
-  // без перевода давали пустые заголовок и тело — письмо открывалось пустым.
+  // Переводы заполняет админка авто-переводом (OpenAI) при отправке — для каждого языка
+  // приходит настоящий текст, поэтому здесь намеренно НЕТ фолбэка на RU: «planned»-сообщения
+  // на чужом языке не должны молча показываться по-русски (см. тест app_messages.test.ts).
   const byLang: Record<AppMessageLang, { title: string; body: string }> = {
     ru: { title: message.titleRu, body: message.messageRu },
     uk: { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu },
     es: { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu },
-    'pt-BR': { title: message.titlePtBr || message.titleRu, body: message.messagePtBr || message.messageRu },
-    vi: { title: message.titleVi || message.titleRu, body: message.messageVi || message.messageRu },
-    id: { title: message.titleId || message.titleRu, body: message.messageId || message.messageRu },
-    tr: { title: message.titleTr || message.titleRu, body: message.messageTr || message.messageRu },
-    pl: { title: message.titlePl || message.titleRu, body: message.messagePl || message.messageRu },
+    'pt-BR': { title: message.titlePtBr, body: message.messagePtBr },
+    vi: { title: message.titleVi, body: message.messageVi },
+    id: { title: message.titleId, body: message.messageId },
+    tr: { title: message.titleTr, body: message.messageTr },
+    pl: { title: message.titlePl, body: message.messagePl },
   };
   return byLang[lang];
 }
@@ -368,11 +368,11 @@ export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessag
     ru: poll.questionRu,
     uk: poll.questionUk || poll.questionRu,
     es: poll.questionEs || poll.questionRu,
-    'pt-BR': poll.questionPtBr || poll.questionRu,
-    vi: poll.questionVi || poll.questionRu,
-    id: poll.questionId || poll.questionRu,
-    tr: poll.questionTr || poll.questionRu,
-    pl: poll.questionPl || poll.questionRu,
+    'pt-BR': poll.questionPtBr,
+    vi: poll.questionVi,
+    id: poll.questionId,
+    tr: poll.questionTr,
+    pl: poll.questionPl,
   };
   return byLang[lang];
 }
@@ -382,11 +382,11 @@ export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang:
     ru: option.textRu,
     uk: option.textUk || option.textRu,
     es: option.textEs || option.textRu,
-    'pt-BR': option.textPtBr || option.textRu,
-    vi: option.textVi || option.textRu,
-    id: option.textId || option.textRu,
-    tr: option.textTr || option.textRu,
-    pl: option.textPl || option.textRu,
+    'pt-BR': option.textPtBr,
+    vi: option.textVi,
+    id: option.textId,
+    tr: option.textTr,
+    pl: option.textPl,
   };
   return byLang[lang];
 }
@@ -537,22 +537,22 @@ export async function seedLocalVipSurveyTestMessage(nowMs = Date.now()): Promise
     kind: 'vip_survey',
     audience: 'free',
     priority: 80,
-    titleRu: 'Хотите получить месяц VIP?',
-    titleUk: 'Хочете отримати місяць VIP?',
-    titleEs: 'Want one month of VIP?',
-    titlePtBr: 'Want one month of VIP?',
-    titleVi: 'Want one month of VIP?',
-    titleId: 'Want one month of VIP?',
-    titleTr: 'Want one month of VIP?',
-    titlePl: 'Want one month of VIP?',
-    messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней VIP.',
-    messageUk: 'Пройдіть коротке опитування про застосунок і активуйте 30 днів VIP.',
-    messageEs: 'Take a short in-app survey and activate 30 days of VIP.',
-    messagePtBr: 'Take a short in-app survey and activate 30 days of VIP.',
-    messageVi: 'Take a short in-app survey and activate 30 days of VIP.',
-    messageId: 'Take a short in-app survey and activate 30 days of VIP.',
-    messageTr: 'Take a short in-app survey and activate 30 days of VIP.',
-    messagePl: 'Take a short in-app survey and activate 30 days of VIP.',
+    titleRu: 'Хотите получить месяц Plus?',
+    titleUk: 'Хочете отримати місяць Plus?',
+    titleEs: 'Want one month of Plus?',
+    titlePtBr: 'Want one month of Plus?',
+    titleVi: 'Want one month of Plus?',
+    titleId: 'Want one month of Plus?',
+    titleTr: 'Want one month of Plus?',
+    titlePl: 'Want one month of Plus?',
+    messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней Plus.',
+    messageUk: 'Пройдіть коротке опитування про застосунок і активуйте 30 днів Plus.',
+    messageEs: 'Take a short in-app survey and activate 30 days of Plus.',
+    messagePtBr: 'Take a short in-app survey and activate 30 days of Plus.',
+    messageVi: 'Take a short in-app survey and activate 30 days of Plus.',
+    messageId: 'Take a short in-app survey and activate 30 days of Plus.',
+    messageTr: 'Take a short in-app survey and activate 30 days of Plus.',
+    messagePl: 'Take a short in-app survey and activate 30 days of Plus.',
     vipSurvey: {
       surveyId: VIP_SURVEY_ID,
       rewardDays: 30,

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.onAppMessagePollVoteWritten = exports.onAppMessageReactionWritten = void 0;
+exports.onAppMessagePollVoteWritten = exports.onAppMessageStateWritten = exports.onAppMessageReactionWritten = void 0;
 exports.cleanupExpiredAppMessages = cleanupExpiredAppMessages;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
@@ -134,6 +134,36 @@ exports.onAppMessageReactionWritten = functions.firestore.onDocumentWritten('app
         const code = e?.code;
         if (code !== 5 && code !== 'not-found') {
             console.error('onAppMessageReactionWritten failed', { messageId, likeDelta, dislikeDelta, e });
+        }
+    }
+});
+// Агрегат «сколько людей прочитали письмо». Состояние прочтения у каждого юзера лежит в
+// users/{userId}/app_message_states/{messageId}. Когда readAtMs впервые становится > 0,
+// инкрементим readCount на самом сообщении; при удалении прочитанного состояния — декремент.
+// Так в админке видна метрика reach/read-rate без перебора подколлекций на каждый рефреш.
+function isRead(data) {
+    return toMs(data?.readAtMs ?? data?.readAt) > 0;
+}
+exports.onAppMessageStateWritten = functions.firestore.onDocumentWritten('users/{userId}/app_message_states/{messageId}', async (event) => {
+    const beforeRead = event.data?.before.exists ? isRead(event.data.before.data()) : false;
+    const afterRead = event.data?.after.exists ? isRead(event.data.after.data()) : false;
+    const delta = (afterRead ? 1 : 0) - (beforeRead ? 1 : 0);
+    if (delta === 0)
+        return;
+    const messageId = String(event.params.messageId || '');
+    if (!messageId)
+        return;
+    try {
+        await admin.firestore().collection('app_messages').doc(messageId).update({
+            readCount: admin.firestore.FieldValue.increment(delta),
+            readCountUpdatedAtMs: Date.now(),
+        });
+    }
+    catch (e) {
+        // Сообщение могло быть удалено — это нормально, состояния чистятся отдельно.
+        const code = e?.code;
+        if (code !== 5 && code !== 'not-found') {
+            console.error('onAppMessageStateWritten failed', { messageId, delta, e });
         }
     }
 });

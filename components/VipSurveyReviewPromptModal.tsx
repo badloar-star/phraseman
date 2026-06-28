@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -6,7 +6,9 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
+import { monoIcon } from '../constants/monoIcon';
 import { openStoreReviewPage } from '../app/store_review';
+import { hasUserRated, markReviewPrompted, markReviewRated } from '../app/review_utils';
 import { recordVipSurveyReviewClickFromApp } from '../app/vip_survey';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -22,6 +24,22 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const insets = useSafeAreaInsets();
   const isCompassTheme = false;
 
+  // Это окно показывается в обход общего гейта canShowReview (особый момент — оплата VIP),
+  // но согласуется с ним по общему состоянию: уже оценившему не докучаем, а сам показ
+  // помечаем, чтобы следом не всплыло окно после урока/арены.
+  useEffect(() => {
+    if (!visible) return;
+    let cancelled = false;
+    void (async () => {
+      if (await hasUserRated()) {
+        if (!cancelled) onClose();
+        return;
+      }
+      await markReviewPrompted().catch(() => {});
+    })();
+    return () => { cancelled = true; };
+  }, [visible, onClose]);
+
   const close = () => {
     hapticTap();
     onClose();
@@ -31,7 +49,11 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
     hapticTap();
     void recordVipSurveyReviewClickFromApp({ storeOpened: false }).catch(() => false);
     const storeOpened = await openStoreReviewPage();
-    if (storeOpened) void recordVipSurveyReviewClickFromApp({ storeOpened: true }).catch(() => false);
+    if (storeOpened) {
+      void recordVipSurveyReviewClickFromApp({ storeOpened: true }).catch(() => false);
+      // Ушёл писать отзыв → помечаем как оценившего, чтобы другие rate-окна не всплывали.
+      void markReviewRated().catch(() => {});
+    }
     onClose();
   };
 
@@ -55,18 +77,18 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
 
           <View style={[styles.iconWrap, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : 'rgba(34,197,94,0.14)', borderRadius: isCompassTheme ? 10 : 29, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}>
             {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-            <Ionicons name="star" size={28} color={isCompassTheme ? COMPASS_RICH.champagne : '#22C55E'} />
+            <Ionicons name="star" size={28} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#22C55E')} />
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h2) }]}>
             {triLang(lang, {
-              ru: 'Твой VIP активирован',
-              uk: 'Твій VIP активовано',
-              es: 'Tu VIP está activo',
-              'pt-BR': 'Seu VIP está ativo',
-              vi: 'VIP của bạn đã kích hoạt',
-              id: 'VIP-mu sudah aktif',
-              tr: 'VIP’in aktif',
-              pl: 'Twój VIP jest aktywny',
+              ru: 'Твой Plus активирован',
+              uk: 'Твій Plus активовано',
+              es: 'Tu Plus está activo',
+              'pt-BR': 'Seu Plus está ativo',
+              vi: 'Plus của bạn đã kích hoạt',
+              id: 'Plus-mu sudah aktif',
+              tr: 'Plus’ın aktif',
+              pl: 'Twój Plus jest aktywny',
             })}
           </Text>
           <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>

@@ -19,7 +19,7 @@ export default function VipSurveyExtraSection({ open, onToggle }: Props) {
     <AccordionSection
       id="vip_survey_extra"
       icon="clipboard-outline"
-      title="VIP-опрос: модалки напрямую"
+      title="Plus-опрос: модалки напрямую"
       badge={2}
       open={open}
       onToggle={onToggle}
@@ -31,7 +31,7 @@ export default function VipSurveyExtraSection({ open, onToggle }: Props) {
         testID="admin-extra-vip-survey-direct"
         icon="clipboard-outline"
         label="VipSurveyModal"
-        sub="⚠️ Завершение опроса отправит реальные ответы и активирует VIP через callable"
+        sub="⚠️ Завершение опроса отправит реальные ответы и активирует Plus через callable"
         onPress={() => setSurveyVisible(true)}
       />
       <ButtonRow

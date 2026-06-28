@@ -793,6 +793,9 @@ export default function SettingsTestersFunctions() {
   const [openSection, setOpenSection] = useState<string | null>(null);
   // QA-превью новых пейволов: выбранный сценарий (context) для просмотра A/B/C.
   const [paywallPreviewCtx, setPaywallPreviewCtx] = useState('intro_ended');
+  // QA: форс триал-режима в dev (показывает trust-бейдж «платить не нужно»,
+  // trial-таймлайн и exit-оффер без стора). По умолчанию вкл — так видно больше.
+  const [paywallPreviewTrial, setPaywallPreviewTrial] = useState(true);
   // Навигация панели: активная глава (категория разделов) + поисковый запрос.
   const [navChapter, setNavChapter] = useState<AdminChapterId>('all');
   const [navQuery, setNavQuery] = useState('');
@@ -2319,14 +2322,14 @@ export default function SettingsTestersFunctions() {
       emitAppEvent(
         'action_toast',
         actionToastTri('success', {
-          ru: 'Премиум и VIP сняты',
-          uk: 'Преміум і VIP знято',
-          es: 'Premium y VIP desactivados.',
-          'pt-BR': 'Premium e VIP desativados',
-          vi: 'Đã tắt Premium và VIP',
-          id: 'Premium dan VIP dinonaktifkan',
-          tr: 'Premium ve VIP devre dışı bırakıldı',
-          pl: 'Premium i VIP wyłączone',
+          ru: 'Plus и Pro сняты',
+          uk: 'Plus і Pro знято',
+          es: 'Plus y Pro desactivados.',
+          'pt-BR': 'Plus e Pro desativados',
+          vi: 'Đã tắt Plus và Pro',
+          id: 'Plus dan Pro dinonaktifkan',
+          tr: 'Plus ve Pro devre dışı bırakıldı',
+          pl: 'Plus i Pro wyłączone',
         }),
       );
     } catch {
@@ -2537,13 +2540,13 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               testID="admin-activate-vip-profile"
               icon="sparkles-outline"
-              label="💚 Активировать VIP на моём профиле"
-              sub="30 дней VIP-доступа + зелёная анимация. Пишет только vip_* и не трогает реальный Premium."
+              label="💚 Активировать Plus на моём профиле"
+              sub="30 дней Plus-доступа + зелёная анимация. Пишет только vip_* и не трогает реальный Plus (premium)."
               onPress={activateVipOnCurrentProfile}
               t={t}
               f={f}
               doHaptic={doHaptic}
-              confirm="Активировать VIP на своём профиле?"
+              confirm="Активировать Plus на своём профиле?"
             />
             <ButtonRow
               testID="admin-preview-vip-celebration-top"
@@ -2717,6 +2720,26 @@ export default function SettingsTestersFunctions() {
                 </View>
               ))}
 
+              {/* Тумблер триал-режима: вкл → виден trust-бейдж «платить не нужно»,
+                  trial-таймлайн и exit-оффер (в dev стора нет, поэтому форсим). */}
+              <TouchableOpacity
+                onPress={() => { doHaptic(); setPaywallPreviewTrial((v) => !v); }}
+                activeOpacity={0.8}
+                style={{
+                  flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+                  backgroundColor: paywallPreviewTrial ? '#16331f' : '#2a2a2a',
+                  borderRadius: 10, paddingVertical: 11, paddingHorizontal: 14,
+                  borderWidth: 1, borderColor: paywallPreviewTrial ? '#34d399' : '#444',
+                }}
+              >
+                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700' }}>
+                  🎁 Триал-режим (бейдж + exit-оффер)
+                </Text>
+                <Text style={{ color: paywallPreviewTrial ? '#34d399' : '#888', fontSize: 13, fontWeight: '900' }}>
+                  {paywallPreviewTrial ? 'ВКЛ' : 'выкл'}
+                </Text>
+              </TouchableOpacity>
+
               {/* Три кнопки — каждая открывает свой вариант с выбранным сценарием.
                   Передаём реалистичные stats, чтобы видеть персонализацию (теги/прогресс). */}
               {([
@@ -2730,7 +2753,11 @@ export default function SettingsTestersFunctions() {
                     doHaptic();
                     router.push({
                       pathname: path,
-                      params: { context: paywallPreviewCtx, source: 'qa_preview', streak: '12', lessons_done: '34', saved: '15' },
+                      params: {
+                        context: paywallPreviewCtx, source: 'qa_preview',
+                        streak: '12', lessons_done: '34', saved: '15',
+                        ...(paywallPreviewTrial ? { _force_trial_ui: '1' } : {}),
+                      },
                     } as any);
                   }}
                   activeOpacity={0.8}

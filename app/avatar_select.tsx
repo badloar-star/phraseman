@@ -23,6 +23,7 @@ import { useLang } from '../components/LangContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import {
   AVATAR_AURA_BUY_COST,
   AVATAR_AURA_GIFT_OWNED_KEY,
@@ -332,7 +333,7 @@ const invalidateAvatarDependentCaches = async (nextAvatar: string, nextAura?: st
 export default function AvatarSelect() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const avatarAccent = '#A78BFA';
@@ -602,7 +603,7 @@ export default function AvatarSelect() {
           return;
         }
         if (isVipAura) {
-          showToast('info', 'Доступно со статусом VIP');
+          showToast('info', 'Доступно со статусом Plus');
           return;
         }
         if (aura.unlockLevel !== undefined) {
@@ -733,7 +734,7 @@ export default function AvatarSelect() {
             </View>
             {nextProfileCardDef ? (
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: profileCardVisual.accent, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
-                <Text style={{ color: '#111827', fontSize: f.sub, fontWeight: '900' }}>Открыть</Text>
+                <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900' }}>Открыть</Text>
               </View>
             ) : (
               <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
@@ -852,9 +853,9 @@ export default function AvatarSelect() {
                     {isOwned
                       ? <Text style={{ color: isGifted ? t.accent : t.textMuted, fontSize: 9, fontWeight: '800' }}>{isGifted ? 'Подарок' : 'Открыта'}</Text>
                       : isPremiumAura
-                        ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Premium</Text>
+                        ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
                         : isVipAura
-                          ? <Text style={{ color: avatarVipAccent, fontSize: 9, fontWeight: '900' }}>VIP</Text>
+                          ? <Text style={{ color: avatarVipAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
                         : aura.unlockLevel !== undefined
                           ? <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Ур. {aura.unlockLevel}</Text>
                           : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}

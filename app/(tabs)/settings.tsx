@@ -123,6 +123,13 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     divider: 'rgba(255,255,255,0.08)',
     notice: '#202124',
   },
+  business: {
+    panel: '#141414',
+    chip: '#141414',
+    border: 'rgba(255,255,255,0.10)',
+    divider: 'rgba(255,255,255,0.07)',
+    notice: '#1C1C1C',
+  },
   midnight: {
     panel: '#1B1D25',
     chip: '#1B1D25',
@@ -339,6 +346,7 @@ export default function SettingsMain() {
       gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
       coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
+      business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
       midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
       ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
       aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
@@ -576,7 +584,7 @@ export default function SettingsMain() {
 
   const vipExpiryText = vipUntilMs > 0
     ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
-    : L('VIP без срока окончания', 'VIP без дати завершення', 'VIP has no end date', 'VIP sem data de término', 'VIP không có ngày kết thúc', 'VIP tanpa tanggal akhir', 'VIP bitiş tarihi yok', 'VIP bez daty zakończenia');
+    : L('Plus без срока окончания', 'Plus без дати завершення', 'Plus has no end date', 'Plus sem data de término', 'Plus không có ngày kết thúc', 'Plus tanpa tanggal akhir', 'Plus bitiş tarihi yok', 'Plus bez daty zakończenia');
 
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
@@ -957,9 +965,9 @@ export default function SettingsMain() {
             {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
             <Ionicons name="shield-checkmark-outline" size={24} color={isCompassTheme ? COMPASS_RICH.champagne : vipActiveTitle} style={{ marginRight: 12 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>VIP</Text>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>Plus</Text>
               <Text testID="settings-vip-subtitle" style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {L('VIP аккаунт', 'VIP акаунт', 'Cuenta VIP', 'Conta VIP', 'Tài khoản VIP', 'Akun VIP', 'VIP hesap', 'Konto VIP')}
+                {L('Plus аккаунт', 'Plus акаунт', 'Cuenta Plus', 'Conta Plus', 'Tài khoản Plus', 'Akun Plus', 'Plus hesap', 'Konto Plus')}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 6 }}>
                 <Ionicons name="time-outline" size={13} color={isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub} />
@@ -994,11 +1002,13 @@ export default function SettingsMain() {
             <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
-                Premium {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
+                {premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {isVip && !isPremium
-                  ? `${L('VIP доступ активен', 'VIP доступ активний', 'VIP access active', 'Acesso VIP ativo', 'Quyền VIP đang hoạt động', 'Akses VIP aktif', 'VIP erişim aktif', 'Dostęp VIP aktywny')} · ${vipExpiryText}`
+                  ? `${L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')} · ${vipExpiryText}`
+                  : premiumPlan === 'lifetime'
+                  ? L('Доступ навсегда · разовый платёж', 'Доступ назавжди · разовий платіж', 'Acceso para siempre · pago único', 'Acesso para sempre · pagamento único', 'Truy cập trọn đời · thanh toán một lần', 'Akses selamanya · sekali bayar', 'Sonsuza dek erişim · tek ödeme', 'Dostęp na zawsze · jedna płatność')
                   : premiumPlan === 'yearly'
                   ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
                   : premiumPlan === 'monthly'
@@ -1032,7 +1042,7 @@ export default function SettingsMain() {
             <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                Premium
+                Plus
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                 {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny')}

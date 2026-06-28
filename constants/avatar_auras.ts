@@ -42,8 +42,8 @@ export type AvatarAuraDef = {
 };
 
 export const AVATAR_AURAS: AvatarAuraDef[] = [
-  { id: PREMIUM_AVATAR_AURA_ID, nameRu: 'Premium', nameUk: 'Premium', nameEs: 'Premium', namePtBr: 'Premium', nameVi: 'Premium', nameId: 'Premium', nameTr: 'Premium', namePl: 'Premium', color: '#FACC15', softColor: 'rgba(250,204,21,0.28)', premiumOnly: true },
-  { id: VIP_AVATAR_AURA_ID, nameRu: 'VIP', nameUk: 'VIP', nameEs: 'VIP', namePtBr: 'VIP', nameVi: 'VIP', nameId: 'VIP', nameTr: 'VIP', namePl: 'VIP', color: '#22C55E', color2: '#86EFAC', softColor: 'rgba(34,197,94,0.28)', vipOnly: true },
+  { id: PREMIUM_AVATAR_AURA_ID, nameRu: 'Plus', nameUk: 'Plus', nameEs: 'Plus', namePtBr: 'Plus', nameVi: 'Plus', nameId: 'Plus', nameTr: 'Plus', namePl: 'Plus', color: '#FACC15', softColor: 'rgba(250,204,21,0.28)', premiumOnly: true },
+  { id: VIP_AVATAR_AURA_ID, nameRu: 'Plus', nameUk: 'Plus', nameEs: 'Plus', namePtBr: 'Plus', nameVi: 'Plus', nameId: 'Plus', nameTr: 'Plus', namePl: 'Plus', color: '#22C55E', color2: '#86EFAC', softColor: 'rgba(34,197,94,0.28)', vipOnly: true },
   { id: 'aura-aurora', nameRu: 'Аврора', nameUk: 'Аврора', nameEs: 'Aurora', namePtBr: 'Aurora', nameVi: 'Cực quang', nameId: 'Aurora', nameTr: 'Aurora', namePl: 'Aurora', color: '#22D3EE', softColor: 'rgba(34,211,238,0.22)' },
   { id: 'aura-ember', nameRu: 'Искра', nameUk: 'Іскра', nameEs: 'Brasa', namePtBr: 'Brasa', nameVi: 'Than hồng', nameId: 'Bara', nameTr: 'Kor', namePl: 'Żar', color: '#FB7185', softColor: 'rgba(251,113,133,0.22)' },
   { id: 'aura-mint', nameRu: 'Мята', nameUk: 'М\'ята', nameEs: 'Menta', namePtBr: 'Menta', nameVi: 'Bạc hà', nameId: 'Mint', nameTr: 'Nane', namePl: 'Mięta', color: '#34D399', softColor: 'rgba(52,211,153,0.22)' },

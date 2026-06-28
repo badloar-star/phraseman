@@ -31,7 +31,6 @@ import type { StudyTargetLang } from './study_target_lang_dev';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ReportErrorButton from '../components/ReportErrorButton';
-import AccordionTheory from '../components/theory/AccordionTheory';
 import {
   HighlightedText,
   RichTextParts,
@@ -377,31 +376,7 @@ function IntroBlockCard({
   );
 }
 
-/**
- * Диспетчер рендера теории.
- * Если у урока есть новый интерактивный формат (хотя бы один экран с interaction
- * или явным topicAccent) — показываем новый аккордеон-путь (AccordionTheory).
- * Иначе — старый проверенный пагинационный путь (LessonIntroScreensLegacy).
- * Так старые 83 экрана продолжают работать, а переписанные уроки получают новый UX.
- */
-export default function LessonIntroScreens(props: LessonIntroScreensProps) {
-  const useAccordion = props.introScreens?.some(
-    (s) => s.interaction != null || s.topicAccent != null,
-  );
-  if (useAccordion) {
-    return (
-      <AccordionTheory
-        introScreens={props.introScreens}
-        lessonId={props.lessonId}
-        onComplete={props.onComplete}
-        onBack={props.onBack}
-      />
-    );
-  }
-  return <LessonIntroScreensLegacy {...props} />;
-}
-
-function LessonIntroScreensLegacy({
+export default function LessonIntroScreens({
   introScreens,
   lessonId,
   onComplete,

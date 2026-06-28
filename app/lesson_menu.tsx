@@ -48,7 +48,6 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
-import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
@@ -887,10 +886,6 @@ export default function LessonMenu() {
           setSoonOpen('frenchTheory');
           return;
         }
-        if (isInteractiveTheoryLesson(lessonId)) {
-          router.push({ pathname: '/lesson_theory_v2', params: { id: lessonId } });
-          return;
-        }
         router.push({ pathname: '/lesson_help', params: { id: lessonId } });
       },
       unavailable: frenchTheorySourceGated,
@@ -919,14 +914,14 @@ export default function LessonMenu() {
         : 'lock-closed';
     const lockedTitle = lockReason === 'premium'
       ? triLang(lang, {
-  ru: 'Plus',
-  uk: 'Plus',
-  es: 'Plus',
-  "pt-BR": 'Plus',
-  vi: 'Plus',
-  id: 'Plus',
-  tr: 'Plus',
-  pl: 'Plus',
+  ru: 'Premium',
+  uk: 'Premium',
+  es: 'Premium',
+  "pt-BR": 'Premium',
+  vi: 'Premium',
+  id: 'Premium',
+  tr: 'Premium',
+  pl: 'Premium',
 })
       : lockReason === 'level'
         ? triLang(lang, {
@@ -951,14 +946,14 @@ export default function LessonMenu() {
 });
     const lockedMessage = lockReason === 'premium'
       ? triLang(lang, {
-  ru: 'Этот урок доступен в Plus.',
-  uk: 'Цей урок входить до Plus.',
-  es: 'Esta lección forma parte de Plus.',
-  "pt-BR": 'Esta lição faz parte do Plus.',
-  vi: 'Bài học này thuộc Plus.',
-  id: 'Pelajaran ini termasuk Plus.',
-  tr: 'Bu ders Plus kapsamındadır.',
-  pl: 'Ta lekcja jest częścią Plus.',
+  ru: 'Этот урок доступен в Premium.',
+  uk: 'Цей урок входить до Premium.',
+  es: 'Esta lección forma parte de Premium.',
+  "pt-BR": 'Esta lição faz parte do Premium.',
+  vi: 'Bài học này thuộc Premium.',
+  id: 'Pelajaran ini termasuk Premium.',
+  tr: 'Bu ders Premium kapsamındadır.',
+  pl: 'Ta lekcja jest częścią Premium.',
 })
       : lockReason === 'level' && prevLevel
         ? triLang(lang, {
@@ -983,14 +978,14 @@ export default function LessonMenu() {
 });
     const lockedButtonLabel = lockReason === 'premium'
       ? triLang(lang, {
-  ru: 'Открыть Plus',
-  uk: 'Отримати Plus',
-  es: 'Obtener Plus',
-  "pt-BR": 'Obter Plus',
-  vi: 'Nhận Plus',
-  id: 'Dapatkan Plus',
-  tr: 'Plus al',
-  pl: 'Zdobądź Plus',
+  ru: 'Открыть Premium',
+  uk: 'Отримати Premium',
+  es: 'Obtener Premium',
+  "pt-BR": 'Obter Premium',
+  vi: 'Nhận Premium',
+  id: 'Dapatkan Premium',
+  tr: 'Premium al',
+  pl: 'Zdobądź Premium',
 })
       : lockReason === 'level' && prevLevel
         ? triLang(lang, {

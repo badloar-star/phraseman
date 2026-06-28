@@ -11,7 +11,6 @@ import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
-import { isInteractiveTheoryLesson } from './theory_topic_accents';
 
 type DailyTaskRouter = {
   push: (route: any) => void;
@@ -131,11 +130,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         router.replace('/(tabs)/lessons' as any);
         break;
       }
-      router.push(
-        isInteractiveTheoryLesson(lessonId)
-          ? { pathname: '/lesson_theory_v2', params: { id: lessonId } }
-          : { pathname: '/lesson_help', params: { id: lessonId } },
-      );
+      router.push({ pathname: '/lesson_help', params: { id: lessonId } });
       break;
     case 'flashcard_view':
     case 'flashcard_save':

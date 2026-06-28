@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -30,7 +31,6 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
-import { monoIcon } from '../constants/monoIcon';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
@@ -50,7 +50,7 @@ import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import { isSpeakingEnabled } from './remote_flags';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
-import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { recordMistake } from './active_recall';
@@ -71,7 +71,6 @@ import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer,
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
-import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
 import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
@@ -1028,7 +1027,7 @@ const LessonContent = React.memo(function LessonContent({
             }}
           >
             {xpToastVisible && (
-              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: monoIcon(themeMode, '#F5A623'), fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
+              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
                 +{xpToastAmount} XP
               </Animated.Text>
             )}
@@ -1388,23 +1387,15 @@ const LessonContent = React.memo(function LessonContent({
                   onPress={() => {
                     if (!canUse50) return;
                     hapticTap();
-                    // Настоящее 50/50: оставляем ПОЛОВИНУ ВСЕХ плиток (округление вверх),
-                    // включая правильную. Считаем от общего числа плиток, а НЕ от числа
-                    // неверных — иначе результат «съезжал» при банке из 5 (убирало 2 вместо 3).
-                    // total=6→оставить 3 (убрать 3); total=5→оставить 3 (убрать 2); total=4→оставить 2.
+                    // Настоящее 50/50: затемняем ровно половину НЕВЕРНЫХ плиток (округление
+                    // вверх), правильная всегда остаётся видимой среди других бликующих.
                     const wrongIdx = wordOptionItems.filter(o => !o.isCorrectOption).map(o => o.index);
                     // Страховка: если НИ одна плитка не помечена правильной (рассинхрон состояния),
                     // 50/50 затемнил бы и правильный ответ. В таком случае подсказку не применяем,
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
-                    const totalTiles = wordOptionItems.length;
-                    // Оставляем половину всех плиток (округляя вверх), но НИКОГДА меньше 2 —
-                    // иначе при банке из 2 плиток осталась бы одна правильная = показ ответа.
-                    const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
-                    // Гасим столько неверных, чтобы осталось keepCount плиток (1 правильная + остальные неверные).
-                    // Никогда не уходим в минус и не гасим больше, чем есть неверных.
-                    const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));
+                    const dimCount = Math.ceil(wrongIdx.length / 2);
                     const shuffledWrong = [...wrongIdx];
                     for (let k = shuffledWrong.length - 1; k > 0; k -= 1) {
                       const j = Math.floor(Math.random() * (k + 1));
@@ -1429,7 +1420,7 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/lesson_theory_v2', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
+          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
             <Ionicons name="book-outline" size={26} color={sx.second} />
             <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
           </LessonPressable>
@@ -2188,8 +2179,7 @@ export default function LessonScreen() {
 
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
-  // Все ячейки, пройденные за текущий проход (passAnsweredCells). Активную ячейку прячем
-  // только во время immediate-error-replay — на обычном результате её надо показывать.
+  // Только пройденные ячейки (progress[i] непустой), исключая текущую позицию.
   // Прогресс/XP НЕ трогаем — это чистое чтение, без markTrainerResult/начисления.
   const reviewPhrases = useMemo<ReviewPhrase[]>(() => {
     const out: ReviewPhrase[] = [];
@@ -2199,11 +2189,7 @@ export default function LessonScreen() {
       // Только фразы, реально пройденные за ТЕКУЩИЙ проход. Не даём листать вперёд/
       // к фразам, до которых юзер ещё не дошёл в этом проходе.
       if (!passAnsweredCells.has(i)) continue;
-      // Оверлей открывается ТОЛЬКО с экрана результата (status==='result'), где только что
-      // отвеченная фраза — это уже ПРОЙДЕННАЯ фраза текущего прохода, и её надо показывать.
-      // Скрываем активную ячейку лишь когда идёт immediate-error-replay (overridePhraseCell
-      // фиксирует cellIndex на повторяемой фразе) — иначе список схлопывался до одной фразы.
-      if (overridePhraseCell !== null && i === activeCell) continue;
+      if (i === activeCell) continue; // текущая боевая фраза — её и так видно
       const p = getPhraseForCell(i);
       if (!p) continue;
       const en = phraseAnswerDisplayLine(p, studyTarget, lang);
@@ -2937,11 +2923,8 @@ export default function LessonScreen() {
 
     if (isRight) {
       playCorrect();
-      // Хаптик «успех» через общий слой — попадает под единый ограничитель,
-      // не складывается с tap'ом выбора плитки.
-      void hapticSuccess();
-    } else {
-      void hapticError();
+    } else if (settings.haptics) {
+      try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).

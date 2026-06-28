@@ -171,6 +171,16 @@ export interface LessonIntroScreen {
   linesTr?: IntroLine[];
   linesPl?: IntroLine[];
   developerNotes?: LessonIntroScreenV2['developerNotes'];
+  /**
+   * Интерактивный блок экрана (раунд 2). Опционально — старые экраны без него
+   * рендерятся статично. Раскрывается опт-ин, без XP, tap-only.
+   */
+  interaction?: IntroInteraction;
+  /**
+   * Уникальный цвет темы для этого экрана/урока. Если не задан — рендерер
+   * берёт topicAccent из реестра по lessonId, иначе fallback на t.accent темы.
+   */
+  topicAccent?: TopicAccent;
 }
 
 // V2 Intro Screen types — rich inline markup with tones and line types
@@ -195,6 +205,98 @@ export type IntroLine = {
   parts?: IntroTextPart[];
   text?: string;
 };
+
+// ============================================================================
+// Интерактивная теория (раунд 2) — опциональные блоки внутри экрана теории.
+// ВСЁ опционально: старые данные без этих полей рендерятся как раньше.
+// Все механики — tap-only (без drag), фидбэк без модалок, без XP/штрафов.
+// ============================================================================
+
+/** Локализованная строка-подсказка интерактива (родной язык, всегда видим). */
+export interface IntroI18nText {
+  ru: string;
+  uk?: string;
+  es?: string;
+  ptBr?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
+}
+
+/**
+ * «Собери фразу из кнопок-слов» прямо в теории (Word-Bank Builder).
+ * Реюзает существующие EN-фразы урока. Перевод (prompt) и формула видны всегда.
+ */
+export interface IntroBuildInteraction {
+  kind: 'word_bank';
+  /** Подсказка на родном языке над слотами («Она готова»). */
+  prompt: IntroI18nText;
+  /** Эталонная сборка по словам, по порядку. Напр. ['She','is','ready']. */
+  answer: string[];
+  /** Подписи слотов-ролей (родной язык, по числу answer). Напр. ['кто','связка','описание']. */
+  slotLabels?: IntroI18nText[];
+  /** Доп.слова в банк — дистракторы ТОЛЬКО из той же темы (here/there), НЕ форм agreement. */
+  distractors?: string[];
+}
+
+/** «Выбери форму» — один пропуск, 2-3 кнопки (3-Tile Choice). */
+export interface IntroChoiceInteraction {
+  kind: 'choice';
+  /** Фраза с пропуском: части до и после слота. */
+  before: string;
+  after: string;
+  /** Варианты-кнопки. */
+  options: string[];
+  /** Правильный вариант (должен входить в options). */
+  answer: string;
+  /** Короткое «почему» (раскрывается по запросу). */
+  why?: IntroI18nText;
+}
+
+/** «Найди промах» — тапни лишнее/неверное слово (Spot-the-Slip). */
+export interface IntroSpotInteraction {
+  kind: 'spot_slip';
+  /** Слова неверной фразы как чипы. */
+  chips: string[];
+  /** Индекс «лишнего/неверного» чипа в chips. */
+  answerIndex: number;
+  /** Подсказка-заголовок («Тут лишнее слово»). */
+  hint: IntroI18nText;
+  /** Что показать после успеха (правильная фраза + почему). */
+  fix: IntroI18nText;
+}
+
+/** «Финал-чек» — выбор из двух фраз (Binary Recognition). */
+export interface IntroBinaryInteraction {
+  kind: 'binary';
+  question: IntroI18nText;
+  /** Две фразы-варианта. */
+  optionA: string;
+  optionB: string;
+  /** Какая верна. */
+  correct: 'A' | 'B';
+  /** Объяснение после ответа. */
+  explain: IntroI18nText;
+}
+
+export type IntroInteraction =
+  | IntroBuildInteraction
+  | IntroChoiceInteraction
+  | IntroSpotInteraction
+  | IntroBinaryInteraction;
+
+/**
+ * Уникальный цвет темы (пожелание владельца — у каждой темы свой).
+ * Семантика success/danger/warning остаётся из темы приложения — здесь только accent.
+ * Хранится как hex; рендерер проверяет контраст и не даёт accent совпасть с danger/success.
+ */
+export interface TopicAccent {
+  /** Основной акцент темы (hex). Напр. To Be — '#3B7DDB'. */
+  accent: string;
+  /** Мягкая подложка для CTA/пилюль (hex, низкая насыщенность). */
+  soft: string;
+}
 
 export type IntroExample = {
   labelRU?: string;

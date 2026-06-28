@@ -37,6 +37,7 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
 import { safeRouterBack } from './navigation_back';
+import ErrorBoundary from '../components/ErrorBoundary';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
 type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 interface SectionInfo {
@@ -542,7 +543,7 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
       {inner}
     </TouchableOpacity>);
 }
-export default function TrainerScreen() {
+function TrainerScreenInner() {
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
@@ -554,6 +555,7 @@ export default function TrainerScreen() {
     const [dashboard, setDashboard] = useState<TrainerDashboard>(EMPTY_TRAINER_DASHBOARD);
     const [loading, setLoading] = useState(true);
     const [initialDataReady, setInitialDataReady] = useState(false);
+    const [loadError, setLoadError] = useState(false);
     const [seeding, setSeeding] = useState(false);
     const [hasPremium, setHasPremium] = useState(false);
     const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
@@ -581,15 +583,19 @@ export default function TrainerScreen() {
             setHasPremium(premium);
             setAnalytics(analyticsResult);
             setResolvedPersonalTrainings(resolved);
+            setLoadError(false);
         }
         catch {
             // Keep the previous dashboard on refresh failure so the scroll layout does not collapse.
+            // Surface a retry affordance only when we never managed an initial load — otherwise the
+            // stale-but-valid dashboard stays on screen and a transient refresh hiccup is invisible.
+            setLoadError(prev => prev || !initialDataReady);
         }
         finally {
             setInitialDataReady(true);
             setLoading(false);
         }
-    }, [personalPracticeCoachEnabled, sourceLocale, studyTarget, trainerSessionEnabled]);
+    }, [personalPracticeCoachEnabled, sourceLocale, studyTarget, trainerSessionEnabled, initialDataReady]);
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
@@ -652,6 +658,47 @@ export default function TrainerScreen() {
     }, [router]);
     if (loading && !initialDataReady) {
         return <TrainerLoadingView lang={lang} accent={trainerAccent}/>;
+    }
+    if (loadError && !initialDataReady) {
+        return (<ScreenGradient>
+          <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-error">
+            <ContentWrap>
+              <View style={styles.headerRow}>
+                <TapScale accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router)} style={{ padding: 4, marginRight: 12 }}>
+                  <Ionicons name="chevron-back" size={28} color={sx.primary}/>
+                </TapScale>
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.h2 }]}>
+                    {triLang(lang, {
+                      ru: 'Моя практика', uk: 'Моя практика', es: 'Mi práctica',
+                      'pt-BR': 'Minha prática', vi: 'Luyện tập của tôi', id: 'Latihanku',
+                      tr: 'Pratiğim', pl: 'Moja praktyka',
+                    })}
+                  </Text>
+                </View>
+              </View>
+              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 16 }}>
+                <Ionicons name="cloud-offline-outline" size={48} color={t.textMuted}/>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Не удалось загрузить практику', uk: 'Не вдалося завантажити практику',
+                    es: 'No se pudo cargar la práctica', 'pt-BR': 'Não foi possível carregar a prática',
+                    vi: 'Không tải được phần luyện tập', id: 'Gagal memuat latihan',
+                    tr: 'Pratik yüklenemedi', pl: 'Nie udało się wczytać praktyki',
+                  })}
+                </Text>
+                <TouchableOpacity accessibilityRole="button" onPress={() => { hapticTap(); void loadData(); }} style={{ backgroundColor: trainerAccent, paddingVertical: 14, paddingHorizontal: 28, borderRadius: 14 }}>
+                  <Text style={{ color: primaryTextColor, fontSize: f.bodyLg, fontWeight: '800' }}>
+                    {triLang(lang, {
+                      ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
+                      vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ContentWrap>
+          </SafeAreaView>
+        </ScreenGradient>);
     }
     return (<ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer">
@@ -984,6 +1031,14 @@ export default function TrainerScreen() {
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>);
+}
+
+export default function TrainerScreen() {
+    return (
+      <ErrorBoundary>
+        <TrainerScreenInner />
+      </ErrorBoundary>
+    );
 }
 const styles = StyleSheet.create({
     headerRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 },

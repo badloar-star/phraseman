@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import { AppState, Platform } from 'react-native';
 import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
+import { isAnalyticsConsentGranted } from './analytics_consent';
 
 type ActivityValue = string | number | boolean | null | undefined;
 
@@ -93,10 +94,17 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     // reserved for explicit debug/critical traces, with light sampling for
     // high-volume diagnostic streams so growth does not turn every tap into a
     // billable document write.
+    const isErrorTrace = meta.result === 'error';
     const shouldWrite =
       meta.writeToFirestore === true
-      || (meta.result === 'error' && Math.random() < FIRESTORE_SAMPLE_RATE);
+      || (isErrorTrace && Math.random() < FIRESTORE_SAMPLE_RATE);
     if (!shouldWrite) return;
+
+    // Гейт согласия (GDPR/ePrivacy): продуктовую телеметрию (uid+userName+действия)
+    // НЕ пишем в облако без согласия на аналитику. Трейсы ОШИБОК (result:'error')
+    // оставляем — это строго необходимая диагностика стабильности (как Crashlytics),
+    // согласия не требует.
+    if (!isErrorTrace && !isAnalyticsConsentGranted()) return;
 
     await submitClientReport('app_activity', record).catch(() => {});
   } catch {

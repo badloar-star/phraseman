@@ -176,14 +176,26 @@ export async function recordSafetyFlag(
   }
 
   try {
-    const msg =
-      `🆘 <b>Safety flag</b> — ${escapeHtml(verdict.category)}\n` +
-      `<b>User:</b> ${escapeHtml(ctx.stableUid)}` +
-      (ctx.ageBracket ? ` (${escapeHtml(ctx.ageBracket)})` : '') +
-      `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}\n` +
-      `<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
-      `<b>Message:</b> ${escapeHtml(clip(ctx.userText, 400))}`;
-    await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '', msg, null);
+    // Уважаем per-type тоггл из admin_config/alerts: шлём, ЕСЛИ тип не выключен явно
+    // (safety = default-on; чтобы заглушить — надо снять галочку «🆘» в админке).
+    let safetyTypeEnabled = true;
+    try {
+      const cfgSnap = await db.doc('admin_config/alerts').get();
+      const cfg = cfgSnap.exists ? (cfgSnap.data() || {}) : {};
+      if (cfg.types && cfg.types.safetyFlag === false) safetyTypeEnabled = false;
+    } catch {
+      /* нет конфига — оставляем default-on */
+    }
+    if (safetyTypeEnabled) {
+      const msg =
+        `🆘 <b>Safety flag</b> — ${escapeHtml(verdict.category)}\n` +
+        `<b>User:</b> ${escapeHtml(ctx.stableUid)}` +
+        (ctx.ageBracket ? ` (${escapeHtml(ctx.ageBracket)})` : '') +
+        `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}\n` +
+        `<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
+        `<b>Message:</b> ${escapeHtml(clip(ctx.userText, 400))}`;
+      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '', msg, null);
+    }
   } catch (error) {
     console.error('[ai_safety] failed to send safety alert', error);
   }

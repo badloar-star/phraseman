@@ -10208,9 +10208,13 @@
         <input type="checkbox" id="alerts-type-contentReportDigest" aria-label="Alert on content report digest" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">📝 Content-репорты (полный текст сразу, при флуде — сводка раз в час)</span>
       </label>
-      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
         <input type="checkbox" id="alerts-type-cancelRefundSpike" aria-label="Alert on cancellation and refund spikes" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">📉 Всплеск отмен/рефандов</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-safetyFlag" aria-label="Alert on AI safety flags" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#fca5a5">🆘 Опасные сообщения в ИИ (self-harm/suicide/abuse)</span>
       </label>
       <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Порог всплеска (событий/час)</label>
       <input type="number" id="alerts-spike" min="1" max="100" aria-label="Cancellation and refund spike threshold per hour" placeholder="5" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:14px;width:120px">
@@ -24770,7 +24774,7 @@
     const el = document.getElementById('alerts-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
   }
-  const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike'];
+  const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike', 'safetyFlag'];
   function alertsRenderMeta(data) {
     const meta = document.getElementById('alerts-meta');
     if (!meta) return;

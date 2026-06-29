@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
@@ -199,10 +199,11 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   ember: EMBER,
   aurora: AURORA,
   volt: VOLT,
+  business: BUSINESS,
 };
-const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'business', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
 /** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'business', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
 const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass']);
@@ -250,7 +251,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
-        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt';
+        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' || migrated === 'business';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;

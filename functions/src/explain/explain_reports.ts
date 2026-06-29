@@ -40,7 +40,7 @@ import {
   QUIZ_COLLECTION,
   quizHashFor,
 } from './quiz_explain_cache';
-import { resolvePromptLangKey } from './explain_prompts';
+import { resolvePromptLangKeySoft } from './explain_prompts';
 
 const REGION = 'us-central1';
 
@@ -164,7 +164,7 @@ export const submitExplainReport = onCall({
   //  - phrase:  phraseHashFor(phraseEn, langKey)            в phrase_explanations
   //  - mistake: mistakeHashFor(phraseEn=target, userAnswer, langKey) в mistake_explanations
   //  - quiz:    quizHashFor(phraseEn=correct, quizChoices, langKey) в quiz_explanations
-  const langKey = resolvePromptLangKey(lang);
+  const langKey = resolvePromptLangKeySoft(lang);
   const cacheCollection = kind === 'mistake'
     ? MISTAKE_COLLECTION
     : kind === 'quiz'

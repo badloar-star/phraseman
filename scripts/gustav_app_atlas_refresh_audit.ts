@@ -294,7 +294,12 @@ function classifyDomain(relativePath: string, text: string): { primary: DomainId
   if (hasAny(p, 'mistake', 'problem_coach') || hasAny(text, 'mistake_explain', 'mistake explanation')) return { primary: 'mistake_explanations', secondary: [] };
   if (hasAny(p, 'premium', 'paywall', 'loyalty', 'speaking', 'referral') || hasAny(text, 'premium_dialog')) return { primary: 'premium_dialogs_paywall', secondary: [] };
   if (hasAny(p, 'ai_dialog', 'dialog_scenario', 'ai_companion') || hasAny(text, 'DIALOG_SCENARIOS', 'dialogScenario')) return { primary: 'ai_dialogs', secondary: [] };
-  if (hasAny(p, 'personal_plan', 'plan_content') || hasAny(text, 'planContent', 'PlanContent')) return { primary: 'personal_plan_content', secondary: [] };
+  if (
+    hasAny(p, 'personal_plan', 'plan_content', 'trainer_plan')
+    || hasAny(text, 'planContent', 'PlanContent', 'readTrainerPlanTaskContext')
+  ) {
+    return { primary: 'personal_plan_content', secondary: [] };
+  }
   if (hasAny(p, 'flashcard') || hasAny(text, 'flashcard')) return { primary: 'flashcards', secondary: [] };
   if (hasAny(p, 'collectible', 'pack_opening') || hasAny(text, 'collectible')) return { primary: 'collectibles_reward_text', secondary: [] };
   if (hasAny(p, 'reviewer', 'review_decision', 'import') || hasAny(text, 'reviewerDecision', 'decision import')) return { primary: 'admin_reviewer_import_flows', secondary: [] };
@@ -520,17 +525,17 @@ function main(): void {
   if (oldSurfaceInventoryStale) {
     addFinding(
       findings,
-      'warning',
+      'info',
       'old_surface_inventory_stale',
-      `Old surface inventory app TSX count ${oldSurfaceInventoryAppTsxFiles} differs from current app TSX count ${appTsxFiles}.`,
+      `Old surface inventory app TSX count ${oldSurfaceInventoryAppTsxFiles} differs from current app TSX count ${appTsxFiles}; current atlas refresh supersedes it.`,
     );
   }
   if (previousDeltaInventoryStale) {
     addFinding(
       findings,
-      'warning',
+      'info',
       'previous_delta_inventory_stale',
-      `Previous current-app delta count ${previousDeltaCurrentAppTsxFiles} differs from current app TSX count ${appTsxFiles}.`,
+      `Previous current-app delta count ${previousDeltaCurrentAppTsxFiles} differs from current app TSX count ${appTsxFiles}; current atlas refresh supersedes it.`,
     );
   }
 

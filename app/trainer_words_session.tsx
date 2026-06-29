@@ -530,7 +530,7 @@ export default function TrainerWordsSession() {
               <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.peach : '#E05050', fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Мимо',
-                  uk: 'Мимо',
+                  uk: 'Повз',
                   es: 'Incorrecto',
                   'pt-BR': 'Incorreto',
                   vi: 'Sai',

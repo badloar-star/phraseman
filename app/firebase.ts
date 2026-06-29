@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { submitClientReport } from './client_reports';
+import { isAnalyticsConsentGranted } from './analytics_consent';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -13,6 +14,10 @@ const getCrashlytics = () => IS_EXPO_GO ? null : require('@react-native-firebase
 // ── Core helpers ─────────────────────────────────────────────────────────────
 
 export function logEvent(name: string, params?: Record<string, string | number>) {
+  // Гейт согласия: non-essential продуктовая аналитика не отправляется без явного
+  // согласия (GDPR/ePrivacy). Crashlytics/recordError ниже НЕ гейтятся — это
+  // строго необходимая диагностика.
+  if (!isAnalyticsConsentGranted()) return;
   getAnalytics()?.logEvent(name, params).catch(() => {});
 }
 
@@ -46,7 +51,11 @@ function trackRevenueActivity(
 }
 
 export function setUserId(userId: string) {
-  getAnalytics()?.setUserId(userId).catch(() => {});
+  // Привязка аналитики к стабильному ID — только при согласии. Crashlytics ID
+  // оставляем всегда: он нужен для атрибуции крэшей (строго необходимо).
+  if (isAnalyticsConsentGranted()) {
+    getAnalytics()?.setUserId(userId).catch(() => {});
+  }
   getCrashlytics()?.setUserId(userId).catch(() => {});
 }
 

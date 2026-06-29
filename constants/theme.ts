@@ -306,7 +306,57 @@ export const EMBER    = buildCinemaTheme(CINEMA.ember);
 export const AURORA   = buildCinemaTheme(CINEMA.aurora);
 export const VOLT     = buildCinemaTheme(CINEMA.volt);
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt';
+// ─── «БИЗНЕС» (business) ─────────────────────────────────────────────────────
+// Строгая деловая моно-тема: чистый чёрный фон, только серые и белые оттенки,
+// НИ ОДНОГО цветного акцента. Статусы (верно/ошибка/XP/прогресс) различаются
+// насыщенностью серого и яркостью белого, а не цветом. Кромки/рамки на карточках
+// в покое почти невидимы — «строгий контейнер»; выделение читается контрастом
+// заливки и текстом. (Анимация «обводка по нажатию» — на уровне компонентов
+// TapScale/кнопок, не в палитре.)
+export const BUSINESS = {
+  bgPrimary:   '#0A0A0A',
+  bgCard:      '#141414',
+  bgSurface:   '#1C1C1C',
+  bgSurface2:  '#242424',
+  textPrimary: '#F2F2F2',
+  textOnCard:  '#F2F2F2',
+  // «Вторичный/акцентный» в этой теме — светлый, а не цветной.
+  textSecond:  '#D4D4D4',
+  textMuted:   '#9A9A9A',
+  textGhost:   '#5E5E5E',
+  heroTextPrimary: '#F2F2F2',
+  heroTextMuted:   '#9A9A9A',
+  // Разделители — тонкие, едва заметные (строгий контейнер).
+  border:      'rgba(255,255,255,0.08)',
+  borderLight: '#2A2A2A',
+  // Верно: яркий белый; фон — почти прозрачный серый (без зелёного).
+  correct:     '#FFFFFF',
+  correctBg:   'rgba(255,255,255,0.08)',
+  // Ошибка: приглушённый светло-серый + чуть более заметная подложка (без красного).
+  wrong:       '#BFBFBF',
+  wrongBg:     'rgba(255,255,255,0.05)',
+  // XP / Уровень — белый вместо золота.
+  gold:        '#EDEDED',
+  goldBg:      'rgba(255,255,255,0.10)',
+  textOnGold:  '#0A0A0A',
+  // Прогресс / активный — белый.
+  accent:      '#FFFFFF',
+  accentBg:    'rgba(255,255,255,0.10)',
+  // Текст на залитых белых CTA — чёрный.
+  correctText: '#0A0A0A',
+  shadowDark:       '#000000',
+  shadowLight:      'rgba(255,255,255,0.06)',
+  borderHighlight:  'rgba(255,255,255,0.10)',
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   '#000000',
+  cardShadow:  'rgba(0,0,0,0.65)',
+  glow:        'rgba(255,255,255,0.05)',
+  cardGradient: ['#1A1A1A', '#0D0D0D'] as [string, string],
+  bgGradient:  ['#0A0A0A', '#000000'] as [string, string],
+};
+
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -331,6 +381,7 @@ const _checkMIDNIGHT: Theme = MIDNIGHT as any;
 const _checkEMBER:    Theme = EMBER    as any;
 const _checkAURORA:   Theme = AURORA   as any;
 const _checkVOLT:     Theme = VOLT     as any;
+const _checkBUSINESS: Theme = BUSINESS as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {

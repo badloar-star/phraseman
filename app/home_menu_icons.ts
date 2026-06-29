@@ -37,6 +37,22 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/levels/her man fog.webp'),
     };
   }
+  if (themeMode === 'business') {
+    return {
+      lesson: require('../assets/images/home_menu/business/home-business-lessons-lite.avif'),
+      quizes: require('../assets/images/home_menu/business/home-business-quizzes-lite.avif'),
+      cards: require('../assets/images/home_menu/business/home-business-cards-lite.avif'),
+      dayTasks: require('../assets/images/home_menu/business/home-business-daily-tasks-lite.avif'),
+      league: require('../assets/images/home_menu/business/home-business-league-lite.avif'),
+      test: require('../assets/images/home_menu/business/home-business-diagnostic-test-lite.avif'),
+      practice: require('../assets/images/home_menu/business/home-business-practice-lite.avif'),
+      dialogs: require('../assets/images/home_menu/business/home-business-dialogs-lite.avif'),
+      exam: require('../assets/images/home_menu/business/home-business-exam-lite.avif'),
+      shop: require('../assets/images/home_menu/business/home-business-shop-lite.avif'),
+      arena: require('../assets/images/home_menu/business/home-business-arena-lite.avif'),
+      heroMap: require('../assets/images/home_menu/business/home-business-hero-map-lite.avif'),
+    };
+  }
   if (themeMode === 'midnight') {
     return {
       lesson: require('../assets/images/home_menu/midnight/home-midnight-lessons.webp'),

@@ -2,6 +2,8 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { canonicalPlanContentString } from '../app/plan_content_canonical_hash';
+
 import {
   PLAN_CONTENT_DAY_SCHEMA_VERSION,
   PLAN_CONTENT_INDEX_SCHEMA_VERSION,
@@ -249,26 +251,9 @@ function hashPlanContentDay(day: PlanContentDay): string {
 }
 
 function hashJson(value: unknown): string {
-  return createHash('sha256').update(stableStringify(value)).digest('hex');
-}
-
-function stableStringify(value: unknown): string {
-  return JSON.stringify(normalizeJson(value));
-}
-
-function normalizeJson(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    return value.map(normalizeJson);
-  }
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(
-      Object.entries(value)
-        .filter(([, entryValue]) => entryValue !== undefined)
-        .sort(([left], [right]) => left.localeCompare(right))
-        .map(([key, entryValue]) => [key, normalizeJson(entryValue)]),
-    );
-  }
-  return value;
+  // Single canonical serialization shared with the runtime integrity verifier
+  // (app/plan_content_canonical_hash.ts) so server days hash identically in both.
+  return createHash('sha256').update(canonicalPlanContentString(value)).digest('hex');
 }
 
 function resolveSourceLocale(value: SourceLocale | undefined): SourceLocale {

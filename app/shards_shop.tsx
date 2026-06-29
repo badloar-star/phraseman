@@ -810,7 +810,7 @@ export default function ShardsShopScreen() {
 
   const shardTerm = triLang(lang, {
     ru: 'осколков',
-    uk: 'осколків',
+    uk: 'уламків',
     es: shardsEsLc,
     'pt-BR': 'fragmentos',
     vi: 'mảnh',
@@ -820,7 +820,7 @@ export default function ShardsShopScreen() {
   });
   const heroTitle = triLang(lang, {
     ru: 'Осколки знаний',
-    uk: 'Осколки знань',
+    uk: 'Уламки знань',
     es: `${BRAND_SHARDS_ES} de conocimiento`,
     'pt-BR': 'Fragmentos de conhecimento',
     vi: 'Mảnh kiến thức',
@@ -859,7 +859,7 @@ export default function ShardsShopScreen() {
     if (remainingNeed <= 0) return null;
     return triLang(lang, {
       ru: `Нужно ещё ${remainingNeed} осколков — выбери пакет ниже.`,
-      uk: `Не вистачає ще ${remainingNeed} осколків — обери пакет нижче.`,
+      uk: `Не вистачає ще ${remainingNeed} уламків — обери пакет нижче.`,
       es: `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`,
       'pt-BR': `Faltam mais ${remainingNeed} fragmentos — escolha um pacote abaixo.`,
       vi: `Bạn còn thiếu ${remainingNeed} mảnh — hãy chọn một gói bên dưới.`,
@@ -898,7 +898,7 @@ export default function ShardsShopScreen() {
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `DEV: начислено ${shards} осколков.`,
-            messageUk: `DEV: нараховано ${shards} осколків.`,
+            messageUk: `DEV: нараховано ${shards} уламків.`,
             messageEs: `DEV: se añadieron ${shards} ${BRAND_SHARDS_ES.toLowerCase()}.`,
             messagePtBr: `DEV: ${shards} fragmentos adicionados.`,
             messageVi: `DEV: đã cộng ${shards} mảnh.`,
@@ -988,7 +988,7 @@ export default function ShardsShopScreen() {
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `Готово: +${shards} осколков`,
-            messageUk: `Готово: +${shards} осколків`,
+            messageUk: `Готово: +${shards} уламків`,
             messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
             messagePtBr: `Pronto: +${shards} fragmentos`,
             messageVi: `Xong: +${shards} mảnh`,
@@ -1000,7 +1000,7 @@ export default function ShardsShopScreen() {
           emitAppEvent('action_toast', {
             type: 'info',
             messageRu: 'Оплата принята. Осколки появятся через пару минут.',
-            messageUk: 'Оплату прийнято. Осколки з\'являться за пару хвилин.',
+            messageUk: 'Оплату прийнято. Уламки з\'являться за пару хвилин.',
             messageEs: 'Pago recibido. Los fragmentos aparecerán en un par de minutos.',
             messagePtBr: 'Pagamento recebido. Os fragmentos aparecerão em alguns minutos.',
             messageVi: 'Đã nhận thanh toán. Mảnh sẽ xuất hiện sau vài phút.',
@@ -1346,7 +1346,7 @@ export default function ShardsShopScreen() {
                 key === 'catalog'
                   ? triLang(lang, {
                     ru: 'Осколки',
-                    uk: 'Осколки',
+                    uk: 'Уламки',
                     es: BRAND_SHARDS_ES,
                     'pt-BR': 'Fragmentos',
                     vi: 'Mảnh',
@@ -1431,7 +1431,7 @@ export default function ShardsShopScreen() {
                   <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                     {triLang(lang, {
                       ru: 'Наборы за осколки',
-                      uk: 'Набори за осколки',
+                      uk: 'Набори за уламки',
                       es: `Paquetes por ${shardsEsLc}`,
                       'pt-BR': 'Pacotes por fragmentos',
                       vi: 'Gói đổi bằng mảnh',
@@ -1629,7 +1629,7 @@ export default function ShardsShopScreen() {
                                     })
                                     : triLang(lang, {
                                       ru: `Открыть за ${pack.priceShards} осколков`,
-                                      uk: `Відкрити за ${pack.priceShards} осколків`,
+                                      uk: `Відкрити за ${pack.priceShards} уламків`,
                                       es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
                                       'pt-BR': `Comprar por ${pack.priceShards} fragmentos`,
                                       vi: `Mua với ${pack.priceShards} mảnh`,
@@ -1751,7 +1751,7 @@ export default function ShardsShopScreen() {
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang, {
                   ru: 'Осколки за деньги',
-                  uk: 'Осколки за гроші',
+                  uk: 'Уламки за гроші',
                   es: `${BRAND_SHARDS_ES} (pago)`,
                   'pt-BR': 'Fragmentos (pagamento)',
                   vi: 'Mảnh (thanh toán)',

@@ -18,7 +18,7 @@ const ARENA_TYPES_ALLOWED = new Set([
 ]);
 
 function validateDeck(
-  raw: Array<Record<string, unknown>>,
+  raw: Record<string, unknown>[],
   level: 'A1' | 'A2' | 'B1' | 'B2',
   requireRand: boolean,
 ) {
@@ -71,7 +71,7 @@ function validateDeck(
   expect(dupes).toEqual([]);
 }
 
-function gapMarkersOk(raw: Array<Record<string, unknown>>) {
+function gapMarkersOk(raw: Record<string, unknown>[]) {
   for (const q of raw) {
     const t = q.type as string | undefined;
     if (t !== 'fill_blank' && t !== 'complete_phrasal') continue;
@@ -80,9 +80,29 @@ function gapMarkersOk(raw: Array<Record<string, unknown>>) {
   }
 }
 
+function noEnglishFirstCyrillicSecondQuestionInstructions(raw: Record<string, unknown>[]) {
+  const cyrillic = /[А-Яа-яЁёІіЇїЄєҐґ]/u;
+  const latin = /[A-Za-z]/;
+  const instruction = /^(which|what|choose|complete|fill|select|pick|find|translate)\b/i;
+  const offenders: { id: unknown; value: string }[] = [];
+  for (const q of raw) {
+    const value = q.question;
+    if (typeof value !== 'string') continue;
+    const separator = value.includes(' / ') ? ' / ' : value.includes(' · ') ? ' · ' : null;
+    if (!separator) continue;
+    const parts = value.split(separator).map((part) => part.trim()).filter(Boolean);
+    if (parts.length !== 2) continue;
+    const [first, second] = parts;
+    if (instruction.test(first) && latin.test(first) && !cyrillic.test(first) && cyrillic.test(second)) {
+      offenders.push({ id: q.id, value });
+    }
+  }
+  expect(offenders).toEqual([]);
+}
+
 describe('arena_questions_a1.json', () => {
   const p = path.join(__dirname, '..', 'assets', 'arena_questions_a1.json');
-  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Array<Record<string, unknown>>;
+  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Record<string, unknown>[];
 
   it('is non-empty and has no quiz_logic', () => {
     expect(raw.length).toBeGreaterThan(0);
@@ -95,11 +115,13 @@ describe('arena_questions_a1.json', () => {
   it('every card is valid', () => validateDeck(raw, 'A1', true));
 
   it('fill_blank / complete_phrasal have gap marker', () => gapMarkersOk(raw));
+
+  it('does not mix English first question instruction with Cyrillic fallback', () => noEnglishFirstCyrillicSecondQuestionInstructions(raw));
 });
 
 describe('arena_questions_a2.json', () => {
   const p = path.join(__dirname, '..', 'assets', 'arena_questions_a2.json');
-  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Array<Record<string, unknown>>;
+  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Record<string, unknown>[];
 
   it('is non-empty and has no quiz_logic', () => {
     expect(raw.length).toBeGreaterThan(0);
@@ -109,11 +131,13 @@ describe('arena_questions_a2.json', () => {
   it('every card is valid', () => validateDeck(raw, 'A2', true));
 
   it('fill_blank / complete_phrasal have gap marker', () => gapMarkersOk(raw));
+
+  it('does not mix English first question instruction with Cyrillic fallback', () => noEnglishFirstCyrillicSecondQuestionInstructions(raw));
 });
 
 describe('arena_questions_b1.json', () => {
   const p = path.join(__dirname, '..', 'assets', 'arena_questions_b1.json');
-  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Array<Record<string, unknown>>;
+  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Record<string, unknown>[];
 
   it('is non-empty and has no quiz_logic', () => {
     expect(raw.length).toBeGreaterThan(0);
@@ -123,11 +147,13 @@ describe('arena_questions_b1.json', () => {
   it('every card is valid', () => validateDeck(raw, 'B1', true));
 
   it('fill_blank / complete_phrasal have gap marker', () => gapMarkersOk(raw));
+
+  it('does not mix English first question instruction with Cyrillic fallback', () => noEnglishFirstCyrillicSecondQuestionInstructions(raw));
 });
 
 describe('arena_questions_b2.json', () => {
   const p = path.join(__dirname, '..', 'assets', 'arena_questions_b2.json');
-  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Array<Record<string, unknown>>;
+  const raw = JSON.parse(fs.readFileSync(p, 'utf8')) as Record<string, unknown>[];
 
   it('is non-empty and has no quiz_logic', () => {
     expect(raw.length).toBeGreaterThan(0);
@@ -137,4 +163,6 @@ describe('arena_questions_b2.json', () => {
   it('every card is valid', () => validateDeck(raw, 'B2', true));
 
   it('fill_blank / complete_phrasal have gap marker', () => gapMarkersOk(raw));
+
+  it('does not mix English first question instruction with Cyrillic fallback', () => noEnglishFirstCyrillicSecondQuestionInstructions(raw));
 });

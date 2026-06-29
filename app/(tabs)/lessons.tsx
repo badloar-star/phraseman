@@ -20,6 +20,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
 import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
 import type { ThemeMode } from '../../constants/theme';
+import { monoIcon } from '../../constants/monoIcon';
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -273,8 +274,9 @@ function LessonExamThemeIcon({ themeMode, size, label }: {
  * Показывается только на уроках, закрытых именно за пейволом (premiumRequired),
  * а не за прогрессом/уровнем — там остаётся обычный замочек.
  */
-function PremiumBadge({ label }: {
+function PremiumBadge({ label, themeMode }: {
     label: string;
+    themeMode: ThemeMode;
 }) {
     return (<View style={{
             flexDirection: 'row',
@@ -288,7 +290,7 @@ function PremiumBadge({ label }: {
             borderColor: GOLD_RICH.hairlineStrong,
         }}>
       <LinearGradient colors={GOLD_GRADIENTS.primaryButton} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
-      <Ionicons name="diamond" size={9} color={GOLD_RICH.bronzeDark}/>
+      <Ionicons name="diamond" size={9} color={monoIcon(themeMode, GOLD_RICH.bronzeDark)}/>
       <Text style={{ color: GOLD_RICH.bronzeDark, fontSize: 10, fontWeight: '900', letterSpacing: 0.4 }} maxFontSizeMultiplier={1}>
         {label}
       </Text>
@@ -532,7 +534,7 @@ const LessonCard = React.memo(function LessonCard({
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                 {premiumRequired
-                    ? <PremiumBadge label={triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}/>
+                    ? <PremiumBadge themeMode={_themeMode} label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}/>
                     : !isUnlocked
                     ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : isCoralTheme ? rgbaHexCached(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
@@ -1002,14 +1004,14 @@ export default function LessonsTab() {
                         })
                         : examPremiumRequired
                             ? triLang(lang, {
-                                ru: 'Откроется с Premium',
-                                uk: 'Відкриється з Premium',
-                                es: 'Se abre con Premium',
-                                'pt-BR': 'Abre com Premium',
-                                vi: 'Mở với Premium',
-                                id: 'Terbuka dengan Premium',
-                                tr: 'Premium ile açılır',
-                                pl: 'Otwiera się z Premium',
+                                ru: 'Откроется с Plus',
+                                uk: 'Відкриється з Plus',
+                                es: 'Se abre con Plus',
+                                'pt-BR': 'Abre com Plus',
+                                vi: 'Mở với Plus',
+                                id: 'Terbuka dengan Plus',
+                                tr: 'Plus ile açılır',
+                                pl: 'Otwiera się z Plus',
                             })
                             : isPremium && prevExamLevel
                                 ? triLang(lang, {
@@ -1248,14 +1250,14 @@ export default function LessonsTab() {
             ? triLang(lang, { ru: 'Недоступно', uk: 'Недоступно', es: 'No disponible', 'pt-BR': 'Indisponível', vi: 'Không khả dụng', id: 'Tidak tersedia', tr: 'Kullanılamaz', pl: 'Niedostępne' })
             : gateModal?.kind === 'premium'
                 ? triLang(lang, {
-                    ru: 'Premium',
-                    uk: 'Premium',
-                    es: 'Premium',
-                    'pt-BR': 'Premium',
-                    vi: 'Premium',
-                    id: 'Premium',
-                    tr: 'Premium',
-                    pl: 'Premium',
+                    ru: 'Plus',
+                    uk: 'Plus',
+                    es: 'Plus',
+                    'pt-BR': 'Plus',
+                    vi: 'Plus',
+                    id: 'Plus',
+                    tr: 'Plus',
+                    pl: 'Plus',
                 })
                 : gateModal?.kind === 'levelGate'
                     ? triLang(lang, {
@@ -1316,19 +1318,19 @@ export default function LessonsTab() {
                     })
                     : gateModal?.kind === 'premium'
                         ? triLang(lang, {
-                            ru: 'Этот урок входит в Premium.',
-                            uk: 'Цей урок входить до Premium.',
-                            es: 'Esta lección forma parte de Premium.',
-                            'pt-BR': 'Esta lição faz parte do Premium.',
-                            vi: 'Bài học này thuộc Premium.',
-                            id: 'Pelajaran ini termasuk Premium.',
-                            tr: 'Bu ders Premium kapsamındadır.',
-                            pl: 'Ta lekcja jest częścią Premium.',
+                            ru: 'Этот урок входит в Plus.',
+                            uk: 'Цей урок входить до Plus.',
+                            es: 'Esta lección forma parte de Plus.',
+                            'pt-BR': 'Esta lição faz parte do Plus.',
+                            vi: 'Bài học này thuộc Plus.',
+                            id: 'Pelajaran ini termasuk Plus.',
+                            tr: 'Bu ders Plus kapsamındadır.',
+                            pl: 'Ta lekcja jest częścią Plus.',
                         })
                         : ''} choices={gateModal?.kind === 'premium'
             ? [
                 {
-                    label: triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium', 'pt-BR': 'Obter Premium', vi: 'Nhận Premium', id: 'Dapatkan Premium', tr: 'Premium al', pl: 'Zdobądź Premium' }),
+                    label: triLang(lang, { ru: 'Получить Plus', uk: 'Отримати Plus', es: 'Obtener Plus', 'pt-BR': 'Obter Plus', vi: 'Nhận Plus', id: 'Dapatkan Plus', tr: 'Plus al', pl: 'Zdobądź Plus' }),
                     variant: 'primary' as const,
                     onPress: () => {
                         const doneSoFar = scores.filter(score => score > 0).length;

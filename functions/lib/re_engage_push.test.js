@@ -49,6 +49,7 @@ describe('parseReEngageUser', () => {
             uid: 'uX',
             expoPushToken: TOKEN,
             pushTokenLang: 'es',
+            pushTokenTimezone: null,
             lastActiveAt: NOW - 4 * DAY,
             streakCount: 7,
             lastReEngagePushAt: NOW - 10 * DAY,

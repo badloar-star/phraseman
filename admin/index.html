@@ -9085,6 +9085,8 @@
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="Reportes">Reports</div>
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="Soporte (sitio)">Support (site)</div>
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
+  <div class="tab" onclick="switchTab('safety-flags')" style="background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.4);color:#fca5a5;font-weight:700" data-i18n-es="Seguridad">🆘 Safety</div>
+  <div class="tab" onclick="switchTab('age-consent')" data-i18n-es="Edad y consentimiento">🔞 Age & consent</div>
   <div class="tab" onclick="switchTab('explain-reports')" data-i18n-es="Explicaciones">Explain reports</div>
   <div class="tab" onclick="switchTab('explain-cache')" data-i18n-es="Caché de explicaciones">Explain cache</div>
   <div class="tab" onclick="switchTab('compass')" data-i18n-es="Brújula">🧭 Компас</div>
@@ -10395,6 +10397,36 @@
     <span class="reports-count" id="ur-count"></span>
   </div>
   <div id="ur-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- SAFETY FLAGS TAB (опасные сообщения в ИИ-диалоге: self-harm/suicide/abuse) -->
+<div id="tab-safety-flags" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="sf-filter-handled" onchange="filterSafetyFlags()">
+      <option value="open" data-i18n-es="Abiertos">Не обработанные</option>
+      <option value="handled" data-i18n-es="Procesados">Обработанные</option>
+      <option value="" data-i18n-es="Todos">Все</option>
+    </select>
+    <select id="sf-filter-category" onchange="filterSafetyFlags()">
+      <option value="" data-i18n-es="Todas las categorías">Все категории</option>
+      <option value="suicide">suicide</option>
+      <option value="self_harm">self_harm</option>
+      <option value="abuse">abuse</option>
+      <option value="violence">violence</option>
+    </select>
+    <button onclick="loadSafetyFlags()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <span class="reports-count" id="sf-count"></span>
+  </div>
+  <div id="sf-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- AGE & CONSENT TAB (учёт возрастных групп и согласий на аналитику — accountability) -->
+<div id="tab-age-consent" class="reports-tab">
+  <div class="reports-toolbar">
+    <button onclick="loadAgeConsent()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <span class="reports-count" id="ac-count"></span>
+  </div>
+  <div id="ac-summary"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
 </div>
 
 <!-- IDEAS TAB (Идеи пользователей — год премиума за принятую идею) -->
@@ -16208,6 +16240,8 @@
     const wiTabInbox = document.getElementById('tab-website-inbox');
     if (wiTabInbox) wiTabInbox.classList.toggle('active', tab === 'website-inbox');
     document.getElementById('tab-user-reports').classList.toggle('active',tab==='user-reports');
+    { const sfTab = document.getElementById('tab-safety-flags'); if (sfTab) sfTab.classList.toggle('active', tab==='safety-flags'); }
+    { const acTab = document.getElementById('tab-age-consent'); if (acTab) acTab.classList.toggle('active', tab==='age-consent'); }
     const explainRepTab = document.getElementById('tab-explain-reports');
     if (explainRepTab) explainRepTab.classList.toggle('active', tab === 'explain-reports');
     const explainCacheTab = document.getElementById('tab-explain-cache');
@@ -16293,6 +16327,8 @@
       void window.loadWebsiteInbox(false);
     }
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
+    if(tab==='safety-flags' && !window._safetyFlagsLoaded) loadSafetyFlags();
+    if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
     if(tab==='compass' && !window._compassAdminLoaded) loadCompassAdmin();
@@ -21183,6 +21219,118 @@
   const UR_REASON_LABELS = {
     offensive_nickname: 'Оскорб. ник',
     cheating: 'Читерство',
+  };
+
+  // ── Safety flags (опасные сообщения в ИИ-диалоге) ──
+  let _allSafetyFlags = [];
+  window.loadSafetyFlags = async function() {
+    window._safetyFlagsLoaded = true;
+    const list = document.getElementById('sf-list');
+    if (!list) return;
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      const snap = await getDocs(query(collection(db, 'safety_flags'), orderBy('createdAtMs','desc'), limit(500)));
+      _allSafetyFlags = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      filterSafetyFlags();
+    } catch(e) {
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterSafetyFlags = function() {
+    const handled = document.getElementById('sf-filter-handled').value;
+    const category = document.getElementById('sf-filter-category').value;
+    let arr = _allSafetyFlags;
+    if (handled === 'open') arr = arr.filter(r => !r.handled);
+    else if (handled === 'handled') arr = arr.filter(r => !!r.handled);
+    if (category) arr = arr.filter(r => r.category === category);
+    renderSafetyFlags(arr);
+  };
+
+  function renderSafetyFlags(flags) {
+    const list = document.getElementById('sf-list');
+    const countEl = document.getElementById('sf-count');
+    if (countEl) countEl.textContent = `${flags.length} флагов`;
+    if (!flags.length) { list.innerHTML = '<div class="reports-empty">🎉 Опасных сообщений нет!</div>'; return; }
+    list.innerHTML = flags.map(r => {
+      const catColor = r.category === 'suicide' || r.category === 'self_harm' ? '#f87171' : '#fbbf24';
+      const when = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString() : '—';
+      const uidShort = r.uid ? escapeHtml(String(r.uid).slice(-10)) : '—';
+      const ageB = r.ageBracket ? escapeHtml(r.ageBracket) : '—';
+      const history = Array.isArray(r.historyContext)
+        ? r.historyContext.map(m => `<div style="opacity:.75;font-size:12px"><b>${escapeHtml(m.role)}:</b> ${escapeHtml(m.content)}</div>`).join('')
+        : '';
+      return `
+        <div class="report-card" style="border-left:3px solid ${catColor};padding:12px;margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span style="color:${catColor};font-weight:700">🆘 ${escapeHtml(r.category || '—')}</span>
+            <span style="opacity:.6;font-size:12px">${escapeHtml(when)}</span>
+          </div>
+          <div style="font-size:12px;opacity:.8;margin-top:4px">user …${uidShort} · age ${ageB} · mode ${escapeHtml(r.mode || '—')} · matched "${escapeHtml(r.matched || '')}"</div>
+          <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.08);border-radius:6px"><b>Сообщение:</b> ${escapeHtml(r.userText || '')}</div>
+          ${history ? `<div style="margin-top:8px"><b style="font-size:12px">Контекст:</b>${history}</div>` : ''}
+          <div style="margin-top:8px">
+            ${r.handled
+              ? '<span style="color:#4ade80;font-size:12px">✓ обработано</span>'
+              : `<button onclick="markSafetyHandled('${r.id}')" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">Отметить обработанным</button>`}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  window.markSafetyHandled = async function(id) {
+    try {
+      await updateDoc(doc(db, 'safety_flags', id), { handled: true, handledAt: new Date().toISOString() });
+      const f = _allSafetyFlags.find(x => x.id === id);
+      if (f) f.handled = true;
+      filterSafetyFlags();
+    } catch(e) {
+      alert('Ошибка: ' + (e.message || e));
+    }
+  };
+
+  // ── Age & consent (учёт возрастных групп и согласий) ──
+  window.loadAgeConsent = async function() {
+    window._ageConsentLoaded = true;
+    const box = document.getElementById('ac-summary');
+    if (!box) return;
+    box.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      const snap = await getDocs(query(collection(db, 'user_consents'), limit(5000)));
+      const rows = snap.docs.map(d => d.data());
+      const total = rows.length;
+      const brackets = { adult: 0, teen_safe: 0, under13: 0, unknown: 0 };
+      const consent = { granted: 0, denied: 0, unset: 0 };
+      rows.forEach(r => {
+        const b = r.ageBracket; if (brackets[b] !== undefined) brackets[b]++; else brackets.unknown++;
+        const c = r.analyticsConsent; if (consent[c] !== undefined) consent[c]++; else consent.unset++;
+      });
+      const pct = (n) => total ? Math.round(n / total * 100) : 0;
+      const countEl = document.getElementById('ac-count');
+      if (countEl) countEl.textContent = `${total} записей`;
+      const card = (label, n, color) => `
+        <div style="flex:1;min-width:120px;background:#161a1f;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px">
+          <div style="font-size:24px;font-weight:800;color:${color}">${n}</div>
+          <div style="font-size:12px;opacity:.7">${label} · ${pct(n)}%</div>
+        </div>`;
+      box.innerHTML = `
+        <div style="margin:6px 0 10px;font-weight:700;opacity:.85">Возрастные группы</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${card('16+ (полный доступ)', brackets.adult, '#4ade80')}
+          ${card('13–15 (безопасный режим)', brackets.teen_safe, '#fbbf24')}
+          ${card('младше 13', brackets.under13, '#f87171')}
+          ${card('не указан', brackets.unknown, '#9ca3af')}
+        </div>
+        <div style="margin:18px 0 10px;font-weight:700;opacity:.85">Согласие на аналитику</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${card('Разрешили', consent.granted, '#4ade80')}
+          ${card('Отказались', consent.denied, '#f87171')}
+          ${card('Не выбрали', consent.unset, '#9ca3af')}
+        </div>
+        <div style="margin-top:14px;font-size:12px;opacity:.55">Данные пишутся при прохождении возрастного экрана / модала согласия. Это учёт для соответствия (accountability).</div>`;
+    } catch(e) {
+      box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
   };
 
   window.loadUserReports = async function() {

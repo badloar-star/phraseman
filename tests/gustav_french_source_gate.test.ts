@@ -702,7 +702,8 @@ describe('Gustav French source gate', () => {
       'quizPrompts',
       'examRows',
     ]));
-    expect(researchJsonFirewallAudit.scannedFiles).toEqual(expect.arrayContaining([
+    const normalizedResearchScannedFiles = researchJsonFirewallAudit.scannedFiles.map((file: string) => file.replace(/\\/g, '/'));
+    expect(normalizedResearchScannedFiles).toEqual(expect.arrayContaining([
       'docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_rows1_4_reviewer_approval_template.json',
       'docs/gustav/runs/2026-05-19_fr_inventory_v0a1/research/lesson1_rows1_4_drafting_gate.json',
     ]));

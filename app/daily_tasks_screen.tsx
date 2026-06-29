@@ -31,10 +31,15 @@ import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
-import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
+import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
+import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
+import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
+import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 
@@ -2121,6 +2126,60 @@ export default function DailyTasksScreen() {
             }
             router.push('/diagnostic_test');
         };
+        const openVocabularyOrFrenchGate = (surface: VocabularyGateSurface, route: any) => {
+            if (!vocabularyContentAvailableForTarget(studyTarget, surface)) {
+                const copy = frenchVocabularyGateCopy(surface, lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French vocabulary is still behind source gate.',
+                });
+                router.replace({ pathname: '/lesson_menu', params: { id: lessonId } });
+                return;
+            }
+            router.push(route);
+        };
+        const openTrainerOrFrenchGate = (route: any) => {
+            if (!trainerSessionContentAvailableForTarget(studyTarget)) {
+                const copy = frenchTrainerGateCopy(lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French trainer is still behind source gate.',
+                });
+                router.replace('/(tabs)/lessons' as any);
+                return;
+            }
+            router.push(route);
+        };
+        const openFlashcardsOrFrenchGate = () => {
+            if (!flashcardsSourceGatedContentAvailableForTarget(storageStudyTarget(studyTarget), 'system_cards')) {
+                const copy = frenchFlashcardsGateCopy(lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French flashcards are still behind source gate.',
+                });
+                router.replace('/(tabs)/lessons' as any);
+                return;
+            }
+            router.push('/flashcards');
+        };
+        const openDailyPhraseOrFrenchGate = () => {
+            if (!dailyPhraseContentAvailableForTarget(studyTarget)) {
+                const copy = frenchDailyPhraseGateCopy(lang);
+                emitAppEvent('action_toast', {
+                    type: 'info',
+                    messageRu: copy.title,
+                    messageUk: copy.title,
+                    messageEs: 'French daily phrase is still behind source gate.',
+                });
+            }
+            router.replace('/(tabs)/home');
+        };
         switch (task.type) {
             case 'different_lessons':
                 // "Заниматься в N разных уроках" — отправляем в список, чтобы пользователь мог выбрать другой урок.
@@ -2142,11 +2201,11 @@ export default function DailyTasksScreen() {
                     const sorted = [...LESSONS_WITH_IRREGULAR_VERBS].sort((a, b) => a - b);
                     verbLessonId = sorted[0] ?? 1;
                 }
-                router.push({ pathname: '/lesson_irregular_verbs', params: { id: verbLessonId } });
+                openVocabularyOrFrenchGate('irregular_verbs', { pathname: '/lesson_irregular_verbs', params: { id: verbLessonId } });
                 break;
             }
             case 'words_learned':
-                router.push({ pathname: '/lesson_words', params: { id: lessonId } });
+                openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId } });
                 break;
             case 'quiz_hard':
                 await openQuizOrFrenchGate('hard');
@@ -2165,7 +2224,7 @@ export default function DailyTasksScreen() {
                 await openQuizOrFrenchGate('hard');
                 break;
             case 'open_theory':
-                if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
+                if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)) {
                     emitAppEvent('action_toast', {
                         type: 'info',
                         messageRu: 'French теория откроется после source gate. English theory не подставляется.',
@@ -2180,26 +2239,26 @@ export default function DailyTasksScreen() {
             case 'flashcard_view':
             case 'flashcard_save':
             case 'flashcard_flip':
-                router.push('/flashcards');
+                openFlashcardsOrFrenchGate();
                 break;
             case 'recall_session':
             case 'recall_answers':
             case 'recall_perfect':
-                router.push('/trainer');
+                openTrainerOrFrenchGate('/trainer');
                 break;
             case 'trainer_words':
                 // Сразу в сессию слов — только она засчитывает trainer_words (лимит сессия проверяет сама).
-                router.push('/trainer_words_session');
+                openTrainerOrFrenchGate('/trainer_words_session');
                 break;
             case 'trainer_phrases':
-                router.push('/trainer_phrases_session');
+                openTrainerOrFrenchGate('/trainer_phrases_session');
                 break;
             case 'trainer_arena':
-                router.push('/trainer_arena_session');
+                openTrainerOrFrenchGate('/trainer_arena_session');
                 break;
             case 'daily_phrase_read':
             case 'daily_phrase_save':
-                router.replace('/(tabs)/home');
+                openDailyPhraseOrFrenchGate();
                 break;
             case 'diagnostic_complete':
                 openDiagnosticOrFrenchGate();

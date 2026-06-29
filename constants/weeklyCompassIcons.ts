@@ -8,6 +8,7 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   gold: 'assets/images/weekly_compass_icons/gold.webp',
   coral: 'assets/images/weekly_compass_icons/coral.webp',
   minimalDark: 'assets/images/weekly_compass_icons/minimalDark.webp',
+  business: 'assets/images/weekly_compass_icons/business.webp',
   midnight: 'assets/images/weekly_compass_icons/midnight.webp',
   ember: 'assets/images/weekly_compass_icons/ember.webp',
   aurora: 'assets/images/weekly_compass_icons/aurora.webp',
@@ -16,6 +17,7 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
 
 export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
   'minimalDark',
+  'business',
   'dark',
   'gold',
   'coral',
@@ -30,6 +32,7 @@ export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {
   gold: 'Centered 3D compass icon for a language learning app, black piano lacquer and champagne gold metal, antique nautical needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   coral: 'Centered 3D compass icon for a language learning app, warm coral enamel and cocoa shadows, rose-gold needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   minimalDark: 'Centered 3D compass icon for a language learning app, graphite shell, cool blue glass glow, clean Apple-like minimal object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
+  business: 'Centered 3D compass icon for a language learning app, serious executive monochrome style, graphite-black shell, brushed gunmetal, polished silver highlights, precise corporate geometry, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, no colored glow, no colored accents, only black white and grayscale tones, soft studio rim light, 1024 square.',
   midnight: 'Centered 3D compass icon for a language learning app, black cinema finish, midnight indigo and violet glow, sharp luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   ember: 'Centered 3D compass icon for a language learning app, black cinema finish, ember orange metal and smoked glass, warm luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   aurora: 'Centered 3D compass icon for a language learning app, black cinema finish, aurora green and cyan glow, crystalline luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
@@ -43,6 +46,7 @@ const GENERATED_COMPASS_ICON_SOURCES: Partial<Record<ThemeMode, ImageSourcePropT
   gold: require('../assets/images/weekly_compass_icons/gold.webp'),
   coral: require('../assets/images/weekly_compass_icons/coral.webp'),
   minimalDark: require('../assets/images/weekly_compass_icons/minimalDark.webp'),
+  business: require('../assets/images/weekly_compass_icons/business.webp'),
   midnight: require('../assets/images/weekly_compass_icons/midnight.webp'),
   ember: require('../assets/images/weekly_compass_icons/ember.webp'),
   aurora: require('../assets/images/weekly_compass_icons/aurora.webp'),

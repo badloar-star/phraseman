@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 
 describe('personal plan recommended content review checklist', () => {
-  it('documents human review as recommended guidance, not a blocker or production approval gate', () => {
+  it('documents content review as recommended guidance, not a blocker or production approval gate', () => {
     const checklist = fs.readFileSync(
       path.join(ROOT, 'docs', 'personal-plans-human-content-review-checklist.md'),
       'utf8',

@@ -85,6 +85,18 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     ornament: '#6EA8FF',
     shadow: '#6EA8FF',
   },
+  business: {
+    colors: ['#242424', '#1C1C1C', '#0A0A0A'],
+    border: 'rgba(255,255,255,0.12)',
+    glow: 'rgba(255,255,255,0.08)',
+    title: '#F2F2F2',
+    phrase: '#FFFFFF',
+    sub: '#9A9A9A',
+    iconBg: 'rgba(255,255,255,0.08)',
+    iconBorder: 'rgba(255,255,255,0.12)',
+    ornament: '#FFFFFF',
+    shadow: '#000000',
+  },
   midnight: {
     colors: ['#1A1D2C', '#0D0E16', '#050506'],
     border: 'rgba(143,160,255,0.42)',

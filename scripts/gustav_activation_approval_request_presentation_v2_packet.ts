@@ -276,8 +276,8 @@ function extractCriticalArtifacts(p29: JsonObject): CriticalArtifact[] {
   });
 }
 
-function buildRequiredApprovalSentence(runId: string, repoRelativeHashLockPath: string, repoRelativeP28Path: string): string {
-  return `I approve PhraseMan French activation apply for run ${runId} after reviewing ${repoRelativeHashLockPath} and ${repoRelativeP28Path}. I understand this permits only the listed future-gated production changes, keeps studyTarget=fr isolated from sourceLocale/uiLocale/cloud/cache/prompts, and does not allow unlisted writes, uploads, runtime downloads, migrations or activation flags.`;
+function buildRequiredApprovalSentence(runId: string, repoRelativeHashLockPath: string, repoRelativeFinalHashLockPath: string, repoRelativeP28Path: string, repoRelativeCompletionAuditPath: string): string {
+  return `I approve PhraseMan French activation apply for run ${runId} after reviewing ${repoRelativeHashLockPath}, ${repoRelativeFinalHashLockPath}, ${repoRelativeP28Path}, and ${repoRelativeCompletionAuditPath}. I understand this permits only the listed future-gated production changes, keeps studyTarget=fr isolated from sourceLocale/uiLocale/cloud/cache/prompts, and does not allow unlisted writes, uploads, runtime downloads, migrations or activation flags.`;
 }
 
 function renderApprovalRequestMarkdown(input: {
@@ -286,7 +286,9 @@ function renderApprovalRequestMarkdown(input: {
   requiredApprovalSentence: string;
   p28Path: string;
   p29Path: string;
+  completionAuditPath: string;
   hashLockPath: string;
+  finalHashLockPath: string;
   approvalTemplatePath: string;
   activationBlockers: ActivationBlocker[];
   criticalHashLocks: number;
@@ -318,7 +320,9 @@ function renderApprovalRequestMarkdown(input: {
     '',
     `- Runtime activation blocker plan: ${input.p28Path}`,
     `- Explicit approval/hash-lock gate: ${input.p29Path}`,
+    `- Production readiness completion audit: ${input.completionAuditPath}`,
     `- Hash-lock dry run: ${input.hashLockPath}`,
+    `- Final pre-approval evidence hash-lock dry run: ${input.finalHashLockPath}`,
     `- Approval receipt template: ${input.approvalTemplatePath}`,
     `- Critical hash locks: ${input.criticalHashLocks}`,
     `- Dirty worktree files captured: ${input.dirtyFiles}`,
@@ -532,11 +536,13 @@ function main(): void {
 
   const p28Path = path.join(auditsDir, 'runtime_activation_blocker_plan_v2_packet.json');
   const p29Path = path.join(auditsDir, 'explicit_approval_receipt_hash_lock_gate_v2_packet.json');
+  const completionAuditPath = path.join(auditsDir, 'production_readiness_completion_audit_v2_packet.json');
   const readinessPath = path.join(auditsDir, 'readiness_blocker_reduction_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const serverManifestDraftPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
   const approvalTemplatePath = path.join(applyPlanDir, 'explicit_approval_receipt_template_v2.md');
   const hashLockDryRunPath = path.join(applyPlanDir, 'hash_lock_manifest_dry_run_v2.json');
+  const finalHashLockDryRunPath = path.join(applyPlanDir, 'final_preapproval_evidence_hash_lock_dry_run_v2.json');
   const activeApprovalReceiptPath = path.join(applyPlanDir, 'explicit_approval_receipt_v2.json');
   const activeHashLockPath = path.join(applyPlanDir, 'hash_lock_manifest_v2.json');
   const approvalRequestPath = path.join(applyPlanDir, 'activation_approval_request_v2.md');
@@ -557,7 +563,7 @@ function main(): void {
   const plannedTouches = activationBlockers.flatMap((blocker) => blocker.plannedTouches);
   const criticalArtifacts = extractCriticalArtifacts(p29);
   const serverEntries = Array.isArray(serverManifestDraft.entries) ? serverManifestDraft.entries.length : 0;
-  const requiredApprovalSentence = buildRequiredApprovalSentence(runId, rel(repoRoot, hashLockDryRunPath), rel(repoRoot, p28Path));
+  const requiredApprovalSentence = buildRequiredApprovalSentence(runId, rel(repoRoot, hashLockDryRunPath), rel(repoRoot, finalHashLockDryRunPath), rel(repoRoot, p28Path), rel(repoRoot, completionAuditPath));
 
   ensureDir(applyPlanDir);
   fs.writeFileSync(approvalRequestPath, renderApprovalRequestMarkdown({
@@ -566,7 +572,9 @@ function main(): void {
     requiredApprovalSentence,
     p28Path: rel(repoRoot, p28Path),
     p29Path: rel(repoRoot, p29Path),
+    completionAuditPath: rel(repoRoot, completionAuditPath),
     hashLockPath: rel(repoRoot, hashLockDryRunPath),
+    finalHashLockPath: rel(repoRoot, finalHashLockDryRunPath),
     approvalTemplatePath: rel(repoRoot, approvalTemplatePath),
     activationBlockers,
     criticalHashLocks: n(p29Summary, 'criticalHashLocks'),
@@ -626,6 +634,8 @@ function main(): void {
     approvalRequestHashLinked:
       approvalRequestContent.includes(rel(repoRoot, p28Path)) &&
       approvalRequestContent.includes(rel(repoRoot, p29Path)) &&
+      approvalRequestContent.includes(rel(repoRoot, completionAuditPath)) &&
+      approvalRequestContent.includes(rel(repoRoot, finalHashLockDryRunPath)) &&
       approvalRequestContent.includes(rel(repoRoot, hashLockDryRunPath)),
   };
 
@@ -686,11 +696,13 @@ function main(): void {
     inputs: {
       runtimeActivationBlockerPlanV2Packet: rel(repoRoot, p28Path),
       explicitApprovalReceiptHashLockGateV2Packet: rel(repoRoot, p29Path),
+      productionReadinessCompletionAuditV2Packet: rel(repoRoot, completionAuditPath),
       readinessBlockerReductionPacket: rel(repoRoot, readinessPath),
       targetPackManifestV2Draft: rel(repoRoot, targetManifestPath),
       serverDeliveryManifestV2Draft: rel(repoRoot, serverManifestDraftPath),
       approvalReceiptTemplate: rel(repoRoot, approvalTemplatePath),
       hashLockManifestDryRun: rel(repoRoot, hashLockDryRunPath),
+      finalPreapprovalEvidenceHashLockDryRun: rel(repoRoot, finalHashLockDryRunPath),
     },
     outputs: {
       packet: rel(repoRoot, outputJsonPath),

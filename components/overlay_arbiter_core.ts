@@ -13,6 +13,7 @@ export type OverlayKey =
   | 'premiumCelebration'
   | 'vipCelebration'
   | 'leagueResult'
+  | 'arenaSeasonResult'
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
@@ -23,6 +24,7 @@ export type OverlayKey =
   | 'compassBriefing'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
+  | 'collectibleDrop'
   | 'shardsEarned'
   | 'matchFoundToastScreen'
   | 'matchFoundToast'
@@ -55,6 +57,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
+  'arenaSeasonResult',
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
@@ -64,6 +67,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'compassBriefing',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
+  'collectibleDrop',
   'shardsEarned',
   'matchFoundToastScreen',
   'matchFoundToast',
@@ -145,12 +149,14 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
+  'arenaSeasonResult',
   'themedAlert',
   'mysteryMondayChest',
   'comebackDay',
   'perfectWeekReward',
   'boonActivated',
   'compassBriefing',
+  'collectibleDrop',
   'achievementToast',
   // arenaRoomConfirm = ThemedChoiceModal = НАТИВНЫЙ <Modal> (как themedAlert). Без него
   // в этом списке передача слота из/в это окно шла без 360мс-зазора → на iOS present
@@ -198,6 +204,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   premiumCelebration: false,
   vipCelebration: false,
   leagueResult: false,
+  arenaSeasonResult: false,
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
@@ -208,6 +215,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   compassBriefing: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,
+  collectibleDrop: false,
   shardsEarned: false,
   matchFoundToastScreen: false,
   matchFoundToast: false,

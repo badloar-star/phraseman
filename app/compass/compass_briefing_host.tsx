@@ -17,10 +17,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useLang } from '../../components/LangContext';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import { hapticSuccess, hapticCelebrate } from '../../hooks/use-haptics';
+import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from '../diagnostic_target_gate';
+import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from '../ai_dialog_target_gate';
+import { emitAppEvent } from '../events';
+import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from '../flashcards_target_gate';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '../trainer_target_gate';
 import { compassOn } from './compass_flags';
 import { useCompassDay } from './use_compass_day';
-import { compassTaskRoute } from './compass_task_route';
+import { compassTaskRoute, type CompassRoute } from './compass_task_route';
 import { compassInductionRoute } from './compass_induction_route';
 import { resolvePronunciationRoute } from './compass_pronunciation_route';
 import CompassBriefingModal from './compass_briefing_modal';
@@ -87,6 +93,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const router = useRouter();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { day, loading } = useCompassDay(now);
   const [visible, setVisible] = useState(false);
   const [checkedSeen, setCheckedSeen] = useState(false);
@@ -247,6 +254,53 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     setVisible(false);
   }, [markSeen]);
 
+  const resolveSourceGatedRoute = useCallback((route: CompassRoute): CompassRoute => {
+    if (
+      route.pathname === '/flashcards_swipe' &&
+      !flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')
+    ) {
+      const copy = frenchFlashcardsGateCopy(lang);
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: copy.title,
+        messageUk: copy.title,
+        messageEs: 'French flashcards are still behind source gate.',
+      });
+      return { pathname: '/flashcards' };
+    }
+    if (route.pathname === '/trainer' && !trainerSessionContentAvailableForTarget(studyTarget)) {
+      const copy = frenchTrainerGateCopy(lang);
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: copy.title,
+        messageUk: copy.title,
+        messageEs: 'French trainer is still behind source gate.',
+      });
+      return { pathname: '/(tabs)/lessons' };
+    }
+    if (route.pathname === '/diagnostic_test' && !diagnosticContentAvailableForTarget(studyTarget)) {
+      const copy = frenchDiagnosticGateCopy(lang);
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: copy.title,
+        messageUk: copy.title,
+        messageEs: 'French diagnostic is still behind source gate.',
+      });
+      return { pathname: '/(tabs)/lessons' };
+    }
+    if (route.pathname === '/ai_dialog_home' && !aiDialogContentAvailableForTarget(studyTarget)) {
+      const copy = frenchAiDialogGateCopy(lang);
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: copy.title,
+        messageUk: copy.title,
+        messageEs: 'French AI dialogs are still behind source gate.',
+      });
+      return { pathname: '/(tabs)/lessons' };
+    }
+    return route;
+  }, [lang, studyTarget]);
+
   // Тап по конкретной задаче дня: помечаем показ, закрываем и открываем её экран.
   // Для «повтори вслух» пытаемся открыть задачу произношения текущего дня плана
   // напрямую (она есть в каждом дне плана); если активного плана нет — fallback.
@@ -263,9 +317,10 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
         const direct = await resolvePronunciationRoute();
         if (direct) route = direct;
       }
+      route = resolveSourceGatedRoute(route);
       router.push(route.params ? { pathname: route.pathname, params: route.params } as never : route.pathname as never);
     })();
-  }, [markSeen, router, day]);
+  }, [markSeen, router, day, resolveSourceGatedRoute]);
 
   // Пропускаем показ через OverlayArbiter: на главной несколько `Modal` со
   // statusBarTranslucent (празднование премиума/VIP и т.п.) одновременно подвешивают
@@ -295,7 +350,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     void hapticSuccess();
     markSeen();
     setVisible(false);
-    const route = compassInductionRoute(feature);
+    const route = resolveSourceGatedRoute(compassInductionRoute(feature));
     router.push(route.params ? { pathname: route.pathname, params: route.params } as never : route.pathname as never);
   };
 

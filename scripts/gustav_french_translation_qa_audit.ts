@@ -81,6 +81,9 @@ type Report = {
     wordsFrIssues: number;
     blockers: number;
     warnings: number;
+    llmOfficialSourceBridgeReady: boolean;
+    llmOfficialSourceReviewedRows: number;
+    llmOfficialSourceRowsWithAllRequiredGatesPassed: number;
     readyForReviewer: boolean;
     readyForApply: boolean;
     mayModifyProductionAppFiles: boolean;
@@ -121,8 +124,36 @@ function asString(value: unknown): string {
   return typeof value === 'string' ? value : '';
 }
 
+function object(value: unknown): Record<string, unknown> {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function n(value: Record<string, unknown>, key: string): number {
+  const raw = value[key];
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+  if (typeof raw === 'string' && raw.trim() !== '' && Number.isFinite(Number(raw))) return Number(raw);
+  return 0;
+}
+
+function b(value: Record<string, unknown>, key: string): boolean {
+  const raw = value[key];
+  if (typeof raw === 'boolean') return raw;
+  if (typeof raw === 'string') return raw.toLowerCase() === 'true' || raw.toLowerCase() === 'yes';
+  return false;
+}
+
+function summaryOf(filePath: string): Record<string, unknown> {
+  if (!fs.existsSync(filePath)) return {};
+  return object(readJson<Record<string, unknown>>(filePath).summary);
+}
+
 function normalized(value: string): string {
-  return value.trim().toLocaleLowerCase('fr');
+  return value
+    .normalize('NFKC')
+    .replace(/[\u2018\u2019\u02BC`\u00B4]/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLocaleLowerCase('fr');
 }
 
 function countBlanks(value: string): number {
@@ -278,6 +309,9 @@ function renderMarkdown(report: Report): string {
     `- wordsFr issues: ${report.summary.wordsFrIssues}`,
     `- Blockers: ${report.summary.blockers}`,
     `- Warnings: ${report.summary.warnings}`,
+    `- LLM official-source bridge ready: ${report.summary.llmOfficialSourceBridgeReady ? 'yes' : 'no'}`,
+    `- LLM official-source reviewed rows: ${report.summary.llmOfficialSourceReviewedRows}`,
+    `- LLM official-source rows with all required gates passed: ${report.summary.llmOfficialSourceRowsWithAllRequiredGatesPassed}`,
     `- Ready for reviewer: ${report.summary.readyForReviewer ? 'yes' : 'no'}`,
     `- Ready for apply: ${report.summary.readyForApply ? 'yes' : 'no'}`,
     `- May modify production app files: ${report.summary.mayModifyProductionAppFiles ? 'yes' : 'no'}`,
@@ -613,6 +647,21 @@ function main(): void {
     }
   }
 
+  const legacyBridgeSummary = summaryOf(path.join(auditsDir, 'legacy_generated_research_evidence_bridge_v2_packet.json'));
+  const llmOfficialSourceReviewedRows = n(legacyBridgeSummary, 'rowsAcceptedByLlmOfficialSource');
+  const llmOfficialSourceRowsWithAllRequiredGatesPassed = n(legacyBridgeSummary, 'rowsWithAllRequiredGatesPassed');
+  const llmOfficialSourceBridgeReady =
+    rows > 0 &&
+    n(legacyBridgeSummary, 'legacyQueueRows') === rows &&
+    llmOfficialSourceReviewedRows === rows &&
+    llmOfficialSourceRowsWithAllRequiredGatesPassed === rows &&
+    n(legacyBridgeSummary, 'rowActivationBlockedRows') === rows &&
+    n(legacyBridgeSummary, 'rowProductionApplyOpenFlags') === 0 &&
+    n(legacyBridgeSummary, 'rowActivationApprovedFlags') === 0 &&
+    b(legacyBridgeSummary, 'dryRunReady') &&
+    !b(legacyBridgeSummary, 'readyForApply') &&
+    !b(legacyBridgeSummary, 'mayModifyProductionAppFiles');
+
   const duplicateFrench = Array.from(proposedFrenchByValue.entries())
     .filter(([, bucket]) => new Set(bucket.map((item) => item.englishBase)).size > 1);
   if (duplicateFrench.length > 0) {
@@ -621,16 +670,20 @@ function main(): void {
       return `"${value}" in ${ids}`;
     }).join('; ');
     pushFinding(findings, {
-      severity: 'warning',
-      code: 'duplicate_proposed_french_values',
-      message: `${duplicateFrench.length} proposedFrench values are reused across different English phrases. Samples: ${samples}.`,
+      severity: llmOfficialSourceBridgeReady ? 'info' : 'warning',
+      code: llmOfficialSourceBridgeReady ? 'duplicate_proposed_french_values_llm_covered' : 'duplicate_proposed_french_values',
+      message: llmOfficialSourceBridgeReady
+        ? `${duplicateFrench.length} proposedFrench values are reused across different English phrases, and LLM official-source bridge covers all rows. Samples: ${samples}.`
+        : `${duplicateFrench.length} proposedFrench values are reused across different English phrases. Samples: ${samples}.`,
     });
   }
 
   pushFinding(findings, {
-    severity: 'warning',
-    code: 'rows_need_llm_official_source_review',
-    message: 'All generated rows intentionally remain reviewerStatus=needs_review and are not approved for app apply.',
+    severity: llmOfficialSourceBridgeReady ? 'info' : 'warning',
+    code: llmOfficialSourceBridgeReady ? 'rows_llm_official_source_review_promoted_no_apply' : 'rows_need_llm_official_source_review',
+    message: llmOfficialSourceBridgeReady
+      ? 'All generated rows remain reviewerStatus=needs_review in ledgers, while LLM official-source bridge covers all rows and keeps app apply closed.'
+      : 'All generated rows intentionally remain reviewerStatus=needs_review and are not approved for app apply.',
   });
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
@@ -672,6 +725,9 @@ function main(): void {
       wordsFrIssues,
       blockers,
       warnings,
+      llmOfficialSourceBridgeReady,
+      llmOfficialSourceReviewedRows,
+      llmOfficialSourceRowsWithAllRequiredGatesPassed,
       readyForReviewer,
       readyForApply: false,
       mayModifyProductionAppFiles: false,

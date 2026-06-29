@@ -8,6 +8,8 @@ import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { resolveRemoteBool } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
+import { evaluateSafety, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
+import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -35,6 +37,13 @@ const MAX_OUTPUT_TOKENS = 200;
 const GAME_OUTPUT_TOKENS = 600;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
+
+/**
+ * Сколько ПОЛНЫХ бесплатных диалогов за всю жизнь аккаунта получает не-premium.
+ * Должно совпадать с клиентским FREE_DIALOGS_LIFETIME_DEFAULT (app/ai_dialog_flags.ts),
+ * иначе клиент и сервер разойдутся в подсчёте «осталось ли бесплатное».
+ */
+const FREE_DIALOGS_LIFETIME = 2;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
@@ -212,20 +221,30 @@ async function releaseDailyQuota(authUid: string, stableUid: string): Promise<vo
 }
 
 /**
- * Пожизненный free-гейт (запрос пользователя 2026-06-20): не-premium получает
- * РОВНО ОДИН полный бесплатный диалог за всю жизнь аккаунта, без лимита реплик
- * внутри него. Дальше — полный замок (paywall).
+ * Прочитать число уже потраченных бесплатных диалогов из квота-документа.
+ * Обратная совместимость со старой булевой моделью: legacy `freeDialogUsed:true`
+ * (когда лимит был ровно 1) читается как 1 потраченный.
+ */
+function readFreeDialogsUsed(data: FirebaseFirestore.DocumentData): number {
+  const count = Number(data.freeDialogCount);
+  if (Number.isFinite(count) && count >= 0) return Math.floor(count);
+  return data.freeDialogUsed === true ? 1 : 0;
+}
+
+/**
+ * Пожизненный free-гейт: не-premium получает FREE_DIALOGS_LIFETIME полных
+ * бесплатных диалогов за всю жизнь аккаунта (без лимита реплик внутри каждого).
+ * Дальше — полный замок (paywall). Подняли с 1 до 2: одна попытка не давала
+ * прочувствовать ценность фичи до пейвола.
  *
  * Сигнал «начался НОВЫЙ диалог» = пустая история (`isNewDialog`): первая реплика
  * сессии. Тогда:
- *   • если бесплатный диалог уже потрачен -> resource-exhausted (полный замок);
- *   • иначе помечаем потраченным и пропускаем.
- * Продолжение того же диалога (история не пустая) НЕ гейтим — это всё ещё тот
- * единственный бесплатный диалог, его реплики не лимитируем.
+ *   • если лимит бесплатных уже исчерпан -> resource-exhausted (полный замок);
+ *   • иначе инкрементируем счётчик и пропускаем.
+ * Продолжение того же диалога (история не пустая) НЕ гейтим — реплики не лимитируем.
  *
- * `markedRef`/возврат нужны вызывающему, чтобы откатить отметку, если платный
- * вызов провайдера упал (иначе юзер потеряет единственный бесплатный диалог
- * из-за нашей ошибки).
+ * Возврат нужен вызывающему, чтобы откатить инкремент, если платный вызов
+ * провайдера упал (иначе юзер потеряет бесплатный диалог из-за нашей ошибки).
  */
 async function enforceLifetimeFreeDialog(
   authUid: string,
@@ -237,28 +256,36 @@ async function enforceLifetimeFreeDialog(
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
   return db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    if (data.freeDialogUsed === true) {
+    const used = readFreeDialogsUsed(data);
+    if (used >= FREE_DIALOGS_LIFETIME) {
       console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
       throw new HttpsError('resource-exhausted', 'dialog_free_limit');
     }
     tx.set(ref, {
       authUid,
       stableUid,
-      freeDialogUsed: true,
+      freeDialogCount: used + 1,
+      // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
+      freeDialogUsed: admin.firestore.FieldValue.delete(),
       usedAtMs: Date.now(),
     }, { merge: true });
     return { markedNow: true };
   });
 }
 
-/** Откат пожизненной отметки, если платный вызов провайдера не удался. */
+/** Откат инкремента бесплатного диалога, если платный вызов провайдера не удался. */
 async function releaseLifetimeFreeDialog(authUid: string, stableUid: string): Promise<void> {
   const db = admin.firestore();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
   await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    if (data.freeDialogUsed !== true) return;
-    tx.set(ref, { freeDialogUsed: false, releasedAtMs: Date.now() }, { merge: true });
+    const used = readFreeDialogsUsed(data);
+    if (used <= 0) return;
+    tx.set(ref, {
+      freeDialogCount: used - 1,
+      freeDialogUsed: admin.firestore.FieldValue.delete(),
+      releasedAtMs: Date.now(),
+    }, { merge: true });
   });
 }
 
@@ -595,7 +622,7 @@ export const premiumDialogSend = onCall({
   timeoutSeconds: 30,
   memory: '512MiB',
   maxInstances: 20,
-  secrets: [OPENAI_API_KEY],
+  secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
   if (!request.auth?.uid) {
     console.warn('premium_dialog rejected', { reason: 'auth_required' });
@@ -624,31 +651,49 @@ export const premiumDialogSend = onCall({
     throw new HttpsError('invalid-argument', 'user_text_required');
   }
 
+  // Возрастной безопасный режим: ИИ-собеседник недоступен несовершеннолетним (<16).
+  // Клиент уже блокирует вход, но дублируем на сервере (defense-in-depth): если
+  // клиент честно сообщает возрастную группу подростка/ребёнка — отказываем.
+  const clientAgeBracket = text((data as { ageBracket?: unknown }).ageBracket, 16);
+  if (clientAgeBracket === 'teen_safe' || clientAgeBracket === 'under13') {
+    console.warn('premium_dialog rejected', { reason: 'age_restricted', ageBracket: clientAgeBracket });
+    throw new HttpsError('permission-denied', 'age_restricted');
+  }
+
   const db = admin.firestore();
-  const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
-  const dialogQuota = await resolveConfiguredDialogQuota(db);
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid);
-  // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
-  // free-юзер прислал бы isPremium:true и получил премиум-квоту (100/день
-  // вместо 1/день) — ×100 к дневному бюджету OpenAI на одного абьюзера.
-  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+
+  // ПЕРФ: эти четыре чтения Firestore не зависят друг от друга — раньше они шли
+  // строго друг за другом (4 последовательных round-trip к Firestore до платного
+  // вызова OpenAI). Группируем в один Promise.all → ~−3 round-trip latency на
+  // КАЖДУЮ реплику диалога, без изменения логики и порядка лимитов.
+  const [dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([
+    resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
+    resolveConfiguredDialogQuota(db),
+    resolveStableUidForAuth(db, authUid),
+    // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
+    // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
+    // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
+    // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
+    // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
+    // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
+    resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
+  ]);
 
   const history = sanitizeHistory(data.history);
   // Пустая история = это ПЕРВАЯ реплика нового диалога. По ней решаем, тратит ли
   // free-юзер свой единственный пожизненный бесплатный диалог.
   const isNewDialog = history.length === 0;
 
-  // Limits BEFORE the paid API call.
-  await enforceRateLimit(authUid, stableUid);
-
-  // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
-  // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
-  // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
-  // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
-  // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
-  // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
-  const aiDialogGatedByPremium = await resolveRemoteBool(db, 'gate_ai_dialog_premium', true);
+  // Limits BEFORE the paid API call. isPremium и rate-limit оба зависят только от
+  // stableUid и НЕ зависят друг от друга → выполняем параллельно (ещё −1 round-trip).
+  // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе free-юзер
+  // прислал бы isPremium:true и получил премиум-квоту (100/день вместо 1/день) — ×100
+  // к дневному бюджету OpenAI на одного абьюзера.
+  const [isPremium] = await Promise.all([
+    resolvePremiumAccess(db, stableUid, Date.now(), authUid),
+    enforceRateLimit(authUid, stableUid),
+  ]);
 
   // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
   //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
@@ -668,10 +713,27 @@ export const premiumDialogSend = onCall({
     remaining = 0;
   }
 
-  const systemPrompt =
+  const baseSystemPrompt =
     mode === 'companion'
       ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang)
       : buildScenarioSystemPrompt(cefr, data);
+  // Safety-инструкция добавляется к ЛЮБОМУ режиму: при опасных темах ИИ реагирует
+  // мягко и направляет к помощи, а не «отыгрывает» урок/ролёвку.
+  const systemPrompt = `${baseSystemPrompt}\n\n${SAFETY_SYSTEM_INSTRUCTION}`;
+
+  // Детектор опасных сообщений на ВХОДЯЩЕМ тексте. Не блокирует ответ и не добавляет
+  // задержки — флаг и Telegram-алерт уходят фоном (fire-and-forget).
+  const safetyVerdict = evaluateSafety(userText);
+  if (safetyVerdict.flagged) {
+    void recordSafetyFlag(safetyVerdict, {
+      authUid,
+      stableUid,
+      ageBracket: text((data as { ageBracket?: unknown }).ageBracket, 16) || null,
+      mode,
+      userText,
+      history,
+    });
+  }
 
   const messages: ChatMessage[] = [
     { role: 'system', content: systemPrompt },
@@ -848,6 +910,10 @@ function asTargetLang(value: unknown): string {
   return resolveAiOutputLang(text(value, 8), 'premium_dialog_translate');
 }
 
+function assertDialogTranslationLanguage(translation: string, targetLang: string): void {
+  assertAiOutputLanguage({ text: translation, targetLang, feature: 'premium_dialog_translate' });
+}
+
 function translationCacheId(sourceText: string, targetLang: string): string {
   const hash = createHash('sha256')
     .update(`${targetLang}|${sourceText}`)
@@ -895,7 +961,7 @@ export const premiumDialogTranslate = onCall({
   const cachedData = cached?.data();
   const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
   if (cachedTranslation && cachedData?.languageContractVersion === LANGUAGE_CONTRACT_VERSION) {
-    assertAiOutputLanguage({ text: cachedTranslation, targetLang, feature: 'premium_dialog_translate' });
+    assertDialogTranslationLanguage(cachedTranslation, targetLang);
     return { ok: true, translation: cachedTranslation, cached: true };
   }
 
@@ -955,7 +1021,7 @@ export const premiumDialogTranslate = onCall({
       console.error('premium_dialog_translate empty reply', { model: dialogModel, targetLang });
       throw new HttpsError('unavailable', 'dialog_empty_reply');
     }
-    assertAiOutputLanguage({ text: translation, targetLang, feature: 'premium_dialog_translate' });
+    assertDialogTranslationLanguage(translation, targetLang);
   } catch (error) {
     if (error instanceof HttpsError) throw error;
     console.error('premium_dialog_translate provider exception', {
@@ -998,3 +1064,10 @@ export const premiumDialogTranslate = onCall({
 
   return { ok: true, translation, cached: false };
 });
+
+export const __premiumDialogTestHooks = {
+  assertDialogReplyIsEnglish,
+  assertDialogTranslationLanguage,
+  asTargetLang,
+  translationCacheId,
+};

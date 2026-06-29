@@ -64,6 +64,11 @@ function safeReadJson<T>(filePath: string): T | null {
   return readJson<T>(filePath);
 }
 
+function safeReadText(filePath: string): string {
+  if (!fs.existsSync(filePath)) return '';
+  return fs.readFileSync(filePath, 'utf8');
+}
+
 function artifact(runDir: string, relativePath: string): string {
   return path.join(runDir, relativePath);
 }
@@ -202,6 +207,7 @@ async function main(): Promise<void> {
   const lesson916DecisionPacketPath = artifact(runDir, 'audits/lesson_9_16_source_truth_decision_packet.json');
   const lesson916ApprovalAuditPath = artifact(runDir, 'audits/lesson_9_16_source_truth_approval_audit.json');
   const generatedAuditPath = artifact(runDir, 'audits/generated_content_audit.json');
+  const officialSourceCoveragePath = artifact(runDir, 'audits/french_official_source_content_coverage_v2_packet.json');
   const readinessApplyCoveragePath = artifact(runDir, 'audits/readiness_apply_coverage_audit.json');
   const phaseDependencyPath = artifact(runDir, 'audits/phase_dependency_audit.json');
   const p1ExecutionSlicePath = artifact(runDir, 'audits/p1_execution_slice_audit.json');
@@ -239,6 +245,17 @@ async function main(): Promise<void> {
   const frenchResearchJsonFirewallPath = artifact(runDir, 'audits/french_research_json_firewall_audit.json');
   const frenchResearchWorkOrderPath = artifact(runDir, 'audits/french_research_work_order_audit.json');
   const applyPlanPath = artifact(runDir, 'apply_plan/file_changes.json');
+  const frenchDevSurfaceParityTestPath = path.join(repoRoot, 'tests/gustav_french_dev_surface_parity.test.ts');
+
+  const frenchDevSurfaceParitySources = {
+    home: safeReadText(path.join(repoRoot, 'app/(tabs)/home.tsx')),
+    quizzes: safeReadText(path.join(repoRoot, 'app/(tabs)/quizzes.tsx')),
+    dailyPhrase: safeReadText(path.join(repoRoot, 'components/DailyPhraseCard.tsx')),
+    diagnostic: safeReadText(path.join(repoRoot, 'app/diagnostic_test.tsx')),
+    lessonMenu: safeReadText(path.join(repoRoot, 'app/lesson_menu.tsx')),
+    dailyTasks: safeReadText(path.join(repoRoot, 'app/daily_tasks_screen.tsx')),
+    test: safeReadText(frenchDevSurfaceParityTestPath),
+  };
 
   const inputs = {
     verdict: safeReadJson<Record<string, unknown>>(verdictPath),
@@ -265,6 +282,7 @@ async function main(): Promise<void> {
     lesson916DecisionPacket: safeReadJson<Record<string, unknown>>(lesson916DecisionPacketPath),
     lesson916ApprovalAudit: safeReadJson<Record<string, unknown>>(lesson916ApprovalAuditPath),
     generatedAudit: safeReadJson<Record<string, unknown>>(generatedAuditPath),
+    officialSourceCoverage: safeReadJson<Record<string, unknown>>(officialSourceCoveragePath),
     readinessApplyCoverage: safeReadJson<Record<string, unknown>>(readinessApplyCoveragePath),
     phaseDependency: safeReadJson<Record<string, unknown>>(phaseDependencyPath),
     p1ExecutionSlice: safeReadJson<Record<string, unknown>>(p1ExecutionSlicePath),
@@ -598,6 +616,63 @@ async function main(): Promise<void> {
           requiredBeforeWork: [
             'Add route-level target-aware adapters for lesson, quiz, trainer, flashcards, achievements and progress surfaces.',
             'Isolate dev StudyTargetLang from production StudyTarget.',
+          ],
+        }),
+  );
+
+  const quizRootSlice = frenchDevSurfaceParitySources.quizzes.slice(
+    frenchDevSurfaceParitySources.quizzes.indexOf('export default function QuizzesScreen'),
+  );
+  const dailyTaskQuizSlice = frenchDevSurfaceParitySources.dailyTasks.slice(
+    frenchDevSurfaceParitySources.dailyTasks.indexOf("const openQuizOrFrenchGate = async (level: 'easy' | 'medium' | 'hard')"),
+    frenchDevSurfaceParitySources.dailyTasks.indexOf('const openDiagnosticOrFrenchGate'),
+  );
+  const frenchDevSurfaceParityEvidence = [
+    frenchDevSurfaceParitySources.home.includes("testID: 'home-quick-quizzes'"),
+    frenchDevSurfaceParitySources.home.includes("key: 'daily'"),
+    frenchDevSurfaceParitySources.home.includes("key: 'attest'"),
+    frenchDevSurfaceParitySources.home.includes('const visibleQuickItems = quickItems'),
+    frenchDevSurfaceParitySources.home.includes('const visibleActivityQuickItems = activityQuickItems'),
+    !frenchDevSurfaceParitySources.home.includes("quickItems.filter((item) => item.key !== 'quizzes')"),
+    quizRootSlice.includes(': <LevelSelect sourceGated={frenchQuizBlocked}'),
+    !quizRootSlice.includes('return <FrenchQuizUnavailable />;'),
+    frenchDevSurfaceParitySources.quizzes.includes('const lockedBySourceGate = sourceGated'),
+    frenchDevSurfaceParitySources.dailyPhrase.includes('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)'),
+    !frenchDevSurfaceParitySources.dailyPhrase.includes("if (studyTarget === 'fr')"),
+    frenchDevSurfaceParitySources.diagnostic.includes('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)'),
+    frenchDevSurfaceParitySources.diagnostic.includes('FrenchDiagnosticUnavailable'),
+    frenchDevSurfaceParitySources.lessonMenu.includes("const frenchAuxiliarySourceGated = studyTarget === 'fr'"),
+    frenchDevSurfaceParitySources.lessonMenu.includes('unavailable: frenchAuxiliarySourceGated'),
+    !frenchDevSurfaceParitySources.lessonMenu.includes('hideEnglishOnlyAuxiliary'),
+    dailyTaskQuizSlice.includes('if (!quizContentAvailableForTarget(studyTarget))'),
+    dailyTaskQuizSlice.indexOf('if (!quizContentAvailableForTarget(studyTarget))') >= 0 &&
+      dailyTaskQuizSlice.indexOf('if (!quizContentAvailableForTarget(studyTarget))') <
+      dailyTaskQuizSlice.indexOf('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)'),
+    frenchDevSurfaceParitySources.test.includes("describe('Gustav French dev surface parity'"),
+  ];
+  const frenchDevSurfaceParityPassed = frenchDevSurfaceParityEvidence.every(Boolean);
+  checks.push(
+    frenchDevSurfaceParityPassed
+      ? passCheck({
+          id: 'RDY-061',
+          title: 'French dev surfaces stay visible behind source gates',
+          severity: 'blocker',
+          blocks: ['generation', 'apply'],
+          sourceArtifact: path.relative(repoRoot, frenchDevSurfaceParityTestPath),
+          detail: `French dev surface parity is locked: ${frenchDevSurfaceParityEvidence.filter(Boolean).length}/${frenchDevSurfaceParityEvidence.length} evidence checks passed across Home, quizzes, daily phrase, diagnostic, lesson menu and daily-task navigation.`,
+          requiredBeforeWork: [],
+        })
+      : failCheck({
+          id: 'RDY-061',
+          title: 'French dev surfaces stay visible behind source gates',
+          severity: 'blocker',
+          blocks: ['generation', 'apply'],
+          sourceArtifact: path.relative(repoRoot, frenchDevSurfaceParityTestPath),
+          detail: `French dev surface parity is incomplete: ${frenchDevSurfaceParityEvidence.filter(Boolean).length}/${frenchDevSurfaceParityEvidence.length} evidence checks passed. French dev must preserve visible sections while blocking actions before English source content can load.`,
+          requiredBeforeWork: [
+            'Keep user-facing English app sections visible for French dev.',
+            'Replace studyTarget-based hiding with target-aware source gates.',
+            'Run tests/gustav_french_dev_surface_parity.test.ts.',
           ],
         }),
   );
@@ -2481,15 +2556,40 @@ async function main(): Promise<void> {
         }),
   );
 
+  const generatedAuditSummary = summaryOf(inputs.generatedAudit);
+  const officialSourceCoverageSummary = summaryOf(inputs.officialSourceCoverage);
+  const officialSourceCoverageReady =
+    statusOf(inputs.officialSourceCoverage) === 'PASS' &&
+    n(officialSourceCoverageSummary, 'blockers') === 0 &&
+    officialSourceCoverageSummary.coverageState === 'official_source_content_coverage_complete_no_import' &&
+    n(officialSourceCoverageSummary, 'ledgerRows') === 1600 &&
+    n(officialSourceCoverageSummary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
+    n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows') === 164 &&
+    n(officialSourceCoverageSummary, 'rowDecisionsWithSourceRefs') === 1600 &&
+    n(officialSourceCoverageSummary, 'rowDecisionsWithAllRequiredGatesPassed') === 1600 &&
+    n(officialSourceCoverageSummary, 'rowDecisionQuizRowsWithOneCorrectAnswer') === 1600 &&
+    n(officialSourceCoverageSummary, 'fixtureProbes') > 0 &&
+    n(officialSourceCoverageSummary, 'fixtureProbesPassed') === n(officialSourceCoverageSummary, 'fixtureProbes') &&
+    officialSourceCoverageSummary.readyForApply !== true &&
+    officialSourceCoverageSummary.mayModifyProductionAppFiles !== true &&
+    officialSourceCoverageSummary.activationApproved !== true;
+  const generatedContentCoveredByLlmOfficialSources =
+    statusOf(inputs.generatedAudit) === 'HOLD' &&
+    n(generatedAuditSummary, 'blockers') === 0 &&
+    generatedAuditSummary.readyForReviewer === true &&
+    generatedAuditSummary.mayModifyProductionAppFiles !== true &&
+    officialSourceCoverageReady;
   checks.push(
-    statusOf(inputs.generatedAudit) === 'PASS'
+    statusOf(inputs.generatedAudit) === 'PASS' || generatedContentCoveredByLlmOfficialSources
       ? passCheck({
           id: 'RDY-080',
           title: 'Generated content audit passed',
           severity: 'blocker',
           blocks: ['apply'],
           sourceArtifact: path.relative(repoRoot, generatedAuditPath),
-          detail: 'Generated content audit is PASS.',
+          detail: statusOf(inputs.generatedAudit) === 'PASS'
+            ? 'Generated content audit is PASS.'
+            : `Generated content audit is HOLD but shape-valid/readyForReviewer, and LLM official-source coverage V2 supersedes the old review hold with rows=${n(officialSourceCoverageSummary, 'acceptedRowOfficialSourceDecisionRows')}, AI=${n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows')}, sourceRefs=${n(officialSourceCoverageSummary, 'rowDecisionsWithSourceRefs')} and gates=${n(officialSourceCoverageSummary, 'rowDecisionsWithAllRequiredGatesPassed')}. Production apply still requires RDY-090 explicit approval.`,
           requiredBeforeWork: [],
         })
         : failCheck({
@@ -2499,10 +2599,10 @@ async function main(): Promise<void> {
           blocks: ['apply'],
           sourceArtifact: path.relative(repoRoot, generatedAuditPath),
           detail: inputs.generatedAudit
-            ? `Generated content audit is ${statusOf(inputs.generatedAudit)} with rows=${n(summaryOf(inputs.generatedAudit), 'rows')}, rowsWithFrench=${n(summaryOf(inputs.generatedAudit), 'rowsWithFrench')}, readyForReviewer=${String(summaryOf(inputs.generatedAudit).readyForReviewer)}, readyForApply=${String(summaryOf(inputs.generatedAudit).readyForApply)} and mayModifyProductionAppFiles=${String(summaryOf(inputs.generatedAudit).mayModifyProductionAppFiles)}. Production apply remains blocked.`
+            ? `Generated content audit is ${statusOf(inputs.generatedAudit)} with rows=${n(generatedAuditSummary, 'rows')}, rowsWithFrench=${n(generatedAuditSummary, 'rowsWithFrench')}, readyForReviewer=${String(generatedAuditSummary.readyForReviewer)}, readyForApply=${String(generatedAuditSummary.readyForApply)} and mayModifyProductionAppFiles=${String(generatedAuditSummary.mayModifyProductionAppFiles)}. LLM official-source coverage ready=${officialSourceCoverageReady}. Production apply remains blocked.`
             : 'No generated content audit exists. This is expected before generation starts, but it blocks production apply.',
           requiredBeforeWork: [
-            'After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape.',
+            'After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape, then pass LLM official-source coverage V2.',
           ],
         }),
   );

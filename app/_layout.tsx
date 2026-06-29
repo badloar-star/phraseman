@@ -14,7 +14,7 @@ import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, AppState, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
@@ -54,6 +54,8 @@ import {
   checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
+import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
+import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { prefetchArenaRatingCache } from './arena_rating_cache';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -75,7 +77,9 @@ import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
+import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
+import ConsentReverifyHost from '../components/ConsentReverifyHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
 import PerfectWeekHost from '../components/PerfectWeekHost';
@@ -1721,6 +1725,11 @@ function AppContent() {
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
         hydrateNotifSettingsFromStorage().catch(() => {}),
+        // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
+        // (firebase.ts logEvent / posthog capture) работал с первого кадра.
+        hydrateAnalyticsConsentFromStorage().catch(() => {}),
+        // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
+        hydrateAgeGateFromStorage().catch(() => {}),
       ]);
       await Promise.race([
         startupLocalHydration,
@@ -2678,7 +2687,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
     <ErrorBoundary>
-      <SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ThemeProvider>
         <LangProvider>
           <StudyTargetProvider>
@@ -2696,12 +2705,14 @@ export default function RootLayout() {
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
+                    <ConsentReverifyHost />
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />
                     <ComebackBoonHost />
                     <PerfectWeekHost />
                     <BoonActivatedHost />
                     <GlobalFriendGiftHost />
+                    <GlobalCompassSocialHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />

@@ -2,7 +2,12 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.resolve(__dirname, '..');
-const RUNTIME_FALLBACK_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/g;
+// Catches LEGACY runtime locale-fallback logic only: `lang === 'ru'|'uk'|'es'`
+// and return/nullish-coalescing to a BARE locale token (RU/UK/ES). The bare
+// word `fallback` was dropped (it matches legit feature UI like the Compass
+// «голос дня (fallback)»), and the lookbehind keeps RU/UK/ES from matching
+// inside identifiers like CLUB_DEFS_RU.
+const RUNTIME_FALLBACK_RE = /(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?<![A-Za-z0-9_])(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?<![A-Za-z0-9_])(?:RU|UK|ES)\b)/g;
 
 describe('web and admin runtime locale fallback audit', () => {
   it('keeps public web/admin bridge files free of legacy runtime fallback markers', () => {

@@ -13,85 +13,80 @@ import { getPublicDialogScenarios } from './ai_dialog_scenarios';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 
-/**
- * Standalone-маршрут «Диалоги» (/ai_dialog_home). Используется прямыми переходами
- * (QA-панель тестеров и т.п.). Внутри вкладки «Уроки» рендерится не он, а напрямую
- * `DialogsTabContent` — общий хедер/энергия там приходят от экрана уроков.
- */
 export default function AiDialogHome() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const activeCount = getPublicDialogScenarios().length;
 
+  const header = (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 14,
+        paddingBottom: 8,
+      }}
+    >
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel="Back"
+        onPress={() => {
+          hapticTap();
+          safeRouterBack(router, '/(tabs)/home' as any);
+        }}
+        style={{
+          width: 44,
+          height: 44,
+          borderRadius: 22,
+          backgroundColor: t.bgCard,
+          borderWidth: 0.5,
+          borderColor: t.border,
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: 12,
+        }}
+      >
+        <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
+      </TouchableOpacity>
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <Text
+          style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
+          numberOfLines={1}
+        >
+          {triLang(lang, {
+            ru: 'Диалоги',
+            uk: 'Діалоги',
+            es: 'Diálogos',
+            'pt-BR': 'Diálogos',
+            vi: 'Đối thoại',
+            id: 'Dialog',
+            tr: 'Diyaloglar',
+            pl: 'Dialogi',
+          })}
+        </Text>
+        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+          {triLang(lang, {
+            ru: `${activeCount} сценариев с Компасом`,
+            uk: `${activeCount} сценаріїв із Компасом`,
+            es: `${activeCount} escenarios con Compass`,
+            'pt-BR': `${activeCount} cenários com Compass`,
+            vi: `${activeCount} kịch bản với Compass`,
+            id: `${activeCount} skenario dengan Compass`,
+            tr: `Compass ile ${activeCount} senaryo`,
+            pl: `${activeCount} scenariuszy z Compass`,
+          })}
+        </Text>
+      </View>
+      <EnergyBar size={30} />
+    </View>
+  );
+
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        <DialogsTabContent
-          headerSlot={
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingVertical: 12,
-                paddingHorizontal: 14,
-                paddingBottom: 8,
-              }}
-            >
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel="Назад"
-                onPress={() => {
-                  hapticTap();
-                  safeRouterBack(router, '/(tabs)/home' as any);
-                }}
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
-                  backgroundColor: t.bgCard,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: 12,
-                }}
-              >
-                <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-              </TouchableOpacity>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text
-                  style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
-                  numberOfLines={1}
-                >
-                  {triLang(lang, {
-                    ru: 'Диалоги',
-                    uk: 'Діалоги',
-                    es: 'Diálogos',
-                    'pt-BR': 'Diálogos',
-                    vi: 'Đối thoại',
-                    id: 'Dialog',
-                    tr: 'Diyaloglar',
-                    pl: 'Dialogi',
-                  })}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
-                  {triLang(lang, {
-                    ru: `${activeCount} сценариев с Компасом`,
-                    uk: `${activeCount} сценаріїв із Компасом`,
-                    es: `${activeCount} escenarios con Compass`,
-                    'pt-BR': `${activeCount} cenários com Compass`,
-                    vi: `${activeCount} kịch bản với Compass`,
-                    id: `${activeCount} skenario dengan Compass`,
-                    tr: `Compass ile ${activeCount} senaryo`,
-                    pl: `${activeCount} scenariuszy z Compass`,
-                  })}
-                </Text>
-              </View>
-              <EnergyBar size={30} />
-            </View>
-          }
-        />
+        <DialogsTabContent headerSlot={header} />
       </SafeAreaView>
     </ScreenGradient>
   );

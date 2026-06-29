@@ -1,5 +1,6 @@
 import { buildTopicMap, summarizeTopicMap } from '../app/compass/compass_memory';
 import type { CompassSnapshot } from '../app/compass/signal_bus';
+import { EMPTY_ONBOARDING_PROFILE } from '../app/compass/compass_onboarding_profile';
 
 function snap(partial: Partial<CompassSnapshot>): CompassSnapshot {
   return {
@@ -9,6 +10,7 @@ function snap(partial: Partial<CompassSnapshot>): CompassSnapshot {
     posMastery: [],
     planDay: null,
     passedLessons: [],
+    onboarding: { ...EMPTY_ONBOARDING_PROFILE },
     collectedAtMs: 1,
     ...partial,
   };

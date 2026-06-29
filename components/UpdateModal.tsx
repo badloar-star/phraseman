@@ -32,54 +32,56 @@ import { hapticTap } from '../hooks/use-haptics';
 import type { ThemeMode } from '../constants/theme';
 import { COMPASS_RICH } from '../constants/compassTheme';
 
+// Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
+// не казённое «Доступно обновление», а «это Компас, я подрос, обнови меня».
 const TEXTS = {
   ru: {
-    title: 'Доступно обновление',
-    body: 'Вышла новая версия Phraseman с улучшениями и новыми функциями.',
-    update: 'Обновить приложение',
-    close: 'Закрыть',
+    title: 'Это Компас. У меня кое-что новое',
+    body: 'Я немного подрос: внутри свежие штуки и пара починок. Обнови меня — и пойдём дальше вместе.',
+    update: 'Обновить',
+    close: 'Чуть позже',
   },
   uk: {
-    title: 'Доступне оновлення',
-    body: 'Вийшла нова версія Phraseman з покращеннями та новими функціями.',
-    update: 'Оновити застосунок',
-    close: 'Закрити',
+    title: 'Це Компас. У мене дещо нове',
+    body: 'Я трохи підріс: усередині свіжі штуки й кілька лагоджень. Онови мене — і підемо далі разом.',
+    update: 'Оновити',
+    close: 'Трохи згодом',
   },
   es: {
-    title: 'Hay una actualización',
-    body: 'Salió una versión nueva de Phraseman con mejoras y funciones nuevas.',
-    update: 'Actualizar app',
-    close: 'Cerrar',
+    title: 'Soy la Brújula. Tengo algo nuevo',
+    body: 'Crecí un poco: por dentro hay cosas frescas y unos arreglos. Actualízame y seguimos juntos.',
+    update: 'Actualizar',
+    close: 'Más tarde',
   },
   'pt-BR': {
-    title: 'Atualização disponível',
-    body: 'Uma nova versão do Phraseman saiu com melhorias e novos recursos.',
-    update: 'Atualizar aplicativo',
-    close: 'Fechar',
+    title: 'É a Bússola. Tenho novidade',
+    body: 'Cresci um pouco: por dentro tem coisas novas e uns ajustes. Me atualiza e seguimos juntos.',
+    update: 'Atualizar',
+    close: 'Mais tarde',
   },
   vi: {
-    title: 'Có bản cập nhật',
-    body: 'Phiên bản Phraseman mới đã ra mắt với các cải tiến và tính năng mới.',
-    update: 'Cập nhật ứng dụng',
-    close: 'Đóng',
+    title: 'Mình là La bàn. Có cái mới đây',
+    body: 'Mình lớn lên chút: bên trong có thứ mới và vài chỗ được sửa. Cập nhật mình để cùng đi tiếp nhé.',
+    update: 'Cập nhật',
+    close: 'Để sau',
   },
   'id': {
-    title: 'Pembaruan tersedia',
-    body: 'Versi baru Phraseman hadir dengan peningkatan dan fitur baru.',
-    update: 'Perbarui aplikasi',
-    close: 'Tutup',
+    title: 'Ini Kompas. Ada yang baru',
+    body: 'Aku tumbuh sedikit: ada hal baru di dalam dan beberapa perbaikan. Perbarui aku, lalu lanjut bareng.',
+    update: 'Perbarui',
+    close: 'Nanti saja',
   },
   tr: {
-    title: 'Güncelleme mevcut',
-    body: 'Phraseman uygulamasının iyileştirmeler ve yeni özellikler içeren yeni sürümü çıktı.',
-    update: 'Uygulamayı güncelle',
-    close: 'Kapat',
+    title: 'Ben Pusula. Yeni bir şeyim var',
+    body: 'Biraz büyüdüm: içeride taze şeyler ve birkaç düzeltme var. Beni güncelle, birlikte devam edelim.',
+    update: 'Güncelle',
+    close: 'Sonra',
   },
   pl: {
-    title: 'Dostępna aktualizacja',
-    body: 'Pojawiła się nowa wersja Phraseman z usprawnieniami i nowymi funkcjami.',
-    update: 'Zaktualizuj aplikację',
-    close: 'Zamknij',
+    title: 'Tu Kompas. Mam coś nowego',
+    body: 'Trochę urosłem: w środku świeże rzeczy i kilka poprawek. Zaktualizuj mnie i ruszamy dalej razem.',
+    update: 'Zaktualizuj',
+    close: 'Później',
   },
 } as const;
 

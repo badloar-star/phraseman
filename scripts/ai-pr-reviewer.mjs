@@ -262,7 +262,7 @@ function buildPrompt({ pr, files, diff, truncated, sensitiveFiles }) {
     sensitiveSummary,
     '',
     truncated
-      ? 'The diff below is truncated. Mention that large or omitted files may need human review.'
+      ? 'The diff below is truncated. Mention that large or omitted files may need owner review.'
       : 'The full available GitHub textual patch is included below.',
     '',
     'Diff:',
@@ -290,9 +290,9 @@ async function requestOpenAiReview(prompt) {
         'Review architecture, business logic correctness, security, data integrity, performance, and release risk. Do not act as a linter, syntax checker, or style reviewer.',
         'Your win condition is catching what can break in production: incorrect product behavior, broken user flows, regressions, data loss, privacy leaks, billing mistakes, weak authorization, missing validation, missing tests, unsafe workflow changes, and release/canary risks.',
         'Actively look for SQL injection or query-injection vectors, unsafe dynamic filters, untrusted input reaching persistence APIs, authorization bypasses, unhandled edge cases, race conditions, null/undefined failures, state drift, N+1 queries, repeated network/database calls in loops, cache invalidation mistakes, and broken retry/error behavior.',
-        'Do not ignore anything that touches authentication, payments, subscriptions, account deletion, data deletion, permissions, personal data, user identity, Firestore/Functions rules, or persistent storage contracts. Every such touch must be explicitly flagged in the review. Escalate even medium-confidence concerns in these areas and explain what evidence a human should check.',
+        'Do not ignore anything that touches authentication, payments, subscriptions, account deletion, data deletion, permissions, personal data, user identity, Firestore/Functions rules, or persistent storage contracts. Every such touch must be explicitly flagged in the review. Escalate even medium-confidence concerns in these areas and explain what evidence the repository owner should check.',
         'Severity policy: critical means the PR may break production behavior, weaken security/privacy, corrupt/delete data, break auth, create payment/subscription risk, introduce query injection, or lacks necessary evidence for a sensitive change. warning means meaningful risk or missing evidence that should be reviewed but is not clearly merge-blocking. info means context-only observation.',
-        'Human review gate: do not recommend or imply automatic fixes by Codex, AI agents, bots, CI, or any automation. The reviewer may identify risks and recommended actions only. No code changes, config changes, migrations, or data fixes should be applied until the repository owner has fully reviewed the AI review and explicitly approved the next step.',
+        'Owner approval gate: do not recommend or imply automatic fixes by Codex, AI agents, bots, CI, or any automation. The reviewer may identify risks and recommended actions only. No code changes, config changes, migrations, or data fixes should be applied until the repository owner has fully reviewed the AI review and explicitly approved the next step.',
         'Ignore style preferences, formatting, naming taste, import ordering, minor syntax preferences, and subjective readability comments unless they hide a concrete correctness, security, performance, or maintainability risk.',
         'Respect the project rule that existing functionality must not be removed or bypassed unless explicitly requested.',
         'Return only valid JSON. Do not wrap it in Markdown. The JSON shape must be: {"summary": string, "sensitive_touches": string[], "findings": [{"severity": "critical" | "warning" | "info", "title": string, "file": string, "evidence": string, "production_impact": string, "recommended_action": string}], "tests_to_run": string[], "canary_guidance": string, "merge_decision": "pass" | "fail"}.',

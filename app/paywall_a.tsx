@@ -27,7 +27,9 @@ import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
+import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
+import PaywallGreetingLine from '../components/paywall/PaywallGreetingLine';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
@@ -44,9 +46,10 @@ import { hapticTap } from '../hooks/use-haptics';
 const VARIANT = 'A' as const;
 
 export default function PaywallA() {
-  const params = useLocalSearchParams<{ context?: string; source?: string }>();
+  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string }>();
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const isOnboarding = source === 'onboarding_plan';
   // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
@@ -54,10 +57,11 @@ export default function PaywallA() {
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
   const insets = useSafeAreaInsets();
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang });
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
+  const [profile, setProfile] = useState<PaywallProfile | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   // Онбординг: перед уходом на следующий шаг (закрытие/«продолжить бесплатно»)
@@ -90,6 +94,10 @@ export default function PaywallA() {
       try {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
+      } catch { /* некритично */ }
+      try {
+        const prof = await readPaywallProfile(lang as PaywallLang);
+        if (!dead) setProfile(prof);
       } catch { /* некритично */ }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
@@ -153,18 +161,9 @@ export default function PaywallA() {
 
             <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
 
-            {/* «Уже твоё» — компактной строкой, без полной карточки (экономим высоту). */}
-            {mirror && (
-              <Text style={[S.mirrorLine, { color: chrome.textMuted }]} numberOfLines={1}>
-                {LP('Уже твоё:', 'Вже твоє:', 'Ya es tuyo:', { 'pt-BR': 'Já é seu:', vi: 'Đã là của bạn:', id: 'Sudah jadi milikmu:', tr: 'Artık senin:', pl: 'Już twoje:' })}{' '}
-                <Text style={{ color: chrome.tc.heroAccent, fontWeight: '800' }}>
-                  {[
-                    mirror.phrases > 0 ? `${mirror.phrases} ${LP('фраз', 'фраз', 'frases', { 'pt-BR': 'frases', vi: 'cụm', id: 'frasa', tr: 'ifade', pl: 'fraz' })}` : '',
-                    mirror.streak > 0 ? `${mirror.streak} ${LP('дн. серия', 'дн. серія', 'días', { 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}` : '',
-                  ].filter(Boolean).join(' · ')}
-                </Text>
-              </Text>
-            )}
+            {/* Персональное обращение по имени + прогресс + цель («приложение тебя
+                понимает»). Заменяет прежнюю безымянную строку «Уже твоё». */}
+            <PaywallGreetingLine lang={lang as Lang} chrome={chrome} profile={profile} mirror={mirror} />
 
             {p.offeringsFailed ? (
               <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
@@ -195,6 +194,7 @@ export default function PaywallA() {
               futurePrice={p.futurePrice}
               period={period}
               compact
+              isLifetime={isLifetimeSel}
             />
 
             {/* Полный таймлайн триала «сегодня→напомним→списание» теперь и на «Компакт»:
@@ -235,6 +235,7 @@ export default function PaywallA() {
               onRestore={() => { void p.handleRestore(); }}
               restoring={p.restoring}
               onContinueFree={() => closeWithDim('continue_free')}
+              trustHasTrial={!!p.trialDays}
             />
 
             <PaywallLegalDisclosure
@@ -263,7 +264,6 @@ const S = StyleSheet.create({
     lineHeight: 31, textAlign: 'center', marginTop: 14,
   },
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  mirrorLine: { fontSize: 11.5, textAlign: 'center', marginTop: 10 },
   benefits: { gap: 8, marginTop: 14 },
   benefitRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 9 },
   benefitText: { flex: 1, fontSize: 12.5, lineHeight: 17 },

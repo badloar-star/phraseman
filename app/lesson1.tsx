@@ -109,7 +109,7 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { dailyTaskLessonVisitedKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -568,6 +568,8 @@ interface LessonContentProps {
   planLessonRemaining: number;
   isPlanPhraseLessonTask: boolean;
   lessonTeachingNote: ResolvedLessonTeachingNote | null;
+  lessonTheorySupportBlocked: boolean;
+  lessonHintSupportBlocked: boolean;
 }
 
 const LessonContent = React.memo(function LessonContent({
@@ -646,6 +648,8 @@ const LessonContent = React.memo(function LessonContent({
   planLessonRemaining,
   isPlanPhraseLessonTask,
   lessonTeachingNote,
+  lessonTheorySupportBlocked,
+  lessonHintSupportBlocked,
 }: LessonContentProps) {
   const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
@@ -810,6 +814,7 @@ const LessonContent = React.memo(function LessonContent({
 
   const triggerGrammarHint = useCallback(async (currentWord: string, force = false) => {
     if (!currentWord) return;
+    if (lessonHintSupportBlocked) return;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
     for (const hint of GRAMMAR_HINTS) {
       if (lessonId >= hint.lessonTeaches) continue;
@@ -829,7 +834,7 @@ const LessonContent = React.memo(function LessonContent({
       });
       return;
     }
-  }, [lessonId, lang, studyTarget]);
+  }, [lessonHintSupportBlocked, lessonId, lang, studyTarget]);
 
   const hideGrammarHint = useCallback(() => {
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
@@ -1396,7 +1401,9 @@ const LessonContent = React.memo(function LessonContent({
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
-                    const dimCount = Math.ceil(wrongIdx.length / 2);
+                    const totalTiles = wordOptionItems.length;
+                    const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
+                    const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));
                     const shuffledWrong = [...wrongIdx];
                     for (let k = shuffledWrong.length - 1; k > 0; k -= 1) {
                       const j = Math.floor(Math.random() * (k + 1));
@@ -1421,9 +1428,20 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/hint', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
-            <Ionicons name="book-outline" size={26} color={sx.second} />
-            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
+          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: lessonId } }); return; } router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/hint', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
+            <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
+            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+              {lessonTheorySupportBlocked ? triLang(lang, {
+                ru: 'На проверке',
+                uk: 'На перевірці',
+                es: 'En revisión',
+                'pt-BR': 'Em revisão',
+                vi: 'Đang duyệt',
+                id: 'Ditinjau',
+                tr: 'İncelemede',
+                pl: 'W weryfikacji',
+              }) : s.lesson.theory}
+            </Text>
           </LessonPressable>
 
           {/* [SPEAKING] "Устно" — premium: произнести фразу вслух (микрофон + эквалайзер) */}
@@ -2407,6 +2425,12 @@ export default function LessonScreen() {
         setTypedText('');
         setPhraseWordIdx(0);
         setContrExpanded(null);
+        touchLessonScreenPrimed(lessonStorageId, {
+          cell: 0,
+          order: [],
+          progress: [],
+          override: null,
+        }, studyTarget);
         setLessonHydrated(true);
         return;
       }
@@ -2677,7 +2701,8 @@ export default function LessonScreen() {
     if (isRight && !differentLessonTrackedRef.current) {
       differentLessonTrackedRef.current = true;
       (async () => {
-        const lessonKey = `lesson_visited_${new Date().toISOString().split('T')[0]}`;
+        const dayKey = new Date().toISOString().split('T')[0];
+        const lessonKey = dailyTaskLessonVisitedKey(dayKey, studyTargetRef.current);
         const visitedRaw = await AsyncStorage.getItem(lessonKey);
         let visited: number[] = [];
         try { visited = visitedRaw ? JSON.parse(visitedRaw) : []; } catch { visited = []; }
@@ -2685,7 +2710,10 @@ export default function LessonScreen() {
         if (!visited.includes(lessonId)) {
           visited.push(lessonId);
           await AsyncStorage.setItem(lessonKey, JSON.stringify(visited));
-          updateMultipleTaskProgress([{ type: 'different_lessons', increment: 1 }]).catch(() => {});
+          updateMultipleTaskProgress(
+            [{ type: 'different_lessons', increment: 1 }],
+            { studyTarget: studyTargetRef.current },
+          ).catch(() => {});
         }
       })();
     }
@@ -2824,7 +2852,7 @@ export default function LessonScreen() {
       const hour = new Date().getHours();
       if (hour < 12) lessonUpdates.push({ type: 'morning_session' });
       if (hour >= 18) lessonUpdates.push({ type: 'evening_session' });
-      updateMultipleTaskProgress(lessonUpdates);
+      updateMultipleTaskProgress(lessonUpdates, { studyTarget: studyTargetRef.current });
       // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
       const comboM = correctStreakRef.current >= 25 ? 3.0
         : correctStreakRef.current >= 15 ? 2.5
@@ -2893,16 +2921,20 @@ export default function LessonScreen() {
         resetAndUpdateTaskProgress(
           ['lesson_no_mistakes', 'correct_streak'],
           [{ type: 'total_answers' }],
+          studyTargetRef.current,
         );
       } else {
-        updateMultipleTaskProgress([{ type: 'total_answers' }]);
+        updateMultipleTaskProgress([{ type: 'total_answers' }], { studyTarget: studyTargetRef.current });
       }
 
       // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
       if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
         spendOneRef.current().then(success => {
           if (success) {
-            updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }]).catch(() => {});
+            updateMultipleTaskProgress(
+              [{ type: 'energy_spend', increment: 1 }],
+              { studyTarget: studyTargetRef.current },
+            ).catch(() => {});
             if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
               setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
             }
@@ -3012,11 +3044,18 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
-        updateMultipleTaskProgress([{ type: 'lesson_complete', increment: 1 }]).catch(() => {});
+        updateMultipleTaskProgress(
+          [{ type: 'lesson_complete', increment: 1 }],
+          { studyTarget: studyTargetRef.current },
+        ).catch(() => {});
 
         let coachRouteParams = {};
         try {
-          const decision = await checkCoachToastNeededWithAnalytics(lessonWrongMistakesRef.current);
+          const decision = await checkCoachToastNeededWithAnalytics(
+            lessonWrongMistakesRef.current,
+            studyTargetRef.current,
+            lang === 'uk' ? 'uk' : 'ru',
+          );
           coachRouteParams = coachToastDecisionToRouteParams(decision);
         } catch {
           coachRouteParams = {};
@@ -3378,8 +3417,6 @@ export default function LessonScreen() {
 
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
-  void lessonTheorySupportBlocked;
-  void lessonHintSupportBlocked;
 
   if (frenchLessonSourceGateBlocked) {
     return (
@@ -3520,7 +3557,9 @@ export default function LessonScreen() {
                 planLessonAnswered={planLessonAnswered}
                 planLessonRemaining={planLessonRemaining}
                 lessonTeachingNote={lessonTeachingNote}
-              />
+                lessonTheorySupportBlocked={lessonTheorySupportBlocked}
+                lessonHintSupportBlocked={lessonHintSupportBlocked}
+                  />
         </SafeAreaView>
 
         {/* ── Medal tier toast (premium) ── */}

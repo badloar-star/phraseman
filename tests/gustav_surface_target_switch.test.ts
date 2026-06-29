@@ -10,7 +10,11 @@ jest.mock('../app/config', () => ({
 import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
 import type { LessonPhrase } from '../app/lesson_data_types';
 import { getLessonData } from '../app/lesson_data_all';
-import { hasLessonPrepositionDrillForTarget } from '../app/lesson_prepositions';
+import {
+  getLessonPrepositionPack,
+  getLessonPrepositionTexts,
+  hasLessonPrepositionDrillForTarget,
+} from '../app/lesson_prepositions';
 import {
   phraseAnswerDisplayLine,
   phraseCanonicalAnswer,
@@ -145,7 +149,10 @@ describe('French phrase surface contract', () => {
   });
 
   it('does not expose English-only preposition drills in French mode', () => {
+    expect(getLessonPrepositionPack(8, 'en')).not.toBeNull();
     expect(hasLessonPrepositionDrillForTarget(8, 'fr')).toBe(false);
+    expect(getLessonPrepositionPack(8, 'fr')).toBeNull();
+    expect(getLessonPrepositionTexts(8, 'fr')).toEqual([]);
   });
 
   it('keeps draft French lesson rows inactive until approved source evidence exists', () => {

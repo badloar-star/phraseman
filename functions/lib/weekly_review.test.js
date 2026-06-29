@@ -143,6 +143,20 @@ describe('weekly_review quota replay helpers', () => {
         expect(decision.nextAllowedAtMs).toBe(2000);
         expect(decision.model).toBe('test-model');
     });
+    it('opens generation instead of replaying same-hash stored review in the wrong language', () => {
+        const briefing = baseBriefing();
+        const hash = briefingHashForReplay(briefing);
+        const decision = decideWeeklyReviewReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: hash,
+            lastReview: {
+                greeting: 'Good start today.',
+                paragraphs: ['Today you keep a good small practice step with your phrases.'],
+                recommendations: [],
+            },
+        }, hash, 1000, 'ru');
+        expect(decision).toEqual({ kind: 'open' });
+    });
     it('keeps a different briefing gated until the window opens', () => {
         const briefing = baseBriefing();
         const hash = briefingHashForReplay(briefing);

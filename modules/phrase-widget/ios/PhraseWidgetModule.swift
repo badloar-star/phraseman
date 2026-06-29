@@ -25,6 +25,22 @@ public final class PhraseWidgetModule: Module {
       let data = try JSONSerialization.data(withJSONObject: payload, options: [])
       let json = String(decoding: data, as: UTF8.self)
       defaults.set(json, forKey: kStorageKey)
+      // Read back immediately. If the App Group capability is declared in the
+      // build but NOT provisioned on Apple's side, iOS silently hands each target
+      // its own private suite: the write "succeeds" here but the widget extension
+      // reads nil and shows the placeholder forever. Surfacing a thrown error
+      // turns that silent, build-only failure into something the JS bridge logs.
+      guard defaults.string(forKey: kStorageKey) == json else {
+        throw Exception(name: "AppGroupWriteNotShared",
+                        description: "Wrote to \(kAppGroup) but read-back failed — App Group is not actually shared (provisioning?)")
+      }
+    }
+
+    // Diagnostic the JS side can call to confirm the shared container is real and
+    // currently holds a snapshot. Returns true only when a value round-trips.
+    AsyncFunction("hasSharedSnapshot") { () -> Bool in
+      guard let defaults = UserDefaults(suiteName: kAppGroup) else { return false }
+      return defaults.string(forKey: kStorageKey) != nil
     }
 
     // Ask the OS to rebuild all widget timelines on iOS 14+.

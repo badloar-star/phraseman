@@ -34,6 +34,9 @@ type Report = {
     blockers: number;
     warnings: number;
     shapeValid: boolean;
+    llmOfficialSourceBridgeReady: boolean;
+    llmOfficialSourceReviewedRows: number;
+    llmOfficialSourceRowsWithAllRequiredGatesPassed: number;
     readyForReviewer: boolean;
     readyForApply: boolean;
     mayStartFrenchGeneration: boolean;
@@ -84,6 +87,29 @@ function arr<T = unknown>(value: unknown): T[] {
   return Array.isArray(value) ? value as T[] : [];
 }
 
+function object(value: unknown): Record<string, unknown> {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function n(value: Record<string, unknown>, key: string): number {
+  const raw = value[key];
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+  if (typeof raw === 'string' && raw.trim() !== '' && Number.isFinite(Number(raw))) return Number(raw);
+  return 0;
+}
+
+function b(value: Record<string, unknown>, key: string): boolean {
+  const raw = value[key];
+  if (typeof raw === 'boolean') return raw;
+  if (typeof raw === 'string') return raw.toLowerCase() === 'true' || raw.toLowerCase() === 'yes';
+  return false;
+}
+
+function summaryOf(filePath: string): Record<string, unknown> {
+  if (!fs.existsSync(filePath)) return {};
+  return object(readJson<Record<string, unknown>>(filePath).summary);
+}
+
 function hasMojibake(value: unknown): boolean {
   return typeof value === 'string' && /[ÐÑ][\u0080-\u00BF]|Ã[©ª¨]|Â/.test(value);
 }
@@ -115,6 +141,9 @@ function renderMarkdown(report: Report): string {
     `- Blockers: ${report.summary.blockers}`,
     `- Warnings: ${report.summary.warnings}`,
     `- Shape valid: ${report.summary.shapeValid ? 'yes' : 'no'}`,
+    `- LLM official-source bridge ready: ${report.summary.llmOfficialSourceBridgeReady ? 'yes' : 'no'}`,
+    `- LLM official-source reviewed rows: ${report.summary.llmOfficialSourceReviewedRows}`,
+    `- LLM official-source rows with all required gates passed: ${report.summary.llmOfficialSourceRowsWithAllRequiredGatesPassed}`,
     `- Ready for reviewer: ${report.summary.readyForReviewer ? 'yes' : 'no'}`,
     `- Ready for apply: ${report.summary.readyForApply ? 'yes' : 'no'}`,
     `- May start French generation: ${report.summary.mayStartFrenchGeneration ? 'yes' : 'no'}`,
@@ -212,6 +241,21 @@ function main(): void {
     }
   }
 
+  const legacyBridgeSummary = summaryOf(path.join(runDir, 'audits', 'legacy_generated_research_evidence_bridge_v2_packet.json'));
+  const llmOfficialSourceReviewedRows = n(legacyBridgeSummary, 'rowsAcceptedByLlmOfficialSource');
+  const llmOfficialSourceRowsWithAllRequiredGatesPassed = n(legacyBridgeSummary, 'rowsWithAllRequiredGatesPassed');
+  const llmOfficialSourceBridgeReady =
+    rows > 0 &&
+    n(legacyBridgeSummary, 'legacyQueueRows') === rows &&
+    llmOfficialSourceReviewedRows === rows &&
+    llmOfficialSourceRowsWithAllRequiredGatesPassed === rows &&
+    n(legacyBridgeSummary, 'rowActivationBlockedRows') === rows &&
+    n(legacyBridgeSummary, 'rowProductionApplyOpenFlags') === 0 &&
+    n(legacyBridgeSummary, 'rowActivationApprovedFlags') === 0 &&
+    b(legacyBridgeSummary, 'dryRunReady') &&
+    !b(legacyBridgeSummary, 'readyForApply') &&
+    !b(legacyBridgeSummary, 'mayModifyProductionAppFiles');
+
   if (ledgerFiles.length === 0) {
     findings.push({
       severity: 'blocker',
@@ -228,9 +272,11 @@ function main(): void {
   }
   if (rowsWithReviewerNeedsReview > 0) {
     findings.push({
-      severity: 'warning',
-      code: 'rows_need_llm_official_source_review',
-      message: `${rowsWithReviewerNeedsReview} generated rows need LLM official-source review before apply.`,
+      severity: llmOfficialSourceBridgeReady ? 'info' : 'warning',
+      code: llmOfficialSourceBridgeReady ? 'rows_llm_official_source_review_promoted_no_apply' : 'rows_need_llm_official_source_review',
+      message: llmOfficialSourceBridgeReady
+        ? `${rowsWithReviewerNeedsReview} generated rows remain ledger-locked, but LLM official-source bridge covers all rows with required gates and keeps apply closed.`
+        : `${rowsWithReviewerNeedsReview} generated rows need LLM official-source review before apply.`,
     });
   }
   if (mojibakeMeaningFields > 0) {
@@ -289,6 +335,9 @@ function main(): void {
       blockers,
       warnings,
       shapeValid,
+      llmOfficialSourceBridgeReady,
+      llmOfficialSourceReviewedRows,
+      llmOfficialSourceRowsWithAllRequiredGatesPassed,
       readyForReviewer,
       readyForApply,
       mayStartFrenchGeneration: true,

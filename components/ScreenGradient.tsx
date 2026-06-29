@@ -28,6 +28,7 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   gold: 1,
   coral: 1,
   minimalDark: 1,
+  business: 1,
   // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
   midnight: 1,
   ember: 1,
@@ -52,6 +53,8 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
   coral: { bloomA: '#FF6E6E', bloomB: '#D13D72' },
   minimalDark: { bloomA: '#6EA8FF', bloomB: '#9CA3AF' },
+  // «Бизнес»: строгая моно-тема — нейтральный серый блум без цвета.
+  business: { bloomA: '#3A3A3A', bloomB: '#1A1A1A' },
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
@@ -85,6 +88,8 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.28, y: H * 0.20, r:  80, color: '#9CA3AF', opacity: 0.08 },
   ],
   // Compass: reference-matched graphite field; warm amber is reserved for assets and CTA.
+  // «Бизнес»: строгий чистый чёрный фон без орбов — никакого цветного свечения.
+  business: [],
   // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
   midnight: [],
   ember: [],

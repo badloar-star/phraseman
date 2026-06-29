@@ -24,7 +24,6 @@ describe('Gustav French lesson entry point gate', () => {
     expect(source).toContain("const frenchTheorySourceGated = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)");
     expect(source).toContain("const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null)");
     expect(source).toContain('Материал на проверке');
-    expect(source).toContain('English фразы не подставляются');
 
     const sharedOpenSlice = source.slice(
       source.indexOf('const openLessonFromMenu = useCallback'),
@@ -70,10 +69,6 @@ describe('Gustav French lesson entry point gate', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
     expect(source).toContain('Теория на проверке');
-    expect(source).toContain('French theory откроется после source gate');
-    expect(source).toContain('English theory не подставляется');
-    expect(source).toContain('Французская теория ещё закрыта source gate');
-    expect(source).toContain('английскую теорию, интро или примеры как замену French');
 
     const theorySlice = source.slice(
       source.indexOf("testID: 'lesson-menu-theory'"),
@@ -83,7 +78,51 @@ describe('Gustav French lesson entry point gate', () => {
     expect(theorySlice).toContain("setSoonOpen('frenchTheory')");
     expect(theorySlice).toContain('unavailable: frenchTheorySourceGated');
     expect(theorySlice.indexOf("setSoonOpen('frenchTheory')")).toBeLessThan(
+      theorySlice.indexOf("router.push({ pathname: '/hint'"),
+    );
+    expect(theorySlice.indexOf("setSoonOpen('frenchTheory')")).toBeLessThan(
       theorySlice.indexOf("router.push({ pathname: '/lesson_help'"),
+    );
+  });
+
+  it('keeps French lesson auxiliary sections visible but source-gated before opening English-only helpers', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
+
+    expect(source).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
+    expect(source).toContain("const englishHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, 'en')");
+    expect(source).not.toContain('hideEnglishOnlyAuxiliary');
+
+    const wordsSlice = source.slice(
+      source.indexOf("testID: 'lesson-menu-words'"),
+      source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
+    );
+    expect(wordsSlice).toContain('sub: frenchAuxiliarySourceGated');
+    expect(wordsSlice).not.toContain('hidden:');
+    expect(wordsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
+    expect(wordsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
+      wordsSlice.indexOf("router.push({ pathname: '/lesson_words'"),
+    );
+
+    const verbsSlice = source.slice(
+      source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
+      source.indexOf("testID: 'lesson-menu-prepositions'"),
+    );
+    expect(verbsSlice).toContain('sub: frenchAuxiliarySourceGated');
+    expect(verbsSlice).toContain('hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
+    expect(verbsSlice).not.toContain('hideEnglishOnlyAuxiliary');
+    expect(verbsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
+    expect(verbsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
+      verbsSlice.indexOf("router.push({ pathname: '/lesson_irregular_verbs'"),
+    );
+
+    const prepositionsSlice = source.slice(
+      source.indexOf("testID: 'lesson-menu-prepositions'"),
+      source.indexOf("testID: 'lesson-menu-theory'"),
+    );
+    expect(prepositionsSlice).toContain('hidden: !targetHasPrepositionDrill && !prepositionSourceGated');
+    expect(prepositionsSlice).toContain('unavailable: prepositionSourceGated');
+    expect(prepositionsSlice.indexOf('if (prepositionSourceGated)')).toBeLessThan(
+      prepositionsSlice.indexOf("router.push({ pathname: '/preposition_drill'"),
     );
   });
 
@@ -116,7 +155,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("case 'open_theory':"),
       source.indexOf("case 'flashcard_view':"),
     );
-    expect(theorySlice).toContain('if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId))');
+    expect(theorySlice).toContain("if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId))");
     expect(theorySlice.indexOf("router.replace('/(tabs)/lessons' as any)")).toBeLessThan(
       theorySlice.indexOf("router.push({ pathname: '/lesson_help'"),
     );

@@ -141,7 +141,7 @@ describe('telegram testers admin page contract', () => {
     expect(functionSource).toContain("telegramRequest(token, 'sendPhoto'");
     expect(functionSource).toContain('async function sendPremiumWelcome');
     expect(functionSource).toContain('function startReplyKeyboard()');
-    expect(functionSource).toContain('keyboard: [[{ text: PAY_BUTTON_TEXT_RU }]]');
+    expect(functionSource).toContain('keyboard: [[{ text: PAY_BUTTON_TEXT_RU }], [{ text: SUPPORT_BUTTON_TEXT_RU }]]');
     expect(functionSource).toContain("text === PAY_BUTTON_TEXT_RU");
     expect(functionSource).toContain('reply_markup: startReplyKeyboard()');
   });
@@ -171,6 +171,7 @@ describe('telegram testers admin page contract', () => {
 
     expect(functionSource).toContain('export const telegramPremiumActivationNotifier');
     expect(functionSource).toContain('secrets: [PHRASEMAN_PREMIUM_BOT_TOKEN]');
-    expect(functionSource).toContain('await notifyTesterActivationAdmins(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), after)');
+    expect(functionSource).toContain('const token = PHRASEMAN_PREMIUM_BOT_TOKEN.value()');
+    expect(functionSource).toContain('await notifyTesterActivationAdmins(token, after)');
   });
 });

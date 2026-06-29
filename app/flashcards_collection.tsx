@@ -949,7 +949,7 @@ export default function FlashcardsScreen() {
         'action_toast',
         actionToastTri('info', {
           ru: 'Набор ещё не куплен. Его можно открыть за осколки в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за осколки в магазині (вкладка з наборами карток).',
+          uk: 'Набір ще не куплено. Його можна відкрити за уламки в магазині (вкладка з наборами карток).',
           es: 'Aún no has comprado este pack. Puedes obtenerlo por fragmentos en la tienda (pestaña de packs de Tarjetas).',
           'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por fragmentos na loja (aba de packs de Cartões).',
           vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng mảnh trong cửa hàng (tab pack Thẻ).',

@@ -3,8 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, type ViewSt
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
 type Props = {
   f: { body: number };
@@ -23,18 +25,19 @@ type Props = {
 function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
   const router = useRouter();
   const { lang } = useLang();
+  const { themeMode } = useTheme();
   const shineX = useRef(new Animated.Value(0)).current;
   const label =
     customLabel?.trim() ||
     triLang(lang, {
-      ru: 'Получить Премиум',
-      uk: 'Отримати Premium',
-      es: 'Obtener Premium',
-      'pt-BR': 'Obter Premium',
-      vi: 'Nhận Premium',
-      id: 'Dapatkan Premium',
-      tr: 'Premium al',
-      pl: 'Uzyskaj Premium',
+      ru: 'Получить Плюс',
+      uk: 'Отримати Plus',
+      es: 'Obtener Plus',
+      'pt-BR': 'Obter Plus',
+      vi: 'Nhận Plus',
+      id: 'Dapatkan Plus',
+      tr: 'Plus al',
+      pl: 'Uzyskaj Plus',
     });
 
   useEffect(() => {
@@ -108,7 +111,7 @@ function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLab
             {
               flex: 1,
               textAlign: 'center',
-              color: '#1a1206',
+              color: monoIcon(themeMode, '#1a1206', MONO_ICON.onLight),
               fontSize: f.body,
               textShadowColor: 'rgba(255,248,220,0.55)',
               textShadowOffset: { width: 0, height: 0.5 },

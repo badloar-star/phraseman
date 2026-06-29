@@ -627,10 +627,15 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;
-  const myRank       = Math.max(1, updated.findIndex(m => m.isMe) + 1);
+  // Если меня нет в группе (findIndex===-1) — НЕЛЬЗЯ ставить 1-е место: Math.max(1, 0) = 1
+  // отдавало мне топ-1 + автоматический promotion при reset/гонке. Помечаем как «вне группы»,
+  // и hasValidGroup=false ниже отключает promotion/demotion целиком.
+  const meIndex      = updated.findIndex(m => m.isMe);
+  const myRank       = meIndex >= 0 ? meIndex + 1 : total + 1;
+  const meInGroup    = meIndex >= 0;
 
-  // Need at least 2 participants for meaningful ranking
-  const hasValidGroup = total >= 2;
+  // Need at least 2 participants for meaningful ranking AND me present in the group
+  const hasValidGroup = total >= 2 && meInGroup;
   const zoneSize     = getLeagueResultZoneSize(total);
   const topCutoff    = hasValidGroup ? zoneSize : 0;
   const bottomCutoff = hasValidGroup ? total - zoneSize + 1 : total + 1;

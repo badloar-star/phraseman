@@ -38,38 +38,62 @@ describe('Gustav French quiz target gate', () => {
     ]));
   });
 
-  it.each([
-    ['standalone quiz route', 'app/quizzes.tsx'],
-    ['tabs quiz route', 'app/(tabs)/quizzes.tsx'],
-  ])('keeps %s behind the French quiz source gate before English questions can render', (_label, relativePath) => {
-    const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  it('keeps the home quiz entry visible for French while the quiz runtime remains source-gated', () => {
+    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+
+    expect(home).toContain("testID: 'home-quick-quizzes'");
+    expect(home).toContain('const visibleQuickItems = quickItems');
+    expect(home).not.toContain("quickItems.filter((item) => item.key !== 'quizzes')");
+    expect(quizContentAvailableForTarget('fr')).toBe(false);
+    expect(getQuizPhrases('easy', 10, 'ru', 'fr')).toEqual([]);
+  });
+
+  it('keeps the tabs quiz runtime behind the French quiz source gate before English questions can render', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
 
     expect(source).toContain('quizContentAvailableForTarget(studyTarget)');
     expect(source).toContain('const frenchQuizBlocked = !quizContentAvailableForTarget(studyTarget)');
-    expect(source).toContain('const quizBankAvailable = quizContentAvailableForTarget(studyTarget)');
+    expect(source).toContain('const quizBankAvailable = useMemo(');
+    expect(source).toContain('() => quizContentAvailableForTarget(studyTarget)');
+    expect(source).toContain('function LevelSelect({ onSelect, sourceGated = false }');
+    expect(source).toContain('const lockedBySourceGate = sourceGated');
+    expect(source).toContain('const quizCardsLocked = lockedBySourceGate || lockedByDailyLimit');
+    expect(source).toContain('onLockedPress={onQuizCardsLockedPress}');
     expect(source).toContain('FrenchQuizUnavailable');
     expect(source).toContain('frenchQuizGateCopy(lang)');
-    expect(source).toContain('if (!quizBankAvailable)');
-    expect(source.indexOf('if (!quizBankAvailable)')).toBeLessThan(
-      source.indexOf('getQuizPhrasesLoaded(level, 10, lang, studyTarget)'),
+
+    const phraseSlice = source.slice(
+      source.indexOf('const phrases = useMemo((): Phrase[] => {'),
+      source.indexOf('const planQuizTaskCopy = useMemo'),
+    );
+    expect(phraseSlice).toContain('if (!quizBankAvailable)');
+    expect(phraseSlice.indexOf('if (!quizBankAvailable)')).toBeLessThan(
+      phraseSlice.indexOf('getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget)'),
     );
     expect(source.indexOf('if (frenchQuizBlocked)')).toBeLessThan(
       source.indexOf('? <QuizGame'),
     );
-    expect(source).toContain('getQuizPhrasesLoaded(level, 10, lang, studyTarget)');
+    expect(source).toContain('getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget)');
     expect(source).toContain('const navKey = quizNavLevelKey(studyTarget)');
     expect(source).toContain('await AsyncStorage.removeItem(navKey)');
     expect(source).toContain('useFocusEffect(useCallback(() => {');
     expect(source).toContain('setGameKey(k => k + 1)');
     expect(source).not.toContain("AsyncStorage.getItem('quiz_nav_level')");
     expect(source).not.toContain("AsyncStorage.removeItem('quiz_nav_level')");
+
+    const rootSlice = source.slice(source.indexOf('export default function QuizzesScreen'));
+    expect(rootSlice).toContain(': <LevelSelect sourceGated={frenchQuizBlocked}');
+    expect(rootSlice).not.toContain('return <FrenchQuizUnavailable />;');
   });
 
-  it('keeps the quizzes_screen route alias inside the same gated tabs runtime', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'quizzes_screen.tsx'), 'utf8');
+  it.each([
+    ['quizzes_screen route alias', 'app/quizzes_screen.tsx', "import QuizzesScreen from './(tabs)/quizzes'"],
+    ['standalone quiz route alias', 'app/quizzes.tsx', "import QuizzesScreen from './(tabs)/quizzes'"],
+  ])('keeps the %s inside the same gated tabs runtime', (_label, relativePath, importLine) => {
+    const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
     expect(quizContentGateForTarget('fr').blockedRoutes).toContain('/quizzes_screen');
-    expect(source).toContain("import QuizzesScreen from './(tabs)/quizzes'");
+    expect(source).toContain(importLine);
     expect(source).toContain('<QuizzesScreen />');
     expect(source).not.toContain('getQuizPhrasesLoaded(');
     expect(source).not.toContain('getQuizPhrases(');
@@ -92,11 +116,8 @@ describe('Gustav French quiz target gate', () => {
     expect(source.indexOf('updateMultipleTaskProgress(doneUpdates, { studyTarget })', hardPerfectIndex)).toBeGreaterThan(hardPerfectIndex);
   });
 
-  it.each([
-    ['standalone quiz route', 'app/quizzes.tsx'],
-    ['tabs quiz route', 'app/(tabs)/quizzes.tsx'],
-  ])('keeps typed wrong-answer explanations from showing the correct-answer praise in %s', (_label, relativePath) => {
-    const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  it('keeps typed wrong-answer explanations from showing the correct-answer praise in the tabs quiz runtime', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
 
     expect(source).toContain('function quizExplanationIndexForAnswer');
     expect(source).toContain('if (typedOk === true) return quizPrimaryCorrectIndex(phrase.correct)');
@@ -127,7 +148,7 @@ describe('Gustav French quiz target gate', () => {
     const navCaseIndex = screenSource.indexOf("case 'quiz_perfect':");
     const navEasyIndex = screenSource.indexOf("await openQuizOrFrenchGate('easy')", navCaseIndex);
     const navWriteIndex = screenSource.indexOf('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)');
-    const navRouteIndex = screenSource.indexOf("router.replace('/(tabs)/quizzes')", navWriteIndex);
+    const navRouteIndex = screenSource.indexOf("router.replace('/quizzes_screen')", navWriteIndex);
 
     expect(qp2Index).toBeGreaterThanOrEqual(0);
     expect(qp2TitleIndex).toBeGreaterThan(qp2Index);
@@ -177,28 +198,31 @@ describe('Gustav French quiz target gate', () => {
       .filter((file) => fs.readFileSync(path.join(ROOT, 'app', file), 'utf8').includes('getQuizPhrases('));
 
     expect(dataSource).toContain("export type QuizStudyTargetLang = 'en' | 'es' | 'fr'");
-    expect(dataSource).toContain("if (studyTarget === 'fr')");
+    expect(dataSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(dataSource).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
     expect(dataSource).toContain('return [];');
+    expect(loaderSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
     expect(loaderSource).toContain('studyTarget: QuizStudyTargetLang =');
-    expect(loaderSource).toContain('quizData.getQuizPhrases(difficulty, count, lang, studyTarget)');
+    expect(loaderSource).toContain("if (storageStudyTarget(studyTarget) === 'fr') return []");
+    expect(loaderSource).toContain('return getQuizPhrases(difficulty, count, lang, studyTarget)');
     expect(directAppCallers).toEqual([]);
   });
 
-  it.each([
-    ['standalone quiz route', 'app/quizzes.tsx'],
-    ['tabs quiz route', 'app/(tabs)/quizzes.tsx'],
-  ])('reloads %s quiz rows when the active study target changes', (_label, relativePath) => {
-    const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  it('reloads tabs quiz rows when the active study target changes', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
     const dependencyLists = source.match(/\}, \[[^\]]*studyTarget[^\]]*\]\);/g) ?? [];
 
     expect(dependencyLists.length).toBeGreaterThan(0);
-    expect(source).toContain('getQuizPhrasesLoaded(level, 10, lang, studyTarget)');
+    expect(source).toContain('getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget)');
   });
 
-  it('keeps thematic English quiz packs source-gated for French', () => {
-    expect(getAvailableThematicQuizCategories('en').map(category => category.id)).toContain('kitchen-and-cooking');
-    expect(getAvailableThematicQuizCategories('fr')).toEqual([]);
-    expect(getThematicQuizCategory('kitchen-and-cooking', 'fr')).toBeUndefined();
+  it('keeps thematic English quiz banks source-gated for French while preserving dev surface parity', () => {
+    const englishCategoryIds = getAvailableThematicQuizCategories('en').map(category => category.id);
+    const frenchCategoryIds = getAvailableThematicQuizCategories('fr').map(category => category.id);
+
+    expect(englishCategoryIds).toContain('kitchen-and-cooking');
+    expect(frenchCategoryIds).toEqual(englishCategoryIds);
+    expect(getThematicQuizCategory('kitchen-and-cooking', 'fr')).toBeTruthy();
     expect(getThematicQuizPhrases('kitchen-and-cooking', { sourceLocale: 'ru', studyTarget: 'fr' })).toEqual([]);
     expect(getThematicQuizPhrases('kitchen-and-cooking', { sourceLocale: 'ru', studyTarget: 'en' }).length).toBeGreaterThan(0);
   });
@@ -218,10 +242,10 @@ describe('Gustav French quiz target gate', () => {
   });
 
   it('uses only Russian/Ukrainian source UI copy for the French quiz gate', () => {
-    expect(frenchQuizGateCopy('ru').title).toBe('Французские квизы ещё готовятся');
-    expect(frenchQuizGateCopy('uk').title).toBe('Французькі квізи ще готуються');
-    expect(frenchQuizGateCopy('ru').body).toContain('Английский банк квизов скрыт');
-    expect(frenchQuizGateCopy('uk').body).toContain('Англійський банк квізів приховано');
+    expect(frenchQuizGateCopy('ru').title).toBe('Французские вызовы ещё готовятся');
+    expect(frenchQuizGateCopy('uk').title).toBe('Французькі виклики ще готуються');
+    expect(frenchQuizGateCopy('ru').body).toContain('Английский банк вызовов скрыт');
+    expect(frenchQuizGateCopy('uk').body).toContain('Англійський банк викликів приховано');
     expect(JSON.stringify(frenchQuizGateCopy('ru'))).not.toMatch(/Commencer|Quiz français|French quizzes are being prepared/);
   });
 });

@@ -2,6 +2,7 @@ import type { Lang } from '../constants/i18n';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import type { FlashcardContentLang } from './flashcards/types';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 
 /**
  * Легаси-режим «учим испанский» (dev): оставлен только для старых веток данных.
@@ -14,7 +15,7 @@ export function spanishStudyActive(studyTarget: StudyTargetLang): boolean {
 
 /** Режим «учим французский»: целевой контент, а не язык интерфейса. */
 export function frenchStudyActive(studyTarget: StudyTargetLang): boolean {
-  return ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'fr';
+  return ENABLE_DEV_STUDY_TARGET_LANG && storageStudyTarget(studyTarget) === 'fr';
 }
 
 /**

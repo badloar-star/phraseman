@@ -75,4 +75,15 @@ describe('Gustav French trainer target gate', () => {
       expect(source).toContain('frenchTrainerGateCopy');
     }
   });
+
+  it('normalizes French trainer target decisions through storageStudyTarget', () => {
+    const storeSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_store.ts'), 'utf8');
+    const screenSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer.tsx'), 'utf8');
+
+    expect(storeSource).toContain('storageStudyTarget(studyTarget) ===');
+    expect(storeSource).not.toContain("studyTarget === 'fr'");
+    expect(screenSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(screenSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(screenSource).not.toContain("studyTarget === 'fr'");
+  });
 });

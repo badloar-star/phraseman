@@ -239,7 +239,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
     case 'shards':
       return {
         title: shardsTitle(rewardAmount(drop), lang),
-        subtitle: triLang(lang, { ru: 'Осколки', uk: 'Осколки', es: 'Fragmentos', 'pt-BR': 'Fragmentos', vi: 'Mảnh', id: 'Pecahan', tr: 'Parça', pl: 'Odłamki' }),
+        subtitle: triLang(lang, { ru: 'Осколки', uk: 'Уламки', es: 'Fragmentos', 'pt-BR': 'Fragmentos', vi: 'Mảnh', id: 'Pecahan', tr: 'Parça', pl: 'Odłamki' }),
         accent: '#9FDBFF',
         icon: { type: 'image', source: oskolokImageForPackShards(rewardAmount(drop), themeMode), scale: 'large' },
       };

@@ -286,9 +286,12 @@ export default function LessonMenu() {
   const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
   const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
   const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
-  const hideEnglishOnlyAuxiliary = studyTarget === 'fr';
+  const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr';
   const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId);
   const frenchTheorySourceGated = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
+  const targetHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, studyTarget);
+  const englishHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, 'en');
+  const prepositionSourceGated = frenchAuxiliarySourceGated && englishHasPrepositionDrill && !targetHasPrepositionDrill;
 
   const [score,setScore] = useState(cachedMenu?.score ?? 0);
   const [progress,setProgress] = useState(cachedMenu?.progress ?? 0);
@@ -337,7 +340,7 @@ export default function LessonMenu() {
   const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(false);
 
   const showReplayCta = finishedOnce && !isLessonLocked;
-  const canShowLessonPrepHint = !hideEnglishOnlyAuxiliary && !frenchTheorySourceGated;
+  const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
   const lessonPrepHintText = triLang(lang, {
     ru: 'Загляни в «Словарь» и «Теорию» — там правила, конструкции и новые слова урока. Вернуться можно в любой момент.',
     uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
@@ -632,7 +635,7 @@ export default function LessonMenu() {
         : showReplayCta
         ? triLang(lang, {
   ru: 'Перепройти',
-  uk: 'Перепройти',
+  uk: 'Пройти знову',
   es: 'Repetir',
   "pt-BR": 'Repetir',
   vi: 'Học lại',
@@ -680,9 +683,19 @@ export default function LessonMenu() {
     },
     {
       testID: 'lesson-menu-words',
-      hidden: hideEnglishOnlyAuxiliary,
       label: s.lessonMenu.vocab,
-      sub: LESSONS_WITH_WORDS.has(lessonId)
+      sub: frenchAuxiliarySourceGated
+        ? triLang(lang, {
+            ru: 'Французский словарь урока пока готовится. Английские слова скрыты.',
+            uk: 'Французький словник уроку ще готується. Англійські слова приховано.',
+            es: 'El vocabulario francés de esta lección se está preparando.',
+            'pt-BR': 'O vocabulário francês desta lição está sendo preparado.',
+            vi: 'Từ vựng tiếng Pháp của bài này đang được chuẩn bị.',
+            id: 'Kosakata bahasa Prancis pelajaran ini sedang disiapkan.',
+            tr: 'Bu dersin Fransızca kelime listesi hazırlanıyor.',
+            pl: 'Francuskie słownictwo do tej lekcji jest przygotowywane.',
+          })
+        : LESSONS_WITH_WORDS.has(lessonId)
         ? (() => {
             const total = WORD_COUNT_BY_LESSON[lessonId] ?? 0;
             if (total > 0) {
@@ -718,25 +731,42 @@ export default function LessonMenu() {
             tr: 'Bu dersin kelimeleri',
             pl: 'Słowa z tej lekcji',
           }),
-      icon: 'book-outline',
+      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
       pct: (() => {
+        if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
         const total = WORD_COUNT_BY_LESSON[lessonId] ?? 0;
         return total > 0 ? Math.round(wordsLearned / total * 100) : undefined;
       })(),
       onPress: () => {
+        if (frenchAuxiliarySourceGated) {
+          setSoonOpen('vocab');
+          return;
+        }
         if (LESSONS_WITH_WORDS.has(lessonId)) {
           router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'list' } });
         } else {
           setSoonOpen('vocab');
         }
       },
+      unavailable: frenchAuxiliarySourceGated,
     },
     {
       testID: 'lesson-menu-irregular-verbs',
-      hidden: hideEnglishOnlyAuxiliary || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
+      hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
       label: s.lessonMenu.verbs,
-      sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
+      sub: frenchAuxiliarySourceGated
+        ? triLang(lang, {
+            ru: 'Французские глаголы урока пока готовятся. Английский список скрыт.',
+            uk: 'Французькі дієслова уроку ще готуються. Англійський список приховано.',
+            es: 'Los verbos franceses de esta lección se están preparando.',
+            'pt-BR': 'Os verbos franceses desta lição estão sendo preparados.',
+            vi: 'Động từ tiếng Pháp của bài này đang được chuẩn bị.',
+            id: 'Kata kerja bahasa Prancis pelajaran ini sedang disiapkan.',
+            tr: 'Bu dersin Fransızca fiilleri hazırlanıyor.',
+            pl: 'Francuskie czasowniki do tej lekcji są przygotowywane.',
+          })
+        : LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
         ? (() => {
             const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
             return total > 0
@@ -771,24 +801,30 @@ export default function LessonMenu() {
             tr: 'Bu dersin düzensiz fiilleri',
             pl: 'Czasowniki nieregularne z tej lekcji',
           }),
-      icon: 'flash-outline' as const,
+      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'flash-outline' as const,
       pct: (() => {
+        if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
         const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
         return total > 0 ? Math.round(irregularLearned / total * 100) : undefined;
       })(),
       onPress: () => {
         hapticTap();
+        if (frenchAuxiliarySourceGated) {
+          setSoonOpen('verbs');
+          return;
+        }
         if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
           router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
         } else {
           setSoonOpen('verbs');
         }
       },
+      unavailable: frenchAuxiliarySourceGated,
     },
     {
       testID: 'lesson-menu-prepositions',
-      hidden: !hasLessonPrepositionDrillForTarget(lessonId, studyTarget),
+      hidden: !targetHasPrepositionDrill && !prepositionSourceGated,
       label: triLang(lang, {
   ru: 'Тренажёр предлогов',
   uk: 'Тренажер прийменників',
@@ -820,11 +856,17 @@ export default function LessonMenu() {
             tr: 'Bu dersin edatları',
             pl: 'Przyimki z tej lekcji',
           }),
-      icon: 'funnel-outline' as const,
-      pct: prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
+      icon: prepositionSourceGated ? 'shield-checkmark-outline' as const : 'funnel-outline' as const,
+      pct: prepositionSourceGated
+        ? undefined
+        : prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
       onPress: () => {
         hapticTap();
-        if (hasLessonPrepositionDrillForTarget(lessonId, studyTarget)) {
+        if (prepositionSourceGated) {
+          setSoonOpen('prepositions');
+          return;
+        }
+        if (targetHasPrepositionDrill) {
           if (menuEnergyReady && !menuEnergyUnlimited && energy + bonusEnergy <= 0) {
             emitAppEvent('action_toast', {
               type: 'error',
@@ -839,6 +881,7 @@ export default function LessonMenu() {
           setSoonOpen('prepositions');
         }
       },
+      unavailable: prepositionSourceGated,
     },
     {
       testID: 'lesson-menu-theory',
@@ -1468,7 +1511,7 @@ export default function LessonMenu() {
             : soonOpen === 'vocab'
             ? triLang(lang, {
   ru: 'Словарь для этого урока скоро появится',
-  uk: 'Словник для цього урока ще готується',
+  uk: 'Словник для цього уроку ще готується',
   es: 'El vocabulario de esta lección aún está en preparación.',
   "pt-BR": 'O vocabulário desta lição ainda está sendo preparado.',
   vi: 'Từ vựng cho bài học này vẫn đang được chuẩn bị.',

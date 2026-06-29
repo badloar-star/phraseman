@@ -59,6 +59,7 @@ type SemanticFinding = {
   locale?: SourceLocale | HeisenbergSourceLocale;
   difficulty?: QuizDifficulty;
   ordinal?: number;
+  matchedOrdinal?: number;
   id?: number | string;
   field?: string;
   message: string;
@@ -351,17 +352,26 @@ function allPayloadEnglishText(payloads: QuizSourceLocalePayloadMap): string {
     .join(' ');
 }
 
-function findPayloadMatchingQuizEntry(
+export function findPayloadMatchingQuizEntries(
+  entries: QuizPoolAuditEntry[],
+  payloads: QuizSourceLocalePayloadMap,
+): QuizPoolAuditEntry[] {
+  const payloadText = allPayloadEnglishText(payloads);
+  if (!payloadText) return [];
+
+  const matches = entries.filter((entry) => {
+    const answer = normalizeEnglishForPayloadMatch(primaryCorrectChoice(entry));
+    return answer.length >= 8 && payloadText.includes(answer);
+  });
+  return [...new Map(matches.map((entry) => [entry.ordinal, entry])).values()];
+}
+
+export function findPayloadMatchingQuizEntry(
   entries: QuizPoolAuditEntry[],
   payloads: QuizSourceLocalePayloadMap,
 ): QuizPoolAuditEntry | null {
-  const payloadText = allPayloadEnglishText(payloads);
-  if (!payloadText) return null;
-
-  return entries.find((entry) => {
-    const answer = normalizeEnglishForPayloadMatch(primaryCorrectChoice(entry));
-    return answer.length >= 8 && payloadText.includes(answer);
-  }) ?? null;
+  const matches = findPayloadMatchingQuizEntries(entries, payloads);
+  return matches.length === 1 ? matches[0] : null;
 }
 
 function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
@@ -385,19 +395,21 @@ function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
       .sort((a, b) => a - b);
 
     for (const ordinal of payloadOrdinals) {
+      const payloads = QUIZ_SOURCE_LOCALE_PAYLOADS[difficulty]?.[ordinal] ?? {};
       const entry = entries[ordinal - 1];
       if (!entry) {
         const matchingEntry = findPayloadMatchingQuizEntry(
           entries,
-          QUIZ_SOURCE_LOCALE_PAYLOADS[difficulty]?.[ordinal] ?? {},
+          payloads,
         );
         if (matchingEntry) {
           pushFinding(findings, {
-            severity: 'warning',
+            severity: 'blocker',
             code: 'quiz-payload-ordinal-drift',
             surface: 'quiz',
             difficulty,
             ordinal,
+            matchedOrdinal: matchingEntry.ordinal,
             message: `Structured payload key has no entry at this ordinal, but matches quiz pool entry #${matchingEntry.ordinal}; renumber payloads before relying on this block.`,
           });
           continue;
@@ -411,6 +423,34 @@ function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
           message: 'Structured payload exists, but quiz pool entry is missing.',
         });
         continue;
+      }
+
+      const matchingEntries = findPayloadMatchingQuizEntries(entries, payloads);
+      const hasCurrentEntryEvidence = matchingEntries.some((candidate) => candidate.ordinal === ordinal);
+      if (matchingEntries.length === 1 && matchingEntries[0].ordinal !== ordinal) {
+        const matchingEntry = matchingEntries[0];
+        pushFinding(findings, {
+          severity: 'blocker',
+          code: 'quiz-payload-ordinal-mismatch',
+          surface: 'quiz',
+          difficulty,
+          ordinal,
+          matchedOrdinal: matchingEntry.ordinal,
+          field: 'payload-key',
+          message: `Structured payload key points at quiz #${ordinal}, but its English target evidence matches quiz #${matchingEntry.ordinal}. Renumber this payload before release.`,
+          sample: primaryCorrectChoice(matchingEntry),
+        });
+      } else if (matchingEntries.length > 1 && !hasCurrentEntryEvidence) {
+        pushFinding(findings, {
+          severity: 'blocker',
+          code: 'quiz-payload-ordinal-ambiguous',
+          surface: 'quiz',
+          difficulty,
+          ordinal,
+          field: 'payload-key',
+          message: `Structured payload key does not prove quiz #${ordinal}; English target evidence matches multiple other entries: ${matchingEntries.map((candidate) => `#${candidate.ordinal}`).join(', ')}.`,
+          sample: matchingEntries.map((candidate) => primaryCorrectChoice(candidate)).join(' | '),
+        });
       }
     }
   }
@@ -1158,6 +1198,7 @@ function writeReport(report: SemanticReport): string {
           group.surface,
           group.difficulty,
           group.ordinal ? `#${group.ordinal}` : null,
+          group.matchedOrdinal ? `matches #${group.matchedOrdinal}` : null,
           group.id ? `id:${group.id}` : null,
           group.field,
         ]
@@ -1173,6 +1214,7 @@ function writeReport(report: SemanticReport): string {
           finding.surface,
           finding.difficulty,
           finding.ordinal ? `#${finding.ordinal}` : null,
+          finding.matchedOrdinal ? `matches #${finding.matchedOrdinal}` : null,
           finding.id ? `id:${finding.id}` : null,
           finding.locale,
           finding.field,
@@ -1212,20 +1254,22 @@ export function runSemanticAudit(strict = false): { report: SemanticReport; outD
   return { report, outDir: writeReport(report) };
 }
 
-const strict = process.argv.includes('--strict');
-const { report, outDir } = runSemanticAudit(strict);
+if (require.main === module) {
+  const strict = process.argv.includes('--strict');
+  const { report, outDir } = runSemanticAudit(strict);
 
-console.log(`Heisenberg semantic audit: ${report.summary.blockers} blockers, ${report.summary.warnings} warnings`);
-console.log(`Review groups: ${report.summary.reviewGroups}`);
-console.log(
-  Object.entries(report.summary.byCode)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
-    .map(([code, count]) => `${code}: ${count}`)
-    .join(' | ') || 'No findings',
-);
-console.log(`Report: ${path.relative(process.cwd(), outDir).replace(/\\/g, '/')}`);
+  console.log(`Heisenberg semantic audit: ${report.summary.blockers} blockers, ${report.summary.warnings} warnings`);
+  console.log(`Review groups: ${report.summary.reviewGroups}`);
+  console.log(
+    Object.entries(report.summary.byCode)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 12)
+      .map(([code, count]) => `${code}: ${count}`)
+      .join(' | ') || 'No findings',
+  );
+  console.log(`Report: ${path.relative(process.cwd(), outDir).replace(/\\/g, '/')}`);
 
-if (strict && report.summary.blockers > 0) {
-  process.exit(1);
+  if (strict && report.summary.blockers > 0) {
+    process.exit(1);
+  }
 }

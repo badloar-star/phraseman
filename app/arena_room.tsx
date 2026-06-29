@@ -17,6 +17,8 @@ import { useLang } from '../components/LangContext';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
+import { monoIcon, isBusinessMode } from '../constants/monoIcon';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { emitAppEvent } from './events';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -63,6 +65,7 @@ function MemberRow({
   lang,
   t,
   f,
+  themeMode,
   onKick,
 }: {
   member: ArenaRoomMember;
@@ -72,10 +75,12 @@ function MemberRow({
   lang: Lang;
   t: any;
   f: any;
+  themeMode: ThemeMode;
   onKick: (uid: string, name: string) => void;
 }) {
-  const hostAccent = '#F59E0B';
-  const readyAccent = '#22C55E';
+  const mono = isBusinessMode(themeMode);
+  const hostAccent = mono ? '#F2F2F2' : '#F59E0B';
+  const readyAccent = mono ? '#D4D4D4' : '#22C55E';
   return (
     <View style={{
       flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 10,
@@ -161,8 +166,8 @@ function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: bool
         borderBottomRightRadius: isMe ? 4 : 14,
         borderBottomLeftRadius: isMe ? 14 : 4,
       }}>
-        <Text style={{ color: isMe ? '#fff' : t.textPrimary, fontSize: f.body }}>{msg.text}</Text>
-        <Text style={{ color: isMe ? 'rgba(255,255,255,0.6)' : t.textGhost, fontSize: f.caption - 2, marginTop: 2, alignSelf: 'flex-end' }}>
+        <Text style={{ color: isMe ? t.correctText : t.textPrimary, fontSize: f.body }}>{msg.text}</Text>
+        <Text style={{ color: isMe ? t.correctText : t.textGhost, opacity: isMe ? 0.6 : 1, fontSize: f.caption - 2, marginTop: 2, alignSelf: 'flex-end' }}>
           {time}
         </Text>
       </View>
@@ -178,10 +183,11 @@ export default function ArenaRoomScreen() {
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const arenaReadyAccent = '#22C55E';
-  const arenaRankAccent = '#F59E0B';
-  const arenaCtaColors = ['#F59E0B', '#7C3AED'] as [string, string];
-  const arenaReadyColors = ['#22C55E', '#16A34A'] as [string, string];
+  const isMono = isBusinessMode(themeMode);
+  const arenaReadyAccent = isMono ? '#D4D4D4' : '#22C55E';
+  const arenaRankAccent = isMono ? '#F2F2F2' : '#F59E0B';
+  const arenaCtaColors = (isMono ? ['#2C2C2C', '#1C1C1C'] : ['#F59E0B', '#7C3AED']) as [string, string];
+  const arenaReadyColors = (isMono ? ['#3A3A3A', '#242424'] : ['#22C55E', '#16A34A']) as [string, string];
   const { lang } = useLang();
   const { code: routeCode } = useLocalSearchParams<{ code?: string }>();
 
@@ -781,8 +787,8 @@ export default function ArenaRoomScreen() {
                       onPress={handleClose}
                       style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 1, borderColor: '#EF444488', backgroundColor: '#EF444415' }}
                     >
-                      <Ionicons name="close-circle-outline" size={15} color="#EF4444" />
-                      <Text style={{ color: '#EF4444', fontSize: f.caption, fontWeight: '800' }}>
+                      <Ionicons name="close-circle-outline" size={15} color={monoIcon(themeMode, '#EF4444')} />
+                      <Text style={{ color: monoIcon(themeMode, '#EF4444'), fontSize: f.caption, fontWeight: '800' }}>
                         {triLang(lang, {
                           ru: 'Закрыть',
                           uk: 'Закрити',
@@ -996,6 +1002,7 @@ export default function ArenaRoomScreen() {
                 lang={lang}
                 t={t}
                 f={f}
+                themeMode={themeMode}
                 onKick={handleKick}
               />
             ))}
@@ -1169,7 +1176,7 @@ export default function ArenaRoomScreen() {
               disabled={!chatInput.trim() || chatSending}
               style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: chatInput.trim() ? t.accent : t.bgSurface, alignItems: 'center', justifyContent: 'center' }}
             >
-              <Ionicons name="send" size={18} color={chatInput.trim() ? '#fff' : t.textMuted} />
+              <Ionicons name="send" size={18} color={chatInput.trim() ? t.correctText : t.textMuted} />
             </TapScale>
           </View>
         </KeyboardAvoidingView>

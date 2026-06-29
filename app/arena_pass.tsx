@@ -59,7 +59,7 @@ function rewardLabel(r: BattlePassReward, lang: Lang): string {
   switch (r.kind) {
     case 'shards':
       return triLang(lang, {
-        ru: `+${r.amount} осколков`, uk: `+${r.amount} осколків`, es: `+${r.amount} fragmentos`,
+        ru: `+${r.amount} осколков`, uk: `+${r.amount} уламків`, es: `+${r.amount} fragmentos`,
         'pt-BR': `+${r.amount} fragmentos`, vi: `+${r.amount} mảnh`, id: `+${r.amount} pecahan`,
         tr: `+${r.amount} parça`, pl: `+${r.amount} odłamków`,
       });

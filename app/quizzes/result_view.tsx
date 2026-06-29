@@ -18,6 +18,7 @@ import { XpCounter } from './ui';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../../components/GoldBevel';
 import { getQuizCompletionMedalSource } from './medal_assets';
+import { monoIcon } from '../../constants/monoIcon';
 import BouncyScrollView from '../../components/BouncyScrollView';
 
 type Props = {
@@ -129,7 +130,7 @@ export default function QuizResultView({
               })}
             </Animated.Text>
             {bonusXP > 0 && (
-              <Text style={{ color: '#D4A017', fontSize: f.body, fontWeight: '600', marginBottom: 16 }}>
+              <Text style={{ color: monoIcon(themeMode, '#D4A017'), fontSize: f.body, fontWeight: '600', marginBottom: 16 }}>
                 +{Math.round(bonusXP)}{' '}
                 {triLang(effectiveLang, {
                   ru: 'бонусного опыта',
@@ -195,7 +196,7 @@ export default function QuizResultView({
                     <GoldBevel radius={14} intensity="normal" />
                   </>
                 )}
-                <Text style={{ color: '#F87171', fontSize: f.bodyLg, fontWeight: '600' }}>
+                <Text style={{ color: monoIcon(themeMode, '#F87171'), fontSize: f.bodyLg, fontWeight: '600' }}>
                   {triLang(effectiveLang, {
                     ru: `🔄 Закрепить промахи (${wrongPhrases.length})`,
                     uk: `🔄 Закріпити промахи (${wrongPhrases.length})`,

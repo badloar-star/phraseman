@@ -7,6 +7,7 @@
 // следующего задания нет (тогда вызывающий ведёт на экран плана).
 import {
   getPlanById,
+  visibleTasksForMinutes,
   type PersonalPlanDefinition,
   type PlanDailyTask,
   type PlanDay,
@@ -28,6 +29,30 @@ export type NextPlanTask = {
   task: PlanDailyTask;
   planInstanceId: string;
 };
+
+function taskHasAvailableMaterial(
+  task: PlanDailyTask,
+  duePracticeCount: number,
+  duePracticeWordCount: number,
+  dueTrainerCount: number,
+  duePlanTrainerWeakSpotCount: number,
+  dueFlashcardsCount: number,
+): boolean {
+  if (task.destination.type === 'practice') {
+    return duePracticeCount >= (task.destination.requiredPhrases ?? 0)
+      && duePracticeWordCount >= (task.destination.requiredWords ?? 0);
+  }
+  if (task.destination.type === 'trainer') {
+    if (task.kind === 'trainer_weak_spot' || task.destination.planScoped) {
+      return duePlanTrainerWeakSpotCount >= (task.destination.requiredItems ?? 1);
+    }
+    return dueTrainerCount >= (task.destination.requiredItems ?? 1);
+  }
+  if (task.destination.type === 'flashcards') {
+    return dueFlashcardsCount >= (task.destination.requiredCards ?? 1);
+  }
+  return true;
+}
 
 /**
  * Найти первое незавершённое задание текущего дня плана, исключая только что
@@ -68,7 +93,20 @@ export async function resolveNextPlanTask(input: {
 
   // Первое незавершённое задание дня, кроме только что закрытого (на случай,
   // если completed ещё не успел записаться — не зацикливаемся на том же).
-  const next = runtime.tasks.find((task) => task.id !== input.completedTaskId && !isDone(task));
+  const candidates = visibleTasksForMinutes(
+    runtime.visibleDay,
+    state.minutesPerDay,
+    99,
+    { planTrainerWeakSpotAvailable: duePlanTrainerWeakSpotCount > 0 },
+  ).filter((task) => taskHasAvailableMaterial(
+    task,
+    duePracticeCount,
+    trainerCounts.words ?? 0,
+    dueTrainerCount,
+    duePlanTrainerWeakSpotCount,
+    dueFlashcardsCount,
+  ));
+  const next = candidates.find((task) => task.id !== input.completedTaskId && !isDone(task));
   if (!next) return null;
 
   return {

@@ -48,7 +48,7 @@ describe('admin premium grant contract', () => {
 
   it('can find an exact user nickname from Firestore when the loaded users list misses it', () => {
     expect(html).toContain('function findUserByExactNameToCache');
-    expect(html).toContain("where('progress.user_name', '==', cleanName)");
+    expect(html).toContain("where('progress.user_name', '==', val)");
     expect(html).toContain('findCachedUserByUidOrExactName');
     expect(html).toContain('window._usersNameLookupInFlight');
     expect(html).toContain('findUserByExactNameToCache(qRaw)');

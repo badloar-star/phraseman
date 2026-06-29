@@ -49,9 +49,12 @@ describe('Skyler thematic quiz registry', () => {
     expect(doctorPackSource).toContain('"productionActivation": "blocked_until_explicit_user_approval"');
   });
 
-  it('keeps thematic categories hidden while the French source gate is active', () => {
-    expect(getAvailableThematicQuizCategories('fr')).toEqual([]);
-    expect(getThematicQuizCategory('kitchen-and-cooking', 'fr')).toBeUndefined();
+  it('keeps thematic category surfaces visible while the French question bank stays source-gated', () => {
+    const englishCategories = getAvailableThematicQuizCategories('en');
+    const frenchCategories = getAvailableThematicQuizCategories('fr');
+
+    expect(frenchCategories.map(category => category.id)).toEqual(englishCategories.map(category => category.id));
+    expect(getThematicQuizCategory('kitchen-and-cooking', 'fr')).toBeTruthy();
     expect(getThematicQuizPhrases('kitchen-and-cooking', { studyTarget: 'fr' })).toEqual([]);
   });
 

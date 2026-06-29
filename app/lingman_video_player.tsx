@@ -64,7 +64,7 @@ export default function LingmanVideoPlayerScreen() {
   const copy = useMemo(() => ({
     missing: triLang(lang, {
       ru: 'Видео не найдено',
-      uk: 'Видео не найдено',
+      uk: 'Відео не знайдено',
       es: 'Video not found',
       'pt-BR': 'Video not found',
       vi: 'Video not found',
@@ -74,7 +74,7 @@ export default function LingmanVideoPlayerScreen() {
     }),
     openYoutube: triLang(lang, {
       ru: 'Открыть в YouTube',
-      uk: 'Открыть в YouTube',
+      uk: 'Відкрити в YouTube',
       es: 'Open in YouTube',
       'pt-BR': 'Open in YouTube',
       vi: 'Open in YouTube',
@@ -84,7 +84,7 @@ export default function LingmanVideoPlayerScreen() {
     }),
     retry: triLang(lang, {
       ru: 'Повторить',
-      uk: 'Повторить',
+      uk: 'Повторити',
       es: 'Retry',
       'pt-BR': 'Retry',
       vi: 'Retry',
@@ -94,7 +94,7 @@ export default function LingmanVideoPlayerScreen() {
     }),
     loadError: triLang(lang, {
       ru: 'Плеер временно не загрузился. Можно повторить или открыть видео снаружи.',
-      uk: 'Плеер временно не загрузился. Можно повторить или открыть видео снаружи.',
+      uk: 'Плеєр тимчасово не завантажився. Можна повторити або відкрити відео ззовні.',
       es: 'The player did not load. Retry or open the video externally.',
       'pt-BR': 'The player did not load. Retry or open the video externally.',
       vi: 'The player did not load. Retry or open the video externally.',

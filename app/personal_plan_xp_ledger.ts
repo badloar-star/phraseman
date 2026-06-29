@@ -14,6 +14,7 @@ const LEDGER_KEY = 'personal_plan_xp_ledger_v1';
 export type PlanXpLedgerEntry = {
   xp: number;
   phrases: number;
+  taskIds?: Record<string, { xp: number; phrases: number }>;
 };
 
 type LedgerMap = Record<string, PlanXpLedgerEntry>;
@@ -28,24 +29,44 @@ async function readLedger(): Promise<LedgerMap> {
   }
 }
 
-/** Add XP + phrases to a plan instance's ledger. */
+/** Add XP + phrases to a plan instance's ledger. Optional task id makes the write idempotent. */
 export async function bumpPlanXpLedger(
   planInstanceId: string,
   xp: number,
   phrases: number,
-): Promise<void> {
+  planTaskId?: string,
+): Promise<boolean> {
   const id = planInstanceId.trim();
-  if (!id) return;
+  if (!id) return false;
   try {
     const ledger = await readLedger();
     const current = ledger[id] ?? { xp: 0, phrases: 0 };
+    const safeXp = Math.max(0, Math.floor(xp));
+    const safePhrases = Math.max(0, Math.floor(phrases));
+    const taskKey = planTaskId?.trim();
+    if (taskKey) {
+      const taskIds = current.taskIds ?? {};
+      if (taskIds[taskKey]) return false;
+      ledger[id] = {
+        xp: current.xp + safeXp,
+        phrases: current.phrases + safePhrases,
+        taskIds: {
+          ...taskIds,
+          [taskKey]: { xp: safeXp, phrases: safePhrases },
+        },
+      };
+      await AsyncStorage.setItem(LEDGER_KEY, JSON.stringify(ledger));
+      return true;
+    }
     ledger[id] = {
-      xp: current.xp + Math.max(0, Math.floor(xp)),
-      phrases: current.phrases + Math.max(0, Math.floor(phrases)),
+      xp: current.xp + safeXp,
+      phrases: current.phrases + safePhrases,
     };
     await AsyncStorage.setItem(LEDGER_KEY, JSON.stringify(ledger));
+    return true;
   } catch {
     // best-effort
+    return false;
   }
 }
 

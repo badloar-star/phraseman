@@ -271,7 +271,7 @@ const OFFICIAL_PACK_HUB_LABELS: Partial<Record<string, PackHubLabelCopy>> = {
   },
   [OFFICIAL_DARK_LOGIC_EN_ID]: {
     ru: 'Темная логика',
-    uk: 'Темна логика',
+    uk: 'Темна логіка',
     es: 'Logica oscura',
     'pt-BR': 'Logica sombria',
     vi: 'Logic den toi',

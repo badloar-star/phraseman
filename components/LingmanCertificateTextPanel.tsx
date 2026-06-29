@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { formatCertDate, type CertLang } from '../app/exam_certificate';
+import { useTheme } from './ThemeContext';
+import { monoIcon } from '../constants/monoIcon';
 
 type Props = {
   name: string;
@@ -23,6 +25,7 @@ function LingmanCertificateTextPanel({
   lang,
   width = 420,
 }: Props) {
+  const { themeMode } = useTheme();
   const compact = width < 460;
   const safeName = name.trim() || 'Phraseman learner';
 
@@ -39,13 +42,13 @@ function LingmanCertificateTextPanel({
         gap: compact ? 10 : 14,
       }}
     >
-      <Text style={{ color: '#FDE68A', fontSize: compact ? 13 : 16, fontWeight: '800', letterSpacing: 1.2, textAlign: 'center' }}>
+      <Text style={{ color: monoIcon(themeMode, '#FDE68A'), fontSize: compact ? 13 : 16, fontWeight: '800', letterSpacing: 1.2, textAlign: 'center' }}>
         PHRASEMAN B2
       </Text>
       <Text style={{ color: '#FFFFFF', fontSize: compact ? 22 : 30, fontWeight: '900', textAlign: 'center' }}>
         Certificate
       </Text>
-      <Text style={{ color: '#D4A017', fontSize: compact ? 19 : 26, fontWeight: '900', textAlign: 'center' }} numberOfLines={2}>
+      <Text style={{ color: monoIcon(themeMode, '#D4A017'), fontSize: compact ? 19 : 26, fontWeight: '900', textAlign: 'center' }} numberOfLines={2}>
         {safeName}
       </Text>
       <View style={{ height: 1, backgroundColor: 'rgba(212,160,23,0.45)', marginVertical: compact ? 2 : 6 }} />

@@ -10,7 +10,7 @@
 //
 // Interfaces are reused from theory_content_lesson1 (do NOT duplicate the types).
 
-import type { L1Block, L1Section } from './theory_content_lesson1'
+import type { L1Section } from './theory_content_lesson1'
 
 export const LESSON2_THEORY: {
   titleRu: string

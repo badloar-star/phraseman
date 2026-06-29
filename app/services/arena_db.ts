@@ -208,35 +208,43 @@ export async function sendArenaDuelReact(
 /**
  * Создаёт rematch-предложение на старой сессии. Идемпотентно: если уже есть pending,
  * у которого ttlAt в будущем — ничего не делаем (возвращаем false).
+ *
+ * НЕ через runTransaction намеренно. arena_sessions/{id} — общий документ матча,
+ * который двое игроков (на двух реальных устройствах) меняют одновременно при нажатии
+ * «Реванш». Транзакция read-modify-write при такой конкуренции авто-перезапускается, и
+ * нативный Firebase iOS SDK иногда падает на перезапуске с
+ * "NSInternalInconsistencyException: A transaction object cannot be used after its
+ * update callback has been invoked" (EnsureCommitNotCalled, firebase-ios-sdk#10719) —
+ * это abort() в C++, его нельзя поймать try/catch в JS.
+ *
+ * Здесь — обычный get + условный update (НЕ транзакция): нет транзакционного объекта →
+ * нет авто-перезапуска → нативный ассерт физически невозможен. Гонка «оба прислали
+ * почти одновременно» безвредна: второй update просто перезапишет эквивалентный свежий
+ * pending-оффер (та же структура, чуть более поздний timestamp) — без порчи данных.
  */
 export async function createRematchOffer(
   sessionId: string,
   byUid: string,
   byName: string,
 ): Promise<boolean> {
-  const db = requireDb();
   const ref = col.sessions().doc(sessionId);
-  let success = false;
-  await db.runTransaction(async (tx: any) => {
-    const snap = await tx.get(ref);
-    if (!snap.exists) return;
-    const data = snap.data() as { rematchOffer?: { status?: string; ttlAt?: number } } | undefined;
-    const cur = data?.rematchOffer;
-    if (cur?.status === 'pending' && (cur.ttlAt ?? 0) > Date.now()) return;
-    if (cur?.status === 'accepted' && cur && (cur as { newSessionId?: string }).newSessionId) return;
-    const at = Date.now();
-    tx.update(ref, {
-      rematchOffer: {
-        byUid,
-        byName,
-        at,
-        ttlAt: at + REMATCH_TTL_MS,
-        status: 'pending' as RematchStatus,
-      },
-    });
-    success = true;
+  const snap = await ref.get();
+  if (!snap.exists) return false;
+  const data = snap.data() as { rematchOffer?: { status?: string; ttlAt?: number; newSessionId?: string } } | undefined;
+  const cur = data?.rematchOffer;
+  if (cur?.status === 'pending' && (cur.ttlAt ?? 0) > Date.now()) return false;
+  if (cur?.status === 'accepted' && cur.newSessionId) return false;
+  const at = Date.now();
+  await ref.update({
+    rematchOffer: {
+      byUid,
+      byName,
+      at,
+      ttlAt: at + REMATCH_TTL_MS,
+      status: 'pending' as RematchStatus,
+    },
   });
-  return success;
+  return true;
 }
 
 export async function setRematchStatus(
@@ -384,33 +392,6 @@ export function subscribeMatchmakingSearchingTotal(
 
 export async function createRoom(room: ArenaRoom): Promise<void> {
   await col.rooms().doc(room.code).set(room);
-}
-
-export async function joinRoom(code: string, userId: string): Promise<ArenaRoom | null> {
-  const db = getDb();
-  if (!db) return null;
-  const ref = col.rooms().doc(code.toUpperCase());
-  let result: ArenaRoom | null = null;
-
-  await db.runTransaction(async (tx: any) => {
-    const snap = await tx.get(ref);
-    if (!snap.exists) return;
-
-    const room = snap.data() as ArenaRoom;
-    if (room.status !== 'waiting') return;
-    if (room.guestId === userId || room.hostId === userId) { result = room; return; }
-
-    const updated: ArenaRoom = {
-      ...room,
-      guestId: userId,
-      status: 'matched',
-    };
-
-    tx.update(ref, updated);
-    result = updated;
-  });
-
-  return result;
 }
 
 export function subscribeRoom(

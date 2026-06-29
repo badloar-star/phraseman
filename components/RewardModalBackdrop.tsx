@@ -1,19 +1,7 @@
 import { LinearGradient } from './SafeLinearGradient';
 import React from 'react';
-import { ImageSourcePropType, StyleSheet, View } from 'react-native';
-import { Image } from 'expo-image';
+import { StyleSheet, View } from 'react-native';
 import type { Theme, ThemeMode } from '../constants/theme';
-
-const REWARD_MODAL_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/reward_modals/reward-modal-forest.webp'),
-  gold: require('../assets/images/reward_modals/reward-modal-gold.webp'),
-  coral: require('../assets/images/reward_modals/reward-modal-coral.webp'),
-  minimalDark: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
-  midnight: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
-  ember: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
-  aurora: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
-  volt: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
-};
 
 type RewardModalBackdropProps = {
   themeMode: ThemeMode;
@@ -27,13 +15,11 @@ type RewardModalPanelBackdropProps = RewardModalBackdropProps & {
 export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Image
-        source={REWARD_MODAL_BACKDROPS[themeMode]}
-        contentFit="cover"
-        style={[
-          StyleSheet.absoluteFill,
-          { opacity: rewardModalImageOpacity(themeMode) },
-        ]}
+      <LinearGradient
+        pointerEvents="none"
+        colors={rewardModalBackdropGradientColors(themeMode)}
+        locations={[0, 0.48, 1]}
+        style={StyleSheet.absoluteFill}
       />
       <LinearGradient
         pointerEvents="none"
@@ -52,13 +38,11 @@ export function RewardModalPanelBackdrop({
 }: RewardModalPanelBackdropProps) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Image
-        source={REWARD_MODAL_BACKDROPS[themeMode]}
-        contentFit="cover"
-        style={[
-          StyleSheet.absoluteFill,
-          { opacity: opacity ?? rewardModalPanelImageOpacity(themeMode) },
-        ]}
+      <LinearGradient
+        pointerEvents="none"
+        colors={rewardModalPanelGradientColors(themeMode)}
+        locations={[0, 0.46, 1]}
+        style={[StyleSheet.absoluteFill, { opacity: opacity ?? 1 }]}
       />
       <LinearGradient
         pointerEvents="none"
@@ -76,6 +60,16 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#160F07', '#22190D', '#060503'];
     case 'coral':
       return ['#361E22', '#241619', '#0F080A'];
+    case 'business':
+      return ['#101820', '#182536', '#070A0F'];
+    case 'midnight':
+      return ['#081124', '#0C1832', '#030711'];
+    case 'ember':
+      return ['#211008', '#2B160B', '#080302'];
+    case 'aurora':
+      return ['#071B1D', '#102035', '#04080D'];
+    case 'volt':
+      return ['#111905', '#1B2608', '#050702'];
     case 'minimalDark':
       return ['#0F141C', '#0A0D13', '#030508'];
     case 'dark':
@@ -90,6 +84,16 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#E8C36C';
     case 'coral':
       return '#FF8A78';
+    case 'business':
+      return '#7DD3FC';
+    case 'midnight':
+      return '#8EA7FF';
+    case 'ember':
+      return '#F59E0B';
+    case 'aurora':
+      return '#67E8F9';
+    case 'volt':
+      return '#C8F336';
     case 'minimalDark':
       return '#6EA8FF';
     case 'dark':
@@ -105,6 +109,16 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(232,195,108,0.48)';
     case 'coral':
       return 'rgba(255,138,120,0.36)';
+    case 'business':
+      return 'rgba(125,211,252,0.34)';
+    case 'midnight':
+      return 'rgba(142,167,255,0.34)';
+    case 'ember':
+      return 'rgba(245,158,11,0.38)';
+    case 'aurora':
+      return 'rgba(103,232,249,0.34)';
+    case 'volt':
+      return 'rgba(200,243,54,0.34)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.30)';
     case 'dark':
@@ -119,6 +133,16 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(232,195,108,0.10)';
     case 'coral':
       return 'rgba(255,138,120,0.09)';
+    case 'business':
+      return 'rgba(125,211,252,0.09)';
+    case 'midnight':
+      return 'rgba(142,167,255,0.09)';
+    case 'ember':
+      return 'rgba(245,158,11,0.10)';
+    case 'aurora':
+      return 'rgba(103,232,249,0.09)';
+    case 'volt':
+      return 'rgba(200,243,54,0.09)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.08)';
     case 'dark':
@@ -133,6 +157,16 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#F4D889', '#B9852E'];
     case 'coral':
       return ['#FFE1D7', '#FF8A78'];
+    case 'business':
+      return ['#DDF7FF', '#38BDF8'];
+    case 'midnight':
+      return ['#E0E7FF', '#818CF8'];
+    case 'ember':
+      return ['#FED7AA', '#F97316'];
+    case 'aurora':
+      return ['#CCFBF1', '#22D3EE'];
+    case 'volt':
+      return ['#ECFCCB', '#A3E635'];
     case 'minimalDark':
       return ['#D7E7FF', '#6EA8FF'];
     case 'dark':
@@ -190,18 +224,52 @@ function withAccentAlpha(hex: string, alpha: string): string {
   return hex;
 }
 
-function rewardModalImageOpacity(themeMode: ThemeMode): number {
-  if (false) return 0.94;
-  if (themeMode === 'gold') return 0.96;
-  if (false) return 0.58;
-  return 1;
+function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
+  switch (themeMode) {
+    case 'gold':
+      return ['#2A1707', '#171006', '#050302'];
+    case 'coral':
+      return ['#3A141A', '#1B0A10', '#070305'];
+    case 'business':
+      return ['#102A3D', '#0E1624', '#05070B'];
+    case 'midnight':
+      return ['#101C46', '#081126', '#02040B'];
+    case 'ember':
+      return ['#351408', '#1A0803', '#050201'];
+    case 'aurora':
+      return ['#063034', '#101A33', '#03070C'];
+    case 'volt':
+      return ['#22320A', '#101805', '#030501'];
+    case 'minimalDark':
+      return ['#101824', '#090D15', '#020407'];
+    case 'dark':
+    default:
+      return ['#0F2718', '#07110C', '#020503'];
+  }
 }
 
-function rewardModalPanelImageOpacity(themeMode: ThemeMode): number {
-  if (false) return 0.82;
-  if (themeMode === 'gold') return 0.88;
-  if (false) return 0.42;
-  return 0.92;
+function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
+  switch (themeMode) {
+    case 'gold':
+      return ['#3A260C', '#1C1307', '#070402'];
+    case 'coral':
+      return ['#421B22', '#251016', '#080304'];
+    case 'business':
+      return ['#12314A', '#132235', '#070A10'];
+    case 'midnight':
+      return ['#14235A', '#0B1731', '#030711'];
+    case 'ember':
+      return ['#3A1708', '#251006', '#070201'];
+    case 'aurora':
+      return ['#07383B', '#13213D', '#04080D'];
+    case 'volt':
+      return ['#2B3C0B', '#182206', '#050701'];
+    case 'minimalDark':
+      return ['#152032', '#0A101B', '#030508'];
+    case 'dark':
+    default:
+      return ['#13301D', '#0A150F', '#030604'];
+  }
 }
 
 function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {

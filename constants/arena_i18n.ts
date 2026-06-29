@@ -72,7 +72,7 @@ const GAME = {
   forfeitTitle: { ru: '🏳️ Сдаться?', uk: '🏳️ Здатися?', es: '🏳️ ¿Te rindes?', 'pt-BR': '🏳️ Desistir?', vi: '🏳️ Đầu hàng?', id: '🏳️ Menyerah?', tr: '🏳️ Peslim mi oluyorsun?', pl: '🏳️ Poddać się?' },
   forfeitSub: {
     ru: 'Сдашься — раунд уйдёт сопернику, звезда останется на потом',
-    uk: 'Здасися — раунд піде сопернику, зірка залишиться на потім',
+    uk: 'Здашся — раунд піде супернику, зірка залишиться на потім',
     es: 'Se contará como derrota y perderás una estrella.',
     'pt-BR': 'Conta como derrota e você perde uma estrela',
     vi: 'Sẽ tính là thua và bạn sẽ mất một ngôi sao',

@@ -105,10 +105,10 @@
         "android.permission.INTERNET",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
-        "android.permission.POST_NOTIFICATIONS",
-        "com.google.android.gms.permission.AD_ID"
+        "android.permission.POST_NOTIFICATIONS"
       ],
       "blockedPermissions": [
+        "com.google.android.gms.permission.AD_ID",
         "android.permission.ACCESS_ADSERVICES_AD_ID",
         "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
         "android.permission.ACCESS_ADSERVICES_TOPICS",
@@ -239,7 +239,9 @@
       "./plugins/withAndroidDevClientAutoMetro",
       "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure",
-      "@bacons/apple-targets"
+      "./plugins/withAndroidDailyPhraseWidget",
+      "@bacons/apple-targets",
+      "./plugins/withIosDailyPhraseWidgetAppGroup"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -4,6 +4,8 @@ import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import { getStableId } from '../app/stable_id';
@@ -68,29 +70,32 @@ function storeUrlForPlatform(): string {
   return String((Platform.OS === 'ios' ? getStoreUrlIos() : getStoreUrlAndroid()) || '').trim();
 }
 
+// Голос Компаса (канон): даже блокирующее окно говорит от первого лица, тепло.
+// Не казённое «Доступно обновление / Мы улучшили приложение», а «это Компас, без
+// свежей версии дальше не пройдём — давай обновимся».
 function defaultTitle(lang: string): string {
   return triLang(lang as Lang, {
-    ru: 'Доступно обновление',
-    uk: 'Доступне оновлення',
-    es: 'Actualización disponible',
-    'pt-BR': 'Atualização disponível',
-    vi: 'Có bản cập nhật',
-    id: 'Pembaruan tersedia',
-    tr: 'Güncelleme var',
-    pl: 'Dostępna aktualizacja',
+    ru: 'Это Компас. Без обновления дальше никак',
+    uk: 'Це Компас. Без оновлення далі ніяк',
+    es: 'Soy la Brújula. Sin actualizar no seguimos',
+    'pt-BR': 'É a Bússola. Sem atualizar não dá',
+    vi: 'Mình là La bàn. Chưa cập nhật thì chưa đi tiếp được',
+    id: 'Ini Kompas. Tanpa pembaruan tak bisa lanjut',
+    tr: 'Ben Pusula. Güncellemeden devam edemeyiz',
+    pl: 'Tu Kompas. Bez aktualizacji nie ruszymy dalej',
   });
 }
 
 function defaultBody(lang: string): string {
   return triLang(lang as Lang, {
-    ru: 'Мы улучшили приложение. Обновите его в сторе, чтобы продолжить с последней версией.',
-    uk: 'Ми покращили застосунок. Оновіть його в сторі, щоб продовжити з останньою версією.',
-    es: 'Hemos mejorado la app. Actualízala en la tienda para seguir con la última versión.',
-    'pt-BR': 'Melhoramos o app. Atualize na loja para continuar com a versão mais recente.',
-    vi: 'Chúng tôi đã cải thiện ứng dụng. Hãy cập nhật trong cửa hàng để dùng phiên bản mới nhất.',
-    id: 'Kami telah meningkatkan aplikasi. Perbarui di store untuk memakai versi terbaru.',
-    tr: 'Uygulamayı iyileştirdik. En güncel sürümle devam etmek için mağazadan güncelle.',
-    pl: 'Ulepszyliśmy aplikację. Zaktualizuj ją w sklepie, aby korzystać z najnowszej wersji.',
+    ru: 'Я заметно подрос, и старая версия меня уже не тянет. Обнови — и продолжим путь там же, где остановились.',
+    uk: 'Я помітно підріс, і стара версія мене вже не тягне. Онови — і продовжимо шлях там само, де спинилися.',
+    es: 'Crecí bastante y la versión vieja ya no me sostiene. Actualiza y seguimos justo donde lo dejamos.',
+    'pt-BR': 'Cresci bastante e a versão antiga já não me aguenta. Atualiza e seguimos de onde paramos.',
+    vi: 'Mình lớn lên nhiều, bản cũ không kham nổi nữa. Cập nhật đi, rồi mình đi tiếp ngay chỗ đã dừng.',
+    id: 'Aku tumbuh cukup besar, versi lama tak sanggup lagi. Perbarui, lalu kita lanjut dari tempat tadi.',
+    tr: 'Epey büyüdüm, eski sürüm beni artık taşımıyor. Güncelle, kaldığımız yerden devam edelim.',
+    pl: 'Sporo urosłem i stara wersja już mnie nie udźwignie. Zaktualizuj — ruszymy stamtąd, gdzie staniliśmy.',
   });
 }
 
@@ -121,14 +126,14 @@ function readLegacyForceState(lang: string, userId: string | null): GateState | 
     mode: 'force',
     campaignId: 'legacy-force-update',
     title: triLang(lang as Lang, {
-      ru: 'Нужно обновить приложение',
-      uk: 'Потрібно оновити застосунок',
-      es: 'Hay que actualizar la app',
-      'pt-BR': 'Precisa atualizar o app',
-      vi: 'Cần cập nhật ứng dụng',
-      id: 'Perlu memperbarui aplikasi',
-      tr: 'Uygulamayı güncellemen gerek',
-      pl: 'Trzeba zaktualizować aplikację',
+      ru: 'Это Компас. Пора меня обновить',
+      uk: 'Це Компас. Час мене оновити',
+      es: 'Soy la Brújula. Toca actualizarme',
+      'pt-BR': 'É a Bússola. Hora de me atualizar',
+      vi: 'Mình là La bàn. Đến lúc cập nhật mình rồi',
+      id: 'Ini Kompas. Saatnya memperbarui aku',
+      tr: 'Ben Pusula. Beni güncelleme zamanı',
+      pl: 'Tu Kompas. Czas mnie zaktualizować',
     }),
     body: defaultBody(lang),
     cta: defaultCta(lang),
@@ -169,6 +174,7 @@ async function readGateState(lang: string, userId: string | null): Promise<GateS
 
 export default function ForceUpdateGate() {
   const { lang } = useLang();
+  const { themeMode } = useTheme();
   const [userId, setUserId] = useState<string | null>(null);
   const [gate, setGate] = useState<GateState | null>(null);
 
@@ -282,13 +288,13 @@ export default function ForceUpdateGate() {
             marginBottom: 16,
           }}
         >
-          <Ionicons name="phone-portrait-outline" size={28} color="#4338ca" />
+          <Ionicons name="phone-portrait-outline" size={28} color={monoIcon(themeMode, '#4338ca', MONO_ICON.onLight)} />
         </View>
 
         <Text style={{ color: '#fff', fontSize: 22, lineHeight: 28, fontWeight: '800', marginBottom: 10 }}>
           {gate.title}
         </Text>
-        <Text style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 22, marginBottom: 18 }}>
+        <Text style={{ color: monoIcon(themeMode, '#cbd5e1'), fontSize: 15, lineHeight: 22, marginBottom: 18 }}>
           {gate.body}
         </Text>
 
@@ -324,7 +330,7 @@ export default function ForceUpdateGate() {
               backgroundColor: pressed ? '#26324a' : 'transparent',
             })}
           >
-            <Text style={{ color: '#9ca3af', fontSize: 14, fontWeight: '700' }}>
+            <Text style={{ color: monoIcon(themeMode, '#9ca3af'), fontSize: 14, fontWeight: '700' }}>
               {triLang(lang as Lang, {
                 ru: 'Позже',
                 uk: 'Пізніше',

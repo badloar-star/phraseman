@@ -438,11 +438,18 @@ export default function FlashcardsAudioScreen() {
     setCardIndex(index);
     setSide(nextSide);
     flipAnim.setValue(nextSide === 'back' ? 1 : 0);
-    swipeAnim.setValue(0);
+    // NOTE: do NOT reset swipeAnim here. When commit ends a slide, the two
+    // transition layers are still mounted for the same frame that clears
+    // cardTransition; zeroing swipeAnim now snaps outgoingCardOpacity back to 1
+    // and the old card flashes for one frame. The incoming layer already sits
+    // at swipeAnim === 1 (its final resting position), and the single-card layer
+    // below renders with static opacity, so the value is irrelevant once
+    // cardTransition is null. We re-arm swipeAnim to 0 at the start of the next
+    // animateCardReplacement instead.
     setCardTransition(null);
     setIsPlaying(play);
     setPlaybackNonce((value) => value + 1);
-  }, [flipAnim, swipeAnim]);
+  }, [flipAnim]);
 
   const animateCardReplacement = useCallback(
     (index: number, nextSide: AudioFlashcardSide, play = true) => {
@@ -969,6 +976,7 @@ export default function FlashcardsAudioScreen() {
               {cardTransition ? (
                 <>
                   <Animated.View
+                    key="outgoing-card"
                     style={[
                       styles.cardLayer,
                       {
@@ -983,7 +991,12 @@ export default function FlashcardsAudioScreen() {
                       cardTransition.from.side === 'back' ? '360deg' : '180deg',
                     )}
                   </Animated.View>
+                  {/* Same key as the single-card layer below so React reuses this
+                      native node when cardTransition clears — otherwise the just-
+                      arrived incoming card is unmounted and a fresh node mounts
+                      with an imperative flipAnim value, flashing one default frame. */}
                   <Animated.View
+                    key="active-card"
                     style={[
                       styles.cardLayer,
                       {
@@ -1000,7 +1013,7 @@ export default function FlashcardsAudioScreen() {
                   </Animated.View>
                 </>
               ) : currentCard ? (
-                <Animated.View style={styles.cardLayer}>
+                <Animated.View key="active-card" style={styles.cardLayer}>
                   {renderCardLayer({ card: currentCard, side }, frontRotate, backRotate)}
                 </Animated.View>
               ) : null}

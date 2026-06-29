@@ -136,7 +136,7 @@ export default function FlashcardsMarketDevScreen() {
         'action_toast',
         actionToastTri('error', {
           ru: 'Недостаточно осколков для покупки.',
-          uk: 'Недостатньо осколків для купівлі.',
+          uk: 'Недостатньо уламків для купівлі.',
           es: 'No tienes suficientes fragmentos para comprar.',
           'pt-BR': 'Você não tem fragmentos suficientes para comprar.',
           vi: 'Bạn không có đủ mảnh để mua.',
@@ -249,7 +249,7 @@ export default function FlashcardsMarketDevScreen() {
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
                 ru: 'Этап 1: каталог. Этап 2: покупка за осколки и ownership.',
-                uk: 'Етап 1: каталог. Етап 2: купівля за осколки та ownership.',
+                uk: 'Етап 1: каталог. Етап 2: купівля за уламки та ownership.',
                 es: 'Fase 1: catálogo. Fase 2: pagos con fragmentos y colección propia.',
                 'pt-BR': 'Fase 1: catálogo. Fase 2: compra com fragmentos e ownership.',
                 vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng mảnh và quyền sở hữu.',

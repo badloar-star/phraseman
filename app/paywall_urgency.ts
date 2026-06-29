@@ -4,7 +4,7 @@
 // Логика:
 //  1. При первом открытии пейвола → activateUrgencyIfNeeded() пишет timestamp
 //  2. getUrgencyState() → читает timestamp, считает оставшееся время
-//  3. После 24ч → isActive: false (новый цикл при следующем открытии)
+//  3. После 77ч → isActive: false (новый цикл при следующем открытии)
 //  4. getDoubledPrice() — только для display, никогда не передаётся в стор
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';

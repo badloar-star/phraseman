@@ -4,7 +4,7 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Decision: `GO`
 
-Generated at: 2026-06-27T12:18:02.014Z
+Generated at: 2026-06-29T03:49:04.847Z
 
 ## Readiness
 
@@ -20,26 +20,15 @@ Next recommended work:
 
 ## Summary
 
-- Checks: 57
-- Passed: 55
-- Failed: 2
-- Blockers: 2
+- Checks: 58
+- Passed: 57
+- Failed: 1
+- Blockers: 1
 - Warnings: 0
 - Generation blockers: 0
-- Apply blockers: 2
+- Apply blockers: 1
 
 ## Failed Checks
-
-### RDY-080: Generated content audit passed
-
-Severity: `blocker`
-Blocks: `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\generated_content_audit.json`
-
-Generated content audit is HOLD with rows=1600, rowsWithFrench=1600, readyForReviewer=true, readyForApply=false and mayModifyProductionAppFiles=false. Production apply remains blocked.
-
-Required before work:
-- After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape.
 
 ### RDY-090: Apply plan is approved
 
@@ -63,6 +52,7 @@ Required before work:
 - `RDY-040`: Local-only and cloud-synced target keys are decided
 - `RDY-050`: Production target key architecture exists
 - `RDY-060`: User-facing surfaces are target-safe
+- `RDY-061`: French dev surfaces stay visible behind source gates
 - `RDY-055`: Migration adapter plan exists
 - `RDY-070`: Source graph is extracted and approved
 - `RDY-071`: Source graph quality audit approves generation input
@@ -109,6 +99,7 @@ Required before work:
 - `RDY-119`: French research pack firewall passes
 - `RDY-119B`: French research JSON firewall passes
 - `RDY-120`: French research work order is locked
+- `RDY-080`: Generated content audit passed
 
 ## Notes
 

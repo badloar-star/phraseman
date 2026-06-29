@@ -37,6 +37,7 @@ import { useLang } from '../components/LangContext';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { getTitleString } from '../constants/titles';
 import { getBestFrameForLevel } from '../constants/avatars';
 import { safeRouterBack } from './navigation_back';
@@ -130,7 +131,7 @@ function visualForLevel(snapshot: ProfileCardSnapshot, displayLevel: ProfileCard
 }
 
 export default function ProfileCardUpgradeScreen() {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const insets = useSafeAreaInsets();
@@ -354,7 +355,7 @@ export default function ProfileCardUpgradeScreen() {
             })}
           </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 10, paddingVertical: 7, marginRight: 4 }}>
-            <Text style={{ color: '#FACC15', fontSize: f.body, fontWeight: '900' }}>{shards}</Text>
+            <Text style={{ color: monoIcon(themeMode, '#FACC15'), fontSize: f.body, fontWeight: '900' }}>{shards}</Text>
             <Image source={oskolokImageForPackShards(shards)} style={{ width: 16, height: 16 }} contentFit="contain" />
           </View>
         </View>
@@ -387,7 +388,7 @@ export default function ProfileCardUpgradeScreen() {
                       </Text>
                       {isCurrent ? (
                         <View style={{ backgroundColor: 'rgba(34,197,94,0.18)', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
-                          <Text style={{ color: '#22C55E', fontSize: 10, fontWeight: '900' }}>
+                          <Text style={{ color: monoIcon(themeMode, '#22C55E'), fontSize: 10, fontWeight: '900' }}>
                             {triLang(lang as Lang, { ru: 'у тебя сейчас', uk: 'зараз у тебе', es: 'tu nivel', 'pt-BR': 'seu nível', vi: 'hiện tại', id: 'saat ini', tr: 'mevcut', pl: 'masz teraz' })}
                           </Text>
                         </View>
@@ -398,7 +399,7 @@ export default function ProfileCardUpgradeScreen() {
                           <Image source={oskolokImageForPackShards(getProfileCardLevelDef(lvl).cost)} style={{ width: 11, height: 11 }} contentFit="contain" />
                         </View>
                       ) : (
-                        <Ionicons name="checkmark-circle" size={16} color="#22C55E" />
+                        <Ionicons name="checkmark-circle" size={16} color={monoIcon(themeMode, '#22C55E')} />
                       )}
                     </View>
 
@@ -415,14 +416,14 @@ export default function ProfileCardUpgradeScreen() {
                             <AvatarView avatar={meAvatar || undefined} level={meLevel} size={38} auraId={null} />
                           </View>
                           <View style={{ flex: 1, minWidth: 0 }}>
-                            <Text style={{ color: '#FFFFFF', fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>{meName}</Text>
+                            <Text style={{ color: monoIcon(themeMode, '#FFFFFF'), fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>{meName}</Text>
                             <Text style={{ color: vis.colors.secondary, fontSize: 11, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
                               {getTitleString(meLevel, 'ru')}
                             </Text>
                           </View>
                           {lvl > 0 ? (
                             <View style={{ backgroundColor: vis.colors.accent, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 }}>
-                              <Text style={{ color: '#15110A', fontSize: 11, fontWeight: '900' }}>{profileCardLevelRoman(lvl)}</Text>
+                              <Text style={{ color: monoIcon(themeMode, '#15110A', MONO_ICON.onLight), fontSize: 11, fontWeight: '900' }}>{profileCardLevelRoman(lvl)}</Text>
                             </View>
                           ) : null}
                         </View>
@@ -430,7 +431,7 @@ export default function ProfileCardUpgradeScreen() {
                           {stats.slice(0, lvl >= 4 ? 3 : 2).map((s) => (
                             <View key={s.label} style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 10, paddingHorizontal: 9, paddingVertical: 7 }}>
                               <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 9, fontWeight: '900' }} numberOfLines={1}>{s.label}</Text>
-                              <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>{s.value}</Text>
+                              <Text style={{ color: monoIcon(themeMode, '#FFFFFF'), fontSize: 13, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>{s.value}</Text>
                             </View>
                           ))}
                         </View>
@@ -486,7 +487,7 @@ export default function ProfileCardUpgradeScreen() {
                   <Ionicons name={showNew ? 'sparkles' : 'checkmark-circle'} size={15} color={showNew ? '#FACC15' : '#5FD0A0'} style={{ marginTop: 1 }} />
                   <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: 18, flex: 1 }}>
                     {sellingPointText(point, lang)}
-                    {showNew ? <Text style={{ color: '#FACC15', fontWeight: '900' }}>  · NEW</Text> : null}
+                    {showNew ? <Text style={{ color: monoIcon(themeMode, '#FACC15'), fontWeight: '900' }}>  · NEW</Text> : null}
                   </Text>
                 </View>
               );
@@ -566,7 +567,7 @@ export default function ProfileCardUpgradeScreen() {
             onPress={handleUpgrade}
             style={{ borderRadius: 16, paddingVertical: 15, alignItems: 'center', backgroundColor: !nextDef ? t.textGhost : '#FACC15', opacity: busy ? 0.7 : 1, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
           >
-            <Text style={{ color: '#1A1205', fontSize: f.bodyLg, fontWeight: '900' }}>
+            <Text style={{ color: monoIcon(themeMode, '#1A1205', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '900' }}>
               {nextDef
                 ? triLang(lang as Lang, {
                     ru: `Улучшить до «${levelName(nextLevel as ProfileCardLevel)}» · ${nextDef.cost}`,

@@ -97,6 +97,47 @@ type AiTemplate = {
   activationApproved: boolean;
 };
 
+type AiEntrypointContract = {
+  contractId: string;
+  domainId: string;
+  domainTitle: string;
+  filePath: string;
+  featureRiskClass: string;
+  riskLevel: string;
+  cacheContract: {
+    requiredKeyDimensions: string[];
+    rejectedFreshOutputMayBeCached: boolean;
+    targetMismatchCacheFallbackAllowed: boolean;
+    sourceLocaleMismatchCacheFallbackAllowed: boolean;
+    uiLocaleMismatchCacheFallbackAllowed: boolean;
+  };
+  outputContract: {
+    allowedTargetLocale: string;
+    allowedSourceLocales: string[];
+    rejectedFreshOutputMayReturn: boolean;
+    wrongLanguageFallbackAllowed: boolean;
+    targetOutputAllowedBeforeContentQualityGate: boolean;
+  };
+  returnContract: {
+    mayReturnRejectedFreshText: boolean;
+    mustReturnSafeFallbackOnReject: boolean;
+    safeFallbackMayContainTargetContent: boolean;
+  };
+  activationStatus: string;
+};
+
+type AiPromptContractV2 = {
+  schemaVersion: string;
+  targetLocale: string;
+  targetStudyLanguage: string;
+  sourceLocales: string[];
+  entrypointContracts: AiEntrypointContract[];
+  readyForContentQualityGatesV2: boolean;
+  readyForGenerationV2: boolean;
+  readyForApply: boolean;
+  mayModifyProductionAppFiles: boolean;
+};
+
 type RowCandidate = {
   dryRunScope: 'row';
   candidateProposalId: string;
@@ -196,6 +237,10 @@ type GenerationManifest = {
 
 type Evaluation = {
   promotionPreflightReady: boolean;
+  aiPromptContractV2Ready: boolean;
+  aiPromptContractEntrypoints: number;
+  aiPromptContractUniqueIds: number;
+  aiPromptContractCriticalContracts: number;
   rowCandidateProposals: number;
   aiCandidateProposals: number;
   rowTemplateLines: number;
@@ -215,6 +260,25 @@ type Evaluation = {
   acceptedAiDecisionRows: number;
   rowAcceptedWithAllGatePasses: number;
   aiAcceptedWithCoreGatePasses: number;
+  promotedAiUniqueContractIds: number;
+  promotedAiDuplicateContractIds: number;
+  promotedAiDecisionsMatchedToPromptContracts: number;
+  promotedAiDecisionExtraContracts: number;
+  promotedAiDecisionMissingContracts: number;
+  promotedAiCriticalContracts: number;
+  promotedAiCriticalContractsMatched: number;
+  promotedAiDomainMatchedToPromptContract: number;
+  promotedAiFilePathMatchedToPromptContract: number;
+  promotedAiFeatureRiskClassMatchedToPromptContract: number;
+  promotedAiRiskLevelMatchedToPromptContract: number;
+  promotedAiTargetLocaleMatchedToPromptContract: number;
+  promotedAiSourceLocalesMatchedToPromptContract: number;
+  promotedAiCacheDimensionsMatchedToPromptContract: number;
+  promotedAiWrongLanguageGatePassed: number;
+  promotedAiRejectedFreshReturnClosedByPromptContract: number;
+  promotedAiRejectedFreshCacheClosedByPromptContract: number;
+  promotedAiTargetOutputBeforeQualityClosedByPromptContract: number;
+  promotedAiWrongLanguageFallbackClosedByPromptContract: number;
   rowAcceptedWithoutCorrections: number;
   rowWrongTargetRows: number;
   aiWrongTargetRows: number;
@@ -391,6 +455,14 @@ function clone<T>(value: T): T {
 
 function sameSourceLocales(value: string[]): boolean {
   return JSON.stringify(value) === JSON.stringify(['ru', 'uk']);
+}
+
+function sameStringSet(left: string[], right: string[]): boolean {
+  return JSON.stringify([...left].sort()) === JSON.stringify([...right].sort());
+}
+
+function uniqueCount(values: string[]): number {
+  return new Set(values).size;
 }
 
 function hasRequiredBooleans(record: Record<string, unknown>, required: string[]): boolean {
@@ -637,6 +709,8 @@ function buildGenerationManifest(
 
 function evaluate(
   p22: JsonObject,
+  aiPromptReport: JsonObject,
+  aiPromptContract: AiPromptContractV2,
   manifest: PromotionManifest,
   rowCandidates: RowCandidate[],
   aiCandidates: AiCandidate[],
@@ -657,6 +731,31 @@ function evaluate(
     n(p22, 'blockers') === 0 &&
     b(p22, 'readyForPromotedDecisionFileGeneration') &&
     (promotionState === 'contract_ready_no_promoted_decisions_written' || promotionState === 'contract_superseded_by_promoted_decisions');
+  const aiPromptSummary = object(aiPromptReport.summary);
+  const aiPromptContracts = Array.isArray(aiPromptContract.entrypointContracts) ? aiPromptContract.entrypointContracts : [];
+  const aiPromptContractById = new Map(aiPromptContracts.map((contract) => [contract.contractId, contract]));
+  const promotedAiByContractId = new Map(promotedAi.map((row) => [row.contractId, row]));
+  const aiPromptContractIds = aiPromptContracts.map((contract) => contract.contractId);
+  const promotedAiContractIds = promotedAi.map((row) => row.contractId);
+  const aiPromptContractUniqueIds = uniqueCount(aiPromptContractIds);
+  const promotedAiUniqueContractIds = uniqueCount(promotedAiContractIds);
+  const promotedAiDuplicateContractIds = Math.max(0, promotedAi.length - promotedAiUniqueContractIds);
+  const aiPromptContractV2Ready =
+    s(aiPromptReport, 'status') === 'PASS' &&
+    n(aiPromptSummary, 'blockers') === 0 &&
+    b(aiPromptSummary, 'readyForContentQualityGatesV2') &&
+    !b(aiPromptSummary, 'readyForGenerationV2') &&
+    !b(aiPromptSummary, 'readyForApply') &&
+    !b(aiPromptSummary, 'mayModifyProductionAppFiles') &&
+    aiPromptContract.schemaVersion === 'gustav-fr-ai-prompt-contract-v2' &&
+    aiPromptContract.targetLocale === 'fr' &&
+    aiPromptContract.targetStudyLanguage === 'fr' &&
+    sameSourceLocales(aiPromptContract.sourceLocales) &&
+    aiPromptContract.readyForContentQualityGatesV2 === true &&
+    aiPromptContract.readyForGenerationV2 === false &&
+    aiPromptContract.readyForApply === false &&
+    aiPromptContract.mayModifyProductionAppFiles === false;
+  const aiPromptContractCriticalContracts = aiPromptContracts.filter((contract) => contract.riskLevel === 'critical').length;
   const rowIdentityMatched = rowCandidates.filter((candidate, index) => rowTemplates[index] && rowMatchesTemplate(candidate, rowTemplates[index], index)).length;
   const aiIdentityMatched = aiCandidates.filter((candidate, index) => aiTemplates[index] && aiMatchesTemplate(candidate, aiTemplates[index], index)).length;
   const rowPromotionReqs = rowCandidates.filter((candidate) => hasRequiredBooleans(candidate.acceptedDecisionRequires, REQUIRED_ROW_PROMOTION_REQUIRES)).length;
@@ -685,6 +784,47 @@ function evaluate(
   const acceptedAiDecisionRows = promotedAi.filter((row) => row.reviewerDecision === 'accept_contract').length;
   const rowAcceptedWithAllGatePasses = promotedRows.filter((row) => row.reviewerDecision === 'accept_quality_gates' && rowAllGatePasses(row)).length;
   const aiAcceptedWithCoreGatePasses = promotedAi.filter((row) => row.reviewerDecision === 'accept_contract' && aiCoreGatesPass(row)).length;
+  const promotedAiDecisionsMatchedToPromptContracts = promotedAi.filter((row) => aiPromptContractById.has(row.contractId)).length;
+  const promotedAiDecisionExtraContracts = promotedAi.filter((row) => !aiPromptContractById.has(row.contractId)).length;
+  const promotedAiDecisionMissingContracts = aiPromptContracts.filter((contract) => !promotedAiByContractId.has(contract.contractId)).length;
+  const promotedAiCriticalContracts = promotedAi.filter((row) => aiPromptContractById.get(row.contractId)?.riskLevel === 'critical').length;
+  const promotedAiCriticalContractsMatched = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && contract.riskLevel === 'critical' && row.riskLevel === contract.riskLevel && row.featureRiskClass === contract.featureRiskClass);
+  }).length;
+  const promotedAiDomainMatchedToPromptContract = promotedAi.filter((row) => aiPromptContractById.get(row.contractId)?.domainId === row.domainId).length;
+  const promotedAiFilePathMatchedToPromptContract = promotedAi.filter((row) => aiPromptContractById.get(row.contractId)?.filePath === row.filePath).length;
+  const promotedAiFeatureRiskClassMatchedToPromptContract = promotedAi.filter((row) => aiPromptContractById.get(row.contractId)?.featureRiskClass === row.featureRiskClass).length;
+  const promotedAiRiskLevelMatchedToPromptContract = promotedAi.filter((row) => aiPromptContractById.get(row.contractId)?.riskLevel === row.riskLevel).length;
+  const promotedAiTargetLocaleMatchedToPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && row.studyTarget === 'fr' && contract.outputContract.allowedTargetLocale === 'fr');
+  }).length;
+  const promotedAiSourceLocalesMatchedToPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && sameSourceLocales(row.sourceLocaleCoverage) && sameSourceLocales(contract.outputContract.allowedSourceLocales));
+  }).length;
+  const promotedAiCacheDimensionsMatchedToPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && sameStringSet(row.cacheKeyDimensionsRequired, contract.cacheContract.requiredKeyDimensions));
+  }).length;
+  const promotedAiWrongLanguageGatePassed = promotedAi.filter((row) => row.wrongLanguageGateDecision === 'pass').length;
+  const promotedAiRejectedFreshReturnClosedByPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && !row.rejectedFreshOutputMayReturn && contract.outputContract.rejectedFreshOutputMayReturn === false && contract.returnContract.mayReturnRejectedFreshText === false);
+  }).length;
+  const promotedAiRejectedFreshCacheClosedByPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && !row.rejectedFreshOutputMayBeCached && contract.cacheContract.rejectedFreshOutputMayBeCached === false);
+  }).length;
+  const promotedAiTargetOutputBeforeQualityClosedByPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && !row.targetOutputAllowedBeforeQualityPass && contract.outputContract.targetOutputAllowedBeforeContentQualityGate === false);
+  }).length;
+  const promotedAiWrongLanguageFallbackClosedByPromptContract = promotedAi.filter((row) => {
+    const contract = aiPromptContractById.get(row.contractId);
+    return Boolean(contract && contract.outputContract.wrongLanguageFallbackAllowed === false && contract.returnContract.mustReturnSafeFallbackOnReject === true && contract.returnContract.safeFallbackMayContainTargetContent === false);
+  }).length;
   const rowAcceptedWithoutCorrections = promotedRows.filter((row) => row.reviewerDecision === 'accept_quality_gates' && !rowHasCorrection(row)).length;
   const rowWrongTargetRows = promotedRows.filter((row) => row.studyTarget !== 'fr').length;
   const aiWrongTargetRows = promotedAi.filter((row) => row.studyTarget !== 'fr').length;
@@ -705,6 +845,9 @@ function evaluate(
     path.basename(path.dirname(path.resolve(aiReviewedPath))) === 'llm_official_source_promoted_decisions_v2';
 
   if (!promotionPreflightReady) addFinding(findings, 'blocker', 'p22_promotion_preflight_not_ready', 'P22 must be PASS and ready for promoted decision file generation.');
+  if (!aiPromptContractV2Ready) addFinding(findings, 'blocker', 'ai_prompt_contract_v2_not_ready', 'AI Prompt Contract V2 must be PASS, source-scoped to fr/ru/uk, and closed for generation/apply before promoted AI decisions can be generated.');
+  if (aiPromptContracts.length !== REQUIRED_AI) addFinding(findings, 'blocker', 'ai_prompt_contract_v2_entrypoint_count_invalid', `Expected ${REQUIRED_AI} AI prompt contracts.`);
+  if (aiPromptContractUniqueIds !== REQUIRED_AI) addFinding(findings, 'blocker', 'ai_prompt_contract_v2_contract_ids_not_unique', 'AI Prompt Contract V2 contractIds must be unique.');
   if (manifest.llmReviewerIdentity !== REVIEWER || manifest.targetLocale !== 'fr' || manifest.studyTarget !== 'fr') {
     addFinding(findings, 'blocker', 'promotion_manifest_scope_invalid', 'Promotion manifest must be scoped to llm_official_source_reviewer and target fr.');
   }
@@ -746,6 +889,28 @@ function evaluate(
   if (acceptedAiDecisionRows !== REQUIRED_AI) addFinding(findings, 'blocker', 'accepted_ai_count_invalid', `Expected ${REQUIRED_AI} accepted AI decisions.`);
   if (rowAcceptedWithAllGatePasses !== REQUIRED_ROWS) addFinding(findings, 'blocker', 'row_accept_gate_passes_incomplete', 'Every accepted row must pass every required gate.');
   if (aiAcceptedWithCoreGatePasses !== REQUIRED_AI) addFinding(findings, 'blocker', 'ai_accept_core_gates_incomplete', 'Every accepted AI contract must pass wrong-language/cache/live-return gates.');
+  if (promotedAiUniqueContractIds !== REQUIRED_AI || promotedAiDuplicateContractIds > 0) addFinding(findings, 'blocker', 'promoted_ai_contract_ids_not_unique', 'Promoted AI decisions must have 164 unique contractIds.');
+  if (promotedAiDecisionsMatchedToPromptContracts !== REQUIRED_AI || promotedAiDecisionExtraContracts > 0 || promotedAiDecisionMissingContracts > 0) {
+    addFinding(findings, 'blocker', 'promoted_ai_prompt_contract_id_mismatch', 'Every promoted AI decision must match exactly one AI Prompt Contract V2 entrypoint, with no extras or missing contracts.');
+  }
+  if (promotedAiCriticalContracts !== aiPromptContractCriticalContracts || promotedAiCriticalContractsMatched !== aiPromptContractCriticalContracts) {
+    addFinding(findings, 'blocker', 'promoted_ai_critical_contract_gap', 'Critical promoted AI decisions must match the critical AI Prompt Contract V2 set.');
+  }
+  if (promotedAiDomainMatchedToPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_domain_drift', 'Promoted AI decision domainId must match AI Prompt Contract V2.');
+  if (promotedAiFilePathMatchedToPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_file_path_drift', 'Promoted AI decision filePath must match AI Prompt Contract V2.');
+  if (promotedAiFeatureRiskClassMatchedToPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_feature_risk_class_drift', 'Promoted AI decision featureRiskClass must match AI Prompt Contract V2.');
+  if (promotedAiRiskLevelMatchedToPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_risk_level_drift', 'Promoted AI decision riskLevel must match AI Prompt Contract V2.');
+  if (promotedAiTargetLocaleMatchedToPromptContract !== REQUIRED_AI || promotedAiSourceLocalesMatchedToPromptContract !== REQUIRED_AI) {
+    addFinding(findings, 'blocker', 'promoted_ai_prompt_contract_language_drift', 'Promoted AI decisions must keep target fr and source locales ru/uk exactly as AI Prompt Contract V2 requires.');
+  }
+  if (promotedAiCacheDimensionsMatchedToPromptContract !== REQUIRED_AI) {
+    addFinding(findings, 'blocker', 'promoted_ai_prompt_contract_cache_dimension_drift', 'Promoted AI decision cacheKeyDimensionsRequired must match AI Prompt Contract V2 cache contract.');
+  }
+  if (promotedAiWrongLanguageGatePassed !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_wrong_language_gate_gap', 'Every promoted AI decision must pass wrong-language gate.');
+  if (promotedAiRejectedFreshReturnClosedByPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_rejected_return_contract_open', 'Rejected fresh AI output must be blocked before return by both promoted decision and AI Prompt Contract V2.');
+  if (promotedAiRejectedFreshCacheClosedByPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_rejected_cache_contract_open', 'Rejected fresh AI output must be blocked before cache by both promoted decision and AI Prompt Contract V2.');
+  if (promotedAiTargetOutputBeforeQualityClosedByPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_target_output_quality_contract_open', 'Target output before quality pass must stay closed by both promoted decision and AI Prompt Contract V2.');
+  if (promotedAiWrongLanguageFallbackClosedByPromptContract !== REQUIRED_AI) addFinding(findings, 'blocker', 'promoted_ai_wrong_language_fallback_contract_open', 'Wrong-language fallback must stay safe and target-content-free in AI Prompt Contract V2.');
   if (rowAcceptedWithoutCorrections !== REQUIRED_ROWS) addFinding(findings, 'blocker', 'row_accept_corrections_present', 'Accepted rows may not include correction payloads.');
   if (rowWrongTargetRows || aiWrongTargetRows || rowWrongSourceLocaleRows || aiWrongSourceLocaleRows) {
     addFinding(findings, 'blocker', 'promoted_decision_language_scope_invalid', 'Promoted decisions must keep studyTarget=fr and sourceLocaleCoverage=ru,uk.');
@@ -763,6 +928,10 @@ function evaluate(
   return {
     metrics: {
       promotionPreflightReady,
+      aiPromptContractV2Ready,
+      aiPromptContractEntrypoints: aiPromptContracts.length,
+      aiPromptContractUniqueIds,
+      aiPromptContractCriticalContracts,
       rowCandidateProposals: rowCandidates.length,
       aiCandidateProposals: aiCandidates.length,
       rowTemplateLines: rowTemplates.length,
@@ -782,6 +951,25 @@ function evaluate(
       acceptedAiDecisionRows,
       rowAcceptedWithAllGatePasses,
       aiAcceptedWithCoreGatePasses,
+      promotedAiUniqueContractIds,
+      promotedAiDuplicateContractIds,
+      promotedAiDecisionsMatchedToPromptContracts,
+      promotedAiDecisionExtraContracts,
+      promotedAiDecisionMissingContracts,
+      promotedAiCriticalContracts,
+      promotedAiCriticalContractsMatched,
+      promotedAiDomainMatchedToPromptContract,
+      promotedAiFilePathMatchedToPromptContract,
+      promotedAiFeatureRiskClassMatchedToPromptContract,
+      promotedAiRiskLevelMatchedToPromptContract,
+      promotedAiTargetLocaleMatchedToPromptContract,
+      promotedAiSourceLocalesMatchedToPromptContract,
+      promotedAiCacheDimensionsMatchedToPromptContract,
+      promotedAiWrongLanguageGatePassed,
+      promotedAiRejectedFreshReturnClosedByPromptContract,
+      promotedAiRejectedFreshCacheClosedByPromptContract,
+      promotedAiTargetOutputBeforeQualityClosedByPromptContract,
+      promotedAiWrongLanguageFallbackClosedByPromptContract,
       rowAcceptedWithoutCorrections,
       rowWrongTargetRows,
       aiWrongTargetRows,
@@ -817,6 +1005,8 @@ function makeProbe(
   id: string,
   expectedAccept: boolean,
   p22: JsonObject,
+  aiPromptReport: JsonObject,
+  aiPromptContract: AiPromptContractV2,
   manifest: PromotionManifest,
   rowCandidates: RowCandidate[],
   aiCandidates: AiCandidate[],
@@ -832,6 +1022,8 @@ function makeProbe(
   reviewerDir: string,
   mutate?: (draft: {
     p22: JsonObject;
+    aiPromptReport: JsonObject;
+    aiPromptContract: AiPromptContractV2;
     manifest: PromotionManifest;
     rows: RowCandidate[];
     ai: AiCandidate[];
@@ -843,6 +1035,8 @@ function makeProbe(
 ): Probe {
   const draft = {
     p22: clone(p22),
+    aiPromptReport: clone(aiPromptReport),
+    aiPromptContract: clone(aiPromptContract),
     manifest: clone(manifest),
     rows: clone(rowCandidates),
     ai: clone(aiCandidates),
@@ -854,6 +1048,8 @@ function makeProbe(
   mutate?.(draft);
   const result = evaluate(
     draft.p22,
+    draft.aiPromptReport,
+    draft.aiPromptContract,
     draft.manifest,
     draft.rows,
     draft.ai,
@@ -874,6 +1070,8 @@ function makeProbe(
 
 function makeProbes(
   p22: JsonObject,
+  aiPromptReport: JsonObject,
+  aiPromptContract: AiPromptContractV2,
   manifest: PromotionManifest,
   rowCandidates: RowCandidate[],
   aiCandidates: AiCandidate[],
@@ -889,41 +1087,62 @@ function makeProbes(
   reviewerDir: string,
 ): Probe[] {
   return [
-    makeProbe('canonical_promoted_decisions_accept', true, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir),
-    makeProbe('p22_not_ready_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('canonical_promoted_decisions_accept', true, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir),
+    makeProbe('p22_not_ready_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.p22.readyForPromotedDecisionFileGeneration = false;
     }),
-    makeProbe('row_identity_drift_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('ai_prompt_contract_v2_not_ready_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      const summary = object(draft.aiPromptReport.summary);
+      summary.readyForContentQualityGatesV2 = false;
+      draft.aiPromptReport.summary = summary;
+      draft.aiPromptContract.readyForContentQualityGatesV2 = false;
+    }),
+    makeProbe('promoted_ai_missing_prompt_contract_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      draft.aiPromptContract.entrypointContracts = draft.aiPromptContract.entrypointContracts.slice(1);
+    }),
+    makeProbe('promoted_ai_cache_dimension_drift_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      draft.promotedAi[0].cacheKeyDimensionsRequired = draft.promotedAi[0].cacheKeyDimensionsRequired.filter((key) => key !== 'uiLocale');
+    }),
+    makeProbe('promoted_ai_feature_risk_class_drift_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      draft.promotedAi[0].featureRiskClass = 'wrong_feature_risk_class';
+    }),
+    makeProbe('promoted_ai_rejected_cache_open_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      draft.promotedAi[0].rejectedFreshOutputMayBeCached = true;
+    }),
+    makeProbe('promoted_ai_wrong_language_fallback_contract_open_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+      draft.aiPromptContract.entrypointContracts[0].outputContract.wrongLanguageFallbackAllowed = true;
+    }),
+    makeProbe('row_identity_drift_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.rows[0].phraseId = 'wrong_phrase_id';
     }),
-    makeProbe('ai_identity_drift_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('ai_identity_drift_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.ai[0].contractId = 'wrong_contract_id';
     }),
-    makeProbe('row_wrong_target_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('row_wrong_target_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedRows[0].studyTarget = 'en';
     }),
-    makeProbe('row_missing_gate_pass_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('row_missing_gate_pass_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedRows[0].gateReviewerDecisions[draft.promotedRows[0].requiredGateIds[0]] = 'unreviewed';
     }),
-    makeProbe('row_accept_with_correction_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('row_accept_with_correction_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedRows[0].correctedTargetText = 'correction';
     }),
-    makeProbe('row_missing_evidence_note_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('row_missing_evidence_note_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedRows[0].reviewerNotes = 'missing evidence';
     }),
-    makeProbe('ai_wrong_language_gate_missing_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('ai_wrong_language_gate_missing_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedAi[0].wrongLanguageGateDecision = 'unreviewed';
     }),
-    makeProbe('ai_rejected_fresh_return_open_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('ai_rejected_fresh_return_open_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedAi[0].rejectedFreshOutputMayReturn = true;
     }),
-    makeProbe('activation_flag_open_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('activation_flag_open_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.promotedRows[0].activationApproved = true;
     }),
-    makeProbe('output_path_template_overlap_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('output_path_template_overlap_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.rowReviewedPath = rowTemplatePath;
     }),
-    makeProbe('candidate_import_flag_open_rejected', false, p22, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
+    makeProbe('candidate_import_flag_open_rejected', false, p22, aiPromptReport, aiPromptContract, manifest, rowCandidates, aiCandidates, rowTemplates, aiTemplates, promotedRows, promotedAi, sourceMap, rowReviewedPath, aiReviewedPath, rowTemplatePath, aiTemplatePath, reviewerDir, (draft) => {
       draft.rows[0].reviewerDecisionImportAllowed = true;
     }),
   ];
@@ -943,12 +1162,18 @@ function renderMarkdown(report: Report): string {
     '',
     `- Generation state: ${report.summary.generationState}`,
     `- Promotion preflight ready: ${report.summary.promotionPreflightReady ? 'yes' : 'no'}`,
+    `- AI Prompt Contract V2 ready: ${report.summary.aiPromptContractV2Ready ? 'yes' : 'no'}`,
+    `- AI Prompt Contract V2 entrypoints/unique/critical: ${report.summary.aiPromptContractEntrypoints}/${report.summary.aiPromptContractUniqueIds}/${report.summary.aiPromptContractCriticalContracts}`,
     `- Row decision rows built/written: ${report.summary.rowDecisionRowsBuilt}/${report.summary.rowDecisionFileWritten ? 'yes' : 'no'}`,
     `- AI decision rows built/written: ${report.summary.aiDecisionRowsBuilt}/${report.summary.aiDecisionFileWritten ? 'yes' : 'no'}`,
     `- Accepted row decisions: ${report.summary.acceptedRowDecisionRows}`,
     `- Accepted AI decisions: ${report.summary.acceptedAiDecisionRows}`,
     `- Row gate pass coverage: ${report.summary.rowAcceptedWithAllGatePasses}`,
     `- AI core gate pass coverage: ${report.summary.aiAcceptedWithCoreGatePasses}`,
+    `- Promoted AI prompt-contract id match/extra/missing: ${report.summary.promotedAiDecisionsMatchedToPromptContracts}/${report.summary.promotedAiDecisionExtraContracts}/${report.summary.promotedAiDecisionMissingContracts}`,
+    `- Promoted AI critical matched: ${report.summary.promotedAiCriticalContractsMatched}/${report.summary.promotedAiCriticalContracts}`,
+    `- Promoted AI domain/file/risk/cache matches: ${report.summary.promotedAiDomainMatchedToPromptContract}/${report.summary.promotedAiFilePathMatchedToPromptContract}/${report.summary.promotedAiRiskLevelMatchedToPromptContract}/${report.summary.promotedAiCacheDimensionsMatchedToPromptContract}`,
+    `- Promoted AI return/cache/quality/fallback closed: ${report.summary.promotedAiRejectedFreshReturnClosedByPromptContract}/${report.summary.promotedAiRejectedFreshCacheClosedByPromptContract}/${report.summary.promotedAiTargetOutputBeforeQualityClosedByPromptContract}/${report.summary.promotedAiWrongLanguageFallbackClosedByPromptContract}`,
     `- Row audited source coverage: ${report.summary.rowCandidatesWithAuditedSourceIds}`,
     `- Reviewer evidence notes row/AI: ${report.summary.rowsWithReviewerEvidenceNotes}/${report.summary.aiWithReviewerEvidenceNotes}`,
     `- Output targets separate/confined: ${report.summary.outputTargetsSeparateFromTemplates ? 'yes' : 'no'}/${report.summary.outputTargetsConfinedToPromotedDir ? 'yes' : 'no'}`,
@@ -1003,13 +1228,15 @@ function main(): void {
   const rowTemplatePath = path.join(reviewerDir, 'reviewer_decision_template_v2.jsonl');
   const aiTemplatePath = path.join(reviewerDir, 'reviewer_ai_decision_template_v2.jsonl');
   const researchPackPath = path.join(runDir, 'research', 'fr_research_pack.json');
+  const aiPromptContractPath = path.join(runDir, 'research', 'fr_ai_prompt_contract_v2.json');
+  const aiPromptContractPacketPath = path.join(auditsDir, 'ai_prompt_contract_v2_packet.json');
   const rowReviewedPath = path.join(promotedDir, 'row_decisions_reviewed_v2.jsonl');
   const aiReviewedPath = path.join(promotedDir, 'ai_decisions_reviewed_v2.jsonl');
   const generationManifestPath = path.join(promotedDir, 'llm_official_source_promoted_decision_file_generation_manifest_v2.json');
   const outJson = path.join(auditsDir, 'llm_official_source_promoted_decision_file_generation_v2_packet.json');
   const outMd = path.join(auditsDir, 'llm_official_source_promoted_decision_file_generation_v2_packet.md');
 
-  for (const filePath of [p22Path, p22ManifestPath, rowCandidatePath, aiCandidatePath, rowTemplatePath, aiTemplatePath, researchPackPath]) {
+  for (const filePath of [p22Path, p22ManifestPath, rowCandidatePath, aiCandidatePath, rowTemplatePath, aiTemplatePath, researchPackPath, aiPromptContractPath, aiPromptContractPacketPath]) {
     if (!fs.existsSync(filePath)) throw new Error(`Required input is missing: ${rel(repoRoot, filePath)}`);
   }
 
@@ -1021,6 +1248,8 @@ function main(): void {
   const rowTemplates = parseJsonl<RowTemplate>(rowTemplatePath);
   const aiTemplates = parseJsonl<AiTemplate>(aiTemplatePath);
   const researchPack = readJson<JsonObject>(researchPackPath);
+  const aiPromptContract = readJson<AiPromptContractV2>(aiPromptContractPath);
+  const aiPromptReport = readJson<JsonObject>(aiPromptContractPacketPath);
   const sourceMap = trustedSourcesById(researchPack);
 
   const manifestRowTarget = path.resolve(repoRoot, p22Manifest.futureDecisionFiles.rowDecisionsReviewedV2);
@@ -1036,6 +1265,8 @@ function main(): void {
   const promotedAi = aiTemplates.map((row, index) => promoteAi(row, aiCandidates[index], generatedAt, sourceMap));
   const evaluation = evaluate(
     p22,
+    aiPromptReport,
+    aiPromptContract,
     p22Manifest,
     rowCandidates,
     aiCandidates,
@@ -1052,6 +1283,8 @@ function main(): void {
   );
   const probes = makeProbes(
     p22,
+    aiPromptReport,
+    aiPromptContract,
     p22Manifest,
     rowCandidates,
     aiCandidates,
@@ -1110,6 +1343,8 @@ function main(): void {
       rowDecisionTemplateV2: rel(repoRoot, rowTemplatePath),
       aiDecisionTemplateV2: rel(repoRoot, aiTemplatePath),
       researchPack: rel(repoRoot, researchPackPath),
+      aiPromptContractV2: rel(repoRoot, aiPromptContractPath),
+      aiPromptContractV2Packet: rel(repoRoot, aiPromptContractPacketPath),
     },
     outputs: {
       promotedDecisionFileGenerationV2PacketJson: rel(repoRoot, outJson),
@@ -1143,6 +1378,8 @@ function main(): void {
       rowDecisionTemplateV2: sha256(rowTemplatePath),
       aiDecisionTemplateV2: sha256(aiTemplatePath),
       researchPack: sha256(researchPackPath),
+      aiPromptContractV2: sha256(aiPromptContractPath),
+      aiPromptContractV2Packet: sha256(aiPromptContractPacketPath),
     },
     outputArtifactHashes: ready
       ? {
@@ -1172,6 +1409,7 @@ function main(): void {
   console.log(`Gustav LLM official-source promoted decision file generation V2: ${report.status}`);
   console.log(`Promoted rows: ${report.summary.acceptedRowDecisionRows}/${REQUIRED_ROWS}`);
   console.log(`Promoted AI contracts: ${report.summary.acceptedAiDecisionRows}/${REQUIRED_AI}`);
+  console.log(`Promoted AI prompt-contract matches: ${report.summary.promotedAiDecisionsMatchedToPromptContracts}/${REQUIRED_AI}`);
   console.log(`Ready for reviewer decision import refresh: ${report.summary.readyForReviewerDecisionImportV2DryRunRefresh ? 'yes' : 'no'}`);
   console.log(`Output: ${rel(repoRoot, outJson)}`);
 

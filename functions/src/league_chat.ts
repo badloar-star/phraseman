@@ -303,6 +303,47 @@ export const leagueChatSendMessage = onCall({ region: REGION }, async (request) 
   return { ok: true, status: 'sent', messageId: ref.id };
 });
 
+export const leagueChatDeleteMessage = onCall({ region: REGION }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+
+  const db = admin.firestore();
+  const authUid = request.auth.uid;
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
+  const messageId = String(request.data?.messageId ?? '').trim();
+  if (!messageId) throw new HttpsError('invalid-argument', 'message_required');
+
+  const now = Date.now();
+  const messageRef = db.collection('league_chat_messages').doc(messageId);
+
+  await db.runTransaction(async (tx) => {
+    const messageSnap = await tx.get(messageRef);
+    if (!messageSnap.exists) throw new HttpsError('not-found', 'message_not_found');
+
+    const message = messageSnap.data() || {};
+    if (message.status === 'deleted') return;
+    if (message.status !== 'visible') throw new HttpsError('failed-precondition', 'message_not_visible');
+    if (String(message.authorUid || '') !== stableUid && String(message.authorAuthUid || '') !== authUid) {
+      throw new HttpsError('permission-denied', 'not_message_author');
+    }
+
+    await assertActiveChatUser(db, stableUid, authUid, {
+      groupId: String(message.groupId || ''),
+      weekId: String(message.weekId || ''),
+      leagueId: Math.trunc(Number(message.leagueId) || 0),
+    });
+
+    tx.update(messageRef, {
+      status: 'deleted',
+      deletedAt: now,
+      deletedByUid: stableUid,
+      deletedByAuthUid: authUid,
+      updatedAt: now,
+    });
+  });
+
+  return { ok: true };
+});
+
 export const leagueChatReportMessage = onCall({ region: REGION }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 

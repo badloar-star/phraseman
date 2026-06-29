@@ -111,6 +111,9 @@ export type AnalyticsEvent =
   | 'paywall_close'
   | 'paywall_continue_free'
   | 'paywall_scroll_depth'        // эксперимент v3: глубина чтения галереи доказательств (B/C)
+  | 'paywall_exit_offer_shown'    // exit-intent: показан тёплый триал-оффер при попытке уйти
+  | 'paywall_exit_offer_accepted' // exit-intent: юзер согласился попробовать триал
+  | 'paywall_exit_offer_declined' // exit-intent: юзер отказался и закрыл
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'
   | 'purchase_failed'

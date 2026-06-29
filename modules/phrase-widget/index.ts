@@ -18,6 +18,11 @@ interface PhraseWidgetNativeModule {
   setData(payload: WidgetPayload): Promise<void>;
   /** Ask the OS to refresh all timelines / app widget instances. */
   reloadAll(): Promise<void>;
+  /**
+   * iOS-only diagnostic: true when the shared App Group container is real and
+   * currently holds a snapshot. Absent on Android (resolves undefined → false).
+   */
+  hasSharedSnapshot?(): Promise<boolean>;
 }
 
 const nativeModule = requireOptionalNativeModule<PhraseWidgetNativeModule>('PhraseWidget');
@@ -36,5 +41,14 @@ async function reloadAll(): Promise<void> {
   await nativeModule.reloadAll();
 }
 
-export default { isAvailable, setData, reloadAll };
+/**
+ * iOS-only: does the shared App Group actually hold a snapshot the widget can
+ * read? False on Android and wherever the native module / method is absent.
+ */
+async function hasSharedSnapshot(): Promise<boolean> {
+  if (!nativeModule?.hasSharedSnapshot) return false;
+  return nativeModule.hasSharedSnapshot();
+}
+
+export default { isAvailable, setData, reloadAll, hasSharedSnapshot };
 export type { WidgetPayload };

@@ -959,7 +959,7 @@ export const IMPULS_DAY_6: PlanContentDay = {
   dayIndex: 6,
   topic: { ru: 'Кто-то сказал Thank you, ты завис', uk: 'Хтось сказав Thank you, ти завис', es: 'Alguien dijo Thank you y te quedaste paralizado' , 'pt-BR': 'Alguém disse Thank you e você congelou', vi: 'Ai đó đã nói Thank you và bạn đứng hình', id: 'Seseorang berkata Thank you dan Anda terdiam', tr: 'Birisi Thank you dedi ve sen donup kaldın', pl: 'Ktoś powiedział Thank you i zamarłeś'},
   outcome: {
-    ru: 'Ты не завнёшь на «спасибо» — у тебя готовы два лёгких ответа',
+    ru: 'Ты не зависнешь на «спасибо» — у тебя готовы два лёгких ответа',
     uk: 'Ти не зависнеш на «дякую» — у тебе є два легкі відповіді',
     es: 'No te quedarás paralizado ante un «gracias» — tienes dos respuestas listas',
     'pt-BR': 'No você ficará paralisado por um “obrigado” – você tem duas respostas prontas',
@@ -1069,7 +1069,7 @@ export const IMPULS_DAY_6: PlanContentDay = {
     {
       id: 'impuls_d6_p3',
       english: 'I do not mind at all.',
-      meaning: { ru: 'Мне совсем не мешает.', uk: 'Мені зовсім не заважає.', es: 'No me importa en absoluto.' , 'pt-BR': 'No Eu não me importo nem um pouco.', vi: 'No Tôi không quan tâm chút nào.', id: 'No Saya tidak peduli sama sekali.', tr: 'No Hiç umurumda değil.', pl: 'No W ogóle mnie to nie obchodzi.'},
+      meaning: { ru: 'Я совсем не против.', uk: 'Мені зовсім не заважає.', es: 'No me importa en absoluto.' , 'pt-BR': 'No Eu não me importo nem um pouco.', vi: 'No Tôi không quan tâm chút nào.', id: 'No Saya tidak peduli sama sekali.', tr: 'No Hiç umurumda değil.', pl: 'No W ogóle mnie to nie obchodzi.'},
       constructions: ['present-simple'],
       explanation: {
         title: { ru: 'Сказать «мне не мешает»', uk: 'Сказати «мені не заважає»', es: 'Decir «no me importa»' , 'pt-BR': 'Dizendo “no eu me importo”', vi: 'Nói “no tôi quan tâm”', id: 'Mengatakan “no Saya peduli”', tr: '“no Önemsiyorum” demek', pl: 'Mówiąc „no zależy mi”'},
@@ -1608,8 +1608,8 @@ export const IMPULS_DAY_9: PlanContentDay = {
         pl: 'Jeśli odpowiedź była zbyt szybka lub myląca, zapytaj ponownie innymi słowami: What do you make? What do you sell? Używaj What do you, rozmawiając z jedną osobą.',
       },
       examples: [
-        { en: 'What do you make in your company?', gloss: { ru: 'Что вы производите в вашей компании?', uk: 'Що ви виробляєте у вашій компанії?', es: '¿Qué fabrican en tu empresa?' , 'pt-BR': 'O que eles fabricam na sua empresa?', vi: 'Họ sản xuất gì ở công ty của bạn?', id: 'Apa yang mereka produksi di perusahaan Anda?', tr: 'Firmanızda ne üretiyorlar?', pl: 'Co produkują w Waszej firmie?'} },
-        { en: 'Do you work with big companies?', gloss: { ru: 'Вы работаете с крупными компаниями?', uk: 'Ви працюєте з великими компаніями?', es: '¿Trabajan con empresas grandes?' , 'pt-BR': 'Você trabalha com grandes empresas?', vi: 'Bạn có làm việc với các công ty lớn không?', id: 'Apakah Anda bekerja dengan perusahaan besar?', tr: 'Büyük şirketlerle mi çalışıyorsunuz?', pl: 'Współpracujesz z dużymi firmami?'} },
+        { en: 'What do you make in your company?', gloss: { ru: 'Что ты производишь в своей компании?', uk: 'Що ви виробляєте у вашій компанії?', es: '¿Qué fabrican en tu empresa?' , 'pt-BR': 'O que eles fabricam na sua empresa?', vi: 'Họ sản xuất gì ở công ty của bạn?', id: 'Apa yang mereka produksi di perusahaan Anda?', tr: 'Firmanızda ne üretiyorlar?', pl: 'Co produkują w Waszej firmie?'} },
+        { en: 'Do you work with big companies?', gloss: { ru: 'Ты работаешь с крупными компаниями?', uk: 'Ви працюєте з великими компаніями?', es: '¿Trabajan con empresas grandes?' , 'pt-BR': 'Você trabalha com grandes empresas?', vi: 'Bạn có làm việc với các công ty lớn không?', id: 'Apakah Anda bekerja dengan perusahaan besar?', tr: 'Büyük şirketlerle mi çalışıyorsunuz?', pl: 'Współpracujesz z dużymi firmami?'} },
       ],
     },
   ],
@@ -1674,7 +1674,7 @@ export const IMPULS_DAY_9: PlanContentDay = {
     {
       id: 'impuls_d9_p4',
       english: 'Does your company sell software?',
-      meaning: { ru: 'Ваша компания продаёт программное обеспечение?', uk: 'Ваша компанія продає програмне забезпечення?', es: '¿Tu empresa vende software?' , 'pt-BR': 'Sua empresa vende software?', vi: 'Công ty của bạn có bán software không?', id: 'Apakah perusahaan Anda menjual software?', tr: 'Şirketiniz software satıyor mu?', pl: 'Czy Twoja firma sprzedaje software?'},
+      meaning: { ru: 'Твоя компания продаёт программное обеспечение?', uk: 'Ваша компанія продає програмне забезпечення?', es: '¿Tu empresa vende software?' , 'pt-BR': 'Sua empresa vende software?', vi: 'Công ty của bạn có bán software không?', id: 'Apakah perusahaan Anda menjual software?', tr: 'Şirketiniz software satıyor mu?', pl: 'Czy Twoja firma sprzedaje software?'},
       constructions: ['present-simple-questions'],
       explanation: {
         title: { ru: 'Уточняющий вопрос о продукте', uk: 'Уточнювальне питання про продукт', es: 'Pregunta de aclaración sobre el producto' , 'pt-BR': 'Pergunta de esclarecimento do produto', vi: 'Câu hỏi làm rõ sản phẩm', id: 'Pertanyaan klarifikasi produk', tr: 'Ürün açıklama sorusu', pl: 'Pytanie wyjaśniające produkt'},
@@ -1712,7 +1712,7 @@ export const IMPULS_DAY_9: PlanContentDay = {
     {
       id: 'impuls_d9_p6',
       english: 'What do you make in your factory?',
-      meaning: { ru: 'Что вы производите на вашем заводе?', uk: 'Що ви виробляєте на вашому заводі?', es: '¿Qué fabrican en tu fábrica?' , 'pt-BR': 'O que eles fazem na sua fábrica?', vi: 'Họ làm gì ở nhà máy của bạn?', id: 'Apa yang mereka buat di pabrik Anda?', tr: 'Fabrikanızda ne yapıyorlar?', pl: 'Co robią w Twojej fabryce?'},
+      meaning: { ru: 'Что ты производишь на своём заводе?', uk: 'Що ви виробляєте на вашому заводі?', es: '¿Qué fabrican en tu fábrica?' , 'pt-BR': 'O que eles fazem na sua fábrica?', vi: 'Họ làm gì ở nhà máy của bạn?', id: 'Apa yang mereka buat di pabrik Anda?', tr: 'Fabrikanızda ne yapıyorlar?', pl: 'Co robią w Twojej fabryce?'},
       constructions: ['present-simple-questions', 'wh-questions'],
       explanation: {
         title: { ru: 'Уточни, что именно они делают', uk: 'Уточни, що саме вони роблять', es: 'Aclara qué es exactamente lo que hacen' , 'pt-BR': 'Esclareça o que exatamente eles fazem', vi: 'Làm rõ chính xác những gì họ làm', id: 'Perjelas apa sebenarnya yang mereka lakukan', tr: 'Tam olarak ne yaptıklarını açıklayın', pl: 'Wyjaśnij, czym dokładnie się zajmują'},
@@ -2582,7 +2582,7 @@ export const IMPULS_DAY_14: PlanContentDay = {
         pl: 'Mózg najlepiej zapamiętuje frazy, gdy spotyka je kilka razy. Dziś masz drugą szansę na utrwalenie ich w pamięci długotrwałej. Po tej lekcji wyjdą sami, bez wysiłku.',
       },
       examples: [
-        { en: 'I have your contact. I send you an email.', gloss: { ru: 'У меня есть твой контакт. Я отправлю тебе письмо.', uk: 'У мене є твій контакт. Я надішлю тобі листа.', es: 'Tengo tu contacto. Te mando un correo.' , 'pt-BR': 'Eu tenho seu contato. Vou te enviar um e-mail.', vi: 'Tôi có liên lạc của bạn. Tôi sẽ gửi cho bạn một email.', id: 'Saya punya kontak Anda. Saya akan mengirimi Anda email.', tr: 'Bağlantın bende. Sana bir e-posta göndereceğim.', pl: 'Mam twój kontakt. Wyślę Ci e-mail.'} },
+        { en: "I have your contact. I'll send you an email.", gloss: { ru: 'У меня есть твой контакт. Я отправлю тебе письмо.', uk: 'У мене є твій контакт. Я надішлю тобі листа.', es: 'Tengo tu contacto. Te mando un correo.' , 'pt-BR': 'Eu tenho seu contato. Vou te enviar um e-mail.', vi: 'Tôi có liên lạc của bạn. Tôi sẽ gửi cho bạn một email.', id: 'Saya punya kontak Anda. Saya akan mengirimi Anda email.', tr: 'Bağlantın bende. Sana bir e-posta göndereceğim.', pl: 'Mam twój kontakt. Wyślę Ci e-mail.'} },
         { en: 'We work in different time zones.', gloss: { ru: 'Мы работаем в разных часовых поясах.', uk: 'Ми працюємо в різних часових поясах.', es: 'Trabajamos en zonas horarias diferentes.' , 'pt-BR': 'Trabalhamos em diferentes fusos horários.', vi: 'Chúng tôi làm việc ở các múi giờ khác nhau.', id: 'Kami bekerja di zona waktu yang berbeda.', tr: 'Farklı saat dilimlerinde çalışıyoruz.', pl: 'Pracujemy w różnych strefach czasowych.'} },
       ],
     },
@@ -2655,7 +2655,7 @@ export const IMPULS_DAY_14: PlanContentDay = {
         title: { ru: 'Как назвать свою команду коротко', uk: 'Як назвати свою команду коротко', es: 'Cómo nombrar tu equipo de forma breve' , 'pt-BR': 'Como nomear brevemente sua equipe', vi: 'Cách đặt tên ngắn gọn cho nhóm của bạn', id: 'Bagaimana memberi nama tim Anda secara singkat', tr: 'Ekibinize kısaca nasıl ad verilir?', pl: 'Jak krótko nazwać swój zespół'},
         rule: { ru: 'I am from the ... team — короткий способ сказать, к какой группе ты относишься.', uk: 'I am from the ... team — короткий спосіб сказати, до якої групи ти належиш.', es: 'I am from the ... team es la forma breve de decir a qué grupo perteneces.' , 'pt-BR': 'I am from the... team é a forma abreviada de dizer a qual grupo você pertence.', vi: 'I am from the... team là cách nói ngắn gọn để nói bạn thuộc nhóm nào.', id: 'I am from the... team adalah cara singkat untuk menyatakan Anda termasuk dalam grup mana.', tr: 'I am from the... team hangi gruba ait olduğunuzu söylemenin kısa yoludur.', pl: 'I am from the... team to krótki sposób na określenie, do której grupy należysz.'},
         why: { ru: 'Когда тебя представляют, первый вопрос — чья ты команда. Эта фраза отвечает мгновенно.', uk: 'Коли тебе представляють, перше питання — чия ти команда. Ця фраза відповідає миттєво.', es: 'Cuando te presentan, la primera pregunta es de qué equipo eres. Esta frase responde al instante.' , 'pt-BR': 'Quando você é apresentado, a primeira pergunta é de qual time você pertence. Esta frase responde instantaneamente.', vi: 'Khi được giới thiệu, câu hỏi đầu tiên là bạn đến từ đội nào. Cụm từ này trả lời ngay lập tức.', id: 'Saat Anda diperkenalkan, pertanyaan pertama adalah Anda berasal dari tim mana. Ungkapan ini langsung terjawab.', tr: 'Tanıştığınızda ilk soru hangi takımdan olduğunuzdur. Bu cümle anında cevap veriyor.', pl: 'Kiedy zostajesz przedstawiony, pierwszym pytaniem jest, z jakiego zespołu pochodzisz. To zdanie odpowiada natychmiast.'},
-        commonMistake: { ru: 'Не убирай the перед названием команды — it sounds unnatural without it.', uk: 'Не прибирай the перед назвою команди — it sounds unnatural without it.', es: 'No quites the antes del nombre del equipo, suena poco natural sin él.' , 'pt-BR': 'Não remova the antes do nome da equipe, pois não parece natural sem ele.', vi: 'Đừng xóa the trước tên nhóm, nếu không có nó thì nghe có vẻ không tự nhiên.', id: 'Jangan hapus the sebelum nama tim, tanpanya akan terdengar tidak wajar.', tr: 'Takım adından önce the karakterini kaldırmayın, o olmadan doğal görünmüyor.', pl: 'Nie usuwaj the przed nazwą zespołu, bez niej brzmi to nienaturalnie.'},
+        commonMistake: { ru: 'Не убирай the перед названием команды — без него звучит неестественно.', uk: 'Не прибирай the перед назвою команди — без нього звучить неприродно.', es: 'No quites the antes del nombre del equipo, suena poco natural sin él.' , 'pt-BR': 'Não remova the antes do nome da equipe, pois não parece natural sem ele.', vi: 'Đừng xóa the trước tên nhóm, nếu không có nó thì nghe có vẻ không tự nhiên.', id: 'Jangan hapus the sebelum nama tim, tanpanya akan terdengar tidak wajar.', tr: 'Takım adından önce the karakterini kaldırmayın, o olmadan doğal görünmüyor.', pl: 'Nie usuwaj the przed nazwą zespołu, bez niej brzmi to nienaturalnie.'},
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['We', 'She', 'He', 'They', 'You'] },
@@ -2668,12 +2668,12 @@ export const IMPULS_DAY_14: PlanContentDay = {
     },
     {
       id: 'impuls_d14_p4',
-      english: 'I have your contact. I send you an email.',
-      meaning: { ru: 'У меня есть твой контакт. Я пишу тебе письмо.', uk: 'У мене є твій контакт. Я напишу тобі листа.', es: 'Tengo tu contacto. Te mando un correo.' , 'pt-BR': 'Eu tenho seu contato. Vou te enviar um e-mail.', vi: 'Tôi có liên lạc của bạn. Tôi sẽ gửi cho bạn một email.', id: 'Saya punya kontak Anda. Saya akan mengirimi Anda email.', tr: 'Bağlantın bende. Sana bir e-posta göndereceğim.', pl: 'Mam twój kontakt. Wyślę Ci e-mail.'},
+      english: 'I have your contact. I\'ll send you an email.',
+      meaning: { ru: 'У меня есть твой контакт. Я отправлю тебе письмо.', uk: 'У мене є твій контакт. Я напишу тобі листа.', es: 'Tengo tu contacto. Te mando un correo.' , 'pt-BR': 'Eu tenho seu contato. Vou te enviar um e-mail.', vi: 'Tôi có liên lạc của bạn. Tôi sẽ gửi cho bạn một email.', id: 'Saya punya kontak Anda. Saya akan mengirimi Anda email.', tr: 'Bağlantın bende. Sana bir e-posta göndereceğim.', pl: 'Mam twój kontakt. Wyślę Ci e-mail.'},
       constructions: ['to-have', 'present-simple'],
       explanation: {
         title: { ru: 'Как сказать, что свяжешься после знакомства', uk: 'Як сказати, що зв\'яжешся після знайомства', es: 'Cómo decir que te pondrás en contacto tras el encuentro' , 'pt-BR': 'Como dizer que entrará em contato após a reunião', vi: 'Làm thế nào để nói rằng bạn sẽ liên lạc sau cuộc họp', id: 'Bagaimana mengatakan bahwa Anda akan menghubungi setelah pertemuan', tr: 'Toplantıdan sonra iletişime geçeceğinizi nasıl söylersiniz?', pl: 'Jak powiedzieć, że skontaktujesz się z nami po spotkaniu'},
-        rule: { ru: 'I have your contact — говоришь, что уже взял контакт. I send you an email — сообщаешь, что напишешь.', uk: 'I have your contact — кажеш, що вже взяв контакт. I send you an email — повідомляєш, що напишеш.', es: 'I have your contact dice que ya tienes su contacto. I send you an email anuncia que escribirás.' , 'pt-BR': 'I have your contact diz que você já tem o contato dele. I send you an email anuncia que você irá escrever.', vi: 'I have your contact nói rằng bạn đã có liên hệ của anh ấy. I send you an email thông báo rằng bạn sẽ viết.', id: 'I have your contact bilang kamu sudah punya kontaknya. I send you an email mengumumkan bahwa Anda akan menulis.', tr: 'I have your contact, onunla zaten iletişime geçtiğinizi söylüyor. I send you an email yazacağınızı duyurdu.', pl: 'I have your contact mówi, że masz już jego kontakt. I send you an email ogłasza, że ​​będziesz pisać.'},
+        rule: { ru: 'I have your contact — говоришь, что уже взял контакт. I\'ll send you an email — сообщаешь, что напишешь.', uk: 'I have your contact — кажеш, що вже взяв контакт. I send you an email — повідомляєш, що напишеш.', es: 'I have your contact dice que ya tienes su contacto. I send you an email anuncia que escribirás.' , 'pt-BR': 'I have your contact diz que você já tem o contato dele. I send you an email anuncia que você irá escrever.', vi: 'I have your contact nói rằng bạn đã có liên hệ của anh ấy. I send you an email thông báo rằng bạn sẽ viết.', id: 'I have your contact bilang kamu sudah punya kontaknya. I send you an email mengumumkan bahwa Anda akan menulis.', tr: 'I have your contact, onunla zaten iletişime geçtiğinizi söylüyor. I send you an email yazacağınızı duyurdu.', pl: 'I have your contact mówi, że masz już jego kontakt. I send you an email ogłasza, że ​​będziesz pisać.'},
         why: { ru: 'Конкретное обещание после знакомства показывает, что ты серьёзный человек.', uk: 'Конкретна обіцянка після знайомства показує, що ти серйозна людина.', es: 'Una promesa concreta tras el encuentro muestra que eres una persona seria.' , 'pt-BR': 'Uma promessa concreta após a reunião mostra que você é uma pessoa séria.', vi: 'Một lời hứa cụ thể sau cuộc gặp cho thấy bạn là người nghiêm túc.', id: 'Janji yang konkrit setelah pertemuan menunjukkan bahwa Anda adalah orang yang serius.', tr: 'Toplantı sonrasında vereceğiniz somut bir söz, ciddi bir insan olduğunuzu gösterir.', pl: 'Konkretna obietnica po spotkaniu pokazuje, że jesteś poważną osobą.'},
         commonMistake: { ru: 'Не говори I have got your contact — просто I have your contact, это понятнее.', uk: 'Не кажи I have got your contact — просто I have your contact, це зрозуміліше.', es: 'No digas I have got your contact, simplemente I have your contact es más claro.' , 'pt-BR': 'Não diga I have obteve your contact, apenas I have your contact é mais claro.', vi: 'Đừng nói I have có your contact, chỉ I have your contact thì rõ ràng hơn.', id: 'Jangan bilang I have dapat your contact, cukup I have your contact yang lebih jelas.', tr: 'I have\'nin your contact aldığını söylemeyin, sadece I have your contact daha nettir.', pl: 'Nie mów, że I have ma your contact, po prostu I have your contact jest jaśniejsze.'},
       },
@@ -2729,9 +2729,9 @@ export const IMPULS_DAY_14: PlanContentDay = {
   ],
   vocabulary: [
     { word: 'team', partOfSpeech: 'noun', translation: { ru: 'команда', uk: 'команда', es: 'equipo' , 'pt-BR': 'equipamento', vi: 'thiết bị', id: 'peralatan', tr: 'teçhizat', pl: 'sprzęt'}, example: 'I work in the sales team.' },
-    { word: 'contact', partOfSpeech: 'noun', translation: { ru: 'контакт', uk: 'контакт', es: 'contacto' , 'pt-BR': 'contato', vi: 'liên hệ', id: 'kontak', tr: 'temas etmek', pl: 'kontakt'}, example: 'I have your contact. I send you an email.' },
+    { word: 'contact', partOfSpeech: 'noun', translation: { ru: 'контакт', uk: 'контакт', es: 'contacto' , 'pt-BR': 'contato', vi: 'liên hệ', id: 'kontak', tr: 'temas etmek', pl: 'kontakt'}, example: "I have your contact. I'll send you an email." },
     { word: 'zone', partOfSpeech: 'noun', translation: { ru: 'пояс, зона', uk: 'пояс, зона', es: 'zona' , 'pt-BR': 'área', vi: 'khu vực', id: 'daerah', tr: 'alan', pl: 'obszar'}, example: 'My time zone is UTC plus three.' },
-    { word: 'send', partOfSpeech: 'verb', translation: { ru: 'отправлять, писать', uk: 'надсилати, писати', es: 'enviar, mandar' , 'pt-BR': 'enviar, enviar', vi: 'gửi, gửi', id: 'kirim, kirim', tr: 'gönder, gönder', pl: 'wyślij, wyślij'}, example: 'I have your contact. I send you an email.' },
+    { word: 'send', partOfSpeech: 'verb', translation: { ru: 'отправлять, писать', uk: 'надсилати, писати', es: 'enviar, mandar' , 'pt-BR': 'enviar, enviar', vi: 'gửi, gửi', id: 'kirim, kirim', tr: 'gönder, gönder', pl: 'wyślij, wyślij'}, example: "I have your contact. I'll send you an email." },
     { word: 'finance', partOfSpeech: 'noun', translation: { ru: 'финансы', uk: 'фінанси', es: 'finanzas' , 'pt-BR': 'financiar', vi: 'tài chính', id: 'keuangan', tr: 'finans', pl: 'finanse'}, example: 'What do you do? I work in finance.' },
     { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'знакомиться, встречать', uk: 'знайомитися, зустрічати', es: 'conocer' , 'pt-BR': 'saber', vi: 'biết', id: 'tahu', tr: 'Bilmek', pl: 'wiedzieć'}, example: 'My name is David. Nice to meet you.' },
   ],
@@ -2960,7 +2960,7 @@ export const IMPULS_DAY_16: PlanContentDay = {
       kind: 'tip',
       title: { ru: 'Как предложить встречу', uk: 'Як запропонувати зустріч', es: 'Cómo proponer una cita' , 'pt-BR': 'Como propor uma consulta', vi: 'Cách đề xuất một cuộc hẹn', id: 'Bagaimana cara mengusulkan janji temu', tr: 'Randevu nasıl teklif edilir', pl: 'Jak zaproponować spotkanie'},
       body: {
-        ru: 'Чтобы договориться о встрече, мы говорим что хотим сделать и называем место. Используй «Let us meet» — это значит «Давай встретимся». Потом добавь место: at the cafe, at the park.',
+        ru: 'Чтобы договориться о встрече, мы говорим что хотим сделать и называем место. Используй «Let\'s meet» — это значит «Давай встретимся». Потом добавь место: at the cafe, at the park.',
         uk: 'Щоб домовитися про зустріч, ми говоримо, що хочемо зробити, і називаємо місце. Використовуй «Let us meet» — це означає «Давай зустрінемося». Потім додай місце: at the cafe, at the park.',
         es: 'Para quedar, dices lo que quieres hacer y el lugar. Usa «Let us meet» — significa «Quedemos». Luego añades el lugar: at the cafe, at the park.',
         'pt-BR': 'Para conhecer você diz o que quer fazer e o local. Use “Let us meet” — significa “Vamos nos encontrar”. Em seguida, você adiciona o local: parque at the cafe, at the.',
@@ -2970,7 +2970,7 @@ export const IMPULS_DAY_16: PlanContentDay = {
         pl: 'Aby się spotkać, mówisz, co chcesz robić i miejsce. Użyj „Let us meet” — oznacza „Spotkajmy się”. Następnie dodajesz miejsce: at the cafe, at the park.',
       },
       examples: [
-        { en: 'Let us meet at the cafe.', gloss: { ru: 'Давай встретимся в кафе.', uk: 'Давай зустрінемося в кафе.', es: 'Quedemos en la cafetería.' , 'pt-BR': 'Vamos nos encontrar no refeitório.', vi: 'Hãy gặp nhau ở quán cà phê nhé.', id: 'Mari kita bertemu di kantin.', tr: 'Kafeteryada buluşalım.', pl: 'Spotkajmy się w kawiarni.'} },
+        { en: "Let's meet at the cafe.", gloss: { ru: 'Давай встретимся в кафе.', uk: 'Давай зустрінемося в кафе.', es: 'Quedemos en la cafetería.' , 'pt-BR': 'Vamos nos encontrar no refeitório.', vi: 'Hãy gặp nhau ở quán cà phê nhé.', id: 'Mari kita bertemu di kantin.', tr: 'Kafeteryada buluşalım.', pl: 'Spotkajmy się w kawiarni.'} },
         { en: 'I will be there at three.', gloss: { ru: 'Я буду там в три часа.', uk: 'Я буду там о третій.', es: 'Estaré allí a las tres.' , 'pt-BR': 'Estarei aí às três.', vi: 'Tôi sẽ có mặt ở đó lúc ba giờ.', id: 'Aku akan sampai di sana jam tiga.', tr: 'Üçte orada olacağım.', pl: 'Będę o trzeciej.'} },
       ],
     },
@@ -3014,18 +3014,17 @@ export const IMPULS_DAY_16: PlanContentDay = {
   phrases: [
     {
       id: 'impuls_d16_p1',
-      english: 'Let us meet at the cafe.',
+      english: "Let's meet at the cafe.",
       meaning: { ru: 'Давай встретимся в кафе.', uk: 'Давай зустрінемося в кафе.', es: 'Quedemos en la cafetería.' , 'pt-BR': 'Vamos nos encontrar no refeitório.', vi: 'Hãy gặp nhau ở quán cà phê nhé.', id: 'Mari kita bertemu di kantin.', tr: 'Kafeteryada buluşalım.', pl: 'Spotkajmy się w kawiarni.'},
       constructions: ['future-simple', 'present-simple'],
       explanation: {
         title: { ru: 'Предложение встретиться', uk: 'Пропозиція зустрітися', es: 'Proponer un encuentro' , 'pt-BR': 'Proponha uma reunião', vi: 'Đề xuất một cuộc họp', id: 'Usulkan pertemuan', tr: 'Bir toplantı teklif et', pl: 'Zaproponuj spotkanie'},
-        rule: { ru: '«Let us meet» — короткий способ предложить что-то сделать вместе. Место добавляй через «at».', uk: '«Let us meet» — короткий спосіб запропонувати щось зробити разом. Місце додавай через «at».', es: '«Let us meet» es una forma corta de proponer hacer algo juntos. El lugar se añade con «at».' , 'pt-BR': '“Let us meet” é uma forma abreviada de propor fazer algo juntos. O local é adicionado com “at”.', vi: '“Let us meet” là một cách ngắn gọn để đề nghị cùng nhau làm điều gì đó. Vị trí được thêm bằng “at”.', id: '“Let us meet” adalah cara singkat untuk mengusulkan melakukan sesuatu bersama. Lokasi ditambahkan dengan “at”.', tr: '“Let us meet” birlikte bir şeyler yapmayı teklif etmenin kısa bir yoludur. Konum “at” ile eklenir.', pl: '„Let us meet” to krótki sposób zaproponowania zrobienia czegoś razem. Lokalizacja jest dodawana z „at”.'},
+        rule: { ru: '«Let\'s meet» — короткий способ предложить что-то сделать вместе. Место добавляй через «at».', uk: '«Let us meet» — короткий спосіб запропонувати щось зробити разом. Місце додавай через «at».', es: '«Let us meet» es una forma corta de proponer hacer algo juntos. El lugar se añade con «at».' , 'pt-BR': '“Let us meet” é uma forma abreviada de propor fazer algo juntos. O local é adicionado com “at”.', vi: '“Let us meet” là một cách ngắn gọn để đề nghị cùng nhau làm điều gì đó. Vị trí được thêm bằng “at”.', id: '“Let us meet” adalah cara singkat untuk mengusulkan melakukan sesuatu bersama. Lokasi ditambahkan dengan “at”.', tr: '“Let us meet” birlikte bir şeyler yapmayı teklif etmenin kısa bir yoludur. Konum “at” ile eklenir.', pl: '„Let us meet” to krótki sposób zaproponowania zrobienia czegoś razem. Lokalizacja jest dodawana z „at”.'},
         why: { ru: 'Это самый простой и вежливый способ назначить встречу по-английски.', uk: 'Це найпростіший і ввічливий спосіб призначити зустріч англійською.', es: 'Es la manera más sencilla y educada de quedar en inglés.' , 'pt-BR': 'É a maneira mais simples e educada de permanecer em inglês.', vi: 'Đó là cách đơn giản và lịch sự nhất để nói tiếng Anh.', id: 'Ini adalah cara paling sederhana dan paling sopan untuk tetap berbahasa Inggris.', tr: 'İngilizce kalmanın en basit ve en kibar yoludur.', pl: 'To najprostszy i najbardziej uprzejmy sposób na pozostawanie w języku angielskim.'},
         commonMistake: { ru: 'Не говори «Let us to meet» — после «let us» глагол без «to».', uk: 'Не кажи «Let us to meet» — після «let us» дієслово без «to».', es: 'No digas «Let us to meet» — después de «let us» el verbo va sin «to».' , 'pt-BR': 'Não diga "Let us to meet" — depois de "let us" o verbo fica sem "to".', vi: 'Không nói "Let us to meet" — sau "let us" thì động từ sẽ không có "to".', id: 'Jangan ucapkan "Let us to meet" — setelah "let us" kata kerjanya tidak mengandung "to".', tr: '"Let us to meet" deme — "let us"den sonra fiil "to" olmadan devam eder.', pl: 'Nie mów „Let us do meet” — po „niech us” czasownik nie zawiera „to”.'},
       },
       words: [
-        { text: 'Let', partOfSpeech: 'verb', distractors: ['Go', 'Make', 'Put', 'Take', 'Keep'] },
-        { text: 'us', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'them', 'it'] },
+        { text: "Let's", partOfSpeech: 'verb', distractors: ['Go', 'Make', 'Put', 'Take', 'Keep'] },
         { text: 'meet', partOfSpeech: 'verb', distractors: ['leave', 'forget', 'miss', 'avoid', 'cancel'] },
         { text: 'at', partOfSpeech: 'preposition', distractors: ['in', 'on', 'by', 'from', 'under'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'these', 'those'] },
@@ -3132,8 +3131,8 @@ export const IMPULS_DAY_16: PlanContentDay = {
     },
   ],
   vocabulary: [
-    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'встречаться', uk: 'зустрічатися', es: 'quedar, encontrarse' , 'pt-BR': 'fique, conheça', vi: 'ở lại, gặp gỡ', id: 'tinggal, bertemu', tr: 'kal, buluş', pl: 'zostań, spotkaj się'}, example: 'Let us meet at the cafe.' },
-    { word: 'cafe', partOfSpeech: 'noun', translation: { ru: 'кафе', uk: 'кафе', es: 'cafetería' , 'pt-BR': 'café', vi: 'quán cà phê', id: 'kafe', tr: 'kafe', pl: 'kawiarnia'}, example: 'Let us meet at the cafe.' },
+    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'встречаться', uk: 'зустрічатися', es: 'quedar, encontrarse' , 'pt-BR': 'fique, conheça', vi: 'ở lại, gặp gỡ', id: 'tinggal, bertemu', tr: 'kal, buluş', pl: 'zostań, spotkaj się'}, example: "Let's meet at the cafe." },
+    { word: 'cafe', partOfSpeech: 'noun', translation: { ru: 'кафе', uk: 'кафе', es: 'cafetería' , 'pt-BR': 'café', vi: 'quán cà phê', id: 'kafe', tr: 'kafe', pl: 'kawiarnia'}, example: "Let's meet at the cafe." },
     { word: 'Saturday', partOfSpeech: 'noun', translation: { ru: 'суббота', uk: 'субота', es: 'sábado' , 'pt-BR': 'Sábado', vi: 'Thứ bảy', id: 'Sabtu', tr: 'Cumartesi', pl: 'Sobota'}, example: 'We can meet on Saturday.' },
     { word: 'noon', partOfSpeech: 'noun', translation: { ru: 'полдень', uk: 'полудень', es: 'mediodía' , 'pt-BR': 'meio-dia', vi: 'buổi trưa', id: 'siang', tr: 'öğlen', pl: 'południe'}, example: 'How about Tuesday at noon?' },
     { word: 'work', partOfSpeech: 'verb', translation: { ru: 'подходить (о времени/варианте)', uk: 'підходити (про час/варіант)', es: 'venir bien, funcionar' , 'pt-BR': 'venha bem, trabalhe', vi: 'khỏe nhé, làm việc đi', id: 'ayo baik, bekerja', tr: 'iyi gel, çalış', pl: 'chodź dobrze, pracuj'}, example: 'Does that time work for you?' },
@@ -3221,7 +3220,7 @@ export const IMPULS_DAY_17: PlanContentDay = {
       constructions: ['comparatives', 'to-be'],
       explanation: {
         title: { ru: 'Сравниваем два предмета', uk: 'Порівнюємо два предмети', es: 'Comparamos dos objetos' , 'pt-BR': 'Comparamos dois objetos', vi: 'Chúng ta so sánh hai đối tượng', id: 'Kami membandingkan dua objek', tr: 'İki nesneyi karşılaştırıyoruz', pl: 'Porównujemy dwa obiekty'},
-        rule: { ru: '«Better» — особая форма слова «good». Ставь her после is, потом than и что сравниваешь.', uk: '«Better» — особлива форма «good». Став її після is, потім than і що порівнюєш.', es: '«Better» es la forma especial de «good». Va después de is, luego than y lo que comparas.' , 'pt-BR': '“Melhor” é a forma especial de “bom”. Vai depois de is, depois de than e tudo o que você comparar.', vi: '"Tốt hơn" là dạng đặc biệt của "tốt". Nó theo sau is, sau đó là than và bất kỳ thứ gì bạn so sánh.', id: '"Lebih baik" adalah bentuk khusus dari "baik". Itu terjadi setelah is, lalu than dan apa pun yang Anda bandingkan.', tr: '"Daha iyi", "iyi"nin özel biçimidir. is\'den sonra gelir, ardından than ve ne karşılaştırırsanız karşılaştırın.', pl: '„Lepszy” to szczególna forma słowa „dobry”. Następuje po is, następnie than i cokolwiek porównasz.'},
+        rule: { ru: '«Better» — особая форма слова «good». Ставь его после is, потом than и что сравниваешь.', uk: '«Better» — особлива форма «good». Став її після is, потім than і що порівнюєш.', es: '«Better» es la forma especial de «good». Va después de is, luego than y lo que comparas.' , 'pt-BR': '“Melhor” é a forma especial de “bom”. Vai depois de is, depois de than e tudo o que você comparar.', vi: '"Tốt hơn" là dạng đặc biệt của "tốt". Nó theo sau is, sau đó là than và bất kỳ thứ gì bạn so sánh.', id: '"Lebih baik" adalah bentuk khusus dari "baik". Itu terjadi setelah is, lalu than dan apa pun yang Anda bandingkan.', tr: '"Daha iyi", "iyi"nin özel biçimidir. is\'den sonra gelir, ardından than ve ne karşılaştırırsanız karşılaştırın.', pl: '„Lepszy” to szczególna forma słowa „dobry”. Następuje po is, następnie than i cokolwiek porównasz.'},
         why: { ru: 'This one и that one позволяют не повторять название предмета.', uk: 'This one і that one дозволяють не повторювати назву предмета.', es: 'This one y that one evitan repetir el nombre del objeto.' , 'pt-BR': 'This one e that one evitam repetir o nome do objeto.', vi: 'This one và that one tránh lặp lại tên đối tượng.', id: 'This one dan that one hindari pengulangan nama objek.', tr: 'This one ve that one nesne adının tekrarlanmasını önler.', pl: 'This one i that one unikają powtarzania nazwy obiektu.'},
         commonMistake: { ru: 'Не говори «more better» — это двойное сравнение, лишнее.', uk: 'Не кажи «more better» — це подвійне порівняння, зайве.', es: 'No digas «more better» — es una doble comparación incorrecta.' , 'pt-BR': 'Não diga "mais better" — é uma comparação dupla incorreta.', vi: 'Đừng nói "thêm better" — đó là so sánh kép không chính xác.', id: 'Jangan katakan "lebih better" — ini adalah perbandingan ganda yang salah.', tr: '"Daha fazla better" demeyin — bu yanlış bir ikili karşılaştırmadır.', pl: 'Nie mów „więcej better” — to nieprawidłowe podwójne porównanie.'},
       },
@@ -4471,7 +4470,7 @@ export const IMPULS_DAY_23: PlanContentDay = {
         title: { ru: 'Завтрак по расписанию', uk: 'Сніданок за розкладом', es: 'Desayuno a una hora fija' , 'pt-BR': 'Café da manhã em horário fixo', vi: 'Ăn sáng vào thời gian cố định', id: 'Sarapan pada waktu yang tetap', tr: 'Belirli bir saatte kahvaltı', pl: 'Śniadanie o ustalonej godzinie'},
         rule: { ru: '«Have breakfast» = «завтракать». Это устойчивое сочетание, запомни его целиком.', uk: '«Have breakfast» = «снідати». Це стійке поєднання, запам\'ятай його цілком.', es: '«Have breakfast» = «desayunar». Es una expresion fija, memoriza ambas palabras juntas.' , 'pt-BR': '«Tome breakfast» = «tome café da manhã». É uma expressão fixa, memorize as duas palavras juntas.', vi: '«Ăn breakfast» = «ăn sáng». Đó là một cách diễn đạt cố định, hãy ghi nhớ cả hai từ cùng nhau.', id: '«Minum breakfast» = «sarapan». Ini adalah ekspresi tetap, hafalkan kedua kata bersama-sama.', tr: '«breakfast var» = «kahvaltı yap». Sabit bir ifadedir, her iki kelimeyi birlikte ezberleyin.', pl: '«Zjedz breakfast» = «zjedz śniadanie». Jest to wyrażenie stałe, zapamiętaj oba słowa razem.'},
         why: { ru: 'Такие словосочетания не переводятся дословно — их нужно знать как одно целое.', uk: 'Такі словосполучення не перекладаються дослівно — їх треба знати як одне ціле.', es: 'Estas expresiones no se traducen literalmente — hay que aprenderlas como un todo.' , 'pt-BR': 'Estas expressões não são traduzidas literalmente – elas devem ser aprendidas como um todo.', vi: 'Những cách diễn đạt này không được dịch theo nghĩa đen - chúng phải được học một cách tổng thể.', id: 'Ungkapan-ungkapan ini tidak diterjemahkan secara harfiah – mereka harus dipelajari secara keseluruhan.', tr: 'Bu ifadeler harfiyen tercüme edilmez; bir bütün olarak öğrenilmeleri gerekir.', pl: 'Wyrażenia te nie są tłumaczone dosłownie – należy się ich nauczyć jako całości.'},
-        commonMistake: { ru: 'Не говори «I eat breakfast» с have — это разные глаголы.', uk: 'Не кажи «I eat breakfast» замість have — це різні дієслова.', es: 'No confundas «eat breakfast» con «have breakfast» — son formas distintas.' , 'pt-BR': 'Não confunda “eat breakfast” com “have breakfast” – são formas diferentes.', vi: 'Đừng nhầm lẫn "ăn breakfast" với "have breakfast" — chúng là các dạng khác nhau.', id: 'Jangan bingung antara "makan breakfast" dengan "have breakfast" — keduanya berbeda bentuk.', tr: '"Ye breakfast" ifadesini "have breakfast" ile karıştırmayın; bunlar farklı biçimlerdir.', pl: 'Nie myl „jedz breakfast” z „have breakfast” – to różne formy.'},
+        commonMistake: { ru: '«I eat breakfast» тоже верно, но в речи чаще говорят «have breakfast» — запомни это сочетание.', uk: 'Не кажи «I eat breakfast» замість have — це різні дієслова.', es: 'No confundas «eat breakfast» con «have breakfast» — son formas distintas.' , 'pt-BR': 'Não confunda “eat breakfast” com “have breakfast” – são formas diferentes.', vi: 'Đừng nhầm lẫn "ăn breakfast" với "have breakfast" — chúng là các dạng khác nhau.', id: 'Jangan bingung antara "makan breakfast" dengan "have breakfast" — keduanya berbeda bentuk.', tr: '"Ye breakfast" ifadesini "have breakfast" ile karıştırmayın; bunlar farklı biçimlerdir.', pl: 'Nie myl „jedz breakfast” z „have breakfast” – to różne formy.'},
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'You'] },
@@ -6448,7 +6447,7 @@ export const IMPULS_DAY_33: PlanContentDay = {
       },
       examples: [
         { en: 'The book that I read was great.', gloss: { ru: 'Книга, которую я читал, была отличной.', uk: 'Книга, яку я читав, була чудовою.', es: 'El libro que leí era genial.' , 'pt-BR': 'O livro que li foi ótimo.', vi: 'Cuốn sách tôi đọc rất hay.', id: 'Buku yang saya baca sangat bagus.', tr: 'Okuduğum kitap harikaydı.', pl: 'Książka, którą przeczytałam była świetna.'} },
-        { en: 'The cafe which is near the park has good coffee.', gloss: { ru: 'Кафе, которое рядом с парком, хороший кофе.', uk: 'Кафе, яке поруч із парком, має хорошу каву.', es: 'La cafetería que está cerca del parque tiene buen café.' , 'pt-BR': 'O café perto do parque tem um bom café.', vi: 'Quán cà phê gần công viên có cà phê ngon.', id: 'Kafe di dekat taman memiliki kopi yang enak.', tr: 'Parkın yakınındaki kafede iyi kahve var.', pl: 'Kawiarnia niedaleko parku ma dobrą kawę.'} },
+        { en: 'The cafe which is near the park has good coffee.', gloss: { ru: 'В кафе, которое рядом с парком, хороший кофе.', uk: 'Кафе, яке поруч із парком, має хорошу каву.', es: 'La cafetería que está cerca del parque tiene buen café.' , 'pt-BR': 'O café perto do parque tem um bom café.', vi: 'Quán cà phê gần công viên có cà phê ngon.', id: 'Kafe di dekat taman memiliki kopi yang enak.', tr: 'Parkın yakınındaki kafede iyi kahve var.', pl: 'Kawiarnia niedaleko parku ma dobrą kawę.'} },
       ],
     },
     {
@@ -6513,7 +6512,7 @@ export const IMPULS_DAY_33: PlanContentDay = {
     {
       id: 'impuls_d33_p2',
       english: 'The cafe which is near the park has good coffee.',
-      meaning: { ru: 'Кафе, которое рядом с парком, хороший кофе.', uk: 'Кафе, яке поруч із парком, має хорошу каву.', es: 'La cafetería que está cerca del parque tiene buen café.' , 'pt-BR': 'O café perto do parque tem um bom café.', vi: 'Quán cà phê gần công viên có cà phê ngon.', id: 'Kafe di dekat taman memiliki kopi yang enak.', tr: 'Parkın yakınındaki kafede iyi kahve var.', pl: 'Kawiarnia niedaleko parku ma dobrą kawę.'},
+      meaning: { ru: 'В кафе, которое рядом с парком, хороший кофе.', uk: 'Кафе, яке поруч із парком, має хорошу каву.', es: 'La cafetería que está cerca del parque tiene buen café.' , 'pt-BR': 'O café perto do parque tem um bom café.', vi: 'Quán cà phê gần công viên có cà phê ngon.', id: 'Kafe di dekat taman memiliki kopi yang enak.', tr: 'Parkın yakınındaki kafede iyi kahve var.', pl: 'Kawiarnia niedaleko parku ma dobrą kawę.'},
       constructions: ['relative-clauses', 'present-simple'],
       explanation: {
         title: { ru: 'Which описывает место или вещь', uk: 'Which описує місце або річ', es: 'Which describe un lugar o una cosa' , 'pt-BR': 'O que descreve um lugar ou coisa', vi: 'Mô tả một địa điểm hoặc sự vật', id: 'Yang menggambarkan suatu tempat atau benda', tr: 'Bir yeri veya şeyi tanımlayan şey', pl: 'Który opisuje miejsce lub rzecz'},
@@ -6579,7 +6578,7 @@ export const IMPULS_DAY_33: PlanContentDay = {
       explanation: {
         title: { ru: 'Уточняем, какой магазин имеем в виду', uk: 'Уточнюємо, який магазин маємо на увазі', es: 'Precisamos de qué tienda hablamos' , 'pt-BR': 'Especificamos de qual loja estamos falando', vi: 'Chúng tôi chỉ định cửa hàng chúng tôi đang nói đến', id: 'Kami menentukan toko mana yang sedang kita bicarakan', tr: 'Hangi mağazadan bahsettiğimizi belirtiyoruz', pl: 'Określamy, o którym sklepie mówimy'},
         rule: { ru: 'That sells bread — это уточнение: именно тот магазин, где продают хлеб.', uk: 'That sells bread — це уточнення: саме той магазин, де продають хліб.', es: 'That sells bread — es la aclaración: exactamente esa tienda donde venden pan.' , 'pt-BR': 'Esse sells bread — fica o esclarecimento: exatamente aquela loja onde vendem pão.', vi: 'sells bread đó — là lời giải thích rõ ràng: chính xác là cửa hàng nơi họ bán bánh mì.', id: 'sells bread itu — adalah klarifikasinya: tepatnya toko tempat mereka menjual roti.', tr: 'Bu sells bread - açıklama: tam olarak ekmek sattıkları mağaza.', pl: 'To sells bread — oto wyjaśnienie: dokładnie ten sklep, w którym sprzedają chleb.'},
-        why: { ru: 'На улице несколько магазинов. Уточнение helps понять, о каком идёт речь.', uk: 'На вулиці кілька магазинів. Уточнення допомагає зрозуміти, про який йдеться.', es: 'En la calle hay varias tiendas. La aclaración ayuda a entender de cuál hablas.' , 'pt-BR': 'Existem várias lojas na rua. O esclarecimento ajuda a entender de qual você está falando.', vi: 'Có một số cửa hàng trên đường phố. Việc làm rõ giúp hiểu bạn đang nói về cái nào.', id: 'Ada beberapa toko di jalan. Klarifikasi membantu untuk memahami mana yang sedang Anda bicarakan.', tr: 'Caddede birkaç mağaza var. Açıklama, hangisinden bahsettiğinizi anlamanıza yardımcı olur.', pl: 'Na ulicy znajduje się kilka sklepów. Wyjaśnienie pomaga zrozumieć, o którym mówisz.'},
+        why: { ru: 'На улице несколько магазинов. Уточнение помогает понять, о каком идёт речь.', uk: 'На вулиці кілька магазинів. Уточнення допомагає зрозуміти, про який йдеться.', es: 'En la calle hay varias tiendas. La aclaración ayuda a entender de cuál hablas.' , 'pt-BR': 'Existem várias lojas na rua. O esclarecimento ajuda a entender de qual você está falando.', vi: 'Có một số cửa hàng trên đường phố. Việc làm rõ giúp hiểu bạn đang nói về cái nào.', id: 'Ada beberapa toko di jalan. Klarifikasi membantu untuk memahami mana yang sedang Anda bicarakan.', tr: 'Caddede birkaç mağaza var. Açıklama, hangisinden bahsettiğinizi anlamanıza yardımcı olur.', pl: 'Na ulicy znajduje się kilka sklepów. Wyjaśnienie pomaga zrozumieć, o którym mówisz.'},
         commonMistake: { ru: 'Не добавляй лишнее «it» после that: не «that it sells», а «that sells».', uk: 'Не додавай зайве «it» після that: не «that it sells», а «that sells».', es: 'No añadas un «it» extra después de that: no «that it sells», sino «that sells».' , 'pt-BR': 'Não adicione um "it" extra depois de that: não "that it sells", mas "that sells".', vi: 'Không thêm "nó" sau that: không phải "that nó sells", mà là "that sells".', id: 'Jangan tambahkan "itu" tambahan setelah that: bukan "that itu sells", tetapi "that sells".', tr: 'that\'den sonra fazladan "it" eklemeyin: "that it sells" değil, "that sells".', pl: 'Nie dodawaj dodatkowego „to” po that: nie „that to sells”, ale „that sells”.'},
       },
       words: [
@@ -10337,7 +10336,7 @@ export const IMPULS_DAY_52: PlanContentDay = {
   phrases: [
     {
       id: 'impuls_d52_p1',
-      english: 'Which stop should I get off?',
+      english: 'Which stop should I get off at?',
       meaning: { ru: 'На какой остановке мне выходить?', uk: 'На якій зупинці мені виходити?', es: '¿En qué parada debo bajarme?' , 'pt-BR': 'Em que parada devo descer?', vi: 'Tôi nên xuống ở điểm dừng nào?', id: 'Di halte apa saya harus turun?', tr: 'Hangi durakta inmeliyim?', pl: 'Na jakim przystanku mam wysiąść?'},
       constructions: ['wh-questions', 'modals'],
       explanation: {
@@ -10353,6 +10352,7 @@ export const IMPULS_DAY_52: PlanContentDay = {
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'you', 'he', 'she', 'they'] },
         { text: 'get', partOfSpeech: 'verb', distractors: ['go', 'take', 'come', 'step', 'walk'] },
         { text: 'off', partOfSpeech: 'adverb', distractors: ['out', 'on', 'in', 'up', 'down'] },
+        { text: 'at', partOfSpeech: 'preposition', distractors: ['on', 'in', 'by', 'to', 'from'] },
       ],
     },
     {
@@ -10435,7 +10435,7 @@ export const IMPULS_DAY_52: PlanContentDay = {
     },
     {
       id: 'impuls_d52_p6',
-      english: 'How many stops are there left?',
+      english: 'How many stops are left?',
       meaning: { ru: 'Сколько остановок ещё осталось?', uk: 'Скільки зупинок ще залишилось?', es: '¿Cuántas paradas quedan?' , 'pt-BR': 'Quantas paradas faltam?', vi: 'Còn lại bao nhiêu điểm dừng?', id: 'Berapa banyak perhentian yang tersisa?', tr: 'Kaç durak kaldı?', pl: 'Ile przystanków zostało?'},
       constructions: ['wh-questions'],
       explanation: {
@@ -10449,18 +10449,17 @@ export const IMPULS_DAY_52: PlanContentDay = {
         { text: 'many', partOfSpeech: 'adjective', distractors: ['much', 'more', 'few', 'little', 'some'] },
         { text: 'stops', partOfSpeech: 'noun', distractors: ['stations', 'roads', 'places', 'exits', 'lines'] },
         { text: 'are', partOfSpeech: 'verb', distractors: ['is', 'were', 'do', 'have', 'can'] },
-        { text: 'there', partOfSpeech: 'adverb', distractors: ['here', 'now', 'still', 'yet', 'did'] },
         { text: 'left', partOfSpeech: 'adjective', distractors: ['next', 'more', 'right', 'last', 'free'] },
       ],
     },
   ],
   vocabulary: [
-    { word: 'stop', partOfSpeech: 'noun', translation: { ru: 'остановка', uk: 'зупинка', es: 'parada' , 'pt-BR': 'parar', vi: 'dừng lại', id: 'berhenti', tr: 'durmak', pl: 'zatrzymywać się'}, example: 'Which stop should I get off?' },
+    { word: 'stop', partOfSpeech: 'noun', translation: { ru: 'остановка', uk: 'зупинка', es: 'parada' , 'pt-BR': 'parar', vi: 'dừng lại', id: 'berhenti', tr: 'durmak', pl: 'zatrzymywać się'}, example: 'Which stop should I get off at?' },
     { word: 'off', partOfSpeech: 'adverb', translation: { ru: 'вниз, из транспорта', uk: 'вниз, з транспорту', es: 'fuera, abajo' , 'pt-BR': 'para fora, para baixo', vi: 'ra, xuống', id: 'keluar, turun', tr: 'dışarı, aşağı', pl: 'na zewnątrz, w dół'}, example: 'Where should I get off?' },
     { word: 'right', partOfSpeech: 'adjective', translation: { ru: 'правильный, нужный', uk: 'правильний, потрібний', es: 'correcto, indicado' , 'pt-BR': 'correto, indicado', vi: 'đúng, chỉ ra', id: 'benar, ditunjukkan', tr: 'doğru, belirtildi', pl: 'poprawne, wskazane'}, example: 'Is this the right stop?' },
     { word: 'change', partOfSpeech: 'verb', translation: { ru: 'делать пересадку', uk: 'робити пересадку', es: 'hacer transbordo' , 'pt-BR': 'transferir', vi: 'chuyển khoản', id: 'transfer', tr: 'aktarma', pl: 'przenosić'}, example: 'Do I need to change here?' },
-    { word: 'many', partOfSpeech: 'adjective', translation: { ru: 'много, несколько (для счётных)', uk: 'багато, кілька (для лічильних)', es: 'muchos, varios (para contables)' , 'pt-BR': 'muitos, vários (para contadores)', vi: 'nhiều, một số (dành cho kế toán)', id: 'banyak, beberapa (untuk akuntan)', tr: 'çok, birkaç (muhasebeciler için)', pl: 'wiele, kilka (dla księgowych)'}, example: 'How many stops are there left?' },
-    { word: 'left', partOfSpeech: 'adjective', translation: { ru: 'оставшийся, ещё впереди', uk: 'що залишився, ще попереду', es: 'que queda, restante' , 'pt-BR': 'o que resta, permanece', vi: 'những gì còn lại, còn lại', id: 'apa yang tersisa, tersisa', tr: 'geriye kalan, kalan', pl: 'co pozostaje, pozostaje'}, example: 'How many stops are there left?' },
+    { word: 'many', partOfSpeech: 'adjective', translation: { ru: 'много, несколько (для счётных)', uk: 'багато, кілька (для лічильних)', es: 'muchos, varios (para contables)' , 'pt-BR': 'muitos, vários (para contadores)', vi: 'nhiều, một số (dành cho kế toán)', id: 'banyak, beberapa (untuk akuntan)', tr: 'çok, birkaç (muhasebeciler için)', pl: 'wiele, kilka (dla księgowych)'}, example: 'How many stops are left?' },
+    { word: 'left', partOfSpeech: 'adjective', translation: { ru: 'оставшийся, ещё впереди', uk: 'що залишився, ще попереду', es: 'que queda, restante' , 'pt-BR': 'o que resta, permanece', vi: 'những gì còn lại, còn lại', id: 'apa yang tersisa, tersisa', tr: 'geriye kalan, kalan', pl: 'co pozostaje, pozostaje'}, example: 'How many stops are left?' },
   ],
 };
 
@@ -11939,7 +11938,7 @@ export const IMPULS_DAY_60: PlanContentDay = {
         pl: 'Po podaniu godziny daj swojemu partnerowi opcję. Słowo powinno pomóc ci poprosić o radę: czy lepiej się spotkać wcześniej, czy później.',
       },
       examples: [
-        { en: 'Should we meet before the lunch?', gloss: { ru: 'Стоит ли нам встретиться до обеда?', uk: 'Чи варто нам зустрітися до обіду?', es: '¿Deberíamos reunirnos antes del almuerzo?' , 'pt-BR': 'Devemos nos encontrar antes do almoço?', vi: 'Chúng ta có nên gặp nhau trước bữa trưa không?', id: 'Haruskah kita bertemu sebelum makan siang?', tr: 'Öğle yemeğinden önce buluşalım mı?', pl: 'Czy powinniśmy się spotkać przed lunchem?'} },
+        { en: 'Should we meet before lunch?', gloss: { ru: 'Стоит ли нам встретиться до обеда?', uk: 'Чи варто нам зустрітися до обіду?', es: '¿Deberíamos reunirnos antes del almuerzo?' , 'pt-BR': 'Devemos nos encontrar antes do almoço?', vi: 'Chúng ta có nên gặp nhau trước bữa trưa không?', id: 'Haruskah kita bertemu sebelum makan siang?', tr: 'Öğle yemeğinden önce buluşalım mı?', pl: 'Czy powinniśmy się spotkać przed lunchem?'} },
         { en: 'Can you call me on Friday?', gloss: { ru: 'Можешь позвонить мне в пятницу?', uk: 'Можеш зателефонувати мені в пʼятницю?', es: '¿Puedes llamarme el viernes?' , 'pt-BR': 'Você pode me ligar na sexta-feira?', vi: 'Bạn có thể gọi cho tôi vào thứ Sáu được không?', id: 'Bisakah Anda menelepon saya pada hari Jumat?', tr: 'Cuma günü beni arayabilir misin?', pl: 'Czy możesz do mnie zadzwonić w piątek?'} },
       ],
     },
@@ -12007,7 +12006,7 @@ export const IMPULS_DAY_60: PlanContentDay = {
     },
     {
       id: 'impuls_d60_p4',
-      english: 'Should we meet before the lunch?',
+      english: 'Should we meet before lunch?',
       meaning: { ru: 'Стоит ли нам встретиться до обеда?', uk: 'Чи варто нам зустрітися до обіду?', es: '¿Deberíamos reunirnos antes del almuerzo?' , 'pt-BR': 'Devemos nos encontrar antes do almoço?', vi: 'Chúng ta có nên gặp nhau trước bữa trưa không?', id: 'Haruskah kita bertemu sebelum makan siang?', tr: 'Öğle yemeğinden önce buluşalım mı?', pl: 'Czy powinniśmy się spotkać przed lunchem?'},
       constructions: ['modals', 'prepositions-time'],
       explanation: {
@@ -12021,7 +12020,6 @@ export const IMPULS_DAY_60: PlanContentDay = {
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['us', 'they', 'you', 'I', 'he'] },
         { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'talk', 'call', 'come', 'wait'] },
         { text: 'before', partOfSpeech: 'preposition', distractors: ['after', 'at', 'in', 'on', 'during'] },
-        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'some'] },
         { text: 'lunch', partOfSpeech: 'noun', distractors: ['dinner', 'break', 'meeting', 'coffee', 'work'] },
       ],
     },
@@ -12069,7 +12067,7 @@ export const IMPULS_DAY_60: PlanContentDay = {
   vocabulary: [
     { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'встретиться', uk: 'зустрітися', es: 'reunirse' , 'pt-BR': 'encontro', vi: 'gặp mặt', id: 'bertemu', tr: 'buluşmak', pl: 'spotkać się'}, example: 'Can we meet at three today?' },
     { word: 'talk', partOfSpeech: 'verb', translation: { ru: 'поговорить', uk: 'поговорити', es: 'hablar' , 'pt-BR': 'falar', vi: 'nói chuyện', id: 'bicara', tr: 'konuşmak', pl: 'rozmawiać'}, example: 'Could we talk on Monday morning?' },
-    { word: 'before', partOfSpeech: 'preposition', translation: { ru: 'до, перед', uk: 'до, перед', es: 'antes de' , 'pt-BR': 'antes', vi: 'trước', id: 'sebelum', tr: 'önce', pl: 'zanim'}, example: 'Should we meet before the lunch?' },
+    { word: 'before', partOfSpeech: 'preposition', translation: { ru: 'до, перед', uk: 'до, перед', es: 'antes de' , 'pt-BR': 'antes', vi: 'trước', id: 'sebelum', tr: 'önce', pl: 'zanim'}, example: 'Should we meet before lunch?' },
     { word: 'afternoon', partOfSpeech: 'noun', translation: { ru: 'вторая половина дня', uk: 'по обіді, друга половина дня', es: 'la tarde' , 'pt-BR': 'a tarde', vi: 'buổi chiều', id: 'sore hari', tr: 'öğleden sonra', pl: 'popołudnie'}, example: 'We can talk in the afternoon.' },
     { word: 'call', partOfSpeech: 'verb', translation: { ru: 'звонить', uk: 'телефонувати', es: 'llamar' , 'pt-BR': 'chamar', vi: 'gọi', id: 'panggilan', tr: 'Arama', pl: 'dzwonić'}, example: 'Can you call me on Friday?' },
     { word: 'Monday', partOfSpeech: 'noun', translation: { ru: 'понедельник', uk: 'понеділок', es: 'el lunes' , 'pt-BR': 'na segunda-feira', vi: 'vào thứ Hai', id: 'pada hari Senin', tr: 'Pazartesi gününde', pl: 'w poniedziałek'}, example: 'Could we talk on Monday morning?' },
@@ -16263,7 +16261,7 @@ export const IMPULS_DAY_81: PlanContentDay = {
     },
     {
       id: 'impuls_d81_p5',
-      english: 'My address is Green Street ten.',
+      english: 'My address is ten Green Street.',
       meaning: { ru: 'Мой адрес — Грин-стрит, десять.', uk: 'Моя адреса — Грін-стрит, десять.', es: 'Mi dirección es calle Green, diez.' , 'pt-BR': 'Meu endereço é rua Green, dez.', vi: 'Địa chỉ của tôi là đường Green, số 10.', id: 'Alamat saya adalah jalan Green, sepuluh.', tr: 'Adresim Green caddesi, on.', pl: 'Mój adres to ulica Green, dziesięć.'},
       constructions: ['to-be'],
       explanation: {
@@ -16276,9 +16274,9 @@ export const IMPULS_DAY_81: PlanContentDay = {
         { text: 'My', partOfSpeech: 'determiner', distractors: ['Your', 'The', 'A', 'Our', 'His'] },
         { text: 'address', partOfSpeech: 'noun', distractors: ['name', 'number', 'phone', 'did', 'flat'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'be', 'am', 'were'] },
+        { text: 'ten', partOfSpeech: 'noun', distractors: ['five', 'one', 'four', 'eight', 'twelve'] },
         { text: 'Green', partOfSpeech: 'noun', distractors: ['Main', 'Old', 'New', 'Park', 'Long'] },
         { text: 'Street', partOfSpeech: 'noun', distractors: ['Road', 'Avenue', 'Lane', 'Drive', 'Place'] },
-        { text: 'ten', partOfSpeech: 'noun', distractors: ['five', 'one', 'four', 'eight', 'twelve'] },
       ],
     },
     {
@@ -16306,7 +16304,7 @@ export const IMPULS_DAY_81: PlanContentDay = {
     { word: 'pipe', partOfSpeech: 'noun', translation: { ru: 'труба', uk: 'труба', es: 'la tubería' , 'pt-BR': 'o cano', vi: 'cái ống', id: 'pipa', tr: 'boru', pl: 'rura'}, example: 'The pipe is leaking badly.' },
     { word: 'leaking', partOfSpeech: 'verb', translation: { ru: 'течёт (о трубе)', uk: 'тече (про трубу)', es: 'gotea' , 'pt-BR': 'pinga', vi: 'nhỏ giọt', id: 'menetes', tr: 'damlamalar', pl: 'kapie'}, example: 'The pipe is leaking badly.' },
     { word: 'fix', partOfSpeech: 'verb', translation: { ru: 'починить', uk: 'полагодити', es: 'reparar' , 'pt-BR': 'consertar', vi: 'sửa chữa', id: 'memperbaiki', tr: 'düzeltmek', pl: 'naprawić'}, example: 'Can you fix it today?' },
-    { word: 'address', partOfSpeech: 'noun', translation: { ru: 'адрес', uk: 'адреса', es: 'la dirección' , 'pt-BR': 'o endereço', vi: 'địa chỉ', id: 'alamatnya', tr: 'adres', pl: 'adres'}, example: 'My address is Green Street ten.' },
+    { word: 'address', partOfSpeech: 'noun', translation: { ru: 'адрес', uk: 'адреса', es: 'la dirección' , 'pt-BR': 'o endereço', vi: 'địa chỉ', id: 'alamatnya', tr: 'adres', pl: 'adres'}, example: 'My address is ten Green Street.' },
     { word: 'broken', partOfSpeech: 'adjective', translation: { ru: 'сломан', uk: 'зламаний', es: 'roto' , 'pt-BR': 'quebrado', vi: 'vỡ', id: 'rusak', tr: 'kırık', pl: 'złamany'}, example: 'The sink is broken today.' },
   ],
 };
@@ -17200,7 +17198,7 @@ export const IMPULS_DAY_86: PlanContentDay = {
     {
       id: 'impuls_d86_p2',
       english: 'I have studied English for two years.',
-      meaning: { ru: 'Я учил английский два года.', uk: 'Я вчив англійську два роки.', es: 'He estudiado inglés durante dos años.' , 'pt-BR': 'He estudou inglês por dois aanos.', vi: 'He đã học tiếng Anh trong hai anăm.', id: 'He belajar bahasa Inggris selama dua atahun.', tr: 'He iki ayıl boyunca İngilizce okudu.', pl: 'He uczył się angielskiego przez dwa alat.'},
+      meaning: { ru: 'Я учу английский уже два года.', uk: 'Я вчив англійську два роки.', es: 'He estudiado inglés durante dos años.' , 'pt-BR': 'He estudou inglês por dois aanos.', vi: 'He đã học tiếng Anh trong hai anăm.', id: 'He belajar bahasa Inggris selama dua atahun.', tr: 'He iki ayıl boyunca İngilizce okudu.', pl: 'He uczył się angielskiego przez dwa alat.'},
       constructions: ['present-perfect', 'prepositions-time'],
       explanation: {
         title: { ru: 'Опыт за определённый срок', uk: 'Досвід за певний термін', es: 'Experiencia durante un período concreto' , 'pt-BR': 'Experiência durante um período específico', vi: 'Kinh nghiệm trong một khoảng thời gian cụ thể', id: 'Pengalaman selama periode tertentu', tr: 'Belirli bir dönemdeki deneyim', pl: 'Doświadczenie w określonym okresie'},
@@ -18029,7 +18027,7 @@ export const IMPULS_DAY_90: PlanContentDay = {
     {
       id: 'impuls_d90_p3',
       english: 'She plans to change her job soon.',
-      meaning: { ru: 'Она планирует сменить работу скоро.', uk: 'Вона планує змінити роботу незабаром.', es: 'Ella planea cambiar de trabajo pronto.' , 'pt-BR': 'Ela planeja mudar de emprego em breve.', vi: 'Cô dự định sẽ sớm thay đổi công việc.', id: 'Dia berencana untuk segera berganti pekerjaan.', tr: 'Yakında iş değiştirmeyi planlıyor.', pl: 'Niedługo planuje zmienić pracę.'},
+      meaning: { ru: 'Она планирует скоро сменить работу.', uk: 'Вона планує змінити роботу незабаром.', es: 'Ella planea cambiar de trabajo pronto.' , 'pt-BR': 'Ela planeja mudar de emprego em breve.', vi: 'Cô dự định sẽ sớm thay đổi công việc.', id: 'Dia berencana untuk segera berganti pekerjaan.', tr: 'Yakında iş değiştirmeyi planlıyor.', pl: 'Niedługo planuje zmienić pracę.'},
       constructions: ['present-simple'],
       explanation: {
         title: { ru: 'Чужие планы', uk: 'Чужі плани', es: 'Los planes de otra persona' , 'pt-BR': 'Os planos de outra pessoa', vi: 'Kế hoạch của người khác', id: 'rencana orang lain', tr: 'Başka birinin planları', pl: 'Plany kogoś innego'},
@@ -18077,7 +18075,7 @@ export const IMPULS_DAY_90: PlanContentDay = {
         title: { ru: 'Большая мечта — реальный план', uk: 'Велика мрія — реальний план', es: 'Un gran sueño, un plan real' , 'pt-BR': 'Um grande sonho, um plano real', vi: 'Một giấc mơ lớn, một kế hoạch thực sự', id: 'Mimpi besar, rencana nyata', tr: 'Büyük bir hayal, gerçek bir plan', pl: 'Wielkie marzenie, prawdziwy plan'},
         rule: { ru: 'I want to start — говорим о намерении начать что-то важное.', uk: 'I want to start — говоримо про намір розпочати щось важливе.', es: 'I want to start — hablamos de la intención de comenzar algo importante.' , 'pt-BR': 'I want to start — falamos sobre a intenção de iniciar algo importante.', vi: 'I want to start — chúng ta nói về ý định bắt đầu một điều gì đó quan trọng.', id: 'I want to start — kita membicarakan niat untuk memulai sesuatu yang penting.', tr: 'I want to start — önemli bir şeye başlama niyetinden bahsediyoruz.', pl: 'I want to start — mówimy o zamiarze rozpoczęcia czegoś ważnego.'},
         why: { ru: 'Own подчёркивает, что это твоё личное дело, а не чужое.', uk: 'Own підкреслює, що це твоя особиста справа, а не чужа.', es: 'Own enfatiza que es tu negocio personal, no el de otro.' , 'pt-BR': 'Own enfatiza que é assunto seu e não de outra pessoa.', vi: 'Own nhấn mạnh rằng đó là việc riêng của bạn chứ không phải của người khác.', id: 'Sendiri menekankan bahwa itu adalah urusan pribadi Anda, bukan urusan orang lain.', tr: 'Kendi, bunun başkasının değil, sizin kişisel işiniz olduğunu vurguluyor.', pl: 'Własne podkreśla, że ​​jest to Twoja osobista sprawa, a nie cudza.'},
-        commonMistake: { ru: 'Не говори «my own business» — это «my own» значит «моё собственное», а не просто «моё».', uk: '«My own» означає «моє власне», а не просто «моє» — не плутай.', es: '«My own» significa «mío propio», no solo «mío» — no los confundas.' , 'pt-BR': '“Meu own” significa “meu”, não apenas “meu” – não confunda os dois.', vi: '“own” của tôi có nghĩa là “của riêng tôi”, không chỉ là “của tôi” — đừng nhầm lẫn cả hai.', id: '“own saya” berarti “milik saya”, bukan hanya “milik saya” — jangan bingung antara keduanya.', tr: '"Benim own" yalnızca "benim" değil, "kendimin" anlamına gelir; ikisini karıştırmayın.', pl: '„Mój own” oznacza „moje własne”, a nie tylko „moje” – nie myl tych dwóch.'},
+        commonMistake: { ru: '«My own» значит «моё собственное», а не просто «моё» — не путай.', uk: '«My own» означає «моє власне», а не просто «моє» — не плутай.', es: '«My own» significa «mío propio», no solo «mío» — no los confundas.' , 'pt-BR': '“Meu own” significa “meu”, não apenas “meu” – não confunda os dois.', vi: '“own” của tôi có nghĩa là “của riêng tôi”, không chỉ là “của tôi” — đừng nhầm lẫn cả hai.', id: '“own saya” berarti “milik saya”, bukan hanya “milik saya” — jangan bingung antara keduanya.', tr: '"Benim own" yalnızca "benim" değil, "kendimin" anlamına gelir; ikisini karıştırmayın.', pl: '„Mój own” oznacza „moje własne”, a nie tylko „moje” – nie myl tych dwóch.'},
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['We', 'He', 'She', 'They', 'You'] },
@@ -19997,7 +19995,7 @@ export const IMPULS_DAY_100: PlanContentDay = {
         title: { ru: 'Рассказать, где будешь жить', uk: 'Розповісти, де будеш жити', es: 'Decir dónde te alojarás' , 'pt-BR': 'Diga onde você vai ficar', vi: 'Nói nơi bạn sẽ ở', id: 'Katakan di mana Anda akan tinggal', tr: 'Nerede kalacağınızı söyleyin', pl: 'Powiedz, gdzie się zatrzymasz'},
         rule: { ru: 'We will stay говорит о месте проживания во время поездки.', uk: 'We will stay говорить про місце проживання під час поїздки.', es: 'We will stay indica el lugar de alojamiento durante el viaje.' , 'pt-BR': 'We will stay indica o local de hospedagem durante a viagem.', vi: 'We will stay cho biết nơi ở trong chuyến đi.', id: 'We will stay menunjukkan tempat akomodasi selama perjalanan.', tr: 'We will stay yolculuk sırasında konaklama yerini belirtir.', pl: 'We will stay wskazuje miejsce noclegu podczas podróży.'},
         why: { ru: 'Stay in a place — стандартная фраза для отеля, квартиры или дома.', uk: 'Stay in a place — стандартна фраза для готелю, квартири або будинку.', es: 'Stay in a place es la frase estándar para hotel, apartamento o casa.' , 'pt-BR': 'Fique in a lugar é a frase padrão para hotel, apartamento ou casa.', vi: 'Chỗ ở in a là cụm từ tiêu chuẩn cho hotel, căn hộ hoặc nhà ở.', id: 'Tempat tinggal in a adalah frasa standar untuk hotel, apartemen atau rumah.', tr: 'in a kal yer, hotel, daire veya ev için standart ifadedir.', pl: 'Pobyt in a miejsce to standardowe określenie hotel, mieszkania lub domu.'},
-        commonMistake: { ru: 'Не говори: stay at a hotel. Правильно: stay in a hotel.', uk: 'Не кажи: stay at a hotel. Правильно: stay in a hotel.', es: 'No digas: stay at a hotel. Lo correcto es: stay in a hotel.' , 'pt-BR': 'Não diga: stay às a hotel. O correto é: stay in a hotel.', vi: 'Đừng nói: stay lúc a hotel. Điều đúng là: stay in a hotel.', id: 'Jangan ucapkan: stay pada a hotel. Yang benar adalah: stay in a hotel.', tr: 'a hotel saatinde stay demeyin. Doğru olan: stay in a hotel.', pl: 'Nie mów: stay o a hotel. Poprawna rzecz to: stay in a hotel.'},
+        commonMistake: { ru: 'Можно сказать и stay in a hotel, и stay at a hotel — оба варианта верны.', uk: 'Не кажи: stay at a hotel. Правильно: stay in a hotel.', es: 'No digas: stay at a hotel. Lo correcto es: stay in a hotel.' , 'pt-BR': 'Não diga: stay às a hotel. O correto é: stay in a hotel.', vi: 'Đừng nói: stay lúc a hotel. Điều đúng là: stay in a hotel.', id: 'Jangan ucapkan: stay pada a hotel. Yang benar adalah: stay in a hotel.', tr: 'a hotel saatinde stay demeyin. Doğru olan: stay in a hotel.', pl: 'Nie mów: stay o a hotel. Poprawna rzecz to: stay in a hotel.'},
       },
       words: [
         { text: 'We', partOfSpeech: 'pronoun', distractors: ['I', 'They', 'She', 'He', 'You'] },
@@ -20367,7 +20365,7 @@ export const IMPULS_DAY_102: PlanContentDay = {
       explanation: {
         title: { ru: 'Глагол take в прошлом', uk: 'Дієслово take у минулому', es: 'El verbo take en pasado' , 'pt-BR': 'O verbo tomar no passado', vi: 'Động từ lấy trong quá khứ', id: 'Kata kerja mengambil di masa lalu', tr: 'Geçmişteki fiili almak', pl: 'Czasownik take w przeszłości'},
         rule: { ru: 'Take в прошлом — took. Говорим, сколько времени что-то заняло.', uk: 'Take у минулому — took. Кажемо, скільки часу щось зайняло.', es: 'Take en pasado es took. Decimos cuánto tiempo tardó algo.' , 'pt-BR': 'O pretérito é took. Dizemos quanto tempo algo demorou.', vi: 'Lấy thì quá khứ là took. Chúng tôi nói một cái gì đó mất bao lâu.', id: 'Ambil bentuk lampau adalah took. Kami mengatakan berapa lama waktu yang dibutuhkan.', tr: 'Geçmiş zaman took şeklindedir. Bir şeyin ne kadar sürdüğünü söylüyoruz.', pl: 'Weźmy czas przeszły to took. Mówimy, jak długo coś trwało.'},
-        why: { ru: 'Took — особая форма, she заменяет take в прошлом.', uk: 'Took — особлива форма, замінює take у минулому.', es: 'Took es la forma irregular de take en el pasado.' , 'pt-BR': 'Take é a forma irregular de take no passado.', vi: 'Took là hình thức take bất quy tắc trong quá khứ.', id: 'Took adalah bentuk tak beraturan dari take di masa lampau.', tr: 'Took, take\'in geçmişteki düzensiz şeklidir.', pl: 'Wziął to nieregularna forma wzięcia w przeszłości.'},
+        why: { ru: 'Took — особая форма, она заменяет take в прошлом.', uk: 'Took — особлива форма, замінює take у минулому.', es: 'Took es la forma irregular de take en el pasado.' , 'pt-BR': 'Take é a forma irregular de take no passado.', vi: 'Took là hình thức take bất quy tắc trong quá khứ.', id: 'Took adalah bentuk tak beraturan dari take di masa lampau.', tr: 'Took, take\'in geçmişteki düzensiz şeklidir.', pl: 'Wziął to nieregularna forma wzięcia w przeszłości.'},
         commonMistake: { ru: 'Не говори «the journey taked» — правильно «took».', uk: 'Не кажи «the journey taked» — правильно «took».', es: 'No digas «the journey taked», lo correcto es «took».' , 'pt-BR': 'Não diga "the journey levado", o correto é "took".', vi: 'Đừng nói "the journey đã lấy", điều đúng là "took".', id: 'Jangan bilang "the journey diambil", yang benar adalah "took".', tr: '"the journey alındı" demeyin, doğru olan "took"dir.', pl: 'Nie mów „the journey zajęte”, poprawna odpowiedź to „took”.'},
       },
       words: [
@@ -25276,8 +25274,8 @@ export const IMPULS_DAY_126: PlanContentDay = {
     },
     {
       id: 'impuls_d126_p6',
-      english: 'The climate changes every few years.',
-      meaning: { ru: 'Климат меняется каждые несколько лет.', uk: 'Клімат змінюється кожні кілька років.', es: 'El clima cambia cada pocos años.' , 'pt-BR': 'O clima muda a cada aanos.', vi: 'Khí hậu thay đổi cứ sau vài anăm.', id: 'Iklim berubah setiap beberapa atahun.', tr: 'İklim birkaç ayılda bir değişir.', pl: 'Klimat zmienia się co kilka alat.'},
+      english: 'The climate changes over many years.',
+      meaning: { ru: 'Климат меняется на протяжении многих лет.', uk: 'Клімат змінюється кожні кілька років.', es: 'El clima cambia cada pocos años.' , 'pt-BR': 'O clima muda a cada aanos.', vi: 'Khí hậu thay đổi cứ sau vài anăm.', id: 'Iklim berubah setiap beberapa atahun.', tr: 'İklim birkaç ayılda bir değişir.', pl: 'Klimat zmienia się co kilka alat.'},
       constructions: ['present-simple'],
       explanation: {
         title: { ru: 'Привычные изменения климата', uk: 'Звичні зміни клімату', es: 'Los cambios habituales del clima' , 'pt-BR': 'As mudanças habituais no clima', vi: 'Những thay đổi thông thường của thời tiết', id: 'Perubahan cuaca yang biasa terjadi', tr: 'Havadaki olağan değişiklikler', pl: 'Typowe zmiany pogody'},
@@ -25289,8 +25287,8 @@ export const IMPULS_DAY_126: PlanContentDay = {
         { text: 'The', partOfSpeech: 'article', distractors: ['A', 'Our', 'This', 'That', 'Some'] },
         { text: 'climate', partOfSpeech: 'noun', distractors: ['weather', 'season', 'nature', 'landscape', 'temperature'] },
         { text: 'changes', partOfSpeech: 'verb', distractors: ['grows', 'moves', 'stops', 'starts', 'rains'] },
-        { text: 'every', partOfSpeech: 'determiner', distractors: ['some', 'many', 'any', 'each', 'did'] },
-        { text: 'few', partOfSpeech: 'determiner', distractors: ['more', 'less', 'much', 'all', 'several'] },
+        { text: 'over', partOfSpeech: 'preposition', distractors: ['some', 'in', 'for', 'each', 'at'] },
+        { text: 'many', partOfSpeech: 'determiner', distractors: ['more', 'less', 'much', 'all', 'several'] },
         { text: 'years', partOfSpeech: 'noun', distractors: ['months', 'days', 'seasons', 'decades', 'weeks'] },
       ],
     },
@@ -25301,7 +25299,7 @@ export const IMPULS_DAY_126: PlanContentDay = {
     { word: 'rains', partOfSpeech: 'verb', translation: { ru: 'идёт дождь', uk: 'іде дощ', es: 'llueve' , 'pt-BR': 'está chovendo', vi: 'trời đang mưa', id: 'sedang hujan', tr: 'yağmur yağıyor', pl: 'pada deszcz'}, example: 'It rains a lot in autumn.' },
     { word: 'sunny', partOfSpeech: 'adjective', translation: { ru: 'солнечный', uk: 'сонячний', es: 'soleado' , 'pt-BR': 'ensolarado', vi: 'nhiều nắng', id: 'cerah', tr: 'güneşli', pl: 'słoneczny'}, example: 'The weather is nice and sunny.' },
     { word: 'season', partOfSpeech: 'noun', translation: { ru: 'время года, сезон', uk: 'пора року, сезон', es: 'estación' , 'pt-BR': 'temporada', vi: 'mùa', id: 'musim', tr: 'mevsim', pl: 'sezon'}, example: 'Spring is my favourite season of all.' },
-    { word: 'climate', partOfSpeech: 'noun', translation: { ru: 'климат', uk: 'клімат', es: 'clima' , 'pt-BR': 'clima', vi: 'khí hậu', id: 'iklim', tr: 'iklim', pl: 'klimat'}, example: 'The climate changes every few years.' },
+    { word: 'climate', partOfSpeech: 'noun', translation: { ru: 'климат', uk: 'клімат', es: 'clima' , 'pt-BR': 'clima', vi: 'khí hậu', id: 'iklim', tr: 'iklim', pl: 'klimat'}, example: 'The climate changes over many years.' },
   ],
 };
 

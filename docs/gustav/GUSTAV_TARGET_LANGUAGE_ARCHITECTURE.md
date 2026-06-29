@@ -23,37 +23,28 @@ same verdict.
 
 ## 2026-06-27 Course-Pack Gate Snapshot
 
-The current plan-content server copy is staging/shadow only. It has passed
-remote verification, server-shadow dual-read, disabled manifest/runtime/cache,
-offline, rollback, storage/cloud isolation and reviewer/locale intake safety
-reports, but production activation is still `HOLD`.
+The current plan-content server copy is staging/shadow only. Production
+activation is still `HOLD`.
 
 Current activation-readiness state:
 
-- completed gates: `11`;
-- blocked gates: `3`;
-- remaining blockers: reviewer approval `0/546`, locale gates `0/546`, and
-  product-owner activation approval;
+- human review is not a production gate;
+- LLM official-source coverage V2 supersedes the old human reviewer hold for
+  generated French rows;
+- latest readiness evidence contains `1600` accepted row decisions and `164`
+  accepted AI official-source decisions with activation/import/apply flags still
+  closed;
+- remaining production blocker is explicit apply/activation approval plus
+  runtime/server/rollback gates staying closed until that approval path passes;
 - `COURSE_PACK_REMOTE_LOADING_ENABLED=false`;
 - `activationApproved=false`;
 - bundled `plan_content_*` payloads remain in the app.
 
-Gustav must not infer reviewer approval, locale-gate pass, target-pack
-readiness or app activation from generated rows, parity success, server upload
-success or dual-read success. The report-only explicit reviewer/locale approval
-packet now exists at
-`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-packet.json`
-with `546` queued rows, reviewer approved rows `0/546`, locale passed rows
-`0/546` and filled artifact validation `missing`. The explicit approval intake
-dry-run exists at
-`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-approval-intake-dry-run.json`
-and is `HOLD` only because no external filled artifact exists. The next approved
-process step is based on the reviewer/locale decision work-order at
-`.codex-tmp/plan-content/staging-upload-20260627/reviewer-locale-decision-work-order-batches.json`.
-That work-order is `PASS`/`READY_FOR_REVIEW` with `546` rows and `22` batches,
-but reviewer approved rows and locale passed rows remain `0/546`. The next
-pipeline step must validate externally filled batches; it must not generate
-approvals, fake evidence ids or clear activation by itself.
+Gustav must not infer target-pack readiness or app activation from generated
+rows, parity success, LLM review success, server upload success or dual-read
+success. LLM official-source approval is content evidence, not permission to
+write production app content, enable downloads, migrate storage/cloud state or
+set `activationApproved=true`.
 
 ## 1. Current reality in PhraseMan
 

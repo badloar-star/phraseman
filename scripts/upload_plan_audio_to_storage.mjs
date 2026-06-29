@@ -55,6 +55,12 @@ const FORCE = process.argv.includes('--force');
 const NO_REENCODE = process.argv.includes('--no-reencode');
 const onlyArg = process.argv.find((a) => a.startsWith('--only='));
 const ONLY = onlyArg ? onlyArg.split('=')[1].split(',').map((s) => s.trim()).filter(Boolean) : null;
+// --only-file=a.mp3,b.mp3 — upload ONLY these specific clips (match by localUri substring),
+// so a few regenerated files can be re-uploaded without re-pushing the whole pack.
+const onlyFileArg = process.argv.find((a) => a.startsWith('--only-file='));
+const ONLY_FILE = onlyFileArg
+  ? onlyFileArg.slice('--only-file='.length).split(',').map((s) => s.trim().replace(/\\/g, '/')).filter(Boolean)
+  : null;
 const brArg = process.argv.find((a) => a.startsWith('--bitrate='));
 const BITRATE = brArg ? brArg.split('=')[1] : '64k';
 const concArg = process.argv.find((a) => a.startsWith('--concurrency='));
@@ -91,6 +97,7 @@ function collectClips() {
           .relative(ROOT, absPath)
           .split(path.sep)
           .join('/');
+        if (ONLY_FILE && !ONLY_FILE.some((needle) => localUri.includes(needle))) continue;
         out.push({ localUri, absPath, plan, dayDir, file });
       }
     }

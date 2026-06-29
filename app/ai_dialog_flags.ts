@@ -7,13 +7,16 @@
 
 /**
  * Сколько ПОЛНЫХ бесплатных диалогов получает не-premium за ВСЮ жизнь аккаунта.
- * Модель (запрос пользователя 2026-06-20): ровно ОДИН пробный диалог без лимита
- * реплик внутри, дальше полный премиум-замок. На СЕРВЕРЕ это не число, а булев гейт
- * `freeDialogUsed` в functions/src/premium_dialog.ts → enforceLifetimeFreeDialog():
- * первый диалог ставит freeDialogUsed=true, дальше отказ. Если меняешь модель «один
- * бесплатный за жизнь» — правь и серверный enforceLifetimeFreeDialog, иначе разойдутся.
+ * Было ровно 1 (одна попытка — слишком мало, чтобы «влюбиться» в фичу); подняли
+ * до 2, чтобы дать почувствовать ценность до пейвола. Реплики ВНУТРИ диалога
+ * по-прежнему без лимита.
+ *
+ * СЕРВЕР — источник правды: functions/src/premium_dialog.ts → enforceLifetimeFreeDialog()
+ * считает потраченные бесплатные диалоги (freeDialogCount) и сравнивает с тем же
+ * лимитом. Это число и серверный лимит ДОЛЖНЫ совпадать — иначе клиент покажет
+ * «ещё есть», а сервер откажет (или наоборот). Меняешь тут — меняй и там.
  */
-export const FREE_DIALOGS_LIFETIME_DEFAULT = 1;
+export const FREE_DIALOGS_LIFETIME_DEFAULT = 2;
 
 function boolFromEnv(name: string): boolean | undefined {
   const raw = name === 'EXPO_PUBLIC_AI_DIALOG_ENABLED' ? process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED : undefined;

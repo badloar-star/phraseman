@@ -195,7 +195,7 @@ export default function ReferralCodeEntryScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <SafeAreaView testID="screen-referral-code-entry" style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}

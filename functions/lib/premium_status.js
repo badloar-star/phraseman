@@ -21,6 +21,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseProgressMs = parseProgressMs;
 exports.isVipActive = isVipActive;
+exports.isGiftAccessActive = isGiftAccessActive;
 exports.isPremiumAccessActive = isPremiumAccessActive;
 exports.resolvePremiumAccess = resolvePremiumAccess;
 function cleanStr(value) {
@@ -133,11 +134,24 @@ function isVipActive(progress, now = Date.now()) {
     // Legacy: старый админский премиум засчитываем как VIP-доступ.
     return isAdminGrantActive(progress, now);
 }
-/** TRUE если у пользователя сейчас активен ЛЮБОЙ премиум-доступ (store / admin / VIP). */
+/**
+ * Подарок 72ч (новичку «intro_full_access» или лояльности «loyalty_gift»):
+ * раньше доступ давался ТОЛЬКО на клиенте через AsyncStorage → сервер о подарке
+ * не знал, ИИ-функции отказывали платным фичам подаренного премиума. Теперь клиент
+ * при выдаче пишет *_until_ms в users/{uid}.progress, и сервер их учитывает.
+ */
+function isGiftAccessActive(progress, now = Date.now()) {
+    const data = progress ?? {};
+    const introUntil = parseProgressMs(data.intro_access_until_ms);
+    const loyaltyUntil = parseProgressMs(data.loyalty_gift_until_ms);
+    return introUntil > now || loyaltyUntil > now;
+}
+/** TRUE если у пользователя сейчас активен ЛЮБОЙ премиум-доступ (store / admin / VIP / подарок 72ч). */
 function isPremiumAccessActive(progress, now = Date.now()) {
     return isStorePremiumActive(progress, now)
         || isAdminGrantActive(progress, now)
-        || isVipActive(progress, now);
+        || isVipActive(progress, now)
+        || isGiftAccessActive(progress, now);
 }
 /**
  * Читает users/{stableUid}.progress и возвращает реальный премиум-статус.

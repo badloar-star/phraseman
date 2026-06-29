@@ -69,6 +69,27 @@ describe('Gustav French curriculum contract', () => {
     expect(lessonCefrLabelForStudyTarget(29, 'fr')).toBe('A2.2');
   });
 
+  it('normalizes French lesson curriculum branches through storageStudyTarget', () => {
+    const lessonDataSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_data_all.ts'), 'utf8');
+    const titleSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_titles_for_study_target.ts'), 'utf8');
+    const smartOptionsSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson1_smart_options.ts'), 'utf8');
+    const targetGateSource = fs.readFileSync(path.join(process.cwd(), 'app', 'spanish_content_gate.ts'), 'utf8');
+
+    for (const source of [lessonDataSource, titleSource, smartOptionsSource]) {
+      expect(source).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    }
+    expect(targetGateSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(targetGateSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(lessonDataSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(titleSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(smartOptionsSource).toContain('const normalizedStudyTarget = storageStudyTarget(studyTarget)');
+    expect(smartOptionsSource).toContain("normalizedStudyTarget === 'fr'");
+    expect(lessonDataSource).not.toContain("studyTarget === 'fr'");
+    expect(titleSource).not.toContain("studyTarget === 'fr'");
+    expect(smartOptionsSource).not.toContain("studyTarget === 'fr'");
+    expect(targetGateSource).not.toContain("studyTarget === 'fr'");
+  });
+
   it('keeps draft French intro screens out of runtime until source approval', () => {
     expect(FRENCH_DRAFT_INTRO_LESSON_IDS).toEqual([]);
     expect(FRENCH_INTRO_LESSON_IDS).toEqual([]);
@@ -106,6 +127,10 @@ describe('Gustav French curriculum contract', () => {
   });
 
   it('blocks English lesson support surfaces for French until sourced support packets exist', () => {
+    const gateSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_support_target_gate.ts'), 'utf8');
+
+    expect(gateSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
+    expect(gateSource).toContain("storageStudyTarget(studyTarget) !== 'fr'");
     expect(lessonSupportContentAvailableForTarget('en', 'lesson_theory', 1)).toBe(true);
     expect(lessonSupportContentAvailableForTarget('fr', 'lesson_theory', 1)).toBe(false);
     expect(lessonSupportContentAvailableForTarget('fr', 'lesson_hint', 1)).toBe(false);

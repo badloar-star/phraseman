@@ -536,7 +536,7 @@ export default function TheoryLessonView({
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,
-            { paddingBottom: 120 + insets.bottom },
+            { paddingBottom: 24 + insets.bottom },
           ]}
         >
           {/* Hero */}
@@ -601,37 +601,31 @@ export default function TheoryLessonView({
               />
             ))}
           </View>
-        </BouncyScrollView>
 
-        {/* XP-кнопка — всегда видна */}
-        <View
-          style={[
-            styles.ctaBar,
-            { paddingBottom: Math.max(insets.bottom, 12) },
-          ]}
-          pointerEvents="box-none"
-        >
-          <TapScale
-            onPress={handleClaimPress}
-            accessibilityRole="button"
-            accessibilityLabel={claimed ? claimedLabel : claimLabel}
-            style={[
-              styles.ctaBtn,
-              { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : t.gold },
-              getVolumetricShadow(themeMode, t, 2),
-            ]}
-          >
-            <Ionicons
-              name={claimed ? 'checkmark-circle' : 'star'}
-              size={18}
-              color={textOnGold}
-              style={styles.ctaIcon}
-            />
-            <Text style={[styles.ctaText, { color: textOnGold }]}>
-              {claimed ? claimedLabel : claimLabel}
-            </Text>
-          </TapScale>
-        </View>
+          {/* XP-кнопка — в самом низу, после всех разделов */}
+          <View style={styles.ctaBar}>
+            <TapScale
+              onPress={handleClaimPress}
+              accessibilityRole="button"
+              accessibilityLabel={claimed ? claimedLabel : claimLabel}
+              style={[
+                styles.ctaBtn,
+                { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : t.gold },
+                getVolumetricShadow(themeMode, t, 2),
+              ]}
+            >
+              <Ionicons
+                name={claimed ? 'checkmark-circle' : 'star'}
+                size={18}
+                color={textOnGold}
+                style={styles.ctaIcon}
+              />
+              <Text style={[styles.ctaText, { color: textOnGold }]}>
+                {claimed ? claimedLabel : claimLabel}
+              </Text>
+            </TapScale>
+          </View>
+        </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -861,12 +855,7 @@ const styles = StyleSheet.create({
 
   // XP CTA
   ctaBar: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    marginTop: 24,
   },
   ctaBtn: {
     flexDirection: 'row',

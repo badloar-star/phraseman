@@ -234,7 +234,7 @@ async function validatePlan(repoRoot: string, config: PlanConfig, findings: Find
     .map((day: any) => Number(day?.dayIndex))
     .filter((value: number) => Number.isFinite(value));
   const uniqueDayIndices = uniqueNumbers(dayIndices);
-  const duplicateDayIndices = uniqueNumbers(dayIndices.filter((value, index) => dayIndices.indexOf(value) !== index));
+  const duplicateDayIndices = uniqueNumbers(dayIndices.filter((value: number, index: number) => dayIndices.indexOf(value) !== index));
   const missingDayIndices = missingRange(config.expectedDays, uniqueDayIndices);
 
   let phrases = 0;

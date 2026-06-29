@@ -1,83 +1,28 @@
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
 
 import {
-  getLevelGiftImage,
+  getLevelGiftGradient,
   LEVEL_GIFT_IMAGE_SOURCES,
   LEVEL_GIFT_IMAGE_THEMES,
   LEVEL_GIFT_IMAGE_VARIANTS,
 } from '../constants/levelGiftImages';
 
-async function countVisiblePixelsOnLastAlphaRow(assetPath: string): Promise<number> {
-  const { data, info } = await sharp(assetPath)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-
-  let lastAlphaRow = -1;
-  for (let y = 0; y < info.height; y += 1) {
-    for (let x = 0; x < info.width; x += 1) {
-      if (data[(y * info.width + x) * 4 + 3] > 20) {
-        lastAlphaRow = y;
-        break;
-      }
-    }
-  }
-
-  if (lastAlphaRow < 0) return 0;
-
-  let visiblePixels = 0;
-  for (let x = 0; x < info.width; x += 1) {
-    if (data[(lastAlphaRow * info.width + x) * 4 + 3] > 20) {
-      visiblePixels += 1;
-    }
-  }
-
-  return visiblePixels;
-}
-
-describe('level gift themed images', () => {
-  it('has a generated asset for every supported theme and gift variant', async () => {
+describe('level gift themed gradients', () => {
+  it('has a gradient for every supported theme and gift variant', () => {
     for (const theme of LEVEL_GIFT_IMAGE_THEMES) {
       for (const variant of LEVEL_GIFT_IMAGE_VARIANTS) {
-        const assetPath = path.join(
-          process.cwd(),
-          'assets',
-          'images',
-          'level_gifts',
-          `${theme}-${variant}.webp`,
-        );
+        const gradient = getLevelGiftGradient(theme, variant);
 
-        expect(fs.existsSync(assetPath)).toBe(true);
-        const meta = await sharp(assetPath).metadata();
-        expect(meta.width).toBe(512);
-        expect(meta.height).toBe(512);
-        expect(meta.hasAlpha).toBe(true);
-        expect(getLevelGiftImage(theme, variant)).toBeTruthy();
+        expect(gradient.colors).toHaveLength(3);
+        expect(gradient.accent).toMatch(/^#/);
       }
     }
   });
 
-  it('does not use hard-cropped chest silhouettes', async () => {
-    for (const theme of LEVEL_GIFT_IMAGE_THEMES) {
-      for (const variant of LEVEL_GIFT_IMAGE_VARIANTS) {
-        const assetPath = path.join(
-          process.cwd(),
-          'assets',
-          'images',
-          'level_gifts',
-          `${theme}-${variant}.webp`,
-        );
-
-        await expect(countVisiblePixelsOnLastAlphaRow(assetPath)).resolves.toBeLessThan(180);
-      }
-    }
-  });
-
-  it('uses the default gift image for unknown theme or variant', () => {
-    expect(getLevelGiftImage('unknown-theme', 'unknown-variant')).toBe(
-      getLevelGiftImage('minimalDark', 'common'),
+  it('uses the default gift gradient for unknown theme or variant', () => {
+    expect(getLevelGiftGradient('unknown-theme', 'unknown-variant')).toEqual(
+      getLevelGiftGradient('minimalDark', 'common'),
     );
   });
 
@@ -85,16 +30,12 @@ describe('level gift themed images', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'constants', 'levelGiftImages.ts'), 'utf8');
 
     expect(source).not.toMatch(/\bfallback\b|\bFallback\b/);
-    expect(source).not.toContain('return LEVEL_GIFT_IMAGES[');
   });
 
-  it('exports every themed gift image source for preloading', () => {
-    const preloadSources = new Set(LEVEL_GIFT_IMAGE_SOURCES);
+  it('does not bundle image sources for level gift modal backgrounds', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'constants', 'levelGiftImages.ts'), 'utf8');
 
-    for (const theme of LEVEL_GIFT_IMAGE_THEMES) {
-      for (const variant of LEVEL_GIFT_IMAGE_VARIANTS) {
-        expect(preloadSources.has(getLevelGiftImage(theme, variant))).toBe(true);
-      }
-    }
+    expect(source).not.toContain('require(');
+    expect(LEVEL_GIFT_IMAGE_SOURCES).toEqual([]);
   });
 });

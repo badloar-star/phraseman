@@ -19,6 +19,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import ContentWrap from '../components/ContentWrap';
 import DuoPressable from '../components/DuoPressable';
 import { useLang } from '../components/LangContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -1800,9 +1801,10 @@ export default function FlashcardsSwipeScreen() {
       taskId: planFlashcardsTaskId,
       planId: routeParamString(params.planId),
       planInstanceId: routeParamString(params.planInstanceId),
+      studyTarget,
       dayIndex: planFlashcardsDayIndex,
     });
-  }, [done, params.planId, params.planInstanceId, planFlashcardsDayIndex, planFlashcardsTaskId]);
+  }, [done, params.planId, params.planInstanceId, planFlashcardsDayIndex, planFlashcardsTaskId, studyTarget]);
 
   useEffect(() => {
     if (!currentPrompt?.id) return;
@@ -2228,6 +2230,13 @@ export default function FlashcardsSwipeScreen() {
     if (!currentPrompt) return null;
     const note = detailNoteForCard(currentPrompt.card, cardContentLang);
     const transcription = s(currentPrompt.card.transcription);
+    const reportDataText = [
+      `EN: ${currentPrompt.card.en}`,
+      `${text.shownTranslation} ${currentPrompt.shownTranslation}`,
+      `${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+    ]
+      .filter((line) => s(line))
+      .join('\n');
     return (
       <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(8, insets.bottom + 6) : Math.max(14, insets.bottom + 10) }]}>
         <View style={[styles.playHeader, isPlanFlashcardsTask && styles.planPlayHeader]}>
@@ -2318,6 +2327,21 @@ export default function FlashcardsSwipeScreen() {
             </Animated.View>
 
             <View style={[styles.cardTopLine, isPlanFlashcardsTask && styles.planCardTopLine]}>
+              <View
+                onStartShouldSetResponder={() => true}
+                onMoveShouldSetResponder={() => false}
+                onResponderTerminationRequest={() => false}
+                style={styles.cardReportHitbox}
+              >
+                <ReportErrorButton
+                  screen="flashcards_swipe"
+                  dataId={`flashcard_${currentPrompt.card.id ?? 'unknown'}`}
+                  dataText={reportDataText}
+                  variant="icon-flag"
+                  accessibilityLabel="Сообщить об ошибке в карточке"
+                  testID="flashcards-swipe-report"
+                />
+              </View>
               <View
                 onStartShouldSetResponder={() => true}
                 onMoveShouldSetResponder={() => false}
@@ -2885,11 +2909,20 @@ const styles = StyleSheet.create({
   cardTopLine: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     gap: 10,
   },
   planCardTopLine: {
     minHeight: 28,
+  },
+  cardReportHitbox: {
+    minWidth: 36,
+    height: 32,
+    marginLeft: -4,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    zIndex: 20,
+    elevation: 20,
   },
   speakButtonHitbox: {
     width: 52,

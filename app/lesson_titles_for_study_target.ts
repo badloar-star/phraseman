@@ -3,6 +3,7 @@ import { lessonNamesForLang } from '../constants/lessons';
 import { FRENCH_LESSON_CURRICULUM, frenchLessonCefrStage, frenchLessonTitle } from './french_lesson_curriculum';
 import type { SourceLocale } from './study_target';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 
 function sourceLocaleFromLang(lang: Lang): SourceLocale | Lang | null {
   if (lang === 'ru' || lang === 'uk') return lang;
@@ -23,7 +24,7 @@ function missingFrenchLessonTitle(lessonId: number, lang: SourceLocale | Lang): 
 
 export function lessonNamesForStudyTarget(lang: Lang, studyTarget: StudyTargetLang): readonly string[] {
   const sourceLocale = sourceLocaleFromLang(lang);
-  if (studyTarget === 'fr' && sourceLocale) {
+  if (storageStudyTarget(studyTarget) === 'fr' && sourceLocale) {
     return FRENCH_LESSON_CURRICULUM.map((entry) => frenchLessonTitle(entry.id, sourceLocale) ?? missingFrenchLessonTitle(entry.id, sourceLocale));
   }
   return lessonNamesForLang(lang);
@@ -35,14 +36,14 @@ export function lessonNameForStudyTarget(
   lessonId: number,
 ): string | undefined {
   const sourceLocale = sourceLocaleFromLang(lang);
-  if (studyTarget === 'fr' && sourceLocale) {
+  if (storageStudyTarget(studyTarget) === 'fr' && sourceLocale) {
     return frenchLessonTitle(lessonId, sourceLocale);
   }
   return lessonNamesForLang(lang)[lessonId - 1];
 }
 
 export function lessonCefrLabelForStudyTarget(lessonId: number, studyTarget: StudyTargetLang): string {
-  if (studyTarget === 'fr') return frenchLessonCefrStage(lessonId) ?? 'A1';
+  if (storageStudyTarget(studyTarget) === 'fr') return frenchLessonCefrStage(lessonId) ?? 'A1';
   return lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2';
 }
 

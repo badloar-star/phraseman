@@ -17,7 +17,9 @@ import DuoPressable from '../components/DuoPressable';
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
 
 export default function DuelJoinScreen() {
-  const { roomId } = useLocalSearchParams<{ roomId: string }>();
+  // H9: roomId был `string`, но deep link без params отдаёт undefined → Firestore
+  // .doc(undefined).get() падал. Делаем optional + ранний guard в checkRoom.
+  const { roomId } = useLocalSearchParams<{ roomId?: string }>();
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { spendOne, isUnlimited } = useEnergy();
@@ -27,6 +29,7 @@ export default function DuelJoinScreen() {
   const [hostName, setHostName] = useState('');
 
   const checkRoom = useCallback(async () => {
+    if (!roomId) { setStatus('not_found'); return; } // H9: guard от undefined
     try {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const db = require('@react-native-firebase/firestore').default();

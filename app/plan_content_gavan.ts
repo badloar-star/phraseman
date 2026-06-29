@@ -2080,8 +2080,12 @@ export const GAVAN_DAY_11: PlanContentDay = {
         commonMistake: { ru: 'Не забывай -s: не She cut, а She cuts.', uk: 'Не забувай -s: не She cut, а She cuts.', es: 'No olvides -s: no She cut, sino She cuts.' , 'pt-BR': 'Não se esqueça de -s: não She cut, mas She cuts.', vi: 'Đừng quên -s: không phải She cut mà là She cuts.', id: 'Jangan lupa -s: bukan She cut, tapi She cuts.', tr: '-s\'yi unutmayın: She cut değil, She cuts.', pl: 'Nie zapomnij -s: nie She cut, ale She cuts.'},
       },
       words: [
+        { text: 'She', partOfSpeech: 'pronoun', distractors: ['He', 'It', 'We', 'They', 'You'] },
         { text: 'cuts', partOfSpeech: 'verb', distractors: ['washes', 'boils', 'cooks', 'peels', 'fries'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'some'] },
         { text: 'bread', partOfSpeech: 'noun', distractors: ['meat', 'cheese', 'soup', 'rice', 'cake'] },
+        { text: 'with', partOfSpeech: 'preposition', distractors: ['on', 'in', 'at', 'for', 'by'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['an', 'the', 'this', 'some', 'one'] },
         { text: 'knife', partOfSpeech: 'noun', distractors: ['fork', 'spoon', 'pan', 'plate', 'bowl'] },
       ],
     },
@@ -2097,8 +2101,10 @@ export const GAVAN_DAY_11: PlanContentDay = {
         commonMistake: { ru: 'Не добавляй -s: не We boils, а We boil.', uk: 'Не додавай -s: не We boils, а We boil.', es: 'No añadas -s: no We boils, sino We boil.' , 'pt-BR': 'Não adicione -s: não We boils, mas We boil.', vi: 'Không thêm -s: không phải We boils mà là We boil.', id: 'Jangan tambahkan -s: bukan We boils, tapi We boil.', tr: '-s eklemeyin: We boils değil, We boil.', pl: 'Nie dodawaj -s: nie We boils, ale We boil.'},
       },
       words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['I', 'He', 'She', 'They', 'You'] },
         { text: 'boil', partOfSpeech: 'verb', distractors: ['fry', 'bake', 'steam', 'roast', 'grill'] },
         { text: 'water', partOfSpeech: 'noun', distractors: ['milk', 'oil', 'soup', 'juice', 'broth'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['to', 'with', 'on', 'at', 'of'] },
         { text: 'tea', partOfSpeech: 'noun', distractors: ['coffee', 'dinner', 'lunch', 'soup', 'bread'] },
       ],
     },
@@ -2115,7 +2121,9 @@ export const GAVAN_DAY_11: PlanContentDay = {
       },
       words: [
         { text: 'Do', partOfSpeech: 'verb', distractors: ['Is', 'Are', 'Did', 'Has', 'Was'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'get', 'find', 'use'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['an', 'the', 'this', 'some', 'one'] },
         { text: 'sharp', partOfSpeech: 'adjective', distractors: ['clean', 'big', 'old', 'broken', 'small'] },
         { text: 'knife', partOfSpeech: 'noun', distractors: ['fork', 'spoon', 'pan', 'plate', 'cup'] },
       ],
@@ -2135,6 +2143,8 @@ export const GAVAN_DAY_11: PlanContentDay = {
         { text: 'There', partOfSpeech: 'existential', distractors: ['It', 'This', 'That', 'Here', 'He'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'am', 'were', 'be'] },
         { text: 'soup', partOfSpeech: 'noun', distractors: ['bread', 'water', 'meat', 'rice', 'milk'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'under', 'by', 'to'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'some'] },
         { text: 'stove', partOfSpeech: 'noun', distractors: ['table', 'fridge', 'sink', 'shelf', 'window'] },
       ],
     },
@@ -8878,7 +8888,7 @@ export const GAVAN_DAY_45: PlanContentDay = {
       },
       examples: [
         { en: 'They said that the client called yesterday.', gloss: { ru: 'Они сказали, что клиент позвонил вчера.', uk: 'Вони сказали, що клієнт подзвонив учора.', es: 'Dijeron que el cliente llamó ayer.' , 'pt-BR': 'Disseram que o cliente ligou ontem.', vi: 'Họ nói khách hàng đã gọi hôm qua.', id: 'Mereka mengatakan klien menelepon kemarin.', tr: 'Müşterinin dün aradığını söylediler.', pl: 'Powiedzieli, że klient zadzwonił wczoraj.'} },
-        { en: 'He told me that the boss approved the plan.', gloss: { ru: 'Он сказал мне, что boss одобрил план.', uk: 'Він сказав мені, що боss схвалив план.', es: 'Él me dijo que el jefe aprobó el plan.' , 'pt-BR': 'Ele me disse que o chefe aprovou o plan.', vi: 'Anh ấy me nói rằng ông chủ đã phê duyệt plan.', id: 'Dia me mengatakan bahwa bos menyetujui plan.', tr: 'O me patronun plan onayladığını söyledi.', pl: 'On me powiedział, że szef zatwierdził plan.'} },
+        { en: 'He told me that the boss approved the plan.', gloss: { ru: 'Он сказал мне, что начальник одобрил план.', uk: 'Він сказав мені, що боss схвалив план.', es: 'Él me dijo que el jefe aprobó el plan.' , 'pt-BR': 'Ele me disse que o chefe aprovou o plan.', vi: 'Anh ấy me nói rằng ông chủ đã phê duyệt plan.', id: 'Dia me mengatakan bahwa bos menyetujui plan.', tr: 'O me patronun plan onayladığını söyledi.', pl: 'On me powiedział, że szef zatwierdził plan.'} },
       ],
     },
   ],
@@ -9004,7 +9014,7 @@ export const GAVAN_DAY_45: PlanContentDay = {
   ],
   vocabulary: [
     { word: 'report', partOfSpeech: 'noun', translation: { ru: 'отчёт', uk: 'звіт', es: 'informe' , 'pt-BR': 'relatório', vi: 'báo cáo', id: 'laporan', tr: 'rapor', pl: 'raport'}, example: 'She said that she finished the report.' },
-    { word: 'cancelled', partOfSpeech: 'verb', translation: { ru: 'была отменена', uk: 'була скасована', es: 'fue cancelada' , 'pt-BR': 'foi cancelado', vi: 'đã bị hủy', id: 'dibatalkan', tr: 'iptal edildi', pl: 'został odwołany'}, example: 'He told me that the meeting was cancelled.' },
+    { word: 'cancelled', partOfSpeech: 'verb', translation: { ru: 'отменён, отменили', uk: 'скасований, скасували', es: 'fue cancelada' , 'pt-BR': 'foi cancelado', vi: 'đã bị hủy', id: 'dibatalkan', tr: 'iptal edildi', pl: 'został odwołany'}, example: 'He told me that the meeting was cancelled.' },
     { word: 'client', partOfSpeech: 'noun', translation: { ru: 'клиент', uk: 'клієнт', es: 'cliente' , 'pt-BR': 'cliente', vi: 'khách hàng', id: 'pelanggan', tr: 'müşteri', pl: 'klient'}, example: 'They said that the client called yesterday.' },
     { word: 'sent', partOfSpeech: 'verb', translation: { ru: 'отправила', uk: 'надіслала', es: 'envió' , 'pt-BR': 'remessa', vi: 'lô hàng', id: 'pengiriman', tr: 'sevkiyat', pl: 'wysyłka'}, example: 'She said that she sent the email.' },
     { word: 'approved', partOfSpeech: 'verb', translation: { ru: 'одобрил', uk: 'схвалив', es: 'aprobó' , 'pt-BR': 'aprovado', vi: 'tán thành', id: 'disetujui', tr: 'onaylı', pl: 'zatwierdzony'}, example: 'He told me that the boss approved the plan.' },
@@ -12042,7 +12052,7 @@ export const GAVAN_DAY_60: PlanContentDay = {
     {
       id: 'gavan_d60_p5',
       english: 'I knew it was wrong to hurt you.',
-      meaning: { ru: 'Я знал, что обидел тебя — это было неправильно.', uk: 'Я знав, що образив тебе — це було неправильно.', es: 'Sabía que estaba mal hacerte daño.' , 'pt-BR': 'Eu sabia que era errado machucar você.', vi: 'Tôi biết thật sai lầm khi làm tổn thương bạn.', id: 'Aku tahu menyakitimu itu salah.', tr: 'Seni incitmemin yanlış olduğunu biliyordum.', pl: 'Wiedziałem, że źle jest cię ranić.'},
+      meaning: { ru: 'Я знал, что обижать тебя было неправильно.', uk: 'Я знав, що образив тебе — це було неправильно.', es: 'Sabía que estaba mal hacerte daño.' , 'pt-BR': 'Eu sabia que era errado machucar você.', vi: 'Tôi biết thật sai lầm khi làm tổn thương bạn.', id: 'Aku tahu menyakitimu itu salah.', tr: 'Seni incitmemin yanlış olduğunu biliyordum.', pl: 'Wiedziałem, że źle jest cię ranić.'},
       constructions: ['past-simple-irregular'],
       explanation: {
         title: { ru: 'Прошедшее время: «знал»', uk: 'Минулий час: «знав»', es: 'Pasado: «sabia»' , 'pt-BR': 'Passado: "sábio"', vi: 'Quá khứ: "khôn ngoan"', id: 'Masa lalu: "bijaksana"', tr: 'Geçmiş: "bilge"', pl: 'Przeszłość: „mądry”'},
@@ -14380,7 +14390,7 @@ export const GAVAN_DAY_72: PlanContentDay = {
   phrases: [
     {
       id: 'gavan_d72_p1',
-      english: 'What do you do in free time?',
+      english: 'What do you do in your free time?',
       meaning: { ru: 'Чем ты занимаешься в свободное время?', uk: 'Чим ти займаєшся у вільний час?', es: '¿Qué haces en tu tiempo libre?' , 'pt-BR': 'O que você faz no seu tempo livre?', vi: 'Bạn làm gì trong thời gian rảnh?', id: 'Apa yang Anda lakukan di waktu luang Anda?', tr: 'Boş zamanlarında ne yaparsın?', pl: 'Co robisz w wolnym czasie?'},
       constructions: ['wh-questions', 'present-simple'],
       explanation: {
@@ -14395,6 +14405,7 @@ export const GAVAN_DAY_72: PlanContentDay = {
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
         { text: 'do', partOfSpeech: 'verb', distractors: ['make', 'go', 'have', 'take', 'get'] },
         { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'at', 'with', 'by', 'for'] },
+        { text: 'your', partOfSpeech: 'pronoun', distractors: ['my', 'his', 'her', 'our', 'their'] },
         { text: 'free', partOfSpeech: 'adjective', distractors: ['long', 'busy', 'good', 'hard', 'short'] },
         { text: 'time', partOfSpeech: 'noun', distractors: ['day', 'year', 'week', 'life', 'work'] },
       ],
@@ -14505,7 +14516,7 @@ export const GAVAN_DAY_72: PlanContentDay = {
     { word: 'often', partOfSpeech: 'adverb', translation: { ru: 'часто', uk: 'часто', es: 'a menudo' , 'pt-BR': 'muitas vezes', vi: 'thường', id: 'sering', tr: 'sıklıkla', pl: 'często'}, example: 'How often do you play tennis?' },
     { word: 'cooking', partOfSpeech: 'verb', translation: { ru: 'приготовление еды, готовить', uk: 'приготування їжі, готувати', es: 'cocinar' , 'pt-BR': 'cozinhar', vi: 'đầu bếp', id: 'memasak', tr: 'aşçı', pl: 'kucharz'}, example: 'My friend likes cooking very much.' },
     { word: 'sports', partOfSpeech: 'noun', translation: { ru: 'спорт, спортивные занятия', uk: 'спорт, спортивні заняття', es: 'deportes' , 'pt-BR': 'esportes', vi: 'các môn thể thao', id: 'olahraga', tr: 'spor', pl: 'lekkoatletyka'}, example: 'What sports do you like most?' },
-    { word: 'free', partOfSpeech: 'adjective', translation: { ru: 'свободный (о времени)', uk: 'вільний (про час)', es: 'libre' , 'pt-BR': 'livre', vi: 'miễn phí', id: 'bebas', tr: 'özgür', pl: 'bezpłatny'}, example: 'What do you do in free time?' },
+    { word: 'free', partOfSpeech: 'adjective', translation: { ru: 'свободный (о времени)', uk: 'вільний (про час)', es: 'libre' , 'pt-BR': 'livre', vi: 'miễn phí', id: 'bebas', tr: 'özgür', pl: 'bezpłatny'}, example: 'What do you do in your free time?' },
     { word: 'usually', partOfSpeech: 'adverb', translation: { ru: 'обычно, как правило', uk: 'зазвичай, як правило', es: 'normalmente' , 'pt-BR': 'normalmente', vi: 'thông thường', id: 'biasanya', tr: 'normalde', pl: 'normalnie'}, example: 'I usually read books at home.' },
   ],
 };
@@ -15004,7 +15015,7 @@ export const GAVAN_DAY_75: PlanContentDay = {
     {
       id: 'gavan_d75_p2',
       english: 'It is about the history of Rome.',
-      meaning: { ru: 'Она о истории Рима.', uk: 'Вона про історію Риму.', es: 'Trata sobre la historia de Roma.' , 'pt-BR': 'É sobre a história de Roma.', vi: 'Đó là về lịch sử của Rome.', id: 'Ini tentang sejarah Roma.', tr: 'Roma\'nın tarihiyle ilgili.', pl: 'Chodzi o historię Rzymu.'},
+      meaning: { ru: 'Она об истории Рима.', uk: 'Вона про історію Риму.', es: 'Trata sobre la historia de Roma.' , 'pt-BR': 'É sobre a história de Roma.', vi: 'Đó là về lịch sử của Rome.', id: 'Ini tentang sejarah Roma.', tr: 'Roma\'nın tarihiyle ilgili.', pl: 'Chodzi o historię Rzymu.'},
       constructions: ['present-simple'],
       explanation: {
         title: { ru: 'О чём эта книга', uk: 'Про що ця книга', es: 'De qué trata este libro' , 'pt-BR': 'Sobre o que é este livro?', vi: 'Cuốn sách này nói về cái gì?', id: 'Tentang apa buku ini?', tr: 'Bu kitap neyle ilgili?', pl: 'O czym jest ta książka?'},
@@ -17631,7 +17642,7 @@ export const GAVAN_DAY_86: PlanContentDay = {
   phrases: [
     {
       id: 'gavan_d86_p1',
-      english: 'Do you have this in larger?',
+      english: 'Do you have this in a larger size?',
       meaning: { ru: 'Есть ли это в большем размере?', uk: 'Чи є це у більшому розмірі?', es: '¿Tienen esto en una talla más grande?' , 'pt-BR': 'Você tem isso em tamanho maior?', vi: 'Bạn có cái này cỡ lớn hơn không?', id: 'Apakah Anda memiliki ini dalam ukuran yang lebih besar?', tr: 'Bunun daha büyük boyutu var mı elinizde?', pl: 'Czy masz to w większym rozmiarze?'},
       constructions: ['present-simple', 'wh-questions'],
       explanation: {
@@ -17646,7 +17657,9 @@ export const GAVAN_DAY_86: PlanContentDay = {
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'get', 'take', 'need'] },
         { text: 'this', partOfSpeech: 'pronoun', distractors: ['that', 'these', 'those', 'it', 'one'] },
         { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'at', 'for', 'with', 'by'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['an', 'the', 'this', 'some', 'one'] },
         { text: 'larger', partOfSpeech: 'adjective', distractors: ['smaller', 'bigger', 'wider', 'longer', 'shorter'] },
+        { text: 'size', partOfSpeech: 'noun', distractors: ['color', 'price', 'style', 'shape', 'brand'] },
       ],
     },
     {
@@ -17749,7 +17762,7 @@ export const GAVAN_DAY_86: PlanContentDay = {
     },
   ],
   vocabulary: [
-    { word: 'larger', partOfSpeech: 'adjective', translation: { ru: 'большего размера', uk: 'більшого розміру', es: 'más grande' , 'pt-BR': 'maior', vi: 'lớn hơn', id: 'lebih besar', tr: 'daha büyük', pl: 'większy'}, example: 'Do you have this in larger?' },
+    { word: 'larger', partOfSpeech: 'adjective', translation: { ru: 'большего размера', uk: 'більшого розміру', es: 'más grande' , 'pt-BR': 'maior', vi: 'lớn hơn', id: 'lebih besar', tr: 'daha büyük', pl: 'większy'}, example: 'Do you have this in a larger size?' },
     { word: 'sizes', partOfSpeech: 'noun', translation: { ru: 'размеры', uk: 'розміри', es: 'tallas' , 'pt-BR': 'tamanhos', vi: 'kích cỡ', id: 'ukuran', tr: 'boyutlar', pl: 'rozmiary'}, example: 'What sizes do you have?' },
     { word: 'different', partOfSpeech: 'adjective', translation: { ru: 'другой', uk: 'інший', es: 'diferente' , 'pt-BR': 'diferente', vi: 'khác biệt', id: 'berbeda', tr: 'farklı', pl: 'różny'}, example: 'I need a different size please.' },
     { word: 'medium', partOfSpeech: 'adjective', translation: { ru: 'средний', uk: 'середній', es: 'mediano' , 'pt-BR': 'médio', vi: 'trung bình', id: 'sedang', tr: 'orta', pl: 'średni'}, example: 'Do you have a medium size?' },
@@ -23546,7 +23559,7 @@ export const GAVAN_DAY_117: PlanContentDay = {
     {
       id: 'gavan_d117_p5',
       english: 'I walk in the park every morning.',
-      meaning: { ru: 'Я хожу в парке каждое утро.', uk: 'Я ходжу в парку щоранку.', es: 'Camino en el parque cada mañana.' , 'pt-BR': 'Ando no parque todas as manhãs.', vi: 'Tôi đi dạo trong công viên vào mỗi buổi sáng.', id: 'Saya berjalan di taman setiap pagi.', tr: 'Her sabah parkta yürüyorum.', pl: 'Codziennie rano spaceruję po parku.'},
+      meaning: { ru: 'Я гуляю в парке каждое утро.', uk: 'Я ходжу в парку щоранку.', es: 'Camino en el parque cada mañana.' , 'pt-BR': 'Ando no parque todas as manhãs.', vi: 'Tôi đi dạo trong công viên vào mỗi buổi sáng.', id: 'Saya berjalan di taman setiap pagi.', tr: 'Her sabah parkta yürüyorum.', pl: 'Codziennie rano spaceruję po parku.'},
       constructions: ['present-simple'],
       explanation: {
         title: { ru: 'Рассказываешь о своей ежедневной привычке', uk: 'Розповідаєш про свою щоденну звичку', es: 'Hablas de tu hábito diario' , 'pt-BR': 'Você fala sobre seu hábito diário', vi: 'Bạn nói về thói quen hàng ngày của bạn', id: 'Anda berbicara tentang kebiasaan sehari-hari Anda', tr: 'Günlük alışkanlığınızdan bahsediyorsunuz', pl: 'Mówisz o swoich codziennych nawykach'},
@@ -24293,7 +24306,7 @@ export const GAVAN_DAY_121: PlanContentDay = {
     },
     {
       id: 'gavan_d121_p2',
-      english: 'I drink less sugar in my tea.',
+      english: 'I put less sugar in my tea.',
       meaning: { ru: 'Я кладу меньше сахара в чай.', uk: 'Я кладу менше цукру в чай.', es: 'Pongo menos azúcar en mi té.' , 'pt-BR': 'Coloquei menos açúcar no meu chá.', vi: 'Tôi cho ít đường vào trà hơn.', id: 'Saya menambahkan lebih sedikit gula ke dalam teh saya.', tr: 'Çayıma daha az şeker koyuyorum.', pl: 'Do herbaty dodaję mniej cukru.'},
       constructions: ['present-simple', 'comparatives'],
       explanation: {
@@ -24304,7 +24317,7 @@ export const GAVAN_DAY_121: PlanContentDay = {
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['We', 'She', 'He', 'They', 'You'] },
-        { text: 'drink', partOfSpeech: 'verb', distractors: ['eat', 'cook', 'buy', 'make', 'need'] },
+        { text: 'put', partOfSpeech: 'verb', distractors: ['add', 'eat', 'cook', 'buy', 'need'] },
         { text: 'less', partOfSpeech: 'determiner', distractors: ['more', 'much', 'few', 'many', 'some'] },
         { text: 'sugar', partOfSpeech: 'noun', distractors: ['salt', 'milk', 'coffee', 'bread', 'fruit'] },
         { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'with', 'to', 'at', 'for'] },
@@ -24394,7 +24407,7 @@ export const GAVAN_DAY_121: PlanContentDay = {
   ],
   vocabulary: [
     { word: 'vegetables', partOfSpeech: 'noun', translation: { ru: 'овощи', uk: 'овочі', es: 'verduras' , 'pt-BR': 'vegetais', vi: 'rau', id: 'sayuran', tr: 'sebze', pl: 'warzywa'}, example: 'I try to eat more vegetables.' },
-    { word: 'sugar', partOfSpeech: 'noun', translation: { ru: 'сахар', uk: 'цукор', es: 'azúcar' , 'pt-BR': 'açúcar', vi: 'đường', id: 'gula', tr: 'şeker', pl: 'cukier'}, example: 'I drink less sugar in my tea.' },
+    { word: 'sugar', partOfSpeech: 'noun', translation: { ru: 'сахар', uk: 'цукор', es: 'azúcar' , 'pt-BR': 'açúcar', vi: 'đường', id: 'gula', tr: 'şeker', pl: 'cukier'}, example: 'I put less sugar in my tea.' },
     { word: 'health', partOfSpeech: 'noun', translation: { ru: 'здоровье', uk: 'здоров\'я', es: 'salud' , 'pt-BR': 'saúde', vi: 'sức khỏe', id: 'kesehatan', tr: 'sağlık', pl: 'zdrowie'}, example: 'Vegetables are better for your health.' },
     { word: 'breakfast', partOfSpeech: 'noun', translation: { ru: 'завтрак', uk: 'сніданок', es: 'desayuno' , 'pt-BR': 'café da manhã', vi: 'bữa sáng', id: 'sarapan', tr: 'kahvaltı', pl: 'śniadanie'}, example: 'I eat fruit every morning for breakfast.' },
     { word: 'worse', partOfSpeech: 'adjective', translation: { ru: 'хуже', uk: 'гірше', es: 'peor' , 'pt-BR': 'pior', vi: 'tệ hơn', id: 'lebih buruk', tr: 'daha kötüsü', pl: 'gorzej'}, example: 'Fast food is worse than home cooking.' },
@@ -24925,7 +24938,7 @@ export const GAVAN_DAY_124: PlanContentDay = {
     },
     {
       id: 'gavan_d124_p3',
-      english: 'What do you enjoy doing in weekends?',
+      english: 'What do you enjoy doing on weekends?',
       meaning: { ru: 'Что тебе нравится делать по выходным?', uk: 'Що тобі подобається робити у вихідні?', es: '¿Qué te gusta hacer los fines de semana?' , 'pt-BR': 'O que você gosta de fazer nos finais de semana?', vi: 'Bạn thích làm gì vào cuối tuần?', id: 'Apa yang ingin kamu lakukan di akhir pekan?', tr: 'Hafta sonları ne yapmaktan hoşlanırsınız?', pl: 'Co lubisz robić w weekendy?'},
       constructions: ['present-simple', 'gerund'],
       explanation: {
@@ -24940,7 +24953,7 @@ export const GAVAN_DAY_124: PlanContentDay = {
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'we', 'they', 'he', 'she'] },
         { text: 'enjoy', partOfSpeech: 'verb', distractors: ['like', 'want', 'need', 'love', 'miss'] },
         { text: 'doing', partOfSpeech: 'verb', distractors: ['reading', 'watching', 'making', 'going', 'having'] },
-        { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'at', 'by', 'for', 'with'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'for', 'with'] },
         { text: 'weekends', partOfSpeech: 'noun', distractors: ['evenings', 'mornings', 'holidays', 'nights', 'summers'] },
       ],
     },

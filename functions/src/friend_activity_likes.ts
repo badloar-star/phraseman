@@ -4,6 +4,8 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
+/** Stable doc id for a profile-level (eventless) like, so daily-limit + audit + toggle agree. */
+const PROFILE_LIKE_EVENT_ID = '__profile__';
 
 function cleanId(value: unknown): string {
   return String(value ?? '').trim();
@@ -28,14 +30,40 @@ function cleanDisplayName(value: unknown): string {
   return String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
 }
 
-export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+function resolveSenderName(senderData: Record<string, unknown>, requestDisplayName: unknown): string {
+  const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
+    ? senderData.progress as Record<string, unknown>
+    : {};
+  return (
+    cleanDisplayName(requestDisplayName) ||
+    cleanDisplayName(senderData.displayName) ||
+    cleanDisplayName(senderProgress.user_name) ||
+    'Friend'
+  );
+}
+
+/**
+ * Validates the call envelope (auth + ids) and that the claimed sender stable id is
+ * really owned by the authed user. Returns the resolved ids; throws HttpsError otherwise.
+ * `eventId` is optional: when empty the caller is a profile-level (eventless) like from a
+ * user card, where any user — friend or not — may be liked.
+ */
+function readIds(request: { auth?: { uid?: string } | null; data?: unknown }): {
+  authUid: string;
+  senderStableId: string;
+  targetStableId: string;
+  eventId: string;
+  isProfileLike: boolean;
+} {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
-
-  const senderStableId = cleanDocId(request.data?.senderStableId);
-  const targetStableId = cleanDocId(request.data?.targetStableId);
-  const eventId = cleanDocId(request.data?.eventId);
+  const data = (request.data ?? {}) as Record<string, unknown>;
+  const senderStableId = cleanDocId(data.senderStableId);
+  const targetStableId = cleanDocId(data.targetStableId);
+  const rawEventId = cleanId(data.eventId);
+  const isProfileLike = rawEventId === '';
+  const eventId = isProfileLike ? PROFILE_LIKE_EVENT_ID : cleanDocId(data.eventId);
 
   if (!senderStableId || !targetStableId || !eventId) {
     throw new HttpsError('invalid-argument', 'Valid sender, target and event ids required');
@@ -43,6 +71,25 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   if (senderStableId === targetStableId) {
     throw new HttpsError('failed-precondition', 'Self activity likes are not allowed');
   }
+  return { authUid: request.auth.uid, senderStableId, targetStableId, eventId, isProfileLike };
+}
+
+/**
+ * Like a friend's activity.
+ *
+ * Two modes, chosen by whether `eventId` is supplied:
+ *  • event-mode (eventId present) — the original feed/league-group-boost like. Requires the
+ *    target's my_events/{eventId} doc to exist AND the users to be friends. Idempotent: a
+ *    second call for the same event replays without incrementing. Mirrors league group boosts.
+ *  • profile-mode (eventId absent) — a like placed straight on a user card. ANY user may be
+ *    liked (friend or not); no activity event is required. Still capped at one like per UTC
+ *    day per sender (shared with event-mode), and a same-day re-call replays idempotently.
+ *
+ * Both modes bump users/{target}/activity_like_stats/summary.total and write an audit doc to
+ * users/{target}/activity_likes_received so the target can see who liked them.
+ */
+export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  const { authUid, senderStableId, targetStableId, eventId, isProfileLike } = readIds(request);
 
   const db = admin.firestore();
   const senderRef = db.collection('users').doc(senderStableId);
@@ -52,6 +99,9 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   const statsRef = targetRef.collection('activity_like_stats').doc('summary');
   const today = todayStrUtc();
   const dailyLimitRef = senderRef.collection('friend_activity_like_daily_limits').doc(today);
+  const receivedRef = targetRef
+    .collection('activity_likes_received')
+    .doc(`${today}_${senderStableId}_${eventId}`);
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
 
@@ -59,7 +109,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     const [senderSnap, targetFriendSnap, eventSnap, statsSnap, dailyLimitSnap] = await Promise.all([
       tx.get(senderRef),
       tx.get(targetFriendRef),
-      tx.get(eventRef),
+      isProfileLike ? Promise.resolve(null) : tx.get(eventRef),
       tx.get(statsRef),
       tx.get(dailyLimitRef),
     ]);
@@ -67,21 +117,22 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     if (!senderSnap.exists) {
       throw new HttpsError('not-found', 'Sender user not found');
     }
-    if (!eventSnap.exists) {
+    // Event-mode requires a real activity event to attach the like to.
+    if (!isProfileLike && (!eventSnap || !eventSnap.exists)) {
       throw new HttpsError('not-found', 'Activity event not found');
     }
     const senderData = senderSnap.data() ?? {};
     const linkedAuthUid = typeof senderData.firebaseAuthUid === 'string' ? senderData.firebaseAuthUid : '';
-    if (linkedAuthUid !== request.auth!.uid && senderStableId !== request.auth!.uid) {
+    if (linkedAuthUid !== authUid && senderStableId !== authUid) {
       throw new HttpsError('permission-denied', 'Sender does not match auth user');
     }
-    const eventData = eventSnap.data() ?? {};
+    const eventData = (eventSnap?.data?.() ?? {}) as Record<string, unknown>;
     if (dailyLimitSnap.exists) {
       const dailyLimitData = dailyLimitSnap.data() ?? {};
-      const alreadyLikedSameEvent =
+      const alreadyLikedSameTarget =
         cleanDocId(dailyLimitData.targetUid) === targetStableId &&
         cleanDocId(dailyLimitData.eventId) === eventId;
-      if (alreadyLikedSameEvent) {
+      if (alreadyLikedSameTarget) {
         return {
           ok: true,
           date: today,
@@ -94,7 +145,8 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       }
       throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');
     }
-    if (!targetFriendSnap.exists) {
+    // Event-mode keeps the original friends-only gate. Profile-mode (card) is open to all.
+    if (!isProfileLike && !targetFriendSnap.exists) {
       throw new HttpsError('failed-precondition', 'Users are not friends');
     }
 
@@ -102,23 +154,17 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
     const eventType = cleanId(eventData.type);
     const leagueGroupId = cleanDocId(eventData.groupId);
+    const senderName = resolveSenderName(senderData, (request.data as Record<string, unknown>)?.senderDisplayName);
 
-    const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
-      ? senderData.progress as Record<string, unknown>
-      : {};
-    const senderName =
-      cleanDisplayName(request.data?.senderDisplayName) ||
-      cleanDisplayName(senderData.displayName) ||
-      cleanDisplayName(senderProgress.user_name) ||
-      'Friend';
-
-    tx.set(eventRef, {
-      uid: targetStableId,
-      activityLikeCount: eventLikeCount,
-      activityLikedAt: now,
-      lastActivityLikeFromUid: senderStableId,
-      lastActivityLikeFromName: senderName,
-    }, { merge: true });
+    if (!isProfileLike) {
+      tx.set(eventRef, {
+        uid: targetStableId,
+        activityLikeCount: eventLikeCount,
+        activityLikedAt: now,
+        lastActivityLikeFromUid: senderStableId,
+        lastActivityLikeFromName: senderName,
+      }, { merge: true });
+    }
 
     tx.set(statsRef, {
       total: totalLikeCount,
@@ -132,13 +178,15 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       date: today,
       targetUid: targetStableId,
       eventId,
+      kind: isProfileLike ? 'profile' : 'event',
       createdAt: now,
       createdAtIso: nowIso,
     });
 
-    tx.set(targetRef.collection('activity_likes_received').doc(`${today}_${senderStableId}_${eventId}`), {
+    tx.set(receivedRef, {
       date: today,
       eventId,
+      kind: isProfileLike ? 'profile' : 'event',
       fromUid: senderStableId,
       fromName: senderName,
       ts: now,
@@ -156,6 +204,107 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
 
     return {
       ok: true,
+      date: today,
+      targetUid: targetStableId,
+      eventId,
+      activityLikeCount: eventLikeCount,
+      targetActivityLikeTotal: totalLikeCount,
+    };
+  });
+});
+
+/**
+ * Remove today's activity like (toggle off). Only the like the sender placed today can be
+ * removed, and only while it still points at this target+event — so a stale client cannot
+ * decrement an unrelated counter. Decrements the target's summary total, clears the sender's
+ * daily-limit doc (freeing the daily quota), and removes the audit record so the target no
+ * longer sees it. Idempotent: removing a like that is already gone returns ok without writing.
+ */
+export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  const { authUid, senderStableId, targetStableId, eventId, isProfileLike } = readIds(request);
+
+  const db = admin.firestore();
+  const senderRef = db.collection('users').doc(senderStableId);
+  const targetRef = db.collection('users').doc(targetStableId);
+  const eventRef = targetRef.collection('my_events').doc(eventId);
+  const statsRef = targetRef.collection('activity_like_stats').doc('summary');
+  const today = todayStrUtc();
+  const dailyLimitRef = senderRef.collection('friend_activity_like_daily_limits').doc(today);
+  const receivedRef = targetRef
+    .collection('activity_likes_received')
+    .doc(`${today}_${senderStableId}_${eventId}`);
+  const now = Date.now();
+
+  return db.runTransaction(async (tx) => {
+    const [senderSnap, eventSnap, statsSnap, dailyLimitSnap] = await Promise.all([
+      tx.get(senderRef),
+      isProfileLike ? Promise.resolve(null) : tx.get(eventRef),
+      tx.get(statsRef),
+      tx.get(dailyLimitRef),
+    ]);
+
+    if (!senderSnap.exists) {
+      throw new HttpsError('not-found', 'Sender user not found');
+    }
+    const senderData = senderSnap.data() ?? {};
+    const linkedAuthUid = typeof senderData.firebaseAuthUid === 'string' ? senderData.firebaseAuthUid : '';
+    if (linkedAuthUid !== authUid && senderStableId !== authUid) {
+      throw new HttpsError('permission-denied', 'Sender does not match auth user');
+    }
+
+    const eventData = (eventSnap?.data?.() ?? {}) as Record<string, unknown>;
+    const limitData = dailyLimitSnap.exists ? (dailyLimitSnap.data() ?? {}) : null;
+    const limitMatchesThisLike =
+      !!limitData &&
+      cleanDocId(limitData.targetUid) === targetStableId &&
+      cleanDocId(limitData.eventId) === eventId;
+
+    // Nothing of ours to remove today → idempotent no-op (keeps the toggle resilient to retries).
+    if (!limitMatchesThisLike) {
+      return {
+        ok: true,
+        removed: false,
+        date: today,
+        targetUid: targetStableId,
+        eventId,
+        activityLikeCount: parseCount(eventData.activityLikeCount),
+        targetActivityLikeTotal: parseCount(statsSnap.data()?.total),
+      };
+    }
+
+    const eventLikeCount = Math.max(0, parseCount(eventData.activityLikeCount) - 1);
+    const totalLikeCount = Math.max(0, parseCount(statsSnap.data()?.total) - 1);
+    const eventType = cleanId(eventData.type);
+    const leagueGroupId = cleanDocId(eventData.groupId);
+
+    if (!isProfileLike && eventSnap?.exists) {
+      tx.set(eventRef, {
+        uid: targetStableId,
+        activityLikeCount: eventLikeCount,
+        activityLikeRemovedAt: now,
+      }, { merge: true });
+    }
+
+    tx.set(statsRef, {
+      total: totalLikeCount,
+      updatedAt: now,
+    }, { merge: true });
+
+    tx.delete(dailyLimitRef);
+    tx.delete(receivedRef);
+
+    if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
+      tx.set(db.collection('league_groups').doc(leagueGroupId), {
+        groupBoost: {
+          likeCount: eventLikeCount,
+        },
+        updatedAt: now,
+      }, { merge: true });
+    }
+
+    return {
+      ok: true,
+      removed: true,
       date: today,
       targetUid: targetStableId,
       eventId,

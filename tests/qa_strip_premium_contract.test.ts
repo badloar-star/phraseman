@@ -32,7 +32,7 @@ describe('qa strip premium contract', () => {
     const callIdx = stripBody.indexOf('callVipRevokeMine');
     const tryIdx = stripBody.lastIndexOf('try', callIdx);
     const catchIdx = stripBody.indexOf('catch', callIdx);
-    const successToastIdx = stripBody.indexOf('Премиум и VIP сняты');
+    const successToastIdx = stripBody.indexOf('Plus и Pro сняты');
     expect(tryIdx).toBeGreaterThan(-1);
     expect(catchIdx).toBeGreaterThan(-1);
     // Успешный тост идёт ПОСЛЕ изолированного server-revoke блока.

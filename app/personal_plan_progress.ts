@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 export const COMPLETED_PLAN_TASKS_KEY = 'personal_plan_completed_tasks_v1';
 
@@ -7,6 +8,7 @@ export type PersonalPlanCompletedTask = {
   completedAt: string;
   planId?: string;
   planInstanceId?: string;
+  studyTarget?: RuntimeStudyTarget;
   dayIndex?: number;
   taskId: string;
 };
@@ -35,7 +37,7 @@ export async function markPersonalPlanTaskCompleted(input: Omit<PersonalPlanComp
   };
   await AsyncStorage.setItem(COMPLETED_PLAN_TASKS_KEY, JSON.stringify(current));
   void import('./stats_daily_breakdown')
-    .then(({ bumpStatsDaily }) => bumpStatsDaily('plan_tasks_completed', 1))
+    .then(({ bumpStatsDaily }) => bumpStatsDaily('plan_tasks_completed', 1, input.studyTarget))
     .catch(() => {});
   emitAppEvent('personal_plan_updated', { planId: input.planId, taskId: input.taskId });
 }

@@ -93,7 +93,7 @@ describe('Gustav personal practice target isolation', () => {
     const adminSource = fs.readFileSync(path.join(ROOT, 'app', '_admin_settings_testers.tsx'), 'utf8');
     const trainerSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer.tsx'), 'utf8');
     const analyticsScreenSource = fs.readFileSync(path.join(ROOT, 'app', 'phrase_analytics_screen.tsx'), 'utf8');
-    const quizzesSource = fs.readFileSync(path.join(ROOT, 'app', 'quizzes.tsx'), 'utf8');
+    const quizzesSource = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
     const problemCoachSource = fs.readFileSync(path.join(ROOT, 'app', 'problem_coach.tsx'), 'utf8');
     const phrasesTrainerSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_phrases_session.tsx'), 'utf8');
     const lessonWordsSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_words.tsx'), 'utf8');
@@ -117,6 +117,9 @@ describe('Gustav personal practice target isolation', () => {
     expect(analyticsScreenSource).toContain('!analyticsSourceGateOpen');
     expect(analyticsScreenSource).toContain('frenchPersonalPracticeGateCopy(lang)');
     expect(analyticsScreenSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
+    expect(analyticsScreenSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(analyticsScreenSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(analyticsScreenSource).not.toContain("studyTarget === 'fr'");
     expect(analyticsScreenSource).toContain('personalTrainingEnabled={personalPracticeCoachEnabled}');
     expect(analyticsScreenSource).toContain('loadResolvedPersonalTrainings({ studyTarget, sourceLocale })');
     expect(problemCoachSource).toContain('useStudyTarget');
@@ -126,8 +129,9 @@ describe('Gustav personal practice target isolation', () => {
     expect(problemCoachSource).toContain('markPersonalTrainingResolved({');
     expect(problemCoachSource).toContain("router.replace('/trainer' as any)");
     expect(problemCoachSource).toContain('}, studyTarget)');
-    expect(phrasesTrainerSource).toContain('buildDeck(items, studyTarget)');
-    expect(phrasesTrainerSource).toContain("const fallbackFillers = studyTarget === 'fr' ? [] : ENGLISH_DECOY_FILLERS");
+    expect(phrasesTrainerSource).toContain('const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget)');
+    expect(phrasesTrainerSource).toContain('if (!trainerGateOpen)');
+    expect(phrasesTrainerSource).toContain('setDeck(buildDeck(items))');
     expect(quizzesSource).toContain("checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru')");
     expect(quizzesSource).toContain('const frenchQuizBlocked = !quizContentAvailableForTarget(studyTarget)');
     expect(quizzesSource).toContain('FrenchQuizUnavailable');

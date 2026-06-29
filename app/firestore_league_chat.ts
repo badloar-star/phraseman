@@ -10,6 +10,7 @@ import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getWeekId } from './league_engine';
 import { moderateLeagueChatMessage, sanitizeLeagueChatText } from './league_chat_moderation';
 import { getLeagueChatAuthTtlMs } from './remote_flags';
+import type { LeagueChatSystemType } from './league_chat_system';
 
 const CHAT_COLLECTION = 'league_chat_messages';
 const BLOCKS_KEY = 'league_chat_blocked_users_v1';
@@ -38,7 +39,6 @@ export {
   LEAGUE_CHAT_SYSTEM_UID,
   type LeagueChatSystemType,
 } from './league_chat_system';
-import type { LeagueChatSystemType } from './league_chat_system';
 
 export interface LeagueChatMessage {
   id: string;
@@ -361,6 +361,20 @@ export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string):
     if (code.includes('resource-exhausted') || code.includes('send_throttled')) return 'throttled';
     return 'offline';
   }
+}
+
+export async function deleteLeagueChatMessage(message: Pick<LeagueChatMessage, 'id'>): Promise<void> {
+  if (!getFirestore()) throw new Error('league_chat_offline');
+  const stableId = await ensureAnonUser();
+  if (!stableId) throw new Error('league_chat_offline');
+  await ensureStableAuthLink().catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<{ messageId: string; stableId?: string | null }, { ok: boolean }>('leagueChatDeleteMessage');
+  await fn({ messageId: message.id, stableId });
+
+  Object.keys(cachedMessagesMemory).forEach((key) => {
+    cachedMessagesMemory[key] = cachedMessagesMemory[key].filter((row) => row.id !== message.id);
+  });
 }
 
 export async function reportLeagueChatMessage(message: LeagueChatMessage, reason: string): Promise<void> {

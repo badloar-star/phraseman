@@ -16,6 +16,8 @@
  * До этого вся аналитика всё равно пишется в Firebase (см. analytics.ts).
  */
 
+import { isAnalyticsConsentGranted } from './analytics_consent';
+
 const POSTHOG_KEY = process.env.EXPO_PUBLIC_POSTHOG_KEY ?? '';
 const POSTHOG_HOST = process.env.EXPO_PUBLIC_POSTHOG_HOST ?? 'https://eu.i.posthog.com';
 
@@ -50,6 +52,8 @@ export function isPostHogEnabled(): boolean {
 }
 
 export function capturePostHog(event: string, properties?: Record<string, unknown>): void {
+  // PostHog — non-essential аналитика: только при явном согласии (GDPR/ePrivacy).
+  if (!isAnalyticsConsentGranted()) return;
   const c = ensureClient();
   if (!c) return;
   try {
@@ -60,6 +64,8 @@ export function capturePostHog(event: string, properties?: Record<string, unknow
 }
 
 export function identifyPostHog(distinctId: string, properties?: Record<string, unknown>): void {
+  // Привязка к стабильному ID — только при согласии.
+  if (!isAnalyticsConsentGranted()) return;
   const c = ensureClient();
   if (!c) return;
   try {

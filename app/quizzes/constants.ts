@@ -47,6 +47,11 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
   },
+  business: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-business.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-business.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-business.webp'),
+  },
   midnight: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
@@ -99,6 +104,11 @@ export const QUIZ_LEVEL_LOGOS: Record<QuizLevelLogoThemeMode, Record<Level, numb
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-minimal-dark.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-minimal-dark.webp'),
+  },
+  business: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-business.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-business.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-business.webp'),
   },
   midnight: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-midnight.webp'),
@@ -171,6 +181,11 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     medium: { gradA: '#242A35', gradB: '#11151C', accent: '#9CA3AF' },
     hard: { gradA: '#161B2A', gradB: '#0C0E14', accent: '#A78BFA' },
   },
+  business: {
+    easy: { gradA: '#1C1C1C', gradB: '#0D0D0D', accent: '#FFFFFF' },
+    medium: { gradA: '#222222', gradB: '#111111', accent: '#D4D4D4' },
+    hard: { gradA: '#181818', gradB: '#0A0A0A', accent: '#9A9A9A' },
+  },
   midnight: {
     easy: { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
     medium: { gradA: '#0E1430', gradB: '#040714', accent: '#8FA0FF' },
@@ -210,6 +225,7 @@ export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondar
   gold: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral: { primary: '#FFFFFF', secondary: '#D8C2C5' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
+  business: { primary: '#F2F2F2', secondary: '#9A9A9A' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },

@@ -175,7 +175,7 @@ exports.submitExplainReport = (0, https_1.onCall)({
     //  - phrase:  phraseHashFor(phraseEn, langKey)            в phrase_explanations
     //  - mistake: mistakeHashFor(phraseEn=target, userAnswer, langKey) в mistake_explanations
     //  - quiz:    quizHashFor(phraseEn=correct, quizChoices, langKey) в quiz_explanations
-    const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
+    const langKey = (0, explain_prompts_1.resolvePromptLangKeySoft)(lang);
     const cacheCollection = kind === 'mistake'
         ? mistake_explain_cache_1.MISTAKE_COLLECTION
         : kind === 'quiz'

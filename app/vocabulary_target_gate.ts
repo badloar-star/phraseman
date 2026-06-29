@@ -1,6 +1,6 @@
 import type { Lang } from '../constants/i18n';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type VocabularyGateSurface = 'lesson_words' | 'irregular_verbs' | 'preposition_drill';
 
@@ -35,7 +35,7 @@ export function vocabularyContentAvailableForTarget(
   studyTarget?: RuntimeStudyTarget,
   surface: VocabularyGateSurface = 'lesson_words',
 ): boolean {
-  if (studyTarget !== 'fr') return true;
+  if (storageStudyTarget(studyTarget) !== 'fr') return true;
   void surface;
   return false;
 }
@@ -44,7 +44,7 @@ export function vocabularyContentGateForTarget(
   studyTarget?: RuntimeStudyTarget,
   surface: VocabularyGateSurface = 'lesson_words',
 ): VocabularyContentGate {
-  if (studyTarget !== 'fr') {
+  if (storageStudyTarget(studyTarget) !== 'fr') {
     return {
       enabled: true,
       studyTarget: 'en',

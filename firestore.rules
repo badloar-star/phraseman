@@ -1136,6 +1136,21 @@ service cloud.firestore {
       allow read, update, delete: if isAdmin();
     }
 
+    // ── AI safety flags (self-harm/suicide/abuse detected in AI dialogue) ──
+    // Пишет ТОЛЬКО сервер (Admin SDK обходит правила); читать/обрабатывать — только admin.
+    match /safety_flags/{docId} {
+      allow create: if false;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── Возраст + согласия (для accountability/учёта в админке) ──
+    // Документ ключуется stableId; владелец (его authUid привязан к users/{stableId})
+    // может писать свой; читать агрегаты — только admin.
+    match /user_consents/{userId} {
+      allow read: if isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
+      allow write: if isOwner(userId) || stableUserMatchesAuth(userId);
+    }
+
     // â”€â”€ Community pack reports (UGC content moderation, Apple Guideline 1.2) â”€â”€
     // Ð›ÑŽÐ±Ð¾Ð¹ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ ÑŽÐ·ÐµÑ€ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒÑÑ Ð½Ð° community-Ð¿Ð°Ðº;
     // Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ/Ð¼Ð¾Ð´ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ admin (Ñ‡ÐµÑ€ÐµÐ· admin/index.html â†’ custom claim).

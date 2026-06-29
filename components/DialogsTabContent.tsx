@@ -26,6 +26,7 @@ import {
   type DialogScenario,
 } from '../app/ai_dialog_scenarios';
 import { onAppEvent } from '../app/events';
+import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from '../app/ai_dialog_target_gate';
 import {
   getLessonsTabInitialState,
   loadLessonsTabStateFromStorage,
@@ -74,6 +75,8 @@ export default function DialogsTabContent({
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const impressionFiredRef = useRef(false);
+  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
+  const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
   // Две вкладки внутри Диалогов: «Уроки» (сценарии по уровню курса A1→B2) и
   // «Ситуации» (сложные сцены по уровню аккаунта). По запросу пользователя они
@@ -154,6 +157,10 @@ export default function DialogsTabContent({
   const openCourseScenario = useCallback(
     (scenario: DialogScenario) => {
       hapticTap();
+      if (!aiDialogGateOpen) {
+        Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+        return;
+      }
       const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, hasPremiumAccess);
       if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
@@ -167,12 +174,16 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [reachedLevel, hasPremiumAccess, router],
+    [aiDialogGateOpen, frenchGateCopy, reachedLevel, hasPremiumAccess, router],
   );
 
   const openChallengeScenario = useCallback(
     (scenario: DialogScenario) => {
       hapticTap();
+      if (!aiDialogGateOpen) {
+        Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+        return;
+      }
       const requiredLevel = scenario.requiredAccountLevel ?? 1;
       if (accountLevel < requiredLevel) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
@@ -207,7 +218,7 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [accountLevel, lang, router],
+    [accountLevel, aiDialogGateOpen, frenchGateCopy, lang, router],
   );
 
   // ── View-model для активной вкладки ───────────────────────────────────────
@@ -636,6 +647,47 @@ export default function DialogsTabContent({
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
     >
       {headerSlot}
+
+      {!aiDialogGateOpen && (
+        <View
+          style={{
+            marginTop: 12,
+            marginHorizontal: 14,
+            borderRadius: 14,
+            backgroundColor: t.bgCard,
+            borderWidth: 1,
+            borderColor: t.border,
+            padding: 13,
+            flexDirection: 'row',
+            gap: 11,
+            alignItems: 'flex-start',
+          }}
+        >
+          <View
+            style={{
+              width: 34,
+              height: 34,
+              borderRadius: 11,
+              backgroundColor: t.bgSurface,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Ionicons name="lock-closed-outline" size={18} color={t.textMuted} />
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} numberOfLines={2}>
+              {frenchGateCopy.title}
+            </Text>
+            <Text
+              style={{ color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), marginTop: 3 }}
+              numberOfLines={3}
+            >
+              {frenchGateCopy.body}
+            </Text>
+          </View>
+        </View>
+      )}
 
       {/* Сегментированный переключатель двух вкладок диалогов. */}
       <View

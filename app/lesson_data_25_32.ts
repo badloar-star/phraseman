@@ -5005,8 +5005,8 @@ export const LESSON_29_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson29_phrase_21',
     english: 'I used to forget keys, but now I check my bag',
-    russian: 'Раньше я забывал ключи, но сейчас проверяю сумку',
-    ukrainian: 'Раніше я забував ключі, але зараз перевіряю сумку',
+    russian: 'Раньше я забывал ключи, но сейчас проверяю свою сумку',
+    ukrainian: 'Раніше я забував ключі, але зараз перевіряю свою сумку',
     spanish: 'Antes olvidaba las llaves, pero ahora reviso mi bolso',
     words: [
       { text: 'Раньше', correct: 'Раньше', distractors: ['Рано', 'Раньший', 'Ранее-то', 'я', 'ты'] },
@@ -5016,6 +5016,7 @@ export const LESSON_29_PHRASES: LessonPhrase[] = [
       { text: 'но', correct: 'но', distractors: ['или', 'и', 'а', 'я', 'ты'] },
       { text: 'сейчас', correct: 'сейчас', distractors: ['сейчасный', 'сейчасы', 'сейчасить', 'я', 'ты'] },
       { text: 'проверяю', correct: 'проверяю', distractors: ['проверял', 'проверять', 'проверяет', 'я', 'ты'] },
+      { text: 'свою', correct: 'свою', distractors: ['свой', 'свои', 'свое', 'я', 'ты'] },
       { text: 'сумку', correct: 'сумку', distractors: ['сумка', 'сумки', 'сумкой', 'я', 'ты'] }
     ],
     wordsEn: [

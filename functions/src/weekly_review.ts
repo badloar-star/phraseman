@@ -226,7 +226,7 @@ type WeeklyReviewReplayDecision =
   | { kind: 'not_ready'; nextAllowedAtMs: number }
   | { kind: 'replay'; review: WeeklyReviewResult; nextAllowedAtMs: number; model: string };
 
-function readStoredWeeklyReview(raw: unknown): WeeklyReviewResult | null {
+function readStoredWeeklyReview(raw: unknown, lang?: SupportedLang): WeeklyReviewResult | null {
   const data = (raw ?? {}) as Record<string, unknown>;
   const greeting = text(data.greeting, 200);
   const paragraphs = (Array.isArray(data.paragraphs) ? data.paragraphs : [])
@@ -243,13 +243,30 @@ function readStoredWeeklyReview(raw: unknown): WeeklyReviewResult | null {
     })
     .filter((r) => r.microDiagnosisId && r.label);
 
-  return { greeting, paragraphs, recommendations };
+  const review = { greeting, paragraphs, recommendations };
+  if (lang) {
+    try {
+      assertAiJsonTextFieldsLanguage({
+        texts: [greeting, ...paragraphs],
+        targetLang: lang,
+        feature: 'weekly_review',
+      });
+    } catch (error) {
+      console.warn('weekly_review cached replay rejected by language guard', {
+        lang,
+        detail: String((error as Error)?.message ?? error).slice(0, 160),
+      });
+      return null;
+    }
+  }
+  return review;
 }
 
 function decideWeeklyReviewReplay(
   quotaData: Record<string, unknown>,
   expectedBriefingHash: string,
   nowMs: number,
+  lang?: SupportedLang,
 ): WeeklyReviewReplayDecision {
   const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
   if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
@@ -257,7 +274,7 @@ function decideWeeklyReviewReplay(
   }
 
   if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
-    const review = readStoredWeeklyReview(quotaData.lastReview);
+    const review = readStoredWeeklyReview(quotaData.lastReview, lang);
     if (review) {
       return {
         kind: 'replay',
@@ -266,6 +283,7 @@ function decideWeeklyReviewReplay(
         model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
       };
     }
+    if (lang) return { kind: 'open' };
   }
 
   return { kind: 'not_ready', nextAllowedAtMs };
@@ -275,12 +293,13 @@ async function readReplayOrAssertWindowOpen(
   authUid: string,
   stableUid: string,
   expectedBriefingHash: string,
+  lang: SupportedLang,
 ): Promise<Extract<WeeklyReviewReplayDecision, { kind: 'replay' }> | null> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('wkrq', authUid, stableUid));
   const snap = await ref.get();
-  const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now);
+  const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now, lang);
   if (decision.kind === 'open') return null;
   if (decision.kind === 'replay') return decision;
   if (decision.kind === 'not_ready') {
@@ -463,7 +482,7 @@ export const weeklyReviewGenerate = onCall({
   // Replay/window check BEFORE rate limits and the paid API call. Same briefing
   // retries get the cached server result; different briefing remains gated.
   const briefingHash = briefingHashForReplay(briefing);
-  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);
   if (replay) {
     return {
       ok: true,

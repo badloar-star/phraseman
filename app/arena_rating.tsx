@@ -28,7 +28,8 @@ import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank'
 import { emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { screenTextOnGradient } from '../constants/theme';
+import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { safeRouterBack } from './navigation_back';
 
 const RANK_NAMES: Record<RankTier, string> = {
@@ -79,6 +80,19 @@ const RANK_NAMES_PL: Record<RankTier, string> = {
   grandmaster: 'Arcymistrz', legend: 'Legenda',
 };
 
+function seasonRatingLabel(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'сезонный рейтинг',
+    uk: 'сезонний рейтинг',
+    es: 'rating de temporada',
+    'pt-BR': 'rating da temporada',
+    vi: 'điểm mùa',
+    id: 'rating musim',
+    tr: 'sezon puanı',
+    pl: 'ranking sezonu',
+  });
+}
+
 export function arenaTierLabel(tier: RankTier, lang: Lang): string {
   return triLang(lang, {
     ru: RANK_NAMES[tier],
@@ -124,7 +138,7 @@ function formatDate(ts: number): string {
   return `${day}.${month} ${hours}:${mins}`;
 }
 
-function MatchRow({ match, t, f, lang }: { match: MatchRecord; t: ReturnType<typeof useTheme>['theme']; f: ReturnType<typeof useTheme>['f']; lang: Lang }) {
+function MatchRow({ match, t, f, lang, themeMode }: { match: MatchRecord; t: ReturnType<typeof useTheme>['theme']; f: ReturnType<typeof useTheme>['f']; lang: Lang; themeMode: ThemeMode }) {
   const resultColor = match.won ? '#4CAF50' : '#F44336';
   const resultText = triLang(lang, {
     ru: match.won ? 'Победа' : 'Поражение',
@@ -158,7 +172,7 @@ function MatchRow({ match, t, f, lang }: { match: MatchRecord; t: ReturnType<typ
           {match.myScore} — {match.oppScore}
         </Text>
         <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-          <XpGainBadge amount={match.xpGained} visible={true} style={{ color: '#FFD700', fontSize: f.sub, fontWeight: '600' }} />
+          <XpGainBadge amount={match.xpGained} visible={true} style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.sub, fontWeight: '600' }} />
           <Text style={{ color: starDeltaColor, fontSize: f.sub, fontWeight: '600' }}>{starDeltaText}</Text>
         </View>
       </View>
@@ -360,8 +374,11 @@ export default function DuelRatingScreen() {
           <View style={styles.myCardRight}>
             {myRankIdx >= seasonRankIndex('legend', 'III') ? (
               <>
-                <Text style={{ color: '#FFD24A', fontSize: f.h2, fontWeight: '800' }}>
-                  {myProfile?.sr ?? 0} SR
+                <Text style={{ color: monoIcon(themeMode, '#FFD24A'), fontSize: f.h2, fontWeight: '800' }}>
+                  {myProfile?.sr ?? 0}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '700' }} numberOfLines={1}>
+                  {seasonRatingLabel(lang)}
                 </Text>
                 <TapScale onPress={() => { hapticTap(); router.push('/arena_season_leaderboard' as any); }}>
                   <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4, textDecorationLine: 'underline' }}>
@@ -466,7 +483,7 @@ export default function DuelRatingScreen() {
                       </Text>
                       {current ? (
                         <View style={styles.rankPickerYouBadge}>
-                          <Text style={{ color: '#1a1208', fontSize: f.caption - 1, fontWeight: '800' }}>
+                          <Text style={{ color: monoIcon(themeMode, '#1a1208', MONO_ICON.onLight), fontSize: f.caption - 1, fontWeight: '800' }}>
                             {triLang(lang, { ru: 'Твой', uk: 'Твій', es: 'Tuyo', 'pt-BR': 'Seu', vi: 'Của bạn', id: 'Milikmu', tr: 'Senin', pl: 'Twój' })}
                           </Text>
                         </View>
@@ -531,7 +548,7 @@ export default function DuelRatingScreen() {
           )}
 
           {matchHistory.map(match => (
-            <MatchRow key={match.id} match={match} t={t} f={f} lang={lang} />
+            <MatchRow key={match.id} match={match} t={t} f={f} lang={lang} themeMode={themeMode} />
           ))}
         </View>
       </ScrollView>

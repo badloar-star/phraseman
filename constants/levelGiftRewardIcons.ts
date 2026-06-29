@@ -65,6 +65,7 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   gold: require('../assets/images/shards/gold-80.webp'),
   coral: require('../assets/images/shards/coral-80.webp'),
   minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
+  business: require('../assets/images/shards/business-80.webp'),
   midnight: require('../assets/images/shards/midnight-80.webp'),
   ember: require('../assets/images/shards/ember-80.webp'),
   aurora: require('../assets/images/shards/aurora-80.webp'),

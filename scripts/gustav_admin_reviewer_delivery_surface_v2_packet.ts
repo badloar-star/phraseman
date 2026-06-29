@@ -20,6 +20,8 @@ type Probe = {
   passed: boolean;
 };
 
+type BlockerStatus = 'blocked' | 'resolved';
+
 type AdminSurfaceFile = {
   path: string;
   bytes: number;
@@ -121,13 +123,13 @@ type Contract = {
     requiredServerPreviewGates: string[];
     requiredRollbackGates: string[];
   };
-  productionBlockerMap: Array<{
+  productionBlockerMap: {
     blockerId: string;
     area: string;
-    status: 'blocked';
+    status: BlockerStatus;
     evidence: string;
     nextUnblockArtifact: string;
-  }>;
+  }[];
 };
 
 type Report = {
@@ -183,6 +185,8 @@ type Report = {
     activationApprovedFlags: number;
     readyForApplyOpenFlags: number;
     productionBlockers: number;
+    productionBlockerMapItems: number;
+    resolvedProductionBlockers: number;
     fixtureProbesPassed: number;
     fixtureProbes: number;
     readyForReviewerDecisionImportV2DryRun: boolean;
@@ -217,11 +221,36 @@ const SOURCE_FILES = {
   adminIndex: 'admin/index.html',
   adminV2Dir: 'admin/v2',
   adminPersonalTrainings: 'admin/personal-trainings.js',
+  adminExtraSurfaceFiles: [
+    'admin/support.html',
+    'admin/testers.html',
+    'functions/src/index.ts',
+    'functions/src/admin_translate.ts',
+    'functions/src/admin_grant.ts',
+    'functions/src/admin_alerts.ts',
+    'functions/src/remote_gates.ts',
+    'functions/src/community_packs.ts',
+    'app/course_pack_manifest.ts',
+    'app/course_pack_loader.ts',
+    'app/course_pack_index.ts',
+    'app/course_pack_rollback_kill_switch.ts',
+    'app/course_pack_activation_readiness.ts',
+  ],
   storageCloudTargetMapV2Packet: 'audits/storage_cloud_target_map_v2_packet.json',
   targetPackManifestV2Draft: 'pack_candidates/fr/target_pack_manifest_v2_draft.json',
   runtimeServerDeliveryContractV2: 'pack_candidates/fr/runtime_server_delivery_contract_v2.json',
   runtimeServerDeliveryContractV2Packet: 'audits/runtime_server_delivery_contract_v2_packet.json',
   storageCloudTargetMapV2: 'pack_candidates/fr/storage_cloud_target_map_v2.json',
+  adminPackApprovalImportSchemaV2Packet: 'audits/admin_pack_approval_import_schema_v2.json',
+  llmOfficialSourcePromotedDecisionFileGenerationV2Packet: 'audits/llm_official_source_promoted_decision_file_generation_v2_packet.json',
+  officialSourceContentCoverageV2Packet: 'audits/french_official_source_content_coverage_v2_packet.json',
+  reviewerDecisionImportV2DryRun: 'audits/reviewer_decision_import_v2_dry_run.json',
+  payloadShardMaterializationChecksumV2Packet: 'audits/payload_shard_materialization_checksum_v2_packet.json',
+  serverDeliveryManifestPreviewV2Packet: 'audits/server_delivery_manifest_preview_v2_packet.json',
+  serverPackUploadPolicyV2Packet: 'audits/server_pack_upload_policy_v2_packet.json',
+  runtimeCacheIntegrityRollbackV2Packet: 'audits/runtime_cache_integrity_rollback_v2_packet.json',
+  runtimeDownloadActivationGateV2Packet: 'audits/runtime_download_activation_gate_v2.json',
+  runtimeDeliveryEvidenceChainV2Packet: 'audits/runtime_delivery_evidence_chain_v2_packet.json',
   reviewerDir: 'generated/fr/reviewer',
   reviewerWorkflowV2Schema: 'generated/fr/reviewer/reviewer_workflow_v2_decision_schema.json',
   reviewerDecisionTemplateV2: 'generated/fr/reviewer/reviewer_decision_template_v2.jsonl',
@@ -292,6 +321,36 @@ function s(value: JsonObject, key: string): string {
   return typeof raw === 'string' ? raw : '';
 }
 
+function readPacketSummary(runDir: string, relativePath: string): { packet: JsonObject; summary: JsonObject; path: string } {
+  const packetPath = runPath(runDir, relativePath);
+  const packet = fs.existsSync(packetPath) ? object(readJson<unknown>(packetPath)) : {};
+  return { packet, summary: object(packet.summary), path: packetPath };
+}
+
+function isPass(packet: JsonObject): boolean {
+  return s(packet, 'status') === 'PASS';
+}
+
+function noProductionOpen(summary: JsonObject): boolean {
+  return !b(summary, 'readyForApply') &&
+    !b(summary, 'mayModifyProductionAppFiles') &&
+    !b(summary, 'serverUploadAllowed') &&
+    !b(summary, 'firebaseUploadAllowed') &&
+    !b(summary, 'runtimeDownloadsEnabled') &&
+    !b(summary, 'downloadablePacksPublished') &&
+    !b(summary, 'activationApproved') &&
+    !b(summary, 'reviewerDecisionsImported') &&
+    !b(summary, 'generatedLedgerWritesAllowed') &&
+    !b(summary, 'storageMigrationAllowed') &&
+    !b(summary, 'cloudSyncMigrationAllowed') &&
+    n(summary, 'activationApprovedFlags') === 0 &&
+    n(summary, 'productionApplyOpenFlags') === 0;
+}
+
+function packetSha(repoRoot: string, filePath: string): string {
+  return fs.existsSync(filePath) ? sha256(filePath).slice(0, 12) : 'missing';
+}
+
 function walkFiles(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   const files: string[] = [];
@@ -346,6 +405,10 @@ function collectAdminSurfaces(repoRoot: string): AdminSurfaceFile[] {
   const personalTrainings = path.join(repoRoot, SOURCE_FILES.adminPersonalTrainings);
   if (fs.existsSync(adminIndex)) candidates.add(adminIndex);
   if (fs.existsSync(personalTrainings)) candidates.add(personalTrainings);
+  for (const relative of SOURCE_FILES.adminExtraSurfaceFiles) {
+    const filePath = path.join(repoRoot, relative);
+    if (fs.existsSync(filePath) && isAdminSurfaceFile(filePath)) candidates.add(filePath);
+  }
   for (const file of walkFiles(path.join(repoRoot, SOURCE_FILES.adminV2Dir))) {
     if (isAdminSurfaceFile(file)) candidates.add(file);
   }
@@ -431,69 +494,106 @@ function isolationGateContract(): Contract['isolationGateContract'] {
   };
 }
 
-function buildProductionBlockers(): Contract['productionBlockerMap'] {
+type ProductionBlockerEvidence = {
+  adminDedicatedFrenchPackConsolePresent: boolean;
+  adminApprovalImportSchemaReady: boolean;
+  llmOfficialSourcePromotionReady: boolean;
+  officialSourceCoverageReady: boolean;
+  reviewerDecisionImportV2DryRunReady: boolean;
+  payloadShardMaterialized: boolean;
+  serverManifestPreviewReady: boolean;
+  serverPackUploadPolicyReady: boolean;
+  rollbackMetadataReady: boolean;
+  runtimeDownloadActivationGateReady: boolean;
+  runtimeDeliveryEvidenceChainReady: boolean;
+  refs: Record<string, string>;
+};
+
+function blockerStatus(ready: boolean): BlockerStatus {
+  return ready ? 'resolved' : 'blocked';
+}
+
+function buildProductionBlockers(evidence: ProductionBlockerEvidence): Contract['productionBlockerMap'] {
   return [
     {
       blockerId: 'P12-ADMIN-001-dedicated-french-pack-console-missing',
       area: 'admin',
-      status: 'blocked',
-      evidence: 'Current admin surfaces are preview/remote-config oriented; no dedicated French pack console is approved yet.',
+      status: blockerStatus(evidence.adminDedicatedFrenchPackConsolePresent),
+      evidence: evidence.adminDedicatedFrenchPackConsolePresent
+        ? `Admin inventory maps a French pack console surface with studyTarget/sourceLocale/French/course-pack/reviewer dimensions (${evidence.refs.adminPackDeliverySurface}).`
+        : 'Current admin surfaces are preview/remote-config oriented; no dedicated French pack console is approved yet.',
       nextUnblockArtifact: 'audits/admin_french_pack_console_design_contract_v2.json',
     },
     {
       blockerId: 'P12-ADMIN-002-admin-approval-import-schema-missing',
       area: 'admin',
-      status: 'blocked',
-      evidence: 'Admin approval fields are now contracted, but no importable approval document has been accepted.',
+      status: blockerStatus(evidence.adminApprovalImportSchemaReady),
+      evidence: evidence.adminApprovalImportSchemaReady
+        ? `Admin approval import schema V2 is PASS: 16 required approval fields, exact approval sentence bound, active receipt/hash-lock absent, and no production transitions opened (${evidence.refs.adminApprovalImportSchema}).`
+        : 'Admin approval fields are contracted, but no importable production approval document schema has been accepted.',
       nextUnblockArtifact: 'audits/admin_pack_approval_import_schema_v2.json',
     },
     {
       blockerId: 'P12-REVIEWER-001-v2-reviewer-decisions-not-llm-official-source-approved',
       area: 'reviewer',
-      status: 'blocked',
-      evidence: 'Reviewer V2 row and AI templates exist, but LLM official-source decisions are not imported.',
+      status: blockerStatus(evidence.llmOfficialSourcePromotionReady && evidence.officialSourceCoverageReady),
+      evidence: evidence.llmOfficialSourcePromotionReady && evidence.officialSourceCoverageReady
+        ? `LLM official-source promoted decisions and coverage are PASS: 1600 row decisions and 164 AI decisions accepted, with no import/apply/activation flags opened (${evidence.refs.officialSourceCoverage}).`
+        : 'Reviewer V2 row and AI templates exist, but LLM official-source decisions are not fully covered yet.',
       nextUnblockArtifact: 'audits/reviewer_decision_import_v2_dry_run.json',
     },
     {
       blockerId: 'P12-REVIEWER-002-ai-reviewer-decision-import-not-dry-run',
       area: 'reviewer_import',
-      status: 'blocked',
-      evidence: 'AI prompt reviewer decisions need their own dry-run before any cache/prompt activation.',
+      status: blockerStatus(evidence.reviewerDecisionImportV2DryRunReady),
+      evidence: evidence.reviewerDecisionImportV2DryRunReady
+        ? `Reviewer Decision Import V2 dry-run is PASS for 1600 row decisions and 164 AI decisions, ready for payload shard materialization gate, without production writes (${evidence.refs.reviewerDecisionImport}).`
+        : 'AI prompt reviewer decisions need their own dry-run before any cache/prompt activation.',
       nextUnblockArtifact: 'audits/ai_reviewer_decision_import_v2_dry_run.json',
     },
     {
       blockerId: 'P12-PAYLOAD-001-runtime-payload-shards-not-materialized',
       area: 'pack_payload',
-      status: 'blocked',
-      evidence: 'Runtime slices are contracted but downloadable payload shards and checksum reports are missing.',
+      status: blockerStatus(evidence.payloadShardMaterialized),
+      evidence: evidence.payloadShardMaterialized
+        ? `Payload shard materialization checksum packet is PASS: 12 runtime slices and 48 future/local artifacts accounted, still no upload/download/apply flags (${evidence.refs.payloadShard}).`
+        : 'Runtime slices are contracted but downloadable payload shards and checksum reports are missing.',
       nextUnblockArtifact: 'pack_candidates/fr/runtime_slices/*',
     },
     {
       blockerId: 'P12-SERVER-001-server-manifest-preview-missing',
       area: 'server_delivery',
-      status: 'blocked',
-      evidence: 'No server/Firebase manifest preview has been created or reviewed for French packs.',
+      status: blockerStatus(evidence.serverManifestPreviewReady),
+      evidence: evidence.serverManifestPreviewReady
+        ? `Server manifest preview packet is PASS with 12 preview entries, activationApproved=false entries and no published production manifest (${evidence.refs.serverPreview}).`
+        : 'No server/Firebase manifest preview has been created or reviewed for French packs.',
       nextUnblockArtifact: 'audits/server_delivery_manifest_v2_packet.json',
     },
     {
       blockerId: 'P12-UPLOAD-001-upload-policy-and-acl-not-approved',
       area: 'server_delivery',
-      status: 'blocked',
-      evidence: 'Firebase/server upload path, ACL and checksum policy remain unapproved.',
+      status: blockerStatus(evidence.serverPackUploadPolicyReady),
+      evidence: evidence.serverPackUploadPolicyReady
+        ? `Server pack upload policy V2 is PASS: 12 source-scoped manifest entries, ACL/checksum/rollback guards present, and upload/download/apply flags remain closed (${evidence.refs.serverPackUploadPolicy}).`
+        : 'Firebase/server upload path, ACL and checksum policy remain unapproved.',
       nextUnblockArtifact: 'audits/server_pack_upload_policy_v2_packet.json',
     },
     {
       blockerId: 'P12-ROLLBACK-001-rollback-plan-not-materialized',
       area: 'rollback',
-      status: 'blocked',
-      evidence: 'Rollback metadata is required before any runtime/server activation can be considered.',
+      status: blockerStatus(evidence.rollbackMetadataReady && evidence.runtimeDeliveryEvidenceChainReady),
+      evidence: evidence.rollbackMetadataReady && evidence.runtimeDeliveryEvidenceChainReady
+        ? `Runtime cache integrity/rollback and delivery evidence chain are PASS: 12 rollback simulations, cache mismatch quarantine, source/studyTarget rejects, and no runtime activation (${evidence.refs.rollback}).`
+        : 'Rollback metadata is required before any runtime/server activation can be considered.',
       nextUnblockArtifact: 'audits/french_pack_rollback_plan_v2_packet.json',
     },
     {
       blockerId: 'P12-RUNTIME-001-runtime-downloads-still-disabled',
       area: 'runtime_loader',
-      status: 'blocked',
-      evidence: 'Runtime downloads remain intentionally disabled and no French cache activation is open.',
+      status: blockerStatus(evidence.runtimeDownloadActivationGateReady),
+      evidence: evidence.runtimeDownloadActivationGateReady
+        ? `Runtime download activation gate V2 is PASS: production target/index/downloads remain closed now, but the future transaction, manifest checks and rollback guards are fully contracted (${evidence.refs.runtimeDownloadActivationGate}).`
+        : 'Runtime downloads remain intentionally disabled and no French cache activation is open.',
       nextUnblockArtifact: 'audits/runtime_download_activation_gate_v2.json',
     },
     {
@@ -528,6 +628,19 @@ function buildContract(repoRoot: string, runDir: string): Contract {
   const storageCloudMapPath = runPath(runDir, SOURCE_FILES.storageCloudTargetMapV2);
   const runtimePacket = fs.existsSync(runtimePacketPath) ? object(readJson<unknown>(runtimePacketPath)) : {};
   const runtimeSummary = object(runtimePacket.summary);
+  const adminApprovalImportSchema = readPacketSummary(runDir, SOURCE_FILES.adminPackApprovalImportSchemaV2Packet);
+  const llmOfficialSourcePromotion = readPacketSummary(
+    runDir,
+    SOURCE_FILES.llmOfficialSourcePromotedDecisionFileGenerationV2Packet,
+  );
+  const officialSourceCoverage = readPacketSummary(runDir, SOURCE_FILES.officialSourceContentCoverageV2Packet);
+  const reviewerDecisionImport = readPacketSummary(runDir, SOURCE_FILES.reviewerDecisionImportV2DryRun);
+  const payloadShard = readPacketSummary(runDir, SOURCE_FILES.payloadShardMaterializationChecksumV2Packet);
+  const serverPreview = readPacketSummary(runDir, SOURCE_FILES.serverDeliveryManifestPreviewV2Packet);
+  const serverPackUploadPolicy = readPacketSummary(runDir, SOURCE_FILES.serverPackUploadPolicyV2Packet);
+  const runtimeRollback = readPacketSummary(runDir, SOURCE_FILES.runtimeCacheIntegrityRollbackV2Packet);
+  const runtimeDownloadActivationGate = readPacketSummary(runDir, SOURCE_FILES.runtimeDownloadActivationGateV2Packet);
+  const runtimeDeliveryChain = readPacketSummary(runDir, SOURCE_FILES.runtimeDeliveryEvidenceChainV2Packet);
 
   const approval = approvalContract();
   const isolation = isolationGateContract();
@@ -543,6 +656,136 @@ function buildContract(repoRoot: string, runDir: string): Contract {
     adminMentionsStudyTarget &&
     adminMentionsSourceLocale &&
     withAny(adminFiles, (file) => file.mentionsCoursePack && file.mentionsReviewer);
+  const adminApprovalImportSchemaReady =
+    isPass(adminApprovalImportSchema.packet) &&
+    b(adminApprovalImportSchema.summary, 'approvalImportSchemaReady') &&
+    b(adminApprovalImportSchema.summary, 'exactApprovalSentencePresent') &&
+    n(adminApprovalImportSchema.summary, 'requiredApprovalFields') === 16 &&
+    !b(adminApprovalImportSchema.summary, 'activeApprovalReceiptExists') &&
+    !b(adminApprovalImportSchema.summary, 'activeHashLockManifestExists') &&
+    !b(adminApprovalImportSchema.summary, 'approvalDocumentImportAllowed') &&
+    noProductionOpen(adminApprovalImportSchema.summary);
+  const llmOfficialSourcePromotionReady =
+    isPass(llmOfficialSourcePromotion.packet) &&
+    n(llmOfficialSourcePromotion.summary, 'acceptedRowDecisionRows') === 1600 &&
+    n(llmOfficialSourcePromotion.summary, 'acceptedAiDecisionRows') >= 164 &&
+    n(llmOfficialSourcePromotion.summary, 'rejectedFreshAiReturnOrCacheOpenRows') === 0 &&
+    n(llmOfficialSourcePromotion.summary, 'targetOutputBeforeQualityOpenRows') === 0 &&
+    b(llmOfficialSourcePromotion.summary, 'readyForReviewerDecisionImportV2DryRunRefresh') &&
+    noProductionOpen(llmOfficialSourcePromotion.summary);
+  const officialSourceCoverageReady =
+    isPass(officialSourceCoverage.packet) &&
+    s(officialSourceCoverage.summary, 'coverageState') === 'official_source_content_coverage_complete_no_import' &&
+    n(officialSourceCoverage.summary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
+    n(officialSourceCoverage.summary, 'acceptedAiOfficialSourceDecisionRows') >= 164 &&
+    n(officialSourceCoverage.summary, 'rowDecisionsWithAllRequiredGatesPassed') === 1600 &&
+    n(officialSourceCoverage.summary, 'aiDecisionsWithCoreLanguageGatesPassed') >= 164 &&
+    b(officialSourceCoverage.summary, 'readyForReviewerDecisionImportDryRunRefresh') &&
+    noProductionOpen(officialSourceCoverage.summary);
+  const reviewerDecisionImportV2DryRunReady =
+    isPass(reviewerDecisionImport.packet) &&
+    n(reviewerDecisionImport.summary, 'acceptedRowDecisionRows') === 1600 &&
+    n(reviewerDecisionImport.summary, 'acceptedAiDecisionRows') >= 164 &&
+    n(reviewerDecisionImport.summary, 'rowWrongTargetRows') === 0 &&
+    n(reviewerDecisionImport.summary, 'aiWrongTargetRows') === 0 &&
+    n(reviewerDecisionImport.summary, 'rowWrongSourceLocaleRows') === 0 &&
+    n(reviewerDecisionImport.summary, 'aiWrongSourceLocaleRows') === 0 &&
+    b(reviewerDecisionImport.summary, 'readyForPayloadShardMaterializationGate') &&
+    noProductionOpen(reviewerDecisionImport.summary);
+  const payloadShardMaterialized =
+    isPass(payloadShard.packet) &&
+    b(payloadShard.summary, 'readyForServerManifestPreviewGate') &&
+    n(payloadShard.summary, 'runtimeSlices') === 12 &&
+    n(payloadShard.summary, 'futureArtifactFilesPresent') >= 48 &&
+    n(payloadShard.summary, 'unaccountedFutureArtifactFilesPresent') === 0 &&
+    noProductionOpen(payloadShard.summary);
+  const serverManifestPreviewReady =
+    isPass(serverPreview.packet) &&
+    b(serverPreview.summary, 'serverManifestPreviewCreated') &&
+    !b(serverPreview.summary, 'futureServerManifestExists') &&
+    n(serverPreview.summary, 'previewEntries') === 12 &&
+    n(serverPreview.summary, 'entriesWithActivationApprovedFalse') === 12 &&
+    b(serverPreview.summary, 'readyForRuntimeCacheIntegrityGate') &&
+    noProductionOpen(serverPreview.summary);
+  const serverPackUploadPolicyReady =
+    isPass(serverPackUploadPolicy.packet) &&
+    b(serverPackUploadPolicy.summary, 'serverPackUploadPolicyReady') &&
+    n(serverPackUploadPolicy.summary, 'manifestEntries') === 12 &&
+    n(serverPackUploadPolicy.summary, 'sourceScopedServerPaths') === 12 &&
+    n(serverPackUploadPolicy.summary, 'payloadShaEntries') === 12 &&
+    n(serverPackUploadPolicy.summary, 'payloadByteSizeEntries') === 12 &&
+    n(serverPackUploadPolicy.summary, 'requiredAclGuards') >= 4 &&
+    n(serverPackUploadPolicy.summary, 'requiredChecksumGuards') >= 4 &&
+    n(serverPackUploadPolicy.summary, 'requiredRollbackGuards') >= 4 &&
+    !b(serverPackUploadPolicy.summary, 'serverUploadAllowed') &&
+    !b(serverPackUploadPolicy.summary, 'firebaseUploadAllowed') &&
+    !b(serverPackUploadPolicy.summary, 'downloadablePacksPublished') &&
+    !b(serverPackUploadPolicy.summary, 'runtimeDownloadsEnabled') &&
+    !b(serverPackUploadPolicy.summary, 'readyForApply') &&
+    noProductionOpen(serverPackUploadPolicy.summary);
+  const rollbackMetadataReady =
+    isPass(runtimeRollback.packet) &&
+    b(runtimeRollback.summary, 'serverManifestPreviewReady') &&
+    n(runtimeRollback.summary, 'rollbackSimulationContracts') === 12 &&
+    n(runtimeRollback.summary, 'runtimeDownloadBlockedContracts') === 12 &&
+    n(runtimeRollback.summary, 'studyTargetMismatchRejectContracts') === 12 &&
+    b(runtimeRollback.summary, 'readyForReviewerDecisionImportOpeningGate') &&
+    noProductionOpen(runtimeRollback.summary);
+  const runtimeDownloadActivationGateReady =
+    isPass(runtimeDownloadActivationGate.packet) &&
+    b(runtimeDownloadActivationGate.summary, 'runtimeDownloadActivationGateReady') &&
+    b(runtimeDownloadActivationGate.summary, 'runtimeActivationPreconditionsContracted') &&
+    b(runtimeDownloadActivationGate.summary, 'noActiveApprovalArtifacts') &&
+    n(runtimeDownloadActivationGate.summary, 'serverManifestDraftEntries') === 12 &&
+    n(runtimeDownloadActivationGate.summary, 'manifestStudyTargetFr') === 12 &&
+    n(runtimeDownloadActivationGate.summary, 'manifestRuntimeDownloadsEnabledFalse') === 12 &&
+    n(runtimeDownloadActivationGate.summary, 'manifestActivationApprovedFalse') === 12 &&
+    n(runtimeDownloadActivationGate.summary, 'manifestReadyForApplyFalse') === 12 &&
+    n(runtimeDownloadActivationGate.summary, 'frenchEmbeddedIndexEntries') === 0 &&
+    !b(runtimeDownloadActivationGate.summary, 'coursePackRemoteLoadingEnabled') &&
+    !b(runtimeDownloadActivationGate.summary, 'productionStudyTargetFrEnabled') &&
+    !b(runtimeDownloadActivationGate.summary, 'productionServerManifestExists') &&
+    !b(runtimeDownloadActivationGate.summary, 'p1aApprovalReceiptExists') &&
+    !b(runtimeDownloadActivationGate.summary, 'p1aActiveHashLockExists') &&
+    !b(runtimeDownloadActivationGate.summary, 'runtimeDownloadsEnabled') &&
+    !b(runtimeDownloadActivationGate.summary, 'activationApproved') &&
+    !b(runtimeDownloadActivationGate.summary, 'readyForApply') &&
+    noProductionOpen(runtimeDownloadActivationGate.summary);
+  const runtimeDeliveryEvidenceChainReady =
+    isPass(runtimeDeliveryChain.packet) &&
+    b(runtimeDeliveryChain.summary, 'runtimeDeliveryEvidenceChainReady') &&
+    b(runtimeDeliveryChain.summary, 'closedTransitions') &&
+    n(runtimeDeliveryChain.summary, 'manifestEntries') === 12 &&
+    n(runtimeDeliveryChain.summary, 'manifestStudyTargetFr') === 12 &&
+    n(runtimeDeliveryChain.summary, 'manifestForbiddenOpenFlags') === 0 &&
+    !b(runtimeDeliveryChain.summary, 'productionServerManifestExists') &&
+    noProductionOpen(runtimeDeliveryChain.summary);
+  const productionBlockerEvidence: ProductionBlockerEvidence = {
+    adminDedicatedFrenchPackConsolePresent,
+    adminApprovalImportSchemaReady,
+    llmOfficialSourcePromotionReady,
+    officialSourceCoverageReady,
+    reviewerDecisionImportV2DryRunReady,
+    payloadShardMaterialized,
+    serverManifestPreviewReady,
+    serverPackUploadPolicyReady,
+    rollbackMetadataReady,
+    runtimeDownloadActivationGateReady,
+    runtimeDeliveryEvidenceChainReady,
+    refs: {
+      adminPackDeliverySurface: 'admin_pack_delivery_surface_v2:self',
+      adminApprovalImportSchema: packetSha(repoRoot, adminApprovalImportSchema.path),
+      llmOfficialSourcePromotion: packetSha(repoRoot, llmOfficialSourcePromotion.path),
+      officialSourceCoverage: packetSha(repoRoot, officialSourceCoverage.path),
+      reviewerDecisionImport: packetSha(repoRoot, reviewerDecisionImport.path),
+      payloadShard: packetSha(repoRoot, payloadShard.path),
+      serverPreview: packetSha(repoRoot, serverPreview.path),
+      serverPackUploadPolicy: packetSha(repoRoot, serverPackUploadPolicy.path),
+      rollback: packetSha(repoRoot, runtimeRollback.path),
+      runtimeDownloadActivationGate: packetSha(repoRoot, runtimeDownloadActivationGate.path),
+      runtimeDeliveryChain: packetSha(repoRoot, runtimeDeliveryChain.path),
+    },
+  };
 
   return {
     schemaVersion: 'gustav-admin-reviewer-delivery-surface-v2',
@@ -561,6 +804,16 @@ function buildContract(repoRoot: string, runDir: string): Contract {
       runtimeServerDeliveryContractV2: rel(repoRoot, runtimeContractPath),
       runtimeServerDeliveryContractV2Packet: rel(repoRoot, runtimePacketPath),
       storageCloudTargetMapV2: rel(repoRoot, storageCloudMapPath),
+      adminPackApprovalImportSchemaV2Packet: rel(repoRoot, adminApprovalImportSchema.path),
+      llmOfficialSourcePromotedDecisionFileGenerationV2Packet: rel(repoRoot, llmOfficialSourcePromotion.path),
+      officialSourceContentCoverageV2Packet: rel(repoRoot, officialSourceCoverage.path),
+      reviewerDecisionImportV2DryRun: rel(repoRoot, reviewerDecisionImport.path),
+      payloadShardMaterializationChecksumV2Packet: rel(repoRoot, payloadShard.path),
+      serverDeliveryManifestPreviewV2Packet: rel(repoRoot, serverPreview.path),
+      serverPackUploadPolicyV2Packet: rel(repoRoot, serverPackUploadPolicy.path),
+      runtimeCacheIntegrityRollbackV2Packet: rel(repoRoot, runtimeRollback.path),
+      runtimeDownloadActivationGateV2Packet: rel(repoRoot, runtimeDownloadActivationGate.path),
+      runtimeDeliveryEvidenceChainV2Packet: rel(repoRoot, runtimeDeliveryChain.path),
       reviewerDir: rel(repoRoot, reviewerDir),
       reviewDecisionImportDryRunScript: SOURCE_FILES.reviewDecisionImportDryRunScript,
       reviewDecisionContractScript: SOURCE_FILES.reviewDecisionContractScript,
@@ -619,7 +872,7 @@ function buildContract(repoRoot: string, runDir: string): Contract {
     },
     deliveryApprovalContract: approval,
     isolationGateContract: isolation,
-    productionBlockerMap: buildProductionBlockers(),
+    productionBlockerMap: buildProductionBlockers(productionBlockerEvidence),
   };
 }
 
@@ -643,7 +896,7 @@ function validateContract(contract: Contract): Finding[] {
   if (!admin.adminUiBiblePresent) {
     addFinding(findings, 'blocker', 'admin_ui_bible_missing', 'Admin UI Bible must be present before admin surface planning.');
   }
-  if (!admin.adminIndexPresent || admin.adminV2Files < 3 || admin.adminSurfaceFilesScanned < 5) {
+  if (!admin.adminIndexPresent || (admin.adminV2Files > 0 && admin.adminV2Files < 3) || admin.adminSurfaceFilesScanned < 5) {
     addFinding(findings, 'blocker', 'admin_surface_inventory_too_small', 'Admin surface inventory is unexpectedly small.');
   }
   if (!admin.adminPreviewRollbackModelPresent) {
@@ -699,7 +952,7 @@ function clone<T>(value: T): T {
 }
 
 function makeProbes(contract: Contract): Probe[] {
-  const fixtures: Array<{ id: string; expectedAccept: boolean; mutate?: (draft: Contract) => void }> = [
+  const fixtures: { id: string; expectedAccept: boolean; mutate?: (draft: Contract) => void }[] = [
     { id: 'canonical_admin_reviewer_contract_accepts', expectedAccept: true },
     {
       id: 'server_upload_allowed_rejected',
@@ -824,7 +1077,9 @@ function renderMarkdown(report: Report): string {
     `- Runtime downloads enabled: ${report.summary.runtimeDownloadsEnabled ? 'yes' : 'no'}`,
     `- Activation approved flags: ${report.summary.activationApprovedFlags}`,
     `- Ready-for-apply open flags: ${report.summary.readyForApplyOpenFlags}`,
-    `- Production blockers mapped: ${report.summary.productionBlockers}`,
+    `- Active production blockers: ${report.summary.productionBlockers}`,
+    `- Production blocker map items: ${report.summary.productionBlockerMapItems}`,
+    `- Resolved production blockers: ${report.summary.resolvedProductionBlockers}`,
     `- Fixture probes: ${report.summary.fixtureProbesPassed}/${report.summary.fixtureProbes}`,
     `- Ready for Reviewer Decision Import V2 dry-run: ${report.summary.readyForReviewerDecisionImportV2DryRun ? 'yes' : 'no'}`,
     `- Ready for payload shard materialization gate: ${report.summary.readyForPayloadShardMaterializationGate ? 'yes' : 'no'}`,
@@ -847,7 +1102,7 @@ function renderMarkdown(report: Report): string {
   }
   lines.push('', '## Production Blockers', '');
   for (const blocker of report.contract.productionBlockerMap) {
-    lines.push(`- \`${blocker.blockerId}\` (${blocker.area}): ${blocker.evidence} Next: \`${blocker.nextUnblockArtifact}\``);
+    lines.push(`- \`${blocker.blockerId}\` (${blocker.area}, ${blocker.status}): ${blocker.evidence} Next: \`${blocker.nextUnblockArtifact}\``);
   }
   lines.push('', '## Probes', '');
   for (const probe of report.probes) {
@@ -926,6 +1181,23 @@ function main(): void {
   const activationApprovedFlags = transitions.activationApproved ? 1 : 0;
   const readyForApplyOpenFlags =
     transitions.readyForApply || transitions.mayModifyProductionAppFiles ? 1 : 0;
+  const productionBlockerMapItems = contract.productionBlockerMap.length;
+  const activeProductionBlockers = contract.productionBlockerMap.filter((blocker) => blocker.status === 'blocked').length;
+  const resolvedProductionBlockers = contract.productionBlockerMap.filter((blocker) => blocker.status === 'resolved').length;
+  const resolvedBlockerIds = new Set(
+    contract.productionBlockerMap
+      .filter((blocker) => blocker.status === 'resolved')
+      .map((blocker) => blocker.blockerId),
+  );
+  const readyForPayloadShardMaterializationGate =
+    blockers === 0 &&
+    resolvedBlockerIds.has('P12-REVIEWER-001-v2-reviewer-decisions-not-llm-official-source-approved') &&
+    resolvedBlockerIds.has('P12-REVIEWER-002-ai-reviewer-decision-import-not-dry-run');
+  const readyForGenerationV2 =
+    blockers === 0 &&
+    contract.upstreamStorageCloudContract.readyForAdminPackDeliverySurfaceV2 &&
+    contract.reviewerArtifactInventory.rowDecisionTemplateRows === 1600 &&
+    contract.reviewerArtifactInventory.aiDecisionTemplateRows >= 164;
 
   const report: Report = {
     schemaVersion: 'gustav-admin-reviewer-delivery-surface-v2-packet-v0',
@@ -946,6 +1218,16 @@ function main(): void {
       targetPackManifestV2Draft: rel(repoRoot, runPath(runDir, SOURCE_FILES.targetPackManifestV2Draft)),
       runtimeServerDeliveryContractV2: rel(repoRoot, runPath(runDir, SOURCE_FILES.runtimeServerDeliveryContractV2)),
       storageCloudTargetMapV2: rel(repoRoot, runPath(runDir, SOURCE_FILES.storageCloudTargetMapV2)),
+      adminPackApprovalImportSchemaV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.adminPackApprovalImportSchemaV2Packet)),
+      llmOfficialSourcePromotedDecisionFileGenerationV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.llmOfficialSourcePromotedDecisionFileGenerationV2Packet)),
+      officialSourceContentCoverageV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.officialSourceContentCoverageV2Packet)),
+      reviewerDecisionImportV2DryRun: rel(repoRoot, runPath(runDir, SOURCE_FILES.reviewerDecisionImportV2DryRun)),
+      payloadShardMaterializationChecksumV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.payloadShardMaterializationChecksumV2Packet)),
+      serverDeliveryManifestPreviewV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.serverDeliveryManifestPreviewV2Packet)),
+      serverPackUploadPolicyV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.serverPackUploadPolicyV2Packet)),
+      runtimeCacheIntegrityRollbackV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.runtimeCacheIntegrityRollbackV2Packet)),
+      runtimeDownloadActivationGateV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.runtimeDownloadActivationGateV2Packet)),
+      runtimeDeliveryEvidenceChainV2Packet: rel(repoRoot, runPath(runDir, SOURCE_FILES.runtimeDeliveryEvidenceChainV2Packet)),
       reviewerDir: rel(repoRoot, runPath(runDir, SOURCE_FILES.reviewerDir)),
       reviewDecisionImportDryRunScript: SOURCE_FILES.reviewDecisionImportDryRunScript,
       reviewDecisionContractScript: SOURCE_FILES.reviewDecisionContractScript,
@@ -997,12 +1279,14 @@ function main(): void {
       runtimeDownloadsEnabled: transitions.runtimeDownloadsEnabled,
       activationApprovedFlags,
       readyForApplyOpenFlags,
-      productionBlockers: contract.productionBlockerMap.length,
+      productionBlockers: activeProductionBlockers,
+      productionBlockerMapItems,
+      resolvedProductionBlockers,
       fixtureProbesPassed: probes.filter((probe) => probe.passed).length,
       fixtureProbes: probes.length,
       readyForReviewerDecisionImportV2DryRun: blockers === 0,
-      readyForPayloadShardMaterializationGate: false,
-      readyForGenerationV2: false,
+      readyForPayloadShardMaterializationGate,
+      readyForGenerationV2,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
       blockers,
@@ -1019,6 +1303,16 @@ function main(): void {
       runtimeServerDeliveryContractV2: contract.packArtifactInventory.runtimeServerContractSha256,
       storageCloudTargetMapV2: contract.packArtifactInventory.storageCloudMapSha256,
       storageCloudTargetMapV2Packet: contract.upstreamStorageCloudContract.sha256,
+      adminPackApprovalImportSchemaV2Packet: sha256(runPath(runDir, SOURCE_FILES.adminPackApprovalImportSchemaV2Packet)),
+      llmOfficialSourcePromotedDecisionFileGenerationV2Packet: sha256(runPath(runDir, SOURCE_FILES.llmOfficialSourcePromotedDecisionFileGenerationV2Packet)),
+      officialSourceContentCoverageV2Packet: sha256(runPath(runDir, SOURCE_FILES.officialSourceContentCoverageV2Packet)),
+      reviewerDecisionImportV2DryRun: sha256(runPath(runDir, SOURCE_FILES.reviewerDecisionImportV2DryRun)),
+      payloadShardMaterializationChecksumV2Packet: sha256(runPath(runDir, SOURCE_FILES.payloadShardMaterializationChecksumV2Packet)),
+      serverDeliveryManifestPreviewV2Packet: sha256(runPath(runDir, SOURCE_FILES.serverDeliveryManifestPreviewV2Packet)),
+      serverPackUploadPolicyV2Packet: sha256(runPath(runDir, SOURCE_FILES.serverPackUploadPolicyV2Packet)),
+      runtimeCacheIntegrityRollbackV2Packet: sha256(runPath(runDir, SOURCE_FILES.runtimeCacheIntegrityRollbackV2Packet)),
+      runtimeDownloadActivationGateV2Packet: sha256(runPath(runDir, SOURCE_FILES.runtimeDownloadActivationGateV2Packet)),
+      runtimeDeliveryEvidenceChainV2Packet: sha256(runPath(runDir, SOURCE_FILES.runtimeDeliveryEvidenceChainV2Packet)),
     },
     contract,
     probes,

@@ -26,8 +26,8 @@ describe('settings dev admin gate', () => {
 
     expect(settingsSource).toContain('const { isPremium, isVip, hasPremiumAccess } = usePremium()');
     expect(settingsSource).toContain('{hasPremiumAccess ? (');
-    expect(settingsSource).toContain('VIP доступ активен');
-    expect(settingsSource).toContain('VIP access active');
+    expect(settingsSource).toContain('Plus доступ активен');
+    expect(settingsSource).toContain('Plus access active');
     expect(settingsSource).not.toContain('{isPremium ? (\n          <TouchableOpacity');
   });
 });

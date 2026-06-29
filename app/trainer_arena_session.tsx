@@ -18,6 +18,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import ReportErrorButton from '../components/ReportErrorButton';
 import BounceView from '../components/BounceView';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
@@ -223,8 +224,8 @@ export default function TrainerArenaSession() {
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
     planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext);
-  }, [done, planTrainerContext]);
+    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
+  }, [done, planTrainerContext, studyTarget]);
 
   if (!accessReady || loading) {
     return (
@@ -290,9 +291,19 @@ export default function TrainerArenaSession() {
             <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
-            <Text style={{ color: sx.muted, fontSize: f.caption }}>
-              {current + 1} / {items.length}
-            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+              <Text style={{ color: sx.muted, fontSize: f.caption }}>
+                {current + 1} / {items.length}
+              </Text>
+              <ReportErrorButton
+                variant="icon-flag"
+                screen="trainer_arena"
+                dataId={`trainer_arena_${item?.key ?? 'unknown'}`}
+                dataText={`${q.question} | ${q.options.join(' / ')} | ✓ ${q.correct}`}
+                accessibilityLabel="Сообщить об ошибке в вопросе"
+                style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: t.bgCard, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}
+              />
+            </View>
           </View>
 
           {/* Прогресс */}

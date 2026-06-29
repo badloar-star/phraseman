@@ -29,7 +29,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   },
   lesson_quiz_passed: {
     ru: 'Зачёт сдан — знания закреплены, осколки твои',
-    uk: 'Залік здано — знання закріплені, осколки твої',
+    uk: 'Залік здано — знання закріплені, уламки твої',
     es: 'Examen de nivel superado: conocimiento asegurado',
     'pt-BR': "Teste de nível superado: conhecimento consolidado",
     vi: "Bài kiểm tra cấp độ đã qua: kiến thức đã vững",
@@ -189,7 +189,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   },
   remote_shard_reward: {
     ru: 'Команда начислила осколки — твоя помощь не забыта',
-    uk: 'Команда нарахувала осколки — твоя допомога не забута',
+    uk: 'Команда нарахувала уламки — твоя допомога не забута',
     es: 'Fragmentos del equipo: tu ayuda cuenta',
     'pt-BR': "Fragmentos da equipe: sua ajuda conta",
     vi: "Mảnh từ đội ngũ: sự hỗ trợ của bạn rất đáng giá",
@@ -209,7 +209,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   },
   club_boost_refund: {
     ru: 'Возврат осколков за буст клуба',
-    uk: 'Повернення осколків за буст клубу',
+    uk: 'Повернення уламків за буст клубу',
     es: 'Devolución de fragmentos (boost del club)',
     'pt-BR': "Reembolso de fragmentos pelo boost do clube",
     vi: "Hoàn mảnh cho boost câu lạc bộ",
@@ -269,7 +269,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   },
   generic_raw: {
     ru: 'Начисление осколков знаний',
-    uk: 'Нарахування осколків знань',
+    uk: 'Нарахування уламків знань',
     es: 'Fragmentos acreditados',
     'pt-BR': "Fragmentos de conhecimento creditados",
     vi: "Đã cộng mảnh tri thức",

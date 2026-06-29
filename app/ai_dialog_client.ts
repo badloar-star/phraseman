@@ -6,6 +6,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { triLang, type Lang } from '../constants/i18n';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { getAgeBracketSnapshot } from './age_gate';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -42,6 +43,8 @@ export interface PremiumDialogRequest {
   /** companion-режим */
   memory?: DialogMemory;
   isPremium?: boolean;
+  /** Возрастная группа для серверного safety-флага и возрастного гейта. */
+  ageBracket?: string;
   /**
    * «Диалог как игра» (scenario): под-цели [{id, en}] и темперамент собеседника.
    * Если переданы — сервер включает игровой режим (mood/исход в ответе).
@@ -213,7 +216,10 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
 }
 
 export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
-  const key = premiumDialogSendRequestKey(req);
+  // Возрастная группа берётся из единого источника (age_gate) и уходит на сервер
+  // для safety-флага и возрастного гейта (defense-in-depth поверх клиентского блока).
+  const reqWithAge: PremiumDialogRequest = { ...req, ageBracket: req.ageBracket ?? getAgeBracketSnapshot() };
+  const key = premiumDialogSendRequestKey(reqWithAge);
   const existing = premiumDialogSendInFlight.get(key);
   if (existing) return existing;
 
@@ -223,7 +229,7 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
     );
-    const res = await fn(req);
+    const res = await fn(reqWithAge);
     return res.data;
   })().finally(() => {
     premiumDialogSendInFlight.delete(key);

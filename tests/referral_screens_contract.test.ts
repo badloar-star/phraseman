@@ -64,7 +64,7 @@ describe('referral 7 plus 7 screen contract', () => {
     const share = read('app/referral_invite_share.ts');
 
     expect(modal).toContain('установил приложение, ввёл ваш код и прошёл один урок полностью');
-    expect(modal).toContain('7+7 не равно 14: друг получил свои 7 дней отдельно.');
+    expect(modal).toContain('${D}+${D} не равно ${D2}: друг получил свои ${D} ${pluralDaysRu(D)} отдельно.');
     expect(share).toContain('Установи приложение, введи мой код и пройди один урок полностью');
     expect(share).toContain('мы оба получим по 7 дней полного доступа');
   });

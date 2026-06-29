@@ -23,7 +23,7 @@ describe('Gustav French notification target isolation', () => {
     expect(source).toContain("import { getStoredStudyTarget } from './study_target'");
     expect(source).toContain('resolveNotificationStudyTarget(lang, opts.studyTarget)');
     expect(source).toContain('getStoredStudyTarget(lang)');
-    expect(source).toContain("if (studyTarget === 'fr')");
+    expect(source).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
     expect(source).toContain("cancelScheduledNotificationsByType(N, ['phrase_of_day'])");
     expect(source).toContain("AsyncStorage.removeItem('phrase_notif_scheduled')");
     expect(source).toContain('AsyncStorage.removeItem(PHRASE_OF_DAY_NOTIF_ID_KEY)');
@@ -55,7 +55,7 @@ describe('Gustav French notification target isolation', () => {
     expect(layoutSource).toContain('const runSessionChecks = async (studyTarget?: RuntimeStudyTarget)');
     expect(layoutSource).toContain('scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget })');
-    expect(layoutSource).toContain('schedulePhrasOfDayNotification(lang, { requestPermission: false, studyTarget })');
+    expect(layoutSource).toContain('schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('await runSessionChecks(studyTarget)');
     expect(layoutSource).toContain('await scheduleNotifications(snap, lang, 0, { studyTarget })');

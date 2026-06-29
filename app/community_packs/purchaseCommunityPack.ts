@@ -62,7 +62,7 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
       ru: 'Недостаточно осколков на балансе. Проверь баланс после синхронизации.',
-      uk: 'Недостатньо осколків на балансі. Перевірте баланс після синхронізації.',
+      uk: 'Недостатньо уламків на балансі. Перевірте баланс після синхронізації.',
       es: 'Saldo de fragmentos insuficiente. Sincroniza con el servidor y comprueba.',
       'pt-BR': 'Saldo de fragmentos insuficiente. Sincronize com o servidor e confira.',
       vi: 'Không đủ mảnh trong số dư. Đồng bộ với máy chủ rồi kiểm tra.',

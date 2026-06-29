@@ -4,6 +4,7 @@ import path from 'path';
 describe('admin settings VIP profile control', () => {
   const screen = fs.readFileSync(path.join(process.cwd(), 'app', '_admin_settings_testers.tsx'), 'utf8');
   const celebration = fs.readFileSync(path.join(process.cwd(), 'components', 'PremiumCelebrationModal.tsx'), 'utf8');
+  const celebrationContent = fs.readFileSync(path.join(process.cwd(), 'components', 'premium_celebration', 'celebrationContent.ts'), 'utf8');
   const maestroFlow = fs.readFileSync(path.join(process.cwd(), 'maestro', 'flows', 'dev_only', 'admin_settings_vip_profile.yaml'), 'utf8');
 
   it('exposes a direct admin-panel button for VIP on the current profile', () => {
@@ -44,20 +45,29 @@ describe('admin settings VIP profile control', () => {
   });
 
   it('keeps the VIP celebration visibly animated and readable on the green theme', () => {
-    expect(celebration).toContain("import { Ionicons } from '@expo/vector-icons'");
-    expect(celebration).toContain("name={unlocked ? 'lock-open' : 'lock-closed'}");
-    expect(celebration).toContain('setUnlocked(true)');
-    expect(celebration).toContain('forceOpen={skipped}');
-    expect(celebration).toContain("const headlineColor = isVip ? '#F7FFF9' : palette.main");
-    expect(celebration).toContain("const ctaTextColor = isVip ? '#FFFFFF' : palette.dark");
-    expect(celebration).toContain('styles.vipReadableText');
-    expect(celebration).toContain('styles.vipCtaText');
-    expect(celebration).toContain('styles.skipLayer');
-    expect(celebration).toContain('styles.ctaLayer');
+    // Redesigned celebration (premium_celebration aurora/reel): the lock-icon
+    // reveal was replaced by an animated per-row "lit" reveal driven by litCount,
+    // and theme colors moved into per-variant CELEBRATION_PALETTES.
+    expect(celebration).toContain('import Reanimated, {');
+    expect(celebration).toContain('lit={skipped || idx < litCount}');
+    expect(celebration).toContain('setLitCount(i)');
+    expect(celebration).toContain('setFinaleLit(true)');
+    expect(celebration).toContain('const skip = useCallback');
+    // Readable colors come from the per-variant palette (VIP = green).
+    expect(celebration).toContain('const palette = CELEBRATION_PALETTES[variant]');
+    expect(celebration).toContain('color: palette.bright');
+    expect(celebration).toContain('color: palette.ctaText');
+    expect(celebration).toContain('styles.heroTextPlate');
+    expect(celebration).toContain('styles.ctaText');
+    expect(celebration).toContain('onPress={skipped ? handleClose : skip}');
+    expect(celebration).toContain('styles.ctaWrap');
     expect(celebration).toContain('showsVerticalScrollIndicator');
-    expect(celebration).toContain('nestedScrollEnabled');
-    expect(celebration).toContain('skipLayer: { zIndex: 0, elevation: 0 }');
-    expect(celebration).toContain('zIndex: 12');
-    expect(celebration).toContain('hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}');
+    expect(celebration).toContain('scrollEnabled={skipped}');
+    expect(celebration).toContain('testID={`${variant}-celebration-cta`}');
+    // Green VIP palette stays readable: light text/headline against green main.
+    expect(celebrationContent).toContain("main: '#34D399'");
+    expect(celebrationContent).toContain("bright: '#86EFAC'");
+    expect(celebrationContent).toContain("rowText: '#EAFFF4'");
+    expect(celebrationContent).toContain("ctaText: '#04140d'");
   });
 });

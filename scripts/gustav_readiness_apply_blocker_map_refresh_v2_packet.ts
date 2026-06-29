@@ -129,7 +129,7 @@ type Report = {
     safeNonProductionItemsRemaining: number;
     exactApprovalOnlyItems: number;
     productionLockedItems: number;
-    nextSafeItem: 'NP-05-MASTER-NEXT-PASS-CONSISTENCY-REFRESH';
+    nextSafeItem: string;
     readyForNextNonProductionMasterNextPassConsistencyRefresh: boolean;
     activationApproved: false;
     readyForApply: false;
@@ -162,7 +162,86 @@ type Report = {
   };
 };
 
-const EXPECTED_FAILED_READINESS_IDS = ['RDY-080', 'RDY-090'];
+const EXPECTED_FAILED_READINESS_IDS = ['RDY-090'];
+const P37_REPLAY_SAFE_NEXT_GOALS = new Set([
+  'NEXT-PASS-P37-READINESS-APPLY-BLOCKER-MAP-REFRESH-V2',
+  'NEXT-PASS-P26-SERVER-DELIVERY-PUBLISH-PREFLIGHT-V2',
+  'NEXT-PASS-P27-ADMIN-SERVER-DELIVERY-RUNTIME-PREFLIGHT-V2',
+  'NEXT-PASS-P28-RUNTIME-ACTIVATION-BLOCKER-PLAN-V2',
+  'NEXT-PASS-P29-EXPLICIT-APPROVAL-RECEIPT-HASH-LOCK-GATE-V2',
+  'NEXT-PASS-P30-ACTIVATION-APPROVAL-REQUEST-PRESENTATION-V2',
+  'NEXT-PASS-P31-EXPLICIT-APPROVAL-RECEIPT-CREATION-GATE-V2',
+  'NEXT-PASS-P32-PRODUCTION-APPLY-ABSENCE-DENIAL-GATE-V2',
+  'NEXT-PASS-P33-NONPRODUCTION-BLOCKER-CLOSURE-PLAN-V2',
+  'NEXT-PASS-P34-NONPRODUCTION-EVIDENCE-REFRESH-V2',
+  'NEXT-PASS-P35-RUNTIME-SERVER-MANIFEST-CONSISTENCY-RECHECK-V2',
+  'NEXT-PASS-P36-LANGUAGE-ISOLATION-REGRESSION-RECHECK-V2',
+  'NEXT-PASS-P38-MASTER-NEXT-PASS-CONSISTENCY-REFRESH-V2',
+  'NEXT-PASS-P39-OFFICIAL-SOURCE-CONTENT-COVERAGE-V2',
+  'NEXT-PASS-P40-REVIEWER-DECISION-IMPORT-DRY-RUN-REFRESH-V2',
+  'NEXT-PASS-P41-PAYLOAD-CREATION-APPROVAL-PREFLIGHT-REFRESH-V2',
+  'NEXT-PASS-P42-CLOSED-LOCAL-PAYLOAD-MATERIALIZATION-REFRESH-V2',
+  'NEXT-PASS-P43-PRODUCTION-ACTIVATION-HOLD-EXACT-APPROVAL-REQUIRED-V2',
+  'NEXT-PASS-P44-EXACT-APPROVAL-VALIDATION-GATE-V2',
+  'NEXT-PASS-P45-PRODUCTION-ACTIVATION-SEQUENCE-PREFLIGHT-V2',
+  'NEXT-PASS-P46-PRODUCTION-APPLY-TRANSACTION-CONTRACT-V2',
+  'NEXT-PASS-P47-POST-APPLY-ROLLBACK-GUARD-CONTRACT-V2',
+  'NEXT-PASS-P48-APPROVAL-WAIT-SAFE-CONTINUATION-V2',
+  'NEXT-PASS-P49-PRODUCTION-READINESS-COMPLETION-AUDIT-V2',
+  'NEXT-PASS-P50-FINAL-PREAPPROVAL-EVIDENCE-HASH-LOCK-V2',
+  'NEXT-PASS-P51-EXACT-APPROVAL-APPLY-REHEARSAL-V2',
+  'NEXT-PASS-P52-EXACT-APPROVAL-SOURCE-FIREWALL-V2',
+  'NEXT-PASS-P53-EXACT-APPROVAL-SOURCE-INTAKE-TRANSITION-V2',
+  'NEXT-PASS-P54-EXACT-APPROVAL-ACTIVE-ARTIFACT-PAIR-SIMULATION-V2',
+  'NEXT-PASS-P55-EXACT-APPROVAL-P31-CREATE-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P56-EXACT-APPROVAL-P44-VALIDATION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P57-EXACT-APPROVAL-P44-TO-P45-SEQUENCE-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P58-EXACT-APPROVAL-P45-SEQUENCE-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P59-EXACT-APPROVAL-P45-TO-P46-APPLY-TRANSACTION-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P60-EXACT-APPROVAL-P46-APPLY-TRANSACTION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P61-EXACT-APPROVAL-P46-TO-P47-ROLLBACK-GUARD-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P62-EXACT-APPROVAL-P47-ROLLBACK-GUARD-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P63-EXACT-APPROVAL-P47-TO-P48-SAFE-CONTINUATION-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P64-EXACT-APPROVAL-P48-SAFE-CONTINUATION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P65-EXACT-APPROVAL-WAIT-STATE-V2',
+  'NEXT-PASS-P66-SAFE-PREAPPROVAL-CONTINUATION-V2',
+  'NEXT-PASS-P67-FINAL-PRODUCTION-READINESS-GAP-V2',
+  'NEXT-PASS-P68-EXACT-APPROVAL-SOURCE-HANDOFF-FIREWALL-V2',
+  'NEXT-PASS-P69-EXACT-APPROVAL-SOURCE-WAIT-TERMINAL-STATE-V2',
+]);
+const P37_ALL_SAFE_ITEMS_CLOSED_NEXT_GOALS = new Set([
+  'NEXT-PASS-P39-OFFICIAL-SOURCE-CONTENT-COVERAGE-V2',
+  'NEXT-PASS-P40-REVIEWER-DECISION-IMPORT-DRY-RUN-REFRESH-V2',
+  'NEXT-PASS-P41-PAYLOAD-CREATION-APPROVAL-PREFLIGHT-REFRESH-V2',
+  'NEXT-PASS-P42-CLOSED-LOCAL-PAYLOAD-MATERIALIZATION-REFRESH-V2',
+  'NEXT-PASS-P43-PRODUCTION-ACTIVATION-HOLD-EXACT-APPROVAL-REQUIRED-V2',
+  'NEXT-PASS-P44-EXACT-APPROVAL-VALIDATION-GATE-V2',
+  'NEXT-PASS-P45-PRODUCTION-ACTIVATION-SEQUENCE-PREFLIGHT-V2',
+  'NEXT-PASS-P46-PRODUCTION-APPLY-TRANSACTION-CONTRACT-V2',
+  'NEXT-PASS-P47-POST-APPLY-ROLLBACK-GUARD-CONTRACT-V2',
+  'NEXT-PASS-P48-APPROVAL-WAIT-SAFE-CONTINUATION-V2',
+  'NEXT-PASS-P49-PRODUCTION-READINESS-COMPLETION-AUDIT-V2',
+  'NEXT-PASS-P50-FINAL-PREAPPROVAL-EVIDENCE-HASH-LOCK-V2',
+  'NEXT-PASS-P51-EXACT-APPROVAL-APPLY-REHEARSAL-V2',
+  'NEXT-PASS-P52-EXACT-APPROVAL-SOURCE-FIREWALL-V2',
+  'NEXT-PASS-P53-EXACT-APPROVAL-SOURCE-INTAKE-TRANSITION-V2',
+  'NEXT-PASS-P54-EXACT-APPROVAL-ACTIVE-ARTIFACT-PAIR-SIMULATION-V2',
+  'NEXT-PASS-P55-EXACT-APPROVAL-P31-CREATE-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P56-EXACT-APPROVAL-P44-VALIDATION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P57-EXACT-APPROVAL-P44-TO-P45-SEQUENCE-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P58-EXACT-APPROVAL-P45-SEQUENCE-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P59-EXACT-APPROVAL-P45-TO-P46-APPLY-TRANSACTION-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P60-EXACT-APPROVAL-P46-APPLY-TRANSACTION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P61-EXACT-APPROVAL-P46-TO-P47-ROLLBACK-GUARD-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P62-EXACT-APPROVAL-P47-ROLLBACK-GUARD-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P63-EXACT-APPROVAL-P47-TO-P48-SAFE-CONTINUATION-HANDOFF-SIMULATION-V2',
+  'NEXT-PASS-P64-EXACT-APPROVAL-P48-SAFE-CONTINUATION-COMMAND-PREFLIGHT-V2',
+  'NEXT-PASS-P65-EXACT-APPROVAL-WAIT-STATE-V2',
+  'NEXT-PASS-P66-SAFE-PREAPPROVAL-CONTINUATION-V2',
+  'NEXT-PASS-P67-FINAL-PRODUCTION-READINESS-GAP-V2',
+  'NEXT-PASS-P68-EXACT-APPROVAL-SOURCE-HANDOFF-FIREWALL-V2',
+  'NEXT-PASS-P69-EXACT-APPROVAL-SOURCE-WAIT-TERMINAL-STATE-V2',
+]);
 const EXPECTED_RUNTIME_PLAN_ITEMS = 9;
 const EXPECTED_PLANNED_TOUCHES = 18;
 
@@ -244,7 +323,13 @@ function evaluate(input: EvaluationInput): Finding[] {
   if (!input.readinessPresent) addFinding(findings, 'blocker', 'READINESS_GATE_MISSING', 'gustav_readiness_gate.json must exist.');
   if (input.readinessChecks <= 0) addFinding(findings, 'blocker', 'READINESS_CHECKS_EMPTY', 'Readiness gate must contain checks.');
   if (input.readinessGenerationBlockers !== 0) addFinding(findings, 'blocker', 'GENERATION_BLOCKERS_REMAIN', `${input.readinessGenerationBlockers} generation blocker(s) remain.`);
-  if (input.readinessApplyBlockers !== 2 || input.readinessBlockers !== 2 || input.readinessFailed !== 2) addFinding(findings, 'blocker', 'READINESS_APPLY_BLOCKER_COUNT_DRIFT', 'P37 expects exactly two apply blockers and no generation blockers.');
+  if (
+    input.readinessApplyBlockers !== EXPECTED_FAILED_READINESS_IDS.length ||
+    input.readinessBlockers !== EXPECTED_FAILED_READINESS_IDS.length ||
+    input.readinessFailed !== EXPECTED_FAILED_READINESS_IDS.length
+  ) {
+    addFinding(findings, 'blocker', 'READINESS_APPLY_BLOCKER_COUNT_DRIFT', `P37 expects exactly ${EXPECTED_FAILED_READINESS_IDS.length} apply blocker(s) and no generation blockers.`);
+  }
   if (!expectedApplyFailures) addFinding(findings, 'blocker', 'READINESS_FAILED_IDS_DRIFT', `Expected failed readiness checks ${EXPECTED_FAILED_READINESS_IDS.join(', ')}, got ${input.readinessFailedIds.join(', ') || 'none'}.`);
   if (input.readinessWarnings !== 0) addFinding(findings, 'blocker', 'READINESS_WARNINGS_PRESENT', `${input.readinessWarnings} readiness warning(s) remain.`);
 
@@ -264,7 +349,14 @@ function evaluate(input: EvaluationInput): Finding[] {
   ) {
     addFinding(findings, 'blocker', 'RUNTIME_BLOCKER_AREA_COUNTS_DRIFT', 'Runtime activation blocker areas must remain mapped as 3 runtime, 1 server, 1 storage/cloud, 1 admin, 1 reviewer import, 1 rollback, 1 apply approval.');
   }
-  if (input.runtimeReadinessApplyBlockers !== 2) addFinding(findings, 'blocker', 'RUNTIME_READINESS_APPLY_BLOCKERS_DRIFT', 'Runtime plan must still reference the two readiness apply blockers.');
+  if (input.runtimeReadinessApplyBlockers !== EXPECTED_FAILED_READINESS_IDS.length) {
+    addFinding(
+      findings,
+      'blocker',
+      'RUNTIME_READINESS_APPLY_BLOCKERS_DRIFT',
+      `Runtime plan must still reference the ${EXPECTED_FAILED_READINESS_IDS.length} readiness apply blocker(s).`,
+    );
+  }
   if (input.runtimeDirtyWorktreeOverlaps < 0) addFinding(findings, 'blocker', 'RUNTIME_DIRTY_WORKTREE_OVERLAPS_INVALID', 'Dirty worktree overlap count must be available.');
   if (input.runtimeApprovalReceiptExists || input.runtimeActiveHashLockExists) addFinding(findings, 'blocker', 'RUNTIME_APPROVAL_ARTIFACTS_ALREADY_ACTIVE', 'Runtime plan must not see active approval receipt/hash lock in P37.');
   if (input.productionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must not exist in P37.');
@@ -304,7 +396,7 @@ function evaluate(input: EvaluationInput): Finding[] {
 
   if (!input.closurePlanReady) addFinding(findings, 'blocker', 'NONPRODUCTION_CLOSURE_PLAN_NOT_READY', 'Non-production closure plan must remain ready.');
   if (input.closureSafeItems !== 5 || input.closureExactApprovalOnlyItems !== 2 || input.closureProductionLockedItems !== 2) addFinding(findings, 'blocker', 'CLOSURE_ITEM_COUNTS_DRIFT', 'Closure plan must keep 5 safe, 2 exact-approval and 2 production-locked items.');
-  if (!input.nextGoalIsP37) addFinding(findings, 'blocker', 'NEXT_GOAL_NOT_P37', 'Next-pass contract must point at P37 before this refresh runs.');
+  if (!input.nextGoalIsP37) addFinding(findings, 'blocker', 'NEXT_GOAL_NOT_REPLAY_SAFE_FOR_P37', 'Next-pass contract must point at P37 or a downstream replay-safe safe/approval-hold goal before this refresh runs.');
 
   return findings;
 }
@@ -319,7 +411,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'p36_not_ready_is_rejected', expectedSafe: false, mutate: (input) => { input.p36Ready = false; } },
     { id: 'generation_blocker_is_rejected', expectedSafe: false, mutate: (input) => { input.readinessGenerationBlockers = 1; } },
     { id: 'apply_blockers_disappear_before_approval_is_rejected', expectedSafe: false, mutate: (input) => { input.readinessApplyBlockers = 0; input.readinessBlockers = 0; input.readinessFailed = 0; input.readinessFailedIds = []; } },
-    { id: 'unexpected_readiness_failed_id_is_rejected', expectedSafe: false, mutate: (input) => { input.readinessFailedIds = ['RDY-080', 'RDY-099']; } },
+    { id: 'unexpected_readiness_failed_id_is_rejected', expectedSafe: false, mutate: (input) => { input.readinessFailedIds = ['RDY-090', 'RDY-099']; } },
     { id: 'runtime_plan_item_missing_is_rejected', expectedSafe: false, mutate: (input) => { input.runtimePlanItems = 8; } },
     { id: 'planned_touch_missing_future_gate_is_rejected', expectedSafe: false, mutate: (input) => { input.runtimePlanTouchesWithFutureGate = 17; } },
     { id: 'planned_touch_missing_rollback_is_rejected', expectedSafe: false, mutate: (input) => { input.runtimePlanTouchesWithRollbackCheck = 17; } },
@@ -504,7 +596,7 @@ function main(): void {
     closureSafeItems: n(closureSummary, 'safeNonProductionItems'),
     closureExactApprovalOnlyItems: n(closureSummary, 'exactApprovalOnlyItems'),
     closureProductionLockedItems: n(closureSummary, 'productionLockedItems'),
-    nextGoalIsP37: nextGoals.length > 0 && s(nextGoals[0], 'id') === 'NEXT-PASS-P37-READINESS-APPLY-BLOCKER-MAP-REFRESH-V2',
+    nextGoalIsP37: nextGoals.length > 0 && P37_REPLAY_SAFE_NEXT_GOALS.has(s(nextGoals[0], 'id')),
   };
 
   const findings = evaluate(input);
@@ -515,7 +607,10 @@ function main(): void {
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
   const accepted = blockers === 0;
-  const safeClosed = accepted ? 4 : 3;
+  const nextGoalId = nextGoals.length > 0 ? s(nextGoals[0], 'id') : '';
+  const allSafeItemsClosed = accepted && P37_ALL_SAFE_ITEMS_CLOSED_NEXT_GOALS.has(nextGoalId);
+  const safeClosed = accepted ? (allSafeItemsClosed ? input.closureSafeItems : 4) : 3;
+  const nextSafeItem = allSafeItemsClosed ? '' : 'NP-05-MASTER-NEXT-PASS-CONSISTENCY-REFRESH';
 
   const report: Report = {
     schemaVersion: 'gustav-readiness-apply-blocker-map-refresh-v2-packet-v0',
@@ -582,8 +677,8 @@ function main(): void {
       safeNonProductionItemsRemaining: Math.max(0, input.closureSafeItems - safeClosed),
       exactApprovalOnlyItems: input.closureExactApprovalOnlyItems,
       productionLockedItems: input.closureProductionLockedItems,
-      nextSafeItem: 'NP-05-MASTER-NEXT-PASS-CONSISTENCY-REFRESH',
-      readyForNextNonProductionMasterNextPassConsistencyRefresh: accepted,
+      nextSafeItem,
+      readyForNextNonProductionMasterNextPassConsistencyRefresh: accepted && !allSafeItemsClosed,
       activationApproved: false,
       readyForApply: false,
       mayModifyProductionAppFiles: false,

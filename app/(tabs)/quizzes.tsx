@@ -864,7 +864,7 @@ function StreakBreak({ show, old, themeMode, t, f }: { show:boolean; old:number;
 }
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
-function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>void }) {
+function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:QuizMenuSelection)=>void; sourceGated?: boolean }) {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { theme:t , f, themeMode: rawThemeMode } = useTheme();
@@ -881,6 +881,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   const [selected, setSelected] = useState<QuizMenuSelection | null>(null);
   const [showLevelNoEnergy, setShowLevelNoEnergy] = useState(false);
   const [showNoQuestions, setShowNoQuestions] = useState(false);
+  const [showSourceGate, setShowSourceGate] = useState(false);
   const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
     date: '',
     count: 0,
@@ -897,6 +898,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   const thematicCategories = useMemo(
     () => getAvailableThematicQuizCategories(studyTarget),
     [studyTarget],
+  );
+  const sourceGateCopy = useMemo(
+    () => sourceGated ? frenchQuizGateCopy(lang) : null,
+    [lang, sourceGated],
   );
 
   useEffect(() => {
@@ -946,6 +951,11 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
   }, [router]);
 
+  const openSourceGate = useCallback(() => {
+    hapticTap();
+    setShowSourceGate(true);
+  }, []);
+
   const consumeFreeSlotForStart = useCallback(async (selection: QuizMenuSelection): Promise<boolean> => {
     if (DEV_CONTENT_UNLOCK || isPremium) return true;
 
@@ -970,9 +980,9 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     try {
       if (isLevelSelection(selection)) {
         const quizLevel: Level = LEVEL_CONFIG[selection] ? selection : 'easy';
-        if (getQuizPhrasesLoaded(quizLevel, 10, lang).length > 0) return true;
+        if (getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget).length > 0) return true;
         for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
-          if (getQuizPhrasesLoaded(fallbackLevel, 10, lang).length > 0) return true;
+          if (getQuizPhrasesLoaded(fallbackLevel, 10, lang, studyTarget).length > 0) return true;
         }
         return false;
       }
@@ -1019,6 +1029,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
 
   const handleStartLevel = useCallback((level: Level, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
+    if (sourceGated) {
+      openSourceGate();
+      return;
+    }
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
       trackEnergyHit().catch(() => {});
@@ -1043,10 +1057,14 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     })().catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, releaseStartInFlight, runStartFill]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, openSourceGate, releaseStartInFlight, runStartFill, sourceGated]);
 
   const handleStartThematic = useCallback((categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
+    if (sourceGated) {
+      openSourceGate();
+      return;
+    }
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
       trackEnergyHit().catch(() => {});
@@ -1069,9 +1087,13 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }).catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, releaseStartInFlight, runStartFill]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, openSourceGate, releaseStartInFlight, runStartFill, sourceGated]);
 
   const lockedByDailyLimit = !DEV_CONTENT_UNLOCK && !isPremium && freeQuizState.exhausted;
+  const lockedBySourceGate = sourceGated;
+  const quizCardsLocked = lockedBySourceGate || lockedByDailyLimit;
+  const quizCardsLockedLabel = lockedBySourceGate ? (sourceGateCopy?.cta ?? quizLimitLabel) : quizLimitLabel;
+  const onQuizCardsLockedPress = lockedBySourceGate ? openSourceGate : openQuizLimitPaywall;
   const isLightEntryTheme = themeMode === 'light';
   const sectionLabelColor = isLightEntryTheme ? 'rgba(31,41,51,0.58)' : 'rgba(226,232,240,0.64)';
   return (
@@ -1160,14 +1182,14 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
               t={t}
               f={f}
               isSelected={selected === level}
-              locked={lockedByDailyLimit}
-              lockedLabel={quizLimitLabel}
+              locked={quizCardsLocked}
+              lockedLabel={quizCardsLockedLabel}
               startTrackW={startTrackW}
               onPick={() => {
                 releaseStartInFlight();
                 setSelected(level);
               }}
-              onLockedPress={openQuizLimitPaywall}
+              onLockedPress={onQuizCardsLockedPress}
               onStart={handleStartLevel}
             />
           ))}
@@ -1187,14 +1209,14 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                 t={t}
                 f={f}
                 isSelected={selected === category.id}
-                locked={lockedByDailyLimit}
-                lockedLabel={quizLimitLabel}
+                locked={quizCardsLocked}
+                lockedLabel={quizCardsLockedLabel}
                 startTrackW={startTrackW}
                 onPick={() => {
                   releaseStartInFlight();
                   setSelected(category.id);
                 }}
-                onLockedPress={openQuizLimitPaywall}
+                onLockedPress={onQuizCardsLockedPress}
                 onStart={handleStartThematic}
               />
             );
@@ -1275,6 +1297,35 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   tr: 'Kapat',
   pl: 'Zamknij',
 })}
+              </Text>
+            </TapScale>
+          </Pressable>
+        </Pressable>
+      </Modal>
+
+      <Modal transparent animationType="fade" visible={showSourceGate} onRequestClose={() => setShowSourceGate(false)}>
+        <Pressable onPress={() => setShowSourceGate(false)} style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingHorizontal:32 }}>
+          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:380, backgroundColor:t.bgCard, borderRadius:24, borderWidth:0.5, borderColor:t.border, padding:24 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+              <Ionicons name="lock-closed-outline" size={22} color={t.accent} />
+              <Text style={{ color:t.textPrimary, fontSize:f.h2, lineHeight:f.h2 * 1.2, fontWeight:'900', flex: 1 }}>
+                {sourceGateCopy?.title}
+              </Text>
+            </View>
+            <Text style={{ color:t.textMuted, fontSize:f.body, lineHeight:f.body * 1.35 }}>
+              {sourceGateCopy?.body}
+            </Text>
+            <TapScale
+              onPress={() => {
+                hapticTap();
+                setShowSourceGate(false);
+                router.push('/(tabs)/lessons' as any);
+              }}
+              withHaptic={false}
+              style={{ marginTop:20, paddingHorizontal:28, paddingVertical:12, borderRadius:22, backgroundColor:t.accent, alignItems: 'center' }}
+            >
+              <Text style={{ color:t.correctText, fontSize:f.body, fontWeight:'800' }}>
+                {sourceGateCopy?.cta}
               </Text>
             </TapScale>
           </Pressable>
@@ -1376,21 +1427,21 @@ function QuizGame({
         });
         return result.length > 0 ? result : [];
       }
-      const result = getQuizPhrasesLoaded(quizLevel, 10, lang);
+      const result = getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget);
       if (result.length > 0) return result;
 
-      const sameLevelEnglish = getQuizPhrasesLoaded(quizLevel, 10, lang);
+      const sameLevelEnglish = getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget);
       if (sameLevelEnglish.length > 0) return sameLevelEnglish;
 
       for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
-        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang);
+        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang, studyTarget);
         if (fallback.length > 0) return fallback;
       }
       return [];
     } catch (e) {
       DebugLogger.error('quizzes.tsx:loadPhrases', e, 'warning');
       for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
-        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang);
+        const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang, studyTarget);
         if (fallback.length > 0) return fallback;
       }
       return [];
@@ -3184,10 +3235,6 @@ export default function QuizzesScreen() {
     return () => { cancelled = true; };
   }, [frenchQuizBlocked, isPremium, planQuizId, planQuizStartSelection, router, studyTarget]));
 
-  if (frenchQuizBlocked) {
-    return <FrenchQuizUnavailable />;
-  }
-
   return (
     <View style={{ flex: 1 }}>
       {selection
@@ -3201,7 +3248,7 @@ export default function QuizzesScreen() {
             setE2eInjectResults(false);
             setSelection(null); setGameKey(k => k + 1);
           }}/>
-        : <LevelSelect onSelect={(nextSelection) => {
+        : <LevelSelect sourceGated={frenchQuizBlocked} onSelect={(nextSelection) => {
             setSelection(nextSelection);
             try {
               const eventLevel = isLevelSelection(nextSelection) ? nextSelection : `thematic:${nextSelection}`;

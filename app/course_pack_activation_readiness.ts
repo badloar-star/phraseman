@@ -16,6 +16,7 @@ export type CoursePackActivationGateId =
   | 'rollback_kill_switch'
   | 'startup_no_fetch_guard'
   | 'storage_cloud_isolation'
+  | 'target_manifest_summary_in_sync'
   | 'runtime_manifest_still_disabled'
   | 'remote_loading_still_disabled'
   | 'bundled_content_retained'
@@ -45,6 +46,7 @@ export type CoursePackActivationReadinessInput = {
   offlineCacheIntegrityPassed: boolean;
   rollbackKillSwitchPassed: boolean;
   storageCloudIsolationPassed: boolean;
+  targetManifestSummaryInSync?: boolean;
   productOwnerActivationApproved: boolean;
 };
 
@@ -135,6 +137,13 @@ export function evaluateCoursePackActivationReadiness(
       input.storageCloudIsolationPassed
         ? 'Storage/cloud isolation evidence exists.'
         : 'Storage/cloud isolation gate is still missing.',
+    ),
+    gate(
+      'target_manifest_summary_in_sync',
+      input.targetManifestSummaryInSync !== false,
+      input.targetManifestSummaryInSync !== false
+        ? 'Target pack manifest summary matches the current runtime slices, server manifest draft and activation blockers.'
+        : 'Target pack manifest summary must be refreshed after payload/server/storage evidence changes.',
     ),
     gate(
       'runtime_manifest_still_disabled',

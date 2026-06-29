@@ -24,7 +24,8 @@ import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
-import { canShowReview, markReviewPrompted, markReviewRated, requestNativeReview, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
+import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
+import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
@@ -81,19 +82,25 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
     if (visible) {
       setStep('ask');
       getReviewVariant(context, lang).then(setVariant);
+      // Помечаем показ СРАЗУ при появлении окна — так лимит показов и 30-дневный
+      // кулдаун учитываются при любом способе закрытия (кнопка, тап по фону, системно),
+      // а не только при нажатии "нет".
+      markReviewPrompted().catch(() => {});
       Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
     }
   }, [context, fadeAnim, lang, visible]);
 
   const handleYes = async () => {
+    // Наше окно — это пре-промпт. На "Да" уводим в стор писать отзыв и показываем
+    // "спасибо". НЕ вызываем нативный requestReview, иначе два окна оценки наложатся.
     await markReviewRated();
     setStep('thanks');
-    await requestNativeReview();
+    await openStoreReviewPage();
     setTimeout(onClose, 1500);
   };
 
   const handleNo = async () => {
-    await markReviewPrompted();
+    // Показ уже помечен при открытии окна — здесь только закрываем.
     onClose();
   };
 
@@ -511,6 +518,7 @@ export default function LessonComplete() {
   // показываем сюрприз ПОСЛЕ всей очереди наград — никогда поверх других модалок.
   const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
   const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const collectibleDropVisible = useOverlayVisible('collectibleDrop', shownCardDrop != null);
   useEffect(() => {
     if (!pendingCardDrop || shownCardDrop || activeNotif) return;
     // 900мс непрерывной «тишины»: пауза между нотификациями очереди 400мс —
@@ -1142,7 +1150,7 @@ export default function LessonComplete() {
                   {triLang(lang, { ru: '🔓 Следующий урок закрыт', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
                 </Text>
                 <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
-                  {triLang(lang, { ru: 'Открыть Premium — продолжить →', uk: 'Відкрити Premium — продовжити →', es: 'Abrir Premium — continuar →', 'pt-BR': 'Abrir Premium — continuar →', vi: 'Mở Premium — tiếp tục →', id: 'Buka Premium — lanjutkan →', tr: 'Premium aç — devam et →', pl: 'Otwórz Premium — kontynuuj →' })}
+                  {triLang(lang, { ru: 'Открыть Plus — продолжить →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -1275,7 +1283,7 @@ export default function LessonComplete() {
         onClose={() => setShowAuthPrompt(false)}
       />
       <CollectibleDropModal
-        outcome={shownCardDrop}
+        outcome={collectibleDropVisible ? shownCardDrop : null}
         onClose={() => {
           setShownCardDrop(null);
           setPendingCardDrop(null);

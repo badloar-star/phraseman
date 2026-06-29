@@ -8,6 +8,7 @@ import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { phraseWordRowsForStudyTarget } from './phrase_target_utils';
 import { buildSmartPhraseOptions } from './smart_distractors';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 
 /** Заполнение до 6 вариантов при нехватке уникальных дистракторов (режим ES). */
 const SPANISH_FALLBACK_POOL = [
@@ -521,10 +522,11 @@ const getPerWordDistracts = (
     return [];
   }
   const enSurface = String(phrase?.english ?? '').trim();
-  const isFrenchTarget = ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'fr';
+  const normalizedStudyTarget = storageStudyTarget(studyTarget);
+  const isFrenchTarget = ENABLE_DEV_STUDY_TARGET_LANG && normalizedStudyTarget === 'fr';
   const blockLoudAsDistractorForStrangeNoise =
     /\bstrange\s+noise\b/i.test(enSurface) &&
-    !(ENABLE_DEV_STUDY_TARGET_LANG && (studyTarget === 'es' || studyTarget === 'fr'));
+    !(ENABLE_DEV_STUDY_TARGET_LANG && (studyTarget === 'es' || normalizedStudyTarget === 'fr'));
   const isConfusingVolumeDistractor = (w: string): boolean => {
     if (!blockLoudAsDistractorForStrangeNoise) return false;
     const k = w.toLowerCase();

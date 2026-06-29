@@ -11,6 +11,7 @@ describe('Gustav admin target isolation', () => {
 
     expect(source).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");
     expect(source).toContain('const { studyTarget } = useStudyTarget()');
+    expect(source).toContain('storageStudyTarget,');
     expect(source).toContain('lessonBestScoreKey(i, studyTarget)');
     expect(source).toContain('lessonPassCountKey(i, studyTarget)');
     expect(source).toContain('lessonProgressKey(i, studyTarget)');
@@ -44,7 +45,8 @@ describe('Gustav admin target isolation', () => {
     expect(source).toContain('emitFrenchDevSeedBlockedToast');
     expect(source).toContain('const allowEnglishDevMistakeSeed = () =>');
     expect(source).toContain('const allowLegacyReviewModePreview = () =>');
-    expect(source).toContain("if (studyTarget === 'fr')");
+    expect(source).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(source).not.toContain("if (studyTarget === 'fr')");
     expect(source).toContain('if (!allowEnglishDevMistakeSeed()) return;');
     expect(source).toContain('if (!allowLegacyReviewModePreview()) return;');
     expect(source).toContain('French legacy /review preview заблокирован');
@@ -53,14 +55,14 @@ describe('Gustav admin target isolation', () => {
       source.indexOf('const toggleNoLimits = async'),
       source.indexOf('const performStripPremium = async'),
     );
-    expect(noLimitsSlice).toContain("if (studyTarget === 'fr')");
-    expect(noLimitsSlice.indexOf("if (studyTarget === 'fr')")).toBeLessThan(
+    expect(noLimitsSlice).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(noLimitsSlice.indexOf("if (storageStudyTarget(studyTarget) === 'fr')")).toBeLessThan(
       noLimitsSlice.indexOf('lessonBestScoreKey(i, studyTarget)'),
     );
     expect(noLimitsSlice.indexOf('emitFrenchDevSeedBlockedToast()')).toBeLessThan(
       noLimitsSlice.indexOf('lessonProgressKey(i, studyTarget)'),
     );
-    expect(noLimitsSlice.indexOf("if (studyTarget === 'fr')")).toBeLessThan(
+    expect(noLimitsSlice.indexOf("if (storageStudyTarget(studyTarget) === 'fr')")).toBeLessThan(
       noLimitsSlice.indexOf("keysToSet.push([`lesson${i}_score`, '5'])"),
     );
 
@@ -68,8 +70,8 @@ describe('Gustav admin target isolation', () => {
       source.indexOf('Mastery: уроки'),
       source.indexOf('testers-quiz-e2e-results'),
     );
-    expect(masterySeedSlice).toContain("if (studyTarget === 'fr')");
-    expect(masterySeedSlice.indexOf("if (studyTarget === 'fr')")).toBeLessThan(
+    expect(masterySeedSlice).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(masterySeedSlice.indexOf("if (storageStudyTarget(studyTarget) === 'fr')")).toBeLessThan(
       masterySeedSlice.indexOf('masteryFinishedOnceKey(i + 1, studyTarget)'),
     );
     expect(source).not.toContain('`level_exam_${lvl}_pct`');

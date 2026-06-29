@@ -2052,7 +2052,7 @@ export const schedulePhraseOfDayNotification = async (
     const N = await getNotifications();
     if (!N) return;
     const studyTarget = await resolveNotificationStudyTarget(lang, opts.studyTarget);
-    if (studyTarget === 'fr') {
+    if (storageStudyTarget(studyTarget) === 'fr') {
       await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
       const prevPhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
       if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(() => {});

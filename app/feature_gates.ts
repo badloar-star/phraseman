@@ -18,6 +18,7 @@
 
 import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
 import { isFeatureGrantedByWeeklyBoon } from './boons/boon_feature_grants';
+import { isFullAccess } from './age_gate';
 
 /** Каноничные имена фич, у которых есть премиум-замок. */
 export type FeatureGate =
@@ -70,6 +71,29 @@ export function isFeaturePremiumGated(feature: FeatureGate): boolean {
 /** Удобный инверс: true → фича бесплатна для всех (замок снят админом). */
 export function isFeatureFreeForEveryone(feature: FeatureGate): boolean {
   return !isFeaturePremiumGated(feature);
+}
+
+/**
+ * Безопасный режим для подростков (13–15) и младше.
+ *
+ * Юридический смысл: ИИ-собеседник и публичные/мультиплеер-функции для
+ * несовершеннолетних — это главный регуляторный риск (FTC, иски Character.AI,
+ * детские правила ЕС). Полный доступ — только у 'adult' (16+). Для всех остальных
+ * (teen_safe / under13 / неизвестно ещё не должно происходить, но на всякий случай)
+ * эти фичи закрыты НЕЗАВИСИМО от премиума и remote-флагов.
+ */
+const AGE_RESTRICTED_FEATURES: ReadonlySet<FeatureGate> = new Set<FeatureGate>([
+  'ai_dialog', // ИИ-собеседник — свободный чат
+  'arena',     // мультиплеер / публичные соц-функции
+]);
+
+/**
+ * true → фичу нужно заблокировать из-за возрастного безопасного режима
+ * (несовершеннолетний без полного доступа). Проверяется ОТДЕЛЬНО от премиума.
+ */
+export function isFeatureBlockedForAge(feature: FeatureGate): boolean {
+  if (isFullAccess()) return false; // 16+ — без ограничений по возрасту
+  return AGE_RESTRICTED_FEATURES.has(feature);
 }
 
 /**

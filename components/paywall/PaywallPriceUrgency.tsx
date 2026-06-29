@@ -34,9 +34,13 @@ interface Props {
   /** Компактный режим (1 строка): для «Компакт» A и первого экрана C, чтобы CTA
       оставался виден без скролла. По умолчанию — полный блок (для «Стори» B). */
   compact?: boolean;
+  /** Выбран план «навсегда» (разовый платёж, non-consumable). Меняет текст
+      закрепления: у lifetime нечего «отменять», поэтому «пока не отменишь»
+      (формулировка для подписок) тут неуместна. */
+  isLifetime?: boolean;
 }
 
-export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPrice, futurePrice, period, compact }: Props) {
+export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPrice, futurePrice, period, compact, isLifetime }: Props) {
   const { tc, textPrimary, textMuted, cardBorder } = chrome;
   const [timer, setTimer] = useState(urgency.remainingFormatted || formatCountdown(urgency.remainingMs));
 
@@ -173,12 +177,22 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Text style={{ color: textPrimary, fontWeight: '700' }}>
           {triLang(lang, { ru: 'Купишь сейчас', uk: 'Купиш зараз', es: 'Si compras ahora', 'pt-BR': 'Se comprar agora', vi: 'Mua ngay', id: 'Beli sekarang', tr: 'Şimdi alırsan', pl: 'Kupisz teraz' })}
         </Text>
-        {triLang(lang, {
-          ru: ' — цена закрепится за тобой навсегда, пока сам не отменишь.', uk: ' — ціна закріпиться за тобою назавжди, поки сам не скасуєш.',
-          es: ' — el precio queda fijo para ti hasta que tú lo canceles.', 'pt-BR': ' — o preço fica travado pra você até você cancelar.',
-          vi: ' — giá được giữ cho bạn mãi đến khi bạn tự hủy.', id: ' — harga terkunci untukmu sampai kamu sendiri membatalkan.',
-          tr: ' — fiyat, sen iptal edene kadar sana sabitlenir.', pl: ' — cena zostaje przypisana tobie, dopóki sam jej nie anulujesz.',
-        })}
+        {/* lifetime — разовый платёж: «отменять» нечего, поэтому без «пока не отменишь».
+            Это закрепление цены навсегда применимо к подпискам (списания держатся,
+            пока юзер сам не отменит), а не к non-consumable «навсегда». */}
+        {isLifetime
+          ? triLang(lang, {
+              ru: ' — это разовый платёж, и доступ остаётся у тебя навсегда.', uk: ' — це разовий платіж, і доступ залишається в тебе назавжди.',
+              es: ' — es un pago único y el acceso queda tuyo para siempre.', 'pt-BR': ' — é um pagamento único e o acesso fica seu para sempre.',
+              vi: ' — đây là khoản thanh toán một lần và quyền truy cập là của bạn mãi mãi.', id: ' — ini pembayaran sekali dan akses jadi milikmu selamanya.',
+              tr: ' — bu tek seferlik bir ödeme ve erişim sonsuza dek senin olur.', pl: ' — to jednorazowa płatność, a dostęp zostaje twój na zawsze.',
+            })
+          : triLang(lang, {
+              ru: ' — цена закрепится за тобой навсегда, пока сам не отменишь.', uk: ' — ціна закріпиться за тобою назавжди, поки сам не скасуєш.',
+              es: ' — el precio queda fijo para ti hasta que tú lo canceles.', 'pt-BR': ' — o preço fica travado pra você até você cancelar.',
+              vi: ' — giá được giữ cho bạn mãi đến khi bạn tự hủy.', id: ' — harga terkunci untukmu sampai kamu sendiri membatalkan.',
+              tr: ' — fiyat, sen iptal edene kadar sana sabitlenir.', pl: ' — cena zostaje przypisana tobie, dopóki sam jej nie anulujesz.',
+            })}
       </Text>
     </View>
   );

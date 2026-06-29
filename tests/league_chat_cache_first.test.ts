@@ -148,9 +148,30 @@ describe('league chat cache-first behavior', () => {
     expect(screenSource).toContain('testID="league-chat-fullscreen"');
     expect(screenSource).toContain("behavior={Platform.OS === 'ios' ? 'padding' : 'height'}");
     expect(panelSource).toContain('onFocus={handleComposerFocus}');
+    expect(panelSource).toContain("AppState.addEventListener('change'");
+    expect(panelSource).toContain('inputRef.current?.blur()');
+    expect(panelSource).toContain('Keyboard.dismiss()');
+    expect(panelSource).toContain('Math.max(18, insets.bottom + 14)');
     expect(panelSource).toContain('testID="league-chat-composer"');
     expect(panelSource).not.toContain('measureInWindow');
     expect(panelSource).not.toContain('keyboardBottomInset');
+  });
+
+  it('allows deleting only my own league chat messages for everyone', () => {
+    const panelSource = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+    const clientSource = fs.readFileSync(path.join(ROOT, 'app', 'firestore_league_chat.ts'), 'utf8');
+    const functionSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'league_chat.ts'), 'utf8');
+    const indexSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'index.ts'), 'utf8');
+
+    expect(panelSource).toContain('deleteLeagueChatMessage');
+    expect(panelSource).toContain('testID={`league-chat-delete-${m.id}`}');
+    expect(panelSource).toContain('message.authorUid !== myUid');
+    expect(clientSource).toContain("('leagueChatDeleteMessage')");
+    expect(functionSource).toContain('export const leagueChatDeleteMessage');
+    expect(functionSource).toContain("status: 'deleted'");
+    expect(functionSource).toContain("String(message.authorUid || '') !== stableUid");
+    expect(functionSource).toContain("String(message.authorAuthUid || '') !== authUid");
+    expect(indexSource).toContain('exports.leagueChatDeleteMessage = leagueChatDeleteMessage');
   });
 
   it('adds optimistic chat rows before awaiting Firestore send', () => {

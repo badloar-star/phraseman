@@ -180,7 +180,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       return {
         icon: '💎',
         labelRu: `+${amount} осколков знаний`,
-        labelUk: `+${amount} осколків знань`,
+        labelUk: `+${amount} уламків знань`,
         labelEs:
           amount === 1
             ? '+1 fragmento'

@@ -19,9 +19,9 @@ const REGION = 'us-central1';
 const TELEGRAM_API = 'https://api.telegram.org';
 const ALERTS_DOC = 'admin_config/alerts';
 
-const ADMIN_ALERT_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
+export const ADMIN_ALERT_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
 
-type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike';
+type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag';
 
 interface AlertsConfig {
   enabled?: boolean;
@@ -77,7 +77,7 @@ function clip(value: unknown, max: number): string {
  * alerts are disabled or no chatId is set. Never throws — an alert failure must
  * not break the triggering write.
  */
-async function sendTelegramAlert(token: string, text: string, cfg?: AlertsConfig | null): Promise<boolean> {
+export async function sendTelegramAlert(token: string, text: string, cfg?: AlertsConfig | null): Promise<boolean> {
   const config = cfg ?? (await readAlertsConfig());
   if (!config || config.enabled === false) return false;
   const chatId = config.chatId;

@@ -18,7 +18,10 @@ import {
   packTitleForInterface,
   type FlashcardMarketPack,
 } from './marketplace';
-import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+} from '../flashcards_target_gate';
 import { readCustomCards } from './storage';
 import type { CardItem } from './types';
 
@@ -363,6 +366,7 @@ export async function buildCommunitySources(
   inheritedOwnedPackIds: string[],
   studyTarget?: RuntimeStudyTarget,
 ): Promise<TrainingSource[]> {
+  if (!flashcardsCommunityPacksAvailableForTarget(studyTarget)) return [];
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
   try {
     const [ownedCommunityIds, published, stableId] = await Promise.all([

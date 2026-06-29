@@ -4,6 +4,7 @@ import {
   scheduleUpsellNotifications,
 } from './notifications';
 import type { Lang } from '../constants/i18n';
+import { persistGiftAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
 
 // Подарок лояльности: 72 часа полного доступа СУЩЕСТВУЮЩИМ (не новым) free-пользователям
 // в честь крупного обновления. Механика — копия intro_full_access, но в собственных
@@ -88,6 +89,31 @@ export async function startLoyaltyGift(
   const existingStart = parsePositiveMs(await AsyncStorage.getItem(LOYALTY_GIFT_STARTED_AT_KEY));
   if (existingStart) return false;
 
+  // H4 cloud-guard: после переустановки AsyncStorage чист, но Firestore помнит факт
+  // выдачи → НЕ выдаём повторно. Если cloud-grant активен — восстанавливаем endsAt;
+  // если просрочен — пишем только claimed-флаг чтобы блокировать новую выдачу.
+  const cloudState = await readGiftAccessFromCloud('loyalty');
+  if (cloudState?.grantedAtMs) {
+    const remainingEndsAt = cloudState.endsAtMs && cloudState.endsAtMs > nowMs ? cloudState.endsAtMs : null;
+    if (remainingEndsAt) {
+      await AsyncStorage.multiSet([
+        [LOYALTY_GIFT_STARTED_AT_KEY, String(cloudState.grantedAtMs)],
+        [LOYALTY_GIFT_ENDS_AT_KEY, String(remainingEndsAt)],
+        [LOYALTY_GIFT_WELCOME_SEEN_KEY, 'true'],
+        [LOYALTY_GIFT_ENDED_SEEN_KEY, 'false'],
+        [LOYALTY_GIFT_CLAIMED_KEY, 'true'],
+      ]);
+      scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(() => {});
+      scheduleUpsellNotifications(remainingEndsAt, lang).catch(() => {});
+      return true;
+    }
+    await AsyncStorage.multiSet([
+      [LOYALTY_GIFT_STARTED_AT_KEY, String(cloudState.grantedAtMs)],
+      [LOYALTY_GIFT_CLAIMED_KEY, 'true'],
+    ]);
+    return false; // подарок уже истёк — повторно не выдаём
+  }
+
   const endsAt = nowMs + LOYALTY_GIFT_DURATION_MS;
 
   await AsyncStorage.multiSet([
@@ -97,6 +123,9 @@ export async function startLoyaltyGift(
     [LOYALTY_GIFT_ENDED_SEEN_KEY, 'false'],
     [LOYALTY_GIFT_CLAIMED_KEY, 'true'],
   ]);
+
+  // Пишем в облако — сервер увидит подарок и ИИ-функции откроются. Best-effort.
+  void persistGiftAccessOnCloud('loyalty', nowMs, endsAt);
 
   // Те же напоминания об истечении, что и у intro (переиспользуем расписание пушей).
   scheduleIntroExpiringNotification(endsAt, lang).catch(() => {});

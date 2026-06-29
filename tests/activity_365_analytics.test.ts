@@ -110,6 +110,27 @@ describe('activity 365 analytics', () => {
     expect(activity365NextStepKind(analytics.activeDays, analytics.currentStreak)).toBe('warmup');
   });
 
+  it('counts a completed personal-plan task as an active day even without XP', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {},
+      fgDaily: {},
+      breakdown: {
+        '2026-05-21': { plan_tasks_completed: 1 },
+      },
+      goal: 100,
+      goalChosen: true,
+      now: new Date('2026-05-21T12:00:00Z'),
+    });
+
+    const today = analytics.days.find(day => day.date === '2026-05-21')!;
+    expect(today.active).toBe(true);
+    expect(today.level).toBeGreaterThan(0);
+    expect(today.metrics.planTasksCompleted).toBe(1);
+    expect(analytics.activeDays).toBe(1);
+    expect(analytics.goal.activeDays).toBe(1);
+    expect(analytics.goal.remainingDays).toBe(99);
+  });
+
   it('uses a softer build-week next step after the warmup phase', () => {
     expect(activity365NextStepKind(0, 0)).toBe('first_day');
     expect(activity365NextStepKind(2, 2)).toBe('warmup');

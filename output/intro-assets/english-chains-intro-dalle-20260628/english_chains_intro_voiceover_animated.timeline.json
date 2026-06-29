@@ -1,0 +1,142 @@
+[
+  {
+    "index": 0,
+    "file": "01_long_phrases.png",
+    "start": 0.0,
+    "duration": 2.597701149425287,
+    "end": 2.597701149425287
+  },
+  {
+    "index": 1,
+    "file": "02_word_stream.png",
+    "start": 2.597701149425287,
+    "duration": 2.6976127320954904,
+    "end": 5.295313881520777
+  },
+  {
+    "index": 2,
+    "file": "03_lesson_for_you.png",
+    "start": 5.295313881520777,
+    "duration": 1.998231653404067,
+    "end": 7.293545534924844
+  },
+  {
+    "index": 3,
+    "file": "04_parse_english.png",
+    "start": 7.293545534924844,
+    "duration": 1.998231653404067,
+    "end": 9.291777188328911
+  },
+  {
+    "index": 4,
+    "file": "05_not_by_words.png",
+    "start": 9.291777188328911,
+    "duration": 1.49867374005305,
+    "end": 10.790450928381961
+  },
+  {
+    "index": 5,
+    "file": "06_by_chains.png",
+    "start": 10.790450928381961,
+    "duration": 1.6984969053934569,
+    "end": 12.488947833775418
+  },
+  {
+    "index": 6,
+    "file": "07_short_phrase.png",
+    "start": 12.488947833775418,
+    "duration": 1.5985853227232536,
+    "end": 14.087533156498672
+  },
+  {
+    "index": 7,
+    "file": "08_step_by_step.png",
+    "start": 14.087533156498672,
+    "duration": 1.5985853227232536,
+    "end": 15.686118479221927
+  },
+  {
+    "index": 8,
+    "file": "09_word_by_word.png",
+    "start": 15.686118479221927,
+    "duration": 1.5985853227232536,
+    "end": 17.28470380194518
+  },
+  {
+    "index": 9,
+    "file": "10_phrase_grows.png",
+    "start": 17.28470380194518,
+    "duration": 1.6984969053934569,
+    "end": 18.98320070733864
+  },
+  {
+    "index": 10,
+    "file": "11_full_sentence.png",
+    "start": 18.98320070733864,
+    "duration": 1.998231653404067,
+    "end": 20.981432360742705
+  },
+  {
+    "index": 11,
+    "file": "12_brain_adapts.png",
+    "start": 20.981432360742705,
+    "duration": 1.7984084880636604,
+    "end": 22.779840848806366
+  },
+  {
+    "index": 12,
+    "file": "13_english_speech.png",
+    "start": 22.779840848806366,
+    "duration": 1.7984084880636604,
+    "end": 24.578249336870027
+  },
+  {
+    "index": 13,
+    "file": "14_becomes_clearer.png",
+    "start": 24.578249336870027,
+    "duration": 1.7984084880636604,
+    "end": 26.376657824933687
+  },
+  {
+    "index": 14,
+    "file": "15_recall_attempt.png",
+    "start": 26.376657824933687,
+    "duration": 2.597701149425287,
+    "end": 28.974358974358974
+  },
+  {
+    "index": 15,
+    "file": "16_correct_answer.png",
+    "start": 28.974358974358974,
+    "duration": 2.297966401414677,
+    "end": 31.27232537577365
+  },
+  {
+    "index": 16,
+    "file": "17_just_listen.png",
+    "start": 31.27232537577365,
+    "duration": 1.6984969053934569,
+    "end": 32.97082228116711
+  },
+  {
+    "index": 17,
+    "file": "18_repeat_aloud.png",
+    "start": 32.97082228116711,
+    "duration": 1.8983200707338634,
+    "end": 34.869142351900976
+  },
+  {
+    "index": 18,
+    "file": "19_stronger_effect.png",
+    "start": 34.869142351900976,
+    "duration": 1.7984084880636604,
+    "end": 36.66755083996463
+  },
+  {
+    "index": 19,
+    "file": "20_start.png",
+    "start": 36.66755083996463,
+    "duration": 0.9991158267020335,
+    "end": 37.666666666666664
+  }
+]

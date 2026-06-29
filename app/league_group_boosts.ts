@@ -277,7 +277,7 @@ export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> 
   const existing = leagueGroupBoostBuyInFlight.get(stableId);
   if (existing) return existing;
 
-  const request: Promise<BuyLeagueGroupBoostResult> = (async () => {
+  const request: Promise<BuyLeagueGroupBoostResult> = (async (): Promise<BuyLeagueGroupBoostResult> => {
     await ensureCallableAuthReady().catch(() => false);
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     try {

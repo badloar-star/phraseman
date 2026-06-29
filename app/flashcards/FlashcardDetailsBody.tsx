@@ -19,7 +19,7 @@ function stripLiteralHeadingDuplicate(text: string, lang: FlashcardContentLang):
   return s.replace(/^Дословно\s*:\s*/i, '').trim();
 }
 
-/** Прибирає дубль заголовка секції контексту, якщо він потрапив у рядок даних. */
+/** Прибирає дубль заголовка usage-note секції, якщо він потрапив у рядок даних. */
 function stripUsageHeadingDuplicate(text: string, lang: FlashcardContentLang): string {
   let s = text.trim();
   if (lang === 'uk') {
@@ -57,7 +57,7 @@ const LITERAL_LABEL: Record<FlashcardDetailLabelLang, string> = {
 };
 
 /**
- * Розгорнуті деталі: дослівний переклад (поля literal*) — окрема секція з міткою; пояснення/контекст/нотатка — далі в блоці з рейкою.
+ * Розгорнуті деталі: дослівний переклад (поля literal*) — окрема секція з міткою; пояснення/нотатка — далі в блоці з рейкою.
  */
 function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
   const labelLang = flashcardDetailLabelLang(lang);

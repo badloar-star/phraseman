@@ -70,7 +70,7 @@ describe('getVerifiedPremiumStatus', () => {
     mockGetItem.mockResolvedValue(null);
     mockMultiGet.mockResolvedValue([
       ['premium_active', 'true'],
-      ['premium_plan', 'referral_bonus'],
+      ['premium_plan', 'monthly'],
       ['premium_expiry', String(pastExpiry)],
     ]);
     const result = await getVerifiedPremiumStatus();
@@ -78,12 +78,12 @@ describe('getVerifiedPremiumStatus', () => {
     expect(mockSetItem).toHaveBeenCalledWith('premium_active', 'false');
   });
 
-  it('returns true for referral bonus not yet expired', async () => {
+  it('returns true for a time-limited store plan not yet expired', async () => {
     const futureExpiry = Date.now() + 86400000;
     mockGetItem.mockResolvedValue(null);
     mockMultiGet.mockResolvedValue([
       ['premium_active', 'true'],
-      ['premium_plan', 'referral_bonus'],
+      ['premium_plan', 'monthly'],
       ['premium_expiry', String(futureExpiry)],
     ]);
     const result = await getVerifiedPremiumStatus();

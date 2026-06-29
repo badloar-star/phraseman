@@ -13,7 +13,7 @@ import { useLang } from './LangContext';
  */
 const SHARDS_WORD: Record<string, (n: number) => string> = {
   ru: (n) => `+${n} осколков`,
-  uk: (n) => `+${n} осколків`,
+  uk: (n) => `+${n} уламків`,
   es: (n) => `+${n} fragmentos`,
   'pt-BR': (n) => `+${n} fragmentos`,
   vi: (n) => `+${n} mảnh`,

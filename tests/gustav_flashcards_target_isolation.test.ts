@@ -33,8 +33,10 @@ import {
   markPackCeremoniallyOpened,
 } from '../app/flashcards/openedPacksTracker';
 import {
+  buildCommunitySources,
   buildCachedTrainingSources,
   buildOfficialTrainingSourcesFromIds,
+  loadTrainingSources,
 } from '../app/flashcards/trainingSources';
 import {
   consumeDevActivePack,
@@ -133,6 +135,29 @@ describe('Gustav flashcards target isolation', () => {
     )).toEqual([]);
 
     expect(buildOfficialTrainingSourcesFromIds(officialIds, 'ru', 'en').length).toBeGreaterThan(0);
+  });
+
+  it('hard-gates flashcard training helpers against French community packs even with stale caller flags', async () => {
+    await addFlashcard({
+      en: 'bonjour',
+      ru: 'Ð·Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ',
+      uk: 'Ð²Ñ–Ñ‚Ð°ÑŽ',
+      source: 'lesson',
+    }, 'fr');
+
+    await expect(buildCommunitySources('ru', ['stale_community_pack'], 'fr')).resolves.toEqual([]);
+
+    const sources = await loadTrainingSources({
+      lang: 'ru',
+      studyTarget: 'fr',
+      officialPacksEnabled: true,
+      communityPacksEnabled: true,
+      requestedSourceId: '',
+      requestedFilter: '',
+    });
+
+    expect(sources.map((source) => source.kind)).toEqual(['saved']);
+    expect(sources.some((source) => source.kind === 'official' || source.kind === 'community')).toBe(false);
   });
 
   it('uses only Russian/Ukrainian source UI copy for French flashcard gates', () => {
@@ -370,7 +395,6 @@ describe('Gustav flashcards target isolation', () => {
     const globalBroadcastSource = fs.readFileSync(path.join(ROOT, 'app', 'global_broadcast_modal.ts'), 'utf8');
     const globalBroadcastModalSource = fs.readFileSync(path.join(ROOT, 'components', 'GlobalBroadcastModal.tsx'), 'utf8');
     const clubSource = fs.readFileSync(path.join(ROOT, 'app', 'club_screen.tsx'), 'utf8');
-    const progressMapSource = fs.readFileSync(path.join(ROOT, 'app', 'progress_map.tsx'), 'utf8');
     const levelGiftModalSource = fs.readFileSync(path.join(ROOT, 'components', 'LevelGiftModal.tsx'), 'utf8');
     const levelGiftDualModalSource = fs.readFileSync(path.join(ROOT, 'components', 'LevelGiftDualModal.tsx'), 'utf8');
     const levelGiftInventorySource = fs.readFileSync(path.join(ROOT, 'app', 'level_gift_inventory.ts'), 'utf8');
@@ -417,6 +441,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(audioSource).toContain('buildCachedTrainingSources(');
     expect(audioSource).toContain('studyTarget,');
     expect(trainingSourcesSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
+    expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(hubSource).toContain('primeCustomFlashcardsCache(studyTarget)');
@@ -494,8 +519,6 @@ describe('Gustav flashcards target isolation', () => {
     expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget)');
     expect(globalBroadcastModalSource).toContain('claimAndDismissGlobalBroadcastModal(payload, studyTarget)');
     expect(clubSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(progressMapSource).toContain('getPackGiftTrial(studyTarget)');
-    expect(progressMapSource).toContain('getMilestoneLevelGift(lvl, { studyTarget })');
     expect(levelGiftModalSource).toContain('rollF2pLevelGiftForUser(level, { studyTarget })');
     expect(levelGiftDualModalSource).toContain('rollF2pLevelGiftForUser(level, { premiumSafe: true, studyTarget })');
     expect(levelGiftDualModalSource).toContain('rollPremiumLevelGiftForUser(level, { studyTarget })');

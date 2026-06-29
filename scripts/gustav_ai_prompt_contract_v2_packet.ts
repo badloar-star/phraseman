@@ -123,6 +123,17 @@ type Metrics = {
   contractsGenerationBlocked: number;
   criticalRiskContracts: number;
   highRiskContracts: number;
+  criticalSurfaceClassesExpected: number;
+  criticalSurfaceClassesCovered: number;
+  criticalSurfaceContracts: number;
+  criticalSurfaceContractsWithLanguageDimensions: number;
+  criticalSurfaceContractsWithCacheContract: number;
+  criticalSurfaceContractsWithRejectBeforeReturn: number;
+  criticalSurfaceContractsWithRejectBeforeCache: number;
+  criticalSurfaceContractsWithLanguageSafeFallback: number;
+  criticalSurfaceContractsGenerationBlocked: number;
+  criticalSurfaceRequiredFiles: number;
+  criticalSurfaceRequiredFilesCovered: number;
   forbiddenOutputKeys: number;
   forbiddenPermissionFlags: number;
   falseApprovalFlags: number;
@@ -196,6 +207,27 @@ const APPROVAL_FLAGS = new Set([
   'appSeedRuntimeAllowed',
   'introRuntimeAllowed',
 ]);
+
+const CRITICAL_SURFACE_CLASSES = [
+  'mistake_explanation',
+  'weekly_review',
+  'stats_insights',
+  'premium_dialog_or_paywall',
+  'ai_dialog',
+];
+
+const REQUIRED_CRITICAL_SURFACE_FILES = [
+  'app/ai_mistake_explain_client.ts',
+  'app/stats_insights_client.ts',
+  'app/weekly_review_client.ts',
+  'app/ai_dialog_client.ts',
+  'app/ai_dialog_session.tsx',
+  'functions/src/mistake_explain.ts',
+  'functions/src/explain/mistake_explain_cache.ts',
+  'functions/src/weekly_review.ts',
+  'functions/src/stats_insights.ts',
+  'functions/src/premium_dialog.ts',
+];
 
 function argValue(name: string): string | null {
   const index = process.argv.indexOf(name);
@@ -456,6 +488,17 @@ function emptyMetrics(): Metrics {
     contractsGenerationBlocked: 0,
     criticalRiskContracts: 0,
     highRiskContracts: 0,
+    criticalSurfaceClassesExpected: 0,
+    criticalSurfaceClassesCovered: 0,
+    criticalSurfaceContracts: 0,
+    criticalSurfaceContractsWithLanguageDimensions: 0,
+    criticalSurfaceContractsWithCacheContract: 0,
+    criticalSurfaceContractsWithRejectBeforeReturn: 0,
+    criticalSurfaceContractsWithRejectBeforeCache: 0,
+    criticalSurfaceContractsWithLanguageSafeFallback: 0,
+    criticalSurfaceContractsGenerationBlocked: 0,
+    criticalSurfaceRequiredFiles: 0,
+    criticalSurfaceRequiredFilesCovered: 0,
     forbiddenOutputKeys: 0,
     forbiddenPermissionFlags: 0,
     falseApprovalFlags: 0,
@@ -522,6 +565,55 @@ function validateContract(contract: AiPromptContractV2, expectedEntrypoints: num
   metrics.contractsGenerationBlocked = contracts.filter((entry) => entry.outputContract.targetOutputAllowedBeforeContentQualityGate === false && entry.activationStatus === 'blocked').length;
   metrics.criticalRiskContracts = contracts.filter((entry) => entry.riskLevel === 'critical').length;
   metrics.highRiskContracts = contracts.filter((entry) => entry.riskLevel === 'high').length;
+  const criticalSurfaceContracts = contracts.filter((entry) => CRITICAL_SURFACE_CLASSES.includes(entry.featureRiskClass));
+  const criticalSurfaceClassesCovered = new Set(criticalSurfaceContracts.map((entry) => entry.featureRiskClass));
+  const contractFiles = new Set(contracts.map((entry) => entry.filePath));
+  metrics.criticalSurfaceClassesExpected = CRITICAL_SURFACE_CLASSES.length;
+  metrics.criticalSurfaceClassesCovered = criticalSurfaceClassesCovered.size;
+  metrics.criticalSurfaceContracts = criticalSurfaceContracts.length;
+  metrics.criticalSurfaceContractsWithLanguageDimensions = criticalSurfaceContracts.filter((entry) =>
+    entry.requiredLanguageDimensions.targetLocale === true &&
+    entry.requiredLanguageDimensions.targetStudyLanguage === true &&
+    entry.requiredLanguageDimensions.sourceLocales === true &&
+    entry.requiredLanguageDimensions.uiLocale === true &&
+    entry.requiredLanguageDimensions.generationSchemaVersion === true &&
+    entry.promptContract.mustPassTargetLocale === true &&
+    entry.promptContract.mustPassSourceLocales === true &&
+    entry.promptContract.mustPassUiLocale === true
+  ).length;
+  metrics.criticalSurfaceContractsWithCacheContract = criticalSurfaceContracts.filter((entry) =>
+    entry.cacheContract.requiredKeyDimensions.includes('targetLocale') &&
+    entry.cacheContract.requiredKeyDimensions.includes('targetStudyLanguage') &&
+    entry.cacheContract.requiredKeyDimensions.includes('sourceLocales') &&
+    entry.cacheContract.requiredKeyDimensions.includes('uiLocale') &&
+    entry.cacheContract.requiredKeyDimensions.includes('domainId') &&
+    entry.cacheContract.requiredKeyDimensions.includes('entrypointFile') &&
+    entry.cacheContract.requiredKeyDimensions.includes('generationSchemaVersion') &&
+    entry.cacheContract.requiredKeyDimensions.includes('researchPackVersion') &&
+    entry.cacheContract.requiredKeyDimensions.includes('pedagogyBlueprintVersion')
+  ).length;
+  metrics.criticalSurfaceContractsWithRejectBeforeReturn = criticalSurfaceContracts.filter((entry) =>
+    entry.outputContract.rejectedFreshOutputMayReturn === false &&
+    entry.returnContract.mayReturnRejectedFreshText === false &&
+    entry.returnContract.mustReturnSafeFallbackOnReject === true
+  ).length;
+  metrics.criticalSurfaceContractsWithRejectBeforeCache = criticalSurfaceContracts.filter((entry) =>
+    entry.cacheContract.rejectedFreshOutputMayBeCached === false &&
+    entry.cacheContract.targetMismatchCacheFallbackAllowed === false &&
+    entry.cacheContract.sourceLocaleMismatchCacheFallbackAllowed === false &&
+    entry.cacheContract.uiLocaleMismatchCacheFallbackAllowed === false
+  ).length;
+  metrics.criticalSurfaceContractsWithLanguageSafeFallback = criticalSurfaceContracts.filter((entry) =>
+    entry.outputContract.wrongLanguageFallbackAllowed === false &&
+    entry.outputContract.targetOutputAllowedBeforeContentQualityGate === false &&
+    entry.returnContract.safeFallbackMayContainTargetContent === false
+  ).length;
+  metrics.criticalSurfaceContractsGenerationBlocked = criticalSurfaceContracts.filter((entry) =>
+    entry.activationStatus === 'blocked' &&
+    entry.activationBlockReason === 'blocked_until_ai_prompt_contract_content_quality_reviewer_and_apply_gates'
+  ).length;
+  metrics.criticalSurfaceRequiredFiles = REQUIRED_CRITICAL_SURFACE_FILES.length;
+  metrics.criticalSurfaceRequiredFilesCovered = REQUIRED_CRITICAL_SURFACE_FILES.filter((file) => contractFiles.has(file)).length;
 
   if (contract.schemaVersion !== 'gustav-fr-ai-prompt-contract-v2') addFinding(findings, 'blocker', 'schema_version_invalid', 'AI Prompt Contract V2 schemaVersion is invalid.', filePath, '$.schemaVersion');
   if (contract.targetLocale !== 'fr' || contract.targetStudyLanguage !== 'fr') addFinding(findings, 'blocker', 'target_locale_invalid', 'AI Prompt Contract V2 target locale must be fr.', filePath);
@@ -538,6 +630,30 @@ function validateContract(contract: AiPromptContractV2, expectedEntrypoints: num
   if (metrics.contractsWithRejectBeforeCache !== contracts.length) addFinding(findings, 'blocker', 'rejected_fresh_output_cache_open', 'Every AI contract must block rejected fresh output before cache.', filePath);
   if (metrics.contractsWithLanguageSafeFallback !== contracts.length) addFinding(findings, 'blocker', 'wrong_language_fallback_open', 'Every AI contract must use a language-safe fallback.', filePath);
   if (metrics.contractsGenerationBlocked !== contracts.length) addFinding(findings, 'blocker', 'generation_open_before_quality_gate', 'Every AI contract must keep generation blocked until content quality gates.', filePath);
+  if (metrics.criticalSurfaceClassesCovered !== metrics.criticalSurfaceClassesExpected) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_class_coverage_incomplete', `Critical AI surface classes covered: ${metrics.criticalSurfaceClassesCovered}/${metrics.criticalSurfaceClassesExpected}.`, filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceRequiredFilesCovered !== metrics.criticalSurfaceRequiredFiles) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_file_coverage_incomplete', `Critical AI surface files covered: ${metrics.criticalSurfaceRequiredFilesCovered}/${metrics.criticalSurfaceRequiredFiles}.`, filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsWithLanguageDimensions !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_language_dimensions_incomplete', 'Every critical AI surface must require target/source/ui/schema language dimensions.', filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsWithCacheContract !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_cache_contract_incomplete', 'Every critical AI surface cache key must include full language/schema/research/blueprint dimensions.', filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsWithRejectBeforeReturn !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_reject_before_return_incomplete', 'Every critical AI surface must reject invalid fresh output before live return.', filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsWithRejectBeforeCache !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_reject_before_cache_incomplete', 'Every critical AI surface must reject invalid fresh output before cache and forbid language-mismatch cache fallback.', filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsWithLanguageSafeFallback !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_language_safe_fallback_incomplete', 'Every critical AI surface must use safe fallback with no target content after language rejection.', filePath, '$.entrypointContracts');
+  }
+  if (metrics.criticalSurfaceContractsGenerationBlocked !== metrics.criticalSurfaceContracts) {
+    addFinding(findings, 'blocker', 'critical_ai_surface_generation_not_blocked', 'Every critical AI surface must remain blocked until content-quality/reviewer/apply gates.', filePath, '$.entrypointContracts');
+  }
   if (contract.rejectedOutputPolicy.rejectedFreshOutputMayReturn !== false || contract.rejectedOutputPolicy.rejectedFreshOutputMayBeCached !== false) {
     addFinding(findings, 'blocker', 'global_rejected_output_policy_open', 'Global rejected-output policy must block return and cache.', filePath, '$.rejectedOutputPolicy');
   }
@@ -581,6 +697,38 @@ function runProbes(contract: AiPromptContractV2, expectedEntrypoints: number, ex
   generationOpen.activationPolicy.generationAllowedFromPromptContractAlone = true as false;
   probes.push({ id: 'prompt_contract_generation_open_rejected', expectedAccept: false, contract: generationOpen });
 
+  const missingCriticalSurface = cloneContract(contract);
+  missingCriticalSurface.entrypointContracts = missingCriticalSurface.entrypointContracts.filter((entry) => entry.filePath !== REQUIRED_CRITICAL_SURFACE_FILES[0]);
+  probes.push({ id: 'critical_surface_missing_file_rejected', expectedAccept: false, contract: missingCriticalSurface });
+
+  const criticalCacheMissingUi = cloneContract(contract);
+  const criticalCacheEntry = criticalCacheMissingUi.entrypointContracts.find((entry) => CRITICAL_SURFACE_CLASSES.includes(entry.featureRiskClass));
+  if (criticalCacheEntry) {
+    criticalCacheEntry.cacheContract.requiredKeyDimensions = criticalCacheEntry.cacheContract.requiredKeyDimensions.filter((key) => key !== 'uiLocale');
+  }
+  probes.push({ id: 'critical_surface_cache_missing_ui_locale_rejected', expectedAccept: false, contract: criticalCacheMissingUi });
+
+  const criticalReturnOpen = cloneContract(contract);
+  const criticalReturnEntry = criticalReturnOpen.entrypointContracts.find((entry) => CRITICAL_SURFACE_CLASSES.includes(entry.featureRiskClass));
+  if (criticalReturnEntry) {
+    criticalReturnEntry.returnContract.mayReturnRejectedFreshText = true as false;
+  }
+  probes.push({ id: 'critical_surface_rejected_return_open_rejected', expectedAccept: false, contract: criticalReturnOpen });
+
+  const criticalCacheFallbackOpen = cloneContract(contract);
+  const criticalCacheFallbackEntry = criticalCacheFallbackOpen.entrypointContracts.find((entry) => CRITICAL_SURFACE_CLASSES.includes(entry.featureRiskClass));
+  if (criticalCacheFallbackEntry) {
+    criticalCacheFallbackEntry.cacheContract.uiLocaleMismatchCacheFallbackAllowed = true as false;
+  }
+  probes.push({ id: 'critical_surface_cache_fallback_open_rejected', expectedAccept: false, contract: criticalCacheFallbackOpen });
+
+  const criticalUnsafeFallback = cloneContract(contract);
+  const criticalUnsafeFallbackEntry = criticalUnsafeFallback.entrypointContracts.find((entry) => CRITICAL_SURFACE_CLASSES.includes(entry.featureRiskClass));
+  if (criticalUnsafeFallbackEntry) {
+    criticalUnsafeFallbackEntry.returnContract.safeFallbackMayContainTargetContent = true as false;
+  }
+  probes.push({ id: 'critical_surface_unsafe_fallback_rejected', expectedAccept: false, contract: criticalUnsafeFallback });
+
   return probes.map((probe) => {
     const result = validateContract(probe.contract, expectedEntrypoints, expectedDomains, filePath);
     const blockers = result.findings.filter((finding) => finding.severity === 'blocker').length;
@@ -620,6 +768,12 @@ function renderMarkdown(report: Report): string {
     `- Contracts with language-safe fallback: ${report.summary.contractsWithLanguageSafeFallback}`,
     `- Contracts generation blocked: ${report.summary.contractsGenerationBlocked}`,
     `- Critical risk contracts: ${report.summary.criticalRiskContracts}`,
+    `- Critical surface classes covered: ${report.summary.criticalSurfaceClassesCovered}/${report.summary.criticalSurfaceClassesExpected}`,
+    `- Critical surface contracts: ${report.summary.criticalSurfaceContracts}`,
+    `- Critical surface required files: ${report.summary.criticalSurfaceRequiredFilesCovered}/${report.summary.criticalSurfaceRequiredFiles}`,
+    `- Critical surface cache contract: ${report.summary.criticalSurfaceContractsWithCacheContract}/${report.summary.criticalSurfaceContracts}`,
+    `- Critical surface reject before return/cache: ${report.summary.criticalSurfaceContractsWithRejectBeforeReturn}/${report.summary.criticalSurfaceContractsWithRejectBeforeCache}`,
+    `- Critical surface safe fallback: ${report.summary.criticalSurfaceContractsWithLanguageSafeFallback}/${report.summary.criticalSurfaceContracts}`,
     `- High risk contracts: ${report.summary.highRiskContracts}`,
     `- Fixture probes passed: ${report.summary.fixtureProbesPassed}/${report.summary.fixtureProbes}`,
     `- Ready for Content Quality Gates V2: ${report.summary.readyForContentQualityGatesV2 ? 'yes' : 'no'}`,
@@ -718,6 +872,15 @@ function main(): void {
     metrics.contractsWithUiLocale === expectedEntrypoints &&
     metrics.contractsWithRejectBeforeReturn === expectedEntrypoints &&
     metrics.contractsWithRejectBeforeCache === expectedEntrypoints &&
+    metrics.criticalSurfaceClassesCovered === metrics.criticalSurfaceClassesExpected &&
+    metrics.criticalSurfaceRequiredFilesCovered === metrics.criticalSurfaceRequiredFiles &&
+    metrics.criticalSurfaceContracts > 0 &&
+    metrics.criticalSurfaceContractsWithLanguageDimensions === metrics.criticalSurfaceContracts &&
+    metrics.criticalSurfaceContractsWithCacheContract === metrics.criticalSurfaceContracts &&
+    metrics.criticalSurfaceContractsWithRejectBeforeReturn === metrics.criticalSurfaceContracts &&
+    metrics.criticalSurfaceContractsWithRejectBeforeCache === metrics.criticalSurfaceContracts &&
+    metrics.criticalSurfaceContractsWithLanguageSafeFallback === metrics.criticalSurfaceContracts &&
+    metrics.criticalSurfaceContractsGenerationBlocked === metrics.criticalSurfaceContracts &&
     fixtureProbesPassed === probes.length;
 
   if (contract) {

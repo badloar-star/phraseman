@@ -95,6 +95,7 @@ import { ENABLE_DEV_TOOLS, STORE_URL } from './config';
 import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
+import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
 import {
@@ -151,6 +152,7 @@ import {
   masteryFinishedOnceKey,
   quizAchievementCounterKey,
   statsInsightsStorageKey,
+  storageStudyTarget,
   unlockedLessonsKey,
 } from './target_storage_keys';
 import { touchLessonScreenPrimed } from './lesson_screen_bootstrap';
@@ -167,6 +169,7 @@ import {
   frenchPersonalPracticeGateCopy,
   personalPracticeCoachEnabledForTarget,
 } from './personal_practice_target_gate';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { safeRouterBack } from './navigation_back';
 import {
   activateIntroFullAccessForAdmin,
@@ -1228,7 +1231,7 @@ export default function SettingsTestersFunctions() {
   };
 
   const allowEnglishDevMistakeSeed = () => {
-    if (studyTarget === 'fr') {
+    if (storageStudyTarget(studyTarget) === 'fr') {
       emitFrenchDevSeedBlockedToast();
       return false;
     }
@@ -1236,7 +1239,7 @@ export default function SettingsTestersFunctions() {
   };
 
   const allowLegacyReviewModePreview = () => {
-    if (studyTarget === 'fr') {
+    if (storageStudyTarget(studyTarget) === 'fr') {
       emitAppEvent('action_toast', actionToastTri('info', {
         ru: 'French legacy /review preview заблокирован: нужны source-gated French SRS данные',
         uk: 'French legacy /review preview заблоковано: потрібні source-gated French SRS дані',
@@ -1295,6 +1298,50 @@ export default function SettingsTestersFunctions() {
     router.push('/trainer' as any);
   };
 
+  const trainerQaRouteGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
+  const emitFrenchTrainerQaBlockedToast = () => {
+    const ruCopy = frenchTrainerGateCopy('ru');
+    const ukCopy = frenchTrainerGateCopy('uk');
+    emitAppEvent('action_toast', actionToastTri('info', {
+      ru: ruCopy.title,
+      uk: ukCopy.title,
+      es: 'French trainer QA shortcut is blocked until source-gated trainer data exists.',
+      'pt-BR': 'Atalho QA do trainer French bloqueado até haver dados com source gate.',
+      vi: 'Lối tắt QA trainer French bị chặn cho đến khi có dữ liệu source-gated.',
+      id: 'Shortcut QA trainer French diblokir sampai data source-gated tersedia.',
+      tr: 'French trainer QA kısayolu source-gated veri gelene kadar engellendi.',
+      pl: 'Skrót QA trenera French jest zablokowany do czasu danych source-gated.',
+    }));
+  };
+  const openTrainerQaRoute = (route: '/trainer' | '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session') => {
+    if (!trainerQaRouteGateOpen) {
+      emitFrenchTrainerQaBlockedToast();
+      router.push('/trainer' as any);
+      return;
+    }
+    router.push(route as any);
+  };
+
+  const openAiDialogQaRoute = () => {
+    if (!aiDialogContentAvailableForTarget(studyTarget)) {
+      const ruCopy = frenchAiDialogGateCopy('ru');
+      const ukCopy = frenchAiDialogGateCopy('uk');
+      emitAppEvent('action_toast', actionToastTri('info', {
+        ru: ruCopy.title,
+        uk: ukCopy.title,
+        es: 'French AI dialog QA shortcut is blocked until source-gated dialog prompts exist.',
+        'pt-BR': 'Atalho QA de AI-dialog French bloqueado até haver prompts com source gate.',
+        vi: 'Lối tắt QA AI-dialog French bị chặn cho đến khi có prompt source-gated.',
+        id: 'Shortcut QA AI-dialog French diblokir sampai prompt source-gated tersedia.',
+        tr: 'French AI-dialog QA kısayolu source-gated prompt gelene kadar engellendi.',
+        pl: 'Skrót QA AI-dialog French jest zablokowany do czasu promptów source-gated.',
+      }));
+      router.push('/(tabs)/lessons' as any);
+      return;
+    }
+    router.push('/ai_dialog_home' as any);
+  };
+
   const openStats365RandomQa = async () => {
     await ensureQaPremiumAccess();
     await devSeedActivity365Scenario('random');
@@ -1345,7 +1392,7 @@ export default function SettingsTestersFunctions() {
       amount: 5,
       reasonText: triLang(lang, {
   ru: 'Admin preview: актуальная глобальная модалка осколков',
-  uk: 'Admin preview: актуальна глобальна модалка осколків',
+  uk: 'Admin preview: актуальна глобальна модалка уламків',
   es: 'Admin preview: modal global actual de fragmentos',
   "pt-BR": 'Admin preview: modal global atual de fragmentos',
   vi: 'Admin preview: modal mảnh toàn cục hiện tại',
@@ -1549,7 +1596,7 @@ export default function SettingsTestersFunctions() {
 
     // When enabling No Limits, award all medals on lessons and exams
     if (val) {
-      if (studyTarget === 'fr') {
+      if (storageStudyTarget(studyTarget) === 'fr') {
         emitFrenchDevSeedBlockedToast();
         return;
       }
@@ -2900,7 +2947,7 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic}
               onPress={async () => {
                 doHaptic();
-                if (studyTarget === 'fr') {
+                if (storageStudyTarget(studyTarget) === 'fr') {
                   emitFrenchDevSeedBlockedToast();
                   return;
                 }
@@ -3400,7 +3447,7 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="chatbubble-ellipses-outline"
               label="💬 Открыть экран ИИ-диалога"
               sub="ai_dialog_home — выбор сценария и запуск сессии"
-              onPress={() => router.push('/ai_dialog_home' as any)}
+              onPress={openAiDialogQaRoute}
               t={t} f={f} doHaptic={doHaptic} testID="testers-open-ai-dialog" />
             <ButtonRow icon="diamond-outline"
               label="🔒 Пейвол context='ai_dialog'"
@@ -3707,7 +3754,7 @@ export default function SettingsTestersFunctions() {
               testID="trainer-qa-open-hub"
               label="🏋 Открыть Тренер (hub)"
               sub="Переход на /trainer"
-              onPress={() => router.push('/trainer' as any)}
+              onPress={() => openTrainerQaRoute('/trainer')}
               t={t} f={f} doHaptic={doHaptic}
             />
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
@@ -3767,21 +3814,21 @@ export default function SettingsTestersFunctions() {
               icon="library-outline"
               label="Words session"
               sub="/trainer_words_session — актуальная сессия слов"
-              onPress={() => router.push('/trainer_words_session' as any)}
+              onPress={() => openTrainerQaRoute('/trainer_words_session')}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
               icon="chatbubbles-outline"
               label="Phrases session"
               sub="/trainer_phrases_session — актуальная сессия фраз"
-              onPress={() => router.push('/trainer_phrases_session' as any)}
+              onPress={() => openTrainerQaRoute('/trainer_phrases_session')}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
               icon="shield-checkmark-outline"
               label="Arena practice session"
               sub="/trainer_arena_session — актуальная сессия арены без давления"
-              onPress={() => router.push('/trainer_arena_session' as any)}
+              onPress={() => openTrainerQaRoute('/trainer_arena_session')}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow

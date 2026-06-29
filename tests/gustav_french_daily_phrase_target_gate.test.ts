@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import fs from 'fs';
+import path from 'path';
 import {
   dailyPhraseContentGateForTarget,
   dailyPhraseContentAvailableForTarget,
@@ -15,6 +17,8 @@ import {
   dailyPhraseLastDateKey,
   dailyPhraseRemoteCacheKey,
 } from '../app/target_storage_keys';
+
+const ROOT = path.join(__dirname, '..');
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
@@ -57,6 +61,21 @@ describe('Gustav French daily phrase target gate', () => {
 
     expect(AsyncStorage.getItem).not.toHaveBeenCalled();
     expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+  });
+
+  it('keeps the home daily phrase surface visible for French while the English phrase runtime remains source-gated', () => {
+    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+    const card = fs.readFileSync(path.join(ROOT, 'components', 'DailyPhraseCard.tsx'), 'utf8');
+
+    expect(home).toContain('<DailyPhraseCard variant="homeAdditional" />');
+    expect(home).toContain(': <DailyPhraseCard />}');
+    expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
+    expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
+    expect(card).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
+    expect(card).toContain('const gateCopy = frenchDailyPhraseGateCopy(lang)');
+    expect(card).toContain('accessibilityLabel={gateCopy.title}');
+    expect(card).not.toContain("if (studyTarget === 'fr')");
+    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(false);
   });
 
   it('keeps English legacy behavior and reserves scoped French storage keys for future approved packets', async () => {

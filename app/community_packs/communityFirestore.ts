@@ -24,7 +24,7 @@ export type MapCommunityPackDocOptions = {
 };
 
 function communityPackDocStudyTarget(data: Record<string, unknown> | undefined): StudyTarget {
-  return data?.studyTarget === 'fr' ? 'fr' : 'en';
+  return storageStudyTarget(data?.studyTarget as RuntimeStudyTarget | undefined);
 }
 
 export function communityPackDocMatchesStudyTarget(

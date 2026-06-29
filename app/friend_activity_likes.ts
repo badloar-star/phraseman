@@ -7,6 +7,9 @@ import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 
 const FUNCTIONS_REGION = 'us-central1';
 
+/** Stable event id the server uses for an eventless, profile-level like (from a user card). */
+export const PROFILE_LIKE_EVENT_ID = '__profile__';
+
 export type FriendActivityLikeTodayState = {
   date: string;
   targetUid: string;
@@ -22,6 +25,26 @@ export type FriendActivityLikeResponse = {
   activityLikeCount: number;
   targetActivityLikeTotal: number;
   idempotentReplay?: boolean;
+};
+
+export type FriendActivityUnlikeResponse = {
+  ok: boolean;
+  removed: boolean;
+  date: string;
+  targetUid: string;
+  eventId: string;
+  activityLikeCount: number;
+  targetActivityLikeTotal: number;
+};
+
+/** A like the current user has received — surfaced in the friends activity feed. */
+export type ActivityLikeReceived = {
+  id: string;
+  date: string;
+  eventId: string;
+  fromUid: string;
+  fromName: string;
+  ts: number;
 };
 
 export function isFriendActivityLikesCloudEnabled(): boolean {
@@ -104,9 +127,16 @@ export async function fetchActivityLikeTotal(userUid: string): Promise<number> {
   }
 }
 
+/**
+ * Place a like.
+ *  • Omit `eventId` (or pass empty) → profile-level like from a user card: likes ANY user,
+ *    friend or not, no activity event required. This is the card path.
+ *  • Pass an `eventId` → event-level like (friends activity feed / league group boost).
+ * Both honour the shared one-like-per-UTC-day quota; a same-day repeat replays idempotently.
+ */
 export async function sendFriendActivityLike(data: {
   targetUid: string;
-  eventId: string;
+  eventId?: string;
   senderDisplayName?: string;
 }): Promise<FriendActivityLikeResponse> {
   if (!isFriendActivityLikesCloudEnabled()) {
@@ -116,22 +146,93 @@ export async function sendFriendActivityLike(data: {
   if (!senderStableId) {
     throw new Error('sender_unavailable');
   }
-  if (!data.targetUid || !data.eventId) {
+  if (!data.targetUid) {
     throw new Error('target_unavailable');
   }
   await ensureActivityLikeAuthLink(senderStableId);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<
-    { senderStableId: string; targetStableId: string; eventId: string; senderDisplayName?: string },
+    { senderStableId: string; targetStableId: string; eventId?: string; senderDisplayName?: string },
     FriendActivityLikeResponse
   >('friendLikeActivity');
   const res = await fn({
     senderStableId,
     targetStableId: data.targetUid,
-    eventId: data.eventId,
+    eventId: data.eventId ?? '',
     senderDisplayName: data.senderDisplayName ?? '',
   });
   return res.data;
+}
+
+/**
+ * Remove today's like (toggle off). Mirror of sendFriendActivityLike: omit `eventId` for a
+ * profile-level like, pass it for an event like. The server only removes the like if it still
+ * matches today's recorded like, then frees the daily quota.
+ */
+export async function removeFriendActivityLike(data: {
+  targetUid: string;
+  eventId?: string;
+}): Promise<FriendActivityUnlikeResponse> {
+  if (!isFriendActivityLikesCloudEnabled()) {
+    throw new Error('friend_activity_likes_unavailable');
+  }
+  const senderStableId = await ensureAnonUser();
+  if (!senderStableId) {
+    throw new Error('sender_unavailable');
+  }
+  if (!data.targetUid) {
+    throw new Error('target_unavailable');
+  }
+  await ensureActivityLikeAuthLink(senderStableId);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<
+    { senderStableId: string; targetStableId: string; eventId?: string },
+    FriendActivityUnlikeResponse
+  >('friendUnlikeActivity');
+  const res = await fn({
+    senderStableId,
+    targetStableId: data.targetUid,
+    eventId: data.eventId ?? '',
+  });
+  return res.data;
+}
+
+/**
+ * Load the likes the current user has received (most recent first) so the activity feed can
+ * show "X liked you". Reads users/{myUid}/activity_likes_received, owner-gated by rules.
+ */
+export async function fetchActivityLikesReceived(limit = 30): Promise<ActivityLikeReceived[]> {
+  if (!isFriendActivityLikesCloudEnabled()) return [];
+  const myUid = await getCanonicalUserId();
+  if (!myUid) return [];
+  const db = getDb();
+  if (!db) return [];
+  try {
+    const snap = await db
+      .collection('users')
+      .doc(myUid)
+      .collection('activity_likes_received')
+      .orderBy('ts', 'desc')
+      .limit(Math.max(1, Math.min(100, Math.floor(limit))))
+      .get();
+    const out: ActivityLikeReceived[] = [];
+    for (const doc of snap.docs as Array<{ id: string; data: () => Record<string, unknown> }>) {
+      const d = doc.data() ?? {};
+      const ts = Number(d.ts);
+      if (!Number.isFinite(ts)) continue;
+      out.push({
+        id: doc.id,
+        date: String(d.date ?? ''),
+        eventId: String(d.eventId ?? ''),
+        fromUid: String(d.fromUid ?? ''),
+        fromName: String(d.fromName ?? '').trim() || 'Friend',
+        ts,
+      });
+    }
+    return out;
+  } catch {
+    return [];
+  }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

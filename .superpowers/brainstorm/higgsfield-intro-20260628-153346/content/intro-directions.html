@@ -1,0 +1,210 @@
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .direction-card {
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0b1020;
+    cursor: pointer;
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+  .direction-card:hover {
+    border-color: rgba(34, 197, 94, 0.72);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 50px rgba(2, 6, 23, 0.28);
+  }
+  .direction-card.selected {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+  }
+  .poster {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+    background: #05070d;
+  }
+  .poster-a {
+    background:
+      radial-gradient(circle at 20% 35%, rgba(255,255,255,0.35), transparent 2px),
+      radial-gradient(circle at 38% 20%, rgba(255,255,255,0.28), transparent 2px),
+      radial-gradient(circle at 78% 32%, rgba(255,255,255,0.24), transparent 2px),
+      linear-gradient(135deg, #020617 0%, #111827 45%, #052e2b 100%);
+  }
+  .poster-a .chain {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d1fae5, #22c55e, transparent);
+    transform: rotate(-8deg);
+  }
+  .poster-a .chip {
+    position: absolute;
+    width: 52px;
+    height: 20px;
+    border-radius: 999px;
+    background: rgba(236, 253, 245, 0.9);
+    box-shadow: 0 0 34px rgba(34, 197, 94, 0.45);
+  }
+  .poster-a .c1 { left: 18%; top: 38%; transform: rotate(-11deg); }
+  .poster-a .c2 { left: 39%; top: 45%; transform: rotate(-8deg); }
+  .poster-a .c3 { left: 60%; top: 52%; transform: rotate(-7deg); width: 74px; }
+  .poster-b {
+    background: linear-gradient(180deg, #030712 0%, #171717 54%, #451a03 100%);
+  }
+  .poster-b .tunnel {
+    position: absolute;
+    inset: -70px -40px;
+    border: 2px solid rgba(251, 191, 36, 0.25);
+    transform: perspective(420px) rotateX(62deg);
+    background:
+      repeating-linear-gradient(90deg, transparent 0 18px, rgba(251, 191, 36, 0.2) 18px 20px),
+      repeating-linear-gradient(0deg, transparent 0 22px, rgba(255, 255, 255, 0.12) 22px 24px);
+  }
+  .poster-b .station {
+    position: absolute;
+    left: 31%;
+    right: 31%;
+    bottom: 38px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(254, 243, 199, 0.94);
+    box-shadow: 0 0 60px rgba(251, 191, 36, 0.4);
+  }
+  .poster-c {
+    background: linear-gradient(135deg, #111827 0%, #312e81 48%, #0f766e 100%);
+  }
+  .poster-c .glass {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 38px;
+    height: 128px;
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+    backdrop-filter: blur(10px);
+  }
+  .poster-c .step {
+    position: absolute;
+    height: 16px;
+    border-radius: 6px;
+    background: #ecfeff;
+  }
+  .poster-c .s1 { left: 22%; top: 72px; width: 64px; }
+  .poster-c .s2 { left: 40%; top: 100px; width: 92px; }
+  .poster-c .s3 { left: 55%; top: 130px; width: 128px; }
+  .poster-d {
+    background: linear-gradient(135deg, #0c0a09 0%, #1c1917 45%, #14532d 100%);
+  }
+  .poster-d .stage {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 28px;
+    height: 84px;
+    border-radius: 50% 50% 12px 12px;
+    background: radial-gradient(ellipse at center, rgba(250,250,249,0.85), rgba(34,197,94,0.16) 58%, transparent 70%);
+  }
+  .poster-d .beam {
+    position: absolute;
+    left: 38%;
+    top: -20px;
+    width: 24%;
+    height: 210px;
+    background: linear-gradient(180deg, rgba(250,250,249,0.55), transparent);
+    clip-path: polygon(42% 0, 58% 0, 100% 100%, 0% 100%);
+  }
+  .card-copy {
+    padding: 18px;
+  }
+  .card-copy h3 {
+    margin: 0 0 8px;
+    color: #f8fafc;
+    font-size: 18px;
+  }
+  .card-copy p {
+    margin: 0 0 12px;
+    color: #cbd5e1;
+    line-height: 1.48;
+  }
+  .tagline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tagline span {
+    font-size: 12px;
+    color: #04130a;
+    background: #86efac;
+    border-radius: 999px;
+    padding: 5px 9px;
+    font-weight: 700;
+  }
+  @media (max-width: 760px) {
+    .intro-grid { grid-template-columns: 1fr; }
+    .poster { height: 180px; }
+  }
+</style>
+
+<h2>Какой визуальный нерв у интро?</h2>
+<p class="subtitle">Выбери направление, которое сильнее обещает: длинная английская фраза перестанет быть потоком и станет понятной цепочкой.</p>
+
+<div class="intro-grid">
+  <div class="direction-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="poster poster-a">
+      <div class="chain"></div>
+      <div class="chip c1"></div>
+      <div class="chip c2"></div>
+      <div class="chip c3"></div>
+    </div>
+    <div class="card-copy">
+      <h3>A. Signal From Noise</h3>
+      <p>Хаотичный поток слов собирается в светящуюся цепочку. Самая ясная метафора метода и самый сильный премиальный вход.</p>
+      <div class="tagline"><span>Recommended</span><span>Seedance 2.0</span><span>8-10 sec</span></div>
+    </div>
+  </div>
+
+  <div class="direction-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="poster poster-b">
+      <div class="tunnel"></div>
+      <div class="station"></div>
+    </div>
+    <div class="card-copy">
+      <h3>B. Sentence Tunnel</h3>
+      <p>Зритель летит через тоннель быстрой речи, затем скорость падает, и фраза останавливается на понятных станциях-шагам.</p>
+      <div class="tagline"><span>Most dynamic</span><span>Veo 3.1</span><span>9-12 sec</span></div>
+    </div>
+  </div>
+
+  <div class="direction-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="poster poster-c">
+      <div class="glass"></div>
+      <div class="step s1"></div>
+      <div class="step s2"></div>
+      <div class="step s3"></div>
+    </div>
+    <div class="card-copy">
+      <h3>C. Glass Sentence Lab</h3>
+      <p>Фраза собирается как точный механизм из прозрачных модулей. Чисто, технологично, ближе к бренду приложения.</p>
+      <div class="tagline"><span>Cleanest</span><span>Kling 3.0</span><span>6-8 sec</span></div>
+    </div>
+  </div>
+
+  <div class="direction-card" data-choice="d" onclick="toggleSelect(this)">
+    <div class="poster poster-d">
+      <div class="beam"></div>
+      <div class="stage"></div>
+    </div>
+    <div class="card-copy">
+      <h3>D. The Stage Opens</h3>
+      <p>Кинематографичная сцена: темнота, луч, и под ним появляется первая короткая фраза. Больше шоу, меньше объяснительной метафоры.</p>
+      <div class="tagline"><span>Most cinematic</span><span>Sora 2 / Veo 3.1</span><span>7-9 sec</span></div>
+    </div>
+  </div>
+</div>

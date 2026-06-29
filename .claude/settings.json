@@ -1,7 +1,19 @@
 {
   "hooks": {
     "PreToolUse": [],
-    "PostToolUse": [],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/plan_content_audio_freshness_hook.mjs",
+            "timeout": 120,
+            "statusMessage": "Checking plan audio freshness..."
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [],
     "SessionStart": [],
     "SessionEnd": [],

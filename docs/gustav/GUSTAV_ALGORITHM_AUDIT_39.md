@@ -44,7 +44,7 @@ P1A is additive only. If approved P1A must be rolled back, Gustav may remove onl
 - `tests/gustav_surface_target_switch.test.ts`
 - `tests/gustav_target_storage_keys.test.ts`
 
-Manual review is required if any other app/test/content/source graph/cloud file changes.
+LLM official-source review is required if any other app/test/content/source graph/cloud file changes.
 
 ## Readiness Impact
 

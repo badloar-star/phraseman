@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
+import { monoIcon } from '../constants/monoIcon';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import RewardCardV2 from './reward_v2/RewardCardV2';
 
@@ -60,7 +61,7 @@ function ThroneRewardModal({ visible, shards, wins, onClose }: ThroneRewardModal
 
   const shardsLabel = triLang(lang, {
     ru: 'ОСКОЛКОВ',
-    uk: 'ОСКОЛКІВ',
+    uk: 'УЛАМКІВ',
     es: 'FRAGMENTOS',
     'pt-BR': 'FRAGMENTOS',
     vi: 'MẢNH',
@@ -69,7 +70,7 @@ function ThroneRewardModal({ visible, shards, wins, onClose }: ThroneRewardModal
     pl: 'ODŁAMKI',
   });
 
-  const icon = <Ionicons name="trophy" size={46} color="#FFE566" />;
+  const icon = <Ionicons name="trophy" size={46} color={monoIcon(themeMode, '#FFE566')} />;
 
   return (
     <RewardCardV2

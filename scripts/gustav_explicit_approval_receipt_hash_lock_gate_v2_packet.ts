@@ -485,8 +485,8 @@ function runProbes(base: EvaluationInput): Probe[] {
   });
 }
 
-function renderApprovalTemplate(runId: string, hashLockPath: string, p28Path: string): string {
-  const approvalSentence = `I approve PhraseMan French activation apply for run ${runId} after reviewing ${hashLockPath} and ${p28Path}. I understand this permits only the listed future-gated production changes, keeps studyTarget=fr isolated from sourceLocale/uiLocale/cloud/cache/prompts, and does not allow unlisted writes, uploads, runtime downloads, migrations or activation flags.`;
+function renderApprovalTemplate(runId: string, hashLockPath: string, finalHashLockPath: string, p28Path: string, completionAuditPath: string): string {
+  const approvalSentence = `I approve PhraseMan French activation apply for run ${runId} after reviewing ${hashLockPath}, ${finalHashLockPath}, ${p28Path}, and ${completionAuditPath}. I understand this permits only the listed future-gated production changes, keeps studyTarget=fr isolated from sourceLocale/uiLocale/cloud/cache/prompts, and does not allow unlisted writes, uploads, runtime downloads, migrations or activation flags.`;
   return [
     '# French Activation Explicit Approval Receipt Template V2',
     '',
@@ -509,7 +509,9 @@ function renderApprovalTemplate(runId: string, hashLockPath: string, p28Path: st
     '## Required Attachments',
     '',
     `- Hash-lock manifest reviewed: ${hashLockPath}`,
+    `- Final pre-approval evidence hash-lock reviewed: ${finalHashLockPath}`,
     `- Runtime activation blocker plan reviewed: ${p28Path}`,
+    `- Production readiness completion audit reviewed: ${completionAuditPath}`,
     '- Dirty worktree status reviewed and either preserved or isolated before apply.',
     '- Rollback plan reviewed before any activation/upload/runtime-download/storage-cloud migration.',
     '',
@@ -575,6 +577,7 @@ function main(): void {
   const applyPlanDir = path.join(runDir, 'apply_plan');
 
   const p28Path = path.join(auditsDir, 'runtime_activation_blocker_plan_v2_packet.json');
+  const completionAuditPath = path.join(auditsDir, 'production_readiness_completion_audit_v2_packet.json');
   const readinessPath = path.join(auditsDir, 'readiness_blocker_reduction_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const serverManifestDraftPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
@@ -583,6 +586,7 @@ function main(): void {
   const activeHashLockPath = path.join(applyPlanDir, 'hash_lock_manifest_v2.json');
   const approvalTemplatePath = path.join(applyPlanDir, 'explicit_approval_receipt_template_v2.md');
   const hashLockDryRunPath = path.join(applyPlanDir, 'hash_lock_manifest_dry_run_v2.json');
+  const finalHashLockDryRunPath = path.join(applyPlanDir, 'final_preapproval_evidence_hash_lock_dry_run_v2.json');
   const outputJsonPath = path.join(auditsDir, 'explicit_approval_receipt_hash_lock_gate_v2_packet.json');
   const outputMdPath = path.join(auditsDir, 'explicit_approval_receipt_hash_lock_gate_v2_packet.md');
 
@@ -654,7 +658,7 @@ function main(): void {
   };
 
   ensureDir(applyPlanDir);
-  fs.writeFileSync(approvalTemplatePath, renderApprovalTemplate(runId, rel(repoRoot, hashLockDryRunPath), rel(repoRoot, p28Path)), 'utf8');
+  fs.writeFileSync(approvalTemplatePath, renderApprovalTemplate(runId, rel(repoRoot, hashLockDryRunPath), rel(repoRoot, finalHashLockDryRunPath), rel(repoRoot, p28Path), rel(repoRoot, completionAuditPath)), 'utf8');
   writeJson(hashLockDryRunPath, hashLockDryRun);
 
   const input: EvaluationInput = {

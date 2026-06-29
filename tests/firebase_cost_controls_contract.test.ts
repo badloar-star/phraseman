@@ -245,19 +245,15 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps admin VIP writes canonical so the orphan reconcile trigger can be retired', () => {
-    const adminSource = read('admin/legacy/index.html');
-    const adminV2Source = read('admin/index.html');
-    const adminV2RuntimeSource = read('admin/v2/scripts/admin-firebase.js');
+    // Раньше существовали отдельные admin/legacy/index.html и admin/v2/* —
+    // их объединили в один канонический admin/index.html (v2 удалена). Проверяем
+    // канонические VIP-записи в нём.
+    const adminSource = read('admin/index.html');
 
     expect(adminSource).toContain('resolveAdminVipWriteTarget');
     expect(adminSource).toContain('identityHidden: data.identityHidden === true');
     expect(adminSource).toContain('canonicalStableId: data.canonicalStableId || null');
     expect(adminSource).toContain('requestedUid: uid');
     expect(adminSource.split("updateDoc(doc(db, 'users', writeUid)").length - 1).toBeGreaterThanOrEqual(3);
-    expect(adminV2Source).toContain('Money v2');
-    expect(adminV2RuntimeSource).toContain('VIP grant/revoke');
-    expect(adminV2RuntimeSource).toContain('RevenueCat Premium');
-    expect(adminV2RuntimeSource).toContain('hasAdminClaim');
-    expect(adminV2RuntimeSource).toContain('moneySafetyList');
   });
 });

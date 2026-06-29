@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { isVipActive, resolvePremiumAccess } from './premium_status';
 
 const GROUP_SIZE = 30;
 const BROAD_GROUP_QUERY_LIMIT = 500;
@@ -335,7 +336,12 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
     updatedAt: Date.now(),
   };
   if (Object.prototype.hasOwnProperty.call(raw, 'name')) updates[`members.${stableUid}.name`] = sanitizeString(raw.name, 48) || 'Player';
-  if (Object.prototype.hasOwnProperty.call(raw, 'points')) updates[`members.${stableUid}.points`] = Math.max(0, Math.min(1_000_000_000, readInt(raw.points, 0)));
+  // H6 (account-security): points/streak/totalXp/isPremium/isVip раньше принимались от
+  // клиента → любой авторизованный запрос ставил себе 999M очков в лиге, фейковый
+  // премиум-значок, фейковый стрик. Теперь читаем эти поля СЕРВЕРНО из users/{stableUid}
+  // (weekly_xp, streak_count, user_total_xp) и резолвим premium/VIP через
+  // resolvePremiumAccess. Косметика (avatar/frame/aura/карточка) — это user-choice,
+  // её клиент по-прежнему передаёт.
   if (Object.prototype.hasOwnProperty.call(raw, 'avatar')) updates[`members.${stableUid}.avatar`] = sanitizeString(raw.avatar, 64) || null;
   if (Object.prototype.hasOwnProperty.call(raw, 'frame')) updates[`members.${stableUid}.frame`] = sanitizeString(raw.frame, 64) || null;
   if (Object.prototype.hasOwnProperty.call(raw, 'aura')) updates[`members.${stableUid}.aura`] = sanitizeString(raw.aura, 64) || null;
@@ -343,12 +349,31 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardTheme')) updates[`members.${stableUid}.profileCardTheme`] = sanitizeString(raw.profileCardTheme, 32) || 'classic';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardMotion')) updates[`members.${stableUid}.profileCardMotion`] = sanitizeString(raw.profileCardMotion, 32) || 'none';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardPublicFocus')) updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
-  if (Object.prototype.hasOwnProperty.call(raw, 'isPremium')) updates[`members.${stableUid}.isPremium`] = raw.isPremium === true;
-  if (Object.prototype.hasOwnProperty.call(raw, 'isVip')) updates[`members.${stableUid}.isVip`] = raw.isVip === true;
-  if (Object.prototype.hasOwnProperty.call(raw, 'streak')) updates[`members.${stableUid}.streak`] = Math.max(0, Math.min(100_000, readInt(raw.streak, 0)));
-  if (Object.prototype.hasOwnProperty.call(raw, 'totalXp')) updates[`members.${stableUid}.totalXp`] = Math.max(0, Math.min(1_000_000_000, readInt(raw.totalXp, 0)));
+
+  // Серверная резолюция чувствительных полей: читаем users/{stableUid}.progress и
+  // RC-status через resolvePremiumAccess. Один read, всё в одном месте.
+  const userSnap = await db.collection('users').doc(stableUid).get().catch(() => null);
+  const progress = (userSnap?.data()?.progress ?? {}) as Record<string, unknown>;
+  const weekPointsServer = Math.max(0, Math.min(1_000_000_000, readInt(progress.weekly_xp ?? progress.week_points_v2 ?? progress.week_points, 0)));
+  const streakServer = Math.max(0, Math.min(100_000, readInt(progress.streak_count, 0)));
+  const totalXpServer = Math.max(0, Math.min(1_000_000_000, readInt(progress.user_total_xp, 0)));
+  updates[`members.${stableUid}.points`] = weekPointsServer;
+  updates[`members.${stableUid}.streak`] = streakServer;
+  updates[`members.${stableUid}.totalXp`] = totalXpServer;
+
+  // Premium / VIP — авторитативный серверный путь. Дешевле один await чем повторять
+  // эту проверку на каждом read клиентом, и нельзя подделать через тело запроса.
+  try {
+    const isPremiumServer = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+    updates[`members.${stableUid}.isPremium`] = isPremiumServer;
+  } catch {
+    // resolvePremiumAccess недоступна — не пишем поле (член группы сохранит старое значение).
+  }
+  const vipFromProgress = isVipActive(progress as Parameters<typeof isVipActive>[0]);
+  updates[`members.${stableUid}.isVip`] = vipFromProgress;
+
   await db.collection('league_groups').doc(groupId).set(updates, { merge: true });
-  return { ok: true, groupId };
+  return { ok: true, groupId, weekPoints: weekPointsServer };
 });
 
 export const leagueSyncMyBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) => {

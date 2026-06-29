@@ -438,6 +438,7 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/trainer.tsx',
   'components/MasteryReplayModal.tsx',
   'components/StudyTargetContext.tsx',
+  'hooks/use-speak-answer.ts',
 ]);
 
 const TEXT_FIELD_MARKER_BASES = [
@@ -626,7 +627,12 @@ function hasLocaleContainerSiblings(prop) {
     if (sibling === prop || !ts.isPropertyAssignment(sibling)) continue;
     const siblingLocale = inferExactLocaleKey(propertyName(sibling.name));
     if (!siblingLocale || AMBIGUOUS_EXACT_LOCALE_KEYS.has(siblingLocale)) continue;
-    if (ts.isObjectLiteralExpression(sibling.initializer)) localeSiblingCount += 1;
+    if (
+      ts.isObjectLiteralExpression(sibling.initializer) ||
+      ts.isCallExpression(sibling.initializer)
+    ) {
+      localeSiblingCount += 1;
+    }
   }
   return localeSiblingCount >= 2;
 }
@@ -1168,6 +1174,31 @@ function readFileText(root, rel) {
   return fs.readFileSync(path.join(root, rel), 'utf8');
 }
 
+function stripCodeCommentsForMarkerScan(rel, text) {
+  if (!ts || !isCodeFile(rel)) return text;
+  const kind = sourceKindForRel(rel);
+  if (!kind) return text;
+
+  const scanner = ts.createScanner(ts.ScriptTarget.Latest, false, kind, text);
+  let out = '';
+  let last = 0;
+  while (true) {
+    const token = scanner.scan();
+    if (token === ts.SyntaxKind.EndOfFileToken) break;
+    if (
+      token === ts.SyntaxKind.SingleLineCommentTrivia ||
+      token === ts.SyntaxKind.MultiLineCommentTrivia
+    ) {
+      const start = scanner.getTokenPos();
+      const end = scanner.getTextPos();
+      out += text.slice(last, start);
+      out += ' '.repeat(Math.max(0, end - start));
+      last = end;
+    }
+  }
+  return out + text.slice(last);
+}
+
 function inventoryFiles(root, files) {
   const summaries = [];
   const totals = {
@@ -1190,25 +1221,26 @@ function inventoryFiles(root, files) {
     }
     const ext = path.extname(rel).toLowerCase();
     const surface = classifySurface(rel);
+    const markerText = stripCodeCommentsForMarkerScan(rel, text);
     const markers = {
-      triLang: countRegex(text, /\btriLang\s*\(/g),
-      useLang: countRegex(text, /\buseLang\s*\(/g),
-      legacyRuUk: countRegex(text, /\blegacyRuUk\b/g),
-      bundleLang: countRegex(text, /\bbundleLang\b/g),
-      reportRussianOnly: countRegex(text, /\bREPORT_SCREENS_RUSSIAN_ONLY\s*=\s*true\b/g),
-      localeTriples: countRegex(text, /\b(?:ru|uk|es)\s*:/g),
-      ruFields: countRegex(text, FIELD_MARKER_REGEX.ru),
-      ukFields: countRegex(text, FIELD_MARKER_REGEX.uk),
-      esFields: countRegex(text, FIELD_MARKER_REGEX.es),
-      enableSpanishLocale: countRegex(text, /\bENABLE_SPANISH_LOCALE\b/g),
-      enableDevStudyTargetLang: countRegex(text, /\bENABLE_DEV_STUDY_TARGET_LANG\b/g),
-      studyTargetLang: countRegex(text, /\bStudyTargetLang\b/g),
-      spanishStudyActive: countRegex(text, /\bspanishStudyActive\b/g),
-      spanishLessonUiStringsActive: countRegex(text, /\bspanishLessonUiStringsActive\b/g),
-      flashcardContentLang: countRegex(text, /\bflashcardContentLang\b/g),
-      stringsForLang: countRegex(text, /\bstringsForLang\b/g),
-      langTypeUnion: countRegex(text, /Lang\s*=\s*['"]ru['"]\s*\|\s*['"]uk['"]\s*\|\s*['"]es['"]/g),
-      cyrillicText: countRegex(text, /[\u0400-\u04FF]/g),
+      triLang: countRegex(markerText, /\btriLang\s*\(/g),
+      useLang: countRegex(markerText, /\buseLang\s*\(/g),
+      legacyRuUk: countRegex(markerText, /\blegacyRuUk\b/g),
+      bundleLang: countRegex(markerText, /\bbundleLang\b/g),
+      reportRussianOnly: countRegex(markerText, /\bREPORT_SCREENS_RUSSIAN_ONLY\s*=\s*true\b/g),
+      localeTriples: countRegex(markerText, /\b(?:ru|uk|es)\s*:/g),
+      ruFields: countRegex(markerText, FIELD_MARKER_REGEX.ru),
+      ukFields: countRegex(markerText, FIELD_MARKER_REGEX.uk),
+      esFields: countRegex(markerText, FIELD_MARKER_REGEX.es),
+      enableSpanishLocale: countRegex(markerText, /\bENABLE_SPANISH_LOCALE\b/g),
+      enableDevStudyTargetLang: countRegex(markerText, /\bENABLE_DEV_STUDY_TARGET_LANG\b/g),
+      studyTargetLang: countRegex(markerText, /\bStudyTargetLang\b/g),
+      spanishStudyActive: countRegex(markerText, /\bspanishStudyActive\b/g),
+      spanishLessonUiStringsActive: countRegex(markerText, /\bspanishLessonUiStringsActive\b/g),
+      flashcardContentLang: countRegex(markerText, /\bflashcardContentLang\b/g),
+      stringsForLang: countRegex(markerText, /\bstringsForLang\b/g),
+      langTypeUnion: countRegex(markerText, /Lang\s*=\s*['"]ru['"]\s*\|\s*['"]uk['"]\s*\|\s*['"]es['"]/g),
+      cyrillicText: countRegex(markerText, /[\u0400-\u04FF]/g),
       latinAccentText: countRegex(text, /[ÁÉÍÓÚÜÑáéíóúüñ¿¡ÀÂÆÇÈÉÊËÎÏÔŒÙÛÜŸàâæçèéêëîïôœùûüÿ]/g),
     };
     let items = [];

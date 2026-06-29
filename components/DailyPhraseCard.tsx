@@ -20,6 +20,10 @@ import { triLang } from '../constants/i18n';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import {
+  dailyPhraseContentAvailableForTarget,
+  frenchDailyPhraseGateCopy,
+} from '../app/daily_phrase_target_gate';
+import {
   awardDailyPhraseQuestXpOnce,
   buildDailyPhraseQuestOptions,
   DAILY_PHRASE_QUEST_XP,
@@ -55,6 +59,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const { studyTarget } = useStudyTarget();
   const { speak } = useAudio();
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
+  const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
+  const homeAdditional = variant === 'homeAdditional';
+  const chrome = dailyPhraseChromeFor(themeMode);
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget)
   ));
@@ -75,7 +82,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   useEffect(() => {
     let cancelled = false;
-    if (studyTarget === 'fr') {
+    if (!dailyPhraseGateOpen) {
       setPhrase(null);
       setDetailsVisible(false);
       return () => { cancelled = true; };
@@ -85,7 +92,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       if (!cancelled && p) setPhrase(p);
     }).catch(() => {});
     return () => { cancelled = true; };
-  }, [studyTarget]);
+  }, [dailyPhraseGateOpen, studyTarget]);
 
   // React to "phrase of the day" widget deep links:
   //   phraseman://phrase/<id>        -> openPhrase=<id>        (open details)
@@ -93,7 +100,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   // handledDeepLinkRef ensures we act once per distinct link, not every render.
   const handledDeepLinkRef = useRef<string | null>(null);
   useEffect(() => {
-    if (studyTarget === 'fr') return;
+    if (!dailyPhraseGateOpen) return;
     const openPhrase = typeof params.openPhrase === 'string' ? params.openPhrase : '';
     if (!openPhrase) return;
 
@@ -117,14 +124,14 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       speak(english);
       handledDeepLinkRef.current = linkKey;
     }
-  }, [params.openPhrase, params.play, studyTarget, phrase, speak]);
+  }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak]);
 
   // Keep the home/lock-screen widget in lockstep with whatever this card shows.
   // Best-effort and a native no-op off-device, so it never affects rendering.
   useEffect(() => {
-    if (studyTarget === 'fr') return;
+    if (!dailyPhraseGateOpen) return;
     void syncWidgetData({ studyTarget, lang, themeMode });
-  }, [studyTarget, lang, themeMode, phrase?.id]);
+  }, [dailyPhraseGateOpen, studyTarget, lang, themeMode, phrase?.id]);
 
   useEffect(() => {
     setQuestAnswered(false);
@@ -141,7 +148,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   // hide the meaning until the quest is solved. Re-checks whenever the phrase
   // changes (new day / new phrase => fresh quiz, meaning hidden again).
   useEffect(() => {
-    if (studyTarget === 'fr' || !phrase) {
+    if (!dailyPhraseGateOpen || !phrase) {
       setCardQuestAnswered(false);
       return;
     }
@@ -153,10 +160,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       .then((answered) => { if (!cancelled && answered) setCardQuestAnswered(true); })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [phrase?.id, phrase?.date, phrase?.scheduledDate, phrase, studyTarget]);
+  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate, phrase, studyTarget]);
 
   useEffect(() => {
-    if (studyTarget === 'fr' || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
+    if (!dailyPhraseGateOpen || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
 
     let cancelled = false;
     const phraseId = phrase.id || phrase.date;
@@ -185,12 +192,54 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     phrase?.scheduledDate,
     questAnswered,
     showQuestExplanation,
+    dailyPhraseGateOpen,
     studyTarget,
     successAnim,
   ]);
 
-  if (studyTarget === 'fr') {
-    return null;
+  if (!dailyPhraseGateOpen) {
+    const gateCopy = frenchDailyPhraseGateCopy(lang);
+    return (
+      <Pressable
+        accessibilityRole="text"
+        accessibilityLabel={gateCopy.title}
+        style={[
+          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
+          {
+            backgroundColor: chrome.colors[1] || t.bgCard,
+            borderColor: chrome.border,
+            shadowColor: chrome.shadow,
+          },
+        ]}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={chrome.colors}
+          locations={[0, 0.56, 1]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFillObject}
+        />
+        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+        <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
+          {!homeAdditional && (
+            <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
+              <Ionicons name="shield-checkmark-outline" size={22} color={chrome.title} />
+            </View>
+          )}
+          <View style={styles.plaqueCopy}>
+            <View style={styles.titleRow}>
+              <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={2}>
+                {gateCopy.title}
+              </Text>
+            </View>
+            <Text style={[homeAdditional ? styles.homeAdditionalSub : styles.plaquePhrase, { color: chrome.sub, fontSize: homeAdditional ? Math.max(14, f.label) : f.body, lineHeight: homeAdditional ? 19 : 22 }]} numberOfLines={3}>
+              {gateCopy.body}
+            </Text>
+          </View>
+        </View>
+      </Pressable>
+    );
   }
 
   if (!phrase) {
@@ -247,9 +296,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     pl: phrase.sourceLocales?.pl?.meaning,
   };
   const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
-  const homeAdditional = variant === 'homeAdditional';
   const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
-  const chrome = dailyPhraseChromeFor(themeMode);
   const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang);
   const selectedQuestCorrect = selectedQuestOptionId
     ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)

@@ -21,6 +21,7 @@ import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
+import { onAppEvent } from './events';
 import {
   formatLingmanVideoDate,
   getActiveYoutubeChannel,
@@ -55,7 +56,7 @@ export default function LingmanVideosScreen() {
   const copy = useMemo(() => ({
     title: triLang(lang, {
       ru: 'Видео PHRASEMAN',
-      uk: 'Видео PHRASEMAN',
+      uk: 'Відео PHRASEMAN',
       es: 'PHRASEMAN videos',
       'pt-BR': 'PHRASEMAN videos',
       vi: 'PHRASEMAN videos',
@@ -65,7 +66,7 @@ export default function LingmanVideosScreen() {
     }),
     subtitle: triLang(lang, {
       ru: 'Видео тренажёры для практики фраз на слух',
-      uk: 'Видео тренажёры для практики фраз на слух',
+      uk: 'Відеотренажери для практики фраз на слух',
       es: 'Video trainers to practice phrases by ear',
       'pt-BR': 'Video trainers to practice phrases by ear',
       vi: 'Video trainers to practice phrases by ear',
@@ -75,7 +76,7 @@ export default function LingmanVideosScreen() {
     }),
     watch: triLang(lang, {
       ru: 'Смотреть',
-      uk: 'Смотреть',
+      uk: 'Дивитися',
       es: 'Watch',
       'pt-BR': 'Watch',
       vi: 'Watch',
@@ -105,7 +106,7 @@ export default function LingmanVideosScreen() {
     }),
     empty: triLang(lang, {
       ru: 'Видео пока не загрузились. Потяни вниз, чтобы обновить.',
-      uk: 'Видео пока не загрузились. Потяни вниз, чтобы обновить.',
+      uk: 'Відео ще не завантажились. Потягни вниз, щоб оновити.',
       es: 'Videos are not loaded yet. Pull down to refresh.',
       'pt-BR': 'Videos are not loaded yet. Pull down to refresh.',
       vi: 'Videos are not loaded yet. Pull down to refresh.',
@@ -115,7 +116,7 @@ export default function LingmanVideosScreen() {
     }),
     fallback: triLang(lang, {
       ru: 'Показываю сохраненный список, обновление канала временно недоступно.',
-      uk: 'Показываю сохраненный список, обновление канала временно недоступно.',
+      uk: 'Показую збережений список, оновлення каналу тимчасово недоступне.',
       es: 'Showing the saved list; channel refresh is temporarily unavailable.',
       'pt-BR': 'Showing the saved list; channel refresh is temporarily unavailable.',
       vi: 'Showing the saved list; channel refresh is temporarily unavailable.',
@@ -125,7 +126,7 @@ export default function LingmanVideosScreen() {
     }),
     views: triLang(lang, {
       ru: 'просмотров',
-      uk: 'просмотров',
+      uk: 'переглядів',
       es: 'views',
       'pt-BR': 'views',
       vi: 'views',
@@ -150,6 +151,13 @@ export default function LingmanVideosScreen() {
 
   useEffect(() => {
     void load('initial');
+  }, [load]);
+
+  // Админ из «Пульта» добавил пин / сменил канал, пока экран открыт → перечитать
+  // ленту живьём (remote_config_changed), чтобы новое видео появилось сверху.
+  useEffect(() => {
+    const sub = onAppEvent('remote_config_changed', () => { void load('refresh'); });
+    return () => sub.remove();
   }, [load]);
 
   const openExternalUrl = (rawUrl: string, fallbackVideoId?: string) => {
@@ -256,7 +264,7 @@ export default function LingmanVideosScreen() {
           </TapScale>
           <View style={styles.headerText}>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h1) }]} numberOfLines={1}>
-              {channel.isOverride ? `${triLang(lang, { ru: 'Видео', uk: 'Видео', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' })} ${channel.displayName}` : copy.title}
+              {channel.isOverride ? `${triLang(lang, { ru: 'Видео', uk: 'Відео', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' })} ${channel.displayName}` : copy.title}
             </Text>
             <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={2}>
               {copy.subtitle}

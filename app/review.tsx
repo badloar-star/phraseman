@@ -88,6 +88,7 @@ import {
 } from './review_evaluator';
 import { spanishLessonUiStringsActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 import { englishRecallSurface } from './phrase_target_utils';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
@@ -290,7 +291,7 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang, studyTarget: StudyTa
       pl: "Co to znaczy? Wybierz tłumaczenie",
     });
   }
-  if (studyTarget === 'fr') {
+  if (storageStudyTarget(studyTarget) === 'fr') {
     return triLang(lang, {
       ru: 'Вспомните и напишите по-французски',
       uk: 'Згадайте і напишіть французькою',
@@ -973,7 +974,10 @@ export default function ReviewScreen() {
         const totalBefore = energyRef.current + bonusEnergyRef.current;
         spendOneRef.current().then(success => {
           if (!success) return;
-          updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }]).catch(() => {});
+          updateMultipleTaskProgress(
+            [{ type: 'energy_spend', increment: 1 }],
+            { studyTarget },
+          ).catch(() => {});
           setTimeout(() => {
             const totalAfter = energyRef.current + bonusEnergyRef.current;
             if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.leagueChatReportMessage = exports.leagueChatSendMessage = exports.leagueChatAuthorizeRoom = void 0;
+exports.leagueChatReportMessage = exports.leagueChatDeleteMessage = exports.leagueChatSendMessage = exports.leagueChatAuthorizeRoom = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const league_chat_blocklist_generated_1 = require("./league_chat_blocklist.generated");
@@ -304,6 +304,44 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
         reportCount: 0,
     });
     return { ok: true, status: 'sent', messageId: ref.id };
+});
+exports.leagueChatDeleteMessage = (0, https_1.onCall)({ region: REGION }, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId);
+    const messageId = String(request.data?.messageId ?? '').trim();
+    if (!messageId)
+        throw new https_1.HttpsError('invalid-argument', 'message_required');
+    const now = Date.now();
+    const messageRef = db.collection('league_chat_messages').doc(messageId);
+    await db.runTransaction(async (tx) => {
+        const messageSnap = await tx.get(messageRef);
+        if (!messageSnap.exists)
+            throw new https_1.HttpsError('not-found', 'message_not_found');
+        const message = messageSnap.data() || {};
+        if (message.status === 'deleted')
+            return;
+        if (message.status !== 'visible')
+            throw new https_1.HttpsError('failed-precondition', 'message_not_visible');
+        if (String(message.authorUid || '') !== stableUid && String(message.authorAuthUid || '') !== authUid) {
+            throw new https_1.HttpsError('permission-denied', 'not_message_author');
+        }
+        await assertActiveChatUser(db, stableUid, authUid, {
+            groupId: String(message.groupId || ''),
+            weekId: String(message.weekId || ''),
+            leagueId: Math.trunc(Number(message.leagueId) || 0),
+        });
+        tx.update(messageRef, {
+            status: 'deleted',
+            deletedAt: now,
+            deletedByUid: stableUid,
+            deletedByAuthUid: authUid,
+            updatedAt: now,
+        });
+    });
+    return { ok: true };
 });
 exports.leagueChatReportMessage = (0, https_1.onCall)({ region: REGION }, async (request) => {
     if (!request.auth?.uid)

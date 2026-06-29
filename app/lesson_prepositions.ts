@@ -1,7 +1,7 @@
 import { LessonPrepositionPack, PrepositionKind, LessonPhrase, LessonWord } from './lesson_data_types';
 import { getLessonData } from './lesson_data_all';
 import { explainPrepositionChoice } from './preposition_explanations';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 type PrepCandidate = {
   answer: string;
@@ -523,7 +523,7 @@ function buildItemsForLesson(lessonId: number, lessonPrepositions: Set<string>) 
 }
 
 export function getLessonPrepositionPack(lessonId: number, studyTarget?: RuntimeStudyTarget): LessonPrepositionPack | null {
-  if (studyTarget === 'fr') return null;
+  if (storageStudyTarget(studyTarget) === 'fr') return null;
 
   const lessonPrepositions = buildLessonPrepositions(lessonId);
   if (!lessonPrepositions.length) return null;
@@ -559,7 +559,7 @@ export function hasLessonPrepositionDrillForTarget(
 }
 
 export function getLessonPrepositionTexts(lessonId: number, studyTarget?: RuntimeStudyTarget): string[] {
-  if (studyTarget === 'fr') return [];
+  if (storageStudyTarget(studyTarget) === 'fr') return [];
   return buildLessonPrepositions(lessonId).map(p => `${p.text} (${p.kind})`);
 }
 

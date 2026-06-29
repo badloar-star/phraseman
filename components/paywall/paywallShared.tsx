@@ -77,9 +77,13 @@ const ONBOARDING_BG = require('../../assets/images/onboarding/onboarding-bg-welc
  */
 export function paywallScreenStackOptions(isOnboarding: boolean) {
   if (isOnboarding) {
-    return { presentation: 'card', animation: 'none', animationDuration: 0 } as const;
+    // Онбординг-пейвол — часть линейного флоу: swipe-dismiss его сломал бы
+    // (пользователь обходит paywall_purchase без выбора), оставляем gesture off.
+    return { presentation: 'card', animation: 'none', animationDuration: 0, gestureEnabled: false } as const;
   }
-  return { presentation: 'modal', animation: 'slide_from_bottom' } as const;
+  // H10: вне онбординга пейвол открывается как modal — пользователь должен иметь
+  // возможность смахнуть его вниз на iOS. Глобальный gestureEnabled:false блокировал.
+  return { presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true } as const;
 }
 
 /**

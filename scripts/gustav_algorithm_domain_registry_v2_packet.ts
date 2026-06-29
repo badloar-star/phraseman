@@ -101,6 +101,7 @@ type Report = {
     domainsWithResearchEvidenceRequirement: number;
     domainsWithAiPromptContract: number;
     domainsWithActivationGate: number;
+    generationV2ContractsComplete: boolean;
     blockers: number;
     warnings: number;
     readyForResearchPackBuilder: boolean;
@@ -507,6 +508,7 @@ function renderMarkdown(report: Report): string {
     `- AI prompt entrypoints covered: ${report.summary.aiPromptEntrypointsCovered}`,
     `- Storage/cache touch files: ${report.summary.storageOrCacheTouchFiles}`,
     `- Storage/cache touch files covered: ${report.summary.storageOrCacheTouchFilesCovered}`,
+    `- Generation V2 contracts complete: ${report.summary.generationV2ContractsComplete ? 'yes' : 'no'}`,
     `- Ready for research pack builder: ${report.summary.readyForResearchPackBuilder ? 'yes' : 'no'}`,
     `- Ready for Generation Schema V2: ${report.summary.readyForGenerationSchemaV2 ? 'yes' : 'no'}`,
     `- Ready for Generation V2: ${report.summary.readyForGenerationV2 ? 'yes' : 'no'}`,
@@ -657,6 +659,42 @@ function main(): void {
 
   const outJson = path.join(auditsDir, 'algorithm_domain_registry_v2_packet.json');
   const outMd = path.join(auditsDir, 'algorithm_domain_registry_v2_packet.md');
+  const domainsWithContentOwner = registry.filter((domain) => hasNonEmpty(domain.contentOwner)).length;
+  const domainsWithTargetFields = registry.filter((domain) => hasNonEmpty(domain.targetFields)).length;
+  const domainsWithSourceLocaleFields = registry.filter((domain) => hasNonEmpty(domain.sourceLocaleFields)).length;
+  const domainsWithUiLocaleFields = registry.filter((domain) => hasNonEmpty(domain.uiLocaleFields)).length;
+  const domainsWithStorageNamespace = registry.filter((domain) => hasNonEmpty(domain.storageNamespace)).length;
+  const domainsWithCacheKeyPolicy = registry.filter((domain) => hasNonEmpty(domain.cacheKeyPolicy)).length;
+  const domainsWithReviewerDecisionContract = registry.filter((domain) => hasNonEmpty(domain.reviewerDecisionContract)).length;
+  const domainsWithResearchEvidenceRequirement = registry.filter((domain) => hasNonEmpty(domain.researchEvidenceRequirement)).length;
+  const domainsWithAiPromptContract = registry.filter((domain) => hasNonEmpty(domain.aiPromptContract)).length;
+  const domainsWithActivationGate = registry.filter((domain) => hasNonEmpty(domain.activationGate)).length;
+  const atlasDomainsCovered = new Set(atlasRecords.filter(covered).map((record) => record.primaryDomain)).size;
+  const targetSensitiveRecordsCovered = targetSensitiveRecords.filter(covered).length;
+  const aiPromptEntrypointsCovered = aiPromptEntrypoints.filter(covered).length;
+  const storageOrCacheTouchFilesCovered = storageOrCacheTouchFiles.filter(covered).length;
+  const generationV2ContractsComplete =
+    blockers === 0 &&
+    warnings === 0 &&
+    registry.length === REQUIRED_DOMAINS.length &&
+    atlasDomainsCovered === REQUIRED_DOMAINS.length &&
+    targetSensitiveRecords.length > 0 &&
+    targetSensitiveRecordsCovered === targetSensitiveRecords.length &&
+    aiPromptEntrypoints.length > 0 &&
+    aiPromptEntrypointsCovered === aiPromptEntrypoints.length &&
+    storageOrCacheTouchFiles.length > 0 &&
+    storageOrCacheTouchFilesCovered === storageOrCacheTouchFiles.length &&
+    domainsWithContentOwner === registry.length &&
+    domainsWithTargetFields === registry.length &&
+    domainsWithSourceLocaleFields === registry.length &&
+    domainsWithUiLocaleFields === registry.length &&
+    domainsWithStorageNamespace === registry.length &&
+    domainsWithCacheKeyPolicy === registry.length &&
+    domainsWithReviewerDecisionContract === registry.length &&
+    domainsWithResearchEvidenceRequirement === registry.length &&
+    domainsWithAiPromptContract === registry.length &&
+    domainsWithActivationGate === registry.length &&
+    registry.every((domain) => domain.generationAllowedBeforeResearchPack === false && domain.applyAllowedWithoutApproval === false);
   const report: Report = {
     schemaVersion: 'gustav-algorithm-domain-registry-v2-packet-v0',
     runId,
@@ -680,29 +718,30 @@ function main(): void {
       requiredDomains: REQUIRED_DOMAINS.length,
       registryDomains: registry.length,
       appAtlasRecords: atlasRecords.length,
-      atlasDomainsCovered: new Set(atlasRecords.filter(covered).map((record) => record.primaryDomain)).size,
+      atlasDomainsCovered,
       unknownAtlasRecords,
       targetSensitiveRecords: targetSensitiveRecords.length,
-      targetSensitiveRecordsCovered: targetSensitiveRecords.filter(covered).length,
+      targetSensitiveRecordsCovered,
       aiPromptEntrypoints: aiPromptEntrypoints.length,
-      aiPromptEntrypointsCovered: aiPromptEntrypoints.filter(covered).length,
+      aiPromptEntrypointsCovered,
       storageOrCacheTouchFiles: storageOrCacheTouchFiles.length,
-      storageOrCacheTouchFilesCovered: storageOrCacheTouchFiles.filter(covered).length,
-      domainsWithContentOwner: registry.filter((domain) => hasNonEmpty(domain.contentOwner)).length,
-      domainsWithTargetFields: registry.filter((domain) => hasNonEmpty(domain.targetFields)).length,
-      domainsWithSourceLocaleFields: registry.filter((domain) => hasNonEmpty(domain.sourceLocaleFields)).length,
-      domainsWithUiLocaleFields: registry.filter((domain) => hasNonEmpty(domain.uiLocaleFields)).length,
-      domainsWithStorageNamespace: registry.filter((domain) => hasNonEmpty(domain.storageNamespace)).length,
-      domainsWithCacheKeyPolicy: registry.filter((domain) => hasNonEmpty(domain.cacheKeyPolicy)).length,
-      domainsWithReviewerDecisionContract: registry.filter((domain) => hasNonEmpty(domain.reviewerDecisionContract)).length,
-      domainsWithResearchEvidenceRequirement: registry.filter((domain) => hasNonEmpty(domain.researchEvidenceRequirement)).length,
-      domainsWithAiPromptContract: registry.filter((domain) => hasNonEmpty(domain.aiPromptContract)).length,
-      domainsWithActivationGate: registry.filter((domain) => hasNonEmpty(domain.activationGate)).length,
+      storageOrCacheTouchFilesCovered,
+      domainsWithContentOwner,
+      domainsWithTargetFields,
+      domainsWithSourceLocaleFields,
+      domainsWithUiLocaleFields,
+      domainsWithStorageNamespace,
+      domainsWithCacheKeyPolicy,
+      domainsWithReviewerDecisionContract,
+      domainsWithResearchEvidenceRequirement,
+      domainsWithAiPromptContract,
+      domainsWithActivationGate,
+      generationV2ContractsComplete,
       blockers,
       warnings,
       readyForResearchPackBuilder: blockers === 0,
       readyForGenerationSchemaV2: blockers === 0,
-      readyForGenerationV2: false,
+      readyForGenerationV2: generationV2ContractsComplete,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
     },

@@ -72,6 +72,22 @@ export function resolvePromptLangKey(lang: string): string {
   throw new Error(`unsupported_prompt_language:${raw || 'empty'}`);
 }
 
+/**
+ * Forgiving variant of resolvePromptLangKey for paths where an empty/unknown
+ * `lang` must NOT throw (e.g. user reports): falls back to DEFAULT_PROMPT_LANG.
+ * Generation stays strict (resolvePromptLangKey) so an es-user can never be
+ * served the ru-cached explanation; a report, however, just needs a stable
+ * cache key — defaulting to ru matches the per-(…,lang) doc the generation used
+ * for a langless/unknown request and keeps the moderation counter consistent.
+ */
+export function resolvePromptLangKeySoft(lang: string): string {
+  try {
+    return resolvePromptLangKey(lang);
+  } catch {
+    return DEFAULT_PROMPT_LANG;
+  }
+}
+
 /** Soft UPPER target so the model keeps it short; the deterministic gate enforces hard limits.
  *  History: 75→140 (2026-06-10); 140→55 (2026-06-20) when it was narrowed to ONE grammar contrast.
  *  2026-06-28: re-scoped with the user — "Объяснить" is its own feature (distinct from the mistake

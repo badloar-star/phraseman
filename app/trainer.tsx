@@ -32,6 +32,7 @@ import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '
 import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
@@ -573,7 +574,7 @@ function TrainerScreenInner() {
                 getTrainerDashboard(studyTarget, sourceLocale),
                 getVerifiedPremiumStatus().catch(() => false),
                 trainerSessionEnabled
-                    ? studyTarget === 'fr'
+                    ? storageStudyTarget(studyTarget) === 'fr'
                         ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
                         : computePhraseAnalytics().catch(() => null)
                     : Promise.resolve(null),

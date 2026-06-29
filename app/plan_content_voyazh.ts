@@ -1466,7 +1466,7 @@ export const VOYAZH_DAY_8: PlanContentDay = {
       },
       examples: [
         { en: 'It is open from ten to six.', gloss: { ru: 'Оно открыто с десяти до шести.', uk: 'Воно відкрите з десятої до шостої.', es: 'Está abierto de diez a seis.' , 'pt-BR': 'Está aberto das dez às seis.', vi: 'Nó mở cửa từ mười đến sáu.', id: 'Buka dari jam sepuluh sampai jam enam.', tr: 'Ondan altıya kadar açıktır.', pl: 'Jest otwarte od dziesiątej do szóstej.'} },
-        { en: 'The cafe works from eight to nine.', gloss: { ru: 'Кафе работает с восьми до девяти.', uk: 'Кафе працює з восьмої до дев\'ятої.', es: 'El café trabaja de ocho a nueve.' , 'pt-BR': 'O café funciona das oito às nove.', vi: 'Quán cà phê làm việc từ tám đến chín giờ.', id: 'Kafe ini buka dari jam delapan sampai jam sembilan.', tr: 'Kafe sekizden dokuza kadar çalışıyor.', pl: 'Kawiarnia pracuje od ósmej do dziewiątej.'} },
+        { en: 'The cafe is open from eight to nine.', gloss: { ru: 'Кафе открыто с восьми до девяти.', uk: 'Кафе працює з восьмої до дев\'ятої.', es: 'El café trabaja de ocho a nueve.' , 'pt-BR': 'O café funciona das oito às nove.', vi: 'Quán cà phê làm việc từ tám đến chín giờ.', id: 'Kafe ini buka dari jam delapan sampai jam sembilan.', tr: 'Kafe sekizden dokuza kadar çalışıyor.', pl: 'Kawiarnia pracuje od ósmej do dziewiątej.'} },
       ],
     },
   ],
@@ -1549,8 +1549,8 @@ export const VOYAZH_DAY_8: PlanContentDay = {
     },
     {
       id: 'voyazh_d8_p5',
-      english: 'Does the cafe work on weekdays?',
-      meaning: { ru: 'Кафе работает в будние дни?', uk: 'Кафе працює у будні?', es: '¿El café trabaja los días de semana?' , 'pt-BR': 'O café funciona durante a semana?', vi: 'Quán cà phê có làm việc vào ngày thường không?', id: 'Apakah kafe buka pada hari kerja?', tr: 'Kafe hafta içi çalışıyor mu?', pl: 'Czy kawiarnia jest czynna w dni powszednie?'},
+      english: 'Is the cafe open on weekdays?',
+      meaning: { ru: 'Кафе открыто в будние дни?', uk: 'Кафе працює у будні?', es: '¿El café trabaja los días de semana?' , 'pt-BR': 'O café funciona durante a semana?', vi: 'Quán cà phê có làm việc vào ngày thường không?', id: 'Apakah kafe buka pada hari kerja?', tr: 'Kafe hafta içi çalışıyor mu?', pl: 'Czy kawiarnia jest czynna w dni powszednie?'},
       constructions: ['present-simple', 'prepositions-time'],
       explanation: {
         title: { ru: 'on weekdays — в будни', uk: 'on weekdays — у будні', es: 'on weekdays — los días de semana' , 'pt-BR': 'on weekdays – dias úteis', vi: 'on weekdays — các ngày trong tuần', id: 'on weekdays — hari kerja', tr: 'on weekdays — hafta içi', pl: 'on weekdays — dni powszednie'},
@@ -1559,9 +1559,9 @@ export const VOYAZH_DAY_8: PlanContentDay = {
         commonMistake: { ru: 'Не говори in weekdays — предлог здесь on, не in.', uk: 'Не кажи in weekdays — прийменник тут on, не in.', es: 'No digas in weekdays — la preposición aquí es on, no in.' , 'pt-BR': 'Não diga in weekdays — a preposição aqui é on, não in.', vi: 'Đừng nói in weekdays — giới từ ở đây là on, không phải in.', id: 'Jangan ucapkan in weekdays — preposisi di sini adalah on, bukan in.', tr: 'in weekdays deme — buradaki edat in değil, on\'dir.', pl: 'Nie mów in weekdays — przyimek tutaj to on, a nie in.'},
       },
       words: [
-        { text: 'Does', partOfSpeech: 'verb', distractors: ['Do', 'Is', 'Are', 'Was', 'Has'] },
+        { text: 'Is', partOfSpeech: 'verb', distractors: ['Are', 'Was', 'Do', 'Does', 'Has'] },
         { text: 'cafe', partOfSpeech: 'noun', distractors: ['museum', 'shop', 'hotel', 'park', 'library'] },
-        { text: 'work', partOfSpeech: 'verb', distractors: ['open', 'close', 'stop', 'start', 'end'] },
+        { text: 'open', partOfSpeech: 'adjective', distractors: ['closed', 'busy', 'free', 'full', 'empty'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['at', 'in', 'from', 'by', 'after'] },
         { text: 'weekdays', partOfSpeech: 'noun', distractors: ['weekends', 'holidays', 'nights', 'mornings', 'evenings'] },
       ],
@@ -1590,7 +1590,7 @@ export const VOYAZH_DAY_8: PlanContentDay = {
     { word: 'opens', partOfSpeech: 'verb', translation: { ru: 'открывается', uk: 'відкривається', es: 'abre' , 'pt-BR': 'abrir', vi: 'mở', id: 'membuka', tr: 'açık', pl: 'Otwarte'}, example: 'The museum opens at nine.' },
     { word: 'close', partOfSpeech: 'verb', translation: { ru: 'закрывается', uk: 'закривається', es: 'cierra' , 'pt-BR': 'fechar', vi: 'đóng', id: 'menutup', tr: 'kapalı', pl: 'zamknąć'}, example: 'What time does it close?' },
     { word: 'museum', partOfSpeech: 'noun', translation: { ru: 'музей', uk: 'музей', es: 'museo' , 'pt-BR': 'museu', vi: 'bảo tàng', id: 'museum', tr: 'müze', pl: 'muzeum'}, example: 'The museum opens at nine.' },
-    { word: 'weekdays', partOfSpeech: 'noun', translation: { ru: 'будние дни', uk: 'будні дні', es: 'días de semana' , 'pt-BR': 'dias de semana', vi: 'các ngày trong tuần', id: 'hari kerja', tr: 'hafta içi', pl: 'dni powszednie'}, example: 'Does the cafe work on weekdays?' },
+    { word: 'weekdays', partOfSpeech: 'noun', translation: { ru: 'будние дни', uk: 'будні дні', es: 'días de semana' , 'pt-BR': 'dias de semana', vi: 'các ngày trong tuần', id: 'hari kerja', tr: 'hafta içi', pl: 'dni powszednie'}, example: 'Is the cafe open on weekdays?' },
     { word: 'morning', partOfSpeech: 'noun', translation: { ru: 'утро', uk: 'ранок', es: 'mañana' , 'pt-BR': 'amanhã', vi: 'Ngày mai', id: 'besok', tr: 'Yarın', pl: 'jutro'}, example: 'It opens in the morning.' },
     { word: 'Sunday', partOfSpeech: 'noun', translation: { ru: 'воскресенье', uk: 'неділя', es: 'domingo' , 'pt-BR': 'Domingo', vi: 'Chủ nhật', id: 'Minggu', tr: 'Pazar', pl: 'Niedziela'}, example: 'The shop is closed on Sunday.' },
   ],
@@ -9724,7 +9724,7 @@ export const VOYAZH_DAY_51: PlanContentDay = {
       },
       examples: [
         { en: 'Where is the bus stop?', gloss: { ru: 'Где автобусная остановка?', uk: 'Де автобусна зупинка?', es: '¿Dónde está la parada del autobús?' , 'pt-BR': 'Onde fica o ponto de ônibus?', vi: 'Trạm xe buýt ở đâu?', id: 'Dimana halte busnya?', tr: 'Otobüs durağı nerede?', pl: 'Gdzie jest przystanek autobusowy?'} },
-        { en: 'Where is the embassy from here?', gloss: { ru: 'Где посольство отсюда?', uk: 'Де посольство звідси?', es: '¿Dónde está la embajada desde aquí?' , 'pt-BR': 'Onde fica a embaixada daqui?', vi: 'Đại sứ quán ở đâu từ đây?', id: 'Dari mana kedutaan di sini?', tr: 'Büyükelçilik buradan nerede?', pl: 'Skąd tu jest ambasada?'} },
+        { en: 'How do I get to the embassy from here?', gloss: { ru: 'Как мне дойти до посольства отсюда?', uk: 'Де посольство звідси?', es: '¿Dónde está la embajada desde aquí?' , 'pt-BR': 'Onde fica a embaixada daqui?', vi: 'Đại sứ quán ở đâu từ đây?', id: 'Dari mana kedutaan di sini?', tr: 'Büyükelçilik buradan nerede?', pl: 'Skąd tu jest ambasada?'} },
       ],
     },
     {
@@ -9768,21 +9768,21 @@ export const VOYAZH_DAY_51: PlanContentDay = {
     },
     {
       id: 'voyazh_d51_p2',
-      english: 'Where is the embassy from here?',
-      meaning: { ru: 'Где посольство отсюда?', uk: 'Де посольство звідси?', es: '¿Dónde está la embajada desde aquí?' , 'pt-BR': 'Onde fica a embaixada daqui?', vi: 'Đại sứ quán ở đâu từ đây?', id: 'Dari mana kedutaan di sini?', tr: 'Büyükelçilik buradan nerede?', pl: 'Skąd tu jest ambasada?'},
+      english: 'How do I get to the embassy from here?',
+      meaning: { ru: 'Как мне дойти до посольства отсюда?', uk: 'Де посольство звідси?', es: '¿Dónde está la embajada desde aquí?' , 'pt-BR': 'Onde fica a embaixada daqui?', vi: 'Đại sứ quán ở đâu từ đây?', id: 'Dari mana kedutaan di sini?', tr: 'Büyükelçilik buradan nerede?', pl: 'Skąd tu jest ambasada?'},
       constructions: ['wh-questions', 'to-be'],
       explanation: {
-        title: { ru: 'Уточняешь дорогу от своего места', uk: 'Уточнюєш дорогу від свого місця', es: 'Aclaras el camino desde tu lugar' , 'pt-BR': 'Você abre caminho do seu lugar', vi: 'Bạn dọn đường khỏi chỗ của bạn', id: 'Anda membersihkan jalan dari tempat Anda', tr: 'Sen bulunduğun yerden yolu temizle', pl: 'Oczyszczasz drogę ze swojego miejsca'},
-        rule: { ru: 'Сначала вопрос «Where is the embassy», а слова «from here» добавляют «отсюда».', uk: 'Спершу запитання «Where is the embassy», а слова «from here» додають «звідси».', es: 'Primero la pregunta «Where is the embassy», y «from here» añade «desde aquí».' , 'pt-BR': 'Primeiro a pergunta “Where is the embassy”, e “from here” acrescenta “daqui”.', vi: 'Đầu tiên, câu hỏi “Where is the embassy” và “from here” thêm “từ đây”.', id: 'Pertama pertanyaan “Where is the embassy”, dan “from here” ditambah “dari sini”.', tr: 'Öncelikle “Where is the embassy” ve “from here” sorusuna “buradan” eklenir.', pl: 'Najpierw pytanie „Where is the embassy”, a „from here” dodaje „stąd”.'},
+        title: { ru: 'Спрашиваешь дорогу от своего места', uk: 'Уточнюєш дорогу від свого місця', es: 'Aclaras el camino desde tu lugar' , 'pt-BR': 'Você abre caminho do seu lugar', vi: 'Bạn dọn đường khỏi chỗ của bạn', id: 'Anda membersihkan jalan dari tempat Anda', tr: 'Sen bulunduğun yerden yolu temizle', pl: 'Oczyszczasz drogę ze swojego miejsca'},
+        rule: { ru: 'Дорогу спрашивают так: «How do I get to the embassy», а слова «from here» добавляют «отсюда».', uk: 'Спершу запитання «Where is the embassy», а слова «from here» додають «звідси».', es: 'Primero la pregunta «Where is the embassy», y «from here» añade «desde aquí».' , 'pt-BR': 'Primeiro a pergunta “Where is the embassy”, e “from here” acrescenta “daqui”.', vi: 'Đầu tiên, câu hỏi “Where is the embassy” và “from here” thêm “từ đây”.', id: 'Pertama pertanyaan “Where is the embassy”, dan “from here” ditambah “dari sini”.', tr: 'Öncelikle “Where is the embassy” ve “from here” sorusuna “buradan” eklenir.', pl: 'Najpierw pytanie „Where is the embassy”, a „from here” dodaje „stąd”.'},
         why: { ru: '«From here» показывает прохожему, что ты стоишь рядом и спрашиваешь от этой точки.', uk: '«From here» показує перехожому, що ти стоїш поруч і питаєш від цієї точки.', es: '«From here» le muestra al transeúnte que estás aquí y preguntas desde este punto.' , 'pt-BR': '“De here” mostra ao transeunte que você está aqui e perguntando a partir deste ponto.', vi: '“Từ here” cho người qua đường biết rằng bạn đang ở đây và hỏi từ thời điểm này.', id: '“Dari here” menunjukkan kepada orang yang lewat bahwa Anda ada di sini dan bertanya dari titik ini.', tr: '"here\'dan itibaren" yoldan geçen kişiye burada olduğunuzu ve bu noktadan itibaren soru sorduğunuzu gösterir.', pl: '„Od here” pokazuje przechodniowi, że tu jesteś i pytasz z tego miejsca.'},
         commonMistake: { ru: 'Слово «here» значит «здесь»; не путай его с «hear» — «слышать».', uk: 'Слово «here» значить «тут»; не плутай його з «hear» — «чути».', es: '«here» significa «aquí»; no lo confundas con «hear», que es «oír».' , 'pt-BR': '“here” significa “aqui”; Não confunda com “ouvir”, que é “ouvir”.', vi: '“here” có nghĩa là “ở đây”; Đừng nhầm lẫn nó với "nghe", nghĩa là "nghe".', id: '“here” berarti “di sini”; Jangan bingung dengan "mendengar", yaitu "mendengar".', tr: '“here”, “burası” anlamına gelir; Bunu "duymak" anlamına gelen "duymak" ile karıştırmayın.', pl: '„here” oznacza „tutaj”; Nie myl tego z „słyszeć”, co oznacza „słyszeć”.'},
       },
       words: [
-        { text: 'Where', partOfSpeech: 'pronoun', distractors: ['When', 'What', 'Which', 'Why', 'How'] },
-        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'be', 'am', 'were'] },
-        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'How', partOfSpeech: 'pronoun', distractors: ['Where', 'When', 'What', 'Which', 'Why'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'am', 'is', 'are', 'can'] },
+        { text: 'get', partOfSpeech: 'verb', distractors: ['go', 'come', 'walk', 'reach', 'find'] },
+        { text: 'to', partOfSpeech: 'preposition', distractors: ['from', 'at', 'in', 'of', 'by'] },
         { text: 'embassy', partOfSpeech: 'noun', distractors: ['consulate', 'office', 'border', 'station', 'agency'] },
-        { text: 'from', partOfSpeech: 'preposition', distractors: ['to', 'at', 'in', 'of', 'by'] },
         { text: 'here', partOfSpeech: 'adverb', distractors: ['there', 'near', 'close', 'now', 'then'] },
       ],
     },
@@ -12009,20 +12009,20 @@ export const VOYAZH_DAY_60: PlanContentDay = {
     },
     {
       id: 'voyazh_d60_p4',
-      english: 'Does the shop work on Sundays?',
-      meaning: { ru: 'Магазин работает по воскресеньям?', uk: 'Магазин працює у неділю?', es: '¿Trabaja la tienda los domingos?' , 'pt-BR': 'A loja funciona aos domingos?', vi: 'Cửa hàng có làm việc vào chủ nhật không?', id: 'Apakah toko buka pada hari Minggu?', tr: 'Mağaza pazar günleri çalışıyor mu?', pl: 'Czy sklep pracuje w niedziele?'},
+      english: 'Is the shop open on Sundays?',
+      meaning: { ru: 'Магазин открыт по воскресеньям?', uk: 'Магазин працює у неділю?', es: '¿Trabaja la tienda los domingos?' , 'pt-BR': 'A loja funciona aos domingos?', vi: 'Cửa hàng có làm việc vào chủ nhật không?', id: 'Apakah toko buka pada hari Minggu?', tr: 'Mağaza pazar günleri çalışıyor mu?', pl: 'Czy sklep pracuje w niedziele?'},
       constructions: ['present-simple', 'wh-questions'],
       explanation: {
         title: { ru: 'Простой вопрос да/нет', uk: 'Просте запитання так/ні', es: 'Pregunta simple de sí/no' , 'pt-BR': 'Pergunta simples sim/não', vi: 'Câu hỏi có/không đơn giản', id: 'Pertanyaan sederhana ya/tidak', tr: 'Basit evet/hayır sorusu', pl: 'Proste pytanie tak/nie'},
-        rule: { ru: 'Does + кто + глагол без -s + on + день?', uk: 'Does + хто + дієслово без -s + on + день?', es: 'Does + quién + verbo sin -s + on + día?' , 'pt-BR': 'Does + quem + verbo sem -s + on + dia?', vi: 'Does + ai + động từ không có -s + on + ngày?', id: 'Does + siapa + kata kerja tanpa -s + on + hari?', tr: 'Does + kim + -s olmadan fiil + on + gün?', pl: 'Does + kto + czasownik bez -s + on + dzień?'},
-        why: { ru: 'Does идёт в начало — это превращает утверждение в вопрос.', uk: 'Does йде на початок — це перетворює твердження на запитання.', es: 'Does va al principio — esto convierte una afirmación en pregunta.' , 'pt-BR': 'Does vai no início – isso transforma uma afirmação em uma pergunta.', vi: 'Does đặt ở đầu — điều này biến một câu khẳng định thành một câu hỏi.', id: 'Does dimulai di awal — ini mengubah pernyataan menjadi pertanyaan.', tr: 'Does en başta gelir; bu, bir ifadeyi soruya dönüştürür.', pl: 'Does pojawia się na początku — zamienia to stwierdzenie w pytanie.'},
-        commonMistake: { ru: 'Не говори: Does the shop works — после does без -s.', uk: 'Не кажи: Does the shop works — після does без -s.', es: 'No digas: Does the shop works — después de does sin -s.' , 'pt-BR': 'Não diga: Does the shop funciona - depois de does sem -s.', vi: 'Đừng nói: Does the shop hoạt động — sau does mà không có -s.', id: 'Jangan katakan: Does the shop berfungsi — setelah does tanpa -s.', tr: 'Söylemeyin: Does the shop çalışır — does\'den sonra -s olmadan.', pl: 'Nie mów: Does the shop działa — po does bez -s.'},
+        rule: { ru: 'Is + кто + open + on + день?', uk: 'Does + хто + дієслово без -s + on + день?', es: 'Does + quién + verbo sin -s + on + día?' , 'pt-BR': 'Does + quem + verbo sem -s + on + dia?', vi: 'Does + ai + động từ không có -s + on + ngày?', id: 'Does + siapa + kata kerja tanpa -s + on + hari?', tr: 'Does + kim + -s olmadan fiil + on + gün?', pl: 'Does + kto + czasownik bez -s + on + dzień?'},
+        why: { ru: 'Про магазин говорят open («открыт»), а не work. Is идёт в начало — и получается вопрос.', uk: 'Does йде на початок — це перетворює твердження на запитання.', es: 'Does va al principio — esto convierte una afirmación en pregunta.' , 'pt-BR': 'Does vai no início – isso transforma uma afirmação em uma pergunta.', vi: 'Does đặt ở đầu — điều này biến một câu khẳng định thành một câu hỏi.', id: 'Does dimulai di awal — ini mengubah pernyataan menjadi pertanyaan.', tr: 'Does en başta gelir; bu, bir ifadeyi soruya dönüştürür.', pl: 'Does pojawia się na początku — zamienia to stwierdzenie w pytanie.'},
+        commonMistake: { ru: 'Не говори: Does the shop work — про магазин по-английски говорят open, а вопрос начинают с Is.', uk: 'Не кажи: Does the shop works — після does без -s.', es: 'No digas: Does the shop works — después de does sin -s.' , 'pt-BR': 'Não diga: Does the shop funciona - depois de does sem -s.', vi: 'Đừng nói: Does the shop hoạt động — sau does mà không có -s.', id: 'Jangan katakan: Does the shop berfungsi — setelah does tanpa -s.', tr: 'Söylemeyin: Does the shop çalışır — does\'den sonra -s olmadan.', pl: 'Nie mów: Does the shop działa — po does bez -s.'},
       },
       words: [
-        { text: 'Does', partOfSpeech: 'verb', distractors: ['Do', 'Is', 'Are', 'Has', 'Did'] },
+        { text: 'Is', partOfSpeech: 'verb', distractors: ['Are', 'Was', 'Do', 'Does', 'Has'] },
         { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
         { text: 'shop', partOfSpeech: 'noun', distractors: ['museum', 'gallery', 'cafe', 'park', 'hotel'] },
-        { text: 'work', partOfSpeech: 'verb', distractors: ['deliver', 'close', 'start', 'finish', 'stop'] },
+        { text: 'open', partOfSpeech: 'adjective', distractors: ['closed', 'busy', 'free', 'full', 'empty'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['at', 'in', 'by', 'from', 'until'] },
         { text: 'Sundays', partOfSpeech: 'noun', distractors: ['Mondays', 'Saturdays', 'Fridays', 'weekdays', 'holidays'] },
       ],
@@ -12074,7 +12074,7 @@ export const VOYAZH_DAY_60: PlanContentDay = {
     { word: 'gallery', partOfSpeech: 'noun', translation: { ru: 'галерея', uk: 'галерея', es: 'galería' , 'pt-BR': 'galeria', vi: 'phòng trưng bày', id: 'galeri', tr: 'galeri', pl: 'galeria'}, example: 'The gallery opens at nine o\'clock.' },
     { word: 'tickets', partOfSpeech: 'noun', translation: { ru: 'билеты', uk: 'квитки', es: 'entradas' , 'pt-BR': 'ingressos', vi: 'vé', id: 'tiket', tr: 'biletler', pl: 'bilety'}, example: 'When do they stop selling tickets?' },
     { word: 'tour', partOfSpeech: 'noun', translation: { ru: 'экскурсия', uk: 'екскурсія', es: 'visita guiada' , 'pt-BR': 'visita guiada', vi: 'chuyến tham quan có hướng dẫn', id: 'tur berpemandu', tr: 'rehberli tur', pl: 'wycieczka z przewodnikiem'}, example: 'How long does the tour last?' },
-    { word: 'Sundays', partOfSpeech: 'noun', translation: { ru: 'воскресенья', uk: 'неділі', es: 'domingos' , 'pt-BR': 'domingos', vi: 'ngày chủ nhật', id: 'hari Minggu', tr: 'pazar günleri', pl: 'niedziele'}, example: 'Does the shop work on Sundays?' },
+    { word: 'Sundays', partOfSpeech: 'noun', translation: { ru: 'воскресенья', uk: 'неділі', es: 'domingos' , 'pt-BR': 'domingos', vi: 'ngày chủ nhật', id: 'hari Minggu', tr: 'pazar günleri', pl: 'niedziele'}, example: 'Is the shop open on Sundays?' },
   ],
 };
 
@@ -13248,21 +13248,21 @@ export const VOYAZH_DAY_66: PlanContentDay = {
     },
     {
       id: 'voyazh_d66_p6',
-      english: 'You can find gifts on the market.',
+      english: 'You can find gifts at the market.',
       meaning: { ru: 'Ты можешь найти подарки на рынке.', uk: 'Ти можеш знайти подарунки на ринку.', es: 'Puedes encontrar regalos en el mercado.' , 'pt-BR': 'Você pode encontrar presentes no mercado.', vi: 'Bạn có thể tìm thấy những món quà trên thị trường.', id: 'Anda dapat menemukan oleh-oleh di pasar.', tr: 'Pazarda hediyeler bulabilirsiniz.', pl: 'Prezenty można znaleźć na rynku.'},
       constructions: ['modals'],
       explanation: {
         title: { ru: 'Как дать совет или подсказку', uk: 'Як дати пораду або підказку', es: 'Cómo dar un consejo o una pista' , 'pt-BR': 'Como dar conselhos ou dicas', vi: 'Cách đưa ra lời khuyên hoặc gợi ý', id: 'Bagaimana memberi nasehat atau petunjuk', tr: 'Nasıl tavsiye veya ipucu verilir?', pl: 'Jak udzielić rady lub podpowiedzi'},
         rule: { ru: 'You can + глагол — говоришь, что человек может сделать.', uk: 'You can + дієслово — говориш, що людина може зробити.', es: 'You can + verbo: dices lo que alguien puede hacer.' , 'pt-BR': 'You can + verbo: você diz o que alguém pode fazer.', vi: 'You can + động từ: bạn nói điều ai đó có thể làm được.', id: 'You can + kata kerja: Anda mengatakan apa yang bisa dilakukan seseorang.', tr: 'You can + fiil: Birinin ne yapabileceğini söylersin.', pl: 'You can + czasownik: mówisz, co ktoś może zrobić.'},
         why: { ru: 'Местные так отвечают туристам — важно понять такой ответ.', uk: 'Місцеві так відповідають туристам — важливо зрозуміти таку відповідь.', es: 'Los locales responden así a los turistas: es importante entender esta respuesta.' , 'pt-BR': 'Os moradores locais respondem assim a turistas: é importante entender esta resposta.', vi: 'Người dân địa phương phản hồi như thế này a khách du lịch: điều quan trọng là phải hiểu phản hồi này.', id: 'Respons penduduk setempat seperti ini a wisatawan: penting untuk memahami respons ini.', tr: 'Yerel halk a turistlere şöyle yanıt veriyor: Bu yanıtı anlamak önemlidir.', pl: 'Miejscowi reagują w ten sposób a turyści: ważne jest, aby zrozumieć tę reakcję.'},
-        commonMistake: { ru: 'Не путай «on the market» и «in the shop» — рынок под открытым небом.', uk: 'Не плутай «on the market» і «in the shop» — ринок просто неба.', es: 'No confundas «on the market» e «in the shop»: el mercado es al aire libre.' , 'pt-BR': 'Não confunda “on the market” e “em the shop”: o mercado é ao ar livre.', vi: 'Đừng nhầm lẫn giữa “on the market” và “trong the shop”: chợ diễn ra ngoài trời.', id: 'Jangan bingung antara “on the market” dan “di the shop”: pasarnya terbuka.', tr: '“on the market” ve “in the shop” kavramlarını karıştırmayın: pazar açık havadır.', pl: 'Nie myl „on the market” z „w the shop”: rynek jest na świeżym powietrzu.'},
+        commonMistake: { ru: 'Говори «at the market», а не «on the market» — про рынок по-английски нужен предлог at.', uk: 'Не плутай «on the market» і «in the shop» — ринок просто неба.', es: 'No confundas «on the market» e «in the shop»: el mercado es al aire libre.' , 'pt-BR': 'Não confunda “on the market” e “em the shop”: o mercado é ao ar livre.', vi: 'Đừng nhầm lẫn giữa “on the market” và “trong the shop”: chợ diễn ra ngoài trời.', id: 'Jangan bingung antara “on the market” dan “di the shop”: pasarnya terbuka.', tr: '“on the market” ve “in the shop” kavramlarını karıştırmayın: pazar açık havadır.', pl: 'Nie myl „on the market” z „w the shop”: rynek jest na świeżym powietrzu.'},
       },
       words: [
         { text: 'You', partOfSpeech: 'pronoun', distractors: ['I', 'we', 'he', 'she', 'they'] },
         { text: 'can', partOfSpeech: 'modal', distractors: ['will', 'must', 'should', 'would', 'do'] },
         { text: 'find', partOfSpeech: 'verb', distractors: ['buy', 'see', 'get', 'take', 'make'] },
         { text: 'gifts', partOfSpeech: 'noun', distractors: ['maps', 'books', 'food', 'crafts', 'clothes'] },
-        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'near', 'from'] },
+        { text: 'at', partOfSpeech: 'preposition', distractors: ['in', 'on', 'by', 'near', 'from'] },
         { text: 'market', partOfSpeech: 'noun', distractors: ['street', 'shop', 'mall', 'square', 'corner'] },
       ],
     },
@@ -13270,7 +13270,7 @@ export const VOYAZH_DAY_66: PlanContentDay = {
   vocabulary: [
     { word: 'souvenir', partOfSpeech: 'noun', translation: { ru: 'сувенир', uk: 'сувенір', es: 'souvenir' , 'pt-BR': 'souvenir', vi: 'souvenir', id: 'souvenir', tr: 'souvenir', pl: 'souvenir'}, example: 'Where can I buy local souvenirs?' },
     { word: 'local', partOfSpeech: 'adjective', translation: { ru: 'местный', uk: 'місцевий', es: 'local' , 'pt-BR': 'local', vi: 'local', id: 'local', tr: 'local', pl: 'local'}, example: 'I want to find local crafts.' },
-    { word: 'market', partOfSpeech: 'noun', translation: { ru: 'рынок', uk: 'ринок', es: 'mercado' , 'pt-BR': 'mercado', vi: 'chợ', id: 'pasar', tr: 'pazar', pl: 'rynek'}, example: 'You can find gifts on the market.' },
+    { word: 'market', partOfSpeech: 'noun', translation: { ru: 'рынок', uk: 'ринок', es: 'mercado' , 'pt-BR': 'mercado', vi: 'chợ', id: 'pasar', tr: 'pazar', pl: 'rynek'}, example: 'You can find gifts at the market.' },
     { word: 'crafts', partOfSpeech: 'noun', translation: { ru: 'изделия ручной работы', uk: 'вироби ручної роботи', es: 'artesanías' , 'pt-BR': 'artesanato', vi: 'hàng thủ công', id: 'kerajinan tangan', tr: 'el sanatları', pl: 'rzemieślnictwo'}, example: 'I want to find traditional crafts here.' },
     { word: 'nearest', partOfSpeech: 'adjective', translation: { ru: 'ближайший', uk: 'найближчий', es: 'más cercano' , 'pt-BR': 'mais próximo', vi: 'gần nhất', id: 'terdekat', tr: 'en yakın', pl: 'najbliższy'}, example: 'Where is the nearest souvenir market?' },
     { word: 'spend', partOfSpeech: 'verb', translation: { ru: 'тратить', uk: 'витрачати', es: 'gastar' , 'pt-BR': 'gastar', vi: 'tiêu', id: 'membelanjakan', tr: 'harcamak', pl: 'wydawać'}, example: 'How much can I spend here?' },
@@ -15163,7 +15163,7 @@ export const VOYAZH_DAY_76: PlanContentDay = {
       constructions: ['modals', 'to-have'],
       explanation: {
         title: { ru: 'Классическая просьба о счёте', uk: 'Класичне прохання про рахунок', es: 'La forma clásica de pedir la cuenta' , 'pt-BR': 'A maneira clássica de pedir a conta', vi: 'Cách cổ điển để yêu cầu hóa đơn', id: 'Cara klasik untuk meminta tagihan', tr: 'Fatura istemenin klasik yolu', pl: 'Klasyczny sposób poproszenia o rachunek'},
-        rule: { ru: '«Can I have» — вежлива просьба щось отримати; «bill» — це рахунок.', uk: '«Can I have» — ввічливе прохання щось отримати; «bill» — це рахунок.', es: '«Can I have» pide algo con educación; «bill» es la cuenta.' , 'pt-BR': '«Can I have» pede algo educadamente; “bill” é a conta.', vi: '«Can I have» yêu cầu điều gì đó một cách lịch sự; “bill” là tài khoản.', id: '«Can I have» meminta sesuatu dengan sopan; “bill” adalah akunnya.', tr: '«Can I have» kibarca bir şey istiyor; “bill” hesaptır.', pl: '«Can I have» grzecznie o coś prosi; „bill” to konto.'},
+        rule: { ru: '«Can I have» — вежливая просьба что-то получить; «bill» — это счёт.', uk: '«Can I have» — ввічливе прохання щось отримати; «bill» — це рахунок.', es: '«Can I have» pide algo con educación; «bill» es la cuenta.' , 'pt-BR': '«Can I have» pede algo educadamente; “bill” é a conta.', vi: '«Can I have» yêu cầu điều gì đó một cách lịch sự; “bill” là tài khoản.', id: '«Can I have» meminta sesuatu dengan sopan; “bill” adalah akunnya.', tr: '«Can I have» kibarca bir şey istiyor; “bill” hesaptır.', pl: '«Can I have» grzecznie o coś prosi; „bill” to konto.'},
         why: { ru: 'Так говорят во всех британских ресторанах — коротко и вежливо.', uk: 'Так кажуть у всіх британських ресторанах — коротко і ввічливо.', es: 'Así se dice en todos los restaurantes británicos: breve y educado.' , 'pt-BR': 'É assim que dizem em todos os restaurantes britânicos: curto e educado.', vi: 'Đó là cách họ nói ở tất cả các nhà hàng ở Anh: ngắn gọn và lịch sự.', id: 'Begitulah cara mereka mengatakannya di semua restoran Inggris: singkat dan sopan.', tr: 'Bütün İngiliz restoranlarında bunu böyle söylüyorlar: kısa ve kibar.', pl: 'Tak mówią we wszystkich brytyjskich restauracjach: krótko i uprzejmie.'},
         commonMistake: { ru: 'Не говори «Give me the bill» — это грубо. Всегда используй «Can I have».', uk: 'Не кажи «Give me the bill» — це грубо. Завжди використовуй «Can I have».', es: 'No digas «Give me the bill», es brusco. Usa siempre «Can I have».' , 'pt-BR': 'Não diga "Dê-me the bill", é abrupto. Sempre use “Can I have”.', vi: 'Đừng nói "Cho tôi the bill", nó đột ngột. Luôn sử dụng “Can I have”.', id: 'Jangan katakan "Beri aku the bill", itu tiba-tiba. Selalu gunakan “Can I have”.', tr: '"Bana the bill ver" deme, bu ani olur. Her zaman “Can I have” kullanın.', pl: 'Nie mów „Daj mi the bill”, to jest nagłe. Zawsze używaj „Can I have”.'},
       },
@@ -16027,7 +16027,7 @@ export const VOYAZH_DAY_80: PlanContentDay = {
     {
       id: 'voyazh_d80_p5',
       english: 'I ate the best local food.',
-      meaning: { ru: 'Я попробовал лучшую местную еду.', uk: 'Я скуштував найкращу місцеву їжу.', es: 'Comí la mejor comida local.' , 'pt-BR': 'Comi a melhor comida local.', vi: 'Tôi đã ăn món ngon nhất local.', id: 'Saya makan makanan terbaik local.', tr: 'En iyi yemeği yedim local.', pl: 'Zjadłem najlepsze jedzenie local.'},
+      meaning: { ru: 'Я ел лучшую местную еду.', uk: 'Я скуштував найкращу місцеву їжу.', es: 'Comí la mejor comida local.' , 'pt-BR': 'Comi a melhor comida local.', vi: 'Tôi đã ăn món ngon nhất local.', id: 'Saya makan makanan terbaik local.', tr: 'En iyi yemeği yedim local.', pl: 'Zjadłem najlepsze jedzenie local.'},
       constructions: ['past-simple-irregular'],
       explanation: {
         title: { ru: '«Ate» — прошедшее от «eat»', uk: '«Ate» — минуле від «eat»', es: '«Ate» es el pasado de «eat»' , 'pt-BR': '"Ate" é o pretérito de "eat"', vi: '“Ate” là thì quá khứ của “ăn”', id: '"Ate" adalah bentuk lampau dari "makan"', tr: '"Ate", "yemek" fiilinin geçmiş zamanıdır', pl: '„Ate” to czas przeszły słowa „jeść”'},

@@ -67,6 +67,7 @@ class PhraseWidgetModule : Module() {
           Log.w(TAG, "reloadAll failed", e)
         }
       }
+      Unit
     }
 
     OnDestroy {

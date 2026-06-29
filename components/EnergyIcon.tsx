@@ -8,10 +8,11 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   gold: require('../assets/images/energy/energy-gold.webp'),
   coral: require('../assets/images/energy/energy-coral.webp'),
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
-  midnight: require('../assets/images/energy/energy-graphite.webp'),
-  ember: require('../assets/images/energy/energy-graphite.webp'),
-  aurora: require('../assets/images/energy/energy-graphite.webp'),
-  volt: require('../assets/images/energy/energy-graphite.webp'),
+  business: require('../assets/images/energy/energy-business.webp'),
+  midnight: require('../assets/images/energy/energy-midnight.webp'),
+  ember: require('../assets/images/energy/energy-ember.webp'),
+  aurora: require('../assets/images/energy/energy-aurora.webp'),
+  volt: require('../assets/images/energy/energy-volt.webp'),
 };
 
 interface EnergyIconProps {

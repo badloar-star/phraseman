@@ -41,6 +41,13 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     stroke: '#E5E7EB',
     muted: '#374151',
   },
+  business: {
+    primary: '#FFFFFF',
+    secondary: '#9A9A9A',
+    tertiary: '#D4D4D4',
+    stroke: '#F2F2F2',
+    muted: '#3A3A3A',
+  },
   midnight: {
     primary: '#8FA0FF',
     secondary: '#B79CFF',
@@ -92,6 +99,11 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
     analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
   },
+  business: {
+    phrases: 'assets/images/trainer_theme_icons/business/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/business/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/business/analytics.webp',
+  },
   midnight: {
     phrases: 'assets/images/trainer_theme_icons/midnight/phrases.webp',
     words: 'assets/images/trainer_theme_icons/midnight/words.webp',
@@ -134,6 +146,11 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
+  },
+  business: {
+    phrases: require('../assets/images/trainer_theme_icons/business/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/business/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/business/analytics.webp'),
   },
   midnight: {
     phrases: require('../assets/images/trainer_theme_icons/midnight/phrases.webp'),

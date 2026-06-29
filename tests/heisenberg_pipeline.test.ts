@@ -335,6 +335,34 @@ describe('heisenberg localization pipeline core', () => {
     expect(report.summary.completeUnits).toBe(1);
   });
 
+  it('counts ambiguous Indonesian id helper-call siblings as batch locale coverage', () => {
+    const items = core.extractLocalizedItemsFromText(
+      'app/ai_dialog_scenarios.ts',
+      `
+        const scenarioCopy = (title, goal, nextStepHint) => ({ title, goal, nextStepHint });
+        const fallback = {
+          'pt-BR': scenarioCopy('PT title', 'PT goal', 'PT hint'),
+          vi: scenarioCopy('VI title', 'VI goal', 'VI hint'),
+          id: scenarioCopy('ID title', 'ID goal', 'ID hint'),
+          tr: scenarioCopy('TR title', 'TR goal', 'TR hint'),
+          pl: scenarioCopy('PL title', 'PL goal', 'PL hint'),
+        };
+      `,
+    );
+
+    const report = core.buildBatchLocaleCoverageAudit({ items }, ['pt-BR', 'vi', 'id', 'tr', 'pl'], { expectedUnits: false });
+
+    expect(items.map((item: any) => `${item.locale}:${item.keyPath}`).sort()).toEqual([
+      'id:id.prompt',
+      'pl:pl.prompt',
+      'pt-BR:pt-BR.prompt',
+      'tr:tr.prompt',
+      'vi:vi.prompt',
+    ]);
+    expect(report.summary.partialUnits).toBe(0);
+    expect(report.summary.completeUnits).toBe(1);
+  });
+
   it('reports structured units missing from every batch locale', () => {
     const inventory = {
       totals: { filesScanned: 1, localizedItems: 2, byLocale: { 'pt-BR': 1, vi: 1 }, bySurface: { quizzes: 1 } },
@@ -453,6 +481,29 @@ describe('heisenberg localization pipeline core', () => {
       expect(inv.files[0].markers.ukFields).toBeGreaterThan(0);
       expect(inv.files[0].markers.esFields).toBeGreaterThan(1);
       expect(inventory.totals.filesScanned).toBe(0);
+    } finally {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    }
+  });
+
+  it('ignores comment-only locale field markers in existing-locale audits', () => {
+    const text = `
+      // Firestore fields: Uk -> titleUk, PtBr -> titlePtBr.
+      const TARGET_LANGS = [{ key: 'Es', name: 'Castilian' }];
+    `;
+    const fs = require('fs');
+    const path = require('path');
+    const tmpDir = path.join(process.cwd(), 'tmp', 'heisenberg-test');
+    const tmpFile = path.join(tmpDir, 'comment-only-marker.ts');
+    fs.mkdirSync(tmpDir, { recursive: true });
+    fs.writeFileSync(tmpFile, text, 'utf8');
+    try {
+      const inv = core.inventoryFiles(process.cwd(), ['tmp/heisenberg-test/comment-only-marker.ts']);
+      const audit = core.buildExistingLocaleAudit(inv, 'es');
+
+      expect(inv.files[0].markers.ukFields).toBe(0);
+      expect(inv.files[0].markers.esFields).toBe(0);
+      expect(audit.summary.fieldCoverageGapFiles).toBe(0);
     } finally {
       fs.rmSync(tmpDir, { recursive: true, force: true });
     }
@@ -690,6 +741,32 @@ describe('heisenberg localization pipeline core', () => {
     expect(audit.summary.fieldCoverageGapFiles).toBe(0);
     expect(audit.summary.itemCoverageGapFiles).toBe(0);
     expect(audit.summary.isolatedStudyTargetFiles).toBe(8);
+    expect(audit.summary.studyTargetRiskFiles).toBe(0);
+    expect(audit.blockers).toEqual([]);
+  });
+
+  it('keeps speak-answer TTS target selection out of source-locale release blockers', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 0,
+        byLocale: {},
+        bySurface: { 'app-other': 1 },
+      },
+      files: [
+        {
+          file: 'hooks/use-speak-answer.ts',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 2 },
+        },
+      ],
+      items: [],
+    };
+
+    const audit = core.buildExistingLocaleAudit(inventory, 'es');
+
+    expect(audit.summary.isolatedStudyTargetFiles).toBe(1);
     expect(audit.summary.studyTargetRiskFiles).toBe(0);
     expect(audit.blockers).toEqual([]);
   });

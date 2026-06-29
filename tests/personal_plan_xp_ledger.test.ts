@@ -17,6 +17,13 @@ describe('personal plan xp ledger', () => {
     expect(await readPlanXpLedger('inst_1')).toEqual({ xp: 12, phrases: 5 });
   });
 
+  it('does not count the same plan task twice when a task id is provided', async () => {
+    await expect(bumpPlanXpLedger('inst_1', 6, 3, 'day1-task1')).resolves.toBe(true);
+    await expect(bumpPlanXpLedger('inst_1', 6, 3, 'day1-task1')).resolves.toBe(false);
+
+    expect(await readPlanXpLedger('inst_1')).toMatchObject({ xp: 6, phrases: 3 });
+  });
+
   it('keeps instances independent', async () => {
     await bumpPlanXpLedger('inst_1', 6, 1);
     await bumpPlanXpLedger('inst_2', 12, 4);

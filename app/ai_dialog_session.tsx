@@ -15,7 +15,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
@@ -66,6 +68,9 @@ import { registerXP } from './xp_manager';
 import { MAX_DIALOG_XP } from './config';
 import { outcomeXpMultiplier } from './dialog_outcome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
+
+const RECOMMENDED_EXCHANGES = 8;
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -153,6 +158,7 @@ function dialogRetryLabel(lang: Lang): string {
 export default function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   // Доступ к фиче «ИИ-диалоги» с учётом «Пульта»: true → пейвол не показываем
   // (фича переведена в «Фри»). Серверный isPremium ниже остаётся СЫРЫМ premium —
@@ -161,6 +167,8 @@ export default function AiDialogSession() {
   const router = useRouter();
   const { speak } = useAudio();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
+  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
+  const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
   const scenario = useMemo(
     () => {
@@ -487,9 +495,9 @@ export default function AiDialogSession() {
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
   useEffect(() => {
+    if (!aiDialogGateOpen) return;
     void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [aiDialogGateOpen, scenario.cefr, scenario.id]);
 
   // Параметры маршрута могут «доехать» после первого кадра (expo-router) — тогда
   // ленивый сид взял дефолтный сценарий. Пока пользователь НИЧЕГО не написал (в чате
@@ -530,6 +538,38 @@ export default function AiDialogSession() {
   }, [router, ended, userExchanges, scenario.id]);
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
+
+  if (!aiDialogGateOpen) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={38} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {frenchGateCopy.title}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {frenchGateCopy.body}
+          </Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            onPress={() => {
+              hapticTap();
+              router.replace('/(tabs)/lessons' as any);
+            }}
+            style={{
+              marginTop: 22,
+              backgroundColor: t.accent,
+              borderRadius: 16,
+              paddingHorizontal: 24,
+              paddingVertical: 12,
+            }}
+          >
+            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   return (
     <ScreenGradient>
@@ -597,8 +637,9 @@ export default function AiDialogSession() {
 
           <View style={{ flex: 1, minWidth: 0 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              {/* Смайл настроения собеседника (игровой режим): 😊→😐→😠 без цифр. */}
-              {gameEnabled && !ended && (
+              {/* Смайл настроения собеседника (игровой режим): 😄🙂😐😟😠 без цифр.
+                  Это и есть «лицо» собеседника в шапке. */}
+              {gameEnabled && !ended ? (
                 <Text
                   accessibilityLabel={triLang(lang, {
                     ru: 'Настроение собеседника',
@@ -614,28 +655,21 @@ export default function AiDialogSession() {
                 >
                   {moodToFace(mood)}
                 </Text>
+              ) : (
+                // Имя/место убраны по просьбе (усечённое «М.» не помогало). Когда
+                // смайла нет (не игра или диалог завершён) — короткий нейтральный
+                // заголовок, чтобы шапка не была пустой.
+                <Text
+                  style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
+                  numberOfLines={1}
+                >
+                  {dialogScenarioTitle(scenario, lang)}
+                </Text>
               )}
-              <Text
-                style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
-                numberOfLines={1}
-              >
-                {personaName || dialogScenarioTitle(scenario, lang)}
-              </Text>
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
-              {personaName
-                ? dialogScenarioTitle(scenario, lang)
-                : triLang(lang, {
-                  ru: 'на связи',
-                  uk: 'на зв’язку',
-                  es: 'en línea',
-                  'pt-BR': 'online',
-                  vi: 'đang trực tuyến',
-                  id: 'online',
-                  tr: 'çevrim içi',
-                  pl: 'online',
-                })}
-            </Text>
+            {/* Вторая строка с местом сцены («в ресторане» и т.п.) и имя собеседника
+                убраны по просьбе: и так понятно, что открываем; длинное место/имя
+                уходило в «...». В игре в шапке остаётся только лицо-настроение. */}
           </View>
 
           {/* Счётчик переводов: 3 точки, что гаснут по мере использования.
@@ -727,6 +761,25 @@ export default function AiDialogSession() {
           ) : (
             <View style={{ width: 8 }} />
           )}
+
+          {/* Кнопка «Сообщить об ошибке» — красный флаг в правом углу хедера,
+              виден весь диалог, не зависит от состояния (идёт/завершён). */}
+          <ReportErrorButton
+            screen="ai_dialog"
+            dataId={`ai_dialog_${scenario.id ?? 'unknown'}`}
+            dataText={dialogScenarioTitle(scenario, lang)}
+            variant="icon-flag"
+            accessibilityLabel="Сообщить об ошибке в диалоге"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: t.bgCard,
+              borderWidth: 0.5,
+              borderColor: t.border,
+              marginLeft: 6,
+            }}
+          />
         </View>
 
         {/* Пробный бесплатный диалог — короткая плашка-«подарок». */}
@@ -765,7 +818,8 @@ export default function AiDialogSession() {
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          // H11: Android — нужен явный 'height', иначе клавиатура перекрывает поле ввода.
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
           <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
@@ -1410,14 +1464,14 @@ export default function AiDialogSession() {
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6 }}>
                   {triLang(lang, {
-                    ru: `Твоих реплик: ${userExchanges}. Хороший шаг: ты не просто читаешь, а пробуешь говорить.`,
-                    uk: `Твоїх реплік: ${userExchanges}. Хороший крок: ти не просто читаєш, а пробуєш говорити.`,
-                    es: `Tus respuestas: ${userExchanges}. Buen paso: no solo lees, también intentas hablar.`,
-                    'pt-BR': `Suas respostas: ${userExchanges}. Bom passo: você não só lê, também tenta falar.`,
-                    vi: `Lượt trả lời của bạn: ${userExchanges}. Bước tiến tốt: bạn không chỉ đọc mà còn thử nói.`,
-                    id: `Jawabanmu: ${userExchanges}. Langkah bagus: kamu tidak hanya membaca, tapi juga mencoba berbicara.`,
-                    tr: `${userExchanges} yanıt verdin. Güzel adım: sadece okumuyor, konuşmayı da deniyorsun.`,
-                    pl: `Twoje odpowiedzi: ${userExchanges}. Dobry krok: nie tylko czytasz, ale też próbujesz mówić.`,
+                    ru: `Твоих реплик: ${userExchanges}. Ориентир: около ${RECOMMENDED_EXCHANGES}, но завершать можно вручную.`,
+                    uk: `Твоїх реплік: ${userExchanges}. Орієнтир: близько ${RECOMMENDED_EXCHANGES}, але завершити можна вручну.`,
+                    es: `Tus respuestas: ${userExchanges}. Guía: unas ${RECOMMENDED_EXCHANGES}, pero puedes terminar manualmente.`,
+                    'pt-BR': `Suas respostas: ${userExchanges}. Referência: cerca de ${RECOMMENDED_EXCHANGES}, mas você pode encerrar manualmente.`,
+                    vi: `Lượt trả lời của bạn: ${userExchanges}. Gợi ý: khoảng ${RECOMMENDED_EXCHANGES}, nhưng bạn có thể tự kết thúc.`,
+                    id: `Jawabanmu: ${userExchanges}. Patokan: sekitar ${RECOMMENDED_EXCHANGES}, tetapi kamu bisa mengakhiri sendiri.`,
+                    tr: `${userExchanges} yanıt verdin. Hedef yaklaşık ${RECOMMENDED_EXCHANGES}; yine de elle bitirebilirsin.`,
+                    pl: `Twoje odpowiedzi: ${userExchanges}. Wskazówka: około ${RECOMMENDED_EXCHANGES}, ale możesz zakończyć ręcznie.`,
                   })}
                 </Text>
                 {!hasPremiumAccess && (

@@ -36,6 +36,7 @@ import {
   getAvatarAuraById,
   isAvatarAuraUnlockedByLevel,
   isPremiumAvatarAura,
+  isRewardOnlyAvatarAura,
   normalizeAvatarAuraId,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
@@ -594,6 +595,7 @@ export default function AvatarSelect() {
 
       const isPremiumAura = aura.premiumOnly === true;
       const isVipAura = aura.vipOnly === true;
+      const isRewardOnlyAura = aura.rewardOnly === true;
       const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
       const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
       let purchasedAura = false;
@@ -604,6 +606,11 @@ export default function AvatarSelect() {
         }
         if (isVipAura) {
           showToast('info', 'Доступно со статусом Plus');
+          return;
+        }
+        if (isRewardOnlyAura) {
+          // Сезонные / наградные ауры Арены не продаются — их можно только заработать.
+          showToast('info', 'Награда Арены — её нельзя купить, только заработать в сезоне');
           return;
         }
         if (aura.unlockLevel !== undefined) {
@@ -822,6 +829,7 @@ export default function AvatarSelect() {
             {AVATAR_AURAS.map((aura) => {
               const isPremiumAura = aura.premiumOnly === true;
               const isVipAura = aura.vipOnly === true;
+              const isRewardOnlyAura = aura.rewardOnly === true;
               const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
               const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
               const isGifted = !isPremiumAura && !isVipAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
@@ -856,6 +864,13 @@ export default function AvatarSelect() {
                         ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
                         : isVipAura
                           ? <Text style={{ color: avatarVipAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
+                        : isRewardOnlyAura
+                          ? (
+                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                              <Ionicons name="lock-closed" size={9} color={t.textMuted} />
+                              <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Арена</Text>
+                            </View>
+                          )
                         : aura.unlockLevel !== undefined
                           ? <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Ур. {aura.unlockLevel}</Text>
                           : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}
@@ -886,7 +901,7 @@ export default function AvatarSelect() {
             <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.5 }}>
               {triLang(lang, {
                 ru: `Открыть ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
-                uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
+                uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за уламки?`,
                 es: `¿Desbloquear el aura «${auraName(pendingAuraPurchase)}» con fragmentos?`,
                 'pt-BR': `Desbloquear a aura «${auraName(pendingAuraPurchase)}» com fragmentos?`,
                 vi: `Mở khóa hào quang «${auraName(pendingAuraPurchase)}» bằng mảnh?`,

@@ -22,6 +22,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  StyleSheet,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -31,6 +32,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import AiTypingBubble from '../components/AiTypingBubble';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -46,9 +48,12 @@ import { hasFreeDialogLeft, markFreeDialogUsed } from './dialogs_limit_session';
 import { safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
+import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
 
 const DEFAULT_CEFR = 'A2';
 const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
+// Свободный разговор — единственный (singleton) компаньон «Компас»; стабильный id для репортов.
+const companionId = 'compass';
 
 interface UiMessage {
   role: 'user' | 'assistant';
@@ -64,6 +69,8 @@ export default function AiCompanionSession() {
   const { lang } = useLang();
   const router = useRouter();
   const { speak } = useAudio();
+  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
+  const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
   // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
   // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
@@ -149,9 +156,9 @@ export default function AiCompanionSession() {
 
   // Приветствие уже в начальном состоянии. Здесь — только телеметрия старта (раз).
   useEffect(() => {
+    if (!aiDialogGateOpen) return;
     void trackEvent('ai_dialog_started', { scenarioId: 'companion', cefr: DEFAULT_CEFR });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [aiDialogGateOpen]);
 
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
@@ -165,6 +172,38 @@ export default function AiCompanionSession() {
   }, [router, userTurns]);
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
+
+  if (!aiDialogGateOpen) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={38} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {frenchGateCopy.title}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {frenchGateCopy.body}
+          </Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            onPress={() => {
+              hapticTap();
+              router.replace('/(tabs)/lessons' as any);
+            }}
+            style={{
+              marginTop: 22,
+              backgroundColor: t.accent,
+              borderRadius: 16,
+              paddingHorizontal: 24,
+              paddingVertical: 12,
+            }}
+          >
+            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
 
   return (
@@ -195,53 +234,79 @@ export default function AiCompanionSession() {
               pl: 'Swobodna rozmowa',
             })}
           </Text>
-          {/* Пробный бесплатный диалог — без счётчика реплик, он один. */}
-          {!hasPremiumAccess ? (
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 4,
-                minHeight: 28,
-                backgroundColor: t.bgCard,
-                borderWidth: 0.5,
-                borderColor: t.border,
-                borderRadius: 11,
-                paddingHorizontal: 9,
-              }}
-              accessibilityLabel={triLang(lang, {
-                ru: 'Пробный бесплатный диалог',
-                uk: 'Пробний безкоштовний діалог',
-                es: 'Diálogo de prueba gratis',
-                'pt-BR': 'Diálogo grátis de teste',
-                vi: 'Cuộc đối thoại dùng thử miễn phí',
-                id: 'Dialog uji coba gratis',
-                tr: 'Ücretsiz deneme diyaloğu',
-                pl: 'Darmowy dialog próbny',
-              })}
-            >
-              <Ionicons name="gift-outline" size={13} color={t.accent} />
-              <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
-                {triLang(lang, {
-                  ru: 'проба',
-                  uk: 'проба',
-                  es: 'prueba',
-                  'pt-BR': 'teste',
-                  vi: 'thử',
-                  id: 'coba',
-                  tr: 'deneme',
-                  pl: 'próba',
+          {/* Правый угол: пробная-плашка (если есть) + флаг «Сообщить об ошибке». */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            {/* Пробный бесплатный диалог — без счётчика реплик, он один. */}
+            {!hasPremiumAccess ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 4,
+                  minHeight: 28,
+                  backgroundColor: t.bgCard,
+                  borderWidth: 0.5,
+                  borderColor: t.border,
+                  borderRadius: 11,
+                  paddingHorizontal: 9,
+                }}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Пробный бесплатный диалог',
+                  uk: 'Пробний безкоштовний діалог',
+                  es: 'Diálogo de prueba gratis',
+                  'pt-BR': 'Diálogo grátis de teste',
+                  vi: 'Cuộc đối thoại dùng thử miễn phí',
+                  id: 'Dialog uji coba gratis',
+                  tr: 'Ücretsiz deneme diyaloğu',
+                  pl: 'Darmowy dialog próbny',
                 })}
-              </Text>
-            </View>
-          ) : (
-            <View style={{ width: 32 }} />
-          )}
+              >
+                <Ionicons name="gift-outline" size={13} color={t.accent} />
+                <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
+                  {triLang(lang, {
+                    ru: 'проба',
+                    uk: 'проба',
+                    es: 'prueba',
+                    'pt-BR': 'teste',
+                    vi: 'thử',
+                    id: 'coba',
+                    tr: 'deneme',
+                    pl: 'próba',
+                  })}
+                </Text>
+              </View>
+            ) : null}
+            <ReportErrorButton
+              screen="ai_companion"
+              dataId={`ai_companion_${companionId ?? 'unknown'}`}
+              dataText={triLang(lang, {
+                ru: 'Свободный разговор с ИИ-компаньоном',
+                uk: 'Вільна розмова з ШІ-компаньйоном',
+                es: 'Conversación libre con el compañero de IA',
+                'pt-BR': 'Conversa livre com o companheiro de IA',
+                vi: 'Trò chuyện tự do với người bạn AI',
+                id: 'Percakapan bebas dengan teman AI',
+                tr: 'Yapay zekâ arkadaşıyla serbest sohbet',
+                pl: 'Swobodna rozmowa z towarzyszem AI',
+              })}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить об ошибке в диалоге"
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: 19,
+                backgroundColor: t.bgCard,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: t.border,
+              }}
+            />
+          </View>
         </View>
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          // H11: Android — нужен 'height', иначе клавиатура перекрывает ввод.
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
           <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>

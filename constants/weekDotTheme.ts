@@ -49,6 +49,15 @@ const WEEK_DOTS: Record<ThemeMode, Omit<WeekDotTheme, 'freezeBg' | 'freezeBorder
     todayBorder: 'rgba(110,168,255,0.56)',
     checkColor: '#07101F',
   },
+  business: {
+    completeBg: '#FFFFFF',
+    completeBorder: 'rgba(255,255,255,0.72)',
+    emptyBg: 'rgba(255,255,255,0.08)',
+    todayBg: 'rgba(255,255,255,0.17)',
+    emptyBorder: 'rgba(255,255,255,0.24)',
+    todayBorder: 'rgba(255,255,255,0.56)',
+    checkColor: '#0A0A0A',
+  },
   midnight: {
     completeBg: '#8FA0FF',
     completeBorder: 'rgba(201,210,255,0.74)',

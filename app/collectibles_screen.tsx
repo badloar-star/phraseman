@@ -25,6 +25,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import TapScale from '../components/TapScale';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -124,11 +125,13 @@ const SecretCell = React.memo(function SecretCell({
   onPress,
   textPrimary,
   cellW,
+  themeMode,
 }: {
   secret: CollectibleSecretData;
   onPress: () => void;
   textPrimary: string;
   cellW: number;
+  themeMode: ReturnType<typeof useTheme>['themeMode'];
 }) {
   return (
     <TouchableOpacity
@@ -144,7 +147,7 @@ const SecretCell = React.memo(function SecretCell({
         accessibilityLabel={secret.en}
         fallback={
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="star" size={26} color={SECRET_GOLD} />
+            <Ionicons name="star" size={26} color={monoIcon(themeMode, SECRET_GOLD)} />
           </View>
         }
       />
@@ -178,6 +181,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
   t,
   f,
   lang,
+  themeMode,
 }: {
   set: CollectibleSetData;
   ownedCards: CollectibleCardData[];
@@ -188,6 +192,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
   lang: Lang;
+  themeMode: ReturnType<typeof useTheme>['themeMode'];
 }) {
   const totalOwned = ownedCards.length + (secretOwned ? 1 : 0);
   const complete = totalOwned >= set.cards.length + 1;
@@ -253,7 +258,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
               : `${totalOwned}/${set.cards.length + 1}`}
           </Text>
         </View>
-        {complete && <Ionicons name="checkmark-circle" size={16} color={SECRET_GOLD} />}
+        {complete && <Ionicons name="checkmark-circle" size={16} color={monoIcon(themeMode, SECRET_GOLD)} />}
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.textSecond} />
       </TouchableOpacity>
 
@@ -283,6 +288,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
               cellW={cellW}
               onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
               textPrimary={t.textPrimary}
+              themeMode={themeMode}
             />
           )}
         </View>
@@ -525,7 +531,7 @@ export default function CollectiblesScreen() {
 
   const router = useRouter();
   const { lang } = useLang();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   // Стартуем из синхронного кэша в памяти (если экран уже открывали в этой
   // сессии) — тогда грид рисуется сразу, без мелькания пустого состояния.
   const cached = getCollectiblesOwnedMapSync();
@@ -722,6 +728,7 @@ export default function CollectiblesScreen() {
                   t={t}
                   f={f}
                   lang={lang}
+                  themeMode={themeMode}
                 />
               ))}
             </ScrollView>

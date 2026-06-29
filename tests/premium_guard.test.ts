@@ -71,7 +71,10 @@ test('admin override gives VIP access without making real Premium active', async
   expect(asyncStore.vip_active).toBe('true');
 });
 
-test('admin VIP access wins over tester_no_premium without flipping premium_active', async () => {
+test('tester_no_premium kill-switch overrides admin VIP access without flipping premium_active', async () => {
+  // tester_no_premium — единый kill-switch на ВЕСЬ доступ (real + VIP + intro).
+  // Раньше админ-VIP-грант обходил флаг, и кнопка «Снять премиум» не снимала —
+  // это был баг. Теперь доступ гаснет, даже если выставлен admin_premium_override.
   (globalThis as any).__DEV__ = true;
   asyncStore.tester_no_premium = 'true';
   asyncStore.admin_premium_override = 'true';
@@ -79,13 +82,14 @@ test('admin VIP access wins over tester_no_premium without flipping premium_acti
   asyncStore.premium_expiry = String(Date.now() + 86400000);
   const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
-  expect(result).toBe(true);
+  expect(result).toBe(false);
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   expect(asyncStore.premium_active).toBeUndefined();
-  expect(asyncStore.vip_active).toBe('true');
 });
 
-test('survey VIP stays active in dev while dev-default Premium is stripped', async () => {
+test('tester_no_premium kill-switch also strips survey VIP in dev', async () => {
+  // Тот же kill-switch гасит и VIP: getVerifiedVipStatus возвращает false ПЕРЕД
+  // чтением vip_active, поэтому даже активный survey-VIP не даёт доступа.
   (globalThis as any).__DEV__ = true;
   asyncStore.tester_no_premium = 'true';
   asyncStore.vip_active = 'true';
@@ -94,8 +98,8 @@ test('survey VIP stays active in dev while dev-default Premium is stripped', asy
   asyncStore.vip_until = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
   asyncStore.vip_admin_override = 'true';
   const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } = require('../app/premium_guard');
-  await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
-  await expect(getVerifiedVipStatus()).resolves.toBe(true);
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(false);
+  await expect(getVerifiedVipStatus()).resolves.toBe(false);
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   expect(asyncStore.premium_active).toBeUndefined();
 });

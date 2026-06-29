@@ -32,7 +32,8 @@ import {
 import { getNearestLockedAchievements } from './achievement_nearest';
 import type { NearestAchievementItem } from './achievement_nearest';
 import { triLang, type Lang } from '../constants/i18n';
-import { getLevelFromXP } from '../constants/theme';
+import { getLevelFromXP, type ThemeMode } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { STORE_URL, DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from './config';
 import { usePremium } from '../components/PremiumContext';
@@ -1066,6 +1067,7 @@ type GridCellProps = {
   /** Показать legacy-метку Premium; для квизов отключена. */
   showPremiumQuizGate: boolean;
   revealLockedDetails: boolean;
+  themeMode: ThemeMode;
 };
 
 const AchievementGridCell = memo(function AchievementGridCell({
@@ -1084,6 +1086,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
   onSelect,
   showPremiumQuizGate,
   revealLockedDetails,
+  themeMode,
 }: GridCellProps) {
   const unlocked = !!state?.unlockedAt;
   const isLocked = !unlocked && !!a.secret && !revealLockedDetails;
@@ -1129,9 +1132,9 @@ const AchievementGridCell = memo(function AchievementGridCell({
                 borderColor: isDark ? '#A78BFA55' : '#FFFFFF66',
               }}
             >
-              <Ionicons name="diamond" size={9} color="#FDE68A" />
-              <Text style={{ fontSize: 10, fontWeight: '800', color: '#FEF3C7' }} maxFontSizeMultiplier={1.1}>
-                {triLang(lang, { ru: 'Премиум', uk: 'Преміум', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}
+              <Ionicons name="diamond" size={9} color={monoIcon(themeMode, '#FDE68A')} />
+              <Text style={{ fontSize: 10, fontWeight: '800', color: monoIcon(themeMode, '#FEF3C7') }} maxFontSizeMultiplier={1.1}>
+                {triLang(lang, { ru: 'Плюс', uk: 'Плюс', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
               </Text>
             </View>
           </View>
@@ -1471,13 +1474,14 @@ const NearestAchievementsBlock = memo(function NearestAchievementsBlock({
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium, revealLockedDetails, studyTarget,
+  achievement, state, stats, t, f, isDark, themeMode, onClose, onShardClaimed, isPremium, revealLockedDetails, studyTarget,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
   stats: AchievementStats;
   t: any; f: any;
   isDark: boolean;
+  themeMode: ThemeMode;
   onClose: () => void;
   onShardClaimed: (achievementId: string) => void;
   isPremium: boolean;
@@ -1601,7 +1605,7 @@ function AchievementModal({
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ color: '#FEF3C7', fontSize: f.body, fontWeight: '800' }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FEF3C7'), fontSize: f.body, fontWeight: '800' }}>
                     {triLang(lang, { ru: 'Открыть вызовы', uk: 'Відкрити квізи', es: 'Abrir cuestionarios', 'pt-BR': 'Abrir quizzes', vi: 'Mở quiz', id: 'Buka kuis', tr: 'Quizleri aç', pl: 'Otwórz quizy' })}
                   </Text>
                 </TapScale>
@@ -1629,9 +1633,9 @@ function AchievementModal({
                 borderWidth: pendingShard ? 1 : 0,
                 borderColor: pendingShard ? t.correct + '55' : 'transparent',
               }}>
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Осколок', es: 'Fragmento', 'pt-BR': 'Fragmento', vi: 'Mảnh', id: 'Fragmen', tr: 'Parça', pl: 'Fragment' })} />
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Уламок', es: 'Fragmento', 'pt-BR': 'Fragmento', vi: 'Mảnh', id: 'Fragmen', tr: 'Parça', pl: 'Fragment' })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 осколок знань', es: '+1 fragmento de conocimiento', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 mảnh tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi parçası', pl: '+1 fragment wiedzy' })}
+                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 уламок знань', es: '+1 fragmento de conocimiento', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 mảnh tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi parçası', pl: '+1 fragment wiedzy' })}
                 </Text>
                 {pendingShard ? (
                   <TapScale
@@ -1663,7 +1667,7 @@ function AchievementModal({
                   </TapScale>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Осколок получен', uk: 'Осколок отримано', es: 'Fragmento reclamado', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận mảnh', id: 'Fragmen diklaim', tr: 'Parça alındı', pl: 'Fragment odebrany' })}
+                    {triLang(lang, { ru: 'Осколок получен', uk: 'Уламок отримано', es: 'Fragmento reclamado', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận mảnh', id: 'Fragmen diklaim', tr: 'Parça alındı', pl: 'Fragment odebrany' })}
                   </Text>
                 )}
               </View>
@@ -1738,6 +1742,7 @@ type AccordionSectionProps = {
   premiumQuizHintDisabled: boolean;
   onSelect: (a: Achievement) => void;
   revealLockedDetails: boolean;
+  themeMode: ThemeMode;
 };
 
 const AccordionSection = memo(function AccordionSection({
@@ -1755,6 +1760,7 @@ const AccordionSection = memo(function AccordionSection({
   premiumQuizHintDisabled,
   onSelect,
   revealLockedDetails,
+  themeMode,
 }: AccordionSectionProps) {
   return (
     <View style={{ marginBottom: 8 }}>
@@ -1827,6 +1833,7 @@ const AccordionSection = memo(function AccordionSection({
                   shieldOuter={gridMetrics.shieldOuter}
                   onSelect={onSelect}
                   revealLockedDetails={revealLockedDetails}
+                  themeMode={themeMode}
                   showPremiumQuizGate={
                     !premiumQuizHintDisabled &&
                     !stateMap.get(a.id)?.unlockedAt &&
@@ -2004,6 +2011,7 @@ export default function AchievementsScreen() {
               premiumQuizHintDisabled={premiumQuizHintDisabled}
               onSelect={onSelectAchievement}
               revealLockedDetails={showAllAchievements}
+              themeMode={themeMode}
             />
           )}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 0 }}
@@ -2058,6 +2066,7 @@ export default function AchievementsScreen() {
           stats={stats}
           t={t} f={f}
           isDark={isDark}
+          themeMode={themeMode}
           onClose={() => setSelected(null)}
           onShardClaimed={onShardClaimedUpdate}
           isPremium={isPremium}

@@ -51,6 +51,17 @@ describe('Gustav French diagnostic target gate', () => {
     expect(source).toContain("void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate'");
   });
 
+  it('keeps the home diagnostic entry visible for French while the diagnostic runtime remains source-gated', () => {
+    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+
+    expect(home).toContain("key: 'attest'");
+    expect(home).toContain("path: '/diagnostic_test' as const");
+    expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
+    expect(home).toContain('testID={`home-activity-${item.key}`}');
+    expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
+    expect(diagnosticContentAvailableForTarget('fr')).toBe(false);
+  });
+
   it('gates the daily-task diagnostic entry point for French before opening diagnostic_test', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
 

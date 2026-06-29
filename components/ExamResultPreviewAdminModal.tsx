@@ -19,6 +19,7 @@ import XpGainBadge from './XpGainBadge';
 import ScreenGradient from './ScreenGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import { monoIcon } from '../constants/monoIcon';
 import { hapticTap } from '../hooks/use-haptics';
 import { buildExamShareMessage, buildCertificateShareMessage } from '../app/exam_share';
 import { STORE_URL } from '../app/config';
@@ -91,7 +92,7 @@ const plannedTopicFor = (topic: string): PlannedTopicCopy =>
   STUB_TOPIC_PLANNED[topic] ?? { 'pt-BR': topic, vi: topic, id: topic, tr: topic, pl: topic };
 
 export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { width: winW } = useWindowDimensions();
 
@@ -311,7 +312,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                   <Ionicons name="ribbon" size={22} color="#FFD700" />
-                  <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
                     {triLang(lang, { ru: 'СЕРТИФИКАТ', uk: 'СЕРТИФІКАТ', es: 'CERTIFICADO', 'pt-BR': 'CERTIFICADO', vi: 'CHỨNG CHỈ', id: 'SERTIFIKAT', tr: 'SERTİFİKA', pl: 'CERTYFIKAT' })}
                   </Text>
                 </View>
@@ -337,7 +338,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                   activeOpacity={0.85}
                 >
                   <Ionicons name="share-outline" size={18} color="#FFD700" />
-                  <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.bodyLg, fontWeight: '700' }}>
                     {triLang(lang, {
                       ru: 'Поделиться сертификатом',
                       uk: 'Поділитися сертифікатом',
@@ -355,7 +356,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                   onPress={() => { hapticTap(); setNameModalVisible(true); }}
                   activeOpacity={0.7}
                 >
-                  <Text style={{ color: '#FDE68A', fontSize: f.sub, textDecorationLine: 'underline' }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FDE68A'), fontSize: f.sub, textDecorationLine: 'underline' }}>
                     {triLang(lang, {
                       ru: 'Изменить имя на сертификате',
                       uk: 'Змінити ім\u02BCя на сертифікаті',
@@ -385,11 +386,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                   <Ionicons name="ribbon" size={22} color="#FFD700" />
-                  <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
                     PHRASEMAN B2
                   </Text>
                 </View>
-                <Text style={{ color: '#FDE68A', fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.4 }}>
+                <Text style={{ color: monoIcon(themeMode, '#FDE68A'), fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.4 }}>
                   {triLang(lang, {
                     ru: 'Укажи имя — и твой сертификат появится здесь. Без имени награда не показывается.',
                     uk: 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
@@ -407,7 +408,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                   borderWidth: 1, borderColor: '#FFD700', width: '100%', marginTop: 6,
                 }}>
                   <Ionicons name="create-outline" size={18} color="#FFD700" />
-                  <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <Text style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.bodyLg, fontWeight: '700' }}>
                     {triLang(lang, {
                       ru: 'Указать имя на награде',
                       uk: 'Вказати ім\u02BCя на нагороді',

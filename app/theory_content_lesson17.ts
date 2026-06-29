@@ -108,7 +108,7 @@ export const LESSON17_THEORY: { titleRu: string; titleUk: string; sections: L1Se
         },
         {
           kind: 'drill',
-          drill: { type: 'choice', before: 'run →', after: '', options: ['runing', 'runing', 'running'], answer: 'running', why: { ru: 'Короткое слово CVC: удваиваем последнюю согласную → running.' } },
+          drill: { type: 'choice', before: 'run →', after: '', options: ['runing', 'running', 'runed'], answer: 'running', why: { ru: 'Короткое слово CVC: удваиваем последнюю согласную → running.' } },
         },
       ],
     },

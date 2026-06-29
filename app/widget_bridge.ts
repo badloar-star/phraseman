@@ -20,6 +20,7 @@
 import { getTodayPhraseForTarget } from './daily_phrase_system';
 import { dailyPhraseCopyForLang } from './daily_phrase_system';
 import type { DailyPhrase, DailyPhraseInterfaceLang } from './daily_phrase_system';
+import { Platform } from 'react-native';
 import { dailyPhraseChromeFor } from './daily_phrase_chrome';
 import { getTranscription } from './transcription';
 import type { RuntimeStudyTarget } from './target_storage_keys';
@@ -184,6 +185,22 @@ export async function syncWidgetData(options?: {
 
     await PhraseWidget.setData(payload);
     await PhraseWidget.reloadAll();
+
+    // On iOS the green "Break the ice" placeholder appears when the widget
+    // extension cannot read this snapshot from the shared App Group. setData()
+    // already read-back-verifies the write, but double-check the container is
+    // genuinely shared so a misprovisioned App Group is loud, not silent.
+    if (__DEV__ && Platform.OS === 'ios') {
+      const shared = await PhraseWidget.hasSharedSnapshot().catch(() => false);
+      if (!shared && PhraseWidget.isAvailable()) {
+        console.warn(
+          '[widget_bridge] App Group snapshot not readable after write — the iOS ' +
+            'widget will show the placeholder. Verify "group.app.phraseman.widget" ' +
+            'is provisioned for BOTH the app and the PhraseWidget extension App IDs ' +
+            '(Apple Developer portal / EAS credentials), then rebuild.',
+        );
+      }
+    }
     return true;
   } catch (error) {
     // Widget refresh must never break the host app — but make it observable.

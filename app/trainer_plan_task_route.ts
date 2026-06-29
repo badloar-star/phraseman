@@ -1,4 +1,5 @@
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { TrainerPremiumMode } from './trainer_store';
 
 export type TrainerPlanTaskRouteParams = {
@@ -46,12 +47,13 @@ export function readTrainerPlanTaskContext(params: TrainerPlanTaskRouteParams): 
   };
 }
 
-export async function markTrainerPlanTaskCompleted(context: TrainerPlanTaskContext): Promise<void> {
+export async function markTrainerPlanTaskCompleted(context: TrainerPlanTaskContext, studyTarget?: RuntimeStudyTarget): Promise<void> {
   if (!context.taskId) return;
   await markPersonalPlanTaskCompleted({
     taskId: context.taskId,
     planId: context.planId,
     planInstanceId: context.planInstanceId,
+    studyTarget,
     dayIndex: context.dayIndex,
   });
 }

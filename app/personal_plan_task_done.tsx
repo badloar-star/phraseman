@@ -10,6 +10,7 @@ import { hapticSuccess } from '../hooks/use-haptics';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
 import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { monoIcon } from '../constants/monoIcon';
 
 function firstParam(v: string | string[] | undefined): string {
   return Array.isArray(v) ? v[0] ?? '' : v ?? '';
@@ -156,7 +157,7 @@ export default function PersonalPlanTaskDoneScreen() {
               </View>
               {allDone ? (
                 <View style={[styles.statBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                  <Text style={[styles.statValue, { color: '#4ECDC4' }]}>✓</Text>
+                  <Text style={[styles.statValue, { color: monoIcon(themeMode, '#4ECDC4') }]}>✓</Text>
                   <Text style={[styles.statLabel, { color: t.textMuted }]}>все задачи</Text>
                 </View>
               ) : null}

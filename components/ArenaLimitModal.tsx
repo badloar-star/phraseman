@@ -166,7 +166,7 @@ function ArenaLimitModal({
         emitAppEvent('action_toast', {
           type: 'info',
           messageRu: 'Осколки не списались. Попробуй ещё раз.',
-          messageUk: 'Не вдалося списати осколки. Спробуй ще раз.',
+          messageUk: 'Не вдалося списати уламки. Спробуй ще раз.',
           messageEs: 'No se pudieron usar los fragmentos. Inténtalo de nuevo.',
           messagePtBr: 'Não foi possível usar os fragmentos. Tente novamente.',
           messageVi: 'Không thể dùng mảnh. Hãy thử lại.',
@@ -374,7 +374,7 @@ function ArenaLimitModal({
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
                   {triLang(lang, {
                     ru: `Восстановить ${ARENA_MATCHES_SHARD_REFILL_SLOTS} попыток за ${ARENA_MATCHES_SHARD_REFILL_COST} осколков`,
-                    uk: `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб за ${ARENA_MATCHES_SHARD_REFILL_COST} осколків`,
+                    uk: `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб за ${ARENA_MATCHES_SHARD_REFILL_COST} уламків`,
                     es: `Recuperar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} duelos por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`,
                     'pt-BR': `Restaurar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} tentativas por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`,
                     vi: `Khôi phục ${ARENA_MATCHES_SHARD_REFILL_SLOTS} lượt với ${ARENA_MATCHES_SHARD_REFILL_COST} mảnh`,

@@ -54,6 +54,15 @@
 - When extracting images already generated inside Codex, use `node scripts/export-codex-dalli-results.mjs --rollout <path> --summary`; the full record report must stay in `.codex-tmp/collectibles-dalli/reports/`, not in stdout.
 - Before continuing a session that already generated many images, export the existing `image_generation_end` results, confirm the exported files/checkpoints, then continue in a fresh or compacted session. Preserve the original rollout file until the export has been verified.
 
+## New Theme / Per-Theme Asset Hygiene
+
+- When adding a new theme (e.g. `business`) or generating per-theme art, an asset is allowed to exist in `assets/images/**` only if it is wired into a static `require()` in app source (theme→asset maps such as `app/home_menu_icons.ts`, `app/quizzes/medal_assets.ts`, per-feature visual maps, etc.). Generating a `*-<theme>.webp` (or a `assets/images/<feature>/<theme>/*` file) that no `require()` references is wasted bundle weight — do not do it.
+- Wire first, generate second: before generating a theme's asset set, confirm each target slot has a `require()` line (or add the lines in the same change). Every generated file must map 1:1 to a slot the running app actually loads. Do not generate "extra" variants (alternate crops, unused sizes, speculative future slots) into the bundled `assets/images/**` tree.
+- Match the existing theme's slot list exactly. A new theme must produce the SAME set of asset keys as the established themes for that feature — no more (extra files bloat the bundle), no fewer (missing files crash at runtime). If a slot does not apply, leave the map fallback, don't ship a dead file.
+- Keep raw generation sources OUT of the bundled set. DALL-E originals / contact sheets / intermediate crops go in `*sources*`, `dalle_sources`, `singles`, `output/`, or `qa-artifacts/` — never loose in `assets/images/<feature>/` where they look bundled. Only the final, wired, compressed webp belongs there.
+- Compress every new bundled image before committing (webp, quality ~58–80 via `sharp`, alpha preserved). Do not commit a freshly generated png/webp at generator-default quality.
+- Periodic audit: an image in `assets/images/**` (excluding raw/source dirs) whose path-tail or basename appears in NO source file under `app/components/constants/hooks/contexts/lib/modules` is unused and may be removed. Verify with a literal basename search across those dirs (the project uses ONLY static `require()` path strings — no dynamic/template asset requires — so a path/basename-presence check is reliable). Always confirm zero references and back up before deleting.
+
 ## Do Not Delete Functionality Without Explicit Request
 
 - Never remove, disable, hide, bypass, or replace an existing feature, screen, button, flow, state, storage key, API contract, asset mapping, test coverage, or user-visible behavior as a side effect of fixing another issue.

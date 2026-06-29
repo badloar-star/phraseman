@@ -42,6 +42,7 @@ interface ReferralAccessEndedModalProps {
     textSecond: string;
     textMuted: string;
     accent: string;
+    correctText: string;
   };
 }
 
@@ -173,8 +174,8 @@ export function ReferralAccessEndedModal({
             onPress={onInviteFriend}
             accessibilityRole="button"
           >
-            <Ionicons name="person-add-outline" size={18} color="#fff" style={styles.btnIcon} />
-            <Text style={styles.btnPrimaryText}>{btnInvite}</Text>
+            <Ionicons name="person-add-outline" size={18} color={t.correctText} style={styles.btnIcon} />
+            <Text style={[styles.btnPrimaryText, { color: t.correctText }]}>{btnInvite}</Text>
           </Pressable>
 
           {/* Вторичная кнопка: открыть полный доступ (глагол, outlined) */}

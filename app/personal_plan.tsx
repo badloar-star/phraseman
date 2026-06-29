@@ -169,8 +169,18 @@ function ProgressRing({ pct, chrome }: { pct: number; chrome: PlanChrome }) {
           rotation="-90" origin={`${RING_SIZE / 2}, ${RING_SIZE / 2}`}
         />
       </Svg>
-      <Text style={[styles.ringPct, { color: chrome.text }]}>{Math.round(pct)}%</Text>
-      <Text style={[styles.ringLabel, { color: chrome.muted }]}>готово</Text>
+      {/* «100%» — это 4 широких символа кеглем 24/900; в круге Ø≈82px они упирались
+          в обводку и налезали на кольцо. Для трёхзначного значения (только 100%)
+          чуть уменьшаем кегль и держим в одну строку. numberOfLines={1} страхует от
+          переноса. adjustsFontSizeToFit НЕ используем — он схлопывал текст в ноль. */}
+      <Text
+        style={[styles.ringPct, Math.round(pct) >= 100 ? styles.ringPctFull : null, { color: chrome.text }]}
+        numberOfLines={1}
+        maxFontSizeMultiplier={1.2}
+      >
+        {Math.round(pct)}%
+      </Text>
+      <Text style={[styles.ringLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>готово</Text>
     </View>
   );
 }
@@ -663,7 +673,7 @@ export default function PersonalPlanScreen() {
               <View style={styles.heroCopy}>
                 <View style={[styles.timePill, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
-                  <Text style={[styles.timePillText, { color: chrome.accent }]}>{totalMinutes} мин сегодня</Text>
+                  <Text style={[styles.timePillText, { color: chrome.accent }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{totalMinutes} мин сегодня</Text>
                 </View>
                 {/* numberOfLines обязателен: heroCopy стоит в строке рядом с кольцом
                     прогресса; без клампа узкая колонка рвёт заголовок по буквам. */}
@@ -675,27 +685,31 @@ export default function PersonalPlanScreen() {
 
             {/* Day progress bar */}
             <View style={[styles.heroDivider, { backgroundColor: chrome.border }]} />
+            {/* Три колонки flex:1 с плотной сеткой. numberOfLines={1} держит каждую
+                ячейку в одну строку — иначе длинная подпись «осн. +N доп.» или большой
+                системный шрифт разбивали ячейку на 2 строки и колонки «прыгали» по высоте.
+                maxFontSizeMultiplier ограничивает системный FONT_SCALE (на 1.30 сетка рвётся). */}
             <View style={styles.heroStats}>
               <View style={styles.heroStatItem}>
-                <Text style={[styles.heroStatValue, { color: chrome.text }]}>
+                <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
                   {visibleCompletedCount}
                   /{visibleTasks.length}
                 </Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
                   {optionalCompletedCount > 0 ? `осн. +${optionalCompletedCount} доп.` : 'задач'}
                 </Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
-                <Text style={[styles.heroStatValue, { color: chrome.text }]}>День {day.dayIndex}</Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>{plan.horizonWeeks * 7} дней</Text>
+                <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>День {day.dayIndex}</Text>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{plan.horizonWeeks * 7} дней</Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
-                <Text style={[styles.heroStatValue, { color: chrome.text }]}>
+                <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
                   {visibleProgressPct}%
                 </Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>прогресс</Text>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>прогресс</Text>
               </View>
             </View>
 
@@ -725,9 +739,20 @@ export default function PersonalPlanScreen() {
               style={styles.heroButtonWrap}
             >
               <LinearGradient colors={[chrome.accent2, chrome.accent]} style={styles.heroButton}>
-                <Ionicons name={visibleTasksDone ? 'refresh-outline' : 'play'} size={22} color={chrome.buttonText} />
+                {/* День закрыт (visibleTasksDone): кнопка НЕ ведёт дальше по плану,
+                    а даёт повторить материал или взять доп. практику. Текст «Продолжить»
+                    путал — звучал как переход к следующему шагу. Различаем два случая:
+                    есть доп. задание → «Ещё практика» (откроется НОВОЕ задание, иконка play),
+                    доп. заданий нет → «Повторить» (повтор первой задачи, иконка refresh). */}
+                <Ionicons
+                  name={visibleTasksDone ? (canAddMoreTasks ? 'play' : 'refresh-outline') : 'play'}
+                  size={22}
+                  color={chrome.buttonText}
+                />
                 <Text style={[styles.heroButtonText, { color: chrome.buttonText }]}>
-                  {visibleTasksDone ? 'Продолжить' : nextTask ? 'Начать задание' : 'Начать'}
+                  {visibleTasksDone
+                    ? (canAddMoreTasks ? 'Ещё практика' : 'Повторить')
+                    : nextTask ? 'Начать задание' : 'Начать'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -960,6 +985,9 @@ const styles = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   ringPct: { fontSize: 24, lineHeight: 28, fontWeight: '900' },
+  // 100% = 4 широких символа; в круге Ø≈82px кегль 24 налезал на обводку. Для
+  // трёхзначного значения уменьшаем до 19/22, чтобы «100%» помещалось целиком.
+  ringPctFull: { fontSize: 19, lineHeight: 22 },
   ringLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', textTransform: 'uppercase', marginTop: 1 },
   heroCopy: { flex: 1, minWidth: 0, paddingTop: 2 },
   timePill: {

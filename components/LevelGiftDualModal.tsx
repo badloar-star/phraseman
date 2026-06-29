@@ -22,6 +22,7 @@ import {
   rollF2pLevelGiftForUser, rollPremiumLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
@@ -615,14 +616,14 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
           <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? modalAccent : t.textPrimary, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4, textAlign: 'center' }}>
             {triLang(lang, {
-              ru: `Премиум: уровень ${level}`,
-              uk: `Преміум: рівень ${level}`,
-              es: `Premium: nivel ${level}`,
-              'pt-BR': `Premium: nível ${level}`,
-              vi: `Premium: cấp ${level}`,
-              id: `Premium: level ${level}`,
-              tr: `Premium: seviye ${level}`,
-              pl: `Premium: poziom ${level}`,
+              ru: `Плюс: уровень ${level}`,
+              uk: `Плюс: рівень ${level}`,
+              es: `Plus: nivel ${level}`,
+              'pt-BR': `Plus: nível ${level}`,
+              vi: `Plus: cấp ${level}`,
+              id: `Plus: level ${level}`,
+              tr: `Plus: seviye ${level}`,
+              pl: `Plus: poziom ${level}`,
             })}
           </Text>
           <Text style={{ color: '#FFFFFF', fontSize: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? f.h2 + 1 : f.bodyLg, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
@@ -703,7 +704,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       />
                     </TouchableOpacity>
                   )}
-                  <Text style={{ color: PREM_LABEL_COLOR, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
+                  <Text style={{ color: monoIcon(themeMode, PREM_LABEL_COLOR), fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
                     {secondChestLabel(lang)}
                   </Text>
                 </View>
@@ -1016,7 +1017,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
           />
         </>
       )}
-      <Text style={{ color: premVisual ? PREM_LABEL_COLOR : t.textMuted, fontSize: 10, fontWeight: '800', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 8 : 4, textTransform: 'uppercase', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
+      <Text style={{ color: premVisual ? monoIcon(themeMode, PREM_LABEL_COLOR) : t.textMuted, fontSize: 10, fontWeight: '800', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 8 : 4, textTransform: 'uppercase', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -1029,7 +1030,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
         </View>
       </View>
       {g.id && isEnergyBonusGiftId(g.id) && (
-        <EnergyNote f={f} g={g} lang={lang} energyBoostAlreadyActive={!!meta.energyBoostAlreadyActive} />
+        <EnergyNote f={f} g={g} lang={lang} themeMode={themeMode} energyBoostAlreadyActive={!!meta.energyBoostAlreadyActive} />
       )}
       {!!cosmeticLabel && (
         <View testID="level-gift-dual-cosmetic-preview" style={{ marginTop: 8, padding: 8, backgroundColor: 'rgba(124,58,237,0.12)', borderRadius: 8, borderWidth: 1, borderColor: '#A78BFA55', alignItems: 'center', gap: 7 }}>
@@ -1050,7 +1051,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       )}
       {(g.id === 'xp_2x_24h' || g.id === 'xp_2x_48h') && meta.xpBoostAlreadyActive && (
         <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 1, borderColor: '#D97706' }}>
-          <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
+          <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
             {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
           </Text>
         </View>
@@ -1059,10 +1060,11 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
   );
 }
 
-function EnergyNote({ f, g, lang, energyBoostAlreadyActive }: {
+function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
   f:     Fonts;
   g:     GiftDef;
   lang:  Lang;
+  themeMode: ThemeMode;
   energyBoostAlreadyActive: boolean;
 }) {
   const n = g.id === 'energy_plus1' ? 1 : g.id === 'energy_plus3' ? 3 : 2;
@@ -1078,7 +1080,7 @@ function EnergyNote({ f, g, lang, energyBoostAlreadyActive }: {
     }}>
       {energyBoostAlreadyActive
         ? (
-            <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
+            <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
               {triLang(lang, {
                 ru: `Буст заменён (+${n})`,
                 uk: `Буст замінено (+${n})`,
@@ -1092,7 +1094,7 @@ function EnergyNote({ f, g, lang, energyBoostAlreadyActive }: {
             </Text>
           )
         : (
-            <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
+            <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
               {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Até meia-noite', vi: 'Đến nửa đêm', id: 'Sampai tengah malam', tr: 'Gece yarısına kadar', pl: 'Do północy' })}
             </Text>
           )}

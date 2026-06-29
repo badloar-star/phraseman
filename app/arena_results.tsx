@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView,
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
 import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -21,11 +22,13 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import AvatarView from '../components/AvatarView';
 import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import { getLevelFromXP, screenTextOnGradient } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { onArenaWin, addShards, loadShardsFromCloud } from './shards_system';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { checkAchievements } from './achievements';
 import { resolveRankedArenaWagerForMatchOutcome } from './arena_match_wager';
-import { canShowReview, markReviewPrompted, markReviewRated, requestNativeReview, getReviewVariant, ReviewVariant } from './review_utils';
+import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewVariant } from './review_utils';
+import { openStoreReviewPage } from './store_review';
 import { logEvent } from './firebase';
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -195,7 +198,9 @@ export default function DuelResultsScreen() {
     hillMode,
     roomCode,
   } = useLocalSearchParams<{
-    sessionId: string; userId: string;
+    // H9: были `string` (без `?`), но Expo Router отдаёт `undefined` на deep link без params.
+    // sessionId.startsWith(...) ниже падал с TypeError. Делаем optional + защищаем точки доступа.
+    sessionId?: string; userId?: string;
     /** «1» = рейтинг из лобби (Найти матч / бот из очереди); ставка осколками только здесь */
     rankedArena?: string;
     forfeited?: string; opponentForfeited?: string;
@@ -254,6 +259,7 @@ export default function DuelResultsScreen() {
   // arena:sessionId), показываем после анимаций наград и поверх ничего не лезем.
   const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
   const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const collectibleDropVisible = useOverlayVisible('collectibleDrop', shownCardDrop != null);
   const rollArenaCardDrop = useCallback(() => {
     if (!sessionId || isMockSession) return;
     void maybeRollCollectibleDrop('arena', String(sessionId), { dailyScoped: false })
@@ -390,6 +396,8 @@ export default function DuelResultsScreen() {
   const lossShardAnimPlayedRef = useRef(false);
 
   useEffect(() => {
+    // H9: deep-link без params → sessionId/userId undefined; раньше падало с TypeError ниже.
+    if (!sessionId || !userId) return;
     if (isRoomRun) {
       // Для режима комнаты: только свой результат — лидерборд отдельно через subscribeArenaRoomRuns
       setPlayers([
@@ -477,6 +485,7 @@ export default function DuelResultsScreen() {
     const ttlAt = rematchOffer?.ttlAt ?? 0;
     const wait = Math.max(0, ttlAt - Date.now());
     const t = setTimeout(() => {
+      if (!sessionId) return; // H9: defensive guard, deep-link без params
       setRematchStatus(sessionId, 'expired').catch(() => {});
       if (!rematchTimeoutToastRef.current) {
         rematchTimeoutToastRef.current = true;
@@ -584,7 +593,7 @@ export default function DuelResultsScreen() {
 
   // При выходе «В Арену» — отменяем мой pending, чтобы не оставлять висеть
   const cancelMyPendingIfAny = useCallback(async () => {
-    if (rematchPending && isRematchInitiator) {
+    if (rematchPending && isRematchInitiator && sessionId) {
       try { await setRematchStatus(sessionId, 'cancelled'); } catch { /* ignore */ }
     }
   }, [rematchPending, isRematchInitiator, sessionId]);
@@ -600,8 +609,15 @@ export default function DuelResultsScreen() {
 
   useEffect(() => {
     if (isMockSession || !sessionId || !userId) return;
+    // H15: mounted-флаг + таймер-refs защищают setState и вложенные setTimeout от
+    // вызова после размонтирования компонента. Раньше async-колбэк onSnapshot
+    // с несколькими await мог писать setState на «мёртвом» экране и тихо терять
+    // награды/XP арены.
+    let mounted = true;
+    let starsTimer: ReturnType<typeof setTimeout> | null = null;
+    let rankTimer: ReturnType<typeof setTimeout> | null = null;
     const resultRef = firestore().collection('arena_session_results').doc(`${sessionId}_${userId}`);
-    return resultRef.onSnapshot(async (snap) => {
+    const unsubscribe = resultRef.onSnapshot(async (snap) => {
       try {
         if (!snap?.exists) return;
         if (serverResultAppliedRef.current) return;
@@ -623,6 +639,7 @@ export default function DuelResultsScreen() {
           sr?: number;
           atCeiling?: boolean;
         };
+        if (!mounted) return;
         setXpGainedServer(data.xpGained ?? 0);
         setIsDrawServer(!!data.isDraw);
         setStarInfo({
@@ -637,16 +654,20 @@ export default function DuelResultsScreen() {
         // 200ms (было 900ms) — server-path тоже не должен заставлять пользователя ждать
         // секунду перед анимацией звёзд. Сама StarSlot.animateIn уже имеет внутренний
         // delay 400ms, чего достаточно для визуальной паузы.
-        setTimeout(() => {
+        starsTimer = setTimeout(() => {
+          if (!mounted) return;
           setStarsReady(true);
           if (data.rankChanged) {
-            setTimeout(() => setRankCinematic({
-              promoted: !!data.promoted,
-              oldTier: data.oldTier ?? 'bronze',
-              oldLevel: data.oldLevel ?? 'I',
-              newTier: data.newTier ?? 'bronze',
-              newLevel: data.newLevel ?? 'I',
-            }), 700);
+            rankTimer = setTimeout(() => {
+              if (!mounted) return;
+              setRankCinematic({
+                promoted: !!data.promoted,
+                oldTier: data.oldTier ?? 'bronze',
+                oldLevel: data.oldLevel ?? 'I',
+                newTier: data.newTier ?? 'bronze',
+                newLevel: data.newLevel ?? 'I',
+              });
+            }, 700);
           }
         }, 200);
 
@@ -660,6 +681,7 @@ export default function DuelResultsScreen() {
               isDraw: !!data.isDraw,
             });
 
+        if (!mounted) return;
         if (!isFriendMatch && !data.isDraw && !data.won && wagerOpts.wagerLossStake) {
           setShardsLostWager(wagerOpts.wagerLossStake);
         }
@@ -700,7 +722,7 @@ export default function DuelResultsScreen() {
             rankBonus = await addShards('arena_rank_up_streak', { suppressEarnEvent: true });
             total += rankBonus;
           }
-          if (total > 0) {
+          if (total > 0 && mounted) {
             setShardsEarned(total);
           }
           rollArenaCardDrop();
@@ -724,14 +746,15 @@ export default function DuelResultsScreen() {
           writeFriendEvent(eventType, { rank: String(data.newTier) }).catch(() => {});
         }
 
-        setResultSaved(true);
+        if (mounted) setResultSaved(true);
         logEvent('arena_result_loaded_from_server', { won: data.won ? 1 : 0 });
 
         // Дуэль из приглашения: сервер начисляет/возвращает ставку осколков — подтягиваем баланс в UI.
-        if (sessionId.startsWith('invite_')) {
+        if (sessionId?.startsWith('invite_')) {
           loadShardsFromCloud().catch(() => {});
         }
       } catch {
+        if (!mounted) return;
         emitAppEvent('action_toast', {
           type: 'error',
           messageRu: 'Результат матча не загрузился. Попробуй открыть снова.',
@@ -740,6 +763,12 @@ export default function DuelResultsScreen() {
         });
       }
     });
+    return () => {
+      mounted = false;
+      if (starsTimer) clearTimeout(starsTimer);
+      if (rankTimer) clearTimeout(rankTimer);
+      unsubscribe();
+    };
   }, [applyTaskProgressOnce, isMockSession, isRankedArenaSession, recordArenaDailyOutcome, recordArenaWinAchievementOnce, sessionId, userId, lang]);
 
   const saveMatchResult = useCallback(async (uid: string, won: boolean, isLast: boolean, total: number, isDraw: boolean = false): Promise<{ promoted: boolean }> => {
@@ -770,7 +799,7 @@ export default function DuelResultsScreen() {
     } catch { /* ignore */ }
 
     const botArgs = {
-      sessionId,
+      sessionId: sessionId ?? '',
       uid,
       won,
       isLast,
@@ -1688,7 +1717,7 @@ export default function DuelResultsScreen() {
                 >
                   {flyKind === 'xp' ? (
                     <View style={styles.flyXpChip}>
-                      <Ionicons name="flash" size={30} color="#FACC15" />
+                      <Ionicons name="flash" size={30} color={monoIcon(themeMode, '#FACC15')} />
                       <Text style={styles.flyXpText}>+{xpGained} XP</Text>
                     </View>
                   ) : flyKind === 'shard_loss' ? (
@@ -2384,7 +2413,7 @@ export default function DuelResultsScreen() {
       )}
 
       <CollectibleDropModal
-        outcome={shownCardDrop}
+        outcome={collectibleDropVisible ? shownCardDrop : null}
         onClose={() => {
           setShownCardDrop(null);
           setPendingCardDrop(null);
@@ -2415,6 +2444,9 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
   const { bottom } = useSafeAreaInsets();
 
   useEffect(() => {
+    // Окно монтируется только когда решено показать → помечаем показ сразу,
+    // чтобы лимит показов и 30-дневный кулдаун учитывались при любом закрытии.
+    markReviewPrompted().catch(() => {});
     const intro = Animated.parallel([
       Animated.timing(fadeAnim, { toValue: 1, duration: 220, useNativeDriver: true }),
       Animated.spring(sheetY, { toValue: 0, friction: 9, tension: 80, useNativeDriver: true }),
@@ -2425,9 +2457,11 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
 
   const handleYes = async () => {
     try {
+      // Пре-промпт → уводим в стор и показываем "спасибо". Без нативного
+      // requestReview, чтобы два окна оценки не наложились.
       await markReviewRated();
       setStep('thanks');
-      await requestNativeReview();
+      await openStoreReviewPage();
       setTimeout(onClose, 1500);
     } catch {
       onClose();
@@ -2441,11 +2475,8 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
   };
 
   const handleNo = async () => {
-    try {
-      await markReviewPrompted();
-    } finally {
-      onClose();
-    }
+    // Показ уже помечен при открытии окна — здесь только закрываем.
+    onClose();
   };
 
   return (

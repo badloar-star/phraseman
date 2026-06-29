@@ -39,10 +39,15 @@ type RuntimeSliceDraft = {
     | 'audio_metadata'
     | 'flashcard'
     | 'personal_practice';
-  runtimeManifestStatus: 'not_created';
-  cacheKeyStatus: 'not_created';
-  loaderStatus: 'blocked_runtime_contract_missing';
+  runtimeManifestStatus: 'not_created' | 'local_materialized';
+  cacheKeyStatus: 'not_created' | 'local_cache_key_materialized';
+  loaderStatus: 'blocked_runtime_contract_missing' | 'blocked_until_upload_activation_gate';
   activationApproved: false;
+  payloadShard?: string;
+  payloadSha256?: string;
+  payloadBytes?: number;
+  entryIndex?: string;
+  sliceManifest?: string;
 };
 
 type BlockerMapEntry = {
@@ -68,7 +73,7 @@ type TargetPackManifestV2Draft = {
   packType: 'downloadable_target_pack_candidate';
   studyTarget: 'fr';
   targetLocale: 'fr';
-  sourceLocales: Array<'ru' | 'uk'>;
+  sourceLocales: ('ru' | 'uk')[];
   runtimeCoursePackSchemaVersion: 'course-pack-v1';
   contentVersion: string;
   minAppVersion: 'blocked_until_runtime_delivery_contract_v2';
@@ -200,7 +205,7 @@ type JsonObject = Record<string, unknown>;
 
 const EXPECTED_ROWS = 1600;
 const EXPECTED_LESSON_LEDGERS = 32;
-const SOURCE_LOCALES: Array<'ru' | 'uk'> = ['ru', 'uk'];
+const SOURCE_LOCALES: ('ru' | 'uk')[] = ['ru', 'uk'];
 const RUNTIME_SURFACES: RuntimeSliceDraft['surface'][] = [
   'lesson',
   'lesson_intro',
@@ -233,13 +238,6 @@ function n(value: JsonObject, key: string): number {
   if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
   if (typeof raw === 'string' && raw.trim() !== '' && Number.isFinite(Number(raw))) return Number(raw);
   return 0;
-}
-
-function b(value: JsonObject, key: string): boolean {
-  const raw = value[key];
-  if (typeof raw === 'boolean') return raw;
-  if (typeof raw === 'string') return raw.toLowerCase() === 'true' || raw.toLowerCase() === 'yes';
-  return false;
 }
 
 function s(value: JsonObject, key: string): string {
@@ -327,21 +325,45 @@ function gateReport(
   };
 }
 
-function runtimeSliceDrafts(): RuntimeSliceDraft[] {
+function runtimeSliceDrafts(repoRoot: string, runDir: string): RuntimeSliceDraft[] {
   return SOURCE_LOCALES.flatMap((sourceLocale) =>
-    RUNTIME_SURFACES.map((surface) => ({
-      studyTarget: 'fr',
-      sourceLocale,
-      surface,
-      runtimeManifestStatus: 'not_created',
-      cacheKeyStatus: 'not_created',
-      loaderStatus: 'blocked_runtime_contract_missing',
-      activationApproved: false,
-    })),
+    RUNTIME_SURFACES.map((surface) => {
+      const sliceDir = path.join(runDir, 'pack_candidates', 'fr', 'runtime_slices', sourceLocale, surface);
+      const indexPath = path.join(sliceDir, 'index.json');
+      const manifestPath = path.join(sliceDir, 'manifest.json');
+      const payloadPath = path.join(sliceDir, `payload-${path.basename(runDir)}.json`);
+      const materialized = fs.existsSync(indexPath) && fs.existsSync(manifestPath) && fs.existsSync(payloadPath);
+      if (!materialized) {
+        return {
+          studyTarget: 'fr',
+          sourceLocale,
+          surface,
+          runtimeManifestStatus: 'not_created',
+          cacheKeyStatus: 'not_created',
+          loaderStatus: 'blocked_runtime_contract_missing',
+          activationApproved: false,
+        };
+      }
+      return {
+        studyTarget: 'fr',
+        sourceLocale,
+        surface,
+        runtimeManifestStatus: 'local_materialized',
+        cacheKeyStatus: 'local_cache_key_materialized',
+        loaderStatus: 'blocked_until_upload_activation_gate',
+        activationApproved: false,
+        payloadShard: rel(repoRoot, payloadPath),
+        payloadSha256: sha256(payloadPath),
+        payloadBytes: fs.statSync(payloadPath).size,
+        entryIndex: rel(repoRoot, indexPath),
+        sliceManifest: rel(repoRoot, manifestPath),
+      };
+    }),
   );
 }
 
-function blockerMap(): BlockerMapEntry[] {
+function blockerMap(runtimeSlices: RuntimeSliceDraft[]): BlockerMapEntry[] {
+  const materializedRuntimeSlices = runtimeSlices.filter((slice) => slice.runtimeManifestStatus === 'local_materialized').length;
   return [
     {
       blockerId: 'P9-RUNTIME-001-fr-not-production-study-target',
@@ -396,8 +418,12 @@ function blockerMap(): BlockerMapEntry[] {
       blockerId: 'P9-PAYLOAD-001-runtime-payload-shards-not-materialized',
       area: 'pack_payload',
       status: 'blocked',
-      evidence: 'This pass creates a manifest draft only; runtime payload shards and per-source/per-surface manifests are not created.',
-      nextUnblockArtifact: 'pack_candidates/fr/runtime_slices/*',
+      evidence: materializedRuntimeSlices === SOURCE_LOCALES.length * RUNTIME_SURFACES.length
+        ? 'Runtime payload shards are materialized locally for all required slices, but remain blocked from upload/download/activation.'
+        : `Runtime payload shards are incomplete: ${materializedRuntimeSlices}/${SOURCE_LOCALES.length * RUNTIME_SURFACES.length} local slices materialized.`,
+      nextUnblockArtifact: materializedRuntimeSlices === SOURCE_LOCALES.length * RUNTIME_SURFACES.length
+        ? 'audits/server_pack_upload_policy_v2_packet.json'
+        : 'pack_candidates/fr/runtime_slices/*',
     },
     {
       blockerId: 'P9-ACTIVATION-001-activation-not-approved',
@@ -416,7 +442,6 @@ function buildManifest(
   paths: Record<string, string>,
 ): TargetPackManifestV2Draft {
   const appRuntime = readAppRuntimeState(repoRoot);
-  const generationSchemaSummary = summaryOf(paths.generationSchemaV2Packet);
   const aiPromptSummary = summaryOf(paths.aiPromptContractV2Packet);
   const contentQualitySummary = summaryOf(paths.contentQualityGatesV2Packet);
   const reviewerWorkflowSummary = summaryOf(paths.reviewerWorkflowV2Packet);
@@ -436,6 +461,7 @@ function buildManifest(
     gateReport(repoRoot, 'research_json_firewall', paths.researchFirewall, 'noFrenchContentGenerated'),
     gateReport(repoRoot, 'run_validator', paths.runValidator),
   ];
+  const requiredRuntimeSlices = runtimeSliceDrafts(repoRoot, runDir);
 
   return {
     schemaVersion: 'gustav-target-pack-manifest-v2-draft',
@@ -477,7 +503,7 @@ function buildManifest(
       runtimeDownloadsEnabled: false,
       coursePackRemoteLoadingEnabled: false,
       targetLevelManifestSupportedByAppRuntime: false,
-      requiredRuntimeSlices: runtimeSliceDrafts(),
+      requiredRuntimeSlices,
     },
     serverDelivery: {
       serverUploadAllowed: false,
@@ -506,7 +532,7 @@ function buildManifest(
       readyForApply: false,
       mayModifyProductionAppFiles: false,
     },
-    blockerMap: blockerMap().map((entry) => {
+    blockerMap: blockerMap(requiredRuntimeSlices).map((entry) => {
       if (entry.blockerId === 'P9-RUNTIME-001-fr-not-production-study-target' && appRuntime.productionStudyTargetHasFrench) {
         return { ...entry, evidence: 'Runtime source currently mentions fr in ProductionStudyTarget; explicit production approval is still required before activation.' };
       }
@@ -604,9 +630,9 @@ function validateManifest(manifest: TargetPackManifestV2Draft, filePath: string)
   metrics.highRiskAiDecisionSlotsV2 = manifest.itemCounts.highRiskAiDecisionSlotsV2;
   metrics.runtimeSliceDrafts = manifest.runtimeDelivery.requiredRuntimeSlices.length;
   metrics.runtimeSliceDraftsBlocked = manifest.runtimeDelivery.requiredRuntimeSlices.filter((entry) =>
-    entry.runtimeManifestStatus === 'not_created' &&
-    entry.cacheKeyStatus === 'not_created' &&
-    entry.loaderStatus === 'blocked_runtime_contract_missing' &&
+    (entry.runtimeManifestStatus === 'not_created' || entry.runtimeManifestStatus === 'local_materialized') &&
+    (entry.cacheKeyStatus === 'not_created' || entry.cacheKeyStatus === 'local_cache_key_materialized') &&
+    (entry.loaderStatus === 'blocked_runtime_contract_missing' || entry.loaderStatus === 'blocked_until_upload_activation_gate') &&
     entry.activationApproved === false
   ).length;
   metrics.productionBlockers = manifest.blockerMap.length;
@@ -638,7 +664,7 @@ function validateManifest(manifest: TargetPackManifestV2Draft, filePath: string)
     addFinding(findings, 'blocker', 'gate_report_refs_invalid', 'Gate report refs must be present and hashed.', filePath, '$.gateReports');
   }
   if (metrics.runtimeSliceDrafts !== SOURCE_LOCALES.length * RUNTIME_SURFACES.length || metrics.runtimeSliceDraftsBlocked !== metrics.runtimeSliceDrafts) {
-    addFinding(findings, 'blocker', 'runtime_slice_drafts_invalid', 'Every required runtime slice draft must exist and remain blocked.', filePath, '$.runtimeDelivery.requiredRuntimeSlices');
+    addFinding(findings, 'blocker', 'runtime_slice_drafts_invalid', 'Every required runtime slice must be declared and remain blocked from activation/runtime use.', filePath, '$.runtimeDelivery.requiredRuntimeSlices');
   }
   if (manifest.blockerMap.length < 8 || !manifest.blockerMap.every((entry) => entry.status === 'blocked')) {
     addFinding(findings, 'blocker', 'production_blocker_map_invalid', 'Target Pack Manifest V2 must carry explicit production blockers.', filePath, '$.blockerMap');
@@ -665,7 +691,7 @@ function cloneManifest(manifest: TargetPackManifestV2Draft): TargetPackManifestV
 }
 
 function runProbes(manifest: TargetPackManifestV2Draft, filePath: string): Probe[] {
-  const probes: Array<{ id: string; expectedAccept: boolean; manifest: TargetPackManifestV2Draft }> = [];
+  const probes: { id: string; expectedAccept: boolean; manifest: TargetPackManifestV2Draft }[] = [];
   probes.push({ id: 'canonical_target_pack_manifest_accepts', expectedAccept: true, manifest: cloneManifest(manifest) });
 
   const activationOpen = cloneManifest(manifest);
@@ -837,18 +863,22 @@ function main(): void {
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
   const probesPassed = probes.filter((probe) => probe.passed).length;
-  const manifestIdentityValid = Boolean(manifest) && manifest.studyTarget === 'fr' && JSON.stringify(manifest.sourceLocales) === JSON.stringify(['ru', 'uk']);
-  const manifestHashesValid = Boolean(manifest) && [
-    manifest.sourceGraphHash,
-    manifest.researchPackHash,
-    manifest.pedagogyBlueprintHash,
-    manifest.generationSchemaV2Hash,
-    manifest.domainRegistryV2Hash,
-    manifest.aiPromptContractV2Hash,
-    manifest.contentQualityGatesV2Hash,
-    manifest.reviewerWorkflowV2Hash,
-    manifest.reviewerDecisionTemplateV2Hash,
-    manifest.reviewerAiDecisionTemplateV2Hash,
+  const manifestDraft = manifest;
+  const manifestIdentityValid =
+    manifestDraft !== null &&
+    manifestDraft.studyTarget === 'fr' &&
+    JSON.stringify(manifestDraft.sourceLocales) === JSON.stringify(['ru', 'uk']);
+  const manifestHashesValid = manifestDraft !== null && [
+    manifestDraft.sourceGraphHash,
+    manifestDraft.researchPackHash,
+    manifestDraft.pedagogyBlueprintHash,
+    manifestDraft.generationSchemaV2Hash,
+    manifestDraft.domainRegistryV2Hash,
+    manifestDraft.aiPromptContractV2Hash,
+    manifestDraft.contentQualityGatesV2Hash,
+    manifestDraft.reviewerWorkflowV2Hash,
+    manifestDraft.reviewerDecisionTemplateV2Hash,
+    manifestDraft.reviewerAiDecisionTemplateV2Hash,
   ].every(isSha256);
   const manifestItemCountsValid =
     metrics.lessonLedgers === EXPECTED_LESSON_LEDGERS &&
@@ -857,7 +887,7 @@ function main(): void {
     metrics.aiPromptContracts > 0 &&
     metrics.aiDecisionSlotsV2 === metrics.aiPromptContracts;
   const readyForRuntimeServerDeliveryContractV2 =
-    Boolean(manifest) &&
+    manifestDraft !== null &&
     blockers === 0 &&
     probesPassed === probes.length &&
     manifestIdentityValid &&
@@ -866,12 +896,12 @@ function main(): void {
     metrics.productionBlockers >= 8 &&
     metrics.runtimeSliceDraftsBlocked === metrics.runtimeSliceDrafts;
 
-  if (manifest && blockers === 0) {
-    fs.writeFileSync(outManifest, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  if (manifestDraft && blockers === 0) {
+    fs.writeFileSync(outManifest, `${JSON.stringify(manifestDraft, null, 2)}\n`, 'utf8');
   }
 
   const artifactHashes: Record<string, string> = {};
-  if (manifest) {
+  if (manifestDraft) {
     for (const [key, filePath] of Object.entries(paths)) artifactHashes[key] = sha256(filePath);
   }
   if (fs.existsSync(outManifest)) artifactHashes.targetPackManifestV2Draft = sha256(outManifest);
@@ -896,14 +926,23 @@ function main(): void {
       ...metrics,
       targetLocale: 'fr',
       sourceLocales: 2,
-      manifestDraftCreated: Boolean(manifest) && blockers === 0,
+      manifestDraftCreated: manifestDraft !== null && blockers === 0,
       manifestIdentityValid,
       manifestHashesValid,
       manifestItemCountsValid,
-      runtimeDeliveryBlocked: Boolean(manifest) && manifest.runtimeDelivery.runtimeDownloadsEnabled === false,
-      serverDeliveryBlocked: Boolean(manifest) && manifest.serverDelivery.serverUploadAllowed === false && manifest.serverDelivery.firebaseUploadAllowed === false,
-      storageCloudBlocked: Boolean(manifest) && manifest.storageCloud.storageMigrationAllowed === false && manifest.storageCloud.cloudSyncMigrationAllowed === false,
-      activationBlocked: Boolean(manifest) && manifest.activation.activationApproved === false && manifest.activation.readyForApply === false,
+      runtimeDeliveryBlocked: manifestDraft !== null && manifestDraft.runtimeDelivery.runtimeDownloadsEnabled === false,
+      serverDeliveryBlocked:
+        manifestDraft !== null &&
+        manifestDraft.serverDelivery.serverUploadAllowed === false &&
+        manifestDraft.serverDelivery.firebaseUploadAllowed === false,
+      storageCloudBlocked:
+        manifestDraft !== null &&
+        manifestDraft.storageCloud.storageMigrationAllowed === false &&
+        manifestDraft.storageCloud.cloudSyncMigrationAllowed === false,
+      activationBlocked:
+        manifestDraft !== null &&
+        manifestDraft.activation.activationApproved === false &&
+        manifestDraft.activation.readyForApply === false,
       readyForRuntimeServerDeliveryContractV2,
       readyForGenerationV2: false,
       readyForApply: false,

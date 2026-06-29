@@ -257,6 +257,38 @@ describe('explainMistake', () => {
     expect(eli5Again.text).toBe(eli5.text);
   });
 
+  it('ELI5: rejects wrong-language fresh text before live return, cache write, or billing', async () => {
+    await callExplain(validPayload); // warm the safe full breakdown first
+    const hash = hashFor(validPayload);
+    const before = docs.get(`${MISTAKE_COLLECTION}/${hash}`);
+    mockOkProvider('Today you keep a good small practice step with your phrases.');
+
+    await expect(callExplain({ ...validPayload, variant: 'eli5' })).rejects.toMatchObject({
+      code: 'unavailable',
+      message: 'mistake_explain_wrong_language',
+    });
+
+    const after = docs.get(`${MISTAKE_COLLECTION}/${hash}`);
+    expect(after).toMatchObject({
+      status: 'ready',
+      full: before?.full,
+    });
+    expect(after?.eli5).toBeUndefined();
+    expect(billingDocs()).toHaveLength(1);
+  });
+
+  it('ELI5-before-full: rejects wrong-language fresh text before materializing any ready doc', async () => {
+    mockOkProvider('Today you keep a good small practice step with your phrases.');
+
+    await expect(callExplain({ ...validPayload, variant: 'eli5' })).rejects.toMatchObject({
+      code: 'unavailable',
+      message: 'mistake_explain_wrong_language',
+    });
+
+    expect(cacheDocs().some((d) => d.status === 'ready')).toBe(false);
+    expect(billingDocs()).toHaveLength(0);
+  });
+
   it('persists ELI5 even when it is requested BEFORE the full breakdown (no money leak on repeat)', async () => {
     mockOkProvider('Маленькая правка: скажи "have", не "has". Для "I" подходит "have".');
 
@@ -293,6 +325,28 @@ describe('explainMistake', () => {
       updatedAtMs: Date.now(),
     });
   }
+
+  it('FULL: rejects wrong-language ready cache and overwrites it with fresh checked text', async () => {
+    const hash = hashFor(validPayload);
+    docs.set(`${MISTAKE_COLLECTION}/${hash}`, {
+      status: 'ready',
+      schemaVersion: MISTAKE_SCHEMA_VERSION,
+      full: 'Today you keep a good small practice step with your phrases.',
+      lang: 'ru',
+      targetEn: validPayload.targetAnswer,
+      userAnswer: validPayload.userAnswer,
+      model: 'gpt-4.1',
+      reason: null,
+      updatedAtMs: Date.now(),
+    });
+
+    const res = await callExplain(validPayload, 'auth-2');
+
+    expect(res.fromCache).toBe(false);
+    expect(res.text).toContain('have');
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(docs.get(`${MISTAKE_COLLECTION}/${hash}`)?.full).toBe(res.text);
+  });
 
   it('FULL: caches the breakdown even when the generation lock is lost (no «нет в кэше» for shown text)', async () => {
     seedFreshPendingLock(validPayload);

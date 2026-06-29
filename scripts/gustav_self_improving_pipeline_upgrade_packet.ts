@@ -33,7 +33,23 @@ type WeaknessRecord = {
   proposedRule: string;
   proposedGateChange: string;
   requiredRegression: string;
-  status: 'open';
+  status: 'open' | 'closed';
+  closedAt?: string;
+  closedBy?: string;
+  closingGate?: string;
+  closureReason?: string;
+  closureEvidence?: string[];
+  reopenedAt?: string;
+  reopenedBy?: string;
+};
+
+type WeaknessClosure = {
+  weaknessId: string;
+  closedAt: string;
+  closedBy: string;
+  closingGate: string;
+  closureReason: string;
+  closureEvidence: string[];
 };
 
 type JsonObject = Record<string, unknown>;
@@ -57,13 +73,20 @@ type Report = {
     acceptanceGates: number;
     riskRegisterItems: number;
     weaknessLedgerRecords: number;
+    closedWeaknesses: number;
     unresolvedCriticalWeaknesses: number;
+    unresolvedHighWeaknesses: number;
     generatedRows: number;
     researchPackPresent: boolean;
     appAtlasStale: boolean;
     generationHistoryReconciled: boolean;
     appAtlasRefreshPresent: boolean;
     domainRegistryV2Present: boolean;
+    targetResearchPackVerified: boolean;
+    officialSourceCoverageComplete: boolean;
+    generationSchemaV2Ready: boolean;
+    contentQualityGatesV2Ready: boolean;
+    aiPromptContractV2Ready: boolean;
     productionWritesAllowed: false;
     applyApprovalCreated: false;
     readyForP0P2: boolean;
@@ -123,9 +146,19 @@ function b(value: JsonObject, key: string): boolean {
   return false;
 }
 
+function s(value: JsonObject, key: string): string {
+  const raw = value[key];
+  return typeof raw === 'string' ? raw : '';
+}
+
 function summaryOf(filePath: string): JsonObject {
   if (!fs.existsSync(filePath)) return {};
   return object(readJson<JsonObject>(filePath).summary);
+}
+
+function statusOf(filePath: string): string {
+  if (!fs.existsSync(filePath)) return '';
+  return s(object(readJson<JsonObject>(filePath)), 'status');
 }
 
 function addFinding(findings: Finding[], severity: Severity, code: string, message: string, filePath?: string): void {
@@ -255,11 +288,36 @@ function readWeaknessJsonl(filePath: string): WeaknessRecord[] {
   return text.split(/\r?\n/).map((line) => JSON.parse(line) as WeaknessRecord);
 }
 
-function writeMergedWeaknessLedger(filePath: string, seed: WeaknessRecord[]): WeaknessRecord[] {
+function writeMergedWeaknessLedger(filePath: string, seed: WeaknessRecord[], closures: WeaknessClosure[]): WeaknessRecord[] {
   const existing = readWeaknessJsonl(filePath);
   const byId = new Map(existing.map((record) => [record.weaknessId, record]));
   for (const record of seed) {
-    if (!byId.has(record.weaknessId)) byId.set(record.weaknessId, record);
+    const previous = byId.get(record.weaknessId);
+    if (!previous) {
+      byId.set(record.weaknessId, record);
+    } else if (previous.status === 'closed') {
+      byId.set(record.weaknessId, {
+        ...previous,
+        ...record,
+        status: 'open',
+        reopenedAt: record.detectedAt,
+        reopenedBy: record.detectedBy,
+      });
+    }
+  }
+  for (const closure of closures) {
+    const previous = byId.get(closure.weaknessId);
+    if (previous && previous.status === 'open') {
+      byId.set(closure.weaknessId, {
+        ...previous,
+        status: 'closed',
+        closedAt: closure.closedAt,
+        closedBy: closure.closedBy,
+        closingGate: closure.closingGate,
+        closureReason: closure.closureReason,
+        closureEvidence: closure.closureEvidence,
+      });
+    }
   }
   const merged = Array.from(byId.values()).sort((a, bValue) => a.weaknessId.localeCompare(bValue.weaknessId));
   fs.writeFileSync(filePath, `${merged.map((record) => JSON.stringify(record)).join('\n')}\n`, 'utf8');
@@ -288,13 +346,20 @@ function renderMarkdown(report: Report): string {
     `- Acceptance gates: ${report.summary.acceptanceGates}`,
     `- Risk register items: ${report.summary.riskRegisterItems}`,
     `- Weakness ledger records: ${report.summary.weaknessLedgerRecords}`,
+    `- Closed weaknesses: ${report.summary.closedWeaknesses}`,
     `- Unresolved critical weaknesses: ${report.summary.unresolvedCriticalWeaknesses}`,
+    `- Unresolved high weaknesses: ${report.summary.unresolvedHighWeaknesses}`,
     `- Generated rows: ${report.summary.generatedRows}`,
     `- Research pack present: ${report.summary.researchPackPresent ? 'yes' : 'no'}`,
     `- App atlas stale: ${report.summary.appAtlasStale ? 'yes' : 'no'}`,
     `- Generation history reconciled: ${report.summary.generationHistoryReconciled ? 'yes' : 'no'}`,
     `- App atlas refresh present: ${report.summary.appAtlasRefreshPresent ? 'yes' : 'no'}`,
     `- Domain Registry V2 present: ${report.summary.domainRegistryV2Present ? 'yes' : 'no'}`,
+    `- Target research pack verified: ${report.summary.targetResearchPackVerified ? 'yes' : 'no'}`,
+    `- Official-source coverage complete: ${report.summary.officialSourceCoverageComplete ? 'yes' : 'no'}`,
+    `- Generation Schema V2 ready: ${report.summary.generationSchemaV2Ready ? 'yes' : 'no'}`,
+    `- Content Quality Gates V2 ready: ${report.summary.contentQualityGatesV2Ready ? 'yes' : 'no'}`,
+    `- AI Prompt Contract V2 ready: ${report.summary.aiPromptContractV2Ready ? 'yes' : 'no'}`,
     `- Ready for P0-P2: ${report.summary.readyForP0P2 ? 'yes' : 'no'}`,
     `- Ready for research pack builder: ${report.summary.readyForResearchPackBuilder ? 'yes' : 'no'}`,
     `- Ready for Generation V2: ${report.summary.readyForGenerationV2 ? 'yes' : 'no'}`,
@@ -366,6 +431,10 @@ function main(): void {
   const generatedContentAuditPath = path.join(auditsDir, 'generated_content_audit.json');
   const researchPackPath = path.join(runDir, 'research', 'fr_research_pack.json');
   const targetResearchPackVerifyPath = path.join(auditsDir, 'target_research_pack_verify_audit.json');
+  const officialSourceCoveragePath = path.join(auditsDir, 'french_official_source_content_coverage_v2_packet.json');
+  const generationSchemaV2Path = path.join(auditsDir, 'generation_schema_v2_packet.json');
+  const contentQualityGatesV2Path = path.join(auditsDir, 'content_quality_gates_v2_packet.json');
+  const aiPromptContractV2Path = path.join(auditsDir, 'ai_prompt_contract_v2_packet.json');
   const weaknessLedgerPath = path.join(auditsDir, 'pipeline_weakness_ledger.jsonl');
   const outJson = path.join(auditsDir, 'self_improving_pipeline_upgrade_packet.json');
   const outMd = path.join(auditsDir, 'self_improving_pipeline_upgrade_packet.md');
@@ -380,17 +449,159 @@ function main(): void {
   const appAtlasSummary = summaryOf(appAtlasRefreshPath);
   const domainRegistryV2Summary = summaryOf(domainRegistryV2Path);
   const generatedContentSummary = summaryOf(generatedContentAuditPath);
+  const targetResearchPackVerifySummary = summaryOf(targetResearchPackVerifyPath);
+  const officialSourceCoverageSummary = summaryOf(officialSourceCoveragePath);
+  const generationSchemaV2Summary = summaryOf(generationSchemaV2Path);
+  const contentQualityGatesV2Summary = summaryOf(contentQualityGatesV2Path);
+  const aiPromptContractV2Summary = summaryOf(aiPromptContractV2Path);
 
   const generatedRows = n(generationHistorySummary, 'generatedRows') || n(generatedContentSummary, 'rows');
   const researchPackPresent =
     fs.existsSync(researchPackPath) ||
     b(researchSummary, 'researchPackPresent') ||
     b(generationHistorySummary, 'researchPackPresent');
-  const appAtlasStale = b(appAtlasSummary, 'oldSurfaceInventoryStale') || n(currentAppSummary, 'currentAppTsxNotInOldInventory') > 0;
+  const appAtlasHistoricalStale = b(appAtlasSummary, 'oldSurfaceInventoryStale') || n(currentAppSummary, 'currentAppTsxNotInOldInventory') > 0;
+  const appAtlasRefreshReady =
+    fs.existsSync(appAtlasRefreshPath) &&
+    n(appAtlasSummary, 'blockers') === 0 &&
+    n(appAtlasSummary, 'unclassifiedTargetSensitiveFiles') === 0 &&
+    b(appAtlasSummary, 'readyForDomainRegistryV2');
+  const appAtlasStale = appAtlasHistoricalStale && !appAtlasRefreshReady;
   const now = new Date().toISOString();
   const seed = weaknessSeed(now, generatedRows, researchPackPresent, appAtlasStale);
-  const mergedWeaknesses = writeMergedWeaknessLedger(weaknessLedgerPath, seed);
+  const targetResearchPackVerified =
+    statusOf(targetResearchPackVerifyPath) === 'PASS' &&
+    n(targetResearchPackVerifySummary, 'blockers') === 0 &&
+    b(targetResearchPackVerifySummary, 'researchPackPresent') &&
+    b(targetResearchPackVerifySummary, 'readyForPedagogyBlueprint') &&
+    n(targetResearchPackVerifySummary, 'fixtureProbes') > 0 &&
+    n(targetResearchPackVerifySummary, 'fixtureProbesPassed') === n(targetResearchPackVerifySummary, 'fixtureProbes') &&
+    !b(targetResearchPackVerifySummary, 'readyForApply') &&
+    !b(targetResearchPackVerifySummary, 'mayModifyProductionAppFiles');
+  const officialSourceCoverageComplete =
+    statusOf(officialSourceCoveragePath) === 'PASS' &&
+    n(officialSourceCoverageSummary, 'blockers') === 0 &&
+    s(officialSourceCoverageSummary, 'coverageState') === 'official_source_content_coverage_complete_no_import' &&
+    n(officialSourceCoverageSummary, 'ledgerRows') === 1600 &&
+    n(officialSourceCoverageSummary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
+    n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows') === 164 &&
+    n(officialSourceCoverageSummary, 'rowDecisionsWithSourceRefs') === 1600 &&
+    n(officialSourceCoverageSummary, 'rowDecisionsWithAllRequiredGatesPassed') === 1600 &&
+    n(officialSourceCoverageSummary, 'rowDecisionQuizRowsWithOneCorrectAnswer') === 1600 &&
+    n(officialSourceCoverageSummary, 'trustedSourceIds') > 0 &&
+    b(officialSourceCoverageSummary, 'readyForReviewerDecisionImportDryRunRefresh') &&
+    n(officialSourceCoverageSummary, 'fixtureProbes') > 0 &&
+    n(officialSourceCoverageSummary, 'fixtureProbesPassed') === n(officialSourceCoverageSummary, 'fixtureProbes') &&
+    !b(officialSourceCoverageSummary, 'readyForApply') &&
+    !b(officialSourceCoverageSummary, 'mayModifyProductionAppFiles') &&
+    !b(officialSourceCoverageSummary, 'serverUploadAllowed') &&
+    !b(officialSourceCoverageSummary, 'firebaseUploadAllowed') &&
+    !b(officialSourceCoverageSummary, 'runtimeDownloadsEnabled') &&
+    !b(officialSourceCoverageSummary, 'activationApproved');
+  const generationSchemaV2Ready =
+    statusOf(generationSchemaV2Path) === 'PASS' &&
+    n(generationSchemaV2Summary, 'blockers') === 0 &&
+    n(generationSchemaV2Summary, 'generatedRows') === 1600 &&
+    n(generationSchemaV2Summary, 'rowsWithResearchEvidenceIds') === 1600 &&
+    n(generationSchemaV2Summary, 'rowsWithPedagogyBlueprintId') === 1600 &&
+    n(generationSchemaV2Summary, 'rowsWithGrammarClusterId') === 1600 &&
+    n(generationSchemaV2Summary, 'rowsWithTransformationType') === 1600 &&
+    n(generationSchemaV2Summary, 'rowsWithLanguageFieldDeclarations') === 1600 &&
+    n(generationSchemaV2Summary, 'fixtureProbes') > 0 &&
+    n(generationSchemaV2Summary, 'fixtureProbesPassed') === n(generationSchemaV2Summary, 'fixtureProbes') &&
+    !b(generationSchemaV2Summary, 'readyForApply');
+  const contentQualityGatesV2Ready =
+    statusOf(contentQualityGatesV2Path) === 'PASS' &&
+    n(contentQualityGatesV2Summary, 'blockers') === 0 &&
+    n(contentQualityGatesV2Summary, 'rowsWithRequiredGateSet') === 1600 &&
+    n(contentQualityGatesV2Summary, 'rowsWithResearchEvidenceGate') === 1600 &&
+    n(contentQualityGatesV2Summary, 'rowsWithGenerationSchemaGate') === 1600 &&
+    n(contentQualityGatesV2Summary, 'rowsWithLanguageIsolationGate') === 1600 &&
+    n(contentQualityGatesV2Summary, 'fixtureProbes') > 0 &&
+    n(contentQualityGatesV2Summary, 'fixtureProbesPassed') === n(contentQualityGatesV2Summary, 'fixtureProbes') &&
+    b(contentQualityGatesV2Summary, 'readyForReviewerWorkflowV2') &&
+    !b(contentQualityGatesV2Summary, 'readyForApply');
+  const aiPromptContractV2Ready =
+    statusOf(aiPromptContractV2Path) === 'PASS' &&
+    n(aiPromptContractV2Summary, 'blockers') === 0 &&
+    n(aiPromptContractV2Summary, 'aiPromptEntrypointContracts') === 164 &&
+    n(aiPromptContractV2Summary, 'contractsWithTargetLocale') === 164 &&
+    n(aiPromptContractV2Summary, 'contractsWithSourceLocales') === 164 &&
+    n(aiPromptContractV2Summary, 'contractsWithRejectBeforeReturn') === 164 &&
+    n(aiPromptContractV2Summary, 'contractsWithRejectBeforeCache') === 164 &&
+    n(aiPromptContractV2Summary, 'criticalSurfaceContractsWithLanguageDimensions') === 55 &&
+    n(aiPromptContractV2Summary, 'criticalSurfaceContractsWithCacheContract') === 55 &&
+    n(aiPromptContractV2Summary, 'criticalSurfaceContractsWithRejectBeforeReturn') === 55 &&
+    n(aiPromptContractV2Summary, 'criticalSurfaceContractsWithRejectBeforeCache') === 55 &&
+    n(aiPromptContractV2Summary, 'criticalSurfaceRequiredFilesCovered') === n(aiPromptContractV2Summary, 'criticalSurfaceRequiredFiles') &&
+    n(aiPromptContractV2Summary, 'fixtureProbes') > 0 &&
+    n(aiPromptContractV2Summary, 'fixtureProbesPassed') === n(aiPromptContractV2Summary, 'fixtureProbes') &&
+    !b(aiPromptContractV2Summary, 'readyForApply');
+  const generationHistoryReconciled =
+    fs.existsSync(generationHistoryPath) &&
+    n(generationHistorySummary, 'blockers') === 0 &&
+    generatedRows === 1600 &&
+    b(generationHistorySummary, 'researchPackPresent') &&
+    !b(generationHistorySummary, 'readyForApply') &&
+    !b(generationHistorySummary, 'mayModifyProductionAppFiles');
+  const closures: WeaknessClosure[] = [];
+  if (targetResearchPackVerified && officialSourceCoverageComplete && generationHistoryReconciled) {
+    closures.push({
+      weaknessId: 'W-GUSTAV-0001-legacy-generated-without-real-research-pack',
+      closedAt: now,
+      closedBy: 'gustav_self_improving_pipeline_upgrade_packet',
+      closingGate: 'research_pack_and_official_source_content_coverage_v2',
+      closureReason: 'Research Pack V2 is verified and all 1600 French rows plus 164 AI decisions have accepted official-source evidence; production/import/apply flags remain closed.',
+      closureEvidence: [
+        rel(repoRoot, targetResearchPackVerifyPath),
+        rel(repoRoot, officialSourceCoveragePath),
+        rel(repoRoot, generationHistoryPath),
+      ],
+    });
+  }
+  if (appAtlasRefreshReady && n(domainRegistryV2Summary, 'blockers') === 0 && b(domainRegistryV2Summary, 'readyForResearchPackBuilder')) {
+    closures.push({
+      weaknessId: 'W-GUSTAV-0002-stale-app-atlas-before-expansion',
+      closedAt: now,
+      closedBy: 'gustav_self_improving_pipeline_upgrade_packet',
+      closingGate: 'app_atlas_refresh_and_domain_registry_v2',
+      closureReason: 'The refreshed app atlas has zero blockers/unclassified target-sensitive files and Domain Registry V2 covers the current target-sensitive, AI and storage/cache surfaces.',
+      closureEvidence: [
+        rel(repoRoot, appAtlasRefreshPath),
+        rel(repoRoot, domainRegistryV2Path),
+      ],
+    });
+  }
+  if (generationSchemaV2Ready && contentQualityGatesV2Ready && officialSourceCoverageComplete) {
+    closures.push({
+      weaknessId: 'W-GUSTAV-0003-generation-schema-v2-not-enforced',
+      closedAt: now,
+      closedBy: 'gustav_self_improving_pipeline_upgrade_packet',
+      closingGate: 'generation_schema_v2_and_content_quality_gates_v2',
+      closureReason: 'All 1600 French rows have Generation Schema V2 fields, required quality gates, official-source evidence and closed apply flags.',
+      closureEvidence: [
+        rel(repoRoot, generationSchemaV2Path),
+        rel(repoRoot, contentQualityGatesV2Path),
+        rel(repoRoot, officialSourceCoveragePath),
+      ],
+    });
+  }
+  if (aiPromptContractV2Ready) {
+    closures.push({
+      weaknessId: 'W-GUSTAV-0004-ai-output-contract-v2-missing',
+      closedAt: now,
+      closedBy: 'gustav_self_improving_pipeline_upgrade_packet',
+      closingGate: 'ai_prompt_contract_v2',
+      closureReason: 'AI Prompt Contract V2 covers all 164 prompt entrypoints and all 55 critical contracts with target/source/cache/reject-before-return/reject-before-cache requirements.',
+      closureEvidence: [
+        rel(repoRoot, aiPromptContractV2Path),
+      ],
+    });
+  }
+  const mergedWeaknesses = writeMergedWeaknessLedger(weaknessLedgerPath, seed, closures);
+  const closedWeaknesses = mergedWeaknesses.filter((record) => record.status === 'closed').length;
   const unresolvedCriticalWeaknesses = mergedWeaknesses.filter((record) => record.status === 'open' && record.severity === 'critical').length;
+  const unresolvedHighWeaknesses = mergedWeaknesses.filter((record) => record.status === 'open' && record.severity === 'high').length;
 
   if (!researchPackPresent) {
     addFinding(findings, 'warning', 'research_pack_missing', 'Real research pack is still missing; Generation V2 remains blocked.');
@@ -442,6 +653,10 @@ function main(): void {
       generatedContentAudit: rel(repoRoot, generatedContentAuditPath),
       researchPack: rel(repoRoot, researchPackPath),
       targetResearchPackVerifyAudit: rel(repoRoot, targetResearchPackVerifyPath),
+      officialSourceContentCoverageV2Packet: rel(repoRoot, officialSourceCoveragePath),
+      generationSchemaV2Packet: rel(repoRoot, generationSchemaV2Path),
+      contentQualityGatesV2Packet: rel(repoRoot, contentQualityGatesV2Path),
+      aiPromptContractV2Packet: rel(repoRoot, aiPromptContractV2Path),
     },
     outputs: {
       upgradePacketJson: rel(repoRoot, outJson),
@@ -455,18 +670,34 @@ function main(): void {
       acceptanceGates: gates.length,
       riskRegisterItems: risks.length,
       weaknessLedgerRecords: mergedWeaknesses.length,
+      closedWeaknesses,
       unresolvedCriticalWeaknesses,
+      unresolvedHighWeaknesses,
       generatedRows,
       researchPackPresent,
       appAtlasStale,
-      generationHistoryReconciled: fs.existsSync(generationHistoryPath) && n(generationHistorySummary, 'blockers') === 0,
+      generationHistoryReconciled,
       appAtlasRefreshPresent: fs.existsSync(appAtlasRefreshPath) && n(appAtlasSummary, 'blockers') === 0,
       domainRegistryV2Present: fs.existsSync(domainRegistryV2Path) && n(domainRegistryV2Summary, 'blockers') === 0,
+      targetResearchPackVerified,
+      officialSourceCoverageComplete,
+      generationSchemaV2Ready,
+      contentQualityGatesV2Ready,
+      aiPromptContractV2Ready,
       productionWritesAllowed: false,
       applyApprovalCreated: false,
       readyForP0P2: p0p2Ready,
       readyForResearchPackBuilder: p0p2Ready,
-      readyForGenerationV2: false,
+      readyForGenerationV2:
+        p0p2Ready &&
+        targetResearchPackVerified &&
+        officialSourceCoverageComplete &&
+        generationHistoryReconciled &&
+        generationSchemaV2Ready &&
+        contentQualityGatesV2Ready &&
+        aiPromptContractV2Ready &&
+        unresolvedCriticalWeaknesses === 0 &&
+        unresolvedHighWeaknesses === 0,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
       blockers,

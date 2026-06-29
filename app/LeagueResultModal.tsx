@@ -27,6 +27,7 @@ import { memberNameStatusStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
+import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 
@@ -800,7 +801,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       <Ionicons
                         name={(isPromo ? 'trending-up' : isDemo ? 'trending-down' : 'flag') as any}
                         size={12}
-                        color={isDemo ? '#FF6B6B' : isPromo ? '#34C759' : t.gold}
+                        color={isDemo ? monoIcon(themeMode, '#FF6B6B') : isPromo ? monoIcon(themeMode, '#34C759') : t.gold}
                       />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
                         {isPromo

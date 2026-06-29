@@ -34,6 +34,12 @@ describe('Ауры Боевого пропуска Арены', () => {
     }
   });
 
+  it('ауры пропуска помечены rewardOnly (нельзя купить за осколки)', () => {
+    for (const id of ARENA_PASS_AURA_IDS) {
+      expect(getAvatarAuraById(id)!.rewardOnly).toBe(true);
+    }
+  });
+
   it('у каждой ауры пропуска заполнены все 8 локализованных имён', () => {
     for (const id of ARENA_PASS_AURA_IDS) {
       const a = getAvatarAuraById(id)!;
@@ -47,6 +53,21 @@ describe('Ауры Боевого пропуска Арены', () => {
   it('сезонные ауры aura-season / aura-season-champion получили реальные эффекты', () => {
     expect(RENDERED_EFFECTS).toContain(getAvatarAuraById('aura-season')!.effect);
     expect(RENDERED_EFFECTS).toContain(getAvatarAuraById('aura-season-champion')!.effect);
+  });
+
+  it('сезонные ауры aura-season / aura-season-champion помечены rewardOnly (нельзя купить)', () => {
+    expect(getAvatarAuraById('aura-season')!.rewardOnly).toBe(true);
+    expect(getAvatarAuraById('aura-season-champion')!.rewardOnly).toBe(true);
+  });
+
+  it('ни одна rewardOnly-аура не имеет цены за осколки (rewardOnly взаимоисключает покупку)', () => {
+    // Инвариант: rewardOnly-ауры не должны одновременно открываться по уровню —
+    // иначе UI показал бы и «Ур. N», и логика покупки разошлась бы с задумкой.
+    for (const aura of AVATAR_AURAS.filter((a) => a.rewardOnly)) {
+      expect(aura.unlockLevel).toBeUndefined();
+      expect(aura.premiumOnly).toBeFalsy();
+      expect(aura.vipOnly).toBeFalsy();
+    }
   });
 
   it('вехи пропуска ровно совпадают с числом аур', () => {

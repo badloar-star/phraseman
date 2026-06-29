@@ -22,7 +22,6 @@ import {
   ERROR_REPORT_FREE_TEXT_CATEGORY,
   submitErrorReport,
 } from '../app/error_report';
-import XpGainBadge from './XpGainBadge';
 
 interface Props {
   screen: string;
@@ -249,14 +248,14 @@ function ReportErrorButton({
             ellipsizeMode="tail"
           >
             {triLang(lang, {
-              ru: 'Сообщить о баге',
-              uk: 'Повідомити про баг',
-              es: 'Informar de un fallo',
-              'pt-BR': 'Reportar erro',
-              vi: 'Báo lỗi',
-              id: 'Laporkan bug',
-              tr: 'Hata bildir',
-              pl: 'Zgłoś błąd',
+              ru: 'Нашёл ошибку?',
+              uk: 'Знайшов помилку?',
+              es: '¿Has visto un error?',
+              'pt-BR': 'Achou um erro?',
+              vi: 'Thấy lỗi gì không?',
+              id: 'Menemukan kesalahan?',
+              tr: 'Bir hata mı buldun?',
+              pl: 'Znalazłeś błąd?',
             })}
           </Text>
         )}
@@ -358,17 +357,16 @@ function ReportErrorButton({
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Если баг подтвердится — получишь осколок.',
-                      uk: 'Якщо баг підтвердиться — отримаєш уламок.',
-                      es: 'Si confirmamos el fallo, recibirás un fragmento de conocimiento.',
+                      ru: 'Если ошибка подтвердится — получишь осколок.',
+                      uk: 'Якщо помилка підтвердиться — отримаєш уламок.',
+                      es: 'Si confirmamos el error, recibirás un fragmento de conocimiento.',
                       'pt-BR': 'Se confirmarmos o erro, você receberá um fragmento de conhecimento.',
                       vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một mảnh kiến thức.',
-                      id: 'Jika bug terkonfirmasi, kamu akan menerima satu pecahan pengetahuan.',
+                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu pecahan pengetahuan.',
                       tr: 'Hata doğrulanırsa bir bilgi parçası alacaksın.',
                       pl: 'Jeśli błąd się potwierdzi, otrzymasz odłamek wiedzy.',
                     })}
                   </Text>
-                  <XpGainBadge amount={10} visible={sent} />
                   <TouchableOpacity
                     onPress={() => { setVisible(false); onSuccess?.(10); }}
                     style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
@@ -382,26 +380,26 @@ function ReportErrorButton({
                 <>
                   <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
                     {triLang(lang, {
-                      ru: 'Сообщить о проблеме',
-                      uk: 'Повідомити про проблему',
-                      es: 'Informar de un problema',
-                      'pt-BR': 'Reportar um problema',
-                      vi: 'Báo cáo sự cố',
-                      id: 'Laporkan masalah',
-                      tr: 'Sorun bildir',
-                      pl: 'Zgłoś problem',
+                      ru: 'Нашёл ошибку?',
+                      uk: 'Знайшов помилку?',
+                      es: '¿Has visto un error?',
+                      'pt-BR': 'Achou um erro?',
+                      vi: 'Thấy lỗi gì không?',
+                      id: 'Menemukan kesalahan?',
+                      tr: 'Bir hata mı buldun?',
+                      pl: 'Znalazłeś błąd?',
                     })}
                   </Text>
                   <Text style={[styles.sub, { color: t.textSecond, fontSize: f.sub }]}>
                     {triLang(lang, {
-                      ru: 'Опишите проблему.',
-                      uk: 'Опишіть проблему.',
-                      es: 'Describe el problema.',
-                      'pt-BR': 'Descreva o problema.',
-                      vi: 'Mô tả sự cố.',
-                      id: 'Jelaskan masalahnya.',
-                      tr: 'Sorunu açıkla.',
-                      pl: 'Opisz problem.',
+                      ru: 'Опиши, что не так — мы починим.',
+                      uk: 'Опиши, що не так — ми виправимо.',
+                      es: 'Cuéntanos qué pasa y lo arreglamos.',
+                      'pt-BR': 'Conta o que está errado e a gente conserta.',
+                      vi: 'Kể xem chỗ nào sai — bọn mình sẽ sửa.',
+                      id: 'Ceritakan apa yang salah — kami perbaiki.',
+                      tr: 'Neyin yanlış olduğunu yaz — düzeltelim.',
+                      pl: 'Napisz, co jest nie tak — naprawimy.',
                     })}
                   </Text>
 

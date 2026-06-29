@@ -90,8 +90,15 @@ interface SettingsIconTileProps {
  * верхним бликом и hairline-рамкой. Намеренно отличается от плоской
  * iOS-плитки: чуть круглее (0.32 против ~0.22 у Apple) + объём.
  */
+/** Моно-плитки для строгой темы «Бизнес»: один нейтральный серый градиент
+ *  вместо цветной палитры — иконки настроек становятся чёрно-серо-белыми. */
+const SETTINGS_TILE_MONO: readonly [string, string] = ['#2C2C2C', '#1C1C1C'];
+
 export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIconTileProps) {
-  const [top, bottom] = SETTINGS_TILE_COLORS[color];
+  const { themeMode } = useTheme();
+  const [top, bottom] = themeMode === 'business'
+    ? SETTINGS_TILE_MONO
+    : SETTINGS_TILE_COLORS[color];
   const radius = size * 0.32;
   const glyph = TILE_GLYPH_ALIAS[icon as string] ?? (icon as keyof typeof Ionicons.glyphMap);
   return (

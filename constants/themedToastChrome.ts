@@ -49,6 +49,15 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0.76)',
     radius: 16,
   },
+  business: {
+    cardColors: ['rgba(28,28,28,0.98)', 'rgba(20,20,20,0.97)', 'rgba(10,10,10,0.95)'],
+    accent: '#FFFFFF',
+    accentSoft: 'rgba(255,255,255,0.10)',
+    border: 'rgba(255,255,255,0.12)',
+    closeBg: 'rgba(255,255,255,0.08)',
+    shadowColor: 'rgba(0,0,0,0.76)',
+    radius: 16,
+  },
   midnight: {
     cardColors: ['rgba(28,31,48,0.98)', 'rgba(13,15,27,0.97)', 'rgba(4,5,10,0.95)'],
     accent: '#8FA0FF',

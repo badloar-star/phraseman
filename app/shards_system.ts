@@ -920,19 +920,35 @@ const syncShardsToCloud = async (balance: number, meta?: ShardBalanceMeta | null
 };
 
 /**
- * Принудительно записать текущий ЛОКАЛЬНЫЙ баланс осколков в облако
- * (users/{uid}.shards) со свежей меткой времени, чтобы серверо-авторитетные проверки
- * (например Cloud Function profileCardUpgrade) видели реальный баланс, а не отставший.
- * Нужно перед действиями, где сервер сам сверяет баланс: локальный и облачный «кошельки»
- * могут разойтись (dev-начисления, начисление, не доехавшее до облака). Best-effort.
+ * Привести облако и локал к согласованному состоянию перед серверо-авторитетной
+ * операцией (например, Cloud Function profileCardUpgrade), чтобы сервер видел
+ * актуальный баланс, а не отставший.
+ *
+ * Раньше эта функция СОЗНАТЕЛЬНО ставила свежий `Date.now()` и перетирала облачный
+ * баланс локальным «гарантированно». Проблема: если CF (ежедневки/лига/подарки)
+ * только что начислила осколки на сервер, локальный устаревший баланс их затирал —
+ * пользователь терял реально начисленные монеты, а потом видел «недостаточно
+ * осколков» при покупке (см. аудит 2026-06-27).
+ *
+ * Правильный путь — двухсторонняя сверка:
+ *   1) `loadShardsFromCloud()` — корректно мержит (сервер новее → перезаписывает
+ *      локал; локал новее → пушит в облако), уже умеет priority-merge.
+ *   2) После merge запись с РЕАЛЬНОЙ меткой из `readBalanceMeta`: если облако и
+ *      так свежее, guard `cloudUpdatedAt > effectiveMeta.updatedAtMs` корректно
+ *      пропустит лишний write. Если локал новее — нормально перезапишет.
+ *
+ * Best-effort: ошибка не пробрасывается.
  */
 export const forceSyncShardsToCloud = async (): Promise<void> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+    // Шаг 1: подтянуть серверные начисления (если есть), мержит безопасно.
+    await loadShardsFromCloud();
+    // Шаг 2: записать актуальный локальный баланс с реальной меткой времени —
+    // guard внутри syncShardsToCloud сам не пропустит запись, если облако новее.
     const balance = await getShardsBalance();
-    // Свежая метка времени → обходим last-write-wins guard внутри syncShardsToCloud,
-    // т.е. локальный баланс гарантированно перезапишет облачный.
-    await syncShardsToCloud(balance, localWriteStamp('replace', 'pre_action_reconcile'));
+    const meta = (await readBalanceMeta()) ?? localWriteStamp('replace', 'pre_action_reconcile');
+    await syncShardsToCloud(balance, meta);
   } catch (e) {
     if (__DEV__) console.warn('[shards_system] forceSyncShardsToCloud', e);
   }

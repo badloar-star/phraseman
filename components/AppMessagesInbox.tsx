@@ -10,19 +10,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-  type ImageSourcePropType,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
-import CompassDepthSurface from './CompassDepthSurface';
 import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
+import { monoIcon } from '../constants/monoIcon';
 import { consumeVipCelebration } from '../app/vip_celebration_state';
 import {
   AppMessageWithState,
@@ -43,19 +41,6 @@ import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
 import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
-import type { ThemeMode } from '../constants/theme';
-
-const MESSAGE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-dark-outline-v1.webp'),
-  gold: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-gold-outline-v1.webp'),
-  coral: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-coral-outline-v1.webp'),
-  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalDark-outline-v1.webp'),
-  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-midnight-outline-v1.webp'),
-  ember: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-ember-outline-v1.webp'),
-  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-aurora-outline-v1.webp'),
-  volt: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-volt-outline-v1.webp'),
-};
 
 const BLUR_RENDER_GRACE_MS = 450;
 
@@ -67,6 +52,17 @@ function inboxText(lang: Lang) {
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
     unread: triLang(lang, { ru: 'Новое', uk: 'Нове', es: 'Nuevo', 'pt-BR': 'Novo', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
+    allRead: triLang(lang, { ru: 'Все прочитаны', uk: 'Усі прочитані', es: 'Todo leído', 'pt-BR': 'Tudo lido', vi: 'Đã đọc hết', id: 'Semua dibaca', tr: 'Hepsi okundu', pl: 'Wszystko przeczytane' }),
+    newCount: (n: number) => triLang(lang, {
+      ru: `${n} новых`,
+      uk: `${n} нових`,
+      es: `${n} nuevos`,
+      'pt-BR': `${n} novas`,
+      vi: `${n} tin mới`,
+      id: `${n} baru`,
+      tr: `${n} yeni`,
+      pl: `${n} nowych`,
+    }),
     like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
     dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
     poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
@@ -89,6 +85,18 @@ function inboxText(lang: Lang) {
   };
 }
 
+// hex (#RRGGBB) → rgba(...) с заданной непрозрачностью. Нужен для деликатного
+// оттенка темы поверх фона панели (мягкий «налёт» цвета, не яркая заливка).
+function hexToRgba(hex: string, alpha: number): string {
+  const clean = hex.replace('#', '');
+  if (clean.length !== 6) return `rgba(0,0,0,${alpha})`;
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 function formatMessageDate(createdAtMs: number): string {
   if (!createdAtMs) return '';
   const d = new Date(createdAtMs);
@@ -101,7 +109,7 @@ function AppMessagesInbox() {
   const isScreenFocused = useIsFocused();
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
-  const { f, isDark, themeMode } = useTheme();
+  const { f, isDark, themeMode, theme } = useTheme();
   const copy = inboxText(lang);
   const [messages, setMessages] = useState<AppMessageWithState[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -425,19 +433,7 @@ function AppMessagesInbox() {
     }
   };
 
-  const isCompassTheme = false;
-  const chrome = isCompassTheme
-    ? {
-      bg: '#020304',
-      panel: '#2F2F31',
-      card: '#1F1F21',
-      border: 'rgba(242,196,141,0.18)',
-      text: '#FFF8E8',
-      muted: '#D8D2C8',
-      soft: '#F2C48D',
-      panelGradient: ['#1F1F21', '#171719'] as const,
-    }
-    : isDark
+  const chrome = isDark
     ? {
       bg: '#111820',
       panel: '#17202A',
@@ -449,7 +445,7 @@ function AppMessagesInbox() {
       panelGradient: ['#1A2430', '#101820'] as const,
     }
     : {
-      bg: false ? '#F3ECDC' : '#F7F8FB',
+      bg: '#F7F8FB',
       panel: '#FFFFFF',
       card: '#F1F4F8',
       border: 'rgba(32,37,46,0.12)',
@@ -458,11 +454,24 @@ function AppMessagesInbox() {
       soft: '#8791A2',
       panelGradient: ['#FFFFFF', '#F4F6FA'] as const,
     };
-  const vipSurveyAccent = isCompassTheme ? '#F2C48D' : '#64748B';
-  const vipSurveyAccentText = isCompassTheme ? '#151008' : '#FFFFFF';
-  const vipSurveyTint = isCompassTheme ? 'rgba(242,196,141,0.12)' : 'rgba(100,116,139,0.10)';
-  const vipSurveyBorder = isCompassTheme ? 'rgba(242,196,141,0.24)' : 'rgba(100,116,139,0.32)';
-  const headerIcon = MESSAGE_ICON_IMAGES[themeMode] ?? MESSAGE_ICON_IMAGES.minimalDark;
+  const vipSurveyAccent = '#64748B';
+  const vipSurveyAccentText = '#FFFFFF';
+  const vipSurveyTint = 'rgba(100,116,139,0.10)';
+  const vipSurveyBorder = 'rgba(100,116,139,0.32)';
+  // Цвет колокольчика — акцент активной темы (золото/коралл/синий и т.д.), как и
+  // прежние раскрашенные иконки. fallback на vipSurveyAccent, если темы вдруг нет.
+  const bellColor = theme?.accent ?? vipSurveyAccent;
+
+  // Деликатный градиент-оттенок под цвет активной темы. Это НЕ заливка фона —
+  // тонкий полупрозрачный слой акцента в верхнем углу панели поверх основного
+  // фона. Низкая непрозрачность специально: фон остаётся фоном и не перетягивает
+  // внимание с самих сообщений. Diagonal — от верхнего левого угла к прозрачному низу.
+  const themeAccent = theme?.accent ?? vipSurveyAccent;
+  const accentTintColors = [
+    hexToRgba(themeAccent, isDark ? 0.16 : 0.12),
+    hexToRgba(themeAccent, isDark ? 0.05 : 0.04),
+    'rgba(0,0,0,0)',
+  ] as const;
 
   const renderList = () => (
     <>
@@ -470,7 +479,7 @@ function AppMessagesInbox() {
         <View>
           <Text style={[styles.modalTitle, { color: chrome.text, fontSize: Math.max(20, f.h2) }]}>{copy.title}</Text>
           <Text style={[styles.modalSub, { color: chrome.muted }]}>
-            {unreadCount > 0 ? `${unreadCount}` : '0'}
+            {unreadCount > 0 ? copy.newCount(unreadCount) : copy.allRead}
           </Text>
         </View>
         <TouchableOpacity
@@ -478,9 +487,8 @@ function AppMessagesInbox() {
           accessibilityLabel={copy.close}
           activeOpacity={0.75}
           onPress={closeInbox}
-          style={[styles.roundIcon, isCompassTheme && compassShadow(1), { backgroundColor: chrome.card, borderColor: chrome.border, borderRadius: isCompassTheme ? 8 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+          style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
         >
-          {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
           <Ionicons name="close" size={21} color={chrome.text} />
         </TouchableOpacity>
       </View>
@@ -502,18 +510,12 @@ function AppMessagesInbox() {
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 160);
             const rowBackgroundColor = messageRead
-              ? isCompassTheme
-                ? 'rgba(94,98,106,0.34)'
-                : isDark
+              ? isDark
                 ? 'rgba(148,163,184,0.14)'
                 : '#E5E7EB'
               : chrome.card;
-            const rowBorderColor = message.unread && isCompassTheme
-              ? COMPASS_RICH.hairlineStrong
-              : messageRead
-              ? isCompassTheme
-                ? 'rgba(242,196,141,0.12)'
-                : 'rgba(100,116,139,0.20)'
+            const rowBorderColor = messageRead
+              ? 'rgba(100,116,139,0.20)'
               : chrome.border;
             const rowTitleColor = messageRead ? chrome.muted : chrome.text;
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
@@ -523,9 +525,8 @@ function AppMessagesInbox() {
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
-                style={[styles.messageRow, messageRead && styles.messageRowRead, isCompassTheme && compassShadow(message.unread ? 2 : 1), { backgroundColor: rowBackgroundColor, borderColor: rowBorderColor, borderRadius: isCompassTheme ? 8 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor, borderColor: rowBorderColor }]}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={8} selected={message.unread} quiet={!message.unread} /> : null}
                 <View style={styles.messageRowTop}>
                   <View style={styles.messageTitleWrap}>
                     {message.unread ? <View style={styles.unreadDot} /> : <View style={styles.readDotSpace} />}
@@ -536,7 +537,7 @@ function AppMessagesInbox() {
                 </View>
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
-                    <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint, borderColor: vipSurveyBorder, borderRadius: isCompassTheme ? 6 : 11 }]}>
+                    <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint, borderColor: vipSurveyBorder }]}>
                       <Ionicons name="sparkles-outline" size={11} color={vipSurveyAccent} />
                       <Text style={[styles.vipSurveyBadgeText, { color: vipSurveyAccent }]}>{copy.vipSurvey}</Text>
                     </View>
@@ -562,9 +563,8 @@ function AppMessagesInbox() {
                         event.stopPropagation?.();
                         openSurvey(message);
                       }}
-                      style={[styles.messageRowCta, isCompassTheme && compassShadow(1), { backgroundColor: vipSurveyAccent, borderRadius: isCompassTheme ? 8 : 12, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                      style={[styles.messageRowCta, { backgroundColor: vipSurveyAccent }]}
                     >
-                      {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
                       <Ionicons name="chatbubbles-outline" size={15} color={vipSurveyAccentText} />
                       <Text style={[styles.messageRowCtaText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
                     </TouchableOpacity>
@@ -584,11 +584,10 @@ function AppMessagesInbox() {
     const showResults = Boolean(message.pollOptionId);
     const totalVotes = Math.max(0, poll.voteCount);
     return (
-      <View style={[styles.pollCard, isCompassTheme && compassShadow(1), { backgroundColor: chrome.card, borderColor: chrome.border, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+      <View style={[styles.pollCard, { backgroundColor: chrome.card, borderColor: chrome.border }]}>
         <View style={styles.pollHeader}>
-          <View style={[styles.pollHeaderIcon, { backgroundColor: isCompassTheme ? 'rgba(242,196,141,0.12)' : isDark ? '#263447' : '#E7EEF8', borderRadius: isCompassTheme ? 6 : 15 }]}>
-            <Ionicons name="stats-chart" size={15} color={isCompassTheme ? '#F2C48D' : isDark ? '#93C5FD' : '#2563EB'} />
+          <View style={[styles.pollHeaderIcon, { backgroundColor: isDark ? '#263447' : '#E7EEF8' }]}>
+            <Ionicons name="stats-chart" size={15} color={monoIcon(themeMode, isDark ? '#93C5FD' : '#2563EB')} />
           </View>
           <View style={styles.pollHeaderText}>
             <Text style={[styles.pollLabel, { color: chrome.soft }]}>{copy.poll}</Text>
@@ -601,7 +600,8 @@ function AppMessagesInbox() {
             const selectedOption = message.pollOptionId === option.id;
             const count = Math.max(0, poll.counts[option.id] || 0);
             const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-            const optionColor = isCompassTheme ? (selectedOption ? COMPASS_RICH.champagne : chrome.text) : selectedOption ? '#63D98F' : chrome.text;
+            const optionColor = selectedOption ? '#63D98F' : chrome.text;
+            const accent = selectedOption ? '#63D98F' : chrome.soft;
             return (
               <TouchableOpacity
                 key={option.id}
@@ -610,33 +610,29 @@ function AppMessagesInbox() {
                 style={[
                   styles.pollOption,
                   {
-                    borderColor: isCompassTheme ? (selectedOption ? COMPASS_RICH.hairlineStrong : chrome.border) : selectedOption ? '#63D98F' : chrome.border,
-                    backgroundColor: isCompassTheme ? (selectedOption ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalSoft) : selectedOption ? 'rgba(99,217,143,0.12)' : (isDark ? '#17202A' : '#FFFFFF'),
-                    borderRadius: isCompassTheme ? 8 : 13,
-                    overflow: isCompassTheme ? 'hidden' : 'visible',
+                    borderColor: selectedOption ? '#63D98F' : chrome.border,
+                    backgroundColor: selectedOption ? 'rgba(99,217,143,0.12)' : (isDark ? '#17202A' : '#FFFFFF'),
                   },
-                  isCompassTheme && compassShadow(selectedOption ? 2 : 1),
                 ]}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={8} selected={selectedOption} quiet={!selectedOption} /> : null}
                 <View style={styles.pollOptionTop}>
                   <Ionicons
                     name={selectedOption ? 'radio-button-on' : 'radio-button-off'}
                     size={17}
-                    color={isCompassTheme ? (selectedOption ? COMPASS_RICH.champagne : chrome.soft) : selectedOption ? '#63D98F' : chrome.soft}
+                    color={accent}
                   />
                   <Text style={[styles.pollOptionText, { color: optionColor }]} numberOfLines={3}>
                     {pickAppMessagePollOptionText(option, lang)}
                   </Text>
                   {showResults ? (
-                    <Text style={[styles.pollOptionMeta, { color: isCompassTheme ? (selectedOption ? COMPASS_RICH.champagne : chrome.soft) : selectedOption ? '#63D98F' : chrome.soft }]}>
+                    <Text style={[styles.pollOptionMeta, { color: accent }]}>
                       {pct}%
                     </Text>
                   ) : null}
                 </View>
                 {showResults ? (
-                  <View style={[styles.pollTrack, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isDark ? '#0F1720' : '#E8EEF6' }]}>
-                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: isCompassTheme ? (selectedOption ? COMPASS_RICH.champagne : COMPASS_RICH.copper) : selectedOption ? '#63D98F' : '#93A4B8' }]} />
+                  <View style={[styles.pollTrack, { backgroundColor: isDark ? '#0F1720' : '#E8EEF6' }]}>
+                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? '#63D98F' : '#93A4B8' }]} />
                   </View>
                 ) : null}
               </TouchableOpacity>
@@ -654,10 +650,9 @@ function AppMessagesInbox() {
   const renderVipSurveyCta = (message: AppMessageWithState) => {
     if (message.kind !== 'vip_survey') return null;
     return (
-      <View style={[styles.vipSurveyCard, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isDark ? '#182131' : '#F8FAFC', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'rgba(100,116,139,0.26)', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
+      <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(100,116,139,0.26)' }]}>
         <View style={styles.vipSurveyCardTop}>
-          <View style={[styles.vipSurveyIcon, { backgroundColor: vipSurveyTint, borderRadius: isCompassTheme ? 6 : 16 }]}>
+          <View style={[styles.vipSurveyIcon, { backgroundColor: vipSurveyTint }]}>
             <Ionicons name="sparkles" size={18} color={vipSurveyAccent} />
           </View>
           <View style={styles.vipSurveyTextWrap}>
@@ -671,9 +666,8 @@ function AppMessagesInbox() {
           accessibilityRole="button"
           accessibilityLabel={copy.vipSurveyCta}
           onPress={() => openSurvey(message)}
-          style={[styles.vipSurveyButton, isCompassTheme && compassShadow(1), { backgroundColor: vipSurveyAccent, borderRadius: isCompassTheme ? 8 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+          style={[styles.vipSurveyButton, { backgroundColor: vipSurveyAccent }]}
         >
-          {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
           <Ionicons name="chatbubbles-outline" size={17} color={vipSurveyAccentText} />
           <Text style={[styles.vipSurveyButtonText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
         </TouchableOpacity>
@@ -695,9 +689,8 @@ function AppMessagesInbox() {
               hapticTap();
               setSelectedId(null);
             }}
-            style={[styles.roundIcon, isCompassTheme && compassShadow(1), { backgroundColor: chrome.card, borderColor: chrome.border, borderRadius: isCompassTheme ? 8 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+            style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TouchableOpacity>
         </View>
@@ -715,17 +708,13 @@ function AppMessagesInbox() {
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: isCompassTheme ? (selected.reaction === 'like' ? COMPASS_RICH.hairlineStrong : chrome.border) : selected.reaction === 'like' ? '#63D98F' : chrome.border,
-                  backgroundColor: isCompassTheme ? (selected.reaction === 'like' ? COMPASS_RICH.washStrong : chrome.card) : selected.reaction === 'like' ? 'rgba(99,217,143,0.14)' : chrome.card,
-                  borderRadius: isCompassTheme ? 8 : 15,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  borderColor: selected.reaction === 'like' ? '#63D98F' : chrome.border,
+                  backgroundColor: selected.reaction === 'like' ? 'rgba(99,217,143,0.14)' : chrome.card,
                 },
-                isCompassTheme && compassShadow(selected.reaction === 'like' ? 2 : 1),
               ]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={8} selected={selected.reaction === 'like'} quiet={selected.reaction !== 'like'} /> : null}
-              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={isCompassTheme ? (selected.reaction === 'like' ? COMPASS_RICH.champagne : chrome.muted) : selected.reaction === 'like' ? '#63D98F' : chrome.muted} />
-              <Text style={[styles.reactionText, { color: isCompassTheme ? (selected.reaction === 'like' ? COMPASS_RICH.champagne : chrome.muted) : selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
+              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? monoIcon(themeMode, '#63D98F') : chrome.muted} />
+              <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.82}
@@ -733,17 +722,13 @@ function AppMessagesInbox() {
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: isCompassTheme ? (selected.reaction === 'dislike' ? COMPASS_RICH.copper : chrome.border) : selected.reaction === 'dislike' ? '#F87171' : chrome.border,
-                  backgroundColor: isCompassTheme ? (selected.reaction === 'dislike' ? COMPASS_RICH.copperWash : chrome.card) : selected.reaction === 'dislike' ? 'rgba(248,113,113,0.14)' : chrome.card,
-                  borderRadius: isCompassTheme ? 8 : 15,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  borderColor: selected.reaction === 'dislike' ? '#F87171' : chrome.border,
+                  backgroundColor: selected.reaction === 'dislike' ? 'rgba(248,113,113,0.14)' : chrome.card,
                 },
-                isCompassTheme && compassShadow(selected.reaction === 'dislike' ? 2 : 1),
               ]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={8} selected={selected.reaction === 'dislike'} quiet={selected.reaction !== 'dislike'} /> : null}
-              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={isCompassTheme ? (selected.reaction === 'dislike' ? COMPASS_RICH.peach : chrome.muted) : selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
-              <Text style={[styles.reactionText, { color: isCompassTheme ? (selected.reaction === 'dislike' ? COMPASS_RICH.peach : chrome.muted) : selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
+              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? monoIcon(themeMode, '#F87171') : chrome.muted} />
+              <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
             </TouchableOpacity>
           </View>}
         </ScrollView>
@@ -766,7 +751,9 @@ function AppMessagesInbox() {
         style={styles.headerButton}
       >
         <Animated.View style={{ transform: [{ scale: iconReceiveScale }] }}>
-          <Image source={headerIcon} style={styles.headerIcon} contentFit="contain" />
+          <View style={[styles.headerIcon, styles.headerIconWrap]}>
+            <Ionicons name="notifications-outline" size={30} color={bellColor} />
+          </View>
         </Animated.View>
         {unreadCount > 0 && (
           <Animated.View
@@ -838,9 +825,17 @@ function AppMessagesInbox() {
               colors={chrome.panelGradient}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={[styles.panel, isCompassTheme && compassShadow(3), { borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : chrome.border, borderRadius: isCompassTheme ? 10 : 24 }]}
+              style={[styles.panel, { borderColor: chrome.border }]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={10} quiet /> : null}
+              {/* Деликатный оттенок темы поверх фона панели. Абсолютный слой под
+                  содержимым, не перехватывает нажатия. Гаснет к низу — фон спокойный. */}
+              <LinearGradient
+                pointerEvents="none"
+                colors={accentTintColors}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0.85, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
               {selected ? renderDetail() : renderList()}
             </LinearGradient>
           </Animated.View>
@@ -879,6 +874,10 @@ const styles = StyleSheet.create({
   headerIcon: {
     width: 56,
     height: 40,
+  },
+  headerIconWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   // Летящий конверт (оверлей). Рисуем кодом — независимо от темы, без ассета.
   envelope: {

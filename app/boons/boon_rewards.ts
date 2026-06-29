@@ -48,6 +48,13 @@ export function currentWeekId(todayKey: string = getTodayKey()): string {
   return `w${utcWeekNumberFromTodayKey(todayKey)}`;
 }
 
+/**
+ * Storage-ключ claim'а «Сундука недели» (mystery_monday). Один источник истины:
+ * пишет MysteryMondayHost при выдаче, читает плашка TodaysBoonStrip, чтобы не
+ * показывать «открой и забери» после того, как сундук уже забран на этой неделе.
+ */
+export const MYSTERY_MONDAY_CLAIM_KEY = 'boon_mystery_monday_claimed_v1';
+
 /** Прочитать, был ли claim по ключу совершён в данном периоде. */
 export async function isClaimed(storageKey: string, periodId: string): Promise<boolean> {
   try {

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -56,7 +56,7 @@ const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage } = require('./league_chat');
+const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage, leagueChatDeleteMessage } = require('./league_chat');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -86,7 +86,7 @@ const { friendEnsureMyCode } = require('./friend_codes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLookupUser } = require('./friend_lookup');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { friendLikeActivity } = require('./friend_activity_likes');
+const { friendLikeActivity, friendUnlikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendSendGift, friendThankGift, friendGetActiveQuest, friendClaimQuestReward, } = require('./friend_gifts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -94,7 +94,7 @@ const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish, arenaRoomJoin, a
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten } = require('./app_messages');
+const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten, onAppMessageStateWritten } = require('./app_messages');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -134,12 +134,15 @@ const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminAlertOnUserReport, adminAlertOnCriticalError, adminAlertOnContentReport, adminAlertContentReportDigest, adminAlertOnCancelSurvey, adminAlertOnUgcRefund, adminAlertOnConfigWritten, } = require('./admin_alerts');
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
 exports.leagueChatReportMessage = leagueChatReportMessage;
+exports.leagueChatDeleteMessage = leagueChatDeleteMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
@@ -164,6 +167,7 @@ exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
+exports.friendUnlikeActivity = friendUnlikeActivity;
 exports.friendSendGift = friendSendGift;
 exports.friendThankGift = friendThankGift;
 exports.friendGetActiveQuest = friendGetActiveQuest;
@@ -181,6 +185,7 @@ exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
+exports.onAppMessageStateWritten = onAppMessageStateWritten;
 exports.submitVipSurvey = submitVipSurvey;
 exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
@@ -218,6 +223,8 @@ exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.leagueFinalizeCron = leagueFinalizeCron;
+exports.compassChatDailyCron = compassChatDailyCron;
+exports.compassChatRunNow = compassChatRunNow;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
@@ -1166,6 +1173,8 @@ Object.defineProperty(exports, "openAiDialogModelConfig", { enumerable: true, ge
 Object.defineProperty(exports, "openAiDialogQuotaConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogQuotaConfig; } });
 var openai_jobs_config_1 = require("./openai_jobs_config");
 Object.defineProperty(exports, "openAiJobsConfig", { enumerable: true, get: function () { return openai_jobs_config_1.openAiJobsConfig; } });
+var admin_translate_1 = require("./admin_translate");
+Object.defineProperty(exports, "adminTranslateMessage", { enumerable: true, get: function () { return admin_translate_1.adminTranslateMessage; } });
 var daily_phrases_1 = require("./daily_phrases");
 Object.defineProperty(exports, "dailyPhraseSetSaved", { enumerable: true, get: function () { return daily_phrases_1.dailyPhraseSetSaved; } });
 var website_contact_1 = require("./website_contact");

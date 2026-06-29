@@ -26,6 +26,13 @@ const VIP_STOPS_SKETCH = [
   { offset: '1', color: '#064E3B' },
 ];
 
+// Тема business: ника не должно быть зелёным — нейтральный серо-белый градиент.
+const MONO_STOPS = [
+  { offset: '0', color: '#D4D4D4' },
+  { offset: '0.5', color: '#F2F2F2' },
+  { offset: '1', color: '#D4D4D4' },
+];
+
 function VipGreenUserName({ text, fontSize }: Props) {
   const { themeMode } = useTheme();
   const [measuredW, setMeasuredW] = useState(0);
@@ -41,7 +48,7 @@ function VipGreenUserName({ text, fontSize }: Props) {
     return `vipGreen_${hash}`;
   }, [display, fontSize]);
 
-  const gradientStops = false ? VIP_STOPS_SKETCH : VIP_STOPS;
+  const gradientStops = themeMode === 'business' ? MONO_STOPS : (false ? VIP_STOPS_SKETCH : VIP_STOPS);
   const safetyPad = Math.ceil(fontSize * 0.18);
   const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
   const h = lineHeight;

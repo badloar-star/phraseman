@@ -10,7 +10,6 @@ import { withStorageLock } from './storage_mutex';
 import { spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
-import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import { countDueItemsToday } from './active_recall';
 import {
   dailyTasksAdminOverrideKey,
@@ -2046,22 +2045,6 @@ export const FRENCH_THEORY_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'open_theory',
 ]);
 
-const FRENCH_DAILY_TASK_FALLBACK_IDS = Object.freeze([
-  'dp1',
-  'dw1',
-  'dp2',
-  'dp4',
-  'dp2w1',
-  'dp3w2',
-  'dw2',
-  'dw3',
-  'dp5',
-  'dw4',
-  'dw5',
-  'arup1',
-  'inv1',
-] as const);
-
 // Замены для заданий, недоступных по игровому уровню
 const LEVEL_FALLBACKS: Record<string, string> = {
   // quiz_hard (уровень 15+) → quiz_easy
@@ -2396,61 +2379,16 @@ export function dailyTaskAvailableForStudyTarget(
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
   if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
-  if (FRENCH_UNAVAILABLE_DAILY_TASK_TYPES.has(type)) return false;
-  if (
-    FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES.has(type)
-    && FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds.length === 0
-  ) {
-    return false;
-  }
-  if (
-    FRENCH_THEORY_DAILY_TASK_TYPES.has(type)
-    && FRENCH_CONTENT_SOURCE_GATE.approvedIntroLessonIds.length === 0
-  ) {
-    return false;
-  }
+  void taskOrType;
   return true;
 }
-
-const pickFrenchDailyTaskFallback = (
-  usedIds: Set<string>,
-  preferredCategory?: DailyTaskCategory,
-): DailyTask | null => {
-  const fallbackTasks = FRENCH_DAILY_TASK_FALLBACK_IDS
-    .map((id) => ALL_TASKS.find((t) => t.id === id))
-    .filter((task): task is DailyTask => Boolean(task))
-    .filter((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))
-    .filter((task) => !usedIds.has(task.id));
-
-  return fallbackTasks.find((task) => TASK_TYPE_CATEGORY[task.type] === preferredCategory)
-    ?? fallbackTasks[0]
-    ?? null;
-};
 
 export function filterDailyTasksForStudyTarget(
   tasks: DailyTask[],
   studyTarget?: RuntimeStudyTarget,
 ): DailyTask[] {
   if (storageStudyTarget(studyTarget) !== 'fr') return tasks;
-
-  const usedIds = new Set(tasks.filter((task) => dailyTaskAvailableForStudyTarget(task, 'fr')).map((task) => task.id));
-  const result: DailyTask[] = [];
-
-  for (const task of tasks) {
-    if (dailyTaskAvailableForStudyTarget(task, 'fr')) {
-      result.push(task);
-      continue;
-    }
-
-    const replacement = pickFrenchDailyTaskFallback(usedIds, TASK_TYPE_CATEGORY[task.type]);
-    if (replacement) {
-      usedIds.add(replacement.id);
-      result.push(replacement);
-    }
-  }
-
-  return result;
+  return tasks;
 }
 
 /**

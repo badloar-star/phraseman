@@ -283,7 +283,7 @@ type StatsInsightsReplayDecision =
   | { kind: 'not_ready'; nextAllowedAtMs: number }
   | { kind: 'replay'; notes: StatsInsightsNotes; nextAllowedAtMs: number; model: string };
 
-function readStoredStatsInsightsNotes(raw: unknown): StatsInsightsNotes | null {
+function readStoredStatsInsightsNotes(raw: unknown, lang?: SupportedLang): StatsInsightsNotes | null {
   const data = (raw ?? {}) as Record<string, unknown>;
   const notes = {} as StatsInsightsNotes;
   let nonEmpty = 0;
@@ -292,13 +292,30 @@ function readStoredStatsInsightsNotes(raw: unknown): StatsInsightsNotes | null {
     notes[key] = note;
     if (note) nonEmpty += 1;
   }
-  return nonEmpty > 0 ? notes : null;
+  if (nonEmpty === 0) return null;
+  if (lang) {
+    try {
+      assertAiJsonTextFieldsLanguage({
+        texts: Object.values(notes).filter(Boolean),
+        targetLang: lang,
+        feature: 'stats_insights',
+      });
+    } catch (error) {
+      console.warn('stats_insights cached replay rejected by language guard', {
+        lang,
+        detail: String((error as Error)?.message ?? error).slice(0, 160),
+      });
+      return null;
+    }
+  }
+  return notes;
 }
 
 function decideStatsInsightsReplay(
   quotaData: Record<string, unknown>,
   expectedBriefingHash: string,
   nowMs: number,
+  lang?: SupportedLang,
 ): StatsInsightsReplayDecision {
   const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
   if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
@@ -306,7 +323,7 @@ function decideStatsInsightsReplay(
   }
 
   if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
-    const notes = readStoredStatsInsightsNotes(quotaData.lastNotes);
+    const notes = readStoredStatsInsightsNotes(quotaData.lastNotes, lang);
     if (notes) {
       return {
         kind: 'replay',
@@ -315,6 +332,7 @@ function decideStatsInsightsReplay(
         model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
       };
     }
+    if (lang) return { kind: 'open' };
   }
 
   return { kind: 'not_ready', nextAllowedAtMs };
@@ -324,12 +342,13 @@ async function readReplayOrAssertWindowOpen(
   authUid: string,
   stableUid: string,
   expectedBriefingHash: string,
+  lang: SupportedLang,
 ): Promise<Extract<StatsInsightsReplayDecision, { kind: 'replay' }> | null> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
   const snap = await ref.get();
-  const decision = decideStatsInsightsReplay(snap.data() ?? {}, expectedBriefingHash, now);
+  const decision = decideStatsInsightsReplay(snap.data() ?? {}, expectedBriefingHash, now, lang);
   if (decision.kind === 'open') return null;
   if (decision.kind === 'replay') return decision;
   if (decision.kind === 'not_ready') {
@@ -520,7 +539,7 @@ export const statsInsightsGenerate = onCall({
   // Same briefing retries get the cached server result; different briefing
   // remains gated until the window opens.
   const briefingHash = briefingHashForReplay(briefing);
-  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+  const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);
   if (replay) {
     return {
       ok: true,

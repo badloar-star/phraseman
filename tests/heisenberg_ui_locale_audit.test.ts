@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import {
@@ -72,6 +72,27 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings).toEqual([]);
   });
 
+  it('counts ptBR helper seed aliases as pt-BR coverage outside triLang copy objects', () => {
+    const result = analyzeUiLocaleSource(
+      'app/vip_survey_content.ts',
+      `
+        const copy = loc({
+          ru: 'RU',
+          uk: 'UK',
+          es: 'ES',
+          ptBR: 'PT',
+          vi: 'VI',
+          id: 'ID',
+          tr: 'TR',
+          pl: 'PL',
+        });
+      `,
+    );
+
+    expect(result.localeObjectFindings).toBe(0);
+    expect(result.findings).toEqual([]);
+  });
+
   it('detects corrupted planned-locale strings inside locale maps', () => {
     const result = analyzeUiLocaleSource(
       'app/Sample.tsx',
@@ -112,7 +133,7 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings).toEqual([]);
   });
 
-  it('flags dynamic triLang copy objects for manual review', () => {
+  it('flags dynamic triLang copy objects for LLM official-source review', () => {
     const result = analyzeUiLocaleSource(
       'components/Sample.tsx',
       `
@@ -124,6 +145,257 @@ describe('heisenberg UI locale audit', () => {
     expect(result.dynamicTriLangCalls).toBe(1);
     expect(result.findings.some((finding) => finding.code === 'dynamic-trilang-copy')).toBe(true);
     expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(true);
+  });
+
+  it('proves local const identifiers, maps, and arrays with complete triLang copy', () => {
+    const result = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        const DIRECT = {
+          ru: 'RU',
+          uk: 'UK',
+          es: 'ES',
+          'pt-BR': 'PT',
+          vi: 'VI',
+          id: 'ID',
+          tr: 'TR',
+          pl: 'PL',
+        };
+        const MAP = {
+          first: DIRECT,
+          second: {
+            ru: 'RU2',
+            uk: 'UK2',
+            es: 'ES2',
+            'pt-BR': 'PT2',
+            vi: 'VI2',
+            id: 'ID2',
+            tr: 'TR2',
+            pl: 'PL2',
+          },
+        };
+        const LIST = [DIRECT, MAP.second] as const;
+        const title = triLang(lang, DIRECT);
+        const mapTitle = triLang(lang, MAP[kind]);
+        const listTitle = triLang(lang, LIST[index]);
+      `,
+    );
+
+    expect(result.triLangCalls).toBe(3);
+    expect(result.staticTriLangCalls).toBe(3);
+    expect(result.dynamicTriLangCalls).toBe(0);
+    expect(result.findings).toEqual([]);
+  });
+
+  it('keeps dynamic triLang warnings when a local map has incomplete copy candidates', () => {
+    const result = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        const MAP = {
+          ok: {
+            ru: 'RU',
+            uk: 'UK',
+            es: 'ES',
+            'pt-BR': 'PT',
+            vi: 'VI',
+            id: 'ID',
+            tr: 'TR',
+            pl: 'PL',
+          },
+          missing: { ru: 'RU', uk: 'UK', es: 'ES' },
+        };
+        const title = triLang(lang, MAP[kind]);
+      `,
+    );
+
+    expect(result.dynamicTriLangCalls).toBe(1);
+    expect(result.findings.some((finding) => finding.code === 'dynamic-trilang-copy')).toBe(true);
+  });
+
+  it('proves property access after selecting a local const map candidate', () => {
+    const result = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        const DATA = {
+          first: {
+            title: {
+              ru: 'RU',
+              uk: 'UK',
+              es: 'ES',
+              'pt-BR': 'PT',
+              vi: 'VI',
+              id: 'ID',
+              tr: 'TR',
+              pl: 'PL',
+            },
+          },
+          second: {
+            title: {
+              ru: 'RU2',
+              uk: 'UK2',
+              es: 'ES2',
+              'pt-BR': 'PT2',
+              vi: 'VI2',
+              id: 'ID2',
+              tr: 'TR2',
+              pl: 'PL2',
+            },
+          },
+        };
+        const picked = DATA[kind];
+        const title = triLang(lang, picked.title);
+      `,
+    );
+
+    expect(result.staticTriLangCalls).toBe(1);
+    expect(result.dynamicTriLangCalls).toBe(0);
+    expect(result.findings).toEqual([]);
+  });
+
+  it('proves nullish fallback expressions only when both copy branches are complete', () => {
+    const complete = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        const MAP = {
+          first: {
+            ru: 'RU',
+            uk: 'UK',
+            es: 'ES',
+            'pt-BR': 'PT',
+            vi: 'VI',
+            id: 'ID',
+            tr: 'TR',
+            pl: 'PL',
+          },
+          other: {
+            ru: 'RU2',
+            uk: 'UK2',
+            es: 'ES2',
+            'pt-BR': 'PT2',
+            vi: 'VI2',
+            id: 'ID2',
+            tr: 'TR2',
+            pl: 'PL2',
+          },
+        };
+        const copy = MAP[kind] ?? MAP.other;
+        const title = triLang(lang, copy);
+      `,
+    );
+    expect(complete.staticTriLangCalls).toBe(1);
+    expect(complete.dynamicTriLangCalls).toBe(0);
+    expect(complete.findings).toEqual([]);
+
+    const incomplete = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        const MAP = {
+          first: {
+            ru: 'RU',
+            uk: 'UK',
+            es: 'ES',
+            'pt-BR': 'PT',
+            vi: 'VI',
+            id: 'ID',
+            tr: 'TR',
+            pl: 'PL',
+          },
+          other: { ru: 'RU2', uk: 'UK2', es: 'ES2' },
+        };
+        const copy = MAP[kind] ?? MAP.other;
+        const title = triLang(lang, copy);
+      `,
+    );
+    expect(incomplete.staticTriLangCalls).toBe(0);
+    expect(incomplete.dynamicTriLangCalls).toBe(1);
+  });
+
+  it('proves imported const copy maps only when every candidate is complete', () => {
+    const fixtureRoot = join(process.cwd(), '.codex-tmp', 'heisenberg-ui-audit-test');
+    mkdirSync(fixtureRoot, { recursive: true });
+    writeFileSync(
+      join(fixtureRoot, 'imported_copy.ts'),
+      `
+        export const DIRECT = {
+          ru: 'RU',
+          uk: 'UK',
+          es: 'ES',
+          'pt-BR': 'PT',
+          vi: 'VI',
+          id: 'ID',
+          tr: 'TR',
+          pl: 'PL',
+        } as const;
+        export const MAP = {
+          first: DIRECT,
+          second: {
+            ru: 'RU2',
+            uk: 'UK2',
+            es: 'ES2',
+            'pt-BR': 'PT2',
+            vi: 'VI2',
+            id: 'ID2',
+            tr: 'TR2',
+            pl: 'PL2',
+          },
+        } as const;
+        export const BAD_MAP = {
+          ok: DIRECT,
+          missing: { ru: 'RU', uk: 'UK', es: 'ES' },
+        } as const;
+      `,
+      'utf8',
+    );
+
+    const complete = analyzeUiLocaleSource(
+      '.codex-tmp/heisenberg-ui-audit-test/Sample.tsx',
+      `
+        import { DIRECT, MAP } from './imported_copy';
+        const title = triLang(lang, DIRECT);
+        const mapTitle = triLang(lang, MAP[kind]);
+      `,
+    );
+    expect(complete.staticTriLangCalls).toBe(2);
+    expect(complete.dynamicTriLangCalls).toBe(0);
+    expect(complete.findings).toEqual([]);
+
+    const incomplete = analyzeUiLocaleSource(
+      '.codex-tmp/heisenberg-ui-audit-test/Sample.tsx',
+      `
+        import { BAD_MAP } from './imported_copy';
+        const mapTitle = triLang(lang, BAD_MAP[kind]);
+      `,
+    );
+    expect(incomplete.staticTriLangCalls).toBe(0);
+    expect(incomplete.dynamicTriLangCalls).toBe(1);
+    expect(incomplete.findings.some((finding) => finding.code === 'dynamic-trilang-copy')).toBe(true);
+  });
+
+  it('proves local helper parameters typed as complete language records', () => {
+    const result = analyzeUiLocaleSource(
+      'components/Sample.tsx',
+      `
+        type CompareCell = Record<Lang, string>;
+        const pick = (d: CompareCell) => triLang(lang, d);
+      `,
+    );
+
+    expect(result.staticTriLangCalls).toBe(1);
+    expect(result.dynamicTriLangCalls).toBe(0);
+    expect(result.findings).toEqual([]);
+  });
+
+  it('covers weekly review training titles through the diagnosis training title catalog gate', () => {
+    const result = analyzeUiLocaleSource(
+      'app/weekly_review_briefing.ts',
+      `
+        const label = triLang(lang, training.title) ?? training.title.ru;
+      `,
+    );
+
+    expect(result.staticTriLangCalls).toBe(1);
+    expect(result.dynamicTriLangCalls).toBe(0);
+    expect(result.findings).toEqual([]);
   });
 
   it('detects legacy L(lang, ru, uk, es) helpers that bypass planned locales', () => {

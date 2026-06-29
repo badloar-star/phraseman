@@ -1872,9 +1872,7 @@ export default function HomeScreen() {
                     pl: "Twoje fiszki",
                 }), path: '/flashcards' },
         ];
-        const visibleQuickItems = studyTarget === 'fr'
-            ? quickItems.filter((item) => item.key !== 'quizzes')
-            : quickItems;
+        const visibleQuickItems = quickItems;
         const themedClubIcon = menuImages.league;
         /** Второй ряд быстрых плиток — тот же визуал, что «Уроки / Квизы / Карточки». */
         const activityQuickItems = [
@@ -1920,9 +1918,7 @@ export default function HomeScreen() {
                 img: menuImages.test,
             },
         ];
-        const visibleActivityQuickItems = studyTarget === 'fr'
-            ? activityQuickItems.filter((item) => item.key !== 'attest')
-            : activityQuickItems;
+        const visibleActivityQuickItems = activityQuickItems;
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
@@ -2115,6 +2111,23 @@ export default function HomeScreen() {
                   </TouchableOpacity>
                   <LingmanVideosButton />
                   <AppMessagesInbox />
+                  <TouchableOpacity
+                    testID="home-league-chat-button"
+                    activeOpacity={0.78}
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' })}
+                    onPress={() => { hapticTap(); router.push('/league_screen?openChat=1'); }}
+                    style={{ width: 50, height: 54, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <View style={{ width: 44, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                      <Ionicons name="chatbubbles-outline" size={30} color={t.accent} />
+                    </View>
+                    {homeLeagueChatUnreadCount > 0 && (
+                      <View style={{ position: 'absolute', top: 0, right: 0, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: '#E9505F', borderWidth: 1, borderColor: t.bgCard }}>
+                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}</Text>
+                      </View>
+                    )}
+                  </TouchableOpacity>
                 </View>
               )}
               {/* Строка 1: имя (ник) + энергия на одном уровне (когда энергия видна) */}
@@ -2172,6 +2185,23 @@ export default function HomeScreen() {
                 </TouchableOpacity>
                 <LingmanVideosButton />
                 <AppMessagesInbox />
+                <TouchableOpacity
+                  testID="home-league-chat-button"
+                  activeOpacity={0.78}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' })}
+                  onPress={() => { hapticTap(); router.push('/league_screen?openChat=1'); }}
+                  style={{ width: 50, height: 54, alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <View style={{ width: 44, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name="chatbubbles-outline" size={30} color={t.accent} />
+                  </View>
+                  {homeLeagueChatUnreadCount > 0 && (
+                    <View style={{ position: 'absolute', top: 0, right: 0, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: '#E9505F', borderWidth: 1, borderColor: t.bgCard }}>
+                      <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
               </View>
               )}
 
@@ -3404,8 +3434,8 @@ export default function HomeScreen() {
                 })}
             </Text>
           </View>
-          {studyTarget !== 'fr' && <DailyPhraseCard variant="homeAdditional" />}
-          </>) : studyTarget !== 'fr' ? <DailyPhraseCard /> : null}
+          <DailyPhraseCard variant="homeAdditional" />
+          </>) : <DailyPhraseCard />}
 
           {/* Подвал */}
           <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>

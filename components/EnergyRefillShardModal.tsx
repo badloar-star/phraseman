@@ -115,7 +115,7 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
 
   const hintUnlimited = triLang(lang, {
     ru: 'У тебя безлимит энергии (Plus или тестовый режим). Осколки на заряд не тратятся.',
-    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Осколки на заряд не витрачаються.',
+    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Уламки на заряд не витрачаються.',
     es: 'Tienes energía ilimitada (Plus o modo de prueba). Los fragmentos no se gastan en la recarga.',
     'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Fragmentos não são gastos na recarga.',
     vi: 'Bạn có năng lượng không giới hạn (Plus hoặc chế độ thử nghiệm). Mảnh sẽ không bị dùng để nạp.',
@@ -125,7 +125,7 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
   });
   const hintFull = triLang(lang, {
     ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за осколки.`,
-    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за осколки.`,
+    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за уламки.`,
     es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`,
     'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com fragmentos.`,
     vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng mảnh.`,

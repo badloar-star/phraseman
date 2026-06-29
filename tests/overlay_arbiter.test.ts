@@ -156,9 +156,9 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
       'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
-      'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+      'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
       'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
-      'arenaInvite',
+      'collectibleDrop', 'arenaInvite',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -254,9 +254,9 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
     'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
-    'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+    'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
     'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
-    'arenaInvite',
+    'collectibleDrop', 'arenaInvite',
   ];
 
   it('каждый ключ OVERLAY_PRIORITY классифицирован РОВНО в одном реестре (нет пропущенных)', () => {
@@ -299,7 +299,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration', 'arenaRoomConfirm'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'update', 'introFullAccess', 'loyaltyGift', 'perfectWeekReward', 'compassBriefing', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }

@@ -634,12 +634,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d008_content_unit_phrase_5"
     ],
-    "targetText": "Does the cafe work on weekdays?",
+    "targetText": "Is the cafe open on weekdays?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d008-listen-audio:voyazh-d008-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d008-listen-audio/voyazh-d008-content-unit-phrase-5.mp3",
-    "durationMs": 2928,
+    "durationMs": 3048,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -4026,12 +4026,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d051_content_unit_phrase_2"
     ],
-    "targetText": "Where is the embassy from here?",
+    "targetText": "How do I get to the embassy from here?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d051-listen-audio:voyazh-d051-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d051-listen-audio/voyazh-d051-content-unit-phrase-2.mp3",
-    "durationMs": 2160,
+    "durationMs": 3048,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -4778,12 +4778,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d060_content_unit_phrase_4"
     ],
-    "targetText": "Does the shop work on Sundays?",
+    "targetText": "Is the shop open on Sundays?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d060-listen-audio:voyazh-d060-content-unit-phrase-4",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d060-listen-audio/voyazh-d060-content-unit-phrase-4.mp3",
-    "durationMs": 2304,
+    "durationMs": 2424,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -9834,12 +9834,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d039_content_unit_phrase_5"
     ],
-    "targetText": "She is asking for the hospital.",
+    "targetText": "She is looking for the hospital.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d039-listen-audio:echo-d039-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d039-listen-audio/echo-d039-content-unit-phrase-5.mp3",
-    "durationMs": 3048,
+    "durationMs": 2832,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -9882,12 +9882,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d040_content_unit_phrase_3"
     ],
-    "targetText": "Does the store work on Sunday?",
+    "targetText": "Is the store open on Sunday?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d040-listen-audio:echo-d040-content-unit-phrase-3",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d040-listen-audio/echo-d040-content-unit-phrase-3.mp3",
-    "durationMs": 2736,
+    "durationMs": 2688,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -12554,12 +12554,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d073_content_unit_phrase_5"
     ],
-    "targetText": "Please send help as soon.",
+    "targetText": "Please send help soon.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d073-listen-audio:echo-d073-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d073-listen-audio/echo-d073-content-unit-phrase-5.mp3",
-    "durationMs": 2352,
+    "durationMs": 3264,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -12986,12 +12986,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d079_content_unit_phrase_2"
     ],
-    "targetText": "How long does it take there?",
+    "targetText": "How long does the trip take?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d079-listen-audio:echo-d079-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d079-listen-audio/echo-d079-content-unit-phrase-2.mp3",
-    "durationMs": 2208,
+    "durationMs": 2352,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -19130,12 +19130,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "gavan_d072_content_unit_phrase_1"
     ],
-    "targetText": "What do you do in free time?",
+    "targetText": "What do you do in your free time?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:gavan:runtime:gavan-d072-listen-audio:gavan-d072-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/gavan/runtime/gavan-d072-listen-audio/gavan-d072-content-unit-phrase-1.mp3",
-    "durationMs": 2208,
+    "durationMs": 2472,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -20250,12 +20250,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "gavan_d086_content_unit_phrase_1"
     ],
-    "targetText": "Do you have this in larger?",
+    "targetText": "Do you have this in a larger size?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:gavan:runtime:gavan-d086-listen-audio:gavan-d086-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/gavan/runtime/gavan-d086-listen-audio/gavan-d086-content-unit-phrase-1.mp3",
-    "durationMs": 2040,
+    "durationMs": 3576,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -23066,7 +23066,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "gavan_d121_content_unit_phrase_2"
     ],
-    "targetText": "I drink less sugar in my tea.",
+    "targetText": "I put less sugar in my tea.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:gavan:runtime:gavan-d121-listen-audio:gavan-d121-content-unit-phrase-2",
@@ -23322,7 +23322,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "gavan_d124_content_unit_phrase_3"
     ],
-    "targetText": "What do you enjoy doing in weekends?",
+    "targetText": "What do you enjoy doing on weekends?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:gavan:runtime:gavan-d124-listen-audio:gavan-d124-content-unit-phrase-3",
@@ -24618,12 +24618,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "impuls_d014_content_unit_phrase_4"
     ],
-    "targetText": "I have your contact. I send you an email.",
+    "targetText": "I have your contact. I'll send you an email.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:impuls:runtime:impuls-d014-listen-audio:impuls-d014-content-unit-phrase-4",
     "uri": "assets/audio/personal-plans-runtime/impuls/runtime/impuls-d014-listen-audio/impuls-d014-content-unit-phrase-4.mp3",
-    "durationMs": 3096,
+    "durationMs": 2904,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -24730,12 +24730,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "impuls_d016_content_unit_phrase_1"
     ],
-    "targetText": "Let us meet at the cafe.",
+    "targetText": "Let's meet at the cafe.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:impuls:runtime:impuls-d016-listen-audio:impuls-d016-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/impuls/runtime/impuls-d016-listen-audio/impuls-d016-content-unit-phrase-1.mp3",
-    "durationMs": 2640,
+    "durationMs": 2568,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -27610,12 +27610,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "impuls_d052_content_unit_phrase_1"
     ],
-    "targetText": "Which stop should I get off?",
+    "targetText": "Which stop should I get off at?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:impuls:runtime:impuls-d052-listen-audio:impuls-d052-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/impuls/runtime/impuls-d052-listen-audio/impuls-d052-content-unit-phrase-1.mp3",
-    "durationMs": 3312,
+    "durationMs": 2640,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -28298,12 +28298,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "impuls_d060_content_unit_phrase_4"
     ],
-    "targetText": "Should we meet before the lunch?",
+    "targetText": "Should we meet before lunch?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:impuls:runtime:impuls-d060-listen-audio:impuls-d060-content-unit-phrase-4",
     "uri": "assets/audio/personal-plans-runtime/impuls/runtime/impuls-d060-listen-audio/impuls-d060-content-unit-phrase-4.mp3",
-    "durationMs": 2568,
+    "durationMs": 2208,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -29994,12 +29994,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "impuls_d081_content_unit_phrase_5"
     ],
-    "targetText": "My address is Green Street ten.",
+    "targetText": "My address is ten Green Street.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:impuls:runtime:impuls-d081-listen-audio:impuls-d081-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/impuls/runtime/impuls-d081-listen-audio/impuls-d081-content-unit-phrase-5.mp3",
-    "durationMs": 3096,
+    "durationMs": 3888,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -35002,12 +35002,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d004_content_unit_phrase_3"
     ],
-    "targetText": "She does not join the call today.",
+    "targetText": "She is not joining the call today.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d004-listen-audio:mitap-d004-content-unit-phrase-3",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d004-listen-audio/mitap-d004-content-unit-phrase-3.mp3",
-    "durationMs": 2472,
+    "durationMs": 2568,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -35034,12 +35034,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d004_content_unit_phrase_5"
     ],
-    "targetText": "We wait for the client today.",
+    "targetText": "We are waiting for the client.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d004-listen-audio:mitap-d004-content-unit-phrase-5",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d004-listen-audio/mitap-d004-content-unit-phrase-5.mp3",
-    "durationMs": 2736,
+    "durationMs": 2520,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -35322,12 +35322,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d008_content_unit_phrase_3"
     ],
-    "targetText": "I have two years here.",
+    "targetText": "I have two years of experience here.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d008-listen-audio:mitap-d008-content-unit-phrase-3",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d008-listen-audio/mitap-d008-content-unit-phrase-3.mp3",
-    "durationMs": 1944,
+    "durationMs": 4368,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -35706,12 +35706,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d013_content_unit_phrase_2"
     ],
-    "targetText": "I add you in chat.",
+    "targetText": "I add you in the chat.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d013-listen-audio:mitap-d013-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d013-listen-audio/mitap-d013-content-unit-phrase-2.mp3",
-    "durationMs": 2160,
+    "durationMs": 2520,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true

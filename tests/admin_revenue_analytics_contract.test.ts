@@ -86,10 +86,11 @@ describe('admin revenue analytics contract', () => {
   it('keeps the revenue analytics dashboard compact without horizontal overflow', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-analytics');
     expect(adminHtml).toContain('overflow-x: hidden');
-    expect(adminHtml).toContain('grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))');
-    expect(adminHtml).toContain('class="revenue-series-bars"');
-    expect(adminHtml).toContain('class="revenue-series-bar"');
-    expect(adminHtml).toContain('class="revenue-series-bar-track"');
+    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #revenue-analytics-grid {');
+    expect(adminHtml).toContain('flex-direction: column');
+    expect(adminHtml).toContain('class="rsv-bars"');
+    expect(adminHtml).toContain("class=\"rsv-bar${isPeak ? ' is-peak' : ''}\"");
+    expect(adminHtml).toContain('class="rsv-bar-track"');
     expect(adminHtml).toContain('min-width: 0 !important');
     expect(adminHtml).not.toContain('min-width:18px;flex:1');
     expect(adminHtml).not.toContain('style="min-width:320px"');

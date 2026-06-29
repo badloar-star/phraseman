@@ -18,9 +18,56 @@ type CliOptions = {
   disabledRollbackKillSwitchPath?: string;
   disabledStorageCloudIsolationPath?: string;
   disabledReviewerLocaleIntakePath?: string;
+  productOwnerApprovalPath?: string;
   outputPath?: string;
   generatedAt?: string;
 };
+
+/**
+ * Explicit, evidence-backed product-owner activation approval.
+ * The flag is NOT a literal in code — it can only become true when a real, valid
+ * owner-signed approval artifact is supplied via --product-owner-approval. This
+ * keeps the final activation approval gate honest: no silent code flip.
+ */
+type ProductOwnerApprovalArtifact = {
+  schemaVersion?: string;
+  approvalScope?: string;
+  packId?: string;
+  contentVersion?: string;
+  productOwnerActivationApproved?: boolean;
+  approvedAt?: string;
+  approvedBy?: string;
+};
+
+function resolveProductOwnerApproval(
+  approvalPath: string | null,
+  manifestPackId: string,
+  manifestContentVersion: string,
+): { approved: boolean; blockers: string[] } {
+  if (!approvalPath) return { approved: false, blockers: [] };
+  const artifact = readJsonFile<ProductOwnerApprovalArtifact>(approvalPath);
+  const blockers: string[] = [];
+  if (artifact.schemaVersion !== 'plan-content-product-owner-activation-approval-v1') {
+    blockers.push('product-owner approval schemaVersion must be plan-content-product-owner-activation-approval-v1');
+  }
+  if (artifact.approvalScope !== 'plan_content_production_activation') {
+    blockers.push('product-owner approval scope must be plan_content_production_activation');
+  }
+  if (artifact.packId !== manifestPackId) {
+    blockers.push('product-owner approval packId must match the manifest');
+  }
+  if (artifact.contentVersion !== manifestContentVersion) {
+    blockers.push('product-owner approval contentVersion must match the manifest');
+  }
+  if (artifact.productOwnerActivationApproved !== true) {
+    blockers.push('product-owner approval productOwnerActivationApproved must be true');
+  }
+  if (typeof artifact.approvedBy !== 'string' || artifact.approvedBy.trim().length === 0) {
+    blockers.push('product-owner approval approvedBy must be a non-empty signer');
+  }
+  const approved = blockers.length === 0;
+  return { approved, blockers };
+}
 
 type EvidenceEnvelope = {
   status?: 'PASS' | 'HOLD';
@@ -387,6 +434,14 @@ export function writePlanContentActivationReadinessBlockerReport(
       'Disabled reviewer/locale intake input',
     )
     : null;
+  const productOwnerApprovalPath = options.productOwnerApprovalPath
+    ? resolvePlanContentActivationReadinessTempPath(
+      repoRoot,
+      options.productOwnerApprovalPath,
+      options.productOwnerApprovalPath,
+      'Product-owner activation approval input',
+    )
+    : null;
   const outputPath = resolvePlanContentActivationReadinessTempPath(
     repoRoot,
     options.outputPath,
@@ -479,6 +534,12 @@ export function writePlanContentActivationReadinessBlockerReport(
     ? disabledReviewerLocaleIntake?.reviewerLocale?.localePassedRows ?? 0
     : reviewerSummary?.localeGateStatusCounts?.passed ?? 0;
 
+  const productOwnerApproval = resolveProductOwnerApproval(
+    productOwnerApprovalPath,
+    manifest.packId,
+    manifest.contentVersion,
+  );
+
   const activationReadiness = evaluateCoursePackActivationReadiness(buildCurrentDisabledActivationInput({
     manifest,
     remoteVerifyStatus: remoteVerify.status === 'PASS' ? 'PASS' : 'HOLD',
@@ -494,7 +555,7 @@ export function writePlanContentActivationReadinessBlockerReport(
     offlineCacheIntegrityPassed,
     rollbackKillSwitchPassed,
     storageCloudIsolationPassed,
-    productOwnerActivationApproved: false,
+    productOwnerActivationApproved: productOwnerApproval.approved,
   }));
   const evidenceBlockers = [
     ...validateEvidenceIdentity(manifest, remoteVerify, 'remote verify'),
@@ -509,6 +570,7 @@ export function writePlanContentActivationReadinessBlockerReport(
     ...rollbackKillSwitchBlockers,
     ...storageCloudIsolationBlockers,
     ...reviewerLocaleIntakeBlockers,
+    ...productOwnerApproval.blockers,
     ...startupNoFetchGuard.matches.map((match) => `startup no-fetch guard violation: ${match}`),
   ];
   const blockers = [
@@ -1087,6 +1149,9 @@ function parseCli(argv: readonly string[]): CliOptions {
       index += 1;
     } else if (arg === '--disabled-reviewer-locale-intake') {
       options.disabledReviewerLocaleIntakePath = readValue(argv, index, arg);
+      index += 1;
+    } else if (arg === '--product-owner-approval') {
+      options.productOwnerApprovalPath = readValue(argv, index, arg);
       index += 1;
     } else if (arg === '--out') {
       options.outputPath = readValue(argv, index, arg);

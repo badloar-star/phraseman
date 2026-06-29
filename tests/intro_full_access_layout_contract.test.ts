@@ -39,7 +39,9 @@ describe('intro full access layout orchestration', () => {
     expect(source).toContain('handleOnboardingIntroFullAccessStart');
     expect(source).toContain('onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}');
     expect(onboardingSource).toContain('onIntroFullAccessStart?: () => Promise<boolean> | boolean');
-    expect(onboardingSource).toContain('const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);');
-    expect(onboardingSource).toContain('if (hasPremiumAccess || introFullAccessStarted)');
+    // Пейвол пропускаем ТОЛЬКО при реальном Premium-доступе. Раньше тут был
+    // `hasPremiumAccess || introFullAccessStarted`, но onIntroFullAccessStart()
+    // всегда возвращал true → пейвол не показывался никогда (баг монетизации).
+    expect(onboardingSource).toContain('if (hasPremiumAccess && !FORCE_PREMIUM) {');
   });
 });

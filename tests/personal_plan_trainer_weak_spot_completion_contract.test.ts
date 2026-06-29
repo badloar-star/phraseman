@@ -32,7 +32,7 @@ describe('trainer_weak_spot plan trainer completion contract', () => {
       expect(source).toContain('readTrainerPlanTaskContext({');
       expect(source).toContain('getTrainerPremiumItemsForPlanQueue(');
       expect(source).toContain('planTrainerCompletionTracked.current = true');
-      expect(source).toContain('markTrainerPlanTaskCompleted(planTrainerContext)');
+      expect(source).toContain('markTrainerPlanTaskCompleted(planTrainerContext, studyTarget)');
     }
   });
 });

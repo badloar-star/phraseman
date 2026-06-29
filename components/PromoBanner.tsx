@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
+import { useTheme } from './ThemeContext';
+import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import {
@@ -71,6 +73,7 @@ async function readState(lang: string, nowMs: number, isPremium: boolean): Promi
 export default function PromoBanner() {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
+  const { themeMode } = useTheme();
   const insets = useSafeAreaInsets();
   const translateX = useRef(new Animated.Value(0)).current;
   const [state, setState] = useState<PromoState>({
@@ -134,7 +137,7 @@ export default function PromoBanner() {
     <Text
       numberOfLines={2}
       style={{
-        color: '#f3e8ff',
+        color: monoIcon(themeMode, '#f3e8ff'),
         fontSize: 13,
         lineHeight: 18,
         fontWeight: '800',
@@ -204,7 +207,7 @@ export default function PromoBanner() {
             backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
           })}
         >
-          <Ionicons name="close" size={20} color="#f3e8ff" />
+          <Ionicons name="close" size={20} color={monoIcon(themeMode, '#f3e8ff')} />
         </Pressable>
       </View>
     </Animated.View>

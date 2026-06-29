@@ -6,13 +6,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { getTrainerPremiumItemsForPlan, type TrainerQueue } from './trainer_store';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { emitAppEvent } from './events';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import {
   readTrainerPlanTaskContext,
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
 function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session' {
   if (queue === 'words') return '/trainer_words_session';
@@ -24,12 +28,26 @@ export default function TrainerPlanSession() {
   const router = useRouter();
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, f } = useTheme();
+  const { lang } = useLang();
+  const { theme: t, f, themeMode } = useTheme();
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     void (async () => {
+      if (!trainerSessionContentAvailableForTarget(studyTarget)) {
+        const copy = frenchTrainerGateCopy(lang);
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: copy.title,
+          messageUk: copy.title,
+          messageEs: 'French trainer is still behind source gate.',
+        });
+        markNextNavigationAsReplace();
+        router.replace('/(tabs)/lessons' as any);
+        return;
+      }
+
       const context = readTrainerPlanTaskContext({
         mode: params.mode,
         planDayIndex: params.planDayIndex,
@@ -88,6 +106,7 @@ export default function TrainerPlanSession() {
     params.planTrainerTask,
     params.requiredItems,
     router,
+    lang,
     studyTarget,
   ]);
 
@@ -106,7 +125,7 @@ export default function TrainerPlanSession() {
             onPress={() => { hapticTap(); safeRouterBack(router, '/personal_plan' as any); }}
             style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
           >
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>К плану</Text>
+            <Text style={{ color: monoIcon(themeMode, '#07110A', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900' }}>К плану</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>

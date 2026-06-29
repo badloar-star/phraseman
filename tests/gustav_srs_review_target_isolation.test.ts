@@ -46,13 +46,14 @@ describe('Gustav SRS review target isolation', () => {
     expect(source).toContain("logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick', tokenMeta, studyTarget)");
     expect(source).toContain('markReviewed(item.phrase, ok, tokenMeta, studyTarget)');
     expect(source).toContain('removeItem(item.phrase, studyTarget)');
-    expect(source).toContain("checkCoachToastNeededWithAnalytics(wrongPhrasesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru')");
+    expect(source).toContain('checkCoachToastNeededWithAnalytics(wrongPhrasesRef.current, studyTarget, lang)');
   });
 
   it('does not label French recall typing as English practice', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'review.tsx'), 'utf8');
 
-    expect(source).toContain("if (studyTarget === 'fr')");
+    expect(source).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(source).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
     expect(source).toContain('Вспомните и напишите по-французски');
     expect(source).toContain('Згадайте і напишіть французькою');
     expect(source).toContain('recallCueInstruction(pageMode, lang, studyTarget)');

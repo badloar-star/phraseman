@@ -21,6 +21,7 @@ import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
+import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
 import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
@@ -30,6 +31,7 @@ import {
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions,
 } from '../components/paywall/paywallShared';
+import PaywallGreetingLine from '../components/paywall/PaywallGreetingLine';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
@@ -46,9 +48,10 @@ const VARIANT = 'C' as const;
 const SCROLL_DEPTH_MARKS = [25, 50, 75, 100] as const;
 
 export default function PaywallC() {
-  const params = useLocalSearchParams<{ context?: string; source?: string }>();
+  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string }>();
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const isOnboarding = source === 'onboarding_plan';
   // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
@@ -56,10 +59,11 @@ export default function PaywallC() {
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
   const insets = useSafeAreaInsets();
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang });
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
+  const [profile, setProfile] = useState<PaywallProfile | null>(null);
   const [percentileLine, setPercentileLine] = useState<string | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const scrollDepthSent = useRef(new Set<number>());
@@ -93,6 +97,10 @@ export default function PaywallC() {
       try {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
+      } catch { /* некритично */ }
+      try {
+        const prof = await readPaywallProfile(lang as PaywallLang);
+        if (!dead) setProfile(prof);
       } catch { /* некритично */ }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
@@ -175,6 +183,9 @@ export default function PaywallC() {
               <PaywallPersonalTags texts={[LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)]} chrome={chrome} />
             )}
 
+            {/* Персональное обращение по имени + прогресс + цель (above the fold). */}
+            <PaywallGreetingLine lang={lang as Lang} chrome={chrome} profile={profile} mirror={mirror} />
+
             {p.trialDays && (
               <PaywallTrialTimeline
                 lang={lang as Lang}
@@ -214,6 +225,7 @@ export default function PaywallC() {
               futurePrice={p.futurePrice}
               period={period}
               compact
+              isLifetime={isLifetimeSel}
             />
 
             <View style={S.ctaWrap}>
@@ -228,6 +240,7 @@ export default function PaywallC() {
                 onRestore={() => { void p.handleRestore(); }}
                 restoring={p.restoring}
                 onContinueFree={() => closeWithDim('continue_free')}
+                trustHasTrial={!!p.trialDays}
               />
             </View>
 

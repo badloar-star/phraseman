@@ -10,7 +10,6 @@ import {
 } from '../app/course_pack_manifest';
 import { EMBEDDED_COURSE_PACK_INDEX } from '../app/course_pack_index';
 import {
-  COURSE_PACK_REMOTE_LOADING_ENABLED,
   resolveCoursePackReadiness,
 } from '../app/course_pack_loader';
 
@@ -58,6 +57,25 @@ describe('course pack runtime contract', () => {
     ]));
   });
 
+  it('fails closed when packId identity does not match study target, source locale and surface', () => {
+    const mixedIdentity = validateCoursePackManifest(validManifest({
+      packId: 'en.ru.quiz.v1',
+      studyTarget: 'fr',
+      sourceLocale: 'ru',
+      surface: 'quiz',
+    }));
+
+    expect(mixedIdentity.ok).toBe(false);
+    expect(mixedIdentity.errors).toContain('packId must start with studyTarget.sourceLocale.surface');
+
+    expect(validateCoursePackManifest(validManifest({
+      packId: 'fr.ru.quiz.v1',
+      studyTarget: 'fr',
+      sourceLocale: 'ru',
+      surface: 'quiz',
+    }))).toEqual({ ok: true, errors: [] });
+  });
+
   it('isolates cache keys by target, source locale, surface, schema, version and hash', () => {
     const base = validManifest();
     const keys = new Set([
@@ -91,10 +109,13 @@ describe('course pack runtime contract', () => {
     expect(EMBEDDED_COURSE_PACK_INDEX.some((entry) => entry.studyTarget !== 'en')).toBe(false);
   });
 
-  it('keeps plan_content server packs shadow-only until explicit activation work exists', () => {
+  it('keeps the embedded plan_content index bundled-only even with remote loading enabled', () => {
+    // Remote loading is now enabled, but the EMBEDDED index must still describe
+    // plan_content as bundled compatibility with no attached manifest: the server
+    // pack is fetched via the separate flag-gated registration, NOT this index, so
+    // the bundled copy always remains the integrity/offline fallback.
     const planContentEntries = EMBEDDED_COURSE_PACK_INDEX.filter((entry) => entry.surface === 'plan_content');
 
-    expect(COURSE_PACK_REMOTE_LOADING_ENABLED).toBe(false);
     expect(planContentEntries.length).toBeGreaterThan(0);
     expect(planContentEntries.every((entry) => entry.delivery === 'bundled_compatibility')).toBe(true);
     expect(planContentEntries.every((entry) => entry.activationApproved === false)).toBe(true);
@@ -102,7 +123,6 @@ describe('course pack runtime contract', () => {
   });
 
   it('requires explicit source and target selection before readiness can resolve', () => {
-    expect(COURSE_PACK_REMOTE_LOADING_ENABLED).toBe(false);
     expect(resolveCoursePackReadiness({
       studyTarget: 'en',
       sourceLocale: 'ru',
@@ -123,6 +143,20 @@ describe('course pack runtime contract', () => {
       delivery: 'bundled_compatibility',
       reason: 'bundled_compatibility_until_pack_extraction',
     });
+  });
+
+  it('keeps French downloadable surfaces missing until an approved French index entry exists', () => {
+    for (const surface of ['lesson', 'lesson_intro', 'quiz', 'plan_content'] as const) {
+      expect(resolveCoursePackReadiness({
+        studyTarget: 'fr',
+        sourceLocale: 'ru',
+        surface,
+        selectionConfirmed: true,
+      })).toEqual({
+        state: 'missing',
+        reason: 'no_index_entry',
+      });
+    }
   });
 
   it('does not connect the pack loader to startup or network modules', () => {

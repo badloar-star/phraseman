@@ -78,7 +78,12 @@ function normalizeText(value: string): string {
 }
 
 function frenchDuplicateKey(value: string): string {
-  return value.trim().toLocaleLowerCase('fr');
+  return value
+    .normalize('NFKC')
+    .replace(/[\u2018\u2019\u02BC`\u00B4]/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLocaleLowerCase('fr');
 }
 
 function sortedMeaningTokens(value: string): string {

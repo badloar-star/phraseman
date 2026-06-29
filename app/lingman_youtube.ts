@@ -5,6 +5,7 @@ import {
   getYoutubeChannelIdOverride,
   getYoutubeChannelNameOverride,
   getYoutubeChannelUrlOverride,
+  getYoutubePinnedVideosRaw,
 } from './remote_flags';
 
 export type LingmanYoutubeVideo = {
@@ -256,6 +257,118 @@ export function getLingmanYoutubeWatchUrl(videoId: string): string {
   return `https://www.youtube.com/watch?v=${encodeURIComponent(videoId.trim())}`;
 }
 
+/** Один пришпиленный («ручной») видео-элемент из «Пульта». */
+export type PinnedVideoInput = {
+  /** YouTube videoId (11 символов) — обязателен. */
+  id: string;
+  /** Необязательное название карточки (пусто → имя канала-заглушка). */
+  title?: string;
+  /** Необязательное описание. */
+  description?: string;
+  /** Необязательная ISO-дата публикации (для подписи; пусто → не показывается). */
+  publishedAt?: string;
+};
+
+const YOUTUBE_VIDEO_ID_RE = /^[0-9A-Za-z_-]{11}$/;
+
+/**
+ * Извлекает 11-символьный YouTube videoId из любого ввода: голый id, ссылка
+ * watch?v=, youtu.be/, /shorts/, /embed/, /live/ — с любыми лишними параметрами.
+ * Возвращает '' если id не распознан. Чистая функция — экспортируется для тестов
+ * и переиспользуется в админке (держать regexp'ы в синхроне).
+ */
+export function parseYoutubeVideoId(raw: string | null | undefined): string {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  // Голый videoId.
+  if (YOUTUBE_VIDEO_ID_RE.test(s)) return s;
+  // ?v=ID или &v=ID (watch-ссылки).
+  const v = s.match(/[?&]v=([0-9A-Za-z_-]{11})/);
+  if (v) return v[1];
+  // youtu.be/ID, /shorts/ID, /embed/ID, /live/ID.
+  const path = s.match(/(?:youtu\.be\/|\/shorts\/|\/embed\/|\/live\/)([0-9A-Za-z_-]{11})/);
+  if (path) return path[1];
+  return '';
+}
+
+/**
+ * Парсит сырой JSON пришпиленных видео из «Пульта» в нормализованный список.
+ * Принимает массив вида [{id|url, title?, ...}, ...] или массив строк (id/url).
+ * Любой мусор тихо отбрасывается (конфиг от админа не должен ронять приложение).
+ * Дубли по videoId схлопываются (первое вхождение побеждает). Чистая функция.
+ */
+export function parsePinnedVideos(raw: string | null | undefined): PinnedVideoInput[] {
+  const out: PinnedVideoInput[] = [];
+  const seen = new Set<string>();
+  const s = String(raw ?? '').trim();
+  if (!s) return out;
+  let arr: unknown;
+  try {
+    arr = JSON.parse(s);
+  } catch {
+    return out;
+  }
+  if (!Array.isArray(arr)) return out;
+  for (const item of arr) {
+    let id = '';
+    let title: string | undefined;
+    let description: string | undefined;
+    let publishedAt: string | undefined;
+    if (typeof item === 'string') {
+      id = parseYoutubeVideoId(item);
+    } else if (item && typeof item === 'object') {
+      const rec = item as Record<string, unknown>;
+      id = parseYoutubeVideoId(typeof rec.id === 'string' ? rec.id : '')
+        || parseYoutubeVideoId(typeof rec.url === 'string' ? rec.url : '');
+      if (typeof rec.title === 'string' && rec.title.trim()) title = rec.title.trim();
+      if (typeof rec.description === 'string' && rec.description.trim()) description = rec.description.trim();
+      if (typeof rec.publishedAt === 'string' && rec.publishedAt.trim()) publishedAt = rec.publishedAt.trim();
+    }
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    out.push({ id, title, description, publishedAt });
+  }
+  return out;
+}
+
+/** Превращает один пин в карточку ленты (обложка/watch-url строятся из id). */
+function pinnedToVideo(pin: PinnedVideoInput): LingmanYoutubeVideo {
+  return {
+    id: pin.id,
+    title: pin.title || LINGMAN_CHANNEL_DISPLAY_NAME,
+    description: pin.description || '',
+    thumbnailUrl: `https://i.ytimg.com/vi/${pin.id}/hqdefault.jpg`,
+    publishedAt: pin.publishedAt || '',
+    updatedAt: pin.publishedAt || '',
+    watchUrl: getLingmanYoutubeWatchUrl(pin.id),
+  };
+}
+
+/**
+ * Список пришпиленных видео как карточки ленты. Берёт сырой JSON из remote_config.
+ * Применяется фильтр «не Shorts» как и к фиду (по title/description/known ids),
+ * но id-only пин почти всегда проходит. Экспортируется для тестов.
+ */
+export function getPinnedFeedVideos(): LingmanYoutubeVideo[] {
+  return parsePinnedVideos(getYoutubePinnedVideosRaw())
+    .map(pinnedToVideo)
+    .filter(isLingmanLongFormVideo);
+}
+
+/**
+ * Сливает пиннов В НАЧАЛО ленты (как «новые»), убирая из канального списка дубли
+ * по videoId (если пин уже есть в фиде — он остаётся только сверху, один раз).
+ * Чистая функция — экспортируется для тестов.
+ */
+export function mergePinnedVideos(
+  pinned: LingmanYoutubeVideo[],
+  feed: LingmanYoutubeVideo[],
+): LingmanYoutubeVideo[] {
+  if (!pinned.length) return feed;
+  const pinnedIds = new Set(pinned.map((v) => v.id));
+  return [...pinned, ...feed.filter((v) => !pinnedIds.has(v.id))];
+}
+
 export function getTrustedLingmanYoutubeUrl(rawUrl: string | null | undefined, fallbackVideoId?: string | null): string | null {
   try {
     if (!rawUrl) throw new Error('Missing URL');
@@ -344,9 +457,16 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
     AsyncStorage.getItem(STORAGE_LAST_SEEN_ID),
   ]);
 
+  // Пришпиленные («ручные») видео из «Пульта» — идут В НАЧАЛЕ ленты как «новые»,
+  // поверх канального фида (и канального кэша/фолбэка). Кэшируем ТОЛЬКО чистый
+  // канальный список, а пины подмешиваем при отдаче — так смена пиннов мгновенна
+  // и не «застревает» в кэше канала.
+  const pinned = getPinnedFeedVideos();
+
   try {
-    const videos = await fetchLingmanYoutubeVideos();
-    void cacheSuccessfulVideos(videos);
+    const feed = await fetchLingmanYoutubeVideos();
+    void cacheSuccessfulVideos(feed);
+    const videos = mergePinnedVideos(pinned, feed);
     const latestVideoId = videos[0]?.id ?? null;
     return {
       videos,
@@ -359,14 +479,19 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
     // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
     // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
     const isDefaultChannel = !getActiveYoutubeChannel().isOverride;
-    const videos = (await readCachedVideos()) ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
+    const feed = (await readCachedVideos()) ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
+    const videos = mergePinnedVideos(pinned, feed);
     const latestVideoId = videos[0]?.id ?? null;
     return {
       videos,
       latestVideoId,
+      // Если фид упал, но есть пины — это не «ошибка пустой ленты»: пины показываем
+      // без баннера сбоя (он бы зря пугал, когда контент в ленте есть из пиннов).
       unreadCount: getLingmanYoutubeUnreadCount(videos, lastSeenId),
       fetchedAtMs: Date.now(),
-      error: error instanceof Error ? error.message : 'Unable to load videos',
+      error: feed.length === 0 && pinned.length > 0
+        ? undefined
+        : (error instanceof Error ? error.message : 'Unable to load videos'),
     };
   }
 }

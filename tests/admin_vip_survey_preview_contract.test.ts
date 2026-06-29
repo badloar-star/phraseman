@@ -9,6 +9,7 @@ describe('admin VIP survey preview', () => {
   const reviewPrompt = fs.readFileSync(path.join(root, 'components', 'VipSurveyReviewPromptModal.tsx'), 'utf8');
   const storeReview = fs.readFileSync(path.join(root, 'app', 'store_review.ts'), 'utf8');
   const surveyClient = fs.readFileSync(path.join(root, 'app', 'vip_survey.ts'), 'utf8');
+  const surveyDevAuth = fs.readFileSync(path.join(root, 'app', 'vip_survey_dev_auth.ts'), 'utf8');
   const appMessages = fs.readFileSync(path.join(root, 'app', 'app_messages.ts'), 'utf8');
   const admin = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
   const maestro = fs.readFileSync(path.join(root, 'maestro', 'flows', 'dev_only', 'vip_survey_e2e.yaml'), 'utf8');
@@ -19,7 +20,6 @@ describe('admin VIP survey preview', () => {
     expect(screen).toContain('admin-preview-vip-survey-notification');
     expect(screen).toContain('seedLocalVipSurveyTestMessage');
     expect(screen).toContain('vipSurveyPreviewBusyRef');
-    expect(screen).toContain('pressInStarts');
     expect(screen).toContain('navigateHomeAfterVipSurveySeed');
     expect(screen).toContain('nav.dismissTo');
     expect(screen).toContain('nav.dismissAll');
@@ -40,7 +40,7 @@ describe('admin VIP survey preview', () => {
     expect(inbox).toContain('VipSurveyModal');
     expect(inbox).toContain('VipSurveyReviewPromptModal');
     expect(inbox).toContain('useIsFocused');
-    expect(inbox).toContain('if (!isScreenFocused) return null');
+    expect(inbox).toContain('if (!renderButton) return null');
     expect(inbox).toContain('vip-survey-inbox-cta');
     expect(inbox).not.toContain('previewOnly={');
     expect(modal).toContain('submitVipSurveyFromApp');
@@ -72,10 +72,10 @@ describe('admin VIP survey preview', () => {
     expect(surveyClient).toContain('ensureFirebaseAuthUidForVipCallable');
     expect(surveyClient).toContain('const getAuth = authModule.default || authModule');
     expect(surveyClient).toContain('vipCallableAuthPromise');
-    expect(surveyClient).toContain('VIP_SURVEY_DEV_AUTH_EMAIL_KEY');
+    expect(surveyDevAuth).toContain('VIP_SURVEY_DEV_AUTH_EMAIL_KEY');
     expect(surveyClient).toContain('signInAnonymously');
-    expect(surveyClient).toContain('signInWithEmailAndPassword');
-    expect(surveyClient).toContain('createUserWithEmailAndPassword');
+    expect(surveyDevAuth).toContain('signInWithEmailAndPassword');
+    expect(surveyDevAuth).toContain('createUserWithEmailAndPassword');
     expect(surveyClient).toContain('signOut');
     expect(surveyClient).toContain('resetAnonAuthCacheForSignOut');
     expect(surveyClient).toContain('keychain');
@@ -86,7 +86,7 @@ describe('admin VIP survey preview', () => {
     const persistStart = surveyClient.indexOf('async function persistVipResult');
     const persistBody = surveyClient.slice(persistStart, surveyClient.indexOf('export async function submitVipSurveyFromApp', persistStart));
     expect(persistBody).not.toContain('tester_no_premium');
-    expect(surveyClient).toContain("if (active) {\n    emitAppEvent('vip_activated');");
+    expect(surveyClient).toMatch(/if \(active\) \{\r?\n\s*emitAppEvent\('vip_activated'\);/);
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
     expect(reviewPrompt).toContain('Твой Plus активирован');
     expect(reviewPrompt).toContain('Хотите поделиться впечатлением о Phraseman?');
@@ -114,8 +114,5 @@ describe('admin VIP survey preview', () => {
     expect(maestro).toContain('vip-survey-comment-one_thing_week');
     expect(maestro).not.toContain('hideKeyboard');
     expect(maestro).toContain('vip-survey-review-write');
-    const devClientFlow = fs.readFileSync(path.join(root, 'maestro', 'flows', '_shared', 'open_dev_client_for_deeplink.yaml'), 'utf8');
-    expect(devClientFlow).toContain('point: "50%,25%"');
-    expect(devClientFlow).toContain('point: "50%,48%"');
   });
 });

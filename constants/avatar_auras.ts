@@ -38,6 +38,11 @@ export type AvatarAuraDef = {
   premiumOnly?: boolean;
   vipOnly?: boolean;
   unlockLevel?: number;
+  /**
+   * Аура выдаётся ТОЛЬКО как награда (сезоны Арены / Боевой пропуск) и не продаётся
+   * за осколки. На экране выбора показывается без цены, тап не ведёт к покупке.
+   */
+  rewardOnly?: boolean;
   effect?: AvatarAuraEffect;
 };
 
@@ -50,14 +55,14 @@ export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: 'aura-violet', nameRu: 'Виолет', nameUk: 'Віолет', nameEs: 'Violeta', namePtBr: 'Violeta', nameVi: 'Tím', nameId: 'Violet', nameTr: 'Mor', namePl: 'Fiolet', color: '#A78BFA', softColor: 'rgba(167,139,250,0.22)' },
   { id: 'aura-coral', nameRu: 'Коралл', nameUk: 'Корал', nameEs: 'Coral', namePtBr: 'Coral', nameVi: 'San hô', nameId: 'Koral', nameTr: 'Mercan', namePl: 'Koral', color: '#F97316', softColor: 'rgba(249,115,22,0.22)' },
   { id: 'aura-flame-51', nameRu: 'Пламя', nameUk: 'Полумʼя', nameEs: 'Llama', namePtBr: 'Chama', nameVi: 'Ngọn lửa', nameId: 'Api', nameTr: 'Alev', namePl: 'Płomień', color: '#F97316', color2: '#FACC15', color3: '#FDBA74', softColor: 'rgba(249,115,22,0.23)', unlockLevel: 51, effect: 'flame' },
-  { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', effect: 'starvortex' },
-  { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', effect: 'voidamethyst' },
+  { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', rewardOnly: true, effect: 'starvortex' },
+  { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', rewardOnly: true, effect: 'voidamethyst' },
 
   // ── Ауры Боевого пропуска Арены (2 эксклюзивные, на финальных вехах премиум-трека) ──
   // D · Звёздный вихрь — космос: 3 орбиты + созвездие.
-  { id: 'aura-arena-starvortex', nameRu: 'Звёздный вихрь', nameUk: 'Зоряний вихор', nameEs: 'Vórtice estelar', namePtBr: 'Vórtice estelar', nameVi: 'Xoáy sao', nameId: 'Pusaran bintang', nameTr: 'Yıldız girdabı', namePl: 'Gwiezdny wir', color: '#C084FC', color2: '#F5D0FE', color3: '#FEF9C3', softColor: 'rgba(192,132,252,0.30)', effect: 'starvortex' },
+  { id: 'aura-arena-starvortex', nameRu: 'Звёздный вихрь', nameUk: 'Зоряний вихор', nameEs: 'Vórtice estelar', namePtBr: 'Vórtice estelar', nameVi: 'Xoáy sao', nameId: 'Pusaran bintang', nameTr: 'Yıldız girdabı', namePl: 'Gwiezdny wir', color: '#C084FC', color2: '#F5D0FE', color3: '#FEF9C3', softColor: 'rgba(192,132,252,0.30)', rewardOnly: true, effect: 'starvortex' },
   // E · Аметистовая бездна — вуаль + неоновые орбы (фиолет+бирюза).
-  { id: 'aura-arena-voidamethyst', nameRu: 'Аметистовая бездна', nameUk: 'Аметистова безодня', nameEs: 'Abismo de amatista', namePtBr: 'Abismo de ametista', nameVi: 'Vực thẳm thạch anh tím', nameId: 'Jurang ametis', nameTr: 'Ametist uçurumu', namePl: 'Ametystowa otchłań', color: '#8B5CF6', color2: '#67E8F9', color3: '#C4B5FD', softColor: 'rgba(139,92,246,0.30)', effect: 'voidamethyst' },
+  { id: 'aura-arena-voidamethyst', nameRu: 'Аметистовая бездна', nameUk: 'Аметистова безодня', nameEs: 'Abismo de amatista', namePtBr: 'Abismo de ametista', nameVi: 'Vực thẳm thạch anh tím', nameId: 'Jurang ametis', nameTr: 'Ametist uçurumu', namePl: 'Ametystowa otchłań', color: '#8B5CF6', color2: '#67E8F9', color3: '#C4B5FD', softColor: 'rgba(139,92,246,0.30)', rewardOnly: true, effect: 'voidamethyst' },
 ];
 
 /** id аур, которые выдаёт Боевой пропуск Арены (по порядку финальных вех). */
@@ -84,6 +89,11 @@ export function isPremiumAvatarAura(id?: string | null): boolean {
 
 export function isVipAvatarAura(id?: string | null): boolean {
   return id === VIP_AVATAR_AURA_ID;
+}
+
+/** true, если аура только наградная (сезон/пропуск Арены) и не продаётся за осколки. */
+export function isRewardOnlyAvatarAura(id?: string | null): boolean {
+  return getAvatarAuraById(id)?.rewardOnly === true;
 }
 
 export function isAvatarAuraUnlockedByLevel(aura: AvatarAuraDef, level: number): boolean {

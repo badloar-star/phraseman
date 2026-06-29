@@ -23,10 +23,11 @@ describe('ai_dialog_flags', () => {
     expect(isAiDialogEnabled()).toBe(false);
   });
 
-  it('gives exactly ONE lifetime free dialog (not a per-day reply count)', () => {
-    // Модель (запрос пользователя 2026-06-20): один пробный диалог навсегда,
-    // дальше полный премиум-замок. Сервер держит тот же пожизненный флаг.
-    expect(FREE_DIALOGS_LIFETIME_DEFAULT).toBe(1);
-    expect(getFreeDialogsLifetime()).toBe(1);
+  it('gives exactly TWO lifetime free dialogs (not a per-day reply count)', () => {
+    // Подняли с 1 до 2 (2026-06-28): одна попытка не давала прочувствовать
+    // ценность фичи до пейвола. Сервер (enforceLifetimeFreeDialog) держит тот же
+    // лимит через счётчик freeDialogCount — числа ДОЛЖНЫ совпадать.
+    expect(FREE_DIALOGS_LIFETIME_DEFAULT).toBe(2);
+    expect(getFreeDialogsLifetime()).toBe(2);
   });
 });

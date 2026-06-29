@@ -4,6 +4,7 @@
  */
 import type { QuizDifficulty, QuizPhrase, QuizStudyTargetLang } from './quiz_data';
 import { getQuizPhrases } from './quiz_data';
+import { storageStudyTarget } from './target_storage_keys';
 import type { Lang } from '../constants/i18n';
 
 /** @deprecated No-op; data is bundled. Kept for call-site compatibility. */
@@ -22,8 +23,8 @@ export function getQuizPhrasesLoaded(
   lang: Lang = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
-  if (studyTarget === 'fr') return [];
-  return getQuizPhrases(difficulty, count, lang);
+  if (storageStudyTarget(studyTarget) === 'fr') return [];
+  return getQuizPhrases(difficulty, count, lang, studyTarget);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

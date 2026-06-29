@@ -4,6 +4,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
+import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import {
@@ -49,6 +51,7 @@ async function readState(lang: string): Promise<MaintenanceState> {
 
 export default function MaintenanceGate() {
   const { lang } = useLang();
+  const { themeMode } = useTheme();
   const insets = useSafeAreaInsets();
   const translateX = useRef(new Animated.Value(0)).current;
   const [state, setState] = useState<MaintenanceState>({
@@ -121,7 +124,7 @@ export default function MaintenanceGate() {
             marginBottom: 18,
           }}
         >
-          <Ionicons name="construct-outline" size={32} color="#fed7aa" />
+          <Ionicons name="construct-outline" size={32} color={monoIcon(themeMode, '#fed7aa')} />
         </View>
         <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
           {triLang(lang as Lang, {
@@ -135,7 +138,7 @@ export default function MaintenanceGate() {
             pl: 'Prace techniczne',
           })}
         </Text>
-        <Text style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 420 }}>
+        <Text style={{ color: monoIcon(themeMode, '#cbd5e1'), fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 420 }}>
           {message}
         </Text>
       </View>
@@ -170,7 +173,7 @@ export default function MaintenanceGate() {
             backgroundColor: 'rgba(255,255,255,0.14)',
           }}
         >
-          <Ionicons name="construct-outline" size={18} color="#fed7aa" />
+          <Ionicons name="construct-outline" size={18} color={monoIcon(themeMode, '#fed7aa')} />
         </View>
         <ScrollView
           horizontal={false}
@@ -178,7 +181,7 @@ export default function MaintenanceGate() {
           style={{ flex: 1, maxHeight: 54 }}
           contentContainerStyle={{ justifyContent: 'center', minHeight: 44 }}
         >
-          <Text style={{ color: '#fed7aa', fontSize: 13, lineHeight: 18, fontWeight: '800', textAlign: 'center' }}>
+          <Text style={{ color: monoIcon(themeMode, '#fed7aa'), fontSize: 13, lineHeight: 18, fontWeight: '800', textAlign: 'center' }}>
             {message}
           </Text>
         </ScrollView>
@@ -205,7 +208,7 @@ export default function MaintenanceGate() {
             backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
           })}
         >
-          <Ionicons name="close" size={20} color="#fed7aa" />
+          <Ionicons name="close" size={20} color={monoIcon(themeMode, '#fed7aa')} />
         </Pressable>
       </View>
     </Animated.View>

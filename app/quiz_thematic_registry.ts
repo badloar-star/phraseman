@@ -5,7 +5,7 @@ import { HOME_AND_ROOMS_SKYLER_PACK } from './quiz_thematic_home_and_rooms';
 import { KITCHEN_AND_COOKING_SKYLER_PACK } from './quiz_thematic_kitchen_and_cooking';
 import {
   skylerThematicPackToQuizPhrases,
-  thematicQuizPackAvailableForTarget,
+  thematicQuizPackSurfaceVisibleForTarget,
   type SkylerThematicPack,
   type SkylerThematicPackAdapterOptions,
 } from './quiz_thematic_packs';
@@ -49,6 +49,7 @@ const kitchenCardBackgrounds: ThemeAssetMap = {
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
+  business: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-business.webp'),
 };
 
 const kitchenLogos: ThemeAssetMap = {
@@ -58,6 +59,7 @@ const kitchenLogos: ThemeAssetMap = {
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
+  business: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-business.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-aurora.webp'),
@@ -71,6 +73,7 @@ const homeCardBackgrounds: ThemeAssetMap = {
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
+  business: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-business.webp'),
 };
 
 const homeLogos: ThemeAssetMap = {
@@ -80,6 +83,7 @@ const homeLogos: ThemeAssetMap = {
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
+  business: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-business.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-aurora.webp'),
@@ -212,7 +216,7 @@ export function getThematicQuizCategory(
   const category = getRuntimeThematicQuizCategories().find(item =>
     item.id === id &&
     item.target === 'en' &&
-    thematicQuizPackAvailableForTarget(item.pack, normalizedTarget)
+    thematicQuizPackSurfaceVisibleForTarget(item.pack, normalizedTarget)
   );
   return category;
 }
@@ -221,7 +225,7 @@ export function getAvailableThematicQuizCategories(studyTarget?: RuntimeStudyTar
   const normalizedTarget = storageStudyTarget(studyTarget);
   const categories = getRuntimeThematicQuizCategories().filter(category =>
     category.target === 'en' &&
-    thematicQuizPackAvailableForTarget(category.pack, normalizedTarget)
+    thematicQuizPackSurfaceVisibleForTarget(category.pack, normalizedTarget)
   );
   return categories;
 }

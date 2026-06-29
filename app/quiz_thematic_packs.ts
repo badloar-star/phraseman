@@ -155,6 +155,14 @@ export function thematicQuizPackAvailableForTarget(
   return pack.target === 'en' && storageStudyTarget(studyTarget) === 'en';
 }
 
+export function thematicQuizPackSurfaceVisibleForTarget(
+  pack: Pick<SkylerThematicPack, 'target'>,
+  studyTarget?: RuntimeStudyTarget,
+): boolean {
+  const target = storageStudyTarget(studyTarget);
+  return pack.target === 'en' && (target === 'en' || target === 'fr');
+}
+
 export function validateSkylerThematicPackForRuntime(pack: SkylerThematicPack): {
   ok: boolean;
   issues: SkylerThematicPackIssue[];

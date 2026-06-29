@@ -44,11 +44,11 @@ describe('admin VIP survey contract', () => {
     expect(inboxSource).toContain("message.kind === 'vip_survey'");
     expect(inboxSource).toContain('const { hasPremiumAccess } = usePremium()');
     expect(inboxSource).toContain('if (hasPremiumAccess) {');
-    expect(inboxSource).toContain('hideMessage(message.id)');
+    expect(inboxSource).toContain('dismissSurveyMessage(message.id)');
     expect(inboxSource).toContain('setVisible(false)');
     expect(inboxSource).toContain('setTimeout(() => {');
     expect(inboxSource).toContain('event.stopPropagation?.()');
-    expect(inboxSource).toContain('numberOfLines={2}');
+    expect(inboxSource).toContain('numberOfLines={messageRead ? 1 : 2}');
     expect(inboxSource).toContain('messageMetaRow');
   });
 

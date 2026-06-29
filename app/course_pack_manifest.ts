@@ -94,6 +94,7 @@ export function validateCoursePackManifest(value: unknown): CoursePackManifestVa
   validateStudyTarget(value.studyTarget, errors);
   validateSourceLocale(value.sourceLocale, errors);
   validateSurface(value.surface, errors);
+  validatePackIdentity(value, errors);
   validateVersion('schemaVersion', value.schemaVersion, errors);
   validateVersion('contentVersion', value.contentVersion, errors);
   validateVersion('minAppVersion', value.minAppVersion, errors);
@@ -117,7 +118,7 @@ export function assertCoursePackManifest(value: unknown): CoursePackManifest {
 function validateCoursePackCacheKeyParts(parts: CoursePackCacheKeyParts): void {
   const result = validateCoursePackManifest({
     ...parts,
-    packId: 'cache-key-validation',
+    packId: `${parts.studyTarget}.${parts.sourceLocale}.${parts.surface}.cache-key-validation`,
     minAppVersion: '0',
     byteSize: 1,
     createdAt: '1970-01-01T00:00:00.000Z',
@@ -136,6 +137,21 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function validatePackId(value: unknown, errors: string[]): void {
   if (typeof value !== 'string' || !value.trim() || !PACK_ID_RE.test(value)) {
     errors.push('packId must be a non-empty stable id');
+  }
+}
+
+function validatePackIdentity(value: Record<string, unknown>, errors: string[]): void {
+  if (
+    typeof value.packId !== 'string' ||
+    typeof value.studyTarget !== 'string' ||
+    typeof value.sourceLocale !== 'string' ||
+    typeof value.surface !== 'string'
+  ) {
+    return;
+  }
+  const expectedPrefix = `${value.studyTarget}.${value.sourceLocale}.${value.surface}.`;
+  if (!value.packId.startsWith(expectedPrefix)) {
+    errors.push('packId must start with studyTarget.sourceLocale.surface');
   }
 }
 

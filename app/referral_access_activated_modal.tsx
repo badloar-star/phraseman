@@ -45,6 +45,7 @@ export interface ReferralAccessActivatedModalProps {
     textSecond: string;
     textMuted: string;
     accent: string;
+    correctText: string;
   };
 }
 
@@ -281,7 +282,7 @@ export function ReferralAccessActivatedModal({
             accessibilityRole="button"
             accessibilityLabel={buttonLabel}
           >
-            <Text style={styles.buttonLabel}>{buttonLabel}</Text>
+            <Text style={[styles.buttonLabel, { color: t.correctText }]}>{buttonLabel}</Text>
           </Pressable>
         </Animated.View>
       </View>

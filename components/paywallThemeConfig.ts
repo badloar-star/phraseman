@@ -212,6 +212,42 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#E9B949',
   },
 
+  // ── BUSINESS (strict graphite mono) ───────────────────────────────────────
+  business: {
+    heroAccent: '#FFFFFF',
+
+    selectedCardBorder: '#FFFFFF',
+    selectedCardBg: 'rgba(255,255,255,0.10)',
+    unselectedCardBg: 'rgba(36,36,36,0.88)',
+    selectedCardShadow: '#000000',
+
+    savingsBadgeBg: '#F2F2F2',
+    savingsBadgeText: '#0A0A0A',
+
+    popularBadgeBg: '#FFFFFF',
+    popularBadgeText: '#0A0A0A',
+
+    ctaBg: '#FFFFFF',
+    ctaText: '#0A0A0A',
+    ctaShadow: '#000000',
+
+    pillBg: 'rgba(255,255,255,0.08)',
+    pillText: '#F2F2F2',
+    pillBorder: 'rgba(255,255,255,0.12)',
+
+    urgencyBg: 'rgba(255,255,255,0.06)',
+    urgencyTimerText: '#F2F2F2',
+    urgencyLabelText: '#9A9A9A',
+    urgencyStrikethroughColor: '#5E5E5E',
+    urgencyCurrentPriceText: '#F2F2F2',
+
+    expandBtnText: '#F2F2F2',
+    expandBtnBorder: 'rgba(255,255,255,0.12)',
+
+    socialProofText: '#9A9A9A',
+    socialProofStarColor: '#F2F2F2',
+  },
+
   // ── COMPASS (warm charcoal / champagne) ───────────────────────────────────
   midnight: {
     heroAccent: '#C9D2FF',

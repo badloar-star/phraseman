@@ -89,6 +89,14 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskGlow: 'rgba(110,168,255,0.09)',
     taskBorder: 'rgba(110,168,255,0.28)',
   },
+  business: {
+    accent: '#FFFFFF',
+    accentSoft: 'rgba(255,255,255,0.10)',
+    chipBg: 'rgba(255,255,255,0.08)',
+    chipText: '#F2F2F2',
+    taskGlow: 'rgba(255,255,255,0.06)',
+    taskBorder: 'rgba(255,255,255,0.12)',
+  },
   midnight: {
     accent: '#9BA8FF',
     accentSoft: 'rgba(155,168,255,0.18)',

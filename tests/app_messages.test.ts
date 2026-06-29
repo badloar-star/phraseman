@@ -270,8 +270,8 @@ describe('app_messages', () => {
       id,
       kind: 'vip_survey',
       audience: 'free',
-      titleRu: 'Хотите получить месяц VIP?',
-      messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней VIP.',
+      titleRu: 'Хотите получить месяц Plus?',
+      messageRu: 'Пройдите короткий опрос о приложении и активируйте 30 дней Plus.',
       vipSurvey: { surveyId: 'vip_feedback_v2', rewardDays: 30 },
     });
     expect(states).toEqual([]);

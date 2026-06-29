@@ -5,6 +5,7 @@ import {
   type QuizSourceLocalePayload,
 } from './quiz_source_locale_payloads';
 import type { HeisenbergSourceLocale, SourceLocale } from './source_locales';
+import { storageStudyTarget } from './target_storage_keys';
 
 type PhraseLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
 export type QuizDifficulty = 'easy' | 'medium' | 'hard';
@@ -25497,7 +25498,7 @@ export const getQuizPhrases = (
   _lang: QuizSourceLocale = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] => {
-  if (studyTarget === 'fr') {
+  if (storageStudyTarget(studyTarget) === 'fr') {
     return [];
   }
 

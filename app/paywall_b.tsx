@@ -21,6 +21,9 @@ import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
+import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
+import { pickPercentileLine } from './paywall_percentile_line';
+import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
@@ -28,9 +31,10 @@ import {
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions,
 } from '../components/paywall/paywallShared';
+import PaywallGreetingLine from '../components/paywall/PaywallGreetingLine';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
-import { MirrorCard, CompareCard } from '../components/paywall/PaywallProofCards';
+import { MirrorCard, PercentileCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
@@ -40,9 +44,10 @@ import { hapticTap } from '../hooks/use-haptics';
 const VARIANT = 'B' as const;
 
 export default function PaywallB() {
-  const params = useLocalSearchParams<{ context?: string; source?: string }>();
+  const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string }>();
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const isOnboarding = source === 'onboarding_plan';
   // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
@@ -50,10 +55,12 @@ export default function PaywallB() {
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
   const insets = useSafeAreaInsets();
-  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang });
+  const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
 
   const [tags, setTags] = useState<PersonalizedTag[]>([]);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
+  const [profile, setProfile] = useState<PaywallProfile | null>(null);
+  const [percentileLine, setPercentileLine] = useState<string | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   // Онбординг: перед уходом на следующий шаг проигрываем обратное осветление фона.
@@ -86,6 +93,10 @@ export default function PaywallB() {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
       } catch { /* некритично */ }
+      try {
+        const prof = await readPaywallProfile(lang as PaywallLang);
+        if (!dead) setProfile(prof);
+      } catch { /* некритично */ }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
     try {
@@ -94,6 +105,19 @@ export default function PaywallB() {
     } catch { /* некритично */ }
     return () => { dead = true; };
   }, [ctx, lang]);
+
+  // Перцентиль «твоё место» из собственных данных (перенесено из C — теперь и в B).
+  useEffect(() => {
+    let dead = false;
+    void (async () => {
+      try {
+        const { percentiles } = await loadPercentileData();
+        const line = pickPercentileLine(ctx, percentiles, { streak: mirror?.streak ?? 0 }, lang as Lang);
+        if (!dead && line) setPercentileLine(line);
+      } catch { /* нет данных — молчим */ }
+    })();
+    return () => { dead = true; };
+  }, [ctx, lang, mirror?.streak]);
 
   const opacity = useRef(new Animated.Value(0)).current;
   const slideY = useRef(new Animated.Value(20)).current;
@@ -115,6 +139,7 @@ export default function PaywallB() {
   const period = periodLabelFor(lang as Lang, p.selected);
   const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
   const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
+  const priceLine = price ? `${price}${period}` : '';
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
@@ -143,10 +168,15 @@ export default function PaywallB() {
               <PaywallPersonalTags texts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))} chrome={chrome} />
             )}
 
+            {/* Персональное обращение по имени + прогресс + цель. */}
+            <PaywallGreetingLine lang={lang as Lang} chrome={chrome} profile={profile} mirror={mirror} />
+
             {mirror && <MirrorCard lang={lang as Lang} chrome={chrome} mirror={mirror} />}
+            {percentileLine && <PercentileCard lang={lang as Lang} chrome={chrome} line={percentileLine} />}
             <CompareCard lang={lang as Lang} chrome={chrome} />
 
             <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
+            <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
 
             {p.trialDays && (
               <PaywallTrialTimeline
@@ -186,6 +216,7 @@ export default function PaywallB() {
               currentPrice={price}
               futurePrice={p.futurePrice}
               period={period}
+              isLifetime={isLifetimeSel}
             />
 
             <View style={S.ctaWrap}>
@@ -200,6 +231,7 @@ export default function PaywallB() {
                 onRestore={() => { void p.handleRestore(); }}
                 restoring={p.restoring}
                 onContinueFree={() => closeWithDim('continue_free')}
+                trustHasTrial={!!p.trialDays}
               />
             </View>
 

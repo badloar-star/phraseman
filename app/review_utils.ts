@@ -107,14 +107,14 @@ const CONTEXTUAL: Record<'perfect_lesson' | 'arena_win', {
       pl: 'Zwycięzca! Teraz finałowy boss',
     },
     subtitle: {
-      ru: '',
-      uk: '',
-      es: '',
-      'pt-BR': '',
-      vi: '',
-      id: '',
-      tr: '',
-      pl: '',
+      ru: 'Ты только что выиграл матч. Поставь нам 5 звёзд в магазине приложения.',
+      uk: 'Ти щойно виграв матч. Постав нам 5 зірок у магазині застосунку.',
+      es: 'Acabas de ganar el duelo. Déjanos 5 estrellas en la tienda de la app.',
+      'pt-BR': 'Você acabou de vencer um duelo. Deixe 5 estrelas para nós na loja do app.',
+      vi: 'Bạn vừa thắng một trận. Hãy cho bọn mình 5 sao trong cửa hàng ứng dụng nhé.',
+      id: 'Kamu baru saja menang duel. Beri kami 5 bintang di toko aplikasi.',
+      tr: 'Az önce düelloyu kazandın. Uygulama mağazasında bize 5 yıldız bırak.',
+      pl: 'Właśnie wygrałeś pojedynek. Daj nam 5 gwiazdek w sklepie z aplikacjami.',
     },
     btnYes: {
       ru: 'Победить!',
@@ -283,27 +283,7 @@ export const getReviewVariant = async (
   lang: Lang = 'ru'
 ): Promise<ReviewVariant> => {
   if (context === 'perfect_lesson') return localizeVariant(CONTEXTUAL.perfect_lesson, lang);
-  if (context === 'arena_win') {
-    return localizeVariant(
-      {
-        emoji: CONTEXTUAL.arena_win.emoji,
-        title: CONTEXTUAL.arena_win.title,
-        subtitle: {
-          ru: 'Ты только что выиграл матч. Поставь нам 5 звёзд в магазине приложения.',
-          uk: 'Ти щойно виграв матч. Постав нам 5 зірок у магазині застосунку.',
-          es: 'Acabas de ganar el duelo. Déjanos 5 estrellas en la tienda de la app.',
-      'pt-BR': 'Você acabou de vencer um duelo. Deixe 5 estrelas para nós na loja do app.',
-      vi: 'Bạn vừa thắng một trận. Hãy cho bọn mình 5 sao trong cửa hàng ứng dụng nhé.',
-      id: 'Kamu baru saja menang duel. Beri kami 5 bintang di toko aplikasi.',
-      tr: 'Az önce düelloyu kazandın. Uygulama mağazasında bize 5 yıldız bırak.',
-      pl: 'Właśnie wygrałeś pojedynek. Daj nam 5 gwiazdek w sklepie z aplikacjami.',
-        },
-        btnYes: CONTEXTUAL.arena_win.btnYes,
-        btnNo: CONTEXTUAL.arena_win.btnNo,
-      },
-      lang,
-    );
-  }
+  if (context === 'arena_win') return localizeVariant(CONTEXTUAL.arena_win, lang);
   const raw = await AsyncStorage.getItem(KEY_SHOW_COUNT).catch(() => null);
   const idx = (parseInt(raw || '0')) % GENERAL_VARIANTS.length;
   return localizeVariant(GENERAL_VARIANTS[idx], lang);
@@ -348,7 +328,24 @@ export const markReviewRated = async (): Promise<void> => {
   } catch {}
 };
 
-/** Вызывать когда показали диалог (независимо от ответа) — увеличивает счётчик показов. */
+/**
+ * Уже оценил ли пользователь приложение (нажимал "Да" в любой из rate-модалок).
+ * Используется потоками, которые показывают предложение оценить В ОБХОД canShowReview
+ * (например VIP-окно), чтобы не докучать тем, кто уже поставил оценку.
+ */
+export const hasUserRated = async (): Promise<boolean> => {
+  try {
+    return (await AsyncStorage.getItem(KEY_RATED)) === '1';
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Вызывать в момент ПОКАЗА диалога (а не в обработчике кнопки) — увеличивает счётчик
+ * показов и ставит метку времени для 30-дневного кулдауна. Так любой способ закрытия
+ * (кнопка "нет", тап по фону, системное закрытие) уже учтён в лимитах.
+ */
 export const markReviewPrompted = async (): Promise<void> => {
   try {
     const raw = await AsyncStorage.getItem(KEY_SHOW_COUNT);

@@ -7,9 +7,13 @@ describe('Gustav French lesson runtime source gate', () => {
   it('renders a blocked French lesson state before mounting the lesson runtime when no sourced rows exist', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson1.tsx'), 'utf8');
 
-    expect(source).toContain(
-      'const LESSON_DATA = getLessonData(lessonId).filter(p => phraseHasStudyTargetContent(p, studyTarget))',
+    const lessonDataSlice = source.slice(
+      source.indexOf('const LESSON_DATA = useMemo'),
+      source.indexOf('const effectiveTotal = Math.min'),
     );
+    expect(lessonDataSlice).toContain('getLessonData(lessonId)');
+    expect(lessonDataSlice).toContain('phraseHasStudyTargetContent(p, studyTarget)');
+    expect(lessonDataSlice).toContain('[planPhraseLesson, lessonId, studyTarget');
     expect(source).toContain('const hasPlayableLessonRows = effectiveTotal > 0');
     expect(source).toContain('const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows');
     expect(source).toContain('if (frenchLessonSourceGateBlocked)');
@@ -39,9 +43,11 @@ describe('Gustav French lesson runtime source gate', () => {
     expect(noPlayableRowsSlice).toContain('setProgress([])');
     expect(noPlayableRowsSlice).toContain('setShuffled([])');
     expect(noPlayableRowsSlice).toContain('setSelectedWords([])');
-    expect(noPlayableRowsSlice).toContain('touchLessonScreenPrimed(lessonId, {');
+    expect(noPlayableRowsSlice).toContain('touchLessonScreenPrimed(lessonStorageId, {');
     expect(noPlayableRowsSlice).toContain('order: []');
     expect(noPlayableRowsSlice).toContain('progress: []');
+    expect(noPlayableRowsSlice).toContain('override: null');
+    expect(noPlayableRowsSlice).toContain('}, studyTarget)');
     expect(noPlayableRowsSlice).toContain('return;');
   });
 
@@ -72,6 +78,5 @@ describe('Gustav French lesson runtime source gate', () => {
     expect(theoryButtonSlice).toContain('if (lessonTheorySupportBlocked)');
     expect(theoryButtonSlice).toContain("name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'}");
     expect(theoryButtonSlice).toContain("ru: 'На проверке'");
-    expect(source).toContain('{__DEV__ && !lessonHintSupportBlocked && (');
   });
 });

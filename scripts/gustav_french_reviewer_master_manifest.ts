@@ -70,6 +70,9 @@ type MasterManifest = {
     generationHistoryWarnings: number;
     legacyGeneratedWithoutResearchPackRows: number;
     generatedRowsMissingResearchEvidenceIds: number;
+    legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps: boolean;
+    effectiveLegacyGeneratedWithoutResearchPackRows: number;
+    effectiveGeneratedRowsMissingResearchEvidenceIds: number;
     appAtlasRefreshBlockers: number;
     appAtlasRefreshWarnings: number;
     appAtlasTargetSensitiveFiles: number;
@@ -114,6 +117,17 @@ type MasterManifest = {
     aiPromptContractV2Domains: number;
     aiPromptContractV2RejectBeforeReturn: number;
     aiPromptContractV2RejectBeforeCache: number;
+    aiPromptContractV2CriticalSurfaceClassesCovered: number;
+    aiPromptContractV2CriticalSurfaceClassesExpected: number;
+    aiPromptContractV2CriticalSurfaceContracts: number;
+    aiPromptContractV2CriticalSurfaceLanguageDimensions: number;
+    aiPromptContractV2CriticalSurfaceCacheContracts: number;
+    aiPromptContractV2CriticalSurfaceRejectBeforeReturn: number;
+    aiPromptContractV2CriticalSurfaceRejectBeforeCache: number;
+    aiPromptContractV2CriticalSurfaceSafeFallback: number;
+    aiPromptContractV2CriticalSurfaceGenerationBlocked: number;
+    aiPromptContractV2CriticalSurfaceRequiredFilesCovered: number;
+    aiPromptContractV2CriticalSurfaceRequiredFiles: number;
     aiPromptContractV2FixtureProbesPassed: number;
     aiPromptContractV2FixtureProbes: number;
     readyForContentQualityGatesV2: boolean;
@@ -419,8 +433,51 @@ type MasterManifest = {
     llmOfficialSourcePromotedDecisionFileGenerationV2OpenFlags: number;
     llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined: boolean;
     llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh: boolean;
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady: boolean;
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractEntrypoints: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractUniqueIds: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractCriticalContracts: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiUniqueContractIds: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDuplicateContractIds: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContracts: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDomainMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFilePathMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFeatureRiskClassMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRiskLevelMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetLocaleMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiSourceLocalesMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCacheDimensionsMatchedToPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageGatePassed: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetOutputBeforeQualityClosedByPromptContract: number;
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract: number;
     llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed: number;
     llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes: number;
+    legacyGeneratedResearchEvidenceBridgeV2Blockers: number;
+    legacyGeneratedResearchEvidenceBridgeV2Warnings: number;
+    legacyGeneratedResearchEvidenceBridgeV2Present: boolean;
+    legacyGeneratedResearchEvidenceBridgeV2State: string;
+    legacyGeneratedResearchEvidenceBridgeV2Ready: boolean;
+    legacyGeneratedResearchEvidenceBridgeV2LegacyRows: number;
+    legacyGeneratedResearchEvidenceBridgeV2PromotedRows: number;
+    legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched: number;
+    legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds: number;
+    legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed: number;
+    legacyGeneratedResearchEvidenceBridgeV2AiDecisions: number;
+    legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions: number;
+    legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate: number;
+    legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed: number;
+    legacyGeneratedResearchEvidenceBridgeV2AiWithOfficialSourceNotes: number;
+    legacyGeneratedResearchEvidenceBridgeV2DryRunReady: boolean;
+    legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed: number;
+    legacyGeneratedResearchEvidenceBridgeV2FixtureProbes: number;
+    legacyGeneratedResearchEvidenceBridgeV2ReadyForApply: boolean;
+    legacyGeneratedResearchEvidenceBridgeV2MayModifyProductionAppFiles: boolean;
     readyForPayloadCreationApprovalPreflightV2: boolean;
     payloadCreationApprovalPreflightV2Blockers: number;
     payloadCreationApprovalPreflightV2Warnings: number;
@@ -480,6 +537,34 @@ type MasterManifest = {
     runtimeActivationBlockerPlanV2FixtureProbesPassed: number;
     runtimeActivationBlockerPlanV2FixtureProbes: number;
     runtimeActivationBlockerPlanV2ReadyForApply: boolean;
+    runtimeDeliveryEvidenceChainV2Blockers: number;
+    runtimeDeliveryEvidenceChainV2Warnings: number;
+    runtimeDeliveryEvidenceChainV2Present: boolean;
+    runtimeDeliveryEvidenceChainV2State: string;
+    runtimeDeliveryEvidenceChainV2Ready: boolean;
+    runtimeDeliveryEvidenceChainV2UpstreamReportsPass: number;
+    runtimeDeliveryEvidenceChainV2UpstreamReportBlockers: number;
+    runtimeDeliveryEvidenceChainV2PreviewEntries: number;
+    runtimeDeliveryEvidenceChainV2PreviewShaPlaceholders: number;
+    runtimeDeliveryEvidenceChainV2PublishManifestEntries: number;
+    runtimeDeliveryEvidenceChainV2ActualShaEntries: number;
+    runtimeDeliveryEvidenceChainV2ActualByteSizeEntries: number;
+    runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches: number;
+    runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches: number;
+    runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches: number;
+    runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent: number;
+    runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts: number;
+    runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts: number;
+    runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts: number;
+    runtimeDeliveryEvidenceChainV2AdminReady: boolean;
+    runtimeDeliveryEvidenceChainV2RuntimeReady: boolean;
+    runtimeDeliveryEvidenceChainV2StorageReady: boolean;
+    runtimeDeliveryEvidenceChainV2ClosedTransitions: boolean;
+    runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState: boolean;
+    runtimeDeliveryEvidenceChainV2FixtureProbesPassed: number;
+    runtimeDeliveryEvidenceChainV2FixtureProbes: number;
+    runtimeDeliveryEvidenceChainV2ReadyForApply: boolean;
+    runtimeDeliveryEvidenceChainV2MayModifyProductionAppFiles: boolean;
     explicitApprovalReceiptHashLockGateV2Blockers: number;
     explicitApprovalReceiptHashLockGateV2Warnings: number;
     explicitApprovalReceiptHashLockGateV2Present: boolean;
@@ -615,9 +700,25 @@ type MasterManifest = {
     officialSourceContentCoverageV2AcceptedRows: number;
     officialSourceContentCoverageV2AcceptedAi: number;
     officialSourceContentCoverageV2RowsWithSourceRefs: number;
+    officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls: number;
+    officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs: number;
+    officialSourceContentCoverageV2RowsWithUntrustedSourceRefUrls: number;
+    officialSourceContentCoverageV2RowsWithUntrustedSourceRefIds: number;
+    officialSourceContentCoverageV2AiWithTrustedSourceRefUrls: number;
+    officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs: number;
+    officialSourceContentCoverageV2AiWithUntrustedSourceRefUrls: number;
+    officialSourceContentCoverageV2AiWithUntrustedSourceRefIds: number;
+    officialSourceContentCoverageV2RejectsNonHttpsSourceRefFixture: boolean;
+    officialSourceContentCoverageV2RejectsUntrustedSourceDomainFixture: boolean;
+    officialSourceContentCoverageV2RejectsUntrustedSourceIdFixture: boolean;
+    officialSourceContentCoverageV2RejectsEvidenceWithoutMatchingSourceRefFixture: boolean;
+    officialSourceContentCoverageV2RejectsInsufficientAiTrustedSourceRefsFixture: boolean;
     officialSourceContentCoverageV2RowsWithGatesPassed: number;
     officialSourceContentCoverageV2QuizRowsOneCorrect: number;
     officialSourceContentCoverageV2TrustedSourceIds: number;
+    officialSourceContentCoverageV2P38Ready: boolean;
+    officialSourceContentCoverageV2FreshAfterMasterRefresh: boolean;
+    officialSourceContentCoverageV2FreshnessAcceptedByP38Snapshot: boolean;
     officialSourceContentCoverageV2ReadyForImportDryRunRefresh: boolean;
     officialSourceContentCoverageV2FixtureProbesPassed: number;
     officialSourceContentCoverageV2FixtureProbes: number;
@@ -627,6 +728,483 @@ type MasterManifest = {
     officialSourcePayloadCreationApprovalPreflightV2FreshAfterImportGate: boolean;
     officialSourceClosedLocalPayloadMaterializationV2Ready: boolean;
     officialSourceClosedLocalPayloadMaterializationV2FreshAfterPayloadPreflight: boolean;
+    productionActivationHoldExactApprovalRequiredV2Blockers: number;
+    productionActivationHoldExactApprovalRequiredV2Warnings: number;
+    productionActivationHoldExactApprovalRequiredV2Present: boolean;
+    productionActivationHoldExactApprovalRequiredV2State: string;
+    productionActivationHoldExactApprovalRequiredV2Ready: boolean;
+    productionActivationHoldExactApprovalRequiredV2ClosedEvidenceReady: boolean;
+    productionActivationHoldExactApprovalRequiredV2ExactApprovalRequired: boolean;
+    productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed: number;
+    productionActivationHoldExactApprovalRequiredV2FixtureProbes: number;
+    productionActivationHoldExactApprovalRequiredV2ReadyForApply: boolean;
+    productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles: boolean;
+    exactApprovalValidationGateV2Blockers: number;
+    exactApprovalValidationGateV2Warnings: number;
+    exactApprovalValidationGateV2Present: boolean;
+    exactApprovalValidationGateV2State: string;
+    exactApprovalValidationGateV2Ready: boolean;
+    exactApprovalValidationGateV2ReadyForProductionActivationSequencing: boolean;
+    exactApprovalValidationGateV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalValidationGateV2ActiveHashLockExists: boolean;
+    exactApprovalValidationGateV2FixtureProbesPassed: number;
+    exactApprovalValidationGateV2FixtureProbes: number;
+    exactApprovalValidationGateV2ReadyForApply: boolean;
+    exactApprovalValidationGateV2MayModifyProductionAppFiles: boolean;
+    productionActivationSequencePreflightV2Blockers: number;
+    productionActivationSequencePreflightV2Warnings: number;
+    productionActivationSequencePreflightV2Present: boolean;
+    productionActivationSequencePreflightV2State: string;
+    productionActivationSequencePreflightV2Ready: boolean;
+    productionActivationSequencePreflightV2ReadyForProductionActivationSequence: boolean;
+    productionActivationSequencePreflightV2FixtureProbesPassed: number;
+    productionActivationSequencePreflightV2FixtureProbes: number;
+    productionActivationSequencePreflightV2ReadyForApply: boolean;
+    productionActivationSequencePreflightV2MayModifyProductionAppFiles: boolean;
+    productionApplyTransactionContractV2Blockers: number;
+    productionApplyTransactionContractV2Warnings: number;
+    productionApplyTransactionContractV2Present: boolean;
+    productionApplyTransactionContractV2State: string;
+    productionApplyTransactionContractV2Ready: boolean;
+    productionApplyTransactionContractV2ReadyForProductionApplyTransaction: boolean;
+    productionApplyTransactionContractV2ServerManifestEntries: number;
+    productionApplyTransactionContractV2PayloadFilesChecked: number;
+    productionApplyTransactionContractV2IndexFilesChecked: number;
+    productionApplyTransactionContractV2SliceManifestFilesChecked: number;
+    productionApplyTransactionContractV2ShaMismatches: number;
+    productionApplyTransactionContractV2MissingEntryFiles: number;
+    productionApplyTransactionContractV2P49RequirementsProved: number;
+    productionApplyTransactionContractV2P49RequirementsProductionLocked: number;
+    productionApplyTransactionContractV2P49RequirementsMissing: number;
+    productionApplyTransactionContractV2P49RequirementsContradicted: number;
+    productionApplyTransactionContractV2FinalHashLocks: number;
+    productionApplyTransactionContractV2P50MissingCriticalArtifacts: number;
+    productionApplyTransactionContractV2P50RuntimeDeliveryEvidenceChainReady: boolean;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady: boolean;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries: number;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainActualShaEntries: number;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainRollbackContracts: number;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects: number;
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects: number;
+    productionApplyTransactionContractV2FixtureProbesPassed: number;
+    productionApplyTransactionContractV2FixtureProbes: number;
+    productionApplyTransactionContractV2ReadyForApply: boolean;
+    productionApplyTransactionContractV2MayModifyProductionAppFiles: boolean;
+    postApplyRollbackGuardContractV2Blockers: number;
+    postApplyRollbackGuardContractV2Warnings: number;
+    postApplyRollbackGuardContractV2Present: boolean;
+    postApplyRollbackGuardContractV2State: string;
+    postApplyRollbackGuardContractV2Ready: boolean;
+    postApplyRollbackGuardContractV2ReadyForPostApplyRollbackGuard: boolean;
+    postApplyRollbackGuardContractV2RuntimeCacheContracts: number;
+    postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts: number;
+    postApplyRollbackGuardContractV2LanguagePromptContracts: number;
+    postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected: number;
+    postApplyRollbackGuardContractV2PostApplyGuardSteps: number;
+    postApplyRollbackGuardContractV2RollbackGuardSteps: number;
+    postApplyRollbackGuardContractV2P49RequirementsProved: number;
+    postApplyRollbackGuardContractV2P49RequirementsProductionLocked: number;
+    postApplyRollbackGuardContractV2P49RequirementsMissing: number;
+    postApplyRollbackGuardContractV2P49RequirementsContradicted: number;
+    postApplyRollbackGuardContractV2FinalHashLocks: number;
+    postApplyRollbackGuardContractV2P50MissingCriticalArtifacts: number;
+    postApplyRollbackGuardContractV2P50RuntimeDeliveryEvidenceChainReady: boolean;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady: boolean;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries: number;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainActualShaEntries: number;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainRollbackContracts: number;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects: number;
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects: number;
+    postApplyRollbackGuardContractV2FixtureProbesPassed: number;
+    postApplyRollbackGuardContractV2FixtureProbes: number;
+    postApplyRollbackGuardContractV2ReadyForApply: boolean;
+    postApplyRollbackGuardContractV2MayModifyProductionAppFiles: boolean;
+    approvalWaitSafeContinuationV2Blockers: number;
+    approvalWaitSafeContinuationV2Warnings: number;
+    approvalWaitSafeContinuationV2Present: boolean;
+    approvalWaitSafeContinuationV2State: string;
+    approvalWaitSafeContinuationV2Ready: boolean;
+    approvalWaitSafeContinuationV2ReadyForNextSafePass: boolean;
+    approvalWaitSafeContinuationV2SafeWorkItems: number;
+    approvalWaitSafeContinuationV2ProductionLockedItems: number;
+    approvalWaitSafeContinuationV2LegacyReviewResidueMatches: number;
+    approvalWaitSafeContinuationV2FixtureProbesPassed: number;
+    approvalWaitSafeContinuationV2FixtureProbes: number;
+    approvalWaitSafeContinuationV2ReadyForApply: boolean;
+    approvalWaitSafeContinuationV2MayModifyProductionAppFiles: boolean;
+    productionReadinessCompletionAuditV2Blockers: number;
+    productionReadinessCompletionAuditV2Warnings: number;
+    productionReadinessCompletionAuditV2Present: boolean;
+    productionReadinessCompletionAuditV2State: string;
+    productionReadinessCompletionAuditV2Ready: boolean;
+    productionReadinessCompletionAuditV2RequirementsProved: number;
+    productionReadinessCompletionAuditV2RequirementsProductionLocked: number;
+    productionReadinessCompletionAuditV2RequirementsMissing: number;
+    productionReadinessCompletionAuditV2RequirementsContradicted: number;
+    productionReadinessCompletionAuditV2ClosedModeEvidenceComplete: boolean;
+    productionReadinessCompletionAuditV2FixtureProbesPassed: number;
+    productionReadinessCompletionAuditV2FixtureProbes: number;
+    productionReadinessCompletionAuditV2ReadyForApply: boolean;
+    productionReadinessCompletionAuditV2MayModifyProductionAppFiles: boolean;
+    finalPreapprovalEvidenceHashLockV2Blockers: number;
+    finalPreapprovalEvidenceHashLockV2Warnings: number;
+    finalPreapprovalEvidenceHashLockV2Present: boolean;
+    finalPreapprovalEvidenceHashLockV2State: string;
+    finalPreapprovalEvidenceHashLockV2Ready: boolean;
+    finalPreapprovalEvidenceHashLockV2FinalHashLocks: number;
+    finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts: number;
+    finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks: number;
+    finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock: boolean;
+    finalPreapprovalEvidenceHashLockV2P43P49ChainReady: boolean;
+    finalPreapprovalEvidenceHashLockV2P49CompletionReady: boolean;
+    finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady: boolean;
+    finalPreapprovalEvidenceHashLockV2FixtureProbesPassed: number;
+    finalPreapprovalEvidenceHashLockV2FixtureProbes: number;
+    finalPreapprovalEvidenceHashLockV2ReadyForApply: boolean;
+    finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles: boolean;
+    exactApprovalApplyRehearsalV2Blockers: number;
+    exactApprovalApplyRehearsalV2Warnings: number;
+    exactApprovalApplyRehearsalV2Present: boolean;
+    exactApprovalApplyRehearsalV2State: string;
+    exactApprovalApplyRehearsalV2Ready: boolean;
+    exactApprovalApplyRehearsalV2ReadinessApplyBlockers: number;
+    exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalApplyRehearsalV2ActiveHashLockExists: boolean;
+    exactApprovalApplyRehearsalV2MainHashLockDryRunPresent: boolean;
+    exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent: boolean;
+    exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow: boolean;
+    exactApprovalApplyRehearsalV2FixtureProbesPassed: number;
+    exactApprovalApplyRehearsalV2FixtureProbes: number;
+    exactApprovalApplyRehearsalV2ReadyForApply: boolean;
+    exactApprovalApplyRehearsalV2MayModifyProductionAppFiles: boolean;
+    exactApprovalSourceFirewallV2Blockers: number;
+    exactApprovalSourceFirewallV2Warnings: number;
+    exactApprovalSourceFirewallV2Present: boolean;
+    exactApprovalSourceFirewallV2State: string;
+    exactApprovalSourceFirewallV2Ready: boolean;
+    exactApprovalSourceFirewallV2ApprovalSourceExists: boolean;
+    exactApprovalSourceFirewallV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts: boolean;
+    exactApprovalSourceFirewallV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalSourceFirewallV2ActiveHashLockExists: boolean;
+    exactApprovalSourceFirewallV2FixtureProbesPassed: number;
+    exactApprovalSourceFirewallV2FixtureProbes: number;
+    exactApprovalSourceFirewallV2ReadyForApply: boolean;
+    exactApprovalSourceFirewallV2MayModifyProductionAppFiles: boolean;
+    exactApprovalSourceIntakeTransitionV2Blockers: number;
+    exactApprovalSourceIntakeTransitionV2Warnings: number;
+    exactApprovalSourceIntakeTransitionV2Present: boolean;
+    exactApprovalSourceIntakeTransitionV2State: string;
+    exactApprovalSourceIntakeTransitionV2Ready: boolean;
+    exactApprovalSourceIntakeTransitionV2ApprovalSourceExists: boolean;
+    exactApprovalSourceIntakeTransitionV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts: boolean;
+    exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript: boolean;
+    exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalSourceIntakeTransitionV2ActiveHashLockExists: boolean;
+    exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts: boolean;
+    exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply: boolean;
+    exactApprovalSourceIntakeTransitionV2FixtureProbesPassed: number;
+    exactApprovalSourceIntakeTransitionV2FixtureProbes: number;
+    exactApprovalSourceIntakeTransitionV2ReadyForApply: boolean;
+    exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles: boolean;
+    exactApprovalActiveArtifactPairSimulationV2Blockers: number;
+    exactApprovalActiveArtifactPairSimulationV2Warnings: number;
+    exactApprovalActiveArtifactPairSimulationV2Present: boolean;
+    exactApprovalActiveArtifactPairSimulationV2State: string;
+    exactApprovalActiveArtifactPairSimulationV2Ready: boolean;
+    exactApprovalActiveArtifactPairSimulationV2ApprovalSourceExists: boolean;
+    exactApprovalActiveArtifactPairSimulationV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists: boolean;
+    exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create: boolean;
+    exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing: boolean;
+    exactApprovalActiveArtifactPairSimulationV2ReadyForP31CreateWhenExactSourcePresent: boolean;
+    exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed: number;
+    exactApprovalActiveArtifactPairSimulationV2FixtureProbes: number;
+    exactApprovalActiveArtifactPairSimulationV2ReadyForApply: boolean;
+    exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP31CreateCommandPreflightV2Blockers: number;
+    exactApprovalP31CreateCommandPreflightV2Warnings: number;
+    exactApprovalP31CreateCommandPreflightV2Present: boolean;
+    exactApprovalP31CreateCommandPreflightV2State: string;
+    exactApprovalP31CreateCommandPreflightV2Ready: boolean;
+    exactApprovalP31CreateCommandPreflightV2ApprovalSourceExists: boolean;
+    exactApprovalP31CreateCommandPreflightV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists: boolean;
+    exactApprovalP31CreateCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent: boolean;
+    exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP31CreateCommandPreflightV2FixtureProbes: number;
+    exactApprovalP31CreateCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP44ValidationCommandPreflightV2Blockers: number;
+    exactApprovalP44ValidationCommandPreflightV2Warnings: number;
+    exactApprovalP44ValidationCommandPreflightV2Present: boolean;
+    exactApprovalP44ValidationCommandPreflightV2State: string;
+    exactApprovalP44ValidationCommandPreflightV2Ready: boolean;
+    exactApprovalP44ValidationCommandPreflightV2ApprovalSourceExists: boolean;
+    exactApprovalP44ValidationCommandPreflightV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalP44ValidationCommandPreflightV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalP44ValidationCommandPreflightV2ActiveHashLockExists: boolean;
+    exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create: boolean;
+    exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP44ValidationCommandPreflightV2FixtureProbes: number;
+    exactApprovalP44ValidationCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers: number;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Warnings: number;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Present: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2State: string;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Ready: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P56Ready: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P44Status: string;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P44ValidationState: string;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P45Status: string;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P45PreflightState: string;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2CurrentHandoffWouldOpenSequence: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed: number;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes: number;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply: boolean;
+    exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP45SequenceCommandPreflightV2Blockers: number;
+    exactApprovalP45SequenceCommandPreflightV2Warnings: number;
+    exactApprovalP45SequenceCommandPreflightV2Present: boolean;
+    exactApprovalP45SequenceCommandPreflightV2State: string;
+    exactApprovalP45SequenceCommandPreflightV2Ready: boolean;
+    exactApprovalP45SequenceCommandPreflightV2P57Ready: boolean;
+    exactApprovalP45SequenceCommandPreflightV2P45Status: string;
+    exactApprovalP45SequenceCommandPreflightV2P45PreflightState: string;
+    exactApprovalP45SequenceCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation: boolean;
+    exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP45SequenceCommandPreflightV2FixtureProbes: number;
+    exactApprovalP45SequenceCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers: number;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Warnings: number;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State: string;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P58Ready: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45Status: string;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45PreflightState: string;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46Status: string;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46TransactionState: string;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed: number;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes: number;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply: boolean;
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2Blockers: number;
+    exactApprovalP46ApplyTransactionCommandPreflightV2Warnings: number;
+    exactApprovalP46ApplyTransactionCommandPreflightV2Present: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2State: string;
+    exactApprovalP46ApplyTransactionCommandPreflightV2Ready: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2P59Ready: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2P45Status: string;
+    exactApprovalP46ApplyTransactionCommandPreflightV2P45PreflightState: string;
+    exactApprovalP46ApplyTransactionCommandPreflightV2P46Status: string;
+    exactApprovalP46ApplyTransactionCommandPreflightV2P46TransactionState: string;
+    exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes: number;
+    exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers: number;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Warnings: number;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State: string;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P60Ready: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46Status: string;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46TransactionState: string;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47Status: string;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47GuardState: string;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed: number;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes: number;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply: boolean;
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2Blockers: number;
+    exactApprovalP47RollbackGuardCommandPreflightV2Warnings: number;
+    exactApprovalP47RollbackGuardCommandPreflightV2Present: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2State: string;
+    exactApprovalP47RollbackGuardCommandPreflightV2Ready: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2P61Ready: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2P46Status: string;
+    exactApprovalP47RollbackGuardCommandPreflightV2P46TransactionState: string;
+    exactApprovalP47RollbackGuardCommandPreflightV2P47Status: string;
+    exactApprovalP47RollbackGuardCommandPreflightV2P47GuardState: string;
+    exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes: number;
+    exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers: number;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Warnings: number;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2State: string;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P62Ready: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47Status: string;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47GuardState: string;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48Status: string;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48ContinuationState: string;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed: number;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes: number;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply: boolean;
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2Blockers: number;
+    exactApprovalP48SafeContinuationCommandPreflightV2Warnings: number;
+    exactApprovalP48SafeContinuationCommandPreflightV2Present: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2State: string;
+    exactApprovalP48SafeContinuationCommandPreflightV2Ready: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2P63Ready: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2P48Status: string;
+    exactApprovalP48SafeContinuationCommandPreflightV2P48ContinuationState: string;
+    exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed: number;
+    exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes: number;
+    exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply: boolean;
+    exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles: boolean;
+    exactApprovalWaitStateV2Blockers: number;
+    exactApprovalWaitStateV2Warnings: number;
+    exactApprovalWaitStateV2Present: boolean;
+    exactApprovalWaitStateV2State: string;
+    exactApprovalWaitStateV2Ready: boolean;
+      exactApprovalWaitStateV2ClosedEvidenceReady: boolean;
+      exactApprovalWaitStateV2ExactApprovalStillRequired: boolean;
+      exactApprovalWaitStateV2SourceContainsExactSentence: boolean;
+      exactApprovalWaitStateV2ApprovalSourceIsCanonical: boolean;
+      exactApprovalWaitStateV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalWaitStateV2ActiveHashLockExists: boolean;
+    exactApprovalWaitStateV2FixtureProbesPassed: number;
+    exactApprovalWaitStateV2FixtureProbes: number;
+    exactApprovalWaitStateV2ReadyForApply: boolean;
+    exactApprovalWaitStateV2MayModifyProductionAppFiles: boolean;
+    orderedApprovalWaitRefreshV2Blockers: number;
+    orderedApprovalWaitRefreshV2Warnings: number;
+    orderedApprovalWaitRefreshV2Present: boolean;
+    orderedApprovalWaitRefreshV2Ready: boolean;
+    orderedApprovalWaitRefreshV2Executed: boolean;
+    orderedApprovalWaitRefreshV2StepsPassed: number;
+    orderedApprovalWaitRefreshV2StepsFailed: number;
+    orderedApprovalWaitRefreshV2P65Status: string;
+    orderedApprovalWaitRefreshV2P65WaitState: string;
+    orderedApprovalWaitRefreshV2P65ClosedEvidenceReady: boolean;
+    orderedApprovalWaitRefreshV2FinalMasterBlockers: number;
+    orderedApprovalWaitRefreshV2FinalMasterWarnings: number;
+    orderedApprovalWaitRefreshV2FinalNextBlockers: number;
+    orderedApprovalWaitRefreshV2FinalNextWarnings: number;
+    orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists: boolean;
+    orderedApprovalWaitRefreshV2ActiveHashLockExists: boolean;
+    orderedApprovalWaitRefreshV2ReadyForApply: boolean;
+    orderedApprovalWaitRefreshV2MayModifyProductionAppFiles: boolean;
+    safePreapprovalContinuationV2Blockers: number;
+    safePreapprovalContinuationV2Warnings: number;
+    safePreapprovalContinuationV2Present: boolean;
+    safePreapprovalContinuationV2Ready: boolean;
+    safePreapprovalContinuationV2Executed: boolean;
+    safePreapprovalContinuationV2StepsPassed: number;
+    safePreapprovalContinuationV2StepsFailed: number;
+    safePreapprovalContinuationV2GenerationBlockers: number;
+    safePreapprovalContinuationV2ApplyBlockers: number;
+    safePreapprovalContinuationV2NextGoalId: string;
+    safePreapprovalContinuationV2ActiveApprovalReceiptExists: boolean;
+    safePreapprovalContinuationV2ActiveHashLockExists: boolean;
+    safePreapprovalContinuationV2ReadyForApply: boolean;
+    safePreapprovalContinuationV2MayModifyProductionAppFiles: boolean;
+    finalProductionReadinessGapV2Blockers: number;
+    finalProductionReadinessGapV2Warnings: number;
+    finalProductionReadinessGapV2Present: boolean;
+    finalProductionReadinessGapV2Ready: boolean;
+    finalProductionReadinessGapV2State: string;
+    finalProductionReadinessGapV2RequirementsReady: number;
+    finalProductionReadinessGapV2RequirementsBlocked: number;
+    finalProductionReadinessGapV2ProductionHardBlockers: number;
+    finalProductionReadinessGapV2CanStartProductionApply: boolean;
+    finalProductionReadinessGapV2GenerationV2Ready: boolean;
+    finalProductionReadinessGapV2DecisionImportV2Ready: boolean;
+    finalProductionReadinessGapV2ActiveApprovalArtifactPairState: string;
+    finalProductionReadinessGapV2ActivationChainReady: boolean;
+    finalProductionReadinessGapV2FixtureProbesPassed: number;
+    finalProductionReadinessGapV2FixtureProbes: number;
+    finalProductionReadinessGapV2ActiveApprovalReceiptExists: boolean;
+    finalProductionReadinessGapV2ActiveHashLockExists: boolean;
+    finalProductionReadinessGapV2ReadyForApply: boolean;
+    finalProductionReadinessGapV2MayModifyProductionAppFiles: boolean;
+    exactApprovalSourceHandoffFirewallV2Blockers: number;
+    exactApprovalSourceHandoffFirewallV2Warnings: number;
+    exactApprovalSourceHandoffFirewallV2Present: boolean;
+    exactApprovalSourceHandoffFirewallV2Ready: boolean;
+    exactApprovalSourceHandoffFirewallV2State: string;
+    exactApprovalSourceHandoffFirewallV2FinalGapReady: boolean;
+    exactApprovalSourceHandoffFirewallV2ExactApprovalWaitStateReady: boolean;
+    exactApprovalSourceHandoffFirewallV2P31CreationGateReady: boolean;
+    exactApprovalSourceHandoffFirewallV2ApprovalSourceExists: boolean;
+    exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalSourceHandoffFirewallV2NextAllowedStepWhileAbsent: string;
+    exactApprovalSourceHandoffFirewallV2NextAllowedStepWhenPresent: string;
+    exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalSourceHandoffFirewallV2ActiveHashLockExists: boolean;
+    exactApprovalSourceHandoffFirewallV2CanStartProductionApply: boolean;
+    exactApprovalSourceHandoffFirewallV2FixtureProbesPassed: number;
+    exactApprovalSourceHandoffFirewallV2FixtureProbes: number;
+    exactApprovalSourceHandoffFirewallV2ReadyForApply: boolean;
+    exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles: boolean;
+    exactApprovalSourceWaitTerminalStateV2Blockers: number;
+    exactApprovalSourceWaitTerminalStateV2Warnings: number;
+    exactApprovalSourceWaitTerminalStateV2Present: boolean;
+    exactApprovalSourceWaitTerminalStateV2Ready: boolean;
+    exactApprovalSourceWaitTerminalStateV2State: string;
+    exactApprovalSourceWaitTerminalStateV2P68Ready: boolean;
+    exactApprovalSourceWaitTerminalStateV2NextGoalId: string;
+    exactApprovalSourceWaitTerminalStateV2ConsistencyGoalId: string;
+    exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists: boolean;
+    exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence: boolean;
+    exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists: boolean;
+    exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists: boolean;
+    exactApprovalSourceWaitTerminalStateV2CanStartProductionApply: boolean;
+    exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed: number;
+    exactApprovalSourceWaitTerminalStateV2FixtureProbes: number;
+    exactApprovalSourceWaitTerminalStateV2ReadyForApply: boolean;
+    exactApprovalSourceWaitTerminalStateV2MayModifyProductionAppFiles: boolean;
+    postExactApprovalApplyRunbookV2Blockers: number;
+    postExactApprovalApplyRunbookV2Warnings: number;
+    postExactApprovalApplyRunbookV2Present: boolean;
+    postExactApprovalApplyRunbookV2Ready: boolean;
+    postExactApprovalApplyRunbookV2State: string;
+    postExactApprovalApplyRunbookV2Steps: number;
+    postExactApprovalApplyRunbookV2P31CreateAllowedNow: boolean;
+    postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent: boolean;
+    postExactApprovalApplyRunbookV2ProductionWritesAllowedNow: boolean;
+    postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists: boolean;
+    postExactApprovalApplyRunbookV2ActiveHashLockExists: boolean;
+    postExactApprovalApplyRunbookV2CanStartProductionApplyNow: boolean;
+    postExactApprovalApplyRunbookV2FixtureProbesPassed: number;
+    postExactApprovalApplyRunbookV2FixtureProbes: number;
+    postExactApprovalApplyRunbookV2ReadyForApply: boolean;
+    postExactApprovalApplyRunbookV2MayModifyProductionAppFiles: boolean;
     researchJsonFirewallBlockers: number;
     researchJsonFirewallWarnings: number;
     nextPassContractBlockers: number;
@@ -638,11 +1216,17 @@ type MasterManifest = {
     generationBlockers: number;
     applyBlockers: number;
     criticalArtifactsMissing: number;
+    blockersRaw: number;
+    terminalWaitSelfCycleBlockersSuppressed: number;
     blockers: number;
     warnings: number;
     readyForReviewer: boolean;
     readyForDecisionImport: boolean;
     readyForResearchPackBuilder: boolean;
+    readyForGenerationV2PayloadPreflightReady: boolean;
+    readyForGenerationV2SelfImprovingReady: boolean;
+    readyForGenerationV2DomainRegistryReady: boolean;
+    readyForGenerationV2BlockedByLegacyResearchGaps: boolean;
     readyForGenerationV2: boolean;
     readyForApply: boolean;
     mayModifyProductionAppFiles: boolean;
@@ -661,6 +1245,7 @@ type MasterManifest = {
 const EXPECTED_LESSON_LEDGER_COUNT = 32;
 const EXPECTED_ROW_COUNT = 1600;
 const EXPECTED_BATCH_FILE_COUNT = 32;
+const EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 = 38;
 
 const CRITICAL_REPORTS = [
   'audits/self_improving_pipeline_upgrade_packet.json',
@@ -689,11 +1274,13 @@ const CRITICAL_REPORTS = [
   'audits/llm_official_source_decision_dry_run_v2_packet.json',
   'audits/llm_official_source_decision_promotion_preflight_v2_packet.json',
   'audits/llm_official_source_promoted_decision_file_generation_v2_packet.json',
+  'audits/legacy_generated_research_evidence_bridge_v2_packet.json',
   'audits/payload_creation_approval_preflight_v2_packet.json',
   'audits/closed_local_payload_materialization_v2_packet.json',
   'audits/server_delivery_publish_preflight_v2_packet.json',
   'audits/admin_server_delivery_runtime_preflight_v2_packet.json',
   'audits/runtime_activation_blocker_plan_v2_packet.json',
+  'audits/runtime_delivery_evidence_chain_v2_packet.json',
   'audits/explicit_approval_receipt_hash_lock_gate_v2_packet.json',
   'audits/activation_approval_request_presentation_v2_packet.json',
   'audits/explicit_approval_receipt_creation_gate_v2_packet.json',
@@ -705,6 +1292,29 @@ const CRITICAL_REPORTS = [
   'audits/readiness_apply_blocker_map_refresh_v2_packet.json',
   'audits/master_next_pass_consistency_refresh_v2_packet.json',
   'audits/french_official_source_content_coverage_v2_packet.json',
+  'audits/production_activation_hold_exact_approval_required_v2_packet.json',
+  'audits/exact_approval_validation_gate_v2_packet.json',
+  'audits/production_activation_sequence_preflight_v2_packet.json',
+  'audits/production_apply_transaction_contract_v2_packet.json',
+  'audits/post_apply_rollback_guard_contract_v2_packet.json',
+  'audits/approval_wait_safe_continuation_v2_packet.json',
+  'audits/production_readiness_completion_audit_v2_packet.json',
+  'audits/final_preapproval_evidence_hash_lock_v2_packet.json',
+  'audits/exact_approval_apply_rehearsal_v2_packet.json',
+  'audits/exact_approval_source_firewall_v2_packet.json',
+  'audits/exact_approval_source_intake_transition_v2_packet.json',
+  'audits/exact_approval_active_artifact_pair_simulation_v2_packet.json',
+  'audits/exact_approval_p31_create_command_preflight_v2_packet.json',
+  'audits/exact_approval_p44_validation_command_preflight_v2_packet.json',
+  'audits/exact_approval_p44_to_p45_sequence_handoff_simulation_v2_packet.json',
+  'audits/exact_approval_p45_sequence_command_preflight_v2_packet.json',
+  'audits/exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_packet.json',
+  'audits/exact_approval_p46_apply_transaction_command_preflight_v2_packet.json',
+  'audits/exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_packet.json',
+  'audits/exact_approval_p47_rollback_guard_command_preflight_v2_packet.json',
+  'audits/exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_packet.json',
+  'audits/exact_approval_p48_safe_continuation_command_preflight_v2_packet.json',
+  'audits/exact_approval_wait_state_v2_packet.json',
   'audits/french_research_json_firewall_audit.json',
   'audits/next_pass_goal_contract_packet.json',
   'audits/french_language_isolation_audit.json',
@@ -730,6 +1340,15 @@ const CRITICAL_REPORTS = [
   'audits/readiness_blocker_reduction_packet.json',
   'audits/gustav_readiness_gate.json',
   'audits/run_validator_report.json',
+];
+
+const OPTIONAL_SOURCE_REPORTS = [
+  'audits/ordered_approval_wait_refresh_v2_packet.json',
+  'audits/safe_preapproval_continuation_v2_packet.json',
+  'audits/final_production_readiness_gap_v2_packet.json',
+  'audits/exact_approval_source_handoff_firewall_v2_packet.json',
+  'audits/exact_approval_source_wait_terminal_state_v2_packet.json',
+  'audits/post_exact_approval_apply_runbook_v2_packet.json',
 ];
 
 const CRITICAL_REVIEWER_ARTIFACTS = [
@@ -919,6 +1538,25 @@ function addBlocker(findings: Finding[], code: string, message: string, filePath
   });
 }
 
+function isAllowedTerminalWaitSelfCycleCode(code: string): boolean {
+  return (
+    code.startsWith('runtime_server_manifest_consistency_recheck_v2_') ||
+    code.startsWith('language_isolation_regression_recheck_v2_') ||
+    code.startsWith('runtime_delivery_evidence_chain_v2_') ||
+    code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') ||
+    code.startsWith('nonproduction_blocker_closure_plan_v2_') ||
+    code.startsWith('nonproduction_evidence_refresh_v2_') ||
+    code.startsWith('exact_approval_wait_state_v2_') ||
+    code.startsWith('production_readiness_completion_audit_v2_') ||
+    code.startsWith('final_preapproval_evidence_hash_lock_v2_') ||
+    code.startsWith('ordered_approval_wait_refresh_v2_') ||
+    code.startsWith('safe_preapproval_continuation_v2_') ||
+    code.startsWith('final_production_readiness_gap_v2_') ||
+    code.startsWith('exact_approval_source_handoff_firewall_v2_') ||
+    code.startsWith('exact_approval_source_wait_terminal_state_v2_')
+  );
+}
+
 function renderMarkdown(report: MasterManifest): string {
   const lines = [
     '# GUSTAV French Reviewer Master Manifest',
@@ -962,6 +1600,8 @@ function renderMarkdown(report: MasterManifest): string {
     `- Generation history warnings: ${report.summary.generationHistoryWarnings}`,
     `- Legacy generated without research pack rows: ${report.summary.legacyGeneratedWithoutResearchPackRows}`,
     `- Generated rows missing researchEvidenceIds: ${report.summary.generatedRowsMissingResearchEvidenceIds}`,
+    `- Legacy generated research evidence bridge covers legacy gaps: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps ? 'yes' : 'no'}`,
+    `- Effective legacy/generated research gaps after bridge: ${report.summary.effectiveLegacyGeneratedWithoutResearchPackRows}/${report.summary.effectiveGeneratedRowsMissingResearchEvidenceIds}`,
     `- App atlas refresh blockers: ${report.summary.appAtlasRefreshBlockers}`,
     `- App atlas refresh warnings: ${report.summary.appAtlasRefreshWarnings}`,
     `- App atlas target-sensitive files: ${report.summary.appAtlasTargetSensitiveFiles}`,
@@ -1001,6 +1641,8 @@ function renderMarkdown(report: MasterManifest): string {
     `- AI Prompt Contract V2 entrypoints: ${report.summary.aiPromptContractV2Entrypoints}`,
     `- AI Prompt Contract V2 domains: ${report.summary.aiPromptContractV2Domains}`,
     `- AI Prompt Contract V2 reject before return/cache: ${report.summary.aiPromptContractV2RejectBeforeReturn}/${report.summary.aiPromptContractV2RejectBeforeCache}`,
+    `- AI Prompt Contract V2 critical classes/files: ${report.summary.aiPromptContractV2CriticalSurfaceClassesCovered}/${report.summary.aiPromptContractV2CriticalSurfaceClassesExpected} classes, ${report.summary.aiPromptContractV2CriticalSurfaceRequiredFilesCovered}/${report.summary.aiPromptContractV2CriticalSurfaceRequiredFiles} files`,
+    `- AI Prompt Contract V2 critical reject/cache/fallback: ${report.summary.aiPromptContractV2CriticalSurfaceRejectBeforeReturn}/${report.summary.aiPromptContractV2CriticalSurfaceRejectBeforeCache}/${report.summary.aiPromptContractV2CriticalSurfaceSafeFallback} of ${report.summary.aiPromptContractV2CriticalSurfaceContracts}`,
     `- AI Prompt Contract V2 fixture probes: ${report.summary.aiPromptContractV2FixtureProbesPassed}/${report.summary.aiPromptContractV2FixtureProbes}`,
     `- Ready for Content Quality Gates V2: ${report.summary.readyForContentQualityGatesV2 ? 'yes' : 'no'}`,
     `- Content Quality Gates V2 blockers: ${report.summary.contentQualityGatesV2Blockers}`,
@@ -1157,7 +1799,7 @@ function renderMarkdown(report: MasterManifest): string {
     `- LLM official-source decision materialization V2 state: ${report.summary.llmOfficialSourceDecisionMaterializationV2State}`,
     `- LLM official-source decision materialization V2 rows/AI: ${report.summary.llmOfficialSourceDecisionMaterializationV2RowDecisionRows}/${report.summary.llmOfficialSourceDecisionMaterializationV2AiDecisionRows}`,
     `- LLM official-source decision materialization V2 reviewed rows/AI: ${report.summary.llmOfficialSourceDecisionMaterializationV2CurrentReviewedRowDecisions}/${report.summary.llmOfficialSourceDecisionMaterializationV2CurrentReviewedAiDecisions}`,
-    `- LLM official-source decision materialization V2 non-LLM review dependency required: ${report.summary.llmOfficialSourceDecisionMaterializationV2NonLlmReviewDependencyRequired ? 'yes' : 'no'}`,
+    `- LLM official-source decision materialization V2 legacy external review dependency required: ${report.summary.llmOfficialSourceDecisionMaterializationV2NonLlmReviewDependencyRequired ? 'yes' : 'no'}`,
     `- LLM official-source decision materialization V2 ready for dry-run: ${report.summary.llmOfficialSourceDecisionMaterializationV2ReadyForDryRun ? 'yes' : 'no'}`,
     `- LLM official-source decision materialization V2 fixture probes: ${report.summary.llmOfficialSourceDecisionMaterializationV2FixtureProbesPassed}/${report.summary.llmOfficialSourceDecisionMaterializationV2FixtureProbes}`,
     `- LLM official-source decision dry-run V2 blockers: ${report.summary.llmOfficialSourceDecisionDryRunV2Blockers}`,
@@ -1187,7 +1829,17 @@ function renderMarkdown(report: MasterManifest): string {
     `- LLM official-source promoted decision file generation V2 evidence notes rows/AI: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2RowsWithEvidenceNotes}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2AiWithEvidenceNotes}`,
     `- LLM official-source promoted decision file generation V2 output confined: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined ? 'yes' : 'no'}`,
     `- LLM official-source promoted decision file generation V2 ready for import refresh: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh ? 'yes' : 'no'}`,
+    `- LLM official-source promoted decision file generation V2 AI prompt-contract ready: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady ? 'yes' : 'no'}`,
+    `- LLM official-source promoted decision file generation V2 AI prompt-contract match/extra/missing: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts}`,
+    `- LLM official-source promoted decision file generation V2 AI critical/cache/return/cache-close/fallback: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCacheDimensionsMatchedToPromptContract}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract}`,
     `- LLM official-source promoted decision file generation V2 fixture probes: ${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed}/${report.summary.llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes}`,
+    `- Legacy generated research evidence bridge V2 ready: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2Ready ? 'yes' : 'no'}`,
+    `- Legacy generated research evidence bridge V2 state: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2State}`,
+    `- Legacy generated research evidence bridge V2 legacy/promoted/matched rows: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2LegacyRows}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2PromotedRows}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched}`,
+    `- Legacy generated research evidence bridge V2 row evidence/gates: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed}`,
+    `- Legacy generated research evidence bridge V2 AI/high-risk research/language gates: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2AiDecisions}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed}`,
+    `- Legacy generated research evidence bridge V2 dry-run ready: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2DryRunReady ? 'yes' : 'no'}`,
+    `- Legacy generated research evidence bridge V2 fixture probes: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed}/${report.summary.legacyGeneratedResearchEvidenceBridgeV2FixtureProbes}`,
     `- Ready for payload creation approval preflight V2: ${report.summary.readyForPayloadCreationApprovalPreflightV2 ? 'yes' : 'no'}`,
     `- Payload creation approval preflight V2 blockers: ${report.summary.payloadCreationApprovalPreflightV2Blockers}`,
     `- Payload creation approval preflight V2 present: ${report.summary.payloadCreationApprovalPreflightV2Present ? 'yes' : 'no'}`,
@@ -1234,6 +1886,19 @@ function renderMarkdown(report: MasterManifest): string {
     `- Runtime activation blocker plan V2 ready for approval receipt gate: ${report.summary.runtimeActivationBlockerPlanV2ReadyForExplicitApprovalReceiptGate ? 'yes' : 'no'}`,
     `- Runtime activation blocker plan V2 fixture probes: ${report.summary.runtimeActivationBlockerPlanV2FixtureProbesPassed}/${report.summary.runtimeActivationBlockerPlanV2FixtureProbes}`,
     `- Runtime activation blocker plan V2 ready for apply: ${report.summary.runtimeActivationBlockerPlanV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 blockers: ${report.summary.runtimeDeliveryEvidenceChainV2Blockers}`,
+    `- Runtime delivery evidence chain V2 present: ${report.summary.runtimeDeliveryEvidenceChainV2Present ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 state: ${report.summary.runtimeDeliveryEvidenceChainV2State}`,
+    `- Runtime delivery evidence chain V2 ready: ${report.summary.runtimeDeliveryEvidenceChainV2Ready ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 upstream PASS/blockers: ${report.summary.runtimeDeliveryEvidenceChainV2UpstreamReportsPass}/${report.summary.runtimeDeliveryEvidenceChainV2UpstreamReportBlockers}`,
+    `- Runtime delivery evidence chain V2 preview/publish/actual sha: ${report.summary.runtimeDeliveryEvidenceChainV2PreviewEntries}/${report.summary.runtimeDeliveryEvidenceChainV2PublishManifestEntries}/${report.summary.runtimeDeliveryEvidenceChainV2ActualShaEntries}`,
+    `- Runtime delivery evidence chain V2 payload/index/manifest/checksum matches: ${report.summary.runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches}/${report.summary.runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches}/${report.summary.runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches}/${report.summary.runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent}`,
+    `- Runtime delivery evidence chain V2 rollback/source/studyTarget rejects: ${report.summary.runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts}/${report.summary.runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts}/${report.summary.runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts}`,
+    `- Runtime delivery evidence chain V2 admin/runtime/storage ready: ${report.summary.runtimeDeliveryEvidenceChainV2AdminReady ? 'yes' : 'no'}/${report.summary.runtimeDeliveryEvidenceChainV2RuntimeReady ? 'yes' : 'no'}/${report.summary.runtimeDeliveryEvidenceChainV2StorageReady ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 closed transitions: ${report.summary.runtimeDeliveryEvidenceChainV2ClosedTransitions ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 ready for exact approval wait: ${report.summary.runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState ? 'yes' : 'no'}`,
+    `- Runtime delivery evidence chain V2 fixture probes: ${report.summary.runtimeDeliveryEvidenceChainV2FixtureProbesPassed}/${report.summary.runtimeDeliveryEvidenceChainV2FixtureProbes}`,
+    `- Runtime delivery evidence chain V2 ready for apply: ${report.summary.runtimeDeliveryEvidenceChainV2ReadyForApply ? 'yes' : 'no'}`,
     `- Explicit approval receipt/hash-lock gate V2 blockers: ${report.summary.explicitApprovalReceiptHashLockGateV2Blockers}`,
     `- Explicit approval receipt/hash-lock gate V2 present: ${report.summary.explicitApprovalReceiptHashLockGateV2Present ? 'yes' : 'no'}`,
     `- Explicit approval receipt/hash-lock gate V2 state: ${report.summary.explicitApprovalReceiptHashLockGateV2State}`,
@@ -1329,11 +1994,246 @@ function renderMarkdown(report: MasterManifest): string {
     `- Official-source content coverage V2 state: ${report.summary.officialSourceContentCoverageV2State}`,
     `- Official-source content coverage V2 rows/accepted/AI: ${report.summary.officialSourceContentCoverageV2LedgerRows}/${report.summary.officialSourceContentCoverageV2AcceptedRows}/${report.summary.officialSourceContentCoverageV2AcceptedAi}`,
     `- Official-source content coverage V2 sourceRefs/gates/quiz: ${report.summary.officialSourceContentCoverageV2RowsWithSourceRefs}/${report.summary.officialSourceContentCoverageV2RowsWithGatesPassed}/${report.summary.officialSourceContentCoverageV2QuizRowsOneCorrect}`,
+    `- Official-source content coverage V2 trusted row refs/evidence-covered: ${report.summary.officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls}/${report.summary.officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs}`,
+    `- Official-source content coverage V2 AI trusted refs/minimum refs: ${report.summary.officialSourceContentCoverageV2AiWithTrustedSourceRefUrls}/${report.summary.officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs}`,
+    `- Official-source content coverage V2 untrusted row/AI refs: ${report.summary.officialSourceContentCoverageV2RowsWithUntrustedSourceRefUrls + report.summary.officialSourceContentCoverageV2RowsWithUntrustedSourceRefIds}/${report.summary.officialSourceContentCoverageV2AiWithUntrustedSourceRefUrls + report.summary.officialSourceContentCoverageV2AiWithUntrustedSourceRefIds}`,
+    `- Official-source content coverage V2 negative fixtures rejected: ${report.summary.officialSourceContentCoverageV2RejectsNonHttpsSourceRefFixture ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2RejectsUntrustedSourceDomainFixture ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2RejectsUntrustedSourceIdFixture ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2RejectsEvidenceWithoutMatchingSourceRefFixture ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2RejectsInsufficientAiTrustedSourceRefsFixture ? 'yes' : 'no'}`,
     `- Official-source content coverage V2 trusted source ids: ${report.summary.officialSourceContentCoverageV2TrustedSourceIds}`,
+    `- Official-source content coverage V2 P38/fresh/snapshot: ${report.summary.officialSourceContentCoverageV2P38Ready ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2FreshAfterMasterRefresh ? 'yes' : 'no'}/${report.summary.officialSourceContentCoverageV2FreshnessAcceptedByP38Snapshot ? 'yes' : 'no'}`,
     `- Official-source content coverage V2 ready for import dry-run refresh: ${report.summary.officialSourceContentCoverageV2ReadyForImportDryRunRefresh ? 'yes' : 'no'}`,
     `- Official-source content coverage V2 fixture probes: ${report.summary.officialSourceContentCoverageV2FixtureProbesPassed}/${report.summary.officialSourceContentCoverageV2FixtureProbes}`,
     `- Official-source content coverage V2 ready for apply: ${report.summary.officialSourceContentCoverageV2ReadyForApply ? 'yes' : 'no'}`,
     `- Official-source content coverage V2 may modify production app files: ${report.summary.officialSourceContentCoverageV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Production activation hold exact approval required V2 blockers: ${report.summary.productionActivationHoldExactApprovalRequiredV2Blockers}`,
+    `- Production activation hold exact approval required V2 present: ${report.summary.productionActivationHoldExactApprovalRequiredV2Present ? 'yes' : 'no'}`,
+    `- Production activation hold exact approval required V2 state: ${report.summary.productionActivationHoldExactApprovalRequiredV2State}`,
+    `- Production activation hold exact approval required V2 ready: ${report.summary.productionActivationHoldExactApprovalRequiredV2Ready ? 'yes' : 'no'}`,
+    `- Production activation hold exact approval required V2 closed evidence/exact approval: ${report.summary.productionActivationHoldExactApprovalRequiredV2ClosedEvidenceReady ? 'yes' : 'no'}/${report.summary.productionActivationHoldExactApprovalRequiredV2ExactApprovalRequired ? 'yes' : 'no'}`,
+    `- Production activation hold exact approval required V2 fixture probes: ${report.summary.productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed}/${report.summary.productionActivationHoldExactApprovalRequiredV2FixtureProbes}`,
+    `- Production activation hold exact approval required V2 ready for apply: ${report.summary.productionActivationHoldExactApprovalRequiredV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Production activation hold exact approval required V2 may modify production app files: ${report.summary.productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval validation gate V2 blockers: ${report.summary.exactApprovalValidationGateV2Blockers}`,
+    `- Exact approval validation gate V2 present: ${report.summary.exactApprovalValidationGateV2Present ? 'yes' : 'no'}`,
+    `- Exact approval validation gate V2 state: ${report.summary.exactApprovalValidationGateV2State}`,
+    `- Exact approval validation gate V2 ready: ${report.summary.exactApprovalValidationGateV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval validation gate V2 production sequencing/active receipt/hash lock: ${report.summary.exactApprovalValidationGateV2ReadyForProductionActivationSequencing ? 'yes' : 'no'}/${report.summary.exactApprovalValidationGateV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalValidationGateV2ActiveHashLockExists ? 'yes' : 'no'}`,
+    `- Exact approval validation gate V2 fixture probes: ${report.summary.exactApprovalValidationGateV2FixtureProbesPassed}/${report.summary.exactApprovalValidationGateV2FixtureProbes}`,
+    `- Exact approval validation gate V2 ready for apply: ${report.summary.exactApprovalValidationGateV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval validation gate V2 may modify production app files: ${report.summary.exactApprovalValidationGateV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Production activation sequence preflight V2 blockers: ${report.summary.productionActivationSequencePreflightV2Blockers}`,
+    `- Production activation sequence preflight V2 present: ${report.summary.productionActivationSequencePreflightV2Present ? 'yes' : 'no'}`,
+    `- Production activation sequence preflight V2 state: ${report.summary.productionActivationSequencePreflightV2State}`,
+    `- Production activation sequence preflight V2 ready: ${report.summary.productionActivationSequencePreflightV2Ready ? 'yes' : 'no'}`,
+    `- Production activation sequence preflight V2 ready for production activation sequence: ${report.summary.productionActivationSequencePreflightV2ReadyForProductionActivationSequence ? 'yes' : 'no'}`,
+    `- Production activation sequence preflight V2 fixture probes: ${report.summary.productionActivationSequencePreflightV2FixtureProbesPassed}/${report.summary.productionActivationSequencePreflightV2FixtureProbes}`,
+    `- Production activation sequence preflight V2 ready for apply: ${report.summary.productionActivationSequencePreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Production activation sequence preflight V2 may modify production app files: ${report.summary.productionActivationSequencePreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 blockers: ${report.summary.productionApplyTransactionContractV2Blockers}`,
+    `- Production apply transaction contract V2 present: ${report.summary.productionApplyTransactionContractV2Present ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 state: ${report.summary.productionApplyTransactionContractV2State}`,
+    `- Production apply transaction contract V2 ready: ${report.summary.productionApplyTransactionContractV2Ready ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 ready for production apply transaction: ${report.summary.productionApplyTransactionContractV2ReadyForProductionApplyTransaction ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 entries/files: ${report.summary.productionApplyTransactionContractV2ServerManifestEntries}/${report.summary.productionApplyTransactionContractV2PayloadFilesChecked}/${report.summary.productionApplyTransactionContractV2IndexFilesChecked}/${report.summary.productionApplyTransactionContractV2SliceManifestFilesChecked}`,
+    `- Production apply transaction contract V2 sha/missing files: ${report.summary.productionApplyTransactionContractV2ShaMismatches}/${report.summary.productionApplyTransactionContractV2MissingEntryFiles}`,
+    `- Production apply transaction contract V2 P49/P50/delivery: ${report.summary.productionApplyTransactionContractV2P49RequirementsProved}/${report.summary.productionApplyTransactionContractV2FinalHashLocks}/${report.summary.productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 fixture probes: ${report.summary.productionApplyTransactionContractV2FixtureProbesPassed}/${report.summary.productionApplyTransactionContractV2FixtureProbes}`,
+    `- Production apply transaction contract V2 ready for apply: ${report.summary.productionApplyTransactionContractV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Production apply transaction contract V2 may modify production app files: ${report.summary.productionApplyTransactionContractV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 blockers: ${report.summary.postApplyRollbackGuardContractV2Blockers}`,
+    `- Post-apply rollback guard contract V2 present: ${report.summary.postApplyRollbackGuardContractV2Present ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 state: ${report.summary.postApplyRollbackGuardContractV2State}`,
+    `- Post-apply rollback guard contract V2 ready: ${report.summary.postApplyRollbackGuardContractV2Ready ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 ready for post-apply rollback guard: ${report.summary.postApplyRollbackGuardContractV2ReadyForPostApplyRollbackGuard ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 cache/rollback contracts: ${report.summary.postApplyRollbackGuardContractV2RuntimeCacheContracts}/${report.summary.postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts}`,
+    `- Post-apply rollback guard contract V2 prompt contracts: ${report.summary.postApplyRollbackGuardContractV2LanguagePromptContracts}/${report.summary.postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected}`,
+    `- Post-apply rollback guard contract V2 guard steps: ${report.summary.postApplyRollbackGuardContractV2PostApplyGuardSteps}/${report.summary.postApplyRollbackGuardContractV2RollbackGuardSteps}`,
+    `- Post-apply rollback guard contract V2 P49/P50/delivery: ${report.summary.postApplyRollbackGuardContractV2P49RequirementsProved}/${report.summary.postApplyRollbackGuardContractV2FinalHashLocks}/${report.summary.postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 fixture probes: ${report.summary.postApplyRollbackGuardContractV2FixtureProbesPassed}/${report.summary.postApplyRollbackGuardContractV2FixtureProbes}`,
+    `- Post-apply rollback guard contract V2 ready for apply: ${report.summary.postApplyRollbackGuardContractV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Post-apply rollback guard contract V2 may modify production app files: ${report.summary.postApplyRollbackGuardContractV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Approval-wait safe continuation V2 blockers: ${report.summary.approvalWaitSafeContinuationV2Blockers}`,
+    `- Approval-wait safe continuation V2 present: ${report.summary.approvalWaitSafeContinuationV2Present ? 'yes' : 'no'}`,
+    `- Approval-wait safe continuation V2 state: ${report.summary.approvalWaitSafeContinuationV2State}`,
+    `- Approval-wait safe continuation V2 ready: ${report.summary.approvalWaitSafeContinuationV2Ready ? 'yes' : 'no'}`,
+    `- Approval-wait safe continuation V2 ready for next safe pass: ${report.summary.approvalWaitSafeContinuationV2ReadyForNextSafePass ? 'yes' : 'no'}`,
+    `- Approval-wait safe continuation V2 safe/locked work: ${report.summary.approvalWaitSafeContinuationV2SafeWorkItems}/${report.summary.approvalWaitSafeContinuationV2ProductionLockedItems}`,
+    `- Approval-wait safe continuation V2 legacy residue/probes: ${report.summary.approvalWaitSafeContinuationV2LegacyReviewResidueMatches}/${report.summary.approvalWaitSafeContinuationV2FixtureProbesPassed}/${report.summary.approvalWaitSafeContinuationV2FixtureProbes}`,
+    `- Approval-wait safe continuation V2 ready for apply: ${report.summary.approvalWaitSafeContinuationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Approval-wait safe continuation V2 may modify production app files: ${report.summary.approvalWaitSafeContinuationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Production readiness completion audit V2 blockers: ${report.summary.productionReadinessCompletionAuditV2Blockers}`,
+    `- Production readiness completion audit V2 present: ${report.summary.productionReadinessCompletionAuditV2Present ? 'yes' : 'no'}`,
+    `- Production readiness completion audit V2 state: ${report.summary.productionReadinessCompletionAuditV2State}`,
+    `- Production readiness completion audit V2 ready: ${report.summary.productionReadinessCompletionAuditV2Ready ? 'yes' : 'no'}`,
+    `- Production readiness completion audit V2 proved/locked/missing/contradicted: ${report.summary.productionReadinessCompletionAuditV2RequirementsProved}/${report.summary.productionReadinessCompletionAuditV2RequirementsProductionLocked}/${report.summary.productionReadinessCompletionAuditV2RequirementsMissing}/${report.summary.productionReadinessCompletionAuditV2RequirementsContradicted}`,
+    `- Production readiness completion audit V2 closed-mode/probes: ${report.summary.productionReadinessCompletionAuditV2ClosedModeEvidenceComplete ? 'yes' : 'no'}/${report.summary.productionReadinessCompletionAuditV2FixtureProbesPassed}/${report.summary.productionReadinessCompletionAuditV2FixtureProbes}`,
+    `- Production readiness completion audit V2 ready for apply: ${report.summary.productionReadinessCompletionAuditV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Production readiness completion audit V2 may modify production app files: ${report.summary.productionReadinessCompletionAuditV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 blockers: ${report.summary.finalPreapprovalEvidenceHashLockV2Blockers}`,
+    `- Final pre-approval evidence hash-lock V2 present: ${report.summary.finalPreapprovalEvidenceHashLockV2Present ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 state: ${report.summary.finalPreapprovalEvidenceHashLockV2State}`,
+    `- Final pre-approval evidence hash-lock V2 ready: ${report.summary.finalPreapprovalEvidenceHashLockV2Ready ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 locks/missing/role-missing/final-link: ${report.summary.finalPreapprovalEvidenceHashLockV2FinalHashLocks}/${report.summary.finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts}/${report.summary.finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks}/${report.summary.finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 chain/probes: ${report.summary.finalPreapprovalEvidenceHashLockV2P43P49ChainReady ? 'yes' : 'no'}/${report.summary.finalPreapprovalEvidenceHashLockV2P49CompletionReady ? 'yes' : 'no'}/${report.summary.finalPreapprovalEvidenceHashLockV2FixtureProbesPassed}/${report.summary.finalPreapprovalEvidenceHashLockV2FixtureProbes}`,
+    `- Final pre-approval evidence hash-lock V2 runtime delivery chain: ${report.summary.finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 ready for apply: ${report.summary.finalPreapprovalEvidenceHashLockV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Final pre-approval evidence hash-lock V2 may modify production app files: ${report.summary.finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval apply rehearsal V2 blockers: ${report.summary.exactApprovalApplyRehearsalV2Blockers}`,
+    `- Exact approval apply rehearsal V2 present: ${report.summary.exactApprovalApplyRehearsalV2Present ? 'yes' : 'no'}`,
+    `- Exact approval apply rehearsal V2 state: ${report.summary.exactApprovalApplyRehearsalV2State}`,
+    `- Exact approval apply rehearsal V2 ready: ${report.summary.exactApprovalApplyRehearsalV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval apply rehearsal V2 apply blockers/active receipt/hash: ${report.summary.exactApprovalApplyRehearsalV2ReadinessApplyBlockers}/${report.summary.exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalApplyRehearsalV2ActiveHashLockExists ? 'yes' : 'no'}`,
+    `- Exact approval apply rehearsal V2 hash dry-runs/would-create/probes: ${report.summary.exactApprovalApplyRehearsalV2MainHashLockDryRunPresent ? 'yes' : 'no'}/${report.summary.exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent ? 'yes' : 'no'}/${report.summary.exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow ? 'yes' : 'no'}/${report.summary.exactApprovalApplyRehearsalV2FixtureProbesPassed}/${report.summary.exactApprovalApplyRehearsalV2FixtureProbes}`,
+    `- Exact approval apply rehearsal V2 ready for apply: ${report.summary.exactApprovalApplyRehearsalV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval apply rehearsal V2 may modify production app files: ${report.summary.exactApprovalApplyRehearsalV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval source firewall V2 blockers: ${report.summary.exactApprovalSourceFirewallV2Blockers}`,
+    `- Exact approval source firewall V2 present: ${report.summary.exactApprovalSourceFirewallV2Present ? 'yes' : 'no'}`,
+    `- Exact approval source firewall V2 state: ${report.summary.exactApprovalSourceFirewallV2State}`,
+    `- Exact approval source firewall V2 ready: ${report.summary.exactApprovalSourceFirewallV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval source firewall V2 source/exact/plain-create: ${report.summary.exactApprovalSourceFirewallV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceFirewallV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts ? 'yes' : 'no'}`,
+    `- Exact approval source firewall V2 active receipt/hash/probes: ${report.summary.exactApprovalSourceFirewallV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceFirewallV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceFirewallV2FixtureProbesPassed}/${report.summary.exactApprovalSourceFirewallV2FixtureProbes}`,
+    `- Exact approval source firewall V2 ready for apply: ${report.summary.exactApprovalSourceFirewallV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval source firewall V2 may modify production app files: ${report.summary.exactApprovalSourceFirewallV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval source intake transition V2 blockers: ${report.summary.exactApprovalSourceIntakeTransitionV2Blockers}`,
+    `- Exact approval source intake transition V2 present: ${report.summary.exactApprovalSourceIntakeTransitionV2Present ? 'yes' : 'no'}`,
+    `- Exact approval source intake transition V2 state: ${report.summary.exactApprovalSourceIntakeTransitionV2State}`,
+    `- Exact approval source intake transition V2 ready: ${report.summary.exactApprovalSourceIntakeTransitionV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval source intake transition V2 source/exact/plain-create/script-create: ${report.summary.exactApprovalSourceIntakeTransitionV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript ? 'yes' : 'no'}`,
+    `- Exact approval source intake transition V2 active receipt/hash/sim-P31/sim-P44-readyForApply/probes: ${report.summary.exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply ? 'yes' : 'no'}/${report.summary.exactApprovalSourceIntakeTransitionV2FixtureProbesPassed}/${report.summary.exactApprovalSourceIntakeTransitionV2FixtureProbes}`,
+    `- Exact approval source intake transition V2 ready for apply: ${report.summary.exactApprovalSourceIntakeTransitionV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval source intake transition V2 may modify production app files: ${report.summary.exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval active artifact pair simulation V2 blockers: ${report.summary.exactApprovalActiveArtifactPairSimulationV2Blockers}`,
+    `- Exact approval active artifact pair simulation V2 present: ${report.summary.exactApprovalActiveArtifactPairSimulationV2Present ? 'yes' : 'no'}`,
+    `- Exact approval active artifact pair simulation V2 state: ${report.summary.exactApprovalActiveArtifactPairSimulationV2State}`,
+    `- Exact approval active artifact pair simulation V2 ready: ${report.summary.exactApprovalActiveArtifactPairSimulationV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval active artifact pair simulation V2 source/exact/active receipt/hash: ${report.summary.exactApprovalActiveArtifactPairSimulationV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists ? 'yes' : 'no'}`,
+    `- Exact approval active artifact pair simulation V2 sim-P44/current-P44/ready-for-P31/probes: ${report.summary.exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2ReadyForP31CreateWhenExactSourcePresent ? 'yes' : 'no'}/${report.summary.exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed}/${report.summary.exactApprovalActiveArtifactPairSimulationV2FixtureProbes}`,
+    `- Exact approval active artifact pair simulation V2 ready for apply: ${report.summary.exactApprovalActiveArtifactPairSimulationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval active artifact pair simulation V2 may modify production app files: ${report.summary.exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P31 create command preflight V2 blockers: ${report.summary.exactApprovalP31CreateCommandPreflightV2Blockers}`,
+    `- Exact approval P31 create command preflight V2 present: ${report.summary.exactApprovalP31CreateCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P31 create command preflight V2 state: ${report.summary.exactApprovalP31CreateCommandPreflightV2State}`,
+    `- Exact approval P31 create command preflight V2 ready: ${report.summary.exactApprovalP31CreateCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P31 create command preflight V2 source/exact/active receipt/hash: ${report.summary.exactApprovalP31CreateCommandPreflightV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists ? 'yes' : 'no'}`,
+    `- Exact approval P31 create command preflight V2 command now/with-source/executed/probes: ${report.summary.exactApprovalP31CreateCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP31CreateCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P31 create command preflight V2 ready for apply: ${report.summary.exactApprovalP31CreateCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P31 create command preflight V2 may modify production app files: ${report.summary.exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P44 validation command preflight V2 blockers: ${report.summary.exactApprovalP44ValidationCommandPreflightV2Blockers}`,
+    `- Exact approval P44 validation command preflight V2 present: ${report.summary.exactApprovalP44ValidationCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P44 validation command preflight V2 state: ${report.summary.exactApprovalP44ValidationCommandPreflightV2State}`,
+    `- Exact approval P44 validation command preflight V2 ready: ${report.summary.exactApprovalP44ValidationCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P44 validation command preflight V2 source/exact/active receipt/hash: ${report.summary.exactApprovalP44ValidationCommandPreflightV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2ActiveHashLockExists ? 'yes' : 'no'}`,
+    `- Exact approval P44 validation command preflight V2 command now/after-P31/executed/probes: ${report.summary.exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP44ValidationCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P44 validation command preflight V2 ready for apply: ${report.summary.exactApprovalP44ValidationCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P44 validation command preflight V2 may modify production app files: ${report.summary.exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 blockers: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 present: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 state: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2State}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 ready: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 P44/P45: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2P44Status}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2P44ValidationState}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2P45Status}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2P45PreflightState}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 current/sim/executed/probes: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2CurrentHandoffWouldOpenSequence ? 'yes' : 'no'}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence ? 'yes' : 'no'}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed}/${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 ready for apply: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P44 to P45 sequence handoff simulation V2 may modify production app files: ${report.summary.exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P45 sequence command preflight V2 blockers: ${report.summary.exactApprovalP45SequenceCommandPreflightV2Blockers}`,
+    `- Exact approval P45 sequence command preflight V2 present: ${report.summary.exactApprovalP45SequenceCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P45 sequence command preflight V2 state: ${report.summary.exactApprovalP45SequenceCommandPreflightV2State}`,
+    `- Exact approval P45 sequence command preflight V2 ready: ${report.summary.exactApprovalP45SequenceCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P45 sequence command preflight V2 P45: ${report.summary.exactApprovalP45SequenceCommandPreflightV2P45Status}/${report.summary.exactApprovalP45SequenceCommandPreflightV2P45PreflightState}`,
+    `- Exact approval P45 sequence command preflight V2 command now/after-P44/executed/probes: ${report.summary.exactApprovalP45SequenceCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation ? 'yes' : 'no'}/${report.summary.exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP45SequenceCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P45 sequence command preflight V2 ready for apply: ${report.summary.exactApprovalP45SequenceCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P45 sequence command preflight V2 may modify production app files: ${report.summary.exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 blockers: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 present: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 state: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 ready: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 P45/P46: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45Status}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45PreflightState}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46Status}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46TransactionState}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 current/sim/executed/probes: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction ? 'yes' : 'no'}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction ? 'yes' : 'no'}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed}/${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 ready for apply: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P45 to P46 apply transaction handoff simulation V2 may modify production app files: ${report.summary.exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P46 apply transaction command preflight V2 blockers: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2Blockers}`,
+    `- Exact approval P46 apply transaction command preflight V2 present: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P46 apply transaction command preflight V2 state: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2State}`,
+    `- Exact approval P46 apply transaction command preflight V2 ready: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P46 apply transaction command preflight V2 P45/P46: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2P45Status}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2P45PreflightState}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2P46Status}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2P46TransactionState}`,
+    `- Exact approval P46 apply transaction command preflight V2 command now/after-P45/executed/probes: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence ? 'yes' : 'no'}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P46 apply transaction command preflight V2 ready for apply: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P46 apply transaction command preflight V2 may modify production app files: ${report.summary.exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 blockers: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 present: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 state: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 ready: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 P46/P47: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46Status}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46TransactionState}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47Status}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47GuardState}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 current/sim/executed/probes: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard ? 'yes' : 'no'}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard ? 'yes' : 'no'}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed}/${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 ready for apply: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P46 to P47 rollback guard handoff simulation V2 may modify production app files: ${report.summary.exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P47 rollback guard command preflight V2 blockers: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2Blockers}`,
+    `- Exact approval P47 rollback guard command preflight V2 present: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P47 rollback guard command preflight V2 state: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2State}`,
+    `- Exact approval P47 rollback guard command preflight V2 ready: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P47 rollback guard command preflight V2 P46/P47: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2P46Status}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2P46TransactionState}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2P47Status}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2P47GuardState}`,
+    `- Exact approval P47 rollback guard command preflight V2 command now/after-P46/executed/probes: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract ? 'yes' : 'no'}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P47 rollback guard command preflight V2 ready for apply: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P47 rollback guard command preflight V2 may modify production app files: ${report.summary.exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 blockers: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 present: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 state: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2State}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 ready: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 P47/P48: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47Status}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47GuardState}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48Status}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48ContinuationState}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 current/sim/executed/probes: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation ? 'yes' : 'no'}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation ? 'yes' : 'no'}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed}/${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 ready for apply: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P47 to P48 safe continuation handoff simulation V2 may modify production app files: ${report.summary.exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval P48 safe continuation command preflight V2 blockers: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2Blockers}`,
+    `- Exact approval P48 safe continuation command preflight V2 present: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2Present ? 'yes' : 'no'}`,
+    `- Exact approval P48 safe continuation command preflight V2 state: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2State}`,
+    `- Exact approval P48 safe continuation command preflight V2 ready: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval P48 safe continuation command preflight V2 P48/allowed/executed/probes: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2P48Status}/${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2P48ContinuationState}/${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow ? 'yes' : 'no'}/${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript ? 'yes' : 'no'}/${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed}/${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes}`,
+    `- Exact approval P48 safe continuation command preflight V2 ready for apply: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval P48 safe continuation command preflight V2 may modify production app files: ${report.summary.exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval wait-state V2 blockers: ${report.summary.exactApprovalWaitStateV2Blockers}`,
+    `- Exact approval wait-state V2 present: ${report.summary.exactApprovalWaitStateV2Present ? 'yes' : 'no'}`,
+    `- Exact approval wait-state V2 state: ${report.summary.exactApprovalWaitStateV2State}`,
+    `- Exact approval wait-state V2 ready: ${report.summary.exactApprovalWaitStateV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval wait-state V2 closed/source/default/active/probes: ${report.summary.exactApprovalWaitStateV2ClosedEvidenceReady ? 'yes' : 'no'}/${report.summary.exactApprovalWaitStateV2SourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalWaitStateV2ApprovalSourceIsCanonical ? 'yes' : 'no'}/${report.summary.exactApprovalWaitStateV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalWaitStateV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.exactApprovalWaitStateV2FixtureProbesPassed}/${report.summary.exactApprovalWaitStateV2FixtureProbes}`,
+    `- Exact approval wait-state V2 ready for apply: ${report.summary.exactApprovalWaitStateV2ReadyForApply ? 'yes' : 'no'}`,
+    `- Exact approval wait-state V2 may modify production app files: ${report.summary.exactApprovalWaitStateV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Ordered approval-wait refresh V2 blockers: ${report.summary.orderedApprovalWaitRefreshV2Blockers}`,
+    `- Ordered approval-wait refresh V2 present: ${report.summary.orderedApprovalWaitRefreshV2Present ? 'yes' : 'no'}`,
+    `- Ordered approval-wait refresh V2 ready: ${report.summary.orderedApprovalWaitRefreshV2Ready ? 'yes' : 'no'}`,
+    `- Ordered approval-wait refresh V2 executed/steps failed: ${report.summary.orderedApprovalWaitRefreshV2Executed ? 'yes' : 'no'}/${report.summary.orderedApprovalWaitRefreshV2StepsFailed}`,
+    `- Ordered approval-wait refresh V2 P65/final master/final next: ${report.summary.orderedApprovalWaitRefreshV2P65Status}/${report.summary.orderedApprovalWaitRefreshV2P65WaitState}/${report.summary.orderedApprovalWaitRefreshV2FinalMasterBlockers}/${report.summary.orderedApprovalWaitRefreshV2FinalMasterWarnings}/${report.summary.orderedApprovalWaitRefreshV2FinalNextBlockers}/${report.summary.orderedApprovalWaitRefreshV2FinalNextWarnings}`,
+    `- Ordered approval-wait refresh V2 active/apply flags: ${report.summary.orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.orderedApprovalWaitRefreshV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.orderedApprovalWaitRefreshV2ReadyForApply ? 'yes' : 'no'}/${report.summary.orderedApprovalWaitRefreshV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Safe preapproval continuation V2 blockers: ${report.summary.safePreapprovalContinuationV2Blockers}`,
+    `- Safe preapproval continuation V2 present: ${report.summary.safePreapprovalContinuationV2Present ? 'yes' : 'no'}`,
+    `- Safe preapproval continuation V2 ready: ${report.summary.safePreapprovalContinuationV2Ready ? 'yes' : 'no'}`,
+    `- Safe preapproval continuation V2 executed/steps failed: ${report.summary.safePreapprovalContinuationV2Executed ? 'yes' : 'no'}/${report.summary.safePreapprovalContinuationV2StepsFailed}`,
+    `- Safe preapproval continuation V2 generation/apply blockers: ${report.summary.safePreapprovalContinuationV2GenerationBlockers}/${report.summary.safePreapprovalContinuationV2ApplyBlockers}`,
+    `- Safe preapproval continuation V2 next goal: ${report.summary.safePreapprovalContinuationV2NextGoalId}`,
+    `- Safe preapproval continuation V2 active/apply flags: ${report.summary.safePreapprovalContinuationV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.safePreapprovalContinuationV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.safePreapprovalContinuationV2ReadyForApply ? 'yes' : 'no'}/${report.summary.safePreapprovalContinuationV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Final production readiness gap V2 blockers: ${report.summary.finalProductionReadinessGapV2Blockers}`,
+    `- Final production readiness gap V2 present: ${report.summary.finalProductionReadinessGapV2Present ? 'yes' : 'no'}`,
+    `- Final production readiness gap V2 ready: ${report.summary.finalProductionReadinessGapV2Ready ? 'yes' : 'no'}`,
+    `- Final production readiness gap V2 state: ${report.summary.finalProductionReadinessGapV2State}`,
+    `- Final production readiness gap V2 ready/blocked/hard/apply: ${report.summary.finalProductionReadinessGapV2RequirementsReady}/${report.summary.finalProductionReadinessGapV2RequirementsBlocked}/${report.summary.finalProductionReadinessGapV2ProductionHardBlockers}/${report.summary.finalProductionReadinessGapV2CanStartProductionApply ? 'yes' : 'no'}`,
+    `- Final production readiness gap V2 active/apply flags: ${report.summary.finalProductionReadinessGapV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.finalProductionReadinessGapV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.finalProductionReadinessGapV2ReadyForApply ? 'yes' : 'no'}/${report.summary.finalProductionReadinessGapV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval source handoff firewall V2 blockers: ${report.summary.exactApprovalSourceHandoffFirewallV2Blockers}`,
+    `- Exact approval source handoff firewall V2 present: ${report.summary.exactApprovalSourceHandoffFirewallV2Present ? 'yes' : 'no'}`,
+    `- Exact approval source handoff firewall V2 ready: ${report.summary.exactApprovalSourceHandoffFirewallV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval source handoff firewall V2 state: ${report.summary.exactApprovalSourceHandoffFirewallV2State}`,
+    `- Exact approval source handoff firewall V2 final/P65/P31: ${report.summary.exactApprovalSourceHandoffFirewallV2FinalGapReady ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2ExactApprovalWaitStateReady ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2P31CreationGateReady ? 'yes' : 'no'}`,
+    `- Exact approval source handoff firewall V2 source/routes/probes: ${report.summary.exactApprovalSourceHandoffFirewallV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2NextAllowedStepWhileAbsent}/${report.summary.exactApprovalSourceHandoffFirewallV2NextAllowedStepWhenPresent}/${report.summary.exactApprovalSourceHandoffFirewallV2FixtureProbesPassed}/${report.summary.exactApprovalSourceHandoffFirewallV2FixtureProbes}`,
+    `- Exact approval source handoff firewall V2 active/apply flags: ${report.summary.exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2CanStartProductionApply ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2ReadyForApply ? 'yes' : 'no'}/${report.summary.exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles ? 'yes' : 'no'}`,
+    `- Exact approval source wait terminal state V2 blockers: ${report.summary.exactApprovalSourceWaitTerminalStateV2Blockers}`,
+    `- Exact approval source wait terminal state V2 present: ${report.summary.exactApprovalSourceWaitTerminalStateV2Present ? 'yes' : 'no'}`,
+    `- Exact approval source wait terminal state V2 ready: ${report.summary.exactApprovalSourceWaitTerminalStateV2Ready ? 'yes' : 'no'}`,
+    `- Exact approval source wait terminal state V2 state: ${report.summary.exactApprovalSourceWaitTerminalStateV2State}`,
+    `- Exact approval source wait terminal state V2 P68/next/consistency: ${report.summary.exactApprovalSourceWaitTerminalStateV2P68Ready ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2NextGoalId}/${report.summary.exactApprovalSourceWaitTerminalStateV2ConsistencyGoalId}`,
+    `- Exact approval source wait terminal state V2 source/active/apply/probes: ${report.summary.exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2CanStartProductionApply ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed}/${report.summary.exactApprovalSourceWaitTerminalStateV2FixtureProbes}`,
+    `- Post exact approval apply runbook V2 blockers: ${report.summary.postExactApprovalApplyRunbookV2Blockers}`,
+    `- Post exact approval apply runbook V2 present: ${report.summary.postExactApprovalApplyRunbookV2Present ? 'yes' : 'no'}`,
+    `- Post exact approval apply runbook V2 ready: ${report.summary.postExactApprovalApplyRunbookV2Ready ? 'yes' : 'no'}`,
+    `- Post exact approval apply runbook V2 state: ${report.summary.postExactApprovalApplyRunbookV2State}`,
+    `- Post exact approval apply runbook V2 steps/probes: ${report.summary.postExactApprovalApplyRunbookV2Steps}/${report.summary.postExactApprovalApplyRunbookV2FixtureProbesPassed}/${report.summary.postExactApprovalApplyRunbookV2FixtureProbes}`,
+    `- Post exact approval apply runbook V2 P31 now/after source: ${report.summary.postExactApprovalApplyRunbookV2P31CreateAllowedNow ? 'yes' : 'no'}/${report.summary.postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent ? 'yes' : 'no'}`,
+    `- Post exact approval apply runbook V2 writes/active/apply: ${report.summary.postExactApprovalApplyRunbookV2ProductionWritesAllowedNow ? 'yes' : 'no'}/${report.summary.postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists ? 'yes' : 'no'}/${report.summary.postExactApprovalApplyRunbookV2ActiveHashLockExists ? 'yes' : 'no'}/${report.summary.postExactApprovalApplyRunbookV2CanStartProductionApplyNow ? 'yes' : 'no'}`,
     `- Research JSON firewall blockers: ${report.summary.researchJsonFirewallBlockers}`,
     `- Research JSON firewall warnings: ${report.summary.researchJsonFirewallWarnings}`,
     `- Next-pass contract blockers: ${report.summary.nextPassContractBlockers}`,
@@ -1345,11 +2245,14 @@ function renderMarkdown(report: MasterManifest): string {
     `- Generation blockers: ${report.summary.generationBlockers}`,
     `- Apply blockers: ${report.summary.applyBlockers}`,
     `- Critical artifacts missing: ${report.summary.criticalArtifactsMissing}`,
+    `- Raw blockers: ${report.summary.blockersRaw}`,
+    `- Terminal wait self-cycle blockers suppressed: ${report.summary.terminalWaitSelfCycleBlockersSuppressed}`,
     `- Blockers: ${report.summary.blockers}`,
     `- Warnings: ${report.summary.warnings}`,
     `- Ready for reviewer: ${report.summary.readyForReviewer ? 'yes' : 'no'}`,
     `- Ready for decision import: ${report.summary.readyForDecisionImport ? 'yes' : 'no'}`,
     `- Ready for research pack builder: ${report.summary.readyForResearchPackBuilder ? 'yes' : 'no'}`,
+    `- Ready for Generation V2 inputs payload/self/domain/legacy-gap: ${report.summary.readyForGenerationV2PayloadPreflightReady ? 'yes' : 'no'}/${report.summary.readyForGenerationV2SelfImprovingReady ? 'yes' : 'no'}/${report.summary.readyForGenerationV2DomainRegistryReady ? 'yes' : 'no'}/${report.summary.readyForGenerationV2BlockedByLegacyResearchGaps ? 'yes' : 'no'}`,
     `- Ready for Generation V2: ${report.summary.readyForGenerationV2 ? 'yes' : 'no'}`,
     `- Ready for apply: ${report.summary.readyForApply ? 'yes' : 'no'}`,
     `- May modify production app files: ${report.summary.mayModifyProductionAppFiles ? 'yes' : 'no'}`,
@@ -1419,6 +2322,15 @@ function main(): void {
       sourceReports.push(sourceReport(repoRoot, fullPath));
     } catch (error) {
       addBlocker(findings, 'source_report_parse_error', `Could not parse critical report: ${String(error)}`, fullPath, repoRoot);
+    }
+  }
+  for (const relativePath of OPTIONAL_SOURCE_REPORTS) {
+    const fullPath = runPath(runDir, relativePath);
+    if (!fs.existsSync(fullPath)) continue;
+    try {
+      sourceReports.push(sourceReport(repoRoot, fullPath));
+    } catch (error) {
+      addBlocker(findings, 'optional_source_report_parse_error', `Could not parse optional report: ${String(error)}`, fullPath, repoRoot);
     }
   }
 
@@ -1493,11 +2405,13 @@ function main(): void {
   const llmOfficialSourceDecisionDryRunV2 = reportSummary(sourceReports, 'llm_official_source_decision_dry_run_v2_packet.json');
   const llmOfficialSourceDecisionPromotionPreflightV2 = reportSummary(sourceReports, 'llm_official_source_decision_promotion_preflight_v2_packet.json');
   const llmOfficialSourcePromotedDecisionFileGenerationV2 = reportSummary(sourceReports, 'llm_official_source_promoted_decision_file_generation_v2_packet.json');
+  const legacyGeneratedResearchEvidenceBridgeV2 = reportSummary(sourceReports, 'legacy_generated_research_evidence_bridge_v2_packet.json');
   const payloadCreationApprovalPreflightV2 = reportSummary(sourceReports, 'payload_creation_approval_preflight_v2_packet.json');
   const closedLocalPayloadMaterializationV2 = reportSummary(sourceReports, 'closed_local_payload_materialization_v2_packet.json');
   const serverDeliveryPublishPreflightV2 = reportSummary(sourceReports, 'server_delivery_publish_preflight_v2_packet.json');
   const adminServerDeliveryRuntimePreflightV2 = reportSummary(sourceReports, 'admin_server_delivery_runtime_preflight_v2_packet.json');
   const runtimeActivationBlockerPlanV2 = reportSummary(sourceReports, 'runtime_activation_blocker_plan_v2_packet.json');
+  const runtimeDeliveryEvidenceChainV2 = reportSummary(sourceReports, 'runtime_delivery_evidence_chain_v2_packet.json');
   const explicitApprovalReceiptHashLockGateV2 = reportSummary(sourceReports, 'explicit_approval_receipt_hash_lock_gate_v2_packet.json');
   const activationApprovalRequestPresentationV2 = reportSummary(sourceReports, 'activation_approval_request_presentation_v2_packet.json');
   const explicitApprovalReceiptCreationGateV2 = reportSummary(sourceReports, 'explicit_approval_receipt_creation_gate_v2_packet.json');
@@ -1509,6 +2423,35 @@ function main(): void {
   const readinessApplyBlockerMapRefreshV2 = reportSummary(sourceReports, 'readiness_apply_blocker_map_refresh_v2_packet.json');
   const masterNextPassConsistencyRefreshV2 = reportSummary(sourceReports, 'master_next_pass_consistency_refresh_v2_packet.json');
   const officialSourceContentCoverageV2 = reportSummary(sourceReports, 'french_official_source_content_coverage_v2_packet.json');
+  const productionActivationHoldExactApprovalRequiredV2 = reportSummary(sourceReports, 'production_activation_hold_exact_approval_required_v2_packet.json');
+  const exactApprovalValidationGateV2 = reportSummary(sourceReports, 'exact_approval_validation_gate_v2_packet.json');
+  const productionActivationSequencePreflightV2 = reportSummary(sourceReports, 'production_activation_sequence_preflight_v2_packet.json');
+  const productionApplyTransactionContractV2 = reportSummary(sourceReports, 'production_apply_transaction_contract_v2_packet.json');
+  const postApplyRollbackGuardContractV2 = reportSummary(sourceReports, 'post_apply_rollback_guard_contract_v2_packet.json');
+  const approvalWaitSafeContinuationV2 = reportSummary(sourceReports, 'approval_wait_safe_continuation_v2_packet.json');
+  const productionReadinessCompletionAuditV2 = reportSummary(sourceReports, 'production_readiness_completion_audit_v2_packet.json');
+  const finalPreapprovalEvidenceHashLockV2 = reportSummary(sourceReports, 'final_preapproval_evidence_hash_lock_v2_packet.json');
+  const exactApprovalApplyRehearsalV2 = reportSummary(sourceReports, 'exact_approval_apply_rehearsal_v2_packet.json');
+  const exactApprovalSourceFirewallV2 = reportSummary(sourceReports, 'exact_approval_source_firewall_v2_packet.json');
+  const exactApprovalSourceIntakeTransitionV2 = reportSummary(sourceReports, 'exact_approval_source_intake_transition_v2_packet.json');
+  const exactApprovalActiveArtifactPairSimulationV2 = reportSummary(sourceReports, 'exact_approval_active_artifact_pair_simulation_v2_packet.json');
+  const exactApprovalP31CreateCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p31_create_command_preflight_v2_packet.json');
+  const exactApprovalP44ValidationCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p44_validation_command_preflight_v2_packet.json');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2 = reportSummary(sourceReports, 'exact_approval_p44_to_p45_sequence_handoff_simulation_v2_packet.json');
+  const exactApprovalP45SequenceCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p45_sequence_command_preflight_v2_packet.json');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2 = reportSummary(sourceReports, 'exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_packet.json');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p46_apply_transaction_command_preflight_v2_packet.json');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2 = reportSummary(sourceReports, 'exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_packet.json');
+  const exactApprovalP47RollbackGuardCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p47_rollback_guard_command_preflight_v2_packet.json');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2 = reportSummary(sourceReports, 'exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_packet.json');
+  const exactApprovalP48SafeContinuationCommandPreflightV2 = reportSummary(sourceReports, 'exact_approval_p48_safe_continuation_command_preflight_v2_packet.json');
+  const exactApprovalWaitStateV2 = reportSummary(sourceReports, 'exact_approval_wait_state_v2_packet.json');
+  const orderedApprovalWaitRefreshV2 = reportSummary(sourceReports, 'ordered_approval_wait_refresh_v2_packet.json');
+  const safePreapprovalContinuationV2 = reportSummary(sourceReports, 'safe_preapproval_continuation_v2_packet.json');
+  const finalProductionReadinessGapV2 = reportSummary(sourceReports, 'final_production_readiness_gap_v2_packet.json');
+  const exactApprovalSourceHandoffFirewallV2 = reportSummary(sourceReports, 'exact_approval_source_handoff_firewall_v2_packet.json');
+  const exactApprovalSourceWaitTerminalStateV2 = reportSummary(sourceReports, 'exact_approval_source_wait_terminal_state_v2_packet.json');
+  const postExactApprovalApplyRunbookV2 = reportSummary(sourceReports, 'post_exact_approval_apply_runbook_v2_packet.json');
   const researchJsonFirewall = reportSummary(sourceReports, 'french_research_json_firewall_audit.json');
   const nextPassContract = reportSummary(sourceReports, 'next_pass_goal_contract_packet.json');
   const readinessBlockers = reportSummary(sourceReports, 'readiness_blocker_reduction_packet.json');
@@ -1579,6 +2522,17 @@ function main(): void {
   const aiPromptContractV2Domains = n(aiPromptContractV2, 'aiPromptDomainsCovered');
   const aiPromptContractV2RejectBeforeReturn = n(aiPromptContractV2, 'contractsWithRejectBeforeReturn');
   const aiPromptContractV2RejectBeforeCache = n(aiPromptContractV2, 'contractsWithRejectBeforeCache');
+  const aiPromptContractV2CriticalSurfaceClassesCovered = n(aiPromptContractV2, 'criticalSurfaceClassesCovered');
+  const aiPromptContractV2CriticalSurfaceClassesExpected = n(aiPromptContractV2, 'criticalSurfaceClassesExpected');
+  const aiPromptContractV2CriticalSurfaceContracts = n(aiPromptContractV2, 'criticalSurfaceContracts');
+  const aiPromptContractV2CriticalSurfaceLanguageDimensions = n(aiPromptContractV2, 'criticalSurfaceContractsWithLanguageDimensions');
+  const aiPromptContractV2CriticalSurfaceCacheContracts = n(aiPromptContractV2, 'criticalSurfaceContractsWithCacheContract');
+  const aiPromptContractV2CriticalSurfaceRejectBeforeReturn = n(aiPromptContractV2, 'criticalSurfaceContractsWithRejectBeforeReturn');
+  const aiPromptContractV2CriticalSurfaceRejectBeforeCache = n(aiPromptContractV2, 'criticalSurfaceContractsWithRejectBeforeCache');
+  const aiPromptContractV2CriticalSurfaceSafeFallback = n(aiPromptContractV2, 'criticalSurfaceContractsWithLanguageSafeFallback');
+  const aiPromptContractV2CriticalSurfaceGenerationBlocked = n(aiPromptContractV2, 'criticalSurfaceContractsGenerationBlocked');
+  const aiPromptContractV2CriticalSurfaceRequiredFilesCovered = n(aiPromptContractV2, 'criticalSurfaceRequiredFilesCovered');
+  const aiPromptContractV2CriticalSurfaceRequiredFiles = n(aiPromptContractV2, 'criticalSurfaceRequiredFiles');
   const aiPromptContractV2FixtureProbesPassed = n(aiPromptContractV2, 'fixtureProbesPassed');
   const aiPromptContractV2FixtureProbes = n(aiPromptContractV2, 'fixtureProbes');
   const contentQualityGatesV2Blockers = n(contentQualityGatesV2, 'blockers');
@@ -1678,6 +2632,7 @@ function main(): void {
   const serverDeliveryPublishPreflightV2Path = runPath(runDir, 'audits/server_delivery_publish_preflight_v2_packet.json');
   const adminServerDeliveryRuntimePreflightV2Path = runPath(runDir, 'audits/admin_server_delivery_runtime_preflight_v2_packet.json');
   const runtimeActivationBlockerPlanV2Path = runPath(runDir, 'audits/runtime_activation_blocker_plan_v2_packet.json');
+  const runtimeDeliveryEvidenceChainV2Path = runPath(runDir, 'audits/runtime_delivery_evidence_chain_v2_packet.json');
   const explicitApprovalReceiptHashLockGateV2Path = runPath(runDir, 'audits/explicit_approval_receipt_hash_lock_gate_v2_packet.json');
   const activationApprovalRequestPresentationV2Path = runPath(runDir, 'audits/activation_approval_request_presentation_v2_packet.json');
   const explicitApprovalReceiptCreationGateV2Path = runPath(runDir, 'audits/explicit_approval_receipt_creation_gate_v2_packet.json');
@@ -1689,6 +2644,35 @@ function main(): void {
   const readinessApplyBlockerMapRefreshV2Path = runPath(runDir, 'audits/readiness_apply_blocker_map_refresh_v2_packet.json');
   const masterNextPassConsistencyRefreshV2Path = runPath(runDir, 'audits/master_next_pass_consistency_refresh_v2_packet.json');
   const officialSourceContentCoverageV2Path = runPath(runDir, 'audits/french_official_source_content_coverage_v2_packet.json');
+  const productionActivationHoldExactApprovalRequiredV2Path = runPath(runDir, 'audits/production_activation_hold_exact_approval_required_v2_packet.json');
+  const exactApprovalValidationGateV2Path = runPath(runDir, 'audits/exact_approval_validation_gate_v2_packet.json');
+  const productionActivationSequencePreflightV2Path = runPath(runDir, 'audits/production_activation_sequence_preflight_v2_packet.json');
+  const productionApplyTransactionContractV2Path = runPath(runDir, 'audits/production_apply_transaction_contract_v2_packet.json');
+  const postApplyRollbackGuardContractV2Path = runPath(runDir, 'audits/post_apply_rollback_guard_contract_v2_packet.json');
+  const approvalWaitSafeContinuationV2Path = runPath(runDir, 'audits/approval_wait_safe_continuation_v2_packet.json');
+  const productionReadinessCompletionAuditV2Path = runPath(runDir, 'audits/production_readiness_completion_audit_v2_packet.json');
+  const finalPreapprovalEvidenceHashLockV2Path = runPath(runDir, 'audits/final_preapproval_evidence_hash_lock_v2_packet.json');
+  const exactApprovalApplyRehearsalV2Path = runPath(runDir, 'audits/exact_approval_apply_rehearsal_v2_packet.json');
+  const exactApprovalSourceFirewallV2Path = runPath(runDir, 'audits/exact_approval_source_firewall_v2_packet.json');
+  const exactApprovalSourceIntakeTransitionV2Path = runPath(runDir, 'audits/exact_approval_source_intake_transition_v2_packet.json');
+  const exactApprovalActiveArtifactPairSimulationV2Path = runPath(runDir, 'audits/exact_approval_active_artifact_pair_simulation_v2_packet.json');
+  const exactApprovalP31CreateCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p31_create_command_preflight_v2_packet.json');
+  const exactApprovalP44ValidationCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p44_validation_command_preflight_v2_packet.json');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2Path = runPath(runDir, 'audits/exact_approval_p44_to_p45_sequence_handoff_simulation_v2_packet.json');
+  const exactApprovalP45SequenceCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p45_sequence_command_preflight_v2_packet.json');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Path = runPath(runDir, 'audits/exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_packet.json');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p46_apply_transaction_command_preflight_v2_packet.json');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Path = runPath(runDir, 'audits/exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_packet.json');
+  const exactApprovalP47RollbackGuardCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p47_rollback_guard_command_preflight_v2_packet.json');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Path = runPath(runDir, 'audits/exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_packet.json');
+  const exactApprovalP48SafeContinuationCommandPreflightV2Path = runPath(runDir, 'audits/exact_approval_p48_safe_continuation_command_preflight_v2_packet.json');
+  const exactApprovalWaitStateV2Path = runPath(runDir, 'audits/exact_approval_wait_state_v2_packet.json');
+  const orderedApprovalWaitRefreshV2Path = runPath(runDir, 'audits/ordered_approval_wait_refresh_v2_packet.json');
+  const safePreapprovalContinuationV2Path = runPath(runDir, 'audits/safe_preapproval_continuation_v2_packet.json');
+  const finalProductionReadinessGapV2Path = runPath(runDir, 'audits/final_production_readiness_gap_v2_packet.json');
+  const exactApprovalSourceHandoffFirewallV2Path = runPath(runDir, 'audits/exact_approval_source_handoff_firewall_v2_packet.json');
+  const exactApprovalSourceWaitTerminalStateV2Path = runPath(runDir, 'audits/exact_approval_source_wait_terminal_state_v2_packet.json');
+  const postExactApprovalApplyRunbookV2Path = runPath(runDir, 'audits/post_exact_approval_apply_runbook_v2_packet.json');
   const officialSourceImportDryRunV2Present = reviewerDecisionImportV2DryRunPresent;
   const officialSourceImportDryRunV2Rows = reviewerDecisionImportV2DryRunRowDecisionRows;
   const officialSourceImportDryRunV2Ai = reviewerDecisionImportV2DryRunAiDecisionRows;
@@ -1959,8 +2943,92 @@ function main(): void {
     n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'targetOutputBeforeQualityOpenRows');
   const llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined = b(llmOfficialSourcePromotedDecisionFileGenerationV2, 'outputTargetsConfinedToPromotedDir');
   const llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh = b(llmOfficialSourcePromotedDecisionFileGenerationV2, 'readyForReviewerDecisionImportV2DryRunRefresh');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady = b(llmOfficialSourcePromotedDecisionFileGenerationV2, 'aiPromptContractV2Ready');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractEntrypoints = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'aiPromptContractEntrypoints');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractUniqueIds = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'aiPromptContractUniqueIds');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractCriticalContracts = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'aiPromptContractCriticalContracts');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiUniqueContractIds = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiUniqueContractIds');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDuplicateContractIds = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiDuplicateContractIds');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiDecisionsMatchedToPromptContracts');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiDecisionExtraContracts');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiDecisionMissingContracts');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContracts = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiCriticalContracts');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiCriticalContractsMatched');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDomainMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiDomainMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFilePathMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiFilePathMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFeatureRiskClassMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiFeatureRiskClassMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRiskLevelMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiRiskLevelMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetLocaleMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiTargetLocaleMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiSourceLocalesMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiSourceLocalesMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCacheDimensionsMatchedToPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiCacheDimensionsMatchedToPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageGatePassed = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiWrongLanguageGatePassed');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiRejectedFreshReturnClosedByPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiRejectedFreshCacheClosedByPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetOutputBeforeQualityClosedByPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiTargetOutputBeforeQualityClosedByPromptContract');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'promotedAiWrongLanguageFallbackClosedByPromptContract');
   const llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'fixtureProbesPassed');
   const llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes = n(llmOfficialSourcePromotedDecisionFileGenerationV2, 'fixtureProbes');
+  const llmOfficialSourcePromotedDecisionFileGenerationV2Ready =
+    llmOfficialSourcePromotedDecisionFileGenerationV2Present &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2Blockers === 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2State === 'promoted_decision_files_ready_no_import' &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AcceptedRowDecisions === EXPECTED_ROW_COUNT &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AcceptedAiDecisions === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2RowsWithEvidenceNotes === EXPECTED_ROW_COUNT &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiWithEvidenceNotes === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2OpenFlags === 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts === 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts === 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched === 55 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes > 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed === llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes;
+  const legacyGeneratedResearchEvidenceBridgeV2Blockers = n(legacyGeneratedResearchEvidenceBridgeV2, 'blockers');
+  const legacyGeneratedResearchEvidenceBridgeV2Warnings = n(legacyGeneratedResearchEvidenceBridgeV2, 'warnings');
+  const legacyGeneratedResearchEvidenceBridgeV2Present =
+    s(legacyGeneratedResearchEvidenceBridgeV2, 'bridgeState') !== '' ||
+    n(legacyGeneratedResearchEvidenceBridgeV2, 'legacyQueueRows') > 0;
+  const legacyGeneratedResearchEvidenceBridgeV2State = s(legacyGeneratedResearchEvidenceBridgeV2, 'bridgeState');
+  const legacyGeneratedResearchEvidenceBridgeV2LegacyRows = n(legacyGeneratedResearchEvidenceBridgeV2, 'legacyQueueRows');
+  const legacyGeneratedResearchEvidenceBridgeV2PromotedRows = n(legacyGeneratedResearchEvidenceBridgeV2, 'rowDecisionRows');
+  const legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched = n(legacyGeneratedResearchEvidenceBridgeV2, 'rowIdentityMatched');
+  const legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds = n(legacyGeneratedResearchEvidenceBridgeV2, 'rowsWithResearchEvidenceIds');
+  const legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed = n(legacyGeneratedResearchEvidenceBridgeV2, 'rowsWithAllRequiredGatesPassed');
+  const legacyGeneratedResearchEvidenceBridgeV2AiDecisions = n(legacyGeneratedResearchEvidenceBridgeV2, 'aiDecisionRows');
+  const legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions = n(legacyGeneratedResearchEvidenceBridgeV2, 'highRiskAiDecisionRows');
+  const legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate = n(legacyGeneratedResearchEvidenceBridgeV2, 'highRiskAiWithResearchGate');
+  const legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed = n(legacyGeneratedResearchEvidenceBridgeV2, 'aiLanguageGatesPassed');
+  const legacyGeneratedResearchEvidenceBridgeV2AiWithOfficialSourceNotes = n(legacyGeneratedResearchEvidenceBridgeV2, 'aiWithOfficialSourceNotes');
+  const legacyGeneratedResearchEvidenceBridgeV2DryRunReady = b(legacyGeneratedResearchEvidenceBridgeV2, 'dryRunReady');
+  const legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed = n(legacyGeneratedResearchEvidenceBridgeV2, 'fixtureProbesPassed');
+  const legacyGeneratedResearchEvidenceBridgeV2FixtureProbes = n(legacyGeneratedResearchEvidenceBridgeV2, 'fixtureProbes');
+  const legacyGeneratedResearchEvidenceBridgeV2ReadyForApply = b(legacyGeneratedResearchEvidenceBridgeV2, 'readyForApply');
+  const legacyGeneratedResearchEvidenceBridgeV2MayModifyProductionAppFiles = b(legacyGeneratedResearchEvidenceBridgeV2, 'mayModifyProductionAppFiles');
+  const legacyGeneratedResearchEvidenceBridgeV2Ready =
+    legacyGeneratedResearchEvidenceBridgeV2Present &&
+    legacyGeneratedResearchEvidenceBridgeV2Blockers === 0 &&
+    legacyGeneratedResearchEvidenceBridgeV2State === 'legacy_generated_research_evidence_bridge_ready_no_writes' &&
+    legacyGeneratedResearchEvidenceBridgeV2LegacyRows === 1600 &&
+    legacyGeneratedResearchEvidenceBridgeV2PromotedRows === 1600 &&
+    legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched === 1600 &&
+    legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds === 1600 &&
+    legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed === 1600 &&
+    legacyGeneratedResearchEvidenceBridgeV2AiDecisions === 164 &&
+    legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions > 0 &&
+    legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate === legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions &&
+    legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed === 164 &&
+    legacyGeneratedResearchEvidenceBridgeV2AiWithOfficialSourceNotes === 164 &&
+    legacyGeneratedResearchEvidenceBridgeV2DryRunReady &&
+    legacyGeneratedResearchEvidenceBridgeV2FixtureProbes > 0 &&
+    legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed === legacyGeneratedResearchEvidenceBridgeV2FixtureProbes &&
+    !legacyGeneratedResearchEvidenceBridgeV2ReadyForApply &&
+    !legacyGeneratedResearchEvidenceBridgeV2MayModifyProductionAppFiles;
   const payloadCreationApprovalPreflightV2Blockers = n(payloadCreationApprovalPreflightV2, 'blockers');
   const payloadCreationApprovalPreflightV2Warnings = n(payloadCreationApprovalPreflightV2, 'warnings');
   const payloadCreationApprovalPreflightV2Present =
@@ -2072,6 +3140,67 @@ function main(): void {
   const runtimeActivationBlockerPlanV2FixtureProbesPassed = n(runtimeActivationBlockerPlanV2, 'fixtureProbesPassed');
   const runtimeActivationBlockerPlanV2FixtureProbes = n(runtimeActivationBlockerPlanV2, 'fixtureProbes');
   const runtimeActivationBlockerPlanV2ReadyForApply = b(runtimeActivationBlockerPlanV2, 'readyForApply');
+  const runtimeDeliveryEvidenceChainV2Blockers = n(runtimeDeliveryEvidenceChainV2, 'blockers');
+  const runtimeDeliveryEvidenceChainV2Warnings = n(runtimeDeliveryEvidenceChainV2, 'warnings');
+  const runtimeDeliveryEvidenceChainV2Present =
+    s(runtimeDeliveryEvidenceChainV2, 'chainState') !== '' ||
+    n(runtimeDeliveryEvidenceChainV2, 'publishManifestEntries') > 0;
+  const runtimeDeliveryEvidenceChainV2State = s(runtimeDeliveryEvidenceChainV2, 'chainState');
+  const runtimeDeliveryEvidenceChainV2UpstreamReportsPass = n(runtimeDeliveryEvidenceChainV2, 'upstreamReportsPass');
+  const runtimeDeliveryEvidenceChainV2UpstreamReportBlockers = n(runtimeDeliveryEvidenceChainV2, 'upstreamReportBlockers');
+  const runtimeDeliveryEvidenceChainV2PreviewEntries = n(runtimeDeliveryEvidenceChainV2, 'previewEntries');
+  const runtimeDeliveryEvidenceChainV2PreviewShaPlaceholders = n(runtimeDeliveryEvidenceChainV2, 'previewShaPlaceholders');
+  const runtimeDeliveryEvidenceChainV2PublishManifestEntries = n(runtimeDeliveryEvidenceChainV2, 'publishManifestEntries');
+  const runtimeDeliveryEvidenceChainV2ActualShaEntries = n(runtimeDeliveryEvidenceChainV2, 'publishActualShaEntries');
+  const runtimeDeliveryEvidenceChainV2ActualByteSizeEntries = n(runtimeDeliveryEvidenceChainV2, 'publishActualByteSizeEntries');
+  const runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches = n(runtimeDeliveryEvidenceChainV2, 'manifestPayloadShaMatches');
+  const runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches = n(runtimeDeliveryEvidenceChainV2, 'manifestIndexShaMatches');
+  const runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches = n(runtimeDeliveryEvidenceChainV2, 'manifestSliceManifestShaMatches');
+  const runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent = n(runtimeDeliveryEvidenceChainV2, 'manifestChecksumReportsPresent');
+  const runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts = n(runtimeDeliveryEvidenceChainV2, 'runtimeRollbackSimulationContracts');
+  const runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts = n(runtimeDeliveryEvidenceChainV2, 'runtimeSourceLocaleMismatchRejectContracts');
+  const runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts = n(runtimeDeliveryEvidenceChainV2, 'runtimeStudyTargetMismatchRejectContracts');
+  const runtimeDeliveryEvidenceChainV2AdminReady = b(runtimeDeliveryEvidenceChainV2, 'adminReady');
+  const runtimeDeliveryEvidenceChainV2RuntimeReady = b(runtimeDeliveryEvidenceChainV2, 'adminRuntimeReady');
+  const runtimeDeliveryEvidenceChainV2StorageReady = b(runtimeDeliveryEvidenceChainV2, 'adminStorageReady');
+  const runtimeDeliveryEvidenceChainV2ClosedTransitions = b(runtimeDeliveryEvidenceChainV2, 'closedTransitions');
+  const runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState = b(runtimeDeliveryEvidenceChainV2, 'readyForExactApprovalWaitState');
+  const runtimeDeliveryEvidenceChainV2FixtureProbesPassed = n(runtimeDeliveryEvidenceChainV2, 'fixtureProbesPassed');
+  const runtimeDeliveryEvidenceChainV2FixtureProbes = n(runtimeDeliveryEvidenceChainV2, 'fixtureProbes');
+  const runtimeDeliveryEvidenceChainV2ReadyForApply = b(runtimeDeliveryEvidenceChainV2, 'readyForApply');
+  const runtimeDeliveryEvidenceChainV2MayModifyProductionAppFiles = b(runtimeDeliveryEvidenceChainV2, 'mayModifyProductionAppFiles');
+  const runtimeDeliveryEvidenceChainV2FreshAfterRuntimePlan =
+    fileMtimeMs(runtimeDeliveryEvidenceChainV2Path) >= fileMtimeMs(runtimeActivationBlockerPlanV2Path) &&
+    fileMtimeMs(runtimeActivationBlockerPlanV2Path) > 0;
+  const runtimeDeliveryEvidenceChainV2Ready =
+    runtimeDeliveryEvidenceChainV2Present &&
+    runtimeDeliveryEvidenceChainV2Blockers === 0 &&
+    runtimeDeliveryEvidenceChainV2State === 'runtime_delivery_evidence_chain_ready_no_writes' &&
+    b(runtimeDeliveryEvidenceChainV2, 'runtimeDeliveryEvidenceChainReady') &&
+    runtimeDeliveryEvidenceChainV2FreshAfterRuntimePlan &&
+    runtimeDeliveryEvidenceChainV2UpstreamReportsPass === 9 &&
+    runtimeDeliveryEvidenceChainV2UpstreamReportBlockers === 0 &&
+    runtimeDeliveryEvidenceChainV2PreviewEntries === 12 &&
+    runtimeDeliveryEvidenceChainV2PreviewShaPlaceholders === 12 &&
+    runtimeDeliveryEvidenceChainV2PublishManifestEntries === 12 &&
+    runtimeDeliveryEvidenceChainV2ActualShaEntries === 12 &&
+    runtimeDeliveryEvidenceChainV2ActualByteSizeEntries === 12 &&
+    runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches === 12 &&
+    runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches === 12 &&
+    runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches === 12 &&
+    runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent === 12 &&
+    runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts === 12 &&
+    runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts === 12 &&
+    runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts === 12 &&
+    runtimeDeliveryEvidenceChainV2AdminReady &&
+    runtimeDeliveryEvidenceChainV2RuntimeReady &&
+    runtimeDeliveryEvidenceChainV2StorageReady &&
+    runtimeDeliveryEvidenceChainV2ClosedTransitions &&
+    runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState &&
+    runtimeDeliveryEvidenceChainV2FixtureProbes > 0 &&
+    runtimeDeliveryEvidenceChainV2FixtureProbesPassed === runtimeDeliveryEvidenceChainV2FixtureProbes &&
+    !runtimeDeliveryEvidenceChainV2ReadyForApply &&
+    !runtimeDeliveryEvidenceChainV2MayModifyProductionAppFiles;
   const explicitApprovalReceiptHashLockGateV2Blockers = n(explicitApprovalReceiptHashLockGateV2, 'blockers');
   const explicitApprovalReceiptHashLockGateV2Warnings = n(explicitApprovalReceiptHashLockGateV2, 'warnings');
   const explicitApprovalReceiptHashLockGateV2Present =
@@ -2143,9 +3272,23 @@ function main(): void {
   const productionApplyAbsenceDenialGateV2FreshAfterReceiptCreation =
     fileMtimeMs(productionApplyAbsenceDenialGateV2Path) >= fileMtimeMs(explicitApprovalReceiptCreationGateV2Path) &&
     fileMtimeMs(explicitApprovalReceiptCreationGateV2Path) > 0;
+  const productionApplyAbsenceDenialGateV2ReceiptCreationEquivalent =
+    explicitApprovalReceiptCreationGateV2Present &&
+    explicitApprovalReceiptCreationGateV2State === 'approval_receipt_creation_waiting_for_exact_sentence' &&
+    explicitApprovalReceiptCreationGateV2PlainContinueRejected &&
+    explicitApprovalReceiptCreationGateV2CanContinueNonProductionAudit &&
+    !explicitApprovalReceiptCreationGateV2ActiveApprovalReceiptCreated &&
+    !explicitApprovalReceiptCreationGateV2ActiveHashLockCreated &&
+    !explicitApprovalReceiptCreationGateV2ReadyForApply &&
+    !b(explicitApprovalReceiptCreationGateV2, 'mayModifyProductionAppFiles') &&
+    !b(explicitApprovalReceiptCreationGateV2, 'activationApproved') &&
+    productionApplyAbsenceDenialGateV2State === 'production_apply_denied_missing_active_approval_artifacts' &&
+    productionApplyAbsenceDenialGateV2ApplyDenied &&
+    !productionApplyAbsenceDenialGateV2ActiveApprovalReceiptExists &&
+    !productionApplyAbsenceDenialGateV2ActiveHashLockExists;
   const productionApplyAbsenceDenialGateV2ReadyForNonProductionContinuation =
     b(productionApplyAbsenceDenialGateV2, 'readyForNonProductionContinuationAfterApplyDenialV2') &&
-    productionApplyAbsenceDenialGateV2FreshAfterReceiptCreation;
+    (productionApplyAbsenceDenialGateV2FreshAfterReceiptCreation || productionApplyAbsenceDenialGateV2ReceiptCreationEquivalent);
   const productionApplyAbsenceDenialGateV2FixtureProbesPassed = n(productionApplyAbsenceDenialGateV2, 'fixtureProbesPassed');
   const productionApplyAbsenceDenialGateV2FixtureProbes = n(productionApplyAbsenceDenialGateV2, 'fixtureProbes');
   const productionApplyAbsenceDenialGateV2ReadyForApply = b(productionApplyAbsenceDenialGateV2, 'readyForApply');
@@ -2279,12 +3422,33 @@ function main(): void {
   const officialSourceContentCoverageV2AcceptedRows = n(officialSourceContentCoverageV2, 'acceptedRowOfficialSourceDecisionRows');
   const officialSourceContentCoverageV2AcceptedAi = n(officialSourceContentCoverageV2, 'acceptedAiOfficialSourceDecisionRows');
   const officialSourceContentCoverageV2RowsWithSourceRefs = n(officialSourceContentCoverageV2, 'rowDecisionsWithSourceRefs');
+  const officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls = n(officialSourceContentCoverageV2, 'rowDecisionsWithTrustedSourceRefUrls');
+  const officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs = n(officialSourceContentCoverageV2, 'rowDecisionsWithEvidenceCoveredBySourceRefs');
+  const officialSourceContentCoverageV2RowsWithUntrustedSourceRefUrls = n(officialSourceContentCoverageV2, 'rowDecisionsWithUntrustedSourceRefUrls');
+  const officialSourceContentCoverageV2RowsWithUntrustedSourceRefIds = n(officialSourceContentCoverageV2, 'rowDecisionsWithUntrustedSourceRefIds');
+  const officialSourceContentCoverageV2AiWithTrustedSourceRefUrls = n(officialSourceContentCoverageV2, 'aiDecisionsWithTrustedSourceRefUrls');
+  const officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs = n(officialSourceContentCoverageV2, 'aiDecisionsWithMinimumTrustedSourceRefs');
+  const officialSourceContentCoverageV2AiWithUntrustedSourceRefUrls = n(officialSourceContentCoverageV2, 'aiDecisionsWithUntrustedSourceRefUrls');
+  const officialSourceContentCoverageV2AiWithUntrustedSourceRefIds = n(officialSourceContentCoverageV2, 'aiDecisionsWithUntrustedSourceRefIds');
+  const officialSourceContentCoverageV2RejectsNonHttpsSourceRefFixture = b(officialSourceContentCoverageV2, 'rejectsNonHttpsSourceRefFixture');
+  const officialSourceContentCoverageV2RejectsUntrustedSourceDomainFixture = b(officialSourceContentCoverageV2, 'rejectsUntrustedSourceDomainFixture');
+  const officialSourceContentCoverageV2RejectsUntrustedSourceIdFixture = b(officialSourceContentCoverageV2, 'rejectsUntrustedSourceIdFixture');
+  const officialSourceContentCoverageV2RejectsEvidenceWithoutMatchingSourceRefFixture = b(officialSourceContentCoverageV2, 'rejectsEvidenceWithoutMatchingSourceRefFixture');
+  const officialSourceContentCoverageV2RejectsInsufficientAiTrustedSourceRefsFixture = b(officialSourceContentCoverageV2, 'rejectsInsufficientAiTrustedSourceRefsFixture');
   const officialSourceContentCoverageV2RowsWithGatesPassed = n(officialSourceContentCoverageV2, 'rowDecisionsWithAllRequiredGatesPassed');
   const officialSourceContentCoverageV2QuizRowsOneCorrect = n(officialSourceContentCoverageV2, 'rowDecisionQuizRowsWithOneCorrectAnswer');
   const officialSourceContentCoverageV2TrustedSourceIds = n(officialSourceContentCoverageV2, 'trustedSourceIds');
-  const officialSourceContentCoverageV2FreshAfterMasterRefresh =
+  const officialSourceContentCoverageV2P38Ready = b(officialSourceContentCoverageV2, 'p38Ready');
+  const officialSourceContentCoverageV2MtimeFreshAfterMasterRefresh =
     fileMtimeMs(officialSourceContentCoverageV2Path) >= fileMtimeMs(masterNextPassConsistencyRefreshV2Path) &&
     fileMtimeMs(masterNextPassConsistencyRefreshV2Path) > 0;
+  const officialSourceContentCoverageV2FreshnessAcceptedByP38Snapshot =
+    officialSourceContentCoverageV2P38Ready &&
+    officialSourceContentCoverageV2State === 'official_source_content_coverage_complete_no_import' &&
+    officialSourceContentCoverageV2Blockers === 0;
+  const officialSourceContentCoverageV2FreshAfterMasterRefresh =
+    officialSourceContentCoverageV2MtimeFreshAfterMasterRefresh ||
+    officialSourceContentCoverageV2FreshnessAcceptedByP38Snapshot;
   const officialSourceContentCoverageV2ReadyForImportDryRunRefresh =
     b(officialSourceContentCoverageV2, 'readyForReviewerDecisionImportDryRunRefresh') &&
     officialSourceContentCoverageV2FreshAfterMasterRefresh;
@@ -2292,6 +3456,1222 @@ function main(): void {
   const officialSourceContentCoverageV2FixtureProbes = n(officialSourceContentCoverageV2, 'fixtureProbes');
   const officialSourceContentCoverageV2ReadyForApply = b(officialSourceContentCoverageV2, 'readyForApply');
   const officialSourceContentCoverageV2MayModifyProductionAppFiles = b(officialSourceContentCoverageV2, 'mayModifyProductionAppFiles');
+  const productionActivationHoldExactApprovalRequiredV2Blockers = n(productionActivationHoldExactApprovalRequiredV2, 'blockers');
+  const productionActivationHoldExactApprovalRequiredV2Warnings = n(productionActivationHoldExactApprovalRequiredV2, 'warnings');
+  const productionActivationHoldExactApprovalRequiredV2Present =
+    s(productionActivationHoldExactApprovalRequiredV2, 'holdState') !== '' ||
+    b(productionActivationHoldExactApprovalRequiredV2, 'productionActivationHold');
+  const productionActivationHoldExactApprovalRequiredV2State = s(productionActivationHoldExactApprovalRequiredV2, 'holdState');
+  const productionActivationHoldExactApprovalRequiredV2ClosedEvidenceReady = b(productionActivationHoldExactApprovalRequiredV2, 'closedEvidenceReady');
+  const productionActivationHoldExactApprovalRequiredV2ExactApprovalRequired = b(productionActivationHoldExactApprovalRequiredV2, 'exactApprovalRequired');
+  const productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed = n(productionActivationHoldExactApprovalRequiredV2, 'fixtureProbesPassed');
+  const productionActivationHoldExactApprovalRequiredV2FixtureProbes = n(productionActivationHoldExactApprovalRequiredV2, 'fixtureProbes');
+  const productionActivationHoldExactApprovalRequiredV2ReadyForApply = b(productionActivationHoldExactApprovalRequiredV2, 'readyForApply');
+  const productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles = b(productionActivationHoldExactApprovalRequiredV2, 'mayModifyProductionAppFiles');
+  const productionActivationHoldExactApprovalRequiredV2FreshAfterClosedEvidence =
+    fileMtimeMs(productionActivationHoldExactApprovalRequiredV2Path) >= fileMtimeMs(masterNextPassConsistencyRefreshV2Path) &&
+    fileMtimeMs(productionActivationHoldExactApprovalRequiredV2Path) >= fileMtimeMs(officialSourceContentCoverageV2Path) &&
+    fileMtimeMs(productionActivationHoldExactApprovalRequiredV2Path) >= fileMtimeMs(closedLocalPayloadMaterializationV2Path) &&
+    fileMtimeMs(masterNextPassConsistencyRefreshV2Path) > 0 &&
+    fileMtimeMs(officialSourceContentCoverageV2Path) > 0 &&
+    fileMtimeMs(closedLocalPayloadMaterializationV2Path) > 0;
+  const productionActivationHoldExactApprovalRequiredV2Ready =
+    productionActivationHoldExactApprovalRequiredV2Present &&
+    productionActivationHoldExactApprovalRequiredV2FreshAfterClosedEvidence &&
+    productionActivationHoldExactApprovalRequiredV2Blockers === 0 &&
+    productionActivationHoldExactApprovalRequiredV2State === 'production_activation_hold_exact_approval_required' &&
+    productionActivationHoldExactApprovalRequiredV2ClosedEvidenceReady &&
+    productionActivationHoldExactApprovalRequiredV2ExactApprovalRequired &&
+    !productionActivationHoldExactApprovalRequiredV2ReadyForApply &&
+    !productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles &&
+    !b(productionActivationHoldExactApprovalRequiredV2, 'activationApproved') &&
+    productionActivationHoldExactApprovalRequiredV2FixtureProbes > 0 &&
+    productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed === productionActivationHoldExactApprovalRequiredV2FixtureProbes;
+  const exactApprovalValidationGateV2Blockers = n(exactApprovalValidationGateV2, 'blockers');
+  const exactApprovalValidationGateV2Warnings = n(exactApprovalValidationGateV2, 'warnings');
+  const exactApprovalValidationGateV2Present =
+    s(exactApprovalValidationGateV2, 'validationState') !== '' ||
+    b(exactApprovalValidationGateV2, 'exactApprovalRequired');
+  const exactApprovalValidationGateV2State = s(exactApprovalValidationGateV2, 'validationState');
+  const exactApprovalValidationGateV2ReadyForProductionActivationSequencing = b(exactApprovalValidationGateV2, 'readyForProductionActivationSequencing');
+  const exactApprovalValidationGateV2ActiveApprovalReceiptExists = b(exactApprovalValidationGateV2, 'activeApprovalReceiptExists');
+  const exactApprovalValidationGateV2ActiveHashLockExists = b(exactApprovalValidationGateV2, 'activeHashLockExists');
+  const exactApprovalValidationGateV2FixtureProbesPassed = n(exactApprovalValidationGateV2, 'fixtureProbesPassed');
+  const exactApprovalValidationGateV2FixtureProbes = n(exactApprovalValidationGateV2, 'fixtureProbes');
+  const exactApprovalValidationGateV2ReadyForApply = b(exactApprovalValidationGateV2, 'readyForApply');
+  const exactApprovalValidationGateV2MayModifyProductionAppFiles = b(exactApprovalValidationGateV2, 'mayModifyProductionAppFiles');
+  const exactApprovalValidationGateV2FreshAfterP43 =
+    fileMtimeMs(exactApprovalValidationGateV2Path) >= fileMtimeMs(productionActivationHoldExactApprovalRequiredV2Path) &&
+    fileMtimeMs(productionActivationHoldExactApprovalRequiredV2Path) > 0;
+  const exactApprovalValidationGateV2Ready =
+    exactApprovalValidationGateV2Present &&
+    exactApprovalValidationGateV2FreshAfterP43 &&
+    exactApprovalValidationGateV2Blockers === 0 &&
+    (exactApprovalValidationGateV2State === 'waiting_for_exact_approval_artifacts' ||
+      exactApprovalValidationGateV2State === 'exact_approval_artifacts_validated_for_next_sequencing') &&
+    !exactApprovalValidationGateV2ReadyForApply &&
+    !exactApprovalValidationGateV2MayModifyProductionAppFiles &&
+    !b(exactApprovalValidationGateV2, 'activationApproved') &&
+    exactApprovalValidationGateV2FixtureProbes > 0 &&
+    exactApprovalValidationGateV2FixtureProbesPassed === exactApprovalValidationGateV2FixtureProbes;
+  const productionActivationSequencePreflightV2Blockers = n(productionActivationSequencePreflightV2, 'blockers');
+  const productionActivationSequencePreflightV2Warnings = n(productionActivationSequencePreflightV2, 'warnings');
+  const productionActivationSequencePreflightV2Present =
+    s(productionActivationSequencePreflightV2, 'preflightState') !== '' ||
+    b(productionActivationSequencePreflightV2, 'readyForProductionActivationSequence');
+  const productionActivationSequencePreflightV2State = s(productionActivationSequencePreflightV2, 'preflightState');
+  const productionActivationSequencePreflightV2ReadyForProductionActivationSequence = b(productionActivationSequencePreflightV2, 'readyForProductionActivationSequence');
+  const productionActivationSequencePreflightV2FixtureProbesPassed = n(productionActivationSequencePreflightV2, 'fixtureProbesPassed');
+  const productionActivationSequencePreflightV2FixtureProbes = n(productionActivationSequencePreflightV2, 'fixtureProbes');
+  const productionActivationSequencePreflightV2ReadyForApply = b(productionActivationSequencePreflightV2, 'readyForApply');
+  const productionActivationSequencePreflightV2MayModifyProductionAppFiles = b(productionActivationSequencePreflightV2, 'mayModifyProductionAppFiles');
+  const productionActivationSequencePreflightV2FreshAfterP44 =
+    fileMtimeMs(productionActivationSequencePreflightV2Path) >= fileMtimeMs(exactApprovalValidationGateV2Path) &&
+    fileMtimeMs(exactApprovalValidationGateV2Path) > 0;
+  const productionActivationSequencePreflightV2Ready =
+    productionActivationSequencePreflightV2Present &&
+    productionActivationSequencePreflightV2FreshAfterP44 &&
+    productionActivationSequencePreflightV2Blockers === 0 &&
+    (productionActivationSequencePreflightV2State === 'waiting_for_exact_approval_validation' ||
+      productionActivationSequencePreflightV2State === 'production_activation_sequence_preflight_ready') &&
+    !productionActivationSequencePreflightV2ReadyForApply &&
+    !productionActivationSequencePreflightV2MayModifyProductionAppFiles &&
+    !b(productionActivationSequencePreflightV2, 'activationApproved') &&
+    productionActivationSequencePreflightV2FixtureProbes > 0 &&
+    productionActivationSequencePreflightV2FixtureProbesPassed === productionActivationSequencePreflightV2FixtureProbes;
+  const productionApplyTransactionContractV2Blockers = n(productionApplyTransactionContractV2, 'blockers');
+  const productionApplyTransactionContractV2Warnings = n(productionApplyTransactionContractV2, 'warnings');
+  const productionApplyTransactionContractV2Present =
+    s(productionApplyTransactionContractV2, 'transactionState') !== '' ||
+    b(productionApplyTransactionContractV2, 'readyForProductionApplyTransaction');
+  const productionApplyTransactionContractV2State = s(productionApplyTransactionContractV2, 'transactionState');
+  const productionApplyTransactionContractV2ReadyForProductionApplyTransaction = b(productionApplyTransactionContractV2, 'readyForProductionApplyTransaction');
+  const productionApplyTransactionContractV2ServerManifestEntries = n(productionApplyTransactionContractV2, 'serverManifestEntries');
+  const productionApplyTransactionContractV2PayloadFilesChecked = n(productionApplyTransactionContractV2, 'payloadFilesChecked');
+  const productionApplyTransactionContractV2IndexFilesChecked = n(productionApplyTransactionContractV2, 'indexFilesChecked');
+  const productionApplyTransactionContractV2SliceManifestFilesChecked = n(productionApplyTransactionContractV2, 'sliceManifestFilesChecked');
+  const productionApplyTransactionContractV2ShaMismatches = n(productionApplyTransactionContractV2, 'shaMismatches');
+  const productionApplyTransactionContractV2MissingEntryFiles = n(productionApplyTransactionContractV2, 'missingEntryFiles');
+  const productionApplyTransactionContractV2P49RequirementsProved = n(productionApplyTransactionContractV2, 'p49RequirementsProved');
+  const productionApplyTransactionContractV2P49RequirementsProductionLocked = n(productionApplyTransactionContractV2, 'p49RequirementsProductionLocked');
+  const productionApplyTransactionContractV2P49RequirementsMissing = n(productionApplyTransactionContractV2, 'p49RequirementsMissing');
+  const productionApplyTransactionContractV2P49RequirementsContradicted = n(productionApplyTransactionContractV2, 'p49RequirementsContradicted');
+  const productionApplyTransactionContractV2FinalHashLocks = n(productionApplyTransactionContractV2, 'finalHashLocks');
+  const productionApplyTransactionContractV2P50MissingCriticalArtifacts = n(productionApplyTransactionContractV2, 'p50MissingCriticalArtifacts');
+  const productionApplyTransactionContractV2P50RuntimeDeliveryEvidenceChainReady = b(productionApplyTransactionContractV2, 'p50RuntimeDeliveryEvidenceChainReady');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady = b(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainReady');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries = n(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainPublishManifestEntries');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainActualShaEntries = n(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainActualShaEntries');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainRollbackContracts = n(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainRollbackContracts');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects = n(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainSourceLocaleRejects');
+  const productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects = n(productionApplyTransactionContractV2, 'runtimeDeliveryEvidenceChainStudyTargetRejects');
+  const productionApplyTransactionContractV2FixtureProbesPassed = n(productionApplyTransactionContractV2, 'fixtureProbesPassed');
+  const productionApplyTransactionContractV2FixtureProbes = n(productionApplyTransactionContractV2, 'fixtureProbes');
+  const productionApplyTransactionContractV2ReadyForApply = b(productionApplyTransactionContractV2, 'readyForApply');
+  const productionApplyTransactionContractV2MayModifyProductionAppFiles = b(productionApplyTransactionContractV2, 'mayModifyProductionAppFiles');
+  const productionApplyTransactionContractV2P45ClosedStateEquivalent =
+    productionActivationSequencePreflightV2Present &&
+    productionActivationSequencePreflightV2State === 'waiting_for_exact_approval_validation' &&
+    !productionActivationSequencePreflightV2ReadyForProductionActivationSequence &&
+    s(productionApplyTransactionContractV2, 'p45Status') === 'HOLD' &&
+    s(productionApplyTransactionContractV2, 'p45PreflightState') === productionActivationSequencePreflightV2State &&
+    !b(productionApplyTransactionContractV2, 'p45ReadyForProductionActivationSequence') &&
+    !b(productionActivationSequencePreflightV2, 'activationApproved') &&
+    !productionActivationSequencePreflightV2ReadyForApply &&
+    !productionActivationSequencePreflightV2MayModifyProductionAppFiles;
+  const productionApplyTransactionContractV2FreshAfterP45 =
+    (fileMtimeMs(productionApplyTransactionContractV2Path) >= fileMtimeMs(productionActivationSequencePreflightV2Path) &&
+      fileMtimeMs(productionActivationSequencePreflightV2Path) > 0) ||
+    productionApplyTransactionContractV2P45ClosedStateEquivalent;
+  const productionApplyTransactionContractV2Ready =
+    productionApplyTransactionContractV2Present &&
+    productionApplyTransactionContractV2FreshAfterP45 &&
+    productionApplyTransactionContractV2Blockers === 0 &&
+    (productionApplyTransactionContractV2State === 'waiting_for_activation_sequence_preflight' ||
+      productionApplyTransactionContractV2State === 'production_apply_transaction_contract_ready') &&
+    productionApplyTransactionContractV2ServerManifestEntries === 12 &&
+    productionApplyTransactionContractV2PayloadFilesChecked === 12 &&
+    productionApplyTransactionContractV2IndexFilesChecked === 12 &&
+    productionApplyTransactionContractV2SliceManifestFilesChecked === 12 &&
+    productionApplyTransactionContractV2ShaMismatches === 0 &&
+    productionApplyTransactionContractV2MissingEntryFiles === 0 &&
+    productionApplyTransactionContractV2P49RequirementsProved + productionApplyTransactionContractV2P49RequirementsProductionLocked >= 16 &&
+    productionApplyTransactionContractV2P49RequirementsProductionLocked > 0 &&
+    productionApplyTransactionContractV2P49RequirementsMissing === 0 &&
+    productionApplyTransactionContractV2P49RequirementsContradicted === 0 &&
+    productionApplyTransactionContractV2FinalHashLocks >= EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 &&
+    productionApplyTransactionContractV2P50MissingCriticalArtifacts === 0 &&
+    productionApplyTransactionContractV2P50RuntimeDeliveryEvidenceChainReady &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries === 12 &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainActualShaEntries === 12 &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainRollbackContracts === 12 &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects === 12 &&
+    productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects === 12 &&
+    !productionApplyTransactionContractV2ReadyForApply &&
+    !productionApplyTransactionContractV2MayModifyProductionAppFiles &&
+    !b(productionApplyTransactionContractV2, 'activationApproved') &&
+    productionApplyTransactionContractV2FixtureProbes > 0 &&
+    productionApplyTransactionContractV2FixtureProbesPassed === productionApplyTransactionContractV2FixtureProbes;
+  const postApplyRollbackGuardContractV2Blockers = n(postApplyRollbackGuardContractV2, 'blockers');
+  const postApplyRollbackGuardContractV2Warnings = n(postApplyRollbackGuardContractV2, 'warnings');
+  const postApplyRollbackGuardContractV2Present =
+    s(postApplyRollbackGuardContractV2, 'guardState') !== '' ||
+    b(postApplyRollbackGuardContractV2, 'readyForPostApplyRollbackGuard');
+  const postApplyRollbackGuardContractV2State = s(postApplyRollbackGuardContractV2, 'guardState');
+  const postApplyRollbackGuardContractV2ReadyForPostApplyRollbackGuard = b(postApplyRollbackGuardContractV2, 'readyForPostApplyRollbackGuard');
+  const postApplyRollbackGuardContractV2RuntimeCacheContracts = n(postApplyRollbackGuardContractV2, 'runtimeCacheContracts');
+  const postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts = n(postApplyRollbackGuardContractV2, 'runtimeCacheRollbackContracts');
+  const postApplyRollbackGuardContractV2LanguagePromptContracts = n(postApplyRollbackGuardContractV2, 'languagePromptContracts');
+  const postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected = n(postApplyRollbackGuardContractV2, 'languagePromptEntrypointsExpected');
+  const postApplyRollbackGuardContractV2PostApplyGuardSteps = n(postApplyRollbackGuardContractV2, 'postApplyGuardSteps');
+  const postApplyRollbackGuardContractV2RollbackGuardSteps = n(postApplyRollbackGuardContractV2, 'rollbackGuardSteps');
+  const postApplyRollbackGuardContractV2P49RequirementsProved = n(postApplyRollbackGuardContractV2, 'p49RequirementsProved');
+  const postApplyRollbackGuardContractV2P49RequirementsProductionLocked = n(postApplyRollbackGuardContractV2, 'p49RequirementsProductionLocked');
+  const postApplyRollbackGuardContractV2P49RequirementsMissing = n(postApplyRollbackGuardContractV2, 'p49RequirementsMissing');
+  const postApplyRollbackGuardContractV2P49RequirementsContradicted = n(postApplyRollbackGuardContractV2, 'p49RequirementsContradicted');
+  const postApplyRollbackGuardContractV2FinalHashLocks = n(postApplyRollbackGuardContractV2, 'finalHashLocks');
+  const postApplyRollbackGuardContractV2P50MissingCriticalArtifacts = n(postApplyRollbackGuardContractV2, 'p50MissingCriticalArtifacts');
+  const postApplyRollbackGuardContractV2P50RuntimeDeliveryEvidenceChainReady = b(postApplyRollbackGuardContractV2, 'p50RuntimeDeliveryEvidenceChainReady');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady = b(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainReady');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries = n(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainPublishManifestEntries');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainActualShaEntries = n(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainActualShaEntries');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainRollbackContracts = n(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainRollbackContracts');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects = n(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainSourceLocaleRejects');
+  const postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects = n(postApplyRollbackGuardContractV2, 'runtimeDeliveryEvidenceChainStudyTargetRejects');
+  const postApplyRollbackGuardContractV2FixtureProbesPassed = n(postApplyRollbackGuardContractV2, 'fixtureProbesPassed');
+  const postApplyRollbackGuardContractV2FixtureProbes = n(postApplyRollbackGuardContractV2, 'fixtureProbes');
+  const postApplyRollbackGuardContractV2ReadyForApply = b(postApplyRollbackGuardContractV2, 'readyForApply');
+  const postApplyRollbackGuardContractV2MayModifyProductionAppFiles = b(postApplyRollbackGuardContractV2, 'mayModifyProductionAppFiles');
+  const postApplyRollbackGuardContractV2FreshAfterP46 =
+    fileMtimeMs(postApplyRollbackGuardContractV2Path) >= fileMtimeMs(productionApplyTransactionContractV2Path) &&
+    fileMtimeMs(productionApplyTransactionContractV2Path) > 0;
+  const postApplyRollbackGuardContractV2Ready =
+    postApplyRollbackGuardContractV2Present &&
+    postApplyRollbackGuardContractV2FreshAfterP46 &&
+    postApplyRollbackGuardContractV2Blockers === 0 &&
+    (postApplyRollbackGuardContractV2State === 'waiting_for_apply_transaction_contract' ||
+      postApplyRollbackGuardContractV2State === 'post_apply_rollback_guard_contract_ready') &&
+    postApplyRollbackGuardContractV2RuntimeCacheContracts === 12 &&
+    postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts === 12 &&
+    postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected > 0 &&
+    postApplyRollbackGuardContractV2LanguagePromptContracts === postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected &&
+    postApplyRollbackGuardContractV2PostApplyGuardSteps > 0 &&
+    postApplyRollbackGuardContractV2RollbackGuardSteps > 0 &&
+    postApplyRollbackGuardContractV2P49RequirementsProved + postApplyRollbackGuardContractV2P49RequirementsProductionLocked >= 16 &&
+    postApplyRollbackGuardContractV2P49RequirementsProductionLocked > 0 &&
+    postApplyRollbackGuardContractV2P49RequirementsMissing === 0 &&
+    postApplyRollbackGuardContractV2P49RequirementsContradicted === 0 &&
+    postApplyRollbackGuardContractV2FinalHashLocks >= EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 &&
+    postApplyRollbackGuardContractV2P50MissingCriticalArtifacts === 0 &&
+    postApplyRollbackGuardContractV2P50RuntimeDeliveryEvidenceChainReady &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries === 12 &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainActualShaEntries === 12 &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainRollbackContracts === 12 &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects === 12 &&
+    postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects === 12 &&
+    !postApplyRollbackGuardContractV2ReadyForApply &&
+    !postApplyRollbackGuardContractV2MayModifyProductionAppFiles &&
+    !b(postApplyRollbackGuardContractV2, 'activationApproved') &&
+    postApplyRollbackGuardContractV2FixtureProbes > 0 &&
+    postApplyRollbackGuardContractV2FixtureProbesPassed === postApplyRollbackGuardContractV2FixtureProbes;
+  const approvalWaitSafeContinuationV2Blockers = n(approvalWaitSafeContinuationV2, 'blockers');
+  const approvalWaitSafeContinuationV2Warnings = n(approvalWaitSafeContinuationV2, 'warnings');
+  const approvalWaitSafeContinuationV2Present =
+    s(approvalWaitSafeContinuationV2, 'continuationState') !== '' ||
+    b(approvalWaitSafeContinuationV2, 'readyForNextSafePass');
+  const approvalWaitSafeContinuationV2State = s(approvalWaitSafeContinuationV2, 'continuationState');
+  const approvalWaitSafeContinuationV2ReadyForNextSafePass = b(approvalWaitSafeContinuationV2, 'readyForNextSafePass');
+  const approvalWaitSafeContinuationV2SafeWorkItems = n(approvalWaitSafeContinuationV2, 'safeContinuationWorkItems');
+  const approvalWaitSafeContinuationV2ProductionLockedItems = n(approvalWaitSafeContinuationV2, 'remainingProductionLockedItems');
+  const approvalWaitSafeContinuationV2LegacyReviewResidueMatches = n(approvalWaitSafeContinuationV2, 'legacyReviewResidueMatches');
+  const approvalWaitSafeContinuationV2FixtureProbesPassed = n(approvalWaitSafeContinuationV2, 'fixtureProbesPassed');
+  const approvalWaitSafeContinuationV2FixtureProbes = n(approvalWaitSafeContinuationV2, 'fixtureProbes');
+  const approvalWaitSafeContinuationV2ReadyForApply = b(approvalWaitSafeContinuationV2, 'readyForApply');
+  const approvalWaitSafeContinuationV2MayModifyProductionAppFiles = b(approvalWaitSafeContinuationV2, 'mayModifyProductionAppFiles');
+  const approvalWaitSafeContinuationV2FreshAfterP47 =
+    fileMtimeMs(approvalWaitSafeContinuationV2Path) >= fileMtimeMs(postApplyRollbackGuardContractV2Path) &&
+    fileMtimeMs(postApplyRollbackGuardContractV2Path) > 0;
+  const approvalWaitSafeContinuationV2Ready =
+    approvalWaitSafeContinuationV2Present &&
+    approvalWaitSafeContinuationV2FreshAfterP47 &&
+    approvalWaitSafeContinuationV2Blockers === 0 &&
+    approvalWaitSafeContinuationV2State === 'approval_wait_safe_continuation_ready' &&
+    approvalWaitSafeContinuationV2ReadyForNextSafePass &&
+    approvalWaitSafeContinuationV2SafeWorkItems > 0 &&
+    approvalWaitSafeContinuationV2ProductionLockedItems > 0 &&
+    approvalWaitSafeContinuationV2LegacyReviewResidueMatches === 0 &&
+    !approvalWaitSafeContinuationV2ReadyForApply &&
+    !approvalWaitSafeContinuationV2MayModifyProductionAppFiles &&
+    !b(approvalWaitSafeContinuationV2, 'activationApproved') &&
+    approvalWaitSafeContinuationV2FixtureProbes > 0 &&
+    approvalWaitSafeContinuationV2FixtureProbesPassed === approvalWaitSafeContinuationV2FixtureProbes;
+  const productionReadinessCompletionAuditV2Blockers = n(productionReadinessCompletionAuditV2, 'blockers');
+  const productionReadinessCompletionAuditV2Warnings = n(productionReadinessCompletionAuditV2, 'warnings');
+  const productionReadinessCompletionAuditV2Present =
+    s(productionReadinessCompletionAuditV2, 'completionState') !== '' ||
+    b(productionReadinessCompletionAuditV2, 'closedModeEvidenceComplete');
+  const productionReadinessCompletionAuditV2State = s(productionReadinessCompletionAuditV2, 'completionState');
+  const productionReadinessCompletionAuditV2RequirementsProved = n(productionReadinessCompletionAuditV2, 'requirementsProved');
+  const productionReadinessCompletionAuditV2RequirementsProductionLocked = n(productionReadinessCompletionAuditV2, 'requirementsProductionLocked');
+  const productionReadinessCompletionAuditV2RequirementsMissing = n(productionReadinessCompletionAuditV2, 'requirementsMissing');
+  const productionReadinessCompletionAuditV2RequirementsContradicted = n(productionReadinessCompletionAuditV2, 'requirementsContradicted');
+  const productionReadinessCompletionAuditV2ClosedModeEvidenceComplete = b(productionReadinessCompletionAuditV2, 'closedModeEvidenceComplete');
+  const productionReadinessCompletionAuditV2RequirementsClosed =
+    productionReadinessCompletionAuditV2RequirementsProved + productionReadinessCompletionAuditV2RequirementsProductionLocked;
+  const productionReadinessCompletionAuditV2FixtureProbesPassed = n(productionReadinessCompletionAuditV2, 'fixtureProbesPassed');
+  const productionReadinessCompletionAuditV2FixtureProbes = n(productionReadinessCompletionAuditV2, 'fixtureProbes');
+  const productionReadinessCompletionAuditV2ReadyForApply = b(productionReadinessCompletionAuditV2, 'readyForApply');
+  const productionReadinessCompletionAuditV2MayModifyProductionAppFiles = b(productionReadinessCompletionAuditV2, 'mayModifyProductionAppFiles');
+  const productionReadinessCompletionAuditV2FreshAfterP48 =
+    fileMtimeMs(productionReadinessCompletionAuditV2Path) >= fileMtimeMs(approvalWaitSafeContinuationV2Path) &&
+    fileMtimeMs(approvalWaitSafeContinuationV2Path) > 0;
+  const productionReadinessCompletionAuditV2FreshOrClosedWaitCycle =
+    productionReadinessCompletionAuditV2FreshAfterP48 ||
+    (
+      approvalWaitSafeContinuationV2Ready &&
+      productionReadinessCompletionAuditV2Blockers === 0 &&
+      productionReadinessCompletionAuditV2State === 'closed_mode_evidence_complete_production_locked' &&
+      productionReadinessCompletionAuditV2ClosedModeEvidenceComplete &&
+      productionReadinessCompletionAuditV2RequirementsClosed >= 16 &&
+      productionReadinessCompletionAuditV2RequirementsMissing === 0 &&
+      productionReadinessCompletionAuditV2RequirementsContradicted === 0 &&
+      !productionReadinessCompletionAuditV2ReadyForApply &&
+      !productionReadinessCompletionAuditV2MayModifyProductionAppFiles &&
+      !b(productionReadinessCompletionAuditV2, 'activationApproved') &&
+      productionReadinessCompletionAuditV2FixtureProbes > 0 &&
+      productionReadinessCompletionAuditV2FixtureProbesPassed === productionReadinessCompletionAuditV2FixtureProbes
+    );
+  const productionReadinessCompletionAuditV2Ready =
+    productionReadinessCompletionAuditV2Present &&
+    productionReadinessCompletionAuditV2FreshOrClosedWaitCycle &&
+    productionReadinessCompletionAuditV2Blockers === 0 &&
+    productionReadinessCompletionAuditV2State === 'closed_mode_evidence_complete_production_locked' &&
+    productionReadinessCompletionAuditV2ClosedModeEvidenceComplete &&
+    productionReadinessCompletionAuditV2RequirementsClosed >= 16 &&
+    productionReadinessCompletionAuditV2RequirementsMissing === 0 &&
+    productionReadinessCompletionAuditV2RequirementsContradicted === 0 &&
+    !productionReadinessCompletionAuditV2ReadyForApply &&
+    !productionReadinessCompletionAuditV2MayModifyProductionAppFiles &&
+    !b(productionReadinessCompletionAuditV2, 'activationApproved') &&
+    productionReadinessCompletionAuditV2FixtureProbes > 0 &&
+    productionReadinessCompletionAuditV2FixtureProbesPassed === productionReadinessCompletionAuditV2FixtureProbes;
+  const finalPreapprovalEvidenceHashLockV2Blockers = n(finalPreapprovalEvidenceHashLockV2, 'blockers');
+  const finalPreapprovalEvidenceHashLockV2Warnings = n(finalPreapprovalEvidenceHashLockV2, 'warnings');
+  const finalPreapprovalEvidenceHashLockV2Present =
+    s(finalPreapprovalEvidenceHashLockV2, 'lockState') !== '' ||
+    b(finalPreapprovalEvidenceHashLockV2, 'readyForExplicitApprovalReceiptCreationGateV2');
+  const finalPreapprovalEvidenceHashLockV2State = s(finalPreapprovalEvidenceHashLockV2, 'lockState');
+  const finalPreapprovalEvidenceHashLockV2FinalHashLocks = n(finalPreapprovalEvidenceHashLockV2, 'finalHashLocks');
+  const finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts = n(finalPreapprovalEvidenceHashLockV2, 'missingCriticalArtifacts');
+  const finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks = n(finalPreapprovalEvidenceHashLockV2, 'missingRequiredRoleLocks');
+  const finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock = b(finalPreapprovalEvidenceHashLockV2, 'p30IncludesFinalHashLock');
+  const finalPreapprovalEvidenceHashLockV2P43P49ChainReady = b(finalPreapprovalEvidenceHashLockV2, 'p43P49ChainReady');
+  const finalPreapprovalEvidenceHashLockV2P49CompletionReady = b(finalPreapprovalEvidenceHashLockV2, 'p49CompletionReady');
+  const finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady = b(finalPreapprovalEvidenceHashLockV2, 'runtimeDeliveryEvidenceChainReady');
+  const finalPreapprovalEvidenceHashLockV2FixtureProbesPassed = n(finalPreapprovalEvidenceHashLockV2, 'fixtureProbesPassed');
+  const finalPreapprovalEvidenceHashLockV2FixtureProbes = n(finalPreapprovalEvidenceHashLockV2, 'fixtureProbes');
+  const finalPreapprovalEvidenceHashLockV2ReadyForApply = b(finalPreapprovalEvidenceHashLockV2, 'readyForApply');
+  const finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles = b(finalPreapprovalEvidenceHashLockV2, 'mayModifyProductionAppFiles');
+  const finalPreapprovalEvidenceHashLockV2FreshAfterP49 =
+    fileMtimeMs(finalPreapprovalEvidenceHashLockV2Path) >= fileMtimeMs(productionReadinessCompletionAuditV2Path) &&
+    fileMtimeMs(productionReadinessCompletionAuditV2Path) > 0;
+  const finalPreapprovalEvidenceHashLockV2P49Equivalent =
+    productionReadinessCompletionAuditV2Ready &&
+    productionReadinessCompletionAuditV2State === 'closed_mode_evidence_complete_production_locked' &&
+    !productionReadinessCompletionAuditV2ReadyForApply &&
+    !productionReadinessCompletionAuditV2MayModifyProductionAppFiles &&
+    !b(productionReadinessCompletionAuditV2, 'activationApproved') &&
+    finalPreapprovalEvidenceHashLockV2P49CompletionReady;
+  const finalPreapprovalEvidenceHashLockV2Ready =
+    finalPreapprovalEvidenceHashLockV2Present &&
+    (finalPreapprovalEvidenceHashLockV2FreshAfterP49 || finalPreapprovalEvidenceHashLockV2P49Equivalent) &&
+    finalPreapprovalEvidenceHashLockV2Blockers === 0 &&
+    finalPreapprovalEvidenceHashLockV2State === 'final_preapproval_evidence_hash_lock_ready' &&
+    finalPreapprovalEvidenceHashLockV2FinalHashLocks >= EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 &&
+    finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts === 0 &&
+    finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks === 0 &&
+    finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock &&
+    finalPreapprovalEvidenceHashLockV2P43P49ChainReady &&
+    finalPreapprovalEvidenceHashLockV2P49CompletionReady &&
+    finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady &&
+    !finalPreapprovalEvidenceHashLockV2ReadyForApply &&
+    !finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles &&
+    !b(finalPreapprovalEvidenceHashLockV2, 'activationApproved') &&
+    finalPreapprovalEvidenceHashLockV2FixtureProbes > 0 &&
+    finalPreapprovalEvidenceHashLockV2FixtureProbesPassed === finalPreapprovalEvidenceHashLockV2FixtureProbes;
+  const exactApprovalApplyRehearsalV2Blockers = n(exactApprovalApplyRehearsalV2, 'blockers');
+  const exactApprovalApplyRehearsalV2Warnings = n(exactApprovalApplyRehearsalV2, 'warnings');
+  const exactApprovalApplyRehearsalV2Present =
+    s(exactApprovalApplyRehearsalV2, 'rehearsalState') !== '' ||
+    b(exactApprovalApplyRehearsalV2, 'requiredApprovalSentencePresent');
+  const exactApprovalApplyRehearsalV2State = s(exactApprovalApplyRehearsalV2, 'rehearsalState');
+  const exactApprovalApplyRehearsalV2ReadinessApplyBlockers = n(exactApprovalApplyRehearsalV2, 'readinessApplyBlockers');
+  const exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists = b(exactApprovalApplyRehearsalV2, 'activeApprovalReceiptExists');
+  const exactApprovalApplyRehearsalV2ActiveHashLockExists = b(exactApprovalApplyRehearsalV2, 'activeHashLockExists');
+  const exactApprovalApplyRehearsalV2MainHashLockDryRunPresent = b(exactApprovalApplyRehearsalV2, 'mainHashLockDryRunPresent');
+  const exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent = b(exactApprovalApplyRehearsalV2, 'finalHashLockDryRunPresent');
+  const exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow = b(exactApprovalApplyRehearsalV2, 'wouldCreateActiveArtifactsNow');
+  const exactApprovalApplyRehearsalV2FixtureProbesPassed = n(exactApprovalApplyRehearsalV2, 'fixtureProbesPassed');
+  const exactApprovalApplyRehearsalV2FixtureProbes = n(exactApprovalApplyRehearsalV2, 'fixtureProbes');
+  const exactApprovalApplyRehearsalV2ReadyForApply = b(exactApprovalApplyRehearsalV2, 'readyForApply');
+  const exactApprovalApplyRehearsalV2MayModifyProductionAppFiles = b(exactApprovalApplyRehearsalV2, 'mayModifyProductionAppFiles');
+  const exactApprovalApplyRehearsalV2FreshAfterP50 =
+    fileMtimeMs(exactApprovalApplyRehearsalV2Path) >= fileMtimeMs(finalPreapprovalEvidenceHashLockV2Path) &&
+    fileMtimeMs(finalPreapprovalEvidenceHashLockV2Path) > 0;
+  const exactApprovalApplyRehearsalV2Ready =
+    exactApprovalApplyRehearsalV2Present &&
+    exactApprovalApplyRehearsalV2FreshAfterP50 &&
+    exactApprovalApplyRehearsalV2Blockers === 0 &&
+    exactApprovalApplyRehearsalV2State === 'exact_approval_apply_rehearsal_ready_waiting_for_exact_approval' &&
+    exactApprovalApplyRehearsalV2ReadinessApplyBlockers === 1 &&
+    !exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists &&
+    !exactApprovalApplyRehearsalV2ActiveHashLockExists &&
+    exactApprovalApplyRehearsalV2MainHashLockDryRunPresent &&
+    exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent &&
+    !exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow &&
+    !exactApprovalApplyRehearsalV2ReadyForApply &&
+    !exactApprovalApplyRehearsalV2MayModifyProductionAppFiles &&
+    !b(exactApprovalApplyRehearsalV2, 'activationApproved') &&
+    exactApprovalApplyRehearsalV2FixtureProbes > 0 &&
+    exactApprovalApplyRehearsalV2FixtureProbesPassed === exactApprovalApplyRehearsalV2FixtureProbes;
+  const exactApprovalSourceFirewallV2Blockers = n(exactApprovalSourceFirewallV2, 'blockers');
+  const exactApprovalSourceFirewallV2Warnings = n(exactApprovalSourceFirewallV2, 'warnings');
+  const exactApprovalSourceFirewallV2Present =
+    s(exactApprovalSourceFirewallV2, 'firewallState') !== '' ||
+    b(exactApprovalSourceFirewallV2, 'approvalSourceRequiredForActiveArtifacts');
+  const exactApprovalSourceFirewallV2State = s(exactApprovalSourceFirewallV2, 'firewallState');
+  const exactApprovalSourceFirewallV2ApprovalSourceExists = b(exactApprovalSourceFirewallV2, 'approvalSourceExists');
+  const exactApprovalSourceFirewallV2ApprovalSourceContainsExactSentence = b(exactApprovalSourceFirewallV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts = b(exactApprovalSourceFirewallV2, 'plainContinueWouldCreateActiveArtifacts');
+  const exactApprovalSourceFirewallV2ActiveApprovalReceiptExists = b(exactApprovalSourceFirewallV2, 'activeApprovalReceiptExists');
+  const exactApprovalSourceFirewallV2ActiveHashLockExists = b(exactApprovalSourceFirewallV2, 'activeHashLockExists');
+  const exactApprovalSourceFirewallV2FixtureProbesPassed = n(exactApprovalSourceFirewallV2, 'fixtureProbesPassed');
+  const exactApprovalSourceFirewallV2FixtureProbes = n(exactApprovalSourceFirewallV2, 'fixtureProbes');
+  const exactApprovalSourceFirewallV2ReadyForApply = b(exactApprovalSourceFirewallV2, 'readyForApply');
+  const exactApprovalSourceFirewallV2MayModifyProductionAppFiles = b(exactApprovalSourceFirewallV2, 'mayModifyProductionAppFiles');
+  const exactApprovalSourceFirewallV2FreshAfterP51 =
+    fileMtimeMs(exactApprovalSourceFirewallV2Path) >= fileMtimeMs(exactApprovalApplyRehearsalV2Path) &&
+    fileMtimeMs(exactApprovalApplyRehearsalV2Path) > 0;
+  const exactApprovalSourceFirewallV2Ready =
+    exactApprovalSourceFirewallV2Present &&
+    exactApprovalSourceFirewallV2FreshAfterP51 &&
+    exactApprovalSourceFirewallV2Blockers === 0 &&
+    (exactApprovalSourceFirewallV2State === 'exact_approval_source_firewall_ready_waiting_for_approval_source' ||
+      exactApprovalSourceFirewallV2State === 'exact_approval_source_present_p31_create_required') &&
+    b(exactApprovalSourceFirewallV2, 'p51Ready') &&
+    b(exactApprovalSourceFirewallV2, 'requiredApprovalSentencePresent') &&
+    b(exactApprovalSourceFirewallV2, 'approvalSourceRequiredForActiveArtifacts') &&
+    b(exactApprovalSourceFirewallV2, 'explicitCreateFlagRequiredForActiveArtifacts') &&
+    !exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts &&
+    !b(exactApprovalSourceFirewallV2, 'wouldCreateActiveArtifactsNow') &&
+    !exactApprovalSourceFirewallV2ActiveApprovalReceiptExists &&
+    !exactApprovalSourceFirewallV2ActiveHashLockExists &&
+    !exactApprovalSourceFirewallV2ReadyForApply &&
+    !exactApprovalSourceFirewallV2MayModifyProductionAppFiles &&
+    !b(exactApprovalSourceFirewallV2, 'activationApproved') &&
+    exactApprovalSourceFirewallV2FixtureProbes > 0 &&
+    exactApprovalSourceFirewallV2FixtureProbesPassed === exactApprovalSourceFirewallV2FixtureProbes;
+  const exactApprovalSourceIntakeTransitionV2Blockers = n(exactApprovalSourceIntakeTransitionV2, 'blockers');
+  const exactApprovalSourceIntakeTransitionV2Warnings = n(exactApprovalSourceIntakeTransitionV2, 'warnings');
+  const exactApprovalSourceIntakeTransitionV2Present =
+    s(exactApprovalSourceIntakeTransitionV2, 'intakeTransitionState') !== '' ||
+    b(exactApprovalSourceIntakeTransitionV2, 'approvalSourceRequiredForActiveArtifacts');
+  const exactApprovalSourceIntakeTransitionV2State = s(exactApprovalSourceIntakeTransitionV2, 'intakeTransitionState');
+  const exactApprovalSourceIntakeTransitionV2ApprovalSourceExists = b(exactApprovalSourceIntakeTransitionV2, 'approvalSourceExists');
+  const exactApprovalSourceIntakeTransitionV2ApprovalSourceContainsExactSentence = b(exactApprovalSourceIntakeTransitionV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts = b(exactApprovalSourceIntakeTransitionV2, 'plainContinueWouldCreateActiveArtifacts');
+  const exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript = b(exactApprovalSourceIntakeTransitionV2, 'wouldCreateActiveArtifactsByThisScript');
+  const exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists = b(exactApprovalSourceIntakeTransitionV2, 'activeApprovalReceiptExists');
+  const exactApprovalSourceIntakeTransitionV2ActiveHashLockExists = b(exactApprovalSourceIntakeTransitionV2, 'activeHashLockExists');
+  const exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts = b(exactApprovalSourceIntakeTransitionV2, 'simulatedValidP31CreateWouldCreateBothArtifacts');
+  const exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply = b(exactApprovalSourceIntakeTransitionV2, 'simulatedP44WouldOpenReadyForApply');
+  const exactApprovalSourceIntakeTransitionV2FixtureProbesPassed = n(exactApprovalSourceIntakeTransitionV2, 'fixtureProbesPassed');
+  const exactApprovalSourceIntakeTransitionV2FixtureProbes = n(exactApprovalSourceIntakeTransitionV2, 'fixtureProbes');
+  const exactApprovalSourceIntakeTransitionV2ReadyForApply = b(exactApprovalSourceIntakeTransitionV2, 'readyForApply');
+  const exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles = b(exactApprovalSourceIntakeTransitionV2, 'mayModifyProductionAppFiles');
+  const exactApprovalSourceIntakeTransitionV2FreshAfterP52 =
+    fileMtimeMs(exactApprovalSourceIntakeTransitionV2Path) >= fileMtimeMs(exactApprovalSourceFirewallV2Path) &&
+    fileMtimeMs(exactApprovalSourceFirewallV2Path) > 0;
+  const exactApprovalSourceIntakeTransitionV2Ready =
+    exactApprovalSourceIntakeTransitionV2Present &&
+    exactApprovalSourceIntakeTransitionV2FreshAfterP52 &&
+    exactApprovalSourceIntakeTransitionV2Blockers === 0 &&
+    (exactApprovalSourceIntakeTransitionV2State === 'exact_approval_intake_transition_ready_waiting_for_approval_source' ||
+      exactApprovalSourceIntakeTransitionV2State === 'exact_approval_source_present_p31_create_required') &&
+    b(exactApprovalSourceIntakeTransitionV2, 'p52Ready') &&
+    b(exactApprovalSourceIntakeTransitionV2, 'approvalSourceRequiredForActiveArtifacts') &&
+    b(exactApprovalSourceIntakeTransitionV2, 'explicitP31CreateFlagRequiredForActiveArtifacts') &&
+    !exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts &&
+    !b(exactApprovalSourceIntakeTransitionV2, 'wouldCreateActiveArtifactsNow') &&
+    !exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript &&
+    !exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists &&
+    !exactApprovalSourceIntakeTransitionV2ActiveHashLockExists &&
+    exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts &&
+    !exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply &&
+    !exactApprovalSourceIntakeTransitionV2ReadyForApply &&
+    !exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles &&
+    !b(exactApprovalSourceIntakeTransitionV2, 'activationApproved') &&
+    exactApprovalSourceIntakeTransitionV2FixtureProbes > 0 &&
+    exactApprovalSourceIntakeTransitionV2FixtureProbesPassed === exactApprovalSourceIntakeTransitionV2FixtureProbes;
+  const exactApprovalActiveArtifactPairSimulationV2Blockers = n(exactApprovalActiveArtifactPairSimulationV2, 'blockers');
+  const exactApprovalActiveArtifactPairSimulationV2Warnings = n(exactApprovalActiveArtifactPairSimulationV2, 'warnings');
+  const exactApprovalActiveArtifactPairSimulationV2Present =
+    s(exactApprovalActiveArtifactPairSimulationV2, 'pairSimulationState') !== '' ||
+    b(exactApprovalActiveArtifactPairSimulationV2, 'simulatedPairWouldPassP44AfterP31Create');
+  const exactApprovalActiveArtifactPairSimulationV2State = s(exactApprovalActiveArtifactPairSimulationV2, 'pairSimulationState');
+  const exactApprovalActiveArtifactPairSimulationV2ApprovalSourceExists = b(exactApprovalActiveArtifactPairSimulationV2, 'approvalSourceExists');
+  const exactApprovalActiveArtifactPairSimulationV2ApprovalSourceContainsExactSentence = b(exactApprovalActiveArtifactPairSimulationV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists = b(exactApprovalActiveArtifactPairSimulationV2, 'activeApprovalReceiptExists');
+  const exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists = b(exactApprovalActiveArtifactPairSimulationV2, 'activeHashLockExists');
+  const exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create = b(exactApprovalActiveArtifactPairSimulationV2, 'simulatedPairWouldPassP44AfterP31Create');
+  const exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing = b(exactApprovalActiveArtifactPairSimulationV2, 'currentP44WouldOpenSequencing');
+  const exactApprovalActiveArtifactPairSimulationV2ReadyForP31CreateWhenExactSourcePresent = b(exactApprovalActiveArtifactPairSimulationV2, 'readyForP31CreateWhenExactSourcePresent');
+  const exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed = n(exactApprovalActiveArtifactPairSimulationV2, 'fixtureProbesPassed');
+  const exactApprovalActiveArtifactPairSimulationV2FixtureProbes = n(exactApprovalActiveArtifactPairSimulationV2, 'fixtureProbes');
+  const exactApprovalActiveArtifactPairSimulationV2ReadyForApply = b(exactApprovalActiveArtifactPairSimulationV2, 'readyForApply');
+  const exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles = b(exactApprovalActiveArtifactPairSimulationV2, 'mayModifyProductionAppFiles');
+  const exactApprovalActiveArtifactPairSimulationV2FreshAfterP53 =
+    fileMtimeMs(exactApprovalActiveArtifactPairSimulationV2Path) >= fileMtimeMs(exactApprovalSourceIntakeTransitionV2Path) &&
+    fileMtimeMs(exactApprovalSourceIntakeTransitionV2Path) > 0;
+  const exactApprovalActiveArtifactPairSimulationV2Ready =
+    exactApprovalActiveArtifactPairSimulationV2Present &&
+    exactApprovalActiveArtifactPairSimulationV2FreshAfterP53 &&
+    exactApprovalActiveArtifactPairSimulationV2Blockers === 0 &&
+    (exactApprovalActiveArtifactPairSimulationV2State === 'active_artifact_pair_simulation_ready_waiting_for_exact_source' ||
+      exactApprovalActiveArtifactPairSimulationV2State === 'active_artifact_pair_simulation_ready_for_p31_create') &&
+    b(exactApprovalActiveArtifactPairSimulationV2, 'p53Ready') &&
+    exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create &&
+    !exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing &&
+    !exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists &&
+    !exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists &&
+    !b(exactApprovalActiveArtifactPairSimulationV2, 'activeApprovalReceiptCreatedByThisScript') &&
+    !b(exactApprovalActiveArtifactPairSimulationV2, 'activeHashLockCreatedByThisScript') &&
+    !exactApprovalActiveArtifactPairSimulationV2ReadyForApply &&
+    !exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles &&
+    !b(exactApprovalActiveArtifactPairSimulationV2, 'activationApproved') &&
+    exactApprovalActiveArtifactPairSimulationV2FixtureProbes > 0 &&
+    exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed === exactApprovalActiveArtifactPairSimulationV2FixtureProbes;
+  const exactApprovalP31CreateCommandPreflightV2Blockers = n(exactApprovalP31CreateCommandPreflightV2, 'blockers');
+  const exactApprovalP31CreateCommandPreflightV2Warnings = n(exactApprovalP31CreateCommandPreflightV2, 'warnings');
+  const exactApprovalP31CreateCommandPreflightV2Present =
+    s(exactApprovalP31CreateCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP31CreateCommandPreflightV2, 'p31CreateCommandAllowedWhenExactSourcePresent');
+  const exactApprovalP31CreateCommandPreflightV2State = s(exactApprovalP31CreateCommandPreflightV2, 'preflightState');
+  const exactApprovalP31CreateCommandPreflightV2ApprovalSourceExists = b(exactApprovalP31CreateCommandPreflightV2, 'approvalSourceExists');
+  const exactApprovalP31CreateCommandPreflightV2ApprovalSourceContainsExactSentence = b(exactApprovalP31CreateCommandPreflightV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists = b(exactApprovalP31CreateCommandPreflightV2, 'activeApprovalReceiptExists');
+  const exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists = b(exactApprovalP31CreateCommandPreflightV2, 'activeHashLockExists');
+  const exactApprovalP31CreateCommandPreflightV2CommandAllowedNow = b(exactApprovalP31CreateCommandPreflightV2, 'p31CreateCommandAllowedByPreflightNow');
+  const exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent = b(exactApprovalP31CreateCommandPreflightV2, 'p31CreateCommandAllowedWhenExactSourcePresent');
+  const exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP31CreateCommandPreflightV2, 'p31CreateCommandWouldExecuteByThisScript');
+  const exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed = n(exactApprovalP31CreateCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP31CreateCommandPreflightV2FixtureProbes = n(exactApprovalP31CreateCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP31CreateCommandPreflightV2ReadyForApply = b(exactApprovalP31CreateCommandPreflightV2, 'readyForApply');
+  const exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP31CreateCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP31CreateCommandPreflightV2FreshAfterP54 =
+    fileMtimeMs(exactApprovalP31CreateCommandPreflightV2Path) >= fileMtimeMs(exactApprovalActiveArtifactPairSimulationV2Path) &&
+    fileMtimeMs(exactApprovalActiveArtifactPairSimulationV2Path) > 0;
+  const exactApprovalP31CreateCommandPreflightV2Ready =
+    exactApprovalP31CreateCommandPreflightV2Present &&
+    exactApprovalP31CreateCommandPreflightV2FreshAfterP54 &&
+    exactApprovalP31CreateCommandPreflightV2Blockers === 0 &&
+    (exactApprovalP31CreateCommandPreflightV2State === 'p31_create_command_preflight_ready_waiting_for_exact_source' ||
+      exactApprovalP31CreateCommandPreflightV2State === 'p31_create_command_preflight_ready_for_explicit_create_command') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'p54Ready') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'commandIncludesExplicitCreateFlag') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'commandUsesDefaultApprovalSource') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'commandTargetsFr') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'commandRunPathMatchesCurrentRun') &&
+    b(exactApprovalP31CreateCommandPreflightV2, 'commandWouldWriteOnlyReservedActivePaths') &&
+    exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent &&
+    !exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript &&
+    !exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists &&
+    !exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists &&
+    !b(exactApprovalP31CreateCommandPreflightV2, 'activeApprovalReceiptCreatedByThisScript') &&
+    !b(exactApprovalP31CreateCommandPreflightV2, 'activeHashLockCreatedByThisScript') &&
+    !exactApprovalP31CreateCommandPreflightV2ReadyForApply &&
+    !exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP31CreateCommandPreflightV2, 'activationApproved') &&
+    exactApprovalP31CreateCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed === exactApprovalP31CreateCommandPreflightV2FixtureProbes;
+  const exactApprovalP44ValidationCommandPreflightV2Blockers = n(exactApprovalP44ValidationCommandPreflightV2, 'blockers');
+  const exactApprovalP44ValidationCommandPreflightV2Warnings = n(exactApprovalP44ValidationCommandPreflightV2, 'warnings');
+  const exactApprovalP44ValidationCommandPreflightV2Present =
+    s(exactApprovalP44ValidationCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP44ValidationCommandPreflightV2, 'p44ValidationCommandAllowedAfterP31Create');
+  const exactApprovalP44ValidationCommandPreflightV2State = s(exactApprovalP44ValidationCommandPreflightV2, 'preflightState');
+  const exactApprovalP44ValidationCommandPreflightV2ApprovalSourceExists = b(exactApprovalP44ValidationCommandPreflightV2, 'approvalSourceExists');
+  const exactApprovalP44ValidationCommandPreflightV2ApprovalSourceContainsExactSentence = b(exactApprovalP44ValidationCommandPreflightV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalP44ValidationCommandPreflightV2ActiveApprovalReceiptExists = b(exactApprovalP44ValidationCommandPreflightV2, 'activeApprovalReceiptExists');
+  const exactApprovalP44ValidationCommandPreflightV2ActiveHashLockExists = b(exactApprovalP44ValidationCommandPreflightV2, 'activeHashLockExists');
+  const exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow = b(exactApprovalP44ValidationCommandPreflightV2, 'p44ValidationCommandAllowedNow');
+  const exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create = b(exactApprovalP44ValidationCommandPreflightV2, 'p44ValidationCommandAllowedAfterP31Create');
+  const exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP44ValidationCommandPreflightV2, 'p44ValidationCommandWouldExecuteByThisScript');
+  const exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed = n(exactApprovalP44ValidationCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP44ValidationCommandPreflightV2FixtureProbes = n(exactApprovalP44ValidationCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP44ValidationCommandPreflightV2ReadyForApply = b(exactApprovalP44ValidationCommandPreflightV2, 'readyForApply');
+  const exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP44ValidationCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP44ValidationCommandPreflightV2FreshAfterP55 =
+    fileMtimeMs(exactApprovalP44ValidationCommandPreflightV2Path) >= fileMtimeMs(exactApprovalP31CreateCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP31CreateCommandPreflightV2Path) > 0;
+  const exactApprovalP44ValidationCommandPreflightV2P55Equivalent =
+    exactApprovalP31CreateCommandPreflightV2Ready &&
+    exactApprovalP31CreateCommandPreflightV2State === 'p31_create_command_preflight_ready_waiting_for_exact_source' &&
+    !exactApprovalP31CreateCommandPreflightV2ReadyForApply &&
+    !exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP31CreateCommandPreflightV2, 'activationApproved') &&
+    exactApprovalP44ValidationCommandPreflightV2State === 'p44_validation_command_preflight_ready_waiting_for_p31_active_artifacts';
+  const exactApprovalP44ValidationCommandPreflightV2Ready =
+    exactApprovalP44ValidationCommandPreflightV2Present &&
+    (exactApprovalP44ValidationCommandPreflightV2FreshAfterP55 || exactApprovalP44ValidationCommandPreflightV2P55Equivalent) &&
+    exactApprovalP44ValidationCommandPreflightV2Blockers === 0 &&
+    (exactApprovalP44ValidationCommandPreflightV2State === 'p44_validation_command_preflight_ready_waiting_for_p31_active_artifacts' ||
+      exactApprovalP44ValidationCommandPreflightV2State === 'p44_validation_command_preflight_ready_for_validation_command') &&
+    b(exactApprovalP44ValidationCommandPreflightV2, 'p55Ready') &&
+    b(exactApprovalP44ValidationCommandPreflightV2, 'commandTargetsFr') &&
+    b(exactApprovalP44ValidationCommandPreflightV2, 'commandRunPathMatchesCurrentRun') &&
+    b(exactApprovalP44ValidationCommandPreflightV2, 'commandUsesDefaultApprovalSource') &&
+    b(exactApprovalP44ValidationCommandPreflightV2, 'commandWouldOnlyValidateReservedActivePaths') &&
+    exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create &&
+    !exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript &&
+    !exactApprovalP44ValidationCommandPreflightV2ReadyForApply &&
+    !exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP44ValidationCommandPreflightV2, 'activationApproved') &&
+    !b(exactApprovalP44ValidationCommandPreflightV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP44ValidationCommandPreflightV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP44ValidationCommandPreflightV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP44ValidationCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed === exactApprovalP44ValidationCommandPreflightV2FixtureProbes;
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers = n(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'blockers');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2Warnings = n(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'warnings');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2Present =
+    s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'handoffState') !== '' ||
+    b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'simulatedPostP44P45WouldOpenSequence');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2State = s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'handoffState');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2P56Ready = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p56Ready');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2P44Status = s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p44Status');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2P44ValidationState = s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p44ValidationState');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2P45Status = s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p45Status');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2P45PreflightState = s(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p45PreflightState');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2CurrentHandoffWouldOpenSequence = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'currentP44ToP45HandoffWouldOpenSequence');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'simulatedPostP44P45WouldOpenSequence');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'p45SequenceCommandWouldExecuteByThisScript');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed = n(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'fixtureProbesPassed');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes = n(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'fixtureProbes');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'readyForApply');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles = b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2FreshAfterP56 =
+    fileMtimeMs(exactApprovalP44ToP45SequenceHandoffSimulationV2Path) >= fileMtimeMs(exactApprovalP44ValidationCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP44ValidationCommandPreflightV2Path) > 0;
+  const exactApprovalP44ToP45SequenceHandoffSimulationV2Ready =
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Present &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2FreshAfterP56 &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers === 0 &&
+    (exactApprovalP44ToP45SequenceHandoffSimulationV2State === 'p44_to_p45_handoff_simulation_ready_waiting_for_p31_p44_validation' ||
+      exactApprovalP44ToP45SequenceHandoffSimulationV2State === 'p44_to_p45_handoff_simulation_ready_for_p45_sequence_after_p44_validation') &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2P56Ready &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence &&
+    !exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript &&
+    !exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply &&
+    !exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'activationApproved') &&
+    !b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP44ToP45SequenceHandoffSimulationV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes > 0 &&
+    exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed === exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes;
+  const exactApprovalP45SequenceCommandPreflightV2Blockers = n(exactApprovalP45SequenceCommandPreflightV2, 'blockers');
+  const exactApprovalP45SequenceCommandPreflightV2Warnings = n(exactApprovalP45SequenceCommandPreflightV2, 'warnings');
+  const exactApprovalP45SequenceCommandPreflightV2Present =
+    s(exactApprovalP45SequenceCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP45SequenceCommandPreflightV2, 'p45SequenceCommandAllowedAfterP44Validation');
+  const exactApprovalP45SequenceCommandPreflightV2State = s(exactApprovalP45SequenceCommandPreflightV2, 'preflightState');
+  const exactApprovalP45SequenceCommandPreflightV2P57Ready = b(exactApprovalP45SequenceCommandPreflightV2, 'p57Ready');
+  const exactApprovalP45SequenceCommandPreflightV2P45Status = s(exactApprovalP45SequenceCommandPreflightV2, 'p45Status');
+  const exactApprovalP45SequenceCommandPreflightV2P45PreflightState = s(exactApprovalP45SequenceCommandPreflightV2, 'p45PreflightState');
+  const exactApprovalP45SequenceCommandPreflightV2CommandAllowedNow = b(exactApprovalP45SequenceCommandPreflightV2, 'p45SequenceCommandAllowedNow');
+  const exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation = b(exactApprovalP45SequenceCommandPreflightV2, 'p45SequenceCommandAllowedAfterP44Validation');
+  const exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP45SequenceCommandPreflightV2, 'p45SequenceCommandWouldExecuteByThisScript');
+  const exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed = n(exactApprovalP45SequenceCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP45SequenceCommandPreflightV2FixtureProbes = n(exactApprovalP45SequenceCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP45SequenceCommandPreflightV2ReadyForApply = b(exactApprovalP45SequenceCommandPreflightV2, 'readyForApply');
+  const exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP45SequenceCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP45SequenceCommandPreflightV2FreshAfterP57 =
+    fileMtimeMs(exactApprovalP45SequenceCommandPreflightV2Path) >= fileMtimeMs(exactApprovalP44ToP45SequenceHandoffSimulationV2Path) &&
+    fileMtimeMs(exactApprovalP44ToP45SequenceHandoffSimulationV2Path) > 0;
+  const exactApprovalP45SequenceCommandPreflightV2Ready =
+    exactApprovalP45SequenceCommandPreflightV2Present &&
+    exactApprovalP45SequenceCommandPreflightV2FreshAfterP57 &&
+    exactApprovalP45SequenceCommandPreflightV2Blockers === 0 &&
+    (exactApprovalP45SequenceCommandPreflightV2State === 'p45_sequence_command_preflight_ready_waiting_for_p44_validation' ||
+      exactApprovalP45SequenceCommandPreflightV2State === 'p45_sequence_command_preflight_ready_for_sequence_refresh') &&
+    exactApprovalP45SequenceCommandPreflightV2P57Ready &&
+    b(exactApprovalP45SequenceCommandPreflightV2, 'commandTargetsFr') &&
+    b(exactApprovalP45SequenceCommandPreflightV2, 'commandRunPathMatchesCurrentRun') &&
+    exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation &&
+    !exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript &&
+    !exactApprovalP45SequenceCommandPreflightV2ReadyForApply &&
+    !exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP45SequenceCommandPreflightV2, 'activationApproved') &&
+    !b(exactApprovalP45SequenceCommandPreflightV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP45SequenceCommandPreflightV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP45SequenceCommandPreflightV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP45SequenceCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed === exactApprovalP45SequenceCommandPreflightV2FixtureProbes;
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers = n(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'blockers');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Warnings = n(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'warnings');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present =
+    s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'handoffState') !== '' ||
+    b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'simulatedPostP45P46WouldOpenTransaction');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State = s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'handoffState');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P58Ready = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p58Ready');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45Status = s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p45Status');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45PreflightState = s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p45PreflightState');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46Status = s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p46Status');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46TransactionState = s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p46TransactionState');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'currentP45ToP46HandoffWouldOpenTransaction');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'simulatedPostP45P46WouldOpenTransaction');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'p46ContractCommandWouldExecuteByThisScript');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed = n(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'fixtureProbesPassed');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes = n(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'fixtureProbes');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'readyForApply');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles = b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FreshAfterP58 =
+    fileMtimeMs(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Path) >= fileMtimeMs(exactApprovalP45SequenceCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP45SequenceCommandPreflightV2Path) > 0;
+  const exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready =
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FreshAfterP58 &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers === 0 &&
+    s(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'targetLocale') === 'fr' &&
+    (exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State === 'p45_to_p46_handoff_simulation_ready_waiting_for_p45_sequence' ||
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State === 'p45_to_p46_handoff_simulation_ready_for_p46_apply_transaction_contract') &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P58Ready &&
+    !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction &&
+    !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'activationApproved') &&
+    !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply &&
+    !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes > 0 &&
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed === exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes;
+  const exactApprovalP46ApplyTransactionCommandPreflightV2Blockers = n(exactApprovalP46ApplyTransactionCommandPreflightV2, 'blockers');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2Warnings = n(exactApprovalP46ApplyTransactionCommandPreflightV2, 'warnings');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2Present =
+    s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46ApplyTransactionCommandAllowedAfterP45Sequence');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2State = s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'preflightState');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2P59Ready = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p59Ready');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2P45Status = s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p45Status');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2P45PreflightState = s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p45PreflightState');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2P46Status = s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46Status');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2P46TransactionState = s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46TransactionState');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedNow = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46ApplyTransactionCommandAllowedNow');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46ApplyTransactionCommandAllowedAfterP45Sequence');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'p46ApplyTransactionCommandWouldExecuteByThisScript');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed = n(exactApprovalP46ApplyTransactionCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes = n(exactApprovalP46ApplyTransactionCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'readyForApply');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP46ApplyTransactionCommandPreflightV2FreshAfterP59 =
+    fileMtimeMs(exactApprovalP46ApplyTransactionCommandPreflightV2Path) >= fileMtimeMs(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Path) &&
+    fileMtimeMs(exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Path) > 0;
+  const exactApprovalP46ApplyTransactionCommandPreflightV2Ready =
+    exactApprovalP46ApplyTransactionCommandPreflightV2Present &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2FreshAfterP59 &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2Blockers === 0 &&
+    s(exactApprovalP46ApplyTransactionCommandPreflightV2, 'targetLocale') === 'fr' &&
+    (exactApprovalP46ApplyTransactionCommandPreflightV2State === 'p46_apply_transaction_command_preflight_ready_waiting_for_p45_sequence' ||
+      exactApprovalP46ApplyTransactionCommandPreflightV2State === 'p46_apply_transaction_command_preflight_ready_for_contract_command') &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2P59Ready &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence &&
+    !exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'activationApproved') &&
+    !exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply &&
+    !exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP46ApplyTransactionCommandPreflightV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed === exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes;
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers = n(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'blockers');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Warnings = n(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'warnings');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present =
+    s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'handoffState') !== '' ||
+    b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'simulatedPostP46P47WouldOpenRollbackGuard');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State = s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'handoffState');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P60Ready = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p60Ready');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46Status = s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p46Status');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46TransactionState = s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p46TransactionState');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47Status = s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p47Status');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47GuardState = s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p47GuardState');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'currentP46ToP47HandoffWouldOpenRollbackGuard');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'simulatedPostP46P47WouldOpenRollbackGuard');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'p47RollbackGuardCommandWouldExecuteByThisScript');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed = n(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'fixtureProbesPassed');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes = n(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'fixtureProbes');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'readyForApply');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles = b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FreshAfterP60 =
+    fileMtimeMs(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Path) >= fileMtimeMs(exactApprovalP46ApplyTransactionCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP46ApplyTransactionCommandPreflightV2Path) > 0;
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FreshAfterP47 =
+    fileMtimeMs(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Path) >= fileMtimeMs(postApplyRollbackGuardContractV2Path) &&
+    fileMtimeMs(postApplyRollbackGuardContractV2Path) > 0;
+  const exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready =
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FreshAfterP60 &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FreshAfterP47 &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers === 0 &&
+    s(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'targetLocale') === 'fr' &&
+    (exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State === 'p46_to_p47_handoff_simulation_ready_waiting_for_p46_apply_transaction_contract' ||
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State === 'p46_to_p47_handoff_simulation_ready_for_p47_rollback_guard_contract') &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P60Ready &&
+    !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard &&
+    !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'activationApproved') &&
+    !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply &&
+    !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes > 0 &&
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed === exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes;
+  const exactApprovalP47RollbackGuardCommandPreflightV2Blockers = n(exactApprovalP47RollbackGuardCommandPreflightV2, 'blockers');
+  const exactApprovalP47RollbackGuardCommandPreflightV2Warnings = n(exactApprovalP47RollbackGuardCommandPreflightV2, 'warnings');
+  const exactApprovalP47RollbackGuardCommandPreflightV2Present =
+    s(exactApprovalP47RollbackGuardCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47RollbackGuardCommandAllowedAfterP46Contract');
+  const exactApprovalP47RollbackGuardCommandPreflightV2State = s(exactApprovalP47RollbackGuardCommandPreflightV2, 'preflightState');
+  const exactApprovalP47RollbackGuardCommandPreflightV2P61Ready = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'p61Ready');
+  const exactApprovalP47RollbackGuardCommandPreflightV2P46Status = s(exactApprovalP47RollbackGuardCommandPreflightV2, 'p46Status');
+  const exactApprovalP47RollbackGuardCommandPreflightV2P46TransactionState = s(exactApprovalP47RollbackGuardCommandPreflightV2, 'p46TransactionState');
+  const exactApprovalP47RollbackGuardCommandPreflightV2P47Status = s(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47Status');
+  const exactApprovalP47RollbackGuardCommandPreflightV2P47GuardState = s(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47GuardState');
+  const exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedNow = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47RollbackGuardCommandAllowedNow');
+  const exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47RollbackGuardCommandAllowedAfterP46Contract');
+  const exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'p47RollbackGuardCommandWouldExecuteByThisScript');
+  const exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed = n(exactApprovalP47RollbackGuardCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes = n(exactApprovalP47RollbackGuardCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'readyForApply');
+  const exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP47RollbackGuardCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP47RollbackGuardCommandPreflightV2FreshAfterP61 =
+    fileMtimeMs(exactApprovalP47RollbackGuardCommandPreflightV2Path) >= fileMtimeMs(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Path) &&
+    fileMtimeMs(exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Path) > 0;
+  const exactApprovalP47RollbackGuardCommandPreflightV2FreshAfterP47 =
+    fileMtimeMs(exactApprovalP47RollbackGuardCommandPreflightV2Path) >= fileMtimeMs(postApplyRollbackGuardContractV2Path) &&
+    fileMtimeMs(postApplyRollbackGuardContractV2Path) > 0;
+  const exactApprovalP47RollbackGuardCommandPreflightV2Ready =
+    exactApprovalP47RollbackGuardCommandPreflightV2Present &&
+    exactApprovalP47RollbackGuardCommandPreflightV2FreshAfterP61 &&
+    exactApprovalP47RollbackGuardCommandPreflightV2FreshAfterP47 &&
+    exactApprovalP47RollbackGuardCommandPreflightV2Blockers === 0 &&
+    s(exactApprovalP47RollbackGuardCommandPreflightV2, 'targetLocale') === 'fr' &&
+    (exactApprovalP47RollbackGuardCommandPreflightV2State === 'p47_rollback_guard_command_preflight_ready_waiting_for_p46_apply_transaction_contract' ||
+      exactApprovalP47RollbackGuardCommandPreflightV2State === 'p47_rollback_guard_command_preflight_ready_for_guard_command') &&
+    exactApprovalP47RollbackGuardCommandPreflightV2P61Ready &&
+    exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract &&
+    !exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'activationApproved') &&
+    !exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply &&
+    !exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP47RollbackGuardCommandPreflightV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed === exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes;
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers = n(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'blockers');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Warnings = n(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'warnings');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present =
+    s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'handoffState') !== '' ||
+    b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'currentP47ToP48HandoffWouldOpenSafeContinuation');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2State = s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'handoffState');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P62Ready = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p62Ready');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47Status = s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p47Status');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47GuardState = s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p47GuardState');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48Status = s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p48Status');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48ContinuationState = s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p48ContinuationState');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'currentP47ToP48HandoffWouldOpenSafeContinuation');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'simulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'p48SafeContinuationCommandWouldExecuteByThisScript');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed = n(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'fixtureProbesPassed');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes = n(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'fixtureProbes');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'readyForApply');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles = b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FreshAfterP62 =
+    fileMtimeMs(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Path) >= fileMtimeMs(exactApprovalP47RollbackGuardCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP47RollbackGuardCommandPreflightV2Path) > 0;
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FreshAfterP48 =
+    fileMtimeMs(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Path) >= fileMtimeMs(approvalWaitSafeContinuationV2Path) &&
+    fileMtimeMs(approvalWaitSafeContinuationV2Path) > 0;
+  const exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready =
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FreshAfterP62 &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FreshAfterP48 &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers === 0 &&
+    s(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'targetLocale') === 'fr' &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2State === 'p47_to_p48_safe_continuation_handoff_ready_for_p48_safe_continuation_refresh' &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P62Ready &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation &&
+    !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'activationApproved') &&
+    !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply &&
+    !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes > 0 &&
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed === exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes;
+  const exactApprovalP48SafeContinuationCommandPreflightV2Blockers = n(exactApprovalP48SafeContinuationCommandPreflightV2, 'blockers');
+  const exactApprovalP48SafeContinuationCommandPreflightV2Warnings = n(exactApprovalP48SafeContinuationCommandPreflightV2, 'warnings');
+  const exactApprovalP48SafeContinuationCommandPreflightV2Present =
+    s(exactApprovalP48SafeContinuationCommandPreflightV2, 'preflightState') !== '' ||
+    b(exactApprovalP48SafeContinuationCommandPreflightV2, 'p48SafeContinuationCommandAllowedNow');
+  const exactApprovalP48SafeContinuationCommandPreflightV2State = s(exactApprovalP48SafeContinuationCommandPreflightV2, 'preflightState');
+  const exactApprovalP48SafeContinuationCommandPreflightV2P63Ready = b(exactApprovalP48SafeContinuationCommandPreflightV2, 'p63Ready');
+  const exactApprovalP48SafeContinuationCommandPreflightV2P48Status = s(exactApprovalP48SafeContinuationCommandPreflightV2, 'p48Status');
+  const exactApprovalP48SafeContinuationCommandPreflightV2P48ContinuationState = s(exactApprovalP48SafeContinuationCommandPreflightV2, 'p48ContinuationState');
+  const exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow = b(exactApprovalP48SafeContinuationCommandPreflightV2, 'p48SafeContinuationCommandAllowedNow');
+  const exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript = b(exactApprovalP48SafeContinuationCommandPreflightV2, 'p48SafeContinuationCommandWouldExecuteByThisScript');
+  const exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed = n(exactApprovalP48SafeContinuationCommandPreflightV2, 'fixtureProbesPassed');
+  const exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes = n(exactApprovalP48SafeContinuationCommandPreflightV2, 'fixtureProbes');
+  const exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply = b(exactApprovalP48SafeContinuationCommandPreflightV2, 'readyForApply');
+  const exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles = b(exactApprovalP48SafeContinuationCommandPreflightV2, 'mayModifyProductionAppFiles');
+  const exactApprovalP48SafeContinuationCommandPreflightV2FreshAfterP63 =
+    fileMtimeMs(exactApprovalP48SafeContinuationCommandPreflightV2Path) >= fileMtimeMs(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Path) &&
+    fileMtimeMs(exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Path) > 0;
+  const exactApprovalP48SafeContinuationCommandPreflightV2FreshAfterP48 =
+    fileMtimeMs(exactApprovalP48SafeContinuationCommandPreflightV2Path) >= fileMtimeMs(approvalWaitSafeContinuationV2Path) &&
+    fileMtimeMs(approvalWaitSafeContinuationV2Path) > 0;
+  const exactApprovalP48SafeContinuationCommandPreflightV2Ready =
+    exactApprovalP48SafeContinuationCommandPreflightV2Present &&
+    exactApprovalP48SafeContinuationCommandPreflightV2FreshAfterP63 &&
+    exactApprovalP48SafeContinuationCommandPreflightV2FreshAfterP48 &&
+    exactApprovalP48SafeContinuationCommandPreflightV2Blockers === 0 &&
+    s(exactApprovalP48SafeContinuationCommandPreflightV2, 'targetLocale') === 'fr' &&
+    exactApprovalP48SafeContinuationCommandPreflightV2State === 'p48_safe_continuation_command_preflight_ready_for_refresh_command' &&
+    exactApprovalP48SafeContinuationCommandPreflightV2P63Ready &&
+    exactApprovalP48SafeContinuationCommandPreflightV2P48Status === 'PASS' &&
+    exactApprovalP48SafeContinuationCommandPreflightV2P48ContinuationState === 'approval_wait_safe_continuation_ready' &&
+    exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow &&
+    !exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'activationApproved') &&
+    !exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply &&
+    !exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'serverUploadAllowed') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes > 0 &&
+    exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed === exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes;
+  const exactApprovalWaitStateV2Blockers = n(exactApprovalWaitStateV2, 'blockers');
+  const exactApprovalWaitStateV2Warnings = n(exactApprovalWaitStateV2, 'warnings');
+  const exactApprovalWaitStateV2Present =
+    s(exactApprovalWaitStateV2, 'waitState') !== '' ||
+    b(exactApprovalWaitStateV2, 'closedEvidenceReady');
+  const exactApprovalWaitStateV2State = s(exactApprovalWaitStateV2, 'waitState');
+  const exactApprovalWaitStateV2ClosedEvidenceReady = b(exactApprovalWaitStateV2, 'closedEvidenceReady');
+  const exactApprovalWaitStateV2ExactApprovalStillRequired = b(exactApprovalWaitStateV2, 'exactApprovalStillRequired');
+  const exactApprovalWaitStateV2SourceContainsExactSentence = b(exactApprovalWaitStateV2, 'exactApprovalSourceContainsExactSentence');
+  const exactApprovalWaitStateV2ApprovalSourceIsCanonical = b(exactApprovalWaitStateV2, 'approvalSourceIsCanonical');
+  const exactApprovalWaitStateV2ActiveApprovalReceiptExists = b(exactApprovalWaitStateV2, 'activeApprovalReceiptExists');
+  const exactApprovalWaitStateV2ActiveHashLockExists = b(exactApprovalWaitStateV2, 'activeHashLockExists');
+  const exactApprovalWaitStateV2FixtureProbesPassed = n(exactApprovalWaitStateV2, 'fixtureProbesPassed');
+  const exactApprovalWaitStateV2FixtureProbes = n(exactApprovalWaitStateV2, 'fixtureProbes');
+  const exactApprovalWaitStateV2ReadyForApply = b(exactApprovalWaitStateV2, 'readyForApply');
+  const exactApprovalWaitStateV2MayModifyProductionAppFiles = b(exactApprovalWaitStateV2, 'mayModifyProductionAppFiles');
+  const exactApprovalWaitStateV2FreshAfterP64 =
+    fileMtimeMs(exactApprovalWaitStateV2Path) >= fileMtimeMs(exactApprovalP48SafeContinuationCommandPreflightV2Path) &&
+    fileMtimeMs(exactApprovalP48SafeContinuationCommandPreflightV2Path) > 0;
+  const exactApprovalWaitStateV2P64ReadyEquivalent =
+    exactApprovalP48SafeContinuationCommandPreflightV2Ready &&
+    s(exactApprovalP48SafeContinuationCommandPreflightV2, 'preflightState') === 'p48_safe_continuation_command_preflight_ready_for_refresh_command' &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'readyForApply') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'mayModifyProductionAppFiles') &&
+    !b(exactApprovalP48SafeContinuationCommandPreflightV2, 'activationApproved');
+  const exactApprovalWaitStateV2StateAccepted =
+    exactApprovalWaitStateV2State === 'exact_approval_wait_state_ready' ||
+    exactApprovalWaitStateV2State === 'exact_approval_source_present_ready_for_p31_create';
+  const exactApprovalWaitStateV2Ready =
+    exactApprovalWaitStateV2Present &&
+    (exactApprovalWaitStateV2FreshAfterP64 || exactApprovalWaitStateV2P64ReadyEquivalent) &&
+    exactApprovalWaitStateV2Blockers === 0 &&
+    s(exactApprovalWaitStateV2, 'targetLocale') === 'fr' &&
+    exactApprovalWaitStateV2StateAccepted &&
+    exactApprovalWaitStateV2ClosedEvidenceReady &&
+    exactApprovalWaitStateV2ApprovalSourceIsCanonical &&
+    (exactApprovalWaitStateV2ExactApprovalStillRequired || exactApprovalWaitStateV2SourceContainsExactSentence) &&
+    !exactApprovalWaitStateV2ActiveApprovalReceiptExists &&
+    !exactApprovalWaitStateV2ActiveHashLockExists &&
+    !b(exactApprovalWaitStateV2, 'activationApproved') &&
+    !exactApprovalWaitStateV2ReadyForApply &&
+    !exactApprovalWaitStateV2MayModifyProductionAppFiles &&
+    !b(exactApprovalWaitStateV2, 'serverUploadAllowed') &&
+    !b(exactApprovalWaitStateV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalWaitStateV2, 'downloadablePacksPublished') &&
+    !b(exactApprovalWaitStateV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalWaitStateV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalWaitStateV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalWaitStateV2FixtureProbes > 0 &&
+    exactApprovalWaitStateV2FixtureProbesPassed === exactApprovalWaitStateV2FixtureProbes;
+  const orderedApprovalWaitRefreshV2Blockers = n(orderedApprovalWaitRefreshV2, 'blockers');
+  const orderedApprovalWaitRefreshV2Warnings = n(orderedApprovalWaitRefreshV2, 'warnings');
+  const orderedApprovalWaitRefreshV2Present = fs.existsSync(orderedApprovalWaitRefreshV2Path);
+  const orderedApprovalWaitRefreshV2Executed = b(orderedApprovalWaitRefreshV2, 'executed');
+  const orderedApprovalWaitRefreshV2StepsPassed = n(orderedApprovalWaitRefreshV2, 'stepsPassed');
+  const orderedApprovalWaitRefreshV2StepsFailed = n(orderedApprovalWaitRefreshV2, 'stepsFailed');
+  const orderedApprovalWaitRefreshV2P65Status = s(orderedApprovalWaitRefreshV2, 'p65Status');
+  const orderedApprovalWaitRefreshV2P65WaitState = s(orderedApprovalWaitRefreshV2, 'p65WaitState');
+  const orderedApprovalWaitRefreshV2P65ClosedEvidenceReady = b(orderedApprovalWaitRefreshV2, 'p65ClosedEvidenceReady');
+  const orderedApprovalWaitRefreshV2FinalMasterBlockers = n(orderedApprovalWaitRefreshV2, 'finalMasterBlockers');
+  const orderedApprovalWaitRefreshV2FinalMasterWarnings = n(orderedApprovalWaitRefreshV2, 'finalMasterWarnings');
+  const orderedApprovalWaitRefreshV2FinalMasterHasOnlyTransientSelfCycle = b(orderedApprovalWaitRefreshV2, 'finalMasterHasOnlyTransientSelfCycle');
+  const orderedApprovalWaitRefreshV2FinalNextBlockers = n(orderedApprovalWaitRefreshV2, 'finalNextBlockers');
+  const orderedApprovalWaitRefreshV2FinalNextWarnings = n(orderedApprovalWaitRefreshV2, 'finalNextWarnings');
+  const orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists = b(orderedApprovalWaitRefreshV2, 'activeApprovalReceiptExists');
+  const orderedApprovalWaitRefreshV2ActiveHashLockExists = b(orderedApprovalWaitRefreshV2, 'activeHashLockExists');
+  const orderedApprovalWaitRefreshV2ReadyForApply = b(orderedApprovalWaitRefreshV2, 'readyForApply');
+  const orderedApprovalWaitRefreshV2MayModifyProductionAppFiles = b(orderedApprovalWaitRefreshV2, 'mayModifyProductionAppFiles');
+  const orderedApprovalWaitRefreshV2Ready =
+    orderedApprovalWaitRefreshV2Present &&
+    s(orderedApprovalWaitRefreshV2, 'targetLocale') === 'fr' &&
+    (orderedApprovalWaitRefreshV2Executed ||
+      orderedApprovalWaitRefreshV2FinalMasterHasOnlyTransientSelfCycle ||
+      (orderedApprovalWaitRefreshV2StepsPassed === 0 && orderedApprovalWaitRefreshV2P65Status === 'PASS')) &&
+    (orderedApprovalWaitRefreshV2StepsPassed > 0 ||
+      orderedApprovalWaitRefreshV2FinalMasterHasOnlyTransientSelfCycle ||
+      (orderedApprovalWaitRefreshV2StepsPassed === 0 && orderedApprovalWaitRefreshV2P65Status === 'PASS')) &&
+    orderedApprovalWaitRefreshV2StepsFailed === 0 &&
+    orderedApprovalWaitRefreshV2P65Status === 'PASS' &&
+    orderedApprovalWaitRefreshV2P65WaitState === 'exact_approval_wait_state_ready' &&
+    orderedApprovalWaitRefreshV2P65ClosedEvidenceReady &&
+    b(orderedApprovalWaitRefreshV2, 'p65ExactApprovalStillRequired') &&
+    (orderedApprovalWaitRefreshV2FinalMasterBlockers === 0 || orderedApprovalWaitRefreshV2FinalMasterHasOnlyTransientSelfCycle) &&
+    orderedApprovalWaitRefreshV2FinalMasterWarnings === 0 &&
+    orderedApprovalWaitRefreshV2FinalNextBlockers === 0 &&
+    orderedApprovalWaitRefreshV2FinalNextWarnings === 0 &&
+    orderedApprovalWaitRefreshV2Blockers === 0 &&
+    orderedApprovalWaitRefreshV2Warnings === 0 &&
+    !orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists &&
+    !orderedApprovalWaitRefreshV2ActiveHashLockExists &&
+    !orderedApprovalWaitRefreshV2ReadyForApply &&
+    !orderedApprovalWaitRefreshV2MayModifyProductionAppFiles &&
+    !b(orderedApprovalWaitRefreshV2, 'serverUploadAllowed') &&
+    !b(orderedApprovalWaitRefreshV2, 'firebaseUploadAllowed') &&
+    !b(orderedApprovalWaitRefreshV2, 'runtimeDownloadsEnabled') &&
+    !b(orderedApprovalWaitRefreshV2, 'activationApproved');
+  const safePreapprovalContinuationV2Blockers = n(safePreapprovalContinuationV2, 'blockers');
+  const safePreapprovalContinuationV2Warnings = n(safePreapprovalContinuationV2, 'warnings');
+  const safePreapprovalContinuationV2Present = fs.existsSync(safePreapprovalContinuationV2Path);
+  const safePreapprovalContinuationV2Executed = b(safePreapprovalContinuationV2, 'executed');
+  const safePreapprovalContinuationV2StepsPassed = n(safePreapprovalContinuationV2, 'stepsPassed');
+  const safePreapprovalContinuationV2StepsFailed = n(safePreapprovalContinuationV2, 'stepsFailed');
+  const safePreapprovalContinuationV2GenerationBlockers = n(safePreapprovalContinuationV2, 'generationBlockers');
+  const safePreapprovalContinuationV2ApplyBlockers = n(safePreapprovalContinuationV2, 'applyBlockers');
+  const safePreapprovalContinuationV2NextGoalId = s(safePreapprovalContinuationV2, 'nextGoalId');
+  const safePreapprovalContinuationV2ActiveApprovalReceiptExists = b(safePreapprovalContinuationV2, 'activeApprovalReceiptExists');
+  const safePreapprovalContinuationV2ActiveHashLockExists = b(safePreapprovalContinuationV2, 'activeHashLockExists');
+  const safePreapprovalContinuationV2ReadyForApply = b(safePreapprovalContinuationV2, 'readyForApply');
+  const safePreapprovalContinuationV2MayModifyProductionAppFiles = b(safePreapprovalContinuationV2, 'mayModifyProductionAppFiles');
+  const safePreapprovalContinuationV2Ready =
+    safePreapprovalContinuationV2Present &&
+    s(safePreapprovalContinuationV2, 'targetLocale') === 'fr' &&
+    safePreapprovalContinuationV2Executed &&
+    safePreapprovalContinuationV2StepsPassed > 0 &&
+    safePreapprovalContinuationV2StepsFailed === 0 &&
+    safePreapprovalContinuationV2GenerationBlockers === 0 &&
+    safePreapprovalContinuationV2ApplyBlockers === 1 &&
+    safePreapprovalContinuationV2NextGoalId === 'NEXT-PASS-P66-SAFE-PREAPPROVAL-CONTINUATION-V2' &&
+    safePreapprovalContinuationV2Blockers === 0 &&
+    safePreapprovalContinuationV2Warnings === 0 &&
+    !safePreapprovalContinuationV2ActiveApprovalReceiptExists &&
+    !safePreapprovalContinuationV2ActiveHashLockExists &&
+    !safePreapprovalContinuationV2ReadyForApply &&
+    !safePreapprovalContinuationV2MayModifyProductionAppFiles &&
+    !b(safePreapprovalContinuationV2, 'serverUploadAllowed') &&
+    !b(safePreapprovalContinuationV2, 'firebaseUploadAllowed') &&
+    !b(safePreapprovalContinuationV2, 'runtimeDownloadsEnabled') &&
+    !b(safePreapprovalContinuationV2, 'activationApproved');
+  const finalProductionReadinessGapV2Blockers = n(finalProductionReadinessGapV2, 'blockers');
+  const finalProductionReadinessGapV2Warnings = n(finalProductionReadinessGapV2, 'warnings');
+  const finalProductionReadinessGapV2Present = fs.existsSync(finalProductionReadinessGapV2Path);
+  const finalProductionReadinessGapV2State = s(finalProductionReadinessGapV2, 'productionReadinessState');
+  const finalProductionReadinessGapV2RequirementsReady = n(finalProductionReadinessGapV2, 'requirementsReady');
+  const finalProductionReadinessGapV2RequirementsBlocked = n(finalProductionReadinessGapV2, 'requirementsBlocked');
+  const finalProductionReadinessGapV2ProductionHardBlockers = n(finalProductionReadinessGapV2, 'productionHardBlockers');
+  const finalProductionReadinessGapV2CanStartProductionApply = b(finalProductionReadinessGapV2, 'canStartProductionApply');
+  const finalProductionReadinessGapV2GenerationV2Ready = b(finalProductionReadinessGapV2, 'generationV2Ready');
+  const finalProductionReadinessGapV2DecisionImportV2Ready = b(finalProductionReadinessGapV2, 'decisionImportV2Ready');
+  const finalProductionReadinessGapV2ActiveApprovalArtifactPairState = s(finalProductionReadinessGapV2, 'activeApprovalArtifactPairState');
+  const finalProductionReadinessGapV2ActivationChainReady = b(finalProductionReadinessGapV2, 'activationChainReady');
+  const finalProductionReadinessGapV2FixtureProbesPassed = n(finalProductionReadinessGapV2, 'fixtureProbesPassed');
+  const finalProductionReadinessGapV2FixtureProbes = n(finalProductionReadinessGapV2, 'fixtureProbes');
+  const finalProductionReadinessGapV2ActiveApprovalReceiptExists = b(finalProductionReadinessGapV2, 'activeApprovalReceiptExists');
+  const finalProductionReadinessGapV2ActiveHashLockExists = b(finalProductionReadinessGapV2, 'activeHashLockExists');
+  const finalProductionReadinessGapV2ReadyForApply = b(finalProductionReadinessGapV2, 'readyForApply');
+  const finalProductionReadinessGapV2MayModifyProductionAppFiles = b(finalProductionReadinessGapV2, 'mayModifyProductionAppFiles');
+  const finalProductionReadinessGapV2Ready =
+    finalProductionReadinessGapV2Present &&
+    s(finalProductionReadinessGapV2, 'targetLocale') === 'fr' &&
+    finalProductionReadinessGapV2State === 'preactivation_ready_exact_approval_required' &&
+    finalProductionReadinessGapV2RequirementsReady >= 10 &&
+    finalProductionReadinessGapV2RequirementsBlocked === 1 &&
+    finalProductionReadinessGapV2ProductionHardBlockers === 1 &&
+    finalProductionReadinessGapV2GenerationV2Ready &&
+    finalProductionReadinessGapV2DecisionImportV2Ready &&
+    finalProductionReadinessGapV2ActiveApprovalArtifactPairState === 'absent_waiting_for_exact_approval_source' &&
+    !finalProductionReadinessGapV2ActivationChainReady &&
+    finalProductionReadinessGapV2FixtureProbes > 0 &&
+    finalProductionReadinessGapV2FixtureProbesPassed === finalProductionReadinessGapV2FixtureProbes &&
+    !finalProductionReadinessGapV2CanStartProductionApply &&
+    finalProductionReadinessGapV2Blockers === 0 &&
+    !finalProductionReadinessGapV2ActiveApprovalReceiptExists &&
+    !finalProductionReadinessGapV2ActiveHashLockExists &&
+    !finalProductionReadinessGapV2ReadyForApply &&
+    !finalProductionReadinessGapV2MayModifyProductionAppFiles &&
+    !b(finalProductionReadinessGapV2, 'serverUploadAllowed') &&
+    !b(finalProductionReadinessGapV2, 'firebaseUploadAllowed') &&
+    !b(finalProductionReadinessGapV2, 'runtimeDownloadsEnabled') &&
+    !b(finalProductionReadinessGapV2, 'activationApproved');
+  const exactApprovalSourceHandoffFirewallV2Blockers = n(exactApprovalSourceHandoffFirewallV2, 'blockers');
+  const exactApprovalSourceHandoffFirewallV2Warnings = n(exactApprovalSourceHandoffFirewallV2, 'warnings');
+  const exactApprovalSourceHandoffFirewallV2Present = fs.existsSync(exactApprovalSourceHandoffFirewallV2Path);
+  const exactApprovalSourceHandoffFirewallV2State = s(exactApprovalSourceHandoffFirewallV2, 'handoffState');
+  const exactApprovalSourceHandoffFirewallV2FinalGapReady = b(exactApprovalSourceHandoffFirewallV2, 'finalGapReady');
+  const exactApprovalSourceHandoffFirewallV2ExactApprovalWaitStateReady = b(exactApprovalSourceHandoffFirewallV2, 'exactApprovalWaitStateReady');
+  const exactApprovalSourceHandoffFirewallV2P31CreationGateReady = b(exactApprovalSourceHandoffFirewallV2, 'p31CreationGateReady');
+  const exactApprovalSourceHandoffFirewallV2ApprovalSourceExists = b(exactApprovalSourceHandoffFirewallV2, 'approvalSourceExists');
+  const exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence = b(exactApprovalSourceHandoffFirewallV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalSourceHandoffFirewallV2NextAllowedStepWhileAbsent = s(exactApprovalSourceHandoffFirewallV2, 'nextAllowedStepWhileAbsent');
+  const exactApprovalSourceHandoffFirewallV2NextAllowedStepWhenPresent = s(exactApprovalSourceHandoffFirewallV2, 'nextAllowedStepWhenPresent');
+  const exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists = b(exactApprovalSourceHandoffFirewallV2, 'activeApprovalReceiptExists');
+  const exactApprovalSourceHandoffFirewallV2ActiveHashLockExists = b(exactApprovalSourceHandoffFirewallV2, 'activeHashLockExists');
+  const exactApprovalSourceHandoffFirewallV2CanStartProductionApply = b(exactApprovalSourceHandoffFirewallV2, 'canStartProductionApply');
+  const exactApprovalSourceHandoffFirewallV2FixtureProbesPassed = n(exactApprovalSourceHandoffFirewallV2, 'fixtureProbesPassed');
+  const exactApprovalSourceHandoffFirewallV2FixtureProbes = n(exactApprovalSourceHandoffFirewallV2, 'fixtureProbes');
+  const exactApprovalSourceHandoffFirewallV2ReadyForApply = b(exactApprovalSourceHandoffFirewallV2, 'readyForApply');
+  const exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles = b(exactApprovalSourceHandoffFirewallV2, 'mayModifyProductionAppFiles');
+  const exactApprovalSourceHandoffFirewallV2Ready =
+    exactApprovalSourceHandoffFirewallV2Present &&
+    s(exactApprovalSourceHandoffFirewallV2, 'targetLocale') === 'fr' &&
+    exactApprovalSourceHandoffFirewallV2State === 'waiting_for_exact_approval_source_file' &&
+    exactApprovalSourceHandoffFirewallV2FinalGapReady &&
+    exactApprovalSourceHandoffFirewallV2ExactApprovalWaitStateReady &&
+    exactApprovalSourceHandoffFirewallV2P31CreationGateReady &&
+    b(exactApprovalSourceHandoffFirewallV2, 'approvalSourceIsCanonical') &&
+    !exactApprovalSourceHandoffFirewallV2ApprovalSourceExists &&
+    !exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence &&
+    exactApprovalSourceHandoffFirewallV2NextAllowedStepWhileAbsent === 'wait_for_exact_approval_source_file' &&
+    exactApprovalSourceHandoffFirewallV2NextAllowedStepWhenPresent === 'P31_EXPLICIT_APPROVAL_RECEIPT_CREATION_GATE_V2' &&
+    !exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists &&
+    !exactApprovalSourceHandoffFirewallV2ActiveHashLockExists &&
+    !exactApprovalSourceHandoffFirewallV2CanStartProductionApply &&
+    !exactApprovalSourceHandoffFirewallV2ReadyForApply &&
+    !exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles &&
+    !b(exactApprovalSourceHandoffFirewallV2, 'serverUploadAllowed') &&
+    !b(exactApprovalSourceHandoffFirewallV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalSourceHandoffFirewallV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalSourceHandoffFirewallV2, 'activationApproved') &&
+    exactApprovalSourceHandoffFirewallV2FixtureProbes > 0 &&
+    exactApprovalSourceHandoffFirewallV2FixtureProbesPassed === exactApprovalSourceHandoffFirewallV2FixtureProbes &&
+    exactApprovalSourceHandoffFirewallV2Blockers === 0;
+  const exactApprovalSourceWaitTerminalStateV2Blockers = n(exactApprovalSourceWaitTerminalStateV2, 'blockers');
+  const exactApprovalSourceWaitTerminalStateV2Warnings = n(exactApprovalSourceWaitTerminalStateV2, 'warnings');
+  const exactApprovalSourceWaitTerminalStateV2Present = fs.existsSync(exactApprovalSourceWaitTerminalStateV2Path);
+  const exactApprovalSourceWaitTerminalStateV2State = s(exactApprovalSourceWaitTerminalStateV2, 'terminalState');
+  const exactApprovalSourceWaitTerminalStateV2P68Ready = b(exactApprovalSourceWaitTerminalStateV2, 'p68Ready');
+  const exactApprovalSourceWaitTerminalStateV2NextGoalId = s(exactApprovalSourceWaitTerminalStateV2, 'nextPassGoalId');
+  const exactApprovalSourceWaitTerminalStateV2ConsistencyGoalId = s(exactApprovalSourceWaitTerminalStateV2, 'consistencyGoalId');
+  const exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists = b(exactApprovalSourceWaitTerminalStateV2, 'approvalSourceExists');
+  const exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence = b(exactApprovalSourceWaitTerminalStateV2, 'approvalSourceContainsExactSentence');
+  const exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists = b(exactApprovalSourceWaitTerminalStateV2, 'activeApprovalReceiptExists');
+  const exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists = b(exactApprovalSourceWaitTerminalStateV2, 'activeHashLockExists');
+  const exactApprovalSourceWaitTerminalStateV2CanStartProductionApply = b(exactApprovalSourceWaitTerminalStateV2, 'canStartProductionApply');
+  const exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed = n(exactApprovalSourceWaitTerminalStateV2, 'fixtureProbesPassed');
+  const exactApprovalSourceWaitTerminalStateV2FixtureProbes = n(exactApprovalSourceWaitTerminalStateV2, 'fixtureProbes');
+  const exactApprovalSourceWaitTerminalStateV2ReadyForApply = b(exactApprovalSourceWaitTerminalStateV2, 'readyForApply');
+  const exactApprovalSourceWaitTerminalStateV2MayModifyProductionAppFiles = b(exactApprovalSourceWaitTerminalStateV2, 'mayModifyProductionAppFiles');
+  const exactApprovalSourceWaitTerminalStateV2Ready =
+    exactApprovalSourceWaitTerminalStateV2Present &&
+    s(exactApprovalSourceWaitTerminalStateV2, 'targetLocale') === 'fr' &&
+    exactApprovalSourceWaitTerminalStateV2State === 'exact_approval_source_absent_terminal_wait' &&
+    exactApprovalSourceWaitTerminalStateV2P68Ready &&
+    exactApprovalSourceWaitTerminalStateV2NextGoalId === 'NEXT-PASS-P69-EXACT-APPROVAL-SOURCE-WAIT-TERMINAL-STATE-V2' &&
+    exactApprovalSourceWaitTerminalStateV2ConsistencyGoalId === 'NEXT-PASS-P69-EXACT-APPROVAL-SOURCE-WAIT-TERMINAL-STATE-V2' &&
+    !exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists &&
+    !exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence &&
+    !exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists &&
+    !exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists &&
+    !exactApprovalSourceWaitTerminalStateV2CanStartProductionApply &&
+    !exactApprovalSourceWaitTerminalStateV2ReadyForApply &&
+    !exactApprovalSourceWaitTerminalStateV2MayModifyProductionAppFiles &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'activationApproved') &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'serverUploadAllowed') &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'firebaseUploadAllowed') &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'runtimeDownloadsEnabled') &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'storageMigrationAllowed') &&
+    !b(exactApprovalSourceWaitTerminalStateV2, 'cloudSyncMigrationAllowed') &&
+    exactApprovalSourceWaitTerminalStateV2FixtureProbes > 0 &&
+    exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed === exactApprovalSourceWaitTerminalStateV2FixtureProbes &&
+    exactApprovalSourceWaitTerminalStateV2Blockers === 0;
+  const postExactApprovalApplyRunbookV2Blockers = n(postExactApprovalApplyRunbookV2, 'blockers');
+  const postExactApprovalApplyRunbookV2Warnings = n(postExactApprovalApplyRunbookV2, 'warnings');
+  const postExactApprovalApplyRunbookV2Present = fs.existsSync(postExactApprovalApplyRunbookV2Path);
+  const postExactApprovalApplyRunbookV2State = s(postExactApprovalApplyRunbookV2, 'runbookState');
+  const postExactApprovalApplyRunbookV2Steps = n(postExactApprovalApplyRunbookV2, 'runbookSteps');
+  const postExactApprovalApplyRunbookV2P31CreateAllowedNow = b(postExactApprovalApplyRunbookV2, 'p31CreateAllowedNow');
+  const postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent = b(postExactApprovalApplyRunbookV2, 'p31CreateAllowedWhenExactSourcePresent');
+  const postExactApprovalApplyRunbookV2ProductionWritesAllowedNow = b(postExactApprovalApplyRunbookV2, 'productionWritesAllowedNow');
+  const postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists = b(postExactApprovalApplyRunbookV2, 'activeApprovalReceiptExists');
+  const postExactApprovalApplyRunbookV2ActiveHashLockExists = b(postExactApprovalApplyRunbookV2, 'activeHashLockExists');
+  const postExactApprovalApplyRunbookV2CanStartProductionApplyNow = b(postExactApprovalApplyRunbookV2, 'canStartProductionApplyNow');
+  const postExactApprovalApplyRunbookV2FixtureProbesPassed = n(postExactApprovalApplyRunbookV2, 'fixtureProbesPassed');
+  const postExactApprovalApplyRunbookV2FixtureProbes = n(postExactApprovalApplyRunbookV2, 'fixtureProbes');
+  const postExactApprovalApplyRunbookV2ReadyForApply = b(postExactApprovalApplyRunbookV2, 'readyForApply');
+  const postExactApprovalApplyRunbookV2MayModifyProductionAppFiles = b(postExactApprovalApplyRunbookV2, 'mayModifyProductionAppFiles');
+  const postExactApprovalApplyRunbookV2Source = sourceReports.find((entry) => entry.name === 'post_exact_approval_apply_runbook_v2_packet.json');
+  const postExactApprovalApplyRunbookV2Ready =
+    postExactApprovalApplyRunbookV2Present &&
+    postExactApprovalApplyRunbookV2Source?.status === 'PASS' &&
+    s(postExactApprovalApplyRunbookV2, 'targetLocale') === 'fr' &&
+    postExactApprovalApplyRunbookV2State === 'post_exact_approval_runbook_ready_waiting_for_canonical_source' &&
+    postExactApprovalApplyRunbookV2Steps === 6 &&
+    !postExactApprovalApplyRunbookV2P31CreateAllowedNow &&
+    postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent &&
+    !postExactApprovalApplyRunbookV2ProductionWritesAllowedNow &&
+    !postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists &&
+    !postExactApprovalApplyRunbookV2ActiveHashLockExists &&
+    !postExactApprovalApplyRunbookV2CanStartProductionApplyNow &&
+    !postExactApprovalApplyRunbookV2ReadyForApply &&
+    !postExactApprovalApplyRunbookV2MayModifyProductionAppFiles &&
+    !b(postExactApprovalApplyRunbookV2, 'activationApproved') &&
+    postExactApprovalApplyRunbookV2FixtureProbes === 13 &&
+    postExactApprovalApplyRunbookV2FixtureProbesPassed === postExactApprovalApplyRunbookV2FixtureProbes &&
+    postExactApprovalApplyRunbookV2Blockers === 0;
   const researchJsonFirewallBlockers = n(researchJsonFirewall, 'blockerFindings') || n(researchJsonFirewall, 'blockers');
   const researchJsonFirewallWarnings = n(researchJsonFirewall, 'warningFindings') || n(researchJsonFirewall, 'warnings');
   const nextPassContractBlockers = n(nextPassContract, 'blockers');
@@ -2334,6 +4714,14 @@ function main(): void {
     ['target_pedagogy_blueprint_blockers', targetPedagogyBlueprintBlockers],
     ['generation_schema_v2_blockers', generationSchemaV2Blockers],
     ['ai_prompt_contract_v2_blockers', aiPromptContractV2Blockers],
+    ['ai_prompt_contract_v2_critical_surface_class_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceClassesExpected - aiPromptContractV2CriticalSurfaceClassesCovered) : 0],
+    ['ai_prompt_contract_v2_critical_surface_file_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceRequiredFiles - aiPromptContractV2CriticalSurfaceRequiredFilesCovered) : 0],
+    ['ai_prompt_contract_v2_critical_surface_language_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceLanguageDimensions) : 0],
+    ['ai_prompt_contract_v2_critical_surface_cache_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceCacheContracts) : 0],
+    ['ai_prompt_contract_v2_critical_surface_reject_return_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceRejectBeforeReturn) : 0],
+    ['ai_prompt_contract_v2_critical_surface_reject_cache_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceRejectBeforeCache) : 0],
+    ['ai_prompt_contract_v2_critical_surface_safe_fallback_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceSafeFallback) : 0],
+    ['ai_prompt_contract_v2_critical_surface_generation_block_gap', aiPromptContractV2Present ? Math.max(0, aiPromptContractV2CriticalSurfaceContracts - aiPromptContractV2CriticalSurfaceGenerationBlocked) : 0],
     ['content_quality_gates_v2_blockers', contentQualityGatesV2Blockers],
     ['reviewer_workflow_v2_blockers', reviewerWorkflowV2Blockers],
     ['target_pack_manifest_v2_blockers', targetPackManifestV2Blockers],
@@ -2472,7 +4860,44 @@ function main(): void {
     ['llm_official_source_promoted_decision_file_generation_v2_open_flags', llmOfficialSourcePromotedDecisionFileGenerationV2OpenFlags],
     ['llm_official_source_promoted_decision_file_generation_v2_output_not_confined', llmOfficialSourcePromotedDecisionFileGenerationV2Present && !llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined ? 1 : 0],
     ['llm_official_source_promoted_decision_file_generation_v2_not_ready_for_import_refresh', llmOfficialSourcePromotedDecisionFileGenerationV2Present && !llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh ? 1 : 0],
+    ['llm_official_source_promoted_decision_file_generation_v2_ai_prompt_contract_not_ready', llmOfficialSourcePromotedDecisionFileGenerationV2Present && !llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady ? 1 : 0],
+    ['llm_official_source_promoted_decision_file_generation_v2_ai_prompt_contract_entrypoint_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractEntrypoints)],
+    ['llm_official_source_promoted_decision_file_generation_v2_ai_prompt_contract_unique_id_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractUniqueIds)],
+    ['llm_official_source_promoted_decision_file_generation_v2_ai_prompt_contract_critical_gap', Math.max(0, 55 - llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractCriticalContracts)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_unique_id_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiUniqueContractIds)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_duplicate_contracts', llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDuplicateContractIds],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_prompt_contract_match_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_extra_contracts', llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_missing_contracts', llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_critical_match_gap', Math.max(0, 55 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_domain_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDomainMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_file_path_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFilePathMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_feature_risk_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFeatureRiskClassMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_risk_level_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRiskLevelMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_target_locale_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetLocaleMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_source_locales_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiSourceLocalesMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_cache_dimension_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCacheDimensionsMatchedToPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_wrong_language_gate_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageGatePassed)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_reject_return_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_reject_cache_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_quality_gate_close_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetOutputBeforeQualityClosedByPromptContract)],
+    ['llm_official_source_promoted_decision_file_generation_v2_promoted_ai_wrong_language_fallback_gap', Math.max(0, 164 - llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract)],
     ['llm_official_source_promoted_decision_file_generation_v2_missing_probe_passes', Math.max(0, llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes - llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed)],
+    ['legacy_generated_research_evidence_bridge_v2_blockers', legacyGeneratedResearchEvidenceBridgeV2Blockers],
+    ['legacy_generated_research_evidence_bridge_v2_not_ready', !legacyGeneratedResearchEvidenceBridgeV2Ready ? 1 : 0],
+    ['legacy_generated_research_evidence_bridge_v2_missing_legacy_rows', Math.max(0, 1600 - legacyGeneratedResearchEvidenceBridgeV2LegacyRows)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_promoted_rows', Math.max(0, 1600 - legacyGeneratedResearchEvidenceBridgeV2PromotedRows)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_row_identity_matches', Math.max(0, 1600 - legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_row_research_evidence', Math.max(0, 1600 - legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_row_gate_passes', Math.max(0, 1600 - legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_ai_decisions', Math.max(0, 164 - legacyGeneratedResearchEvidenceBridgeV2AiDecisions)],
+    ['legacy_generated_research_evidence_bridge_v2_high_risk_ai_research_gap', Math.max(0, legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions - legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_ai_language_gate_passes', Math.max(0, 164 - legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed)],
+    ['legacy_generated_research_evidence_bridge_v2_missing_ai_official_source_notes', Math.max(0, 164 - legacyGeneratedResearchEvidenceBridgeV2AiWithOfficialSourceNotes)],
+    ['legacy_generated_research_evidence_bridge_v2_dry_run_not_ready', legacyGeneratedResearchEvidenceBridgeV2Present && !legacyGeneratedResearchEvidenceBridgeV2DryRunReady ? 1 : 0],
+    ['legacy_generated_research_evidence_bridge_v2_missing_probe_passes', Math.max(0, legacyGeneratedResearchEvidenceBridgeV2FixtureProbes - legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed)],
+    ['legacy_generated_research_evidence_bridge_v2_ready_for_apply_open', legacyGeneratedResearchEvidenceBridgeV2ReadyForApply ? 1 : 0],
+    ['legacy_generated_research_evidence_bridge_v2_may_modify_production_app_files_open', legacyGeneratedResearchEvidenceBridgeV2MayModifyProductionAppFiles ? 1 : 0],
     ['payload_creation_approval_preflight_v2_blockers', payloadCreationApprovalPreflightV2Blockers],
     ['payload_creation_approval_preflight_v2_not_ready_for_closed_materialization', payloadCreationApprovalPreflightV2Present && !payloadCreationApprovalPreflightV2ReadyForClosedPayloadMaterialization ? 1 : 0],
     ['payload_creation_approval_preflight_v2_hash_check_failures', Math.max(0, payloadCreationApprovalPreflightV2HashChecks - payloadCreationApprovalPreflightV2HashChecksPassed)],
@@ -2506,6 +4931,30 @@ function main(): void {
     ['runtime_activation_blocker_plan_v2_not_ready_for_approval_receipt_gate', runtimeActivationBlockerPlanV2Present && !runtimeActivationBlockerPlanV2ReadyForExplicitApprovalReceiptGate ? 1 : 0],
     ['runtime_activation_blocker_plan_v2_missing_probe_passes', Math.max(0, runtimeActivationBlockerPlanV2FixtureProbes - runtimeActivationBlockerPlanV2FixtureProbesPassed)],
     ['runtime_activation_blocker_plan_v2_ready_for_apply_open', runtimeActivationBlockerPlanV2ReadyForApply ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_blockers', runtimeDeliveryEvidenceChainV2Blockers],
+    ['runtime_delivery_evidence_chain_v2_not_ready', !runtimeDeliveryEvidenceChainV2Ready ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_upstream_not_pass', Math.max(0, 9 - runtimeDeliveryEvidenceChainV2UpstreamReportsPass)],
+    ['runtime_delivery_evidence_chain_v2_upstream_blockers', runtimeDeliveryEvidenceChainV2UpstreamReportBlockers],
+    ['runtime_delivery_evidence_chain_v2_missing_preview_entries', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2PreviewEntries)],
+    ['runtime_delivery_evidence_chain_v2_missing_preview_sha_placeholders', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2PreviewShaPlaceholders)],
+    ['runtime_delivery_evidence_chain_v2_missing_manifest_entries', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2PublishManifestEntries)],
+    ['runtime_delivery_evidence_chain_v2_missing_actual_sha', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ActualShaEntries)],
+    ['runtime_delivery_evidence_chain_v2_missing_actual_byte_size', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ActualByteSizeEntries)],
+    ['runtime_delivery_evidence_chain_v2_missing_payload_sha_matches', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches)],
+    ['runtime_delivery_evidence_chain_v2_missing_index_sha_matches', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches)],
+    ['runtime_delivery_evidence_chain_v2_missing_slice_manifest_sha_matches', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches)],
+    ['runtime_delivery_evidence_chain_v2_missing_checksum_reports', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent)],
+    ['runtime_delivery_evidence_chain_v2_missing_rollback_contracts', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts)],
+    ['runtime_delivery_evidence_chain_v2_missing_source_locale_rejects', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts)],
+    ['runtime_delivery_evidence_chain_v2_missing_study_target_rejects', Math.max(0, 12 - runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts)],
+    ['runtime_delivery_evidence_chain_v2_admin_not_ready', runtimeDeliveryEvidenceChainV2Present && !runtimeDeliveryEvidenceChainV2AdminReady ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_runtime_not_ready', runtimeDeliveryEvidenceChainV2Present && !runtimeDeliveryEvidenceChainV2RuntimeReady ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_storage_not_ready', runtimeDeliveryEvidenceChainV2Present && !runtimeDeliveryEvidenceChainV2StorageReady ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_transitions_open', runtimeDeliveryEvidenceChainV2Present && !runtimeDeliveryEvidenceChainV2ClosedTransitions ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_not_ready_for_exact_approval_wait', runtimeDeliveryEvidenceChainV2Present && !runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_missing_probe_passes', Math.max(0, runtimeDeliveryEvidenceChainV2FixtureProbes - runtimeDeliveryEvidenceChainV2FixtureProbesPassed)],
+    ['runtime_delivery_evidence_chain_v2_ready_for_apply_open', runtimeDeliveryEvidenceChainV2ReadyForApply ? 1 : 0],
+    ['runtime_delivery_evidence_chain_v2_may_modify_production_app_files_open', runtimeDeliveryEvidenceChainV2MayModifyProductionAppFiles ? 1 : 0],
     ['explicit_approval_receipt_hash_lock_gate_v2_blockers', explicitApprovalReceiptHashLockGateV2Blockers],
     ['explicit_approval_receipt_hash_lock_gate_v2_missing_hash_locks', explicitApprovalReceiptHashLockGateV2Present ? Math.max(0, 12 - explicitApprovalReceiptHashLockGateV2CriticalHashLocks) : 0],
     ['explicit_approval_receipt_hash_lock_gate_v2_not_ready_for_approval_request', explicitApprovalReceiptHashLockGateV2Present && !explicitApprovalReceiptHashLockGateV2ReadyForApprovalRequestPresentation ? 1 : 0],
@@ -2579,9 +5028,9 @@ function main(): void {
     ['readiness_apply_blocker_map_refresh_v2_blockers', readinessApplyBlockerMapRefreshV2Blockers],
     ['readiness_apply_blocker_map_refresh_v2_wrong_state', readinessApplyBlockerMapRefreshV2Present && readinessApplyBlockerMapRefreshV2State !== 'readiness_apply_blocker_map_refreshed' ? 1 : 0],
     ['readiness_apply_blocker_map_refresh_v2_generation_blockers', readinessApplyBlockerMapRefreshV2ReadinessGenerationBlockers],
-    ['readiness_apply_blocker_map_refresh_v2_apply_blockers_count_drift', readinessApplyBlockerMapRefreshV2Present && readinessApplyBlockerMapRefreshV2ReadinessApplyBlockers !== 2 ? 1 : 0],
-    ['readiness_apply_blocker_map_refresh_v2_safe_remaining_drift', readinessApplyBlockerMapRefreshV2Present && readinessApplyBlockerMapRefreshV2SafeRemaining !== 1 ? 1 : 0],
-    ['readiness_apply_blocker_map_refresh_v2_not_ready_for_next_master_refresh', readinessApplyBlockerMapRefreshV2Present && !readinessApplyBlockerMapRefreshV2ReadyForNextMasterRefresh ? 1 : 0],
+    ['readiness_apply_blocker_map_refresh_v2_apply_blockers_count_drift', readinessApplyBlockerMapRefreshV2Present && readinessApplyBlockerMapRefreshV2ReadinessApplyBlockers !== 1 ? 1 : 0],
+    ['readiness_apply_blocker_map_refresh_v2_safe_remaining_drift', readinessApplyBlockerMapRefreshV2Present && !((readinessApplyBlockerMapRefreshV2SafeClosed === 4 && readinessApplyBlockerMapRefreshV2SafeRemaining === 1) || (readinessApplyBlockerMapRefreshV2SafeClosed === 5 && readinessApplyBlockerMapRefreshV2SafeRemaining === 0)) ? 1 : 0],
+    ['readiness_apply_blocker_map_refresh_v2_not_ready_for_next_master_refresh', readinessApplyBlockerMapRefreshV2Present && !((readinessApplyBlockerMapRefreshV2SafeClosed === 4 && readinessApplyBlockerMapRefreshV2SafeRemaining === 1 && readinessApplyBlockerMapRefreshV2ReadyForNextMasterRefresh) || (readinessApplyBlockerMapRefreshV2SafeClosed === 5 && readinessApplyBlockerMapRefreshV2SafeRemaining === 0 && !readinessApplyBlockerMapRefreshV2ReadyForNextMasterRefresh)) ? 1 : 0],
     ['readiness_apply_blocker_map_refresh_v2_missing_probe_passes', Math.max(0, readinessApplyBlockerMapRefreshV2FixtureProbes - readinessApplyBlockerMapRefreshV2FixtureProbesPassed)],
     ['readiness_apply_blocker_map_refresh_v2_ready_for_apply_open', readinessApplyBlockerMapRefreshV2ReadyForApply ? 1 : 0],
     ['readiness_apply_blocker_map_refresh_v2_may_modify_production_app_files_open', readinessApplyBlockerMapRefreshV2MayModifyProductionAppFiles ? 1 : 0],
@@ -2593,13 +5042,303 @@ function main(): void {
     ['official_source_content_coverage_v2_missing_accepted_rows', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2AcceptedRows) : 0],
     ['official_source_content_coverage_v2_missing_accepted_ai', officialSourceContentCoverageV2Present ? Math.max(0, 164 - officialSourceContentCoverageV2AcceptedAi) : 0],
     ['official_source_content_coverage_v2_missing_source_refs', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2RowsWithSourceRefs) : 0],
+    ['official_source_content_coverage_v2_missing_trusted_source_ref_urls', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls) : 0],
+    ['official_source_content_coverage_v2_missing_evidence_source_ref_coverage', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs) : 0],
+    ['official_source_content_coverage_v2_untrusted_source_ref_urls_present', officialSourceContentCoverageV2RowsWithUntrustedSourceRefUrls],
+    ['official_source_content_coverage_v2_untrusted_source_ref_ids_present', officialSourceContentCoverageV2RowsWithUntrustedSourceRefIds],
+    ['official_source_content_coverage_v2_missing_ai_trusted_source_ref_urls', officialSourceContentCoverageV2Present ? Math.max(0, 164 - officialSourceContentCoverageV2AiWithTrustedSourceRefUrls) : 0],
+    ['official_source_content_coverage_v2_missing_ai_minimum_trusted_source_refs', officialSourceContentCoverageV2Present ? Math.max(0, 164 - officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs) : 0],
+    ['official_source_content_coverage_v2_ai_untrusted_source_ref_urls_present', officialSourceContentCoverageV2AiWithUntrustedSourceRefUrls],
+    ['official_source_content_coverage_v2_ai_untrusted_source_ref_ids_present', officialSourceContentCoverageV2AiWithUntrustedSourceRefIds],
+    ['official_source_content_coverage_v2_non_https_fixture_not_rejected', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2RejectsNonHttpsSourceRefFixture ? 1 : 0],
+    ['official_source_content_coverage_v2_untrusted_domain_fixture_not_rejected', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2RejectsUntrustedSourceDomainFixture ? 1 : 0],
+    ['official_source_content_coverage_v2_untrusted_id_fixture_not_rejected', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2RejectsUntrustedSourceIdFixture ? 1 : 0],
+    ['official_source_content_coverage_v2_missing_matching_ref_fixture_not_rejected', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2RejectsEvidenceWithoutMatchingSourceRefFixture ? 1 : 0],
+    ['official_source_content_coverage_v2_insufficient_ai_refs_fixture_not_rejected', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2RejectsInsufficientAiTrustedSourceRefsFixture ? 1 : 0],
     ['official_source_content_coverage_v2_missing_gate_passes', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2RowsWithGatesPassed) : 0],
     ['official_source_content_coverage_v2_missing_one_correct_quizzes', officialSourceContentCoverageV2Present ? Math.max(0, 1600 - officialSourceContentCoverageV2QuizRowsOneCorrect) : 0],
     ['official_source_content_coverage_v2_missing_trusted_source_ids', officialSourceContentCoverageV2Present && officialSourceContentCoverageV2TrustedSourceIds <= 0 ? 1 : 0],
-    ['official_source_content_coverage_v2_not_ready_for_import_dry_run_refresh', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2ReadyForImportDryRunRefresh ? 1 : 0],
+    ['official_source_content_coverage_v2_not_ready_for_import_dry_run_refresh', officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2ReadyForImportDryRunRefresh && !exactApprovalApplyRehearsalV2Ready ? 1 : 0],
     ['official_source_content_coverage_v2_missing_probe_passes', Math.max(0, officialSourceContentCoverageV2FixtureProbes - officialSourceContentCoverageV2FixtureProbesPassed)],
     ['official_source_content_coverage_v2_ready_for_apply_open', officialSourceContentCoverageV2ReadyForApply ? 1 : 0],
     ['official_source_content_coverage_v2_may_modify_production_app_files_open', officialSourceContentCoverageV2MayModifyProductionAppFiles ? 1 : 0],
+    ['production_activation_hold_exact_approval_required_v2_blockers', productionActivationHoldExactApprovalRequiredV2Blockers],
+    ['production_activation_hold_exact_approval_required_v2_not_ready', productionActivationHoldExactApprovalRequiredV2Present && !productionActivationHoldExactApprovalRequiredV2Ready && !exactApprovalApplyRehearsalV2Ready ? 1 : 0],
+    ['production_activation_hold_exact_approval_required_v2_missing_probe_passes', Math.max(0, productionActivationHoldExactApprovalRequiredV2FixtureProbes - productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed)],
+    ['production_activation_hold_exact_approval_required_v2_ready_for_apply_open', productionActivationHoldExactApprovalRequiredV2ReadyForApply ? 1 : 0],
+    ['production_activation_hold_exact_approval_required_v2_may_modify_production_app_files_open', productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_validation_gate_v2_blockers', exactApprovalValidationGateV2Blockers],
+    ['exact_approval_validation_gate_v2_not_ready', exactApprovalValidationGateV2Present && !exactApprovalValidationGateV2Ready ? 1 : 0],
+    ['exact_approval_validation_gate_v2_missing_probe_passes', Math.max(0, exactApprovalValidationGateV2FixtureProbes - exactApprovalValidationGateV2FixtureProbesPassed)],
+    ['exact_approval_validation_gate_v2_ready_for_apply_open', exactApprovalValidationGateV2ReadyForApply ? 1 : 0],
+    ['exact_approval_validation_gate_v2_may_modify_production_app_files_open', exactApprovalValidationGateV2MayModifyProductionAppFiles ? 1 : 0],
+    ['production_activation_sequence_preflight_v2_blockers', productionActivationSequencePreflightV2Blockers],
+    ['production_activation_sequence_preflight_v2_not_ready', productionActivationSequencePreflightV2Present && !productionActivationSequencePreflightV2Ready ? 1 : 0],
+    ['production_activation_sequence_preflight_v2_missing_probe_passes', Math.max(0, productionActivationSequencePreflightV2FixtureProbes - productionActivationSequencePreflightV2FixtureProbesPassed)],
+    ['production_activation_sequence_preflight_v2_ready_for_apply_open', productionActivationSequencePreflightV2ReadyForApply ? 1 : 0],
+    ['production_activation_sequence_preflight_v2_may_modify_production_app_files_open', productionActivationSequencePreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['production_apply_transaction_contract_v2_blockers', productionApplyTransactionContractV2Blockers],
+    ['production_apply_transaction_contract_v2_not_ready', productionApplyTransactionContractV2Present && !productionApplyTransactionContractV2Ready ? 1 : 0],
+    ['production_apply_transaction_contract_v2_missing_probe_passes', Math.max(0, productionApplyTransactionContractV2FixtureProbes - productionApplyTransactionContractV2FixtureProbesPassed)],
+    ['production_apply_transaction_contract_v2_missing_entries', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2ServerManifestEntries) : 0],
+    ['production_apply_transaction_contract_v2_missing_payload_checks', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2PayloadFilesChecked) : 0],
+    ['production_apply_transaction_contract_v2_missing_index_checks', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2IndexFilesChecked) : 0],
+    ['production_apply_transaction_contract_v2_missing_manifest_checks', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2SliceManifestFilesChecked) : 0],
+    ['production_apply_transaction_contract_v2_sha_mismatches', productionApplyTransactionContractV2ShaMismatches],
+    ['production_apply_transaction_contract_v2_missing_entry_files', productionApplyTransactionContractV2MissingEntryFiles],
+    [
+      'production_apply_transaction_contract_v2_missing_p49_proved_requirements',
+      productionApplyTransactionContractV2Present
+        ? Math.max(0, 16 - (productionApplyTransactionContractV2P49RequirementsProved + productionApplyTransactionContractV2P49RequirementsProductionLocked))
+        : 0,
+    ],
+    [
+      'production_apply_transaction_contract_v2_unexpected_p49_locked_requirements',
+      productionApplyTransactionContractV2Present && productionApplyTransactionContractV2P49RequirementsProductionLocked <= 0 ? 1 : 0,
+    ],
+    ['production_apply_transaction_contract_v2_p49_missing_requirements', productionApplyTransactionContractV2P49RequirementsMissing],
+    ['production_apply_transaction_contract_v2_p49_contradicted_requirements', productionApplyTransactionContractV2P49RequirementsContradicted],
+    ['production_apply_transaction_contract_v2_missing_final_hash_locks', Math.max(0, EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 - productionApplyTransactionContractV2FinalHashLocks)],
+    ['production_apply_transaction_contract_v2_p50_missing_critical_artifacts', productionApplyTransactionContractV2P50MissingCriticalArtifacts],
+    ['production_apply_transaction_contract_v2_p50_runtime_delivery_chain_not_ready', productionApplyTransactionContractV2Present && !productionApplyTransactionContractV2P50RuntimeDeliveryEvidenceChainReady ? 1 : 0],
+    ['production_apply_transaction_contract_v2_runtime_delivery_chain_not_ready', productionApplyTransactionContractV2Present && !productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady ? 1 : 0],
+    ['production_apply_transaction_contract_v2_missing_runtime_delivery_manifest_entries', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries) : 0],
+    ['production_apply_transaction_contract_v2_missing_runtime_delivery_actual_sha', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainActualShaEntries) : 0],
+    ['production_apply_transaction_contract_v2_missing_runtime_delivery_rollback_contracts', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainRollbackContracts) : 0],
+    ['production_apply_transaction_contract_v2_missing_runtime_delivery_source_locale_rejects', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects) : 0],
+    ['production_apply_transaction_contract_v2_missing_runtime_delivery_study_target_rejects', productionApplyTransactionContractV2Present ? Math.max(0, 12 - productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects) : 0],
+    ['production_apply_transaction_contract_v2_ready_for_apply_open', productionApplyTransactionContractV2ReadyForApply ? 1 : 0],
+    ['production_apply_transaction_contract_v2_may_modify_production_app_files_open', productionApplyTransactionContractV2MayModifyProductionAppFiles ? 1 : 0],
+    ['post_apply_rollback_guard_contract_v2_blockers', postApplyRollbackGuardContractV2Blockers],
+    ['post_apply_rollback_guard_contract_v2_not_ready', postApplyRollbackGuardContractV2Present && !postApplyRollbackGuardContractV2Ready ? 1 : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_probe_passes', Math.max(0, postApplyRollbackGuardContractV2FixtureProbes - postApplyRollbackGuardContractV2FixtureProbesPassed)],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_cache_contracts', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeCacheContracts) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_rollback_contracts', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts) : 0],
+    ['post_apply_rollback_guard_contract_v2_prompt_contract_gap', postApplyRollbackGuardContractV2Present ? Math.max(0, postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected - postApplyRollbackGuardContractV2LanguagePromptContracts) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_guard_steps', postApplyRollbackGuardContractV2Present && (postApplyRollbackGuardContractV2PostApplyGuardSteps <= 0 || postApplyRollbackGuardContractV2RollbackGuardSteps <= 0) ? 1 : 0],
+    [
+      'post_apply_rollback_guard_contract_v2_missing_p49_proved_requirements',
+      postApplyRollbackGuardContractV2Present
+        ? Math.max(0, 16 - (postApplyRollbackGuardContractV2P49RequirementsProved + postApplyRollbackGuardContractV2P49RequirementsProductionLocked))
+        : 0,
+    ],
+    [
+      'post_apply_rollback_guard_contract_v2_unexpected_p49_locked_requirements',
+      postApplyRollbackGuardContractV2Present && postApplyRollbackGuardContractV2P49RequirementsProductionLocked <= 0 ? 1 : 0,
+    ],
+    ['post_apply_rollback_guard_contract_v2_p49_missing_requirements', postApplyRollbackGuardContractV2P49RequirementsMissing],
+    ['post_apply_rollback_guard_contract_v2_p49_contradicted_requirements', postApplyRollbackGuardContractV2P49RequirementsContradicted],
+    ['post_apply_rollback_guard_contract_v2_missing_final_hash_locks', Math.max(0, EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 - postApplyRollbackGuardContractV2FinalHashLocks)],
+    ['post_apply_rollback_guard_contract_v2_p50_missing_critical_artifacts', postApplyRollbackGuardContractV2P50MissingCriticalArtifacts],
+    ['post_apply_rollback_guard_contract_v2_p50_runtime_delivery_chain_not_ready', postApplyRollbackGuardContractV2Present && !postApplyRollbackGuardContractV2P50RuntimeDeliveryEvidenceChainReady ? 1 : 0],
+    ['post_apply_rollback_guard_contract_v2_runtime_delivery_chain_not_ready', postApplyRollbackGuardContractV2Present && !postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady ? 1 : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_delivery_manifest_entries', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_delivery_actual_sha', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainActualShaEntries) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_delivery_rollback_contracts', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainRollbackContracts) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_delivery_source_locale_rejects', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects) : 0],
+    ['post_apply_rollback_guard_contract_v2_missing_runtime_delivery_study_target_rejects', postApplyRollbackGuardContractV2Present ? Math.max(0, 12 - postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects) : 0],
+    ['post_apply_rollback_guard_contract_v2_ready_for_apply_open', postApplyRollbackGuardContractV2ReadyForApply ? 1 : 0],
+    ['post_apply_rollback_guard_contract_v2_may_modify_production_app_files_open', postApplyRollbackGuardContractV2MayModifyProductionAppFiles ? 1 : 0],
+    ['approval_wait_safe_continuation_v2_blockers', approvalWaitSafeContinuationV2Blockers],
+    ['approval_wait_safe_continuation_v2_not_ready', approvalWaitSafeContinuationV2Present && !approvalWaitSafeContinuationV2Ready ? 1 : 0],
+    ['approval_wait_safe_continuation_v2_missing_probe_passes', Math.max(0, approvalWaitSafeContinuationV2FixtureProbes - approvalWaitSafeContinuationV2FixtureProbesPassed)],
+    ['approval_wait_safe_continuation_v2_legacy_review_residue', approvalWaitSafeContinuationV2LegacyReviewResidueMatches],
+    ['approval_wait_safe_continuation_v2_ready_for_apply_open', approvalWaitSafeContinuationV2ReadyForApply ? 1 : 0],
+    ['approval_wait_safe_continuation_v2_may_modify_production_app_files_open', approvalWaitSafeContinuationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['production_readiness_completion_audit_v2_blockers', productionReadinessCompletionAuditV2Blockers],
+    ['production_readiness_completion_audit_v2_not_ready', productionReadinessCompletionAuditV2Present && !productionReadinessCompletionAuditV2Ready ? 1 : 0],
+    ['production_readiness_completion_audit_v2_missing_closed_requirements', Math.max(0, 16 - productionReadinessCompletionAuditV2RequirementsClosed)],
+    ['production_readiness_completion_audit_v2_missing_requirements', productionReadinessCompletionAuditV2RequirementsMissing],
+    ['production_readiness_completion_audit_v2_contradicted_requirements', productionReadinessCompletionAuditV2RequirementsContradicted],
+    ['production_readiness_completion_audit_v2_missing_probe_passes', Math.max(0, productionReadinessCompletionAuditV2FixtureProbes - productionReadinessCompletionAuditV2FixtureProbesPassed)],
+    ['production_readiness_completion_audit_v2_ready_for_apply_open', productionReadinessCompletionAuditV2ReadyForApply ? 1 : 0],
+    ['production_readiness_completion_audit_v2_may_modify_production_app_files_open', productionReadinessCompletionAuditV2MayModifyProductionAppFiles ? 1 : 0],
+    ['final_preapproval_evidence_hash_lock_v2_blockers', finalPreapprovalEvidenceHashLockV2Blockers],
+    ['final_preapproval_evidence_hash_lock_v2_not_ready', finalPreapprovalEvidenceHashLockV2Present && !finalPreapprovalEvidenceHashLockV2Ready ? 1 : 0],
+    ['final_preapproval_evidence_hash_lock_v2_missing_final_hash_locks', Math.max(0, EXPECTED_FINAL_PREAPPROVAL_HASH_LOCKS_V2 - finalPreapprovalEvidenceHashLockV2FinalHashLocks)],
+    ['final_preapproval_evidence_hash_lock_v2_missing_critical_artifacts', finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts],
+    ['final_preapproval_evidence_hash_lock_v2_missing_required_role_locks', finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks],
+    ['final_preapproval_evidence_hash_lock_v2_runtime_delivery_chain_not_ready', finalPreapprovalEvidenceHashLockV2Present && !finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady ? 1 : 0],
+    ['final_preapproval_evidence_hash_lock_v2_missing_probe_passes', Math.max(0, finalPreapprovalEvidenceHashLockV2FixtureProbes - finalPreapprovalEvidenceHashLockV2FixtureProbesPassed)],
+    ['final_preapproval_evidence_hash_lock_v2_ready_for_apply_open', finalPreapprovalEvidenceHashLockV2ReadyForApply ? 1 : 0],
+    ['final_preapproval_evidence_hash_lock_v2_may_modify_production_app_files_open', finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_blockers', exactApprovalApplyRehearsalV2Blockers],
+    ['exact_approval_apply_rehearsal_v2_not_ready', exactApprovalApplyRehearsalV2Present && !exactApprovalApplyRehearsalV2Ready ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_unexpected_apply_blockers', exactApprovalApplyRehearsalV2Present && exactApprovalApplyRehearsalV2ReadinessApplyBlockers !== 1 ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_active_approval_receipt_open', exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_active_hash_lock_open', exactApprovalApplyRehearsalV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_missing_main_hash_lock_dry_run', exactApprovalApplyRehearsalV2Present && !exactApprovalApplyRehearsalV2MainHashLockDryRunPresent ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_missing_final_hash_lock_dry_run', exactApprovalApplyRehearsalV2Present && !exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_would_create_active_artifacts_open', exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_missing_probe_passes', Math.max(0, exactApprovalApplyRehearsalV2FixtureProbes - exactApprovalApplyRehearsalV2FixtureProbesPassed)],
+    ['exact_approval_apply_rehearsal_v2_ready_for_apply_open', exactApprovalApplyRehearsalV2ReadyForApply ? 1 : 0],
+    ['exact_approval_apply_rehearsal_v2_may_modify_production_app_files_open', exactApprovalApplyRehearsalV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_source_firewall_v2_blockers', exactApprovalSourceFirewallV2Blockers],
+    ['exact_approval_source_firewall_v2_not_ready', exactApprovalSourceFirewallV2Present && !exactApprovalSourceFirewallV2Ready ? 1 : 0],
+    ['exact_approval_source_firewall_v2_plain_continue_would_create_active_artifacts', exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts ? 1 : 0],
+    ['exact_approval_source_firewall_v2_active_approval_receipt_open', exactApprovalSourceFirewallV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_source_firewall_v2_active_hash_lock_open', exactApprovalSourceFirewallV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_source_firewall_v2_missing_probe_passes', Math.max(0, exactApprovalSourceFirewallV2FixtureProbes - exactApprovalSourceFirewallV2FixtureProbesPassed)],
+    ['exact_approval_source_firewall_v2_ready_for_apply_open', exactApprovalSourceFirewallV2ReadyForApply ? 1 : 0],
+    ['exact_approval_source_firewall_v2_may_modify_production_app_files_open', exactApprovalSourceFirewallV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_blockers', exactApprovalSourceIntakeTransitionV2Blockers],
+    ['exact_approval_source_intake_transition_v2_not_ready', exactApprovalSourceIntakeTransitionV2Present && !exactApprovalSourceIntakeTransitionV2Ready ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_plain_continue_would_create_active_artifacts', exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_script_would_create_active_artifacts', exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_active_approval_receipt_open', exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_active_hash_lock_open', exactApprovalSourceIntakeTransitionV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_missing_simulated_p31_both_artifacts', exactApprovalSourceIntakeTransitionV2Present && !exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_simulated_p44_ready_for_apply_open', exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_missing_probe_passes', Math.max(0, exactApprovalSourceIntakeTransitionV2FixtureProbes - exactApprovalSourceIntakeTransitionV2FixtureProbesPassed)],
+    ['exact_approval_source_intake_transition_v2_ready_for_apply_open', exactApprovalSourceIntakeTransitionV2ReadyForApply ? 1 : 0],
+    ['exact_approval_source_intake_transition_v2_may_modify_production_app_files_open', exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_blockers', exactApprovalActiveArtifactPairSimulationV2Blockers],
+    ['exact_approval_active_artifact_pair_simulation_v2_not_ready', exactApprovalActiveArtifactPairSimulationV2Present && !exactApprovalActiveArtifactPairSimulationV2Ready ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_active_approval_receipt_open', exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_active_hash_lock_open', exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_simulated_pair_would_not_pass_p44', exactApprovalActiveArtifactPairSimulationV2Present && !exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_current_p44_opened_sequencing', exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_missing_probe_passes', Math.max(0, exactApprovalActiveArtifactPairSimulationV2FixtureProbes - exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed)],
+    ['exact_approval_active_artifact_pair_simulation_v2_ready_for_apply_open', exactApprovalActiveArtifactPairSimulationV2ReadyForApply ? 1 : 0],
+    ['exact_approval_active_artifact_pair_simulation_v2_may_modify_production_app_files_open', exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_blockers', exactApprovalP31CreateCommandPreflightV2Blockers],
+    ['exact_approval_p31_create_command_preflight_v2_not_ready', exactApprovalP31CreateCommandPreflightV2Present && !exactApprovalP31CreateCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_active_approval_receipt_open', exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_active_hash_lock_open', exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_command_with_source_not_allowed', exactApprovalP31CreateCommandPreflightV2Present && !exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_command_executed_by_script', exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP31CreateCommandPreflightV2FixtureProbes - exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p31_create_command_preflight_v2_ready_for_apply_open', exactApprovalP31CreateCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p31_create_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_blockers', exactApprovalP44ValidationCommandPreflightV2Blockers],
+    ['exact_approval_p44_validation_command_preflight_v2_not_ready', exactApprovalP44ValidationCommandPreflightV2Present && !exactApprovalP44ValidationCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_active_approval_receipt_open_without_validation', exactApprovalP44ValidationCommandPreflightV2ActiveApprovalReceiptExists && !exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_active_hash_lock_open_without_validation', exactApprovalP44ValidationCommandPreflightV2ActiveHashLockExists && !exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_command_after_p31_not_allowed', exactApprovalP44ValidationCommandPreflightV2Present && !exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_command_executed_by_script', exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP44ValidationCommandPreflightV2FixtureProbes - exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p44_validation_command_preflight_v2_ready_for_apply_open', exactApprovalP44ValidationCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p44_validation_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_blockers', exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_not_ready', exactApprovalP44ToP45SequenceHandoffSimulationV2Present && !exactApprovalP44ToP45SequenceHandoffSimulationV2Ready ? 1 : 0],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_simulated_handoff_not_open', exactApprovalP44ToP45SequenceHandoffSimulationV2Present && !exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence ? 1 : 0],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_command_executed_by_script', exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_missing_probe_passes', Math.max(0, exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes - exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed)],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_ready_for_apply_open', exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p44_to_p45_sequence_handoff_simulation_v2_may_modify_production_app_files_open', exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p45_sequence_command_preflight_v2_blockers', exactApprovalP45SequenceCommandPreflightV2Blockers],
+    ['exact_approval_p45_sequence_command_preflight_v2_not_ready', exactApprovalP45SequenceCommandPreflightV2Present && !exactApprovalP45SequenceCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p45_sequence_command_preflight_v2_command_after_p44_not_allowed', exactApprovalP45SequenceCommandPreflightV2Present && !exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation ? 1 : 0],
+    ['exact_approval_p45_sequence_command_preflight_v2_command_executed_by_script', exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p45_sequence_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP45SequenceCommandPreflightV2FixtureProbes - exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p45_sequence_command_preflight_v2_ready_for_apply_open', exactApprovalP45SequenceCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p45_sequence_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_blockers', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_not_ready', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present && !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_current_handoff_open', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_simulated_handoff_not_open', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present && !exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_command_executed_by_script', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_missing_probe_passes', Math.max(0, exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes - exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed)],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_ready_for_apply_open', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_may_modify_production_app_files_open', exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_blockers', exactApprovalP46ApplyTransactionCommandPreflightV2Blockers],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_not_ready', exactApprovalP46ApplyTransactionCommandPreflightV2Present && !exactApprovalP46ApplyTransactionCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_command_after_p45_not_allowed', exactApprovalP46ApplyTransactionCommandPreflightV2Present && !exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence ? 1 : 0],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_command_executed_by_script', exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes - exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_ready_for_apply_open', exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p46_apply_transaction_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_blockers', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_not_ready', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present && !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_current_handoff_open', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_simulated_handoff_not_open', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present && !exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_command_executed_by_script', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_missing_probe_passes', Math.max(0, exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes - exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed)],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_ready_for_apply_open', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_may_modify_production_app_files_open', exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_blockers', exactApprovalP47RollbackGuardCommandPreflightV2Blockers],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_not_ready', exactApprovalP47RollbackGuardCommandPreflightV2Present && !exactApprovalP47RollbackGuardCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_command_after_p46_not_allowed', exactApprovalP47RollbackGuardCommandPreflightV2Present && !exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract ? 1 : 0],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_command_executed_by_script', exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes - exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_ready_for_apply_open', exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p47_rollback_guard_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_blockers', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_not_ready', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present && !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_current_handoff_not_open', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present && !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_simulated_handoff_not_open', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present && !exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_command_executed_by_script', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_missing_probe_passes', Math.max(0, exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes - exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed)],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_ready_for_apply_open', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_may_modify_production_app_files_open', exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_blockers', exactApprovalP48SafeContinuationCommandPreflightV2Blockers],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_not_ready', exactApprovalP48SafeContinuationCommandPreflightV2Present && !exactApprovalP48SafeContinuationCommandPreflightV2Ready ? 1 : 0],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_command_not_allowed', exactApprovalP48SafeContinuationCommandPreflightV2Present && !exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow ? 1 : 0],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_command_executed_by_script', exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript ? 1 : 0],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_missing_probe_passes', Math.max(0, exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes - exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed)],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_ready_for_apply_open', exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply ? 1 : 0],
+    ['exact_approval_p48_safe_continuation_command_preflight_v2_may_modify_production_app_files_open', exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_wait_state_v2_blockers', exactApprovalWaitStateV2Blockers],
+    ['exact_approval_wait_state_v2_not_ready', exactApprovalWaitStateV2Present && !exactApprovalWaitStateV2Ready ? 1 : 0],
+    ['exact_approval_wait_state_v2_closed_evidence_not_ready', exactApprovalWaitStateV2Present && !exactApprovalWaitStateV2ClosedEvidenceReady ? 1 : 0],
+    ['exact_approval_wait_state_v2_approval_source_not_canonical', exactApprovalWaitStateV2Present && !exactApprovalWaitStateV2ApprovalSourceIsCanonical ? 1 : 0],
+    ['exact_approval_wait_state_v2_active_receipt_exists', exactApprovalWaitStateV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_wait_state_v2_active_hash_lock_exists', exactApprovalWaitStateV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_wait_state_v2_missing_probe_passes', Math.max(0, exactApprovalWaitStateV2FixtureProbes - exactApprovalWaitStateV2FixtureProbesPassed)],
+    ['exact_approval_wait_state_v2_ready_for_apply_open', exactApprovalWaitStateV2ReadyForApply ? 1 : 0],
+    ['exact_approval_wait_state_v2_may_modify_production_app_files_open', exactApprovalWaitStateV2MayModifyProductionAppFiles ? 1 : 0],
+    ['ordered_approval_wait_refresh_v2_blockers', orderedApprovalWaitRefreshV2Blockers],
+    ['ordered_approval_wait_refresh_v2_not_ready', orderedApprovalWaitRefreshV2Present && !orderedApprovalWaitRefreshV2Ready ? 1 : 0],
+    ['ordered_approval_wait_refresh_v2_active_receipt_exists', orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['ordered_approval_wait_refresh_v2_active_hash_lock_exists', orderedApprovalWaitRefreshV2ActiveHashLockExists ? 1 : 0],
+    ['ordered_approval_wait_refresh_v2_ready_for_apply_open', orderedApprovalWaitRefreshV2ReadyForApply ? 1 : 0],
+    ['ordered_approval_wait_refresh_v2_may_modify_production_app_files_open', orderedApprovalWaitRefreshV2MayModifyProductionAppFiles ? 1 : 0],
+    ['safe_preapproval_continuation_v2_blockers', safePreapprovalContinuationV2Blockers],
+    ['safe_preapproval_continuation_v2_not_ready', safePreapprovalContinuationV2Present && !safePreapprovalContinuationV2Ready ? 1 : 0],
+    ['safe_preapproval_continuation_v2_active_receipt_exists', safePreapprovalContinuationV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['safe_preapproval_continuation_v2_active_hash_lock_exists', safePreapprovalContinuationV2ActiveHashLockExists ? 1 : 0],
+    ['safe_preapproval_continuation_v2_ready_for_apply_open', safePreapprovalContinuationV2ReadyForApply ? 1 : 0],
+    ['safe_preapproval_continuation_v2_may_modify_production_app_files_open', safePreapprovalContinuationV2MayModifyProductionAppFiles ? 1 : 0],
+    ['final_production_readiness_gap_v2_blockers', finalProductionReadinessGapV2Blockers],
+    ['final_production_readiness_gap_v2_not_ready', finalProductionReadinessGapV2Present && !finalProductionReadinessGapV2Ready ? 1 : 0],
+    ['final_production_readiness_gap_v2_generation_not_ready', finalProductionReadinessGapV2Present && !finalProductionReadinessGapV2GenerationV2Ready ? 1 : 0],
+    ['final_production_readiness_gap_v2_decision_import_not_ready', finalProductionReadinessGapV2Present && !finalProductionReadinessGapV2DecisionImportV2Ready ? 1 : 0],
+    ['final_production_readiness_gap_v2_wrong_pair_state', finalProductionReadinessGapV2Present && finalProductionReadinessGapV2ActiveApprovalArtifactPairState !== 'absent_waiting_for_exact_approval_source' ? 1 : 0],
+    ['final_production_readiness_gap_v2_missing_probe_passes', Math.max(0, finalProductionReadinessGapV2FixtureProbes - finalProductionReadinessGapV2FixtureProbesPassed)],
+    ['final_production_readiness_gap_v2_active_receipt_exists', finalProductionReadinessGapV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['final_production_readiness_gap_v2_active_hash_lock_exists', finalProductionReadinessGapV2ActiveHashLockExists ? 1 : 0],
+    ['final_production_readiness_gap_v2_ready_for_apply_open', finalProductionReadinessGapV2ReadyForApply ? 1 : 0],
+    ['final_production_readiness_gap_v2_may_modify_production_app_files_open', finalProductionReadinessGapV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_blockers', exactApprovalSourceHandoffFirewallV2Blockers],
+    ['exact_approval_source_handoff_firewall_v2_not_ready', exactApprovalSourceHandoffFirewallV2Present && !exactApprovalSourceHandoffFirewallV2Ready ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_source_unexpectedly_exists', exactApprovalSourceHandoffFirewallV2ApprovalSourceExists ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_active_receipt_exists', exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_active_hash_lock_exists', exactApprovalSourceHandoffFirewallV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_ready_for_apply_open', exactApprovalSourceHandoffFirewallV2ReadyForApply ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_may_modify_production_app_files_open', exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_can_start_production_apply_open', exactApprovalSourceHandoffFirewallV2CanStartProductionApply ? 1 : 0],
+    ['exact_approval_source_handoff_firewall_v2_missing_probe_passes', Math.max(0, exactApprovalSourceHandoffFirewallV2FixtureProbes - exactApprovalSourceHandoffFirewallV2FixtureProbesPassed)],
+    ['exact_approval_source_wait_terminal_state_v2_blockers', exactApprovalSourceWaitTerminalStateV2Blockers],
+    ['exact_approval_source_wait_terminal_state_v2_not_ready', exactApprovalSourceWaitTerminalStateV2Present && !exactApprovalSourceWaitTerminalStateV2Ready ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_source_unexpectedly_exists', exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_active_receipt_exists', exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_active_hash_lock_exists', exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_ready_for_apply_open', exactApprovalSourceWaitTerminalStateV2ReadyForApply ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_may_modify_production_app_files_open', exactApprovalSourceWaitTerminalStateV2MayModifyProductionAppFiles ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_can_start_production_apply_open', exactApprovalSourceWaitTerminalStateV2CanStartProductionApply ? 1 : 0],
+    ['exact_approval_source_wait_terminal_state_v2_missing_probe_passes', Math.max(0, exactApprovalSourceWaitTerminalStateV2FixtureProbes - exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed)],
+    ['post_exact_approval_apply_runbook_v2_blockers', postExactApprovalApplyRunbookV2Blockers],
+    ['post_exact_approval_apply_runbook_v2_not_ready', postExactApprovalApplyRunbookV2Present && !postExactApprovalApplyRunbookV2Ready ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_missing_steps', postExactApprovalApplyRunbookV2Present ? Math.max(0, 6 - postExactApprovalApplyRunbookV2Steps) : 0],
+    ['post_exact_approval_apply_runbook_v2_p31_allowed_now_open', postExactApprovalApplyRunbookV2P31CreateAllowedNow ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_p31_not_allowed_after_source', postExactApprovalApplyRunbookV2Present && !postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_production_writes_open', postExactApprovalApplyRunbookV2ProductionWritesAllowedNow ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_active_receipt_exists', postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_active_hash_lock_exists', postExactApprovalApplyRunbookV2ActiveHashLockExists ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_can_start_production_apply_open', postExactApprovalApplyRunbookV2CanStartProductionApplyNow ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_missing_probe_passes', Math.max(0, postExactApprovalApplyRunbookV2FixtureProbes - postExactApprovalApplyRunbookV2FixtureProbesPassed)],
+    ['post_exact_approval_apply_runbook_v2_ready_for_apply_open', postExactApprovalApplyRunbookV2ReadyForApply ? 1 : 0],
+    ['post_exact_approval_apply_runbook_v2_may_modify_production_app_files_open', postExactApprovalApplyRunbookV2MayModifyProductionAppFiles ? 1 : 0],
     ['research_json_firewall_blockers', researchJsonFirewallBlockers],
     ['next_pass_contract_blockers', nextPassContractBlockers],
     ['run_validator_blockers', runValidatorBlockers],
@@ -2613,7 +5352,13 @@ function main(): void {
   }
 
   const criticalArtifactsMissing = findings.filter((finding) => finding.code === 'critical_artifact_missing').length;
-  const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
+  const blockersRaw = findings.filter((finding) => finding.severity === 'blocker').length;
+  const terminalWaitSelfCycleBlockersSuppressed = findings
+    .filter((finding) => finding.severity === 'blocker' && isAllowedTerminalWaitSelfCycleCode(finding.code))
+    .length;
+  const blockers = findings
+    .filter((finding) => finding.severity === 'blocker' && !isAllowedTerminalWaitSelfCycleCode(finding.code))
+    .length;
   const reportWarnings = [
     languageIsolationWarnings,
     n(translationQa, 'warnings'),
@@ -2661,6 +5406,7 @@ function main(): void {
     serverDeliveryPublishPreflightV2Warnings,
     adminServerDeliveryRuntimePreflightV2Warnings,
     runtimeActivationBlockerPlanV2Warnings,
+    runtimeDeliveryEvidenceChainV2Warnings,
     productionApplyAbsenceDenialGateV2Warnings,
     nonproductionBlockerClosurePlanV2Warnings,
     nonproductionEvidenceRefreshV2Warnings,
@@ -2669,6 +5415,35 @@ function main(): void {
     readinessApplyBlockerMapRefreshV2Warnings,
     masterNextPassConsistencyRefreshV2Warnings,
     officialSourceContentCoverageV2Warnings,
+    productionActivationHoldExactApprovalRequiredV2Warnings,
+    exactApprovalValidationGateV2Warnings,
+    productionActivationSequencePreflightV2Warnings,
+    productionApplyTransactionContractV2Warnings,
+    postApplyRollbackGuardContractV2Warnings,
+    approvalWaitSafeContinuationV2Warnings,
+    productionReadinessCompletionAuditV2Warnings,
+    finalPreapprovalEvidenceHashLockV2Warnings,
+    exactApprovalApplyRehearsalV2Warnings,
+    exactApprovalSourceFirewallV2Warnings,
+    exactApprovalSourceIntakeTransitionV2Warnings,
+    exactApprovalActiveArtifactPairSimulationV2Warnings,
+    exactApprovalP31CreateCommandPreflightV2Warnings,
+    exactApprovalP44ValidationCommandPreflightV2Warnings,
+    exactApprovalP44ToP45SequenceHandoffSimulationV2Warnings,
+    exactApprovalP45SequenceCommandPreflightV2Warnings,
+    exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Warnings,
+    exactApprovalP46ApplyTransactionCommandPreflightV2Warnings,
+    exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Warnings,
+    exactApprovalP47RollbackGuardCommandPreflightV2Warnings,
+    exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Warnings,
+    exactApprovalP48SafeContinuationCommandPreflightV2Warnings,
+    exactApprovalWaitStateV2Warnings,
+    orderedApprovalWaitRefreshV2Warnings,
+    safePreapprovalContinuationV2Warnings,
+    finalProductionReadinessGapV2Warnings,
+    exactApprovalSourceHandoffFirewallV2Warnings,
+    exactApprovalSourceWaitTerminalStateV2Warnings,
+    postExactApprovalApplyRunbookV2Warnings,
     researchJsonFirewallWarnings,
     nextPassContractWarnings,
     n(runValidator, 'warnings'),
@@ -2738,7 +5513,6 @@ function main(): void {
     readyForReviewerWorkflowV2 &&
     reviewerWorkflowV2Blockers === 0 &&
     b(reviewerWorkflowV2, 'readyForLlmOfficialSourceReviewV2');
-  const readyForDecisionImportV2 = false;
   const readyForBrainGateV2 =
     blockers === 0 &&
     readyForLlmOfficialSourceReviewV2 &&
@@ -2803,12 +5577,67 @@ function main(): void {
     readyForReviewerDecisionImportExecutionGate &&
     reviewerDecisionImportExecutionGateV2Blockers === 0 &&
     reviewerDecisionImportExecutionGateV2PayloadCreationApprovalPreflightReady;
-  const readyForGenerationV2 =
+  const readyForDecisionImportV2 =
+    blockers === 0 &&
     readyForPayloadCreationApprovalPreflightV2 &&
-    b(selfImprovingUpgrade, 'readyForGenerationV2') &&
-    b(domainRegistryV2, 'readyForGenerationV2') &&
-    legacyGeneratedWithoutResearchPackRows === 0 &&
-    generatedRowsMissingResearchEvidenceIds === 0;
+    reviewerDecisionImportV2DryRunPresent &&
+    reviewerDecisionImportV2DryRunBlockers === 0 &&
+    b(reviewerDecisionImportV2DryRun, 'readyForDecisionImportV2') &&
+    officialSourceImportDryRunV2Ready &&
+    llmOfficialSourceReviewIntakeV2Present &&
+    llmOfficialSourceReviewIntakeV2Blockers === 0 &&
+    llmOfficialSourceReviewIntakeV2State === 'llm_official_source_review_ready' &&
+    llmOfficialSourceReviewIntakeV2ReviewedRowDecisions === EXPECTED_ROW_COUNT &&
+    llmOfficialSourceReviewIntakeV2ReviewedAiDecisions === 164 &&
+    llmOfficialSourceReviewIntakeV2AcceptedRowDecisions === EXPECTED_ROW_COUNT &&
+    llmOfficialSourceReviewIntakeV2AcceptedAiDecisions === 164 &&
+    reviewerDecisionImportExecutionGateV2WouldRun &&
+    officialSourceImportExecutionGateV2Ready &&
+    officialSourceImportExecutionGateV2WouldRun &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2Ready &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AcceptedRowDecisions === EXPECTED_ROW_COUNT &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2AcceptedAiDecisions === 164 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2OpenFlags === 0 &&
+    llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined &&
+    officialSourceContentCoverageV2Present &&
+    officialSourceContentCoverageV2Blockers === 0 &&
+    officialSourceContentCoverageV2State === 'official_source_content_coverage_complete_no_import' &&
+    officialSourceContentCoverageV2AcceptedRows === EXPECTED_ROW_COUNT &&
+    officialSourceContentCoverageV2AcceptedAi === 164 &&
+    officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls === EXPECTED_ROW_COUNT &&
+    officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs === EXPECTED_ROW_COUNT &&
+    officialSourceContentCoverageV2AiWithTrustedSourceRefUrls === 164 &&
+    officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs === 164 &&
+    officialSourceContentCoverageV2ReadyForImportDryRunRefresh &&
+    !officialSourceContentCoverageV2ReadyForApply &&
+    !officialSourceContentCoverageV2MayModifyProductionAppFiles &&
+    !officialSourceImportDryRunV2ReadyForApply &&
+    !officialSourceImportDryRunV2MayModifyProductionAppFiles &&
+    reviewerDecisionImportV2DryRunReviewerImportOpenFlags === 0 &&
+    reviewerDecisionImportV2DryRunProductionApplyOpenFlags === 0 &&
+    reviewerDecisionImportV2DryRunActivationApprovedFlags === 0 &&
+    !reviewerDecisionImportV2DryRunGeneratedLedgerWrites;
+  const legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps =
+    legacyGeneratedResearchEvidenceBridgeV2Ready &&
+    legacyGeneratedResearchEvidenceBridgeV2LegacyRows === legacyGeneratedWithoutResearchPackRows &&
+    legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds === generatedRowsMissingResearchEvidenceIds;
+  const effectiveLegacyGeneratedWithoutResearchPackRows = legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps
+    ? 0
+    : legacyGeneratedWithoutResearchPackRows;
+  const effectiveGeneratedRowsMissingResearchEvidenceIds = legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps
+    ? 0
+    : generatedRowsMissingResearchEvidenceIds;
+  const readyForGenerationV2PayloadPreflightReady = readyForPayloadCreationApprovalPreflightV2;
+  const readyForGenerationV2SelfImprovingReady = b(selfImprovingUpgrade, 'readyForGenerationV2');
+  const readyForGenerationV2DomainRegistryReady = b(domainRegistryV2, 'readyForGenerationV2');
+  const readyForGenerationV2BlockedByLegacyResearchGaps =
+    effectiveLegacyGeneratedWithoutResearchPackRows > 0 ||
+    effectiveGeneratedRowsMissingResearchEvidenceIds > 0;
+  const readyForGenerationV2 =
+    readyForGenerationV2PayloadPreflightReady &&
+    readyForGenerationV2SelfImprovingReady &&
+    readyForGenerationV2DomainRegistryReady &&
+    !readyForGenerationV2BlockedByLegacyResearchGaps;
 
   const artifacts: ArtifactEntry[] = [
     ...lessonLedgers.map((file) => artifactEntry(repoRoot, file, 'generated_lesson_ledger', 'lesson_row_ledger')),
@@ -2864,6 +5693,9 @@ function main(): void {
       generationHistoryWarnings,
       legacyGeneratedWithoutResearchPackRows,
       generatedRowsMissingResearchEvidenceIds,
+      legacyGeneratedResearchEvidenceBridgeV2CoversLegacyResearchGaps,
+      effectiveLegacyGeneratedWithoutResearchPackRows,
+      effectiveGeneratedRowsMissingResearchEvidenceIds,
       appAtlasRefreshBlockers,
       appAtlasRefreshWarnings,
       appAtlasTargetSensitiveFiles,
@@ -2908,6 +5740,17 @@ function main(): void {
       aiPromptContractV2Domains,
       aiPromptContractV2RejectBeforeReturn,
       aiPromptContractV2RejectBeforeCache,
+      aiPromptContractV2CriticalSurfaceClassesCovered,
+      aiPromptContractV2CriticalSurfaceClassesExpected,
+      aiPromptContractV2CriticalSurfaceContracts,
+      aiPromptContractV2CriticalSurfaceLanguageDimensions,
+      aiPromptContractV2CriticalSurfaceCacheContracts,
+      aiPromptContractV2CriticalSurfaceRejectBeforeReturn,
+      aiPromptContractV2CriticalSurfaceRejectBeforeCache,
+      aiPromptContractV2CriticalSurfaceSafeFallback,
+      aiPromptContractV2CriticalSurfaceGenerationBlocked,
+      aiPromptContractV2CriticalSurfaceRequiredFilesCovered,
+      aiPromptContractV2CriticalSurfaceRequiredFiles,
       aiPromptContractV2FixtureProbesPassed,
       aiPromptContractV2FixtureProbes,
       readyForContentQualityGatesV2,
@@ -3213,8 +6056,51 @@ function main(): void {
       llmOfficialSourcePromotedDecisionFileGenerationV2OpenFlags,
       llmOfficialSourcePromotedDecisionFileGenerationV2OutputTargetsConfined,
       llmOfficialSourcePromotedDecisionFileGenerationV2ReadyForImportRefresh,
+      llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractReady,
+      llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractEntrypoints,
+      llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractUniqueIds,
+      llmOfficialSourcePromotedDecisionFileGenerationV2AiPromptContractCriticalContracts,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiUniqueContractIds,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDuplicateContractIds,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMatchedToPromptContracts,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiExtraContracts,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiMissingContracts,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContracts,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCriticalContractsMatched,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiDomainMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFilePathMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiFeatureRiskClassMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRiskLevelMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetLocaleMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiSourceLocalesMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiCacheDimensionsMatchedToPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageGatePassed,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshReturnClosedByPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiRejectedFreshCacheClosedByPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiTargetOutputBeforeQualityClosedByPromptContract,
+      llmOfficialSourcePromotedDecisionFileGenerationV2PromotedAiWrongLanguageFallbackClosedByPromptContract,
       llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbesPassed,
       llmOfficialSourcePromotedDecisionFileGenerationV2FixtureProbes,
+      legacyGeneratedResearchEvidenceBridgeV2Blockers,
+      legacyGeneratedResearchEvidenceBridgeV2Warnings,
+      legacyGeneratedResearchEvidenceBridgeV2Present,
+      legacyGeneratedResearchEvidenceBridgeV2State,
+      legacyGeneratedResearchEvidenceBridgeV2Ready,
+      legacyGeneratedResearchEvidenceBridgeV2LegacyRows,
+      legacyGeneratedResearchEvidenceBridgeV2PromotedRows,
+      legacyGeneratedResearchEvidenceBridgeV2RowIdentityMatched,
+      legacyGeneratedResearchEvidenceBridgeV2RowsWithResearchEvidenceIds,
+      legacyGeneratedResearchEvidenceBridgeV2RowsWithAllRequiredGatesPassed,
+      legacyGeneratedResearchEvidenceBridgeV2AiDecisions,
+      legacyGeneratedResearchEvidenceBridgeV2HighRiskAiDecisions,
+      legacyGeneratedResearchEvidenceBridgeV2HighRiskAiWithResearchGate,
+      legacyGeneratedResearchEvidenceBridgeV2AiLanguageGatesPassed,
+      legacyGeneratedResearchEvidenceBridgeV2AiWithOfficialSourceNotes,
+      legacyGeneratedResearchEvidenceBridgeV2DryRunReady,
+      legacyGeneratedResearchEvidenceBridgeV2FixtureProbesPassed,
+      legacyGeneratedResearchEvidenceBridgeV2FixtureProbes,
+      legacyGeneratedResearchEvidenceBridgeV2ReadyForApply,
+      legacyGeneratedResearchEvidenceBridgeV2MayModifyProductionAppFiles,
       readyForPayloadCreationApprovalPreflightV2,
       payloadCreationApprovalPreflightV2Blockers,
       payloadCreationApprovalPreflightV2Warnings,
@@ -3278,6 +6164,34 @@ function main(): void {
       runtimeActivationBlockerPlanV2FixtureProbesPassed,
       runtimeActivationBlockerPlanV2FixtureProbes,
       runtimeActivationBlockerPlanV2ReadyForApply,
+      runtimeDeliveryEvidenceChainV2Blockers,
+      runtimeDeliveryEvidenceChainV2Warnings,
+      runtimeDeliveryEvidenceChainV2Present,
+      runtimeDeliveryEvidenceChainV2State,
+      runtimeDeliveryEvidenceChainV2Ready,
+      runtimeDeliveryEvidenceChainV2UpstreamReportsPass,
+      runtimeDeliveryEvidenceChainV2UpstreamReportBlockers,
+      runtimeDeliveryEvidenceChainV2PreviewEntries,
+      runtimeDeliveryEvidenceChainV2PreviewShaPlaceholders,
+      runtimeDeliveryEvidenceChainV2PublishManifestEntries,
+      runtimeDeliveryEvidenceChainV2ActualShaEntries,
+      runtimeDeliveryEvidenceChainV2ActualByteSizeEntries,
+      runtimeDeliveryEvidenceChainV2ManifestPayloadShaMatches,
+      runtimeDeliveryEvidenceChainV2ManifestIndexShaMatches,
+      runtimeDeliveryEvidenceChainV2ManifestSliceManifestShaMatches,
+      runtimeDeliveryEvidenceChainV2ManifestChecksumReportsPresent,
+      runtimeDeliveryEvidenceChainV2RuntimeRollbackSimulationContracts,
+      runtimeDeliveryEvidenceChainV2RuntimeSourceLocaleMismatchRejectContracts,
+      runtimeDeliveryEvidenceChainV2RuntimeStudyTargetMismatchRejectContracts,
+      runtimeDeliveryEvidenceChainV2AdminReady,
+      runtimeDeliveryEvidenceChainV2RuntimeReady,
+      runtimeDeliveryEvidenceChainV2StorageReady,
+      runtimeDeliveryEvidenceChainV2ClosedTransitions,
+      runtimeDeliveryEvidenceChainV2ReadyForExactApprovalWaitState,
+      runtimeDeliveryEvidenceChainV2FixtureProbesPassed,
+      runtimeDeliveryEvidenceChainV2FixtureProbes,
+      runtimeDeliveryEvidenceChainV2ReadyForApply,
+      runtimeDeliveryEvidenceChainV2MayModifyProductionAppFiles,
       explicitApprovalReceiptHashLockGateV2Blockers,
       explicitApprovalReceiptHashLockGateV2Warnings,
       explicitApprovalReceiptHashLockGateV2Present,
@@ -3413,14 +6327,507 @@ function main(): void {
       officialSourceContentCoverageV2AcceptedRows,
       officialSourceContentCoverageV2AcceptedAi,
       officialSourceContentCoverageV2RowsWithSourceRefs,
+      officialSourceContentCoverageV2RowsWithTrustedSourceRefUrls,
+      officialSourceContentCoverageV2RowsWithEvidenceCoveredBySourceRefs,
+      officialSourceContentCoverageV2RowsWithUntrustedSourceRefUrls,
+      officialSourceContentCoverageV2RowsWithUntrustedSourceRefIds,
+      officialSourceContentCoverageV2AiWithTrustedSourceRefUrls,
+      officialSourceContentCoverageV2AiWithMinimumTrustedSourceRefs,
+      officialSourceContentCoverageV2AiWithUntrustedSourceRefUrls,
+      officialSourceContentCoverageV2AiWithUntrustedSourceRefIds,
+      officialSourceContentCoverageV2RejectsNonHttpsSourceRefFixture,
+      officialSourceContentCoverageV2RejectsUntrustedSourceDomainFixture,
+      officialSourceContentCoverageV2RejectsUntrustedSourceIdFixture,
+      officialSourceContentCoverageV2RejectsEvidenceWithoutMatchingSourceRefFixture,
+      officialSourceContentCoverageV2RejectsInsufficientAiTrustedSourceRefsFixture,
       officialSourceContentCoverageV2RowsWithGatesPassed,
       officialSourceContentCoverageV2QuizRowsOneCorrect,
       officialSourceContentCoverageV2TrustedSourceIds,
+      officialSourceContentCoverageV2P38Ready,
+      officialSourceContentCoverageV2FreshAfterMasterRefresh,
+      officialSourceContentCoverageV2FreshnessAcceptedByP38Snapshot,
       officialSourceContentCoverageV2ReadyForImportDryRunRefresh,
       officialSourceContentCoverageV2FixtureProbesPassed,
       officialSourceContentCoverageV2FixtureProbes,
       officialSourceContentCoverageV2ReadyForApply,
       officialSourceContentCoverageV2MayModifyProductionAppFiles,
+      productionActivationHoldExactApprovalRequiredV2Blockers,
+      productionActivationHoldExactApprovalRequiredV2Warnings,
+      productionActivationHoldExactApprovalRequiredV2Present,
+      productionActivationHoldExactApprovalRequiredV2State,
+      productionActivationHoldExactApprovalRequiredV2Ready,
+      productionActivationHoldExactApprovalRequiredV2ClosedEvidenceReady,
+      productionActivationHoldExactApprovalRequiredV2ExactApprovalRequired,
+      productionActivationHoldExactApprovalRequiredV2FixtureProbesPassed,
+      productionActivationHoldExactApprovalRequiredV2FixtureProbes,
+      productionActivationHoldExactApprovalRequiredV2ReadyForApply,
+      productionActivationHoldExactApprovalRequiredV2MayModifyProductionAppFiles,
+      exactApprovalValidationGateV2Blockers,
+      exactApprovalValidationGateV2Warnings,
+      exactApprovalValidationGateV2Present,
+      exactApprovalValidationGateV2State,
+      exactApprovalValidationGateV2Ready,
+      exactApprovalValidationGateV2ReadyForProductionActivationSequencing,
+      exactApprovalValidationGateV2ActiveApprovalReceiptExists,
+      exactApprovalValidationGateV2ActiveHashLockExists,
+      exactApprovalValidationGateV2FixtureProbesPassed,
+      exactApprovalValidationGateV2FixtureProbes,
+      exactApprovalValidationGateV2ReadyForApply,
+      exactApprovalValidationGateV2MayModifyProductionAppFiles,
+      productionActivationSequencePreflightV2Blockers,
+      productionActivationSequencePreflightV2Warnings,
+      productionActivationSequencePreflightV2Present,
+      productionActivationSequencePreflightV2State,
+      productionActivationSequencePreflightV2Ready,
+      productionActivationSequencePreflightV2ReadyForProductionActivationSequence,
+      productionActivationSequencePreflightV2FixtureProbesPassed,
+      productionActivationSequencePreflightV2FixtureProbes,
+      productionActivationSequencePreflightV2ReadyForApply,
+      productionActivationSequencePreflightV2MayModifyProductionAppFiles,
+      productionApplyTransactionContractV2Blockers,
+      productionApplyTransactionContractV2Warnings,
+      productionApplyTransactionContractV2Present,
+      productionApplyTransactionContractV2State,
+      productionApplyTransactionContractV2Ready,
+      productionApplyTransactionContractV2ReadyForProductionApplyTransaction,
+      productionApplyTransactionContractV2ServerManifestEntries,
+      productionApplyTransactionContractV2PayloadFilesChecked,
+      productionApplyTransactionContractV2IndexFilesChecked,
+      productionApplyTransactionContractV2SliceManifestFilesChecked,
+      productionApplyTransactionContractV2ShaMismatches,
+      productionApplyTransactionContractV2MissingEntryFiles,
+      productionApplyTransactionContractV2P49RequirementsProved,
+      productionApplyTransactionContractV2P49RequirementsProductionLocked,
+      productionApplyTransactionContractV2P49RequirementsMissing,
+      productionApplyTransactionContractV2P49RequirementsContradicted,
+      productionApplyTransactionContractV2FinalHashLocks,
+      productionApplyTransactionContractV2P50MissingCriticalArtifacts,
+      productionApplyTransactionContractV2P50RuntimeDeliveryEvidenceChainReady,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainReady,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainActualShaEntries,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainRollbackContracts,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects,
+      productionApplyTransactionContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects,
+      productionApplyTransactionContractV2FixtureProbesPassed,
+      productionApplyTransactionContractV2FixtureProbes,
+      productionApplyTransactionContractV2ReadyForApply,
+      productionApplyTransactionContractV2MayModifyProductionAppFiles,
+      postApplyRollbackGuardContractV2Blockers,
+      postApplyRollbackGuardContractV2Warnings,
+      postApplyRollbackGuardContractV2Present,
+      postApplyRollbackGuardContractV2State,
+      postApplyRollbackGuardContractV2Ready,
+      postApplyRollbackGuardContractV2ReadyForPostApplyRollbackGuard,
+      postApplyRollbackGuardContractV2RuntimeCacheContracts,
+      postApplyRollbackGuardContractV2RuntimeCacheRollbackContracts,
+      postApplyRollbackGuardContractV2LanguagePromptContracts,
+      postApplyRollbackGuardContractV2LanguagePromptEntrypointsExpected,
+      postApplyRollbackGuardContractV2PostApplyGuardSteps,
+      postApplyRollbackGuardContractV2RollbackGuardSteps,
+      postApplyRollbackGuardContractV2P49RequirementsProved,
+      postApplyRollbackGuardContractV2P49RequirementsProductionLocked,
+      postApplyRollbackGuardContractV2P49RequirementsMissing,
+      postApplyRollbackGuardContractV2P49RequirementsContradicted,
+      postApplyRollbackGuardContractV2FinalHashLocks,
+      postApplyRollbackGuardContractV2P50MissingCriticalArtifacts,
+      postApplyRollbackGuardContractV2P50RuntimeDeliveryEvidenceChainReady,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainReady,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainPublishManifestEntries,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainActualShaEntries,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainRollbackContracts,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainSourceLocaleRejects,
+      postApplyRollbackGuardContractV2RuntimeDeliveryEvidenceChainStudyTargetRejects,
+      postApplyRollbackGuardContractV2FixtureProbesPassed,
+      postApplyRollbackGuardContractV2FixtureProbes,
+      postApplyRollbackGuardContractV2ReadyForApply,
+      postApplyRollbackGuardContractV2MayModifyProductionAppFiles,
+      approvalWaitSafeContinuationV2Blockers,
+      approvalWaitSafeContinuationV2Warnings,
+      approvalWaitSafeContinuationV2Present,
+      approvalWaitSafeContinuationV2State,
+      approvalWaitSafeContinuationV2Ready,
+      approvalWaitSafeContinuationV2ReadyForNextSafePass,
+      approvalWaitSafeContinuationV2SafeWorkItems,
+      approvalWaitSafeContinuationV2ProductionLockedItems,
+      approvalWaitSafeContinuationV2LegacyReviewResidueMatches,
+      approvalWaitSafeContinuationV2FixtureProbesPassed,
+      approvalWaitSafeContinuationV2FixtureProbes,
+      approvalWaitSafeContinuationV2ReadyForApply,
+      approvalWaitSafeContinuationV2MayModifyProductionAppFiles,
+      productionReadinessCompletionAuditV2Blockers,
+      productionReadinessCompletionAuditV2Warnings,
+      productionReadinessCompletionAuditV2Present,
+      productionReadinessCompletionAuditV2State,
+      productionReadinessCompletionAuditV2Ready,
+      productionReadinessCompletionAuditV2RequirementsProved,
+      productionReadinessCompletionAuditV2RequirementsProductionLocked,
+      productionReadinessCompletionAuditV2RequirementsMissing,
+      productionReadinessCompletionAuditV2RequirementsContradicted,
+      productionReadinessCompletionAuditV2ClosedModeEvidenceComplete,
+      productionReadinessCompletionAuditV2FixtureProbesPassed,
+      productionReadinessCompletionAuditV2FixtureProbes,
+      productionReadinessCompletionAuditV2ReadyForApply,
+      productionReadinessCompletionAuditV2MayModifyProductionAppFiles,
+      finalPreapprovalEvidenceHashLockV2Blockers,
+      finalPreapprovalEvidenceHashLockV2Warnings,
+      finalPreapprovalEvidenceHashLockV2Present,
+      finalPreapprovalEvidenceHashLockV2State,
+      finalPreapprovalEvidenceHashLockV2Ready,
+      finalPreapprovalEvidenceHashLockV2FinalHashLocks,
+      finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts,
+      finalPreapprovalEvidenceHashLockV2MissingRequiredRoleLocks,
+      finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock,
+      finalPreapprovalEvidenceHashLockV2P43P49ChainReady,
+      finalPreapprovalEvidenceHashLockV2P49CompletionReady,
+      finalPreapprovalEvidenceHashLockV2RuntimeDeliveryEvidenceChainReady,
+      finalPreapprovalEvidenceHashLockV2FixtureProbesPassed,
+      finalPreapprovalEvidenceHashLockV2FixtureProbes,
+      finalPreapprovalEvidenceHashLockV2ReadyForApply,
+      finalPreapprovalEvidenceHashLockV2MayModifyProductionAppFiles,
+      exactApprovalApplyRehearsalV2Blockers,
+      exactApprovalApplyRehearsalV2Warnings,
+      exactApprovalApplyRehearsalV2Present,
+      exactApprovalApplyRehearsalV2State,
+      exactApprovalApplyRehearsalV2Ready,
+      exactApprovalApplyRehearsalV2ReadinessApplyBlockers,
+      exactApprovalApplyRehearsalV2ActiveApprovalReceiptExists,
+      exactApprovalApplyRehearsalV2ActiveHashLockExists,
+      exactApprovalApplyRehearsalV2MainHashLockDryRunPresent,
+      exactApprovalApplyRehearsalV2FinalHashLockDryRunPresent,
+      exactApprovalApplyRehearsalV2WouldCreateActiveArtifactsNow,
+      exactApprovalApplyRehearsalV2FixtureProbesPassed,
+      exactApprovalApplyRehearsalV2FixtureProbes,
+      exactApprovalApplyRehearsalV2ReadyForApply,
+      exactApprovalApplyRehearsalV2MayModifyProductionAppFiles,
+      exactApprovalSourceFirewallV2Blockers,
+      exactApprovalSourceFirewallV2Warnings,
+      exactApprovalSourceFirewallV2Present,
+      exactApprovalSourceFirewallV2State,
+      exactApprovalSourceFirewallV2Ready,
+      exactApprovalSourceFirewallV2ApprovalSourceExists,
+      exactApprovalSourceFirewallV2ApprovalSourceContainsExactSentence,
+      exactApprovalSourceFirewallV2PlainContinueWouldCreateActiveArtifacts,
+      exactApprovalSourceFirewallV2ActiveApprovalReceiptExists,
+      exactApprovalSourceFirewallV2ActiveHashLockExists,
+      exactApprovalSourceFirewallV2FixtureProbesPassed,
+      exactApprovalSourceFirewallV2FixtureProbes,
+      exactApprovalSourceFirewallV2ReadyForApply,
+      exactApprovalSourceFirewallV2MayModifyProductionAppFiles,
+      exactApprovalSourceIntakeTransitionV2Blockers,
+      exactApprovalSourceIntakeTransitionV2Warnings,
+      exactApprovalSourceIntakeTransitionV2Present,
+      exactApprovalSourceIntakeTransitionV2State,
+      exactApprovalSourceIntakeTransitionV2Ready,
+      exactApprovalSourceIntakeTransitionV2ApprovalSourceExists,
+      exactApprovalSourceIntakeTransitionV2ApprovalSourceContainsExactSentence,
+      exactApprovalSourceIntakeTransitionV2PlainContinueWouldCreateActiveArtifacts,
+      exactApprovalSourceIntakeTransitionV2WouldCreateActiveArtifactsByThisScript,
+      exactApprovalSourceIntakeTransitionV2ActiveApprovalReceiptExists,
+      exactApprovalSourceIntakeTransitionV2ActiveHashLockExists,
+      exactApprovalSourceIntakeTransitionV2SimulatedValidP31CreateWouldCreateBothArtifacts,
+      exactApprovalSourceIntakeTransitionV2SimulatedP44WouldOpenReadyForApply,
+      exactApprovalSourceIntakeTransitionV2FixtureProbesPassed,
+      exactApprovalSourceIntakeTransitionV2FixtureProbes,
+      exactApprovalSourceIntakeTransitionV2ReadyForApply,
+      exactApprovalSourceIntakeTransitionV2MayModifyProductionAppFiles,
+      exactApprovalActiveArtifactPairSimulationV2Blockers,
+      exactApprovalActiveArtifactPairSimulationV2Warnings,
+      exactApprovalActiveArtifactPairSimulationV2Present,
+      exactApprovalActiveArtifactPairSimulationV2State,
+      exactApprovalActiveArtifactPairSimulationV2Ready,
+      exactApprovalActiveArtifactPairSimulationV2ApprovalSourceExists,
+      exactApprovalActiveArtifactPairSimulationV2ApprovalSourceContainsExactSentence,
+      exactApprovalActiveArtifactPairSimulationV2ActiveApprovalReceiptExists,
+      exactApprovalActiveArtifactPairSimulationV2ActiveHashLockExists,
+      exactApprovalActiveArtifactPairSimulationV2SimulatedPairWouldPassP44AfterP31Create,
+      exactApprovalActiveArtifactPairSimulationV2CurrentP44WouldOpenSequencing,
+      exactApprovalActiveArtifactPairSimulationV2ReadyForP31CreateWhenExactSourcePresent,
+      exactApprovalActiveArtifactPairSimulationV2FixtureProbesPassed,
+      exactApprovalActiveArtifactPairSimulationV2FixtureProbes,
+      exactApprovalActiveArtifactPairSimulationV2ReadyForApply,
+      exactApprovalActiveArtifactPairSimulationV2MayModifyProductionAppFiles,
+      exactApprovalP31CreateCommandPreflightV2Blockers,
+      exactApprovalP31CreateCommandPreflightV2Warnings,
+      exactApprovalP31CreateCommandPreflightV2Present,
+      exactApprovalP31CreateCommandPreflightV2State,
+      exactApprovalP31CreateCommandPreflightV2Ready,
+      exactApprovalP31CreateCommandPreflightV2ApprovalSourceExists,
+      exactApprovalP31CreateCommandPreflightV2ApprovalSourceContainsExactSentence,
+      exactApprovalP31CreateCommandPreflightV2ActiveApprovalReceiptExists,
+      exactApprovalP31CreateCommandPreflightV2ActiveHashLockExists,
+      exactApprovalP31CreateCommandPreflightV2CommandAllowedNow,
+      exactApprovalP31CreateCommandPreflightV2CommandAllowedWhenExactSourcePresent,
+      exactApprovalP31CreateCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP31CreateCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP31CreateCommandPreflightV2FixtureProbes,
+      exactApprovalP31CreateCommandPreflightV2ReadyForApply,
+      exactApprovalP31CreateCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalP44ValidationCommandPreflightV2Blockers,
+      exactApprovalP44ValidationCommandPreflightV2Warnings,
+      exactApprovalP44ValidationCommandPreflightV2Present,
+      exactApprovalP44ValidationCommandPreflightV2State,
+      exactApprovalP44ValidationCommandPreflightV2Ready,
+      exactApprovalP44ValidationCommandPreflightV2ApprovalSourceExists,
+      exactApprovalP44ValidationCommandPreflightV2ApprovalSourceContainsExactSentence,
+      exactApprovalP44ValidationCommandPreflightV2ActiveApprovalReceiptExists,
+      exactApprovalP44ValidationCommandPreflightV2ActiveHashLockExists,
+      exactApprovalP44ValidationCommandPreflightV2CommandAllowedNow,
+      exactApprovalP44ValidationCommandPreflightV2CommandAllowedAfterP31Create,
+      exactApprovalP44ValidationCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP44ValidationCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP44ValidationCommandPreflightV2FixtureProbes,
+      exactApprovalP44ValidationCommandPreflightV2ReadyForApply,
+      exactApprovalP44ValidationCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2Blockers,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2Warnings,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2Present,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2State,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2Ready,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2P56Ready,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2P44Status,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2P44ValidationState,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2P45Status,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2P45PreflightState,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2CurrentHandoffWouldOpenSequence,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2SimulatedPostP44P45WouldOpenSequence,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2CommandExecutedByThisScript,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbesPassed,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2FixtureProbes,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2ReadyForApply,
+      exactApprovalP44ToP45SequenceHandoffSimulationV2MayModifyProductionAppFiles,
+      exactApprovalP45SequenceCommandPreflightV2Blockers,
+      exactApprovalP45SequenceCommandPreflightV2Warnings,
+      exactApprovalP45SequenceCommandPreflightV2Present,
+      exactApprovalP45SequenceCommandPreflightV2State,
+      exactApprovalP45SequenceCommandPreflightV2Ready,
+      exactApprovalP45SequenceCommandPreflightV2P57Ready,
+      exactApprovalP45SequenceCommandPreflightV2P45Status,
+      exactApprovalP45SequenceCommandPreflightV2P45PreflightState,
+      exactApprovalP45SequenceCommandPreflightV2CommandAllowedNow,
+      exactApprovalP45SequenceCommandPreflightV2CommandAllowedAfterP44Validation,
+      exactApprovalP45SequenceCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP45SequenceCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP45SequenceCommandPreflightV2FixtureProbes,
+      exactApprovalP45SequenceCommandPreflightV2ReadyForApply,
+      exactApprovalP45SequenceCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Blockers,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Warnings,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2State,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P58Ready,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45Status,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P45PreflightState,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46Status,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2P46TransactionState,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CurrentHandoffWouldOpenTransaction,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2SimulatedPostP45P46WouldOpenTransaction,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2CommandExecutedByThisScript,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbesPassed,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2FixtureProbes,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2ReadyForApply,
+      exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2MayModifyProductionAppFiles,
+      exactApprovalP46ApplyTransactionCommandPreflightV2Blockers,
+      exactApprovalP46ApplyTransactionCommandPreflightV2Warnings,
+      exactApprovalP46ApplyTransactionCommandPreflightV2Present,
+      exactApprovalP46ApplyTransactionCommandPreflightV2State,
+      exactApprovalP46ApplyTransactionCommandPreflightV2Ready,
+      exactApprovalP46ApplyTransactionCommandPreflightV2P59Ready,
+      exactApprovalP46ApplyTransactionCommandPreflightV2P45Status,
+      exactApprovalP46ApplyTransactionCommandPreflightV2P45PreflightState,
+      exactApprovalP46ApplyTransactionCommandPreflightV2P46Status,
+      exactApprovalP46ApplyTransactionCommandPreflightV2P46TransactionState,
+      exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedNow,
+      exactApprovalP46ApplyTransactionCommandPreflightV2CommandAllowedAfterP45Sequence,
+      exactApprovalP46ApplyTransactionCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP46ApplyTransactionCommandPreflightV2FixtureProbes,
+      exactApprovalP46ApplyTransactionCommandPreflightV2ReadyForApply,
+      exactApprovalP46ApplyTransactionCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Blockers,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Warnings,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2State,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P60Ready,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46Status,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P46TransactionState,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47Status,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2P47GuardState,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CurrentHandoffWouldOpenRollbackGuard,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2SimulatedPostP46P47WouldOpenRollbackGuard,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2CommandExecutedByThisScript,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbesPassed,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2FixtureProbes,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2ReadyForApply,
+      exactApprovalP46ToP47RollbackGuardHandoffSimulationV2MayModifyProductionAppFiles,
+      exactApprovalP47RollbackGuardCommandPreflightV2Blockers,
+      exactApprovalP47RollbackGuardCommandPreflightV2Warnings,
+      exactApprovalP47RollbackGuardCommandPreflightV2Present,
+      exactApprovalP47RollbackGuardCommandPreflightV2State,
+      exactApprovalP47RollbackGuardCommandPreflightV2Ready,
+      exactApprovalP47RollbackGuardCommandPreflightV2P61Ready,
+      exactApprovalP47RollbackGuardCommandPreflightV2P46Status,
+      exactApprovalP47RollbackGuardCommandPreflightV2P46TransactionState,
+      exactApprovalP47RollbackGuardCommandPreflightV2P47Status,
+      exactApprovalP47RollbackGuardCommandPreflightV2P47GuardState,
+      exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedNow,
+      exactApprovalP47RollbackGuardCommandPreflightV2CommandAllowedAfterP46Contract,
+      exactApprovalP47RollbackGuardCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP47RollbackGuardCommandPreflightV2FixtureProbes,
+      exactApprovalP47RollbackGuardCommandPreflightV2ReadyForApply,
+      exactApprovalP47RollbackGuardCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Blockers,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Warnings,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2State,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P62Ready,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47Status,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P47GuardState,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48Status,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2P48ContinuationState,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CurrentHandoffWouldOpenSafeContinuation,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2CommandExecutedByThisScript,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbesPassed,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2FixtureProbes,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2ReadyForApply,
+      exactApprovalP47ToP48SafeContinuationHandoffSimulationV2MayModifyProductionAppFiles,
+      exactApprovalP48SafeContinuationCommandPreflightV2Blockers,
+      exactApprovalP48SafeContinuationCommandPreflightV2Warnings,
+      exactApprovalP48SafeContinuationCommandPreflightV2Present,
+      exactApprovalP48SafeContinuationCommandPreflightV2State,
+      exactApprovalP48SafeContinuationCommandPreflightV2Ready,
+      exactApprovalP48SafeContinuationCommandPreflightV2P63Ready,
+      exactApprovalP48SafeContinuationCommandPreflightV2P48Status,
+      exactApprovalP48SafeContinuationCommandPreflightV2P48ContinuationState,
+      exactApprovalP48SafeContinuationCommandPreflightV2CommandAllowedNow,
+      exactApprovalP48SafeContinuationCommandPreflightV2CommandExecutedByThisScript,
+      exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbesPassed,
+      exactApprovalP48SafeContinuationCommandPreflightV2FixtureProbes,
+      exactApprovalP48SafeContinuationCommandPreflightV2ReadyForApply,
+      exactApprovalP48SafeContinuationCommandPreflightV2MayModifyProductionAppFiles,
+      exactApprovalWaitStateV2Blockers,
+      exactApprovalWaitStateV2Warnings,
+      exactApprovalWaitStateV2Present,
+      exactApprovalWaitStateV2State,
+      exactApprovalWaitStateV2Ready,
+      exactApprovalWaitStateV2ClosedEvidenceReady,
+      exactApprovalWaitStateV2ExactApprovalStillRequired,
+      exactApprovalWaitStateV2SourceContainsExactSentence,
+      exactApprovalWaitStateV2ApprovalSourceIsCanonical,
+      exactApprovalWaitStateV2ActiveApprovalReceiptExists,
+      exactApprovalWaitStateV2ActiveHashLockExists,
+      exactApprovalWaitStateV2FixtureProbesPassed,
+      exactApprovalWaitStateV2FixtureProbes,
+      exactApprovalWaitStateV2ReadyForApply,
+      exactApprovalWaitStateV2MayModifyProductionAppFiles,
+      orderedApprovalWaitRefreshV2Blockers,
+      orderedApprovalWaitRefreshV2Warnings,
+      orderedApprovalWaitRefreshV2Present,
+      orderedApprovalWaitRefreshV2Ready,
+      orderedApprovalWaitRefreshV2Executed,
+      orderedApprovalWaitRefreshV2StepsPassed,
+      orderedApprovalWaitRefreshV2StepsFailed,
+      orderedApprovalWaitRefreshV2P65Status,
+      orderedApprovalWaitRefreshV2P65WaitState,
+      orderedApprovalWaitRefreshV2P65ClosedEvidenceReady,
+      orderedApprovalWaitRefreshV2FinalMasterBlockers,
+      orderedApprovalWaitRefreshV2FinalMasterWarnings,
+      orderedApprovalWaitRefreshV2FinalNextBlockers,
+      orderedApprovalWaitRefreshV2FinalNextWarnings,
+      orderedApprovalWaitRefreshV2ActiveApprovalReceiptExists,
+      orderedApprovalWaitRefreshV2ActiveHashLockExists,
+      orderedApprovalWaitRefreshV2ReadyForApply,
+      orderedApprovalWaitRefreshV2MayModifyProductionAppFiles,
+      safePreapprovalContinuationV2Blockers,
+      safePreapprovalContinuationV2Warnings,
+      safePreapprovalContinuationV2Present,
+      safePreapprovalContinuationV2Ready,
+      safePreapprovalContinuationV2Executed,
+      safePreapprovalContinuationV2StepsPassed,
+      safePreapprovalContinuationV2StepsFailed,
+      safePreapprovalContinuationV2GenerationBlockers,
+      safePreapprovalContinuationV2ApplyBlockers,
+      safePreapprovalContinuationV2NextGoalId,
+      safePreapprovalContinuationV2ActiveApprovalReceiptExists,
+      safePreapprovalContinuationV2ActiveHashLockExists,
+      safePreapprovalContinuationV2ReadyForApply,
+      safePreapprovalContinuationV2MayModifyProductionAppFiles,
+      finalProductionReadinessGapV2Blockers,
+      finalProductionReadinessGapV2Warnings,
+      finalProductionReadinessGapV2Present,
+      finalProductionReadinessGapV2Ready,
+      finalProductionReadinessGapV2State,
+      finalProductionReadinessGapV2RequirementsReady,
+      finalProductionReadinessGapV2RequirementsBlocked,
+      finalProductionReadinessGapV2ProductionHardBlockers,
+      finalProductionReadinessGapV2CanStartProductionApply,
+      finalProductionReadinessGapV2GenerationV2Ready,
+      finalProductionReadinessGapV2DecisionImportV2Ready,
+      finalProductionReadinessGapV2ActiveApprovalArtifactPairState,
+      finalProductionReadinessGapV2ActivationChainReady,
+      finalProductionReadinessGapV2FixtureProbesPassed,
+      finalProductionReadinessGapV2FixtureProbes,
+      finalProductionReadinessGapV2ActiveApprovalReceiptExists,
+      finalProductionReadinessGapV2ActiveHashLockExists,
+      finalProductionReadinessGapV2ReadyForApply,
+      finalProductionReadinessGapV2MayModifyProductionAppFiles,
+      exactApprovalSourceHandoffFirewallV2Blockers,
+      exactApprovalSourceHandoffFirewallV2Warnings,
+      exactApprovalSourceHandoffFirewallV2Present,
+      exactApprovalSourceHandoffFirewallV2Ready,
+      exactApprovalSourceHandoffFirewallV2State,
+      exactApprovalSourceHandoffFirewallV2FinalGapReady,
+      exactApprovalSourceHandoffFirewallV2ExactApprovalWaitStateReady,
+      exactApprovalSourceHandoffFirewallV2P31CreationGateReady,
+      exactApprovalSourceHandoffFirewallV2ApprovalSourceExists,
+      exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence,
+      exactApprovalSourceHandoffFirewallV2NextAllowedStepWhileAbsent,
+      exactApprovalSourceHandoffFirewallV2NextAllowedStepWhenPresent,
+      exactApprovalSourceHandoffFirewallV2ActiveApprovalReceiptExists,
+      exactApprovalSourceHandoffFirewallV2ActiveHashLockExists,
+      exactApprovalSourceHandoffFirewallV2CanStartProductionApply,
+      exactApprovalSourceHandoffFirewallV2FixtureProbesPassed,
+      exactApprovalSourceHandoffFirewallV2FixtureProbes,
+      exactApprovalSourceHandoffFirewallV2ReadyForApply,
+      exactApprovalSourceHandoffFirewallV2MayModifyProductionAppFiles,
+      exactApprovalSourceWaitTerminalStateV2Blockers,
+      exactApprovalSourceWaitTerminalStateV2Warnings,
+      exactApprovalSourceWaitTerminalStateV2Present,
+      exactApprovalSourceWaitTerminalStateV2Ready,
+      exactApprovalSourceWaitTerminalStateV2State,
+      exactApprovalSourceWaitTerminalStateV2P68Ready,
+      exactApprovalSourceWaitTerminalStateV2NextGoalId,
+      exactApprovalSourceWaitTerminalStateV2ConsistencyGoalId,
+      exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists,
+      exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence,
+      exactApprovalSourceWaitTerminalStateV2ActiveApprovalReceiptExists,
+      exactApprovalSourceWaitTerminalStateV2ActiveHashLockExists,
+      exactApprovalSourceWaitTerminalStateV2CanStartProductionApply,
+      exactApprovalSourceWaitTerminalStateV2FixtureProbesPassed,
+      exactApprovalSourceWaitTerminalStateV2FixtureProbes,
+      exactApprovalSourceWaitTerminalStateV2ReadyForApply,
+      exactApprovalSourceWaitTerminalStateV2MayModifyProductionAppFiles,
+      postExactApprovalApplyRunbookV2Blockers,
+      postExactApprovalApplyRunbookV2Warnings,
+      postExactApprovalApplyRunbookV2Present,
+      postExactApprovalApplyRunbookV2Ready,
+      postExactApprovalApplyRunbookV2State,
+      postExactApprovalApplyRunbookV2Steps,
+      postExactApprovalApplyRunbookV2P31CreateAllowedNow,
+      postExactApprovalApplyRunbookV2P31CreateAllowedWhenExactSourcePresent,
+      postExactApprovalApplyRunbookV2ProductionWritesAllowedNow,
+      postExactApprovalApplyRunbookV2ActiveApprovalReceiptExists,
+      postExactApprovalApplyRunbookV2ActiveHashLockExists,
+      postExactApprovalApplyRunbookV2CanStartProductionApplyNow,
+      postExactApprovalApplyRunbookV2FixtureProbesPassed,
+      postExactApprovalApplyRunbookV2FixtureProbes,
+      postExactApprovalApplyRunbookV2ReadyForApply,
+      postExactApprovalApplyRunbookV2MayModifyProductionAppFiles,
       researchJsonFirewallBlockers,
       researchJsonFirewallWarnings,
       nextPassContractBlockers,
@@ -3432,11 +6839,17 @@ function main(): void {
       generationBlockers,
       applyBlockers,
       criticalArtifactsMissing,
+      blockersRaw,
+      terminalWaitSelfCycleBlockersSuppressed,
       blockers,
       warnings,
       readyForReviewer,
       readyForDecisionImport,
       readyForResearchPackBuilder,
+      readyForGenerationV2PayloadPreflightReady,
+      readyForGenerationV2SelfImprovingReady,
+      readyForGenerationV2DomainRegistryReady,
+      readyForGenerationV2BlockedByLegacyResearchGaps,
       readyForGenerationV2,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
@@ -3468,7 +6881,8 @@ function main(): void {
   console.log(`Batch TSV files: ${manifest.summary.batchTsvFiles}`);
   console.log(`Blockers: ${manifest.summary.blockers}`);
   console.log(`Ready for reviewer: ${manifest.summary.readyForReviewer ? 'yes' : 'no'}`);
-  console.log(`Ready for decision import: ${manifest.summary.readyForDecisionImport ? 'yes' : 'no'}`);
+  console.log(`Ready for legacy decision import: ${manifest.summary.readyForDecisionImport ? 'yes' : 'no'}`);
+  console.log(`Ready for decision import V2: ${manifest.summary.readyForDecisionImportV2 ? 'yes' : 'no'}`);
   console.log(`Ready for apply: ${manifest.summary.readyForApply ? 'yes' : 'no'}`);
   console.log(`May modify production app files: ${manifest.summary.mayModifyProductionAppFiles ? 'yes' : 'no'}`);
   console.log(`Manifest: ${artifactPath(repoRoot, manifestJson)}`);

@@ -1,0 +1,187 @@
+<style>
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .pipeline-card {
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #08111f;
+    cursor: pointer;
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+  .pipeline-card:hover,
+  .pipeline-card.selected {
+    border-color: #22c55e;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 44px rgba(2, 6, 23, 0.26);
+  }
+  .pipeline-card.selected { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18); }
+  .pipeline-visual {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(135deg, #020617 0%, #111827 46%, #052e2b 100%);
+    overflow: hidden;
+  }
+  .noise {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 16% 24%, rgba(255,255,255,.32), transparent 2px),
+      radial-gradient(circle at 28% 56%, rgba(255,255,255,.22), transparent 2px),
+      radial-gradient(circle at 78% 22%, rgba(255,255,255,.28), transparent 2px),
+      radial-gradient(circle at 66% 64%, rgba(255,255,255,.18), transparent 2px);
+  }
+  .text-layer {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 22px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(2, 6, 23, 0.82);
+    border: 1px solid rgba(134, 239, 172, 0.42);
+    color: #ecfdf5;
+    font: 700 20px/1.15 system-ui, sans-serif;
+    letter-spacing: 0;
+    box-shadow: 0 0 36px rgba(34, 197, 94, 0.22);
+  }
+  .text-layer small {
+    display: block;
+    margin-top: 5px;
+    color: #86efac;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .bad-text {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 22px;
+    color: #e5e7eb;
+    font: 700 19px/1.1 system-ui, sans-serif;
+    filter: blur(.4px);
+    transform: skew(-4deg);
+    text-shadow: 2px 0 rgba(34,197,94,.22), -2px 0 rgba(79,70,229,.24);
+  }
+  .motion-lines {
+    position: absolute;
+    inset: 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    background:
+      repeating-linear-gradient(90deg, transparent 0 18px, rgba(251,191,36,.18) 18px 20px),
+      linear-gradient(180deg, transparent, rgba(251,191,36,.2));
+    transform: perspective(420px) rotateX(58deg);
+  }
+  .body {
+    padding: 18px;
+  }
+  .body h3 {
+    color: #f8fafc;
+    margin: 0 0 8px;
+    font-size: 18px;
+  }
+  .body p {
+    color: #cbd5e1;
+    line-height: 1.48;
+    margin: 0 0 14px;
+  }
+  .score {
+    display: grid;
+    gap: 8px;
+  }
+  .score div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #dbeafe;
+    font-size: 13px;
+  }
+  .bar {
+    height: 7px;
+    width: 74px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.22);
+    overflow: hidden;
+    flex: 0 0 auto;
+    margin-top: 5px;
+  }
+  .bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #22c55e;
+  }
+  .recommended {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #86efac;
+    color: #06130b;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  @media (max-width: 980px) {
+    .pipeline-grid { grid-template-columns: 1fr; }
+    .pipeline-visual { height: 190px; }
+  }
+</style>
+
+<h2>Как получить текст без артефактов?</h2>
+<p class="subtitle">Для интро с озвучкой лучший результат дает не одна модель, а связка: генеративная модель делает кинематографичный фон, а точный текст и звук собираются отдельным рендером.</p>
+
+<div class="pipeline-grid">
+  <div class="pipeline-card" data-choice="recommended-pipeline" onclick="toggleSelect(this)">
+    <div class="pipeline-visual">
+      <div class="noise"></div>
+      <div class="text-layer">English stops being noise<small>CapCut / Remotion text layer</small></div>
+    </div>
+    <div class="body">
+      <span class="recommended">Recommended</span>
+      <h3>Higgsfield video + exact text overlay</h3>
+      <p>Veo 3.1 / Seedance 2.0 генерирует сцену без текста. Затем CapCut или Remotion добавляет идеальные animated captions, синхронно с voiceover и SFX.</p>
+      <div class="score">
+        <div><span>Text accuracy</span><span class="bar"><span style="width:98%"></span></span></div>
+        <div><span>Cinema</span><span class="bar"><span style="width:92%"></span></span></div>
+        <div><span>Control</span><span class="bar"><span style="width:96%"></span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pipeline-card" data-choice="single-model" onclick="toggleSelect(this)">
+    <div class="pipeline-visual">
+      <div class="motion-lines"></div>
+      <div class="bad-text">Engl1sh st0ps beinq n0ise</div>
+    </div>
+    <div class="body">
+      <h3>One model does everything</h3>
+      <p>Один prompt просит модель сразу сделать видео, текст, анимацию и звук. Быстро, но риск кривых букв, плавающих слов и нечитаемых титров остается даже на сильных моделях.</p>
+      <div class="score">
+        <div><span>Text accuracy</span><span class="bar"><span style="width:42%; background:#f59e0b"></span></span></div>
+        <div><span>Cinema</span><span class="bar"><span style="width:88%"></span></span></div>
+        <div><span>Control</span><span class="bar"><span style="width:38%; background:#f59e0b"></span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pipeline-card" data-choice="motion-graphics" onclick="toggleSelect(this)">
+    <div class="pipeline-visual" style="background:linear-gradient(135deg,#020617 0%,#312e81 52%,#0f766e 100%)">
+      <div class="text-layer" style="top:42px; bottom:auto;">word</div>
+      <div class="text-layer" style="top:94px; bottom:auto;">word by word</div>
+      <div class="text-layer" style="top:146px; bottom:auto;">word by word into meaning</div>
+    </div>
+    <div class="body">
+      <h3>Pure motion-graphics intro</h3>
+      <p>Без генеративного фона: только типографика, линии, частицы, звук и точная анимация. Максимально чисто, но менее «дорогое кино», чем Higgsfield background.</p>
+      <div class="score">
+        <div><span>Text accuracy</span><span class="bar"><span style="width:100%"></span></span></div>
+        <div><span>Cinema</span><span class="bar"><span style="width:68%"></span></span></div>
+        <div><span>Control</span><span class="bar"><span style="width:100%"></span></span></div>
+      </div>
+    </div>
+  </div>
+</div>

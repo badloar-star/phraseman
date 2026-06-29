@@ -11,6 +11,10 @@ const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French vocabulary target gate', () => {
   it('blocks English vocabulary and irregular-verb banks for French until sourced French banks exist', () => {
+    const gateSource = fs.readFileSync(path.join(ROOT, 'app', 'vocabulary_target_gate.ts'), 'utf8');
+
+    expect(gateSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
+    expect(gateSource).toContain("storageStudyTarget(studyTarget) !== 'fr'");
     expect(vocabularyContentAvailableForTarget('en', 'lesson_words')).toBe(true);
     expect(vocabularyContentAvailableForTarget('es', 'lesson_words')).toBe(true);
     expect(vocabularyContentAvailableForTarget('fr', 'lesson_words')).toBe(false);

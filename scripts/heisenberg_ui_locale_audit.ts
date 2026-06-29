@@ -54,6 +54,9 @@ type UiLocaleAuditReport = {
   findings: UiLocaleFinding[];
 };
 
+type StaticBindings = Map<string, ts.Expression>;
+type CompleteCopyParameterTypes = Set<string>;
+
 export const PLANNED_UI_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter(
   (locale): locale is PlannedUiLocale => locale !== 'es',
 );
@@ -114,6 +117,12 @@ function objectLiteralKeys(node: ts.ObjectLiteralExpression): Set<string> {
   return keys;
 }
 
+function plannedLocaleAliasKey(name: string): PlannedUiLocale | null {
+  const normalized = name.toLowerCase().replace(/[_-]/g, '');
+  if (normalized === 'ptbr') return 'pt-BR';
+  return null;
+}
+
 function objectLiteralPropertyObject(node: ts.ObjectLiteralExpression, key: string): ts.ObjectLiteralExpression | null {
   for (const property of node.properties) {
     if (!ts.isPropertyAssignment(property)) continue;
@@ -126,9 +135,15 @@ function objectLiteralPropertyObject(node: ts.ObjectLiteralExpression, key: stri
 
 function effectiveLocaleObjectKeys(node: ts.ObjectLiteralExpression): Set<string> {
   const keys = objectLiteralKeys(node);
+  for (const key of [...keys]) {
+    const alias = plannedLocaleAliasKey(key);
+    if (alias) keys.add(alias);
+  }
   const sourceLocales = objectLiteralPropertyObject(node, 'sourceLocales');
   if (sourceLocales) {
-    for (const locale of objectLiteralKeys(sourceLocales)) keys.add(locale);
+    for (const locale of objectLiteralKeys(sourceLocales)) {
+      keys.add(plannedLocaleAliasKey(locale) ?? locale);
+    }
   }
   return keys;
 }
@@ -167,6 +182,330 @@ function objectLiteralStringValue(node: ts.ObjectLiteralExpression, key: string)
       : null;
   }
   return null;
+}
+
+function objectLiteralPropertyExpression(node: ts.ObjectLiteralExpression, key: string): ts.Expression | null {
+  for (const property of node.properties) {
+    if (ts.isPropertyAssignment(property) && propName(property.name) === key) {
+      return unwrapExpression(property.initializer as ts.Expression);
+    }
+    if (ts.isShorthandPropertyAssignment(property) && property.name.text === key) {
+      return property.name;
+    }
+  }
+  return null;
+}
+
+function arrayLiteralElementExpression(node: ts.ArrayLiteralExpression, key: string): ts.Expression | null {
+  const index = Number(key);
+  if (!Number.isInteger(index) || index < 0 || index >= node.elements.length) return null;
+  return unwrapExpression(node.elements[index] as ts.Expression);
+}
+
+function isCompleteTriLangCopyObject(node: ts.ObjectLiteralExpression): boolean {
+  const keys = objectLiteralKeys(node);
+  return keys.has('ru') &&
+    keys.has('uk') &&
+    keys.has('es') &&
+    PLANNED_UI_LOCALES.every((locale) => keys.has(locale));
+}
+
+function typeName(node: ts.TypeNode | undefined): string | null {
+  if (!node) return null;
+  if (ts.isTypeReferenceNode(node)) return node.typeName.getText();
+  return null;
+}
+
+function typeNodeRequiresCompleteLangRecord(node: ts.TypeNode): boolean {
+  if (ts.isTypeReferenceNode(node) && node.typeName.getText() === 'Record') {
+    const [keyType] = node.typeArguments ?? [];
+    return Boolean(keyType && keyType.getText() === 'Lang');
+  }
+  if (ts.isTypeLiteralNode(node)) {
+    const keys = new Set<string>();
+    for (const member of node.members) {
+      if (!ts.isPropertySignature(member)) continue;
+      const name = propName(member.name);
+      if (name) keys.add(name);
+    }
+    return keys.has('ru') &&
+      keys.has('uk') &&
+      keys.has('es') &&
+      PLANNED_UI_LOCALES.every((locale) => keys.has(locale));
+  }
+  return false;
+}
+
+function collectCompleteCopyParameterTypes(source: ts.SourceFile): CompleteCopyParameterTypes {
+  const types: CompleteCopyParameterTypes = new Set();
+  const visit = (node: ts.Node): void => {
+    if (
+      ts.isTypeAliasDeclaration(node) &&
+      typeNodeRequiresCompleteLangRecord(node.type)
+    ) {
+      types.add(node.name.text);
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return types;
+}
+
+function isConstVariableDeclaration(node: ts.VariableDeclaration): boolean {
+  const list = node.parent;
+  return ts.isVariableDeclarationList(list) && (list.flags & ts.NodeFlags.Const) !== 0;
+}
+
+function resolveRelativeImportFile(importerFile: string, specifier: string): string | null {
+  if (!specifier.startsWith('.')) return null;
+  const importerDir = path.dirname(path.resolve(process.cwd(), importerFile));
+  const base = path.resolve(importerDir, specifier);
+  const candidates = [
+    base,
+    `${base}.ts`,
+    `${base}.tsx`,
+    `${base}.js`,
+    `${base}.jsx`,
+    path.join(base, 'index.ts'),
+    path.join(base, 'index.tsx'),
+    path.join(base, 'index.js'),
+    path.join(base, 'index.jsx'),
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) return candidate;
+  }
+  return null;
+}
+
+function collectExportedConstBindings(absFile: string): StaticBindings {
+  const bindings: StaticBindings = new Map();
+  const text = fs.readFileSync(absFile, 'utf8');
+  const source = ts.createSourceFile(absFile, text, ts.ScriptTarget.Latest, true, scriptKindForFile(absFile));
+  const visit = (node: ts.Node): void => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      isConstVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.initializer &&
+      ts.canHaveModifiers(node.parent.parent)
+    ) {
+      const modifiers = ts.getModifiers(node.parent.parent);
+      if (modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)) {
+        bindings.set(node.name.text, unwrapExpression(node.initializer as ts.Expression));
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return bindings;
+}
+
+function collectImportedStaticBindings(file: string, source: ts.SourceFile): StaticBindings {
+  const bindings: StaticBindings = new Map();
+  const exportCache = new Map<string, StaticBindings>();
+  for (const statement of source.statements) {
+    if (!ts.isImportDeclaration(statement) || !statement.importClause) continue;
+    if (!ts.isStringLiteral(statement.moduleSpecifier)) continue;
+    const namedBindings = statement.importClause.namedBindings;
+    if (!namedBindings || !ts.isNamedImports(namedBindings)) continue;
+    const resolved = resolveRelativeImportFile(file, statement.moduleSpecifier.text);
+    if (!resolved) continue;
+    let exported = exportCache.get(resolved);
+    if (!exported) {
+      exported = collectExportedConstBindings(resolved);
+      exportCache.set(resolved, exported);
+    }
+    for (const element of namedBindings.elements) {
+      const importedName = element.propertyName?.text ?? element.name.text;
+      const expression = exported.get(importedName);
+      if (expression) bindings.set(element.name.text, expression);
+    }
+  }
+  return bindings;
+}
+
+function collectStaticBindings(source: ts.SourceFile, file?: string): StaticBindings {
+  const bindings: StaticBindings = new Map();
+  if (file) {
+    for (const [name, expression] of collectImportedStaticBindings(file, source)) {
+      bindings.set(name, expression);
+    }
+  }
+  const visit = (node: ts.Node): void => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      isConstVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.initializer
+    ) {
+      bindings.set(node.name.text, unwrapExpression(node.initializer as ts.Expression));
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return bindings;
+}
+
+function isCompleteCopyTypedParameter(
+  node: ts.Expression,
+  completeCopyTypes: CompleteCopyParameterTypes,
+): boolean {
+  if (!ts.isIdentifier(node)) return false;
+  let current: ts.Node | undefined = node.parent;
+  while (current) {
+    if (ts.isFunctionLike(current)) {
+      const parameter = current.parameters.find((candidate) =>
+        ts.isIdentifier(candidate.name) && candidate.name.text === node.text,
+      );
+      const name = typeName(parameter?.type);
+      return Boolean(name && completeCopyTypes.has(name));
+    }
+    current = current.parent;
+  }
+  return false;
+}
+
+function expressionProvesCompleteTriLangCopy(
+  expression: ts.Expression,
+  bindings: StaticBindings,
+  completeCopyTypes: CompleteCopyParameterTypes = new Set(),
+  seen = new Set<string>(),
+): boolean {
+  const node = unwrapExpression(expression);
+
+  if (ts.isObjectLiteralExpression(node)) return isCompleteTriLangCopyObject(node);
+  if (isCompleteCopyTypedParameter(node, completeCopyTypes)) return true;
+
+  if (ts.isBinaryExpression(node) && (
+    node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken ||
+    node.operatorToken.kind === ts.SyntaxKind.BarBarToken
+  )) {
+    return expressionProvesCompleteTriLangCopy(node.left, bindings, completeCopyTypes, seen) &&
+      expressionProvesCompleteTriLangCopy(node.right, bindings, completeCopyTypes, seen);
+  }
+
+  if (ts.isConditionalExpression(node)) {
+    return expressionProvesCompleteTriLangCopy(node.whenTrue, bindings, completeCopyTypes, seen) &&
+      expressionProvesCompleteTriLangCopy(node.whenFalse, bindings, completeCopyTypes, seen);
+  }
+
+  if (ts.isIdentifier(node)) {
+    if (seen.has(node.text)) return false;
+    const bound = bindings.get(node.text);
+    if (!bound) return false;
+    seen.add(node.text);
+    const result = expressionProvesCompleteTriLangCopy(bound, bindings, completeCopyTypes, seen);
+    seen.delete(node.text);
+    return result;
+  }
+
+  if (ts.isPropertyAccessExpression(node)) {
+    const parent = unwrapExpression(node.expression);
+    if (ts.isIdentifier(parent)) {
+      if (seen.has(parent.text)) return false;
+      const bound = bindings.get(parent.text);
+      if (!bound) return false;
+      seen.add(parent.text);
+      const resolvedParent = unwrapExpression(bound);
+      const property = ts.isObjectLiteralExpression(resolvedParent)
+        ? objectLiteralPropertyExpression(resolvedParent, node.name.text)
+        : null;
+      const result = property
+        ? expressionProvesCompleteTriLangCopy(property, bindings, completeCopyTypes, seen)
+        : expressionPropertyProvesCompleteTriLangCopy(resolvedParent, node.name.text, bindings, completeCopyTypes, seen);
+      seen.delete(parent.text);
+      return result;
+    }
+  }
+
+  if (ts.isElementAccessExpression(node)) {
+    const target = unwrapExpression(node.expression);
+    const argument = node.argumentExpression ? unwrapExpression(node.argumentExpression) : null;
+    const resolvedTarget = ts.isIdentifier(target) ? bindings.get(target.text) ?? target : target;
+    const container = unwrapExpression(resolvedTarget);
+
+    if (ts.isObjectLiteralExpression(container)) {
+      if (argument && (ts.isStringLiteral(argument) || ts.isNumericLiteral(argument))) {
+        const property = objectLiteralPropertyExpression(container, argument.text);
+        return property ? expressionProvesCompleteTriLangCopy(property, bindings, completeCopyTypes, seen) : false;
+      }
+      if (!container.properties.length) return false;
+      return container.properties.every((property) => {
+        if (!ts.isPropertyAssignment(property)) return false;
+        return expressionProvesCompleteTriLangCopy(property.initializer as ts.Expression, bindings, completeCopyTypes, seen);
+      });
+    }
+
+    if (ts.isArrayLiteralExpression(container)) {
+      if (argument && ts.isNumericLiteral(argument)) {
+        const element = arrayLiteralElementExpression(container, argument.text);
+        return element ? expressionProvesCompleteTriLangCopy(element, bindings, completeCopyTypes, seen) : false;
+      }
+      if (!container.elements.length) return false;
+      return container.elements.every((element) =>
+        expressionProvesCompleteTriLangCopy(element as ts.Expression, bindings, completeCopyTypes, seen),
+      );
+    }
+  }
+
+  return false;
+}
+
+function expressionPropertyProvesCompleteTriLangCopy(
+  expression: ts.Expression,
+  propertyName: string,
+  bindings: StaticBindings,
+  completeCopyTypes: CompleteCopyParameterTypes = new Set(),
+  seen = new Set<string>(),
+): boolean {
+  const node = unwrapExpression(expression);
+
+  if (ts.isIdentifier(node)) {
+    if (seen.has(node.text)) return false;
+    const bound = bindings.get(node.text);
+    if (!bound) return false;
+    seen.add(node.text);
+    const result = expressionPropertyProvesCompleteTriLangCopy(bound, propertyName, bindings, completeCopyTypes, seen);
+    seen.delete(node.text);
+    return result;
+  }
+
+  if (ts.isObjectLiteralExpression(node)) {
+    const property = objectLiteralPropertyExpression(node, propertyName);
+    return property ? expressionProvesCompleteTriLangCopy(property, bindings, completeCopyTypes, seen) : false;
+  }
+
+  if (ts.isElementAccessExpression(node)) {
+    const target = unwrapExpression(node.expression);
+    const argument = node.argumentExpression ? unwrapExpression(node.argumentExpression) : null;
+    const resolvedTarget = ts.isIdentifier(target) ? bindings.get(target.text) ?? target : target;
+    const container = unwrapExpression(resolvedTarget);
+
+    if (ts.isObjectLiteralExpression(container)) {
+      if (argument && (ts.isStringLiteral(argument) || ts.isNumericLiteral(argument))) {
+        const value = objectLiteralPropertyExpression(container, argument.text);
+        return value ? expressionPropertyProvesCompleteTriLangCopy(value, propertyName, bindings, completeCopyTypes, seen) : false;
+      }
+      if (!container.properties.length) return false;
+      return container.properties.every((property) => {
+        if (!ts.isPropertyAssignment(property)) return false;
+        return expressionPropertyProvesCompleteTriLangCopy(property.initializer as ts.Expression, propertyName, bindings, completeCopyTypes, seen);
+      });
+    }
+
+    if (ts.isArrayLiteralExpression(container)) {
+      if (argument && ts.isNumericLiteral(argument)) {
+        const value = arrayLiteralElementExpression(container, argument.text);
+        return value ? expressionPropertyProvesCompleteTriLangCopy(value, propertyName, bindings, completeCopyTypes, seen) : false;
+      }
+      if (!container.elements.length) return false;
+      return container.elements.every((element) =>
+        expressionPropertyProvesCompleteTriLangCopy(element as ts.Expression, propertyName, bindings, completeCopyTypes, seen),
+      );
+    }
+  }
+
+  return false;
 }
 
 function expressionTextFragments(node: ts.Expression): string[] {
@@ -262,6 +601,7 @@ function isPrepositionExplanationCoveredByPlannedFallback(file: string, node: ts
 
 let lessonWordSourceLocaleCoverageCache: Set<string> | null = null;
 let quizSourceLocaleCoverageCache: Set<string> | null = null;
+let diagnosisTrainingTitleCoverageCache: boolean | null = null;
 
 function lessonWordSourceLocaleCoverage(): Set<string> {
   if (lessonWordSourceLocaleCoverageCache) return lessonWordSourceLocaleCoverageCache;
@@ -350,6 +690,35 @@ function isQuizEntryCoveredBySourceLocalePayloads(file: string, node: ts.ObjectL
   if (!ru) return false;
   if (!objectLiteralKeys(node).has('choices')) return false;
   return quizSourceLocaleCoverage().has(ru.trim());
+}
+
+function diagnosisTrainingTitlesHavePlannedLocaleCoverage(): boolean {
+  if (diagnosisTrainingTitleCoverageCache !== null) return diagnosisTrainingTitleCoverageCache;
+  try {
+    const {
+      getAllDiagnosisTrainings,
+    } = cjsRequire('../app/diagnosis_trainings') as typeof import('../app/diagnosis_trainings');
+    const trainings = getAllDiagnosisTrainings();
+    diagnosisTrainingTitleCoverageCache = trainings.length > 0 && trainings.every((training) => {
+      const title = training.title as Partial<Record<string, string>>;
+      return ['ru', 'uk', 'es', ...PLANNED_UI_LOCALES].every((locale) =>
+        typeof title[locale] === 'string' && Boolean(title[locale]?.trim()),
+      );
+    });
+  } catch {
+    diagnosisTrainingTitleCoverageCache = false;
+  }
+  return diagnosisTrainingTitleCoverageCache;
+}
+
+function expressionCoveredByExternalLocaleSource(file: string, expression: ts.Expression): boolean {
+  if (!normalizePath(file).endsWith('app/weekly_review_briefing.ts')) return false;
+  const node = unwrapExpression(expression);
+  return ts.isPropertyAccessExpression(node) &&
+    node.name.text === 'title' &&
+    ts.isIdentifier(node.expression) &&
+    node.expression.text === 'training' &&
+    diagnosisTrainingTitlesHavePlannedLocaleCoverage();
 }
 
 function isLocaleObjectCoveredElsewhere(file: string, node: ts.ObjectLiteralExpression): boolean {
@@ -459,6 +828,8 @@ export function analyzeUiLocaleSource(file: string, text: string): {
   let legacyLangHelperCalls = 0;
   let localeObjectFindings = 0;
   const localTriLangHelpersMissingPlanned = collectLocalTriLangHelpersMissingPlanned(source);
+  const staticBindings = collectStaticBindings(source, file);
+  const completeCopyTypes = collectCompleteCopyParameterTypes(source);
 
   const visit = (node: ts.Node): void => {
     if (ts.isObjectLiteralExpression(node)) {
@@ -486,15 +857,25 @@ export function analyzeUiLocaleSource(file: string, text: string): {
       const copyArg = node.arguments[1];
       const copyExpression = copyArg ? unwrapExpression(copyArg as ts.Expression) : null;
       if (!copyExpression || !ts.isObjectLiteralExpression(copyExpression)) {
-        dynamicTriLangCalls += 1;
-        findings.push({
-          severity: 'warning',
-          code: 'dynamic-trilang-copy',
-          file,
-          ...location(source, node),
-          message: 'triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.',
-          sample: compactSample(node.getText(source)),
-        });
+        if (
+          copyExpression &&
+          (
+            expressionCoveredByExternalLocaleSource(file, copyExpression) ||
+            expressionProvesCompleteTriLangCopy(copyExpression, staticBindings, completeCopyTypes)
+          )
+        ) {
+          staticTriLangCalls += 1;
+        } else {
+          dynamicTriLangCalls += 1;
+          findings.push({
+            severity: 'warning',
+            code: 'dynamic-trilang-copy',
+            file,
+            ...location(source, node),
+            message: 'triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.',
+            sample: compactSample(node.getText(source)),
+          });
+        }
       } else {
         staticTriLangCalls += 1;
         const keys = objectLiteralKeys(copyExpression);

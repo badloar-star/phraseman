@@ -1,5 +1,11 @@
 declare const require: any;
 
+import {
+  findPayloadMatchingQuizEntries,
+  findPayloadMatchingQuizEntry,
+} from '../scripts/heisenberg_semantic_audit';
+import { buildQuizPayloadOrdinalRepairPlan } from '../scripts/heisenberg_quiz_payload_ordinal_repair_plan';
+
 const semantic = require('../scripts/lib/heisenberg_semantic_core.cjs');
 
 describe('heisenberg semantic audit helpers', () => {
@@ -105,5 +111,156 @@ describe('heisenberg semantic audit helpers', () => {
     for (const locale of ['pt-BR', 'vi', 'id', 'tr', 'pl']) {
       expect(semantic.localeLanguageSignal(locale, englishOnly).ok).toBe(false);
     }
+  });
+
+  it('matches structured quiz payloads to a unique source ordinal by English target evidence', () => {
+    const entries = [
+      { ordinal: 1, choices: ['I walk home.', 'I work home.'], correct: 0 },
+      { ordinal: 2, choices: ['I work here.', 'I walk here.'], correct: 0 },
+    ] as any;
+
+    const match = findPayloadMatchingQuizEntry(entries, {
+      'pt-BR': {
+        prompt: 'Eu trabalho aqui.',
+        explanations: [
+          'Correto. I work here. preserva a ideia.',
+          'I walk here. fala de andar, não trabalhar.',
+          'Outra opção não serve.',
+          'Compare com I work here.',
+        ],
+      },
+    } as any);
+
+    expect(match?.ordinal).toBe(2);
+  });
+
+  it('does not guess a structured quiz ordinal when English target evidence is ambiguous', () => {
+    const entries = [
+      { ordinal: 1, choices: ['I am ready.', 'I was ready.'], correct: 0 },
+      { ordinal: 2, choices: ['I am ready.', 'I get ready.'], correct: 0 },
+    ] as any;
+
+    const match = findPayloadMatchingQuizEntry(entries, {
+      'pt-BR': {
+        prompt: 'Estou pronto.',
+        explanations: [
+          'Correto. I am ready. preserva a ideia.',
+          'I was ready. muda o tempo.',
+          'I get ready. muda o sentido.',
+          'Compare com I am ready.',
+        ],
+      },
+    } as any);
+
+    expect(match).toBeNull();
+  });
+
+  it('returns all candidate quiz ordinals when structured payload evidence is ambiguous', () => {
+    const entries = [
+      { ordinal: 1, choices: ['I am ready.', 'I was ready.'], correct: 0 },
+      { ordinal: 2, choices: ['I am ready.', 'I get ready.'], correct: 0 },
+    ] as any;
+
+    const matches = findPayloadMatchingQuizEntries(entries, {
+      'pt-BR': {
+        prompt: 'Estou pronto.',
+        explanations: [
+          'Correto. I am ready. preserva a ideia.',
+          'I was ready. muda o tempo.',
+          'I get ready. muda o sentido.',
+          'Compare com I am ready.',
+        ],
+      },
+    } as any);
+
+    expect(matches.map((entry) => entry.ordinal)).toEqual([1, 2]);
+  });
+
+  it('builds a guarded dry-run plan for quiz payload ordinal repair', () => {
+    const report = buildQuizPayloadOrdinalRepairPlan();
+    const easy102 = report.items.find((item) => item.difficulty === 'easy' && item.key === 102);
+    const easy277 = report.items.find((item) => item.difficulty === 'easy' && item.key === 277);
+    const easy298 = report.items.find((item) => item.difficulty === 'easy' && item.key === 298);
+
+    expect(report.dryRun).toBe(true);
+    expect(report.summary.moveCandidates).toBeGreaterThan(0);
+    expect(report.summary.blockedMoves).toBeGreaterThan(report.summary.autoSafeMoves);
+    expect(report.summary.withoutSourceWithUniqueTarget).toBeGreaterThan(0);
+    expect(report.summary.componentGraph.componentCount).toBeGreaterThan(0);
+    expect(report.summary.componentGraph.byDifficulty.easy.components).toBeGreaterThan(0);
+    expect(report.summary.componentGraph.moveSafetyCounts['blocked-target-chain-blocked']).toBeGreaterThan(0);
+    expect(report.candidate.sourceApplyReady).toBe(false);
+    expect(report.candidate.summary.acceptedRemaps).toBeGreaterThan(100);
+    expect(report.candidate.summary.residualOrdinalBlockers).toBeLessThan(report.summary.blockedMoves);
+    expect(report.candidate.summary.sourceEntryCoverageDrops).toBeGreaterThan(0);
+    expect(report.candidate.summary.unresolvedMultipleTargets).toBe(2);
+    expect(report.candidate.summary.residualByCode['quiz-payload-ordinal-mismatch']).toBe(2);
+    expect(report.candidate.summary.residualByCode['quiz-payload-ordinal-ambiguous']).toBe(1);
+    expect(report.candidate.workOrder.generatedFilledArtifact).toBe(false);
+    expect(report.candidate.workOrder.status).toBe('READY_FOR_REVIEW');
+    expect(report.candidate.workOrder.summary).toMatchObject({
+      replacementPayloadTasks: 40,
+      collisionDecisionTasks: 2,
+      residualValidationTasks: 3,
+      localesPerReplacementTask: ['pt-BR', 'vi', 'id', 'tr', 'pl'],
+    });
+    expect(report.candidate.workOrder.replacementPayloadTasks[0]).toMatchObject({
+      taskId: 'replacement:easy:105',
+      difficulty: 'easy',
+      ordinal: 105,
+      sourceEntry: expect.objectContaining({
+        correctChoice: 'I work on Monday.',
+      }),
+    });
+    expect(report.candidate.workOrder.collisionDecisionTasks).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        taskId: 'collision:easy:103',
+        incomingSourceKeys: [104, 221, 287],
+      }),
+      expect.objectContaining({
+        taskId: 'collision:easy:266',
+        incomingSourceKeys: [192, 270],
+      }),
+    ]));
+    expect(easy102).toMatchObject({
+      status: 'move-candidate',
+      targetOrdinal: 58,
+      moveSafety: 'blocked-target-has-current-payload',
+    });
+    expect(easy277).toMatchObject({
+      status: 'move-candidate',
+      targetOrdinal: 273,
+      moveSafety: 'blocked-target-chain-blocked',
+    });
+    expect(easy298).toMatchObject({
+      status: 'without-source-entry',
+      targetOrdinal: 294,
+    });
+
+    const easy277Component = report.summary.componentGraph.topComponents.find((component) =>
+      component.samplePayloads.some((item) => item.key === 277),
+    );
+    expect(easy277Component).toMatchObject({
+      difficulty: 'easy',
+      withoutSourceEntry: 1,
+    });
+    expect(easy277Component?.samplePayloads.find((item) => item.key === 277)).toMatchObject({
+      status: 'move-candidate',
+      targetOrdinal: 273,
+      moveSafety: 'blocked-target-chain-blocked',
+    });
+    expect(report.candidate.actions).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        action: 'remap-incoming',
+        difficulty: 'easy',
+        key: 102,
+        sourceKey: 103,
+      }),
+      expect.objectContaining({
+        action: 'coverage-drop-needs-new-payload',
+        difficulty: 'medium',
+        key: 128,
+      }),
+    ]));
   });
 });

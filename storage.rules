@@ -31,6 +31,19 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Public, read-only course-pack content (plan_content first: manifest.json,
+    // index.json, per-day rows). Same model as the audio buckets: the app fetches
+    // these over HTTPS, sha256-verifies them, and disk-caches them so heavy content
+    // can be served from the server instead of shipping inside the native binary.
+    // Uploaded only by scripts/plan_content_server_staging_apply.ts (Admin/OAuth,
+    // bypasses rules). READ is public because pack content is learning material,
+    // not secret; the bundled copy remains the offline fallback.
+    match /course-packs/{allPaths=**} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
     // Public, read-only collectible card art (one webp per cardId). Same model as
     // the audio buckets: streamed to the app over HTTPS and disk-cached so the
     // ~71 MB of card images no longer ship inside the native binary (compressed to

@@ -25,10 +25,18 @@ jest.mock('./callable_options', () => ({
 }));
 
 import {
+  __premiumDialogTestHooks,
   asInterfaceLang,
   buildCompanionSystemPrompt,
   buildScenarioSystemPrompt,
 } from './premium_dialog';
+
+const {
+  assertDialogReplyIsEnglish,
+  assertDialogTranslationLanguage,
+  asTargetLang,
+  translationCacheId,
+} = __premiumDialogTestHooks;
 
 describe('premium dialog prompt language isolation', () => {
   it('accepts every app UI language and fails closed on unknown values', () => {
@@ -86,5 +94,24 @@ describe('premium dialog prompt language isolation', () => {
     // New contract: even if asked in Polish, answer in English.
     expect(prompt).toContain('still ANSWER IN ENGLISH');
     expect(prompt).toContain('OUTPUT LANGUAGE (ABSOLUTE RULE)');
+  });
+
+  it('rejects a non-English live dialog reply before it can reach the client', () => {
+    expect(() => assertDialogReplyIsEnglish('Good morning! [[I would like coffee]].')).not.toThrow();
+    expect(() => assertDialogReplyIsEnglish('Привет, давай потренируем фразу.')).toThrow('dialog_provider_failed');
+  });
+
+  it('keeps translation cache keys and language guards separated by target UI language', () => {
+    const source = 'Could I have a coffee, please?';
+    expect(translationCacheId(source, 'ru')).not.toBe(translationCacheId(source, 'es'));
+    expect(asTargetLang('pt-BR')).toBe('pt-BR');
+    expect(() => asTargetLang('fr')).toThrow('premium_dialog_translate_unsupported_language');
+  });
+
+  it('rejects cached or fresh translations that do not match the requested UI language', () => {
+    expect(() => assertDialogTranslationLanguage('Сегодня хороший шаг.', 'ru')).not.toThrow();
+    expect(() => assertDialogTranslationLanguage('Today you keep a good small practice step.', 'ru')).toThrow(
+      'premium_dialog_translate_wrong_language',
+    );
   });
 });

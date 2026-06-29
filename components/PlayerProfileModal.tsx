@@ -38,6 +38,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { arenaTierLabel } from '../app/arena_rating';
 import type { RankTier } from '../app/types/arena';
@@ -45,7 +46,15 @@ import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMulti
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
-import { fetchActivityLikeTotal } from '../app/friend_activity_likes';
+import {
+  fetchActivityLikeTotal,
+  fetchTodayActivityLikeState,
+  sendFriendActivityLike,
+  removeFriendActivityLike,
+  todayActivityLikeDateKeyUtc,
+  PROFILE_LIKE_EVENT_ID,
+  type FriendActivityLikeTodayState,
+} from '../app/friend_activity_likes';
 import { getCanonicalUserId } from '../app/user_id_policy';
 import { hapticTap } from '../hooks/use-haptics';
 import InGameToast from './InGameToast';
@@ -256,6 +265,10 @@ function PlayerProfileModalBody({
   // for everyone regardless of this flag; only the "upgrade my card" controls are gated.
   const showProfileCardControls = ENABLE_PROFILE_CARD;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
+  // Profile-level activity like the current user has already placed today (toggle state).
+  const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
+  const [likeBusy, setLikeBusy] = useState(false);
+  const likeInFlightRef = useRef(false);
   const profileCardLevel = profileCardSnapshot.level;
   const [remoteCrown, setRemoteCrown] = useState<{ expiresAt: number; crownCount: number }>(() => ({ expiresAt: 0, crownCount: 0 }));
   const playerPoints = Number.isFinite(Number(player.points)) ? Math.max(0, Math.floor(Number(player.points))) : null;
@@ -315,11 +328,17 @@ function PlayerProfileModalBody({
   useEffect(() => {
     let cancelled = false;
     setActivityLikeTotal(0);
+    setTodayLike(null);
     void (async () => {
       const uid = player.friendUid || player.uid || (isMe ? await getCanonicalUserId() : '');
       if (!uid || cancelled) return;
-      const total = await fetchActivityLikeTotal(uid);
-      if (!cancelled) setActivityLikeTotal(total);
+      const [total, likeState] = await Promise.all([
+        fetchActivityLikeTotal(uid),
+        isMe ? Promise.resolve(null) : fetchTodayActivityLikeState().catch(() => null),
+      ]);
+      if (cancelled) return;
+      setActivityLikeTotal(total);
+      setTodayLike(likeState);
     })();
     return () => {
       cancelled = true;
@@ -344,6 +363,15 @@ function PlayerProfileModalBody({
     CLOUD_SYNC_ENABLED &&
     !IS_EXPO_GO;
   const isAlreadyFriend = !!friendRequestTargetUid && friendUids.has(friendRequestTargetUid);
+
+  // Profile-level activity like: tappable on ANY user's card (friend or not), just not your
+  // own. The like is bound to the person (not an event), one per day across everyone, toggleable.
+  const likeTargetUid = player.friendUid || player.uid || '';
+  const canLike = !isMe && !!likeTargetUid && CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+  const likedThisProfile =
+    !!todayLike &&
+    todayLike.targetUid === likeTargetUid &&
+    todayLike.eventId === PROFILE_LIKE_EVENT_ID;
 
   useEffect(() => {
     let cancelled = false;
@@ -528,6 +556,92 @@ function PlayerProfileModalBody({
       })
       .finally(() => setFriendRequestBusy(false));
   }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
+
+  const handleToggleLike = useCallback(() => {
+    if (!canLike || !likeTargetUid || likeInFlightRef.current) return;
+    hapticTap();
+    likeInFlightRef.current = true;
+    setLikeBusy(true);
+
+    const wasLiked = likedThisProfile;
+    // Optimistic toggle.
+    if (wasLiked) {
+      setActivityLikeTotal((n) => Math.max(0, n - 1));
+      setTodayLike(null);
+    } else {
+      setActivityLikeTotal((n) => n + 1);
+      setTodayLike({
+        date: todayActivityLikeDateKeyUtc(),
+        targetUid: likeTargetUid,
+        eventId: PROFILE_LIKE_EVENT_ID,
+        createdAt: Date.now(),
+      });
+    }
+
+    const action = wasLiked
+      ? removeFriendActivityLike({ targetUid: likeTargetUid })
+      : sendFriendActivityLike({ targetUid: likeTargetUid, senderDisplayName: myInfo.name });
+
+    void action
+      .then((res) => {
+        // Reconcile with the authoritative server total.
+        setActivityLikeTotal(Math.max(0, Math.floor(Number(res.targetActivityLikeTotal) || 0)));
+        if (wasLiked) {
+          setTodayLike(null);
+        } else {
+          setTodayLike({
+            date: res.date,
+            targetUid: res.targetUid,
+            eventId: res.eventId,
+            createdAt: Date.now(),
+          });
+        }
+        void invalidateFriendsActivityCache();
+      })
+      .catch(async (err: unknown) => {
+        const code = String((err as { code?: string })?.code ?? '');
+        const limitReached = code.includes('resource-exhausted');
+        // Roll back the optimistic change to the truth on the server.
+        const freshState = await fetchTodayActivityLikeState().catch(() => null);
+        const freshTotal = await fetchActivityLikeTotal(likeTargetUid).catch(() => null);
+        setTodayLike(freshState);
+        if (typeof freshTotal === 'number') setActivityLikeTotal(Math.max(0, freshTotal));
+        if (limitReached) {
+          onFriendRequestToast(
+            triLang(lang as Lang, {
+              ru: 'Сегодня лайк уже поставлен. Можно один в день.',
+              uk: 'Сьогодні лайк уже поставлено. Можна один на день.',
+              es: 'Ya diste un like hoy. Solo uno por día.',
+              'pt-BR': 'Você já curtiu hoje. Apenas um por dia.',
+              vi: 'Hôm nay bạn đã thích rồi. Mỗi ngày một lượt.',
+              id: 'Kamu sudah suka hari ini. Hanya satu per hari.',
+              tr: 'Bugün zaten beğendin. Günde bir tane.',
+              pl: 'Już dziś polubiłeś. Tylko jeden dziennie.',
+            }),
+            'info',
+          );
+        } else {
+          onFriendRequestToast(
+            triLang(lang as Lang, {
+              ru: 'Не получилось. Попробуй позже',
+              uk: 'Не вдалося. Спробуй пізніше',
+              es: 'No funcionó. Inténtalo más tarde',
+              'pt-BR': 'Não deu certo. Tente mais tarde',
+              vi: 'Không thành công. Hãy thử lại sau',
+              id: 'Gagal. Coba lagi nanti',
+              tr: 'Olmadı. Daha sonra dene',
+              pl: 'Nie udało się. Spróbuj później',
+            }),
+            'error',
+          );
+        }
+        void invalidateFriendsActivityCache();
+      })
+      .finally(() => {
+        likeInFlightRef.current = false;
+        setLikeBusy(false);
+      });
+  }, [canLike, likeTargetUid, likedThisProfile, myInfo.name, lang, onFriendRequestToast]);
 
   const arenaLabelText = duelRank
     ? `${arenaTierLabel(duelRank.tier as RankTier, lang as Lang)} ${duelRank.level}`
@@ -877,7 +991,7 @@ function PlayerProfileModalBody({
             elevation: 5,
           }}>
             <Ionicons name="sparkles" size={13} color="#111827" />
-            <Text style={{ color: '#111827', fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
+            <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
               {profileCardLevelRoman(profileCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[profileCardLevel as 0|1|2|3|4|5] : cardDef.name}
             </Text>
           </LinearGradient>
@@ -995,23 +1109,14 @@ function PlayerProfileModalBody({
           )}
         </View>
         <Pressable
+          testID="player-profile-activity-like"
           onPress={() => {
-            hapticTap();
-            onFriendRequestToast(
-              triLang(lang as Lang, {
-                ru: 'Лайки за активность',
-                uk: 'Лайки за активність',
-                es: 'Likes de actividad',
-                'pt-BR': "Curtidas de atividade",
-                vi: "Lượt thích hoạt động",
-                id: "Like aktivitas",
-                tr: "Aktivite beğenileri",
-                pl: "Polubienia aktywności",
-              }),
-              'info',
-            );
+            // Tap just works: like / unlike toggles silently, the counter updates. No hint copy.
+            if (canLike) handleToggleLike();
           }}
+          disabled={!canLike || likeBusy}
           accessibilityRole="button"
+          accessibilityState={{ selected: likedThisProfile, disabled: !canLike || likeBusy }}
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Лайки за активность',
             uk: 'Лайки за активність',
@@ -1022,13 +1127,14 @@ function PlayerProfileModalBody({
             tr: "Aktivite beğenileri",
             pl: "Polubienia aktywności",
           })}
-          style={[{
+          style={({ pressed }) => [{
             flexDirection: 'row',
             alignItems: 'center',
             gap: 12,
             borderRadius: 14,
             padding: 14,
             marginBottom: 10,
+            opacity: likeBusy ? 0.6 : pressed && canLike ? 0.85 : 1,
           }, prestigeSurfaceStyle]}
         >
           {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
@@ -1040,7 +1146,11 @@ function PlayerProfileModalBody({
             justifyContent: 'center',
             backgroundColor: 'rgba(255,45,85,0.16)',
           }}>
-            <Ionicons name="heart" size={19} color="#FF2D55" />
+            <Ionicons
+              name={likedThisProfile ? 'heart' : 'heart-outline'}
+              size={19}
+              color={monoIcon(themeMode, '#FF2D55')}
+            />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
@@ -1064,7 +1174,7 @@ function PlayerProfileModalBody({
           {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
           {club.imageUri
             ? <Image source={club.imageUri} style={{ width: 32, height: 32, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
-            : <Ionicons name={club.ionIcon as any} size={28} color={club.color} />
+            : <Ionicons name={club.ionIcon as any} size={28} color={monoIcon(themeMode, club.color)} />
           }
           <View>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>

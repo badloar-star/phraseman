@@ -45,6 +45,7 @@ describe('course pack activation readiness blocker matrix', () => {
       offlineCacheIntegrityPassed: false,
       rollbackKillSwitchPassed: false,
       storageCloudIsolationPassed: false,
+      targetManifestSummaryInSync: false,
       productOwnerActivationApproved: false,
     }));
 
@@ -72,8 +73,41 @@ describe('course pack activation readiness blocker matrix', () => {
       'offline_cache_integrity: Offline cache integrity gate is still missing.',
       'rollback_kill_switch: Rollback kill-switch gate is still missing.',
       'storage_cloud_isolation: Storage/cloud isolation gate is still missing.',
+      'target_manifest_summary_in_sync: Target pack manifest summary must be refreshed after payload/server/storage evidence changes.',
       'product_owner_activation_approval: Product-owner activation approval is still missing.',
     ]));
+  });
+
+  it('keeps activation on HOLD when payload/server evidence changed but the target summary was not refreshed', () => {
+    const report = evaluateCoursePackActivationReadiness({
+      manifest: validManifest({ packId: 'fr.ru.lesson.staging.shadow.activation.readiness.test', studyTarget: 'fr', surface: 'lesson' }),
+      remoteVerifyStatus: 'PASS',
+      serverShadowDualReadStatus: 'PASS',
+      serverShadowParityVerdict: 'shadow_parity_passed',
+      disabledManifestPreflightStatus: 'PASS',
+      disabledRuntimeCandidateStatus: 'PASS',
+      runtimeManifestRegistrable: false,
+      remoteLoadingEnabled: false,
+      activationApproved: false,
+      bundledContentRemoved: false,
+      reviewerApprovedRows: 1600,
+      reviewedRows: 1600,
+      localePassedRows: 1600,
+      startupNoFetchGuardPassed: true,
+      offlineCacheIntegrityPassed: true,
+      rollbackKillSwitchPassed: true,
+      storageCloudIsolationPassed: true,
+      targetManifestSummaryInSync: false,
+      productOwnerActivationApproved: true,
+    });
+
+    expect(report.status).toBe('HOLD');
+    expect(report.blockers).toEqual([
+      'target_manifest_summary_in_sync: Target pack manifest summary must be refreshed after payload/server/storage evidence changes.',
+    ]);
+    expect(report.activationApproved).toBe(false);
+    expect(report.remoteLoadingEnabled).toBe(false);
+    expect(report.runtimeManifestRegistrable).toBe(false);
   });
 
   it('reports PASS only when all activation gates are explicitly satisfied', () => {
@@ -95,6 +129,7 @@ describe('course pack activation readiness blocker matrix', () => {
       offlineCacheIntegrityPassed: true,
       rollbackKillSwitchPassed: true,
       storageCloudIsolationPassed: true,
+      targetManifestSummaryInSync: true,
       productOwnerActivationApproved: true,
     });
 

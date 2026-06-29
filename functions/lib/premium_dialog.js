@@ -71,6 +71,12 @@ const MAX_OUTPUT_TOKENS = 200;
 const GAME_OUTPUT_TOKENS = 600;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
+/**
+ * Сколько ПОЛНЫХ бесплатных диалогов за всю жизнь аккаунта получает не-premium.
+ * Должно совпадать с клиентским FREE_DIALOGS_LIFETIME_DEFAULT (app/ai_dialog_flags.ts),
+ * иначе клиент и сервер разойдутся в подсчёте «осталось ли бесплатное».
+ */
+const FREE_DIALOGS_LIFETIME = 2;
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
 function sanitizeMemory(value) {
@@ -187,20 +193,30 @@ async function releaseDailyQuota(authUid, stableUid) {
     });
 }
 /**
- * Пожизненный free-гейт (запрос пользователя 2026-06-20): не-premium получает
- * РОВНО ОДИН полный бесплатный диалог за всю жизнь аккаунта, без лимита реплик
- * внутри него. Дальше — полный замок (paywall).
+ * Прочитать число уже потраченных бесплатных диалогов из квота-документа.
+ * Обратная совместимость со старой булевой моделью: legacy `freeDialogUsed:true`
+ * (когда лимит был ровно 1) читается как 1 потраченный.
+ */
+function readFreeDialogsUsed(data) {
+    const count = Number(data.freeDialogCount);
+    if (Number.isFinite(count) && count >= 0)
+        return Math.floor(count);
+    return data.freeDialogUsed === true ? 1 : 0;
+}
+/**
+ * Пожизненный free-гейт: не-premium получает FREE_DIALOGS_LIFETIME полных
+ * бесплатных диалогов за всю жизнь аккаунта (без лимита реплик внутри каждого).
+ * Дальше — полный замок (paywall). Подняли с 1 до 2: одна попытка не давала
+ * прочувствовать ценность фичи до пейвола.
  *
  * Сигнал «начался НОВЫЙ диалог» = пустая история (`isNewDialog`): первая реплика
  * сессии. Тогда:
- *   • если бесплатный диалог уже потрачен -> resource-exhausted (полный замок);
- *   • иначе помечаем потраченным и пропускаем.
- * Продолжение того же диалога (история не пустая) НЕ гейтим — это всё ещё тот
- * единственный бесплатный диалог, его реплики не лимитируем.
+ *   • если лимит бесплатных уже исчерпан -> resource-exhausted (полный замок);
+ *   • иначе инкрементируем счётчик и пропускаем.
+ * Продолжение того же диалога (история не пустая) НЕ гейтим — реплики не лимитируем.
  *
- * `markedRef`/возврат нужны вызывающему, чтобы откатить отметку, если платный
- * вызов провайдера упал (иначе юзер потеряет единственный бесплатный диалог
- * из-за нашей ошибки).
+ * Возврат нужен вызывающему, чтобы откатить инкремент, если платный вызов
+ * провайдера упал (иначе юзер потеряет бесплатный диалог из-за нашей ошибки).
  */
 async function enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog) {
     if (!isNewDialog)
@@ -209,28 +225,36 @@ async function enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog) {
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
     return db.runTransaction(async (tx) => {
         const data = (await tx.get(ref)).data() ?? {};
-        if (data.freeDialogUsed === true) {
+        const used = readFreeDialogsUsed(data);
+        if (used >= FREE_DIALOGS_LIFETIME) {
             console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
             throw new https_1.HttpsError('resource-exhausted', 'dialog_free_limit');
         }
         tx.set(ref, {
             authUid,
             stableUid,
-            freeDialogUsed: true,
+            freeDialogCount: used + 1,
+            // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
+            freeDialogUsed: admin.firestore.FieldValue.delete(),
             usedAtMs: Date.now(),
         }, { merge: true });
         return { markedNow: true };
     });
 }
-/** Откат пожизненной отметки, если платный вызов провайдера не удался. */
+/** Откат инкремента бесплатного диалога, если платный вызов провайдера не удался. */
 async function releaseLifetimeFreeDialog(authUid, stableUid) {
     const db = admin.firestore();
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
     await db.runTransaction(async (tx) => {
         const data = (await tx.get(ref)).data() ?? {};
-        if (data.freeDialogUsed !== true)
+        const used = readFreeDialogsUsed(data);
+        if (used <= 0)
             return;
-        tx.set(ref, { freeDialogUsed: false, releasedAtMs: Date.now() }, { merge: true });
+        tx.set(ref, {
+            freeDialogCount: used - 1,
+            freeDialogUsed: admin.firestore.FieldValue.delete(),
+            releasedAtMs: Date.now(),
+        }, { merge: true });
     });
 }
 const DIALOG_LEARNER_LANG_NAME = {
@@ -256,26 +280,40 @@ function renderLanguageTemplate(template, interfaceLang) {
 function renderGlobalRules(cefr, interfaceLang) {
     return renderLanguageTemplate(GLOBAL_RULES.replace('{CEFR}', cefr), interfaceLang);
 }
-const GLOBAL_RULES = `You are "Компас", a warm, patient English-speaking partner inside the Phraseman app.
-The learner's interface/native-help language is {LEARNER_LANG_NAME} ({LEARNER_LANG_CODE}). Do not assume Russian unless this value is Russian. The learner is often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
-Keep YOUR replies SHORT: 1-2 sentences, max ~25 words. Long replies overwhelm beginners.
-Speak natural everyday English. Avoid slang, idioms, and rare words unless the learner is B2+.
-Adapt to the learner's CEFR level: {CEFR}. Speak slightly above it (i+1), introducing at most ONE new word per turn, always understandable from context.
-SOFT CORRECTION (recast): if the learner makes an error, naturally restate the correct form inside your reply WITHOUT stopping the conversation and WITHOUT meta-commentary. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?" Just model the correct form; NEVER speculate WHY they erred (do not say they "translated literally" or "got confused"), and never mock or shame the slip.
-NEVER break character to lecture. If the learner uses any language other than English, accept it and gently bridge back to English with one simple model phrase. Do not refuse to continue.
+const GLOBAL_RULES = `You are "Компас", a warm, patient English-speaking conversation partner inside the Phraseman language app. Your job is easy, encouraging speaking practice — not grammar lessons.
+
+ABOUT THE LEARNER: native language {LEARNER_LANG_NAME} ({LEARNER_LANG_CODE}); often aged 50+ and a beginner. Be warm and unhurried. Briefly react to what they said before anything else. NEVER condescend, NEVER rush, NEVER shame a mistake — warmth matters more than being brief.
+
+OUTPUT LANGUAGE (ABSOLUTE RULE): your spoken reply is ALWAYS in English — every single turn — no matter what language the learner writes in. This is English practice. You do NOT translate your reply, you do NOT switch to {LEARNER_LANG_NAME} or any other language, you do NOT mix languages, and you NEVER explain things in the learner's language. There are NO exceptions to this rule. The only non-English text allowed is an exact short word or name the learner themselves just used.
+
+FIT THE LEVEL {CEFR} (keep it simple, but stay natural and warm — do not be curt or robotic):
+- A1: usually one short, friendly sentence (about 6-12 words). Only the most common everyday words. No idioms.
+- A2: one or two short sentences (about 8-16 words). Common everyday words. Avoid idioms and slang.
+- B1: one or two sentences (about 12-22 words). Common words; at most one slightly new word, clear from context.
+- B2: two or three sentences (about 18-30 words). Natural everyday English; an occasional common idiom is fine.
+Add at most ONE new or harder word per turn, only if its meaning is obvious from the situation. Simplify, but never break into telegraphic English.
+
+GENTLE CORRECTION (invisible recast — keep it, but never a lesson): if the learner makes a language mistake, simply weave the correct form naturally into your warm reply and keep going. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?" Fix at most ONE thing per turn — the one that most blocks being understood; let small slips pass. NEVER stop to explain grammar, NEVER name the mistake, NEVER use grammar terms, NEVER guess WHY they erred, and never mock or shame the slip.
+
+IF THE LEARNER WRITES IN THEIR OWN LANGUAGE: that is fine — never refuse or scold. Warmly continue IN ENGLISH and offer one short, simple English phrase they could have used. (Remember the OUTPUT LANGUAGE rule: your reply still stays in English.)
+
 NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
-End most replies with a simple question or prompt to keep the conversation going.
-KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap the whole sentence. If nothing is worth highlighting, wrap nothing.
+
+KEEP THEM TALKING: end most replies with exactly ONE simple, concrete question or invitation. Ask one thing at a time — never a list of questions.
+
+KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
+
 Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [[...]] key-phrase markers described above.`;
 const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
 You are playing the role of: {ROLE}.
 The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
 - Open with a short, warm in-character greeting that invites the first exchange.
-- Stay in character. React naturally as that role would. Let your specific personality, mood, and quirks show through your word choice and reactions — you are a real individual, not a generic role.
+- Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in English, in short simple sentences.
+- Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it. Be kind by DEFAULT — but you are a real person, not a doormat.
+- RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple English (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in English, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
 - Drive toward the goal in 5-8 exchanges, then bring the scene to a satisfying close. Do NOT drag it out.
-- If the learner gets stuck or silent, offer a gentle in-character hint that models a possible answer.
-- Keep difficulty at {CEFR}. Personality must NEVER raise the language level: stay simple even when the character is lively.`;
+- If the learner gets stuck or silent, offer a gentle in-character hint that models a possible answer.`;
 /** Блок характера персонажа. Пусто, если у сценария нет персоны. */
 function personaBlock(persona) {
     if (!persona)
@@ -289,8 +327,8 @@ function buildScenarioSystemPrompt(cefr, data) {
         .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
         .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
         .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
-        .replace('{CEFR}', cefr);
-    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data)}${cefrReinjection(cefr)}`;
+        .replace(/\{CEFR\}/g, cefr);
+    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr)}${cefrReinjection(cefr)}`;
 }
 /**
  * Чистим строку под-цели от переносов строк и управляющих символов перед
@@ -340,7 +378,7 @@ function isGameMode(data) {
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data) {
+function gameBlock(data, cefr) {
     const objectives = sanitizeObjectives(data.objectives);
     if (objectives.length === 0)
         return '';
@@ -355,8 +393,13 @@ GAME STATE (you secretly track this and report it as JSON — the learner never 
 - Sub-goals for this scene (mark each done when the learner accomplishes it):
 ${objLines}
 - Your patience level is ${patience} and your warmth is ${warmth}. Start your inner "mood" at about ${seedMood} (0..100).
-- RAISE mood when the learner is polite and moves toward a sub-goal. LOWER mood for rudeness, off-topic talk, or endless repetition. If your patience is "low", also lower it for stalling and waffling.
-- LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour lowers mood.
+- Move mood by REAL amounts each turn so the learner clearly feels your reaction (the app shows your face change):
+  - Politeness + progress toward a sub-goal: +5 to +10.
+  - Rudeness, insults, swearing, or hostility: DROP it hard, -25 to -40 in a single turn (more for direct insults). Two rude turns in a row can take you near 0.
+  - Off-topic talk, ignoring you, or endless repetition: -10 to -20. If your patience is "low", make these drops bigger.
+  - A genuine apology or a warm turn after rudeness: recover +10 to +20, but never all the way back at once.
+- React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still English, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
+- LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour (rudeness/hostility/off-topic) lowers mood.
 - Decide the outcome each turn:
   - "success" = ALL sub-goals are done → warmly close the scene in character.
   - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).
@@ -367,6 +410,29 @@ ${objLines}
 OUTPUT FORMAT: respond with a single JSON object and nothing else:
 {"reply": "<your spoken reply, with [[key phrases]] as usual>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
 The "reply" field must contain ONLY your spoken line (the learner sees just this). Keep all the character, brevity and CEFR rules above.`;
+}
+/**
+ * ЯЗЫК-ЗАМОК реплики собеседника. Реплика ОБЯЗАНА быть на английском — это
+ * английская практика, модель не должна отвечать на языке ученика. Снимаем
+ * [[...]]-маркеры ключевых фраз (это англ. текст, но скобки сбивают детектор) и
+ * прогоняем через тот же контракт, что и перевод, но с целевым языком 'en':
+ * кириллическая (или иная не-латинская) реплика → reject. Любой сбой проверки →
+ * 'dialog_provider_failed' (клиент покажет дружелюбный «повтори», НЕ текст не на
+ * том языке). НЕ роняем диалог из-за единичного эхо-слова: порог скрипта 40%.
+ */
+function assertDialogReplyIsEnglish(reply) {
+    const stripped = reply.replace(/\[\[|\]\]/g, ' ').trim();
+    if (!stripped)
+        return;
+    try {
+        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: stripped, targetLang: 'en', feature: 'premium_dialog' });
+    }
+    catch (e) {
+        console.error('premium_dialog reply language guard tripped — reply was not English', {
+            detail: e instanceof https_1.HttpsError ? e.message : String(e?.message ?? e).slice(0, 120),
+        });
+        throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
+    }
 }
 /** Кламп mood в 0..100 на границе сервера (аудит L1: модель может вернуть вне диапазона). */
 function clampServerMood(value) {
@@ -456,10 +522,10 @@ function parseGameEnvelope(content, objectiveIds) {
 const COMPANION_BLOCK = `MODE: OPEN COMPANION CONVERSATION.
 You are NOT playing a fixed scenario. You are the learner's warm English-speaking friend having a real, open conversation.
 - Talk like a genuine friend with light personality and humour - NOT a servile assistant, NOT an interviewer firing questions.
-- Follow the learner's interest and let them lead where they can; show real curiosity with natural follow-ups.
+- Follow the learner's interest and let them lead where they can; show real curiosity with one natural follow-up at a time.
 - They may ask for explanations, examples, progress, weak spots, or the next useful step. Use only the memory and data provided; if data is missing, say that briefly and suggest a small next action. If the weak-words and summary are EMPTY, you do NOT know their stats — say you have not tracked enough yet and invite a short practice; NEVER invent numbers, streaks, or past lessons.
 - Stay inside language learning, communication practice, learner progress, and safe everyday topics. Do not become a general-purpose assistant for unrelated tasks.
-- If the learner asks in their interface language ({LEARNER_LANG_NAME}) about an explanation or their progress, you may answer briefly in {LEARNER_LANG_NAME} — always address them informally for that language, keep it short (≤2 sentences) and free of grammar jargon — then give one short English phrase they can say next.
+- If the learner asks you something in {LEARNER_LANG_NAME} (e.g. a grammar or progress question), still ANSWER IN ENGLISH — use very simple words and a short example so they understand. Do NOT answer in {LEARNER_LANG_NAME}. (Obey the OUTPUT LANGUAGE rule above: English only, every turn.)
 - Your hidden coaching goal: gently steer the chat so the learner naturally PRODUCES speech using the words/phrases they struggle with (provided below). Do not list them or announce this - weave them into your questions.
 - The conversation is open and ongoing - do NOT try to "wrap it up" after a few turns. Keep it alive.`;
 /**
@@ -467,7 +533,7 @@ You are NOT playing a fixed scenario. You are the learner's warm English-speakin
  * к нативной сложности за ~9 ходов; стратегия §6.4).
  */
 function cefrReinjection(cefr) {
-    return `\n\nREMINDER (keep enforcing every turn): stay at CEFR ${cefr}. Short replies, simple everyday words, at most one new word per turn. Do NOT drift to native-level complexity.`;
+    return `\n\nREMINDER (keep enforcing every turn): reply ONLY in English (never switch to the learner's language). Stay at CEFR ${cefr}: short, warm, simple everyday words, at most one new word per turn, one question at the end. Do NOT drift to native-level complexity.`;
 }
 /** Блок «памяти коуча» — то, что делает Компас «знающим тебя». */
 function buildMemoryBlock(memory) {
@@ -518,27 +584,36 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         throw new https_1.HttpsError('invalid-argument', 'user_text_required');
     }
     const db = admin.firestore();
-    const dialogModel = await (0, openai_dialog_model_config_1.resolveConfiguredDialogModel)(db, process.env.OPENAI_DIALOG_MODEL);
-    const dialogQuota = await (0, openai_dialog_model_config_1.resolveConfiguredDialogQuota)(db);
     const authUid = request.auth.uid;
-    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
-    // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
-    // free-юзер прислал бы isPremium:true и получил премиум-квоту (100/день
-    // вместо 1/день) — ×100 к дневному бюджету OpenAI на одного абьюзера.
-    const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid, Date.now(), authUid);
+    // ПЕРФ: эти четыре чтения Firestore не зависят друг от друга — раньше они шли
+    // строго друг за другом (4 последовательных round-trip к Firestore до платного
+    // вызова OpenAI). Группируем в один Promise.all → ~−3 round-trip latency на
+    // КАЖДУЮ реплику диалога, без изменения логики и порядка лимитов.
+    const [dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([
+        (0, openai_dialog_model_config_1.resolveConfiguredDialogModel)(db, process.env.OPENAI_DIALOG_MODEL),
+        (0, openai_dialog_model_config_1.resolveConfiguredDialogQuota)(db),
+        (0, auth_identity_1.resolveStableUidForAuth)(db, authUid),
+        // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
+        // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
+        // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
+        // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
+        // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
+        // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
+        (0, remote_gates_1.resolveRemoteBool)(db, 'gate_ai_dialog_premium', true),
+    ]);
     const history = sanitizeHistory(data.history);
     // Пустая история = это ПЕРВАЯ реплика нового диалога. По ней решаем, тратит ли
     // free-юзер свой единственный пожизненный бесплатный диалог.
     const isNewDialog = history.length === 0;
-    // Limits BEFORE the paid API call.
-    await enforceRateLimit(authUid, stableUid);
-    // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
-    // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
-    // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
-    // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
-    // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
-    // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
-    const aiDialogGatedByPremium = await (0, remote_gates_1.resolveRemoteBool)(db, 'gate_ai_dialog_premium', true);
+    // Limits BEFORE the paid API call. isPremium и rate-limit оба зависят только от
+    // stableUid и НЕ зависят друг от друга → выполняем параллельно (ещё −1 round-trip).
+    // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе free-юзер
+    // прислал бы isPremium:true и получил премиум-квоту (100/день вместо 1/день) — ×100
+    // к дневному бюджету OpenAI на одного абьюзера.
+    const [isPremium] = await Promise.all([
+        (0, premium_status_1.resolvePremiumAccess)(db, stableUid, Date.now(), authUid),
+        enforceRateLimit(authUid, stableUid),
+    ]);
     // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
     //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
     // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
@@ -644,6 +719,12 @@ exports.premiumDialogSend = (0, https_1.onCall)({
             });
             throw new https_1.HttpsError('unavailable', 'dialog_empty_reply');
         }
+        // ЯЗЫК-ЗАМОК: реплика собеседника ОБЯЗАНА быть на английском (это английская
+        // практика). Если модель сорвалась на язык ученика (русский/украинский/…),
+        // отклоняем как сбой провайдера — клиент покажет «не получилось, повтори», а НЕ
+        // реплику не на том языке. Снимаем [[...]]-маркеры перед проверкой, чтобы они не
+        // мешали детектору; порог скрипта (40%) не ловит отдельное эхо-слово ученика.
+        assertDialogReplyIsEnglish(assistantMessage);
     }
     catch (error) {
         // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:

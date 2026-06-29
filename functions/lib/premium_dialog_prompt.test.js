@@ -43,16 +43,33 @@ describe('premium dialog prompt language isolation', () => {
             goalEn: 'order coffee',
         });
         expect(prompt).toContain('Spanish (es)');
-        expect(prompt).toContain('Do not assume Russian unless this value is Russian');
+        // No Russian assumption for a Spanish learner.
         expect(prompt).not.toContain('The learner is a Russian speaker');
+        expect(prompt).not.toContain('Russian (ru)');
     });
-    it('renders companion native-language meta-help for the requested language only', () => {
+    it('locks every reply to English regardless of the learner language (scenario)', () => {
+        const prompt = (0, premium_dialog_1.buildScenarioSystemPrompt)('A2', {
+            interfaceLang: 'ru',
+            role: 'a friendly barista',
+            setting: 'a cafe',
+            goalEn: 'order coffee',
+        });
+        // The absolute output-language rule must be present, with no exception.
+        expect(prompt).toContain('OUTPUT LANGUAGE (ABSOLUTE RULE)');
+        expect(prompt).toContain('ALWAYS in English');
+        expect(prompt).toContain('There are NO exceptions to this rule');
+        // End-of-prompt reinjection re-states English-only.
+        expect(prompt).toContain('reply ONLY in English');
+    });
+    it('companion answers in English even when asked in the native language (no L1 meta-help leak)', () => {
         const prompt = (0, premium_dialog_1.buildCompanionSystemPrompt)('A2', { weakWords: ['reservation'] }, 'pl');
         expect(prompt).toContain('Polish (pl)');
-        expect(prompt).toContain('in their interface language (Polish)');
-        expect(prompt).toContain('briefly in Polish');
-        expect(prompt).not.toContain('asks in Russian');
-        expect(prompt).not.toContain('briefly in Russian');
+        // The old "answer briefly in Polish" exception must be gone.
+        expect(prompt).not.toContain('briefly in Polish');
+        expect(prompt).not.toContain('in their interface language (Polish)');
+        // New contract: even if asked in Polish, answer in English.
+        expect(prompt).toContain('still ANSWER IN ENGLISH');
+        expect(prompt).toContain('OUTPUT LANGUAGE (ABSOLUTE RULE)');
     });
 });
 //# sourceMappingURL=premium_dialog_prompt.test.js.map

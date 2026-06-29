@@ -176,7 +176,11 @@ describe('explainMistake', () => {
         expect(prompt).toContain('has');
         expect(prompt).toContain('have');
         expect(prompt).toContain('→');
-        expect(prompt).toContain('EVERY word that differs');
+        // Post-2026-06-28 audit: the prompt no longer blindly orders "explain EVERY word that
+        // differs" (that forced the model to teach false positional-diff pairs). It now treats the
+        // swap list as an UNRELIABLE hint and makes the two full sentences the source of truth.
+        expect(prompt).toContain('SOURCE OF TRUTH');
+        expect(prompt).toContain('UNRELIABLE');
         expect(billingDocs()[0]).toMatchObject({
             uid: 'stable-auth-1',
             authUid: 'auth-1',
@@ -229,6 +233,25 @@ describe('explainMistake', () => {
             updatedAtMs: Date.now(),
         });
     }
+    it('FULL: rejects wrong-language ready cache and overwrites it with fresh checked text', async () => {
+        const hash = hashFor(validPayload);
+        docs.set(`${mistake_explain_cache_1.MISTAKE_COLLECTION}/${hash}`, {
+            status: 'ready',
+            schemaVersion: mistake_explain_cache_1.MISTAKE_SCHEMA_VERSION,
+            full: 'Today you keep a good small practice step with your phrases.',
+            lang: 'ru',
+            targetEn: validPayload.targetAnswer,
+            userAnswer: validPayload.userAnswer,
+            model: 'gpt-4.1',
+            reason: null,
+            updatedAtMs: Date.now(),
+        });
+        const res = await callExplain(validPayload, 'auth-2');
+        expect(res.fromCache).toBe(false);
+        expect(res.text).toContain('have');
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+        expect(docs.get(`${mistake_explain_cache_1.MISTAKE_COLLECTION}/${hash}`)?.full).toBe(res.text);
+    });
     it('FULL: caches the breakdown even when the generation lock is lost (no «нет в кэше» for shown text)', async () => {
         seedFreshPendingLock(validPayload);
         const res = await callExplain(validPayload);

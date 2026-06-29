@@ -28,7 +28,7 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
   processLobbyAfterChoice: (sessionId: string) => Promise<void>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage } = require('./league_chat');
+const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage, leagueChatDeleteMessage } = require('./league_chat');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -63,7 +63,7 @@ const { friendEnsureMyCode } = require('./friend_codes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLookupUser } = require('./friend_lookup');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { friendLikeActivity } = require('./friend_activity_likes');
+const { friendLikeActivity, friendUnlikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   friendSendGift,
@@ -86,7 +86,7 @@ const {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten } = require('./app_messages');
+const { cleanupExpiredAppMessages, onAppMessageReactionWritten, onAppMessagePollVoteWritten, onAppMessageStateWritten } = require('./app_messages');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -148,6 +148,7 @@ const {
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
 exports.leagueChatReportMessage = leagueChatReportMessage;
+exports.leagueChatDeleteMessage = leagueChatDeleteMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
@@ -172,6 +173,7 @@ exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
+exports.friendUnlikeActivity = friendUnlikeActivity;
 exports.friendSendGift = friendSendGift;
 exports.friendThankGift = friendThankGift;
 exports.friendGetActiveQuest = friendGetActiveQuest;
@@ -189,6 +191,7 @@ exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
+exports.onAppMessageStateWritten = onAppMessageStateWritten;
 exports.submitVipSurvey = submitVipSurvey;
 exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
@@ -1326,6 +1329,7 @@ export { promoCodeRedeem, promoCodeUpsert } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
+export { adminTranslateMessage } from './admin_translate';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 

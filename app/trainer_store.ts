@@ -474,6 +474,7 @@ export async function getTrainerDashboard(
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerDashboard> {
+  const target = storageStudyTarget(studyTarget);
   const items = await load(studyTarget);
   const posMastery = await getPosMasterySnapshot(studyTarget);
   const end = todayEnd();
@@ -507,12 +508,12 @@ export async function getTrainerDashboard(
   }
   const fallbackHardestCategory = [...categoryStats.entries()].sort((a, b) => b[1] - a[1])[0];
   const analyticsStats = sessionContentEnabled
-    ? studyTarget === 'fr'
+    ? target === 'fr'
       ? await computeFrenchPhraseAnalytics({ sourceLocale })
       : await computePhraseAnalytics()
     : undefined;
   const analyticsHardestCategory = analyticsStats?.categoryStats[0];
-  const fallbackCategoryForTarget = studyTarget === 'fr' ? undefined : fallbackHardestCategory;
+  const fallbackCategoryForTarget = target === 'fr' ? undefined : fallbackHardestCategory;
   const totalTracked = items.length;
   const memoryScore = totalTracked === 0
     ? 100
@@ -590,7 +591,7 @@ function itemCategoryPriority(item: TrainerItem, categoryPriority: Map<WordCateg
 }
 
 async function loadCategoryPriorityScores(studyTarget?: RuntimeStudyTarget): Promise<Map<WordCategory, number>> {
-  if (studyTarget === 'fr') return new Map();
+  if (storageStudyTarget(studyTarget) === 'fr') return new Map();
   try {
     const analytics = await computePhraseAnalytics();
     return new Map(analytics.categoryStats.map(stat => [stat.category, stat.priorityScore]));

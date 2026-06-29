@@ -68,6 +68,8 @@ export interface SpeakingPanelTheme {
   correct: string;
   wrong: string;
   border: string;
+  /** Текст/иконка на залитых accent/correct кнопках (в моно-теме accent белый → нужен тёмный текст). */
+  onAccent: string;
 }
 
 /** Subset of the app theme that the speaking panel needs. */
@@ -81,6 +83,7 @@ export interface SpeakingPanelThemeSource {
   correct: string;
   wrong: string;
   border: string;
+  correctText: string;
 }
 
 /**
@@ -99,6 +102,7 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
     correct: t.correct,
     wrong: t.wrong,
     border: t.border,
+    onAccent: t.correctText,
   };
 }
 
@@ -732,9 +736,9 @@ export function SpeakingPanel({
               ]}
             >
               {status === 'requesting' || status === 'scoring' ? (
-                <ActivityIndicator color="#fff" />
+                <ActivityIndicator color={theme.onAccent} />
               ) : (
-                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color="#fff" />
+                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color={theme.onAccent} />
               )}
             </Pressable>
           )}
@@ -754,7 +758,7 @@ export function SpeakingPanel({
               accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               style={[styles.actionBtn, { backgroundColor: theme.correct }]}
             >
-              <Text style={styles.actionBtnText}>
+              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
                 {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               </Text>
             </Pressable>
@@ -776,7 +780,7 @@ export function SpeakingPanel({
               accessibilityRole="button"
               style={[styles.actionBtn, { backgroundColor: theme.accent }]}
             >
-              <Text style={styles.actionBtnText}>
+              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
                 {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
               </Text>
             </Pressable>
@@ -789,7 +793,7 @@ export function SpeakingPanel({
               accessibilityRole="button"
               style={[styles.actionBtn, { backgroundColor: theme.accent }]}
             >
-              <Text style={styles.actionBtnText}>
+              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
                 {L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </Pressable>

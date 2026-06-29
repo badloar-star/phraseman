@@ -3,7 +3,6 @@ import path from 'path';
 
 import { EMBEDDED_COURSE_PACK_INDEX } from '../app/course_pack_index';
 import {
-  COURSE_PACK_REMOTE_LOADING_ENABLED,
   resolveCoursePackReadiness,
 } from '../app/course_pack_loader';
 
@@ -22,7 +21,10 @@ describe('plan content local artifact runtime ignore guard', () => {
       activationApproved: true,
     }, null, 2));
 
-    expect(COURSE_PACK_REMOTE_LOADING_ENABLED).toBe(false);
+    // Even with remote loading enabled, the embedded index has no downloadable
+    // plan_content entry, so the synchronous loader still resolves to the bundled
+    // offline fallback — the server pack is consumed only through the separate
+    // async remote bridge, never this path.
     expect(resolveCoursePackReadiness({
       studyTarget: 'en',
       sourceLocale: 'ru',

@@ -3,7 +3,7 @@ import {
   FRENCH_CONTENT_SOURCE_GATE,
   isFrenchLessonIntroApproved,
 } from './french_content_source_gate';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type LessonSupportGateSurface = 'lesson_theory' | 'lesson_hint';
 
@@ -40,7 +40,7 @@ export function lessonSupportContentAvailableForTarget(
   surface: LessonSupportGateSurface,
   lessonId?: number,
 ): boolean {
-  if (studyTarget !== 'fr') return true;
+  if (storageStudyTarget(studyTarget) !== 'fr') return true;
   if (surface === 'lesson_theory' && lessonId != null) {
     return isFrenchLessonIntroApproved(lessonId);
   }
@@ -53,7 +53,7 @@ export function lessonSupportContentGateForTarget(
   lessonId?: number,
 ): LessonSupportContentGate {
   const enabled = lessonSupportContentAvailableForTarget(studyTarget, surface, lessonId);
-  if (studyTarget !== 'fr') {
+  if (storageStudyTarget(studyTarget) !== 'fr') {
     return {
       enabled,
       studyTarget: 'en',

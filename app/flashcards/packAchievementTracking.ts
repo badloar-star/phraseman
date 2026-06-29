@@ -1,9 +1,9 @@
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
-import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import { loadOwnedPackIds } from './marketplace';
 
 export async function countOwnedCardPacks(studyTarget?: RuntimeStudyTarget): Promise<number> {
-  const target = studyTarget === 'fr' ? 'fr' : 'en';
+  const target = storageStudyTarget(studyTarget);
   const [official, community] = await Promise.all([
     loadOwnedPackIds(target),
     loadCommunityOwnedPackIds(target),

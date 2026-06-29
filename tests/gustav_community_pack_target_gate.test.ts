@@ -173,6 +173,8 @@ describe('Gustav community pack target gate', () => {
 
     expect(firestoreSource).toContain('communityPackDocMatchesStudyTarget');
     expect(firestoreSource).toContain('studyTarget?: RuntimeStudyTarget');
+    expect(firestoreSource).toContain('return storageStudyTarget(data?.studyTarget as RuntimeStudyTarget | undefined)');
+    expect(firestoreSource).not.toContain("data?.studyTarget === 'fr'");
     expect(firestoreSource).toContain('studyTarget !== storageStudyTarget(opts?.studyTarget)');
     expect(stagingSource).toContain('fetchCommunityPackCards(packId, studyTarget)');
 
@@ -199,7 +201,7 @@ describe('Gustav community pack target gate', () => {
     expect(firestoreSource).toContain('studyTarget: storageStudyTarget(studyTarget)');
     expect(alertsSource).toContain('fetchCommunityPackMeta(pid, eventStudyTarget)');
     expect(reportModalSource).toContain('studyTarget,');
-    expect(userReportSource).toContain('studyTarget:    storageStudyTarget(params.studyTarget)');
+    expect(userReportSource).toContain('studyTarget: storageStudyTarget(params.studyTarget)');
     expect(adminSource).toContain('cpStudyTargetBadge');
     expect(adminSource).toContain("'target ' +");
     expect(adminSource).toContain('studyTarget: row.studyTarget');

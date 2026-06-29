@@ -6,6 +6,8 @@ import {
   Platform,
   StatusBar,
   ActivityIndicator,
+  Modal,
+  Linking,
   Image as RNImage,
   type ImageStyle,
   type ImageSourcePropType,
@@ -14,7 +16,11 @@ import {
   type ScrollViewProps,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
+import { bracketForBirthYear, isPlausibleBirthYear, setBirthYear, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
+import { setAnalyticsConsent } from '../app/analytics_consent';
+import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
@@ -112,7 +118,7 @@ interface Props {
 
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['name', 'streak', 'auth'] as const;
-type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+type OnboardingStepKey = 'age' | 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
 type OnboardingAbEntryStep = 'planEntry';
 type OnboardingAbSimpleStep = 'name' | 'demo2' | 'demo';
 type OnboardingNameAvailabilityStatus = 'idle' | 'checking' | 'available' | 'taken' | 'error';
@@ -166,6 +172,7 @@ function onboardingSimpleStepForVariant(_variant: OnboardingAbVariant): Onboardi
 
 function isKnownOnboardingStep(value: string): value is OnboardingStepKey {
   return (
+    value === 'age' ||
     value === 'beta' ||
     value === 'planEntry' ||
     value === 'planGoal' ||
@@ -189,10 +196,17 @@ function normalizeRestoredOnboardingStep(
   saved: string | null,
   pendingNickname: string | null,
   entryStep: OnboardingAbEntryStep,
+  freshStartStep: OnboardingStepKey = entryStep,
 ): OnboardingStepKey {
-  if (!saved) return entryStep;
+  // Брэнд-новый пользователь (нет сохранённого шага) стартует с возрастного гейта
+  // ('age'), переданного через freshStartStep. Быстрый старт на «Имя» после пейвола
+  // передаёт сюда entryStep — там возраст уже спрошен.
+  if (!saved) return freshStartStep;
   const restored = saved === 'energy' ? 'auth' : saved;
   if (!isKnownOnboardingStep(restored)) return entryStep;
+  // Возрастной гейт — самый первый экран. Если юзер вышел на нём, возвращаем его
+  // именно сюда (а НЕ на planEntry): без согласия с возрастом/документами дальше нельзя.
+  if (restored === 'age') return 'age';
   if (restored === 'beta' || LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS.has(restored)) return entryStep;
   if (restored === 'welcome' || restored === 'demo2' || restored === 'demo') return entryStep;
   if (restored === 'name' && pendingNickname !== '1') return entryStep;
@@ -802,8 +816,12 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   const [onboardingEntryReady, setOnboardingEntryReady] = useState(synchronousNameEntry);
   const onboardingEntryStepRef = useRef<OnboardingAbEntryStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP);
   const onboardingSimpleStepRef = useRef<OnboardingAbSimpleStep>(initialSimpleStep);
+  // Возрастной гейт ('age') — реальный ПЕРВЫЙ экран для нового пользователя:
+  // спрашиваем год рождения + согласие с Условиями/Конфиденциальностью ДО входа в флоу.
+  // Быстрый старт на «Имя» (переоткрытие после пейвола) НЕ трогаем — там возраст уже спрошен.
+  // Восстановление сохранённого шага идёт отдельно через normalizeRestoredOnboardingStep.
   const [step, setStepRaw]    = useState<OnboardingStep>(
-    synchronousNameEntry ? 'name' : ONBOARDING_AB_FALLBACK_ENTRY_STEP,
+    synchronousNameEntry ? 'name' : 'age',
   );
   const stepRef = useRef(step);
   const setStep = useCallback((next: OnboardingStep) => {
@@ -834,6 +852,14 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   const btnSlide   = useRef(new Animated.Value(30)).current;
   const btnFade    = useRef(new Animated.Value(0)).current;
   const [lang]       = useState<Lang>(() => initialLang ?? getDeviceBootstrapLocale());
+  // Возрастной гейт ('age'): год рождения + два обязательных согласия (Условия,
+  // Конфиденциальность) + мягкая блокировка <16 + модал согласия на аналитику.
+  const [ageBirthYearInput, setAgeBirthYearInput] = useState('');
+  const [ageAcceptedTerms, setAgeAcceptedTerms] = useState(false);
+  const [ageAcceptedPrivacy, setAgeAcceptedPrivacy] = useState(false);
+  const [ageBusy, setAgeBusy] = useState(false);
+  const [ageSoftBlocked, setAgeSoftBlocked] = useState(false);
+  const [analyticsConsentVisible, setAnalyticsConsentVisible] = useState(false);
   const [name, setName]       = useState('');
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
@@ -996,6 +1022,8 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
   const getOnboardingPrevStep = useCallback((current: OnboardingStep): OnboardingStep | undefined => {
     const entryStep = onboardingEntryStepRef.current;
     const simpleStep = onboardingSimpleStepRef.current;
+    // 'age' — самый первый экран онбординга, назад идти некуда (кнопка «назад» скрыта).
+    if (current === 'age') return undefined;
     if (current === entryStep) return undefined;
     if (current === 'welcome') return entryStep;
     if (current === 'demo2') return entryStep;
@@ -1017,6 +1045,63 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
     }
     return PREV_STEP[current];
   }, []);
+
+  // ── Возрастной гейт ('age') ───────────────────────────────────────────────
+  // Год рождения валиден (4 цифры, правдоподобный) И оба согласия отмечены →
+  // кнопка «Продолжить» активна.
+  const ageYearNumber = parseInt(ageBirthYearInput, 10);
+  const ageYearValid = ageBirthYearInput.length === 4 && isPlausibleBirthYear(ageYearNumber);
+  const ageContinueDisabled = ageBusy || !ageYearValid || !ageAcceptedTerms || !ageAcceptedPrivacy;
+
+  const openLegalScreen = useCallback((route: 'terms_screen' | 'privacy_screen') => {
+    hapticTap();
+    try {
+      router.push(`/${route}` as never);
+    } catch {
+      // Фолбэк на web-версию документа, если роут недоступен.
+      const url = route === 'terms_screen' ? 'https://phraseman.app/terms' : 'https://phraseman.app/privacy';
+      void Linking.openURL(url).catch(() => {});
+    }
+  }, []);
+
+  // «Allow» / «Not now» в модале согласия на аналитику. ОБЕ кнопки записывают
+  // выбор, закрывают модал и пропускают дальше — отказ НЕ блокирует вход.
+  const handleAnalyticsConsentChoice = useCallback(async (state: 'granted' | 'denied') => {
+    try {
+      await setAnalyticsConsent(state);
+      void recordConsentToCloud(); // best-effort учёт возраста+согласия в облако (для админки)
+    } catch {
+      /* выбор не критичен для продолжения — не блокируем */
+    }
+    setAnalyticsConsentVisible(false);
+    goToStep(onboardingEntryStepRef.current);
+  }, [goToStep]);
+
+  // «Продолжить» на возрастном гейте: сохраняем год, считаем возрастную группу.
+  // <16 (under13/teen_safe) → мягкая блокировка (нет пути дальше). 16+ → модал аналитики.
+  const handleAgeContinue = useCallback(async () => {
+    if (ageContinueDisabled) return;
+    setAgeBusy(true);
+    try {
+      const bracket = await setBirthYear(ageYearNumber);
+      if (bracket === 'under13' || bracket === 'teen_safe') {
+        setAgeSoftBlocked(true);
+        return;
+      }
+      // 16+ → спрашиваем согласие на необязательную аналитику, затем входим в флоу.
+      setAnalyticsConsentVisible(true);
+    } catch {
+      // Если запись года не удалась — пересчитываем группу из ввода, чтобы не пускать <16.
+      const bracket = bracketForBirthYear(ageYearNumber);
+      if (bracket === 'under13' || bracket === 'teen_safe') {
+        setAgeSoftBlocked(true);
+      } else {
+        setAnalyticsConsentVisible(true);
+      }
+    } finally {
+      setAgeBusy(false);
+    }
+  }, [ageContinueDisabled, ageYearNumber]);
 
   useEffect(() => {
     if (step === 'welcome') setStep(onboardingEntryStepRef.current);
@@ -1163,7 +1248,10 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
           variant = getOnboardingAbVariant(stableId);
           simpleStep = onboardingSimpleStepForVariant(variant);
         }
-        const restored = normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep);
+        // Свежий старт ведём на возрастной гейт ('age'); быстрый старт на «Имя»
+        // (synchronousNameEntry, после пейвола) — там возраст уже спрошен, не переспрашиваем.
+        const freshStartStep: OnboardingStepKey = synchronousNameEntry ? entryStep : 'age';
+        const restored = normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep, freshStartStep);
         if (!active) return;
         setOnboardingAbVariant(variant);
         onboardingEntryStepRef.current = entryStep;
@@ -2108,6 +2196,201 @@ function Onboarding({ onDone, initialLang, onLangSelect, onPersonalPlanPaywallSt
       ONBOARDING_BG_WELCOME,
       <View />,
       styles.eliteWelcomeRoot,
+      true,
+    );
+  }
+
+  if (step === 'age') {
+    const keyboardVisible = keyboardPad > 0;
+    // Мягкая блокировка <16: показываем дружелюбное сообщение и НЕТ кнопки дальше.
+    if (ageSoftBlocked) {
+      return renderScreen(
+        'onboarding-age-blocked-screen',
+        ONBOARDING_BG_NAME,
+        (
+          <View style={styles.ageBlockedRoot}>
+            <View style={styles.ageBlockedIcon}>
+              <Ionicons name="leaf-outline" size={42} color={theme.accent2} />
+            </View>
+            <Text style={styles.regularNameTitle} maxFontSizeMultiplier={1.08}>
+              {pick(
+                `Phraseman — для тех, кому есть ${MIN_FULL_ACCESS_AGE}`,
+                `Phraseman — для тих, кому є ${MIN_FULL_ACCESS_AGE}`,
+                `Phraseman es para mayores de ${MIN_FULL_ACCESS_AGE}`,
+              )}
+            </Text>
+            <Text style={styles.regularNameSub} maxFontSizeMultiplier={1.08}>
+              {pick(
+                `Спасибо, что заглянул! Вернись, пожалуйста, когда тебе исполнится ${MIN_FULL_ACCESS_AGE} — будем рады.`,
+                `Дякуємо, що завітав! Повертайся, будь ласка, коли тобі виповниться ${MIN_FULL_ACCESS_AGE} — будемо раді.`,
+                `¡Gracias por pasar! Vuelve cuando cumplas ${MIN_FULL_ACCESS_AGE} años; te esperamos.`,
+              )}
+            </Text>
+          </View>
+        ),
+        undefined,
+        true,
+      );
+    }
+    return renderScreen(
+      'onboarding-age-screen',
+      ONBOARDING_BG_NAME,
+      (
+        <KeyboardAvoidingView
+          style={styles.regularNameRoot}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
+        >
+          <OnboardingScroll
+            style={styles.onboardingScroll}
+            decelerationRate="normal"
+            contentContainerStyle={[
+              styles.regularNameScroll,
+              {
+                justifyContent: keyboardVisible ? 'flex-start' : 'center',
+                paddingTop: keyboardVisible ? 16 : 34,
+                paddingBottom: (keyboardVisible ? 34 : 70) + keyboardPad + insets.bottom,
+              },
+            ]}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}
+          >
+            <Text style={styles.regularNameTitle} maxFontSizeMultiplier={1.08}>
+              {pick('Сколько тебе лет?', 'Скільки тобі років?', '¿Cuántos años tienes?')}
+            </Text>
+            <Text style={styles.regularNameSub} maxFontSizeMultiplier={1.08}>
+              {pick(
+                'Укажи год рождения — так мы подберём подходящий опыт.',
+                'Вкажи рік народження — так ми підберемо відповідний досвід.',
+                'Indica tu año de nacimiento para ofrecerte la experiencia adecuada.',
+              )}
+            </Text>
+            <View style={styles.regularNameInputFrame}>
+              <View style={styles.regularNameInputShell}>
+                <TextInput
+                  testID="onboarding-age-year-input"
+                  style={[styles.regularNameInput, styles.ageYearInput]}
+                  value={ageBirthYearInput}
+                  onChangeText={(t) => setAgeBirthYearInput(t.replace(/[^0-9]/g, '').slice(0, 4))}
+                  placeholder={pick('Год рождения', 'Рік народження', 'Año de nacimiento')}
+                  placeholderTextColor={theme.accent2}
+                  keyboardType="number-pad"
+                  inputMode="numeric"
+                  maxLength={4}
+                  editable={!ageBusy}
+                  returnKeyType="done"
+                  blurOnSubmit
+                  onSubmitEditing={() => Keyboard.dismiss()}
+                  maxFontSizeMultiplier={1.08}
+                />
+              </View>
+            </View>
+
+            <TouchableOpacity
+              testID="onboarding-age-accept-terms"
+              style={styles.ageConsentRow}
+              activeOpacity={0.82}
+              onPress={() => { hapticTap(); setAgeAcceptedTerms((v) => !v); }}
+            >
+              <View style={[styles.ageCheckbox, ageAcceptedTerms && styles.ageCheckboxChecked]}>
+                {ageAcceptedTerms ? <Ionicons name="checkmark" size={16} color={theme.ctaText} /> : null}
+              </View>
+              <Text style={styles.ageConsentText} maxFontSizeMultiplier={1.1}>
+                {pick('Я принимаю ', 'Я приймаю ', 'Acepto ')}
+                <Text
+                  style={styles.ageConsentLink}
+                  onPress={() => openLegalScreen('terms_screen')}
+                >
+                  {pick('Условия использования', 'Умови використання', 'los Términos de uso')}
+                </Text>
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              testID="onboarding-age-accept-privacy"
+              style={styles.ageConsentRow}
+              activeOpacity={0.82}
+              onPress={() => { hapticTap(); setAgeAcceptedPrivacy((v) => !v); }}
+            >
+              <View style={[styles.ageCheckbox, ageAcceptedPrivacy && styles.ageCheckboxChecked]}>
+                {ageAcceptedPrivacy ? <Ionicons name="checkmark" size={16} color={theme.ctaText} /> : null}
+              </View>
+              <Text style={styles.ageConsentText} maxFontSizeMultiplier={1.1}>
+                {pick('Я принимаю ', 'Я приймаю ', 'Acepto ')}
+                <Text
+                  style={styles.ageConsentLink}
+                  onPress={() => openLegalScreen('privacy_screen')}
+                >
+                  {pick('Политику конфиденциальности', 'Політику конфіденційності', 'la Política de privacidad')}
+                </Text>
+              </Text>
+            </TouchableOpacity>
+
+            <DuoPressable
+              testID="onboarding-age-continue"
+              style={[styles.eliteWelcomeCta, styles.regularNameCta, ageContinueDisabled && { opacity: 0.5 }]}
+              edgeColor={theme.accentDeep}
+              onPress={handleAgeContinue}
+              disabled={ageContinueDisabled}
+            >
+              <Text style={styles.eliteWelcomeCtaText} maxFontSizeMultiplier={1.05}>
+                {pick('Продолжить', 'Продовжити', 'Continuar')}
+              </Text>
+            </DuoPressable>
+          </OnboardingScroll>
+
+          <Modal
+            visible={analyticsConsentVisible}
+            transparent
+            animationType="fade"
+            onRequestClose={() => { void handleAnalyticsConsentChoice('denied'); }}
+          >
+            <View style={styles.analyticsConsentOverlay}>
+              <View style={styles.analyticsConsentBox}>
+                <Text style={styles.analyticsConsentTitle} maxFontSizeMultiplier={1.1}>
+                  {pick(
+                    'Помочь сделать приложение лучше?',
+                    'Допомогти зробити застосунок кращим?',
+                    '¿Nos ayudas a mejorar la app?',
+                  )}
+                </Text>
+                <Text style={styles.analyticsConsentText} maxFontSizeMultiplier={1.1}>
+                  {pick(
+                    'Можно собирать анонимные данные об использовании, чтобы улучшать приложение. Это можно изменить в любой момент в настройках.',
+                    'Можна збирати анонімні дані про використання, щоб покращувати застосунок. Це можна змінити будь-коли в налаштуваннях.',
+                    'Podemos recopilar datos de uso anónimos para mejorar la app. Puedes cambiarlo cuando quieras en Ajustes.',
+                  )}
+                </Text>
+                <View style={styles.analyticsConsentActions}>
+                  <DuoPressable
+                    testID="onboarding-analytics-allow"
+                    style={[styles.eliteWelcomeCta, styles.analyticsConsentBtn]}
+                    edgeColor={theme.accentDeep}
+                    onPress={() => { void handleAnalyticsConsentChoice('granted'); }}
+                  >
+                    <Text style={styles.eliteWelcomeCtaText} maxFontSizeMultiplier={1.05}>
+                      {pick('Разрешить', 'Дозволити', 'Permitir')}
+                    </Text>
+                  </DuoPressable>
+                  <TouchableOpacity
+                    testID="onboarding-analytics-deny"
+                    style={[styles.eliteWelcomeSecondaryCta, styles.analyticsConsentBtn]}
+                    activeOpacity={0.82}
+                    onPress={() => { void handleAnalyticsConsentChoice('denied'); }}
+                  >
+                    <Text style={styles.eliteWelcomeSecondaryCtaText} maxFontSizeMultiplier={1.05}>
+                      {pick('Не сейчас', 'Не зараз', 'Ahora no')}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </KeyboardAvoidingView>
+      ),
+      undefined,
       true,
     );
   }
@@ -4626,6 +4909,102 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     lineHeight: 17,
+  },
+  // ── Возрастной гейт + согласие на аналитику ──────────────────────────────
+  ageYearInput: {
+    textAlign: 'center',
+    letterSpacing: 4,
+    fontSize: 22,
+    fontWeight: '900',
+  },
+  ageConsentRow: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  ageCheckbox: {
+    width: 24,
+    height: 24,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    borderColor: t.accentBorder,
+    backgroundColor: 'rgba(15,19,27,0.6)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  ageCheckboxChecked: {
+    backgroundColor: t.accent,
+    borderColor: t.accent,
+  },
+  ageConsentText: {
+    flex: 1,
+    color: t.textPrimary,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '600',
+  },
+  ageConsentLink: {
+    color: t.accent2,
+    fontWeight: '900',
+    textDecorationLine: 'underline',
+  },
+  ageBlockedRoot: {
+    flex: 1,
+    paddingHorizontal: 21,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ageBlockedIcon: {
+    width: 88,
+    height: 88,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: t.accentBorderSoft,
+    backgroundColor: t.accentBgSoft,
+  },
+  analyticsConsentOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.62)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  analyticsConsentBox: {
+    width: '100%',
+    maxWidth: 380,
+    borderRadius: 12,
+    padding: 22,
+    backgroundColor: t.bgBottom,
+    borderWidth: 1,
+    borderColor: t.accentBorderSoft,
+  },
+  analyticsConsentTitle: {
+    color: t.textPrimary,
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  analyticsConsentText: {
+    color: t.textMuted,
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  analyticsConsentActions: {
+    width: '100%',
+    gap: 12,
+  },
+  analyticsConsentBtn: {
+    width: '100%',
   },
   langBtn: {
     width: '100%', flexDirection: 'row', alignItems: 'center',

@@ -369,8 +369,19 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
   try {
     const raw = await AsyncStorage.getItem(LB_CACHE_KEY);
     if (raw) {
-      const { ts, data }: { ts: number; data: RemoteLeaderEntry[] } = JSON.parse(raw);
-      if (Date.now() - ts < LB_CACHE_TTL) return data;
+      const parsed: unknown = JSON.parse(raw);
+      // Без Array.isArray-проверки старый кэш (другая форма) или повреждённая
+      // запись отдавали `data === undefined` → потребители .map/.length падали
+      // на вкладке лидерборда.
+      if (
+        parsed
+        && typeof parsed === 'object'
+        && Array.isArray((parsed as { data?: unknown }).data)
+        && typeof (parsed as { ts?: unknown }).ts === 'number'
+      ) {
+        const { ts, data } = parsed as { ts: number; data: RemoteLeaderEntry[] };
+        if (Date.now() - ts < LB_CACHE_TTL) return data;
+      }
     }
   } catch {}
 

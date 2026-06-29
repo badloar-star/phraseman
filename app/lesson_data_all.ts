@@ -7,6 +7,7 @@ import { EXTRA_INTRO_SCREENS } from './lesson_intro_screens_9_32';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { storageStudyTarget } from './target_storage_keys';
 import { applyFrenchSeedToPhrase } from './lesson_data_fr_seed';
 import {
   LESSON_NAMES_ES,
@@ -284,7 +285,7 @@ export function getLessonIntroScreens(
   lessonId: number,
   studyTarget: StudyTargetLang = 'en',
 ): LessonIntroScreen[] {
-  if (studyTarget === 'fr') {
+  if (storageStudyTarget(studyTarget) === 'fr') {
     if (!frenchStudyActive(studyTarget)) return [];
     const frL2 = getFrenchLessonIntroScreens(lessonId);
     if (frL2?.length) return withSpanishIntroFallback(frL2);

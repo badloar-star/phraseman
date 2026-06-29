@@ -17,6 +17,7 @@ import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { streakCalendarShortWeekdays, streakWeeklyExperienceHint, streakWeeklyExperienceLabel, streakWeeklyTimeTotalHint, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
 import { LEAGUES } from './league_engine';
 import { getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
@@ -881,8 +882,8 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'arena_wins', numValue: data.arenaWins, label: triLang(lang, { ru: 'Побед на Арене', uk: 'Перемог на Арені', es: 'Victorias en Arena', 'pt-BR': 'Vitórias na Arena', vi: 'Thắng ở Đấu trường', id: 'Kemenangan di Arena', tr: 'Arena zaferleri', pl: 'Zwycięstwa na Arenie' }) },
         { kind: 'arena_losses', numValue: data.arenaLosses, label: triLang(lang, { ru: 'Поражений на Арене', uk: 'Поразок на Арені', es: 'Derrotas en Arena', 'pt-BR': 'Derrotas na Arena', vi: 'Thua ở Đấu trường', id: 'Kekalahan di Arena', tr: 'Arena yenilgileri', pl: 'Porażki na Arenie' }) },
         { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Вызовов дня выполнено', uk: 'Викликів дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
-        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Осколков заработано', uk: 'Осколків зароблено', es: 'Fragmentos ganados', 'pt-BR': 'Fragmentos ganhos', vi: 'Mảnh đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan parçalar', pl: 'Zdobyte odłamki' }) },
-        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Осколков потрачено', uk: 'Осколків витрачено', es: 'Fragmentos gastados', 'pt-BR': 'Fragmentos gastos', vi: 'Mảnh đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan parçalar', pl: 'Wydane odłamki' }) },
+        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Осколков заработано', uk: 'Уламків зароблено', es: 'Fragmentos ganados', 'pt-BR': 'Fragmentos ganhos', vi: 'Mảnh đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan parçalar', pl: 'Zdobyte odłamki' }) },
+        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Осколков потрачено', uk: 'Уламків витрачено', es: 'Fragmentos gastados', 'pt-BR': 'Fragmentos gastos', vi: 'Mảnh đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan parçalar', pl: 'Wydane odłamki' }) },
     ];
     // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
     // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
@@ -1138,7 +1139,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
         const resultColor = won ? '#34C759' : '#FF3B30';
         return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} testID="wager-result-card" style={[{ borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1, borderColor: wagerBorder }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
         <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: resultColor + '22', alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={resultColor}/>
+          <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={monoIcon(themeMode, resultColor, won ? MONO_ICON.light : MONO_ICON.muted)}/>
         </View>
         <View style={{ flex: 1 }}>
           {won ? (<View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
@@ -1370,7 +1371,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
               {triLang(lang, {
             ru: 'Вклад осколками — удержи серию и забери награду',
-            uk: 'Внесок осколками — утримай серію й забери нагороду',
+            uk: 'Внесок уламками — утримай серію й забери нагороду',
             es: 'Aporta fragmentos: mantén la racha y cobra la recompensa',
             'pt-BR': "Aposte fragmentos: mantenha a sequência e receba a recompensa",
             vi: "Đặt mảnh: giữ chuỗi và nhận thưởng",
@@ -1449,7 +1450,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 14, lineHeight: 20 }}>
                 {triLang(lang, {
             ru: 'Выбери срок и внеси ставку осколками. Удержишь цепочку — получишь прибыль осколками и опыт.',
-            uk: 'Обери строк і внеси ставку осколками. Утримаєш ланцюжок — отримаєш прибуток осколками та досвід.',
+            uk: 'Обери строк і внеси ставку уламками. Утримаєш ланцюжок — отримаєш прибуток уламками та досвід.',
             es: 'Elige un plazo y aporta fragmentos. Si mantienes la racha, ganas fragmentos netos y XP.',
             'pt-BR': "Escolha um prazo e aposte fragmentos. Se mantiver a sequência, você ganha fragmentos líquidos e XP.",
             vi: "Chọn thời hạn và đặt mảnh. Nếu giữ chuỗi, bạn nhận mảnh ròng và XP.",
@@ -1644,7 +1645,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                       <Text style={{ color: t.textGhost, fontSize: f.body, fontWeight: '800' }}>
                         {triLang(lang, {
                 ru: 'Недостаточно осколков',
-                uk: 'Недостатньо осколків',
+                uk: 'Недостатньо уламків',
                 es: 'No tienes suficientes fragmentos',
                 'pt-BR': "Você não tem fragmentos suficientes",
                 vi: "Bạn không có đủ mảnh",
@@ -1663,7 +1664,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
       </Modal>
       <ThemedConfirmModal visible={wagerNeedShards} title={triLang(lang, {
             ru: 'Недостаточно осколков',
-            uk: 'Недостатньо осколків',
+            uk: 'Недостатньо уламків',
             es: 'No tienes suficientes fragmentos',
             'pt-BR': "Você não tem fragmentos suficientes",
             vi: "Bạn không có đủ mảnh",
@@ -1687,7 +1688,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, {
                 ru: 'осколков',
-                uk: 'осколків',
+                uk: 'уламків',
                 es: 'fragmentos',
                 'pt-BR': "fragmentos",
                 vi: "mảnh",
@@ -2228,24 +2229,24 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 </View>) : (<Text style={{ color: t.textGhost, fontSize: f.label, marginTop: 1 }}>
                   {isPremium
                     ? triLang(lang, {
-                        ru: 'Бесплатно (Премиум)',
-                        uk: 'Безкоштовно (Преміум)',
-                        es: 'Gratis (Premium)',
-                        'pt-BR': "Grátis (Premium)",
-                        vi: "Miễn phí (Premium)",
-                        id: "Gratis (Premium)",
-                        tr: "Ücretsiz (Premium)",
-                        pl: "Gratis (Premium)",
+                        ru: 'Бесплатно (Плюс)',
+                        uk: 'Безкоштовно (Плюс)',
+                        es: 'Gratis (Plus)',
+                        'pt-BR': "Grátis (Plus)",
+                        vi: "Miễn phí (Plus)",
+                        id: "Gratis (Plus)",
+                        tr: "Ücretsiz (Plus)",
+                        pl: "Gratis (Plus)",
                     })
                     : triLang(lang, {
-                        ru: 'Нужен Премиум',
-                        uk: 'Потрібен Преміум',
-                        es: 'Se necesita Premium',
-                        'pt-BR': "Precisa de Premium",
-                        vi: "Cần Premium",
-                        id: "Perlu Premium",
-                        tr: "Premium gerekli",
-                        pl: "Wymagane Premium",
+                        ru: 'Нужен Плюс',
+                        uk: 'Потрібен Плюс',
+                        es: 'Se necesita Plus',
+                        'pt-BR': "Precisa de Plus",
+                        vi: "Cần Plus",
+                        id: "Perlu Plus",
+                        tr: "Plus gerekli",
+                        pl: "Wymagane Plus",
                     })}
                 </Text>)}
             </View>
@@ -2264,8 +2265,9 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     showAction: boolean;
     onAction: () => void;
 }) {
-    const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : metrics.scoreColor;
-    const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : metrics.scoreColor + '24';
+    const isBusiness = themeMode === 'business';
+    const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? t.accent : metrics.scoreColor;
+    const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
     const scoreBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'practiceBalance', 'medium');
     const daysToGoodRhythm = Math.max(0, 5 - metrics.active7);
     const rhythmValue = metrics.isWarmup
@@ -2526,7 +2528,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
           centerValue={metrics.isWarmup ? metrics.active7 : metrics.score}
           centerSubLabel={metrics.scoreSubLabel}
           accent={scoreAccent}
-          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : metrics.scoreColor + 'B0'}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'B0'}
           trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'practiceBalance', 'quiet')}
           size={104}
           strokeWidth={10}
@@ -2607,8 +2609,9 @@ function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
     isGoldTheme: boolean;
     themeMode: ThemeMode;
 }) {
-    const scoreAccent = isGoldTheme ? GOLD_RICH.paleGold : metrics.scoreColor;
-    const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : metrics.scoreColor + '24';
+    const isBusiness = themeMode === 'business';
+    const scoreAccent = isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor;
+    const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
     const scoreBorder = isGoldTheme ? GOLD_RICH.hairline : statsBorder(themeMode, 'weekRhythm', 'medium');
     const maxCombined = Math.max(1, ...metrics.rhythmDays.map((d) => d.combined));
     const facts = [
@@ -2695,7 +2698,7 @@ function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
             highlight: d.isToday,
         }))}
           accent={scoreAccent}
-          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : metrics.scoreColor + 'CC'}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'CC'}
           inactiveColor={statsSoftBg(themeMode, 'weekRhythm', 'quiet')}
           todayDotColor={scoreAccent}
           height={88}
@@ -3289,7 +3292,7 @@ export default function StreakStats() {
           textColor={t.textPrimary}
           mutedColor={t.textMuted}
           authorLabel={triLang(lang, { ru: 'Компас', uk: 'Компас', es: 'Compass', 'pt-BR': 'Compass', vi: 'Compass', id: 'Compass', tr: 'Compass', pl: 'Compass' })}
-          lockedLabel={triLang(lang, { ru: 'Открой подсказки Компаса с Premium', uk: 'Відкрий підказки Компаса з Premium', es: 'Desbloquea las pistas de Compass con Premium', 'pt-BR': 'Desbloqueie as dicas do Compass com Premium', vi: 'Mở gợi ý Compass với Premium', id: 'Buka petunjuk Compass dengan Premium', tr: 'Compass ipuçlarını Premium ile aç', pl: 'Odblokuj wskazówki Compass z Premium' })}
+          lockedLabel={triLang(lang, { ru: 'Открой подсказки Компаса с Плюс', uk: 'Відкрий підказки Компаса з Плюс', es: 'Desbloquea las pistas de Compass con Plus', 'pt-BR': 'Desbloqueie as dicas do Compass com Plus', vi: 'Mở gợi ý Compass với Plus', id: 'Buka petunjuk Compass dengan Plus', tr: 'Compass ipuçlarını Plus ile aç', pl: 'Odblokuj wskazówki Compass z Plus' })}
           loadingLabel={triLang(lang, { ru: 'Компас готовит подсказку…', uk: 'Компас готує підказку…', es: 'Compass está preparando una pista…', 'pt-BR': 'Compass está preparando uma dica…', vi: 'Compass đang chuẩn bị gợi ý…', id: 'Compass sedang menyiapkan petunjuk…', tr: 'Compass ipucu hazırlıyor…', pl: 'Compass przygotowuje wskazówkę…' })}
           onUnlock={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'stats' } } as any); }}
         />);
@@ -4048,7 +4051,7 @@ export default function StreakStats() {
 
       <ThemedConfirmModal visible={freezeNeedShardsModal} title={triLang(lang, {
             ru: 'Недостаточно осколков',
-            uk: 'Недостатньо осколків',
+            uk: 'Недостатньо уламків',
             es: 'No tienes suficientes fragmentos',
             'pt-BR': "Você não tem fragmentos suficientes",
             vi: "Bạn không có đủ mảnh",

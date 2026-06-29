@@ -168,6 +168,22 @@ function eventMs(raw: unknown): number | null {
   return Math.floor(n);
 }
 
+/**
+ * Sandbox-события RevenueCat (TestFlight, sandbox-аккаунты App Store, Play Console
+ * testing) НЕ должны писать реальный premium / осколки в production Firestore.
+ * Иначе тестер получает пожизненный платный доступ на проде, а sandbox-покупка
+ * лояльности зачисляет настоящие осколки.
+ *
+ * Фильтруем только ЯВНЫЙ SANDBOX (RC шлёт 'SANDBOX' для тестовых событий). Пустой
+ * environment не блокируем — это сохраняет совместимость с legacy-вебхуками /
+ * тестами, где поле не выставлено, и не превращает фильтр в fail-closed (когда RC
+ * по какой-то причине не пришлёт environment вообще, реальные покупки продолжат
+ * процессироваться).
+ */
+export function isSandboxEvent(event: RevenueCatEvent): boolean {
+  return cleanId(event.environment).toUpperCase() === 'SANDBOX';
+}
+
 async function findExistingUserRef(
   tx: admin.firestore.Transaction,
   db: admin.firestore.Firestore,
@@ -333,6 +349,14 @@ async function handleShardPurchaseEvent(
   pack: { packId: string; shards: number },
   res: any,
 ): Promise<void> {
+  // REFUND consumable-покупки осколков обрабатывается отдельно: ищем оригинальную
+  // транзакцию начисления и списываем ровно ту сумму, что была начислена (не из
+  // pack — RC шлёт REFUND с тем же product_id, но идемпотентность ведём по
+  // original_transaction_id оригинальной покупки).
+  if (eventType === 'REFUND') {
+    await handleShardRefundEvent(event, productId, res);
+    return;
+  }
   if (eventType !== 'NON_RENEWING_PURCHASE') {
     res.status(200).json({ ok: true, ignored: 'not_non_renewing_purchase' });
     return;
@@ -410,6 +434,142 @@ async function handleShardPurchaseEvent(
   }
 }
 
+/**
+ * REFUND осколков (consumable). Раньше REFUND-вебхуки для shard-продуктов отдавали
+ * 200 ignored — пользователь возвращал деньги, но осколки оставались. Прямая утечка
+ * дохода: за возвращённую покупку он мог тратить осколки на премиум-наборы.
+ *
+ * Логика: идемпотентность по eventId; находим оригинальную транзакцию начисления
+ * в `revenuecat_shard_transactions` по original_transaction_id (или transaction_id);
+ * если уже размечена как рефанд — не списываем повторно; иначе уменьшаем баланс на
+ * ту сумму, что была начислена (clamp на 0 — баланс не уходит в минус), пишем
+ * `shards_refund_marker` и запись в shard_log.
+ */
+async function handleShardRefundEvent(
+  event: RevenueCatEvent,
+  productId: string,
+  res: any,
+): Promise<void> {
+  const originalTxId = cleanId(event.original_transaction_id || event.transaction_id);
+  if (!originalTxId) {
+    res.status(400).send('Missing original_transaction_id for REFUND');
+    return;
+  }
+  const eventId = cleanId(event.id) || `REFUND_${originalTxId}_${event.event_timestamp_ms || Date.now()}`;
+  const db = admin.firestore();
+  const refundRef = db.collection('revenuecat_shard_refunds').doc(eventId);
+  const originalRef = db.collection('revenuecat_shard_transactions').doc(originalTxId);
+  const now = Date.now();
+  const nowIso = new Date(now).toISOString();
+
+  try {
+    const out = await db.runTransaction(async (tx) => {
+      const refundSnap = await tx.get(refundRef);
+      if (refundSnap.exists) {
+        return { refunded: false, reason: 'duplicate' as const };
+      }
+
+      const originalSnap = await tx.get(originalRef);
+      if (!originalSnap.exists) {
+        // Нет оригинала — невозможно знать, сколько списывать. Маркируем рефанд как
+        // обработанный, чтобы повторные доставки не висели, и логируем для аудита.
+        tx.set(refundRef, {
+          eventId,
+          originalTransactionId: originalTxId,
+          productId,
+          reason: 'original_not_found',
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { refunded: false, reason: 'original_not_found' as const };
+      }
+
+      const original = originalSnap.data() ?? {};
+      const refundedAlready = original.refundedAt != null;
+      if (refundedAlready) {
+        tx.set(refundRef, {
+          eventId,
+          originalTransactionId: originalTxId,
+          productId,
+          reason: 'already_refunded',
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { refunded: false, reason: 'already_refunded' as const };
+      }
+
+      const uid = cleanId(original.uid);
+      const grantedShards = parseShards(original.shards);
+      if (!uid || grantedShards <= 0) {
+        tx.set(refundRef, {
+          eventId,
+          originalTransactionId: originalTxId,
+          productId,
+          reason: 'invalid_original',
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { refunded: false, reason: 'invalid_original' as const };
+      }
+
+      const userRef = db.collection('users').doc(uid);
+      const userSnap = await tx.get(userRef);
+      const before = parseShards(userSnap.data()?.shards);
+      // Clamp на 0 — пользователь мог потратить часть/все осколки до рефанда.
+      // Бухгалтерски корректнее иначе (минус-баланс), но в текущей системе
+      // отрицательные осколки нигде не предусмотрены и поломают UI/гейты.
+      const after = Math.max(0, before - grantedShards);
+      const actuallyDeducted = before - after;
+
+      tx.set(refundRef, {
+        eventId,
+        originalTransactionId: originalTxId,
+        productId,
+        uid,
+        grantedShards,
+        balanceBefore: before,
+        balanceAfter: after,
+        actuallyDeducted,
+        environment: cleanId(event.environment),
+        store: cleanId(event.store),
+        eventTimestampMs: eventMs(event.event_timestamp_ms),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      tx.set(originalRef, {
+        refundedAt: now,
+        refundEventId: eventId,
+        refundedShards: actuallyDeducted,
+      }, { merge: true });
+
+      tx.set(userRef, {
+        shards: after,
+        shards_updated_at_ms: now,
+        shards_updated_op: 'spend',
+        shards_updated_reason: 'shards_store_refund',
+        updatedAt: now,
+      }, { merge: true });
+
+      tx.set(userRef.collection('shard_log').doc(), {
+        ts: nowIso,
+        type: 'spend',
+        amount: actuallyDeducted,
+        reason: 'shards_store_refund',
+        productId,
+        revenueCatOriginalTransactionId: originalTxId,
+        revenueCatRefundEventId: eventId,
+        grantedShards,
+        balanceBefore: before,
+        balanceAfter: after,
+      });
+
+      return { refunded: true, deducted: actuallyDeducted, balanceAfter: after };
+    });
+
+    res.status(200).json({ ok: true, kind: 'shards_refund', ...out });
+  } catch (error) {
+    logger.error('revenuecat_shards_refund_webhook_failed', error);
+    res.status(500).send('Internal error');
+  }
+}
+
 // ── TRANSFER: anonymous → stable_id entitlement move (closes the "premium written
 //    to an anonymous RC id" gap, scenario #13). When a purchase happened before
 //    Purchases.logIn(stable_id), premium landed on users/{$RCAnonymousID}. After
@@ -454,12 +614,18 @@ export function transferSourceIds(event: RevenueCatEvent): string[] {
 /** Reads the active store-premium block from a donor doc, if any. */
 function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): Record<string, string> | null {
   const plan = cleanId(progress.premium_plan).toLowerCase();
-  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+  // Lifetime — это законный store-план (NON_RENEWING_PURCHASE phraseman_premium_lifetime_v1,
+  // см. premiumPlanFromEvent). Без него TRANSFER от анонимного RC-id (купил «Навсегда»
+  // до Purchases.logIn) возвращал null → доступ исчезал у реального аккаунта после логина.
+  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
   if (!isStorePlan) return null;
   const expiryMs = eventMs(progress.premium_expiry);
   const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
-  // Active = open-ended (expiry<=0 with rc tracking) or a future expiry.
-  const active = (expiryMs == null || expiryMs <= 0 || expiryMs > now) || (rcExpiryMs != null && rcExpiryMs > now);
+  // Lifetime по определению бессрочный (premium_expiry='0'), так что отдельный guard:
+  // в общем случае активность = expiry открытый или ещё впереди.
+  const active = plan === 'lifetime'
+    || (expiryMs == null || expiryMs <= 0 || expiryMs > now)
+    || (rcExpiryMs != null && rcExpiryMs > now);
   if (!active) return null;
   const block: Record<string, string> = {};
   for (const key of PREMIUM_PROGRESS_KEYS) {
@@ -565,6 +731,15 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
   const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
   if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
     res.status(401).send('Unauthorized');
+    return;
+  }
+
+  // Sandbox-события (TestFlight / sandbox App Store / Play Console testing) НЕ
+  // должны изменять production Firestore: иначе тестер получает реальный premium
+  // на бою, а sandbox-«покупка» осколков зачисляет настоящую валюту.
+  if (isSandboxEvent(event)) {
+    logger.info('revenuecat_webhook_sandbox_ignored', { eventType, productId, environment: cleanId(event.environment) });
+    res.status(200).json({ ok: true, ignored: 'sandbox_environment', environment: cleanId(event.environment) });
     return;
   }
 

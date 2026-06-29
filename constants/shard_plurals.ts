@@ -15,9 +15,9 @@ export function ukKnowledgeShardsAfterNumber(n: number): string {
   const k = Math.abs(Math.trunc(n));
   const n100 = k % 100;
   const n10 = k % 10;
-  if (n10 === 1 && n100 !== 11) return 'осколок знань';
-  if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return 'осколки знань';
-  return 'осколків знань';
+  if (n10 === 1 && n100 !== 11) return 'уламок знань';
+  if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return 'уламки знань';
+  return 'уламків знань';
 }
 
 export function ruShardKnowledgeSubtitle(amount: number): string {

@@ -17,7 +17,7 @@ import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useModalBackdropFade } from '../hooks/useModalBackdropFade';
-import { getBoonCopy } from '../app/boons/boon_copy';
+import { getBoonCopy, getMysteryChestClaimedDetail } from '../app/boons/boon_copy';
 import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 
@@ -25,10 +25,12 @@ interface WeeklyBoonDetailModalProps {
   visible: boolean;
   /** Бонус, по которому показываем подробности (null = нечего показывать). */
   boon: BoonId | null;
+  /** «Сундук недели» уже забран — показываем текст «уже открыт», а не «открой и забери». */
+  claimed?: boolean;
   onClose: () => void;
 }
 
-function WeeklyBoonDetailModal({ visible, boon, onClose }: WeeklyBoonDetailModalProps) {
+function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose }: WeeklyBoonDetailModalProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const backdropOpacity = useModalBackdropFade(visible);
@@ -67,6 +69,10 @@ function WeeklyBoonDetailModal({ visible, boon, onClose }: WeeklyBoonDetailModal
 
   const copy = getBoonCopy(boon, lang);
   const iconSource = weeklyBoonIconSource(boon, themeMode);
+  // «Сундук недели» уже забран → не зовём «открой и забери», а сообщаем, что награда уже у юзера.
+  const paragraphs = boon === 'mystery_monday' && claimed
+    ? getMysteryChestClaimedDetail(lang)
+    : copy.detail;
   const closeLabel = triLang(lang, {
     ru: 'Закрыть',
     uk: 'Закрити',
@@ -133,7 +139,7 @@ function WeeklyBoonDetailModal({ visible, boon, onClose }: WeeklyBoonDetailModal
             showsVerticalScrollIndicator={false}
             bounces={false}
           >
-            {copy.detail.map((paragraph, i) => (
+            {paragraphs.map((paragraph, i) => (
               <Text
                 key={i}
                 style={[

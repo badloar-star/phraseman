@@ -138,7 +138,7 @@ type Report = {
     productionAppFilesModifiedByThisScript: false;
     generatedFrenchLedgersModifiedByThisScript: false;
     reviewerDecisionsImportedByThisScript: false;
-    manualReviewGateCreatedByThisScript: false;
+    externalPersonGateCreatedByThisScript: false;
     payloadShardsCreatedByThisScript: false;
     firebaseOrServerUploadStarted: false;
     runtimeDownloadsEnabled: false;
@@ -607,7 +607,7 @@ function main(): void {
   for (const probe of probes.filter((probe) => !probe.passed)) {
     addFinding(findings, 'blocker', 'fixture_probe_failed', `Fixture probe failed: ${probe.id}.`);
   }
-  addFinding(findings, 'info', 'llm_official_source_review_gate_active', 'This packet keeps people-based review out of the dependency chain and assigns the review function to an LLM official-source reviewer.');
+  addFinding(findings, 'info', 'llm_official_source_review_gate_active', 'This packet keeps external-person gates out of the dependency chain and assigns validation to LLM official-source evidence.');
   addFinding(findings, 'info', 'llm_review_requires_trusted_sources', 'LLM review may not approve French content without Cambridge-style lexical evidence plus French authority/grammar evidence ids.');
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
@@ -663,7 +663,7 @@ function main(): void {
       productionAppFilesModifiedByThisScript: false,
       generatedFrenchLedgersModifiedByThisScript: false,
       reviewerDecisionsImportedByThisScript: false,
-      manualReviewGateCreatedByThisScript: false,
+      externalPersonGateCreatedByThisScript: false,
       payloadShardsCreatedByThisScript: false,
       firebaseOrServerUploadStarted: false,
       runtimeDownloadsEnabled: false,

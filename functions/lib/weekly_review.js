@@ -183,7 +183,7 @@ async function enforceRateLimit(authUid, stableUid) {
         }, { merge: true });
     });
 }
-function readStoredWeeklyReview(raw) {
+function readStoredWeeklyReview(raw, lang) {
     const data = (raw ?? {});
     const greeting = text(data.greeting, 200);
     const paragraphs = (Array.isArray(data.paragraphs) ? data.paragraphs : [])
@@ -199,15 +199,32 @@ function readStoredWeeklyReview(raw) {
         return { microDiagnosisId: text(c.microDiagnosisId, 80), label: text(c.label, 120) };
     })
         .filter((r) => r.microDiagnosisId && r.label);
-    return { greeting, paragraphs, recommendations };
+    const review = { greeting, paragraphs, recommendations };
+    if (lang) {
+        try {
+            (0, ai_language_contract_1.assertAiJsonTextFieldsLanguage)({
+                texts: [greeting, ...paragraphs],
+                targetLang: lang,
+                feature: 'weekly_review',
+            });
+        }
+        catch (error) {
+            console.warn('weekly_review cached replay rejected by language guard', {
+                lang,
+                detail: String(error?.message ?? error).slice(0, 160),
+            });
+            return null;
+        }
+    }
+    return review;
 }
-function decideWeeklyReviewReplay(quotaData, expectedBriefingHash, nowMs) {
+function decideWeeklyReviewReplay(quotaData, expectedBriefingHash, nowMs, lang) {
     const nextAllowedAtMs = Number(quotaData.nextAllowedAtMs ?? 0);
     if (!Number.isFinite(nextAllowedAtMs) || nowMs >= nextAllowedAtMs) {
         return { kind: 'open' };
     }
     if (text(quotaData.lastBriefingHash, 128) === expectedBriefingHash) {
-        const review = readStoredWeeklyReview(quotaData.lastReview);
+        const review = readStoredWeeklyReview(quotaData.lastReview, lang);
         if (review) {
             return {
                 kind: 'replay',
@@ -216,15 +233,17 @@ function decideWeeklyReviewReplay(quotaData, expectedBriefingHash, nowMs) {
                 model: text(quotaData.lastModel, 80) || MODEL_DEFAULT,
             };
         }
+        if (lang)
+            return { kind: 'open' };
     }
     return { kind: 'not_ready', nextAllowedAtMs };
 }
-async function readReplayOrAssertWindowOpen(authUid, stableUid, expectedBriefingHash) {
+async function readReplayOrAssertWindowOpen(authUid, stableUid, expectedBriefingHash, lang) {
     const db = admin.firestore();
     const now = Date.now();
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('wkrq', authUid, stableUid));
     const snap = await ref.get();
-    const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now);
+    const decision = decideWeeklyReviewReplay(snap.data() ?? {}, expectedBriefingHash, now, lang);
     if (decision.kind === 'open')
         return null;
     if (decision.kind === 'replay')
@@ -384,7 +403,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
     // Replay/window check BEFORE rate limits and the paid API call. Same briefing
     // retries get the cached server result; different briefing remains gated.
     const briefingHash = briefingHashForReplay(briefing);
-    const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash);
+    const replay = await readReplayOrAssertWindowOpen(authUid, stableUid, briefingHash, briefing.lang);
     if (replay) {
         return {
             ok: true,

@@ -28,6 +28,7 @@ import Reanimated, {
 import { triLang } from '../../constants/i18n';
 import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
+import { monoIcon } from '../../constants/monoIcon';
 import { categoriesForFlashcardsHub } from './constants';
 import { packHubCodeName, packHubLabelForInterface, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
 import { useCardPackShardPaywall } from './useCardPackShardPaywall';
@@ -170,6 +171,7 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
 
 type UnownedCardProps = {
   t: Theme;
+  themeMode: ThemeMode;
   tileW: number;
   pack: FlashcardMarketPack;
   ion: string;
@@ -183,6 +185,7 @@ type UnownedCardProps = {
 /** Картка магазину: глянець, м\'якший CTA, «живі» деталі. */
 function UnownedMarketPackCard({
   t,
+  themeMode,
   tileW,
   pack,
   ion,
@@ -326,7 +329,7 @@ function UnownedMarketPackCard({
           >
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
               <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 12, height: 12 }} contentFit="contain" />
-              <Text style={{ fontSize: 11, fontWeight: '800', color: '#F1F5F9', letterSpacing: 0.2 }}>
+              <Text style={{ fontSize: 11, fontWeight: '800', color: monoIcon(themeMode, '#F1F5F9'), letterSpacing: 0.2 }}>
                 {pack.priceShards}
               </Text>
             </View>
@@ -663,6 +666,7 @@ export default function FlashcardsCategoryHub({
               ) : (
                 <UnownedMarketPackCard
                   t={t}
+                  themeMode={themeMode}
                   tileW={tileW}
                   pack={pack}
                   iconSize={packTileIconSize}

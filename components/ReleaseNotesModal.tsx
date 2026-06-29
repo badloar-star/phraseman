@@ -17,6 +17,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
+import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
@@ -57,49 +58,49 @@ const TEXT = {
       + 'В карточках появилось автопрослушивание — теперь можно спокойно тренировать слух без лишних нажатий.\n\n'
       + 'Статистика стала понятнее: проще следить за серией, ритмом занятий, заморозкой и прогрессом.\n\n'
       + 'Чат лиги тоже доработали: непрочитанные сообщения, жалобы, скрытие участников и более стабильное подключение.\n\n'
-      + 'Ещё поправили уроки, подсказки, вызовы, Premium-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
+      + 'Ещё поправили уроки, подсказки, вызовы, Plus-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
     uk:
       'Ми трохи оновили PhraseMan: освіжили вигляд рівнів, ліг, подарунків, енергії та статистики.\n\n'
       + 'У картках з’явилося автопрослуховування — тепер можна спокійно тренувати слух без зайвих натискань.\n\n'
       + 'Статистика стала зрозумілішою: простіше стежити за серією, ритмом занять, заморозкою та прогресом.\n\n'
       + 'Чат ліги теж допрацювали: непрочитані повідомлення, скарги, приховування учасників і стабільніше підключення.\n\n'
-      + 'Ще поправили уроки, підказки, квізи, Premium-доступ, синхронізацію і кілька помилок, які надто впевнено заважали жити.',
+      + 'Ще поправили уроки, підказки, квізи, Plus-доступ, синхронізацію і кілька помилок, які надто впевнено заважали жити.',
     es:
       'Hemos actualizado un poco PhraseMan: renovamos el aspecto de niveles, ligas, regalos, energía y estadísticas.\n\n'
       + 'Las tarjetas ahora tienen reproducción automática: puedes entrenar el oído sin tocar la pantalla todo el rato.\n\n'
       + 'Las estadísticas son más claras: es más fácil seguir la racha, el ritmo de estudio, la congelación y el progreso.\n\n'
       + 'También mejoramos el chat de liga: mensajes no leídos, reportes, ocultar participantes y una conexión más estable.\n\n'
-      + 'Además ajustamos lecciones, pistas, cuestionarios, acceso Premium, sincronización y algunos errores que molestaban con demasiada confianza.',
+      + 'Además ajustamos lecciones, pistas, cuestionarios, acceso Plus, sincronización y algunos errores que molestaban con demasiada confianza.',
     'pt-BR':
       'Atualizamos um pouco o PhraseMan: renovamos o visual de níveis, ligas, presentes, energia e estatísticas.\n\n'
       + 'Os cartões agora têm reprodução automática: dá para treinar o ouvido sem ficar tocando na tela toda hora.\n\n'
       + 'As estatísticas ficaram mais claras: ficou mais fácil acompanhar sequência, ritmo de estudo, congelamento e progresso.\n\n'
       + 'Também melhoramos o chat da liga: mensagens não lidas, denúncias, ocultar participantes e conexão mais estável.\n\n'
-      + 'Além disso, ajustamos lições, dicas, quizzes, acesso Premium, sincronização e alguns erros que atrapalhavam com confiança demais.',
+      + 'Além disso, ajustamos lições, dicas, quizzes, acesso Plus, sincronização e alguns erros que atrapalhavam com confiança demais.',
     vi:
       'Chúng tôi đã cập nhật nhẹ PhraseMan: làm mới giao diện cấp độ, giải đấu, quà tặng, năng lượng và thống kê.\n\n'
       + 'Thẻ học giờ có tự động phát âm thanh, để bạn luyện nghe bình tĩnh hơn mà không cần bấm liên tục.\n\n'
       + 'Thống kê rõ ràng hơn: dễ theo dõi chuỗi học, nhịp học, đóng băng chuỗi và tiến bộ.\n\n'
       + 'Chat giải đấu cũng được cải thiện: tin nhắn chưa đọc, báo cáo, ẩn người tham gia và kết nối ổn định hơn.\n\n'
-      + 'Chúng tôi cũng chỉnh bài học, gợi ý, quiz, quyền truy cập Premium, đồng bộ và vài lỗi từng làm phiền khá tự tin.',
+      + 'Chúng tôi cũng chỉnh bài học, gợi ý, quiz, quyền truy cập Plus, đồng bộ và vài lỗi từng làm phiền khá tự tin.',
     id:
       'Kami sedikit memperbarui PhraseMan: tampilan level, liga, hadiah, energi, dan statistik dibuat lebih segar.\n\n'
       + 'Kartu sekarang punya pemutaran otomatis, jadi kamu bisa melatih pendengaran tanpa terlalu sering menekan tombol.\n\n'
       + 'Statistik jadi lebih jelas: lebih mudah melihat streak, ritme belajar, freeze, dan progres.\n\n'
       + 'Chat liga juga kami rapikan: pesan belum dibaca, laporan, sembunyikan peserta, dan koneksi yang lebih stabil.\n\n'
-      + 'Kami juga memperbaiki pelajaran, petunjuk, kuis, akses Premium, sinkronisasi, dan beberapa bug yang terlalu percaya diri mengganggu.',
+      + 'Kami juga memperbaiki pelajaran, petunjuk, kuis, akses Plus, sinkronisasi, dan beberapa bug yang terlalu percaya diri mengganggu.',
     tr:
       'PhraseMan’i biraz güncelledik: seviyeler, ligler, hediyeler, enerji ve istatistiklerin görünümünü yeniledik.\n\n'
       + 'Kartlara otomatik dinleme eklendi; artık sürekli dokunmadan sakin bir şekilde dinleme çalışması yapabilirsiniz.\n\n'
       + 'İstatistikler daha anlaşılır oldu: seri, çalışma ritmi, dondurma ve ilerlemeyi takip etmek daha kolay.\n\n'
       + 'Lig sohbetini de iyileştirdik: okunmamış mesajlar, şikayetler, katılımcı gizleme ve daha stabil bağlantı.\n\n'
-      + 'Ayrıca dersleri, ipuçlarını, quizleri, Premium erişimini, senkronizasyonu ve fazla özgüvenle rahatsız eden birkaç hatayı düzelttik.',
+      + 'Ayrıca dersleri, ipuçlarını, quizleri, Plus erişimini, senkronizasyonu ve fazla özgüvenle rahatsız eden birkaç hatayı düzelttik.',
     pl:
       'Trochę odświeżyliśmy PhraseMan: wygląd poziomów, lig, prezentów, energii i statystyk.\n\n'
       + 'Fiszki mają teraz automatyczne odtwarzanie, więc można spokojnie ćwiczyć słuch bez ciągłego klikania.\n\n'
       + 'Statystyki są czytelniejsze: łatwiej śledzić serię, rytm nauki, zamrożenie i postęp.\n\n'
       + 'Dopracowaliśmy też czat ligi: nieprzeczytane wiadomości, zgłoszenia, ukrywanie uczestników i stabilniejsze połączenie.\n\n'
-      + 'Poprawiliśmy też lekcje, podpowiedzi, quizy, dostęp Premium, synchronizację i kilka błędów, które przeszkadzały z podejrzaną pewnością siebie.',
+      + 'Poprawiliśmy też lekcje, podpowiedzi, quizy, dostęp Plus, synchronizację i kilka błędów, które przeszkadzały z podejrzaną pewnością siebie.',
   },
   cta: {
     ru: 'Поехали дальше',
@@ -332,18 +333,18 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
             {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
               <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFF1B8', '#F7C75F', '#D68A2E']} style={[styles.iconBadge, isCompassTheme && { borderRadius: 9 }]}>
-                <Ionicons name="sparkles" size={25} color={isCompassTheme ? COMPASS_RICH.textDark : '#172033'} />
+                <Ionicons name="sparkles" size={25} color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#172033', MONO_ICON.onLight)} />
               </LinearGradient>
             </Animated.View>
             <View style={[styles.releasePill, isCompassTheme && { borderRadius: 8, borderColor: COMPASS_RICH.hairlineQuiet, backgroundColor: COMPASS_RICH.charcoalWarm, overflow: 'hidden' }]}>
               {isCompassTheme && <CompassDepthSurface radius={8} quiet />}
-              <Ionicons name="rocket-outline" size={14} color={isCompassTheme ? COMPASS_RICH.champagne : '#F9D77A'} />
-              <Text style={[styles.releasePillText, { fontSize: captionSize, color: isCompassTheme ? COMPASS_RICH.champagne : '#F9D77A' }]}>
+              <Ionicons name="rocket-outline" size={14} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#F9D77A')} />
+              <Text style={[styles.releasePillText, { fontSize: captionSize, color: isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#F9D77A') }]}>
                 {versionLabel}
               </Text>
             </View>
-            <Text style={[styles.title, { fontSize: titleSize }]}>{title}</Text>
-            <Text style={[styles.subtitle, { fontSize: bodySize }]}>{subtitle}</Text>
+            <Text style={[styles.title, { fontSize: titleSize, color: monoIcon(themeMode, '#FFF7E3') }]}>{title}</Text>
+            <Text style={[styles.subtitle, { fontSize: bodySize, color: monoIcon(themeMode, '#C8D6EA') }]}>{subtitle}</Text>
           </View>
 
           <View style={styles.chipsWrap}>
@@ -362,10 +363,10 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
                             : 'analytics-outline'
                     }
                     size={13}
-                    color={isCompassTheme ? COMPASS_RICH.textDark : '#1B2330'}
+                    color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#1B2330', MONO_ICON.onLight)}
                   />
                 </View>
-                <Text style={[styles.chipText, { fontSize: captionSize }]} numberOfLines={2}>
+                <Text style={[styles.chipText, { fontSize: captionSize, color: monoIcon(themeMode, '#DCE8FF') }]} numberOfLines={2}>
                   {chip}
                 </Text>
               </View>
@@ -378,12 +379,12 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
                 <View key={paragraph} style={[styles.premiumBlock, isCompassTheme && { borderRadius: 10, borderColor: COMPASS_RICH.hairlineStrong, backgroundColor: COMPASS_RICH.washStrong, overflow: 'hidden' }]}>
                   {isCompassTheme && <CompassDepthSurface radius={10} selected />}
                   <View style={[styles.premiumBlockIcon, isCompassTheme && { borderRadius: 7, backgroundColor: COMPASS_RICH.champagne }]}>
-                    <Ionicons name="volume-high-outline" size={15} color={isCompassTheme ? COMPASS_RICH.textDark : '#1B2330'} />
+                    <Ionicons name="volume-high-outline" size={15} color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#1B2330', MONO_ICON.onLight)} />
                   </View>
-                  <Text style={[styles.premiumBlockText, { fontSize: bodySize }]}>{paragraph}</Text>
+                  <Text style={[styles.premiumBlockText, { fontSize: bodySize, color: monoIcon(themeMode, '#FFE9A8') }]}>{paragraph}</Text>
                 </View>
               ) : (
-                <Text key={paragraph} style={[styles.body, { fontSize: bodySize }]}>
+                <Text key={paragraph} style={[styles.body, { fontSize: bodySize, color: monoIcon(themeMode, '#DDE7F6') }]}>
                   {paragraph}
                 </Text>
               );
@@ -399,7 +400,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
           >
             <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.btnGradient, isCompassTheme && { borderRadius: 9, overflow: 'hidden' }]}>
               {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-              <Text style={[styles.btnText, { fontSize: buttonSize }]}>
+              <Text style={[styles.btnText, { fontSize: buttonSize, color: monoIcon(themeMode, '#121826', MONO_ICON.onLight) }]}>
                 {triLang(lang, {
                   ru: TEXT.cta.ru,
                   uk: TEXT.cta.uk,

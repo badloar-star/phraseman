@@ -5,8 +5,8 @@ import { View, Text, ScrollView, TouchableOpacity, Modal, KeyboardAvoidingView, 
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useFocusEffect } from 'expo-router';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -384,7 +384,10 @@ export default function ClubScreen() {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
+  // openChat=1 — открыть сразу чат лиги (кнопка чата в шапке главного экрана).
+  const { openChat: openChatParam } = useLocalSearchParams<{ openChat?: string }>();
   const { theme: t, f, themeMode } = useTheme();
+  const insets = useSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const leagueCrownAccent = themeMode === 'gold'
     ? GOLD_RICH.metalGold
@@ -1987,8 +1990,8 @@ export default function ClubScreen() {
           keyboardVerticalOffset={0}
           style={{ flex:1, backgroundColor:t.bgCard }}
         >
-          <SafeAreaView edges={['top', 'left', 'right']} style={{ flex:1, backgroundColor:t.bgCard }}>
-            <View style={{ minHeight:64, paddingHorizontal:12, paddingVertical:8, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
+          <View style={{ flex:1, backgroundColor:t.bgCard }}>
+            <View style={{ minHeight:64, paddingTop:insets.top + 8, paddingBottom:8, paddingHorizontal:12, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
               <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
                 <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}>
                   <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
@@ -2030,9 +2033,54 @@ export default function ClubScreen() {
                 myAuraId={myAuraId}
                 myTotalXP={playerXP}
                 onToast={showLeagueToast}
+                onAuthorPress={(author) => {
+                  // Карточку открываем по данным из списка лиги (богаче: XP, рамка,
+                  // корона, premium/vip). Если автора нет в текущем списке — по тому,
+                  // что есть в самом сообщении чата.
+                  const member = group.find((p) => p.uid && p.uid === author.uid);
+                  if (member) {
+                    const hasCrown =
+                      Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0)) > 0 &&
+                      Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) > Date.now();
+                    const crownCount = Math.max(1, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0));
+                    setProfile({
+                      name: member.name,
+                      points: member.isMe ? playerXP : (member.totalXp ?? member.points),
+                      totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
+                      isMe: member.isMe,
+                      leagueId: member.leagueId ?? myLeague.id,
+                      uid: member.uid,
+                      isPremium: member.isPremium ?? false,
+                      isVip: member.isVip ?? false,
+                      avatar: member.avatar ?? author.avatar,
+                      frame: member.frame,
+                      aura: member.isMe ? myAuraId : (member.aura ?? author.aura),
+                      streak: member.streak ?? null,
+                      weekXp: member.points,
+                      leagueCrownExpiresAt: hasCrown
+                        ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) || 0)
+                        : undefined,
+                      leagueCrownCount: hasCrown ? crownCount : undefined,
+                      profileCardLevel: member.profileCardLevel,
+                      profileCardTheme: member.profileCardTheme,
+                      profileCardMotion: member.profileCardMotion,
+                      profileCardPublicFocus: member.profileCardPublicFocus,
+                    });
+                    return;
+                  }
+                  setProfile({
+                    name: author.name,
+                    points: 0,
+                    isMe: !!arenaClubStableUid && author.uid === arenaClubStableUid,
+                    leagueId: myLeague.id,
+                    uid: author.uid,
+                    avatar: author.avatar,
+                    aura: author.aura,
+                  });
+                }}
               />
             </View>
-          </SafeAreaView>
+          </View>
         </KeyboardAvoidingView>
       </Modal>
 

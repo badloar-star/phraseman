@@ -239,7 +239,7 @@ Set thresholds:
 - any unknown `targetSensitive` surface = HOLD;
 - any unknown provenance for generated lesson/quiz/practice file = HOLD;
 - more than 0 unknown storage-sensitive surfaces = HOLD;
-- more than 5 medium unknowns = manual review.
+- more than 5 medium unknowns = LLM official-source review.
 
 ### GVA-021. Human-readable docs need machine-readable templates
 

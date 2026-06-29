@@ -57,7 +57,7 @@ export async function purchaseCardPackWithShards(
     emitAppEvent('action_toast', {
       type: 'error',
       messageRu: 'Осколки не списались. Попробуй ещё раз.',
-      messageUk: 'Не вдалося списати осколки.',
+      messageUk: 'Не вдалося списати уламки.',
       messageEs: 'No ha sido posible gastar fragmentos.',
     });
     return 'spend_failed';

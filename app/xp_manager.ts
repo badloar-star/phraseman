@@ -20,7 +20,7 @@ import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
-import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
+import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -71,6 +71,9 @@ export function normalizeArenaMultipliersFirestore(raw: unknown): MultiplierBrea
     giftM: typeof m.giftM === 'number' ? m.giftM : 1,
     leagueBoostM: typeof m.leagueBoostM === 'number' ? m.leagueBoostM : 1,
     leagueGroupBoostM: typeof m.leagueGroupBoostM === 'number' ? m.leagueGroupBoostM : 1,
+    // Старые arena_profiles этих полей не хранят — дефолтим к нейтральным.
+    leagueChestM: typeof m.leagueChestM === 'number' ? m.leagueChestM : 1,
+    boonXpContribution: typeof m.boonXpContribution === 'number' ? m.boonXpContribution : 0,
     total: typeof m.total === 'number' ? m.total : 1,
   };
 }
@@ -510,8 +513,13 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    // H13: ранее UI занижал множитель — не учитывал leagueChestM и boonXpContribution,
+    // которые registerXP уже добавляет к финальной формуле. Используем peek (НЕ consume),
+    // иначе UI прожжёт одноразовый league chest бонус.
+    const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
+    const boonXpContribution = boonXpMultiplierContribution();
 
-    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1);
+    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
   } catch {
     return 1;
   }
@@ -524,6 +532,10 @@ export interface MultiplierBreakdown {
   giftM: number;
   leagueBoostM: number;
   leagueGroupBoostM: number;
+  /** Доступный одноразовый множитель «сундука лиги» (peek, не consume). */
+  leagueChestM: number;
+  /** Аддитивный вклад weekly boons (двойной четверг / ранняя пташка). */
+  boonXpContribution: number;
   total: number;
 }
 
@@ -538,10 +550,12 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
-    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1);
-    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total };
+    const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
+    const boonXpContribution = boonXpMultiplierContribution();
+    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
+    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, total };
   } catch {
-    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, total: 1 };
+    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, total: 1 };
   }
 };
 

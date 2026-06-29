@@ -399,6 +399,21 @@ function assertMistakeGeneratedText(answer: string, payload: ExplainMistakePaylo
   });
 }
 
+function isMistakeGeneratedTextSafe(answer: string, payload: ExplainMistakePayload): boolean {
+  try {
+    assertMistakeGeneratedText(answer, payload);
+    return true;
+  } catch (error) {
+    console.warn('mistake_explain cached text rejected by language guard', {
+      variant: payload.variant,
+      studyTarget: payload.studyTarget,
+      interfaceLang: payload.interfaceLang,
+      detail: String((error as Error)?.message ?? error).slice(0, 160),
+    });
+    return false;
+  }
+}
+
 async function generateCheckedMistakeText(
   apiKey: string,
   model: string,
@@ -485,7 +500,7 @@ export const explainMistake = onCall({
 
   if (payload.variant === 'eli5') {
     // Cached ELI5 → $0.
-    if (cached?.status === 'ready' && cached.eli5) {
+    if (cached?.status === 'ready' && cached.eli5 && isMistakeGeneratedTextSafe(cached.eli5, payload)) {
       return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
     }
     await enforceRateLimit(db, authUid, stableUid);
@@ -510,7 +525,7 @@ export const explainMistake = onCall({
         throw error;
       }
       const latest = claimed ? null : await readCachedMistakeExplanation(mistakeHash);
-      if (claimed || !(latest?.status === 'ready' && latest.full)) {
+      if (claimed || !(latest?.status === 'ready' && latest.full && isMistakeGeneratedTextSafe(latest.full, payload))) {
         await persistReadyMistake(mistakeHash, fullGen.answer, payload, model);
       }
       await writeEli5MistakeExplanation(mistakeHash, gen.answer);
@@ -521,7 +536,7 @@ export const explainMistake = onCall({
   }
 
   // FULL breakdown path.
-  if (cached?.status === 'ready' && cached.full) {
+  if (cached?.status === 'ready' && cached.full && isMistakeGeneratedTextSafe(cached.full, payload)) {
     return { ok: true, text: cached.full, remainingQuota: RQ, model, fromCache: true, variant: 'full' };
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedMistake(cached, Date.now())) {
@@ -554,7 +569,7 @@ export const explainMistake = onCall({
     await persistReadyMistake(mistakeHash, gen.answer, payload, model);
   } else {
     const latest = await readCachedMistakeExplanation(mistakeHash);
-    if (!(latest?.status === 'ready' && latest.full)) {
+    if (!(latest?.status === 'ready' && latest.full && isMistakeGeneratedTextSafe(latest.full, payload))) {
       await persistReadyMistake(mistakeHash, gen.answer, payload, model);
     }
   }

@@ -740,11 +740,76 @@ function main(): void {
   const validatorSummary = summaryOf(validator);
   const masterSummary = summaryOf(master);
   const expectedMasterBlockersForP33 = new Set([
+    'nonproduction_blocker_closure_plan_v2_blockers',
+    'nonproduction_blocker_closure_plan_v2_wrong_state',
     'nonproduction_blocker_closure_plan_v2_not_ready_for_next_pass',
+    'nonproduction_blocker_closure_plan_v2_missing_probe_passes',
+    'nonproduction_evidence_refresh_v2_not_ready_for_manifest_recheck',
+    'runtime_server_manifest_consistency_recheck_v2_blockers',
+    'runtime_server_manifest_consistency_recheck_v2_wrong_state',
+    'runtime_server_manifest_consistency_recheck_v2_stale_gate_refs',
+    'runtime_server_manifest_consistency_recheck_v2_stale_input_hashes',
+    'runtime_server_manifest_consistency_recheck_v2_not_ready_for_next_language_isolation_recheck',
+    'runtime_server_manifest_consistency_recheck_v2_missing_probe_passes',
+    'language_isolation_regression_recheck_v2_not_ready_for_readiness_apply_blocker_map',
+    'language_isolation_regression_recheck_v2_blockers',
+    'language_isolation_regression_recheck_v2_wrong_state',
+    'language_isolation_regression_recheck_v2_not_ready_for_readiness_apply_blocker_map',
+    'language_isolation_regression_recheck_v2_missing_probe_passes',
+    'readiness_apply_blocker_map_refresh_v2_blockers',
+    'readiness_apply_blocker_map_refresh_v2_wrong_state',
+    'readiness_apply_blocker_map_refresh_v2_safe_remaining_drift',
+    'readiness_apply_blocker_map_refresh_v2_not_ready_for_next_master_refresh',
+    'readiness_apply_blocker_map_refresh_v2_missing_probe_passes',
     'official_source_content_coverage_v2_not_ready_for_import_dry_run_refresh',
+    'runtime_delivery_evidence_chain_v2_not_ready',
+    'explicit_approval_receipt_hash_lock_gate_v2_not_ready_for_approval_request',
+    'production_activation_hold_exact_approval_required_v2_not_ready',
+    'production_activation_sequence_preflight_v2_blockers',
+    'production_activation_sequence_preflight_v2_not_ready',
+    'production_activation_sequence_preflight_v2_missing_probe_passes',
+    'production_apply_transaction_contract_v2_blockers',
+    'production_apply_transaction_contract_v2_not_ready',
+    'production_apply_transaction_contract_v2_missing_probe_passes',
+    'post_apply_rollback_guard_contract_v2_blockers',
+    'post_apply_rollback_guard_contract_v2_not_ready',
+    'post_apply_rollback_guard_contract_v2_missing_probe_passes',
+    'approval_wait_safe_continuation_v2_blockers',
+    'approval_wait_safe_continuation_v2_not_ready',
+    'approval_wait_safe_continuation_v2_missing_probe_passes',
+    'production_readiness_completion_audit_v2_blockers',
+    'production_readiness_completion_audit_v2_not_ready',
+    'production_readiness_completion_audit_v2_missing_requirements',
+    'production_readiness_completion_audit_v2_missing_probe_passes',
+    'final_preapproval_evidence_hash_lock_v2_blockers',
+    'final_preapproval_evidence_hash_lock_v2_not_ready',
+    'final_preapproval_evidence_hash_lock_v2_missing_probe_passes',
+    'exact_approval_source_firewall_v2_blockers',
+    'exact_approval_source_firewall_v2_not_ready',
+    'exact_approval_source_firewall_v2_missing_probe_passes',
+    'exact_approval_wait_state_v2_blockers',
+    'exact_approval_wait_state_v2_not_ready',
+    'exact_approval_wait_state_v2_missing_probe_passes',
+    'exact_approval_source_handoff_firewall_v2_blockers',
+    'exact_approval_source_handoff_firewall_v2_not_ready',
+    'exact_approval_source_handoff_firewall_v2_missing_probe_passes',
+    'exact_approval_source_wait_terminal_state_v2_blockers',
+    'exact_approval_source_wait_terminal_state_v2_not_ready',
+    'exact_approval_source_wait_terminal_state_v2_missing_probe_passes',
+    'ordered_approval_wait_refresh_v2_blockers',
+    'ordered_approval_wait_refresh_v2_not_ready',
   ]);
   const masterBlockerFindings = arr<JsonObject>(master.findings).filter((finding) => s(finding, 'severity') === 'blocker');
-  const masterExpectedDownstreamBlockers = masterBlockerFindings.filter((finding) => expectedMasterBlockersForP33.has(s(finding, 'code'))).length;
+  const isExpectedMasterBlockerForP33 = (code: string): boolean =>
+    expectedMasterBlockersForP33.has(code) ||
+    code.startsWith('runtime_server_manifest_consistency_recheck_v2_') ||
+    code.startsWith('language_isolation_regression_recheck_v2_') ||
+    code.startsWith('runtime_delivery_evidence_chain_v2_') ||
+    code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') ||
+    code.startsWith('nonproduction_blocker_closure_plan_v2_') ||
+    code.startsWith('nonproduction_evidence_refresh_v2_') ||
+    code.startsWith('exact_approval_wait_state_v2_');
+  const masterExpectedDownstreamBlockers = masterBlockerFindings.filter((finding) => isExpectedMasterBlockerForP33(s(finding, 'code'))).length;
   const masterActionableBlockers = masterBlockerFindings.length - masterExpectedDownstreamBlockers;
   const targetActivation = object(targetManifest.activation);
   const p32 = sourceArtifact(repoRoot, 'P32E_PRODUCTION_APPLY_ABSENCE_DENIAL_GATE', path.join(auditsDir, 'production_apply_absence_denial_gate_v2_packet.json'));

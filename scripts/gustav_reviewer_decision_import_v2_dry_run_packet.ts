@@ -923,8 +923,14 @@ function main(): void {
   const promotedOfficialSourceAiDecisionPath = runPath(runDir, SOURCE_FILES.promotedOfficialSourceAiDecisionsV2);
   const rowDecisionArg = argValue('--row-decisions');
   const aiDecisionArg = argValue('--ai-decisions');
-  const rowDecisionPath = rowDecisionArg ? path.resolve(repoRoot, rowDecisionArg) : defaultRowDecisionPath;
-  const aiDecisionPath = aiDecisionArg ? path.resolve(repoRoot, aiDecisionArg) : defaultAiDecisionPath;
+  const defaultRowDecisionCandidatePath = fs.existsSync(promotedOfficialSourceRowDecisionPath)
+    ? promotedOfficialSourceRowDecisionPath
+    : defaultRowDecisionPath;
+  const defaultAiDecisionCandidatePath = fs.existsSync(promotedOfficialSourceAiDecisionPath)
+    ? promotedOfficialSourceAiDecisionPath
+    : defaultAiDecisionPath;
+  const rowDecisionPath = rowDecisionArg ? path.resolve(repoRoot, rowDecisionArg) : defaultRowDecisionCandidatePath;
+  const aiDecisionPath = aiDecisionArg ? path.resolve(repoRoot, aiDecisionArg) : defaultAiDecisionCandidatePath;
   const schemaPath = runPath(runDir, SOURCE_FILES.workflowSchema);
   const queuePath = runPath(runDir, SOURCE_FILES.reviewerQueue);
   const adminPacketPath = runPath(runDir, SOURCE_FILES.adminReviewerDeliverySurfaceV2Packet);

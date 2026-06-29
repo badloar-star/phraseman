@@ -51,7 +51,7 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
   const existing = promoRedeemInFlight.get(code);
   if (existing) return existing;
 
-  const request = (async () => {
+  const request = (async (): Promise<PromoRedeemResult> => {
     try {
       await initFirebaseAppCheckIfAvailable().catch(() => {});
       const fn = httpsCallable<{ code: string }, RedeemResponse>(

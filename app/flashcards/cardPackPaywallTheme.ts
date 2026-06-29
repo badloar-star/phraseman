@@ -115,6 +115,30 @@ function shellDark(): CardPackPaywallTheme {
   };
 }
 
+/** BUSINESS: строгая моно-оболочка — только чёрный/серый/белый, без цветных акцентов. */
+function shellBusiness(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(10,10,10,0.92)',
+    outerGlow: [
+      'rgba(255,255,255,0.12)',
+      'rgba(255,255,255,0.06)',
+      'rgba(10,10,10,0.55)',
+    ],
+    borderAccent: 'rgba(255,255,255,0.12)',
+    handleColorLight: 'rgba(255,255,255,0.10)',
+    handleColorDark: 'rgba(255,255,255,0.28)',
+    iconBg: ['#242424', '#1C1C1C'],
+    iconBorder: 'rgba(255,255,255,0.12)',
+    priceBorder: 'rgba(255,255,255,0.10)',
+    priceGradient: ['rgba(255,255,255,0.08)', 'rgba(0,0,0,0)'],
+    ctaColors: ['#F2F2F2', '#5E5E5E'],
+    ctaForeground: '#0A0A0A',
+    ctaGlowTop: 'rgba(255,255,255,0.12)',
+    goShopCta: ['#D4D4D4', '#2A2A2A'],
+    goShopForeground: '#0A0A0A',
+  };
+}
+
 /** NEON: той самий «ідеальний» лайм, темний текст на CTA (як correctText у NEON) */
 function shellNeon(): CardPackPaywallTheme {
   return {
@@ -263,6 +287,7 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   gold: shellGold(),
   coral: shellCoral(),
   minimalDark: shellDark(),
+  business: shellBusiness(),
   // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
   midnight: shellOnboardingGraphite(),
   ember: shellOnboardingGraphite(),

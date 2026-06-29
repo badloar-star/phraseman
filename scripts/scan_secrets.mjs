@@ -117,6 +117,17 @@ const FIREBASE_CLIENT_CONFIG_FILES = new Set([
   'admin/full.html',
 ]);
 const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
+// Auto-generated maps of PUBLIC Firebase Storage download URLs for bundled
+// learning audio. The "?alt=media&token=<uuid>" values are per-file public read
+// tokens for already-public assets the client must stream — not secrets. Exempt
+// the assignment detector ONLY in these generated files AND only on a line that is
+// a firebasestorage download URL with such a token (so a real key on another line
+// is still caught).
+const PUBLIC_AUDIO_URL_MAP_FILES = new Set([
+  'app/plan_audio_url_map.generated.ts',
+  'app/phrase_audio_url_map.generated.ts',
+]);
+const FIREBASE_STORAGE_DOWNLOAD_URL = /firebasestorage\.googleapis\.com\/.*[?&]alt=media&token=/;
 function isExemptFinding(ruleId, line, relPath) {
   // The Firebase web apiKey (AIza…) in the admin panel is public client config.
   // Exempt both the google-api-key rule and the assignment detector — but ONLY
@@ -125,6 +136,14 @@ function isExemptFinding(ruleId, line, relPath) {
     (ruleId === 'google-api-key' || ruleId === 'named-secret-assign') &&
     FIREBASE_CLIENT_CONFIG_FILES.has(relPath) &&
     FIREBASE_CLIENT_KEY_CONTEXT.test(line)
+  ) {
+    return true;
+  }
+  // Public Firebase Storage download tokens in generated audio URL maps.
+  if (
+    ruleId === 'named-secret-assign' &&
+    PUBLIC_AUDIO_URL_MAP_FILES.has(relPath) &&
+    FIREBASE_STORAGE_DOWNLOAD_URL.test(line)
   ) {
     return true;
   }

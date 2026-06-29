@@ -101,6 +101,7 @@ function LeagueChatPanel({
   myAuraId,
   myTotalXP,
   onToast,
+  onAuthorPress,
 }: {
   initialRoom?: LeagueChatRoom | null;
   myUid?: string;
@@ -108,6 +109,8 @@ function LeagueChatPanel({
   myAuraId?: string | null;
   myTotalXP?: number;
   onToast?: (message: string, type?: 'success' | 'error' | 'info') => void;
+  /** Тап по аватару/имени автора чужого сообщения — открыть его карточку. */
+  onAuthorPress?: (author: { uid: string; name: string; avatar?: string; aura?: string }) => void;
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -953,7 +956,18 @@ function LeagueChatPanel({
             const avatarSize = 36;
             const avatarGap = 8;
             const sideOffset = avatarSize + avatarGap + 4;
-            const avatarNode = isMine ? (
+            // Тап по аватару/имени чужого автора открывает его карточку. Своё имя/аватар
+            // и оптимистичные (ещё не отправленные) сообщения не кликабельны.
+            const canOpenAuthor = !isMine && !localMessage && !!onAuthorPress && !!m.authorUid;
+            const openAuthor = () =>
+              onAuthorPress?.({
+                uid: m.authorUid,
+                name: m.authorName,
+                avatar: m.authorAvatar,
+                aura: m.authorAura,
+              });
+            const accountAccessibilityLabel = `qa-league-chat-author-${m.id}`;
+            const plainAvatar = isMine ? (
               <AvatarView
                 avatar={avatar}
                 totalXP={myTotalXP}
@@ -963,6 +977,19 @@ function LeagueChatPanel({
               />
             ) : (
               <AvatarView avatar={avatar} size={avatarSize} auraId={m.authorAura} animateAura={false} />
+            );
+            const avatarNode = canOpenAuthor ? (
+              <TouchableOpacity
+                testID={`league-chat-author-avatar-${m.id}`}
+                accessibilityRole="button"
+                accessibilityLabel={accountAccessibilityLabel}
+                activeOpacity={0.7}
+                onPress={openAuthor}
+              >
+                {plainAvatar}
+              </TouchableOpacity>
+            ) : (
+              plainAvatar
             );
             return (
               <View
@@ -974,19 +1001,41 @@ function LeagueChatPanel({
                 }}
               >
                 {!isMine && m.authorName ? (
-                  <Text
-                    numberOfLines={1}
-                    style={{
-                      color: t.textMuted,
-                      fontSize: Math.max(10, f.caption - 1),
-                      fontWeight: '800',
-                      marginLeft: sideOffset + 6,
-                      marginBottom: 3,
-                      maxWidth: '74%',
-                    }}
-                  >
-                    {m.authorName}
-                  </Text>
+                  canOpenAuthor ? (
+                    <TouchableOpacity
+                      testID={`league-chat-author-name-${m.id}`}
+                      accessibilityRole="button"
+                      accessibilityLabel={accountAccessibilityLabel}
+                      activeOpacity={0.7}
+                      onPress={openAuthor}
+                      style={{ marginLeft: sideOffset + 6, marginBottom: 3, maxWidth: '74%' }}
+                    >
+                      <Text
+                        numberOfLines={1}
+                        style={{
+                          color: t.textMuted,
+                          fontSize: Math.max(10, f.caption - 1),
+                          fontWeight: '800',
+                        }}
+                      >
+                        {m.authorName}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <Text
+                      numberOfLines={1}
+                      style={{
+                        color: t.textMuted,
+                        fontSize: Math.max(10, f.caption - 1),
+                        fontWeight: '800',
+                        marginLeft: sideOffset + 6,
+                        marginBottom: 3,
+                        maxWidth: '74%',
+                      }}
+                    >
+                      {m.authorName}
+                    </Text>
+                  )
                 ) : null}
 
                 <View
@@ -1131,7 +1180,7 @@ function LeagueChatPanel({
 
         <View
           testID="league-chat-composer"
-          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}
+          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: t.bgCard }}
         >
           {draftBlocked && (
             <Text style={{ color: monoIcon(themeMode, '#E05252'), fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>

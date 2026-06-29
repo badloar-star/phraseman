@@ -448,7 +448,7 @@ Required checks:
 - target isolation tests;
 - personal practice target isolation tests;
 - screenshot smoke tests for language switch;
-- manual review signoff.
+- LLM official-source validation signoff.
 
 ## 7. Gustav Agent Office
 

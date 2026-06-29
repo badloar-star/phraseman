@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
+import { useTheme } from '../components/ThemeContext';
+import { monoIcon } from '../constants/monoIcon';
 
 type RouteParams = Record<string, string | string[]>;
 
 export default function RetiredPremiumModalV2Redirect() {
   const router = useRouter();
+  const { themeMode } = useTheme();
   const params = useLocalSearchParams<RouteParams>();
   // Ждём монтирования рут-навигатора: при холодном старте по legacy deep-link этот
   // экран может оказаться первым, и replace до монтирования бросает Root Layout error.
@@ -25,7 +28,7 @@ export default function RetiredPremiumModalV2Redirect() {
 
   return (
     <View style={styles.root}>
-      <ActivityIndicator size="large" color="#34d399" />
+      <ActivityIndicator size="large" color={monoIcon(themeMode, '#34d399')} />
     </View>
   );
 }

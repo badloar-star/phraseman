@@ -182,8 +182,8 @@ const BOON_COPY: Record<BoonId, BoonCopySource> = {
       pl: 'Ładowanie na maksa',
     },
     subtitle: {
-      ru: 'Заряд возвращается вдвое быстрее. Жми дольше.',
-      uk: 'Заряд повертається вдвічі швидше. Тисни довше.',
+      ru: 'Заряд возвращается вдвое быстрее весь день.',
+      uk: 'Заряд повертається вдвічі швидше весь день.',
       es: 'La carga vuelve el doble de rápido. Dale más.',
       'pt-BR': 'A carga volta o dobro mais rápido. Vá mais longe.',
       vi: 'Năng lượng hồi gấp đôi. Chơi lâu hơn.',
@@ -247,13 +247,13 @@ const BOON_COPY: Record<BoonId, BoonCopySource> = {
       pl: 'Wieczór bez limitów',
     },
     subtitle: {
-      ru: 'С 19:00 до 22:00 заряд не тратится. Налетай.',
-      uk: 'З 19:00 до 22:00 заряд не витрачається. Налітай.',
+      ru: 'С 19:00 до 22:00 заряд не тратится.',
+      uk: 'З 19:00 до 22:00 заряд не витрачається.',
       es: 'De 19:00 a 22:00 no gastas carga. Aprovecha.',
       'pt-BR': 'Das 19h às 22h a carga não acaba. Aproveite.',
       vi: 'Từ 19:00 đến 22:00 không tốn năng lượng. Tận hưởng.',
-      id: 'Pukul 19.00–22.00 daya tak terpakai. Gas.',
-      tr: '19:00–22:00 arası şarj harcanmaz. Kapışın.',
+      id: 'Pukul 19.00–22.00 daya tak terpakai.',
+      tr: '19:00–22:00 arası şarj harcanmaz.',
       pl: 'Od 19:00 do 22:00 ładunek się nie zużywa. Korzystaj.',
     },
     detail: {
@@ -572,6 +572,66 @@ export function getBoonCopy(id: BoonId, lang: Lang): BoonCopy {
     subtitle: triLang(lang, src.subtitle) ?? src.subtitle.ru,
     detail: triLang(lang, src.detail) ?? src.detail.ru,
   };
+}
+
+// «Сундук недели» (mystery_monday) — разовая недельная награда: после получения
+// нельзя зазывать «открой и забери своё» (создаёт ощущение второго сундука).
+// Эти copy показываются плашкой/модалкой ТОЛЬКО когда сундук уже забран на неделе.
+
+const MYSTERY_CLAIMED_SUBTITLE: TriText = {
+  ru: 'Награда уже забрана. Новый сундук — на следующей неделе.',
+  uk: 'Нагороду вже забрано. Нова скриня — наступного тижня.',
+  es: 'Recompensa ya recogida. El próximo cofre, la semana que viene.',
+  'pt-BR': 'Recompensa já coletada. O próximo baú vem na semana que vem.',
+  vi: 'Đã nhận phần thưởng. Rương mới sẽ có vào tuần sau.',
+  id: 'Hadiah sudah diambil. Peti berikutnya minggu depan.',
+  tr: 'Ödül zaten alındı. Yeni sandık gelecek hafta.',
+  pl: 'Nagroda już odebrana. Nowa skrzynia w przyszłym tygodniu.',
+};
+
+const MYSTERY_CLAIMED_DETAIL: TriParagraphs = {
+  ru: [
+    'Сундук этой недели ты уже открыл — награда зачислена тебе на счёт.',
+    'Новый сундук появится на следующей неделе. Ничего делать не нужно — он сам предложит себя открыть.',
+  ],
+  uk: [
+    'Скриню цього тижня ти вже відкрив — нагороду зараховано на твій рахунок.',
+    'Нова скриня з’явиться наступного тижня. Нічого робити не треба — вона сама запропонує відкрити її.',
+  ],
+  es: [
+    'El cofre de esta semana ya lo abriste: la recompensa ya está en tu cuenta.',
+    'El próximo cofre aparecerá la semana que viene. No tienes que hacer nada: se ofrecerá solo para abrirse.',
+  ],
+  'pt-BR': [
+    'O baú desta semana você já abriu — a recompensa já está na sua conta.',
+    'O próximo baú aparece na semana que vem. Não precisa fazer nada — ele vai se oferecer para abrir.',
+  ],
+  vi: [
+    'Rương tuần này bạn đã mở — phần thưởng đã được cộng vào tài khoản.',
+    'Rương mới sẽ xuất hiện vào tuần sau. Bạn không cần làm gì — nó sẽ tự mời bạn mở.',
+  ],
+  id: [
+    'Peti minggu ini sudah kamu buka — hadiahnya sudah masuk ke akunmu.',
+    'Peti baru muncul minggu depan. Kamu tidak perlu melakukan apa pun — peti akan menawarkan dirinya untuk dibuka.',
+  ],
+  tr: [
+    'Bu haftanın sandığını zaten açtın — ödül hesabına eklendi.',
+    'Yeni sandık gelecek hafta gelir. Bir şey yapmana gerek yok — kendisi açılmayı önerecek.',
+  ],
+  pl: [
+    'Skrzynię z tego tygodnia już otworzyłeś — nagroda trafiła na twoje konto.',
+    'Nowa skrzynia pojawi się w przyszłym tygodniu. Nic nie musisz robić — sama zaproponuje otwarcie.',
+  ],
+};
+
+/** Подзаголовок плашки «Сундук недели» ПОСЛЕ того, как награда забрана на этой неделе. */
+export function getMysteryChestClaimedSubtitle(lang: Lang): string {
+  return triLang(lang, MYSTERY_CLAIMED_SUBTITLE) ?? MYSTERY_CLAIMED_SUBTITLE.ru;
+}
+
+/** Абзацы детальной модалки «Сундук недели» ПОСЛЕ получения награды на этой неделе. */
+export function getMysteryChestClaimedDetail(lang: Lang): readonly string[] {
+  return triLang(lang, MYSTERY_CLAIMED_DETAIL) ?? MYSTERY_CLAIMED_DETAIL.ru;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

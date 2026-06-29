@@ -181,7 +181,9 @@ export const LESSON11_THEORY: {
           fixes: [
             { wrong: "She didn't worked", right: "She didn't work" },
             { wrong: 'Did she worked?', right: 'Did she work?' },
-            { wrong: 'She worked yesterday — verb stays base in − and ?', right: "She didn't work / Did she work?" },
+            { wrong: 'She work yesterday', right: 'She worked yesterday' },
+            { wrong: 'studyed', right: 'studied' },
+            { wrong: 'stoped', right: 'stopped' },
           ],
         },
         {

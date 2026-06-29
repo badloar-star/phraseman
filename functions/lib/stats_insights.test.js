@@ -150,6 +150,19 @@ describe('stats_insights quota replay helpers', () => {
         expect(decision.nextAllowedAtMs).toBe(2000);
         expect(decision.model).toBe('test-model');
     });
+    it('opens generation instead of replaying same-hash stored notes in the wrong language', () => {
+        const clean = briefing();
+        const hash = briefingHashForReplay(clean);
+        const decision = decideStatsInsightsReplay({
+            nextAllowedAtMs: 2000,
+            lastBriefingHash: hash,
+            lastNotes: {
+                balance: 'Today you keep a good small practice step with your phrases.',
+                rhythm: 'This week your practice rhythm is steady.',
+            },
+        }, hash, 1000, 'ru');
+        expect(decision).toEqual({ kind: 'open' });
+    });
     it('keeps a different briefing gated until the window opens', () => {
         const clean = briefing();
         const hash = briefingHashForReplay(clean);

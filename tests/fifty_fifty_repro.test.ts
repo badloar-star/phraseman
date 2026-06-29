@@ -96,6 +96,44 @@ describe('50/50 — correct tile is never dimmed (You are kind)', () => {
   });
 });
 
+describe('50/50 keeps half of ALL tiles (regression: removed 2 instead of 3)', () => {
+  // Mirror of the FIXED dimCount math in lesson1.tsx onPress (~1391-1402).
+  // keepCount = ceil(total/2) tiles stay (1 correct + rest wrong); dim the remainder.
+  const dimCount = (totalTiles: number): number => {
+    const wrongCount = totalTiles - 1; // exactly one correct tile in a slot
+    const keepCount = Math.max(2, Math.ceil(totalTiles / 2)); // never strand the correct tile alone
+    return Math.min(wrongCount, Math.max(0, totalTiles - keepCount));
+  };
+
+  it('removes exactly half, rounding the KEPT set up', () => {
+    expect(dimCount(6)).toBe(3); // 6 tiles → keep 3, remove 3 (the bug removed only 2)
+    expect(dimCount(5)).toBe(2); // 5 tiles → keep 3, remove 2
+    expect(dimCount(4)).toBe(2); // 4 tiles → keep 2, remove 2
+    expect(dimCount(7)).toBe(3); // 7 tiles → keep 4, remove 3
+  });
+
+  it('never dims more wrong tiles than exist (correct always survives)', () => {
+    for (let total = 2; total <= 8; total += 1) {
+      const removed = dimCount(total);
+      const wrongCount = total - 1;
+      expect(removed).toBeLessThanOrEqual(wrongCount); // never hides the lone correct tile
+      expect(total - removed).toBeGreaterThanOrEqual(2); // at least correct + 1 wrong remain
+    }
+  });
+
+  it('source uses total tile count, not wrong-tile count, for dimCount', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const source: string = fs.readFileSync(
+      path.join(__dirname, '..', 'app', 'lesson1.tsx'),
+      'utf8',
+    );
+    // Guard against regressing to `Math.ceil(wrongIdx.length / 2)`.
+    expect(source).toContain('const keepCount = Math.max(2, Math.ceil(totalTiles / 2))');
+    expect(source).not.toMatch(/dimCount\s*=\s*Math\.ceil\(wrongIdx\.length\s*\/\s*2\)/);
+  });
+});
+
 describe('50/50 dim resets when the tile bank changes', () => {
   const fs = require('fs');
   const path = require('path');

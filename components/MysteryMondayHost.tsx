@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
+import { emitAppEvent } from '../app/events';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTodaysBoons } from '../app/boons/boon_engine';
 import {
@@ -23,12 +24,13 @@ import {
   isClaimed,
   markClaimed,
   grantBoonReward,
+  MYSTERY_MONDAY_CLAIM_KEY,
   type BoonReward,
 } from '../app/boons/boon_rewards';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
 import BoonChestModal, { type BoonChestRarity } from './BoonChestModal';
 
-const CLAIM_KEY = 'boon_mystery_monday_claimed_v1';
+const CLAIM_KEY = MYSTERY_MONDAY_CLAIM_KEY;
 
 function makeL(lang: Lang) {
   return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
@@ -92,6 +94,8 @@ export default function MysteryMondayHost() {
     if (await isClaimed(CLAIM_KEY, week)) return;
     await markClaimed(CLAIM_KEY, week);
     await grantBoonReward(reward, 'boon_mystery_monday');
+    // Плашка «Сундук недели» в статистике должна сразу сменить текст на «уже открыт».
+    emitAppEvent('mystery_chest_claimed');
   };
 
   if (!visible || !reward) return null;

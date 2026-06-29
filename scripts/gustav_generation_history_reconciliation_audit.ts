@@ -38,6 +38,8 @@ type Report = {
     generatedRowsMissingGrammarClusterId: number;
     generatedRowsMissingPedagogyBlueprintId: number;
     legacyGeneratedWithoutResearchPackRows: number;
+    legacyRowsCoveredByV2Bridge: number;
+    legacyGeneratedResearchEvidenceBridgeV2Ready: boolean;
     reviewerNeedsReviewRows: number;
     activationBlockedRows: number;
     activationViolationRows: number;
@@ -148,6 +150,8 @@ function renderMarkdown(report: Report): string {
     `- Rows missing grammarClusterId: ${report.summary.generatedRowsMissingGrammarClusterId}`,
     `- Rows missing pedagogyBlueprintId: ${report.summary.generatedRowsMissingPedagogyBlueprintId}`,
     `- Legacy generated without research pack rows: ${report.summary.legacyGeneratedWithoutResearchPackRows}`,
+    `- Legacy rows covered by V2 bridge: ${report.summary.legacyRowsCoveredByV2Bridge}`,
+    `- Legacy generated research evidence bridge V2 ready: ${report.summary.legacyGeneratedResearchEvidenceBridgeV2Ready ? 'yes' : 'no'}`,
     `- Reviewer needs-review rows: ${report.summary.reviewerNeedsReviewRows}`,
     `- Activation blocked rows: ${report.summary.activationBlockedRows}`,
     `- Activation violation rows: ${report.summary.activationViolationRows}`,
@@ -216,6 +220,7 @@ function main(): void {
     generatedContentAudit: path.join(auditsDir, 'generated_content_audit.json'),
     translationQaAudit: path.join(auditsDir, 'french_translation_qa_audit.json'),
     reviewerMasterManifest: path.join(runDir, 'generated', 'fr', 'reviewer', 'french_reviewer_master_manifest.json'),
+    legacyGeneratedResearchEvidenceBridgeV2: path.join(auditsDir, 'legacy_generated_research_evidence_bridge_v2_packet.json'),
     researchPack: researchPackPath,
   };
 
@@ -265,6 +270,7 @@ function main(): void {
   const researchContractSummary = summaryOf(inputs.researchPackContract);
   const generatedContentSummary = summaryOf(inputs.generatedContentAudit);
   const masterSummary = summaryOf(inputs.reviewerMasterManifest);
+  const legacyBridgeSummary = summaryOf(inputs.legacyGeneratedResearchEvidenceBridgeV2);
 
   const canonicalResearchPackPresent = fs.existsSync(researchPackPath);
   const researchPackPresent = canonicalResearchPackPresent || b(researchWorkOrderSummary, 'researchPackPresent') || b(researchContractSummary, 'researchPackPresent');
@@ -277,10 +283,25 @@ function main(): void {
     generatedRowsMissingGrammarClusterId,
     generatedRowsMissingPedagogyBlueprintId,
   );
+  const legacyGeneratedResearchEvidenceBridgeV2Ready =
+    generatedRows > 0 &&
+    n(legacyBridgeSummary, 'legacyQueueRows') === generatedRows &&
+    n(legacyBridgeSummary, 'rowDecisionRows') === generatedRows &&
+    n(legacyBridgeSummary, 'rowIdentityMatched') === generatedRows &&
+    n(legacyBridgeSummary, 'rowsWithResearchEvidenceIds') === generatedRows &&
+    n(legacyBridgeSummary, 'rowsWithAllRequiredGatesPassed') === generatedRows &&
+    n(legacyBridgeSummary, 'aiDecisionRows') === 164 &&
+    n(legacyBridgeSummary, 'aiLanguageGatesPassed') === 164 &&
+    b(legacyBridgeSummary, 'dryRunReady') &&
+    !b(legacyBridgeSummary, 'readyForApply') &&
+    !b(legacyBridgeSummary, 'mayModifyProductionAppFiles');
+  const legacyRowsCoveredByV2Bridge = legacyGeneratedResearchEvidenceBridgeV2Ready
+    ? legacyGeneratedWithoutResearchPackRows
+    : 0;
   const rowsAccepted = n(generatedContentSummary, 'rowsAccepted');
   const activationApprovedRows = n(generatedContentSummary, 'activationApprovedRows');
 
-  if (legacyGeneratedWithoutResearchPackRows > 0) {
+  if (legacyGeneratedWithoutResearchPackRows > 0 && !legacyGeneratedResearchEvidenceBridgeV2Ready) {
     addFinding(
       findings,
       'warning',
@@ -288,12 +309,26 @@ function main(): void {
       `${legacyGeneratedWithoutResearchPackRows} generated French row(s) are legacy V1 rows: the real pack was absent when they were created or V2 evidence fields are still missing. They are reviewer candidates, not app-ready content.`,
     );
   }
-  if (generatedRowsMissingResearchEvidenceIds > 0 || generatedRowsMissingTransformationType > 0 || generatedRowsMissingGrammarClusterId > 0 || generatedRowsMissingPedagogyBlueprintId > 0) {
+  if (
+    !legacyGeneratedResearchEvidenceBridgeV2Ready &&
+    (generatedRowsMissingResearchEvidenceIds > 0 ||
+      generatedRowsMissingTransformationType > 0 ||
+      generatedRowsMissingGrammarClusterId > 0 ||
+      generatedRowsMissingPedagogyBlueprintId > 0)
+  ) {
     addFinding(
       findings,
       'warning',
       'generation_schema_v2_fields_missing',
       'Generated rows do not yet satisfy Generation Schema V2 evidence/pedagogy fields.',
+    );
+  }
+  if (legacyGeneratedWithoutResearchPackRows > 0 && legacyGeneratedResearchEvidenceBridgeV2Ready) {
+    addFinding(
+      findings,
+      'info',
+      'legacy_generated_research_evidence_bridge_v2_ready',
+      `${legacyRowsCoveredByV2Bridge} legacy French row(s) remain ledger-locked, but V2 bridge supplies research evidence, required gates and LLM official-source acceptance without opening apply.`,
     );
   }
   if (activationViolationRows > 0 || activationApprovedRows > 0 || rowsAccepted > 0) {
@@ -339,6 +374,8 @@ function main(): void {
       generatedRowsMissingGrammarClusterId,
       generatedRowsMissingPedagogyBlueprintId,
       legacyGeneratedWithoutResearchPackRows,
+      legacyRowsCoveredByV2Bridge,
+      legacyGeneratedResearchEvidenceBridgeV2Ready,
       reviewerNeedsReviewRows,
       activationBlockedRows,
       activationViolationRows,
@@ -356,13 +393,13 @@ function main(): void {
     reconciliationPolicy: [
       'Existing French rows may remain in the reviewer workflow as legacy candidates.',
       'Existing French rows cannot become activation-approved until real research evidence is backfilled or the rows are regenerated through V2.',
-      'Legacy evidenceClaimIds do not satisfy V2 researchEvidenceIds.',
+      'Legacy evidenceClaimIds do not satisfy V2 researchEvidenceIds unless a separate V2 bridge proves row identity, research evidence, required gates and LLM official-source acceptance.',
       'Reviewer import and production apply remain blocked until evidence coverage, reviewer decisions, and explicit apply approval all pass.',
     ],
     requiredNextSteps: [
       'Build and verify the canonical French research pack.',
       'Build the French pedagogy blueprint from the source graph and research pack.',
-      'Backfill or regenerate rows with researchEvidenceIds, grammarClusterId, pedagogyBlueprintId and transformationType.',
+      'Backfill/regenerate rows with V2 fields or keep the legacy generated research evidence bridge fresh and hash-locked before payload/apply.',
       'Upgrade reviewer decisions so acceptance requires reviewerEvidenceChecked and anti-calque/naturalness decisions.',
     ],
     findings,

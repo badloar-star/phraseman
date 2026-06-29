@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Image } from 'expo-image';
+import { AccessibilityInfo, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useIsFocused } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
@@ -11,18 +11,6 @@ import { getActiveYoutubeChannel, getLingmanYoutubeSnapshot } from '../app/lingm
 import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
 import { isVideoButtonEnabled } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
-import type { ThemeMode } from '../constants/theme';
-
-const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-dark-outline-v1.webp'),
-  gold: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-gold-outline-v1.webp'),
-  coral: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-coral-outline-v1.webp'),
-  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalDark-outline-v1.webp'),
-  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-midnight-outline-v1.webp'),
-  ember: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-ember-outline-v1.webp'),
-  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-aurora-outline-v1.webp'),
-  volt: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-volt-outline-v1.webp'),
-};
 
 function LingmanVideosButton() {
   const router = useRouter();
@@ -31,19 +19,34 @@ function LingmanVideosButton() {
   const { theme: t, themeMode, isDark } = useTheme();
   const [unreadCount, setUnreadCount] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  // Видимость кнопки управляется из «Пульта» (video_button_enabled). Дефолт true.
+  // Реагируем на смену remote_config живьём (onSnapshot → событие) и на фокус.
+  const [enabled, setEnabled] = useState(() => isVideoButtonEnabled());
   const badgePulse = useRef(new Animated.Value(1)).current;
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
+  const channelName = getActiveYoutubeChannel().displayName;
   const label = triLang(lang, {
-    ru: 'Видео PHRASEMAN',
-    uk: 'Видео PHRASEMAN',
-    es: 'PHRASEMAN videos',
-    'pt-BR': 'PHRASEMAN videos',
-    vi: 'PHRASEMAN videos',
-    id: 'PHRASEMAN videos',
-    tr: 'PHRASEMAN videos',
-    pl: 'PHRASEMAN videos',
+    ru: `Видео ${channelName}`,
+    uk: `Відео ${channelName}`,
+    es: `${channelName} videos`,
+    'pt-BR': `${channelName} videos`,
+    vi: `${channelName} videos`,
+    id: `${channelName} videos`,
+    tr: `${channelName} videos`,
+    pl: `${channelName} videos`,
   });
+
+  useEffect(() => {
+    const sync = () => setEnabled(isVideoButtonEnabled());
+    sync();
+    const sub = onAppEvent('remote_config_changed', sync);
+    return () => sub.remove();
+  }, []);
+
+  useEffect(() => {
+    if (isFocused) setEnabled(isVideoButtonEnabled());
+  }, [isFocused]);
 
   const refresh = useCallback(() => {
     let alive = true;
@@ -59,6 +62,13 @@ function LingmanVideosButton() {
     if (!isFocused) return;
     return refresh();
   }, [isFocused, refresh]);
+
+  // Свежий пин/новый канал из «Пульта» (remote_config) → пересчитать бейдж
+  // «новых», даже если экран уже открыт (не только по фокусу).
+  useEffect(() => {
+    const sub = onAppEvent('remote_config_changed', () => { refresh(); });
+    return () => sub.remove();
+  }, [refresh]);
 
   useEffect(() => {
     void AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
@@ -81,6 +91,11 @@ function LingmanVideosButton() {
     return () => loop.stop();
   }, [badgePulse, reduceMotion, unreadCount]);
 
+  // Кнопка выключена из «Пульта» — не рендерим вход на экран видео (сам экран
+  // /lingman_videos остаётся доступным по прямой ссылке). Все хуки выше вызваны
+  // безусловно, поэтому ранний return здесь не нарушает правила хуков.
+  if (!enabled) return null;
+
   return (
     <TouchableOpacity
       testID="home-lingman-youtube-button"
@@ -93,7 +108,9 @@ function LingmanVideosButton() {
       }}
       style={styles.button}
     >
-      <Image source={YOUTUBE_ICON_IMAGES[themeMode] ?? YOUTUBE_ICON_IMAGES.minimalDark} style={styles.image} contentFit="contain" />
+      <View style={[styles.image, styles.iconWrap]}>
+        <Ionicons name="play-circle-outline" size={32} color={chrome.accent} />
+      </View>
       {unreadCount > 0 && (
         <Animated.View style={[styles.badge, { backgroundColor: chrome.accent, borderColor: t.bgCard, transform: [{ scale: badgePulse }] }]}>
           <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
@@ -117,6 +134,10 @@ const styles = StyleSheet.create({
   image: {
     width: 56,
     height: 40,
+  },
+  iconWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   badge: {
     position: 'absolute',

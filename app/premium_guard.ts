@@ -8,7 +8,10 @@ const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
 const CACHE_TTL_MS  = 5 * 60 * 1000; // 5 minutes — avoid hammering RevenueCat
-const RC_STALE_GRACE_MS = 24 * 60 * 60 * 1000; // trust local premium for up to 24h after last RC confirmation
+// Зеркало functions/src/premium_status.ts SERVER_RC_GRACE_MS (72ч): покрывает billing retry
+// и сетевые лаги вебхука RC. Раньше клиент стоял на 24ч → между 24ч и 72ч клиент показывал
+// «нет премиума» и открывал пейвол, в то время как сервер ещё пропускал ИИ-функции. Аудит 2026-06-27.
+const RC_STALE_GRACE_MS = 72 * 60 * 60 * 1000;
 const RC_LAST_SEEN_KEY = 'premium_rc_last_seen_at';
 
 let _cachedRealResult: boolean | null = null;

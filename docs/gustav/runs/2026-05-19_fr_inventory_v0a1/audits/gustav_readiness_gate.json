@@ -1,16 +1,14 @@
 {
   "schemaVersion": "gustav-readiness-gate-v0",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-06-27T12:18:02.014Z",
+  "generatedAt": "2026-06-29T03:49:04.847Z",
   "decision": "GO",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
       "C:\\appsprojects\\phraseman\\scripts\\gustav_readiness_gate.ts",
       "--run",
-      "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1",
-      "--target",
-      "fr"
+      "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1"
     ],
     "cwd": "C:\\appsprojects\\phraseman",
     "nodeVersion": "v24.14.0"
@@ -27,13 +25,13 @@
     ]
   },
   "summary": {
-    "checks": 57,
-    "passed": 55,
-    "failed": 2,
-    "blockers": 2,
+    "checks": 58,
+    "passed": 57,
+    "failed": 1,
+    "blockers": 1,
     "warnings": 0,
     "generationBlockers": 0,
-    "applyBlockers": 2
+    "applyBlockers": 1
   },
   "inputStatuses": {
     "verdict": {
@@ -482,12 +480,89 @@
         "mojibakeMeaningFields": 0,
         "duplicatePhraseIds": 0,
         "blockers": 0,
-        "warnings": 1,
+        "warnings": 0,
         "shapeValid": true,
+        "llmOfficialSourceBridgeReady": true,
+        "llmOfficialSourceReviewedRows": 1600,
+        "llmOfficialSourceRowsWithAllRequiredGatesPassed": 1600,
         "readyForReviewer": true,
         "readyForApply": false,
         "mayStartFrenchGeneration": true,
         "mayModifyProductionAppFiles": false
+      }
+    },
+    "officialSourceCoverage": {
+      "status": "PASS",
+      "summary": {
+        "targetLocale": "fr",
+        "sourceLocales": [
+          "ru",
+          "uk"
+        ],
+        "coverageState": "official_source_content_coverage_complete_no_import",
+        "p38Ready": true,
+        "lessonLedgers": 32,
+        "ledgerRows": 1600,
+        "ledgerRowsWithEvidenceClaims": 1600,
+        "ledgerRowsWithRequiredEvidence": 1600,
+        "reviewerQueueRows": 1600,
+        "reviewerQueueNeedsReviewRows": 1600,
+        "reviewerQueueBlockedRows": 1600,
+        "rowOfficialSourceDecisionRows": 1600,
+        "acceptedRowOfficialSourceDecisionRows": 1600,
+        "aiOfficialSourceDecisionRows": 164,
+        "acceptedAiOfficialSourceDecisionRows": 164,
+        "rowDecisionsMatchedToLedgerRows": 1600,
+        "rowDecisionsMatchedToQueueRows": 1600,
+        "rowDecisionsWithRuUkCoverage": 1600,
+        "rowDecisionsWithTrustedEvidenceIds": 1600,
+        "rowDecisionsWithSourceRefs": 1600,
+        "rowDecisionsWithTrustedSourceRefUrls": 1600,
+        "rowDecisionsWithEvidenceCoveredBySourceRefs": 1600,
+        "rowDecisionsWithUntrustedSourceRefUrls": 0,
+        "rowDecisionsWithUntrustedSourceRefIds": 0,
+        "rowDecisionsWithAllRequiredGatesPassed": 1600,
+        "rowDecisionQuizRows": 1600,
+        "rowDecisionQuizRowsWithOneCorrectAnswer": 1600,
+        "rowDecisionWrongTargetRows": 0,
+        "rowDecisionWrongSourceLocaleRows": 0,
+        "rowDecisionActivationOpenRows": 0,
+        "rowDecisionImportOpenRows": 0,
+        "rowDecisionProductionApplyOpenRows": 0,
+        "aiDecisionsWithSourceRefs": 164,
+        "aiDecisionsWithCoreLanguageGatesPassed": 164,
+        "aiDecisionActivationOpenRows": 0,
+        "aiDecisionImportOpenRows": 0,
+        "aiDecisionProductionApplyOpenRows": 0,
+        "trustedSourceFamilies": 9,
+        "trustedSourceIds": 10,
+        "aiDecisionsWithTrustedSourceRefUrls": 164,
+        "aiDecisionsWithMinimumTrustedSourceRefs": 164,
+        "aiDecisionsWithUntrustedSourceRefUrls": 0,
+        "aiDecisionsWithUntrustedSourceRefIds": 0,
+        "researchPackCheckedOnlineAt": "2026-06-26T07:30:48.534Z",
+        "officialSourceVerificationMode": "local_audited_research_pack_checked_online",
+        "rowsReadyForReviewerDecisionImportDryRun": true,
+        "aiReadyForReviewerDecisionImportDryRun": true,
+        "readyForReviewerDecisionImportDryRunRefresh": true,
+        "readyForDecisionImportExecutionGateRefresh": true,
+        "readyForApply": false,
+        "mayModifyProductionAppFiles": false,
+        "reviewerDecisionsImported": false,
+        "generatedLedgerWritesAllowed": false,
+        "serverUploadAllowed": false,
+        "firebaseUploadAllowed": false,
+        "runtimeDownloadsEnabled": false,
+        "activationApproved": false,
+        "rejectsNonHttpsSourceRefFixture": true,
+        "rejectsUntrustedSourceDomainFixture": true,
+        "rejectsUntrustedSourceIdFixture": true,
+        "rejectsEvidenceWithoutMatchingSourceRefFixture": true,
+        "rejectsInsufficientAiTrustedSourceRefsFixture": true,
+        "fixtureProbesPassed": 17,
+        "fixtureProbes": 17,
+        "blockers": 0,
+        "warnings": 0
       }
     },
     "readinessApplyCoverage": {
@@ -1482,6 +1557,19 @@
       "status": "PASS"
     },
     {
+      "id": "RDY-061",
+      "title": "French dev surfaces stay visible behind source gates",
+      "severity": "blocker",
+      "blocks": [
+        "generation",
+        "apply"
+      ],
+      "sourceArtifact": "tests\\gustav_french_dev_surface_parity.test.ts",
+      "detail": "French dev surface parity is locked: 19/19 evidence checks passed across Home, quizzes, daily phrase, diagnostic, lesson menu and daily-task navigation.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
+    },
+    {
       "id": "RDY-055",
       "title": "Migration adapter plan exists",
       "severity": "blocker",
@@ -2052,11 +2140,9 @@
         "apply"
       ],
       "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\generated_content_audit.json",
-      "detail": "Generated content audit is HOLD with rows=1600, rowsWithFrench=1600, readyForReviewer=true, readyForApply=false and mayModifyProductionAppFiles=false. Production apply remains blocked.",
-      "requiredBeforeWork": [
-        "After generation, audit French content for grammar, sourceLocale coverage, ids, placeholders, lesson order and runtime shape."
-      ],
-      "status": "FAIL"
+      "detail": "Generated content audit is HOLD but shape-valid/readyForReviewer, and LLM official-source coverage V2 supersedes the old review hold with rows=1600, AI=164, sourceRefs=1600 and gates=1600. Production apply still requires RDY-090 explicit approval.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-090",

@@ -300,7 +300,8 @@ function buildPlanObjects(
     if (!object.sha256 || !/^[a-f0-9]{64}$/.test(object.sha256)) {
       blockers.push(`bad object hash: ${stagingPath}`);
     }
-    if (!Number.isSafeInteger(object.byteSize) || object.byteSize <= 0) {
+    const byteSize = object.byteSize;
+    if (!Number.isSafeInteger(byteSize) || byteSize === undefined || byteSize <= 0) {
       blockers.push(`bad object byteSize: ${stagingPath}`);
     }
 
@@ -309,7 +310,7 @@ function buildPlanObjects(
     if (object.sha256 && actualHash !== object.sha256) {
       blockers.push(`local object hash mismatch: ${localPath}`);
     }
-    if (object.byteSize && fileContent.byteLength !== object.byteSize) {
+    if (byteSize !== undefined && fileContent.byteLength !== byteSize) {
       blockers.push(`local object byteSize mismatch: ${localPath}`);
     }
 
@@ -319,7 +320,7 @@ function buildPlanObjects(
       localPath,
       stagingPath,
       sha256: object.sha256 ?? actualHash,
-      byteSize: object.byteSize ?? fileContent.byteLength,
+      byteSize: byteSize ?? fileContent.byteLength,
     });
   }
 

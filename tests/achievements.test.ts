@@ -165,12 +165,17 @@ describe('achievements', () => {
   it('wires card pack achievements into both official and community purchase flows', () => {
     const officialPurchasePath = path.join(__dirname, '..', 'app', 'flashcards', 'cardPackShardPurchase.ts');
     const communityPurchasePath = path.join(__dirname, '..', 'app', 'community_packs', 'purchaseCommunityPack.ts');
+    const trackingPath = path.join(__dirname, '..', 'app', 'flashcards', 'packAchievementTracking.ts');
     const officialSource = fs.readFileSync(officialPurchasePath, 'utf8');
     const communitySource = fs.readFileSync(communityPurchasePath, 'utf8');
+    const trackingSource = fs.readFileSync(trackingPath, 'utf8');
 
     expect(officialSource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
     expect(communitySource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
     expect(communitySource).toContain('trackExternalShardSpendAchievement(pack.priceShards)');
+    expect(trackingSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys'");
+    expect(trackingSource).toContain('const target = storageStudyTarget(studyTarget)');
+    expect(trackingSource).not.toContain("studyTarget === 'fr'");
   });
 
   it('keeps flashcard source achievement aligned with live save sources', () => {

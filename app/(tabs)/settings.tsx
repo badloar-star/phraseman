@@ -70,6 +70,7 @@ import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { isIdeasEnabled } from '../remote_flags';
 import { getAnalyticsConsentState, setAnalyticsConsent } from '../analytics_consent';
+import { recordConsentToCloud } from '../age_consent_cloud';
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -973,7 +974,14 @@ export default function SettingsMain() {
                 value={analyticsOn}
                 onValueChange={(val) => {
                   setAnalyticsOn(val);
-                  void setAnalyticsConsent(val ? 'granted' : 'denied');
+                  void (async () => {
+                    // 1) Локально (источник правды + гейт сбора сразу меняется).
+                    await setAnalyticsConsent(val ? 'granted' : 'denied');
+                    // 2) В облако для accountability (GDPR): админка получает факт и
+                    //    дату отзыва/выдачи в user_consents.updatedAt. Best-effort —
+                    //    сбой не ломает UX, локальный отзыв уже применён.
+                    void recordConsentToCloud();
+                  })();
                 }}
               />
             }

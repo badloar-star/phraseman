@@ -3932,8 +3932,8 @@ function AuthOnboardingStep({
             style={{ paddingVertical: 14, marginTop: 8 }}
             activeOpacity={0.7}
           >
-            {false && authBusy ? (
-              <View />
+            {authBusy ? (
+              <ActivityIndicator size="small" color={DARK.textMuted} />
             ) : (
               <Text style={{ color: DARK.textMuted, fontSize: 15, fontWeight: '500', textAlign: 'center' }}>
                 {authPick('Позже', 'Пізніше', 'Más tarde')}

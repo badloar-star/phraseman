@@ -23,8 +23,17 @@
  * Монтируется из _layout.tsx. Показывается ПОВЕРХ всего; не использует обычную
  * OverlayArbiter-логику дисмисса, т.к. должен блокировать интерфейс.
  */
-import React, { useEffect, useMemo, useState } from 'react';
-import { Modal, View, Text, TextInput, Pressable, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Modal,
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { useLang } from './LangContext';
@@ -39,6 +48,79 @@ import { recordConsentToCloud } from '../app/age_consent_cloud';
 
 const REVERIFY_DONE_KEY = 'consent_reverify_done_v1';
 
+// ── Барабан выбора года (iOS-style wheel picker, без сторонних зависимостей) ──
+const WHEEL_ITEM_HEIGHT = 44; // высота одной строки года
+const WHEEL_VISIBLE_ROWS = 5; // нечётное: 2 сверху + центр + 2 снизу
+const WHEEL_HEIGHT = WHEEL_ITEM_HEIGHT * WHEEL_VISIBLE_ROWS;
+const WHEEL_PAD_ROWS = Math.floor(WHEEL_VISIBLE_ROWS / 2); // пустые строки сверху/снизу
+
+interface YearWheelProps {
+  years: readonly number[]; // от новых к старым (сверху вниз)
+  value: number;
+  onChange: (year: number) => void;
+}
+
+/**
+ * Прокручиваемый «барабан» лет с магнитной привязкой к центру (snap) и
+ * подсветкой выбранного года в центральной рамке. Полностью заменяет ввод с
+ * клавиатуры — пользователь просто крутит колесо, как на iPhone.
+ */
+function YearWheel({ years, value, onChange }: YearWheelProps) {
+  const scrollRef = useRef<ScrollView>(null);
+  const selectedIndex = Math.max(0, years.indexOf(value));
+
+  // Установить колесо на текущее значение при монтировании / смене value извне.
+  useEffect(() => {
+    const y = selectedIndex * WHEEL_ITEM_HEIGHT;
+    // requestAnimationFrame даёт ScrollView смонтироваться до scrollTo.
+    const id = requestAnimationFrame(() => {
+      scrollRef.current?.scrollTo({ y, animated: false });
+    });
+    return () => cancelAnimationFrame(id);
+    // Только при первом монтировании: дальше позицией управляет пользователь.
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const commitFromOffset = (offsetY: number) => {
+    const idx = Math.round(offsetY / WHEEL_ITEM_HEIGHT);
+    const clamped = Math.min(Math.max(idx, 0), years.length - 1);
+    const year = years[clamped];
+    if (year !== value) onChange(year);
+  };
+
+  const onMomentumEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    commitFromOffset(e.nativeEvent.contentOffset.y);
+  };
+
+  return (
+    <View style={styles.wheelWrap}>
+      {/* Центральная рамка-индикатор выбранного года */}
+      <View pointerEvents="none" style={styles.wheelSelection} />
+      <ScrollView
+        ref={scrollRef}
+        showsVerticalScrollIndicator={false}
+        snapToInterval={WHEEL_ITEM_HEIGHT}
+        decelerationRate="fast"
+        nestedScrollEnabled
+        onMomentumScrollEnd={onMomentumEnd}
+        onScrollEndDrag={onMomentumEnd}
+        contentContainerStyle={styles.wheelContent}
+      >
+        {years.map((y, i) => {
+          const active = i === selectedIndex;
+          return (
+            <View key={y} style={styles.wheelItem}>
+              <Text style={[styles.wheelText, active && styles.wheelTextActive]}>{y}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+      {/* Мягкие затемнения сверху/снизу для эффекта «уходящего» барабана */}
+      <View pointerEvents="none" style={[styles.wheelFade, styles.wheelFadeTop]} />
+      <View pointerEvents="none" style={[styles.wheelFade, styles.wheelFadeBottom]} />
+    </View>
+  );
+}
+
 function makeL(lang: Lang) {
   return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
@@ -49,7 +131,7 @@ export default function ConsentReverifyHost() {
   const L = makeL(lang as Lang);
 
   const [visible, setVisible] = useState(false);
-  const [yearInput, setYearInput] = useState('');
+  const [birthYear, setBirthYearSel] = useState<number | null>(null);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [analyticsChoice, setAnalyticsChoice] = useState<'granted' | 'denied' | null>(null);
@@ -83,8 +165,18 @@ export default function ConsentReverifyHost() {
     };
   }, []);
 
-  const yearNum = parseInt(yearInput, 10);
-  const yearValid = yearInput.length === 4 && isPlausibleBirthYear(yearNum);
+  // Список лет для барабана: от текущего (сверху) вниз до текущего − 120.
+  // Дефолт центрируем на правдоподобном «взрослом» году (текущий − 30).
+  const { wheelYears, defaultYear } = useMemo(() => {
+    const now = new Date().getFullYear();
+    const ys: number[] = [];
+    for (let y = now; y >= now - 120; y -= 1) ys.push(y);
+    return { wheelYears: ys, defaultYear: now - 30 };
+  }, []);
+
+  // Барабан всегда показывает значение → используем дефолт, пока юзер не крутил.
+  const effectiveYear = birthYear ?? defaultYear;
+  const yearValid = birthYear !== null && isPlausibleBirthYear(birthYear);
   const canSubmit = yearValid && acceptTerms && acceptPrivacy && analyticsChoice !== null && !busy;
 
   const openLegal = (which: 'terms' | 'privacy') => {
@@ -96,10 +188,10 @@ export default function ConsentReverifyHost() {
   };
 
   const submit = async () => {
-    if (!canSubmit) return;
+    if (!canSubmit || birthYear === null) return;
     setBusy(true);
     try {
-      await setBirthYear(yearNum);
+      await setBirthYear(birthYear);
       await setAnalyticsConsent(analyticsChoice === 'granted' ? 'granted' : 'denied');
       void recordConsentToCloud(); // best-effort учёт в облако (для админки)
       await AsyncStorage.setItem(REVERIFY_DONE_KEY, '1');
@@ -168,14 +260,10 @@ export default function ConsentReverifyHost() {
             <Text style={styles.intro}>{copy.intro}</Text>
 
             <Text style={styles.label}>{copy.yearLabel}</Text>
-            <TextInput
-              style={styles.yearInput}
-              value={yearInput}
-              onChangeText={(t) => setYearInput(t.replace(/[^0-9]/g, '').slice(0, 4))}
-              keyboardType="number-pad"
-              maxLength={4}
-              placeholder="—"
-              placeholderTextColor="#888"
+            <YearWheel
+              years={wheelYears}
+              value={effectiveYear}
+              onChange={(y) => setBirthYearSel(y)}
             />
 
             <Pressable style={styles.row} onPress={() => setAcceptTerms((v) => !v)}>
@@ -247,17 +335,49 @@ const styles = StyleSheet.create({
   title: { color: '#fff', fontSize: 20, fontWeight: '800', marginBottom: 10 },
   intro: { color: '#c7ccd2', fontSize: 14, lineHeight: 20 },
   label: { color: '#9aa0a6', fontSize: 13, fontWeight: '700', marginTop: 18, marginBottom: 6 },
-  yearInput: {
+  // ── Барабан выбора года ──
+  wheelWrap: {
+    height: WHEEL_HEIGHT,
+    borderRadius: 12,
     backgroundColor: '#0f1216',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 10,
-    color: '#fff',
-    fontSize: 18,
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    letterSpacing: 4,
+    overflow: 'hidden',
+    justifyContent: 'center',
   },
+  wheelContent: {
+    // Пустые отступы сверху/снизу, чтобы первый и последний год могли встать в центр.
+    paddingVertical: WHEEL_PAD_ROWS * WHEEL_ITEM_HEIGHT,
+  },
+  wheelItem: {
+    height: WHEEL_ITEM_HEIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  wheelText: { color: '#5c636b', fontSize: 20, fontWeight: '600', letterSpacing: 2 },
+  wheelTextActive: { color: '#fff', fontSize: 24, fontWeight: '800' },
+  wheelSelection: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    top: WHEEL_PAD_ROWS * WHEEL_ITEM_HEIGHT,
+    height: WHEEL_ITEM_HEIGHT,
+    borderRadius: 10,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: 'rgba(52,211,153,0.5)',
+    backgroundColor: 'rgba(52,211,153,0.08)',
+  },
+  wheelFade: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: WHEEL_ITEM_HEIGHT * 1.4,
+    backgroundColor: '#0f1216',
+    opacity: 0.55,
+  },
+  wheelFadeTop: { top: 0 },
+  wheelFadeBottom: { bottom: 0 },
   row: { flexDirection: 'row', alignItems: 'center', marginTop: 14, gap: 10 },
   checkbox: {
     width: 24,

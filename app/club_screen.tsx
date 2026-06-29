@@ -412,13 +412,15 @@ export default function ClubScreen() {
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
-  const [chatModalVisible, setChatModalVisible] = useState(false);
-  // Вход «сразу в чат» из шапки home: при openChat=1 открываем модалку чата один раз.
-  // Модалка — fullScreen, поэтому экран лиги под ней не мелькает.
-  const openChatHandledRef = useRef(false);
-  // true — чат открыт «в обход» прямо с главной (openChat=1). Тогда закрытие чата
-  // должно вести НАЗАД на главную, а не показывать экран лиги под модалкой.
-  const directChatFromHomeRef = useRef(false);
+  // Вход «сразу в чат» из шапки home (openChat=1): модалку чата нужно показать
+  // УЖЕ НА ПЕРВОМ кадре, иначе экран лиги под ней успевает мелькнуть. Поэтому
+  // начальное состояние читаем синхронно из параметра, а не через useEffect.
+  const openedDirectlyToChat = String(openChatParam ?? '') === '1';
+  const [chatModalVisible, setChatModalVisible] = useState(openedDirectlyToChat);
+  const openChatHandledRef = useRef(openedDirectlyToChat);
+  // true — чат открыт «в обход» прямо с главной. Тогда закрытие чата ведёт НАЗАД
+  // на главную, а не показывает экран лиги под модалкой.
+  const directChatFromHomeRef = useRef(openedDirectlyToChat);
   useEffect(() => {
     if (openChatHandledRef.current) return;
     if (String(openChatParam ?? '') === '1') {
@@ -1980,7 +1982,9 @@ export default function ClubScreen() {
 
       <Modal
         visible={chatModalVisible}
-        animationType="slide"
+        // Прямой вход с главной (openChat=1): без анимации, чтобы экран лиги под
+        // слайдом не мелькал. Обычный вход с экрана лиги — привычный slide-up.
+        animationType={openedDirectlyToChat ? 'none' : 'slide'}
         presentationStyle="fullScreen"
         onRequestClose={closeChatModal}
       >

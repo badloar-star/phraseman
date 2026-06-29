@@ -12,6 +12,7 @@
 
 import { IS_EXPO_GO } from './config';
 import { getStableId } from './stable_id';
+import { ensureStableAuthLink } from './cloud_sync';
 import { getBirthYearSnapshot, getAgeBracketSnapshot } from './age_gate';
 import { getAnalyticsConsentState } from './analytics_consent';
 
@@ -42,6 +43,14 @@ export async function recordConsentToCloud(): Promise<void> {
   try {
     const stableId = await getStableId();
     if (!stableId) return;
+
+    // ВАЖНО для сбора в облако: правило user_consents разрешает запись владельцу
+    // через stableUserMatchesAuth, который читает users/{stableId}.firebaseAuthUid.
+    // У brand-new юзера на ПЕРВОМ экране онбординга эта привязка могла ещё не
+    // успеть записаться (гонка с cloud-sync) → запись согласия была бы отклонена,
+    // и юзер пропал бы из учёта админки. Гарантируем линк ДО записи (best-effort).
+    await ensureStableAuthLink().catch(() => false);
+
     const birthYear = getBirthYearSnapshot();
     const analyticsConsent = getAnalyticsConsentState();
     const now = Date.now();
@@ -72,7 +81,14 @@ export async function recordConsentToCloud(): Promise<void> {
       payload.consentRevokedAt = now;
     }
 
-    await ref.set(payload, { merge: true });
+    try {
+      await ref.set(payload, { merge: true });
+    } catch {
+      // Один ретрай: на самой первой записи привязка auth-линка могла ещё
+      // распространяться; перепривязываем и пробуем снова.
+      await ensureStableAuthLink().catch(() => false);
+      await ref.set(payload, { merge: true }).catch(() => {});
+    }
   } catch {
     /* best-effort: не ломаем UX */
   }

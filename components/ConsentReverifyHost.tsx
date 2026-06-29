@@ -65,13 +65,25 @@ interface YearWheelProps {
  * подсветкой выбранного года в центральной рамке. Полностью заменяет ввод с
  * клавиатуры — пользователь просто крутит колесо, как на iPhone.
  */
+function clampIndex(idx: number, len: number): number {
+  return Math.min(Math.max(idx, 0), len - 1);
+}
+
 function YearWheel({ years, value, onChange }: YearWheelProps) {
   const scrollRef = useRef<ScrollView>(null);
-  const selectedIndex = Math.max(0, years.indexOf(value));
+  const initialIndex = Math.max(0, years.indexOf(value));
 
-  // Установить колесо на текущее значение при монтировании / смене value извне.
+  // Активный индекс ведём ЛОКАЛЬНО и обновляем прямо во время скролла, чтобы
+  // подсветка центрального года шла за пальцем без задержки (раньше она ждала
+  // конца прокрутки, отсюда «не поспевает»).
+  const [liveIndex, setLiveIndex] = useState(initialIndex);
+  // Последний год, о котором уже сообщили родителю — чтобы не дёргать onChange
+  // на каждый кадр скролла, только при реальной смене.
+  const reportedIndexRef = useRef(initialIndex);
+
+  // Установить колесо на стартовое значение при монтировании.
   useEffect(() => {
-    const y = selectedIndex * WHEEL_ITEM_HEIGHT;
+    const y = initialIndex * WHEEL_ITEM_HEIGHT;
     // requestAnimationFrame даёт ScrollView смонтироваться до scrollTo.
     const id = requestAnimationFrame(() => {
       scrollRef.current?.scrollTo({ y, animated: false });
@@ -80,15 +92,15 @@ function YearWheel({ years, value, onChange }: YearWheelProps) {
     // Только при первом монтировании: дальше позицией управляет пользователь.
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const commitFromOffset = (offsetY: number) => {
-    const idx = Math.round(offsetY / WHEEL_ITEM_HEIGHT);
-    const clamped = Math.min(Math.max(idx, 0), years.length - 1);
-    const year = years[clamped];
-    if (year !== value) onChange(year);
-  };
-
-  const onMomentumEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    commitFromOffset(e.nativeEvent.contentOffset.y);
+  // Реальный-тайм: на каждый кадр скролла пересчитываем центральный индекс,
+  // двигаем подсветку и (при смене) сообщаем год родителю.
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const idx = clampIndex(Math.round(e.nativeEvent.contentOffset.y / WHEEL_ITEM_HEIGHT), years.length);
+    if (idx !== liveIndex) setLiveIndex(idx);
+    if (idx !== reportedIndexRef.current) {
+      reportedIndexRef.current = idx;
+      onChange(years[idx]);
+    }
   };
 
   return (
@@ -101,12 +113,12 @@ function YearWheel({ years, value, onChange }: YearWheelProps) {
         snapToInterval={WHEEL_ITEM_HEIGHT}
         decelerationRate="fast"
         nestedScrollEnabled
-        onMomentumScrollEnd={onMomentumEnd}
-        onScrollEndDrag={onMomentumEnd}
+        scrollEventThrottle={16}
+        onScroll={onScroll}
         contentContainerStyle={styles.wheelContent}
       >
         {years.map((y, i) => {
-          const active = i === selectedIndex;
+          const active = i === liveIndex;
           return (
             <View key={y} style={styles.wheelItem}>
               <Text style={[styles.wheelText, active && styles.wheelTextActive]}>{y}</Text>

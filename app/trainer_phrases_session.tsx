@@ -18,7 +18,7 @@ import TapScale from '../components/TapScale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
@@ -505,6 +505,10 @@ export default function TrainerPhrasesSession() {
           if (cancelled) return;
           if (!planAllowed) {
             logTrainerDirectGateBlocked('/trainer_phrases_session');
+            // Снимаем экран тренажёра со стека «назад»: при закрытии пейвола
+            // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
+            // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
+            markNextNavigationAsReplace();
             router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
             return;
           }
@@ -514,6 +518,9 @@ export default function TrainerPhrasesSession() {
           // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
           if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
             logTrainerDirectGateBlocked('/trainer_phrases_session');
+            // см. коммент выше: убираем тренажёр из стека, чтобы «назад» с пейвола
+            // не вернулось на исчерпанный лимит и не открыло пейвол снова.
+            markNextNavigationAsReplace();
             router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
             return;
           }

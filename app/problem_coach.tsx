@@ -37,7 +37,7 @@ import { getVisibleIntroLearningBlocks } from './personal_training_intro_blocks'
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { buildPracticeOptionsByStepId } from './practice_option_shuffle';
 
 type Stage = 'intro' | 'practice' | 'done';
@@ -91,6 +91,10 @@ export default function ProblemCoach() {
         const freeAllowed = await reserveFreeDiagnosisTraining(diagnosisTraining.id, { studyTarget, sourceLocale });
         if (cancelled) return;
         if (!freeAllowed) {
+          // Снимаем экран разбора ошибки со стека «назад»: при закрытии пейвола
+          // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
+          // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
+          markNextNavigationAsReplace();
           router.replace({ pathname: '/premium_modal', params: { context: 'diagnosis_training' } } as any);
           return;
         }

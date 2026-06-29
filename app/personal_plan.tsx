@@ -362,6 +362,12 @@ export default function PersonalPlanScreen() {
       const fresh = await getVerifiedPremiumAccessStatus().catch(() => false);
       if (cancelled) return;
       if (!fresh) {
+        // markNextNavigationAsReplace: убираем САМ экран плана из стека «назад».
+        // Иначе при закрытии пейвола safeRouterBack возвращал на /personal_plan,
+        // этот же гейт снова срабатывал (нет доступа → пейвол) и пейвол открывался
+        // заново «на месте», бесконечно. Сняв план со стека, «назад» с пейвола
+        // уходит на реальный предыдущий экран (главную), а не в петлю.
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
       }
       // fresh === true: доступ есть, провайдер догонит через premium_activated/reload —

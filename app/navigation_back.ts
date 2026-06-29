@@ -46,6 +46,26 @@ function isTransientRedirectPath(path: string): boolean {
   return TRANSIENT_REDIRECT_PATHS.has(path);
 }
 
+// Сами экраны пейвола (paywall_a/b/c) — это КОНЕЧНАЯ точка показа, а НЕ место,
+// куда можно «вернуться». Если при рассинхроне стека «назад» с пейвола разрешается
+// в запись, которая сама является пейволом (или диспетчером premium_modal), то
+// safeRouterBack делает replace на тот же пейвол → он закрывается и тут же
+// открывается «на месте», бесконечно (баг «не закрыть пейвол»). Поэтому при выборе
+// цели возврата мы ПРОПУСКАЕМ любые такие записи и уходим на первый реальный экран
+// под ними (или на home-fallback). Сравниваем по basePath: query (context/source)
+// не должен мешать сопоставлению.
+const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
+  '/paywall_a',
+  '/paywall_b',
+  '/paywall_c',
+]);
+
+/** true для пейволов и транзитных диспетчеров — на них «назад» вести нельзя. */
+function isNonBackTargetPath(path: string): boolean {
+  const base = basePath(path);
+  return PAYWALL_BASE_PATHS.has(base) || isTransientRedirectPath(base);
+}
+
 /**
  * Пометить, что СЛЕДУЮЩИЙ переход — это router.replace (свап текущего экрана),
  * а не push. Вызывать НЕПОСРЕДСТВЕННО перед router.replace, который уводит
@@ -188,11 +208,23 @@ export function safeRouterBack(
   if (navigationStack.length > 0) {
     navigationStack.pop();
   }
+
+  // Пропускаем любые записи-пейволы/диспетчеры под нами: «назад» с пейвола НИКОГДА
+  // не должно вести на другой пейвол (иначе replace на тот же экран = бесконечное
+  // «моргание на месте», пейвол не закрыть). Снимаем их со стека, пока сверху не
+  // окажется реальный экран. Если под пейволом ничего реального нет — уйдём на
+  // fallback (home) ниже.
+  while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
+    navigationStack.pop();
+  }
   const target = currentPath() ?? fallback;
 
   // Если по какой-то причине предыдущий совпал с местом, где мы стоим, или
   // стек опустел — уходим на fallback (главную), чтобы не было no-op/петли.
-  const safeTarget = target && target.length > 0 ? target : fallback;
+  // Доп. страховка: даже если в target каким-то образом просочился пейвол —
+  // не возвращаемся на него, а уходим на fallback.
+  const safeTarget =
+    target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
 
   // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
   // запушится заново и стек снова закольцуется.

@@ -39,7 +39,7 @@ import { consumeTrainerSessionEntry, hasReservedTrainerSessionEntrySync } from '
 import { isFeatureFreeForEveryone } from './feature_gates';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import TrainerSessionReport from './trainer_session_report';
 import { checkAchievements } from './achievements';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
@@ -123,6 +123,10 @@ export default function TrainerArenaSession() {
         const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
         if (!planAllowed) {
           logTrainerDirectGateBlocked('/trainer_arena_session');
+          // Снимаем экран тренажёра со стека «назад»: при закрытии пейвола
+          // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
+          // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
+          markNextNavigationAsReplace();
           router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
           return;
         }
@@ -131,6 +135,9 @@ export default function TrainerArenaSession() {
         // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
         if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
           logTrainerDirectGateBlocked('/trainer_arena_session');
+          // см. коммент выше: убираем тренажёр из стека, чтобы «назад» с пейвола
+          // не вернулось на исчерпанный лимит и не открыло пейвол снова.
+          markNextNavigationAsReplace();
           router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
           return;
         }

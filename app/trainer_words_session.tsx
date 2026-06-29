@@ -39,7 +39,7 @@ import {
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
@@ -297,6 +297,10 @@ export default function TrainerWordsSession() {
           if (cancelled) return;
           if (!planAllowed) {
             logTrainerDirectGateBlocked('/trainer_words_session');
+            // Снимаем экран тренажёра со стека «назад»: при закрытии пейвола
+            // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
+            // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
+            markNextNavigationAsReplace();
             router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
             return;
           }
@@ -306,6 +310,9 @@ export default function TrainerWordsSession() {
           // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
           if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
             logTrainerDirectGateBlocked('/trainer_words_session');
+            // см. коммент выше: убираем тренажёр из стека, чтобы «назад» с пейвола
+            // не вернулось на исчерпанный лимит и не открыло пейвол снова.
+            markNextNavigationAsReplace();
             router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
             return;
           }

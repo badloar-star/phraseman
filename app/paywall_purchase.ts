@@ -35,7 +35,7 @@ import {
   schedulePaywallAbandonedNotification,
   requestNotificationPermission,
 } from './notifications';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { isFullAccess } from './age_gate';
 import { DEV_IAP_BYPASS } from './config';
@@ -239,6 +239,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // Fall through to the deterministic thank-you route.
     }
 
+    // markNextNavigationAsReplace: верх стека сейчас — сам пейвол. Снимаем его, чтобы
+    // «назад» с экрана «План включён» (и далее с плана) не возвращало на пейвол/thank-you,
+    // а уходило на главную. Без пометки пейвол оставался в стеке под thank-you → петля.
+    markNextNavigationAsReplace();
     router.replace('/personal_plan_thank_you' as any);
   }, [reloadEnergy, router]);
 

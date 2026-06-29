@@ -36,7 +36,9 @@ describe('personal plan ↔ paywall ↔ thank-you loop is broken', () => {
     expect(planScreen).toContain('if (planAccess) return;');
     // Иначе перепроверяем свежим источником (тем же, что и диспетчер), сбросив кэш.
     const start = planScreen.indexOf('if (planAccess) return;');
-    const block = planScreen.slice(start, start + 500);
+    // Окно охватывает весь эффект-гейт, включая пояснительные комментарии перед
+    // replace на пейвол (иначе строка params уезжает за границу — ложный провал).
+    const block = planScreen.slice(start, start + 900);
     expect(block).toContain('invalidatePremiumCache()');
     expect(block).toContain('getVerifiedPremiumAccessStatus()');
     expect(block).toContain("params: { context: 'personal_plan' }");
@@ -45,6 +47,25 @@ describe('personal plan ↔ paywall ↔ thank-you loop is broken', () => {
   it('keeps the genuine post-purchase path intact (real buyer still reaches thank-you)', () => {
     const purchase = read('app/paywall_purchase.ts');
     expect(purchase).toContain("router.replace('/personal_plan_thank_you' as any)");
+  });
+
+  it('FIX 4: post-purchase replace to thank-you marks replace so the paywall leaves the back stack', () => {
+    const purchase = read('app/paywall_purchase.ts');
+    const idx = purchase.indexOf("router.replace('/personal_plan_thank_you' as any)");
+    expect(idx).toBeGreaterThan(-1);
+    // markNextNavigationAsReplace стоит НЕПОСРЕДСТВЕННО перед replace на thank-you,
+    // иначе пейвол остаётся в стеке «назад» под экраном «План включён».
+    const before = purchase.slice(Math.max(0, idx - 400), idx);
+    expect(before).toContain('markNextNavigationAsReplace()');
+    expect(purchase).toContain("import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back'");
+  });
+
+  it('FIX 5: thank-you → plan marks replace so the celebration screen leaves the back stack (no thank-you↔plan loop)', () => {
+    const idx = thankYou.indexOf("router.replace('/personal_plan' as any)");
+    expect(idx).toBeGreaterThan(-1);
+    const before = thankYou.slice(Math.max(0, idx - 400), idx);
+    expect(before).toContain('markNextNavigationAsReplace()');
+    expect(thankYou).toContain("import { markNextNavigationAsReplace } from './navigation_back'");
   });
 
   it('the forbidden store-receipt support copy is removed from the thank-you screen', () => {

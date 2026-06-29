@@ -9,6 +9,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { triLang } from '../constants/i18n';
+import { markNextNavigationAsReplace } from './navigation_back';
 
 export default function PersonalPlanThankYouScreen() {
   const router = useRouter();
@@ -19,6 +20,11 @@ export default function PersonalPlanThankYouScreen() {
 
   const goToPlan = () => {
     setAuthVisible(false);
+    // markNextNavigationAsReplace: убираем САМ экран «План включён» из стека «назад».
+    // Это терминальный экран-поздравление: вернуться на него нельзя. Без пометки он
+    // оставался в стеке, и «назад» из плана возвращало на «План включён», а оттуда
+    // единственный путь — снова в план → бесконечная петля thank-you↔plan.
+    markNextNavigationAsReplace();
     router.replace('/personal_plan' as any);
   };
 

@@ -94,6 +94,7 @@ const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }
   compass: { chapter: 'system', keywords: 'компас compass брифинг день briefing ии голос обновление дней сброс маркер показ' },
   gifts_catalog: { chapter: 'rewards', keywords: 'справочник подарки каталог все подарки иконки описания уровень премиум вехи друзья сундук лиги gift catalog' },
   collectible_drop_modals: { chapter: 'modals', keywords: 'коллекция карточка дроп сокровищница новая карточка получение подарок редкость сет собран секретка collectible drop modal' },
+  user_consents: { chapter: 'data', keywords: 'согласия consent gdpr возраст аналитика приватность дата отзыв granted denied user_consents' },
 };
 
 export interface AdminNavState {

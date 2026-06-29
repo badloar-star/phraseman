@@ -203,6 +203,7 @@ import LabsSection from '../components/admin_panel/sections/LabsSection';
 import GiftsCatalogSection from '../components/admin_panel/sections/GiftsCatalogSection';
 import CollectibleDropModalsSection from '../components/admin_panel/sections/CollectibleDropModalsSection';
 import CompassSection from '../components/admin_panel/sections/CompassSection';
+import ConsentsSection from '../components/admin_panel/sections/ConsentsSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -5056,6 +5057,7 @@ export default function SettingsTestersFunctions() {
             onOpenReviewBench={() => { void runAdminReviewTestBench(); }}
           />
           <CompassSection open={openSection === 'compass'} onToggle={toggleSection} />
+          <ConsentsSection open={openSection === 'user_consents'} onToggle={toggleSection} />
 
         </ScrollView>
         </AdminNavContext.Provider>

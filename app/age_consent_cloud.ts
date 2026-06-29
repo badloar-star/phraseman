@@ -28,6 +28,13 @@ function getFirestore(): any | null {
 /**
  * Записать текущее состояние возраста + согласия на аналитику в облако.
  * Вызывать ПОСЛЕ локальных setBirthYear/setAnalyticsConsent.
+ *
+ * Для GDPR-accountability фиксируем РАЗДЕЛЬНО:
+ *   - consentGrantedAt — момент ПЕРВОЙ выдачи согласия (не перетирается при
+ *     повторных granted, чтобы сохранить «когда впервые дал»);
+ *   - consentRevokedAt — момент ПОСЛЕДНЕГО отзыва (обновляется при каждом denied);
+ *   - updatedAt — момент любого изменения.
+ * Так в админке видно и «когда дал», и «когда отозвал» по отдельности.
  */
 export async function recordConsentToCloud(): Promise<void> {
   const db = getFirestore();
@@ -36,16 +43,36 @@ export async function recordConsentToCloud(): Promise<void> {
     const stableId = await getStableId();
     if (!stableId) return;
     const birthYear = getBirthYearSnapshot();
-    await db.collection('user_consents').doc(stableId).set(
-      {
-        birthYear: birthYear ?? null,
-        ageBracket: getAgeBracketSnapshot(),
-        analyticsConsent: getAnalyticsConsentState(),
-        platform: require('react-native').Platform.OS,
-        updatedAt: Date.now(),
-      },
-      { merge: true },
-    );
+    const analyticsConsent = getAnalyticsConsentState();
+    const now = Date.now();
+    const ref = db.collection('user_consents').doc(stableId);
+
+    // Читаем прежнее состояние, чтобы не затереть первую дату согласия.
+    let prevGrantedAt: number | null = null;
+    try {
+      const snap = await ref.get();
+      const prev = (snap?.data?.() ?? {}) as Record<string, unknown>;
+      const g = prev.consentGrantedAt;
+      prevGrantedAt = typeof g === 'number' ? g : null;
+    } catch {
+      /* нет доступа/документа — пишем как первый раз */
+    }
+
+    const payload: Record<string, unknown> = {
+      birthYear: birthYear ?? null,
+      ageBracket: getAgeBracketSnapshot(),
+      analyticsConsent,
+      platform: require('react-native').Platform.OS,
+      updatedAt: now,
+    };
+    if (analyticsConsent === 'granted') {
+      // Первую дату согласия выставляем только если её ещё не было.
+      payload.consentGrantedAt = prevGrantedAt ?? now;
+    } else if (analyticsConsent === 'denied') {
+      payload.consentRevokedAt = now;
+    }
+
+    await ref.set(payload, { merge: true });
   } catch {
     /* best-effort: не ломаем UX */
   }

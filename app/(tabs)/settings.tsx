@@ -69,6 +69,7 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { isIdeasEnabled } from '../remote_flags';
+import { getAnalyticsConsentState, setAnalyticsConsent } from '../analytics_consent';
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -345,6 +346,11 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   const [hapticTap,  setHapticTap]   = useState(true);
+  // Согласие на необязательную аналитику (PostHog + non-essential Firebase).
+  // Источник правды — analytics_consent.ts (синхронный снапшот после гидрации).
+  // Тумблер даёт отзыв согласия в любой момент, как требует GDPR ст.7(3) и как
+  // обещает модал согласия. 'granted' → вкл; 'denied'/'unset' → выкл.
+  const [analyticsOn, setAnalyticsOn] = useState(getAnalyticsConsentState() === 'granted');
 
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
   const loadStudyTarget = useCallback(async () => {
@@ -402,6 +408,7 @@ export default function SettingsMain() {
         if (!cancelled) setNameReady(true);
       });
     setIdeasOn(isIdeasEnabled());
+    setAnalyticsOn(getAnalyticsConsentState() === 'granted');
     return () => { cancelled = true; };
   }, [activeIdx]); // обновляем при переключении на этот таб
 
@@ -942,6 +949,36 @@ export default function SettingsMain() {
           </>
         ) : null}
 
+
+        <SettingsSectionTitle title={L('Приватность', 'Приватність', 'Privacidad', 'Privacidade', 'Quyền riêng tư', 'Privasi', 'Gizlilik', 'Prywatność')} />
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-analytics-consent"
+            icon="stats-chart"
+            color="teal"
+            label={L('Анонимная статистика', 'Анонімна статистика', 'Estadísticas anónimas', 'Estatísticas anônimas', 'Thống kê ẩn danh', 'Statistik anonim', 'Anonim istatistik', 'Anonimowe statystyki')}
+            sub={L(
+              'Помогает улучшать приложение. Можно выключить в любой момент.',
+              'Допомагає покращувати додаток. Можна вимкнути будь-коли.',
+              'Ayuda a mejorar la app. Puedes desactivarlo cuando quieras.',
+              'Ajuda a melhorar o app. Você pode desativar quando quiser.',
+              'Giúp cải thiện ứng dụng. Có thể tắt bất cứ lúc nào.',
+              'Membantu meningkatkan aplikasi. Bisa dimatikan kapan saja.',
+              'Uygulamayı geliştirmeye yardımcı olur. İstediğin zaman kapatabilirsin.',
+              'Pomaga ulepszać aplikację. Możesz wyłączyć w każdej chwili.',
+            )}
+            hideChevron
+            right={
+              <CustomSwitch
+                value={analyticsOn}
+                onValueChange={(val) => {
+                  setAnalyticsOn(val);
+                  void setAnalyticsConsent(val ? 'granted' : 'denied');
+                }}
+              />
+            }
+          />
+        </SettingsGroup>
 
         <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>

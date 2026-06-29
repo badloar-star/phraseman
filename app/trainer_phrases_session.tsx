@@ -59,7 +59,9 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
+import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
+import type { StudyTargetLang } from './study_target_lang_dev';
 import {
   markTrainerPlanTaskCompleted,
   readTrainerPlanTaskContext,
@@ -105,15 +107,18 @@ function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): r
 interface WordBankProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  // Озвучка живёт на родителе (TrainerPhrasesSession), а не внутри карточки:
+  // при переходе к следующему заданию карточка размонтируется (меняется key),
+  // и если бы useAudio() был здесь, его cleanup оборвал бы фразу на полуслове.
+  speakAnswer: (text: string, studyTarget: StudyTargetLang) => void;
 }
 
-function WordBankMode({ item, onResult }: WordBankProps) {
+function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
-  const { speakAnswer } = useSpeakAnswer();
   const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
@@ -318,13 +323,15 @@ function WordBankMode({ item, onResult }: WordBankProps) {
 interface FillGapProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  // См. комментарий к WordBankProps.speakAnswer — озвучка принадлежит родителю,
+  // чтобы фраза не обрывалась при размонтировании карточки на следующем задании.
+  speakAnswer: (text: string, studyTarget: StudyTargetLang) => void;
 }
 
-function FillGapMode({ item, onResult }: FillGapProps) {
+function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const { playCorrect } = useCorrectSound();
-  const { speakAnswer } = useSpeakAnswer();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { flashKey, flash } = useWordFlash();
@@ -445,6 +452,12 @@ export default function TrainerPhrasesSession() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
+  // Озвучка верного ответа принадлежит экрану, а НЕ карточке: карточка
+  // размонтируется при переходе к следующему заданию (меняется key), и cleanup
+  // useAudio внутри карточки обрывал бы TTS-фразу на полуслове. Здесь же хук
+  // переживает смену карточек, поэтому фраза доигрывает до конца.
+  const { speakAnswer } = useSpeakAnswer();
 
   const [deck, setDeck] = useState<SessionCard[]>([]);
   const [current, setCurrent] = useState(0);
@@ -481,6 +494,12 @@ export default function TrainerPhrasesSession() {
     setLoading(true);
     void (async () => {
       try {
+        if (!trainerGateOpen) {
+          if (cancelled) return;
+          setAccessReady(true);
+          setLoading(false);
+          return;
+        }
         if (planTrainerContext.taskId) {
           const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
           if (cancelled) return;
@@ -521,7 +540,7 @@ export default function TrainerPhrasesSession() {
       }
     })();
     return () => { cancelled = true; };
-    }, [planTrainerContext, router, reloadKey, studyTarget]);
+    }, [planTrainerContext, router, reloadKey, studyTarget, trainerGateOpen]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -579,6 +598,26 @@ export default function TrainerPhrasesSession() {
 
   if (!accessReady || loading) {
     return <TrainerLoadingView lang={lang} />;
+  }
+
+  if (!trainerGateOpen) {
+    const copy = frenchTrainerGateCopy(lang);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={38} color={sx.muted} />
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginTop: 14 }}>
+            {copy.title}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
+            {copy.body}
+          </Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#40C080', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
   }
 
   if (done) {
@@ -681,8 +720,8 @@ export default function TrainerPhrasesSession() {
             scrollEventThrottle={16}
           >
             {card?.mode === 'word_bank'
-              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} />
+              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
+              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
             }
           </BouncyScrollView>
         </ContentWrap>

@@ -55,6 +55,49 @@ const IRREGULAR_LEMMAS: Record<string, string> = {
   told: 'tell',
   tells: 'tell',
 };
+// ── Subject–verb agreement for pronoun gaps ──────────────────────────────────
+// When the gap is a subject pronoun ("____ doesn't have an umbrella"), any other
+// pronoun that agrees with the SAME following verb is an alternative correct
+// answer, not a distractor (he/she/it/this/that all fit "____ doesn't have").
+// We classify the following verb into an agreement group and drop candidate
+// pronouns that share the correct answer's group. Tense-neutral verbs (past
+// simple, modals) impose no constraint, so every pronoun stays a valid option.
+type PronounAgreement = 'third_singular' | 'plural';
+
+// Subject pronouns whose verb agreement we reason about. "you" is intentionally
+// in BOTH groups via the plural set (you take/are), and "I" pairs with plural
+// present verbs (I take/have) but with "was" — handled per-verb below.
+const THIRD_SINGULAR_SUBJECTS = new Set(['he', 'she', 'it', 'this', 'that']);
+const PLURAL_SUBJECTS = new Set(['i', 'you', 'we', 'they', 'these', 'those']);
+const SUBJECT_PRONOUNS = new Set([...THIRD_SINGULAR_SUBJECTS, ...PLURAL_SUBJECTS]);
+
+// Auxiliaries / copulas whose agreement is unambiguous from the surface form.
+const THIRD_SINGULAR_VERBS = new Set([
+  'is', "isn't", 'was', "wasn't",
+  'does', "doesn't",
+  'has', "hasn't",
+]);
+const PLURAL_PRESENT_VERBS = new Set([
+  'are', "aren't", 'were', "weren't",
+  'do', "don't",
+  'have', "haven't",
+]);
+
+// Lexical present-tense 3rd-person-singular ("-s") verbs agree with he/she/it.
+// Conservative: require a real "-s" ending that is not a known non-verb token.
+function lexicalVerbAgreement(verbKey: string): PronounAgreement | null {
+  if (!verbKey) return null;
+  if (THIRD_SINGULAR_VERBS.has(verbKey)) return 'third_singular';
+  if (PLURAL_PRESENT_VERBS.has(verbKey)) return 'plural';
+  return null;
+}
+
+function pronounSubjectGroup(pronounKey: string): PronounAgreement | null {
+  if (THIRD_SINGULAR_SUBJECTS.has(pronounKey)) return 'third_singular';
+  if (PLURAL_SUBJECTS.has(pronounKey)) return 'plural';
+  return null;
+}
+
 const PLACE_NOUNS = new Set([
   ...WORD_POOLS_L1.places.map((word) => normalizeTokenKey(word)),
   'airport',
@@ -170,7 +213,7 @@ function uniqueCandidates(
     for (const candidate of pool) {
       const key = normalizeTokenKey(candidate);
       if (!key || key === correctKey || blockedKeys.has(key) || seen.has(key)) continue;
-      if (isLikelyAlsoValidInSlot(key, category, context)) continue;
+      if (isLikelyAlsoValidInSlot(key, correctKey, category, context)) continue;
       const lemma = simpleLemma(key);
       if (shouldDiversifyPool && seenFallbackLemmas.has(lemma)) continue;
       seen.add(key);
@@ -203,13 +246,34 @@ function fillGapSlotContext(phrase: string, correctKey: string): FillGapSlotCont
   };
 }
 
-function isLikelyAlsoValidInSlot(candidateKey: string, category: WordCategory, context: FillGapSlotContext): boolean {
+function isLikelyAlsoValidInSlot(candidateKey: string, correctKey: string, category: WordCategory, context: FillGapSlotContext): boolean {
   const lemma = simpleLemma(candidateKey);
   if (category === 'verb' && context.next && OBJECT_PRONOUNS.has(context.next)) {
     return PLAUSIBLE_OBJECT_VERBS.has(lemma);
   }
   if (category === 'noun' && context.previous === 'the' && context.previous2 && PLACE_SLOT_PREPOSITIONS.has(context.previous2)) {
     return PLACE_NOUNS.has(lemma);
+  }
+  // Subject-pronoun gap ("____ doesn't have an umbrella"): drop candidate
+  // pronouns that agree with the SAME following verb as the correct answer —
+  // they are alternative correct answers, not distractors. Only constrain when
+  // the gap is sentence-initial (a real subject slot) and the following verb's
+  // agreement is unambiguous; tense-neutral verbs (past simple, modals) drop
+  // through and every pronoun stays a valid distractor.
+  if (
+    category === 'pronoun' &&
+    !context.previous && // subject position: nothing before the gap
+    context.next &&
+    SUBJECT_PRONOUNS.has(candidateKey) &&
+    SUBJECT_PRONOUNS.has(correctKey)
+  ) {
+    const verbAgreement = lexicalVerbAgreement(context.next);
+    if (verbAgreement) {
+      const correctGroup = pronounSubjectGroup(correctKey);
+      const candidateGroup = pronounSubjectGroup(candidateKey);
+      // Both the answer and the candidate agree with this verb → interchangeable.
+      return correctGroup === verbAgreement && candidateGroup === verbAgreement;
+    }
   }
   return false;
 }

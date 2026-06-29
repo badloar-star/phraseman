@@ -140,6 +140,80 @@ describe('buildTrainerFillGapOptions', () => {
     expect(options).toEqual(['You', 'They', 'I', 'He']);
   });
 
+  it('does not offer subject pronouns that agree with the same 3rd-person-singular auxiliary', () => {
+    // "She doesn't have an umbrella" — he/it/this/that also fit "____ doesn't have",
+    // so they are alternative correct answers, not distractors.
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'She',
+      phrase: "She doesn't have an umbrella",
+      category: 'pronoun',
+      shuffle: false,
+    });
+
+    expect(options).toContain('She');
+    for (const agreeingPronoun of ['he', 'it', 'this', 'that']) {
+      expect(options.map((o) => o.toLowerCase())).not.toContain(agreeingPronoun);
+    }
+    // Plural / non-3rd-singular subjects stay available as valid distractors.
+    expect(options.length).toBeGreaterThan(1);
+  });
+
+  it('does not offer plural subjects that agree with the same plural auxiliary', () => {
+    // "They don't like coffee" — we/you/I/these/those also fit "____ don't like".
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'They',
+      phrase: "They don't like coffee",
+      category: 'pronoun',
+      shuffle: false,
+    });
+
+    expect(options).toContain('They');
+    for (const agreeingPronoun of ['we', 'you', 'i', 'these', 'those']) {
+      expect(options.map((o) => o.toLowerCase())).not.toContain(agreeingPronoun);
+    }
+    expect(options.length).toBeGreaterThan(1);
+  });
+
+  it('keeps cross-number pronouns available as distractors (he vs they)', () => {
+    // "He is happy" — a plural subject like "they" does NOT agree with "is",
+    // so it remains a legitimate distractor (only same-agreement ones are dropped).
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'He',
+      phrase: 'He is happy',
+      category: 'pronoun',
+      shuffle: false,
+    });
+
+    expect(options).toContain('He');
+    // she/it agree with "is" → must be dropped (alternative correct answers).
+    for (const agreeingPronoun of ['she', 'it', 'this', 'that']) {
+      expect(options.map((o) => o.toLowerCase())).not.toContain(agreeingPronoun);
+    }
+    // Every pronoun distractor that remains must NOT agree with "is" — i.e. it is
+    // a plural/non-3rd-singular subject (they/we/you/i), which is grammatically
+    // wrong with "is" and therefore a legitimate distractor.
+    const pluralSubjects = new Set(['i', 'you', 'we', 'they', 'these', 'those']);
+    const distractors = options.map((o) => o.toLowerCase()).filter((o) => o !== 'he');
+    expect(distractors.length).toBeGreaterThan(0);
+    for (const d of distractors) {
+      expect(pluralSubjects.has(d)).toBe(true);
+    }
+  });
+
+  it('still allows any pronoun distractor when the verb is tense-neutral (past simple)', () => {
+    // Regression guard for the existing "You sat here yesterday" expectation:
+    // "sat" agrees with every subject, so no pronoun is an alternative answer.
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'You',
+      phrase: 'You sat here yesterday',
+      category: 'pronoun',
+      sourceDistractors: ['They', 'I', 'He', 'your', 'we'],
+      shuffle: false,
+    });
+
+    expect(options).toEqual(['You', 'They', 'I', 'He']);
+  });
+
   it('routes the phrases trainer fill-gap UI through the shared option builder', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'trainer_phrases_session.tsx'), 'utf8');
 

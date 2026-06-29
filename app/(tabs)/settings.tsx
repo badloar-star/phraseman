@@ -68,7 +68,7 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
-import { isIdeasEnabled } from '../remote_flags';
+import { isIdeasEnabled, isPromoCodesEnabled } from '../remote_flags';
 import { getAnalyticsConsentState, setAnalyticsConsent } from '../analytics_consent';
 import { recordConsentToCloud } from '../age_consent_cloud';
 
@@ -332,6 +332,7 @@ export default function SettingsMain() {
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipUntilMs, setVipUntilMs] = useState(0);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
+  const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -352,6 +353,46 @@ export default function SettingsMain() {
   // Тумблер даёт отзыв согласия в любой момент, как требует GDPR ст.7(3) и как
   // обещает модал согласия. 'granted' → вкл; 'denied'/'unset' → выкл.
   const [analyticsOn, setAnalyticsOn] = useState(getAnalyticsConsentState() === 'granted');
+
+  // Применить выбор согласия: локально (источник правды + гейт сбора) + в облако
+  // (accountability/GDPR, дата отзыва/выдачи). Best-effort — сбой облака не ломает UX.
+  const applyAnalyticsConsent = useCallback((val: boolean) => {
+    setAnalyticsOn(val);
+    void (async () => {
+      await setAnalyticsConsent(val ? 'granted' : 'denied');
+      void recordConsentToCloud();
+    })();
+  }, []);
+
+  // Тоггл «Отправлять данные об использовании». Включение — сразу. Выключение
+  // включённой галочки — через подтверждение «Вы уверены?».
+  const onToggleAnalytics = useCallback((val: boolean) => {
+    if (!val && analyticsOn) {
+      Alert.alert(
+        L('Выключить отправку данных?', 'Вимкнути надсилання даних?', '¿Desactivar el envío de datos?',
+          'Desativar o envio de dados?', 'Tắt gửi dữ liệu?', 'Matikan pengiriman data?',
+          'Veri gönderimi kapatılsın mı?', 'Wyłączyć wysyłanie danych?'),
+        L('Эти данные помогают улучшать приложение. Их сбор не обязателен — можно включить снова в любой момент.',
+          'Ці дані допомагають покращувати додаток. Збір не обов\'язковий — можна ввімкнути знову будь-коли.',
+          'Estos datos ayudan a mejorar la app. No es obligatorio; puedes volver a activarlo cuando quieras.',
+          'Esses dados ajudam a melhorar o app. Não é obrigatório; você pode reativar quando quiser.',
+          'Dữ liệu này giúp cải thiện ứng dụng. Không bắt buộc — bạn có thể bật lại bất cứ lúc nào.',
+          'Data ini membantu meningkatkan aplikasi. Tidak wajib — bisa diaktifkan lagi kapan saja.',
+          'Bu veriler uygulamayı geliştirmeye yardımcı olur. Zorunlu değil — istediğin zaman tekrar açabilirsin.',
+          'Te dane pomagają ulepszać aplikację. Nie są wymagane — możesz włączyć ponownie w każdej chwili.'),
+        [
+          { text: L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj'), style: 'cancel' },
+          {
+            text: L('Выключить', 'Вимкнути', 'Desactivar', 'Desativar', 'Tắt', 'Matikan', 'Kapat', 'Wyłącz'),
+            style: 'destructive',
+            onPress: () => applyAnalyticsConsent(false),
+          },
+        ],
+      );
+      return;
+    }
+    applyAnalyticsConsent(val);
+  }, [analyticsOn, applyAnalyticsConsent, lang]);
 
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
   const loadStudyTarget = useCallback(async () => {
@@ -409,9 +450,19 @@ export default function SettingsMain() {
         if (!cancelled) setNameReady(true);
       });
     setIdeasOn(isIdeasEnabled());
+    setPromoCodesOn(isPromoCodesEnabled());
     setAnalyticsOn(getAnalyticsConsentState() === 'granted');
     return () => { cancelled = true; };
   }, [activeIdx]); // обновляем при переключении на этот таб
+
+  useEffect(() => {
+    const refreshRemoteFlags = () => {
+      setIdeasOn(isIdeasEnabled());
+      setPromoCodesOn(isPromoCodesEnabled());
+    };
+    const sub = DeviceEventEmitter.addListener('remote_config_changed', refreshRemoteFlags);
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     const refreshVipUntil = () => {
@@ -785,6 +836,24 @@ export default function SettingsMain() {
             sub={LANG_NATIVE[lang]}
             onPress={() => router.push('/settings_language' as any)}
           />
+          <SettingsRow
+            testID="settings-analytics-consent"
+            icon="stats-chart"
+            color="teal"
+            label={L('Отправлять данные об использовании', 'Надсилати дані про використання', 'Enviar datos de uso', 'Enviar dados de uso', 'Gửi dữ liệu sử dụng', 'Kirim data penggunaan', 'Kullanım verisi gönder', 'Wysyłać dane o użytkowaniu')}
+            sub={L(
+              'Помогает улучшать приложение. Можно выключить в любой момент.',
+              'Допомагає покращувати додаток. Можна вимкнути будь-коли.',
+              'Ayuda a mejorar la app. Puedes desactivarlo cuando quieras.',
+              'Ajuda a melhorar o app. Você pode desativar quando quiser.',
+              'Giúp cải thiện ứng dụng. Có thể tắt bất cứ lúc nào.',
+              'Membantu meningkatkan aplikasi. Bisa dimatikan kapan saja.',
+              'Uygulamayı geliştirmeye yardımcı olur. İstediğin zaman kapatabilirsin.',
+              'Pomaga ulepszać aplikację. Możesz wyłączyć w każdej chwili.',
+            )}
+            hideChevron
+            right={<CustomSwitch value={analyticsOn} onValueChange={onToggleAnalytics} />}
+          />
         </SettingsGroup>
         {/* Баннер: нет ника */}
         {nameReady && !userName && (
@@ -950,43 +1019,23 @@ export default function SettingsMain() {
           </>
         ) : null}
 
-
-        <SettingsSectionTitle title={L('Приватность', 'Приватність', 'Privacidad', 'Privacidade', 'Quyền riêng tư', 'Privasi', 'Gizlilik', 'Prywatność')} />
-        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          <SettingsRow
-            testID="settings-analytics-consent"
-            icon="stats-chart"
-            color="teal"
-            label={L('Анонимная статистика', 'Анонімна статистика', 'Estadísticas anónimas', 'Estatísticas anônimas', 'Thống kê ẩn danh', 'Statistik anonim', 'Anonim istatistik', 'Anonimowe statystyki')}
-            sub={L(
-              'Помогает улучшать приложение. Можно выключить в любой момент.',
-              'Допомагає покращувати додаток. Можна вимкнути будь-коли.',
-              'Ayuda a mejorar la app. Puedes desactivarlo cuando quieras.',
-              'Ajuda a melhorar o app. Você pode desativar quando quiser.',
-              'Giúp cải thiện ứng dụng. Có thể tắt bất cứ lúc nào.',
-              'Membantu meningkatkan aplikasi. Bisa dimatikan kapan saja.',
-              'Uygulamayı geliştirmeye yardımcı olur. İstediğin zaman kapatabilirsin.',
-              'Pomaga ulepszać aplikację. Możesz wyłączyć w każdej chwili.',
-            )}
-            hideChevron
-            right={
-              <CustomSwitch
-                value={analyticsOn}
-                onValueChange={(val) => {
-                  setAnalyticsOn(val);
-                  void (async () => {
-                    // 1) Локально (источник правды + гейт сбора сразу меняется).
-                    await setAnalyticsConsent(val ? 'granted' : 'denied');
-                    // 2) В облако для accountability (GDPR): админка получает факт и
-                    //    дату отзыва/выдачи в user_consents.updatedAt. Best-effort —
-                    //    сбой не ломает UX, локальный отзыв уже применён.
-                    void recordConsentToCloud();
-                  })();
-                }}
+        {promoCodesOn ? (
+          <>
+            <SettingsSectionTitle title={L('Промокоды', 'Промокоди', 'Códigos promocionales', 'Códigos promocionais', 'Mã khuyến mãi', 'Kode promo', 'Promosyon kodları', 'Kody promocyjne')} />
+            <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+              <SettingsRow
+                testID="settings-promo-code-row"
+                icon="ticket-outline"
+                color="purple"
+                label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+                sub={L('Активируй код и получи Plus', 'Активуй код і отримай Plus', 'Activa un código y consigue Plus', 'Ative um código e ganhe Plus', 'Kích hoạt mã để nhận Plus', 'Aktifkan kode dan dapatkan Plus', 'Kodu etkinleştir ve Plus al', 'Aktywuj kod i odbierz Plus')}
+                onPress={() => router.push('/promo_code_entry' as any)}
               />
-            }
-          />
-        </SettingsGroup>
+            </SettingsGroup>
+          </>
+        ) : null}
+
+
 
         <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>

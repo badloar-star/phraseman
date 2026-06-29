@@ -126,7 +126,19 @@ function makeL(lang: Lang) {
     triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
-export default function ConsentReverifyHost() {
+interface ConsentReverifyHostProps {
+  /**
+   * Админ-превью: принудительно показать модал, минуя обычные гейты
+   * (onboarding_done / reverify_done / уже принятые решения). Ничего НЕ
+   * сохраняет в storage и не пишет в облако — «Продолжить»/закрытие просто
+   * вызывают onForceClose. Нужно для кнопки в админ-панели (раздел «Онбординг»).
+   */
+  forceVisible?: boolean;
+  /** Вызывается при закрытии в режиме forceVisible. */
+  onForceClose?: () => void;
+}
+
+export default function ConsentReverifyHost({ forceVisible, onForceClose }: ConsentReverifyHostProps = {}) {
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -138,6 +150,8 @@ export default function ConsentReverifyHost() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    // Админ-превью управляет видимостью извне — обычные гейты не запускаем.
+    if (forceVisible) return;
     let alive = true;
     (async () => {
       try {
@@ -163,7 +177,9 @@ export default function ConsentReverifyHost() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [forceVisible]);
+
+  const isPreview = forceVisible === true;
 
   // Список лет для барабана: от текущего (сверху) вниз до текущего − 120.
   // Дефолт центрируем на правдоподобном «взрослом» году (текущий − 30).
@@ -189,6 +205,11 @@ export default function ConsentReverifyHost() {
 
   const submit = async () => {
     if (!canSubmit || birthYear === null) return;
+    // Админ-превью: ничего не сохраняем, просто закрываем.
+    if (isPreview) {
+      onForceClose?.();
+      return;
+    }
     setBusy(true);
     try {
       await setBirthYear(birthYear);
@@ -249,10 +270,19 @@ export default function ConsentReverifyHost() {
     [lang], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  if (!visible) return null;
+  const shown = isPreview ? true : visible;
+  if (!shown) return null;
 
   return (
-    <Modal visible transparent animationType="fade" onRequestClose={() => { /* блокирующий: закрыть нельзя */ }}>
+    <Modal
+      visible
+      transparent
+      animationType="fade"
+      onRequestClose={() => {
+        // В админ-превью разрешаем закрыть (Back/жест). В проде — блокирующий.
+        if (isPreview) onForceClose?.();
+      }}
+    >
       <View style={styles.overlay}>
         <View style={styles.box}>
           <ScrollView keyboardShouldPersistTaps="handled">
@@ -307,6 +337,12 @@ export default function ConsentReverifyHost() {
             >
               <Text style={styles.continueText}>{copy.continue}</Text>
             </Pressable>
+
+            {isPreview && (
+              <Pressable style={styles.previewClose} onPress={() => onForceClose?.()}>
+                <Text style={styles.previewCloseText}>✕ Закрыть превью (админ)</Text>
+              </Pressable>
+            )}
           </ScrollView>
         </View>
       </View>
@@ -413,4 +449,6 @@ const styles = StyleSheet.create({
   },
   continueBtnDisabled: { backgroundColor: '#2a3a33', opacity: 0.6 },
   continueText: { color: '#0b0f0c', fontSize: 16, fontWeight: '800' },
+  previewClose: { marginTop: 12, paddingVertical: 10, alignItems: 'center' },
+  previewCloseText: { color: '#9aa0a6', fontSize: 13, fontWeight: '600' },
 });

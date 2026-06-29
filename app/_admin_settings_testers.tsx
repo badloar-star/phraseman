@@ -74,6 +74,7 @@ import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOn
 import { actionToastTri, emitAppEvent } from './events';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import ConsentReverifyHost from '../components/ConsentReverifyHost';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
 import QuizTimeoutModal from '../components/QuizTimeoutModal';
@@ -784,6 +785,8 @@ export default function SettingsTestersFunctions() {
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
   const [throneRewardPreview, setThroneRewardPreview] = useState(false);
   const [rewardStackPreview, setRewardStackPreview] = useState(false);
+  // Превью блокирующего модала повторного согласия (возраст + Terms/Privacy + аналитика).
+  const [consentReverifyPreview, setConsentReverifyPreview] = useState(false);
 
   const [rankModal, setRankModal] = useState<{ promoted: boolean; tier: string; level: string } | null>(null);
   const [rankTest, setRankTest] = useState<{ mode: 'club'; delta: number } | null>(null);
@@ -4493,6 +4496,10 @@ export default function SettingsTestersFunctions() {
               sub="Сетка всех уроков · открывает реальный экран онбординга без запуска урока"
               onPress={() => router.push('/admin_intro_preview' as any)}
               t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="shield-checkmark-outline" label="🪪 Повторное согласие (возраст + Terms/Privacy)"
+              sub="Блокирующий модал реверификации для старых юзеров. Год рождения — барабан. Превью ничего не сохраняет."
+              onPress={() => setConsentReverifyPreview(true)}
+              t={t} f={f} doHaptic={doHaptic} testID="testers-open-consent-reverify" />
             <ButtonRow
               testID="admin-intro-full-access-activate"
               icon="lock-open-outline"
@@ -5497,6 +5504,12 @@ export default function SettingsTestersFunctions() {
           setPreviewReviveOffer(null);
         }}
       />
+      {consentReverifyPreview && (
+        <ConsentReverifyHost
+          forceVisible
+          onForceClose={() => setConsentReverifyPreview(false)}
+        />
+      )}
       <ThroneRewardModal
         visible={throneRewardPreview}
         shards={10}

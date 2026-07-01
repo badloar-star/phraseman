@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,10 +16,11 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import DuoPressable from '../components/DuoPressable';
 import { useLang } from '../components/LangContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -28,6 +30,7 @@ import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
   fetchCommunityPackCards,
@@ -781,12 +784,14 @@ export default function FlashcardsSwipeScreen() {
     planId?: string | string[];
     planDayIndex?: string | string[];
   }>();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { width, height } = useWindowDimensions();
   const { lang } = useLang();
   const { theme: t, statusBarLight, f, ds } = useTheme();
   const { studyTarget } = useStudyTarget();
+  const flashcardsAccess = useFeatureAccess('flashcards');
   const audio = useAudio();
   const { playCorrect } = useCorrectSound();
 
@@ -853,6 +858,18 @@ export default function FlashcardsSwipeScreen() {
   const planFlashcardsDayIndex = Math.max(1, parseInt(routeParamString(params.planDayIndex) || '1', 10) || 1);
   // Normal training lands on setup; a plan task starts directly from the plan-selected source.
   const quickStart = Boolean(planFlashcardsTaskId);
+
+  const openFlashcardsPlusPaywall = useCallback((source: string) => {
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: 'flashcard_training', source },
+    } as any);
+  }, [router]);
+
+  useEffect(() => {
+    if (flashcardsAccess) return;
+    openFlashcardsPlusPaywall('flashcards_training_direct');
+  }, [flashcardsAccess, openFlashcardsPlusPaywall]);
 
   const selectedSourceIdsForDraft = useMemo(() => [...selectedIds].sort(), [selectedIds]);
   const sessionDraftScope = useMemo<FlashcardsSwipeSessionScope>(
@@ -1638,6 +1655,10 @@ export default function FlashcardsSwipeScreen() {
   );
 
   const startSession = useCallback(async () => {
+    if (!flashcardsAccess) {
+      openFlashcardsPlusPaywall('flashcards_training_start');
+      return;
+    }
     if (selectedSources.length === 0 || starting) return;
     draftRestoreAttemptedRef.current = true;
     void hapticTap();
@@ -1675,7 +1696,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, lang, position, selectedSources, starting, studyTarget]);
+  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, selectedSources, starting, studyTarget]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -1899,7 +1920,8 @@ export default function FlashcardsSwipeScreen() {
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
       if (!currentPrompt || feedback || settling || settlingRef.current) return;
-      settlingRef.current = true;
+      // NB: не выставляем settlingRef здесь — settleCard делает `if (settlingRef.current) return`,
+      // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
     [applyAnswer, currentPrompt, feedback, settleCard, settling],
@@ -1938,7 +1960,11 @@ export default function FlashcardsSwipeScreen() {
     const textToSpeak = currentPrompt?.card.en?.trim();
     if (!textToSpeak) return;
     void hapticTap();
-    audio.speak(textToSpeak, undefined, { language: 'en-US', voice: '' });
+    // Не форсируем voice: '' — иначе теряется выбранный пользователем TTS-голос и
+    // предзаписанный «fable»-клип, из-за чего озвучка звучала «странно» (голос
+    // движка по умолчанию). Даём speak() самому взять settings.speechVoiceId и
+    // при наличии — качественный клип.
+    audio.speak(textToSpeak, undefined, { language: 'en-US' });
   }, [audio, currentPrompt?.card.en]);
 
   const panResponder = useMemo(
@@ -2020,7 +2046,7 @@ export default function FlashcardsSwipeScreen() {
       contentContainerStyle={[
         styles.selectContent,
         {
-          paddingBottom: Math.max(28, insets.bottom + 28),
+          paddingBottom: Math.max(28, bottomInset + 28),
           paddingHorizontal: ds.spacing.lg,
         },
       ]}
@@ -2155,7 +2181,7 @@ export default function FlashcardsSwipeScreen() {
   const renderDone = () => {
     const cleanSession = stats.wrong === 0 && stats.hints === 0;
     return (
-      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(10, insets.bottom + 8) : Math.max(20, insets.bottom + 20) }]}>
+      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
         <TapScale
           onPress={exitTraining}
           style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border, alignSelf: 'flex-start' }]}
@@ -2238,7 +2264,7 @@ export default function FlashcardsSwipeScreen() {
       .filter((line) => s(line))
       .join('\n');
     return (
-      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(8, insets.bottom + 6) : Math.max(14, insets.bottom + 10) }]}>
+      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
         <View style={[styles.playHeader, isPlanFlashcardsTask && styles.planPlayHeader]}>
           <TapScale
             onPress={exitTraining}

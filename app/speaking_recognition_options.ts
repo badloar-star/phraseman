@@ -102,7 +102,12 @@ export function buildSpeakingStartOptions(
     iosTaskHint: iosTaskHintForTarget(targetText),
   };
 
-  if (onDevice) base.requiresOnDeviceRecognition = true;
+  // Android reliability first: `supportsOnDeviceRecognition()` can return true on
+  // Android 12, while the package creates the real on-device recognizer only on
+  // Android 13+. Forcing offline there can route through a device-specific
+  // service/package and fail before listening starts. Let Android use the system
+  // default recognizer; keep the hard on-device requirement for iOS.
+  if (onDevice && Platform.OS !== 'android') base.requiresOnDeviceRecognition = true;
 
   if (volumeMeter) {
     base.volumeChangeEventOptions = { enabled: true, intervalMillis: volumeIntervalMillis };
@@ -122,10 +127,6 @@ export function buildSpeakingStartOptions(
       EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1500,
       EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 3000,
     };
-    if (onDevice) {
-      // AOSP on-device recognizer package; biasing + formatting need it.
-      base.androidRecognitionServicePackage = 'com.google.android.as';
-    }
   }
 
   return base;

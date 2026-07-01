@@ -24,7 +24,19 @@ export type PlanSpeechModule = {
   /** Present on expo-speech-recognition; resolves whether offline recognition
    *  is available on this device. Optional so older stubs still typecheck. */
   supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
+  /** Present on expo-speech-recognition; resolves whether any recognizer can run. */
+  isRecognitionAvailable?: () => boolean;
 };
+
+export function isSpeechRecognitionAvailable(speechModule: PlanSpeechModule | null): boolean {
+  if (!speechModule) return false;
+  if (typeof speechModule.isRecognitionAvailable !== 'function') return true;
+  try {
+    return speechModule.isRecognitionAvailable() !== false;
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Return the native speech-recognition module, or `null` when it is not

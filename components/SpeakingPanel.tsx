@@ -32,6 +32,7 @@ import {
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module';
 
 /**
  * SpeakingPanel — premium "say it out loud" practice surface.
@@ -56,7 +57,11 @@ export type SpeakingPanelStatus =
   | 'failed'
   | 'no_speech'
   | 'denied'
-  | 'unavailable';
+  | 'unavailable'
+  // Android: движок принял start(), но так и не начал слушать (сервис завис /
+  // холодный старт / нет языковой модели). Watchdog выводит из вечного спиннера
+  // «Готовимся слушать…» в понятную ошибку с кнопкой «Повторить».
+  | 'stalled';
 
 export interface SpeakingPanelTheme {
   bg: string;
@@ -143,6 +148,7 @@ type SpeechModule = {
   abort: () => void;
   addListener: (event: string, cb: (payload: any) => void) => { remove?: () => void } | undefined;
   supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
+  isRecognitionAvailable?: () => boolean;
 };
 
 // expo-speech-recognition is a native module; require lazily so the panel can
@@ -151,7 +157,11 @@ function loadSpeechModule(): SpeechModule | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require('expo-speech-recognition');
-    return (mod?.ExpoSpeechRecognitionModule ?? null) as SpeechModule | null;
+    const native = mod?.ExpoSpeechRecognitionModule ?? null;
+    if (!native || typeof native.addListener !== 'function' || typeof native.start !== 'function') {
+      return null;
+    }
+    return native as SpeechModule;
   } catch {
     return null;
   }
@@ -191,6 +201,17 @@ export function SpeakingPanel({
   );
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const mountedRef = useRef(true);
+  // Watchdog: на Android нативный распознаватель может принять start(), но так и
+  // не прислать НИ start, НИ result, НИ error (занятый/холодный сервис, нет
+  // языковой модели). Без таймера экран навис бы навсегда на «Готовимся
+  // слушать…». Таймер снимается, как только пришёл ЛЮБОЙ признак жизни движка.
+  const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearWatchdog = useCallback(() => {
+    if (watchdogRef.current != null) {
+      clearTimeout(watchdogRef.current);
+      watchdogRef.current = null;
+    }
+  }, []);
   // Loudness contour for prosody (rhythm/stress) — collected from volumechange.
   const prosodySamplesRef = useRef<LoudnessSample[]>([]);
   const attemptStartRef = useRef(0);
@@ -218,6 +239,7 @@ export function SpeakingPanel({
       segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
     ) => {
       if (!mountedRef.current) return;
+      clearWatchdog();
       const text = finalTranscript.trim();
       // Attempt finished -> the equalizer collapses itself when `active` turns
       // false (its own effect), so no per-sample reset needed here.
@@ -250,20 +272,25 @@ export function SpeakingPanel({
         hapticError();
       }
     },
-    [targetText, onPass],
+    [targetText, onPass, clearWatchdog],
   );
 
   const stopListening = useCallback(() => {
+    clearWatchdog();
     try {
       speech?.stop();
     } catch {
       /* no-op */
     }
-  }, [speech]);
+  }, [speech, clearWatchdog]);
 
   const startListening = useCallback(async () => {
     if (isPreview) return; // mic is inert while previewing a fixed status
     if (!speech) {
+      setStatus('unavailable');
+      return;
+    }
+    if (!isSpeechRecognitionAvailable(speech)) {
       setStatus('unavailable');
       return;
     }
@@ -318,6 +345,9 @@ export function SpeakingPanel({
     };
 
     const resultSub = speech.addListener('result', (event: any) => {
+      // Первый результат = движок точно жив (на редких OEM 'start' не эмитится,
+      // а сразу приходит result) — на всякий случай тоже снимаем watchdog.
+      clearWatchdog();
       const alternatives: Array<{ transcript?: string; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }> = Array.isArray(event?.results)
         ? event.results
         : [];
@@ -341,11 +371,18 @@ export function SpeakingPanel({
         if (mountedRef.current) setTranscript(next);
       }
     });
+    // 'start' = движок реально начал слушать. Это сигнал, что зависания не было
+    // — снимаем watchdog. (На Android именно отсутствие этого события в течение
+    // нескольких секунд и означало вечное «Готовимся слушать…».)
+    const startSub = speech.addListener('start', () => {
+      clearWatchdog();
+    });
     const endSub = speech.addListener('end', () => {
       // Скорим по самому полному варианту, а не по последнему обрывку.
       finishAttempt(best || latest, bestSegments);
     });
     const errorSub = speech.addListener('error', () => {
+      clearWatchdog();
       if (mountedRef.current) {
         const final = best || latest;
         if (final) finishAttempt(final, bestSegments);
@@ -353,6 +390,7 @@ export function SpeakingPanel({
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
+      clearWatchdog();
       if (mountedRef.current) setStatus('no_speech');
     });
     // Live volume -> equalizer, pushed IMPERATIVELY (no setState → no re-render
@@ -367,7 +405,7 @@ export function SpeakingPanel({
       }
     });
 
-    listenersRef.current = [resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
+    listenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
       Boolean,
     ) as Array<{ remove?: () => void }>;
 
@@ -384,6 +422,23 @@ export function SpeakingPanel({
 
     try {
       setStatus('listening');
+      // Watchdog: если за 7с движок не пришлёт НИ start, НИ первого result —
+      // считаем его зависшим (типичная Android-беда: сервис принял start(), но
+      // молчит). Прерываем и показываем «stalled» с кнопкой «Повторить», а не
+      // оставляем юзера в вечном спиннере. Снимается любым событием жизни выше.
+      clearWatchdog();
+      watchdogRef.current = setTimeout(() => {
+        watchdogRef.current = null;
+        if (!mountedRef.current) return;
+        try {
+          speech.abort();
+        } catch {
+          /* no-op */
+        }
+        cleanupListeners();
+        setStatus('stalled');
+        hapticError();
+      }, 7000);
       speech.start(
         buildSpeakingStartOptions({
           lang: recognitionLocale,
@@ -396,14 +451,16 @@ export function SpeakingPanel({
       // Mic is live now -> canonical "recording started" cue (sound + haptic).
       playRecordStart();
     } catch {
+      clearWatchdog();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, finishAttempt, playRecordStart]);
+  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, finishAttempt, playRecordStart, clearWatchdog]);
 
   useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+      clearWatchdog();
       cleanupListeners();
       try {
         speech?.abort();
@@ -411,7 +468,7 @@ export function SpeakingPanel({
         /* no-op */
       }
     };
-  }, [speech, cleanupListeners]);
+  }, [speech, cleanupListeners, clearWatchdog]);
 
   // Автостарт: панель монтируется только когда юзер нажал «Устно», поэтому
   // сразу начинаем слушать — без второго нажатия на микрофон. В preview-режиме
@@ -505,6 +562,17 @@ export function SpeakingPanel({
           id: 'Perangkat ini tidak bisa mengenali suara. Latihan lain tetap tersedia',
           tr: 'Bu cihaz konuşmayı tanıyamıyor. Diğer alıştırmalar kullanılabilir',
           pl: 'To urządzenie nie rozpoznaje mowy. Pozostałe ćwiczenia są dostępne',
+        });
+      case 'stalled':
+        return L(lang, {
+          ru: 'Не удалось запустить микрофон. Попробуй ещё раз',
+          uk: 'Не вдалося запустити мікрофон. Спробуй ще раз',
+          es: 'No se pudo iniciar el micrófono. Inténtalo de nuevo',
+          'pt-BR': 'Não foi possível iniciar o microfone. Tente de novo',
+          vi: 'Không khởi động được micrô. Hãy thử lại',
+          id: 'Tidak bisa memulai mikrofon. Coba lagi',
+          tr: 'Mikrofon başlatılamadı. Tekrar dene',
+          pl: 'Nie udało się uruchomić mikrofonu. Spróbuj ponownie',
         });
       default:
         return '';
@@ -620,7 +688,7 @@ export function SpeakingPanel({
                 color:
                   status === 'passed'
                     ? theme.correct
-                    : status === 'failed' || status === 'denied' || status === 'unavailable'
+                    : status === 'failed' || status === 'denied' || status === 'unavailable' || status === 'stalled'
                     ? theme.wrong
                     : theme.textMuted,
               },
@@ -764,8 +832,8 @@ export function SpeakingPanel({
             </Pressable>
           )}
 
-          {/* Retry link after an attempt (pass / fail / nothing heard). */}
-          {(status === 'failed' || status === 'passed' || status === 'no_speech') && (
+          {/* Retry link after an attempt (pass / fail / nothing heard / stalled). */}
+          {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
             <Pressable onPress={startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: theme.accent }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}

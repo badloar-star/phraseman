@@ -13,6 +13,9 @@ Phraseman is a mobile app (iOS & Android) for learning English through 10,000+ r
 - [Как выучить английский самостоятельно](https://knowlyapps.com/guides/how-to-learn-english/): пошаговый план с честными сроками (8–14 месяцев до B1 при 15–30 минутах в день)
 - [Английский фразами](https://knowlyapps.com/guides/english-by-phrases/): почему готовые фразы эффективнее зубрёжки слов (formulaic language)
 - [15 минут в день](https://knowlyapps.com/guides/english-15-minutes-a-day/): почему короткая ежедневная практика бьёт длинные редкие занятия
+- [Языковой барьер](https://knowlyapps.com/guides/speaking-barrier/): почему люди понимают английский, но не говорят, и 5 шагов, снимающих блок
+- [Произношение](https://knowlyapps.com/guides/how-to-improve-english-pronunciation/): shadowing, типичные ошибки русскоговорящих, план на 4 недели
+- [Фразы для путешествий](https://knowlyapps.com/guides/english-phrases-for-travel/): 70+ готовых фраз для аэропорта, отеля, кафе и транспорта
 
 ## Прочее
 - [Поддержка](https://knowlyapps.com/contact/)

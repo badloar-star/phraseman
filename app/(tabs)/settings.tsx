@@ -49,8 +49,6 @@ import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import {
   ENABLE_DEV_TOOLS,
   ENABLE_DEV_STUDY_TARGET_LANG,
-  KNOWLY_LEGAL_PRIVACY_URL,
-  KNOWLY_LEGAL_TERMS_URL,
 } from '../config';
 import {
   getDevStudyTargetLang,
@@ -70,8 +68,6 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { isIdeasEnabled, isPromoCodesEnabled } from '../remote_flags';
-import { getAnalyticsConsentState, setAnalyticsConsent } from '../analytics_consent';
-import { recordConsentToCloud } from '../age_consent_cloud';
 import { getLoyaltyGiftState } from '../loyalty_gift';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -413,16 +409,9 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   const [hapticTap,  setHapticTap]   = useState(() => appSnapshot.settings?.tapHaptics ?? true);
-  // Согласие на необязательную аналитику (PostHog + non-essential Firebase).
-  // Источник правды — analytics_consent.ts (синхронный снапшот после гидрации).
-  // Тумблер даёт отзыв согласия в любой момент, как требует GDPR ст.7(3) и как
-  // обещает модал согласия. 'granted' → вкл; 'denied'/'unset' → выкл.
-  const [analyticsOn, setAnalyticsOn] = useState(getAnalyticsConsentState() === 'granted');
-  // Модал согласия: открывается по тапу на плашку. Черновик галочки «Не отправлять
-  // данные» (analyticsOptOutDraft) НЕ применяется, пока не нажата «Сохранить» —
-  // закрытие/смена экрана отбрасывает черновик, состояние не меняется.
-  const [analyticsModalVisible, setAnalyticsModalVisible] = useState(false);
-  const [analyticsOptOutDraft, setAnalyticsOptOutDraft] = useState(false);
+  // Согласие на аналитику, юр-документы и удаление аккаунта переехали на
+  // отдельный экран /privacy_settings (ряд «Приватность и данные»). Здесь эта
+  // логика больше не живёт.
 
   useEffect(() => {
     if (appSnapshot.profile) {
@@ -433,22 +422,6 @@ export default function SettingsMain() {
       setHapticTap(appSnapshot.settings.tapHaptics);
     }
   }, [appSnapshot.profile, appSnapshot.settings]);
-
-  // Применить выбор согласия: локально (источник правды + гейт сбора) + в облако
-  // (accountability/GDPR, дата отзыва/выдачи). Best-effort — сбой облака не ломает UX.
-  const applyAnalyticsConsent = useCallback((val: boolean) => {
-    setAnalyticsOn(val);
-    void (async () => {
-      await setAnalyticsConsent(val ? 'granted' : 'denied');
-      void recordConsentToCloud();
-    })();
-  }, []);
-
-  // «Сохранить» в модале: галочка отмечена = НЕ отправлять = denied; снята = granted.
-  const onSaveAnalyticsChoice = useCallback(() => {
-    applyAnalyticsConsent(!analyticsOptOutDraft);
-    setAnalyticsModalVisible(false);
-  }, [analyticsOptOutDraft, applyAnalyticsConsent]);
 
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
   const loadStudyTarget = useCallback(async () => {
@@ -540,7 +513,6 @@ export default function SettingsMain() {
       });
     setIdeasOn(isIdeasEnabled());
     setPromoCodesOn(isPromoCodesEnabled());
-    setAnalyticsOn(getAnalyticsConsentState() === 'granted');
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
   }, [settingsTabVisible, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
@@ -1373,53 +1345,18 @@ export default function SettingsMain() {
             один блок внизу: согласие на аналитику (раньше терялось в «Профиле»),
             юридические документы (раньше только мелким шрифтом в подвале) и
             удаление аккаунта (раньше голой серой строкой без группы). */}
+        {/* Один ряд → отдельный экран privacy_settings, где ВСЁ вместе: галочка
+            согласия на аналитику, Политика конфиденциальности, Условия
+            использования и удаление аккаунта. */}
         <SettingsSectionTitle title={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
-            testID="settings-analytics-consent"
-            icon="stats-chart"
-            color="teal"
-            label={L('Данные об использовании', 'Дані про використання', 'Datos de uso', 'Dados de uso', 'Dữ liệu sử dụng', 'Data penggunaan', 'Kullanım verileri', 'Dane o użytkowaniu')}
-            sub={analyticsOn
-              ? L('Отправляются — помогают улучшать приложение', 'Надсилаються — допомагають покращувати застосунок', 'Se envían — ayudan a mejorar la app', 'São enviados — ajudam a melhorar o app', 'Đang gửi — giúp cải thiện ứng dụng', 'Dikirim — membantu memperbaiki aplikasi', 'Gönderiliyor — uygulamayı geliştirir', 'Wysyłane — pomagają ulepszać aplikację')
-              : L('Не отправляются', 'Не надсилаються', 'No se envían', 'Não são enviados', 'Không gửi', 'Tidak dikirim', 'Gönderilmiyor', 'Nie są wysyłane')}
-            onPress={() => {
-              // Открываем модал; черновик галочки = текущее состояние (галочка «Не
-              // отправлять» отмечена, когда сбор ВЫКЛЮЧЕН).
-              setAnalyticsOptOutDraft(!analyticsOn);
-              setAnalyticsModalVisible(true);
-            }}
-          />
-          <SettingsRow
-            testID="settings-privacy-policy"
+            testID="settings-privacy-row"
             icon="lock-closed"
-            color="gray"
-            label={L('Политика конфиденциальности', 'Політика конфіденційності', 'Política de privacidad', 'Política de privacidade', 'Chính sách bảo mật', 'Kebijakan privasi', 'Gizlilik politikası', 'Polityka prywatności')}
-            onPress={() => {
-              doHaptic();
-              void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
-            }}
-          />
-          <SettingsRow
-            testID="settings-terms"
-            icon="document-text"
-            color="gray"
-            label={L('Условия использования', 'Умови використання', 'Términos de uso', 'Termos de uso', 'Điều khoản sử dụng', 'Ketentuan penggunaan', 'Kullanım koşulları', 'Warunki użytkowania')}
-            onPress={() => {
-              doHaptic();
-              void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
-            }}
-          />
-          <SettingsRow
-            testID="settings-delete-account"
-            icon="trash"
-            color="red"
-            danger
-            label={L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
-            onPress={() => {
-              doHaptic();
-              setDeleteAccountModalVisible(true);
-            }}
+            color="teal"
+            label={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')}
+            sub={L('Данные, документы, удаление аккаунта', 'Дані, документи, видалення акаунта', 'Datos, documentos, eliminar cuenta', 'Dados, documentos, excluir conta', 'Dữ liệu, tài liệu, xóa tài khoản', 'Data, dokumen, hapus akun', 'Veriler, belgeler, hesap silme', 'Dane, dokumenty, usunięcie konta')}
+            onPress={() => router.push('/privacy_settings' as never)}
           />
         </SettingsGroup>
 
@@ -1526,92 +1463,6 @@ export default function SettingsMain() {
                 {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
               </Text>
             </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      {/* ── Согласие на отправку данных об использовании ── */}
-      <Modal
-        visible={analyticsModalVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setAnalyticsModalVisible(false)}
-      >
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <View
-            style={[
-              {
-                width: '100%',
-                maxWidth: 380,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderRadius: isCompassTheme ? 10 : 16,
-                padding: 20,
-                borderWidth: 1,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
-                overflow: 'hidden',
-              },
-              isCompassTheme && compassShadow(3),
-            ]}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 10 }}>
-              {L('Данные об использовании', 'Дані про використання', 'Datos de uso', 'Dados de uso', 'Dữ liệu sử dụng', 'Data penggunaan', 'Kullanım verileri', 'Dane o użytkowaniu')}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
-              {L(
-                'Мы собираем обезличенные данные о том, как используется приложение (какие экраны и функции открываются, как проходит обучение), чтобы понимать, что улучшать. Это не обязательно — приложение работает и без этого. Сбор ошибок и сбоев для стабильности продолжается всегда.',
-                'Ми збираємо знеособлені дані про те, як використовується додаток (які екрани й функції відкриваються, як проходить навчання), щоб розуміти, що покращувати. Це не обов\'язково — додаток працює і без цього. Збір помилок і збоїв для стабільності триває завжди.',
-                'Recopilamos datos despersonalizados sobre cómo se usa la app (qué pantallas y funciones se abren, cómo avanza el aprendizaje) para saber qué mejorar. No es obligatorio: la app funciona sin esto. La recolección de errores y fallos para la estabilidad continúa siempre.',
-                'Coletamos dados despersonalizados sobre como o app é usado (quais telas e funções são abertas, como o aprendizado avança) para saber o que melhorar. Não é obrigatório: o app funciona sem isso. A coleta de erros e falhas para estabilidade continua sempre.',
-                'Chúng tôi thu thập dữ liệu ẩn danh về cách ứng dụng được sử dụng (màn hình và tính năng nào được mở, việc học diễn ra thế nào) để biết cần cải thiện gì. Điều này không bắt buộc — ứng dụng vẫn hoạt động. Việc thu thập lỗi và sự cố để ổn định vẫn luôn tiếp tục.',
-                'Kami mengumpulkan data anonim tentang cara aplikasi digunakan (layar dan fitur mana yang dibuka, bagaimana proses belajar) untuk tahu apa yang perlu ditingkatkan. Ini tidak wajib — aplikasi tetap berfungsi. Pengumpulan error dan crash untuk stabilitas selalu berjalan.',
-                'Uygulamanın nasıl kullanıldığına dair (hangi ekran ve özelliklerin açıldığı, öğrenmenin nasıl ilerlediği) kimliksizleştirilmiş veriler topluyoruz; neyi iyileştireceğimizi anlamak için. Zorunlu değil — uygulama bunsuz da çalışır. Kararlılık için hata ve çökme toplama her zaman devam eder.',
-                'Zbieramy zanonimizowane dane o tym, jak korzysta się z aplikacji (które ekrany i funkcje są otwierane, jak przebiega nauka), aby wiedzieć, co ulepszać. Nie jest to wymagane — aplikacja działa bez tego. Zbieranie błędów i awarii dla stabilności trwa zawsze.',
-              )}
-            </Text>
-
-            <TouchableOpacity
-              testID="analytics-modal-optout"
-              activeOpacity={0.8}
-              onPress={() => setAnalyticsOptOutDraft((v) => !v)}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 18 }}
-            >
-              <View
-                style={{
-                  width: 24, height: 24, borderRadius: 6, borderWidth: 2,
-                  borderColor: analyticsOptOutDraft ? t.correct : t.border,
-                  backgroundColor: analyticsOptOutDraft ? t.correct : 'transparent',
-                  alignItems: 'center', justifyContent: 'center',
-                }}
-              >
-                {analyticsOptOutDraft ? <Ionicons name="checkmark" size={16} color={t.bgCard} /> : null}
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', flex: 1 }}>
-                {L('Не отправлять данные', 'Не надсилати дані', 'No enviar datos', 'Não enviar dados', 'Không gửi dữ liệu', 'Jangan kirim data', 'Veri gönderme', 'Nie wysyłać danych')}
-              </Text>
-            </TouchableOpacity>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12, marginTop: 22 }}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => setAnalyticsModalVisible(false)}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                testID="analytics-modal-save"
-                activeOpacity={0.8}
-                onPress={onSaveAnalyticsChoice}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
-              >
-                <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                </Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </Modal>

@@ -1,0 +1,44 @@
+import {
+  computeDayClosingRewardXp,
+  nextDayClosingStreak,
+  parseDayClosingStreak,
+  prevDateKey,
+} from '../app/compass/day_closing_reward_rules';
+
+describe('day closing reward rules', () => {
+  it('scales close XP by day richness: 10 base, +5 at 2 kinds, +5 at 3', () => {
+    const h = (n: number) => ({ highlights: Array.from({ length: n }, (_, i) => ({ kind: 'xp' as const, value: String(i) })) });
+    expect(computeDayClosingRewardXp(h(1))).toBe(10);
+    expect(computeDayClosingRewardXp(h(2))).toBe(15);
+    expect(computeDayClosingRewardXp(h(3))).toBe(20);
+  });
+
+  it('computes the previous UTC date key', () => {
+    expect(prevDateKey('2026-07-02')).toBe('2026-07-01');
+    expect(prevDateKey('2026-01-01')).toBe('2025-12-31');
+    expect(prevDateKey('garbage')).toBe('');
+  });
+
+  it('grows the streak only on consecutive days and is idempotent per day', () => {
+    const empty = { count: 0, lastDateKey: null };
+    const day1 = nextDayClosingStreak(empty, '2026-07-01');
+    expect(day1).toEqual({ count: 1, lastDateKey: '2026-07-01' });
+
+    // Повторное закрытие того же дня не растит серию.
+    expect(nextDayClosingStreak(day1, '2026-07-01')).toBe(day1);
+
+    const day2 = nextDayClosingStreak(day1, '2026-07-02');
+    expect(day2).toEqual({ count: 2, lastDateKey: '2026-07-02' });
+
+    // Пропуск дня → серия начинается заново с 1.
+    const afterGap = nextDayClosingStreak(day2, '2026-07-05');
+    expect(afterGap).toEqual({ count: 1, lastDateKey: '2026-07-05' });
+  });
+
+  it('parses stored streaks defensively', () => {
+    expect(parseDayClosingStreak(null)).toEqual({ count: 0, lastDateKey: null });
+    expect(parseDayClosingStreak('not json')).toEqual({ count: 0, lastDateKey: null });
+    expect(parseDayClosingStreak('{"count":"7","lastDateKey":"2026-07-01"}')).toEqual({ count: 7, lastDateKey: '2026-07-01' });
+    expect(parseDayClosingStreak('{"count":-3}')).toEqual({ count: 0, lastDateKey: null });
+  });
+});

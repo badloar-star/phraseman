@@ -13,9 +13,10 @@
  */
 import type { CompassSnapshot } from './signal_bus';
 import type { CompassGoal } from './compass_onboarding_profile';
+import type { DayClosingRitual } from './day_closing_ritual';
 
 /** Тип дня — выбирается правилами по снимку. */
-export type CompassDayType = 'first_day' | 'easy' | 'deep_dive' | 'repair' | 'comeback';
+export type CompassDayType = 'first_day' | 'easy' | 'deep_dive' | 'repair' | 'comeback' | 'day_closing';
 
 /**
  * Индакшн — «что классного попробовать первым». Лёгкая подсказка одной фичи в
@@ -65,6 +66,8 @@ export interface CompassDay {
   level?: string | null;
   /** Куплен ли полный доступ (влияет на первый шаг и индакшн). */
   hasPremium?: boolean;
+  /** Вечерний ритуал: локальный снимок дня без облачных чтений. */
+  dayClosing?: DayClosingRitual;
   /**
    * Индакшн-подсказка «попробуй первым» (only first_day/comeback). Тип фичи —
    * подпись и маршрут собираются в copy/route. undefined → подсказки нет.

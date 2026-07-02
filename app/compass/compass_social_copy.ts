@@ -31,6 +31,29 @@ export const COMPASS_SOCIAL_HEADER = {
   pl: 'Przy okazji',
 } as const;
 
+/** Действие раскрытия: в блоке уже есть короткая строка «и ещё N», кнопка открывает полный список. */
+export const COMPASS_SOCIAL_SHOW_ALL = {
+  ru: 'Показать все {count}',
+  uk: 'Показати всі {count}',
+  es: 'Ver los {count}',
+  'pt-BR': 'Ver todos ({count})',
+  vi: 'Xem tất cả {count}',
+  id: 'Lihat semua {count}',
+  tr: '{count} öğeyi göster',
+  pl: 'Pokaż wszystkie {count}',
+} as const;
+
+export const COMPASS_SOCIAL_COLLAPSE = {
+  ru: 'Свернуть',
+  uk: 'Згорнути',
+  es: 'Ocultar',
+  'pt-BR': 'Recolher',
+  vi: 'Thu gọn',
+  id: 'Tutup',
+  tr: 'Daralt',
+  pl: 'Zwiń',
+} as const;
+
 /** Безопасное имя отправителя: триммим, обрезаем длину, fallback «друг». */
 export function safeSocialName(name: string | undefined, lang: Lang): string {
   const trimmed = (name ?? '').trim();

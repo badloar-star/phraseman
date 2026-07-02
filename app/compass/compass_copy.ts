@@ -122,6 +122,16 @@ export const COMPASS_DAY_COMMENT: Record<CompassDayType, CompassText> = {
     tr: 'Geri döndün. Güzel. Üç ifadeyle başlayalım.',
     pl: 'Wróciłeś. Dobrze. Zacznijmy od trzech fraz.',
   },
+  day_closing: {
+    ru: 'Собрал итог и первый шаг на завтра.',
+    uk: 'Зібрав підсумок і перший крок на завтра.',
+    es: 'Reuní resultado y primer paso para mañana.',
+    'pt-BR': 'Juntei resultado e primeiro passo de amanhã.',
+    vi: 'Đã gom kết quả và bước đầu ngày mai.',
+    id: 'Merangkum hasil dan langkah pertama besok.',
+    tr: 'Sonuç ve yarının ilk adımı hazır.',
+    pl: 'Zebrano wynik i pierwszy krok na jutro.',
+  },
 };
 
 /** Подпись задачи дня по виду (короткая человеческая цель, copy-style планов). */
@@ -235,6 +245,246 @@ export const COMPASS_OPEN_ACCESS: CompassText = {
   id: 'Buka akses penuh',
   tr: 'Tam erişimi aç',
   pl: 'Otwórz pełny dostęp',
+};
+
+// ── Вечерний ритуал: закрыть день без нового экрана ──
+
+export const COMPASS_DAY_CLOSING_TITLE: CompassText = {
+  ru: 'Итог дня',
+  uk: 'Підсумок дня',
+  es: 'Cierre del día',
+  'pt-BR': 'Resumo do dia',
+  vi: 'Tổng kết ngày',
+  id: 'Ringkasan hari',
+  tr: 'Gün özeti',
+  pl: 'Podsumowanie dnia',
+};
+
+export const COMPASS_DAY_CLOSING_TODAY: CompassText = {
+  ru: 'Итог сегодня',
+  uk: 'Підсумок сьогодні',
+  es: 'Resultado de hoy',
+  'pt-BR': 'Resultado de hoje',
+  vi: 'Kết quả hôm nay',
+  id: 'Hasil hari ini',
+  tr: 'Bugünkü sonuç',
+  pl: 'Dzisiejszy wynik',
+};
+
+export const COMPASS_DAY_CLOSING_TOMORROW: CompassText = {
+  ru: 'Фокус на завтра',
+  uk: 'Фокус на завтра',
+  es: 'Foco para mañana',
+  'pt-BR': 'Foco para amanhã',
+  vi: 'Trọng tâm ngày mai',
+  id: 'Fokus besok',
+  tr: 'Yarın odağı',
+  pl: 'Fokus na jutro',
+};
+
+export const COMPASS_DAY_CLOSING_CLOSE: CompassText = {
+  ru: 'Готово',
+  uk: 'Готово',
+  es: 'Listo',
+  'pt-BR': 'Pronto',
+  vi: 'Xong',
+  id: 'Selesai',
+  tr: 'Tamam',
+  pl: 'Gotowe',
+};
+
+/** Кнопка закрытия дня с наградой. «{xp}» подставляет вызывающий код. */
+export const COMPASS_DAY_CLOSING_CLOSE_REWARD: CompassText = {
+  ru: 'Закрыть день · +{xp} XP',
+  uk: 'Закрити день · +{xp} XP',
+  es: 'Cerrar el día · +{xp} XP',
+  'pt-BR': 'Fechar o dia · +{xp} XP',
+  vi: 'Khép lại ngày · +{xp} XP',
+  id: 'Tutup hari · +{xp} XP',
+  tr: 'Günü kapat · +{xp} XP',
+  pl: 'Zamknij dzień · +{xp} XP',
+};
+
+/** Финальная строка после закрытия дня (перед автозакрытием модалки). */
+export const COMPASS_DAY_CLOSING_DONE: CompassText = {
+  ru: 'День закрыт. Увидимся утром.',
+  uk: 'День закрито. Побачимось уранці.',
+  es: 'Día cerrado. Nos vemos mañana.',
+  'pt-BR': 'Dia fechado. Até amanhã cedo.',
+  vi: 'Ngày đã khép lại. Hẹn sáng mai.',
+  id: 'Hari selesai. Sampai jumpa pagi.',
+  tr: 'Gün kapandı. Sabah görüşürüz.',
+  pl: 'Dzień zamknięty. Do zobaczenia rano.',
+};
+
+/** Бейдж серии закрытых дней. «{days}» подставляет вызывающий код. */
+export const COMPASS_DAY_CLOSING_STREAK: CompassText = {
+  ru: 'Дней подряд: {days}',
+  uk: 'Днів поспіль: {days}',
+  es: 'Días seguidos: {days}',
+  'pt-BR': 'Dias seguidos: {days}',
+  vi: 'Ngày liên tiếp: {days}',
+  id: 'Hari berturut: {days}',
+  tr: 'Üst üste gün: {days}',
+  pl: 'Dni z rzędu: {days}',
+};
+
+/** Подпись минут у задачи дня (раньше «мин» было жёстко по-русски). */
+export const COMPASS_TASK_MINUTES: CompassText = {
+  ru: 'мин',
+  uk: 'хв',
+  es: 'min',
+  'pt-BR': 'min',
+  vi: 'phút',
+  id: 'mnt',
+  tr: 'dk',
+  pl: 'min',
+};
+
+export const COMPASS_DAY_CLOSING_PREMIUM_TITLE: CompassText = {
+  ru: 'В Phraseman Plus итоги каждый вечер',
+  uk: 'У Phraseman Plus підсумки щовечора',
+  es: 'En Phraseman Plus, resumen cada noche',
+  'pt-BR': 'No Phraseman Plus, resumo toda noite',
+  vi: 'Phraseman Plus tổng kết mỗi tối',
+  id: 'Di Phraseman Plus, ringkasan tiap malam',
+  tr: 'Phraseman Plus her akşam özetler',
+  pl: 'W Phraseman Plus podsumowanie co wieczór',
+};
+
+export const COMPASS_DAY_CLOSING_PREMIUM_BODY: CompassText = {
+  ru: 'Компас покажет итог, фокус и что пора повторить.',
+  uk: 'Компас покаже підсумок, фокус і що повторити.',
+  es: 'Brújula muestra resultado, foco y repaso.',
+  'pt-BR': 'A Bússola mostra resultado, foco e revisão.',
+  vi: 'La bàn hiện kết quả, trọng tâm và ôn tập.',
+  id: 'Kompas menampilkan hasil, fokus, dan ulangannya.',
+  tr: 'Pusula sonucu, odağı ve tekrarı gösterir.',
+  pl: 'Kompas pokaże wynik, fokus i powtórkę.',
+};
+
+export const COMPASS_DAY_CLOSING_PLUS_MORE: CompassText = {
+  ru: 'Что ещё входит в Plus',
+  uk: 'Що ще входить у Plus',
+  es: 'Qué más incluye Plus',
+  'pt-BR': 'O que mais entra no Plus',
+  vi: 'Plus còn có gì',
+  id: 'Apa lagi di Plus',
+  tr: 'Plus içinde başka ne var',
+  pl: 'Co jeszcze zawiera Plus',
+};
+
+export const COMPASS_DAY_CLOSING_PLUS_ITEMS: CompassText[] = [
+  { ru: 'Итоги каждый вечер', uk: 'Підсумки щовечора', es: 'Resumen cada noche', 'pt-BR': 'Resumo toda noite', vi: 'Tổng kết mỗi tối', id: 'Ringkasan tiap malam', tr: 'Her akşam özet', pl: 'Podsumowanie co wieczór' },
+  { ru: 'Компас с фокусом на завтра', uk: 'Компас із фокусом на завтра', es: 'Brújula con foco para mañana', 'pt-BR': 'Bússola com foco para amanhã', vi: 'La bàn có trọng tâm ngày mai', id: 'Kompas dengan fokus besok', tr: 'Yarın odaklı Pusula', pl: 'Kompas z fokusem na jutro' },
+  { ru: 'Личный план', uk: 'Особистий план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' },
+  { ru: 'Все сессии курса', uk: 'Усі сесії курсу', es: 'Todas las sesiones', 'pt-BR': 'Todas as sessões', vi: 'Mọi phiên học', id: 'Semua sesi', tr: 'Tüm oturumlar', pl: 'Wszystkie sesje' },
+  { ru: 'Энергия без ожидания', uk: 'Енергія без очікування', es: 'Energía sin espera', 'pt-BR': 'Energia sem espera', vi: 'Năng lượng không chờ', id: 'Energi tanpa tunggu', tr: 'Beklemesiz enerji', pl: 'Energia bez czekania' },
+  { ru: 'Вызовы без дневного лимита', uk: 'Виклики без денного ліміту', es: 'Retos sin límite diario', 'pt-BR': 'Desafios sem limite diário', vi: 'Thử thách không giới hạn ngày', id: 'Tantangan tanpa batas harian', tr: 'Günlük limitsiz görevler', pl: 'Wyzwania bez limitu dnia' },
+  { ru: 'Карточки без лимита', uk: 'Картки без ліміту', es: 'Tarjetas sin límite', 'pt-BR': 'Cartões sem limite', vi: 'Thẻ không giới hạn', id: 'Kartu tanpa batas', tr: 'Limitsiz kartlar', pl: 'Fiszki bez limitu' },
+  { ru: 'Повторение без лимита', uk: 'Повторення без ліміту', es: 'Repaso sin límite', 'pt-BR': 'Revisão sem limite', vi: 'Ôn tập không giới hạn', id: 'Ulangan tanpa batas', tr: 'Limitsiz tekrar', pl: 'Powtórki bez limitu' },
+  { ru: 'Точечное повторение', uk: 'Точкове повторення', es: 'Repaso focalizado', 'pt-BR': 'Revisão focada', vi: 'Ôn đúng điểm cần', id: 'Ulangan terarah', tr: 'Hedefli tekrar', pl: 'Celowana powtórka' },
+  { ru: 'Практика слабых мест', uk: 'Практика слабких місць', es: 'Práctica de puntos débiles', 'pt-BR': 'Prática de pontos fracos', vi: 'Luyện điểm yếu', id: 'Latih titik lemah', tr: 'Zayıf nokta pratiği', pl: 'Praktyka słabych miejsc' },
+  { ru: 'Разбор сложных фраз', uk: 'Розбір складних фраз', es: 'Análisis de frases difíciles', 'pt-BR': 'Análise de frases difíceis', vi: 'Phân tích cụm khó', id: 'Bedah frasa sulit', tr: 'Zor ifade analizi', pl: 'Analiza trudnych fraz' },
+  { ru: 'Диалоги без лимита', uk: 'Діалоги без ліміту', es: 'Diálogos sin límite', 'pt-BR': 'Diálogos sem limite', vi: 'Hội thoại không giới hạn', id: 'Dialog tanpa batas', tr: 'Limitsiz diyalog', pl: 'Dialogi bez limitu' },
+  { ru: 'Режим речи', uk: 'Режим мовлення', es: 'Modo de habla', 'pt-BR': 'Modo de fala', vi: 'Chế độ nói', id: 'Mode bicara', tr: 'Konuşma modu', pl: 'Tryb mówienia' },
+  { ru: 'Подсказки по словам', uk: 'Підказки по словах', es: 'Pistas por palabra', 'pt-BR': 'Dicas por palavra', vi: 'Gợi ý theo từ', id: 'Petunjuk per kata', tr: 'Kelime ipuçları', pl: 'Podpowiedzi do słów' },
+  { ru: 'Арена без лимита', uk: 'Арена без ліміту', es: 'Arena sin límite', 'pt-BR': 'Arena sem limite', vi: 'Đấu trường không giới hạn', id: 'Arena tanpa batas', tr: 'Limitsiz Arena', pl: 'Arena bez limitu' },
+  { ru: 'Карта 365 дней', uk: 'Карта 365 днів', es: 'Mapa de 365 días', 'pt-BR': 'Mapa de 365 dias', vi: 'Bản đồ 365 ngày', id: 'Peta 365 hari', tr: '365 gün haritası', pl: 'Mapa 365 dni' },
+  { ru: 'Детальный путь', uk: 'Детальний шлях', es: 'Camino detallado', 'pt-BR': 'Caminho detalhado', vi: 'Lộ trình chi tiết', id: 'Jalur rinci', tr: 'Ayrıntılı yol', pl: 'Szczegółowa droga' },
+  { ru: 'Темы и ауры профиля', uk: 'Теми й аури профілю', es: 'Temas y auras del perfil', 'pt-BR': 'Temas e auras do perfil', vi: 'Chủ đề và hào quang hồ sơ', id: 'Tema dan aura profil', tr: 'Profil temaları ve auralar', pl: 'Motywy i aury profilu' },
+  { ru: 'Plus-подсветка профиля', uk: 'Plus-підсвітка профілю', es: 'Realce Plus del perfil', 'pt-BR': 'Destaque Plus no perfil', vi: 'Làm nổi hồ sơ Plus', id: 'Sorotan profil Plus', tr: 'Plus profil vurgusu', pl: 'Plusowe wyróżnienie profilu' },
+  { ru: 'Защита серии', uk: 'Захист серії', es: 'Protección de racha', 'pt-BR': 'Proteção de sequência', vi: 'Bảo vệ chuỗi', id: 'Perlindungan rangkaian', tr: 'Seri koruması', pl: 'Ochrona serii' },
+];
+
+export const COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL: Record<
+  'phrases' | 'xp' | 'plan' | 'tasks' | 'cards' | 'rounds' | 'streak',
+  CompassText
+> = {
+  phrases: {
+    ru: 'Новых фраз', uk: 'Нових фраз', es: 'Frases nuevas', 'pt-BR': 'Frases novas',
+    vi: 'Câu mới', id: 'Frasa baru', tr: 'Yeni ifadeler', pl: 'Nowych fraz',
+  },
+  xp: {
+    ru: 'XP сегодня', uk: 'XP сьогодні', es: 'XP de hoy', 'pt-BR': 'XP de hoje',
+    vi: 'XP hôm nay', id: 'XP hari ini', tr: 'Bugünkü XP', pl: 'XP dzisiaj',
+  },
+  plan: {
+    ru: 'Шаги плана', uk: 'Кроки плану', es: 'Pasos del plan', 'pt-BR': 'Passos do plano',
+    vi: 'Bước kế hoạch', id: 'Langkah rencana', tr: 'Plan adımları', pl: 'Kroki planu',
+  },
+  tasks: {
+    ru: 'Вызовы дня', uk: 'Виклики дня', es: 'Retos del día', 'pt-BR': 'Desafios do dia',
+    vi: 'Thử thách hôm nay', id: 'Tantangan harian', tr: 'Günün çağrıları', pl: 'Wyzwania dnia',
+  },
+  cards: {
+    ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', 'pt-BR': 'Cartões',
+    vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki',
+  },
+  rounds: {
+    ru: 'Раунды', uk: 'Раунди', es: 'Rondas', 'pt-BR': 'Rodadas',
+    vi: 'Vòng', id: 'Ronde', tr: 'Turlar', pl: 'Rundy',
+  },
+  streak: {
+    ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência',
+    vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria',
+  },
+};
+
+export const COMPASS_DAY_CLOSING_REPEAT: Record<
+  'fresh_phrases' | 'cards' | 'plan' | 'round' | 'one_phrase',
+  CompassText
+> = {
+  fresh_phrases: {
+    ru: 'Начни с 3 свежих фраз.',
+    uk: 'Почни з 3 свіжих фраз.',
+    es: 'Empieza con 3 frases frescas.',
+    'pt-BR': 'Comece com 3 frases frescas.',
+    vi: 'Bắt đầu với 3 câu mới.',
+    id: 'Mulai dengan 3 frasa segar.',
+    tr: '3 taze ifadeyle başla.',
+    pl: 'Zacznij od 3 świeżych fraz.',
+  },
+  cards: {
+    ru: 'Открой сохранённые карточки.',
+    uk: 'Відкрий збережені картки.',
+    es: 'Abre las tarjetas guardadas.',
+    'pt-BR': 'Abra os cartões salvos.',
+    vi: 'Mở các thẻ đã lưu.',
+    id: 'Buka kartu tersimpan.',
+    tr: 'Kayıtlı kartları aç.',
+    pl: 'Otwórz zapisane fiszki.',
+  },
+  plan: {
+    ru: 'Продолжи личный план.',
+    uk: 'Продовж особистий план.',
+    es: 'Continúa el plan personal.',
+    'pt-BR': 'Continue o plano pessoal.',
+    vi: 'Tiếp tục kế hoạch cá nhân.',
+    id: 'Lanjutkan rencana pribadi.',
+    tr: 'Kişisel plana devam et.',
+    pl: 'Kontynuuj plan osobisty.',
+  },
+  round: {
+    ru: 'Разбери один сложный раунд.',
+    uk: 'Розбери один складний раунд.',
+    es: 'Revisa una ronda difícil.',
+    'pt-BR': 'Revise uma rodada difícil.',
+    vi: 'Xem lại một vòng khó.',
+    id: 'Ulas satu ronde sulit.',
+    tr: 'Zor bir turu incele.',
+    pl: 'Przejrzyj jedną trudną rundę.',
+  },
+  one_phrase: {
+    ru: 'Начни с одной фразы.',
+    uk: 'Почни з однієї фрази.',
+    es: 'Empieza con una frase.',
+    'pt-BR': 'Comece com uma frase.',
+    vi: 'Bắt đầu bằng một câu.',
+    id: 'Mulai dari satu frasa.',
+    tr: 'Bir ifadeyle başla.',
+    pl: 'Zacznij od jednej frazy.',
+  },
 };
 
 // ── Крыло «Мотивация»: пуши и серия (Библия: без запугивания и фальшивой срочности) ──

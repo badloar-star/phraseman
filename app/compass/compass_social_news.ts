@@ -53,6 +53,8 @@ export interface CompassSocialEvent {
 export interface CompassSocialNews {
   /** Локализованные строки для блока «Кстати…» (уже обрезаны до MAX_SOCIAL_LINES). */
   lines: string[];
+  /** Полный локализованный список событий для раскрытия блока без повторного чтения облака. */
+  allLines: string[];
   /** Все собранные события (включая свёрнутые в «и ещё N») — для markSeen. */
   events: CompassSocialEvent[];
 }
@@ -240,7 +242,7 @@ export async function collectCompassSocialNews(
   lang: Lang,
   nowMs: number = Date.now(),
 ): Promise<CompassSocialNews> {
-  const empty: CompassSocialNews = { lines: [], events: [] };
+  const empty: CompassSocialNews = { lines: [], allLines: [], events: [] };
   if (!isSocialNewsEnabled()) return empty;
 
   const myUid = await getCanonicalUserId();
@@ -285,7 +287,8 @@ export async function collectCompassSocialNews(
   });
 
   const lines = buildSocialLines(withNames, lang);
-  return { lines, events: withNames };
+  const allLines = withNames.map(ev => socialLineForKind(ev.kind, ev.name, lang));
+  return { lines, allLines, events: withNames };
 }
 
 /** Строит строки для блока: до MAX_SOCIAL_LINES, остаток сворачивает в «и ещё N». */

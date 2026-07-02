@@ -18,15 +18,22 @@ export default function CompassSection({ open, onToggle }: Props) {
       id="compass"
       icon="compass-outline"
       title="🧭 Компас"
-      badge={2}
+      badge={3}
       open={open}
       onToggle={onToggle}
     >
       <AdminHint>
         Брифинг «Компаса» (для ИИ-голоса) и обновление дней. Примеры модалок в
-        разных ситуациях: типы дня, приветствия, соц-сводка «Кстати…» (заявки /
-        лайки), запертый Компас + реальный день + сброс маркера «показано сегодня».
+        разных ситуациях: типы дня, итог дня, приветствия, соц-сводка «Кстати…»
+        (заявки / лайки), запертый Компас + реальный день + сброс маркера «показано сегодня».
       </AdminHint>
+      <ButtonRow
+        testID="admin-compass-day-closing"
+        icon="moon-outline"
+        label="Итог дня"
+        sub="Day-closing modal: free/premium, custom seed, 1.2K/12K/1.4M"
+        onPress={() => router.push({ pathname: '/admin_compass_lab', params: { panel: 'day_closing' } } as any)}
+      />
       <ButtonRow
         testID="admin-compass-briefing"
         icon="navigate-outline"

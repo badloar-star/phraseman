@@ -17,6 +17,14 @@ import { COMPASS_DAY_COMMENT } from './compass_copy';
 import type { CompassDay } from './compass_brain';
 import { callCompassVoice } from './compass_voice_client';
 
+/** Грубый уровень для подписи кэша голоса: a0..b1 → 0..3, неизвестно → 0. */
+const VOICE_LEVEL: Record<string, number> = { a0: 0, a1: 1, a2: 2, b1: 3 };
+
+export function compassVoiceLevel(level: string | null | undefined): number {
+  if (!level) return 0;
+  return VOICE_LEVEL[level] ?? 0;
+}
+
 /**
  * Текст комментария дня. Сначала — детерминированный fallback по Библии (мгновенно),
  * затем, если ИИ-голос включён, подменяется живым текстом из CF (когда придёт).
@@ -30,8 +38,18 @@ export function useCompassVoice(day: CompassDay | null): string {
     setComment(fallback);
     if (!day || !compassAiVoiceOn()) return;
     let cancelled = false;
-    const topics = day.topicFocus ? [day.topicFocus] : [];
-    const level = 0; // грубый уровень для подписи; уточняется применяющим слоем
+    // Подпись дня — РЕАЛЬНАЯ, а не вырожденная (раньше level=0 и один топик у
+    // всех давали одинаковую подпись кэша → один текст на тип дня для всех).
+    // Темы: фокус дня + темы задач (dedup, максимум 3, сортировка для стабильного
+    // ключа кэша). Уровень: из онбординга a0..b1 → 0..3.
+    const topicSet = new Set<string>();
+    if (day.topicFocus) topicSet.add(day.topicFocus);
+    for (const task of day.tasks) {
+      const topic = task.weakTopic ?? task.focus;
+      if (topic) topicSet.add(topic);
+    }
+    const topics = [...topicSet].sort().slice(0, 3);
+    const level = compassVoiceLevel(day.level);
     void callCompassVoice({ dayType: day.type, topics, level, lang })
       .then((res) => {
         if (cancelled) return;

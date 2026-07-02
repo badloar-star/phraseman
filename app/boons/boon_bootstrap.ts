@@ -11,6 +11,7 @@ import { getTodayKey } from '../daily_tasks';
 import { emitAppEvent } from '../events';
 import { addArenaPlaysBonusForToday } from '../arena_daily_limit';
 import { getPackGiftTrial, setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
+import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../streak_freeze';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { getTodaysBoons } from './boon_engine';
@@ -106,6 +107,9 @@ export async function applyTodaysBoonsOnAppOpen(
   studyTarget?: RuntimeStudyTarget,
   todayKey: string = getTodayKey(),
 ): Promise<void> {
+  // Plus-перк: месячный лимит бесплатных заморозок стрика. Не boon, но живёт в том
+  // же bootstrap-цикле открытия главной (идемпотентен, best-effort внутри).
+  await applyMonthlyPremiumFreezeAllowance().catch(() => {});
   const { primary } = getTodaysBoons(todayKey);
   if (!primary) return;
   try {

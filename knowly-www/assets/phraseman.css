@@ -1174,9 +1174,21 @@ h2 {
 .hero {
   position: relative;
 }
-.hero > div:not(.hero-rays) {
+.hero > div:not(.hero-rays):not(.hero-dust) {
   position: relative;
   z-index: 1;
+}
+/* Золотая пыль в hero (частицы, canvas из fx.js) */
+.hero-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-dust canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* ===== Живой градиент на акцентных словах (порт GradientText) ===== */
@@ -1354,6 +1366,107 @@ h2 {
   font-size: 13.5px;
   font-weight: 700;
   color: var(--gold);
+}
+
+/* ===== Лента фраз (порт Scroll Velocity): скорость зависит от скролла ===== */
+.ribbon {
+  overflow: hidden;
+  margin: 34px 0 0;
+  padding: 20px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ribbon-track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+.ribbon-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  letter-spacing: -0.02em;
+  color: rgba(244, 241, 234, 0.15);
+}
+.ribbon-seg i {
+  font-style: normal;
+  font-size: 0.5em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.6;
+}
+
+/* ===== Магнитные кнопки (порт Magnet) ===== */
+[data-magnet] {
+  will-change: transform;
+  transition: transform 0.18s ease-out;
+}
+
+/* ===== Искры при клике (порт Click Spark) ===== */
+.spark-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ===== Блик по карточкам (порт Glare Hover) ===== */
+.gcard {
+  position: relative;
+  overflow: hidden;
+}
+.fcard::before,
+.gcard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.065) 50%, transparent 58%);
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+}
+.fcard:hover::before,
+.gcard:hover::before {
+  transform: translateX(130%);
+}
+
+/* ===== Живая рамка финального блока (порт Electric Border) =====
+   Искра бежит по периметру; в браузерах без @property — статичная рамка. */
+@property --ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 28px;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--ang, 0deg),
+    transparent 0turn 0.68turn,
+    rgba(232, 197, 102, 0.9) 0.82turn,
+    transparent 0.94turn
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: border-spin 7s linear infinite;
+}
+@keyframes border-spin {
+  to { --ang: 360deg; }
 }
 
 /* ===== Плавающий док (порт Dock): быстрая навигация при скролле ===== */
@@ -1617,5 +1730,18 @@ h2 {
   }
   .lanyard .badge {
     cursor: default;
+  }
+  .ribbon-track {
+    transform: none;
+  }
+  [data-magnet] {
+    transition: none;
+  }
+  .fcard::before,
+  .gcard::before {
+    display: none;
+  }
+  .final::before {
+    animation: none;
   }
 }

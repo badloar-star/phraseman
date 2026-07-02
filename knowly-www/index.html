@@ -29,13 +29,13 @@
     href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow2" />
-  <link rel="stylesheet" href="/assets/theme.css?v=wow2" />
+  <link rel="stylesheet" href="/assets/phraseman.css?v=wow3" />
+  <link rel="stylesheet" href="/assets/theme.css?v=wow3" />
   <script src="/assets/theme.js?v=1"></script>
   <link rel="preload" as="image" href="/assets/phraseman-screen-home.webp" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=1" defer></script>
-  <script src="/assets/fx.js?v=2" defer></script>
+  <script src="/assets/fx.js?v=3" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -114,6 +114,7 @@
     <main>
       <section class="hero" id="download" aria-labelledby="pm-title">
         <div class="hero-rays" aria-hidden="true"></div>
+        <div class="hero-dust" aria-hidden="true"></div>
         <div>
           <p class="kicker">Английский по фразам · iOS и Android</p>
           <h1 id="pm-title" aria-label="Английский, на котором действительно говорят">Английский, на котором <span class="gold-accent">действительно</span> <span class="rotor" data-words="говорят|думают|шутят|живут">говорят</span></h1>
@@ -123,14 +124,14 @@
           </p>
 
           <div class="actions" aria-label="Подобрать план">
-            <a class="btn-gold quiz-cta" href="/start/">Подобрать мой план — 2 минуты</a>
+            <a class="btn-gold quiz-cta" data-magnet href="/start/">Подобрать мой план — 2 минуты</a>
           </div>
           <div class="actions" aria-label="Скачать Phraseman">
-            <a class="store-badge" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store">
+            <a class="store-badge" data-magnet data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" /></svg>
               <span><small>Загрузите в</small><b>App Store</b></span>
             </a>
-            <a class="store-badge" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" aria-label="Скачать Phraseman в Google Play">
+            <a class="store-badge" data-magnet data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" aria-label="Скачать Phraseman в Google Play">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z" /></svg>
               <span><small>Доступно в</small><b>Google Play</b></span>
             </a>
@@ -177,6 +178,16 @@
         <div class="proof-item" role="listitem"><b>15 минут</b><span>в день достаточно</span></div>
         <div class="proof-item" role="listitem"><b><i>Дуэли</i></b><span>и лиги каждую неделю</span></div>
         <div class="proof-item" role="listitem"><b>Без терминов</b><span>простые объяснения</span></div>
+      </div>
+
+      <div class="ribbon" aria-hidden="true">
+        <div class="ribbon-track">
+          <span class="ribbon-seg">
+            Could I get a coffee, please? <i>◆</i> I’m running late <i>◆</i> That works for me
+            <i>◆</i> Sorry, I didn’t catch that <i>◆</i> It’s on me <i>◆</i> No worries at all
+            <i>◆</i> Could you say that again? <i>◆</i> Let’s keep in touch <i>◆</i>
+          </span>
+        </div>
       </div>
 
       <section id="features" class="block reveal">

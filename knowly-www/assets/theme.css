@@ -115,6 +115,21 @@ html[data-theme="light"] .lanyard .badge {
 html[data-theme="light"] .lanyard .clip {
   border-color: #b7ae99;
 }
+html[data-theme="light"] .ribbon-seg {
+  color: rgba(30, 26, 16, 0.13);
+}
+html[data-theme="light"] .fcard::before,
+html[data-theme="light"] .gcard::before {
+  background: linear-gradient(105deg, transparent 42%, rgba(120, 90, 20, 0.05) 50%, transparent 58%);
+}
+html[data-theme="light"] .final::before {
+  background: conic-gradient(
+    from var(--ang, 0deg),
+    transparent 0turn 0.68turn,
+    rgba(168, 122, 22, 0.75) 0.82turn,
+    transparent 0.94turn
+  );
+}
 
 html[data-theme="light"] .proof div {
   background: var(--bg);

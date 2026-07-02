@@ -447,6 +447,197 @@
     play();
   }
 
+  /* ── 6d. Лента фраз (порт Scroll Velocity) ── */
+  function initRibbon() {
+    var wrap = document.querySelector('.ribbon');
+    if (!wrap) return;
+    var track = wrap.querySelector('.ribbon-track');
+    var seg = track && track.querySelector('.ribbon-seg');
+    if (!track || !seg) return;
+    /* вторая копия — для бесшовного цикла */
+    track.appendChild(seg.cloneNode(true));
+    if (reduceMotion) return;
+
+    var pos = 0, lastY = window.scrollY, vel = 0, dir = -1;
+    var visible = true, raf = 0;
+    function frame() {
+      var y = window.scrollY;
+      var dyRaw = y - lastY;
+      lastY = y;
+      vel += (dyRaw - vel) * 0.1; /* сглаженная скорость скролла */
+      if (vel > 0.6) dir = -1;
+      else if (vel < -0.6) dir = 1;
+      var speed = 0.85 + Math.min(Math.abs(vel) * 0.55, 14);
+      pos += dir * speed;
+      var w = seg.offsetWidth;
+      if (w > 0) {
+        if (pos <= -w) pos += w;
+        if (pos > 0) pos -= w;
+      }
+      track.style.transform = 'translate3d(' + pos.toFixed(1) + 'px,0,0)';
+      raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
+    }
+    function play() {
+      if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+    try {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        visible ? play() : stop();
+      }, { threshold: 0.02 }).observe(wrap);
+    } catch (_) { play(); }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stop() : play();
+    });
+  }
+
+  /* ── 6e. Магнитные кнопки (порт Magnet) ── */
+  function initMagnet() {
+    if (reduceMotion) return;
+    var fine = false;
+    try { fine = window.matchMedia('(pointer: fine)').matches; } catch (_) { /* noop */ }
+    if (!fine) return;
+    document.querySelectorAll('[data-magnet]').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = 'translate(' + (dx * 0.14).toFixed(1) + 'px,' + (dy * 0.22).toFixed(1) + 'px)';
+      });
+      el.addEventListener('mouseleave', function () {
+        el.style.transform = '';
+      });
+    });
+  }
+
+  /* ── 6f. Искры при клике (порт Click Spark) ── */
+  function initSparks() {
+    if (reduceMotion) return;
+    var canvas = document.createElement('canvas');
+    canvas.className = 'spark-canvas';
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function size() {
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+    }
+    size();
+    window.addEventListener('resize', size);
+
+    var sparks = [], raf = 0;
+    var DUR = 420, LEN = 11, DIST = 26, RAYS = 8;
+    function gold() {
+      try {
+        return (getComputedStyle(document.documentElement).getPropertyValue('--gold') || '#e8c566').trim();
+      } catch (_) { return '#e8c566'; }
+    }
+    document.addEventListener('click', function (e) {
+      var now = performance.now();
+      for (var i = 0; i < RAYS; i++) {
+        sparks.push({
+          x: e.clientX,
+          y: e.clientY,
+          a: (Math.PI * 2 * i) / RAYS + Math.random() * 0.35,
+          t: now,
+          c: gold()
+        });
+      }
+      if (!raf) raf = requestAnimationFrame(draw);
+    }, true);
+
+    function draw(now) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 2 * dpr;
+      ctx.lineCap = 'round';
+      sparks = sparks.filter(function (s) { return now - s.t < DUR; });
+      sparks.forEach(function (s) {
+        var p = (now - s.t) / DUR;
+        var ease = 1 - Math.pow(1 - p, 3);
+        var d0 = DIST * ease;
+        var d1 = d0 + LEN * (1 - p);
+        ctx.globalAlpha = 1 - p;
+        ctx.strokeStyle = s.c;
+        ctx.beginPath();
+        ctx.moveTo((s.x + Math.cos(s.a) * d0) * dpr, (s.y + Math.sin(s.a) * d0) * dpr);
+        ctx.lineTo((s.x + Math.cos(s.a) * d1) * dpr, (s.y + Math.sin(s.a) * d1) * dpr);
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      raf = sparks.length ? requestAnimationFrame(draw) : 0;
+      if (!sparks.length) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  /* ── 6g. Золотая пыль в hero (частицы) ── */
+  function initDust() {
+    if (reduceMotion) return;
+    var host = document.querySelector('.hero-dust');
+    if (!host) return;
+    var canvas = document.createElement('canvas');
+    host.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var W = 0, H = 0;
+    function size() {
+      W = host.clientWidth;
+      H = host.clientHeight;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+    }
+    size();
+    window.addEventListener('resize', size);
+
+    var N = 36, ps = [];
+    for (var i = 0; i < N; i++) {
+      ps.push({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.7 + Math.random() * 1.4,
+        s: 0.00012 + Math.random() * 0.00028, /* доля высоты за кадр */
+        ph: Math.random() * 6.283
+      });
+    }
+    var visible = true, raf = 0;
+    function frame(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#e8c566';
+      for (var i = 0; i < N; i++) {
+        var p = ps[i];
+        p.y -= p.s;
+        if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+        ctx.globalAlpha = 0.14 + 0.2 * (0.5 + 0.5 * Math.sin(t * 0.0012 + p.ph));
+        ctx.beginPath();
+        ctx.arc(p.x * W * dpr, p.y * H * dpr, p.r * dpr, 0, 6.283);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
+    }
+    function play() {
+      if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+    try {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        visible ? play() : stop();
+      }, { threshold: 0.02 }).observe(host);
+    } catch (_) { play(); }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stop() : play();
+    });
+  }
+
   /* ── 7. Каскад появления карточек: раздаём задержки ── */
   function initStagger() {
     document.querySelectorAll('.reveal').forEach(function (sec) {
@@ -458,7 +649,7 @@
   }
 
   function boot() {
-    [initRays, initRotor, initCounters, initTopbar, initPhone3d, initTilt, initMobileCta, initDock, initLanyard, initStagger].forEach(
+    [initRays, initRotor, initCounters, initTopbar, initPhone3d, initTilt, initMobileCta, initDock, initLanyard, initRibbon, initMagnet, initSparks, initDust, initStagger].forEach(
       function (fn) {
         try { fn(); } catch (_) { /* эффект не должен ломать страницу */ }
       }

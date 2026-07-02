@@ -145,11 +145,21 @@
       probe.style.letterSpacing = cs.letterSpacing;
       probe.textContent = word;
       el.parentNode.appendChild(probe);
-      var w = probe.offsetWidth + 3; /* запас под свес курсива */
+      /* box-sizing: border-box — паддинги ротора входят в width */
+      var pads = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+      var w = probe.offsetWidth + pads + 3;
       probe.remove();
       return w;
     }
     el.style.width = measure(words[0]) + 'px';
+    /* веб-шрифт догружается позже — после него глифы шире, пересчитываем */
+    try {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          el.style.width = measure(words[idx]) + 'px';
+        });
+      }
+    } catch (_) { /* noop */ }
     if (reduceMotion) return;
 
     function rotate() {
@@ -250,21 +260,34 @@
     } catch (_) { /* noop */ }
   }
 
-  /* ── 5. Наклон телефона за курсором (только мышь, деликатно) ── */
+  /* ── 5. iPhone: слои толщины корпуса (настоящее 3D) + наклон за курсором ── */
+  function initPhone3d() {
+    var ph = document.querySelector('.iphone');
+    if (!ph) return;
+    /* 12 слоёв по -1.6px по Z = ~19px титановой боковины, видимой при повороте */
+    var SLICES = 12;
+    for (var i = 1; i <= SLICES; i++) {
+      var s = document.createElement('i');
+      s.className = 'iph-slice' + (i === SLICES ? ' iph-back' : '');
+      s.style.transform = 'translateZ(' + (-i * 1.6).toFixed(1) + 'px)';
+      ph.insertBefore(s, ph.firstChild);
+    }
+  }
+
   function initTilt() {
     if (reduceMotion) return;
     var fine = false;
     try { fine = window.matchMedia('(pointer: fine)').matches; } catch (_) { /* noop */ }
     if (!fine) return;
-    var device = document.querySelector('.device');
+    var device = document.querySelector('.iphone');
     var zone = document.querySelector('.hero-visual');
     if (!device || !zone) return;
     zone.addEventListener('mousemove', function (e) {
       var r = zone.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width - 0.5;
       var y = (e.clientY - r.top) / r.height - 0.5;
-      device.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
-      device.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+      device.style.setProperty('--ry', (x * 16).toFixed(2) + 'deg');
+      device.style.setProperty('--rx', (-y * 10).toFixed(2) + 'deg');
     });
     zone.addEventListener('mouseleave', function () {
       device.style.setProperty('--ry', '0deg');
@@ -435,7 +458,7 @@
   }
 
   function boot() {
-    [initRays, initRotor, initCounters, initTopbar, initTilt, initMobileCta, initDock, initLanyard, initStagger].forEach(
+    [initRays, initRotor, initCounters, initTopbar, initPhone3d, initTilt, initMobileCta, initDock, initLanyard, initStagger].forEach(
       function (fn) {
         try { fn(); } catch (_) { /* эффект не должен ломать страницу */ }
       }

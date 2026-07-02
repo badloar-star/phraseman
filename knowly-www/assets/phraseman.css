@@ -39,16 +39,51 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Фон: одно тёплое свечение сверху + лёгкое зерно. Без сеток и неона. */
+/* Фон «дорогой»: глубокий градиент + свет сверху, две медленно плывущие
+   золотые ауры (только transform — дёшево для GPU), виньетка по краям
+   и зерно плёнки поверх. */
 .bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
   background:
-    radial-gradient(1100px 600px at 50% -180px, rgba(232, 197, 102, 0.13), transparent 62%),
-    radial-gradient(800px 500px at 88% 28%, rgba(232, 197, 102, 0.05), transparent 55%),
-    var(--bg);
+    radial-gradient(1200px 680px at 50% -180px, rgba(232, 197, 102, 0.17), transparent 62%),
+    radial-gradient(900px 560px at 108% 42%, rgba(180, 126, 44, 0.08), transparent 58%),
+    linear-gradient(168deg, #0e0d13 0%, #0a0a0e 42%, #0c0a10 78%, #0a090e 100%);
+}
+.bg .orb {
+  position: absolute;
+  width: 62vmax;
+  height: 62vmax;
+  border-radius: 50%;
+  will-change: transform;
+}
+.bg .orb-a {
+  top: -30vmax;
+  right: -16vmax;
+  background: radial-gradient(circle at 50% 50%, rgba(232, 197, 102, 0.13), rgba(232, 197, 102, 0.045) 42%, transparent 66%);
+  animation: orb-a 26s ease-in-out infinite alternate;
+}
+.bg .orb-b {
+  bottom: -32vmax;
+  left: -22vmax;
+  background: radial-gradient(circle at 50% 50%, rgba(186, 128, 44, 0.1), rgba(186, 128, 44, 0.035) 40%, transparent 62%);
+  animation: orb-b 34s ease-in-out infinite alternate;
+}
+@keyframes orb-a {
+  to { transform: translate3d(-7vmax, 6vmax, 0) scale(1.14); }
+}
+@keyframes orb-b {
+  to { transform: translate3d(6vmax, -5vmax, 0) scale(1.1); }
+}
+/* Виньетка: затемняем края кадра — глубина как у постера */
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(125% 95% at 50% 38%, transparent 52%, rgba(0, 0, 0, 0.42) 100%);
 }
 .bg::after {
   content: "";
@@ -155,6 +190,13 @@ main {
   .nav {
     width: 100%;
     padding-bottom: 4px;
+    /* пункты переносятся на новую строку, а не обрезаются скроллом */
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .nav a {
+    padding: 7px 11px;
+    font-size: 13px;
   }
   .nav .cta {
     margin-left: 0;
@@ -304,20 +346,22 @@ h1 {
   }
 }
 
-/* ===== Телефон: полноценный корпус, а не вырезка =====
-   Пропорция рамки = пропорция скриншота (640×1422), чтобы экран
-   не обрезался. Корпус — металлический градиент, кнопки по бокам,
-   блик по стеклу, тёплое свечение и медленное «парение». */
+/* ===== iPhone Pro в 3D =====
+   Пропорции корпуса iPhone Pro (71.6×146.6 мм), титановая рамка,
+   Dynamic Island, кнопки. Настоящая глубина: fx.js добавляет слои
+   .iph-slice по оси Z — при повороте за курсором видно боковую грань.
+   Корпус ВСЕГДА тёмный титан — в обеих темах, как настоящий. */
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
+  perspective: 1400px;
 }
 .hero-visual::before {
   content: "";
   position: absolute;
   inset: -12% -24%;
-  background: radial-gradient(46% 42% at 50% 46%, rgba(232, 197, 102, 0.16), transparent 70%);
+  background: radial-gradient(46% 42% at 50% 46%, rgba(232, 197, 102, 0.17), transparent 70%);
   filter: blur(8px);
   pointer-events: none;
 }
@@ -325,76 +369,123 @@ h1 {
   position: relative;
   animation: dev-float 7s ease-in-out infinite;
   will-change: transform;
+  transform-style: preserve-3d;
 }
 @keyframes dev-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
-.device {
+.iphone {
+  --r: calc(min(78vw, 318px) * 0.168); /* радиус угла как у Pro */
   position: relative;
-  width: min(76vw, 312px);
-  aspect-ratio: 658 / 1440; /* экран 640×1422 + корпус 9px по кругу */
-  border-radius: 47px;
+  width: min(78vw, 318px);
+  aspect-ratio: 716 / 1466;
+  border-radius: var(--r);
   margin: 0;
-  padding: 9px;
-  background: linear-gradient(155deg, #34353c 0%, #14151a 34%, #101116 62%, #23242b 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(244, 241, 234, 0.12),
-    0 40px 110px rgba(0, 0, 0, 0.65),
-    0 0 90px rgba(232, 197, 102, 0.08);
-  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  background: linear-gradient(
+    105deg,
+    #63646b 0%,
+    #3a3b42 16%,
+    #82838a 34%,
+    #2c2d34 56%,
+    #6e6f76 76%,
+    #34353c 100%
+  );
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform 0.25s ease-out;
 }
-.device-btn {
+/* слои толщины корпуса — генерирует fx.js */
+.iph-slice {
   position: absolute;
-  width: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #3a3b42, #1a1b20);
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, #45464d 0%, #232429 30%, #56575e 52%, #1e1f25 78%, #3c3d44 100%);
 }
-.db-power   { right: -3px; top: 27%; height: 62px; }
-.db-volup   { left: -3px;  top: 19%; height: 40px; }
-.db-voldown { left: -3px;  top: calc(19% + 50px); height: 40px; }
-.device-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 38px;
+.iph-back {
+  background:
+    radial-gradient(40% 22% at 22% 12%, rgba(255, 255, 255, 0.05), transparent 70%),
+    linear-gradient(160deg, #23242a, #141519 60%, #1b1c22);
+}
+/* стеклянная лицевая панель */
+.iph-bezel {
+  position: absolute;
+  inset: 3.5px;
+  border-radius: calc(var(--r) - 3.5px);
+  background: #050507;
+  transform: translateZ(2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.iph-screen {
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--r) - 11px);
   overflow: hidden;
   background: #0c0d11;
 }
-.device-screen::before {
-  content: "";
+.iph-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.iph-island {
   position: absolute;
   z-index: 2;
-  top: 11px;
+  top: 10px;
   left: 50%;
-  width: 78px;
-  height: 6px;
-  border-radius: 99px;
-  background: rgba(10, 10, 14, 0.9);
-  box-shadow: inset 0 0 0 1px rgba(244, 241, 234, 0.14);
   transform: translateX(-50%);
+  width: 31%;
+  height: 24px;
+  border-radius: 99px;
+  background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.045);
 }
-.device-screen::after {
+.iph-island::after {
   content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle at 38% 35%, #1e2b46 0%, #0a0d14 55%, #000 100%);
+}
+.iph-glare {
   position: absolute;
   inset: 0;
   z-index: 3;
   pointer-events: none;
   background: linear-gradient(
     115deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.07) 47%,
-    rgba(255, 255, 255, 0.02) 54%,
-    transparent 58%
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 47%,
+    rgba(255, 255, 255, 0.02) 55%,
+    transparent 59%
   );
 }
-.device-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+/* кнопки: Action + громкость слева, питание справа */
+.iph-btn {
+  position: absolute;
+  width: 3.5px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #55565c, #232429);
+}
+.iph-action { left: -3px; top: 17%; height: 24px; }
+.iph-volup  { left: -3px; top: 25%; height: 44px; }
+.iph-voldn  { left: -3px; top: calc(25% + 54px); height: 44px; }
+.iph-power  { right: -3px; top: 29%; height: 72px; }
+/* тень на «полу» + золотой отсвет */
+.iph-shadow {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: -42px;
+  height: 46px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.6), rgba(232, 197, 102, 0.05) 62%, transparent 75%);
+  transform: translateZ(-20px);
 }
 
 /* ===== Полоса цифр ===== */
@@ -1109,6 +1200,9 @@ h2 {
   font-style: italic;
   font-weight: 600;
   letter-spacing: -0.01em;
+  /* запас под хвосты «у», «р» и свес курсива — иначе буквы режутся */
+  padding: 0.04em 0.08em 0.14em 0.02em;
+  margin: -0.04em -0.08em -0.14em -0.02em;
 }
 .rotor .ch {
   background: var(--gold-grad);
@@ -1125,11 +1219,11 @@ h2 {
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
 }
 .rotor .ch.out {
-  transform: translateY(-115%);
+  transform: translateY(-135%);
   opacity: 0;
 }
 .rotor .ch.pre {
-  transform: translateY(115%);
+  transform: translateY(135%);
   opacity: 0;
   transition: none;
 }
@@ -1485,9 +1579,12 @@ h2 {
   .device-float {
     animation: none;
   }
-  .device {
+  .iphone {
     transform: none;
     transition: none;
+  }
+  .bg .orb {
+    animation: none;
   }
   .gold-accent {
     animation: none;

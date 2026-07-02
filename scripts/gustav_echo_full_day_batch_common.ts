@@ -78,6 +78,24 @@ function hasMojibake(value: string): boolean {
   return /(?:\u00c2|\u00c3|\u00d0|\u00d1|\ufffd|\?{3,})/.test(value);
 }
 
+// Detects French elision corruption where an apostrophe was replaced by a space,
+// e.g. "s il vous plait" instead of "s'il vous pla\u00eet", "quelqu un", "aujourd hui".
+// A single elision proclitic (s, d, l, j, n, c, m, t), a "qu"-ending word
+// (que/quelqu/jusqu/lorsqu/puisqu...) or the "aujourd" of aujourd'hui standing
+// directly before a word starting with a vowel or "h" is a strong signal that the
+// elision apostrophe was stripped and replaced by a space.
+function hasBrokenElision(value: string): boolean {
+  const vowelOrH = '[a\u00e0\u00e2\u00e4e\u00e9\u00e8\u00ea\u00ebi\u00ee\u00efo\u00f4\u00f6u\u00f9\u00fb\u00fcyhA\u00c0\u00c2\u00c4E\u00c9\u00c8\u00ca\u00cbI\u00ce\u00cfO\u00d4\u00d6U\u00d9\u00db\u00dcYH]';
+  // "aujourd hui" marker (missing apostrophe in aujourd'hui).
+  if (/\baujourd\s+hui\b/iu.test(value)) return true;
+  // A single-letter elision proclitic (case-insensitive) as its own word directly
+  // before a vowel- or h-initial word: "s il", "d abord", "l on", "C est", "m entends".
+  if (new RegExp(`(?:^|\\s)[sdljncmtSDLJNCMT]\\s+${vowelOrH}`, 'u').test(value)) return true;
+  // A "qu"-ending elided word: "quelqu un", "jusqu a", "lorsqu il", "puisqu il", "qu il".
+  if (new RegExp(`\\b\\w*qu\\s+${vowelOrH}`, 'iu').test(value)) return true;
+  return false;
+}
+
 function hasSourceLanguageLeak(value: string): boolean {
   const text = value.toLowerCase();
   const sourceMarkers = [
@@ -281,6 +299,7 @@ async function generateDay(repoRoot: string, runDir: string, pack: DayPack, day:
   const missingFrenchFields = rows.filter((row) => !hasText(row.frenchText)).length;
   const cyrillicLeaksInFrenchFields = rows.filter((row) => hasCyrillic(row.frenchText)).length;
   const mojibakeFrenchFields = rows.filter((row) => hasMojibake(row.frenchText)).length;
+  const brokenElisionFrenchFields = rows.filter((row) => hasBrokenElision(row.frenchText)).length;
   const sourceLanguageLeakRows = rows.filter((row) => hasSourceLanguageLeak(row.frenchText)).length;
   const unsafeSourceEchoRows = rows.filter((row) => hasUnsafeSourceEcho(row)).length;
   const frenchSignalMissingRows = rows.filter((row) => row.fieldKind !== 'vocabulary_translation' && row.frenchText.length >= 24 && !hasFrenchLanguageSignal(row.frenchText)).length;
@@ -293,6 +312,7 @@ async function generateDay(repoRoot: string, runDir: string, pack: DayPack, day:
   if (missingFrenchFields > 0) addFinding(findings, 'blocker', 'full_day_missing_french_fields', `Generated rows have ${missingFrenchFields} missing French fields.`);
   if (cyrillicLeaksInFrenchFields > 0) addFinding(findings, 'blocker', 'full_day_cyrillic_leak_in_french_fields', `Generated rows have ${cyrillicLeaksInFrenchFields} Cyrillic leaks in French fields.`);
   if (mojibakeFrenchFields > 0) addFinding(findings, 'blocker', 'full_day_mojibake_in_french_fields', `Generated rows have ${mojibakeFrenchFields} mojibake markers in French fields.`);
+  if (brokenElisionFrenchFields > 0) addFinding(findings, 'blocker', 'full_day_broken_elision_in_french_fields', `Generated rows have ${brokenElisionFrenchFields} French fields with broken elision or missing apostrophes.`);
   if (sourceLanguageLeakRows > 0) addFinding(findings, 'blocker', 'full_day_source_language_leak_in_french_fields', `Generated rows have ${sourceLanguageLeakRows} likely non-French source-language leaks in French fields.`);
   if (unsafeSourceEchoRows > 0) addFinding(findings, 'blocker', 'full_day_target_equals_source', `Generated rows have ${unsafeSourceEchoRows} long French fields that exactly equal source text.`);
   if (frenchSignalMissingRows > 0) addFinding(findings, 'warning', 'full_day_french_signal_missing', `Generated rows have ${frenchSignalMissingRows} long non-vocabulary French fields without a clear French language signal.`);
@@ -349,6 +369,7 @@ async function generateDay(repoRoot: string, runDir: string, pack: DayPack, day:
       missingFrenchFields,
       cyrillicLeaksInFrenchFields,
       mojibakeFrenchFields,
+      brokenElisionFrenchFields,
       sourceLanguageLeakRows,
       unsafeSourceEchoRows,
       frenchSignalMissingRows,
@@ -417,6 +438,7 @@ export async function runFullDayBatch(config: BatchConfig): Promise<void> {
       rowsWithFrench: dayReports.reduce((sum, report) => sum + report.summary.rowsWithFrench, 0),
       rowsWithReviewerNeedsReview: dayReports.reduce((sum, report) => sum + report.summary.rowsWithReviewerNeedsReview, 0),
       activationApprovedRows: dayReports.reduce((sum, report) => sum + report.summary.activationApprovedRows, 0),
+      brokenElisionFrenchFields: dayReports.reduce((sum, report) => sum + report.summary.brokenElisionFrenchFields, 0),
       sourceLanguageLeakRows: dayReports.reduce((sum, report) => sum + report.summary.sourceLanguageLeakRows, 0),
       unsafeSourceEchoRows: dayReports.reduce((sum, report) => sum + report.summary.unsafeSourceEchoRows, 0),
       frenchSignalMissingRows: dayReports.reduce((sum, report) => sum + report.summary.frenchSignalMissingRows, 0),

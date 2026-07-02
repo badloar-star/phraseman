@@ -24,3 +24,13 @@ It writes a ready-to-read teleprompter script (one continuous RU text) to
 LINGMAN is self-contained in `content/lingman/` — any AI, any session continues from those files.
 
 > Project-wide engineering rules also live in `AGENTS.md`.
+
+## Performance Bible (MANDATORY for any new screen/feature/UI change)
+
+Before creating or editing screens, tabs, animations, data loading, or content files —
+read **`AGENTS.md` → «Performance Bible (Instagram-Grade Runtime)»** and follow it exactly:
+frozen background (freezeOnBlur/react-freeze + guarded loops), instant first frame
+(sync hydration from snapshot/peek, no default-then-patch, no full-screen spinners),
+constant stack background, lazy content through registry accessors (the seam for the
+planned server-side content delivery). Guarded by `tests/perf_freeze_contract.test.ts` —
+never weaken the guards to make a feature pass; extend allowlists only consciously.

@@ -111,3 +111,30 @@
 - For Chains 800 phrase/video packages, all 800 phrases must be unique. Do not build an 800-row package by repeating, cycling, paraphrase-cloning, or expanding a smaller phrase set. The gate must fail unless there are 800 distinct English phrases and 800 distinct Russian translations after normalization.
 - For Lingman thumbnail/preview work, always inspect `lingman-scenarist-pipeline/THUMBNAIL_GENERATION_RULES.md` first and use `C:\Users\badlo\OneDrive\Desktop\preview examples` plus `lingman-scenarist-pipeline\thumbnail_reference_bank\every_pack_9_styles_20260531\source_screenshots` as the mandatory inspiration source. Future 9-thumbnail packs must cover the five saved reference families 1-2 times each, use DALL-E/AI generated raster finals only, keep Russian-channel visible text in Russian, and pass a contact-sheet gate before saying "готово".
 - For VENGA 200-phrase language variants, also inspect `lingman-scenarist-pipeline\youtube_packages\venga_a1_200_20260531_pack2_ru_only\READY_YOUTUBE_PACK\contact_sheet.jpg` as the golden previous-pack quality baseline. Do not accept weak one-word labels or generic AI cards just because they pass technical checks; the new pack must be at least comparable in hook strength, density, composition, and style match.
+
+## Performance Bible (Instagram-Grade Runtime)
+
+Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background navigation, constant stack background, instant hydration, lazy content. These invariants are guarded by `tests/perf_freeze_contract.test.ts` and `tests/navigation_back_underlay_contract.test.ts`. Every new screen/feature MUST follow them; do not weaken the guards to make a feature pass.
+
+### Frozen background (heat)
+- The root Stack keeps `freezeOnBlur: true` globally. A screen may opt out (`freezeOnBlur: false`) ONLY if it is truly realtime (live opponent, running exam timer) AND is added to the allowlist in `tests/perf_freeze_contract.test.ts` with a reason.
+- The custom tab slider (`app/(tabs)/_layout.tsx`) freezes invisible tabs via `react-freeze` (`ENABLE_TAB_FREEZE`). Never render tab content that must stay "hot" while hidden; use gated timers instead.
+- Freeze stops renders, NOT timers/subscriptions. Any `setInterval`/`onSnapshot`/`Animated.loop`/`withRepeat(-1)` in screen code must be gated by `useIsScreenFocused()` (from `hooks/use_is_screen_focused.ts`) + an `AppState` listener attached only while the loop runs — copy the pattern from `components/AvatarAura.tsx`.
+- Infinite animations (`withRepeat(..., -1)`, `Animated.loop`) are allowed unguarded only inside modals that unmount on close, or dev/lab screens. The contract test ratchets the current file list; new unguarded files fail CI.
+- Module-level caches must have an eviction policy (max entries and/or TTL) — pattern: `pruneFriendsProfileCache` in `app/friends_tab_swr_warm.ts`. A bare growing `Record`/`Map` singleton is a leak.
+- New `setInterval` call sites must tick at >=1000ms, clean up on unmount/blur, and be added to the allowlist test `tests/owner_direction_runtime_contract.test.ts` consciously.
+
+### Instant first frame (no content jumps)
+- A screen's first render must show the last known real data, not defaults. Hydrate synchronously in `useState(() => ...)` initializers from a module peek-cache or `app_snapshot_store` (`useAppSnapshotSelector`) — never render a default and patch it in a `useEffect`.
+- Reference implementations: `components/PremiumContext.tsx` (snapshot hydration), `components/EnergyContext.tsx` (peek cache), `app/(tabs)/lessons.tsx` + `app/lessons_tab_state.ts` (session cache + single `multiGet`).
+- Never replace a whole screen with a centered spinner while loading — keep final geometry (skeleton blocks or last-known content). Layout must not shift when data arrives.
+- Focus-driven refetch (`useFocusEffect`) must (a) be wrapped in `useCallback`, (b) compare fresh data with current state and skip `setState` when nothing changed ("quiet revalidation"), and (c) respect a TTL (30–60s) unless an explicit app event invalidates it.
+
+### Stack navigation (no black frames)
+- The Stack `contentStyle.backgroundColor` and the root container background are CONSTANT theme colors. Never derive them from async readiness flags.
+- Screen transition animations only via flags in `app/config.ts` (`ENABLE_SCREEN_TRANSITIONS`, `SCREEN_FADE_TRANSITIONS` — fade is iOS-only until manually verified on Android/Fabric). No direct `animation: 'slide_*'` on individual `<Stack.Screen>`.
+
+### Content weight & the server-delivery seam
+- NEVER statically import multi-hundred-KB generated data (plan days, quiz packs, generated registries) into screens or top-level module scope. Access content ONLY through its registry/loader (`app/plan_content_registry.ts`, `app/quiz_thematic_registry.ts`, `app/quiz_phrases_loader.ts`): they lazy-`require()` per plan/pack today and are the single seam where bundled content will be swapped for server-delivered content (French is already remote; English is planned). New content types must ship behind the same kind of accessor, not as a direct import.
+- Long lists (>~30 items, user-growable feeds/collections) use `FlashList`/`FlatList` with fixed-size rows — not `.map()` inside a `ScrollView`. Reference: `app/flashcards_collection.tsx`.
+- Keep screens under ~800 lines where practical; extract sections into memoized subcomponents and defer below-the-fold mounting via `InteractionManager.runAfterInteractions`.

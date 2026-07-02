@@ -1,7 +1,7 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
@@ -14,6 +14,7 @@ import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { emitAppEvent, onAppEvent } from '../events';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -37,6 +38,7 @@ function withAlpha(color: string, alpha: number): string {
 
 type TabScreenComponent = React.ComponentType;
 type DeferredTabModule = { default: TabScreenComponent };
+type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
 let deferredArenaScreen: TabScreenComponent | null = null;
@@ -63,21 +65,47 @@ function loadSettingsScreen(): TabScreenComponent {
   return deferredSettingsScreen;
 }
 
-function prewarmDeferredTabScreens() {
-  const loaders = [loadLessonsScreen, loadArenaScreen, loadFriendsScreen, loadSettingsScreen];
-  loaders.forEach((loadScreen) => {
-    try {
-      loadScreen();
-    } catch {
-      /* Route-level render will surface real module errors when the user opens that tab. */
-    }
-  });
+function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
+  switch (idx) {
+    case 1: return loadLessonsScreen();
+    case 2: return loadArenaScreen();
+    case 3: return loadFriendsScreen();
+    case 4: return loadSettingsScreen();
+    default: return null;
+  }
+}
+
+function prewarmDeferredTabScreen(idx: number): boolean {
+  try {
+    loadDeferredTabScreenByIndex(idx);
+    return true;
+  } catch {
+    /* Route-level render will surface real module errors when the user opens that tab. */
+    return false;
+  }
 }
 
 function DeferredTabScreen({ shouldLoad, loadScreen }: { shouldLoad: boolean; loadScreen: () => TabScreenComponent }) {
+  const { theme: t } = useTheme();
   const Screen = shouldLoad ? loadScreen() : null;
-  if (!Screen) return <View style={s.deferredTabPlaceholder} collapsable={false} />;
+  if (!Screen) return <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
   return <Screen />;
+}
+
+/**
+ * Панель таба с заморозкой невидимого содержимого.
+ *
+ * Freeze включается только ПОСЛЕ первого коммита (readyToFreeze): свежепремаунченный
+ * таб успевает полностью смонтироваться и запустить свои начальные загрузки, и лишь
+ * затем засыпает. Пока таб заморожен, его state продолжает обновляться (подписки/таймеры
+ * живут по своим гардам), но рендеры не выполняются; при разморозке — один рендер
+ * с актуальным состоянием. Таймеры/подписки Freeze НЕ останавливает — их по-прежнему
+ * гейтят useIsScreenFocused/AppState-гарды внутри экранов.
+ */
+function TabPane({ freezeWanted, children }: { freezeWanted: boolean; children: React.ReactNode }) {
+  const [readyToFreeze, setReadyToFreeze] = useState(false);
+  useEffect(() => { setReadyToFreeze(true); }, []);
+  return <Freeze freeze={ENABLE_TAB_FREEZE && freezeWanted && readyToFreeze}>{children}</Freeze>;
 }
 
 type TabDef = {
@@ -117,8 +145,23 @@ const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
 const ENABLE_TAB_PRESS_LIFT = true;
 const TAB_ACTIVE_PILL_WIDTH = 48;
 const TAB_ACTIVE_PILL_HEIGHT = 36;
-const ENABLE_DEFERRED_TAB_PREWARM = false;
-const DEFERRED_TAB_PREWARM_FALLBACK_MS = 4000;
+/** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
+ *  без «плейсхолдер → полный маунт на глазах». Дёшев в связке с ENABLE_TAB_FREEZE:
+ *  премаунченный таб делает первый коммит (модуль + первый рендер + старт загрузок)
+ *  и тут же засыпает (Freeze), не потребляя рендеры до реального открытия. */
+const ENABLE_BACKGROUND_TAB_PREMOUNT = true;
+/** Заморозка (react-freeze) невидимых табов: посещённые табы живут вечно (кастомный
+ *  свайпер не размонтирует их), и без freeze они продолжали рендериться в фоне —
+ *  главный источник «греется через минуту». Активный таб и его соседи по свайпу
+ *  не замораживаются (иначе при драге сосед был бы пустым). Kill-switch на случай
+ *  регрессий на устройстве. Guardrail: tests/owner_direction_runtime_contract.test.ts. */
+const ENABLE_TAB_FREEZE = true;
+const TAB_FREEZE_MIN_DISTANCE = 2;
+const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
+const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
+const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
+const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 4, 3, 2] as const;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
 // native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
@@ -200,16 +243,16 @@ const TABS: TabDef[] = [
 ];
 
 
-type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
+type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean; visualIdx: number };
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
-function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
+function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx }: TabScaffoldProps) {
   const { theme: t, ds, statusBarLight } = useTheme();
   const { tabBarHeight, bottomInset: PB } = useScreen();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
   /** Подложка плавающей капсулы: 95% затемнение контента под таббаром
@@ -230,7 +273,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   const firstContentReadyEmittedRef = useRef(false);
   // Press feedback must not drive selection; otherwise release can restart the highlight spring.
-  const visualTabIdx = activeIdx;
+  const visualTabIdx = visualIdx;
 
   useEffect(() => {
     if (!ENABLE_TAB_HIGHLIGHT_TRAVEL) {
@@ -485,24 +528,88 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   );
 }
 
+function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
+  let cancelled = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let idleHandle: unknown = null;
+  const requestIdle = (globalThis as any).requestIdleCallback as undefined | ((cb: () => void, options?: { timeout?: number }) => unknown);
+  const cancelIdle = (globalThis as any).cancelIdleCallback as undefined | ((handle: unknown) => void);
+  const invoke = () => {
+    if (cancelled) return;
+    run();
+  };
+
+  if (requestIdle) {
+    idleHandle = requestIdle(invoke, { timeout: timeoutMs });
+  } else {
+    timer = setTimeout(invoke, 80);
+  }
+
+  return {
+    cancel: () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+      if (idleHandle !== null && cancelIdle) cancelIdle(idleHandle);
+    },
+  };
+}
+
 export default function TabLayout() {
   const { width: tabPaneWidth } = useScreen();
+  const { theme: t } = useTheme();
   const pathname = usePathname();
   const segments = useSegments();
   const [activeIdx, setActiveIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
+  const [visualIdx, setVisualIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
   const activeIdxRef = useRef(activeIdx);
   activeIdxRef.current = activeIdx;
+  const visualIdxRef = useRef(visualIdx);
+  visualIdxRef.current = visualIdx;
   const [focusTick, setFocusTick] = useState(0);
-  // Ліниве монтування: повний екран лише для активного таба або вже відкритих (стан зберігається); інше — плейсхолдер (менш навантаження при зміні мови/теми).
-  // Начальный таб всегда в visited — чтобы первый рендер не был плейсхолдером.
+  // Ліниве монтування: слот таба появляется сразу, а тяжелый экран монтируется в idle после первого кадра.
+  // Начальный таб всегда в visited/mounted — чтобы первый рендер не был плейсхолдером.
   const [visitedTabs, setVisitedTabs] = useState(() => {
     const initial = tabIdxFromRouter(pathname, segments) ?? 0;
     return new Set<number>([0, initial]);
   });
+  const visitedTabsRef = useRef(visitedTabs);
+  visitedTabsRef.current = visitedTabs;
+  const [mountedTabs, setMountedTabs] = useState(() => {
+    const initial = tabIdxFromRouter(pathname, segments) ?? 0;
+    return new Set<number>([0, initial]);
+  });
+  const mountedTabsRef = useRef(mountedTabs);
+  mountedTabsRef.current = mountedTabs;
+  const scheduledMountsRef = useRef<Map<number, CancelableTask>>(new Map());
   const router = useRouter();
-  const deferredTabPrewarmStartedRef = useRef(false);
+  const backgroundPremountStartedRef = useRef(false);
+  const backgroundPremountTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
   const pendingTabIdxRef = useRef<number | null>(null);
+
+  const scheduleMount = useCallback((idx: number) => {
+    if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
+
+    const task = scheduleIdleTask(() => {
+      scheduledMountsRef.current.delete(idx);
+      if (AppState.currentState !== 'active') return;
+      if (idx !== 0 && !prewarmDeferredTabScreen(idx)) return;
+      requestAnimationFrame(() => {
+        if (AppState.currentState !== 'active') return;
+        setVisitedTabs((prev) => addVisitedTab(prev, idx));
+        setMountedTabs((prev) => addVisitedTab(prev, idx));
+      });
+    }, BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS);
+
+    scheduledMountsRef.current.set(idx, task);
+  }, []);
+
+  useEffect(() => () => {
+    scheduledMountsRef.current.forEach((task) => task.cancel?.());
+    scheduledMountsRef.current.clear();
+    backgroundPremountTimersRef.current.forEach((timer) => clearTimeout(timer));
+    backgroundPremountTimersRef.current = [];
+  }, []);
 
   // До paint: pathname + segments, чтобы индекс не отставал и TabSlider не кадрил старый слайд.
   useLayoutEffect(() => {
@@ -513,55 +620,79 @@ export default function TabLayout() {
     }
     if (pendingTabIdxRef.current !== null) {
       const hold = pendingTabIdxRef.current;
-      setVisitedTabs((prev) => addVisitedTab(prev, hold));
-      setActiveIdx((prev) => (prev === hold ? prev : hold));
+      if (!visitedTabsRef.current.has(hold)) {
+        setVisitedTabs((prev) => addVisitedTab(prev, hold));
+      }
+      scheduleMount(hold);
+      if (visualIdxRef.current !== hold) {
+        setVisualIdx(hold);
+      }
+      if (activeIdxRef.current !== hold) {
+        setActiveIdx(hold);
+      }
       return;
     }
     if (fromRouter !== null) {
-      setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
+      if (!visitedTabsRef.current.has(fromRouter)) {
+        setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
+      }
+      scheduleMount(fromRouter);
+      if (visualIdxRef.current !== fromRouter) {
+        setVisualIdx(fromRouter);
+      }
+      if (activeIdxRef.current !== fromRouter) {
+        setActiveIdx(fromRouter);
+      }
     }
-    setActiveIdx((prev) => {
-      if (fromRouter === null) return prev;
-      return prev === fromRouter ? prev : fromRouter;
-    });
-  }, [pathname, segments]);
+  }, [pathname, scheduleMount, segments]);
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
+  const scheduleBackgroundPremount = useCallback(() => {
+    if (!ENABLE_BACKGROUND_TAB_PREMOUNT || backgroundPremountStartedRef.current) return;
+    if (AppState.currentState !== 'active') return;
+    backgroundPremountStartedRef.current = true;
+
+    BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => {
+      const timer = setTimeout(() => {
+        backgroundPremountTimersRef.current = backgroundPremountTimersRef.current.filter((entry) => entry !== timer);
+        scheduleMount(idx);
+      }, BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS + order * BACKGROUND_TAB_PREMOUNT_STEP_MS);
+      backgroundPremountTimersRef.current.push(timer);
+    });
+  }, [scheduleMount]);
+
   useEffect(() => {
-    if (!ENABLE_DEFERRED_TAB_PREWARM) return;
-    let prewarmTimer: ReturnType<typeof setTimeout> | null = null;
-    const startPrewarm = () => {
-      prewarmTimer = null;
-      if (deferredTabPrewarmStartedRef.current) return;
-      deferredTabPrewarmStartedRef.current = true;
-      setTimeout(() => {
-        requestAnimationFrame(prewarmDeferredTabScreens);
-      }, 120);
-    };
-    const schedulePrewarm = () => {
-      if (deferredTabPrewarmStartedRef.current || prewarmTimer) return;
-      prewarmTimer = setTimeout(startPrewarm, DEFERRED_TAB_PREWARM_FALLBACK_MS);
+    if (!ENABLE_BACKGROUND_TAB_PREMOUNT) return;
+    let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
+    const startPremount = () => {
+      if (fallbackTimer) {
+        clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+      scheduleBackgroundPremount();
     };
 
-    const sub = onAppEvent('app_first_content_ready', schedulePrewarm);
-    schedulePrewarm();
+    const sub = onAppEvent('app_first_content_ready', startPremount);
+    fallbackTimer = setTimeout(startPremount, BACKGROUND_TAB_PREMOUNT_FALLBACK_MS);
     return () => {
-      if (prewarmTimer) clearTimeout(prewarmTimer);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       sub.remove();
     };
-  }, []);
+  }, [scheduleBackgroundPremount]);
 
   const rememberVisitedTab = useCallback((idx: number) => {
     setVisitedTabs((prev) => addVisitedTab(prev, idx));
   }, []);
 
-  /** Вызывается в момент отпускания пальца (до анимации) — только гарантируем наличие экрана назначения.
-   *  Активный таб/хром переключаются после UI-thread анимации, чтобы React-рендер не дергал свайп. */
+  /** Вызывается в момент отпускания пальца (до анимации): хром таббара догоняет сразу,
+   *  а реальный activeIdx/URL переключаются после UI-thread анимации. */
   const handleSwipeStart = useCallback((idx: number) => {
     if (idx === activeIdxRef.current) return;
+    setVisualIdx(idx);
     rememberVisitedTab(idx);
-  }, [rememberVisitedTab]);
+    scheduleMount(idx);
+  }, [rememberVisitedTab, scheduleMount]);
 
   const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -584,45 +715,52 @@ export default function TabLayout() {
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((idx: number) => {
+    setVisualIdx(idx);
     if (idx === activeIdxRef.current) return;
     setActiveIdx(idx);
     rememberVisitedTab(idx);
+    scheduleMount(idx);
     navigateTo(idx);
-  }, [navigateTo, rememberVisitedTab]);
+  }, [navigateTo, rememberVisitedTab, scheduleMount]);
 
-  /** Свайп завершён — теперь обновляем активный таб/хром и затем URL. */
+  /** Свайп завершён — теперь обновляем реальный активный таб и затем URL. */
   const handleSwipeComplete = useCallback((idx: number) => {
+    setVisualIdx(idx);
     if (idx !== activeIdxRef.current) {
       setActiveIdx(idx);
       rememberVisitedTab(idx);
+      scheduleMount(idx);
     }
     navigateTo(idx);
-  }, [navigateTo, rememberVisitedTab]);
+  }, [navigateTo, rememberVisitedTab, scheduleMount]);
 
   const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
 
   const tabScreens = useMemo(() => {
-    // Головна (0) завжди в дереві; інші таби зберігають слот, але реальний екран підключається лише коли таб активний.
-    // Решальные табы добавляются в visitedTabs в handleSwipeStart/handleTabChange, чтобы не строить тяжёлые экраны при старте.
+    // Главная всегда в дереве; остальные табы получают слот сразу, а реальные экраны
+    // по одному монтируются в фоне после первого готового кадра, чтобы первый тап не видел пустой placeholder.
     const placeholder = (k: string) => (
-      <View key={k} style={{ width: tabPaneWidth, flex: 1, backgroundColor: 'transparent' }} collapsable={false} />
+      <View key={k} style={{ width: tabPaneWidth, flex: 1, backgroundColor: t.bgPrimary }} collapsable={false} />
     );
 
     const show = (i: number) => i === 0 || i === activeIdx || visitedTabs.has(i);
-    const shouldLoad = (i: number) => i === activeIdx || visitedTabs.has(i);
+    const shouldLoad = (i: number) => mountedTabs.has(i);
+    // Замораживаем табы дальше чем сосед активного: активный + оба соседа живут
+    // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
+    const freezeWanted = (i: number) => Math.abs(i - activeIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      show(0) ? <HomeScreen       key="home" />         : placeholder('ph-home'),
-      show(1) ? <DeferredTabScreen key="index" shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /> : placeholder('ph-index'),
-      show(2) ? <DeferredTabScreen key="arena" shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /> : placeholder('ph-arena'),
-      show(3) ? <DeferredTabScreen key="friends" shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /> : placeholder('ph-friends'),
-      show(4) ? <DeferredTabScreen key="settings" shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /> : placeholder('ph-settings'),
+      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
+      show(1) ? <TabPane key="index" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadLessonsScreen} /></TabPane> : placeholder('ph-index'),
+      show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
+      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, visitedTabs, tabPaneWidth]);
+  }, [activeIdx, mountedTabs, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
   return (
     <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
       <TopFadeScrollProvider>
-        <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} />
+        <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} visualIdx={visualIdx} />
       </TopFadeScrollProvider>
     </TabProvider>
   );

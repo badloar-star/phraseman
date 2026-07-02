@@ -147,6 +147,22 @@ export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
 export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITIONS === '1';
 
 /**
+ * Мягкий fade (~140мс) между экранами стека ВМЕСТО мгновенного 'none'.
+ *
+ * Зачем: при animation:'none' native-stack переключает контейнер мгновенно,
+ * до того как JS дорендерил тяжёлый экран — в зазоре виден голый фон
+ * контейнера («чёрный кадр»). Fade маскирует этот зазор.
+ *
+ * Применяется ТОЛЬКО на iOS (гейт по Platform в _layout.tsx): исторические
+ * краши Android/Fabric были на native-stack transitions, поэтому Android
+ * остаётся на 'none' + константный фон стека (см. contentStyle в _layout),
+ * пока fade не проверен вручную на реальном Android-устройстве.
+ * Kill-switch: EXPO_PUBLIC_SCREEN_FADE=0. Не влияет на ENABLE_SCREEN_TRANSITIONS
+ * (это отдельный «полный» slide-режим, приоритетнее fade).
+ */
+export const SCREEN_FADE_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_FADE !== '0';
+
+/**
  * Spanish interface/explanation locale.
  *
  * This is a source/UI language for learning English. It is intentionally

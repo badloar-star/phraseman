@@ -1,0 +1,213 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import { getLevelFromXP } from '../constants/theme';
+import { ARENA_RATING_SCREEN_CACHE_KEY, sanitizeArenaProfileForRating, sanitizeArenaRatingHistory } from './arena_rating_cache';
+import {
+  APP_SNAPSHOT_RESOURCE_LIMITS,
+  limitArray,
+  patchAppSnapshot,
+  type AppSnapshotArena,
+  type AppSnapshotFriends,
+  type AppSnapshotProfile,
+  type AppSnapshotProgress,
+  type AppSnapshotSettings,
+} from './app_snapshot_store';
+import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
+import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
+
+const BOOT_PROFILE_KEYS = [
+  'user_name',
+  'user_avatar',
+  'user_frame',
+  USER_AVATAR_AURA_KEY,
+  'user_total_xp',
+  'premium_active',
+  'vip_until',
+] as const;
+
+const BOOT_PROGRESS_KEYS = [
+  'streak_count',
+  'shards_balance',
+] as const;
+
+const BOOT_SETTINGS_KEYS = [
+  'haptics_tap',
+] as const;
+
+// B3 (PERF_MASTER_PLAN): app_lang (LangContext) и study_target_v1
+// (StudyTargetContext, см. app/study_target.ts STUDY_TARGET_STORAGE_KEY) читаются
+// в этом же раннем multiGet, но НЕ могут напрямую разблокировать peek в этих двух
+// контекстах в рамках ТЕКУЩЕГО запуска: LangProvider/StudyTargetProvider монтируются
+// ВЫШЕ AppContent в дереве (app/_layout.tsx ~2784-2787), а primeAppSnapshotFromStorage
+// вызывается уже ВНУТРИ AppContent (~1811) и даже получает studyTarget параметром ИЗ
+// уже смонтированного StudyTargetProvider — то есть на первом холодном старте
+// провайдеры успевают отрендерить первый кадр раньше, чем prime вообще стартует.
+// Решение (см. PERF_MASTER_PLAN, задача B3, "второй вариант"): пишем оба значения
+// в модульный peek синхронно ПОСЛЕ multiGet — сам процесс (JS-модуль) переживает
+// множество маунтов/ремаунтов провайдеров в рамках сессии (навигация, Fast Refresh,
+// возврат из фона), так что 2-й и последующие маунты этих провайдеров в РАМКАХ ОДНОЙ
+// сессии уже читают peek без прыжка. С холодного перезапуска приложения (новый JS-
+// процесс) peek пуст на первом кадре — это тот же выбор, что уже сделан для
+// EnergyContext (B2): false-negative на первом кадре первой сессии допустим,
+// false-positive (неверный язык/target) — нет.
+const BOOT_LANG_KEY = 'app_lang';
+const BOOT_STUDY_TARGET_KEY = 'study_target_v1';
+
+let peekAppLangState: string | null = null;
+let peekStudyTargetState: string | null = null;
+
+/** Синхронный peek языка интерфейса из последнего прайма (см. комментарий выше). */
+export function peekAppLang(): string | null {
+  return peekAppLangState;
+}
+
+/** Синхронный peek study target из последнего прайма (см. комментарий выше). */
+export function peekStudyTargetRaw(): string | null {
+  return peekStudyTargetState;
+}
+
+/** Позволяет контексту обновить peek сразу после собственного чтения AsyncStorage,
+ * не дожидаясь следующего прайма (например, после явного setLang/setStoredStudyTarget). */
+export function writePeekAppLang(value: string | null): void {
+  peekAppLangState = value;
+}
+
+export function writePeekStudyTargetRaw(value: string | null): void {
+  peekStudyTargetState = value;
+}
+
+function mapPairs(pairs: readonly [string, string | null][]): Map<string, string | null> {
+  return new Map(pairs);
+}
+
+function readInt(raw: string | null | undefined): number {
+  const value = Number(raw);
+  return Number.isFinite(value) ? Math.max(0, Math.floor(value)) : 0;
+}
+
+function readBool(raw: string | null | undefined): boolean {
+  return raw === '1' || raw === 'true';
+}
+
+function buildProfileSnapshot(values: Map<string, string | null>, now: number): AppSnapshotProfile {
+  const totalXp = readInt(values.get('user_total_xp'));
+  const vipUntil = Number(values.get('vip_until') ?? '0') || 0;
+  const name = values.get('user_name')?.trim() || '';
+  const avatar = values.get('user_avatar')?.trim() || '1';
+  const frame = values.get('user_frame')?.trim() || '';
+  const aura = values.get(USER_AVATAR_AURA_KEY)?.trim() || undefined;
+
+  return {
+    source: 'storage',
+    updatedAt: now,
+    name,
+    avatar,
+    frame,
+    aura,
+    totalXp,
+    level: getLevelFromXP(totalXp),
+    premiumActive: readBool(values.get('premium_active')),
+    vipActive: vipUntil > now,
+  };
+}
+
+function buildProgressSnapshot(
+  values: Map<string, string | null>,
+  studyTarget: RuntimeStudyTarget,
+  now: number,
+): AppSnapshotProgress {
+  return {
+    source: 'storage',
+    updatedAt: now,
+    streak: readInt(values.get('streak_count')),
+    shards: readInt(values.get('shards_balance')),
+    studyTarget: storageStudyTarget(studyTarget),
+  };
+}
+
+function buildSettingsSnapshot(values: Map<string, string | null>, now: number): AppSnapshotSettings {
+  const settings = getUserSettingsSnapshot();
+  const tapHapticsRaw = values.get('haptics_tap');
+  return {
+    source: 'storage',
+    updatedAt: now,
+    ...settings,
+    tapHaptics: tapHapticsRaw == null ? true : tapHapticsRaw !== 'false',
+  };
+}
+
+async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | null> {
+  await startFriendsTabSwrPrime().catch(() => {});
+  const warm = peekFriendsTabSwrWarm();
+  if (!warm) return null;
+  return {
+    source: 'storage',
+    updatedAt: now,
+    canonicalUid: warm.canonicalUid,
+    friends: limitArray(warm.friends, APP_SNAPSHOT_RESOURCE_LIMITS.friendProfileMaxEntries),
+    requests: limitArray(warm.requests, APP_SNAPSHOT_RESOURCE_LIMITS.recentItemsMax),
+    profiles: Object.fromEntries(
+      Object.entries(warm.profiles).slice(0, APP_SNAPSHOT_RESOURCE_LIMITS.friendProfileMaxEntries),
+    ),
+  };
+}
+
+async function primeArenaSnapshot(now: number): Promise<AppSnapshotArena | null> {
+  const raw = await AsyncStorage.getItem(ARENA_RATING_SCREEN_CACHE_KEY).catch(() => null);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown[]; ts?: unknown };
+    return {
+      source: 'storage',
+      updatedAt: Number(parsed.ts) || now,
+      profile: sanitizeArenaProfileForRating(parsed.profile),
+      historyCount: sanitizeArenaRatingHistory(parsed.history).length,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const now = Date.now();
+  const lastOpenedKey = lastOpenedLessonKey(studyTarget);
+  const keys = [
+    ...BOOT_PROFILE_KEYS,
+    ...BOOT_PROGRESS_KEYS,
+    ...BOOT_SETTINGS_KEYS,
+    lastOpenedKey,
+    BOOT_LANG_KEY,
+    BOOT_STUDY_TARGET_KEY,
+  ];
+  const [pairs, friends, arena] = await Promise.all([
+    AsyncStorage.multiGet(keys).catch(() => [] as [string, string | null][]),
+    primeFriendsSnapshot(now),
+    primeArenaSnapshot(now),
+    hydrateUserSettingsFromStorage().catch(() => {}),
+  ]).then(async ([storagePairs, friendsSnapshot, arenaSnapshot]) => [
+    storagePairs,
+    friendsSnapshot,
+    arenaSnapshot,
+  ] as const);
+
+  const values = mapPairs(pairs);
+  writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
+  writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);
+  patchAppSnapshot({
+    profile: buildProfileSnapshot(values, now),
+    progress: buildProgressSnapshot(values, studyTarget, now),
+    lessons: {
+      source: 'storage',
+      updatedAt: now,
+      primedCount: 0,
+      lastOpenedLesson: values.get(lastOpenedKey) ?? null,
+    },
+    settings: buildSettingsSnapshot(values, now),
+    ...(friends ? { friends } : {}),
+    ...(arena ? { arena } : {}),
+    primedAt: now,
+  });
+}
+
+export default function __RouteShim() { return null; }

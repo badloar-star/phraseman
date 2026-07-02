@@ -8,13 +8,14 @@ import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import { setAudioModeAsync } from 'expo-audio';
+import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, AppState, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { SafeAreaProvider, useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
@@ -41,7 +42,7 @@ import NotificationPermissionModal from '../components/NotificationPermissionMod
 import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
-import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS } from './config';
+import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
 import { ensureAnonUser, ensureStableAuthLink, restoreFromCloud, syncToCloud } from './cloud_sync';
@@ -102,10 +103,11 @@ import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
+import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
-import { rememberNavigationPath } from './navigation_back';
+import { markNextNavigationAsReplace, rememberNavigationPath } from './navigation_back';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -122,7 +124,6 @@ import {
 } from '../components/RewardModalBackdrop';
 import {
   checkLeagueBonusAvailability,
-  subscribeLeagueBonusAvailability,
   type LeagueBonusAvailability,
 } from './services/league_chest_rewards';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -146,6 +147,8 @@ import {
   markLoyaltyGiftOfferSeen,
   startLoyaltyGift,
 } from './loyalty_gift';
+import { ensureLocalNickname } from './nickname_guard';
+import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -220,8 +223,12 @@ DefaultText.defaultProps = {
 
 const STARTUP_SPLASH_BG = '#101214';
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
+const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS = 32;
+const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
+const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LOYALTY_UPDATE_MODAL_ENABLED = false;
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
+const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
@@ -237,6 +244,30 @@ const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   360, 370, 380, 390, 400, 450, 500,
   600, 750,
 ] as const;
+
+async function pruneLeagueBonusSeenMarkers(currentKey: string): Promise<void> {
+  const keys = await AsyncStorage.getAllKeys().catch(() => []);
+  const seenKeys = keys
+    .filter((key) => key.startsWith(LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX))
+    .sort((a, b) => b.localeCompare(a));
+  if (seenKeys.length <= LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS) return;
+  const keep = new Set(seenKeys.slice(0, LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS));
+  keep.add(currentKey);
+  const remove = seenKeys.filter((key) => !keep.has(key));
+  if (remove.length > 0) await AsyncStorage.multiRemove(remove).catch(() => {});
+}
+
+async function pruneDailyPlanSeenMarkers(currentKey: string): Promise<void> {
+  const keys = await AsyncStorage.getAllKeys().catch(() => []);
+  const seenKeys = keys
+    .filter((key) => key.startsWith(`${DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX}:`))
+    .sort((a, b) => b.localeCompare(a));
+  if (seenKeys.length <= DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS) return;
+  const keep = new Set(seenKeys.slice(0, DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS));
+  keep.add(currentKey);
+  const remove = seenKeys.filter((key) => !keep.has(key));
+  if (remove.length > 0) await AsyncStorage.multiRemove(remove).catch(() => {});
+}
 
 const safeProgressEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -1097,7 +1128,7 @@ function AppContent() {
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const isRootIndexRoute = !pathname || pathname === '/';
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);
 
@@ -1111,7 +1142,7 @@ function AppContent() {
   // выставлялся лениво и только в клип-пути, а expo-speech на iOS работает в
   // отдельной сессии — поэтому при беззвучном режиме звука не было совсем.
   useEffect(() => {
-    void setAudioModeAsync({ playsInSilentMode: true, shouldPlayInBackground: false })
+    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
   }, []);
 
@@ -1289,11 +1320,12 @@ function AppContent() {
     return () => clearTimeout(t);
   }, [checkGlobalBroadcastFn]);
 
-  const showLeagueBonusAvailableOnce = useCallback(async (availability: LeagueBonusAvailability, source: 'live' | 'startup') => {
-    const seenKey = `league_bonus_available_seen_${availability.weekId}_${availability.groupId}`;
+  const showLeagueBonusAvailableOnce = useCallback(async (availability: LeagueBonusAvailability, source: 'startup' | 'foreground' | 'route') => {
+    const seenKey = `${LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX}${availability.weekId}_${availability.groupId}`;
     const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
     if (seen === '1') return;
     await AsyncStorage.setItem(seenKey, '1').catch(() => {});
+    void pruneLeagueBonusSeenMarkers(seenKey).catch(() => {});
     emitAppEvent('action_toast', {
       type: 'success',
       messageRu: availability.isCrownWinner
@@ -1318,28 +1350,49 @@ function AppContent() {
   useEffect(() => {
     showLeagueBonusAvailableOnceRef.current = showLeagueBonusAvailableOnce;
   }, [showLeagueBonusAvailableOnce]);
+  const leagueBonusCheckInFlightRef = useRef(false);
+  const lastLeagueBonusCheckAtRef = useRef(0);
+  const runLeagueBonusAvailabilityCheck = useCallback((source: 'startup' | 'foreground' | 'route') => {
+    if (leagueBonusCheckInFlightRef.current) return;
+    const now = Date.now();
+    if (source !== 'startup' && now - lastLeagueBonusCheckAtRef.current < LEAGUE_BONUS_CHECK_MIN_MS) return;
+    leagueBonusCheckInFlightRef.current = true;
+    lastLeagueBonusCheckAtRef.current = now;
+    void checkLeagueBonusAvailability()
+      .then((availability) => {
+        if (availability) void showLeagueBonusAvailableOnceRef.current(availability, source);
+      })
+      .catch(() => {})
+      .finally(() => {
+        leagueBonusCheckInFlightRef.current = false;
+      });
+  }, []);
 
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
     const timer = setTimeout(() => {
-      void checkLeagueBonusAvailability()
-        .then((availability) => {
-          if (availability) void showLeagueBonusAvailableOnceRef.current(availability, 'startup');
-        })
-        .catch(() => {});
+      runLeagueBonusAvailabilityCheck('startup');
     }, 1800);
     return () => clearTimeout(timer);
-  }, [isBanned, ready, showOnboarding]);
+  }, [isBanned, ready, runLeagueBonusAvailabilityCheck, showOnboarding]);
 
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
-    const unsubscribe = subscribeLeagueBonusAvailability((availability) => {
-      void showLeagueBonusAvailableOnceRef.current(availability, 'live');
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') runLeagueBonusAvailabilityCheck('foreground');
     });
-    return unsubscribe;
-  }, [isBanned, ready, showOnboarding]);
+    return () => sub.remove();
+  }, [isBanned, ready, runLeagueBonusAvailabilityCheck, showOnboarding]);
+
+  useEffect(() => {
+    if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
+    if (!ready || showOnboarding || isBanned) return;
+    if (pathname === '/club_screen' || pathname === '/league_screen') {
+      runLeagueBonusAvailabilityCheck('route');
+    }
+  }, [isBanned, pathname, ready, runLeagueBonusAvailabilityCheck, showOnboarding]);
 
   useEffect(() => installForegroundUsageMsTracker(), []);
 
@@ -1424,6 +1477,33 @@ function AppContent() {
   useEffect(() => {
     migrateXPFormulaV2();
   }, []);
+
+  // Лёгкий ранний прогрев состояния таба «Уроки» (один AsyncStorage.multiGet):
+  // без него первый тап на «Уроки» показывал нули прогресса, а через долю секунды —
+  // реальные значения («прыжок»). Отдельно от тяжёлого ENABLE_STARTUP_CONTENT_PREWARM
+  // (тот выключен) — здесь только дешёвое чтение, критичное для первого кадра таба.
+  useEffect(() => {
+    let cancelled = false;
+    let primeTimer: ReturnType<typeof setTimeout> | null = null;
+    const task = InteractionManager.runAfterInteractions(() => {
+      primeTimer = setTimeout(() => {
+        if (cancelled || AppState.currentState !== 'active') return;
+        void (async () => {
+          try {
+            const tab = await import('./lessons_tab_state');
+            await tab.loadLessonsTabStateFromStorage(studyTarget);
+          } catch (e) {
+            if (__DEV__) console.warn('[_layout] lessons prime', e);
+          }
+        })();
+      }, 600);
+    });
+    return () => {
+      cancelled = true;
+      task.cancel?.();
+      if (primeTimer) clearTimeout(primeTimer);
+    };
+  }, [studyTarget]);
 
   useEffect(() => {
     if (!ENABLE_STARTUP_CONTENT_PREWARM) return;
@@ -1593,10 +1673,18 @@ function AppContent() {
       // Дожидаемся (или дублируем при отсутствии) гидратации из облака,
       // и ТОЛЬКО потом запускаем sync/leaderboard/etc. Иначе syncToCloud мог бы
       // пушить пустые локальные данные раньше чем restoreFromCloud успеет ответить.
+      //
+      // Хвост C: раньше ошибка restoreFromCloud глоталась в catch, а boot-syncToCloud
+      // ниже выполнялся БЕЗУСЛОВНО — на переустановке (Keychain вернул stable_id,
+      // AsyncStorage пуст) при упавшем restore пустой локальный прогресс затирал облако.
+      // Отслеживаем успех restore; boot-sync пускаем только если restore удался ЛИБО
+      // локально реально есть прогресс (как в login-ветках auth_provider).
+      let bootRestoreSucceeded = (cloudHydratePromise as { __restoreOk?: boolean } | null)?.__restoreOk ?? false;
       const hydrate = cloudHydratePromise ?? (async () => {
         try {
           await ensureAnonUser();
           await restoreFromCloud();
+          bootRestoreSucceeded = true;
         } catch (e) {
           if (__DEV__) console.warn('[_layout]', e);
         }
@@ -1605,6 +1693,10 @@ function AppContent() {
       void hydrate.then(async () => {
         await runContentDeliveryMigration().catch(() => {});
         try { emitAppEvent('cloud_profile_hydrated'); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
+        const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+        if (onboardingDoneAfterHydrate === '1') {
+          await ensureLocalNickname().catch(() => null);
+        }
         // Одноразовая починка после релиза, в котором (tabs)/index.tsx
         // перестал уважать persistedUnlocked: подтягиваем lesson{N-1}_best_score
         // до 2.5 для уроков, которые в облаке уже значатся как открытые.
@@ -1637,14 +1729,35 @@ function AppContent() {
         getCanonicalUserId()
           .then((uid) => flushPendingBotArenaMatch(uid))
           .catch(() => {});
-        await syncToCloud().catch(() => {
-          emitAppEvent('action_toast', {
-            type: 'error',
-            messageRu: 'Не удалось синхронизировать данные — проверь соединение',
-            messageUk: "Не вдалося синхронізувати дані — перевір з'єднання",
-            messageEs: 'Error al sincronizar — revisa tu conexión',
+        // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного
+        // прогресса — иначе пустые дефолты затрут реальный облачный аккаунт (переустановка).
+        const bootHasLocalProgress = await (async () => {
+          try {
+            const [[, xp], [, streak], [, name]] = await AsyncStorage.multiGet([
+              'user_total_xp',
+              'streak_count',
+              'user_name',
+            ]);
+            if (xp && parseInt(xp, 10) > 0) return true;
+            if (streak && parseInt(streak, 10) > 0) return true;
+            if (name && name.trim().length > 0) return true;
+            return false;
+          } catch {
+            return false;
+          }
+        })();
+        if (bootRestoreSucceeded || bootHasLocalProgress) {
+          await syncToCloud().catch(() => {
+            emitAppEvent('action_toast', {
+              type: 'error',
+              messageRu: 'Не удалось синхронизировать данные — проверь соединение',
+              messageUk: "Не вдалося синхронізувати дані — перевір з'єднання",
+              messageEs: 'Error al sincronizar — revisa tu conexión',
+            });
           });
-        });
+        } else if (__DEV__) {
+          console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
+        }
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
         Promise.all([
@@ -1722,6 +1835,7 @@ function AppContent() {
 
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
       const startupLocalHydration = Promise.all([
+        primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
         hydrateNotifSettingsFromStorage().catch(() => {}),
@@ -1920,6 +2034,8 @@ function AppContent() {
       // Прокидываем личные данные, чтобы пейвол показал персональную строку
       // («уже твоё: серия N · …»). Без них пейвол даёт корректный gain-фоллбэк.
       const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
+      markNextNavigationAsReplace();
       router.replace({
         pathname: '/premium_modal',
         params: { context: 'intro_ended', streak: String(streakCount) },
@@ -2008,6 +2124,8 @@ function AppContent() {
     if (action === 'primary') {
       void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_cta', {})).catch(() => {});
       const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
+      markNextNavigationAsReplace();
       router.replace({
         pathname: '/premium_modal',
         params: { context: 'intro_ended', streak: String(streakCount) },
@@ -2169,16 +2287,14 @@ function AppContent() {
     // «Пульт»: если персональный план переведён в «Фри» — пейвол не показываем,
     // новичок сразу попадает домой (план активируется без оплаты).
     if (isFeatureFreeForEveryone('personal_plan')) {
-      setShow(false);
-      router.replace('/(tabs)/home' as any);
-      return;
+      return false;
     }
     // ОНБОРДИНГ: идём ПРЯМО на нужный A/B/C-пейвол, минуя прозрачный диспетчер
     // premium_modal. Диспетчер — transparentModal: пока он на один кадр висит
     // прозрачным до своего replace, за ним видна «Главная» — отсюда «мелькание
     // home перед пейволом» (и риск Apple 5.6). Вариант резолвится синхронно из
     // кэша (как это делает сам диспетчер), а ветку «уже premium» онбординг
-    // отсекает ВЫШЕ (openSelectedPlanAbPaywall проверяет hasPremiumAccess до
+    // отсекает ВЫШЕ (openSelectedPlanAbPaywall проверяет isPremium до
     // вызова этого хендлера), поэтому диспетчер тут не нужен.
     //
     // Пейвол с source=onboarding_plan открывается как обычный экран (card,
@@ -2194,6 +2310,8 @@ function AppContent() {
       const { resolvePaywallAbVariantSync } = await import('./paywall_variant');
       const { variant } = resolvePaywallAbVariantSync();
       const route = variant === 'A' ? '/paywall_a' : variant === 'B' ? '/paywall_b' : '/paywall_c';
+      // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
+      markNextNavigationAsReplace();
       router.replace({
         pathname: route,
         params: {
@@ -2204,6 +2322,7 @@ function AppContent() {
       } as any);
     } catch {
       // Если резолвер не загрузился — безопасный фолбэк через диспетчер.
+      markNextNavigationAsReplace();
       router.replace({
         pathname: '/premium_modal',
         params: {
@@ -2288,6 +2407,7 @@ function AppContent() {
   const closeDailyPlanModal = useCallback(() => {
     setDailyPlanModalDue(false);
     AsyncStorage.setItem(dailyPlanModalSeenKey, '1').catch(() => {});
+    void pruneDailyPlanSeenMarkers(dailyPlanModalSeenKey).catch(() => {});
   }, [dailyPlanModalSeenKey]);
 
   useEffect(() => {
@@ -2370,12 +2490,29 @@ function AppContent() {
     );
   }
 
-  const appShellReady = ready && !effectiveShowOnboarding && !isBanned && firstContentReady;
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
   const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
+  // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
+  // как JS дорендерил новый экран. На iOS маскируем зазор коротким fade; Android остаётся
+  // на 'none' (история крашей Fabric на transitions) — там зазор закрывает константный
+  // фон стека (contentStyle ниже всегда = tTheme.bgPrimary, а не почти-чёрный сплэш-цвет).
+  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && Platform.OS === 'ios' && !ENABLE_SCREEN_TRANSITIONS;
+  const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS
+    ? ({ animation: 'slide_from_right', animationDuration: 220 } as const)
+    : screenFadeEnabled
+      ? ({ animation: 'fade', animationDuration: 140 } as const)
+      : ({ animation: 'none', animationDuration: 0 } as const);
+  const pushScreenAnimationOptions = defaultScreenAnimationOptions;
+  const bottomModalAnimationOptions = ENABLE_SCREEN_TRANSITIONS
+    ? ({ animation: 'slide_from_bottom' } as const)
+    : screenFadeEnabled
+      ? ({ animation: 'fade', animationDuration: 140 } as const)
+      : ({ animation: 'none', animationDuration: 0 } as const);
 
   return (
-    <View style={{ flex: 1, backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG }}>
+    // Фон корня — константа темы: сплэш закрывает старт отдельным оверлеем,
+    // а перекраска фона по асинхронным флагам давала «чёрный кадр».
+    <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
     <MaintenanceGate />
     <PromoBanner />
 
@@ -2383,13 +2520,20 @@ function AppContent() {
       initialRouteName="(tabs)"
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG },
-        // Без native-stack transitions: Android/Fabric падал на открытии вложенных экранов и Back.
-        // ENABLE_SCREEN_TRANSITIONS (по умолчанию false) включает мягкое появление
-        // ТОЛЬКО после проверки на Android — иначе поведение идентично прежнему (none).
-        animation: ENABLE_SCREEN_TRANSITIONS ? 'slide_from_right' : 'none',
-        animationDuration: ENABLE_SCREEN_TRANSITIONS ? 220 : 0,
-        freezeOnBlur: false,
+        // Фон стека — ВСЕГДА фон темы (константа), НЕ производная от appShellReady:
+        // гонка 4 асинхронных флагов перекрашивала весь стек в почти-чёрный сплэш-цвет
+        // = «чёрный кадр» между переходами. Стартовый сплэш закрывает экран отдельным
+        // полноэкранным оверлеем (StartupSplashHold), фону стека он не нужен.
+        contentStyle: { backgroundColor: tTheme.bgPrimary },
+        // Без native-stack slide-transitions: Android/Fabric падал на открытии вложенных
+        // экранов и Back. ENABLE_SCREEN_TRANSITIONS включает slide только осознанно;
+        // iOS дополнительно получает короткий fade (маскирует зазор рендера) — см. config.ts.
+        ...defaultScreenAnimationOptions,
+        // Заморозка ушедших экранов (react-freeze): фоновые экраны стека перестают
+        // рендериться → не копят работу и не греют телефон. Realtime-исключения
+        // (арена live, экзамен) размораживаются точечно через freezeOnBlur:false ниже.
+        // Guardrail: tests/owner_direction_runtime_contract.test.ts (allowlist исключений).
+        freezeOnBlur: true,
         gestureEnabled: false,
         fullScreenGestureEnabled: false,
         headerBackButtonMenuEnabled: false,
@@ -2408,7 +2552,7 @@ function AppContent() {
 
       <Stack.Screen name="hint" />
       <Stack.Screen name="lesson_help" />
-      <Stack.Screen name="lesson_theory_v2" options={{ presentation: 'card', headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="lesson_theory_v2" options={{ presentation: 'card', headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="preposition_drill" />
       <Stack.Screen name="settings_edu" />
       <Stack.Screen name="settings_notifications" />
@@ -2418,20 +2562,20 @@ function AppContent() {
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
-      <Stack.Screen name="exam" />
+      <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="daily_tasks_screen" />
       <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
-      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, animation: 'slide_from_bottom', presentation: 'modal', gestureEnabled: true }} />
-      <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      {/* Диспетчер прозрачный и мгновенно (useLayoutEffect) делает replace на нужный пейвол —
-          поэтому сам он без анимации, а выезд снизу даёт целевой пейвол ниже. */}
-      <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0 }} />
+      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
+      <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
+          Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
+      <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0, contentStyle: { backgroundColor: '#111827' } }} />
       {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). По умолчанию
           выезжают снизу как модал. НА ОНБОРДИНГЕ (onboardingPaywallActive) — открываются как
           обычный экран онбординга (card, без анимации/выезда снизу); presentation задаётся
@@ -2439,10 +2583,10 @@ function AppContent() {
       <Stack.Screen name="paywall_a" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_b" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_c" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true }} />
-      <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      <Stack.Screen name="promo_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', ...bottomModalAnimationOptions, gestureEnabled: true }} />
+      <Stack.Screen name="referral_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="referrals" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="promo_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
@@ -2464,11 +2608,14 @@ function AppContent() {
       <Stack.Screen name="terms_screen" />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_video_player" />
-      <Stack.Screen name="arena_game" options={{ animation: 'none' }} />
-      <Stack.Screen name="arena_lobby" options={{ animation: 'none' }} />
+      {/* Realtime-исключения из freezeOnBlur: живой матч/комната/лобби-поиск должны
+          продолжать реагировать (onSnapshot соперника, matchmaking), даже когда поверх
+          запушен другой экран. Экзамен ниже — та же причина (60-мин таймер). */}
+      <Stack.Screen name="arena_game" options={{ animation: 'none', freezeOnBlur: false }} />
+      <Stack.Screen name="arena_lobby" options={{ animation: 'none', freezeOnBlur: false }} />
       <Stack.Screen name="arena_results" />
-      <Stack.Screen name="arena_join" />
-      <Stack.Screen name="arena_room" />
+      <Stack.Screen name="arena_join" options={{ freezeOnBlur: false }} />
+      <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="arena_rating" />
       <Stack.Screen name="arena_leaderboard" />
       <Stack.Screen name="web_screen" />
@@ -2687,7 +2834,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
     <ErrorBoundary>
-      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
       <ThemeProvider>
         <LangProvider>
           <StudyTargetProvider>

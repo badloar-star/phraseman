@@ -22,7 +22,8 @@ describe('stats premium lock veil performance contract', () => {
     expect(source).toContain('<PremiumStatsPlaceholder snapshotKey={snapshotKey} />');
     expect(source).toContain('if (isPremium || devUnlock) return <>{children}</>;');
     expect(streakStats).toContain('snapshotKey="learningCoach"');
-    expect(streakStats).toContain('snapshotKey="weekRhythm"');
+    // «Ритм недели» слит в «Твою неделю» (learningCoach) — отдельного weekRhythm-блюра больше нет.
+    expect(streakStats).not.toContain('snapshotKey="weekRhythm"');
     expect(streakStats).toContain('snapshotKey="heatmap"');
     expect(source).not.toContain('StatsPremiumObscuredContext');
     expect(streakStats).not.toContain('SKELETON_XP');

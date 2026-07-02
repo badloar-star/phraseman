@@ -45,9 +45,10 @@ describe('stats practice balance warmup', () => {
     const coachBlock = source.slice(source.indexOf('function LearningCoachCard'), source.indexOf('return (<StatsCardArtSurface name="practiceBalance"'));
 
     expect(warmupBlock).not.toContain("scoreSubLabel = '/7'");
-    expect(warmupBlock).toContain('Оценка будет уточняться после каждой практики.');
-    expect(coachBlock).toContain('1 длинный день');
-    expect(coachBlock).toContain('Это еще не финальная оценка.');
-    expect(coachBlock).toMatch(/:\s*metrics\.avgMinutesActive >= 12\s*\?\s*triLang/);
+    // Warmup-копия — фактическая («N дней практики»), без оценки против 7-дневной цели.
+    expect(warmupBlock).toContain('Позанимайся ещё — и картина станет полной.');
+    // Карточка «Твоя неделя»: конкретные факты вместо расплывчатых сигналов.
+    expect(coachBlock).toContain('const weekFacts = [');
+    expect(coachBlock).not.toContain('1 длинный день');
   });
 });

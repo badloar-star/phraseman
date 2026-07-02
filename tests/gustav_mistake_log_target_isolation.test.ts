@@ -4,7 +4,9 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 function read(relativePath: string): string {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  // Нормализуем CRLF: параллельные сессии на Windows периодически перебивают
+  // окончания строк, а многострочные toContain-контракты используют \n.
+  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 }
 
 describe('Gustav mistake-log target isolation', () => {

@@ -6,11 +6,11 @@ describe('weekly review client contract', () => {
   const cardSource = fs.readFileSync(path.join(__dirname, '../app/WeeklyReviewCard.tsx'), 'utf8');
   const serverSource = fs.readFileSync(path.join(__dirname, '../functions/src/weekly_review.ts'), 'utf8');
 
-  it('uses a daily generation window for everyone', () => {
+  it('premium regenerates daily, free — once a week (owner decision 2026-07-02)', () => {
     expect(clientSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 1');
+    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 7');
     expect(serverSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
-    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 1');
+    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 7');
   });
 
   it('renders collapsed by default and expands only after a tap', () => {

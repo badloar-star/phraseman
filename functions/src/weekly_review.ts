@@ -33,10 +33,10 @@ const BILLING_COLLECTION = 'weekly_review_billing';
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_HOUR = 10;
 
-// One generation per day for everyone. Server is the
+// Premium regenerates daily; free — once a week. Server is the
 // source of truth — the client gate is bypassable.
 const PREMIUM_WINDOW_DAYS = 1;
-const FREE_WINDOW_DAYS = 1;
+const FREE_WINDOW_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const MAX_OUTPUT_TOKENS = 700;

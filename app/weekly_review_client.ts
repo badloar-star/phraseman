@@ -24,7 +24,7 @@ import { weeklyReviewStorageKey, type RuntimeStudyTarget } from './target_storag
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const PREMIUM_WINDOW_DAYS = 1;
-const FREE_WINDOW_DAYS = 1;
+const FREE_WINDOW_DAYS = 7;
 
 export interface WeeklyReview {
   greeting: string;

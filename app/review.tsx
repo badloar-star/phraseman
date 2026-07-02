@@ -26,6 +26,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import PopUpActionButton from '../components/PopUpActionButton';
@@ -1175,6 +1176,56 @@ export default function ReviewScreen() {
     return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done, lang, params.planId, params.planInstanceId, planPracticeDayIndex, planPracticeTaskId, studyTarget]);
+
+  // ─── Первый кадр: скелетон, пока грузится список повторения ──────────────
+  // Без этого гейта первый кадр (items ещё пуст, loading=true) уверенно рисовал
+  // «Нечего повторять!» — ложное состояние на глазах у пользователя (B7).
+  if (loading) {
+    return (
+      <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: isPlanPracticeTask ? 8 : 12, gap: 12 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+            <Ionicons name="chevron-back" size={26} color={sx.primary} />
+          </TapScale>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: sx.primary, fontSize: isPlanPracticeTask ? f.bodyLg : f.h2, fontWeight: '700' }} numberOfLines={1}>
+              {isPlanPracticeTask
+                ? triLang(lang, {
+                  ru: 'Моя практика',
+                  uk: 'Моя практика',
+                  es: 'Mi práctica',
+                  'pt-BR': "Minha prática",
+                  vi: "Luyện tập của tôi",
+                  id: "Latihan saya",
+                  tr: "Pratiğim",
+                  pl: "Moja praktyka",
+                })
+                : triLang(lang, {
+                  ru: 'Повторение',
+                  uk: 'Повторення',
+                  es: 'Repaso',
+                  'pt-BR': "Revisão",
+                  vi: "Ôn tập",
+                  id: "Ulangan",
+                  tr: "Tekrar",
+                  pl: "Powtórka",
+                })}
+            </Text>
+          </View>
+          <SkeletonBlock width={44} height={14} />
+        </View>
+        <View style={{ height: 4, backgroundColor: t.bgSurface, marginHorizontal: 16, borderRadius: 2, marginBottom: isPlanPracticeTask ? 8 : 20 }} />
+        <View style={{ paddingHorizontal: 16 }}>
+          <SkeletonBlock width="100%" height={210} borderRadius={20} />
+          <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 20 }} />
+          <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 10 }} />
+          <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 10 }} />
+        </View>
+      </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   // ─── Нечего повторять ─────────────────────────────────────────────────────
   if (items.length === 0) {

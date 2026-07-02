@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import TopFadeMask from '../components/TopFadeMask';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -116,20 +117,31 @@ function WeekBar({
   );
 }
 
+/** B7: тёплая память статистики плана на процесс — повторные заходы рисуют контент
+ * первым кадром; без неё каждый заход начинался с «Нет данных о плане». */
+let planStatsWarm: {
+  planInstanceId: string;
+  stats: PersonalPlanStatsSummary;
+  weakSpots: PlanWeakSpotView | null;
+  xpLedger: PlanXpLedgerEntry | null;
+} | null = null;
+
 export default function PersonalPlanStatsScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
-  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(null);
-  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(null);
-  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(null);
+  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => planStatsWarm?.stats ?? null);
+  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => planStatsWarm?.weakSpots ?? null);
+  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => planStatsWarm?.xpLedger ?? null);
+  const [loading, setLoading] = useState(() => planStatsWarm == null);
   const chrome = useMemo(() => resolveChrome(themeMode, t), [themeMode, t]);
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
 
   const fadeScrollY = useRef(new Animated.Value(0)).current;
-  const fade = useRef(new Animated.Value(0)).current;
-  const slide = useRef(new Animated.Value(20)).current;
+  // Тёплый старт: контент уже виден первым кадром — входную анимацию не проигрываем заново.
+  const fade = useRef(new Animated.Value(planStatsWarm ? 1 : 0)).current;
+  const slide = useRef(new Animated.Value(planStatsWarm ? 0 : 20)).current;
   const dayRailRef = useRef<ScrollView | null>(null);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -137,12 +149,14 @@ export default function PersonalPlanStatsScreen() {
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
     if (!state) {
+      planStatsWarm = null;
       setStats(null);
+      setLoading(false);
       return;
     }
     const plan = getPlanById(state.planId);
     const completedTasks = await readCompletedPlanTasks();
-    setStats(buildPersonalPlanStats({
+    const nextStats = buildPersonalPlanStats({
       plan,
       planInstanceId: state.planInstanceId,
       currentDayIndex: state.currentDayIndex,
@@ -150,9 +164,19 @@ export default function PersonalPlanStatsScreen() {
       completedTasks,
       // UTC date, to match completedAt (new Date().toISOString()) used for active-day keys.
       todayKey: new Date().toISOString().slice(0, 10),
-    }));
-    setWeakSpots(await readPlanWeakSpotView(state.planInstanceId).catch(() => null));
-    setXpLedger(await readPlanXpLedger(state.planInstanceId).catch(() => null));
+    });
+    const nextWeakSpots = await readPlanWeakSpotView(state.planInstanceId).catch(() => null);
+    const nextXpLedger = await readPlanXpLedger(state.planInstanceId).catch(() => null);
+    planStatsWarm = {
+      planInstanceId: state.planInstanceId,
+      stats: nextStats,
+      weakSpots: nextWeakSpots,
+      xpLedger: nextXpLedger,
+    };
+    setStats(nextStats);
+    setWeakSpots(nextWeakSpots);
+    setXpLedger(nextXpLedger);
+    setLoading(false);
     Animated.parallel([
       Animated.timing(fade, { toValue: 1, duration: 380, useNativeDriver: true }),
       Animated.spring(slide, { toValue: 0, tension: 80, friction: 12, useNativeDriver: true }),
@@ -160,8 +184,12 @@ export default function PersonalPlanStatsScreen() {
   }, [fade, slide]);
 
   useFocusEffect(useCallback(() => {
-    fade.setValue(0);
-    slide.setValue(20);
+    // Входную анимацию перезапускаем только при холодном старте (нет тёплой памяти):
+    // при тёплом контент виден первым кадром, сбрасывать его в невидимость нельзя.
+    if (!planStatsWarm) {
+      fade.setValue(0);
+      slide.setValue(20);
+    }
     void load();
   }, [load, fade, slide]));
 
@@ -187,10 +215,26 @@ export default function PersonalPlanStatsScreen() {
       <View style={[styles.safe, { backgroundColor: screenBg }]}>
         <LinearGradient colors={chrome.bg} style={styles.fill}>
           <TopFadeMask zIndex={2} />
-          <View style={[styles.center, { paddingTop: insets.top }]}>
-            <Ionicons name="stats-chart-outline" size={40} color={chrome.muted} />
-            <Text style={[styles.emptyText, { color: chrome.muted }]}>Нет данных о плане</Text>
-          </View>
+          {loading ? (
+            /* B7: скелетон первой загрузки — раньше первый кадр рисовал ложное «Нет данных о плане» */
+            <View style={{ paddingTop: insets.top + 10, paddingHorizontal: 20 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <SkeletonBlock width={40} height={40} borderRadius={12} />
+                <View style={{ flex: 1, gap: 6 }}>
+                  <SkeletonBlock width={90} height={12} />
+                  <SkeletonBlock width="70%" height={18} />
+                </View>
+              </View>
+              <SkeletonBlock width="100%" height={120} borderRadius={18} style={{ marginTop: 20 }} />
+              <SkeletonBlock width="100%" height={96} borderRadius={18} style={{ marginTop: 12 }} />
+              <SkeletonBlock width="100%" height={96} borderRadius={18} style={{ marginTop: 12 }} />
+            </View>
+          ) : (
+            <View style={[styles.center, { paddingTop: insets.top }]}>
+              <Ionicons name="stats-chart-outline" size={40} color={chrome.muted} />
+              <Text style={[styles.emptyText, { color: chrome.muted }]}>Нет данных о плане</Text>
+            </View>
+          )}
         </LinearGradient>
       </View>
     );

@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import PlusBadge from '../../components/PlusBadge';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK, IS_BETA_TESTER } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, AppState, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -15,8 +16,9 @@ import Reanimated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import type { Theme } from '../../constants/theme';
+import type { Theme, ThemeMode } from '../../constants/theme';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
+import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
@@ -94,6 +96,7 @@ type Props = {
   longPressedId: string | null;
   t: Theme;
   f: Record<string, number>;
+  themeMode: ThemeMode;
   sourceLabels: Record<string, string>;
   deleteLabel: string;
   voiceLabel: string;
@@ -143,6 +146,7 @@ function FlashcardListItemImpl({
   longPressedId,
   t,
   f,
+  themeMode,
   sourceLabels,
   deleteLabel,
   voiceLabel,
@@ -214,6 +218,7 @@ function FlashcardListItemImpl({
   const [expandHeightComplete, setExpandHeightComplete] = useState(false);
   const hintY = useRef(new Animated.Value(0)).current;
   const hintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
+  const isScreenFocused = useIsScreenFocused();
 
   const cAnim = getCardFlipAnim(item.id);
   const flipDrivingAnim = cAnim;
@@ -426,12 +431,23 @@ function FlashcardListItemImpl({
     }
     hintY.stopAnimation();
     hintY.setValue(0);
-    if (!hasDetails || detailsExpanded) return;
+    // Луп-подсказка бежит только на видимом экране (freezeOnBlur:false держит
+    // ушедшие экраны живыми — иначе луп грел бы телефон в фоне).
+    if (!hasDetails || detailsExpanded || !isScreenFocused) return;
 
     let cancelled = false;
     let delayTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const startNudge = () => {
+    const stopNudge = () => {
+      if (delayTimer) { clearTimeout(delayTimer); delayTimer = null; }
+      if (hintLoopRef.current) {
+        hintLoopRef.current.stop();
+        hintLoopRef.current = null;
+      }
+      hintY.setValue(0);
+    };
+
+    const runNudge = () => {
       if (cancelled) return;
       const nudge = Animated.loop(
         Animated.sequence([
@@ -444,21 +460,29 @@ function FlashcardListItemImpl({
       nudge.start();
     };
 
-    if (chevronHintDelayMs > 0) {
-      delayTimer = setTimeout(startNudge, chevronHintDelayMs);
-    } else {
-      startNudge();
-    }
+    const startNudge = () => {
+      if (cancelled) return;
+      stopNudge();
+      if (chevronHintDelayMs > 0) {
+        delayTimer = setTimeout(runNudge, chevronHintDelayMs);
+      } else {
+        runNudge();
+      }
+    };
+
+    // Анимируем только на переднем плане — в фоне нет смысла дёргать подсказку.
+    if (AppState.currentState === 'active') startNudge();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') startNudge();
+      else stopNudge();
+    });
 
     return () => {
       cancelled = true;
-      if (delayTimer) clearTimeout(delayTimer);
-      if (hintLoopRef.current) {
-        hintLoopRef.current.stop();
-        hintLoopRef.current = null;
-      }
+      appSub.remove();
+      stopNudge();
     };
-  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs]);
+  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, isScreenFocused]);
 
   const voiceTextFront = isModernAbbrevCard
     ? (parsedAbbrevEn.rest || item.en)
@@ -482,6 +506,7 @@ function FlashcardListItemImpl({
         onPress={onOpenPremium}
         style={[cardStyle, { position: 'relative', backgroundColor: t.bgCard, borderColor: t.border, justifyContent: 'center', alignItems: 'center', height: cardHeight }]}
       >
+        <PlusBadge themeMode={themeMode} size="sm" style={{ position: 'absolute', top: 12, right: 12 }} />
         <Ionicons name="lock-closed" size={32} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', marginTop: 12 }}>
           {premiumExpiredTitle}

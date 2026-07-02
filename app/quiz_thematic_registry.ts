@@ -1,8 +1,6 @@
 import type { ImageSourcePropType } from 'react-native';
 
 import { quizAssetThemeKey } from './quizzes/constants';
-import { HOME_AND_ROOMS_SKYLER_PACK } from './quiz_thematic_home_and_rooms';
-import { KITCHEN_AND_COOKING_SKYLER_PACK } from './quiz_thematic_kitchen_and_cooking';
 import {
   skylerThematicPackToQuizPhrases,
   thematicQuizPackSurfaceVisibleForTarget,
@@ -41,6 +39,41 @@ type ThematicQuizPhrasesOptions = SkylerThematicPackAdapterOptions & {
 };
 
 const DEFAULT_THEMATIC_QUIZ_SESSION_SIZE = 10;
+
+/**
+ * PERF (D2): each thematic pack's question-item array is ~750-850KB. This registry
+ * used to statically import both production packs (kitchen-and-cooking,
+ * home-and-rooms), so just mounting the "Quizzes" tab built ~1.6MB of quiz items in
+ * memory before the user ever opened a category. `getThematicQuizCategory` /
+ * `getAvailableThematicQuizCategories` only need lightweight metadata (title, badge,
+ * accent, releasePolicy) to render the category list — the heavy `items` array is
+ * only read once a category is actually opened (`skylerThematicPackToQuizPhrases`).
+ *
+ * `definePackLazily` installs `category.pack` as a getter: the module is required
+ * (and cached) on first access to `.pack`, not at module-eval time. This keeps
+ * `category.pack` a normal, synchronously-readable object everywhere it's used today
+ * — callers and tests that do `category.pack.items` are unaffected.
+ *
+ * SEAM FOR SERVER MIGRATION: this lazy-require is the local stand-in for "fetch pack
+ * from server + cache on disk" (the pattern already used by the French quiz bank, see
+ * quiz_phrases_loader.ts). When thematic packs move server-side, only the loader
+ * function passed to `definePackLazily` needs to change; category shape and callers
+ * (getThematicQuizCategory / getThematicQuizPhrases) stay the same.
+ */
+function definePackLazily(
+  target: { pack: SkylerThematicPack },
+  load: () => SkylerThematicPack,
+): void {
+  let cached: SkylerThematicPack | null = null;
+  Object.defineProperty(target, 'pack', {
+    enumerable: true,
+    configurable: true,
+    get(): SkylerThematicPack {
+      if (!cached) cached = load();
+      return cached;
+    },
+  });
+}
 
 const kitchenCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-forest.webp'),
@@ -115,10 +148,17 @@ const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {
   },
   badge: 'A1 WORDS',
   accent: '#5EEAD4',
-  pack: KITCHEN_AND_COOKING_SKYLER_PACK,
+  // Placeholder — overwritten below by definePackLazily with a getter that requires
+  // ./quiz_thematic_kitchen_and_cooking (~747KB) only on first access to `.pack`.
+  pack: null as unknown as SkylerThematicPack,
   cardBackgrounds: kitchenCardBackgrounds,
   logos: kitchenLogos,
 };
+definePackLazily(
+  KITCHEN_AND_COOKING_CATEGORY,
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lazy per-category require keeps unused ~750KB quiz item arrays out of memory (PERF D2)
+  () => (require('./quiz_thematic_kitchen_and_cooking') as { KITCHEN_AND_COOKING_SKYLER_PACK: SkylerThematicPack }).KITCHEN_AND_COOKING_SKYLER_PACK,
+);
 
 const HOME_AND_ROOMS_CATEGORY: ThematicQuizCategory = {
   id: 'home-and-rooms',
@@ -145,10 +185,17 @@ const HOME_AND_ROOMS_CATEGORY: ThematicQuizCategory = {
   },
   badge: 'A1 HOME',
   accent: '#93C5FD',
-  pack: HOME_AND_ROOMS_SKYLER_PACK,
+  // Placeholder — overwritten below by definePackLazily with a getter that requires
+  // ./quiz_thematic_home_and_rooms (~847KB) only on first access to `.pack`.
+  pack: null as unknown as SkylerThematicPack,
   cardBackgrounds: homeCardBackgrounds,
   logos: homeLogos,
 };
+definePackLazily(
+  HOME_AND_ROOMS_CATEGORY,
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lazy per-category require keeps unused ~850KB quiz item arrays out of memory (PERF D2)
+  () => (require('./quiz_thematic_home_and_rooms') as { HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack }).HOME_AND_ROOMS_SKYLER_PACK,
+);
 
 export const IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY = true;
 export const SKYLER_THEMATIC_QUIZZES_DEV_ONLY = IN_PROGRESS_THEMATIC_QUIZZES_DEV_ONLY;

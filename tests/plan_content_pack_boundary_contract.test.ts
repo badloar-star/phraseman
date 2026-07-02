@@ -64,8 +64,12 @@ function filesImporting(pattern: RegExp): string[] {
 
 describe('plan content pack boundary contract', () => {
   it('keeps large plan content modules behind the single registry seam', () => {
+    // PERF (D1): plan_content_registry.ts loads each plan module lazily via
+    // require('./plan_content_<planId>') instead of a static `import`, so the
+    // pattern must match both forms — the guardrail's intent (only the registry
+    // touches the raw ~3-5MB plan content files) is unchanged.
     const directModulePattern = new RegExp(
-      `from ['"]\\./(${DIRECT_PLAN_CONTENT_MODULES.join('|')})['"]`,
+      `(?:from ['"]|require\\(['"])\\./(${DIRECT_PLAN_CONTENT_MODULES.join('|')})['"]`,
     );
     expect(filesImporting(directModulePattern)).toEqual(['app/plan_content_registry.ts']);
   });

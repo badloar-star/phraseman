@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import {
+  AppState,
   LayoutChangeEvent,
   StyleProp,
   StyleSheet,
@@ -17,6 +18,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import LinearGradient from './SafeLinearGradient';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 interface SkeletonBlockProps {
   /** Ширина блока. Число (px) или строка-процент ('60%'). */
@@ -55,16 +57,42 @@ function SkeletonBlockBase({
 }: SkeletonBlockProps) {
   const sweep = useSharedValue(0);
   const [measuredW, setMeasuredW] = useState(0);
+  const isFocused = useIsScreenFocused();
 
+  // Луп бежит только когда экран виден И приложение на переднем плане: при
+  // freezeOnBlur:false скелетон может пережить уход с экрана — гард гасит его,
+  // чтобы блик не перерисовывался в фоне и не грел телефон.
   useEffect(() => {
-    sweep.value = 0;
-    sweep.value = withRepeat(
-      withTiming(1, { duration: durationMs, easing: Easing.inOut(Easing.ease) }),
-      -1,
-      false,
-    );
-    return () => cancelAnimation(sweep);
-  }, [sweep, durationMs, measuredW]);
+    if (!isFocused) {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      sweep.value = withRepeat(
+        withTiming(1, { duration: durationMs, easing: Easing.inOut(Easing.ease) }),
+        -1,
+        false,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(sweep);
+    };
+  }, [sweep, durationMs, measuredW, isFocused]);
 
   const bandWidth = Math.max(48, measuredW * 0.6);
 

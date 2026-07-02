@@ -9,7 +9,7 @@
 //   • спекуляр — белый блик-градиент, бежит за касанием;
 //   • искры — лёгкие точки по площади (число растёт с редкостью).
 import React, { useEffect, useMemo } from 'react';
-import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import { AppState, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -25,6 +25,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { LinearGradient } from './SafeLinearGradient';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import type { CollectibleRarity } from '../app/collectibles/catalog';
 
 /** Голо-профиль на редкость — мощность эффекта растёт от common к legendary. */
@@ -77,6 +78,7 @@ export default function HoloFoilCard({
   autoShake = true,
 }: HoloFoilCardProps) {
   const p = HOLO_PROFILES[rarity] ?? HOLO_PROFILES.common;
+  const isFocused = useIsScreenFocused();
 
   // нормализованный наклон -1..1 по двум осям + «прилёт» масштаба
   const nx = useSharedValue(0);
@@ -111,22 +113,48 @@ export default function HoloFoilCard({
       gloss.value = withDelay(180, withTiming(1.3, { duration: 700, easing: Easing.inOut(Easing.ease) }));
     }
 
-    // idle крутится всегда: даёт мерцание искрам у всех редкостей с glints>0;
-    // на наклон-шиммер он влияет только при p.idleShimmer (epic/legendary).
-    if (p.idleShimmer || p.glints > 0) {
-      idle.value = withRepeat(withTiming(1, { duration: 2600, easing: Easing.linear }), -1, false);
-    }
-
     return () => {
       cancelAnimation(nx);
       cancelAnimation(ny);
       cancelAnimation(enter);
-      cancelAnimation(idle);
       cancelAnimation(gloss);
     };
     // профиль зависит только от редкости
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rarity, autoShake]);
+
+  // idle крутится ВЕЧНО (даёт мерцание искрам/наклон-шиммер) — гардим его фокусом
+  // экрана и AppState: при freezeOnBlur:false карта дропа переживает уход с экрана,
+  // и без гарда луп продолжал бы перерисовывать голо-эффект в фоне и греть телефон.
+  const idleAnimates = p.idleShimmer || p.glints > 0;
+  useEffect(() => {
+    if (!idleAnimates || !isFocused) {
+      cancelAnimation(idle);
+      idle.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(idle);
+      idle.value = 0;
+      idle.value = withRepeat(withTiming(1, { duration: 2600, easing: Easing.linear }), -1, false);
+    };
+    const stop = () => {
+      cancelAnimation(idle);
+      idle.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(idle);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idle, idleAnimates, isFocused]);
 
   // Палец водит по карте → наклон следует за касанием (как pointermove в макете).
   const pan = useMemo(

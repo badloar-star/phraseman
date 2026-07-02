@@ -21,10 +21,39 @@ const MESSAGES_CACHE_PREFIX = 'league_chat_messages_cache_v1:';
 const SEND_THROTTLE_MS = 12_000;
 const MAX_VISIBLE_MESSAGES = 80;
 const FUNCTIONS_REGION = 'us-central1';
+/**
+ * Сколько комнат-чатов держим в памяти. Ключ = groupId+weekId+leagueId; число
+ * ключей раньше не ограничивалось, поэтому за долгую сессию (смена недель/лиг)
+ * кеш неограниченно рос. Держим только N последних использованных комнат,
+ * вытесняя самые старые по времени доступа (LRU) — по образцу
+ * pruneFriendsProfileCache.
+ */
+const MAX_CACHED_ROOMS = 12;
 
 let lastSendAt = 0;
 let cachedRoomMemory: LeagueChatRoom | null = null;
 const cachedMessagesMemory: Record<string, LeagueChatMessage[]> = {};
+/** Параллельный реестр последнего доступа к комнате — для LRU-вытеснения. */
+const cachedMessagesLastAccessAt: Record<string, number> = {};
+
+/**
+ * Пометить комнату использованной и вытеснить самые старые, если ключей больше
+ * лимита. Вызывать при каждой записи в cachedMessagesMemory.
+ */
+function touchCachedRoomAndPrune(key: string): void {
+  cachedMessagesLastAccessAt[key] = Date.now();
+  const keys = Object.keys(cachedMessagesMemory);
+  if (keys.length <= MAX_CACHED_ROOMS) return;
+  keys
+    .sort(
+      (a, b) => (cachedMessagesLastAccessAt[a] ?? 0) - (cachedMessagesLastAccessAt[b] ?? 0),
+    )
+    .slice(0, keys.length - MAX_CACHED_ROOMS)
+    .forEach((stale) => {
+      delete cachedMessagesMemory[stale];
+      delete cachedMessagesLastAccessAt[stale];
+    });
+}
 
 export interface LeagueChatRoom {
   groupId: string;
@@ -46,6 +75,7 @@ export interface LeagueChatMessage {
   weekId: string;
   leagueId: number;
   authorUid: string;
+  authorAuthUid?: string;
   authorName: string;
   authorAvatar?: string;
   authorAura?: string;
@@ -58,7 +88,16 @@ export interface LeagueChatMessage {
   /** Тип системного события (только при kind === 'system'). Управляет иконкой в UI. */
   systemType?: LeagueChatSystemType;
   /** Категория поста Компаса (только для системных постов от Компаса). */
-  compassKind?: 'word_of_day' | 'fact' | 'question' | 'poll' | 'daily_summary' | 'icebreaker';
+  compassKind?:
+    | 'discussion'
+    | 'language_fact'
+    | 'mini_challenge'
+    | 'poll'
+    | 'word_of_day'
+    | 'fact'
+    | 'question'
+    | 'daily_summary'
+    | 'icebreaker';
   /** Локализованный текст поста (все 8 языков). Клиент рендерит i18n[lang] вместо text. */
   i18n?: Partial<Record<string, string>>;
   /** Счётчики эмодзи-реакций: { '🔥': 3, '👏': 1 }. Меняются increment(±1). */
@@ -170,8 +209,10 @@ export async function forgetCachedLeagueChatRoom(room?: LeagueChatRoom | null): 
 }
 
 export function getCachedLeagueChatMessagesSync(room: LeagueChatRoom): LeagueChatMessage[] {
-  const rows = normalizeMessages(cachedMessagesMemory[roomMessagesCacheKey(room)], room);
-  cachedMessagesMemory[roomMessagesCacheKey(room)] = rows;
+  const key = roomMessagesCacheKey(room);
+  const rows = normalizeMessages(cachedMessagesMemory[key], room);
+  cachedMessagesMemory[key] = rows;
+  touchCachedRoomAndPrune(key);
   return rows;
 }
 
@@ -184,6 +225,7 @@ export async function loadCachedLeagueChatMessages(room: LeagueChatRoom): Promis
   try {
     const rows = normalizeMessages(JSON.parse(raw), room);
     cachedMessagesMemory[key] = rows;
+    touchCachedRoomAndPrune(key);
     return rows;
   } catch {
     await AsyncStorage.removeItem(key).catch(() => {});
@@ -195,6 +237,7 @@ async function cacheLeagueChatMessages(room: LeagueChatRoom, messages: LeagueCha
   const rows = normalizeMessages(messages, room);
   const key = roomMessagesCacheKey(room);
   cachedMessagesMemory[key] = rows;
+  touchCachedRoomAndPrune(key);
   await AsyncStorage.setItem(key, JSON.stringify(rows)).catch(() => {});
 }
 

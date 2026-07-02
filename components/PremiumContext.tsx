@@ -29,6 +29,7 @@ import { getIntroFullAccessState } from '../app/intro_full_access';
 import { getLoyaltyGiftState } from '../app/loyalty_gift';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
 import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
+import { getAppSnapshot } from '../app/app_snapshot_store';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -115,10 +116,28 @@ async function computeTrialEligible(): Promise<boolean> {
   }
 }
 
+// B1 (PERF_MASTER_PLAN, снапшот-прогрев): снапшот (app_snapshot_store) может уже
+// содержать premiumActive/vipActive с прошлой сессии (записано в
+// app_snapshot_bootstrap.ts до первого кадра). Читаем его синхронно в
+// инициализаторах useState вместо жёсткого `false`, чтобы не мигать
+// premium/VIP-бейджами в ~50 местах, пока reload() не подтвердит статус живым
+// источником (RevenueCat/AsyncStorage/Firestore). Если снапшота ещё нет
+// (первый запуск/холодный старт быстрее прайма) — остаёмся на false, как раньше.
+// FORCE_PREMIUM (dev) продолжает побеждать: снапшот только повышает false→true,
+// никогда не понижает true→false относительно текущего поведения.
+function snapshotPremiumActive(): boolean {
+  return getAppSnapshot().profile?.premiumActive === true;
+}
+function snapshotVipActive(): boolean {
+  return getAppSnapshot().profile?.vipActive === true;
+}
+
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
-  const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
-  const [isVip, setIsVip] = useState(false);
-  const [hasPremiumAccess, setHasPremiumAccess] = useState(FORCE_PREMIUM);
+  const [isPremium, setIsPremium] = useState(() => FORCE_PREMIUM || snapshotPremiumActive());
+  const [isVip, setIsVip] = useState(() => snapshotVipActive());
+  const [hasPremiumAccess, setHasPremiumAccess] = useState(
+    () => FORCE_PREMIUM || snapshotPremiumActive() || snapshotVipActive(),
+  );
   const [isIntroFullAccess, setIsIntroFullAccess] = useState(false);
   const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
   const [trialEligible, setTrialEligible] = useState(false);
@@ -445,6 +464,23 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     });
     return () => sub.remove();
   }, [reload]);
+
+  // После локального удаления аккаунта сбрасываем entitlement сразу, не ждём remount.
+  useEffect(() => {
+    const sub = onAppEvent('account_deleted', () => {
+      invalidatePremiumCache();
+      vipSnapshotStateRef.current = false;
+      setIsPremium(false);
+      setIsVip(false);
+      setHasPremiumAccess(false);
+      setIsIntroFullAccess(false);
+      setIntroFullAccessEndsAt(null);
+      setTrialEligible(false);
+      setPremiumListenerRevision((v) => v + 1);
+      emitAppEvent('premium_access_changed', { active: false, source: 'none' });
+    });
+    return () => sub.remove();
+  }, []);
 
   // Подарок лояльности активирован/откатан — мгновенно пересчитываем доступ.
   useEffect(() => {

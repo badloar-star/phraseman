@@ -15,6 +15,22 @@ import type { Lang } from '../constants/i18n';
 const ENERGY_KEY = 'energy_state';
 export const MAX_ENERGY = 5; // базовый минимум (уровень 1-9)
 
+// B2 (PERF_MASTER_PLAN): модульный peek-кеш последнего известного значения
+// энергии. EnergyProvider стартует с MAX_ENERGY, реальное значение приходит
+// асинхронно из load() — это даёт видимый "прыжок" (полная → реальная) на
+// каждом холодном старте/ремаунте провайдера. Кешируем последнее известное
+// {energy, maxEnergy} в модульной переменной (переживает ремаунты компонента
+// в рамках одного JS-процесса, как peekProfilesCache/peekFriendsTabSwrWarm)
+// и читаем её синхронно в useState-инициализаторах ниже. Если кеша ещё нет
+// (первый запуск процесса) — поведение не меняется: MAX_ENERGY, как раньше.
+let peekEnergyState: { energy: number; maxEnergy: number } | null = null;
+function peekEnergy(): { energy: number; maxEnergy: number } | null {
+  return peekEnergyState;
+}
+function writePeekEnergy(energy: number, maxEnergy: number): void {
+  peekEnergyState = { energy, maxEnergy };
+}
+
 interface StoredEnergy {
   current: number;
   lastRecoveryTime: number;
@@ -190,22 +206,26 @@ async function readNotificationLang(): Promise<Lang> {
 
 // ── Provider ─────────────────────────────────────────────────────────────────
 export function EnergyProvider({ children }: { children: React.ReactNode }) {
-  const [energy, setEnergy] = useState(MAX_ENERGY);
+  const initialPeek = peekEnergy();
+  const [energy, setEnergy] = useState(() => initialPeek?.energy ?? MAX_ENERGY);
   const [bonusEnergy, setBonusEnergy] = useState(0);
   const [bonusExpiresAt, setBonusExpiresAt] = useState(0);
-  const [maxEnergy, setMaxEnergy] = useState(MAX_ENERGY);
+  const [maxEnergy, setMaxEnergy] = useState(() => initialPeek?.maxEnergy ?? MAX_ENERGY);
   const [recoveryIntervalMs, setRecoveryIntervalMs] = useState(getRecoveryIntervalMs(0));
   const [recoveryEndsAtMs, setRecoveryEndsAtMs] = useState(0);
   const [timeUntilNextMs, setTimeUntilNextMs] = useState(0);
   const [isUnlimited, setIsUnlimited] = useState(false);
   const [restoringPremium, setRestoringPremium] = useState(false);
+  // Peek уже показывает последнее известное значение, поэтому энергия не
+  // "прыгнет" от MAX к реальной. energyReady остаётся честным по факту первого
+  // load() (тестерские тумблеры/точные гейты продолжают ждать live-данные).
   const [energyReady, setEnergyReady] = useState(false);
   const [appActive, setAppActive] = useState(() => AppState.currentState === 'active');
 
   // Refs for use inside callbacks without stale closures
-  const energyRef = useRef(MAX_ENERGY);
+  const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
   const bonusRef = useRef(0);
-  const dynMaxRef = useRef(MAX_ENERGY);
+  const dynMaxRef = useRef(initialPeek?.maxEnergy ?? MAX_ENERGY);
   const recoveryMsRef = useRef(getRecoveryIntervalMs(0));
   const lastRecoveryRef = useRef(Date.now());
   const isUnlimitedRef = useRef(false);
@@ -292,6 +312,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     } catch {
     } finally {
       setEnergyReady(true);
+      // B2: обновляем peek-кеш последним известным значением после каждого
+      // успешного load — следующий маунт провайдера (навигация назад/вперёд,
+      // Fast Refresh) стартует с этого значения вместо MAX_ENERGY.
+      writePeekEnergy(energyRef.current, dynMaxRef.current);
       // Синхронизируем energy-full пуш с актуальным состоянием:
       // полная/безлимит → отмена, неполная → (пере)планирование на точный момент.
       void syncEnergyPushRef.current?.();
@@ -404,6 +428,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
     const state: StoredEnergy = { current: newEnergy, lastRecoveryTime: newLastRecovery };
     await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    writePeekEnergy(newEnergy, dynMaxRef.current);
 
     // Энергия упала ниже максимума → (пере)планируем пуш о восстановлении.
     void syncEnergyPushRef.current?.();
@@ -454,6 +479,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
       const state: StoredEnergy = { current: newE, lastRecoveryTime: newLastRecovery };
       try { await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state)); } catch { /* best-effort */ }
+      writePeekEnergy(newE, dynMaxRef.current);
     }
 
     // Энергия потрачена → (пере)планируем пуш о полном восстановлении.

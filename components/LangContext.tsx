@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
+import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 
 export type { Lang };
 const RU = {
@@ -1186,13 +1187,26 @@ export function stringsForLang(lang: Lang): Strings {
   return pack;
 }
 
+// B3 (PERF_MASTER_PLAN): app_snapshot_bootstrap.ts кеширует raw 'app_lang' в
+// модульный peek после каждого прайма (см. peekAppLang/writePeekAppLang). Внутри
+// ОДНОЙ сессии (навигация/ремаунт/Fast Refresh, после первого прайма) читаем его
+// синхронно вместо getDeviceBootstrapLocale() — устраняет перерисовку всех текстов
+// после hydration. На самом первом кадре самой первой сессии после установки
+// приложения peek ещё пуст (prime стартует позже, см. bootstrap.ts) — тогда, как и
+// раньше, используем локаль устройства; useEffect ниже досинхронизирует как обычно.
+function initialLangFromPeekOrDevice(): Lang {
+  const peeked = coerceInterfaceLang(peekAppLang());
+  return peeked ?? getDeviceBootstrapLocale();
+}
+
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
-  const [lang, setLangState] = useState<Lang>(() => getDeviceBootstrapLocale());
+  const [lang, setLangState] = useState<Lang>(() => initialLangFromPeekOrDevice());
   const [langHydrated, setLangHydrated] = useState(false);
 
   useEffect(() => {
     AsyncStorage.getItem('app_lang')
       .then(v => {
+        writePeekAppLang(typeof v === 'string' ? v : null);
         const storedLang = coerceInterfaceLang(v);
         if (!storedLang) {
           if (typeof v === 'string') {
@@ -1215,10 +1229,12 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   const setLang = useCallback(async (l: Lang) => {
     if (!isInterfaceLangEnabled(l)) {
       AsyncStorage.removeItem('app_lang').catch(() => {});
+      writePeekAppLang(null);
       setLangState('ru');
       return;
     }
     await AsyncStorage.setItem('app_lang', l);
+    writePeekAppLang(l);
     setLangState(l);
     if (STUDY_TARGET_RESET_LANGS.has(l)) {
       await resetDevStudyTargetForSpanishUi();

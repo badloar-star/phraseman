@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { AppState, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -11,6 +11,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
 interface Props {
   /** Ширина области (px), по которой бежит блик. Обычно ширина кнопки. */
@@ -52,21 +53,47 @@ function ShineOverlay({
   style,
 }: Props) {
   const sweep = useSharedValue(0);
+  const isFocused = useIsScreenFocused();
 
+  // Блик крутится только на видимом экране И на переднем плане приложения:
+  // freezeOnBlur:false держит ушедшие экраны живыми, поэтому без гарда луп грел
+  // бы телефон в фоне.
   useEffect(() => {
-    sweep.value = 0;
+    if (!isFocused) {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      return;
+    }
+
     const cycle = durationMs + gapMs;
-    // Один цикл = проход (durationMs) + пауза (gapMs) на конце, луп бесконечно.
-    sweep.value = withRepeat(
-      withTiming(1, {
-        duration: cycle,
-        easing: Easing.linear,
-      }),
-      -1,
-      false,
-    );
-    return () => cancelAnimation(sweep);
-  }, [sweep, durationMs, gapMs, width]);
+    const start = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      // Один цикл = проход (durationMs) + пауза (gapMs) на конце, луп бесконечно.
+      sweep.value = withRepeat(
+        withTiming(1, {
+          duration: cycle,
+          easing: Easing.linear,
+        }),
+        -1,
+        false,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(sweep);
+    };
+  }, [sweep, durationMs, gapMs, width, isFocused]);
 
   const bandStyle = useAnimatedStyle(() => {
     // Фаза прохода: блик движется только в первой части цикла, потом ждёт за краем.

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {
   createContext, useCallback, useContext,
-  useEffect, useRef, useState,
+  useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
   joinMatchmakingQueue,
@@ -657,23 +657,36 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
   useEffect(() => () => cleanup(), [cleanup]);
 
+  // Единственный не-мемоизированный провайдер: раньше каждый рендер создавал новый
+  // объект value → все потребители контекста перерисовывались зря. Все колбэки уже
+  // стабильны (useCallback / setState-сеттеры), поэтому deps — только реактивные
+  // значения. `userIdRef.current` меняется синхронно с setStatus/setSessionId, так
+  // что status/sessionId в deps гарантируют пересчёт сразу после смены userId.
+  const value = useMemo<MatchmakingContextValue>(() => ({
+    status, sessionId,
+    userId: userIdRef.current || null,
+    elapsedMs,
+    searchStartedAt,
+    humanSearchWindowMs,
+    startSearching, cancelSearching,
+    isLobbyActive, setLobbyActive,
+    markMatchHandled, isMatchHandled,
+    stopSearchTimer,
+    clearFoundMatch,
+    updateQueueWithPushToken,
+    showMatchFoundForTesterPreview,
+    resumeSearchAfterLobbyAbort,
+    forgetSearchResumeSnapshot,
+  }), [
+    status, sessionId, elapsedMs, searchStartedAt, humanSearchWindowMs,
+    startSearching, cancelSearching, setLobbyActive, isLobbyActive,
+    markMatchHandled, isMatchHandled, stopSearchTimer, clearFoundMatch,
+    updateQueueWithPushToken, showMatchFoundForTesterPreview,
+    resumeSearchAfterLobbyAbort, forgetSearchResumeSnapshot,
+  ]);
+
   return (
-    <MatchmakingCtx.Provider value={{
-      status, sessionId,
-      userId: userIdRef.current || null,
-      elapsedMs,
-      searchStartedAt,
-      humanSearchWindowMs,
-      startSearching, cancelSearching,
-      isLobbyActive, setLobbyActive,
-      markMatchHandled, isMatchHandled,
-      stopSearchTimer,
-      clearFoundMatch,
-      updateQueueWithPushToken,
-      showMatchFoundForTesterPreview,
-      resumeSearchAfterLobbyAbort,
-      forgetSearchResumeSnapshot,
-    }}>
+    <MatchmakingCtx.Provider value={value}>
       {children}
     </MatchmakingCtx.Provider>
   );

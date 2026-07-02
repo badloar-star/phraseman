@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import {
   AccessibilityInfo,
   Animated,
+  AppState,
   Easing,
   StyleSheet,
   View,
@@ -26,6 +27,7 @@ export default function AiTypingBubble({
 
   useEffect(() => {
     let mounted = true;
+    let reduceMotion = false;
 
     const stop = () => {
       loopRefs.current.forEach((loop) => loop.stop());
@@ -88,18 +90,34 @@ export default function AiTypingBubble({
       loopRefs.current.forEach((loop) => loop.start());
     };
 
+    // Пузырь короткоживущий (виден пока ИИ печатает), но при freezeOnBlur:false
+    // экран может пережить сворачивание приложения — гасим лупы в фоне и
+    // перезапускаем при возврате в active (с учётом reduce motion).
+    const apply = () => {
+      start(AppState.currentState === 'active' && !reduceMotion);
+    };
+
     void AccessibilityInfo.isReduceMotionEnabled().then((reduceMotionEnabled) => {
-      if (mounted) start(!reduceMotionEnabled);
+      if (mounted) {
+        reduceMotion = reduceMotionEnabled;
+        apply();
+      }
     });
 
     const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', (reduceMotionEnabled) => {
-      start(!reduceMotionEnabled);
+      reduceMotion = reduceMotionEnabled;
+      apply();
+    });
+
+    const appSub = AppState.addEventListener('change', () => {
+      apply();
     });
 
     return () => {
       mounted = false;
       stop();
       subscription.remove();
+      appSub.remove();
     };
   }, [dotAnimations, glowPulse]);
 

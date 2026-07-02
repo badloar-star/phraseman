@@ -21,7 +21,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { streakCalendarShortWeekdays, streakWeeklyExperienceHint, streakWeeklyExperienceLabel, streakWeeklyTimeTotalHint, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
 import { LEAGUES } from './league_engine';
-import { getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
+import { clearFinishedWager, getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 // stationary_clubs feature удалён.
 import { ENABLE_DEV_TOOLS, STORE_URL } from './config';
 import { shouldDevUnlockStatsPremiumContent } from './stats_premium_access';
@@ -98,7 +98,7 @@ function statsCardGradient(t: {
     return [t.bgCard, t.bgCard, t.bgPrimary];
 }
 function statsSurfaceRadius(themeMode: ThemeMode, fallback: number): number {
-    return false ? Math.min(fallback, 10) : fallback;
+    return fallback;
 }
 function pluralRu(n: number, one: string, few: string, many: string): string {
     const mod10 = Math.abs(n) % 10;
@@ -263,11 +263,24 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
         pl: `${h} godz. ${m} min`,
     });
 }
-function formatStatsBoostTimeLeft(ms: number): string {
+function formatStatsBoostTimeLeft(ms: number, lang: Lang): string {
     const h = Math.floor(ms / 3600000);
     const m = Math.floor((ms % 3600000) / 60000);
     const s = Math.floor((ms % 60000) / 1000);
-    return h > 0 ? `${h}ч ${m.toString().padStart(2, '0')}м` : `${m}м ${s.toString().padStart(2, '0')}с`;
+    // Единицы времени по языку — раньше «ч/м/с» кириллицей уезжали во все локали.
+    const units = triLang(lang, {
+        ru: ['ч', 'м', 'с'],
+        uk: ['г', 'хв', 'с'],
+        es: ['h', 'm', 's'],
+        'pt-BR': ['h', 'm', 's'],
+        vi: ['g', 'p', 's'],
+        id: ['j', 'm', 'd'],
+        tr: ['sa', 'dk', 'sn'],
+        pl: ['g', 'm', 's'],
+    }) as [string, string, string];
+    return h > 0
+        ? `${h}${units[0]} ${m.toString().padStart(2, '0')}${units[1]}`
+        : `${m}${units[1]} ${s.toString().padStart(2, '0')}${units[2]}`;
 }
 type LearningRhythmDay = DayData & {
     minutes: number;
@@ -1175,8 +1188,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             </View>) : (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
-                    ru: 'Цепочка сорвана · −',
-                    uk: 'Ланцюжок зірвано · −',
+                    ru: 'Пари проиграно · −',
+                    uk: 'Парі програно · −',
                     es: 'Racha perdida · −',
                     'pt-BR': "Sequência perdida · −",
                     vi: "Mất chuỗi · −",
@@ -1200,7 +1213,12 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             })}
           </Text>
         </View>
-        <TouchableOpacity activeOpacity={0.75} testID="wager-result-new" onPress={() => setWager(null)} style={{ backgroundColor: t.bgSurface2, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}>
+        <TouchableOpacity activeOpacity={0.75} testID="wager-result-new" onPress={() => {
+                // Стираем завершённое пари из storage — иначе карточка результата
+                // воскресала при каждом фокусе экрана (reload() читал старый ключ).
+                void clearFinishedWager();
+                setWager(null);
+            }} style={{ backgroundColor: t.bgSurface2, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
             {triLang(lang, {
                 ru: 'Да',
@@ -1254,8 +1272,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
             <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
               {triLang(lang, {
-                ru: 'Ход пари',
-                uk: 'Хід парі',
+                ru: 'Прогресс',
+                uk: 'Прогрес',
                 es: 'Progreso',
                 'pt-BR': "Progresso",
                 vi: "Tiến độ",
@@ -1286,8 +1304,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
           <View style={{ flex: 1, minWidth: 0, backgroundColor: t.bgSurface2, borderRadius: 12, padding: 10 }}>
             <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', marginBottom: 4 }}>
               {triLang(lang, {
-                ru: 'ЧИСТЫЙ ПЛЮС',
-                uk: 'ЧИСТИЙ ПЛЮС',
+                ru: 'ВЫИГРЫШ',
+                uk: 'ВИГРАШ',
                 es: 'NETO',
                 'pt-BR': "LÍQUIDO",
                 vi: "RÒNG",
@@ -1374,8 +1392,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
               {triLang(lang, {
-            ru: 'Вклад осколками — удержи серию и забери награду',
-            uk: 'Внесок уламками — утримай серію й забери нагороду',
+            ru: 'Поставь осколки — удержи серию и забери в 4 раза больше',
+            uk: 'Постав уламки — утримай серію й забери вчетверо більше',
             es: 'Aporta fragmentos: mantén la racha y cobra la recompensa',
             'pt-BR': "Aposte fragmentos: mantenha a sequência e receba a recompensa",
             vi: "Đặt mảnh: giữ chuỗi và nhận thưởng",
@@ -1453,8 +1471,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
               </View>
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 14, lineHeight: 20 }}>
                 {triLang(lang, {
-            ru: 'Выбери срок и внеси ставку осколками. Удержишь цепочку — получишь прибыль осколками и опыт.',
-            uk: 'Обери строк і внеси ставку уламками. Утримаєш ланцюжок — отримаєш прибуток уламками та досвід.',
+            ru: 'Выбери срок и сделай ставку осколками. Удержишь цепочку — заберёшь больше осколков и опыт.',
+            uk: 'Обери строк і зроби ставку уламками. Утримаєш ланцюжок — забереш більше уламків і досвід.',
             es: 'Elige un plazo y aporta fragmentos. Si mantienes la racha, ganas fragmentos netos y XP.',
             'pt-BR': "Escolha um prazo e aposte fragmentos. Se mantiver a sequência, você ganha fragmentos líquidos e XP.",
             vi: "Chọn thời hạn và đặt mảnh. Nếu giữ chuỗi, bạn nhận mảnh ròng và XP.",
@@ -1488,8 +1506,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                   <View style={{ flex: 1, borderRadius: 12, padding: 10, backgroundColor: t.bgSurface2 }}>
                     <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', marginBottom: 4, letterSpacing: 0.6, textTransform: 'uppercase' }}>
                       {triLang(lang, {
-            ru: 'Вносишь',
-            uk: 'Вносиш',
+            ru: 'Ставишь',
+            uk: 'Ставиш',
             es: 'Aportas',
             'pt-BR': "Você aposta",
             vi: "Bạn đặt",
@@ -1518,8 +1536,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                 </View>
                 <Text style={{ color: t.textGhost, fontSize: f.label, lineHeight: Math.round(f.label * 1.4) }}>
                   {triLang(lang, {
-            ru: 'Чем длиннее срок, тем выше награда. Выбирай вызов, который действительно сможешь удержать.',
-            uk: 'Що довший строк, то вища нагорода. Обирай виклик, який справді зможеш утримати.',
+            ru: 'Чем длиннее срок, тем выше награда. Выбирай срок, который точно выдержишь.',
+            uk: 'Що довший строк, то вища нагорода. Обирай строк, який точно витримаєш.',
             es: 'Cuanto más largo el reto, mayor la recompensa. Elige uno que puedas sostener de verdad.',
             'pt-BR': "Quanto mais longo o desafio, maior a recompensa. Escolha um que você consiga manter de verdade.",
             vi: "Thử thách càng dài, thưởng càng lớn. Hãy chọn mức bạn thật sự giữ được.",
@@ -1560,8 +1578,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                                 <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '600' }}>
                                   {triLang(lang, {
-                            ru: 'Вклад',
-                            uk: 'Внесок',
+                            ru: 'Ставка',
+                            uk: 'Ставка',
                             es: 'Aporte',
                             'pt-BR': "Aposta",
                             vi: "Mức đặt",
@@ -1620,8 +1638,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                         <Ionicons name="checkmark-circle" size={18} color={t.correctText}/>
                         <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
                           {triLang(lang, {
-                ru: 'Внести ',
-                uk: 'Внести ',
+                ru: 'Поставить ',
+                uk: 'Поставити ',
                 es: 'Aportar ',
                 'pt-BR': "Apostar ",
                 vi: "Đặt ",
@@ -1745,8 +1763,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <Text style={{ color: t.textMuted, fontSize: f.body }}>
                 {triLang(lang, {
-                ru: 'Вклад:',
-                uk: 'Внесок:',
+                ru: 'Ставка:',
+                uk: 'Ставка:',
                 es: 'Aporte:',
                 'pt-BR': "Aposta:",
                 vi: "Mức đặt:",
@@ -1792,8 +1810,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                     </Text>
                     <Text style={{ color: t.textGhost, fontSize: f.sub }}>
                       {triLang(lang, {
-                ru: `(начислим +${sel.rewardShards}; твой вклад уже учтен)`,
-                uk: `(зарахуємо +${sel.rewardShards}; твій внесок уже враховано)`,
+                ru: `(всего вернётся +${sel.rewardShards} вместе со ставкой)`,
+                uk: `(усього повернеться +${sel.rewardShards} разом зі ставкою)`,
                 es: `(abonamos +${sel.rewardShards}; tu aporte ya está contado)`,
                 'pt-BR': `(creditamos +${sel.rewardShards}; sua aposta já está contada)`,
                 vi: `(cộng +${sel.rewardShards}; phần đặt của bạn đã được tính)`,
@@ -1823,8 +1841,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
               <Text style={{ fontSize: f.body }}>❌</Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, flex: 1 }}>
                 {triLang(lang, {
-                ru: 'Пропустишь день → ставка не сыграет, вернётся ',
-                uk: 'Пропустиш день → ставка не зіграє, повернеться ',
+                ru: 'Пропустишь день — ставка сгорит: −',
+                uk: 'Пропустиш день — ставка згорить: −',
                 es: 'Si rompes la racha pierdes ',
                 'pt-BR': "Se quebrar a sequência, você perde ",
                 vi: "Nếu làm đứt chuỗi, bạn mất ",
@@ -1845,8 +1863,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             tr: "İptal",
             pl: "Anuluj",
         })} confirmLabel={triLang(lang, {
-            ru: 'Внести',
-            uk: 'Внести',
+            ru: 'Поставить',
+            uk: 'Поставити',
             es: 'Aportar',
             'pt-BR': "Apostar",
             vi: "Đặt",
@@ -1857,6 +1875,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             setWagerConfirm(false);
             setModalOpen(true);
         }} onConfirm={() => {
+            if (placing) return;
             setWagerConfirm(false);
             void doPlace();
         }}/>
@@ -2796,7 +2815,8 @@ export default function StreakStats() {
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
     const [reviveModalVisible, setReviveModalVisible] = useState(false);
-    const [bonusOpen, setBonusOpen] = useState(true);
+    // Свёрнут по умолчанию: таблица источников — справка, а не ежедневная ценность.
+    const [bonusOpen, setBonusOpen] = useState(false);
     const FREEZE_COST_SHARDS = 10;
     const refreshReviveOffer = useCallback(async () => {
         const offer = await getReviveOffer();
@@ -3158,7 +3178,7 @@ export default function StreakStats() {
                 }
                 else {
                     hasActiveCountdown = true;
-                    setClubBoostTimeLeft(formatStatsBoostTimeLeft(ms));
+                    setClubBoostTimeLeft(formatStatsBoostTimeLeft(ms, lang));
                 }
             }
 
@@ -3173,7 +3193,7 @@ export default function StreakStats() {
                 }
                 else {
                     hasActiveCountdown = true;
-                    setLeagueBoostTimeLeft(formatStatsBoostTimeLeft(ms));
+                    setLeagueBoostTimeLeft(formatStatsBoostTimeLeft(ms, lang));
                 }
             }
 
@@ -3203,7 +3223,7 @@ export default function StreakStats() {
                 }
                 else {
                     hasActiveCountdown = true;
-                    setGiftTimeLeft(formatStatsBoostTimeLeft(ms));
+                    setGiftTimeLeft(formatStatsBoostTimeLeft(ms, lang));
                 }
             }
 
@@ -3212,9 +3232,16 @@ export default function StreakStats() {
 
         const hasActiveCountdown = updateBoostCountdowns();
         if (!hasActiveCountdown) return;
-        const timer = setInterval(updateBoostCountdowns, 1000);
+        // Секундный тик ререндерит весь экран — держим его только когда в строке
+        // реально видны секунды (< 1 часа до конца буста), иначе хватает раз в 30с.
+        const soonestMs = Math.min(...[clubBoostExpiresAt, leagueBoostExpiresAt, leagueGroupBoostExpiresAt, giftExpiresAt]
+            .filter((v): v is number => typeof v === 'number' && v > Date.now())
+            .map((v) => v - Date.now()));
+        const tickMs = Number.isFinite(soonestMs) && soonestMs < 3600000 ? 1000 : 30000;
+        const timer = setInterval(updateBoostCountdowns, tickMs);
         return () => clearInterval(timer);
     }, [
+        lang,
         clubBoostExpiresAt,
         clubBoostMultiplier,
         leagueBoostExpiresAt,
@@ -3585,27 +3612,37 @@ export default function StreakStats() {
                     })}: ×{total.toFixed(2)}
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35, marginTop: 3 }}>
-                      {activeItems.length > 0
-                        ? triLang(lang, {
-                            ru: `${activeItems.length} активных источника. Открой, если хочешь понять откуда берется множитель.`,
-                            uk: `${activeItems.length} активних джерела. Відкрий, якщо хочеш зрозуміти звідки множник.`,
-                            es: `${activeItems.length} fuentes activas. Abre para ver de dónde sale el multiplicador.`,
-                            'pt-BR': `${activeItems.length} fontes ativas. Abra para ver de onde vem o multiplicador.`,
-                            vi: `${activeItems.length} nguồn đang hoạt động. Mở để xem hệ số đến từ đâu.`,
-                            id: `${activeItems.length} sumber aktif. Buka untuk melihat asal pengali.`,
-                            tr: `${activeItems.length} aktif kaynak. Çarpanın nereden geldiğini görmek için aç.`,
-                            pl: `${activeItems.length} aktywnych źródeł. Otwórz, aby zobaczyć, skąd bierze się mnożnik.`,
-                        })
-                        : triLang(lang, {
-                            ru: 'Сейчас дополнительных бонусов нет. Это не влияет на план обучения.',
-                            uk: 'Зараз додаткових бонусів немає. Це не впливає на план навчання.',
-                            es: 'Ahora no hay bonos extra. No afecta tu plan de estudio.',
-                            'pt-BR': "Agora não há bônus extras. Isso não afeta seu plano de estudo.",
-                            vi: "Hiện không có thưởng thêm. Điều này không ảnh hưởng đến kế hoạch học.",
-                            id: "Saat ini tidak ada bonus ekstra. Ini tidak memengaruhi rencana belajarmu.",
-                            tr: "Şu anda ekstra bonus yok. Çalışma planını etkilemez.",
-                            pl: "Teraz nie ma dodatkowych bonusów. Nie wpływa to na twój plan nauki.",
-                        })}
+                      {(() => {
+                        // Прогресс к следующему порогу серии превращает справку в цель.
+                        const nextTier = totalStreak >= 30 ? null
+                            : totalStreak >= 14 ? { days: 30, m: '×1.8' }
+                            : totalStreak >= 7 ? { days: 14, m: '×1.6' }
+                            : totalStreak >= 3 ? { days: 7, m: '×1.4' }
+                            : { days: 3, m: '×1.2' };
+                        if (nextTier) {
+                            const left = nextTier.days - totalStreak;
+                            return triLang(lang, {
+                                ru: `Ещё ${left} ${pluralRu(left, 'день', 'дня', 'дней')} серии — и бонус вырастет до ${nextTier.m}`,
+                                uk: `Ще ${left} ${pluralRu(left, 'день', 'дні', 'днів')} серії — і бонус зросте до ${nextTier.m}`,
+                                es: `${left} ${left === 1 ? 'día' : 'días'} más de racha y el bono sube a ${nextTier.m}`,
+                                'pt-BR': `Mais ${left} ${left === 1 ? 'dia' : 'dias'} de sequência e o bônus sobe para ${nextTier.m}`,
+                                vi: `Thêm ${left} ngày chuỗi nữa — thưởng tăng lên ${nextTier.m}`,
+                                id: `${left} hari rangkaian lagi — bonus naik ke ${nextTier.m}`,
+                                tr: `${left} gün daha seri — bonus ${nextTier.m} olacak`,
+                                pl: `Jeszcze ${left} ${left === 1 ? 'dzień' : 'dni'} serii — bonus wzrośnie do ${nextTier.m}`,
+                            });
+                        }
+                        return triLang(lang, {
+                            ru: 'Максимальный бонус за серию — так держать!',
+                            uk: 'Максимальний бонус за серію — так тримати!',
+                            es: 'Bono máximo por racha, ¡sigue así!',
+                            'pt-BR': 'Bônus máximo de sequência — continue assim!',
+                            vi: 'Thưởng chuỗi tối đa — cứ thế nhé!',
+                            id: 'Bonus rangkaian maksimal — pertahankan!',
+                            tr: 'Maksimum seri bonusu — böyle devam!',
+                            pl: 'Maksymalny bonus za serię — tak trzymaj!',
+                        });
+                      })()}
                     </Text>
                   </View>
                   <Ionicons name="chevron-down" size={20} color="rgba(255,255,255,0.45)"/>
@@ -3615,7 +3652,7 @@ export default function StreakStats() {
             return (<StatsCardArtSurface name="multipliers" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} testID="stats-bonus-expanded" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 1, borderColor: bonusAccent, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'multipliers') : null]}>
               <TouchableOpacity activeOpacity={0.84} onPress={() => {
                     hapticTap();
-                    setBonusOpen(true);
+                    setBonusOpen(false);
                 }} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: activeItems.length > 0 ? 10 : 0 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase' }}>
                   {triLang(lang, {

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "gustav-state-v1",
+  "updatedAt": "2026-07-02",
+  "entryPoint": "docs/gustav/OPERATOR.md",
+  "testCommand": "node node_modules/jest/bin/jest.js --watchman=false --testPathPattern=\"tests/gustav_\"",
+  "authoritativeCounts": {
+    "lessonRowsGenerated": 1600,
+    "lessons": 32,
+    "aiPromptContracts": 178,
+    "note": "178 is current; '164' in old artifacts (gustav_readiness_gate.json, legacy sub-audits) is STALE. LLM-official-source 'accept' decisions were auto-stamped (not a real review) — treat content as needs_review until Phase 3 judge pipeline reruns."
+  },
+  "languages": {
+    "fr": {
+      "stage": "content_generated_review_pending",
+      "sourceLocales": ["ru", "uk"],
+      "curriculum": "32 lessons, A1.1-A2.2, 100% of grid generated",
+      "serverUpload": "36 objects live in bucket course-packs/fr/, remote-verified 2026-06-30, version *.draft",
+      "runtimeActivation": "dev-gated via ENABLE_DEV_STUDY_TARGET_LANG (store release closed until exact approval)",
+      "humanOrJudgeReview": "0% — pending Phase 3 judge pipeline",
+      "missingFamilies": ["lesson_theory", "vocabulary_bank", "diagnostics_bank", "exam_bank", "daily_phrase_bank", "audio_files", "ai_prompt_packs"]
+    }
+  },
+  "activation": {
+    "state": "HOLD",
+    "rule": "Production activation requires the exact-approval sentence chain (P31->P48). Plain 'continue' is not approval.",
+    "approvalRequest": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/activation_approval_request_v2.md"
+  },
+  "roadmap": [
+    { "phase": 0, "title": "Green base: fix isolation regressions, 26 failing tests, dev-gate activation, restore diacritics days 41-60, commit", "status": "in_progress" },
+    { "phase": 1, "title": "Knowledge compression: OPERATOR.md + state.json as sole entry", "status": "in_progress" },
+    { "phase": 2, "title": "Data/code split: hardcoded translations -> gustav_data/{lang}/ JSON + one parametrized generator per family + language config for new languages", "status": "pending" },
+    { "phase": 3, "title": "Real LLM judge: deterministic pre-filters -> 11-gate rubric -> golden-set calibration -> cheap judge + escalation; replaces auto-stamp promotion", "status": "pending" },
+    { "phase": 4, "title": "Missing generators (theory, vocab, diagnostics, exam, daily phrase, prompt packs) as data-driven templates; then new languages", "status": "pending" }
+  ],
+  "nextActions": [
+    "Finish Phase 0: make all 78 tests/gustav_ suites green (packet drift triage in progress)",
+    "Regenerate echo full_day days 41-60 with restored diacritics; add hasBrokenElision validator (in progress)",
+    "Phase 2: extract TRANSLATIONS/FIELD_SPECS/PHRASE_FR constants from scripts/gustav_generate_french_lesson*.ts and echo packets into gustav_data/fr/*.json with ajv schema; collapse 32 lesson scripts into one parametrized generator",
+    "Phase 3: build judge harness (scripts/gustav_judge/): rubric per family from reviewer_workflow_v2_decision_schema.json, golden set ~150 rows, calibration gate >=95%, cheap-judge + escalation cascade; wire reject -> needs_regeneration",
+    "Phase 4: theory/vocab/diagnostics/exam/daily-phrase/prompt-pack templates + fill via judge loop; echo full_day days 61-84"
+  ],
+  "log": [
+    "2026-07-02: Full external audit (see memory phraseman_gustav_french_full_audit_2026-07-02): pipeline 7/10, generators 3/10, QA 2/10 (auto-stamp review), content 7/10, release readiness ~55-60%.",
+    "2026-07-02: Phase 0 started. Fixed en/fr isolation regressions in app/lesson1.tsx (grammarHintSeenKey, fiftyFiftyUsageKey, logMistake/recordPhraseMistake + stRm); updated stale cloud_sync assertions + CRLF normalization in 2 isolation tests -> both PASS.",
+    "2026-07-02: Dev-gated isFrenchStudyTargetServerPackActivationApproved (was hardcoded true, violating HOLD governance); updated onboarding prefetch packet expectation accordingly.",
+    "2026-07-02: OPERATOR.md + state.json created as the single entry point for LLM operators."
+  ]
+}

@@ -241,7 +241,12 @@ functions/scripts/diag_*
 
 # Content-generation pipelines and agent runs only; not app source.
 /.agents/
-/docs/gustav/
+/docs/gustav/*
+# ...except the portable operator entry point (single source of truth for any
+# LLM operating Gustav on a fresh checkout — see docs/gustav/OPERATOR.md).
+# Directory contents are re-ignored above; these two files are the exception.
+!/docs/gustav/OPERATOR.md
+!/docs/gustav/state.json
 /docs/heisenberg/
 /docs/skyler/
 /docs/pipelines/

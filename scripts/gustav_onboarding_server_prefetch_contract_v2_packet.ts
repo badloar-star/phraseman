@@ -102,9 +102,12 @@ export function buildOnboardingServerPrefetchContractReport(input: {
   const prefetch = read(prefetchPath);
   const findings: Finding[] = [];
 
+  // Проверяем наличие шага выбора языка, не завязываясь на конкретный стиль
+  // диспетчеризации рендера (content = …; break;  ИЛИ  return renderLanguage()) —
+  // другие сессии рефакторят этот switch, а контракт — существование шага.
   const onboardingStudyTargetStepPresent = onboarding.includes("'source'") &&
     onboarding.includes("'language'") &&
-    onboarding.includes("case 'language': content = renderLanguage(); break;");
+    /case 'language':\s*(?:content = |return )?renderLanguage\(\);?(?:\s*break;)?/.test(onboarding);
   // CleanOnboarding (июль 2026) подписывает языки на языке интерфейса
   // (native: 'Английский'/'Французский'), поэтому контракт проверяет
   // стабильную идентичность выбора (id + code), а не текст подписи.

@@ -72,6 +72,19 @@ describe('SpeakingPanel honest-assessment integration contract', () => {
     expect(source).toContain('let control: number | null = null');
   });
 
+  it('prefers the on-device neural judge and falls back to the system engine', () => {
+    // Судья пробуется ПЕРВЫМ внутри контрольного прогона; его недоступность
+    // (нет пакета/модели/таймаут) откатывает на системное файловое распознавание.
+    const judgeAt = source.indexOf('judgeWithNeuralEngine({');
+    const systemAt = source.indexOf('buildControlRecognitionOptions(');
+    expect(judgeAt).toBeGreaterThanOrEqual(0);
+    expect(systemAt).toBeGreaterThanOrEqual(0);
+    expect(judgeAt).toBeLessThan(systemAt);
+    // Модель греется в фоне при открытии панели, только когда пакет в бинаре.
+    expect(source).toContain('isNeuralJudgeSupported()');
+    expect(source).toContain('ensureNeuralModel()');
+  });
+
   it('shows the per-word map, band verdict and one concrete hint after every attempt', () => {
     expect(source).toContain('buildSpokenWordReport(');
     expect(source).toContain('speakingBandLabel(');

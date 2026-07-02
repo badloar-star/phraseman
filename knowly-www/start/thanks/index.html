@@ -52,7 +52,9 @@
 
         <div class="qcode-box">
           <div class="qcode" id="activation-code">—</div>
+          <a class="btn-gold qcode-copy" id="deeplink-btn" style="display:none;margin-bottom:10px" href="#">⚡ Активировать в приложении</a>
           <button class="btn-gold qcode-copy" type="button" id="copy-code-btn">Скопировать код</button>
+          <p class="qsecure" id="deeplink-hint" style="display:none;margin-top:10px">Кнопка сработает, если приложение уже установлено. Нет приложения — установите (кнопки ниже) и введите код.</p>
         </div>
 
         <div class="qthanks-steps">
@@ -180,6 +182,16 @@
             });
           } catch (_) { /* noop */ }
         });
+        /* На телефоне: активация в одно касание — диплинк открывает экран промокода
+           в приложении, код подставляется и активируется сам. */
+        try {
+          if (/android|iphone|ipad|ipod/i.test(navigator.userAgent || '')) {
+            var dl = document.getElementById('deeplink-btn');
+            dl.href = 'phraseman://promo_code_entry?code=' + encodeURIComponent(code);
+            dl.style.display = '';
+            document.getElementById('deeplink-hint').style.display = '';
+          }
+        } catch (_) { /* noop */ }
       }
 
       var params = new URLSearchParams(location.search);

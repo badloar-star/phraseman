@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -22,6 +23,8 @@ import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from
 import { safeRouterBack } from './navigation_back';
 import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
+import { consumeVipCelebration } from './vip_celebration_state';
+import VipCelebrationModal from '../components/VipCelebrationModal';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -34,22 +37,38 @@ function makeL(lang: Lang) {
 function feedbackForStatus(
   status: PromoRedeemStatus,
   rewardDays: number | undefined,
+  rewardKind: 'days' | 'lifetime' | undefined,
   L: ReturnType<typeof makeL>,
 ): Feedback {
   switch (status) {
     case 'redeemed': {
+      if (rewardKind === 'lifetime') {
+        return {
+          kind: 'ok',
+          text: L(
+            'Готово! Plus-подписка активирована навсегда. Приятного обучения!',
+            'Готово! Plus-підписку активовано назавжди. Гарного навчання!',
+            '¡Listo! La suscripción Plus está activada para siempre. ¡A aprender!',
+            'Pronto! A assinatura Plus foi ativada para sempre. Bons estudos!',
+            'Xong! Gói Plus đã được kích hoạt vĩnh viễn. Chúc học vui!',
+            'Selesai! Langganan Plus aktif selamanya. Selamat belajar!',
+            'Tamam! Plus aboneliği kalıcı olarak etkinleştirildi. İyi öğrenmeler!',
+            'Gotowe! Subskrypcja Plus została aktywowana na zawsze. Miłej nauki!',
+          ),
+        };
+      }
       const d = rewardDays ?? 0;
       return {
         kind: 'ok',
         text: L(
-          `Готово! Тебе начислено ${d} дней полного доступа. Приятного обучения!`,
-          `Готово! Тобі нараховано ${d} днів повного доступу. Гарного навчання!`,
-          `¡Listo! Te dimos ${d} días de acceso completo. ¡A aprender!`,
-          `Pronto! Você ganhou ${d} dias de acesso completo. Bons estudos!`,
-          `Xong! Bạn nhận được ${d} ngày truy cập đầy đủ. Chúc học vui!`,
-          `Selesai! Kamu dapat ${d} hari akses penuh. Selamat belajar!`,
-          `Tamam! Sana ${d} gün tam erişim verildi. İyi öğrenmeler!`,
-          `Gotowe! Masz ${d} dni pełnego dostępu. Miłej nauki!`,
+          `Готово! Plus-подписка активирована на ${d} дн. Приятного обучения!`,
+          `Готово! Plus-підписку активовано на ${d} дн. Гарного навчання!`,
+          `¡Listo! La suscripción Plus se activó por ${d} días. ¡A aprender!`,
+          `Pronto! A assinatura Plus foi ativada por ${d} dias. Bons estudos!`,
+          `Xong! Gói Plus đã được kích hoạt trong ${d} ngày. Chúc học vui!`,
+          `Selesai! Langganan Plus aktif selama ${d} hari. Selamat belajar!`,
+          `Tamam! Plus aboneliği ${d} günlüğüne etkinleştirildi. İyi öğrenmeler!`,
+          `Gotowe! Subskrypcja Plus została aktywowana na ${d} dni. Miłej nauki!`,
         ),
       };
     }
@@ -70,6 +89,17 @@ function feedbackForStatus(
         'Se agotaron los usos de este código.', 'Os usos deste código acabaram.',
         'Mã này đã hết lượt sử dụng.', 'Kuota kode ini sudah habis.',
         'Bu kodun kullanım limiti doldu.', 'Limit użyć tego kodu został wyczerpany.',
+      ) };
+    case 'promo_disabled':
+      return { kind: 'error', text: L(
+        'Промокоды сейчас временно выключены.',
+        'Промокоди зараз тимчасово вимкнені.',
+        'Los códigos promocionales están desactivados temporalmente.',
+        'Os códigos promocionais estão temporariamente desativados.',
+        'Mã khuyến mãi hiện đang tạm tắt.',
+        'Kode promo sedang dinonaktifkan sementara.',
+        'Promosyon kodları şu anda geçici olarak kapalı.',
+        'Kody promocyjne są teraz tymczasowo wyłączone.',
       ) };
     case 'disabled':
     case 'not_found':
@@ -102,36 +132,94 @@ function feedbackForStatus(
   }
 }
 
+async function persistRedeemedPromoAccess(params: {
+  code: string;
+  rewardKind: 'days' | 'lifetime' | undefined;
+  vipUntilMs: number | undefined;
+  grantAtMs: number | undefined;
+}): Promise<string> {
+  const grantAt = String(params.grantAtMs && params.grantAtMs > 0 ? params.grantAtMs : Date.now());
+  const vipUntil = String(Math.max(0, Math.floor(Number(params.vipUntilMs ?? 0))));
+  await AsyncStorage.multiSet([
+    ['vip_active', 'true'],
+    ['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo'],
+    ['vip_from', grantAt],
+    ['vip_until', vipUntil],
+    ['vip_admin_override', 'true'],
+    ['vip_admin_grant_at', grantAt],
+    ['promo_vip_last_code', params.code],
+  ]).catch(() => {});
+  return grantAt;
+}
+
 export default function PromoCodeEntryScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
+  // Диплинк со страницы «спасибо» после веб-оплаты: phraseman://promo_code_entry?code=WEB-…
+  // → код подставляется и активируется сам, без клавиатуры (страница /start/thanks/).
+  const { code: deepLinkCode } = useLocalSearchParams<{ code?: string }>();
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [celebrationVisible, setCelebrationVisible] = useState(false);
+  const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
+  const autoRedeemTriedRef = useRef(false);
 
   // Кнопка активна только для кода валидного формата (зеркало серверного CODE_RE
   // 3..32 [A-Z0-9_-]) — чтобы не слать заведомо плохой код.
-  const canSubmit = /^[A-Z0-9_-]{3,32}$/.test(normalizePromoCodeInput(code)) && !busy;
+  const normalizedCode = normalizePromoCodeInput(code);
+  const inputValid = /^[A-Z0-9_-]{3,32}$/.test(normalizedCode);
+  const canSubmit = inputValid && !busy;
 
-  const submit = useCallback(async () => {
-    if (!canSubmit) return;
+  const runRedeem = useCallback(async (rawCode: string) => {
     hapticTap();
     setBusy(true);
     setFeedback(null);
     try {
-      const res = await redeemPromoCode(code);
-      setFeedback(feedbackForStatus(res.status, res.rewardDays, L));
+      const res = await redeemPromoCode(rawCode);
+      setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       if (res.status === 'redeemed') {
-        // Премиум обновился на сервере — сбрасываем кэш и оповещаем приложение.
+        const marker = await persistRedeemedPromoAccess({
+          code: normalizePromoCodeInput(rawCode),
+          rewardKind: res.rewardKind,
+          vipUntilMs: res.vipUntilMs,
+          grantAtMs: res.grantAtMs,
+        });
+        setCelebrationMarker(marker);
+        // VIP обновился на сервере — сбрасываем кэш и оповещаем приложение.
         invalidatePremiumCache();
-        emitAppEvent('premium_activated');
+        emitAppEvent('vip_activated');
+        emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+        setCelebrationVisible(true);
       }
     } finally {
       setBusy(false);
     }
-  }, [L, canSubmit, code]);
+  }, [L]);
+
+  const submit = useCallback(async () => {
+    if (!canSubmit) return;
+    await runRedeem(code);
+  }, [canSubmit, code, runRedeem]);
+
+  useEffect(() => {
+    if (autoRedeemTriedRef.current) return;
+    const fromLink = normalizePromoCodeInput(String(deepLinkCode ?? ''));
+    if (!/^[A-Z0-9_-]{3,32}$/.test(fromLink)) return;
+    autoRedeemTriedRef.current = true; // одна автопопытка: ошибку юзер видит и решает сам
+    setCode(fromLink);
+    void runRedeem(fromLink);
+  }, [deepLinkCode, runRedeem]);
+
+  const closeCelebration = useCallback(() => {
+    const marker = celebrationMarker;
+    setCelebrationVisible(false);
+    setCelebrationMarker(null);
+    if (marker) void consumeVipCelebration(marker);
+    safeRouterBack(router, '/(tabs)/settings' as any);
+  }, [celebrationMarker, router]);
 
   return (
     <ScreenGradient artBackdrop="friends">
@@ -169,14 +257,14 @@ export default function PromoCodeEntryScreen() {
               </Text>
               <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
                 {L(
-                  'Введи промокод и получи дни полного доступа к Phraseman.',
-                  'Введи промокод і отримай дні повного доступу до Phraseman.',
-                  'Introduce un código y consigue días de acceso completo a Phraseman.',
-                  'Digite um código e ganhe dias de acesso completo ao Phraseman.',
-                  'Nhập mã và nhận những ngày truy cập đầy đủ vào Phraseman.',
-                  'Masukkan kode dan dapatkan hari akses penuh ke Phraseman.',
-                  'Kodu gir ve Phraseman’a tam erişim günleri kazan.',
-                  'Wpisz kod i zdobądź dni pełnego dostępu do Phraseman.',
+                  'Введи промокод, чтобы получить Plus-подписку.',
+                  'Введи промокод, щоб отримати Plus-підписку.',
+                  'Introduce un código para obtener la suscripción Plus.',
+                  'Digite um código para receber a assinatura Plus.',
+                  'Nhập mã để nhận gói Plus.',
+                  'Masukkan kode untuk mendapatkan langganan Plus.',
+                  'Plus aboneliği almak için kodu gir.',
+                  'Wpisz kod, aby otrzymać subskrypcję Plus.',
                 )}
               </Text>
               <TextInput
@@ -197,19 +285,26 @@ export default function PromoCodeEntryScreen() {
               <TouchableOpacity
                 testID="promo-code-submit"
                 accessibilityRole="button"
+                accessibilityState={{ disabled: !canSubmit, busy }}
                 activeOpacity={0.82}
                 disabled={!canSubmit}
                 onPress={submit}
                 style={{
                   minHeight: 56, borderRadius: 16,
                   alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8,
-                  backgroundColor: canSubmit ? t.accent : t.bgSurface,
-                  opacity: canSubmit ? 1 : 0.55,
+                  backgroundColor: (inputValid || busy) ? t.accent : t.bgSurface,
+                  opacity: (inputValid || busy) ? 1 : 0.55,
                 }}
               >
-                {busy ? <ActivityIndicator color={t.correctText} /> : <Ionicons name="checkmark-circle-outline" size={20} color={canSubmit ? t.correctText : t.textMuted} />}
-                <Text style={{ color: canSubmit ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontWeight: '900' }}>
-                  {L('Активировать', 'Активувати', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
+                {busy ? (
+                  <ActivityIndicator size="small" color={t.correctText} />
+                ) : (
+                  <Ionicons name="checkmark-circle-outline" size={20} color={inputValid ? t.correctText : t.textMuted} />
+                )}
+                <Text style={{ color: inputValid ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontWeight: '900' }}>
+                  {busy
+                    ? L('Активируем…', 'Активуємо…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
+                    : L('Активировать', 'Активувати', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
                 </Text>
               </TouchableOpacity>
               {feedback && (
@@ -223,6 +318,7 @@ export default function PromoCodeEntryScreen() {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+        <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} />
       </SafeAreaView>
     </ScreenGradient>
   );

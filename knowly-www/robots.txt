@@ -1,5 +1,31 @@
+# Поисковики и ИИ-краулеры: всем можно всё, кроме служебного пути.
 User-agent: *
 Allow: /
 Disallow: /phraseman/apple-auth/
+
+# ИИ-краулеры приветствуются явно (GEO): описание сайта для них — /llms.txt
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
 
 Sitemap: https://knowlyapps.com/sitemap.xml

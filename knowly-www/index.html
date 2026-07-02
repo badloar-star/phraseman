@@ -29,12 +29,13 @@
     href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=bg1" />
-  <link rel="stylesheet" href="/assets/theme.css?v=1" />
+  <link rel="stylesheet" href="/assets/phraseman.css?v=wow2" />
+  <link rel="stylesheet" href="/assets/theme.css?v=wow2" />
   <script src="/assets/theme.js?v=1"></script>
   <link rel="preload" as="image" href="/assets/phraseman-screen-home.webp" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=1" defer></script>
+  <script src="/assets/fx.js?v=1" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -112,9 +113,10 @@
 
     <main>
       <section class="hero" id="download" aria-labelledby="pm-title">
+        <div class="hero-rays" aria-hidden="true"></div>
         <div>
           <p class="kicker">Английский по фразам · iOS и Android</p>
-          <h1 id="pm-title">Английский, на котором <span class="gold-accent">действительно говорят</span></h1>
+          <h1 id="pm-title" aria-label="Английский, на котором действительно говорят">Английский, на котором <span class="gold-accent">действительно</span> <span class="rotor" data-words="говорят|думают|шутят|живут">говорят</span></h1>
           <p class="lead">
             <b>10&nbsp;000+ живых фраз</b> с тренировкой произношения, короткие уроки
             и дуэли с реальными игроками. Объяснения простым языком — как объяснил бы друг.
@@ -134,20 +136,41 @@
             </a>
           </div>
           <p class="under-cta">Бесплатно. <b>Без регистрации</b> — первый урок через 30 секунд.</p>
+          <ul class="trust-chips" aria-label="Почему нам можно доверять">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              Без карты и регистрации
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 20v2" /></svg>
+              Голос не покидает телефон
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" /></svg>
+              Данные под защитой
+            </li>
+          </ul>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <figure class="device">
-            <img src="/assets/phraseman-screen-home.webp" alt="Главный экран приложения Phraseman" width="640" height="1422" />
-          </figure>
+          <div class="device-float">
+            <figure class="device">
+              <span class="device-btn db-volup"></span>
+              <span class="device-btn db-voldown"></span>
+              <span class="device-btn db-power"></span>
+              <div class="device-screen">
+                <img src="/assets/phraseman-screen-home.webp" alt="Главный экран приложения Phraseman" width="640" height="1422" />
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       <div class="proof reveal" role="list" aria-label="Phraseman в цифрах">
-        <div role="listitem"><b><i>10 000+</i></b><span>живых фраз</span></div>
-        <div role="listitem"><b>15 минут</b><span>в день достаточно</span></div>
-        <div role="listitem"><b><i>Дуэли</i></b><span>и лиги каждую неделю</span></div>
-        <div role="listitem"><b>Без терминов</b><span>простые объяснения</span></div>
+        <div class="proof-item" role="listitem"><b><i data-count="10000" data-suffix="+">10 000+</i></b><span>живых фраз</span></div>
+        <div class="proof-item" role="listitem"><b>15 минут</b><span>в день достаточно</span></div>
+        <div class="proof-item" role="listitem"><b><i>Дуэли</i></b><span>и лиги каждую неделю</span></div>
+        <div class="proof-item" role="listitem"><b>Без терминов</b><span>простые объяснения</span></div>
       </div>
 
       <section id="features" class="block reveal">
@@ -201,6 +224,7 @@
         <p class="sub">Не маркетинговые цитаты — реальные отзывы пользователей со страницы приложения.</p>
         <div class="quotes">
           <article class="quote">
+            <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
             <div class="qmark">“</div>
             <p>Я использовал такие приложения, как Дуолинго, Puzzle English, English Galaxy, Glossika,
               Anki. Только это приложение вдохновляет, мотивирует и делает обучение интересным,
@@ -209,6 +233,7 @@
             <footer>— отзыв в Google Play</footer>
           </article>
           <article class="quote">
+            <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
             <div class="qmark">“</div>
             <p>Отличная система: учишь не изолированные лексические единицы, а целые фразы
               и словосочетания, которые реально используют носители… Алгоритм подсовывает
@@ -217,6 +242,7 @@
             <footer>— отзыв в Google Play</footer>
           </article>
           <article class="quote">
+            <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
             <div class="qmark">“</div>
             <p>Увидел приложение у жены. Очень впечатлился. С первого урока уже увлекает и хочется
               продолжать заниматься… Короткие, но очень понятные подсказки при ошибках.
@@ -224,6 +250,7 @@
             <footer>— отзыв в Google Play</footer>
           </article>
           <article class="quote">
+            <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
             <div class="qmark">“</div>
             <p>Простые фразы хорошо запоминаются, чётко и кратко подаётся грамматика, а ещё есть
               «фишка» — значения слов приводятся с комментарием, часто с юмором. Рекомендую.</p>
@@ -233,6 +260,34 @@
         <p class="quotes-more">
           <a href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">Читать все отзывы в Google Play →</a>
         </p>
+      </section>
+
+      <section id="guides" class="block reveal">
+        <p class="eyebrow">Гайды</p>
+        <h2>Разобраться в методе <span class="gold-accent">за один вечер</span></h2>
+        <p class="sub">Практические статьи о том, как учить английский, чтобы заговорить, —
+          без мифов и академической воды.</p>
+        <div class="gcards">
+          <a class="gcard" href="/guides/how-to-learn-english/">
+            <span class="gtag">План</span>
+            <h3>Как выучить английский самостоятельно</h3>
+            <p>Честные сроки, рабочие методы и пошаговый план — от первой фразы до сериалов без субтитров.</p>
+            <span class="more">Читать →</span>
+          </a>
+          <a class="gcard" href="/guides/speaking-barrier/">
+            <span class="gtag">Барьер</span>
+            <h3>Понимаете, но не говорите?</h3>
+            <p>Откуда берётся ступор при разговоре и 5 шагов-ступенек, которые реально снимают блок.</p>
+            <span class="more">Читать →</span>
+          </a>
+          <a class="gcard" href="/guides/english-phrases-for-travel/">
+            <span class="gtag">Поездка</span>
+            <h3>70+ фраз для путешествий</h3>
+            <p>Аэропорт, отель, кафе и «спасите-помогите» — с переводом и схемой, как выучить до вылета.</p>
+            <span class="more">Читать →</span>
+          </a>
+        </div>
+        <p class="quotes-more"><a href="/guides/">Все гайды →</a></p>
       </section>
 
       <section id="faq" class="block reveal">
@@ -306,6 +361,11 @@
       </nav>
       <p>© 2026 Knowly · Phraseman — учите английский живыми фразами.</p>
     </footer>
+  </div>
+
+  <div class="mcta">
+    <a class="btn-gold quiz-cta" href="/start/">Подобрать план</a>
+    <a class="mcta-dl" href="/download/">Скачать</a>
   </div>
 
   <script>

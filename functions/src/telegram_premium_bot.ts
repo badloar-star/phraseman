@@ -1,10 +1,15 @@
 // ============================================================================
-// ⛔ STRICT POLICY — Telegram premium bot. ОБЯЗАТЕЛЬНО К СОБЛЮДЕНИЮ ВО ВСЕХ СЕССИЯХ.
+// ⛔ POLICY — Telegram premium bot. ОБЯЗАТЕЛЬНО К СОБЛЮДЕНИЮ ВО ВСЕХ СЕССИЯХ.
 // ----------------------------------------------------------------------------
-// 1. ВЫДАЧА ПРЕМИУМА/VIP ПО TELEGRAM-ОПЛАТЕ — ТОЛЬКО ВРУЧНУЮ (через admin/testers.html).
-//    НЕ автоматизировать активацию по successful_payment. Бот пишет ТОЛЬКО заявку
-//    (telegram_premium_orders, status='paid_pending_manual_activation') и уведомляет
-//    админов. Реальную выдачу делает человек. Это осознанное требование владельца.
+// 1. ВЫДАЧА ПРЕМИУМА — АВТОМАТИЧЕСКАЯ через одноразовый код активации (та же
+//    механика, что веб-оплата /start/: см. web_checkout.ts). По successful_payment
+//    бот создаёт код (promo_codes, maxRedemptions=1), шлёт его покупателю, тот
+//    вводит код в приложении (Настройки → Промокоды) — премиум мгновенно.
+//    Продление Stars-подписки продлевает доступ САМО (по lastRedeemedBy кода).
+//    Ручная активация (status='paid_pending_manual_activation' + testers.html)
+//    осталась ЗАПАСНЫМ путём: если код не создался/не нашёлся — алерт админам.
+//    ⚠️ Решение владельца 2026-07-02: прежнее правило «только вручную» ОТМЕНЕНО
+//    им явно («чтобы через телеграм тоже всё автоматически было без меня»).
 // 2. В КЛИЕНТСКОМ ПРИЛОЖЕНИИ (app/, components/) — НИКАКИХ упоминаний оплаты в
 //    Telegram: ни кнопок, ни текста, ни ссылок, ни «оплатить в Telegram». App Store /
 //    Google Play БАНЯТ за внешние способы оплаты. Любой код/текст про Telegram-оплату
@@ -25,6 +30,8 @@ import {
   tryHandleSupportCallback,
   tryHandleSupportMessage,
 } from './telegram_support';
+import { buildPromoVipPatch } from './promo_codes';
+import { activationRewardForPlan, generateActivationCode } from './web_checkout';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -139,6 +146,51 @@ const MANUAL_ACTIVATION_MESSAGE_RU = [
   'Если доступ появился не сразу, не переживайте: иногда это занимает несколько часов.',
 ].join('\n');
 
+/** Основной сценарий: оплата → код активации, юзер включает премиум сам за минуту. */
+function codeActivationMessageRu(code: string, plan: PremiumPlan): string {
+  return [
+    'Спасибо, оплата прошла! 🎉',
+    '',
+    `Ваш код активации: ${code}`,
+    '',
+    'Как включить Premium (1 минута):',
+    '1. Откройте приложение Phraseman',
+    '2. Настройки → Промокоды',
+    '3. Введите код — Premium включится сразу',
+    '',
+    plan === 'monthly'
+      ? 'Продление: автоматически каждые 30 дней. Доступ продлевается сам — код вводить снова не нужно.'
+      : 'Это разовая оплата на год, автопродления нет.',
+    '',
+    'Код сохранён у нас — если потеряете, напишите в поддержку (кнопка ниже), восстановим.',
+  ].join('\n');
+}
+
+const RENEWAL_MESSAGE_RU = [
+  'Подписка продлена 🎉',
+  '',
+  'Оплата получена, доступ к Premium продлён автоматически.',
+  'Ничего вводить не нужно — просто продолжайте заниматься.',
+].join('\n');
+
+const PAYMENT_SUPPORT_EMAIL = 'support.phraseman@gmail.com';
+const TERMS_URL = 'https://knowlyapps.com/legal/terms/';
+const PRIVACY_URL = 'https://knowlyapps.com/legal/privacy/';
+
+const TERMS_MESSAGE_RU = [
+  'Условия использования Phraseman:',
+  TERMS_URL,
+  '',
+  `По вопросам платежей: /paysupport или ${PAYMENT_SUPPORT_EMAIL}`,
+].join('\n');
+
+const PRIVACY_MESSAGE_RU = [
+  'Политика конфиденциальности Phraseman:',
+  PRIVACY_URL,
+  '',
+  `По вопросам платежей: /paysupport или ${PAYMENT_SUPPORT_EMAIL}`,
+].join('\n');
+
 function userActivatedMessageRu(order: FirebaseFirestore.DocumentData): string {
   const until = activationUntilLabel(order);
   return [
@@ -167,6 +219,11 @@ function starsForPlan(plan: PremiumPlan): number {
 
 function sanitizeNickname(value: unknown): string {
   return String(value || '').replace(/\s+/g, ' ').trim().slice(0, 32);
+}
+
+function commandName(text: string): string {
+  const match = /^\/([A-Za-z0-9_]+)(?:@[A-Za-z0-9_]+)?(?:\s|$)/.exec(String(text || '').trim());
+  return match?.[1]?.toLowerCase() || '';
 }
 
 function assertPlan(plan: unknown): asserts plan is PremiumPlan {
@@ -306,31 +363,20 @@ function sendInvoice(token: string, chatId: number | string, input: InvoicePaylo
     title: 'Phraseman Premium',
     description: planDescription(plan),
     payload: buildInvoicePayload(input),
-    provider_token: '',
     currency: 'XTR',
     prices: [{ label: planInfo.label, amount: starsForPlan(plan) }],
     start_parameter: `phraseman-premium-${plan}`,
   };
-  if (plan === 'monthly') {
-    invoice.subscription_period = MONTHLY_SUBSCRIPTION_PERIOD_SECONDS;
-  }
   return telegramRequest(token, 'sendInvoice', invoice);
 }
 
-async function createInvoiceLink(token: string, input: InvoicePayload): Promise<string> {
-  const invoice = sendInvoicePayload(input);
-  const result = await telegramRequest(token, 'createInvoiceLink', invoice);
-  return String(result || '');
-}
-
-function sendInvoicePayload(input: InvoicePayload): Record<string, unknown> {
+function buildInvoiceLinkPayload(input: InvoicePayload): Record<string, unknown> {
   const plan = input.plan;
   const planInfo = PLANS[plan];
   const invoice: Record<string, unknown> = {
     title: 'Phraseman Premium',
     description: planDescription(plan),
     payload: buildInvoicePayload(input),
-    provider_token: '',
     currency: 'XTR',
     prices: [{ label: planInfo.label, amount: starsForPlan(plan) }],
     start_parameter: `phraseman-premium-${plan}`,
@@ -339,6 +385,12 @@ function sendInvoicePayload(input: InvoicePayload): Record<string, unknown> {
     invoice.subscription_period = MONTHLY_SUBSCRIPTION_PERIOD_SECONDS;
   }
   return invoice;
+}
+
+async function createInvoiceLink(token: string, input: InvoicePayload): Promise<string> {
+  const invoice = buildInvoiceLinkPayload(input);
+  const result = await telegramRequest(token, 'createInvoiceLink', invoice);
+  return String(result || '');
 }
 
 async function sendPremiumWelcome(token: string, chatId: number | string): Promise<void> {
@@ -535,16 +587,25 @@ async function handleAdminSetup(token: string, chatId: number | string, userId: 
 
 async function notifyAdmins(token: string, order: FirebaseFirestore.DocumentData): Promise<void> {
   const adminIds = await readAdminUserIds();
+  const auto = Boolean(order.activationCode);
+  const renewal = order.renewalOutcome ? String(order.renewalOutcome) : '';
   const text = [
-    'Новая оплата Phraseman Premium',
-    `Ник: ${order.appNickname}`,
+    renewal ? '🔁 Продление Stars-подписки Phraseman' : '⭐ Новая оплата Phraseman Premium (Telegram Stars)',
+    `Ник: ${order.appNickname || '-'}`,
     `Тариф: ${order.planDuration}`,
     `Stars: ${order.totalAmount}`,
     `Telegram id: ${order.telegramUserId}`,
     `Charge ID: ${order.telegramPaymentChargeId}`,
+    auto ? `Код активации: ${order.activationCode}` : null,
     '',
-    'Статус: ожидает ручной активации',
-  ].join('\n');
+    renewal
+      ? (renewal === 'code_missing_manual_needed'
+        ? '⚠️ Код прошлой оплаты не найден — ПРОДЛИТЬ ВРУЧНУЮ (testers.html)!'
+        : 'Доступ продлён автоматически. Вмешательство не нужно.')
+      : auto
+        ? 'Юзер активирует код сам (Настройки → Промокоды). Вмешательство не нужно.'
+        : '⚠️ Код не создан — ожидает РУЧНОЙ активации (testers.html)!',
+  ].filter((line) => line !== null).join('\n');
   await Promise.all(adminIds.map((adminId) => sendMessage(token, adminId, text).catch(() => undefined)));
 }
 
@@ -585,6 +646,123 @@ async function notifyTesterActivationAdmins(token: string, order: FirebaseFirest
   await Promise.all(adminIds.map((adminId) => sendMessage(token, adminId, text).catch(() => undefined)));
 }
 
+/**
+ * Первая оплата (или разовый год): атомарно создаёт одноразовый код активации
+ * (promo_codes, месяц=31д / год=366д) и заявку со status='paid_pending_activation'.
+ * Повторная доставка того же chargeId код не дублирует. Коллизия кода (теор.) →
+ * заявка без кода, status='paid_pending_manual_activation' (ручной запасной путь).
+ */
+async function recordTelegramPurchaseWithCode(
+  chargeId: string,
+  baseOrder: FirebaseFirestore.DocumentData,
+): Promise<FirebaseFirestore.DocumentData> {
+  const plan = baseOrder.plan as PremiumPlan;
+  const candidate = generateActivationCode();
+  const orderRef = db.collection('telegram_premium_orders').doc(chargeId);
+  const codeRef = db.collection('promo_codes').doc(candidate);
+
+  return db.runTransaction(async (tx) => {
+    const [orderSnap, codeSnap] = await Promise.all([tx.get(orderRef), tx.get(codeRef)]);
+    const existing = orderSnap.exists ? (orderSnap.data() ?? {}) : null;
+    if (existing?.activationCode) {
+      return existing; // повторная доставка апдейта — код уже выдан
+    }
+    const activationCode = codeSnap.exists ? null : candidate;
+    if (activationCode) {
+      const reward = activationRewardForPlan(plan);
+      tx.set(codeRef, {
+        rewardDays: reward.rewardDays,
+        rewardKind: reward.rewardKind,
+        enabled: true,
+        maxRedemptions: 1,
+        usedCount: 0,
+        expiresAtMs: 0,
+        note: `telegram_stars telegram_premium_orders/${chargeId}`,
+        createdAtMs: Date.now(),
+        createdBy: 'telegram_premium_bot',
+      });
+    }
+    const order = {
+      ...baseOrder,
+      status: activationCode ? 'paid_pending_activation' : 'paid_pending_manual_activation',
+      activationCode,
+    };
+    tx.set(orderRef, order, { merge: true });
+    return order;
+  });
+}
+
+/**
+ * Продление Stars-подписки: находит код первой оплаты этого telegram-юзера и
+ * продлевает доступ сам — активированному аккаунту (lastRedeemedBy) стек vip_until,
+ * не активированному коду — +дни. Идемпотентно по chargeId (renewalProcessed).
+ */
+async function recordTelegramRenewal(
+  chargeId: string,
+  baseOrder: FirebaseFirestore.DocumentData,
+): Promise<FirebaseFirestore.DocumentData> {
+  const plan = baseOrder.plan as PremiumPlan;
+  const addDays = activationRewardForPlan(plan).rewardDays || 31;
+  const orderRef = db.collection('telegram_premium_orders').doc(chargeId);
+
+  // Ищем код первой оплаты: заявки этого юзера по этому плану с кодом (без orderBy —
+  // равенства не требуют композитного индекса; свежесть выбираем в коде).
+  const prevSnap = await db.collection('telegram_premium_orders')
+    .where('telegramUserId', '==', baseOrder.telegramUserId)
+    .where('plan', '==', plan)
+    .limit(25)
+    .get();
+  const prevWithCode = prevSnap.docs
+    .map((d) => d.data())
+    .filter((d) => d.activationCode && String(d.telegramPaymentChargeId) !== chargeId)
+    .sort((a, b) => String(b.paidAtIso ?? '').localeCompare(String(a.paidAtIso ?? '')));
+  const code = prevWithCode[0]?.activationCode ? String(prevWithCode[0].activationCode) : '';
+
+  return db.runTransaction(async (tx) => {
+    const reads = await Promise.all([
+      tx.get(orderRef),
+      code ? tx.get(db.collection('promo_codes').doc(code)) : Promise.resolve(null),
+    ]);
+    const orderSnap = reads[0];
+    const codeSnap = reads[1];
+    const existing = orderSnap.exists ? (orderSnap.data() ?? {}) : null;
+    if (existing?.renewalProcessed) {
+      return existing; // повторная доставка апдейта
+    }
+
+    const codeData = codeSnap?.exists ? (codeSnap.data() ?? {}) : null;
+    const redeemedBy = String(codeData?.lastRedeemedBy ?? '').trim();
+    const nowMs = Date.now();
+    let renewalOutcome: string;
+
+    if (redeemedBy) {
+      const userRef = db.collection('users').doc(redeemedBy);
+      const userSnap = await tx.get(userRef);
+      const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
+      const vipPatch = buildPromoVipPatch(progress, nowMs, addDays, 'days', code);
+      tx.set(userRef, { progress: vipPatch, updatedAt: nowMs }, { merge: true });
+      renewalOutcome = `extended_user_${addDays}d`;
+    } else if (codeSnap?.exists) {
+      tx.update(codeSnap.ref, { rewardDays: admin.firestore.FieldValue.increment(addDays) });
+      renewalOutcome = `extended_code_${addDays}d`;
+    } else {
+      renewalOutcome = 'code_missing_manual_needed';
+    }
+
+    const order = {
+      ...baseOrder,
+      status: renewalOutcome === 'code_missing_manual_needed'
+        ? 'paid_pending_manual_activation'
+        : 'paid_renewal_auto',
+      activationCode: code || null,
+      renewalProcessed: true,
+      renewalOutcome,
+    };
+    tx.set(orderRef, order, { merge: true });
+    return order;
+  });
+}
+
 async function handleMessage(token: string, message: TelegramMessage): Promise<void> {
   const chatId = message.chat?.id;
   const userId = message.from?.id;
@@ -593,9 +771,19 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
   if (message.successful_payment) {
     const payment = message.successful_payment;
     const payload = parseInvoicePayload(payment.invoice_payload);
+    console.info('telegramPremium successful_payment received', {
+      plan: payload.plan,
+      currency: payment.currency,
+      totalAmount: payment.total_amount,
+      isRecurring: payment.is_recurring === true,
+      isFirstRecurring: payment.is_first_recurring === true,
+      hasSubscriptionExpirationDate: !!payment.subscription_expiration_date,
+    });
     const chargeId = String(payment.telegram_payment_charge_id || `${userId}-${Date.now()}`);
-    const order = {
-      status: 'paid_pending_manual_activation',
+    // Продление Stars-подписки: is_recurring без is_first_recurring. Первый платёж
+    // подписки приходит с is_first_recurring=true, разовый год — вообще без флагов.
+    const isRenewal = payment.is_recurring === true && payment.is_first_recurring !== true;
+    const baseOrder = {
       paidAt: admin.firestore.FieldValue.serverTimestamp(),
       paidAtIso: new Date().toISOString(),
       plan: payload.plan,
@@ -612,27 +800,34 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
         ? new Date(payment.subscription_expiration_date * 1000).toISOString()
         : null,
     };
+
     // КРИТИЧНО: запись заявки = единственный след оплаты (Stars уже списаны). Если
     // упадёт — пробрасываем ошибку, чтобы webhook вернул 500 и Telegram повторил
-    // доставку (выдача всё равно ручная — см. STRICT POLICY п.1/п.3 в шапке файла).
+    // доставку. Активация автоматическая (код/продление), ручная — запасной путь.
+    let order: FirebaseFirestore.DocumentData;
     try {
-      await db.collection('telegram_premium_orders').doc(chargeId).set(order, { merge: true });
+      order = isRenewal
+        ? await recordTelegramRenewal(chargeId, baseOrder)
+        : await recordTelegramPurchaseWithCode(chargeId, baseOrder);
     } catch (orderError) {
       console.error('telegramPremium order write failed', orderError);
       throw orderError;
     }
+
     // Сообщение юзеру и админам — best-effort: заявка уже записана, сбой уведомления
     // не должен ронять webhook в 500 (иначе Telegram повторит апдейт и создаст дубль
     // обработки на уже записанной заявке).
-    await sendMessage(token, chatId, [
-      MANUAL_ACTIVATION_MESSAGE_RU,
-      '',
-      `Ник: ${payload.appNickname}`,
-      `Вариант: ${PLANS[payload.plan].durationLabel}`,
-      payload.plan === 'monthly'
-        ? 'Продление: автоматически каждые 30 дней'
-        : 'Продление: нет, это разовая оплата на год',
-    ].join('\n'), {
+    const userText = isRenewal
+      ? RENEWAL_MESSAGE_RU
+      : order.activationCode
+        ? codeActivationMessageRu(String(order.activationCode), payload.plan)
+        : [
+          MANUAL_ACTIVATION_MESSAGE_RU,
+          '',
+          `Ник: ${payload.appNickname}`,
+          `Вариант: ${PLANS[payload.plan].durationLabel}`,
+        ].join('\n');
+    await sendMessage(token, chatId, userText, {
       reply_markup: {
         inline_keyboard: [[{ text: SUPPORT_BUTTON_TEXT_RU, callback_data: SUPPORT_CALLBACK_START }]],
       },
@@ -642,26 +837,30 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
   }
 
   const text = String(message.text || '').trim();
-  // Команды ниже (/myid, /admin*, /orders, /order, /start, /premium, оплата)
+  const command = commandName(text);
+  // Команды ниже (/myid, /admin*, /orders, /order, /start, /premium, /terms, /privacy, оплата)
   // делают ранний return и НЕ проходят через tryHandleSupportMessage, поэтому
   // режим «жду ответ админа» надо гасить здесь — иначе следующий обычный текст
-  // админа уйдёт прошлому адресату (misroute). /reply, /support, /cancel сюда не
-  // входят: их корректно доводит до конца сам модуль поддержки.
-  if (/^\/(myid|admin|orders|order|start|premium)\b/.test(text) || text === PAY_BUTTON_TEXT_RU) {
+  // админа уйдёт прошлому адресату (misroute). /support и /paysupport входят
+  // сюда только для сброса старого reply-режима; сам диалог ведёт модуль поддержки.
+  if (
+    ['myid', 'admin_setup', 'admin', 'orders', 'order', 'start', 'premium', 'terms', 'privacy', 'paysupport'].includes(command)
+    || text === PAY_BUTTON_TEXT_RU
+  ) {
     await clearAdminAwaitingReply(userId);
   }
-  if (text === '/myid') {
+  if (command === 'myid') {
     await sendMessage(token, chatId, [
       `Ваш Telegram id: ${userId}`,
       message.from?.username ? `Username: @${message.from.username}` : 'Username: -',
     ].join('\n'));
     return;
   }
-  if (text.startsWith('/admin_setup')) {
+  if (command === 'admin_setup') {
     await handleAdminSetup(token, chatId, userId, text);
     return;
   }
-  if (text === '/admin') {
+  if (command === 'admin') {
     if (!(await isAdmin(userId))) {
       await sendMessage(token, chatId, 'Нет доступа. Сначала включите админ-доступ через /admin_setup <код>.');
       return;
@@ -669,15 +868,27 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
     await sendAdminHelp(token, chatId);
     return;
   }
-  if (text === '/orders') {
+  if (command === 'orders') {
     await sendOrdersList(token, chatId, userId);
     return;
   }
-  if (text.startsWith('/order')) {
+  if (command === 'order') {
     await sendOrderDetails(token, chatId, userId, text);
     return;
   }
-  if (text === '/start' || text === '/premium') {
+  if (command === 'terms') {
+    await sendMessage(token, chatId, TERMS_MESSAGE_RU, {
+      reply_markup: { inline_keyboard: [[{ text: 'Открыть условия', url: TERMS_URL }]] },
+    });
+    return;
+  }
+  if (command === 'privacy') {
+    await sendMessage(token, chatId, PRIVACY_MESSAGE_RU, {
+      reply_markup: { inline_keyboard: [[{ text: 'Открыть политику', url: PRIVACY_URL }]] },
+    });
+    return;
+  }
+  if (command === 'start' || command === 'premium') {
     await clearSupportState(userId);
     await writeSession(userId, { step: 'awaiting_nickname' });
     await sendPremiumWelcome(token, chatId);
@@ -773,6 +984,12 @@ async function handlePreCheckoutQuery(token: string, query: TelegramPreCheckoutQ
   if (!query.id) return;
   try {
     const payload = parseInvoicePayload(query.invoice_payload);
+    console.info('telegramPremium pre_checkout_query received', {
+      plan: payload.plan,
+      currency: query.currency,
+      totalAmount: query.total_amount,
+      expectedAmount: starsForPlan(payload.plan),
+    });
     if (query.currency !== 'XTR') {
       await answerPreCheckoutQuery(token, query.id, {
         ok: false,

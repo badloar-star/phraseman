@@ -110,6 +110,15 @@
     </section>
 
     <section>
+      <h2>⭐ Заказы Telegram Stars (последние 50)</h2>
+      <p class="hint">Оплаты через @PhrasemanPremiumBot. С 2026-07-02 активация автоматическая:
+        бот сам выдаёт код, продления продлевают доступ сами. <b>paid_pending_activation</b> /
+        <b>paid_renewal_auto</b> — всё ок, вмешательство не нужно; <b>paid_pending_manual_activation</b> —
+        нужна ручная выдача (Testers).</p>
+      <div id="tg-orders"><div class="empty">Загрузка…</div></div>
+    </section>
+
+    <section>
       <h2>🧾 Заказы веб-оплат (последние 100)</h2>
       <p class="hint">Статусы: <b>created</b> — начал оплату, не завершил · <b>paid_pending_activation</b> —
         оплачен, код выдан, юзер активирует сам · <b>paid_pending_manual_activation</b> — оплачен,
@@ -291,10 +300,45 @@
       });
     }
 
+    /* ── Заказы Telegram Stars ── */
+    async function loadTgOrders() {
+      const snap = await getDocs(query(collection(db, 'telegram_premium_orders'), orderBy('paidAtIso', 'desc'), limit(50)));
+      if (snap.empty) {
+        $('tg-orders').innerHTML = '<div class="empty">Оплат через бота пока нет.</div>';
+        return;
+      }
+      const rows = [];
+      snap.forEach((d) => {
+        const o = d.data();
+        const date = String(o.paidAtIso || '').replace('T', ' ').slice(0, 16);
+        const status = String(o.status || '');
+        rows.push(`<tr>
+          <td>${date}</td>
+          <td>${o.planDuration || o.plan || '—'}${o.renewalOutcome ? ' <span class="mini">(продление)</span>' : ''}</td>
+          <td>${o.totalAmount || 0} ⭐</td>
+          <td>${o.appNickname || '—'}<div class="mini">tg: ${o.telegramUserId || '—'}</div></td>
+          <td class="status-${status}">${status}</td>
+          <td>${o.activationCode ? `<span class="code" data-code="${o.activationCode}" title="Скопировать">${o.activationCode}</span>` : '—'}</td>
+        </tr>`);
+      });
+      $('tg-orders').innerHTML = `<table>
+        <thead><tr><th>Дата</th><th>Тариф</th><th>Сумма</th><th>Покупатель</th><th>Статус</th><th>Код</th></tr></thead>
+        <tbody>${rows.join('')}</tbody></table>`;
+      $('tg-orders').querySelectorAll('.code').forEach((el) => {
+        el.addEventListener('click', () => {
+          navigator.clipboard.writeText(el.dataset.code).then(() => {
+            const original = el.textContent;
+            el.textContent = 'Скопировано ✓';
+            setTimeout(() => { el.textContent = original; }, 1200);
+          });
+        });
+      });
+    }
+
     async function loadAll() {
       clearError();
       try {
-        await Promise.all([loadConfig(), loadPromoFlag(), loadFunnel(), loadOrders()]);
+        await Promise.all([loadConfig(), loadPromoFlag(), loadFunnel(), loadOrders(), loadTgOrders()]);
       } catch (e) {
         showError('Ошибка загрузки (нет admin-доступа?): ' + (e.message || e));
       }

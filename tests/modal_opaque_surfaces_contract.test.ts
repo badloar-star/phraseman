@@ -22,7 +22,6 @@ describe('modal opaque surface contract', () => {
       'components/LevelGiftModal.tsx',
       'components/ReleaseWaveBonusModal.tsx',
       'components/ShardRewardModal.tsx',
-      'components/ShardsEarnedModal.tsx',
       'components/StreakReviveModal.tsx',
     ];
 

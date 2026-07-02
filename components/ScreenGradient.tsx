@@ -201,7 +201,6 @@ const EXPLICIT_ART_BACKDROP_COMPONENT_NAMES = new Set([
   'AppRouteArtBackdrop',
   'ArenaMatchBackdrop',
   'LessonArtBackdrop',
-  'ScreenArtBackdrop',
   'StatsArtBackdrop',
 ]);
 

@@ -177,6 +177,11 @@ function activeDaysLabel(days: number, lang: Lang): string {
   const n = Math.max(0, Math.floor(days));
   if (lang === 'es') return `${n} ${n === 1 ? 'día activo' : 'días activos'}`;
   if (lang === 'uk') return `${n} ${n === 1 ? 'активний день' : 'активних днів'}`;
+  if (lang === 'pt-BR') return `${n} ${n === 1 ? 'dia ativo' : 'dias ativos'}`;
+  if (lang === 'vi') return `${n} ngày hoạt động`;
+  if (lang === 'id') return `${n} hari aktif`;
+  if (lang === 'tr') return `${n} aktif gün`;
+  if (lang === 'pl') return `${n} ${n === 1 ? 'aktywny dzień' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'aktywne dni' : 'aktywnych dni'}`;
   const mod10 = n % 10;
   const mod100 = n % 100;
   const word = mod10 === 1 && mod100 !== 11
@@ -238,14 +243,14 @@ function activityStatus(activeDays: number, lang: Lang): string {
     pl: "Rytm rośnie",
   });
   return triLang(lang, {
-    ru: 'Пульс только начинается',
-    uk: 'Пульс тільки починається',
-    es: 'El pulso empieza',
-    'pt-BR': "O pulso começa",
-    vi: "Nhịp bắt đầu",
-    id: "Denyut mulai terasa",
-    tr: "Nabız başlıyor",
-    pl: "Puls się zaczyna",
+    ru: 'Год только начинается',
+    uk: 'Рік тільки починається',
+    es: 'El año apenas empieza',
+    'pt-BR': "O ano está só começando",
+    vi: "Năm mới chỉ bắt đầu",
+    id: "Tahun baru dimulai",
+    tr: "Yıl daha yeni başlıyor",
+    pl: "Rok dopiero się zaczyna",
   });
 }
 
@@ -262,8 +267,10 @@ function filterLabel(filter: Activity365Filter, lang: Lang): string {
 
 function insightText(insight: Activity365Analytics['insights'][number], lang: Lang) {
   if (lang === 'uk') return { title: insight.titleUk, body: insight.bodyUk };
-  if (lang === 'es') return { title: insight.titleEs, body: insight.bodyEs };
-  return { title: insight.titleRu, body: insight.bodyRu };
+  if (lang === 'ru') return { title: insight.titleRu, body: insight.bodyRu };
+  // Контент инсайтов пока есть только на ru/uk/es; для остальных языков испанский —
+  // меньшее зло, чем кириллица (pt-BR читает почти без потерь).
+  return { title: insight.titleEs, body: insight.bodyEs };
 }
 
 function monthLabel(month: Activity365Analytics['bestMonth'], lang: ActivityMonthLang): string {
@@ -702,14 +709,14 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const nextStepKind = activity365NextStepKind(safeAnalytics.activeDays, safeAnalytics.currentStreak);
   const nextStepText = nextStepKind === 'first_day'
     ? triLang(lang, {
-      ru: 'Сделай первое короткое занятие, чтобы появился пульс.',
-      uk: 'Зроби перше коротке заняття, щоб зʼявився пульс.',
-      es: 'Haz tu primera sesión corta para que aparezca el pulso.',
-      'pt-BR': "Faça a primeira sessão curta para o pulso aparecer.",
-      vi: "Hãy làm buổi học ngắn đầu tiên để nhịp xuất hiện.",
-      id: "Mulai sesi singkat pertama agar denyut muncul.",
-      tr: "Nabız görünmesi için ilk kısa seansı yap.",
-      pl: "Zrób pierwszą krótką sesję, żeby pojawił się puls.",
+      ru: 'Сделай первое короткое занятие — карта года начнёт заполняться.',
+      uk: 'Зроби перше коротке заняття — карта року почне заповнюватися.',
+      es: 'Haz tu primera sesión corta y el mapa del año empezará a llenarse.',
+      'pt-BR': "Faça a primeira sessão curta e o mapa do ano começará a se preencher.",
+      vi: "Làm buổi học ngắn đầu tiên — bản đồ năm sẽ bắt đầu được tô màu.",
+      id: "Mulai sesi singkat pertama — peta tahunmu akan mulai terisi.",
+      tr: "İlk kısa seansı yap — yıl haritası dolmaya başlasın.",
+      pl: "Zrób pierwszą krótką sesję — mapa roku zacznie się zapełniać.",
     })
     : nextStepKind === 'warmup'
       ? triLang(lang, {

@@ -44,6 +44,10 @@ const MAX_PER_WINDOW = 60;
  * иначе клиент и сервер разойдутся в подсчёте «осталось ли бесплатное».
  */
 const FREE_DIALOGS_LIFETIME = 2;
+// Кап реплик ЮЗЕРА внутри одного бесплатного диалога. История обрезается до
+// MAX_HISTORY_TURNS сообщений, поэтому по ней считать нельзя — счётчик живёт в
+// том же quota-документе и сбрасывается при старте нового диалога.
+const FREE_DIALOG_MAX_USER_TURNS = 6;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
@@ -233,15 +237,16 @@ function readFreeDialogsUsed(data: FirebaseFirestore.DocumentData): number {
 
 /**
  * Пожизненный free-гейт: не-premium получает FREE_DIALOGS_LIFETIME полных
- * бесплатных диалогов за всю жизнь аккаунта (без лимита реплик внутри каждого).
- * Дальше — полный замок (paywall). Подняли с 1 до 2: одна попытка не давала
- * прочувствовать ценность фичи до пейвола.
+ * бесплатных диалогов за всю жизнь аккаунта, внутри каждого — не более
+ * FREE_DIALOG_MAX_USER_TURNS реплик юзера. Дальше — полный замок (paywall).
+ * Подняли с 1 до 2 диалогов: одна попытка не давала прочувствовать ценность.
  *
  * Сигнал «начался НОВЫЙ диалог» = пустая история (`isNewDialog`): первая реплика
  * сессии. Тогда:
  *   • если лимит бесплатных уже исчерпан -> resource-exhausted (полный замок);
- *   • иначе инкрементируем счётчик и пропускаем.
- * Продолжение того же диалога (история не пустая) НЕ гейтим — реплики не лимитируем.
+ *   • иначе инкрементируем счётчик диалогов и сбрасываем счётчик реплик.
+ * Продолжение того же диалога: инкрементируем счётчик реплик, после капа —
+ * тот же resource-exhausted/'dialog_free_limit' (клиент уже показывает paywall-CTA).
  *
  * Возврат нужен вызывающему, чтобы откатить инкремент, если платный вызов
  * провайдера упал (иначе юзер потеряет бесплатный диалог из-за нашей ошибки).
@@ -251,41 +256,69 @@ async function enforceLifetimeFreeDialog(
   stableUid: string,
   isNewDialog: boolean,
 ): Promise<{ markedNow: boolean }> {
-  if (!isNewDialog) return { markedNow: false };
   const db = admin.firestore();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
   return db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const used = readFreeDialogsUsed(data);
-    if (used >= FREE_DIALOGS_LIFETIME) {
-      console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
+    if (isNewDialog) {
+      if (used >= FREE_DIALOGS_LIFETIME) {
+        console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
+        throw new HttpsError('resource-exhausted', 'dialog_free_limit');
+      }
+      tx.set(ref, {
+        authUid,
+        stableUid,
+        freeDialogCount: used + 1,
+        // Счётчик реплик ТЕКУЩЕГО диалога: новый диалог начинает с этой реплики.
+        freeDialogTurns: 1,
+        // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
+        freeDialogUsed: admin.firestore.FieldValue.delete(),
+        usedAtMs: Date.now(),
+      }, { merge: true });
+      return { markedNow: true };
+    }
+    // Продолжение бесплатного диалога: капим реплики юзера (история усечена до
+    // MAX_HISTORY_TURNS, поэтому источник правды — этот счётчик, не history).
+    const turns = Math.max(0, Math.floor(Number(data.freeDialogTurns ?? 0)));
+    if (turns >= FREE_DIALOG_MAX_USER_TURNS) {
+      console.warn('premium_dialog rejected', { reason: 'dialog_free_turns_used' });
       throw new HttpsError('resource-exhausted', 'dialog_free_limit');
     }
     tx.set(ref, {
       authUid,
       stableUid,
-      freeDialogCount: used + 1,
-      // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
-      freeDialogUsed: admin.firestore.FieldValue.delete(),
-      usedAtMs: Date.now(),
+      freeDialogTurns: turns + 1,
+      updatedAtMs: Date.now(),
     }, { merge: true });
-    return { markedNow: true };
+    return { markedNow: false };
   });
 }
 
-/** Откат инкремента бесплатного диалога, если платный вызов провайдера не удался. */
-async function releaseLifetimeFreeDialog(authUid: string, stableUid: string): Promise<void> {
+/**
+ * Откат инкрементов бесплатного диалога, если платный вызов провайдера не удался.
+ * Реплика откатывается всегда; сам диалог — только если был помечен этой репликой.
+ */
+async function releaseLifetimeFreeDialog(
+  authUid: string,
+  stableUid: string,
+  markedNow: boolean,
+): Promise<void> {
   const db = admin.firestore();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
   await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    const used = readFreeDialogsUsed(data);
-    if (used <= 0) return;
-    tx.set(ref, {
-      freeDialogCount: used - 1,
-      freeDialogUsed: admin.firestore.FieldValue.delete(),
-      releasedAtMs: Date.now(),
-    }, { merge: true });
+    const turns = Math.max(0, Math.floor(Number(data.freeDialogTurns ?? 0)));
+    const patch: Record<string, unknown> = { releasedAtMs: Date.now() };
+    if (turns > 0) patch.freeDialogTurns = turns - 1;
+    if (markedNow) {
+      const used = readFreeDialogsUsed(data);
+      if (used > 0) {
+        patch.freeDialogCount = used - 1;
+        patch.freeDialogUsed = admin.firestore.FieldValue.delete();
+      }
+    }
+    tx.set(ref, patch, { merge: true });
   });
 }
 
@@ -698,11 +731,12 @@ export const premiumDialogSend = onCall({
     enforceRateLimit(authUid, stableUid),
   ]);
 
-  // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
-  //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
+  // Free: пожизненно FREE_DIALOGS_LIFETIME бесплатных диалогов, внутри каждого кап
+  //   реплик юзера — когда фича за премиум-замком. Если фича в «Фри» — дневной кап.
   // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
   let remaining: number;
   let freeMarkedNow = false;
+  let freeTurnCharged = false;
   if (isPremium) {
     remaining = await enforceDailyQuota(authUid, stableUid, true, dialogQuota.premiumDailyReplies);
   } else if (!aiDialogGatedByPremium) {
@@ -711,6 +745,7 @@ export const premiumDialogSend = onCall({
   } else {
     const gate = await enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog);
     freeMarkedNow = gate.markedNow;
+    freeTurnCharged = true;
     // Для не-premium «остаток» бессмысленен (диалог один) — отдаём 0, чтобы клиент
     // не показывал дневной счётчик.
     remaining = 0;
@@ -847,12 +882,12 @@ export const premiumDialogSend = onCall({
     assertDialogReplyIsEnglish(assistantMessage);
   } catch (error) {
     // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:
-    // premium — дневную квоту; free — пожизненную отметку (только если её
-    // поставили ИМЕННО сейчас, на этой первой реплике).
+    // premium — дневную квоту; free — реплику текущего диалога всегда и
+    // пожизненную отметку диалога, если её поставили ИМЕННО этой репликой.
     const rollback = isPremium
       ? releaseDailyQuota(authUid, stableUid)
-      : freeMarkedNow
-        ? releaseLifetimeFreeDialog(authUid, stableUid)
+      : freeTurnCharged
+        ? releaseLifetimeFreeDialog(authUid, stableUid, freeMarkedNow)
         : Promise.resolve();
     await rollback.catch((releaseError) => {
       console.error('premium_dialog quota release failed', {

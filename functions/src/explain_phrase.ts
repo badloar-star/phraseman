@@ -26,7 +26,7 @@ import {
   writeRejectedExplanation,
   isRetryableRejected,
 } from './explain/explain_cache';
-import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
+import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
 import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
@@ -43,8 +43,9 @@ const MODEL_DEFAULT = 'gpt-4o-mini';
 // a rare two-part nuance without cutting mid-pair, and trims cost vs. the old word-by-word target.
 const GEN_MAX_TOKENS = 320;
 const GEN_TEMPERATURE = 0.7;
-// Дневной кап ПЛАТНЫХ генераций для free (cache-miss). Premium — без капа джоба.
-const FREE_DAILY_GEN_CAP = 5;
+// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
+// владельца 2026-07-02), проверяется ДО чтения кэша. Premium — без капа.
+const FREE_DAILY_CAP = 5;
 
 /** Status reported to the client so the UI can distinguish cache vs. fresh vs. degraded paths. */
 export type ExplainStatus = 'ok' | 'rejected' | 'exhausted' | 'pending';
@@ -129,6 +130,20 @@ export const explainPhrase = onCall({
   const input = validateExplainInput({ phraseEn, phraseMeaning, lang });
   if (!input.ok) throw new HttpsError('invalid-argument', input.reason ?? 'invalid_input');
 
+  // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
+  // считаются (гейт ценности фичи). При исчерпании — бесплатный fallback-текст.
+  const isPremium = await resolvePremiumAccess(db, stableUid);
+  if (!isPremium) {
+    try {
+      await enforceFreeJobGenLimit('phrase', authUid, stableUid, FREE_DAILY_CAP);
+    } catch (err) {
+      if (err instanceof HttpsError && err.code === 'resource-exhausted') {
+        return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
+      }
+      throw err;
+    }
+  }
+
   // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
   // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
   const langKey = resolvePromptLangKey(lang);
@@ -155,18 +170,10 @@ export const explainPhrase = onCall({
 
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
   //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
-  // Free-юзер запускает платную генерацию не чаще FREE_DAILY_GEN_CAP раз в день —
-  // чтение кэша выше остаётся бесплатным и безлимитным для всех.
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
   let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    budgetReservation = await reserveExplainBudget(
-      authUid,
-      stableUid,
-      jobCfg.globalDailyCap,
-      Date.now(),
-      isPremium ? null : { job: 'phrase', cap: FREE_DAILY_GEN_CAP },
-    );
+    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };

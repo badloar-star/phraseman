@@ -26,10 +26,10 @@ const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
 const BILLING_COLLECTION = 'mistake_explain_billing';
 
-// Дневной кап ПЛАТНЫХ генераций (cache-miss) для free-юзера. Клиентский счётчик
-// «3 разбора в день» живёт в AsyncStorage и обходится очисткой/переустановкой —
-// сервер источник правды. Premium — без капа джоба (общий rate-limit остаётся).
-const FREE_DAILY_GEN_CAP = 3;
+// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
+// владельца 2026-07-02), проверяется ДО чтения кэша. Клиентский AsyncStorage-счётчик
+// обходится переустановкой — сервер источник правды. Premium — без капа.
+const FREE_DAILY_CAP = 3;
 
 async function enforceFreeDailyGenCap(
   db: admin.firestore.Firestore,
@@ -38,7 +38,7 @@ async function enforceFreeDailyGenCap(
 ): Promise<void> {
   const isPremium = await resolvePremiumAccess(db, stableUid);
   if (isPremium) return;
-  await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_GEN_CAP);
+  await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP);
 }
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
@@ -512,6 +512,11 @@ export const explainMistake = onCall({
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey);
   const RQ = 999; // remainingQuota sentinel — no daily cap.
 
+  // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
+  // считаются. Ошибка 'explain_free_daily_limit' → клиент показывает состояние
+  // 'limit' с CTA в Plus (AiMistakeCard).
+  await enforceFreeDailyGenCap(db, authUid, stableUid);
+
   // 1. Cache FIRST — the ≥99% path, $0.
   const cached = await readCachedMistakeExplanation(mistakeHash);
 
@@ -521,7 +526,6 @@ export const explainMistake = onCall({
       return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
     }
     await enforceRateLimit(db, authUid, stableUid);
-    await enforceFreeDailyGenCap(db, authUid, stableUid);
     const gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
 
     if (cached?.status === 'ready') {
@@ -564,7 +568,6 @@ export const explainMistake = onCall({
 
   // Anti-abuse rate-limit (cache miss only).
   await enforceRateLimit(db, authUid, stableUid);
-  await enforceFreeDailyGenCap(db, authUid, stableUid);
 
   // Claim the generation lock (anti-duplicate). If someone else is generating, still serve the
   // user a live answer; we persist it below too (only the duplicate generation is avoided).

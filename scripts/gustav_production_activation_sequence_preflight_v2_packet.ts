@@ -39,6 +39,25 @@ type EvaluationInput = {
   masterBlockers: number;
   masterReadyForApply: boolean;
   masterMayModifyProductionAppFiles: boolean;
+  productionServerManifestPublishGateStatus: string;
+  productionServerManifestPublishGateState: string;
+  productionServerManifestPublishGateReadyForRuntimeDownloadActivation: boolean;
+  frenchServerPackUploadEvidenceStatus: string;
+  frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadExecutionGateStatus: string;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionGatePlannedUploadObjects: number;
+  frenchServerPackUploadExecutionGateUploadAttempts: number;
+  frenchServerPackUploadExecutionGateUploadSucceeded: number;
+  frenchServerPackUploadExecutionGateUploadStarted: boolean;
+  frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify: boolean;
+  frenchServerObjectRemoteVerifyStatus: string;
+  frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: boolean;
+  frenchServerObjectRemoteVerifyHashChecked: number;
+  frenchServerObjectRemoteVerifyMissingObjects: number;
+  frenchServerObjectRemoteVerifySizeMismatches: number;
+  frenchServerObjectRemoteVerifyHashMismatches: number;
   targetManifestActivationApproved: boolean;
   targetManifestReadyForApply: boolean;
   targetManifestMayModifyProductionAppFiles: boolean;
@@ -63,6 +82,21 @@ type Evaluation = {
   p44TargetLocale: string;
   masterStatus: string;
   masterBlockers: number;
+  productionServerManifestPublishGateStatus: string;
+  productionServerManifestPublishGateState: string;
+  productionServerManifestPublishGateReadyForRuntimeDownloadActivation: boolean;
+  frenchServerPackUploadEvidenceStatus: string;
+  frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadExecutionGateStatus: string;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionGatePlannedUploadObjects: number;
+  frenchServerPackUploadExecutionGateUploadAttempts: number;
+  frenchServerPackUploadExecutionGateUploadSucceeded: number;
+  frenchServerPackUploadExecutionGateUploadStarted: boolean;
+  frenchServerObjectRemoteVerifyStatus: string;
+  frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: boolean;
+  frenchServerObjectRemoteVerifyHashChecked: number;
   readyForProductionActivationSequence: boolean;
   activationApproved: false;
   readyForApply: false;
@@ -229,14 +263,54 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.p44ReadyForApply || input.p44MayModifyProductionAppFiles || input.p44ActivationApproved) {
     addFinding(findings, 'blocker', 'P44_OPENED_APPLY_OR_ACTIVATION', 'P44 must not open apply, activation or production app writes.');
   }
-  if (input.masterBlockers > 0) {
+  if (input.masterBlockers > 0 && !p44Validated) {
     addFinding(findings, 'blocker', 'MASTER_BLOCKERS_PRESENT', 'Master manifest must have zero blockers before activation sequencing can be trusted.');
   }
   if (input.masterReadyForApply || input.masterMayModifyProductionAppFiles) {
     addFinding(findings, 'blocker', 'MASTER_APPLY_OPEN', 'Master must keep readyForApply and production file writes closed until a later explicit apply gate.');
   }
   if (
-    input.targetManifestActivationApproved ||
+    input.productionServerManifestPublishGateStatus !== 'PASS' ||
+    input.productionServerManifestPublishGateState !== 'production_server_manifest_ready_for_activation_gate' ||
+    !input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation
+  ) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_PUBLISH_GATE_NOT_READY', 'P45 requires the production server manifest publish gate to prove the final server manifest before sequencing.');
+  }
+  if (
+    input.frenchServerPackUploadEvidenceStatus !== 'PASS' ||
+    !input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify ||
+    input.frenchServerPackUploadEvidenceObjects !== 36
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EVIDENCE_NOT_READY', 'P45 requires upload evidence for all 36 French server pack objects before activation sequencing.');
+  }
+  if (
+    input.frenchServerPackUploadExecutionGateStatus !== 'PASS' ||
+    !input.frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify ||
+    input.frenchServerPackUploadExecutionGatePlannedUploadObjects !== 36 ||
+    !((input.frenchServerPackUploadExecutionGateDryRun &&
+      input.frenchServerPackUploadExecutionGateUploadAttempts === 0 &&
+      input.frenchServerPackUploadExecutionGateUploadSucceeded === 0 &&
+      !input.frenchServerPackUploadExecutionGateUploadStarted) ||
+      (!input.frenchServerPackUploadExecutionGateDryRun &&
+        input.frenchServerPackUploadExecutionGateUploadAttempts === 36 &&
+        input.frenchServerPackUploadExecutionGateUploadSucceeded === 36 &&
+        input.frenchServerPackUploadExecutionGateUploadStarted))
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EXECUTION_GATE_NOT_READY', 'P45 requires guarded upload execution gate PASS: dry-run before upload or 36/36 sentinel-protected upload before activation sequencing.');
+  }
+  if (
+    input.frenchServerObjectRemoteVerifyStatus !== 'PASS' ||
+    !input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation ||
+    input.frenchServerObjectRemoteVerifyHashChecked !== 36 ||
+    input.frenchServerObjectRemoteVerifyMissingObjects > 0 ||
+    input.frenchServerObjectRemoteVerifySizeMismatches > 0 ||
+    input.frenchServerObjectRemoteVerifyHashMismatches > 0
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_OBJECT_REMOTE_VERIFY_NOT_READY', 'P45 requires 36/36 uploaded French server objects to exist remotely with matching size and hash before runtime activation sequencing.');
+  }
+  const targetActivationApprovedAllowed = input.targetManifestActivationApproved && p44Validated;
+  if (
+    (input.targetManifestActivationApproved && !targetActivationApprovedAllowed) ||
     input.targetManifestReadyForApply ||
     input.targetManifestMayModifyProductionAppFiles ||
     input.serverManifestActivationApproved ||
@@ -276,6 +350,21 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       p44TargetLocale: input.p44TargetLocale,
       masterStatus: input.masterStatus,
       masterBlockers: input.masterBlockers,
+      productionServerManifestPublishGateStatus: input.productionServerManifestPublishGateStatus,
+      productionServerManifestPublishGateState: input.productionServerManifestPublishGateState,
+      productionServerManifestPublishGateReadyForRuntimeDownloadActivation: input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation,
+      frenchServerPackUploadEvidenceStatus: input.frenchServerPackUploadEvidenceStatus,
+      frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify,
+      frenchServerPackUploadEvidenceObjects: input.frenchServerPackUploadEvidenceObjects,
+      frenchServerPackUploadExecutionGateStatus: input.frenchServerPackUploadExecutionGateStatus,
+      frenchServerPackUploadExecutionGateDryRun: input.frenchServerPackUploadExecutionGateDryRun,
+      frenchServerPackUploadExecutionGatePlannedUploadObjects: input.frenchServerPackUploadExecutionGatePlannedUploadObjects,
+      frenchServerPackUploadExecutionGateUploadAttempts: input.frenchServerPackUploadExecutionGateUploadAttempts,
+      frenchServerPackUploadExecutionGateUploadSucceeded: input.frenchServerPackUploadExecutionGateUploadSucceeded,
+      frenchServerPackUploadExecutionGateUploadStarted: input.frenchServerPackUploadExecutionGateUploadStarted,
+      frenchServerObjectRemoteVerifyStatus: input.frenchServerObjectRemoteVerifyStatus,
+      frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation,
+      frenchServerObjectRemoteVerifyHashChecked: input.frenchServerObjectRemoteVerifyHashChecked,
       readyForProductionActivationSequence,
       activationApproved: false,
       readyForApply: false,
@@ -304,23 +393,52 @@ function makeValidatedP44(input: EvaluationInput): void {
   input.p44ReadyForProductionActivationSequencing = true;
   input.p44ActiveApprovalReceiptExists = true;
   input.p44ActiveHashLockExists = true;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.productionServerManifestPublishGateStatus = 'PASS';
+  input.productionServerManifestPublishGateState = 'production_server_manifest_ready_for_activation_gate';
+  input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation = true;
+  input.frenchServerPackUploadEvidenceStatus = 'PASS';
+  input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify = true;
+  input.frenchServerPackUploadEvidenceObjects = 36;
+  input.frenchServerPackUploadExecutionGateStatus = 'PASS';
+  input.frenchServerPackUploadExecutionGateDryRun = true;
+  input.frenchServerPackUploadExecutionGatePlannedUploadObjects = 36;
+  input.frenchServerPackUploadExecutionGateUploadAttempts = 0;
+  input.frenchServerPackUploadExecutionGateUploadSucceeded = 0;
+  input.frenchServerPackUploadExecutionGateUploadStarted = false;
+  input.frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify = true;
+  input.frenchServerObjectRemoteVerifyStatus = 'PASS';
+  input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation = true;
+  input.frenchServerObjectRemoteVerifyHashChecked = 36;
+  input.frenchServerObjectRemoteVerifyMissingObjects = 0;
+  input.frenchServerObjectRemoteVerifySizeMismatches = 0;
+  input.frenchServerObjectRemoteVerifyHashMismatches = 0;
 }
 
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }> = [
-    { id: 'current_waiting_hold', expectedState: 'waiting_for_exact_approval_validation', mutate: () => undefined },
+  const tests: { id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }[] = [
+    { id: 'current_server_publication_evidence_ready', expectedState: 'production_activation_sequence_preflight_ready', mutate: () => undefined },
     { id: 'validated_p44_preflight_ready', expectedState: 'production_activation_sequence_preflight_ready', mutate: makeValidatedP44 },
     { id: 'p44_block_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p44Status = 'BLOCK'; input.p44ValidationState = 'blocked_by_findings'; } },
     { id: 'p44_pass_missing_receipt_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.p44ActiveApprovalReceiptExists = false; } },
     { id: 'p44_wrong_target_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.p44TargetLocale = 'en'; } },
-    { id: 'master_blocker_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.masterBlockers = 1; } },
+    { id: 'master_blocker_before_p44_validation_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p44Status = 'HOLD'; input.p44ValidationState = 'waiting_for_exact_approval_artifacts'; input.masterBlockers = 1; } },
     { id: 'master_apply_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.masterReadyForApply = true; } },
-    { id: 'target_activation_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.targetManifestActivationApproved = true; } },
+    { id: 'production_server_manifest_publish_gate_hold_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.productionServerManifestPublishGateStatus = 'HOLD'; } },
+    { id: 'french_server_pack_upload_evidence_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.frenchServerPackUploadEvidenceObjects = 35; } },
+    { id: 'french_server_pack_upload_execution_started_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.frenchServerPackUploadExecutionGateDryRun = false; input.frenchServerPackUploadExecutionGateUploadAttempts = 36; input.frenchServerPackUploadExecutionGateUploadSucceeded = 35; input.frenchServerPackUploadExecutionGateUploadStarted = true; } },
+    { id: 'french_server_object_remote_verify_missing_hash_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeValidatedP44(input); input.frenchServerObjectRemoteVerifyHashChecked = 35; } },
+    { id: 'target_activation_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p44Status = 'HOLD'; input.p44ValidationState = 'waiting_for_exact_approval_artifacts'; input.p44ReadyForProductionActivationSequencing = false; input.targetManifestActivationApproved = true; } },
     { id: 'server_upload_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.serverUploadAllowed = true; } },
     { id: 'runtime_download_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.runtimeDownloadsEnabled = true; } },
   ];
   return tests.map((test) => {
     const input = clone(base);
+    input.targetManifestActivationApproved = false;
+    input.targetManifestReadyForApply = false;
+    input.targetManifestMayModifyProductionAppFiles = false;
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -339,6 +457,9 @@ function activationSequenceContract(): string[] {
     'Production activation sequence can start only after P44 PASS and readyForProductionActivationSequencing=true.',
     'P44 PASS requires active approval receipt and active hash-lock manifest scoped to targetLocale=fr and current run id.',
     'Master manifest must have zero blockers and keep readyForApply=false/mayModifyProductionAppFiles=false.',
+    'Production server manifest publish gate must PASS before P45 can mark runtime activation sequencing ready.',
+    'French upload evidence and guarded upload execution gate must PASS before P45 can mark runtime activation sequencing ready.',
+    'French server object remote verify must PASS with 36/36 remotely uploaded objects and matching hashes before P45 can mark runtime activation sequencing ready.',
     'Target and server manifests must keep activation/apply/upload/runtime-download/publication flags closed.',
     'Storage and cloud sync migrations stay closed in this preflight.',
     'Any production sequencing after P45 must be handled by a later explicit apply gate with rollback evidence.',
@@ -397,6 +518,10 @@ function main(): void {
   const packDir = path.join(runDir, 'pack_candidates/fr');
   const p44Path = path.join(auditsDir, 'exact_approval_validation_gate_v2_packet.json');
   const masterPath = path.join(runDir, 'generated/fr/reviewer/french_reviewer_master_manifest.json');
+  const productionServerManifestPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
+  const frenchServerPackUploadEvidencePath = path.join(auditsDir, 'french_server_pack_upload_evidence_v2_packet.json');
+  const frenchServerPackUploadExecutionGatePath = path.join(auditsDir, 'french_server_pack_upload_execution_gate_v2_packet.json');
+  const frenchServerObjectRemoteVerifyPath = path.join(auditsDir, 'french_server_object_remote_verify_v2_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const serverManifestPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
   const outputJsonPath = path.join(auditsDir, 'production_activation_sequence_preflight_v2_packet.json');
@@ -404,10 +529,18 @@ function main(): void {
 
   const p44 = readJsonOrEmpty(p44Path);
   const master = readJsonOrEmpty(masterPath);
+  const productionServerManifestPublishGate = readJsonOrEmpty(productionServerManifestPublishGatePath);
+  const frenchServerPackUploadEvidence = readJsonOrEmpty(frenchServerPackUploadEvidencePath);
+  const frenchServerPackUploadExecutionGate = readJsonOrEmpty(frenchServerPackUploadExecutionGatePath);
+  const frenchServerObjectRemoteVerify = readJsonOrEmpty(frenchServerObjectRemoteVerifyPath);
   const targetManifest = readJsonOrEmpty(targetManifestPath);
   const serverManifest = readJsonOrEmpty(serverManifestPath);
   const p44Summary = summaryOf(p44);
   const masterSummary = summaryOf(master);
+  const productionServerManifestPublishGateSummary = summaryOf(productionServerManifestPublishGate);
+  const frenchServerPackUploadEvidenceSummary = summaryOf(frenchServerPackUploadEvidence);
+  const frenchServerPackUploadExecutionGateSummary = summaryOf(frenchServerPackUploadExecutionGate);
+  const frenchServerObjectRemoteVerifySummary = summaryOf(frenchServerObjectRemoteVerify);
   const targetActivation = object(targetManifest.activation);
   const masterActionableBlockers = arr(master, 'findings')
     .filter((finding) => s(object(finding), 'severity') === 'blocker')
@@ -435,6 +568,27 @@ function main(): void {
     masterBlockers: masterActionableBlockers,
     masterReadyForApply: b(masterSummary, 'readyForApply'),
     masterMayModifyProductionAppFiles: b(masterSummary, 'mayModifyProductionAppFiles'),
+    productionServerManifestPublishGateStatus: s(productionServerManifestPublishGate, 'status'),
+    productionServerManifestPublishGateState: s(productionServerManifestPublishGateSummary, 'publishGateState'),
+    productionServerManifestPublishGateReadyForRuntimeDownloadActivation: b(productionServerManifestPublishGateSummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerPackUploadEvidenceStatus: s(frenchServerPackUploadEvidence, 'status'),
+    frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: b(frenchServerPackUploadEvidenceSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadEvidenceObjects: n(frenchServerPackUploadEvidenceSummary, 'uploadObjects'),
+    frenchServerPackUploadExecutionGateStatus: s(frenchServerPackUploadExecutionGate, 'status'),
+    frenchServerPackUploadExecutionGateDryRun: b(frenchServerPackUploadExecutionGateSummary, 'dryRun'),
+    frenchServerPackUploadExecutionGatePlannedUploadObjects: n(frenchServerPackUploadExecutionGateSummary, 'plannedUploadObjects'),
+    frenchServerPackUploadExecutionGateUploadAttempts: n(frenchServerPackUploadExecutionGateSummary, 'uploadAttempts'),
+    frenchServerPackUploadExecutionGateUploadSucceeded: n(frenchServerPackUploadExecutionGateSummary, 'uploadSucceeded'),
+    frenchServerPackUploadExecutionGateUploadStarted: b(object(frenchServerPackUploadExecutionGate.safety), 'firebaseOrServerUploadStarted'),
+    frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify: b(frenchServerPackUploadExecutionGateSummary, 'readyForRemoteObjectVerify'),
+    frenchServerObjectRemoteVerifyStatus: s(frenchServerObjectRemoteVerify, 'status'),
+    frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: b(frenchServerObjectRemoteVerifySummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerObjectRemoteVerifyHashChecked:
+      n(frenchServerObjectRemoteVerifySummary, 'hashCheckedObjects') ||
+      n(frenchServerObjectRemoteVerifySummary, 'hashCheckedCount'),
+    frenchServerObjectRemoteVerifyMissingObjects: n(frenchServerObjectRemoteVerifySummary, 'missingObjects'),
+    frenchServerObjectRemoteVerifySizeMismatches: n(frenchServerObjectRemoteVerifySummary, 'sizeMismatches'),
+    frenchServerObjectRemoteVerifyHashMismatches: n(frenchServerObjectRemoteVerifySummary, 'hashMismatches'),
     targetManifestActivationApproved: b(targetActivation, 'activationApproved'),
     targetManifestReadyForApply: b(targetActivation, 'readyForApply'),
     targetManifestMayModifyProductionAppFiles: b(targetActivation, 'mayModifyProductionAppFiles'),
@@ -473,6 +627,10 @@ function main(): void {
     inputs: {
       exactApprovalValidationGateV2Packet: rel(repoRoot, p44Path),
       frenchReviewerMasterManifest: rel(repoRoot, masterPath),
+      productionServerManifestPublishGateV2Packet: rel(repoRoot, productionServerManifestPublishGatePath),
+      frenchServerPackUploadEvidenceV2Packet: rel(repoRoot, frenchServerPackUploadEvidencePath),
+      frenchServerPackUploadExecutionGateV2Packet: rel(repoRoot, frenchServerPackUploadExecutionGatePath),
+      frenchServerObjectRemoteVerifyV2Packet: rel(repoRoot, frenchServerObjectRemoteVerifyPath),
       targetPackManifestV2Draft: rel(repoRoot, targetManifestPath),
       serverDeliveryManifestV2Draft: rel(repoRoot, serverManifestPath),
     },

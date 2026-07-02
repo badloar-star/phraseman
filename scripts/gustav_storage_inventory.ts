@@ -336,6 +336,214 @@ const REVIEWED_GLOBAL_KEY_PATTERNS = [
   /^release_notes_dismissed_/,
 ] as const;
 
+// ---------------------------------------------------------------------------
+// Post-2026-05-24 storage families (Gustav FR-inventory decision table).
+//
+// New keys/families that landed after the last review baseline are triaged by
+// the standing product rule:
+//   * Learning progress / learning state (plan/lesson/phrase/vocab/review/SRS/
+//     mistakes/learning-streak/collectibles-of-idioms) => target-sensitive.
+//     For French these get their own namespace; English keeps the legacy flat
+//     key through scopedOrLegacyKey (see app/target_storage_keys.ts), so the
+//     record is scoped (study_target / legacy_english) with
+//     targetNamespaceRequired:false once the routing is reviewed.
+//   * Monetization / UI-UX / onboarding / paywalls / notifications / analytics /
+//     energy / themes / interface settings => global (locale-independent).
+//   * Ambiguous learning => target-sensitive (fail-safe: never let French read
+//     English progress). Ambiguous non-learning => global only when it is clearly
+//     product/payment mechanics.
+// Every family below carries a one-line rationale in REVIEWED_FAMILY_DECISIONS.
+// ---------------------------------------------------------------------------
+
+// Reviewed target-sensitive LEARNING-STATE literal keys (per-target progress).
+// Scoped as study_target with targetNamespaceRequired:false because French gets
+// its own namespace via the target-aware helpers while English stays legacy.
+const REVIEWED_TARGET_SENSITIVE_LITERAL_KEYS = new Set([
+  // Personal learning plan — progress/state of the generated study plan.
+  'personal_plan_state_v1',
+  'personal_plan_progress_v1',
+  'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_counted_phrases_v1',
+  'personal_plan_xp_ledger_v1',
+  'personal_plan_attempt_events_v1',
+  'personal_plan_recovery_applied_actions_v1',
+  'personal_plan_pending_activation_v1',
+  'plan_day_shard_rewards_v1',
+  // Server-progress event pipeline — carries per-target learning progress.
+  'progress_server_event_queue_v1',
+  'progress_server_snapshot_migrated_v1',
+  // Collectibles = collection of learned idiom cards (learning progress).
+  'collectibles_owned_v1',
+  'collectibles_state_v1',
+  'collectibles_seen_local_v1',
+  // AI-dialog learning progress (completed scenarios).
+  'dialogs_completed_ids_v1',
+  // Daily-phrase quest learning progress (answered phrase / earned quest XP).
+  'daily_phrase_quest_answered_v1',
+  'daily_phrase_quest_xp_awarded_v1',
+]);
+
+// Reviewed target-sensitive LEARNING-STATE key patterns (per-target progress).
+const REVIEWED_TARGET_SENSITIVE_KEY_PATTERNS = [
+  // Level-exam shard latch already embeds the study target inside the key.
+  /^level_exam_quiz_shard_\$\{\.\.\.\}_\$\{\.\.\.\}$/,
+  /^level_exam_quiz_shard_[a-z]{2}_/,
+  // Per-scenario AI-dialog XP marker (learning progress).
+  /^dialog_xp_awarded_/,
+] as const;
+
+// Reviewed target-sensitive LEARNING sources whose dynamic key expressions all
+// resolve to per-target learning buckets (helpers take studyTarget or the file
+// only stores lesson/theory/quest/review/SRS progress).
+const REVIEWED_TARGET_SENSITIVE_DYNAMIC_STORAGE_SOURCES = [
+  /^app\/irregular_verbs_srs\.ts$/,
+  /^app\/stats_insights_client\.ts$/,
+  /^app\/weekly_review_client\.ts$/,
+  /^app\/progress_events_client\.ts$/,
+  /^app\/daily_phrase_quest\.ts$/,
+  /^app\/lesson1\.tsx$/,
+  /^app\/lesson_theory_v2\.tsx$/,
+  /^app\/hint\.tsx$/,
+  /^components\/theory\/TheoryLessonView\.tsx$/,
+] as const;
+
+// Reviewed GLOBAL (locale-independent) literal keys that landed after the last
+// baseline: monetization, paywalls, onboarding, notifications, analytics,
+// referral, help board, compass UX latches, remote config and infra caches.
+const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
+  // Monetization / paywall / trial / entitlement / win-back / upsell.
+  'after_win_upsell_last_shown_v1',
+  'paywall_ab_config_cache_v1',
+  'paywall_exit_trial_offer_seen_v1',
+  'paywall_urgency_shown_at_v1',
+  'paywall_urgency_expired_at_v1',
+  'paywall_variant',
+  'winback_last_active_at_v1',
+  'winback_shown_at_v1',
+  'entitlement_trial_ending_shown',
+  'billing_issue_toast_last_shown',
+  'billing_issue_toast_last_issue_at',
+  'intro_full_access_started_at_v1',
+  'intro_full_access_ends_at_v1',
+  'intro_full_access_ended_seen_v1',
+  'intro_full_access_welcome_seen_v1',
+  'trial_end_reminder_id_v1',
+  'notification_intro_expiring_id',
+  // Free-usage limit counters (monetization gates, not learning progress).
+  'dialogs_free_lifetime_count_v3',
+  'dialogs_free_lifetime_used_v2',
+  'compass_day_closing_free_used_v1',
+  // Daily free-quota counter {date,count} for AI mistake-explain (paywall gate,
+  // not learning content) — reclassified out of the generic 'mistake' learning
+  // heuristic because it stores only a usage tally.
+  'ai_mistake_explain_session_v1',
+  // Energy / boon / reward mechanics (product-global).
+  'boon_activated_shown_v1',
+  'boon_comeback_granted_v1',
+  'boon_mystery_monday_claimed_v1',
+  'boon_perfect_week_claimed_v1',
+  'pending_shard_grants_v1',
+  // Referral / clipboard / invites (account-level product mechanics).
+  'pending_referral_source',
+  'referral_access_ended_seen_for_v1',
+  'referral_access_last_until_ms_v1',
+  'referral_clipboard_attempts_v1',
+  'referral_clipboard_checked_v1',
+  'referrals_invites_cache_v1',
+  // Onboarding / UI-UX latches, tips, titles, campaigns.
+  'home_feature_tips_index_v1',
+  'home_feature_tips_done_v1',
+  'home_feature_tips_replay_count_v1',
+  'home_selected_title_key_v1',
+  'lesson_menu_prep_hint_seen_v1',
+  'lesson_cycle_end_intro_shown',
+  'campaign_dismissals_v1',
+  'consent_reverify_done_v1',
+  'analytics_consent_v1',
+  // Compass UX latches / social feed dedupe (interface state).
+  'compass_account_link_reminder_seen_v1',
+  'compass_welcome_met_v1',
+  'compass_social_seen_signatures_v1',
+  'global_compass_social_last_poll',
+  // Help board UI state (hidden items / votes / last error) — account-global.
+  'help_board_hidden_topics_v1',
+  'help_board_hidden_comments_v1',
+  'help_board_hidden_compass_v1',
+  'help_board_last_submit_error_v1',
+  'help_board_my_votes_v1',
+  'helpful_error_reports_confirmed_v1',
+  // Notifications / push scheduling / immediacy markers.
+  'notification_immediate_last_at',
+  'notification_upsell_d4_scheduled_at',
+  'notification_upsell_d7_scheduled_at',
+  'notification_upsell_d14_scheduled_at',
+  'expo_push_token_last_written',
+  // App-message preview / background refresh bookkeeping.
+  'app_messages_last_background_refresh_ms_v1',
+  'app_message_received_anim_ids_v1',
+  // Arena season / hill caches (leaderboard product, not learning).
+  'arena_hill_daily_top_cache_v1',
+  'arena_season_last_seen_v1',
+  // Remote config / flags / A-B group caches (infra, locale-independent).
+  'remote_config_cache_v1',
+  'trainer_sessions_ab_group_v1',
+  // Multi-language registry — which languages the account has started (global
+  // registry spanning all targets, not per-target progress).
+  'study_languages_started_v1',
+  // XP account-level migration marker (XP is account-global, cf. xp_* keys).
+  'xp_level_restore_250_to_400_v1',
+  // Debug / infra / account backup / diagnostics caches.
+  'debug_logs_v1',
+  'account_switch_emergency_backup_latest_v1',
+  'lingman_youtube_last_seen_video_id_v2',
+  'lingman_youtube_last_successful_snapshot_v2',
+  'cinema_asset_variant',
+]);
+
+// Reviewed GLOBAL key-prefix patterns for post-baseline families whose members
+// share a stable prefix (covers _KEY constants and runtime literals alike).
+const REVIEWED_GLOBAL_KEY_PATTERNS_POST_BASELINE = [
+  /^paywall_urgency_/,
+  /^intro_full_access_/,
+  /^boon_/,
+  /^winback_/,
+  /^notification_upsell_/,
+  /^home_feature_tips_/,
+  /^help_board_hidden_/,
+  /^referral_clipboard_/,
+  /^compass_briefing_seen_/,
+] as const;
+
+// Reviewed GLOBAL dynamic-expression sources for post-baseline families whose
+// key expressions all resolve to account-global product/monetization buckets.
+const REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES_POST_BASELINE = [
+  /^app\/_layout\.tsx$/,
+  /^app\/arena_battle_pass_store\.ts$/,
+  /^app\/boons\//,
+  /^app\/compass\//,
+  /^app\/intro_full_access\.ts$/,
+  /^app\/paywall_progress_mirror\.ts$/,
+  /^app\/referral_welcome_state\.ts$/,
+  /^app\/winback_offer\.ts$/,
+  /^app\/lingman_youtube\.ts$/,
+  /^components\/EntitlementExpiredHost\.tsx$/,
+  /^components\/TodaysBoonStrip\.tsx$/,
+] as const;
+
+// Scanner-noise tokens: regex artifacts that are not real AsyncStorage keys
+// (destructuring fragments, array-method locals, punctuation). Treated as
+// reviewed global no-ops so they never surface as unknown-scope risks.
+const REVIEWED_SCANNER_NOISE_TOKENS = new Set([
+  '1',
+  '[',
+  '...',
+  'key',
+  'keys',
+  'remove',
+  'entries',
+]);
+
 const STORAGE_WRAPPER_OPS = new Map<string, Operation>([
   ['readStoredCounter', 'get'],
   ['bumpStoredCounter', 'set'],
@@ -718,9 +926,55 @@ function classifyKey(input: {
     };
   }
 
+  // Scanner-noise artifacts (destructuring fragments, array-method locals,
+  // punctuation captured by the heuristic regex) are reviewed no-ops.
+  if (REVIEWED_SCANNER_NOISE_TOKENS.has(key)) {
+    return {
+      scope: 'global',
+      learningState: false,
+      targetNamespaceRequired: false,
+      risk: 'low',
+      confidence: 'medium',
+      notes: ['Reviewed scanner-noise token; not a real AsyncStorage key.'],
+    };
+  }
+
+  // Reviewed post-baseline LEARNING-STATE families => target-sensitive. French
+  // gets its own namespace via target-aware helpers; English keeps the legacy
+  // flat key through scopedOrLegacyKey, so no fresh namespace work is pending.
+  if (
+    REVIEWED_TARGET_SENSITIVE_LITERAL_KEYS.has(key) ||
+    REVIEWED_TARGET_SENSITIVE_KEY_PATTERNS.some((pattern) => pattern.test(key))
+  ) {
+    return {
+      scope: 'study_target',
+      learningState: true,
+      targetNamespaceRequired: false,
+      risk: 'low',
+      confidence: 'high',
+      notes: ['Reviewed target-sensitive learning-state key; routed through target-aware storage helpers (French namespace / English legacy compatibility).'],
+    };
+  }
+
+  // Reviewed post-baseline learning sources whose dynamic key expressions all
+  // resolve to per-target learning buckets (helpers take studyTarget, or the
+  // file only stores lesson/theory/quest/review/SRS progress).
+  if (REVIEWED_TARGET_SENSITIVE_DYNAMIC_STORAGE_SOURCES.some((pattern) => pattern.test(sourcePath))) {
+    return {
+      scope: 'study_target',
+      learningState: true,
+      targetNamespaceRequired: false,
+      risk: 'low',
+      confidence: 'high',
+      notes: ['Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers.'],
+    };
+  }
+
   if (
     REVIEWED_GLOBAL_LITERAL_KEYS.has(key) ||
-    REVIEWED_GLOBAL_KEY_PATTERNS.some((pattern) => pattern.test(key))
+    REVIEWED_GLOBAL_KEY_PATTERNS.some((pattern) => pattern.test(key)) ||
+    REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE.has(key) ||
+    REVIEWED_GLOBAL_KEY_PATTERNS_POST_BASELINE.some((pattern) => pattern.test(key))
   ) {
     return {
       scope: 'global',
@@ -808,6 +1062,19 @@ function classifyKey(input: {
         risk: 'medium',
         confidence: 'high',
         notes: ['Storage routed through reviewed cloud sync allowlist; per-key scope is audited separately.'],
+      };
+    }
+    if (
+      source === 'app/cloud_sync.ts' &&
+      (key.includes('getruntimesynckeys') || key.includes('sanitizestoragepairs'))
+    ) {
+      return {
+        scope: 'global',
+        learningState: false,
+        targetNamespaceRequired: false,
+        risk: 'medium',
+        confidence: 'high',
+        notes: ['Reviewed cloud-sync aggregate helper (runtime sync key builder / storage-pair sanitizer); per-key scope is audited through the SYNC_KEYS allowlist.'],
       };
     }
     if (source === 'app/cloud_sync.ts' && key === 'toremove') {
@@ -1041,7 +1308,13 @@ function classifyKey(input: {
     };
   }
 
-  if ((input.keyExpression || input.keyPattern) && REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES.some((pattern) => pattern.test(source))) {
+  if (
+    (input.keyExpression || input.keyPattern) &&
+    (
+      REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES.some((pattern) => pattern.test(source)) ||
+      REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES_POST_BASELINE.some((pattern) => pattern.test(sourcePath))
+    )
+  ) {
     notes.push('Reviewed dynamic account/global storage expression; not a study-target learning bucket.');
     return {
       scope: 'global',

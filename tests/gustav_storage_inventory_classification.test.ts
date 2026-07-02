@@ -5,6 +5,10 @@ import { spawnSync } from 'node:child_process';
 const ROOT = path.join(__dirname, '..');
 const RUN = 'docs/gustav/runs/2026-05-19_fr_inventory_v0a1';
 const INVENTORY_PATH = path.join(ROOT, RUN, 'inputs', 'storage_key_inventory.json');
+// Invoke tsx via the current Node binary and the resolved local tsx CLI so the
+// spawn works on Windows (bare `npx` is `npx.cmd` and fails with ENOENT under
+// spawnSync without a shell).
+const TSX_CLI = path.join(ROOT, 'node_modules', 'tsx', 'dist', 'cli.mjs');
 
 type StorageRecord = {
   key?: string;
@@ -17,7 +21,7 @@ type StorageRecord = {
 
 describe('Gustav storage inventory classification', () => {
   it('keeps reviewed global noise out of French target storage risks', () => {
-    const result = spawnSync('npx', ['tsx', 'scripts/gustav_storage_inventory.ts', '--run', RUN], {
+    const result = spawnSync(process.execPath, [TSX_CLI, 'scripts/gustav_storage_inventory.ts', '--run', RUN], {
       cwd: ROOT,
       encoding: 'utf8',
     });

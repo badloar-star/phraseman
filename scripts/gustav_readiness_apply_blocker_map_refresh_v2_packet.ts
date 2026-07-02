@@ -165,6 +165,12 @@ type Report = {
 const EXPECTED_FAILED_READINESS_IDS = ['RDY-090'];
 const P37_REPLAY_SAFE_NEXT_GOALS = new Set([
   'NEXT-PASS-P37-READINESS-APPLY-BLOCKER-MAP-REFRESH-V2',
+  // Remote-server-object-verify is the permanent non-production hold selected by the
+  // next-pass contract while read-only server credentials are absent (see
+  // gustav_next_pass_goal_contract_packet selector: remoteServerObjectVerificationGoals()).
+  // It opens no production writes, uploads, downloads, activation or migration, so it is
+  // replay-safe for the P37 readiness/apply blocker-map refresh.
+  'NEXT-PASS-REMOTE-SERVER-OBJECT-VERIFY-V2',
   'NEXT-PASS-P26-SERVER-DELIVERY-PUBLISH-PREFLIGHT-V2',
   'NEXT-PASS-P27-ADMIN-SERVER-DELIVERY-RUNTIME-PREFLIGHT-V2',
   'NEXT-PASS-P28-RUNTIME-ACTIVATION-BLOCKER-PLAN-V2',

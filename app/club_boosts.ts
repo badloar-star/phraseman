@@ -5,6 +5,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import { activateGroupBoost, getCachedGroupBoosts, invalidateGroupBoostsCache } from './firestore_boosts';
 import { emitAppEvent } from './events';
 import { triLang, type Lang } from '../constants/i18n';
@@ -291,14 +292,21 @@ export async function getBoostsHistory(): Promise<BoostHistory[]> {
 // MULTIPLIER HELPERS
 // ═══════════════════════════════════════════════════════════════════════════
 
+/** Постоянный множитель XP для подписчиков Plus — всегда видимая ценность подписки. */
+export const PREMIUM_XP_MULTIPLIER = 1.25;
+
 /**
- * Получить текущий множитель XP для клуба
- * Если несколько бустов активны, используем максимальный
+ * Получить текущий множитель XP: клубные бусты (максимальный из активных) и
+ * постоянный Plus-буст. Если активны оба — берём БОЛЬШИЙ, не перемножаем
+ * (защита от стака буст×премиум).
  */
 export async function getXPMultiplier(): Promise<number> {
   try {
-    const activeBoosts = await getActiveBoosts();
-    let maxMultiplier = 1.0;
+    const [activeBoosts, isPremium] = await Promise.all([
+      getActiveBoosts(),
+      getVerifiedPremiumStatus().catch(() => false),
+    ]);
+    let maxMultiplier = isPremium ? PREMIUM_XP_MULTIPLIER : 1.0;
 
     for (const boost of activeBoosts) {
       const def = CLUB_BOOSTS.find(b => b.id === boost.id);

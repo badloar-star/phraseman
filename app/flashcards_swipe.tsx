@@ -56,7 +56,7 @@ import {
 } from './flashcards_swipe_session';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -860,6 +860,8 @@ export default function FlashcardsSwipeScreen() {
   const quickStart = Boolean(planFlashcardsTaskId);
 
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
+    // replace на пейвол из гейта = всегда mark, иначе экран остаётся в стеке «назад» → петля.
+    markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
       params: { context: 'flashcard_training', source },

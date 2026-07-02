@@ -581,32 +581,13 @@ function CompassBubble({ children, compact = false }: { children: React.ReactNod
       <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageSmall} resizeMode="contain" />
       <View style={styles.speechBubble}>
         {typeof children === 'string' ? (
-          <TypewriterText text={children} charMs={12} skipOnPress />
+          // key по тексту — при смене вопроса на реакцию строка перепечатывается.
+          <TypewriterText key={children} text={children} charMs={12} skipOnPress />
         ) : (
           <Text style={styles.speechText}>{children}</Text>
         )}
       </View>
     </View>
-  );
-}
-
-/** Реакция Компаса под выбором: мини-пузырь, печатается заново при смене текста. */
-function ReactionLine({ text }: { text: string }) {
-  const anim = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    anim.setValue(0);
-    const a = Animated.timing(anim, { toValue: 1, duration: 220, useNativeDriver: true });
-    a.start();
-    return () => a.stop();
-  }, [anim, text]);
-  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] });
-  return (
-    <Animated.View style={[styles.reactionRow, { opacity: anim, transform: [{ translateY }] }]}>
-      <Image source={WELCOME_LOGO_SOURCE} style={styles.reactionLogo} resizeMode="contain" />
-      <View style={styles.reactionBubble}>
-        <TypewriterText key={text} text={text} charMs={11} skipOnPress />
-      </View>
-    </Animated.View>
   );
 }
 
@@ -1408,7 +1389,7 @@ function CleanOnboarding({
   const renderLevel = () => (
     <ScreenFrame
       step="level"
-      title={`Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
+      title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
       onBack={back}
       footer={<PrimaryButton label="Продолжить" onPress={() => go('goal')} disabled={!level} testID="onboarding-level-continue" />}
     >
@@ -1423,14 +1404,13 @@ function CleanOnboarding({
           />
         ))}
       </View>
-      {level ? <ReactionLine text={reactionForLevel(level, studyTarget)} /> : null}
     </ScreenFrame>
   );
 
   const renderGoal = () => (
     <ScreenFrame
       step="goal"
-      title={`Зачем тебе ${targetLabel(studyTarget, 'accusative')}?`}
+      title={goal ? reactionForGoal(goal) : `Зачем тебе ${targetLabel(studyTarget, 'accusative')}?`}
       onBack={back}
       footer={<PrimaryButton label="Продолжить" onPress={() => go('minutes')} disabled={!goal} testID="onboarding-goal-continue" />}
     >
@@ -1445,7 +1425,6 @@ function CleanOnboarding({
           />
         ))}
       </View>
-      {goal ? <ReactionLine text={reactionForGoal(goal)} /> : null}
     </ScreenFrame>
   );
 
@@ -2094,25 +2073,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
-  },
-  reactionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 16,
-  },
-  reactionLogo: {
-    width: 44,
-    height: 44,
-  },
-  reactionBubble: {
-    flex: 1,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
-    backgroundColor: 'rgba(133,143,255,0.12)',
-    paddingHorizontal: 14,
-    paddingVertical: 11,
   },
   optionList: {
     gap: 9,

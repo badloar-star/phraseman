@@ -531,7 +531,7 @@ function TabButton({
 }
 
 const styles = StyleSheet.create({
-  root: { width: '100%', alignItems: 'center' },
+  root: { flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center', paddingBottom: 60 },
   centerBlock: { width: '100%', alignItems: 'center', gap: 14 },
   bubble: {
     width: '100%',

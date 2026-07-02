@@ -17,6 +17,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
 import { resolveJobConfig } from './openai_jobs_config';
 import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolvePromptLangKey } from './explain/explain_prompts';
@@ -110,6 +111,12 @@ export const compassGenerate = onCall(
 
     // 2) Kill-switch.
     if (!jobCfg.enabled) return empty('exhausted', false);
+
+    // 2.5) Платную генерацию запускает только premium — cache-hit выше остаётся
+    // бесплатным для всех (premium-юзеры прогревают общий кэш). Free получает
+    // graceful 'exhausted' — клиент просто не показывает комментарий.
+    const isPremium = await resolvePremiumAccess(db, stableUid);
+    if (!isPremium) return empty('exhausted', false);
 
     // 3) Бюджет (промах кэша). Юзер → глобал.
     let budgetReservation: ExplainBudgetReservation | null = null;

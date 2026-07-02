@@ -24,14 +24,24 @@ window.KNOWLY_SITE = {
   })(),
 
   /* ── Воронка /start/ (квиз + оплата) ─────────────────────────────────────
-     Цены ниже — ТОЛЬКО отображение на пейволе. Реальную сумму задаёт сервер:
-     Firestore web_checkout/config.priceCents (дефолты в functions/src/web_checkout.ts).
-     Меняешь цену — меняй в ОБОИХ местах. */
+     Цены пейвол берёт С СЕРВЕРА (pricesEndpoint → web_checkout/config — то же
+     место, по которому списываются деньги; меняются в админке «🌐 Сайт»).
+     webPrices ниже — только фоллбек на случай недоступности сервера:
+     держи его примерно актуальным, но источник правды — админка. */
   webPrices: {
     monthly: { amount: 9.99, label: '$9.99' },
     yearly: { amount: 49.99, label: '$49.99', perMonth: '$4.17' },
     lifetime: { amount: 99.99, label: '$99.99' },
   },
+  pricesEndpoint: (function () {
+    try {
+      var h = window.location.hostname;
+      if (h === 'localhost' || h === '127.0.0.1') {
+        return 'http://127.0.0.1:5001/phraseman-ea0b3/us-central1/webPrices';
+      }
+    } catch (_) { /* noop */ }
+    return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webPrices';
+  })(),
   checkoutEndpoint: (function () {
     try {
       var h = window.location.hostname;

@@ -71,10 +71,10 @@
     <div id="error" class="err" style="display:none"></div>
 
     <section>
-      <h2>💰 Цены веб-оплаты (то, что реально спишется)</h2>
-      <p class="hint">Хранится в Firestore <code>web_checkout/config</code>. Витринные цены на пейволе —
-        отдельно в <code>knowly-www/assets/site-config.js → webPrices</code> (+ deploy hosting):
-        после смены цены поменяй В ОБОИХ местах, иначе на витрине одно, а спишется другое.</p>
+      <h2>💰 Цены (витрина пейвола И сумма списания — одно место)</h2>
+      <p class="hint">Единственный источник правды: <code>web_checkout/config</code>. Пейвол /start/
+        сам подтягивает эти цены с сервера — что видно на витрине, то и спишется.
+        После сохранения витрина обновится в течение ~5 минут (браузерный кэш цен).</p>
       <div class="grid">
         <div class="field"><label>Месяц, $</label><input id="price-monthly" type="number" step="0.01" min="1" /></div>
         <div class="field"><label>Год, $</label><input id="price-yearly" type="number" step="0.01" min="1" /></div>
@@ -177,7 +177,7 @@
           updatedAtIso: new Date().toISOString(),
           updatedBy: auth.currentUser?.email || '',
         }, { merge: true });
-        $('config-msg').textContent = 'Сохранено ✓ (не забудь витрину: site-config.js → webPrices)';
+        $('config-msg').textContent = 'Сохранено ✓ — витрина пейвола подхватит в течение ~5 минут';
         setTimeout(() => { $('config-msg').textContent = ''; }, 6000);
       } catch (e) {
         showError('Не сохранилось: ' + (e.message || e));

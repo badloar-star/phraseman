@@ -688,6 +688,47 @@ export const paypalOrderCapture = onRequest(
   },
 );
 
+/* ───────────────────────── Публичные цены для пейвола ───────────────────────── */
+
+/**
+ * webPrices — витрина пейвола /start/ читает цены ОТСЮДА (web_checkout/config),
+ * т.е. из того же места, по которому реально списываются деньги. Один источник
+ * правды: поменял цену в админке («🌐 Сайт») — витрина и списание меняются вместе.
+ * site-config.js webPrices остаётся только офлайн-фоллбеком.
+ */
+export const webPrices = onRequest(
+  {
+    region: REGION,
+    memory: '256MiB',
+    timeoutSeconds: 15,
+    maxInstances: 5,
+    invoker: 'public',
+  },
+  async (req, res) => {
+    const origin = typeof req.headers.origin === 'string' ? req.headers.origin : undefined;
+    res.set('Access-Control-Allow-Origin', pickAllowOrigin(origin));
+    res.set('Vary', 'Origin');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    if (req.method === 'OPTIONS') {
+      res.status(204).send('');
+      return;
+    }
+    try {
+      const config = await readConfig(getFirestore());
+      // 5 минут браузерного кэша: смена цены доезжает до витрины максимум за 5 мин.
+      res.set('Cache-Control', 'public, max-age=300');
+      res.status(200).json({
+        ok: true,
+        currency: config.currency,
+        priceCents: config.priceCents,
+      });
+    } catch (e) {
+      logger.error('webPrices failed', e);
+      res.status(502).json({ ok: false, error: 'prices_failed' });
+    }
+  },
+);
+
 /* ───────────────────────── Статус заказа для страницы «спасибо» ───────────────────────── */
 
 /**

@@ -320,7 +320,54 @@
 
   /* ───────── пейвол ───────── */
 
+  /* Цены: источник правды — сервер (webPrices ← web_checkout/config, то же место,
+     по которому списываются деньги; меняются в админке «Сайт»). site-config.js
+     webPrices — только офлайн-фоллбек до ответа сервера. */
+  var remotePrices = null;
+
+  function currencySymbol(code) {
+    if (code === 'usd') return '$';
+    if (code === 'eur') return '€';
+    return String(code || '').toUpperCase() + ' ';
+  }
+
+  function formatPrices(currency, priceCents) {
+    var s = currencySymbol(currency);
+    var fmt = function (cents) { return s + (cents / 100).toFixed(2); };
+    return {
+      monthly: { label: fmt(priceCents.monthly) },
+      yearly: { label: fmt(priceCents.yearly), perMonth: fmt(Math.round(priceCents.yearly / 12)) },
+      lifetime: { label: fmt(priceCents.lifetime) },
+    };
+  }
+
+  function updatePriceDom() {
+    if (!remotePrices) return;
+    ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
+      var b = document.querySelector('[data-price-label="' + plan + '"]');
+      if (b) b.textContent = remotePrices[plan].label;
+      if (plan === 'yearly') {
+        var small = document.querySelector('[data-price-sub="yearly"]');
+        if (small && remotePrices.yearly.perMonth) small.textContent = '≈ ' + remotePrices.yearly.perMonth + '/мес';
+      }
+    });
+  }
+
+  function loadRemotePrices() {
+    var endpoint = cfg().pricesEndpoint;
+    if (!endpoint) return;
+    fetch(endpoint)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.ok || !data.priceCents) return;
+        remotePrices = formatPrices(String(data.currency || 'usd'), data.priceCents);
+        updatePriceDom(); /* если пейвол уже на экране — обновить цифры на месте */
+      })
+      .catch(function () { /* остаёмся на фоллбеке из site-config */ });
+  }
+
   function prices() {
+    if (remotePrices) return remotePrices;
     var p = cfg().webPrices || {};
     return {
       monthly: p.monthly || { amount: 9.99, label: '$9.99' },
@@ -451,7 +498,10 @@
       badge ? h('span', { class: 'qplan-badge' }, [badge]) : null,
       h('input', { type: 'radio', name: 'plan', value: key }),
       h('span', { class: 'qplan-name' }, [name, h('small', {}, [sub])]),
-      h('span', { class: 'qplan-price' }, [h('b', {}, [priceLabel]), priceSub ? h('small', {}, [priceSub]) : null]),
+      h('span', { class: 'qplan-price' }, [
+        h('b', { 'data-price-label': key }, [priceLabel]),
+        priceSub ? h('small', key === 'yearly' ? { 'data-price-sub': 'yearly' } : {}, [priceSub]) : null,
+      ]),
     ]);
     opt.addEventListener('click', function () {
       paywallState.plan = key;
@@ -529,6 +579,7 @@
     root = document.getElementById('quiz-root');
     captureUtm();
     initMetaPixel();
+    loadRemotePrices();
     /* «строим план» не должен продолжаться после reload с середины */
     if (QUIZ[state.step] && QUIZ[state.step].id === 'build') {
       saveState({ step: state.step + 1, answers: state.answers });

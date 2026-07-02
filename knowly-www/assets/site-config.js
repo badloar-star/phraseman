@@ -63,11 +63,9 @@ window.KNOWLY_SITE = {
     } catch (_) { /* noop */ }
     return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webOrderStatus';
   })(),
-  /* PayPal Client ID (публичный, из PayPal Developer Dashboard). Пусто = кнопка PayPal скрыта.
-     ⚠️ Сейчас SANDBOX-ключ (тестовый режим, серверный paypalLive=false в web_checkout/config).
-     Для боевого PayPal: взять Live-ключи на developer.paypal.com (вкладка Live), заменить здесь,
-     обновить секреты PAYPAL_* и переключить «PayPal режим» на LIVE в админке «Сайт». */
-  paypalClientId: 'AYCVDjHk2hTGzAzMl1GoZv1PBpeGH53ijvUOXAqw5AVqMJPpcc-15k6y3g_6YIf7xJf0T4Cnhfdv-bFi',
+  /* PayPal Client ID (публичный, LIVE-приложение «knowlyapps» из PayPal Developer Dashboard).
+     Пусто = кнопка PayPal скрыта. Серверный режим: web_checkout/config.paypalLive (админка «Сайт»). */
+  paypalClientId: 'ATnteMlsxgXXXZjVclzsfJqHNQ3U4tth9fkoMS26opImYEsRmeO082QxM9np-tiB8xcAB3rJY0z2qq0l',
   /* Meta Pixel ID (из Meta Events Manager). Пусто = пиксель не грузится. */
   metaPixelId: '',
 };

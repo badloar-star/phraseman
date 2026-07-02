@@ -163,20 +163,23 @@ export default function ChipsAssembly({ scenario, lang, onSolved, playSay }: Chi
     return false;
   }, [assembled.length, words]);
 
-  /** Chip доиграл исчезновение — фиксируем слово в строке и чистим банк. */
+  /** Chip доиграл исчезновение — фиксируем слово в строке и чистим банк.
+   *  Обновители состояния остаются чистыми: победа детектится в эффекте ниже,
+   *  а не внутри setState (иначе setState родителя посреди рендера ребёнка). */
   const handleVanished = useCallback((chip: AhaChip) => {
     setPickedIds((prev) => new Set(prev).add(chip.id));
-    setAssembled((prev) => {
-      const next = [...prev, chip.word];
-      if (next.length === words.length) {
-        solvedRef.current = true;
-        void hapticSuccess();
-        playSay();
-        onSolved();
-      }
-      return next;
-    });
-  }, [onSolved, playSay, words.length]);
+    setAssembled((prev) => [...prev, chip.word]);
+  }, []);
+
+  // Фраза собрана целиком — один раз запускаем победу вне фазы рендера.
+  useEffect(() => {
+    if (solvedRef.current) return;
+    if (words.length === 0 || assembled.length !== words.length) return;
+    solvedRef.current = true;
+    void hapticSuccess();
+    playSay();
+    onSolved();
+  }, [assembled.length, onSolved, playSay, words.length]);
 
   const bankChips = deck.filter((chip) => !pickedIds.has(chip.id));
   const translation = pickTri(lang, scenario.say.translation);

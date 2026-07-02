@@ -18,8 +18,8 @@ import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
-import { streakCalendarShortWeekdays, streakWeeklyExperienceHint, streakWeeklyExperienceLabel, streakWeeklyTimeTotalHint, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
+import { monoIcon, MONO_ICON, isBusinessMode } from '../constants/monoIcon';
+import { streakCalendarShortWeekdays, streakWeeklyExperienceLabel, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
 import { LEAGUES } from './league_engine';
 import { clearFinishedWager, getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 // stationary_clubs feature удалён.
@@ -44,7 +44,7 @@ import { formatLeagueGroupBoostTimeLeft, getActiveLeagueGroupBoost } from './lea
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, readLifetimeProfileStatsCache, type LifetimeProfileStats } from './lifetime_profile_stats';
-import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
+import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { loadAchievementStates } from './achievements';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -422,8 +422,8 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         })
         : score >= 50
             ? triLang(lang, {
-                ru: 'Нужно чуть ровнее',
-                uk: 'Потрібно трохи рівніше',
+                ru: 'Занимайся чаще — ритм окрепнет',
+                uk: 'Займайся частіше — ритм зміцніє',
                 es: 'Hace falta más ritmo',
                 'pt-BR': "Precisa de mais ritmo",
                 vi: "Cần đều hơn",
@@ -452,15 +452,30 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         pl: "Pokazuje, jak stabilne było ćwiczenie w ostatnich 7 dniach. Najbardziej pomagają krótkie sesje bez długich przerw.",
     });
     const firstActiveDay = rhythmDays.find((d) => d.active);
+    // «слабый: -» с прочерком выглядел сломанным: вторую часть показываем только когда
+    // данных достаточно и слабый день реально отличается от лучшего.
+    const showWeakDay = active7 >= 3 && !!weakDay?.shortLabel && weakDay.shortLabel !== bestDay?.shortLabel;
+    const weakPart = showWeakDay
+        ? triLang(lang, {
+            ru: ` · слабый: ${weakDay.shortLabel}`,
+            uk: ` · слабкий: ${weakDay.shortLabel}`,
+            es: ` · flojo: ${weakDay.shortLabel}`,
+            'pt-BR': ` · fraco: ${weakDay.shortLabel}`,
+            vi: ` · yếu: ${weakDay.shortLabel}`,
+            id: ` · lemah: ${weakDay.shortLabel}`,
+            tr: ` · zayıf: ${weakDay.shortLabel}`,
+            pl: ` · słaby: ${weakDay.shortLabel}`,
+        })
+        : '';
     let rhythmSummary = triLang(lang, {
-        ru: `Лучший день: ${bestDay?.shortLabel ?? '-'} · слабый: ${weakDay?.shortLabel ?? '-'}`,
-        uk: `Найкращий день: ${bestDay?.shortLabel ?? '-'} · слабкий: ${weakDay?.shortLabel ?? '-'}`,
-        es: `Mejor día: ${bestDay?.shortLabel ?? '-'} · flojo: ${weakDay?.shortLabel ?? '-'}`,
-        'pt-BR': `Melhor dia: ${bestDay?.shortLabel ?? '-'} · fraco: ${weakDay?.shortLabel ?? '-'}`,
-        vi: `Ngày tốt nhất: ${bestDay?.shortLabel ?? '-'} · yếu: ${weakDay?.shortLabel ?? '-'}`,
-        id: `Hari terbaik: ${bestDay?.shortLabel ?? '-'} · lemah: ${weakDay?.shortLabel ?? '-'}`,
-        tr: `En iyi gün: ${bestDay?.shortLabel ?? '-'} · zayıf: ${weakDay?.shortLabel ?? '-'}`,
-        pl: `Najlepszy dzień: ${bestDay?.shortLabel ?? '-'} · słaby: ${weakDay?.shortLabel ?? '-'}`,
+        ru: `Лучший день: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        uk: `Найкращий день: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        es: `Mejor día: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        'pt-BR': `Melhor dia: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        vi: `Ngày tốt nhất: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        id: `Hari terbaik: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        tr: `En iyi gün: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        pl: `Najlepszy dzień: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
     });
     if (isWarmup) {
         scoreLabel = String(active7);
@@ -476,24 +491,24 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         });
         scoreColor = '#4F8FF7';
         status = triLang(lang, {
-            ru: 'Первые данные записаны',
-            uk: 'Перші дані записано',
-            es: 'Primeros datos guardados',
-            'pt-BR': "Primeiros dados salvos",
-            vi: "Đã ghi dữ liệu đầu tiên",
-            id: "Data awal tersimpan",
-            tr: "İlk veriler kaydedildi",
-            pl: "Pierwsze dane zapisane",
+            ru: 'Начало положено',
+            uk: 'Гарний старт',
+            es: 'Ya estás en marcha',
+            'pt-BR': "Você já começou",
+            vi: "Đã bắt đầu",
+            id: "Sudah dimulai",
+            tr: "Başlangıç yapıldı",
+            pl: "Dobry początek",
         });
         scoreHint = triLang(lang, {
-            ru: `Сейчас видно: ${active7} активн. дн., ${humanMinutes(avgMinutesActive, lang)} в среднем за активный день. Оценка будет уточняться после каждой практики.`,
-            uk: `Зараз видно: ${active7} акт. дн., ${humanMinutes(avgMinutesActive, lang)} у середньому за активний день. Оцінка уточнюватиметься після кожної практики.`,
-            es: `Ahora se ve: ${active7} d. activos, ${humanMinutes(avgMinutesActive, lang)} de media por día activo. La evaluación se ajusta tras cada práctica.`,
-            'pt-BR': `Agora aparece: ${active7} d. ativos, ${humanMinutes(avgMinutesActive, lang)} em média por dia ativo. A avaliação se ajusta após cada prática.`,
-            vi: `Hiện có: ${active7} ngày hoạt động, trung bình ${humanMinutes(avgMinutesActive, lang)} mỗi ngày hoạt động. Đánh giá sẽ cập nhật sau mỗi lần luyện.`,
-            id: `Saat ini terlihat: ${active7} h aktif, rata-rata ${humanMinutes(avgMinutesActive, lang)} per hari aktif. Penilaian diperbarui setelah tiap latihan.`,
-            tr: `Şu an görünen: ${active7} aktif gün, aktif gün başına ortalama ${humanMinutes(avgMinutesActive, lang)}. Değerlendirme her pratikten sonra güncellenir.`,
-            pl: `Teraz widać: ${active7} aktyw. dni, średnio ${humanMinutes(avgMinutesActive, lang)} na aktywny dzień. Ocena będzie aktualizowana po każdym ćwiczeniu.`,
+            ru: `Пока ${active7} ${pluralRu(active7, 'день', 'дня', 'дней')} практики, в среднем по ${humanMinutes(avgMinutesActive, lang)}. Позанимайся ещё — и картина станет полной.`,
+            uk: `Поки ${active7} ${pluralRu(active7, 'день', 'дні', 'днів')} практики, у середньому по ${humanMinutes(avgMinutesActive, lang)}. Позаймайся ще — і картина стане повною.`,
+            es: `Por ahora ${active7} ${active7 === 1 ? 'día' : 'días'} de práctica, ${humanMinutes(avgMinutesActive, lang)} de media. Sigue practicando y verás el panorama completo.`,
+            'pt-BR': `Por enquanto ${active7} ${active7 === 1 ? 'dia' : 'dias'} de prática, ${humanMinutes(avgMinutesActive, lang)} em média. Continue praticando e o quadro ficará completo.`,
+            vi: `Hiện có ${active7} ngày luyện tập, trung bình ${humanMinutes(avgMinutesActive, lang)}. Luyện thêm — bức tranh sẽ đầy đủ hơn.`,
+            id: `Sejauh ini ${active7} hari latihan, rata-rata ${humanMinutes(avgMinutesActive, lang)}. Terus berlatih — gambarannya akan lengkap.`,
+            tr: `Şimdilik ${active7} gün pratik, ortalama ${humanMinutes(avgMinutesActive, lang)}. Devam et — tablo netleşecek.`,
+            pl: `Na razie ${active7} ${active7 === 1 ? 'dzień' : 'dni'} praktyki, średnio ${humanMinutes(avgMinutesActive, lang)}. Ćwicz dalej — obraz będzie pełny.`,
         });
         rhythmSummary = firstActiveDay
             ? triLang(lang, {
@@ -2278,7 +2293,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
       </View>
     </StatsCardArtSurface>);
 }
-function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAction, onAction, }: {
+function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAction, onAction, weekLearned, weekDeltaMinutes, }: {
     t: any;
     f: any;
     lang: Lang;
@@ -2287,259 +2302,51 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     themeMode: ThemeMode;
     showAction: boolean;
     onAction: () => void;
+    /** Слова/фразы за последние 7 дней; null — ещё не загружено. */
+    weekLearned: { words7: number; phrases7: number } | null;
+    /** Минуты этой недели минус минуты прошлой; null — прошлая неделя пустая (нечего сравнивать). */
+    weekDeltaMinutes: number | null;
 }) {
-    const isBusiness = themeMode === 'business';
+    const isBusiness = isBusinessMode(themeMode);
     const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? t.accent : metrics.scoreColor;
     const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
     const scoreBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'practiceBalance', 'medium');
-    const daysToGoodRhythm = Math.max(0, 5 - metrics.active7);
-    const rhythmValue = metrics.isWarmup
-        ? triLang(lang, {
-            ru: `${metrics.active7} дн.`,
-            uk: `${metrics.active7} дн.`,
-            es: `${metrics.active7} d.`,
-            'pt-BR': `${metrics.active7} d.`,
-            vi: `${metrics.active7} ngày`,
-            id: `${metrics.active7} h`,
-            tr: `${metrics.active7} g.`,
-            pl: `${metrics.active7} d.`,
-        })
-        : daysToGoodRhythm === 0
-        ? triLang(lang, {
-            ru: 'ровно',
-            uk: 'рівно',
-            es: 'estable',
-            'pt-BR': "estável",
-            vi: "ổn định",
-            id: "stabil",
-            tr: "istikrarlı",
-            pl: "stabilnie",
-        })
-        : triLang(lang, {
-            ru: `+${daysToGoodRhythm} дн.`,
-            uk: `+${daysToGoodRhythm} дн.`,
-            es: `+${daysToGoodRhythm} d.`,
-            'pt-BR': `+${daysToGoodRhythm} d.`,
-            vi: `+${daysToGoodRhythm} ngày`,
-            id: `+${daysToGoodRhythm} h`,
-            tr: `+${daysToGoodRhythm} g.`,
-            pl: `+${daysToGoodRhythm} d.`,
-        });
-    const focusValue = metrics.isWarmup
-        ? metrics.avgMinutesActive >= 12
-            ? triLang(lang, {
-                ru: metrics.active7 <= 1 ? '1 длинный день' : 'длинные',
-                uk: metrics.active7 <= 1 ? '1 довгий день' : 'довгі',
-                es: metrics.active7 <= 1 ? '1 día largo' : 'largas',
-                'pt-BR': metrics.active7 <= 1 ? "1 dia longo" : "longas",
-                vi: metrics.active7 <= 1 ? "1 ngày dài" : "dài",
-                id: metrics.active7 <= 1 ? "1 hari panjang" : "panjang",
-                tr: metrics.active7 <= 1 ? "1 uzun gün" : "uzun",
-                pl: metrics.active7 <= 1 ? "1 długi dzień" : "długie",
-            })
-            : metrics.avgMinutesActive >= 5
-                ? triLang(lang, {
-                    ru: 'набираются',
-                    uk: 'набираються',
-                    es: 'crecen',
-                    'pt-BR': "crescendo",
-                    vi: "đang tăng",
-                    id: "mulai naik",
-                    tr: "artıyor",
-                    pl: "rosną",
-                })
-                : triLang(lang, {
-                    ru: 'короткие',
-                    uk: 'короткі',
-                    es: 'cortas',
-                    'pt-BR': "curtas",
-                    vi: "ngắn",
-                    id: "pendek",
-                    tr: "kısa",
-                    pl: "krótkie",
-                })
-        : metrics.avgMinutesActive >= 12
-        ? triLang(lang, {
-            ru: 'достаточно',
-            uk: 'достатньо',
-            es: 'bien',
-            'pt-BR': "bem",
-            vi: "ổn",
-            id: "baik",
-            tr: "iyi",
-            pl: "dobrze",
-        })
-        : humanMinutes(metrics.avgMinutesActive, lang);
-    const streakValue = metrics.isWarmup
-        ? triLang(lang, {
-            ru: `${metrics.totalStreak} дн.`,
-            uk: `${metrics.totalStreak} дн.`,
-            es: `${metrics.totalStreak} d.`,
-            'pt-BR': `${metrics.totalStreak} d.`,
-            vi: `${metrics.totalStreak} ngày`,
-            id: `${metrics.totalStreak} h`,
-            tr: `${metrics.totalStreak} g.`,
-            pl: `${metrics.totalStreak} d.`,
-        })
-        : metrics.totalStreak > 0
-        ? triLang(lang, {
-            ru: 'держится',
-            uk: 'тримається',
-            es: 'activa',
-            'pt-BR': "ativa",
-            vi: "đang hoạt động",
-            id: "aktif",
-            tr: "aktif",
-            pl: "aktywna",
-        })
-        : triLang(lang, {
-            ru: 'сегодня',
-            uk: 'сьогодні',
-            es: 'hoy',
-            'pt-BR': "hoje",
-            vi: "hôm nay",
-            id: "hari ini",
-            tr: "bugün",
-            pl: "dziś",
-        });
-    const learningSignals = [
+    // Слияние «Баланс практики» + «Ритм недели»: одна карточка «Твоя неделя».
+    // Прежние расплывчатые сигналы («ровно», «держится») заменены конкретными фактами.
+    const maxCombined = Math.max(1, ...metrics.rhythmDays.map((d) => d.combined));
+    const weekFacts = [
         {
             icon: 'calendar-outline' as const,
             label: triLang(lang, {
-                ru: 'Частота',
-                uk: 'Частота',
-                es: 'Frecuencia',
-                'pt-BR': "Frequência",
-                vi: "Tần suất",
-                id: "Frekuensi",
-                tr: "Sıklık",
-                pl: "Częstotliwość",
+                ru: 'Дни',
+                uk: 'Дні',
+                es: 'Días',
+                'pt-BR': "Dias",
+                vi: "Ngày",
+                id: "Hari",
+                tr: "Günler",
+                pl: "Dni",
             }),
-            value: rhythmValue,
-            hint: metrics.isWarmup
-                ? triLang(lang, {
-                    ru: `Записано активных дней: ${metrics.active7}.`,
-                    uk: `Записано активних днів: ${metrics.active7}.`,
-                    es: `Días activos registrados: ${metrics.active7}.`,
-                    'pt-BR': `Dias ativos registrados: ${metrics.active7}.`,
-                    vi: `Số ngày hoạt động đã ghi: ${metrics.active7}.`,
-                    id: `Hari aktif tercatat: ${metrics.active7}.`,
-                    tr: `Kaydedilen aktif gün: ${metrics.active7}.`,
-                    pl: `Zapisane aktywne dni: ${metrics.active7}.`,
-                })
-                : daysToGoodRhythm === 0
-                ? triLang(lang, {
-                    ru: 'На этой неделе хватает регулярности.',
-                    uk: 'Цього тижня регулярності вистачає.',
-                    es: 'Esta semana hay buena regularidad.',
-                    'pt-BR': "Esta semana há boa regularidade.",
-                    vi: "Tuần này có độ đều tốt.",
-                    id: "Minggu ini cukup teratur.",
-                    tr: "Bu hafta düzenlilik iyi.",
-                    pl: "W tym tygodniu regularność jest dobra.",
-                })
-                : triLang(lang, {
-                    ru: `Еще ${daysToGoodRhythm} активн. дн. до спокойного темпа.`,
-                    uk: `Ще ${daysToGoodRhythm} акт. дн. до спокійного темпу.`,
-                    es: `${daysToGoodRhythm} d. más para un ritmo cómodo.`,
-                    'pt-BR': `${daysToGoodRhythm} d. a mais para um ritmo confortável.`,
-                    vi: `Thêm ${daysToGoodRhythm} ngày để có nhịp thoải mái.`,
-                    id: `${daysToGoodRhythm} h lagi untuk ritme nyaman.`,
-                    tr: `Rahat bir ritim için ${daysToGoodRhythm} gün daha.`,
-                    pl: `Jeszcze ${daysToGoodRhythm} dni do wygodnego rytmu.`,
-                }),
+            value: `${metrics.active7}/7`,
         },
         {
             icon: 'time-outline' as const,
             label: triLang(lang, {
-                ru: 'Длина занятий',
-                uk: 'Довжина занять',
-                es: 'Duración',
-                'pt-BR': "Duração",
-                vi: "Thời lượng",
-                id: "Durasi",
+                ru: 'Время',
+                uk: 'Час',
+                es: 'Tiempo',
+                'pt-BR': "Tempo",
+                vi: "Thời gian",
+                id: "Waktu",
                 tr: "Süre",
-                pl: "Czas trwania",
+                pl: "Czas",
             }),
-            value: focusValue,
-            hint: metrics.isWarmup
-                ? triLang(lang, {
-                    ru: `Срез: ${metrics.active7} активн. дн., средняя длина ${humanMinutes(metrics.avgMinutesActive, lang)}. Это еще не финальная оценка.`,
-                    uk: `Зріз: ${metrics.active7} акт. дн., середня довжина ${humanMinutes(metrics.avgMinutesActive, lang)}. Це ще не фінальна оцінка.`,
-                    es: `Corte: ${metrics.active7} d. activos, media ${humanMinutes(metrics.avgMinutesActive, lang)}. Aún no es una evaluación final.`,
-                    'pt-BR': `Recorte: ${metrics.active7} d. ativos, média ${humanMinutes(metrics.avgMinutesActive, lang)}. Ainda não é uma avaliação final.`,
-                    vi: `Lát cắt: ${metrics.active7} ngày hoạt động, trung bình ${humanMinutes(metrics.avgMinutesActive, lang)}. Đây chưa phải đánh giá cuối.`,
-                    id: `Cuplikan: ${metrics.active7} h aktif, rata-rata ${humanMinutes(metrics.avgMinutesActive, lang)}. Ini belum penilaian akhir.`,
-                    tr: `Kesit: ${metrics.active7} aktif gün, ortalama ${humanMinutes(metrics.avgMinutesActive, lang)}. Bu henüz son değerlendirme değil.`,
-                    pl: `Przekrój: ${metrics.active7} aktyw. dni, średnio ${humanMinutes(metrics.avgMinutesActive, lang)}. To jeszcze nie jest końcowa ocena.`,
-                })
-                : metrics.avgMinutesActive >= 12
-                ? triLang(lang, {
-                    ru: 'Сессии уже не слишком короткие.',
-                    uk: 'Сесії вже не надто короткі.',
-                    es: 'Las sesiones ya tienen buen tamaño.',
-                    'pt-BR': "As sessões já têm um bom tamanho.",
-                    vi: "Các buổi học đã có độ dài tốt.",
-                    id: "Sesi sudah punya durasi yang baik.",
-                    tr: "Seansların uzunluğu iyi.",
-                    pl: "Sesje mają już dobrą długość.",
-                })
-                : triLang(lang, {
-                    ru: 'Цель: около 10-12 минут за подход.',
-                    uk: 'Ціль: близько 10-12 хвилин за підхід.',
-                    es: 'Meta: unos 10-12 minutos por sesión.',
-                    'pt-BR': "Meta: cerca de 10-12 minutos por sessão.",
-                    vi: "Mục tiêu: khoảng 10-12 phút mỗi buổi.",
-                    id: "Target: sekitar 10-12 menit per sesi.",
-                    tr: "Hedef: seans başına yaklaşık 10-12 dakika.",
-                    pl: "Cel: około 10-12 minut na sesję.",
-                }),
+            value: humanMinutes(metrics.minutes7, lang),
         },
         {
-            icon: 'flame-outline' as const,
-            label: triLang(lang, {
-                ru: 'Серия',
-                uk: 'Серія',
-                es: 'Racha',
-                'pt-BR': "Sequência",
-                vi: "Chuỗi",
-                id: "Rangkaian",
-                tr: "Seri",
-                pl: "Seria",
-            }),
-            value: streakValue,
-            hint: metrics.isWarmup
-                ? triLang(lang, {
-                    ru: `Текущая серия: ${metrics.totalStreak} дн.`,
-                    uk: `Поточна серія: ${metrics.totalStreak} дн.`,
-                    es: `Racha actual: ${metrics.totalStreak} d.`,
-                    'pt-BR': `Sequência atual: ${metrics.totalStreak} d.`,
-                    vi: `Chuỗi hiện tại: ${metrics.totalStreak} ngày.`,
-                    id: `Rangkaian saat ini: ${metrics.totalStreak} h.`,
-                    tr: `Mevcut seri: ${metrics.totalStreak} g.`,
-                    pl: `Obecna seria: ${metrics.totalStreak} d.`,
-                })
-                : metrics.totalStreak > 0
-                ? triLang(lang, {
-                    ru: `${metrics.totalStreak} дн. подряд поддерживают привычку.`,
-                    uk: `${metrics.totalStreak} дн. поспіль підтримують звичку.`,
-                    es: `${metrics.totalStreak} d. seguidos sostienen el hábito.`,
-                    'pt-BR': `${metrics.totalStreak} d. seguidos sustentam o hábito.`,
-                    vi: `${metrics.totalStreak} ngày liên tiếp đang giữ thói quen.`,
-                    id: `${metrics.totalStreak} h berturut-turut menopang kebiasaan.`,
-                    tr: `${metrics.totalStreak} gün üst üste alışkanlığı destekliyor.`,
-                    pl: `${metrics.totalStreak} dni z rzędu podtrzymuje nawyk.`,
-                })
-                : triLang(lang, {
-                    ru: 'Одной короткой практики хватит для старта.',
-                    uk: 'Однієї короткої практики вистачить для старту.',
-                    es: 'Una práctica corta basta para empezar.',
-                    'pt-BR': "Uma prática curta basta para começar.",
-                    vi: "Một buổi luyện ngắn là đủ để bắt đầu.",
-                    id: "Latihan singkat cukup untuk memulai.",
-                    tr: "Başlamak için kısa bir pratik yeter.",
-                    pl: "Krótka praktyka wystarczy na start.",
-                }),
+            icon: 'flash-outline' as const,
+            label: streakWeeklyExperienceLabel(lang),
+            value: String(metrics.xp7),
         },
     ];
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
@@ -2561,14 +2368,14 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
         <View style={{ flex: 1, minWidth: 0 }}>
           <Text style={{ color: scoreAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase' }}>
             {triLang(lang, {
-            ru: 'Баланс практики',
-            uk: 'Баланс практики',
-            es: 'Balance de práctica',
-            'pt-BR': "Balanço da prática",
-            vi: "Cân bằng luyện tập",
-            id: "Keseimbangan latihan",
-            tr: "Pratik dengesi",
-            pl: "Bilans ćwiczenia",
+            ru: 'Твоя неделя',
+            uk: 'Твій тиждень',
+            es: 'Tu semana',
+            'pt-BR': "Sua semana",
+            vi: "Tuần của bạn",
+            id: "Minggumu",
+            tr: "Haftan",
+            pl: "Twój tydzień",
         })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', marginTop: 4, lineHeight: f.h2 * 1.15 }} numberOfLines={2}>
@@ -2580,22 +2387,35 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
         </View>
       </View>
 
-      <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase', marginTop: 16, marginBottom: 10 }}>
-        {triLang(lang, {
-            ru: 'Что поможет сейчас',
-            uk: 'Що допоможе зараз',
-            es: 'Qué ayuda ahora',
-            'pt-BR': "O que ajuda agora",
-            vi: "Điều giúp ích lúc này",
-            id: "Yang membantu sekarang",
-            tr: "Şimdi ne yardımcı olur",
-            pl: "Co teraz pomaga",
-        })}
-      </Text>
-      {/* Bento 3-up: Частота / Длина / Серия — каждый сигнал крупной плиткой
-          с воздухом вместо тесной строки со скрытым хинтом. */}
-      <View style={{ flexDirection: 'row', gap: 8 }}>
-        {learningSignals.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 104, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance'), alignItems: 'center', justifyContent: 'flex-start' }}>
+      {/* График 7 дней — из бывшего «Ритма недели». Подпись — лучший/слабый день. */}
+      <View style={{ marginTop: 16, borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance') }}>
+        <StatBars
+          bars={metrics.rhythmDays.map((d): StatBar => ({
+            key: d.date,
+            ratio: d.combined / maxCombined,
+            active: d.active,
+            topLabel: d.points > 0 ? `${d.points} XP` : (d.minutes > 0 ? humanMinutes(d.minutes, lang) : ''),
+            bottomLabel: d.shortLabel,
+            highlight: d.isToday,
+        }))}
+          accent={scoreAccent}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'CC'}
+          inactiveColor={statsSoftBg(themeMode, 'practiceBalance', 'quiet')}
+          todayDotColor={scoreAccent}
+          height={88}
+          topLabelColor={t.textPrimary}
+          topLabelMutedColor={t.textGhost}
+          bottomLabelColor={t.textPrimary}
+          bottomLabelMutedColor={t.textMuted}
+        />
+        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }} numberOfLines={1}>
+          {metrics.rhythmSummary}
+        </Text>
+      </View>
+
+      {/* Bento 3-up: Дни / Время / Опыт — конкретные факты недели. */}
+      <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
+        {weekFacts.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 96, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance'), alignItems: 'center', justifyContent: 'flex-start' }}>
             <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
               <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
@@ -2607,6 +2427,67 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             </Text>
           </View>))}
       </View>
+
+      {/* Реальный языковой прогресс и сравнение с прошлой неделей — не только игровая валюта. */}
+      {weekLearned && (weekLearned.words7 > 0 || weekLearned.phrases7 > 0) ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12 }}>
+          <Ionicons name="book-outline" size={16} color={scoreAccent}/>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', flex: 1 }} numberOfLines={1}>
+            {(() => {
+                const w = weekLearned.words7;
+                const p = weekLearned.phrases7;
+                const wordsPart = w > 0 ? triLang(lang, {
+                    ru: `+${w} ${pluralRu(w, 'слово', 'слова', 'слов')}`,
+                    uk: `+${w} ${pluralRu(w, 'слово', 'слова', 'слів')}`,
+                    es: `+${w} ${w === 1 ? 'palabra' : 'palabras'}`,
+                    'pt-BR': `+${w} ${w === 1 ? 'palavra' : 'palavras'}`,
+                    vi: `+${w} từ`,
+                    id: `+${w} kata`,
+                    tr: `+${w} kelime`,
+                    pl: `+${w} ${w === 1 ? 'słowo' : 'słów'}`,
+                }) : '';
+                const phrasesPart = p > 0 ? triLang(lang, {
+                    ru: `+${p} ${pluralRu(p, 'фраза', 'фразы', 'фраз')}`,
+                    uk: `+${p} ${pluralRu(p, 'фраза', 'фрази', 'фраз')}`,
+                    es: `+${p} ${p === 1 ? 'frase' : 'frases'}`,
+                    'pt-BR': `+${p} ${p === 1 ? 'frase' : 'frases'}`,
+                    vi: `+${p} cụm từ`,
+                    id: `+${p} frasa`,
+                    tr: `+${p} kalıp`,
+                    pl: `+${p} ${p === 1 ? 'fraza' : 'fraz'}`,
+                }) : '';
+                const joined = [wordsPart, phrasesPart].filter(Boolean).join(triLang(lang, {
+                    ru: ' и ', uk: ' і ', es: ' y ', 'pt-BR': ' e ', vi: ' và ', id: ' dan ', tr: ' ve ', pl: ' i ',
+                }));
+                return triLang(lang, {
+                    ru: `${joined} за неделю`,
+                    uk: `${joined} за тиждень`,
+                    es: `${joined} esta semana`,
+                    'pt-BR': `${joined} esta semana`,
+                    vi: `${joined} tuần này`,
+                    id: `${joined} minggu ini`,
+                    tr: `bu hafta ${joined}`,
+                    pl: `${joined} w tym tygodniu`,
+                });
+            })()}
+          </Text>
+        </View>) : null}
+      {weekDeltaMinutes !== null && Math.abs(weekDeltaMinutes) >= 5 ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
+          <Ionicons name={weekDeltaMinutes > 0 ? 'trending-up-outline' : 'trending-down-outline'} size={16} color={weekDeltaMinutes > 0 ? '#35D07F' : t.textMuted}/>
+          <Text style={{ color: weekDeltaMinutes > 0 ? '#35D07F' : t.textMuted, fontSize: f.sub, fontWeight: '700', flex: 1 }} numberOfLines={1}>
+            {triLang(lang, {
+                ru: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'больше' : 'меньше'}, чем неделю назад`,
+                uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}, ніж тиждень тому`,
+                es: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'más' : 'menos'} que hace una semana`,
+                'pt-BR': `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'a mais' : 'a menos'} que há uma semana`,
+                vi: `${weekDeltaMinutes > 0 ? 'Nhiều hơn' : 'Ít hơn'} ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} so với tuần trước`,
+                id: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'lebih banyak' : 'lebih sedikit'} dari minggu lalu`,
+                tr: `Geçen haftadan ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'fazla' : 'az'}`,
+                pl: `O ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'więcej' : 'mniej'} niż tydzień temu`,
+            })}
+          </Text>
+        </View>) : null}
 
       {showAction ? (<View style={{ marginTop: 14, borderRadius: 16, padding: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance') }}>
           <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}>
@@ -2622,130 +2503,6 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{metrics.actionCta}</Text>
           </TouchableOpacity>
         </View>) : null}
-    </StatsCardArtSurface>);
-}
-function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
-    t: any;
-    f: any;
-    lang: Lang;
-    metrics: LearningCoachMetrics;
-    isGoldTheme: boolean;
-    themeMode: ThemeMode;
-}) {
-    const isBusiness = themeMode === 'business';
-    const scoreAccent = isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor;
-    const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
-    const scoreBorder = isGoldTheme ? GOLD_RICH.hairline : statsBorder(themeMode, 'weekRhythm', 'medium');
-    const maxCombined = Math.max(1, ...metrics.rhythmDays.map((d) => d.combined));
-    const facts = [
-        {
-            icon: 'calendar-outline' as const,
-            label: triLang(lang, {
-                ru: 'Неделя',
-                uk: 'Тиждень',
-                es: 'Semana',
-                'pt-BR': "Semana",
-                vi: "Tuần",
-                id: "Minggu",
-                tr: "Hafta",
-                pl: "Tydzień",
-            }),
-            value: `${metrics.active7}/7`,
-            hint: triLang(lang, {
-                ru: 'Сколько дней реально была практика.',
-                uk: 'Скільки днів реально була практика.',
-                es: 'Días con práctica real.',
-                'pt-BR': "Dias com prática real.",
-                vi: "Ngày có luyện tập thật.",
-                id: "Hari dengan latihan nyata.",
-                tr: "Gerçek pratik yapılan günler.",
-                pl: "Dni z prawdziwym ćwiczeniem.",
-            }),
-        },
-        {
-            icon: 'time-outline' as const,
-            label: triLang(lang, {
-                ru: 'Время',
-                uk: 'Час',
-                es: 'Tiempo',
-                'pt-BR': "Tempo",
-                vi: "Thời gian",
-                id: "Waktu",
-                tr: "Süre",
-                pl: "Czas",
-            }),
-            value: humanMinutes(metrics.minutes7, lang),
-            hint: streakWeeklyTimeTotalHint(lang, metrics.minutes7),
-        },
-        {
-            icon: 'flash-outline' as const,
-            label: streakWeeklyExperienceLabel(lang),
-            value: String(metrics.xp7),
-            hint: streakWeeklyExperienceHint(lang),
-        },
-    ];
-    const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
-    return (<StatsCardArtSurface name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} testID="stats-rhythm-week-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'weekRhythm')]}>
-      {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
-        <View style={{ flex: 1, minWidth: 0 }}>
-          <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-            {triLang(lang, {
-            ru: 'Ритм недели',
-            uk: 'Ритм тижня',
-            es: 'Ritmo semanal',
-            'pt-BR': "Ritmo semanal",
-            vi: "Nhịp tuần",
-            id: "Ritme mingguan",
-            tr: "Haftalık ritim",
-            pl: "Rytm tygodnia",
-        })}
-          </Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? f.bodyLg, fontWeight: '900', marginTop: 3 }}>
-            {metrics.rhythmSummary}
-          </Text>
-        </View>
-        <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="pulse" size={23} color={scoreAccent}/>
-        </View>
-      </View>
-
-      <View style={{ marginBottom: 14, borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'weekRhythm') }}>
-        <StatBars
-          bars={metrics.rhythmDays.map((d): StatBar => ({
-            key: d.date,
-            ratio: d.combined / maxCombined,
-            active: d.active,
-            topLabel: d.points > 0 ? `${d.points} XP` : (d.minutes > 0 ? humanMinutes(d.minutes, lang) : ''),
-            bottomLabel: d.shortLabel,
-            highlight: d.isToday,
-        }))}
-          accent={scoreAccent}
-          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'CC'}
-          inactiveColor={statsSoftBg(themeMode, 'weekRhythm', 'quiet')}
-          todayDotColor={scoreAccent}
-          height={88}
-          topLabelColor={t.textPrimary}
-          topLabelMutedColor={t.textGhost}
-          bottomLabelColor={t.textPrimary}
-          bottomLabelMutedColor={t.textMuted}
-        />
-      </View>
-
-      {/* Bento 3-up: Неделя / Время / Опыт — единый язык с «Балансом практики». */}
-      <View style={{ flexDirection: 'row', gap: 8 }}>
-        {facts.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 96, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'weekRhythm'), alignItems: 'center', justifyContent: 'flex-start' }}>
-            <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-              <Ionicons name={item.icon} size={18} color={scoreAccent}/>
-            </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2}>
-              {item.value}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
-              {item.label}
-            </Text>
-          </View>))}
-      </View>
     </StatsCardArtSurface>);
 }
 export default function StreakStats() {
@@ -2894,6 +2651,18 @@ export default function StreakStats() {
     const [aiNotes, setAiNotes] = useState<StatsInsightsNotes | null>(null);
     const [aiNotesLoading, setAiNotesLoading] = useState(false);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
+    // Слова/фразы за 7 дней — для строки прогресса в «Твоей неделе».
+    const [weekLearned, setWeekLearned] = useState<{ words7: number; phrases7: number } | null>(null);
+    // Минуты этой недели против прошлой; null — прошлая неделя пустая, сравнивать не с чем.
+    const weekDeltaMinutes = useMemo(() => {
+        if (allTimeDays.length < 8) return null;
+        const sumMinutes = (rows: TimeDayData[]) => Math.round(rows.reduce((s, d) => s + Math.max(0, d.ms), 0) / 60000);
+        const cur = sumMinutes(allTimeDays.slice(-7));
+        const prevRows = allTimeDays.slice(-14, -7);
+        const prev = sumMinutes(prevRows);
+        if (prevRows.length < 7 || prev <= 0) return null;
+        return cur - prev;
+    }, [allTimeDays]);
     const [expandedLifetimeKind, setExpandedLifetimeKind] = useState<LifetimeTotalsChartKind | null>(null);
     const [lifetimeChartDays, setLifetimeChartDays] = useState<LifetimeChartDay[]>([]);
     const [lifetimeChartLoading, setLifetimeChartLoading] = useState(false);
@@ -3019,6 +2788,9 @@ export default function StreakStats() {
         setLeagueGroupBoostMultiplier(activeLeagueGroupBoost?.multiplier ?? 1);
         setLeagueGroupBoostExpiresAt(activeLeagueGroupBoost?.expiresAt ?? 0);
         await lifetimeRefresh;
+        loadWeeklyLearnedCounts()
+            .then((counts) => setWeekLearned(counts))
+            .catch(() => setWeekLearned(null));
         // Синк аналитики + перцентиль (не блокирует рендер — запускаем после основной загрузки)
         void syncDailyAnalyticsIfNeeded();
         loadPercentileData().then(({ myXp7: x7, myTime7ms: t7, percentiles: p }) => {
@@ -3717,18 +3489,15 @@ export default function StreakStats() {
             </StatsCardArtSurface>);
         })()}
 
+        {/* «Твоя неделя»: слияние «Баланса практики» и «Ритма недели» — одна карточка,
+            один график, одни плитки и одна ИИ-заметка вместо четырёх блоков подряд. */}
         <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
-          <LearningCoachCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode} showAction={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE} onAction={() => {
+          <LearningCoachCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode} weekLearned={weekLearned} weekDeltaMinutes={weekDeltaMinutes} showAction={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE} onAction={() => {
             hapticTap();
             router.push('/trainer' as any);
         }}/>
         </StatsPremiumBlur>
         {renderAiNote('balance', 'practiceBalance')}
-
-        <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="weekRhythm" devUnlock={statsDevUnlock}>
-          <RhythmWeekCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
-        </StatsPremiumBlur>
-        {renderAiNote('rhythm', 'weekRhythm')}
 
         {/* Годовая карта активности (~365 дней); премиум — без блюра. */}
         <StatsPremiumBlur isPremium={isPremium} context="heatmap" snapshotKey="heatmap" devUnlock={statsDevUnlock}>

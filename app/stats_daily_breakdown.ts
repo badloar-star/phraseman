@@ -327,6 +327,29 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
  * Будущие дни возвращаются нулями, чтобы ось была просторной, но линия строилась только по факту.
  * `longest_streak` — без данных (null).
  */
+/**
+ * Слова и фразы, выученные за последние 7 дней (включая сегодня) и за 7 дней до них.
+ * Для строки «+N слов и +M фраз за неделю» в карточке недели на экране статистики.
+ */
+export async function loadWeeklyLearnedCounts(): Promise<{ words7: number; phrases7: number }> {
+  let store: Store = {};
+  try {
+    store = parseStore(await AsyncStorage.getItem(STORAGE_KEY));
+  } catch {
+    store = {};
+  }
+  const cursor = new Date(toDateStr(new Date()) + 'T12:00:00');
+  let words7 = 0;
+  let phrases7 = 0;
+  for (let i = 0; i < 7; i++) {
+    const row = store[toDateStr(cursor)];
+    words7 += Math.max(0, Math.floor(Number(row?.words_learned ?? 0)));
+    phrases7 += Math.max(0, Math.floor(Number(row?.phrases_learned ?? 0)));
+    cursor.setDate(cursor.getDate() - 1);
+  }
+  return { words7, phrases7 };
+}
+
 export async function loadLifetimeTotalsChartDays(
   kind: LifetimeTotalsChartKind,
   lang: Lang,

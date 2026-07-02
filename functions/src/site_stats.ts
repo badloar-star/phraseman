@@ -24,6 +24,12 @@ const EVENT_FIELDS: Record<string, string> = {
   view: 'views',
   click_ios: 'clicks_ios',
   click_android: 'clicks_android',
+  // Воронка /start/ (квиз → пейвол → оплата), см. knowly-www/assets/start.js
+  quiz_start: 'quiz_starts',
+  quiz_complete: 'quiz_completes',
+  paywall_view: 'paywall_views',
+  checkout_click: 'checkout_clicks',
+  purchase_thanks: 'purchase_thanks',
 };
 
 function pickAllowOrigin(origin: string | undefined): string {
@@ -63,6 +69,7 @@ function readNumber(value: unknown): number {
 function pageBucket(rawPage: unknown): string {
   const page = String(rawPage ?? '').slice(0, 200);
   if (page === '/' || page === '/index.html') return 'home';
+  if (page.startsWith('/start')) return 'start';
   if (page.startsWith('/download')) return 'download';
   if (page.startsWith('/contact')) return 'contact';
   if (page.startsWith('/legal')) return 'legal';

@@ -273,6 +273,19 @@ h1 {
   font-weight: 700;
   letter-spacing: -0.01em;
 }
+/* CTA на квиз-воронку /start/ (лендинг): btn-gold, но не на всю ширину */
+.quiz-cta {
+  width: auto;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 15.5px;
+}
+@media (max-width: 480px) {
+  .quiz-cta {
+    width: 100%;
+  }
+}
+
 .under-cta {
   margin: 0;
   font-size: 13.5px;

@@ -17,6 +17,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
 import {
   phraseHashFor,
   readCachedExplanation,
@@ -42,6 +43,8 @@ const MODEL_DEFAULT = 'gpt-4o-mini';
 // a rare two-part nuance without cutting mid-pair, and trims cost vs. the old word-by-word target.
 const GEN_MAX_TOKENS = 320;
 const GEN_TEMPERATURE = 0.7;
+// Дневной кап ПЛАТНЫХ генераций для free (cache-miss). Premium — без капа джоба.
+const FREE_DAILY_GEN_CAP = 5;
 
 /** Status reported to the client so the UI can distinguish cache vs. fresh vs. degraded paths. */
 export type ExplainStatus = 'ok' | 'rejected' | 'exhausted' | 'pending';
@@ -152,9 +155,18 @@ export const explainPhrase = onCall({
 
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
   //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
+  // Free-юзер запускает платную генерацию не чаще FREE_DAILY_GEN_CAP раз в день —
+  // чтение кэша выше остаётся бесплатным и безлимитным для всех.
+  const isPremium = await resolvePremiumAccess(db, stableUid);
   let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
+    budgetReservation = await reserveExplainBudget(
+      authUid,
+      stableUid,
+      jobCfg.globalDailyCap,
+      Date.now(),
+      isPremium ? null : { job: 'phrase', cap: FREE_DAILY_GEN_CAP },
+    );
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };

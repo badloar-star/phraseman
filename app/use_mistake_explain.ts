@@ -55,6 +55,12 @@ export interface UseMistakeExplainResult {
   };
 }
 
+/** Серверный дневной free-кап ИИ-разборов ('explain_free_daily_limit'). */
+function isFreeDailyLimitError(error: unknown): boolean {
+  const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
+  return message.includes('explain_free_daily_limit');
+}
+
 export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExplainResult {
   const {
     active,
@@ -128,9 +134,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeText(res.text);
         setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
         setAiMistakeState('ready');
-      } catch {
+      } catch (error) {
         if (phraseKeyRef.current !== requestKey) return;
-        setAiMistakeState('error');
+        // Дневной free-кап генераций (сервер — источник правды): не «ошибка»,
+        // а мягкое состояние с приглашением в Plus.
+        setAiMistakeState(isFreeDailyLimitError(error) ? 'limit' : 'error');
       }
     },
     [active, aiMistakeState, phraseKey, buildArgs],

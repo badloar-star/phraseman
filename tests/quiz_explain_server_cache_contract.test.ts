@@ -10,7 +10,7 @@ describe('explainQuiz server cache contract', () => {
 
     const readCache = source.indexOf('const cached = await readCachedQuizExplanation(quizHash)');
     const cacheHit = source.indexOf("status: 'ok'", readCache);
-    const reserveBudget = source.indexOf('reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap)');
+    const reserveBudget = source.indexOf('await reserveExplainBudget(');
     const openAiCall = source.indexOf('gen = await openAiChat');
 
     expect(readCache).toBeGreaterThan(-1);

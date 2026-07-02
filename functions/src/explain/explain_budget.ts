@@ -94,6 +94,60 @@ export async function enforceGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs:
   });
 }
 
+/**
+ * Дневной кап платных генераций для FREE-юзера по конкретному джобу
+ * ('choice' | 'quiz' | 'phrase' | 'mistake' | …). Считает ТОЛЬКО cache-miss
+ * (платный путь) — чтение кэша остаётся бесплатным и безлимитным для всех.
+ * Premium этот кап не проходит вовсе (вызывающий передаёт freeCap=null).
+ */
+export async function enforceFreeJobGenLimit(
+  job: string,
+  authUid: string,
+  stableUid: string,
+  cap: number,
+  nowMs: number = Date.now(),
+): Promise<void> {
+  if (cap <= 0) return;
+  const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+  await admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const resetAtMs = Number(data.resetAtMs ?? 0);
+    const fresh = nowMs >= resetAtMs;
+    const used = fresh ? 0 : Number(data.dailyCount ?? 0);
+    if (used >= cap) {
+      throw new HttpsError('resource-exhausted', 'explain_free_daily_limit');
+    }
+    tx.set(ref, {
+      authUid,
+      stableUid,
+      job,
+      dailyCount: used + 1,
+      resetAtMs: fresh ? startOfNextUtcDay(nowMs) : resetAtMs,
+      updatedAtMs: nowMs,
+    }, { merge: true });
+  });
+}
+
+async function refundFreeJobGenLimit(job: string, authUid: string, stableUid: string, nowMs: number): Promise<void> {
+  const ref = admin.firestore().collection(USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+  await admin.firestore().runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const resetAtMs = Number(data.resetAtMs ?? 0);
+    const fresh = nowMs >= resetAtMs;
+    const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+    tx.set(ref, {
+      dailyCount: Math.max(0, current - 1),
+      updatedAtMs: nowMs,
+    }, { merge: true });
+  });
+}
+
+/** Free-кап генераций для одного джоба: null → кап не применяется (premium). */
+export interface ExplainFreeCap {
+  job: string;
+  cap: number;
+}
+
 export interface ExplainBudgetReservation {
   authUid: string;
   stableUid: string;
@@ -101,6 +155,8 @@ export interface ExplainBudgetReservation {
   nowMs: number;
   userReserved: boolean;
   globalReserved: boolean;
+  freeCap?: ExplainFreeCap | null;
+  freeReserved?: boolean;
 }
 
 async function refundUserGenLimit(authUid: string, stableUid: string, nowMs: number): Promise<void> {
@@ -140,6 +196,7 @@ export async function reserveExplainBudget(
   stableUid: string,
   globalCap: number = GLOBAL_DAILY_CAP,
   nowMs: number = Date.now(),
+  freeCap: ExplainFreeCap | null = null,
 ): Promise<ExplainBudgetReservation> {
   const reservation: ExplainBudgetReservation = {
     authUid,
@@ -148,9 +205,16 @@ export async function reserveExplainBudget(
     nowMs,
     userReserved: false,
     globalReserved: false,
+    freeCap,
+    freeReserved: false,
   };
 
   try {
+    // Free-кап джоба ПЕРВЫМ: он самый узкий, и не должен тратить общие счётчики.
+    if (freeCap) {
+      await enforceFreeJobGenLimit(freeCap.job, authUid, stableUid, freeCap.cap, nowMs);
+      reservation.freeReserved = freeCap.cap > 0;
+    }
     await enforceUserGenLimit(authUid, stableUid, nowMs);
     reservation.userReserved = true;
     await enforceGlobalBudget(globalCap, nowMs);
@@ -161,6 +225,11 @@ export async function reserveExplainBudget(
       await refundUserGenLimit(authUid, stableUid, nowMs)
         .catch((refundErr) => console.error('explain budget user refund failed', refundErr));
       reservation.userReserved = false;
+    }
+    if (reservation.freeReserved && !reservation.userReserved) {
+      await refundFreeJobGenLimit(freeCap!.job, authUid, stableUid, nowMs)
+        .catch((refundErr) => console.error('explain budget free refund failed', refundErr));
+      reservation.freeReserved = false;
     }
     throw err;
   }
@@ -182,6 +251,10 @@ export async function refundExplainBudgetReservation(
   }
   if (reservation.userReserved) {
     await refundUserGenLimit(reservation.authUid, reservation.stableUid, reservation.nowMs)
+      .catch((err) => failures.push(err));
+  }
+  if (reservation.freeReserved && reservation.freeCap) {
+    await refundFreeJobGenLimit(reservation.freeCap.job, reservation.authUid, reservation.stableUid, reservation.nowMs)
       .catch((err) => failures.push(err));
   }
   if (failures.length > 0) {

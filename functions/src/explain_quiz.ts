@@ -19,6 +19,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
 import {
   quizHashFor,
   readCachedQuizExplanation,
@@ -40,6 +41,8 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'quiz_explain_billing';
+// Дневной кап ПЛАТНЫХ генераций для free (cache-miss). Premium — без капа джоба.
+const FREE_DAILY_GEN_CAP = 3;
 const GEN_MAX_TOKENS = 700; // confirm + up to 6 short option lines as JSON
 const GEN_TEMPERATURE = 0.7;
 
@@ -127,9 +130,18 @@ export const explainQuiz = onCall({
   if (!jobCfg.enabled) return emptyBatch('exhausted', false);
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
+  // Free-юзер запускает платную генерацию не чаще FREE_DAILY_GEN_CAP раз в день —
+  // чтение кэша выше остаётся бесплатным и безлимитным для всех.
+  const isPremium = await resolvePremiumAccess(db, stableUid);
   let budgetReservation: ExplainBudgetReservation | null = null;
   try {
-    budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
+    budgetReservation = await reserveExplainBudget(
+      authUid,
+      stableUid,
+      jobCfg.globalDailyCap,
+      Date.now(),
+      isPremium ? null : { job: 'quiz', cap: FREE_DAILY_GEN_CAP },
+    );
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return emptyBatch('exhausted', false);

@@ -4,6 +4,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
+import { enforceFreeJobGenLimit } from './explain/explain_budget';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 import { resolvePromptLangKey, PROMPT_LANGUAGES } from './explain/explain_prompts';
 import {
@@ -23,6 +25,21 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
 const BILLING_COLLECTION = 'mistake_explain_billing';
+
+// Дневной кап ПЛАТНЫХ генераций (cache-miss) для free-юзера. Клиентский счётчик
+// «3 разбора в день» живёт в AsyncStorage и обходится очисткой/переустановкой —
+// сервер источник правды. Premium — без капа джоба (общий rate-limit остаётся).
+const FREE_DAILY_GEN_CAP = 3;
+
+async function enforceFreeDailyGenCap(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  stableUid: string,
+): Promise<void> {
+  const isPremium = await resolvePremiumAccess(db, stableUid);
+  if (isPremium) return;
+  await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_GEN_CAP);
+}
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 // The mistake breakdown is the product's core paid hook: it must teach the ONE governing
@@ -504,6 +521,7 @@ export const explainMistake = onCall({
       return { ok: true, text: cached.eli5, remainingQuota: RQ, model, fromCache: true, variant: 'eli5' };
     }
     await enforceRateLimit(db, authUid, stableUid);
+    await enforceFreeDailyGenCap(db, authUid, stableUid);
     const gen = await generateCheckedMistakeText(apiKey, model, payload, buildEli5Messages(payload));
 
     if (cached?.status === 'ready') {
@@ -546,6 +564,7 @@ export const explainMistake = onCall({
 
   // Anti-abuse rate-limit (cache miss only).
   await enforceRateLimit(db, authUid, stableUid);
+  await enforceFreeDailyGenCap(db, authUid, stableUid);
 
   // Claim the generation lock (anti-duplicate). If someone else is generating, still serve the
   // user a live answer; we persist it below too (only the duplicate generation is avoided).

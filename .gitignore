@@ -160,6 +160,7 @@ functions/scripts/diag_*
 /maestro-debug*/
 /maestro-results/
 /qa-artifacts/
+/output/
 /maestro-smoke-results.xml
 /.metro*.log
 /metro*.log

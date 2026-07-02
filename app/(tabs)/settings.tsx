@@ -833,6 +833,151 @@ export default function SettingsMain() {
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
 
+  // Plus-плашка вынесена в переменную, чтобы стоять В РАЗНЫХ местах экрана без
+  // дублирования разметки: для БЕСПЛАТНЫХ — вверху (после «Профиля»), сразу
+  // предлагая доступ; для ПЛАТНЫХ — внизу, как статус «активирован».
+  const premiumPanel = hasPremiumAccess ? (
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              margin: SETTINGS_GROUP_MARGIN,
+              marginVertical: 20,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : premiumActiveSurface,
+              borderRadius: isCompassTheme ? 8 : 14,
+              padding: 16,
+              borderWidth: 1,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(2) : {}),
+            }}
+            onPress={() => router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any)}
+            activeOpacity={0.85}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
+            <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
+                {premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
+              </Text>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
+                {isPremium && premiumPlan === 'lifetime'
+                  ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
+                  : isPremium && premiumPlan === 'yearly'
+                  ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
+                  : isPremium && premiumPlan === 'monthly'
+                    ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
+                    : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')}
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={[
+              {
+                flexDirection: 'row',
+                alignItems: 'center',
+                margin: SETTINGS_GROUP_MARGIN,
+                marginVertical: 20,
+                backgroundColor: settingsPanelBg,
+                borderRadius: isCompassTheme ? 8 : 14,
+                padding: 16,
+                borderWidth: 0.5,
+                borderColor: settingsBorder,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(1),
+            ]}
+            onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any)}
+            activeOpacity={0.85}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                Plus
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
+                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny')}
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+          </TouchableOpacity>
+        );
+
+  const premiumDetails = hasPremiumAccess && plusAccessDetails.length > 0 ? (
+          <View
+            testID="settings-plus-access-details"
+            style={{
+              marginHorizontal: SETTINGS_GROUP_MARGIN,
+              marginTop: -10,
+              marginBottom: 16,
+              paddingVertical: 6,
+              paddingHorizontal: 12,
+              borderRadius: isCompassTheme ? 8 : 12,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsPanelBg,
+              borderWidth: 0.5,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : settingsBorder,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            {plusAccessDetails.map((detail, index) => (
+              <View
+                key={detail.key}
+                testID={detail.testID}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingVertical: 10,
+                  borderTopWidth: index === 0 ? 0 : 0.5,
+                  borderTopColor: isCompassTheme ? COMPASS_RICH.hairline : settingsDivider,
+                }}
+              >
+                <View
+                  style={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: 17,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                    marginRight: 10,
+                  }}
+                >
+                  <Ionicons name={detail.icon} size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text
+                    testID={detail.titleTestID}
+                    style={{
+                      color: isCompassTheme ? COMPASS_RICH.cream : t.textPrimary,
+                      fontSize: f.caption,
+                      fontWeight: '900',
+                    }}
+                  >
+                    {detail.title}
+                  </Text>
+                  <Text
+                    testID={detail.subtitleTestID}
+                    style={{
+                      color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond,
+                      fontSize: f.caption,
+                      lineHeight: 18,
+                      fontWeight: '700',
+                      marginTop: 2,
+                    }}
+                  >
+                    {detail.subtitle}
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        ) : null;
+
   return (
     <ScreenGradient>
       <BouncyWrap style={bouncyStyle}>
@@ -962,21 +1107,9 @@ export default function SettingsMain() {
             testID="settings-language-row"
             icon="language"
             color="teal"
-            label={s.settings.lang}
+            label={L('Язык интерфейса', 'Мова інтерфейсу', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
             sub={LANG_NATIVE[lang]}
             onPress={() => router.push('/settings_language' as any)}
-          />
-          <SettingsRow
-            testID="settings-analytics-consent"
-            icon="stats-chart"
-            color="teal"
-            label={L('Отправлять данные об использовании', 'Надсилати дані про використання', 'Enviar datos de uso', 'Enviar dados de uso', 'Gửi dữ liệu sử dụng', 'Kirim data penggunaan', 'Kullanım verisi gönder', 'Wysyłać dane o użytkowaniu')}
-            onPress={() => {
-              // Открываем модал; черновик галочки = текущее состояние (галочка «Не
-              // отправлять» отмечена, когда сбор ВЫКЛЮЧЕН).
-              setAnalyticsOptOutDraft(!analyticsOn);
-              setAnalyticsModalVisible(true);
-            }}
           />
         </SettingsGroup>
         {/* Баннер: нет ника */}
@@ -1012,8 +1145,26 @@ export default function SettingsMain() {
           </TouchableOpacity>
         )}
 
+        {/* Предложение Plus — для БЕСПЛАТНЫХ сразу после «Профиля»: раньше плашка
+            жила в самом низу экрана, и бесплатный юзер мог до неё не доскроллить.
+            Промокод рядом (тоже путь к Plus), поэтому отдельной секции «Промокоды»
+            больше нет. */}
+        {!hasPremiumAccess ? premiumPanel : null}
+        {!hasPremiumAccess && promoCodesOn ? (
+          <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+            <SettingsRow
+              testID="settings-promo-code-row"
+              icon="ticket-outline"
+              color="purple"
+              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+              sub={L('Активируй код и получи Plus', 'Активуй код і отримай Plus', 'Activa un código y consigue Plus', 'Ative um código e ganhe Plus', 'Kích hoạt mã để nhận Plus', 'Aktifkan kode dan dapatkan Plus', 'Kodu etkinleştir ve Plus al', 'Aktywuj kod i odbierz Plus')}
+              onPress={() => router.push('/promo_code_entry' as any)}
+            />
+          </SettingsGroup>
+        ) : null}
 
-        <SettingsSectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
+
+        <SettingsSectionTitle title={L('Внешний вид и отклик', 'Вигляд і відгук', 'Apariencia y respuesta', 'Aparência e resposta', 'Giao diện và phản hồi', 'Tampilan dan respons', 'Görünüm ve geri bildirim', 'Wygląd i reakcje')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="color-palette"
@@ -1126,13 +1277,6 @@ export default function SettingsMain() {
             label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
             onPress={() => router.push('/settings_edu')}
           />
-          <SettingsRow
-            icon="notifications"
-            color="red"
-            label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')}
-            sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
-            onPress={() => router.push('/settings_notifications')}
-          />
           {/* Настройки Компаса — только для Plus: у фри Компас живёт в витринном
               режиме, персональные тумблеры — перк полного доступа. */}
           {hasPremiumAccess ? (
@@ -1145,13 +1289,20 @@ export default function SettingsMain() {
               onPress={() => router.push('/compass_settings' as never)}
             />
           ) : null}
+          <SettingsRow
+            icon="notifications"
+            color="red"
+            label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')}
+            sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
+            onPress={() => router.push('/settings_notifications')}
+          />
           {homeTipsReplayAvailable ? (
             <SettingsRow
               testID="settings-show-home-tips"
-              icon="compass-outline"
+              icon="bulb"
               color="teal"
               label={L('Подсказки на главной', 'Підказки на головній', 'Consejos en inicio', 'Dicas na tela inicial', 'Mẹo ở trang chính', 'Tips di beranda', 'Ana ekrandaki ipuçları', 'Wskazówki na głównej')}
-              sub={L('Показать карточки-компас ещё раз', 'Показати картки-компас ще раз', 'Mostrar las tarjetas guía otra vez', 'Mostrar os cartões-guia de novo', 'Hiện lại các thẻ hướng dẫn', 'Tampilkan kartu panduan lagi', 'Rehber kartları tekrar göster', 'Pokaż karty przewodnika ponownie')}
+              sub={L('Показать карточки-подсказки ещё раз', 'Показати картки-підказки ще раз', 'Mostrar las tarjetas guía otra vez', 'Mostrar os cartões-guia de novo', 'Hiện lại các thẻ hướng dẫn', 'Tampilkan kartu panduan lagi', 'Rehber kartları tekrar göster', 'Pokaż karty przewodnika ponownie')}
               onPress={resetHomeFeatureTips}
             />
           ) : null}
@@ -1159,42 +1310,29 @@ export default function SettingsMain() {
               Каталог живёт в components/admin_panel/sections/GiftsCatalogSection.tsx. */}
         </SettingsGroup>
 
-        {ideasOn ? (
-          <>
-            <SettingsSectionTitle title={L('Сообщество', 'Спільнота', 'Comunidad', 'Comunidade', 'Cộng đồng', 'Komunitas', 'Topluluk', 'Społeczność')} />
-            <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-              <SettingsRow
-                testID="settings-ideas-row"
-                icon="bulb"
-                color="yellow"
-                label={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
-                sub={L('Твоя идея — год доступа', 'Твоя ідея — рік доступу', 'Tu idea — un año de acceso', 'Sua ideia — um ano de acesso', 'Ý tưởng của bạn — một năm truy cập', 'Idemu — setahun akses', 'Fikrin — bir yıl erişim', 'Twój pomysł — rok dostępu')}
-                onPress={() => router.push('/ideas_submit' as any)}
-              />
-            </SettingsGroup>
-          </>
-        ) : null}
-
-        {promoCodesOn ? (
-          <>
-            <SettingsSectionTitle title={L('Промокоды', 'Промокоди', 'Códigos promocionales', 'Códigos promocionais', 'Mã khuyến mãi', 'Kode promo', 'Promosyon kodları', 'Kody promocyjne')} />
-            <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-              <SettingsRow
-                testID="settings-promo-code-row"
-                icon="ticket-outline"
-                color="purple"
-                label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-                sub={L('Активируй код и получи Plus', 'Активуй код і отримай Plus', 'Activa un código y consigue Plus', 'Ative um código e ganhe Plus', 'Kích hoạt mã để nhận Plus', 'Aktifkan kode dan dapatkan Plus', 'Kodu etkinleştir ve Plus al', 'Aktywuj kod i odbierz Plus')}
-                onPress={() => router.push('/promo_code_entry' as any)}
-              />
-            </SettingsGroup>
-          </>
-        ) : null}
-
-
-
-        <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
+        {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по
+            одному ряду и плодила лишние заголовки. «Пригласить друга» ведёт на
+            уже готовый экран, куда из настроек раньше не было входа. */}
+        <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-invite-friend-row"
+            icon="people"
+            color="teal"
+            label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
+            sub={L('Вы оба получите бонус', 'Ви обоє отримаєте бонус', 'Ambos recibís un bonus', 'Vocês dois ganham um bônus', 'Cả hai đều nhận thưởng', 'Kalian berdua dapat bonus', 'İkiniz de bonus alırsınız', 'Oboje dostaniecie bonus')}
+            onPress={() => router.push('/settings_invite_friend' as any)}
+          />
+          {ideasOn ? (
+            <SettingsRow
+              testID="settings-ideas-row"
+              icon="bulb"
+              color="yellow"
+              label={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
+              sub={L('Твоя идея — год доступа', 'Твоя ідея — рік доступу', 'Tu idea — un año de acceso', 'Sua ideia — um ano de acesso', 'Ý tưởng của bạn — một năm truy cập', 'Idemu — setahun akses', 'Fikrin — bir yıl erişim', 'Twój pomysł — rok dostępu')}
+              onPress={() => router.push('/ideas_submit' as any)}
+            />
+          ) : null}
           <SettingsRow
             icon="mail"
             color="blue"
@@ -1225,190 +1363,68 @@ export default function SettingsMain() {
             />
           ) : null}
         </SettingsGroup>
-        {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat / VIP */}
-        {hasPremiumAccess ? (
+        {/* Plus внизу — только СТАТУС для платных (плашка «активирован» + детали
+            доступа). Для бесплатных предложение Plus стоит ВВЕРХУ, после «Профиля»,
+            чтобы его точно увидели без долгого скролла. */}
+        {hasPremiumAccess ? premiumPanel : null}
+        {premiumDetails}
 
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              margin: SETTINGS_GROUP_MARGIN,
-              marginVertical: 20,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : premiumActiveSurface,
-              borderRadius: isCompassTheme ? 8 : 14,
-              padding: 16,
-              borderWidth: 1,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct,
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(2) : {}),
+        {/* Приватность и данные — всё, что касается данных пользователя, собрано в
+            один блок внизу: согласие на аналитику (раньше терялось в «Профиле»),
+            юридические документы (раньше только мелким шрифтом в подвале) и
+            удаление аккаунта (раньше голой серой строкой без группы). */}
+        <SettingsSectionTitle title={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')} />
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-analytics-consent"
+            icon="stats-chart"
+            color="teal"
+            label={L('Данные об использовании', 'Дані про використання', 'Datos de uso', 'Dados de uso', 'Dữ liệu sử dụng', 'Data penggunaan', 'Kullanım verileri', 'Dane o użytkowaniu')}
+            sub={analyticsOn
+              ? L('Отправляются — помогают улучшать приложение', 'Надсилаються — допомагають покращувати застосунок', 'Se envían — ayudan a mejorar la app', 'São enviados — ajudam a melhorar o app', 'Đang gửi — giúp cải thiện ứng dụng', 'Dikirim — membantu memperbaiki aplikasi', 'Gönderiliyor — uygulamayı geliştirir', 'Wysyłane — pomagają ulepszać aplikację')
+              : L('Не отправляются', 'Не надсилаються', 'No se envían', 'Não são enviados', 'Không gửi', 'Tidak dikirim', 'Gönderilmiyor', 'Nie są wysyłane')}
+            onPress={() => {
+              // Открываем модал; черновик галочки = текущее состояние (галочка «Не
+              // отправлять» отмечена, когда сбор ВЫКЛЮЧЕН).
+              setAnalyticsOptOutDraft(!analyticsOn);
+              setAnalyticsModalVisible(true);
             }}
-            onPress={() => router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any)}
-            activeOpacity={0.85}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-            <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
-              </Text>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {isPremium && premiumPlan === 'lifetime'
-                  ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
-                  : isPremium && premiumPlan === 'yearly'
-                  ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
-                  : isPremium && premiumPlan === 'monthly'
-                    ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
-                    : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')}
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={[
-              {
-                flexDirection: 'row',
-                alignItems: 'center',
-                margin: SETTINGS_GROUP_MARGIN,
-                marginVertical: 20,
-                backgroundColor: settingsPanelBg,
-                borderRadius: isCompassTheme ? 8 : 14,
-                padding: 16,
-                borderWidth: 0.5,
-                borderColor: settingsBorder,
-                overflow: 'hidden',
-              },
-              isCompassTheme && compassShadow(1),
-            ]}
-            onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any)}
-            activeOpacity={0.85}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                Plus
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny')}
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
-          </TouchableOpacity>
-        )}
-        {hasPremiumAccess && plusAccessDetails.length > 0 ? (
-          <View
-            testID="settings-plus-access-details"
-            style={{
-              marginHorizontal: SETTINGS_GROUP_MARGIN,
-              marginTop: -10,
-              marginBottom: 16,
-              paddingVertical: 6,
-              paddingHorizontal: 12,
-              borderRadius: isCompassTheme ? 8 : 12,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsPanelBg,
-              borderWidth: 0.5,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : settingsBorder,
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
+          />
+          <SettingsRow
+            testID="settings-privacy-policy"
+            icon="lock-closed"
+            color="gray"
+            label={L('Политика конфиденциальности', 'Політика конфіденційності', 'Política de privacidad', 'Política de privacidade', 'Chính sách bảo mật', 'Kebijakan privasi', 'Gizlilik politikası', 'Polityka prywatności')}
+            onPress={() => {
+              doHaptic();
+              void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
             }}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            {plusAccessDetails.map((detail, index) => (
-              <View
-                key={detail.key}
-                testID={detail.testID}
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  paddingVertical: 10,
-                  borderTopWidth: index === 0 ? 0 : 0.5,
-                  borderTopColor: isCompassTheme ? COMPASS_RICH.hairline : settingsDivider,
-                }}
-              >
-                <View
-                  style={{
-                    width: 34,
-                    height: 34,
-                    borderRadius: 17,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-                    marginRight: 10,
-                  }}
-                >
-                  <Ionicons name={detail.icon} size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text
-                    testID={detail.titleTestID}
-                    style={{
-                      color: isCompassTheme ? COMPASS_RICH.cream : t.textPrimary,
-                      fontSize: f.caption,
-                      fontWeight: '900',
-                    }}
-                  >
-                    {detail.title}
-                  </Text>
-                  <Text
-                    testID={detail.subtitleTestID}
-                    style={{
-                      color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond,
-                      fontSize: f.caption,
-                      lineHeight: 18,
-                      fontWeight: '700',
-                      marginTop: 2,
-                    }}
-                  >
-                    {detail.subtitle}
-                  </Text>
-                </View>
-              </View>
-            ))}
-          </View>
-        ) : null}
-        <TouchableOpacity
-          testID="settings-delete-account"
-          accessibilityRole="button"
-          hitSlop={{ top: 12, right: 20, bottom: 12, left: 20 }}
-          activeOpacity={0.7}
-          onPress={() => {
-            doHaptic();
-            setDeleteAccountModalVisible(true);
-          }}
-          style={{ alignSelf: 'center', marginTop: -4, paddingHorizontal: 18, paddingVertical: 10 }}
-        >
-          <Text style={{ color: screenGhost, fontSize: f.caption, fontWeight: '600', textAlign: 'center' }}>
-            {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
-          </Text>
-        </TouchableOpacity>
+          />
+          <SettingsRow
+            testID="settings-terms"
+            icon="document-text"
+            color="gray"
+            label={L('Условия использования', 'Умови використання', 'Términos de uso', 'Termos de uso', 'Điều khoản sử dụng', 'Ketentuan penggunaan', 'Kullanım koşulları', 'Warunki użytkowania')}
+            onPress={() => {
+              doHaptic();
+              void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
+            }}
+          />
+          <SettingsRow
+            testID="settings-delete-account"
+            icon="trash"
+            color="red"
+            danger
+            label={L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
+            onPress={() => {
+              doHaptic();
+              setDeleteAccountModalVisible(true);
+            }}
+          />
+        </SettingsGroup>
 
-        {/* Подвал */}
+        {/* Подвал — только бренд (юр. документы переехали в «Приватность и данные»). */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
-          <View style={{ flexDirection:'row', flexWrap:'wrap', justifyContent:'center', alignItems:'center', gap:16, marginBottom:20, paddingHorizontal:16 }}>
-            <TapScale
-              onPress={() => {
-                doHaptic();
-                void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
-              }}
-              withHaptic={false}
-            >
-              <Text numberOfLines={1} style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                Privacy Policy
-              </Text>
-            </TapScale>
-            <TapScale
-              onPress={() => {
-                doHaptic();
-                void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
-              }}
-              withHaptic={false}
-            >
-              <Text numberOfLines={1} style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                Terms of Use
-              </Text>
-            </TapScale>
-          </View>
           <TouchableOpacity activeOpacity={1}>
             <Text style={{ color:screenMuted, fontSize:f.caption, fontWeight:'600', letterSpacing:0.5, textAlign:'center' }}>
               PHRASEMAN

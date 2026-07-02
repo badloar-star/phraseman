@@ -365,6 +365,33 @@ const STATE_KEY  = 'league_state_v3';
 const RESULT_KEY = 'league_result_pending';
 const RESULT_CONSUMED_SIG_KEY = 'league_result_consumed_sig';
 
+// ── Межхостовый session-guard для LeagueResultModal ─────────────────────────
+// Модалку итогов недели показывают И home.tsx, И club_screen.tsx — у каждого
+// свой локальный useRef, который не знает про другой хост. Если оба хоста
+// одновременно получают один и тот же pending (например, оба смонтированы
+// или один ремаунтится), локальные рефы не спасают. Guard живёт на уровне
+// МОДУЛЯ (не компонента), переживает ремаунт любого хоста.
+let leagueResultSessionConsumedSig: string | null = null;
+
+/**
+ * Пытается «забронировать» показ модалки для данной сигнатуры результата.
+ * Первый хост, вызвавший это для сигнатуры X, получает true и должен показать
+ * модалку. Любой последующий вызов (тот же хост повторно или другой хост) с
+ * той же сигнатурой получает false — показывать не нужно, её уже показывают/
+ * показали.
+ */
+export const tryAcquireLeagueResultModal = (sig: string): boolean => {
+  if (!sig) return false;
+  if (leagueResultSessionConsumedSig === sig) return false;
+  leagueResultSessionConsumedSig = sig;
+  return true;
+};
+
+/** Только для тестов: сбрасывает module-level session-guard между кейсами. */
+export const __resetLeagueResultSessionGuardForTests = () => {
+  leagueResultSessionConsumedSig = null;
+};
+
 export const LEAGUE_RESULT_ZONE_RATIO = 0.15;
 
 // Math.round даёт меньший размер зон для большинства групп (например, 7 × 0.15 = 1.05 → round=1, ceil=2),
@@ -495,6 +522,24 @@ export const getLeagueResultSignature = (result: LeagueResult): string => JSON.s
   demoted: result.demoted,
 });
 
+/**
+ * true, если результат с данной сигнатурой уже был показан и подтверждён
+ * (consumed_sig проставляется markLeagueResultShown в момент показа и
+ * clearPendingResult в момент закрытия — см. ниже). Используется в пути
+ * показа (checkLeagueOnAppOpen, loadPendingResult), чтобы cloud restore или
+ * повторный rollover не воскрешали уже закрытую модалку.
+ */
+const isLeagueResultAlreadyConsumed = async (result: LeagueResult | null): Promise<boolean> => {
+  if (!result) return false;
+  try {
+    const consumedSig = await AsyncStorage.getItem(RESULT_CONSUMED_SIG_KEY);
+    if (!consumedSig) return false;
+    return consumedSig === getLeagueResultSignature(result);
+  } catch {
+    return false;
+  }
+};
+
 // ISO week number — граница в понедельник (как в hall_of_fame_utils)
 export const getWeekId = (): string => {
   const d = new Date();
@@ -537,6 +582,13 @@ export const loadPendingResult = async (): Promise<LeagueResult | null> => {
     if (state && state.leagueId !== repaired.newLeagueId) {
       await saveLeagueState({ ...state, leagueId: repaired.newLeagueId });
     }
+    // Латч: этот результат уже был показан и подтверждён ранее (markLeagueResultShown /
+    // clearPendingResult). Такое случается, если cloud restore (cloud_sync.ts) воскресил
+    // уже закрытый pending с другого устройства/сессии. Чистим и не отдаём наверх.
+    if (await isLeagueResultAlreadyConsumed(repaired)) {
+      await AsyncStorage.removeItem(RESULT_KEY).catch(() => {});
+      return null;
+    }
     return repaired;
   } catch { return null; }
 };
@@ -552,6 +604,21 @@ export const clearPendingResult = async () => {
       await AsyncStorage.setItem(RESULT_CONSUMED_SIG_KEY, getLeagueResultSignature(pending));
     }
     await AsyncStorage.removeItem(RESULT_KEY);
+  } catch {}
+};
+
+/**
+ * Отмечает результат как «показанный» СРАЗУ в момент фактического показа модалки
+ * (в отличие от clearPendingResult, который хосты вызывают в момент закрытия и
+ * фоном, без await). Вызывать в момент рендера/открытия LeagueResultModal, с await —
+ * так даже kill приложения сразу после показа (до того как юзер успел закрыть модалку)
+ * не приводит к повторному показу при следующем запуске: consumed_sig уже на диске.
+ * Идемпотентно и совместимо с clearPendingResult (использует тот же RESULT_CONSUMED_SIG_KEY
+ * и формат сигнатуры getLeagueResultSignature).
+ */
+export const markLeagueResultShown = async (result: LeagueResult): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(RESULT_CONSUMED_SIG_KEY, getLeagueResultSignature(result));
   } catch {}
 };
 
@@ -739,6 +806,13 @@ export const checkLeagueOnAppOpen = async (
     } else {
       rememberLeagueStateSnapshot(fallbackState);
     }
+    // Латч: pending с этой сигнатурой уже был показан/подтверждён ранее (обычно —
+    // cloud restore воскресил запись, уже закрытую на этом же или другом устройстве).
+    // Чистим best-effort и говорим хосту «показывать нечего».
+    if (await isLeagueResultAlreadyConsumed(safePending)) {
+      await AsyncStorage.removeItem(RESULT_KEY).catch(() => {});
+      return { needShowResult: false, result: null, state: fallbackState };
+    }
     return { needShowResult: true, result: safePending, state: fallbackState };
   }
 
@@ -798,6 +872,13 @@ export const checkLeagueOnAppOpen = async (
     };
     if (remote) await saveLeagueState(newState);
     else rememberLeagueStateSnapshot(newState);
+    // Латч на всякий случай: если только что вычисленный результат совпал по сигнатуре
+    // с уже потреблённым (например, повторный вызов до того как state.weekId долетел до
+    // диска) — не показываем повторно.
+    if (await isLeagueResultAlreadyConsumed(result)) {
+      await AsyncStorage.removeItem(RESULT_KEY).catch(() => {});
+      return { needShowResult: false, result: null, state: newState };
+    }
     return { needShowResult: true, result, state: newState };
   }
 

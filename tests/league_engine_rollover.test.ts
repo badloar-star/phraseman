@@ -25,6 +25,9 @@ import {
   getLeagueResultSignature,
   getWeekId,
   loadPendingResult,
+  markLeagueResultShown,
+  tryAcquireLeagueResultModal,
+  __resetLeagueResultSessionGuardForTests,
   type GroupMember,
   type LeagueState,
 } from '../app/league_engine';
@@ -114,6 +117,7 @@ describe('league weekly rollover', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     __resetRemoteFlagsForTest();
+    __resetLeagueResultSessionGuardForTests();
     jest.clearAllMocks();
   });
 
@@ -413,5 +417,56 @@ describe('league weekly rollover', () => {
       leagueId: 1,
       weekId: getWeekId(),
     });
+  });
+
+  it('does not show a pending result whose signature is already consumed_sig (cloud restore scenario)', async () => {
+    await saveState({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group: makeGroup(1200),
+    });
+
+    // Симулируем: результат уже был показан и подтверждён (markLeagueResultShown записал
+    // consumed_sig), но pending всё ещё лежит в сторе — например, cloud restore (cloud_sync.ts)
+    // воскресил старую запись league_result_pending с другого устройства ПОСЛЕ того, как
+    // consumed_sig уже был записан локально.
+    const firstOpen = await checkLeagueOnAppOpen('QA Monday', 1200);
+    expect(firstOpen.needShowResult).toBe(true);
+    await markLeagueResultShown(firstOpen.result!);
+
+    // pending остаётся в сторе (симулируем воскрешение записи облаком) — но с тем же
+    // содержимым, что уже помечено consumed.
+    await AsyncStorage.setItem('league_result_pending', JSON.stringify(firstOpen.result));
+
+    const resurrected = await checkLeagueOnAppOpen('QA Monday', 1200);
+    expect(resurrected.needShowResult).toBe(false);
+    expect(resurrected.result).toBeNull();
+    expect(await AsyncStorage.getItem('league_result_pending')).toBeNull();
+
+    // Тот же сценарий, но через путь loadPendingResult (club_screen.tsx читает так).
+    await AsyncStorage.setItem('league_result_pending', JSON.stringify(firstOpen.result));
+    const viaLoadPending = await loadPendingResult();
+    expect(viaLoadPending).toBeNull();
+    expect(await AsyncStorage.getItem('league_result_pending')).toBeNull();
+  });
+
+  it('acquires the module-level session guard once per signature — second host gets false', () => {
+    const result = calculateResult({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group: makeGroup(1200),
+    }, 1200);
+    const sig = getLeagueResultSignature(result);
+
+    // Первый хост (например home.tsx) бронирует показ.
+    expect(tryAcquireLeagueResultModal(sig)).toBe(true);
+    // Второй хост (club_screen.tsx) с той же сигнатурой — уже забронировано, не показывает.
+    expect(tryAcquireLeagueResultModal(sig)).toBe(false);
+    // Повторный вызов тем же (первым) хостом — тоже false, идемпотентно.
+    expect(tryAcquireLeagueResultModal(sig)).toBe(false);
+
+    // Другая сигнатура (другой результат/другая неделя) — можно бронировать заново.
+    const otherSig = getLeagueResultSignature({ ...result, myRank: result.myRank + 1 });
+    expect(tryAcquireLeagueResultModal(otherSig)).toBe(true);
   });
 });

@@ -250,18 +250,25 @@ function buildActivityRows(
     };
   });
 
+  // Рекорд считаем по всей истории statsMap, а не по последним 14 дням:
+  // окно days обрезало любой рекорд длиннее двух недель.
   let bestStreak = 0;
   let curStreak = 0;
-  for (const d of days) {
-    if (d.active) {
-      curStreak += 1;
-      bestStreak = Math.max(bestStreak, curStreak);
-    } else {
-      curStreak = 0;
-    }
+  let prevActiveDayMs = 0;
+  for (const dateStr of statsKeys) {
+    if (extractPoints(statsMap[dateStr]) <= 0) continue;
+    const dayMs = new Date(`${dateStr}T12:00:00`).getTime();
+    curStreak = dayMs - prevActiveDayMs <= 26 * 3600 * 1000 ? curStreak + 1 : 1;
+    prevActiveDayMs = dayMs;
+    bestStreak = Math.max(bestStreak, curStreak);
   }
 
   const values = Object.values(statsMap);
+  // Подстраховка: если движок стрика записал в день значение длиннее вычисленного
+  // (например, заморозки сохраняли цепочку без активных очков) — верим большему.
+  for (const val of values) {
+    bestStreak = Math.max(bestStreak, extractStreak(val));
+  }
   return {
     days,
     allDays,
@@ -421,18 +428,22 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   });
 }
 
+let _refreshPromise: Promise<StatsPreloadData | null> | null = null;
+
 export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData | null> {
   await hydrateStatsCacheFromStorage();
-  if (_preloadInFlight) return _cache.loaded ? getStatsCache(studyTarget) : null;
+  // Конкурентные вызовы ждут текущий рефреш вместо возврата устаревшего кэша:
+  // раньше событие xp_changed, наложившись на focus-рефреш, молча получало старый XP.
+  if (_refreshPromise) return _refreshPromise;
   _preloadInFlight = true;
-  try {
-    const fresh = await buildFreshStatsSnapshot(studyTarget);
-    return rememberStatsCache(fresh);
-  } catch {
-    return _cache.loaded ? _cache : null;
-  } finally {
-    _preloadInFlight = false;
-  }
+  _refreshPromise = buildFreshStatsSnapshot(studyTarget)
+    .then((fresh) => rememberStatsCache(fresh))
+    .catch(() => (_cache.loaded ? _cache : null))
+    .finally(() => {
+      _preloadInFlight = false;
+      _refreshPromise = null;
+    }) as Promise<StatsPreloadData | null>;
+  return _refreshPromise;
 }
 
 /**

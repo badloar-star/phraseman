@@ -259,8 +259,11 @@ export const checkWagerProgress = async (
     const t = today();
     if (wager.lastChecked === t) return null;
 
-    if (currentStreak < wager.startStreak) {
-      await saveWager({ ...wager, active: false, result: 'lost' });
+    // Непрерывность: к этому чеку цепочка обязана быть не короче стартовой плюс все
+    // засчитанные дни плюс сегодняшний. Иначе была дыра (сравнение только со startStreak
+    // делало пари непроигрываемым при startStreak 0-1 и засчитывало несмежные дни).
+    if (currentStreak < wager.startStreak + wager.daysKept + 1) {
+      await saveWager({ ...wager, active: false, result: 'lost', lastChecked: t });
       return 'lost';
     }
 
@@ -312,6 +315,21 @@ export const invalidateWagerAfterRevive = async (): Promise<void> => {
     emitAppEvent('wager_lost', { reason: 'revive' });
   } catch (e) {
     logWagerHealth('streak_wager:invalidate_after_revive', e);
+  }
+};
+
+/**
+ * Стереть завершённое пари из storage (кнопка «Принять новое пари? → Да»).
+ * Без этого карточка результата воскресала после каждого фокуса экрана.
+ * Активное пари не трогает.
+ */
+export const clearFinishedWager = async (): Promise<void> => {
+  try {
+    const wager = await loadWager();
+    if (!wager || wager.active) return;
+    await AsyncStorage.removeItem(KEY);
+  } catch (e) {
+    logWagerHealth('streak_wager:clear_finished', e);
   }
 };
 

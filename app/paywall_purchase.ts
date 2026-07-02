@@ -35,7 +35,7 @@ import {
   schedulePaywallAbandonedNotification,
   requestNotificationPermission,
 } from './notifications';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { isFullAccess } from './age_gate';
 import { DEV_IAP_BYPASS } from './config';
@@ -63,10 +63,13 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; 
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
+const ONBOARDING_TRIAL_REMINDER_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
 
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
-  return raw.replace(/\s*\/\s*(mo|month|мес|місяць|месяц)\b.*/i, '').trim();
+  // (?![a-zа-яёіїєґ]) вместо \b: ASCII-\b не срабатывает после кириллицы
+  // (мес/місяць/месяц), из-за чего RU/UK-суффиксы «/мес» не срезались.
+  return raw.replace(/\s*\/\s*(mo|month|мес|місяць|месяц)(?![a-zа-яёіїєґ]).*/i, '').trim();
 }
 
 function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
@@ -95,7 +98,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [packages, setPackages] = useState<PremiumPackages>({});
   const [loading, setLoading] = useState(false);
   // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
-  // включая «Навсегда» — поэтому даём ретрай, а не молча скрываем.
+  // включая Phraseman Pro — поэтому даём ретрай, а не молча скрываем.
   const [offeringsFailed, setOfferingsFailed] = useState(false);
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
@@ -125,7 +128,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, []);
 
   // Загрузка офферингов с одним авто-ретраем при сбое: транзиентный сбой сети
-  // не должен навсегда прятать кнопки (в т.ч. «Навсегда»). `dead` гасит гонку.
+  // не должен прятать кнопки бессрочно (в т.ч. Phraseman Pro). `dead` гасит гонку.
   const loadOfferings = useCallback(async (deadRef: { dead: boolean }): Promise<void> => {
     if (DEV_IAP_BYPASS) return;
     setLoading(true);
@@ -170,13 +173,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // ── цены ───────────────────────────────────────────────────────────────────
   // В стор-сборке — ТОЛЬКО из стора (никаких хардкодов). В dev-сборке стор не
   // опрашивается (DEV_IAP_BYPASS), поэтому подставляем плейсхолдеры, чтобы таймер
-  // и кнопка «Навсегда» были видны и в Metro. В покупку плейсхолдеры не уходят.
+  // и кнопка Phraseman Pro были видны и в Metro. В покупку плейсхолдеры не уходят.
   const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PRICE : '');
   const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_MONTHLY_PRICE : '');
   const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PRICE : '');
   const yearlyPerMonth = storePricePerMonthTrim(packages.yearly) || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
-  // Кнопка «Навсегда» показывается, когда админ-флаг включён И пакет lifetime
+  // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
   // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —
   // показываем превью кнопки, чтобы вёрстка была видна и в Metro.
   const lifetimeAvailable = isLifetimeButtonEnabled() && (!!packages.lifetime || DEV_IAP_BYPASS);
@@ -199,7 +202,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
-  const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 3 : null;
+  const subscriptionTrialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 3 : null;
+  const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
 
   // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
@@ -239,9 +243,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // Fall through to the deterministic thank-you route.
     }
 
-    // markNextNavigationAsReplace: верх стека сейчас — сам пейвол. Снимаем его, чтобы
-    // «назад» с экрана «План включён» (и далее с плана) не возвращало на пейвол/thank-you,
-    // а уходило на главную. Без пометки пейвол оставался в стеке под thank-you → петля.
+    // markNextNavigationAsReplace: the stack top is the paywall. Replace it so
+    // back from the auth prompt host or the plan never returns to paywall.
     markNextNavigationAsReplace();
     router.replace('/personal_plan_thank_you' as any);
   }, [reloadEnergy, router]);
@@ -270,13 +273,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       return;
     }
     void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant });
+    if (source === 'afterwin_levelup' || context === 'level_up') {
+      void trackEvent('afterwin_upsell_cta', { source: 'level_up', plan: selected, paywall: variant });
+      void import('./firebase').then(({ logAfterWinUpsellCta }) =>
+        logAfterWinUpsellCta('level_up', selected),
+      ).catch(() => {});
+    }
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
     if (DEV_IAP_BYPASS) {
       if (context === 'personal_plan') {
         await finishPersonalPlanActivationFlow();
         return;
       }
-      safeRouterBack(router);
+      dismissPaywallModal(router);
       return;
     }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
@@ -317,7 +326,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
       await persistStorePremiumLocally(confirmedPlan, metadata);
       if (context !== 'personal_plan') {
-        // Разовая покупка «Навсегда» (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
+        // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
         await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
         emitAppEvent('premium_activated');
         void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
@@ -331,6 +340,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
         void (async () => {
           try {
+            const reminderChoice = context === 'personal_plan' && source === 'onboarding_plan'
+              ? await AsyncStorage.getItem(ONBOARDING_TRIAL_REMINDER_CHOICE_KEY).catch(() => null)
+              : null;
+            if (reminderChoice === 'skip') return;
             const granted = await requestNotificationPermission();
             if (!granted) return;
             const days = trialDaysOrDefault(pkgTrial);
@@ -366,15 +379,17 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         await finishPersonalPlanActivationFlow();
         return;
       }
-      safeRouterBack(router);
+      dismissPaywallModal(router);
     } catch (err: unknown) {
       if ((err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant });
+        logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
           error: String((err as { message?: string })?.message ?? '').slice(0, 100),
         });
+        logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
         Alert.alert(
           triLang(lang, {
             ru: 'Не удалось оформить',
@@ -457,11 +472,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
         }
         void trackEvent('subscription_restored', { context, paywall: variant });
+        logPaywallFunnel('restore_completed', { variant, context, plan });
         if (context === 'personal_plan') {
           await finishPersonalPlanActivationFlow();
           return;
         }
-        safeRouterBack(router);
+        dismissPaywallModal(router);
       } else {
         Alert.alert(
           triLang(lang, {
@@ -544,7 +560,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       })();
       return;
     }
-    safeRouterBack(router);
+    dismissPaywallModal(router);
   }, [router, context, source, variant, selected, lang]);
 
   // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в

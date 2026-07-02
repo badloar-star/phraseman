@@ -101,15 +101,13 @@ describe('storePriceTrim (paywall price normalization)', () => {
     expect(storePriceTrim('$9.99 / month billed annually')).toBe('$9.99');
   });
 
-  test('CURRENT BEHAVIOR: Cyrillic period suffixes are NOT stripped (ASCII \\b limitation)', () => {
-    // The trim regex ends the unit group with an ASCII \b word boundary, which
-    // does not fire between a Cyrillic letter (мес/місяць/месяц) and the following
-    // "/" boundary in JS regex without the /u flag. So Cyrillic-suffixed prices
-    // pass through untouched. This test pins that real behavior — if the source
-    // regex is fixed to strip them, update this expectation deliberately.
-    expect(storePriceTrim('299 ₽/мес')).toBe('299 ₽/мес');
-    expect(storePriceTrim('299 ₴/місяць')).toBe('299 ₴/місяць');
-    expect(storePriceTrim('9,99 €/месяц')).toBe('9,99 €/месяц');
+  test('strips Cyrillic period suffixes (/мес, /місяць, /месяц)', () => {
+    // The trim regex used to end the unit group with an ASCII \b word boundary,
+    // which does not fire after a Cyrillic letter, so RU/UK suffixes leaked into
+    // the displayed price. Fixed with an explicit letter lookahead instead of \b.
+    expect(storePriceTrim('299 ₽/мес')).toBe('299 ₽');
+    expect(storePriceTrim('299 ₴/місяць')).toBe('299 ₴');
+    expect(storePriceTrim('9,99 €/месяц')).toBe('9,99 €');
   });
 
   test('is case-insensitive on the suffix', () => {

@@ -24,6 +24,7 @@ import {
 } from '../components/settings/SettingsGroup';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
@@ -52,6 +53,7 @@ export default function CompassSettings() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  const { hasPremiumAccess } = usePremium();
   const [prefs, setPrefs] = useState<CompassUserPrefs>(DEFAULT_COMPASS_USER_PREFS);
 
   useEffect(() => {
@@ -63,6 +65,11 @@ export default function CompassSettings() {
       cancelled = true;
     };
   }, []);
+
+  // Экран — перк Plus (ряд в настройках у фри скрыт; это защита от прямого
+  // перехода). Именно тихий null, БЕЗ авто-навигации назад: hasPremiumAccess
+  // мигает false при фоновом cloud-refresh — авто-back выкидывал бы платного.
+  if (!hasPremiumAccess) return null;
 
   const toggle = (key: PrefKey) => (value: boolean) => {
     void hapticTap();
@@ -132,19 +139,10 @@ export default function CompassSettings() {
                 testID="compass-settings-ai-voice"
                 icon="sparkles-outline"
                 color="purple"
-                label={L({ ru: 'Живой голос', uk: 'Живий голос', es: 'Voz viva', 'pt-BR': 'Voz viva', vi: 'Giọng nói sống động', id: 'Suara hidup', tr: 'Canlı ses', pl: 'Żywy głos' })}
-                sub={L({ ru: 'Личный тёплый текст под твой день', uk: 'Особистий теплий текст під твій день', es: 'Texto personal y cálido para tu día', 'pt-BR': 'Texto pessoal e caloroso para o seu dia', vi: 'Lời nhắn ấm áp riêng cho ngày của bạn', id: 'Pesan hangat pribadi untuk harimu', tr: 'Gününe özel sıcak metin', pl: 'Osobisty, ciepły tekst na twój dzień' })}
+                label={L({ ru: 'Личный комментарий дня', uk: 'Особистий коментар дня', es: 'Comentario personal del día', 'pt-BR': 'Comentário pessoal do dia', vi: 'Lời nhắn riêng trong ngày', id: 'Komentar pribadi harian', tr: 'Güne özel yorum', pl: 'Osobisty komentarz dnia' })}
+                sub={L({ ru: 'Компас пишет пару тёплых слов под твой день', uk: 'Компас пише кілька теплих слів під твій день', es: 'Brújula escribe unas palabras para tu día', 'pt-BR': 'A Bússola escreve umas palavras para o seu dia', vi: 'La bàn viết đôi lời cho ngày của bạn', id: 'Kompas menulis beberapa kata untuk harimu', tr: 'Pusula gününe birkaç sıcak söz yazar', pl: 'Kompas pisze kilka ciepłych słów na twój dzień' })}
                 hideChevron
                 right={<CustomSwitch value={prefs.aiVoice} onValueChange={toggle('aiVoice')} />}
-              />
-              <SettingsRow
-                testID="compass-settings-social"
-                icon="people"
-                color="teal"
-                label={L({ ru: 'Сводка «Кстати…»', uk: 'Зведення «До речі…»', es: 'Resumen «Por cierto…»', 'pt-BR': 'Resumo «Aliás…»', vi: 'Tin «Nhân tiện…»', id: 'Ringkasan «Ngomong-ngomong…»', tr: '«Bu arada…» özeti', pl: 'Podsumowanie «Przy okazji…»' })}
-                sub={L({ ru: 'Заявки в друзья, принятия и лайки', uk: 'Заявки в друзі, прийняття і лайки', es: 'Solicitudes de amistad y me gusta', 'pt-BR': 'Pedidos de amizade e curtidas', vi: 'Lời mời kết bạn và lượt thích', id: 'Permintaan pertemanan dan suka', tr: 'Arkadaşlık istekleri ve beğeniler', pl: 'Zaproszenia do znajomych i polubienia' })}
-                hideChevron
-                right={<CustomSwitch value={prefs.social} onValueChange={toggle('social')} />}
               />
             </SettingsGroup>
 

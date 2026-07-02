@@ -18,17 +18,14 @@ export interface CompassUserPrefs {
   briefing: boolean;
   /** Вечерний итог дня (ритуал закрытия). */
   dayClosing: boolean;
-  /** Живой ИИ-голос в брифинге (выкл → всегда текст Библии, 0 вызовов CF). */
+  /** Личный комментарий дня (ИИ-текст; выкл → всегда текст Библии, 0 вызовов CF). */
   aiVoice: boolean;
-  /** Соц-сводка «Кстати…» в брифинге (заявки/принятия/лайки). */
-  social: boolean;
 }
 
 export const DEFAULT_COMPASS_USER_PREFS: CompassUserPrefs = {
   briefing: true,
   dayClosing: true,
   aiVoice: true,
-  social: true,
 };
 
 function readBool(value: unknown, fallback: boolean): boolean {
@@ -46,7 +43,6 @@ export function parseCompassUserPrefs(raw: string | null): CompassUserPrefs {
       briefing: readBool(row.briefing, DEFAULT_COMPASS_USER_PREFS.briefing),
       dayClosing: readBool(row.dayClosing, DEFAULT_COMPASS_USER_PREFS.dayClosing),
       aiVoice: readBool(row.aiVoice, DEFAULT_COMPASS_USER_PREFS.aiVoice),
-      social: readBool(row.social, DEFAULT_COMPASS_USER_PREFS.social),
     };
   } catch {
     return { ...DEFAULT_COMPASS_USER_PREFS };

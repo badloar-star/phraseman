@@ -239,8 +239,6 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     setSocialLines([]);
     setSocialAllLines([]);
     setSocialEvents([]);
-    // Ученик выключил соц-сводку в настройках Компаса → не читаем Firestore вовсе.
-    if (userPrefs?.social !== true) return;
     void (async () => {
       const news = await collectCompassSocialNews(lang, now).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (cancelled) return;
@@ -251,7 +249,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [visible, lang, now, userPrefs]);
+  }, [visible, lang, now]);
 
   useEffect(() => {
     if (!compassOn()) return;

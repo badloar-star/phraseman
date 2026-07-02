@@ -24,11 +24,12 @@ const FUNCTIONS_REGION = 'us-central1';
 /**
  * Сколько комнат-чатов держим в памяти. Ключ = groupId+weekId+leagueId; число
  * ключей раньше не ограничивалось, поэтому за долгую сессию (смена недель/лиг)
- * кеш неограниченно рос. Держим только N последних использованных комнат,
- * вытесняя самые старые по времени доступа (LRU) — по образцу
- * pruneFriendsProfileCache.
+ * кеш неограниченно рос. Юзер состоит ровно в ОДНОЙ комнате (текущая неделя),
+ * поэтому держим актуальную + 1 про запас: на границе смены недели старый и
+ * новый ключи могут касаться кеша попеременно, и лимит 1 заставил бы LRU
+ * вытеснять их друг другом (трэш). Старые вытесняются по времени доступа (LRU).
  */
-const MAX_CACHED_ROOMS = 12;
+const MAX_CACHED_ROOMS = 2;
 
 let lastSendAt = 0;
 let cachedRoomMemory: LeagueChatRoom | null = null;
@@ -239,6 +240,37 @@ async function cacheLeagueChatMessages(room: LeagueChatRoom, messages: LeagueCha
   cachedMessagesMemory[key] = rows;
   touchCachedRoomAndPrune(key);
   await AsyncStorage.setItem(key, JSON.stringify(rows)).catch(() => {});
+  void pruneStaleRoomDiskCache(key, roomAuthorizationCacheKey(room));
+}
+
+const LAST_ROOM_DISK_KEYS_KEY = 'league_chat_last_room_disk_keys_v1';
+
+/**
+ * Дисковые копии чата храним ТОЛЬКО для актуальной комнаты: юзер состоит в одной
+ * комнате в неделю, а per-room ключи AsyncStorage (сообщения + авторизация)
+ * раньше копились неделями без чистки. При записи новой комнаты стираем ключи
+ * предыдущей. Best-effort: сбой чистки не влияет на работу чата.
+ */
+async function pruneStaleRoomDiskCache(currentMessagesKey: string, currentAuthKey: string): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(LAST_ROOM_DISK_KEYS_KEY).catch(() => null);
+    if (raw) {
+      try {
+        const prev = JSON.parse(raw) as { messagesKey?: string; authKey?: string };
+        if (prev.messagesKey === currentMessagesKey && prev.authKey === currentAuthKey) return;
+        if (typeof prev.messagesKey === 'string' && prev.messagesKey !== currentMessagesKey) {
+          await AsyncStorage.removeItem(prev.messagesKey).catch(() => {});
+        }
+        if (typeof prev.authKey === 'string' && prev.authKey !== currentAuthKey) {
+          await AsyncStorage.removeItem(prev.authKey).catch(() => {});
+        }
+      } catch { /* повреждённый индекс — просто перезапишем ниже */ }
+    }
+    await AsyncStorage.setItem(
+      LAST_ROOM_DISK_KEYS_KEY,
+      JSON.stringify({ messagesKey: currentMessagesKey, authKey: currentAuthKey }),
+    ).catch(() => {});
+  } catch { /* best-effort */ }
 }
 
 async function loadCachedLeagueChatAuthorization(room: LeagueChatRoom, stableId: string): Promise<boolean> {

@@ -148,12 +148,11 @@ main {
 .nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav::-webkit-scrollbar {
-  display: none;
+  /* НИКОГДА не прятать пункты в невидимый скролл: не влезло — переносим */
+  flex-wrap: wrap;
+  row-gap: 2px;
 }
 .nav a {
   color: var(--muted);
@@ -190,9 +189,7 @@ main {
   .nav {
     width: 100%;
     padding-bottom: 4px;
-    /* пункты переносятся на новую строку, а не обрезаются скроллом */
-    flex-wrap: wrap;
-    overflow: visible;
+    justify-content: flex-start;
   }
   .nav a {
     padding: 7px 11px;
@@ -236,8 +233,9 @@ main {
 }
 h1 {
   margin: 0 0 20px;
+  padding-top: 0.06em; /* запас под верхние засечки крупного шрифта */
   font-size: clamp(2.4rem, 5.4vw, 4rem);
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.035em;
   font-weight: 800;
 }
@@ -250,7 +248,10 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  padding-right: 0.06em;
+  /* вертикальные паддинги у inline не двигают вёрстку, но расширяют область
+     покраски градиента — высокие штрихи курсива не «обрезаются» прозрачным */
+  padding: 0.18em 0.06em 0.14em 0.02em;
+  margin-left: -0.02em;
 }
 .lead {
   margin: 0 0 30px;
@@ -1163,8 +1164,9 @@ h2 {
   z-index: 0;
   pointer-events: none;
   opacity: 0.5;
-  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
-  mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  /* затухание от угла-источника: у канваса нет жёстких кромок ни с одной стороны */
+  -webkit-mask-image: radial-gradient(135% 125% at 96% 0%, #000 38%, transparent 72%);
+  mask-image: radial-gradient(135% 125% at 96% 0%, #000 38%, transparent 72%);
 }
 .hero-rays canvas {
   width: 100%;

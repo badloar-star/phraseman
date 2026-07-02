@@ -132,23 +132,26 @@
       el.appendChild(frag);
     }
     render(words[0], false);
+    /* Меряем НАСТОЯЩУЮ разметку ротора (буквы = inline-block спаны с
+       padding/letter-spacing), а не сплошной текст — иначе ширина занижена
+       и слово режется. Клон ротора со всеми классами, width:auto. */
     function measure(word) {
-      var cs = getComputedStyle(el);
-      var probe = document.createElement('span');
-      probe.style.position = 'absolute';
-      probe.style.visibility = 'hidden';
-      probe.style.whiteSpace = 'nowrap';
-      probe.style.fontFamily = cs.fontFamily;
-      probe.style.fontSize = cs.fontSize;
-      probe.style.fontStyle = cs.fontStyle;
-      probe.style.fontWeight = cs.fontWeight;
-      probe.style.letterSpacing = cs.letterSpacing;
-      probe.textContent = word;
-      el.parentNode.appendChild(probe);
-      /* box-sizing: border-box — паддинги ротора входят в width */
-      var pads = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
-      var w = probe.offsetWidth + pads + 3;
-      probe.remove();
+      var clone = el.cloneNode(false);        // копия с классом .rotor и стилями
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      clone.style.top = '0';
+      clone.style.width = 'auto';
+      clone.style.visibility = 'hidden';
+      clone.style.transition = 'none';
+      for (var i = 0; i < word.length; i++) {
+        var ch = document.createElement('span');
+        ch.className = 'ch';
+        ch.textContent = word[i];
+        clone.appendChild(ch);
+      }
+      el.parentNode.appendChild(clone);
+      var w = Math.ceil(clone.getBoundingClientRect().width) + 2;
+      clone.remove();
       return w;
     }
     el.style.width = measure(words[0]) + 'px';

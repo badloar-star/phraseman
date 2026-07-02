@@ -412,6 +412,33 @@
   display: block;
 }
 
+/* Thanks: код активации */
+.qcode-box {
+  max-width: 420px;
+  margin: 22px auto 6px;
+  padding: 22px 20px;
+  border-radius: var(--radius);
+  border: 1px dashed rgba(232, 197, 102, 0.55);
+  background: rgba(232, 197, 102, 0.06);
+  text-align: center;
+}
+.qcode {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: all;
+  margin-bottom: 16px;
+  word-break: break-all;
+}
+.qcode-copy {
+  max-width: 260px;
+  margin: 0 auto;
+}
+
 /* Thanks */
 .qthanks {
   text-align: center;

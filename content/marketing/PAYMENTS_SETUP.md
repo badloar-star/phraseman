@@ -10,10 +10,21 @@
 
 - Квиз+пейвол: `knowly-www/start/` (страница https://knowlyapps.com/start/ после деплоя хостинга).
 - Функции оплаты: `functions/src/web_checkout.ts` → `webCheckoutCreate`, `stripeWebhook`,
-  `paypalOrderCreate`, `paypalOrderCapture` (+ экспорт в `functions/src/index.ts`).
-- Заказы: Firestore `web_premium_orders`. После оплаты статус `paid_pending_manual_activation`
-  и **уведомление в Telegram всем админам премиум-бота** (тем же, кто получает Stars-заявки).
-  Активация — вручную, как для Telegram-заявок.
+  `paypalOrderCreate`, `paypalOrderCapture`, `webOrderStatus` (+ экспорт в `functions/src/index.ts`).
+- **Активация АВТОМАТИЧЕСКАЯ через код**: при оплате создаётся одноразовый промокод
+  (`WEB-…`, месяц=31 дн / год=366 дн / навсегда=lifetime, через существующий promoCodeRedeem).
+  Страница «спасибо» сама подтверждает оплату и показывает код с шагами; юзер вводит его
+  в приложении (Настройки → Промокоды) — премиум включается мгновенно, без твоего участия.
+- Заказы: Firestore `web_premium_orders` (статус `paid_pending_activation` = код выдан,
+  `paid_pending_manual_activation` = кода нет, нужна ручная выдача) + **уведомление в Telegram
+  всем админам премиум-бота** с кодом внутри.
+- Админ-раздел: **админка → вкладка «🌐 Сайт»** (`admin/site.html`) — цены, флаг промокодов,
+  все заказы с кодами, воронка. Деплой админки: `firebase deploy --only hosting:admin`.
+
+⚠️ **Обязательное условие для кодов**: глобальный флаг промокодов
+(`remote_config/app → bools.promo_codes_enabled`) должен быть ВКЛЮЧЁН — переключается
+в админке на вкладке «🌐 Сайт» (или в «Пульте»). Выключен → покупатель увидит
+«промокоды временно выключены», и придётся активировать вручную.
 
 ---
 
@@ -68,11 +79,13 @@ firebase functions:secrets:set PAYPAL_CLIENT_SECRET
 
 ```powershell
 cd C:\appsprojects\phraseman
-firebase deploy --only functions:webCheckoutCreate,functions:stripeWebhook,functions:paypalOrderCreate,functions:paypalOrderCapture,functions:siteStatsTrack
+firebase deploy --only functions:webCheckoutCreate,functions:stripeWebhook,functions:paypalOrderCreate,functions:paypalOrderCapture,functions:webOrderStatus,functions:siteStatsTrack
 firebase deploy --only hosting:knowlywww
+firebase deploy --only hosting:admin
 ```
 
 После этого https://knowlyapps.com/start/ живая и принимает оплату.
+Не забудь включить флаг промокодов (админка → «🌐 Сайт» → Переключить).
 
 ## Шаг 5. Цены (по желанию, 5 минут)
 
@@ -101,18 +114,21 @@ firebase deploy --only hosting:knowlywww
 
 ## Шаг 7. Проверка перед запуском трафика (10 минут)
 
-1. В Stripe включить **Test mode**, временно поставить тестовые `sk_test_`/`whsec_` секреты
+1. Включить флаг промокодов: админка → «🌐 Сайт» → «ВКЛЮЧЁН».
+2. В Stripe включить **Test mode**, временно поставить тестовые `sk_test_`/`whsec_` секреты
    (или проверить сразу на живой карте с минимальной ценой — и сделать refund).
-2. Пройти квиз на https://knowlyapps.com/start/ → оплатить.
-3. Убедиться: попал на /start/thanks/ ✅; в Firestore появился `web_premium_orders/...`
-   со статусом `paid_pending_manual_activation` ✅; в Telegram пришло «💳 Новая ВЕБ-оплата» ✅.
-4. Активировать премиум вручную (админка, как для Telegram-заявок) и вернуть live-ключи.
+3. Пройти квиз на https://knowlyapps.com/start/ → оплатить.
+4. Убедиться: страница «спасибо» показала КОД активации ✅; заказ в админке «🌐 Сайт»
+   со статусом `paid_pending_activation` и кодом ✅; в Telegram пришло «💳 Новая ВЕБ-оплата» ✅.
+5. Ввести код в приложении (Настройки → Промокоды) — премиум включился сразу ✅.
+6. Вернуть live-ключи.
 
 ## Где что смотреть потом
 
 | Что | Где |
 |---|---|
-| Заказы и их статусы | Firestore → `web_premium_orders` (внутри: email, ник, тариф, UTM ролика) |
+| Заказы, коды, цены, воронка | **Админка → вкладка «🌐 Сайт»** (admin/site.html) |
+| Заказы и их статусы (сырьё) | Firestore → `web_premium_orders` (внутри: email, ник, тариф, код, UTM ролика) |
 | Ошибки оплат | Firestore → `web_checkout_dead_letter`; логи: https://console.firebase.google.com/project/phraseman-ea0b3/functions/logs |
 | Воронка (просмотры→квиз→пейвол→оплата) | Firestore → `site_stats` (поля quiz_starts, quiz_completes, paywall_views, checkout_clicks, purchase_thanks) |
 | Платежи/возвраты Stripe | https://dashboard.stripe.com/payments |

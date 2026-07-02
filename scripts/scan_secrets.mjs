@@ -115,6 +115,7 @@ const FIREBASE_CLIENT_CONFIG_FILES = new Set([
   'admin/index.html',
   'admin/testers.html',
   'admin/full.html',
+  'admin/site.html',
 ]);
 const FIREBASE_CLIENT_KEY_CONTEXT = /\b(?:apiKey|api_key|current_key)\s*[:=]/;
 // Auto-generated maps of PUBLIC Firebase Storage download URLs for bundled

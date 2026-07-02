@@ -43,6 +43,16 @@ window.KNOWLY_SITE = {
   })(),
   paypalCreateEndpoint: 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/paypalOrderCreate',
   paypalCaptureEndpoint: 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/paypalOrderCapture',
+  /* Статус заказа + код активации для страницы «спасибо». */
+  orderStatusEndpoint: (function () {
+    try {
+      var h = window.location.hostname;
+      if (h === 'localhost' || h === '127.0.0.1') {
+        return 'http://127.0.0.1:5001/phraseman-ea0b3/us-central1/webOrderStatus';
+      }
+    } catch (_) { /* noop */ }
+    return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webOrderStatus';
+  })(),
   /* PayPal Client ID (публичный, из PayPal Developer Dashboard). Пусто = кнопка PayPal скрыта. */
   paypalClientId: '',
   /* Meta Pixel ID (из Meta Events Manager). Пусто = пиксель не грузится. */

@@ -18,7 +18,7 @@
 //   currency, paypalLive } — с дефолтами ниже. Клиентские цены (site-config.js
 //   webPrices) — только отображение; списывается ВСЕГДА серверная цена.
 // ============================================================================
-import { createHmac, timingSafeEqual } from 'crypto';
+import { createHmac, randomBytes, timingSafeEqual } from 'crypto';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import * as logger from 'firebase-functions/logger';
 import { defineSecret } from 'firebase-functions/params';
@@ -50,6 +50,29 @@ const DEFAULT_PRICE_CENTS: Record<WebPlan, number> = {
   yearly: 4999,
   lifetime: 9999,
 };
+
+/**
+ * Награда кода активации по тарифу. Код создаётся автоматически при оплате и
+ * активируется юзером в приложении (Настройки → Промокоды → promoCodeRedeem):
+ * тот же VIP-механизм, что у рефералов/админ-выдачи. Ручная активация из
+ * админки остаётся запасным путём (заявка в web_premium_orders никуда не девается).
+ */
+export function activationRewardForPlan(plan: WebPlan): { rewardDays: number; rewardKind: 'days' | 'lifetime' } {
+  if (plan === 'lifetime') return { rewardDays: 0, rewardKind: 'lifetime' };
+  return { rewardDays: plan === 'monthly' ? 31 : 366, rewardKind: 'days' };
+}
+
+// Без похожих символов (0/O, 1/I) — код вводят руками с экрана «спасибо».
+const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+export function generateActivationCode(): string {
+  const bytes = randomBytes(10);
+  let body = '';
+  for (let i = 0; i < bytes.length; i += 1) {
+    body += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length];
+  }
+  return `WEB-${body}`;
+}
 
 interface CheckoutConfig {
   priceCents: Record<WebPlan, number>;
@@ -218,9 +241,12 @@ async function notifyAdminsTelegram(order: FirebaseFirestore.DocumentData): Prom
     `Сумма: ${amount} ${String(order.currency || 'usd').toUpperCase()}`,
     `Email: ${order.email || '-'}`,
     `Ник в приложении: ${order.appNickname || '-'}`,
+    `Код активации: ${order.activationCode || 'НЕ СОЗДАН — активировать вручную!'}`,
     `Заявка: ${ORDERS_COLLECTION}/${order.orderId || '-'}`,
     '',
-    'Статус: ожидает ручной активации',
+    order.activationCode
+      ? 'Юзер активирует код сам (Настройки → Промокоды). Вмешательство не нужно.'
+      : 'Статус: ожидает ручной активации',
   ].join('\n');
   await Promise.all(ids.map((chatId) =>
     fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -231,40 +257,60 @@ async function notifyAdminsTelegram(order: FirebaseFirestore.DocumentData): Prom
   ));
 }
 
+const PAID_STATUSES = new Set(['paid_pending_activation', 'paid_pending_manual_activation', 'activated']);
+
 /**
- * Помечает заявку оплаченной (идемпотентно: повторный вебхук не шлёт второе
- * уведомление) и возвращает данные заявки для уведомления, либо null если уже была оплачена.
+ * Помечает заявку оплаченной и АТОМАРНО создаёт одноразовый код активации
+ * (promo_codes/{CODE}, maxRedemptions=1): юзер вводит его в приложении и премиум
+ * включается сам, без ручной выдачи. Идемпотентно: повторный вебхук не создаёт
+ * второй код и не шлёт второе уведомление (возвращает null).
  */
 async function markOrderPaid(
   db: FirebaseFirestore.Firestore,
   orderId: string,
+  plan: WebPlan | null,
   paymentDetails: Record<string, unknown>,
 ): Promise<FirebaseFirestore.DocumentData | null> {
   const ref = db.collection(ORDERS_COLLECTION).doc(orderId);
+  const candidateCode = generateActivationCode();
+  const codeRef = db.collection('promo_codes').doc(candidateCode);
+
   return db.runTransaction(async (tx) => {
-    const snap = await tx.get(ref);
-    if (!snap.exists) {
-      // Деньги не должны теряться: заявки нет (сбой при создании) — создаём из вебхука.
-      tx.set(ref, {
-        status: 'paid_pending_manual_activation',
-        recoveredFromWebhook: true,
-        paidAt: FieldValue.serverTimestamp(),
-        paidAtIso: new Date().toISOString(),
-        ...paymentDetails,
-      }, { merge: true });
-      return { orderId, ...paymentDetails };
+    const [snap, codeSnap] = await Promise.all([tx.get(ref), tx.get(codeRef)]);
+    const data = snap.exists ? (snap.data() ?? {}) : {};
+    if (snap.exists && PAID_STATUSES.has(String(data.status))) {
+      return null; // повторный вебхук — код и уведомление уже были
     }
-    const data = snap.data() ?? {};
-    if (data.status === 'paid_pending_manual_activation' || data.status === 'activated') {
-      return null; // повторный вебхук — уведомление уже уходило
+
+    const effectivePlan: WebPlan = isWebPlan(plan) ? plan : isWebPlan(data.plan) ? data.plan : 'monthly';
+    // Коллизия 32^10 практически невозможна; если код занят — заявка остаётся
+    // оплаченной БЕЗ кода (ручной путь), деньги не теряются.
+    const activationCode = codeSnap.exists ? null : candidateCode;
+    if (activationCode) {
+      const reward = activationRewardForPlan(effectivePlan);
+      tx.set(codeRef, {
+        rewardDays: reward.rewardDays,
+        rewardKind: reward.rewardKind,
+        enabled: true,
+        maxRedemptions: 1,
+        usedCount: 0,
+        expiresAtMs: 0,
+        note: `web_checkout ${ORDERS_COLLECTION}/${orderId}`,
+        createdAtMs: Date.now(),
+        createdBy: 'web_checkout',
+      });
     }
-    tx.update(ref, {
-      status: 'paid_pending_manual_activation',
+
+    const patch = {
+      status: 'paid_pending_activation',
+      activationCode,
       paidAt: FieldValue.serverTimestamp(),
       paidAtIso: new Date().toISOString(),
+      ...(snap.exists ? {} : { recoveredFromWebhook: true, plan: effectivePlan, planDuration: PLAN_LABELS[effectivePlan] }),
       ...paymentDetails,
-    });
-    return { ...data, orderId, ...paymentDetails };
+    };
+    tx.set(ref, patch, { merge: true });
+    return { ...data, orderId, ...patch };
   });
 }
 
@@ -451,7 +497,7 @@ export const stripeWebhook = onRequest(
     try {
       const db = getFirestore();
       const details = session.customer_details as Record<string, unknown> | undefined;
-      const paid = await markOrderPaid(db, orderId, {
+      const paid = await markOrderPaid(db, orderId, null, {
         provider: 'stripe',
         stripeSessionId: String(session.id ?? ''),
         stripePaymentIntent: String(session.payment_intent ?? '') || null,
@@ -615,7 +661,7 @@ export const paypalOrderCapture = onRequest(
         .where('paypalOrderId', '==', paypalOrderId).limit(1).get();
       const orderId = orderQuery.docs[0]?.id ?? capture?.custom_id ?? paypalOrderId;
 
-      const paid = await markOrderPaid(db, orderId, {
+      const paid = await markOrderPaid(db, orderId, null, {
         provider: 'paypal',
         paypalOrderId,
         paypalCaptureId: capture?.id ?? null,
@@ -626,11 +672,74 @@ export const paypalOrderCapture = onRequest(
       if (paid) {
         await notifyAdminsTelegram(paid).catch((e) => logger.error('web order admin notify failed', e));
       }
-      res.status(200).json({ ok: true });
+      // Код возвращаем сразу — страница «спасибо» покажет его без ожидания вебхуков.
+      let activationCode: string | null = (paid?.activationCode as string | undefined) ?? null;
+      if (!activationCode) {
+        const snap = await db.collection(ORDERS_COLLECTION)
+          .where('paypalOrderId', '==', paypalOrderId).limit(1).get();
+        activationCode = (snap.docs[0]?.data()?.activationCode as string | undefined) ?? null;
+      }
+      res.status(200).json({ ok: true, code: activationCode });
     } catch (e) {
       logger.error('paypalOrderCapture failed', e);
       await writeDeadLetter('paypal_capture_failed', { paypalOrderId }, e);
       res.status(502).json({ ok: false, error: 'paypal_capture_failed' });
+    }
+  },
+);
+
+/* ───────────────────────── Статус заказа для страницы «спасибо» ───────────────────────── */
+
+/**
+ * webOrderStatus — страница /start/thanks/ опрашивает его, чтобы показать код
+ * активации. Поиск ТОЛЬКО по неугадываемым id (Stripe session `cs_...` /
+ * PayPal order id) — по email или номеру заявки нарочно нельзя, чтобы чужой
+ * код было не выудить перебором.
+ */
+export const webOrderStatus = onRequest(
+  {
+    region: REGION,
+    memory: '256MiB',
+    timeoutSeconds: 15,
+    maxInstances: 5,
+    invoker: 'public',
+  },
+  async (req, res) => {
+    if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;
+    const body = parseJsonBody(req as unknown as AnyRequest);
+    const sessionId = cleanShortText(body?.sessionId, 120);
+    const paypalOrderId = cleanShortText(body?.paypalOrderId, 64);
+    if (!sessionId && !paypalOrderId) {
+      res.status(400).json({ ok: false, error: 'missing_reference' });
+      return;
+    }
+    // Минимальная планка неугадываемости (Stripe session id — длинный `cs_...`).
+    if (sessionId && (sessionId.length < 20 || !sessionId.startsWith('cs_'))) {
+      res.status(400).json({ ok: false, error: 'bad_reference' });
+      return;
+    }
+
+    try {
+      const db = getFirestore();
+      const field = sessionId ? 'stripeSessionId' : 'paypalOrderId';
+      const value = sessionId || paypalOrderId;
+      const snap = await db.collection(ORDERS_COLLECTION).where(field, '==', value).limit(1).get();
+      if (snap.empty) {
+        res.status(200).json({ ok: true, status: 'unknown' });
+        return;
+      }
+      const order = snap.docs[0].data();
+      const isPaid = PAID_STATUSES.has(String(order.status));
+      res.status(200).json({
+        ok: true,
+        status: isPaid ? 'paid' : 'pending',
+        plan: order.plan ?? null,
+        planDuration: order.planDuration ?? null,
+        code: isPaid ? (order.activationCode ?? null) : null,
+      });
+    } catch (e) {
+      logger.error('webOrderStatus failed', e);
+      res.status(502).json({ ok: false, error: 'status_failed' });
     }
   },
 );

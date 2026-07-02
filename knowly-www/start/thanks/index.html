@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Оплата прошла — что дальше · Phraseman</title>
-  <meta name="description" content="Спасибо за покупку Phraseman Premium. Три шага, чтобы начать заниматься." />
+  <title>Оплата прошла — ваш код активации · Phraseman</title>
+  <meta name="description" content="Спасибо за покупку Phraseman Premium. Ваш код активации и три шага, чтобы начать заниматься." />
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
@@ -16,7 +16,7 @@
   />
   <link rel="stylesheet" href="/assets/phraseman.css?v=bg1" />
   <link rel="stylesheet" href="/assets/theme.css?v=1" />
-  <link rel="stylesheet" href="/assets/start.css?v=1" />
+  <link rel="stylesheet" href="/assets/start.css?v=2" />
   <script src="/assets/theme.js?v=1"></script>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=1" defer></script>
@@ -33,25 +33,81 @@
     </header>
 
     <main class="quiz-root">
-      <div class="qscreen qthanks">
+      <!-- Состояние 1: подтверждаем оплату -->
+      <div class="qscreen qthanks" id="state-waiting">
+        <div class="qbuild-ring" aria-hidden="true"></div>
+        <p class="kicker">Секундочку</p>
+        <h1>Подтверждаем вашу <span class="gold-accent">оплату…</span></h1>
+        <p class="sub">Обычно это занимает меньше минуты. Не закрывайте страницу —
+          сейчас здесь появится ваш код активации. Оплата уже у нас, ничего не потеряется.</p>
+      </div>
+
+      <!-- Состояние 2: код готов -->
+      <div class="qscreen qthanks" id="state-code" style="display:none">
+        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
+        <p class="kicker">Оплата прошла 🎉</p>
+        <h1>Готово! Вот ваш <span class="gold-accent">код активации</span></h1>
+        <p class="sub">Premium уже ваш. Код одноразовый и личный — он также сохранён у нас,
+          так что потерять его невозможно.</p>
+
+        <div class="qcode-box">
+          <div class="qcode" id="activation-code">—</div>
+          <button class="btn-gold qcode-copy" type="button" id="copy-code-btn">Скопировать код</button>
+        </div>
+
+        <div class="qthanks-steps">
+          <div class="russia-step">
+            <div class="russia-step-num">1</div>
+            <div>
+              <strong>Установите Phraseman (если ещё нет)</strong>
+              <p>Кнопки ниже. Откройте приложение и войдите или создайте аккаунт — это минута.</p>
+            </div>
+          </div>
+          <div class="russia-step">
+            <div class="russia-step-num">2</div>
+            <div>
+              <strong>Введите код в приложении</strong>
+              <p>Откройте <b>Настройки → Промокоды</b>, вставьте код с этой страницы и нажмите «Активировать».</p>
+            </div>
+          </div>
+          <div class="russia-step">
+            <div class="russia-step-num">3</div>
+            <div>
+              <strong>Premium включится мгновенно</strong>
+              <p>Сразу после ввода кода — на всех устройствах, где вы вошли в свой аккаунт. Ваш план уже ждёт внутри.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="qguarantee" style="max-width:460px;margin-inline:auto">
+          <span>💡</span>
+          <span>Совет: сделайте скриншот этого экрана. А если код всё же потеряется —
+            <a href="/contact/" style="color:var(--gold)">напишите в поддержку</a>, восстановим по email из оплаты.</span>
+        </div>
+      </div>
+
+      <!-- Состояние 3: код не получен (запасной путь — ручная активация) -->
+      <div class="qscreen qthanks" id="state-manual" style="display:none">
         <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
         <p class="kicker">Оплата прошла 🎉</p>
         <h1>Спасибо! Premium <span class="gold-accent">уже в пути</span></h1>
-        <p class="sub">Мы получили вашу оплату. Вот что будет дальше:</p>
+        <p class="sub">Оплата получена и надёжно записана — волноваться не о чем.
+          Код активации сейчас готовится; мы включим Premium вручную в течение пары часов
+          и напишем на email, указанный при оплате.</p>
 
         <div class="qthanks-steps">
           <div class="russia-step">
             <div class="russia-step-num">1</div>
             <div>
               <strong>Установите приложение</strong>
-              <p>Если ещё не установили — кнопки ниже. Войдите или создайте аккаунт.</p>
+              <p>Кнопки ниже. Войдите или создайте аккаунт.</p>
             </div>
           </div>
           <div class="russia-step">
             <div class="russia-step-num">2</div>
             <div>
-              <strong>Мы включим Premium вручную</strong>
-              <p>Обычно в течение пары часов. Напишем на email, указанный при оплате, когда всё готово.</p>
+              <strong>Мы всё сделаем сами</strong>
+              <p>Активируем Premium и напишем на email, когда всё готово — обычно в течение пары часов.</p>
             </div>
           </div>
           <div class="russia-step">
@@ -62,7 +118,9 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="qthanks" style="padding-top:0">
         <div class="actions" style="justify-content:center;margin-top:28px">
           <a class="store-badge" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" /></svg>
@@ -73,8 +131,8 @@
             <span><small>Доступно в</small><b>Google Play</b></span>
           </a>
         </div>
-
-        <p class="qpay-alt" style="margin-top:26px">Вопрос или что-то пошло не так? <a href="/contact/">Напишите в поддержку</a> — ответим быстро.</p>
+        <p class="qpay-alt" style="margin-top:26px">Вопрос или что-то пошло не так?
+          <a href="/contact/">Напишите в поддержку</a> — ответим быстро. В первые 7 дней вернём деньги без вопросов.</p>
       </div>
     </main>
 
@@ -84,10 +142,13 @@
   </div>
 
   <script>
-    /* конверсия: пиксель + внутренняя статистика */
+    /* Подтверждение оплаты: опрашиваем webOrderStatus по session_id (Stripe) или
+       order (PayPal) до ~90 сек. Есть код → показываем; нет → запасной экран
+       «активируем вручную» (заявка в любом случае записана — деньги не теряются). */
     document.addEventListener('DOMContentLoaded', function () {
+      var cfg = window.KNOWLY_SITE || {};
+
       try {
-        var cfg = window.KNOWLY_SITE || {};
         if (cfg.statsEndpoint) {
           var body = JSON.stringify({ type: 'purchase_thanks', page: '/start/thanks/' });
           if (!(navigator.sendBeacon && navigator.sendBeacon(cfg.statsEndpoint, body))) {
@@ -95,10 +156,65 @@
           }
         }
         if (window.fbq) window.fbq('track', 'Purchase');
-        var config = cfg;
-        document.querySelectorAll('[data-store="ios"]').forEach(function (a) { if (config.storeIos) a.href = config.storeIos; });
-        document.querySelectorAll('[data-store="android"]').forEach(function (a) { if (config.storeAndroid) a.href = config.storeAndroid; });
+        document.querySelectorAll('[data-store="ios"]').forEach(function (a) { if (cfg.storeIos) a.href = cfg.storeIos; });
+        document.querySelectorAll('[data-store="android"]').forEach(function (a) { if (cfg.storeAndroid) a.href = cfg.storeAndroid; });
       } catch (_) { /* noop */ }
+
+      function show(id) {
+        ['state-waiting', 'state-code', 'state-manual'].forEach(function (s) {
+          var el = document.getElementById(s);
+          if (el) el.style.display = s === id ? '' : 'none';
+        });
+      }
+
+      function showCode(code) {
+        var codeEl = document.getElementById('activation-code');
+        codeEl.textContent = code;
+        show('state-code');
+        var btn = document.getElementById('copy-code-btn');
+        btn.addEventListener('click', function () {
+          try {
+            navigator.clipboard.writeText(code).then(function () {
+              btn.textContent = 'Скопировано ✓';
+              setTimeout(function () { btn.textContent = 'Скопировать код'; }, 2000);
+            });
+          } catch (_) { /* noop */ }
+        });
+      }
+
+      var params = new URLSearchParams(location.search);
+      var sessionId = params.get('session_id') || '';
+      var paypalOrder = params.get('order') || '';
+      var endpoint = cfg.orderStatusEndpoint;
+
+      if (!endpoint || (!sessionId && !paypalOrder)) {
+        show('state-manual');
+        return;
+      }
+
+      var payload = sessionId ? { sessionId: sessionId } : { paypalOrderId: paypalOrder };
+      var attempts = 0;
+      var MAX_ATTEMPTS = 36; /* 36 × 2.5с = 90 сек */
+
+      function poll() {
+        attempts += 1;
+        fetch(endpoint, { method: 'POST', body: JSON.stringify(payload) })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data && data.ok && data.status === 'paid' && data.code) {
+              showCode(data.code);
+              return;
+            }
+            if (attempts >= MAX_ATTEMPTS) { show('state-manual'); return; }
+            setTimeout(poll, 2500);
+          })
+          .catch(function () {
+            if (attempts >= MAX_ATTEMPTS) { show('state-manual'); return; }
+            setTimeout(poll, 2500);
+          });
+      }
+      show('state-waiting');
+      poll();
     });
   </script>
 </body>

@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import { Platform } from 'react-native';
 
 import {
@@ -47,5 +50,39 @@ describe('attempt audio persistence (replay + control pass source)', () => {
     (Platform as any).OS = 'android';
     const opts = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi there' });
     expect(opts.recordingOptions).toEqual({ persist: true });
+  });
+});
+
+describe('SpeakingPanel honest-assessment integration contract', () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, '..', 'components', 'SpeakingPanel.tsx'),
+    'utf8',
+  );
+
+  it('captures the persisted attempt uri from the audioend event', () => {
+    expect(source).toContain("addListener('audioend'");
+    expect(source).toContain('recordingUriRef.current = uri');
+  });
+
+  it('runs the unbiased control pass and applies the honesty cap to the score', () => {
+    expect(source).toContain('buildControlRecognitionOptions(');
+    expect(source).toContain('applyControlScore(');
+    // Пропуск/ошибка контрольного прогона не должны штрафовать говорящего:
+    // поправка применяется к null-контролю без изменений (см. honesty-check).
+    expect(source).toContain('let control: number | null = null');
+  });
+
+  it('shows the per-word map, band verdict and one concrete hint after every attempt', () => {
+    expect(source).toContain('buildSpokenWordReport(');
+    expect(source).toContain('speakingBandLabel(');
+    expect(source).toContain('buildSpeakingHint(');
+    expect(source).toContain('speakingHintText(');
+  });
+
+  it('offers the «my recording ↔ reference» ear-comparison after an attempt', () => {
+    expect(source).toContain('playMyRecording');
+    expect(source).toContain('playReference');
+    expect(source).toContain('createAudioPlayer(recordingUri)');
+    expect(source).toContain('Speech.speak(targetText');
   });
 });

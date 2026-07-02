@@ -9,6 +9,8 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import * as Speech from 'expo-speech';
 
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
@@ -19,15 +21,29 @@ import {
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
-import { buildSpeakingStartOptions } from '../app/speaking_recognition_options';
-import { diffPhonemes } from '../app/speaking_phoneme_diff';
+import {
+  buildControlRecognitionOptions,
+  buildSpeakingStartOptions,
+} from '../app/speaking_recognition_options';
+import { applyControlScore } from '../app/speaking_honesty_check';
+import {
+  buildSpeakingHint,
+  speakingBand,
+  speakingBandLabel,
+  speakingHintText,
+  type SpeakingHint,
+} from '../app/speaking_score_bands';
+import {
+  buildSpokenWordReport,
+  firstSoundHint,
+  type SpokenWordEntry,
+} from '../app/speaking_word_report';
 import { TranscriptAccumulator } from '../app/speaking_transcript_accumulator';
 import {
   analyzeProsody,
   expectedStressPosition,
   stressFeedback,
   type LoudnessSample,
-  type StressFeedback,
 } from '../app/speaking_prosody';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -38,10 +54,19 @@ import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module
  * SpeakingPanel — premium "say it out loud" practice surface.
  *
  * Self-contained: owns mic permission, on-device speech recognition, the live
- * waveform, word-by-word highlighting and pass/fail scoring (reuses the plan's
- * 90% threshold). Drop it anywhere (lesson / quiz / trainer / personal plan)
- * and it manages its own lifecycle. The host only supplies the target phrase
- * and is told when the attempt passes.
+ * waveform, word-by-word highlighting and scoring. Drop it anywhere (lesson /
+ * quiz / trainer / personal plan) and it manages its own lifecycle. The host
+ * only supplies the target phrase and is told when the attempt passes.
+ *
+ * Оценка честная и конкретная (всё локально, без платных серверов):
+ *  - после КАЖДОЙ попытки — пословная карта: зелёный чисто / жёлтый нечётко /
+ *    красный не прозвучало (speaking_word_report);
+ *  - вердикт полосой (Отлично/Хорошо/Почти/Пока нечётко) + ОДНА конкретная
+ *    подсказка, что тянет балл вниз (speaking_score_bands);
+ *  - контрольный прогон: сохранённое аудио попытки распознаётся повторно БЕЗ
+ *    подсказки цели; балл не может превышать вердикт нейтрального движка
+ *    больше чем на допуск (speaking_honesty_check) — biasing не «дарит» зачёт;
+ *  - «Моя запись» ↔ «Эталон»: сравнение своей записи с TTS-эталоном на слух.
  *
  * Premium gating is the host's job: only render this when the user tapped the
  * "Устно" button AND has premium. Free users get routed to the paywall by the
@@ -75,7 +100,12 @@ export interface SpeakingPanelTheme {
   border: string;
   /** Текст/иконка на залитых accent/correct кнопках (в моно-теме accent белый → нужен тёмный текст). */
   onAccent: string;
+  /** Цвет «нечётко» в пословной карте (жёлтый). Опционален — есть фолбэк. */
+  warn?: string;
 }
+
+/** Фолбэк «нечёткого» жёлтого: янтарь читается и на тёмных, и на светлых темах. */
+const WARN_COLOR_FALLBACK = '#E6A23C';
 
 /** Subset of the app theme that the speaking panel needs. */
 export interface SpeakingPanelThemeSource {
@@ -188,8 +218,20 @@ export function SpeakingPanel({
   const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const [transcript, setTranscript] = useState('');
-  // Final heard text of a FAILED attempt, kept for the "which word sounded off" hint.
-  const [failedTranscript, setFailedTranscript] = useState('');
+  // Пословная карта попытки (чисто/нечётко/пропущено) — показывается после
+  // КАЖДОЙ оценённой попытки, и на passed, и на failed.
+  const [wordReport, setWordReport] = useState<SpokenWordEntry[] | null>(null);
+  // Одна конкретная подсказка «что тянет балл вниз» (самая важная проблема).
+  const [hint, setHint] = useState<SpeakingHint | null>(null);
+  // uri сохранённой записи попытки (событие audioend) — питает «Мою запись»
+  // и контрольный прогон без подсказки цели.
+  const recordingUriRef = useRef<string | null>(null);
+  const [recordingUri, setRecordingUri] = useState<string | null>(null);
+  // Плеер повтора своей записи; пересоздаётся на каждый тап, гасится на анмаунте.
+  const replayPlayerRef = useRef<AudioPlayer | null>(null);
+  // Гард от двойного финиша: end и error могут прийти оба, а финиш теперь
+  // асинхронный (контрольный прогон) — второй вызов запустил бы его дважды.
+  const finishingRef = useRef(false);
   // Equalizer is driven IMPERATIVELY via a ref (setSample) so each ~250ms
   // volumechange sample does NOT re-render the whole modal — that re-render storm
   // was the source of the equalizer lag. Mirrors personal_plan_exercise.
@@ -215,31 +257,98 @@ export function SpeakingPanel({
   // Loudness contour for prosody (rhythm/stress) — collected from volumechange.
   const prosodySamplesRef = useRef<LoudnessSample[]>([]);
   const attemptStartRef = useRef(0);
-  const [stress, setStress] = useState<StressFeedback>('unknown');
 
   const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
   const matched = useMemo(
     () => speakingMatchedFlags(targetText, transcript),
     [targetText, transcript],
   );
-  // Word-level "which word sounded off" hint, only for a failed attempt.
-  const phonemeDiff = useMemo(
-    () => (status === 'failed' && failedTranscript ? diffPhonemes(targetText, failedTranscript) : null),
-    [status, failedTranscript, targetText],
-  );
+  // Конкретный звук («/TH/ вместо /S/ в think») из пословной карты.
+  const soundHint = useMemo(() => (wordReport ? firstSoundHint(wordReport) : null), [wordReport]);
 
   const cleanupListeners = useCallback(() => {
     listenersRef.current.forEach((sub) => sub?.remove?.());
     listenersRef.current = [];
   }, []);
 
+  // Ждём uri записи: audioend может прийти на долю секунды позже end. Ожидание
+  // короткое, чтобы «Проверяю…» не подвисало, когда записи нет вовсе.
+  const waitForRecordingUri = useCallback(async (maxMs: number): Promise<string | null> => {
+    const startedAt = Date.now();
+    while (!recordingUriRef.current && Date.now() - startedAt < maxMs) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return recordingUriRef.current;
+  }, []);
+
+  // Контрольный прогон честности: распознаём СОХРАНЁННОЕ аудио попытки БЕЗ
+  // подсказки цели (никаких contextualStrings). Возвращает лучший балл
+  // нейтрального движка против цели, или null когда прогон не дал пригодного
+  // текста (ошибка/таймаут инфраструктуры — не вина говорящего, не штрафуем).
+  const runControlPass = useCallback(
+    (uri: string): Promise<number | null> => {
+      if (!speech) return Promise.resolve(null);
+      // Тот же нативный модуль в роли НЕЙТРАЛЬНОГО судьи. Живой старт с его
+      // availability-check/watchdog уже отработал — здесь только файл.
+      const neutralEngine = speech;
+      return new Promise((resolve) => {
+        let settled = false;
+        let bestControl: number | null = null;
+        const subs: Array<{ remove?: () => void } | undefined> = [];
+        const settle = (value: number | null) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          subs.forEach((s) => s?.remove?.());
+          resolve(value);
+        };
+        // Файловое распознавание короткой фразы обычно укладывается в ~1-2с;
+        // 3.5с — потолок, дальше отдаём результат без поправки.
+        const timer = setTimeout(() => {
+          try {
+            neutralEngine.abort();
+          } catch {
+            /* no-op */
+          }
+          settle(bestControl);
+        }, 3500);
+        subs.push(
+          neutralEngine.addListener('result', (event: any) => {
+            const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
+              ? event.results
+              : [];
+            for (const alt of alternatives) {
+              const t = String(alt?.transcript ?? '').trim();
+              if (!t) continue;
+              const s = scorePlanPronunciationTranscript({ targetText, transcript: t }).score;
+              if (bestControl == null || s > bestControl) bestControl = s;
+            }
+          }),
+          neutralEngine.addListener('end', () => settle(bestControl)),
+          neutralEngine.addListener('error', () => settle(bestControl)),
+        );
+        try {
+          neutralEngine.start(buildControlRecognitionOptions({ lang: recognitionLocale, uri }));
+        } catch {
+          settle(null);
+        }
+      });
+    },
+    [speech, targetText, recognitionLocale],
+  );
+
   const finishAttempt = useCallback(
-    (
+    async (
       finalTranscript: string,
       segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
     ) => {
       if (!mountedRef.current) return;
+      if (finishingRef.current) return;
+      finishingRef.current = true;
       clearWatchdog();
+      // Слушатели живой сессии снимаем сразу: контрольный прогон переиспользует
+      // события end/error, и старый end-слушатель зациклил бы финиш.
+      cleanupListeners();
       const text = finalTranscript.trim();
       // Attempt finished -> the equalizer collapses itself when `active` turns
       // false (its own effect), so no per-sample reset needed here.
@@ -250,29 +359,47 @@ export function SpeakingPanel({
         hapticError();
         return;
       }
-      const result = scorePlanPronunciationTranscript({
+      const biased = scorePlanPronunciationTranscript({
         targetText,
         transcript: text,
         segments,
       });
+      // Честность: тот же звук — нейтральному движку без подсказки. Балл не
+      // может превышать его вердикт больше, чем на допуск (speaking_honesty_check).
+      let control: number | null = null;
+      if (!isPreview) {
+        const uri = await waitForRecordingUri(700);
+        if (uri) control = await runControlPass(uri);
+      }
+      if (!mountedRef.current) return;
+      const { score: honestScore, flagged } = applyControlScore(biased.score, control);
+      const passed = honestScore >= biased.threshold;
+      // Пословная карта + одна конкретная подсказка «что тянет вниз».
+      const report = buildSpokenWordReport({ targetText, transcript: text, segments });
       // Prosody (rhythm/stress) from the loudness contour we collected — local,
-      // no native module. Surfaces "monotone" / stress-too-early-or-late hints.
+      // no native module. Feeds the hint when nothing worse is going on.
       const prosody = analyzeProsody(prosodySamplesRef.current);
-      setStress(stressFeedback(prosody, expectedStressPosition(targetText)));
-      setScore(result.score);
-      if (result.passed) {
-        setFailedTranscript('');
+      const stress = stressFeedback(prosody, expectedStressPosition(targetText));
+      setWordReport(report);
+      setHint(
+        buildSpeakingHint({
+          report,
+          honestyFlagged: flagged,
+          stress,
+          completeness: biased.breakdown?.completeness,
+        }),
+      );
+      setScore(honestScore);
+      if (passed) {
         setStatus('passed');
         hapticSuccess();
-        onPass?.({ score: result.score, transcript: text });
+        onPass?.({ score: honestScore, transcript: text });
       } else {
-        // Keep the heard text so the failed view can show "which word sounded off".
-        setFailedTranscript(text);
         setStatus('failed');
         hapticError();
       }
     },
-    [targetText, onPass, clearWatchdog],
+    [targetText, onPass, clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass],
   );
 
   const stopListening = useCallback(() => {
@@ -296,11 +423,14 @@ export function SpeakingPanel({
     }
     hapticTap();
     setTranscript('');
-    setFailedTranscript('');
     setScore(null);
+    setWordReport(null);
+    setHint(null);
     equalizerRef.current?.setSample(0);
-    setStress('unknown');
     prosodySamplesRef.current = [];
+    recordingUriRef.current = null;
+    setRecordingUri(null);
+    finishingRef.current = false;
     attemptStartRef.current = Date.now();
     setStatus('requesting');
     try {
@@ -379,19 +509,25 @@ export function SpeakingPanel({
     });
     const endSub = speech.addListener('end', () => {
       // Скорим по самому полному варианту, а не по последнему обрывку.
-      finishAttempt(best || latest, bestSegments);
+      void finishAttempt(best || latest, bestSegments);
     });
     const errorSub = speech.addListener('error', () => {
       clearWatchdog();
       if (mountedRef.current) {
         const final = best || latest;
-        if (final) finishAttempt(final, bestSegments);
+        if (final) void finishAttempt(final, bestSegments);
         else setStatus('no_speech');
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
       clearWatchdog();
       if (mountedRef.current) setStatus('no_speech');
+    });
+    // uri сохранённой записи попытки: питает «Мою запись» и контрольный прогон.
+    const audioEndSub = speech.addListener('audioend', (event: any) => {
+      const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      recordingUriRef.current = uri;
+      if (mountedRef.current) setRecordingUri(uri);
     });
     // Live volume -> equalizer, pushed IMPERATIVELY (no setState → no re-render
     // of the modal on every sample). The equalizer derives loudness + tone tilt.
@@ -405,9 +541,15 @@ export function SpeakingPanel({
       }
     });
 
-    listenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
-      Boolean,
-    ) as Array<{ remove?: () => void }>;
+    listenersRef.current = [
+      startSub,
+      resultSub,
+      endSub,
+      errorSub,
+      noMatchSub,
+      audioEndSub,
+      volumeSub,
+    ].filter(Boolean) as Array<{ remove?: () => void }>;
 
     // Prefer the device's offline neural recognizer when available (iOS 17+,
     // Android 13+ with the AOSP model). Cleaner privacy, no network error class,
@@ -467,6 +609,16 @@ export function SpeakingPanel({
       } catch {
         /* no-op */
       }
+      try {
+        replayPlayerRef.current?.remove();
+      } catch {
+        /* no-op */
+      }
+      try {
+        Speech.stop();
+      } catch {
+        /* no-op */
+      }
     };
   }, [speech, cleanupListeners, clearWatchdog]);
 
@@ -498,6 +650,51 @@ export function SpeakingPanel({
     });
   }, []);
 
+  // «Послушай себя»: воспроизводим сохранённую запись попытки (wav в кэше).
+  const playMyRecording = useCallback(() => {
+    if (!recordingUri) return;
+    hapticTap();
+    try {
+      Speech.stop();
+    } catch {
+      /* no-op */
+    }
+    try {
+      replayPlayerRef.current?.remove();
+    } catch {
+      /* no-op */
+    }
+    try {
+      const player = createAudioPlayer(recordingUri);
+      replayPlayerRef.current = player;
+      try {
+        player.volume = 1;
+      } catch {
+        /* no-op: runtime без настраиваемой громкости */
+      }
+      player.play();
+    } catch {
+      /* no-op: повтор не критичен — тихо пропускаем */
+    }
+  }, [recordingUri]);
+
+  // «Эталон»: системный TTS произносит целевую фразу. У панели нет доступа к
+  // студийным клипам урока (хосты разные), а TTS покрывает любую фразу.
+  const playReference = useCallback(() => {
+    hapticTap();
+    try {
+      replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
+      Speech.speak(targetText, { language: recognitionLocale });
+    } catch {
+      /* no-op */
+    }
+  }, [targetText, recognitionLocale]);
+
   const listening = status === 'listening';
   const showResult = status === 'passed' || status === 'failed';
   const isBlocked = status === 'denied' || status === 'unavailable';
@@ -506,6 +703,9 @@ export function SpeakingPanel({
   // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
   const passed = status === 'passed';
   const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
+  const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
+  const band = score != null ? speakingBand(score, passThreshold) : null;
+  const hintLine = hint ? speakingHintText(hint, lang) : null;
 
   const statusLine = (() => {
     switch (status) {
@@ -605,20 +805,34 @@ export function SpeakingPanel({
 
           {/* Целевая фраза СКРЫТА за чёрточками по буквам — юзер не видит ответ
               заранее (иначе нет смысла учиться). Слово «загорается» (становится
-              читаемым) только когда юзер правильно его произнёс. Заполнение
-              пословно по мере распознавания. На passed показываем фразу целиком. */}
+              читаемым) только когда юзер правильно его произнёс. После оценки
+              фраза раскрывается ЦЕЛИКОМ как пословная карта попытки:
+              зелёный — чисто, жёлтый — нечётко, красный — не прозвучало. */}
           <View style={styles.phraseWrap} accessibilityRole="text">
             {tokens.map((tok, i) => {
-              const reveal = matched[i] || status === 'passed';
+              const entry =
+                showResult && wordReport && wordReport.length === tokens.length
+                  ? wordReport[i]
+                  : null;
+              const reveal = matched[i] || status === 'passed' || entry != null;
               // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
               const masked = tok.replace(/[\p{L}\p{N}]/gu, '_');
+              const color = entry
+                ? entry.status === 'clean'
+                  ? theme.correct
+                  : entry.status === 'fuzzy'
+                  ? warnColor
+                  : theme.wrong
+                : reveal
+                ? theme.correct
+                : theme.textMuted;
               return (
                 <Text
                   key={`spk-tok-${i}`}
                   style={[
                     styles.phraseWord,
                     {
-                      color: reveal ? theme.correct : theme.textMuted,
+                      color,
                       opacity: reveal ? 1 : 0.6,
                       letterSpacing: reveal ? 0 : 2,
                     },
@@ -680,7 +894,8 @@ export function SpeakingPanel({
             )}
           </View>
 
-          {/* Status line / score */}
+          {/* Status line / band verdict. После оценки вместо сырого статуса —
+              полоса (Отлично / Хорошо / Почти / Пока нечётко). */}
           <Text
             style={[
               styles.status,
@@ -694,91 +909,57 @@ export function SpeakingPanel({
               },
             ]}
           >
-            {statusLine}
+            {showResult && band ? speakingBandLabel(band, lang) : statusLine}
           </Text>
 
-          {/* "Which word sounded off" — calm, word-level hint after a failed
-              attempt. Fully local (phonetic diff). Only the words that didn't
-              come through are listed, so the learner knows exactly what to retry. */}
-          {phonemeDiff?.hasIssues && (
-            <View style={styles.diffWrap} accessibilityRole="text">
-              <Text style={[styles.diffLabel, { color: theme.textMuted }]}>
-                {L(lang, {
-                  ru: 'Поработай над:',
-                  uk: 'Попрацюй над:',
-                  es: 'Trabaja en:',
-                  'pt-BR': 'Pratique:',
-                  vi: 'Luyện thêm:',
-                  id: 'Latih lagi:',
-                  tr: 'Şunları çalış:',
-                  pl: 'Popracuj nad:',
-                })}
-              </Text>
-              <View style={styles.diffWords}>
-                {phonemeDiff.words
-                  .filter((w) => w.status !== 'ok')
-                  .map((w, idx) => (
-                    <Text
-                      key={`diff-${idx}`}
-                      style={[styles.diffWord, { color: theme.wrong, borderColor: theme.wrong }]}
-                    >
-                      {w.target}
-                    </Text>
-                  ))}
-              </View>
-              {/* Concrete in-word sound contrast, when we could pinpoint it.
-                  Phoneme symbols are language-neutral, so the same hint works
-                  for every UI language. */}
-              {(() => {
-                const hinted = phonemeDiff.words.find(
-                  (w) => w.status === 'mispronounced' && w.soundHints && w.soundHints.length > 0,
-                );
-                const h = hinted?.soundHints?.[0];
-                if (!h) return null;
-                return (
-                  <Text style={[styles.diffSound, { color: theme.textMuted }]}>
-                    {L(lang, {
-                      ru: `звук /${h.expected}/ вместо /${h.said}/ в «${hinted!.target}»`,
-                      uk: `звук /${h.expected}/ замість /${h.said}/ у «${hinted!.target}»`,
-                      es: `sonido /${h.expected}/ en vez de /${h.said}/ en «${hinted!.target}»`,
-                      'pt-BR': `som /${h.expected}/ em vez de /${h.said}/ em «${hinted!.target}»`,
-                      vi: `âm /${h.expected}/ thay vì /${h.said}/ trong «${hinted!.target}»`,
-                      id: `bunyi /${h.expected}/ bukan /${h.said}/ pada «${hinted!.target}»`,
-                      tr: `«${hinted!.target}» sözcüğünde /${h.said}/ yerine /${h.expected}/`,
-                      pl: `dźwięk /${h.expected}/ zamiast /${h.said}/ w «${hinted!.target}»`,
-                    })}
-                  </Text>
-                );
-              })()}
-            </View>
+          {/* Одна конкретная подсказка: что именно тянет балл вниз. */}
+          {showResult && hintLine && (
+            <Text style={[styles.hintLine, { color: theme.textSecond }]}>{hintLine}</Text>
           )}
 
-          {/* Prosody (rhythm/stress) hint — shown after any scored attempt when
-              we detected a clear pattern. Energy-based, local, build-free. */}
-          {showResult && (stress === 'monotone' || stress === 'too_early' || stress === 'too_late') && (
+          {/* Конкретный звук внутри слова, когда его удалось запеленговать.
+              Символы фонем языконезависимы — одна строка на все локали. */}
+          {showResult && soundHint && (
             <Text style={[styles.diffSound, { color: theme.textMuted }]}>
-              {stress === 'monotone'
-                ? L(lang, {
-                    ru: 'Звучит ровно — добавь выражения и ударения',
-                    uk: 'Звучить рівно — додай виразності та наголосу',
-                    es: 'Suena plano — añade más énfasis',
-                    'pt-BR': 'Soa monótono — dê mais ênfase',
-                    vi: 'Nghe đều đều — hãy nhấn nhá hơn',
-                    id: 'Terdengar datar — beri lebih banyak penekanan',
-                    tr: 'Tekdüze geldi — vurgu ekle',
-                    pl: 'Brzmi płasko — dodaj akcentu',
-                  })
-                : L(lang, {
-                    ru: 'Обрати внимание на ударение во фразе',
-                    uk: 'Зверни увагу на наголос у фразі',
-                    es: 'Cuida el acento de la frase',
-                    'pt-BR': 'Atenção à ênfase da frase',
-                    vi: 'Chú ý trọng âm của câu',
-                    id: 'Perhatikan penekanan kalimat',
-                    tr: 'Cümledeki vurguya dikkat et',
-                    pl: 'Zwróć uwagę na akcent w zdaniu',
-                  })}
+              {L(lang, {
+                ru: `звук /${soundHint.hint.expected}/ вместо /${soundHint.hint.said}/ в «${soundHint.word}»`,
+                uk: `звук /${soundHint.hint.expected}/ замість /${soundHint.hint.said}/ у «${soundHint.word}»`,
+                es: `sonido /${soundHint.hint.expected}/ en vez de /${soundHint.hint.said}/ en «${soundHint.word}»`,
+                'pt-BR': `som /${soundHint.hint.expected}/ em vez de /${soundHint.hint.said}/ em «${soundHint.word}»`,
+                vi: `âm /${soundHint.hint.expected}/ thay vì /${soundHint.hint.said}/ trong «${soundHint.word}»`,
+                id: `bunyi /${soundHint.hint.expected}/ bukan /${soundHint.hint.said}/ pada «${soundHint.word}»`,
+                tr: `«${soundHint.word}» sözcüğünde /${soundHint.hint.said}/ yerine /${soundHint.hint.expected}/`,
+                pl: `dźwięk /${soundHint.hint.expected}/ zamiast /${soundHint.hint.said}/ w «${soundHint.word}»`,
+              })}
             </Text>
+          )}
+
+          {/* «Послушай себя» ↔ эталон: сравнение на слух сильнее любого процента. */}
+          {showResult && (
+            <View style={styles.listenRow}>
+              {recordingUri != null && (
+                <Pressable
+                  onPress={playMyRecording}
+                  accessibilityRole="button"
+                  style={[styles.listenBtn, { borderColor: theme.border }]}
+                >
+                  <Ionicons name="play" size={16} color={theme.accent} />
+                  <Text style={[styles.listenText, { color: theme.textPrimary }]}>
+                    {L(lang, { ru: 'Моя запись', uk: 'Мій запис', es: 'Mi grabación', 'pt-BR': 'Minha gravação', vi: 'Bản ghi của tôi', id: 'Rekamanku', tr: 'Kaydım', pl: 'Moje nagranie' })}
+                  </Text>
+                </Pressable>
+              )}
+              <Pressable
+                onPress={playReference}
+                accessibilityRole="button"
+                style={[styles.listenBtn, { borderColor: theme.border }]}
+              >
+                <Ionicons name="volume-high" size={16} color={theme.accent} />
+                <Text style={[styles.listenText, { color: theme.textPrimary }]}>
+                  {L(lang, { ru: 'Эталон', uk: 'Зразок', es: 'Modelo', 'pt-BR': 'Modelo', vi: 'Bản mẫu', id: 'Contoh', tr: 'Örnek', pl: 'Wzór' })}
+                </Text>
+              </Pressable>
+            </View>
           )}
 
           {/* Mic button — hidden when blocked (denied/unavailable) or already
@@ -896,18 +1077,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: { fontSize: 18, fontWeight: '700' },
-  diffWrap: { alignItems: 'center', marginBottom: 8, marginTop: -8 },
-  diffLabel: { fontSize: 13, marginBottom: 6 },
-  diffWords: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 6 },
-  diffWord: {
-    fontSize: 15,
-    fontWeight: '600',
+  diffSound: { fontSize: 12, marginTop: -10, marginBottom: 10, textAlign: 'center' },
+  hintLine: { fontSize: 13, textAlign: 'center', marginTop: -12, marginBottom: 12 },
+  listenRow: { flexDirection: 'row', gap: 10, marginBottom: 14 },
+  listenBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
   },
-  diffSound: { fontSize: 12, marginTop: 6, textAlign: 'center' },
+  listenText: { fontSize: 13, fontWeight: '600' },
   phraseWrap: {
     flexDirection: 'row',
     flexWrap: 'wrap',

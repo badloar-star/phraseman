@@ -547,6 +547,17 @@ function runProbes(base: EvaluationInput): Probe[] {
   ];
   return cases.map((testCase) => {
     const fixture = clone(base);
+    fixture.approvalSourceExists = false;
+    fixture.exactApprovalSentencePresent = false;
+    fixture.createActiveReceiptRequested = false;
+    fixture.activeApprovalReceiptExistsBefore = false;
+    fixture.activeHashLockExistsBefore = false;
+    fixture.dirtyWorktreeDriftDetected = false;
+    fixture.currentDirtyFiles = fixture.p30DirtyFiles;
+    // Fixture probes simulate hypothetical wait-state transitions; real-run P50
+    // blockers (e.g. the expected remote-verify hold) are not part of the simulated
+    // premise. Probes that require a not-ready P50 set p50Ready=false explicitly.
+    fixture.p50Blockers = 0;
     testCase.mutate(fixture);
     const result = evaluate(fixture).evaluation;
     return {

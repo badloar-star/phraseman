@@ -24,6 +24,8 @@ import * as logger from 'firebase-functions/logger';
 import { defineSecret } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 
+import { buildPromoVipPatch } from './promo_codes';
+
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
 const DEAD_LETTER_COLLECTION = 'web_checkout_dead_letter';
@@ -425,6 +427,87 @@ export const webCheckoutCreate = onRequest(
   },
 );
 
+/**
+ * Продление Stripe-подписки (invoice.paid, месяц/год 2+):
+ * 1) первый счёт (billing_reason=subscription_create) пропускаем — его период
+ *    покрывает код активации;
+ * 2) находим заявку по stripeSubscriptionId, идемпотентно (processedInvoices);
+ * 3) если код уже активирован — продлеваем vip_until аккаунта (lastRedeemedBy);
+ *    если ещё нет — добавляем дни на сам код (юзер получит оба периода при вводе).
+ */
+async function handleSubscriptionRenewal(invoice: Record<string, unknown>): Promise<string> {
+  const billingReason = String(invoice.billing_reason ?? '');
+  if (billingReason === 'subscription_create') return 'initial_invoice_skipped';
+  if (Number(invoice.amount_paid) <= 0) return 'zero_amount_skipped';
+
+  const parent = invoice.parent as { subscription_details?: { subscription?: unknown } } | undefined;
+  const subscriptionId = String(invoice.subscription ?? parent?.subscription_details?.subscription ?? '').trim();
+  const invoiceId = String(invoice.id ?? '').trim();
+  if (!subscriptionId || !invoiceId) return 'no_subscription_ref';
+
+  const db = getFirestore();
+  const orderSnap = await db.collection(ORDERS_COLLECTION)
+    .where('stripeSubscriptionId', '==', subscriptionId).limit(1).get();
+  if (orderSnap.empty) {
+    await writeDeadLetter('stripe_renewal_order_not_found', { subscriptionId, invoiceId }, 'no order');
+    return 'order_not_found';
+  }
+  const orderRef = orderSnap.docs[0].ref;
+  const order = orderSnap.docs[0].data();
+  const plan: WebPlan = isWebPlan(order.plan) ? order.plan : 'monthly';
+  const addDays = activationRewardForPlan(plan).rewardDays || 31;
+  const code = String(order.activationCode ?? '').trim();
+
+  const outcome = await db.runTransaction(async (tx) => {
+    const [orderNow, codeSnap] = await Promise.all([
+      tx.get(orderRef),
+      code ? tx.get(db.collection('promo_codes').doc(code)) : Promise.resolve(null),
+    ]);
+    const processed = (orderNow.data()?.processedInvoices ?? []) as unknown[];
+    if (processed.includes(invoiceId)) return 'duplicate_invoice';
+
+    const codeData = codeSnap?.exists ? (codeSnap.data() ?? {}) : null;
+    const redeemedBy = String(codeData?.lastRedeemedBy ?? '').trim();
+    const nowMs = Date.now();
+    let result: string;
+
+    if (redeemedBy) {
+      // Код активирован → продлеваем VIP-окно аккаунта (стек от текущего vip_until).
+      const userRef = db.collection('users').doc(redeemedBy);
+      const userSnap = await tx.get(userRef);
+      const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
+      const vipPatch = buildPromoVipPatch(progress, nowMs, addDays, 'days', code);
+      tx.set(userRef, { progress: vipPatch, updatedAt: nowMs }, { merge: true });
+      result = `extended_user_${addDays}d`;
+    } else if (codeSnap?.exists) {
+      // Код ещё не введён → наращиваем награду самого кода.
+      tx.update(codeSnap.ref, { rewardDays: FieldValue.increment(addDays) });
+      result = `extended_code_${addDays}d`;
+    } else {
+      result = 'code_missing_manual_needed';
+    }
+
+    tx.update(orderRef, {
+      processedInvoices: FieldValue.arrayUnion(invoiceId),
+      lastRenewalAtIso: new Date().toISOString(),
+      renewalCount: FieldValue.increment(1),
+      lastRenewalOutcome: result,
+    });
+    return result;
+  });
+
+  if (outcome === 'code_missing_manual_needed') {
+    await notifyAdminsTelegram({
+      ...order,
+      orderId: orderRef.id,
+      activationCode: null,
+      planDuration: `${order.planDuration} (ПРОДЛЕНИЕ — код не найден, продлить вручную!)`,
+    }).catch(() => undefined);
+  }
+  logger.info('stripe renewal processed', { subscriptionId, invoiceId, outcome });
+  return outcome;
+}
+
 function verifyStripeSignature(rawBody: Buffer, header: string, secret: string): boolean {
   const parts = header.split(',').map((p) => p.trim());
   const timestamp = parts.find((p) => p.startsWith('t='))?.slice(2);
@@ -472,6 +555,21 @@ export const stripeWebhook = onRequest(
     }
 
     const type = String(event.type ?? '');
+
+    // Автопродление подписки (месяц 2+): Stripe списал деньги — продлеваем доступ
+    // сами, без нового кода и без участия юзера/владельца.
+    if (type === 'invoice.paid') {
+      try {
+        const result = await handleSubscriptionRenewal((event.data?.object ?? {}) as Record<string, unknown>);
+        res.status(200).send(result);
+      } catch (e) {
+        logger.error('stripeWebhook renewal failed', e);
+        await writeDeadLetter('stripe_renewal_failed', rawBody.toString('utf8'), e);
+        res.status(500).send('renewal_failed'); // 500 → Stripe повторит доставку
+      }
+      return;
+    }
+
     const relevant = type === 'checkout.session.completed' || type === 'checkout.session.async_payment_succeeded';
     if (!relevant) {
       res.status(200).send('ignored');

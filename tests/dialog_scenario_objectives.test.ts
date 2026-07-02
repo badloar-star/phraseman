@@ -1,4 +1,5 @@
 import {
+  getPublicDialogScenarios,
   getScenarioById,
   scenarioObjectives,
   scenarioTemperament,
@@ -27,6 +28,47 @@ describe('scenarioObjectives — под-цели из goalEn или явные',
       objectives: [{ id: 'only_one', labelRu: 'Единственная цель' }],
     };
     expect(scenarioObjectives(fake)).toEqual([{ id: 'only_one', labelRu: 'Единственная цель' }]);
+  });
+
+  it('РЕГРЕСС «4 одинаковых пункта»: НИ ОДИН сценарий каталога не даёт дублей меток', () => {
+    // Баг: при рассинхроне числа частей goalRu/goalEn КАЖДАЯ под-цель получала
+    // меткой целиком goalRu → финальный модал показывал 4 одинаковые строки
+    // (скриншот юзера, сценарий mistaken_celebrity).
+    for (const scenario of getPublicDialogScenarios()) {
+      const objs = scenarioObjectives(scenario);
+      const labels = objs.map((o) => o.labelRu.trim().toLowerCase());
+      expect(new Set(labels).size).toBe(labels.length);
+      const ids = objs.map((o) => o.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
+  });
+
+  it('mistaken_celebrity (сценарий со скриншота) имеет осмысленные различные под-цели', () => {
+    const scenario = getScenarioById('mistaken_celebrity')!;
+    const objs = scenarioObjectives(scenario);
+    expect(objs.length).toBeGreaterThanOrEqual(2);
+    const labels = objs.map((o) => o.labelRu);
+    expect(new Set(labels).size).toBe(labels.length);
+    // Метка под-цели — НЕ вся цель сценария целиком.
+    for (const label of labels) {
+      expect(label).not.toBe(scenario.goalRu);
+    }
+  });
+
+  it('режиссёрские указания из второго предложения goalEn не становятся под-целями', () => {
+    const base = getScenarioById('coffee')!;
+    const scripted: DialogScenario = {
+      ...base,
+      objectives: undefined,
+      goalEn: 'The learner must order tea and ask the price. Reward clear phrasing; if the learner is vague, push back.',
+      goalRu: 'Закажи чай и спроси цену',
+    };
+    const objs = scenarioObjectives(scripted);
+    for (const o of objs) {
+      expect(o.en ?? '').not.toMatch(/reward|push back/i);
+      // Служебный префикс «The learner must» из метки вычищен.
+      expect(o.labelRu).not.toMatch(/^the learner/i);
+    }
   });
 });
 

@@ -947,6 +947,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful clothing store assistant',
     setting: 'a clothing store',
     goalEn: 'ask for another size, request a fitting room, and ask the price',
+    objectives: [
+      { id: 'ask_size', labelRu: 'Попросить другой размер', en: 'ask for another size' },
+      { id: 'fitting_room', labelRu: 'Попросить примерочную', en: 'request a fitting room' },
+      { id: 'ask_price', labelRu: 'Узнать цену', en: 'ask the price' },
+    ],
     persona:
       'Your name is Lola. You are a stylish, upbeat shop assistant with an eye for what suits people. ' +
       'You give honest, friendly opinions, love finding the perfect fit, and gently encourage the customer to try things on.',
@@ -963,6 +968,10 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a careful pharmacist',
     setting: 'a pharmacy counter',
     goalEn: 'describe a simple health problem and ask how to take the medicine',
+    objectives: [
+      { id: 'describe_problem', labelRu: 'Описать, что беспокоит', en: 'describe a simple health problem' },
+      { id: 'ask_how_to_take', labelRu: 'Спросить, как принимать лекарство', en: 'ask how to take the medicine' },
+    ],
     persona:
       'Your name is Mr. Patel. You are a precise, reassuring pharmacist who explains things clearly and never wants anyone to worry. ' +
       'You double-check details, speak gently, and always confirm the patient understood the dosage.',
@@ -1011,6 +1020,10 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a delivery courier on the phone',
     setting: 'a short delivery phone call',
     goalEn: 'confirm the address and delivery time with a courier',
+    objectives: [
+      { id: 'confirm_address', labelRu: 'Уточнить адрес', en: 'confirm the delivery address' },
+      { id: 'confirm_time', labelRu: 'Договориться о времени доставки', en: 'agree on the delivery time' },
+    ],
     persona:
       'Your name is Diego. You are a busy but friendly courier calling from your scooter. ' +
       'You are a bit in a hurry, speak in short practical bursts, but stay polite and double-check the address so you don\'t get lost.',
@@ -1027,6 +1040,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a hotel receptionist',
     setting: 'a hotel front desk',
     goalEn: 'check in and ask about breakfast and Wi-Fi',
+    objectives: [
+      { id: 'check_in', labelRu: 'Зарегистрироваться', en: 'check in' },
+      { id: 'ask_breakfast', labelRu: 'Спросить про завтрак', en: 'ask about breakfast' },
+      { id: 'ask_wifi', labelRu: 'Спросить про Wi-Fi', en: 'ask about Wi-Fi' },
+    ],
     persona:
       'Your name is Grace. You are a polished, welcoming receptionist at a pleasant mid-range hotel. ' +
       'You greet guests with genuine warmth, are proud of the free breakfast, and make sure every guest feels looked after.',
@@ -1075,6 +1093,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a train station ticket clerk',
     setting: 'a train station ticket office',
     goalEn: 'buy a ticket and ask about the platform and departure time',
+    objectives: [
+      { id: 'buy_ticket', labelRu: 'Купить билет', en: 'buy a ticket' },
+      { id: 'ask_platform', labelRu: 'Уточнить платформу', en: 'ask about the platform' },
+      { id: 'ask_departure', labelRu: 'Уточнить время отправления', en: 'ask about the departure time' },
+    ],
     persona:
       'Your name is Mr. Okafor. You are a steady, no-nonsense ticket clerk who has sold tickets for decades. ' +
       'You are polite but to the point, give platform and time details precisely, and quietly make sure travellers don\'t miss their train.',
@@ -1091,6 +1114,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'an airport lost luggage officer',
     setting: 'an airport baggage service desk',
     goalEn: 'describe a missing suitcase, leave contact details, and ask when to expect news',
+    objectives: [
+      { id: 'describe_suitcase', labelRu: 'Описать чемодан', en: 'describe the missing suitcase' },
+      { id: 'leave_contacts', labelRu: 'Оставить контакты', en: 'leave contact details' },
+      { id: 'ask_when_news', labelRu: 'Спросить, когда ждать новостей', en: 'ask when to expect news' },
+    ],
     persona:
       'Your name is Helen. You are a patient, sympathetic baggage officer who deals with stressed travellers all day. ' +
       'You stay calm and reassuring, ask careful questions about the suitcase, and promise to follow up so the traveller feels in good hands.',
@@ -1155,6 +1183,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly neighbor',
     setting: 'a short chat near the apartment building',
     goalEn: 'make small talk about the weather, the building, and the neighborhood',
+    objectives: [
+      { id: 'talk_weather', labelRu: 'Поговорить о погоде', en: 'chat about the weather' },
+      { id: 'talk_building', labelRu: 'Поговорить о доме', en: 'chat about the building' },
+      { id: 'talk_neighborhood', labelRu: 'Поговорить о районе', en: 'chat about the neighborhood' },
+    ],
     persona:
       'Your name is Rosa. You are a warm, chatty neighbor who knows everyone in the building and loves a doorstep catch-up. ' +
       'You comment on the weather, share little neighborhood news, and always have a kind word for the people next door.',
@@ -1203,6 +1236,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly coworker after work',
     setting: 'a casual chat after work',
     goalEn: 'invite someone to meet, suggest a time, and suggest a place',
+    objectives: [
+      { id: 'invite', labelRu: 'Пригласить встретиться', en: 'invite someone to meet' },
+      { id: 'suggest_time', labelRu: 'Предложить время', en: 'suggest a time' },
+      { id: 'suggest_place', labelRu: 'Предложить место', en: 'suggest a place' },
+    ],
     persona:
       'Your name is Jay. You are a fun, sociable coworker who is always organising after-work plans. ' +
       'You are upbeat and easy to talk to, toss out ideas for places to go, and make the invitation feel relaxed and welcome.',
@@ -1254,6 +1292,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful lost-and-found worker',
     setting: 'a lost-and-found desk',
     goalEn: 'say what you have, explain where the bag was, and confirm the option',
+    objectives: [
+      { id: 'say_what_lost', labelRu: 'Сказать, что потерялась сумка', en: 'say what was lost' },
+      { id: 'explain_where', labelRu: 'Объяснить, где была сумка', en: 'explain where the bag was' },
+      { id: 'confirm_option', labelRu: 'Подтвердить вариант решения', en: 'confirm the suggested option' },
+    ],
     persona:
       'Your name is Ruth. You are a kindly, methodical lost-and-found attendant who genuinely loves reuniting people with their things. ' +
       'You ask gentle, specific questions about the bag and where it was, and you light up when the description matches something you have.',
@@ -1276,6 +1319,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'Defend your place politely. The learner should explain the situation, avoid sounding rude, and suggest a fair solution. ' +
       'If the learner uses only very short simple phrases, the other person should lightly challenge them and ask for a clearer explanation.',
+    objectives: [
+      { id: 'explain_situation', labelRu: 'Объяснить, что столик был твой', en: 'explain the table was yours' },
+      { id: 'stay_polite', labelRu: 'Не сорваться на грубость', en: 'stay polite, never rude' },
+      { id: 'suggest_solution', labelRu: 'Предложить честное решение', en: 'suggest a fair solution' },
+    ],
     persona:
       'Your name is Derek. You are a self-assured café regular who genuinely believes the table is free and won\'t give it up easily. ' +
       'You are not aggressive, just stubborn and a little smug — you only back down once the learner explains clearly and politely.',
@@ -1296,6 +1344,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must clarify the route, ask why the driver turned the wrong way, and request a correction. ' +
       'Reward precise questions and polite firmness; if the learner is vague, the driver keeps dodging.',
+    objectives: [
+      { id: 'clarify_route', labelRu: 'Уточнить маршрут', en: 'clarify the route' },
+      { id: 'ask_why_turned', labelRu: 'Спросить, почему едем не туда', en: 'ask why the driver turned the wrong way' },
+      { id: 'request_correction', labelRu: 'Добиться возврата на маршрут', en: 'request a correction back to the route' },
+    ],
     persona:
       'Your name is Sal. You are a smooth-talking taxi driver who pretends the longer route is "just traffic" and deflects with vague friendly chatter. ' +
       'You only straighten up and fix the route when the learner asks sharp, specific questions and holds their ground.',
@@ -1316,6 +1369,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should join a fast conversation: ask someone to repeat, react naturally, and ask a relevant question. ' +
       'Encourage phrases like “Could you say that again?”, “What do you mean by…?”, and follow-up questions.',
+    objectives: [
+      { id: 'ask_repeat', labelRu: 'Попросить повторить помедленнее', en: 'ask someone to repeat more slowly' },
+      { id: 'react_naturally', labelRu: 'Живо отреагировать на услышанное', en: 'react naturally to what was said' },
+      { id: 'ask_question', labelRu: 'Задать вопрос по теме', en: 'ask a relevant question' },
+    ],
     persona:
       'Your name is Zoe. You are a bubbly, fast-talking party guest bursting with stories and energy. ' +
       'You don\'t slow down on your own, but the moment the learner asks you to repeat or jumps in, you warm to them and pull them into the group.',
@@ -1336,6 +1394,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must apologize, give a concise reason, take responsibility, and propose a next step. ' +
       'If the learner only says “sorry”, the teammate should push back and ask what happened and how they will fix it.',
+    objectives: [
+      { id: 'apologize', labelRu: 'Извиниться', en: 'apologize' },
+      { id: 'give_reason', labelRu: 'Коротко объяснить причину', en: 'give a concise reason' },
+      { id: 'propose_step', labelRu: 'Предложить, как наверстать', en: 'take responsibility and propose a next step' },
+    ],
     persona:
       'Your name is Martin. You are a sharp, slightly irritated teammate who hates wasted time and expects a real explanation, not just "sorry". ' +
       'You soften only when the learner takes responsibility and offers a concrete way to make up for being late.',
@@ -1356,6 +1419,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should explain the billing mistake, compare what was ordered with what is on the bill, and request a correction politely. ' +
       'The waiter should resist a little until the learner gives enough detail.',
+    objectives: [
+      { id: 'explain_mistake', labelRu: 'Объяснить ошибку в счёте', en: 'explain the billing mistake' },
+      { id: 'compare_order', labelRu: 'Сравнить заказ и счёт', en: 'compare what was ordered with the bill' },
+      { id: 'request_fix', labelRu: 'Вежливо попросить исправить', en: 'politely request a correction' },
+    ],
     persona:
       'Your name is Gus. You are a tired, end-of-shift waiter who is sure the bill is right and isn\'t keen to recheck it. ' +
       'You grumble a little and push back at first, but you turn cooperative once the learner calmly points out exactly what doesn\'t match.',
@@ -1376,6 +1444,12 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must ask what is included, compare options, refuse unnecessary extras, and keep a polite but firm boundary. ' +
       'If the learner is too passive, the salesperson keeps pushing.',
+    objectives: [
+      { id: 'ask_included', labelRu: 'Спросить, что входит в цену', en: 'ask what is included' },
+      { id: 'compare_options', labelRu: 'Сравнить варианты', en: 'compare the options' },
+      { id: 'refuse_extras', labelRu: 'Отказаться от лишнего', en: 'refuse unnecessary extras' },
+      { id: 'hold_boundary', labelRu: 'Твёрдо, но вежливо стоять на своём', en: 'keep a polite but firm boundary' },
+    ],
     persona:
       'Your name is Rick. You are a slick, fast-talking salesman who loves stacking on "amazing deals" and extra add-ons. ' +
       'You keep nudging and upselling with a big smile, and only ease off when the learner clearly asks what\'s included and firmly says no.',
@@ -1396,6 +1470,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should listen, acknowledge the complaint, explain briefly, and agree on a compromise. ' +
       'The neighbor starts irritated, but should soften if the learner uses respectful language and specific promises.',
+    objectives: [
+      { id: 'listen_complaint', labelRu: 'Выслушать жалобу', en: 'listen and acknowledge the complaint' },
+      { id: 'explain_briefly', labelRu: 'Коротко объясниться', en: 'explain your side briefly' },
+      { id: 'agree_compromise', labelRu: 'Договориться о компромиссе', en: 'agree on a compromise' },
+    ],
     persona:
       'Your name is Janet. You are a frazzled neighbor at the end of a long day, annoyed by the noise and ready to vent. ' +
       'You start sharp and a bit confrontational, but you calm down fast when the learner listens, acknowledges you, and offers a concrete promise.',
@@ -1416,6 +1495,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should answer with a structured argument, give examples, clarify assumptions, and stay calm. ' +
       'If the learner uses only simple vague answers, the interviewer should mildly patronize them and demand a stronger answer.',
+    objectives: [
+      { id: 'structured_answer', labelRu: 'Ответить по существу, со структурой', en: 'answer with a structured argument' },
+      { id: 'give_examples', labelRu: 'Привести примеры', en: 'give concrete examples' },
+      { id: 'stay_calm', labelRu: 'Сохранить спокойствие', en: 'stay calm under pressure' },
+    ],
     persona:
       'Your name is Mr. Sterling. You are a cool, condescending interviewer who subtly doubts the learner is good enough. ' +
       'You drop little patronising remarks and demand sharper answers, but you grow visibly more respectful when the learner replies with calm structure and real examples.',
@@ -1436,6 +1520,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must politely explain they are not that celebrity, handle the fan\'s disbelief, and let them down kindly. ' +
       'If the learner is too blunt, the fan gets upset; if too vague, the fan stays convinced and asks for a selfie.',
+    objectives: [
+      { id: 'explain_not_me', labelRu: 'Объяснить, что ты не знаменитость', en: 'politely explain you are not that celebrity' },
+      { id: 'handle_disbelief', labelRu: 'Справиться с недоверием фаната', en: 'handle the fan\'s disbelief' },
+      { id: 'let_down_kindly', labelRu: 'Не обидеть и не разочаровать', en: 'let the fan down kindly' },
+    ],
     persona:
       'Your name is Tina. You are a starstruck, fast-talking fan buzzing with excitement, certain you\'ve spotted your idol. ' +
       'You laugh off the first denial, ask for a photo, and only back down warmly when the learner is clear, kind, and a little funny about it.',
@@ -1456,6 +1545,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should point out the mix-up honestly, decide whether to keep the dish, and sort out the bill fairly. ' +
       'Reward clear, honest phrasing; the waiter offers options (keep it free, swap it, or split the difference).',
+    objectives: [
+      { id: 'point_out_mixup', labelRu: 'Честно сказать об ошибке', en: 'point out the mix-up honestly' },
+      { id: 'decide_dish', labelRu: 'Решить, оставить ли блюдо', en: 'decide whether to keep the dish' },
+      { id: 'sort_bill', labelRu: 'Справедливо разобраться со счётом', en: 'sort out the bill fairly' },
+    ],
     persona:
       'Your name is Elena. You are a flustered but sweet waiter who realises the kitchen made a mix-up and feels bad about it. ' +
       'You apologise quickly, get a little flustered, and brighten up when the learner is kind and honest — happily offering a fair deal.',
@@ -1476,6 +1570,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must calmly deny it, respond to the neighbor\'s odd "evidence", and turn the moment into helping find the cat. ' +
       'If the learner gets defensive or rude, the neighbor grows more suspicious; calm reassurance wins them over.',
+    objectives: [
+      { id: 'deny_calmly', labelRu: 'Спокойно сказать, что кота у тебя нет', en: 'calmly deny hiding the cat' },
+      { id: 'answer_evidence', labelRu: 'Ответить на «доказательства»', en: 'respond to the odd evidence' },
+      { id: 'help_find_cat', labelRu: 'Предложить помочь в поисках', en: 'offer to help find the cat' },
+    ],
     persona:
       'Your name is Walter. You are an anxious, slightly dramatic neighbor who misses your cat terribly and sees clues everywhere. ' +
       'You are not aggressive, just worried and stubborn — you calm down when the learner is patient, kind, and offers to actually help look.',
@@ -1496,6 +1595,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner should figure out they\'re at the wrong wedding, explain the mix-up gracefully, and exit politely (or charm their way to staying). ' +
       'Reward honesty and humour; awkward silence makes the guest more suspicious.',
+    objectives: [
+      { id: 'realize_mixup', labelRu: 'Понять, что это не та свадьба', en: 'figure out it is the wrong wedding' },
+      { id: 'explain_gracefully', labelRu: 'Красиво объяснить путаницу', en: 'explain the mix-up gracefully' },
+      { id: 'exit_politely', labelRu: 'Вежливо выйти из ситуации', en: 'exit politely or charm your way to staying' },
+    ],
     persona:
       'Your name is Carmen. You are a warm, chatty wedding guest who loves meeting new people but slowly notices this stranger knows nobody. ' +
       'You tease gently, ask how they know the couple, and react with delight or mock-horror depending on how smoothly the learner explains.',
@@ -1516,6 +1620,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must ask why the assistant is discouraging them, weigh the real reasons, and decide what to do. ' +
       'Reward curiosity and good follow-up questions; the assistant reveals more the more sharply the learner asks.',
+    objectives: [
+      { id: 'ask_why_against', labelRu: 'Спросить, почему он отговаривает', en: 'ask why the assistant is discouraging you' },
+      { id: 'weigh_reasons', labelRu: 'Взвесить его настоящие причины', en: 'weigh the real reasons' },
+      { id: 'make_decision', labelRu: 'Принять своё решение', en: 'decide what to do' },
+    ],
     persona:
       'Your name is Otis. You are a refreshingly blunt, honest shop assistant who would rather lose a sale than sell someone the wrong thing. ' +
       'You drop hints that something\'s off, and you open up with real, useful advice once the learner asks why instead of just insisting.',
@@ -1536,6 +1645,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must steer the chatty, theatrical driver back to the actual route, confirm the destination, and keep things on schedule. ' +
       'Reward polite firmness and clear redirections; if the learner just plays along, the driver monologues and the meter runs.',
+    objectives: [
+      { id: 'steer_back', labelRu: 'Вернуть разговор к маршруту', en: 'steer the driver back to the route' },
+      { id: 'confirm_destination', labelRu: 'Подтвердить, куда едем', en: 'confirm the destination' },
+      { id: 'keep_schedule', labelRu: 'Не дать сорвать план', en: 'keep things on schedule' },
+    ],
     persona:
       'Your name is Maximilian. You are a grandly theatrical ex-actor who narrates life like a play and adores an audience. ' +
       'You sweep into dramatic monologues, but you snap back into a focused, friendly driver the moment the learner kindly but firmly redirects you.',
@@ -1556,6 +1670,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must improvise a short, warm speech: greet the room, say something genuine, and finish gracefully. ' +
       'The host cheers them on and gently prompts if they freeze; reward a clear beginning, middle, and thank-you.',
+    objectives: [
+      { id: 'greet_room', labelRu: 'Поприветствовать зал', en: 'greet the room' },
+      { id: 'say_genuine', labelRu: 'Сказать что-то тёплое от себя', en: 'say something genuine' },
+      { id: 'finish_gracefully', labelRu: 'Красиво завершить речь', en: 'finish the speech gracefully' },
+    ],
     persona:
       'Your name is Bea. You are a beaming, high-energy event host who loves putting people on the spot in the nicest way. ' +
       'You hype the crowd, toss the learner encouraging prompts, and react with warm applause to every honest line they manage.',
@@ -1576,6 +1695,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must give very clear, simple instructions, repeat and rephrase when the robot loops, and confirm the final order. ' +
       'Reward short, precise phrasing; long complicated sentences make the robot glitch harder.',
+    objectives: [
+      { id: 'give_clear_orders', labelRu: 'Давать короткие ясные команды', en: 'give very clear, simple instructions' },
+      { id: 'rephrase_on_loop', labelRu: 'Перефразировать, когда робот зависает', en: 'repeat and rephrase when the robot loops' },
+      { id: 'confirm_order', labelRu: 'Подтвердить итоговый заказ', en: 'confirm the final order' },
+    ],
     persona:
       'Your name is UNIT-7. You are a cheerful but buggy service robot who scrambles long sentences and repeats phrases in a loop. ' +
       'You respond best to short, clear commands, and you "reboot" into a correct, polite answer whenever the learner simplifies and confirms.',
@@ -1596,6 +1720,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must stay polite, avoid a real argument, change the subject smoothly, and keep the peace for a long flight. ' +
       'Reward diplomatic phrasing and gentle topic-changes; flat agreement or open mockery both make things worse.',
+    objectives: [
+      { id: 'stay_polite', labelRu: 'Остаться вежливым', en: 'stay polite' },
+      { id: 'avoid_argument', labelRu: 'Не ввязаться в спор', en: 'avoid a real argument' },
+      { id: 'change_subject', labelRu: 'Мягко сменить тему', en: 'change the subject smoothly' },
+    ],
     persona:
       'Your name is Reggie. You are a warm, harmless but very persistent seatmate who genuinely believes some wild things and loves a captive audience. ' +
       'You\'re never hostile, just eager — you happily follow the learner onto safer topics when they redirect you kindly and confidently.',
@@ -1616,6 +1745,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must clear up the mix-up tactfully, avoid embarrassing the eager employee, and explain who they actually are. ' +
       'Reward graceful, face-saving phrasing; a clumsy correction makes the employee mortified.',
+    objectives: [
+      { id: 'clear_mixup', labelRu: 'Тактично разъяснить путаницу', en: 'clear up the mix-up tactfully' },
+      { id: 'save_face', labelRu: 'Не смутить сотрудника', en: 'avoid embarrassing the employee' },
+      { id: 'explain_who', labelRu: 'Объяснить, кто ты на самом деле', en: 'explain who you actually are' },
+    ],
     persona:
       'Your name is Priyank. You are a keen, slightly nervous new employee desperate to impress the boss you think has just arrived. ' +
       'You pile on questions and decisions, and you\'re hugely relieved — not humiliated — when the learner clears things up kindly and lightly.',
@@ -1636,6 +1770,11 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     goalEn:
       'The learner must restate the problem precisely, refuse to be looped, and insist clearly on a real solution or a human agent. ' +
       'Reward specific, persistent, polite escalation; vague complaints just trigger another scripted reply.',
+    objectives: [
+      { id: 'restate_problem', labelRu: 'Чётко изложить проблему', en: 'restate the problem precisely' },
+      { id: 'refuse_loop', labelRu: 'Не дать увести себя по кругу', en: 'refuse to be looped' },
+      { id: 'insist_solution', labelRu: 'Добиться решения или живого человека', en: 'insist on a real solution or a human agent' },
+    ],
     persona:
       'Your name is HELPER-BOT. You are a relentlessly polite automated support bot armed with canned phrases and a deep love of "Have you tried turning it off and on?". ' +
       'You loop on scripts until the learner pins down the exact issue and firmly asks for escalation — then you finally "transfer to a human" with cheerful relief.',
@@ -1689,16 +1828,31 @@ function objectiveSlug(text: string, index: number): string {
 }
 
 /**
- * Разбивает goalEn на 1-4 под-цели по союзам/запятым.
+ * Первое предложение цели. goalEn у многих сценариев — 2-3 предложения, где после
+ * первого идут режиссёрские указания ИИ («Reward…», «If the learner…») — это НЕ
+ * под-цели ученика: им нечего делать ни в чек-листе, ни в игровом промпте.
+ */
+function firstSentence(goal: string): string {
+  const first = goal.split(/[.!?]+(?:\s+|$)/)[0] ?? goal;
+  return first.trim();
+}
+
+/** Служебный префикс «The learner should/must …» в метке под-цели не нужен. */
+function stripLearnerPrefix(part: string): string {
+  return part.replace(/^the learner (?:should|must|needs to|has to|will|can)\s+/i, '').trim();
+}
+
+/**
+ * Разбивает первое предложение goalEn на 1-4 под-цели по союзам/запятым.
  * «order a cappuccino, choose a size, and ask the price» →
  *   [order a cappuccino] [choose a size] [ask the price].
  * goalRu разбиваем тем же числом частей для русской метки (грубо, но достаточно
  * для чек-листа — точные метки можно задать явным scenario.objectives).
  */
 function splitGoalParts(goal: string): string[] {
-  return goal
+  return firstSentence(goal)
     .split(/\s*,\s*|\s+and\s+|\s+then\s+|\s*;\s*|\s+и\s+/i)
-    .map((p) => p.trim())
+    .map((p) => stripLearnerPrefix(p))
     .filter((p) => p.length > 1)
     .slice(0, 4);
 }
@@ -1710,7 +1864,9 @@ function capitalize(s: string): string {
 /**
  * Под-цели сценария: явные scenario.objectives, иначе выведенные из goalEn.
  * Английский текст части идёт в id (slug) и как fallback-метка; русская метка —
- * из goalRu (если разбилось ровно), иначе из английской части.
+ * из goalRu (если разбилось ровно), иначе СВОЯ английская часть. Раньше фолбэк
+ * ставил КАЖДОЙ под-цели меткой целиком goalRu — юзер видел в финальном модале
+ * 4 одинаковые строки (баг «повторение 4 раза одного и того же»).
  */
 export function scenarioObjectives(scenario: DialogScenario): DialogObjective[] {
   if (scenario.objectives && scenario.objectives.length > 0) return scenario.objectives;
@@ -1719,15 +1875,23 @@ export function scenarioObjectives(scenario: DialogScenario): DialogObjective[] 
   // Защита от пустого/односложного goalEn (аудит H9): без этого objectives=[] и
   // игра молча выключается. Дефолтная одиночная под-цель из goalEn целиком.
   if (enParts.length === 0) {
-    const wholeEn = scenario.goalEn.trim();
+    const wholeEn = firstSentence(scenario.goalEn);
     enParts = wholeEn.length > 0 ? [wholeEn] : ['complete the conversation'];
   }
   const ruAligned = ruParts.length === enParts.length;
-  return enParts.map((en, i) => ({
+  const out = enParts.map((en, i) => ({
     id: objectiveSlug(en, i),
-    labelRu: capitalize(ruAligned ? ruParts[i] : scenario.goalRu.trim() || en),
+    labelRu: capitalize(ruAligned ? ruParts[i] : en),
     en,
   }));
+  // Страховка от дублей в чек-листе: одинаковая метка не должна встречаться дважды.
+  const seenLabels = new Set<string>();
+  return out.filter((o) => {
+    const key = o.labelRu.toLowerCase();
+    if (seenLabels.has(key)) return false;
+    seenLabels.add(key);
+    return true;
+  });
 }
 
 /**

@@ -11,6 +11,7 @@ import { getAgeBracketSnapshot } from './age_gate';
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
 const premiumDialogTranslateInFlight = new Map<string, Promise<PremiumDialogTranslateResponse>>();
+const premiumDialogReviewInFlight = new Map<string, Promise<PremiumDialogReviewResponse>>();
 
 export type DialogChatRole = 'user' | 'assistant';
 
@@ -236,6 +237,79 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
   });
 
   premiumDialogSendInFlight.set(key, request);
+  return request;
+}
+
+// ── Финальный разбор диалога («разбор полётов») ─────────────────────────────
+
+/** Запрос финального разбора завершённого диалога. */
+export interface PremiumDialogReviewRequest {
+  /** Полный транскрипт диалога (реплики юзера и собеседника, по порядку). */
+  history: DialogChatTurn[];
+  cefr?: string;
+  interfaceLang?: Lang;
+  scenarioId?: string;
+  goalEn?: string;
+  ageBracket?: string;
+}
+
+/** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */
+export interface PremiumDialogReviewCorrection {
+  /** Фраза ученика как была написана (или её проблемная часть). */
+  original: string;
+  /** Естественный английский вариант. */
+  corrected: string;
+  /** Короткое тёплое пояснение на языке интерфейса (без жаргона). */
+  note: string;
+}
+
+export interface PremiumDialogReviewResponse {
+  ok: boolean;
+  /** Похвала на языке интерфейса (что реально получилось). */
+  praise: string;
+  corrections: PremiumDialogReviewCorrection[];
+  /** Один практичный совет на следующий раз (язык интерфейса). */
+  tip: string;
+}
+
+function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string {
+  return JSON.stringify({
+    history: req.history,
+    cefr: req.cefr,
+    interfaceLang: req.interfaceLang,
+    scenarioId: req.scenarioId,
+  });
+}
+
+/**
+ * Финальный разбор завершённого диалога: похвала + мягкие исправления ВСЕХ
+ * языковых ошибок ученика + совет. Зовётся один раз при завершении диалога;
+ * сбой не критичен — вызывающий экран просто не показывает секцию разбора.
+ */
+export async function callPremiumDialogReview(
+  req: PremiumDialogReviewRequest,
+): Promise<PremiumDialogReviewResponse> {
+  const reqWithAge: PremiumDialogReviewRequest = {
+    ...req,
+    ageBracket: req.ageBracket ?? getAgeBracketSnapshot(),
+  };
+  const key = premiumDialogReviewRequestKey(reqWithAge);
+  const existing = premiumDialogReviewInFlight.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable<PremiumDialogReviewRequest, PremiumDialogReviewResponse>(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'premiumDialogReview',
+    );
+    const res = await fn(reqWithAge);
+    return res.data;
+  })().finally(() => {
+    premiumDialogReviewInFlight.delete(key);
+  });
+
+  premiumDialogReviewInFlight.set(key, request);
   return request;
 }
 

@@ -104,7 +104,8 @@ const getNotifications = async () => {
       }
     }
     return Notifications;
-  } catch {
+  } catch (e) {
+    console.warn('[notifications] expo-notifications unavailable', e);
     return null;
   }
 };

@@ -3,6 +3,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { patchAppSnapshot } from './app_snapshot_store';
 import { IS_EXPO_GO } from './config';
 import { ensureArenaAuthUid } from './user_id_policy';
 import {
@@ -22,13 +23,21 @@ let arenaLobbyProfileMemory: ArenaProfile | null = null;
 
 export function rememberArenaLobbyProfile(profile: ArenaProfile | null): void {
   arenaLobbyProfileMemory = profile;
+  patchAppSnapshot({
+    arena: {
+      source: 'memory',
+      updatedAt: Date.now(),
+      profile,
+      historyCount: 0,
+    },
+  });
 }
 
 export function getRememberedArenaLobbyProfile(): ArenaProfile | null {
   return arenaLobbyProfileMemory;
 }
 
-type MatchRecord = {
+export type MatchRecord = {
   id: string;
   createdAt: number;
   won: boolean;
@@ -40,6 +49,19 @@ type MatchRecord = {
   rankBefore: Rank;
   rankAfter: Rank;
 };
+
+/** Последняя известная история матчей в памяти процесса — для мгновенного
+ * первого кадра экрана рейтинга (иначе до чтения AsyncStorage ветеран видит
+ * ложное «Сыграй первый матч»). */
+let arenaRatingHistoryMemory: MatchRecord[] | null = null;
+
+export function peekArenaRatingHistory(): MatchRecord[] | null {
+  return arenaRatingHistoryMemory;
+}
+
+export function rememberArenaRatingHistory(history: MatchRecord[]): void {
+  arenaRatingHistoryMemory = history;
+}
 
 function isRankTier(x: unknown): x is RankTier {
   return typeof x === 'string' && (RANK_TIERS as readonly string[]).includes(x);
@@ -56,15 +78,25 @@ function clampRankStars(n: unknown): 0 | 1 | 2 | 3 {
   return i as 0 | 1 | 2 | 3;
 }
 
-function sanitizeRankSnapshot(raw: unknown): Rank {
+function sanitizeRankSnapshot(raw: unknown, legacy?: Record<string, unknown>, preferLegacy = false): Rank {
+  const legacyTier = legacy?.['rank.tier'];
+  const legacyLevel = legacy?.['rank.level'];
+  const legacyStars = legacy?.['rank.stars'];
   if (raw == null || typeof raw !== 'object') {
-    return { tier: 'bronze', level: 'I', stars: 0 };
+    return {
+      tier: isRankTier(legacyTier) ? legacyTier : 'bronze',
+      level: isRankLevel(legacyLevel) ? legacyLevel : 'I',
+      stars: clampRankStars(legacyStars),
+    };
   }
   const o = raw as { tier?: unknown; level?: unknown; stars?: unknown };
+  const tierRaw = preferLegacy ? legacyTier ?? o.tier : o.tier ?? legacyTier;
+  const levelRaw = preferLegacy ? legacyLevel ?? o.level : o.level ?? legacyLevel;
+  const starsRaw = preferLegacy ? legacyStars ?? o.stars : o.stars ?? legacyStars;
   return {
-    tier: isRankTier(o.tier) ? o.tier : 'bronze',
-    level: isRankLevel(o.level) ? o.level : 'I',
-    stars: clampRankStars(o.stars),
+    tier: isRankTier(tierRaw) ? tierRaw : 'bronze',
+    level: isRankLevel(levelRaw) ? levelRaw : 'I',
+    stars: clampRankStars(starsRaw),
   };
 }
 
@@ -72,14 +104,18 @@ function sanitizeRankSnapshot(raw: unknown): Rank {
 export function sanitizeArenaProfileForRating(raw: unknown): ArenaProfile | null {
   if (raw == null || typeof raw !== 'object') return null;
   const p = raw as Partial<ArenaProfile>;
-  const rank = sanitizeRankSnapshot(p.rank);
+  const legacy = raw as Record<string, unknown>;
   const s = p.stats && typeof p.stats === 'object' ? (p.stats as Partial<ArenaStats>) : {};
+  const nestedMatchesPlayed = Math.max(0, Number(s.matchesPlayed) || 0);
+  const legacyMatchesPlayed = Math.max(0, Number(legacy['stats.matchesPlayed']) || 0);
+  const preferLegacyArenaProgress = legacyMatchesPlayed > nestedMatchesPlayed;
+  const rank = sanitizeRankSnapshot(p.rank, legacy, preferLegacyArenaProgress);
   const stats: ArenaStats = {
-    matchesPlayed: Math.max(0, Number(s.matchesPlayed) || 0),
-    matchesWon: Math.max(0, Number(s.matchesWon) || 0),
-    totalScore: Math.max(0, Number(s.totalScore) || 0),
-    winStreak: Math.max(0, Number(s.winStreak) || 0),
-    bestWinStreak: Math.max(0, Number(s.bestWinStreak) || 0),
+    matchesPlayed: preferLegacyArenaProgress ? legacyMatchesPlayed : nestedMatchesPlayed,
+    matchesWon: Math.max(0, Number(preferLegacyArenaProgress ? legacy['stats.matchesWon'] : s.matchesWon) || 0),
+    totalScore: Math.max(0, Number(preferLegacyArenaProgress ? legacy['stats.totalScore'] : s.totalScore) || 0),
+    winStreak: Math.max(0, Number(preferLegacyArenaProgress ? legacy['stats.winStreak'] : s.winStreak) || 0),
+    bestWinStreak: Math.max(0, Number(preferLegacyArenaProgress ? legacy['stats.bestWinStreak'] : s.bestWinStreak) || 0),
   };
   return {
     userId: typeof p.userId === 'string' ? p.userId : '',
@@ -147,7 +183,16 @@ export async function fetchAndCacheArenaRating(): Promise<{
       JSON.stringify({ profile, history, ts: Date.now() }),
     );
   } catch {}
-  if (profile) rememberArenaLobbyProfile(profile);
+  if (profile) arenaLobbyProfileMemory = profile;
+  arenaRatingHistoryMemory = history;
+  patchAppSnapshot({
+    arena: {
+      source: 'live',
+      updatedAt: Date.now(),
+      profile,
+      historyCount: history.length,
+    },
+  });
   return { profile, history };
 }
 

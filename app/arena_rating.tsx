@@ -21,7 +21,12 @@ import {
   sanitizeArenaProfileForRating,
   sanitizeArenaRatingHistory,
   rememberArenaLobbyProfile,
+  getRememberedArenaLobbyProfile,
+  peekArenaRatingHistory,
+  rememberArenaRatingHistory,
 } from './arena_rating_cache';
+import { getAppSnapshot } from './app_snapshot_store';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { ArenaProfile, RankTier, RankLevel, RANK_TIERS, RANK_LEVELS, rankToIndex } from './types/arena';
 import { rankIndex as seasonRankIndex } from './arena_season_math';
 import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
@@ -195,9 +200,13 @@ export default function DuelRatingScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
-  const [myProfile, setMyProfile] = useState<ArenaProfile | null>(null);
-  const [matchHistory, setMatchHistory] = useState<MatchRecord[]>([]);
-  const [loading, setLoading] = useState(true);
+  // B7: первый кадр из памяти процесса/раннего снапшота — без этого до чтения
+  // AsyncStorage экран рисовал bronze/0 XP и ложное «Сыграй первый матч».
+  const [myProfile, setMyProfile] = useState<ArenaProfile | null>(
+    () => getRememberedArenaLobbyProfile() ?? getAppSnapshot().arena?.profile ?? null,
+  );
+  const [matchHistory, setMatchHistory] = useState<MatchRecord[]>(() => peekArenaRatingHistory() ?? []);
+  const [loading, setLoading] = useState(() => peekArenaRatingHistory() == null);
   const [loadError, setLoadError] = useState(false);
   const [rankPickerOpen, setRankPickerOpen] = useState(false);
   const [rankPickerTop, setRankPickerTop] = useState(0);
@@ -222,6 +231,7 @@ export default function DuelRatingScreen() {
               rememberArenaLobbyProfile(profile);
               setMyProfile(profile);
             }
+            rememberArenaRatingHistory(history);
             setMatchHistory(history);
             setLoading(false);
           }
@@ -511,7 +521,15 @@ export default function DuelRatingScreen() {
             })}
           </Text>
 
-          {matchHistory.length === 0 && (
+          {matchHistory.length === 0 && loading && (
+            <View style={{ gap: 8 }}>
+              <SkeletonBlock width="100%" height={64} borderRadius={14} />
+              <SkeletonBlock width="100%" height={64} borderRadius={14} />
+              <SkeletonBlock width="100%" height={64} borderRadius={14} />
+            </View>
+          )}
+
+          {matchHistory.length === 0 && !loading && (
             <View style={{ alignItems: 'center', paddingVertical: 40 }}>
               <Text style={{ fontSize: 40, marginBottom: 12 }}>⚔️</Text>
               <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginBottom: loadError ? 14 : 0 }}>

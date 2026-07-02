@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter, type Router } from 'expo-router';
@@ -365,6 +366,14 @@ function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget
 
 // ── Главный экран ─────────────────────────────────────────────────────────────
 
+/** B7: тёплая память последнего результата на процесс — повторные заходы рисуют
+ * данные первым кадром; без неё каждый заход начинался с ложного «Пока нет данных». */
+let phraseAnalyticsWarm: {
+  key: string;
+  data: PhraseAnalyticsResult | null;
+  resolved: ResolvedPersonalTrainingsState | null;
+} | null = null;
+
 export default function PhraseAnalyticsScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
@@ -374,8 +383,13 @@ export default function PhraseAnalyticsScreen() {
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const { hasPremiumAccess: isPremium } = usePremium();
-  const [data, setData] = useState<PhraseAnalyticsResult | null>(null);
-  const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
+  const warmKey = `${storageStudyTarget(studyTarget)}:${sourceLocale}`;
+  const [data, setData] = useState<PhraseAnalyticsResult | null>(
+    () => (phraseAnalyticsWarm?.key === warmKey ? phraseAnalyticsWarm.data : null),
+  );
+  const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(
+    () => (phraseAnalyticsWarm?.key === warmKey ? phraseAnalyticsWarm.resolved : null),
+  );
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
   const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
@@ -394,12 +408,13 @@ export default function PhraseAnalyticsScreen() {
           : Promise.resolve(null),
         personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
       ]);
+      phraseAnalyticsWarm = { key: warmKey, data: result, resolved };
       setData(result);
       setResolvedPersonalTrainings(resolved);
     } finally {
       setLoading(false);
     }
-  }, [analyticsSourceGateOpen, personalPracticeCoachEnabled, sourceLocale, studyTarget]);
+  }, [analyticsSourceGateOpen, personalPracticeCoachEnabled, sourceLocale, studyTarget, warmKey]);
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 
@@ -555,6 +570,19 @@ export default function PhraseAnalyticsScreen() {
             <Text style={[styles.emptyText, { color: t.textSecond, fontSize: f.body }]}>
               {sourceGateCopy.body}
             </Text>
+          </View>
+
+        ) : loading && !data ? (
+          /* B7: скелетон первой загрузки — раньше первый кадр рисовал ложное «Пока нет данных» */
+          <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
+            <SkeletonBlock width="100%" height={72} borderRadius={16} />
+            <View style={{ flexDirection: 'row', gap: 10, marginTop: 16 }}>
+              <SkeletonBlock width={96} height={34} borderRadius={17} />
+              <SkeletonBlock width={96} height={34} borderRadius={17} />
+              <SkeletonBlock width={96} height={34} borderRadius={17} />
+            </View>
+            <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 16 }} />
+            <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 10 }} />
           </View>
 
         ) : !data || data.totalMistakes === 0 ? (

@@ -1046,6 +1046,14 @@ function ShardsInline({ n, size = 14, textColor }: {
       <Image source={src} style={{ width: size + 2, height: size + 2 }} contentFit="contain"/>
     </View>);
 }
+/** B7: тёплая память Wager-блока на процесс — иначе стейт сбрасывается на каждом
+ * ремаунте экрана, блок уходит в `return null` и «выпрыгивает» после загрузки. */
+let wagerCardWarm: {
+    wager: WagerState | null;
+    shards: number;
+    stakes: number[];
+} | null = null;
+
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false }: {
     lang: Lang;
     t: any;
@@ -1059,13 +1067,15 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
     const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-    const [wager, setWager] = useState<WagerState | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [wager, setWager] = useState<WagerState | null>(() => wagerCardWarm?.wager ?? null);
+    const [loading, setLoading] = useState(() => wagerCardWarm == null);
     const [modalOpen, setModalOpen] = useState(false);
     const [placing, setPlacing] = useState(false);
     const [selectedTier, setSelectedTier] = useState(0);
-    const [shardsWager, setShardsWager] = useState(0);
-    const [effectiveWagerStakes, setEffectiveWagerStakes] = useState<number[]>(() => WAGER_TIERS.map(tier => tier.betShards));
+    const [shardsWager, setShardsWager] = useState(() => wagerCardWarm?.shards ?? 0);
+    const [effectiveWagerStakes, setEffectiveWagerStakes] = useState<number[]>(
+        () => wagerCardWarm?.stakes ?? WAGER_TIERS.map(tier => tier.betShards),
+    );
     const [wagerNeedShards, setWagerNeedShards] = useState(false);
     const [wagerConfirm, setWagerConfirm] = useState(false);
     const [wagerInfoOpen, setWagerInfoOpen] = useState(false);
@@ -1076,6 +1086,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             getShardsBalance(),
             Promise.all(WAGER_TIERS.map((_, idx) => getEffectiveWagerStake(idx).then(s => s.stakeToSpend))),
         ]);
+        wagerCardWarm = { wager: w, shards: shardsRaw, stakes: effectiveStakes };
         setWager(w);
         setShardsWager(shardsRaw);
         setEffectiveWagerStakes(effectiveStakes);
@@ -1088,6 +1099,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     }, [reload]));
     useEffect(() => {
         const subShards = onAppEvent('shards_balance_updated', (payload) => {
+            if (wagerCardWarm) wagerCardWarm = { ...wagerCardWarm, shards: payload.balance };
             setShardsWager(payload.balance);
         });
         const subPremiumOn = onAppEvent('premium_activated', () => {

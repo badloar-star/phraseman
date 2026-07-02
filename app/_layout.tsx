@@ -2558,6 +2558,7 @@ function AppContent() {
       <Stack.Screen name="settings_notifications" />
       <Stack.Screen name="settings_themes" />
       <Stack.Screen name="settings_language" />
+      <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="streak_stats" />
@@ -2618,7 +2619,6 @@ function AppContent() {
       <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="arena_rating" />
       <Stack.Screen name="arena_leaderboard" />
-      <Stack.Screen name="web_screen" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />

@@ -94,7 +94,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   beta_testers: 'settings',
   privacy_screen: 'settings',
   terms_screen: 'settings',
-  web_screen: 'settings',
   pos_analytics_audit: 'statistics',
   _pos_analytics_audit: 'statistics',
 };

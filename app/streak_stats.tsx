@@ -380,16 +380,35 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             streak: 0,
         };
     });
-    const measured = sourceDays.filter((d) => d.date <= todayStr).slice(-7);
-    const rhythmDays: LearningRhythmDay[] = measured.map((d) => {
-        const minutes = minutesFromMs(timeByDate.get(d.date)?.ms ?? 0);
-        const active = d.active || d.points > 0 || minutes > 0;
+    // Всегда полные 7 календарных дней, заканчивая сегодняшним: у свежего аккаунта
+    // история короче недели, и 2 столбика растягивались на всю ширину с дырами.
+    const dayByDate = new Map(sourceDays.map((d) => [d.date, d]));
+    const weekWdays = streakCalendarShortWeekdays(lang, REPORT_SCREENS_RUSSIAN_ONLY);
+    const weekDates: string[] = [];
+    {
+        const cursor = new Date(`${todayStr}T12:00:00`);
+        cursor.setDate(cursor.getDate() - 6);
+        for (let i = 0; i < 7; i++) {
+            weekDates.push(toDateStr(cursor));
+            cursor.setDate(cursor.getDate() + 1);
+        }
+    }
+    const rhythmDays: LearningRhythmDay[] = weekDates.map((date) => {
+        const known = dayByDate.get(date);
+        const cal = new Date(`${date}T12:00:00`);
+        const points = known?.points ?? 0;
+        const minutes = minutesFromMs(timeByDate.get(date)?.ms ?? 0);
+        const active = (known?.active ?? false) || points > 0 || minutes > 0;
         return {
-            ...d,
+            date,
+            shortLabel: known?.shortLabel ?? weekWdays[cal.getDay()],
+            dayNum: known?.dayNum ?? String(cal.getDate()),
+            streak: known?.streak ?? 0,
+            points,
             active,
             minutes,
-            combined: d.points + minutes * 6,
-            isToday: d.date === todayStr,
+            combined: points + minutes * 6,
+            isToday: date === todayStr,
         };
     });
     const active7 = rhythmDays.filter((d) => d.active).length;
@@ -403,7 +422,9 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
     const bestDay = ranked[0];
     const weakDay = [...rhythmDays].sort((a, b) => a.combined - b.combined)[0];
     const regularityPart = clampNumber(active7 / 5, 0, 1) * 45;
-    const focusPart = clampNumber(avgMinutesActive / 12, 0, 1) * 25;
+    // От недельного объёма (цель ~60 мин/нед), а не от среднего за активный день:
+    // раньше один длинный день давал полный балл «длины занятий» и оценка льстила.
+    const focusPart = clampNumber(minutes7 / 60, 0, 1) * 25;
     const streakPart = clampNumber(totalStreak / 14, 0, 1) * 20;
     const volumePart = clampNumber(xp7 / 180, 0, 1) * 10;
     const score = Math.round(regularityPart + focusPart + streakPart + volumePart);
@@ -3379,22 +3400,25 @@ export default function StreakStats() {
                     <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35, marginTop: 3 }}>
                       {(() => {
                         // Прогресс к следующему порогу серии превращает справку в цель.
+                        // Прогноз — от ИТОГОВОГО множителя (другие бонусы, напр. Plus ×1.25,
+                        // сохраняются): раньше при total ×1.25 текст обещал «вырастет до ×1.2».
                         const nextTier = totalStreak >= 30 ? null
-                            : totalStreak >= 14 ? { days: 30, m: '×1.8' }
-                            : totalStreak >= 7 ? { days: 14, m: '×1.6' }
-                            : totalStreak >= 3 ? { days: 7, m: '×1.4' }
-                            : { days: 3, m: '×1.2' };
+                            : totalStreak >= 14 ? { days: 30, m: 1.8 }
+                            : totalStreak >= 7 ? { days: 14, m: 1.6 }
+                            : totalStreak >= 3 ? { days: 7, m: 1.4 }
+                            : { days: 3, m: 1.2 };
                         if (nextTier) {
                             const left = nextTier.days - totalStreak;
+                            const projected = `×${(total + (nextTier.m - streakM)).toFixed(2).replace(/0$/, '')}`;
                             return triLang(lang, {
-                                ru: `Ещё ${left} ${pluralRu(left, 'день', 'дня', 'дней')} серии — и бонус вырастет до ${nextTier.m}`,
-                                uk: `Ще ${left} ${pluralRu(left, 'день', 'дні', 'днів')} серії — і бонус зросте до ${nextTier.m}`,
-                                es: `${left} ${left === 1 ? 'día' : 'días'} más de racha y el bono sube a ${nextTier.m}`,
-                                'pt-BR': `Mais ${left} ${left === 1 ? 'dia' : 'dias'} de sequência e o bônus sobe para ${nextTier.m}`,
-                                vi: `Thêm ${left} ngày chuỗi nữa — thưởng tăng lên ${nextTier.m}`,
-                                id: `${left} hari rangkaian lagi — bonus naik ke ${nextTier.m}`,
-                                tr: `${left} gün daha seri — bonus ${nextTier.m} olacak`,
-                                pl: `Jeszcze ${left} ${left === 1 ? 'dzień' : 'dni'} serii — bonus wzrośnie do ${nextTier.m}`,
+                                ru: `Ещё ${left} ${pluralRu(left, 'день', 'дня', 'дней')} серии — и бонус вырастет до ${projected}`,
+                                uk: `Ще ${left} ${pluralRu(left, 'день', 'дні', 'днів')} серії — і бонус зросте до ${projected}`,
+                                es: `${left} ${left === 1 ? 'día' : 'días'} más de racha y el bono sube a ${projected}`,
+                                'pt-BR': `Mais ${left} ${left === 1 ? 'dia' : 'dias'} de sequência e o bônus sobe para ${projected}`,
+                                vi: `Thêm ${left} ngày chuỗi nữa — thưởng tăng lên ${projected}`,
+                                id: `${left} hari rangkaian lagi — bonus naik ke ${projected}`,
+                                tr: `${left} gün daha seri — bonus ${projected} olacak`,
+                                pl: `Jeszcze ${left} ${left === 1 ? 'dzień' : 'dni'} serii — bonus wzrośnie do ${projected}`,
                             });
                         }
                         return triLang(lang, {

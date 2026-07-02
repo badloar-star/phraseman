@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 
@@ -66,7 +67,7 @@ function answerStats(player: FirebaseFirestore.DocumentData | undefined, session
   return { correctAnswers, totalQuestions };
 }
 
-export const arenaClubWarContribute = onCall({ region: REGION }, async (request) => {
+export const arenaClubWarContribute = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();

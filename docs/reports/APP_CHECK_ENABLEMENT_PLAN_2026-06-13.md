@@ -62,6 +62,30 @@
 - ВАЖНО: код уже разведён по группам; вручную в коде менять ничего не нужно — только env
   переменные функций и `deploy:safe`.
 
+## 2026-07-02 — проводка флага завершена по ВСЕМ `onCall`
+
+**Дыра, которую закрыли:** план предполагал, что достаточно перещёлкнуть env-переменные, но
+часть `onCall`-функций вообще НЕ ссылалась ни на один `enforceAppCheck` — они бы навсегда
+остались без энфорса, сколько бы env-флагов ни включили. Теперь провязка полная: каждый
+`onCall` в `functions/src` ссылается на соответствующий групповой флаг (напрямую, через spread
+`HOT_CALLABLE_OPTIONS`/`CALLABLE_BASE`/`ACCOUNT_DELETE_OPTIONS`, либо через новую строку в
+объекте опций). Аудит `grep onCall(` по всему `functions/src` — ни одной функции без флага.
+
+**Довязано 32 сайта в 17 файлах** (остальные уже были провязаны ранее):
+- `ENFORCE_APP_CHECK` (общая группа, 30): `community_packs` (7), `league_chat` (4),
+  `arena_hill` (2), `arena_ghosts` (2), `arena_season_rewards` (2),
+  `openai_dialog_model_config` (2), `promo_codes` — admin upsert/batch (2),
+  `arena_club_wars` (1), `arena_bot_match` (1), `admin_grant` (1), `friend_codes` (1),
+  `league_chest` (1), `help_board` — `helpBoardAdminModerate` (1),
+  `openai_budget_dashboard` (1), `openai_jobs_config` (1).
+- `ENFORCE_APP_CHECK_OPENAI` (платный OpenAI, 2): `admin_translate` (`adminTranslateMessage`),
+  `compass_chat_cron` (`compassChatRunNow`) — обе реально зовут OpenAI.
+- `ENFORCE_APP_CHECK_SENSITIVE`: новых нет (`accountDeleteMine`/`vipRevokeMine`/`adminDecideUserIdea`
+  были провязаны ранее).
+
+Поведение по умолчанию НЕ изменилось: все флаги наследуют `ENFORCE_APP_CHECK` (=false), пока
+env-переменные не выставлены. `npm run build` (tsc) — зелёный, 0 ошибок до и после правок.
+
 ## Что НЕ делать
 - Не включать `ENFORCE_APP_CHECK=true` глобально одним махом до прогрева — гарантированный
   массовый `unauthenticated` у живых пользователей.

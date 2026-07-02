@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const CHALLENGES = 'arena_ghost_challenges';
@@ -76,7 +77,7 @@ function normalizeAnswer(raw: any, allowedIds: Set<string>) {
   };
 }
 
-export const arenaGhostCreateChallenge = onCall({ region: REGION }, async (request) => {
+export const arenaGhostCreateChallenge = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -117,7 +118,7 @@ export const arenaGhostCreateChallenge = onCall({ region: REGION }, async (reque
   return challenge;
 });
 
-export const arenaGhostRecordPlay = onCall({ region: REGION }, async (request) => {
+export const arenaGhostRecordPlay = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;

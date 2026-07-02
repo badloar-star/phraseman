@@ -6,6 +6,7 @@ import {
   LEAGUE_CHAT_SEXUAL_TERMS,
 } from './league_chat_blocklist.generated';
 import { resolveStableUidForAuth } from './auth_identity';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const MAX_MESSAGE_LENGTH = 420;
@@ -219,7 +220,7 @@ async function grantRoomReadAccess(
   }, { merge: true });
 }
 
-export const leagueChatAuthorizeRoom = onCall({ region: REGION }, async (request) => {
+export const leagueChatAuthorizeRoom = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();
@@ -235,7 +236,7 @@ export const leagueChatAuthorizeRoom = onCall({ region: REGION }, async (request
   return { ok: true };
 });
 
-export const leagueChatSendMessage = onCall({ region: REGION }, async (request) => {
+export const leagueChatSendMessage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();
@@ -303,7 +304,7 @@ export const leagueChatSendMessage = onCall({ region: REGION }, async (request) 
   return { ok: true, status: 'sent', messageId: ref.id };
 });
 
-export const leagueChatDeleteMessage = onCall({ region: REGION }, async (request) => {
+export const leagueChatDeleteMessage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();
@@ -344,7 +345,7 @@ export const leagueChatDeleteMessage = onCall({ region: REGION }, async (request
   return { ok: true };
 });
 
-export const leagueChatReportMessage = onCall({ region: REGION }, async (request) => {
+export const leagueChatReportMessage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();

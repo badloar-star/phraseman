@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
@@ -107,7 +108,7 @@ export async function resolveConfiguredDialogQuota(
   }
 }
 
-export const openAiDialogModelConfig = onCall({ region: REGION }, async (request) => {
+export const openAiDialogModelConfig = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
@@ -146,7 +147,7 @@ export const openAiDialogModelConfig = onCall({ region: REGION }, async (request
   };
 });
 
-export const openAiDialogQuotaConfig = onCall({ region: REGION }, async (request) => {
+export const openAiDialogQuotaConfig = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }

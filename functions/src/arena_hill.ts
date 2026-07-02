@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const THRONES = 'arena_hill_thrones';
@@ -94,7 +95,7 @@ async function resolveDisplayName(db: FirebaseFirestore.Firestore, stableUid: st
   );
 }
 
-export const arenaHillRecordAttempt = onCall({ region: REGION }, async (request) => {
+export const arenaHillRecordAttempt = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();
@@ -193,7 +194,7 @@ export const arenaHillRecordAttempt = onCall({ region: REGION }, async (request)
   });
 });
 
-export const arenaHillGetDailyTop = onCall({ region: REGION }, async (request) => {
+export const arenaHillGetDailyTop = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();

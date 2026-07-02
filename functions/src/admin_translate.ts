@@ -14,6 +14,7 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { openAiChat } from './explain/explain_provider';
+import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -87,6 +88,7 @@ function coerceArray(value: unknown, length: number, fallback: string[]): string
 
 export const adminTranslateMessage = onCall({
   region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 60,
   memory: '512MiB',
   maxInstances: 5,

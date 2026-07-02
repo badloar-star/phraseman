@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
@@ -366,7 +367,7 @@ export function buildRewardProgressPatch(params: {
   return patch;
 }
 
-export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
+export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const db = admin.firestore();

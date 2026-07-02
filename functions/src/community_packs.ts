@@ -4,6 +4,7 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 
 const COMMUNITY_PACKS = 'community_packs';
@@ -279,7 +280,7 @@ function shardLedgerMeta(op: 'earn' | 'spend', reason: string, updatedAtMs: numb
  * Отправка набора на модерацию (создаёт документ в community_pack_submissions).
  * Доверие к authorStableId — как к клиентским путям users/{stableId} в текущей архитектуре; усиление через auth-мост — отдельная задача.
  */
-export const communitySubmitPackForReview = onCall(async (request) => {
+export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -379,7 +380,7 @@ export const communitySubmitPackForReview = onCall(async (request) => {
  * Модерация: approve | reject | request_changes. Только custom claim admin.
  * Опциональный moderatorMessage (и legacy rejectReason) — в заявке и в inbox автора.
  */
-export const communityModerateSubmission = onCall(async (request) => {
+export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
@@ -612,7 +613,7 @@ function buildSellerInboxModerationRow(params: {
  * Админ: снять набор с витрины на доработку или удалить (мягко). Inbox автору — как при модерации заявок.
  * Явный регион us-central1 — как getFunctions в админке и в приложении.
  */
-export const communityAdminModeratePack = onCall({ region: 'us-central1' }, async (request) => {
+export const communityAdminModeratePack = onCall({ region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
@@ -723,7 +724,7 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1' }, asyn
 /**
  * Карточки набора, если пользователь — автор (кроме admin_removed) или покупатель.
  */
-export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1' }, async (request) => {
+export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -771,7 +772,7 @@ export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1
 /**
  * Покупка опубликованного набора: списание у покупателя, начисление автору (за вычетом внутриигровой комиссии), запись покупки, inbox продавцу.
  */
-export const communityPurchasePack = onCall(async (request) => {
+export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -923,7 +924,7 @@ export const communityPurchasePack = onCall(async (request) => {
  * Список непрочитанных событий продажи для автора (для модалки при входе).
  * Доверие к authorStableId — как у communityPurchasePack.
  */
-export const communityListSellerInbox = onCall(async (request) => {
+export const communityListSellerInbox = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -952,7 +953,7 @@ export const communityListSellerInbox = onCall(async (request) => {
 /**
  * Пометить события inbox как просмотренные (для модалки «уже показали»).
  */
-export const communityMarkSellerInboxSeen = onCall(async (request) => {
+export const communityMarkSellerInboxSeen = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }

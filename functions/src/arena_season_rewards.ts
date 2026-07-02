@@ -11,12 +11,13 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as admin from 'firebase-admin';
 import { seasonIdForDate, quarterEndMs, rankIndex } from './arena_season';
 import { buildRewardProgressPatch, type RewardDrop } from './league_chest';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const LEGEND_RANK_INDEX = rankIndex('legend', 'III'); // 23
 
 // ─── Топ-100 ─────────────────────────────────────────────────────────────────
-export const arenaSeasonGetTop = onCall({ region: REGION }, async (request) => {
+export const arenaSeasonGetTop = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const seasonId = seasonIdForDate(new Date());
@@ -70,7 +71,7 @@ export const arenaSeasonGetTop = onCall({ region: REGION }, async (request) => {
 });
 
 // ─── Выдача награды ──────────────────────────────────────────────────────────
-export const arenaSeasonClaimReward = onCall({ region: REGION }, async (request) => {
+export const arenaSeasonClaimReward = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const uid = request.auth.uid;
   const seasonId = String(request.data?.seasonId ?? '').trim();

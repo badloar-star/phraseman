@@ -278,6 +278,21 @@ function buildLowConfidenceWordSet(segments: readonly TranscriptSegment[] | unde
   return set;
 }
 
+/** Normalized comparison words of a phrase (same pipeline the scorer uses:
+ *  contractions expanded, numbers→words, homophones→canon). Exported so the
+ *  per-word report can match target tokens against segment confidences. */
+export function normalizedComparisonWords(value: string): string[] {
+  return words(value);
+}
+
+/** Normalized transcript words the recognizer flagged as low-confidence.
+ *  Exported for the per-word speaking report ("нечётко" overlay). */
+export function lowConfidenceWordsFromSegments(
+  segments: readonly TranscriptSegment[] | undefined,
+): Set<string> {
+  return buildLowConfidenceWordSet(segments);
+}
+
 export function scorePronunciationTranscript(input: {
   targetText: string;
   transcript: string;

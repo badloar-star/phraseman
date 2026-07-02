@@ -113,10 +113,10 @@ export function buildSpeakingStartOptions(
     base.volumeChangeEventOptions = { enabled: true, intervalMillis: volumeIntervalMillis };
   }
 
-  if (Platform.OS === 'ios') {
-    // persist keeps the captured audio around (used for replay/retry); harmless.
-    base.recordingOptions = { persist: true };
-  }
+  // persist keeps the captured audio around (both platforms): it powers the
+  // «Послушай себя» replay AND the unbiased control pass. The uri arrives in
+  // the `audioend` event; the file lives in the app cache (wav).
+  base.recordingOptions = { persist: true };
 
   if (Platform.OS === 'android') {
     // Stop the endpointer cutting slow speakers off on a mid-phrase pause.
@@ -130,6 +130,35 @@ export function buildSpeakingStartOptions(
   }
 
   return base;
+}
+
+export interface BuildControlRecognitionOptionsInput {
+  /** BCP-47 recognition locale, e.g. 'en-US'. */
+  lang: string;
+  /** file:// uri of the persisted attempt audio (from the `audioend` event). */
+  uri: string;
+}
+
+/**
+ * Options for the HONESTY control pass: re-recognize the persisted attempt
+ * audio with a NEUTRAL engine — deliberately NO contextualStrings and no task
+ * hints, so the result reflects what the speech actually sounded like without
+ * us feeding the answer to the recognizer. Compared against the biased score
+ * in speaking_honesty_check.
+ */
+export function buildControlRecognitionOptions(
+  input: BuildControlRecognitionOptionsInput,
+): SpeakingRecognitionStartOptions {
+  return {
+    lang: input.lang,
+    interimResults: false,
+    continuous: false,
+    // Several hypotheses: the control verdict is the engine's BEST neutral
+    // guess, not its first one — we're testing honesty, not luck.
+    maxAlternatives: 5,
+    addsPunctuation: false,
+    audioSource: { uri: input.uri },
+  };
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

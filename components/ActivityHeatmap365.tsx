@@ -35,6 +35,8 @@ import {
 } from './RewardModalBackdrop';
 import {
   ACTIVITY_365_GOAL_KEY,
+  activity365MonthGridCells,
+  activity365ObservedMonthKeys,
   activity365NextStepKind,
   type Activity365Analytics,
   type Activity365Day,
@@ -637,22 +639,10 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const previewHeight = previewRows * previewCell + (previewRows - 1) * previewGap;
   const legendApprox = Math.max(7, Math.min(10, Math.round(cellSize)));
 
-  // ── Помесячная карта (развёрнутый вид): дни сгруппированы по "YYYY-MM" ──
-  const daysByMonth = useMemo(() => {
-    const map = new Map<string, Activity365Day[]>();
-    for (const d of days) {
-      const key = d.date.slice(0, 7); // YYYY-MM
-      const bucket = map.get(key);
-      if (bucket) bucket.push(d); else map.set(key, [d]);
-    }
-    return map;
-  }, [days]);
-
   // Список месяцев, в которых реально есть дни из окна 365 (по возрастанию), плюс всегда текущий.
   const monthKeys = useMemo(() => {
-    const keys = Array.from(daysByMonth.keys()).sort();
-    return keys;
-  }, [daysByMonth]);
+    return activity365ObservedMonthKeys(days);
+  }, [days]);
 
   // monthOffset=0 — последний (текущий) месяц; чем меньше, тем дальше в прошлое.
   const activeMonthKey = monthKeys.length
@@ -662,21 +652,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const canGoNextMonth = monthOffset < 0;
 
   // Сетка выбранного месяца: 7 колонок (Пн–Вс), ведущие пустышки до первого дня.
-  const monthGrid = useMemo(() => {
-    if (!activeMonthKey) return { year: 0, month: 0, cells: [] as ({ day: Activity365Day | null })[] };
-    const [yy, mm] = activeMonthKey.split('-').map((x) => parseInt(x, 10));
-    const monthDays = (daysByMonth.get(activeMonthKey) ?? []).slice().sort((a, b) => a.date.localeCompare(b.date));
-    const byDayNum = new Map<number, Activity365Day>();
-    for (const d of monthDays) byDayNum.set(parseInt(d.date.slice(8, 10), 10), d);
-    const daysInMonth = new Date(yy, mm, 0).getDate(); // последний день месяца
-    // День недели 1-го числа: переводим Вс(0)..Сб(6) → Пн(0)..Вс(6)
-    const jsFirstDow = new Date(yy, mm - 1, 1).getDay();
-    const leadBlanks = (jsFirstDow + 6) % 7;
-    const cells: ({ day: Activity365Day | null })[] = [];
-    for (let i = 0; i < leadBlanks; i++) cells.push({ day: null });
-    for (let dn = 1; dn <= daysInMonth; dn++) cells.push({ day: byDayNum.get(dn) ?? null });
-    return { year: yy, month: mm, cells };
-  }, [activeMonthKey, daysByMonth]);
+  const monthGrid = useMemo(() => activity365MonthGridCells(days, activeMonthKey), [activeMonthKey, days]);
 
   // Размер ячейки месяца: вписываем 7 колонок в доступную ширину, крупно (минимум 40px — удобно пальцу).
   const monthInnerW = gridInnerW > 8 ? gridInnerW : Math.max(220, Math.round(screenW - 64));

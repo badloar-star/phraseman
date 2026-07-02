@@ -11,6 +11,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { onAppEvent } from '../app/events';
+import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 import { getTodaysBoons } from '../app/boons/boon_engine';
 import { getBoonCopy, getMysteryChestClaimedSubtitle } from '../app/boons/boon_copy';
 import { currentWeekId, MYSTERY_MONDAY_CLAIM_KEY } from '../app/boons/boon_rewards';
@@ -29,6 +30,7 @@ export default function TodaysBoonStrip({ marginTop = 14 }: TodaysBoonStripProps
   const [primary, setPrimary] = useState<BoonId | null>(() => getTodaysBoons().primary);
   const [mysteryClaimed, setMysteryClaimed] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
+  const scheduledRefreshRef = React.useRef<{ cancel: () => void } | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -51,13 +53,18 @@ export default function TodaysBoonStrip({ marginTop = 14 }: TodaysBoonStripProps
     // Сундук забрали в модалке прямо сейчас — обновить текст без перезахода в приложение.
     const claimedSub = onAppEvent('mystery_chest_claimed', refreshClaimed);
     const appStateSub = AppState.addEventListener('change', (next) => {
-      if (next === 'active') refresh();
+      if (next === 'active') {
+        scheduledRefreshRef.current?.cancel();
+        scheduledRefreshRef.current = scheduleCoalescedForegroundTask('todays_boon_strip_refresh', refresh);
+      }
     });
     return () => {
       alive = false;
       sub.remove();
       claimedSub.remove();
       appStateSub.remove();
+      scheduledRefreshRef.current?.cancel();
+      scheduledRefreshRef.current = null;
     };
   }, []);
 

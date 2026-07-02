@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, type ImageSourcePropType } from 'react-native';
+import { AppState, View, Text, TouchableOpacity, StyleSheet, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
 import Reanimated, {
   FadeIn,
   Easing,
@@ -13,6 +12,8 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { useTheme } from '../ThemeContext';
+import PlusBadge from '../PlusBadge';
+import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 
 /**
  * Маленькая плашка ИИ-заметки под карточкой статистики. Premium видит текст
@@ -43,17 +44,42 @@ type AiBlockNoteProps = {
 
 function CompassNoteIcon({ source }: { source: ImageSourcePropType }) {
   const progress = useSharedValue(0);
+  const isFocused = useIsScreenFocused();
 
+  // Покачивание компаса живёт только на видимом экране и активном приложении:
+  // freezeOnBlur:false держит ушедшие экраны живыми, без гарда луп грел бы
+  // телефон в фоне (паттерн components/AvatarAura.tsx).
   useEffect(() => {
-    progress.value = withRepeat(
-      withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.ease) }),
-      -1,
-      true,
-    );
+    if (!isFocused) {
+      cancelAnimation(progress);
+      progress.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(progress);
+      progress.value = 0;
+      progress.value = withRepeat(
+        withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.ease) }),
+        -1,
+        true,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(progress);
+      progress.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
     return () => {
+      appSub.remove();
       cancelAnimation(progress);
     };
-  }, [progress]);
+  }, [progress, isFocused]);
 
   const compassStyle = useAnimatedStyle(() => ({
     transform: [
@@ -102,7 +128,7 @@ export function AiBlockNote({
         <Text style={[styles.lockedText, { color: mutedColor }]} numberOfLines={2}>
           {lockedLabel}
         </Text>
-        <Ionicons name="lock-closed" size={13} color={mutedColor} />
+        <PlusBadge themeMode={themeMode} size="xs" />
       </TouchableOpacity>
     );
   }

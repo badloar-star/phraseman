@@ -35,7 +35,7 @@
   <link rel="preload" as="image" href="/assets/phraseman-screen-home.webp" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=1" defer></script>
-  <script src="/assets/fx.js?v=1" defer></script>
+  <script src="/assets/fx.js?v=2" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -328,6 +328,15 @@
       </section>
 
       <div class="final reveal">
+        <div class="lanyard" aria-hidden="true">
+          <div class="strap"></div>
+          <div class="clip"></div>
+          <div class="badge">
+            <img src="/assets/phraseman-icon-128.png" alt="" width="46" height="46" loading="lazy" />
+            <b>Phraseman</b>
+            <small>Speak first</small>
+          </div>
+        </div>
         <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" loading="lazy" />
         <h2>Первый урок займёт <span class="gold-accent">три минуты</span></h2>
         <p class="sub">Скачайте Phraseman и скажите первую живую фразу уже сегодня.
@@ -362,6 +371,29 @@
       <p>© 2026 Knowly · Phraseman — учите английский живыми фразами.</p>
     </footer>
   </div>
+
+  <nav class="dock" aria-label="Быстрая навигация">
+    <a href="#" data-top aria-label="Наверх">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+      <span class="dock-label">Наверх</span>
+    </a>
+    <a href="/guides/" aria-label="Гайды">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2V4Z" /><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7V4Z" /></svg>
+      <span class="dock-label">Гайды</span>
+    </a>
+    <a href="/download/" aria-label="Скачать приложение">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M6 9l6 6 6-6" /><path d="M5 21h14" /></svg>
+      <span class="dock-label">Скачать</span>
+    </a>
+    <a href="/contact/" aria-label="Поддержка">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" /></svg>
+      <span class="dock-label">Поддержка</span>
+    </a>
+    <a class="dock-cta" href="/start/" aria-label="Подобрать план">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z" /><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" /></svg>
+      <span class="dock-label">Подобрать план</span>
+    </a>
+  </nav>
 
   <div class="mcta">
     <a class="btn-gold quiz-cta" href="/start/">Подобрать план</a>

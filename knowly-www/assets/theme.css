@@ -92,6 +92,29 @@ html[data-theme="light"] .mcta {
 html[data-theme="light"] .mcta .mcta-dl {
   background: rgba(30, 26, 16, 0.04);
 }
+html[data-theme="light"] .dock {
+  background: rgba(250, 247, 240, 0.85);
+  box-shadow: 0 24px 60px rgba(90, 70, 20, 0.18);
+}
+html[data-theme="light"] .dock a {
+  background: rgba(30, 26, 16, 0.04);
+}
+html[data-theme="light"] .dock a.dock-cta {
+  background: var(--gold-grad);
+}
+html[data-theme="light"] .dock a.dock-cta svg {
+  stroke: #fffdf7;
+}
+html[data-theme="light"] .dock .dock-label {
+  background: rgba(250, 247, 240, 0.95);
+}
+html[data-theme="light"] .lanyard .badge {
+  box-shadow: 0 18px 44px rgba(90, 70, 20, 0.25);
+  border-color: rgba(168, 122, 22, 0.4);
+}
+html[data-theme="light"] .lanyard .clip {
+  border-color: #b7ae99;
+}
 
 html[data-theme="light"] .proof div {
   background: var(--bg);

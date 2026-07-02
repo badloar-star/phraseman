@@ -287,6 +287,143 @@
     }
   }
 
+  /* ── 6b. Док (порт Dock): увеличение иконок у курсора ── */
+  function initDock() {
+    var dock = document.querySelector('.dock');
+    if (!dock) return;
+
+    var top = dock.querySelector('[data-top]');
+    if (top) {
+      top.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    }
+
+    var hero = document.querySelector('.hero');
+    var threshold = hero ? Math.max(300, hero.offsetHeight * 0.9) : 500;
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        dock.classList.toggle('show', window.scrollY > threshold);
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (reduceMotion) return;
+    var fine = false;
+    try { fine = window.matchMedia('(pointer: fine)').matches; } catch (_) { /* noop */ }
+    if (!fine) return;
+
+    var items = Array.prototype.slice.call(dock.querySelectorAll('a'));
+    var BASE = 46, MAG = 66, DIST = 130;
+    dock.addEventListener('mousemove', function (e) {
+      items.forEach(function (a) {
+        var r = a.getBoundingClientRect();
+        var d = Math.abs(e.clientX - (r.left + r.width / 2));
+        var t = Math.max(0, 1 - d / DIST);
+        var s = Math.round(BASE + (MAG - BASE) * t * t * (3 - 2 * t)); /* smoothstep */
+        a.style.width = s + 'px';
+        a.style.height = s + 'px';
+      });
+    });
+    dock.addEventListener('mouseleave', function () {
+      items.forEach(function (a) {
+        a.style.width = BASE + 'px';
+        a.style.height = BASE + 'px';
+      });
+    });
+  }
+
+  /* ── 6c. Бейдж на ленте (порт Lanyard): маятник + перетаскивание ── */
+  function initLanyard() {
+    var el = document.querySelector('.lanyard');
+    if (!el) return;
+    if (reduceMotion) return; /* висит статично */
+
+    var theta = 0.12, omega = 0; /* стартовое отклонение — лёгкое покачивание */
+    var G = 3.2, DAMP = 0.012, MAX = 0.55;
+    var dragging = false, lastX = 0, lastT = 0;
+    var visible = true, raf = 0, prev = 0;
+
+    function pivotPoint() {
+      var pr = el.offsetParent ? el.offsetParent.getBoundingClientRect() : { left: 0, top: 0 };
+      return {
+        x: pr.left + el.offsetLeft + el.offsetWidth / 2,
+        y: pr.top + el.offsetTop
+      };
+    }
+
+    function frame(t) {
+      if (!prev) prev = t;
+      var dt = Math.min((t - prev) / 1000, 0.05);
+      prev = t;
+      if (!dragging) {
+        var accel = -G * Math.sin(theta) - DAMP * omega * 60 + 0.06 * Math.cos(t * 0.0006);
+        omega += accel * dt;
+        theta += omega * dt;
+        if (theta > MAX) { theta = MAX; omega = -Math.abs(omega) * 0.5; }
+        if (theta < -MAX) { theta = -MAX; omega = Math.abs(omega) * 0.5; }
+      }
+      el.style.transform = 'rotate(' + theta.toFixed(4) + 'rad)';
+      raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;
+    }
+    function play() {
+      if (!raf && visible && !document.hidden) {
+        prev = 0;
+        raf = requestAnimationFrame(frame);
+      }
+    }
+    function stop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+
+    var badge = el.querySelector('.badge');
+    if (badge) {
+      badge.addEventListener('pointerdown', function (e) {
+        dragging = true;
+        el.classList.add('dragging');
+        lastX = e.clientX;
+        lastT = performance.now();
+        try { badge.setPointerCapture(e.pointerId); } catch (_) { /* noop */ }
+        e.preventDefault();
+      });
+      badge.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var p = pivotPoint();
+        var target = Math.atan2(e.clientX - p.x, Math.max(40, e.clientY - p.y));
+        theta = Math.max(-MAX, Math.min(MAX, target));
+        var now = performance.now();
+        var dtm = Math.max(now - lastT, 1);
+        omega = ((e.clientX - lastX) / dtm) * 0.35; /* скорость отпускания */
+        lastX = e.clientX;
+        lastT = now;
+      });
+      function release() {
+        dragging = false;
+        el.classList.remove('dragging');
+      }
+      badge.addEventListener('pointerup', release);
+      badge.addEventListener('pointercancel', release);
+    }
+
+    try {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        visible ? play() : stop();
+      }, { threshold: 0.05 }).observe(el.offsetParent || el);
+    } catch (_) { /* noop */ }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stop() : play();
+    });
+    play();
+  }
+
   /* ── 7. Каскад появления карточек: раздаём задержки ── */
   function initStagger() {
     document.querySelectorAll('.reveal').forEach(function (sec) {
@@ -298,7 +435,7 @@
   }
 
   function boot() {
-    [initRays, initRotor, initCounters, initTopbar, initTilt, initMobileCta, initStagger].forEach(
+    [initRays, initRotor, initCounters, initTopbar, initTilt, initMobileCta, initDock, initLanyard, initStagger].forEach(
       function (fn) {
         try { fn(); } catch (_) { /* эффект не должен ломать страницу */ }
       }

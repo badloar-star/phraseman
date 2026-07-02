@@ -8,10 +8,10 @@ import {
   InteractionManager,
   Pressable,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import TapScale from '../../components/TapScale';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -37,6 +37,14 @@ import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
+import {
+  clampHomeFeatureTipReplayCount,
+  HOME_FEATURE_TIPS_DONE_KEY,
+  HOME_FEATURE_TIPS_INDEX_KEY,
+  HOME_FEATURE_TIPS_MAX_REPLAYS,
+  HOME_FEATURE_TIPS_REPLAY_COUNT_KEY,
+  HOME_FEATURE_TIPS_RESET_EVENT,
+} from '../home_feature_tips';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import {
   ENABLE_DEV_TOOLS,
@@ -45,25 +53,18 @@ import {
   KNOWLY_LEGAL_TERMS_URL,
 } from '../config';
 import {
-  devStudyTargetsForUiLang,
-  emitDevStudyTargetChanged,
   getDevStudyTargetLang,
   isStudyTargetSourceUiLang,
-  setDevStudyTargetLang,
-  studyTargetLabelForSourceUiLang,
   type StudyTargetLang,
 } from '../study_target_lang_dev';
-import {
-  getStoredStudyTarget,
-  setStoredStudyTarget,
-  studyTargetsForSourceLocale,
-} from '../study_target';
+import { getStoredStudyTarget } from '../study_target';
+import StudyLanguagePicker from '../../components/settings/StudyLanguagePicker';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ThemeMode } from '../../constants/theme';
 import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
-import { reserveNameDetailed } from '../firestore_leaderboard';
+import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
@@ -71,6 +72,9 @@ import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { isIdeasEnabled, isPromoCodesEnabled } from '../remote_flags';
 import { getAnalyticsConsentState, setAnalyticsConsent } from '../analytics_consent';
 import { recordConsentToCloud } from '../age_consent_cloud';
+import { getLoyaltyGiftState } from '../loyalty_gift';
+import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -87,6 +91,16 @@ function formatDateTimeShort(ms: number): string {
   const minute = String(d.getMinutes()).padStart(2, '0');
   return `${day}.${month}.${year}, ${hour}:${minute}`;
 }
+
+type PlusAccessDetail = {
+  key: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+  title: string;
+  subtitle: string;
+  testID?: string;
+  titleTestID?: string;
+  subtitleTestID?: string;
+};
 
 type SettingsSurfacePalette = {
   panel: string;
@@ -126,11 +140,18 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     notice: '#202124',
   },
   business: {
-    panel: '#141414',
-    chip: '#141414',
+    panel: '#0A0A0A',
+    chip: '#0A0A0A',
     border: 'rgba(255,255,255,0.10)',
     divider: 'rgba(255,255,255,0.07)',
-    notice: '#1C1C1C',
+    notice: '#121212',
+  },
+  businessLight: {
+    panel: '#FFFFFF',
+    chip: '#FFFFFF',
+    border: 'rgba(0,0,0,0.10)',
+    divider: 'rgba(0,0,0,0.06)',
+    notice: '#FAFAFA',
   },
   midnight: {
     panel: '#1B1D25',
@@ -161,12 +182,13 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     notice: '#242B19',
   },
 };
+// Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
 
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
-  const { theme: t, isDark, themeMode, fontSize, setFontSize, f } = useTheme();
+  const { theme: t, isDark, themeMode, fontSize, setFontSize, f, isFlat: isFlatUi } = useTheme();
   const isCompassTheme = false;
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
@@ -199,15 +221,11 @@ export default function SettingsMain() {
   const chipSurfaceOn = settingsChipBg;
   const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
   const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
-  /** Плашка Premium/VIP на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
+  /** Плашка Premium на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
   const premiumActiveSurface = isGradientLight ? t.bgCard : settingsNoticeBg;
   const premiumActiveTitle = isGradientLight ? t.textPrimary : t.correct;
   const premiumActiveSub = isGradientLight ? t.textMuted : t.textSecond;
   const premiumActiveIcon = isGradientLight ? t.accent : t.correct;
-  const vipActiveSurface = isGradientLight ? t.bgCard : settingsNoticeBg;
-  const vipActiveTitle = isGradientLight ? t.textPrimary : t.accent;
-  const vipActiveSub = isGradientLight ? t.textMuted : t.textSecond;
-  const vipActiveBorder = isGradientLight ? t.accent : t.accent;
   /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне. */
   const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
@@ -276,10 +294,14 @@ export default function SettingsMain() {
    * «Сохранить ничего не делает» (saveName закрывал через этот колбэк) и «после Отмена→Сохранить
    * всё виснет» (backdrop оставался поверх экрана и съедал все тапы).
    */
-  const closeNameModal = useCallback(() => {
+  const closeNameModalNow = useCallback(() => {
     Keyboard.dismiss();
     setNameModal(false);
   }, []);
+  const closeNameModal = useCallback(() => {
+    if (nameSavingRef.current) return;
+    closeNameModalNow();
+  }, [closeNameModalNow]);
   const LANG_NATIVE: Record<string, string> = {
     ru: 'Русский',
     uk: 'Українська',
@@ -310,27 +332,70 @@ export default function SettingsMain() {
 
   const scrollRef = useRef<any>(null);
   const scrollY = useRef(new Animated.Value(0)).current;
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { activeIdx, focusTick, goHome } = useTabNav();
   const SETTINGS_TAB_IDX = 4;
+  // Повторные показы подсказок ограничены (наборы №2..№6); после последнего
+  // кнопка исчезает навсегда — финальный набор прямо обещает это юзеру.
+  const [homeTipsReplayCount, setHomeTipsReplayCount] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    AsyncStorage.getItem(HOME_FEATURE_TIPS_REPLAY_COUNT_KEY)
+      .then((raw) => {
+        if (cancelled) return;
+        setHomeTipsReplayCount(clampHomeFeatureTipReplayCount(Number(raw ?? 0)));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const homeTipsReplayAvailable = homeTipsReplayCount < HOME_FEATURE_TIPS_MAX_REPLAYS;
+  const resetHomeFeatureTips = useCallback(() => {
+    doHaptic();
+    const nextReplayCount = clampHomeFeatureTipReplayCount(homeTipsReplayCount + 1);
+    setHomeTipsReplayCount(nextReplayCount);
+    void AsyncStorage.multiSet([
+      [HOME_FEATURE_TIPS_INDEX_KEY, '0'],
+      [HOME_FEATURE_TIPS_DONE_KEY, '0'],
+      [HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, String(nextReplayCount)],
+    ])
+      .finally(() => {
+        DeviceEventEmitter.emit(HOME_FEATURE_TIPS_RESET_EVENT, nextReplayCount);
+        goHome();
+      });
+  }, [goHome, homeTipsReplayCount]);
+  const settingsTabVisible = activeIdx === SETTINGS_TAB_IDX;
 
   useEffect(() => {
-    if (activeIdx === SETTINGS_TAB_IDX && scrollRef.current) {
+    if (settingsTabVisible && scrollRef.current) {
       scrollRef.current.scrollTo({ y: 0, animated: false });
     }
-  }, [activeIdx]);
+  }, [settingsTabVisible]);
 
-  const [userName, setUserName] = useState('');
+  const appSnapshot = useAppSnapshotSelector((snapshot) => ({
+    profile: snapshot.profile,
+    settings: snapshot.settings,
+  }), (a, b) => a.profile === b.profile && a.settings === b.settings);
+  const [userName, setUserName] = useState(() => appSnapshot.profile?.name ?? '');
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
-  const [nameReady, setNameReady] = useState(false);
+  const [nameReady, setNameReady] = useState(() => !!appSnapshot.profile);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const { isPremium, isVip, hasPremiumAccess } = usePremium();
+  const [nameSaving, setNameSaving] = useState(false);
+  const nameSavingRef = useRef(false);
+  const settingsStorageHydratedRef = useRef(false);
+  useEffect(() => {
+    if (nameModal) warmNameAvailabilityAuth();
+  }, [nameModal]);
+  const { isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
+  const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
+  const [loyaltyGiftEndsAt, setLoyaltyGiftEndsAt] = useState<number | null>(null);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
@@ -347,7 +412,7 @@ export default function SettingsMain() {
    */
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
-  const [hapticTap,  setHapticTap]   = useState(true);
+  const [hapticTap,  setHapticTap]   = useState(() => appSnapshot.settings?.tapHaptics ?? true);
   // Согласие на необязательную аналитику (PostHog + non-essential Firebase).
   // Источник правды — analytics_consent.ts (синхронный снапшот после гидрации).
   // Тумблер даёт отзыв согласия в любой момент, как требует GDPR ст.7(3) и как
@@ -358,6 +423,16 @@ export default function SettingsMain() {
   // закрытие/смена экрана отбрасывает черновик, состояние не меняется.
   const [analyticsModalVisible, setAnalyticsModalVisible] = useState(false);
   const [analyticsOptOutDraft, setAnalyticsOptOutDraft] = useState(false);
+
+  useEffect(() => {
+    if (appSnapshot.profile) {
+      setUserName(current => current || appSnapshot.profile!.name);
+      setNameReady(true);
+    }
+    if (appSnapshot.settings?.tapHaptics != null) {
+      setHapticTap(appSnapshot.settings.tapHaptics);
+    }
+  }, [appSnapshot.profile, appSnapshot.settings]);
 
   // Применить выбор согласия: локально (источник правды + гейт сбора) + в облако
   // (accountability/GDPR, дата отзыва/выдачи). Best-effort — сбой облака не ломает UX.
@@ -396,7 +471,11 @@ export default function SettingsMain() {
   }, [lang]);
   useEffect(() => {
     void loadStudyTarget();
-  }, [loadStudyTarget, activeIdx]);
+  }, [loadStudyTarget]);
+  useEffect(() => {
+    if (!settingsTabVisible) return;
+    void loadStudyTarget();
+  }, [settingsTabVisible, focusTick, loadStudyTarget]);
   const currentThemeLabel = (() => {
     const names: Record<string, Record<Lang, string>> = {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
@@ -404,6 +483,7 @@ export default function SettingsMain() {
       coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
       business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
+      businessLight: { ru: 'Бизнес светлый', uk: 'Бізнес світлий', es: 'Negocios claro', 'pt-BR': 'Negócios claro', vi: 'Doanh nghiệp sáng', id: 'Bisnis terang', tr: 'İş açık', pl: 'Biznes jasny' },
       midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
       ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
       aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
@@ -413,8 +493,22 @@ export default function SettingsMain() {
     return entry[lang];
   })();
 
+  const refreshSupplementalAccessState = useCallback(() => {
+    AsyncStorage.multiGet(['vip_plan', 'vip_until', 'vip_expiry'])
+      .then(pairs => {
+        setVipPlan(String(pairs[0][1] ?? '').trim().toLowerCase());
+        setVipUntilMs(parseStoredExpiryMs(pairs[1][1] ?? pairs[2][1]));
+      })
+      .catch(() => {});
+    void getLoyaltyGiftState()
+      .then(state => setLoyaltyGiftEndsAt(state.active ? state.endsAt : null))
+      .catch(() => setLoyaltyGiftEndsAt(null));
+  }, []);
+
 
   useEffect(() => {
+    if (!settingsTabVisible && settingsStorageHydratedRef.current) return;
+    settingsStorageHydratedRef.current = true;
     let cancelled = false;
     AsyncStorage.multiGet(['user_name', 'premium_plan', 'vip_until', 'vip_expiry', 'haptics_tap', 'user_total_xp'])
       .then(pairs => {
@@ -422,6 +516,20 @@ export default function SettingsMain() {
         if (pairs[0][1]) {
           setUserName(pairs[0][1]);
         }
+        patchAppSnapshot((current) => current.profile ? {
+          profile: {
+            ...current.profile,
+            source: 'storage',
+            updatedAt: Date.now(),
+            name: pairs[0][1]?.trim() || current.profile.name,
+          },
+          settings: current.settings ? {
+            ...current.settings,
+            source: 'storage',
+            updatedAt: Date.now(),
+            tapHaptics: pairs[4][1] === null ? current.settings.tapHaptics : pairs[4][1] !== 'false',
+          } : undefined,
+        } : {});
         setPremiumPlan(pairs[1][1]);
         setVipUntilMs(parseStoredExpiryMs(pairs[2][1] ?? pairs[3][1]));
         if (pairs[4][1] !== null) setHapticTap(pairs[4][1] !== 'false');
@@ -433,8 +541,9 @@ export default function SettingsMain() {
     setIdeasOn(isIdeasEnabled());
     setPromoCodesOn(isPromoCodesEnabled());
     setAnalyticsOn(getAnalyticsConsentState() === 'granted');
+    refreshSupplementalAccessState();
     return () => { cancelled = true; };
-  }, [activeIdx]); // обновляем при переключении на этот таб
+  }, [settingsTabVisible, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
 
   useEffect(() => {
     const refreshRemoteFlags = () => {
@@ -447,17 +556,19 @@ export default function SettingsMain() {
 
   useEffect(() => {
     const refreshVipUntil = () => {
-      AsyncStorage.multiGet(['vip_until', 'vip_expiry'])
-        .then(pairs => setVipUntilMs(parseStoredExpiryMs(pairs[0][1] ?? pairs[1][1])))
-        .catch(() => {});
+      refreshSupplementalAccessState();
     };
     const onVipActivated = DeviceEventEmitter.addListener('vip_activated', refreshVipUntil);
     const onAccessChanged = DeviceEventEmitter.addListener('premium_access_changed', refreshVipUntil);
+    const onIntroChanged = DeviceEventEmitter.addListener('intro_full_access_changed', refreshVipUntil);
+    const onLoyaltyChanged = DeviceEventEmitter.addListener('loyalty_gift_changed', refreshVipUntil);
     return () => {
       onVipActivated.remove();
       onAccessChanged.remove();
+      onIntroChanged.remove();
+      onLoyaltyChanged.remove();
     };
-  }, []);
+  }, [refreshSupplementalAccessState]);
 
   useEffect(() => {
     let alive = true;
@@ -478,7 +589,7 @@ export default function SettingsMain() {
 
   /** Повтор при открытии «Настройки»: Firestore раньше мог не ответить, а вкладка кэширована. */
   useEffect(() => {
-    if (activeIdx !== SETTINGS_TAB_IDX) return;
+    if (!settingsTabVisible) return;
     let cancelled = false;
     void (async () => {
       try {
@@ -491,7 +602,7 @@ export default function SettingsMain() {
       }
     })();
     return () => { cancelled = true; };
-  }, [activeIdx, focusTick]);
+  }, [settingsTabVisible, focusTick]);
 
   const BAD_WORDS = ['хуй','піздець','пизда','блядь','бляд','ёбан','єбан','єбать','ебать','ебал','залупа','мудак','мудила','сука','пидор','пидар','хуйня','піздюк','нахуй','нахій','сучка','мразь','тварь','ублюдок','ёб','йоб','fuck','shit','bitch','cunt','dick','ass','asshole','faggot','nigger','bastard'];
   const containsBadWord = (s: string) => {
@@ -569,6 +680,7 @@ export default function SettingsMain() {
   }, []);
 
   const saveName = async () => {
+    if (nameSavingRef.current) return;
     const trimmed = newName.trim();
     if (!trimmed) { alertOverName(L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
     if (trimmed.length < 2) { alertOverName(L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
@@ -581,78 +693,142 @@ export default function SettingsMain() {
       return;
     }
 
-    // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
-    // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
-    // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
-    let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
+    nameSavingRef.current = true;
+    setNameSaving(true);
     try {
-      reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
-    } catch (error) {
-      DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
-      reservation = { status: 'error' };
-    }
+      // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
+      // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
+      // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
+      let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
+      try {
+        reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
+      } catch (error) {
+        DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
+        reservation = { status: 'error' };
+      }
 
-    if (reservation.status === 'taken') {
-      alertOverName(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-      return;
-    }
-    if (reservation.status === 'cooldown') {
-      alertOverName(L(
-        'Ник можно менять не чаще одного раза в 14 дней.',
-        'Нік можна змінювати не частіше одного разу на 14 днів.',
-        'Puedes cambiar el nombre solo una vez cada 14 días.',
-        'Você só pode mudar o nome uma vez a cada 14 dias.',
-        'Bạn chỉ có thể đổi tên 14 ngày một lần.',
-        'Nama hanya bisa diganti sekali setiap 14 hari.',
-        'Adı en fazla 14 günde bir değiştirebilirsin.',
-        'Nazwę można zmieniać najwyżej raz na 14 dni.',
-      ));
-      return;
-    }
-    if (reservation.status !== 'ok') {
-      alertOverName(L(
-        'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
-        'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
-        'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
-        'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
-        'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
-        'Tidak bisa memeriksa nama. Periksa koneksi dan coba lagi.',
-        'Ad doğrulanamadı. Bağlantını kontrol et ve tekrar dene.',
-        'Nie udało się sprawdzić nazwy. Sprawdź połączenie i spróbuj ponownie.',
-      ));
-      return;
-    }
+      if (reservation.status === 'taken') {
+        alertOverName(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+        return;
+      }
+      if (reservation.status === 'cooldown') {
+        alertOverName(L(
+          'Ник можно менять не чаще одного раза в 14 дней.',
+          'Нік можна змінювати не частіше одного разу на 14 днів.',
+          'Puedes cambiar el nombre solo una vez cada 14 días.',
+          'Você só pode mudar o nome uma vez a cada 14 dias.',
+          'Bạn chỉ có thể đổi tên 14 ngày một lần.',
+          'Nama hanya bisa diganti sekali setiap 14 hari.',
+          'Adı en fazla 14 günde bir değiştirebilirsin.',
+          'Nazwę można zmieniać najwyżej raz na 14 dni.',
+        ));
+        return;
+      }
+      if (reservation.status !== 'ok') {
+        alertOverName(L(
+          'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
+          'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+          'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
+          'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
+          'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
+          'Tidak bisa memeriksa nama. Periksa koneksi dan coba lagi.',
+          'Ad doğrulanamadı. Bağlantını kontrol et ve tekrar dene.',
+          'Nie udało się sprawdzić nazwy. Sprawdź połączenie i spróbuj ponownie.',
+        ));
+        return;
+      }
 
-    // Бронь подтверждена — применяем локально и закрываем модалку.
-    try {
-      await AsyncStorage.setItem('user_name', trimmed);
-      setUserName(trimmed);
-      await updateLocalNameReferences(oldName, trimmed);
-      closeNameModal();
-    } catch (error) {
-      DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
-      alertOverName(L(
-        'Имя не сохранилось локально. Попробуй ещё раз.',
-        'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
-        'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
-        'Não foi possível salvar o nome localmente. Tente novamente.',
-        'Không thể lưu tên cục bộ. Hãy thử lại.',
-        'Nama belum bisa disimpan secara lokal. Coba lagi.',
-        'Ad yerel olarak kaydedilemedi. Tekrar dene.',
-        'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
-      ));
-      return;
-    }
+      // Бронь подтверждена — применяем локально и закрываем модалку.
+      try {
+        await AsyncStorage.setItem('user_name', trimmed);
+        setUserName(trimmed);
+        patchAppSnapshot((current) => current.profile ? {
+          profile: {
+            ...current.profile,
+            source: 'local',
+            updatedAt: Date.now(),
+            name: trimmed,
+          },
+        } : {});
+        await updateLocalNameReferences(oldName, trimmed);
+        closeNameModalNow();
+      } catch (error) {
+        DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
+        alertOverName(L(
+          'Имя не сохранилось локально. Попробуй ещё раз.',
+          'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
+          'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
+          'Não foi possível salvar o nome localmente. Tente novamente.',
+          'Không thể lưu tên cục bộ. Hãy thử lại.',
+          'Nama belum bisa disimpan secara lokal. Coba lagi.',
+          'Ad yerel olarak kaydedilemedi. Tekrar dene.',
+          'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
+        ));
+        return;
+      }
 
-    await syncArenaDisplayName(trimmed).catch((error) => {
-      DebugLogger.error('settings.tsx:renameName:arenaSync', error, 'warning');
-    });
-    void syncMyLeagueMemberProfileNow();
+      void syncArenaDisplayName(trimmed).catch((error) => {
+        DebugLogger.error('settings.tsx:renameName:arenaSync', error, 'warning');
+      });
+      void syncMyLeagueMemberProfileNow();
+    } finally {
+      nameSavingRef.current = false;
+      setNameSaving(false);
+    }
   };
 
   const vipExpiryText = vipUntilMs > 0
     ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
     : L('Plus без срока окончания', 'Plus без дати завершення', 'Plus has no end date', 'Plus sem data de término', 'Plus không có ngày kết thúc', 'Plus tanpa tanggal akhir', 'Plus bitiş tarihi yok', 'Plus bez daty zakończenia');
+
+  const vipAccessTitle = (() => {
+    switch (vipPlan) {
+      case 'promo':
+      case 'promo_lifetime':
+        return L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny');
+      case 'referral':
+        return L('Подарок за приглашения', 'Подарунок за запрошення', 'Referral gift', 'Presente por convite', 'Quà mời bạn bè', 'Hadiah undangan', 'Davet hediyesi', 'Prezent za zaproszenia');
+      case 'survey_vip':
+        return L('Plus за опрос', 'Plus за опитування', 'Plus for survey', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
+      case 'idea_reward':
+        return L('Plus за идею', 'Plus за ідею', 'Plus for an idea', 'Plus por ideia', 'Plus cho ý tưởng', 'Plus untuk ide', 'Fikir Plus', 'Plus za pomysł');
+      case 'telegram_tester':
+        return L('Тестерский Plus', 'Тестерський Plus', 'Tester Plus', 'Plus de testador', 'Plus thử nghiệm', 'Plus tester', 'Test Plus', 'Tester Plus');
+      case 'admin_vip':
+        return L('Выданный Plus', 'Виданий Plus', 'Granted Plus', 'Plus concedido', 'Plus được cấp', 'Plus diberikan', 'Verilen Plus', 'Przyznany Plus');
+      default:
+        return L('Дополнительный Plus-доступ', 'Додатковий Plus-доступ', 'Extra Plus access', 'Acesso Plus extra', 'Quyền Plus bổ sung', 'Akses Plus tambahan', 'Ek Plus erişimi', 'Dodatkowy dostęp Plus');
+    }
+  })();
+
+  const plusAccessDetails: PlusAccessDetail[] = [];
+  if (isVip) {
+    plusAccessDetails.push({
+      key: 'vip',
+      icon: vipPlan === 'referral' ? 'people-outline' : vipPlan === 'survey_vip' ? 'chatbox-ellipses-outline' : 'ticket-outline',
+      title: vipAccessTitle,
+      subtitle: vipExpiryText,
+      testID: 'settings-vip-card',
+      titleTestID: 'settings-vip-subtitle',
+      subtitleTestID: 'settings-vip-expiry',
+    });
+  }
+  if (isIntroFullAccess && introFullAccessEndsAt && introFullAccessEndsAt > Date.now()) {
+    plusAccessDetails.push({
+      key: 'intro',
+      icon: 'sparkles-outline',
+      title: L('Полный доступ на 3 дня', 'Повний доступ на 3 дні', 'Full access for 3 days', 'Acesso completo por 3 dias', 'Truy cập đầy đủ 3 ngày', 'Akses penuh 3 hari', '3 gün tam erişim', 'Pełny dostęp na 3 dni'),
+      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(introFullAccessEndsAt)}`,
+    });
+  }
+  if (loyaltyGiftEndsAt && loyaltyGiftEndsAt > Date.now()) {
+    plusAccessDetails.push({
+      key: 'loyalty',
+      icon: 'gift-outline',
+      title: L('Подарок: полный доступ на 3 дня', 'Подарунок: повний доступ на 3 дні', 'Gift: full access for 3 days', 'Presente: acesso completo por 3 dias', 'Quà tặng: truy cập đầy đủ 3 ngày', 'Hadiah: akses penuh 3 hari', 'Hediye: 3 gün tam erişim', 'Prezent: pełny dostęp na 3 dni'),
+      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(loyaltyGiftEndsAt)}`,
+    });
+  }
 
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
@@ -708,48 +884,21 @@ export default function SettingsMain() {
             <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
               {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-              {(ENABLE_DEV_STUDY_TARGET_LANG ? devStudyTargetsForUiLang(lang) : studyTargetsForSourceLocale(lang)).map(code => {
-                const active = studyTarget === code;
-                const label = studyTargetLabelForSourceUiLang(code, lang);
-                return (
-                  <TouchableOpacity
-                    key={code}
-                    activeOpacity={0.85}
-                    onPress={() => {
-                      doHaptic();
-                      void (async () => {
-                        if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr')) {
-                          await setDevStudyTargetLang(code, lang);
-                        } else {
-                          await setStoredStudyTarget(code === 'en' ? code : 'en', lang);
-                          if (ENABLE_DEV_STUDY_TARGET_LANG) {
-                            await setDevStudyTargetLang('en', lang);
-                          }
-                        }
-                        emitDevStudyTargetChanged();
-                        await loadStudyTarget();
-                      })();
-                    }}
-                    style={{
-                      paddingHorizontal: 14,
-                      paddingVertical: 10,
-                      borderRadius: isCompassTheme ? 8 : 12,
-                      borderWidth: active ? (isCompassTheme ? 1 : 2) : 0.5,
-                      borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
-                      backgroundColor: isCompassTheme ? (active ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : active ? chipSurfaceOn : chipSurfaceOff,
-                      overflow: 'hidden',
-                      ...(isCompassTheme && active ? compassShadow(1) : {}),
-                    }}
-                  >
-                    {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!active} cream={active} /> : null}
-                    <Text style={{ color: isCompassTheme ? (active ? COMPASS_RICH.textDark : screenPrimary) : active ? chipTextOn : chipTextOff, fontSize: f.body, fontWeight: active ? '800' : '600' }}>
-                      {label}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+            <StudyLanguagePicker
+              lang={lang}
+              activeTarget={studyTarget}
+              labelFontSize={f.caption}
+              palette={{
+                surfaceOn: isCompassTheme ? COMPASS_RICH.champagne : chipSurfaceOn,
+                surfaceOff: isCompassTheme ? COMPASS_RICH.charcoalRaised : chipSurfaceOff,
+                borderOn: isCompassTheme ? COMPASS_RICH.hairlineStrong : (isGradientLight ? chipSurfaceOn : t.accent),
+                borderOff: isCompassTheme ? COMPASS_RICH.hairlineQuiet : chipBorderOff,
+                textOn: isCompassTheme ? COMPASS_RICH.textDark : chipTextOn,
+                textOff: isCompassTheme ? screenPrimary : chipTextOff,
+                badge: t.accent,
+              }}
+              onSwitched={loadStudyTarget}
+            />
             <Text style={{ color: screenGhost, fontSize: f.caption - 1, marginTop: 8, lineHeight: 18 }}>
               {L(
                 ENABLE_DEV_STUDY_TARGET_LANG
@@ -874,7 +1023,8 @@ export default function SettingsMain() {
             onPress={() => router.push('/settings_themes' as any)}
           />
 
-          {/* РАЗМЕР ШРИФТА */}
+          {/* РАЗМЕР ШРИФТА — в плоском IG-режиме типографика фиксирована, настройка скрыта */}
+          {isFlatUi ? null : (
           <SettingsCustomRow>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
               <SettingsIconTile icon="text" color="pink" />
@@ -938,6 +1088,7 @@ export default function SettingsMain() {
               ))}
             </View>
           </SettingsCustomRow>
+          )}
 
           {/* Тактильный отклик — глобальный */}
           <SettingsRow
@@ -952,6 +1103,14 @@ export default function SettingsMain() {
                 onValueChange={val => {
                   setHapticTap(val);
                   setHapticCacheEnabled(val);
+                  patchAppSnapshot((current) => current.settings ? {
+                    settings: {
+                      ...current.settings,
+                      source: 'local',
+                      updatedAt: Date.now(),
+                      tapHaptics: val,
+                    },
+                  } : {});
                   AsyncStorage.setItem('haptics_tap', String(val));
                 }}
               />
@@ -974,6 +1133,24 @@ export default function SettingsMain() {
             sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
             onPress={() => router.push('/settings_notifications')}
           />
+          <SettingsRow
+            testID="settings-compass"
+            icon="compass-outline"
+            color="blue"
+            label={L('Компас', 'Компас', 'Brújula', 'Bússola', 'La bàn', 'Kompas', 'Pusula', 'Kompas')}
+            sub={L('Утренний брифинг и итог дня', 'Ранковий брифінг і підсумок дня', 'Briefing matutino y cierre del día', 'Briefing da manhã e resumo do dia', 'Điểm tin sáng và tổng kết ngày', 'Arahan pagi dan ringkasan hari', 'Sabah brifingi ve gün özeti', 'Poranna odprawa i podsumowanie dnia')}
+            onPress={() => router.push('/compass_settings' as never)}
+          />
+          {homeTipsReplayAvailable ? (
+            <SettingsRow
+              testID="settings-show-home-tips"
+              icon="compass-outline"
+              color="teal"
+              label={L('Подсказки на главной', 'Підказки на головній', 'Consejos en inicio', 'Dicas na tela inicial', 'Mẹo ở trang chính', 'Tips di beranda', 'Ana ekrandaki ipuçları', 'Wskazówki na głównej')}
+              sub={L('Показать карточки-компас ещё раз', 'Показати картки-компас ще раз', 'Mostrar las tarjetas guía otra vez', 'Mostrar os cartões-guia de novo', 'Hiện lại các thẻ hướng dẫn', 'Tampilkan kartu panduan lagi', 'Rehber kartları tekrar göster', 'Pokaż karty przewodnika ponownie')}
+              onPress={resetHomeFeatureTips}
+            />
+          ) : null}
           {/* «Все подарки» — только в админ-панели (Справочник подарков), не в проде.
               Каталог живёт в components/admin_panel/sections/GiftsCatalogSection.tsx. */}
         </SettingsGroup>
@@ -1044,37 +1221,6 @@ export default function SettingsMain() {
             />
           ) : null}
         </SettingsGroup>
-        {isVip && !isPremium && (
-          <View testID="settings-vip-card" style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginHorizontal: SETTINGS_GROUP_MARGIN,
-            marginTop: 20,
-            marginBottom: -4,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : vipActiveSurface,
-            borderRadius: isCompassTheme ? 8 : 14,
-            padding: 14,
-            borderWidth: 1,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : vipActiveBorder,
-            overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(2) : {}),
-          }}>
-            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-            <Ionicons name="shield-checkmark-outline" size={24} color={isCompassTheme ? COMPASS_RICH.champagne : vipActiveTitle} style={{ marginRight: 12 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>Plus</Text>
-              <Text testID="settings-vip-subtitle" style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {L('Plus аккаунт', 'Plus акаунт', 'Cuenta Plus', 'Conta Plus', 'Tài khoản Plus', 'Akun Plus', 'Plus hesap', 'Konto Plus')}
-              </Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 6 }}>
-                <Ionicons name="time-outline" size={13} color={isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub} />
-                <Text testID="settings-vip-expiry" style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub, fontSize: f.caption, fontWeight: '800', flex: 1 }}>
-                  {vipExpiryText}
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
         {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat / VIP */}
         {hasPremiumAccess ? (
 
@@ -1102,15 +1248,13 @@ export default function SettingsMain() {
                 {premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {isVip && !isPremium
-                  ? `${L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')} · ${vipExpiryText}`
-                  : premiumPlan === 'lifetime'
-                  ? L('Доступ навсегда · разовый платёж', 'Доступ назавжди · разовий платіж', 'Acceso para siempre · pago único', 'Acesso para sempre · pagamento único', 'Truy cập trọn đời · thanh toán một lần', 'Akses selamanya · sekali bayar', 'Sonsuza dek erişim · tek ödeme', 'Dostęp na zawsze · jedna płatność')
-                  : premiumPlan === 'yearly'
+                {isPremium && premiumPlan === 'lifetime'
+                  ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
+                  : isPremium && premiumPlan === 'yearly'
                   ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
-                  : premiumPlan === 'monthly'
+                  : isPremium && premiumPlan === 'monthly'
                     ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
-                    : L('Подписка активна', 'Підписка активна', 'Suscripción activa', 'Assinatura ativa', 'Gói đăng ký đang hoạt động', 'Langganan aktif', 'Abonelik aktif', 'Subskrypcja aktywna')}
+                    : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} />
@@ -1148,6 +1292,77 @@ export default function SettingsMain() {
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
           </TouchableOpacity>
         )}
+        {hasPremiumAccess && plusAccessDetails.length > 0 ? (
+          <View
+            testID="settings-plus-access-details"
+            style={{
+              marginHorizontal: SETTINGS_GROUP_MARGIN,
+              marginTop: -10,
+              marginBottom: 16,
+              paddingVertical: 6,
+              paddingHorizontal: 12,
+              borderRadius: isCompassTheme ? 8 : 12,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsPanelBg,
+              borderWidth: 0.5,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : settingsBorder,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            {plusAccessDetails.map((detail, index) => (
+              <View
+                key={detail.key}
+                testID={detail.testID}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingVertical: 10,
+                  borderTopWidth: index === 0 ? 0 : 0.5,
+                  borderTopColor: isCompassTheme ? COMPASS_RICH.hairline : settingsDivider,
+                }}
+              >
+                <View
+                  style={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: 17,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                    marginRight: 10,
+                  }}
+                >
+                  <Ionicons name={detail.icon} size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text
+                    testID={detail.titleTestID}
+                    style={{
+                      color: isCompassTheme ? COMPASS_RICH.cream : t.textPrimary,
+                      fontSize: f.caption,
+                      fontWeight: '900',
+                    }}
+                  >
+                    {detail.title}
+                  </Text>
+                  <Text
+                    testID={detail.subtitleTestID}
+                    style={{
+                      color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond,
+                      fontSize: f.caption,
+                      lineHeight: 18,
+                      fontWeight: '700',
+                      marginTop: 2,
+                    }}
+                  >
+                    {detail.subtitle}
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        ) : null}
         <TouchableOpacity
           testID="settings-delete-account"
           accessibilityRole="button"
@@ -1565,14 +1780,16 @@ export default function SettingsMain() {
               onChangeText={setNewName}
               placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
               placeholderTextColor={t.textGhost}
+              editable={!nameSaving}
               autoFocus maxLength={20}
               returnKeyType="done"
-              onSubmitEditing={saveName}
+              onSubmitEditing={() => { if (!nameSaving) void saveName(); }}
               blurOnSubmit
             />
             <View style={{ flexDirection: 'row', gap: 12 }}>
               <TouchableOpacity
                 activeOpacity={0.7}
+                disabled={nameSaving}
                 style={[
                   {
                     flex: 1,
@@ -1582,17 +1799,19 @@ export default function SettingsMain() {
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                     alignItems: 'center',
                     backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                    opacity: nameSaving ? 0.6 : 1,
                     overflow: 'hidden',
                   },
                   isCompassTheme && compassShadow(1),
                 ]}
-                onPress={() => { doHaptic(); closeNameModal(); }}
+                onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
               >
                 {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                 <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.8}
+                disabled={nameSaving}
                 style={[
                   {
                     flex: 1,
@@ -1602,14 +1821,31 @@ export default function SettingsMain() {
                     borderWidth: 1,
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent,
                     alignItems: 'center',
+                    minHeight: 48,
+                    justifyContent: 'center',
+                    opacity: nameSaving ? 0.82 : 1,
                     overflow: 'hidden',
                   },
                   isCompassTheme && compassShadow(1),
                 ]}
-                onPress={() => { doHaptic(); void saveName(); }}
+                onPress={() => { if (nameSaving) return; doHaptic(); void saveName(); }}
               >
                 {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
+                <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
+                  {nameSaving ? (
+                    <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
+                  ) : null}
+                  <Text
+                    style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: Math.min(f.body, 15), fontWeight: '700', flexShrink: 1 }}
+                    numberOfLines={1}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.78}
+                  >
+                    {nameSaving
+                      ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
+                      : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                  </Text>
+                </View>
               </TouchableOpacity>
             </View>
             </View>

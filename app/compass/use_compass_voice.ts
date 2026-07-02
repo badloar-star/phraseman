@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { compassAiVoiceOn } from './compass_flags';
+import { loadCompassUserPrefs } from './compass_user_prefs';
 import { COMPASS_DAY_COMMENT } from './compass_copy';
 import type { CompassDay } from './compass_brain';
 import { callCompassVoice } from './compass_voice_client';
@@ -50,9 +51,15 @@ export function useCompassVoice(day: CompassDay | null): string {
     }
     const topics = [...topicSet].sort().slice(0, 3);
     const level = compassVoiceLevel(day.level);
-    void callCompassVoice({ dayType: day.type, topics, level, lang })
+    // Личная настройка «Живой голос» (Настройки → Компас): выключено → текст
+    // Библии без единого вызова CF.
+    void loadCompassUserPrefs()
+      .then((prefs) => {
+        if (cancelled || !prefs.aiVoice) return null;
+        return callCompassVoice({ dayType: day.type, topics, level, lang });
+      })
       .then((res) => {
-        if (cancelled) return;
+        if (cancelled || !res) return;
         if (res.status === 'ok' && res.comment) setComment(res.comment);
       })
       .catch(() => {

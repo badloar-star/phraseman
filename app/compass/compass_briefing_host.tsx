@@ -28,6 +28,7 @@ import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from '../auth_provider';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from '../flashcards_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '../trainer_target_gate';
 import { compassOn } from './compass_flags';
+import { loadCompassUserPrefs, type CompassUserPrefs } from './compass_user_prefs';
 import { useCompassDay } from './use_compass_day';
 import { compassTaskRoute, type CompassRoute } from './compass_task_route';
 import { compassInductionRoute } from './compass_induction_route';
@@ -138,6 +139,10 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   // Постоянный латч знакомства: было ли уже показано приветствие первой встречи.
   // null = ещё не прочитали из хранилища (авто-показ не запускаем до чтения).
   const [welcomeMet, setWelcomeMet] = useState<boolean | null>(null);
+  // ПОЛЬЗОВАТЕЛЬСКИЕ настройки Компаса (Настройки → Компас): ученик может
+  // выключить утренний брифинг / вечерний итог / голос / соц-сводку. null = ещё
+  // не прочитали — до чтения ничего не показываем (как и с onboardingDone).
+  const [userPrefs, setUserPrefs] = useState<CompassUserPrefs | null>(null);
   const dayClosingRuntimeKey = dayClosing ? `day_closing_${studyTarget ?? 'default'}_${dayClosing.dateKey}` : null;
   const compassSuppressedByRoute = isCompassBriefingSuppressedPath(pathname);
   const modalDay = useMemo<CompassDay | null>(() => {
@@ -193,10 +198,24 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     };
   }, []);
 
+  // Пользовательские настройки Компаса (читаем один раз за монтирование; экран
+  // настроек пишет их в AsyncStorage — свежее значение подхватится на следующем
+  // заходе на home, чаще и не нужно: модалка и так раз в день).
+  useEffect(() => {
+    if (!compassOn()) return;
+    let cancelled = false;
+    void loadCompassUserPrefs().then((prefs) => {
+      if (!cancelled) setUserPrefs(prefs);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // Вечерний ритуал: только локальный снимок дня (AsyncStorage), без signal_bus,
   // без ИИ-голоса и без облачных чтений. Free-tier получает его один раз за всё время.
   useEffect(() => {
-    if (!compassOn() || onboardingDone !== true) {
+    if (!compassOn() || onboardingDone !== true || userPrefs?.dayClosing !== true) {
       setDayClosing(null);
       return;
     }
@@ -208,7 +227,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [studyTarget, now, hasPremiumAccess, onboardingDone]);
+  }, [studyTarget, now, hasPremiumAccess, onboardingDone, userPrefs]);
 
   // Соц-сводка «Кстати…»: грузим РОВНО когда брифинг стал видимым (не раньше —
   // незачем читать Firestore, если модалка сегодня не покажется). Помечаем seen
@@ -220,6 +239,8 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     setSocialLines([]);
     setSocialAllLines([]);
     setSocialEvents([]);
+    // Ученик выключил соц-сводку в настройках Компаса → не читаем Firestore вовсе.
+    if (userPrefs?.social !== true) return;
     void (async () => {
       const news = await collectCompassSocialNews(lang, now).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (cancelled) return;
@@ -230,7 +251,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [visible, lang, now]);
+  }, [visible, lang, now, userPrefs]);
 
   useEffect(() => {
     if (!compassOn()) return;
@@ -342,6 +363,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     const isWelcomeDay = day?.type === 'first_day' || day?.type === 'comeback';
     if (
       compassOn() &&
+      userPrefs?.briefing === true &&
       onboardingDone === true &&
       welcomeMet !== null &&
       checkedSeen &&
@@ -352,7 +374,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       _compassBriefingAutoShownForDay = dayKey;
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey, welcomeMet, dayClosing, dayClosingRuntimeKey, compassSuppressedByRoute]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey, welcomeMet, dayClosing, dayClosingRuntimeKey, compassSuppressedByRoute, userPrefs]);
 
   const handleStart = useCallback(() => {
     if (dayClosing) {

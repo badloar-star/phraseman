@@ -14,6 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { Platform } from 'react-native';
 
+import { isAnalyticsConsentGranted } from './analytics_consent';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId } from './stable_id';
 import { hashToUnit, type PaywallAbVariant } from './paywall_variant';
@@ -24,6 +25,9 @@ export type PaywallFunnelStep =
   | 'cta_click'
   | 'trial_started'
   | 'purchase_completed'
+  | 'purchase_failed'
+  | 'purchase_cancelled'
+  | 'restore_completed'
   | 'close';
 
 const COLLECTION = 'paywall_funnel';
@@ -92,6 +96,9 @@ function shouldDropDuplicateFunnelEvent(step: PaywallFunnelStep, payload: Paywal
  * Fire-and-forget запись шага воронки. Никогда не бросает и не блокирует UI.
  */
 export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnelPayload): void {
+  // GDPR: воронка — non-essential продуктовая аналитика; без явного согласия не пишем,
+  // как и trackEvent/PostHog (см. analytics_consent.ts).
+  if (!isAnalyticsConsentGranted()) return;
   if (shouldDropDuplicateFunnelEvent(step, payload, Date.now())) return;
   void (async () => {
     try {

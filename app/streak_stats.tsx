@@ -67,6 +67,7 @@ import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { getReviveOffer, type StreakReviveOffer } from './streak_revive';
+import { doubleXpMultiplier, earlyBirdMultiplier } from './boons/boon_effects_xp';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 function debugStatsRoute(stage: string, extra?: unknown) {
@@ -3308,7 +3309,14 @@ export default function StreakStats() {
             const clubWeekTierM = 1 + engineLeague.id * 0.1;
             const clubCombinedM = clubBoostMultiplier + clubWeekTierM + stationaryClubMultiplier - 2;
             const comebackM = comebackActive ? 2 : 1;
-            const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (leagueGroupBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
+            // Weekly Boons (двойной опыт / ранняя пташка) реально применяются в
+            // xp_manager (boonXpMultiplierContribution), но раньше НЕ попадали ни в
+            // total, ни в список — юзер видел активный бонус «Двойной опыт», а в
+            // множителях его не было и итог был занижен. Считаем их здесь так же
+            // (аддитивно), чтобы UI совпал с реальным начислением.
+            const doubleXpM = doubleXpMultiplier();
+            const earlyBirdM = earlyBirdMultiplier();
+            const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (leagueGroupBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1) + (doubleXpM - 1) + (earlyBirdM - 1);
             const hasBonus = total > 1;
             const pct = (m: number) => `+${Math.round((m - 1) * 100)}%`;
             const bonusAccentColor = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers');
@@ -3381,6 +3389,26 @@ export default function StreakStats() {
                         tr: "Seviye hediyesi",
                         pl: "Prezent za poziom",
                     }), value: pct(giftMultiplier), color: isGoldTheme ? bonusGold : statsAccent(themeMode, 'percentiles'), active: giftMultiplier > 1 },
+                { key: 'double_xp', label: triLang(lang, {
+                        ru: 'Двойной опыт',
+                        uk: 'Подвійний досвід',
+                        es: 'Experiencia doble',
+                        'pt-BR': 'Experiência dobrada',
+                        vi: 'Kinh nghiệm nhân đôi',
+                        id: 'XP ganda',
+                        tr: 'Çift tecrübe',
+                        pl: 'Podwójne XP',
+                    }), value: pct(doubleXpM), color: isGoldTheme ? bonusGold : statsAccent(themeMode, 'multipliers'), active: doubleXpM > 1 },
+                { key: 'early_bird', label: triLang(lang, {
+                        ru: 'Ранняя пташка',
+                        uk: 'Рання пташка',
+                        es: 'Madrugador',
+                        'pt-BR': 'Madrugador',
+                        vi: 'Dậy sớm',
+                        id: 'Bangun pagi',
+                        tr: 'Erkenci',
+                        pl: 'Ranny ptaszek',
+                    }), value: pct(earlyBirdM), color: isGoldTheme ? bonusMutedGold : statsAccent(themeMode, 'percentiles'), active: earlyBirdM > 1 },
             ];
             const activeItems = items.filter(i => i.active);
             const bonusAccent = isGoldTheme

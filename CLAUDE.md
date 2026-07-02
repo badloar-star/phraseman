@@ -23,6 +23,20 @@ It writes a ready-to-read teleprompter script (one continuous RU text) to
 
 LINGMAN is self-contained in `content/lingman/` — any AI, any session continues from those files.
 
+## VIRAL — app marketing pipeline (reels/carousels/content plans, THIRD pipeline)
+
+If the user says **"VIRAL"**, "вирал", "подними вирал", **"пишем рилс"**, **"пишем карусель"**,
+or **"контент-план"** — load the MARKETING pipeline: **read `content/marketing/VIRAL.md` FIRST**
+and follow its steps exactly (then MARKETING_SYSTEM.md + the needed playbook). It produces
+ready-to-shoot reels scripts / ready-to-design carousels / weekly content plans that drive
+users into the paid funnel knowlyapps.com/start/, saved to `content/marketing/scripts/`.
+Payment/analytics services setup for the funnel: `content/marketing/PAYMENTS_SETUP.md`.
+
+> ⚠️ VIRAL ≠ MASON ≠ LINGMAN. VIRAL = promotion of the Phraseman APP on IG/TikTok/FB
+> (goal: paying users). Do not mix the three pipelines.
+
+VIRAL is self-contained in `content/marketing/` — any AI, any session continues from those files.
+
 > Project-wide engineering rules also live in `AGENTS.md`.
 
 ## Performance Bible (MANDATORY for any new screen/feature/UI change)

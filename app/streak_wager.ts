@@ -15,6 +15,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerXP } from './xp_manager';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import { spendShards, addShardsRaw } from './shards_system';
 import { trackActivity } from './app_activity';
 import { emitAppEvent } from './events';
@@ -69,8 +70,12 @@ export async function getEffectiveWagerStake(tierIdx: number): Promise<{
     return { nominalStake: 0, stakeToSpend: 0, hasDiscount: false, premiumFree: false };
   }
 
-  const discRaw = await AsyncStorage.getItem(WAGER_DISCOUNT_KEY);
-  const hasDiscount = discRaw === '0.25';
+  // Скидка 25%: одноразовая из подарка уровня (ключ) ИЛИ постоянная для Plus.
+  const [discRaw, isPremium] = await Promise.all([
+    AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
+    getVerifiedPremiumStatus().catch(() => false),
+  ]);
+  const hasDiscount = discRaw === '0.25' || isPremium;
   const discountedStake = hasDiscount
     ? Math.max(1, Math.floor(tier.betShards * 0.75))
     : tier.betShards;
@@ -176,11 +181,14 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       return false;
     }
 
-    const [discRaw, legacyPremiumFreeToken] = await Promise.all([
+    const [discRaw, legacyPremiumFreeToken, isPremium] = await Promise.all([
       AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
       AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
+      getVerifiedPremiumStatus().catch(() => false),
     ]);
-    const hasDisc = discRaw === '0.25';
+    // Одноразовая скидка из подарка уровня ИЛИ постоянная Plus-скидка (не расходуется).
+    const hasGiftDisc = discRaw === '0.25';
+    const hasDisc = hasGiftDisc || isPremium;
 
     let toSpend = tier.betShards;
     if (hasDisc) {
@@ -207,7 +215,9 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
     if (legacyPremiumFreeToken === '1') {
       await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
     }
-    if (hasDisc) {
+    if (hasGiftDisc && !isPremium) {
+      // Подарочную скидку расходуем только когда она реально понадобилась:
+      // у Plus скидка постоянная — подарок остаётся до конца подписки.
       await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
     }
 

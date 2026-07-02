@@ -70,7 +70,6 @@ import {
   PROFILE_CARD_THEME_KEY,
 } from './profile_card_system';
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
-import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -87,7 +86,6 @@ import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
-import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import MedalToast from '../components/MedalToast';
@@ -173,18 +171,17 @@ import {
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { safeRouterBack } from './navigation_back';
 import {
-  activateIntroFullAccessForAdmin,
-  expireIntroFullAccessForAdmin,
   resetIntroFullAccessForAdmin,
-  getIntroFullAccessState,
   INTRO_FULL_ACCESS_STORAGE_KEYS,
 } from './intro_full_access';
 import {
-  activateLoyaltyGiftForAdmin,
-  expireLoyaltyGiftForAdmin,
   resetLoyaltyGiftForAdmin,
   LOYALTY_GIFT_ALL_KEYS,
 } from './loyalty_gift';
+import {
+  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
+  PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
+} from './personal_plan_activation';
 import { callVipRevokeMine } from './vip_revoke_client';
 import {
   ACCENT, ACCENT_BG, ACCENT_BORDER, ACCENT_BORDER_SOFT, ACCENT_DARK, ACCENT_DIM,
@@ -210,6 +207,9 @@ const AppInfoDialog = {
     void enqueueThemedBlockingInfoAlert(title, message, 'OK');
   },
 };
+
+const ADMIN_ONBOARDING_FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
+const ADMIN_ONBOARDING_FLOW_VERSION = 'clean_midnight_aha_flow_2026_07_02b';
 
 /**
  * Человеко-читаемая причина, почему конверсионный пуш не запланировался.
@@ -497,7 +497,7 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
   },
   {
     label: '🏋 Тренер — Premium режимы',
-    sub: 'Smart Mix / слабые места / тяжелые ошибки',
+    sub: 'Точечный повтор / слабые места / тяжелые ошибки',
     params: { context: 'trainer' },
   },
   {
@@ -734,7 +734,6 @@ export default function SettingsTestersFunctions() {
     withBackHome?: boolean;
   } | null>(null);
   const closeNoEnergyPreview = () => setNoEnergyPreview(null);
-  const [introFullAccessPreview, setIntroFullAccessPreview] = useState<'welcome' | 'ended' | null>(null);
   const [arenaLimitMode, setArenaLimitMode] = useState<'matchmaking' | 'invite' | null>(null);
   const [quizTimeoutHardMode, setQuizTimeoutHardMode] = useState<boolean | null>(null);
   const [userWarningVisible, setUserWarningVisible] = useState(false);
@@ -1095,55 +1094,6 @@ export default function SettingsTestersFunctions() {
     emitAppEvent('vip_activated');
     emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
     await reloadEnergy().catch(() => {});
-  };
-
-  const refreshIntroFullAccessQaState = async () => {
-    invalidatePremiumCache();
-    emitAppEvent('intro_full_access_changed');
-    await reloadEnergy().catch(() => {});
-  };
-
-  const activateIntroFullAccessQa = async () => {
-    await activateIntroFullAccessForAdmin();
-    await refreshIntroFullAccessQaState();
-    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ включен на 3 дня. Premium/VIP не тронуты.');
-  };
-
-  const expireIntroFullAccessQa = async () => {
-    await expireIntroFullAccessForAdmin();
-    await refreshIntroFullAccessQaState();
-    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ истек. При следующем входе появится мягкая модалка окончания.');
-  };
-
-  const resetIntroFullAccessQa = async () => {
-    await resetIntroFullAccessForAdmin();
-    await refreshIntroFullAccessQaState();
-    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ и seen-флаги сброшены.');
-  };
-
-  // ── Подарок лояльности (72ч существующим free-юзерам) ──
-  const refreshLoyaltyGiftQaState = async () => {
-    invalidatePremiumCache();
-    emitAppEvent('loyalty_gift_changed');
-    await reloadEnergy().catch(() => {});
-  };
-
-  const activateLoyaltyGiftQa = async () => {
-    await activateLoyaltyGiftForAdmin();
-    await refreshLoyaltyGiftQaState();
-    AppInfoDialog.alert('Подарок лояльности', 'Подарок включён на 3 дня. Premium/VIP не тронуты. WOW-анимацию запускай через VIP celebration.');
-  };
-
-  const expireLoyaltyGiftQa = async () => {
-    await expireLoyaltyGiftForAdmin();
-    await refreshLoyaltyGiftQaState();
-    AppInfoDialog.alert('Подарок лояльности', 'Подарок истёк. При следующем входе появится мягкая модалка окончания.');
-  };
-
-  const resetLoyaltyGiftQa = async () => {
-    await resetLoyaltyGiftForAdmin();
-    await refreshLoyaltyGiftQaState();
-    AppInfoDialog.alert('Подарок лояльности', 'Подарок, одноразовость и метки показа сброшены (предложение покажется снова).');
   };
 
   const activateVipOnCurrentProfile = async () => {
@@ -1749,8 +1699,8 @@ export default function SettingsTestersFunctions() {
       avatar: '13',
       frame: 'sprout',
       aura: 'aura-violet',
-      profileCardLevel: 2,
-      profileCardTheme: 'classic',
+      profileCardLevel: 1,
+      profileCardTheme: 'gold',
       profileCardMotion: 'none',
       profileCardPublicFocus: 'balanced',
     };
@@ -3922,7 +3872,7 @@ export default function SettingsTestersFunctions() {
               { mode: 'fresh' as TrainerMode, label: '🌱 Fresh — новые фразы', free: true },
               { mode: 'weak' as TrainerMode, label: '📉 Weak — слабые (easeFactor ≤ 1.7)', free: false },
               { mode: 'hard' as TrainerMode, label: '💪 Hard — ошибки ≥ 3×', free: false },
-              { mode: 'smart_mix' as TrainerMode, label: '🤖 Smart Mix — авто-выбор', free: false },
+              { mode: 'smart_mix' as TrainerMode, label: '🎯 Точечный повтор — авто-выбор', free: false },
               { mode: 'by_topic' as TrainerMode, label: '📚 By Topic — урок 5', free: false },
               { mode: 'mistakes' as TrainerMode, label: '🎯 Mistakes — top mistake_log', free: false },
             ]).map(({ mode, label, free }) => (
@@ -4472,99 +4422,48 @@ export default function SettingsTestersFunctions() {
             ))}
           </AccordionSection>
 
-          {/* ── 8. ОНБОРДИНГ ── */}
-          <AccordionSection id="onboarding" icon="play-circle-outline" title="Онбординг" badge={8}
+          {/* -- 8. NEW ONBOARDING -- */}
+          <AccordionSection id="onboarding" icon="sparkles-outline" title="Новый онбординг" badge={2}
             open={openSection === 'onboarding'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <ButtonRow icon="play-circle-outline" label="👋 Онбординг — просмотреть повторно"
+            <ButtonRow
+              testID="admin-new-onboarding-reset"
+              icon="sparkles-outline"
+              label="Новый онбординг — запустить с нуля"
+              sub="Открывает новый путь: welcome → несколько вопросов → источник → язык → уровень → цель → время → мини-аха → уведомления → обещание → Plus/free → план → paywall/name → 16+ и согласия."
               onPress={async () => {
-                await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step']);
-                // Стираем отметку о подарочных 3 днях, чтобы повторный онбординг
-                // выдал свежий 72ч-доступ, а не показал «3 дня закончились».
+                await AsyncStorage.multiRemove([
+                  'onboarding_done',
+                  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
+                  PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
+                  'onboarding_plan_billing',
+                  'onboarding_plan_goal',
+                  'onboarding_plan_level',
+                  'onboarding_plan_minutes',
+                  'onboarding_discovery_source',
+                  'from_welcome_first_lesson',
+                  'onboarding_terms_privacy_accepted_v1',
+                  'onboarding_analytics_help_v1',
+                ]);
                 await resetIntroFullAccessForAdmin().catch(() => {});
+                await resetLoyaltyGiftForAdmin().catch(() => {});
+                invalidatePremiumCache();
+                emitAppEvent('intro_full_access_changed');
+                emitAppEvent('loyalty_gift_changed');
+                await reloadEnergy().catch(() => {});
+                await AsyncStorage.multiSet([
+                  ['onboarding_step', 'welcome'],
+                  [ADMIN_ONBOARDING_FLOW_VERSION_KEY, ADMIN_ONBOARDING_FLOW_VERSION],
+                  ['energy_onboarding_shown', '1'],
+                ]);
                 emitAppEvent('account_deleted');
                 router.replace('/(tabs)/home' as any);
               }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="flash-outline" label="⚡ Онбординг энергии"
-              sub="Показать подсказку про энергию"
-              onPress={async () => {
-                await AsyncStorage.multiRemove(['energy_onboarding_shown', 'from_welcome_first_lesson']);
-                setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-                router.replace('/(tabs)/home' as any);
-              }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="albums-outline" label="📖 Превью интро уроков (1–32)"
-              sub="Сетка всех уроков · открывает реальный экран онбординга без запуска урока"
-              onPress={() => router.push('/admin_intro_preview' as any)}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="shield-checkmark-outline" label="🪪 Повторное согласие (возраст + Terms/Privacy)"
-              sub="Блокирующий модал реверификации для старых юзеров. Год рождения — барабан. Превью ничего не сохраняет."
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow icon="shield-checkmark-outline" label="Согласия — preview"
+              sub="Открывает только текущий экран 16+ + Terms/Privacy + analytics consent. Ничего не сохраняет."
               onPress={() => setConsentReverifyPreview(true)}
               t={t} f={f} doHaptic={doHaptic} testID="testers-open-consent-reverify" />
-            <ButtonRow
-              testID="admin-intro-full-access-activate"
-              icon="lock-open-outline"
-              label="Intro Full Access - включить 3 дня"
-              sub="Локальный подарок после onboarding: открывает hasPremiumAccess, но не трогает Premium/VIP."
-              onPress={() => { void activateIntroFullAccessQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-intro-full-access-expire"
-              icon="timer-outline"
-              label="Intro Full Access - завершить сейчас"
-              sub="Ставит истекший таймер и сбрасывает seen окончания, чтобы проверить мягкую модалку."
-              onPress={() => { void expireIntroFullAccessQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-intro-full-access-reset"
-              icon="refresh-circle-outline"
-              label="Intro Full Access - сбросить"
-              sub="Удаляет локальные ключи подарка и seen-флаги."
-              onPress={() => { void resetIntroFullAccessQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-loyalty-gift-activate"
-              icon="gift-outline"
-              label="Подарок лояльности - включить 3 дня"
-              sub="Подарок существующим free-юзерам: открывает hasPremiumAccess, Premium/VIP не трогает."
-              onPress={() => { void activateLoyaltyGiftQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-loyalty-gift-expire"
-              icon="timer-outline"
-              label="Подарок лояльности - завершить сейчас"
-              sub="Истекший таймер + сброс seen окончания — проверить мягкую модалку конца."
-              onPress={() => { void expireLoyaltyGiftQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-loyalty-gift-reset"
-              icon="refresh-circle-outline"
-              label="Подарок лояльности - сбросить (откат)"
-              sub="Удаляет все ключи подарка (включая одноразовость) — доступ снимается, предложение покажется снова."
-              onPress={() => { void resetLoyaltyGiftQa(); }}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-intro-full-access-preview-welcome"
-              icon="sparkles-outline"
-              label="Превью модалки подарка"
-              sub="Показывает welcome-модалку без изменения storage."
-              onPress={() => setIntroFullAccessPreview('welcome')}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
-              testID="admin-intro-full-access-preview-ended"
-              icon="shield-checkmark-outline"
-              label="Превью модалки окончания"
-              sub="Показывает ended-модалку без изменения storage."
-              onPress={() => setIntroFullAccessPreview('ended')}
-              t={t} f={f} doHaptic={doHaptic}
-            />
           </AccordionSection>
 
           {/* ── 9. КОНВЕРСИОННЫЕ ПУШИ (QA) ── */}
@@ -5528,18 +5427,6 @@ export default function SettingsTestersFunctions() {
         onClaimReward={() => {}}
         onFinished={() => setRewardStackPreview(false)}
       />
-      <IntroFullAccessModal
-        visible={introFullAccessPreview !== null}
-        variant={introFullAccessPreview ?? 'welcome'}
-        onPrimaryPress={() => {
-          if (introFullAccessPreview === 'ended') {
-            router.push({ pathname: '/premium_modal', params: { context: 'intro_ended', source: 'admin_preview' } } as any);
-          }
-          setIntroFullAccessPreview(null);
-        }}
-        onSecondaryPress={() => setIntroFullAccessPreview(null)}
-      />
-
       {/* ── Превью Diagnosis Toast ── */}
       {coachToastPreview?.show && (
         <CoachToast

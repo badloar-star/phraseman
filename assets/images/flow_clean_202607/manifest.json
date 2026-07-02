@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-07-01T13:36:28.001Z",
+  "model": "gpt-image-1",
+  "count": 37,
+  "assets": [
+    {
+      "filename": "source_tiktok.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_store.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_social.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_youtube.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_google.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_friends.png",
+      "status": "kept"
+    },
+    {
+      "filename": "source_other.png",
+      "status": "kept"
+    },
+    {
+      "filename": "language_en.png",
+      "status": "kept"
+    },
+    {
+      "filename": "language_fr.png",
+      "status": "kept"
+    },
+    {
+      "filename": "level_a0.png",
+      "status": "kept"
+    },
+    {
+      "filename": "level_a1.png",
+      "status": "kept"
+    },
+    {
+      "filename": "level_a2.png",
+      "status": "kept"
+    },
+    {
+      "filename": "level_b1.png",
+      "status": "kept"
+    },
+    {
+      "filename": "level_b2.png",
+      "status": "kept"
+    },
+    {
+      "filename": "goal_series.png",
+      "status": "kept"
+    },
+    {
+      "filename": "goal_everyday.png",
+      "status": "kept"
+    },
+    {
+      "filename": "goal_travel.png",
+      "status": "kept"
+    },
+    {
+      "filename": "goal_words.png",
+      "status": "kept"
+    },
+    {
+      "filename": "goal_mind.png",
+      "status": "kept"
+    },
+    {
+      "filename": "minutes_5.png",
+      "status": "kept"
+    },
+    {
+      "filename": "minutes_10.png",
+      "status": "kept"
+    },
+    {
+      "filename": "minutes_15.png",
+      "status": "kept"
+    },
+    {
+      "filename": "minutes_20.png",
+      "status": "kept"
+    },
+    {
+      "filename": "intro_compass.png",
+      "status": "kept"
+    },
+    {
+      "filename": "mini_aha.png",
+      "status": "kept"
+    },
+    {
+      "filename": "notifications.png",
+      "status": "kept"
+    },
+    {
+      "filename": "trial_reminder.png",
+      "status": "generated",
+      "prompt": "Phraseman onboarding icon, friendly premium mobile app illustration, liquid glass object, soft midnight-to-lavender highlights, rounded shapes, no text, no letters, no logo, no mascot, transparent background, centered composition, readable at 48px, polished app-store quality. Subject: trial reminder bell with calendar day marker."
+    },
+    {
+      "filename": "plan_result.png",
+      "status": "kept"
+    },
+    {
+      "filename": "start_plus.png",
+      "status": "kept"
+    },
+    {
+      "filename": "start_free.png",
+      "status": "kept"
+    },
+    {
+      "filename": "benefit_plan.png",
+      "status": "kept"
+    },
+    {
+      "filename": "benefit_speech.png",
+      "status": "kept"
+    },
+    {
+      "filename": "benefit_repeat.png",
+      "status": "kept"
+    },
+    {
+      "filename": "benefit_flow.png",
+      "status": "kept"
+    },
+    {
+      "filename": "paywall_yearly.png",
+      "status": "kept"
+    },
+    {
+      "filename": "paywall_monthly.png",
+      "status": "kept"
+    },
+    {
+      "filename": "paywall_lifetime.png",
+      "status": "kept"
+    }
+  ]
+}

@@ -377,9 +377,9 @@ export const AHA_STRINGS = {
     es: 'Acabas de hablar en inglés.',
   },
   payoffBody: {
-    ru: 'Это была фраза 1 из 300+ твоего маршрута.',
-    uk: 'Це була фраза 1 із 300+ твого маршруту.',
-    es: 'Era la frase 1 de las 300+ de tu ruta.',
+    ru: 'Это была первая фраза. Дальше — тысячи живых фраз твоего маршрута.',
+    uk: 'Це була перша фраза. Далі — тисячі живих фраз твого маршруту.',
+    es: 'Esa fue la primera. Adelante te esperan miles de frases vivas de tu ruta.',
   },
   payoffCta: {
     ru: 'Собрать мой маршрут',

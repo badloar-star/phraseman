@@ -80,10 +80,7 @@ export function AhaCompassBubble({ children }: AhaCompassBubbleProps) {
   return (
     <View style={styles.bubbleRow}>
       <Image source={COMPASS_LOGO} style={styles.bubbleLogo} resizeMode="contain" />
-      <View style={styles.bubble}>
-        <View style={styles.bubblePointer} />
-        {children}
-      </View>
+      <View style={styles.bubble}>{children}</View>
     </View>
   );
 }
@@ -220,17 +217,6 @@ const styles = StyleSheet.create({
     borderColor: AHA_THEME.bubbleBorder,
     paddingHorizontal: 16,
     paddingVertical: 14,
-  },
-  bubblePointer: {
-    position: 'absolute',
-    left: -7,
-    top: '50%',
-    marginTop: -9,
-    width: 18,
-    height: 18,
-    borderRadius: 4,
-    backgroundColor: AHA_THEME.bubblePointerBg,
-    transform: [{ rotate: '45deg' }],
   },
   pressed: {
     transform: [{ scale: 0.985 }],

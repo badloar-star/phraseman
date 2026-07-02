@@ -51,7 +51,7 @@ function EnterBeat({
   onTyped: () => void;
 }) {
   return (
-    <View style={styles.beatBody}>
+    <View style={styles.enterCenter}>
       <AhaCompassBubble>
         <TypewriterText text={pickTri(lang, scenario.setting)} skipOnPress onDone={onTyped} />
       </AhaCompassBubble>
@@ -96,20 +96,22 @@ function ListenBeat({
       <AhaCompassBubble>
         <Text style={styles.bubbleText}>{pickTri(lang, scenario.setting)}</Text>
       </AhaCompassBubble>
-      <View style={styles.glassCard}>
-        <KaraokeLine
-          line={scenario.hear}
-          playToken={playToken}
-          variant="hear"
-          onPress={handleReplay}
-        />
-        {revealed ? (
-          <AhaFadeIn>
-            <Text style={styles.translation}>{pickTri(lang, scenario.hear.translation)}</Text>
-          </AhaFadeIn>
-        ) : null}
+      <View style={styles.centerZone}>
+        <View style={styles.glassCard}>
+          <KaraokeLine
+            line={scenario.hear}
+            playToken={playToken}
+            variant="hear"
+            onPress={handleReplay}
+          />
+          {revealed ? (
+            <AhaFadeIn>
+              <Text style={styles.translation}>{pickTri(lang, scenario.hear.translation)}</Text>
+            </AhaFadeIn>
+          ) : null}
+        </View>
+        <Text style={styles.hint}>{pickTri(lang, AHA_STRINGS.listenAgainHint)}</Text>
       </View>
-      <Text style={styles.hint}>{pickTri(lang, AHA_STRINGS.listenAgainHint)}</Text>
       {revealed ? (
         <AhaFadeIn style={styles.footer}>
           <AhaPrimaryButton label={pickTri(lang, AHA_STRINGS.continueCta)} onPress={onContinue} />
@@ -150,12 +152,14 @@ function AssembleBeat({
       <AhaCompassBubble>
         <TypewriterText text={pickTri(lang, scenario.replyPrompt)} charMs={20} skipOnPress />
       </AhaCompassBubble>
-      <ChipsAssembly scenario={scenario} lang={lang} onSolved={handleSolved} playSay={playSay} />
-      {solved ? (
-        <AhaFadeIn>
-          <Text style={styles.praise}>{pickTri(lang, AHA_STRINGS.assembledPraise)}</Text>
-        </AhaFadeIn>
-      ) : null}
+      <View style={styles.centerZone}>
+        <ChipsAssembly scenario={scenario} lang={lang} onSolved={handleSolved} playSay={playSay} />
+        {solved ? (
+          <AhaFadeIn>
+            <Text style={styles.praise}>{pickTri(lang, AHA_STRINGS.assembledPraise)}</Text>
+          </AhaFadeIn>
+        ) : null}
+      </View>
     </View>
   );
 }
@@ -301,6 +305,19 @@ const styles = StyleSheet.create({
   beatBody: {
     flex: 1,
     gap: 18,
+    paddingTop: 40,
+  },
+  // Контент бита — в вертикальном центре, а не прижат к шапке.
+  centerZone: {
+    flex: 1,
+    justifyContent: 'center',
+    gap: 14,
+    paddingBottom: 24,
+  },
+  enterCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 120,
   },
   bubbleText: {
     color: AHA_THEME.textPrimary,

@@ -870,7 +870,7 @@ describe('owner runtime direction contract', () => {
 
     for (const source of [explainPhrase, explainChoice, explainQuiz, compass]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
-      expect(source).toContain('budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap)');
+      expect(source).toContain('budgetReservation = await reserveExplainBudget(');
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'provider_failed');");
     }

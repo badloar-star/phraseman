@@ -8,7 +8,7 @@ import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { resolveRemoteBool } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
-import { evaluateSafety, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
+import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -142,7 +142,7 @@ function startOfNextUtcDay(nowMs: number): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1, 0, 0, 0, 0);
 }
 
-async function enforceRateLimit(authUid: string, stableUid: string): Promise<void> {
+export async function enforceRateLimit(authUid: string, stableUid: string): Promise<void> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(RATE_COLLECTION).doc(docId('dlg', authUid, stableUid));
@@ -337,7 +337,7 @@ NOISY INPUT: the learner's message may come from imperfect on-device speech reco
 
 KEEP THEM TALKING: end most replies with exactly ONE simple, concrete question or invitation. Ask one thing at a time — never a list of questions.
 
-KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
+KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets. The [[...]] markers may ONLY wrap words that are already part of your own sentences — like this: "We are [[running late]], so let's hurry." NEVER append an extra phrase, suggested answer, or example at the end of your reply just to highlight it, and NEVER copy phrases from these instructions into your reply. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
 
 Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [[...]] key-phrase markers described above.`;
 
@@ -345,7 +345,8 @@ const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
 You are playing the role of: {ROLE}.
 The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
-- Open with a short, warm in-character greeting that invites the first exchange.
+- If the chat history already contains an assistant opener, continue from the learner's message; do not greet again.
+- Speak from inside the scene as your character. NEVER describe the scenario from outside, NEVER say "the learner", and NEVER repeat the setting as narration.
 - Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in English, in short simple sentences.
 - Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it. Be kind by DEFAULT — but you are a real person, not a doormat.
 - RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple English (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in English, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
@@ -366,7 +367,7 @@ export function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogReque
     .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
     .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
     .replace(/\{CEFR\}/g, cefr);
-  return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr)}${cefrReinjection(cefr)}`;
+  return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr, interfaceLang)}${cefrReinjection(cefr)}`;
 }
 
 // ── «Диалог как игра»: цель · терпение · исход ──────────────────────────────
@@ -431,7 +432,7 @@ function isGameMode(data: PremiumDialogRequest): boolean {
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data: PremiumDialogRequest, cefr: string): string {
+function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: string): string {
   const objectives = sanitizeObjectives(data.objectives);
   if (objectives.length === 0) return '';
   const temp = (data.temperament ?? {}) as Record<string, unknown>;
@@ -439,6 +440,7 @@ function gameBlock(data: PremiumDialogRequest, cefr: string): string {
   const warmth = sanitizeWarmth(temp.warmth);
   const seedMood = startMood(patience, warmth);
   const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
+  const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
 
   return `
 
@@ -451,6 +453,7 @@ ${objLines}
   - Rudeness, insults, swearing, or hostility: DROP it hard, -25 to -40 in a single turn (more for direct insults). Two rude turns in a row can take you near 0.
   - Off-topic talk, ignoring you, or endless repetition: -10 to -20. If your patience is "low", make these drops bigger.
   - A genuine apology or a warm turn after rudeness: recover +10 to +20, but never all the way back at once.
+  - Sexual remarks, anything sexual about children, threats of violence, or other dangerous content: drop mood straight to 0 (the scene ends). Set one firm boundary in simple English; never repeat or discuss their words.
 - React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still English, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
 - LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour (rudeness/hostility/off-topic) lowers mood.
 - Decide the outcome each turn:
@@ -458,7 +461,7 @@ ${objLines}
   - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).
   - "stalled" = about 8+ exchanges with no new sub-goal progress → let the scene fade.
   - "ongoing" = otherwise, keep going.
-- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time.
+- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, in English, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time — write the tips in ${learnerLangName} (the learner's own language), quoting any recommended English phrases in English.
 
 OUTPUT FORMAT: respond with a single JSON object and nothing else:
 {"reply": "<your spoken reply, with [[key phrases]] as usual>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
@@ -721,19 +724,34 @@ export const premiumDialogSend = onCall({
   // мягко и направляет к помощи, а не «отыгрывает» урок/ролёвку.
   const systemPrompt = `${baseSystemPrompt}\n\n${SAFETY_SYSTEM_INSTRUCTION}`;
 
-  // Детектор опасных сообщений на ВХОДЯЩЕМ тексте. Не блокирует ответ и не добавляет
-  // задержки — флаг и Telegram-алерт уходят фоном (fire-and-forget).
+  // Детектор опасных сообщений на ВХОДЯЩЕМ тексте — два слоя:
+  //   1) мгновенные ключевые слова (суицид/самоповреждение/абьюз/дети/угрозы);
+  //   2) OpenAI Moderation API — ловит перефразировки и категории вне словаря
+  //      (кейс «Sex with children» проходил мимо ключевых слов).
+  // Оба слоя НЕ блокируют ответ и не добавляют задержки: модерация стартует
+  // параллельно платному chat-вызову, а записи флагов дожидаемся ПЕРЕД return —
+  // fire-and-forget после ответа может быть убит рантаймом Cloud Functions.
+  const safetyCtx = {
+    authUid,
+    stableUid,
+    ageBracket: text((data as { ageBracket?: unknown }).ageBracket, 16) || null,
+    mode,
+    userText,
+    history,
+  };
   const safetyVerdict = evaluateSafety(userText);
-  if (safetyVerdict.flagged) {
-    void recordSafetyFlag(safetyVerdict, {
-      authUid,
-      stableUid,
-      ageBracket: text((data as { ageBracket?: unknown }).ageBracket, 16) || null,
-      mode,
-      userText,
-      history,
-    });
-  }
+  const keywordFlagPromise = safetyVerdict.flagged
+    ? recordSafetyFlag(safetyVerdict, safetyCtx).catch(() => {})
+    : null;
+  const moderationFlagPromise = safetyVerdict.flagged
+    ? null
+    : moderateUserText(apiKey, userText)
+        .then((verdict) => (verdict.flagged ? recordSafetyFlag(verdict, safetyCtx) : undefined))
+        .catch(() => {});
+  const flushSafetyFlags = async (): Promise<void> => {
+    if (keywordFlagPromise) await keywordFlagPromise;
+    if (moderationFlagPromise) await moderationFlagPromise;
+  };
 
   const messages: ChatMessage[] = [
     { role: 'system', content: systemPrompt },
@@ -842,6 +860,8 @@ export const premiumDialogSend = onCall({
         releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),
       });
     });
+    // Опасное сообщение флагуется даже если провайдер упал — юзер его уже отправил.
+    await flushSafetyFlags();
     if (error instanceof HttpsError) throw error;
     console.error('premium_dialog provider exception', {
       model: dialogModel,
@@ -867,6 +887,10 @@ export const premiumDialogSend = onCall({
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     createdAtMs: Date.now(),
   });
+
+  // К этому моменту модерация (параллельная chat-вызову) почти наверняка готова —
+  // await фактически бесплатный, но гарантирует запись флага до завершения инстанса.
+  await flushSafetyFlags();
 
   return {
     ok: true,

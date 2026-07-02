@@ -13,14 +13,24 @@
  *      немедленный Telegram-алерт оператору со ссылкой на переписку.
  *
  * Детектор намеренно простой и «с запасом» (лучше лишний флаг оператору, чем
- * пропуск). При желании позже можно добавить OpenAI Moderation API как второй,
- * более точный слой — точка вызова та же (см. evaluateSafety).
+ * пропуск). Второй слой — OpenAI Moderation API (moderateUserText): ловит то,
+ * что не покрывается ключевыми словами (секс-контент, дети, угрозы, ненависть).
+ * Кейс-мотиватор: реплика «Sex with children» прошла мимо ключевых слов —
+ * ни одна категория её не покрывала, админка показывала «Опасных сообщений нет».
  */
 
 import * as admin from 'firebase-admin';
 import { sendTelegramAlert, ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 
-export type SafetyCategory = 'self_harm' | 'suicide' | 'abuse' | 'violence';
+export type SafetyCategory =
+  | 'self_harm'
+  | 'suicide'
+  | 'abuse'
+  | 'violence'
+  | 'sexual_minors'
+  | 'sexual'
+  | 'hate'
+  | 'illicit';
 
 export interface SafetyVerdict {
   flagged: boolean;
@@ -37,7 +47,9 @@ export const SAFETY_SYSTEM_INSTRUCTION =
   'SAFETY: You are a friendly language-learning companion, not a therapist, doctor, or crisis service. ' +
   'If the user expresses thoughts of suicide, self-harm, abuse, or being in danger, do NOT continue the lesson, role-play, game, or correction. ' +
   'Respond briefly, with warmth and without judgement, take it seriously, and gently encourage them to reach out to a trusted person or a local helpline or emergency services right now. ' +
-  'Never give methods, never minimise, never pretend to be a human counsellor, and never claim to provide professional help. Keep it short and caring.';
+  'Never give methods, never minimise, never pretend to be a human counsellor, and never claim to provide professional help. Keep it short and caring. ' +
+  'If the user brings up sexual content (ESPECIALLY anything sexual involving children or minors), graphic violence, or threats, do NOT play along, do NOT joke, and do NOT repeat their words: set one short, firm boundary in simple English (e.g. "I will not talk about that.") and either steer back to the scene or end the conversation. ' +
+  'In game mode, treat such messages as the worst possible behaviour: drop mood straight to 0 and end the scene.';
 
 /**
  * Многоязычные триггеры (EN/RU/UK/ES — языки приложения). Строчные, проверяются по
@@ -90,6 +102,40 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'me pegan', 'me maltratan', 'me violaron', 'abusan de mí',
     ],
   },
+  {
+    // Сексуальный контент про детей — мгновенный флаг с максимальным приоритетом
+    // (юридически самая тяжёлая категория; кейс «Sex with children»).
+    category: 'sexual_minors',
+    phrases: [
+      // EN
+      'sex with child', 'sex with children', 'sex with kids', 'sex with a kid',
+      'sex with minors', 'sex with a minor', 'child porn', 'child pornography',
+      'pedophile', 'paedophile',
+      // RU
+      'секс с детьми', 'секс с ребенком', 'секс с ребёнком', 'секс с несовершеннолетн',
+      'детское порно', 'педофил',
+      // UK
+      'секс з дітьми', 'секс з дитиною', 'дитяче порно', 'педофіл',
+      // ES
+      'sexo con niños', 'sexo con ninos', 'sexo con menores', 'pornografía infantil', 'pornografia infantil',
+    ],
+  },
+  {
+    // Прямые угрозы насилия (тип 'violence' существовал, но фраз не было —
+    // категория была мертва).
+    category: 'violence',
+    phrases: [
+      // EN (normalize() вырезает апострофы: "i'll kill you" → "ill kill you")
+      'i will kill', 'ill kill you', 'i want to kill', 'going to kill you', 'gonna kill you',
+      'kill them all', 'shoot everyone', 'shoot up the',
+      // RU
+      'я тебя убью', 'убью тебя', 'хочу убить', 'всех убью', 'пойду убивать', 'взорву',
+      // UK (апострофы вырезаны normalize(): "вб'ю" → "вбю")
+      'я тебе вбю', 'вбю тебе', 'хочу вбити', 'всіх вбю',
+      // ES
+      'te voy a matar', 'voy a matar', 'quiero matar', 'los matare', 'los mataré',
+    ],
+  },
 ];
 
 function normalize(text: string): string {
@@ -118,6 +164,91 @@ export function evaluateSafety(userText: string): SafetyVerdict {
     }
   }
   return { flagged: false, category: null, matched: null };
+}
+
+// ── Второй слой: OpenAI Moderation API ──────────────────────────────────────
+// Ключевые слова принципиально не покрывают перефразировки и «новые» категории
+// (секс-контент, дети, ненависть). Moderation API бесплатен и быстр (~0.3-0.5с);
+// вызывающий стартует его ПАРАЛЛЕЛЬНО платному chat-вызову — 0 добавленной задержки.
+
+const OPENAI_MODERATION_URL = 'https://api.openai.com/v1/moderations';
+const MODERATION_MODEL = 'omni-moderation-latest';
+const MODERATION_TIMEOUT_MS = 8000;
+const MODERATION_MAX_INPUT = 4000;
+
+/**
+ * Маппинг категорий Moderation API → наши SafetyCategory, В ПОРЯДКЕ ТЯЖЕСТИ:
+ * первая совпавшая побеждает. Обычный harassment (грубость без угроз) НЕ флагуем —
+ * грубость в ролёвке легальна (сцены «спор из-за счёта» и т.п.), иначе админку
+ * зальёт шумом.
+ */
+const MODERATION_CATEGORY_MAP: ReadonlyArray<{ api: string; category: SafetyCategory }> = [
+  { api: 'sexual/minors', category: 'sexual_minors' },
+  { api: 'self-harm/intent', category: 'suicide' },
+  { api: 'self-harm/instructions', category: 'self_harm' },
+  { api: 'self-harm', category: 'self_harm' },
+  { api: 'violence/graphic', category: 'violence' },
+  { api: 'violence', category: 'violence' },
+  { api: 'harassment/threatening', category: 'violence' },
+  { api: 'hate/threatening', category: 'hate' },
+  { api: 'hate', category: 'hate' },
+  { api: 'illicit/violent', category: 'illicit' },
+  { api: 'illicit', category: 'illicit' },
+  { api: 'sexual', category: 'sexual' },
+];
+
+interface ModerationApiResponse {
+  results?: Array<{ flagged?: boolean; categories?: Record<string, unknown> }>;
+}
+
+/**
+ * Прогнать текст через OpenAI Moderation API. НИКОГДА не бросает — при любом
+ * сбое (сеть/таймаут/квота) возвращает «не флагнуто»: модерация не должна
+ * ломать или задерживать ответ пользователю. Сбой логируется.
+ */
+export async function moderateUserText(apiKey: string, userText: string): Promise<SafetyVerdict> {
+  const none: SafetyVerdict = { flagged: false, category: null, matched: null };
+  const input = String(userText || '').trim().slice(0, MODERATION_MAX_INPUT);
+  if (!apiKey || !input) return none;
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), MODERATION_TIMEOUT_MS);
+    let response: Response;
+    try {
+      response = await fetch(OPENAI_MODERATION_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ model: MODERATION_MODEL, input }),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timer);
+    }
+    if (!response.ok) {
+      console.error('[ai_safety] moderation request failed', { status: response.status });
+      return none;
+    }
+    const json = (await response.json()) as ModerationApiResponse;
+    const result = json.results?.[0];
+    if (!result?.flagged) return none;
+    const categories = (result.categories ?? {}) as Record<string, unknown>;
+    for (const { api, category } of MODERATION_CATEGORY_MAP) {
+      if (categories[api] === true) {
+        return { flagged: true, category, matched: `moderation:${api}` };
+      }
+    }
+    // Флагнуто только в категориях, которые мы сознательно не алертим
+    // (например, обычный harassment в рамках ролёвки).
+    return none;
+  } catch (error) {
+    console.error('[ai_safety] moderation call failed', {
+      error: String((error as Error)?.message ?? error).slice(0, 300),
+    });
+    return none;
+  }
 }
 
 interface SafetyFlagContext {

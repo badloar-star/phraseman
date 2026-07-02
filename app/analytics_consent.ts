@@ -35,6 +35,17 @@ function normalize(raw: string | null): AnalyticsConsentState {
 }
 
 /**
+ * Донести согласие до НАТИВНОГО автосбора Firebase Analytics
+ * (setAnalyticsCollectionEnabled). Динамический import — firebase.ts статически
+ * импортирует этот модуль, статический импорт в обратную сторону дал бы цикл.
+ */
+function syncNativeCollection(): void {
+  void import('./firebase')
+    .then((m) => m.applyAnalyticsCollectionConsent())
+    .catch(() => {});
+}
+
+/**
  * Синхронный геттер для гейта в analytics.ts / firebase.ts / posthog_client.ts.
  * true ТОЛЬКО при явном согласии. Любое другое состояние (denied/unset/до гидрации)
  * = false → non-essential аналитика не отправляется.
@@ -65,6 +76,7 @@ export async function hydrateAnalyticsConsentFromStorage(): Promise<void> {
     consentMemory = 'unset';
   } finally {
     hydrated = true;
+    syncNativeCollection();
   }
 }
 
@@ -75,6 +87,7 @@ export function isAnalyticsConsentHydrated(): boolean {
 /** Записать выбор пользователя (онбординг, модал, настройки). */
 export async function setAnalyticsConsent(state: AnalyticsConsentState): Promise<void> {
   consentMemory = state;
+  syncNativeCollection();
   try {
     await AsyncStorage.setItem(CONSENT_KEY, state);
   } catch {

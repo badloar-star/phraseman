@@ -96,6 +96,20 @@ export async function hydrateAgeGateFromStorage(): Promise<void> {
   }
 }
 
+/**
+ * Восстановить возрастную группу БЕЗ года рождения (реинсталл/новое устройство:
+ * облачный user_consents может содержать только bracket). Год не трогаем.
+ */
+export async function restoreAgeBracket(bracket: AgeBracket): Promise<void> {
+  if (bracket !== 'under13' && bracket !== 'teen_safe' && bracket !== 'adult') return;
+  bracketMemory = bracket;
+  try {
+    await AsyncStorage.setItem(AGE_BRACKET_KEY, bracket);
+  } catch {
+    /* no-op: в памяти уже обновлено */
+  }
+}
+
 /** Сохранить год рождения + рассчитанную группу (локально). Облако пишется отдельно. */
 export async function setBirthYear(birthYear: number): Promise<AgeBracket> {
   const bracket = bracketForBirthYear(birthYear);

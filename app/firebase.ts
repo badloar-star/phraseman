@@ -21,6 +21,20 @@ export function logEvent(name: string, params?: Record<string, string | number>)
   getAnalytics()?.logEvent(name, params).catch(() => {});
 }
 
+/**
+ * Синхронизировать НАТИВНЫЙ автосбор Firebase Analytics с согласием.
+ *
+ * Гейт в logEvent() выше режет только НАШИ события; сам SDK при включённом
+ * автосборе шлёт session_start/user_engagement и device-идентификаторы с
+ * первого запуска. Поэтому в firebase.json стоит
+ * `analytics_auto_collection_enabled: false` (собран в натив при билде), а
+ * здесь включаем сбор ТОЛЬКО при явном согласии — и выключаем при отзыве.
+ * Вызывается из analytics_consent.ts (гидрация + каждая смена выбора).
+ */
+export function applyAnalyticsCollectionConsent() {
+  getAnalytics()?.setAnalyticsCollectionEnabled(isAnalyticsConsentGranted()).catch(() => {});
+}
+
 function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
   const c = String(context || '').toLowerCase();
   if (c === 'settings' || c === 'manage') return 'settings';

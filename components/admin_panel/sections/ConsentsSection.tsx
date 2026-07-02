@@ -31,6 +31,8 @@ interface ConsentRow {
   birthYear: number | null;
   ageBracket: string;
   analyticsConsent: string;
+  legalAccepted: boolean;
+  legalAcceptedAt: number | null;
   platform: string;
   updatedAt: number | null;
   consentGrantedAt: number | null;
@@ -106,6 +108,8 @@ export default function ConsentsSection({ open, onToggle }: Props) {
           birthYear: num(d.birthYear),
           ageBracket: str(d.ageBracket) || 'unknown',
           analyticsConsent: str(d.analyticsConsent) || 'unset',
+          legalAccepted: d.legalAccepted === true,
+          legalAcceptedAt: num(d.legalAcceptedAt),
           platform: str(d.platform) || '—',
           updatedAt: num(d.updatedAt),
           consentGrantedAt: num(d.consentGrantedAt),
@@ -139,8 +143,9 @@ export default function ConsentsSection({ open, onToggle }: Props) {
       onToggle={handleToggle}
     >
       <AdminHint>
-        Возраст и согласие на аналитику из коллекции user_consents. Дата выдачи и
-        дата отзыва — по отдельности. Чтение доступно только admin.
+        Возраст, принятие Terms/Privacy и согласие на аналитику из коллекции
+        user_consents. Дата выдачи и дата отзыва — по отдельности. Чтение
+        доступно только admin.
       </AdminHint>
 
       <TouchableOpacity
@@ -195,6 +200,9 @@ export default function ConsentsSection({ open, onToggle }: Props) {
             </View>
             <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 17 }}>
               {`Возраст: ${r.ageBracket}${r.birthYear ? ` · ${r.birthYear} г.` : ''} · ${r.platform}`}
+            </Text>
+            <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 17 }}>
+              {`Terms/Privacy: ${r.legalAccepted ? `приняты ✓ (${fmtDate(r.legalAcceptedAt)})` : '—'}`}
             </Text>
             <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 17 }}>
               {`Дал: ${fmtDate(r.consentGrantedAt)}`}

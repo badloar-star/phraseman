@@ -46,9 +46,18 @@ import {
   MIN_FULL_ACCESS_AGE,
   setBirthYear,
   hasAgeDecision,
+  hydrateAgeGateFromStorage,
 } from '../app/age_gate';
-import { setAnalyticsConsent, hasAnalyticsConsentDecision } from '../app/analytics_consent';
-import { recordConsentToCloud } from '../app/age_consent_cloud';
+import {
+  setAnalyticsConsent,
+  hasAnalyticsConsentDecision,
+  hydrateAnalyticsConsentFromStorage,
+} from '../app/analytics_consent';
+import {
+  recordConsentToCloud,
+  restoreConsentStateFromCloud,
+  LEGAL_ACCEPTED_STORAGE_KEY,
+} from '../app/age_consent_cloud';
 
 const REVERIFY_DONE_KEY = 'consent_reverify_done_v1';
 
@@ -98,7 +107,29 @@ export default function ConsentReverifyHost({ forceVisible, onForceClose }: Cons
         if (!alive) return;
         if (onboardingDone !== '1') return; // новый юзер — его ведёт онбординг-гейт
         if (reverifyDone === '1') return;
-        // Если по какой-то причине решения уже есть — закрываем латч и не показываем.
+        // ГОНКА с bootstrap в _layout: снапшоты возраста/согласия могли ещё не
+        // гидрироваться из storage → hasAgeDecision() дал бы ложное «не решено»
+        // и модал мигнул бы юзеру, который уже всё отметил (напр., в онбординге).
+        // Гидрация идемпотентна и дёшева — дожидаемся её здесь сами.
+        await Promise.all([
+          hydrateAgeGateFromStorage(),
+          hydrateAnalyticsConsentFromStorage(),
+        ]);
+        if (!alive) return;
+        // Решения уже есть локально — закрываем латч и не показываем.
+        if (hasAgeDecision() && hasAnalyticsConsentDecision()) {
+          await AsyncStorage.setItem(REVERIFY_DONE_KEY, '1');
+          return;
+        }
+        // Реинсталл/новое устройство: cloud-sync восстановил onboarding_done,
+        // но локальных ключей возраста/согласий нет, хотя юзер уже отмечен в
+        // облачном user_consents. Восстанавливаем оттуда (best-effort, с
+        // таймаутом — офлайн не должен вечно держать гейт).
+        await Promise.race([
+          restoreConsentStateFromCloud(),
+          new Promise<void>((resolve) => setTimeout(resolve, 4000)),
+        ]).catch(() => {});
+        if (!alive) return;
         if (hasAgeDecision() && hasAnalyticsConsentDecision()) {
           await AsyncStorage.setItem(REVERIFY_DONE_KEY, '1');
           return;
@@ -138,8 +169,12 @@ export default function ConsentReverifyHost({ forceVisible, onForceClose }: Cons
       // «мне уже есть 16» → год рождения = текущий − 16 → bracket 'adult'.
       await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE);
       await setAnalyticsConsent(analyticsChoice === 'granted' ? 'granted' : 'denied');
+      // Латч Terms+Privacy — ДО recordConsentToCloud: облако читает его из storage.
+      await AsyncStorage.multiSet([
+        [LEGAL_ACCEPTED_STORAGE_KEY, '1'],
+        [REVERIFY_DONE_KEY, '1'],
+      ]);
       void recordConsentToCloud(); // best-effort учёт в облако (для админки)
-      await AsyncStorage.setItem(REVERIFY_DONE_KEY, '1');
       setVisible(false);
     } catch {
       // Оставляем модал открытым — пользователь попробует ещё раз.

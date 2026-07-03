@@ -26,6 +26,11 @@ const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
   runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox') as {
+  runSupportInboxPullCron: () => Promise<unknown>;
+  GMAIL_SUPPORT_APP_PASSWORD: import('firebase-functions/params').SecretParam;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
@@ -579,6 +584,16 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
         `premiumExpiryReminderCron: ${summary.candidates} candidates found but 0 pushes sent — check Expo Push API.`,
       );
     }
+  }
+);
+
+// Runs daily at 08:00 UTC. Pulls unread support emails from support.phraseman@gmail.com
+// via IMAP into support_inbox (first run backfills ~50). Cheap: one run/day. Needs the
+// GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
+export const gmailSupportPullCron = functions.scheduler.onSchedule(
+  { schedule: '0 8 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] },
+  async () => {
+    await runSupportInboxPullCron();
   }
 );
 
@@ -1413,6 +1428,15 @@ export { friendSendGift } from './friend_gifts';
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
 export { adminGenerateDailyDigest } from './admin_daily_digest';
+
+// ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
+export {
+  adminSupportPull,
+  adminSupportGenerateReply,
+  adminSupportSendReply,
+  adminSupportSaveSignature,
+  adminSupportSetStatus,
+} from './support_inbox';
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
 export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './report_replies';

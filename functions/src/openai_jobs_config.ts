@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board' | 'digest' | 'support';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -60,6 +60,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
   // осмысленно расставлять приоритеты, а не просто пересчитывать.
   digest: { model: 'gpt-4.1-mini', globalDailyCap: 50 },
+  // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
+  // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
+  support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
 };
 
 export interface JobConfig {

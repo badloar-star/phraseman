@@ -9994,6 +9994,7 @@
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="Reportes">Reports</div>
   <div class="tab" onclick="switchTab('emails')" title="Email database, copy lists, and admin broadcasts">Имейлы</div>
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="Soporte (sitio)">Support (site)</div>
+  <div class="tab" onclick="switchTab('gmail-support')" title="Входящая почта поддержки (support.phraseman@gmail.com): ИИ-черновики ответов, отправка, подпись" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📧 Почта поддержки</div>
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
   <div class="tab" onclick="switchTab('safety-flags')" style="background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.4);color:#fca5a5;font-weight:700" data-i18n-es="Seguridad">🆘 Safety</div>
   <div class="tab" onclick="switchTab('age-consent')" data-i18n-es="Edad y consentimiento">🔞 Age & consent</div>
@@ -11615,6 +11616,29 @@
     <span class="reports-count" id="dd-count"></span>
   </div>
   <div id="dd-content"><div class="reports-empty">⏳ Загрузка...</div></div>
+</div>
+
+<!-- GMAIL SUPPORT INBOX TAB (входящая почта support.phraseman@gmail.com + ИИ-ответы) -->
+<div id="tab-gmail-support" class="reports-tab">
+  <div class="reports-toolbar" style="flex-wrap:wrap;gap:8px">
+    <button onclick="supportPullMail()" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">🔄 Проверить почту</button>
+    <button onclick="supportGenerateAll()" style="background:rgba(139,124,255,0.15);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700" title="ИИ-черновики для всех новых писем без ответа (до 25 за раз)">✨ Сгенерировать всем</button>
+    <button onclick="supportSendAllDrafts()" style="background:rgba(96,165,250,0.13);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;font-weight:700" title="Отправить все готовые черновики по новым письмам">📤 Отправить все черновики</button>
+    <select id="gsi-filter-status" onchange="renderSupportInbox()">
+      <option value="new">Новые</option>
+      <option value="answered">Отвеченные</option>
+      <option value="archived">Архив</option>
+      <option value="">Все</option>
+    </select>
+    <button onclick="loadSupportInbox(true)" style="background:#2a2a3a;color:#aaa">↻ Обновить список</button>
+    <span class="reports-count" id="gsi-count"></span>
+  </div>
+  <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:12.5px;color:#9ca3af;font-weight:600">✍️ Подпись (добавляется в конец каждого ответа):</span>
+    <input id="gsi-signature" type="text" placeholder="напр. Phraseman Support" style="flex:1;min-width:220px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:7px;padding:7px 10px;font-size:13px">
+    <button onclick="supportSaveSignature()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 13px;border-radius:7px;cursor:pointer;font-weight:600;font-size:12.5px">Сохранить подпись</button>
+  </div>
+  <div id="gsi-list"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
 <!-- IDEAS TAB (Идеи пользователей — год премиума за принятую идею) -->
@@ -13932,6 +13956,11 @@
       _fnAdminGenerateDailyDigest = httpsCallable(functionsUs, 'adminGenerateDailyDigest');
     }
     return _fnAdminGenerateDailyDigest;
+  }
+  const _supportCallables = {};
+  function supportCallable(name) {
+    if (!_supportCallables[name]) _supportCallables[name] = httpsCallable(functionsUs, name);
+    return _supportCallables[name];
   }
   let _fnAdminEmailBroadcast = null;
   function getAdminEmailBroadcastCallable() {
@@ -18448,6 +18477,7 @@
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
     if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
     if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
+    if(tab==='gmail-support' && !window._supportInboxLoaded && typeof loadSupportInbox === 'function') loadSupportInbox(false);
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
     if(tab==='compass' && !window._compassAdminLoaded) loadCompassAdmin();
@@ -25736,6 +25766,170 @@
       showToast('Не удалось: ' + msg, 'err');
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = '✨ Сгенерировать за сутки'; }
+    }
+  };
+
+  // ═══ GMAIL SUPPORT INBOX — входящая почта поддержки + ИИ-ответы ═════════════
+  let _supportInboxAll = [];
+  window.loadSupportInbox = async function(force) {
+    const list = document.getElementById('gsi-list');
+    if (!list) return;
+    if (!force && window._supportInboxLoaded) return;
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      await auth.currentUser?.getIdToken(true).catch(() => null);
+      const [inboxSnap, cfgSnap] = await Promise.all([
+        getDocs(query(collection(db, 'support_inbox'), orderBy('receivedAtMs', 'desc'), limit(500))),
+        getDoc(doc(db, 'admin_config', 'support_inbox')),
+      ]);
+      _supportInboxAll = inboxSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const sigInput = document.getElementById('gsi-signature');
+      if (sigInput && cfgSnap.exists()) sigInput.value = String(cfgSnap.data().signature || '');
+      window._supportInboxLoaded = true;
+      renderSupportInbox();
+    } catch (e) {
+      window._supportInboxLoaded = false;
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.renderSupportInbox = function renderSupportInbox() {
+    const list = document.getElementById('gsi-list');
+    const count = document.getElementById('gsi-count');
+    if (!list) return;
+    const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
+    let rows = _supportInboxAll.slice();
+    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
+    if (count) count.textContent = `${rows.length} / ${_supportInboxAll.length}`;
+    if (!rows.length) {
+      list.innerHTML = '<div class="reports-empty">Писем в этом фильтре нет. Нажми «🔄 Проверить почту», чтобы забрать новые с Gmail.</div>';
+      return;
+    }
+    const statusPill = (s) => {
+      const map = { new:['Новое','#fbbf24','#1a1606'], answered:['Отвечено','#4ade80','#0f1a12'], archived:['Архив','#9ca3af','#161a1f'] };
+      const [t,c,bg] = map[s] || map.new;
+      return `<span style="font-family:monospace;font-size:10.5px;padding:2px 8px;border-radius:20px;color:${c};background:${bg};border:1px solid ${c}44">${t}</span>`;
+    };
+    const esc = escapeHtml;
+    list.innerHTML = rows.map(r => {
+      const id = esc(r.id);
+      const status = r.status || 'new';
+      const when = r.receivedAtMs ? new Date(r.receivedAtMs).toLocaleString('ru-RU') : (r.receivedAt || '—');
+      const from = `${esc(r.fromName || '')} <${esc(r.fromEmail || '—')}>`.trim();
+      const draft = r.draftReply || '';
+      const draftBox = (status !== 'archived') ? `
+        <textarea id="gsi-draft-${id}" placeholder="Черновик ответа появится здесь после «Сгенерировать ответ», либо впиши сам…" style="width:100%;min-height:${draft ? '90px' : '54px'};margin-top:10px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:8px;padding:9px 11px;font-size:13px;line-height:1.5;resize:vertical">${esc(draft)}</textarea>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button onclick="supportGenerateOne('${id}')" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600">✨ Сгенерировать ответ</button>
+          ${status === 'new' ? `<button onclick="supportSendOne('${id}')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">📤 Отправить</button>` : ''}
+        </div>` : '';
+      return `<div style="background:#12151d;border:1px solid #1e2230;border-radius:11px;padding:14px 16px;margin-bottom:11px">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline">
+          <div style="font-weight:700;color:#e5e7eb;font-size:14.5px">${esc(r.subject || '(без темы)')}</div>
+          <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
+        </div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from}</div>
+        <div style="font-size:13px;color:#cbd5e1;margin-top:9px;white-space:pre-wrap;max-height:160px;overflow:auto;background:#0e1116;border:1px solid #1a1d27;border-radius:7px;padding:9px 11px">${esc((r.bodyText || '').slice(0, 4000)) || '<span style="opacity:.5">(пустое тело)</span>'}</div>
+        ${draftBox}
+        <div style="margin-top:8px">
+          ${status !== 'archived'
+            ? `<button onclick="supportSetStatus('${id}','archived')" style="background:none;border:none;color:#6b7280;cursor:pointer;font-size:11.5px;padding:0">🗄 В архив</button>`
+            : `<button onclick="supportSetStatus('${id}','new')" style="background:none;border:none;color:#818cf8;cursor:pointer;font-size:11.5px;padding:0">↩ Вернуть в новые</button>`}
+        </div>
+      </div>`;
+    }).join('');
+  };
+
+  async function _supportRefreshAfter(action) {
+    try { await action(); } finally { await window.loadSupportInbox(true); }
+  }
+
+  window.supportPullMail = async function() {
+    const list = document.getElementById('gsi-list');
+    if (list) list.innerHTML = '<div class="reports-empty">📨 Забираю новые письма с Gmail…</div>';
+    try {
+      const res = await supportCallable('adminSupportPull')({});
+      const d = res?.data || {};
+      showToast(`✅ Забрано новых: ${d.saved || 0}${d.skippedDuplicates ? `, уже были: ${d.skippedDuplicates}` : ''}`, 'ok');
+    } catch (e) {
+      showToast('Не удалось забрать почту: ' + (e.message || e.code || e), 'err');
+    } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportGenerateOne = async function(id) {
+    const ta = document.getElementById('gsi-draft-' + id);
+    if (ta) { ta.disabled = true; ta.value = '✨ ИИ пишет ответ…'; }
+    try {
+      await supportCallable('adminSupportGenerateReply')({ messageDocId: id });
+      showToast('✅ Черновик готов', 'ok');
+    } catch (e) {
+      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+    } finally {
+      if (ta) ta.disabled = false;
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportGenerateAll = async function() {
+    try {
+      const res = await supportCallable('adminSupportGenerateReply')({});
+      const d = res?.data || {};
+      showToast(`✅ Сгенерировано: ${d.generated || 0}${d.remaining ? `, осталось: ${d.remaining} (нажми ещё раз)` : ''}`, 'ok');
+    } catch (e) {
+      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+    } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSendOne = async function(id) {
+    const ta = document.getElementById('gsi-draft-' + id);
+    const replyText = ta ? ta.value.trim() : '';
+    if (!replyText) { showToast('Черновик пуст — сначала сгенерируй или впиши ответ', 'warn'); return; }
+    if (!confirm('Отправить ответ этому пользователю?')) return;
+    try {
+      await supportCallable('adminSupportSendReply')({ messageDocId: id, replyText });
+      showToast('✅ Ответ отправлен', 'ok');
+    } catch (e) {
+      showToast('Не удалось отправить: ' + (e.message || e.code || e), 'err');
+    } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSendAllDrafts = async function() {
+    if (!confirm('Отправить все готовые черновики по новым письмам?')) return;
+    try {
+      const res = await supportCallable('adminSupportSendReply')({});
+      const d = res?.data || {};
+      showToast(`✅ Отправлено: ${d.sent || 0}${d.failed ? `, с ошибкой: ${d.failed}` : ''}`, d.failed ? 'warn' : 'ok');
+    } catch (e) {
+      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+    } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSetStatus = async function(id, status) {
+    try {
+      await supportCallable('adminSupportSetStatus')({ messageDocId: id, status });
+    } catch (e) {
+      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+    } finally {
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSaveSignature = async function() {
+    const input = document.getElementById('gsi-signature');
+    const signature = input ? input.value : '';
+    try {
+      await supportCallable('adminSupportSaveSignature')({ signature });
+      showToast('✅ Подпись сохранена', 'ok');
+    } catch (e) {
+      showToast('Не удалось сохранить подпись: ' + (e.message || e.code || e), 'err');
     }
   };
 

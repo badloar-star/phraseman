@@ -251,9 +251,8 @@ export default function TopHelpersScreen() {
   const descText = description.trim();
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScreenGradient />
-      <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+    <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         {/* Шапка: назад + заголовок */}
         <View
           style={{
@@ -301,7 +300,7 @@ export default function TopHelpersScreen() {
               keyExtractor={(item) => item.uid}
               renderItem={renderItem}
               extraData={myUid}
-              contentContainerStyle={{ paddingBottom: bottomInset + 24 }}
+              contentContainerStyle={{ flexGrow: 1, paddingBottom: bottomInset + 24 }}
               ListHeaderComponent={
                 descText ? (
                   <View
@@ -326,14 +325,14 @@ export default function TopHelpersScreen() {
                     <Ionicons name="ribbon-outline" size={40} color={t.textMuted} />
                     <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 12 }}>
                       {triLang(lang, {
-                        ru: 'Пока никого нет.',
-                        uk: 'Поки нікого немає.',
-                        es: 'Aún no hay nadie.',
-                        'pt-BR': 'Ninguém ainda.',
-                        vi: 'Chưa có ai.',
-                        id: 'Belum ada siapa pun.',
-                        tr: 'Henüz kimse yok.',
-                        pl: 'Jeszcze nikogo nie ma.',
+                        ru: 'Пока никто не в топе. Пришли отчёт об ошибке — стань первым!',
+                        uk: 'Поки нікого немає. Надішли звіт про помилку — стань першим!',
+                        es: 'Aún no hay nadie. ¡Envía un reporte y sé el primero!',
+                        'pt-BR': 'Ninguém ainda. Envie um relato e seja o primeiro!',
+                        vi: 'Chưa có ai. Gửi báo cáo lỗi để dẫn đầu!',
+                        id: 'Belum ada. Kirim laporan bug jadi yang pertama!',
+                        tr: 'Henüz kimse yok. Bir hata bildir, ilk sen ol!',
+                        pl: 'Jeszcze nikogo. Wyślij zgłoszenie i bądź pierwszy!',
                       })}
                     </Text>
                   </View>
@@ -349,6 +348,6 @@ export default function TopHelpersScreen() {
         myInfo={{ name: '…', avatar: '', frame: '', aura: '', totalXP: 0, streak: null }}
         onClose={() => setProfilePlayer(null)}
       />
-    </View>
+    </ScreenGradient>
   );
 }

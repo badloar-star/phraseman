@@ -43,6 +43,18 @@ import { VoiceEqualizer } from './voice_equalizer';
 import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
+import {
+  ensureNeuralModel,
+  isNeuralJudgeSupported,
+  isNeuralModelReady,
+  judgeWithNeuralEngine,
+} from './speaking_neural_judge';
+import {
+  deleteHoldRecording,
+  isHoldRecordingSupported,
+  startHoldRecording,
+  type HoldRecording,
+} from './speaking_hold_recorder';
 import SpeakingScoreRing from '../components/SpeakingScoreRing';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -322,21 +334,31 @@ function PronunciationSpeakButton({
   accent,
   actionText,
   onPress,
+  holdMode = false,
+  onPressIn,
+  onPressOut,
 }: {
   enabled: boolean;
   listening: boolean;
   accent: string;
   actionText: string;
   onPress: () => void;
+  /** true = «зажми и говори» (Android+whisper): press-in старт, press-out стоп. */
+  holdMode?: boolean;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
 }) {
+  const idleLabel = holdMode ? 'Зажми и говори' : 'Сказать фразу';
+  const activeLabel = holdMode ? 'Говори — отпусти, когда закончишь' : 'Слушаю — говори';
   return (
     <TouchableOpacity
       accessibilityRole="button"
-      accessibilityLabel={listening ? 'Остановить' : 'Сказать фразу'}
+      accessibilityLabel={listening ? 'Остановить' : idleLabel}
       accessibilityState={{ disabled: !enabled }}
       activeOpacity={0.84}
       disabled={!enabled}
-      onPress={onPress}
+      // В hold-режиме кнопка работает как push-to-talk (нет tap-toggle).
+      {...(holdMode ? { onPressIn, onPressOut } : { onPress })}
       style={[
         styles.recorderButton,
         {
@@ -353,7 +375,7 @@ function PronunciationSpeakButton({
         style={{ marginRight: 8 }}
       />
       <Text style={[styles.recorderButtonText, { color: listening ? '#130406' : actionText }]}>
-        {listening ? 'Слушаю — говори' : 'Сказать фразу'}
+        {listening ? activeLabel : idleLabel}
       </Text>
     </TouchableOpacity>
   );
@@ -506,6 +528,108 @@ function PlanPronunciationRecorder({
     onBlocked(next);
   }, [onBlocked]);
 
+  // ===== Android «зажми и говори» → запись → whisper (в обход системного
+  // распознавателя, как в уроках «Устно»). Единый стандарт с SpeakingPanel:
+  // надёжно на любом Android/эмуляторе, офлайн. iOS остаётся на системном. =====
+  const PLAN_RECOGNITION_LOCALE = 'en-US';
+  const holdSupported = useMemo(
+    () => Platform.OS === 'android' && isHoldRecordingSupported() && isNeuralJudgeSupported(),
+    [],
+  );
+  const [holdModelReady, setHoldModelReady] = useState(false);
+  const [holdModelFailed, setHoldModelFailed] = useState(false);
+  const holdRecRef = useRef<HoldRecording | null>(null);
+  const holdFinishingRef = useRef(false);
+  const holdMode = holdSupported && holdModelReady;
+
+  // Греем модель whisper при монтировании рекордера; готовность включает hold-режим.
+  useEffect(() => {
+    if (!isNeuralJudgeSupported()) return;
+    let alive = true;
+    if (isNeuralModelReady(PLAN_RECOGNITION_LOCALE)) {
+      setHoldModelReady(true);
+      return () => {
+        alive = false;
+      };
+    }
+    void ensureNeuralModel(PLAN_RECOGNITION_LOCALE).then((ok) => {
+      if (!alive) return;
+      if (ok) setHoldModelReady(true);
+      else setHoldModelFailed(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const startHold = useCallback(() => {
+    if (!holdMode) return;
+    if (holdRecRef.current) return;
+    hapticTap();
+    holdFinishingRef.current = false;
+    clearTargetPlaybackTimers();
+    setPronunciationSpeakingTarget(false);
+    stopAudio();
+    if (targetAudioPlayerSource) {
+      try {
+        targetAudioPlayer.pause();
+      } catch {
+        /* плеер мог быть не готов */
+      }
+    }
+    setPronunciationScore(null);
+    setPronunciationStalled(false);
+    setTranscript('');
+    setBlocked(null);
+    scoredRef.current = false;
+    setPronunciationListening(true);
+    holdRecRef.current = startHoldRecording();
+  }, [holdMode, clearTargetPlaybackTimers, stopAudio, targetAudioPlayer, targetAudioPlayerSource, setBlocked]);
+
+  const endHold = useCallback(async () => {
+    const rec = holdRecRef.current;
+    if (!rec) return;
+    if (holdFinishingRef.current) return;
+    holdFinishingRef.current = true;
+    holdRecRef.current = null;
+    setPronunciationListening(false);
+    setPronunciationScoring(true);
+    equalizerRef.current?.setSample(0);
+    let wavUri: string | null = null;
+    try {
+      wavUri = await rec.stop();
+    } catch {
+      wavUri = null;
+    }
+    if (!wavUri) {
+      // Ничего не записалось (слишком коротко/сбой) — не 0%, просто сброс.
+      setPronunciationScoring(false);
+      return;
+    }
+    const verdict = await judgeWithNeuralEngine({
+      wavUri,
+      targetText: targetTextRef.current,
+      locale: PLAN_RECOGNITION_LOCALE,
+    });
+    deleteHoldRecording(wavUri);
+    setPronunciationScoring(false);
+    const heard = (verdict?.transcript ?? '').trim();
+    if (!heard) return; // не расслышал — без штрафа
+    if (scoredRef.current) return;
+    scoredRef.current = true;
+    setTranscript(heard);
+    const result = scorePlanPronunciationTranscript({
+      targetText: targetTextRef.current,
+      transcript: heard,
+    });
+    setPronunciationScore(result);
+    onScored(result);
+    if (result.passed) {
+      hapticSuccess();
+      playCorrect();
+    } else hapticError();
+  }, [setPronunciationScoring, onScored, playCorrect]);
+
   // Reset state when the practiced phrase changes. The device-unavailable block
   // is sticky (it can't change between phrases); a denied block resets so the
   // user gets a fresh chance after granting permission in Settings.
@@ -532,6 +656,13 @@ function PlanPronunciationRecorder({
   useEffect(() => () => {
     clearTargetPlaybackTimers();
     clearFinishAttemptTimer();
+    // Незавершённая hold-запись при размонтировании — отменяем, файл не пишем.
+    try {
+      holdRecRef.current?.cancel();
+    } catch {
+      /* no-op */
+    }
+    holdRecRef.current = null;
   }, [clearTargetPlaybackTimers, clearFinishAttemptTimer]);
 
   // Recognition result → score it locally and report up.
@@ -892,14 +1023,20 @@ function PlanPronunciationRecorder({
     : pronunciationScore
     ? '#FF6E78'
     : mutedText;
+  // Android hold-\u0440\u0435\u0436\u0438\u043c \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0430\u043d, \u043d\u043e \u043c\u043e\u0434\u0435\u043b\u044c whisper \u0435\u0449\u0451 \u043a\u0430\u0447\u0430\u0435\u0442\u0441\u044f (\u043d\u0435 \u043f\u0440\u043e\u0432\u0430\u043b\u0438\u043b\u0430\u0441\u044c).
+  const preparingModel = holdSupported && !holdModelReady && !holdModelFailed;
   const statusHint = blocked === 'unavailable'
     ? '\u042d\u0442\u043e \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u0443\u043c\u0435\u0435\u0442 \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0432\u0430\u0442\u044c \u0440\u0435\u0447\u044c. \u041c\u043e\u0436\u0435\u0448\u044c \u043f\u0440\u043e\u0441\u0442\u043e \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438\u0442\u044c \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0442\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
     : blocked === 'denied'
     ? '\u041d\u0443\u0436\u0435\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u0443. \u0420\u0430\u0437\u0440\u0435\u0448\u0438 \u0435\u0433\u043e \u0432 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430\u0445 \u2014 \u0438\u043b\u0438 \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438 \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
+    : preparingModel
+    ? '\u0413\u043e\u0442\u043e\u0432\u0438\u043c \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0432\u0430\u043d\u0438\u0435\u2026 \u044d\u0442\u043e \u0440\u0430\u0437\u043e\u0432\u043e. \u0421\u0435\u043a\u0443\u043d\u0434\u0443.'
     : pronunciationStalled
     ? '\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439 \u0435\u0449\u0451 \u0440\u0430\u0437'
     : pronunciationListening
-    ? '\u0421\u043b\u0443\u0448\u0430\u044e\u2026 \u0433\u043e\u0432\u043e\u0440\u0438'
+    ? holdMode
+      ? '\u0413\u043e\u0432\u043e\u0440\u0438\u2026 \u043e\u0442\u043f\u0443\u0441\u0442\u0438, \u043a\u043e\u0433\u0434\u0430 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u0448\u044c'
+      : '\u0421\u043b\u0443\u0448\u0430\u044e\u2026 \u0433\u043e\u0432\u043e\u0440\u0438'
     : pronunciationScoring
     ? '\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u044e\u2026'
     : pronunciationScore
@@ -907,7 +1044,11 @@ function PlanPronunciationRecorder({
       ? `Засчитано: ${pronunciationScore.score}% ✓`
       : `Услышал: «${pronunciationScore.transcript}» — ${pronunciationScore.score}%. Нужно ${PLAN_PRONUNCIATION_PASS_THRESHOLD}%.`
     : pronunciationHeardTarget
-    ? 'Теперь скажи фразу вслух.'
+    ? holdMode
+      ? 'Теперь зажми кнопку и скажи фразу.'
+      : 'Теперь скажи фразу вслух.'
+    : holdMode
+    ? 'Зажми кнопку и скажи фразу. Можешь сначала послушать.'
     : 'Скажи фразу вслух. Можешь сначала послушать — но это не обязательно.';
 
   const listenDisabled = pronunciationSpeakingTarget || pronunciationListening;
@@ -961,10 +1102,15 @@ function PlanPronunciationRecorder({
           // Прослушивание фразы — НЕ обязательно: юзер может произнести сразу, если хочет.
           // Единственное ограничение — нельзя говорить, ПОКА звучит фраза (микрофон поймал бы
           // озвучку), поэтому блокируем только на время проигрывания target-аудио.
-          enabled={!pronunciationSpeakingTarget}
+          enabled={!pronunciationSpeakingTarget && !preparingModel && !pronunciationScoring}
           listening={pronunciationListening}
           accent={accent}
           actionText={actionText}
+          holdMode={holdMode}
+          onPressIn={startHold}
+          onPressOut={() => {
+            void endHold();
+          }}
           onPress={() => (pronunciationListening ? stopSpeaking() : void startSpeaking())}
         />
       )}

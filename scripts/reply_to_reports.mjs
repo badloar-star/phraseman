@@ -86,6 +86,22 @@ function readLeaderboardProjection(data) {
   return proj;
 }
 
+/**
+ * Активна ли разовая покупка «Навсегда» (Pro) по данным users/{uid}.progress.
+ * Зеркало серверного isLifetimePlanActive: premium_plan==='lifetime' и store-премиум
+ * не истёк (premium_expiry '0'/будущее). Мягко: любой мусор → false.
+ */
+function isLifetimeFromUserData(userData) {
+  const progress = (userData && userData.progress) || {};
+  const plan = String(progress.premium_plan ?? '').trim().toLowerCase();
+  if (plan !== 'lifetime') return false;
+  const expiryRaw = progress.premium_expiry;
+  // '0' / отсутствие = бессрочный store-премиум (lifetime) → активен.
+  const expiryMs = Number(expiryRaw);
+  if (expiryRaw == null || expiryRaw === '' || String(expiryRaw).trim() === '0') return true;
+  return Number.isFinite(expiryMs) && expiryMs > Date.now();
+}
+
 function fail(msg) {
   console.error(`❌ ${msg}`);
   process.exit(1);
@@ -144,6 +160,11 @@ async function sendOne(item) {
     ? await db.collection('leaderboard').doc(item.uid).get()
     : null;
   const helperProjection = leaderboardSnap ? readLeaderboardProjection(leaderboardSnap.data()) : null;
+  if (helperProjection) {
+    // Pro-план резолвим из users/{uid} (leaderboard премиум-поля не обновляет).
+    const userSnapForPlan = await userRef.get().catch(() => null);
+    helperProjection.isLifetime = isLifetimeFromUserData(userSnapForPlan?.data());
+  }
 
   return db.runTransaction(async (tx) => {
     const reportSnap = await tx.get(reportRef);

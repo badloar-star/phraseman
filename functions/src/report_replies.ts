@@ -20,6 +20,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 
@@ -167,6 +168,9 @@ export const adminReplyToReport = onCall(
     // транзакции: leaderboard редко меняется, а лишний tx.get на каждый ответ — трата.
     const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
     const helperProjection = readLeaderboardProjection(leaderboardSnap.data());
+    // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{uid} — leaderboard-документ
+    // премиум-поля не обновляет, поэтому опираться на него для Pro нельзя.
+    helperProjection.isLifetime = await resolveIsLifetimePlan(db, uid, nowMs).catch(() => false);
 
     await db.runTransaction(async (tx) => {
       const reportSnap = await tx.get(reportRef);

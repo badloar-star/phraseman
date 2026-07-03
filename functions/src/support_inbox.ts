@@ -89,6 +89,50 @@ export function hasUsableBody(doc: { bodyText?: string; subject?: string }): boo
   return String(doc.bodyText ?? '').trim().length > 0 || String(doc.subject ?? '').trim().length > 0;
 }
 
+/** Служебные/рассыльные локальные части адреса — заведомо не человек. */
+const NON_HUMAN_LOCALPARTS = [
+  'noreply', 'no-reply', 'donotreply', 'do-not-reply', 'no_reply',
+  'mailer-daemon', 'postmaster', 'bounce', 'bounces', 'notification', 'notifications',
+  'mailer', 'auto', 'automated', 'newsletter', 'news', 'info', 'support-noreply',
+];
+
+/**
+ * Решает, письмо ли это от ЖИВОГО человека (а не рассылка/промо/служебное Google).
+ * Чистая функция — на вход адрес отправителя + релевантные заголовки.
+ *
+ * Отсекаем:
+ *  - есть List-Unsubscribe → массовая рассылка/промо/уведомление;
+ *  - Precedence: bulk/list/junk или Auto-Submitted: auto-* → авто-письмо;
+ *  - служебная локальная часть адреса (noreply и пр.);
+ *  - домен google.com / accounts.google.com / *.google.com и подобные сервисные.
+ */
+export function isHumanEmail(input: {
+  fromEmail?: string;
+  headers?: { listUnsubscribe?: string; precedence?: string; autoSubmitted?: string };
+}): boolean {
+  const email = String(input.fromEmail ?? '').toLowerCase().trim();
+  if (!email || !email.includes('@')) return false;
+
+  const h = input.headers ?? {};
+  if (String(h.listUnsubscribe ?? '').trim()) return false;
+  const prec = String(h.precedence ?? '').toLowerCase();
+  if (prec === 'bulk' || prec === 'list' || prec === 'junk') return false;
+  const auto = String(h.autoSubmitted ?? '').toLowerCase();
+  if (auto && auto !== 'no') return false;
+
+  const [localPart, domain] = email.split('@');
+  // Служебные адреса Google (безопасность, уведомления и т.п.).
+  if (domain === 'google.com' || domain === 'accounts.google.com' || domain.endsWith('.google.com')) {
+    return false;
+  }
+  for (const bad of NON_HUMAN_LOCALPARTS) {
+    if (localPart === bad || localPart.startsWith(bad + '-') || localPart.startsWith(bad + '.') || localPart.startsWith(bad + '+')) {
+      return false;
+    }
+  }
+  return true;
+}
+
 /**
  * Превращает RawEmail в документ Firestore со статусом 'new' (чистая).
  * Тело обрезается здесь.
@@ -230,11 +274,27 @@ async function fetchEmailsViaImap(appPassword: string, firstRun: boolean): Promi
       for await (const msg of client.fetch(uids, { source: true, uid: true })) {
         try {
           const parsed = await simpleParser(msg.source as Buffer);
-          const messageId = String(parsed.messageId || `uid_${msg.uid}@${SUPPORT_MAILBOX}`);
           const fromAddr = parsed.from?.value?.[0];
+          const fromEmail = String(fromAddr?.address || '');
+          // Отсекаем рассылки/промо/служебные Google — только письма от людей.
+          const hdr = (name: string): string => {
+            const v = parsed.headers?.get(name);
+            return typeof v === 'string' ? v : (v ? String(v) : '');
+          };
+          if (!isHumanEmail({
+            fromEmail,
+            headers: {
+              listUnsubscribe: hdr('list-unsubscribe'),
+              precedence: hdr('precedence'),
+              autoSubmitted: hdr('auto-submitted'),
+            },
+          })) {
+            continue; // не человек — пропускаем, в базу не сохраняем
+          }
+          const messageId = String(parsed.messageId || `uid_${msg.uid}@${SUPPORT_MAILBOX}`);
           out.push({
             messageId,
-            fromEmail: String(fromAddr?.address || ''),
+            fromEmail,
             fromName: String(fromAddr?.name || ''),
             subject: String(parsed.subject || '(без темы)'),
             bodyText: String(parsed.text || parsed.html || '').trim(),

@@ -2,6 +2,7 @@ import {
   truncateBody,
   docIdForMessageId,
   hasUsableBody,
+  isHumanEmail,
   rawEmailToDoc,
   composeReplyWithSignature,
   selectForBatchGenerate,
@@ -49,6 +50,50 @@ describe('hasUsableBody', () => {
   test('пусто → false (ИИ не зовём зря)', () => {
     expect(hasUsableBody({ bodyText: '   ', subject: '' })).toBe(false);
     expect(hasUsableBody({})).toBe(false);
+  });
+});
+
+describe('isHumanEmail — только письма от живых людей', () => {
+  test('обычное письмо от человека → true', () => {
+    expect(isHumanEmail({ fromEmail: 'ivan@gmail.com' })).toBe(true);
+    expect(isHumanEmail({ fromEmail: 'maria.petrova@yandex.ru' })).toBe(true);
+    expect(isHumanEmail({ fromEmail: 'john@company.co.uk' })).toBe(true);
+  });
+
+  test('List-Unsubscribe → рассылка → false', () => {
+    expect(isHumanEmail({ fromEmail: 'promo@shop.com', headers: { listUnsubscribe: '<https://unsub>' } })).toBe(false);
+  });
+
+  test('служебные Google-адреса → false', () => {
+    expect(isHumanEmail({ fromEmail: 'no-reply@accounts.google.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'notifications@google.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'foo@mail.google.com' })).toBe(false);
+  });
+
+  test('noreply / mailer-daemon / bounce адреса → false', () => {
+    expect(isHumanEmail({ fromEmail: 'noreply@service.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'no-reply@service.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'donotreply@x.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'mailer-daemon@x.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'bounces+abc@x.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'notifications@x.com' })).toBe(false);
+  });
+
+  test('Precedence: bulk / Auto-Submitted → false', () => {
+    expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { precedence: 'bulk' } })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { autoSubmitted: 'auto-generated' } })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { autoSubmitted: 'no' } })).toBe(true); // no = не авто
+  });
+
+  test('пустой/битый адрес → false', () => {
+    expect(isHumanEmail({ fromEmail: '' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'garbage' })).toBe(false);
+    expect(isHumanEmail({})).toBe(false);
+  });
+
+  test('«info@» отсекается (обычно не человек), но «infoservice@» — нет (не точное совпадение)', () => {
+    expect(isHumanEmail({ fromEmail: 'info@company.com' })).toBe(false);
+    expect(isHumanEmail({ fromEmail: 'infoservice@company.com' })).toBe(true);
   });
 });
 

@@ -203,6 +203,14 @@ export interface SpeakingPanelProps {
   previewStatus?: SpeakingPanelStatus;
   /** DEV/QA only. Fixed score shown for the passed/failed preview states. */
   previewScore?: number;
+  /**
+   * DEV/QA only. Force the Android "press-and-hold" LOOK while previewing from
+   * any platform (so the admin lab can show the hold button / hold status texts
+   * from an iPhone). Visual only — the mic and whisper stay inert in preview;
+   * this never arms recording. `'preparing'` shows the one-time model-download
+   * state. Ignored outside preview (production hosts never pass it).
+   */
+  previewHoldMode?: boolean | 'preparing';
 }
 
 type SpeechModule = {
@@ -244,6 +252,7 @@ export function SpeakingPanel({
   onClose,
   previewStatus,
   previewScore,
+  previewHoldMode,
 }: SpeakingPanelProps) {
   const isPreview = previewStatus != null;
   // In preview mode the native speech module is never touched, so permission
@@ -679,7 +688,13 @@ export function SpeakingPanel({
   const holdRecRef = useRef<HoldRecording | null>(null);
   const holdFinishingRef = useRef(false);
   // true = мы в hold-режиме И модель готова: кнопка работает как push-to-talk.
+  // ПОВЕДЕНЧЕСКИЙ флаг: реальная запись/распознавание. В превью всегда false
+  // (holdSupported требует !isPreview) — микрофон не трогается.
   const holdMode = holdSupported && holdModelReady;
+  // ДИСПЛЕЙНЫЙ флаг: как ВЫГЛЯДИТ панель. В превью отражает previewHoldMode (dev-
+  // проп админ-лаборатории), чтобы android-вид «Зажми и говори» был виден с iPhone
+  // БЕЗ реального микрофона. Вне превью совпадает с holdMode.
+  const holdModeView = isPreview ? previewHoldMode === true : holdMode;
 
   const startHold = useCallback(() => {
     if (!holdMode) return;
@@ -935,9 +950,14 @@ export function SpeakingPanel({
   // Android hold-режим поддержан, но модель whisper ещё качается (и не провалилась)
   // — кнопка ждёт, статус честно объясняет паузу вместо тихого зависания.
   const preparingModel = holdSupported && !holdModelReady && !holdModelFailed;
+  // ДИСПЛЕЙНЫЙ флаг «идёт подготовка». В превью — по previewHoldMode === 'preparing'
+  // (взаимоисключимо с holdModeView === true, поэтому оба вида — готовую кнопку и
+  // состояние подготовки — можно посмотреть в лаборатории отдельно). Вне превью =
+  // поведенческий preparingModel.
+  const preparingModelView = isPreview ? previewHoldMode === 'preparing' : preparingModel;
 
   const statusLine = (() => {
-    if (preparingModel && (status === 'idle' || status === 'requesting')) {
+    if (preparingModelView && (status === 'idle' || status === 'requesting')) {
       return L(lang, {
         ru: 'Готовим распознавание… это разово',
         uk: 'Готуємо розпізнавання… це одноразово',
@@ -951,7 +971,7 @@ export function SpeakingPanel({
     }
     switch (status) {
       case 'idle':
-        return holdMode
+        return holdModeView
           ? L(lang, {
               ru: 'Зажми кнопку и говори, отпусти — проверю',
               uk: 'Затисни кнопку й говори, відпусти — перевірю',
@@ -975,7 +995,7 @@ export function SpeakingPanel({
       case 'requesting':
         return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
       case 'listening':
-        return holdMode
+        return holdModeView
           ? L(lang, {
               ru: 'Говори… отпусти, когда закончишь',
               uk: 'Говори… відпусти, коли закінчиш',
@@ -1043,7 +1063,7 @@ export function SpeakingPanel({
   })();
 
   const micDisabled =
-    status === 'requesting' || status === 'scoring' || status === 'unavailable' || preparingModel;
+    status === 'requesting' || status === 'scoring' || status === 'unavailable' || preparingModelView;
 
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
@@ -1237,7 +1257,11 @@ export function SpeakingPanel({
                 auto-endpoints (unchanged behaviour). */}
           {!isBlocked && !passed && (
             <Pressable
-              {...(holdMode
+              // Дисплейный флаг: КАК выглядит кнопка (push-to-talk vs tap). В превью
+              // он отражает previewHoldMode, но обработчики инертны — startHold сам
+              // перепроверяет ПОВЕДЕНЧЕСКИЙ holdMode (false в превью) и выходит,
+              // startListening выходит по isPreview. Микрофон в превью не трогается.
+              {...(holdModeView
                 ? {
                     onPressIn: startHold,
                     onPressOut: () => {
@@ -1248,7 +1272,7 @@ export function SpeakingPanel({
               disabled={micDisabled}
               accessibilityRole="button"
               accessibilityLabel={
-                holdMode
+                holdModeView
                   ? L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
                   : listening
                   ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener', 'pt-BR': 'Parar gravação', vi: 'Dừng ghi âm', id: 'Hentikan rekaman', tr: 'Kaydı durdur', pl: 'Zatrzymaj nagrywanie' })
@@ -1296,7 +1320,7 @@ export function SpeakingPanel({
               В hold-режиме ретрай = сброс на idle (юзер снова зажимает кнопку);
               на системном пути — прямой перезапуск прослушивания. */}
           {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
-            <Pressable onPress={holdMode ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
+            <Pressable onPress={holdModeView ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: theme.accent }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>

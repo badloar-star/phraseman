@@ -41,6 +41,11 @@ interface PreviewRow {
   tint: string;
   /** Fixed score for the passed/failed previews. */
   score?: number;
+  /**
+   * DEV: force the "Готовим распознавание…" hold-preparing look for THIS row,
+   * regardless of the global hold toggle. For the dedicated preparing preview.
+   */
+  holdPreparing?: boolean;
 }
 
 const PREVIEW_ROWS: readonly PreviewRow[] = [
@@ -109,6 +114,14 @@ const PREVIEW_ROWS: readonly PreviewRow[] = [
     icon: 'warning',
     tint: '#E0A93C',
   },
+  {
+    status: 'idle',
+    title: 'Android: «Готовим распознавание…» (разовая загрузка модели)',
+    desc: 'Hold-путь: модель whisper ещё качается — кнопка dimmed, честный статус. Только Android-вид.',
+    icon: 'cloud-download-outline',
+    tint: '#5B8DEF',
+    holdPreparing: true,
+  },
 ];
 
 const PREVIEW_TARGET = 'I would like a cup of coffee, please';
@@ -120,6 +133,10 @@ export default function AdminSpeakingLab() {
   const { lang } = useLang();
 
   const [preview, setPreview] = useState<PreviewRow | null>(null);
+  // Тоггл: показывать ли ANDROID-вид «зажми и говори» (whisper-путь). Влияет
+  // только на ВНЕШНИЙ вид панели — микрофон/whisper в превью не работают. Даёт
+  // увидеть с iPhone, как это выглядит на Android, без сборки APK.
+  const [holdModeView, setHoldModeView] = useState(false);
 
   // Defence-in-depth: hidden from the menu in prod, but block deep links too.
   useEffect(() => {
@@ -169,6 +186,45 @@ export default function AdminSpeakingLab() {
           не трогается (права не запрашиваются).
         </Text>
 
+        {/* Переключатель android-вида «зажми и говори» (whisper-путь). Только
+            внешний вид — запись/распознавание в превью не работают. */}
+        <TouchableOpacity
+          onPress={() => {
+            hapticTap();
+            setHoldModeView((v) => !v);
+          }}
+          activeOpacity={0.8}
+          testID="speaking-lab-holdmode-toggle"
+          style={[
+            styles.toggleBtn,
+            {
+              backgroundColor: t.bgCard,
+              borderColor: holdModeView ? t.accent : t.border,
+            },
+          ]}
+        >
+          <Ionicons
+            name={holdModeView ? 'phone-portrait' : 'phone-portrait-outline'}
+            size={22}
+            color={holdModeView ? t.accent : t.textMuted}
+            style={{ marginRight: 12 }}
+          />
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.rowTitle, { color: t.textPrimary }]}>
+              Android-вид «Зажми и говори» {holdModeView ? '— ВКЛ' : '— выкл'}
+            </Text>
+            <Text style={[styles.rowDesc, { color: t.textMuted }]}>
+              Показать, как панель выглядит на Android (whisper-путь). Только внешний вид — микрофон
+              и распознавание в превью не работают.
+            </Text>
+          </View>
+          <Ionicons
+            name={holdModeView ? 'toggle' : 'toggle-outline'}
+            size={30}
+            color={holdModeView ? t.accent : t.textMuted}
+          />
+        </TouchableOpacity>
+
         {/* Paywall — что видит free-пользователь */}
         <TouchableOpacity
           onPress={openSpeakingPaywall}
@@ -210,12 +266,15 @@ export default function AdminSpeakingLab() {
 
       {preview && (
         <SpeakingPanel
-          key={preview.status}
+          // key включает hold-вид, чтобы панель перемонтировалась при смене вида.
+          key={`${preview.status}-${preview.holdPreparing ? 'prep' : holdModeView ? 'hold' : 'tap'}`}
           targetText={PREVIEW_TARGET}
           lang={lang}
           theme={panelTheme}
           previewStatus={preview.status}
           previewScore={preview.score}
+          // Строка «Готовим…» — по флагу строки; иначе — глобальный тоггл вида.
+          previewHoldMode={preview.holdPreparing ? 'preparing' : holdModeView}
           onClose={() => setPreview(null)}
         />
       )}
@@ -241,6 +300,14 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 1.5,
     padding: 16,
+  },
+  toggleBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 14,
+    borderWidth: 1.5,
+    padding: 16,
+    marginBottom: 16,
   },
   row: {
     flexDirection: 'row',

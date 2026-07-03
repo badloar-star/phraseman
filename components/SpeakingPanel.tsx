@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Linking,
   Modal,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -43,8 +44,15 @@ import {
 import {
   ensureNeuralModel,
   isNeuralJudgeSupported,
+  isNeuralModelReady,
   judgeWithNeuralEngine,
 } from '../app/speaking_neural_judge';
+import {
+  deleteHoldRecording,
+  isHoldRecordingSupported,
+  startHoldRecording,
+  type HoldRecording,
+} from '../app/speaking_hold_recorder';
 import { TranscriptAccumulator } from '../app/speaking_transcript_accumulator';
 import {
   analyzeProsody,
@@ -367,6 +375,47 @@ export function SpeakingPanel({
     [speech, targetText, recognitionLocale],
   );
 
+  // Общий хвост оценки: из транскрипта + (опц.) контрольного балла строит
+  // пословную карту, подсказку, кольцо и статус passed/failed. Используется и
+  // системным путём (iOS/фолбэк), и путём «зажми-говори» (Android, whisper).
+  // `control` — балл нейтрального движка (whisper/системный) для честностной
+  // поправки; null → без поправки.
+  const applyScoredResult = useCallback(
+    (
+      text: string,
+      segments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined,
+      control: number | null,
+    ) => {
+      if (!mountedRef.current) return;
+      const biased = scorePlanPronunciationTranscript({ targetText, transcript: text, segments });
+      const { score: honestScore, flagged } = applyControlScore(biased.score, control);
+      const passed = honestScore >= biased.threshold;
+      const report = buildSpokenWordReport({ targetText, transcript: text, segments });
+      const prosody = analyzeProsody(prosodySamplesRef.current);
+      const stress = stressFeedback(prosody, expectedStressPosition(targetText));
+      setWordReport(report);
+      setHint(
+        buildSpeakingHint({
+          report,
+          honestyFlagged: flagged,
+          stress,
+          completeness: biased.breakdown?.completeness,
+        }),
+      );
+      setScore(honestScore);
+      if (passed) {
+        setStatus('passed');
+        hapticSuccess();
+        onPass?.({ score: honestScore, transcript: text });
+      } else {
+        setStatus('failed');
+        hapticError();
+      }
+      restoreLoudPlaybackMode();
+    },
+    [targetText, onPass],
+  );
+
   const finishAttempt = useCallback(
     async (
       finalTranscript: string,
@@ -390,11 +439,6 @@ export function SpeakingPanel({
         restoreLoudPlaybackMode();
         return;
       }
-      const biased = scorePlanPronunciationTranscript({
-        targetText,
-        transcript: text,
-        segments,
-      });
       // Честность: тот же звук — нейтральному движку без подсказки. Балл не
       // может превышать его вердикт больше, чем на допуск (speaking_honesty_check).
       let control: number | null = null;
@@ -402,37 +446,9 @@ export function SpeakingPanel({
         const uri = await waitForRecordingUri(700);
         if (uri) control = await runControlPass(uri);
       }
-      if (!mountedRef.current) return;
-      const { score: honestScore, flagged } = applyControlScore(biased.score, control);
-      const passed = honestScore >= biased.threshold;
-      // Пословная карта + одна конкретная подсказка «что тянет вниз».
-      const report = buildSpokenWordReport({ targetText, transcript: text, segments });
-      // Prosody (rhythm/stress) from the loudness contour we collected — local,
-      // no native module. Feeds the hint when nothing worse is going on.
-      const prosody = analyzeProsody(prosodySamplesRef.current);
-      const stress = stressFeedback(prosody, expectedStressPosition(targetText));
-      setWordReport(report);
-      setHint(
-        buildSpeakingHint({
-          report,
-          honestyFlagged: flagged,
-          stress,
-          completeness: biased.breakdown?.completeness,
-        }),
-      );
-      setScore(honestScore);
-      if (passed) {
-        setStatus('passed');
-        hapticSuccess();
-        onPass?.({ score: honestScore, transcript: text });
-      } else {
-        setStatus('failed');
-        hapticError();
-      }
-      // Попытка (и контрольный прогон) закончены — сессия больше не «запись».
-      restoreLoudPlaybackMode();
+      applyScoredResult(text, segments, control);
     },
-    [targetText, onPass, clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass],
+    [clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass, applyScoredResult],
   );
 
   const stopListening = useCallback(() => {
@@ -649,6 +665,99 @@ export function SpeakingPanel({
     }
   }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, finishAttempt, playRecordStart, clearWatchdog]);
 
+  // ===== Android: «зажми и говори» → запись → whisper (в обход системного
+  // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
+  // весь этот путь — только Android И только когда нативный рекордер И модель
+  // whisper на месте; иначе откатываемся на системный путь (startListening). =====
+  const holdSupported = useMemo(
+    () => !isPreview && Platform.OS === 'android' && isHoldRecordingSupported() && isNeuralJudgeSupported(),
+    [isPreview],
+  );
+  // Готовность модели проверяем в рантайме (могла ещё качаться): держим в стейте,
+  // чтобы кнопка честно показывала «идёт подготовка», а не молча падала в фолбэк.
+  const [holdModelReady, setHoldModelReady] = useState(false);
+  const holdRecRef = useRef<HoldRecording | null>(null);
+  const holdFinishingRef = useRef(false);
+  // true = мы в hold-режиме И модель готова: кнопка работает как push-to-talk.
+  const holdMode = holdSupported && holdModelReady;
+
+  const startHold = useCallback(() => {
+    if (!holdMode) return;
+    if (holdRecRef.current) return; // уже держим
+    holdFinishingRef.current = false;
+    // Глушим эталон/реплей, чтобы микрофон не поймал хвост воспроизведения.
+    try {
+      replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
+    } catch {
+      /* no-op */
+    }
+    setTranscript('');
+    setScore(null);
+    setWordReport(null);
+    setHint(null);
+    setStatus('listening');
+    hapticTap();
+    holdRecRef.current = startHoldRecording();
+  }, [holdMode]);
+
+  const endHold = useCallback(async () => {
+    const rec = holdRecRef.current;
+    if (!rec) return;
+    if (holdFinishingRef.current) return;
+    holdFinishingRef.current = true;
+    holdRecRef.current = null;
+    setStatus('scoring');
+    let wavUri: string | null = null;
+    try {
+      wavUri = await rec.stop();
+    } catch {
+      wavUri = null;
+    }
+    if (!mountedRef.current) {
+      deleteHoldRecording(wavUri);
+      return;
+    }
+    if (!wavUri) {
+      // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
+      setStatus('no_speech');
+      hapticError();
+      return;
+    }
+    const verdict = await judgeWithNeuralEngine({
+      wavUri,
+      targetText,
+      locale: recognitionLocale,
+    });
+    // Файл записи больше не нужен — реплей на hold-пути не используется.
+    deleteHoldRecording(wavUri);
+    if (!mountedRef.current) return;
+    const text = (verdict?.transcript ?? '').trim();
+    if (!text) {
+      setStatus('no_speech');
+      hapticError();
+      return;
+    }
+    // whisper — уже НЕЙТРАЛЬНЫЙ движок (не знает цели), поэтому его же балл идёт
+    // как контрольный: honesty-поправка не даёт biasing «подарить» зачёт.
+    applyScoredResult(text, undefined, verdict?.controlScore ?? null);
+  }, [targetText, recognitionLocale, applyScoredResult]);
+
+  // Hold-режим: «Сказать ещё раз» просто возвращает панель в исходное состояние —
+  // юзер снова зажимает кнопку. (На системном пути ретрай перезапускает движок.)
+  const resetForRetry = useCallback(() => {
+    hapticTap();
+    setTranscript('');
+    setScore(null);
+    setWordReport(null);
+    setHint(null);
+    setStatus('idle');
+  }, []);
+
   useEffect(() => {
     mountedRef.current = true;
     return () => {
@@ -660,6 +769,13 @@ export function SpeakingPanel({
       } catch {
         /* no-op */
       }
+      // Незавершённая hold-запись при закрытии панели: отменяем, файл не пишем.
+      try {
+        holdRecRef.current?.cancel();
+      } catch {
+        /* no-op */
+      }
+      holdRecRef.current = null;
       try {
         replayPlayerRef.current?.remove();
       } catch {
@@ -676,24 +792,47 @@ export function SpeakingPanel({
     };
   }, [speech, cleanupListeners, clearWatchdog]);
 
-  // Уровень B: греем модель нейро-судьи в фоне при первом открытии панели
-  // (качается один раз, ~32МБ, в documentDirectory). Без пакета whisper.rn в
-  // бинаре или без сети — тихий no-op, работает системный контрольный прогон.
+  // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
+  // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
+  const [holdModelFailed, setHoldModelFailed] = useState(false);
+
+  // Уровень B / основной движок Android: греем модель whisper при открытии панели
+  // (качается один раз, в documentDirectory). Без пакета whisper.rn в бинаре или
+  // без сети — тихий no-op. Когда модель готова, включаем hold-режим на Android.
   useEffect(() => {
     if (isPreview) return;
-    if (isNeuralJudgeSupported()) void ensureNeuralModel();
-  }, [isPreview]);
+    if (!isNeuralJudgeSupported()) return;
+    let alive = true;
+    // Уже на диске? — сразу готовы (частый путь после первого раза).
+    if (isNeuralModelReady(recognitionLocale)) {
+      setHoldModelReady(true);
+      return () => {
+        alive = false;
+      };
+    }
+    void ensureNeuralModel(recognitionLocale).then((ok) => {
+      if (!alive) return;
+      if (ok) setHoldModelReady(true);
+      else setHoldModelFailed(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [isPreview, recognitionLocale]);
 
-  // Автостарт: панель монтируется только когда юзер нажал «Устно», поэтому
-  // сразу начинаем слушать — без второго нажатия на микрофон. В preview-режиме
-  // (QA-лаборатория) микрофон намеренно инертен, так что не трогаем.
+  // Автостарт СИСТЕМНОГО пути: панель монтируется по нажатию «Устно». В hold-
+  // режиме (Android + whisper) НЕ автостартуем — юзер сам зажимает кнопку. В
+  // preview микрофон инертен. Пока модель качается — ждём (статус «подготовка»);
+  // если подготовка ПРОВАЛИЛАСЬ — откатываемся на системный автостарт.
   const autoStartedRef = useRef(false);
   useEffect(() => {
     if (isPreview) return;
     if (autoStartedRef.current) return;
+    // На Android с рабочим hold-режимом системный путь не нужен вовсе.
+    if (holdSupported && !holdModelFailed) return;
     autoStartedRef.current = true;
     void startListening();
-  }, [isPreview, startListening]);
+  }, [isPreview, holdSupported, holdModelFailed, startListening]);
 
   const handleClose = useCallback(() => {
     stopListening();
@@ -793,11 +932,37 @@ export function SpeakingPanel({
   const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
   const band = score != null ? speakingBand(score, passThreshold) : null;
   const hintLine = hint ? speakingHintText(hint, lang) : null;
+  // Android hold-режим поддержан, но модель whisper ещё качается (и не провалилась)
+  // — кнопка ждёт, статус честно объясняет паузу вместо тихого зависания.
+  const preparingModel = holdSupported && !holdModelReady && !holdModelFailed;
 
   const statusLine = (() => {
+    if (preparingModel && (status === 'idle' || status === 'requesting')) {
+      return L(lang, {
+        ru: 'Готовим распознавание… это разово',
+        uk: 'Готуємо розпізнавання… це одноразово',
+        es: 'Preparando el reconocimiento… solo una vez',
+        'pt-BR': 'Preparando o reconhecimento… só uma vez',
+        vi: 'Đang chuẩn bị nhận dạng… chỉ một lần',
+        id: 'Menyiapkan pengenalan… sekali saja',
+        tr: 'Tanıma hazırlanıyor… yalnızca bir kez',
+        pl: 'Przygotowuję rozpoznawanie… tylko raz',
+      });
+    }
     switch (status) {
       case 'idle':
-        return L(lang, {
+        return holdMode
+          ? L(lang, {
+              ru: 'Зажми кнопку и говори, отпусти — проверю',
+              uk: 'Затисни кнопку й говори, відпусти — перевірю',
+              es: 'Mantén pulsado y habla, suelta y reviso',
+              'pt-BR': 'Segure e fale, solte que eu verifico',
+              vi: 'Nhấn giữ và nói, thả ra để kiểm tra',
+              id: 'Tekan tahan dan bicara, lepas untuk diperiksa',
+              tr: 'Basılı tut ve konuş, bırak kontrol edeyim',
+              pl: 'Przytrzymaj i mów, puść — sprawdzę',
+            })
+          : L(lang, {
           ru: 'Нажми на микрофон и произнеси фразу',
           uk: 'Натисни на мікрофон і вимов фразу',
           es: 'Toca el micrófono y di la frase',
@@ -810,7 +975,18 @@ export function SpeakingPanel({
       case 'requesting':
         return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
       case 'listening':
-        return L(lang, { ru: 'Слушаю… говори', uk: 'Слухаю… говори', es: 'Escuchando… habla', 'pt-BR': 'Escutando… fale', vi: 'Đang nghe… hãy nói', id: 'Mendengarkan… bicara', tr: 'Dinliyorum… konuş', pl: 'Słucham… mów' });
+        return holdMode
+          ? L(lang, {
+              ru: 'Говори… отпусти, когда закончишь',
+              uk: 'Говори… відпусти, коли закінчиш',
+              es: 'Habla… suelta al terminar',
+              'pt-BR': 'Fale… solte ao terminar',
+              vi: 'Hãy nói… thả ra khi xong',
+              id: 'Bicara… lepas saat selesai',
+              tr: 'Konuş… bitince bırak',
+              pl: 'Mów… puść, gdy skończysz',
+            })
+          : L(lang, { ru: 'Слушаю… говори', uk: 'Слухаю… говори', es: 'Escuchando… habla', 'pt-BR': 'Escutando… fale', vi: 'Đang nghe… hãy nói', id: 'Mendengarkan… bicara', tr: 'Dinliyorum… konuş', pl: 'Słucham… mów' });
       case 'scoring':
         return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
@@ -866,7 +1042,8 @@ export function SpeakingPanel({
     }
   })();
 
-  const micDisabled = status === 'requesting' || status === 'scoring' || status === 'unavailable';
+  const micDisabled =
+    status === 'requesting' || status === 'scoring' || status === 'unavailable' || preparingModel;
 
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
@@ -1051,14 +1228,29 @@ export function SpeakingPanel({
 
           {/* Mic button — hidden when blocked (denied/unavailable) or already
               passed: there the mic can't help / isn't needed, so a clear action
-              button takes its place. */}
+              button takes its place.
+
+              Two interaction models:
+              • holdMode (Android + whisper): PUSH-TO-TALK. Hold to record, release
+                to score. No system endpointer → no instant "closed by itself".
+              • otherwise (iOS / fallback): tap-to-start / tap-to-stop, engine
+                auto-endpoints (unchanged behaviour). */}
           {!isBlocked && !passed && (
             <Pressable
-              onPress={listening ? stopListening : startListening}
+              {...(holdMode
+                ? {
+                    onPressIn: startHold,
+                    onPressOut: () => {
+                      void endHold();
+                    },
+                  }
+                : { onPress: listening ? stopListening : startListening })}
               disabled={micDisabled}
               accessibilityRole="button"
               accessibilityLabel={
-                listening
+                holdMode
+                  ? L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
+                  : listening
                   ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener', 'pt-BR': 'Parar gravação', vi: 'Dừng ghi âm', id: 'Hentikan rekaman', tr: 'Kaydı durdur', pl: 'Zatrzymaj nagrywanie' })
                   : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar', 'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai bicara', tr: 'Konuşmaya başla', pl: 'Zacznij mówić' })
               }
@@ -1100,9 +1292,11 @@ export function SpeakingPanel({
             </Pressable>
           )}
 
-          {/* Retry link after an attempt (pass / fail / nothing heard / stalled). */}
+          {/* Retry after an attempt (pass / fail / nothing heard / stalled).
+              В hold-режиме ретрай = сброс на idle (юзер снова зажимает кнопку);
+              на системном пути — прямой перезапуск прослушивания. */}
           {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
-            <Pressable onPress={startListening} hitSlop={8} style={styles.retry}>
+            <Pressable onPress={holdMode ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: theme.accent }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>

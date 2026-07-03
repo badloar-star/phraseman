@@ -82,7 +82,8 @@ describe('SpeakingPanel honest-assessment integration contract', () => {
     expect(judgeAt).toBeLessThan(systemAt);
     // Модель греется в фоне при открытии панели, только когда пакет в бинаре.
     expect(source).toContain('isNeuralJudgeSupported()');
-    expect(source).toContain('ensureNeuralModel()');
+    // Тёплый прогрев модели (аргумент — локаль для реестра моделей по языку).
+    expect(source).toContain('ensureNeuralModel(');
   });
 
   it('shows the per-word map, band verdict and one concrete hint after every attempt', () => {

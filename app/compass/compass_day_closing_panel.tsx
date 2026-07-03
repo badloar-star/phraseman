@@ -1,5 +1,8 @@
 /**
- * Компас — панель вечернего ритуала внутри модалки брифинга.
+ * Компас — панель вечернего ритуала внутри модалки брифинга. Волна «плоский лист».
+ *
+ * ЕДИНЫЙ дизайн-язык (compass_sheet_kit): метрики крупно БЕЗ сетки-в-рамке, фокус
+ * на завтра — плоская строка с иконкой, всё делит воздух и hairline (не рамки).
  *
  * Два режима:
  *  - ПОЛНЫЙ (премиум / первый бесплатный раз): итог дня + фокус на завтра +
@@ -14,7 +17,7 @@
  * только пока открыта модалка, паттерн одобрен в NoEnergyModal).
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Svg, { Circle } from 'react-native-svg';
 import PremiumGoldButton from '../../components/PremiumGoldButton';
@@ -23,6 +26,7 @@ import { useLang } from '../../components/LangContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticCelebrate } from '../../hooks/use-haptics';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { CompassEyebrow, CompassStreakPill, CompassVoice, CompassPrimaryButton, CompassLaterLink } from './compass_sheet_kit';
 import type { DayClosingRitual } from './day_closing_ritual';
 import { awardDayClosingOnce, loadDayClosingStreak } from './day_closing_reward';
 import {
@@ -32,7 +36,7 @@ import {
 } from './day_closing_reward_rules';
 import {
   COMPASS_DAY_COMMENT,
-  COMPASS_DAY_CLOSING_TODAY,
+  COMPASS_DAY_CLOSING_TITLE,
   COMPASS_DAY_CLOSING_TOMORROW,
   COMPASS_DAY_CLOSING_CLOSE,
   COMPASS_DAY_CLOSING_CLOSE_REWARD,
@@ -271,6 +275,7 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
   const { theme: t } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const accent = t.accent;
   const locked = !!dayClosing.locked;
   const rewardXp = useMemo(() => computeDayClosingRewardXp(dayClosing), [dayClosing]);
 
@@ -344,103 +349,82 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
     ? triLang(lang, COMPASS_DAY_CLOSING_STREAK).replace('{days}', String(streakShown))
     : null;
 
+  const title = triLang(lang, COMPASS_DAY_CLOSING_TITLE);
+
   return (
     <View style={styles.wrap}>
-      <Text style={[styles.comment, { color: t.textSecond }]}>
-        {triLang(lang, COMPASS_DAY_COMMENT.day_closing)}
-      </Text>
+      {/* Надзаголовок «Итог дня» + пилюля серии в правом слоте (не в рамке). */}
+      <CompassEyebrow
+        t={t}
+        icon="moon-outline"
+        text={title}
+        accent={accent}
+        right={streakBadge ? <CompassStreakPill t={t} accent={accent} text={streakBadge} /> : undefined}
+      />
 
-      <View style={[styles.panel, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
-        <View style={styles.sectionHead}>
-          <Ionicons name="checkmark-circle-outline" size={15} color={t.accent} />
-          <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>
-            {triLang(lang, COMPASS_DAY_CLOSING_TODAY)}
+      {/* Голос Компаса — крупный заголовок-герой (комментарий дня закрытия). */}
+      <CompassVoice t={t}>{triLang(lang, COMPASS_DAY_COMMENT.day_closing)}</CompassVoice>
+
+      {/* Метрики итога — крупно, БЕЗ сетки-в-рамке, делит вертикальная линия. */}
+      <View style={styles.metrics}>
+        {dayClosing.highlights.map((item, i) => (
+          <View
+            key={item.kind}
+            style={[styles.metric, i > 0 && { borderLeftWidth: StyleSheet.hairlineWidth, borderLeftColor: t.border }]}
+          >
+            {locked ? (
+              <View style={[styles.metricMask, { backgroundColor: t.textMuted + '33' }]} />
+            ) : (
+              <Text style={[styles.metricValue, { color: accent }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+                {item.value}
+              </Text>
+            )}
+            <Text style={[styles.metricLabel, { color: t.textMuted }]} numberOfLines={2}>
+              {triLang(lang, COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL[item.kind])}
+            </Text>
+          </View>
+        ))}
+      </View>
+
+      {/* Фокус на завтра — плоская строка с иконкой за линией (не рамка-панель). */}
+      <View style={[styles.focus, { borderTopColor: t.border }]}>
+        <View style={[styles.focusIcon, { backgroundColor: accent + '1F' }]}>
+          <Ionicons name={locked ? 'lock-closed-outline' : 'repeat-outline'} size={17} color={accent} />
+        </View>
+        <View style={styles.focusText}>
+          <Text style={[styles.focusTitle, { color: accent }]}>{triLang(lang, COMPASS_DAY_CLOSING_TOMORROW)}</Text>
+          <Text style={[styles.focusBody, { color: t.textPrimary }]} numberOfLines={2}>
+            {locked ? dayClosingLockedTeaser(dayClosing, lang) : dayClosingFocusText(dayClosing, lang)}
           </Text>
-          {streakBadge && (
-            <View style={[styles.streakPill, { backgroundColor: t.accent + '14', borderColor: t.accent + '3a' }]}>
-              <Ionicons name="flame-outline" size={11} color={t.accent} />
-              <Text style={[styles.streakPillText, { color: t.accent }]} numberOfLines={1}>
-                {streakBadge}
-              </Text>
-            </View>
-          )}
-        </View>
-
-        <View style={styles.grid}>
-          {dayClosing.highlights.map((item, i) => (
-            <View
-              key={item.kind}
-              style={[
-                styles.metric,
-                i > 0 && { borderLeftWidth: StyleSheet.hairlineWidth, borderLeftColor: t.border },
-              ]}
-            >
-              {locked ? (
-                <View style={[styles.metricMask, { backgroundColor: t.border }]} />
-              ) : (
-                <Text style={[styles.metricValue, { color: t.textPrimary }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.76}>
-                  {item.value}
-                </Text>
-              )}
-              <Text style={[styles.metricLabel, { color: t.textMuted }]} numberOfLines={2}>
-                {triLang(lang, COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL[item.kind])}
-              </Text>
-            </View>
-          ))}
-        </View>
-
-        <View style={[styles.divider, { backgroundColor: t.border }]} />
-
-        <View style={styles.focusRow}>
-          <View style={[styles.focusIcon, { backgroundColor: t.accent + '14' }]}>
-            <Ionicons name={locked ? 'lock-closed-outline' : 'repeat-outline'} size={16} color={t.accent} />
-          </View>
-          <View style={styles.focusText}>
-            <Text style={[styles.focusTitle, { color: t.accent }]}>
-              {triLang(lang, COMPASS_DAY_CLOSING_TOMORROW)}
-            </Text>
-            <Text style={[styles.focusBody, { color: t.textPrimary }]} numberOfLines={2}>
-              {locked ? dayClosingLockedTeaser(dayClosing, lang) : dayClosingFocusText(dayClosing, lang)}
-            </Text>
-            <Text style={[styles.focusNote, { color: t.textMuted }]} numberOfLines={2}>
-              {locked
-                ? triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_BODY)
-                : dayClosingFocusNote(dayClosing, lang)}
-            </Text>
-          </View>
+          <Text style={[styles.focusNote, { color: t.textMuted }]} numberOfLines={2}>
+            {locked ? triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_BODY) : dayClosingFocusNote(dayClosing, lang)}
+          </Text>
         </View>
       </View>
 
       {locked ? (
-        <View style={styles.lockedFooter}>
+        <View style={[styles.lockedFooter, { borderTopColor: t.border }]}>
           <Text style={[styles.lockedTitle, { color: t.textPrimary }]}>
             {triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_TITLE)}
           </Text>
           {onUpgrade && (
-            <PremiumGoldButton
-              f={{ body: 14.5 }}
-              customLabel={triLang(lang, COMPASS_OPEN_ACCESS)}
-              onPress={onUpgrade}
-            />
+            <PremiumGoldButton f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
           )}
-          <TouchableOpacity activeOpacity={0.7} onPress={onLater} style={styles.later}>
-            <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, COMPASS_LATER)}</Text>
-          </TouchableOpacity>
+          <CompassLaterLink t={t} label={triLang(lang, COMPASS_LATER)} onPress={onLater} />
         </View>
       ) : (
-        <TouchableOpacity
+        <CompassPrimaryButton
+          t={t}
+          accent={accent}
           testID="compass-day-closing-close"
-          activeOpacity={0.85}
           disabled={phase !== 'idle'}
           onPress={handleClosePress}
-          style={[styles.cta, { backgroundColor: t.accent, opacity: phase === 'idle' ? 1 : 0.55 }]}
-        >
-          <Text style={styles.ctaText}>
-            {phase === 'idle'
+          label={
+            phase === 'idle'
               ? triLang(lang, COMPASS_DAY_CLOSING_CLOSE_REWARD).replace('{xp}', String(rewardXp))
-              : triLang(lang, COMPASS_DAY_CLOSING_CLOSE)}
-          </Text>
-        </TouchableOpacity>
+              : triLang(lang, COMPASS_DAY_CLOSING_CLOSE)
+          }
+        />
       )}
 
       {/* Оверлей награды: появляется поверх панели ровно на время празднования. */}
@@ -451,19 +435,12 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
         >
           <View style={styles.ringWrap}>
             <Svg width={RING_SIZE} height={RING_SIZE} viewBox={`0 0 ${RING_SIZE} ${RING_SIZE}`}>
-              <Circle
-                cx={RING_SIZE / 2}
-                cy={RING_SIZE / 2}
-                r={RING_RADIUS}
-                stroke={t.border}
-                strokeWidth={RING_STROKE}
-                fill="none"
-              />
+              <Circle cx={RING_SIZE / 2} cy={RING_SIZE / 2} r={RING_RADIUS} stroke={t.border} strokeWidth={RING_STROKE} fill="none" />
               <AnimatedCircle
                 cx={RING_SIZE / 2}
                 cy={RING_SIZE / 2}
                 r={RING_RADIUS}
-                stroke={t.accent}
+                stroke={accent}
                 strokeWidth={RING_STROKE}
                 strokeLinecap="round"
                 strokeDasharray={`${RING_CIRCUMFERENCE}`}
@@ -473,20 +450,15 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
               />
             </Svg>
             <Animated.View style={[styles.needle, { transform: [{ rotate: needleRotate }] }]}>
-              <Ionicons name="navigate" size={26} color={t.accent} />
+              <Ionicons name="navigate" size={26} color={accent} />
             </Animated.View>
             <Animated.Text
-              style={[
-                styles.xpFly,
-                { color: t.accent, opacity: xpOpacity, transform: [{ translateY: xpTranslate }] },
-              ]}
+              style={[styles.xpFly, { color: accent, opacity: xpOpacity, transform: [{ translateY: xpTranslate }] }]}
             >
               +{rewardXp} XP
             </Animated.Text>
           </View>
-          <Text style={[styles.doneText, { color: t.textPrimary }]}>
-            {triLang(lang, COMPASS_DAY_CLOSING_DONE)}
-          </Text>
+          <Text style={[styles.doneText, { color: t.textPrimary }]}>{triLang(lang, COMPASS_DAY_CLOSING_DONE)}</Text>
           {closedStreak > 1 && (
             <Text style={[styles.doneStreak, { color: t.textSecond }]}>
               {triLang(lang, COMPASS_DAY_CLOSING_STREAK).replace('{days}', String(closedStreak))}
@@ -499,35 +471,24 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: 12 },
-  comment: { fontSize: 14, lineHeight: 20, fontWeight: '600' },
-  panel: { borderWidth: 1, borderRadius: 14, padding: 12, gap: 11 },
-  sectionHead: { flexDirection: 'row', alignItems: 'center', gap: 7 },
-  sectionTitle: { flexShrink: 1, fontSize: 14, lineHeight: 18, fontWeight: '900' },
-  streakPill: { marginLeft: 'auto', maxWidth: 165, flexDirection: 'row', alignItems: 'center', gap: 4, borderWidth: 1, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 3 },
-  streakPillText: { flexShrink: 1, fontSize: 10.5, lineHeight: 13, fontWeight: '800' },
-  grid: { flexDirection: 'row' },
-  metric: { flex: 1, minHeight: 58, paddingHorizontal: 6, paddingVertical: 6, justifyContent: 'center' },
-  metricValue: { fontSize: 21, lineHeight: 24, fontWeight: '900', textAlign: 'center' },
-  metricMask: { width: 26, height: 17, borderRadius: 5, alignSelf: 'center', opacity: 0.9 },
-  metricLabel: { marginTop: 3, fontSize: 11, lineHeight: 14, fontWeight: '700', textAlign: 'center' },
-  divider: { height: StyleSheet.hairlineWidth, opacity: 0.85 },
-  focusRow: { minHeight: 58, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  focusIcon: { width: 30, height: 30, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  wrap: {},
+  metrics: { flexDirection: 'row', marginTop: 24 },
+  metric: { flex: 1, minHeight: 58, paddingHorizontal: 8, justifyContent: 'center' },
+  metricValue: { fontSize: 33, lineHeight: 36, fontWeight: '900', letterSpacing: -0.5 },
+  metricMask: { width: 34, height: 20, borderRadius: 6, opacity: 0.9 },
+  metricLabel: { marginTop: 8, fontSize: 12.5, lineHeight: 15, fontWeight: '600' },
+  focus: { marginTop: 24, paddingTop: 20, borderTopWidth: StyleSheet.hairlineWidth, flexDirection: 'row', alignItems: 'flex-start', gap: 13 },
+  focusIcon: { width: 34, height: 34, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   focusText: { flex: 1, minWidth: 0 },
-  focusTitle: { fontSize: 11, lineHeight: 14, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.4 },
-  focusBody: { marginTop: 2, fontSize: 14, lineHeight: 19, fontWeight: '800' },
-  focusNote: { marginTop: 3, fontSize: 12, lineHeight: 16, fontWeight: '600' },
-  lockedFooter: { gap: 8 },
-  lockedTitle: { fontSize: 14.5, lineHeight: 19, fontWeight: '800', textAlign: 'center' },
-  later: { paddingVertical: 6, alignItems: 'center' },
-  laterText: { fontSize: 13, fontWeight: '600' },
-  cta: { borderRadius: 14, paddingVertical: 14, alignItems: 'center' },
-  ctaText: { fontSize: 16, fontWeight: '800', color: '#10131b' },
-  celebration: { ...StyleSheet.absoluteFillObject, borderRadius: 14, alignItems: 'center', justifyContent: 'center', gap: 8 },
+  focusTitle: { fontSize: 12, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5 },
+  focusBody: { marginTop: 7, fontSize: 17, lineHeight: 23, fontWeight: '800' },
+  focusNote: { marginTop: 6, fontSize: 13.5, lineHeight: 18, fontWeight: '600' },
+  lockedFooter: { marginTop: 24, paddingTop: 20, borderTopWidth: StyleSheet.hairlineWidth, gap: 10, alignItems: 'stretch' },
+  lockedTitle: { fontSize: 16, lineHeight: 21, fontWeight: '800', textAlign: 'center' },
+  celebration: { ...StyleSheet.absoluteFillObject, borderRadius: 16, alignItems: 'center', justifyContent: 'center', gap: 8 },
   ringWrap: { width: RING_SIZE, height: RING_SIZE, alignItems: 'center', justifyContent: 'center' },
   needle: { position: 'absolute' },
   xpFly: { position: 'absolute', top: -6, fontSize: 15, fontWeight: '900' },
-  doneText: { fontSize: 14.5, fontWeight: '800', textAlign: 'center' },
-  doneStreak: { fontSize: 12.5, fontWeight: '600', textAlign: 'center' },
+  doneText: { fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  doneStreak: { fontSize: 13, fontWeight: '600', textAlign: 'center' },
 });

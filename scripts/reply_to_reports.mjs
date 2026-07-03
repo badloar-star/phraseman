@@ -66,6 +66,7 @@ function readLeaderboardProjection(data) {
   const proj = {
     isPremium: !!d.isPremium,
     isVip: !!d.isVip,
+    isLifetime: !!d.isLifetime,
     profileCardLevel: int(d.profileCardLevel),
   };
   const name = str(d.displayName, 60) || str(d.name, 60);

@@ -139,6 +139,7 @@ export default function TopHelpersScreen() {
         friendUid: '',
         isPremium: item.isPremium,
         isVip: item.isVip,
+        isLifetime: item.isLifetime,
         leagueCrownExpiresAt: item.leagueCrownExpiresAt,
         leagueCrownCount: item.leagueCrownCount,
         profileCardLevel: item.profileCardLevel,

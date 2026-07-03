@@ -52,6 +52,7 @@ export interface TopHelperRow {
   frame?: string;
   isPremium: boolean;
   isVip: boolean;
+  isLifetime: boolean;
   profileCardLevel?: number;
   profileCardTheme?: string;
   leagueCrownExpiresAt?: number;
@@ -112,6 +113,7 @@ export function parseHelperDoc(id: string, data: Record<string, unknown> | undef
     displayName: name || '—',
     isPremium: !!data.isPremium,
     isVip: !!data.isVip,
+    isLifetime: !!data.isLifetime,
   };
   const avatar = toStr(data.avatar);
   if (avatar) row.avatar = avatar;

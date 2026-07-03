@@ -47,6 +47,7 @@ interface TopHelperProjection {
   frame?: string;
   isPremium?: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   profileCardLevel?: number;
   profileCardTheme?: string;
   leagueCrownExpiresAt?: number;
@@ -68,6 +69,7 @@ function readLeaderboardProjection(
   const proj: TopHelperProjection = {
     isPremium: !!d.isPremium,
     isVip: !!d.isVip,
+    isLifetime: !!d.isLifetime,
     profileCardLevel: Math.max(0, Math.floor(Number(d.profileCardLevel) || 0)),
   };
   if (name) proj.displayName = name.slice(0, 60);

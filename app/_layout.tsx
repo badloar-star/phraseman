@@ -13,7 +13,8 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
@@ -39,7 +40,7 @@ import ForceUpdateGate from '../components/ForceUpdateGate';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
-import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
+import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
@@ -80,7 +81,6 @@ import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
-import ConsentReverifyHost from '../components/ConsentReverifyHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
 import PerfectWeekHost from '../components/PerfectWeekHost';
@@ -222,11 +222,13 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
+// Минимум показа анимированного стартового сплэша (вход глифа + проезд блика + подзаголовок).
+const STARTUP_ANIM_MIN_MS = 1500;
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
-const LOYALTY_UPDATE_MODAL_ENABLED = false;
+const LOYALTY_UPDATE_MODAL_ENABLED = true;
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
 const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
@@ -330,29 +332,137 @@ function buildNavigationPathSignature(
   return query ? `${path}?${query}` : path;
 }
 
+const SPLASH_GLYPH_SIZE = 176;
+const SPLASH_WORDMARK_WIDTH = 232;
+const SPLASH_WORDMARK_RATIO = 68 / 553; // из assets/images/splash-wordmark.png («Phraseman»)
+const SPLASH_WORDMARK_HEIGHT = Math.round(SPLASH_WORDMARK_WIDTH * SPLASH_WORDMARK_RATIO);
+const SPLASH_SHINE_WIDTH = Math.round(SPLASH_WORDMARK_WIDTH * 0.45);
+
+/**
+ * Анимированный стартовый сплэш поверх нативного: глиф мягко «дышит» (пульс),
+ * ворд-марк «Phraseman» проявляется и по нему один раз проезжает блик,
+ * подзаголовок «by Professor Lingman» проявляется последним.
+ * Всё на нативном драйвере (UI-поток), pointerEvents=none — фон остаётся «замороженным».
+ * Loop останавливается в cleanup, чтобы не крутиться после скрытия сплэша.
+ */
 function StartupSplashHold({ visible }: { visible: boolean }) {
+  // Хуки должны вызываться безусловно — ранний return только после их объявления.
+  const glyphIn = useRef(new Animated.Value(0)).current;   // вход глифа: 0→1
+  const pulse = useRef(new Animated.Value(0)).current;     // бесконечный пульс: 0↔1
+  const wordIn = useRef(new Animated.Value(0)).current;    // проявление ворд-марка
+  const subIn = useRef(new Animated.Value(0)).current;     // проявление подзаголовка
+  const shine = useRef(new Animated.Value(0)).current;     // проезд блика: 0→1
+
+  // Как только анимированный оверлей смонтирован и отрисован — прячем нативный сплэш,
+  // чтобы застывшая нативная картинка сразу уступила место анимации (фон тот же #101214,
+  // мигания нет). Иначе нативный слой перекрывает анимацию до самого content-ready.
+  useEffect(() => {
+    if (!visible) return;
+    const id = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(() => {}); });
+    return () => cancelAnimationFrame(id);
+  }, [visible]);
+
+  useEffect(() => {
+    if (!visible) return;
+    glyphIn.setValue(0); pulse.setValue(0); wordIn.setValue(0); subIn.setValue(0); shine.setValue(0);
+
+    const enter = Animated.timing(glyphIn, {
+      toValue: 1, duration: 520, easing: Easing.out(Easing.back(1.4)), useNativeDriver: true,
+    });
+    const pulseLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulse, { toValue: 1, duration: 1150, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+        Animated.timing(pulse, { toValue: 0, duration: 1150, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+      ]),
+    );
+    const word = Animated.timing(wordIn, {
+      toValue: 1, duration: 460, delay: 300, easing: Easing.out(Easing.cubic), useNativeDriver: true,
+    });
+    const shineRun = Animated.timing(shine, {
+      toValue: 1, duration: 900, delay: 620, easing: Easing.inOut(Easing.quad), useNativeDriver: true,
+    });
+    const sub = Animated.timing(subIn, {
+      toValue: 1, duration: 420, delay: 720, easing: Easing.out(Easing.cubic), useNativeDriver: true,
+    });
+
+    enter.start();
+    pulseLoop.start();
+    word.start();
+    shineRun.start();
+    sub.start();
+    return () => {
+      pulseLoop.stop();
+      enter.stop(); word.stop(); shineRun.stop(); sub.stop();
+    };
+  }, [visible, glyphIn, pulse, wordIn, subIn, shine]);
+
   if (!visible) return null;
+
+  const glyphScale = Animated.add(
+    glyphIn.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }),
+    pulse.interpolate({ inputRange: [0, 1], outputRange: [0, 0.055] }),
+  );
+  const wordTranslateY = wordIn.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
+  const subTranslateY = subIn.interpolate({ inputRange: [0, 1], outputRange: [6, 0] });
+  const shineX = shine.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-SPLASH_SHINE_WIDTH, SPLASH_WORDMARK_WIDTH + SPLASH_SHINE_WIDTH],
+  });
+
   return (
-    <View
-      pointerEvents="none"
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        zIndex: 9999,
-        elevation: 9999,
-        backgroundColor: STARTUP_SPLASH_BG,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Image
-        source={require('../assets/images/splash-icon.png')}
-        contentFit="contain"
-        style={{ width: 240, height: 240 }}
-      />
+    <View pointerEvents="none" style={styles.startupSplashAnimatedRoot}>
+      <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphScale }] }}>
+        <Image
+          source={require('../assets/images/splash-glyph.png')}
+          contentFit="contain"
+          style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
+        />
+      </Animated.View>
+
+      <Animated.View
+        style={{
+          marginTop: 22,
+          width: SPLASH_WORDMARK_WIDTH,
+          height: SPLASH_WORDMARK_HEIGHT,
+          opacity: wordIn,
+          transform: [{ translateY: wordTranslateY }],
+        }}
+      >
+        <Image
+          source={require('../assets/images/splash-wordmark.png')}
+          contentFit="contain"
+          style={{ width: '100%', height: '100%' }}
+        />
+        {/* Блик: светлый диагональный градиент, ограниченный формой ворд-марка через маску. */}
+        <MaskedView
+          style={StyleSheet.absoluteFill}
+          maskElement={
+            <Image
+              source={require('../assets/images/splash-wordmark.png')}
+              contentFit="contain"
+              style={{ width: '100%', height: '100%' }}
+            />
+          }
+        >
+          <Animated.View style={{ flex: 1, transform: [{ translateX: shineX }] }}>
+            <LinearGradient
+              colors={['transparent', 'rgba(255,255,255,0.85)', 'transparent']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{ width: SPLASH_SHINE_WIDTH, height: '100%' }}
+            />
+          </Animated.View>
+        </MaskedView>
+      </Animated.View>
+
+      <Animated.Text
+        style={[
+          styles.startupSplashSubtitle,
+          { opacity: subIn, transform: [{ translateY: subTranslateY }] },
+        ]}
+      >
+        by Professor Lingman
+      </Animated.Text>
     </View>
   );
 }
@@ -554,6 +664,7 @@ function GlobalLevelUpHandler() {
   const { theme: t, isDark, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess } = usePremium();
   const globalParams = useGlobalSearchParams();
   const isGoldTheme = themeMode === 'gold';
 
@@ -561,14 +672,14 @@ function GlobalLevelUpHandler() {
   const [showGiftModal, setShowGiftModal] = useState(false);
   /**
    * Удержание слота арбитра в окне перехода level-up → подарок. Между setShowLevelUp(false)
-   * и setShowGiftModal(true) идут await-ы (registerXP / премиум-проверка) + таймер 180-260мс,
-   * в это время обе модалки false. Без этого флага арбитр отдал бы слот любому ждущему тосту,
-   * и сундук-награда мигал бы за чужой модалкой. Ставится в dismissLevelUp, снимается в onGiftClose.
+   * и setShowGiftModal(true) остается только безопасная native-пауза 180-260мс; серверные
+   * начисления уходят фоном. Без этого флага арбитр отдал бы слот любому ждущему тосту.
    */
   const [levelUpTransitioning, setLevelUpTransitioning] = useState(false);
   /** Премиум: два сундука (F2P + premium) вместо одного */
   const [levelGiftDualMode, setLevelGiftDualMode] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
 
   const levelUpOpacity    = useRef(new Animated.Value(0)).current;
@@ -639,8 +750,10 @@ function GlobalLevelUpHandler() {
       let arr: number[] = [];
       try { arr = JSON.parse(raw); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
       if (arr.length === 0) return;
-      const name = await AsyncStorage.getItem('user_name');
+      const [[, name], [, xpRaw]] = await AsyncStorage.multiGet(['user_name', 'user_total_xp']);
       if (name) setUserName(name);
+      const accountLevel = getLevelFromXP(parseInt(xpRaw || '0', 10) || 0);
+      setCurrentAccountLevel(accountLevel);
       const have = new Set(queueRef.current);
       for (const lvl of arr) {
         if (!have.has(lvl)) {
@@ -721,6 +834,15 @@ function GlobalLevelUpHandler() {
     Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setShowLevelUp(false);
+        setLevelGiftDualMode(!!hasPremiumAccess);
+        InteractionManager.runAfterInteractions(() => {
+          // Android can keep the closing Modal's native window alive for a beat.
+          // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
+          giftOpenTimerRef.current = setTimeout(() => {
+            giftOpenTimerRef.current = null;
+            setShowGiftModal(true);
+          }, Platform.OS === 'android' ? 260 : 180);
+        });
         void (async () => {
           try {
             const name = (await AsyncStorage.getItem('user_name')) || userName;
@@ -736,17 +858,8 @@ function GlobalLevelUpHandler() {
               },
             });
             await tryGrantPremiumMonthlyWagerFromLevelUp();
-            const prem = await getVerifiedPremiumStatus().catch(() => false);
-            setLevelGiftDualMode(!!prem);
-          } finally {
-            InteractionManager.runAfterInteractions(() => {
-              // Android can keep the closing Modal's native window alive for a beat.
-              // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
-              giftOpenTimerRef.current = setTimeout(() => {
-                giftOpenTimerRef.current = null;
-                setShowGiftModal(true);
-              }, Platform.OS === 'android' ? 260 : 180);
-            });
+          } catch {
+            /* background level-up extras must never delay the gift */
           }
         })();
       });
@@ -796,6 +909,20 @@ function GlobalLevelUpHandler() {
   const levelUpScreenDim = USE_ELITE_LEVEL_UP_MODAL
     ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.46)')
     : 'rgba(0,0,0,0.6)';
+  const isCatchUpLevelReward = currentAccountLevel > currentLevel;
+  const levelUpKickerText = isCatchUpLevelReward
+    ? (lang === 'uk' ? 'Нагорода за рівень' : lang === 'es' ? 'Recompensa de nivel' : 'Награда за уровень')
+    : (lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень');
+  const levelUpMessageText = isCatchUpLevelReward
+    ? (lang === 'uk'
+      ? `Це твоя нагорода за рівень ${currentLevel}. Забирай подарунок.`
+      : lang === 'es'
+        ? `Esta es tu recompensa del nivel ${currentLevel}. Recoge tu regalo.`
+        : `Это твоя награда за уровень ${currentLevel}. Забирай подарок.`)
+    : (() => {
+      const pool = lang === 'uk' ? LEVELUP_CONGRATS_UK : lang === 'es' ? LEVELUP_CONGRATS_ES : LEVELUP_CONGRATS_RU;
+      return pool[currentLevel % pool.length];
+    })();
 
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
@@ -913,7 +1040,7 @@ function GlobalLevelUpHandler() {
                     }}
                   />
                   <Text style={{ color: levelUpAccent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
-                    {lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень'}
+                    {levelUpKickerText}
                   </Text>
                 </>
               )}
@@ -934,10 +1061,7 @@ function GlobalLevelUpHandler() {
                 {lang === 'uk' ? `РІВЕНЬ ${currentLevel}!` : lang === 'es' ? `¡NIVEL ${currentLevel}!` : `УРОВЕНЬ ${currentLevel}!`}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.body : f.bodyLg, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '600' : '500', marginTop: 6, textAlign: 'center', lineHeight: USE_ELITE_LEVEL_UP_MODAL ? f.body + 6 : undefined }}>
-                {(() => {
-                  const pool = lang === 'uk' ? LEVELUP_CONGRATS_UK : lang === 'es' ? LEVELUP_CONGRATS_ES : LEVELUP_CONGRATS_RU;
-                  return pool[currentLevel % pool.length];
-                })()}
+                {levelUpMessageText}
               </Text>
               {isNewTitle && (
                 <View style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 12 : 10, alignItems: 'center', gap: 2, width: '100%', borderWidth: 1, borderColor: titleColor + (USE_ELITE_LEVEL_UP_MODAL ? '44' : '55') }}>
@@ -1055,6 +1179,11 @@ function AppContent() {
   // нативный стек читает presentation при push, до тела экрана, поэтому флаг тут, в навигаторе.
   const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
+  // Гарантированное минимальное время показа анимированного стартового сплэша:
+  // без него быстрый прогрев схлопывает оверлей раньше, чем проигрываются вход/блик,
+  // и на экране остаётся только застывший нативный сплэш. Держим оверлей минимум
+  // до истечения таймера, чтобы анимация всегда успевала проявиться.
+  const [startupAnimMinElapsed, setStartupAnimMinElapsed] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   // Подарок лояльности:
   //   'offer'    = free-юзер: текст обновления + блок подарка + кнопка «Получить 3 дня».
@@ -1219,6 +1348,12 @@ function AppContent() {
       sub.remove();
       if (timeoutId) clearTimeout(timeoutId);
     };
+  }, []);
+
+  // Минимальная длительность показа анимированного сплэша (вход + блик ≈ 1.5 с).
+  useEffect(() => {
+    const t = setTimeout(() => setStartupAnimMinElapsed(true), STARTUP_ANIM_MIN_MS);
+    return () => clearTimeout(t);
   }, []);
 
   const nativeSplashCanHide = ready && (effectiveShowOnboarding || isBanned || firstContentReady);
@@ -1747,14 +1882,7 @@ function AppContent() {
           }
         })();
         if (bootRestoreSucceeded || bootHasLocalProgress) {
-          await syncToCloud().catch(() => {
-            emitAppEvent('action_toast', {
-              type: 'error',
-              messageRu: 'Не удалось синхронизировать данные — проверь соединение',
-              messageUk: "Не вдалося синхронізувати дані — перевір з'єднання",
-              messageEs: 'Error al sincronizar — revisa tu conexión',
-            });
-          });
+          await syncToCloud().catch(() => {});
         } else if (__DEV__) {
           console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
         }
@@ -2459,39 +2587,12 @@ function AppContent() {
     outputRange: [0, 1],
   });
 
-
-  if (!ready) {
-    return (
-      <View style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
-        <StartupSplashHold visible={true} />
-      </View>
-    );
-  }
-
-  if (isBanned) {
-    return (
-      <View style={{ flex: 1, backgroundColor: '#06141B', justifyContent: 'center', padding: 24 }}>
-        <View style={{ backgroundColor: '#121826', borderRadius: 18, borderWidth: 1, borderColor: '#7f1d1d', padding: 20 }}>
-          <Text style={{ color: '#f87171', fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
-          <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
-            Аккаунт заблокирован
-          </Text>
-          <Text style={{ color: '#9ca3af', fontSize: 14, textAlign: 'center', lineHeight: 20, marginBottom: 16 }}>
-            Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.
-          </Text>
-          <TouchableOpacity
-            onPress={() => checkBanStatus(true)}
-            style={{ backgroundColor: '#1f2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
-          >
-            <Text style={{ color: '#fff', fontWeight: '700' }}>Проверить снова</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-
+  // Expo Router requires the root layout to mount a navigator on the first
+  // render. Startup, onboarding, and blocked-account states cover it as overlays.
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
-  const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
+  const startupSplashVisible =
+    !ready ||
+    (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !startupAnimMinElapsed));
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран. На iOS маскируем зазор коротким fade; Android остаётся
   // на 'none' (история крашей Fabric на transitions) — там зазор закрывает константный
@@ -2561,6 +2662,7 @@ function AppContent() {
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
+      <Stack.Screen name="top_helpers" />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
@@ -2813,6 +2915,26 @@ function AppContent() {
 }
 
 const styles = StyleSheet.create({
+  startupSplashAnimatedRoot: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: 9999,
+    elevation: 9999,
+    backgroundColor: STARTUP_SPLASH_BG,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  startupSplashSubtitle: {
+    marginTop: 10,
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 0.2,
+    color: 'rgb(174,170,161)',
+    fontFamily: APP_FONT_FAMILY,
+  },
   appFullScreenOverlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 50,
@@ -2852,7 +2974,6 @@ export default function RootLayout() {
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
-                    <ConsentReverifyHost />
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />
                     <ComebackBoonHost />

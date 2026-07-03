@@ -1411,6 +1411,9 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 
 export { friendSendGift } from './friend_gifts';
 
+// ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
+export { adminGenerateDailyDigest } from './admin_daily_digest';
+
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
 export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './report_replies';
 

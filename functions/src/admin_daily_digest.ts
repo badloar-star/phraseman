@@ -42,7 +42,8 @@ export interface DigestSourceRows {
 
 export interface DigestFacts {
   windowHours: number;
-  reports: { total: number; open: number; byCategory: Record<string, number>; topScreens: Array<[string, number]> };
+  // topScreens — массив ОБЪЕКТОВ (не массив массивов): Firestore не хранит вложенные массивы.
+  reports: { total: number; open: number; byCategory: Record<string, number>; topScreens: Array<{ screen: string; count: number }> };
   cancels: { total: number; byReason: Record<string, number>; sampleTexts: string[] };
   appErrors: { total: number; critical: number };
   safety: { total: number; open: number; byCategory: Record<string, number> };
@@ -57,10 +58,11 @@ function countBy<T>(rows: T[], key: (r: T) => string | undefined): Record<string
   return out;
 }
 
-function topN(counts: Record<string, number>, n: number): Array<[string, number]> {
+function topN(counts: Record<string, number>, n: number): Array<{ screen: string; count: number }> {
   return Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, n);
+    .slice(0, n)
+    .map(([screen, count]) => ({ screen, count }));
 }
 
 /**

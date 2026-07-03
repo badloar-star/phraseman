@@ -31,7 +31,7 @@ describe('aggregateDigestFacts', () => {
     expect(facts.reports.total).toBe(4);
     expect(facts.reports.open).toBe(2); // fixed + answered исключены
     expect(facts.reports.byCategory).toEqual({ audio: 3, typo: 1 });
-    expect(facts.reports.topScreens[0]).toEqual(['lesson', 3]);
+    expect(facts.reports.topScreens[0]).toEqual({ screen: 'lesson', count: 3 });
     expect(isDigestEmpty(facts)).toBe(false);
   });
 

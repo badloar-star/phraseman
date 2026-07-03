@@ -66,11 +66,9 @@ export type RemoteBoolKey =
   | 'compass_topic_map_enabled'
   | 'maintenance_banner'
   | 'maintenance_block'
-  // Первый экран онбординга: дефолт FALSE = текущий экран с ДВУМЯ кнопками
-  // («Составить план под мою цель» / «Просто посмотреть приложение»). Админ
-  // ставит true в «Пульте» → первый экран превращается в ОДНУ кнопку
-  // («Составить мой план», ведёт в поток плана) + слегка иной текст. Меняется
-  // у всех живьём (onSnapshot), без релиза. Кнопки «просто посмотреть» нет.
+  // Legacy remote flag kept for compatibility with already-published configs.
+  // The active onboarding is now always the clean midnight plan-first flow;
+  // this flag must not re-enable any old two-button or skip-app path.
   | 'onboarding_plan_only_enabled'
   // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
@@ -94,6 +92,10 @@ export type RemoteBoolKey =
   // управляемый из «Пульта» баннер акции (текст/ссылка/срок в текстовых ключах).
   // Сама скидка на подписку настраивается в сторах отдельно — баннер только зовёт.
   | 'promo_banner_enabled'
+  // Раздел «Промокод» в настройках + серверная активация promoCodeRedeem.
+  // Дефолт FALSE = sell-switch: промокоды видны и активируются только когда
+  // админ включил их в «Пульте».
+  | 'promo_codes_enabled'
   // Кнопка «Видео PHRASEMAN» на главной (иконка-плей в шапке) + сам экран видео.
   // Дефолт TRUE = kill-switch: кнопка показывается как сейчас. Админ ставит false
   // в «Пульте» → кнопка прячется у всех живьём (onSnapshot), без релиза. Экран
@@ -120,7 +122,14 @@ export type RemoteBoolKey =
   | 'gate_mastery_premium'
   | 'gate_quizzes_premium'
   | 'gate_arena_premium'
-  | 'gate_energy_premium';
+  | 'gate_energy_premium'
+  // Гейт добавления второго и последующих языков обучения (1 язык — фри).
+  | 'gate_extra_languages_premium'
+  // Раздел «Топ хелперов» (борд топ-репортёров багов) в настройках. Дефолт TRUE =
+  // kill-switch: борд показывается, админ может выключить его в «Пульте» живьём
+  // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
+  // заглушку. Данные борда — публичная проекция top_helpers/{uid}.
+  | 'top_helpers_enabled';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -153,6 +162,7 @@ export type RemoteTextKey =
   | 'manual_update_campaign_id'
   | 'manual_update_mode'
   | 'manual_update_target_build'
+  | 'manual_update_platform'
   | 'manual_update_title_ru'
   | 'manual_update_title_uk'
   | 'manual_update_title_es'
@@ -220,9 +230,9 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   trainer_ab_a_pct: 0,
   trainer_ab_b_pct: 100,
   trainer_ab_c_pct: 0,
-  onboarding_ab_welcome_pct: 34,
-  onboarding_ab_builder_pct: 33,
-  onboarding_ab_quiz_pct: 33,
+  onboarding_ab_welcome_pct: 0,
+  onboarding_ab_builder_pct: 0,
+  onboarding_ab_quiz_pct: 0,
   paywall_v2_pct: 100,
   league_xp_promotion_threshold: 1000,
   league_sync_min_delta: 75,
@@ -250,7 +260,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   league_xp_promotion_enabled: false,
   league_startup_registration_enabled: true,
   league_realtime_members_enabled: true,
-  // Кнопка «Навсегда» (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
+  // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
   // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
   // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
   // условие «sell-switch» выполнено. Кнопка всё равно скрывается, если RevenueCat
@@ -301,6 +311,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   manual_update_enabled: false,
   // Промо-баннер (акция): дефолт FALSE. Включается из «Пульта» на время акции.
   promo_banner_enabled: false,
+  // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
+  promo_codes_enabled: false,
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
@@ -325,6 +337,10 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_quizzes_premium: true,
   gate_arena_premium: true,
   gate_energy_premium: true,
+  gate_extra_languages_premium: true,
+  // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
+  // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
+  top_helpers_enabled: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -343,6 +359,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   manual_update_campaign_id: '',
   manual_update_mode: 'optional',
   manual_update_target_build: '',
+  manual_update_platform: '',
   manual_update_title_ru: '',
   manual_update_title_uk: '',
   manual_update_title_es: '',
@@ -420,6 +437,7 @@ let _textOverrides: Partial<Record<RemoteTextKey, string>> = {};
 // здесь, заполняются из снапшота. Отсутствие ключа = 100% (флаг как обычный bool).
 let _rolloutOverrides: Record<string, number> = {};
 let _configSignature = 'defaults';
+let _remoteConfigSnapshotApplied = false;
 
 const ROLLOUT_SUFFIX = '_rollout_pct';
 
@@ -504,6 +522,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   _boolOverrides = nextBools;
   _textOverrides = nextTexts;
   _rolloutOverrides = nextRollouts;
+  _remoteConfigSnapshotApplied = true;
   _configSignature = buildSignature();
   return _configSignature;
 }
@@ -561,6 +580,10 @@ export function getRemoteConfigSignature(): string {
   return _configSignature;
 }
 
+export function hasRemoteConfigSnapshotApplied(): boolean {
+  return _remoteConfigSnapshotApplied;
+}
+
 // ── Convenience accessors (typed, self-documenting call sites) ──────────────
 
 export const getFreeLessonLimit = () => getRemoteNumber('free_lesson_limit');
@@ -608,6 +631,7 @@ export const getStoreUrlIos = () => getRemoteText('store_url_ios');
 export const getStoreUrlAndroid = () => getRemoteText('store_url_android');
 
 export type ManualUpdateMode = 'force' | 'optional';
+export type ManualUpdatePlatform = '' | 'ios' | 'android';
 
 export const isManualUpdateEnabled = () => getRemoteBool('manual_update_enabled');
 export const getManualUpdateCampaignId = () => getRemoteText('manual_update_campaign_id');
@@ -617,7 +641,23 @@ export function normalizeManualUpdateMode(raw: string): ManualUpdateMode {
   return String(raw || '').trim().toLowerCase() === 'force' ? 'force' : 'optional';
 }
 
+export function normalizeManualUpdatePlatform(raw: string): ManualUpdatePlatform {
+  const value = String(raw || '').trim().toLowerCase();
+  return value === 'ios' || value === 'android' ? value : '';
+}
+
 export const getManualUpdateMode = (): ManualUpdateMode => normalizeManualUpdateMode(getRemoteText('manual_update_mode'));
+export const getManualUpdatePlatform = (): ManualUpdatePlatform =>
+  normalizeManualUpdatePlatform(getRemoteText('manual_update_platform'));
+
+export function matchesManualUpdatePlatform(params: {
+  platformFilter?: string;
+  platform?: string;
+}): boolean {
+  const filter = normalizeManualUpdatePlatform(params.platformFilter || '');
+  if (!filter) return true;
+  return normalizeManualUpdatePlatform(params.platform || '') === filter;
+}
 
 export function getManualUpdateTitle(lang: string): string {
   const l = String(lang || '').toLowerCase();
@@ -696,11 +736,14 @@ export function shouldShowManualUpdate(params: {
   mode: string;
   currentBuild: string;
   targetBuild: string;
+  platformFilter?: string;
+  platform?: string;
   seenCampaignIds?: readonly string[];
 }): boolean {
   if (!params.enabled) return false;
   const campaignId = String(params.campaignId || '').trim();
   if (!campaignId) return false;
+  if (!matchesManualUpdatePlatform({ platformFilter: params.platformFilter, platform: params.platform })) return false;
   const targetBuild = String(params.targetBuild || '').trim();
   if (targetBuild && !isVersionBelow(params.currentBuild, targetBuild)) return false;
   const mode = normalizeManualUpdateMode(params.mode);
@@ -725,6 +768,8 @@ export const getYoutubePinnedVideosRaw = () => getRemoteText('youtube_pinned_vid
 // ── Промо-баннер (акция) ─────────────────────────────────────────────────────
 /** Включён ли промо-баннер. Дефолт false. */
 export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
+/** Раздел «Промокод» в настройках + серверная активация. Дефолт false. */
+export const isPromoCodesEnabled = () => getRemoteBool('promo_codes_enabled');
 /** Ссылка по тапу на баннер (необяз.). */
 export const getPromoBannerUrl = () => getRemoteText('promo_banner_url');
 /** Срок окончания акции: ISO-дата "2026-07-01" или ms-таймстамп. Пусто = бессрочно. */
@@ -825,10 +870,12 @@ export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_en
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
 export const isLeagueRealtimeMembersEnabled = () => getRemoteBool('league_realtime_members_enabled');
-/** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
+/** Кнопка Phraseman Pro (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
+/** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
+export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 /**
  * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
  * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже
@@ -908,7 +955,7 @@ export function getMaintenanceText(lang: string): string {
  * Groups: 'A' | 'B' | 'C'. Defaults to 'B' (2 sessions) if all pcts are zero.
  */
 export type TrainerAbGroup = 'A' | 'B' | 'C';
-export type OnboardingAbVariant = 'welcome' | 'builder' | 'quiz';
+export type OnboardingAbVariant = 'current';
 
 export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   const a = getRemoteNumber('trainer_ab_a_pct');
@@ -922,17 +969,12 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   return 'C';
 }
 
-/** Deterministic first onboarding variant for a user. Variants: welcome | builder | quiz. */
-export function getOnboardingAbVariant(userId: string): OnboardingAbVariant {
-  const welcome = getRemoteNumber('onboarding_ab_welcome_pct');
-  const builder = getRemoteNumber('onboarding_ab_builder_pct');
-  const quiz = getRemoteNumber('onboarding_ab_quiz_pct');
-  const total = welcome + builder + quiz;
-  if (total <= 0) return 'welcome';
-  const bucket = hashToUnit(`${userId}:onboarding_ab:v1`) * total;
-  if (bucket < welcome) return 'welcome';
-  if (bucket < welcome + builder) return 'builder';
-  return 'quiz';
+/**
+ * Deprecated onboarding A/B compatibility helper. The old welcome/builder/quiz
+ * branches are retired; all users enter the new plan-first onboarding.
+ */
+export function getOnboardingAbVariant(_userId: string): OnboardingAbVariant {
+  return 'current';
 }
 
 /**
@@ -1004,6 +1046,7 @@ export function __resetRemoteFlagsForTest(): void {
   _boolOverrides = {};
   _textOverrides = {};
   _rolloutOverrides = {};
+  _remoteConfigSnapshotApplied = false;
   _configSignature = 'defaults';
 }
 

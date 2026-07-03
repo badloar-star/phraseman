@@ -67,7 +67,7 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
-import { isIdeasEnabled, isPromoCodesEnabled } from '../remote_flags';
+import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
 import { getLoyaltyGiftState } from '../loyalty_gift';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -394,6 +394,7 @@ export default function SettingsMain() {
   const [loyaltyGiftEndsAt, setLoyaltyGiftEndsAt] = useState<number | null>(null);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
+  const [topHelpersOn, setTopHelpersOn] = useState(isTopHelpersEnabled());
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -513,6 +514,7 @@ export default function SettingsMain() {
       });
     setIdeasOn(isIdeasEnabled());
     setPromoCodesOn(isPromoCodesEnabled());
+    setTopHelpersOn(isTopHelpersEnabled());
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
   }, [settingsTabVisible, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
@@ -521,6 +523,7 @@ export default function SettingsMain() {
     const refreshRemoteFlags = () => {
       setIdeasOn(isIdeasEnabled());
       setPromoCodesOn(isPromoCodesEnabled());
+      setTopHelpersOn(isTopHelpersEnabled());
     };
     const sub = DeviceEventEmitter.addListener('remote_config_changed', refreshRemoteFlags);
     return () => sub.remove();
@@ -1019,28 +1022,28 @@ export default function SettingsMain() {
             <Text style={{ color: screenGhost, fontSize: f.caption - 1, marginTop: 8, lineHeight: 18 }}>
               {L(
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French доступен только в DEV-режиме. В публичной версии открыт английский.'
+                  ? 'French и Spanish доступны только в DEV-режиме. В публичной версии открыт английский.'
                   : 'В публичной версии сейчас открыт английский.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French доступна лише в DEV-режимі. У публічній версії відкрита англійська.'
+                  ? 'French і Spanish доступні лише в DEV-режимі. У публічній версії відкрита англійська.'
                   : 'У публічній версії зараз відкрита англійська.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French is DEV-only. The public version keeps English active.'
+                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
               )}
             </Text>
@@ -1295,6 +1298,16 @@ export default function SettingsMain() {
             sub={L('Вы оба получите бонус', 'Ви обоє отримаєте бонус', 'Ambos recibís un bonus', 'Vocês dois ganham um bônus', 'Cả hai đều nhận thưởng', 'Kalian berdua dapat bonus', 'İkiniz de bonus alırsınız', 'Oboje dostaniecie bonus')}
             onPress={() => router.push('/settings_invite_friend' as any)}
           />
+          {topHelpersOn ? (
+            <SettingsRow
+              testID="settings-top-helpers-row"
+              icon="ribbon"
+              color="yellow"
+              label={L('Топ хелперов', 'Топ хелперів', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers')}
+              sub={L('Кто помогает нам ловить баги', 'Хто допомагає нам ловити баги', 'Quiénes nos ayudan a cazar errores', 'Quem nos ajuda a caçar bugs', 'Ai giúp chúng tôi tìm lỗi', 'Siapa yang membantu memburu bug', 'Hata avında bize kim yardım ediyor', 'Kto pomaga nam łapać błędy')}
+              onPress={() => router.push('/top_helpers' as any)}
+            />
+          ) : null}
           {ideasOn ? (
             <SettingsRow
               testID="settings-ideas-row"

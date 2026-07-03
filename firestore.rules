@@ -34,6 +34,23 @@ service cloud.firestore {
       return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId) || authLinkMapsToUser(userId);
     }
 
+    // Документа users/{userId} ещё нет в базе. Чтение НЕсуществующего дока ничего
+    // не раскрывает (там нечего читать — Firestore вернёт пустой снапшот), но БЕЗ
+    // явного разрешения движок отдаёт PERMISSION_DENIED, если ни одна ветка
+    // userDocOwnerMatchesAuth не сработала. На свежей установке клиент сначала
+    // получает НОВЫЙ анонимный stable_id, которого ещё нет в users; старый клиент
+    // 1.5.41 в транзакции входа делает tx.get(users/{новый localStableId}) — этот
+    // denied read валит ВСЮ транзакцию (transaction_[firestore/unknown]) и вход
+    // рвётся → пользователю кажется, что создался новый аккаунт. Разрешаем read
+    // отсутствующего дока любому аутентифицированному: безопасно (пустота), и
+    // транзакция доходит до конца, после чего клиент свапается на привязанный
+    // stable_id и тянет настоящий прогресс. Существующие чужие доки по-прежнему
+    // закрыты (эта ветка ложна, если документ существует).
+    function userDocMissing(userId) {
+      return request.auth != null
+        && !exists(/databases/$(database)/documents/users/$(userId));
+    }
+
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
     // при первом серверном событии. Пока флага нет — старый клиент может писать
     // XP/streak/progress напрямую (плавный переход без force-update).
@@ -120,7 +137,7 @@ service cloud.firestore {
         'collectibles_state_v1',
         // Profile card LEVEL: a public prestige badge bought with shards. Only the
         // profileCardUpgrade Cloud Function (Admin SDK) may raise it, so a tampered
-        // client can't forge CARD V for free. Theme/motion/focus stay client-chosen.
+        // client can't forge Pro for free. Theme/motion/focus are legacy mirrors.
         'profile_card_level',
       ];
     }
@@ -986,7 +1003,11 @@ service cloud.firestore {
     //  - stableId-Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼ firebaseAuthUid == request.auth.uid
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
     match /users/{userId} {
-      allow read, delete: if userDocOwnerMatchesAuth(userId);
+      // read: владелец/админ ИЛИ документа ещё нет (пустое чтение безопасно и
+      // не валит клиентскую транзакцию входа на новом localStableId — см.
+      // userDocMissing выше). delete остаётся строго для владельца/админа.
+      allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);
+      allow delete: if userDocOwnerMatchesAuth(userId);
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
       allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
@@ -1026,6 +1047,14 @@ service cloud.firestore {
 
       match /app_message_states/{messageId} {
         allow read, create, update, delete: if userDocOwnerMatchesAuth(userId);
+      }
+
+      // Персональные сообщения (ответы на репорты с наградой к клейму). Пишет ТОЛЬКО
+      // сервер: adminReplyToReport создаёт, claimReportReward переключает claimed —
+      // открытая клиентская запись позволила бы накрутить shards повторным клеймом.
+      match /user_messages/{messageId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
       }
 
       match /shard_rewards/{rewardId} {
@@ -1069,6 +1098,14 @@ service cloud.firestore {
       allow delete: if userDocOwnerMatchesAuth(userId);
     }
 
+    // Top Helpers board projection. Written ONLY by Cloud Function adminReplyToReport
+    // and scripts/reply_to_reports.mjs (Admin SDK) when a report is confirmed; clients
+    // read the top-10 (same read policy as leaderboard). No client writes (anti-cheat).
+    match /top_helpers/{userId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
     match /public_profiles/{userId} {
       allow read: if request.auth != null;
       allow create, update: if canonicalUserMatchesAuth(userId);
@@ -1095,6 +1132,18 @@ service cloud.firestore {
     match /users/{userId}/activity_likes_received/{likeId} {
       allow read: if canonicalUserMatchesAuth(userId);
       allow create, update, delete: if isAdmin();
+    }
+
+    // Единый центр событий (колокольчик на главной): пишут только cloud functions.
+    // Владелец читает, помечает прочитанным (только read/readAt/updatedAt) и удаляет.
+    match /users/{userId}/notifications/{notificationId} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow create: if isAdmin();
+      allow update: if isAdmin() || (
+        canonicalUserMatchesAuth(userId)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt', 'updatedAt'])
+      );
+      allow delete: if isAdmin() || canonicalUserMatchesAuth(userId);
     }
 
     // â”€â”€ Banned users â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1199,6 +1248,29 @@ service cloud.firestore {
       allow create, update: if false;
     }
 
+    // Website checkout admin surface (admin/site.html). The public /start/
+    // paywall reads prices through the webPrices Cloud Function; browser writes
+    // are admin-only.
+    match /web_checkout/{docId} {
+      allow read, create, update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /web_premium_orders/{orderId} {
+      allow read, update: if isAdmin();
+      allow create, delete: if false;
+    }
+
+    match /email_contacts/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false;
+    }
+
+    match /email_campaigns/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false;
+    }
+
     match /client_report_rate_limits/{docId} {
       allow read, create, update, delete: if isAdmin();
     }
@@ -1251,11 +1323,11 @@ service cloud.firestore {
     match /paywall_funnel/{docId} {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
-        && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'close']
+        && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'restore_completed', 'close']
         && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C']
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
-        && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly'])
+        && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly', 'lifetime'])
         && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green', 'main'])
         && request.resource.data.day is string
         && request.resource.data.day.size() == 10
@@ -1439,7 +1511,11 @@ service cloud.firestore {
         && targetUid != senderUid
         && !exists(/databases/$(database)/documents/banned_users/$(senderUid))
         && request.resource.data.status == 'pending'
-        && request.resource.data.createdAt is number;
+        && request.resource.data.createdAt is number
+        && (!request.resource.data.keys().hasAny(['fromName'])
+          || (request.resource.data.fromName is string
+            && request.resource.data.fromName.size() > 0
+            && request.resource.data.fromName.size() <= 40));
       allow update: if canonicalUserMatchesAuth(targetUid)
         && request.resource.data.diff(resource.data).affectedKeys()
            .hasOnly(['status', 'updatedAt'])
@@ -1539,6 +1615,43 @@ service cloud.firestore {
       allow create, update, delete: if false;
     }
 
+    // Help Board UGC: public Q&A boards partitioned by study language + UI/community language.
+    // Clients read only visible topics/comments. Creation, votes, reports, moderation,
+    // Compass billing, and rate limits go through Cloud Functions/Admin SDK.
+    match /help_board_topics/{topicId} {
+      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /help_board_comments/{commentId} {
+      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /help_board_votes/{voteId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /help_board_reports/{reportId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /help_board_moderation_queue/{itemId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /help_board_rate_limits/{userId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /help_board_restrictions/{userId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /help_board_compass_billing/{entryId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
     // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Doc id = providerUid (Google sub / Apple sub).
     // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}
@@ -1552,6 +1665,16 @@ service cloud.firestore {
         return stableId is string
           && stableId.size() > 0
           && stableUserMatchesAuth(stableId);
+      }
+
+      function authLinkLegacyUpdateOk() {
+        return ownsAuthLinkDoc()
+          && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])
+          && (
+            request.resource.data.stable_id == resource.data.stable_id
+            || stableIdOwnedByThisAuth(request.resource.data.stable_id)
+          );
       }
 
       // The app only needs to read the link for the provider account that is
@@ -1569,17 +1692,20 @@ service cloud.firestore {
 
       // Update: Ð¿Ñ€Ð¸ relogin Ð¸Ð»Ð¸ swap Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°. ÐœÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ»Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹.
       // providerUid Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ.
-      allow update: if ownsAuthLinkDoc()
-        && (!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)
-        && request.resource.data.providerUid == providerUid
-        && request.resource.data.provider in ['google', 'apple']
-        && (!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)
-        && request.resource.data.diff(resource.data).affectedKeys()
-           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform', 'providerUid', 'provider', 'linkedAt'])
-        && (
-          request.resource.data.stable_id == resource.data.stable_id
-          || stableIdOwnedByThisAuth(request.resource.data.stable_id)
-        );
+      allow update: if (
+          ownsAuthLinkDoc()
+          && (!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)
+          && request.resource.data.providerUid == providerUid
+          && request.resource.data.provider in ['google', 'apple']
+          && (!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)
+          && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform', 'providerUid', 'provider', 'linkedAt', 'updatedAt'])
+          && (
+            request.resource.data.stable_id == resource.data.stable_id
+            || stableIdOwnedByThisAuth(request.resource.data.stable_id)
+          )
+        )
+        || authLinkLegacyUpdateOk();
 
       // Delete: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð´Ð¼Ð¸Ð½ (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ð°Ð½ÐµÐ»ÑŒ) Ð¸Ð»Ð¸ Cloud Function Ð´Ð»Ñ revocation.
       allow delete: if isAdmin();

@@ -565,6 +565,49 @@
     .app-msg-kpi { background:#10101a; border:1px solid #2a2a3a; border-radius:10px; padding:10px 12px; min-width:120px; }
     .app-msg-kpi .label { color:#777; font-size:10px; text-transform:uppercase; letter-spacing:.45px; }
     .app-msg-kpi .value { color:#fff; font-size:20px; font-weight:900; margin-top:3px; }
+    /* Upgraded message feed: clickable card, icon stat chips */
+    .app-msg-card.clickable { cursor:pointer; transition:border-color .12s, transform .12s; }
+    .app-msg-card.clickable:hover { border-color:#4338ca; transform:translateY(-1px); }
+    .app-msg-stats { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .app-msg-chip { display:inline-flex; align-items:center; gap:4px; font-size:11px; color:#c9c9d4; background:#1a1b27; border:1px solid #2a2a3a; border-radius:999px; padding:2px 9px; }
+    .app-msg-chip b { color:#fff; font-weight:800; }
+    .app-msg-chip.poll { color:#c4b5fd; border-color:#2f2a52; }
+    .app-msg-statusdot { font-size:11px; font-weight:700; padding:1px 8px; border-radius:999px; }
+    .app-msg-statusdot.on { color:#4ade80; background:#12301f; }
+    .app-msg-statusdot.off { color:#94a3b8; background:#1e2030; }
+    .app-msg-statusdot.expired { color:#f87171; background:#301414; }
+    .app-msg-toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
+    .app-msg-toolbar input[type=text] { flex:1; min-width:160px; background:#10101a; border:1px solid #2a2a3a; border-radius:8px; color:#e8e8ee; padding:7px 11px; font-size:13px; }
+    .app-msg-toolbar select { background:#10101a; border:1px solid #2a2a3a; border-radius:8px; color:#cbd5e1; padding:7px 10px; font-size:13px; }
+    /* Collapsible composer */
+    .app-msg-panel.collapsed .app-msg-collapse-body { display:none; }
+    .app-msg-collapse-toggle { display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; }
+    .app-msg-collapse-toggle .chev { transition:transform .15s; color:#7b7b92; }
+    .app-msg-panel.collapsed .app-msg-collapse-toggle .chev { transform:rotate(-90deg); }
+
+    /* Engagement panel modal */
+    #ame-overlay { display:none; position:fixed; inset:0; z-index:10060; }
+    #ame-overlay.ame-open { display:block; }
+    #ame-backdrop { position:absolute; inset:0; background:rgba(5,6,10,0.86); backdrop-filter:blur(6px); cursor:pointer; }
+    #ame-panel { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:min(620px,94vw); height:min(86vh,820px); background:#0c0d14; border:1px solid #23232f; border-radius:16px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 24px 80px #000a; }
+    .ame-scroll { flex:1; min-height:0; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px; }
+    .ame-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:10px; }
+    .ame-metric { background:#12141f; border:1px solid #262838; border-radius:12px; padding:10px 12px; text-align:center; }
+    .ame-metric .v { font-size:22px; font-weight:900; color:#fff; }
+    .ame-metric .l { font-size:11px; color:#8b8b9a; margin-top:2px; }
+    .ame-section-title { font-size:13px; font-weight:800; color:#c9c9d4; margin:4px 0 2px; }
+    .ame-poll-row { margin-bottom:10px; }
+    .ame-poll-top { display:flex; justify-content:space-between; font-size:13px; color:#e5e5ee; margin-bottom:4px; gap:10px; }
+    .ame-poll-pct { color:#a5b4fc; font-weight:700; flex-shrink:0; }
+    .ame-poll-bar { height:8px; background:#1a1b27; border-radius:999px; overflow:hidden; }
+    .ame-poll-fill { height:100%; background:linear-gradient(90deg,#6c47ff,#a78bfa); border-radius:999px; transition:width .3s; }
+    .ame-uid-list { display:flex; flex-direction:column; gap:4px; max-height:220px; overflow-y:auto; }
+    .ame-uid-item { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; background:#12141f; border:1px solid #21232f; border-radius:8px; padding:5px 10px; }
+    .ame-uid-item code { color:#93c5fd; word-break:break-all; }
+    .ame-uid-item .rx { flex-shrink:0; }
+    .ame-empty { color:#666; font-size:13px; text-align:center; padding:20px; }
+    .ame-loading { color:#888; font-size:13px; text-align:center; padding:30px; }
+
     @media (max-width: 720px) { .app-msg-poll-toolbar, .app-msg-poll-options { grid-template-columns:1fr; } }
     @media (max-width: 1120px) { .app-msg-shell { grid-template-columns:1fr; } }
     .review-promo-shell { width: 100%; max-width: none; }
@@ -782,6 +825,21 @@
     .lc-thread-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
     .lc-row-clickable { cursor: pointer; }
     .lc-row-clickable:hover { background: #161620 !important; }
+
+    /* ── League chat rooms as forum cards ─────────────────────────────────── */
+    .lc-room-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 4px 2px; }
+    .lc-room-card { background: #14161f; border: 1px solid #262838; border-radius: 12px; padding: 12px 14px; cursor: pointer; transition: border-color .12s, transform .12s; }
+    .lc-room-card:hover { border-color: #4338ca; transform: translateY(-1px); }
+    .lc-rc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .lc-rc-league { font-size: 14px; font-weight: 800; color: #f4f4f5; }
+    .lc-rc-count { font-size: 12px; color: #a5b4fc; background: #1e2030; padding: 1px 8px; border-radius: 999px; }
+    .lc-rc-last { font-size: 13px; color: #b9b9c6; line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 18px; }
+    .lc-rc-foot { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #7e8494; flex-wrap: wrap; }
+    .lc-rc-week { padding: 1px 7px; border-radius: 999px; background: #1e2030; }
+    /* Composer identity row inside the LC thread modal */
+    .lct-identity-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+    .lct-radio { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #c9c9d4; cursor: pointer; }
+    .lct-radio input { accent-color: #6c47ff; }
 
     /* ── Help Board thread viewer (user-facing forum look) ────────────────── */
     #hbt-overlay { display: none; position: fixed; inset: 0; z-index: 10050; }
@@ -9446,6 +9504,18 @@
       <button type="button" class="lc-thread-close" id="lc-thread-close" title="Закрыть" aria-label="Закрыть">✕</button>
     </div>
     <div class="lc-thread-scroll" id="lc-thread-scroll"></div>
+    <div class="hbt-composer" id="lct-composer">
+      <div class="lct-identity-row">
+        <label class="lct-radio"><input type="radio" name="lct-as" value="system" checked onchange="lctOnIdentityChange()"> 🧭 От системы («Compass»)</label>
+        <label class="lct-radio"><input type="radio" name="lct-as" value="named" onchange="lctOnIdentityChange()"> 👤 Под именем:</label>
+        <input type="text" id="lct-as-name" maxlength="48" placeholder="напр. Максим" disabled oninput="lctSaveName(this.value)" style="background:#12121b;border:1px solid #2a2a3a;border-radius:6px;color:#f4f4f5;padding:4px 8px;font-size:13px;min-width:120px">
+      </div>
+      <div class="hbt-composer-row">
+        <textarea id="lct-input" placeholder="Написать в чат лиги…" rows="1"></textarea>
+        <button type="button" class="hbt-send" id="lct-send">Отправить</button>
+      </div>
+      <div class="hbt-as-hint" id="lct-hint">Сообщение уйдёт в эту комнату лиги от «Compass».</div>
+    </div>
   </div>
 </div>
 
@@ -9527,6 +9597,21 @@
         <button type="button" class="hbt-send" id="hbc-submit">Создать тему</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- APP MESSAGE engagement panel: reads, reactions, poll breakdown for one message -->
+<div id="ame-overlay" aria-hidden="true">
+  <div id="ame-backdrop" title="Закрыть"></div>
+  <div id="ame-panel" role="dialog" aria-modal="true" aria-label="Отклик на сообщение">
+    <div class="hbt-head">
+      <div style="min-width:0">
+        <div class="hbt-title" id="ame-title">—</div>
+        <div class="hbt-sub" id="ame-sub"></div>
+      </div>
+      <button type="button" class="hbt-close" id="ame-close" title="Закрыть" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="ame-scroll" id="ame-body"></div>
   </div>
 </div>
 
@@ -10543,19 +10628,19 @@
     </div>
 
     <select id="lc-filter" onchange="renderLeagueChatAdmin()" style="display:none">
+      <option value="rooms" data-i18n-es="Todas las salas">Все комнаты</option>
       <option value="queue" data-i18n-es="En revisión">На проверке</option>
       <option value="blocked" data-i18n-es="Autobloqueo">Автоблок</option>
       <option value="reports" data-i18n-es="Reportes">Жалобы</option>
-      <option value="rooms" data-i18n-es="Todas las salas">Все комнаты</option>
       <option value="messages" data-i18n-es="Mensajes activos">Активные сообщения</option>
       <option value="archive" data-i18n-es="Archivo de chats">Архив чатов</option>
       <option value="bans" data-i18n-es="Restricciones">Ограничения</option>
     </select>
 
     <div class="lc-modebar">
-      <button type="button" class="lc-mode-btn active" data-lc-mode="queue" onclick="leagueChatSetMode('queue')" data-i18n-es="En revisión">На проверке</button>
+      <button type="button" class="lc-mode-btn active" data-lc-mode="rooms" onclick="leagueChatSetMode('rooms')" data-i18n-es="Salas (chats)">💬 Комнаты (чаты)</button>
+      <button type="button" class="lc-mode-btn" data-lc-mode="queue" onclick="leagueChatSetMode('queue')" data-i18n-es="En revisión">На проверке</button>
       <button type="button" class="lc-mode-btn" data-lc-mode="reports" onclick="leagueChatSetMode('reports')" data-i18n-es="Reportes">Жалобы</button>
-      <button type="button" class="lc-mode-btn" data-lc-mode="rooms" onclick="leagueChatSetMode('rooms')" data-i18n-es="Todas las salas">Все комнаты</button>
       <button type="button" class="lc-mode-btn" data-lc-mode="messages" onclick="leagueChatSetMode('messages')" data-i18n-es="Mensajes">Сообщения</button>
       <button type="button" class="lc-mode-btn" data-lc-mode="archive" onclick="leagueChatSetMode('archive')" data-i18n-es="Archivo">Архив</button>
       <button type="button" class="lc-mode-btn" data-lc-mode="blocked" onclick="leagueChatSetMode('blocked')" data-i18n-es="Autobloqueo">Автоблок</button>
@@ -11207,9 +11292,13 @@
     <div class="app-msg-kpi"><div class="label" data-i18n-es="Votos">Голоса</div><div class="value" id="am-kpi-poll-votes">—</div></div>
   </div>
   <div class="app-msg-shell">
-    <div class="app-msg-panel">
-      <h2 id="am-form-title" data-i18n-es="Nuevo mensaje">Новое сообщение</h2>
-      <div class="hint" data-i18n-es="El asunto y el mensaje se ven en la app como una tarjeta de correo limpia. La encuesta se añade dentro del mismo mensaje del inbox.">Тема и письмо выглядят в приложении как аккуратная почтовая карточка. Опрос добавляется внутрь того же inbox-сообщения.</div>
+    <div class="app-msg-panel" id="am-compose-panel">
+      <div class="app-msg-collapse-toggle" onclick="toggleAppMessageComposer()">
+        <h2 id="am-form-title" style="margin:0" data-i18n-es="Nuevo mensaje">Новое сообщение</h2>
+        <span class="chev" style="font-size:18px">▾</span>
+      </div>
+      <div class="app-msg-collapse-body">
+      <div class="hint" style="margin-top:10px" data-i18n-es="El asunto y el mensaje se ven en la app como una tarjeta de correo limpia. La encuesta se añade dentro del mismo mensaje del inbox.">Тема и письмо выглядят в приложении как аккуратная почтовая карточка. Опрос добавляется внутрь того же inbox-сообщения.</div>
       <input type="hidden" id="am-edit-id" value="">
       <div class="app-msg-grid">
         <div class="app-msg-field">
@@ -11305,18 +11394,33 @@
         <button type="button" onclick="resetAppMessageForm()" style="background:#2a2a3a;color:#cbd5e1" data-i18n-es="＋ Nuevo">＋ Новое</button>
         <span id="am-status" class="broadcast-muted"></span>
       </div>
+      </div><!-- /.app-msg-collapse-body -->
     </div>
 
     <div class="app-msg-panel">
       <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap">
         <div>
           <h2 data-i18n-es="Historial de mensajes">История сообщений</h2>
-          <div class="hint" style="margin-bottom:0" data-i18n-es="Editar un mensaje activo actualizará inmediatamente el texto para los usuarios.">Редактирование активного письма сразу обновит текст у пользователей.</div>
+          <div class="hint" style="margin-bottom:0" data-i18n-es="Editar un mensaje activo actualizará inmediatamente el texto para los usuarios.">Редактирование активного письма сразу обновит текст у пользователей. Клик по карточке — панель откликов (прочтения, реакции, голоса опроса).</div>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" onclick="loadAppMessages(true)" style="background:#2a2a3a;color:#cbd5e1" data-i18n-es="↻ Actualizar">↻ Обновить</button>
           <button type="button" onclick="cleanupExpiredAppMessages()" style="background:#3b1a1a;border-color:#7f1d1d;color:#fca5a5" data-i18n-es="🧹 Eliminar caducados">🧹 Удалить истёкшие</button>
         </div>
+      </div>
+      <div class="app-msg-toolbar">
+        <input type="text" id="am-search" placeholder="Поиск: тема, текст, id" oninput="renderAppMessages()">
+        <select id="am-filter-status" onchange="renderAppMessages()">
+          <option value="">Все статусы</option>
+          <option value="active">🟢 Активные</option>
+          <option value="off">⚫ Выключенные</option>
+          <option value="expired">⌛ Истёкшие</option>
+        </select>
+        <select id="am-filter-kind" onchange="renderAppMessages()">
+          <option value="">Все типы</option>
+          <option value="poll">📊 С опросом</option>
+          <option value="message">Без опроса</option>
+        </select>
       </div>
       <div id="am-list" class="app-msg-list"><div class="reports-empty" style="padding:30px 0" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
     </div>
@@ -20384,7 +20488,87 @@
   window.leagueChatCloseThread = function() {
     const ov = document.getElementById('lc-thread-overlay');
     if (ov) { ov.classList.remove('lc-thread-open'); ov.setAttribute('aria-hidden', 'true'); }
-    window._lcThread = { groupId: '', focusId: '', messages: [], loading: false };
+    window._lcThread = { groupId: '', focusId: '', messages: [], loading: false, weekId: '', leagueId: 0 };
+  };
+
+  // ── Admin composer: post a message into a league room ─────────────────────
+  const LCT_POST_AS_KEY = 'lct_admin_post_as';
+  function lctAdminEmail() { return (auth && auth.currentUser && auth.currentUser.email) || 'admin'; }
+  function lctIsNamed() { return document.querySelector('input[name="lct-as"]:checked')?.value === 'named'; }
+  function lctPostAsName() {
+    const v = String(document.getElementById('lct-as-name')?.value || '').trim();
+    if (v) return v;
+    const email = lctAdminEmail();
+    return email.includes('@') ? email.split('@')[0] : email;
+  }
+  window.lctSaveName = function lctSaveName(v) { localStorage.setItem(LCT_POST_AS_KEY, String(v || '').slice(0, 48)); lctUpdateHint(); };
+  window.lctOnIdentityChange = function lctOnIdentityChange() {
+    const named = lctIsNamed();
+    const nameInput = document.getElementById('lct-as-name');
+    if (nameInput) nameInput.disabled = !named;
+    if (named && nameInput && !nameInput.value) nameInput.value = String(localStorage.getItem(LCT_POST_AS_KEY) || '');
+    lctUpdateHint();
+    if (named) nameInput?.focus();
+  };
+  function lctUpdateHint() {
+    const hint = document.getElementById('lct-hint');
+    if (!hint) return;
+    hint.innerHTML = lctIsNamed()
+      ? `Сообщение уйдёт в комнату от имени «<b>${escapeHtml(lctPostAsName())}</b>».`
+      : 'Сообщение уйдёт в эту комнату лиги от «Compass».';
+  }
+  function lctResetComposer() {
+    const input = document.getElementById('lct-input');
+    if (input) input.value = '';
+    const nameInput = document.getElementById('lct-as-name');
+    if (nameInput && !nameInput.value) nameInput.value = String(localStorage.getItem(LCT_POST_AS_KEY) || '');
+    lctUpdateHint();
+  }
+  window.leagueChatSendAdminMessage = async function leagueChatSendAdminMessage() {
+    const t = window._lcThread || {};
+    const gid = String(t.groupId || '');
+    if (!gid) return;
+    const input = document.getElementById('lct-input');
+    const sendBtn = document.getElementById('lct-send');
+    const text = String(input?.value || '').trim();
+    if (!text) return;
+    if (text.length > 500) { showToast('Слишком длинно (макс. 500)'); return; }
+    const named = lctIsNamed();
+    const now = Date.now();
+    if (sendBtn) sendBtn.disabled = true;
+    try {
+      const ref = doc(collection(db, 'league_chat_messages'));
+      const msg = {
+        groupId: gid,
+        weekId: String(t.weekId || ''),
+        leagueId: Number(t.leagueId || 0),
+        authorUid: named ? ('admin:' + lctAdminEmail().toLowerCase()) : '__league_system__',
+        authorName: named ? lctPostAsName() : 'Compass',
+        authorAvatar: '',
+        authorAura: '',
+        kind: named ? 'user' : 'system',
+        ...(named ? {} : { systemType: 'announcement' }),
+        text,
+        status: 'visible',
+        reportCount: 0,
+        adminAuthored: true,
+        adminAuthoredBy: lctAdminEmail(),
+        createdAt: now,
+        updatedAt: now,
+      };
+      await setDoc(ref, msg);
+      logAction('league_chat_admin_message', gid, { messageId: ref.id, as: named ? msg.authorName : 'system' });
+      if (input) input.value = '';
+      // Optimistic append so it shows immediately.
+      window._lcThread.messages = [...(t.messages || []), { id: ref.id, _collection: 'league_chat_messages', ...msg }];
+      lcRenderThread();
+      window._leagueChatLoaded = false; // table cache stale
+      showToast(named ? ('Отправлено как «' + msg.authorName + '»') : 'Отправлено от Compass');
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
+    } finally {
+      if (sendBtn) sendBtn.disabled = false;
+    }
   };
   window.leagueChatOpenThread = async function(groupId, focusMsgId) {
     const gid = String(groupId || '');
@@ -20395,13 +20579,18 @@
     const subEl = document.getElementById('lc-thread-sub');
     const statsEl = document.getElementById('lc-thread-stats');
     if (!ov || !scroll) return;
-    window._lcThread = { groupId: gid, focusId: String(focusMsgId || ''), messages: [], loading: true };
+    // Capture room meta (week/league) so the admin composer can post into this room.
+    const room = (window._leagueChatCache?.rooms || []).find(r => String(r.groupId || r.id) === gid);
+    const weekId = room ? String(room.weekId || '') : '';
+    const leagueId = room ? Number(room.leagueId || 0) : 0;
+    window._lcThread = { groupId: gid, focusId: String(focusMsgId || ''), messages: [], loading: true, weekId, leagueId };
     if (titleEl) titleEl.textContent = 'Тред комнаты';
     if (subEl) subEl.textContent = gid;
     if (statsEl) statsEl.textContent = '';
     scroll.innerHTML = '<div class="lc-thread-loading">Загрузка треда…</div>';
     ov.classList.add('lc-thread-open');
     ov.setAttribute('aria-hidden', 'false');
+    lctResetComposer();
     try {
       // Pull the FULL thread for this room from Firestore, not the truncated sample.
       const snap = await getDocs(query(
@@ -20412,6 +20601,12 @@
       ));
       const messages = snap.docs.map(d => ({ id: d.id, _collection: 'league_chat_messages', ...(d.data() || {}) }));
       if (window._lcThread.groupId !== gid) return; // overlay changed/closed while loading
+      // Backfill room meta from messages if it wasn't in the rooms cache.
+      if ((!window._lcThread.weekId || !window._lcThread.leagueId) && messages.length) {
+        const m0 = messages.find(m => m.weekId != null || m.leagueId != null) || messages[0];
+        if (!window._lcThread.weekId) window._lcThread.weekId = String(m0.weekId || '');
+        if (!window._lcThread.leagueId) window._lcThread.leagueId = Number(m0.leagueId || 0);
+      }
       window._lcThread.messages = messages;
       window._lcThread.loading = false;
       lcRenderThread();
@@ -20723,9 +20918,8 @@
   function lcCleanHeaders(mode) {
     const head = document.getElementById('lc-head');
     if (!head) return;
-    const headers = mode === 'rooms'
-      ? ['Last activity', 'Messages', 'Room', 'League / week', 'Last message', 'Summary', 'Actions']
-      : mode === 'bans'
+    if (mode === 'rooms') { head.innerHTML = ''; return; } // cards view: no column headers
+    const headers = mode === 'bans'
         ? ['Updated', 'Status', 'UID', 'Term', 'Reason', 'Changed by', 'Actions']
         : mode === 'reports'
           ? ['Time', 'Status', 'Message author', 'League / week', 'Report / message', 'Reason', 'Actions']
@@ -20753,6 +20947,12 @@
     window._lcThreadWired = true;
     if (backdrop) backdrop.addEventListener('click', () => leagueChatCloseThread());
     if (closeBtn) closeBtn.addEventListener('click', () => leagueChatCloseThread());
+    const sendBtn = document.getElementById('lct-send');
+    if (sendBtn) sendBtn.addEventListener('click', () => leagueChatSendAdminMessage());
+    const input = document.getElementById('lct-input');
+    if (input) input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); leagueChatSendAdminMessage(); }
+    });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && ov.classList.contains('lc-thread-open')) leagueChatCloseThread();
     });
@@ -20795,7 +20995,7 @@
 
   window.renderLeagueChatAdmin = function renderLeagueChatAdmin() {
     applyCleanLeagueChatChrome();
-    const mode = document.getElementById('lc-filter')?.value || 'queue';
+    const mode = document.getElementById('lc-filter')?.value || 'rooms';
     lcRenderSummary();
     lcRenderModeButtons(mode);
     lcCleanHeaders(mode);
@@ -20812,18 +21012,27 @@
       return;
     }
     if (mode === 'rooms') {
-      body.innerHTML = rows.map((r) => {
+      // Forum view: each league room is a card; click opens the full chat thread.
+      const cards = rows.map((r) => {
         const groupArg = JSON.stringify(String(r.groupId || r.id || ''));
-        return `<tr>
-          <td>${escapeHtml(lcDate(r.lastMessageAt || r.updatedAt || r.createdAt))}</td>
-          <td><span class="lc-status-pill">${escapeHtml(String(r.messageCount || 0))}</span></td>
-          <td><div class="lc-row-main">${escapeHtml(r.groupId || r.id || '-')}</div><div class="lc-row-meta">${escapeHtml(String(r.memberCount || 0))} members</div></td>
-          <td><div class="lc-row-main">${escapeHtml(String(r.leagueId ?? '-'))}</div><div class="lc-row-meta">${escapeHtml(r.weekId || '-')}</div><div class="lc-row-meta">last: ${escapeHtml(String(r.lastAuthor || '-'))}</div></td>
-          <td><div class="lc-message-text">${escapeHtml(r.lastText || '-')}</div></td>
-          <td><div class="lc-reason-text">visible ${Number(r.visibleCount || 0)} · deleted ${Number(r.deletedCount || 0)} · reports ${Number(r.reportCount || 0)}</div></td>
-          <td><div class="lc-action-stack">${lcActionButton('Open room', `leagueChatOpenRoom(${groupArg})`)}</div></td>
-        </tr>`;
+        const reports = Number(r.reportCount || 0);
+        return `<div class="lc-room-card" onclick='leagueChatOpenThread(${groupArg}, "")'>
+          <div class="lc-rc-head">
+            <div class="lc-rc-league">🏆 Лига ${escapeHtml(String(r.leagueId ?? '—'))}</div>
+            <span class="lc-rc-count">💬 ${Number(r.messageCount || 0)}</span>
+          </div>
+          <div class="lc-rc-last">${escapeHtml(r.lastText || 'Сообщений пока нет')}</div>
+          <div class="lc-rc-foot">
+            <span>${escapeHtml(String(r.memberCount || 0))} 👤</span>
+            <span>👁 ${Number(r.visibleCount || 0)}</span>
+            <span>🗑 ${Number(r.deletedCount || 0)}</span>
+            ${reports ? `<span style="color:#fb923c">⚑ ${reports}</span>` : ''}
+            <span class="lc-rc-week">${escapeHtml(r.weekId || '—')}</span>
+            <span style="margin-left:auto">${escapeHtml(lcDate(r.lastMessageAt || r.updatedAt || r.createdAt))}</span>
+          </div>
+        </div>`;
       }).join('');
+      body.innerHTML = `<tr><td style="padding:0;border:none"><div class="lc-room-grid">${cards}</div></td></tr>`;
       return;
     }
     if (mode === 'bans') {
@@ -21013,6 +21222,8 @@
   }
 
   window.loadHelpBoardAdmin = async function loadHelpBoardAdmin(force = false) {
+    hbWireThreadOverlay();
+    hbSyncPostAsField();
     if (window._helpBoardLoaded && !force) {
       renderHelpBoardAdmin();
       return;
@@ -21216,6 +21427,492 @@
     logAction('help_board_queue_decision', queueId, { decision: next });
     window._helpBoardLoaded = false;
     await loadHelpBoardAdmin(true);
+  };
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // HELP BOARD — forum view + admin participation (create topics, post comments)
+  // Admin custom claim already grants direct create/update on help_board_* per
+  // firestore.rules, so these write to Firestore directly (like queueDecision).
+  // ═══════════════════════════════════════════════════════════════════════════
+  const HB_POST_AS_KEY = 'hb_admin_post_as';
+  const HB_TOPICS = 'help_board_topics';
+  const HB_COMMENTS = 'help_board_comments';
+  window._hbThread = { topicId: '', topic: null, comments: [], loading: false, replyTo: null };
+
+  function hbAdminEmail() {
+    return (auth && auth.currentUser && auth.currentUser.email) || 'admin';
+  }
+  // The display name every admin post is authored under. Editable in the toolbar.
+  function hbPostAsName() {
+    const stored = String(localStorage.getItem(HB_POST_AS_KEY) || '').trim();
+    if (stored) return stored;
+    const email = hbAdminEmail();
+    return email.includes('@') ? email.split('@')[0] : email;
+  }
+  // Stable synthetic author identity so all admin posts share one moderatable UID
+  // without ever colliding with a real user's stable_id.
+  function hbAdminAuthorUid() {
+    return 'admin:' + hbAdminEmail().toLowerCase();
+  }
+  window.helpBoardSetPostAs = function helpBoardSetPostAs(value) {
+    const v = String(value || '').slice(0, 48);
+    localStorage.setItem(HB_POST_AS_KEY, v);
+    const a1 = document.getElementById('hbt-as-name');
+    const a2 = document.getElementById('hbc-as-name');
+    const shown = v.trim() || hbPostAsName();
+    if (a1) a1.textContent = shown;
+    if (a2) a2.textContent = shown;
+  };
+  function hbSyncPostAsField() {
+    const input = document.getElementById('hb-post-as');
+    if (input && !input.value) {
+      const stored = String(localStorage.getItem(HB_POST_AS_KEY) || '');
+      if (stored) input.value = stored;
+    }
+    helpBoardSetPostAs(input ? input.value : '');
+  }
+
+  function hbInitials(name, uid) {
+    const s = String(name || '').trim();
+    if (s) {
+      const parts = s.split(/\s+/).filter(Boolean);
+      const a = parts[0] ? parts[0][0] : '';
+      const b = parts.length > 1 ? parts[parts.length - 1][0] : '';
+      return (a + b).toUpperCase() || a.toUpperCase();
+    }
+    const u = String(uid || '').trim();
+    return u ? u.slice(0, 2).toUpperCase() : '?';
+  }
+  function hbAvatarHtml(name, uid, url) {
+    if (url && /^https?:\/\//i.test(url)) {
+      return `<div class="hbt-avatar"><img src="${escapeHtml(url)}" alt="" onerror="this.remove()"></div>`;
+    }
+    return `<div class="hbt-avatar">${escapeHtml(hbInitials(name, uid))}</div>`;
+  }
+  function hbTime(ts) {
+    const raw = ts && typeof ts.toMillis === 'function' ? ts.toMillis() : (ts && typeof ts.seconds === 'number' ? ts.seconds * 1000 : ts);
+    const n = Number(raw || 0);
+    if (!n) return '';
+    try { return new Date(n).toLocaleString(ADMIN_DATE_LOCALE, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+    catch (_) { return ''; }
+  }
+  function hbItemStatus(row) {
+    const s = String(row.status || 'visible');
+    if (s === 'deleted') return 'deleted';
+    if (s === 'hidden' || s === 'blocked' || s === 'review') return 'hidden';
+    return 'visible';
+  }
+
+  // ── Forum list: topics as cards ────────────────────────────────────────────
+  function hbRenderThreadsList(search, targetLang, uiLang) {
+    const head = document.getElementById('hb-head');
+    if (head) head.innerHTML = ''; // cards view has no column headers
+    const body = document.getElementById('hb-body');
+    const count = document.getElementById('hb-count');
+    if (!body) return;
+    const topics = (window._helpBoardCache?.topics || [])
+      .filter(r => hbMatches(r, search, targetLang, uiLang))
+      .slice()
+      .sort((a, b) => Number(b.lastActivityAt || b.createdAt || 0) - Number(a.lastActivityAt || a.createdAt || 0));
+    if (count) count.textContent = `${topics.length} topics`;
+    if (!topics.length) {
+      body.innerHTML = `<tr><td style="padding:30px;text-align:center;color:#666">Тем пока нет. Нажми «✍ New topic», чтобы создать первую.</td></tr>`;
+      return;
+    }
+    const cards = topics.map((t) => {
+      const idArg = JSON.stringify(String(t.id || ''));
+      const hidden = hbItemStatus(t) !== 'visible';
+      const compassReady = String(t.compassStatus || '') === 'ready' && String(t.compassAnswer || '').trim();
+      return `<div class="hb-topic-card ${hidden ? 'hb-tc-hidden' : ''}" onclick='helpBoardOpenThread(${idArg})'>
+        <div class="hb-tc-title">${escapeHtml(t.title || '(без заголовка)')}</div>
+        <div class="hb-tc-body">${escapeHtml(t.text || '')}</div>
+        <div class="hb-tc-foot">
+          <span class="hbt-badge ${hidden ? 'b-hidden' : 'b-visible'}">${hidden ? 'скрыто' : 'видно'}</span>
+          <span class="hb-tc-chip">${escapeHtml(hbBoard(t))}</span>
+          <span>👤 ${escapeHtml(t.authorName || '—')}</span>
+          <span>💬 ${Number(t.commentCount || 0)}</span>
+          <span>⚑ ${Number(t.reportCount || 0)}</span>
+          ${compassReady ? '<span style="color:#c4b5fd">🧭 Компас ответил</span>' : ''}
+          <span>${escapeHtml(hbTime(t.lastActivityAt || t.createdAt))}</span>
+        </div>
+      </div>`;
+    }).join('');
+    // Drop the card grid into a single full-width cell so it lives inside the table shell.
+    body.innerHTML = `<tr><td style="padding:0;border:none"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:4px 2px">${cards}</div></td></tr>`;
+  }
+
+  // ── Thread modal ───────────────────────────────────────────────────────────
+  function hbWireThreadOverlay() {
+    if (window._hbThreadWired) return;
+    window._hbThreadWired = true;
+    const bind = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+    bind('hbt-backdrop', helpBoardCloseThread);
+    bind('hbt-close', helpBoardCloseThread);
+    bind('hbt-reply-cancel', () => hbSetReplyTarget(null));
+    bind('hbt-send', helpBoardSubmitComment);
+    bind('hbc-backdrop', helpBoardCloseComposer);
+    bind('hbc-close', helpBoardCloseComposer);
+    bind('hbc-cancel', helpBoardCloseComposer);
+    bind('hbc-submit', helpBoardSubmitTopic);
+    const input = document.getElementById('hbt-input');
+    if (input) {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); helpBoardSubmitComment(); }
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const hbc = document.getElementById('hbc-overlay');
+      const hbt = document.getElementById('hbt-overlay');
+      if (hbc && hbc.classList.contains('hbc-open')) helpBoardCloseComposer();
+      else if (hbt && hbt.classList.contains('hbt-open')) helpBoardCloseThread();
+    });
+  }
+
+  window.helpBoardCloseThread = function helpBoardCloseThread() {
+    const ov = document.getElementById('hbt-overlay');
+    if (ov) { ov.classList.remove('hbt-open'); ov.setAttribute('aria-hidden', 'true'); }
+    window._hbThread = { topicId: '', topic: null, comments: [], loading: false, replyTo: null };
+  };
+
+  window.helpBoardOpenThread = async function helpBoardOpenThread(topicId) {
+    const tid = String(topicId || '');
+    if (!tid) return;
+    hbWireThreadOverlay();
+    hbSyncPostAsField();
+    const ov = document.getElementById('hbt-overlay');
+    const scroll = document.getElementById('hbt-scroll');
+    if (!ov || !scroll) return;
+    window._hbThread = { topicId: tid, topic: null, comments: [], loading: true, replyTo: null };
+    hbSetReplyTarget(null);
+    document.getElementById('hbt-title').textContent = 'Загрузка темы…';
+    document.getElementById('hbt-sub').textContent = tid;
+    document.getElementById('hbt-stats').textContent = '';
+    scroll.innerHTML = '<div class="hbt-loading">Загрузка треда…</div>';
+    ov.classList.add('hbt-open');
+    ov.setAttribute('aria-hidden', 'false');
+    try {
+      const topicSnap = await getDoc(doc(db, HB_TOPICS, tid));
+      if (window._hbThread.topicId !== tid) return;
+      if (!topicSnap.exists()) { scroll.innerHTML = '<div class="hbt-empty">Тема не найдена (возможно, удалена).</div>'; return; }
+      const topic = { id: topicSnap.id, ...(topicSnap.data() || {}) };
+      let comments = [];
+      try {
+        const cs = await getDocs(query(collection(db, HB_COMMENTS), where('topicId', '==', tid), orderBy('createdAt', 'asc'), limit(500)));
+        comments = cs.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
+      } catch (e) {
+        // Composite index missing → fall back to the already-loaded comments cache.
+        comments = (window._helpBoardCache?.comments || [])
+          .filter(c => String(c.topicId || '') === tid)
+          .sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0));
+      }
+      if (window._hbThread.topicId !== tid) return;
+      window._hbThread.topic = topic;
+      window._hbThread.comments = comments;
+      window._hbThread.loading = false;
+      hbRenderThread();
+    } catch (e) {
+      if (window._hbThread.topicId !== tid) return;
+      scroll.innerHTML = `<div class="hbt-empty">Ошибка загрузки: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+    }
+  };
+
+  function hbItemActions(kind, row) {
+    // kind: 'topic' | 'comment' | 'compass'
+    const idArg = JSON.stringify(String(row.id || ''));
+    const authorUid = String(row.authorUid || '');
+    const authorArg = JSON.stringify(authorUid);
+    const btns = [];
+    if (kind === 'compass') {
+      const hidden = String(row.compassStatus || '') === 'hidden';
+      btns.push(`<button class="hbt-danger" onclick='helpBoardModerate("compass", ${idArg}, "${hidden ? 'restore' : 'hide'}")'>${hidden ? 'Показать Компас' : 'Скрыть Компас'}</button>`);
+      return btns.join('');
+    }
+    const type = kind === 'comment' ? 'comment' : 'topic';
+    const typeArg = JSON.stringify(type);
+    const status = hbItemStatus(row);
+    if (status === 'hidden') btns.push(`<button onclick='helpBoardModerate(${typeArg}, ${idArg}, "restore")'>Показать</button>`);
+    else btns.push(`<button class="hbt-danger" onclick='helpBoardModerate(${typeArg}, ${idArg}, "hide")'>Скрыть</button>`);
+    if (status !== 'deleted') btns.push(`<button class="hbt-danger" onclick='helpBoardModerate(${typeArg}, ${idArg}, "delete")'>Удалить</button>`);
+    // Don't offer restrict/ban on our own admin posts.
+    if (authorUid && !authorUid.startsWith('admin:')) {
+      if (type === 'topic') btns.push(`<button class="hbt-danger" onclick='helpBoardRestrictAuthor(${authorArg}, ${typeArg}, ${idArg})'>Запретить темы</button>`);
+      btns.push(`<button class="hbt-danger" onclick='helpBoardBanAuthor(${authorArg}, ${typeArg}, ${idArg})'>Бан автора</button>`);
+    }
+    return btns.join('');
+  }
+
+  function hbRenderThread() {
+    const t = window._hbThread || {};
+    const topic = t.topic;
+    const scroll = document.getElementById('hbt-scroll');
+    if (!scroll || !topic) return;
+    const comments = t.comments || [];
+    const visibleComments = comments.filter(c => hbItemStatus(c) === 'visible').length;
+    document.getElementById('hbt-title').textContent = topic.title || '(без заголовка)';
+    document.getElementById('hbt-sub').textContent = `${hbBoard(topic)} · ${topic.id}`;
+    document.getElementById('hbt-stats').textContent = `${comments.length} комм. · видно ${visibleComments} · ⚑ ${Number(topic.reportCount || 0)} · score ${Number(topic.helpfulScore || 0)}`;
+
+    const opStatus = hbItemStatus(topic);
+    const opBadge = `<span class="hbt-badge b-${opStatus}">${opStatus === 'visible' ? 'видно' : opStatus === 'deleted' ? 'удалено' : 'скрыто'}</span>`;
+    const isAdminOp = String(topic.authorUid || '').startsWith('admin:');
+    let html = `<div class="hbt-op ${opStatus !== 'visible' ? 'hbt-hidden-item' : ''}">
+      <div class="hbt-byline">
+        ${hbAvatarHtml(topic.authorName, topic.authorUid, topic.authorAvatar)}
+        <div style="min-width:0">
+          <div class="hbt-byname">${escapeHtml(topic.authorName || 'Аноним')} ${isAdminOp ? '<span class="hbt-badge b-admin">admin</span>' : ''}</div>
+          <div class="hbt-bymeta">${escapeHtml(hbTime(topic.createdAt))} · <span style="opacity:.7">${escapeHtml(String(topic.authorUid || ''))}</span></div>
+        </div>
+        ${opBadge}
+      </div>
+      <div class="hbt-op-title">${escapeHtml(topic.title || '')}</div>
+      <div class="hbt-op-body">${escapeHtml(topic.text || '')}</div>
+      <div class="hbt-item-actions">${hbItemActions('topic', topic)}</div>
+    </div>`;
+
+    // Compass answer, if present, rendered as a distinct assistant block.
+    const compassAnswer = String(topic.compassAnswer || '').trim();
+    const compassStatus = String(topic.compassStatus || '');
+    if (compassAnswer) {
+      const cHidden = compassStatus === 'hidden';
+      html += `<div class="hbt-compass ${cHidden ? 'hbt-hidden-item' : ''}">
+        <div class="hbt-compass-head">
+          <div class="hbt-compass-glyph">🧭</div>
+          <div class="hbt-compass-name">Компас ${cHidden ? '<span class="hbt-badge b-hidden">скрыт</span>' : ''}</div>
+        </div>
+        <div class="hbt-compass-body">${escapeHtml(compassAnswer)}</div>
+        <div class="hbt-item-actions">${hbItemActions('compass', topic)}</div>
+      </div>`;
+    } else if (compassStatus && compassStatus !== 'ready') {
+      html += `<div class="hbt-compass" style="opacity:.7"><div class="hbt-compass-head"><div class="hbt-compass-glyph">🧭</div><div class="hbt-compass-name">Компас</div></div><div class="hbt-compass-body" style="color:#9a94c6">Статус ответа: ${escapeHtml(compassStatus)}${Number(topic.compassRetryCount||0)?` · попыток ${Number(topic.compassRetryCount)}`:''}</div></div>`;
+    }
+
+    // Comments
+    if (!comments.length) {
+      html += '<div style="text-align:center;color:#666;font-size:13px;padding:8px">Комментариев пока нет — будь первым.</div>';
+    } else {
+      comments.forEach((c) => {
+        const cStatus = hbItemStatus(c);
+        const isAdmin = String(c.authorUid || '').startsWith('admin:');
+        const idArg = JSON.stringify(String(c.id || ''));
+        const nameArg = JSON.stringify(String(c.authorName || ''));
+        const replyQuote = c.replyToCommentId
+          ? `<div class="hbt-reply-quote"><span class="hbt-rq-name">${escapeHtml(c.replyToAuthorName || (c.replyToIsCompass ? 'Компас' : 'Аноним'))}</span>${escapeHtml(String(c.replyToText || '').slice(0, 140))}</div>`
+          : '';
+        html += `<div class="hbt-comment ${cStatus !== 'visible' ? 'hbt-hidden-item' : ''}">
+          ${hbAvatarHtml(c.authorName, c.authorUid, c.authorAvatar)}
+          <div class="hbt-cwrap">
+            <div class="hbt-cbyline">
+              <span class="hbt-byname">${escapeHtml(c.authorName || 'Аноним')}</span>
+              ${isAdmin ? '<span class="hbt-badge b-admin">admin</span>' : ''}
+              ${cStatus !== 'visible' ? `<span class="hbt-badge b-${cStatus}">${cStatus === 'deleted' ? 'удалено' : 'скрыто'}</span>` : ''}
+            </div>
+            <div class="hbt-bubble">
+              ${replyQuote}${escapeHtml(c.text || '—')}
+              <div class="hbt-item-meta">
+                <span>${escapeHtml(hbTime(c.createdAt))}</span>
+                ${Number(c.reportCount || 0) ? `<span style="color:#fb923c">⚑ ${Number(c.reportCount)}</span>` : ''}
+                <button style="background:none;border:none;color:#818cf8;cursor:pointer;font-size:11px;padding:0" onclick='hbSetReplyTarget({ id: ${idArg}, name: ${nameArg} })'>↩ ответить</button>
+              </div>
+              <div class="hbt-item-actions">${hbItemActions('comment', c)}</div>
+            </div>
+          </div>
+        </div>`;
+      });
+    }
+    scroll.innerHTML = html;
+    scroll.scrollTop = scroll.scrollHeight;
+    const composer = document.getElementById('hbt-composer');
+    if (composer) composer.style.display = opStatus === 'deleted' ? 'none' : '';
+  }
+
+  window.hbSetReplyTarget = function hbSetReplyTarget(target) {
+    window._hbThread.replyTo = target && target.id ? { id: String(target.id), name: String(target.name || '') } : null;
+    const box = document.getElementById('hbt-reply-target');
+    const txt = document.getElementById('hbt-reply-target-text');
+    if (box && txt) {
+      if (window._hbThread.replyTo) {
+        txt.textContent = `Ответ для: ${window._hbThread.replyTo.name || 'комментария'}`;
+        box.classList.add('on');
+      } else {
+        box.classList.remove('on');
+      }
+    }
+    const input = document.getElementById('hbt-input');
+    if (input && window._hbThread.replyTo) input.focus();
+  };
+
+  // ── Post a comment as admin (direct Firestore write, mirrors helpBoardAddComment) ──
+  window.helpBoardSubmitComment = async function helpBoardSubmitComment() {
+    const t = window._hbThread || {};
+    const topic = t.topic;
+    if (!topic) return;
+    const input = document.getElementById('hbt-input');
+    const sendBtn = document.getElementById('hbt-send');
+    const text = String(input?.value || '').trim();
+    if (!text) return;
+    if (text.length > 900) { showToast('Комментарий слишком длинный (макс. 900)'); return; }
+    const name = hbPostAsName();
+    const authorUid = hbAdminAuthorUid();
+    const now = Date.now();
+    if (sendBtn) sendBtn.disabled = true;
+    try {
+      const commentRef = doc(collection(db, HB_COMMENTS));
+      const topicRef = doc(db, HB_TOPICS, topic.id);
+      const replyTo = t.replyTo;
+      let replyFields = {};
+      if (replyTo && replyTo.id) {
+        const rc = (t.comments || []).find(c => String(c.id) === String(replyTo.id));
+        replyFields = {
+          replyToCommentId: replyTo.id,
+          replyToAuthorUid: String(rc?.authorUid || ''),
+          replyToAuthorName: String(rc?.authorName || replyTo.name || ''),
+          replyToText: String(rc?.text || '').slice(0, 140),
+          replyToIsCompass: rc?.isCompass === true,
+        };
+      }
+      const commentDoc = {
+        schemaVersion: 1,
+        policyVersion: 1,
+        topicId: topic.id,
+        boardKey: topic.boardKey || '',
+        targetLang: topic.targetLang || '',
+        uiLang: topic.uiLang || '',
+        text,
+        normalizedText: text.toLowerCase(),
+        authorUid,
+        authorAuthUid: auth.currentUser?.uid || '',
+        authorName: name,
+        authorAvatar: '',
+        authorAura: '',
+        ...replyFields,
+        status: 'visible',
+        helpfulScore: 0,
+        reportCount: 0,
+        adminAuthored: true,
+        adminAuthoredBy: hbAdminEmail(),
+        createdAt: now,
+        updatedAt: now,
+      };
+      await runTransaction(db, async (tx) => {
+        tx.set(commentRef, commentDoc);
+        tx.update(topicRef, {
+          commentCount: increment(1),
+          lastActivityAt: now,
+          updatedAt: now,
+        });
+      });
+      logAction('help_board_admin_comment', topic.id, { commentId: commentRef.id, as: name });
+      if (input) input.value = '';
+      hbSetReplyTarget(null);
+      // Optimistic local update so the new comment shows instantly.
+      window._hbThread.comments = [...(t.comments || []), { id: commentRef.id, ...commentDoc }];
+      window._hbThread.topic = { ...topic, commentCount: Number(topic.commentCount || 0) + 1, lastActivityAt: now };
+      hbRenderThread();
+      window._helpBoardLoaded = false; // table cache now stale
+      showToast('Комментарий опубликован как «' + name + '»');
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
+    } finally {
+      if (sendBtn) sendBtn.disabled = false;
+    }
+  };
+
+  // ── New-topic composer ─────────────────────────────────────────────────────
+  window.helpBoardOpenComposer = function helpBoardOpenComposer() {
+    hbWireThreadOverlay();
+    hbSyncPostAsField();
+    const ov = document.getElementById('hbc-overlay');
+    if (!ov) return;
+    document.getElementById('hbc-title') && (document.getElementById('hbc-title').value = '');
+    document.getElementById('hbc-text') && (document.getElementById('hbc-text').value = '');
+    const cb = document.getElementById('hbc-compass'); if (cb) cb.checked = true;
+    // Prefill board selectors from the current toolbar filters when set.
+    const curTarget = document.getElementById('hb-target')?.value;
+    const curUi = document.getElementById('hb-ui')?.value;
+    if (curTarget) { const s = document.getElementById('hbc-target'); if (s) s.value = curTarget; }
+    if (curUi) { const s = document.getElementById('hbc-ui'); if (s) s.value = curUi; }
+    ov.classList.add('hbc-open');
+    ov.setAttribute('aria-hidden', 'false');
+    setTimeout(() => document.getElementById('hbc-title')?.focus(), 30);
+  };
+  window.helpBoardCloseComposer = function helpBoardCloseComposer() {
+    const ov = document.getElementById('hbc-overlay');
+    if (ov) { ov.classList.remove('hbc-open'); ov.setAttribute('aria-hidden', 'true'); }
+  };
+
+  window.helpBoardSubmitTopic = async function helpBoardSubmitTopic() {
+    const title = String(document.getElementById('hbc-title')?.value || '').trim();
+    const text = String(document.getElementById('hbc-text')?.value || '').trim();
+    const targetLang = String(document.getElementById('hbc-target')?.value || 'en');
+    const uiLang = String(document.getElementById('hbc-ui')?.value || 'ru');
+    const letCompass = !!document.getElementById('hbc-compass')?.checked;
+    if (title.length < 4) { showToast('Заголовок слишком короткий (мин. 4)'); return; }
+    if (text.length < 8) { showToast('Текст слишком короткий (мин. 8)'); return; }
+    if (title.length > 120) { showToast('Заголовок слишком длинный (макс. 120)'); return; }
+    if (text.length > 2200) { showToast('Текст слишком длинный (макс. 2200)'); return; }
+    const name = hbPostAsName();
+    const authorUid = hbAdminAuthorUid();
+    const boardKey = `${targetLang}:${uiLang}`;
+    const now = Date.now();
+    // Seed hot/best scores with the same formula the backend uses for a fresh topic,
+    // so admin topics sort correctly under the app's "hot" tab instead of sitting at 0.
+    const freshHot = Number((1 / Math.pow(1 + 2, 0.82)).toFixed(6)); // helpful=0,comments=0,reports=0,age≈1h
+    const submitBtn = document.getElementById('hbc-submit');
+    if (submitBtn) submitBtn.disabled = true;
+    try {
+      const ref = doc(collection(db, HB_TOPICS));
+      const topicDoc = {
+        schemaVersion: 1,
+        policyVersion: 1,
+        boardKey,
+        targetLang,
+        uiLang,
+        title,
+        text,
+        normalizedText: `${title}\n${text}`.toLowerCase(),
+        authorUid,
+        authorAuthUid: auth.currentUser?.uid || '',
+        authorName: name,
+        authorAvatar: '',
+        authorAura: '',
+        status: 'visible',
+        moderationCategories: [],
+        moderationReasons: [],
+        compassAnswer: '',
+        // Checked → 'pending' fires the helpBoardGenerateCompassForTopic onCreate
+        // trigger and Compass answers automatically. Unchecked → never generate.
+        compassStatus: letCompass ? 'pending' : 'hidden',
+        compassModel: '',
+        compassRejectReason: '',
+        compassRequestedAt: letCompass ? now : 0,
+        helpfulScore: 0,
+        compassHelpfulScore: 0,
+        commentCount: 0,
+        reportCount: 0,
+        hotScore: freshHot,
+        bestScore: 0,
+        adminAuthored: true,
+        adminAuthoredBy: hbAdminEmail(),
+        createdAt: now,
+        updatedAt: now,
+        lastActivityAt: now,
+      };
+      await setDoc(ref, topicDoc);
+      logAction('help_board_admin_topic', ref.id, { as: name, board: boardKey, compass: letCompass });
+      helpBoardCloseComposer();
+      showToast('Тема создана как «' + name + '»');
+      // Refresh the tab so the new topic appears, then open its thread.
+      window._helpBoardLoaded = false;
+      await loadHelpBoardAdmin(true);
+      const filter = document.getElementById('hb-filter');
+      if (filter && filter.value !== 'threads') { filter.value = 'threads'; renderHelpBoardAdmin(); }
+      helpBoardOpenThread(ref.id);
+    } catch (e) {
+      showToast('Ошибка создания темы: ' + (e && e.message ? e.message : String(e)));
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   };
 
   let _communitySubmissionsCache = [];
@@ -24140,6 +24837,18 @@
       const churnPct = churnBase > 0 ? Math.round(lapsed / churnBase * 100) : 0;
       const convPct = users.length ? Math.round(everConverted / users.length * 100) : 0;
       const card = (label, val, sub, color) => `<div class="stat-card"><div class="label">${label}</div><div class="value" style="color:${color||'#fff'}">${val}</div><div class="sub">${sub}</div></div>`;
+      // MRR смоделирован в долларах (PRICE_BOOK в USD). Запоминаем базовую сумму в USD,
+      // чтобы селектор валюты пересчитывал её по сегодняшнему курсу тем же движком, что и пейвол.
+      window._mrrBaseUsd = modeledMrr;
+      const mrrCode = window._mrrCurrency || 'USD';
+      const mrrOptions = Object.keys(PAB_CUR_SYMBOL)
+        .map(c => `<option value="${c}"${c === mrrCode ? ' selected' : ''}>${PAB_CUR_SYMBOL[c]} ${c}</option>`).join('');
+      const mrrCard = `<div class="stat-card"><div class="label">💵 MRR (оценка)</div>
+        <div class="value" id="mrr-value" style="color:#fbbf24">$${modeledMrr.toFixed(0)}</div>
+        <div class="sub" style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+          <select id="mrr-currency" onchange="mrrOnCurrencyChange()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#cbd5e1;padding:2px 5px;border-radius:5px;font-size:10px;cursor:pointer">${mrrOptions}</select>
+          <span id="mrr-fx-note" style="font-size:10px;color:#6b7280">по прайс-листу, не факт</span>
+        </div></div>`;
       document.getElementById('a-subs-section').style.display = 'block';
       document.getElementById('a-subs-content').innerHTML = `
         <div class="stats" style="margin-bottom:10px">
@@ -24149,14 +24858,17 @@
           ${card('Триал', activeTrial, 'trial period', '#60a5fa')}
           ${card('Когда-либо платили', everConverted, convPct + '% от загруженных', '#a78bfa')}
           ${card('Отвалились (lapsed)', lapsed, 'churn-прокси ' + churnPct + '%', '#f87171')}
-          ${card('💵 MRR (оценка)', '$' + modeledMrr.toFixed(0), 'по прайс-листу, не факт', '#fbbf24')}
+          ${mrrCard}
         </div>
         <div style="font-size:11px;color:#6b7280;line-height:1.5;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 12px">
           ⚠️ <b>MRR — оценка, не реальные деньги.</b> RevenueCat не присылает цену в событиях, поэтому доход смоделирован по прайс-листу
-          (monthly $${PRICE_BOOK.monthly}, yearly $${PRICE_BOOK.yearly}). Количество подписок — реальное (из premiumInfo).
+          (monthly $${PRICE_BOOK.monthly}, yearly $${PRICE_BOOK.yearly}) в долларах, а валюта отображения пересчитывается по сегодняшнему курсу.
+          Количество подписок — реальное (из premiumInfo).
           Реальные деньги есть только в Telegram Stars (telegram_premium_orders). Churn — прокси по истёкшим подпискам без продления (зависит от лимита загрузки users).
           <br>Поменять цены: в консоли <code>window._adminPriceBook = {monthly: X, yearly: Y}</code> и обнови вкладку.
         </div>`;
+      // Если валюта уже была выбрана ранее — сразу пересчитаем (не ждём клика).
+      if (mrrCode !== 'USD') mrrOnCurrencyChange();
     } catch (e) { /* subs section is best-effort */ }
 
     // Lesson distribution
@@ -26242,49 +26954,171 @@
       list.innerHTML = '<div class="reports-empty" style="padding:30px 0">Сообщений пока нет</div>';
       return;
     }
-    list.innerHTML = rows.map((m) => {
-      const expired = Number(m.expiresAtMs || 0) <= now;
-      const cls = expired ? ' expired' : (m.active ? '' : ' off');
-      const status = expired ? 'истекло' : (m.active ? 'активно' : 'выключено');
-      const body = appMessagePreviewText(m.messageRu || '', 180);
-      const pollQuestion = m.poll ? String(m.poll.questionRu || m.titleRu || 'Опрос') : '';
-      const pollSummary = m.poll
-        ? `<br>📊 опрос: ${escapeHtml(appMessagePreviewText(pollQuestion, 100))} · голосов: ${Number(m.pollVoteCount || 0)}`
-        : '';
-      const pollOptions = m.poll?.options?.length
-        ? `<br>${m.poll.options.map((option) => {
-            const count = Number((m.pollCounts || {})[option.id] || 0);
-            return `${escapeHtml(option.textRu || option.id)}: ${count}`;
-          }).join(' · ')}`
-        : '';
+    // Apply history filters (search / status / kind). KPIs above stay over the full set.
+    const search = String(document.getElementById('am-search')?.value || '').trim().toLowerCase();
+    const fStatus = String(document.getElementById('am-filter-status')?.value || '');
+    const fKind = String(document.getElementById('am-filter-kind')?.value || '');
+    const amStatusOf = (m) => (Number(m.expiresAtMs || 0) <= now ? 'expired' : (m.active ? 'active' : 'off'));
+    const filtered = rows.filter((m) => {
+      if (fStatus && amStatusOf(m) !== fStatus) return false;
+      if (fKind === 'poll' && !m.poll) return false;
+      if (fKind === 'message' && m.poll) return false;
+      if (search) {
+        const hay = [m.titleRu, m.messageRu, m.id, m.poll?.questionRu].map((x) => String(x || '').toLowerCase()).join(' ');
+        if (!hay.includes(search)) return false;
+      }
+      return true;
+    });
+    if (!filtered.length) {
+      list.innerHTML = '<div class="reports-empty" style="padding:26px 0">Ничего не найдено под фильтр.</div>';
+      return;
+    }
+    list.innerHTML = filtered.map((m) => {
+      const st = amStatusOf(m);
+      const cls = st === 'expired' ? ' expired' : (m.active ? '' : ' off');
+      const statusLabel = st === 'expired' ? '⌛ истекло' : (m.active ? 'активно' : 'выключено');
+      const statusCls = st === 'expired' ? 'expired' : (m.active ? 'on' : 'off');
+      const body = appMessagePreviewText(m.messageRu || '', 160);
+      const reads = Math.max(0, Number(m.readCount || 0));
+      const idEsc = escapeHtml(m.id);
+      const pollChip = m.poll ? `<span class="app-msg-chip poll">📊 <b>${Number(m.pollVoteCount || 0)}</b> голосов</span>` : '';
       return `
-        <div class="app-msg-card${cls}" data-am-card="${escapeHtml(m.id)}">
+        <div class="app-msg-card clickable${cls}" data-am-card="${idEsc}" data-am-open="${idEsc}" title="Открыть отклик">
           <div style="min-width:0">
-            <div class="app-msg-card-title">${m.active ? '🟢' : '⚫'} ${m.poll ? '📊 ' : ''}${escapeHtml(m.titleRu || '—')}</div>
+            <div class="app-msg-card-title">${m.poll ? '📊 ' : '✉️ '}${escapeHtml(m.titleRu || '—')}</div>
             <div class="app-msg-card-body">${escapeHtml(body || '—')}</div>
-            <div class="app-msg-meta">
-              ${escapeHtml(status)} · audience: ${escapeHtml(m.audience || 'all')} · priority: ${Number(m.priority || 0)}<br>
-              создано: ${appMessageDate(m.createdAtMs)} · истекает: ${appMessageDate(m.expiresAtMs)}<br>
-              👀 ${Math.max(0, Number(m.readCount || 0))} · 👍 ${Number(m.likes || 0)} · 👎 ${Number(m.dislikes || 0)} · id: <code>${escapeHtml(m.id)}</code>${pollSummary}${pollOptions}
+            <div class="app-msg-stats">
+              <span class="app-msg-statusdot ${statusCls}">${statusLabel}</span>
+              <span class="app-msg-chip">👀 <b>${reads}</b></span>
+              <span class="app-msg-chip">👍 <b>${Number(m.likes || 0)}</b></span>
+              <span class="app-msg-chip">👎 <b>${Number(m.dislikes || 0)}</b></span>
+              ${pollChip}
+              <span class="app-msg-chip">${escapeHtml(m.audience || 'all')}</span>
             </div>
+            <div class="app-msg-meta">создано ${appMessageDate(m.createdAtMs)} · истекает ${appMessageDate(m.expiresAtMs)} · prio ${Number(m.priority || 0)} · id <code>${idEsc}</code></div>
           </div>
           <div class="app-msg-card-actions">
-            <button type="button" data-am-act="edit" data-id="${escapeHtml(m.id)}" style="background:#2a2a3a;color:#cbd5e1">✏️ Редактировать</button>
-            <button type="button" data-am-act="toggle" data-id="${escapeHtml(m.id)}" style="background:#1a2a3a;color:#93c5fd">${m.active ? '⏸ Выключить' : '▶ Включить'}</button>
-            <button type="button" data-am-act="delete" data-id="${escapeHtml(m.id)}" style="background:#3b1a1a;border-color:#7f1d1d;color:#fca5a5">🗑 Удалить</button>
+            <button type="button" data-am-act="open" data-id="${idEsc}" style="background:#1e1a3a;color:#c4b5fd">📊 Отклик</button>
+            <button type="button" data-am-act="edit" data-id="${idEsc}" style="background:#2a2a3a;color:#cbd5e1">✏️ Изменить</button>
+            <button type="button" data-am-act="toggle" data-id="${idEsc}" style="background:#1a2a3a;color:#93c5fd">${m.active ? '⏸ Выкл' : '▶ Вкл'}</button>
+            <button type="button" data-am-act="delete" data-id="${idEsc}" style="background:#3b1a1a;border-color:#7f1d1d;color:#fca5a5">🗑</button>
           </div>
         </div>`;
     }).join('');
+    // Card body click → engagement panel; action buttons handle their own click.
+    list.querySelectorAll('[data-am-open]').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('button')) return;
+        openAppMessageEngagement(card.getAttribute('data-am-open'));
+      });
+    });
     list.querySelectorAll('button[data-am-act]').forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const id = btn.dataset.id;
         const act = btn.dataset.amAct;
+        if (act === 'open') openAppMessageEngagement(id);
         if (act === 'edit') window.editAppMessage(id);
         if (act === 'toggle') window.toggleAppMessageActive(id);
         if (act === 'delete') window.deleteAppMessage(id);
       });
     });
   }
+
+  // Expose for inline toolbar handlers (search/status/kind filters run in global scope).
+  window.renderAppMessages = renderAppMessages;
+
+  // Collapse/expand the composer so the history feed can take the full column.
+  window.toggleAppMessageComposer = function toggleAppMessageComposer(force) {
+    const panel = document.getElementById('am-compose-panel');
+    if (!panel) return;
+    const collapse = typeof force === 'boolean' ? force : !panel.classList.contains('collapsed');
+    panel.classList.toggle('collapsed', collapse);
+  };
+
+  // ── App message engagement panel: reads, reactions, poll breakdown ─────────
+  function ameWire() {
+    if (window._ameWired) return;
+    window._ameWired = true;
+    const close = () => {
+      const ov = document.getElementById('ame-overlay');
+      if (ov) { ov.classList.remove('ame-open'); ov.setAttribute('aria-hidden', 'true'); }
+    };
+    document.getElementById('ame-backdrop')?.addEventListener('click', close);
+    document.getElementById('ame-close')?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      const ov = document.getElementById('ame-overlay');
+      if (e.key === 'Escape' && ov && ov.classList.contains('ame-open')) close();
+    });
+  }
+  window.openAppMessageEngagement = async function openAppMessageEngagement(id) {
+    const mid = String(id || '');
+    if (!mid) return;
+    ameWire();
+    const m = (window._appMessages || []).find((r) => r.id === mid) || { id: mid };
+    const ov = document.getElementById('ame-overlay');
+    const bodyEl = document.getElementById('ame-body');
+    document.getElementById('ame-title').textContent = m.titleRu || '(без темы)';
+    document.getElementById('ame-sub').textContent = `id: ${mid}`;
+    bodyEl.innerHTML = '<div class="ame-loading">Загрузка отклика…</div>';
+    ov.classList.add('ame-open');
+    ov.setAttribute('aria-hidden', 'false');
+    try {
+      // Pull reactions + poll votes from subcollections for the full breakdown.
+      const [rxSnap, pvSnap] = await Promise.all([
+        getDocs(collection(db, 'app_messages', mid, 'reactions')),
+        m.poll ? getDocs(collection(db, 'app_messages', mid, 'poll_votes')) : Promise.resolve({ docs: [] }),
+      ]);
+      let likes = 0, dislikes = 0;
+      const reactors = [];
+      rxSnap.docs.forEach((d) => {
+        const r = String(d.data()?.reaction || '');
+        if (r === 'like') { likes++; reactors.push({ uid: d.id, r: 'like' }); }
+        else if (r === 'dislike') { dislikes++; reactors.push({ uid: d.id, r: 'dislike' }); }
+      });
+      const pollCounts = {};
+      pvSnap.docs.forEach((d) => {
+        const opt = String(d.data()?.optionId || '');
+        if (opt) pollCounts[opt] = (pollCounts[opt] || 0) + 1;
+      });
+      const pollTotal = Object.values(pollCounts).reduce((a, b) => a + b, 0);
+      const reads = Math.max(0, Number(m.readCount || 0));
+
+      let html = `<div class="ame-metrics">
+        <div class="ame-metric"><div class="v">${reads}</div><div class="l">👀 прочтений</div></div>
+        <div class="ame-metric"><div class="v">${likes}</div><div class="l">👍 лайков</div></div>
+        <div class="ame-metric"><div class="v">${dislikes}</div><div class="l">👎 дизлайков</div></div>
+        ${m.poll ? `<div class="ame-metric"><div class="v">${pollTotal}</div><div class="l">📊 голосов</div></div>` : ''}
+      </div>`;
+
+      if (m.poll) {
+        const q = escapeHtml(m.poll.questionRu || m.titleRu || 'Опрос');
+        html += `<div class="ame-section-title">📊 Опрос: ${q}</div><div>`;
+        (m.poll.options || []).forEach((opt) => {
+          const c = Number(pollCounts[opt.id] || 0);
+          const pct = pollTotal ? Math.round((c / pollTotal) * 100) : 0;
+          html += `<div class="ame-poll-row">
+            <div class="ame-poll-top"><span>${escapeHtml(opt.textRu || opt.id)}</span><span class="ame-poll-pct">${c} · ${pct}%</span></div>
+            <div class="ame-poll-bar"><div class="ame-poll-fill" style="width:${pct}%"></div></div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+
+      html += `<div class="ame-section-title">Кто реагировал (${reactors.length})</div>`;
+      if (!reactors.length) {
+        html += '<div class="ame-empty">Реакций пока нет.</div>';
+      } else {
+        html += '<div class="ame-uid-list">' + reactors
+          .sort((a, b) => (a.r === b.r ? 0 : a.r === 'like' ? -1 : 1))
+          .map((x) => `<div class="ame-uid-item"><code>${escapeHtml(x.uid)}</code><span class="rx">${x.r === 'like' ? '👍' : '👎'}</span></div>`)
+          .join('') + '</div>';
+      }
+      bodyEl.innerHTML = html;
+    } catch (e) {
+      bodyEl.innerHTML = `<div class="ame-empty" style="color:#f87171">Ошибка загрузки: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+    }
+  };
 
   // ── Remote Config ─────────────────────────────────────────────────────────
   // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
@@ -28252,40 +29086,80 @@
     return Number.isFinite(n) && n >= 0 ? n : fallback;
   }
 
-  // ── Реальные валюты: символ + курс на сегодня (базовые цены заданы в рублях) ──
+  // ── Реальные валюты: символ + курс на сегодня (общий движок для всей админки) ──
   const PAB_CUR_SYMBOL = {
     RUB: '₽', USD: '$', EUR: '€', GBP: '£', KZT: '₸', UAH: '₴', TRY: '₺',
     PLN: 'zł', INR: '₹', BRL: 'R$', AED: 'د.إ', CNY: '¥', JPY: '¥',
   };
-  // Кэш курсов «1 RUB → X». Пересчёт: сумма_в_валюте = сумма_в_рублях × rate.
-  const pabFxCache = { base: 'RUB', rates: { RUB: 1 }, date: null, ts: 0 };
+  // Кэш курсов по базовой валюте: base → { rates, date, ts }.
+  // «1 base → X». Пересчёт: сумма_в_валюте = сумма_в_базе × rate.
+  const pabFxCacheByBase = {};
 
   // Тянет сегодняшний курс с бесплатного API без ключа (open.er-api.com).
+  // base — исходная валюта суммы (RUB для пейвола, USD для MRR и т.п.).
   // Возвращает { rate, date, live }. При ошибке/офлайне — последний известный курс или 1.
-  async function pabGetRate(code) {
-    if (code === 'RUB') return { rate: 1, date: pabFxCache.date, live: true };
+  async function pabGetRate(code, base = 'RUB') {
+    if (code === base) return { rate: 1, date: (pabFxCacheByBase[base] || {}).date || null, live: true };
+    const cache = pabFxCacheByBase[base] || (pabFxCacheByBase[base] = { rates: {}, date: null, ts: 0 });
     // Кэш свежий (< 30 мин) и содержит нужную валюту — не дёргаем сеть повторно.
-    const fresh = pabFxCache.ts && (Date.now() - pabFxCache.ts) < 30 * 60 * 1000;
-    if (fresh && Number.isFinite(pabFxCache.rates[code])) {
-      return { rate: pabFxCache.rates[code], date: pabFxCache.date, live: true };
+    const fresh = cache.ts && (Date.now() - cache.ts) < 30 * 60 * 1000;
+    if (fresh && Number.isFinite(cache.rates[code])) {
+      return { rate: cache.rates[code], date: cache.date, live: true };
     }
     try {
-      const res = await fetch('https://open.er-api.com/v6/latest/RUB');
+      const res = await fetch('https://open.er-api.com/v6/latest/' + encodeURIComponent(base));
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const j = await res.json();
       if (!j || j.result !== 'success' || !j.rates) throw new Error('bad payload');
-      pabFxCache.rates = j.rates;
-      pabFxCache.date = j.time_last_update_utc || (j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000).toUTCString() : null);
-      pabFxCache.ts = Date.now();
+      cache.rates = j.rates;
+      cache.date = j.time_last_update_utc || (j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000).toUTCString() : null);
+      cache.ts = Date.now();
       const rate = Number(j.rates[code]);
       if (!Number.isFinite(rate)) throw new Error('нет курса для ' + code);
-      return { rate, date: pabFxCache.date, live: true };
+      return { rate, date: cache.date, live: true };
     } catch (e) {
       // Фолбэк: последний известный курс из кэша, иначе 1:1 (честно помечаем как «не сегодня»).
-      const cached = Number(pabFxCache.rates[code]);
-      return { rate: Number.isFinite(cached) ? cached : 1, date: pabFxCache.date, live: false, error: String(e && e.message || e) };
+      const cached = Number(cache.rates[code]);
+      return { rate: Number.isFinite(cached) ? cached : 1, date: cache.date, live: false, error: String(e && e.message || e) };
     }
   }
+
+  // Формат суммы с символом валюты: мелкие валюты — с копейками, крупные — целыми.
+  function pabFmtMoney(value, code, rate) {
+    const cur = PAB_CUR_SYMBOL[code] || code;
+    const decimals = (rate != null && rate < 0.05) ? 2 : 0;
+    const n = Number(value || 0).toLocaleString('ru-RU', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    return `${n} ${cur}`;
+  }
+
+  // MRR-карточка (вкладка Аналитика): базовая сумма в USD → выбранная валюта по курсу.
+  window.mrrOnCurrencyChange = async function() {
+    const sel = document.getElementById('mrr-currency');
+    const valEl = document.getElementById('mrr-value');
+    const noteEl = document.getElementById('mrr-fx-note');
+    if (!sel || !valEl) return;
+    const code = sel.value || 'USD';
+    window._mrrCurrency = code;
+    const baseUsd = Number(window._mrrBaseUsd || 0);
+    if (code === 'USD') {
+      valEl.textContent = '$' + baseUsd.toFixed(0);
+      if (noteEl) { noteEl.style.color = '#6b7280'; noteEl.textContent = 'по прайс-листу, не факт'; }
+      return;
+    }
+    if (noteEl) { noteEl.style.color = '#6b7280'; noteEl.textContent = 'считаю курс…'; }
+    const fx = await pabGetRate(code, 'USD');
+    valEl.textContent = pabFmtMoney(baseUsd * fx.rate, code, fx.rate);
+    if (noteEl) {
+      if (fx.live) {
+        const dt = fx.date ? new Date(fx.date).toLocaleDateString('ru-RU') : 'сегодня';
+        noteEl.style.color = '#6b7280';
+        noteEl.textContent = `курс на ${dt}, из $${baseUsd.toFixed(0)}`;
+      } else {
+        noteEl.style.color = '#f59e0b';
+        noteEl.textContent = `⚠ курс приблизительный, из $${baseUsd.toFixed(0)}`;
+      }
+    }
+  };
 
   // Линейный график динамики покупок по дням.
   function pabSvgLineChart(points /* [{label, value}] */, opts) {
@@ -28384,9 +29258,8 @@
       lifetime: baseRub.lifetime * rate,
     };
     const money = (m) => m.monthly * price.monthly + m.yearly * price.yearly + m.lifetime * price.lifetime;
-    // Мелкие валюты (доллар/евро) — 2 знака после запятой; крупные (рубль/иена) — целыми.
-    const decimals = rate < 0.05 ? 2 : 0;
-    const fmtMoney = (v) => `${Number(v).toLocaleString('ru-RU', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })} ${cur}`;
+    // Единый форматтер денег для всей админки (мелкие валюты — с копейками, крупные — целыми).
+    const fmtMoney = (v) => pabFmtMoney(v, code, rate);
 
     const keys = Object.keys(d.moneyByCtx);
     const totalBuys = keys.reduce((s, k) => s + d.moneyByCtx[k].buys, 0);

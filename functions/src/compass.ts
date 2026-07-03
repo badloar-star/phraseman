@@ -22,8 +22,8 @@ import { resolveJobConfig } from './openai_jobs_config';
 import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
-import { judgeExplanation } from './explain/explain_judge';
 import { buildCompassPrompt } from './compass/compass_prompts';
+import { judgeCompassComment } from './compass/compass_judge';
 import { resolveAiOutputLang } from './ai_language_contract';
 import {
   compassSignature,
@@ -153,8 +153,10 @@ export const compassGenerate = onCall(
     const comment = gen.text.trim();
 
     // 6) Лёгкая проверка (язык/связность/безопасность). Fail-closed.
+    // ВАЖНО: судья Компаса, НЕ фразовый judgeExplanation — тот бракует день-комментарий как
+    // off_topic («не про английскую фразу»), из-за чего раньше реджектился весь кэш.
     const verdict = comment
-      ? await judgeExplanation({ text: comment, phraseEn: signature, lang, apiKey })
+      ? await judgeCompassComment({ text: comment, langKey, apiKey })
       : { ok: false, reason: 'empty' as const, promptTokens: 0, completionTokens: 0 };
 
     if (verdict.ok) {

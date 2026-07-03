@@ -54,8 +54,15 @@ export function heuristicPreFilter(text: string, lang: string): JudgeReason | nu
   return reason; // 'empty' | 'too_short' | 'non_target_language' are all in JUDGE_REASONS
 }
 
-/** Coerce a parsed judge object into a safe verdict, or null if it is not a usable verdict. */
-function verdictFromParsed(parsed: unknown): { ok: boolean; reason: JudgeReason } | null {
+/**
+ * Coerce a parsed judge object into a safe verdict, or null if it is not a usable verdict.
+ * `reasonSet` is the caller's allowed reject-reason enum (Compass reuses this with its own enum).
+ */
+export function coerceJudgeVerdict<R extends string>(
+  parsed: unknown,
+  reasonSet: ReadonlySet<string>,
+  fallbackReason: R,
+): { ok: boolean; reason: R } | null {
   if (!parsed || typeof parsed !== 'object') return null;
   const obj = parsed as Record<string, unknown>;
   if (typeof obj.ok !== 'boolean') return null; // missing/non-boolean ok ⇒ unusable
@@ -63,27 +70,32 @@ function verdictFromParsed(parsed: unknown): { ok: boolean; reason: JudgeReason 
   const rawReason = typeof obj.reason === 'string' ? obj.reason : '';
   if (obj.ok === true) {
     // Passing verdict: normalize reason to 'ok' (never trust an echoed/odd reason on success).
-    return { ok: true, reason: 'ok' };
+    return { ok: true, reason: 'ok' as R };
   }
   // Failing verdict: keep the reason only if it is in the fixed enum (and not the passing value);
-  // anything else (echoed phrase, invented reason) collapses to 'incoherent'.
-  const reason: JudgeReason = REASON_SET.has(rawReason) && rawReason !== 'ok'
-    ? (rawReason as JudgeReason)
-    : 'incoherent';
+  // anything else (echoed phrase, invented reason) collapses to the caller's fallback.
+  const reason: R = reasonSet.has(rawReason) && rawReason !== 'ok'
+    ? (rawReason as R)
+    : fallbackReason;
   return { ok: false, reason };
 }
 
 /**
- * Parse the model's JSON reply fail-closed. Accepts a clean JSON object or one embedded in extra
+ * Parse a strict-JSON judge reply fail-closed. Accepts a clean JSON object or one embedded in extra
  * prose (extracts the first {...} block). Anything unparseable ⇒ null (caller treats as ok:false).
+ * Generic over the reject-reason enum so Compass and Explain share the exact same fail-closed parser.
  */
-function parseJudgeReply(raw: string): { ok: boolean; reason: JudgeReason } | null {
+export function parseJsonJudgeReply<R extends string>(
+  raw: string,
+  reasonSet: ReadonlySet<string>,
+  fallbackReason: R,
+): { ok: boolean; reason: R } | null {
   const s = String(raw ?? '').trim();
   if (!s) return null;
 
-  const tryParse = (candidate: string): { ok: boolean; reason: JudgeReason } | null => {
+  const tryParse = (candidate: string): { ok: boolean; reason: R } | null => {
     try {
-      return verdictFromParsed(JSON.parse(candidate));
+      return coerceJudgeVerdict(JSON.parse(candidate), reasonSet, fallbackReason);
     } catch {
       return null;
     }
@@ -99,6 +111,11 @@ function parseJudgeReply(raw: string): { ok: boolean; reason: JudgeReason } | nu
     return tryParse(s.slice(start, end + 1));
   }
   return null;
+}
+
+/** Explain-judge reply parser: the shared fail-closed parser bound to the Explain reason enum. */
+function parseJudgeReply(raw: string): { ok: boolean; reason: JudgeReason } | null {
+  return parseJsonJudgeReply<JudgeReason>(raw, REASON_SET, 'incoherent');
 }
 
 /**

@@ -15,7 +15,11 @@ export const COMPASS_COLLECTION = 'compass_briefings';
 export const COMPASS_LOCK_TTL_MS = 30_000;
 // v2 (2026-06-21): audit fixes — ≤10 words/sentence, few-shot per dayType, ban filler words,
 // ban inventing numbers, allow one light human touch. Old v1 lines predate these, regenerate.
-export const COMPASS_SCHEMA_VERSION = 2;
+// v3 (2026-07-03): the day-comment was being validated by the PHRASE judge (judgeExplanation),
+// which rejected every comment as off_topic ("not about an English phrase") → the entire cache was
+// stuck at rejected. Fixed to a dedicated Compass judge; bump the version so all the wrongly-rejected
+// v2 docs are treated as stale and regenerated fresh instead of waiting on the per-doc retry TTL.
+export const COMPASS_SCHEMA_VERSION = 3;
 export const COMPASS_REJECTED_RETRY_TTL_MS = 10 * 60_000;
 
 export type CompassCacheStatus = 'pending' | 'ready' | 'rejected';

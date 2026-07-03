@@ -202,6 +202,31 @@
     .an2-step-track { height:7px; background:#161a26; border-radius:5px; overflow:hidden; }
     .an2-step-fill { height:100%; border-radius:5px; }
     .an2-empty { font-size:12px; color:#6b7280; padding:8px 0; }
+    /* Card header row: kicker + hoverable info icon that reveals a tooltip. */
+    .an2-head { display:flex; align-items:center; gap:6px; }
+    .an2-info {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:15px; height:15px; border-radius:50%; font-size:10px; font-weight:800;
+      color:#8a92a0; background:#171b26; border:1px solid #2a3040; cursor:help;
+      position:relative; user-select:none; flex:none;
+    }
+    .an2-info:hover { color:#e5e7eb; border-color:#3b5bdb; background:#1a2030; }
+    .an2-info::after {
+      content:attr(data-tip); position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+      width:max-content; max-width:260px; white-space:normal; text-align:left;
+      background:#0b0e16; color:#cbd5e1; border:1px solid #2a2f40; border-radius:8px;
+      padding:8px 10px; font-size:11.5px; font-weight:500; line-height:1.45;
+      box-shadow:0 8px 24px rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:opacity .12s;
+      z-index:50;
+    }
+    .an2-info::before {
+      content:''; position:absolute; bottom:calc(100% + 3px); left:50%; transform:translateX(-50%);
+      border:5px solid transparent; border-top-color:#2a2f40; opacity:0; transition:opacity .12s; z-index:50;
+    }
+    .an2-info:hover::after, .an2-info:hover::before { opacity:1; }
+    /* Tooltips near the right edge flip to the left so they don't clip off-screen. */
+    .an2-info.an2-info-left::after { left:auto; right:0; transform:none; }
+    .an2-info.an2-info-left::before { left:auto; right:5px; transform:none; }
 
     /* Reports tab */
     .reports-tab { display: none; padding: 20px 24px; }
@@ -757,6 +782,106 @@
     .lc-thread-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
     .lc-row-clickable { cursor: pointer; }
     .lc-row-clickable:hover { background: #161620 !important; }
+
+    /* ── Help Board thread viewer (user-facing forum look) ────────────────── */
+    #hbt-overlay { display: none; position: fixed; inset: 0; z-index: 10050; }
+    #hbt-overlay.hbt-open { display: block; }
+    #hbt-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
+    #hbt-panel {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: min(720px, 94vw); height: min(88vh, 900px);
+      background: #0c0d14; border: 1px solid #23232f; border-radius: 16px;
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 24px 80px #000a;
+    }
+    .hbt-head { flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 18px; border-bottom: 1px solid #23232f; background: #12121b; }
+    .hbt-head .hbt-title { font-size: 16px; font-weight: 800; color: #f4f4f5; line-height: 1.3; }
+    .hbt-head .hbt-sub { font-size: 12px; color: #8b8b9a; margin-top: 3px; word-break: break-all; }
+    .hbt-head .hbt-stats { font-size: 11px; color: #6b7280; margin-top: 6px; }
+    .hbt-close { background: #23232f; border: none; color: #9a9aa8; border-radius: 7px; padding: 6px 11px; cursor: pointer; font-size: 16px; line-height: 1; flex-shrink: 0; }
+    .hbt-close:hover { color: #fff; background: #2f2f3d; }
+    .hbt-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(180deg, #0e0f17 0%, #0c0d14 100%); }
+
+    /* Topic (OP) card — the question at the top of the thread */
+    .hbt-op { background: #14161f; border: 1px solid #262838; border-radius: 14px; padding: 14px 16px; }
+    .hbt-op.hbt-hidden-item { background: #2a1414; border: 1px dashed #6b2a2a; }
+    .hbt-op-title { font-size: 17px; font-weight: 800; color: #f4f4f5; line-height: 1.3; margin: 0 0 8px; }
+    .hbt-op-body { font-size: 14px; line-height: 1.5; color: #dcdce4; white-space: pre-wrap; word-break: break-word; }
+    .hbt-byline { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .hbt-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; background: #2a2a3a; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #cbd5e1; overflow: hidden; }
+    .hbt-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .hbt-byname { font-size: 13px; font-weight: 700; color: #a5b4fc; }
+    .hbt-bymeta { font-size: 11px; color: #7e8494; margin-top: 1px; }
+    .hbt-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 1px 7px; border-radius: 999px; }
+    .hbt-badge.b-visible { color: #4ade80; background: #12301f; }
+    .hbt-badge.b-hidden { color: #f87171; background: #301414; }
+    .hbt-badge.b-deleted { color: #f87171; background: #301414; }
+    .hbt-badge.b-admin { color: #fbbf24; background: #2a2410; }
+
+    /* Compass answer block — the assistant's reply, styled distinct */
+    .hbt-compass { border: 1px solid #2f2a52; background: #16142400; background: linear-gradient(180deg, #191634 0%, #14122a 100%); border-radius: 14px; padding: 12px 14px; }
+    .hbt-compass.hbt-hidden-item { opacity: 0.6; border-style: dashed; }
+    .hbt-compass-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .hbt-compass-glyph { width: 26px; height: 26px; border-radius: 8px; background: radial-gradient(circle at 30% 30%, #a78bfa, #6c47ff); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .hbt-compass-name { font-size: 13px; font-weight: 800; color: #c4b5fd; }
+    .hbt-compass-body { font-size: 14px; line-height: 1.5; color: #e5e2f5; white-space: pre-wrap; word-break: break-word; }
+
+    /* Comments — bubble list */
+    .hbt-comment { display: flex; gap: 9px; }
+    .hbt-comment.hbt-hidden-item .hbt-bubble { background: #2a1414; border: 1px dashed #6b2a2a; color: #d8a0a0; }
+    .hbt-cwrap { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+    .hbt-cbyline { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
+    .hbt-bubble { position: relative; background: #1c1e2b; color: #e8e8ee; border-radius: 4px 14px 14px 14px; padding: 8px 12px 6px; font-size: 14px; line-height: 1.45; word-break: break-word; white-space: pre-wrap; box-shadow: 0 1px 2px #0004; }
+    .hbt-reply-quote { border-left: 3px solid #6c47ff; padding: 2px 8px; margin: 0 0 6px; background: #ffffff08; border-radius: 4px; font-size: 12px; color: #b9b9c6; }
+    .hbt-reply-quote .hbt-rq-name { color: #a5b4fc; font-weight: 700; display: block; }
+    .hbt-item-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 10px; color: #7e8494; flex-wrap: wrap; }
+    .hbt-item-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+    .hbt-item-actions button { background: #23232f; border: 1px solid #34344a; color: #c9c9d4; border-radius: 7px; padding: 3px 10px; font-size: 11px; cursor: pointer; }
+    .hbt-item-actions button:hover { filter: brightness(1.18); }
+    .hbt-item-actions button.hbt-danger { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
+    .hbt-empty { margin: auto; color: #666; font-size: 14px; text-align: center; padding: 40px; }
+    .hbt-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
+
+    /* Composer docked at the bottom of the thread */
+    .hbt-composer { flex-shrink: 0; border-top: 1px solid #23232f; background: #12121b; padding: 10px 14px; }
+    .hbt-composer .hbt-reply-target { font-size: 11px; color: #a5b4fc; margin-bottom: 6px; display: none; align-items: center; gap: 8px; }
+    .hbt-composer .hbt-reply-target.on { display: flex; }
+    .hbt-composer .hbt-reply-target button { background: none; border: none; color: #f87171; cursor: pointer; font-size: 12px; padding: 0; }
+    .hbt-composer-row { display: flex; gap: 8px; align-items: flex-end; }
+    .hbt-composer textarea { flex: 1; resize: vertical; min-height: 40px; max-height: 160px; background: #1a1b27; border: 1px solid #2a2a3a; border-radius: 10px; color: #e8e8ee; padding: 9px 12px; font-size: 14px; line-height: 1.4; font-family: inherit; }
+    .hbt-composer textarea:focus { outline: none; border-color: #6c47ff; }
+    .hbt-send { background: #4338ca; border: 1px solid #6366f1; color: #fff; border-radius: 10px; padding: 9px 18px; font-weight: 700; cursor: pointer; font-size: 14px; flex-shrink: 0; }
+    .hbt-send:hover { filter: brightness(1.1); }
+    .hbt-send:disabled { opacity: 0.5; cursor: default; }
+    .hbt-as-hint { font-size: 11px; color: #7e8494; margin-top: 6px; }
+    .hbt-as-hint b { color: #fbbf24; }
+
+    /* "Post as" identity field in the toolbar */
+    .hb-identity { display: inline-flex; align-items: center; gap: 6px; background: #1a1b27; border: 1px solid #3a2f10; border-radius: 8px; padding: 3px 8px; }
+    .hb-identity label { font-size: 11px; color: #fbbf24; white-space: nowrap; }
+    .hb-identity input { background: #12121b; border: 1px solid #2a2a3a; border-radius: 6px; color: #f4f4f5; padding: 4px 8px; font-size: 13px; min-width: 130px; }
+
+    /* New-topic composer overlay (shares the thread look) */
+    #hbc-overlay { display: none; position: fixed; inset: 0; z-index: 10060; }
+    #hbc-overlay.hbc-open { display: block; }
+    #hbc-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
+    #hbc-panel {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: min(640px, 94vw); max-height: 92vh;
+      background: #0c0d14; border: 1px solid #23232f; border-radius: 16px;
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 24px 80px #000a;
+    }
+    #hbc-panel select, #hbc-panel input[type=text] { background: #1a1b27; border: 1px solid #2a2a3a; border-radius: 8px; color: #e8e8ee; padding: 8px 10px; font-size: 14px; }
+
+    /* Topic cards grid for the "Threads" filter */
+    .hb-topic-card { background: #14161f; border: 1px solid #262838; border-radius: 12px; padding: 12px 14px; cursor: pointer; transition: border-color .12s, transform .12s; }
+    .hb-topic-card:hover { border-color: #4338ca; transform: translateY(-1px); }
+    .hb-topic-card.hb-tc-hidden { background: #221414; border-color: #5a2a2a; }
+    .hb-tc-title { font-size: 15px; font-weight: 800; color: #f4f4f5; margin: 0 0 4px; line-height: 1.3; }
+    .hb-tc-body { font-size: 13px; color: #b9b9c6; line-height: 1.4; margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .hb-tc-foot { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #7e8494; flex-wrap: wrap; }
+    .hb-tc-chip { padding: 1px 7px; border-radius: 999px; background: #1e2030; }
 
     /* ── Cmd-K global command palette ─────────────────────────────────────── */
     #cmdk-overlay { display: none; position: fixed; inset: 0; z-index: 10100; }
@@ -9324,6 +9449,87 @@
   </div>
 </div>
 
+<!-- HELP BOARD thread viewer — reads a topic + Compass + comments like a real user, with a docked composer to reply as admin -->
+<div id="hbt-overlay" aria-hidden="true">
+  <div id="hbt-backdrop" title="Закрыть"></div>
+  <div id="hbt-panel" role="dialog" aria-modal="true" aria-label="Help Board thread">
+    <div class="hbt-head">
+      <div style="min-width:0">
+        <div class="hbt-title" id="hbt-title">—</div>
+        <div class="hbt-sub" id="hbt-sub"></div>
+        <div class="hbt-stats" id="hbt-stats"></div>
+      </div>
+      <button type="button" class="hbt-close" id="hbt-close" title="Закрыть" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="hbt-scroll" id="hbt-scroll"></div>
+    <div class="hbt-composer" id="hbt-composer">
+      <div class="hbt-reply-target" id="hbt-reply-target">
+        <span id="hbt-reply-target-text"></span>
+        <button type="button" id="hbt-reply-cancel" title="Отменить ответ">✕ отменить ответ</button>
+      </div>
+      <div class="hbt-composer-row">
+        <textarea id="hbt-input" placeholder="Написать комментарий…" rows="1"></textarea>
+        <button type="button" class="hbt-send" id="hbt-send">Отправить</button>
+      </div>
+      <div class="hbt-as-hint">Публикуется от имени: <b id="hbt-as-name">—</b> · измени имя в поле «Пишу как» на панели.</div>
+    </div>
+  </div>
+</div>
+
+<!-- HELP BOARD new-topic composer -->
+<div id="hbc-overlay" aria-hidden="true">
+  <div id="hbc-backdrop" title="Закрыть"></div>
+  <div id="hbc-panel" role="dialog" aria-modal="true" aria-label="New Help Board topic">
+    <div class="hbt-head">
+      <div style="min-width:0">
+        <div class="hbt-title">Новая тема на Help Board</div>
+        <div class="hbt-sub">Публикуется от имени: <b id="hbc-as-name" style="color:#fbbf24">—</b></div>
+      </div>
+      <button type="button" class="hbt-close" id="hbc-close" title="Закрыть" aria-label="Закрыть">✕</button>
+    </div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:150px">
+          <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Язык изучения</label>
+          <select id="hbc-target" style="width:100%">
+            <option value="en">English (en)</option>
+            <option value="fr">French (fr)</option>
+          </select>
+        </div>
+        <div style="flex:1;min-width:150px">
+          <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Язык интерфейса</label>
+          <select id="hbc-ui" style="width:100%">
+            <option value="ru">ru</option>
+            <option value="uk">uk</option>
+            <option value="es">es</option>
+            <option value="pt-BR">pt-BR</option>
+            <option value="vi">vi</option>
+            <option value="id">id</option>
+            <option value="tr">tr</option>
+            <option value="pl">pl</option>
+            <option value="en">en</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Заголовок темы</label>
+        <input type="text" id="hbc-title" maxlength="120" placeholder="Коротко о чём вопрос" style="width:100%;box-sizing:border-box">
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Текст</label>
+        <textarea id="hbc-text" maxlength="2200" rows="6" placeholder="Разверни вопрос или мысль…" style="width:100%;box-sizing:border-box;resize:vertical;background:#1a1b27;border:1px solid #2a2a3a;border-radius:10px;color:#e8e8ee;padding:10px 12px;font-size:14px;font-family:inherit;line-height:1.45"></textarea>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:#c4b5fd;cursor:pointer">
+        <input type="checkbox" id="hbc-compass" checked> Дать Компасу ответить на эту тему (авто-генерация)
+      </label>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px">
+        <button type="button" id="hbc-cancel" style="background:#23232f;border:1px solid #34344a;color:#c9c9d4;border-radius:9px;padding:9px 16px;cursor:pointer">Отмена</button>
+        <button type="button" class="hbt-send" id="hbc-submit">Создать тему</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="cmdk-overlay" aria-hidden="true">
   <div id="cmdk-backdrop"></div>
   <div id="cmdk-box" role="dialog" aria-modal="true" aria-label="Быстрый поиск">
@@ -10408,6 +10614,11 @@
   </div>
   <div class="reports-toolbar">
     <button type="button" onclick="loadHelpBoardAdmin(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">Refresh</button>
+    <button type="button" onclick="helpBoardOpenComposer()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;font-weight:700">✍ New topic</button>
+    <span class="hb-identity">
+      <label for="hb-post-as">Пишу как</label>
+      <input type="text" id="hb-post-as" maxlength="48" placeholder="напр. Максим" oninput="helpBoardSetPostAs(this.value)">
+    </span>
     <select id="hb-target" onchange="renderHelpBoardAdmin()">
       <option value="">All study langs</option>
       <option value="en">English</option>
@@ -10426,6 +10637,7 @@
       <option value="en">en</option>
     </select>
     <select id="hb-filter" onchange="renderHelpBoardAdmin()">
+      <option value="threads">💬 Threads (forum view)</option>
       <option value="reports">Reports</option>
       <option value="queue">Moderation queue</option>
       <option value="topics">Topics</option>
@@ -10860,16 +11072,36 @@
     <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">💰 Деньги по экранам и графики</div>
     <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 12px">
       Какой экран приносит больше всего покупок и денег, динамика покупок по дням, воронка и доли тарифов.
-      Деньги — <b style="color:#e2e8f0">оценочные</b>: считаются как «число покупок × твоя цена тарифа» (внизу можно задать свои цены).
+      Деньги — <b style="color:#e2e8f0">оценочные</b>: считаются как «число покупок × цена тарифа».
+      Базовые цены заданы в рублях; выбери валюту — и суммы пересчитаются по <b style="color:#e2e8f0">сегодняшнему курсу</b>.
       Точную выручку до копейки смотри в App Store / Google Play; здесь — чтобы видеть, <i>какой экран</i> приносит деньги.
     </p>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-size:12px;color:#9ca3af">
-      <span style="color:#6b7280">Цены тарифов для оценки (в твоей валюте):</span>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:12px;color:#9ca3af">
+      <span style="color:#6b7280">Базовые цены (₽):</span>
       <label style="display:flex;align-items:center;gap:4px">Месяц <input type="number" id="pab-price-monthly" value="499" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
       <label style="display:flex;align-items:center;gap:4px">Год <input type="number" id="pab-price-yearly" value="2990" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
       <label style="display:flex;align-items:center;gap:4px">Навсегда <input type="number" id="pab-price-lifetime" value="4990" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
-      <label style="display:flex;align-items:center;gap:4px">Валюта <input type="text" id="pab-price-currency" value="₽" maxlength="4" style="width:48px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px;text-align:center"/></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:#9ca3af">
+      <label style="display:flex;align-items:center;gap:6px">Показать в валюте
+        <select id="pab-price-currency" onchange="loadPaywallFunnel()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 9px;border-radius:7px;cursor:pointer">
+          <option value="RUB" selected>₽ Рубль (RUB)</option>
+          <option value="USD">$ Доллар (USD)</option>
+          <option value="EUR">€ Евро (EUR)</option>
+          <option value="GBP">£ Фунт (GBP)</option>
+          <option value="KZT">₸ Тенге (KZT)</option>
+          <option value="UAH">₴ Гривна (UAH)</option>
+          <option value="TRY">₺ Лира (TRY)</option>
+          <option value="PLN">zł Злотый (PLN)</option>
+          <option value="INR">₹ Рупия (INR)</option>
+          <option value="BRL">R$ Реал (BRL)</option>
+          <option value="AED">د.إ Дирхам (AED)</option>
+          <option value="CNY">¥ Юань (CNY)</option>
+          <option value="JPY">¥ Иена (JPY)</option>
+        </select>
+      </label>
       <button type="button" onclick="loadPaywallFunnel()" style="background:#1f2937;border:1px solid #374151;color:#e5e7eb;padding:6px 13px;border-radius:8px;cursor:pointer;font-weight:600">Пересчитать</button>
+      <span id="pab-fx-status" style="font-size:11px;color:#6b7280"></span>
     </div>
     <div id="pab-money-charts"><div style="font-size:12.5px;color:#6b7280">Выбери период выше и нажми «Показать» — здесь появятся таблица денег и графики.</div></div>
   </div>
@@ -13244,48 +13476,58 @@
 
   <!-- Why numbers can be low/zero — honest explainer so 0 is not read as a broken dashboard. -->
   <div style="font-size:11.5px;color:#8a92a0;background:#0d0f17;border:1px solid #1e2230;border-left:3px solid #3b5bdb;border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.5">
-    <b style="color:#c3cad6">Why a metric can read 0 or “—”:</b>
-    the <b>“Paying now”</b> cards above are exact — they come straight from the loaded users (progress.premium_plan), no consent or webhook needed.
-    The <b>funnel</b> cards (shown / CTA / trials / purchases / conversion) only count users who ticked <b>analytics consent</b> in onboarding (opt-in, off by default per GDPR), so they reflect the consented subset — not all users.
-    The <b>RevenueCat</b> cards (Plus events / shards) come from the store webhook and stay 0 until there are real <b>non-sandbox</b> purchases and the RevenueCat webhook points at production.
+    <b style="color:#c3cad6">Three kinds of numbers here — don't mix them (hover any ⓘ for details):</b>
+    <b style="color:#4ade80">① Paying right now</b> — exact, live from the loaded users. Who has an active plan today.
+    <b style="color:#67e8f9">② Real store activity</b> — from RevenueCat (the store webhook): actual purchases, renewals, real trials, refunds, shards. This is the money truth; sandbox excluded. 0 until real non-sandbox purchases exist and the webhook points at production.
+    <b style="color:#a78bfa">③ Behaviour funnel</b> — in-app taps (shown → “Subscribe” tap → signals) from users who ticked <b>analytics consent</b> in onboarding (opt-in, off by default). A behaviour sample, NOT money — usually lower than the real store numbers.
     “—” = no data yet; “n/a” = the collection could not be read.
   </div>
 
   <!-- Paying users NOW — real, always-available data straight from the loaded users snapshot
        (progress.premium_plan via premiumInfo). Not consent-gated, not webhook-dependent. -->
+  <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin:2px 0 8px">Paying right now (exact, from users)</div>
   <section class="an2-grid" id="an2-paying" aria-label="Paying users right now" style="margin-bottom:14px">
-    <div class="an2-card"><div class="an2-kicker">Paying now</div><div class="an2-value" id="an2-pay-total" style="color:#4ade80">–</div><div class="an2-note">Active Plus + Pro across loaded users.</div><span class="an2-src">users · progress.premium_plan</span></div>
-    <div class="an2-card"><div class="an2-kicker">⭐ Plus (subscription)</div><div class="an2-value" id="an2-pay-plus" style="color:#fbbf24">–</div><div class="an2-note">Active recurring subscribers.</div><span class="an2-src">users</span></div>
-    <div class="an2-card"><div class="an2-kicker">💎 Pro (lifetime)</div><div class="an2-value" id="an2-pay-pro" style="color:#7dd3fc">–</div><div class="an2-note">One-time lifetime buyers.</div><span class="an2-src">users</span></div>
-    <div class="an2-card"><div class="an2-kicker">On trial</div><div class="an2-value" id="an2-pay-trial" style="color:#60a5fa">–</div><div class="an2-note">Currently in a free trial.</div><span class="an2-src">users</span></div>
-    <div class="an2-card"><div class="an2-kicker">Paid share</div><div class="an2-value" id="an2-pay-share">–</div><div class="an2-note">Paying ÷ loaded users.</div><span class="an2-src">derived</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Paying now</div><span class="an2-info" data-tip="How many loaded users have an ACTIVE paid plan right now (Plus subscription + Pro lifetime + active VIP). Counted live from the users list — exact, no consent or webhook needed. Not a period metric.">i</span></div><div class="an2-value" id="an2-pay-total" style="color:#4ade80">–</div><div class="an2-note">Active Plus + Pro across loaded users.</div><span class="an2-src">users · progress.premium_plan</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">⭐ Plus (subscription)</div><span class="an2-info" data-tip="Users with an active recurring subscription (monthly/yearly), plus admin/VIP grants. Yellow = subscription tier.">i</span></div><div class="an2-value" id="an2-pay-plus" style="color:#fbbf24">–</div><div class="an2-note">Active recurring subscribers.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">💎 Pro (lifetime)</div><span class="an2-info" data-tip="Users who bought the one-time lifetime plan (Pro). Blue = lifetime tier. Never expires unless refunded.">i</span></div><div class="an2-value" id="an2-pay-pro" style="color:#7dd3fc">–</div><div class="an2-note">One-time lifetime buyers.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">On trial</div><span class="an2-info" data-tip="Users whose plan is currently a free trial (period_type = TRIAL) and still active — i.e. trialing RIGHT NOW, not the number who ever started a trial.">i</span></div><div class="an2-value" id="an2-pay-trial" style="color:#60a5fa">–</div><div class="an2-note">Currently in a free trial.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Paid share</div><span class="an2-info" data-tip="Paying now ÷ number of loaded users, as a %. Depends on how many users you loaded (Users tab), so it is a rough ratio, not the true whole-base rate.">i</span></div><div class="an2-value" id="an2-pay-share">–</div><div class="an2-note">Paying ÷ loaded users.</div><span class="an2-src">derived</span></div>
   </section>
 
-  <!-- Summary cards (Overview skin) -->
-  <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin:2px 0 8px">Paywall funnel (consented users, by day)</div>
+  <!-- Real money from RevenueCat (store webhook): actual purchases/renewals/trials/refunds. -->
+  <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin:2px 0 8px">Real store activity (RevenueCat, in period)</div>
+  <section class="an2-grid" id="an2-rc-real" aria-label="Real RevenueCat activity" style="margin-bottom:14px">
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Purchases (real)</div><span class="an2-info" data-tip="Real NEW purchases from the store in this period: INITIAL_PURCHASE + NON_RENEWING_PURCHASE (lifetime). Source of truth = RevenueCat webhook, sandbox excluded. This is money actually charged, unlike the funnel 'purchase' which is only an in-app tap by consented users.">i</span></div><div class="an2-value" id="an2-rc-purchases" style="color:#4ade80">–</div><div class="an2-note">New paid customers (store).</div><span class="an2-src">revenuecat_premium_events</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Renewals</div><span class="an2-info" data-tip="RENEWAL events — existing subscriptions that re-billed in this period. Recurring revenue, not new customers.">i</span></div><div class="an2-value" id="an2-rc-renewals" style="color:#a3e635">–</div><div class="an2-note">Subscriptions re-billed.</div><span class="an2-src">revenuecat_premium_events</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Trials started (real)</div><span class="an2-info" data-tip="Events whose period_type = TRIAL in this period — real free trials that began, straight from RevenueCat. Different from 'On trial' (active right now) and from the funnel trial signal (consented in-app taps).">i</span></div><div class="an2-value" id="an2-rc-trials" style="color:#fbbf24">–</div><div class="an2-note">Free trials that began.</div><span class="an2-src">revenuecat_premium_events</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Refunds</div><span class="an2-info" data-tip="REFUND events — purchases the user got their money back on. Subtract from purchases to gauge net.">i</span></div><div class="an2-value" id="an2-rc-refunds" style="color:#f87171">–</div><div class="an2-note">Money returned.</div><span class="an2-src">revenuecat_premium_events</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">💎 Shards purchases</div><span class="an2-info" data-tip="Consumable shard-pack purchases (NON_RENEWING_PURCHASE of a shard product) in this period, from RevenueCat. — = none yet; n/a = collection unreadable.">i</span></div><div class="an2-value" id="an2-shards" style="color:#34d399">–</div><div class="an2-note">Shard packs bought.</div><span class="an2-src">revenuecat_shard_transactions</span></div>
+  </section>
+
+  <!-- Behaviour funnel — in-app signals from CONSENTED users only. Shows how people move
+       through the paywall (shown → tap → …). NOT money — for money use "Real store activity". -->
+  <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin:2px 0 8px">Paywall behaviour funnel (consented users, in-app signals — NOT money)</div>
   <section class="an2-grid" id="an2-summary" aria-label="Paywall funnel summary" style="margin-bottom:14px">
-    <div class="an2-card"><div class="an2-kicker">Paywall shown</div><div class="an2-value" id="an2-shown">–</div><div class="an2-note">Times a paywall appeared.</div><span class="an2-src">paywall_funnel</span></div>
-    <div class="an2-card"><div class="an2-kicker">CTA clicks</div><div class="an2-value" id="an2-cta">–</div><div class="an2-note">Tapped the subscribe button.</div><span class="an2-src">paywall_funnel</span></div>
-    <div class="an2-card"><div class="an2-kicker">Trials started</div><div class="an2-value" id="an2-trial">–</div><div class="an2-note">Free-trial signals.</div><span class="an2-src">paywall_funnel</span></div>
-    <div class="an2-card"><div class="an2-kicker">Purchases</div><div class="an2-value" id="an2-purchase" style="color:#4ade80">–</div><div class="an2-note">Completed purchases.</div><span class="an2-src">paywall_funnel</span></div>
-    <div class="an2-card"><div class="an2-kicker">Overall conversion</div><div class="an2-value" id="an2-conv">–</div><div class="an2-note">Purchases ÷ shown.</div><span class="an2-src">derived</span></div>
-    <div class="an2-card"><div class="an2-kicker">Plus RC events</div><div class="an2-value" id="an2-rc">–</div><div class="an2-note">RevenueCat Plus events.</div><span class="an2-src">revenuecat_premium_events</span></div>
-    <div class="an2-card"><div class="an2-kicker">Shards purchases</div><div class="an2-value" id="an2-shards">–</div><div class="an2-note">RevenueCat shard transactions.</div><span class="an2-src">revenuecat_shard_transactions</span></div>
-    <div class="an2-card"><div class="an2-kicker">Period</div><div class="an2-value" id="an2-period" style="font-size:15px">–</div><div class="an2-note" id="an2-events-note">Events loaded.</div><span class="an2-src">UTC days</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Paywall shown</div><span class="an2-info" data-tip="How many times a paywall screen appeared (onboarding, automatic, or settings). Counted only for users who granted analytics consent, so it is a sample of behaviour — not total impressions.">i</span></div><div class="an2-value" id="an2-shown">–</div><div class="an2-note">Times a paywall appeared.</div><span class="an2-src">paywall_funnel · shown</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">“Subscribe” taps</div><span class="an2-info" data-tip="Taps on the main purchase/subscribe button ON the paywall (paywall_purchase.ts → cta_click). It means the user pressed 'Subscribe' — BEFORE the store charge. It is not a page visit and not a completed payment. Consented users only.">i</span></div><div class="an2-value" id="an2-cta">–</div><div class="an2-note">Pressed the subscribe button.</div><span class="an2-src">paywall_funnel · cta_click</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Trial signals</div><span class="an2-info" data-tip="In-app signal that a trial-bearing purchase went through (paywall_funnel trial_started). Fires per purchase-with-trial over the whole period among consented users — it is NOT how many trials are active now (see 'On trial') and NOT the real RevenueCat trial count (see 'Trials started (real)').">i</span></div><div class="an2-value" id="an2-trial">–</div><div class="an2-note">In-app trial signal (period).</div><span class="an2-src">paywall_funnel · trial_started</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Purchase signals</div><span class="an2-info" data-tip="In-app signal that a purchase completed inside the app (paywall_funnel purchase_completed), consented users only. Use 'Purchases (real)' above for the true store number — this one is a behaviour sample and will usually be lower.">i</span></div><div class="an2-value" id="an2-purchase" style="color:#4ade80">–</div><div class="an2-note">In-app purchase signal.</div><span class="an2-src">paywall_funnel · purchase_completed</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Funnel conversion</div><span class="an2-info" data-tip="Purchase signals ÷ paywalls shown, within consented users. A behaviour ratio, not the real paid conversion. — when nothing was shown.">i</span></div><div class="an2-value" id="an2-conv">–</div><div class="an2-note">Signals ÷ shown.</div><span class="an2-src">derived</span></div>
+    <div class="an2-card"><div class="an2-head"><div class="an2-kicker">Period</div><span class="an2-info" data-tip="The UTC date window these funnel numbers cover, set by the Period selector (7 / 28 / 90 days). The note shows how many consented funnel events were loaded for it.">i</span></div><div class="an2-value" id="an2-period" style="font-size:15px">–</div><div class="an2-note" id="an2-events-note">Events loaded.</div><span class="an2-src">UTC days</span></div>
   </section>
 
   <!-- Interactive daily trend (same engine as Overview) -->
   <section class="admin-overview-trend" aria-label="Paywall daily trend" style="margin-bottom:14px;background:#0d0f17;border:1px solid #1e2230;border-radius:12px;padding:16px 18px">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px">
       <div>
-        <div style="font-size:15px;font-weight:800;color:#f1f5f9">Daily funnel trend</div>
-        <div style="font-size:12px;color:#6b7280;margin-top:2px">Hover a point for the exact day. Scroll to zoom, drag to pan.</div>
+        <div style="font-size:15px;font-weight:800;color:#f1f5f9">Daily behaviour funnel trend</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:2px">In-app signals from consented users, by day (not store money). Hover a point for the exact day. Scroll to zoom, drag to pan.</div>
       </div>
       <div id="analytics-trend-tabs" role="tablist" style="display:flex;flex-wrap:wrap;gap:6px">
-        <button type="button" class="overview-trend-tab is-active" data-an2-metric="shown" role="tab" aria-selected="true">Shown</button>
-        <button type="button" class="overview-trend-tab" data-an2-metric="cta" role="tab" aria-selected="false">CTA</button>
-        <button type="button" class="overview-trend-tab" data-an2-metric="trial" role="tab" aria-selected="false">Trials</button>
-        <button type="button" class="overview-trend-tab" data-an2-metric="purchase" role="tab" aria-selected="false">Purchases</button>
+        <button type="button" class="overview-trend-tab is-active" data-an2-metric="shown" role="tab" aria-selected="true" title="Paywalls shown per day">Shown</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="cta" role="tab" aria-selected="false" title="“Subscribe” button taps per day (before the store charge)">Taps</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="trial" role="tab" aria-selected="false" title="In-app trial signals per day (consented users)">Trials</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="purchase" role="tab" aria-selected="false" title="In-app purchase signals per day — for real money use the RevenueCat cards above">Buys</button>
       </div>
     </div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:10px">
@@ -18657,10 +18899,10 @@
     return 'automatic';
   }
   const AN2_METRIC_META = {
-    shown:    { label: 'Paywall shown', step: 'shown',              accent: '#60a5fa' },
-    cta:      { label: 'CTA clicks',    step: 'cta_click',          accent: '#a78bfa' },
-    trial:    { label: 'Trials',        step: 'trial_started',      accent: '#fbbf24' },
-    purchase: { label: 'Purchases',     step: 'purchase_completed', accent: '#4ade80' },
+    shown:    { label: 'Paywall shown',    step: 'shown',              accent: '#60a5fa' },
+    cta:      { label: '“Subscribe” taps', step: 'cta_click',          accent: '#a78bfa' },
+    trial:    { label: 'Trial signals',    step: 'trial_started',      accent: '#fbbf24' },
+    purchase: { label: 'Purchase signals', step: 'purchase_completed', accent: '#4ade80' },
   };
   const _an2 = {
     metric: 'shown',
@@ -18671,10 +18913,14 @@
     loading: false,
     // raw funnel rows over the loaded 90d window (already dev-filtered), sliced by range at render.
     rows: null,      // { step, source, day }
-    // cached RC event ms timestamps (newest-first), re-filtered per range with no extra reads.
-    rcMs: null,      // number[] | null (null ⇒ unreadable)
+    // cached RC events (newest-first) with type/period, re-filtered per range with no extra reads.
+    rcEvents: null,  // [{ms,type,period,env}] | null (null ⇒ unreadable)
     shardMs: null,   // number[] | null
-    rc: 0,           // RevenueCat Plus events in current range (-1 ⇒ unreadable)
+    rc: 0,           // total RC premium events in range (-1 ⇒ unreadable)
+    rcPurchases: 0,  // real new purchases (INITIAL_PURCHASE + NON_RENEWING_PURCHASE), non-sandbox
+    rcRenewals: 0,   // recurring re-bills (RENEWAL)
+    rcTrials: 0,     // events whose periodType === 'TRIAL' (real trials started)
+    rcRefunds: 0,    // REFUND events
     shards: 0,       // RevenueCat shard transactions in current range (-1 ⇒ unreadable)
     chart: null,
   };
@@ -18714,11 +18960,36 @@
       || r.event_timestamp_ms || r.purchased_at_ms || 0,
     ) || (typeof r.createdAt === 'string' ? Date.parse(r.createdAt) : 0) || 0;
   }
-  // Fetch the NEWEST RevenueCat docs once (ordered by eventTimestampMs desc, so the slice
-  // is the most-recent events — the only ones that can fall in a recent range, avoiding the
-  // arbitrary-slice under-count of an unordered limit). Cache the ms timestamps; range flips
-  // just re-filter the cache with no extra reads. Falls back to an unordered read if the
-  // ordered query is rejected (e.g. missing index), so the card degrades instead of breaking.
+  // RevenueCat event types (functions/src/revenuecat_shards.ts). Kept in sync with the webhook.
+  const RC_NEW_PURCHASE = new Set(['INITIAL_PURCHASE', 'NON_RENEWING_PURCHASE']); // new paying customer / lifetime
+  const RC_RENEWAL = new Set(['RENEWAL']);                                        // recurring re-bill
+  const RC_REFUND = new Set(['REFUND']);                                          // money returned
+  // Fetch the NEWEST RevenueCat premium-event docs once, KEEPING their type/period so we can
+  // count real purchases, renewals, trials and refunds — not just raw event totals.
+  // Ordered by eventTimestampMs desc so the slice is the most-recent events (the only ones that
+  // can fall in a recent range). Cached; range flips re-filter in memory. Falls back to an
+  // unordered read if the ordered query is rejected (e.g. missing index).
+  async function an2FetchRcEvents() {
+    const map = (d) => {
+      const r = d.data() || {};
+      return {
+        ms: an2RcMs(r),
+        type: String(r.eventType || '').toUpperCase(),
+        period: String(r.periodType || r.period_type || '').toUpperCase(),
+        env: String(r.environment || '').toUpperCase(),
+      };
+    };
+    try {
+      const s = await getDocs(query(collection(db, 'revenuecat_premium_events'), orderBy('eventTimestampMs', 'desc'), limit(5000)));
+      return s.docs.map(map).filter((e) => e.ms > 0);
+    } catch (e) {
+      try {
+        const s = await getDocs(query(collection(db, 'revenuecat_premium_events'), limit(5000)));
+        return s.docs.map(map).filter((e) => e.ms > 0);
+      } catch (e2) { return null; }
+    }
+  }
+  // Shard transactions — a plain count of newest docs is enough (each doc = one shard purchase).
   async function an2FetchRcColl(name) {
     try {
       const s = await getDocs(query(collection(db, name), orderBy('eventTimestampMs', 'desc'), limit(5000)));
@@ -18727,21 +18998,30 @@
       try {
         const s = await getDocs(query(collection(db, name), limit(5000)));
         return s.docs.map((d) => an2RcMs(d.data() || {})).filter((ms) => ms > 0);
-      } catch (e2) { return null; } // null ⇒ could not read (permission / error)
+      } catch (e2) { return null; }
     }
   }
   async function an2FetchRc() {
-    _an2.rcMs = await an2FetchRcColl('revenuecat_premium_events');
+    _an2.rcEvents = await an2FetchRcEvents();
     _an2.shardMs = await an2FetchRcColl('revenuecat_shard_transactions');
   }
-  // Count cached RC timestamps that fall within the selected day range.
+  // Count cached RC events by type within the selected day range. Sandbox events are dropped
+  // so the numbers reflect real store money, matching what the RevenueCat dashboard shows.
   function an2CountRcInRange() {
     const days = overviewTrendDayKeys(_an2.range);
     const fromMs = new Date(days[0] + 'T00:00:00Z').getTime();
     const toMs = new Date(days[days.length - 1] + 'T23:59:59Z').getTime();
-    const countIn = (arr) => arr == null ? -1 : arr.reduce((n, ms) => n + (ms >= fromMs && ms <= toMs ? 1 : 0), 0);
-    _an2.rc = countIn(_an2.rcMs);
-    _an2.shards = countIn(_an2.shardMs);
+    if (_an2.rcEvents == null) {
+      _an2.rc = -1; _an2.rcPurchases = -1; _an2.rcRenewals = -1; _an2.rcTrials = -1; _an2.rcRefunds = -1;
+    } else {
+      const inRange = _an2.rcEvents.filter((e) => e.ms >= fromMs && e.ms <= toMs && e.env !== 'SANDBOX');
+      _an2.rc = inRange.length;
+      _an2.rcPurchases = inRange.filter((e) => RC_NEW_PURCHASE.has(e.type)).length;
+      _an2.rcRenewals = inRange.filter((e) => RC_RENEWAL.has(e.type)).length;
+      _an2.rcTrials = inRange.filter((e) => e.period === 'TRIAL').length;
+      _an2.rcRefunds = inRange.filter((e) => RC_REFUND.has(e.type)).length;
+    }
+    _an2.shards = _an2.shardMs == null ? -1 : _an2.shardMs.reduce((n, ms) => n + (ms >= fromMs && ms <= toMs ? 1 : 0), 0);
   }
 
   // Rows within the current range window.
@@ -18913,10 +19193,14 @@
     an2Set('an2-trial', AN2_NUM(trial));
     an2Set('an2-purchase', AN2_NUM(purchase));
     an2Set('an2-conv', conv);
-    // RC counters: -1 = collection unreadable (permission/error) → "n/a"; 0 = read fine, no
-    // qualifying purchases yet → em-dash so a genuine empty state doesn't look like a broken read.
-    an2Set('an2-rc', _an2.rc < 0 ? 'n/a' : (_an2.rc === 0 ? '—' : AN2_NUM(_an2.rc)));
-    an2Set('an2-shards', _an2.shards < 0 ? 'n/a' : (_an2.shards === 0 ? '—' : AN2_NUM(_an2.shards)));
+    // Real store activity from RevenueCat. -1 = collection unreadable → "n/a"; 0 = read fine but
+    // none in range → em-dash so a genuine empty state doesn't look like a broken read.
+    const rcCell = (v) => v < 0 ? 'n/a' : (v === 0 ? '—' : AN2_NUM(v));
+    an2Set('an2-rc-purchases', rcCell(_an2.rcPurchases));
+    an2Set('an2-rc-renewals', rcCell(_an2.rcRenewals));
+    an2Set('an2-rc-trials', rcCell(_an2.rcTrials));
+    an2Set('an2-rc-refunds', rcCell(_an2.rcRefunds));
+    an2Set('an2-shards', rcCell(_an2.shards));
     const days = overviewTrendDayKeys(_an2.range);
     an2Set('an2-period', `${days[0]} → ${days[days.length - 1]}`);
     const note = document.getElementById('an2-events-note');
@@ -20754,11 +21038,16 @@
   };
 
   window.renderHelpBoardAdmin = function renderHelpBoardAdmin() {
-    const mode = document.getElementById('hb-filter')?.value || 'reports';
+    const mode = document.getElementById('hb-filter')?.value || 'threads';
     const targetLang = document.getElementById('hb-target')?.value || '';
     const uiLang = document.getElementById('hb-ui')?.value || '';
     const search = String(document.getElementById('hb-search')?.value || '').trim().toLowerCase();
     hbRenderKpis();
+    // Forum view: render topics as clickable cards, each opens the full thread.
+    if (mode === 'threads') {
+      hbRenderThreadsList(search, targetLang, uiLang);
+      return;
+    }
     hbHeaders(mode);
     const rows = (window._helpBoardCache?.[mode] || [])
       .filter(r => hbMatches(r, search, targetLang, uiLang));
@@ -27963,6 +28252,41 @@
     return Number.isFinite(n) && n >= 0 ? n : fallback;
   }
 
+  // ── Реальные валюты: символ + курс на сегодня (базовые цены заданы в рублях) ──
+  const PAB_CUR_SYMBOL = {
+    RUB: '₽', USD: '$', EUR: '€', GBP: '£', KZT: '₸', UAH: '₴', TRY: '₺',
+    PLN: 'zł', INR: '₹', BRL: 'R$', AED: 'د.إ', CNY: '¥', JPY: '¥',
+  };
+  // Кэш курсов «1 RUB → X». Пересчёт: сумма_в_валюте = сумма_в_рублях × rate.
+  const pabFxCache = { base: 'RUB', rates: { RUB: 1 }, date: null, ts: 0 };
+
+  // Тянет сегодняшний курс с бесплатного API без ключа (open.er-api.com).
+  // Возвращает { rate, date, live }. При ошибке/офлайне — последний известный курс или 1.
+  async function pabGetRate(code) {
+    if (code === 'RUB') return { rate: 1, date: pabFxCache.date, live: true };
+    // Кэш свежий (< 30 мин) и содержит нужную валюту — не дёргаем сеть повторно.
+    const fresh = pabFxCache.ts && (Date.now() - pabFxCache.ts) < 30 * 60 * 1000;
+    if (fresh && Number.isFinite(pabFxCache.rates[code])) {
+      return { rate: pabFxCache.rates[code], date: pabFxCache.date, live: true };
+    }
+    try {
+      const res = await fetch('https://open.er-api.com/v6/latest/RUB');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const j = await res.json();
+      if (!j || j.result !== 'success' || !j.rates) throw new Error('bad payload');
+      pabFxCache.rates = j.rates;
+      pabFxCache.date = j.time_last_update_utc || (j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000).toUTCString() : null);
+      pabFxCache.ts = Date.now();
+      const rate = Number(j.rates[code]);
+      if (!Number.isFinite(rate)) throw new Error('нет курса для ' + code);
+      return { rate, date: pabFxCache.date, live: true };
+    } catch (e) {
+      // Фолбэк: последний известный курс из кэша, иначе 1:1 (честно помечаем как «не сегодня»).
+      const cached = Number(pabFxCache.rates[code]);
+      return { rate: Number.isFinite(cached) ? cached : 1, date: pabFxCache.date, live: false, error: String(e && e.message || e) };
+    }
+  }
+
   // Линейный график динамики покупок по дням.
   function pabSvgLineChart(points /* [{label, value}] */, opts) {
     const W = 640, H = 180, padL = 34, padR = 12, padT = 14, padB = 26;
@@ -28026,17 +28350,43 @@
       <div style="display:flex;flex-direction:column;gap:8px">${legend}</div></div>`;
   }
 
-  function renderPaywallMoneyAndCharts(d) {
+  async function renderPaywallMoneyAndCharts(d) {
     const host = document.getElementById('pab-money-charts');
     if (!host) return;
-    const cur = String((document.getElementById('pab-price-currency') || {}).value || '₽').trim() || '₽';
-    const price = {
+    const code = String((document.getElementById('pab-price-currency') || {}).value || 'RUB').trim() || 'RUB';
+    const cur = PAB_CUR_SYMBOL[code] || code;
+    // Курс на сегодня: 1 RUB → выбранная валюта. Базовые цены хранятся в рублях.
+    const statusEl = document.getElementById('pab-fx-status');
+    if (statusEl && code !== 'RUB') statusEl.textContent = 'Загружаю курс…';
+    const fx = await pabGetRate(code);
+    const rate = fx.rate;
+    if (statusEl) {
+      if (code === 'RUB') {
+        statusEl.textContent = '';
+      } else if (fx.live) {
+        const dt = fx.date ? new Date(fx.date).toLocaleDateString('ru-RU') : 'сегодня';
+        statusEl.style.color = '#6b7280';
+        statusEl.textContent = `Курс на ${dt}: 1 ₽ = ${rate.toPrecision(3)} ${cur}`;
+      } else {
+        statusEl.style.color = '#f59e0b';
+        statusEl.textContent = `⚠ Не удалось получить свежий курс — показан приблизительный (${rate.toPrecision(3)} ${cur} за ₽).`;
+      }
+    }
+    // Базовые цены в рублях (то, что введено в полях) → конвертируем в выбранную валюту.
+    const baseRub = {
       monthly: pabReadPrice('pab-price-monthly', 499),
       yearly: pabReadPrice('pab-price-yearly', 2990),
       lifetime: pabReadPrice('pab-price-lifetime', 4990),
     };
+    const price = {
+      monthly: baseRub.monthly * rate,
+      yearly: baseRub.yearly * rate,
+      lifetime: baseRub.lifetime * rate,
+    };
     const money = (m) => m.monthly * price.monthly + m.yearly * price.yearly + m.lifetime * price.lifetime;
-    const fmtMoney = (v) => `${PAB_NUM(Math.round(v))} ${cur}`;
+    // Мелкие валюты (доллар/евро) — 2 знака после запятой; крупные (рубль/иена) — целыми.
+    const decimals = rate < 0.05 ? 2 : 0;
+    const fmtMoney = (v) => `${Number(v).toLocaleString('ru-RU', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })} ${cur}`;
 
     const keys = Object.keys(d.moneyByCtx);
     const totalBuys = keys.reduce((s, k) => s + d.moneyByCtx[k].buys, 0);
@@ -28248,7 +28598,8 @@
       if (status) status.textContent = '';
 
       // ── Деньги по экранам + графики ───────────────────────────────────────────
-      renderPaywallMoneyAndCharts({ moneyByCtx, buysByDay, planTotals, funnelTotals, CTX_RU, fromV, toV });
+      renderPaywallMoneyAndCharts({ moneyByCtx, buysByDay, planTotals, funnelTotals, CTX_RU, fromV, toV })
+        .catch((e) => console.error('renderPaywallMoneyAndCharts failed', e));
 
       // ── Онбординг цвет ───────────────────────────────────────────────────────
       const colorBox = document.getElementById('pab-ob-color');

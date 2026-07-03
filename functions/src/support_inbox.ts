@@ -215,12 +215,15 @@ async function fetchEmailsViaImap(appPassword: string, firstRun: boolean): Promi
     const lock = await client.getMailboxLock('INBOX');
     try {
       // Первый запуск: последние N любых. Иначе: только непрочитанные.
+      // ВАЖНО: search с { uid: true } возвращает UID (а не seq-номера), чтобы
+      // дальнейшие fetch/messageFlagsAdd с { uid: true } работали по тем же
+      // сообщениям. Без этого seq-номера трактуются как UID → не те письма.
       let uids: number[] = [];
       if (firstRun) {
-        const all = await client.search({ all: true });
+        const all = await client.search({ all: true }, { uid: true });
         uids = (all || []).slice(-FIRST_PULL_LIMIT);
       } else {
-        uids = (await client.search({ seen: false })) || [];
+        uids = (await client.search({ seen: false }, { uid: true })) || [];
       }
       if (uids.length === 0) return out;
 

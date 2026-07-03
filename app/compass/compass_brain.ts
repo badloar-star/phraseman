@@ -25,7 +25,7 @@ export type CompassDayType = 'first_day' | 'easy' | 'deep_dive' | 'repair' | 'co
  */
 export type CompassInductionFeature =
   | 'level_test' // узнать свой уровень (когда стартовал с нуля)
-  | 'dialogs' // ИИ-диалоги — разговор вживую (вау-фича)
+  | 'dialogs' // Диалоги — практика разговора по теме (вау-фича)
   | 'flashcards' // карточки — быстрый набор фраз
   | 'lessons' // сессии-уроки — по шагам
   | 'daily_tasks'; // задания дня — лёгкий ритуал

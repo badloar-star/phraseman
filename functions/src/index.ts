@@ -22,6 +22,10 @@ const { runReEngagePush } = require('./re_engage_push') as {
   runReEngagePush: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failedChunks: number; ticketCount: number }>;
 };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { runPremiumExpiryReminder } = require('./premium_expiry_reminder') as {
+  runPremiumExpiryReminder: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failed: number }>;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
@@ -555,6 +559,24 @@ export const reEngagePushCron = functions.scheduler.onSchedule(
     if (summary.candidates > 0 && summary.sent === 0) {
       console.error(
         `reEngagePushCron: ${summary.candidates} candidates found but 0 pushes sent — all chunks failed.`,
+      );
+    }
+  }
+);
+
+// Runs daily at 09:00 UTC. Scans users/, finds paid subscriptions/VIP whose
+// concrete expiry is ~3 days out, and sends a warm localized "your Plus renews
+// soon" push. Profilaxis of churn (complements premiumExpiryCron, which only
+// deactivates already-expired access). Perpetual access is skipped — nothing to
+// renew. 1GiB + 540s: full paginated users/ scan, same shape as premiumExpiryCron.
+export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
+  { schedule: '0 9 * * *', timeZone: 'UTC', region: 'us-central1', memory: '1GiB', timeoutSeconds: 540 },
+  async () => {
+    const summary = await runPremiumExpiryReminder();
+    console.log('premiumExpiryReminderCron', JSON.stringify(summary));
+    if (summary.candidates > 0 && summary.sent === 0) {
+      console.error(
+        `premiumExpiryReminderCron: ${summary.candidates} candidates found but 0 pushes sent — check Expo Push API.`,
       );
     }
   }

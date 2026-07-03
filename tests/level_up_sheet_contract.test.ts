@@ -27,4 +27,15 @@ describe('global level-up sheet contract', () => {
     expect(source).toContain("AsyncStorage.setItem('pending_level_up_queue', JSON.stringify([level]))");
     expect(source).toContain('.then(flushQueue)');
   });
+
+  it('labels catch-up level rewards without exposing account reconciliation details', () => {
+    expect(source).toContain("AsyncStorage.multiGet(['user_name', 'user_total_xp'])");
+    expect(source).toContain('const [currentAccountLevel, setCurrentAccountLevel] = useState(0)');
+    expect(source).toContain('const isCatchUpLevelReward = currentAccountLevel > currentLevel');
+    expect(source).toContain('levelUpKickerText');
+    expect(source).toContain('levelUpMessageText');
+    expect(source).toContain('Это твоя награда за уровень ${currentLevel}. Забирай подарок.');
+    expect(source).not.toContain('Сейчас у тебя уровень ${currentAccountLevel}');
+    expect(source).not.toContain('Now you have level');
+  });
 });

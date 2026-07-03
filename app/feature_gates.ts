@@ -18,7 +18,6 @@
 
 import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
 import { isFeatureGrantedByWeeklyBoon } from './boons/boon_feature_grants';
-import { isFullAccess } from './age_gate';
 
 /** Каноничные имена фич, у которых есть премиум-замок. */
 export type FeatureGate =
@@ -36,7 +35,8 @@ export type FeatureGate =
   | 'mastery'
   | 'quizzes'
   | 'arena'
-  | 'energy';
+  | 'energy'
+  | 'extra_languages';
 
 /** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
 const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
@@ -55,6 +55,7 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   quizzes: 'gate_quizzes_premium',
   arena: 'gate_arena_premium',
   energy: 'gate_energy_premium',
+  extra_languages: 'gate_extra_languages_premium',
 };
 
 /** Полный список фич — для итерации в админке/тестах. */
@@ -74,26 +75,12 @@ export function isFeatureFreeForEveryone(feature: FeatureGate): boolean {
 }
 
 /**
- * Безопасный режим для подростков (13–15) и младше.
- *
- * Юридический смысл: ИИ-собеседник и публичные/мультиплеер-функции для
- * несовершеннолетних — это главный регуляторный риск (FTC, иски Character.AI,
- * детские правила ЕС). Полный доступ — только у 'adult' (16+). Для всех остальных
- * (teen_safe / under13 / неизвестно ещё не должно происходить, но на всякий случай)
- * эти фичи закрыты НЕЗАВИСИМО от премиума и remote-флагов.
- */
-const AGE_RESTRICTED_FEATURES: ReadonlySet<FeatureGate> = new Set<FeatureGate>([
-  'ai_dialog', // ИИ-собеседник — свободный чат
-  'arena',     // мультиплеер / публичные соц-функции
-]);
-
-/**
- * true → фичу нужно заблокировать из-за возрастного безопасного режима
- * (несовершеннолетний без полного доступа). Проверяется ОТДЕЛЬНО от премиума.
+ * Возрастной вопрос живёт только в onboarding новых пользователей.
+ * После входа в приложение фичи не блокируются возрастным helper-ом.
  */
 export function isFeatureBlockedForAge(feature: FeatureGate): boolean {
-  if (isFullAccess()) return false; // 16+ — без ограничений по возрасту
-  return AGE_RESTRICTED_FEATURES.has(feature);
+  void feature;
+  return false;
 }
 
 /**

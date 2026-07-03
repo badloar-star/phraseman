@@ -11,6 +11,8 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
+const OPENAI_CHAT_TIMEOUT_MS = 30_000;
+const OPENAI_CHAT_MAX_ATTEMPTS = 3;
 
 export type ChatRole = 'system' | 'user' | 'assistant';
 
@@ -44,6 +46,26 @@ function asText(value: unknown): string {
   return typeof value === 'string' ? value : '';
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableStatus(status: number): boolean {
+  return status === 408 || status === 409 || status === 425 || status === 429 || status >= 500;
+}
+
+function isRetryableFetchError(error: unknown): boolean {
+  const text = `${(error as any)?.code || ''} ${(error as any)?.name || ''} ${(error as any)?.message || ''} ${(error as any)?.cause?.code || ''}`.toLowerCase();
+  return (
+    text.includes('timeout') ||
+    text.includes('econnreset') ||
+    text.includes('econnrefused') ||
+    text.includes('etimedout') ||
+    text.includes('fetch failed') ||
+    text.includes('network')
+  );
+}
+
 /**
  * One chat completion call. Returns the assistant text and token usage.
  * Throws HttpsError('unavailable', 'explain_provider_failed') on a non-OK response, logging the
@@ -60,14 +82,37 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
   };
   if (responseFormat) body.response_format = responseFormat;
 
-  const response = await fetch(OPENAI_CHAT_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
+  let response: Response | null = null;
+  let lastError: unknown = null;
+  for (let attempt = 1; attempt <= OPENAI_CHAT_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      response = await fetch(OPENAI_CHAT_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(OPENAI_CHAT_TIMEOUT_MS),
+      });
+      if (response.ok || !isRetryableStatus(response.status) || attempt === OPENAI_CHAT_MAX_ATTEMPTS) break;
+      const detail = await response.text().catch(() => '');
+      console.warn('explain_provider retryable chat status', response.status, detail.slice(0, 240), { attempt });
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableFetchError(error) || attempt === OPENAI_CHAT_MAX_ATTEMPTS) {
+        console.error('explain_provider chat fetch failed', error);
+        throw new HttpsError('unavailable', 'explain_provider_failed');
+      }
+      console.warn('explain_provider retryable fetch failure', { attempt, message: (error as any)?.message || String(error) });
+    }
+    await sleep(400 * attempt * attempt);
+  }
+
+  if (!response) {
+    console.error('explain_provider chat failed without response', lastError);
+    throw new HttpsError('unavailable', 'explain_provider_failed');
+  }
 
   if (!response.ok) {
     const detail = await response.text().catch(() => '');

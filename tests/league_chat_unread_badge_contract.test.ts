@@ -20,11 +20,16 @@ describe('league chat unread badge wiring', () => {
   });
 
   it('shows the same unread count on the home league icon', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+    const chatHub = fs.readFileSync(path.join(ROOT, 'components', 'CommunityChatHubButton.tsx'), 'utf8');
 
-    expect(source).toContain('const homeLeagueChatUnreadCount = useLeagueChatUnread');
-    expect(source).toContain('testID="home-league-chat-unread-badge"');
-    expect(source).toContain('formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)');
+    expect(home).toContain('const homeLeagueChatUnreadCount = useLeagueChatUnread');
+    expect(home).toContain('testID="home-league-chat-unread-badge"');
+    expect(home).toContain('formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)');
+    expect(chatHub).toContain('const leagueUnreadCount = useLeagueChatUnread');
+    expect(chatHub).toContain("active: visible && tab === 'league'");
+    expect(chatHub).toContain('testID="home-community-chat-unread-badge"');
+    expect(chatHub).toContain('formatLeagueChatUnreadBadge(leagueUnreadCount)');
   });
 
   it('keeps unread badges snapshot-only so home and club do not authorize or subscribe to live chat', () => {
@@ -47,5 +52,24 @@ describe('league chat unread badge wiring', () => {
     expect(combined).not.toMatch(legacyRussianComment);
     expect(combined).toContain('initialRoom: leagueGroupMeta');
     expect(combined).toContain('initialRoom={leagueGroupMeta}');
+  });
+
+  it('keeps league chat messages wide with inline reactions and Compass avatar bubbles', () => {
+    const panel = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatPanel.tsx'), 'utf8');
+    const reactions = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatReactions.tsx'), 'utf8');
+    const compass = fs.readFileSync(path.join(ROOT, 'components', 'LeagueChatCompassPost.tsx'), 'utf8');
+
+    expect(panel).toContain('paddingHorizontal: 8');
+    expect(panel).toContain("maxWidth: '86%'");
+    expect(panel).toContain('compact');
+    expect(panel).not.toContain('marginLeft: isMine ? 0 : sideOffset, marginRight: isMine ? sideOffset : 0');
+
+    expect(reactions).toContain('compact?: boolean');
+    expect(reactions).toContain("flexWrap: compact ? 'nowrap' : 'wrap'");
+
+    expect(compass).toContain("import { compassIconSource } from '../constants/weeklyCompassIcons';");
+    expect(compass).toContain('compassIconSource(themeMode)');
+    expect(compass).toContain("maxWidth: '86%'");
+    expect(compass).toContain('borderBottomLeftRadius: 6');
   });
 });

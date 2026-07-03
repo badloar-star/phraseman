@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.arenaHillGetDailyTop = exports.arenaHillRecordAttempt = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const THRONES = 'arena_hill_thrones';
 const PLAYER_WINS = 'arena_hill_player_wins'; // {dayKey}_{stableUid} → { wins, name, updatedAt }
@@ -110,7 +111,7 @@ async function resolveDisplayName(db, stableUid, requested) {
         ?? requested
         ?? 'Phraseman');
 }
-exports.arenaHillRecordAttempt = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaHillRecordAttempt = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -196,7 +197,7 @@ exports.arenaHillRecordAttempt = (0, https_1.onCall)({ region: REGION }, async (
         };
     });
 });
-exports.arenaHillGetDailyTop = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaHillGetDailyTop = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

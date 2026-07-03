@@ -1,10 +1,10 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TopFadeMask from '../components/TopFadeMask';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -128,7 +128,7 @@ let planStatsWarm: {
 
 export default function PersonalPlanStatsScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => planStatsWarm?.stats ?? null);
   const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => planStatsWarm?.weakSpots ?? null);

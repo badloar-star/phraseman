@@ -8,7 +8,7 @@ describe('premium modal retired UI contract', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'premium_modal.tsx'), 'utf8');
 
     expect(source).toContain('PremiumModalDispatcher');
-    expect(source).toContain('ActivityIndicator');
+    expect(source).not.toContain('ActivityIndicator');
     expect(source).not.toContain('БЛОК 1');
     expect(source).not.toContain('Почему Premium тебе нужен');
     expect(source).not.toContain('Учись быстрее с Premium');

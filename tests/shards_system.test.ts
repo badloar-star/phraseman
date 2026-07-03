@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -51,6 +51,34 @@ describe('shards_system guards and one-time awards', () => {
 
     await expect(getShardsBalance()).resolves.toBe(85);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(5);
+  });
+
+  it('can credit a pending server-owned claim locally without using the generic cloud earn path', async () => {
+    mockStorage.shards_balance = '7';
+    await expect(addShardsLocalOnlyForPendingServerClaim(2, 'report_reply_claim')).resolves.toBe(2);
+    await expect(getShardsBalance()).resolves.toBe(9);
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({
+      op: 'earn',
+      reason: 'report_reply_claim',
+    });
+  });
+
+  it('keeps a newer local wallet above a lower server-owned claim mirror', async () => {
+    mockStorage.shards_balance = '80';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'earn',
+      reason: 'offline_reward',
+    });
+
+    await expect(keepShardsBalanceLocalAtLeast(10, 'report_reply_claim')).resolves.toBe(80);
+    await expect(getShardsBalance()).resolves.toBe(80);
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({
+      updatedAtMs: expect.any(Number),
+      op: 'replace',
+      reason: 'report_reply_claim',
+    });
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(2_000);
   });
 
   it('does not keep spent store shards excluded forever', async () => {

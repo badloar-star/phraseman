@@ -44,6 +44,17 @@ describe('league chat unread counters', () => {
     expect(computeLeagueChatUnreadCount(messages, 'me', 200)).toBe(1);
   });
 
+  it('ignores retired Compass pinned/summary messages that are hidden from the chat feed', () => {
+    const messages = [
+      { ...message('pin', '__league_system__', 260), pinned: true },
+      { ...message('ice', '__league_system__', 270), compassKind: 'icebreaker' as const },
+      { ...message('sum', '__league_system__', 280), compassKind: 'daily_summary' as const },
+      { ...message('daily', '__league_system__', 290), compassKind: 'discussion' as const },
+    ];
+
+    expect(computeLeagueChatUnreadCount(messages, 'me', 200)).toBe(1);
+  });
+
   it('stores the room read point at the latest message or current time', async () => {
     await markLeagueChatRoomRead(room, [
       message('one', 'other', 500),

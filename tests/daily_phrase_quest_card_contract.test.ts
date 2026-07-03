@@ -73,7 +73,7 @@ describe('DailyPhraseCard quest contract', () => {
   });
 
   it('loads the daily phrase as a one-shot value instead of keeping a live listener open', () => {
-    expect(source).toContain('getTodayPhraseForTarget(studyTarget)');
+    expect(source).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(source).not.toContain('subscribeTodayPhraseForTarget');
   });
 });

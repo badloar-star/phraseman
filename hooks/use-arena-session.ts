@@ -376,9 +376,10 @@ export function useArenaSession(
     const questionId = session.questions[session.currentQuestionIndex];
     const startedAt = session.questionStartedAt ?? Date.now();
     const timeMs = Date.now() - startedAt;
+    hasAnsweredRef.current = true;
     setMyAnswer(answer);
     setHasAnswered(true);
-    clearQuestionTimer();
+    // Keep the visible timer ticking while we wait for the opponent/reveal.
     try {
       await submitAnswer(sessionId, userId, questionId, answer, timeMs);
     } catch (e) {

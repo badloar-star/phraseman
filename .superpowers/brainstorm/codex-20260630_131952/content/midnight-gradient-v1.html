@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman Midnight onboarding</title>
+  <style>
+    :root {
+      --midnight-bg: #010102;
+      --midnight-top: #111318;
+      --midnight-card: #151824;
+      --midnight-surface: #1b1f2e;
+      --midnight-accent: #8FA0FF;
+      --midnight-blue: #5B7CFF;
+      --midnight-violet: #A95BFF;
+      --text: #FFFFFF;
+      --muted: rgba(255,255,255,.68);
+      --ghost: rgba(255,255,255,.44);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--midnight-bg);
+      color: var(--text);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(91,124,255,.22), transparent 28rem),
+        radial-gradient(circle at 76% 6%, rgba(169,91,255,.20), transparent 27rem),
+        radial-gradient(circle at 50% 100%, rgba(143,160,255,.18), transparent 36rem),
+        linear-gradient(180deg, #111318 0%, #010102 48%, #010102 100%);
+    }
+    .page { max-width: 1360px; margin: 0 auto; }
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    .lead {
+      margin: 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.48;
+    }
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      min-width: 320px;
+      padding: 12px;
+      border: 1px solid rgba(143,160,255,.18);
+      border-radius: 22px;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 18px 42px rgba(0,0,0,.34);
+    }
+    .swatch {
+      min-height: 66px;
+      border-radius: 16px;
+      padding: 9px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.13);
+    }
+    .swatch small {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255,255,255,.62);
+      font-weight: 750;
+    }
+    .bg { background: #010102; }
+    .a1 { background: #8FA0FF; color: #080910; }
+    .a1 small { color: rgba(8,9,16,.64); }
+    .a2 { background: #5B7CFF; }
+    .a3 { background: #A95BFF; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(330px, 390px) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .phone-wrap {
+      border-radius: 34px;
+      padding: 18px;
+      background:
+        linear-gradient(145deg, rgba(143,160,255,.18), rgba(169,91,255,.12)),
+        rgba(255,255,255,.045);
+      border: 1px solid rgba(143,160,255,.20);
+      box-shadow: 0 30px 82px rgba(0,0,0,.48);
+    }
+    .phone {
+      min-height: 675px;
+      border-radius: 34px;
+      padding: 22px 19px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 78% 5%, rgba(169,91,255,.26), transparent 15rem),
+        radial-gradient(circle at 10% 86%, rgba(91,124,255,.20), transparent 18rem),
+        linear-gradient(180deg, #151821 0%, #08090f 56%, #010102 100%);
+      border: 4px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 0 0 1px rgba(143,160,255,.16),
+        0 26px 46px rgba(0,0,0,.46);
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: calc(50% - 36px);
+      width: 72px;
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.30);
+      z-index: 2;
+    }
+    .phone::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.08), transparent 34%),
+        radial-gradient(circle at 48% 44%, rgba(143,160,255,.08), transparent 17rem);
+      pointer-events: none;
+    }
+    .phone > * { position: relative; z-index: 1; }
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+    }
+    .chip {
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: #eef1ff;
+      background: rgba(143,160,255,.14);
+      border: 1px solid rgba(143,160,255,.24);
+      font-size: 11px;
+      font-weight: 950;
+    }
+    .title {
+      margin-top: 36px;
+      font-size: 31px;
+      line-height: 1.02;
+      font-weight: 950;
+      letter-spacing: 0;
+      color: #fff;
+      text-shadow: 0 12px 34px rgba(0,0,0,.45);
+    }
+    .copy {
+      margin-top: 10px;
+      max-width: 285px;
+      font-size: 14px;
+      line-height: 1.42;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .aha-card {
+      margin-top: 18px;
+      border-radius: 26px;
+      padding: 16px;
+      color: #f7f8ff;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.045)),
+        #151824;
+      border: 1px solid rgba(143,160,255,.20);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 14px 0 rgba(143,160,255,.10),
+        0 24px 44px rgba(0,0,0,.30);
+    }
+    .aha-card b {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #ffffff;
+    }
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      border-radius: 17px;
+      padding: 10px;
+      margin-top: 9px;
+      background: rgba(143,160,255,.11);
+      border: 1px solid rgba(143,160,255,.15);
+      color: #f6f7ff;
+      font-size: 13px;
+      font-weight: 880;
+    }
+    .mark {
+      width: 25px;
+      height: 25px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #5B7CFF, #A95BFF);
+      box-shadow: 0 8px 20px rgba(91,124,255,.34);
+      flex: 0 0 auto;
+    }
+    .cta {
+      width: 100%;
+      min-height: 60px;
+      border: 0;
+      border-radius: 21px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: 0;
+      background: linear-gradient(135deg, #5B7CFF 0%, #8FA0FF 42%, #A95BFF 100%);
+      box-shadow:
+        0 14px 0 rgba(70, 67, 168, .34),
+        0 22px 46px rgba(91,124,255,.33),
+        inset 0 1px 0 rgba(255,255,255,.34);
+    }
+    .progress {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 7px;
+      margin-top: 16px;
+    }
+    .progress div {
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(143,160,255,.20);
+    }
+    .progress div:first-child {
+      background: linear-gradient(90deg, #5B7CFF, #A95BFF);
+      box-shadow: 0 0 18px rgba(143,160,255,.35);
+    }
+    .side {
+      display: grid;
+      gap: 18px;
+    }
+    .panel {
+      border-radius: 30px;
+      padding: 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(143,160,255,.16);
+      box-shadow: 0 22px 58px rgba(0,0,0,.30);
+    }
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 23px;
+      letter-spacing: 0;
+    }
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.48;
+    }
+    .button-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .button-card {
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 14px;
+      background: rgba(255,255,255,.045);
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+    .button-card:hover { transform: translateY(-2px); }
+    .button-card.selected {
+      border-color: rgba(143,160,255,.72);
+      box-shadow: 0 16px 34px rgba(91,124,255,.20);
+    }
+    .button-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .button-preview {
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.32), 0 12px 28px rgba(0,0,0,.30);
+    }
+    .electric { background: linear-gradient(135deg, #5B7CFF, #8FA0FF 45%, #A95BFF); color: #fff; }
+    .violet { background: linear-gradient(135deg, #8FA0FF, #A95BFF 52%, #5B7CFF); color: #fff; }
+    .frost { background: linear-gradient(135deg, #F4F6FF, #8FA0FF 50%, #5B7CFF); color: #070914; }
+    .button-card span {
+      display: block;
+      color: var(--ghost);
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .rule {
+      min-height: 92px;
+      border-radius: 20px;
+      padding: 14px;
+      background: rgba(143,160,255,.08);
+      border: 1px solid rgba(143,160,255,.13);
+      color: var(--muted);
+      line-height: 1.38;
+      font-size: 13px;
+    }
+    .rule b {
+      display: block;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 29px;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      background: linear-gradient(135deg, #5B7CFF, #A95BFF);
+      box-shadow: 0 10px 24px rgba(91,124,255,.28);
+      margin-bottom: 10px;
+    }
+    @media (max-width: 1120px) {
+      .header { display: block; }
+      .palette { margin-top: 18px; max-width: 520px; }
+      .layout { grid-template-columns: 1fr; }
+      .phone-wrap { max-width: 430px; }
+      .button-options, .rules { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Hybrid Dark Friendly в теме “Полночь”</h1>
+        <p class="lead">Берем выбранный тобой дружелюбный стиль, но убираем зеленую CTA и кремовые карточки. Основа теперь как у первой темы приложения: чистая ночь, electric blue, soft indigo и violet glow.</p>
+      </div>
+      <div class="palette" aria-label="Палитра темы Полночь">
+        <div class="swatch bg">BG<small>#010102</small></div>
+        <div class="swatch a1">Accent<small>#8FA0FF</small></div>
+        <div class="swatch a2">Blue<small>#5B7CFF</small></div>
+        <div class="swatch a3">Violet<small>#A95BFF</small></div>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div>
+            <div class="chips">
+              <span class="chip">Français</span>
+              <span class="chip">7 минут</span>
+              <span class="chip">A1</span>
+            </div>
+            <div class="title">Сегодня начнем с живой фразы</div>
+            <div class="copy">Не зубрежка. Маленький маршрут, который помещается в день.</div>
+            <div class="aha-card">
+              <b>Твой первый шаг</b>
+              <div class="task"><span class="mark"></span>Je voudrais un café.</div>
+              <div class="task"><span class="mark"></span>Слушаем, повторяем, проверяем</div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Открыть мой план</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <section class="panel">
+          <span class="badge">рекомендованный финал</span>
+          <h2>Midnight Electric</h2>
+          <p>Это не “зеленая успешность”, а фирменное ночное обещание: план светится в темноте приложения. CTA остается заметной, но не выбивается из темы.</p>
+          <div class="button-options">
+            <article class="button-card selected" data-choice="midnight-electric" onclick="toggleSelect(this)">
+              <strong>A. Electric plan</strong>
+              <div class="button-preview electric">Открыть мой план</div>
+              <span>Чистая “Полночь”: #5B7CFF → #8FA0FF → #A95BFF.</span>
+            </article>
+            <article class="button-card" data-choice="midnight-violet" onclick="toggleSelect(this)">
+              <strong>B. Violet pulse</strong>
+              <div class="button-preview violet">Собрать мой план</div>
+              <span>Больше фиолетового свечения, чуть эмоциональнее.</span>
+            </article>
+            <article class="button-card" data-choice="midnight-frost" onclick="toggleSelect(this)">
+              <strong>C. Frost light</strong>
+              <div class="button-preview frost">Продолжить</div>
+              <span>Самая светлая CTA. Контрастная, но менее premium-night.</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Правила этого направления</h2>
+          <div class="rules">
+            <div class="rule"><b>Не зеленый CTA</b>Основная кнопка всегда gradient blue/violet из “Полночи”. Зеленый оставляем только для настоящего success-state, если он нужен.</div>
+            <div class="rule"><b>Дружелюбность формой</b>Мягкие радиусы, толстые удобные карточки, понятный текст. Цвета остаются ночными.</div>
+            <div class="rule"><b>Без старого gold/VIP</b>Paywall может быть глубже, но не черно-золотой казино-premium. Он должен продолжать Midnight.</div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

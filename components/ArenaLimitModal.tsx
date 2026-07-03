@@ -64,7 +64,7 @@ function ArenaLimitModal({
 }: Props) {
   const router = useRouter();
   const dailyMax = dailyMaxProp ?? ARENA_DAILY_MAX;
-  const { theme: t, themeMode, f } = useTheme();
+  const { theme: t, f } = useTheme();
   const paywallSheetBg = opaqueArenaLimitSurface(t.bgCard);
   const { lang } = useLang();
   const slideY = useRef(new Animated.Value(SCREEN_H)).current;

@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroSpotInteraction } from '../../app/lesson_data_types';
+import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
 /**
  * «Найди промах» — Spot-the-Slip. Тапни лишнее/неверное слово в чипах.
@@ -16,11 +17,18 @@ interface Props {
   lang: Lang;
   theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
   onSolved?: () => void;
+  initialProgress?: TheoryDrillProgressState;
+  onProgressChange?: (state: TheoryDrillProgressState) => void;
 }
 
-export default function SpotTheSlip({ data, lang, theme, onSolved }: Props) {
-  const [solved, setSolved] = useState(false);
+export default function SpotTheSlip({ data, lang, theme, onSolved, initialProgress, onProgressChange }: Props) {
+  const [solved, setSolved] = useState(() => initialProgress?.status === 'solved' || initialProgress?.solved === true);
   const [wrongTap, setWrongTap] = useState<number | null>(null);
+
+  useEffect(() => {
+    setSolved(initialProgress?.status === 'solved' || initialProgress?.solved === true);
+    setWrongTap(null);
+  }, [initialProgress]);
 
   const tap = useCallback(
     (idx: number) => {
@@ -28,6 +36,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved }: Props) {
       if (idx === data.answerIndex) {
         setSolved(true);
         hapticSuccess();
+        onProgressChange?.({ type: 'spot_slip', status: 'solved', pickedIndex: idx, solved: true });
         onSolved?.();
       } else {
         setWrongTap(idx);
@@ -35,7 +44,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved }: Props) {
         setTimeout(() => setWrongTap((w) => (w === idx ? null : w)), 600);
       }
     },
-    [solved, data.answerIndex, onSolved],
+    [solved, data.answerIndex, onProgressChange, onSolved],
   );
 
   return (

@@ -1,9 +1,9 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
@@ -36,7 +36,9 @@ import {
 } from '../app/firestore_league_chat';
 import { emitAppEvent } from '../app/events';
 import { leagueChatRoomKey, markLeagueChatRoomRead } from '../app/league_chat_unread';
+import { ensureAnonUser, getCurrentUid } from '../app/cloud_sync';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import {
   createOptimisticLeagueChatMessage,
   getLeagueChatConnectionUi,
@@ -45,6 +47,10 @@ import {
   mergeLeagueChatOptimisticMessages,
   type OptimisticLeagueChatMessage,
 } from './leagueChatPanelBehavior';
+import {
+  getKeyboardAwareComposerBottomPadding,
+  useKeyboardAvoidanceMetrics,
+} from './keyboardAvoidance';
 import LeagueChatCompassPost from './LeagueChatCompassPost';
 import LeagueChatReactions from './LeagueChatReactions';
 
@@ -90,6 +96,14 @@ function systemMessageIcon(type: LeagueChatSystemType | undefined): keyof typeof
   }
 }
 
+function isRetiredCompassSystemMessage(message: LeagueChatMessage): boolean {
+  return Boolean(
+    message.pinned ||
+    message.compassKind === 'icebreaker' ||
+    message.compassKind === 'daily_summary'
+  );
+}
+
 function roomKey(room: LeagueChatRoom | null | undefined): string {
   return room ? `${room.weekId}:${room.leagueId}:${room.groupId}` : '';
 }
@@ -102,6 +116,8 @@ function LeagueChatPanel({
   myTotalXP,
   onToast,
   onAuthorPress,
+  deepLink,
+  onDeepLinkConsumed,
 }: {
   initialRoom?: LeagueChatRoom | null;
   myUid?: string;
@@ -111,10 +127,16 @@ function LeagueChatPanel({
   onToast?: (message: string, type?: 'success' | 'error' | 'info') => void;
   /** Тап по аватару/имени автора чужого сообщения — открыть его карточку. */
   onAuthorPress?: (author: { uid: string; name: string; avatar?: string; aura?: string }) => void;
+  /** Deep-link из центра уведомлений: доскроллить к сообщению и подсветить его. */
+  deepLink?: { messageId: string } | null;
+  onDeepLinkConsumed?: () => void;
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const keyboardAvoidance = useKeyboardAvoidanceMetrics();
+  const keyboardBottomInset = keyboardAvoidance.bottomInset;
   const initialRoomRef = useRef<LeagueChatRoom | null | undefined>(undefined);
   if (initialRoomRef.current === undefined) {
     initialRoomRef.current = initialRoom ?? getCachedLeagueChatRoomSync();
@@ -138,19 +160,66 @@ function LeagueChatPanel({
   const [authorizationRetryNonce, setAuthorizationRetryNonce] = useState(0);
   const [authorizedRoomKey, setAuthorizedRoomKey] = useState('');
   const [authorizingRoomKey, setAuthorizingRoomKey] = useState('');
+  const [resolvedMyUid, setResolvedMyUid] = useState<string | null>(myUid || null);
+  const [resolvedMyAuthUid, setResolvedMyAuthUid] = useState<string | null>(() => getCurrentUid());
   const [subscriptionError, setSubscriptionError] = useState(false);
   const [reportTarget, setReportTarget] = useState<LeagueChatMessage | null>(null);
   const [reportReason, setReportReason] = useState(REPORT_REASONS[0].id);
   const [reportDetails, setReportDetails] = useState('');
   const [reportSubmitting, setReportSubmitting] = useState(false);
+  // Реплай как в Telegram: цель ответа (плашка над полем ввода) + подсветка цитируемого.
+  const [replyTarget, setReplyTarget] = useState<LeagueChatMessage | null>(null);
+  const [highlightedMessageId, setHighlightedMessageId] = useState<string | null>(null);
+  const messageLayoutsRef = useRef<Record<string, number>>({});
+  const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Сообщение, к которому надо доскроллить, как только оно появится в снапшоте.
+  const pendingScrollMessageIdRef = useRef<string | null>(null);
   const scrollRef = useRef<ScrollView | null>(null);
   const inputRef = useRef<TextInput | null>(null);
   const hideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const forbiddenRoomKeyRef = useRef('');
   const optimisticMessageSeqRef = useRef(0);
+  const effectiveMyUid = myUid || resolvedMyUid || '';
+  const isOwnMessage = useCallback((message: Pick<LeagueChatMessage, 'authorUid' | 'authorAuthUid'> | OptimisticLeagueChatMessage) => {
+    if ('localStatus' in message) return true;
+    return Boolean(
+      (effectiveMyUid && message.authorUid === effectiveMyUid) ||
+      (resolvedMyAuthUid && 'authorAuthUid' in message && message.authorAuthUid === resolvedMyAuthUid)
+    );
+  }, [effectiveMyUid, resolvedMyAuthUid]);
 
   const scrollToLatestMessage = useCallback(() => {
     requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
+  }, []);
+
+  // Подсветить сообщение и доскроллить к нему (тап по цитате / переход из уведомления).
+  const scrollToMessage = useCallback((messageId: string) => {
+    const y = messageLayoutsRef.current[messageId];
+    if (typeof y === 'number') {
+      scrollRef.current?.scrollTo({ y: Math.max(0, y - 70), animated: true });
+    }
+    setHighlightedMessageId(messageId);
+    if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
+    highlightTimerRef.current = setTimeout(() => setHighlightedMessageId(null), 1800);
+  }, []);
+
+  // Deep-link из центра уведомлений: запоминаем цель, скроллим когда сообщение отрендерится.
+  useEffect(() => {
+    if (!deepLink?.messageId) return;
+    pendingScrollMessageIdRef.current = deepLink.messageId;
+    onDeepLinkConsumed?.();
+  }, [deepLink, onDeepLinkConsumed]);
+
+  useEffect(() => {
+    const target = pendingScrollMessageIdRef.current;
+    if (!target || !messages.some((message) => message.id === target)) return;
+    pendingScrollMessageIdRef.current = null;
+    const id = setTimeout(() => scrollToMessage(target), 350);
+    return () => clearTimeout(id);
+  }, [messages, scrollToMessage]);
+
+  useEffect(() => () => {
+    if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
   }, []);
   const markVisibleMessagesRead = useCallback((targetRoom: LeagueChatRoom, rows: LeagueChatMessage[]) => {
     void markLeagueChatRoomRead(targetRoom, rows).then(() => {
@@ -167,6 +236,15 @@ function LeagueChatPanel({
 
   useEffect(() => {
     let cancelled = false;
+    if (myUid) setResolvedMyUid(myUid);
+    const authUid = getCurrentUid();
+    if (authUid) setResolvedMyAuthUid(authUid);
+    void ensureAnonUser().then((stableUid) => {
+      if (cancelled) return;
+      if (stableUid) setResolvedMyUid(stableUid);
+      const nextAuthUid = getCurrentUid();
+      if (nextAuthUid) setResolvedMyAuthUid(nextAuthUid);
+    }).catch(() => {});
     void getBlockedLeagueChatUsers().then((blocked) => {
       if (!cancelled) setBlockedUsers(blocked);
     });
@@ -194,7 +272,7 @@ function LeagueChatPanel({
     return () => {
       cancelled = true;
     };
-  }, [initialRoom, roomRetryNonce]);
+  }, [initialRoom, myUid, roomRetryNonce]);
 
   useEffect(() => {
     if (room || !roomReady) return;
@@ -251,7 +329,11 @@ function LeagueChatPanel({
     draft,
     draftBlocked,
   });
-  const composerBottomPadding = Math.max(18, insets.bottom + 14);
+  const composerBottomPadding = getKeyboardAwareComposerBottomPadding(
+    keyboardBottomInset,
+    bottomInset,
+    keyboardAvoidance.visible,
+  );
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
@@ -264,6 +346,12 @@ function LeagueChatPanel({
     });
     return () => sub.remove();
   }, [scrollToLatestMessage]);
+
+  useEffect(() => {
+    if (!keyboardAvoidance.visible) return;
+    const id = setTimeout(scrollToLatestMessage, 80);
+    return () => clearTimeout(id);
+  }, [keyboardAvoidance.visible, keyboardBottomInset, scrollToLatestMessage]);
 
   useEffect(() => {
     if (!room) {
@@ -317,17 +405,14 @@ function LeagueChatPanel({
 
   const allVisible = useMemo(
     () => mergeLeagueChatOptimisticMessages(messages, optimisticMessages)
-      .filter((m) => isOptimisticLeagueChatMessage(m) || m.authorUid === myUid || !blockedUsers[m.authorUid]),
-    [messages, optimisticMessages, blockedUsers, myUid],
+      .filter((m) => isOptimisticLeagueChatMessage(m) || isOwnMessage(m) || !blockedUsers[m.authorUid]),
+    [messages, optimisticMessages, blockedUsers, isOwnMessage],
   );
 
-  // Закреплённое приветствие Компаса выносим в шапку, из ленты убираем.
-  const pinnedMessage = useMemo(
-    () => allVisible.find((m) => !isOptimisticLeagueChatMessage(m) && (m as LeagueChatMessage).pinned) as LeagueChatMessage | undefined,
-    [allVisible],
-  );
   const visibleMessages = useMemo(
-    () => allVisible.filter((m) => isOptimisticLeagueChatMessage(m) || !(m as LeagueChatMessage).pinned),
+    () => allVisible.filter((m) => (
+      isOptimisticLeagueChatMessage(m) || !isRetiredCompassSystemMessage(m as LeagueChatMessage)
+    )),
     [allVisible],
   );
 
@@ -374,21 +459,34 @@ function LeagueChatPanel({
 }), 'error');
       return;
     }
-    const optimisticMessage = createOptimisticLeagueChatMessage(room, {
-      clientId: `${Date.now()}-${optimisticMessageSeqRef.current += 1}`,
-      authorUid: myUid || 'local-league-chat-user',
-      authorAvatar: myAvatar,
-      authorAura: myAuraId,
-      text,
-      now: Date.now(),
-    });
+    const replyToForSend = replyTarget;
+    const optimisticMessage: OptimisticLeagueChatMessage = {
+      ...createOptimisticLeagueChatMessage(room, {
+        clientId: `${Date.now()}-${optimisticMessageSeqRef.current += 1}`,
+        authorUid: effectiveMyUid || await ensureAnonUser().catch(() => null) || 'local-league-chat-user',
+        authorAuthUid: resolvedMyAuthUid || getCurrentUid(),
+        authorAvatar: myAvatar,
+        authorAura: myAuraId,
+        text,
+        now: Date.now(),
+      }),
+      // Цитата в оптимистичном сообщении — чтобы реплай был виден сразу, до сервера.
+      ...(replyToForSend ? {
+        replyToMessageId: replyToForSend.id,
+        replyToAuthorUid: replyToForSend.authorUid,
+        replyToAuthorName: replyToForSend.authorName,
+        replyToText: resolveLeagueChatText(replyToForSend, lang).slice(0, 140),
+        replyToKind: isSystemLeagueChatMessage(replyToForSend) ? 'system' as const : 'user' as const,
+      } : {}),
+    };
     setOptimisticMessages((cur) => [...cur, optimisticMessage]);
     scrollToLatestMessage();
     setSending(true);
     setDraft('');
     setDraftBlocked(false);
+    setReplyTarget(null);
     try {
-      const result = await sendLeagueChatMessage(room, text);
+      const result = await sendLeagueChatMessage(room, text, replyToForSend ? { replyToMessageId: replyToForSend.id } : undefined);
       if (result === 'sent') {
         return;
       } else if (result === 'review') {
@@ -399,6 +497,7 @@ function LeagueChatPanel({
       } else if (result === 'throttled') {
         setOptimisticMessages((cur) => cur.filter((message) => message.id !== optimisticMessage.id));
         setDraft(text);
+        setReplyTarget(replyToForSend);
         showToast(triLang(lang, {
   ru: 'Слишком часто. Подожди немного.',
   uk: 'Занадто часто. Трохи зачекай.',
@@ -414,6 +513,7 @@ function LeagueChatPanel({
           message.id === optimisticMessage.id ? { ...message, localStatus: 'failed' } : message
         )));
         setDraft(text);
+        setReplyTarget(replyToForSend);
         showToast(triLang(lang, {
   ru: 'Нет соединения. Сообщение не отправлено.',
   uk: 'Немає зʼєднання. Повідомлення не надіслано.',
@@ -442,7 +542,7 @@ function LeagueChatPanel({
     } finally {
       setSending(false);
     }
-  }, [draft, draftBlocked, lang, myAuraId, myAvatar, myUid, room, scrollToLatestMessage, sending, showToast]);
+  }, [draft, draftBlocked, effectiveMyUid, lang, myAuraId, myAvatar, replyTarget, resolvedMyAuthUid, room, scrollToLatestMessage, sending, showToast]);
 
   const deleteOwnMessage = useCallback(async (message: LeagueChatMessage | OptimisticLeagueChatMessage) => {
     hapticTap();
@@ -450,7 +550,7 @@ function LeagueChatPanel({
       setOptimisticMessages((cur) => cur.filter((row) => row.id !== message.id));
       return;
     }
-    if (!myUid || message.authorUid !== myUid || deletingMessageIds[message.id]) return;
+    if (!isOwnMessage(message) || deletingMessageIds[message.id]) return;
 
     const messageId = message.id;
     setDeletingMessageIds((cur) => ({ ...cur, [messageId]: true }));
@@ -490,7 +590,7 @@ function LeagueChatPanel({
         return next;
       });
     }
-  }, [deletingMessageIds, lang, myUid, showToast]);
+  }, [deletingMessageIds, isOwnMessage, lang, showToast]);
 
   const openReportModal = useCallback((message: LeagueChatMessage) => {
     hapticTap();
@@ -581,7 +681,7 @@ function LeagueChatPanel({
 
   const blockUser = useCallback((message: LeagueChatMessage) => {
     hapticTap();
-    if (message.authorUid === myUid) {
+    if (isOwnMessage(message)) {
       showToast(triLang(lang, {
   ru: 'Свои сообщения скрывать нельзя',
   uk: 'Свої повідомлення приховувати не можна',
@@ -641,7 +741,7 @@ function LeagueChatPanel({
 }), 'error');
       });
     }, HIDE_UNDO_MS);
-  }, [cancelPendingHide, lang, myUid, pendingHideUntilByUid, showToast]);
+  }, [cancelPendingHide, isOwnMessage, lang, pendingHideUntilByUid, showToast]);
 
   if (connectionUi.showBlockingConnectionState) {
     return (
@@ -837,21 +937,6 @@ function LeagueChatPanel({
           flex: 1,
         }}
       >
-        {pinnedMessage ? (
-          <View
-            testID="league-chat-pinned"
-            style={{ paddingHorizontal: 10, paddingTop: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}
-          >
-            <LeagueChatCompassPost
-              message={pinnedMessage}
-              lang={lang}
-              t={t}
-              f={f}
-              icon={systemMessageIcon(pinnedMessage.systemType)}
-              onToast={onToast}
-            />
-          </View>
-        ) : null}
         <ScrollView
           ref={scrollRef}
           style={{ flex: 1 }}
@@ -861,8 +946,8 @@ function LeagueChatPanel({
           contentContainerStyle={{
             flexGrow: 1,
             justifyContent: visibleMessages.length === 0 ? 'center' : 'flex-start',
-            paddingHorizontal: 14,
-            paddingTop: 8,
+            paddingHorizontal: 8,
+            paddingTop: 2,
             paddingBottom: 16,
             gap: 10,
           }}
@@ -902,6 +987,7 @@ function LeagueChatPanel({
                     t={t}
                     f={f}
                     icon={systemMessageIcon(systemType)}
+                    themeMode={themeMode}
                     onToast={onToast}
                   />
                 );
@@ -947,7 +1033,7 @@ function LeagueChatPanel({
             }
 
             const localMessage = isOptimisticLeagueChatMessage(m);
-            const isMine = localMessage || (!!myUid && m.authorUid === myUid);
+            const isMine = isOwnMessage(m);
             const pendingHideUntil = pendingHideUntilByUid[m.authorUid] ?? 0;
             const hideCountdown = Math.max(0, Math.ceil((pendingHideUntil - hideTimerNow) / 1000));
             const avatar = isMine
@@ -991,10 +1077,12 @@ function LeagueChatPanel({
             ) : (
               plainAvatar
             );
+            const highlighted = highlightedMessageId === m.id;
             return (
               <View
                 key={m.id}
                 testID={`league-chat-message-${m.id}`}
+                onLayout={(e) => { messageLayoutsRef.current[m.id] = e.nativeEvent.layout.y; }}
                 style={{
                   alignItems: isMine ? 'flex-end' : 'flex-start',
                   paddingHorizontal: 2,
@@ -1008,7 +1096,7 @@ function LeagueChatPanel({
                       accessibilityLabel={accountAccessibilityLabel}
                       activeOpacity={0.7}
                       onPress={openAuthor}
-                      style={{ marginLeft: sideOffset + 6, marginBottom: 3, maxWidth: '74%' }}
+                      style={{ marginLeft: sideOffset + 6, marginBottom: 3, maxWidth: '86%' }}
                     >
                       <Text
                         numberOfLines={1}
@@ -1030,7 +1118,7 @@ function LeagueChatPanel({
                         fontWeight: '800',
                         marginLeft: sideOffset + 6,
                         marginBottom: 3,
-                        maxWidth: '74%',
+                        maxWidth: '86%',
                       }}
                     >
                       {m.authorName}
@@ -1051,17 +1139,41 @@ function LeagueChatPanel({
                   {!isMine && avatarNode}
                   <View
                     style={{
-                      maxWidth: '78%',
+                      maxWidth: '86%',
+                      flexShrink: 1,
                       borderRadius: 18,
                       borderBottomLeftRadius: isMine ? 18 : 6,
                       borderBottomRightRadius: isMine ? 6 : 18,
                       backgroundColor: isMine ? t.accent : t.bgSurface,
-                      borderWidth: isMine ? 0 : 0.5,
-                      borderColor: t.border,
+                      borderWidth: highlighted ? 1.5 : (isMine ? 0 : 0.5),
+                      borderColor: highlighted ? (isMine ? t.correctText : t.accent) : t.border,
                       paddingHorizontal: 12,
                       paddingVertical: 8,
                     }}
                   >
+                    {m.replyToMessageId ? (
+                      <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => scrollToMessage(m.replyToMessageId!)}
+                        style={{
+                          flexDirection: 'row',
+                          borderRadius: 10,
+                          backgroundColor: isMine ? 'rgba(0,0,0,0.18)' : t.bgCard,
+                          marginBottom: 6,
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <View style={{ width: 3, backgroundColor: isMine ? t.correctText : t.accent }} />
+                        <View style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 5, minWidth: 0 }}>
+                          <Text numberOfLines={1} style={{ color: isMine ? t.correctText : t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
+                            {m.replyToKind === 'system' ? 'Compass' : (m.replyToAuthorName || '')}
+                          </Text>
+                          <Text numberOfLines={1} style={{ color: isMine ? t.correctText : t.textMuted, opacity: isMine ? 0.82 : 1, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
+                            {m.replyToText || ''}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    ) : null}
                     <Text testID={`league-chat-message-text-${m.id}`} style={{ color: isMine ? t.correctText : t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.38) }}>
                       {m.text}
                     </Text>
@@ -1077,21 +1189,46 @@ function LeagueChatPanel({
                     flexDirection: 'row',
                     alignItems: 'center',
                     gap: 6,
-                    opacity: 0.72,
                     alignSelf: isMine ? 'flex-end' : 'flex-start',
                     marginTop: 3,
                     marginRight: isMine ? sideOffset : 0,
                     marginLeft: isMine ? 0 : sideOffset,
                     paddingHorizontal: 4,
+                    maxWidth: '86%',
                   }}
                   >
+                    {!localMessage && (
+                      <LeagueChatReactions
+                        message={m as LeagueChatMessage}
+                        align={isMine ? 'flex-end' : 'flex-start'}
+                        t={t}
+                        f={f}
+                        compact
+                      />
+                    )}
+                    {!localMessage && (
+                      <TouchableOpacity
+                        testID={`league-chat-reply-${m.id}`}
+                        accessibilityRole="button"
+                        accessibilityLabel={`qa-league-chat-reply-${m.id}`}
+                        onPress={() => {
+                          hapticTap();
+                          setReplyTarget(m as LeagueChatMessage);
+                          inputRef.current?.focus();
+                        }}
+                        style={{ padding: 3, opacity: 0.72 }}
+                      >
+                        <Ionicons name="arrow-undo-outline" size={14} color={t.textMuted} />
+                      </TouchableOpacity>
+                    )}
                     {!isMine && (
                       <>
                         <TouchableOpacity
                         testID={`league-chat-report-${m.id}`}
+                        accessibilityRole="button"
                         accessibilityLabel={`qa-league-chat-report-${m.id}`}
                         onPress={() => openReportModal(m)}
-                        style={{ padding: 3 }}
+                        style={{ padding: 3, opacity: 0.72 }}
                       >
                         <Ionicons name="flag-outline" size={14} color={t.textMuted} />
                       </TouchableOpacity>
@@ -1128,6 +1265,7 @@ function LeagueChatPanel({
                           justifyContent: 'center',
                           borderWidth: pendingHideUntil ? 1.5 : 0,
                           borderColor: pendingHideUntil ? t.accent : 'transparent',
+                          opacity: pendingHideUntil ? 1 : 0.72,
                         }}
                       >
                         {pendingHideUntil ? (
@@ -1153,7 +1291,7 @@ function LeagueChatPanel({
                         borderRadius: 12,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        opacity: deletingMessageIds[m.id] ? 0.45 : 1,
+                        opacity: deletingMessageIds[m.id] ? 0.45 : 0.72,
                       }}
                     >
                       <Ionicons name={deletingMessageIds[m.id] ? 'time-outline' : 'trash-outline'} size={14} color={t.textMuted} />
@@ -1161,18 +1299,6 @@ function LeagueChatPanel({
                   )}
                 </View>
 
-                {/* Эмодзи-реакции — только для реально отправленных сообщений
-                    (оптимистичные ещё без id на сервере). */}
-                {!localMessage && (
-                  <View style={{ marginLeft: isMine ? 0 : sideOffset, marginRight: isMine ? sideOffset : 0 }}>
-                    <LeagueChatReactions
-                      message={m as LeagueChatMessage}
-                      align={isMine ? 'flex-end' : 'flex-start'}
-                      t={t}
-                      f={f}
-                    />
-                  </View>
-                )}
               </View>
             );
           })}
@@ -1180,7 +1306,7 @@ function LeagueChatPanel({
 
         <View
           testID="league-chat-composer"
-          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: t.bgCard }}
+          style={{ marginBottom: keyboardBottomInset, paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: t.bgCard }}
         >
           {draftBlocked && (
             <Text style={{ color: monoIcon(themeMode, '#E05252'), fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
@@ -1196,6 +1322,28 @@ function LeagueChatPanel({
 })}
             </Text>
           )}
+          {replyTarget ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 6, paddingHorizontal: 2 }}>
+              <Ionicons name="arrow-undo-outline" size={16} color={t.accent} />
+              <View style={{ flex: 1, minWidth: 0, borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 8 }}>
+                <Text numberOfLines={1} style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
+                  {isSystemLeagueChatMessage(replyTarget) ? 'Compass' : replyTarget.authorName}
+                </Text>
+                <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700' }}>
+                  {resolveLeagueChatText(replyTarget, lang)}
+                </Text>
+              </View>
+              <TouchableOpacity
+                testID="league-chat-reply-cancel"
+                accessibilityRole="button"
+                accessibilityLabel="qa-league-chat-reply-cancel"
+                onPress={() => { hapticTap(); setReplyTarget(null); }}
+                style={{ width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Ionicons name="close" size={18} color={t.textMuted} />
+              </TouchableOpacity>
+            </View>
+          ) : null}
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
             <TextInput
               testID="league-chat-input"

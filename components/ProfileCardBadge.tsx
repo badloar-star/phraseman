@@ -7,9 +7,9 @@ import { resolveProfileCardDisplay } from '../app/profile_card_system';
 import { profileCardLevelLabel } from './profileCardLabel';
 
 type Props = {
-  /** Raw stored card level (0–5). Anything <= 0 renders nothing. */
+  /** Raw stored card level (0 or 1). Anything <= 0 renders nothing. */
   level?: number | null;
-  /** Raw stored card theme; only applied from level 2 (see resolveProfileCardDisplay). */
+  /** Raw stored card theme; kept only for legacy synced payloads. */
   theme?: string | null;
   /** 'sm' for tight list rows, 'md' for headers / wider rows. */
   size?: 'sm' | 'md';
@@ -35,9 +35,6 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
 
   const compact = size === 'sm';
   const fontSize = compact ? 9 : 10;
-  // Топ-уровни (4 Prestige, 5 Elite) получают искру-иконку и более сильную тень,
-  // чтобы выделяться в списках друзей/арены — это публичный «payoff» апгрейда.
-  const isTopTier = cardLevel >= 4;
   const iconSize = compact ? 9 : 11;
 
   return (
@@ -48,7 +45,7 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
         {
           flexDirection: 'row',
           alignItems: 'center',
-          gap: isTopTier ? 3 : 0,
+          gap: 3,
           alignSelf: 'flex-start',
           borderRadius: 999,
           backgroundColor: colors.accentSoft,
@@ -57,16 +54,14 @@ function ProfileCardBadge({ level, theme, size = 'sm', style }: Props) {
           paddingHorizontal: compact ? 6 : 8,
           paddingVertical: compact ? 2 : 3,
           shadowColor: colors.shadowColor,
-          shadowOpacity: cardLevel >= 5 ? 0.7 : cardLevel >= 3 ? 0.5 : 0,
-          shadowRadius: cardLevel >= 5 ? 7 : cardLevel >= 3 ? 5 : 0,
+          shadowOpacity: 0.42,
+          shadowRadius: 5,
           shadowOffset: { width: 0, height: 0 },
         },
         style,
       ]}
     >
-      {isTopTier ? (
-        <Ionicons name={cardLevel >= 5 ? 'diamond' : 'sparkles'} size={iconSize} color={colors.accent} />
-      ) : null}
+      <Ionicons name="sparkles" size={iconSize} color={colors.accent} />
       <Text style={{ color: colors.accent, fontSize, fontWeight: '900', letterSpacing: 0.4 }}>
         {profileCardLevelLabel(cardLevel, lang === 'ru')}
       </Text>

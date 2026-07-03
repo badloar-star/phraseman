@@ -14,25 +14,10 @@ function makeRef(path) {
         }),
     };
 }
-function setPath(target, dottedKey, value) {
-    const parts = dottedKey.split('.');
-    let cursor = target;
-    for (let i = 0; i < parts.length - 1; i += 1) {
-        const key = parts[i];
-        const existing = cursor[key];
-        if (!existing || typeof existing !== 'object' || Array.isArray(existing))
-            cursor[key] = {};
-        cursor = cursor[key];
-    }
-    cursor[parts[parts.length - 1]] = value;
-}
 function mergeFirestore(existing, patch) {
     const next = { ...existing };
     for (const [key, value] of Object.entries(patch)) {
-        if (key.includes('.')) {
-            setPath(next, key, value);
-        }
-        else if (value &&
+        if (value &&
             typeof value === 'object' &&
             !Array.isArray(value) &&
             existing[key] &&
@@ -126,6 +111,9 @@ describe('arenaBotMatchRecord', () => {
             rank: { tier: 'bronze', level: 'I', stars: 1 },
             stats: { matchesPlayed: 1, matchesWon: 1, totalScore: 480, winStreak: 1, bestWinStreak: 1 },
         });
+        const storedProfile = docs.get('arena_profiles/auth-1') ?? {};
+        expect(Object.prototype.hasOwnProperty.call(storedProfile, 'rank.tier')).toBe(false);
+        expect(Object.prototype.hasOwnProperty.call(storedProfile, 'stats.matchesPlayed')).toBe(false);
         expect(docs.get('arena_profiles/auth-1/match_history/bot_session_1')).toMatchObject({
             sessionId: 'bot_session_1',
             xpGained: 50,
@@ -161,6 +149,36 @@ describe('arenaBotMatchRecord', () => {
         expect(docs.get('arena_profiles/auth-1/match_history/bot_session_2')).toMatchObject({
             sessionId: 'bot_session_2',
             xpGained: 50,
+        });
+    });
+    it('repairs legacy dotted rank/stat fields by reading the fresher match count', async () => {
+        docs.set('arena_profiles/auth-1', {
+            userId: 'auth-1',
+            rank: { tier: 'legend', level: 'II', stars: 2 },
+            xp: 3980,
+            stats: { matchesPlayed: 78, matchesWon: 60, totalScore: 9000, winStreak: 2, bestWinStreak: 8 },
+            'rank.tier': 'legend',
+            'rank.level': 'III',
+            'rank.stars': 0,
+            'stats.matchesPlayed': 79,
+            'stats.matchesWon': 61,
+            'stats.totalScore': 10245,
+            'stats.winStreak': 3,
+            'stats.bestWinStreak': 8,
+        });
+        const result = await recordBotMatch({ sessionId: 'bot_session_legacy', myScore: 1145 });
+        expect(result).toMatchObject({
+            oldTier: 'legend',
+            oldLevel: 'III',
+            oldStars: 0,
+            newTier: 'legend',
+            newLevel: 'III',
+            newStars: 0,
+        });
+        expect(docs.get('arena_profiles/auth-1')).toMatchObject({
+            xp: 4030,
+            rank: { tier: 'legend', level: 'III', stars: 0 },
+            stats: { matchesPlayed: 80, matchesWon: 62, totalScore: 11390, winStreak: 4, bestWinStreak: 8 },
         });
     });
 });

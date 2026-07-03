@@ -21,7 +21,12 @@ import {
 } from './target_storage_keys';
 
 const DAILY_PROGRESS_WRITE_ERR_TOAST_COOLDOWN_MS = 45_000;
+const DATED_DAILY_TASKS_STORAGE_MAX_KEYS = 420;
+const DATED_DAILY_TASKS_STORAGE_TTL_MS = 120 * 24 * 60 * 60 * 1000;
+const DATED_DAILY_TASKS_STORAGE_PRUNE_INTERVAL_MS = 12 * 60 * 60 * 1000;
 let _lastDailyProgressWriteErrorToastAt = 0;
+let _lastDatedDailyTasksStoragePruneAt = 0;
+let _datedDailyTasksStoragePruneInFlight = false;
 
 function dailyTaskEventPayload(taskId: string, studyTarget?: RuntimeStudyTarget) {
   return studyTarget == null ? { taskId } : { taskId, studyTarget };
@@ -1990,6 +1995,66 @@ export const getTodayKey = (): string => {
   return new Date().toISOString().slice(0, 10);
 };
 
+function datedDailyTasksStorageDateFromKey(key: string): string | null {
+  const legacy = key.match(/^(?:daily_tasks_|lesson_visited_|daily_tasks_all_shards_)(\d{4}-\d{2}-\d{2})$/);
+  if (legacy) return legacy[1];
+  const scoped = key.match(/^daily_tasks_v2::[^:]+::(?:daily_tasks_|lesson_visited_)(\d{4}-\d{2}-\d{2})$/);
+  return scoped ? scoped[1] : null;
+}
+
+export function selectDatedDailyTasksStorageKeysToRemove(
+  keys: readonly string[],
+  nowMs = Date.now(),
+  retainKeys: readonly string[] = [],
+): string[] {
+  const retain = new Set(retainKeys.filter(Boolean));
+  const markers = keys
+    .map((key) => ({ key, date: datedDailyTasksStorageDateFromKey(key) }))
+    .filter((item): item is { key: string; date: string } => item.date !== null)
+    .sort((a, b) => (b.date === a.date ? b.key.localeCompare(a.key) : b.date.localeCompare(a.date)));
+  if (markers.length === 0) return [];
+
+  const cutoffMs = nowMs - DATED_DAILY_TASKS_STORAGE_TTL_MS;
+  const remove = new Set<string>();
+  for (const marker of markers) {
+    const markerMs = Date.parse(`${marker.date}T00:00:00.000Z`);
+    if (Number.isFinite(markerMs) && markerMs < cutoffMs && !retain.has(marker.key)) {
+      remove.add(marker.key);
+    }
+  }
+
+  let kept = 0;
+  for (const marker of markers) {
+    if (remove.has(marker.key)) continue;
+    kept += 1;
+    if (kept > DATED_DAILY_TASKS_STORAGE_MAX_KEYS && !retain.has(marker.key)) {
+      remove.add(marker.key);
+    }
+  }
+  return [...remove];
+}
+
+export async function pruneDatedDailyTasksStorageKeys(retainKeys: readonly string[] = []): Promise<void> {
+  const now = Date.now();
+  if (
+    _datedDailyTasksStoragePruneInFlight
+    || now - _lastDatedDailyTasksStoragePruneAt < DATED_DAILY_TASKS_STORAGE_PRUNE_INTERVAL_MS
+  ) {
+    return;
+  }
+  _datedDailyTasksStoragePruneInFlight = true;
+  _lastDatedDailyTasksStoragePruneAt = now;
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const remove = selectDatedDailyTasksStorageKeysToRemove(keys, now, retainKeys);
+    if (remove.length > 0) await AsyncStorage.multiRemove(remove);
+  } catch {
+    // Best-effort cleanup only; progress writes stay authoritative.
+  } finally {
+    _datedDailyTasksStoragePruneInFlight = false;
+  }
+}
+
 // Синхронная версия — без уровня, используется только внутри getTodayTasksSafe
 const getTodayTasksByLevel = (playerLevel: number): DailyTask[] => {
   const sets = getSetsForPlayerLevel(playerLevel);
@@ -2522,6 +2587,7 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
           : { taskId: candidate.id, current: 0, completed: false, claimed: false };
       filtered.push(seed);
       await AsyncStorage.setItem(key, JSON.stringify(filtered));
+      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
     });
 
     emitAppEvent('daily_task_rerolled', { oldTaskId: taskId, newTaskId: candidate.id });
@@ -2660,6 +2726,7 @@ export const rerollTodayDailyTaskSet = async (
           : { taskId: task.id, current: 0, completed: false, claimed: false }
       ));
       await AsyncStorage.setItem(key, JSON.stringify([...filtered, ...seeded]));
+      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
     });
 
     emitAppEvent('daily_tasks_set_rerolled', {
@@ -2807,6 +2874,7 @@ export const loadTodayProgress = async (
     const newJson = JSON.stringify(reconciled);
     if (newJson !== raw) {
       await AsyncStorage.setItem(key, newJson);
+      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
     }
     return reconciled;
   } catch {
@@ -2821,6 +2889,7 @@ export const saveTodayProgress = async (
   try {
     const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
     await AsyncStorage.setItem(key, JSON.stringify(progress));
+    void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
   } catch (e) {
     if (__DEV__) console.warn('[daily_tasks]', e);
   }
@@ -2943,6 +3012,7 @@ export type ClaimTaskWithRewardOptions = {
    */
   tasksForClaim?: DailyTask[];
   studyTarget?: RuntimeStudyTarget;
+  onReserved?: () => void;
 };
 
 export const claimTaskWithReward = async (
@@ -2970,59 +3040,35 @@ export const claimTaskWithReward = async (
   };
   // Нельзя держать storage lock на время registerXP (сеть/AsyncStorage) — иначе
   // updateMultipleTaskProgress из урока перезаписывает прогресс и «Забрать» молча не срабатывает.
-  const eligible = await withStorageLock(async () => {
+  const reservation = await withStorageLock(async (): Promise<'fresh' | 'already' | 'blocked'> => {
     const tasks = await resolveTasks();
     const progress = await loadTodayProgress(tasks, options?.studyTarget);
     const current = progress.find(p => p.taskId === taskId);
     const task = tasks.find(t => t.id === taskId) ?? ALL_TASKS.find(t => t.id === taskId);
-    return Boolean(current && task && !current.claimed && current.completed);
+    if (!current || !task) return 'blocked';
+    if (current.claimed) return 'already';
+    if (!current.completed) return 'blocked';
+    const updated = applyClaimForTaskToProgress(progress, tasks, taskId, task);
+    await saveTodayProgress(updated, options?.studyTarget);
+    void bumpDailyTaskClaimed(options?.studyTarget);
+    return 'fresh';
   });
-  if (!eligible) {
+  if (reservation === 'blocked') {
     return { claimed: false, awardedXp: 0 };
   }
+  if (reservation === 'already') {
+    return { claimed: true, awardedXp: 0 };
+  }
+  emitDailyTaskRewardClaimed(taskId, options?.studyTarget);
+  try { options?.onReserved?.(); } catch {}
 
   let awardedXp = 0;
   try {
     awardedXp = await grantReward();
   } catch {
-    return { claimed: false, awardedXp: 0 };
-  }
-
-  type LockOut =
-    | { kind: 'fresh'; xp: number }
-    | { kind: 'already' }
-    | { kind: 'abort' };
-
-  const lockResult: LockOut = await withStorageLock(async (): Promise<LockOut> => {
-    const tasks = await resolveTasks();
-    const progress = await loadTodayProgress(tasks, options?.studyTarget);
-    const current = progress.find(p => p.taskId === taskId);
-    const task = tasks.find(t => t.id === taskId) ?? ALL_TASKS.find(t => t.id === taskId);
-    if (!current || !task) {
-      return { kind: 'abort' };
-    }
-    if (current.claimed) {
-      return { kind: 'already' };
-    }
-    if (!current.completed) {
-      return { kind: 'abort' };
-    }
-    const updated = applyClaimForTaskToProgress(progress, tasks, taskId, task);
-    await saveTodayProgress(updated, options?.studyTarget);
-    void bumpDailyTaskClaimed(options?.studyTarget);
-    return { kind: 'fresh', xp: Math.max(0, Math.round(awardedXp)) };
-  });
-
-  // Вне storage lock: слушатели могут дергать loadTodayProgress/updateMultipleTaskProgress —
-  // emit внутри lock теоретически давал бы взаимную блокировку на общем mutex.
-  if (lockResult.kind === 'fresh') {
-    emitDailyTaskRewardClaimed(taskId, options?.studyTarget);
-    return { claimed: true, awardedXp: lockResult.xp };
-  }
-  if (lockResult.kind === 'already') {
     return { claimed: true, awardedXp: 0 };
   }
-  return { claimed: false, awardedXp: 0 };
+  return { claimed: true, awardedXp: Math.max(0, Math.round(awardedXp)) };
 };
 
 // ── Батч-обновление нескольких типов за одну операцию чтения/записи ──────────

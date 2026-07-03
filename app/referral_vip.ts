@@ -27,23 +27,69 @@ const EMPTY_INVITES: ListMyInvitesResult = {
   qualifiedCount: 0,
   claimableVipDays: 0,
 };
+const REFERRAL_INVITES_CACHE_TTL_MS = 15 * 60 * 1000;
+
+let referralInvitesCache: {
+  stableId: string;
+  updatedAtMs: number;
+  data: ListMyInvitesResult;
+} | null = null;
+const referralInvitesInFlight = new Map<string, Promise<ListMyInvitesResult>>();
+
+export function invalidateClaimableReferralStateCache(stableId?: string): void {
+  if (!stableId || referralInvitesCache?.stableId === stableId) {
+    referralInvitesCache = null;
+  }
+}
 
 /** Сколько дней доступа можно открыть прямо сейчас (есть qualified-друзья). */
-export async function getClaimableReferralState(): Promise<ListMyInvitesResult> {
+export async function getClaimableReferralState(options: { force?: boolean } = {}): Promise<ListMyInvitesResult> {
   if (!isReferralCloudEnabled()) return EMPTY_INVITES;
   const stableId = await getCanonicalUserId();
   if (!stableId) return EMPTY_INVITES;
-  try {
-    const res = await callReferralListMyInvites(stableId);
-    return {
+  const now = Date.now();
+  if (
+    !options.force
+    && referralInvitesCache?.stableId === stableId
+    && now - referralInvitesCache.updatedAtMs < REFERRAL_INVITES_CACHE_TTL_MS
+  ) {
+    return referralInvitesCache.data;
+  }
+  const existing = !options.force ? referralInvitesInFlight.get(stableId) : null;
+  if (existing) {
+    try {
+      return await existing;
+    } catch (e) {
+      logEvent('referral_list_invites_failed', { code: getReferralCallableErrorCode(e) ?? 'unknown' });
+      return { ...EMPTY_INVITES, ok: false };
+    }
+  }
+
+  const request = (async () => {
+    const res = await callReferralListMyInvites(stableId, { force: options.force });
+    const data = {
       ok: res.ok ?? true,
       invites: Array.isArray(res.invites) ? res.invites : [],
       qualifiedCount: res.qualifiedCount ?? 0,
       claimableVipDays: res.claimableVipDays ?? 0,
     };
+    referralInvitesCache = {
+      stableId,
+      updatedAtMs: Date.now(),
+      data,
+    };
+    return data;
+  })().finally(() => {
+    referralInvitesInFlight.delete(stableId);
+  });
+
+  referralInvitesInFlight.set(stableId, request);
+  try {
+    return await request;
   } catch (e) {
     logEvent('referral_list_invites_failed', { code: getReferralCallableErrorCode(e) ?? 'unknown' });
-    return EMPTY_INVITES;
+    // ok:false = «не удалось получить» — вызывающие не должны перезаписывать кэш/состояние пустотой.
+    return { ...EMPTY_INVITES, ok: false };
   }
 }
 
@@ -65,6 +111,7 @@ export async function claimReferralVipDays(): Promise<ClaimReferralOutcome> {
   let res: ClaimVipRewardResult;
   try {
     res = await callReferralClaimVipReward(stableId);
+    invalidateClaimableReferralStateCache(stableId);
   } catch (e) {
     const code = getReferralCallableErrorCode(e) ?? 'unknown';
     logEvent('referral_claim_vip_failed', { code });

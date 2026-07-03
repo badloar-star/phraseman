@@ -47,22 +47,6 @@ export type GavanCanonicalLoad = {
   phraseCount: number;
 };
 
-export type GavanCanonicalQuizOption = {
-  text: string;
-  isCorrect: boolean;
-};
-
-export type GavanCanonicalQuizQuestion = {
-  id: string;
-  sourcePhraseId: string;
-  type: 'meaning_choice' | 'natural_choice' | 'missing_word' | 'order_check';
-  promptRu: string;
-  promptEs: string;
-  options: GavanCanonicalQuizOption[];
-  explanationRu: string;
-  explanationEs: string;
-};
-
 export type GavanCanonicalDay = {
   dayId: string;
   dayIndex: 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -72,11 +56,6 @@ export type GavanCanonicalDay = {
   loadByMinutes: Record<5 | 10 | 15 | 20, GavanCanonicalLoad>;
   phrases: GavanCanonicalPhrase[];
   exerciseBlocks: GavanCanonicalExerciseBlock[];
-  quiz: {
-    id: string;
-    questionCount: 10;
-    questions: GavanCanonicalQuizQuestion[];
-  };
 };
 
 export type GavanWeek1CanonicalPlan = {
@@ -95,10 +74,7 @@ export type GavanWeek1CanonicalPlanIssue = {
     | 'load_not_progressive'
     | 'missing_exercise_type'
     | 'missing_explanation'
-    | 'bad_copy'
-    | 'quiz_question_count'
-    | 'quiz_source_outside_day'
-    | 'quiz_option_count';
+    | 'bad_copy';
   target: string;
 };
 
@@ -222,57 +198,6 @@ function loadByMinutes(blocks: GavanCanonicalExerciseBlock[]): GavanCanonicalDay
   };
 }
 
-function rotate<T>(items: T[], offset: number): T[] {
-  return [...items.slice(offset), ...items.slice(0, offset)];
-}
-
-function quizOptions(phrases: GavanCanonicalPhrase[], phraseIndex: number): GavanCanonicalQuizOption[] {
-  const rotated = rotate(phrases, phraseIndex);
-  const correct = phrases[phraseIndex % phrases.length];
-  const distractors = rotated
-    .filter((item) => item.id !== correct.id)
-    .slice(0, 3);
-
-  return [
-    { text: correct.english, isCorrect: true },
-    ...distractors.map((item) => ({ text: item.english, isCorrect: false })),
-  ];
-}
-
-function quiz(dayIndex: number, phrases: GavanCanonicalPhrase[]): GavanCanonicalDay['quiz'] {
-  const types: GavanCanonicalQuizQuestion['type'][] = [
-    'meaning_choice',
-    'natural_choice',
-    'missing_word',
-    'order_check',
-    'meaning_choice',
-    'natural_choice',
-    'missing_word',
-    'order_check',
-    'meaning_choice',
-    'natural_choice',
-  ];
-
-  return {
-    id: `gavan-week1-day${dayIndex}:quiz`,
-    questionCount: 10,
-    questions: types.map((type, index) => {
-      const phraseItem = phrases[index % phrases.length];
-      const meaningEs = phraseItem.es ?? phraseItem.ru;
-      return {
-        id: `gavan-week1-day${dayIndex}:quiz-${index + 1}`,
-        sourcePhraseId: phraseItem.id,
-        type,
-        promptRu: `Выбери живую английскую фразу для смысла: ${phraseItem.ru}`,
-        promptEs: `Elige una frase natural en inglés para este sentido: ${meaningEs}`,
-        options: quizOptions(phrases, index),
-        explanationRu: `Проверяем фразу "${phraseItem.english}" только из сегодняшнего набора. Ничего лишнего из будущих дней не подмешиваем.`,
-        explanationEs: `Comprobamos la frase "${phraseItem.english}" solo con el conjunto de hoy. No mezclamos nada extra de días futuros.`,
-      };
-    }),
-  };
-}
-
 function day(
   dayIndex: GavanCanonicalDay['dayIndex'],
   titleRu: string,
@@ -294,7 +219,6 @@ function day(
     loadByMinutes: loadByMinutes(exerciseBlocks),
     phrases,
     exerciseBlocks,
-    quiz: quiz(dayIndex, phrases),
   };
 }
 
@@ -485,7 +409,6 @@ export function validateGavanWeek1CanonicalPlan(
       addIssue(issues, 'load_not_progressive', dayItem.dayId);
     }
 
-    const dayPhraseIds = new Set(dayItem.phrases.map((phraseItem) => phraseItem.id));
     dayItem.phrases.forEach((phraseItem) => {
       const fullText = JSON.stringify(phraseItem);
       if (BAD_COPY_RE.test(fullText) || MOJIBAKE_RE.test(fullText)) {
@@ -496,21 +419,6 @@ export function validateGavanWeek1CanonicalPlan(
       [...phraseItem.newWords, ...phraseItem.firstSeenConstructions].forEach((target) => {
         if (!covered.has(target)) addIssue(issues, 'missing_explanation', `${phraseItem.id}:${target}`);
       });
-    });
-
-    if (dayItem.quiz.questionCount !== 10 || dayItem.quiz.questions.length !== 10) {
-      addIssue(issues, 'quiz_question_count', dayItem.quiz.id);
-    }
-    dayItem.quiz.questions.forEach((question) => {
-      if (!dayPhraseIds.has(question.sourcePhraseId)) {
-        addIssue(issues, 'quiz_source_outside_day', question.id);
-      }
-      if (question.options.length !== 4 || question.options.filter((option) => option.isCorrect).length !== 1) {
-        addIssue(issues, 'quiz_option_count', question.id);
-      }
-      if (BAD_COPY_RE.test(JSON.stringify(question)) || MOJIBAKE_RE.test(JSON.stringify(question))) {
-        addIssue(issues, 'bad_copy', question.id);
-      }
     });
   });
 
@@ -543,13 +451,6 @@ export function buildGavanWeek1ImplementationQueue(
     queueItem('gavan-week1-day5-runtime-material', 'P0', 'Собрать runtime day 5', 'Listening choice остаётся честным placeholder до появления аудио ассетов.', dayTargets),
     queueItem('gavan-week1-day6-runtime-material', 'P0', 'Собрать runtime day 6', 'Pronunciation shadow не обещает скоринг, пока scorer не готов.', dayTargets),
     queueItem('gavan-week1-day7-runtime-material', 'P0', 'Собрать runtime day 7', 'Week review использует micro dialogue, mistake repair и recall по всей неделе.', dayTargets),
-    queueItem('gavan-week1-final-quiz-day1', 'P0', 'Написать quiz day 1', 'Квиз содержит ровно 10 вопросов, все источники из day 1, без будущей грамматики.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day2', 'P0', 'Написать quiz day 2', 'Квиз содержит 10 вопросов по просьбам повторить и slowing down.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day3', 'P0', 'Написать quiz day 3', 'Квиз проверяет I need / Can you help без личных данных.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day4', 'P0', 'Написать quiz day 4', 'Квиз проверяет короткие вопросы this/that/it/else.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day5', 'P1', 'Написать quiz day 5', 'Квиз проверяет explain/show/write down/simple words.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day6', 'P1', 'Написать quiz day 6', 'Квиз проверяет works for me/can/cannot/I will.', ['app/personal_plan_quizzes.ts']),
-    queueItem('gavan-week1-final-quiz-day7', 'P1', 'Написать quiz day 7', 'Квиз повторяет неделю в смешанном порядке без новых конструкций.', ['app/personal_plan_quizzes.ts']),
     queueItem('gavan-week1-attempt-events-all-modes', 'P0', 'Подключить attempt events ко всем режимам', 'Каждая ошибка пишет grammar/vocabulary/context tags для аналитики и персональных занятий.', ['app/personal_plan_attempt_event_adapter.ts', 'app/personal_plan_attempt_events.ts']),
     queueItem('gavan-week1-recovery-queue', 'P0', 'Связать ошибки с recall и тренером', 'Неправильные ответы возвращаются в конце круга и попадают в персональную тренировку.', ['app/personal_plan_recovery_actions.ts', 'app/personal_plan_recovery_write_adapter.ts']),
     queueItem('gavan-week1-day-carryover', 'P0', 'Доделать перенос незавершённого дня', 'Если задания дня не закончены, следующий вход продолжает тот же день.', ['app/personal_plan_day_runtime_screen_controller.ts']),
@@ -557,7 +458,7 @@ export function buildGavanWeek1ImplementationQueue(
     queueItem('gavan-week1-home-route-card-restore', 'P0', 'Вернуть большую кнопку маршрута на главной', 'При активном плане кнопка маршрута заменяет Continue Lesson и показывает круговой progress.', ['components/PersonalPlanHomeRouteCard.tsx', 'app/(tabs)/home.tsx']),
     queueItem('gavan-week1-final-audio-generation', 'P1', 'Сгенерировать аудио ассеты', 'Listening blocks получают реальные approved OpenAI audio assets, не TTS-заглушки.', ['app/personal_plan_audio_generation_jobs.ts', 'assets/audio/personal_plans']),
     queueItem('gavan-week1-pronunciation-mvp', 'P1', 'Собрать pronunciation MVP', 'Shadow режим записывает попытку, показывает мягкий feedback и не штрафует за ненадёжный скоринг.', ['app/personal_plan_pronunciation_attempt.ts']),
-    queueItem('gavan-week1-quality-gate-runtime', 'P0', 'Расширить quality gates', 'Gate проверяет фразы, квизы, объяснения, режимы, нагрузки, audio honesty и no bad copy.', ['app/personal_plan_week_content_quality_gate.ts']),
+    queueItem('gavan-week1-quality-gate-runtime', 'P0', 'Расширить quality gates', 'Gate проверяет фразы, объяснения, режимы, нагрузки, audio honesty и no bad copy.', ['app/personal_plan_week_content_quality_gate.ts']),
     queueItem('gavan-week1-maestro-runtime-smoke', 'P1', 'Прогнать Maestro по runtime week 1', 'Smoke проходит день 1, открывает список дней, проверяет progress и отсутствие crash toast.', ['maestro/flows/personal_plans']),
   ];
 }

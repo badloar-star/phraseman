@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * ExplainReportButton — репорт «Непонятно объяснили» для шторки объяснения.
  *
@@ -26,11 +27,11 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { callSubmitExplainReport } from '../app/explain_phrase_client';
 import { asLang } from '../app/explain_phrase_request';
 
@@ -117,7 +118,8 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
 function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, lang: langProp }: Props) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const lang = langProp || ctxLang;
   const uiLang = asLang(lang);
 
@@ -228,7 +230,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, choices, l
             <Pressable
               style={[
                 styles.formSheet,
-                { backgroundColor: t.bgCard, borderColor: t.border, paddingBottom: 24 + insets.bottom },
+                { backgroundColor: t.bgCard, borderColor: t.border, paddingBottom: 24 + bottomInset },
               ]}
               onPress={(e) => e.stopPropagation()}
             >

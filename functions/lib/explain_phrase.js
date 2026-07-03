@@ -54,6 +54,7 @@ const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
+const premium_status_1 = require("./premium_status");
 const explain_cache_1 = require("./explain/explain_cache");
 const explain_budget_1 = require("./explain/explain_budget");
 const openai_jobs_config_1 = require("./openai_jobs_config");
@@ -70,6 +71,9 @@ const MODEL_DEFAULT = 'gpt-4o-mini';
 // a rare two-part nuance without cutting mid-pair, and trims cost vs. the old word-by-word target.
 const GEN_MAX_TOKENS = 320;
 const GEN_TEMPERATURE = 0.7;
+// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
+// владельца 2026-07-02), проверяется ДО чтения кэша. Premium — без капа.
+const FREE_DAILY_CAP = 5;
 function asText(value, max) {
     return String(value ?? '').trim().slice(0, max);
 }
@@ -133,6 +137,20 @@ exports.explainPhrase = (0, https_1.onCall)({
     const input = (0, explain_gates_1.validateExplainInput)({ phraseEn, phraseMeaning, lang });
     if (!input.ok)
         throw new https_1.HttpsError('invalid-argument', input.reason ?? 'invalid_input');
+    // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
+    // считаются (гейт ценности фичи). При исчерпании — бесплатный fallback-текст.
+    const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid);
+    if (!isPremium) {
+        try {
+            await (0, explain_budget_1.enforceFreeJobGenLimit)('phrase', authUid, stableUid, FREE_DAILY_CAP);
+        }
+        catch (err) {
+            if (err instanceof https_1.HttpsError && err.code === 'resource-exhausted') {
+                return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
+            }
+            throw err;
+        }
+    }
     // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
     // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
@@ -156,6 +174,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     }
     // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
     //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
+    // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
     let budgetReservation = null;
     try {
         budgetReservation = await (0, explain_budget_1.reserveExplainBudget)(authUid, stableUid, jobCfg.globalDailyCap);

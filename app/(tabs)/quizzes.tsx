@@ -38,14 +38,15 @@ import { useQuizExplain } from '../use_quiz_explain';
 import BonusXPCard from '../../components/BonusXPCard';
 import CoachToast from '../../components/CoachToast';
 import ContentWrap from '../../components/ContentWrap';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import LevelBadge from '../../components/LevelBadge';
 import PremiumCard from '../../components/PremiumCard';
+import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTheme } from '../../components/ThemeContext';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
 import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
@@ -69,6 +70,7 @@ import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 
 import { useAudio } from '../../hooks/use-audio';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import DuoPressable from '../../components/DuoPressable';
 import { useWordFlash } from '../../hooks/use-word-flash';
 import type { QuizPhrase } from '../quiz_data';
@@ -194,7 +196,8 @@ const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: stri
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral:  { primary: '#FFFFFF', secondary: '#D8C2C5' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
-  business: { primary: '#F2F2F2', secondary: '#9A9A9A' },
+  business: { primary: '#F5F5F5', secondary: '#737373' },
+  businessLight: { primary: '#262626', secondary: '#8E8E8E' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember:    { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
@@ -387,6 +390,7 @@ function BaseQuizLevelCard({
   isSelected,
   locked,
   lockedLabel,
+  plusLocked,
   startTrackW,
   onPick,
   onLockedPress,
@@ -400,6 +404,7 @@ function BaseQuizLevelCard({
   isSelected: boolean;
   locked: boolean;
   lockedLabel: string;
+  plusLocked: boolean;
   startTrackW: number;
   onPick: () => void;
   onLockedPress: () => void;
@@ -427,7 +432,7 @@ function BaseQuizLevelCard({
     tr: c.tagTR,
     pl: c.tagPL,
   });
-  const isBusinessTheme = themeMode === 'business';
+  const isBusinessTheme = (themeMode === 'business' || themeMode === 'businessLight');
   const accent = locked ? t.textMuted : isBusinessTheme ? t.accent : c.color;
   const isLightTheme = themeMode === 'light';
   const isCompassTheme = false;
@@ -505,14 +510,16 @@ function BaseQuizLevelCard({
                   {c.sub}
                 </Text>
               </View>
-              {locked && (
+              {locked && (plusLocked ? (
+                <PlusBadge themeMode={themeMode} size="xs" />
+              ) : (
                 <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
                   <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
                   <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
                     {lockedLabel}
                   </Text>
                 </View>
-              )}
+              ))}
             </View>
             <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
               <Text style={{ color: textCol, fontSize: f.h2, fontWeight:'900' }}>{title}</Text>
@@ -610,6 +617,7 @@ function ThematicQuizLevelCard({
   isSelected,
   locked,
   lockedLabel,
+  plusLocked,
   startTrackW,
   onPick,
   onLockedPress,
@@ -623,6 +631,7 @@ function ThematicQuizLevelCard({
   isSelected: boolean;
   locked: boolean;
   lockedLabel: string;
+  plusLocked: boolean;
   startTrackW: number;
   onPick: () => void;
   onLockedPress: () => void;
@@ -631,7 +640,7 @@ function ThematicQuizLevelCard({
   const fillAnim = useRef(new Animated.Value(0)).current;
   const title = category.title[lang];
   const subtitle = category.subtitle[lang];
-  const isBusinessTheme = themeMode === 'business';
+  const isBusinessTheme = (themeMode === 'business' || themeMode === 'businessLight');
   const accent = locked ? t.textMuted : isBusinessTheme ? t.accent : category.accent;
   const isLightTheme = themeMode === 'light';
   const textCol = locked ? t.textSecond : isLightTheme ? '#1F2933' : '#FFFFFF';
@@ -706,14 +715,16 @@ function ThematicQuizLevelCard({
                   {category.badge}
                 </Text>
               </View>
-              {locked && (
+              {locked && (plusLocked ? (
+                <PlusBadge themeMode={themeMode} size="xs" />
+              ) : (
                 <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
                   <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
                   <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
                     {lockedLabel}
                   </Text>
                 </View>
-              )}
+              ))}
             </View>
             <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
               <Text style={{ color: textCol, fontSize: f.h2, fontWeight:'900' }}>{title}</Text>
@@ -876,7 +887,8 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   const router = useRouter();
   // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
   const isPremium = useFeatureAccess('quizzes');
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { energy, bonusEnergy, isUnlimited: energyUnlimited } = useEnergy();
   const [selected, setSelected] = useState<QuizMenuSelection | null>(null);
   const [showLevelNoEnergy, setShowLevelNoEnergy] = useState(false);
@@ -891,6 +903,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   });
   const startInFlightRef = useRef(false);
   const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [quizPackTick, setQuizPackTick] = useState(0);
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -905,8 +918,17 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   );
 
   useEffect(() => {
-    prefetchQuizPhrases();
-  }, []);
+    prefetchQuizPhrases(lang, studyTarget);
+    let cancelled = false;
+    ensureQuizPhrasesLoaded(lang, studyTarget)
+      .then(() => {
+        if (!cancelled) setQuizPackTick((value) => value + 1);
+      })
+      .catch(() => {
+        if (!cancelled) setQuizPackTick((value) => value + 1);
+      });
+    return () => { cancelled = true; };
+  }, [lang, studyTarget]);
 
   const releaseStartInFlight = useCallback(() => {
     if (startInFlightTimeoutRef.current) {
@@ -996,7 +1018,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
       DebugLogger.error('quizzes.tsx:hasPhrasesForSelection', e, 'warning');
       return false;
     }
-  }, [lang, studyTarget]);
+  }, [lang, quizPackTick, studyTarget]);
 
   const runStartFill = useCallback((anim: Animated.Value, onDone: () => void) => {
     let completed = false;
@@ -1052,12 +1074,12 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
         releaseStartInFlight();
         return;
       }
-      await ensureQuizPhrasesLoaded();
+      await ensureQuizPhrasesLoaded(lang, studyTarget);
       runStartFill(anim, () => onSelect(level));
     })().catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, openSourceGate, releaseStartInFlight, runStartFill, sourceGated]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, lang, onSelect, openSourceGate, releaseStartInFlight, runStartFill, sourceGated, studyTarget]);
 
   const handleStartThematic = useCallback((categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
@@ -1113,20 +1135,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
           </TapScale>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'900' }} numberOfLines={1}>
-              {triLang(lang, {
-                ru: 'Вызовы',
-                uk: 'Квізи',
-                es: 'Cuestionarios',
-                "pt-BR": 'Quizzes',
-                vi: 'Quiz',
-                id: 'Kuis',
-                tr: 'Quizler',
-                pl: 'Quizy',
-              })}
-            </Text>
-          </View>
+          <View style={{ flex: 1 }} />
           <EnergyBar size={30} />
           <PremiumCard
             level={1}
@@ -1157,7 +1166,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
           flexGrow: 1,
           paddingHorizontal: 20,
           paddingTop: 14,
-          paddingBottom: Math.max(24, insets.bottom + 24),
+          paddingBottom: Math.max(24, bottomInset + 24),
           gap: 14,
         }}
         showsVerticalScrollIndicator
@@ -1184,6 +1193,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
               isSelected={selected === level}
               locked={quizCardsLocked}
               lockedLabel={quizCardsLockedLabel}
+              plusLocked={lockedByDailyLimit}
               startTrackW={startTrackW}
               onPick={() => {
                 releaseStartInFlight();
@@ -1211,6 +1221,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
                 isSelected={selected === category.id}
                 locked={quizCardsLocked}
                 lockedLabel={quizCardsLockedLabel}
+                plusLocked={lockedByDailyLimit}
                 startTrackW={startTrackW}
                 onPick={() => {
                   releaseStartInFlight();
@@ -1369,9 +1380,10 @@ function QuizGame({
   const { goHome, activeIdx } = useTabNav();
   const router = useRouter();
   const { playCorrect } = useCorrectSound();
+  const screenFocused = useIsScreenFocused();
   // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
   const isPremium = useFeatureAccess('quizzes');
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
   const isLightTheme = themeMode === 'light';
   /** Текст на тёмном градиенте (океан/сакура): не t.text* — они для светлых карточек */
@@ -1385,7 +1397,7 @@ function QuizGame({
   );
   const cfg = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
   const quizLevel: Level = LEVEL_CONFIG[level] ? level : 'easy';
-  const levelAccent = themeMode === 'business' ? t.accent : (thematicCategory?.accent ?? cfg.color);
+  const levelAccent = (themeMode === 'business' || themeMode === 'businessLight') ? t.accent : (thematicCategory?.accent ?? cfg.color);
   const label = useMemo(
     () => thematicCategory
       ? thematicCategory.title[lang]
@@ -1430,8 +1442,8 @@ function QuizGame({
       const result = getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget);
       if (result.length > 0) return result;
 
-      const sameLevelEnglish = getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget);
-      if (sameLevelEnglish.length > 0) return sameLevelEnglish;
+      const sameLevelRows = getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget);
+      if (sameLevelRows.length > 0) return sameLevelRows;
 
       for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
         const fallback = getQuizPhrasesLoaded(fallbackLevel, 10, lang, studyTarget);
@@ -1756,26 +1768,24 @@ function QuizGame({
           if (reward.hasBonusWon) {
             setBonusXP(reward.bonusXP);
             setShowBonus(true);
-            if (userNameRef.current) {
-              registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current, lang, undefined, {
-                eventId: [
-                  'bonus_chest',
-                  'quiz',
-                  safeQuizEventPart(studyTarget),
-                  safeQuizEventPart(level),
-                  safeQuizEventPart(quizAttemptIdRef.current),
-                  'complete',
-                ].join(':'),
-                payload: {
-                  surface: 'quiz',
-                  studyTarget,
-                  quizLevel: level,
-                  total,
-                  right,
-                  pct,
-                },
-              }).catch(() => {});
-            }
+            registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current || '', lang, undefined, {
+              eventId: [
+                'bonus_chest',
+                'quiz',
+                safeQuizEventPart(studyTarget),
+                safeQuizEventPart(level),
+                safeQuizEventPart(quizAttemptIdRef.current),
+                'complete',
+              ].join(':'),
+              payload: {
+                surface: 'quiz',
+                studyTarget,
+                quizLevel: level,
+                total,
+                right,
+                pct,
+              },
+            }).catch(() => {});
           }
         }
       } catch (error) {
@@ -1817,7 +1827,7 @@ function QuizGame({
     ? `${quizCorrectEn}|${[...current.choices].sort().join('|')}|${lang}`
     : '';
   const quizExplain = useQuizExplain({
-    active: isThematicQuiz && answered && !!current,
+    active: screenFocused && isThematicQuiz && answered && !!current,
     questionKey: quizExplainQuestionKey,
     correctEn: quizCorrectEn,
     questionPrompt: quizQuestionPrompt,
@@ -1986,31 +1996,28 @@ function QuizGame({
         setShowBreak(false);
         setScore(p => p + pts);
 
-        // Начисляем баллы — имя уже в ref, нет асинхронного запроса
-        if (userNameRef.current) {
-          const questionId = current?.questionId ?? current?.answer ?? idx;
-          registerXP(pts, 'quiz_answer', userNameRef.current, lang, undefined, {
-            eventId: [
-              'quiz',
-              safeQuizEventPart(studyTarget),
-              safeQuizEventPart(level),
-              safeQuizEventPart(quizAttemptIdRef.current),
-              'answer',
-              idx,
-              safeQuizEventPart(questionId, 40),
-            ].join(':'),
-            payload: {
-              studyTarget,
-              quizLevel: level,
-              questionIndex: idx,
-              questionId,
-              streak: ns,
-              points: pts,
-              thematicCategoryId: thematicCategoryId ?? null,
-              planQuizId: planQuizId ?? null,
-            },
-          }).then(xpResult => { setEarnedXP(p => p + xpResult.finalDelta); }).catch(() => {});
-        }
+        const questionId = current?.questionId ?? current?.answer ?? idx;
+        registerXP(pts, 'quiz_answer', userNameRef.current || '', lang, undefined, {
+          eventId: [
+            'quiz',
+            safeQuizEventPart(studyTarget),
+            safeQuizEventPart(level),
+            safeQuizEventPart(quizAttemptIdRef.current),
+            'answer',
+            idx,
+            safeQuizEventPart(questionId, 40),
+          ].join(':'),
+          payload: {
+            studyTarget,
+            quizLevel: level,
+            questionIndex: idx,
+            questionId,
+            streak: ns,
+            points: pts,
+            thematicCategoryId: thematicCategoryId ?? null,
+            planQuizId: planQuizId ?? null,
+          },
+        }).then(xpResult => { setEarnedXP(p => p + xpResult.finalDelta); }).catch(() => {});
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
         const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
         if (!thematicCategoryId && level === 'hard') updates.push({ type: 'quiz_hard' });
@@ -2579,12 +2586,14 @@ function QuizGame({
               (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
             // Тематический квиз → только ИИ-разбор; статичные explanations тут не используются.
             if (isThematicQuiz) {
-              if (quizExplain.state === 'unavailable') return null;
               const pickedOptionText = chosen !== null ? current.choices[chosen] : (typedOk === true ? quizCorrectEn : '');
               const aiExplanation = quizExplain.explanationFor(pickedOptionText ?? '', correct);
-              const loading = quizExplain.state !== 'ready' || !aiExplanation;
-              const isBusinessTheme = themeMode === 'business';
+              const missingReadyExplanation = quizExplain.state === 'ready' && !aiExplanation;
+              const unavailable = quizExplain.state === 'unavailable' || missingReadyExplanation;
+              const loading = quizExplain.state === 'idle' || quizExplain.state === 'loading';
+              const isBusinessTheme = (themeMode === 'business' || themeMode === 'businessLight');
               const headerColor = isBusinessTheme ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017');
+              const explainTextColor = isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary;
               return (
                 <Animated.View style={{
                   opacity: insertAnim,
@@ -2618,11 +2627,60 @@ function QuizGame({
                       <SkeletonBlock width="92%" height={14} borderRadius={7} />
                       <SkeletonBlock width="78%" height={14} borderRadius={7} />
                     </View>
+                  ) : unavailable ? (
+                    <View style={{ gap: 10, alignItems: 'flex-start' }}>
+                      <Text
+                        numberOfLines={planQuizId ? 3 : undefined}
+                        style={{ color: explainTextColor, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
+                      >
+                        {triLang(lang, {
+  ru: 'Разбор не пришёл. Попробуй ещё раз.',
+  uk: 'Пояснення не завантажилося. Спробуй ще раз.',
+  es: 'No llegó la explicación. Inténtalo otra vez.',
+  "pt-BR": 'A explicação não chegou. Tente de novo.',
+  vi: 'Chưa tải được giải thích. Thử lại nhé.',
+  id: 'Penjelasan belum muncul. Coba lagi.',
+  tr: 'Açıklama gelmedi. Tekrar dene.',
+  pl: 'Wyjaśnienie się nie pojawiło. Spróbuj ponownie.',
+})}
+                      </Text>
+                      <TouchableOpacity
+                        testID="quiz-explain-retry-button"
+                        activeOpacity={0.76}
+                        onPress={() => { hapticTap(); quizExplain.retry(); }}
+                        style={{
+                          alignItems: 'center',
+                          alignSelf: 'flex-start',
+                          borderColor: isBusinessTheme ? 'rgba(255,255,255,0.18)' : `${headerColor}55`,
+                          borderRadius: 8,
+                          borderWidth: 1,
+                          flexDirection: 'row',
+                          gap: 6,
+                          minHeight: 34,
+                          paddingHorizontal: 12,
+                          paddingVertical: 8,
+                        }}
+                      >
+                        <Ionicons name="refresh" size={16} color={headerColor} />
+                        <Text style={{ color: headerColor, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+                          {triLang(lang, {
+  ru: 'Попробовать снова',
+  uk: 'Спробувати знову',
+  es: 'Reintentar',
+  "pt-BR": 'Tentar de novo',
+  vi: 'Thử lại',
+  id: 'Coba lagi',
+  tr: 'Tekrar dene',
+  pl: 'Spróbuj ponownie',
+})}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   ) : (
                     <>
                       <Text
                         numberOfLines={planQuizId ? 2 : undefined}
-                        style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
+                        style={{ color: explainTextColor, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
                       >
                         {aiExplanation}
                       </Text>
@@ -2663,8 +2721,8 @@ function QuizGame({
                 transform: [{ scale: insertScale }],
               backgroundColor: isCompassTheme
                   ? COMPASS_RICH.charcoalRaised
-                  : themeMode === 'business'
-                  ? (correct ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)')
+                  : (themeMode === 'business' || themeMode === 'businessLight')
+                  ? (correct ? t.correctBg : t.wrongBg)
                   : correct
                   ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
                   : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
@@ -2672,12 +2730,12 @@ function QuizGame({
                 padding: planQuizId ? 10 : 16,
                 marginBottom: planQuizId ? 10 : 16,
                 borderLeftWidth: 4,
-                borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : themeMode === 'business' ? (correct ? '#FFFFFF' : '#9A9A9A') : correct ? '#1565C0' : '#F59E0B',
+                borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? '#1565C0' : '#F59E0B',
                 borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}>
-                <Text style={{ color: themeMode === 'business' ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
+                <Text style={{ color: (themeMode === 'business' || themeMode === 'businessLight') ? (correct ? t.accent : t.textMuted) : correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
                   {triLang(lang, {
   ru: 'РАЗБОР',
   uk: 'ПОЯСНЕННЯ',

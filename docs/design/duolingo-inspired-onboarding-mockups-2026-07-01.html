@@ -1,0 +1,1652 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman onboarding mockups - 2026-07-01</title>
+  <style>
+    :root {
+      --midnight-0: #05080d;
+      --midnight-1: #08111b;
+      --midnight-2: #0d1825;
+      --midnight-3: #132233;
+      --line: rgba(214, 226, 255, 0.18);
+      --line-strong: rgba(214, 226, 255, 0.32);
+      --text: #f8fbff;
+      --muted: rgba(248, 251, 255, 0.68);
+      --soft: rgba(248, 251, 255, 0.1);
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-strong: rgba(255, 255, 255, 0.14);
+      --aqua: #7dd3fc;
+      --violet: #8b5cf6;
+      --pink: #f0abfc;
+      --coral: #fb7185;
+      --amber: #fbbf24;
+      --ok: #58e0b6;
+      --ink: #081018;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --radius: 24px;
+      --button-radius: 20px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% -10%, rgba(125, 211, 252, 0.24), transparent 34%),
+        radial-gradient(circle at 90% 5%, rgba(139, 92, 246, 0.28), transparent 30%),
+        linear-gradient(145deg, #05070b 0%, #0a1018 48%, #101221 100%);
+      letter-spacing: 0;
+    }
+
+    .page {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 32px 0 64px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-panel,
+    .principle-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .hero-panel {
+      border-radius: 28px;
+      padding: 28px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .eyebrow {
+      color: var(--aqua);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    h1 {
+      margin: 14px 0 12px;
+      max-width: 860px;
+      font-size: clamp(34px, 5vw, 76px);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 860px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .score-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .score {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.06);
+      min-height: 88px;
+    }
+
+    .score b {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .score span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+      line-height: 1.25;
+    }
+
+    .principles {
+      display: grid;
+      gap: 12px;
+    }
+
+    .principle-card {
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 84px;
+    }
+
+    .principle-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+
+    .principle-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 32px 0 18px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      margin: 0;
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+      align-items: start;
+    }
+
+    .mockup {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .mockup-label {
+      width: min(390px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: rgba(248, 251, 255, 0.76);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .mockup-label span:last-child {
+      color: rgba(248, 251, 255, 0.42);
+      font-weight: 650;
+    }
+
+    .phone {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      overflow: hidden;
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background:
+        radial-gradient(circle at 80% 12%, rgba(139, 92, 246, 0.22), transparent 30%),
+        radial-gradient(circle at 15% 4%, rgba(125, 211, 252, 0.18), transparent 28%),
+        linear-gradient(180deg, #081018 0%, #0b1521 48%, #060b12 100%);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.42), inset 0 0 0 8px rgba(255,255,255,0.04);
+    }
+
+    .phone.light {
+      color: #172033;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(139, 92, 246, 0.2), transparent 32%),
+        radial-gradient(circle at 12% 18%, rgba(125, 211, 252, 0.28), transparent 30%),
+        linear-gradient(180deg, #fbfdff 0%, #eef6ff 48%, #ffffff 100%);
+      border-color: rgba(116, 139, 186, 0.36);
+      box-shadow: 0 22px 70px rgba(34, 50, 90, 0.24), inset 0 0 0 8px rgba(255,255,255,0.5);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 106px;
+      height: 28px;
+      transform: translateX(-50%);
+      border-radius: 0 0 16px 16px;
+      background: rgba(0,0,0,0.46);
+      z-index: 4;
+    }
+
+    .phone.light::before {
+      background: rgba(24, 33, 50, 0.16);
+    }
+
+    .status {
+      height: 50px;
+      padding: 17px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 5;
+    }
+
+    .phone.light .status { color: #162033; }
+
+    .status-icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .signal {
+      width: 18px;
+      height: 12px;
+      background: linear-gradient(90deg, currentColor 20%, transparent 20% 32%, currentColor 32% 52%, transparent 52% 64%, currentColor 64%);
+      opacity: 0.88;
+      border-radius: 2px;
+    }
+
+    .battery {
+      width: 24px;
+      height: 12px;
+      border: 2px solid currentColor;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .battery::after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      top: 3px;
+      width: 3px;
+      height: 4px;
+      border-radius: 0 2px 2px 0;
+      background: currentColor;
+    }
+
+    .battery i {
+      display: block;
+      width: 14px;
+      height: 6px;
+      margin: 1px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    .screen {
+      height: calc(100% - 50px);
+      padding: 10px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      gap: 12px;
+      align-items: center;
+      min-height: 38px;
+      margin-bottom: 16px;
+    }
+
+    .back {
+      width: 34px;
+      height: 34px;
+      border-radius: 17px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      line-height: 1;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .phone.light .back {
+      color: rgba(23,32,51,0.7);
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(23,32,51,0.06);
+    }
+
+    .rail {
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.22);
+    }
+
+    .phone.light .rail { background: rgba(23,32,51,0.12); }
+
+    .rail span {
+      display: block;
+      height: 100%;
+      width: var(--progress, 8%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #7dd3fc 0%, #8b5cf6 58%, #f0abfc 100%);
+      box-shadow: 0 0 18px rgba(125,211,252,0.42);
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 14px;
+      align-items: start;
+      min-height: 104px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .phone.light .avatar {
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(255,255,255,0.62);
+      box-shadow: 0 16px 36px rgba(58,73,110,0.14);
+    }
+
+    .avatar img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+
+    .bubble {
+      position: relative;
+      min-height: 74px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
+      color: rgba(255,255,255,0.92);
+      font-size: 21px;
+      line-height: 1.22;
+      font-weight: 720;
+      display: flex;
+      align-items: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .bubble::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 24px;
+      width: 18px;
+      height: 18px;
+      border-left: 1px solid rgba(255,255,255,0.18);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.09);
+      transform: rotate(45deg);
+      border-radius: 4px;
+    }
+
+    .phone.light .bubble {
+      color: #172033;
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .phone.light .bubble::before {
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .choice-list,
+    .source-grid,
+    .benefit-list,
+    .plan-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-card {
+      min-height: 70px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045));
+      display: grid;
+      grid-template-columns: 46px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      color: rgba(255,255,255,0.92);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .choice-card.selected {
+      border-color: rgba(125,211,252,0.72);
+      background: linear-gradient(145deg, rgba(125,211,252,0.18), rgba(139,92,246,0.12));
+      box-shadow: 0 0 0 1px rgba(125,211,252,0.18), 0 16px 32px rgba(0,0,0,0.18);
+    }
+
+    .phone.light .choice-card {
+      color: #172033;
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 24px rgba(57,73,110,0.08);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #07111c;
+      font-weight: 900;
+      font-size: 12px;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+    }
+
+    .icon.coral { background: linear-gradient(135deg, #fb7185, #fbbf24); }
+    .icon.aqua { background: linear-gradient(135deg, #7dd3fc, #58e0b6); }
+    .icon.violet { background: linear-gradient(135deg, #8b5cf6, #f0abfc); }
+    .icon.amber { background: linear-gradient(135deg, #fbbf24, #f0abfc); }
+
+    .choice-title {
+      font-size: 18px;
+      font-weight: 850;
+      line-height: 1.12;
+    }
+
+    .choice-subtitle {
+      margin-top: 5px;
+      color: rgba(255,255,255,0.58);
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .phone.light .choice-subtitle { color: rgba(23,32,51,0.58); }
+
+    .check {
+      width: 26px;
+      height: 26px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.26);
+      display: grid;
+      place-items: center;
+      color: transparent;
+      font-weight: 950;
+    }
+
+    .selected .check {
+      color: #07111c;
+      border-color: transparent;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+    }
+
+    .source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .source-grid .choice-card {
+      grid-template-columns: 38px 1fr;
+      min-height: 58px;
+      padding: 10px;
+    }
+
+    .source-grid .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+    }
+
+    .source-grid .choice-title {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .micro-card,
+    .preview-card,
+    .promise-card,
+    .light-panel {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+      padding: 18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .phrase {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.08;
+      margin: 6px 0 10px;
+    }
+
+    .translation {
+      color: rgba(255,255,255,0.68);
+      font-size: 14px;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: center;
+      min-height: 44px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 10px;
+      margin-top: 10px;
+      font-weight: 780;
+    }
+
+    .small-pill {
+      min-width: 34px;
+      height: 28px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 9px;
+      color: #07111c;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .cta-wrap {
+      display: grid;
+      gap: 10px;
+      padding-top: 14px;
+    }
+
+    .cta {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: var(--button-radius);
+      color: #06111c;
+      background: linear-gradient(135deg, #7dd3fc 0%, #8b5cf6 54%, #f0abfc 100%);
+      box-shadow: 0 14px 0 rgba(52, 35, 104, 0.46), 0 22px 34px rgba(0,0,0,0.26);
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .cta.disabled {
+      color: rgba(255,255,255,0.36);
+      background: rgba(255,255,255,0.13);
+      box-shadow: none;
+    }
+
+    .phone.light .cta.disabled {
+      color: rgba(23,32,51,0.34);
+      background: rgba(23,32,51,0.12);
+    }
+
+    .secondary {
+      min-height: 44px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.76);
+      font-weight: 850;
+      letter-spacing: 0.02em;
+    }
+
+    .phone.light .secondary {
+      color: rgba(23,32,51,0.72);
+      border-color: rgba(23,32,51,0.12);
+      background: rgba(23,32,51,0.04);
+    }
+
+    .welcome-stage {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 48px 10px 28px;
+    }
+
+    .brand-logo {
+      width: 132px;
+      height: 132px;
+      border-radius: 36px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 28px 52px rgba(0,0,0,0.28);
+    }
+
+    .brand-logo img {
+      width: 94px;
+      height: 94px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 44px;
+      line-height: 0.95;
+      font-weight: 950;
+    }
+
+    .brand-subtitle {
+      width: 300px;
+      max-width: 100%;
+      margin: 16px auto 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 17px;
+      line-height: 1.42;
+      font-weight: 620;
+    }
+
+    .login-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .provider {
+      min-height: 58px;
+      border-radius: 19px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.92);
+      color: #101820;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .legal {
+      margin: 8px auto 0;
+      max-width: 310px;
+      color: rgba(255,255,255,0.48);
+      font-size: 11px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .system-preview {
+      margin: auto 0;
+      text-align: center;
+    }
+
+    .dialog {
+      width: 280px;
+      margin: 0 auto 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(21, 31, 44, 0.86);
+      box-shadow: 0 28px 56px rgba(0,0,0,0.34);
+      overflow: hidden;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .dialog.android {
+      border-radius: 18px;
+      text-align: left;
+      padding: 18px;
+    }
+
+    .dialog-title {
+      padding: 22px 18px 8px;
+      font-weight: 850;
+      line-height: 1.2;
+      font-size: 16px;
+    }
+
+    .dialog-body {
+      padding: 0 18px 18px;
+      color: rgba(255,255,255,0.56);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .dialog-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .dialog-actions div {
+      min-height: 46px;
+      display: grid;
+      place-items: center;
+      color: #7dd3fc;
+      font-weight: 780;
+      border-right: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .dialog-actions div:last-child { border-right: 0; }
+
+    .arrow-up {
+      width: 4px;
+      height: 60px;
+      margin: 0 auto;
+      border-radius: 4px;
+      background: #7dd3fc;
+      position: relative;
+    }
+
+    .arrow-up::before,
+    .arrow-up::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 24px;
+      border-radius: 4px;
+      background: #7dd3fc;
+    }
+
+    .arrow-up::before {
+      transform: rotate(45deg);
+      left: 8px;
+    }
+
+    .arrow-up::after {
+      transform: rotate(-45deg);
+      right: 8px;
+    }
+
+    .promise-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .promise-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .promise-row h4 {
+      margin: 0 0 5px;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .promise-row p {
+      margin: 0;
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+      line-height: 1.34;
+    }
+
+    .phone.light .promise-row p { color: rgba(23,32,51,0.58); }
+
+    .recommended {
+      align-self: start;
+      justify-self: end;
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: #07111c;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .plus-hero {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .plus-title {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 950;
+      margin: 0;
+    }
+
+    .plus-subtitle {
+      color: rgba(23,32,51,0.62);
+      font-size: 15px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .speed-card {
+      border-radius: 24px;
+      background: linear-gradient(135deg, #152033, #5b4dff 56%, #f0abfc);
+      color: white;
+      padding: 18px;
+      box-shadow: 0 20px 42px rgba(75, 78, 180, 0.26);
+    }
+
+    .speed-card b {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .speed-card span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .light-panel {
+      background: rgba(255,255,255,0.78);
+      border-color: rgba(23,32,51,0.12);
+      box-shadow: 0 16px 34px rgba(57,73,110,0.09);
+    }
+
+    .benefit {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      align-items: center;
+      min-height: 42px;
+      font-weight: 840;
+      border-bottom: 1px solid rgba(23,32,51,0.08);
+    }
+
+    .benefit:last-child { border-bottom: 0; }
+
+    .tick {
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #06111c;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+      font-weight: 950;
+      font-size: 14px;
+    }
+
+    .plan-card {
+      position: relative;
+      min-height: 104px;
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .plan-card.selected {
+      border-color: rgba(240,171,252,0.78);
+      box-shadow: inset 0 0 0 1px rgba(125,211,252,0.26), 0 16px 32px rgba(0,0,0,0.18);
+    }
+
+    .plan-card h4 {
+      margin: 0 0 6px;
+      font-size: 19px;
+    }
+
+    .plan-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.58);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .plan-price {
+      text-align: right;
+      font-size: 13px;
+      color: rgba(255,255,255,0.78);
+      font-weight: 850;
+    }
+
+    .ribbon {
+      position: absolute;
+      right: 14px;
+      top: -12px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #06111c;
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 58px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      padding: 0 16px;
+      font-size: 18px;
+      font-weight: 760;
+    }
+
+    .legal-card {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.07);
+      padding: 14px;
+      color: rgba(255,255,255,0.74);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .legal-card small {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.52);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .box {
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: linear-gradient(135deg, #7dd3fc, #f0abfc);
+      display: grid;
+      place-items: center;
+      color: #06111c;
+      font-weight: 950;
+    }
+
+    .box.muted {
+      background: rgba(255,255,255,0.04);
+      color: transparent;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .score-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .page {
+        width: calc(100vw - 16px);
+      }
+
+      .mockup-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 390px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-panel">
+        <div>
+          <div class="eyebrow">Phraseman onboarding direction</div>
+          <h1>Один живой экран, не копия Duolingo.</h1>
+          <p>UX берем как ритм: короткие вопросы, крупные карточки, прогресс, реакция проводника. Визуально уходим в Phraseman Midnight: liquid glass, логотип, сине-фиолетовый CTA, фразовые механики и paywall из приложения.</p>
+        </div>
+        <div class="score-strip">
+          <div class="score"><b>9/10</b><span>монетизация, если Plus связан с выбранным маршрутом</span></div>
+          <div class="score"><b>8/10</b><span>понятность при коротких bubble</span></div>
+          <div class="score"><b>7/10</b><span>ненадоедливость: flow длинный</span></div>
+          <div class="score"><b>9/10</b><span>брендовость при liquid glass</span></div>
+          <div class="score"><b>5/10</b><span>риск похожести, если не копировать визуал</span></div>
+        </div>
+      </div>
+      <div class="principles">
+        <div class="principle-card">
+          <h3>Что копируем как паттерн</h3>
+          <p>Один shell, прогресс, крупные варианты, реакция проводника, pre-permission, честное обещание перед monetization.</p>
+        </div>
+        <div class="principle-card">
+          <h3>Что не копируем</h3>
+          <p>Персонажа, зеленый CTA, облака, Super-композицию, тексты, точные формы карточек и пиксельные сцены.</p>
+        </div>
+        <div class="principle-card">
+          <h3>Главная слабость</h3>
+          <p>Flow может стать длинным. Первый кандидат на перенос - вопрос "как узнал о нас". Trial reminder не делаем отдельным экраном.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Screen List</h2>
+      <p>Все экраны ниже собраны как один визуальный shell. В реальном приложении это могут быть разные компоненты, но переход должен ощущаться как смена наполнения одного телефона.</p>
+    </div>
+
+    <section id="mockups" class="mockup-grid" aria-label="Onboarding mockups"></section>
+  </main>
+
+  <script>
+    const logo = "../../assets/images/icon.png";
+
+    const screens = [
+      {
+        id: "00",
+        label: "Welcome",
+        progress: 0,
+        type: "welcome",
+        title: "Phraseman",
+        subtitle: "Живые фразы. Маленькие сессии. Реальный разговор.",
+        cta: "Начать",
+        secondary: "У меня уже есть аккаунт"
+      },
+      {
+        id: "00b",
+        label: "Existing account state",
+        progress: 0,
+        type: "login",
+        title: "Вернем твой путь",
+        subtitle: "Войди, и я подтяну твой маршрут.",
+        cta: "Продолжить с Apple",
+        secondary: "Продолжить с Google"
+      },
+      {
+        id: "01",
+        label: "Intro",
+        progress: 5,
+        type: "choices",
+        bubble: "Сначала настроим твой маршрут. Несколько вопросов - и начнем первую сессию.",
+        cards: [],
+        cta: "Настроить маршрут"
+      },
+      {
+        id: "02",
+        label: "Study target",
+        progress: 10,
+        type: "choices",
+        bubble: "Какой язык открываем?",
+        cards: [
+          ["EN", "English", "Фразы для работы, поездок и видео.", "aqua"],
+          ["FR", "Français", "Живые фразы для дороги, кафе и общения.", "violet"]
+        ],
+        cta: "Сохранить выбор"
+      },
+      {
+        id: "03",
+        label: "Acquisition source",
+        progress: 16,
+        type: "sources",
+        bubble: "Как ты узнал о Phraseman?",
+        cards: [
+          ["TT", "TikTok", "", "coral"],
+          ["AS", "App Store", "", "aqua"],
+          ["GP", "Google Play", "", "aqua"],
+          ["IG", "Instagram", "", "violet"],
+          ["FB", "Facebook", "", "violet"],
+          ["YT", "YouTube", "", "coral"],
+          ["GS", "Google Search", "", "amber"],
+          ["FR", "Друзья", "", "aqua"],
+          ["..", "Другое", "", "violet"]
+        ],
+        cta: "Продолжить"
+      },
+      {
+        id: "04",
+        label: "Level",
+        progress: 24,
+        type: "choices",
+        bubble: "Сколько английского ты уже знаешь?",
+        cards: [
+          ["1", "Я с нуля", "Начнем мягко: звук, смысл и короткие ответы.", "aqua"],
+          ["2", "Знаю несколько фраз", "Соберем эти фразы в речь.", "aqua"],
+          ["3", "Могу сказать простые вещи", "Добавим скорость и уверенность.", "violet"],
+          ["4", "Говорю на бытовые темы", "Дадим больше живых ситуаций.", "violet"],
+          ["5", "Хочу звучать точнее", "Добавим нюансы и естественные ответы.", "amber"]
+        ],
+        selected: 1,
+        cta: "Настроить сложность"
+      },
+      {
+        id: "04b",
+        label: "Level reaction",
+        progress: 28,
+        type: "reaction",
+        bubble: "Хорошо. Соберем эти фразы в речь.",
+        phrase: "I know a few words.",
+        translation: "Это не ноль. Уже есть материал, из которого можно собрать ответы.",
+        steps: ["Сохраняем уровень", "Подбираем первую сессию", "Не перегружаем грамматикой"],
+        cta: "Продолжить"
+      },
+      {
+        id: "05",
+        label: "Goal",
+        progress: 35,
+        type: "choices",
+        bubble: "Зачем тебе английский?",
+        cards: [
+          ["TR", "Путешествия", "Аэропорт, кафе, отель, дорога.", "aqua"],
+          ["WK", "Работа и карьера", "Письма, встречи, спокойные ответы.", "violet"],
+          ["TV", "Сериалы и видео", "Слух, реплики, естественный смысл.", "coral"],
+          ["PE", "Общаться с людьми", "Ответы без долгой паузы.", "amber"],
+          ["EV", "Слова на каждый день", "Фразы, которые сразу идут в дело.", "aqua"],
+          ["ME", "Для себя", "Спокойный темп без перегруза.", "violet"]
+        ],
+        selected: 0,
+        cta: "Собрать маршрут"
+      },
+      {
+        id: "06",
+        label: "Daily time",
+        progress: 42,
+        type: "choices",
+        bubble: "Сколько времени в день удобно?",
+        cards: [
+          ["5", "5 минут", "Короткий маршрут без перегруза.", "aqua"],
+          ["10", "10 минут", "Фраза, звук, повтор.", "violet"],
+          ["15", "15 минут", "Сильный темп. Речь соберется быстрее.", "coral"],
+          ["20", "20 минут", "Чаще выходим к разговору.", "amber"]
+        ],
+        selected: 1,
+        cta: "Сохранить темп"
+      },
+      {
+        id: "07",
+        label: "Mini-aha",
+        progress: 50,
+        type: "mini",
+        bubble: "Покажу, как будет работать твой первый маршрут.",
+        phrase: "I'd like a coffee, please.",
+        translation: "Фраза для кафе. Сначала слышим, потом выбираем живой ответ, потом собираем свою реплику.",
+        steps: ["Слушаем", "Выбираем ответ", "Собираем фразу"],
+        chips: ["Can", "I", "get", "it", "to go"],
+        cta: "Открыть мой план"
+      },
+      {
+        id: "08i",
+        label: "Notification pre-prompt iOS",
+        progress: 58,
+        type: "permission-ios",
+        bubble: "Я напомню о короткой сессии, чтобы маршрут не терялся.",
+        cta: "Напомнить мне",
+        secondary: "Не сейчас"
+      },
+      {
+        id: "08a",
+        label: "Notification pre-prompt Android",
+        progress: 58,
+        type: "permission-android",
+        bubble: "Я напомню о короткой сессии, чтобы маршрут не терялся.",
+        cta: "Напомнить мне",
+        secondary: "Не сейчас"
+      },
+      {
+        id: "09",
+        label: "Three-month promise",
+        progress: 66,
+        type: "promise",
+        bubble: "Вот что можно открыть за 3 месяца.",
+        rows: [
+          ["SP", "Сказать нужную фразу вовремя", "Кафе, дорога, встреча или короткий ответ."],
+          ["AU", "Понять ответ без паники", "Сначала смысл, потом звук и повтор."],
+          ["HB", "Вернуться завтра без борьбы", "Короткая сессия, которую реально держать."]
+        ],
+        cta: "Посмотреть маршрут"
+      },
+      {
+        id: "10",
+        label: "Start mode",
+        progress: 73,
+        type: "start-mode",
+        bubble: "Как хочешь начать?",
+        cards: [
+          ["+", "Phraseman Plus", "Полный доступ к твоему маршруту.", "violet"],
+          ["0", "Начать бесплатно", "Базовые сессии и первый маршрут.", "aqua"]
+        ],
+        selected: 0,
+        cta: "Продолжить с Plus"
+      },
+      {
+        id: "11",
+        label: "Plus proof",
+        progress: 79,
+        theme: "light",
+        type: "plus-proof",
+        cta: "Выбрать план",
+        secondary: "Начать бесплатно"
+      },
+      {
+        id: "12",
+        label: "Plan picker",
+        progress: 84,
+        type: "paywall",
+        bubble: "Выбери полный доступ. Первые 3 дня - без списания.",
+        cta: "Открыть 3 дня бесплатно",
+        secondary: "Восстановить доступ"
+      },
+      {
+        id: "13",
+        label: "Name",
+        progress: 92,
+        type: "name",
+        bubble: "Как тебя называть?",
+        cta: "Сохранить имя"
+      },
+      {
+        id: "14",
+        label: "Age and legal",
+        progress: 100,
+        type: "age-legal",
+        bubble: "Тебе уже есть 16?",
+        cta: "Завершить настройку"
+      }
+    ];
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function statusBar() {
+      return `
+        <div class="status">
+          <span>9:41</span>
+          <div class="status-icons">
+            <span class="signal"></span>
+            <span>Wi-Fi</span>
+            <span class="battery"><i></i></span>
+          </div>
+        </div>
+      `;
+    }
+
+    function shellStart(screen) {
+      const progress = Number(screen.progress || 0);
+      const showBack = screen.type !== "welcome" && screen.type !== "login";
+      return `
+        <div class="phone ${screen.theme === "light" ? "light" : ""}">
+          ${statusBar()}
+          <div class="screen">
+            ${screen.type === "welcome" || screen.type === "login" ? "" : `
+              <div class="topbar">
+                <div class="back">${showBack ? "‹" : ""}</div>
+                <div class="rail" style="--progress:${progress}%"><span></span></div>
+                <div></div>
+              </div>
+            `}
+      `;
+    }
+
+    function guide(screen) {
+      return `
+        <div class="guide">
+          <div class="avatar"><img src="${logo}" alt="Phraseman" /></div>
+          <div class="bubble">${escapeHtml(screen.bubble || "")}</div>
+        </div>
+      `;
+    }
+
+    function choiceCard(card, selected) {
+      const [icon, title, subtitle, tone] = card;
+      return `
+        <div class="choice-card ${selected ? "selected" : ""}">
+          <div class="icon ${tone || ""}">${escapeHtml(icon)}</div>
+          <div>
+            <div class="choice-title">${escapeHtml(title)}</div>
+            ${subtitle ? `<div class="choice-subtitle">${escapeHtml(subtitle)}</div>` : ""}
+          </div>
+          <div class="check">${selected ? "✓" : ""}</div>
+        </div>
+      `;
+    }
+
+    function cta(screen) {
+      return `
+        <div class="cta-wrap">
+          <button class="cta">${escapeHtml(screen.cta || "Продолжить")}</button>
+          ${screen.secondary ? `<button class="secondary">${escapeHtml(screen.secondary)}</button>` : ""}
+        </div>
+      `;
+    }
+
+    function renderWelcome(screen) {
+      return `
+        ${shellStart(screen)}
+          <div class="welcome-stage">
+            <div>
+              <div class="brand-logo"><img src="${logo}" alt="Phraseman" /></div>
+              <h3 class="brand-title">${escapeHtml(screen.title)}</h3>
+              <p class="brand-subtitle">${escapeHtml(screen.subtitle)}</p>
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderLogin(screen) {
+      return `
+        ${shellStart(screen)}
+          <div class="welcome-stage">
+            <div>
+              <div class="brand-logo"><img src="${logo}" alt="Phraseman" /></div>
+              <h3 class="brand-title">${escapeHtml(screen.title)}</h3>
+              <p class="brand-subtitle">${escapeHtml(screen.subtitle)}</p>
+              <div class="login-stack">
+                <button class="provider">${escapeHtml(screen.cta)}</button>
+                <button class="provider">${escapeHtml(screen.secondary)}</button>
+              </div>
+              <p class="legal">Продолжая, ты принимаешь Условия использования и Политику конфиденциальности.</p>
+            </div>
+          </div>
+        </div></div>
+      `;
+    }
+
+    function renderChoices(screen, sourceMode = false) {
+      const cards = screen.cards || [];
+      const listClass = sourceMode ? "source-grid" : "choice-list";
+      const list = cards.length
+        ? `<div class="${listClass}">${cards.map((card, index) => choiceCard(card, screen.selected === index)).join("")}</div>`
+        : `<div class="micro-card"><div class="phrase">Маршрут появится здесь.</div><div class="translation">На следующем шаге Phraseman сохранит ответ и подстроит план.</div></div>`;
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">${list}</div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderReaction(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="micro-card">
+              <div class="small-pill">level</div>
+              <div class="phrase">${escapeHtml(screen.phrase)}</div>
+              <div class="translation">${escapeHtml(screen.translation)}</div>
+              ${(screen.steps || []).map((step, index) => `
+                <div class="step-row"><span class="small-pill">${index + 1}</span><span>${escapeHtml(step)}</span></div>
+              `).join("")}
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderMini(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="micro-card">
+              <div class="small-pill">travel</div>
+              <div class="phrase">${escapeHtml(screen.phrase)}</div>
+              <div class="translation">${escapeHtml(screen.translation)}</div>
+              ${(screen.steps || []).map((step, index) => `
+                <div class="step-row"><span class="small-pill">${index + 1}</span><span>${escapeHtml(step)}</span></div>
+              `).join("")}
+              <div class="chips">${(screen.chips || []).map(chip => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}</div>
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderPermission(screen, platform) {
+      const dialog = platform === "ios"
+        ? `
+          <div class="dialog">
+            <div class="dialog-title">"Phraseman" хочет отправлять уведомления</div>
+            <div class="dialog-body">Напоминания о короткой практике, звуки и бейджи. Это preview, реальный системный запрос появится после кнопки.</div>
+            <div class="dialog-actions"><div>Не разрешать</div><div>Разрешить</div></div>
+          </div>
+        `
+        : `
+          <div class="dialog android">
+            <div class="dialog-title" style="padding:0 0 8px">Разрешить Phraseman отправлять уведомления?</div>
+            <div class="dialog-body" style="padding:0 0 14px">Phraseman будет напоминать о короткой сессии. Это preview, после кнопки откроется системный запрос Android.</div>
+            <div style="display:flex;justify-content:flex-end;gap:18px;color:#7dd3fc;font-weight:850"><span>Не сейчас</span><span>Разрешить</span></div>
+          </div>
+        `;
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content system-preview">
+            ${dialog}
+            <div class="arrow-up"></div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderPromise(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="promise-list">
+              ${(screen.rows || []).map(row => `
+                <div class="promise-row">
+                  <div class="icon ${row[0] === "SP" ? "violet" : row[0] === "AU" ? "aqua" : "amber"}">${escapeHtml(row[0])}</div>
+                  <div><h4>${escapeHtml(row[1])}</h4><p>${escapeHtml(row[2])}</p></div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderStartMode(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="choice-list">
+              ${screen.cards.map((card, index) => `
+                <div style="position:relative">
+                  ${index === 0 ? `<div class="recommended">рекомендую</div>` : ""}
+                  ${choiceCard(card, screen.selected === index)}
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderPlusProof(screen) {
+      return `
+        ${shellStart(screen)}
+          <div class="topbar">
+            <div class="back">‹</div>
+            <div class="rail" style="--progress:${screen.progress}%"><span></span></div>
+            <div></div>
+          </div>
+          <div class="content plus-hero">
+            <div class="brand-logo" style="width:86px;height:86px;border-radius:26px;margin:0"><img src="${logo}" alt="Phraseman" style="width:62px;height:62px"></div>
+            <h3 class="plus-title">Plus открывает твой маршрут полностью.</h3>
+            <p class="plus-subtitle">Больше практики, меньше пауз, больше повторов там, где они нужны.</p>
+            <div class="speed-card"><b>больше практики</b><span>Все сессии маршрута открыты сразу. Без неподтвержденных обещаний про x-раз быстрее.</span></div>
+            <div class="light-panel benefit-list">
+              ${["Все сессии маршрута открыты", "Больше аудио и повторов", "Слабые места возвращаются вовремя", "План под твою цель"].map(item => `
+                <div class="benefit"><span class="tick">✓</span><span>${escapeHtml(item)}</span></div>
+              `).join("")}
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderPaywall(screen) {
+      const plans = [
+        ["1 месяц", "Гибкий полный доступ.", "цена из Store", false],
+        ["12 месяцев", "Лучшая инвестиция в маршрут.", "цена из Store", true],
+        ["Навсегда", "Открыть полный доступ одним решением.", "цена из Store", false]
+      ];
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="plan-list">
+              ${plans.map(plan => `
+                <div class="plan-card ${plan[3] ? "selected" : ""}">
+                  ${plan[3] ? `<div class="ribbon">лучший выбор</div>` : ""}
+                  <div><h4>${escapeHtml(plan[0])}</h4><p>${escapeHtml(plan[1])}</p></div>
+                  <div class="plan-price">${escapeHtml(plan[2])}</div>
+                </div>
+              `).join("")}
+            </div>
+            <p class="legal">Store disclosure, restore, trial terms и реальные цены берутся из текущего paywall приложения. Здесь меняем только onboarding chrome.</p>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderName(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <input class="input" value="Alex" aria-label="Имя" />
+            <div class="micro-card">
+              <div class="translation">Имя нужно только для человеческих обращений в маршруте и напоминаниях.</div>
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderAgeLegal(screen) {
+      return `
+        ${shellStart(screen)}
+          ${guide(screen)}
+          <div class="content">
+            <div class="choice-list">
+              ${choiceCard(["16", "Да, мне есть 16", "Можно завершить настройку.", "aqua"], true)}
+              ${choiceCard(["NO", "Нет", "Phraseman пока доступен только с 16.", "violet"], false)}
+            </div>
+            <div class="legal-card">
+              <span class="box">✓</span>
+              <span>Я принимаю Условия использования и Политику конфиденциальности.</span>
+            </div>
+            <div class="legal-card">
+              <span class="box muted"></span>
+              <span>Помочь улучшить Phraseman необязательной аналитикой.<br><small>Можно не отмечать. Это не влияет на доступ.</small></span>
+            </div>
+          </div>
+          ${cta(screen)}
+        </div></div>
+      `;
+    }
+
+    function renderScreen(screen) {
+      if (screen.type === "welcome") return renderWelcome(screen);
+      if (screen.type === "login") return renderLogin(screen);
+      if (screen.type === "sources") return renderChoices(screen, true);
+      if (screen.type === "reaction") return renderReaction(screen);
+      if (screen.type === "mini") return renderMini(screen);
+      if (screen.type === "permission-ios") return renderPermission(screen, "ios");
+      if (screen.type === "permission-android") return renderPermission(screen, "android");
+      if (screen.type === "promise") return renderPromise(screen);
+      if (screen.type === "start-mode") return renderStartMode(screen);
+      if (screen.type === "plus-proof") return renderPlusProof(screen);
+      if (screen.type === "paywall") return renderPaywall(screen);
+      if (screen.type === "name") return renderName(screen);
+      if (screen.type === "age-legal") return renderAgeLegal(screen);
+      return renderChoices(screen);
+    }
+
+    const root = document.getElementById("mockups");
+    root.innerHTML = screens.map(screen => `
+      <article class="mockup">
+        <div class="mockup-label"><span>${escapeHtml(screen.id)}. ${escapeHtml(screen.label)}</span><span>${escapeHtml(screen.type)}</span></div>
+        ${renderScreen(screen)}
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

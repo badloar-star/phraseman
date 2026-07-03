@@ -27,8 +27,11 @@ import {
   LOYALTY_GIFT_CLAIMED_KEY,
 } from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { resumePendingDailyTasksAllShardsClaims } from './shards_system';
+import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
+import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
 import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
@@ -83,6 +86,7 @@ import {
   lessonPrepositionProgressKey,
   lessonProgressKey,
   lessonSessionKey,
+  lessonTheorySectionsSeenKey,
   lessonTheoryXpClaimedKey,
   lessonTopicShardGrantedKey,
   lessonUnlockRepairKey,
@@ -206,6 +210,7 @@ export const FRENCH_TARGET_SYNC_KEYS = [
     lessonWordsShardsGrantedKey(lessonId, 'fr'),
     lessonIrregularShardsGrantedKey(lessonId, 'fr'),
     lessonPrepositionProgressKey(lessonId, 'fr'),
+    lessonTheorySectionsSeenKey(lessonId, 'fr'),
     lessonTheoryXpClaimedKey(lessonId, 'fr'),
     prepositionDrillPerfectKey(lessonId, 'fr'),
     lessonBonusGrantedKey(lessonId, 'fr'),
@@ -325,6 +330,11 @@ export const SYNC_KEYS = [
   'streak_count',
   'last_active_date',
   'streak_last_date',
+  // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
+  // (гейт «1 язык фри» и сырьё для персонального плана; см. app/study_languages.ts)
+  'study_languages_started_v1',
+  'language_profile_v1::en',
+  'language_profile_v1::fr',
   'unlocked_lessons',
   'flashcards',
   'flashcards_v1',
@@ -498,6 +508,8 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
+  ...Array.from({ length: 32 }, (_, i) => lessonTheorySectionsSeenKey(i + 1, 'en')),
+  ...Array.from({ length: 32 }, (_, i) => lessonTheoryXpClaimedKey(i + 1, 'en')),
   ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
   ...FRENCH_TARGET_SYNC_KEYS,
   // ── Подарочный доступ (intro / loyalty): зеркалим срок в облако, чтобы при смене
@@ -591,6 +603,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'week_leaderboard',
     // Прочее account-level
     'last_active_date',
+    'user_profile',
     // Производный display-флаг реального премиума (НЕ в SYNC_KEYS, пересчитывается
     // резолвером). Чистим при смене/сбросе аккаунта, чтобы старое premium_active='true'
     // не перетекло к новому аккаунту до первого пересчёта доступа.
@@ -1261,11 +1274,38 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       const db = getFirestore();
       if (!db) return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable' };
       try {
+        const nowMs = Date.now();
         await withTimeout(
-          db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
+          db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: nowMs }, { merge: true }),
           STABLE_AUTH_LINK_TIMEOUT_MS,
           'auth_link_firestore',
         );
+        // Хвост B: при недоступности серверного callable раньше писали ТОЛЬКО
+        // users/{stableId}.firebaseAuthUid, но НЕ auth_links/{authUid}. auth_links —
+        // единственный мост provider→stableId для восстановления на другом устройстве.
+        // Без него следующий вход (особенно с нового устройства) не находил аккаунт и
+        // создавал новый. Пишем auth_links сами: правило allow create требует
+        // users/{stableId}.firebaseAuthUid == request.auth.uid — мы это поле только что
+        // записали выше, поэтому запись проходит. Провайдер берём из метаданных входа.
+        const linkProvider = metadata?.provider;
+        if (linkProvider === 'google' || linkProvider === 'apple') {
+          await withTimeout(
+            db.collection('auth_links').doc(authUid).set({
+              providerUid: authUid,
+              provider: linkProvider,
+              stable_id: stableId,
+              lastSignInAt: metadata?.lastSignInAt ?? nowMs,
+              updatedAt: nowMs,
+              ...(metadata?.devicePlatform ? { devicePlatform: metadata.devicePlatform } : {}),
+              ...(metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? { email: metadata.email ?? null } : {}),
+            }, { merge: true }),
+            STABLE_AUTH_LINK_TIMEOUT_MS,
+            'auth_link_doc_firestore',
+          ).catch((e) => {
+            // Не валим fallback, если auth_links write отклонился/таймнул — users-якорь уже стоит.
+            if (__DEV__) console.warn('[cloud_sync] fallback auth_links write failed', e);
+          });
+        }
         writeStableAuthLinkCache(key).catch(() => {});
         return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'firestore_fallback' };
       } catch {
@@ -1356,6 +1396,10 @@ export function getCurrentUid(): string | null {
 
 // ── Синхронизировать прогресс в облако ───────────────────────────────────────
 // Вызывать после важных событий: завершение урока, изменение XP, streak и т.д.
+export function markCloudSyncPending(): void {
+  pendingSync = true;
+}
+
 export async function syncToCloud(options?: { forceNow?: boolean; deferMs?: number }): Promise<void> {
   pendingSync = true;
   if (syncInFlight) return;
@@ -1511,6 +1555,8 @@ async function doSyncToCloud(): Promise<void> {
   const uid = await ensureAnonUser();
   if (!uid) return;
   try {
+    await resumePendingDailyTasksAllShardsClaims().catch(() => {});
+    await resumePendingReportReplyShardClaims().catch(() => {});
     await repairDevSeededStreakInStorage();
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};
@@ -1589,7 +1635,7 @@ async function doSyncToCloud(): Promise<void> {
           const avatar = (data['user_avatar'] ?? '').trim();
           const frame = (data['user_frame'] ?? '').trim();
           const aura = (data['user_avatar_aura'] ?? '').trim();
-          const profileCardLevel = Math.max(0, Math.min(5, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
+          const profileCardLevel = Math.max(0, Math.min(1, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
           const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
           const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
           const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
@@ -2001,6 +2047,28 @@ export async function migrateLocalProgressToCloud(): Promise<void> {
 //
 // Используется во flow "Сменить аккаунт" перед очисткой локального кеша,
 // чтобы не потерять прогресс при отсутствии связи.
+/**
+ * Хвост D: дождаться завершения текущего фонового sync и погасить отложенный таймер.
+ * Вызывается из auth_provider перед setStableId(canonical) в свап-ветках: иначе
+ * debounce-sync, взведённый ДО смены stable_id, мог записать СТАРЫЙ локальный прогресс
+ * в users/{новый canonical} (getCanonicalUserId уже вернул бы новый id) и затереть
+ * чужой/слитый аккаунт. После этого вызова безопасно менять stable_id.
+ */
+export async function quiesceSyncBeforeStableIdSwap(): Promise<void> {
+  pendingSync = false;
+  if (syncTimer) {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+  }
+  if (syncInFlight) {
+    try {
+      await withTimeout(syncInFlight, FORCE_SYNC_WAIT_INFLIGHT_MS, 'wait_inflight_before_swap');
+    } catch {
+      if (__DEV__) console.warn('[cloud_sync] quiesceSyncBeforeStableIdSwap: inflight timeout');
+    }
+  }
+}
+
 export async function forceSyncToCloud(): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED) return true; // в Expo Go считаем что "локально и так всё"
   const db = getFirestore();
@@ -2074,7 +2142,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
           const avatar = (data['user_avatar'] ?? '').trim();
           const frame = (data['user_frame'] ?? '').trim();
           const aura = (data['user_avatar_aura'] ?? '').trim();
-          const profileCardLevel = Math.max(0, Math.min(5, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
+          const profileCardLevel = Math.max(0, Math.min(1, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
           const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
           const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
           const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
@@ -2156,6 +2224,7 @@ export async function wipeLocalAccountData(): Promise<void> {
   lastSuccessfulSyncAt = 0;
   lastActivityStampAt = 0;
   pendingSync = false;
+  resetAppSnapshotForAccountSwitch();
   if (syncTimer) {
     clearTimeout(syncTimer);
     syncTimer = null;

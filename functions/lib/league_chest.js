@@ -37,6 +37,7 @@ exports.leagueChestClaim = void 0;
 exports.buildRewardProgressPatch = buildRewardProgressPatch;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
 const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
@@ -328,7 +329,7 @@ function buildRewardProgressPatch(params) {
         patch.progress = progressPatch;
     return patch;
 }
-exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

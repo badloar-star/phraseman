@@ -103,6 +103,9 @@ const ALLOWLIST_FILES = new Set([
   'google-services.json',
   '.codex-tmp-admin-live.html', // codex scratch copy of the admin panel
   'tools/telegram-premium-bot/README.md', // setup docs: placeholder secrets only
+  // Test fixture: a FAKE service-account private key ('secret-private-key' placeholder)
+  // used to exercise the credential-preflight guard. Not a real key.
+  'tests/gustav_french_server_remote_credential_preflight_v2_packet.test.ts',
 ]);
 
 // Files where a Firebase WEB/CLIENT Google API key (AIza…) is public by design

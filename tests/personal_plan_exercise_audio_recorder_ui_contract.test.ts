@@ -7,11 +7,18 @@ const MOJIBAKE_RE = /[\u00d0\u00d1\u00c2]/u;
 
 describe('personal plan exercise audio and recorder UI contract', () => {
   it('keeps listening audio control readable, accessible and stateful', () => {
+    const listeningButtonSource = SOURCE.slice(
+      SOURCE.indexOf('function PlanListenChooseAudioButton'),
+      SOURCE.indexOf('type PronunciationBlock'),
+    );
+
     expect(SOURCE).not.toMatch(MOJIBAKE_RE);
     expect(SOURCE).toContain("accessibilityRole=\"button\"");
     expect(SOURCE).toContain("accessibilityLabel={disabled ? 'Аудио готовится' : 'Слушать фразу'}");
     expect(SOURCE).toContain("shadowColor: disabled ? '#000000' : accent");
     expect(SOURCE).toContain("label = disabled ? 'Аудио готовится' : isBuffering ? 'Загрузка' : isPlaying ? 'Слушаю' : 'Слушать'");
+    expect(listeningButtonSource).toContain('No TTS fallback here: this control must remain MP3-only.');
+    expect(listeningButtonSource).not.toContain('speakFallback');
   });
 
   // The old record-and-playback self-check UI was replaced by a real on-device
@@ -25,15 +32,28 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     // equalizer that reacts to the voice (so it's never ambiguous whether the
     // mic is listening). Shared with the lesson "Устно" panel.
     expect(SOURCE).toContain('playRecordStart');
-    expect(SOURCE).toContain('volumeChangeEventOptions: { enabled: true');
+    expect(SOURCE).toContain('buildSpeakingStartOptions({');
+    expect(SOURCE).toContain('volumeMeter: true');
     expect(SOURCE).toContain('<VoiceEqualizer');
 
     // Real on-device recognition + local scoring (no paid service, no server).
-    expect(SOURCE).toContain('speechModule.start({');
+    expect(SOURCE).toContain('speechModule.start(');
     expect(SOURCE).toContain("speechModule.addListener('result', applyResult)");
+    expect(SOURCE).toContain('scheduleFinishAttempt');
+    expect(SOURCE).toContain('Android segmented sessions can emit a final result for only part of the');
+    expect(SOURCE).toContain("if (Platform.OS !== 'android') playRecordStart();");
     expect(SOURCE).toContain('scorePlanPronunciationTranscript({');
     expect(SOURCE).toContain('listenPronunciationTarget');
-    expect(SOURCE).toContain('speakAudio(targetText, 0.86');
+    expect(SOURCE).toContain('speakFallbackAudio(targetText, 0.86');
+    expect(SOURCE).toContain("if (Platform.OS === 'android') playFallbackAudio();");
+    expect(SOURCE).toContain('await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(SOURCE).toContain('targetPlaybackFallbackTimerRef.current = setTimeout');
+    expect(SOURCE).toContain('const currentTime = Math.max');
+    expect(SOURCE).toContain('currentTime > 0.05');
+    expect(SOURCE).toContain('status?.didJustFinish === true');
+    expect(SOURCE).toContain('Android can report the player as "playing"');
+    expect(SOURCE).toContain('downloadFirst: false');
+    expect(SOURCE).not.toContain('speakAudio(targetText, 0.86');
 
     // Completion is gated on a real passing score, not on "I recorded something".
     // Exception: when speech genuinely can't run here (no recognizer on the
@@ -43,7 +63,8 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     // Кнопка «Сказать» заблокирована ТОЛЬКО пока звучит target-аудио (иначе микрофон
     // поймал бы озвучку), но НЕ требует предварительного прослушивания.
     expect(SOURCE).toContain('enabled={!pronunciationSpeakingTarget}');
-    expect(SOURCE).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
+    expect(SOURCE).toContain('(pronunciationBlocked != null || pronunciationScore?.passed === true)');
+    expect(SOURCE).toContain('disabled={saving || pronunciationScoring}');
     expect(SOURCE).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
 
     // The escape is only for genuine "speech unavailable / denied" states, not a

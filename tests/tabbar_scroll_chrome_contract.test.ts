@@ -31,4 +31,14 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;');
     expect(source).toContain('const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;');
   });
+
+  it('keeps swipe tab chrome responsive without moving route state early', () => {
+    const source = readLayout();
+
+    expect(source).toContain('const [visualIdx, setVisualIdx]');
+    expect(source).toContain('const visualTabIdx = visualIdx;');
+    expect(source).toContain('setVisualIdx(idx);');
+    expect(source).toContain('visualIdx={visualIdx}');
+    expect(source).toContain('а реальный activeIdx/URL переключаются после UI-thread анимации.');
+  });
 });

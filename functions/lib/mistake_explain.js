@@ -40,6 +40,8 @@ const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
+const premium_status_1 = require("./premium_status");
+const explain_budget_1 = require("./explain/explain_budget");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const mistake_explain_cache_1 = require("./explain/mistake_explain_cache");
@@ -48,6 +50,16 @@ const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'mistake_explain_rate_limits';
 const BILLING_COLLECTION = 'mistake_explain_billing';
+// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
+// владельца 2026-07-02), проверяется ДО чтения кэша. Клиентский AsyncStorage-счётчик
+// обходится переустановкой — сервер источник правды. Premium — без капа.
+const FREE_DAILY_CAP = 3;
+async function enforceFreeDailyGenCap(db, authUid, stableUid) {
+    const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid);
+    if (isPremium)
+        return;
+    await (0, explain_budget_1.enforceFreeJobGenLimit)('mistake', authUid, stableUid, FREE_DAILY_CAP);
+}
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 // The mistake breakdown is the product's core paid hook: it must teach the ONE governing
 // distinction behind each wrong word (e.g. "that" vs "it"), not generic filler. The weak nano
@@ -415,6 +427,10 @@ exports.explainMistake = (0, https_1.onCall)({
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(payload.interfaceLang);
     const mistakeHash = (0, mistake_explain_cache_1.mistakeHashFor)(payload.targetAnswer, payload.userAnswer, langKey);
     const RQ = 999; // remainingQuota sentinel — no daily cap.
+    // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
+    // считаются. Ошибка 'explain_free_daily_limit' → клиент показывает состояние
+    // 'limit' с CTA в Plus (AiMistakeCard).
+    await enforceFreeDailyGenCap(db, authUid, stableUid);
     // 1. Cache FIRST — the ≥99% path, $0.
     const cached = await (0, mistake_explain_cache_1.readCachedMistakeExplanation)(mistakeHash);
     if (payload.variant === 'eli5') {

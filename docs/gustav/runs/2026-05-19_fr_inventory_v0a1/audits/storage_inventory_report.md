@@ -4,17 +4,17 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `PASS`
 
-Generated at: 2026-05-23T10:18:40.681Z
+Generated at: 2026-07-02T18:31:43.199Z
 
 ## Summary
 
-- Files scanned: 1247
-- Records: 2183
-- Unique literal keys: 360
-- Key patterns: 23
-- Unknown expressions: 542
-- Cloud sync keys observed: 139
-- Learning-state records: 314
+- Files scanned: 2739
+- Records: 3062
+- Unique literal keys: 497
+- Key patterns: 35
+- Unknown expressions: 734
+- Cloud sync keys observed: 150
+- Learning-state records: 430
 - Target namespace required: 0
 - Blockers: 0
 - High risks: 0

@@ -52,9 +52,19 @@ describe('auth provider stable-id linking', () => {
     expect(cloudSyncSource).toContain('stableUid: actualStableUid || stableId');
   });
 
-  test('provider sign-in does not create a new account from an unverified Firestore fallback', () => {
+  // ── Смягчение firestore_fallback (2026-07-02) ────────────────────────────
+  // РАНЬШЕ fallback (серверный callable недоступен, но клиент сам записал
+  // users-якорь + auth_links) РВАЛ вход: 'auth_link_unverified' + Critical-алерт,
+  // хотя привязка фактически сделана. Пользователь видел «Не получилось войти».
+  // Теперь fallback НЕ рвёт вход — идём обычным путём created_new/linked_existing.
+  test('provider sign-in does not error out on a firestore fallback (link was actually written)', () => {
     expect(source).toContain("linkedLocal.source === 'firestore_fallback'");
-    expect(source).toContain("return { result: 'error', error: 'auth_link_unverified' }");
+    // Больше НЕ возвращаем ошибку и НЕ шлём Critical-алерт для fallback.
+    expect(source).not.toContain("return { result: 'error', error: 'auth_link_unverified' }");
+    expect(source).not.toContain("captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_unverified')");
+    // Вместо этого — warning-событие и продолжение обычного потока.
+    expect(source).toContain("logAuthEvent('auth_signin_link_direct_write'");
+    expect(source).toContain("kind: linkLookupCompleted && !linkLookupFound ? 'created_new' : 'linked_existing'");
     expect(cloudSyncSource).toContain("source: 'firestore_fallback'");
   });
 
@@ -63,6 +73,56 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain('ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata)');
     expect(cloudSyncSource).toContain('linkMetadata?: StableAuthLinkMetadata');
     expect(cloudSyncSource).toContain("fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) })");
+  });
+
+  // ── КОРЕНЬ №1: linkWithCredential поверх анонима (2026-06-29) ─────────────
+  test('provider sign-in tries linkWithCredential on the anonymous user before falling back to signInWithCredential', () => {
+    // signInWithCredential УНИЧТОЖАЕТ анонимный uid (теряется привязка к stable_id).
+    // linkWithCredential сохраняет uid и данные — Firebase требует именно его для
+    // апгрейда анонима. Должна быть ветка link + деградация к sign-in при конфликте.
+    expect(signInSource).toContain('anonUser.linkWithCredential(');
+    expect(signInSource).toContain('anonUser?.isAnonymous');
+    expect(signInSource).toContain('linkedInPlace = true');
+    // Деградация к signInWithCredential при «провайдер уже привязан к другому аккаунту».
+    expect(signInSource).toContain("'auth/credential-already-in-use'");
+    // Реальный вызов link пробуется ПЕРЕД безусловным signInWithCredential.
+    expect(signInSource.indexOf('anonUser.linkWithCredential(')).toBeLessThan(
+      signInSource.lastIndexOf('auth.signInWithCredential('),
+    );
+  });
+
+  // ── Хвост A: дождаться anon-сессии перед линковкой ───────────────────────
+  test('provider sign-in waits for the anonymous session before linking (cold-start race)', () => {
+    expect(signInSource).toContain('waitForAnonAuth(20_000)');
+    // Ожидание идёт ДО РЕАЛЬНОГО вызова линковки (anonUser.linkWithCredential(...)),
+    // а не до упоминания слова в комментарии — поэтому матчим вызов с открытой скобкой.
+    expect(signInSource.indexOf('waitForAnonAuth(20_000)')).toBeLessThan(
+      signInSource.indexOf('anonUser.linkWithCredential('),
+    );
+  });
+
+  // ── Хвост D: погасить фоновый sync перед сменой stable_id ─────────────────
+  test('swap branches quiesce in-flight sync before setStableId (no stale write to new account)', () => {
+    expect(source).toContain('quiesceSyncBeforeStableIdSwap');
+    expect(cloudSyncSource).toContain('export async function quiesceSyncBeforeStableIdSwap');
+    // Перед КАЖДЫМ setStableId(canonicalStableId) стоит quiesce.
+    const swapIdx = source.indexOf('await setStableId(canonicalStableId)');
+    const quiesceBefore = source.lastIndexOf('quiesceSyncBeforeStableIdSwap', swapIdx);
+    expect(quiesceBefore).toBeGreaterThan(0);
+    expect(quiesceBefore).toBeLessThan(swapIdx);
+  });
+
+  // ── Хвост B: клиентский fallback пишет auth_links (мост provider→stableId) ─
+  test('stable-link firestore fallback also writes auth_links so the provider anchor survives', () => {
+    // Раньше fallback писал только users/{stableId}.firebaseAuthUid, но не auth_links —
+    // без него вход с другого устройства не находил аккаунт и создавал новый.
+    const fallbackStart = cloudSyncSource.indexOf("source: 'firestore_fallback'");
+    expect(fallbackStart).toBeGreaterThan(0);
+    // В fallback-ветке есть запись в auth_links с providerUid/stable_id.
+    const region = cloudSyncSource.slice(Math.max(0, fallbackStart - 1400), fallbackStart);
+    expect(region).toContain("db.collection('auth_links').doc(authUid).set");
+    expect(region).toContain('stable_id: stableId');
+    expect(region).toContain('providerUid: authUid');
   });
 
   test('provider sign-in has no client Firestore transaction that can be denied by user owner rules', () => {
@@ -106,6 +166,17 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource).not.toContain('AsyncStorage.multiRemove(progressKeys)');
     expect(mergeSwapSource).not.toContain('const introKeys');
     expect(source).not.toContain('`lesson${i + 1}_intro_shown`');
+  });
+
+  test('account wipe clears Compass onboarding profile context', () => {
+    const wipeStart = cloudSyncSource.indexOf('export function accountLocalDataKeysForToday');
+    const wipeEnd = cloudSyncSource.indexOf('const CREATED_AT_SYNC_KEY', wipeStart);
+    const wipeSource = cloudSyncSource.slice(wipeStart, wipeEnd);
+
+    expect(wipeSource).toContain("'user_profile'");
+    expect(wipeSource).toContain('PERSONAL_PLAN_PENDING_ACTIVATION_KEY');
+    expect(wipeSource).toContain("'premium_active'");
+    expect(cloudSyncSource).toContain("'user_name'");
   });
 
   test('remote stable-id swap merges accounts on the server (no client-side premium copy / dup)', () => {

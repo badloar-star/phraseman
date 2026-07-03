@@ -38,9 +38,27 @@ export type PlanContentTelemetryRecord = {
 // for the same exact decision. Real situation changes (source flip, new reason)
 // always emit a fresh event.
 const DEDUP_MS = 30_000;
+const DEDUP_MAX_KEYS = 160;
+const FIRESTORE_DOC_MIN_INTERVAL_MS = 10 * 60_000;
 const recentlySeen = new Map<string, number>();
+const firestoreDocRecentlySeen = new Map<string, number>();
 function dedupKey(rec: PlanContentTelemetryRecord): string {
   return `${rec.surface}|${rec.planId}|${rec.dayIndex}|${rec.source}|${rec.reason}|${rec.recoveredFromCorruption ? '1' : '0'}`;
+}
+
+function rememberBounded(map: Map<string, number>, key: string, now: number): void {
+  map.set(key, now);
+  if (map.size <= DEDUP_MAX_KEYS) return;
+  const oldest = [...map.entries()].sort((a, b) => a[1] - b[1]).slice(0, map.size - DEDUP_MAX_KEYS);
+  for (const [oldKey] of oldest) map.delete(oldKey);
+}
+
+function shouldWriteFirestoreTelemetry(record: PlanContentTelemetryRecord, key: string, now: number): boolean {
+  if (record.source === 'downloaded_pack' && !record.recoveredFromCorruption) return false;
+  const last = firestoreDocRecentlySeen.get(key) ?? 0;
+  if (now - last < FIRESTORE_DOC_MIN_INTERVAL_MS) return false;
+  rememberBounded(firestoreDocRecentlySeen, key, now);
+  return true;
 }
 
 /**
@@ -54,7 +72,7 @@ export function recordPlanContentSource(record: PlanContentTelemetryRecord): voi
     const now = Date.now();
     const last = recentlySeen.get(key) ?? 0;
     if (now - last < DEDUP_MS) return;
-    recentlySeen.set(key, now);
+    rememberBounded(recentlySeen, key, now);
 
     const baseProps: Record<string, unknown> = {
       planId: record.planId,
@@ -71,10 +89,11 @@ export function recordPlanContentSource(record: PlanContentTelemetryRecord): voi
         recoveredFromCorruption: record.recoveredFromCorruption,
       });
     }
-    // Also write a compact, queryable document to Firestore so the admin "FULL"
-    // dashboard can show fallback frequency, situations, and trends over time
-    // without going through BigQuery. Fire-and-forget, never blocks.
-    void writePlanContentTelemetryDoc(record).catch(() => { /* swallow */ });
+    // Firestore documents are capped to fallback/error situations and rate-limited
+    // per exact decision. Analytics above keeps the per-render signal.
+    if (shouldWriteFirestoreTelemetry(record, key, now)) {
+      void writePlanContentTelemetryDoc(record).catch(() => { /* swallow */ });
+    }
   } catch {
     // telemetry must never break the app
   }

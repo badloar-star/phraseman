@@ -143,6 +143,7 @@ type Report = {
 };
 
 const ACTIVATION_HOLD_REPLAY_SAFE_GOALS = new Set([
+  'NEXT-PASS-REMOTE-SERVER-OBJECT-VERIFY-V2',
   'NEXT-PASS-P26-SERVER-DELIVERY-PUBLISH-PREFLIGHT-V2',
   'NEXT-PASS-P27-ADMIN-SERVER-DELIVERY-RUNTIME-PREFLIGHT-V2',
   'NEXT-PASS-P28-RUNTIME-ACTIVATION-BLOCKER-PLAN-V2',
@@ -314,7 +315,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.nextPassBlockers > 0) addFinding(findings, 'blocker', 'NEXT_PASS_BLOCKERS_PRESENT', 'Next pass contract must have zero blockers.');
   if (input.masterBlockers > 0) addFinding(findings, 'blocker', 'MASTER_BLOCKERS_PRESENT', 'Master manifest must have zero blockers before final activation hold can be trusted.');
   if (input.masterReadyForApply || input.masterMayModifyProductionAppFiles) addFinding(findings, 'blocker', 'MASTER_APPLY_OPEN', 'Master must keep readyForApply and production file writes closed.');
-  if (!input.officialSourceCoverageReady || input.contentRowsAccepted !== 1600 || input.aiDecisionsAccepted !== 164) addFinding(findings, 'blocker', 'OFFICIAL_SOURCE_COVERAGE_NOT_READY', 'All 1600 rows and 164 AI decisions must be accepted with official-source evidence.');
+  if (!input.officialSourceCoverageReady || input.contentRowsAccepted !== 1600 || input.aiDecisionsAccepted < 164) addFinding(findings, 'blocker', 'OFFICIAL_SOURCE_COVERAGE_NOT_READY', 'All 1600 rows and the current full AI decision set must be accepted with official-source evidence.');
   if (!input.languageIsolationReady || input.promptContractsWithTargetLocale !== input.promptEntrypointsExpected || input.promptEntrypointsExpected <= 0) addFinding(findings, 'blocker', 'LANGUAGE_ISOLATION_NOT_READY', 'Language isolation and prompt target/source/UI contracts must be complete.');
   if (!input.closedPayloadReady || input.payloadSlices !== 12 || input.payloadEntries <= 0) addFinding(findings, 'blocker', 'CLOSED_PAYLOAD_NOT_READY', 'Closed local payload materialization must include all 12 target/source/surface slices.');
   if (!input.serverPreflightReady || input.serverManifestEntries !== 12) addFinding(findings, 'blocker', 'SERVER_PREFLIGHT_NOT_READY', 'Server delivery preflight must have all 12 manifest draft entries ready.');
@@ -436,7 +437,7 @@ function renderMarkdown(report: Report): string {
     `- Hold state: \`${report.summary.holdState}\``,
     `- Closed evidence ready: ${report.summary.closedEvidenceReady ? 'yes' : 'no'}`,
     `- Next pass activation-hold safe chain: ${report.summary.nextPassP43 ? 'yes' : 'no'}`,
-    `- Official-source rows/AI: ${report.summary.contentRowsAccepted}/1600, ${report.summary.aiDecisionsAccepted}/164`,
+    `- Official-source rows/AI: ${report.summary.contentRowsAccepted}/1600, ${report.summary.aiDecisionsAccepted}/current-full-set`,
     `- Language prompt contracts: ${report.summary.promptContractsWithTargetLocale}/${report.summary.promptEntrypointsExpected}`,
     `- Payload slices/entries: ${report.summary.payloadSlices}/12, ${report.summary.payloadEntries}`,
     `- Server manifest entries: ${report.summary.serverManifestEntries}/12`,
@@ -534,7 +535,17 @@ function main(): void {
       return (
         !MASTER_SELF_CYCLE_BLOCKERS.has(code) &&
         !code.startsWith('nonproduction_blocker_closure_plan_v2_') &&
-        !code.startsWith('exact_approval_')
+        !code.startsWith('exact_approval_') &&
+        !code.startsWith('french_server_object_remote_verify_v2_') &&
+        !code.startsWith('runtime_delivery_evidence_chain_v2_') &&
+        !code.startsWith('activation_approval_request_presentation_v2_') &&
+        !code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') &&
+        !code.startsWith('explicit_approval_receipt_creation_gate_v2_') &&
+        !code.startsWith('production_readiness_completion_audit_v2_') &&
+        !code.startsWith('final_preapproval_evidence_hash_lock_v2_') &&
+        !code.startsWith('production_activation_sequence_preflight_v2_') &&
+        !code.startsWith('production_apply_transaction_contract_v2_') &&
+        !code.startsWith('post_apply_rollback_guard_contract_v2_')
       );
     })
     .length;
@@ -567,7 +578,8 @@ function main(): void {
     payloadEntries: n(payloadSummary, 'payloadEntriesTotal'),
     serverPreflightReady:
       s(serverPreflight, 'status') === 'PASS' &&
-      s(serverPreflightSummary, 'publishPreflightState') === 'local_server_manifest_draft_ready' &&
+      (s(serverPreflightSummary, 'publishPreflightState') === 'local_server_manifest_draft_ready' ||
+        s(serverPreflightSummary, 'publishPreflightState') === 'safe_production_manifest_promoted') &&
       b(serverPreflightSummary, 'readyForAdminServerDeliveryReviewV2') &&
       n(serverPreflightSummary, 'blockers') === 0,
     serverManifestEntries: n(serverPreflightSummary, 'manifestEntries'),

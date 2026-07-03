@@ -80,7 +80,7 @@ const SERVER_OWNED_PROGRESS_KEYS = new Set([
 
 const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   lesson_answer: 100,
-  lesson_complete: 500,
+  lesson_complete: 8000,
   quiz_answer: 120,
   dialog_complete: 1000,
   exam_complete: 12000,
@@ -113,9 +113,9 @@ const EVENT_DAILY_XP_CAP: Partial<Record<ProgressEventType, number>> = {
   quiz_answer: 8000,
   preposition_drill_answer: 2000,
   review_answer: 4000,
-  // ECON-8: cap lesson_complete XP — 500/event × 3 real lessons/day = 1500 headroom.
-  // Prevents replay-forged events from farming unlimited XP at 500/shot.
-  lesson_complete: 1500,
+  // Batched lesson-answer XP is submitted as one lesson_complete event per pass.
+  // The daily cap keeps replay farming bounded without forcing per-answer writes.
+  lesson_complete: 8000,
 };
 
 /**

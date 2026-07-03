@@ -1,10 +1,11 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { monoIcon } from '../constants/monoIcon';
 import { openStoreReviewPage } from '../app/store_review';
@@ -21,7 +22,8 @@ type Props = {
 function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isCompassTheme = false;
 
   // Это окно показывается в обход общего гейта canShowReview (особый момент — оплата VIP),
@@ -61,7 +63,7 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
       <View style={styles.root}>
         <Pressable style={StyleSheet.absoluteFill} onPress={close} />
-        <View testID="vip-survey-review-prompt" style={[styles.card, isCompassTheme && compassShadow(3), { paddingBottom: Math.max(22, insets.bottom + 14), backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, borderRadius: isCompassTheme ? 14 : 22, overflow: 'hidden' }]}>
+        <View testID="vip-survey-review-prompt" style={[styles.card, isCompassTheme && compassShadow(3), { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, borderRadius: isCompassTheme ? 14 : 22, overflow: 'hidden' }]}>
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <TouchableOpacity
             testID="vip-survey-review-close"

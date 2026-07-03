@@ -35,6 +35,27 @@ export function inferPremiumPlanFromProductId(
   return defaultPlan;
 }
 
+export function inferPremiumPlanFromCustomerInfo(
+  info: CustomerInfo | null | undefined,
+  defaultPlan: PremiumStorePlan | null = null,
+): PremiumStorePlan | null {
+  const metadata = revenueCatPremiumMetadata(info);
+  if (metadata.productId) {
+    return inferPremiumPlanFromProductId(metadata.productId, defaultPlan ?? 'monthly');
+  }
+
+  const activeSubscriptions = info?.activeSubscriptions ?? [];
+  const activeProductId = activeSubscriptions.find(id => /lifetime|forever|one.?time|onetime|perpetual/i.test(id))
+    ?? activeSubscriptions.find(id => /year|yearly|annual|12.?month/i.test(id))
+    ?? activeSubscriptions.find(id => /month|monthly|1.?month/i.test(id))
+    ?? activeSubscriptions[0];
+  if (activeProductId) {
+    return inferPremiumPlanFromProductId(activeProductId, defaultPlan ?? 'monthly');
+  }
+
+  return defaultPlan;
+}
+
 export function revenueCatPremiumMetadata(
   info: CustomerInfo | null | undefined,
   defaultProductId?: string | null,

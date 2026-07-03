@@ -101,20 +101,26 @@ beforeEach(async () => {
 });
 
 describe('Gustav flashcards target isolation', () => {
-  it('blocks English system cards and marketplace packs for French until flashcard source-gate approval', () => {
+  it('opens French server system cards while keeping English marketplace packs gated', () => {
     const swipeSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_swipe.tsx'), 'utf8');
 
     expect(flashcardsSourceGatedContentAvailableForTarget('en', 'system_cards')).toBe(true);
     expect(flashcardsSourceGatedContentAvailableForTarget('es', 'system_cards')).toBe(true);
-    expect(flashcardsSourceGatedContentAvailableForTarget('fr', 'system_cards')).toBe(false);
+    expect(flashcardsSourceGatedContentAvailableForTarget('fr', 'system_cards')).toBe(true);
     expect(flashcardsOfficialPacksAvailableForTarget('fr')).toBe(false);
     expect(flashcardsSystemCardsForTarget(SYSTEM_CARDS, 'fr')).toEqual([]);
     expect(flashcardsSystemCardsForTarget(SYSTEM_CARDS, 'en')).toHaveLength(SYSTEM_CARDS.length);
+    expect(flashcardsSourceGateForTarget('fr', 'system_cards')).toMatchObject({
+      enabled: true,
+      studyTarget: 'fr',
+      reason: 'french_flashcards_server_system_cards_available',
+      blockedRoutes: [],
+    });
     expect(flashcardsSourceGateForTarget('fr', 'official_marketplace_packs')).toMatchObject({
       enabled: false,
       studyTarget: 'fr',
       reason: 'french_flashcards_source_gate',
-      blockedRoutes: expect.arrayContaining(['/flashcards', '/flashcards_collection', '/flashcards_swipe', '/flashcards_audio']),
+      blockedRoutes: expect.arrayContaining(['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio']),
     });
     expect(swipeSource).toContain('flashcardsSwipeMemoryKey(studyTarget)');
     expect(swipeSource).not.toContain("const SWIPE_MEMORY_KEY = 'flashcards_swipe_memory_v1'");
@@ -413,7 +419,8 @@ describe('Gustav flashcards target isolation', () => {
     expect(collectionSource).toContain('writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget)');
     expect(collectionSource).toContain('removeFlashcard(target.id, studyTarget)');
     expect(collectionSource).toContain('writeCustomCards(updated, studyTarget)');
-    expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget)');
+    expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
+    expect(collectionSource).toContain('ensureFrenchRemoteFlashcards(lang)');
     expect(collectionSource).toContain('officialPacksEnabled ? marketCards : []');
     expect(collectionSource).toContain('loadBuiltMarketplaceCardsCache(studyTarget)');
     expect(collectionSource).toContain('loadAccessiblePackIds(studyTarget)');

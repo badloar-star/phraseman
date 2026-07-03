@@ -44,6 +44,8 @@ export interface UseQuizExplainResult {
 
 const PENDING_RETRY_DELAY_MS = 1600;
 const TRANSIENT_RETRY_DELAY_MS = 4000;
+const MAX_PENDING_RETRIES = 6;
+const MAX_TRANSIENT_RETRIES = 2;
 
 export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult {
   const { active, questionKey, correctEn, questionPrompt, wrongOptions, lang } = input;
@@ -58,6 +60,8 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
   const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeRef = useRef(active);
   activeRef.current = active;
+  const pendingRetryCountRef = useRef(0);
+  const transientRetryCountRef = useRef(0);
 
   const clearRetryTimer = useCallback(() => {
     if (retryTimerRef.current) {
@@ -72,11 +76,16 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
     setState('idle');
     setBatch(null);
     inFlightRef.current = false;
+    pendingRetryCountRef.current = 0;
+    transientRetryCountRef.current = 0;
   }, [clearRetryTimer, questionKey]);
 
   useEffect(() => {
-    if (!active) clearRetryTimer();
-  }, [active, clearRetryTimer]);
+    if (active) return;
+    clearRetryTimer();
+    inFlightRef.current = false;
+    if (state === 'loading') setState('idle');
+  }, [active, clearRetryTimer, state]);
 
   useEffect(() => clearRetryTimer, [clearRetryTimer]);
 
@@ -94,22 +103,36 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
     setState('loading');
     try {
       const res = await callExplainQuiz({ correctEn, questionPrompt, wrongOptions, lang });
-      if (questionKeyRef.current !== myKey) return; // пользователь ушёл на другой вопрос
+      if (questionKeyRef.current !== myKey || !activeRef.current) return; // пользователь ушёл на другой вопрос
       if (res.status === 'ok' && res.confirm) {
+        pendingRetryCountRef.current = 0;
+        transientRetryCountRef.current = 0;
         setBatch(res);
         setState('ready');
         return;
       }
       // 'pending' — другой запрос генерирует прямо сейчас. Продолжаем опрашивать кэш до готового AI-батча.
       if (res.status === 'pending') {
+        if (pendingRetryCountRef.current >= MAX_PENDING_RETRIES) {
+          setState('unavailable');
+          return;
+        }
+        pendingRetryCountRef.current += 1;
+        transientRetryCountRef.current = 0;
         inFlightRef.current = false;
         scheduleRetry(PENDING_RETRY_DELAY_MS);
         return;
       }
-      // 'rejected' / 'exhausted' / пусто — разбор недоступен; UI тихо скрывает блок.
+      // 'rejected' / 'exhausted' / пусто — разбор недоступен; UI оставляет блок с ручным повтором.
       setState('unavailable');
     } catch {
-      if (questionKeyRef.current === myKey) {
+      if (questionKeyRef.current === myKey && activeRef.current) {
+        if (transientRetryCountRef.current >= MAX_TRANSIENT_RETRIES) {
+          setState('unavailable');
+          return;
+        }
+        transientRetryCountRef.current += 1;
+        pendingRetryCountRef.current = 0;
         inFlightRef.current = false;
         scheduleRetry(TRANSIENT_RETRY_DELAY_MS);
       }
@@ -139,6 +162,8 @@ export function useQuizExplain(input: UseQuizExplainInput): UseQuizExplainResult
     setState('idle');
     setBatch(null);
     inFlightRef.current = false;
+    pendingRetryCountRef.current = 0;
+    transientRetryCountRef.current = 0;
   }, [clearRetryTimer]);
 
   return { state, explanationFor, retry };

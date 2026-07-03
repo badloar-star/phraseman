@@ -9,6 +9,7 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   coral: require('../assets/images/energy/energy-coral.webp'),
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
   business: require('../assets/images/energy/energy-business.webp'),
+  businessLight: require('../assets/images/energy/energy-businessLight.webp'),
   midnight: require('../assets/images/energy/energy-midnight.webp'),
   ember: require('../assets/images/energy/energy-ember.webp'),
   aurora: require('../assets/images/energy/energy-aurora.webp'),

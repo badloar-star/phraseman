@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
  * _anim_demo_lab.tsx — DEV-демо: что текущий стек (Reanimated 4 + SVG + haptics)
  * умеет БЕЗ Lottie/Rive/Skia. Доказательство к ответу «можем ли мы делать
@@ -36,7 +37,6 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, Path } from 'react-native-svg';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 
@@ -314,7 +314,7 @@ function EffectCard({
 }
 
 export default function AnimDemoLab() {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [flipN, setFlipN] = useState(0);
   const [burstN, setBurstN] = useState(0);

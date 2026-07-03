@@ -48,7 +48,10 @@ describe('arena season reward themed icon assets', () => {
       );
     }
     expect(registrySource).toContain(
-      "business: require('../assets/images/arena_actions/arena-action-season-reward-minimalDark.webp')",
+      "business: require('../assets/images/arena_actions/arena-action-season-reward-business.webp')",
+    );
+    expect(registrySource).toContain(
+      "businessLight: require('../assets/images/arena_actions/arena-action-season-reward-businessLight.webp')",
     );
 
     expect(lobbySource).toContain("arenaActionIconSource('seasonReward', themeMode)");

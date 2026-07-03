@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Text, TextInput, TouchableOpacity, View, ScrollView,
@@ -11,7 +12,6 @@ import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
@@ -50,6 +50,10 @@ type ArenaRoomConfirmDialog = {
   confirmLabel: string;
   cancelLabel: string;
   onConfirm: () => void;
+};
+
+type OptimisticArenaRoomChatMessage = ArenaRoomChatMessage & {
+  localStatus?: 'sending' | 'failed';
 };
 
 function cleanCode(code: string): string {
@@ -150,10 +154,11 @@ function MemberRow({
 }
 
 // ─── Компонент сообщения чата ─────────────────────────────────────────────────
-function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: boolean; t: any; f: any }) {
+function ChatBubble({ msg, isMe, t, f }: { msg: OptimisticArenaRoomChatMessage; isMe: boolean; t: any; f: any }) {
   const time = new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const metaText = msg.localStatus === 'sending' ? '...' : msg.localStatus === 'failed' ? '!' : time;
   return (
-    <View style={{ marginBottom: 8, alignItems: isMe ? 'flex-end' : 'flex-start' }}>
+    <View style={{ marginBottom: 8, alignItems: isMe ? 'flex-end' : 'flex-start', opacity: msg.localStatus === 'sending' ? 0.78 : 1 }}>
       {!isMe && (
         <Text style={{ color: t.textMuted, fontSize: f.caption - 2, marginBottom: 2, marginLeft: 4 }}>
           {msg.authorName}
@@ -168,7 +173,7 @@ function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: bool
       }}>
         <Text style={{ color: isMe ? t.correctText : t.textPrimary, fontSize: f.body }}>{msg.text}</Text>
         <Text style={{ color: isMe ? t.correctText : t.textGhost, opacity: isMe ? 0.6 : 1, fontSize: f.caption - 2, marginTop: 2, alignSelf: 'flex-end' }}>
-          {time}
+          {metaText}
         </Text>
       </View>
     </View>
@@ -179,7 +184,7 @@ function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: bool
 export default function ArenaRoomScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -196,6 +201,7 @@ export default function ArenaRoomScreen() {
   const [members, setMembers] = useState<ArenaRoomMember[]>([]);
   const [runs, setRuns] = useState<ArenaRoomRun[]>([]);
   const [chatMessages, setChatMessages] = useState<ArenaRoomChatMessage[]>([]);
+  const [optimisticChatMessages, setOptimisticChatMessages] = useState<OptimisticArenaRoomChatMessage[]>([]);
   const [unreadChat, setUnreadChat] = useState(0);
   const [showChat, setShowChat] = useState(false);
   const [confirmDialog, setConfirmDialog] = useState<ArenaRoomConfirmDialog | null>(null);
@@ -211,13 +217,24 @@ export default function ArenaRoomScreen() {
   const codeCopiedRef = useRef(false);
   const joinedRef = useRef(false);
   const lastReadChatCount = useRef(0);
-  const chatListRef = useRef<FlashListRef<ArenaRoomChatMessage>>(null);
+  const chatListRef = useRef<FlashListRef<OptimisticArenaRoomChatMessage>>(null);
 
   const roomCode = room?.code ?? cleanCode(codeInput);
   const sortedRuns = useMemo(() => [...runs].sort((a, b) => b.score - a.score), [runs]);
 
   const meIsHost = !!(myUid && room && room.ownerUid === myUid);
   const myMember = members.find(m => m.authUid === myUid);
+  const visibleChatMessages = useMemo<OptimisticArenaRoomChatMessage[]>(() => {
+    const unresolvedOptimistic = optimisticChatMessages.filter((optimistic) => {
+      if (optimistic.localStatus === 'failed') return true;
+      return !chatMessages.some(serverMessage =>
+        serverMessage.authorUid === optimistic.authorUid
+        && serverMessage.text === optimistic.text
+        && Math.abs(serverMessage.createdAt - optimistic.createdAt) <= 30_000,
+      );
+    });
+    return [...chatMessages, ...unresolvedOptimistic].sort((a, b) => a.createdAt - b.createdAt);
+  }, [chatMessages, optimisticChatMessages]);
   const allReady = members.length > 0 && members.every(m => m.ready);
   const canStart = meIsHost && allReady && members.length >= 2;
 
@@ -278,9 +295,17 @@ export default function ArenaRoomScreen() {
 
   // Подписка на чат
   useEffect(() => {
-    if (!room?.code) { setChatMessages([]); return; }
+    if (!room?.code) { setChatMessages([]); setOptimisticChatMessages([]); return; }
     return subscribeArenaRoomChat(room.code, (msgs) => {
       setChatMessages(msgs);
+      setOptimisticChatMessages(prev => prev.filter(optimistic =>
+        optimistic.localStatus === 'failed'
+        || !msgs.some(serverMessage =>
+          serverMessage.authorUid === optimistic.authorUid
+          && serverMessage.text === optimistic.text
+          && Math.abs(serverMessage.createdAt - optimistic.createdAt) <= 30_000,
+        ),
+      ));
       if (!showChat) {
         const newCount = msgs.length - lastReadChatCount.current;
         if (newCount > 0) setUnreadChat(prev => prev + newCount);
@@ -533,11 +558,28 @@ export default function ArenaRoomScreen() {
     const text = chatInput.trim();
     if (!text || !room?.code || chatSending) return;
     hapticTap();
+    const createdAt = Date.now();
+    const optimisticId = `local-${createdAt}-${Math.random().toString(36).slice(2, 8)}`;
+    const optimisticMessage: OptimisticArenaRoomChatMessage = {
+      id: optimisticId,
+      code: room.code,
+      authorUid: myUid ?? 'local',
+      authorName: myMember?.userName ?? 'You',
+      text,
+      createdAt,
+      status: 'visible',
+      localStatus: 'sending',
+    };
     setChatInput('');
+    setOptimisticChatMessages(prev => [...prev, optimisticMessage]);
+    setTimeout(() => chatListRef.current?.scrollToEnd({ animated: true }), 50);
     setChatSending(true);
     try {
       await sendArenaRoomChatMessage(room.code, text);
     } catch {
+      setOptimisticChatMessages(prev => prev.map(message =>
+        message.id === optimisticId ? { ...message, localStatus: 'failed' } : message,
+      ));
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Сообщение не дошло. Проверь сеть и повтори.',
@@ -548,7 +590,7 @@ export default function ArenaRoomScreen() {
     } finally {
       setChatSending(false);
     }
-  }, [chatInput, room?.code, chatSending]);
+  }, [chatInput, room?.code, chatSending, myMember?.userName, myUid]);
 
   const myRun = myUid ? sortedRuns.find(r => r.userId === myUid) : undefined;
   const myRank = myRun ? sortedRuns.indexOf(myRun) + 1 : null;
@@ -1114,7 +1156,7 @@ export default function ArenaRoomScreen() {
           {/* Сообщения */}
           <FlashList
             ref={chatListRef}
-            data={chatMessages}
+            data={visibleChatMessages}
             keyExtractor={item => item.id}
             contentContainerStyle={{ padding: 16, paddingBottom: 8 }}
             ListEmptyComponent={

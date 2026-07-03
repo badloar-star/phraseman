@@ -111,6 +111,15 @@ describe('lesson intro screens (es locale fields)', () => {
     expect(headerSource.indexOf('testID="lesson-intro-back"')).toBeLessThan(headerSource.indexOf('styles.headerPill'));
   });
 
+  it('names the final intro CTA as training because it starts the practice flow', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+
+    expect(source).toContain("ru: 'Начать тренировку'");
+    expect(source).toContain("es: 'Comenzar práctica'");
+    expect(source).not.toContain("ru: 'Начать урок'");
+    expect(source).not.toContain("es: 'Empezar la lección'");
+  });
+
   it('does not route planned intro UI locales through RU/UK/ES runtime fallbacks', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
     const legacyRuntimeFallback = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;

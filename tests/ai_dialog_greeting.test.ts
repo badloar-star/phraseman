@@ -46,4 +46,24 @@ describe('buildScenarioGreeting', () => {
       expect(g).not.toMatch(/ {2,}/);
     }
   });
+
+  it('does not expose scenario metadata in learner-facing situation openers', () => {
+    for (const s of DIALOG_SCENARIOS) {
+      const g = buildScenarioGreeting(s);
+      expect(g).not.toMatch(/\blearner\b/i);
+      expect(g).not.toMatch(/Make yourself at home here at/i);
+      expect(g).not.toMatch(/\bwhere\b.*\blearner\b/i);
+    }
+  });
+
+  it('opens the neighbor cat situation in-character without metadata narration', () => {
+    const scenario = DIALOG_SCENARIOS.find((s) => s.id === 'neighbor_cat_accusation');
+    expect(scenario).toBeTruthy();
+    if (!scenario) return;
+
+    const greeting = buildScenarioGreeting(scenario);
+    expect(greeting).toContain('I think my cat is in your flat');
+    expect(greeting).not.toContain("learner's flat");
+    expect(greeting).not.toContain('doorway where');
+  });
 });

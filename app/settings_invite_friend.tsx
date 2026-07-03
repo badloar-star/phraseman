@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -9,13 +10,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { STORE_URL } from './config';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
@@ -283,9 +285,10 @@ export default function SettingsInviteFriend() {
 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const bottomPad =
-    Math.max(insets.bottom, effectiveOs === 'ios' ? 10 : 28) + 8;
+    Math.max(bottomInset, effectiveOs === 'ios' ? 10 : 28) + 8;
   const copyLang = lang as Lang;
   const tx = COPY[copyLang] ?? COPY.ru;
 
@@ -307,7 +310,7 @@ export default function SettingsInviteFriend() {
 
       let r: { action?: string } | undefined;
       if (cloud?.message) {
-        r = await Share.share({ message: cloud.message, url: cloud.url });
+        r = await Share.share({ message: cloud.message });
       } else {
         // Фолбэк — только если кода нет (не вошёл через Google/Apple или нет сети):
         // обычная ссылка на стор без атрибуции, чтобы кнопка хоть что-то делала.
@@ -329,7 +332,7 @@ export default function SettingsInviteFriend() {
   }, [busy, copyLang, studyTarget]);
 
   const isIos = effectiveOs === 'ios';
-  const scrollBottomPad = 100 + Math.max(insets.bottom, 16);
+  const scrollBottomPad = 100 + Math.max(bottomInset, 16);
 
   return (
     <ScreenGradient artBackdrop="settings">

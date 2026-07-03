@@ -1,6 +1,6 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
@@ -74,7 +74,7 @@ export default function PromoBanner() {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const translateX = useRef(new Animated.Value(0)).current;
   const [state, setState] = useState<PromoState>({
     visible: false,

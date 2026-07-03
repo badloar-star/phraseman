@@ -39,27 +39,28 @@ export async function joinArenaFriendRoomAsGuest(
 
     const foundSessionId = await new Promise<string | null>((resolve) => {
       let resolved = false;
+      let timeoutId: ReturnType<typeof setTimeout> | null = null;
+      const settle = (value: string | null, unsub: () => void) => {
+        if (resolved) return;
+        resolved = true;
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+        unsub();
+        resolve(value);
+      };
       const unsub = db.collection('arena_rooms').doc(roomId).onSnapshot((snap: { exists?: boolean; data?: () => Record<string, unknown> }) => {
         if (resolved || !snap?.exists) return;
         const data = snap.data?.();
         if (data?.sessionId) {
-          resolved = true;
-          unsub();
-          resolve(String(data.sessionId));
+          settle(String(data.sessionId), unsub);
         }
       }, () => {
-        if (!resolved) {
-          resolved = true;
-          unsub();
-          resolve(null);
-        }
+        settle(null, unsub);
       });
-      setTimeout(() => {
-        if (!resolved) {
-          resolved = true;
-          unsub();
-          resolve(null);
-        }
+      timeoutId = setTimeout(() => {
+        settle(null, unsub);
       }, 12_000);
     });
 

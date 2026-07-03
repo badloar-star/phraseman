@@ -12,24 +12,33 @@
  *   Android 3-button soft nav ~48dp
  *   Android hardware buttons  0dp
  *
- * All of these are covered by useSafeAreaInsets().bottom when
- * edgeToEdgeEnabled: true is set in app.json (which we have).
+ * Some Android/OEM edge-to-edge builds still report 0 while a visible
+ * 3-button navigation bar is present, so normalizeSafeAreaBottomInset()
+ * protects interactive UI from that system area.
  */
 
 import { Dimensions, useWindowDimensions, Platform } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   BP_LARGE_TABLET,
   BP_TABLET,
   computeUiScale,
 } from '../constants/layout-scale';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
 export { BP_LARGE_TABLET, BP_TABLET } from '../constants/layout-scale';
+
+export const ANDROID_NAV_BAR_FALLBACK_INSET = 48;
+
+export function normalizeSafeAreaBottomInset(rawBottomInset: number, os: string = Platform.OS): number {
+  // Android 3-button navigation is 48dp, but some OEM/edge-to-edge builds report 0.
+  if (os === 'android' && rawBottomInset === 0) return ANDROID_NAV_BAR_FALLBACK_INSET;
+  return rawBottomInset;
+}
 
 // ─── Hook ────────────────────────────────────────────────────────────────────
 export function useScreen() {
   const { width, height } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   /** Вузька сторона — однакова логіка портрет/альбом; не плутаємо телефон у landscape з планшетом */
   const narrow = Math.min(width, height);
@@ -61,21 +70,13 @@ export function useScreen() {
   );
 
   // ── Bottom inset (navigation bar / home indicator) ────────────────────────
-  // useSafeAreaInsets().bottom handles:
+  // Native safe-area bottom reporting handles most devices:
   //   iOS:     home indicator (~34dp on notched phones)
-  //   Android: gesture nav pill OR 3-button soft nav bar OR 0 for hw buttons
-  //            (correct because edgeToEdgeEnabled: true is in app.json)
+  //   Android: gesture nav pill OR 3-button soft nav bar on many devices
+  // Some Android/OEM edge-to-edge builds return 0 even when the soft nav
+  // buttons are visible, so interactive UI receives a fallback inset.
   const bottomInset = insets.bottom;
-
-  // ── Extra guard for Android 3-button nav that doesn\'t report insets ───────
-  // On very old Android or certain OEM skins, bottom inset might be reported
-  // as 0 even with a visible soft nav bar.  We add a small floor on Android
-  // when the phone has no physical buttons (gesture bar area always exists).
-  // This guard is intentionally conservative (max 8dp to avoid over-spacing).
-  const safeBottom = Platform.OS === 'android' && bottomInset === 0
-    ? 0   // hardware buttons — genuinely 0
-    : bottomInset;
-
+  const safeBottom = normalizeSafeAreaBottomInset(bottomInset);
   // ── Card column count for grids ───────────────────────────────────────────
   const gridCols: number =
     isLargeTablet ? 3 :

@@ -58,13 +58,16 @@ describe('profile card upgrade dev gate', () => {
 describe('profile card cost parity (client ↔ Cloud Function)', () => {
   function clientCosts(): Record<number, number> {
     const src = fs.readFileSync(path.join(process.cwd(), 'app', 'profile_card_system.ts'), 'utf8');
+    const costMatch = src.match(/PROFILE_CARD_UPGRADE_COST\s*=\s*(\d+)/);
+    const oneStepCost = Number(costMatch?.[1] ?? 0);
     const block = src.slice(src.indexOf('PROFILE_CARD_LEVELS'));
     const costs: Record<number, number> = {};
-    const re = /level:\s*(\d)\s*,[\s\S]*?cost:\s*(\d+)/g;
+    const re = /level:\s*(\d)\s*,[\s\S]*?cost:\s*(\d+|PROFILE_CARD_UPGRADE_COST)/g;
     let m: RegExpExecArray | null;
     while ((m = re.exec(block))) {
       const level = Number(m[1]);
-      if (level >= 1 && level <= 5 && costs[level] === undefined) costs[level] = Number(m[2]);
+      const cost = m[2] === 'PROFILE_CARD_UPGRADE_COST' ? oneStepCost : Number(m[2]);
+      if (level === 1 && costs[level] === undefined) costs[level] = cost;
     }
     return costs;
   }
@@ -80,15 +83,16 @@ describe('profile card cost parity (client ↔ Cloud Function)', () => {
     let m: RegExpExecArray | null;
     while ((m = re.exec(block))) {
       const level = Number(m[1]);
-      if (level >= 1 && level <= 5 && costs[level] === undefined) costs[level] = Number(m[2]);
+      if (level === 1 && costs[level] === undefined) costs[level] = Number(m[2]);
     }
     return costs;
   }
 
-  it('charges the same price on both sides for every level 1–5', () => {
+  it('charges the same price on both sides for the single Pro level', () => {
     const client = clientCosts();
     const server = serverCosts();
-    expect(Object.keys(client).sort()).toEqual(['1', '2', '3', '4', '5']);
+    expect(Object.keys(client).sort()).toEqual(['1']);
     expect(server).toEqual(client);
+    expect(client[1]).toBe(200);
   });
 });

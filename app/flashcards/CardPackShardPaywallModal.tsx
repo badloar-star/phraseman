@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
@@ -29,10 +30,10 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { oskolokImageForPackShards } from '../oskolok';
 import {
   packCategoryIonIcon,
@@ -58,7 +59,7 @@ type Props = {
   onConfirmPurchase: () => void | Promise<void>;
   onGoToShards: () => void;
   /** Після «Не показывать» у ReportPackModal — оновити каталог на хабі. */
-  onCommunityPackHiddenOnDevice?: () => void;
+  onCommunityPackHiddenOnDevice?: (optimisticPackId?: string | null) => void | Promise<void>;
 };
 
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -218,7 +219,8 @@ export default function CardPackShardPaywallModal({
   const sheetPrimaryBg = t.bgPrimary;
   const bodyTextColor = t.textMuted;
   const subLabelColor = t.textMuted;
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: winH } = useWindowDimensions();
   const str = useMemo(() => paywallModalCopy(lang), [lang]);
   const title = packTitleForInterface(pack, lang);
@@ -352,7 +354,7 @@ export default function CardPackShardPaywallModal({
           pointerEvents="box-none"
         >
           <Animated.View style={[{ maxHeight: maxSheetH, width: '100%' }, sheetStyle]}>
-            <View style={{ paddingHorizontal: 12, paddingBottom: Math.max(12, insets.bottom) }}>
+            <View style={{ paddingHorizontal: 12, paddingBottom: Math.max(12, bottomInset) }}>
               <View style={{ position: 'relative' }}>
                 <LinearGradient
                   colors={[...paywallVisual.outerGlow]}
@@ -1025,12 +1027,13 @@ export default function CardPackShardPaywallModal({
                           <Pressable
                             onPress={async () => {
                               try {
+                                void onCommunityPackHiddenOnDevice?.(pack.id);
+                                handleClose();
                                 await hideCommunityPackOnDevice(pack.id, studyTarget);
-                                onCommunityPackHiddenOnDevice?.();
+                                await onCommunityPackHiddenOnDevice?.(null);
                               } catch {
-                                // no-op: AsyncStorage unavailable
+                                await onCommunityPackHiddenOnDevice?.(null);
                               }
-                              handleClose();
                             }}
                             hitSlop={8}
                             style={{ marginTop: 2, paddingVertical: 6, alignItems: 'center' }}

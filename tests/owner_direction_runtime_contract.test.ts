@@ -123,7 +123,7 @@ describe('owner runtime direction contract', () => {
     expect(found).toEqual(allowlist);
   });
 
-  it('keeps non-critical avatar and profile-card cosmetic sync deferred', () => {
+  it('keeps non-critical avatar cosmetic sync deferred and profile-card purchase sync immediate', () => {
     const avatarSource = read('app/avatar_select.tsx');
     const profileCardSource = read('app/profile_card_upgrade.tsx');
 
@@ -133,15 +133,17 @@ describe('owner runtime direction contract', () => {
     expect(avatarSource).toContain("syncAvatarDisplayToCloud('deferred')");
     expect(avatarSource).toContain("syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred')");
 
-    expect(profileCardSource).toContain('const PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
-    expect(profileCardSource).toContain('syncToCloud({ deferMs: PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('immediate'\)/g) ?? []).length).toBe(2);
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('deferred'\)/g) ?? []).length).toBe(3);
+    expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
+    expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
+    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
   });
 
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
     const allowlist: Record<string, number> = {
       'app/(tabs)/quizzes.tsx': 1,
+      'app/_admin_celebration_lab.tsx': 1,
+      'app/_admin_premium_delivery_test.tsx': 1,
       'app/arena_game.tsx': 1,
       'app/arena_leaderboard.tsx': 1,
       'app/arena_lobby.tsx': 2,
@@ -160,10 +162,8 @@ describe('owner runtime direction contract', () => {
       'components/EnergyContext.tsx': 1,
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/LeagueChatPanel.tsx': 1,
-      'components/LessonEnergyLightning.tsx': 1,
       'components/PromoBanner.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
-      'components/onboarding.tsx': 1,
       'components/paywall/PaywallPriceUrgency.tsx': 1,
       'contexts/MatchmakingContext.tsx': 2,
       'hooks/use-arena-mock.ts': 2,
@@ -246,12 +246,14 @@ describe('owner runtime direction contract', () => {
 
   it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
     const allowlist: Record<string, number> = {
-      'app/app_messages.ts': 2,
+      'app/_admin_premium_delivery_test.tsx': 1,
+      'app/app_messages.ts': 3,
       'app/arena_friend_room_guest.ts': 1,
       'app/arena_lobby.tsx': 1,
       'app/arena_results.tsx': 1,
       'app/daily_phrase_system.ts': 1,
       'app/firestore_friend_requests.ts': 2,
+      'app/firestore_help_board.ts': 3,
       'app/firestore_league_chat.ts': 1,
       'app/firestore_leagues.ts': 2,
       'app/league_group_boosts.ts': 2,
@@ -262,6 +264,7 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_pulse.ts': 1,
       'app/services/arena_rooms_live.ts': 4,
       'app/services/league_chest_rewards.ts': 3,
+      'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
       'hooks/use-arena-rank.ts': 1,
     };
@@ -443,14 +446,15 @@ describe('owner runtime direction contract', () => {
     expect(client).toContain('if (flushInFlight) return flushInFlight');
     expect(client).toContain('await enqueue(event).catch(() => {})');
     expect(client).toContain('await mirrorProgressResultToLocal(res.data)');
+    expect(client).toContain("const PROGRESS_MIGRATION_BASELINE_KEY = 'progress_server_snapshot_baseline_v1'");
+    expect(client).toContain('export async function prepareProgressMigrationSnapshot()');
 
     expect(xpManager).toContain('let _xpLock: Promise<unknown> = Promise.resolve()');
     expect(xpManager).toContain('const XP_CLOUD_SYNC_DEFER_MS = 3500');
-    expect(xpManager).toContain('serverAward = await submitProgressEvent');
-    expect(xpManager).toContain("DebugLogger.error('xp_manager.ts:registerXP:server_queued'");
-    expect(xpManager).toContain("DebugLogger.error('xp_manager.ts:registerXP:server_queued_fallback'");
+    expect(xpManager).toContain('submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel)');
+    expect(xpManager).toContain('void submitProgressEvent(request, { migrationSnapshot })');
+    expect(xpManager).toContain('await reserveLocalProgressEvent(options?.eventId)');
     expect(xpManager).toContain('syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {})');
-    expect(xpManager).toContain('if (!serverAward) {');
     expect(xpManager).toContain("await storageSetString('user_total_xp', String(newTotal))");
     expect(xpManager).toContain('Math.max(0, currentTotal + finalDelta)');
     expect(xpManager).toContain("emitAppEvent('xp_changed')");
@@ -640,10 +644,10 @@ describe('owner runtime direction contract', () => {
       'app/app_health.ts': 1,
       'app/firebase.ts': 1,
       'app/firestore_friend_requests.ts': 1,
+      'app/firestore_help_board.ts': 1,
       'app/friends_screen.tsx': 1,
       'app/shards_shop.tsx': 3,
       'app/streak_wager.ts': 1,
-      'components/onboarding.tsx': 3,
     };
     const found: Record<string, number> = {};
 

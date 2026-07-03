@@ -105,6 +105,8 @@ const {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogReview } = require('./premium_dialog_review');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -114,6 +116,17 @@ const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
 const { compassGenerate } = require('./compass');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  helpBoardCreateTopic,
+  helpBoardAddComment,
+  helpBoardVote,
+  helpBoardReport,
+  helpBoardDeleteMyTopic,
+  helpBoardAdminModerate,
+  helpBoardGenerateCompassForTopic,
+  helpBoardCompassRetryCron,
+} = require('./help_board');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -132,6 +145,12 @@ const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  notifyOnFriendRequestCreated,
+  notifyOnFriendAccepted,
+  userNotificationsCleanupCron,
+} = require('./user_notifications');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -203,12 +222,24 @@ exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
+exports.premiumDialogReview = premiumDialogReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.explainQuiz = explainQuiz;
 exports.compassGenerate = compassGenerate;
+exports.helpBoardCreateTopic = helpBoardCreateTopic;
+exports.helpBoardAddComment = helpBoardAddComment;
+exports.helpBoardVote = helpBoardVote;
+exports.helpBoardReport = helpBoardReport;
+exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
+exports.helpBoardAdminModerate = helpBoardAdminModerate;
+exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
+exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
+exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
+exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
+exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
@@ -312,7 +343,7 @@ function parseLeaderboardDocCf(data: FirebaseFirestore.DocumentData | undefined)
     isPremium: !!data.isPremium,
     isVip: !!data.isVip,
     avatarEmoji,
-    profileCardLevel: Math.max(0, Math.min(5, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
+    profileCardLevel: Math.max(0, Math.min(1, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
     profileCardTheme: typeof data.profileCardTheme === 'string' && data.profileCardTheme.trim() ? data.profileCardTheme.trim().slice(0, 32) : 'classic',
     profileCardMotion: typeof data.profileCardMotion === 'string' && data.profileCardMotion.trim() ? data.profileCardMotion.trim().slice(0, 32) : 'none',
     profileCardPublicFocus: typeof data.profileCardPublicFocus === 'string' && data.profileCardPublicFocus.trim() ? data.profileCardPublicFocus.trim().slice(0, 32) : 'balanced',
@@ -399,6 +430,55 @@ function pickIncomingDisplayName(raw: string | null | undefined): string | null 
   if (PLACEHOLDER_NAMES.has(dn)) return null;
   // Защита от излишне длинных значений (firestore.rules ограничивает 120, но дублируем).
   return dn.slice(0, 120);
+}
+
+type ArenaProfileDocData = Record<string, unknown> & {
+  rank?: { stars?: number; tier?: string; level?: string };
+  xp?: number;
+  lastStreakShardAt?: number;
+  sr?: number;
+  peakSR?: number;
+  seasonId?: string;
+  seasonPeakRankIndex?: number;
+  stats?: {
+    matchesPlayed?: number;
+    matchesWon?: number;
+    totalScore?: number;
+    winStreak?: number;
+    bestWinStreak?: number;
+  };
+};
+
+function readArenaNumber(raw: unknown, fallback = 0): number {
+  const n = typeof raw === 'number' ? raw : Number(raw);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function readArenaProfileRank(data: ArenaProfileDocData, preferLegacy = false): { tier: string; level: string; stars: number } {
+  return {
+    tier: String((preferLegacy ? data['rank.tier'] ?? data.rank?.tier : data.rank?.tier ?? data['rank.tier']) ?? 'bronze'),
+    level: String((preferLegacy ? data['rank.level'] ?? data.rank?.level : data.rank?.level ?? data['rank.level']) ?? 'I'),
+    stars: Math.max(0, Math.trunc(readArenaNumber(preferLegacy ? data['rank.stars'] ?? data.rank?.stars : data.rank?.stars ?? data['rank.stars'], 0))),
+  };
+}
+
+function readArenaProfileStats(data: ArenaProfileDocData) {
+  const nested = {
+    matchesPlayed: Math.max(0, Math.trunc(readArenaNumber(data.stats?.matchesPlayed, 0))),
+    matchesWon: Math.max(0, Math.trunc(readArenaNumber(data.stats?.matchesWon, 0))),
+    totalScore: Math.max(0, Math.trunc(readArenaNumber(data.stats?.totalScore, 0))),
+    winStreak: Math.max(0, Math.trunc(readArenaNumber(data.stats?.winStreak, 0))),
+    bestWinStreak: Math.max(0, Math.trunc(readArenaNumber(data.stats?.bestWinStreak, 0))),
+  };
+  const legacy = {
+    matchesPlayed: Math.max(0, Math.trunc(readArenaNumber(data['stats.matchesPlayed'] ?? data.stats?.matchesPlayed, 0))),
+    matchesWon: Math.max(0, Math.trunc(readArenaNumber(data['stats.matchesWon'] ?? data.stats?.matchesWon, 0))),
+    totalScore: Math.max(0, Math.trunc(readArenaNumber(data['stats.totalScore'] ?? data.stats?.totalScore, 0))),
+    winStreak: Math.max(0, Math.trunc(readArenaNumber(data['stats.winStreak'] ?? data.stats?.winStreak, 0))),
+    bestWinStreak: Math.max(0, Math.trunc(readArenaNumber(data['stats.bestWinStreak'] ?? data.stats?.bestWinStreak, 0))),
+  };
+  const preferLegacy = legacy.matchesPlayed > nested.matchesPlayed;
+  return { stats: preferLegacy ? legacy : nested, preferLegacy };
 }
 
 async function pickArenaQuestions(count: number): Promise<string[]> {
@@ -913,27 +993,15 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
             updatedAt: Date.now(),
           }, { merge: true });
         } else {
-          const data = profileSnap.data() as {
-            rank?: { stars?: number; tier?: string; level?: string };
-            xp?: number;
-            lastStreakShardAt?: number;
-            sr?: number;
-            peakSR?: number;
-            seasonId?: string;
-            seasonPeakRankIndex?: number;
-            stats?: {
-              matchesPlayed?: number;
-              matchesWon?: number;
-              totalScore?: number;
-              winStreak?: number;
-              bestWinStreak?: number;
-            };
-          };
-          oldStars = data.rank?.stars ?? 0;
-          oldTier = data.rank?.tier ?? 'bronze';
-          oldLevel = data.rank?.level ?? 'I';
-          const curStreak = data.stats?.winStreak ?? 0;
-          const bestStreak = data.stats?.bestWinStreak ?? 0;
+          const data = profileSnap.data() as ArenaProfileDocData;
+          const oldStatsRead = readArenaProfileStats(data);
+          const oldRank = readArenaProfileRank(data, oldStatsRead.preferLegacy);
+          const oldStats = oldStatsRead.stats;
+          oldStars = oldRank.stars;
+          oldTier = oldRank.tier;
+          oldLevel = oldRank.level;
+          const curStreak = oldStats.winStreak;
+          const bestStreak = oldStats.bestWinStreak;
 
           if (isFriendDuel) {
             // Дружеский матч: звёзды и ранг не меняются, серия побед не трогается
@@ -1005,9 +1073,9 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               seasonId: nowSeasonId,
               seasonPeakRankIndex: newPeakRankIdx,
               xp: (data.xp ?? 0) + xpDelta,
-              'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-              'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-              'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
+              'stats.matchesPlayed': oldStats.matchesPlayed + 1,
+              'stats.matchesWon': oldStats.matchesWon + (won ? 1 : 0),
+              'stats.totalScore': oldStats.totalScore + (p.score ?? 0),
               'stats.winStreak': newStreak,
               'stats.bestWinStreak': Math.max(bestStreak, newStreak),
               ...dnPatch,
@@ -1066,8 +1134,8 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
           promoted,
           rankUpStreakShardAwarded: (() => {
             if (!profileSnap.exists) return false;
-            const data = profileSnap.data() as { lastStreakShardAt?: number; stats?: { winStreak?: number } } | undefined;
-            const curStreak = data?.stats?.winStreak ?? 0;
+            const data = profileSnap.data() as ArenaProfileDocData | undefined;
+            const curStreak = data ? readArenaProfileStats(data).stats.winStreak : 0;
             const newStreak = won ? curStreak + 1 : 0;
             const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
             const lastStreakShardAt = data?.lastStreakShardAt ?? 0;
@@ -1321,15 +1389,19 @@ export { premiumExpiryCron } from './premium_expiry_cron';
 
 export { friendSendGift } from './friend_gifts';
 
+// ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
+export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './report_replies';
+
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert } from './promo_codes';
+export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminTranslateMessage } from './admin_translate';
+export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 
@@ -1338,3 +1410,8 @@ export { submitWebsiteContact } from './website_contact';
 export { siteStatsTrack } from './site_stats';
 
 export { revenueCatShardsWebhook } from './revenuecat_shards';
+
+export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
+
+// ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
+export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture, webOrderStatus, webPrices } from './web_checkout';

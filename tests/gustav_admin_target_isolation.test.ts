@@ -7,7 +7,6 @@ describe('Gustav admin target isolation', () => {
   it('keeps tester No Limits medals and reset tools on target-aware learning keys', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', '_admin_settings_testers.tsx'), 'utf8');
     const reviewSource = fs.readFileSync(path.join(ROOT, 'app', '_admin_review_test.tsx'), 'utf8');
-    const introPreviewSource = fs.readFileSync(path.join(ROOT, 'app', '_admin_intro_preview.tsx'), 'utf8');
 
     expect(source).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");
     expect(source).toContain('const { studyTarget } = useStudyTarget()');
@@ -78,7 +77,5 @@ describe('Gustav admin target isolation', () => {
     expect(source).not.toContain('`level_exam_${i + 1}_pct`');
     expect(reviewSource).toContain('useStudyTarget');
     expect(reviewSource).toContain('seedAdminTestReviewSession(studyTarget)');
-    expect(introPreviewSource).toContain('lessonIntroShownKey(id, studyTarget)');
-    expect(introPreviewSource).not.toContain('`lesson${id}_intro_shown`');
   });
 });

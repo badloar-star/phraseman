@@ -206,7 +206,14 @@
 
       var payload = sessionId ? { sessionId: sessionId } : { paypalOrderId: paypalOrder };
       var attempts = 0;
-      var MAX_ATTEMPTS = 36; /* 36 × 2.5с = 90 сек */
+      var MAX_ATTEMPTS = 12;
+
+      function nextPollDelayMs() {
+        if (attempts < 3) return 2500;
+        if (attempts < 6) return 5000;
+        if (attempts < 9) return 10000;
+        return 20000;
+      }
 
       function poll() {
         attempts += 1;
@@ -218,11 +225,11 @@
               return;
             }
             if (attempts >= MAX_ATTEMPTS) { show('state-manual'); return; }
-            setTimeout(poll, 2500);
+            setTimeout(poll, nextPollDelayMs());
           })
           .catch(function () {
             if (attempts >= MAX_ATTEMPTS) { show('state-manual'); return; }
-            setTimeout(poll, 2500);
+            setTimeout(poll, nextPollDelayMs());
           });
       }
       show('state-waiting');

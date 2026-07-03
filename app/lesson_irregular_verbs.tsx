@@ -442,37 +442,32 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
           });
           setLearnedCnt(c => c + 1);
           updateMultipleTaskProgress([{ type: 'verb_learned' }], { studyTarget });
-          if (userName) {
-            registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang, lessonId, {
-              eventId: [
-                'verb',
-                safeVerbEventPart(studyTarget),
-                String(lessonId ?? 0),
-                safeVerbEventPart(verb.base, 50),
-                'learned',
-              ].join(':'),
-              payload: {
-                lessonId: lessonId ?? null,
-                studyTarget,
-                verb: verb.base,
-              },
+          registerXP(POINTS_PER_VERB, 'verb_learned', userName || '', lang, lessonId, {
+            eventId: [
+              'verb',
+              safeVerbEventPart(studyTarget),
+              String(lessonId ?? 0),
+              safeVerbEventPart(verb.base, 50),
+              'learned',
+            ].join(':'),
+            payload: {
+              lessonId: lessonId ?? null,
+              studyTarget,
+              verb: verb.base,
+            },
+          })
+            .then((r) => {
+              const finalDelta = r?.finalDelta;
+              const earned = typeof finalDelta === 'number' && Number.isFinite(finalDelta) && finalDelta >= 0
+                ? finalDelta
+                : POINTS_PER_VERB;
+              setTotalPts(p => p + earned);
+              if (earned > 0) showXpToast(earned);
             })
-              .then((r) => {
-                const finalDelta = r?.finalDelta;
-                const earned = typeof finalDelta === 'number' && Number.isFinite(finalDelta) && finalDelta >= 0
-                  ? finalDelta
-                  : POINTS_PER_VERB;
-                setTotalPts(p => p + earned);
-                if (earned > 0) showXpToast(earned);
-              })
-              .catch(() => {
-                setTotalPts(p => p + POINTS_PER_VERB);
-                showXpToast(POINTS_PER_VERB);
-              });
-          } else {
-            setTotalPts(p => p + POINTS_PER_VERB);
-            showXpToast(POINTS_PER_VERB);
-          }
+            .catch(() => {
+              setTotalPts(p => p + POINTS_PER_VERB);
+              showXpToast(POINTS_PER_VERB);
+            });
           const nq = [...queue];
           nq.splice(pos % nq.length, 1);
           goNextVerb(nq, pos % Math.max(nq.length - 1, 1));

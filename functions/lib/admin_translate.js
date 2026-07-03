@@ -17,6 +17,7 @@ exports.adminTranslateMessage = void 0;
 const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
 const explain_provider_1 = require("./explain/explain_provider");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 // Целевые языки = языки приложения минус RU (исходник). Ключи совпадают с суффиксами
@@ -69,6 +70,7 @@ function coerceArray(value, length, fallback) {
 }
 exports.adminTranslateMessage = (0, https_1.onCall)({
     region: REGION,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 60,
     memory: '512MiB',
     maxInstances: 5,

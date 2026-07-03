@@ -10,50 +10,67 @@ import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French exam target gate', () => {
-  it('blocks English exam banks for French while preserving English and Spanish dev behavior', () => {
+  it('opens French exams from the remote French quiz pack while preserving English and Spanish dev behavior', () => {
     expect(examContentAvailableForTarget('en')).toBe(true);
     expect(examContentAvailableForTarget('es')).toBe(true);
-    expect(examContentAvailableForTarget('fr')).toBe(false);
+    expect(examContentAvailableForTarget('fr')).toBe(true);
     expect(examContentGateForTarget('fr')).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_exam_source_gate',
-      blockedRoutes: ['/exam', '/level_exam'],
+      reason: 'french_quiz_pack_exam_available',
+      blockedRoutes: [],
     });
     expect(examContentGateForTarget('fr').requiredEvidence).toEqual(expect.arrayContaining([
-      'french_exam_question_bank',
-      'french_cefr_level_exam_review',
-      'ru_uk_exam_prompt_review',
-      'mistake_taxonomy_mapping_review',
+      'french_quiz_remote_server_pack',
+      'french_exam_from_remote_quiz_runtime',
+      'target_scoped_exam_progress',
+      'no_english_exam_bank_fallback',
     ]));
   });
 
-  it('keeps final and level exam screens behind the French source gate before English questions can render', () => {
+  it('loads final and level exam screens from French remote runtime before any English question bank can render', () => {
     const finalExamSource = fs.readFileSync(path.join(ROOT, 'app', 'exam.tsx'), 'utf8');
     const levelExamSource = fs.readFileSync(path.join(ROOT, 'app', 'level_exam.tsx'), 'utf8');
+    const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_exam_remote_runtime.ts'), 'utf8');
 
     expect(finalExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
-    expect(finalExamSource).toContain('if (frenchExamBlocked) return []');
+    expect(finalExamSource).toContain("import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime'");
+    expect(finalExamSource).toContain('const isFrenchExam = storageStudyTarget(studyTarget) === \'fr\'');
+    expect(finalExamSource).toContain('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)');
+    expect(finalExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
+    expect(finalExamSource).toContain("'exam_questions_unavailable'");
     expect(finalExamSource).toContain('FrenchLingmanExamUnavailable');
-    expect(finalExamSource).toContain("'french_exam_source_gate'");
     expect(finalExamSource).toContain("logMistake(phrase, lessonId, 'exam', what, meta, studyTarget)");
     expect(finalExamSource).toContain('loadLingmanCertificate(studyTarget)');
     expect(finalExamSource).toContain('saveLingmanCertificate(cert, studyTarget)');
     expect(finalExamSource).toContain('updateLingmanCertificateName(name, studyTarget)');
+    expect(finalExamSource.indexOf('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)')).toBeLessThan(
+      finalExamSource.indexOf('const q = questions[idx]||questions[0]'),
+    );
     expect(finalExamSource.indexOf('if (frenchExamBlocked) return (')).toBeLessThan(
       finalExamSource.indexOf('const q = questions[idx]||questions[0]'),
     );
 
     expect(levelExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
-    expect(levelExamSource).toContain('if (frenchExamBlocked) return []');
+    expect(levelExamSource).toContain("import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime'");
+    expect(levelExamSource).toContain('const isFrenchExam = storageStudyTarget(studyTarget) === \'fr\'');
+    expect(levelExamSource).toContain('loadFrenchRemoteLevelExamQuestions(lvl, frenchExamSourceLocale, INTRO_Q_COUNT)');
+    expect(levelExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
+    expect(levelExamSource).toContain("'exam_questions_unavailable'");
     expect(levelExamSource).toContain('FrenchLevelExamUnavailable');
-    expect(levelExamSource).toContain("'french_exam_source_gate'");
     expect(levelExamSource).toContain('recordMistake(');
-    expect(levelExamSource).toContain('tokenMeta,\n        studyTarget,');
-    expect(levelExamSource).toContain("'wrong_pick',\n        tokenMeta,\n        studyTarget,");
+    expect(levelExamSource).toMatch(/recordMistake\([\s\S]*tokenMeta,[\s\S]*studyTarget,[\s\S]*\)/);
+    expect(levelExamSource).toMatch(/logMistake\([\s\S]*'wrong_pick',[\s\S]*tokenMeta,[\s\S]*studyTarget,[\s\S]*\)/);
     expect(levelExamSource.indexOf('if (frenchExamBlocked) {')).toBeLessThan(
       levelExamSource.indexOf("if (accessState !== 'allowed')"),
     );
+
+    expect(runtimeSource).toContain('ensureFrenchRemoteQuizRows');
+    expect(runtimeSource).toContain('loadFrenchRemoteFinalExamQuestions');
+    expect(runtimeSource).toContain('loadFrenchRemoteLevelExamQuestions');
+    expect(runtimeSource).toContain("type?: 'choice4'");
+    expect(runtimeSource).not.toContain('EXAM_POOL');
+    expect(runtimeSource).not.toContain('QUESTION_POOL');
   });
 
   it('gates lesson-tab level exam cards before routing to English level exams for French', () => {

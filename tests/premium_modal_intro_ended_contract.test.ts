@@ -19,4 +19,16 @@ describe('premium intro-ended context', () => {
     expect(block).toContain('titleUk');
     expect(block).toContain('titleEs');
   });
+
+  it('keeps expired grant paywall wording user-facing as Plus, not VIP', () => {
+    const start = copySrc.indexOf('PAYWALL_COPY.vip_expired');
+    expect(start).toBeGreaterThan(-1);
+    const block = copySrc.slice(start, copySrc.indexOf('PAYWALL_COPY.notification_upsell', start));
+
+    expect(block).toContain('Твой Plus-доступ закончился');
+    expect(block).toContain('Твій Plus-доступ завершився');
+    expect(block).toContain('Tu acceso Plus ha terminado');
+    expect(block).not.toContain('VIP-доступ');
+    expect(block).not.toContain('Tu acceso VIP');
+  });
 });

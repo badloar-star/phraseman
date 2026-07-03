@@ -172,12 +172,11 @@ describe('Gustav French daily task target filter', () => {
     expect(dailyPhraseCard).toContain("import { useStudyTarget } from './StudyTargetContext'");
     expect(dailyPhraseCard).toContain("import {\n  dailyPhraseContentAvailableForTarget,\n  frenchDailyPhraseGateCopy,\n} from '../app/daily_phrase_target_gate'");
     expect(dailyPhraseCard).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
-    expect(dailyPhraseCard).toContain('getTodayPhraseSyncForTarget(studyTarget)');
-    expect(dailyPhraseCard).toContain('getTodayPhraseForTarget(studyTarget)');
+    expect(dailyPhraseCard).toContain('getTodayPhraseSyncForTarget(studyTarget, lang)');
+    expect(dailyPhraseCard).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(dailyPhraseCard).not.toContain('subscribeTodayPhraseForTarget(');
     expect(dailyPhraseCard).toContain('setPhrase(null)');
-    expect(dailyPhraseCard).toContain('const gateCopy = frenchDailyPhraseGateCopy(lang)');
-    expect(dailyPhraseCard).toContain('accessibilityLabel={gateCopy.title}');
+    expect(dailyPhraseCard).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
     expect(dailyPhraseCard).not.toContain("if (studyTarget === 'fr')");
     expect(dailyPhraseCard.indexOf('if (!dailyPhraseGateOpen)')).toBeLessThan(
       dailyPhraseCard.indexOf('dailyPhraseCopyForLang(phrase, phraseLang)'),

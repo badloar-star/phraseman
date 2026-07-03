@@ -1,4 +1,4 @@
-import { isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess } from './premium_status';
+import { isGiftAccessActive, isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess } from './premium_status';
 
 const NOW = 1_700_000_000_000;
 const FUTURE = NOW + 86_400_000;
@@ -67,6 +67,37 @@ describe('premium_status — серверный источник правды п
     });
     it('vip_until=0 (бессрочный VIP) → активен', () => {
       expect(isVipActive({ vip_active: 'true', vip_until: '0' }, NOW)).toBe(true);
+    });
+    it('promo_lifetime + vip_until=0 → активный Plus/VIP на сервере', () => {
+      expect(isVipActive({
+        vip_active: 'true',
+        vip_plan: 'promo_lifetime',
+        vip_until: '0',
+        vip_admin_override: 'true',
+      }, NOW)).toBe(true);
+      expect(isPremiumAccessActive({
+        vip_active: 'true',
+        vip_plan: 'promo_lifetime',
+        vip_until: '0',
+        vip_admin_override: 'true',
+      }, NOW)).toBe(true);
+    });
+  });
+
+  describe('подарок 72ч (intro / loyalty)', () => {
+    it('loyalty_gift_until_ms в будущем даёт Premium access на сервере', () => {
+      expect(isGiftAccessActive({ loyalty_gift_until_ms: String(FUTURE) }, NOW)).toBe(true);
+      expect(isPremiumAccessActive({ loyalty_gift_until_ms: String(FUTURE) }, NOW)).toBe(true);
+    });
+
+    it('loyalty_gift_until_ms в прошлом не даёт доступ после истечения', () => {
+      expect(isGiftAccessActive({ loyalty_gift_until_ms: String(PAST) }, NOW)).toBe(false);
+      expect(isPremiumAccessActive({ loyalty_gift_until_ms: String(PAST) }, NOW)).toBe(false);
+    });
+
+    it('intro_access_until_ms тоже считается подарочным Premium access', () => {
+      expect(isGiftAccessActive({ intro_access_until_ms: String(FUTURE) }, NOW)).toBe(true);
+      expect(isPremiumAccessActive({ intro_access_until_ms: String(FUTURE) }, NOW)).toBe(true);
     });
   });
 

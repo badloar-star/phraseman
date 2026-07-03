@@ -45,9 +45,12 @@ describe('EntitlementExpiredHost contract', () => {
   it('detects natural expiry via storage diff, not only events', () => {
     expect(hostSrc).toContain('getVerifiedRealPremiumStatus');
     expect(hostSrc).toContain('getVerifiedVipStatus');
+    expect(hostSrc).toContain('getVerifiedPremiumAccessStatus');
     // Карточка только если подписка реально была активна + анти-спам кулдаун.
     expect(hostSrc).toContain('WAS_ACTIVE_KEY');
     expect(hostSrc).toContain('SHOW_COOLDOWN_MS');
+    expect(hostSrc).toContain('hasAnyPlusAccess');
+    expect(hostSrc).toContain('await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]).catch(() => {})');
     // Второй кандидат не перетирает первого в одной сессии.
     expect(hostSrc).toContain('prev ?? k');
   });
@@ -64,8 +67,16 @@ describe('EntitlementExpiredHost contract', () => {
   });
 
   it('routes CTA to paywall with expiry context', () => {
+    expect(hostSrc).toContain('navigateAfterModalClose');
     expect(hostSrc).toContain("pathname: '/premium_modal'");
     expect(hostSrc).toContain('premium_expired');
     expect(hostSrc).toContain('vip_expired');
+  });
+
+  it('uses Plus wording for the user-facing vip expiry card', () => {
+    expect(hostSrc).toContain("kicker: 'Plus-доступ завершился'");
+    expect(hostSrc).toContain("title: 'Plus закончился'");
+    expect(hostSrc).not.toContain("kicker: 'VIP-доступ завершился'");
+    expect(hostSrc).not.toContain("title: 'VIP закончился'");
   });
 });

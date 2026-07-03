@@ -7393,6 +7393,13 @@ export const LESSON_30_INTRO_EXTRA: LessonIntroScreen[] = [
         ],
       },
       {
+        type: 'tip',
+        parts: [
+          { text: 'Почему learn без to: ', tone: 'strong' },
+          { text: 'после help + кого-то действие часто идёт без to: helps you learn. Вариант helps you to learn тоже возможен, но здесь дана короткая естественная форма.', tone: 'normal' },
+        ],
+      },
+      {
         type: 'correct',
         parts: [
           { text: 'Is she the woman ', tone: 'normal' },

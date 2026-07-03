@@ -1,5 +1,7 @@
 import {
   COMPASS_SOCIAL_HEADER,
+  COMPASS_SOCIAL_COLLAPSE,
+  COMPASS_SOCIAL_SHOW_ALL,
   safeSocialName,
   socialLineForKind,
   socialMoreSuffix,
@@ -15,6 +17,13 @@ describe('compass_social_copy — соц-сводка «Кстати…»', () =
       const v = COMPASS_SOCIAL_HEADER[lang];
       expect(typeof v).toBe('string');
       expect(v.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('кнопки раскрытия соц-сводки заданы на всех 8 языках', () => {
+    for (const lang of LANGS) {
+      expect(COMPASS_SOCIAL_SHOW_ALL[lang]).toContain('{count}');
+      expect(COMPASS_SOCIAL_COLLAPSE[lang].trim().length).toBeGreaterThan(0);
     }
   });
 

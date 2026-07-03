@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -14,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -24,6 +25,7 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { safeRouterBack } from './navigation_back';
@@ -41,7 +43,8 @@ import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
-import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey } from './target_storage_keys';
+import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStudyTarget } from './target_storage_keys';
+import { loadFrenchRemoteDiagnosticQuestions } from './french_diagnostic_remote_runtime';
 import { getHomeMenuImages } from './home_menu_icons';
 
 const TIMER_SEC = 30;
@@ -943,17 +946,21 @@ export default function DiagnosticTest() {
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
   const { theme: t , f, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang, s } = useLang();
   const { studyTarget } = useStudyTarget();
   const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget);
+  const isFrenchDiagnostic = storageStudyTarget(studyTarget) === 'fr';
+  const diagnosticSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang]);
   const { isUnlimited, spendOne } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
 
   const [phase,       setPhase]    = useState<Phase>('intro');
-  const [questions, setQuestions]  = useState<Question[]>(() => (frenchDiagnosticBlocked ? [] : pickQuestions()));
+  const [questions, setQuestions]  = useState<Question[]>(() => (frenchDiagnosticBlocked || isFrenchDiagnostic ? [] : pickQuestions()));
+  const [questionsLoading, setQuestionsLoading] = useState(isFrenchDiagnostic && !frenchDiagnosticBlocked);
   const [idx,         setIdx]      = useState(0);
   const [score,       setScore]    = useState(0);
   const [chosen,      setChosen]   = useState<number | null>(null);
@@ -988,8 +995,7 @@ export default function DiagnosticTest() {
   const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
 
   const awardDiagnosticAnswerXp = (question: Question, questionIndex: number, mode: string) => {
-    if (!userNameRef.current) return;
-    registerXP(2, 'diagnostic_test', userNameRef.current, lang, undefined, {
+    registerXP(2, 'diagnostic_test', userNameRef.current || '', lang, undefined, {
       eventId: [
         'diagnostic',
         safeDiagnosticEventPart(studyTarget),
@@ -1022,6 +1028,10 @@ export default function DiagnosticTest() {
       void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
       return;
     }
+    if (questionsLoading || questions.length === 0) {
+      void trackFeatureBlocked('diagnostic', 'start', 'diagnostic_questions_unavailable', { studyTarget }, 'diagnostic_test');
+      return;
+    }
     void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
     if (!isUnlimited) {
       const ok = await spendOne();
@@ -1041,6 +1051,10 @@ export default function DiagnosticTest() {
     clearAutoAdvanceTimer();
     if (frenchDiagnosticBlocked) {
       void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate', { studyTarget }, 'diagnostic_test');
+      return;
+    }
+    if (questionsLoading || questions.length === 0) {
+      void trackFeatureBlocked('diagnostic', 'restart', 'diagnostic_questions_unavailable', { studyTarget }, 'diagnostic_test');
       return;
     }
     void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
@@ -1088,10 +1102,28 @@ export default function DiagnosticTest() {
     if (frenchDiagnosticBlocked) {
       setQuestions([]);
       setPhase('intro');
+      setQuestionsLoading(false);
       return;
     }
+    if (isFrenchDiagnostic) {
+      let cancelled = false;
+      setQuestions([]);
+      setQuestionsLoading(true);
+      loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)
+        .then(items => {
+          if (!cancelled) setQuestions(items as Question[]);
+        })
+        .catch(() => {
+          if (!cancelled) setQuestions([]);
+        })
+        .finally(() => {
+          if (!cancelled) setQuestionsLoading(false);
+        });
+      return () => { cancelled = true; };
+    }
+    setQuestionsLoading(false);
     setQuestions((current) => (current.length > 0 ? current : pickQuestions()));
-  }, [frenchDiagnosticBlocked]);
+  }, [diagnosticSourceLocale, frenchDiagnosticBlocked, isFrenchDiagnostic]);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
@@ -1342,7 +1374,7 @@ export default function DiagnosticTest() {
   const qOpts = diagnosticQuestionOptions(lang, q);
   const result = getResult(score, questions, answersRef.current);
 
-  if (phase === 'quiz' && (!q || questions.length === 0)) {
+  if ((phase === 'quiz' || isFrenchDiagnostic) && (questionsLoading || !q || questions.length === 0)) {
     return (
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
@@ -1638,7 +1670,7 @@ export default function DiagnosticTest() {
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 20,
-            paddingBottom: Math.max(24, insets.bottom + 24),
+            paddingBottom: Math.max(24, bottomInset + 24),
           }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
@@ -1867,7 +1899,7 @@ export default function DiagnosticTest() {
             style={{
               paddingHorizontal: 20,
               paddingTop: 10,
-              paddingBottom: Math.max(12, insets.bottom + 12),
+              paddingBottom: Math.max(12, bottomInset + 12),
               borderTopWidth: 1,
               borderTopColor: t.border,
             }}

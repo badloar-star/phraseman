@@ -1,18 +1,21 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
+import PlusBadge from '../components/PlusBadge';
 import { hapticTap } from '../hooks/use-haptics';
 import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './personal_plan_catalog';
 import { activatePersonalPlan, readPersonalPlanState } from './personal_plan_state';
 import { getPersonalPlanArt } from './personal_plan_art';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { readPendingPersonalPlanActivation } from './personal_plan_activation';
 import { usePremium } from '../components/PremiumContext';
 import { canActivatePlan } from './compass/compass_access';
 import {
@@ -207,6 +210,8 @@ function ChoiceCard<T extends string | number>({
 function PlanCard({
   planId,
   recommended,
+  locked,
+  themeMode,
   accent,
   softBg,
   cardBg,
@@ -218,6 +223,8 @@ function PlanCard({
 }: {
   planId: PersonalPlanId;
   recommended: boolean;
+  locked: boolean;
+  themeMode: string;
   accent: string;
   softBg: string;
   cardBg: string;
@@ -245,13 +252,16 @@ function PlanCard({
         <Text style={[styles.planCardSub, { color: muted }]}>{plan.shortFocus}</Text>
         <Text style={[styles.planCardMeta, { color: muted }]}>{plan.horizonWeeks} нед · {plan.recommendedLevel}</Text>
       </View>
-      {recommended ? (
-        <View style={[styles.recommendedBadge, { backgroundColor: accent }]}>
-          <Text style={[styles.recommendedText, { color: '#fff' }]}>✓</Text>
-        </View>
-      ) : (
-        <Ionicons name="chevron-forward" size={18} color={muted} />
-      )}
+      <View style={{ alignItems: 'flex-end', gap: 6 }}>
+        {locked ? <PlusBadge themeMode={themeMode} size="xs" /> : null}
+        {recommended ? (
+          <View style={[styles.recommendedBadge, { backgroundColor: accent }]}>
+            <Text style={[styles.recommendedText, { color: '#fff' }]}>✓</Text>
+          </View>
+        ) : (
+          <Ionicons name="chevron-forward" size={18} color={muted} />
+        )}
+      </View>
     </TouchableOpacity>
   );
 }
@@ -263,15 +273,21 @@ export default function PersonalPlanSetupScreen() {
   // Смена плана с экрана активного плана: НЕ показываем опрос (goal/level/minutes),
   // открываем сразу список планов на выбор (юзер уже всё это проходил).
   const directToPlans = (Array.isArray(params.directToPlans) ? params.directToPlans[0] : params.directToPlans) === '1';
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   // Верхний фейд-маск под safe-area при скролле — как на главной и в личном плане.
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleSetupScroll = (e: any) => {
     fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
   };
   const [step, setStep] = useState<Step>(directToPlans ? 'all' : 'goal');
+  // Античание: при обычном входе (не directToPlans) экран не рисует шаг 'goal',
+  // пока не резолвится чтение сохранённых ответов онбординга — иначе юзер с уже
+  // отвеченным опросом на долю секунды увидит вопрос 1, прежде чем его перекинет
+  // на 'result'. directToPlans читает своё (минуты) отдельным эффектом ниже и
+  // сразу готов — тут не ждём.
+  const [answersReady, setAnswersReady] = useState(directToPlans);
 
   // При смене плана сохраняем выбранную ранее дневную нагрузку (минуты), чтобы
   // новый план шёл с тем же темпом, а не сбрасывался на дефолт.
@@ -286,6 +302,53 @@ export default function PersonalPlanSetupScreen() {
   const [goal, setGoal] = useState<PersonalPlanSetupGoal>('words');
   const [level, setLevel] = useState<PersonalPlanSetupLevel>('a1');
   const [selectedMinutes, setSelectedMinutes] = useState<PlanMinutesChoice>(15);
+
+  // Префилл ответами онбординга: онбординг (components/CleanOnboarding.tsx) уже
+  // спросил тему/уровень/минуты и положил их в AsyncStorage + очередь pending-
+  // активации (app/personal_plan_activation.ts). Юзер не должен отвечать заново —
+  // если сохранены ВСЕ три ответа или есть pending-активация, сразу открываем
+  // 'result' (там есть «назад» по шагам к 'minutes'→'level'→'goal', так что
+  // передумать и поменять ответы всё ещё можно).
+  useEffect(() => {
+    if (directToPlans) return;
+    let alive = true;
+    (async () => {
+      try {
+        const [pending, stored] = await Promise.all([
+          readPendingPersonalPlanActivation().catch(() => null),
+          AsyncStorage.multiGet([
+            'onboarding_plan_goal',
+            'onboarding_plan_level',
+            'onboarding_plan_minutes',
+          ]).catch(() => []),
+        ]);
+        if (!alive) return;
+        const map = new Map(stored);
+        const savedGoal = map.get('onboarding_plan_goal');
+        const savedLevel = map.get('onboarding_plan_level');
+        const savedMinutesNum = Number(map.get('onboarding_plan_minutes'));
+
+        const hasGoal = PERSONAL_PLAN_SETUP_GOALS.some((item) => item.id === savedGoal);
+        const hasLevel = PERSONAL_PLAN_SETUP_LEVELS.some((item) => item.id === savedLevel);
+        const hasMinutes = savedMinutesNum === 5 || savedMinutesNum === 10 || savedMinutesNum === 15 || savedMinutesNum === 20;
+
+        if (hasGoal) setGoal(savedGoal as PersonalPlanSetupGoal);
+        if (hasLevel) setLevel(savedLevel as PersonalPlanSetupLevel);
+        if (hasMinutes) setSelectedMinutes(savedMinutesNum as PlanMinutesChoice);
+        // pending хранит planId (не goal) — используем его только как сигнал «есть
+        // готовая очередь активации», а минуты из pending важнее дефолта, если
+        // отдельно сохранённого ответа onboarding_plan_minutes почему-то нет.
+        if (pending != null && !hasMinutes) setSelectedMinutes(pending.minutesPerDay);
+
+        if ((hasGoal && hasLevel && hasMinutes) || pending != null) {
+          setStep('result');
+        }
+      } finally {
+        if (alive) setAnswersReady(true);
+      }
+    })();
+    return () => { alive = false; };
+  }, [directToPlans]);
   const [selectedPlanId, setSelectedPlanId] = useState<PersonalPlanId | null>(null);
 
   const slideFade = useRef(new Animated.Value(1)).current;
@@ -334,6 +397,10 @@ export default function PersonalPlanSetupScreen() {
       minutesPerDay: selectedMinutes,
       startDayIndex: 1,
     });
+    // Пометка replace держит честный стек согласованным: без неё setup остаётся
+    // в in-memory стеке navigation_back.ts, и «назад» из плана возвращает на опрос
+    // (см. app/personal_plan.tsx:397-401 — тот же паттерн на обратном переходе).
+    markNextNavigationAsReplace();
     router.replace('/personal_plan' as any);
   };
 
@@ -470,6 +537,8 @@ export default function PersonalPlanSetupScreen() {
                 key={planId}
                 planId={planId}
                 recommended={!directToPlans && planId === recommendedPlanId}
+                locked={planIsLocked}
+                themeMode={themeMode}
                 accent={accent}
                 softBg={softBg}
                 cardBg={cardBg}
@@ -513,8 +582,11 @@ export default function PersonalPlanSetupScreen() {
           <View style={[styles.resultIconWrap, { backgroundColor: accent + '18', borderColor: accent + '33' }]}>
             <Ionicons name={planArt.heroIcon} size={52} color={accent} />
           </View>
-          <View style={[styles.resultTagPill, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
-            <Text style={[styles.resultTagText, { color: accent }]}>{planTagline(visiblePlanId)}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, flexWrap: 'wrap' }}>
+            <View style={[styles.resultTagPill, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
+              <Text style={[styles.resultTagText, { color: accent }]}>{planTagline(visiblePlanId)}</Text>
+            </View>
+            {planIsLocked ? <PlusBadge themeMode={themeMode} size="xs" /> : null}
           </View>
           <Text
             style={[styles.resultName, { color: text }]}
@@ -553,13 +625,6 @@ export default function PersonalPlanSetupScreen() {
           <Ionicons name="arrow-forward" size={20} color={onAccent} />
         </TouchableOpacity>
 
-        {planIsLocked ? (
-          <View style={styles.premiumHintRow}>
-            <Ionicons name="diamond-outline" size={13} color={muted} />
-            <Text style={[styles.premiumHintText, { color: muted }]}>Доступно в Premium</Text>
-          </View>
-        ) : null}
-
         <TouchableOpacity
           testID="personal-plan-setup-view-all"
           activeOpacity={0.82}
@@ -589,6 +654,13 @@ export default function PersonalPlanSetupScreen() {
       else safeRouterBack(router, '/personal_plan');
     });
   };
+
+  // Античание: пока не резолвилось чтение сохранённых ответов онбординга, не
+  // рисуем шаг 'goal' (или любой другой) — только фон, без контента и прогресс-бара.
+  // Иначе на кадр мелькнёт вопрос 1, прежде чем эффект выше перекинет на 'result'.
+  if (!answersReady) {
+    return <View style={[styles.safe, { backgroundColor: screenBg }]} />;
+  }
 
   return (
     <View style={[styles.safe, { backgroundColor: screenBg }]}>
@@ -718,10 +790,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row', gap: 10,
   },
   primaryBtnText: { fontSize: 18, fontWeight: '900' },
-  premiumHintRow: {
-    marginTop: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
-  },
-  premiumHintText: { fontSize: 13, fontWeight: '800' },
   secondaryBtn: {
     minHeight: 56, marginTop: 12, borderRadius: 18, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',

@@ -18,6 +18,24 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(purchaseBody).toContain("emitAppEvent('premium_activated')");
   });
 
+  it('does not age-gate the store purchase before RevenueCat', () => {
+    const purchaseStart = sharedHook.indexOf('const handlePurchase = useCallback');
+    const restoreStart = sharedHook.indexOf('const handleRestore = useCallback');
+    expect(purchaseStart).toBeGreaterThan(-1);
+    expect(restoreStart).toBeGreaterThan(-1);
+
+    const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
+
+    expect(sharedHook).not.toContain("import { isFullAccess } from './age_gate';");
+    expect(purchaseBody).not.toContain('isFullAccess()');
+    expect(purchaseBody.indexOf("void trackEvent('paywall_cta_click'")).toBeLessThan(
+      purchaseBody.indexOf('const pkg = selected ==='),
+    );
+    expect(purchaseBody.indexOf('const pkg = selected ===')).toBeLessThan(
+      purchaseBody.indexOf('Purchases.purchasePackage(pkg)'),
+    );
+  });
+
   it('shared A/B/C restore path syncs identity and persists active subscriptions locally', () => {
     const restoreStart = sharedHook.indexOf('const handleRestore = useCallback');
     const closeStart = sharedHook.indexOf('const handleClose = useCallback');

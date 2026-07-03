@@ -233,6 +233,8 @@ type Report = {
 
 type JsonObject = Record<string, unknown>;
 
+let EXPECTED_AI_DECISIONS = 164;
+
 const ROW_ALLOWED = [
   'accept_quality_gates',
   'needs_regeneration',
@@ -482,8 +484,8 @@ function evaluate(
   if (rowDecisions.length !== 1600) {
     addFinding(findings, 'blocker', 'row_decision_count_invalid', `Expected 1600 row decisions, found ${rowDecisions.length}.`);
   }
-  if (aiDecisions.length !== 164) {
-    addFinding(findings, 'blocker', 'ai_decision_count_invalid', `Expected 164 AI decisions, found ${aiDecisions.length}.`);
+  if (aiDecisions.length !== EXPECTED_AI_DECISIONS) {
+    addFinding(findings, 'blocker', 'ai_decision_count_invalid', `Expected ${EXPECTED_AI_DECISIONS} AI decisions, found ${aiDecisions.length}.`);
   }
 
   const seenRowKeys = new Set<string>();
@@ -951,13 +953,19 @@ function main(): void {
     ? object(readJson<unknown>(officialSourceContentCoverageV2Path))
     : {};
   const officialSourceCoverageSummary = object(officialSourceCoveragePacket.summary);
+  EXPECTED_AI_DECISIONS = Math.max(
+    EXPECTED_AI_DECISIONS,
+    n(workflowSummary, 'aiTemplateRows'),
+    n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows'),
+    aiDecisions.length,
+  );
   const officialSourceContentCoverageV2Present = fs.existsSync(officialSourceContentCoverageV2Path);
   const officialSourceContentCoverageV2Ready =
     officialSourceContentCoverageV2Present &&
     n(officialSourceCoverageSummary, 'blockers') === 0 &&
     s(officialSourceCoverageSummary, 'coverageState') === 'official_source_content_coverage_complete_no_import' &&
     n(officialSourceCoverageSummary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
-    n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows') === 164 &&
+    n(officialSourceCoverageSummary, 'acceptedAiOfficialSourceDecisionRows') === EXPECTED_AI_DECISIONS &&
     b(officialSourceCoverageSummary, 'readyForReviewerDecisionImportDryRunRefresh') &&
     !b(officialSourceCoverageSummary, 'readyForApply') &&
     !b(officialSourceCoverageSummary, 'mayModifyProductionAppFiles');

@@ -21,8 +21,6 @@
     if (/bot|crawl|spider|headless|lighthouse|preview/i.test(navigator.userAgent || '')) return;
     var page = (location && location.pathname) || '/';
 
-    send({ type: 'view', page: page });
-
     var firstInSession = false;
     try {
       if (!sessionStorage.getItem('pm_session')) {
@@ -32,7 +30,9 @@
     } catch (_) {
       firstInSession = false;
     }
-    if (firstInSession) send({ type: 'visit', page: page });
+    var initialEvents = [{ type: 'view', page: page }];
+    if (firstInSession) initialEvents.push({ type: 'visit', page: page });
+    send(initialEvents.length > 1 ? { events: initialEvents } : initialEvents[0]);
 
     document.addEventListener(
       'click',

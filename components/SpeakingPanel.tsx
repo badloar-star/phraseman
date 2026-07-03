@@ -9,9 +9,11 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
+import { File } from 'expo-file-system';
 import * as Speech from 'expo-speech';
 
+import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
@@ -38,6 +40,11 @@ import {
   firstSoundHint,
   type SpokenWordEntry,
 } from '../app/speaking_word_report';
+import {
+  ensureNeuralModel,
+  isNeuralJudgeSupported,
+  judgeWithNeuralEngine,
+} from '../app/speaking_neural_judge';
 import { TranscriptAccumulator } from '../app/speaking_transcript_accumulator';
 import {
   analyzeProsody,
@@ -49,6 +56,25 @@ import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module';
+
+// Вернуть аудио-сессию в «громкое воспроизведение». Распознавание переводит её
+// в запись (playAndRecord) — без сброса всё, что играет после (эталон, «Моя
+// запись», mp3 в уроках), выходит тихим/через разговорный динамик или молчит.
+function restoreLoudPlaybackMode(): void {
+  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+}
+
+// Запись попытки живёт до следующей попытки/закрытия панели — дальше это мусор,
+// копящийся в кэше (wav на каждую попытку каждого юзера).
+function deleteRecordingFile(uri: string | null): void {
+  if (!uri) return;
+  try {
+    const file = new File(uri);
+    if (file.exists) file.delete();
+  } catch {
+    /* файл могли уже убрать/переместить — не критично */
+  }
+}
 
 /**
  * SpeakingPanel — premium "say it out loud" practice surface.
@@ -286,8 +312,12 @@ export function SpeakingPanel({
   // нейтрального движка против цели, или null когда прогон не дал пригодного
   // текста (ошибка/таймаут инфраструктуры — не вина говорящего, не штрафуем).
   const runControlPass = useCallback(
-    (uri: string): Promise<number | null> => {
-      if (!speech) return Promise.resolve(null);
+    async (uri: string): Promise<number | null> => {
+      // Уровень B: сначала нейро-судья (whisper на устройстве) — он одинаков
+      // на всех OEM и полностью офлайн. Недоступен/не успел → системный движок.
+      const neural = await judgeWithNeuralEngine({ wavUri: uri, targetText });
+      if (neural) return neural.controlScore;
+      if (!speech) return null;
       // Тот же нативный модуль в роли НЕЙТРАЛЬНОГО судьи. Живой старт с его
       // availability-check/watchdog уже отработал — здесь только файл.
       const neutralEngine = speech;
@@ -357,6 +387,7 @@ export function SpeakingPanel({
         // Nothing recognized -> "didn't catch that", not a 0% failure.
         setStatus('no_speech');
         hapticError();
+        restoreLoudPlaybackMode();
         return;
       }
       const biased = scorePlanPronunciationTranscript({
@@ -398,6 +429,8 @@ export function SpeakingPanel({
         setStatus('failed');
         hapticError();
       }
+      // Попытка (и контрольный прогон) закончены — сессия больше не «запись».
+      restoreLoudPlaybackMode();
     },
     [targetText, onPass, clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass],
   );
@@ -422,12 +455,27 @@ export function SpeakingPanel({
       return;
     }
     hapticTap();
+    // «Сказать ещё раз» может прилететь, пока играет эталон или «Моя запись» —
+    // глушим их, чтобы микрофон не поймал хвост воспроизведения.
+    try {
+      replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
+    } catch {
+      /* no-op */
+    }
     setTranscript('');
     setScore(null);
     setWordReport(null);
     setHint(null);
     equalizerRef.current?.setSample(0);
     prosodySamplesRef.current = [];
+    // Запись прошлой попытки больше не нужна (реплей и контрольный прогон
+    // работают только с текущей) — убираем файл из кэша.
+    deleteRecordingFile(recordingUriRef.current);
     recordingUriRef.current = null;
     setRecordingUri(null);
     finishingRef.current = false;
@@ -580,6 +628,7 @@ export function SpeakingPanel({
         cleanupListeners();
         setStatus('stalled');
         hapticError();
+        restoreLoudPlaybackMode();
       }, 7000);
       speech.start(
         buildSpeakingStartOptions({
@@ -588,6 +637,8 @@ export function SpeakingPanel({
           interimResults: true,
           volumeMeter: true,
           onDevice,
+          // Файл записи нужен ИМЕННО здесь: «Моя запись» + контрольный прогон.
+          persistRecording: true,
         }),
       );
       // Mic is live now -> canonical "recording started" cue (sound + haptic).
@@ -619,8 +670,19 @@ export function SpeakingPanel({
       } catch {
         /* no-op */
       }
+      // Панель уходит: файл записи никому больше не нужен, сессию — в громкую.
+      deleteRecordingFile(recordingUriRef.current);
+      restoreLoudPlaybackMode();
     };
   }, [speech, cleanupListeners, clearWatchdog]);
+
+  // Уровень B: греем модель нейро-судьи в фоне при первом открытии панели
+  // (качается один раз, ~32МБ, в documentDirectory). Без пакета whisper.rn в
+  // бинаре или без сети — тихий no-op, работает системный контрольный прогон.
+  useEffect(() => {
+    if (isPreview) return;
+    if (isNeuralJudgeSupported()) void ensureNeuralModel();
+  }, [isPreview]);
 
   // Автостарт: панель монтируется только когда юзер нажал «Устно», поэтому
   // сразу начинаем слушать — без второго нажатия на микрофон. В preview-режиме
@@ -640,6 +702,19 @@ export function SpeakingPanel({
     } catch {
       /* no-op */
     }
+    // «Готово»/крестик глушат всё, что ещё звучит (эталон, «Моя запись»),
+    // и возвращают громкую сессию хосту (уроку/тренажёру).
+    try {
+      replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
     onClose();
   }, [stopListening, speech, onClose]);
 
@@ -664,18 +739,24 @@ export function SpeakingPanel({
     } catch {
       /* no-op */
     }
-    try {
-      const player = createAudioPlayer(recordingUri);
-      replayPlayerRef.current = player;
-      try {
-        player.volume = 1;
-      } catch {
-        /* no-op: runtime без настраиваемой громкости */
-      }
-      player.play();
-    } catch {
-      /* no-op: повтор не критичен — тихо пропускаем */
-    }
+    // Сначала «громкое воспроизведение»: после распознавания сессия всё ещё в
+    // записи, и без сброса запись играла бы тихо через разговорный динамик.
+    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+      .catch(() => undefined)
+      .finally(() => {
+        try {
+          const player = createAudioPlayer(recordingUri);
+          replayPlayerRef.current = player;
+          try {
+            player.volume = 1;
+          } catch {
+            /* no-op: runtime без настраиваемой громкости */
+          }
+          player.play();
+        } catch {
+          /* no-op: повтор не критичен — тихо пропускаем */
+        }
+      });
   }, [recordingUri]);
 
   // «Эталон»: системный TTS произносит целевую фразу. У панели нет доступа к
@@ -687,12 +768,18 @@ export function SpeakingPanel({
     } catch {
       /* no-op */
     }
-    try {
-      Speech.stop();
-      Speech.speak(targetText, { language: recognitionLocale });
-    } catch {
-      /* no-op */
-    }
+    // Та же гигиена, что и у «Моей записи»: сначала громкий режим, потом TTS —
+    // иначе эталон после попытки звучит еле слышно и обрывается.
+    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+      .catch(() => undefined)
+      .finally(() => {
+        try {
+          Speech.stop();
+          Speech.speak(targetText, { language: recognitionLocale });
+        } catch {
+          /* no-op */
+        }
+      });
   }, [targetText, recognitionLocale]);
 
   const listening = status === 'listening';

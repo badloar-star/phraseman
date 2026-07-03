@@ -10,22 +10,28 @@ import {
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French vocabulary target gate', () => {
-  it('blocks English vocabulary and irregular-verb banks for French until sourced French banks exist', () => {
+  it('opens French lesson words from the server pack while blocking unsourced English verb/preposition banks', () => {
     const gateSource = fs.readFileSync(path.join(ROOT, 'app', 'vocabulary_target_gate.ts'), 'utf8');
 
     expect(gateSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
     expect(gateSource).toContain("storageStudyTarget(studyTarget) !== 'fr'");
     expect(vocabularyContentAvailableForTarget('en', 'lesson_words')).toBe(true);
     expect(vocabularyContentAvailableForTarget('es', 'lesson_words')).toBe(true);
-    expect(vocabularyContentAvailableForTarget('fr', 'lesson_words')).toBe(false);
+    expect(vocabularyContentAvailableForTarget('fr', 'lesson_words')).toBe(true);
     expect(vocabularyContentAvailableForTarget('fr', 'irregular_verbs')).toBe(false);
     expect(vocabularyContentAvailableForTarget('fr', 'preposition_drill')).toBe(false);
 
     expect(vocabularyContentGateForTarget('fr', 'lesson_words')).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_vocabulary_source_gate',
-      blockedRoutes: ['/lesson_words'],
+      reason: 'french_lesson_vocabulary_server_pack_available',
+      blockedRoutes: [],
+      requiredEvidence: [
+        'french_lesson_remote_server_pack',
+        'french_lesson_words_remote_runtime',
+        'target_scoped_lesson_words_progress',
+        'no_english_vocabulary_bank_fallback',
+      ],
     });
     expect(vocabularyContentGateForTarget('fr', 'irregular_verbs')).toMatchObject({
       enabled: false,
@@ -52,17 +58,26 @@ describe('Gustav French vocabulary target gate', () => {
     expect(JSON.stringify(frenchVocabularyGateCopy('preposition_drill', 'ru'))).not.toMatch(/Français|Commencer|Prépositions/);
   });
 
-  it('routes lesson_words through scoped progress and the French source gate before English words can render', () => {
+  it('routes lesson_words through scoped progress and French remote runtime before English words can render', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_words.tsx'), 'utf8');
+    const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_lesson_words_remote_runtime.ts'), 'utf8');
 
     expect(source).toContain("vocabularyContentAvailableForTarget(studyTarget, 'lesson_words')");
     expect(source).toContain('FrenchVocabularyUnavailable');
+    expect(source).toContain('loadFrenchRemoteLessonWordBank(lessonId, frenchSourceLocale)');
+    expect(source).toContain('frenchRemoteWordsLoading');
+    expect(source).toContain("storageStudyTarget(studyTarget) === 'fr'");
+    expect(source).toContain('if (isFrenchLessonWords) return prioritizeQaFocusWords(frenchRemoteWords ?? [], qaFocusWords)');
     expect(source).toContain('lessonWordsKey(lessonId, studyTarget)');
     expect(source).toContain('lessonWordsShardsGrantedKey(lessonId, studyTarget)');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     expect(source).toContain("logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta, studyTarget)");
     expect(source).toContain('recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget)');
     expect(source).not.toContain("storageKey + '_words'");
+    expect(runtimeSource).toContain("import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime'");
+    expect(runtimeSource).toContain('loadFrenchRemoteLessonRows(lessonId, sourceLocale)');
+    expect(runtimeSource).toContain("pos: 'phrases'");
+    expect(runtimeSource).not.toContain('lessonWordBank');
   });
 
   it('routes irregular verbs through scoped progress and the French source gate before English verb banks can render', () => {

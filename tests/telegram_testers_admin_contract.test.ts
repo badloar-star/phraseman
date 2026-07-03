@@ -146,10 +146,15 @@ describe('telegram testers admin page contract', () => {
     expect(functionSource).toContain('reply_markup: startReplyKeyboard()');
   });
 
-  it('makes monthly Telegram Stars payments recurring and keeps yearly one-time', () => {
+  it('makes monthly Telegram Stars payments recurring without provider token and keeps yearly one-time', () => {
     expect(functionSource).toContain('const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000');
     expect(functionSource).toContain("if (plan === 'monthly')");
     expect(functionSource).toContain('invoice.subscription_period = MONTHLY_SUBSCRIPTION_PERIOD_SECONDS');
+    expect(functionSource).toContain("telegramRequest(token, 'createInvoiceLink', invoice)");
+    expect(functionSource).toContain('sendMonthlyInvoiceLink');
+    expect(functionSource).not.toContain("provider_token: ''");
+    expect(functionSource).not.toMatch(/\bprovider_token\s*:/);
+    expect(functionSource).toContain("telegramRequest(token, 'sendInvoice', invoice)");
     expect(functionSource).toContain('isRecurring: payment.is_recurring === true');
     expect(functionSource).toContain('isFirstRecurring: payment.is_first_recurring === true');
     expect(functionSource).toContain('subscriptionExpirationDate: payment.subscription_expiration_date || null');

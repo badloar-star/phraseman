@@ -20,6 +20,8 @@ describe('"My practice" speaks the correct answer out loud', () => {
     // Скорость из настроек + правильная локаль учебного языка.
     expect(hookSrc).toContain('speak(line, settings.speechRate');
     expect(hookSrc).toContain('ttsLocaleForStudyTarget(studyTarget)');
+    expect(hookSrc).toContain('onDone: finish');
+    expect(hookSrc).toContain('ANSWER_SPEECH_MAX_WAIT_TIMEOUT_MS');
   });
 
   it('trainer (words) voices the English word on a correct answer', () => {
@@ -33,6 +35,9 @@ describe('"My practice" speaks the correct answer out loud', () => {
     // WordBank + speaking-fill + FillGap — три точки правильного ответа.
     const calls = phrasesSrc.match(/speakAnswer\(item\.key, studyTarget\)/g) ?? [];
     expect(calls.length).toBeGreaterThanOrEqual(3);
+    const waitedCalls = phrasesSrc.match(/waitForPhraseAnswerFeedback\(speakAnswer\(item\.key, studyTarget\)\)/g) ?? [];
+    expect(waitedCalls.length).toBeGreaterThanOrEqual(3);
+    expect(phrasesSrc).not.toContain('setTimeout(() => onResult(true), 700)');
   });
 
   it('trainer (arena) voices the phrase on a correct answer', () => {

@@ -1,10 +1,11 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroBuildInteraction } from '../../app/lesson_data_types';
+import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
 /**
  * «Собери фразу руками» — Word-Bank Builder прямо в теории.
@@ -29,10 +30,28 @@ interface Props {
   };
   /** Вызов при первом успехе (для прогресса теории; БЕЗ XP). */
   onSolved?: () => void;
+  initialProgress?: TheoryDrillProgressState;
+  onProgressChange?: (state: TheoryDrillProgressState) => void;
 }
 
 type BankWord = { id: string; word: string };
 type Slot = { word: string; bankId: string } | null;
+
+function slotsFromProgress(progress: TheoryDrillProgressState | undefined, answerLength: number): Slot[] | null {
+  if (!Array.isArray(progress?.slots) || progress.slots.length !== answerLength) return null;
+  return progress.slots.map((slot) => {
+    if (!slot) return null;
+    return { word: slot.word, bankId: slot.bankId };
+  });
+}
+
+function usedIdsFromSlots(slots: Slot[]): Set<string> {
+  return new Set(slots.filter((slot): slot is Exclude<Slot, null> => !!slot).map((slot) => slot.bankId));
+}
+
+function statusFromProgress(progress: TheoryDrillProgressState | undefined): 'idle' | 'wrong' | 'solved' {
+  return progress?.status === 'wrong' || progress?.status === 'solved' ? progress.status : 'idle';
+}
 
 function shuffle<T>(arr: T[], seed: number): T[] {
   // детерминированный шаффл (без Math.random — стабилен между рендерами)
@@ -46,7 +65,15 @@ function shuffle<T>(arr: T[], seed: number): T[] {
   return a;
 }
 
-export default function WordBankBuilder({ data, lang, accent, theme, onSolved }: Props) {
+export default function WordBankBuilder({
+  data,
+  lang,
+  accent,
+  theme,
+  onSolved,
+  initialProgress,
+  onProgressChange,
+}: Props) {
   const answer = data.answer;
   const bank: BankWord[] = useMemo(() => {
     const words = [...answer, ...(data.distractors ?? [])];
@@ -56,14 +83,37 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
     }));
   }, [answer, data.distractors]);
 
-  const [slots, setSlots] = useState<Slot[]>(() => answer.map(() => null));
-  const [usedIds, setUsedIds] = useState<Set<string>>(new Set());
-  const [status, setStatus] = useState<'idle' | 'wrong' | 'solved'>('idle');
-  const [wrongSlot, setWrongSlot] = useState<number | null>(null);
-  const [misses, setMisses] = useState(0);
+  const [slots, setSlots] = useState<Slot[]>(() => slotsFromProgress(initialProgress, answer.length) ?? answer.map(() => null));
+  const [usedIds, setUsedIds] = useState<Set<string>>(() => usedIdsFromSlots(slotsFromProgress(initialProgress, answer.length) ?? []));
+  const [status, setStatus] = useState<'idle' | 'wrong' | 'solved'>(() => statusFromProgress(initialProgress));
+  const [wrongSlot, setWrongSlot] = useState<number | null>(() =>
+    typeof initialProgress?.wrongSlot === 'number' ? initialProgress.wrongSlot : null,
+  );
+  const [misses, setMisses] = useState(() => initialProgress?.misses ?? 0);
 
   const prompt = introText(data.prompt, lang);
   const allFilled = slots.every((s) => s !== null);
+
+  useEffect(() => {
+    const nextSlots = slotsFromProgress(initialProgress, answer.length) ?? answer.map(() => null);
+    setSlots(nextSlots);
+    setUsedIds(usedIdsFromSlots(nextSlots));
+    setStatus(statusFromProgress(initialProgress));
+    setWrongSlot(typeof initialProgress?.wrongSlot === 'number' ? initialProgress.wrongSlot : null);
+    setMisses(initialProgress?.misses ?? 0);
+  }, [initialProgress, answer]);
+
+  const persist = useCallback(
+    (nextSlots: Slot[], nextStatus: 'idle' | 'wrong' | 'solved', extra: Partial<TheoryDrillProgressState> = {}) => {
+      onProgressChange?.({
+        type: 'word_bank',
+        status: nextStatus,
+        slots: nextSlots,
+        ...extra,
+      });
+    },
+    [onProgressChange],
+  );
 
   const pickWord = useCallback(
     (bw: BankWord) => {
@@ -76,8 +126,9 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
       setUsedIds(new Set([...usedIds, bw.id]));
       setStatus('idle');
       setWrongSlot(null);
+      persist(next, 'idle');
     },
-    [slots, usedIds, status],
+    [slots, usedIds, status, persist],
   );
 
   const popSlot = useCallback(
@@ -93,8 +144,9 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
       setUsedIds(u);
       setStatus('idle');
       setWrongSlot(null);
+      persist(next, 'idle');
     },
-    [slots, usedIds, status],
+    [slots, usedIds, status, persist],
   );
 
   const check = useCallback(() => {
@@ -104,15 +156,20 @@ export default function WordBankBuilder({ data, lang, accent, theme, onSolved }:
     if (ok) {
       setStatus('solved');
       hapticSuccess();
+      persist(slots, 'solved');
       onSolved?.();
     } else {
       const idx = assembled.findIndex((w, i) => w !== answer[i]);
       setWrongSlot(idx);
       setStatus('wrong');
       hapticError();
-      setMisses((m) => m + 1);
+      setMisses((m) => {
+        const nextMisses = m + 1;
+        persist(slots, 'wrong', { misses: nextMisses, wrongSlot: idx });
+        return nextMisses;
+      });
     }
-  }, [allFilled, slots, answer, onSolved]);
+  }, [allFilled, slots, answer, onSolved, persist]);
 
   // Подсветка правильного слова в банке после 2 промахов (escalating hint).
   const hintWord = misses >= 2 && wrongSlot != null ? answer[wrongSlot] : null;

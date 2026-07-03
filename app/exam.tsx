@@ -1,8 +1,10 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -14,7 +16,7 @@ import {
     View,
 } from 'react-native';
 import Svg from 'react-native-svg';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -52,8 +54,9 @@ import { logMistake, type MistakeWhat } from './mistake_log';
 import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import type { PhraseMistakeSignal } from './phrase_analytics';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
-import { lessonProgressKey } from './target_storage_keys';
+import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
+import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
 import { monoIcon } from '../constants/monoIcon';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
@@ -423,7 +426,10 @@ export default function ExamScreen() {
   const {lang} = useLang();
   const { studyTarget } = useStudyTarget();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
-  const insets = useSafeAreaInsets();
+  const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
+  const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const t3 = (
     ru: string,
     uk: string,
@@ -450,7 +456,7 @@ export default function ExamScreen() {
    *  с этим именем попадёт в шеринг. */
   const [certNamePrefill, setCertNamePrefill] = useState('');
   const [mountExportCert, setMountExportCert] = useState(false);
-  const questions = React.useMemo(() => {
+  const englishQuestions = React.useMemo(() => {
     if (frenchExamBlocked) return [];
     // Группируем по уроку
     const byLesson: Record<number, ExamQuestion[]> = {};
@@ -470,6 +476,9 @@ export default function ExamScreen() {
     const result = shuffle(pool);
     return result.map(q => ({ ...q, rawTopic: q.rawTopic ?? q.topic, topic: examTopicForLang(q, lang) }));
   }, [frenchExamBlocked, lang]);
+  const [frenchQuestions, setFrenchQuestions] = useState<ExamQuestion[]>([]);
+  const [examQuestionsLoading, setExamQuestionsLoading] = useState(false);
+  const questions = isFrenchExam ? frenchQuestions : englishQuestions;
   const [idx, setIdx]               = useState(0);
   const [choices, setChoices]       = useState<(number|null)[]>(() => Array(questions.length).fill(null));
   const [flagged, setFlagged]       = useState<boolean[]>(() => Array(questions.length).fill(false));
@@ -479,6 +488,33 @@ export default function ExamScreen() {
   const countdownTimerRef = useRef<ReturnType<typeof setTimeout>|null>(null);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
   const countdownAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!isFrenchExam || frenchExamBlocked) {
+      setFrenchQuestions([]);
+      setExamQuestionsLoading(false);
+      return () => { cancelled = true; };
+    }
+    setExamQuestionsLoading(true);
+    loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)
+      .then((rows) => {
+        if (!cancelled) setFrenchQuestions(rows);
+      })
+      .catch(() => {
+        if (!cancelled) setFrenchQuestions([]);
+      })
+      .finally(() => {
+        if (!cancelled) setExamQuestionsLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [frenchExamBlocked, frenchExamSourceLocale, isFrenchExam]);
+
+  useEffect(() => {
+    setIdx(0);
+    setChoices(Array(questions.length).fill(null));
+    setFlagged(Array(questions.length).fill(false));
+  }, [questions.length]);
 
   useEffect(()=>{
     (async()=>{
@@ -594,7 +630,14 @@ export default function ExamScreen() {
   const startExam = async () => {
     if (examStarting) return; // двойной тап → второй вызов игнорируем
     if (frenchExamBlocked) {
-      void trackFeatureBlocked('exam', 'start', 'french_exam_source_gate', { studyTarget }, 'exam');
+      void trackFeatureBlocked('exam', 'start', 'exam_content_gate_disabled', { studyTarget }, 'exam');
+      return;
+    }
+    if (examQuestionsLoading || questions.length === 0) {
+      void trackFeatureBlocked('exam', 'start', 'exam_questions_unavailable', {
+        studyTarget,
+        loading: examQuestionsLoading,
+      }, 'exam');
       return;
     }
     setExamStarting(true);
@@ -1060,7 +1103,7 @@ export default function ExamScreen() {
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
         borderTopWidth:0.5, borderTopColor:t.border,
-        padding:16, paddingBottom: Math.max(16, insets.bottom + 16),
+        padding:16, paddingBottom: Math.max(16, bottomInset + 16),
       }}>
             {answered < questions.length && (
           <Text style={{color:t.wrong,fontSize:f.sub,textAlign:'center',marginBottom:10}}>
@@ -1601,7 +1644,7 @@ export default function ExamScreen() {
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
         borderTopWidth:0.5, borderTopColor:t.border,
-        paddingBottom: Math.max(insets.bottom, 8),
+        paddingBottom: Math.max(bottomInset, 8),
         paddingHorizontal:12, paddingTop:10, gap:8,
       }}>
         {/* Row 1: Skip / Next (primary actions) */}

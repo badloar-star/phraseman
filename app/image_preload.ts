@@ -13,10 +13,8 @@ const CLUB_IMAGES = [
   require('../assets/images/levels/club icon base forest.webp'),
   require('../assets/images/levels/club base ocean.webp'),
   require('../assets/images/levels/club base corak.webp'),
-  require('../assets/images/levels/club base sacura.webp'),  require('../assets/images/levels/club icon base forest.webp'),
-  require('../assets/images/levels/club base ocean.webp'),
-  require('../assets/images/levels/club base corak.webp'),
-  require('../assets/images/levels/club base sacura.webp'),  require('../assets/images/levels/club icon base forest.webp'),];
+  require('../assets/images/levels/club base sacura.webp'),
+];
 
 const MEDAL_IMAGES = [
   require('../assets/images/levels/bronza.webp'),

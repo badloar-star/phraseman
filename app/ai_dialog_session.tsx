@@ -20,8 +20,10 @@ import ScreenGradient from '../components/ScreenGradient';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { hapticTap } from '../hooks/use-haptics';
+import { setAudioModeAsync } from 'expo-audio';
+import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import {
   dialogScenarioNextStepHint,
   dialogScenarioTitle,
@@ -48,7 +50,12 @@ import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
 import {
   callPremiumDialogSend,
   callPremiumDialogTranslate,
+  callPremiumDialogReview,
+  classifyPremiumDialogError,
+  getPremiumDialogErrorMessage,
   type DialogChatTurn,
+  type PremiumDialogErrorKind,
+  type PremiumDialogReviewResponse,
 } from './ai_dialog_client';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import {
@@ -69,8 +76,21 @@ import { MAX_DIALOG_XP } from './config';
 import { outcomeXpMultiplier } from './dialog_outcome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
+import { isSpeechRecognitionAvailable, loadPlanSpeechModule } from './personal_plan_speech_module';
+import { isSpeakingEnabled } from './remote_flags';
+import { buildSpeakingStartOptions } from './speaking_recognition_options';
+import { TranscriptAccumulator } from './speaking_transcript_accumulator';
+import { useRecordStartCue } from '../hooks/use-record-start-cue';
 
 const RECOMMENDED_EXCHANGES = 8;
+type VoiceInputStatus = 'idle' | 'requesting' | 'listening' | 'unavailable' | 'denied' | 'stalled';
+
+// Вернуть аудио-сессию в «громкое воспроизведение» после голосового ввода:
+// без сброса озвучка ответов Компаса и любые mp3 после микрофона играют тихо
+// через разговорный динамик или не играют вовсе.
+function restoreLoudPlaybackMode(): void {
+  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+}
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -127,20 +147,6 @@ interface UiMessage {
   text: string;
 }
 
-// Полностью локализованный (8 языков) текст системной плашки ошибки диалога.
-function dialogErrorText(lang: Lang): string {
-  return triLang(lang, {
-    ru: 'Не удалось получить ответ. Проверь интернет.',
-    uk: 'Не вдалося отримати відповідь. Перевір інтернет.',
-    es: 'No se pudo obtener la respuesta. Revisa tu conexión.',
-    'pt-BR': 'Não foi possível obter a resposta. Verifique sua internet.',
-    vi: 'Không nhận được phản hồi. Hãy kiểm tra kết nối mạng.',
-    id: 'Gagal mendapatkan balasan. Periksa koneksi internetmu.',
-    tr: 'Yanıt alınamadı. İnternet bağlantını kontrol et.',
-    pl: 'Nie udało się uzyskać odpowiedzi. Sprawdź internet.',
-  });
-}
-
 // Полностью локализованная (8 языков) подпись кнопки «Повторить».
 function dialogRetryLabel(lang: Lang): string {
   return triLang(lang, {
@@ -166,6 +172,8 @@ export default function AiDialogSession() {
   const dialogAccess = useFeatureAccess('ai_dialog');
   const router = useRouter();
   const { speak } = useAudio();
+  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  const { playRecordStart } = useRecordStartCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
@@ -196,9 +204,23 @@ export default function AiDialogSession() {
   // Ошибка ИИ (сеть/таймаут) показывается НЕ как реплика персонажа, а отдельной
   // системной плашкой с кнопкой «Повторить». Храним текст последней отправки,
   // чтобы повтор переслал именно её.
-  const [lastError, setLastError] = useState(false);
+  const [lastErrorMessage, setLastErrorMessage] = useState('');
+  const [lastErrorKind, setLastErrorKind] = useState<PremiumDialogErrorKind | null>(null);
   const lastSentTextRef = useRef('');
   const scrollRef = useRef<ScrollView>(null);
+  const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
+  const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  const voiceInputMountedRef = useRef(true);
+  // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
+  // может принять start() и не прислать НИ start, НИ result, НИ error — без
+  // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
+  const recognizerWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearRecognizerWatchdog = useCallback(() => {
+    if (recognizerWatchdogRef.current != null) {
+      clearTimeout(recognizerWatchdogRef.current);
+      recognizerWatchdogRef.current = null;
+    }
+  }, []);
 
   // ── Перевод реплик собеседника ────────────────────────────────────────────
   // translations: кэш «индекс реплики → перевод» (повторный флип бесплатен).
@@ -232,6 +254,13 @@ export default function AiDialogSession() {
   const [outcome, setOutcome] = useState<DialogOutcome>('ongoing');
   const [characterReaction, setCharacterReaction] = useState('');
   const [coachTips, setCoachTips] = useState<string[]>([]);
+
+  // ── Финальный «разбор полётов»: похвала + мягкие исправления фраз ученика ──
+  // Запрашивается ОДИН раз при завершении диалога (терминальный исход или ручное
+  // «Завершить»). Сбой не критичен: секция просто не показывается.
+  const [review, setReview] = useState<PremiumDialogReviewResponse | null>(null);
+  const [reviewStatus, setReviewStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
+  const reviewRequestedRef = useRef(false);
 
   // Открыть/скрыть перевод реплики i. Первый показ новой реплики тратит лимит и
   // зовёт сервер; дальше флип идёт из кэша мгновенно и лимит не трогает. Само
@@ -295,6 +324,192 @@ export default function AiDialogSession() {
   );
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
+
+  const cleanupVoiceInputListeners = useCallback(() => {
+    voiceInputListenersRef.current.forEach((sub) => sub?.remove?.());
+    voiceInputListenersRef.current = [];
+  }, []);
+
+  const stopVoiceInput = useCallback(() => {
+    hapticTap();
+    clearRecognizerWatchdog();
+    cleanupVoiceInputListeners();
+    try {
+      speechModule?.stop();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
+    setVoiceInputStatus('idle');
+  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
+
+  const startVoiceInput = useCallback(async () => {
+    if (sending || ended || voiceInputStatus === 'requesting') return;
+    hapticTap();
+    if (!hasPremiumAccess) {
+      void trackEvent('paywall_shown', { context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
+      router.push({
+        pathname: '/premium_modal',
+        params: { context: 'ai_voice_input', source: 'ai_dialog_voice_input' },
+      } as never);
+      return;
+    }
+    if (!speechModule) {
+      setVoiceInputStatus('unavailable');
+      return;
+    }
+    if (!isSpeechRecognitionAvailable(speechModule)) {
+      setVoiceInputStatus('unavailable');
+      return;
+    }
+
+    setVoiceInputStatus('requesting');
+    try {
+      const permission = await speechModule.requestPermissionsAsync();
+      if (!permission?.granted) {
+        setVoiceInputStatus('denied');
+        return;
+      }
+    } catch {
+      setVoiceInputStatus('denied');
+      return;
+    }
+
+    cleanupVoiceInputListeners();
+    const acc = new TranscriptAccumulator();
+    let latest = '';
+    const applyTranscript = (value: string) => {
+      const next = value.trim();
+      if (!next) return;
+      latest = next;
+      if (!voiceInputMountedRef.current) return;
+      setInput(next);
+      if (lastErrorMessage) {
+        setLastErrorMessage('');
+        setLastErrorKind(null);
+      }
+    };
+
+    // Любой признак жизни движка снимает watchdog: на редких OEM 'start' не
+    // эмитится, а сразу приходит result — снимаем и там, и там.
+    const startSub = speechModule.addListener('start', () => {
+      clearRecognizerWatchdog();
+    });
+    const resultSub = speechModule.addListener('result', (event: any) => {
+      clearRecognizerWatchdog();
+      const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
+        ? event.results
+        : [];
+      const top = String(alternatives[0]?.transcript ?? '').trim();
+      if (top) {
+        acc.add(top);
+        applyTranscript(acc.union() || top);
+        return;
+      }
+      for (const alt of alternatives) {
+        const candidate = String(alt?.transcript ?? '').trim();
+        if (candidate) {
+          applyTranscript(candidate);
+          return;
+        }
+      }
+    });
+    const endSub = speechModule.addListener('end', () => {
+      clearRecognizerWatchdog();
+      restoreLoudPlaybackMode();
+      cleanupVoiceInputListeners();
+      if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+    });
+    const errorSub = speechModule.addListener('error', () => {
+      clearRecognizerWatchdog();
+      restoreLoudPlaybackMode();
+      cleanupVoiceInputListeners();
+      if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'unavailable');
+    });
+    const noMatchSub = speechModule.addListener('nomatch', () => {
+      clearRecognizerWatchdog();
+      restoreLoudPlaybackMode();
+      cleanupVoiceInputListeners();
+      if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+    });
+    voiceInputListenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub].filter(
+      Boolean,
+    ) as Array<{ remove?: () => void }>;
+
+    let onDevice = false;
+    try {
+      onDevice = (await speechModule.supportsOnDeviceRecognition?.()) === true;
+    } catch {
+      onDevice = false;
+    }
+    if (!voiceInputMountedRef.current) return;
+
+    try {
+      setVoiceInputStatus('listening');
+      // Watchdog: если за 7с движок не подал признаков жизни — гасим попытку и
+      // показываем «Не удалось запустить микрофон» с повтором по тапу на микрофон.
+      clearRecognizerWatchdog();
+      recognizerWatchdogRef.current = setTimeout(() => {
+        recognizerWatchdogRef.current = null;
+        try {
+          speechModule.abort();
+        } catch {
+          /* сервис мог умереть — не мешаем */
+        }
+        cleanupVoiceInputListeners();
+        if (voiceInputMountedRef.current) {
+          setVoiceInputStatus('stalled');
+          hapticError();
+        }
+        restoreLoudPlaybackMode();
+      }, 7000);
+      speechModule.start(
+        buildSpeakingStartOptions({
+          lang: 'en-US',
+          targetText: input.trim() || scenario.goalEn || dialogScenarioTitle(scenario, lang),
+          interimResults: true,
+          volumeMeter: false,
+          onDevice,
+          // Голосовой ввод не переслушивают — файл записи не нужен, не пишем.
+          persistRecording: false,
+        }),
+      );
+      playRecordStart();
+    } catch {
+      clearRecognizerWatchdog();
+      cleanupVoiceInputListeners();
+      if (voiceInputMountedRef.current) setVoiceInputStatus('unavailable');
+    }
+  }, [
+    cleanupVoiceInputListeners,
+    clearRecognizerWatchdog,
+    ended,
+    hasPremiumAccess,
+    input,
+    lang,
+    lastErrorMessage,
+    playRecordStart,
+    router,
+    scenario,
+    sending,
+    speechModule,
+    voiceInputStatus,
+  ]);
+
+  useEffect(() => {
+    voiceInputMountedRef.current = true;
+    return () => {
+      voiceInputMountedRef.current = false;
+      clearRecognizerWatchdog();
+      cleanupVoiceInputListeners();
+      try {
+        speechModule?.abort();
+      } catch {
+        /* no-op */
+      }
+      restoreLoudPlaybackMode();
+    };
+  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -410,7 +625,8 @@ export default function AiDialogSession() {
 
       const history = buildHistory();
       lastSentTextRef.current = trimmed;
-      setLastError(false);
+      setLastErrorMessage('');
+      setLastErrorKind(null);
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
@@ -439,7 +655,8 @@ export default function AiDialogSession() {
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
-        setLastError(true);
+        setLastErrorKind(classifyPremiumDialogError(error));
+        setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
@@ -464,7 +681,8 @@ export default function AiDialogSession() {
     const consumesFreeDialog =
       !dialogAccess && messages.filter((m) => m.role === 'user').length === 1;
 
-    setLastError(false);
+    setLastErrorMessage('');
+    setLastErrorKind(null);
     setSending(true);
     try {
       const res = await callPremiumDialogSend({
@@ -486,7 +704,8 @@ export default function AiDialogSession() {
       if (consumesFreeDialog) void markFreeDialogUsed();
     } catch (error) {
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
-      setLastError(true);
+      setLastErrorKind(classifyPremiumDialogError(error));
+      setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
     } finally {
       setSending(false);
     }
@@ -522,6 +741,38 @@ export default function AiDialogSession() {
     // Бесплатный диалог уже отмечен использованным на первой реплике — здесь не дублируем.
   }, [ended, scenario.id, userExchanges]);
 
+  // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
+  // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.
+  useEffect(() => {
+    if (!ended || userExchanges <= 0 || reviewRequestedRef.current) return;
+    reviewRequestedRef.current = true;
+    setReviewStatus('loading');
+    const transcript: DialogChatTurn[] = messages.map((m) => ({
+      role: m.role,
+      content: stripMarkers(m.text),
+    }));
+    callPremiumDialogReview({
+      history: transcript,
+      cefr: scenario.cefr,
+      interfaceLang: lang,
+      scenarioId: scenario.id,
+      goalEn: scenario.goalEn,
+    })
+      .then((res) => {
+        setReview(res);
+        setReviewStatus('ready');
+        void trackEvent('ai_dialog_review_shown', {
+          scenarioId: scenario.id,
+          corrections: Array.isArray(res.corrections) ? res.corrections.length : 0,
+        });
+      })
+      .catch(() => {
+        // Секция разбора опциональна: при сбое финальный экран живёт как раньше.
+        setReviewStatus('error');
+        void trackEvent('ai_dialog_review_failed', { scenarioId: scenario.id });
+      });
+  }, [ended, userExchanges, messages, scenario, lang]);
+
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
     return () => clearTimeout(id);
@@ -537,7 +788,179 @@ export default function AiDialogSession() {
     safeRouterBack(router, '/(tabs)/home' as any);
   }, [router, ended, userExchanges, scenario.id]);
 
+  const canRetryLastError =
+    lastErrorKind == null ||
+    lastErrorKind === 'provider_unavailable' ||
+    lastErrorKind === 'network' ||
+    lastErrorKind === 'unknown';
+
+  // Секция «Разбор твоих фраз» — общая для игрового вердикта и нейтрального
+  // финала. Показывает похвалу, мягкие исправления «как сказал → как естественнее»
+  // с пояснением на языке интерфейса и один совет на следующий раз.
+  const renderDialogReview = () => {
+    if (reviewStatus !== 'loading' && (reviewStatus !== 'ready' || !review)) return null;
+    const sectionTitle = triLang(lang, {
+      ru: 'Разбор твоих фраз',
+      uk: 'Розбір твоїх фраз',
+      es: 'Análisis de tus frases',
+      'pt-BR': 'Análise das suas frases',
+      vi: 'Phân tích câu của bạn',
+      id: 'Ulasan kalimatmu',
+      tr: 'Cümlelerinin analizi',
+      pl: 'Analiza twoich zdań',
+    });
+    return (
+      <View
+        style={{
+          backgroundColor: t.bgSurface,
+          borderRadius: 12,
+          padding: 12,
+          marginTop: 12,
+        }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <Ionicons name="school-outline" size={15} color={t.accent} />
+          <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+            {sectionTitle}
+          </Text>
+        </View>
+        {reviewStatus === 'loading' ? (
+          <View>
+            <SkeletonBlock width={220} height={13} borderRadius={6} />
+            <View style={{ height: 8 }} />
+            <SkeletonBlock width={170} height={13} borderRadius={6} />
+          </View>
+        ) : (
+          <View>
+            {!!review?.praise && (
+              <Text
+                style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {review.praise}
+              </Text>
+            )}
+            {(review?.corrections ?? []).length === 0 ? (
+              <Text
+                style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 8 }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {triLang(lang, {
+                  ru: 'Ошибок не нашлось — отличная работа!',
+                  uk: 'Помилок не знайшлося — чудова робота!',
+                  es: '¡Sin errores — buen trabajo!',
+                  'pt-BR': 'Sem erros — ótimo trabalho!',
+                  vi: 'Không có lỗi — làm tốt lắm!',
+                  id: 'Tidak ada kesalahan — kerja bagus!',
+                  tr: 'Hata yok — harika iş!',
+                  pl: 'Bez błędów — świetna robota!',
+                })}
+              </Text>
+            ) : (
+              (review?.corrections ?? []).map((c, ci) => (
+                <View
+                  key={ci}
+                  style={{
+                    marginTop: 10,
+                    paddingTop: ci === 0 ? 0 : 10,
+                    borderTopWidth: ci === 0 ? 0 : 0.5,
+                    borderTopColor: t.border,
+                  }}
+                >
+                  <Text style={{ color: t.textMuted, fontSize: f.sub }} maxFontSizeMultiplier={1.2}>
+                    {c.original}
+                  </Text>
+                  <Text
+                    style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    → {c.corrected}
+                  </Text>
+                  {!!c.note && (
+                    <Text
+                      style={{
+                        color: t.textSecond,
+                        fontSize: f.caption,
+                        marginTop: 3,
+                        lineHeight: Math.round(f.caption * 1.35),
+                      }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {c.note}
+                    </Text>
+                  )}
+                </View>
+              ))
+            )}
+            {!!review?.tip && (
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 12 }}>
+                <Ionicons name="bulb-outline" size={14} color={t.accent} style={{ marginTop: 2 }} />
+                <Text
+                  style={{
+                    color: t.textSecond,
+                    fontSize: f.sub,
+                    flex: 1,
+                    lineHeight: Math.round(f.sub * 1.4),
+                  }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {review.tip}
+                </Text>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
+    );
+  };
+
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
+  const voiceInputHint =
+    voiceInputStatus === 'listening'
+      ? triLang(lang, {
+          ru: 'Слушаю…',
+          uk: 'Слухаю…',
+          es: 'Escuchando…',
+          'pt-BR': 'Ouvindo…',
+          vi: 'Đang nghe…',
+          id: 'Mendengarkan…',
+          tr: 'Dinliyorum…',
+          pl: 'Słucham…',
+        })
+      : voiceInputStatus === 'denied'
+        ? triLang(lang, {
+            ru: 'Нужен доступ к микрофону',
+            uk: 'Потрібен доступ до мікрофона',
+            es: 'Se necesita acceso al micrófono',
+            'pt-BR': 'É preciso liberar o microfone',
+            vi: 'Cần quyền truy cập micrô',
+            id: 'Butuh akses mikrofon',
+            tr: 'Mikrofon izni gerekli',
+            pl: 'Potrzebny dostęp do mikrofonu',
+          })
+        : voiceInputStatus === 'stalled'
+          ? triLang(lang, {
+              ru: 'Не удалось запустить микрофон. Попробуй ещё раз',
+              uk: 'Не вдалося запустити мікрофон. Спробуй ще раз',
+              es: 'No se pudo iniciar el micrófono. Inténtalo de nuevo',
+              'pt-BR': 'Não foi possível iniciar o microfone. Tente de novo',
+              vi: 'Không khởi động được micrô. Hãy thử lại',
+              id: 'Tidak bisa memulai mikrofon. Coba lagi',
+              tr: 'Mikrofon başlatılamadı. Tekrar dene',
+              pl: 'Nie udało się uruchomić mikrofonu. Spróbuj ponownie',
+            })
+        : voiceInputStatus === 'unavailable'
+          ? triLang(lang, {
+              ru: 'Голосовой ввод недоступен на этом устройстве',
+              uk: 'Голосове введення недоступне на цьому пристрої',
+              es: 'La entrada por voz no está disponible en este dispositivo',
+              'pt-BR': 'A entrada por voz não está disponível neste aparelho',
+              vi: 'Thiết bị này chưa hỗ trợ nhập bằng giọng nói',
+              id: 'Input suara tidak tersedia di perangkat ini',
+              tr: 'Sesle giriş bu cihazda kullanılamıyor',
+              pl: 'Wpisywanie głosem nie działa na tym urządzeniu',
+            })
+          : '';
 
   if (!aiDialogGateOpen) {
     return (
@@ -1156,7 +1579,7 @@ export default function AiDialogSession() {
 
             {/* Системная плашка ошибки ИИ — НЕ реплика персонажа (без аватара/озвучки),
                 по центру, с кнопкой «Повторить» (повторяет последнюю отправку). */}
-            {lastError && !sending && (
+            {lastErrorMessage && !sending && (
               <View
                 style={{
                   alignSelf: 'center',
@@ -1172,42 +1595,211 @@ export default function AiDialogSession() {
                 }}
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
-                  <Ionicons name="cloud-offline-outline" size={16} color={t.textMuted} />
+                  <Ionicons name="alert-circle-outline" size={16} color={t.textMuted} />
                   <Text
                     style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
                     maxFontSizeMultiplier={1.2}
                   >
-                    {dialogErrorText(lang)}
+                    {lastErrorMessage}
                   </Text>
                 </View>
-                <TouchableOpacity
-                  onPress={() => void retryLastSend()}
-                  activeOpacity={0.82}
-                  accessibilityRole="button"
-                  accessibilityLabel={dialogRetryLabel(lang)}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 6,
-                    marginTop: 10,
-                    borderRadius: 16,
-                    paddingHorizontal: 16,
-                    paddingVertical: 8,
-                    backgroundColor: t.accent,
-                  }}
-                >
-                  <Ionicons name="refresh" size={16} color={t.correctText} />
-                  <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.label }}>
-                    {dialogRetryLabel(lang)}
-                  </Text>
-                </TouchableOpacity>
+                {canRetryLastError && (
+                  <TouchableOpacity
+                    onPress={() => void retryLastSend()}
+                    activeOpacity={0.82}
+                    accessibilityRole="button"
+                    accessibilityLabel={dialogRetryLabel(lang)}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 6,
+                      marginTop: 10,
+                      borderRadius: 16,
+                      paddingHorizontal: 16,
+                      paddingVertical: 8,
+                      backgroundColor: t.accent,
+                    }}
+                  >
+                    <Ionicons name="refresh" size={16} color={t.correctText} />
+                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.label }}>
+                      {dialogRetryLabel(lang)}
+                    </Text>
+                  </TouchableOpacity>
+                )}
               </View>
             )}
 
             {/* Модал-вердикт «диалога как игры»: исход + реакция персонажа +
                 чек-лист целей + разбор. Показывается, когда диалог завершился
                 терминальным исходом (success/lost_patience/stalled). */}
-            {ended && gameEnabled && isTerminalOutcome(outcome) && (
+            {ended && gameEnabled && isTerminalOutcome(outcome) && !hasPremiumAccess && (
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: 18,
+                  padding: 18,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  marginTop: 6,
+                  marginBottom: 6,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                  <View
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 18,
+                      backgroundColor: t.accentBg,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Ionicons name="lock-closed-outline" size={18} color={t.accent} />
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} numberOfLines={2}>
+                      {outcomeTitle(outcome, lang)}
+                    </Text>
+                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }}>
+                      {triLang(lang, {
+                        ru: 'AI-разбор ошибок — в Plus',
+                        uk: 'AI-розбір помилок — у Plus',
+                        es: 'Análisis de errores con IA — en Plus',
+                        'pt-BR': 'Análise de erros com IA — no Plus',
+                        vi: 'Phân tích lỗi bằng AI — trong Plus',
+                        id: 'Analisis kesalahan AI — di Plus',
+                        tr: 'AI hata analizi — Plus ile',
+                        pl: 'Analiza błędów AI — w Plus',
+                      })}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      borderRadius: 9,
+                      paddingHorizontal: 7,
+                      paddingVertical: 3,
+                      backgroundColor: t.accent,
+                    }}
+                  >
+                    <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '900' }}>PLUS</Text>
+                  </View>
+                </View>
+
+                <View
+                  style={{
+                    backgroundColor: t.bgSurface,
+                    borderRadius: 14,
+                    borderWidth: 0.5,
+                    borderColor: t.border,
+                    padding: 12,
+                    gap: 8,
+                  }}
+                >
+                  {[
+                    triLang(lang, {
+                      ru: 'где фраза звучала неестественно',
+                      uk: 'де фраза звучала неприродно',
+                      es: 'dónde la frase sonó poco natural',
+                      'pt-BR': 'onde a frase soou pouco natural',
+                      vi: 'chỗ câu nói chưa tự nhiên',
+                      id: 'bagian frasa yang kurang alami',
+                      tr: 'cümlenin nerede doğal durmadığı',
+                      pl: 'gdzie zdanie brzmiało nienaturalnie',
+                    }),
+                    triLang(lang, {
+                      ru: 'что исправить в следующей реплике',
+                      uk: 'що виправити в наступній репліці',
+                      es: 'qué corregir en la siguiente respuesta',
+                      'pt-BR': 'o que corrigir na próxima fala',
+                      vi: 'nên sửa gì ở lượt nói tiếp theo',
+                      id: 'apa yang diperbaiki di balasan berikutnya',
+                      tr: 'sonraki yanıtta neyi düzeltmek gerektiği',
+                      pl: 'co poprawić w następnej odpowiedzi',
+                    }),
+                    triLang(lang, {
+                      ru: 'как сказать это естественнее',
+                      uk: 'як сказати це природніше',
+                      es: 'cómo decirlo de forma más natural',
+                      'pt-BR': 'como dizer isso de forma mais natural',
+                      vi: 'cách nói tự nhiên hơn',
+                      id: 'cara mengatakannya lebih alami',
+                      tr: 'bunu daha doğal söyleme yolu',
+                      pl: 'jak powiedzieć to naturalniej',
+                    }),
+                  ].map((line) => (
+                    <View key={line} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                      <Ionicons name="sparkles-outline" size={15} color={t.textMuted} />
+                      <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', flex: 1 }}>
+                        {line}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+
+                <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      hapticTap();
+                      void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'dialog_analysis' });
+                      router.push({
+                        pathname: '/premium_modal',
+                        params: { context: 'dialog_analysis', source: 'dialog_analysis' },
+                      } as never);
+                    }}
+                    activeOpacity={0.84}
+                    style={{
+                      flex: 1,
+                      borderRadius: 14,
+                      paddingVertical: 13,
+                      alignItems: 'center',
+                      backgroundColor: t.accent,
+                    }}
+                  >
+                    <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.body }}>
+                      {triLang(lang, {
+                        ru: 'Открыть Plus',
+                        uk: 'Відкрити Plus',
+                        es: 'Abrir Plus',
+                        'pt-BR': 'Abrir Plus',
+                        vi: 'Mở Plus',
+                        id: 'Buka Plus',
+                        tr: 'Plus’ı aç',
+                        pl: 'Otwórz Plus',
+                      })}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={onBack}
+                    activeOpacity={0.84}
+                    style={{
+                      flex: 1,
+                      borderRadius: 14,
+                      paddingVertical: 13,
+                      alignItems: 'center',
+                      backgroundColor: t.bgSurface,
+                      borderWidth: 0.5,
+                      borderColor: t.border,
+                    }}
+                  >
+                    <Text style={{ color: t.textPrimary, fontWeight: '900', fontSize: f.body }}>
+                      {triLang(lang, {
+                        ru: 'К диалогам',
+                        uk: 'До діалогів',
+                        es: 'A los diálogos',
+                        'pt-BR': 'Aos diálogos',
+                        vi: 'Về danh sách',
+                        id: 'Ke daftar dialog',
+                        tr: 'Diyaloglara',
+                        pl: 'Do dialogów',
+                      })}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
+
+            {ended && gameEnabled && isTerminalOutcome(outcome) && hasPremiumAccess && (
               <View
                 style={{
                   backgroundColor: t.bgCard,
@@ -1369,6 +1961,9 @@ export default function AiDialogSession() {
                   </View>
                 )}
 
+                {/* Разбор фраз ученика: похвала + исправления + совет. */}
+                {renderDialogReview()}
+
                 {/* Действия: ещё раз / к диалогам. */}
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
                   <TouchableOpacity
@@ -1474,6 +2069,8 @@ export default function AiDialogSession() {
                     pl: `Twoje odpowiedzi: ${userExchanges}. Wskazówka: około ${RECOMMENDED_EXCHANGES}, ale możesz zakończyć ręcznie.`,
                   })}
                 </Text>
+                {/* Разбор фраз ученика — и при ручном «Завершить» тоже. */}
+                {renderDialogReview()}
                 {!hasPremiumAccess && (
                   <TouchableOpacity
                     onPress={() => {
@@ -1563,19 +2160,20 @@ export default function AiDialogSession() {
           {!ended && (
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'flex-end',
-                gap: 8,
                 paddingHorizontal: 12,
                 paddingTop: 8,
                 paddingBottom: 12,
               }}
             >
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               <TextInput
                 value={input}
                 onChangeText={(v) => {
                   setInput(v);
-                  if (lastError) setLastError(false);
+                  if (lastErrorMessage) {
+                    setLastErrorMessage('');
+                    setLastErrorKind(null);
+                  }
                 }}
                 placeholder={triLang(lang, {
                   ru: 'Напиши ответ…',
@@ -1610,6 +2208,57 @@ export default function AiDialogSession() {
                 }}
                 maxFontSizeMultiplier={1.2}
               />
+              <TouchableOpacity
+                onPress={voiceInputStatus === 'listening' ? stopVoiceInput : () => void startVoiceInput()}
+                disabled={sending || voiceInputStatus === 'requesting'}
+                activeOpacity={0.82}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Голосовой ввод Plus',
+                  uk: 'Голосове введення Plus',
+                  es: 'Entrada por voz Plus',
+                  'pt-BR': 'Entrada por voz Plus',
+                  vi: 'Nhập bằng giọng nói Plus',
+                  id: 'Input suara Plus',
+                  tr: 'Plus sesle giriş',
+                  pl: 'Wpisywanie głosem Plus',
+                })}
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 22,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: voiceInputStatus === 'listening' ? t.accent : t.bgSurface,
+                  borderWidth: 0.5,
+                  borderColor: voiceInputStatus === 'listening' ? t.accent : t.border,
+                  opacity: sending || voiceInputStatus === 'requesting' ? 0.55 : 1,
+                  position: 'relative',
+                }}
+              >
+                <Ionicons
+                  name={voiceInputStatus === 'listening' ? 'stop' : 'mic-outline'}
+                  size={21}
+                  color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
+                />
+                {!hasPremiumAccess && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      right: -2,
+                      top: -5,
+                      borderRadius: 8,
+                      paddingHorizontal: 5,
+                      paddingVertical: 2,
+                      backgroundColor: t.accent,
+                      borderWidth: 1,
+                      borderColor: t.bgPrimary,
+                    }}
+                  >
+                    <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>PLUS</Text>
+                  </View>
+                )}
+              </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => send(input)}
                 disabled={!input.trim() || sending}
@@ -1646,6 +2295,22 @@ export default function AiDialogSession() {
                   color={input.trim() && !sending ? t.correctText : t.textMuted}
                 />
               </TouchableOpacity>
+              </View>
+              {voiceInputHint ? (
+                <Text
+                  style={{
+                    color: voiceInputStatus === 'listening' ? t.accent : t.textMuted,
+                    fontSize: f.caption,
+                    fontWeight: '800',
+                    marginTop: 6,
+                    paddingHorizontal: 6,
+                  }}
+                  numberOfLines={1}
+                  maxFontSizeMultiplier={1.1}
+                >
+                  {voiceInputHint}
+                </Text>
+              ) : null}
             </View>
           )}
         </KeyboardAvoidingView>

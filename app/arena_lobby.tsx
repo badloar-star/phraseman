@@ -67,6 +67,7 @@ import { buildBattlePassLadder, computeClaimables, countClaimable } from './aren
 import { getBattlePassPoints, getClaimedFreeLevels, getClaimedPremiumLevels } from './arena_battle_pass_store';
 import { useFeatureAccess } from '../components/PremiumContext';
 import { detectSeasonChange, markSeasonSeen, claimSeasonReward, getMySeasonState } from './services/arena_season_client';
+import { useAppSnapshotSelector, type AppSnapshotFriends } from './app_snapshot_store';
 import {
     getOrRefreshIdleQueueHintCount,
     IDLE_QUEUE_HINT_TTL_MS,
@@ -84,6 +85,7 @@ const ARENA_STAGE_BACKDROPS = {
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     business: require('../assets/images/arena/knowledge-arena-business.webp'),
+    businessLight: require('../assets/images/arena/knowledge-arena-businessLight.webp'),
     midnight: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     ember: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     aurora: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
@@ -95,6 +97,7 @@ const ARENA_TICKET_ICONS = {
     coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     business: require('../assets/images/arena_tickets/ticket-business.webp'),
+    businessLight: require('../assets/images/arena_tickets/ticket-businessLight.webp'),
     midnight: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     ember: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     aurora: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
@@ -155,6 +158,26 @@ async function createRoom(hostId: string, hostName: string, roomId: string) {
         expiresAt: Date.now() + 10 * 60 * 1000,
     });
 }
+
+function buildArenaFriendProfilesFromSnapshot(snapshot: AppSnapshotFriends | undefined): Record<string, {
+    name: string;
+    totalXp: number;
+    avatar?: string;
+    aura?: string;
+}> {
+    if (!snapshot?.profiles)
+        return {};
+    const out: Record<string, { name: string; totalXp: number; avatar?: string; aura?: string }> = {};
+    for (const [uid, profile] of Object.entries(snapshot.profiles)) {
+        out[uid] = {
+            name: profile.name,
+            totalXp: profile.totalXp,
+            avatar: profile.avatar,
+            aura: profile.aura,
+        };
+    }
+    return out;
+}
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function DuelLobbyScreen({ isTab = false }: {
     isTab?: boolean;
@@ -190,6 +213,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
         tr: "Oyuncu",
         pl: "Gracz",
     }), [lang]);
+    const arenaSnapshot = useAppSnapshotSelector((snapshot) => ({
+        profile: snapshot.profile,
+        progress: snapshot.progress,
+        friends: snapshot.friends,
+    }), (a, b) => a.profile === b.profile && a.progress === b.progress && a.friends === b.friends);
     const { spendOne, isUnlimited, energy, bonusEnergy } = useEnergy();
     const hasPremiumArena = useFeatureAccess('arena');
     const size: SessionSize = 2;
@@ -218,8 +246,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [rankedWagerPending, setRankedWagerPending] = useState<ArenaRankedPendingWager | null>(null);
     /** Пока false — не показываем строку «при выигрыше +…» до чтения AsyncStorage. */
     const [rankedWagerUiReady, setRankedWagerUiReady] = useState(true);
-    const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(null);
-    const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>([]);
+    const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(() => arenaSnapshot.progress?.shards ?? null);
+    const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>(() => arenaSnapshot.friends?.friends ?? []);
     const [incomingArenaInvites, setIncomingArenaInvites] = useState<ArenaInviteRow[]>([]);
     const [incomingArenaInviteBusyId, setIncomingArenaInviteBusyId] = useState<string | null>(null);
     const [arenaFriendProfiles, setArenaFriendProfiles] = useState<Record<string, {
@@ -227,8 +255,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
         totalXp: number;
         avatar?: string;
         aura?: string;
-    }>>({});
+    }>>(() => buildArenaFriendProfilesFromSnapshot(arenaSnapshot.friends));
     const [arenaInviteSendingUid, setArenaInviteSendingUid] = useState<string | null>(null);
+    const [arenaInvitedFriendUids, setArenaInvitedFriendUids] = useState<Set<string>>(() => new Set());
     /** Выбранный друг перед отправкой вызова (кнопка «Бросить вызов»). */
     const [arenaFriendPickUid, setArenaFriendPickUid] = useState<string | null>(null);
     const [hillThrone, setHillThrone] = useState<ArenaHillThrone | null>(null);
@@ -238,13 +267,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [throneRewardShards, setThroneRewardShards] = useState(10);
     const [throneProfilePlayer, setThroneProfilePlayer] = useState<PlayerInfo | null>(null);
     const [myProfileInfo, setMyProfileInfo] = useState({
-        name: defaultPlayerName,
-        avatar: '',
-        frame: '',
-        aura: '',
-        totalXP: 0,
+        name: arenaSnapshot.profile?.name?.trim() || defaultPlayerName,
+        avatar: arenaSnapshot.profile?.avatar ?? '',
+        frame: arenaSnapshot.profile?.frame ?? '',
+        aura: arenaSnapshot.profile?.aura ?? '',
+        totalXP: arenaSnapshot.profile?.totalXp ?? 0,
         leagueId: undefined as number | undefined,
-        streak: null as number | null,
+        streak: (arenaSnapshot.progress?.streak ?? null) as number | null,
     });
     const [arenaFeatureFlags, setArenaFeatureFlags] = useState<ArenaFeatureFlags>({ rankedWagerEnabled: false });
     const arenaRankedWagerEnabled = ENABLE_ARENA_RANKED_WAGER && arenaFeatureFlags.rankedWagerEnabled === true;
@@ -260,6 +289,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const friendUnsubRef = useRef<(() => void) | null>(null);
     /** id последнего отправленного инвайта — для подписки на статус (declined/accepted). */
     const sentInviteUnsubRef = useRef<(() => void) | null>(null);
+    const mountedRef = useRef(true);
     const friendMatchNavRef = useRef(false);
     const pendingMatchChargeRef = useRef(false);
     const chargeInFlightRef = useRef(false);
@@ -405,7 +435,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 ]);
                 if (cancelled) return;
                 const states = computeClaimables(buildBattlePassLadder(), pts, cf, cp, hasPremiumArena);
-                setBattlePassClaimable(countClaimable(states));
+                // Тихая ревалидация: не сетим, если число доступных наград не изменилось.
+                const nextClaimable = countClaimable(states);
+                setBattlePassClaimable((prev) => (prev === nextClaimable ? prev : nextClaimable));
             } catch { /* best-effort */ }
         })();
         return () => { cancelled = true; };
@@ -586,11 +618,15 @@ export default function DuelLobbyScreen({ isTab = false }: {
     useFocusEffect(useCallback(() => {
         if (!arenaTabVisible)
             return undefined;
-        setIdleQueueHintDisplayCount(getOrRefreshIdleQueueHintCount());
+        // Тихая ревалидация: не сетить, если значения не изменились с прошлого фокуса.
+        const nextIdleHintCount = getOrRefreshIdleQueueHintCount();
+        setIdleQueueHintDisplayCount((prev) => (prev === nextIdleHintCount ? prev : nextIdleHintCount));
         void refreshRankedWagerUi();
         (async () => {
-            setDailyCount(await getDailyArenaCount());
-            setDailyMax(await getDailyArenaMaxToday());
+            const nextDailyCount = await getDailyArenaCount();
+            setDailyCount((prev) => (prev === nextDailyCount ? prev : nextDailyCount));
+            const nextDailyMax = await getDailyArenaMaxToday();
+            setDailyMax((prev) => (prev === nextDailyMax ? prev : nextDailyMax));
         })();
     }, [arenaTabVisible, refreshRankedWagerUi]));
     useEffect(() => {
@@ -675,6 +711,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         matchLobbyAbortHandledRef.current = null;
     }, [sessionId]);
     useEffect(() => () => {
+        mountedRef.current = false;
         friendUnsubRef.current?.();
         friendUnsubRef.current = null;
         sentInviteUnsubRef.current?.();
@@ -970,11 +1007,15 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     }));
                     return;
                 }
+                if (!mountedRef.current)
+                    return;
                 await createRoom(uid, name, id);
+                if (!mountedRef.current)
+                    return;
                 // eslint-disable-next-line @typescript-eslint/no-require-imports
                 const db = require('@react-native-firebase/firestore').default();
                 friendUnsubRef.current?.();
-                friendUnsubRef.current = db.collection('arena_rooms').doc(id).onSnapshot((snap: any) => {
+                const unsubscribeFriendRoom = db.collection('arena_rooms').doc(id).onSnapshot((snap: any) => {
                     if (!snap || !snap.exists)
                         return;
                     const data = snap.data();
@@ -1024,6 +1065,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         })();
                     }
                 });
+                if (!mountedRef.current) {
+                    unsubscribeFriendRoom();
+                    return;
+                }
+                friendUnsubRef.current = unsubscribeFriendRoom;
                 setFriendRoomReady(true);
             }
             catch {
@@ -1062,6 +1108,12 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 pl: "Gracz",
             });
         setArenaInviteSendingUid(friendStableUid);
+        setArenaInvitedFriendUids(prev => {
+            const next = new Set(prev);
+            next.add(friendStableUid);
+            return next;
+        });
+        setArenaFriendPickUid(null);
         try {
             const res = await sendArenaInvite({
                 toFriendStableUid: friendStableUid,
@@ -1069,6 +1121,12 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 fromName: dn,
             });
             if (!res.ok) {
+                setArenaInvitedFriendUids(prev => {
+                    const next = new Set(prev);
+                    next.delete(friendStableUid);
+                    return next;
+                });
+                setArenaFriendPickUid(friendStableUid);
                 const msg = res.reason === 'friend_no_session'
                     ? {
                         ru: effectiveOs === 'ios'
@@ -1153,6 +1211,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 if (status === 'declined') {
                     sentInviteUnsubRef.current?.();
                     sentInviteUnsubRef.current = null;
+                    setArenaInvitedFriendUids(prev => {
+                        const next = new Set(prev);
+                        next.delete(friendStableUid);
+                        return next;
+                    });
                     const friendName = arenaFriendProfiles[friendStableUid]?.name;
                     emitAppEvent('action_toast', actionToastTri('info', {
                         ru: friendName
@@ -1184,8 +1247,31 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 else if (status === 'accepted') {
                     sentInviteUnsubRef.current?.();
                     sentInviteUnsubRef.current = null;
+                    setArenaInvitedFriendUids(prev => {
+                        const next = new Set(prev);
+                        next.delete(friendStableUid);
+                        return next;
+                    });
                 }
             });
+        }
+        catch {
+            setArenaInvitedFriendUids(prev => {
+                const next = new Set(prev);
+                next.delete(friendStableUid);
+                return next;
+            });
+            setArenaFriendPickUid(friendStableUid);
+            emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Пригласить не получилось. Попробуй ещё раз.',
+                uk: 'Не вдалося запросити. Спробуй ще раз.',
+                es: 'No se pudo invitar. Inténtalo otra vez.',
+                'pt-BR': 'Não foi possível convidar. Tente novamente.',
+                vi: 'Không thể mời. Hãy thử lại.',
+                id: 'Tidak dapat mengundang. Coba lagi.',
+                tr: 'Davet gönderilemedi. Tekrar dene.',
+                pl: 'Nie udało się zaprosić. Spróbuj ponownie.',
+            }));
         }
         finally {
             setArenaInviteSendingUid(null);
@@ -1444,6 +1530,37 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => unsub();
     }, [arenaTabVisible]);
     useEffect(() => {
+        if (arenaSnapshot.progress?.shards != null) {
+            setShardsBalanceUi(prev => prev == null ? arenaSnapshot.progress!.shards : prev);
+        }
+        if (arenaSnapshot.friends?.friends?.length) {
+            setArenaFriends(prev => prev.length > 0 ? prev : arenaSnapshot.friends!.friends);
+            setArenaFriendProfiles(prev => {
+                const fromSnapshot = buildArenaFriendProfilesFromSnapshot(arenaSnapshot.friends);
+                let changed = false;
+                const next = { ...prev };
+                for (const [uid, profile] of Object.entries(fromSnapshot)) {
+                    if (!next[uid]) {
+                        next[uid] = profile;
+                        changed = true;
+                    }
+                }
+                return changed ? next : prev;
+            });
+        }
+        if (arenaSnapshot.profile) {
+            setMyProfileInfo(prev => ({
+                ...prev,
+                name: prev.name && prev.name !== defaultPlayerName ? prev.name : (arenaSnapshot.profile!.name?.trim() || defaultPlayerName),
+                avatar: prev.avatar || arenaSnapshot.profile!.avatar,
+                frame: prev.frame || arenaSnapshot.profile!.frame,
+                aura: prev.aura || arenaSnapshot.profile!.aura || '',
+                totalXP: prev.totalXP > 0 ? prev.totalXP : arenaSnapshot.profile!.totalXp,
+                streak: prev.streak ?? arenaSnapshot.progress?.streak ?? null,
+            }));
+        }
+    }, [arenaSnapshot.profile, arenaSnapshot.progress, arenaSnapshot.friends, defaultPlayerName]);
+    useEffect(() => {
         if (!friendRoomId) {
             setArenaFriendPickUid(null);
             setFriendRoomReady(false);
@@ -1453,6 +1570,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
         if (arenaFriendPickUid && !arenaFriends.some(f => f.uid === arenaFriendPickUid)) {
             setArenaFriendPickUid(null);
         }
+        setArenaInvitedFriendUids(prev => {
+            const liveFriendUids = new Set(arenaFriends.map(friend => friend.uid));
+            const next = new Set([...prev].filter(uid => liveFriendUids.has(uid)));
+            return next.size === prev.size ? prev : next;
+        });
     }, [arenaFriends, arenaFriendPickUid]);
     useEffect(() => {
         if (arenaFriends.length === 0)
@@ -1610,9 +1732,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
             throne: { bg: 'rgba(20,19,17,0.88)', border: 'rgba(179,149,91,0.44)', shadow: '#B3955B' },
         };
         const business = {
-            match: { bg: 'rgba(28,28,28,0.86)', border: 'rgba(255,255,255,0.14)', shadow: '#6F6F6F' },
-            friend: { bg: 'rgba(28,28,28,0.86)', border: 'rgba(255,255,255,0.12)', shadow: '#6F6F6F' },
-            throne: { bg: 'rgba(28,28,28,0.88)', border: 'rgba(255,255,255,0.14)', shadow: '#6F6F6F' },
+            match: { bg: 'rgba(18,18,18,0.86)', border: 'rgba(0,149,246,0.34)', shadow: '#0095F6' },
+            friend: { bg: 'rgba(18,18,18,0.86)', border: 'rgba(255,255,255,0.12)', shadow: '#8A8D94' },
+            throne: { bg: 'rgba(18,18,18,0.88)', border: 'rgba(0,149,246,0.30)', shadow: '#0095F6' },
+        };
+        const businessLight = {
+            match: { bg: 'rgba(255,255,255,0.90)', border: 'rgba(0,149,246,0.40)', shadow: '#0095F6' },
+            friend: { bg: 'rgba(255,255,255,0.90)', border: 'rgba(0,0,0,0.12)', shadow: '#B9BCC2' },
+            throne: { bg: 'rgba(255,255,255,0.92)', border: 'rgba(0,149,246,0.36)', shadow: '#0095F6' },
         };
         const midnight = {
             match: { bg: 'rgba(26,29,44,0.86)', border: 'rgba(95,224,176,0.46)', shadow: '#5FE0B0' },
@@ -1634,11 +1761,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(27,30,16,0.86)', border: 'rgba(214,255,61,0.44)', shadow: '#D6FF3D' },
             throne: { bg: 'rgba(12,14,6,0.88)', border: 'rgba(255,232,92,0.42)', shadow: '#FFE85C' },
         };
-        const byTheme = { dark, gold, coral, minimalDark, business, midnight, ember, aurora, volt } as const;
+        const byTheme = { dark, gold, coral, minimalDark, business, businessLight, midnight, ember, aurora, volt } as const;
         return byTheme[themeMode] ?? dark;
     }, [themeMode]);
     const arenaGlass = useMemo(() => {
-        const light = false;
+        const light = themeMode === 'businessLight';
         const neon = false;
         const gold = themeMode === 'gold';
         const compass = false;
@@ -2297,9 +2424,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         const avatarId = profile?.avatar || String(getBestAvatarForLevel(level));
                         const name = profile?.name ?? '—';
                         const sending = arenaInviteSendingUid === friend.uid;
+                        const invited = arenaInvitedFriendUids.has(friend.uid);
                         const selected = arenaFriendPickUid === friend.uid;
-                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending }} key={friend.uid} onPress={() => {
-                                if (sending)
+                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending || invited }} key={friend.uid} onPress={() => {
+                                if (sending || invited)
                                     return;
                                 hapticTap();
                                 setArenaFriendPickUid(friend.uid);
@@ -2308,20 +2436,31 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                 {
                                     borderColor: selected ? arenaGlass.accent : 'rgba(255,255,255,0.12)',
                                     backgroundColor: selected ? arenaGlass.accentSoft : arenaGlass.innerBgSoft,
-                                    opacity: sending ? 0.55 : 1,
+                                    opacity: sending ? 0.55 : invited ? 0.7 : 1,
                                 },
                             ]}>
                                   <View style={{ position: 'relative' }}>
                                     <AvatarView avatar={avatarId} size={36} auraId={profile?.aura}/>
-                                    {sending ? (<View style={styles.arenaFriendSendingOverlay}>
-                                        <Ionicons name="paper-plane" size={15} color={t.accent}/>
+                                    {sending || invited ? (<View style={styles.arenaFriendSendingOverlay}>
+                                        <Ionicons name={invited ? 'checkmark-circle' : 'paper-plane'} size={15} color={t.accent}/>
                                       </View>) : null}
                                   </View>
                                   <Text style={[styles.arenaFriendName, { color: screenTitleColor, fontSize: f.caption }]}>
                                     {name}
                                   </Text>
                                   <Text style={[styles.arenaFriendLevel, { color: screenMuted, fontSize: f.caption - 1 }]}>
-                                    Lv {level}
+                                    {invited
+                                        ? triLang(lang, {
+                                            ru: 'Отправлено',
+                                            uk: 'Надіслано',
+                                            es: 'Enviado',
+                                            'pt-BR': 'Enviado',
+                                            vi: 'Đã gửi',
+                                            id: 'Terkirim',
+                                            tr: 'Gönderildi',
+                                            pl: 'Wysłano',
+                                        })
+                                        : `Lv ${level}`}
                                   </Text>
                                 </TouchableOpacity>);
                     })}

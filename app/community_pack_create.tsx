@@ -742,6 +742,19 @@ export default function CommunityPackCreateScreen() {
       setBusy(true);
       try {
         const cloudPayload = buildCommunityPackPayloadForCloud(payload);
+        if (!updatePackId) {
+          emitAppEvent('action_toast', actionToastTri('info', {
+            ru: 'Отправляем набор на проверку...',
+            uk: 'Надсилаємо набір на перевірку...',
+            es: 'Enviando pack para revisión...',
+            'pt-BR': 'Enviando pacote para revisão...',
+            vi: 'Đang gửi bộ thẻ để xét duyệt...',
+            id: 'Mengirim paket untuk ditinjau...',
+            tr: 'Paket incelemeye gönderiliyor...',
+            pl: 'Wysyłamy zestaw do sprawdzenia...',
+          }));
+          safeRouterBack(router, '/flashcards' as any);
+        }
         await callCommunitySubmitPackForReview({
           authorStableId,
           payload: cloudPayload,
@@ -762,7 +775,9 @@ export default function CommunityPackCreateScreen() {
           tr: updatePackId ? 'Değişiklikler incelemeye gönderildi.' : 'Paket incelemeye gönderildi.',
           pl: updatePackId ? 'Zmiany wysłane do sprawdzenia.' : 'Zestaw wysłany do sprawdzenia.',
         }));
-        safeRouterBack(router, '/flashcards' as any);
+        if (updatePackId) {
+          safeRouterBack(router, '/flashcards' as any);
+        }
       } catch (e: unknown) {
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         const short = msg.slice(0, 140);

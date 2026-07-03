@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
@@ -16,11 +17,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { usePremium, useFeatureAccess } from '../components/PremiumContext';
+import { usePremium } from '../components/PremiumContext';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
@@ -58,13 +59,14 @@ import { triLang } from '../constants/i18n';
 import CustomAvatarBadge from '../components/CustomAvatarBadge';
 import AvatarView from '../components/AvatarView';
 import AvatarAura from '../components/AvatarAura';
+import PlusBadge from '../components/PlusBadge';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { ENABLE_PROFILE_CARD } from './config';
+import { ENABLE_DEV_TOOLS, ENABLE_PROFILE_CARD } from './config';
 import { getShardsBalance, spendShards } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
-import { emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent } from './events';
 import { syncToCloud } from './cloud_sync';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
@@ -77,9 +79,7 @@ import {
   getNextProfileCardLevel,
   getProfileCardLevelDef,
   getProfileCardSnapshot,
-  normalizeProfileCardMotion,
-  normalizeProfileCardPublicFocus,
-  normalizeProfileCardTheme,
+  normalizeProfileCardLevel,
   PROFILE_CARD_LEVEL_NAME_RU,
   type ProfileCardLevel,
   type ProfileCardMotion,
@@ -152,36 +152,6 @@ const PROFILE_CARD_PREVIEW_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardPre
     surfaceBorder: 'rgba(250,204,21,0.25)',
     shadowColor: '#FACC15',
   },
-  crystal: {
-    gradient: ['#06131A', '#0D2732', '#111827'],
-    accent: '#67E8F9',
-    accentSoft: 'rgba(103,232,249,0.15)',
-    accentStrong: 'rgba(103,232,249,0.42)',
-    secondary: '#E0F2FE',
-    surface: 'rgba(103,232,249,0.07)',
-    surfaceBorder: 'rgba(103,232,249,0.22)',
-    shadowColor: '#22D3EE',
-  },
-  ember: {
-    gradient: ['#1A090B', '#2A1112', '#15161B'],
-    accent: '#FB7185',
-    accentSoft: 'rgba(251,113,133,0.15)',
-    accentStrong: 'rgba(251,113,133,0.42)',
-    secondary: '#FED7AA',
-    surface: 'rgba(251,113,133,0.07)',
-    surfaceBorder: 'rgba(251,113,133,0.22)',
-    shadowColor: '#FB7185',
-  },
-  aurora: {
-    gradient: ['#080B1E', '#14233D', '#1B1230'],
-    accent: '#A78BFA',
-    accentSoft: 'rgba(167,139,250,0.15)',
-    accentStrong: 'rgba(34,211,238,0.36)',
-    secondary: '#22D3EE',
-    surface: 'rgba(167,139,250,0.075)',
-    surfaceBorder: 'rgba(167,139,250,0.22)',
-    shadowColor: '#A78BFA',
-  },
 };
 
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
@@ -208,22 +178,18 @@ const customGradientOptionColors = (
 ];
 
 const normalizeProfileCardSnapshotForPreview = (snapshot?: Partial<ProfileCardSnapshot> | null): ProfileCardSnapshot => {
-  const level = Math.max(0, Math.min(5, Math.floor(Number(snapshot?.level) || 0))) as ProfileCardLevel;
+  const level = normalizeProfileCardLevel(snapshot?.level);
   return {
     level,
-    theme: level >= 2 ? normalizeProfileCardTheme(snapshot?.theme) : 'classic',
-    motion: level >= 3 ? normalizeProfileCardMotion(snapshot?.motion) : 'none',
-    publicFocus: level >= 4 ? normalizeProfileCardPublicFocus(snapshot?.publicFocus) : 'balanced',
+    theme: level >= 1 ? 'gold' : 'classic',
+    motion: 'none',
+    publicFocus: 'balanced',
   };
 };
 
 const getProfileCardPreviewVisual = (snapshot: ProfileCardSnapshot): ProfileCardPreviewVisual => {
-  const theme = snapshot.level >= 2 ? snapshot.theme : 'classic';
-  const motion = snapshot.level >= 5 && snapshot.motion === 'elite'
-    ? 'elite'
-    : snapshot.level >= 3
-      ? snapshot.motion
-      : 'none';
+  const theme = snapshot.level >= 1 ? 'gold' : 'classic';
+  const motion = 'none';
   return { theme, motion, ...PROFILE_CARD_PREVIEW_VISUALS[theme] };
 };
 
@@ -333,19 +299,17 @@ const invalidateAvatarDependentCaches = async (nextAvatar: string, nextAura?: st
 
 export default function AvatarSelect() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const avatarAccent = '#A78BFA';
-  const avatarPremiumAccent = '#FACC15';
-  const avatarVipAccent = '#22C55E';
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
-  // «Пульт»: премиум-ауры разблокируются для всех, когда фича переведена в «Фри»
-  // (VIP-ауры остаются за VIP-статусом). Используем только в решении «владеет/замок»,
-  // косметический дефолт ауры по-прежнему завязан на сырой isPremium.
-  const premiumAuraAccess = useFeatureAccess('avatar_auras');
+  const hasPlusAuraAccess = isPremium || isVip;
+  // Both status auras are Plus variants for users: paid Plus and admin-granted
+  // Plus unlock the same cosmetics.
   const isUK = lang === 'uk';
   const [level, setLevel] = useState(1);
   const [shards, setShards] = useState(0);
@@ -369,7 +333,7 @@ export default function AvatarSelect() {
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(DEFAULT_PROFILE_CARD_SNAPSHOT);
 
   const activeCustom = useMemo(() => parseCustomAvatarValue(activeAvatar), [activeAvatar]);
-  const showProfileCardSection = ENABLE_PROFILE_CARD;
+  const showProfileCardSection = ENABLE_PROFILE_CARD && ENABLE_DEV_TOOLS;
   const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
   const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
   const profileCardVisual = useMemo(() => getProfileCardPreviewVisual(profileCardSnapshot), [profileCardSnapshot]);
@@ -483,13 +447,11 @@ export default function AvatarSelect() {
     }, []),
   );
 
-  const showToast = (type: 'info' | 'success' | 'error', messageRu: string) => {
-    emitAppEvent('action_toast', {
-      type,
-      messageRu,
-      messageUk: messageRu,
-      messageEs: messageRu,
-    });
+  const showToast = (
+    type: 'info' | 'success' | 'error',
+    m: { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string },
+  ) => {
+    emitAppEvent('action_toast', actionToastTri(type, m));
   };
 
   const openAvatar = (avatar: CustomAvatarDef) => {
@@ -529,7 +491,16 @@ export default function AvatarSelect() {
     const giftOnly = isCustomAvatarGiftOnly(avatarId);
     if (giftOnly && !wasOwned) {
       setDraftAvatar(null);
-      showToast('info', 'Этот аватар можно получить только подарком');
+      showToast('info', {
+        ru: 'Этот аватар можно получить только подарком',
+        uk: 'Цей аватар можна отримати лише в подарунок',
+        es: 'Este avatar solo se consigue como regalo',
+        'pt-BR': 'Este avatar só pode ser obtido como presente',
+        vi: 'Avatar này chỉ có thể nhận được khi được tặng',
+        id: 'Avatar ini hanya bisa didapatkan sebagai hadiah',
+        tr: 'Bu avatar yalnızca hediye olarak alınabilir',
+        pl: 'Ten awatar można zdobyć tylko w prezencie',
+      });
       return;
     }
     const previousStyle = decodeOwnedStyle(owned[avatarId]);
@@ -558,7 +529,16 @@ export default function AvatarSelect() {
       if (cost > 0) {
         const ok = await spendShards(cost, wasOwned ? 'custom_avatar_restyle' : 'custom_avatar');
         if (!ok) {
-          showToast('error', 'Осколки не списались. Попробуй ещё раз.');
+          showToast('error', {
+            ru: 'Осколки не списались. Попробуй ещё раз.',
+            uk: 'Уламки не списалися. Спробуй ще раз.',
+            es: 'No se descontaron los fragmentos. Inténtalo de nuevo.',
+            'pt-BR': 'Os fragmentos não foram descontados. Tente novamente.',
+            vi: 'Chưa trừ được mảnh. Hãy thử lại.',
+            id: 'Shard tidak terpotong. Coba lagi.',
+            tr: 'Parçalar düşülmedi. Tekrar dene.',
+            pl: 'Nie odjęto odłamków. Spróbuj ponownie.',
+          });
           return;
         }
       }
@@ -567,7 +547,27 @@ export default function AvatarSelect() {
       await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred');
       setShards(await getShardsBalance());
       setDraftAvatar(null);
-      showToast('success', wasOwned ? 'Аватар применен' : 'Аватар куплен');
+      showToast('success', wasOwned
+        ? {
+            ru: 'Аватар применен',
+            uk: 'Аватар застосовано',
+            es: 'Avatar aplicado',
+            'pt-BR': 'Avatar aplicado',
+            vi: 'Đã áp dụng avatar',
+            id: 'Avatar diterapkan',
+            tr: 'Avatar uygulandı',
+            pl: 'Awatar zastosowany',
+          }
+        : {
+            ru: 'Аватар куплен',
+            uk: 'Аватар придбано',
+            es: 'Avatar comprado',
+            'pt-BR': 'Avatar comprado',
+            vi: 'Đã mua avatar',
+            id: 'Avatar dibeli',
+            tr: 'Avatar satın alındı',
+            pl: 'Awatar kupiony',
+          });
       if (!wasOwned) {
         const { checkAchievements } = await import('./achievements');
         void checkAchievements({ type: 'avatar_custom_set' });
@@ -579,17 +579,30 @@ export default function AvatarSelect() {
 
   const applyAura = async (aura: AvatarAuraDef | null, purchaseConfirmed = false) => {
     if (busy) return;
+    const previousAuraId = activeAuraId;
+    let appliedOptimistic = false;
     hapticTap();
     setBusy(true);
     try {
       if (!aura) {
+        setActiveAuraId(NO_AVATAR_AURA_ID);
+        appliedOptimistic = true;
         await AsyncStorage.setItem(USER_AVATAR_AURA_KEY, NO_AVATAR_AURA_ID);
         await invalidateAvatarDependentCaches(activeAvatar, NO_AVATAR_AURA_ID);
         setActiveAuraId(NO_AVATAR_AURA_ID);
         emitAppEvent('xp_changed');
         syncAvatarDisplayToCloud('deferred');
         void writeProfileAvatarSnapshot(activeAvatar, level, NO_AVATAR_AURA_ID);
-        showToast('success', 'Аура выключена');
+        showToast('success', {
+          ru: 'Аура выключена',
+          uk: 'Ауру вимкнено',
+          es: 'Aura desactivada',
+          'pt-BR': 'Aura desativada',
+          vi: 'Đã tắt hào quang',
+          id: 'Aura dimatikan',
+          tr: 'Aura kapatıldı',
+          pl: 'Aura wyłączona',
+        });
         return;
       }
 
@@ -597,24 +610,42 @@ export default function AvatarSelect() {
       const isVipAura = aura.vipOnly === true;
       const isRewardOnlyAura = aura.rewardOnly === true;
       const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-      const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+      const isOwned = isPremiumAura || isVipAura ? hasPlusAuraAccess : unlockedByLevel || !!ownedAuras[aura.id];
       let purchasedAura = false;
+      if (isOwned) {
+        setActiveAuraId(aura.id);
+        appliedOptimistic = true;
+      }
       if (!isOwned) {
-        if (isPremiumAura) {
+        if (isPremiumAura || isVipAura) {
           router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
-          return;
-        }
-        if (isVipAura) {
-          showToast('info', 'Доступно со статусом Plus');
           return;
         }
         if (isRewardOnlyAura) {
           // Сезонные / наградные ауры Арены не продаются — их можно только заработать.
-          showToast('info', 'Награда Арены — её нельзя купить, только заработать в сезоне');
+          showToast('info', {
+            ru: 'Награда Арены — её нельзя купить, только заработать в сезоне',
+            uk: 'Нагорода Арени — її не можна купити, лише заробити в сезоні',
+            es: 'Recompensa de la Arena: no se compra, solo se gana en la temporada',
+            'pt-BR': 'Recompensa da Arena: não pode ser comprada, só ganha na temporada',
+            vi: 'Phần thưởng Đấu trường — không thể mua, chỉ giành được trong mùa giải',
+            id: 'Hadiah Arena — tidak bisa dibeli, hanya diraih di musim ini',
+            tr: 'Arena ödülü — satın alınamaz, yalnızca sezonda kazanılır',
+            pl: 'Nagroda Areny — nie można jej kupić, tylko zdobyć w sezonie',
+          });
           return;
         }
         if (aura.unlockLevel !== undefined) {
-          showToast('info', `Откроется на уровне ${aura.unlockLevel}`);
+          showToast('info', {
+            ru: `Откроется на уровне ${aura.unlockLevel}`,
+            uk: `Відкриється на рівні ${aura.unlockLevel}`,
+            es: `Se desbloquea en el nivel ${aura.unlockLevel}`,
+            'pt-BR': `Desbloqueia no nível ${aura.unlockLevel}`,
+            vi: `Mở khóa ở cấp ${aura.unlockLevel}`,
+            id: `Terbuka di level ${aura.unlockLevel}`,
+            tr: `${aura.unlockLevel}. seviyede açılır`,
+            pl: `Odblokuje się na poziomie ${aura.unlockLevel}`,
+          });
           return;
         }
         const currentShards = await getShardsBalance();
@@ -632,7 +663,16 @@ export default function AvatarSelect() {
         }
         const ok = await spendShards(AVATAR_AURA_BUY_COST, 'avatar_aura');
         if (!ok) {
-          showToast('error', 'Осколки не списались. Попробуй ещё раз.');
+          showToast('error', {
+            ru: 'Осколки не списались. Попробуй ещё раз.',
+            uk: 'Уламки не списалися. Спробуй ще раз.',
+            es: 'No se descontaron los fragmentos. Inténtalo de nuevo.',
+            'pt-BR': 'Os fragmentos não foram descontados. Tente novamente.',
+            vi: 'Chưa trừ được mảnh. Hãy thử lại.',
+            id: 'Shard tidak terpotong. Coba lagi.',
+            tr: 'Parçalar düşülmedi. Tekrar dene.',
+            pl: 'Nie odjęto odłamków. Spróbuj ponownie.',
+          });
           return;
         }
         const nextOwnedAuras: OwnedAuras = { ...ownedAuras, [aura.id]: true };
@@ -648,7 +688,41 @@ export default function AvatarSelect() {
       emitAppEvent('xp_changed');
       syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred');
       void writeProfileAvatarSnapshot(activeAvatar, level, aura.id);
-      showToast('success', isOwned ? 'Аура применена' : 'Аура открыта');
+      showToast('success', isOwned
+        ? {
+            ru: 'Аура применена',
+            uk: 'Ауру застосовано',
+            es: 'Aura aplicada',
+            'pt-BR': 'Aura aplicada',
+            vi: 'Đã áp dụng hào quang',
+            id: 'Aura diterapkan',
+            tr: 'Aura uygulandı',
+            pl: 'Aura zastosowana',
+          }
+        : {
+            ru: 'Аура открыта',
+            uk: 'Ауру відкрито',
+            es: 'Aura desbloqueada',
+            'pt-BR': 'Aura desbloqueada',
+            vi: 'Đã mở khóa hào quang',
+            id: 'Aura terbuka',
+            tr: 'Aura açıldı',
+            pl: 'Aura odblokowana',
+          });
+    } catch {
+      if (appliedOptimistic) {
+        setActiveAuraId(previousAuraId);
+      }
+      showToast('error', {
+        ru: 'Аура не применилась. Попробуй ещё раз.',
+        uk: 'Ауру не вдалося застосувати. Спробуй ще раз.',
+        es: 'No se pudo aplicar el aura. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível aplicar a aura. Tente novamente.',
+        vi: 'Không áp dụng được hào quang. Hãy thử lại.',
+        id: 'Aura gagal diterapkan. Coba lagi.',
+        tr: 'Aura uygulanamadı. Tekrar dene.',
+        pl: 'Nie udało się zastosować aury. Spróbuj ponownie.',
+      });
     } finally {
       setBusy(false);
     }
@@ -656,12 +730,35 @@ export default function AvatarSelect() {
 
   const resetToLevelAvatar = async () => {
     if (busy) return;
+    const previousAvatar = activeAvatar;
     hapticTap();
     setBusy(true);
     try {
       const nextAvatar = getBestAvatarForLevel(level);
+      setActiveAvatar(nextAvatar);
       await persistAvatar(nextAvatar, owned);
-      showToast('success', 'Вернули обычный аватар уровня');
+      showToast('success', {
+        ru: 'Вернули обычный аватар уровня',
+        uk: 'Повернули звичайний аватар рівня',
+        es: 'Restauramos el avatar normal del nivel',
+        'pt-BR': 'Restauramos o avatar normal do nível',
+        vi: 'Đã khôi phục avatar thường của cấp',
+        id: 'Avatar level biasa dikembalikan',
+        tr: 'Seviyenin normal avatarına dönüldü',
+        pl: 'Przywrócono zwykły awatar poziomu',
+      });
+    } catch {
+      setActiveAvatar(previousAvatar);
+      showToast('error', {
+        ru: 'Аватар не применился. Попробуй ещё раз.',
+        uk: 'Аватар не вдалося застосувати. Спробуй ще раз.',
+        es: 'No se pudo aplicar el avatar. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível aplicar o avatar. Tente novamente.',
+        vi: 'Không áp dụng được avatar. Hãy thử lại.',
+        id: 'Avatar gagal diterapkan. Coba lagi.',
+        tr: 'Avatar uygulanamadı. Tekrar dene.',
+        pl: 'Nie udało się zastosować awatara. Spróbuj ponownie.',
+      });
     } finally {
       setBusy(false);
     }
@@ -678,7 +775,7 @@ export default function AvatarSelect() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TapScale>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Аватар</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Кастомизация</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
             <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} contentFit="contain" />
@@ -703,13 +800,11 @@ export default function AvatarSelect() {
         )}
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: bottomInset + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Карточка профиля</Text>
-          {/* Компактная строка-вход в полноэкранный экран прокачки карточки. Большое превью
-              «Моя карточка» / «как видят другие» убрано — оно жило в кривом окне; теперь весь
-              просмотр и апгрейд на отдельном экране (живая галерея всех уровней). */}
+          {/* Компактная строка-вход в одношаговый Pro-апгрейд карточки. */}
           <TouchableOpacity
             testID="avatar-profile-card-entry"
             activeOpacity={0.86}
@@ -735,7 +830,7 @@ export default function AvatarSelect() {
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
                 {nextProfileCardDef
-                  ? `Дальше: ${lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[nextProfileCardLevel as ProfileCardLevel] : (nextProfileCardDef.name)} · ${nextProfileCardDef.cost}`
+                  ? `Новая: ${lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[nextProfileCardLevel as ProfileCardLevel] : (nextProfileCardDef.name)} · ${nextProfileCardDef.cost}`
                   : 'Максимальный уровень'}
               </Text>
             </View>
@@ -831,7 +926,7 @@ export default function AvatarSelect() {
               const isVipAura = aura.vipOnly === true;
               const isRewardOnlyAura = aura.rewardOnly === true;
               const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-              const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+              const isOwned = isPremiumAura || isVipAura ? hasPlusAuraAccess : unlockedByLevel || !!ownedAuras[aura.id];
               const isGifted = !isPremiumAura && !isVipAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
               const isActive = effectiveAuraId === aura.id;
               return (
@@ -860,10 +955,8 @@ export default function AvatarSelect() {
                   <View style={{ marginTop: 3, minHeight: 15, justifyContent: 'center' }}>
                     {isOwned
                       ? <Text style={{ color: isGifted ? t.accent : t.textMuted, fontSize: 9, fontWeight: '800' }}>{isGifted ? 'Подарок' : 'Открыта'}</Text>
-                      : isPremiumAura
-                        ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
-                        : isVipAura
-                          ? <Text style={{ color: avatarVipAccent, fontSize: 9, fontWeight: '900' }}>Plus</Text>
+                      : isPremiumAura || isVipAura
+                        ? <PlusBadge themeMode={themeMode} size="xs" />
                         : isRewardOnlyAura
                           ? (
                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
@@ -935,7 +1028,7 @@ export default function AvatarSelect() {
               borderTopLeftRadius: 26,
               borderTopRightRadius: 26,
               padding: 18,
-              paddingBottom: insets.bottom + 18,
+              paddingBottom: bottomInset + 18,
               borderTopWidth: 1,
               borderColor: t.border,
             }}

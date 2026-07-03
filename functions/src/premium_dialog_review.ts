@@ -171,13 +171,6 @@ export const premiumDialogReview = onCall({
 
   const data = (request.data ?? {}) as DialogReviewRequest;
 
-  // Возрастной гейт — как у premiumDialogSend (defense-in-depth).
-  const ageBracket = text(data.ageBracket, 16);
-  if (ageBracket === 'teen_safe' || ageBracket === 'under13') {
-    console.warn('premium_dialog_review rejected', { reason: 'age_restricted', ageBracket });
-    throw new HttpsError('permission-denied', 'age_restricted');
-  }
-
   const history = sanitizeReviewHistory(data.history);
   const learnerTurns = history.filter((t) => t.role === 'user');
   if (learnerTurns.length === 0) {

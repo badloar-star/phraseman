@@ -7,7 +7,7 @@ export type VocabularyGateSurface = 'lesson_words' | 'irregular_verbs' | 'prepos
 export type VocabularyContentGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
-  reason?: 'french_vocabulary_source_gate' | 'french_irregular_verbs_source_gate' | 'french_preposition_drill_source_gate';
+  reason?: 'french_lesson_vocabulary_server_pack_available' | 'french_vocabulary_source_gate' | 'french_irregular_verbs_source_gate' | 'french_preposition_drill_source_gate';
   blockedRoutes: string[];
   requiredEvidence: string[];
 };
@@ -36,8 +36,7 @@ export function vocabularyContentAvailableForTarget(
   surface: VocabularyGateSurface = 'lesson_words',
 ): boolean {
   if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  void surface;
-  return false;
+  return surface === 'lesson_words';
 }
 
 export function vocabularyContentGateForTarget(
@@ -50,6 +49,21 @@ export function vocabularyContentGateForTarget(
       studyTarget: 'en',
       blockedRoutes: [],
       requiredEvidence: [],
+    };
+  }
+
+  if (surface === 'lesson_words') {
+    return {
+      enabled: true,
+      studyTarget: 'fr',
+      reason: 'french_lesson_vocabulary_server_pack_available',
+      blockedRoutes: [],
+      requiredEvidence: [
+        'french_lesson_remote_server_pack',
+        'french_lesson_words_remote_runtime',
+        'target_scoped_lesson_words_progress',
+        'no_english_vocabulary_bank_fallback',
+      ],
     };
   }
 

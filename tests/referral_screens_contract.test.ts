@@ -17,14 +17,16 @@ describe('referral 7 plus 7 screen contract', () => {
     expect(source).toContain('applyManualReferralCode');
   });
 
-  it('keeps referrals as a separate screen with per-invite VIP actions', () => {
+  it('keeps referrals as a separate screen with per-invite Plus actions', () => {
     const source = read('app/referrals.tsx');
 
     expect(source).toContain('testID="screen-referrals"');
     expect(source).toContain('Твои приглашения');
     expect(source).toContain('Как только друг поставит приложение, введёт твой код и закончит первый урок');
     expect(source).toContain('друг не выполнил условие');
-    expect(source).toContain('Получить VIP');
+    expect(source).toContain('Получить Plus');
+    expect(source).not.toContain('Получить VIP');
+    expect(source).not.toContain('VIP можно забирать');
     expect(source).toContain('claimReferralVipDays');
     expect(source).not.toContain('testID="referrals-seven-plus-seven-note"');
     expect(source).not.toContain('summary.pending');
@@ -67,5 +69,27 @@ describe('referral 7 plus 7 screen contract', () => {
     expect(modal).toContain('${D}+${D} не равно ${D2}: друг получил свои ${D} ${pluralDaysRu(D)} отдельно.');
     expect(share).toContain('Установи приложение, введи мой код и пройди один урок полностью');
     expect(share).toContain('мы оба получим по 7 дней полного доступа');
+  });
+
+  it('hides the welcome code-entry CTA after the code has already been applied', () => {
+    const welcomeState = read('app/referral_welcome_state.ts');
+    const welcomeHost = read('components/ReferralWelcomeHost.tsx');
+
+    expect(welcomeState).toContain("needsCodeEntry: !applied && !!pending && pendingSource !== 'manual_code'");
+    expect(welcomeHost).toContain('welcomeDecision?.needsCodeEntry');
+    expect(welcomeHost).toContain('testID="referral-welcome-code"');
+  });
+
+  it('shows the invited user display name before falling back to a technical id', () => {
+    const cloud = read('app/referral_cloud.ts');
+    const screen = read('app/referrals.tsx');
+    const server = read('functions/src/referral.ts');
+
+    expect(cloud).toContain('refereeName?: string');
+    expect(server).toContain('refereeName');
+    expect(server).toContain('referralDisplayNameFromUserData');
+    expect(screen).toContain('function inviteDisplayName');
+    expect(screen).toContain('invite.refereeName');
+    expect(screen).toContain('{displayName}');
   });
 });

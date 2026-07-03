@@ -53,6 +53,9 @@ export type AnalyticsEvent =
   | 'ai_dialog_translate_error'
   | 'ai_dialog_outcome'
   | 'ai_dialog_retry_scenario'
+  // Финальный «разбор полётов» диалога (premiumDialogReview).
+  | 'ai_dialog_review_shown'
+  | 'ai_dialog_review_failed'
   | 'ai_dialog_locked_scenario_tapped'
   | 'ai_dialog_send_error'
   | 'ai_dialog_retry'
@@ -80,9 +83,12 @@ export type AnalyticsEvent =
   // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
   | 'onboarding_step_view'        // показан шаг онбординга (props.step)
   | 'onboarding_complete'
+  | 'onboarding_source_select'
   | 'onboarding_plan_goal_select'    // выбрана цель плана (props.goal)
   | 'onboarding_plan_level_select'   // выбран уровень (props.level)
   | 'onboarding_plan_minutes_select' // выбраны минуты/день (props.minutes)
+  | 'onboarding_plan_billing_select' // выбран тариф на onboarding paywall (props.plan)
+  | 'onboarding_trial_reminder_choice' // выбран режим напоминания о конце триала
   | 'onboarding_plan_phrase_done'    // собрал первую фразу (props.correct) — сигнал активации
   | 'onboarding_plan_paywall_view'
   | 'onboarding_plan_trial_cta'   // нажата CTA триала/подписки в онбординге

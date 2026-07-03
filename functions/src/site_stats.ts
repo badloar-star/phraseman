@@ -151,9 +151,27 @@ export const siteStatsTrack = onRequest(
       return;
     }
 
-    const type = String(body.type ?? '');
-    const field = EVENT_FIELDS[type];
-    if (!field) {
+    const rawEvents = Array.isArray(body.events) ? body.events.slice(0, 8) : [body];
+    const counts: Record<string, number> = {};
+    for (const event of rawEvents) {
+      if (!event || typeof event !== 'object' || Array.isArray(event)) {
+        res.status(400).json({ ok: false, error: 'invalid_event' });
+        return;
+      }
+      const row = event as Record<string, unknown>;
+      const type = String(row.type ?? '');
+      const field = EVENT_FIELDS[type];
+      if (!field) {
+        res.status(400).json({ ok: false, error: 'invalid_type' });
+        return;
+      }
+      counts[field] = (counts[field] || 0) + 1;
+      if (type === 'view') {
+        const bucket = pageBucket(row.page);
+        counts[`views_${bucket}`] = (counts[`views_${bucket}`] || 0) + 1;
+      }
+    }
+    if (Object.keys(counts).length === 0) {
       res.status(400).json({ ok: false, error: 'invalid_type' });
       return;
     }
@@ -178,14 +196,12 @@ export const siteStatsTrack = onRequest(
 
     const now = new Date();
     const dayKey = utcDayKey(now);
-    const bucket = pageBucket(body.page);
 
     const inc: Record<string, unknown> = {
-      [field]: FieldValue.increment(1),
       updatedAt: FieldValue.serverTimestamp(),
     };
-    if (type === 'view') {
-      inc[`views_${bucket}`] = FieldValue.increment(1);
+    for (const [field, count] of Object.entries(counts)) {
+      inc[field] = FieldValue.increment(count);
     }
 
     try {

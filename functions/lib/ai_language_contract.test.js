@@ -16,9 +16,11 @@ describe('ai_language_contract', () => {
         expect((0, ai_language_contract_1.resolveAiOutputLang)('pt-BR', 'explain')).toBe('pt-BR');
         expect((0, ai_language_contract_1.resolveAiOutputLang)('PT-br', 'explain')).toBe('pt-BR');
         expect((0, ai_language_contract_1.resolveAiOutputLang)('uk', 'weekly_review')).toBe('uk');
+        expect((0, ai_language_contract_1.resolveAiOutputLang)('tr', 'help_board')).toBe('tr');
     });
     it('fails closed for unsupported output languages', () => {
         expect(() => (0, ai_language_contract_1.resolveAiOutputLang)('xx', 'explain')).toThrow('explain_unsupported_language');
+        expect(() => (0, ai_language_contract_1.resolveAiOutputLang)('xx', 'help_board')).toThrow('help_board_unsupported_language');
     });
     it('preserves French study target separately from interface language', () => {
         expect((0, ai_language_contract_1.resolveStudyTarget)('fr')).toBe('fr');

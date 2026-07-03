@@ -65,6 +65,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useScreen } from '../hooks/use-screen';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import {
@@ -107,6 +108,8 @@ const CUE_PAGER_PAGE_W = SCREEN_W - 32;
 const REVIEW_BURN_HINT_SHOWN_KEY = 'review_burn_hint_shown_v1';
 const safeReviewEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+const makeReviewSessionId = (): string =>
+  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 
 const REVIEW_TRANSLATION_UNAVAILABLE_HINT: Record<PlannedInterfaceLang, string> = {
   'pt-BR': 'Tradução ainda indisponível para esta frase',
@@ -648,6 +651,7 @@ export default function ReviewScreen() {
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
   const { flashKey, flash } = useWordFlash();
+  const { bottomInset } = useScreen();
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
   const params = useLocalSearchParams<{
     trainerMode?: string;
@@ -751,6 +755,7 @@ export default function ReviewScreen() {
   const cardStartTime = useRef<number>(0);                      // когда была загружена карточка
   const checkingRef   = useRef(false);                          // защита от двойного вызова checkAnswer
   const userNameRef   = useRef<string | null>(null);             // кэш имени пользователя
+  const reviewSessionIdRef = useRef(makeReviewSessionId());
   const recallSessionTracked = useRef(false);                   // recall_session засчитывается один раз за сессию
   const cuePagerRef = useRef<ScrollView | null>(null);
   /** После свайпа пользователем — не дёргаем scrollTo из useEffect (уже на месте). */
@@ -999,25 +1004,24 @@ export default function ReviewScreen() {
     if (ok) {
       const elapsed = Date.now() - cardStartTime.current;
       if (elapsed <= 20_000) setCanBurn(true);
-      if (userNameRef.current) {
-        registerXP(5, 'review_answer', userNameRef.current, lang, item.lessonId, {
-          eventId: [
-            'review',
-            safeReviewEventPart(studyTarget),
-            String(item.lessonId),
-            safeReviewEventPart(index),
-            safeReviewEventPart(englishRecallSurface(item.phrase), 50),
-          ].join(':'),
-          payload: {
-            studyTarget,
-            lessonId: item.lessonId,
-            phrase: englishRecallSurface(item.phrase),
-            mode,
-          },
-        }).then(result => {
-          setTotalXP(prev => prev + result.finalDelta);
-        }).catch(() => { setTotalXP(prev => prev + 5); });
-      }
+      registerXP(5, 'review_answer', userNameRef.current || '', lang, item.lessonId, {
+        eventId: [
+          'review',
+          safeReviewEventPart(studyTarget),
+          safeReviewEventPart(reviewSessionIdRef.current, 32),
+          String(item.lessonId),
+          safeReviewEventPart(index),
+          safeReviewEventPart(englishRecallSurface(item.phrase), 50),
+        ].join(':'),
+        payload: {
+          studyTarget,
+          lessonId: item.lessonId,
+          phrase: englishRecallSurface(item.phrase),
+          mode,
+        },
+      }).then(result => {
+        setTotalXP(prev => prev + result.finalDelta);
+      }).catch(() => { setTotalXP(prev => prev + 5); });
       updateMultipleTaskProgress(
         [{ type: 'recall_answers', increment: 1 }],
         { studyTarget },
@@ -1541,7 +1545,7 @@ export default function ReviewScreen() {
       </View>
 
       <BouncyScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: isPlanPracticeTask ? 6 : 32 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: (isPlanPracticeTask ? 6 : 32) + bottomInset }}
         decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!isPlanPracticeTask}
@@ -1814,7 +1818,7 @@ export default function ReviewScreen() {
 
       {/* Кнопки "Далее" и "Сжечь" — появляются после ответа */}
       {status === 'result' && (
-        <View style={{ paddingHorizontal: 16, paddingBottom: isPlanPracticeTask ? 10 : 16, paddingTop: isPlanPracticeTask ? 4 : 8, gap: isPlanPracticeTask ? 7 : 10 }}>
+        <View style={{ paddingHorizontal: 16, paddingBottom: (isPlanPracticeTask ? 10 : 16) + bottomInset, paddingTop: isPlanPracticeTask ? 4 : 8, gap: isPlanPracticeTask ? 7 : 10 }}>
           {/* Кнопка "Сжечь" — только если правильно за 20 секунд */}
           {canBurn && (
             <>

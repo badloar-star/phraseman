@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark vs friendly onboarding</title>
+  <style>
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0d0e12;
+      color: #f8f5ef;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 30px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 95, .18), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(113, 92, 255, .16), transparent 28rem),
+        #0d0e12;
+    }
+    .page { max-width: 1400px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; font-size: 34px; line-height: 1.08; letter-spacing: 0; }
+    .lead { margin: 0; max-width: 900px; color: #c9c2b7; font-size: 17px; line-height: 1.5; }
+    .research {
+      margin: 24px 0 26px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .research div {
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.11);
+      color: #efe8dc;
+      min-height: 116px;
+    }
+    .research b { display: block; margin-bottom: 7px; color: #fff9f0; }
+    .research span { color: #c7c0b7; line-height: 1.4; font-size: 13px; }
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .option {
+      cursor: pointer;
+      border: 3px solid rgba(255,255,255,.08);
+      border-radius: 30px;
+      padding: 18px;
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 22px 56px rgba(0,0,0,.32);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .option:hover { transform: translateY(-3px); }
+    .option.selected {
+      border-color: #ff7a70;
+      box-shadow: 0 24px 60px rgba(255, 122, 112, .2);
+    }
+    .option h2 { margin: 2px 0 8px; font-size: 22px; letter-spacing: 0; }
+    .option p { margin: 0 0 16px; color: #cbc4ba; line-height: 1.45; font-size: 14px; }
+    .phone {
+      width: min(100%, 330px);
+      min-height: 600px;
+      margin: 0 auto 16px;
+      border-radius: 34px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 4px solid rgba(255,255,255,.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 24px 40px rgba(0,0,0,.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: calc(50% - 34px);
+      width: 68px;
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.28);
+      z-index: 2;
+    }
+    .phone > * { position: relative; z-index: 1; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 16px; }
+    .chip {
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 11px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .title {
+      margin-top: 34px;
+      font-size: 29px;
+      line-height: 1.04;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+    .copy {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+    .card {
+      margin-top: 18px;
+      border-radius: 24px;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .card b { display: block; margin-bottom: 9px; }
+    .task {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-radius: 16px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 850;
+      margin-top: 8px;
+    }
+    .mark { width: 24px; height: 24px; border-radius: 9px; flex: 0 0 auto; }
+    .cta {
+      width: 100%;
+      height: 58px;
+      border: 0;
+      border-radius: 19px;
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+    .tags {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+    .tag {
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.35;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .tag b { color: inherit; }
+    .deep .phone {
+      background: linear-gradient(180deg, #131116 0%, #21131b 54%, #111216 100%);
+    }
+    .deep .chip { background: rgba(255,255,255,.08); color: #f7ede7; }
+    .deep .title { color: #fff8f1; }
+    .deep .copy { color: #cfc4bc; }
+    .deep .card { background: rgba(255,255,255,.075); }
+    .deep .task { background: rgba(255,255,255,.08); color: #fff7ee; }
+    .deep .mark { background: #ff7468; }
+    .deep .cta { background: #ff7468; color: #1e1010; box-shadow: 0 12px 0 rgba(255,116,104,.23); }
+    .deep .tag { color: #d8d1c8; background: rgba(255,255,255,.055); }
+    .hybrid .phone {
+      background:
+        radial-gradient(circle at top right, rgba(255, 117, 104, .22), transparent 15rem),
+        linear-gradient(180deg, #111217 0%, #171720 48%, #0f1116 100%);
+    }
+    .hybrid .chip { background: #fff2e7; color: #2f1914; border-color: transparent; }
+    .hybrid .title { color: #fff8ef; }
+    .hybrid .copy { color: #d7cfc8; }
+    .hybrid .card { background: #fff6ea; color: #261a14; box-shadow: 0 14px 0 rgba(255, 246, 234, .12); }
+    .hybrid .task { background: #ffe7dc; color: #2b1512; }
+    .hybrid .mark { background: #ff7468; }
+    .hybrid .cta { background: #25d47d; color: #07110a; box-shadow: 0 12px 0 rgba(37,212,125,.22); }
+    .hybrid .tag { color: #e6ddd3; background: rgba(255,255,255,.06); }
+    .light .phone {
+      background: linear-gradient(180deg, #fff1ec 0%, #ffe1f1 56%, #f5efff 100%);
+      border-color: rgba(255,255,255,.86);
+    }
+    .light .phone::before { background: rgba(37, 24, 31, .25); }
+    .light .chip { background: rgba(255,255,255,.72); color: #3d202c; border-color: rgba(70,30,40,.08); }
+    .light .title { color: #411a2b; }
+    .light .copy { color: #654755; }
+    .light .card { background: rgba(255,255,255,.74); color: #351623; box-shadow: 0 13px 24px rgba(87, 35, 53, .11); }
+    .light .task { background: rgba(255,255,255,.74); color: #351623; }
+    .light .mark { background: #ef4c87; }
+    .light .cta { background: #ff7468; color: #1f0f0c; box-shadow: 0 12px 0 rgba(112, 42, 34, .18); }
+    .light .tag { color: #34242b; background: rgba(255,255,255,.08); }
+    .recommend {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 11px;
+      border-radius: 99px;
+      background: #25d47d;
+      color: #07110a;
+      font-weight: 950;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 1120px) {
+      .options { grid-template-columns: 1fr; }
+      .research { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Темный или светлый онбординг?</h1>
+    <p class="lead">Короткий вывод по ресерчу: темный не делает онбординг автоматически лучше, но если приложение живет в темной теме, онбординг должен сохранять темную оболочку. Иначе первый запуск выглядит как чужой продукт.</p>
+
+    <section class="research">
+      <div><b>NN/g: dark mode не магия</b><span>Пользователи любят темный режим, но базовая usability важнее. Темный режим сам по себе не чинит понятность.</span></div>
+      <div><b>Читаемость</b><span>Для людей с обычным зрением светлая полярность часто быстрее для чтения. В темном режиме нужны крупнее шрифты и сильнее разделение поверхностей.</span></div>
+      <div><b>Ожидание системы</b><span>Если человек в темной теме, он ожидает много темного и в приложении. Резкий белый старт может казаться чужим.</span></div>
+      <div><b>Material/Apple</b><span>Темный режим должен быть не pure black, а система темных поверхностей, контраста, elevation и адаптивных цветов.</span></div>
+    </section>
+
+    <section class="options">
+      <article class="option deep" data-choice="deep-dark" onclick="toggleSelect(this)">
+        <h2>A. Deep Dark</h2>
+        <p>Максимальная связность с текущим приложением. Дружелюбность добираем формой кнопок, теплыми акцентами и микротекстом.</p>
+        <div class="phone">
+          <div>
+            <div class="chips"><span class="chip">English</span><span class="chip">сериалы</span></div>
+            <div class="title">Вот фраза из твоего первого дня</div>
+            <div class="copy">Сначала одна живая вещь. Потом план поведет дальше.</div>
+            <div class="card">
+              <b>Day 1</b>
+              <div class="task"><span class="mark"></span>What are you up to?</div>
+              <div class="task"><span class="mark"></span>Где это звучит естественно?</div>
+            </div>
+          </div>
+          <button class="cta">Хочу такой план</button>
+        </div>
+        <div class="tags">
+          <div class="tag"><b>Плюс:</b> не ломает темный продукт.</div>
+          <div class="tag"><b>Минус:</b> меньше “первого света”, может быть тяжеловато.</div>
+        </div>
+      </article>
+
+      <article class="option hybrid selected" data-choice="hybrid-dark-friendly" onclick="toggleSelect(this)">
+        <span class="recommend">рекомендую</span>
+        <h2>B. Hybrid Dark Friendly</h2>
+        <p>Темная сцена как в приложении, но карточки и CTA мягкие, теплые, почти “Berry Studio”. Это лучший баланс доверия, дружелюбности и continuity.</p>
+        <div class="phone">
+          <div>
+            <div class="chips"><span class="chip">Français</span><span class="chip">7 минут</span></div>
+            <div class="title">Сегодня начнем с живой фразы</div>
+            <div class="copy">Не зубрежка. Маленький маршрут, который помещается в день.</div>
+            <div class="card">
+              <b>Твой первый шаг</b>
+              <div class="task"><span class="mark"></span>Je voudrais un café.</div>
+              <div class="task"><span class="mark"></span>Слушаем, повторяем, проверяем</div>
+            </div>
+          </div>
+          <button class="cta">Открыть мой план</button>
+        </div>
+        <div class="tags">
+          <div class="tag"><b>Плюс:</b> темный продукт, но дружелюбный вход.</div>
+          <div class="tag"><b>Минус:</b> нужно аккуратно держать контраст.</div>
+        </div>
+      </article>
+
+      <article class="option light" data-choice="light-friendly" onclick="toggleSelect(this)">
+        <h2>C. Light Friendly</h2>
+        <p>Самый воздушный и мягкий, но хуже стыкуется с темным приложением. Подходит только если потом весь home тоже станет светлее.</p>
+        <div class="phone">
+          <div>
+            <div class="chips"><span class="chip">A1</span><span class="chip">кино</span></div>
+            <div class="title">Зачем тебе английский?</div>
+            <div class="copy">Выбери цель, а я соберу маршрут без лишней теории.</div>
+            <div class="card">
+              <b>Цели</b>
+              <div class="task"><span class="mark"></span>Сериалы и фильмы</div>
+              <div class="task"><span class="mark"></span>Обычная жизнь</div>
+            </div>
+          </div>
+          <button class="cta">Дальше</button>
+        </div>
+        <div class="tags">
+          <div class="tag"><b>Плюс:</b> легко, ясно, friendly.</div>
+          <div class="tag"><b>Минус:</b> выглядит как другой продукт после темного app shell.</div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

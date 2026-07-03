@@ -41,8 +41,8 @@ describe('personal plan engine contracts', () => {
       'plan_missing_word',
       'plan_choose_natural_phrase',
       'plan_phrase_recall',
-      'plan_quiz',
     ]));
+    expect(PLAN_EXERCISE_TYPES).not.toContain('plan_quiz');
   });
 
   it('allows progress only from correct or completed eligible attempts', () => {
@@ -133,14 +133,13 @@ describe('personal plan engine contracts', () => {
     const blocks = planExerciseBlocksForDay(gavan, day1);
 
     expect(blocks.map((block) => block.type)).toEqual([
-      'linked_lesson_slice',
       'plan_phrase_build',
       'plan_missing_word',
+      'plan_phrase_recall',
+      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_pronunciation_repeat',
-      'plan_quiz',
     ]);
     expect(blocks.filter((block) => block.type !== 'plan_pronunciation_repeat').every((block) => block.progressPolicy === 'correct_only')).toBe(true);
     expect(blocks.find((block) => block.type === 'plan_pronunciation_repeat')?.progressPolicy).toBe('completion_only');

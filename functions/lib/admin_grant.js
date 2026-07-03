@@ -49,6 +49,7 @@ exports.adminGrantReward = void 0;
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const ALLOWED_TYPES = new Set([
     'shards',
@@ -63,7 +64,7 @@ const SHARDS_MAX = 10000;
 function todayStrUtc() {
     return new Date().toISOString().split('T')[0];
 }
-exports.adminGrantReward = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.adminGrantReward = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }

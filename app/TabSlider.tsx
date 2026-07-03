@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { View, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
@@ -33,7 +33,16 @@ export default function TabSlider({
   children,
   swipeEnabled = true,
 }: Props) {
-  const { width: W } = useScreen();
+  const { width: screenW } = useScreen();
+  const [layoutWidth, setLayoutWidth] = useState(screenW);
+  const W = layoutWidth > 0 ? layoutWidth : screenW;
+
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    const nextWidth = Math.round(event.nativeEvent.layout.width);
+    if (nextWidth > 0) {
+      setLayoutWidth((prev) => (prev === nextWidth ? prev : nextWidth));
+    }
+  }, []);
 
   // All shared values run on the UI thread — no JS overhead during gesture
   const translateX  = useSharedValue(-activeIndex * W);
@@ -148,7 +157,7 @@ export default function TabSlider({
 
   return (
     <GestureDetector gesture={pan}>
-      <View style={s.outer}>
+      <View style={s.outer} onLayout={handleLayout}>
         <Animated.View style={[s.row, { width: W * tabs.length }, animStyle]}>
           {tabs.map((child, i) => (
             <View key={i} style={[s.tab, { width: W }]}>

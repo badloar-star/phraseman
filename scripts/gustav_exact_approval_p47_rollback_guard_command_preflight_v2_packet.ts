@@ -60,6 +60,16 @@ type EvaluationInput = {
   p47RuntimeCacheContracts: number;
   p47RuntimeCacheRollbackContracts: number;
   p47ServerManifestEntries: number;
+  p47ProductionServerManifestPublishGateReady: boolean;
+  p47ProductionServerManifestPublishGateEntries: number;
+  p47FrenchServerPackUploadEvidenceReady: boolean;
+  p47FrenchServerPackUploadEvidenceObjects: number;
+  p47FrenchServerPackUploadExecutionGateReady: boolean;
+  p47FrenchServerPackUploadExecutionGateDryRun: boolean;
+  p47FrenchServerPackUploadExecutionStarted: boolean;
+  p47FrenchServerObjectRemoteVerifyReady: boolean;
+  p47FrenchServerObjectRemoteVerifyFound: number;
+  p47FrenchServerObjectRemoteVerifyHashChecked: number;
   p47LanguagePromptContracts: number;
   p47LanguagePromptEntrypointsExpected: number;
   p47StorageTargetKeyDomains: number;
@@ -108,6 +118,16 @@ type Evaluation = {
   p47RuntimeCacheContracts: number;
   p47RuntimeCacheRollbackContracts: number;
   p47ServerManifestEntries: number;
+  p47ProductionServerManifestPublishGateReady: boolean;
+  p47ProductionServerManifestPublishGateEntries: number;
+  p47FrenchServerPackUploadEvidenceReady: boolean;
+  p47FrenchServerPackUploadEvidenceObjects: number;
+  p47FrenchServerPackUploadExecutionGateReady: boolean;
+  p47FrenchServerPackUploadExecutionGateDryRun: boolean;
+  p47FrenchServerPackUploadExecutionStarted: boolean;
+  p47FrenchServerObjectRemoteVerifyReady: boolean;
+  p47FrenchServerObjectRemoteVerifyFound: number;
+  p47FrenchServerObjectRemoteVerifyHashChecked: number;
   p47LanguagePromptContracts: number;
   p47LanguagePromptEntrypointsExpected: number;
   p47StorageTargetKeyDomains: number;
@@ -345,6 +365,16 @@ function p47GuardIntegrityReady(input: EvaluationInput): boolean {
     input.p47RuntimeCacheContracts === 12 &&
     input.p47RuntimeCacheRollbackContracts === 12 &&
     input.p47ServerManifestEntries === 12 &&
+    input.p47ProductionServerManifestPublishGateReady &&
+    input.p47ProductionServerManifestPublishGateEntries === 12 &&
+    input.p47FrenchServerPackUploadEvidenceReady &&
+    input.p47FrenchServerPackUploadEvidenceObjects === 36 &&
+    input.p47FrenchServerPackUploadExecutionGateReady &&
+    input.p47FrenchServerPackUploadExecutionGateDryRun &&
+    !input.p47FrenchServerPackUploadExecutionStarted &&
+    input.p47FrenchServerObjectRemoteVerifyReady &&
+    input.p47FrenchServerObjectRemoteVerifyFound === 36 &&
+    input.p47FrenchServerObjectRemoteVerifyHashChecked === 36 &&
     input.p47LanguagePromptContracts > 0 &&
     input.p47LanguagePromptContracts === input.p47LanguagePromptEntrypointsExpected &&
     input.p47StorageTargetKeyDomains >= 14 &&
@@ -420,7 +450,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     addFinding(findings, 'blocker', 'P47_P46_READY_PROBE_MISSING', 'P47 must prove p46_ready_guard_ready advances to post_apply_rollback_guard_contract_ready.');
   }
   if (!p47GuardIntegrityReady(input)) {
-    addFinding(findings, 'blocker', 'P47_ROLLBACK_GUARD_INTEGRITY_NOT_READY', 'P47 must prove runtime cache rollback, server manifest, prompt isolation, storage/admin and readiness guard coverage.');
+    addFinding(findings, 'blocker', 'P47_ROLLBACK_GUARD_INTEGRITY_NOT_READY', 'P47 must prove runtime cache rollback, server manifest, upload evidence, remote object verification, prompt isolation, storage/admin and readiness guard coverage.');
   }
   if (!input.p61SimulatedPostP46P47WouldOpenRollbackGuard) {
     addFinding(findings, 'blocker', 'P61_POST_P46_SIMULATION_NOT_OPEN', 'P61 must prove that a simulated transaction-ready P46 opens only the P47 no-write guard path.');
@@ -474,6 +504,16 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       p47RuntimeCacheContracts: input.p47RuntimeCacheContracts,
       p47RuntimeCacheRollbackContracts: input.p47RuntimeCacheRollbackContracts,
       p47ServerManifestEntries: input.p47ServerManifestEntries,
+      p47ProductionServerManifestPublishGateReady: input.p47ProductionServerManifestPublishGateReady,
+      p47ProductionServerManifestPublishGateEntries: input.p47ProductionServerManifestPublishGateEntries,
+      p47FrenchServerPackUploadEvidenceReady: input.p47FrenchServerPackUploadEvidenceReady,
+      p47FrenchServerPackUploadEvidenceObjects: input.p47FrenchServerPackUploadEvidenceObjects,
+      p47FrenchServerPackUploadExecutionGateReady: input.p47FrenchServerPackUploadExecutionGateReady,
+      p47FrenchServerPackUploadExecutionGateDryRun: input.p47FrenchServerPackUploadExecutionGateDryRun,
+      p47FrenchServerPackUploadExecutionStarted: input.p47FrenchServerPackUploadExecutionStarted,
+      p47FrenchServerObjectRemoteVerifyReady: input.p47FrenchServerObjectRemoteVerifyReady,
+      p47FrenchServerObjectRemoteVerifyFound: input.p47FrenchServerObjectRemoteVerifyFound,
+      p47FrenchServerObjectRemoteVerifyHashChecked: input.p47FrenchServerObjectRemoteVerifyHashChecked,
       p47LanguagePromptContracts: input.p47LanguagePromptContracts,
       p47LanguagePromptEntrypointsExpected: input.p47LanguagePromptEntrypointsExpected,
       p47StorageTargetKeyDomains: input.p47StorageTargetKeyDomains,
@@ -516,10 +556,95 @@ function makeP46Ready(input: EvaluationInput): void {
   input.p47Status = 'PASS';
   input.p47GuardState = 'post_apply_rollback_guard_contract_ready';
   input.p47ReadyForPostApplyRollbackGuard = true;
+  input.p47Blockers = 0;
+  input.p47ProductionServerManifestPublishGateReady = true;
+  input.p47ProductionServerManifestPublishGateEntries = 12;
+  input.p47FrenchServerPackUploadEvidenceReady = true;
+  input.p47FrenchServerPackUploadEvidenceObjects = 36;
+  input.p47FrenchServerPackUploadExecutionGateReady = true;
+  input.p47FrenchServerPackUploadExecutionGateDryRun = true;
+  input.p47FrenchServerPackUploadExecutionStarted = false;
+  input.p47FrenchServerObjectRemoteVerifyReady = true;
+  input.p47FrenchServerObjectRemoteVerifyFound = 36;
+  input.p47FrenchServerObjectRemoteVerifyHashChecked = 36;
+}
+
+function makeProbeDependenciesReady(input: EvaluationInput): void {
+  input.p61Status = 'PASS';
+  input.p61Ready = true;
+  input.p61State = 'p46_to_p47_handoff_simulation_ready_waiting_for_p46_apply_transaction_contract';
+  input.p61FreshAfterP46 = true;
+  input.p61FreshAfterP47 = true;
+  input.p61P60Ready = true;
+  input.p61CurrentHandoffWouldOpenRollbackGuard = false;
+  input.p61SimulatedPostP46P47WouldOpenRollbackGuard = true;
+  input.p61CommandExecutedByThisScript = false;
+  input.p61ReadyForApply = false;
+  input.p61MayModifyProductionAppFiles = false;
+  input.p61ActivationApproved = false;
+  input.p61ServerUploadAllowed = false;
+  input.p61FirebaseUploadAllowed = false;
+  input.p61DownloadablePacksPublished = false;
+  input.p61RuntimeDownloadsEnabled = false;
+  input.p61StorageMigrationAllowed = false;
+  input.p61CloudSyncMigrationAllowed = false;
+  input.p61FixtureProbes = Math.max(input.p61FixtureProbes, 1);
+  input.p61FixtureProbesPassed = input.p61FixtureProbes;
+  input.p46Status = 'HOLD';
+  input.p46TransactionState = 'waiting_for_activation_sequence_preflight';
+  input.p46TargetLocale = 'fr';
+  input.p46ReadyForProductionApplyTransaction = false;
+  input.p46ReadyForApply = false;
+  input.p46MayModifyProductionAppFiles = false;
+  input.p46ActivationApproved = false;
+  input.p47Status = 'HOLD';
+  input.p47GuardState = 'waiting_for_apply_transaction_contract';
+  input.p47ReadyForPostApplyRollbackGuard = false;
+  input.p47RuntimeCacheContracts = 12;
+  input.p47RuntimeCacheRollbackContracts = 12;
+  input.p47ServerManifestEntries = 12;
+  input.p47ProductionServerManifestPublishGateReady = true;
+  input.p47ProductionServerManifestPublishGateEntries = 12;
+  input.p47FrenchServerPackUploadEvidenceReady = true;
+  input.p47FrenchServerPackUploadEvidenceObjects = 36;
+  input.p47FrenchServerPackUploadExecutionGateReady = true;
+  input.p47FrenchServerPackUploadExecutionGateDryRun = true;
+  input.p47FrenchServerPackUploadExecutionStarted = false;
+  input.p47FrenchServerObjectRemoteVerifyReady = true;
+  input.p47FrenchServerObjectRemoteVerifyFound = 36;
+  input.p47FrenchServerObjectRemoteVerifyHashChecked = 36;
+  input.p47LanguagePromptContracts = Math.max(input.p47LanguagePromptContracts, input.p47LanguagePromptEntrypointsExpected, 1);
+  input.p47LanguagePromptEntrypointsExpected = input.p47LanguagePromptContracts;
+  input.p47StorageTargetKeyDomains = Math.max(input.p47StorageTargetKeyDomains, 14);
+  input.p47StorageFrenchSyncFactoryRefs = Math.max(input.p47StorageFrenchSyncFactoryRefs, 1);
+  input.p47ReadinessGenerationBlockers = 0;
+  input.p47ReadinessApplyBlockers = Math.max(input.p47ReadinessApplyBlockers, 1);
+  input.p47PostApplyGuardSteps = Math.max(input.p47PostApplyGuardSteps, 4);
+  input.p47RollbackGuardSteps = Math.max(input.p47RollbackGuardSteps, 3);
+  input.p47ProbePassed = true;
+  input.p47Blockers = 0;
+  input.p47ReadyForApply = false;
+  input.p47MayModifyProductionAppFiles = false;
+  input.p47ActivationApproved = false;
+  input.p47ProductionWritesAllowed = false;
+  input.p47ServerUploadAllowed = false;
+  input.p47FirebaseUploadAllowed = false;
+  input.p47DownloadablePacksPublished = false;
+  input.p47RuntimeDownloadsEnabled = false;
+  input.p47StorageMigrationAllowed = false;
+  input.p47CloudSyncMigrationAllowed = false;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.commandTargetsFr = true;
+  input.commandRunPathMatchesCurrentRun = true;
+  input.commandWouldExecuteByThisScript = false;
 }
 
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }> = [
+  const probeBase = clone(base);
+  makeProbeDependenciesReady(probeBase);
+  const tests: { id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }[] = [
     { id: 'canonical_waits_for_p46_apply_transaction_contract', expectedState: 'p47_rollback_guard_command_preflight_ready_waiting_for_p46_apply_transaction_contract', mutate: () => undefined },
     { id: 'post_p46_fixture_allows_p47_guard_command', expectedState: 'p47_rollback_guard_command_preflight_ready_for_guard_command', mutate: makeP46Ready },
     { id: 'stale_p61_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p61FreshAfterP47 = false; } },
@@ -533,6 +658,8 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'runtime_cache_contract_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47RuntimeCacheContracts = 11; } },
     { id: 'runtime_cache_rollback_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47RuntimeCacheRollbackContracts = 11; } },
     { id: 'server_manifest_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47ServerManifestEntries = 11; } },
+    { id: 'p47_remote_verify_hash_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47FrenchServerObjectRemoteVerifyHashChecked = 35; } },
+    { id: 'p47_upload_execution_started_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47FrenchServerPackUploadExecutionStarted = true; } },
     { id: 'language_prompt_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47LanguagePromptContracts = 1; } },
     { id: 'post_apply_step_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47PostApplyGuardSteps = 1; } },
     { id: 'rollback_step_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p47RollbackGuardSteps = 1; } },
@@ -545,7 +672,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'command_execution_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.commandWouldExecuteByThisScript = true; } },
   ];
   return tests.map((test) => {
-    const input = clone(base);
+    const input = clone(probeBase);
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -573,6 +700,8 @@ function renderMarkdown(report: Report): string {
     `- P46 status/state/transaction: ${report.summary.p46Status}/${report.summary.p46TransactionState}/${report.summary.p46ReadyForProductionApplyTransaction ? 'yes' : 'no'}`,
     `- P47 status/state/guard: ${report.summary.p47Status}/${report.summary.p47GuardState}/${report.summary.p47ReadyForPostApplyRollbackGuard ? 'yes' : 'no'}`,
     `- P47 runtime/server/prompts/storage: ${report.summary.p47RuntimeCacheContracts}/${report.summary.p47RuntimeCacheRollbackContracts}/${report.summary.p47ServerManifestEntries}/${report.summary.p47LanguagePromptContracts}/${report.summary.p47StorageTargetKeyDomains}`,
+    `- P47 server publish/upload/remote: ${report.summary.p47ProductionServerManifestPublishGateReady ? 'yes' : 'no'}/${report.summary.p47FrenchServerPackUploadEvidenceReady ? 'yes' : 'no'}/${report.summary.p47FrenchServerPackUploadExecutionGateReady ? 'yes' : 'no'}/${report.summary.p47FrenchServerObjectRemoteVerifyReady ? 'yes' : 'no'}`,
+    `- P47 remote found/hash checked: ${report.summary.p47FrenchServerObjectRemoteVerifyFound}/${report.summary.p47FrenchServerObjectRemoteVerifyHashChecked}`,
     `- P47 readiness/post/rollback/probe: ${report.summary.p47ReadinessApplyBlockers}/${report.summary.p47PostApplyGuardSteps}/${report.summary.p47RollbackGuardSteps}/${report.summary.p47ProbePassed ? 'yes' : 'no'}`,
     `- Command target/run/allowed now/after-P46/executed: ${report.summary.commandTargetsFr ? 'fr' : 'wrong'}/${report.summary.commandRunPathMatchesCurrentRun ? 'current' : 'wrong'}/${report.summary.p47RollbackGuardCommandAllowedNow ? 'yes' : 'no'}/${report.summary.p47RollbackGuardCommandAllowedAfterP46Contract ? 'yes' : 'no'}/${report.summary.p47RollbackGuardCommandWouldExecuteByThisScript ? 'yes' : 'no'}`,
     `- activationApproved/readyForApply/mayModify: ${report.summary.activationApproved ? 'yes' : 'no'}/${report.summary.readyForApply ? 'yes' : 'no'}/${report.summary.mayModifyProductionAppFiles ? 'yes' : 'no'}`,
@@ -692,6 +821,16 @@ function main(): void {
     p47RuntimeCacheContracts: n(p47Summary, 'runtimeCacheContracts'),
     p47RuntimeCacheRollbackContracts: n(p47Summary, 'runtimeCacheRollbackContracts'),
     p47ServerManifestEntries: n(p47Summary, 'serverManifestEntries'),
+    p47ProductionServerManifestPublishGateReady: b(p47Summary, 'productionServerManifestPublishGateReady'),
+    p47ProductionServerManifestPublishGateEntries: n(p47Summary, 'productionServerManifestPublishGateEntries'),
+    p47FrenchServerPackUploadEvidenceReady: b(p47Summary, 'frenchServerPackUploadEvidenceReady'),
+    p47FrenchServerPackUploadEvidenceObjects: n(p47Summary, 'frenchServerPackUploadEvidenceObjects'),
+    p47FrenchServerPackUploadExecutionGateReady: b(p47Summary, 'frenchServerPackUploadExecutionGateReady'),
+    p47FrenchServerPackUploadExecutionGateDryRun: b(p47Summary, 'frenchServerPackUploadExecutionGateDryRun'),
+    p47FrenchServerPackUploadExecutionStarted: b(p47Summary, 'frenchServerPackUploadExecutionStarted'),
+    p47FrenchServerObjectRemoteVerifyReady: b(p47Summary, 'frenchServerObjectRemoteVerifyReady'),
+    p47FrenchServerObjectRemoteVerifyFound: n(p47Summary, 'frenchServerObjectRemoteVerifyFound'),
+    p47FrenchServerObjectRemoteVerifyHashChecked: n(p47Summary, 'frenchServerObjectRemoteVerifyHashChecked'),
     p47LanguagePromptContracts: n(p47Summary, 'languagePromptContracts'),
     p47LanguagePromptEntrypointsExpected: n(p47Summary, 'languagePromptEntrypointsExpected'),
     p47StorageTargetKeyDomains: n(p47Summary, 'storageTargetKeyDomains'),

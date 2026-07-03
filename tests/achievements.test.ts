@@ -140,6 +140,19 @@ describe('achievements', () => {
     });
   });
 
+  it('updates the achievement reward modal before the claim promise finishes', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'achievements_screen.tsx'), 'utf8');
+    const modalStart = source.indexOf('function AchievementModal');
+    const modalEnd = source.indexOf('function AchievementsScreen');
+    const modalSource = source.slice(modalStart, modalEnd);
+    const optimisticIndex = modalSource.indexOf('onShardClaimed(achievement.id);');
+    const claimIndex = modalSource.indexOf('void claimAchievementShardReward(achievement.id)');
+    expect(optimisticIndex).toBeGreaterThan(0);
+    expect(claimIndex).toBeGreaterThan(optimisticIndex);
+    expect(modalSource).not.toContain('await claimAchievementShardReward');
+    expect(modalSource).not.toContain('disabled={claiming}');
+  });
+
   it('renders achievements screen as earned-only by default with a dev-only all rewards toggle', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');

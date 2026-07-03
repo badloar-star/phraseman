@@ -15,6 +15,7 @@ const doctorCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-businessLight.webp'),
 };
 
 const doctorLogos: ThemeAssetMap = {
@@ -25,6 +26,7 @@ const doctorLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-businessLight.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-aurora.webp'),
@@ -39,6 +41,7 @@ const bodyCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-businessLight.webp'),
 };
 
 const bodyLogos: ThemeAssetMap = {
@@ -49,6 +52,7 @@ const bodyLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-businessLight.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-aurora.webp'),
@@ -63,6 +67,7 @@ const shoppingCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-businessLight.webp'),
 };
 
 const shoppingLogos: ThemeAssetMap = {
@@ -73,6 +78,7 @@ const shoppingLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-businessLight.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-aurora.webp'),

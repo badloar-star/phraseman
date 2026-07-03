@@ -1,11 +1,12 @@
 import {
+  buildPromoVipPatch,
   decidePromoRedemption,
   normalizePromoCode,
   type PromoCodeDoc,
 } from './promo_codes';
 
 function code(over: Partial<PromoCodeDoc> = {}): PromoCodeDoc {
-  return { rewardDays: 7, enabled: true, maxRedemptions: 0, usedCount: 0, expiresAtMs: 0, ...over };
+  return { rewardDays: 7, rewardKind: 'days', enabled: true, maxRedemptions: 0, usedCount: 0, expiresAtMs: 0, ...over };
 }
 
 describe('normalizePromoCode', () => {
@@ -24,7 +25,17 @@ describe('decidePromoRedemption', () => {
 
   it('валидный код → ok с дням награды', () => {
     expect(decidePromoRedemption({ code: code({ rewardDays: 30 }), alreadyRedeemed: false, nowMs: now }))
-      .toEqual({ ok: true, rewardDays: 30 });
+      .toEqual({ ok: true, rewardDays: 30, rewardKind: 'days' });
+  });
+
+  it('глобальный флаг выключен → promo_disabled', () => {
+    expect(decidePromoRedemption({ code: code({ rewardDays: 30 }), alreadyRedeemed: false, nowMs: now, globallyEnabled: false }))
+      .toEqual({ ok: false, reason: 'promo_disabled' });
+  });
+
+  it('lifetime код → ok без дней, но с rewardKind lifetime', () => {
+    expect(decidePromoRedemption({ code: code({ rewardDays: 0, rewardKind: 'lifetime' }), alreadyRedeemed: false, nowMs: now }))
+      .toEqual({ ok: true, rewardDays: 0, rewardKind: 'lifetime' });
   });
 
   it('нет кода → not_found', () => {
@@ -64,5 +75,41 @@ describe('decidePromoRedemption', () => {
   it('приоритет проверок: disabled раньше лимита/срока', () => {
     expect(decidePromoRedemption({ code: code({ enabled: false, expiresAtMs: now - 1 }), alreadyRedeemed: true, nowMs: now }))
       .toEqual({ ok: false, reason: 'disabled' });
+  });
+});
+
+describe('buildPromoVipPatch', () => {
+  const dayMs = 24 * 60 * 60 * 1000;
+  const now = 1_700_000_000_000;
+
+  it('дневной промокод сразу включает Plus на выбранный срок', () => {
+    const patch = buildPromoVipPatch(undefined, now, 30, 'days', 'TEST30');
+
+    expect(patch).toMatchObject({
+      vip_active: 'true',
+      vip_plan: 'promo',
+      vip_from: String(now),
+      vip_until: String(now + 30 * dayMs),
+      vip_admin_override: 'true',
+      vip_admin_grant_at: String(now),
+      promo_vip_last_code: 'TEST30',
+    });
+  });
+
+  it('промокод докидывает дни к уже активному будущему Plus', () => {
+    const currentUntil = now + 10 * dayMs;
+    const patch = buildPromoVipPatch({ vip_until: String(currentUntil) }, now, 30, 'days', 'STACK30');
+
+    expect(patch.vip_plan).toBe('promo');
+    expect(patch.vip_until).toBe(String(currentUntil + 30 * dayMs));
+  });
+
+  it('lifetime промокод включает бессрочный Plus tier', () => {
+    const patch = buildPromoVipPatch(undefined, now, 0, 'lifetime', 'FOREVER');
+
+    expect(patch.vip_active).toBe('true');
+    expect(patch.vip_plan).toBe('promo_lifetime');
+    expect(patch.vip_until).toBe('0');
+    expect(patch.promo_vip_last_code).toBe('FOREVER');
   });
 });

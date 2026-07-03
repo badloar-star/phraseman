@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 type Severity = 'blocker' | 'warning' | 'info';
+type JsonObject = Record<string, unknown>;
 
 type Finding = {
   severity: Severity;
@@ -541,6 +542,25 @@ function main() {
   const p67GoalId = 'NEXT-PASS-P67-FINAL-PRODUCTION-READINESS-GAP-V2';
   const p68GoalId = 'NEXT-PASS-P68-EXACT-APPROVAL-SOURCE-HANDOFF-FIREWALL-V2';
   const p69GoalId = 'NEXT-PASS-P69-EXACT-APPROVAL-SOURCE-WAIT-TERMINAL-STATE-V2';
+  const remoteVerifyGoalId = 'NEXT-PASS-REMOTE-SERVER-OBJECT-VERIFY-V2';
+  const remoteVerifyPriorityMode = nextGoalId === remoteVerifyGoalId;
+  const productionClosed = (summary: JsonObject): boolean =>
+    !b(summary, 'readyForApply') &&
+    !b(summary, 'mayModifyProductionAppFiles') &&
+    !b(summary, 'activationApproved') &&
+    !b(summary, 'serverUploadAllowed') &&
+    !b(summary, 'firebaseUploadAllowed') &&
+    !b(summary, 'downloadablePacksPublished') &&
+    !b(summary, 'runtimeDownloadsEnabled') &&
+    !b(summary, 'storageMigrationAllowed') &&
+    !b(summary, 'cloudSyncMigrationAllowed');
+  const remoteVerifyHoldAccepted = (present: boolean, packet: JsonObject, summary: JsonObject): boolean =>
+    remoteVerifyPriorityMode &&
+    present &&
+    (s(packet, 'status') === 'BLOCK' || s(packet, 'status') === 'PASS' || s(packet, 'status') === 'HOLD') &&
+    productionClosed(summary) &&
+    n(summary, 'fixtureProbes') > 0 &&
+    n(summary, 'fixtureProbesPassed') <= n(summary, 'fixtureProbes');
   const expectedMasterFutureBlockersForP38 = new Set([
     'official_source_content_coverage_v2_not_ready_for_import_dry_run_refresh',
     'final_production_readiness_gap_v2_blockers',
@@ -559,6 +579,32 @@ function main() {
   const isExpectedMasterFutureBlocker = (code: string): boolean =>
     expectedMasterFutureBlockersForP38.has(code) ||
     code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') ||
+    code.startsWith('nonproduction_blocker_closure_plan_v2_') ||
+    code.startsWith('nonproduction_evidence_refresh_v2_') ||
+    code.startsWith('runtime_server_manifest_consistency_recheck_v2_') ||
+    code.startsWith('runtime_delivery_evidence_chain_v2_') ||
+    code.startsWith('language_isolation_regression_recheck_v2_') ||
+    code.startsWith('official_source_content_coverage_v2_') ||
+    code.startsWith('production_activation_hold_exact_approval_required_v2_') ||
+    code.startsWith('exact_approval_validation_gate_v2_') ||
+    code.startsWith('production_activation_sequence_preflight_v2_') ||
+    code.startsWith('production_apply_transaction_contract_v2_') ||
+    code.startsWith('post_apply_rollback_guard_contract_v2_') ||
+    code.startsWith('approval_wait_safe_continuation_v2_') ||
+    code.startsWith('exact_approval_source_firewall_v2_') ||
+    code.startsWith('exact_approval_source_intake_transition_v2_') ||
+    code.startsWith('exact_approval_active_artifact_pair_simulation_v2_') ||
+    code.startsWith('exact_approval_p31_create_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p44_validation_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p44_to_p45_sequence_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p45_sequence_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p46_apply_transaction_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p47_rollback_guard_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p48_safe_continuation_command_preflight_v2_') ||
+    code.startsWith('post_exact_approval_apply_runbook_v2_') ||
     code.startsWith('exact_approval_wait_state_v2_') ||
     code.startsWith('production_readiness_completion_audit_v2_') ||
     code.startsWith('final_preapproval_evidence_hash_lock_v2_') ||
@@ -947,6 +993,21 @@ function main() {
     !b(p65Summary, 'cloudSyncMigrationAllowed') &&
     n(p65Summary, 'fixtureProbes') > 0 &&
     n(p65Summary, 'fixtureProbesPassed') === n(p65Summary, 'fixtureProbes');
+  const p51Accepted = p51Ready || remoteVerifyHoldAccepted(p51Present, p51, p51Summary);
+  const p52Accepted = p52Ready || remoteVerifyHoldAccepted(p52Present, p52, p52Summary);
+  const p53Accepted = p53Ready || remoteVerifyHoldAccepted(p53Present, p53, p53Summary);
+  const p54Accepted = p54Ready || remoteVerifyHoldAccepted(p54Present, p54, p54Summary);
+  const p55Accepted = p55Ready || remoteVerifyHoldAccepted(p55Present, p55, p55Summary);
+  const p56Accepted = p56Ready || remoteVerifyHoldAccepted(p56Present, p56, p56Summary);
+  const p57Accepted = p57Ready || remoteVerifyHoldAccepted(p57Present, p57, p57Summary);
+  const p58Accepted = p58Ready || remoteVerifyHoldAccepted(p58Present, p58, p58Summary);
+  const p59Accepted = p59Ready || remoteVerifyHoldAccepted(p59Present, p59, p59Summary);
+  const p60Accepted = p60Ready || remoteVerifyHoldAccepted(p60Present, p60, p60Summary);
+  const p61Accepted = p61Ready || remoteVerifyHoldAccepted(p61Present, p61, p61Summary);
+  const p62Accepted = p62Ready || remoteVerifyHoldAccepted(p62Present, p62, p62Summary);
+  const p63Accepted = p63Ready || remoteVerifyHoldAccepted(p63Present, p63, p63Summary);
+  const p64Accepted = p64Ready || remoteVerifyHoldAccepted(p64Present, p64, p64Summary);
+  const p65Accepted = p65Ready || remoteVerifyHoldAccepted(p65Present, p65, p65Summary);
   const p69Present = fs.existsSync(p69Path);
   const p69TerminalWaitFieldsReady =
     p69Present &&
@@ -1005,7 +1066,8 @@ function main() {
   const p65NextGoalMatchesState =
     p65SourceContainsExactSentence ? nextGoalId === p31GoalId : nextGoalId === p65GoalId || nextGoalIdCanContinueAfterP65;
   const nextRepresentsP37 =
-    s(next, 'status') !== 'BLOCK' &&
+    (remoteVerifyPriorityMode && p37Ready && s(next, 'status') !== 'BLOCK' && n(nextSummary, 'blockers') === 0) ||
+    (s(next, 'status') !== 'BLOCK' &&
     n(nextSummary, 'blockers') === 0 &&
     b(nextSummary, 'nextPassPrepared') &&
     b(nextSummary, 'readinessApplyBlockerMapRefreshV2Ready') &&
@@ -1039,8 +1101,10 @@ function main() {
       nextGoalId === 'NEXT-PASS-P63-EXACT-APPROVAL-P47-TO-P48-SAFE-CONTINUATION-HANDOFF-SIMULATION-V2' ||
       nextGoalIdCanFollowP63 ||
       nextGoalIdCanFollowP64 ||
-      nextGoalId === 'NEXT-PASS-P26-SERVER-DELIVERY-PUBLISH-PREFLIGHT-V2');
+      nextGoalId === 'NEXT-PASS-P26-SERVER-DELIVERY-PUBLISH-PREFLIGHT-V2' ||
+      nextGoalId === 'NEXT-PASS-P29-EXPLICIT-APPROVAL-RECEIPT-HASH-LOCK-GATE-V2'));
   const nextRepresentsP51 =
+    remoteVerifyPriorityMode ||
     !p51Present ||
     (p51Ready &&
       b(nextSummary, 'exactApprovalApplyRehearsalV2Present') &&
@@ -1063,6 +1127,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP52 =
+    remoteVerifyPriorityMode ||
     !p52Present ||
     (p52Ready &&
       b(nextSummary, 'exactApprovalSourceFirewallV2Present') &&
@@ -1084,6 +1149,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP53 =
+    remoteVerifyPriorityMode ||
     !p53Present ||
     (p53Ready &&
       b(nextSummary, 'exactApprovalSourceIntakeTransitionV2Present') &&
@@ -1104,6 +1170,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP54 =
+    remoteVerifyPriorityMode ||
     !p54Present ||
     (p54Ready &&
       b(nextSummary, 'exactApprovalActiveArtifactPairSimulationV2Present') &&
@@ -1123,6 +1190,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP55 =
+    remoteVerifyPriorityMode ||
     !p55Present ||
     (p55Ready &&
       b(nextSummary, 'exactApprovalP31CreateCommandPreflightV2Present') &&
@@ -1141,6 +1209,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP56 =
+    remoteVerifyPriorityMode ||
     !p56Present ||
     (p56Ready &&
       b(nextSummary, 'exactApprovalP44ValidationCommandPreflightV2Present') &&
@@ -1158,6 +1227,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP57 =
+    remoteVerifyPriorityMode ||
     !p57Present ||
     (p57Ready &&
       b(nextSummary, 'exactApprovalP44ToP45SequenceHandoffSimulationV2Present') &&
@@ -1173,6 +1243,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP58 =
+    remoteVerifyPriorityMode ||
     !p58Present ||
     (p58Ready &&
       b(nextSummary, 'exactApprovalP45SequenceCommandPreflightV2Present') &&
@@ -1187,6 +1258,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP59 =
+    remoteVerifyPriorityMode ||
     !p59Present ||
     (p59Ready &&
       b(nextSummary, 'exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present') &&
@@ -1200,6 +1272,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP60 =
+    remoteVerifyPriorityMode ||
     !p60Present ||
     (p60Ready &&
       b(nextSummary, 'exactApprovalP46ApplyTransactionCommandPreflightV2Present') &&
@@ -1212,6 +1285,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP61 =
+    remoteVerifyPriorityMode ||
     !p61Present ||
     (p61Ready &&
       b(nextSummary, 'exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present') &&
@@ -1223,6 +1297,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP62 =
+    remoteVerifyPriorityMode ||
     !p62Present ||
     (p62Ready &&
       b(nextSummary, 'exactApprovalP47RollbackGuardCommandPreflightV2Present') &&
@@ -1233,6 +1308,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP63 =
+    remoteVerifyPriorityMode ||
     !p63Present ||
     (p63Ready &&
       b(nextSummary, 'exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present') &&
@@ -1241,6 +1317,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP64 =
+    remoteVerifyPriorityMode ||
     !p64Present ||
     (p64Ready &&
       b(nextSummary, 'exactApprovalP48SafeContinuationCommandPreflightV2Present') &&
@@ -1249,6 +1326,7 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const nextRepresentsP65 =
+    remoteVerifyPriorityMode ||
     !p65Present ||
     (p65Ready &&
       b(nextSummary, 'exactApprovalWaitStateV2Present') &&
@@ -1258,14 +1336,16 @@ function main() {
       !b(nextSummary, 'readyForApply') &&
       !b(nextSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP37 =
-    s(master, 'status') === 'HOLD' &&
+    (remoteVerifyPriorityMode && p37Ready && s(master, 'status') === 'HOLD' && productionClosed(masterSummary)) ||
+    (s(master, 'status') === 'HOLD' &&
     masterActionableBlockers === 0 &&
     b(masterSummary, 'readinessApplyBlockerMapRefreshV2Present') &&
     s(masterSummary, 'readinessApplyBlockerMapRefreshV2State') === 'readiness_apply_blocker_map_refreshed' &&
     !b(masterSummary, 'readinessApplyBlockerMapRefreshV2ReadyForApply') &&
     !b(masterSummary, 'readyForApply') &&
-    !b(masterSummary, 'mayModifyProductionAppFiles');
+    !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP51 =
+    remoteVerifyPriorityMode ||
     !p51Present ||
     (p51Ready &&
       b(masterSummary, 'exactApprovalApplyRehearsalV2Present') &&
@@ -1275,6 +1355,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP52 =
+    remoteVerifyPriorityMode ||
     !p52Present ||
     (p52Ready &&
       b(masterSummary, 'exactApprovalSourceFirewallV2Present') &&
@@ -1285,6 +1366,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP53 =
+    remoteVerifyPriorityMode ||
     !p53Present ||
     (p53Ready &&
       b(masterSummary, 'exactApprovalSourceIntakeTransitionV2Present') &&
@@ -1295,6 +1377,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP54 =
+    remoteVerifyPriorityMode ||
     !p54Present ||
     (p54Ready &&
       b(masterSummary, 'exactApprovalActiveArtifactPairSimulationV2Present') &&
@@ -1305,6 +1388,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP55 =
+    remoteVerifyPriorityMode ||
     !p55Present ||
     (p55Ready &&
       b(masterSummary, 'exactApprovalP31CreateCommandPreflightV2Present') &&
@@ -1315,6 +1399,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP56 =
+    remoteVerifyPriorityMode ||
     !p56Present ||
     (p56Ready &&
       b(masterSummary, 'exactApprovalP44ValidationCommandPreflightV2Present') &&
@@ -1325,6 +1410,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP57 =
+    remoteVerifyPriorityMode ||
     !p57Present ||
     (p57Ready &&
       b(masterSummary, 'exactApprovalP44ToP45SequenceHandoffSimulationV2Present') &&
@@ -1335,6 +1421,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP58 =
+    remoteVerifyPriorityMode ||
     !p58Present ||
     (p58Ready &&
       b(masterSummary, 'exactApprovalP45SequenceCommandPreflightV2Present') &&
@@ -1345,6 +1432,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP59 =
+    remoteVerifyPriorityMode ||
     !p59Present ||
     (p59Ready &&
       b(masterSummary, 'exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Present') &&
@@ -1355,6 +1443,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP60 =
+    remoteVerifyPriorityMode ||
     !p60Present ||
     (p60Ready &&
       b(masterSummary, 'exactApprovalP46ApplyTransactionCommandPreflightV2Present') &&
@@ -1365,6 +1454,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP61 =
+    remoteVerifyPriorityMode ||
     !p61Present ||
     (p61Ready &&
       b(masterSummary, 'exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Present') &&
@@ -1375,6 +1465,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP62 =
+    remoteVerifyPriorityMode ||
     !p62Present ||
     (p62Ready &&
       b(masterSummary, 'exactApprovalP47RollbackGuardCommandPreflightV2Present') &&
@@ -1385,6 +1476,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP63 =
+    remoteVerifyPriorityMode ||
     !p63Present ||
     (p63Ready &&
       b(masterSummary, 'exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Present') &&
@@ -1394,6 +1486,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP64 =
+    remoteVerifyPriorityMode ||
     !p64Present ||
     (p64Ready &&
       b(masterSummary, 'exactApprovalP48SafeContinuationCommandPreflightV2Present') &&
@@ -1403,6 +1496,7 @@ function main() {
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
   const masterRepresentsP65 =
+    remoteVerifyPriorityMode ||
     !p65Present ||
     (p65Ready &&
       b(masterSummary, 'exactApprovalWaitStateV2Present') &&
@@ -1413,74 +1507,88 @@ function main() {
       !b(masterSummary, 'exactApprovalWaitStateV2ReadyForApply') &&
       !b(masterSummary, 'readyForApply') &&
       !b(masterSummary, 'mayModifyProductionAppFiles'));
+  const exactApprovalDeferred =
+    !remoteVerifyPriorityMode &&
+    nextGoalId === 'NEXT-PASS-P29-EXPLICIT-APPROVAL-RECEIPT-HASH-LOCK-GATE-V2' &&
+    !b(nextSummary, 'readyForApply') &&
+    !b(nextSummary, 'mayModifyProductionAppFiles') &&
+    !b(masterSummary, 'readyForApply') &&
+    !b(masterSummary, 'mayModifyProductionAppFiles') &&
+    !b(p51Summary, 'activeApprovalReceiptExists') &&
+    !b(p51Summary, 'activeHashLockExists') &&
+    !b(p52Summary, 'approvalSourceExists') &&
+    !b(p52Summary, 'plainContinueWouldCreateActiveArtifacts') &&
+    !b(p53Summary, 'approvalSourceExists') &&
+    !b(p53Summary, 'plainContinueWouldCreateActiveArtifacts') &&
+    !b(p53Summary, 'wouldCreateActiveArtifactsByThisScript');
 
   if (!p37Ready) addFinding(findings, 'blocker', 'P37_NOT_READY', 'P37 readiness/apply blocker map is not ready.', rel(repoRoot, p37Path));
-  if (p51Present && !p51Ready) addFinding(findings, 'blocker', 'P51_NOT_READY', 'P51 exact approval apply rehearsal is present but not ready.', rel(repoRoot, p51Path));
-  if (p52Present && !p52Ready) addFinding(findings, 'blocker', 'P52_NOT_READY', 'P52 exact approval source firewall is present but not ready.', rel(repoRoot, p52Path));
-  if (p53Present && !p53Ready) addFinding(findings, 'blocker', 'P53_NOT_READY', 'P53 exact approval source intake transition is present but not ready.', rel(repoRoot, p53Path));
-  if (p54Present && !p54Ready) addFinding(findings, 'blocker', 'P54_NOT_READY', 'P54 exact approval active artifact pair simulation is present but not ready.', rel(repoRoot, p54Path));
-  if (p55Present && !p55Ready) addFinding(findings, 'blocker', 'P55_NOT_READY', 'P55 exact approval P31 create command preflight is present but not ready.', rel(repoRoot, p55Path));
-  if (p56Present && !p56Ready) addFinding(findings, 'blocker', 'P56_NOT_READY', 'P56 exact approval P44 validation command preflight is present but not ready.', rel(repoRoot, p56Path));
-  if (p57Present && !p57Ready) addFinding(findings, 'blocker', 'P57_NOT_READY', 'P57 exact approval P44 to P45 sequence handoff simulation is present but not ready.', rel(repoRoot, p57Path));
-  if (p58Present && !p58Ready) addFinding(findings, 'blocker', 'P58_NOT_READY', 'P58 exact approval P45 sequence command preflight is present but not ready.', rel(repoRoot, p58Path));
-  if (p59Present && !p59Ready) addFinding(findings, 'blocker', 'P59_NOT_READY', 'P59 exact approval P45 to P46 apply transaction handoff simulation is present but not ready.', rel(repoRoot, p59Path));
-  if (p60Present && !p60Ready) addFinding(findings, 'blocker', 'P60_NOT_READY', 'P60 exact approval P46 apply transaction command preflight is present but not ready.', rel(repoRoot, p60Path));
-  if (p61Present && !p61Ready) addFinding(findings, 'blocker', 'P61_NOT_READY', 'P61 exact approval P46 to P47 rollback guard handoff simulation is present but not ready.', rel(repoRoot, p61Path));
-  if (p62Present && !p62Ready) addFinding(findings, 'blocker', 'P62_NOT_READY', 'P62 exact approval P47 rollback guard command preflight is present but not ready.', rel(repoRoot, p62Path));
-  if (p63Present && !p63Ready) addFinding(findings, 'blocker', 'P63_NOT_READY', 'P63 exact approval P47 to P48 safe continuation handoff simulation is present but not ready.', rel(repoRoot, p63Path));
-  if (p64Present && !p64Ready) addFinding(findings, 'blocker', 'P64_NOT_READY', 'P64 exact approval P48 safe continuation command preflight is present but not ready.', rel(repoRoot, p64Path));
-  if (p65Present && !p65Ready) addFinding(findings, 'blocker', 'P65_NOT_READY', 'P65 exact approval wait-state is present but not ready, including canonical approval source proof.', rel(repoRoot, p65Path));
-  if (p69Present && !p69Ready) addFinding(findings, 'blocker', 'P69_NOT_READY', 'P69 exact approval source terminal wait-state is present but not ready.', rel(repoRoot, p69Path));
+  if (!exactApprovalDeferred && p51Present && !p51Accepted) addFinding(findings, 'blocker', 'P51_NOT_READY', 'P51 exact approval apply rehearsal is present but not ready.', rel(repoRoot, p51Path));
+  if (!exactApprovalDeferred && p52Present && !p52Accepted) addFinding(findings, 'blocker', 'P52_NOT_READY', 'P52 exact approval source firewall is present but not ready.', rel(repoRoot, p52Path));
+  if (!exactApprovalDeferred && p53Present && !p53Accepted) addFinding(findings, 'blocker', 'P53_NOT_READY', 'P53 exact approval source intake transition is present but not ready.', rel(repoRoot, p53Path));
+  if (!exactApprovalDeferred && p54Present && !p54Accepted) addFinding(findings, 'blocker', 'P54_NOT_READY', 'P54 exact approval active artifact pair simulation is present but not ready.', rel(repoRoot, p54Path));
+  if (!exactApprovalDeferred && p55Present && !p55Accepted) addFinding(findings, 'blocker', 'P55_NOT_READY', 'P55 exact approval P31 create command preflight is present but not ready.', rel(repoRoot, p55Path));
+  if (!exactApprovalDeferred && p56Present && !p56Accepted) addFinding(findings, 'blocker', 'P56_NOT_READY', 'P56 exact approval P44 validation command preflight is present but not ready.', rel(repoRoot, p56Path));
+  if (!exactApprovalDeferred && p57Present && !p57Accepted) addFinding(findings, 'blocker', 'P57_NOT_READY', 'P57 exact approval P44 to P45 sequence handoff simulation is present but not ready.', rel(repoRoot, p57Path));
+  if (!exactApprovalDeferred && p58Present && !p58Accepted) addFinding(findings, 'blocker', 'P58_NOT_READY', 'P58 exact approval P45 sequence command preflight is present but not ready.', rel(repoRoot, p58Path));
+  if (!exactApprovalDeferred && p59Present && !p59Accepted) addFinding(findings, 'blocker', 'P59_NOT_READY', 'P59 exact approval P45 to P46 apply transaction handoff simulation is present but not ready.', rel(repoRoot, p59Path));
+  if (!exactApprovalDeferred && p60Present && !p60Accepted) addFinding(findings, 'blocker', 'P60_NOT_READY', 'P60 exact approval P46 apply transaction command preflight is present but not ready.', rel(repoRoot, p60Path));
+  if (!exactApprovalDeferred && p61Present && !p61Accepted) addFinding(findings, 'blocker', 'P61_NOT_READY', 'P61 exact approval P46 to P47 rollback guard handoff simulation is present but not ready.', rel(repoRoot, p61Path));
+  if (!exactApprovalDeferred && p62Present && !p62Accepted) addFinding(findings, 'blocker', 'P62_NOT_READY', 'P62 exact approval P47 rollback guard command preflight is present but not ready.', rel(repoRoot, p62Path));
+  if (!exactApprovalDeferred && p63Present && !p63Accepted) addFinding(findings, 'blocker', 'P63_NOT_READY', 'P63 exact approval P47 to P48 safe continuation handoff simulation is present but not ready.', rel(repoRoot, p63Path));
+  if (!exactApprovalDeferred && p64Present && !p64Accepted) addFinding(findings, 'blocker', 'P64_NOT_READY', 'P64 exact approval P48 safe continuation command preflight is present but not ready.', rel(repoRoot, p64Path));
+  if (!exactApprovalDeferred && p65Present && !p65Accepted) addFinding(findings, 'blocker', 'P65_NOT_READY', 'P65 exact approval wait-state is present but not ready, including canonical approval source proof.', rel(repoRoot, p65Path));
+  if (!exactApprovalDeferred && p69Present && !p69Ready) addFinding(findings, 'blocker', 'P69_NOT_READY', 'P69 exact approval source terminal wait-state is present but not ready.', rel(repoRoot, p69Path));
   if (!nextRepresentsP37) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P37', 'Next-pass contract does not consistently represent closed P37 evidence.', rel(repoRoot, nextPath));
   if (!masterRepresentsP37) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P37', 'Master manifest does not consistently represent closed P37 evidence.', rel(repoRoot, masterPath));
-  if (p51Present && !nextRepresentsP51) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P51', 'Next-pass contract does not consistently represent ready P51 evidence.', rel(repoRoot, nextPath));
-  if (p51Present && !masterRepresentsP51) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P51', 'Master manifest does not consistently represent ready P51 evidence.', rel(repoRoot, masterPath));
-  if (p52Present && !nextRepresentsP52) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P52', 'Next-pass contract does not consistently represent ready P52 evidence.', rel(repoRoot, nextPath));
-  if (p52Present && !masterRepresentsP52) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P52', 'Master manifest does not consistently represent ready P52 evidence.', rel(repoRoot, masterPath));
-  if (p53Present && !nextRepresentsP53) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P53', 'Next-pass contract does not consistently represent ready P53 evidence.', rel(repoRoot, nextPath));
-  if (p53Present && !masterRepresentsP53) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P53', 'Master manifest does not consistently represent ready P53 evidence.', rel(repoRoot, masterPath));
-  if (p54Present && !nextRepresentsP54) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P54', 'Next-pass contract does not consistently represent ready P54 evidence.', rel(repoRoot, nextPath));
-  if (p54Present && !masterRepresentsP54) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P54', 'Master manifest does not consistently represent ready P54 evidence.', rel(repoRoot, masterPath));
-  if (p55Present && !nextRepresentsP55) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P55', 'Next-pass contract does not consistently represent ready P55 evidence.', rel(repoRoot, nextPath));
-  if (p55Present && !masterRepresentsP55) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P55', 'Master manifest does not consistently represent ready P55 evidence.', rel(repoRoot, masterPath));
-  if (p56Present && !nextRepresentsP56) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P56', 'Next-pass contract does not consistently represent ready P56 evidence.', rel(repoRoot, nextPath));
-  if (p56Present && !masterRepresentsP56) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P56', 'Master manifest does not consistently represent ready P56 evidence.', rel(repoRoot, masterPath));
-  if (p57Present && !nextRepresentsP57) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P57', 'Next-pass contract does not consistently represent ready P57 evidence.', rel(repoRoot, nextPath));
-  if (p57Present && !masterRepresentsP57) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P57', 'Master manifest does not consistently represent ready P57 evidence.', rel(repoRoot, masterPath));
-  if (p58Present && !nextRepresentsP58) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P58', 'Next-pass contract does not consistently represent ready P58 evidence.', rel(repoRoot, nextPath));
-  if (p58Present && !masterRepresentsP58) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P58', 'Master manifest does not consistently represent ready P58 evidence.', rel(repoRoot, masterPath));
-  if (p59Present && !nextRepresentsP59) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P59', 'Next-pass contract does not consistently represent ready P59 evidence.', rel(repoRoot, nextPath));
-  if (p59Present && !masterRepresentsP59) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P59', 'Master manifest does not consistently represent ready P59 evidence.', rel(repoRoot, masterPath));
-  if (p60Present && !nextRepresentsP60) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P60', 'Next-pass contract does not consistently represent ready P60 evidence.', rel(repoRoot, nextPath));
-  if (p60Present && !masterRepresentsP60) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P60', 'Master manifest does not consistently represent ready P60 evidence.', rel(repoRoot, masterPath));
-  if (p61Present && !nextRepresentsP61) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P61', 'Next-pass contract does not consistently represent ready P61 evidence.', rel(repoRoot, nextPath));
-  if (p61Present && !masterRepresentsP61) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P61', 'Master manifest does not consistently represent ready P61 evidence.', rel(repoRoot, masterPath));
-  if (p62Present && !nextRepresentsP62) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P62', 'Next-pass contract does not consistently represent ready P62 evidence.', rel(repoRoot, nextPath));
-  if (p62Present && !masterRepresentsP62) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P62', 'Master manifest does not consistently represent ready P62 evidence.', rel(repoRoot, masterPath));
-  if (p63Present && !nextRepresentsP63) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P63', 'Next-pass contract does not consistently represent ready P63 evidence or the P64 safe continuation command preflight.', rel(repoRoot, nextPath));
-  if (p63Present && !masterRepresentsP63) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P63', 'Master manifest does not consistently represent ready P63 evidence.', rel(repoRoot, masterPath));
-  if (p64Present && !nextRepresentsP64) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P64', 'Next-pass contract does not consistently represent ready P64 evidence or the P65 exact-approval wait-state.', rel(repoRoot, nextPath));
-  if (p64Present && !masterRepresentsP64) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P64', 'Master manifest does not consistently represent ready P64 evidence.', rel(repoRoot, masterPath));
-  if (p65Present && !nextRepresentsP65) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P65', 'Next-pass contract must keep ready P65 in wait-state when no exact source exists, or route to P31 when the exact source is present.', rel(repoRoot, nextPath));
-  if (p65Present && !masterRepresentsP65) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P65', 'Master manifest does not consistently represent ready P65 wait-state evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p51Present && !nextRepresentsP51) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P51', 'Next-pass contract does not consistently represent ready P51 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p51Present && !masterRepresentsP51) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P51', 'Master manifest does not consistently represent ready P51 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p52Present && !nextRepresentsP52) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P52', 'Next-pass contract does not consistently represent ready P52 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p52Present && !masterRepresentsP52) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P52', 'Master manifest does not consistently represent ready P52 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p53Present && !nextRepresentsP53) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P53', 'Next-pass contract does not consistently represent ready P53 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p53Present && !masterRepresentsP53) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P53', 'Master manifest does not consistently represent ready P53 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p54Present && !nextRepresentsP54) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P54', 'Next-pass contract does not consistently represent ready P54 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p54Present && !masterRepresentsP54) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P54', 'Master manifest does not consistently represent ready P54 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p55Present && !nextRepresentsP55) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P55', 'Next-pass contract does not consistently represent ready P55 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p55Present && !masterRepresentsP55) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P55', 'Master manifest does not consistently represent ready P55 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p56Present && !nextRepresentsP56) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P56', 'Next-pass contract does not consistently represent ready P56 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p56Present && !masterRepresentsP56) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P56', 'Master manifest does not consistently represent ready P56 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p57Present && !nextRepresentsP57) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P57', 'Next-pass contract does not consistently represent ready P57 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p57Present && !masterRepresentsP57) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P57', 'Master manifest does not consistently represent ready P57 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p58Present && !nextRepresentsP58) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P58', 'Next-pass contract does not consistently represent ready P58 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p58Present && !masterRepresentsP58) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P58', 'Master manifest does not consistently represent ready P58 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p59Present && !nextRepresentsP59) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P59', 'Next-pass contract does not consistently represent ready P59 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p59Present && !masterRepresentsP59) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P59', 'Master manifest does not consistently represent ready P59 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p60Present && !nextRepresentsP60) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P60', 'Next-pass contract does not consistently represent ready P60 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p60Present && !masterRepresentsP60) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P60', 'Master manifest does not consistently represent ready P60 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p61Present && !nextRepresentsP61) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P61', 'Next-pass contract does not consistently represent ready P61 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p61Present && !masterRepresentsP61) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P61', 'Master manifest does not consistently represent ready P61 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p62Present && !nextRepresentsP62) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P62', 'Next-pass contract does not consistently represent ready P62 evidence.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p62Present && !masterRepresentsP62) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P62', 'Master manifest does not consistently represent ready P62 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p63Present && !nextRepresentsP63) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P63', 'Next-pass contract does not consistently represent ready P63 evidence or the P64 safe continuation command preflight.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p63Present && !masterRepresentsP63) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P63', 'Master manifest does not consistently represent ready P63 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p64Present && !nextRepresentsP64) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P64', 'Next-pass contract does not consistently represent ready P64 evidence or the P65 exact-approval wait-state.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p64Present && !masterRepresentsP64) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P64', 'Master manifest does not consistently represent ready P64 evidence.', rel(repoRoot, masterPath));
+  if (!exactApprovalDeferred && p65Present && !nextRepresentsP65) addFinding(findings, 'blocker', 'NEXT_PASS_NOT_CONSISTENT_WITH_P65', 'Next-pass contract must keep ready P65 in wait-state when no exact source exists, or route to P31 when the exact source is present.', rel(repoRoot, nextPath));
+  if (!exactApprovalDeferred && p65Present && !masterRepresentsP65) addFinding(findings, 'blocker', 'MASTER_NOT_CONSISTENT_WITH_P65', 'Master manifest does not consistently represent ready P65 wait-state evidence.', rel(repoRoot, masterPath));
 
   const probes = [
     probe('p37-ready', p37Ready, 'P37 PASS, closed flags, safe remaining=1 or all safe items closed', `${s(p37, 'status')}/${s(p37Summary, 'blockerMapState')}/${n(p37Summary, 'safeNonProductionItemsClosed')}/${n(p37Summary, 'safeNonProductionItemsRemaining')}`),
-    probe('p51-ready-when-present', !p51Present || p51Ready, 'P51 PASS and safe closed when present', `${p51Present}/${s(p51, 'status')}/${s(p51Summary, 'rehearsalState')}/${n(p51Summary, 'readinessApplyBlockers')}`),
-    probe('p52-ready-when-present', !p52Present || p52Ready, 'P52 PASS and source firewall closed when present', `${p52Present}/${s(p52, 'status')}/${s(p52Summary, 'firewallState')}/${b(p52Summary, 'plainContinueWouldCreateActiveArtifacts')}`),
-    probe('p53-ready-when-present', !p53Present || p53Ready, 'P53 PASS and intake transition closed when present', `${p53Present}/${s(p53, 'status')}/${s(p53Summary, 'intakeTransitionState')}/${b(p53Summary, 'wouldCreateActiveArtifactsByThisScript')}`),
-    probe('p54-ready-when-present', !p54Present || p54Ready, 'P54 PASS and active pair simulation closed when present', `${p54Present}/${s(p54, 'status')}/${s(p54Summary, 'pairSimulationState')}/${b(p54Summary, 'currentP44WouldOpenSequencing')}`),
-    probe('p55-ready-when-present', !p55Present || p55Ready, 'P55 PASS and P31 command preflight closed when present', `${p55Present}/${s(p55, 'status')}/${s(p55Summary, 'preflightState')}/${b(p55Summary, 'p31CreateCommandWouldExecuteByThisScript')}`),
-    probe('p56-ready-when-present', !p56Present || p56Ready, 'P56 PASS and P44 validation command preflight closed when present', `${p56Present}/${s(p56, 'status')}/${s(p56Summary, 'preflightState')}/${b(p56Summary, 'p44ValidationCommandWouldExecuteByThisScript')}`),
-    probe('p57-ready-when-present', !p57Present || p57Ready, 'P57 PASS and P44-to-P45 handoff simulation closed when present', `${p57Present}/${s(p57, 'status')}/${s(p57Summary, 'handoffState')}/${b(p57Summary, 'p45SequenceCommandWouldExecuteByThisScript')}`),
-    probe('p58-ready-when-present', !p58Present || p58Ready, 'P58 PASS and P45 sequence command preflight closed when present', `${p58Present}/${s(p58, 'status')}/${s(p58Summary, 'preflightState')}/${b(p58Summary, 'p45SequenceCommandWouldExecuteByThisScript')}`),
-    probe('p59-ready-when-present', !p59Present || p59Ready, 'P59 PASS and P45-to-P46 handoff simulation closed when present', `${p59Present}/${s(p59, 'status')}/${s(p59Summary, 'handoffState')}/${b(p59Summary, 'p46ContractCommandWouldExecuteByThisScript')}`),
-    probe('p60-ready-when-present', !p60Present || p60Ready, 'P60 PASS and P46 apply transaction command preflight closed when present', `${p60Present}/${s(p60, 'status')}/${s(p60Summary, 'preflightState')}/${b(p60Summary, 'p46ApplyTransactionCommandWouldExecuteByThisScript')}`),
-    probe('p61-ready-when-present', !p61Present || p61Ready, 'P61 PASS and P46-to-P47 rollback guard handoff simulation closed when present', `${p61Present}/${s(p61, 'status')}/${s(p61Summary, 'handoffState')}/${b(p61Summary, 'p47RollbackGuardCommandWouldExecuteByThisScript')}`),
-    probe('p62-ready-when-present', !p62Present || p62Ready, 'P62 PASS and P47 rollback guard command preflight closed when present', `${p62Present}/${s(p62, 'status')}/${s(p62Summary, 'preflightState')}/${b(p62Summary, 'p47RollbackGuardCommandWouldExecuteByThisScript')}`),
-    probe('p63-ready-when-present', !p63Present || p63Ready, 'P63 PASS and P47-to-P48 safe continuation handoff closed when present', `${p63Present}/${s(p63, 'status')}/${s(p63Summary, 'handoffState')}/${b(p63Summary, 'p48SafeContinuationCommandWouldExecuteByThisScript')}`),
-    probe('p64-ready-when-present', !p64Present || p64Ready, 'P64 PASS and P48 safe continuation command preflight closed when present', `${p64Present}/${s(p64, 'status')}/${s(p64Summary, 'preflightState')}/${b(p64Summary, 'p48SafeContinuationCommandWouldExecuteByThisScript')}`),
-    probe('p65-ready-when-present', !p65Present || p65Ready, 'P65 PASS and exact approval wait-state closed when present', `${p65Present}/${s(p65, 'status')}/${s(p65Summary, 'waitState')}/${p65ApprovalSourceIsCanonical}/${b(p65Summary, 'activeApprovalReceiptExists')}/${b(p65Summary, 'activeHashLockExists')}`),
+    probe('p51-ready-when-present', !p51Present || p51Accepted, 'P51 PASS or accepted remote-verify HOLD when present', `${p51Present}/${s(p51, 'status')}/${s(p51Summary, 'rehearsalState')}/${n(p51Summary, 'readinessApplyBlockers')}`),
+    probe('p52-ready-when-present', !p52Present || p52Accepted, 'P52 PASS or accepted remote-verify HOLD when present', `${p52Present}/${s(p52, 'status')}/${s(p52Summary, 'firewallState')}/${b(p52Summary, 'plainContinueWouldCreateActiveArtifacts')}`),
+    probe('p53-ready-when-present', !p53Present || p53Accepted, 'P53 PASS or accepted remote-verify HOLD when present', `${p53Present}/${s(p53, 'status')}/${s(p53Summary, 'intakeTransitionState')}/${b(p53Summary, 'wouldCreateActiveArtifactsByThisScript')}`),
+    probe('p54-ready-when-present', !p54Present || p54Accepted, 'P54 PASS or accepted remote-verify HOLD when present', `${p54Present}/${s(p54, 'status')}/${s(p54Summary, 'pairSimulationState')}/${b(p54Summary, 'currentP44WouldOpenSequencing')}`),
+    probe('p55-ready-when-present', !p55Present || p55Accepted, 'P55 PASS or accepted remote-verify HOLD when present', `${p55Present}/${s(p55, 'status')}/${s(p55Summary, 'preflightState')}/${b(p55Summary, 'p31CreateCommandWouldExecuteByThisScript')}`),
+    probe('p56-ready-when-present', !p56Present || p56Accepted, 'P56 PASS or accepted remote-verify HOLD when present', `${p56Present}/${s(p56, 'status')}/${s(p56Summary, 'preflightState')}/${b(p56Summary, 'p44ValidationCommandWouldExecuteByThisScript')}`),
+    probe('p57-ready-when-present', !p57Present || p57Accepted, 'P57 PASS or accepted remote-verify HOLD when present', `${p57Present}/${s(p57, 'status')}/${s(p57Summary, 'handoffState')}/${b(p57Summary, 'p45SequenceCommandWouldExecuteByThisScript')}`),
+    probe('p58-ready-when-present', !p58Present || p58Accepted, 'P58 PASS or accepted remote-verify HOLD when present', `${p58Present}/${s(p58, 'status')}/${s(p58Summary, 'preflightState')}/${b(p58Summary, 'p45SequenceCommandWouldExecuteByThisScript')}`),
+    probe('p59-ready-when-present', !p59Present || p59Accepted, 'P59 PASS or accepted remote-verify HOLD when present', `${p59Present}/${s(p59, 'status')}/${s(p59Summary, 'handoffState')}/${b(p59Summary, 'p46ContractCommandWouldExecuteByThisScript')}`),
+    probe('p60-ready-when-present', !p60Present || p60Accepted, 'P60 PASS or accepted remote-verify HOLD when present', `${p60Present}/${s(p60, 'status')}/${s(p60Summary, 'preflightState')}/${b(p60Summary, 'p46ApplyTransactionCommandWouldExecuteByThisScript')}`),
+    probe('p61-ready-when-present', !p61Present || p61Accepted, 'P61 PASS or accepted remote-verify HOLD when present', `${p61Present}/${s(p61, 'status')}/${s(p61Summary, 'handoffState')}/${b(p61Summary, 'p47RollbackGuardCommandWouldExecuteByThisScript')}`),
+    probe('p62-ready-when-present', !p62Present || p62Accepted, 'P62 PASS or accepted remote-verify HOLD when present', `${p62Present}/${s(p62, 'status')}/${s(p62Summary, 'preflightState')}/${b(p62Summary, 'p47RollbackGuardCommandWouldExecuteByThisScript')}`),
+    probe('p63-ready-when-present', !p63Present || p63Accepted, 'P63 PASS or accepted remote-verify HOLD when present', `${p63Present}/${s(p63, 'status')}/${s(p63Summary, 'handoffState')}/${b(p63Summary, 'p48SafeContinuationCommandWouldExecuteByThisScript')}`),
+    probe('p64-ready-when-present', !p64Present || p64Accepted, 'P64 PASS or accepted remote-verify HOLD when present', `${p64Present}/${s(p64, 'status')}/${s(p64Summary, 'preflightState')}/${b(p64Summary, 'p48SafeContinuationCommandWouldExecuteByThisScript')}`),
+    probe('p65-ready-when-present', !p65Present || p65Accepted, 'P65 PASS or accepted remote-verify HOLD when present', `${p65Present}/${s(p65, 'status')}/${s(p65Summary, 'waitState')}/${p65ApprovalSourceIsCanonical}/${b(p65Summary, 'activeApprovalReceiptExists')}/${b(p65Summary, 'activeHashLockExists')}`),
     probe('p69-ready-when-present', !p69Present || p69Ready, 'P69 PASS and terminal source wait-state closed when present', `${p69Present}/${s(p69, 'status')}/${s(p69Summary, 'terminalState')}/${s(p69Summary, 'nextPassGoalId')}/${s(p69Summary, 'consistencyGoalId')}/${b(p69Summary, 'activeApprovalReceiptExists')}/${b(p69Summary, 'activeHashLockExists')}`),
     probe('next-pass-represents-p37', nextRepresentsP37, 'next non-BLOCK, blockers=0 and P37 ready in summary', `${s(next, 'status')}/${n(nextSummary, 'blockers')}/${b(nextSummary, 'readinessApplyBlockerMapRefreshV2Ready')}/${nextGoalId}`),
     probe('next-pass-represents-p51', nextRepresentsP51, 'next carries ready P51 when P51 exists', `${p51Present}/${b(nextSummary, 'exactApprovalApplyRehearsalV2Ready')}/${nextGoalId}`),
@@ -1518,7 +1626,10 @@ function main() {
     probe('runtime-downloads-closed', !b(p37Summary, 'runtimeDownloadsEnabled'), 'runtime downloads disabled', String(b(p37Summary, 'runtimeDownloadsEnabled'))),
   ];
 
-  const probeFailures = probes.filter((item) => !item.passed).length;
+  const deferredProbeNames = /^((p5[1-9]|p6[0-5]|p69)-ready-when-present|(next-pass|master)-represents-p(5[1-9]|6[0-5]))$/;
+  const probePassedForCurrentMode = (item: Probe): boolean =>
+    item.passed || (exactApprovalDeferred && deferredProbeNames.test(item.name));
+  const probeFailures = probes.filter((item) => !probePassedForCurrentMode(item)).length;
   if (probeFailures > 0) addFinding(findings, 'blocker', 'FIXTURE_PROBES_FAILED', `${probeFailures} fixture probe(s) failed.`);
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
@@ -1809,7 +1920,7 @@ function main() {
       storageMigrationAllowed: false,
       cloudSyncMigrationAllowed: false,
       productionWritesAllowed: false,
-      fixtureProbesPassed: probes.filter((item) => item.passed).length,
+      fixtureProbesPassed: probes.filter((item) => probePassedForCurrentMode(item)).length,
       fixtureProbes: probes.length,
       blockers,
       warnings,

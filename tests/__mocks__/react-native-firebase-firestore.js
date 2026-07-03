@@ -17,6 +17,27 @@ const testState = {
   runTransactionCalls: 0,
 };
 
+function applySet(path, data) {
+  if (path.includes('/reward_claims/')) {
+    testState.rewardClaimExists = true;
+  }
+  if (/^users\/[^/]+$/.test(path)) {
+    if (Object.prototype.hasOwnProperty.call(data, 'shards')) {
+      testState.userShards = data.shards;
+      testState.userDocExists = true;
+    }
+    if (Object.prototype.hasOwnProperty.call(data, 'shards_updated_at_ms')) {
+      testState.userShardsUpdatedAtMs = data.shards_updated_at_ms;
+    }
+    if (Object.prototype.hasOwnProperty.call(data, 'shards_updated_op')) {
+      testState.userShardsUpdatedOp = data.shards_updated_op;
+    }
+    if (Object.prototype.hasOwnProperty.call(data, 'shards_updated_reason')) {
+      testState.userShardsUpdatedReason = data.shards_updated_reason;
+    }
+  }
+}
+
 function createRef(path) {
   const ref = {
     __path: path,
@@ -26,7 +47,10 @@ function createRef(path) {
     doc(id) {
       return createRef(`${path}/${id}`);
     },
-    set: jest.fn(() => Promise.resolve()),
+    set: jest.fn((data) => {
+      applySet(path, data || {});
+      return Promise.resolve();
+    }),
     update: jest.fn(() => Promise.resolve()),
     get: jest.fn(() => {
       if (testState.userDocExists && /^users\/[^/]+$/.test(path)) {
@@ -85,24 +109,7 @@ function firestore() {
         }),
         set: jest.fn((ref, _data, _opts) => {
           const p = ref.__path || '';
-          if (p.includes('/reward_claims/')) {
-            testState.rewardClaimExists = true;
-          }
-          if (/^users\/[^/]+$/.test(p)) {
-            if (Object.prototype.hasOwnProperty.call(_data, 'shards')) {
-              testState.userShards = _data.shards;
-              testState.userDocExists = true;
-            }
-            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_at_ms')) {
-              testState.userShardsUpdatedAtMs = _data.shards_updated_at_ms;
-            }
-            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_op')) {
-              testState.userShardsUpdatedOp = _data.shards_updated_op;
-            }
-            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_reason')) {
-              testState.userShardsUpdatedReason = _data.shards_updated_reason;
-            }
-          }
+          applySet(p, _data || {});
           return Promise.resolve();
         }),
       };

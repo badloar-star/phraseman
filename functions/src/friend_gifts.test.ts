@@ -2,6 +2,8 @@ type DocData = Record<string, unknown>;
 
 type FakeRef = {
   path: string;
+  get: () => Promise<{ exists: boolean; data: () => DocData | undefined }>;
+  set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
   collection: (name: string) => { doc: (id?: string) => FakeRef };
 };
 
@@ -11,6 +13,14 @@ let autoId = 0;
 function makeRef(path: string): FakeRef {
   return {
     path,
+    get: async () => {
+      const data = docs.get(path);
+      return { exists: data !== undefined, data: () => data };
+    },
+    set: async (data: DocData, opts?: { merge?: boolean }) => {
+      const existing = docs.get(path) ?? {};
+      docs.set(path, opts?.merge ? deepMerge(existing, data) : { ...data });
+    },
     collection: (name: string) => ({
       doc: (id?: string) => makeRef(`${path}/${name}/${id || `auto-${++autoId}`}`),
     }),
@@ -38,10 +48,35 @@ function deepMerge(target: DocData, source: DocData): DocData {
 }
 
 function buildDb() {
-  return {
-    collection: (name: string) => ({
-      doc: (id?: string) => makeRef(`${name}/${id || `auto-${++autoId}`}`),
+  const collectionApi = (name: string) => ({
+    doc: (id?: string) => makeRef(`${name}/${id || `auto-${++autoId}`}`),
+    where: (field: string, op: string, value: unknown) => ({
+      limit: (count: number) => ({
+        get: async () => {
+          const prefix = `${name}/`;
+          const matched = Array.from(docs.entries())
+            .filter(([path, data]) => (
+              path.startsWith(prefix) &&
+              path.slice(prefix.length).split('/').length === 1 &&
+              op === '==' &&
+              data[field] === value
+            ))
+            .slice(0, count)
+            .map(([path, data]) => ({
+              id: path.slice(prefix.length),
+              ref: makeRef(path),
+              data: () => data,
+            }));
+          return {
+            empty: matched.length === 0,
+            docs: matched,
+          };
+        },
+      }),
     }),
+  });
+  return {
+    collection: collectionApi,
     runTransaction: async <T>(fn: (tx: {
       get: (ref: FakeRef) => Promise<{ exists: boolean; data: () => DocData | undefined }>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
@@ -169,6 +204,24 @@ test('friendSendGift starts one weekly friend quest after a successful gift', as
   expect(docs.get('users/recipient/friend_quest_meta/current')).toMatchObject({ questId, status: 'active' });
   expect(docs.get('users/sender/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
   expect(docs.get('users/recipient/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
+});
+
+test('friendSendGift repairs stale anonymous auth ownership before spending shards', async () => {
+  docs.set('users/sender', {
+    ...docs.get('users/sender'),
+    firebaseAuthUid: 'old-anon-auth',
+  });
+
+  const result = await sendGift();
+
+  expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });
+  expect(docs.get('users/sender')).toMatchObject({
+    firebaseAuthUid: 'auth-sender',
+    shards: 92,
+  });
+  expect(docs.get('auth_links/auth-sender')).toMatchObject({
+    stable_id: 'sender',
+  });
 });
 
 test('friendSendGift replays the same idempotency key without a second spend or gift', async () => {

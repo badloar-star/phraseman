@@ -44,8 +44,13 @@ jobs:
         run: npm ci
 
       # maxWorkers=1 is required by this suite (shared module/global state across tests).
+      # The single long-lived worker accumulates module/global state across ~137 suites,
+      # so the default ~2-4GB V8 heap OOMs mid-run (exit 134). Raise the heap ceiling;
+      # do NOT parallelize (that breaks the shared-state contract this suite relies on).
       - name: Jest (app tests)
         run: npx jest --testPathPattern=tests/ --ci --maxWorkers=1
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
 
   functions-tests:
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'

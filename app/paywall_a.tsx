@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_a.tsx — вариант A «Компакт» (эксперимент paywall_ab).
 //
@@ -8,14 +9,13 @@
 // Без таймлайна и галереи доказательств — это дифференциаторы C.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
-import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import {
   normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy,
   applyWinBackCopy, applyWinBackPlannedCopy,
@@ -29,18 +29,18 @@ import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type Perso
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
-import PaywallGreetingLine from '../components/paywall/PaywallGreetingLine';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
-  usePaywallScreenStackOptions,
+  usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
+import { PersonalizationProofCard } from '../components/paywall/PaywallProofCards';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
-import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
+import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
 const VARIANT = 'A' as const;
@@ -55,9 +55,10 @@ export default function PaywallA() {
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
-  const chrome = usePaywallChrome();
-  const insets = useSafeAreaInsets();
+  const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
+  const insets = useStableSafeAreaInsets();
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
+  const sticky = useStickyCta();
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
@@ -103,20 +104,10 @@ export default function PaywallA() {
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
-      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 1, false));
+      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 3, false));
     } catch { /* некритично */ }
     return () => { dead = true; };
   }, [source, ctx, lang]);
-
-  // вход — как у v2: мягкое появление
-  const opacity = useRef(new Animated.Value(0)).current;
-  const slideY = useRef(new Animated.Value(20)).current;
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(opacity, { toValue: 1, duration: 260, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      Animated.spring(slideY, { toValue: 0, tension: MOTION_SPRING_LEGACY.panel.tension, friction: MOTION_SPRING_LEGACY.panel.friction, useNativeDriver: true }),
-    ]).start();
-  }, [opacity, slideY]);
 
   // Вернувшийся юзер (Premium стал фри/истёк) видит win-back заголовок «верни
   // доступ» вместо неактуального «получить впервые». См. applyWinBackCopy.
@@ -124,46 +115,39 @@ export default function PaywallA() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
-  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
   const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 4);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
       <Stack.Screen options={screenOptions} />
       <SafeAreaView style={S.safe}>
-        <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
-          <PaywallCloseButton
-            onPress={() => { hapticTap(); closeWithDim('close'); }}
-            chrome={chrome}
-            style={{ marginTop: Math.max(insets.top - 38, 6) }}
-          />
+        <View style={S.wrap}>
+          {!isOnboarding ? (
+            <PaywallCloseButton
+              onPress={() => { hapticTap(); closeWithDim('close'); }}
+              chrome={chrome}
+              style={{ marginTop: Math.max(insets.top - 38, 6) }}
+            />
+          ) : null}
 
           {/* На обычных телефонах помещается без скролла (flexGrow:1 + спейсер
               прижимает CTA вниз); на маленьких — мягко скроллится. */}
           <ScrollView
             showsVerticalScrollIndicator={false}
             decelerationRate="normal"
-            contentContainerStyle={S.scroll}
+            contentContainerStyle={[S.scroll, isOnboarding && S.scrollOnboardingStickyPad]}
+            onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
+            onScroll={isOnboarding ? sticky.onScroll : undefined}
+            scrollEventThrottle={32}
           >
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
 
             <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
-            <Text style={[S.subtitle, { color: chrome.textMuted }]}>{subtitle}</Text>
-
-            {/* Личный «болевой» тег (1 шт.) — единый chip-вид (P1-4). */}
-            {personalTag && (
-              <PaywallPersonalTags texts={[LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)]} chrome={chrome} />
-            )}
-
-            <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
-
-            {/* Персональное обращение по имени + прогресс + цель («приложение тебя
-                понимает»). Заменяет прежнюю безымянную строку «Уже твоё». */}
-            <PaywallGreetingLine lang={lang as Lang} chrome={chrome} profile={profile} mirror={mirror} />
 
             {p.offeringsFailed ? (
               <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
@@ -197,6 +181,33 @@ export default function PaywallA() {
               isLifetime={isLifetimeSel}
             />
 
+            <View style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+              <PaywallCtaBlock
+                lang={lang as Lang}
+                chrome={chrome}
+                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
+                subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
+                disabled={p.ctaDisabled}
+                busy={p.purchasing}
+                onPress={() => { void p.handlePurchase(); }}
+                onRestore={() => { void p.handleRestore(); }}
+                restoring={p.restoring}
+                onContinueFree={() => closeWithDim('continue_free')}
+                trustHasTrial={!!p.trialDays}
+                isOnboarding={isOnboarding}
+              />
+            </View>
+
+            <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
+
+            <PersonalizationProofCard
+              lang={lang as Lang}
+              chrome={chrome}
+              tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}
+              profile={profile}
+              mirror={mirror}
+            />
+
             {/* Полный таймлайн триала «сегодня→напомним→списание» теперь и на «Компакт»:
                 показывается только при реальной бесплатной intro-фазе из стора. */}
             {p.trialDays && (
@@ -224,20 +235,6 @@ export default function PaywallA() {
 
             <View style={S.spacer} />
 
-            <PaywallCtaBlock
-              lang={lang as Lang}
-              chrome={chrome}
-              label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
-              subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
-              disabled={p.ctaDisabled}
-              busy={p.purchasing}
-              onPress={() => { void p.handlePurchase(); }}
-              onRestore={() => { void p.handleRestore(); }}
-              restoring={p.restoring}
-              onContinueFree={() => closeWithDim('continue_free')}
-              trustHasTrial={!!p.trialDays}
-            />
-
             <PaywallLegalDisclosure
               lang={lang as Lang}
               chrome={chrome}
@@ -248,7 +245,15 @@ export default function PaywallA() {
               isLifetime={isLifetimeSel}
             />
           </ScrollView>
-        </Animated.View>
+          <PaywallStickyBar
+            visible={isOnboarding && sticky.visible && !p.ctaDisabled}
+            title={stickyCopy.title}
+            sub={stickyCopy.sub}
+            button={stickyCopy.button}
+            onPress={() => { void p.handlePurchase(); }}
+            chrome={chrome}
+          />
+        </View>
       </SafeAreaView>
     </PaywallBackground>
   );
@@ -257,15 +262,16 @@ export default function PaywallA() {
 const S = StyleSheet.create({
   root: { flex: 1 },
   safe: { flex: 1 },
-  wrap: { flex: 1, paddingHorizontal: 20, paddingBottom: 12 },
-  scroll: { flexGrow: 1, paddingBottom: 4 },
+  wrap: { flex: 1, paddingHorizontal: 22, paddingBottom: 12 },
+  scroll: { flexGrow: 1, paddingBottom: 6 },
+  scrollOnboardingStickyPad: { paddingBottom: 96 },
   title: {
-    fontSize: 26, fontWeight: '800', letterSpacing: -1,
-    lineHeight: 31, textAlign: 'center', marginTop: 14,
+    fontSize: 31, fontWeight: '900', letterSpacing: 0,
+    lineHeight: 36, textAlign: 'center', marginTop: 15,
   },
-  subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  benefits: { gap: 8, marginTop: 14 },
-  benefitRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 9 },
-  benefitText: { flex: 1, fontSize: 12.5, lineHeight: 17 },
-  spacer: { flex: 1, minHeight: 8 },
+  ctaWrap: { marginTop: 17 },
+  benefits: { gap: 10, marginTop: 16 },
+  benefitRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
+  benefitText: { flex: 1, fontSize: 14, lineHeight: 19.5 },
+  spacer: { flex: 1, minHeight: 10 },
 });

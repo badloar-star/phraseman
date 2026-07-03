@@ -15,6 +15,7 @@ const promoRedeemInFlight = new Map<string, Promise<PromoRedeemResult>>();
 
 export type PromoRedeemStatus =
   | 'redeemed'        // успех — выдано rewardDays дней
+  | 'promo_disabled'  // промокоды временно выключены в Пульте
   | 'not_found'
   | 'disabled'
   | 'expired'
@@ -27,6 +28,9 @@ export type PromoRedeemStatus =
 export interface PromoRedeemResult {
   status: PromoRedeemStatus;
   rewardDays?: number;
+  rewardKind?: 'days' | 'lifetime';
+  vipUntilMs?: number;
+  grantAtMs?: number;
 }
 
 // Код: 3..32 символа, латиница/цифры/дефис/подчёркивание (зеркало серверного CODE_RE).
@@ -41,7 +45,9 @@ interface RedeemResponse {
   ok: boolean;
   reason?: string;
   rewardDays?: number;
+  rewardKind?: 'days' | 'lifetime';
   vipUntilMs?: number;
+  grantAtMs?: number;
 }
 
 /** Активировать промокод. НЕ бросает — всегда возвращает типизированный статус. */
@@ -60,10 +66,18 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
       );
       const res = await fn({ code });
       const data = res.data;
-      if (data?.ok) return { status: 'redeemed', rewardDays: data.rewardDays };
+      if (data?.ok) {
+        return {
+          status: 'redeemed',
+          rewardDays: data.rewardDays,
+          rewardKind: data.rewardKind,
+          vipUntilMs: Math.max(0, Math.floor(Number(data.vipUntilMs ?? 0))),
+          grantAtMs: Math.max(0, Math.floor(Number(data.grantAtMs ?? 0))),
+        };
+      }
     // Сервер вернул ok:false с reason — маппим в наш статус (если знаем).
       const reason = String(data?.reason ?? '');
-      const known: PromoRedeemStatus[] = ['not_found', 'disabled', 'expired', 'limit_reached', 'already_redeemed', 'bad_reward'];
+      const known: PromoRedeemStatus[] = ['promo_disabled', 'not_found', 'disabled', 'expired', 'limit_reached', 'already_redeemed', 'bad_reward'];
       return { status: (known as string[]).includes(reason) ? (reason as PromoRedeemStatus) : 'error' };
     } catch {
       return { status: 'error' };

@@ -1,13 +1,14 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { triLang } from '../constants/i18n';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import type { LeagueBonusAvailability } from '../app/services/league_chest_rewards';
 import { useLang } from './LangContext';
@@ -30,7 +31,8 @@ function LeagueBonusAvailableModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
@@ -78,7 +80,7 @@ function LeagueBonusAvailableModal({
             styles.center,
             {
               paddingTop: Math.max(18, insets.top + 8),
-              paddingBottom: Math.max(18, insets.bottom + 8),
+              paddingBottom: Math.max(18, bottomInset + 8),
               paddingLeft: Math.max(18, insets.left + 8),
               paddingRight: Math.max(18, insets.right + 8),
             },

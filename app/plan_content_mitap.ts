@@ -98,7 +98,7 @@ export const MITAP_DAY_1: PlanContentDay = {
     {
       id: 'mitap_d1_p2',
       english: 'I am here now.',
-      meaning: { ru: 'Я на месте, я тут.', uk: 'Я на місці, я тут.', es: 'Ya estoy aquí.' , 'pt-BR': 'Estou aqui agora.', vi: 'Bây giờ tôi đang ở đây.', id: 'Saya di sini sekarang.', tr: 'Artık buradayım.', pl: 'Jestem tu teraz.'},
+      meaning: { ru: 'Я уже на месте.', uk: 'Я вже на місці.', es: 'Ya estoy aquí.' , 'pt-BR': 'Estou aqui agora.', vi: 'Bây giờ tôi đang ở đây.', id: 'Saya di sini sekarang.', tr: 'Artık buradayım.', pl: 'Jestem tu teraz.'},
       constructions: ['to-be', 'pronouns'],
       explanation: {
         title: { ru: 'Скажи, что ты на связи', uk: 'Скажи, що ти на зв\'язку', es: 'Avisa que ya estás' , 'pt-BR': 'Deixe-me saber que você já está', vi: 'Hãy cho tôi biết rằng bạn đã', id: 'Beri tahu saya bahwa Anda sudah melakukannya', tr: 'Zaten öyle olduğunu bana bildirin', pl: 'Daj znać, że już jesteś'},
@@ -116,7 +116,7 @@ export const MITAP_DAY_1: PlanContentDay = {
     {
       id: 'mitap_d1_p3',
       english: 'Hello, are you here?',
-      meaning: { ru: 'Привет, ты на связи?', uk: 'Привіт, ти на зв\'язку?', es: 'Hola, ¿estás ahí?' , 'pt-BR': 'Olá, você está aí?', vi: 'Xin chào, bạn có ở đó không?', id: 'Halo, apakah kamu di sana?', tr: 'Merhaba orda mısın?', pl: 'Witam, jesteś tam?'},
+      meaning: { ru: 'Привет, ты здесь?', uk: 'Привіт, ти тут?', es: 'Hola, ¿estás ahí?' , 'pt-BR': 'Olá, você está aí?', vi: 'Xin chào, bạn có ở đó không?', id: 'Halo, apakah kamu di sana?', tr: 'Merhaba orda mısın?', pl: 'Witam, jesteś tam?'},
       constructions: ['to-be', 'pronouns'],
       explanation: {
         title: { ru: 'Спроси, на месте ли другой', uk: 'Спитай, чи на місці інший', es: 'Pregunta si el otro está' , 'pt-BR': 'Pergunte se o outro é', vi: 'Hỏi xem người kia có phải không', id: 'Tanyakan apakah yang lain', tr: 'Diğeri olup olmadığını sor', pl: 'Zapytaj, czy jest drugi'},

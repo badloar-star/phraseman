@@ -12,7 +12,7 @@ const FALLBACK_FRENCH_SOURCE_UI_LOCALES = ['ru', 'uk'];
 const TARGETS = ['en', 'fr', 'smartest'];
 const MODES = ['discover', 'brief', 'gate'];
 const MIN_VALIDATED_SOCIAL_SIGNALS = 2;
-const ACTIVE_APP_VISUAL_FAMILIES = ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark'];
+const ACTIVE_APP_VISUAL_FAMILIES = ['forest', 'dark', 'neonGreen', 'gold', 'coral', 'minimalDark'];
 const SOURCE_PUBLISHER_TYPES = [
   'official_institution',
   'academic_or_university',

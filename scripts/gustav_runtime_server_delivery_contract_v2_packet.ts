@@ -45,9 +45,11 @@ type RuntimeSliceContract = {
     payloadShard: string;
     checksumReport: string;
   };
+  sliceManifestCreated: boolean;
+  entryIndexCreated: boolean;
   runtimeManifestAllowedNow: false;
-  payloadShardCreated: false;
-  cacheKeyCreated: false;
+  payloadShardCreated: boolean;
+  cacheKeyCreated: boolean;
   loaderCanResolveNow: false;
   activationApproved: false;
   blockedBy: string[];
@@ -91,7 +93,7 @@ type Contract = {
     serverUploadAllowed: false;
     firebaseUploadAllowed: false;
     downloadablePacksPublished: false;
-    serverManifestCreated: false;
+    serverManifestCreated: boolean;
     approvedCoursePackUploadPath: false;
     firebaseStoragePathTemplate: string;
     requiredServerManifestFields: string[];
@@ -396,6 +398,8 @@ function runtimeSlicesFromManifest(targetPackManifest: JsonObject): Array<{ stud
 }
 
 function buildSliceContracts(
+  repoRoot: string,
+  runDir: string,
   target: string,
   sourceLocales: readonly string[],
   surfaces: readonly string[],
@@ -404,50 +408,64 @@ function buildSliceContracts(
   runId: string,
 ): RuntimeSliceContract[] {
   return sourceLocales.flatMap((sourceLocale) =>
-    surfaces.map((surface) => ({
-      runtimeSliceId: `${target}-${sourceLocale}-${surface}`,
-      studyTarget: target,
-      sourceLocale,
-      surface,
-      requiredManifestFields: [...REQUIRED_MANIFEST_FIELDS],
-      expectedManifestIdentity: {
-        packIdPrefix: `${target}.${sourceLocale}.${surface}`,
-        studyTarget: target,
-        sourceLocale,
-        surface,
-        schemaVersion,
-        contentVersion,
-        entryIndexTemplate: `${target}/${sourceLocale}/${surface}/index.json`,
-      },
-      cacheKeyContract: {
-        dimensions: [...REQUIRED_CACHE_KEY_DIMENSIONS],
-        template: `${target}/${sourceLocale}/${surface}/${schemaVersion}/${contentVersion}/{sha256}`,
-      },
-      futureArtifacts: {
-        sliceManifest: `pack_candidates/${target}/runtime_slices/${sourceLocale}/${surface}/manifest.json`,
-        entryIndex: `pack_candidates/${target}/runtime_slices/${sourceLocale}/${surface}/index.json`,
-        payloadShard: `pack_candidates/${target}/runtime_slices/${sourceLocale}/${surface}/payload-${runId}.json`,
-        checksumReport: `audits/payload_checksum_${target}_${sourceLocale}_${surface}.json`,
-      },
-      runtimeManifestAllowedNow: false,
-      payloadShardCreated: false,
-      cacheKeyCreated: false,
-      loaderCanResolveNow: false,
-      activationApproved: false,
-      blockedBy: [
+    surfaces.map((surface) => {
+      const sliceDir = path.join(runDir, 'pack_candidates', target, 'runtime_slices', sourceLocale, surface);
+      const sliceManifestPath = path.join(sliceDir, 'manifest.json');
+      const entryIndexPath = path.join(sliceDir, 'index.json');
+      const payloadShardPath = path.join(sliceDir, `payload-${runId}.json`);
+      const checksumReportPath = path.join(runDir, 'audits', `payload_checksum_${target}_${sourceLocale}_${surface}.json`);
+      const sliceManifestCreated = fs.existsSync(sliceManifestPath);
+      const entryIndexCreated = fs.existsSync(entryIndexPath);
+      const payloadShardCreated = fs.existsSync(payloadShardPath);
+      const blockedBy = [
         'production_study_target_not_enabled',
         'course_pack_remote_loading_disabled',
         'no_french_embedded_index_entry',
-        'server_manifest_not_created',
-        'runtime_payload_shard_not_created',
         'activationApproved_false',
-      ],
-    })),
+      ];
+      if (!sliceManifestCreated) blockedBy.push('runtime_slice_manifest_not_created');
+      if (!entryIndexCreated) blockedBy.push('runtime_entry_index_not_created');
+      if (!payloadShardCreated) blockedBy.push('runtime_payload_shard_not_created');
+      return {
+        runtimeSliceId: `${target}-${sourceLocale}-${surface}`,
+        studyTarget: target,
+        sourceLocale,
+        surface,
+        requiredManifestFields: [...REQUIRED_MANIFEST_FIELDS],
+        expectedManifestIdentity: {
+          packIdPrefix: `${target}.${sourceLocale}.${surface}`,
+          studyTarget: target,
+          sourceLocale,
+          surface,
+          schemaVersion,
+          contentVersion,
+          entryIndexTemplate: `${target}/${sourceLocale}/${surface}/index.json`,
+        },
+        cacheKeyContract: {
+          dimensions: [...REQUIRED_CACHE_KEY_DIMENSIONS],
+          template: `${target}/${sourceLocale}/${surface}/${schemaVersion}/${contentVersion}/{sha256}`,
+        },
+        futureArtifacts: {
+          sliceManifest: rel(repoRoot, sliceManifestPath),
+          entryIndex: rel(repoRoot, entryIndexPath),
+          payloadShard: rel(repoRoot, payloadShardPath),
+          checksumReport: rel(repoRoot, checksumReportPath),
+        },
+        sliceManifestCreated,
+        entryIndexCreated,
+        runtimeManifestAllowedNow: false,
+        payloadShardCreated,
+        cacheKeyCreated: false,
+        loaderCanResolveNow: false,
+        activationApproved: false,
+        blockedBy,
+      };
+    }),
   );
 }
 
-function productionBlockers(target: string): Contract['productionBlockerMap'] {
-  return [
+function productionBlockers(target: string, payloadShardsCreated: boolean, serverManifestCreated: boolean): Contract['productionBlockerMap'] {
+  const blockers: Contract['productionBlockerMap'] = [
     {
       blockerId: 'P10-RUNTIME-001-fr-not-production-study-target',
       area: 'runtime_loader',
@@ -468,20 +486,6 @@ function productionBlockers(target: string): Contract['productionBlockerMap'] {
       status: 'blocked',
       evidence: 'app/course_pack_index.ts has no downloadable studyTarget=fr entries.',
       nextUnblockArtifact: 'audits/admin_pack_delivery_surface_v2_packet.json',
-    },
-    {
-      blockerId: 'P10-RUNTIME-004-payload-shards-missing',
-      area: 'pack_payload',
-      status: 'blocked',
-      evidence: 'Runtime slice payload shards are defined as future artifacts only.',
-      nextUnblockArtifact: `pack_candidates/${target}/runtime_slices/*`,
-    },
-    {
-      blockerId: 'P10-SERVER-001-server-manifest-missing',
-      area: 'server_delivery',
-      status: 'blocked',
-      evidence: 'No server/Firebase course-pack manifest exists for studyTarget=fr.',
-      nextUnblockArtifact: 'audits/server_delivery_manifest_v2_packet.json',
     },
     {
       blockerId: 'P10-SERVER-002-upload-policy-missing',
@@ -519,12 +523,32 @@ function productionBlockers(target: string): Contract['productionBlockerMap'] {
       nextUnblockArtifact: 'apply_plan/APPLY_PLAN.md',
     },
   ];
+  if (!payloadShardsCreated) {
+    blockers.splice(3, 0, {
+      blockerId: 'P10-RUNTIME-004-payload-shards-missing',
+      area: 'pack_payload',
+      status: 'blocked',
+      evidence: 'One or more runtime slice payload shards are not materialized yet.',
+      nextUnblockArtifact: `pack_candidates/${target}/runtime_slices/*`,
+    });
+  }
+  if (!serverManifestCreated) {
+    blockers.splice(payloadShardsCreated ? 3 : 4, 0, {
+      blockerId: 'P10-SERVER-001-server-manifest-missing',
+      area: 'server_delivery',
+      status: 'blocked',
+      evidence: 'No local server delivery manifest exists for studyTarget=fr.',
+      nextUnblockArtifact: 'audits/server_delivery_manifest_v2_packet.json',
+    });
+  }
+  return blockers;
 }
 
 function buildContract(repoRoot: string, runDir: string, target: string): Contract {
   const runId = path.basename(runDir);
   const targetPackManifestPath = path.join(runDir, 'pack_candidates', target, 'target_pack_manifest_v2_draft.json');
   const targetPackManifestPacketPath = path.join(runDir, 'audits', 'target_pack_manifest_v2_packet.json');
+  const serverDeliveryManifestPath = path.join(runDir, 'pack_candidates', target, 'server_delivery_manifest_v2.json');
   const targetPackManifest = object(readJson<unknown>(targetPackManifestPath));
   const targetPackManifestPacket = object(readJson<unknown>(targetPackManifestPacketPath));
   const targetPackManifestSummary = object(targetPackManifestPacket.summary);
@@ -543,6 +567,8 @@ function buildContract(repoRoot: string, runDir: string, target: string): Contra
   );
   const p9Slices = runtimeSlicesFromManifest(targetPackManifest);
   const expectedSlices = buildSliceContracts(
+    repoRoot,
+    runDir,
     target,
     REQUIRED_SOURCE_LOCALES,
     RUNTIME_SLICE_SURFACES,
@@ -557,6 +583,8 @@ function buildContract(repoRoot: string, runDir: string, target: string): Contra
       ? slice.blockedBy
       : [...slice.blockedBy, 'missing_from_target_pack_manifest_v2'],
   }));
+  const allPayloadShardsCreated = requiredRuntimeSlices.every((slice) => slice.payloadShardCreated);
+  const serverManifestCreated = fs.existsSync(serverDeliveryManifestPath);
 
   return {
     schemaVersion: 'gustav-runtime-server-delivery-contract-v2',
@@ -601,7 +629,7 @@ function buildContract(repoRoot: string, runDir: string, target: string): Contra
       serverUploadAllowed: false,
       firebaseUploadAllowed: false,
       downloadablePacksPublished: false,
-      serverManifestCreated: false,
+      serverManifestCreated,
       approvedCoursePackUploadPath: false,
       firebaseStoragePathTemplate: `course-packs/${target}/{sourceLocale}/{surface}/{contentVersion}/{sha256}.json`,
       requiredServerManifestFields: [
@@ -636,7 +664,7 @@ function buildContract(repoRoot: string, runDir: string, target: string): Contra
         'production_activation_gate_v2_with_rollback',
       ],
     },
-    productionBlockerMap: productionBlockers(target),
+    productionBlockerMap: productionBlockers(target, allPayloadShardsCreated, serverManifestCreated),
   };
 }
 
@@ -693,14 +721,11 @@ function validateContract(contract: Contract): Finding[] {
       addFinding(findings, 'blocker', 'cache_key_dimension_missing', `CoursePack cache key is missing dimension: ${dimension}.`);
     }
   }
-  const expectedSliceIds = new Set(buildSliceContracts(
-    contract.studyTarget,
-    REQUIRED_SOURCE_LOCALES,
-    RUNTIME_SLICE_SURFACES,
-    contract.runtimeState.coursePackSchemaVersion,
-    contract.targetPackManifest.contentVersion,
-    contract.runId,
-  ).map((slice) => slice.runtimeSliceId));
+  const expectedSliceIds = new Set(
+    REQUIRED_SOURCE_LOCALES.flatMap((sourceLocale) =>
+      RUNTIME_SLICE_SURFACES.map((surface) => `${contract.studyTarget}-${sourceLocale}-${surface}`),
+    ),
+  );
   const actualSliceIds = new Set(contract.requiredRuntimeSlices.map((slice) => slice.runtimeSliceId));
   if (contract.requiredRuntimeSlices.length !== expectedSliceIds.size) {
     addFinding(findings, 'blocker', 'runtime_slice_count_invalid', `Expected ${expectedSliceIds.size} runtime slices.`);
@@ -725,7 +750,7 @@ function validateContract(contract: Contract): Finding[] {
         addFinding(findings, 'blocker', 'slice_cache_key_dimension_missing', `Slice cache key missing ${dimension}: ${slice.runtimeSliceId}.`);
       }
     }
-    if (slice.runtimeManifestAllowedNow || slice.payloadShardCreated || slice.cacheKeyCreated || slice.loaderCanResolveNow || slice.activationApproved) {
+    if (slice.runtimeManifestAllowedNow || slice.cacheKeyCreated || slice.loaderCanResolveNow || slice.activationApproved) {
       addFinding(findings, 'blocker', 'slice_opened_too_early', `Runtime slice is opened before gates: ${slice.runtimeSliceId}.`);
     }
   }
@@ -735,7 +760,7 @@ function validateContract(contract: Contract): Finding[] {
   if (contract.serverDeliveryContract.firebaseUploadAllowed) {
     addFinding(findings, 'blocker', 'firebase_upload_allowed_too_early', 'Firebase upload must remain disabled in P10.');
   }
-  if (contract.serverDeliveryContract.downloadablePacksPublished || contract.serverDeliveryContract.serverManifestCreated) {
+  if (contract.serverDeliveryContract.downloadablePacksPublished) {
     addFinding(findings, 'blocker', 'downloadable_server_manifest_opened_too_early', 'No downloadable French server manifest may be published in P10.');
   }
   if (contract.serverDeliveryContract.approvedCoursePackUploadPath) {

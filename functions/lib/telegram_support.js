@@ -52,7 +52,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SUPPORT_PROMPT_RU = exports.SUPPORT_CALLBACK_REPLY_PREFIX = exports.SUPPORT_CALLBACK_CANCEL = exports.SUPPORT_CALLBACK_START = exports.SUPPORT_BUTTON_TEXT_RU = void 0;
+exports.PAY_SUPPORT_PROMPT_RU = exports.SUPPORT_PROMPT_RU = exports.SUPPORT_CALLBACK_REPLY_PREFIX = exports.SUPPORT_CALLBACK_CANCEL = exports.SUPPORT_CALLBACK_START = exports.SUPPORT_BUTTON_TEXT_RU = void 0;
 exports.truncateForForward = truncateForForward;
 exports.formatUserLabel = formatUserLabel;
 exports.formatSupportForward = formatSupportForward;
@@ -74,8 +74,23 @@ exports.SUPPORT_CALLBACK_START = 'support:start';
 exports.SUPPORT_CALLBACK_CANCEL = 'support:cancel';
 /** Префикс callback'а кнопки «Ответить» под пересланным сообщением. */
 exports.SUPPORT_CALLBACK_REPLY_PREFIX = 'sr:';
+const PAYMENT_SUPPORT_EMAIL = 'support.phraseman@gmail.com';
 exports.SUPPORT_PROMPT_RU = [
     'Напишите ваше сообщение — мы передадим его в центр поддержки.',
+    'Ответ придёт прямо в этот чат.',
+].join('\n');
+exports.PAY_SUPPORT_PROMPT_RU = [
+    'Поддержка платежей Phraseman Premium.',
+    '',
+    'Если Stars списались, но Premium не активирован, напишите одним сообщением:',
+    '1. ваш ник в Phraseman',
+    '2. примерное время оплаты',
+    '3. сумму Stars',
+    '',
+    'Если Telegram не даёт купить Stars или выбрать способ оплаты, попробуйте пополнить Stars через мобильный Telegram, @PremiumBot или web.telegram.org, затем вернитесь к счёту.',
+    '',
+    `Email: ${PAYMENT_SUPPORT_EMAIL}`,
+    '',
     'Ответ придёт прямо в этот чат.',
 ].join('\n');
 const SUPPORT_SENT_RU = 'Сообщение отправлено в поддержку. Ответ придёт прямо в этот чат. Можно дописать ещё.';
@@ -129,6 +144,10 @@ function parseReplyCommand(text) {
     if (!replyText)
         return null;
     return { targetUserId: match[1], replyText };
+}
+function commandName(text) {
+    const match = /^\/([A-Za-z0-9_]+)(?:@[A-Za-z0-9_]+)?(?:\s|$)/.exec(String(text || '').trim());
+    return match?.[1]?.toLowerCase() || '';
 }
 function supportThreadDocId(adminUserId, adminMessageId) {
     return `${adminUserId}_${adminMessageId}`;
@@ -230,7 +249,7 @@ async function clearAdminAwaitingReply(adminId) {
     }
 }
 // ── Диалоги ───────────────────────────────────────────────────────────────────
-async function startSupportDialog(token, chatId, user, deps) {
+async function startSupportDialog(token, chatId, user, deps, prompt = exports.SUPPORT_PROMPT_RU) {
     const userId = user?.id;
     if (!userId)
         return;
@@ -241,7 +260,7 @@ async function startSupportDialog(token, chatId, user, deps) {
         firstName: String(user?.first_name ?? ''),
         updatedAtMs: Date.now(),
     }, { merge: true });
-    await deps.sendMessage(token, chatId, exports.SUPPORT_PROMPT_RU, {
+    await deps.sendMessage(token, chatId, prompt, {
         reply_markup: { inline_keyboard: [[{ text: 'Отмена', callback_data: exports.SUPPORT_CALLBACK_CANCEL }]] },
     });
 }
@@ -322,9 +341,11 @@ async function tryHandleSupportMessage(token, message, deps) {
     if (!chatId || !userId)
         return false;
     const text = String(message.text ?? '').trim();
+    const command = commandName(text);
     // Вход в чат поддержки: кнопка или команда.
-    if (text === exports.SUPPORT_BUTTON_TEXT_RU || text === '/support') {
-        await startSupportDialog(token, chatId, message.from, deps);
+    if (text === exports.SUPPORT_BUTTON_TEXT_RU || command === 'support' || command === 'paysupport') {
+        await clearAdminAwaitingReply(userId);
+        await startSupportDialog(token, chatId, message.from, deps, command === 'paysupport' ? exports.PAY_SUPPORT_PROMPT_RU : exports.SUPPORT_PROMPT_RU);
         return true;
     }
     // Админ: /reply <id> <текст>.

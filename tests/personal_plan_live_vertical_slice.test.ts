@@ -1,14 +1,9 @@
 import { PERSONAL_PLAN_CATALOG, tasksForMinutes } from '../app/personal_plan_catalog';
 import { getPersonalPlanPhraseLesson } from '../app/personal_plan_phrase_lessons';
-import {
-  getPersonalPlanQuizCoverage,
-  getPersonalPlanQuizPhrases,
-  getPersonalPlanQuizTaskCopy,
-} from '../app/personal_plan_quizzes';
 import { buildPersonalPlanDayPassport } from '../app/personal_plan_quality';
 
 const FORBIDDEN_LIVE_PLAN_COPY = /alex|beta|phone|email|apartment|rent|landlord|viewing|087|@|scene|сцен/i;
-const BROKEN_ENCODING_RE = /[\u00d0\u00c2\u00e2\ufffd]/;
+const BROKEN_ENCODING_RE = /[\u00d0\u00c2\ufffd]/;
 
 describe('live Personal Plans vertical slice', () => {
   const gavan = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === 'gavan')!;
@@ -26,9 +21,10 @@ describe('live Personal Plans vertical slice', () => {
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_quiz',
     ]);
     expect(day1.tasks.some((task) => task.destination.type === 'lesson')).toBe(false);
+    expect(day1.tasks.some((task) => task.kind === 'plan_quiz')).toBe(false);
+    expect(day1.tasks.some((task) => task.destination.type === 'quiz')).toBe(false);
   });
 
   it('keeps the full plan task pool independent while selected daily time controls the initial visible slice', () => {
@@ -40,7 +36,6 @@ describe('live Personal Plans vertical slice', () => {
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_quiz',
     ];
 
     expect(day1.tasks.map((task) => task.kind)).toEqual(expectedKinds);
@@ -82,36 +77,18 @@ describe('live Personal Plans vertical slice', () => {
     }
   });
 
-  it('connects day 1 to a real 10-question plan quiz with user-facing task copy and coverage', () => {
-    const quizTask = day1.tasks.find((item) => item.kind === 'plan_quiz')!;
-    expect(quizTask.destination.type).toBe('quiz');
-    if (quizTask.destination.type !== 'quiz') return;
-
-    const quiz = getPersonalPlanQuizPhrases(quizTask.destination.quizId, 'Sam');
-    const coverage = getPersonalPlanQuizCoverage(quizTask.destination.quizId);
-    const copy = getPersonalPlanQuizTaskCopy(quizTask.destination.quizId, 'ru', 'choice');
-
-    expect(quiz).toHaveLength(10);
-    expect(coverage).not.toBeNull();
-    expect(copy).toEqual({
-      title: 'Проверка дня',
-      body: 'Выбери фразу, которая лучше всего передает смысл. Варианты похожи, но правильный только один.',
-    });
-
-    for (const item of quiz!) {
-      expect(item.choices).toHaveLength(4);
-      expect(item.explanations).toHaveLength(4);
-      expect(item.explanationsUK).toHaveLength(4);
-      expect(item.ru).not.toMatch(/[?]/);
-    }
+  it('does not include a plan quiz task in the live day', () => {
+    expect(day1.tasks.some((task) => task.kind === 'plan_quiz')).toBe(false);
+    expect(day1.tasks.some((task) => task.destination.type === 'quiz')).toBe(false);
   });
 
   it('passes the runtime day passport before being shown as ready content', () => {
     const passport = buildPersonalPlanDayPassport(gavan, day1);
     expect(passport.issues).toEqual([]);
     expect(passport.ready).toBe(true);
-    expect(passport.coverage.quizQuestionSources).toHaveLength(10);
-    expect(day1.tasks).toHaveLength(8);
+    expect(passport.coverage.quizIds).toEqual([]);
+    expect(passport.coverage.quizQuestionSources).toEqual([]);
+    expect(day1.tasks).toHaveLength(7);
     expect(passport.load.byMinutes[5].taskCount).toBe(3);
     expect(passport.load.byMinutes[15].taskCount).toBe(5);
     expect(passport.load.byMinutes[20].taskCount).toBe(6);

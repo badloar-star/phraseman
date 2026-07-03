@@ -190,7 +190,6 @@ export const PLAN_EXERCISE_TYPES: PlanExerciseType[] = [
   'plan_listen_build',
   'plan_phrase_recall',
   'plan_pronunciation_repeat',
-  'plan_quiz',
   'personal_practice_seeded',
   'trainer_weak_spot',
   'flashcards_plan_review',

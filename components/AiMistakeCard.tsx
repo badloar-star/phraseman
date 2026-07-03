@@ -1,5 +1,4 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import SkeletonBlock from './SkeletonShimmer';
@@ -7,8 +6,9 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
 import BilingualMistakeText from './BilingualMistakeText';
 import ExplainReportButton from './ExplainReportButton';
+import AiLimitUpsellCard from './AiLimitUpsellCard';
 
-export type AiMistakeCardState = 'idle' | 'loading' | 'ready' | 'error' | 'limit';
+export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
 type AiMistakeCardProps = {
   lang: Lang;
@@ -35,8 +35,9 @@ export default function AiMistakeCard({
   userAnswer,
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
-  const router = useRouter();
   const isBusy = state === 'loading';
+
+  if (state === 'hidden') return null;
 
   const title = triLang(lang, {
     ru: 'Разбор промаха',
@@ -64,18 +65,7 @@ export default function AiMistakeCard({
 
   const body = (() => {
     if (state === 'ready' && explanation) return explanation;
-    if (state === 'limit') {
-      return triLang(lang, {
-        ru: 'Бесплатные ИИ-разборы на сегодня закончились. Завтра будут снова, а в Plus — без лимита.',
-        uk: 'Безкоштовні ШІ-розбори на сьогодні закінчилися. Завтра будуть знову, а в Plus — без ліміту.',
-        es: 'Los análisis con IA gratis de hoy se agotaron. Mañana habrá más; en Plus son ilimitados.',
-        'pt-BR': 'As análises com IA grátis de hoje acabaram. Amanhã tem mais; no Plus são ilimitadas.',
-        vi: 'Phân tích AI miễn phí hôm nay đã hết. Ngày mai sẽ có lại, còn Plus thì không giới hạn.',
-        id: 'Analisis AI gratis hari ini sudah habis. Besok tersedia lagi; di Plus tanpa batas.',
-        tr: 'Bugünkü ücretsiz AI analizleri bitti. Yarın yenilenir; Plus\'ta sınırsız.',
-        pl: 'Darmowe analizy AI na dziś się skończyły. Jutro będą znowu, a w Plus — bez limitu.',
-      });
-    }
+    if (state === 'limit') return '';
     if (state === 'error') {
       return triLang(lang, {
         ru: 'Не получилось получить объяснение. Попробуй ещё раз позже.',
@@ -131,6 +121,22 @@ export default function AiMistakeCard({
           nativeColor={t.textSecond}
           style={{ fontSize: f.body, lineHeight: 20 }}
         />
+      ) : state === 'limit' ? (
+        <AiLimitUpsellCard
+          lang={lang}
+          title={triLang(lang, {
+            ru: 'Бесплатные разборы ошибок на сегодня закончились',
+            uk: 'Безкоштовні розбори помилок на сьогодні закінчилися',
+            es: 'Los análisis de errores gratis de hoy se agotaron',
+            'pt-BR': 'As análises de erros grátis de hoje acabaram',
+            vi: 'Phần phân tích lỗi miễn phí hôm nay đã hết',
+            id: 'Analisis kesalahan gratis hari ini sudah habis',
+            tr: 'Bugünkü ücretsiz hata analizleri bitti',
+            pl: 'Darmowe analizy błędów na dziś się skończyły',
+          })}
+          paywallContext="ai_explain"
+          testID="ai-mistake-limit-card"
+        />
       ) : (
         <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20 }}>
           {body}
@@ -148,30 +154,6 @@ export default function AiMistakeCard({
             lang={lang}
           />
         </View>
-      ) : null}
-
-
-      {state === 'limit' ? (
-        <Pressable
-          testID="ai-mistake-limit-plus-button"
-          accessibilityRole="button"
-          onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as never)}
-          style={({ pressed }) => [styles.simpleButton, { borderColor: t.accent, backgroundColor: t.accent + '14' }, pressed && { opacity: 0.78 }]}
-        >
-          <Ionicons name="flash" size={16} color={t.accent} />
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
-            {triLang(lang, {
-              ru: 'Открыть Plus',
-              uk: 'Відкрити Plus',
-              es: 'Abrir Plus',
-              'pt-BR': 'Abrir o Plus',
-              vi: 'Mở Plus',
-              id: 'Buka Plus',
-              tr: 'Plus\'ı aç',
-              pl: 'Otwórz Plus',
-            })}
-          </Text>
-        </Pressable>
       ) : null}
 
       {state === 'error' ? (

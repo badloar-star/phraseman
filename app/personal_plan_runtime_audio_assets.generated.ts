@@ -26,12 +26,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d001_content_unit_phrase_2"
     ],
-    "targetText": "My name is Anna.",
+    "targetText": "My name is easy to say.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d001-listen-audio:voyazh-d001-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d001-listen-audio/voyazh-d001-content-unit-phrase-2.mp3",
-    "durationMs": 2208,
+    "durationMs": 2688,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -42,12 +42,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d001_content_unit_phrase_3"
     ],
-    "targetText": "I am from Russia.",
+    "targetText": "I am from the tour group.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d001-listen-audio:voyazh-d001-content-unit-phrase-3",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d001-listen-audio/voyazh-d001-content-unit-phrase-3.mp3",
-    "durationMs": 2160,
+    "durationMs": 2208,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -3386,12 +3386,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d043_content_unit_phrase_2"
     ],
-    "targetText": "I am from Russia too.",
+    "targetText": "I am from the tour group too.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d043-listen-audio:voyazh-d043-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d043-listen-audio/voyazh-d043-content-unit-phrase-2.mp3",
-    "durationMs": 3480,
+    "durationMs": 2832,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -3466,12 +3466,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d044_content_unit_phrase_2"
     ],
-    "targetText": "My country is in Eastern Europe.",
+    "targetText": "My hotel is in the old center.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d044-listen-audio:voyazh-d044-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d044-listen-audio/voyazh-d044-content-unit-phrase-2.mp3",
-    "durationMs": 2784,
+    "durationMs": 2928,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -3626,12 +3626,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "voyazh_d046_content_unit_phrase_2"
     ],
-    "targetText": "We really enjoyed our trip to Spain.",
+    "targetText": "We really enjoyed our trip to the old town.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:voyazh:runtime:voyazh-d046-listen-audio:voyazh-d046-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/voyazh/runtime/voyazh-d046-listen-audio/voyazh-d046-content-unit-phrase-2.mp3",
-    "durationMs": 2832,
+    "durationMs": 3000,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -6730,12 +6730,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d001_content_unit_phrase_1"
     ],
-    "targetText": "My name is Anna.",
+    "targetText": "My name is easy to say.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d001-listen-audio:echo-d001-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d001-listen-audio/echo-d001-content-unit-phrase-1.mp3",
-    "durationMs": 2256,
+    "durationMs": 2784,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -6746,12 +6746,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d001_content_unit_phrase_2"
     ],
-    "targetText": "I am from Ukraine.",
+    "targetText": "I am from the support team.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d001-listen-audio:echo-d001-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d001-listen-audio/echo-d001-content-unit-phrase-2.mp3",
-    "durationMs": 1944,
+    "durationMs": 2208,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -10170,12 +10170,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "echo_d044_content_unit_phrase_1"
     ],
-    "targetText": "Can I speak to Mr Smith?",
+    "targetText": "Can I speak to the manager?",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:echo:runtime:echo-d044-listen-audio:echo-d044-content-unit-phrase-1",
     "uri": "assets/audio/personal-plans-runtime/echo/runtime/echo-d044-listen-audio/echo-d044-content-unit-phrase-1.mp3",
-    "durationMs": 2736,
+    "durationMs": 2040,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true
@@ -35706,12 +35706,12 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "contentUnitIds": [
       "mitap_d013_content_unit_phrase_2"
     ],
-    "targetText": "I add you in the chat.",
+    "targetText": "I add you to the chat.",
     "locale": "en",
     "status": "approved",
     "assetId": "audio:mitap:runtime:mitap-d013-listen-audio:mitap-d013-content-unit-phrase-2",
     "uri": "assets/audio/personal-plans-runtime/mitap/runtime/mitap-d013-listen-audio/mitap-d013-content-unit-phrase-2.mp3",
-    "durationMs": 2520,
+    "durationMs": 2040,
     "voiceId": "openai:alloy",
     "provider": "openai",
     "finalAssetReady": true

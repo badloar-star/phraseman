@@ -52,10 +52,11 @@ exports.assertJobEnabled = assertJobEnabled;
 // ════════════════════════════════════════════════════════════════════════════
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
-exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz'];
+exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board'];
 exports.ALLOWED_JOB_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
@@ -75,6 +76,7 @@ const JOB_DEFAULTS = {
     // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
     // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
     quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
+    help_board: { model: 'gpt-4.1-nano', globalDailyCap: 1000 },
 };
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);
@@ -125,7 +127,7 @@ function assertJobEnabled(cfg, job) {
     }
 }
 // ── Admin CF: чтение/запись конфига всех джобов ─────────────────────────────
-exports.openAiJobsConfig = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.openAiJobsConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }

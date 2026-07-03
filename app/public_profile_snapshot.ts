@@ -16,6 +16,7 @@ import {
   normalizeProfileCardTheme,
 } from './profile_card_system';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
+import { isLifetimePlanLocal } from './premium_guard';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 export const PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000;
@@ -35,6 +36,7 @@ type SnapshotInput = {
   leagueId?: number | null;
   isPremium?: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
 };
 
 type SnapshotCache = {
@@ -42,6 +44,7 @@ type SnapshotCache = {
   displayHash?: string;
   isPremium?: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
 };
 
 function isJestRuntime(): boolean {
@@ -152,6 +155,13 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
   const weekPoints = Math.max(0, Math.trunc(input.weekPoints ?? parseWeekPointsForWeek(weekRaw)));
   const isPremium = input.isPremium ?? cache.isPremium ?? false;
   const isVip = input.isVip ?? cache.isVip ?? false;
+  // Pro-план (разовая «Навсегда») читаем прямо из локального премиум-плана, если
+  // вызывающий не передал явно — так все точки вызова (покупка/VIP/деактивация)
+  // автоматически денормализуют актуальный флаг без протаскивания его через каждый
+  // вызов. Денормализуем только при активном премиум-доступе: истёкший lifetime не
+  // должен оставлять «Pro»-плашку у чужих.
+  const rawLifetime = input.isLifetime ?? (isPremium ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
+  const isLifetime = isPremium && rawLifetime;
 
   const displayHash = stableStringify({
     name,
@@ -162,6 +172,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     leagueId,
     isPremium,
     isVip,
+    isLifetime,
     profileCardLevel,
     profileCardTheme,
     profileCardMotion,
@@ -195,6 +206,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     leagueId,
     isPremium,
     isVip,
+    isLifetime,
     profileCardLevel,
     profileCardTheme,
     profileCardMotion,
@@ -216,6 +228,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
         courseAura: aura,
         courseIsPremium: isPremium,
         courseIsVip: isVip,
+        courseIsLifetime: isLifetime,
         courseProfileCardLevel: profileCardLevel,
         courseProfileCardTheme: profileCardTheme,
         courseProfileCardMotion: profileCardMotion,
@@ -230,6 +243,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     displayHash,
     isPremium,
     isVip,
+    isLifetime,
     xpSyncedAt: input.reason === 'daily_xp' ? now : cache.xpSyncedAt,
   });
 }

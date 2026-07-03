@@ -9,7 +9,9 @@ This document is a design contract only. It does not authorize app code changes.
 This contract must be read together with:
 
 - `docs/specs/2026-06-26-bootstrap-course-pack-master-audit.md`;
-- `docs/specs/2026-06-26-language-pack-retrofit-plan.md`.
+- `docs/specs/2026-06-26-language-pack-retrofit-plan.md`;
+- `docs/gustav/GUSTAV_ENGLISH_FEATURE_PARITY_CONTRACT.md`;
+- `docs/gustav/GUSTAV_TARGET_CONTENT_BUILDERS_CONTRACT.md`.
 
 Continuation rule:
 
@@ -188,6 +190,34 @@ This path is conceptual, not final. The actual physical layout must be chosen du
 Hard rule:
 
 Content for one `studyTarget` cannot be loaded by another target unless it is explicitly marked as shared metadata.
+
+## 5.0 Target Content Builders
+
+Each content family in the container must be produced by a named builder before
+it can be considered production-ready. The English course defines which product
+surfaces exist; it does not define the target-language grammar decisions.
+
+Builder parity rule:
+
+The builder must audit the existing English feature and create target-specific
+content for the target language. Reusing the same lesson phrase row in multiple
+surfaces is only seed material. It does not satisfy feature parity for quizzes,
+flashcards, personal practice, arena questions, daily phrase, collectible cards,
+Compass/AI explanations, mistake explanations, vocabulary banks, theory,
+diagnostics, exams or personal plans.
+
+Required builder families:
+
+- lessons: intro, theory, phrases and vocabulary;
+- practice: personal practice, trainer queues and SRS review;
+- assessment: quiz, diagnostic, level exam and final exam;
+- retention: flashcards and daily phrase;
+- AI: prompt packs, judges, cache contracts and return gates;
+- delivery: admin metadata, pack manifests, hashes and rollback metadata.
+
+A builder output is valid only when it is stored as an isolated target pack row
+with `studyTarget`, `sourceLocale`, evidence ids, anti-calque status and
+`activationApproved=false` until the apply gate passes.
 
 ## 5.1 Downloadable Target Pack Contract
 

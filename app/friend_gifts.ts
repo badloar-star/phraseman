@@ -1,7 +1,7 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 import { replaceShardsBalanceLocal } from './shards_system';
@@ -135,6 +135,48 @@ export type FriendGiftSendResponse = {
   } | null;
 };
 
+export type FriendGiftErrorKind =
+  | 'auth'
+  | 'identity_changed'
+  | 'limit'
+  | 'not_enough_shards'
+  | 'not_friends'
+  | 'user_missing'
+  | 'unsupported'
+  | 'network'
+  | 'unknown';
+
+function errorText(error: unknown): string {
+  const err = error as { code?: unknown; message?: unknown };
+  return `${String(err?.code ?? '')} ${String(err?.message ?? error ?? '')}`.toLowerCase();
+}
+
+export function classifyFriendGiftError(error: unknown): FriendGiftErrorKind {
+  const text = errorText(error);
+  if (text.includes('friend_gift_identity_changed') || text.includes('sender_stable_id_changed')) return 'identity_changed';
+  if (
+    text.includes('friend_gift_auth_unavailable') ||
+    text.includes('sender_unavailable') ||
+    text.includes('unauthenticated') ||
+    text.includes('permission-denied') ||
+    text.includes('sender does not match') ||
+    text.includes('stable_id')
+  ) return 'auth';
+  if (text.includes('resource-exhausted') || text.includes('daily gift limit') || text.includes('limit reached')) return 'limit';
+  if (text.includes('not enough shards') || text.includes('insufficient shards')) return 'not_enough_shards';
+  if (text.includes('users are not friends') || text.includes('friendship')) return 'not_friends';
+  if (text.includes('not-found') || text.includes('user not found')) return 'user_missing';
+  if (text.includes('unsupported gift') || text.includes('unsupported gift id') || text.includes('invalid gift')) return 'unsupported';
+  if (
+    text.includes('network') ||
+    text.includes('unavailable') ||
+    text.includes('deadline-exceeded') ||
+    text.includes('timeout') ||
+    text.includes('timed out')
+  ) return 'network';
+  return 'unknown';
+}
+
 function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
   const now = Date.now().toString(36);
   const a = Math.random().toString(36).slice(2, 10);
@@ -154,6 +196,23 @@ function friendGiftSendRequestKey(data: {
   });
 }
 
+async function prepareFriendGiftSender(): Promise<string> {
+  const senderStableId = await ensureAnonUser();
+  if (!senderStableId) {
+    throw new Error('sender_unavailable');
+  }
+  const link = await ensureStableAuthLinkForStableIdDetailed(senderStableId, { lastSignInAt: Date.now() })
+    .catch(() => null);
+  if (!link?.ok) {
+    throw new Error('friend_gift_auth_unavailable');
+  }
+  if (link.stableUid && link.stableUid !== senderStableId) {
+    throw new Error('friend_gift_identity_changed');
+  }
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  return senderStableId;
+}
+
 export async function sendFriendGiftWithShards(data: {
   friendStableId: string;
   giftId: FriendGiftId;
@@ -167,12 +226,7 @@ export async function sendFriendGiftWithShards(data: {
   if (existing) return existing;
 
   const request = (async () => {
-    const senderStableId = await ensureAnonUser();
-    if (!senderStableId) {
-      throw new Error('sender_unavailable');
-    }
-    await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const senderStableId = await prepareFriendGiftSender();
     const idempotencyKey = makeFriendGiftIdempotencyKey();
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
@@ -231,12 +285,7 @@ export async function sendFriendGiftThanks(data: {
   if (existing) return existing;
 
   const request = (async () => {
-    const senderStableId = await ensureAnonUser();
-    if (!senderStableId) {
-      throw new Error('sender_unavailable');
-    }
-    await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const senderStableId = await prepareFriendGiftSender();
     const idempotencyKey = makeFriendGiftIdempotencyKey('fgt');
     const fn = callable<
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },

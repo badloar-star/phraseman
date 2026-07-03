@@ -63,7 +63,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const homeAdditional = variant === 'homeAdditional';
   const chrome = dailyPhraseChromeFor(themeMode);
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
-    getTodayPhraseSyncForTarget(studyTarget)
+    getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [questAnswered, setQuestAnswered] = useState(false);
@@ -87,12 +87,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       setDetailsVisible(false);
       return () => { cancelled = true; };
     }
-    setPhrase(getTodayPhraseSyncForTarget(studyTarget));
-    void getTodayPhraseForTarget(studyTarget).then(p => {
+    setPhrase(getTodayPhraseSyncForTarget(studyTarget, lang));
+    void getTodayPhraseForTarget(studyTarget, lang).then(p => {
       if (!cancelled && p) setPhrase(p);
     }).catch(() => {});
     return () => { cancelled = true; };
-  }, [dailyPhraseGateOpen, studyTarget]);
+  }, [dailyPhraseGateOpen, lang, studyTarget]);
 
   // React to "phrase of the day" widget deep links:
   //   phraseman://phrase/<id>        -> openPhrase=<id>        (open details)
@@ -119,7 +119,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     // For play: only mark handled once we actually have text to speak, so a cold
     // launch (phrase not yet loaded) retries on the next render instead of
     // silently swallowing the play intent.
-    const english = (phrase?.english ?? getTodayPhraseSyncForTarget(studyTarget)?.english ?? '').trim();
+    const english = (phrase?.english ?? getTodayPhraseSyncForTarget(studyTarget, lang)?.english ?? '').trim();
     if (english) {
       speak(english);
       handledDeepLinkRef.current = linkKey;
@@ -1043,6 +1043,9 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
   },
 });

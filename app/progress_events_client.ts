@@ -10,6 +10,7 @@ import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
 import { getCurrentWeekStartIso } from './weekly_xp';
 import { getLevelFromXP } from '../constants/theme';
+import { emitAppEvent } from './events';
 
 export type ProgressEventType =
   | 'lesson_answer'
@@ -53,6 +54,10 @@ export type ProgressEventResult = {
   weekXp: number;
 };
 
+export type ProgressSubmitOptions = {
+  migrationSnapshot?: Record<string, string> | null;
+};
+
 type QueuedProgressEvent = {
   eventId: string;
   type: ProgressEventType;
@@ -67,6 +72,7 @@ type QueuedProgressEvent = {
 const FUNCTIONS_REGION = 'us-central1';
 const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1';
 const PROGRESS_MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
+const PROGRESS_MIGRATION_BASELINE_KEY = 'progress_server_snapshot_baseline_v1';
 const CALLABLE_TIMEOUT_MS = 15000;
 
 const SERVER_PROGRESS_BASE_KEYS = [
@@ -193,6 +199,21 @@ async function writeQueue(queue: QueuedProgressEvent[]): Promise<void> {
   await AsyncStorage.setItem(PROGRESS_EVENT_QUEUE_KEY, JSON.stringify(queue.slice(0, 100)));
 }
 
+function parseProgressSnapshot(raw: string | null): Record<string, string> | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const out: Record<string, string> = {};
+    for (const [key, value] of Object.entries(parsed)) {
+      if (typeof value === 'string') out[key] = value;
+    }
+    return out;
+  } catch {
+    return null;
+  }
+}
+
 function parseNonNegativeNumber(raw: unknown): number {
   const n = Number(raw);
   return Number.isFinite(n) ? Math.max(0, n) : 0;
@@ -206,6 +227,32 @@ function sameWeekPoints(raw: unknown, weekKey: string): number | null {
     return parseNonNegativeNumber(parsed.points);
   } catch {
     return null;
+  }
+}
+
+async function enqueueMirroredLevelUps(prevTotalXp: number, nextTotalXp: number): Promise<void> {
+  const prevLevel = getLevelFromXP(Math.max(0, Math.floor(prevTotalXp)));
+  const nextLevel = getLevelFromXP(Math.max(0, Math.floor(nextTotalXp)));
+  if (nextLevel <= prevLevel) return;
+
+  try {
+    const raw = await AsyncStorage.getItem('pending_level_up_queue');
+    let queue: number[] = [];
+    try {
+      const parsed = raw ? JSON.parse(raw) : [];
+      queue = Array.isArray(parsed)
+        ? parsed.filter((item): item is number => Number.isFinite(item) && item > 0)
+        : [];
+    } catch {
+      queue = [];
+    }
+    for (let level = prevLevel + 1; level <= nextLevel; level += 1) {
+      if (!queue.includes(level)) queue.push(level);
+    }
+    await AsyncStorage.setItem('pending_level_up_queue', JSON.stringify(queue));
+    emitAppEvent('level_up_pending');
+  } catch {
+    // Losing this queue would lose a visible reward; keep mirror robust and retry on next XP event/startup.
   }
 }
 
@@ -226,10 +273,38 @@ export async function ensureProgressSnapshotMigrated(): Promise<void> {
   const stableId = await ensureAnonUser();
   if (!stableId) throw new Error('progress_stable_id_unavailable');
   await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const progress = await readLocalProgressSnapshot();
+  const frozen = parseProgressSnapshot(await AsyncStorage.getItem(PROGRESS_MIGRATION_BASELINE_KEY));
+  const progress = frozen ?? await readLocalProgressSnapshot();
   const fn = callable<{ stableId: string; progress: Record<string, string> }, { ok: true; migrated: boolean }>('progressMigrateSnapshot');
   await withTimeout(fn({ stableId, progress }), CALLABLE_TIMEOUT_MS, 'progress_migrate_snapshot');
   await AsyncStorage.setItem(PROGRESS_MIGRATED_KEY, '1');
+  await AsyncStorage.removeItem(PROGRESS_MIGRATION_BASELINE_KEY);
+}
+
+export async function prepareProgressMigrationSnapshot(): Promise<Record<string, string> | null> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  if (await AsyncStorage.getItem(PROGRESS_MIGRATED_KEY)) return null;
+  const frozen = parseProgressSnapshot(await AsyncStorage.getItem(PROGRESS_MIGRATION_BASELINE_KEY));
+  if (frozen) return frozen;
+  const progress = await readLocalProgressSnapshot();
+  await AsyncStorage.setItem(PROGRESS_MIGRATION_BASELINE_KEY, JSON.stringify(progress));
+  return progress;
+}
+
+async function ensureProgressSnapshotMigratedWithBaseline(
+  snapshotOverride?: Record<string, string> | null,
+): Promise<void> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  if (await AsyncStorage.getItem(PROGRESS_MIGRATED_KEY)) return;
+  const stableId = await ensureAnonUser();
+  if (!stableId) throw new Error('progress_stable_id_unavailable');
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const frozen = parseProgressSnapshot(await AsyncStorage.getItem(PROGRESS_MIGRATION_BASELINE_KEY));
+  const progress = frozen ?? snapshotOverride ?? await readLocalProgressSnapshot();
+  const fn = callable<{ stableId: string; progress: Record<string, string> }, { ok: true; migrated: boolean }>('progressMigrateSnapshot');
+  await withTimeout(fn({ stableId, progress }), CALLABLE_TIMEOUT_MS, 'progress_migrate_snapshot');
+  await AsyncStorage.setItem(PROGRESS_MIGRATED_KEY, '1');
+  await AsyncStorage.removeItem(PROGRESS_MIGRATION_BASELINE_KEY);
 }
 
 export async function mirrorProgressResultToLocal(result: ProgressEventResult): Promise<void> {
@@ -255,8 +330,9 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
     { streak: localStreak, lastActive: localLastActive, streakLast: localStreakLast },
     { streak: result.streakCount, lastActive: result.activeDate },
   );
+  const localTotalBeforeMirror = parseNonNegativeNumber(localTotalXp);
   const mergedTotalXp = Math.max(
-    parseNonNegativeNumber(localTotalXp),
+    localTotalBeforeMirror,
     parseNonNegativeNumber(result.totalXp),
   );
   const currentWeekCandidates = [
@@ -277,6 +353,9 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
     ['last_active_date', mergedStreak.lastActive ?? result.activeDate],
     ['streak_last_date', mergedStreak.lastActive ?? result.activeDate],
   ]);
+  if (mergedTotalXp > localTotalBeforeMirror) {
+    await enqueueMirroredLevelUps(localTotalBeforeMirror, mergedTotalXp);
+  }
 }
 
 async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEventResult> {
@@ -289,6 +368,14 @@ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEv
 
 async function doFlush(): Promise<number> {
   await ensureProgressSnapshotMigrated();
+  // Реферал: отложенный код (введён офлайн) должен примениться ДО отправки прогресса.
+  // Квалификация «урок 1 пройден» срабатывает только по живому событию урока — если событие
+  // долетит раньше attribution, оба участника навсегда останутся без своих 7 дней.
+  // Без кода в очереди — мгновенный no-op (одно чтение AsyncStorage).
+  try {
+    const m = await import('./referral_bootstrap');
+    await m.tryApplyPendingReferral();
+  } catch { /* нет сети/кода — прогресс не блокируем, ретрай на следующем flush */ }
   const queue = await readQueue();
   if (queue.length === 0) return 0;
   const remaining = [...queue];
@@ -315,11 +402,13 @@ export function flushPendingProgressEvents(): Promise<number> {
   return flushInFlight;
 }
 
-export async function submitProgressEvent(request: ProgressEventRequest): Promise<ProgressEventResult> {
+export async function submitProgressEvent(
+  request: ProgressEventRequest,
+  options?: ProgressSubmitOptions,
+): Promise<ProgressEventResult> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
     throw new Error('progress_server_unavailable');
   }
-  await ensureProgressSnapshotMigrated();
   const stableId = await getCanonicalUserId();
   if (!stableId) throw new Error('progress_stable_id_unavailable');
   const [[, clientStreakCount], [, clientLastActive], [, clientStreakLast]] = await AsyncStorage.multiGet([
@@ -342,6 +431,7 @@ export async function submitProgressEvent(request: ProgressEventRequest): Promis
     },
   };
   try {
+    await ensureProgressSnapshotMigratedWithBaseline(options?.migrationSnapshot);
     await flushPendingProgressEvents();
     return await submitQueuedEvent(event);
   } catch (error) {

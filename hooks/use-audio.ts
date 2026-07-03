@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
+import { setAudioModeAsync } from 'expo-audio';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
+import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
 import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
 
 export function preloadAudio() {}
@@ -167,30 +169,33 @@ export function useAudio() {
     function speakWithSystemTts() {
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = setTimeout(() => {
-      pendingTimerRef.current = null;
-      const speechOptions: SpeechOptions = {
-        language,
-        ...(requestedVoice ? { voice: requestedVoice } : {}),
-        rate: safeRate,
-        pitch: opts?.pitch ?? 1,
-        volume: 1,
-        onStart: opts?.onStart,
-        onDone: opts?.onDone,
-        onStopped: opts?.onStopped,
-        onError: requestedVoice
-          ? (e: Error) => retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError)
-          : opts?.onError,
-        ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
-      };
-      try {
-        Speech.speak(normalized, speechOptions);
-      } catch (e) {
-        if (requestedVoice) {
-          retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError);
-        } else {
-          opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
-        }
-      }
+        pendingTimerRef.current = null;
+        void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined).finally(() => {
+          if (lastTextRef.current !== normalized) return;
+          const speechOptions: SpeechOptions = {
+            language,
+            ...(requestedVoice ? { voice: requestedVoice } : {}),
+            rate: safeRate,
+            pitch: opts?.pitch ?? 1,
+            volume: 1,
+            onStart: opts?.onStart,
+            onDone: opts?.onDone,
+            onStopped: opts?.onStopped,
+            onError: requestedVoice
+              ? (e: Error) => retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError)
+              : opts?.onError,
+            ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
+          };
+          try {
+            Speech.speak(normalized, speechOptions);
+          } catch (e) {
+            if (requestedVoice) {
+              retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError);
+            } else {
+              opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
+            }
+          }
+        });
       }, STOP_SETTLE_MS);
     }
   }, []);

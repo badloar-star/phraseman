@@ -1,12 +1,15 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { BackHandler, InteractionManager, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
@@ -46,15 +49,17 @@ export default function FlashcardsHubScreen() {
   const gradHeaderInk = t.textPrimary;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const flashcardsAccess = useFeatureAccess('flashcards');
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const systemCardsEnabled = flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards');
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const flashcardsHubGateOpen = systemCardsEnabled || officialPacksEnabled || communityPacksEnabled;
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
-  const scrollBottomPadding = Math.max(insets.bottom, 16) + 12;
+  const scrollBottomPadding = Math.max(bottomInset, 16) + 12;
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? reserveBundledMarketPacks(),
@@ -79,6 +84,18 @@ export default function FlashcardsHubScreen() {
       messageEs: 'French flashcards are still behind source gate.',
     });
   }, [lang]);
+
+  const openFlashcardsPlusPaywall = useCallback((source: string) => {
+    const context = source.includes('audio')
+      ? 'flashcard_autoplay'
+      : source.includes('training')
+        ? 'flashcard_training'
+        : 'flashcard_limit';
+    router.push({
+      pathname: '/premium_modal',
+      params: { context, source },
+    } as any);
+  }, [router]);
 
   /** Throttle Firestore-запросов: повторный focus не должен пересохранять list при беглом переключении. */
   const lastHubLoadAtRef = useRef<number>(0);
@@ -199,18 +216,26 @@ export default function FlashcardsHubScreen() {
       showFrenchFlashcardsGate();
       return;
     }
+    if (!flashcardsAccess) {
+      openFlashcardsPlusPaywall('flashcards_training');
+      return;
+    }
     const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
     router.push(
       owned
         ? ({ pathname: '/flashcards_swipe', params: { owned } } as any)
         : ('/flashcards_swipe' as any),
     );
-  }, [flashcardsHubGateOpen, officialPacksEnabled, ownedPackIds, router, showFrenchFlashcardsGate]);
+  }, [flashcardsAccess, flashcardsHubGateOpen, officialPacksEnabled, openFlashcardsPlusPaywall, ownedPackIds, router, showFrenchFlashcardsGate]);
 
   const openAudioMode = useCallback(() => {
     void hapticTap();
     if (!flashcardsHubGateOpen) {
       showFrenchFlashcardsGate();
+      return;
+    }
+    if (!flashcardsAccess) {
+      openFlashcardsPlusPaywall('flashcards_audio');
       return;
     }
     const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
@@ -219,7 +244,7 @@ export default function FlashcardsHubScreen() {
         ? ({ pathname: '/flashcards_audio', params: { owned } } as any)
         : ('/flashcards_audio' as any),
     );
-  }, [flashcardsHubGateOpen, officialPacksEnabled, ownedPackIds, router, showFrenchFlashcardsGate]);
+  }, [flashcardsAccess, flashcardsHubGateOpen, officialPacksEnabled, openFlashcardsPlusPaywall, ownedPackIds, router, showFrenchFlashcardsGate]);
 
   useFocusEffect(
     useCallback(() => {
@@ -321,6 +346,7 @@ export default function FlashcardsHubScreen() {
               hubAuthorStableId={communityPacksEnabled ? hubAuthorStableId : null}
               onTrainingPress={openTraining}
               onAudioPress={openAudioMode}
+              hasFlashcardsPlus={flashcardsAccess}
             />
           </BouncyScrollView>
         </View>

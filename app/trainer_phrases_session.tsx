@@ -58,10 +58,11 @@ import { isFeatureFreeForEveryone } from './feature_gates';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
+import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
-import type { StudyTargetLang } from './study_target_lang_dev';
+import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import {
   markTrainerPlanTaskCompleted,
   readTrainerPlanTaskContext,
@@ -73,6 +74,21 @@ type SessionMode = 'word_bank' | 'fill_gap';
 interface SessionCard {
   item: TrainerItem;
   mode: SessionMode;
+}
+
+const TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS = 700;
+
+function wait(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function waitForPhraseAnswerFeedback(
+  answerSpeech: Promise<void>,
+): Promise<void> {
+  await Promise.all([
+    answerSpeech.catch(() => undefined),
+    wait(TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS),
+  ]);
 }
 
 function buildDeck(items: TrainerItem[]): SessionCard[] {
@@ -110,7 +126,7 @@ interface WordBankProps {
   // Озвучка живёт на родителе (TrainerPhrasesSession), а не внутри карточки:
   // при переходе к следующему заданию карточка размонтируется (меняется key),
   // и если бы useAudio() был здесь, его cleanup оборвал бы фразу на полуслове.
-  speakAnswer: (text: string, studyTarget: StudyTargetLang) => void;
+  speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
 function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
@@ -148,8 +164,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      speakAnswer(item.key, studyTarget);
-      setTimeout(() => onResult(true), 700);
+      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
     } else {
       hapticError();
       Animated.sequence([
@@ -311,8 +326,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
           setFeedback('correct');
           hapticSuccess();
           playCorrect();
-          speakAnswer(item.key, studyTarget);
-          setTimeout(() => onResult(true), 700);
+          void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
         }}
       />
     </View>
@@ -325,7 +339,7 @@ interface FillGapProps {
   onResult: (correct: boolean) => void;
   // См. комментарий к WordBankProps.speakAnswer — озвучка принадлежит родителю,
   // чтобы фраза не обрывалась при размонтировании карточки на следующем задании.
-  speakAnswer: (text: string, studyTarget: StudyTargetLang) => void;
+  speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
 function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
@@ -356,8 +370,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      speakAnswer(item.key, studyTarget);
-      setTimeout(() => onResult(true), 700);
+      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
     } else {
       hapticError();
       setTimeout(() => {
@@ -452,6 +465,7 @@ export default function TrainerPhrasesSession() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   // Озвучка верного ответа принадлежит экрану, а НЕ карточке: карточка
   // размонтируется при переходе к следующему заданию (меняется key), и cleanup
@@ -526,6 +540,7 @@ export default function TrainerPhrasesSession() {
           }
         }
         setAccessReady(true);
+        await ensureFrenchRemotePersonalPractice(sourceLocale);
         const items = planTrainerContext.taskId
           ? await getTrainerPremiumItemsForPlanQueue(
               planTrainerContext.planInstanceId,
@@ -534,7 +549,7 @@ export default function TrainerPhrasesSession() {
               planTrainerContext.requiredItems,
               studyTarget,
             )
-          : await getDueItems('phrases', 15, studyTarget);
+          : await getDueItems('phrases', 15, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
         setDeck(buildDeck(items));
@@ -547,7 +562,7 @@ export default function TrainerPhrasesSession() {
       }
     })();
     return () => { cancelled = true; };
-    }, [planTrainerContext, router, reloadKey, studyTarget, trainerGateOpen]);
+    }, [planTrainerContext, router, reloadKey, sourceLocale, studyTarget, trainerGateOpen]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];

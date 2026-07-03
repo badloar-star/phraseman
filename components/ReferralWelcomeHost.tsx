@@ -23,6 +23,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import {
   decideReferralWelcome,
   markReferralWelcomeSeen,
+  type ReferralWelcomeDecision,
 } from '../app/referral_welcome_state';
 
 function makeL(lang: Lang) {
@@ -44,7 +45,8 @@ export default function ReferralWelcomeHost() {
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
-  const [wantShow, setWantShow] = useState(false);
+  const [welcomeDecision, setWelcomeDecision] = useState<ReferralWelcomeDecision | null>(null);
+  const wantShow = welcomeDecision?.show ?? false;
   const visible = useOverlayVisible('referralWelcome', wantShow);
 
   // Один раз при монтировании решаем, надо ли показывать (читает только AsyncStorage).
@@ -52,7 +54,7 @@ export default function ReferralWelcomeHost() {
     let alive = true;
     decideReferralWelcome()
       .then((d) => {
-        if (alive && d.show) setWantShow(true);
+        if (alive && d.show) setWelcomeDecision(d);
       })
       .catch(() => {});
     return () => {
@@ -71,12 +73,12 @@ export default function ReferralWelcomeHost() {
   }, [visible, scale, opacity]);
 
   const close = () => {
-    setWantShow(false);
+    setWelcomeDecision(null);
     void markReferralWelcomeSeen().catch(() => {});
   };
 
   const openCodeEntry = () => {
-    setWantShow(false);
+    setWelcomeDecision(null);
     void markReferralWelcomeSeen().catch(() => {});
     try {
       router.push('/referral_code_entry' as never);
@@ -127,6 +129,7 @@ export default function ReferralWelcomeHost() {
     'Davet kodum var',
     'Mam kod zaproszenia',
   );
+  const showCodeCta = welcomeDecision?.needsCodeEntry ?? false;
 
   const bgCard = (t as { bgCard?: string; bgPrimary?: string }).bgCard
     ?? (t as { bgPrimary?: string }).bgPrimary
@@ -160,14 +163,16 @@ export default function ReferralWelcomeHost() {
               <Text style={styles.primaryBtnText}>{primaryCta}</Text>
             </Pressable>
 
-            <Pressable
-              testID="referral-welcome-code"
-              onPress={openCodeEntry}
-              style={styles.secondaryBtn}
-              accessibilityRole="button"
-            >
-              <Text style={[styles.secondaryBtnText, { color: textSecond }]}>{codeCta}</Text>
-            </Pressable>
+            {showCodeCta ? (
+              <Pressable
+                testID="referral-welcome-code"
+                onPress={openCodeEntry}
+                style={styles.secondaryBtn}
+                accessibilityRole="button"
+              >
+                <Text style={[styles.secondaryBtnText, { color: textSecond }]}>{codeCta}</Text>
+              </Pressable>
+            ) : null}
           </Animated.View>
         </Pressable>
       </Pressable>

@@ -11,11 +11,18 @@ describe('A/B/C paywall yearly monthly equivalent display', () => {
     expect(purchase).toContain('const yearlyPerMonth');
   });
 
-  it('keeps the annual billed amount available as secondary copy', () => {
+  // Apple 3.1.2(c): списываемая сумма (billed amount) должна быть самым крупным и
+  // заметным ценовым элементом, а расчётная цена за месяц — подчинённой подписью.
+  // Поэтому у «Года» КРУПНАЯ цена — это yearlyFull (полная сумма за год), а
+  // yearlyPerMonth уходит мелким текстом в yearSubParts под ценой.
+  it('makes the annual billed amount the prominent price and per-month subordinate', () => {
     expect(planCards).toContain('yearlyPerMonth');
     expect(planCards).toContain('yearlyFull');
     expect(planCards).toContain('yearSubParts.push');
-    expect(planCards.indexOf('yearlyPerMonth')).toBeLessThan(planCards.indexOf('yearlyFull'));
+    // Крупная цена «Года» = списываемая сумма за год.
+    expect(planCards).toContain('yearlyFull || yearlyPerMonth');
+    // Расчётная цена за месяц — только в подчинённой подписи (sub-line).
+    expect(planCards).toContain('yearSubParts.push(`${yearlyPerMonth} ${perMonthLabel}`)');
   });
 
   it('does not keep dev-only browser price injection in the retired premium_modal route', () => {

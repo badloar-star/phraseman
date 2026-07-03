@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated as RNAnim,
+  AppState,
   BackHandler,
   type DimensionValue,
   InteractionManager,
@@ -32,6 +33,7 @@ import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { bundleLang, triLang } from '../constants/i18n';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
@@ -238,17 +240,44 @@ function PulsingShardFrame({
   children: React.ReactNode;
 }) {
   const p = useSharedValue(0);
+  const isFocused = useIsScreenFocused();
+  // Пульс живёт только на видимом экране и активном приложении: freezeOnBlur:false
+  // держит ушедшие экраны живыми, без гарда луп грел бы телефон в фоне
+  // (паттерн components/AvatarAura.tsx).
   useEffect(() => {
-    p.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
-        withTiming(0, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
-      ),
-      -1,
-      true,
-    );
-    return () => cancelAnimation(p);
-  }, [p]);
+    if (!isFocused) {
+      cancelAnimation(p);
+      p.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(p);
+      p.value = 0;
+      p.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+          withTiming(0, { duration: 1800, easing: Easing.inOut(Easing.sin) }),
+        ),
+        -1,
+        true,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(p);
+      p.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(p);
+    };
+  }, [p, isFocused]);
   const childScale = useAnimatedStyle(() => ({
     transform: [{ scale: interpolate(p.value, [0, 1], [1, big ? 1.05 : 1.06]) }],
   }));
@@ -261,17 +290,42 @@ function PulsingShardFrame({
 
 function HitBadgeShell({ children, style }: { children: React.ReactNode; style?: object }) {
   const hb = useSharedValue(0);
+  const isFocused = useIsScreenFocused();
+  // Гард как у PulsingShardFrame выше — луп только на видимом экране/активном приложении.
   useEffect(() => {
-    hb.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 700, easing: Easing.inOut(Easing.quad) }),
-        withTiming(0, { duration: 700, easing: Easing.inOut(Easing.quad) }),
-      ),
-      -1,
-      true,
-    );
-    return () => cancelAnimation(hb);
-  }, [hb]);
+    if (!isFocused) {
+      cancelAnimation(hb);
+      hb.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(hb);
+      hb.value = 0;
+      hb.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 700, easing: Easing.inOut(Easing.quad) }),
+          withTiming(0, { duration: 700, easing: Easing.inOut(Easing.quad) }),
+        ),
+        -1,
+        true,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(hb);
+      hb.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(hb);
+    };
+  }, [hb, isFocused]);
   const beat = useAnimatedStyle(() => ({
     transform: [{ scale: interpolate(hb.value, [0, 1], [1, 1.08]) }],
   }));
@@ -299,20 +353,42 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
   const ctaW = useSharedValue(0);
   const sh = useSharedValue(0);
   const [boxW, setBoxW] = useState(0);
+  const isFocused = useIsScreenFocused();
 
-  const lastShBoxW = useRef(0);
+  // Дрожание ширины на 1px гасится в setBoxW (onLayout ниже), поэтому эффект
+  // перезапускается только при реальной смене ширины или фокуса. Луп только на
+  // видимом экране/активном приложении (паттерн components/AvatarAura.tsx).
   useEffect(() => {
-    if (boxW < 8) return;
-    if (Math.abs(lastShBoxW.current - boxW) < 2 && lastShBoxW.current > 0) return;
-    lastShBoxW.current = boxW;
-    sh.value = 0;
-    sh.value = withRepeat(
-      withTiming(1, { duration: 3200, easing: Easing.linear }),
-      -1,
-      false,
-    );
-    return () => cancelAnimation(sh);
-  }, [boxW, sh]);
+    if (boxW < 8 || !isFocused) {
+      cancelAnimation(sh);
+      sh.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(sh);
+      sh.value = 0;
+      sh.value = withRepeat(
+        withTiming(1, { duration: 3200, easing: Easing.linear }),
+        -1,
+        false,
+      );
+    };
+    const stop = () => {
+      cancelAnimation(sh);
+      sh.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(sh);
+    };
+  }, [boxW, sh, isFocused]);
 
   const onLayoutCta = (e: LayoutChangeEvent) => {
     const w = Math.round(e.nativeEvent.layout.width);

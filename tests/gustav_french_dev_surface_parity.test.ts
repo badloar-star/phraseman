@@ -37,9 +37,9 @@ describe('Gustav French dev surface parity', () => {
     const diagnostic = read('app/diagnostic_test.tsx');
     const lessonMenu = read('app/lesson_menu.tsx');
 
-    expect(quizContentAvailableForTarget('fr')).toBe(false);
-    expect(diagnosticContentAvailableForTarget('fr')).toBe(false);
-    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(false);
+    expect(quizContentAvailableForTarget('fr')).toBe(true);
+    expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
+    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(true);
 
     expect(home).toContain("testID: 'home-quick-quizzes'");
     expect(home).toContain("key: 'daily'");
@@ -59,10 +59,11 @@ describe('Gustav French dev surface parity', () => {
     expect(quizzes).not.toContain('sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)');
 
     expect(dailyPhrase).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
+    expect(dailyPhrase).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(dailyPhrase).not.toContain("if (studyTarget === 'fr')");
 
     expect(diagnostic).toContain('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)');
-    expect(diagnostic).toContain('FrenchDiagnosticUnavailable');
+    expect(diagnostic).toContain('loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)');
 
     expect(lessonMenu).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
     expect(lessonMenu).toContain('unavailable: frenchAuxiliarySourceGated');

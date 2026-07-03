@@ -55,6 +55,12 @@ const EVENT_FIELDS = {
     view: 'views',
     click_ios: 'clicks_ios',
     click_android: 'clicks_android',
+    // Воронка /start/ (квиз → пейвол → оплата), см. knowly-www/assets/start.js
+    quiz_start: 'quiz_starts',
+    quiz_complete: 'quiz_completes',
+    paywall_view: 'paywall_views',
+    checkout_click: 'checkout_clicks',
+    purchase_thanks: 'purchase_thanks',
 };
 function pickAllowOrigin(origin) {
     const allow = new Set([
@@ -94,6 +100,8 @@ function pageBucket(rawPage) {
     const page = String(rawPage ?? '').slice(0, 200);
     if (page === '/' || page === '/index.html')
         return 'home';
+    if (page.startsWith('/start'))
+        return 'start';
     if (page.startsWith('/download'))
         return 'download';
     if (page.startsWith('/contact'))
@@ -170,9 +178,27 @@ exports.siteStatsTrack = (0, https_1.onRequest)({
         res.status(200).json({ ok: true, debug: true });
         return;
     }
-    const type = String(body.type ?? '');
-    const field = EVENT_FIELDS[type];
-    if (!field) {
+    const rawEvents = Array.isArray(body.events) ? body.events.slice(0, 8) : [body];
+    const counts = {};
+    for (const event of rawEvents) {
+        if (!event || typeof event !== 'object' || Array.isArray(event)) {
+            res.status(400).json({ ok: false, error: 'invalid_event' });
+            return;
+        }
+        const row = event;
+        const type = String(row.type ?? '');
+        const field = EVENT_FIELDS[type];
+        if (!field) {
+            res.status(400).json({ ok: false, error: 'invalid_type' });
+            return;
+        }
+        counts[field] = (counts[field] || 0) + 1;
+        if (type === 'view') {
+            const bucket = pageBucket(row.page);
+            counts[`views_${bucket}`] = (counts[`views_${bucket}`] || 0) + 1;
+        }
+    }
+    if (Object.keys(counts).length === 0) {
         res.status(400).json({ ok: false, error: 'invalid_type' });
         return;
     }
@@ -195,13 +221,11 @@ exports.siteStatsTrack = (0, https_1.onRequest)({
     }
     const now = new Date();
     const dayKey = utcDayKey(now);
-    const bucket = pageBucket(body.page);
     const inc = {
-        [field]: firestore_1.FieldValue.increment(1),
         updatedAt: firestore_1.FieldValue.serverTimestamp(),
     };
-    if (type === 'view') {
-        inc[`views_${bucket}`] = firestore_1.FieldValue.increment(1);
+    for (const [field, count] of Object.entries(counts)) {
+        inc[field] = firestore_1.FieldValue.increment(count);
     }
     try {
         const batch = db.batch();

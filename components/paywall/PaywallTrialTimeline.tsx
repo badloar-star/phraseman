@@ -108,7 +108,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
     <View style={[S.wrap, { borderColor: cardBorder, backgroundColor: `${tc.heroAccent}0D` }]}>
       {/* Золотая лента «бесплатно N дней» — возвращена во все варианты (была убрана). */}
       <View style={[S.ribbon, { backgroundColor: `${tc.heroAccent}1A`, borderColor: `${tc.heroAccent}40` }]}>
-        <Ionicons name="gift" size={13} color={tc.heroAccent} style={{ marginRight: 6 }} />
+        <Ionicons name="gift" size={15} color={tc.heroAccent} style={{ marginRight: 7 }} />
         <Text style={[S.ribbonText, { color: tc.heroAccent }]}>
           {triLang(lang, {
             ru: `${days} дня бесплатно, потом ${priceLabel}${periodLabel}`,
@@ -131,7 +131,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
                 ? { backgroundColor: tc.heroAccent, borderColor: 'transparent' }
                 : { borderColor: chrome.uncheckedBorder },
             ]}>
-              <Ionicons name={row.icon} size={11} color={row.lit ? tc.ctaText : textMuted} />
+              <Ionicons name={row.icon} size={13} color={row.lit ? tc.ctaText : textMuted} />
             </View>
             {i < rows.length - 1 && <View style={[S.rail, { backgroundColor: cardBorder }]} />}
           </View>
@@ -146,21 +146,21 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
 }
 
 const S = StyleSheet.create({
-  wrap: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 12, marginTop: 14 },
+  wrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 14, marginTop: 16 },
   ribbon: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start',
-    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 10, borderWidth: 1, marginBottom: 12,
+    paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 1, marginBottom: 13,
   },
-  ribbonText: { fontSize: 11.5, fontWeight: '800' },
-  row: { flexDirection: 'row', gap: 11 },
-  rowGap: { paddingBottom: 12 },
-  railCol: { alignItems: 'center', width: 22 },
+  ribbonText: { fontSize: 13, fontWeight: '900' },
+  row: { flexDirection: 'row', gap: 12 },
+  rowGap: { paddingBottom: 13 },
+  railCol: { alignItems: 'center', width: 26 },
   dot: {
-    width: 22, height: 22, borderRadius: 11, borderWidth: 1.5,
+    width: 26, height: 26, borderRadius: 13, borderWidth: 1.5,
     alignItems: 'center', justifyContent: 'center',
   },
   rail: { flex: 1, width: StyleSheet.hairlineWidth, marginTop: 2 },
   body: { flex: 1, minWidth: 0 },
-  title: { fontSize: 12.5, fontWeight: '700', lineHeight: 16 },
-  sub: { fontSize: 11, lineHeight: 15, marginTop: 1.5 },
+  title: { fontSize: 14, fontWeight: '800', lineHeight: 18.5 },
+  sub: { fontSize: 12.5, lineHeight: 17.5, marginTop: 2 },
 });

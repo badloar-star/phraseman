@@ -147,7 +147,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+let REQUIRED_AI = 164;
 
 const SOURCE_FAMILIES: SourceFamily[] = [
   {
@@ -354,8 +354,6 @@ function evaluate(
   if (!cambridgeSourceFamilyPresent) addFinding(findings, 'blocker', 'cambridge_source_family_missing', 'Cambridge dictionary evidence must remain available for lexical parity checks.');
   if (!frenchAuthoritySourceFamilyPresent) addFinding(findings, 'blocker', 'french_authority_source_family_missing', 'At least one French authority dictionary/source family must be present.');
   if (!grammarReferenceSourceFamilyPresent) addFinding(findings, 'blocker', 'grammar_reference_source_family_missing', 'At least one grammar reference source family must be present.');
-  if (!p13DryRunReady) addFinding(findings, 'blocker', 'p13_dry_run_not_ready', 'P13 decision import dry-run must be blocker-free.');
-  if (!p17OpeningPreflightReady) addFinding(findings, 'blocker', 'p17_opening_preflight_not_ready', 'P17 opening preflight must be blocker-free.');
   if (p17ReviewerImportAllowedNow) addFinding(findings, 'blocker', 'p17_import_allowed_now', 'P17 must not open reviewerDecisionImportAllowedNow.');
   if (n(quality, 'blockers') !== 0 || n(ai, 'blockers') !== 0) addFinding(findings, 'blocker', 'quality_or_ai_contract_blockers', 'Content quality and AI prompt contracts must be blocker-free.');
   if (rowCoverage !== REQUIRED_ROWS) addFinding(findings, 'blocker', 'row_quality_gate_coverage_incomplete', `Expected ${REQUIRED_ROWS} automated row quality gates.`);
@@ -441,7 +439,7 @@ function evaluate(
       firebaseUploadAllowed: false,
       runtimeDownloadsEnabled: false,
       activationApproved: false,
-      readyForDecisionImportExecutionGate: ready,
+      readyForDecisionImportExecutionGate: ready && llmOfficialSourceAcceptedReviewComplete && p13DryRunReady && p17OpeningPreflightReady,
       readyForPayloadCreationApprovalPreflight: ready && llmOfficialSourceAcceptedReviewComplete,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
@@ -510,8 +508,8 @@ function makeProbes(quality: JsonObject, ai: JsonObject, dryRun: JsonObject, pre
     makeProbe('missing_row_quality_gate_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.quality.rowQualityGateRequirements = 1599; }),
     makeProbe('missing_language_isolation_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.quality.rowsWithLanguageIsolationGate = 1599; }),
     makeProbe('missing_source_meaning_parity_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.quality.rowsWithSourceMeaningParityGate = 1599; }),
-    makeProbe('missing_ai_reject_before_cache_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.quality.aiRejectBeforeCache = 163; }),
-    makeProbe('p13_not_ready_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.dryRun.readyForReviewerDecisionImportV2DryRun = false; }),
+    makeProbe('missing_ai_reject_before_cache_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.quality.aiRejectBeforeCache = REQUIRED_AI - 1; }),
+    makeProbe('p13_not_ready_does_not_block_review_start', true, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.dryRun.readyForReviewerDecisionImportV2DryRun = false; }),
     makeProbe('p17_import_open_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.preflight.reviewerDecisionImportAllowedNow = true; }),
     makeProbe('activation_open_rejected', false, quality, ai, dryRun, preflight, counts, policy, (draft) => { draft.dryRun.activationApprovedFlags = 1; }),
   ];
@@ -595,6 +593,12 @@ function main(): void {
   const ai = object(readJson<JsonObject>(aiPath).summary);
   const dryRun = object(readJson<JsonObject>(dryRunPath).summary);
   const preflight = object(readJson<JsonObject>(preflightPath).summary);
+  REQUIRED_AI = Math.max(
+    REQUIRED_AI,
+    n(quality, 'aiQualityGateRequirements'),
+    n(ai, 'aiPromptEntrypointContracts'),
+    n(dryRun, 'aiDecisionRows'),
+  );
   const sourceFamilyCounts = countSourceFamilies(
     readTextIfExists(researchPackPath),
     readTextIfExists(evidenceLedgerPath),

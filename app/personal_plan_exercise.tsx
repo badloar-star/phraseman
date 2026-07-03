@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // ПРАВИЛО UX (важно, действует во ВСЁМ этом экране):
 // Разбор ответа («почему так» / «разберём спокойно» / подтверждение) показывается
@@ -11,9 +12,9 @@
 // режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Linking, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { File } from 'expo-file-system';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -33,7 +34,7 @@ import {
   PLAN_PRONUNCIATION_SCORING_VERSION,
   type PlanPronunciationScoringResult,
 } from './personal_plan_pronunciation_scoring_client';
-import { loadPlanSpeechModule } from './personal_plan_speech_module';
+import { isSpeechRecognitionAvailable, loadPlanSpeechModule } from './personal_plan_speech_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -55,6 +56,7 @@ import { getPersonalPlanListenBuildItems, type PersonalPlanListenBuildItem } fro
 import { getPersonalPlanPronunciationRepeatItems } from './personal_plan_pronunciation_repeat_items';
 import { getPersonalPlanPhraseRecallItems, type PersonalPlanPhraseRecallItem } from './personal_plan_phrase_recall_items';
 import { buildPlanListeningPlaybackSource } from './personal_plan_listening_playback_contract';
+import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
 import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 import {
@@ -274,8 +276,13 @@ function PlanListenChooseAudioButton({
       onPress={() => {
         hapticTap();
         if (playback.source !== 'in_app_audio') return;
-        void setAudioModeAsync(playback.audioMode)
-          .then(async () => {
+        void (async () => {
+          try {
+            await setAudioModeAsync(playback.audioMode);
+          } catch {
+            // Playback still tries; the mode call is best-effort on edge runtimes.
+          }
+          try {
             if (player.playing) {
               player.pause();
               return;
@@ -287,8 +294,10 @@ function PlanListenChooseAudioButton({
             }
             await player.seekTo(0);
             player.play();
-          })
-          .catch(() => undefined);
+          } catch {
+            // No TTS fallback here: this control must remain MP3-only.
+          }
+        })();
       }}
       style={[
         styles.primaryButton,
@@ -359,6 +368,23 @@ function PronunciationSpeakButton({
  */
 type PronunciationBlock = 'denied' | 'unavailable' | null;
 
+// Вернуть аудио-сессию в «громкое воспроизведение» после распознавания: без
+// сброса весь звук после микрофона (mp3 фраз, озвучка ответов) играет тихо
+// через разговорный динамик или не играет вовсе.
+function restoreLoudPlaybackMode(): void {
+  void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+}
+
+function deleteTransientSpeechRecordingFile(uri: string | null): void {
+  if (!uri) return;
+  try {
+    const file = new File(uri);
+    if (file.exists) file.delete();
+  } catch {
+    // Best-effort cache hygiene only.
+  }
+}
+
 function PlanPronunciationRecorder({
   accent,
   actionText,
@@ -373,14 +399,14 @@ function PlanPronunciationRecorder({
   actionText: string;
   mutedText: string;
   targetText: string;
-  /** Вшитый MP3 фразы (если есть). Озвучиваем им; TTS — только fallback. */
+  /** Approved MP3 phrase audio. Android may fall back to TTS only when the MP3 player stays silent. */
   audioUri?: string;
   onScored: (result: PlanPronunciationScoringResult) => void;
   onScoringChange: (scoring: boolean) => void;
   /** Speech can't run here (no recognizer / mic denied) → host lets the user advance. */
   onBlocked: (blocked: PronunciationBlock) => void;
 }) {
-  const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { speak: speakFallbackAudio, stop: stopAudio } = useAudio();
   const { playCorrect } = useCorrectSound();
   // Тема нужна, чтобы кольцо результата (SpeakingScoreRing) выглядело ТОЧНО как в
   // уроках «Устно» (SpeakingPanel): тот же цвет трека/текста/центра и pass/fail-цвета.
@@ -395,7 +421,24 @@ function PlanPronunciationRecorder({
     const assetModule = getPersonalPlanRuntimeAudioAssetModule(audioUri);
     return assetModule ? { assetId: assetModule } : audioUri;
   }, [audioUri]);
-  const targetAudioPlayer = useAudioPlayer(targetAudioPlayerSource, targetAudioPlayerSource ? { downloadFirst: true, updateInterval: 250 } : undefined);
+  const targetAudioPlayer = useAudioPlayer(targetAudioPlayerSource, targetAudioPlayerSource ? { downloadFirst: false, updateInterval: 250 } : undefined);
+  const targetAudioStatus = useAudioPlayerStatus(targetAudioPlayer);
+  const targetAudioStatusRef = useRef(targetAudioStatus);
+  useEffect(() => {
+    targetAudioStatusRef.current = targetAudioStatus;
+  }, [targetAudioStatus]);
+  const targetPlaybackDoneTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const targetPlaybackFallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearTargetPlaybackTimers = useCallback(() => {
+    if (targetPlaybackDoneTimerRef.current != null) {
+      clearTimeout(targetPlaybackDoneTimerRef.current);
+      targetPlaybackDoneTimerRef.current = null;
+    }
+    if (targetPlaybackFallbackTimerRef.current != null) {
+      clearTimeout(targetPlaybackFallbackTimerRef.current);
+      targetPlaybackFallbackTimerRef.current = null;
+    }
+  }, []);
   const { playRecordStart } = useRecordStartCue();
   // Guarded native module: null on a binary/device without the recognizer, OR
   // when the remote kill-switch turns speaking off app-wide. Resolved once so the
@@ -414,6 +457,30 @@ function PlanPronunciationRecorder({
   const [pronunciationScoringLocal, setPronunciationScoringLocal] = useState(false);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
+  const finishTargetPlayback = useCallback(() => {
+    clearTargetPlaybackTimers();
+    setPronunciationSpeakingTarget(false);
+    setPronunciationHeardTarget(true);
+  }, [clearTargetPlaybackTimers]);
+  // «Заглох»: Android-сервис принял start(), но не подал НИ одного признака жизни
+  // (ни start, ни result, ни error). Не блокирует кнопку — юзер пробует ещё раз.
+  const [pronunciationStalled, setPronunciationStalled] = useState(false);
+  // Watchdog против молчащего распознавателя (как в SpeakingPanel): взводится на
+  // start(), снимается первым событием жизни движка; иначе через 7с гасит попытку.
+  const recognizerWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const finishAttemptTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearRecognizerWatchdog = useCallback(() => {
+    if (recognizerWatchdogRef.current != null) {
+      clearTimeout(recognizerWatchdogRef.current);
+      recognizerWatchdogRef.current = null;
+    }
+  }, []);
+  const clearFinishAttemptTimer = useCallback(() => {
+    if (finishAttemptTimerRef.current != null) {
+      clearTimeout(finishAttemptTimerRef.current);
+      finishAttemptTimerRef.current = null;
+    }
+  }, []);
   const targetTextRef = useRef(targetText);
   targetTextRef.current = targetText;
   // Best (highest-scoring) transcript accumulated across all alternatives of all
@@ -443,6 +510,8 @@ function PlanPronunciationRecorder({
   // is sticky (it can't change between phrases); a denied block resets so the
   // user gets a fresh chance after granting permission in Settings.
   useEffect(() => {
+    clearTargetPlaybackTimers();
+    clearFinishAttemptTimer();
     setPronunciationHeardTarget(false);
     setPronunciationSpeakingTarget(false);
     setPronunciationListening(false);
@@ -456,8 +525,14 @@ function PlanPronunciationRecorder({
     bestSegmentsRef.current = undefined;
     accRef.current.reset();
     scoredRef.current = false;
+    setPronunciationStalled(false);
     setBlocked(speechModule ? null : 'unavailable');
-  }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
+  }, [targetText, setPronunciationScoring, setBlocked, speechModule, clearTargetPlaybackTimers, clearFinishAttemptTimer]);
+
+  useEffect(() => () => {
+    clearTargetPlaybackTimers();
+    clearFinishAttemptTimer();
+  }, [clearTargetPlaybackTimers, clearFinishAttemptTimer]);
 
   // Recognition result → score it locally and report up.
   useEffect(() => {
@@ -490,6 +565,9 @@ function PlanPronunciationRecorder({
 
     // Score the accumulated best transcript exactly once per attempt.
     const finishAttempt = () => {
+      clearFinishAttemptTimer();
+      // Попытка закончилась (любым исходом) — сессия больше не «запись».
+      restoreLoudPlaybackMode();
       if (scoredRef.current) return;
       setPronunciationListening(false);
       setPronunciationScoring(false);
@@ -511,7 +589,22 @@ function PlanPronunciationRecorder({
       } else hapticError();
     };
 
+    const scheduleFinishAttempt = () => {
+      clearFinishAttemptTimer();
+      const delayMs = Platform.OS === 'android' ? 900 : 0;
+      if (delayMs <= 0) {
+        finishAttempt();
+        return;
+      }
+      // Android segmented sessions can emit a final result for only part of the
+      // phrase, then send the tail as another final result. Wait briefly for it.
+      finishAttemptTimerRef.current = setTimeout(finishAttempt, delayMs);
+    };
+
     const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
+      // Первый результат = движок точно жив (на редких OEM 'start' не эмитится).
+      clearRecognizerWatchdog();
+      clearFinishAttemptTimer();
       const alternatives = Array.isArray(event?.results) ? event.results : [];
       considerAlternatives(alternatives);
       // Накопить объединение слов из ТОП-гипотезы и тоже скорить — иначе быструю
@@ -525,22 +618,35 @@ function PlanPronunciationRecorder({
       if (reveal) setTranscript(reveal);
       // Score only on the final result; interim just feeds the reveal + best-pick.
       if (event?.isFinal === false) return;
-      finishAttempt();
+      scheduleFinishAttempt();
     };
 
+    // Любой признак жизни движка снимает watchdog «заглохшего» распознавателя.
+    const startSub = speechModule.addListener('start', () => {
+      clearRecognizerWatchdog();
+    });
     const resultSub = speechModule.addListener('result', applyResult);
     const noMatchSub = speechModule.addListener('nomatch', () => {
+      clearRecognizerWatchdog();
+      restoreLoudPlaybackMode();
+      if (bestTranscriptRef.current) {
+        scheduleFinishAttempt();
+        return;
+      }
       setPronunciationListening(false);
       setPronunciationScoring(false);
     });
     // `end` is the backstop: if the engine ended without a final `result` event
     // (early silence cut-off), still score whatever best we captured.
     const endSub = speechModule.addListener('end', () => {
+      clearRecognizerWatchdog();
       finishAttempt();
       setPronunciationListening(false);
       equalizerRef.current?.setSample(0);
     });
     const errorSub = speechModule.addListener('error', () => {
+      clearRecognizerWatchdog();
+      restoreLoudPlaybackMode();
       // On error, salvage the best transcript if we have one, else just reset.
       if (bestTranscriptRef.current) finishAttempt();
       setPronunciationListening(false);
@@ -551,49 +657,60 @@ function PlanPronunciationRecorder({
     const volumeSub = speechModule.addListener('volumechange', (event: any) => {
       equalizerRef.current?.setSample(Number(event?.value));
     });
+    const audioEndSub = speechModule.addListener('audioend', (event: any) => {
+      const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      deleteTransientSpeechRecordingFile(uri);
+    });
 
     return () => {
+      clearRecognizerWatchdog();
+      clearFinishAttemptTimer();
+      startSub?.remove?.();
       resultSub?.remove?.();
       noMatchSub?.remove?.();
       endSub?.remove?.();
       errorSub?.remove?.();
       volumeSub?.remove?.();
+      audioEndSub?.remove?.();
       try {
         // stop() flushes a final result; abort() would discard a live attempt.
         speechModule.stop();
       } catch {
         // recognizer may be unavailable in some builds — safe to ignore on unmount
       }
+      restoreLoudPlaybackMode();
     };
-  }, [onScored, speechModule, playCorrect]);
+  }, [onScored, speechModule, playCorrect, clearRecognizerWatchdog, clearFinishAttemptTimer]);
 
   const listenPronunciationTarget = useCallback(() => {
     hapticTap();
+    clearTargetPlaybackTimers();
+    stopAudio();
     setPronunciationSpeakingTarget(true);
 
-    // Приоритет — вшитый MP3 (живой голос). TTS-робот только если MP3 нет/не сыграл.
-    const speakWithTts = () => {
-      speakAudio(targetText, 0.86, {
+    const playFallbackAudio = () => {
+      clearTargetPlaybackTimers();
+      targetPlaybackDoneTimerRef.current = setTimeout(
+        finishTargetPlayback,
+        Math.min(6000, Math.max(1300, targetText.length * 55 + 650)),
+      );
+      speakFallbackAudio(targetText, 0.86, {
         language: 'en-US',
-        onDone: () => {
-          setPronunciationSpeakingTarget(false);
-          setPronunciationHeardTarget(true);
-        },
-        onStopped: () => setPronunciationSpeakingTarget(false),
-        onError: () => {
-          setPronunciationSpeakingTarget(false);
-          setPronunciationHeardTarget(true);
-        },
+        voice: '',
+        onDone: finishTargetPlayback,
+        onStopped: finishTargetPlayback,
+        onError: finishTargetPlayback,
       });
     };
 
     if (targetAudioPlayerSource) {
-      void setAudioModeAsync({
-        playsInSilentMode: true,
-        shouldPlayInBackground: false,
-        interruptionMode: 'duckOthers',
-      })
-        .then(async () => {
+      void (async () => {
+        try {
+          await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE);
+        } catch {
+          // Playback still tries; the mode call is best-effort on edge runtimes.
+        }
+        try {
           try {
             targetAudioPlayer.volume = 1;
           } catch {
@@ -601,30 +718,69 @@ function PlanPronunciationRecorder({
           }
           await targetAudioPlayer.seekTo(0);
           targetAudioPlayer.play();
+          if (Platform.OS === 'android') {
+            targetPlaybackFallbackTimerRef.current = setTimeout(() => {
+              const status = targetAudioStatusRef.current as { currentTime?: number; didJustFinish?: boolean } | null | undefined;
+              // Android can report the player as "playing" while the remote clip is
+              // still silent/buffered. Only real timeline progress proves audio started.
+              const currentTime = Math.max(
+                typeof targetAudioPlayer.currentTime === 'number' ? targetAudioPlayer.currentTime : 0,
+                typeof status?.currentTime === 'number' ? status.currentTime : 0,
+              );
+              const started = currentTime > 0.05 || status?.didJustFinish === true;
+              if (started) return;
+              try {
+                targetAudioPlayer.pause();
+              } catch {
+                // The player may already be stopped on some Android runtimes.
+              }
+              playFallbackAudio();
+            }, 1400);
+          }
           // Снимаем «звучит…» к концу клипа: длительность известна из статуса, иначе
           // мягкий потолок. Кнопка повтора разблокируется, юзер слышит живой голос.
           const durationMs = Math.round(((targetAudioPlayer.duration || 0) * 1000)) || 2600;
-          setTimeout(() => {
-            setPronunciationSpeakingTarget(false);
-            setPronunciationHeardTarget(true);
-          }, Math.min(6000, Math.max(900, durationMs + 150)));
-        })
-        .catch(() => {
-          // MP3 не сыграл (повреждён/недоступен) → честный fallback на TTS.
-          speakWithTts();
-        });
+          targetPlaybackDoneTimerRef.current = setTimeout(
+            finishTargetPlayback,
+            Math.min(6000, Math.max(900, durationMs + 150)),
+          );
+        } catch {
+          if (Platform.OS === 'android') playFallbackAudio();
+          else setPronunciationSpeakingTarget(false);
+        }
+      })();
       return;
     }
 
-    speakWithTts();
-  }, [speakAudio, targetText, targetAudioPlayer, targetAudioPlayerSource]);
+    if (Platform.OS === 'android') playFallbackAudio();
+    else {
+      // No approved MP3 source on iOS: do not substitute a system TTS voice.
+      setPronunciationSpeakingTarget(false);
+      setPronunciationHeardTarget(true);
+    }
+  }, [
+    clearTargetPlaybackTimers,
+    finishTargetPlayback,
+    speakFallbackAudio,
+    stopAudio,
+    targetAudioPlayer,
+    targetAudioPlayerSource,
+    targetText,
+  ]);
 
   const startSpeaking = useCallback(async () => {
     hapticTap();
+    clearTargetPlaybackTimers();
+    setPronunciationSpeakingTarget(false);
     stopAudio();
     if (targetAudioPlayerSource) { try { targetAudioPlayer.pause(); } catch { /* плеер мог быть не готов */ } }
     setPronunciationScore(null);
+    setPronunciationStalled(false);
     if (!speechModule) {
+      setBlocked('unavailable');
+      return;
+    }
+    if (!isSpeechRecognitionAvailable(speechModule)) {
       setBlocked('unavailable');
       return;
     }
@@ -661,12 +817,30 @@ function PlanPronunciationRecorder({
       } catch {
         onDevice = false;
       }
-      // Cue first, then start on a quiet mic, so the chime isn't captured as the
-      // leading audio (which smears the first spoken word during warm-up).
-      playRecordStart();
+      // On Android, an audio cue can steal audio focus or smear the first word
+      // while the recognizer is warming up. Haptic tap + red state are enough.
+      if (Platform.OS !== 'android') playRecordStart();
       setPronunciationListening(true);
       setPronunciationScoring(true);
       setTranscript('');
+      // Watchdog (как в SpeakingPanel): если за 7с движок не пришлёт НИ start,
+      // НИ result, НИ error — Android-сервис завис. Гасим попытку и просим
+      // повторить, вместо вечного «Слушаю — говори».
+      clearRecognizerWatchdog();
+      recognizerWatchdogRef.current = setTimeout(() => {
+        recognizerWatchdogRef.current = null;
+        try {
+          speechModule.abort();
+        } catch {
+          /* сервис мог умереть — не мешаем */
+        }
+        setPronunciationListening(false);
+        setPronunciationScoring(false);
+        equalizerRef.current?.setSample(0);
+        setPronunciationStalled(true);
+        hapticError();
+        restoreLoudPlaybackMode();
+      }, 7000);
       speechModule.start(
         buildSpeakingStartOptions({
           lang: 'en-US',
@@ -674,13 +848,27 @@ function PlanPronunciationRecorder({
           interimResults: true,
           volumeMeter: true,
           onDevice,
+          // Android needs the library's AudioRecord/EXTRA_AUDIO_SOURCE path to
+          // avoid instant no-match/end. The transient wav is deleted on audioend.
+          persistRecording: Platform.OS === 'android',
         }),
       );
     } catch {
+      clearRecognizerWatchdog();
       setPronunciationListening(false);
       setPronunciationScoring(false);
+      restoreLoudPlaybackMode();
     }
-  }, [stopAudio, speechModule, setBlocked, playRecordStart, targetAudioPlayer, targetAudioPlayerSource]);
+  }, [
+    clearRecognizerWatchdog,
+    clearTargetPlaybackTimers,
+    stopAudio,
+    speechModule,
+    setBlocked,
+    playRecordStart,
+    targetAudioPlayer,
+    targetAudioPlayerSource,
+  ]);
 
   const stopSpeaking = useCallback(() => {
     try {
@@ -708,6 +896,8 @@ function PlanPronunciationRecorder({
     ? '\u042d\u0442\u043e \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u0443\u043c\u0435\u0435\u0442 \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0432\u0430\u0442\u044c \u0440\u0435\u0447\u044c. \u041c\u043e\u0436\u0435\u0448\u044c \u043f\u0440\u043e\u0441\u0442\u043e \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438\u0442\u044c \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0442\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
     : blocked === 'denied'
     ? '\u041d\u0443\u0436\u0435\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u0443. \u0420\u0430\u0437\u0440\u0435\u0448\u0438 \u0435\u0433\u043e \u0432 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430\u0445 \u2014 \u0438\u043b\u0438 \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438 \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
+    : pronunciationStalled
+    ? '\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439 \u0435\u0449\u0451 \u0440\u0430\u0437'
     : pronunciationListening
     ? '\u0421\u043b\u0443\u0448\u0430\u044e\u2026 \u0433\u043e\u0432\u043e\u0440\u0438'
     : pronunciationScoring
@@ -1140,7 +1330,7 @@ function PlanExerciseFeedbackInline({
 
 export default function PersonalPlanExerciseScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { playCorrect } = useCorrectSound();
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
@@ -1325,6 +1515,9 @@ export default function PersonalPlanExerciseScreen() {
   const useGridOptions = choiceOptions.length > 0 && choiceOptions.every((opt: string) => opt.trim().length <= 14);
   const currentCorrectAnswer = item && 'correctAnswer' in item ? item.correctAnswer : '';
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
+  const progressRailCurrent = lastResult === 'correct'
+    ? Math.max(0, correctIds.length - 1)
+    : correctIds.length;
   const done = !advancing && (completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult));
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
@@ -1707,7 +1900,7 @@ export default function PersonalPlanExerciseScreen() {
         </View>
         <PlanExerciseProgressRail
           correct={correctIds.length}
-          current={correctIds.length}
+          current={progressRailCurrent}
           target={targetCorrect}
           accent={accent}
           mutedColor={t.textMuted}

@@ -39,6 +39,12 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 
 const mockStorage: Record<string, string> = {};
+const pendingKey = (dayKey: string) => `daily_tasks_all_shards_pending_${dayKey}`;
+const flushAsync = async (turns = 6) => {
+  for (let i = 0; i < turns; i += 1) {
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+  }
+};
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -55,10 +61,14 @@ beforeEach(() => {
     for (const [k, v] of pairs) mockStorage[k] = v;
     return Promise.resolve();
   });
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation((k: string) => {
+    delete mockStorage[k];
+    return Promise.resolve();
+  });
 });
 
-describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
-  it('commits claim + balance once; second call is no-op', async () => {
+describe('claimDailyTasksAllShardsReward (optimistic claim + Cloud Function sync)', () => {
+  it('marks claim locally at once, then reconciles balance with the server; second call is no-op', async () => {
     const fs = firestore as any;
     fs.__testState.rewardClaimExists = false;
     fs.__testState.userDocExists = true;
@@ -68,13 +78,18 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(true);
     expect(mockStorage['daily_tasks_all_shards_2026-08-10']).toBe('1');
+    expect(mockStorage[pendingKey('2026-08-10')]).toBe('1');
+    expect(mockStorage.shards_balance).toBe('3');
+
+    await flushAsync();
     expect(mockStorage.shards_balance).toBe('5');
+    expect(mockStorage[pendingKey('2026-08-10')]).toBeUndefined();
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(false);
     expect(mockStorage.shards_balance).toBe('5');
   });
 
-  it('returns false but writes the local marker when the server already has the claim', async () => {
+  it('still gives immediate local success when the server already has the claim, then aligns to server balance', async () => {
     // Регрессия: без локального маркера кнопка «Забрать» зависала активной и
     // каждый повтор показывал «Осколки не загрузились» (баг-репорты daily_tasks).
     const fs = firestore as any;
@@ -84,13 +99,17 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
 
     mockStorage.shards_balance = '1';
 
-    await expect(claimDailyTasksAllShardsReward('2026-08-11')).resolves.toBe(false);
+    await expect(claimDailyTasksAllShardsReward('2026-08-11')).resolves.toBe(true);
     // Маркер выставлен → UI садится в «получено», повторов больше нет.
     expect(mockStorage['daily_tasks_all_shards_2026-08-11']).toBe('1');
+    expect(mockStorage[pendingKey('2026-08-11')]).toBe('1');
+    expect(mockStorage.shards_balance).toBe('2');
+    await flushAsync();
     // Баланс ПОДТЯГИВАЕТСЯ к серверному значению (10), а не остаётся локальным (1).
     // Это фикс рассинхрона «осколки уменьшились/не совпадают» из баг-репортов:
     // при alreadyClaimed сервер — источник правды, локальный баланс выравнивается.
     expect(mockStorage.shards_balance).toBe('10');
+    expect(mockStorage[pendingKey('2026-08-11')]).toBeUndefined();
   });
 
   it('does not let an older already-claimed server mirror lower a newer local wallet', async () => {
@@ -107,11 +126,13 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
       reason: 'newer_local_reward',
     });
 
-    await expect(claimDailyTasksAllShardsReward('2026-08-12')).resolves.toBe(false);
+    await expect(claimDailyTasksAllShardsReward('2026-08-12')).resolves.toBe(true);
 
     expect(mockStorage['daily_tasks_all_shards_2026-08-12']).toBe('1');
-    expect(mockStorage.shards_balance).toBe('80');
-    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(2_000);
+    expect(mockStorage.shards_balance).toBe('81');
+    await flushAsync();
+    expect(mockStorage.shards_balance).toBe('81');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(2_000);
   });
 
   it('does not let an older granted server mirror lower a newer local wallet', async () => {
@@ -130,8 +151,10 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
     await expect(claimDailyTasksAllShardsReward('2026-08-13')).resolves.toBe(true);
 
     expect(mockStorage['daily_tasks_all_shards_2026-08-13']).toBe('1');
-    expect(mockStorage.shards_balance).toBe('80');
-    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(9_000_000_000_000);
+    expect(mockStorage.shards_balance).toBe('81');
+    await flushAsync();
+    expect(mockStorage.shards_balance).toBe('81');
+    expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(9_000_000_000_000);
   });
 });
 

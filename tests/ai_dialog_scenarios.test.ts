@@ -68,6 +68,24 @@ describe('ai_dialog_scenarios', () => {
     }
   });
 
+  it('keeps absurd challenge premises as intentional roleplay conflicts', () => {
+    const cat = getScenarioById('neighbor_cat_accusation');
+    expect(cat?.titleRu).toBe('Сосед думает, ты прячешь его кота');
+    expect(cat?.goalRu).toContain('докажи невиновность');
+    expect(cat?.role).toMatch(/secretly keeping their lost cat/i);
+    expect(cat?.setting).toContain("learner's flat");
+
+    const robot = getScenarioById('broken_robot_waiter');
+    expect(robot?.titleRu).toBe('Робот-официант сломался');
+    expect(robot?.role).toMatch(/malfunctioning robot waiter/i);
+    expect(robot?.persona).toMatch(/UNIT-7|robot/i);
+
+    const support = getScenarioById('looping_support_bot');
+    expect(support?.titleRu).toBe('Бот поддержки ходит по кругу');
+    expect(support?.role).toMatch(/automated support bot/i);
+    expect(support?.persona).toMatch(/HELPER-BOT/i);
+  });
+
   it('keeps category navigation populated in declared order', () => {
     expect(DIALOG_SCENARIO_GROUPS.map((group) => group.category)).toEqual([
       'everyday',

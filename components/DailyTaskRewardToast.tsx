@@ -153,24 +153,45 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     buttonIconName: 'gift-outline',
   },
   business: {
-    cardColors: ['#1C1C1C', '#0A0A0A'],
-    sheenColors: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.04)', 'rgba(255,255,255,0)'],
-    accentRailColor: '#FFFFFF',
-    auraColor: 'rgba(255,255,255,0.08)',
+    cardColors: ['#121212', '#000000'],
+    sheenColors: ['rgba(0,149,246,0.10)', 'rgba(0,149,246,0.04)', 'rgba(0,149,246,0)'],
+    accentRailColor: '#0095F6',
+    auraColor: 'rgba(0,149,246,0.10)',
     borderColor: 'rgba(255,255,255,0.12)',
     borderWidth: 1,
     radius: 14,
     shadowColor: 'rgba(0,0,0,0.72)',
     iconName: 'sparkles-outline',
-    iconBg: 'rgba(255,255,255,0.08)',
-    iconBorderColor: 'rgba(255,255,255,0.12)',
-    iconColor: '#F2F2F2',
-    titleColor: '#F2F2F2',
-    taskColor: '#9A9A9A',
-    xpColor: '#F2F2F2',
-    claimBg: '#FFFFFF',
-    claimText: '#0A0A0A',
-    claimBorderColor: 'rgba(255,255,255,0.24)',
+    iconBg: 'rgba(0,149,246,0.12)',
+    iconBorderColor: 'rgba(0,149,246,0.24)',
+    iconColor: '#E6E6E6',
+    titleColor: '#F5F5F5',
+    taskColor: '#737373',
+    xpColor: '#E6E6E6',
+    claimBg: '#0095F6',
+    claimText: '#FFFFFF',
+    claimBorderColor: 'rgba(0,149,246,0.36)',
+    buttonIconName: 'gift-outline',
+  },
+  businessLight: {
+    cardColors: ['#FFFFFF', '#FAFAFA'],
+    sheenColors: ['rgba(0,149,246,0.10)', 'rgba(0,149,246,0.04)', 'rgba(0,149,246,0)'],
+    accentRailColor: '#0095F6',
+    auraColor: 'rgba(0,149,246,0.10)',
+    borderColor: 'rgba(0,0,0,0.10)',
+    borderWidth: 1,
+    radius: 14,
+    shadowColor: 'rgba(0,0,0,0)',
+    iconName: 'sparkles-outline',
+    iconBg: 'rgba(0,149,246,0.12)',
+    iconBorderColor: 'rgba(0,149,246,0.26)',
+    iconColor: '#0095F6',
+    titleColor: '#262626',
+    taskColor: '#8E8E8E',
+    xpColor: '#0095F6',
+    claimBg: '#0095F6',
+    claimText: '#FFFFFF',
+    claimBorderColor: 'rgba(0,149,246,0.40)',
     buttonIconName: 'gift-outline',
   },
   midnight: {
@@ -565,7 +586,19 @@ function DailyTaskRewardToast() {
         const awarded = Math.max(0, Math.round(result.finalDelta || 0));
         if (awarded <= 0) throw new Error('daily_task_xp_not_confirmed');
         return awarded;
-      }, { tasksForClaim, studyTarget: current.studyTarget });
+      }, {
+        tasksForClaim,
+        studyTarget: current.studyTarget,
+        onReserved: () => {
+          hapticSuccess();
+          emitAppEvent('action_toast', {
+            type: 'success',
+            messageRu: `+${taskForXp.xp} XP получено`,
+            messageUk: `+${taskForXp.xp} XP отримано`,
+            messageEs: `+${taskForXp.xp} XP recibido`,
+          });
+        },
+      });
 
       if (!claimed) {
         emitAppEvent('action_toast', {
@@ -578,13 +611,14 @@ function DailyTaskRewardToast() {
       }
 
       await refreshDailyTaskAchievements(tasksForClaim, current.studyTarget);
-      hapticSuccess();
-      emitAppEvent('action_toast', {
-        type: 'success',
-        messageRu: `+${awardedXp} XP получено`,
-        messageUk: `+${awardedXp} XP отримано`,
-        messageEs: `+${awardedXp} XP recibido`,
-      });
+      if (awardedXp > 0 && awardedXp !== taskForXp.xp) {
+        emitAppEvent('action_toast', {
+          type: 'success',
+          messageRu: `+${awardedXp} XP получено`,
+          messageUk: `+${awardedXp} XP отримано`,
+          messageEs: `+${awardedXp} XP recibido`,
+        });
+      }
     } catch {
       hapticError();
       emitAppEvent('action_toast', {

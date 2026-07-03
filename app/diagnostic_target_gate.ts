@@ -3,7 +3,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 export type DiagnosticContentGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
-  reason: 'english_diagnostic_bank_available' | 'french_diagnostic_source_gate';
+  reason: 'english_diagnostic_bank_available' | 'french_quiz_pack_diagnostic_available' | 'french_diagnostic_source_gate';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -19,11 +19,16 @@ export function diagnosticContentGateForTarget(studyTarget?: RuntimeStudyTarget)
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     return {
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_diagnostic_source_gate',
-      blockedRoutes: ['/diagnostic_test'],
-      requiredEvidence: FRENCH_DIAGNOSTIC_REQUIRED_EVIDENCE,
+      reason: 'french_quiz_pack_diagnostic_available',
+      blockedRoutes: [],
+      requiredEvidence: [
+        'french_quiz_remote_server_pack',
+        'french_diagnostic_from_remote_quiz_runtime',
+        'target_scoped_diagnostic_progress',
+        'no_english_diagnostic_bank_fallback',
+      ],
     };
   }
 

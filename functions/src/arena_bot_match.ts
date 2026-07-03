@@ -14,6 +14,7 @@ import * as admin from 'firebase-admin';
 import { applyStarDelta } from './arena_rank_progression';
 import { applySeasonRatingDelta, seasonIdForDate, rankIndex, type MatchOutcome } from './arena_season';
 import { resolveArenaSeasonConfig } from './arena_season_config';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const DRAW_XP = 30;
@@ -41,6 +42,47 @@ function readRank(raw: unknown): { tier: string; level: string; stars: number } 
   };
 }
 
+type ArenaProfileDoc = Record<string, unknown> & {
+  rank?: { stars?: number; tier?: string; level?: string };
+  xp?: number;
+  sr?: number;
+  peakSR?: number;
+  seasonId?: string;
+  seasonPeakRankIndex?: number;
+  displayName?: string;
+  stats?: {
+    matchesPlayed?: number; matchesWon?: number; totalScore?: number;
+    winStreak?: number; bestWinStreak?: number;
+  };
+};
+
+function readProfileRank(data: ArenaProfileDoc, preferLegacy = false): { tier: string; level: string; stars: number } {
+  return {
+    tier: String((preferLegacy ? data['rank.tier'] ?? data.rank?.tier : data.rank?.tier ?? data['rank.tier']) ?? 'bronze'),
+    level: String((preferLegacy ? data['rank.level'] ?? data.rank?.level : data.rank?.level ?? data['rank.level']) ?? 'I'),
+    stars: Math.max(0, Math.trunc(readNumber(preferLegacy ? data['rank.stars'] ?? data.rank?.stars : data.rank?.stars ?? data['rank.stars'], 0))),
+  };
+}
+
+function readProfileStats(data: ArenaProfileDoc) {
+  const nested = {
+    matchesPlayed: Math.max(0, Math.trunc(readNumber(data.stats?.matchesPlayed, 0))),
+    matchesWon: Math.max(0, Math.trunc(readNumber(data.stats?.matchesWon, 0))),
+    totalScore: Math.max(0, Math.trunc(readNumber(data.stats?.totalScore, 0))),
+    winStreak: Math.max(0, Math.trunc(readNumber(data.stats?.winStreak, 0))),
+    bestWinStreak: Math.max(0, Math.trunc(readNumber(data.stats?.bestWinStreak, 0))),
+  };
+  const legacy = {
+    matchesPlayed: Math.max(0, Math.trunc(readNumber(data['stats.matchesPlayed'] ?? data.stats?.matchesPlayed, 0))),
+    matchesWon: Math.max(0, Math.trunc(readNumber(data['stats.matchesWon'] ?? data.stats?.matchesWon, 0))),
+    totalScore: Math.max(0, Math.trunc(readNumber(data['stats.totalScore'] ?? data.stats?.totalScore, 0))),
+    winStreak: Math.max(0, Math.trunc(readNumber(data['stats.winStreak'] ?? data.stats?.winStreak, 0))),
+    bestWinStreak: Math.max(0, Math.trunc(readNumber(data['stats.bestWinStreak'] ?? data.stats?.bestWinStreak, 0))),
+  };
+  const preferLegacy = legacy.matchesPlayed > nested.matchesPlayed;
+  return { stats: preferLegacy ? legacy : nested, preferLegacy };
+}
+
 function replayBotMatchResult(
   history: Record<string, unknown>,
   profile: { sr?: number; peakSR?: number },
@@ -64,7 +106,7 @@ function replayBotMatchResult(
   };
 }
 
-export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) => {
+export const arenaBotMatchRecord = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const uid = request.auth.uid; // запись ТОЛЬКО в свой профиль
   const d = (request.data ?? {}) as Record<string, unknown>;
@@ -92,21 +134,15 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
       tx.get(profileRef),
       tx.get(historyRef),
     ]);
-    const data = (snap.exists ? snap.data() : {}) as {
-      rank?: { stars?: number; tier?: string; level?: string };
-      xp?: number; sr?: number; peakSR?: number; seasonId?: string; seasonPeakRankIndex?: number;
-      displayName?: string;
-      stats?: {
-        matchesPlayed?: number; matchesWon?: number; totalScore?: number;
-        winStreak?: number; bestWinStreak?: number;
-      };
-    };
+    const data = (snap.exists ? snap.data() : {}) as ArenaProfileDoc;
     if (historySnap.exists) {
       return replayBotMatchResult(historySnap.data() ?? {}, data);
     }
-    const oldStars = data.rank?.stars ?? 0;
-    const oldTier = data.rank?.tier ?? 'bronze';
-    const oldLevel = data.rank?.level ?? 'I';
+    const oldStatsRead = readProfileStats(data);
+    const oldRank = readProfileRank(data, oldStatsRead.preferLegacy);
+    const oldStars = oldRank.stars;
+    const oldTier = oldRank.tier;
+    const oldLevel = oldRank.level;
     const wasCeiling = oldTier === 'legend' && oldLevel === 'III';
 
     // На потолке звёзды не двигаем — работает SR.
@@ -128,8 +164,9 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
       : { sr: curSr, peakSR: curPeak };
     const newPeakRankIdx = Math.max(curPeakRankIdx, rankIndex(newTier, newLevel));
 
-    const curStreak = data.stats?.winStreak ?? 0;
-    const bestStreak = data.stats?.bestWinStreak ?? 0;
+    const oldStats = oldStatsRead.stats;
+    const curStreak = oldStats.winStreak;
+    const bestStreak = oldStats.bestWinStreak;
     const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
 
     const rankChanged = newTier !== oldTier || newLevel !== oldLevel;
@@ -137,14 +174,16 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
 
     const update: Record<string, unknown> = {
       userId: uid,
-      'rank.tier': newTier, 'rank.level': newLevel, 'rank.stars': newStars,
+      rank: { tier: newTier, level: newLevel, stars: newStars },
       sr: sr.sr, peakSR: sr.peakSR, seasonId: nowSeasonId, seasonPeakRankIndex: newPeakRankIdx,
       xp: (data.xp ?? 0) + xpDelta,
-      'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-      'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-      'stats.totalScore': (data.stats?.totalScore ?? 0) + myScore,
-      'stats.winStreak': newStreak,
-      'stats.bestWinStreak': Math.max(bestStreak, newStreak),
+      stats: {
+        matchesPlayed: oldStats.matchesPlayed + 1,
+        matchesWon: oldStats.matchesWon + (won ? 1 : 0),
+        totalScore: oldStats.totalScore + myScore,
+        winStreak: newStreak,
+        bestWinStreak: Math.max(bestStreak, newStreak),
+      },
       updatedAt: Date.now(),
     };
     if (incomingName) update.displayName = incomingName;

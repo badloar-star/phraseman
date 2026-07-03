@@ -68,10 +68,13 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
 export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code' | 'name_index';
-export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource };
+export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource; name?: string };
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const FUNCTIONS_REGION = 'us-central1';
+export const FRIEND_NAME_LOOKUP_AUTH_MS = 1_200;
+export const FRIEND_NAME_LOOKUP_LINK_MS = 1_200;
+export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 2_500;
 
 /** Не даём облачному пути зависнуть навечно (в UI тогда «Генерируем код…» без счётчика ошибок). */
 const FRIEND_CODE_CLOUD_TOTAL_MS = 38_000;
@@ -112,12 +115,19 @@ const getFirestore = () => {
   }
 };
 
-function callable<TReq, TRes>(name: string) {
+type CallableOptions = { timeout?: number };
+
+function callable<TReq, TRes>(name: string, options?: CallableOptions) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getApp } = require('@react-native-firebase/app');
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-  return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
+  const typedHttpsCallable = httpsCallable as <Req, Res>(
+    functionsInstance: unknown,
+    callableName: string,
+    callableOptions?: CallableOptions,
+  ) => (data: Req) => Promise<{ data: Res }>;
+  return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name, options);
 }
 
 /**
@@ -296,19 +306,30 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
 }
 
 export async function lookupUserByNickname(query: string): Promise<InviteCodeLookupResult | null> {
-  const normalized = String(query ?? '').normalize('NFKC').replace(/^@+/, '').replace(/\s+/g, ' ').trim();
+  const normalized = String(query ?? '').normalize('NFKC').trim().replace(/^@+/, '').replace(/\s+/g, ' ').trim();
   if (normalized.length < 2 || normalized.length > 32) return null;
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
 
-  const stableId = await ensureAnonUser();
+  const stableId = await getCanonicalUserId();
   if (!stableId) return null;
-  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  const authReady = await withTimeout(ensureAnonUser(), FRIEND_NAME_LOOKUP_AUTH_MS);
+  if (!authReady) return null;
+  await withTimeout(ensureStableAuthLinkForStableId(stableId), FRIEND_NAME_LOOKUP_LINK_MS);
 
   try {
-    const fn = callable<{ stableId?: string; query: string }, { ok: boolean; user: { uid: string; source?: 'name_index'; name?: string } | null }>('friendLookupUser');
-    const { data } = await fn({ stableId, query: normalized });
+    const fn = callable<
+      { stableId?: string; query: string },
+      { ok: boolean; user: { uid: string; source?: 'name_index'; name?: string } | null }
+    >('friendLookupUser', { timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS });
+    const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
+    const data = res?.data;
     const uid = data?.user?.uid;
-    return typeof uid === 'string' && uid.trim() ? { uid: uid.trim(), source: 'name_index' } : null;
+    const name = typeof data?.user?.name === 'string'
+      ? data.user.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
+      : '';
+    return typeof uid === 'string' && uid.trim()
+      ? { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}) }
+      : null;
   } catch {
     return null;
   }

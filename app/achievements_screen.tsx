@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
 import {
   View, Text, SectionList, TouchableOpacity, Modal, Pressable, Image, ScrollView, useWindowDimensions,
   InteractionManager,
@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import PlusBadge from '../components/PlusBadge';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
@@ -1121,21 +1122,14 @@ const AchievementGridCell = memo(function AchievementGridCell({
           >
             <View
               style={{
-                flexDirection: 'row',
                 alignItems: 'center',
-                gap: 3,
-                paddingHorizontal: 6,
-                paddingVertical: 2,
-                borderRadius: 6,
-                backgroundColor: isDark ? '#6D28D9EE' : '#7C3AED',
-                borderWidth: 1,
-                borderColor: isDark ? '#A78BFA55' : '#FFFFFF66',
               }}
             >
-              <Ionicons name="diamond" size={9} color={monoIcon(themeMode, '#FDE68A')} />
-              <Text style={{ fontSize: 10, fontWeight: '800', color: monoIcon(themeMode, '#FEF3C7') }} maxFontSizeMultiplier={1.1}>
-                {triLang(lang, { ru: 'Плюс', uk: 'Плюс', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
-              </Text>
+              <PlusBadge
+                themeMode={themeMode}
+                size="xs"
+                label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
+              />
             </View>
           </View>
         )}
@@ -1489,7 +1483,7 @@ function AchievementModal({
   studyTarget: RuntimeStudyTarget;
 }) {
   const router = useRouter();
-  const [claiming, setClaiming] = useState(false);
+  const shardClaimTapGuardRef = useRef(false);
   const { lang } = useLang();
   const { width: screenW, height: screenH } = useWindowDimensions();
   const unlocked = !!state?.unlockedAt;
@@ -1639,26 +1633,20 @@ function AchievementModal({
                 </Text>
                 {pendingShard ? (
                   <TapScale
-                    disabled={claiming}
-                    onPress={async () => {
-                      if (claiming) return;
-                      setClaiming(true);
-                      try {
-                        const ok = await claimAchievementShardReward(achievement.id);
-                        if (ok) {
-                          void hapticSuccess();
-                          onShardClaimed(achievement.id);
-                        }
-                      } finally {
-                        setClaiming(false);
-                      }
+                    onPress={() => {
+                      if (shardClaimTapGuardRef.current) return;
+                      shardClaimTapGuardRef.current = true;
+                      onShardClaimed(achievement.id);
+                      void hapticSuccess();
+                      void claimAchievementShardReward(achievement.id).finally(() => {
+                        shardClaimTapGuardRef.current = false;
+                      });
                     }}
                     style={{
                       backgroundColor: t.correct,
                       borderRadius: 12,
                       paddingVertical: 12,
                       paddingHorizontal: 28,
-                      opacity: claiming ? 0.7 : 1,
                     }}
                   >
                     <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>

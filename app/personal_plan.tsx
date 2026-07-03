@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -5,7 +6,6 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import Svg, { Circle, Defs, LinearGradient as SvgGradient, Stop } from 'react-native-svg';
@@ -308,7 +308,7 @@ export default function PersonalPlanScreen() {
   // доступа улетает на пейвол, а не открывает уже созданный план. С учётом «Пульта»
   // (перевод фичи в «Фри» снимает замок живьём).
   const planAccess = useFeatureAccess('personal_plan');
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
   const [loaded, setLoaded] = useState<LoadedPlan | null>(() => {
@@ -335,6 +335,10 @@ export default function PersonalPlanScreen() {
       duePlanTrainerWeakSpotCount: 0,
     };
   });
+  // Тихая ревалидация: подпись последнего закоммиченного `loaded`, чтобы на повторных
+  // фокусах (useFocusEffect) не звать setLoaded/энтранс-анимацию, если пересчитанные
+  // plan/runtime/snapshot структурно совпадают с уже отображаемыми — не мигать контентом.
+  const loadedSignatureRef = useRef<string | null>(null);
   const [extraVisibleTaskCount, setExtraVisibleTaskCount] = useState(0);
   // Задачи дня по умолчанию СВЁРНУТЫ — пользователь раскрывает их сам по тапу на заголовок.
   const [tasksExpanded, setTasksExpanded] = useState(false);
@@ -467,16 +471,29 @@ export default function PersonalPlanScreen() {
       router.replace('/personal_plan_complete' as any);
       return;
     }
-    setLoaded({
+    const finalLoaded: LoadedPlan = {
       plan,
       state: advancedState,
       runtime: buildTodayPlanRuntime(input),
       snapshot: buildPersonalPlanSnapshot(input),
       completedTasks,
       duePlanTrainerWeakSpotCount,
-    });
+    };
+    // Тихая ревалидация: если пересчитанные данные структурно совпадают с уже
+    // показанными — не сетим (не мигаем контентом/анимацией на повторном фокусе).
+    let signature: string | null = null;
+    try {
+      signature = JSON.stringify(finalLoaded);
+    } catch { /* на всякий случай, если в данных попадётся не-JSON-совместимое поле */ }
+    const unchanged = signature !== null && signature === loadedSignatureRef.current;
+    if (unchanged) return;
+    if (signature !== null) loadedSignatureRef.current = signature;
+    setLoaded(finalLoaded);
 
-    // Entrance animation after data loads
+    // Entrance animation after data loads — только когда контент реально изменился,
+    // иначе на каждом фокусе экран бы мигал повторным fade-in без причины.
+    entranceFade.setValue(0);
+    entranceSlide.setValue(24);
     Animated.parallel([
       Animated.timing(entranceFade, { toValue: 1, duration: 400, useNativeDriver: true }),
       Animated.spring(entranceSlide, { toValue: 0, tension: 80, friction: 12, useNativeDriver: true }),
@@ -485,12 +502,10 @@ export default function PersonalPlanScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      entranceFade.setValue(0);
-      entranceSlide.setValue(24);
       let alive = true;
       void load().then(() => { if (!alive) return; });
       return () => { alive = false; };
-    }, [load, entranceFade, entranceSlide]),
+    }, [load]),
   );
 
   // Which app lessons to finish before this plan day (grammar prerequisites the
@@ -782,8 +797,8 @@ export default function PersonalPlanScreen() {
                 </Text>
                 <Text style={[styles.recommendText, { color: chrome.accent }]} numberOfLines={2}>
                   {lessonRecommendation.recommendedLessonIds.length === 1
-                    ? 'Можно начать план сразу или сперва пройти урок →'
-                    : 'Можно начать план сразу или сперва пройти уроки →'}
+                    ? 'Переход к уроку из списка →'
+                    : 'Переход к первому уроку из списка →'}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={20} color={chrome.accent} style={{ alignSelf: 'center' }} />

@@ -1,6 +1,8 @@
 type RouterStub = {
   canGoBack: jest.Mock<boolean, []>;
+  canDismiss: jest.Mock<boolean, []>;
   back: jest.Mock<void, []>;
+  dismiss: jest.Mock<void, [number?]>;
   replace: jest.Mock<void, [any]>;
 };
 
@@ -12,7 +14,19 @@ function loadNavigationBack() {
 function makeRouter(canGoBack = true): RouterStub {
   return {
     canGoBack: jest.fn(() => canGoBack),
+    canDismiss: jest.fn(() => false),
     back: jest.fn(),
+    dismiss: jest.fn(),
+    replace: jest.fn(),
+  };
+}
+
+function makeDismissableRouter(): RouterStub {
+  return {
+    canGoBack: jest.fn(() => true),
+    canDismiss: jest.fn(() => true),
+    back: jest.fn(),
+    dismiss: jest.fn(),
     replace: jest.fn(),
   };
 }
@@ -112,5 +126,68 @@ describe('safeRouterBack', () => {
     navigation.safeRouterBack(router, '/lesson_menu' as any);
 
     expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=5');
+  });
+
+  it('preserves replace semantics through the transient premium dispatcher', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/lesson_menu?id=9');
+    navigation.rememberNavigationPath('/lesson1?id=9');
+
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/premium_modal?context=course_after_lesson3');
+    navigation.rememberNavigationPath('/paywall_a?context=course_after_lesson3');
+
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.replace).toHaveBeenCalledWith('/lesson_menu?id=9');
+  });
+
+  it('dismisses a paywall modal natively when the stack supports it', () => {
+    const navigation = loadNavigationBack();
+    const router = makeDismissableRouter();
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/premium_modal?context=generic');
+    navigation.rememberNavigationPath('/paywall_a?context=generic');
+
+    navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
+
+    expect(router.canDismiss).toHaveBeenCalled();
+    expect(router.dismiss).toHaveBeenCalledWith(1);
+    expect(router.replace).not.toHaveBeenCalled();
+  });
+
+  it('replaces instead of native-dismiss when a transient paywall replaced its source route', () => {
+    const navigation = loadNavigationBack();
+    const router = makeDismissableRouter();
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer_words_session');
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/premium_modal?context=trainer_limit');
+
+    navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
+
+    expect(router.canDismiss).not.toHaveBeenCalled();
+    expect(router.dismiss).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  it('replaces instead of native-dismiss when a concrete paywall route replaced its source route', () => {
+    const navigation = loadNavigationBack();
+    const router = makeDismissableRouter();
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer_phrases_session');
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/paywall_a?context=trainer_limit');
+
+    navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
+
+    expect(router.canDismiss).not.toHaveBeenCalled();
+    expect(router.dismiss).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith('/(tabs)/home');
   });
 });

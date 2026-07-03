@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
  * _admin_celebration_lab.tsx — DEV-превью «дорогого» празднования победы урока.
  *
@@ -43,7 +44,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { hapticSuccess, hapticTap, hapticMediumImpact } from '../hooks/use-haptics';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -214,7 +214,7 @@ function MetricCard({
 
 export default function CelebrationLabScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [play, setPlay] = useState(0);
   const [xpDisplay, setXpDisplay] = useState(0);

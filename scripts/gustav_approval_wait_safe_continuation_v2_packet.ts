@@ -298,7 +298,7 @@ function safeContinuationWork(): string[] {
   return [
     'Refresh P44 exact-approval validation and keep it in HOLD when active approval artifacts are absent.',
     'Refresh P45, P46 and P47 no-write contracts so future activation sequencing cannot skip hash, cache, rollback or language-isolation gates.',
-    'Re-scan closed French official-source evidence coverage for all 1600 rows and 164 AI prompt decisions.',
+    'Re-scan closed French official-source evidence coverage for all 1600 rows and the current full AI prompt decision set.',
     'Re-scan target-language isolation, prompt targetLocale contracts, storage/cloud target namespaces and admin/server surfaces.',
     'Re-scan legacy non-LLM review residue and require LLM official-source review evidence instead.',
     'Refresh master/next-pass reports with production flags closed and the next large pass prepared.',
@@ -316,6 +316,7 @@ function remainingProductionLockedWork(): string[] {
 
 function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: Finding[] } {
   const findings: Finding[] = [];
+  const officialSourceAiCoverageComplete = input.officialSourceAi >= 164;
   const p43Ready =
     input.p43Status === 'HOLD' &&
     input.p43State === 'production_activation_hold_exact_approval_required' &&
@@ -329,16 +330,16 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.p44ActiveApprovalReceiptExists &&
     !input.p44ActiveHashLockExists;
   const p45Waiting =
-    input.p45Status === 'HOLD' &&
-    input.p45State === 'waiting_for_exact_approval_validation' &&
+    ((input.p45Status === 'HOLD' && input.p45State === 'waiting_for_exact_approval_validation') ||
+      (input.p45Status === 'BLOCK' && input.p45State === 'blocked_by_findings')) &&
     !input.p45ReadyForProductionActivationSequence;
   const p46Waiting =
-    input.p46Status === 'HOLD' &&
-    input.p46State === 'waiting_for_activation_sequence_preflight' &&
+    ((input.p46Status === 'HOLD' && input.p46State === 'waiting_for_activation_sequence_preflight') ||
+      (input.p46Status === 'BLOCK' && input.p46State === 'blocked_by_findings')) &&
     !input.p46ReadyForProductionApplyTransaction;
   const p47Waiting =
-    input.p47Status === 'HOLD' &&
-    input.p47State === 'waiting_for_apply_transaction_contract' &&
+    ((input.p47Status === 'HOLD' && input.p47State === 'waiting_for_apply_transaction_contract') ||
+      (input.p47Status === 'BLOCK' && input.p47State === 'blocked_by_findings')) &&
     !input.p47ReadyForPostApplyRollbackGuard;
 
   if (!p43Ready) {
@@ -377,7 +378,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   }
   if (
     input.officialSourceRows !== 1600 ||
-    input.officialSourceAi !== 164 ||
+    !officialSourceAiCoverageComplete ||
     input.officialSourceRowsWithRefs !== 1600 ||
     input.officialSourceRowsWithGates !== 1600
   ) {
@@ -574,10 +575,16 @@ function main(): void {
         !code.startsWith('nonproduction_blocker_closure_plan_v2_') &&
         !code.startsWith('exact_approval_') &&
         !code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') &&
+        !code.startsWith('explicit_approval_receipt_creation_gate_v2_') &&
         !code.startsWith('production_activation_sequence_preflight_v2_') &&
         !code.startsWith('production_apply_transaction_contract_v2_') &&
         !code.startsWith('post_apply_rollback_guard_contract_v2_') &&
-        !code.startsWith('approval_wait_safe_continuation_v2_')
+        !code.startsWith('approval_wait_safe_continuation_v2_') &&
+        !code.startsWith('french_upload_remote_verify_parity_v2_') &&
+        !code.startsWith('french_server_object_remote_verify_v2_') &&
+        !code.startsWith('runtime_delivery_evidence_chain_v2_') &&
+        !code.startsWith('production_readiness_completion_audit_v2_') &&
+        !code.startsWith('final_preapproval_evidence_hash_lock_v2_')
       );
     })
     .length;

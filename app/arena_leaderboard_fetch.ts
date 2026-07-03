@@ -28,6 +28,7 @@ export interface ArenaLbRow {
   totalXp: number;
   isPremium: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   frame?: string;
   aura?: string;
   profileCardLevel?: number;
@@ -90,6 +91,7 @@ interface LbExtras {
   leagueCrown?: LeagueCrown;
   isPremium: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   avatarEmoji?: string;
   profileCardLevel?: number;
   profileCardTheme?: string;
@@ -107,6 +109,7 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
       leagueCrown: next.leagueCrown ?? prev.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
       isVip: prev.isVip || next.isVip,
+      isLifetime: prev.isLifetime || next.isLifetime,
       avatarEmoji: next.avatarEmoji ?? prev.avatarEmoji,
       profileCardLevel: next.profileCardLevel ?? prev.profileCardLevel,
       profileCardTheme: next.profileCardTheme ?? prev.profileCardTheme,
@@ -122,6 +125,7 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
       leagueCrown: prev.leagueCrown ?? next.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
       isVip: prev.isVip || next.isVip,
+      isLifetime: prev.isLifetime || next.isLifetime,
       avatarEmoji: prev.avatarEmoji ?? next.avatarEmoji,
       profileCardLevel: prev.profileCardLevel ?? next.profileCardLevel,
       profileCardTheme: prev.profileCardTheme ?? next.profileCardTheme,
@@ -152,6 +156,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     aura?: string | null;
     isPremium?: boolean;
     isVip?: boolean;
+    isLifetime?: boolean;
     avatar?: string | null;
     profileCardLevel?: unknown;
     profileCardTheme?: unknown;
@@ -169,6 +174,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     aura: normalizeAvatarAuraId(d.aura) ?? undefined,
     isPremium: !!d.isPremium,
     isVip: !!d.isVip,
+    isLifetime: !!d.isLifetime,
     avatarEmoji: typeof d.avatar === 'string' && d.avatar.trim() ? d.avatar.trim() : undefined,
     profileCardLevel: normalizeProfileCardLevel(d.profileCardLevel),
     profileCardTheme: normalizeProfileCardTheme(d.profileCardTheme),
@@ -231,6 +237,7 @@ function courseExtrasFromProfileData(d: Record<string, unknown>): LbExtras | und
   const aura = normalizeAvatarAuraId(typeof d.courseAura === 'string' ? d.courseAura.trim() : '');
   const isP = !!d.courseIsPremium;
   const isVip = !!d.courseIsVip;
+  const isLifetime = !!d.courseIsLifetime;
   const profileCardLevel = normalizeProfileCardLevel(d.courseProfileCardLevel);
   if (xp <= 0 && !av && !fr && !aura && !isP && !isVip && profileCardLevel <= 0) return undefined;
   return {
@@ -240,6 +247,7 @@ function courseExtrasFromProfileData(d: Record<string, unknown>): LbExtras | und
     aura,
     isPremium: isP,
     isVip,
+    isLifetime,
     profileCardLevel,
     profileCardTheme: normalizeProfileCardTheme(d.courseProfileCardTheme),
     profileCardMotion: normalizeProfileCardMotion(d.courseProfileCardMotion),
@@ -266,6 +274,7 @@ function mergeRemoteAndProfileExtras(
     avatarEmoji: pri?.avatarEmoji ?? sec?.avatarEmoji,
     isPremium: (remote?.isPremium ?? false) || (profile?.isPremium ?? false),
     isVip: (remote?.isVip ?? false) || (profile?.isVip ?? false),
+    isLifetime: (remote?.isLifetime ?? false) || (profile?.isLifetime ?? false),
     profileCardLevel: pri?.profileCardLevel ?? sec?.profileCardLevel,
     profileCardTheme: pri?.profileCardTheme ?? sec?.profileCardTheme,
     profileCardMotion: pri?.profileCardMotion ?? sec?.profileCardMotion,
@@ -303,7 +312,7 @@ function foldMergedExtrasForUids(
     const row = mergeRemoteAndProfileExtras(extras.get(uid), profileCourse.get(uid));
     acc = acc ? mergeLbExtras(acc, row) : row;
   }
-  return acc ?? { points: 0, isPremium: false, isVip: false };
+  return acc ?? { points: 0, isPremium: false, isVip: false, isLifetime: false };
 }
 
 type ArenaCandidate = {
@@ -370,7 +379,7 @@ async function fetchLeaderboardExtras(uids: string[]): Promise<Map<string, LbExt
 
   const needFallback = uids.filter((uid) => (map.get(uid)?.points ?? 0) <= 0);
   needFallback.forEach((uid) => {
-    if (!map.has(uid)) map.set(uid, { points: 0, isPremium: false, isVip: false });
+    if (!map.has(uid)) map.set(uid, { points: 0, isPremium: false, isVip: false, isLifetime: false });
   });
 
   return map;
@@ -412,6 +421,7 @@ function coerceSnapshotRow(raw: unknown, index: number): ArenaLbRow | null {
     totalXp: typeof d.totalXp === 'number' ? d.totalXp : 0,
     isPremium: d.isPremium === true,
     isVip: d.isVip === true,
+    isLifetime: d.isLifetime === true,
     ...(typeof d.frame === 'string' && d.frame.trim() ? { frame: d.frame.trim() } : {}),
     ...(typeof d.aura === 'string' && d.aura.trim() ? { aura: normalizeAvatarAuraId(d.aura) ?? undefined } : {}),
     ...(typeof d.avatarEmoji === 'string' && d.avatarEmoji.trim() ? { avatarEmoji: d.avatarEmoji.trim() } : {}),
@@ -548,6 +558,7 @@ async function queryArenaProfilesTop100(): Promise<ArenaLbRow[]> {
       totalXp: ex.points,
       isPremium: ex.isPremium,
       isVip: ex.isVip,
+      isLifetime: ex.isLifetime,
       frame: ex.frame,
       aura: ex.aura,
       avatarEmoji: ex.avatarEmoji,
@@ -644,6 +655,7 @@ export type ArenaOptimisticSelf = {
   totalXp?: number | null;
   isPremium?: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   frame?: string | null;
   aura?: string | null;
   avatarEmoji?: string | null;
@@ -684,6 +696,7 @@ export function withOptimisticArenaSelf(rows: ArenaLbRow[], me: ArenaOptimisticS
     totalXp: Math.max(0, Math.trunc(Number(me?.totalXp ?? existing?.totalXp) || 0)),
     isPremium: me?.isPremium === true,
     isVip: me?.isVip === true,
+    isLifetime: me?.isLifetime === true,
     ...(typeof me?.frame === 'string' && me.frame.trim() ? { frame: me.frame.trim() } : {}),
     ...(typeof me?.aura === 'string' && me.aura.trim() ? { aura: normalizeAvatarAuraId(me.aura) ?? undefined } : {}),
     ...(typeof me?.avatarEmoji === 'string' && me.avatarEmoji.trim() ? { avatarEmoji: me.avatarEmoji.trim() } : {}),

@@ -35,7 +35,6 @@ const COPY = {
     endedBody: 'Всё, что ты выучил — остаётся с тобой. Бесплатный режим доступен всегда. Plus нужен, если хочешь вернуть все планы, темы, аналитику и учёбу без ограничений.',
     endedPrimary: 'Открыть полный доступ',
     endedSecondary: 'Остаться на базовом',
-    chips: ['Все уроки', 'Все планы', 'Без энергии', 'Темы', 'Аналитика'],
   },
   uk: {
     welcomeEyebrow: 'Подарунок на старт',
@@ -48,7 +47,6 @@ const COPY = {
     endedBody: 'Три дні повного доступу завершилися. Вчитися безкоштовно все ще можна: уроки, фрази й прогрес залишаються. Plus-фішки знову чекають у Plus, якщо захочеться залишити все відкритим.',
     endedPrimary: 'Залишити повний доступ',
     endedSecondary: 'Продовжити безкоштовно',
-    chips: ['Усі уроки', 'Усі плани', 'Без енергії', 'Теми', 'Аналітика'],
   },
   es: {
     welcomeEyebrow: 'Regalo inicial',
@@ -61,7 +59,6 @@ const COPY = {
     endedBody: 'Tus tres días de acceso completo terminaron. Aún puedes aprender gratis: lecciones, frases y progreso siguen aquí. Plus vuelve a guardar las funciones avanzadas si quieres dejar todo abierto.',
     endedPrimary: 'Mantener acceso completo',
     endedSecondary: 'Continuar gratis',
-    chips: ['Lecciones', 'Planes', 'Sin energía', 'Temas', 'Análisis'],
   },
   'pt-BR': {
     welcomeEyebrow: 'Presente inicial',
@@ -74,7 +71,6 @@ const COPY = {
     endedBody: 'Seus três dias de acesso completo terminaram. Você ainda pode aprender grátis: lições, frases e progresso continuam aqui. O Plus volta a guardar os recursos avançados se quiser deixar tudo aberto.',
     endedPrimary: 'Manter acesso completo',
     endedSecondary: 'Continuar grátis',
-    chips: ['Lições', 'Planos', 'Sem energia', 'Temas', 'Análise'],
   },
   vi: {
     welcomeEyebrow: 'Quà khởi đầu',
@@ -87,7 +83,6 @@ const COPY = {
     endedBody: 'Ba ngày truy cập đầy đủ đã kết thúc. Bạn vẫn có thể học miễn phí: bài học, cụm từ và tiến độ vẫn ở đây. Plus sẽ giữ lại các tính năng nâng cao nếu bạn muốn mở tất cả.',
     endedPrimary: 'Giữ quyền truy cập đầy đủ',
     endedSecondary: 'Tiếp tục miễn phí',
-    chips: ['Bài học', 'Kế hoạch', 'Không năng lượng', 'Chủ đề', 'Phân tích'],
   },
   id: {
     welcomeEyebrow: 'Hadiah awal',
@@ -100,7 +95,6 @@ const COPY = {
     endedBody: 'Tiga hari akses penuhmu selesai. Kamu masih bisa belajar gratis: pelajaran, frasa, dan progres tetap ada. Plus kembali menyimpan fitur lanjutan kalau kamu ingin semuanya tetap terbuka.',
     endedPrimary: 'Pertahankan akses penuh',
     endedSecondary: 'Lanjut gratis',
-    chips: ['Pelajaran', 'Rencana', 'Tanpa energi', 'Tema', 'Analisis'],
   },
   tr: {
     welcomeEyebrow: 'Başlangıç hediyesi',
@@ -113,7 +107,6 @@ const COPY = {
     endedBody: 'Üç günlük tam erişimin sona erdi. Yine de ücretsiz öğrenebilirsin: dersler, ifadeler ve ilerleme burada kalır. Her şeyi açık tutmak istersen gelişmiş özellikler yeniden Plus’da.',
     endedPrimary: 'Tam erişimi koru',
     endedSecondary: 'Ücretsiz devam et',
-    chips: ['Dersler', 'Planlar', 'Enerjisiz', 'Temalar', 'Analiz'],
   },
   pl: {
     welcomeEyebrow: 'Prezent na start',
@@ -126,7 +119,6 @@ const COPY = {
     endedBody: 'Trzy dni pełnego dostępu dobiegły końca. Nadal możesz uczyć się za darmo: lekcje, frazy i postęp zostają tutaj. Plus znów przechowuje funkcje zaawansowane, jeśli chcesz mieć wszystko otwarte.',
     endedPrimary: 'Zachowaj pełny dostęp',
     endedSecondary: 'Kontynuuj za darmo',
-    chips: ['Lekcje', 'Plany', 'Bez energii', 'Motywy', 'Analiza'],
   },
 };
 
@@ -176,17 +168,6 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
               <Text style={[styles.eyebrow, { color: accent }]}>{isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}</Text>
               <Text style={[styles.title, { color: textPrimary }]}>{isWelcome ? copy.welcomeTitle : copy.endedTitle}</Text>
               <Text style={[styles.body, { color: textSecondary }]}>{isWelcome ? copy.welcomeBody : copy.endedBody}</Text>
-
-              {isWelcome ? (
-                <View style={styles.chips}>
-                  {copy.chips.map((label) => (
-                    <View key={label} style={[styles.chip, { backgroundColor: softSurface, borderColor: border }]}>
-                      <Ionicons name="lock-open-outline" size={15} color={accent} />
-                      <Text style={[styles.chipText, { color: textPrimary }]}>{label}</Text>
-                    </View>
-                  ))}
-                </View>
-              ) : null}
 
               <Pressable
                 testID={isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary'}
@@ -284,28 +265,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 23,
     fontWeight: '700',
-    letterSpacing: 0,
-  },
-  chips: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 2,
-  },
-  chip: {
-    minHeight: 34,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 10,
-    paddingVertical: 7,
-    borderRadius: 12,
-    borderWidth: 1,
-  },
-  chipText: {
-    fontSize: 13,
-    lineHeight: 17,
-    fontWeight: '800',
     letterSpacing: 0,
   },
   primaryButton: {

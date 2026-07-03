@@ -54,7 +54,7 @@ describe('personal_plan_mode_profiles', () => {
       expect(new Set(signatures).size).toBe(PLAN_IDS.length);
     });
 
-    it('keeps every tail order a permutation of the 7 tail kinds', () => {
+    it('keeps every tail order a permutation of the 6 tail kinds', () => {
       for (const planId of PLAN_IDS) {
         for (const order of PLAN_MODE_PROFILES[planId].tailOrders) {
           expect([...order].sort()).toEqual([...PLAN_TAIL_KINDS].sort());

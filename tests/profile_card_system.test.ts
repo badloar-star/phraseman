@@ -6,19 +6,12 @@ import {
   PROFILE_CARD_MOTION_KEY,
   PROFILE_CARD_PUBLIC_FOCUS_KEY,
   PROFILE_CARD_THEME_KEY,
-  canUseProfileCardMotion,
-  canUseProfileCardPublicFocus,
-  canUseProfileCardTheme,
+  PROFILE_CARD_UPGRADE_COST,
   getNextProfileCardLevel,
-  getProfileCardPublicFocusDef,
   getProfileCardSnapshot,
-  getProfileCardThemeDef,
   normalizeProfileCardLevel,
-  setProfileCardTheme,
   upgradeProfileCardLevel,
 } from '../app/profile_card_system';
-import fs from 'fs';
-import path from 'path';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -27,10 +20,6 @@ jest.mock('../app/shards_system', () => ({
   spendShards: jest.fn(),
   forceSyncShardsToCloud: jest.fn(async () => {}),
 }));
-// Force the offline / cloud-unavailable path so these unit tests exercise the
-// deterministic local shard-spend fallback of upgradeProfileCardLevel(). The
-// server-validated path (profileCardUpgrade callable) is covered separately in
-// functions/src/profile_card_upgrade.test.ts.
 jest.mock('../app/config', () => ({
   CLOUD_SYNC_ENABLED: false,
   IS_EXPO_GO: true,
@@ -47,35 +36,16 @@ beforeEach(async () => {
 });
 
 describe('profile_card_system', () => {
-  it('normalizes levels and reports next upgrade level', () => {
+  it('normalizes to one upgrade level and reports no next level after Pro', () => {
     expect(normalizeProfileCardLevel(-3)).toBe(0);
-    expect(normalizeProfileCardLevel(2.9)).toBe(2);
-    expect(normalizeProfileCardLevel(99)).toBe(5);
+    expect(normalizeProfileCardLevel(0.9)).toBe(0);
+    expect(normalizeProfileCardLevel(2.9)).toBe(1);
+    expect(normalizeProfileCardLevel(99)).toBe(1);
     expect(getNextProfileCardLevel(0)).toBe(1);
-    expect(getNextProfileCardLevel(5)).toBeNull();
+    expect(getNextProfileCardLevel(1)).toBeNull();
   });
 
-  it('enforces feature gates by card level', () => {
-    expect(canUseProfileCardTheme(1, 'gold')).toBe(false);
-    expect(canUseProfileCardTheme(2, 'gold')).toBe(true);
-    expect(canUseProfileCardMotion(2, 'gleam')).toBe(false);
-    expect(canUseProfileCardMotion(3, 'gleam')).toBe(true);
-    expect(canUseProfileCardPublicFocus(3, 'xp')).toBe(false);
-    expect(canUseProfileCardPublicFocus(4, 'xp')).toBe(true);
-  });
-
-  it('keeps profile default resolvers away from runtime fallback audit patterns', () => {
-    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'profile_card_system.ts'), 'utf8');
-    const legacyRuntimeRe = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
-
-    expect(source).toContain('const DEFAULT_PROFILE_CARD_THEME_DEF');
-    expect(source).toContain('const DEFAULT_PROFILE_CARD_PUBLIC_FOCUS_DEF');
-    expect(source).not.toMatch(legacyRuntimeRe);
-    expect(getProfileCardThemeDef('classic').id).toBe('classic');
-    expect(getProfileCardPublicFocusDef('balanced').id).toBe('balanced');
-  });
-
-  it('reads a normalized snapshot from storage', async () => {
+  it('reads a normalized one-level snapshot from legacy storage', async () => {
     await AsyncStorage.multiSet([
       [PROFILE_CARD_LEVEL_KEY, '99'],
       [PROFILE_CARD_THEME_KEY, 'aurora'],
@@ -84,52 +54,45 @@ describe('profile_card_system', () => {
     ]);
 
     await expect(getProfileCardSnapshot()).resolves.toEqual({
-      level: 5,
-      theme: 'aurora',
-      motion: 'elite',
-      publicFocus: 'arena',
+      level: 1,
+      theme: 'gold',
+      motion: 'none',
+      publicFocus: 'balanced',
     });
   });
 
-  it('rejects locked theme changes below CARD II', async () => {
-    await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '1');
-
-    await expect(setProfileCardTheme('gold')).rejects.toThrow('profile_card_theme_locked');
-    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBeNull();
-  });
-
   it('returns needed shards without spending when balance is too low', async () => {
-    // CARD I costs 30 shards; with 20 in balance the player still needs 10.
     mockGetShardsBalance.mockResolvedValue(20);
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({
       ok: false,
       reason: 'insufficient',
-      need: 10,
+      need: PROFILE_CARD_UPGRADE_COST - 20,
       balance: 20,
     });
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 
-  it('spends shards and upgrades CARD 0 to CARD I', async () => {
-    mockGetShardsBalance.mockResolvedValueOnce(30).mockResolvedValueOnce(0);
+  it('spends 200 shards and upgrades the base card to Phraseman Pro', async () => {
+    mockGetShardsBalance.mockResolvedValueOnce(PROFILE_CARD_UPGRADE_COST).mockResolvedValueOnce(0);
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({
       ok: true,
       level: 1,
       balance: 0,
     });
-    expect(mockSpendShards).toHaveBeenCalledWith(30, 'profile_card_upgrade');
+    expect(mockSpendShards).toHaveBeenCalledWith(PROFILE_CARD_UPGRADE_COST, 'profile_card_upgrade');
     await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('1');
+    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('gold');
+    await expect(AsyncStorage.getItem(PROFILE_CARD_MOTION_KEY)).resolves.toBe('none');
+    await expect(AsyncStorage.getItem(PROFILE_CARD_PUBLIC_FOCUS_KEY)).resolves.toBe('balanced');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
   });
 
-  it('unlocks the default gold theme when upgrading to CARD II', async () => {
+  it('does not offer a second paid upgrade after Pro', async () => {
     await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '1');
-    mockGetShardsBalance.mockResolvedValueOnce(60).mockResolvedValueOnce(0);
 
-    await expect(upgradeProfileCardLevel()).resolves.toMatchObject({ ok: true, level: 2 });
-    await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('2');
-    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('gold');
+    await expect(upgradeProfileCardLevel()).resolves.toEqual({ ok: false, reason: 'max' });
+    expect(mockSpendShards).not.toHaveBeenCalled();
   });
 });

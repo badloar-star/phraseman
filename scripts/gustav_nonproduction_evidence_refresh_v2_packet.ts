@@ -123,7 +123,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+const REQUIRED_AI = 178;
 
 function argValue(name: string): string | null {
   const index = process.argv.indexOf(name);
@@ -232,7 +232,7 @@ function evaluateSafety(input: SafetyInput): Finding[] {
   if (!input.languageIsolationPass) addFinding(findings, 'blocker', 'LANGUAGE_ISOLATION_NOT_PASSING', 'French language isolation must pass.');
   if (!input.runValidatorPass) addFinding(findings, 'blocker', 'RUN_VALIDATOR_NOT_PASSING', 'Run validator must pass.');
   if (!input.brainGatePass) addFinding(findings, 'blocker', 'BRAIN_GATE_NOT_PASSING', 'Latest Gustav brain gate must pass.');
-  if (!input.countsMatch) addFinding(findings, 'blocker', 'LLM_COUNTS_MISMATCH', 'Expected 1600 row decisions and 164 AI decisions through review/promotion.');
+  if (!input.countsMatch) addFinding(findings, 'blocker', 'LLM_COUNTS_MISMATCH', `Expected ${REQUIRED_ROWS} row decisions and ${REQUIRED_AI} AI decisions through review/promotion.`);
   if (!input.coverageComplete) addFinding(findings, 'blocker', 'LLM_COVERAGE_INCOMPLETE', 'LLM review and accepted coverage must be 100%.');
   if (!input.officialSourcesPresent) addFinding(findings, 'blocker', 'OFFICIAL_SOURCE_COVERAGE_INCOMPLETE', 'Required official/trusted source families are not complete.');
   if (!input.noLegacyReviewResidue) addFinding(findings, 'blocker', 'LEGACY_REVIEW_RESIDUE_PRESENT', 'Legacy non-LLM review residue remains in P34 scoped artifacts.');

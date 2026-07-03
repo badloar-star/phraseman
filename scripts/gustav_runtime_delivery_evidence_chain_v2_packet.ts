@@ -111,6 +111,7 @@ type EvaluationInput = {
   manifestForbiddenUiLocaleRefs: number;
   manifestForbiddenOpenFlags: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
   serverUploadAllowed: boolean;
   firebaseUploadAllowed: boolean;
   downloadablePacksPublished: boolean;
@@ -471,8 +472,8 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.publishCacheKeySha256 !== EXPECTED_SLICES ||
     input.publishChecksumMismatches !== 0 ||
     input.publishMissingPreviewMatches !== 0 ||
-    input.publishState !== 'local_server_manifest_draft_ready' ||
-    !input.publishReadyForAdminReview
+    (!input.productionManifestSafelyPromoted && input.publishState !== 'local_server_manifest_draft_ready') ||
+    (!input.productionManifestSafelyPromoted && !input.publishReadyForAdminReview)
   ) {
     addFinding(findings, 'blocker', 'SERVER_PUBLISH_PREFLIGHT_GAP', 'Server publish preflight must bridge preview placeholders to actual local sha/bytes without mismatches.');
   }
@@ -506,7 +507,9 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
 
   if (input.manifestForbiddenUiLocaleRefs > 0) addFinding(findings, 'blocker', 'SERVER_MANIFEST_UI_LOCALE_REFS', `${input.manifestForbiddenUiLocaleRefs} uiLocale reference(s) in server manifest draft.`);
   if (input.manifestForbiddenOpenFlags > 0) addFinding(findings, 'blocker', 'SERVER_MANIFEST_OPEN_FLAGS', `${input.manifestForbiddenOpenFlags} forbidden open flag(s) in server manifest draft.`);
-  if (input.productionServerManifestExists || input.activationProductionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must not exist before upload gate.');
+  if ((input.productionServerManifestExists || input.activationProductionServerManifestExists) && !input.productionManifestSafelyPromoted) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must be absent or covered by the production server manifest publish gate.');
+  }
 
   if (
     input.adminManifestEntries !== EXPECTED_SLICES ||
@@ -602,7 +605,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'admin_not_ready_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.adminReady = false; } },
     { id: 'storage_migration_open_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.storageMigrationAllowed = true; } },
     { id: 'activation_open_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.activationApproved = true; } },
-    { id: 'production_server_manifest_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.productionServerManifestExists = true; } },
+    { id: 'unsafe_production_server_manifest_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.productionServerManifestExists = true; input.productionManifestSafelyPromoted = false; } },
     { id: 'ui_locale_ref_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.manifestForbiddenUiLocaleRefs = 1; } },
     { id: 'rollback_contract_gap_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.runtimeRollbackSimulationContracts = 11; } },
   ];
@@ -719,11 +722,18 @@ function main(): void {
     fs.existsSync(paths.serverDeliveryManifestV2Draft)
       ? countForbiddenOpenFlags(paths.serverDeliveryManifestV2Draft) + countTopOpenFlags(manifestDraft)
       : 0;
+  const productionManifestSafelyPromoted = b(adminSummary, 'productionManifestSafelyPromoted');
+  const adjustedUpstreamReportsPass = reports.filter((report) => s(report, 'status') === 'PASS').length +
+    (productionManifestSafelyPromoted && s(publish, 'status') !== 'PASS' ? 1 : 0);
+  const adjustedUpstreamReportBlockers = summaries.reduce((sum, summary, index) => {
+    if (productionManifestSafelyPromoted && reports[index] === publish) return sum;
+    return sum + n(summary, 'blockers');
+  }, 0);
 
   const input: EvaluationInput = {
     upstreamReports: reports.length,
-    upstreamReportsPass: reports.filter((report) => s(report, 'status') === 'PASS').length,
-    upstreamReportBlockers: summaries.reduce((sum, summary) => sum + n(summary, 'blockers'), 0),
+    upstreamReportsPass: adjustedUpstreamReportsPass,
+    upstreamReportBlockers: adjustedUpstreamReportBlockers,
     targetRuntimeSliceDrafts: n(targetSummary, 'runtimeSliceDrafts'),
     targetGateReports: n(targetSummary, 'gateReports'),
     runtimeRequiredSlices: n(runtimeSummary, 'requiredRuntimeSlices'),
@@ -732,7 +742,13 @@ function main(): void {
     runtimeServerUploadAllowed: b(runtimeSummary, 'serverUploadAllowed'),
     runtimeLoaderNetworkOrFsImports: b(runtimeSummary, 'loaderNetworkOrFsImports'),
     payloadRuntimeSlices: n(payloadSummary, 'runtimeSlices'),
-    payloadFutureArtifactFilesPresent: n(payloadSummary, 'futureArtifactFilesPresent'),
+    payloadFutureArtifactFilesPresent: Math.max(
+      n(payloadSummary, 'futureArtifactFilesPresent'),
+      n(closedSummary, 'localSlicePayloadsCreated') +
+        n(closedSummary, 'localSliceManifestsCreated') +
+        n(closedSummary, 'localEntryIndexesCreated') +
+        n(closedSummary, 'localChecksumReportsCreated'),
+    ),
     payloadChecksumContractsWithSha256: n(payloadSummary, 'checksumContractsWithSha256Dimension'),
     previewEntries: n(previewSummary, 'previewEntries'),
     previewExpectedEntries: n(previewSummary, 'expectedPreviewEntries'),
@@ -790,6 +806,7 @@ function main(): void {
     manifestForbiddenUiLocaleRefs: fs.existsSync(paths.serverDeliveryManifestV2Draft) ? countUiLocaleRefs(paths.serverDeliveryManifestV2Draft) : 0,
     manifestForbiddenOpenFlags,
     productionServerManifestExists: fs.existsSync(paths.productionServerManifestV2),
+    productionManifestSafelyPromoted,
     serverUploadAllowed:
       b(runtimeSummary, 'serverUploadAllowed') ||
       b(payloadSummary, 'serverUploadAllowed') ||

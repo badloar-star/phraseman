@@ -258,6 +258,66 @@ const mirrorServerShardBalanceLocal = async (
   return getShardsBalance();
 };
 
+export const addShardsLocalOnlyForPendingServerClaim = async (
+  amount: number,
+  reason: string = 'pending_server_claim',
+): Promise<number> => {
+  try {
+    const safe = Math.max(0, Math.floor(Number(amount) || 0));
+    if (safe <= 0) return 0;
+    const cleanReason = String(reason || '').trim() || 'pending_server_claim';
+    let meta: ShardBalanceMeta = localWriteStamp('earn', cleanReason);
+    const newBalance = await withStorageLock(async () => {
+      const currentMeta = await readBalanceMeta();
+      meta = {
+        updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
+        op: 'earn',
+        reason: cleanReason,
+      };
+      const current = await getShardsBalance();
+      const next = current + safe;
+      await persistLocalBalance(next, meta);
+      return next;
+    });
+    setShardsBalanceMemory(newBalance);
+    void bumpLifetimeShardsEarned(safe);
+    await emitShardsBalanceUpdated(newBalance, meta);
+    return safe;
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:addShardsLocalOnlyForPendingServerClaim', error, 'warning');
+    return 0;
+  }
+};
+
+export const keepShardsBalanceLocalAtLeast = async (
+  minimumBalance: number,
+  reason: string = 'local_merge',
+): Promise<number> => {
+  try {
+    const safeMinimum = Math.max(0, Math.floor(Number(minimumBalance) || 0));
+    const cleanReason = String(reason || '').trim() || 'local_merge';
+    let meta: ShardBalanceMeta = localWriteStamp('replace', cleanReason);
+    const nextBalance = await withStorageLock(async () => {
+      const currentMeta = await readBalanceMeta();
+      meta = {
+        updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
+        op: 'replace',
+        reason: cleanReason,
+      };
+      const current = await getShardsBalance();
+      const next = Math.max(current, safeMinimum);
+      await persistLocalBalance(next, meta);
+      return next;
+    });
+    setShardsBalanceMemory(nextBalance);
+    await emitShardsBalanceUpdated(nextBalance, meta);
+    return nextBalance;
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:keepShardsBalanceLocalAtLeast', error, 'warning');
+    return getShardsBalance().catch(() => 0);
+  }
+};
+
 // ── Лог транзакций в Firestore ────────────────────────────────────────────
 const logShardTransaction = async (
   type: 'earn' | 'spend',
@@ -322,31 +382,26 @@ const applyShardDeltaToCloud = async (
     const db = firestore();
     const userRef = db.collection('users').doc(uid);
     const updatedAtMs = Date.now();
-    const txResult = await runWithTimeout(
-      db.runTransaction(async (transaction): Promise<{ next: number } | { insufficientBase: number }> => {
-        const snap = await transaction.get(userRef);
-        const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
-        const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
-        const next = base + delta;
-        if (next < 0) return { insufficientBase: base };
-        transaction.set(userRef, {
-          shards: next,
-          shards_updated_at_ms: updatedAtMs,
-          shards_updated_op: type,
-          shards_updated_reason: reason,
-        }, { merge: true });
-        return { next };
-      }),
-      SHARD_CLOUD_TX_TIMEOUT_MS,
-    );
-    if ('insufficientBase' in txResult) {
+    const snap = await runWithTimeout(userRef.get(), SHARD_CLOUD_TX_TIMEOUT_MS);
+    const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
+    const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
+    const next = base + delta;
+    if (next < 0) {
       // Облако — источник истины. Возвращаем фактический облачный баланс, чтобы
       // вызывающий мог сверить локальный (возможно завышенный) баланс с реальным.
-      return { ok: false, reason: 'insufficient', cloudBalance: txResult.insufficientBase };
+      return { ok: false, reason: 'insufficient', cloudBalance: base };
     }
-    const nextBalance = txResult.next;
-    const balanceBefore = nextBalance - delta;
-    return { ok: true, balance: nextBalance, balanceBefore, updatedAtMs };
+    await runWithTimeout(
+      userRef.set({
+        shards: next,
+        shards_updated_at_ms: updatedAtMs,
+        shards_updated_op: type,
+        shards_updated_reason: reason,
+      }, { merge: true }),
+      SHARD_CLOUD_TX_TIMEOUT_MS,
+    );
+    const balanceBefore = next - delta;
+    return { ok: true, balance: next, balanceBefore, updatedAtMs };
   } catch {
     return { ok: false, reason: 'unavailable' };
   }
@@ -406,6 +461,122 @@ const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 
 /** Ключ AsyncStorage / маркер: награда «все дневные» за календарный день уже забрана. */
 export const dailyTasksAllShardsRewardStorageKey = (dayKey: string) => `daily_tasks_all_shards_${dayKey}`;
+const dailyTasksAllShardsRewardPendingStorageKey = (dayKey: string) => `daily_tasks_all_shards_pending_${dayKey}`;
+
+type DailyTasksAllShardsClaimResponse = {
+  alreadyClaimed: boolean;
+  newBalance: number;
+  shardsUpdatedAtMs?: number | null;
+};
+
+const callDailyTasksAllShardsClaim = async (
+  dayKey: string,
+  stableId: string,
+): Promise<DailyTasksAllShardsClaimResponse> => {
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
+    getFunctions: (...args: unknown[]) => unknown;
+    httpsCallable: (
+      fns: unknown,
+      name: string,
+    ) => (data: unknown) => Promise<{ data: DailyTasksAllShardsClaimResponse }>;
+  };
+  const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
+  const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
+  const cfResult = await cfCall({ dayKey, stableId });
+  return cfResult.data;
+};
+
+const syncDailyTasksAllShardsClaimToCloud = async (
+  dayKey: string,
+  stableId: string,
+  rewardKey: string,
+  force = false,
+): Promise<void> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !stableId) return;
+  const pendingKey = dailyTasksAllShardsRewardPendingStorageKey(dayKey);
+  try {
+    const pending = force || (await AsyncStorage.getItem(pendingKey).catch(() => null)) === '1';
+    if (!pending) return;
+    await AsyncStorage.setItem(pendingKey, '1').catch(() => {});
+    const updatedAtMs = Date.now();
+    const data = await callDailyTasksAllShardsClaim(dayKey, stableId);
+    const serverUpdatedAtMs = parseUpdatedAtMs(data.shardsUpdatedAtMs) ?? updatedAtMs;
+
+    await AsyncStorage.setItem(rewardKey, '1').catch(() => {});
+    if (Number.isFinite(data.newBalance) && data.newBalance >= 0) {
+      await replaceShardsBalanceLocal(data.newBalance, {
+        updatedAtMs: serverUpdatedAtMs,
+        op: 'earn',
+        reason: 'daily_tasks_all',
+      }).catch(() => {});
+    }
+    await AsyncStorage.removeItem(pendingKey).catch(() => {});
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:syncDailyTasksAllShardsClaimToCloud', error, 'warning');
+  }
+};
+
+export const resumePendingDailyTasksAllShardsClaims = async (): Promise<{ resolved: number; pending: number }> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { resolved: 0, pending: 0 };
+  const stableId = await getCanonicalUserId().catch(() => null);
+  if (!stableId) return { resolved: 0, pending: 0 };
+  const prefix = 'daily_tasks_all_shards_pending_';
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const pendingKeys = keys.filter((key) => key.startsWith(prefix));
+    let resolved = 0;
+    let pending = 0;
+    for (const key of pendingKeys) {
+      const dayKey = key.slice(prefix.length);
+      if (!dayKey) continue;
+      const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
+      await syncDailyTasksAllShardsClaimToCloud(dayKey, stableId, rewardKey).catch(() => {});
+      const stillPending = (await AsyncStorage.getItem(key).catch(() => null)) === '1';
+      if (stillPending) pending += 1;
+      else resolved += 1;
+    }
+    return { resolved, pending };
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:resumePendingDailyTasksAllShardsClaims', error, 'warning');
+    return { resolved: 0, pending: 0 };
+  }
+};
+
+const grantDailyTasksAllShardsOptimistically = async (
+  amount: number,
+  rewardKey: string,
+  pendingKey: string,
+): Promise<boolean> => {
+  const safe = Math.max(0, Math.floor(amount));
+  if (safe <= 0) return false;
+  let meta = localWriteStamp('earn', 'daily_tasks_all');
+  try {
+    const newBalance = await withStorageLock(async () => {
+      const currentMeta = await readBalanceMeta();
+      meta = {
+        updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
+        op: 'earn',
+        reason: 'daily_tasks_all',
+      };
+      const current = await getShardsBalance();
+      const next = current + safe;
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(next)],
+        [BALANCE_META_KEY, JSON.stringify(meta)],
+        [rewardKey, '1'],
+        [pendingKey, '1'],
+      ]);
+      return next;
+    });
+    setShardsBalanceMemory(newBalance);
+    void bumpLifetimeShardsEarned(safe);
+    await emitShardsBalanceUpdated(newBalance, meta);
+    emitAppEvent('shards_earned', { amount: safe, reasonKey: 'daily_tasks_all' });
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): Promise<boolean> => {
   try {
@@ -418,7 +589,7 @@ export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): 
 
 /**
  * Исход «забрать осколок за все дневные задания»:
- *  - 'granted' — осколок только что начислен (+1);
+ *  - 'granted' — локальный optimistic claim записан (+1), облачная сверка может идти в фоне;
  *  - 'already' — уже забрано ранее (этим устройством, другим устройством или
  *                прерванным прошлым вызовом). НЕ ошибка: кнопку надо погасить молча;
  *  - 'failed'  — реальный сбой (сеть/CF/auth). Можно показать «попробуй ещё раз».
@@ -427,7 +598,8 @@ export type ClaimDailyTrioResult = 'granted' | 'already' | 'failed';
 
 /**
  * +1 осколок за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
- * При включённом облаке: одна Firestore-транзакция (маркер + баланс) — без дублей между устройствами.
+ * При включённом облаке: локально гасим кнопку и прибавляем shards сразу, затем Cloud Function
+ * идемпотентно подтверждает маркер + баланс в фоне, без дублей между устройствами.
  * Иначе: локальный ключ AsyncStorage + addShards (как раньше).
  *
  * Возвращает три исхода, чтобы экран НЕ показывал «Осколки не загрузились», когда
@@ -438,12 +610,18 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
   dayKey: string,
 ): Promise<ClaimDailyTrioResult> => {
   const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
+  const pendingKey = dailyTasksAllShardsRewardPendingStorageKey(dayKey);
   const amount = SHARD_REWARDS.daily_tasks_all;
   if (!Number.isFinite(amount) || amount <= 0) return 'failed';
 
   try {
     const existing = await AsyncStorage.getItem(rewardKey);
-    if (existing) return 'already';
+    if (existing) {
+      void getCanonicalUserId()
+        .then((uid) => uid ? syncDailyTasksAllShardsClaimToCloud(dayKey, uid, rewardKey) : undefined)
+        .catch(() => {});
+      return 'already';
+    }
 
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
       const n = await addShards('daily_tasks_all');
@@ -460,56 +638,12 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
       return 'granted';
     }
 
-    // Выдача через Cloud Function — обходит Firestore-правило hasNoShardWrites()
-    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
-      getFunctions: (...args: unknown[]) => unknown;
-      httpsCallable: (
-        fns: unknown,
-        name: string,
-      ) => (data: unknown) => Promise<{ data: { alreadyClaimed: boolean; newBalance: number; shardsUpdatedAtMs?: number | null } }>;
-    };
-    const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
-    const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
-    const updatedAtMs = Date.now();
+    const granted = await grantDailyTasksAllShardsOptimistically(amount, rewardKey, pendingKey);
+    if (!granted) return 'failed';
     // Шлём ТОТ ЖЕ id, под которым клиент хранит осколки (getCanonicalUserId === stableId),
     // чтобы CF читал/писал users/{stableId}, а не db.doc(authUid). Без этого для юзеров
-    // с релинком (анон→Google, мердж) маркер reward_claims оседал на чужом доке и сервер
-    // вечно отвечал alreadyClaimed → «не забрать осколки» (баг-репорты daily_tasks).
-    const cfResult = await cfCall({ dayKey, stableId: uid });
-    const { alreadyClaimed, newBalance, shardsUpdatedAtMs } = cfResult.data;
-    const serverUpdatedAtMs = parseUpdatedAtMs(shardsUpdatedAtMs) ?? updatedAtMs;
-
-    if (alreadyClaimed) {
-      // Сервер уже выдал осколок (другое устройство / прерванный прошлый вызов
-      // после успеха CF). Локальный маркер мог не записаться — ставим его, иначе
-      // кнопка «Забрать» зависает в активном состоянии и каждый повтор снова даёт
-      // «Осколки не загрузились. Попробуй ещё раз.» (см. баг-репорты daily_tasks).
-      await AsyncStorage.setItem(rewardKey, '1').catch(() => {});
-      // Подтягиваем серверный баланс локально, чтобы не было расхождения
-      // («осколки уменьшились» из баг-репортов).
-      if (Number.isFinite(newBalance) && newBalance >= 0) {
-        await replaceShardsBalanceLocal(newBalance, {
-          updatedAtMs: serverUpdatedAtMs,
-          op: 'earn',
-          reason: 'daily_tasks_all',
-        }).catch(() => {});
-      }
-      return 'already';
-    }
-
-    if (Number.isFinite(newBalance) && newBalance >= 0) {
-      await replaceShardsBalanceLocal(newBalance, {
-        updatedAtMs: serverUpdatedAtMs,
-        op: 'earn',
-        reason: 'daily_tasks_all',
-      });
-    }
-    await AsyncStorage.setItem(rewardKey, '1');
-
-    const currentBalance = await getShardsBalance();
-    void bumpLifetimeShardsEarned(amount);
-    logShardTransaction('earn', amount, 'daily_tasks_all', currentBalance, currentBalance - amount);
-    emitAppEvent('shards_earned', { amount, reasonKey: 'daily_tasks_all' });
+    // с релинком (анон→Google, мердж) маркер reward_claims оседал на чужом доке.
+    void syncDailyTasksAllShardsClaimToCloud(dayKey, uid, rewardKey, true);
     return 'granted';
   } catch (error) {
     DebugLogger.error('shards_system.ts:claimDailyTasksAllShardsReward', error, 'warning');
@@ -519,7 +653,7 @@ export const claimDailyTasksAllShardsRewardDetailed = async (
 
 /**
  * Обратная совместимость: булевая обёртка над {@link claimDailyTasksAllShardsRewardDetailed}.
- * true только при фактическом начислении ('granted'). 'already'/'failed' → false.
+ * true при свежем локальном optimistic claim ('granted'). 'already'/'failed' → false.
  * Предпочитай детальную версию, чтобы отличать «уже забрано» от реального сбоя.
  */
 export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<boolean> => {
@@ -898,20 +1032,18 @@ const syncShardsToCloud = async (balance: number, meta?: ShardBalanceMeta | null
     const userRef = db.collection('users').doc(uid);
     const effectiveMeta = meta ?? await readBalanceMeta() ?? localWriteStamp('replace', 'sync');
     // Таймаут, чтобы фоновый синк не висел вечно на заблокированном Firebase и не
-    // копил зависшие транзакции при каждой покупке. Best-effort: при таймауте просто
+    // копил зависшие Firestore-запросы при каждой покупке. Best-effort: при таймауте просто
     // выходим, локальный баланс до-синхронизируется при следующем сетевом вызове.
+    const snap = await runWithTimeout(userRef.get(), SHARD_CLOUD_TX_TIMEOUT_MS);
+    const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
+    if (cloudUpdatedAt !== null && cloudUpdatedAt > effectiveMeta.updatedAtMs) return;
     await runWithTimeout(
-      db.runTransaction(async (transaction) => {
-        const snap = await transaction.get(userRef);
-        const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
-        if (cloudUpdatedAt !== null && cloudUpdatedAt > effectiveMeta.updatedAtMs) return;
-        transaction.set(userRef, {
-          shards: safeBalance,
-          shards_updated_at_ms: effectiveMeta.updatedAtMs,
-          shards_updated_op: effectiveMeta.op,
-          shards_updated_reason: effectiveMeta.reason,
-        }, { merge: true });
-      }),
+      userRef.set({
+        shards: safeBalance,
+        shards_updated_at_ms: effectiveMeta.updatedAtMs,
+        shards_updated_op: effectiveMeta.op,
+        shards_updated_reason: effectiveMeta.reason,
+      }, { merge: true }),
       SHARD_CLOUD_TX_TIMEOUT_MS,
     );
   } catch (e) {

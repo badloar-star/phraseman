@@ -11,6 +11,13 @@ jest.mock('../app/lesson_lock_system', () => ({
   isLessonUnlockedByEarnedProgress: jest.fn(),
   isLessonUnlockedByPremiumCourse: jest.fn(),
 }));
+jest.mock('../app/navigation_back', () => ({
+  markNextNavigationAsReplace: jest.fn(),
+}));
+jest.mock('../app/paywall_variant', () => ({
+  refreshPaywallAbConfigInBackground: jest.fn(),
+  resolvePaywallAbVariantSync: jest.fn(() => ({ variant: 'A' })),
+}));
 
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { requiresPremiumForLesson } from '../app/monetization_policy';
@@ -18,12 +25,14 @@ import {
   isLessonUnlockedByEarnedProgress,
   isLessonUnlockedByPremiumCourse,
 } from '../app/lesson_lock_system';
+import { markNextNavigationAsReplace } from '../app/navigation_back';
 import { openLessonGateByRuntime } from '../app/lesson_premium_gate';
 
 const mockPremium = getVerifiedPremiumStatus as jest.Mock;
 const mockRequiresPremium = requiresPremiumForLesson as jest.Mock;
 const mockEarned = isLessonUnlockedByEarnedProgress as jest.Mock;
 const mockPremiumCourse = isLessonUnlockedByPremiumCourse as jest.Mock;
+const mockMarkReplace = markNextNavigationAsReplace as jest.Mock;
 
 function makeRouter() {
   return { replace: jest.fn() };
@@ -35,7 +44,7 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
   });
 
-  it('премиум-урок без премиума → router.replace на /premium_modal', async () => {
+  it('премиум-урок без премиума → router.replace на реальный paywall-route', async () => {
     mockPremium.mockResolvedValue(false);
     mockRequiresPremium.mockReturnValue(true);
 
@@ -44,9 +53,11 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
 
     expect(router.replace).toHaveBeenCalledTimes(1);
     const arg = router.replace.mock.calls[0][0];
-    expect(arg.pathname).toBe('/premium_modal');
+    expect(arg.pathname).toBe('/paywall_a');
     expect(arg.params.context).toBe('lesson_9');
     expect(arg.params.lessons_done).toBe('8');
+    expect(mockMarkReplace).toHaveBeenCalledTimes(1);
+    expect(mockMarkReplace.mock.invocationCallOrder[0]).toBeLessThan(router.replace.mock.invocationCallOrder[0]);
   });
 
   it('лок по прогрессу (фри, не открыт) → router.replace на /lesson_menu, НЕ на пейвол', async () => {

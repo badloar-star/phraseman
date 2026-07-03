@@ -10,6 +10,7 @@ const QUIZ_COMPLETION_MEDALS: Record<Exclude<QuizCompletionMedalTheme, 'neon-gre
   coral: require('../../assets/images/quizzes/medals/quiz-completion-medal-coral-cutout.webp'),
   minimalDark: require('../../assets/images/quizzes/medals/quiz-completion-medal-minimal-dark-cutout.webp'),
   business: require('../../assets/images/quizzes/medals/quiz-completion-medal-business-cutout.webp'),
+  businessLight: require('../../assets/images/quizzes/medals/quiz-completion-medal-businessLight-cutout.webp'),
   midnight: require('../../assets/images/quizzes/medals/quiz-completion-medal-midnight-cutout.webp'),
   ember: require('../../assets/images/quizzes/medals/quiz-completion-medal-ember-cutout.webp'),
   aurora: require('../../assets/images/quizzes/medals/quiz-completion-medal-aurora-cutout.webp'),

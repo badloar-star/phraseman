@@ -9,7 +9,6 @@ import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import LevelGiftArt from '../components/LevelGiftArt';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import { useLang } from '../components/LangContext';
@@ -280,19 +279,15 @@ export default function LevelGiftsInventoryScreen() {
                   >
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                       <View style={{ width: 78, minHeight: 96, alignItems: 'center', justifyContent: 'center', padding: 2, flexShrink: 0 }}>
-                        {singleShardAmount > 0 ? (
-                          <Image
-                            source={oskolokImageForPackShards(singleShardAmount, themeMode)}
-                            style={{ width: rowArtSize, height: rowArtSize }}
-                            contentFit="contain"
-                          />
-                        ) : (
-                          <LevelGiftArt
-                            themeMode={themeMode}
-                            variant={item.kind === 'dual' ? 'premium' : strongestRarity}
-                            size={rowArtSize}
-                          />
-                        )}
+                        <Image
+                          source={
+                            singleShardAmount > 0
+                              ? oskolokImageForPackShards(singleShardAmount, themeMode)
+                              : getLevelGiftRewardIcon(primaryGift.id, themeMode)
+                          }
+                          style={{ width: rowArtSize, height: rowArtSize }}
+                          contentFit="contain"
+                        />
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: accent, fontSize: 11, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>

@@ -33,9 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.promoCodeUpsert = exports.promoCodeRedeem = void 0;
+exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = void 0;
 exports.normalizePromoCode = normalizePromoCode;
 exports.decidePromoRedemption = decidePromoRedemption;
+exports.buildPromoVipPatch = buildPromoVipPatch;
 // ════════════════════════════════════════════════════════════════════════════
 // promo_codes.ts — промокоды-награды (база под маркетинг). Админ создаёт код в
 // «Пульте», юзер вводит его в приложении и получает N дней премиума (VIP-дни,
@@ -53,16 +54,22 @@ exports.decidePromoRedemption = decidePromoRedemption;
 // рефералах/карточках. Все проверки и инкремент usedCount — в одной транзакции.
 // ════════════════════════════════════════════════════════════════════════════
 const admin = __importStar(require("firebase-admin"));
+const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const referral_1 = require("./referral");
+const remote_gates_1 = require("./remote_gates");
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK };
 const PROMO_CODES = 'promo_codes';
 const PROMO_REDEMPTIONS = 'promo_redemptions';
+const PROMO_CODES_ENABLED_FLAG = 'promo_codes_enabled';
+const MAX_REWARD_DAYS = 3650;
+const MAX_BATCH_PROMO_CODES = 200;
 // Код: 3..32 символа, латиница/цифры/дефис/подчёркивание. Храним в верхнем регистре.
 const CODE_RE = /^[A-Z0-9_-]{3,32}$/;
+const GENERATED_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 /** Нормализует пользовательский ввод кода (trim + upper). */
 function normalizePromoCode(raw) {
     return String(raw ?? '').trim().toUpperCase();
@@ -73,6 +80,8 @@ function normalizePromoCode(raw) {
  */
 function decidePromoRedemption(params) {
     const { code, alreadyRedeemed, nowMs } = params;
+    if (params.globallyEnabled === false)
+        return { ok: false, reason: 'promo_disabled' };
     if (!code)
         return { ok: false, reason: 'not_found' };
     if (!code.enabled)
@@ -84,21 +93,29 @@ function decidePromoRedemption(params) {
     if (code.maxRedemptions > 0 && code.usedCount >= code.maxRedemptions) {
         return { ok: false, reason: 'limit_reached' };
     }
+    if (code.rewardKind === 'lifetime') {
+        return { ok: true, rewardDays: 0, rewardKind: 'lifetime' };
+    }
     if (!Number.isFinite(code.rewardDays) || code.rewardDays <= 0) {
         return { ok: false, reason: 'bad_reward' };
     }
-    return { ok: true, rewardDays: code.rewardDays };
+    return { ok: true, rewardDays: code.rewardDays, rewardKind: 'days' };
 }
 function readInt(v, fallback = 0) {
     const n = Math.trunc(Number(v));
     return Number.isFinite(n) ? n : fallback;
 }
+function readRewardKind(v) {
+    return v === 'lifetime' ? 'lifetime' : 'days';
+}
 /** Парсит сырой Firestore-док кода в типизированный PromoCodeDoc (или null). */
 function parsePromoCodeDoc(data) {
     if (!data)
         return null;
+    const rewardKind = data.rewardKind === 'lifetime' || data.lifetime === true ? 'lifetime' : 'days';
     return {
         rewardDays: readInt(data.rewardDays, 0),
+        rewardKind,
         enabled: data.enabled === true,
         maxRedemptions: Math.max(0, readInt(data.maxRedemptions, 0)),
         usedCount: Math.max(0, readInt(data.usedCount, 0)),
@@ -107,12 +124,12 @@ function parsePromoCodeDoc(data) {
     };
 }
 /** VIP-патч для прогресса (по образцу referral, но vip_plan='promo'). */
-function buildPromoVipPatch(currentProgress, nowMs, addDays, code) {
+function buildPromoVipPatch(currentProgress, nowMs, addDays, rewardKind, code) {
     const currentUntil = (0, referral_1.vipUntilFromProgress)(currentProgress);
-    const vipUntil = (0, referral_1.stackVipUntilMs)(currentUntil, nowMs, addDays);
+    const vipUntil = rewardKind === 'lifetime' ? 0 : (0, referral_1.stackVipUntilMs)(currentUntil, nowMs, addDays);
     return {
         vip_active: 'true',
-        vip_plan: 'promo',
+        vip_plan: rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo',
         vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
         vip_until: String(vipUntil),
         vip_admin_override: 'true',
@@ -129,6 +146,7 @@ exports.promoCodeRedeem = (0, https_1.onCall)(CALLABLE_BASE, async (request) => 
     if (!CODE_RE.test(code))
         throw new https_1.HttpsError('invalid-argument', 'bad_code');
     const db = admin.firestore();
+    const globallyEnabled = await (0, remote_gates_1.resolveRemoteBool)(db, PROMO_CODES_ENABLED_FLAG, false);
     // stableId НИКОГДА не из тела запроса (как в рефералах/карточках).
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
     const nowMs = Date.now();
@@ -145,43 +163,120 @@ exports.promoCodeRedeem = (0, https_1.onCall)(CALLABLE_BASE, async (request) => 
             code: parsePromoCodeDoc(codeSnap.exists ? codeSnap.data() : undefined),
             alreadyRedeemed: redemptionSnap.exists,
             nowMs,
+            globallyEnabled,
         });
         if (!decision.ok) {
             return { ok: false, reason: decision.reason };
         }
         const user = userSnap.data() ?? {};
         const progress = user.progress ?? {};
-        const vipPatch = buildPromoVipPatch(progress, nowMs, decision.rewardDays, code);
+        const vipPatch = buildPromoVipPatch(progress, nowMs, decision.rewardDays, decision.rewardKind, code);
+        const vipUntilMs = Number(vipPatch.vip_until);
         // Маркер активации (идемпотентность + один код на юзера).
         tx.set(redemptionRef, {
             code,
+            stableUid,
             rewardDays: decision.rewardDays,
+            rewardKind: decision.rewardKind,
+            vipPlan: vipPatch.vip_plan,
+            vipUntilMs,
             redeemedAtMs: nowMs,
             authUid,
         });
-        // Инкремент счётчика использований кода.
-        tx.set(codeRef, { usedCount: admin.firestore.FieldValue.increment(1), lastRedeemedAtMs: nowMs }, { merge: true });
+        // Инкремент счётчика использований кода. lastRedeemedBy нужен веб-оплате
+        // (web_checkout): при автопродлении Stripe-подписки сервер по коду находит
+        // аккаунт и продлевает vip_until без участия юзера.
+        tx.set(codeRef, {
+            usedCount: admin.firestore.FieldValue.increment(1),
+            lastRedeemedAtMs: nowMs,
+            lastRedeemedBy: stableUid,
+        }, { merge: true });
         // Выдача VIP-дней (тот же механизм, что admin-grant/реферал).
         tx.set(userRef, { progress: vipPatch, updatedAt: nowMs }, { merge: true });
-        return { ok: true, rewardDays: decision.rewardDays, vipUntilMs: Number(vipPatch.vip_until) };
+        return {
+            ok: true,
+            rewardDays: decision.rewardDays,
+            rewardKind: decision.rewardKind,
+            vipUntilMs,
+            grantAtMs: nowMs,
+        };
     });
 });
+function readPromoCodeWritePayload(data) {
+    const rewardKind = readRewardKind(data.rewardKind);
+    const rewardDays = rewardKind === 'lifetime' ? 0 : readInt(data.rewardDays, 0);
+    if (rewardKind === 'days' && (rewardDays <= 0 || rewardDays > MAX_REWARD_DAYS)) {
+        throw new https_1.HttpsError('invalid-argument', `rewardDays must be 1..${MAX_REWARD_DAYS}`);
+    }
+    const enabled = data.enabled !== false; // по умолчанию включён
+    const maxRedemptions = Math.max(0, readInt(data.maxRedemptions, 0));
+    const expiresAtMs = Math.max(0, readInt(data.expiresAtMs, 0));
+    const note = String(data.note ?? '').slice(0, 200);
+    return { rewardDays, rewardKind, enabled, maxRedemptions, expiresAtMs, note };
+}
+function buildPromoCodeWritePatch(params) {
+    const patch = {
+        rewardDays: params.rewardDays,
+        rewardKind: params.rewardKind,
+        enabled: params.enabled,
+        maxRedemptions: params.maxRedemptions,
+        expiresAtMs: params.expiresAtMs,
+        note: params.note,
+        updatedAtMs: params.now,
+        updatedBy: params.adminEmail,
+    };
+    if (typeof params.existing?.usedCount !== 'number') {
+        patch.usedCount = 0;
+        patch.createdAtMs = params.now;
+        patch.createdBy = params.adminEmail;
+    }
+    return patch;
+}
+function sanitizeGeneratedPrefix(raw) {
+    const prefix = normalizePromoCode(raw)
+        .replace(/[^A-Z0-9_-]/g, '')
+        .replace(/[-_]+$/g, '')
+        .slice(0, 16);
+    return prefix || 'PM';
+}
+function makeGeneratedPromoCode(prefix) {
+    const bytes = (0, crypto_1.randomBytes)(10);
+    let body = '';
+    for (let i = 0; i < bytes.length; i += 1) {
+        body += GENERATED_CODE_ALPHABET[bytes[i] % GENERATED_CODE_ALPHABET.length];
+    }
+    return `${prefix}-${body}`;
+}
+function readExplicitPromoCodes(raw) {
+    const values = Array.isArray(raw)
+        ? raw
+        : typeof raw === 'string'
+            ? raw.split(/[\s,;]+/)
+            : [];
+    const out = [];
+    const seen = new Set();
+    for (const value of values) {
+        const code = normalizePromoCode(value);
+        if (!code)
+            continue;
+        if (!CODE_RE.test(code))
+            throw new https_1.HttpsError('invalid-argument', 'bad_code');
+        if (!seen.has(code)) {
+            seen.add(code);
+            out.push(code);
+        }
+    }
+    return out;
+}
 /* ── onCall: promoCodeUpsert (админ создаёт/правит код) ──────────────────────── */
-exports.promoCodeUpsert = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.promoCodeUpsert = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }
     const code = normalizePromoCode(request.data?.code);
     if (!CODE_RE.test(code))
         throw new https_1.HttpsError('invalid-argument', 'bad_code');
-    const rewardDays = readInt(request.data?.rewardDays, 0);
-    if (rewardDays <= 0 || rewardDays > 3650) {
-        throw new https_1.HttpsError('invalid-argument', 'rewardDays must be 1..3650');
-    }
-    const enabled = request.data?.enabled !== false; // по умолчанию включён
-    const maxRedemptions = Math.max(0, readInt(request.data?.maxRedemptions, 0));
-    const expiresAtMs = Math.max(0, readInt(request.data?.expiresAtMs, 0));
-    const note = String(request.data?.note ?? '').slice(0, 200);
+    const payload = readPromoCodeWritePayload(request.data ?? {});
     const db = admin.firestore();
     const codeRef = db.collection(PROMO_CODES).doc(code);
     const adminEmail = String(request.auth?.token?.email ?? '');
@@ -191,17 +286,82 @@ exports.promoCodeUpsert = (0, https_1.onCall)({ region: REGION }, async (request
     // который параллельно инкрементит usedCount (нельзя обнулить денежный счётчик).
     await db.runTransaction(async (tx) => {
         const snap = await tx.get(codeRef);
-        const patch = {
-            rewardDays, enabled, maxRedemptions, expiresAtMs, note,
-            updatedAtMs: now, updatedBy: adminEmail,
-        };
-        if (typeof snap.data()?.usedCount !== 'number') {
-            patch.usedCount = 0;
-            patch.createdAtMs = now;
-            patch.createdBy = adminEmail;
-        }
+        const patch = buildPromoCodeWritePatch({ ...payload, now, adminEmail, existing: snap.data() });
         tx.set(codeRef, patch, { merge: true });
     });
-    return { ok: true, code };
+    await db.collection('admin_log').add({
+        action: 'promo_code_upsert',
+        targetUid: code,
+        details: {
+            rewardDays: payload.rewardDays,
+            rewardKind: payload.rewardKind,
+            maxRedemptions: payload.maxRedemptions,
+            enabled: payload.enabled,
+        },
+        adminEmail,
+        ts: new Date(now).toISOString(),
+    }).catch(() => { });
+    return { ok: true, code, rewardDays: payload.rewardDays, rewardKind: payload.rewardKind };
+});
+/* ── onCall: promoCodeBatchUpsert (админ создаёт/правит пачку кодов) ─────────── */
+exports.promoCodeBatchUpsert = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+    if (!request.auth?.token?.admin) {
+        throw new https_1.HttpsError('permission-denied', 'Admin only');
+    }
+    const payload = readPromoCodeWritePayload(request.data ?? {});
+    const explicitCodes = readExplicitPromoCodes(request.data?.codes);
+    const generated = explicitCodes.length === 0;
+    let codes = explicitCodes;
+    if (generated) {
+        const count = readInt(request.data?.count, 1);
+        if (count <= 0 || count > MAX_BATCH_PROMO_CODES) {
+            throw new https_1.HttpsError('invalid-argument', `count must be 1..${MAX_BATCH_PROMO_CODES}`);
+        }
+        const prefix = sanitizeGeneratedPrefix(request.data?.prefix);
+        const seen = new Set();
+        codes = [];
+        while (codes.length < count) {
+            const code = makeGeneratedPromoCode(prefix);
+            if (!CODE_RE.test(code) || seen.has(code))
+                continue;
+            seen.add(code);
+            codes.push(code);
+        }
+    }
+    else if (codes.length > MAX_BATCH_PROMO_CODES) {
+        throw new https_1.HttpsError('invalid-argument', `codes limit is ${MAX_BATCH_PROMO_CODES}`);
+    }
+    const db = admin.firestore();
+    const adminEmail = String(request.auth?.token?.email ?? '');
+    const now = Date.now();
+    const refs = codes.map((code) => db.collection(PROMO_CODES).doc(code));
+    await db.runTransaction(async (tx) => {
+        const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
+        if (generated) {
+            const collision = snaps.find((snap) => snap.exists);
+            if (collision)
+                throw new https_1.HttpsError('already-exists', 'generated_code_collision');
+        }
+        refs.forEach((ref, index) => {
+            const snap = snaps[index];
+            const patch = buildPromoCodeWritePatch({ ...payload, now, adminEmail, existing: snap.data() });
+            tx.set(ref, patch, { merge: true });
+        });
+    });
+    await db.collection('admin_log').add({
+        action: 'promo_codes_batch_upsert',
+        targetUid: 'promo_codes',
+        details: {
+            count: codes.length,
+            generated,
+            rewardDays: payload.rewardDays,
+            rewardKind: payload.rewardKind,
+            maxRedemptions: payload.maxRedemptions,
+            enabled: payload.enabled,
+        },
+        adminEmail,
+        ts: new Date(now).toISOString(),
+    }).catch(() => { });
+    return { ok: true, codes, rewardDays: payload.rewardDays, rewardKind: payload.rewardKind };
 });
 //# sourceMappingURL=promo_codes.js.map

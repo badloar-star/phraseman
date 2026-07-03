@@ -108,11 +108,9 @@ exports.arenaSeasonRolloverCron = functions.scheduler.onSchedule({ schedule: '0 
                     claimed: false, createdAt: Date.now(),
                 }, { merge: true });
             }
-            const rolled = (0, arena_season_1.applySeasonRollback)(dd.rank?.tier ?? 'bronze', dd.rank?.level ?? 'I', seasonCfg.rollbackSteps, seasonCfg.floorIndex);
+            const rolled = (0, arena_season_1.applySeasonRollback)(String(dd.rank?.tier ?? dd['rank.tier'] ?? 'bronze'), String(dd.rank?.level ?? dd['rank.level'] ?? 'I'), seasonCfg.rollbackSteps, seasonCfg.floorIndex);
             writer.set(doc.ref, {
-                'rank.tier': rolled.tier,
-                'rank.level': rolled.level,
-                'rank.stars': 0,
+                rank: { tier: rolled.tier, level: rolled.level, stars: 0 },
                 sr: 0,
                 peakSR: 0,
                 seasonId: nowSeasonId,

@@ -3,7 +3,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 export type ExamContentGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
-  reason: 'english_exam_bank_available' | 'french_exam_source_gate';
+  reason: 'english_exam_bank_available' | 'french_quiz_pack_exam_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -11,20 +11,20 @@ export type ExamContentGate = {
 export type FrenchExamGateKind = 'level' | 'final';
 
 const FRENCH_EXAM_REQUIRED_EVIDENCE = Object.freeze([
-  'french_exam_question_bank',
-  'french_cefr_level_exam_review',
-  'ru_uk_exam_prompt_review',
-  'mistake_taxonomy_mapping_review',
+  'french_quiz_remote_server_pack',
+  'french_exam_from_remote_quiz_runtime',
+  'target_scoped_exam_progress',
+  'no_english_exam_bank_fallback',
 ]);
 
 export function examContentGateForTarget(studyTarget?: RuntimeStudyTarget): ExamContentGate {
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     return {
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_exam_source_gate',
-      blockedRoutes: ['/exam', '/level_exam'],
+      reason: 'french_quiz_pack_exam_available',
+      blockedRoutes: [],
       requiredEvidence: FRENCH_EXAM_REQUIRED_EVIDENCE,
     };
   }

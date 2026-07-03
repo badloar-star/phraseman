@@ -200,8 +200,10 @@ async function withEventLikeCount(db: any, boost: LeagueGroupBoostState | null):
 }
 
 export async function getLeagueGroupBoostMultiplier(): Promise<number> {
-  const boost = (await loadActiveLeagueGroupBoost()) ?? (await fetchActiveLeagueGroupBoostFromCloud());
-  return boost?.multiplier ?? 1;
+  const boost = await loadActiveLeagueGroupBoost();
+  if (boost) return boost.multiplier;
+  void fetchActiveLeagueGroupBoostFromCloud().catch(() => null);
+  return 1;
 }
 
 export async function getActiveLeagueGroupBoost(): Promise<LeagueGroupBoostState | null> {

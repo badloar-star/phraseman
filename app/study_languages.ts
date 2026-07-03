@@ -143,14 +143,13 @@ export async function getLanguageProfile(target: StudyTargetLang): Promise<Langu
  * для французского. Отмечает язык начатым.
  */
 export async function applyStudyLanguageSelection(code: StudyTargetLang, uiLang: Lang): Promise<void> {
-  if (ENABLE_DEV_STUDY_TARGET_LANG && code === 'es') {
-    await setDevStudyTargetLang('es', uiLang);
-  } else {
-    const productionTarget = code === 'fr' ? 'fr' : 'en';
-    await setStoredStudyTarget(productionTarget, uiLang);
+  if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr')) {
+    await setDevStudyTargetLang(code, uiLang);
     if (code === 'fr') {
       void prefetchAndRecordStudyTargetServerPack('fr', uiLang).catch(() => {});
     }
+  } else {
+    await setStoredStudyTarget('en', uiLang);
     if (ENABLE_DEV_STUDY_TARGET_LANG) {
       await setDevStudyTargetLang('en', uiLang);
     }

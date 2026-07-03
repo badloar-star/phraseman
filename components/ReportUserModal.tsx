@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
@@ -6,6 +6,7 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { emitAppEvent } from '../app/events';
 
 interface Props {
   visible: boolean;
@@ -22,9 +23,16 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
   const isCompassTheme = false;
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (visible) Keyboard.dismiss();
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+    };
   }, [visible]);
 
   const handleClose = () => {
@@ -87,21 +95,32 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
   const handleSend = async () => {
     try {
       hapticTap();
-      setLoading(true);
+      setLoading(false);
+      setDone(true);
+      hapticSuccess();
+      closeTimerRef.current = setTimeout(() => {
+        closeTimerRef.current = null;
+        setDone(false);
+        handleClose();
+      }, 1400);
       if (!previewOnly) {
         const result = await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
         if (result === 'failed') throw new Error('report_failed');
       }
-      setLoading(false);
-      setDone(true);
-      hapticSuccess();
-      setTimeout(() => {
-        setDone(false);
-        handleClose();
-      }, 1400);
     } catch {
       setLoading(false);
+      setDone(false);
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
       hapticError();
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Жалоба не отправилась',
+        messageUk: 'Скаргу не надіслано',
+        messageEs: 'No se pudo enviar el reporte',
+      });
     }
   };
 

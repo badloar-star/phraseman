@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import Reanimated, {
@@ -7,9 +8,9 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from './DuoPressable';
 import { MOTION_SPRING } from '../constants/motion';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 
 interface Props {
   /** Показать кнопку (true → всплывает снизу, false → уезжает вниз/скрывается). */
@@ -54,7 +55,8 @@ function PopUpActionButton({
   testID,
   style,
 }: Props) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const shown = useSharedValue(visible ? 1 : 0);
 
   useEffect(() => {
@@ -73,7 +75,7 @@ function PopUpActionButton({
       pointerEvents={visible ? 'box-none' : 'none'}
       style={[
         styles.container,
-        { paddingBottom: Math.max(insets.bottom, 12) + 8 },
+        { paddingBottom: Math.max(bottomInset, 12) + 8 },
         containerStyle,
         style,
       ]}

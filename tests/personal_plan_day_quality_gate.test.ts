@@ -23,16 +23,15 @@ describe('personal plan day quality gate', () => {
     expect(passport.taskKinds).toEqual([
       'plan_phrase_lesson',
       'plan_missing_word',
+      'plan_phrase_recall',
+      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_pronunciation_repeat',
-      'plan_phrase_recall',
-      'plan_quiz',
     ]);
   });
 
-  it('reports missing phrase lessons, missing quizzes, bad copy, and invalid order', () => {
+  it('reports malformed legacy quiz destinations, bad copy, and invalid order', () => {
     const brokenDay = {
       ...day1,
       focus: 'Сначала применяем конструкцию в маршруте.',

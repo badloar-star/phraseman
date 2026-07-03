@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
@@ -12,7 +13,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
   getTodayTasksSafe,
@@ -26,6 +26,7 @@ import { navigateDailyTask } from '../app/daily_task_navigation';
 import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import type { ThemeMode } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
@@ -90,12 +91,20 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskBorder: 'rgba(110,168,255,0.28)',
   },
   business: {
-    accent: '#FFFFFF',
-    accentSoft: 'rgba(255,255,255,0.10)',
-    chipBg: 'rgba(255,255,255,0.08)',
-    chipText: '#F2F2F2',
-    taskGlow: 'rgba(255,255,255,0.06)',
+    accent: '#0095F6',
+    accentSoft: 'rgba(0,149,246,0.14)',
+    chipBg: 'rgba(0,149,246,0.12)',
+    chipText: '#E6E6E6',
+    taskGlow: 'rgba(0,149,246,0.06)',
     taskBorder: 'rgba(255,255,255,0.12)',
+  },
+  businessLight: {
+    accent: '#0095F6',
+    accentSoft: 'rgba(0,149,246,0.12)',
+    chipBg: 'rgba(0,149,246,0.12)',
+    chipText: '#0095F6',
+    taskGlow: 'rgba(0,149,246,0.06)',
+    taskBorder: 'rgba(0,0,0,0.10)',
   },
   midnight: {
     accent: '#9BA8FF',
@@ -193,7 +202,8 @@ export default function DailyTasksFirstVisitModal({
   initialTasks,
 }: DailyTasksFirstVisitModalProps) {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme, themeMode, f, ds } = useTheme();
   const { lang } = useLang();
   const chrome = THEME_CHROME[themeMode] ?? THEME_CHROME.minimalDark;
@@ -465,7 +475,7 @@ export default function DailyTasksFirstVisitModal({
             styles.panelWrap,
             {
               paddingTop: Math.max(18, insets.top + 10),
-              paddingBottom: Math.max(18, insets.bottom + 18),
+              paddingBottom: Math.max(18, bottomInset + 18),
               opacity: panelOpacity,
               transform: [{ translateY: panelTranslateY }],
             },

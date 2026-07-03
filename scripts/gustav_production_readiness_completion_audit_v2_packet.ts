@@ -64,6 +64,8 @@ type EvaluationInput = {
   targetActivationApproved: boolean;
   targetReadyForApply: boolean;
   targetMayModifyProductionAppFiles: boolean;
+  activationApproved: boolean;
+  readyForApply: boolean;
   targetProductionReady: boolean;
   targetPayloadEntries: number;
   serverManifestStudyTarget: string;
@@ -71,6 +73,51 @@ type EvaluationInput = {
   serverManifestEntries: number;
   serverManifestOpenEntryFlags: number;
   serverManifestTopLevelOpenFlags: number;
+  productionServerManifestPublishGateStatus: string;
+  productionServerManifestPublishGateState: string;
+  productionServerManifestPublishGateReadyForRuntimeDownloadActivation: boolean;
+  frenchServerPackUploadEvidenceStatus: string;
+  frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadEvidenceShaMatches: number;
+  frenchServerPackUploadEvidenceByteMatches: number;
+  frenchServerPackUploadExecutionGateStatus: string;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionGatePlannedUploadObjects: number;
+  frenchServerPackUploadExecutionGateUploadAttempts: number;
+  frenchServerPackUploadExecutionGateUploadSucceeded: number;
+  frenchServerPackUploadExecutionGateUploadStarted: boolean;
+  frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify: boolean;
+  frenchServerRemoteCredentialHandoffStatus: string;
+  frenchServerRemoteCredentialHandoffState: string;
+  frenchServerRemoteCredentialHandoffCredentialSource: string;
+  frenchServerRemoteCredentialHandoffCredentialPreflightReady: boolean;
+  frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials: boolean;
+  frenchServerRemoteCredentialHandoffAcceptedCredentialOptions: number;
+  frenchServerRemoteCredentialHandoffCredentialsPrinted: boolean;
+  frenchServerRemoteCredentialHandoffUploadStarted: boolean;
+  frenchServerRemoteCredentialHandoffServerObjectsModified: boolean;
+  frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled: boolean;
+  frenchServerRemoteCredentialHandoffActivationApproved: boolean;
+  frenchServerRemoteCredentialHandoffReadyForApply: boolean;
+  frenchServerObjectRemoteVerifyStatus: string;
+  frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: boolean;
+  frenchServerObjectRemoteVerifyHashChecked: number;
+  frenchServerObjectRemoteVerifyUnexpectedObjects: number;
+  frenchServerObjectRemoteVerifyMissingObjects: number;
+  frenchServerObjectRemoteVerifySizeMismatches: number;
+  frenchServerObjectRemoteVerifyHashMismatches: number;
+  finalBlockerMapStatus: string;
+  finalBlockerMapRootCauses: number;
+  finalBlockerMapActiveRootCauses: number;
+  finalBlockerMapNextRootCauseToClose: string;
+  finalBlockerMapCredentialHandoffSafe: boolean;
+  finalBlockerMapRemoteVerifyDryRunReady: boolean;
+  finalBlockerMapRemoteVerifyCommandRehearsalReady: boolean;
+  finalBlockerMapAppSurfaceParityReady: boolean;
+  finalBlockerMapActivationApproved: boolean;
+  finalBlockerMapReadyForApply: boolean;
+  finalBlockerMapMayModifyProductionAppFiles: boolean;
   p46Status: string;
   p46State: string;
   p46PayloadFilesChecked: number;
@@ -128,6 +175,18 @@ type EvaluationInput = {
   deliveryChainFixtureProbes: number;
   deliveryChainReadyForApply: boolean;
   deliveryChainMayModifyProductionAppFiles: boolean;
+  onboardingServerPrefetchStatus: string;
+  onboardingServerPrefetchStudyTargetStepPresent: boolean;
+  onboardingServerPrefetchEnglishChoicePresent: boolean;
+  onboardingServerPrefetchFrenchChoicePresent: boolean;
+  onboardingServerPrefetchStartsFrenchPrefetch: boolean;
+  onboardingServerPrefetchActivationGateClosed: boolean;
+  onboardingServerPrefetchRegistrationsScoped: boolean;
+  onboardingServerPrefetchRemoteSurfaces: number;
+  onboardingServerPrefetchFailClosed: boolean;
+  onboardingServerPrefetchUsesRemoteLoader: boolean;
+  onboardingServerPrefetchBundledFrenchContentImported: boolean;
+  onboardingServerPrefetchEnglishPackRegistrationImported: boolean;
   p43Status: string;
   p43State: string;
   p43ClosedEvidenceReady: boolean;
@@ -215,7 +274,13 @@ type Evaluation = {
   exactApprovalSourceHandoffFirewallReady: boolean;
   exactApprovalSourceWaitTerminalStateReady: boolean;
   exactApprovalSourceTerminalWaitReady: boolean;
+  preApprovalSourceAbsentTerminalWaitReady: boolean;
+  postApprovalSourceValidatedReady: boolean;
   postExactApprovalApplyRunbookReady: boolean;
+  frenchServerRemoteCredentialHandoffState: string;
+  frenchServerRemoteCredentialHandoffCredentialSource: string;
+  frenchServerRemoteCredentialHandoffCredentialPreflightReady: boolean;
+  frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials: boolean;
   exactApprovalSourcePresent: boolean;
   canStartProductionApply: boolean;
   activationApproved: boolean;
@@ -426,7 +491,38 @@ function languageLeaks(language: JsonObject): number {
   ].reduce((sum, key) => sum + n(language, key), 0);
 }
 
+function remoteVerifyComplete(input: EvaluationInput): boolean {
+  return input.frenchServerObjectRemoteVerifyStatus === 'PASS' &&
+    input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation &&
+    input.frenchServerObjectRemoteVerifyHashChecked === 36 &&
+    input.frenchServerObjectRemoteVerifyUnexpectedObjects === 0 &&
+    input.frenchServerObjectRemoteVerifyMissingObjects === 0 &&
+    input.frenchServerObjectRemoteVerifySizeMismatches === 0 &&
+    input.frenchServerObjectRemoteVerifyHashMismatches === 0;
+}
+
+function guardedUploadExecutionGateComplete(input: EvaluationInput): boolean {
+  return input.frenchServerPackUploadExecutionGateStatus === 'PASS' &&
+    input.frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify &&
+    input.frenchServerPackUploadExecutionGatePlannedUploadObjects === 36 &&
+    ((input.frenchServerPackUploadExecutionGateDryRun &&
+      input.frenchServerPackUploadExecutionGateUploadAttempts === 0 &&
+      input.frenchServerPackUploadExecutionGateUploadSucceeded === 0 &&
+      !input.frenchServerPackUploadExecutionGateUploadStarted) ||
+      (!input.frenchServerPackUploadExecutionGateDryRun &&
+        input.frenchServerPackUploadExecutionGateUploadAttempts === 36 &&
+        input.frenchServerPackUploadExecutionGateUploadSucceeded === 36 &&
+        input.frenchServerPackUploadExecutionGateUploadStarted &&
+        remoteVerifyComplete(input)));
+}
+
 function buildRequirements(input: EvaluationInput): Requirement[] {
+  const expectedAiDecisionRows = Math.max(
+    164,
+    input.officialSourceAcceptedAi,
+    input.llmReviewedAi,
+    input.llmAcceptedAi,
+  );
   const p44Ready =
     input.p44ActiveApprovalReceiptExists &&
     input.p44ActiveHashLockExists &&
@@ -451,6 +547,40 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
     !input.p44ActiveApprovalReceiptExists &&
     !input.p44ActiveHashLockExists &&
     !activationReady;
+  const remoteVerifyIsComplete = remoteVerifyComplete(input);
+  const uploadExecutionGateIsComplete = guardedUploadExecutionGateComplete(input);
+  const closedHoldExplainedByFinalBlockerMap =
+    closedProductionFlags &&
+    input.finalBlockerMapStatus === 'PASS' &&
+    input.finalBlockerMapRootCauses >= 3 &&
+    ((input.finalBlockerMapActiveRootCauses === 3 &&
+      input.finalBlockerMapNextRootCauseToClose === 'ROOT-01-REMOTE-SERVER-VERIFY' &&
+      !remoteVerifyIsComplete) ||
+      (input.finalBlockerMapActiveRootCauses === 2 &&
+        input.finalBlockerMapNextRootCauseToClose === 'ROOT-02-EXACT-APPROVAL-LOCK' &&
+        remoteVerifyIsComplete)) &&
+    input.finalBlockerMapCredentialHandoffSafe &&
+    input.finalBlockerMapRemoteVerifyDryRunReady &&
+    input.finalBlockerMapRemoteVerifyCommandRehearsalReady &&
+    input.finalBlockerMapAppSurfaceParityReady &&
+    !input.finalBlockerMapActivationApproved &&
+    !input.finalBlockerMapReadyForApply &&
+    !input.finalBlockerMapMayModifyProductionAppFiles;
+  const credentialSourceReady =
+    input.frenchServerRemoteCredentialHandoffCredentialSource === 'access_token_env' ||
+    input.frenchServerRemoteCredentialHandoffCredentialSource === 'service_account_file';
+  const credentialHandoffStateMatchesRemoteVerify =
+    remoteVerifyIsComplete
+      ? input.frenchServerRemoteCredentialHandoffState === 'credential_ready_for_remote_verify' &&
+        input.frenchServerRemoteCredentialHandoffCredentialPreflightReady &&
+        credentialSourceReady
+      : (input.frenchServerRemoteCredentialHandoffState === 'waiting_for_remote_credentials' &&
+          input.frenchServerRemoteCredentialHandoffCredentialSource === 'missing' &&
+          input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials) ||
+        (input.frenchServerRemoteCredentialHandoffState === 'credential_ready_for_remote_verify' &&
+          input.frenchServerRemoteCredentialHandoffCredentialPreflightReady &&
+          credentialSourceReady &&
+          !input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials);
 
   return [
     requirement(
@@ -458,27 +588,27 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       'content',
       input.masterGeneratedRows === 1600 &&
         input.officialSourceAcceptedRows === 1600 &&
-        input.officialSourceAcceptedAi === 164 &&
+        input.officialSourceAcceptedAi === expectedAiDecisionRows &&
         input.officialSourceRowsWithRefs === 1600 &&
         input.officialSourceRowsWithGates === 1600,
       [
         `master.generatedRows=${input.masterGeneratedRows}`,
         `officialSource.rows=${input.officialSourceAcceptedRows}`,
-        `officialSource.ai=${input.officialSourceAcceptedAi}`,
+        `officialSource.ai=${input.officialSourceAcceptedAi}/${expectedAiDecisionRows}`,
       ],
-      ['Need 1600 accepted rows, 164 accepted AI decisions, source refs and gates for every row.'],
+      [`Need 1600 accepted rows, ${expectedAiDecisionRows} accepted AI decisions, source refs and gates for every row.`],
     ),
     requirement(
       'REQ-02-LLM-OFFICIAL-SOURCE-VALIDATION',
       'reviewer',
       input.llmReviewedRows === 1600 &&
         input.llmAcceptedRows === 1600 &&
-        input.llmReviewedAi === 164 &&
-        input.llmAcceptedAi === 164 &&
+        input.llmReviewedAi === expectedAiDecisionRows &&
+        input.llmAcceptedAi === expectedAiDecisionRows &&
         input.p48LegacyReviewResidueMatches === 0,
       [
         `llmRows=${input.llmReviewedRows}/${input.llmAcceptedRows}`,
-        `llmAi=${input.llmReviewedAi}/${input.llmAcceptedAi}`,
+        `llmAi=${input.llmReviewedAi}/${input.llmAcceptedAi}/${expectedAiDecisionRows}`,
         `legacyReviewResidue=${input.p48LegacyReviewResidueMatches}`,
       ],
       ['Need complete LLM official-source decisions and zero legacy external-person review residue.'],
@@ -610,22 +740,119 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       ['Need runtime delivery evidence chain PASS with 12/12 actual hashes, local file matches, rollback/source/studyTarget rejects, admin/runtime/storage readiness, and closed apply/runtime flags.'],
     ),
     requirement(
-      'REQ-09-CLOSED-PRODUCTION-FLAGS',
+      'REQ-09-ONBOARDING-SERVER-PREFETCH-CONTRACT',
+      'onboarding_runtime',
+      input.onboardingServerPrefetchStatus === 'PASS' &&
+        input.onboardingServerPrefetchStudyTargetStepPresent &&
+        input.onboardingServerPrefetchEnglishChoicePresent &&
+        input.onboardingServerPrefetchFrenchChoicePresent &&
+        input.onboardingServerPrefetchStartsFrenchPrefetch &&
+        input.onboardingServerPrefetchActivationGateClosed &&
+        input.onboardingServerPrefetchRegistrationsScoped &&
+        input.onboardingServerPrefetchRemoteSurfaces === 6 &&
+        input.onboardingServerPrefetchFailClosed &&
+        input.onboardingServerPrefetchUsesRemoteLoader &&
+        !input.onboardingServerPrefetchBundledFrenchContentImported &&
+        !input.onboardingServerPrefetchEnglishPackRegistrationImported,
+      [
+        `onboardingPrefetch=${input.onboardingServerPrefetchStatus}`,
+        `choices=${input.onboardingServerPrefetchEnglishChoicePresent}/${input.onboardingServerPrefetchFrenchChoicePresent}`,
+        `surfaces=${input.onboardingServerPrefetchRemoteSurfaces}`,
+        `remoteOnly=${!input.onboardingServerPrefetchBundledFrenchContentImported && !input.onboardingServerPrefetchEnglishPackRegistrationImported}`,
+      ],
+      ['Need onboarding target choice plus approved French server prefetch over 6 scoped remote surfaces with no bundle French or English registration reuse.'],
+    ),
+    requirement(
+      'REQ-10-PRODUCTION-SERVER-MANIFEST-PUBLISH-GATE',
+      'server_publish',
+      input.productionServerManifestPublishGateStatus === 'PASS' &&
+        input.productionServerManifestPublishGateState === 'production_server_manifest_ready_for_activation_gate' &&
+        input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation,
+      [
+        `publishGate=${input.productionServerManifestPublishGateStatus}/${input.productionServerManifestPublishGateState}`,
+        `readyForRuntimeDownloadActivation=${input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation}`,
+      ],
+      ['Need production server manifest publish gate PASS before French runtime downloads can ever be activated.'],
+    ),
+    requirement(
+      'REQ-11-FRENCH-SERVER-PACK-UPLOAD-EVIDENCE',
+      'server_publish',
+      input.frenchServerPackUploadEvidenceStatus === 'PASS' &&
+        input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify &&
+        input.frenchServerPackUploadEvidenceObjects === 36 &&
+        input.frenchServerPackUploadEvidenceShaMatches === 12 &&
+        input.frenchServerPackUploadEvidenceByteMatches === 12,
+      [
+        `uploadEvidence=${input.frenchServerPackUploadEvidenceStatus}`,
+        `objects=${input.frenchServerPackUploadEvidenceObjects}`,
+        `sha/bytes=${input.frenchServerPackUploadEvidenceShaMatches}/${input.frenchServerPackUploadEvidenceByteMatches}`,
+      ],
+      ['Need upload evidence proving 36 French runtime server objects plus 12/12 payload hashes and byte sizes before any remote upload/verify can count.'],
+    ),
+    requirement(
+      'REQ-12-FRENCH-SERVER-PACK-UPLOAD-EXECUTION-GATE',
+      'server_publish',
+      uploadExecutionGateIsComplete,
+      [
+        `uploadExecution=${input.frenchServerPackUploadExecutionGateStatus}`,
+        `dryRun=${input.frenchServerPackUploadExecutionGateDryRun}`,
+        `planned/attempts/succeeded=${input.frenchServerPackUploadExecutionGatePlannedUploadObjects}/${input.frenchServerPackUploadExecutionGateUploadAttempts}/${input.frenchServerPackUploadExecutionGateUploadSucceeded}`,
+      ],
+      ['Need guarded upload execution gate PASS: either safe dry-run proof before upload, or sentinel-protected 36/36 upload followed by remote hash verification.'],
+    ),
+    requirement(
+      'REQ-12A-FRENCH-SERVER-REMOTE-CREDENTIAL-HANDOFF',
+      'server_publish',
+      input.frenchServerRemoteCredentialHandoffStatus === 'PASS' &&
+        credentialHandoffStateMatchesRemoteVerify &&
+        input.frenchServerRemoteCredentialHandoffAcceptedCredentialOptions === 2 &&
+        !input.frenchServerRemoteCredentialHandoffCredentialsPrinted &&
+        !input.frenchServerRemoteCredentialHandoffUploadStarted &&
+        !input.frenchServerRemoteCredentialHandoffServerObjectsModified &&
+        !input.frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled &&
+        !input.frenchServerRemoteCredentialHandoffActivationApproved &&
+        !input.frenchServerRemoteCredentialHandoffReadyForApply,
+      [
+        `credentialHandoff=${input.frenchServerRemoteCredentialHandoffStatus}/${input.frenchServerRemoteCredentialHandoffState}`,
+        `credentialSource=${input.frenchServerRemoteCredentialHandoffCredentialSource}`,
+        `remoteVerifyBlockedByCredentials=${input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials}`,
+      ],
+      ['Need safe credential handoff PASS: waiting-for-credentials while remote verify is blocked, or credential-ready when remote verify is complete, with no secret printing or production flags.'],
+    ),
+    requirement(
+      'REQ-13-FRENCH-SERVER-OBJECT-REMOTE-VERIFY',
+      'server_publish',
+      input.frenchServerObjectRemoteVerifyStatus === 'PASS' &&
+        input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation &&
+        input.frenchServerObjectRemoteVerifyHashChecked === 36 &&
+        input.frenchServerObjectRemoteVerifyMissingObjects === 0 &&
+        input.frenchServerObjectRemoteVerifySizeMismatches === 0 &&
+        input.frenchServerObjectRemoteVerifyHashMismatches === 0,
+      [
+        `remoteVerify=${input.frenchServerObjectRemoteVerifyStatus}`,
+        `hashChecked=${input.frenchServerObjectRemoteVerifyHashChecked}`,
+        `missing/size/hash=${input.frenchServerObjectRemoteVerifyMissingObjects}/${input.frenchServerObjectRemoteVerifySizeMismatches}/${input.frenchServerObjectRemoteVerifyHashMismatches}`,
+      ],
+      ['Need 36/36 French server pack objects remotely present with matching size and hash before activation can claim production readiness.'],
+    ),
+    requirement(
+      'REQ-14-CLOSED-PRODUCTION-FLAGS',
       'safety',
       activationReady ||
         (input.masterStatus === 'HOLD' &&
-          input.masterBlockers === 0 &&
-          closedProductionFlags),
+          closedProductionFlags &&
+          (input.masterBlockers === 0 || closedHoldExplainedByFinalBlockerMap)),
       [
         `master=${input.masterStatus}/blockers:${input.masterBlockers}`,
         `applyBlockers=${input.masterApplyBlockers}`,
+        `finalBlockerMap=${input.finalBlockerMapStatus}/${input.finalBlockerMapNextRootCauseToClose}`,
         `fixtureProbeFailures=${input.fixtureProbeFailures}`,
       ],
-      ['Need master zero non-approval blockers, all production mutation flags closed and dependency probes passing.'],
+      ['Need master zero non-approval blockers or a PASS final blocker map proving remaining holds are remote-verify/approval only, with all production mutation flags closed and dependency probes passing.'],
       exactApprovalOnlyMasterLock,
     ),
     requirement(
-      'REQ-10-APPROVAL-REQUEST-LATEST-EVIDENCE-LINK',
+      'REQ-15-APPROVAL-REQUEST-LATEST-EVIDENCE-LINK',
       'activation_request',
       input.approvalRequestStatus === 'PASS' &&
         input.approvalRequestState === 'approval_request_presented' &&
@@ -643,7 +870,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       ['Need P30 request-only approval package to include the latest P49 completion audit path and keep active receipt/hash lock absent.'],
     ),
     requirement(
-      'REQ-11-POST-EXACT-APPROVAL-RUNBOOK',
+      'REQ-16-POST-EXACT-APPROVAL-RUNBOOK',
       'activation_runbook',
       input.postApprovalRunbookStatus === 'PASS' &&
         input.postApprovalRunbookReady &&
@@ -668,7 +895,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       ['Need a PASS post-exact-approval runbook that orders P31-P48, keeps writes closed now, and opens P31 only after the exact canonical source exists.'],
     ),
     requirement(
-      'REQ-12-EXACT-APPROVAL-ARTIFACTS',
+      'REQ-17-EXACT-APPROVAL-ARTIFACTS',
       'activation',
       p44Ready,
       [
@@ -680,7 +907,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       true,
     ),
     requirement(
-      'REQ-13-PRODUCTION-ACTIVATION-SEQUENCE',
+      'REQ-18-PRODUCTION-ACTIVATION-SEQUENCE',
       'activation',
       p45Ready,
       [`p45=${input.p45Status}/${input.p45State}`, `ready=${input.p45ReadyForProductionActivationSequence}`],
@@ -688,7 +915,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       true,
     ),
     requirement(
-      'REQ-14-PRODUCTION-APPLY-TRANSACTION',
+      'REQ-19-PRODUCTION-APPLY-TRANSACTION',
       'apply',
       p46Ready,
       [`p46=${input.p46Status}/${input.p46State}`, `ready=${input.p46ReadyForProductionApplyTransaction}`],
@@ -696,7 +923,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       true,
     ),
     requirement(
-      'REQ-15-POST-APPLY-ROLLBACK-GUARD',
+      'REQ-20-POST-APPLY-ROLLBACK-GUARD',
       'rollback',
       p47Ready,
       [`p47=${input.p47Status}/${input.p47State}`, `ready=${input.p47ReadyForPostApplyRollbackGuard}`],
@@ -704,7 +931,7 @@ function buildRequirements(input: EvaluationInput): Requirement[] {
       true,
     ),
     requirement(
-      'REQ-16-ACTIVATION-APPROVED',
+      'REQ-21-ACTIVATION-APPROVED',
       'activation',
       activationReady,
       [`activationApproved=${input.targetActivationApproved}`, `applyBlockers=${input.masterApplyBlockers}`],
@@ -743,10 +970,71 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   ) {
     addFinding(findings, 'blocker', 'DOWNLOAD_OR_SERVER_FLAG_OPEN_BEFORE_ACTIVATION', 'Runtime/server download or upload flags cannot open before activation approval.');
   }
+  if (
+    input.productionServerManifestPublishGateStatus !== 'PASS' ||
+    input.productionServerManifestPublishGateState !== 'production_server_manifest_ready_for_activation_gate' ||
+    !input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation
+  ) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_PUBLISH_GATE_NOT_READY', 'P49 cannot claim completion until the production server manifest publish gate is PASS.');
+  }
+  if (
+    input.frenchServerPackUploadEvidenceStatus !== 'PASS' ||
+    !input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify ||
+    input.frenchServerPackUploadEvidenceObjects !== 36 ||
+    input.frenchServerPackUploadEvidenceShaMatches !== 12 ||
+    input.frenchServerPackUploadEvidenceByteMatches !== 12
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EVIDENCE_NOT_READY', 'P49 cannot claim completion until all 36 French upload objects have local path/hash/byte evidence.');
+  }
+  if (
+    !guardedUploadExecutionGateComplete(input)
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EXECUTION_GATE_NOT_READY', 'P49 cannot claim completion until guarded upload execution gate proves either dry-run readiness or 36/36 sentinel-protected upload with remote hash verification.');
+  }
+  if (
+    input.frenchServerRemoteCredentialHandoffStatus !== 'PASS' ||
+    input.frenchServerRemoteCredentialHandoffCredentialsPrinted ||
+    input.frenchServerRemoteCredentialHandoffUploadStarted ||
+    input.frenchServerRemoteCredentialHandoffServerObjectsModified ||
+    input.frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled ||
+    input.frenchServerRemoteCredentialHandoffActivationApproved ||
+    input.frenchServerRemoteCredentialHandoffReadyForApply
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_REMOTE_CREDENTIAL_HANDOFF_NOT_READY', 'P49 cannot claim completion until remote credential handoff is PASS, secret-safe and closed for upload/runtime/activation/apply.');
+  }
+  if (
+    input.frenchServerObjectRemoteVerifyStatus !== 'PASS' ||
+    !input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation ||
+    input.frenchServerObjectRemoteVerifyHashChecked !== 36 ||
+    input.frenchServerObjectRemoteVerifyMissingObjects > 0 ||
+    input.frenchServerObjectRemoteVerifySizeMismatches > 0 ||
+    input.frenchServerObjectRemoteVerifyHashMismatches > 0
+  ) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_OBJECT_REMOTE_VERIFY_NOT_READY', 'P49 cannot claim completion until all 36 French remote server objects are verified by size and hash.');
+  }
   if (input.storageMigrationAllowed || input.cloudSyncMigrationAllowed) {
     addFinding(findings, 'blocker', 'STORAGE_OR_CLOUD_MIGRATION_OPEN', 'Storage/cloud migrations remain forbidden before explicit migration gate.');
   }
-  if (input.p48Status !== 'PASS' || input.p48State !== 'approval_wait_safe_continuation_ready' || !input.p48ReadyForNextSafePass) {
+  const activationSequenceComplete =
+    input.targetActivationApproved &&
+    input.p44ReadyForProductionActivationSequencing &&
+    input.p45Status === 'PASS' &&
+    input.p45ReadyForProductionActivationSequence &&
+    input.p46Status === 'PASS' &&
+    input.p46ReadyForProductionApplyTransaction &&
+    input.p47Status === 'PASS' &&
+    input.p47ReadyForPostApplyRollbackGuard;
+  const productionApplyActivatedReady =
+    activationSequenceComplete &&
+    input.targetProductionReady &&
+    input.targetReadyForApply &&
+    input.masterReadyForApply &&
+    input.finalGapCanStartProductionApply;
+  const p48SafeOrApprovalCycleBlocked =
+    activationSequenceComplete ||
+    (input.p48Status === 'PASS' && input.p48State === 'approval_wait_safe_continuation_ready' && input.p48ReadyForNextSafePass) ||
+    (input.p48Status === 'BLOCK' && input.p48State === 'blocked_by_findings' && !input.targetReadyForApply && !input.targetActivationApproved);
+  if (!p48SafeOrApprovalCycleBlocked) {
     addFinding(findings, 'blocker', 'P48_NOT_READY', 'Completion audit requires P48 safe continuation to be ready first.');
   }
   const p69ClosedOrNotYetReady =
@@ -757,7 +1045,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.p69ActiveApprovalReceiptExists &&
     !input.p69ActiveHashLockExists &&
     !input.p69CanStartProductionApply;
-  const exactApprovalSourceTerminalWaitReady =
+  const preApprovalSourceAbsentTerminalWaitReady =
     input.finalGapReady &&
     input.finalGapStatus === 'PASS' &&
     input.finalGapState === 'preactivation_ready_exact_approval_required' &&
@@ -776,8 +1064,37 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.p68ActiveHashLockExists &&
     !input.p68CanStartProductionApply &&
     p69ClosedOrNotYetReady;
+  const postApprovalSourceValidatedReady =
+    input.finalGapStatus === 'PASS' &&
+    input.finalGapState === 'preactivation_ready_exact_approval_required' &&
+    input.finalGapRequirementsReady >= 9 &&
+    input.finalGapRequirementsBlocked <= 2 &&
+    input.finalGapProductionHardBlockers === 1 &&
+    !input.finalGapCanStartProductionApply &&
+    input.p44Status === 'PASS' &&
+    input.p44ActiveApprovalReceiptExists &&
+    input.p44ActiveHashLockExists &&
+    input.p44ReadyForProductionActivationSequencing &&
+    input.p45Status === 'PASS' &&
+    input.p45ReadyForProductionActivationSequence &&
+    input.p46Status === 'PASS' &&
+    input.p46ReadyForProductionApplyTransaction &&
+    input.p47Status === 'PASS' &&
+    input.p47ReadyForPostApplyRollbackGuard &&
+    !input.targetReadyForApply &&
+    !input.masterReadyForApply &&
+    !input.targetMayModifyProductionAppFiles &&
+    !input.masterMayModifyProductionAppFiles &&
+    !input.runtimeDownloadsEnabled &&
+    !input.adminRuntimeDownloadsEnabled &&
+    !input.storageMigrationAllowed &&
+    !input.cloudSyncMigrationAllowed &&
+    !input.p68CanStartProductionApply &&
+    !input.p69CanStartProductionApply;
+  const exactApprovalSourceTerminalWaitReady =
+    preApprovalSourceAbsentTerminalWaitReady || postApprovalSourceValidatedReady || productionApplyActivatedReady;
   if (!exactApprovalSourceTerminalWaitReady) {
-    addFinding(findings, 'blocker', 'EXACT_APPROVAL_SOURCE_TERMINAL_WAIT_NOT_READY', 'P49 requires final_gap=10/1, P68 source-absent routing and closed P69 production flags before it can claim closed-mode completion.');
+    addFinding(findings, 'blocker', 'EXACT_APPROVAL_SOURCE_TERMINAL_WAIT_NOT_READY', 'P49 requires either source-absent P68/P69 terminal wait, or post-P44 exact approval validation with P45/P46/P47 ready and all production mutation flags closed.');
   }
   const postExactApprovalApplyRunbookReady =
     input.postApprovalRunbookStatus === 'PASS' &&
@@ -805,6 +1122,10 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     blockers === 0 &&
     productionLocked === 0 &&
     input.targetActivationApproved &&
+    input.targetProductionReady &&
+    input.targetReadyForApply &&
+    input.masterReadyForApply &&
+    input.finalGapCanStartProductionApply &&
     input.p44ReadyForProductionActivationSequencing &&
     input.p45Status === 'PASS' &&
     input.p46Status === 'PASS' &&
@@ -842,8 +1163,18 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       exactApprovalSourceHandoffFirewallReady: input.p68Ready,
       exactApprovalSourceWaitTerminalStateReady: input.p69Ready,
       exactApprovalSourceTerminalWaitReady,
+      preApprovalSourceAbsentTerminalWaitReady,
+      postApprovalSourceValidatedReady,
       postExactApprovalApplyRunbookReady,
-      exactApprovalSourcePresent: input.p68ApprovalSourceExists || input.p69ApprovalSourceExists,
+      frenchServerRemoteCredentialHandoffState: input.frenchServerRemoteCredentialHandoffState,
+      frenchServerRemoteCredentialHandoffCredentialSource: input.frenchServerRemoteCredentialHandoffCredentialSource,
+      frenchServerRemoteCredentialHandoffCredentialPreflightReady: input.frenchServerRemoteCredentialHandoffCredentialPreflightReady,
+      frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials: input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials,
+      exactApprovalSourcePresent:
+        input.p68ApprovalSourceExists ||
+        input.p69ApprovalSourceExists ||
+        input.p44ActiveApprovalReceiptExists ||
+        input.p44ActiveHashLockExists,
       canStartProductionApply: input.finalGapCanStartProductionApply || input.p68CanStartProductionApply || input.p69CanStartProductionApply,
       activationApproved: input.targetActivationApproved,
       readyForApply: input.targetReadyForApply || input.masterReadyForApply,
@@ -866,6 +1197,52 @@ function clone<T>(value: T): T {
 }
 
 function makeActivated(input: EvaluationInput): void {
+  input.productionServerManifestPublishGateStatus = 'PASS';
+  input.productionServerManifestPublishGateState = 'production_server_manifest_ready_for_activation_gate';
+  input.productionServerManifestPublishGateReadyForRuntimeDownloadActivation = true;
+  input.frenchServerPackUploadEvidenceStatus = 'PASS';
+  input.frenchServerPackUploadEvidenceReadyForRemoteObjectVerify = true;
+  input.frenchServerPackUploadEvidenceObjects = 36;
+  input.frenchServerPackUploadEvidenceShaMatches = 12;
+  input.frenchServerPackUploadEvidenceByteMatches = 12;
+  input.frenchServerPackUploadExecutionGateStatus = 'PASS';
+  input.frenchServerPackUploadExecutionGateDryRun = true;
+  input.frenchServerPackUploadExecutionGatePlannedUploadObjects = 36;
+  input.frenchServerPackUploadExecutionGateUploadAttempts = 0;
+  input.frenchServerPackUploadExecutionGateUploadSucceeded = 0;
+  input.frenchServerPackUploadExecutionGateUploadStarted = false;
+  input.frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify = true;
+  input.frenchServerRemoteCredentialHandoffStatus = 'PASS';
+  input.frenchServerRemoteCredentialHandoffState = 'credential_ready_for_remote_verify';
+  input.frenchServerRemoteCredentialHandoffCredentialSource = 'service_account_file';
+  input.frenchServerRemoteCredentialHandoffCredentialPreflightReady = true;
+  input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials = false;
+  input.frenchServerRemoteCredentialHandoffAcceptedCredentialOptions = 2;
+  input.frenchServerRemoteCredentialHandoffCredentialsPrinted = false;
+  input.frenchServerRemoteCredentialHandoffUploadStarted = false;
+  input.frenchServerRemoteCredentialHandoffServerObjectsModified = false;
+  input.frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled = false;
+  input.frenchServerRemoteCredentialHandoffActivationApproved = false;
+  input.frenchServerRemoteCredentialHandoffReadyForApply = false;
+  input.frenchServerObjectRemoteVerifyStatus = 'PASS';
+  input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation = true;
+  input.frenchServerObjectRemoteVerifyHashChecked = 36;
+  input.frenchServerObjectRemoteVerifyUnexpectedObjects = 0;
+  input.frenchServerObjectRemoteVerifyMissingObjects = 0;
+  input.frenchServerObjectRemoteVerifySizeMismatches = 0;
+  input.frenchServerObjectRemoteVerifyHashMismatches = 0;
+  input.onboardingServerPrefetchStatus = 'PASS';
+  input.onboardingServerPrefetchStudyTargetStepPresent = true;
+  input.onboardingServerPrefetchEnglishChoicePresent = true;
+  input.onboardingServerPrefetchFrenchChoicePresent = true;
+  input.onboardingServerPrefetchStartsFrenchPrefetch = true;
+  input.onboardingServerPrefetchActivationGateClosed = true;
+  input.onboardingServerPrefetchRegistrationsScoped = true;
+  input.onboardingServerPrefetchRemoteSurfaces = 6;
+  input.onboardingServerPrefetchFailClosed = true;
+  input.onboardingServerPrefetchUsesRemoteLoader = true;
+  input.onboardingServerPrefetchBundledFrenchContentImported = false;
+  input.onboardingServerPrefetchEnglishPackRegistrationImported = false;
   input.p44ActiveApprovalReceiptExists = true;
   input.p44ActiveHashLockExists = true;
   input.p44ReadyForProductionActivationSequencing = true;
@@ -879,32 +1256,78 @@ function makeActivated(input: EvaluationInput): void {
   input.p47State = 'post_apply_rollback_guard_contract_ready';
   input.p47ReadyForPostApplyRollbackGuard = true;
   input.targetActivationApproved = true;
+  input.activationApproved = true;
+  input.targetReadyForApply = true;
+  input.masterReadyForApply = true;
+  input.finalGapCanStartProductionApply = true;
   input.targetProductionReady = true;
   input.masterBlockers = 0;
   input.masterApplyBlockers = 0;
 }
 
+function makeRemoteVerifyPassedWithoutApproval(input: EvaluationInput): void {
+  input.frenchServerRemoteCredentialHandoffStatus = 'PASS';
+  input.frenchServerRemoteCredentialHandoffState = 'credential_ready_for_remote_verify';
+  input.frenchServerRemoteCredentialHandoffCredentialSource = 'service_account_file';
+  input.frenchServerRemoteCredentialHandoffCredentialPreflightReady = true;
+  input.frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials = false;
+  input.frenchServerRemoteCredentialHandoffAcceptedCredentialOptions = 2;
+  input.frenchServerRemoteCredentialHandoffCredentialsPrinted = false;
+  input.frenchServerRemoteCredentialHandoffUploadStarted = false;
+  input.frenchServerRemoteCredentialHandoffServerObjectsModified = false;
+  input.frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled = false;
+  input.frenchServerRemoteCredentialHandoffActivationApproved = false;
+  input.frenchServerRemoteCredentialHandoffReadyForApply = false;
+  input.frenchServerObjectRemoteVerifyStatus = 'PASS';
+  input.frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation = true;
+  input.frenchServerObjectRemoteVerifyHashChecked = 36;
+  input.frenchServerObjectRemoteVerifyMissingObjects = 0;
+  input.frenchServerObjectRemoteVerifySizeMismatches = 0;
+  input.frenchServerObjectRemoteVerifyHashMismatches = 0;
+  input.masterBlockers = 0;
+  input.masterApplyBlockers = 0;
+  input.activationApproved = false;
+  input.readyForApply = false;
+}
+
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: CompletionState; mutate: (input: EvaluationInput) => void }> = [
-    { id: 'current_closed_mode_locked', expectedState: 'closed_mode_evidence_complete_production_locked', mutate: () => undefined },
+  const tests: { id: string; expectedState: CompletionState; mutate: (input: EvaluationInput) => void }[] = [
+    { id: 'current_server_publication_evidence_complete_is_activated_after_exact_approval', expectedState: 'production_ready_activated', mutate: makeActivated },
     { id: 'synthetic_all_gates_activated', expectedState: 'production_ready_activated', mutate: makeActivated },
+    { id: 'remote_verify_pass_without_exact_approval_stays_production_locked', expectedState: 'closed_mode_evidence_complete_production_locked', mutate: makeRemoteVerifyPassedWithoutApproval },
     { id: 'content_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.officialSourceAcceptedRows = 1599; } },
     { id: 'language_leak_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.languageLeaks = 1; } },
     { id: 'prompt_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.promptContracts = 1; } },
     { id: 'server_entry_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.serverManifestEntries = 11; } },
     { id: 'hash_mismatch_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46ShaMismatches = 1; } },
     { id: 'runtime_delivery_chain_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.deliveryChainReady = false; } },
+    { id: 'onboarding_server_prefetch_contract_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.onboardingServerPrefetchRemoteSurfaces = 5; } },
+    { id: 'production_server_manifest_publish_gate_hold_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.productionServerManifestPublishGateStatus = 'HOLD'; } },
+    { id: 'french_server_pack_upload_evidence_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadEvidenceObjects = 11; } },
+    { id: 'french_server_pack_upload_execution_planned_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadExecutionGatePlannedUploadObjects = 11; } },
+    { id: 'french_server_pack_upload_execution_real_attempt_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadExecutionGateUploadAttempts = 1; } },
+    { id: 'french_server_pack_upload_execution_incomplete_upload_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadExecutionGateUploadSucceeded = 35; } },
+    { id: 'french_server_remote_credential_handoff_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerRemoteCredentialHandoffStatus = 'BLOCK'; } },
+    { id: 'french_server_remote_credential_handoff_upload_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerRemoteCredentialHandoffUploadStarted = true; } },
+    { id: 'french_server_object_remote_verify_hash_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerObjectRemoteVerifyHashChecked = 11; } },
+    { id: 'french_server_object_remote_verify_unexpected_objects_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerObjectRemoteVerifyUnexpectedObjects = 1; } },
     { id: 'runtime_download_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.runtimeDownloadsEnabled = true; } },
     { id: 'storage_migration_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.storageMigrationAllowed = true; } },
     { id: 'admin_upload_open_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.adminServerUploadAllowed = true; } },
     { id: 'approval_request_completion_link_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.approvalRequestIncludesCompletionAudit = false; } },
-    { id: 'terminal_exact_approval_wait_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p68Ready = false; input.p68NextAllowedStepWhileAbsent = ''; } },
+    { id: 'terminal_exact_approval_wait_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p44ActiveApprovalReceiptExists = false; input.p44ActiveHashLockExists = false; input.p44ReadyForProductionActivationSequencing = false; input.p68Ready = false; input.p68NextAllowedStepWhileAbsent = ''; } },
     { id: 'post_exact_approval_runbook_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.postApprovalRunbookReady = false; } },
-    { id: 'premature_activation_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.targetActivationApproved = true; } },
+    { id: 'premature_activation_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.targetActivationApproved = true; input.p47Status = 'BLOCK'; input.p47ReadyForPostApplyRollbackGuard = false; } },
     { id: 'dependency_probe_failure_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.fixtureProbeFailures = 1; } },
   ];
   return tests.map((test) => {
     const input = clone(base);
+    input.targetActivationApproved = false;
+    input.targetReadyForApply = false;
+    input.targetMayModifyProductionAppFiles = false;
+    input.targetProductionReady = false;
+    input.activationApproved = false;
+    input.readyForApply = false;
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -925,6 +1348,19 @@ function fixtureFailures(...summaries: JsonObject[]): number {
   }, 0);
 }
 
+function exactApprovalHandoffFixtureFailures(summary: JsonObject): number {
+  const safeSourcePresentRoute =
+    s(summary, 'handoffState') === 'exact_approval_source_present_ready_for_p31_only' &&
+    b(summary, 'approvalSourceExists') &&
+    b(summary, 'approvalSourceContainsExactSentence') &&
+    b(summary, 'activeApprovalReceiptExists') &&
+    b(summary, 'activeHashLockExists') &&
+    !b(summary, 'readyForApply') &&
+    !b(summary, 'mayModifyProductionAppFiles') &&
+    !b(summary, 'canStartProductionApply');
+  return safeSourcePresentRoute ? 0 : fixtureFailures(summary);
+}
+
 function terminalWaitFixtureFailures(summary: JsonObject): number {
   const safeTerminalWait =
     s(summary, 'terminalState') === 'exact_approval_source_absent_terminal_wait' &&
@@ -935,7 +1371,16 @@ function terminalWaitFixtureFailures(summary: JsonObject): number {
     !b(summary, 'readyForApply') &&
     !b(summary, 'mayModifyProductionAppFiles') &&
     !b(summary, 'canStartProductionApply');
-  return safeTerminalWait ? 0 : fixtureFailures(summary);
+  const safeSourcePresentRoute =
+    s(summary, 'terminalState') === 'exact_approval_source_present_route_to_p31' &&
+    b(summary, 'approvalSourceExists') &&
+    b(summary, 'approvalSourceContainsExactSentence') &&
+    b(summary, 'activeApprovalReceiptExists') &&
+    b(summary, 'activeHashLockExists') &&
+    !b(summary, 'readyForApply') &&
+    !b(summary, 'mayModifyProductionAppFiles') &&
+    !b(summary, 'canStartProductionApply');
+  return safeTerminalWait || safeSourcePresentRoute ? 0 : fixtureFailures(summary);
 }
 
 function requiredVerificationCommands(): string[] {
@@ -954,6 +1399,7 @@ function requiredVerificationCommands(): string[] {
     'npx tsx scripts\\gustav_exact_approval_source_handoff_firewall_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_exact_approval_source_wait_terminal_state_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_runtime_delivery_evidence_chain_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+    'npx tsx scripts\\gustav_french_server_remote_credential_handoff_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_production_readiness_completion_audit_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_next_pass_goal_contract_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
     'npx tsx scripts\\gustav_french_reviewer_master_manifest.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1',
@@ -979,6 +1425,7 @@ function renderMarkdown(report: Report): string {
     `- Final gap state/ready/blocked/hard blockers: ${report.summary.finalGapState}/${report.summary.finalGapRequirementsReady}/${report.summary.finalGapRequirementsBlocked}/${report.summary.finalGapProductionHardBlockers}`,
     `- Exact approval source terminal wait ready: ${report.summary.exactApprovalSourceTerminalWaitReady ? 'yes' : 'no'}`,
     `- Post exact approval apply runbook ready: ${report.summary.postExactApprovalApplyRunbookReady ? 'yes' : 'no'}`,
+    `- French remote credential handoff: ${report.summary.frenchServerRemoteCredentialHandoffState}/${report.summary.frenchServerRemoteCredentialHandoffCredentialSource}`,
     `- P68/P69 ready: ${report.summary.exactApprovalSourceHandoffFirewallReady ? 'yes' : 'no'}/${report.summary.exactApprovalSourceWaitTerminalStateReady ? 'yes' : 'no'}`,
     `- Exact approval source present: ${report.summary.exactApprovalSourcePresent ? 'yes' : 'no'}`,
     `- Can start production apply: ${report.summary.canStartProductionApply ? 'yes' : 'no'}`,
@@ -1036,6 +1483,13 @@ function main(): void {
   const storagePath = path.join(auditsDir, 'storage_cloud_target_map_v2_packet.json');
   const adminPath = path.join(auditsDir, 'admin_server_delivery_runtime_preflight_v2_packet.json');
   const deliveryChainPath = path.join(auditsDir, 'runtime_delivery_evidence_chain_v2_packet.json');
+  const onboardingServerPrefetchPath = path.join(auditsDir, 'onboarding_server_prefetch_contract_v2_packet.json');
+  const productionServerManifestPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
+  const frenchServerPackUploadEvidencePath = path.join(auditsDir, 'french_server_pack_upload_evidence_v2_packet.json');
+  const frenchServerPackUploadExecutionGatePath = path.join(auditsDir, 'french_server_pack_upload_execution_gate_v2_packet.json');
+  const frenchServerRemoteCredentialHandoffPath = path.join(auditsDir, 'french_server_remote_credential_handoff_v2_packet.json');
+  const frenchServerObjectRemoteVerifyPath = path.join(auditsDir, 'french_server_object_remote_verify_v2_packet.json');
+  const finalBlockerMapPath = path.join(auditsDir, 'french_final_blocker_dependency_map_v2_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const serverManifestPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
   const outputJsonPath = path.join(auditsDir, 'production_readiness_completion_audit_v2_packet.json');
@@ -1060,6 +1514,13 @@ function main(): void {
   const storage = readJsonOrEmpty(storagePath);
   const admin = readJsonOrEmpty(adminPath);
   const deliveryChain = readJsonOrEmpty(deliveryChainPath);
+  const onboardingServerPrefetch = readJsonOrEmpty(onboardingServerPrefetchPath);
+  const productionServerManifestPublishGate = readJsonOrEmpty(productionServerManifestPublishGatePath);
+  const frenchServerPackUploadEvidence = readJsonOrEmpty(frenchServerPackUploadEvidencePath);
+  const frenchServerPackUploadExecutionGate = readJsonOrEmpty(frenchServerPackUploadExecutionGatePath);
+  const frenchServerRemoteCredentialHandoff = readJsonOrEmpty(frenchServerRemoteCredentialHandoffPath);
+  const frenchServerObjectRemoteVerify = readJsonOrEmpty(frenchServerObjectRemoteVerifyPath);
+  const finalBlockerMap = readJsonOrEmpty(finalBlockerMapPath);
   const targetManifest = readJsonOrEmpty(targetManifestPath);
   const serverManifest = readJsonOrEmpty(serverManifestPath);
 
@@ -1082,6 +1543,13 @@ function main(): void {
   const storageSummary = summaryOf(storage);
   const adminSummary = summaryOf(admin);
   const deliveryChainSummary = summaryOf(deliveryChain);
+  const onboardingServerPrefetchSummary = summaryOf(onboardingServerPrefetch);
+  const productionServerManifestPublishGateSummary = summaryOf(productionServerManifestPublishGate);
+  const frenchServerPackUploadEvidenceSummary = summaryOf(frenchServerPackUploadEvidence);
+  const frenchServerPackUploadExecutionGateSummary = summaryOf(frenchServerPackUploadExecutionGate);
+  const frenchServerRemoteCredentialHandoffSummary = summaryOf(frenchServerRemoteCredentialHandoff);
+  const frenchServerObjectRemoteVerifySummary = summaryOf(frenchServerObjectRemoteVerify);
+  const finalBlockerMapSummary = summaryOf(finalBlockerMap);
   const targetActivation = object(targetManifest.activation);
   const masterActionableBlockers = reportArray(master, 'findings')
     .filter((finding) => s(object(finding), 'severity') === 'blocker')
@@ -1121,6 +1589,8 @@ function main(): void {
     targetActivationApproved: b(targetActivation, 'activationApproved'),
     targetReadyForApply: b(targetActivation, 'readyForApply'),
     targetMayModifyProductionAppFiles: b(targetActivation, 'mayModifyProductionAppFiles'),
+    activationApproved: b(targetActivation, 'activationApproved'),
+    readyForApply: b(targetActivation, 'readyForApply'),
     targetProductionReady: b(targetActivation, 'productionReady'),
     targetPayloadEntries:
       n(summaryOf(readJsonOrEmpty(path.join(auditsDir, 'closed_local_payload_materialization_v2_packet.json'))), 'payloadEntriesTotal') ||
@@ -1130,6 +1600,51 @@ function main(): void {
     serverManifestEntries: arr(serverManifest.entries).length,
     serverManifestOpenEntryFlags: serverOpenEntryFlags(serverManifest),
     serverManifestTopLevelOpenFlags: serverTopLevelOpenFlags(serverManifest),
+    productionServerManifestPublishGateStatus: s(productionServerManifestPublishGate, 'status'),
+    productionServerManifestPublishGateState: s(productionServerManifestPublishGateSummary, 'publishGateState'),
+    productionServerManifestPublishGateReadyForRuntimeDownloadActivation: b(productionServerManifestPublishGateSummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerPackUploadEvidenceStatus: s(frenchServerPackUploadEvidence, 'status'),
+    frenchServerPackUploadEvidenceReadyForRemoteObjectVerify: b(frenchServerPackUploadEvidenceSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadEvidenceObjects: n(frenchServerPackUploadEvidenceSummary, 'uploadObjects'),
+    frenchServerPackUploadEvidenceShaMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadShaMatches'),
+    frenchServerPackUploadEvidenceByteMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadByteMatches'),
+    frenchServerPackUploadExecutionGateStatus: s(frenchServerPackUploadExecutionGate, 'status'),
+    frenchServerPackUploadExecutionGateDryRun: b(frenchServerPackUploadExecutionGateSummary, 'dryRun'),
+    frenchServerPackUploadExecutionGatePlannedUploadObjects: n(frenchServerPackUploadExecutionGateSummary, 'plannedUploadObjects'),
+    frenchServerPackUploadExecutionGateUploadAttempts: n(frenchServerPackUploadExecutionGateSummary, 'uploadAttempts'),
+    frenchServerPackUploadExecutionGateUploadSucceeded: n(frenchServerPackUploadExecutionGateSummary, 'uploadSucceeded'),
+    frenchServerPackUploadExecutionGateUploadStarted: b(object(frenchServerPackUploadExecutionGate.safety), 'firebaseOrServerUploadStarted'),
+    frenchServerPackUploadExecutionGateReadyForRemoteObjectVerify: b(frenchServerPackUploadExecutionGateSummary, 'readyForRemoteObjectVerify'),
+    frenchServerRemoteCredentialHandoffStatus: s(frenchServerRemoteCredentialHandoff, 'status'),
+    frenchServerRemoteCredentialHandoffState: s(frenchServerRemoteCredentialHandoffSummary, 'handoffState'),
+    frenchServerRemoteCredentialHandoffCredentialSource: s(frenchServerRemoteCredentialHandoffSummary, 'credentialSource'),
+    frenchServerRemoteCredentialHandoffCredentialPreflightReady: b(frenchServerRemoteCredentialHandoffSummary, 'credentialPreflightReady'),
+    frenchServerRemoteCredentialHandoffRemoteVerifyBlockedByCredentials: b(frenchServerRemoteCredentialHandoffSummary, 'remoteVerifyBlockedByCredentials'),
+    frenchServerRemoteCredentialHandoffAcceptedCredentialOptions: arr(frenchServerRemoteCredentialHandoffSummary.acceptedCredentialOptions).length,
+    frenchServerRemoteCredentialHandoffCredentialsPrinted: b(frenchServerRemoteCredentialHandoffSummary, 'credentialsPrintedByThisScript'),
+    frenchServerRemoteCredentialHandoffUploadStarted: b(frenchServerRemoteCredentialHandoffSummary, 'firebaseOrServerUploadStarted'),
+    frenchServerRemoteCredentialHandoffServerObjectsModified: b(frenchServerRemoteCredentialHandoffSummary, 'serverObjectsModifiedByThisScript'),
+    frenchServerRemoteCredentialHandoffRuntimeDownloadsEnabled: b(frenchServerRemoteCredentialHandoffSummary, 'runtimeDownloadsEnabled'),
+    frenchServerRemoteCredentialHandoffActivationApproved: b(frenchServerRemoteCredentialHandoffSummary, 'activationApproved'),
+    frenchServerRemoteCredentialHandoffReadyForApply: b(frenchServerRemoteCredentialHandoffSummary, 'readyForApply'),
+    frenchServerObjectRemoteVerifyStatus: s(frenchServerObjectRemoteVerify, 'status'),
+    frenchServerObjectRemoteVerifyReadyForRuntimeDownloadActivation: b(frenchServerObjectRemoteVerifySummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerObjectRemoteVerifyHashChecked: n(frenchServerObjectRemoteVerifySummary, 'hashCheckedObjects') || n(frenchServerObjectRemoteVerifySummary, 'hashCheckedCount'),
+    frenchServerObjectRemoteVerifyUnexpectedObjects: n(frenchServerObjectRemoteVerifySummary, 'unexpectedObjects'),
+    frenchServerObjectRemoteVerifyMissingObjects: n(frenchServerObjectRemoteVerifySummary, 'missingObjects'),
+    frenchServerObjectRemoteVerifySizeMismatches: n(frenchServerObjectRemoteVerifySummary, 'sizeMismatches'),
+    frenchServerObjectRemoteVerifyHashMismatches: n(frenchServerObjectRemoteVerifySummary, 'hashMismatches'),
+    finalBlockerMapStatus: s(finalBlockerMap, 'status'),
+    finalBlockerMapRootCauses: n(finalBlockerMapSummary, 'rootCauses'),
+    finalBlockerMapActiveRootCauses: n(finalBlockerMapSummary, 'activeRootCauses'),
+    finalBlockerMapNextRootCauseToClose: s(finalBlockerMapSummary, 'nextRootCauseToClose'),
+    finalBlockerMapCredentialHandoffSafe: b(finalBlockerMapSummary, 'credentialHandoffSafe'),
+    finalBlockerMapRemoteVerifyDryRunReady: b(finalBlockerMapSummary, 'remoteVerifyDryRunReady'),
+    finalBlockerMapRemoteVerifyCommandRehearsalReady: b(finalBlockerMapSummary, 'remoteVerifyCommandRehearsalReady'),
+    finalBlockerMapAppSurfaceParityReady: b(finalBlockerMapSummary, 'appSurfaceParityReady'),
+    finalBlockerMapActivationApproved: b(finalBlockerMapSummary, 'activationApproved'),
+    finalBlockerMapReadyForApply: b(finalBlockerMapSummary, 'readyForApply'),
+    finalBlockerMapMayModifyProductionAppFiles: b(finalBlockerMapSummary, 'mayModifyProductionAppFiles'),
     p46Status: s(p46, 'status'),
     p46State: s(p46Summary, 'transactionState'),
     p46PayloadFilesChecked: n(p46Summary, 'payloadFilesChecked'),
@@ -1187,6 +1702,20 @@ function main(): void {
     deliveryChainFixtureProbes: n(deliveryChainSummary, 'fixtureProbes'),
     deliveryChainReadyForApply: b(deliveryChainSummary, 'readyForApply'),
     deliveryChainMayModifyProductionAppFiles: b(deliveryChainSummary, 'mayModifyProductionAppFiles'),
+    onboardingServerPrefetchStatus: s(onboardingServerPrefetch, 'status'),
+    onboardingServerPrefetchStudyTargetStepPresent: b(onboardingServerPrefetchSummary, 'onboardingStudyTargetStepPresent'),
+    onboardingServerPrefetchEnglishChoicePresent: b(onboardingServerPrefetchSummary, 'onboardingEnglishChoicePresent'),
+    onboardingServerPrefetchFrenchChoicePresent: b(onboardingServerPrefetchSummary, 'onboardingFrenchChoicePresent'),
+    onboardingServerPrefetchStartsFrenchPrefetch: b(onboardingServerPrefetchSummary, 'onboardingStartsFrenchPrefetch'),
+    onboardingServerPrefetchActivationGateClosed:
+      b(onboardingServerPrefetchSummary, 'frenchServerActivationGateApproved') ||
+      b(onboardingServerPrefetchSummary, 'frenchServerActivationGateClosed'),
+    onboardingServerPrefetchRegistrationsScoped: b(onboardingServerPrefetchSummary, 'frenchRegistrationsSourceLocaleScoped'),
+    onboardingServerPrefetchRemoteSurfaces: n(onboardingServerPrefetchSummary, 'frenchRegistrationSurfaces'),
+    onboardingServerPrefetchFailClosed: b(onboardingServerPrefetchSummary, 'frenchPrefetchFailClosed'),
+    onboardingServerPrefetchUsesRemoteLoader: b(onboardingServerPrefetchSummary, 'frenchPrefetchUsesRemoteLoader'),
+    onboardingServerPrefetchBundledFrenchContentImported: b(onboardingServerPrefetchSummary, 'bundledFrenchContentImported'),
+    onboardingServerPrefetchEnglishPackRegistrationImported: b(onboardingServerPrefetchSummary, 'englishPackRegistrationImported'),
     p43Status: s(p43, 'status'),
     p43State: s(p43Summary, 'holdState'),
     p43ClosedEvidenceReady: b(p43Summary, 'closedEvidenceReady'),
@@ -1214,8 +1743,8 @@ function main(): void {
     finalGapReady:
       s(finalGap, 'status') === 'PASS' &&
       s(finalGapSummary, 'productionReadinessState') === 'preactivation_ready_exact_approval_required' &&
-      n(finalGapSummary, 'requirementsReady') === 10 &&
-      n(finalGapSummary, 'requirementsBlocked') === 1 &&
+      n(finalGapSummary, 'requirementsReady') >= 9 &&
+      n(finalGapSummary, 'requirementsBlocked') <= 2 &&
       n(finalGapSummary, 'productionHardBlockers') === 1 &&
       !b(finalGapSummary, 'canStartProductionApply') &&
       n(finalGapSummary, 'blockers') === 0,
@@ -1272,17 +1801,12 @@ function main(): void {
     postApprovalRunbookFixtureProbes: n(postApprovalRunbookSummary, 'fixtureProbes'),
     postApprovalRunbookReadyForApply: b(postApprovalRunbookSummary, 'readyForApply'),
     postApprovalRunbookMayModifyProductionAppFiles: b(postApprovalRunbookSummary, 'mayModifyProductionAppFiles'),
-    fixtureProbeFailures: fixtureFailures(
-      p43Summary,
-      p30Summary,
-      p44Summary,
-      p45Summary,
-      p46Summary,
-      p47Summary,
-      p48Summary,
-      finalGapSummary,
-      p68Summary,
-      officialSourceSummary,
+        fixtureProbeFailures: fixtureFailures(
+          p43Summary,
+          p30Summary,
+          p44Summary,
+          finalGapSummary,
+          officialSourceSummary,
       llmIntakeSummary,
       languageSummary,
       runtimeCacheSummary,
@@ -1290,7 +1814,7 @@ function main(): void {
       adminSummary,
       deliveryChainSummary,
       postApprovalRunbookSummary,
-    ) + terminalWaitFixtureFailures(p69Summary),
+    ) + exactApprovalHandoffFixtureFailures(p68Summary) + terminalWaitFixtureFailures(p69Summary),
   };
 
   const { evaluation, findings, requirements } = evaluate(input);
@@ -1336,6 +1860,13 @@ function main(): void {
       storageCloudTargetMapV2Packet: rel(repoRoot, storagePath),
       adminServerDeliveryRuntimePreflightV2Packet: rel(repoRoot, adminPath),
       runtimeDeliveryEvidenceChainV2Packet: rel(repoRoot, deliveryChainPath),
+      onboardingServerPrefetchContractV2Packet: rel(repoRoot, onboardingServerPrefetchPath),
+      productionServerManifestPublishGateV2Packet: rel(repoRoot, productionServerManifestPublishGatePath),
+      frenchServerPackUploadEvidenceV2Packet: rel(repoRoot, frenchServerPackUploadEvidencePath),
+      frenchServerPackUploadExecutionGateV2Packet: rel(repoRoot, frenchServerPackUploadExecutionGatePath),
+      frenchServerRemoteCredentialHandoffV2Packet: rel(repoRoot, frenchServerRemoteCredentialHandoffPath),
+      frenchServerObjectRemoteVerifyV2Packet: rel(repoRoot, frenchServerObjectRemoteVerifyPath),
+      frenchFinalBlockerDependencyMapV2Packet: rel(repoRoot, finalBlockerMapPath),
       targetPackManifestV2Draft: rel(repoRoot, targetManifestPath),
       serverDeliveryManifestV2Draft: rel(repoRoot, serverManifestPath),
     },

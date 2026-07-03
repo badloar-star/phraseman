@@ -55,6 +55,7 @@ const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
+const premium_status_1 = require("./premium_status");
 const quiz_explain_cache_1 = require("./explain/quiz_explain_cache");
 const explain_budget_1 = require("./explain/explain_budget");
 const openai_jobs_config_1 = require("./openai_jobs_config");
@@ -67,6 +68,9 @@ const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'quiz_explain_billing';
+// Дневной кап разборов для free — считает И кэш-хиты (гейт по ценности, решение
+// владельца 2026-07-02), проверяется ДО чтения кэша. Premium — без капа.
+const FREE_DAILY_CAP = 3;
 const GEN_MAX_TOKENS = 700; // confirm + up to 6 short option lines as JSON
 const GEN_TEMPERATURE = 0.7;
 function asText(value, max) {
@@ -104,6 +108,20 @@ exports.explainQuiz = (0, https_1.onCall)({
         throw new https_1.HttpsError('invalid-argument', input.reason ?? 'invalid_input');
     }
     const wrongOptions = input.wrongOptions;
+    // Free-гейт ДО кэша: у free — FREE_DAILY_CAP разборов в день, кэш-хиты тоже
+    // считаются (это гейт ценности фичи, а не только защита кошелька OpenAI).
+    const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid);
+    if (!isPremium) {
+        try {
+            await (0, explain_budget_1.enforceFreeJobGenLimit)('quiz', authUid, stableUid, FREE_DAILY_CAP);
+        }
+        catch (err) {
+            if (err instanceof https_1.HttpsError && err.code === 'resource-exhausted') {
+                return emptyBatch('exhausted', false);
+            }
+            throw err;
+        }
+    }
     // Cache key = (correct phrase, sorted FULL option-set, CANONICAL language).
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
     const quizHash = (0, quiz_explain_cache_1.quizHashFor)(correctEn, [correctEn, ...wrongOptions], langKey);
@@ -125,6 +143,7 @@ exports.explainQuiz = (0, https_1.onCall)({
     if (!jobCfg.enabled)
         return emptyBatch('exhausted', false);
     // 4. Cost guards (cache MISS only). Shares the explain budget collections.
+    // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
     let budgetReservation = null;
     try {
         budgetReservation = await (0, explain_budget_1.reserveExplainBudget)(authUid, stableUid, jobCfg.globalDailyCap);

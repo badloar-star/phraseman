@@ -5,6 +5,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AccessibilityInfo,
+  AppState,
   Pressable,
   Platform,
   Text,
@@ -32,6 +33,7 @@ import { monoIcon } from '../../constants/monoIcon';
 import { categoriesForFlashcardsHub } from './constants';
 import { packHubCodeName, packHubLabelForInterface, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
 import { useCardPackShardPaywall } from './useCardPackShardPaywall';
+import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 
 import { oskolokImageForPackShards } from '../oskolok';
 import { actionToastTri, emitAppEvent } from '../events';
@@ -40,6 +42,7 @@ import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/commun
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { packTileImageForPack } from './packMarketplaceIcons';
 import DuoPressable from '../../components/DuoPressable';
+import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import ReportPackModal from '../../components/ReportPackModal';
@@ -69,6 +72,7 @@ type Props = {
   hubAuthorStableId?: string | null;
   onTrainingPress: () => void;
   onAudioPress: () => void;
+  hasFlashcardsPlus?: boolean;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
 };
@@ -125,6 +129,21 @@ function shadowForTile(t: Theme, kind: 'base' | 'owned' | 'shop'): ViewStyle {
     shadowOpacity: 0.4,
     shadowRadius: 8,
   };
+}
+
+function PlusCornerBadge({ themeMode }: { themeMode: ThemeMode }) {
+  return (
+    <View
+      pointerEvents="none"
+      style={{
+        position: 'absolute',
+        right: 7,
+        top: 7,
+      }}
+    >
+      <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
+    </View>
+  );
 }
 
 type HubTileShellProps = {
@@ -196,22 +215,45 @@ function UnownedMarketPackCard({
 }: UnownedCardProps) {
   const pfOs = getEffectivePlatformOS();
   const ctaScale = useSharedValue(1);
+  const isFocused = useIsScreenFocused();
 
+  // Пульс CTA живёт только на видимом экране и активном приложении:
+  // freezeOnBlur:false держит ушедшие экраны живыми, без гарда луп грел бы
+  // телефон в фоне (паттерн components/AvatarAura.tsx).
   useEffect(() => {
-    if (reduceMotion || !FLASHCARD_HUB_REPEATING_MOTION_ENABLED) {
+    if (reduceMotion || !FLASHCARD_HUB_REPEATING_MOTION_ENABLED || !isFocused) {
+      cancelAnimation(ctaScale);
       ctaScale.value = 1;
       return;
     }
-    ctaScale.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
-        withTiming(1.03, { duration: 2000, easing: Easing.inOut(Easing.ease) })
-      ),
-      -1,
-      true
-    );
-    return () => cancelAnimation(ctaScale);
-  }, [reduceMotion, ctaScale]);
+
+    const start = () => {
+      cancelAnimation(ctaScale);
+      ctaScale.value = 1;
+      ctaScale.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
+          withTiming(1.03, { duration: 2000, easing: Easing.inOut(Easing.ease) })
+        ),
+        -1,
+        true
+      );
+    };
+    const stop = () => {
+      cancelAnimation(ctaScale);
+      ctaScale.value = 1;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(ctaScale);
+    };
+  }, [reduceMotion, ctaScale, isFocused]);
 
   const ctaStyle = useAnimatedStyle(() => ({
     transform: [{ scale: ctaScale.value }],
@@ -362,6 +404,7 @@ export default function FlashcardsCategoryHub({
   hubAuthorStableId = null,
   onTrainingPress,
   onAudioPress,
+  hasFlashcardsPlus = false,
   themeMode,
 }: Props) {
   const router = useRouter();
@@ -374,7 +417,15 @@ export default function FlashcardsCategoryHub({
   const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
 
-  const refreshHiddenCommunityPacks = useCallback(async () => {
+  const refreshHiddenCommunityPacks = useCallback(async (optimisticPackId?: string | null) => {
+    if (optimisticPackId) {
+      setHiddenCommunityPackIds(prev => {
+        const next = new Set(prev);
+        next.add(optimisticPackId);
+        return next;
+      });
+      return;
+    }
     const ids = await loadHiddenCommunityPackIds(studyTarget);
     setHiddenCommunityPackIds(new Set(ids));
   }, [studyTarget]);
@@ -870,6 +921,7 @@ export default function FlashcardsCategoryHub({
             ]}
           >
             <Ionicons name="play-circle-outline" size={iconSize} color={t.textPrimary} />
+            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
           </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
@@ -922,6 +974,7 @@ export default function FlashcardsCategoryHub({
             ]}
           >
             <Ionicons name="headset-outline" size={iconSize} color={t.textPrimary} />
+            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
           </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>

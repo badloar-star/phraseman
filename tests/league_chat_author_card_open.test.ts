@@ -28,10 +28,17 @@ describe('league chat — open author card by tapping avatar/name', () => {
     expect(panel()).toContain('!isMine && !localMessage && !!onAuthorPress && !!m.authorUid');
   });
 
-  test('club_screen wires onAuthorPress to open the unified player card', () => {
+  test('club_screen wires onAuthorPress to open the unified player card above the chat modal', () => {
     const source = club();
     expect(source).toContain('onAuthorPress={(author)');
-    // Карточка открывается через тот же стейт профиля, что и тап по строке лиги.
-    expect(source).toContain('setProfile(');
+    // Chat owns a profile modal in the same fullscreen modal stack, so the card is not hidden behind chat.
+    expect(source).toContain('const [chatProfilePlayer, setChatProfile]');
+    expect(source).toContain('setChatProfile({');
+
+    const chatModalStart = source.indexOf('visible={chatModalVisible}');
+    const nextModalStart = source.indexOf('<ThemedConfirmModal', chatModalStart);
+    const chatModalSource = source.slice(chatModalStart, nextModalStart);
+    expect(chatModalSource).toContain('player={chatProfilePlayer}');
+    expect(chatModalSource).toContain('onClose={() => setChatProfile(null)}');
   });
 });

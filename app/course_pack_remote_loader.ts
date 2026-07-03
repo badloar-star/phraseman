@@ -54,6 +54,7 @@ export type CoursePackRemoteLoadResult =
   | { state: 'network_unavailable' };
 
 const inFlightLoads = new Map<string, Promise<CoursePackRemoteLoadResult>>();
+const inFlightRows = new Map<string, Promise<boolean>>();
 
 function cacheRoot(): Directory {
   return new Directory(Paths.cache, CACHE_ROOT_NAME);
@@ -65,9 +66,45 @@ function cacheDirForKey(cacheKey: string): Directory {
   return new Directory(cacheRoot(), safe);
 }
 
-function fileIn(dir: Directory, name: string): File {
-  const safeName = name.replace(/[^a-z0-9._/-]+/gi, '_');
-  return new File(dir, safeName);
+function safeRelativeCachePath(name: string): string | null {
+  const normalized = name.replace(/\\/g, '/');
+  if (
+    !normalized.trim() ||
+    normalized.startsWith('/') ||
+    /^[a-z][a-z0-9+.-]*:\/\//i.test(normalized) ||
+    normalized.includes('?') ||
+    normalized.includes('#')
+  ) {
+    return null;
+  }
+  const segments = normalized.split('/');
+  if (segments.some((segment) => segment === '' || segment === '.' || segment === '..')) {
+    return null;
+  }
+  return segments
+    .map((segment) => segment.replace(/[^a-z0-9._-]+/gi, '_'))
+    .join('/');
+}
+
+function fileIn(dir: Directory, name: string): File | null {
+  const safeName = safeRelativeCachePath(name);
+  return safeName ? new File(dir, safeName) : null;
+}
+
+function ensureParentDirectories(dir: Directory, name: string): boolean {
+  const safeName = safeRelativeCachePath(name);
+  if (!safeName) return false;
+  const parentSegments = safeName.split('/').slice(0, -1);
+  try {
+    let parent = dir;
+    for (const segment of parentSegments) {
+      parent = new Directory(parent, segment);
+      if (!parent.exists) parent.create({ intermediates: true });
+    }
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function withTimeout<T>(p: Promise<T>, ms: number): Promise<T | null> {
@@ -158,6 +195,7 @@ async function loadAndCache(
 
   // Download the entry index.
   const indexFile = fileIn(dir, manifest.entryIndex);
+  if (!indexFile) return { state: 'integrity_failed', detail: 'entry index path is unsafe' };
   const indexOk = await downloadToFile(rowUrl(manifest.entryIndex), indexFile, ROW_TIMEOUT_MS);
   if (!indexOk) return { state: 'network_unavailable' };
 
@@ -189,12 +227,48 @@ export async function readCachedCoursePackRow<T = unknown>(
   if (!remoteLoadingEnabled()) return null;
   try {
     const file = fileIn(cacheDirForKey(cacheKey), rowPath);
+    if (!file) return null;
     if (!file.exists || (file.size ?? 0) < MIN_BYTES) return null;
     const text = await file.text();
     return JSON.parse(text) as T;
   } catch {
     return null;
   }
+}
+
+/**
+ * Lazy-download one in-pack row into the verified pack cache. This keeps screen
+ * loads cheap: the manifest/index establish the cache key, then the first
+ * request for a concrete day downloads only that day row and later reads hit disk.
+ */
+export async function ensureCachedCoursePackRow(
+  cacheKey: string,
+  rowPath: string,
+  rowUrl: RowUrlBuilder,
+): Promise<boolean> {
+  if (!remoteLoadingEnabled()) return false;
+  const rowKey = `${cacheKey}|${rowPath}`;
+  const existing = inFlightRows.get(rowKey);
+  if (existing) return existing;
+
+  const task = (async () => {
+    const dir = cacheDirForKey(cacheKey);
+    try {
+      if (!dir.exists) dir.create({ intermediates: true });
+      const file = fileIn(dir, rowPath);
+      if (!file) return false;
+      if (file.exists && (file.size ?? 0) >= MIN_BYTES) return true;
+      if (!ensureParentDirectories(dir, rowPath)) return false;
+      return downloadToFile(rowUrl(rowPath), file, ROW_TIMEOUT_MS);
+    } catch {
+      return false;
+    }
+  })().finally(() => {
+    inFlightRows.delete(rowKey);
+  });
+
+  inFlightRows.set(rowKey, task);
+  return task;
 }
 
 /** A cached day-row artifact as stored on the server (plan-content-day-v1). */

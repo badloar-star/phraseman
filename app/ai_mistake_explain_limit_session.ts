@@ -4,6 +4,7 @@ import { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT } from './ai_mistake_explain_f
 export { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT };
 
 export const DAILY_AI_MISTAKE_EXPLAIN_KEY = 'ai_mistake_explain_session_v1';
+export const DAILY_AI_MISTAKE_LIMIT_NOTICE_KEY = 'ai_mistake_limit_notice_shown_v1';
 
 interface DailyMistakeExplainState {
   date: string;
@@ -11,6 +12,7 @@ interface DailyMistakeExplainState {
 }
 
 const todayKey = (): string => new Date().toISOString().split('T')[0];
+let limitNoticeShownDayMemory: string | null = null;
 
 function parseState(raw: string | null): DailyMistakeExplainState | null {
   if (!raw) return null;
@@ -41,4 +43,33 @@ export async function markAiMistakeExplainUsed(): Promise<void> {
       JSON.stringify({ date: data.date, count: data.count + 1 }),
     );
   } catch {}
+}
+
+export function peekAiMistakeLimitNoticeShownToday(): boolean {
+  return limitNoticeShownDayMemory === todayKey();
+}
+
+export async function hasShownAiMistakeLimitNoticeToday(): Promise<boolean> {
+  const today = todayKey();
+  if (limitNoticeShownDayMemory === today) return true;
+  try {
+    const storedDay = await AsyncStorage.getItem(DAILY_AI_MISTAKE_LIMIT_NOTICE_KEY);
+    const shown = storedDay === today;
+    if (shown) limitNoticeShownDayMemory = today;
+    return shown;
+  } catch {
+    return false;
+  }
+}
+
+export async function markAiMistakeLimitNoticeShownToday(): Promise<void> {
+  const today = todayKey();
+  limitNoticeShownDayMemory = today;
+  try {
+    await AsyncStorage.setItem(DAILY_AI_MISTAKE_LIMIT_NOTICE_KEY, today);
+  } catch {}
+}
+
+export function __resetAiMistakeLimitNoticeMemoryForTests(): void {
+  limitNoticeShownDayMemory = null;
 }

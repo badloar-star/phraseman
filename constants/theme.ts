@@ -307,56 +307,101 @@ export const AURORA   = buildCinemaTheme(CINEMA.aurora);
 export const VOLT     = buildCinemaTheme(CINEMA.volt);
 
 // ─── «БИЗНЕС» (business) ─────────────────────────────────────────────────────
-// Строгая деловая моно-тема: чистый чёрный фон, только серые и белые оттенки,
-// НИ ОДНОГО цветного акцента. Статусы (верно/ошибка/XP/прогресс) различаются
-// насыщенностью серого и яркостью белого, а не цветом. Кромки/рамки на карточках
-// в покое почти невидимы — «строгий контейнер»; выделение читается контрастом
-// заливки и текстом. (Анимация «обводка по нажатию» — на уровне компонентов
-// TapScale/кнопок, не в палитре.)
+// Инстаграм-язык, тёмный: чистый чёрный фон, БЕЗ карточек-контейнеров с
+// обводками — секции разделяются волосяными линиями (hairline). Никаких
+// градиентов, теней и объёма; тонкие иконки и тонкий текст. Единственный
+// цветной акцент — синий (ссылки/CTA/прогресс), ошибка — инстаграмный красный.
+// Обе business-темы включают ГЛОБАЛЬНЫЙ плоский режим — см. isFlatMode().
 export const BUSINESS = {
-  bgPrimary:   '#0A0A0A',
-  bgCard:      '#141414',
-  bgSurface:   '#1C1C1C',
-  bgSurface2:  '#242424',
-  textPrimary: '#F2F2F2',
-  textOnCard:  '#F2F2F2',
-  // «Вторичный/акцентный» в этой теме — светлый, а не цветной.
-  textSecond:  '#D4D4D4',
-  textMuted:   '#9A9A9A',
-  textGhost:   '#5E5E5E',
-  heroTextPrimary: '#F2F2F2',
-  heroTextMuted:   '#9A9A9A',
-  // Разделители — тонкие, едва заметные (строгий контейнер).
-  border:      'rgba(255,255,255,0.08)',
-  borderLight: '#2A2A2A',
-  // Верно: яркий белый; фон — почти прозрачный серый (без зелёного).
-  correct:     '#FFFFFF',
-  correctBg:   'rgba(255,255,255,0.08)',
-  // Ошибка: приглушённый светло-серый + чуть более заметная подложка (без красного).
-  wrong:       '#BFBFBF',
-  wrongBg:     'rgba(255,255,255,0.05)',
-  // XP / Уровень — белый вместо золота.
-  gold:        '#EDEDED',
+  bgPrimary:   '#000000',
+  bgCard:      '#0A0A0A',
+  bgSurface:   '#121212',
+  bgSurface2:  '#1A1A1A',
+  textPrimary: '#F5F5F5',
+  textOnCard:  '#F5F5F5',
+  textSecond:  '#A8A8A8',
+  textMuted:   '#737373',
+  textGhost:   '#4D4D4D',
+  heroTextPrimary: '#F5F5F5',
+  heroTextMuted:   '#737373',
+  // Волосяные разделители вместо рамок контейнеров.
+  border:      'rgba(255,255,255,0.15)',
+  borderLight: '#262626',
+  // Верно/CTA: инстаграмный синий; кнопки «Продолжить» (через correct) — тоже.
+  correct:     '#0095F6',
+  correctBg:   'rgba(0,149,246,0.12)',
+  // Ошибка: инстаграмный красный.
+  wrong:       '#ED4956',
+  wrongBg:     'rgba(237,73,86,0.12)',
+  // XP / Уровень — нейтральный светлый (в этой теме нет «золота»).
+  gold:        '#E6E6E6',
   goldBg:      'rgba(255,255,255,0.10)',
-  textOnGold:  '#0A0A0A',
-  // Прогресс / активный — белый.
-  accent:      '#FFFFFF',
-  accentBg:    'rgba(255,255,255,0.10)',
-  // Текст на залитых белых CTA — чёрный.
-  correctText: '#0A0A0A',
-  shadowDark:       '#000000',
-  shadowLight:      'rgba(255,255,255,0.06)',
-  borderHighlight:  'rgba(255,255,255,0.10)',
+  textOnGold:  '#000000',
+  // Прогресс / активный — синий.
+  accent:      '#0095F6',
+  accentBg:    'rgba(0,149,246,0.12)',
+  // Текст на залитых синих CTA — белый.
+  correctText: '#FFFFFF',
+  shadowDark:       'rgba(0,0,0,0)',
+  shadowLight:      'rgba(0,0,0,0)',
+  borderHighlight:  'rgba(255,255,255,0.15)',
   isGlowEnabled:    false,
   isGlossEnabled:   false,
-  btnShadow:   '#000000',
-  cardShadow:  'rgba(0,0,0,0.65)',
-  glow:        'rgba(255,255,255,0.05)',
-  cardGradient: ['#1A1A1A', '#0D0D0D'] as [string, string],
-  bgGradient:  ['#0A0A0A', '#000000'] as [string, string],
+  btnShadow:   'rgba(0,0,0,0)',
+  cardShadow:  'rgba(0,0,0,0)',
+  glow:        'rgba(0,0,0,0)',
+  // Плоскость: «градиенты» вырождены в один цвет — карточки и фон без переливов.
+  cardGradient: ['#0A0A0A', '#0A0A0A'] as [string, string],
+  bgGradient:  ['#000000', '#000000'] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business';
+// ─── «БИЗНЕС СВЕТЛЫЙ» (businessLight) ────────────────────────────────────────
+// Инстаграм-язык, светлый: чистый белый фон, волосяные линии #DBDBDB вместо
+// рамок, тонкий тёмный текст #262626, серые подписи #8E8E8E, синий акцент.
+// Никаких теней, градиентов и объёма. Включает глобальный плоский режим.
+export const BUSINESS_LIGHT = {
+  bgPrimary:   '#FFFFFF',
+  bgCard:      '#FFFFFF',
+  bgSurface:   '#FAFAFA',
+  bgSurface2:  '#EFEFEF',
+  textPrimary: '#262626',
+  textOnCard:  '#262626',
+  textSecond:  '#555555',
+  textMuted:   '#8E8E8E',
+  textGhost:   '#C7C7C7',
+  heroTextPrimary: '#262626',
+  heroTextMuted:   '#8E8E8E',
+  // Волосяные разделители.
+  border:      '#DBDBDB',
+  borderLight: '#EFEFEF',
+  // Верно/CTA: инстаграмный синий.
+  correct:     '#0095F6',
+  correctBg:   'rgba(0,149,246,0.10)',
+  // Ошибка: инстаграмный красный.
+  wrong:       '#ED4956',
+  wrongBg:     'rgba(237,73,86,0.10)',
+  // XP / Уровень — нейтральный тёмный (без «золота»).
+  gold:        '#262626',
+  goldBg:      '#EFEFEF',
+  textOnGold:  '#262626',
+  // Прогресс / активный — синий.
+  accent:      '#0095F6',
+  accentBg:    'rgba(0,149,246,0.10)',
+  // Текст на залитых синих CTA — белый.
+  correctText: '#FFFFFF',
+  shadowDark:       'rgba(0,0,0,0)',
+  shadowLight:      'rgba(0,0,0,0)',
+  borderHighlight:  '#DBDBDB',
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   'rgba(0,0,0,0)',
+  cardShadow:  'rgba(0,0,0,0)',
+  glow:        'rgba(0,0,0,0)',
+  cardGradient: ['#FFFFFF', '#FFFFFF'] as [string, string],
+  bgGradient:  ['#FFFFFF', '#FFFFFF'] as [string, string],
+};
+
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -382,6 +427,7 @@ const _checkEMBER:    Theme = EMBER    as any;
 const _checkAURORA:   Theme = AURORA   as any;
 const _checkVOLT:     Theme = VOLT     as any;
 const _checkBUSINESS: Theme = BUSINESS as any;
+const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {

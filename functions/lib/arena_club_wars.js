@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.arenaClubWarContribute = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 function readInt(value, fallback = 0) {
     const n = Math.trunc(Number(value));
@@ -89,7 +90,7 @@ function answerStats(player, session) {
     const totalQuestions = Math.max(sessionQuestions, answers.length);
     return { correctAnswers, totalQuestions };
 }
-exports.arenaClubWarContribute = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaClubWarContribute = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

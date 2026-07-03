@@ -2,15 +2,15 @@
 // PaywallCtaBlock.tsx — CTA + честный сабтекст с ценой прямо под кнопкой
 // (гигиена App Store 3.1.2: цена/период/автопродление — крупно, не в сноске)
 // + футер (Восстановить · Условия · Конфиденциальность — обязательны)
-// + ghost «Продолжить бесплатно». Бегущий блик — существующий ShineOverlay.
+// + ghost «Продолжить бесплатно».
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import ShineOverlay from '../ShineOverlay';
+import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 
@@ -26,6 +26,7 @@ interface Props {
   onRestore: () => void;
   restoring: boolean;
   onContinueFree?: () => void;
+  isOnboarding?: boolean;
   /** Повторный CTA в галерее: без футера и ghost-ссылки. */
   hideFooter?: boolean;
   /**
@@ -70,10 +71,9 @@ function TrustBadge({ lang, chrome, hasTrial }: { lang: Lang; chrome: PaywallChr
 }
 
 export default function PaywallCtaBlock({
-  lang, chrome, label, subLine, disabled, busy, onPress, onRestore, restoring, onContinueFree, hideFooter, trustHasTrial,
+  lang, chrome, label, subLine, disabled, busy, onPress, onRestore, restoring, onContinueFree, hideFooter, trustHasTrial, isOnboarding,
 }: Props) {
   const { tc, textMuted } = chrome;
-  const [ctaSize, setCtaSize] = useState({ w: 0, h: 0 });
 
   return (
     <View>
@@ -81,22 +81,24 @@ export default function PaywallCtaBlock({
         activeOpacity={0.84}
         onPress={onPress}
         disabled={disabled}
-        onLayout={(e) => {
-          const { width, height } = e.nativeEvent.layout;
-          if (width !== ctaSize.w || height !== ctaSize.h) setCtaSize({ w: width, h: height });
-        }}
         style={[S.cta, {
-          backgroundColor: tc.ctaBg,
+          backgroundColor: isOnboarding ? '#8FA0FF' : tc.ctaBg,
           shadowColor: tc.ctaShadow,
           opacity: disabled && !busy ? 0.5 : 1,
         }]}
       >
+        {isOnboarding ? (
+          <LinearGradient
+            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+        ) : null}
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
           : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}
-        {!disabled && !busy && ctaSize.w > 0 && (
-          <ShineOverlay width={ctaSize.w} height={ctaSize.h} borderRadius={30} />
-        )}
       </TouchableOpacity>
 
       <Text style={[S.subLine, { color: textMuted }]} numberOfLines={3}>{subLine}</Text>
@@ -183,21 +185,21 @@ export default function PaywallCtaBlock({
 
 const S = StyleSheet.create({
   cta: {
-    borderRadius: 30, paddingVertical: 16, alignItems: 'center', overflow: 'hidden',
-    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.4, shadowRadius: 14, elevation: 8,
+    borderRadius: 32, paddingVertical: 18, alignItems: 'center', overflow: 'hidden',
+    shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16, elevation: 9,
   },
-  ctaText: { fontSize: 17.5, fontWeight: '900', letterSpacing: -0.2, paddingHorizontal: 12 },
-  subLine: { textAlign: 'center', fontSize: 11.5, lineHeight: 15.5, marginTop: 9, fontVariant: ['tabular-nums'] },
-  footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 11 },
-  footerLink: { fontSize: 11, opacity: 0.7 },
+  ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14 },
+  subLine: { textAlign: 'center', fontSize: 13, lineHeight: 17.5, marginTop: 10, fontVariant: ['tabular-nums'] },
+  footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 9, marginTop: 12 },
+  footerLink: { fontSize: 12.5, opacity: 0.72 },
   footerLinkDisabled: { opacity: 0.35 },
-  footerDot: { fontSize: 11, opacity: 0.4 },
-  ghost: { alignSelf: 'center', marginTop: 9, paddingVertical: 4, paddingHorizontal: 8 },
-  ghostText: { fontSize: 12, textDecorationLine: 'underline', opacity: 0.55 },
+  footerDot: { fontSize: 12.5, opacity: 0.42 },
+  ghost: { alignSelf: 'center', marginTop: 10, paddingVertical: 6, paddingHorizontal: 10 },
+  ghostText: { fontSize: 13.5, textDecorationLine: 'underline', opacity: 0.6 },
   trust: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-    gap: 7, borderRadius: 11, borderWidth: 1, paddingVertical: 8, paddingHorizontal: 12, marginTop: 10,
+    gap: 8, borderRadius: 12, borderWidth: 1, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,
   },
   trustIcon: { flexShrink: 0 },
-  trustText: { flex: 1, fontSize: 11.5, lineHeight: 15.5, fontWeight: '600' },
+  trustText: { flex: 1, fontSize: 13, lineHeight: 17.5, fontWeight: '700' },
 });

@@ -69,7 +69,10 @@ function clampLine(text) {
 }
 /**
  * Parse the model's STRICT-JSON batch reply into { confirm, options }.
- * Tolerates code-fenced JSON. Returns ok=false if JSON is unrecoverable or confirm is empty.
+ * Tolerates code-fenced JSON. Returns ok=false if JSON is unrecoverable, confirm is empty,
+ * or any requested wrong option is missing. We must not publish partial ready caches: the
+ * client maps explanations by selected option text, so a missing option would look like a
+ * disappeared explanation and every retry would keep reading the same broken cache.
  * Keys are matched to the requested wrong options case-insensitively so minor casing drift in
  * the model output still maps back to the canonical option string.
  */
@@ -108,6 +111,9 @@ function parseQuizBatch(raw, requestedWrongOptions) {
     }
     if (!confirm)
         return { ok: false, confirm: '', options };
+    const hasEveryRequestedOption = requestedWrongOptions.every((d) => !!options[d]);
+    if (!hasEveryRequestedOption)
+        return { ok: false, confirm, options };
     return { ok: true, confirm, options };
 }
 //# sourceMappingURL=quiz_explain_gates.js.map

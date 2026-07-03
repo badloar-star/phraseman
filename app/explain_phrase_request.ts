@@ -57,6 +57,41 @@ const INITIAL_STATE: ExplainRequestState = {
   error: false,
 };
 
+const EXPLAIN_RESULT_CACHE_LIMIT = 80;
+const explainResultCache = new Map<string, ExplainRequestState>();
+
+function explainRequestKey(req: ExplainPhraseRequest): string {
+  return JSON.stringify({
+    phraseEn: String(req.phraseEn ?? '').trim(),
+    phraseMeaning: String(req.phraseMeaning ?? '').trim(),
+    lang: String(req.lang ?? '').trim(),
+  });
+}
+
+export function canReuseExplainRequestState(
+  state: ExplainRequestState | undefined,
+): state is ExplainRequestState {
+  return Boolean(
+    state &&
+      !state.loading &&
+      !state.error &&
+      state.status === 'ok' &&
+      typeof state.text === 'string' &&
+      state.text.trim().length > 0,
+  );
+}
+
+function rememberExplainResult(key: string, state: ExplainRequestState): void {
+  if (!canReuseExplainRequestState(state)) return;
+  if (explainResultCache.has(key)) explainResultCache.delete(key);
+  explainResultCache.set(key, state);
+  while (explainResultCache.size > EXPLAIN_RESULT_CACHE_LIMIT) {
+    const oldest = explainResultCache.keys().next().value;
+    if (!oldest) break;
+    explainResultCache.delete(oldest);
+  }
+}
+
 /**
  * Что реально показать в теле шторки.
  * Чистая функция: на ошибке возвращает НЕЙТРАЛЬНЫЙ локализованный fallback, иначе —
@@ -173,9 +208,11 @@ export function useExplainRequest(
   enabled: boolean,
 ): ExplainRequestHandle {
   const [state, setState] = useState<ExplainRequestState>(INITIAL_STATE);
-  const [attempt, setAttempt] = useState(0);
+  const key = explainRequestKey(req);
   // Сторожим против setState после размонтажа (шторку могли закрыть до ответа).
   const mountedRef = useRef(true);
+  const activeRequestKeyRef = useRef<string | null>(null);
+  const runIdRef = useRef(0);
   useEffect(() => {
     mountedRef.current = true;
     return () => {
@@ -183,22 +220,36 @@ export function useExplainRequest(
     };
   }, []);
 
-  const run = useCallback(async () => {
+  const run = useCallback(async (force = false) => {
+    if (!force) {
+      const cached = explainResultCache.get(key);
+      if (canReuseExplainRequestState(cached)) {
+        activeRequestKeyRef.current = key;
+        setState(cached);
+        return;
+      }
+    }
+
+    const runId = runIdRef.current + 1;
+    runIdRef.current = runId;
+    activeRequestKeyRef.current = key;
     setState({ ...INITIAL_STATE, loading: true });
     try {
       const res = await callExplainPhrase(req);
-      if (!mountedRef.current) return;
-      setState({
+      const nextState: ExplainRequestState = {
         loading: false,
         text: res.text,
         status: res.status,
         fromCache: res.fromCache,
         error: false,
-      });
+      };
+      rememberExplainResult(key, nextState);
+      if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
+      setState(nextState);
     } catch {
       // Сетевой/транспортный сбой — сервер ничего не вернул. UI покажет мягкий
       // fallback через resolveExplainDisplay. Никаких сырых стеков пользователю.
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
       setState({
         loading: false,
         text: '',
@@ -210,14 +261,16 @@ export function useExplainRequest(
     // req раскладываем по полям: иначе новый объект-литерал на каждый рендер
     // дёргал бы эффект бесконечно.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [req.phraseEn, req.phraseMeaning, req.lang]);
+  }, [key, req.phraseEn, req.phraseMeaning, req.lang]);
 
   useEffect(() => {
     if (!enabled) return;
     void run();
-  }, [enabled, run, attempt]);
+  }, [enabled, run]);
 
-  const retry = useCallback(() => setAttempt((n) => n + 1), []);
+  const retry = useCallback(() => {
+    void run(true);
+  }, [run]);
 
   return { ...state, retry };
 }

@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 //  LeagueResultModal — итоги недели в лиге
 //  Ультра-красивый дизайн: градиенты, хало, конфетти/искры, подиум, аватары,
@@ -14,7 +15,6 @@ import {
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import {
@@ -30,6 +30,7 @@ import { getLevelFromXP } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 
 const { width: W, height: H } = Dimensions.get('window');
 const CARD_W = Math.min(W - 24, 420);
@@ -185,7 +186,8 @@ interface Props {
 export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isUK = lang === 'uk';
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
@@ -451,7 +453,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
     ? result.totalInGroup - zoneSize + 1
     : result.totalInGroup + 1;
   const modalPadTop = Math.max(12, insets.top + 8);
-  const modalPadBottom = Math.max(12, insets.bottom + 8);
+  const modalPadBottom = Math.max(12, bottomInset + 8);
   const modalMaxHeight = Math.min(H - 24, Math.max(280, H - modalPadTop - modalPadBottom));
 
   const leagueName = (row: (typeof LEAGUES)[number]) =>

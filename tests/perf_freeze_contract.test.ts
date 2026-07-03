@@ -80,12 +80,7 @@ describe('perf freeze contract', () => {
     const legacyAllowlist = new Set([
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
       'components/premium_celebration/AuroraBackground.tsx', // внутри той же модалки
-      'components/ProfileCardMotionFx.tsx', // одиночный SheenBand карточки профиля — TODO гард
-      'components/stats/AiBlockNote.tsx', // TODO гард
-      'components/CollectibleArtFrame.tsx', // сетки коллекции — TODO гард (приоритетный хвост)
-      'app/shards_shop.tsx', // TODO гард
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
-      'app/flashcards/FlashcardsCategoryHub.tsx', // хаб флешкарт — TODO гард
       'app/_anim_demo_lab.tsx', // dev-лаба
       'app/_admin_celebration_lab.tsx', // dev-лаба
     ]);

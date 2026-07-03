@@ -85,27 +85,23 @@ describe('Gustav SRS review target isolation', () => {
     expect(mockStorage[activeRecallItemsKey('fr')]).toBeUndefined();
   });
 
-  it('keeps French SRS UI/session reads behind the source gate while preserving isolated storage', async () => {
+  it('opens French SRS UI/session reads from isolated storage', async () => {
     await recordRecallMistake('Je suis ici', 'Я здесь', 1, 'Я тут', 'lesson', undefined, undefined, 'fr');
 
     expect((await getAllItems('fr')).map((item) => item.phrase)).toEqual(['Je suis ici']);
     await expect(getDueItems(7, { commitSessionOverflow: true }, 'fr')).resolves.toEqual([]);
-    await expect(getTrainerItems('fresh', 7, undefined, undefined, 'fr')).resolves.toEqual([]);
+    await expect(getTrainerItems('fresh', 7, undefined, undefined, 'fr')).resolves.toHaveLength(1);
     await expect(countDueItemsToday('fr')).resolves.toBe(0);
-    await expect(getTrainerModeCounts('fr')).resolves.toEqual({
+    await expect(getTrainerModeCounts('fr')).resolves.toMatchObject({
       due: 0,
-      fresh: 0,
-      weak: 0,
-      hard: 0,
-      smart_mix: 0,
-      by_topic: 0,
-      mistakes: 0,
+      fresh: 1,
+      by_topic: 1,
     });
     await expect(getStats('fr')).resolves.toEqual({
       total: 1,
       dueTodayCount: 0,
       learnedCount: 0,
-      hardestPhrases: [],
+      hardestPhrases: expect.arrayContaining([expect.objectContaining({ phrase: 'Je suis ici' })]),
     });
   });
 });

@@ -4,35 +4,29 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French lesson runtime source gate', () => {
-  it('renders a blocked French lesson state before mounting the lesson runtime when no sourced rows exist', () => {
+  it('loads French lesson rows from the remote server pack before falling back to any empty state', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson1.tsx'), 'utf8');
 
     const lessonDataSlice = source.slice(
       source.indexOf('const LESSON_DATA = useMemo'),
       source.indexOf('const effectiveTotal = Math.min'),
     );
-    expect(lessonDataSlice).toContain('getLessonData(lessonId)');
+    expect(source).toContain("import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime'");
+    expect(source).toContain('const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !isPlanPhraseLessonTask');
+    expect(source).toContain('loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale)');
+    expect(lessonDataSlice).toContain('remoteFrenchLessonRows ?? getLessonData(lessonId)');
     expect(lessonDataSlice).toContain('phraseHasStudyTargetContent(p, studyTarget)');
-    expect(lessonDataSlice).toContain('[planPhraseLesson, lessonId, studyTarget');
+    expect(lessonDataSlice).toContain('[planPhraseLesson, remoteFrenchLessonRows, lessonId, studyTarget');
     expect(source).toContain('const hasPlayableLessonRows = effectiveTotal > 0');
-    expect(source).toContain('const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows');
+    expect(source).toContain("const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading')");
+    expect(source).toContain("const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows");
+    expect(source).toContain('const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed');
+    expect(source).toContain('if (frenchLessonRemotePending)');
+    expect(source).toContain('if (frenchLessonRemoteFailed)');
     expect(source).toContain('if (frenchLessonSourceGateBlocked)');
-
-    const blockedSlice = source.slice(
-      source.indexOf('if (frenchLessonSourceGateBlocked)'),
-      source.indexOf('<LessonContent'),
-    );
-
-    expect(blockedSlice).toContain('Французский материал ещё на проверке');
-    expect(blockedSlice).toContain('French source gate');
-    expect(blockedSlice).toContain("router.replace('/(tabs)/lessons' as any)");
-    expect(blockedSlice).not.toContain('<LessonContent');
-    expect(blockedSlice).not.toContain('phraseAnswerDisplayLine(');
-    expect(blockedSlice).not.toContain('phraseWordRowsForStudyTarget(');
-    expect(blockedSlice).not.toContain('safeGetDistracts(');
   });
 
-  it('clears hydrated lesson state instead of reusing English phrase order for blocked French lessons', () => {
+  it('clears hydrated lesson state instead of reusing English phrase order when no rows are playable', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson1.tsx'), 'utf8');
     const noPlayableRowsSlice = source.slice(
       source.indexOf('if (!hasPlayableLessonRows)'),
@@ -51,7 +45,7 @@ describe('Gustav French lesson runtime source gate', () => {
     expect(noPlayableRowsSlice).toContain('return;');
   });
 
-  it('source-gates in-runtime theory and grammar hints before English support can show as French', () => {
+  it('keeps in-runtime support gates language-aware before English helpers can show as French', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson1.tsx'), 'utf8');
 
     expect(source).toContain("import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate'");
@@ -70,13 +64,5 @@ describe('Gustav French lesson runtime source gate', () => {
     expect(grammarHintSlice.indexOf('if (lessonHintSupportBlocked) return')).toBeLessThan(
       grammarHintSlice.indexOf('for (const hint of GRAMMAR_HINTS)'),
     );
-
-    const theoryButtonSlice = source.slice(
-      source.indexOf('testID="lesson1-theory"'),
-      source.indexOf('{status === \'result\'', source.indexOf('testID="lesson1-theory"')),
-    );
-    expect(theoryButtonSlice).toContain('if (lessonTheorySupportBlocked)');
-    expect(theoryButtonSlice).toContain("name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'}");
-    expect(theoryButtonSlice).toContain("ru: 'На проверке'");
   });
 });

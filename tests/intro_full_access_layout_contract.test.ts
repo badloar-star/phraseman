@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('intro full access layout orchestration', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-  const onboardingSource = fs.readFileSync(path.join(process.cwd(), 'components', 'onboarding.tsx'), 'utf8');
+  const onboardingSource = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 
   it('starts the intro gift from onboarding completion and shows the welcome modal once', () => {
     expect(source).toContain('startIntroFullAccessAfterOnboarding');
@@ -35,13 +35,13 @@ describe('intro full access layout orchestration', () => {
     expect(source).toContain('markIntroFullAccessEndedSeen');
   });
 
-  it('unlocks the personal-plan onboarding branch through the intro gift before falling back to paywall', () => {
+  it('does not use the intro gift to skip the personal-plan onboarding paywall', () => {
     expect(source).toContain('handleOnboardingIntroFullAccessStart');
     expect(source).toContain('onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}');
-    expect(onboardingSource).toContain('onIntroFullAccessStart?: () => Promise<boolean> | boolean');
-    // Пейвол пропускаем ТОЛЬКО при реальном Premium-доступе. Раньше тут был
-    // `hasPremiumAccess || introFullAccessStarted`, но onIntroFullAccessStart()
-    // всегда возвращал true → пейвол не показывался никогда (баг монетизации).
-    expect(onboardingSource).toContain('if (hasPremiumAccess && !FORCE_PREMIUM) {');
+    expect(onboardingSource).toContain('onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void');
+    expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
+    expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
+    expect(onboardingSource).not.toContain('if (hasPremiumAccess || introFullAccessStarted)');
+    expect(onboardingSource).not.toContain('introFullAccessStarted');
   });
 });

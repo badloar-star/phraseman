@@ -12,7 +12,7 @@ export type TrainerSourceGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
   surface: TrainerSourceGatedSurface;
-  reason?: 'french_srs_trainer_source_gate';
+  reason?: 'french_srs_trainer_source_gate' | 'french_trainer_remote_personal_practice_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -51,11 +51,11 @@ export function trainerSourceGateForTarget(
   }
 
   return {
-    enabled: false,
+    enabled: true,
     studyTarget: 'fr',
     surface,
-    reason: 'french_srs_trainer_source_gate',
-    blockedRoutes: TRAINER_BLOCKED_ROUTES,
+    reason: 'french_trainer_remote_personal_practice_available',
+    blockedRoutes: [],
     requiredEvidence: FRENCH_TRAINER_REQUIRED_EVIDENCE,
   };
 }

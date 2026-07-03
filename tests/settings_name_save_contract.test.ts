@@ -17,7 +17,7 @@ describe('settings nickname save contract', () => {
     const takenGate = saveName.indexOf("if (reservation.status === 'taken')");
     const localWrite = saveName.indexOf("AsyncStorage.setItem('user_name', trimmed)");
     const localState = saveName.indexOf('setUserName(trimmed)');
-    const modalClose = saveName.indexOf('closeNameModal()', localState);
+    const modalClose = saveName.indexOf('closeNameModalNow()', localState);
 
     // Correct order: reserve → gate on result → only then apply locally + close.
     expect(reserve).toBeGreaterThanOrEqual(0);
@@ -34,5 +34,23 @@ describe('settings nickname save contract', () => {
     expect(saveName).toContain("if (reservation.status === 'taken')");
     expect(saveName).toContain("if (reservation.status !== 'ok')");
     expect(saveName).not.toContain('isNameAvailable');
+  });
+
+  it('locks the save button while nickname reservation is in flight', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    const saveNameStart = source.indexOf('const saveName = async () => {');
+    const rowStart = source.indexOf('  return (', saveNameStart);
+    const saveName = source.slice(saveNameStart, rowStart);
+
+    expect(source).toContain('const [nameSaving, setNameSaving] = useState(false);');
+    expect(source).toContain('const nameSavingRef = useRef(false);');
+    expect(source).toContain('warmNameAvailabilityAuth();');
+    expect(saveName).toContain('if (nameSavingRef.current) return;');
+    expect(saveName).toContain('nameSavingRef.current = true;');
+    expect(saveName).toContain('setNameSaving(true);');
+    expect(saveName).toContain('nameSavingRef.current = false;');
+    expect(saveName).toContain('setNameSaving(false);');
+    expect(source).toContain('disabled={nameSaving}');
+    expect(source).toContain('ActivityIndicator');
   });
 });

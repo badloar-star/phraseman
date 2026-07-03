@@ -40,7 +40,7 @@ interface Props {
   studyTarget?: RuntimeStudyTarget;
   onClose: () => void;
   /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). */
-  onPackHiddenOnDevice?: () => void;
+  onPackHiddenOnDevice?: (optimisticPackId?: string | null) => void | Promise<void>;
 }
 
 const REASONS_RU: { id: PackReportReason; label: string; sub: string }[] = [
@@ -107,28 +107,31 @@ function ReportPackModal({
 
   const handleSend = async () => {
     if (!selected) return;
+    const payload = {
+      packId,
+      packTitle,
+      authorStableId,
+      studyTarget,
+      reason: selected,
+      comment: comment.trim(),
+    };
     try {
       hapticTap();
-      setLoading(true);
-      const r = await submitPackReport({
-        packId,
-        packTitle,
-        authorStableId,
-        studyTarget,
-        reason: selected,
-        comment: comment.trim(),
-      });
+      setThrottled(false);
       setLoading(false);
+      setDone(true);
+      hapticSuccess();
+      const r = await submitPackReport(payload);
       if (r === 'throttled') {
+        setDone(false);
         setThrottled(true);
         hapticError();
         return;
       }
       if (r === 'failed') throw new Error('pack_report_failed');
-      setDone(true);
-      hapticSuccess();
     } catch {
       setLoading(false);
+      setDone(false);
       hapticError();
     }
   };
@@ -187,13 +190,14 @@ function ReportPackModal({
                     try {
                       hapticTap();
                       setHiding(true);
-                      await hideCommunityPackOnDevice(packId, studyTarget);
-                      onPackHiddenOnDevice?.();
-                      hapticSuccess();
+                      void onPackHiddenOnDevice?.(packId);
                       handleClose();
+                      await hideCommunityPackOnDevice(packId, studyTarget);
+                      await onPackHiddenOnDevice?.(null);
+                      hapticSuccess();
                     } catch {
                       hapticError();
-                      setHiding(false);
+                      await onPackHiddenOnDevice?.(null);
                     }
                   }}
                   style={{

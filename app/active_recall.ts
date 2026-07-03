@@ -344,7 +344,7 @@ export type TrainerMode =
   | 'fresh'      // Свежие: добавлены за последние 7 дней (Free)
   | 'weak'       // Слабые места: easeFactor ≤ 1.7 (Premium)
   | 'hard'       // Сложные: errorCount ≥ 3 (Premium)
-  | 'smart_mix'  // Smart Mix: 40% due + 30% weak + 30% fresh (Premium)
+  | 'smart_mix'  // Auto mix: 40% due + 30% weak + 30% fresh (Premium)
   | 'by_topic'   // По теме: filter by lessonId (Premium)
   | 'mistakes';  // По ошибкам: топ фраз из mistake_log за 30 дней (Premium)
 

@@ -118,24 +118,48 @@ function shellDark(): CardPackPaywallTheme {
 /** BUSINESS: строгая моно-оболочка — только чёрный/серый/белый, без цветных акцентов. */
 function shellBusiness(): CardPackPaywallTheme {
   return {
-    backdropBase: 'rgba(10,10,10,0.92)',
+    backdropBase: 'rgba(0,0,0,0.92)',
     outerGlow: [
-      'rgba(255,255,255,0.12)',
-      'rgba(255,255,255,0.06)',
-      'rgba(10,10,10,0.55)',
+      'rgba(0,149,246,0.14)',
+      'rgba(0,149,246,0.06)',
+      'rgba(0,0,0,0.55)',
     ],
-    borderAccent: 'rgba(255,255,255,0.12)',
+    borderAccent: 'rgba(0,149,246,0.22)',
     handleColorLight: 'rgba(255,255,255,0.10)',
-    handleColorDark: 'rgba(255,255,255,0.28)',
-    iconBg: ['#242424', '#1C1C1C'],
-    iconBorder: 'rgba(255,255,255,0.12)',
+    handleColorDark: 'rgba(0,149,246,0.32)',
+    iconBg: ['#1A1A1A', '#121212'],
+    iconBorder: 'rgba(0,149,246,0.20)',
     priceBorder: 'rgba(255,255,255,0.10)',
-    priceGradient: ['rgba(255,255,255,0.08)', 'rgba(0,0,0,0)'],
-    ctaColors: ['#F2F2F2', '#5E5E5E'],
-    ctaForeground: '#0A0A0A',
-    ctaGlowTop: 'rgba(255,255,255,0.12)',
-    goShopCta: ['#D4D4D4', '#2A2A2A'],
-    goShopForeground: '#0A0A0A',
+    priceGradient: ['rgba(0,149,246,0.10)', 'rgba(0,0,0,0)'],
+    ctaColors: ['#E6E6E6', '#0095F6'],
+    ctaForeground: '#FFFFFF',
+    ctaGlowTop: 'rgba(0,149,246,0.20)',
+    goShopCta: ['#0095F6', '#0095F6'],
+    goShopForeground: '#FFFFFF',
+  };
+}
+
+/** «Бизнес светлый»: слоновая кость и бронза. */
+function shellBusinessLight(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(255,255,255,0.94)',
+    outerGlow: [
+      'rgba(0,149,246,0.16)',
+      'rgba(0,149,246,0.07)',
+      'rgba(239,239,239,0.55)',
+    ],
+    borderAccent: 'rgba(0,149,246,0.26)',
+    handleColorLight: 'rgba(0,0,0,0.10)',
+    handleColorDark: 'rgba(0,149,246,0.36)',
+    iconBg: ['#FFFFFF', '#FAFAFA'],
+    iconBorder: 'rgba(0,149,246,0.24)',
+    priceBorder: 'rgba(0,0,0,0.10)',
+    priceGradient: ['rgba(0,149,246,0.10)', 'rgba(255,255,255,0)'],
+    ctaColors: ['#0095F6', '#0095F6'],
+    ctaForeground: '#FFFFFF',
+    ctaGlowTop: 'rgba(0,149,246,0.22)',
+    goShopCta: ['#0095F6', '#0095F6'],
+    goShopForeground: '#FFFFFF',
   };
 }
 
@@ -288,6 +312,7 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   coral: shellCoral(),
   minimalDark: shellDark(),
   business: shellBusiness(),
+  businessLight: shellBusinessLight(),
   // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
   midnight: shellOnboardingGraphite(),
   ember: shellOnboardingGraphite(),

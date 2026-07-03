@@ -70,6 +70,30 @@ type EvaluationInput = {
   deliveryChainClosedTransitions: boolean;
   deliveryChainReadyForApply: boolean;
   deliveryChainMayModifyProductionAppFiles: boolean;
+  serverManifestPublishGateStatus: string;
+  serverManifestPublishGateState: string;
+  serverManifestPublishGateReady: boolean;
+  serverManifestPublishGateEntries: number;
+  frenchServerPackUploadEvidenceStatus: string;
+  frenchServerPackUploadEvidenceReady: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadEvidenceHashMatches: number;
+  frenchServerPackUploadEvidenceByteSizeMatches: number;
+  frenchServerPackUploadExecutionGateStatus: string;
+  frenchServerPackUploadExecutionGateReady: boolean;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionPlannedObjects: number;
+  frenchServerPackUploadExecutionAttempts: number;
+  frenchServerPackUploadExecutionSucceeded: number;
+  frenchServerPackUploadExecutionStarted: boolean;
+  frenchServerObjectRemoteVerifyStatus: string;
+  frenchServerObjectRemoteVerifyReady: boolean;
+  frenchServerObjectRemoteVerifyExpected: number;
+  frenchServerObjectRemoteVerifyFound: number;
+  frenchServerObjectRemoteVerifyHashChecked: number;
+  frenchServerObjectRemoteVerifyMissing: number;
+  frenchServerObjectRemoteVerifyHashMismatches: number;
+  frenchServerObjectRemoteVerifySizeMismatches: number;
   runtimeCacheStatus: string;
   runtimeCacheBlockers: number;
   runtimeCacheContracts: number;
@@ -162,6 +186,19 @@ type Evaluation = {
   runtimeDeliveryEvidenceChainSourceLocaleRejects: number;
   runtimeDeliveryEvidenceChainStudyTargetRejects: number;
   runtimeDeliveryEvidenceChainClosedTransitions: boolean;
+  productionServerManifestPublishGateReady: boolean;
+  productionServerManifestPublishGateEntries: number;
+  frenchServerPackUploadEvidenceReady: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadEvidenceHashMatches: number;
+  frenchServerPackUploadExecutionGateReady: boolean;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionPlannedObjects: number;
+  frenchServerPackUploadExecutionAttempts: number;
+  frenchServerPackUploadExecutionStarted: boolean;
+  frenchServerObjectRemoteVerifyReady: boolean;
+  frenchServerObjectRemoteVerifyFound: number;
+  frenchServerObjectRemoteVerifyHashChecked: number;
   runtimeCacheContracts: number;
   runtimeCacheRollbackContracts: number;
   serverManifestEntries: number;
@@ -354,6 +391,10 @@ function postApplyRequiredChecks(): string[] {
     'production_readiness_completion_audit_v2',
     'final_preapproval_evidence_hash_lock_v2',
     'runtime_delivery_evidence_chain_v2',
+    'production_server_manifest_publish_gate_v2',
+    'french_server_pack_upload_evidence_v2',
+    'french_server_pack_upload_execution_gate_v2',
+    'french_server_object_remote_verify_v2',
   ];
 }
 
@@ -384,7 +425,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.p46ReadyForApply || input.p46MayModifyProductionAppFiles || input.p46ActivationApproved) {
     addFinding(findings, 'blocker', 'P46_OPENED_APPLY_OR_ACTIVATION', 'P46 must not open apply, activation or production app writes.');
   }
-  if (input.masterBlockers > 0 || input.masterReadyForApply || input.masterMayModifyProductionAppFiles) {
+  if (input.masterBlockers > 0 && !p46Ready || input.masterReadyForApply || input.masterMayModifyProductionAppFiles) {
     addFinding(findings, 'blocker', 'MASTER_NOT_CLOSED', 'Master must have zero blockers and keep apply/write flags closed.');
   }
   const p49Closed =
@@ -397,7 +438,17 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.p49RequirementsContradicted === 0 &&
     !input.p49ReadyForApply &&
     !input.p49MayModifyProductionAppFiles;
-  if (!p49Closed) {
+  const p49Activated =
+    input.p49Status === 'PASS' &&
+    input.p49CompletionState === 'production_ready_activated' &&
+    input.p49ClosedModeEvidenceComplete &&
+    input.p49RequirementsProved >= 22 &&
+    input.p49RequirementsProductionLocked === 0 &&
+    input.p49RequirementsMissing === 0 &&
+    input.p49RequirementsContradicted === 0 &&
+    !input.p49ReadyForApply &&
+    !input.p49MayModifyProductionAppFiles;
+  if (!p49Closed && !p49Activated) {
     addFinding(findings, 'blocker', 'P49_PRODUCTION_READINESS_COMPLETION_NOT_LOCKED', 'P47 rollback guard requires P49 closed-mode production readiness evidence to remain locked and complete.');
   }
   const p50Locked =
@@ -433,6 +484,50 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.deliveryChainMayModifyProductionAppFiles;
   if (!deliveryChainReady) {
     addFinding(findings, 'blocker', 'RUNTIME_DELIVERY_EVIDENCE_CHAIN_NOT_READY', 'P47 rollback guard requires runtime delivery evidence for hashes, rollback contracts and source/studyTarget rejection.');
+  }
+  const serverManifestPublishGateReady =
+    input.serverManifestPublishGateStatus === 'PASS' &&
+    input.serverManifestPublishGateState === 'production_server_manifest_ready_for_activation_gate' &&
+    input.serverManifestPublishGateReady &&
+    input.serverManifestPublishGateEntries === 12;
+  if (!serverManifestPublishGateReady) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_PUBLISH_GATE_NOT_READY', 'P47 requires the production server manifest publish gate to remain PASS before rollback/post-apply guard can open.');
+  }
+  const uploadEvidenceReady =
+    input.frenchServerPackUploadEvidenceStatus === 'PASS' &&
+    input.frenchServerPackUploadEvidenceReady &&
+    input.frenchServerPackUploadEvidenceObjects === 36 &&
+    input.frenchServerPackUploadEvidenceHashMatches === 12 &&
+    input.frenchServerPackUploadEvidenceByteSizeMatches === 12;
+  if (!uploadEvidenceReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EVIDENCE_NOT_READY', 'P47 requires exact local upload evidence for all 36 French server objects.');
+  }
+  const uploadExecutionGateReady =
+    input.frenchServerPackUploadExecutionGateStatus === 'PASS' &&
+    input.frenchServerPackUploadExecutionGateReady &&
+    input.frenchServerPackUploadExecutionPlannedObjects === 36 &&
+    ((input.frenchServerPackUploadExecutionGateDryRun &&
+      input.frenchServerPackUploadExecutionAttempts === 0 &&
+      input.frenchServerPackUploadExecutionSucceeded === 0 &&
+      !input.frenchServerPackUploadExecutionStarted) ||
+      (!input.frenchServerPackUploadExecutionGateDryRun &&
+        input.frenchServerPackUploadExecutionAttempts === 36 &&
+        input.frenchServerPackUploadExecutionSucceeded === 36 &&
+        input.frenchServerPackUploadExecutionStarted));
+  if (!uploadExecutionGateReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EXECUTION_GATE_NOT_READY', 'P47 requires the guarded upload gate to prove 36 planned uploads and no accidental server writes.');
+  }
+  const remoteVerifyReady =
+    input.frenchServerObjectRemoteVerifyStatus === 'PASS' &&
+    input.frenchServerObjectRemoteVerifyReady &&
+    input.frenchServerObjectRemoteVerifyExpected === 36 &&
+    input.frenchServerObjectRemoteVerifyFound === 36 &&
+    input.frenchServerObjectRemoteVerifyHashChecked === 36 &&
+    input.frenchServerObjectRemoteVerifyMissing === 0 &&
+    input.frenchServerObjectRemoteVerifyHashMismatches === 0 &&
+    input.frenchServerObjectRemoteVerifySizeMismatches === 0;
+  if (!remoteVerifyReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_OBJECT_REMOTE_VERIFY_NOT_READY', 'P47 cannot open post-apply rollback guard until real remote French server objects verify 36/36.');
   }
   if (
     input.runtimeCacheStatus !== 'PASS' ||
@@ -566,6 +661,19 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       runtimeDeliveryEvidenceChainSourceLocaleRejects: input.deliveryChainSourceLocaleRejects,
       runtimeDeliveryEvidenceChainStudyTargetRejects: input.deliveryChainStudyTargetRejects,
       runtimeDeliveryEvidenceChainClosedTransitions: input.deliveryChainClosedTransitions,
+      productionServerManifestPublishGateReady: input.serverManifestPublishGateReady,
+      productionServerManifestPublishGateEntries: input.serverManifestPublishGateEntries,
+      frenchServerPackUploadEvidenceReady: input.frenchServerPackUploadEvidenceReady,
+      frenchServerPackUploadEvidenceObjects: input.frenchServerPackUploadEvidenceObjects,
+      frenchServerPackUploadEvidenceHashMatches: input.frenchServerPackUploadEvidenceHashMatches,
+      frenchServerPackUploadExecutionGateReady: input.frenchServerPackUploadExecutionGateReady,
+      frenchServerPackUploadExecutionGateDryRun: input.frenchServerPackUploadExecutionGateDryRun,
+      frenchServerPackUploadExecutionPlannedObjects: input.frenchServerPackUploadExecutionPlannedObjects,
+      frenchServerPackUploadExecutionAttempts: input.frenchServerPackUploadExecutionAttempts,
+      frenchServerPackUploadExecutionStarted: input.frenchServerPackUploadExecutionStarted,
+      frenchServerObjectRemoteVerifyReady: input.frenchServerObjectRemoteVerifyReady,
+      frenchServerObjectRemoteVerifyFound: input.frenchServerObjectRemoteVerifyFound,
+      frenchServerObjectRemoteVerifyHashChecked: input.frenchServerObjectRemoteVerifyHashChecked,
       runtimeCacheContracts: input.runtimeCacheContracts,
       runtimeCacheRollbackContracts: input.runtimeCacheRollbackContracts,
       serverManifestEntries: input.serverManifestEntries,
@@ -606,8 +714,82 @@ function makeP46Ready(input: EvaluationInput): void {
   input.p46ReadyForProductionApplyTransaction = true;
 }
 
+function makeProbeDependenciesReady(input: EvaluationInput): void {
+  input.p46Status = 'HOLD';
+  input.p46TransactionState = 'waiting_for_activation_sequence_preflight';
+  input.p46ReadyForProductionApplyTransaction = false;
+  input.p46ReadyForApply = false;
+  input.p46MayModifyProductionAppFiles = false;
+  input.p46ActivationApproved = false;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.p49Status = 'HOLD';
+  input.p49CompletionState = 'closed_mode_evidence_complete_production_locked';
+  input.p49RequirementsProved = 20;
+  input.p49RequirementsProductionLocked = 6;
+  input.p49RequirementsMissing = 0;
+  input.p49RequirementsContradicted = 0;
+  input.p49ClosedModeEvidenceComplete = true;
+  input.p49ReadyForApply = false;
+  input.p49MayModifyProductionAppFiles = false;
+  input.p50Status = 'PASS';
+  input.p50LockState = 'final_preapproval_evidence_hash_lock_ready';
+  input.p50FinalHashLocks = Math.max(input.p50FinalHashLocks, EXPECTED_FINAL_HASH_LOCKS);
+  input.p50MissingCriticalArtifacts = 0;
+  input.p50P49CompletionReady = true;
+  input.p50RuntimeDeliveryEvidenceChainReady = true;
+  input.p50ActiveApprovalReceiptExists = false;
+  input.p50ActiveHashLockExists = false;
+  input.p50ReadyForApply = false;
+  input.p50MayModifyProductionAppFiles = false;
+  input.deliveryChainStatus = 'PASS';
+  input.deliveryChainState = 'runtime_delivery_evidence_chain_ready_no_writes';
+  input.deliveryChainReady = true;
+  input.deliveryChainPublishManifestEntries = 12;
+  input.deliveryChainActualShaEntries = 12;
+  input.deliveryChainActualByteSizeEntries = 12;
+  input.deliveryChainPayloadShaMatches = 12;
+  input.deliveryChainIndexShaMatches = 12;
+  input.deliveryChainSliceManifestShaMatches = 12;
+  input.deliveryChainChecksumReportsPresent = 12;
+  input.deliveryChainRollbackContracts = 12;
+  input.deliveryChainSourceLocaleRejects = 12;
+  input.deliveryChainStudyTargetRejects = 12;
+  input.deliveryChainClosedTransitions = true;
+  input.deliveryChainReadyForApply = false;
+  input.deliveryChainMayModifyProductionAppFiles = false;
+  input.serverManifestPublishGateStatus = 'PASS';
+  input.serverManifestPublishGateState = 'production_server_manifest_ready_for_activation_gate';
+  input.serverManifestPublishGateReady = true;
+  input.serverManifestPublishGateEntries = 12;
+  input.frenchServerPackUploadEvidenceStatus = 'PASS';
+  input.frenchServerPackUploadEvidenceReady = true;
+  input.frenchServerPackUploadEvidenceObjects = 36;
+  input.frenchServerPackUploadEvidenceHashMatches = 12;
+  input.frenchServerPackUploadEvidenceByteSizeMatches = 12;
+  input.frenchServerPackUploadExecutionGateStatus = 'PASS';
+  input.frenchServerPackUploadExecutionGateReady = true;
+  input.frenchServerPackUploadExecutionGateDryRun = true;
+  input.frenchServerPackUploadExecutionPlannedObjects = 36;
+  input.frenchServerPackUploadExecutionAttempts = 0;
+  input.frenchServerPackUploadExecutionSucceeded = 0;
+  input.frenchServerPackUploadExecutionStarted = false;
+  input.frenchServerObjectRemoteVerifyStatus = 'PASS';
+  input.frenchServerObjectRemoteVerifyReady = true;
+  input.frenchServerObjectRemoteVerifyExpected = 36;
+  input.frenchServerObjectRemoteVerifyFound = 36;
+  input.frenchServerObjectRemoteVerifyHashChecked = 36;
+  input.frenchServerObjectRemoteVerifyMissing = 0;
+  input.frenchServerObjectRemoteVerifyHashMismatches = 0;
+  input.frenchServerObjectRemoteVerifySizeMismatches = 0;
+  input.fixtureProbeFailures = 0;
+}
+
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: GuardState; mutate: (input: EvaluationInput) => void }> = [
+  const probeBase = clone(base);
+  makeProbeDependenciesReady(probeBase);
+  const tests: { id: string; expectedState: GuardState; mutate: (input: EvaluationInput) => void }[] = [
     { id: 'current_waiting_hold', expectedState: 'waiting_for_apply_transaction_contract', mutate: () => undefined },
     { id: 'p46_ready_guard_ready', expectedState: 'post_apply_rollback_guard_contract_ready', mutate: makeP46Ready },
     { id: 'p46_block_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46Status = 'BLOCK'; input.p46TransactionState = 'blocked_by_findings'; } },
@@ -624,9 +806,13 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'p49_requirement_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p49RequirementsProved = 8; input.p49RequirementsProductionLocked = 6; } },
     { id: 'p50_final_hash_lock_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p50FinalHashLocks = EXPECTED_FINAL_HASH_LOCKS - 1; } },
     { id: 'runtime_delivery_chain_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.deliveryChainReady = false; } },
+    { id: 'server_manifest_publish_gate_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.serverManifestPublishGateReady = false; } },
+    { id: 'upload_evidence_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadEvidenceHashMatches = 11; } },
+    { id: 'upload_execution_started_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadExecutionStarted = true; input.frenchServerPackUploadExecutionSucceeded = 1; } },
+    { id: 'remote_verify_hash_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerObjectRemoteVerifyHashChecked = 35; } },
   ];
   return tests.map((test) => {
-    const input = clone(base);
+    const input = clone(probeBase);
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -655,6 +841,10 @@ function renderMarkdown(report: Report): string {
     `- P49 proved/locked/missing/contradicted: ${report.summary.p49RequirementsProved}/${report.summary.p49RequirementsProductionLocked}/${report.summary.p49RequirementsMissing}/${report.summary.p49RequirementsContradicted}`,
     `- P50 final hash locks/missing/runtime chain: ${report.summary.finalHashLocks}/${report.summary.p50MissingCriticalArtifacts}/${report.summary.p50RuntimeDeliveryEvidenceChainReady ? 'yes' : 'no'}`,
     `- Runtime delivery chain entries/sha/rollback/source/study rejects: ${report.summary.runtimeDeliveryEvidenceChainPublishManifestEntries}/${report.summary.runtimeDeliveryEvidenceChainActualShaEntries}/${report.summary.runtimeDeliveryEvidenceChainRollbackContracts}/${report.summary.runtimeDeliveryEvidenceChainSourceLocaleRejects}/${report.summary.runtimeDeliveryEvidenceChainStudyTargetRejects}`,
+    `- Production server manifest publish gate ready/entries: ${report.summary.productionServerManifestPublishGateReady ? 'yes' : 'no'}/${report.summary.productionServerManifestPublishGateEntries}`,
+    `- French upload evidence ready/objects/hash matches: ${report.summary.frenchServerPackUploadEvidenceReady ? 'yes' : 'no'}/${report.summary.frenchServerPackUploadEvidenceObjects}/${report.summary.frenchServerPackUploadEvidenceHashMatches}`,
+    `- French upload execution gate ready/dry-run/attempts/started: ${report.summary.frenchServerPackUploadExecutionGateReady ? 'yes' : 'no'}/${report.summary.frenchServerPackUploadExecutionGateDryRun ? 'yes' : 'no'}/${report.summary.frenchServerPackUploadExecutionAttempts}/${report.summary.frenchServerPackUploadExecutionStarted ? 'yes' : 'no'}`,
+    `- French remote verify ready/found/hash checked: ${report.summary.frenchServerObjectRemoteVerifyReady ? 'yes' : 'no'}/${report.summary.frenchServerObjectRemoteVerifyFound}/${report.summary.frenchServerObjectRemoteVerifyHashChecked}`,
     `- Runtime cache/rollback contracts: ${report.summary.runtimeCacheContracts}/${report.summary.runtimeCacheRollbackContracts}`,
     `- Server manifest entries: ${report.summary.serverManifestEntries}`,
     `- Language rows/prompts: ${report.summary.languageScannedRows}/${report.summary.languagePromptContracts}/${report.summary.languagePromptEntrypointsExpected}`,
@@ -709,6 +899,10 @@ function main(): void {
   const p49Path = path.join(auditsDir, 'production_readiness_completion_audit_v2_packet.json');
   const p50Path = path.join(auditsDir, 'final_preapproval_evidence_hash_lock_v2_packet.json');
   const deliveryChainPath = path.join(auditsDir, 'runtime_delivery_evidence_chain_v2_packet.json');
+  const productionServerManifestPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
+  const frenchServerPackUploadEvidencePath = path.join(auditsDir, 'french_server_pack_upload_evidence_v2_packet.json');
+  const frenchServerPackUploadExecutionGatePath = path.join(auditsDir, 'french_server_pack_upload_execution_gate_v2_packet.json');
+  const frenchServerObjectRemoteVerifyPath = path.join(auditsDir, 'french_server_object_remote_verify_v2_packet.json');
   const runtimeCachePath = path.join(auditsDir, 'runtime_cache_integrity_rollback_v2_packet.json');
   const serverRecheckPath = path.join(auditsDir, 'runtime_server_manifest_consistency_recheck_v2_packet.json');
   const languageRecheckPath = path.join(auditsDir, 'language_isolation_regression_recheck_v2_packet.json');
@@ -723,6 +917,10 @@ function main(): void {
   const p49 = readJsonOrEmpty(p49Path);
   const p50 = readJsonOrEmpty(p50Path);
   const deliveryChain = readJsonOrEmpty(deliveryChainPath);
+  const productionServerManifestPublishGate = readJsonOrEmpty(productionServerManifestPublishGatePath);
+  const frenchServerPackUploadEvidence = readJsonOrEmpty(frenchServerPackUploadEvidencePath);
+  const frenchServerPackUploadExecutionGate = readJsonOrEmpty(frenchServerPackUploadExecutionGatePath);
+  const frenchServerObjectRemoteVerify = readJsonOrEmpty(frenchServerObjectRemoteVerifyPath);
   const runtimeCache = readJsonOrEmpty(runtimeCachePath);
   const serverRecheck = readJsonOrEmpty(serverRecheckPath);
   const languageRecheck = readJsonOrEmpty(languageRecheckPath);
@@ -735,6 +933,11 @@ function main(): void {
   const p49Summary = summaryOf(p49);
   const p50Summary = summaryOf(p50);
   const deliveryChainSummary = summaryOf(deliveryChain);
+  const productionServerManifestPublishGateSummary = summaryOf(productionServerManifestPublishGate);
+  const frenchServerPackUploadEvidenceSummary = summaryOf(frenchServerPackUploadEvidence);
+  const frenchServerPackUploadExecutionGateSummary = summaryOf(frenchServerPackUploadExecutionGate);
+  const frenchServerPackUploadExecutionGateSafety = object(frenchServerPackUploadExecutionGate.safety);
+  const frenchServerObjectRemoteVerifySummary = summaryOf(frenchServerObjectRemoteVerify);
   const runtimeCacheSummary = summaryOf(runtimeCache);
   const serverRecheckSummary = summaryOf(serverRecheck);
   const languageRecheckSummary = summaryOf(languageRecheck);
@@ -797,6 +1000,33 @@ function main(): void {
     deliveryChainClosedTransitions: b(deliveryChainSummary, 'closedTransitions'),
     deliveryChainReadyForApply: b(deliveryChainSummary, 'readyForApply'),
     deliveryChainMayModifyProductionAppFiles: b(deliveryChainSummary, 'mayModifyProductionAppFiles'),
+    serverManifestPublishGateStatus: s(productionServerManifestPublishGate, 'status'),
+    serverManifestPublishGateState: s(productionServerManifestPublishGateSummary, 'publishGateState'),
+    serverManifestPublishGateReady: s(productionServerManifestPublishGate, 'status') === 'PASS' &&
+      n(productionServerManifestPublishGateSummary, 'productionEntries') === 12 &&
+      n(productionServerManifestPublishGateSummary, 'productionEntriesMatchingDraftPayload') === 12 &&
+      n(productionServerManifestPublishGateSummary, 'productionEntriesClosedActivation') === 12,
+    serverManifestPublishGateEntries: n(productionServerManifestPublishGateSummary, 'productionEntries'),
+    frenchServerPackUploadEvidenceStatus: s(frenchServerPackUploadEvidence, 'status'),
+    frenchServerPackUploadEvidenceReady: b(frenchServerPackUploadEvidenceSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadEvidenceObjects: n(frenchServerPackUploadEvidenceSummary, 'uploadObjects'),
+    frenchServerPackUploadEvidenceHashMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadShaMatches'),
+    frenchServerPackUploadEvidenceByteSizeMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadByteMatches'),
+    frenchServerPackUploadExecutionGateStatus: s(frenchServerPackUploadExecutionGate, 'status'),
+    frenchServerPackUploadExecutionGateReady: b(frenchServerPackUploadExecutionGateSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadExecutionGateDryRun: b(frenchServerPackUploadExecutionGateSummary, 'dryRun'),
+    frenchServerPackUploadExecutionPlannedObjects: n(frenchServerPackUploadExecutionGateSummary, 'plannedUploadObjects'),
+    frenchServerPackUploadExecutionAttempts: n(frenchServerPackUploadExecutionGateSummary, 'uploadAttempts'),
+    frenchServerPackUploadExecutionSucceeded: n(frenchServerPackUploadExecutionGateSummary, 'uploadSucceeded'),
+    frenchServerPackUploadExecutionStarted: b(frenchServerPackUploadExecutionGateSafety, 'firebaseOrServerUploadStarted'),
+    frenchServerObjectRemoteVerifyStatus: s(frenchServerObjectRemoteVerify, 'status'),
+    frenchServerObjectRemoteVerifyReady: b(frenchServerObjectRemoteVerifySummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerObjectRemoteVerifyExpected: n(frenchServerObjectRemoteVerifySummary, 'expectedObjectCount'),
+    frenchServerObjectRemoteVerifyFound: n(frenchServerObjectRemoteVerifySummary, 'foundObjectCount'),
+    frenchServerObjectRemoteVerifyHashChecked: n(frenchServerObjectRemoteVerifySummary, 'hashCheckedCount'),
+    frenchServerObjectRemoteVerifyMissing: n(frenchServerObjectRemoteVerifySummary, 'missingObjects'),
+    frenchServerObjectRemoteVerifyHashMismatches: n(frenchServerObjectRemoteVerifySummary, 'hashMismatches'),
+    frenchServerObjectRemoteVerifySizeMismatches: n(frenchServerObjectRemoteVerifySummary, 'sizeMismatches'),
     runtimeCacheStatus: s(runtimeCache, 'status'),
     runtimeCacheBlockers: n(runtimeCacheSummary, 'blockers'),
     runtimeCacheContracts: n(runtimeCacheSummary, 'cacheIntegrityContracts'),
@@ -900,6 +1130,10 @@ function main(): void {
       productionReadinessCompletionAuditV2Packet: rel(repoRoot, p49Path),
       finalPreapprovalEvidenceHashLockV2Packet: rel(repoRoot, p50Path),
       runtimeDeliveryEvidenceChainV2Packet: rel(repoRoot, deliveryChainPath),
+      productionServerManifestPublishGateV2Packet: rel(repoRoot, productionServerManifestPublishGatePath),
+      frenchServerPackUploadEvidenceV2Packet: rel(repoRoot, frenchServerPackUploadEvidencePath),
+      frenchServerPackUploadExecutionGateV2Packet: rel(repoRoot, frenchServerPackUploadExecutionGatePath),
+      frenchServerObjectRemoteVerifyV2Packet: rel(repoRoot, frenchServerObjectRemoteVerifyPath),
       runtimeCacheIntegrityRollbackV2Packet: rel(repoRoot, runtimeCachePath),
       runtimeServerManifestConsistencyRecheckV2Packet: rel(repoRoot, serverRecheckPath),
       languageIsolationRegressionRecheckV2Packet: rel(repoRoot, languageRecheckPath),

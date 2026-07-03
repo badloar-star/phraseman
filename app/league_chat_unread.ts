@@ -21,6 +21,14 @@ export function getLeagueChatLatestMessageAt(messages: Pick<LeagueChatMessage, '
   return messages.reduce((latest, message) => Math.max(latest, getLeagueChatMessageCreatedAt(message)), 0);
 }
 
+function isRetiredCompassUnreadMessage(message: LeagueChatMessage): boolean {
+  return Boolean(
+    message.pinned ||
+    message.compassKind === 'icebreaker' ||
+    message.compassKind === 'daily_summary'
+  );
+}
+
 export function computeLeagueChatUnreadCount(
   messages: LeagueChatMessage[],
   myUid: string | null | undefined,
@@ -31,9 +39,7 @@ export function computeLeagueChatUnreadCount(
   return messages.reduce((count, message) => {
     if (message.status && message.status !== 'visible') return count;
     if (uid && message.authorUid === uid) return count;
-    // Закреплённое приветствие живёт в шапке (а не в ленте) и переписывается
-    // каждый день — не должно надувать счётчик непрочитанного.
-    if ((message as { pinned?: boolean }).pinned) return count;
+    if (isRetiredCompassUnreadMessage(message)) return count;
     return getLeagueChatMessageCreatedAt(message) > lastSeenAt ? count + 1 : count;
   }, 0);
 }

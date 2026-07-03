@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GLOBAL_DAILY_CAP = exports.USER_DAILY_GEN_CAP = exports.GLOBAL_BUDGET_COLLECTION = exports.USER_LIMIT_COLLECTION = void 0;
 exports.enforceUserGenLimit = enforceUserGenLimit;
 exports.enforceGlobalBudget = enforceGlobalBudget;
+exports.enforceFreeJobGenLimit = enforceFreeJobGenLimit;
 exports.reserveExplainBudget = reserveExplainBudget;
 exports.refundExplainBudgetReservation = refundExplainBudgetReservation;
 /**
@@ -126,6 +127,47 @@ async function enforceGlobalBudget(cap = exports.GLOBAL_DAILY_CAP, nowMs = Date.
         }, { merge: true });
     });
 }
+/**
+ * Дневной кап платных генераций для FREE-юзера по конкретному джобу
+ * ('choice' | 'quiz' | 'phrase' | 'mistake' | …). Считает ТОЛЬКО cache-miss
+ * (платный путь) — чтение кэша остаётся бесплатным и безлимитным для всех.
+ * Premium этот кап не проходит вовсе (вызывающий передаёт freeCap=null).
+ */
+async function enforceFreeJobGenLimit(job, authUid, stableUid, cap, nowMs = Date.now()) {
+    if (cap <= 0)
+        return;
+    const ref = admin.firestore().collection(exports.USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+    await admin.firestore().runTransaction(async (tx) => {
+        const data = (await tx.get(ref)).data() ?? {};
+        const resetAtMs = Number(data.resetAtMs ?? 0);
+        const fresh = nowMs >= resetAtMs;
+        const used = fresh ? 0 : Number(data.dailyCount ?? 0);
+        if (used >= cap) {
+            throw new https_1.HttpsError('resource-exhausted', 'explain_free_daily_limit');
+        }
+        tx.set(ref, {
+            authUid,
+            stableUid,
+            job,
+            dailyCount: used + 1,
+            resetAtMs: fresh ? startOfNextUtcDay(nowMs) : resetAtMs,
+            updatedAtMs: nowMs,
+        }, { merge: true });
+    });
+}
+async function refundFreeJobGenLimit(job, authUid, stableUid, nowMs) {
+    const ref = admin.firestore().collection(exports.USER_LIMIT_COLLECTION).doc(docId(`free_${job}`, authUid, stableUid));
+    await admin.firestore().runTransaction(async (tx) => {
+        const data = (await tx.get(ref)).data() ?? {};
+        const resetAtMs = Number(data.resetAtMs ?? 0);
+        const fresh = nowMs >= resetAtMs;
+        const current = fresh ? 0 : Number(data.dailyCount ?? 0);
+        tx.set(ref, {
+            dailyCount: Math.max(0, current - 1),
+            updatedAtMs: nowMs,
+        }, { merge: true });
+    });
+}
 async function refundUserGenLimit(authUid, stableUid, nowMs) {
     const ref = admin.firestore().collection(exports.USER_LIMIT_COLLECTION).doc(docId('gen', authUid, stableUid));
     await admin.firestore().runTransaction(async (tx) => {
@@ -157,7 +199,7 @@ async function refundGlobalBudget(cap, nowMs) {
  * global breaker fails after the user counter increments, the user counter is
  * refunded immediately so a wallet-wide cap does not consume personal quota.
  */
-async function reserveExplainBudget(authUid, stableUid, globalCap = exports.GLOBAL_DAILY_CAP, nowMs = Date.now()) {
+async function reserveExplainBudget(authUid, stableUid, globalCap = exports.GLOBAL_DAILY_CAP, nowMs = Date.now(), freeCap = null) {
     const reservation = {
         authUid,
         stableUid,
@@ -165,8 +207,15 @@ async function reserveExplainBudget(authUid, stableUid, globalCap = exports.GLOB
         nowMs,
         userReserved: false,
         globalReserved: false,
+        freeCap,
+        freeReserved: false,
     };
     try {
+        // Free-кап джоба ПЕРВЫМ: он самый узкий, и не должен тратить общие счётчики.
+        if (freeCap) {
+            await enforceFreeJobGenLimit(freeCap.job, authUid, stableUid, freeCap.cap, nowMs);
+            reservation.freeReserved = freeCap.cap > 0;
+        }
         await enforceUserGenLimit(authUid, stableUid, nowMs);
         reservation.userReserved = true;
         await enforceGlobalBudget(globalCap, nowMs);
@@ -178,6 +227,11 @@ async function reserveExplainBudget(authUid, stableUid, globalCap = exports.GLOB
             await refundUserGenLimit(authUid, stableUid, nowMs)
                 .catch((refundErr) => console.error('explain budget user refund failed', refundErr));
             reservation.userReserved = false;
+        }
+        if (reservation.freeReserved && !reservation.userReserved) {
+            await refundFreeJobGenLimit(freeCap.job, authUid, stableUid, nowMs)
+                .catch((refundErr) => console.error('explain budget free refund failed', refundErr));
+            reservation.freeReserved = false;
         }
         throw err;
     }
@@ -196,6 +250,10 @@ async function refundExplainBudgetReservation(reservation, reason) {
     }
     if (reservation.userReserved) {
         await refundUserGenLimit(reservation.authUid, reservation.stableUid, reservation.nowMs)
+            .catch((err) => failures.push(err));
+    }
+    if (reservation.freeReserved && reservation.freeCap) {
+        await refundFreeJobGenLimit(reservation.freeCap.job, reservation.authUid, reservation.stableUid, reservation.nowMs)
             .catch((err) => failures.push(err));
     }
     if (failures.length > 0) {

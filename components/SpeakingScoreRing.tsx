@@ -74,19 +74,24 @@ function SpeakingScoreRing({
     // that re-rendered the rotated-View ring ~60–90 times in 600ms (the lag).
     setShown(0);
     let step = 0;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const delayMs = Math.max(16, Math.round(durationMs / FILL_STEPS));
     const tick = () => {
       step += 1;
       const t = step / FILL_STEPS; // 0..1 progress through the fill
       const eased = Easing.out(Easing.cubic)(t);
       setShown(Math.round(eased * target));
       if (step >= FILL_STEPS) {
-        clearInterval(id);
         // Guarantee we land exactly on the target (rounding can fall 1 short).
         setShown(target);
+        return;
       }
+      timeoutId = setTimeout(tick, delayMs);
     };
-    const id = setInterval(tick, Math.max(16, Math.round(durationMs / FILL_STEPS)));
-    return () => clearInterval(id);
+    timeoutId = setTimeout(tick, delayMs);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [target, animate, durationMs]);
 
   return (

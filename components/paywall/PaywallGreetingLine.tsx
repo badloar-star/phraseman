@@ -25,6 +25,15 @@ interface PaywallGreetingLineProps {
   mirror: ProgressMirror | null;
 }
 
+function compactPaywallNumber(value: number): string {
+  const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
+  if (n < 1000) return String(n);
+  const thousands = n / 1000;
+  const rounded = thousands < 10 ? Math.round(thousands * 10) / 10 : Math.round(thousands);
+  const text = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+  return `${text}K`;
+}
+
 /**
  * Собирает персональную строку из того, что реально известно о пользователе.
  * Деградирует мягко: нет имени → начинаем с прогресса; нет ни имени, ни прогресса,
@@ -32,11 +41,10 @@ interface PaywallGreetingLineProps {
  */
 export default function PaywallGreetingLine({ lang, chrome, profile, mirror }: PaywallGreetingLineProps) {
   const name = profile?.name?.trim() || '';
-  const goalLabel = profile?.goalLabel || '';
   const hasProgress = !!mirror && (mirror.phrases > 0 || mirror.streak > 0);
 
   // Нечего сказать персонального — не показываем строку вовсе.
-  if (!name && !goalLabel && !hasProgress) return null;
+  if (!name && !hasProgress) return null;
 
   const accent = chrome.tc.heroAccent;
 
@@ -46,7 +54,7 @@ export default function PaywallGreetingLine({ lang, chrome, profile, mirror }: P
   if (hasProgress && mirror) {
     const phrasesStr =
       mirror.phrases > 0
-        ? `${mirror.phrases} ${triLang(lang, {
+        ? `${compactPaywallNumber(mirror.phrases)} ${triLang(lang, {
             ru: 'фраз', uk: 'фраз', es: 'frases', 'pt-BR': 'frases',
             vi: 'cụm từ', id: 'frasa', tr: 'ifade', pl: 'fraz',
           })}`
@@ -74,52 +82,24 @@ export default function PaywallGreetingLine({ lang, chrome, profile, mirror }: P
           vi: 'Bạn đã có', id: 'Kamu sudah punya', tr: 'Şimdiden', pl: 'Masz już',
         });
     const tail = triLang(lang, {
-      ru: '— Plus не даст это потерять.',
-      uk: '— Plus не дасть це втратити.',
-      es: '— Plus no te dejará perderlo.',
-      'pt-BR': '— o Plus não deixa você perder isso.',
-      vi: '— Plus sẽ không để bạn mất điều đó.',
-      id: '— Plus tak akan membiarkanmu kehilangan itu.',
-      tr: '— Plus bunu kaybetmene izin vermez.',
-      pl: '— Plus nie pozwoli tego stracić.',
+      ru: '— Plus убирает лимиты, чтобы практиковаться без пауз.',
+      uk: '— Plus прибирає ліміти, щоб практикуватися без пауз.',
+      es: '— Plus quita límites para practicar sin pausas.',
+      'pt-BR': '— o Plus remove limites para praticar sem pausas.',
+      vi: '— Plus gỡ giới hạn để bạn luyện tập không gián đoạn.',
+      id: '— Plus menghapus batas agar kamu bisa berlatih tanpa jeda.',
+      tr: '— Plus sınırları kaldırır, ara vermeden pratik yaptırır.',
+      pl: '— Plus usuwa limity, żeby ćwiczyć bez przerw.',
     });
     progressLine = `${lead} ${earned} ${tail}`;
   }
 
-  // ── Часть 2: цель (если её нет в прогресс-строке выше — отдельной строкой) ────
-  // «Твоя цель — {goalLabel}. Premium ведёт к ней быстрее.»
-  let goalLine: string | null = null;
-  if (goalLabel) {
-    const lead =
-      !progressLine && name
-        ? `${name}, ${triLang(lang, {
-            ru: 'твоя цель —', uk: 'твоя ціль —', es: 'tu meta es', 'pt-BR': 'sua meta é',
-            vi: 'mục tiêu của bạn là', id: 'tujuanmu adalah', tr: 'hedefin', pl: 'twój cel to',
-          })}`
-        : triLang(lang, {
-            ru: 'Твоя цель —', uk: 'Твоя ціль —', es: 'Tu meta es', 'pt-BR': 'Sua meta é',
-            vi: 'Mục tiêu của bạn là', id: 'Tujuanmu adalah', tr: 'Hedefin', pl: 'Twój cel to',
-          });
-    const tail = triLang(lang, {
-      ru: '. Plus ведёт к ней быстрее.',
-      uk: '. Plus веде до неї швидше.',
-      es: '. Plus te lleva más rápido.',
-      'pt-BR': '. O Plus te leva mais rápido.',
-      vi: '. Plus đưa bạn đến đó nhanh hơn.',
-      id: '. Plus membawamu ke sana lebih cepat.',
-      tr: '. Plus oraya daha hızlı götürür.',
-      pl: '. Plus prowadzi do niego szybciej.',
-    });
-    goalLine = `${lead} ${goalLabel}${tail}`;
-  }
-
-  // Если есть и прогресс, и цель — показываем обе строки (прогресс — главная).
-  const lines = [progressLine, goalLine].filter(Boolean) as string[];
+  const lines = [progressLine].filter(Boolean) as string[];
   if (!lines.length) return null;
 
   return (
     <View style={[S.wrap, { backgroundColor: `${accent}12`, borderColor: `${accent}26` }]}>
-      <Ionicons name="sparkles" size={15} color={accent} style={S.icon} />
+      <Ionicons name="sparkles" size={17} color={accent} style={S.icon} />
       <View style={S.textCol}>
         {lines.map((line, i) => (
           <Text
@@ -141,15 +121,15 @@ const S = StyleSheet.create({
   wrap: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 9,
-    borderRadius: 14,
+    gap: 10,
+    borderRadius: 16,
     borderWidth: 1,
-    paddingHorizontal: 13,
-    paddingVertical: 11,
-    marginTop: 12,
+    paddingHorizontal: 15,
+    paddingVertical: 13,
+    marginTop: 14,
   },
   icon: { marginTop: 1, flexShrink: 0 },
-  textCol: { flex: 1, gap: 4 },
-  primary: { fontSize: 13.5, fontWeight: '700', lineHeight: 18.5, letterSpacing: -0.2 },
-  secondary: { fontSize: 12, lineHeight: 16.5 },
+  textCol: { flex: 1, gap: 5 },
+  primary: { fontSize: 15, fontWeight: '800', lineHeight: 20.5, letterSpacing: 0 },
+  secondary: { fontSize: 13.5, lineHeight: 18.5 },
 });

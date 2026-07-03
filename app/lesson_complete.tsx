@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
@@ -6,7 +7,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, BackHandler, Modal, Platform, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
@@ -18,10 +19,12 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { checkAchievements } from './achievements';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
+import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
 import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
@@ -457,7 +460,8 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
 
 export default function LessonComplete() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -1136,6 +1140,8 @@ export default function LessonComplete() {
                 }}
                 onPress={() => {
                   hapticTap();
+                  // replace на пейвол = всегда mark, иначе экран остаётся в стеке «назад» → петля.
+                  markNextNavigationAsReplace();
                   router.replace({
                     pathname: '/premium_modal',
                     params: {
@@ -1260,7 +1266,7 @@ export default function LessonComplete() {
         t={t}
         f={f}
         themeMode={themeMode}
-        bottomInset={insets.bottom}
+        bottomInset={bottomInset}
         lang={lang}
         onClose={() => setShowReview(false)}
       />

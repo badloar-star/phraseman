@@ -30,20 +30,26 @@ import {
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 
 /** Качественные иконки языков (512×512, те же, что в онбординге). */
-const LANGUAGE_FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
-  en: require('../../assets/images/flow_clean_202607/language_en.png'),
-  fr: require('../../assets/images/flow_clean_202607/language_fr.png'),
+const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
+  en: require('../../assets/images/language_flags/language_en.webp'),
 };
 
-/** Эмодзи-фолбэк для языков без отрисованной иконки (dev-испанский). */
-const LANGUAGE_FLAG_EMOJI: Record<StudyTargetLang, string> = {
-  en: '🇬🇧',
-  fr: '🇫🇷',
-  es: '🇪🇸',
+const DEV_LANGUAGE_FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
+  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
+  es: require('../../assets/images/language_flags/language_es_dev.webp'),
 };
 
-const CARD_WIDTH = 92;
+function languageFlagAssetFor(code: StudyTargetLang): ImageSourcePropType | undefined {
+  if (code === 'en') return RELEASE_LANGUAGE_FLAG_ASSETS.en;
+  if (!ENABLE_DEV_STUDY_TARGET_LANG) return undefined;
+  return DEV_LANGUAGE_FLAG_ASSETS[code];
+}
+
+const CARD_WIDTH = 90;
+const CARD_HEIGHT = 82;
 const CARD_GAP = 10;
+const FLAG_WIDTH = 66;
+const FLAG_HEIGHT = 42;
 
 export interface StudyLanguagePickerPalette {
   surfaceOn: string;
@@ -131,7 +137,7 @@ export default function StudyLanguagePicker({
       {options.map((code) => {
         const active = code === activeTarget;
         const learning = startedLanguages.includes(code);
-        const flagAsset = LANGUAGE_FLAG_ASSETS[code];
+        const flagAsset = languageFlagAssetFor(code);
         const locked = !learning && !hasPremiumAccess && startedLanguages.length > 0;
         return (
           <TouchableOpacity
@@ -144,8 +150,10 @@ export default function StudyLanguagePicker({
             accessibilityLabel={studyTargetLabelForSourceUiLang(code, lang)}
             style={{
               width: CARD_WIDTH,
+              height: CARD_HEIGHT,
               alignItems: 'center',
-              paddingVertical: 10,
+              justifyContent: 'center',
+              paddingVertical: 7,
               paddingHorizontal: 6,
               borderRadius: 16,
               borderWidth: active ? 2 : 0.5,
@@ -153,18 +161,29 @@ export default function StudyLanguagePicker({
               backgroundColor: active ? palette.surfaceOn : palette.surfaceOff,
             }}
           >
-            <View style={{ width: 44, height: 44, marginBottom: 6, alignItems: 'center', justifyContent: 'center' }}>
+            <View
+              style={{
+                width: FLAG_WIDTH,
+                height: FLAG_HEIGHT,
+                borderRadius: 9,
+                overflow: 'hidden',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(255,255,255,0.10)',
+                marginBottom: 6,
+              }}
+            >
               {flagAsset ? (
-                <Image source={flagAsset} style={{ width: 44, height: 44 }} resizeMode="contain" />
+                <Image source={flagAsset} style={{ width: FLAG_WIDTH, height: FLAG_HEIGHT }} resizeMode="cover" />
               ) : (
-                <Text style={{ fontSize: 32 }}>{LANGUAGE_FLAG_EMOJI[code]}</Text>
+                <Ionicons name="flag-outline" size={24} color={active ? palette.textOn : palette.textOff} />
               )}
               {learning && !active ? (
                 <View
                   style={{
                     position: 'absolute',
-                    right: -4,
-                    bottom: -2,
+                    right: 3,
+                    bottom: 3,
                     width: 18,
                     height: 18,
                     borderRadius: 9,
@@ -180,8 +199,8 @@ export default function StudyLanguagePicker({
                 <View
                   style={{
                     position: 'absolute',
-                    right: -4,
-                    bottom: -2,
+                    right: 3,
+                    bottom: 3,
                     width: 18,
                     height: 18,
                     borderRadius: 9,
@@ -196,19 +215,18 @@ export default function StudyLanguagePicker({
             </View>
             <Text
               numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.72}
               style={{
                 color: active ? palette.textOn : palette.textOff,
-                fontSize: labelFontSize,
-                fontWeight: active ? '800' : '600',
+                width: '100%',
+                fontSize: Math.max(10, labelFontSize - 1),
+                fontWeight: active ? '800' : '700',
+                textAlign: 'center',
               }}
             >
               {studyTargetLabelForSourceUiLang(code, lang)}
             </Text>
-            {active ? (
-              <Ionicons name="checkmark-circle" size={14} color={palette.textOn} style={{ marginTop: 3 }} />
-            ) : (
-              <View style={{ height: 14, marginTop: 3 }} />
-            )}
           </TouchableOpacity>
         );
       })}

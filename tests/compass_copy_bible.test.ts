@@ -10,6 +10,16 @@ import {
   COMPASS_LOCKED_TITLE,
   COMPASS_LOCKED_BODY,
   COMPASS_OPEN_ACCESS,
+  COMPASS_DAY_CLOSING_TITLE,
+  COMPASS_DAY_CLOSING_TODAY,
+  COMPASS_DAY_CLOSING_TOMORROW,
+  COMPASS_DAY_CLOSING_CLOSE,
+  COMPASS_DAY_CLOSING_PREMIUM_TITLE,
+  COMPASS_DAY_CLOSING_PREMIUM_BODY,
+  COMPASS_DAY_CLOSING_PLUS_MORE,
+  COMPASS_DAY_CLOSING_PLUS_ITEMS,
+  COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL,
+  COMPASS_DAY_CLOSING_REPEAT,
   COMPASS_PUSH_COMEBACK,
   COMPASS_PUSH_NEW_PHRASES,
   COMPASS_PUSH_STREAK_GAIN,
@@ -49,6 +59,16 @@ const SHORT_TEXTS: CompassText[] = [
   COMPASS_LOCKED_TITLE,
   COMPASS_LOCKED_BODY,
   COMPASS_OPEN_ACCESS,
+  COMPASS_DAY_CLOSING_TITLE,
+  COMPASS_DAY_CLOSING_TODAY,
+  COMPASS_DAY_CLOSING_TOMORROW,
+  COMPASS_DAY_CLOSING_CLOSE,
+  COMPASS_DAY_CLOSING_PREMIUM_TITLE,
+  COMPASS_DAY_CLOSING_PREMIUM_BODY,
+  COMPASS_DAY_CLOSING_PLUS_MORE,
+  ...COMPASS_DAY_CLOSING_PLUS_ITEMS,
+  ...Object.values(COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL),
+  ...Object.values(COMPASS_DAY_CLOSING_REPEAT),
   COMPASS_PUSH_COMEBACK,
   COMPASS_PUSH_NEW_PHRASES,
   COMPASS_PUSH_STREAK_GAIN,
@@ -112,9 +132,10 @@ describe('compass_copy — соответствие Библии Phraseman', () 
       COMPASS_LETS_GO,
       COMPASS_OPEN_SESSION,
       COMPASS_OPEN_ACCESS,
+      COMPASS_DAY_CLOSING_CLOSE,
       ...Object.values(COMPASS_INDUCTION_CTA),
     ];
-    const verbStart = /^(Начать|Открыть|Продолжить|Сказать|Повтори|Скажи|Разобрать|Пройти|Загляни|Погортай|Поехали)/;
+    const verbStart = /^(Начать|Открыть|Продолжить|Сказать|Повтори|Скажи|Разобрать|Пройти|Загляни|Погортай|Поехали|Готово)/;
     for (const b of buttons) {
       expect(b.ru).toMatch(verbStart);
     }
@@ -124,6 +145,25 @@ describe('compass_copy — соответствие Библии Phraseman', () 
     for (const t of SHORT_TEXTS) {
       const words = t.ru.split(/\s+/).filter(Boolean).length;
       expect(words).toBeLessThanOrEqual(10);
+    }
+  });
+
+  it('вечерний ритуал не возвращает старые служебные названия', () => {
+    const joined = [
+      ...COMPASS_DAY_CLOSING_PLUS_ITEMS,
+      ...Object.values(COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL),
+      ...Object.values(COMPASS_DAY_CLOSING_REPEAT),
+    ].flatMap((t) => LANGS.map((lang) => t[lang])).join('\n');
+    const retiredLabels = [
+      'Smart' + ' Mix',
+      'Фразы ' + 'в пути',
+      'Фрази ' + 'в дорозі',
+      'Frases ' + 'en camino',
+    ];
+
+    expect(COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL.phrases.ru).toBe('Новых фраз');
+    for (const label of retiredLabels) {
+      expect(joined.toLowerCase()).not.toContain(label.toLowerCase());
     }
   });
 

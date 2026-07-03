@@ -173,7 +173,7 @@ type Report = {
 };
 
 const REQUIRED_ROW_DECISIONS = 1600;
-const REQUIRED_AI_DECISIONS = 164;
+let REQUIRED_AI_DECISIONS = 164;
 const EXPECTED_RUNTIME_SLICES = 12;
 
 function argValue(name: string): string | null {
@@ -757,6 +757,12 @@ function main(): void {
     manifestFilePresent: fs.existsSync(promotedManifestPath),
     hashChecks,
   };
+  REQUIRED_AI_DECISIONS = Math.max(
+    REQUIRED_AI_DECISIONS,
+    n(object(p19.summary), 'llmAcceptedAiDecisionRows'),
+    n(object(p23.summary), 'acceptedAiDecisionRows'),
+    input.aiDecisionLines,
+  );
 
   const { evaluation, findings } = evaluate(input);
   const probes = runProbes(input);

@@ -26,6 +26,7 @@ import {
   isCompassBriefingOnScreen,
 } from '../app/compass';
 import { useLang } from './LangContext';
+import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const LAST_POLL_KEY = 'global_compass_social_last_poll';
@@ -41,6 +42,7 @@ export default function GlobalCompassSocialHost() {
   const langRef = useRef(lang);
   langRef.current = lang;
   const runningRef = useRef(false);
+  const scheduledRef = useRef<{ cancel: () => void } | null>(null);
 
   const poll = async () => {
     if (runningRef.current) return;
@@ -56,7 +58,7 @@ export default function GlobalCompassSocialHost() {
       if (isCompassBriefingOnScreen()) return;
 
       // Первый сбор — есть ли вообще что показывать.
-      const first = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], events: [] }));
+      const first = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (!first.events.length) return;
 
       // Даём брифингу шанс открыться и забрать события первым.
@@ -64,7 +66,7 @@ export default function GlobalCompassSocialHost() {
       if (isCompassBriefingOnScreen()) return;
 
       // Перечитываем: если брифинг уже забрал события (markSeen), здесь будет пусто.
-      const news = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], events: [] }));
+      const news = await collectCompassSocialNews(langRef.current).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (!news.events.length) return;
       // Финальная проверка перед показом — последний await позади, брифинг не открыт.
       if (isCompassBriefingOnScreen()) return;
@@ -102,11 +104,19 @@ export default function GlobalCompassSocialHost() {
   };
 
   useEffect(() => {
-    void poll();
+    const schedulePoll = () => {
+      scheduledRef.current?.cancel();
+      scheduledRef.current = scheduleCoalescedForegroundTask('global_compass_social_poll', poll);
+    };
+    schedulePoll();
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void poll();
+      if (state === 'active') schedulePoll();
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledRef.current?.cancel();
+      scheduledRef.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

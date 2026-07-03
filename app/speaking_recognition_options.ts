@@ -45,6 +45,13 @@ export interface BuildSpeakingStartOptionsInput {
    * platform default (often cloud) is used.
    */
   onDevice?: boolean;
+  /**
+   * Persist the captured attempt audio to a cache file (recordingOptions).
+   * Default true — SpeakingPanel читает его («Моя запись» + контрольный
+   * прогон). Поверхности БЕЗ реплея (план, ИИ-диалог) передают false, чтобы
+   * не копить wav-файлы, которые никто не прочитает.
+   */
+  persistRecording?: boolean;
 }
 
 /** iOS task hint tuned to phrase length: short prompts confirm fast, sentences dictate. */
@@ -84,6 +91,7 @@ export function buildSpeakingStartOptions(
     volumeMeter = true,
     volumeIntervalMillis = 250,
     onDevice = false,
+    persistRecording = true,
   } = input;
 
   const contextualStrings = buildContextualStrings(targetText);
@@ -115,8 +123,23 @@ export function buildSpeakingStartOptions(
 
   // persist keeps the captured audio around (both platforms): it powers the
   // «Послушай себя» replay AND the unbiased control pass. The uri arrives in
-  // the `audioend` event; the file lives in the app cache (wav).
-  base.recordingOptions = { persist: true };
+  // the `audioend` event; the file lives in the app cache (wav). Поверхности
+  // без реплея выключают запись (persistRecording: false) — иначе диск копит
+  // wav-файлы, которые никто не читает.
+  if (persistRecording) base.recordingOptions = { persist: true };
+
+  if (Platform.OS === 'ios') {
+    // Дефолт библиотеки — AVAudioSession mode 'measurement': он ОТКЛЮЧАЕТ
+    // системную обработку входа (AGC и пр.) — микрофон становится «глухим»
+    // (говорить приходится криком), а весь вывод в этом режиме — тихий.
+    // 'default' возвращает нормальный тракт; спикер и Bluetooth — как в
+    // дефолте библиотеки.
+    base.iosCategory = {
+      category: 'playAndRecord',
+      categoryOptions: ['defaultToSpeaker', 'allowBluetooth'],
+      mode: 'default',
+    };
+  }
 
   if (Platform.OS === 'android') {
     // Stop the endpointer cutting slow speakers off on a mid-phrase pause.

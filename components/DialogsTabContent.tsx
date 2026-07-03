@@ -14,7 +14,7 @@ import {
 
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
-import { hasFreeDialogLeft } from '../app/dialogs_limit_session';
+import { getFreeDialogsLeft } from '../app/dialogs_limit_session';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
   DIALOG_SCENARIO_GROUPS,
@@ -36,6 +36,7 @@ import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
+import PlusBadge from './PlusBadge';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
@@ -69,7 +70,7 @@ export default function DialogsTabContent({
   onScroll,
   trackImpression = true,
 }: DialogsTabContentProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { studyTarget } = useStudyTarget();
@@ -142,9 +143,9 @@ export default function DialogsTabContent({
   const accent = t.accent;
 
   // Остался ли пожизненный бесплатный пробный диалог (общий на все режимы).
-  const [freeDialogLeft, setFreeDialogLeft] = useState(true);
+  const [freeDialogsLeft, setFreeDialogsLeft] = useState(2);
   const refreshFreeDialogLeft = useCallback(() => {
-    void hasFreeDialogLeft().then(setFreeDialogLeft).catch(() => {});
+    void getFreeDialogsLeft().then(setFreeDialogsLeft).catch(() => {});
   }, []);
   useEffect(() => {
     refreshFreeDialogLeft();
@@ -308,6 +309,7 @@ export default function DialogsTabContent({
     const { scenario, status, levelChip, lockedText } = vm;
     const locked = status === 'locked';
     const done = status === 'done';
+    const plusLocked = locked && tab === 'lessons' && !hasPremiumAccess;
     return (
       <TouchableOpacity
         key={scenario.id}
@@ -482,12 +484,16 @@ export default function DialogsTabContent({
           )}
         </View>
 
-        <Ionicons
-          name={locked ? 'lock-closed' : 'chevron-forward'}
-          size={19}
-          color={locked ? accent : t.textSecond}
-          style={{ marginLeft: 8 }}
-        />
+        {plusLocked ? (
+          <PlusBadge themeMode={themeMode} size="xs" style={{ marginLeft: 8 }} />
+        ) : (
+          <Ionicons
+            name={locked ? 'lock-closed' : 'chevron-forward'}
+            size={19}
+            color={locked ? accent : t.textSecond}
+            style={{ marginLeft: 8 }}
+          />
+        )}
       </TouchableOpacity>
     );
   };
@@ -917,21 +923,21 @@ export default function DialogsTabContent({
             paddingHorizontal: 18,
           }}
         >
-          <Ionicons name="gift-outline" size={14} color={freeDialogLeft ? accent : t.textMuted} />
+          <Ionicons name="gift-outline" size={14} color={freeDialogsLeft > 0 ? accent : t.textMuted} />
           <Text
             style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', flexShrink: 1 }}
             maxFontSizeMultiplier={1.2}
           >
-            {freeDialogLeft
+            {freeDialogsLeft > 0
               ? triLang(lang, {
-                  ru: '1 диалог бесплатно — попробуй, дальше Plus',
-                  uk: '1 діалог безкоштовно — спробуй, далі Plus',
-                  es: '1 diálogo gratis — pruébalo, luego Plus',
-                  'pt-BR': '1 diálogo grátis — experimente, depois Plus',
-                  vi: '1 đối thoại miễn phí — thử trước, sau đó Plus',
-                  id: '1 dialog gratis — coba dulu, lalu Plus',
-                  tr: '1 diyalog ücretsiz — dene, sonrası Plus',
-                  pl: '1 dialog za darmo — spróbuj, potem Plus',
+                  ru: `Бесплатных диалогов осталось: ${freeDialogsLeft} — дальше Plus`,
+                  uk: `Безкоштовних діалогів залишилось: ${freeDialogsLeft} — далі Plus`,
+                  es: `Diálogos gratis restantes: ${freeDialogsLeft} — luego Plus`,
+                  'pt-BR': `Diálogos grátis restantes: ${freeDialogsLeft} — depois Plus`,
+                  vi: `Đối thoại miễn phí còn lại: ${freeDialogsLeft} — sau đó Plus`,
+                  id: `Sisa dialog gratis: ${freeDialogsLeft} — lalu Plus`,
+                  tr: `Kalan ücretsiz diyalog: ${freeDialogsLeft} — sonrası Plus`,
+                  pl: `Pozostałe darmowe dialogi: ${freeDialogsLeft} — potem Plus`,
                 })
               : triLang(lang, {
                   ru: 'Пробный диалог использован · дальше Plus',

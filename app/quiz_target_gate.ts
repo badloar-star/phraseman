@@ -3,7 +3,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 export type QuizContentGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
-  reason: 'english_quiz_bank_available' | 'french_quiz_source_gate';
+  reason: 'english_quiz_bank_available' | 'french_quiz_server_pack_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -21,10 +21,10 @@ export function quizContentGateForTarget(studyTarget?: RuntimeStudyTarget): Quiz
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     return {
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_quiz_source_gate',
-      blockedRoutes: ['/quizzes', '/(tabs)/quizzes', '/quizzes_screen'],
+      reason: 'french_quiz_server_pack_available',
+      blockedRoutes: [],
       requiredEvidence: FRENCH_QUIZ_REQUIRED_EVIDENCE,
     };
   }

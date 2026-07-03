@@ -19,6 +19,7 @@ jest.mock('../app/remote_flags', () => ({
 
 import {
   FEATURE_GATE_KEYS,
+  isFeatureBlockedForAge,
   isFeatureFreeForEveryone,
   isFeaturePremiumGated,
   shouldGateFeature,
@@ -53,6 +54,14 @@ describe('feature_gates', () => {
     expect(shouldGateFeature('stats', false)).toBe(true); // фри + замок → пейвол
     mockBools['gate_stats_premium'] = false; // админ → «Фри»
     expect(shouldGateFeature('stats', false)).toBe(false); // замок снят
+  });
+
+  it('does not age-block app features after onboarding', () => {
+    mockBools['gate_ai_dialog_premium'] = false;
+    expect(isFeatureFreeForEveryone('ai_dialog')).toBe(true);
+    expect(isFeatureBlockedForAge('ai_dialog')).toBe(false);
+    expect(isFeatureBlockedForAge('arena')).toBe(false);
+    expect(isFeatureBlockedForAge('lessons')).toBe(false);
   });
 });
 

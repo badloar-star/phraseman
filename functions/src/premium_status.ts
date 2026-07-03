@@ -212,3 +212,66 @@ export async function resolvePremiumAccess(
 
   return false;
 }
+
+/**
+ * TRUE если у пользователя активна разовая покупка «Навсегда» (premium_plan==='lifetime').
+ * Видимое имя такого доступа — «Pro» (в отличие от рекуррентного Plus / VIP). Требует,
+ * чтобы store-премиум был реально активен (не истёкший), иначе истёкший lifetime не должен
+ * давать «Pro»-плашку. VIP-гранты пишут vip_plan, а не premium_plan='lifetime' → не Pro.
+ */
+export function isLifetimePlanActive(progress: ProgressLike, now: number = Date.now()): boolean {
+  const data = progress ?? {};
+  const plan = cleanPlan(data.premium_plan);
+  return plan === 'lifetime' && isStorePremiumActive(progress, now);
+}
+
+/**
+ * Серверная резолюция Pro-плана: читает users/{stableUid}.progress (с тем же обходом
+ * auth_links / firebaseAuthUid, что и resolvePremiumAccess) и возвращает, активна ли
+ * покупка «Навсегда». Источник правды — сервер, тело запроса не доверяем.
+ */
+export async function resolveIsLifetimePlan(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  now: number = Date.now(),
+  authUid?: string,
+): Promise<boolean> {
+  const candidates = new Set<string>();
+  const add = (value: unknown) => {
+    const id = cleanStr(value);
+    if (id) candidates.add(id);
+  };
+
+  add(stableUid);
+  add(authUid);
+
+  if (authUid) {
+    const [linkSnap, byAuth] = await Promise.all([
+      db.collection('auth_links').doc(authUid).get().catch(() => null),
+      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+    ]);
+    add(linkSnap?.data()?.stable_id);
+    byAuth?.docs?.forEach((doc) => add(doc.id));
+  }
+
+  const checked = new Set<string>();
+  for (;;) {
+    const ids = [...candidates].filter((id) => !checked.has(id));
+    if (ids.length === 0) break;
+    let lifetimeActive = false;
+    await Promise.all(ids.map(async (id) => {
+      checked.add(id);
+      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      if (!snap?.exists) return;
+      const data = snap.data() ?? {};
+      add(data.canonicalStableId);
+      const progress = (data.progress ?? {}) as Record<string, unknown>;
+      if (isLifetimePlanActive(progress, now)) {
+        lifetimeActive = true;
+      }
+    }));
+    if (lifetimeActive) return true;
+  }
+
+  return false;
+}

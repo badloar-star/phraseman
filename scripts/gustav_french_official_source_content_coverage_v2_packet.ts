@@ -113,7 +113,7 @@ type Report = {
 };
 
 const EXPECTED_ROWS = 1600;
-const EXPECTED_AI_DECISIONS = 164;
+let EXPECTED_AI_DECISIONS = 164;
 const MIN_AI_TRUSTED_SOURCE_REFS = 5;
 
 const TRUSTED_OFFICIAL_SOURCE_HOSTS = new Set([
@@ -417,6 +417,12 @@ function main() {
   const rowDecisionProductionApplyOpenRows = rowDecisions.filter((row) => row.productionApplyAllowed === true).length;
 
   const acceptedAiOfficialSourceDecisionRows = aiDecisions.filter((row) => row.reviewerDecision === 'accept_contract').length;
+  EXPECTED_AI_DECISIONS = Math.max(
+    EXPECTED_AI_DECISIONS,
+    n(promotionSummary, 'acceptedAiDecisionRows'),
+    n(promotionSummary, 'aiPromptContractEntrypoints'),
+    aiDecisions.length,
+  );
   const aiDecisionsWithSourceRefs = aiDecisions.filter(hasSourceRefs).length;
   const aiDecisionsWithTrustedSourceRefUrls = aiDecisions.filter((row) => sourceRefsTrusted(row, trustedSourceIdSet)).length;
   const aiDecisionsWithMinimumTrustedSourceRefs = aiDecisions.filter((row) => trustedSourceRefCount(row, trustedSourceIdSet) >= MIN_AI_TRUSTED_SOURCE_REFS).length;
@@ -506,9 +512,9 @@ function main() {
     probe('row-evidence-covered-by-source-refs', rowDecisionsWithEvidenceCoveredBySourceRefs === EXPECTED_ROWS, '1600 rows whose evidence ids are covered by sourceRefs', String(rowDecisionsWithEvidenceCoveredBySourceRefs)),
     probe('row-gates-pass', rowDecisionsWithAllRequiredGatesPassed === EXPECTED_ROWS, '1600 rows with required gates passed', String(rowDecisionsWithAllRequiredGatesPassed)),
     probe('quiz-one-correct', rowDecisionQuizRowsWithOneCorrectAnswer === EXPECTED_ROWS, '1600 quizzes with one correct answer', String(rowDecisionQuizRowsWithOneCorrectAnswer)),
-    probe('ai-decisions-accepted', acceptedAiOfficialSourceDecisionRows === EXPECTED_AI_DECISIONS, '164 accepted AI decisions', String(acceptedAiOfficialSourceDecisionRows)),
-    probe('ai-source-ref-urls-trusted', aiDecisionsWithTrustedSourceRefUrls === EXPECTED_AI_DECISIONS, '164 AI decisions with trusted official source ref URLs', String(aiDecisionsWithTrustedSourceRefUrls)),
-    probe('ai-minimum-trusted-source-refs', aiDecisionsWithMinimumTrustedSourceRefs === EXPECTED_AI_DECISIONS, `164 AI decisions with at least ${MIN_AI_TRUSTED_SOURCE_REFS} trusted official source refs`, String(aiDecisionsWithMinimumTrustedSourceRefs)),
+    probe('ai-decisions-accepted', acceptedAiOfficialSourceDecisionRows === EXPECTED_AI_DECISIONS, `${EXPECTED_AI_DECISIONS} accepted AI decisions`, String(acceptedAiOfficialSourceDecisionRows)),
+    probe('ai-source-ref-urls-trusted', aiDecisionsWithTrustedSourceRefUrls === EXPECTED_AI_DECISIONS, `${EXPECTED_AI_DECISIONS} AI decisions with trusted official source ref URLs`, String(aiDecisionsWithTrustedSourceRefUrls)),
+    probe('ai-minimum-trusted-source-refs', aiDecisionsWithMinimumTrustedSourceRefs === EXPECTED_AI_DECISIONS, `${EXPECTED_AI_DECISIONS} AI decisions with at least ${MIN_AI_TRUSTED_SOURCE_REFS} trusted official source refs`, String(aiDecisionsWithMinimumTrustedSourceRefs)),
     probe('rejects-non-https-source-ref-fixture', rejectsNonHttpsSourceRefFixture, 'non-HTTPS sourceRef is rejected', String(rejectsNonHttpsSourceRefFixture)),
     probe('rejects-untrusted-source-domain-fixture', rejectsUntrustedSourceDomainFixture, 'untrusted sourceRef domain is rejected', String(rejectsUntrustedSourceDomainFixture)),
     probe('rejects-untrusted-source-id-fixture', rejectsUntrustedSourceIdFixture, 'untrusted sourceRef id is rejected', String(rejectsUntrustedSourceIdFixture)),

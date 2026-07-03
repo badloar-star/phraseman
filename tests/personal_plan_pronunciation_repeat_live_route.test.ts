@@ -120,9 +120,12 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain('speechModule.start(');
     expect(source).toContain('buildSpeakingStartOptions({');
     expect(source).toContain("speechModule.addListener('result', applyResult)");
+    expect(source).toContain('scheduleFinishAttempt');
+    expect(source).toContain("if (Platform.OS !== 'android') playRecordStart();");
     expect(source).toContain('useAudio()');
     expect(source).toContain('listenPronunciationTarget');
-    expect(source).toContain('speakAudio(targetText, 0.86');
+    expect(source).toContain('speakFallbackAudio(targetText, 0.86');
+    expect(source).toContain("if (Platform.OS === 'android') playFallbackAudio();");
     // Прослушивание фразы НЕ обязательно — запись доступна сразу; блок только пока звучит target.
     expect(source).toContain('enabled={!pronunciationSpeakingTarget}');
     // Фраза скрыта по буквам (маска '_') и раскрывается пословно по мере того,
@@ -131,9 +134,11 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain('scorePlanPronunciationTranscript({');
     expect(source).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
     expect(source).toContain("speechModule.addListener('nomatch'");
-    // recordingOptions (iOS persist) now lives inside the shared options builder.
+    // Android uses the speech library AudioRecord path, then deletes its transient wav.
     expect(source).toContain('buildSpeakingStartOptions');
-    expect(source).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
+    expect(source).toContain("persistRecording: Platform.OS === 'android'");
+    expect(source).toContain("speechModule.addListener('audioend'");
+    expect(source).toContain('disabled={saving || pronunciationScoring}');
     expect(source).toContain('payload: buildPlanPronunciationAttemptPayload({');
     expect(source).toContain('score: scored?.score ?? 0');
     expect(source).toContain("transcript: scored?.transcript ?? ''");

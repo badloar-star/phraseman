@@ -31,10 +31,9 @@ interface Props {
   futurePrice: string | null;
   /** «/год» | «/мес». */
   period: string;
-  /** Компактный режим (1 строка): для «Компакт» A и первого экрана C, чтобы CTA
-      оставался виден без скролла. По умолчанию — полный блок (для «Стори» B). */
+  /** Компактный режим: укороченный блок для верхней части A/B/C без полного сравнения. */
   compact?: boolean;
-  /** Выбран план «навсегда» (разовый платёж, non-consumable). Меняет текст
+  /** Выбран план Phraseman Pro (разовый платёж, non-consumable). Меняет текст
       закрепления: у lifetime нечего «отменять», поэтому «пока не отменишь»
       (формулировка для подписок) тут неуместна. */
   isLifetime?: boolean;
@@ -69,7 +68,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
   // Нет реальной цены — ничего не показываем (без «NaN»/выдуманных значений).
   if (!currentPrice || !futurePrice) return null;
 
-  // ── Компактный режим: одна строка (для A и первого экрана C) ───────────────
+  // ── Компактный режим: понятный мини-блок для верхней части paywall ─────────
   if (compact) {
     // grace — спокойная строка про сохранённую цену
     if (!urgency.isActive && urgency.remainingMs > 0) {
@@ -88,16 +87,74 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
     }
     if (!urgency.isActive) return null;
     return (
-      <View style={[S.compactWrap, { backgroundColor: tc.urgencyBg, borderColor: `${tc.urgencyTimerText}3a` }]}>
-        <Ionicons name="time" size={13} color={tc.urgencyTimerText} style={{ marginRight: 7 }} />
-        <Text style={[S.compactTimer, { color: tc.urgencyTimerText }]}>{timer}</Text>
-        <Text style={[S.compactMid, { color: textMuted }]} numberOfLines={1}>
-          {' · '}
-          <Text style={{ color: tc.urgencyCurrentPriceText, fontWeight: '800' }}>{currentPrice}</Text>
-          {' '}
-          <Text style={S.compactStrike}>{futurePrice}</Text>
-          {' '}
-          {triLang(lang, { ru: 'скоро', uk: 'скоро', es: 'pronto', 'pt-BR': 'em breve', vi: 'sắp', id: 'segera', tr: 'yakında', pl: 'wkrótce' })}
+      <View style={[S.compactActiveWrap, { backgroundColor: tc.urgencyBg, borderColor: `${tc.urgencyTimerText}3a` }]}>
+        <View style={S.compactUrgencyHead}>
+          <Ionicons name="time" size={18} color={tc.urgencyTimerText} style={S.compactUrgencyIcon} />
+          <Text style={[S.compactUrgencyTitle, { color: tc.urgencyLabelText }]}>
+            {triLang(lang, {
+              ru: 'Цена скоро будет поднята',
+              uk: 'Ціну скоро буде підвищено',
+              es: 'El precio subirá pronto',
+              'pt-BR': 'O preço vai subir em breve',
+              vi: 'Giá sẽ tăng sớm',
+              id: 'Harga akan segera naik',
+              tr: 'Fiyat yakında artacak',
+              pl: 'Cena wkrótce wzrośnie',
+            })}
+          </Text>
+        </View>
+
+        <View style={S.compactTimerRow}>
+          <Text style={[S.compactTimerLabel, { color: textMuted }]}>
+            {triLang(lang, {
+              ru: 'Старая цена действует ещё',
+              uk: 'Стара ціна діє ще',
+              es: 'El precio anterior dura',
+              'pt-BR': 'O preço antigo vale por',
+              vi: 'Giá cũ còn hiệu lực',
+              id: 'Harga lama berlaku',
+              tr: 'Eski fiyat kalan süre',
+              pl: 'Stara cena działa jeszcze',
+            })}
+          </Text>
+          <Text style={[S.compactTimerBig, { color: tc.urgencyTimerText }]}>{timer}</Text>
+        </View>
+
+        <View style={[S.compactPriceLine, { borderTopColor: `${tc.urgencyTimerText}26` }]}>
+          <Text style={[S.compactPriceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1}>
+            {triLang(lang, { ru: 'Сейчас', uk: 'Зараз', es: 'Ahora', 'pt-BR': 'Agora', vi: 'Hiện tại', id: 'Sekarang', tr: 'Şimdi', pl: 'Teraz' })}
+            {': '}
+            {currentPrice}<Text style={[S.compactPricePeriod, { color: textMuted }]}>{period}</Text>
+          </Text>
+          <Text style={[S.compactPriceFuture, { color: textMuted }]} numberOfLines={1}>
+            {triLang(lang, { ru: 'Скоро', uk: 'Скоро', es: 'Pronto', 'pt-BR': 'Em breve', vi: 'Sắp tới', id: 'Segera', tr: 'Yakında', pl: 'Wkrótce' })}
+            {': '}
+            {futurePrice}<Text style={S.compactPricePeriod}>{period}</Text>
+          </Text>
+        </View>
+
+        <Text style={[S.compactUrgencyBody, { color: textMuted }]}>
+          {isLifetime
+            ? triLang(lang, {
+                ru: 'Сейчас последняя возможность взять Phraseman Pro по старой цене. Это разовая покупка без подписки.',
+                uk: 'Зараз остання можливість взяти Phraseman Pro за старою ціною. Це разова покупка без підписки.',
+                es: 'Ahora es la última oportunidad de tomar Phraseman Pro al precio anterior. Es una compra única sin suscripción.',
+                'pt-BR': 'Agora é a última chance de pegar o Phraseman Pro pelo preço antigo. É uma compra única sem assinatura.',
+                vi: 'Đây là cơ hội cuối để mua Phraseman Pro với giá cũ. Đây là mua một lần, không đăng ký.',
+                id: 'Ini kesempatan terakhir mendapatkan Phraseman Pro dengan harga lama. Ini pembelian sekali tanpa langganan.',
+                tr: 'Phraseman Pro’yu eski fiyatla almak için son fırsat. Abonelik değil, tek seferlik satın alma.',
+                pl: 'To ostatnia szansa na Phraseman Pro w starej cenie. To zakup jednorazowy bez subskrypcji.',
+              })
+            : triLang(lang, {
+                ru: 'Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.',
+                uk: 'Зараз остання можливість купити підписку за старою ціною. Вона буде закріплена за вами, доки ви самі її не скасуєте.',
+                es: 'Ahora es la última oportunidad de comprar la suscripción al precio anterior. Quedará fijado para ti hasta que tú la canceles.',
+                'pt-BR': 'Agora é a última chance de assinar pelo preço antigo. Ele fica fixo para você até você cancelar.',
+                vi: 'Đây là cơ hội cuối để mua gói đăng ký với giá cũ. Giá này sẽ được giữ cho bạn đến khi bạn tự hủy.',
+                id: 'Ini kesempatan terakhir membeli langganan dengan harga lama. Harga ini terkunci untukmu sampai kamu sendiri membatalkan.',
+                tr: 'Eski fiyatla abonelik almak için son fırsat. Sen iptal edene kadar bu fiyat sana sabitlenir.',
+                pl: 'To ostatnia szansa kupić subskrypcję w starej cenie. Cena zostanie przypisana do ciebie, dopóki sam jej nie anulujesz.',
+              })}
         </Text>
       </View>
     );
@@ -177,20 +234,18 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Text style={{ color: textPrimary, fontWeight: '700' }}>
           {triLang(lang, { ru: 'Купишь сейчас', uk: 'Купиш зараз', es: 'Si compras ahora', 'pt-BR': 'Se comprar agora', vi: 'Mua ngay', id: 'Beli sekarang', tr: 'Şimdi alırsan', pl: 'Kupisz teraz' })}
         </Text>
-        {/* lifetime — разовый платёж: «отменять» нечего, поэтому без «пока не отменишь».
-            Это закрепление цены навсегда применимо к подпискам (списания держатся,
-            пока юзер сам не отменит), а не к non-consumable «навсегда». */}
+        {/* lifetime — разовая покупка: «отменять» нечего, поэтому без «пока не отменишь». */}
         {isLifetime
           ? triLang(lang, {
-              ru: ' — это разовый платёж, и доступ остаётся у тебя навсегда.', uk: ' — це разовий платіж, і доступ залишається в тебе назавжди.',
-              es: ' — es un pago único y el acceso queda tuyo para siempre.', 'pt-BR': ' — é um pagamento único e o acesso fica seu para sempre.',
-              vi: ' — đây là khoản thanh toán một lần và quyền truy cập là của bạn mãi mãi.', id: ' — ini pembayaran sekali dan akses jadi milikmu selamanya.',
-              tr: ' — bu tek seferlik bir ödeme ve erişim sonsuza dek senin olur.', pl: ' — to jednorazowa płatność, a dostęp zostaje twój na zawsze.',
+              ru: ' — это Phraseman Pro: разовая покупка без подписки.', uk: ' — це Phraseman Pro: разова покупка без підписки.',
+              es: ' — es Phraseman Pro: compra única sin suscripción.', 'pt-BR': ' — é o Phraseman Pro: compra única sem assinatura.',
+              vi: ' — đây là Phraseman Pro: mua một lần, không đăng ký.', id: ' — ini Phraseman Pro: pembelian sekali tanpa langganan.',
+              tr: ' — bu Phraseman Pro: aboneliksiz tek seferlik satın alma.', pl: ' — to Phraseman Pro: zakup jednorazowy bez subskrypcji.',
             })
           : triLang(lang, {
-              ru: ' — цена закрепится за тобой навсегда, пока сам не отменишь.', uk: ' — ціна закріпиться за тобою назавжди, поки сам не скасуєш.',
+              ru: ' — цена закрепится за тобой, пока сам не отменишь.', uk: ' — ціна закріпиться за тобою, поки сам не скасуєш.',
               es: ' — el precio queda fijo para ti hasta que tú lo canceles.', 'pt-BR': ' — o preço fica travado pra você até você cancelar.',
-              vi: ' — giá được giữ cho bạn mãi đến khi bạn tự hủy.', id: ' — harga terkunci untukmu sampai kamu sendiri membatalkan.',
+              vi: ' — giá được giữ cho bạn đến khi bạn tự hủy.', id: ' — harga terkunci untukmu sampai kamu sendiri membatalkan.',
               tr: ' — fiyat, sen iptal edene kadar sana sabitlenir.', pl: ' — cena zostaje przypisana tobie, dopóki sam jej nie anulujesz.',
             })}
       </Text>
@@ -199,31 +254,41 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
 }
 
 const S = StyleSheet.create({
-  wrap: { borderRadius: 14, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 11, marginTop: 14, flexDirection: 'row', alignItems: 'center' },
+  wrap: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 13, marginTop: 16, flexDirection: 'row', alignItems: 'center' },
   wrapActive: { flexDirection: 'column', alignItems: 'stretch' },
-  headerRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 },
-  headline: { flex: 1, fontSize: 12.5, fontWeight: '800', lineHeight: 17 },
-  // компактный режим — одна строка
-  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 9, marginTop: 14 },
-  compactTimer: { fontSize: 13, fontWeight: '800', letterSpacing: 0.8, fontVariant: ['tabular-nums'] },
-  compactMid: { flex: 1, fontSize: 11.5, flexShrink: 1 },
-  // Будущую цену НЕ зачёркиваем: зачёркивание имитирует фантомную «старую» цену
-  // (Apple 2.3.1 / EU Omnibus / FTC). Это анонс «скоро будет ~2X», а не «было».
-  compactStrike: {},
-  compactText: { flex: 1, fontSize: 11.5 },
-  timerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
-  timerLabel: { fontSize: 11.5, flex: 1 },
+  headerRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 9 },
+  headline: { flex: 1, fontSize: 14, fontWeight: '900', lineHeight: 19 },
+  // компактный режим — мини-блок
+  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 16, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 11, marginTop: 16 },
+  compactActiveWrap: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 15, marginTop: 16 },
+  compactUrgencyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+  compactUrgencyIcon: { marginRight: 8, flexShrink: 0 },
+  compactUrgencyTitle: { flex: 1, fontSize: 16, lineHeight: 20, fontWeight: '900', letterSpacing: 0 },
+  compactTimerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  compactTimerLabel: { flex: 1, fontSize: 13.5, lineHeight: 18.5, fontWeight: '700' },
+  compactTimerBig: { fontSize: 24, lineHeight: 29, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
+  compactPriceLine: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    gap: 10, marginTop: 12, paddingTop: 11, borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  compactPriceNow: { flex: 1, minWidth: 0, fontSize: 14.5, lineHeight: 19, fontWeight: '900' },
+  compactPriceFuture: { flex: 1, minWidth: 0, textAlign: 'right', fontSize: 13, lineHeight: 18, fontWeight: '700' },
+  compactPricePeriod: { fontSize: 11.5, fontWeight: '700' },
+  compactUrgencyBody: { fontSize: 13.5, lineHeight: 19, marginTop: 11 },
+  compactText: { flex: 1, fontSize: 13 },
+  timerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 9 },
+  timerLabel: { fontSize: 13, flex: 1 },
   // P0-1: таймер мельче CTA (17.5/900) — кнопка остаётся главной.
-  timer: { fontSize: 15, fontWeight: '800', letterSpacing: 1.2, fontVariant: ['tabular-nums'] },
+  timer: { fontSize: 16.5, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
   // P0-3: «Сейчас» доминирует, «Скоро» приглушено и мельче.
-  priceRow: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 12, marginTop: 10, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
+  priceRow: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 13, marginTop: 11, paddingTop: 11, borderTopWidth: StyleSheet.hairlineWidth },
   priceColNow: { alignItems: 'flex-start', minWidth: 0, flexShrink: 1 },
   priceColFuture: { alignItems: 'flex-start', minWidth: 0, flexShrink: 1, opacity: 0.85, paddingBottom: 1 },
-  priceCapNow: { fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 2 },
-  priceCapFuture: { fontSize: 9.5, fontWeight: '600', letterSpacing: 0.3, marginBottom: 2 },
-  priceNow: { fontSize: 16, fontWeight: '900', letterSpacing: -0.3 },
-  priceFuture: { fontSize: 12.5, fontWeight: '600' },
-  pricePer: { fontSize: 10, fontWeight: '500' },
-  lockNote: { fontSize: 11.5, lineHeight: 16, marginTop: 10 },
-  graceText: { flex: 1, fontSize: 11.5, lineHeight: 16 },
+  priceCapNow: { fontSize: 11.5, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, marginBottom: 3 },
+  priceCapFuture: { fontSize: 11, fontWeight: '700', letterSpacing: 0, marginBottom: 3 },
+  priceNow: { fontSize: 19, fontWeight: '900', letterSpacing: 0 },
+  priceFuture: { fontSize: 14, fontWeight: '700' },
+  pricePer: { fontSize: 12, fontWeight: '600' },
+  lockNote: { fontSize: 13, lineHeight: 18, marginTop: 11 },
+  graceText: { flex: 1, fontSize: 13, lineHeight: 18 },
 });

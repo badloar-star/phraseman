@@ -3,10 +3,12 @@ import {
   ActivityIndicator,
   RefreshControl,
   ScrollView,
+  Share,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
@@ -24,6 +26,7 @@ import {
   type ReferralInvite,
 } from './referral_vip';
 import { generateReferralCode, getReferralCode } from './referral_system';
+import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 import { safeRouterBack } from './navigation_back';
@@ -46,6 +49,15 @@ function shortInviteName(invite: ReferralInvite): string {
   if (!id) return '----';
   return id.length <= 6 ? id : id.slice(-6).toUpperCase();
 }
+
+function inviteDisplayName(invite: ReferralInvite, fallbackPrefix: string): string {
+  const name = String(invite.refereeName ?? '').trim().replace(/\s+/g, ' ');
+  if (name) return name;
+  return `${fallbackPrefix} #${shortInviteName(invite)}`;
+}
+
+/** Кэш последнего успешного списка приглашений — экран рисуется мгновенно, без скелетонов. */
+const REFERRALS_INVITES_CACHE_KEY = 'referrals_invites_cache_v1';
 
 const UNTIL_LOCALE: Record<Lang, string> = {
   ru: 'ru-RU', uk: 'uk-UA', es: 'es-ES', 'pt-BR': 'pt-BR',
@@ -86,14 +98,29 @@ export default function ReferralsScreen() {
   /** Праздничный модал после успешного начисления (раньше показывался только в QA-лабе). */
   const [activated, setActivated] = useState<{ grantedDays: number; friendsCount: number; untilLabel?: string } | null>(null);
 
-  const load = useCallback(async () => {
-    const state = await getClaimableReferralState();
+  const load = useCallback(async (options: { force?: boolean } = {}) => {
+    const state = await getClaimableReferralState({ force: options.force });
+    // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
+    if (!state.ok) return;
     setInvites(state.invites);
+    void AsyncStorage.setItem(REFERRALS_INVITES_CACHE_KEY, JSON.stringify(state.invites)).catch(() => {});
   }, []);
 
   useEffect(() => {
     let alive = true;
-    setLoading(true);
+    // Мгновенная гидрация из кэша: экран не «грузится каждый раз», сервер обновляет фоном.
+    void AsyncStorage.getItem(REFERRALS_INVITES_CACHE_KEY)
+      .then(raw => {
+        if (!alive || !raw) return;
+        try {
+          const cached = JSON.parse(raw) as ReferralInvite[];
+          if (Array.isArray(cached)) {
+            setInvites(prev => (prev.length > 0 ? prev : cached));
+            setLoading(false);
+          }
+        } catch { /* битый кэш — просто ждём сеть */ }
+      })
+      .catch(() => {});
     load()
       .catch(() => {})
       .finally(() => {
@@ -104,7 +131,7 @@ export default function ReferralsScreen() {
 
   const refresh = useCallback(async () => {
     setRefreshing(true);
-    await load().catch(() => {});
+    await load({ force: true }).catch(() => {});
     setRefreshing(false);
   }, [load]);
 
@@ -119,8 +146,12 @@ export default function ReferralsScreen() {
       if (cancelled) return;
       attempt += 1;
       try {
-        await generateReferralCode('User');
-        const rc = await getReferralCode();
+        // Кэш-код первым (мгновенно, без сети); серверный ensure — только когда кода ещё нет.
+        let rc = await getReferralCode();
+        if (!rc || rc.trim().length < 4) {
+          await generateReferralCode('User');
+          rc = await getReferralCode();
+        }
         if (!cancelled && rc && rc.trim().length >= 4) {
           setReferralCode(rc.trim().toUpperCase());
           return;
@@ -133,6 +164,33 @@ export default function ReferralsScreen() {
     timer = setTimeout(() => { void tick(); }, 0);
     return () => { cancelled = true; clearTimeout(timer); };
   }, [referralEnabled, referralCode]);
+
+  /** «Пригласить» — системный Share; с кэшированным кодом открывается мгновенно. */
+  const [inviteBusy, setInviteBusy] = useState(false);
+  const handleInvite = useCallback(async () => {
+    if (inviteBusy) return;
+    hapticTap();
+    setInviteBusy(true);
+    try {
+      const share = await buildCloudReferralInviteShare({ lang: lang as Lang, userName: 'User' }).catch(() => null);
+      if (share?.message) {
+        await Share.share({ message: share.message });
+      } else {
+        setMessage(L(
+          'Код ещё готовится — проверь сеть и попробуй через пару секунд.',
+          'Код ще готується — перевір мережу і спробуй за кілька секунд.',
+          'Tu código aún se está preparando: revisa la conexión e inténtalo en unos segundos.',
+          'Seu código ainda está sendo preparado — verifique a conexão e tente em alguns segundos.',
+          'Mã của bạn đang được chuẩn bị — kiểm tra mạng và thử lại sau vài giây.',
+          'Kodemu masih disiapkan — periksa jaringan dan coba lagi beberapa detik lagi.',
+          'Kodun hazırlanıyor — bağlantıyı kontrol edip birkaç saniye sonra tekrar dene.',
+          'Twój kod jest jeszcze przygotowywany — sprawdź sieć i spróbuj za kilka sekund.',
+        ));
+      }
+    } finally {
+      setInviteBusy(false);
+    }
+  }, [L, inviteBusy, lang]);
 
   const copyReferralCode = useCallback(async () => {
     if (!referralCode) return;
@@ -176,19 +234,19 @@ export default function ReferralsScreen() {
         friendsCount: result.friends,
         untilLabel: formatUntilLabel(result.vipUntilMs, lang as Lang),
       });
-      await load().catch(() => {});
+      await load({ force: true }).catch(() => {});
     } else if (result.reason === 'nothing') {
       showNotReady();
     } else {
       setMessage(L(
-        'Не получилось получить VIP. Попробуйте ещё раз.',
-        'Не вдалося отримати VIP. Спробуйте ще раз.',
-        'No pudimos entregar el VIP. Inténtalo de nuevo.',
-        'Não foi possível receber VIP. Tente de novo.',
-        'Chưa nhận được VIP. Hãy thử lại.',
-        'VIP belum bisa diambil. Coba lagi.',
-        'VIP alınamadı. Tekrar dene.',
-        'Nie udało się odebrać VIP. Spróbuj ponownie.',
+        'Не получилось получить Plus. Попробуйте ещё раз.',
+        'Не вдалося отримати Plus. Спробуйте ще раз.',
+        'No pudimos entregar Plus. Inténtalo de nuevo.',
+        'Não foi possível receber Plus. Tente de novo.',
+        'Chưa nhận được Plus. Hãy thử lại.',
+        'Plus belum bisa diambil. Coba lagi.',
+        'Plus alınamadı. Tekrar dene.',
+        'Nie udało się odebrać Plus. Spróbuj ponownie.',
       ));
     }
     setClaiming(false);
@@ -201,7 +259,7 @@ export default function ReferralsScreen() {
     // skipped (legacy «лимит месяца») теперь тоже claimable — сервер принимает эти строки (M1).
     const claimable = qualified || skipped;
     const statusText = rewarded
-      ? L('VIP уже получен', 'VIP уже отримано', 'VIP recibido', 'VIP recebido', 'Đã nhận VIP', 'VIP sudah diambil', 'VIP alındı', 'VIP odebrany')
+      ? L('Plus уже получен', 'Plus уже отримано', 'Plus recibido', 'Plus recebido', 'Đã nhận Plus', 'Plus sudah diambil', 'Plus alındı', 'Plus odebrany')
       : qualified
         ? L('Условие выполнено', 'Умову виконано', 'Condición cumplida', 'Condição cumprida', 'Đã hoàn thành điều kiện', 'Syarat terpenuhi', 'Şart tamamlandı', 'Warunek spełniony')
         : skipped
@@ -209,7 +267,8 @@ export default function ReferralsScreen() {
           : L('Ждём полный урок', 'Чекаємо повний урок', 'Esperando una lección completa', 'Aguardando uma lição completa', 'Đang chờ một bài học hoàn chỉnh', 'Menunggu satu pelajaran selesai', 'Tam ders bekleniyor', 'Czekamy na ukończoną lekcję');
     const buttonText = rewarded
       ? L('Получено', 'Отримано', 'Recibido', 'Recebido', 'Đã nhận', 'Diterima', 'Alındı', 'Odebrano')
-      : L('Получить VIP', 'Отримати VIP', 'Recibir VIP', 'Receber VIP', 'Nhận VIP', 'Ambil VIP', 'VIP al', 'Odbierz VIP');
+      : L('Получить Plus', 'Отримати Plus', 'Recibir Plus', 'Receber Plus', 'Nhận Plus', 'Ambil Plus', 'Plus al', 'Odbierz Plus');
+    const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
 
     return (
       <View
@@ -230,7 +289,7 @@ export default function ReferralsScreen() {
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900' }} numberOfLines={1}>
-              {L(`Друг #${shortInviteName(invite)}`, `Друг #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Bạn #${shortInviteName(invite)}`, `Teman #${shortInviteName(invite)}`, `Arkadaş #${shortInviteName(invite)}`, `Znajomy #${shortInviteName(invite)}`)}
+              {displayName}
             </Text>
             <Text style={{ color: claimable ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '800', marginTop: 2 }}>
               {statusText}
@@ -304,17 +363,44 @@ export default function ReferralsScreen() {
             </Text>
             <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
               {L(
-                'Здесь появятся друзья, которым ты отправил приглашение. Как только друг поставит приложение, введёт твой код и закончит первый урок — VIP можно забирать.',
-                'Тут з’являться друзі, яким ти надіслав запрошення. Щойно друг встановить застосунок, введе твій код і закінчить перший урок — VIP можна забирати.',
-                'Aquí aparecerán los amigos a quienes invitaste. Cuando instalen la app, usen tu código y terminen la primera lección, podrás reclamar el VIP.',
-                'Aqui aparecem os amigos que você convidou. Quando instalarem o app, usarem seu código e terminarem a primeira lição, o VIP fica pronto.',
-                'Bạn bè bạn mời sẽ xuất hiện ở đây. Khi họ cài ứng dụng, nhập mã của bạn và học xong bài đầu tiên, bạn có thể nhận VIP.',
-                'Teman yang kamu undang muncul di sini. Setelah mereka memasang aplikasi, memasukkan kodemu, dan menyelesaikan pelajaran pertama, VIP bisa diambil.',
-                'Davet ettiğin arkadaşlar burada görünür. Uygulamayı kurup kodunu girer ve ilk dersi bitirirlerse VIP alınır.',
-                'Tutaj pojawią się znajomi, których zaprosisz. Gdy zainstalują aplikację, wpiszą twój kod i skończą pierwszą lekcję, VIP będzie do odebrania.',
+                'Здесь появятся друзья, которым ты отправил приглашение. Как только друг поставит приложение, введёт твой код и закончит первый урок — Plus можно забирать.',
+                'Тут з’являться друзі, яким ти надіслав запрошення. Щойно друг встановить застосунок, введе твій код і закінчить перший урок — Plus можна забирати.',
+                'Aquí aparecerán los amigos a quienes invitaste. Cuando instalen la app, usen tu código y terminen la primera lección, podrás reclamar Plus.',
+                'Aqui aparecem os amigos que você convidou. Quando instalarem o app, usarem seu código e terminarem a primeira lição, o Plus fica pronto.',
+                'Bạn bè bạn mời sẽ xuất hiện ở đây. Khi họ cài ứng dụng, nhập mã của bạn và học xong bài đầu tiên, bạn có thể nhận Plus.',
+                'Teman yang kamu undang muncul di sini. Setelah mereka memasang aplikasi, memasukkan kodemu, dan menyelesaikan pelajaran pertama, Plus bisa diambil.',
+                'Davet ettiğin arkadaşlar burada görünür. Uygulamayı kurup kodunu girer ve ilk dersi bitirirlerse Plus alınır.',
+                'Tutaj pojawią się znajomi, których zaprosisz. Gdy zainstalują aplikację, wpiszą twój kod i skończą pierwszą lekcję, Plus będzie do odebrania.',
               )}
             </Text>
           </View>
+
+          {referralEnabled && (
+            <TouchableOpacity
+              testID="referrals-invite"
+              accessibilityRole="button"
+              activeOpacity={0.84}
+              disabled={inviteBusy}
+              onPress={() => { void handleInvite(); }}
+              style={{
+                minHeight: 54,
+                borderRadius: 16,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                backgroundColor: t.accent,
+                opacity: inviteBusy ? 0.7 : 1,
+              }}
+            >
+              {inviteBusy
+                ? <ActivityIndicator color={t.correctText} />
+                : <Ionicons name="share-social" size={20} color={t.correctText} />}
+              <Text style={{ color: t.correctText, fontSize: f.body ?? 16, fontWeight: '900' }}>
+                {L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
+              </Text>
+            </TouchableOpacity>
+          )}
 
           {referralEnabled && referralCode ? (
             <View

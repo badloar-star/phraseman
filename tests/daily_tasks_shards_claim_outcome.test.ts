@@ -1,16 +1,3 @@
-/**
- * Контракт клиентской выдачи осколка за все дневные задания
- * (claimDailyTasksAllShardsRewardDetailed) — корень баг-репортов daily_tasks
- * «не забрать осколки уже который день» / «осколки уменьшились».
- *
- * Проверяем:
- *  1) сервер вернул alreadyClaimed → исход 'already' (НЕ 'failed'), маркер ставится,
- *     серверный баланс подтягивается локально (фикс расхождения «осколки уменьшились»);
- *  2) сервер реально начислил → исход 'granted';
- *  3) в payload CF уходит stableId (фикс рассинхрона документа при релинке);
- *  4) сбой CF → исход 'failed'.
- */
-
 const mockCallable = jest.fn();
 
 jest.mock('../app/config', () => ({
@@ -47,9 +34,20 @@ jest.mock('../app/storage_mutex', () => ({
 }));
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { claimDailyTasksAllShardsRewardDetailed } from '../app/shards_system';
+import {
+  claimDailyTasksAllShardsRewardDetailed,
+  resumePendingDailyTasksAllShardsClaims,
+} from '../app/shards_system';
 
 const DAY = '2026-06-21';
+const REWARD_KEY = `daily_tasks_all_shards_${DAY}`;
+const PENDING_KEY = `daily_tasks_all_shards_pending_${DAY}`;
+
+const flushAsync = async (turns = 6) => {
+  for (let i = 0; i < turns; i += 1) {
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+  }
+};
 
 beforeEach(async () => {
   mockCallable.mockReset();
@@ -57,61 +55,88 @@ beforeEach(async () => {
 });
 
 describe('claimDailyTasksAllShardsRewardDetailed', () => {
-  it('alreadyClaimed → "already" (НЕ ошибка), маркер ставится', async () => {
+  it('alreadyClaimed from the server still resolves optimistically and then reconciles', async () => {
     mockCallable.mockResolvedValue({ data: { alreadyClaimed: true, newBalance: 42 } });
 
     const outcome = await claimDailyTasksAllShardsRewardDetailed(DAY);
 
-    expect(outcome).toBe('already');
-    // маркер «забрано» записан → кнопка погаснет молча, без вечного тоста
-    expect(await AsyncStorage.getItem(`daily_tasks_all_shards_${DAY}`)).toBe('1');
+    expect(outcome).toBe('granted');
+    expect(await AsyncStorage.getItem(REWARD_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('1');
+
+    await flushAsync();
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('42');
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
   });
 
-  it('alreadyClaimed → подтягивает серверный баланс локально (фикс «осколки уменьшились»)', async () => {
-    mockCallable.mockResolvedValue({ data: { alreadyClaimed: true, newBalance: 77 } });
-
-    await claimDailyTasksAllShardsRewardDetailed(DAY);
-
-    expect(await AsyncStorage.getItem('shards_balance')).toBe('77');
-  });
-
-  it('реальное начисление → "granted"', async () => {
+  it('real server grant keeps the optimistic outcome and later mirrors the server balance', async () => {
     mockCallable.mockResolvedValue({ data: { alreadyClaimed: false, newBalance: 10 } });
 
     const outcome = await claimDailyTasksAllShardsRewardDetailed(DAY);
 
     expect(outcome).toBe('granted');
-    expect(await AsyncStorage.getItem(`daily_tasks_all_shards_${DAY}`)).toBe('1');
+    expect(await AsyncStorage.getItem(REWARD_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('1');
+
+    await flushAsync();
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('10');
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
   });
 
-  it('в payload CF уходит stableId (фикс рассинхрона документа при релинке)', async () => {
+  it('passes stableId to the Cloud Function in the background payload', async () => {
     mockCallable.mockResolvedValue({ data: { alreadyClaimed: false, newBalance: 1 } });
 
     await claimDailyTasksAllShardsRewardDetailed(DAY);
+    await flushAsync();
 
     expect(mockCallable).toHaveBeenCalledWith(
       expect.objectContaining({ dayKey: DAY, stableId: 'stable-abc-123' }),
     );
   });
 
-  it('сбой CF → "failed"', async () => {
+  it('keeps the optimistic local claim pending when the Cloud Function fails', async () => {
     mockCallable.mockRejectedValue(new Error('network'));
 
     const outcome = await claimDailyTasksAllShardsRewardDetailed(DAY);
 
-    expect(outcome).toBe('failed');
-    // маркер НЕ ставится — пользователь сможет повторить
-    expect(await AsyncStorage.getItem(`daily_tasks_all_shards_${DAY}`)).toBeNull();
+    expect(outcome).toBe('granted');
+    expect(await AsyncStorage.getItem(REWARD_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('1');
+
+    await flushAsync();
+    expect(await AsyncStorage.getItem(REWARD_KEY)).toBe('1');
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBe('1');
   });
 
-  it('повторный вызов после успеха → "already" без второго обращения к CF', async () => {
+  it('repeat call after successful sync returns "already" without a second Cloud Function call', async () => {
     mockCallable.mockResolvedValue({ data: { alreadyClaimed: false, newBalance: 5 } });
     await claimDailyTasksAllShardsRewardDetailed(DAY);
+    await flushAsync();
     mockCallable.mockClear();
 
     const outcome = await claimDailyTasksAllShardsRewardDetailed(DAY);
+    await flushAsync();
 
     expect(outcome).toBe('already');
     expect(mockCallable).not.toHaveBeenCalled();
+  });
+
+  it('resumes pending optimistic claims later without another user action', async () => {
+    mockCallable.mockRejectedValueOnce(new Error('offline'));
+    await claimDailyTasksAllShardsRewardDetailed(DAY);
+    await flushAsync();
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBe('1');
+
+    mockCallable.mockReset();
+    mockCallable.mockResolvedValue({ data: { alreadyClaimed: false, newBalance: 8 } });
+
+    await expect(resumePendingDailyTasksAllShardsClaims()).resolves.toEqual({ resolved: 1, pending: 0 });
+    expect(mockCallable).toHaveBeenCalledWith(
+      expect.objectContaining({ dayKey: DAY, stableId: 'stable-abc-123' }),
+    );
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
+    expect(await AsyncStorage.getItem('shards_balance')).toBe('8');
   });
 });

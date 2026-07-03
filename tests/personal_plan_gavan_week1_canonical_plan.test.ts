@@ -82,20 +82,13 @@ describe('Gavan week 1 canonical plan after reset', () => {
     }
   });
 
-  it('plans a 10-question daily quiz with sources from that day only', () => {
+  it('keeps canonical days exercise-only without a daily quiz layer', () => {
     const plan = buildGavanWeek1CanonicalPlan();
 
     for (const day of plan.days) {
-      const dayPhraseIds = new Set(day.phrases.map((phrase) => phrase.id));
-      expect(day.quiz.questionCount).toBe(10);
-      expect(day.quiz.questions).toHaveLength(10);
-      for (const question of day.quiz.questions) {
-        expect(dayPhraseIds.has(question.sourcePhraseId)).toBe(true);
-        expect(question.promptRu.length).toBeGreaterThan(15);
-        expect(question.options).toHaveLength(4);
-        expect(question.options.filter((option) => option.isCorrect)).toHaveLength(1);
-      }
+      expect(day).not.toHaveProperty('quiz');
     }
+    expect(JSON.stringify(plan)).not.toMatch(/\bquiz\b|квиз/i);
   });
 
   it('passes the canonical quality gate and exposes a large implementation queue', () => {
@@ -104,7 +97,7 @@ describe('Gavan week 1 canonical plan after reset', () => {
     const queue = buildGavanWeek1ImplementationQueue(plan);
 
     expect(validation).toEqual({ valid: true, issues: [] });
-    expect(queue).toHaveLength(24);
+    expect(queue).toHaveLength(17);
     expect(queue[0]).toEqual(expect.objectContaining({
       id: 'gavan-week1-bridge-canonical-plan',
       priority: 'P0',

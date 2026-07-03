@@ -188,6 +188,7 @@ describe('nameReserve — atomic uniqueness', () => {
       user_name: 'Civi',
       user_name_lower: 'civi',
       nickname_changed_at: '1777000000000',
+      nickname_free_change_available: '1',
     });
     expect(store.public_profiles['stable-a']).toMatchObject({ uid: 'stable-a', name: 'Civi', nameLower: 'civi' });
   });
@@ -209,6 +210,37 @@ describe('nameReserve — atomic uniqueness', () => {
     );
     expect(res.status).toBe('cooldown');
     expect(res.nextChangeAt).toBe(1778209599000);
+  });
+
+  it('allows the first settings change after onboarding and consumes the free-change flag', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            nickname_free_change_available: '1',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'settings' },
+      'auth-a',
+    );
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+    expect(store.users['stable-a']?.progress).toMatchObject({
+      user_name: 'Nova',
+      user_name_lower: 'nova',
+      nickname_changed_at: '1777000000000',
+      nickname_free_change_available: '0',
+    });
   });
 
   it('allows changing an onboarding draft name before the profile is completed', async () => {

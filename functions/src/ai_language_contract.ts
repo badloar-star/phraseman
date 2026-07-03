@@ -11,6 +11,7 @@ export type AiLanguageFeature =
   | 'choice'
   | 'quiz'
   | 'compass'
+  | 'help_board'
   | 'mistake_explain'
   | 'weekly_review'
   | 'stats_insights'

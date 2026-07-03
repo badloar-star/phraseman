@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
@@ -7,6 +7,7 @@ import type { Lang } from '../../constants/i18n';
 import type { IntroChoiceInteraction } from '../../app/lesson_data_types';
 import type { ThemeMode } from '../../constants/theme';
 import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
+import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
 /**
  * «Выбери форму» — 3-Tile Choice. Один пропуск, 2-3 кнопки.
@@ -20,15 +21,55 @@ interface Props {
   theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
   themeMode?: ThemeMode;
   onSolved?: () => void;
+  initialProgress?: TheoryDrillProgressState;
+  onProgressChange?: (state: TheoryDrillProgressState) => void;
 }
 
-export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, onSolved }: Props) {
+export default function ThreeTileChoice({
+  data,
+  lang,
+  accent,
+  theme,
+  themeMode,
+  onSolved,
+  initialProgress,
+  onProgressChange,
+}: Props) {
   // В теме business тёмный текст на ярких плашках обесцвечиваем (см. monoIcon).
   const onBrightText = (color: string): string =>
     themeMode ? monoIcon(themeMode, color, MONO_ICON.onLight) : color;
-  const [picked, setPicked] = useState<string | null>(null);
-  const [showWhy, setShowWhy] = useState(false);
+  const [picked, setPicked] = useState<string | null>(() =>
+    typeof initialProgress?.picked === 'string'
+      ? initialProgress.picked
+      : initialProgress?.status === 'solved'
+        ? data.answer
+        : null,
+  );
+  const [showWhy, setShowWhy] = useState(() => initialProgress?.showWhy === true);
   const isCorrect = picked === data.answer;
+
+  useEffect(() => {
+    setPicked(
+      typeof initialProgress?.picked === 'string'
+        ? initialProgress.picked
+        : initialProgress?.status === 'solved'
+          ? data.answer
+          : null,
+    );
+    setShowWhy(initialProgress?.showWhy === true);
+  }, [initialProgress, data.answer]);
+
+  const persist = useCallback(
+    (next: Partial<TheoryDrillProgressState>) => {
+      onProgressChange?.({
+        type: 'choice',
+        status: next.status ?? (picked === data.answer ? 'solved' : 'idle'),
+        picked: next.picked !== undefined ? next.picked : picked,
+        showWhy: next.showWhy !== undefined ? next.showWhy : showWhy,
+      });
+    },
+    [data.answer, onProgressChange, picked, showWhy],
+  );
 
   const pick = useCallback(
     (opt: string) => {
@@ -36,6 +77,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, 
       if (opt === data.answer) {
         setPicked(opt);
         hapticSuccess();
+        onProgressChange?.({ type: 'choice', status: 'solved', picked: opt, showWhy });
         onSolved?.();
       } else {
         setPicked(opt);
@@ -43,7 +85,7 @@ export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, 
         setTimeout(() => setPicked((p) => (p === opt ? null : p)), 900);
       }
     },
-    [data.answer, isCorrect, onSolved],
+    [data.answer, isCorrect, onProgressChange, onSolved, showWhy],
   );
 
   const why = introText(data.why, lang);
@@ -100,7 +142,14 @@ export default function ThreeTileChoice({ data, lang, accent, theme, themeMode, 
       </View>
 
       {!!why && (
-        <TapScale onPress={() => setShowWhy(true)} accessibilityRole="button" style={styles.whyBtn}>
+        <TapScale
+          onPress={() => {
+            setShowWhy(true);
+            persist({ showWhy: true });
+          }}
+          accessibilityRole="button"
+          style={styles.whyBtn}
+        >
           <Text style={[styles.why, { color: theme.textMuted }]}>
             {showWhy ? why : 'почему?'}
           </Text>

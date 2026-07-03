@@ -13,6 +13,8 @@ const QUIZ_LEVEL_LOGO_THEME_KEYS: readonly QuizLevelLogoThemeMode[] = [
   'gold',
   'coral',
   'minimalDark',
+  'business',
+  'businessLight',
   'midnight',
   'ember',
   'aurora',
@@ -51,6 +53,11 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-business.webp'),
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-business.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-business.webp'),
+  },
+  businessLight: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-businessLight.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-businessLight.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-businessLight.webp'),
   },
   midnight: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
@@ -109,6 +116,11 @@ export const QUIZ_LEVEL_LOGOS: Record<QuizLevelLogoThemeMode, Record<Level, numb
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-business.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-business.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-business.webp'),
+  },
+  businessLight: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-businessLight.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-businessLight.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-businessLight.webp'),
   },
   midnight: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-midnight.webp'),
@@ -182,9 +194,14 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     hard: { gradA: '#161B2A', gradB: '#0C0E14', accent: '#A78BFA' },
   },
   business: {
-    easy: { gradA: '#1C1C1C', gradB: '#0D0D0D', accent: '#FFFFFF' },
-    medium: { gradA: '#222222', gradB: '#111111', accent: '#D4D4D4' },
-    hard: { gradA: '#181818', gradB: '#0A0A0A', accent: '#9A9A9A' },
+    easy: { gradA: '#121212', gradB: '#050505', accent: '#0095F6' },
+    medium: { gradA: '#161616', gradB: '#111318', accent: '#E6E6E6' },
+    hard: { gradA: '#101010', gradB: '#000000', accent: '#A8A8A8' },
+  },
+  businessLight: {
+    easy: { gradA: '#FFFFFF', gradB: '#FAFAFA', accent: '#0095F6' },
+    medium: { gradA: '#FFFFFF', gradB: '#FAFAFA', accent: '#0095F6' },
+    hard: { gradA: '#FAFAFA', gradB: '#EFEFEF', accent: '#555555' },
   },
   midnight: {
     easy: { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
@@ -225,7 +242,8 @@ export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondar
   gold: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral: { primary: '#FFFFFF', secondary: '#D8C2C5' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
-  business: { primary: '#F2F2F2', secondary: '#9A9A9A' },
+  business: { primary: '#F5F5F5', secondary: '#737373' },
+  businessLight: { primary: '#262626', secondary: '#8E8E8E' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },

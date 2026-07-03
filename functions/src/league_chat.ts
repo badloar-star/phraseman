@@ -7,6 +7,7 @@ import {
 } from './league_chat_blocklist.generated';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { buildUserNotification, userNotificationRef } from './user_notifications';
 
 const REGION = 'us-central1';
 const MAX_MESSAGE_LENGTH = 420;
@@ -246,6 +247,7 @@ export const leagueChatSendMessage = onCall({ region: REGION, enforceAppCheck: E
   const groupId = String(request.data?.groupId ?? '').trim();
   const weekId = String(request.data?.weekId ?? '').trim();
   const leagueId = Math.trunc(Number(request.data?.leagueId) || 0);
+  const replyToMessageId = String(request.data?.replyToMessageId ?? '').trim().slice(0, 160);
 
   if (!text) throw new HttpsError('invalid-argument', 'empty_message');
   if (!groupId || !weekId) throw new HttpsError('invalid-argument', 'room_required');
@@ -265,6 +267,33 @@ export const leagueChatSendMessage = onCall({ region: REGION, enforceAppCheck: E
   const member = active.member || {};
   const progress = ((active.userData?.progress || {}) as Record<string, string>);
   const moderation = moderate(text);
+
+  // Реплай как в Telegram: цитата денормализуется в сам док сообщения.
+  // Невалидная цель (чужая комната/удалено) → сообщение уходит без цитаты.
+  let replyTo: {
+    messageId: string;
+    authorUid: string;
+    authorName: string;
+    text: string;
+    kind: 'user' | 'system';
+  } | null = null;
+  if (replyToMessageId) {
+    const replySnap = await db.collection('league_chat_messages').doc(replyToMessageId).get();
+    const reply = replySnap.data() || {};
+    const sameRoom = String(reply.groupId || '') === groupId && String(reply.weekId || '') === weekId;
+    if (replySnap.exists && sameRoom && reply.status === 'visible') {
+      const i18n = (reply.i18n && typeof reply.i18n === 'object') ? reply.i18n as Record<string, string> : {};
+      const quoteText = String(reply.text || i18n.en || Object.values(i18n)[0] || '').slice(0, 140);
+      replyTo = {
+        messageId: replyToMessageId,
+        authorUid: String(reply.authorUid || '').slice(0, 160),
+        authorName: String(reply.authorName || '').slice(0, 48),
+        text: quoteText,
+        kind: reply.kind === 'system' ? 'system' : 'user',
+      };
+    }
+  }
+
   const base = {
     groupId,
     weekId,
@@ -278,6 +307,13 @@ export const leagueChatSendMessage = onCall({ region: REGION, enforceAppCheck: E
     normalizedText: moderation.normalizedText,
     moderationCategories: moderation.categories,
     moderationReasons: moderation.reasons,
+    ...(replyTo ? {
+      replyToMessageId: replyTo.messageId,
+      replyToAuthorUid: replyTo.authorUid,
+      replyToAuthorName: replyTo.authorName,
+      replyToText: replyTo.text,
+      replyToKind: replyTo.kind,
+    } : {}),
     platform: String(request.data?.platform || ''),
     appVersion: String(request.data?.appVersion || ''),
     createdAt: now,
@@ -301,6 +337,19 @@ export const leagueChatSendMessage = onCall({ region: REGION, enforceAppCheck: E
     status: 'visible',
     reportCount: 0,
   });
+
+  // Центр событий: «X ответил на ваше сообщение» — только живому юзеру и не себе.
+  if (replyTo && replyTo.kind === 'user' && replyTo.authorUid && replyTo.authorUid !== stableUid) {
+    await userNotificationRef(db, replyTo.authorUid).set(buildUserNotification({
+      type: 'league_chat_reply',
+      fromUid: stableUid,
+      fromName: base.authorName,
+      fromAvatar: base.authorAvatar,
+      text: text.slice(0, 140),
+      nav: { kind: 'league_chat', groupId, weekId, leagueId, messageId: ref.id },
+    }, now)).catch(() => {});
+  }
+
   return { ok: true, status: 'sent', messageId: ref.id };
 });
 

@@ -38,8 +38,9 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext } from './monetization_policy';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { levelExamKey } from './target_storage_keys';
+import { levelExamKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
+import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -538,6 +539,8 @@ export default function LevelExam() {
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
+  const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
+  const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
   const lvl = validLevels.includes(level) ? level : 'A1';
@@ -561,11 +564,41 @@ export default function LevelExam() {
   const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
 
-  const questions = useMemo(() => {
+  const englishQuestions = useMemo(() => {
     if (frenchExamBlocked) return [];
     const [from, to] = LEVEL_RANGES[lvl] ?? [1, 8];
     return QUESTION_POOL.filter(q => q.lessonNum >= from && q.lessonNum <= to);
   }, [frenchExamBlocked, lvl]);
+  const [frenchQuestions, setFrenchQuestions] = useState<LevelQ[]>([]);
+  const [examQuestionsLoading, setExamQuestionsLoading] = useState(false);
+  const questions = isFrenchExam ? frenchQuestions : englishQuestions;
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!isFrenchExam || frenchExamBlocked) {
+      setFrenchQuestions([]);
+      setExamQuestionsLoading(false);
+      return () => { cancelled = true; };
+    }
+    setExamQuestionsLoading(true);
+    loadFrenchRemoteLevelExamQuestions(lvl, frenchExamSourceLocale, INTRO_Q_COUNT)
+      .then((rows) => {
+        if (!cancelled) setFrenchQuestions(rows);
+      })
+      .catch(() => {
+        if (!cancelled) setFrenchQuestions([]);
+      })
+      .finally(() => {
+        if (!cancelled) setExamQuestionsLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [frenchExamBlocked, frenchExamSourceLocale, isFrenchExam, lvl]);
+
+  useEffect(() => {
+    setIdx(0);
+    setChoices(new Array(questions.length).fill(null));
+    setShowAnswer(false);
+  }, [questions.length]);
 
   useEffect(() => {
     let cancelled = false;
@@ -686,7 +719,15 @@ export default function LevelExam() {
   const startExam = useCallback(async () => {
     if (examStarting) return; // двойной тап — игнор
     if (frenchExamBlocked) {
-      void trackFeatureBlocked('level_exam', 'start', 'french_exam_source_gate', { level: lvl, studyTarget }, 'level_exam');
+      void trackFeatureBlocked('level_exam', 'start', 'exam_content_gate_disabled', { level: lvl, studyTarget }, 'level_exam');
+      return;
+    }
+    if (examQuestionsLoading || questions.length === 0) {
+      void trackFeatureBlocked('level_exam', 'start', 'exam_questions_unavailable', {
+        level: lvl,
+        studyTarget,
+        loading: examQuestionsLoading,
+      }, 'level_exam');
       return;
     }
     setExamStarting(true);
@@ -713,7 +754,7 @@ export default function LevelExam() {
     } finally {
       setExamStarting(false);
     }
-  }, [examStarting, frenchExamBlocked, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
+  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
 

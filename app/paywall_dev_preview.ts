@@ -5,7 +5,7 @@
 // app/config.ts), поэтому реальных пакетов и цен нет. Без них на пейволе ИСЧЕЗАЛИ
 // два элемента, которые должны быть видны ВСЕГДА (и в dev, и в релизе):
 //   • таймер «старой цены» (PaywallPriceUrgency скрыт при пустой currentPrice);
-//   • кнопка «Навсегда» (lifetimeAvailable=false без пакета lifetime).
+//   • кнопка Phraseman Pro (lifetimeAvailable=false без пакета lifetime).
 //
 // Эти строки — ТОЛЬКО для отображения в dev. В реальную покупку они НЕ уходят:
 // в dev покупка идёт по ветке DEV_IAP_BYPASS в usePaywallPurchase (Purchases API

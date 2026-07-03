@@ -82,7 +82,7 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
         testID="admin-extra-profile-card-upgrade"
         icon="id-card-outline"
         label="Карточка профиля (экран)"
-        sub="Полноэкранный экран прокачки карточки — живая галерея уровней. Открывает реальный экран."
+        sub="Полноэкранный одношаговый Pro-апгрейд карточки. Открывает реальный экран."
         onPress={() => router.push('/profile_card_upgrade' as any)}
       />
 

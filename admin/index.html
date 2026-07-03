@@ -151,6 +151,58 @@
     .users-tab { display: none; }
     .users-tab.active { display: block; }
 
+    /* Overview daily trend tabs — ID-scoped + !important so the onboarding skin's
+       `button:not(...)` rule (which uses !important) does not override them. */
+    #overview-trend-tabs .overview-trend-tab,
+    #analytics-trend-tabs .overview-trend-tab {
+      background:#151925 !important; color:#9ca3af !important; border:1px solid #262c3b !important;
+      border-radius:8px !important; padding:6px 13px; font-size:12.5px; font-weight:600;
+      cursor:pointer; box-shadow:none !important; min-height:0;
+      transition:background .12s, color .12s, border-color .12s;
+    }
+    #overview-trend-tabs .overview-trend-tab:hover,
+    #analytics-trend-tabs .overview-trend-tab:hover { background:#1a1f2e !important; color:#e5e7eb !important; border-color:#39415a !important; }
+    #overview-trend-tabs .overview-trend-tab.is-active,
+    #analytics-trend-tabs .overview-trend-tab.is-active {
+      background:#1d2740 !important; color:#f1f5f9 !important; border-color:#3b82f6 !important;
+    }
+    /* Smaller chips for period / granularity / reset — same skin-override guard. */
+    .admin-overview-trend .overview-trend-chip {
+      background:#12151f !important; color:#8b919c !important; border:1px solid #232838 !important;
+      border-radius:7px !important; padding:4px 11px !important; font-size:11.5px; font-weight:600;
+      cursor:pointer; box-shadow:none !important; min-height:0;
+      transition:background .12s, color .12s, border-color .12s;
+    }
+    .admin-overview-trend .overview-trend-chip:hover { background:#171b28 !important; color:#e5e7eb !important; border-color:#343b52 !important; }
+    .admin-overview-trend .overview-trend-chip.is-active {
+      background:#182238 !important; color:#e8eefc !important; border-color:#3b82f6 !important;
+    }
+
+    /* Analytics v2 — flat dark cards matching the Overview skin (no frames-in-frames). */
+    .an2-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+    .an2-card {
+      background:#0d0f17; border:1px solid #1e2230; border-radius:12px; padding:14px 16px;
+    }
+    .an2-kicker { font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:#6b7280; font-weight:700; }
+    .an2-value { font-size:26px; font-weight:800; color:#f1f5f9; margin-top:6px; line-height:1.05; }
+    .an2-note { font-size:11.5px; color:#6b7280; margin-top:5px; line-height:1.4; }
+    .an2-src { display:inline-block; margin-top:7px; font-size:9.5px; letter-spacing:.4px; text-transform:uppercase;
+      color:#5b6472; background:#11141d; border:1px solid #1c2130; border-radius:5px; padding:2px 6px; font-weight:700; }
+    /* Funnel breakdown card (steps as horizontal bars). */
+    .an2-funnel { background:#0d0f17; border:1px solid #1e2230; border-radius:12px; padding:16px 18px; }
+    .an2-funnel-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+    .an2-funnel-title { font-size:14px; font-weight:800; color:#f1f5f9; }
+    .an2-funnel-sub { font-size:11.5px; color:#6b7280; }
+    .an2-step { margin-bottom:9px; }
+    .an2-step:last-child { margin-bottom:0; }
+    .an2-step-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+    .an2-step-label { font-size:12px; color:#cbd5e1; font-weight:600; }
+    .an2-step-num { font-size:12px; color:#f1f5f9; font-weight:800; }
+    .an2-step-num small { color:#6b7280; font-weight:600; margin-left:5px; }
+    .an2-step-track { height:7px; background:#161a26; border-radius:5px; overflow:hidden; }
+    .an2-step-fill { height:100%; border-radius:5px; }
+    .an2-empty { font-size:12px; color:#6b7280; padding:8px 0; }
+
     /* Reports tab */
     .reports-tab { display: none; padding: 20px 24px; }
     .reports-tab.active { display: block; }
@@ -10213,6 +10265,35 @@
     </div>
   </section>
 
+  <section class="admin-overview-trend" aria-label="Daily trend" style="margin-top:16px;background:#0d0f17;border:1px solid #1e2230;border-radius:12px;padding:16px 18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:#f1f5f9">Daily trend</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:2px">Hover a point for the exact day. Scroll to zoom, drag to pan.</div>
+      </div>
+      <div id="overview-trend-tabs" role="tablist" style="display:flex;flex-wrap:wrap;gap:6px">
+        <button type="button" class="overview-trend-tab is-active" data-trend-metric="visits" role="tab" aria-selected="true">Visits</button>
+        <button type="button" class="overview-trend-tab" data-trend-metric="ios" role="tab" aria-selected="false">iOS</button>
+        <button type="button" class="overview-trend-tab" data-trend-metric="android" role="tab" aria-selected="false">Android</button>
+        <button type="button" class="overview-trend-tab" data-trend-metric="revenue" role="tab" aria-selected="false">Purchases</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:10px">
+      <div id="overview-trend-range" style="display:flex;gap:6px" aria-label="Period">
+        <button type="button" class="overview-trend-chip is-active" data-trend-range="7">7d</button>
+        <button type="button" class="overview-trend-chip" data-trend-range="30">30d</button>
+        <button type="button" class="overview-trend-chip" data-trend-range="90">90d</button>
+      </div>
+      <div id="overview-trend-gran" style="display:flex;gap:6px" aria-label="Granularity">
+        <button type="button" class="overview-trend-chip is-active" data-trend-gran="day">Daily</button>
+        <button type="button" class="overview-trend-chip" data-trend-gran="week">Weekly</button>
+      </div>
+      <button type="button" id="overview-trend-reset" class="overview-trend-chip" style="margin-left:auto">Reset zoom</button>
+    </div>
+    <div id="overview-trend-status" style="font-size:12px;color:#6b7280;min-height:14px">Loading…</div>
+    <div style="margin-top:6px;position:relative;height:230px"><canvas id="overview-trend-canvas"></canvas></div>
+  </section>
+
   <section class="admin-overview-worklist" aria-label="Admin worklist">
     <div class="admin-overview-row" role="button" tabindex="0" data-admin-goto="app-health">
       <div><div class="admin-overview-row-title">Check app health first</div><div class="admin-overview-row-meta">Recent activity, health events, archive, audit, and ops diagnostics.</div></div>
@@ -13140,65 +13221,88 @@
     <span id="analytics-mode-badge" data-i18n-es="Core (fast)" style="padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#0f2a1a;color:#4ade80;border:1px solid #14532d">Core (fast)</span>
     <span class="reports-count" id="analytics-note" data-i18n-es="Modo Core: gráficos secundarios ocultos">Core режим: скрыты второстепенные графики</span>
   </div>
-  <div class="revenue-analytics-panel" style="margin-bottom:18px;border:1px solid var(--panel-border);border-radius:10px;background:rgba(8,12,16,.72);padding:14px">
-    <div style="display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px">
-      <div>
-        <h2 style="margin:0 0 4px;color:#fff;font-size:20px">Paywall analytics</h2>
-        <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">Daily funnel metrics for settings, automatic paywall, onboarding paywall, and shards shop. Platform filter applies to every chart.</div>
+  <!-- ══ Analytics v2 — Overview-styled paywall funnel, sourced from `paywall_funnel` (real data). ══ -->
+  <section class="admin-overview-hero" style="margin-bottom:16px">
+    <div>
+      <div class="admin-overview-title">Revenue &amp; paywall analytics</div>
+      <div class="admin-overview-sub">The real paywall funnel from the <code>paywall_funnel</code> log — the same source as the Overview “Purchases” trend, so the numbers agree. Shown → CTA → trial → purchase, by day and by paywall source.</div>
+    </div>
+    <div class="revenue-controls" id="an2-controls" style="align-items:flex-end">
+      <div class="revenue-field">
+        <label for="an2-range">Period</label>
+        <select id="an2-range" title="Period">
+          <option value="7">7 days</option>
+          <option value="28" selected>28 days</option>
+          <option value="90">90 days</option>
+        </select>
       </div>
-      <div class="revenue-controls">
-        <div class="revenue-field">
-          <label for="revenue-range">Period</label>
-          <select id="revenue-range" onchange="revenueOnRangeChange(this.value)" title="Period">
-            <option value="7">7 days</option>
-            <option value="28" selected>28 days</option>
-            <option value="90">90 days</option>
-            <option value="180">180 days</option>
-            <option value="custom">Custom</option>
-          </select>
-        </div>
-        <div class="revenue-field">
-          <label for="revenue-date-from">From</label>
-          <input id="revenue-date-from" type="date" onchange="revenueUseCustomRange()" title="Start date">
-        </div>
-        <div class="revenue-field">
-          <label for="revenue-date-to">To</label>
-          <input id="revenue-date-to" type="date" onchange="revenueUseCustomRange()" title="End date">
-        </div>
-        <div class="revenue-field">
-          <label for="revenue-scale">Scale</label>
-          <select id="revenue-scale" onchange="loadRevenueAnalytics(true)" title="Bar width">
-            <option value="compact">Compact</option>
-            <option value="normal" selected>Normal</option>
-            <option value="wide">Wide</option>
-          </select>
-        </div>
-        <div class="revenue-field">
-          <label for="revenue-platform">Platform</label>
-          <select id="revenue-platform" onchange="loadRevenueAnalytics(true)" title="Platform">
-            <option value="all">All platforms</option>
-            <option value="ios">iPhone / iOS</option>
-            <option value="android">Android</option>
-          </select>
-        </div>
-        <button type="button" onclick="loadRevenueAnalytics(true)" title="Reload analytics with the selected range and scale">Refresh</button>
-      </div>
+      <button type="button" id="an2-refresh" title="Reload funnel data">Refresh</button>
     </div>
-    <div id="revenue-status" class="reports-empty revenue-analytics-status">Analytics opens with a safe dashboard shell first. Firestore data loads automatically when this tab is active.</div>
-    <div id="revenue-summary" class="stats" style="padding:0;margin-bottom:12px">
-      <div class="stat-card"><div class="label">Paywall views</div><div class="value">-</div></div>
-      <div class="stat-card"><div class="label">Paywall purchases</div><div class="value">-</div></div>
-      <div class="stat-card"><div class="label">Plus events</div><div class="value">-</div></div>
-      <div class="stat-card"><div class="label">Shards purchases</div><div class="value">-</div></div>
-      <div class="stat-card"><div class="label">Platform</div><div class="value">all</div></div>
-    </div>
-    <div id="revenue-analytics-grid" class="analytics-grid">
-      <div class="chart-card revenue-empty-state" data-revenue-chart="paywall_settings_views"><h3>Settings paywall</h3><div class="reports-empty" style="padding:12px 0">Waiting for Firestore data...</div></div>
-      <div class="chart-card revenue-empty-state" data-revenue-chart="paywall_auto_views"><h3>Automatic paywall</h3><div class="reports-empty" style="padding:12px 0">Waiting for Firestore data...</div></div>
-      <div class="chart-card revenue-empty-state" data-revenue-chart="paywall_onboarding_views"><h3>Onboarding paywall</h3><div class="reports-empty" style="padding:12px 0">Waiting for Firestore data...</div></div>
-      <div class="chart-card revenue-empty-state" data-revenue-chart="shards_shop_opened"><h3>Shards shop</h3><div class="reports-empty" style="padding:12px 0">Waiting for Firestore data...</div></div>
-    </div>
+  </section>
+
+  <div id="an2-status" style="font-size:12px;color:#6b7280;margin-bottom:10px;min-height:14px">Loading paywall funnel…</div>
+
+  <!-- Why numbers can be low/zero — honest explainer so 0 is not read as a broken dashboard. -->
+  <div style="font-size:11.5px;color:#8a92a0;background:#0d0f17;border:1px solid #1e2230;border-left:3px solid #3b5bdb;border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.5">
+    <b style="color:#c3cad6">Why a metric can read 0 or “—”:</b>
+    the <b>“Paying now”</b> cards above are exact — they come straight from the loaded users (progress.premium_plan), no consent or webhook needed.
+    The <b>funnel</b> cards (shown / CTA / trials / purchases / conversion) only count users who ticked <b>analytics consent</b> in onboarding (opt-in, off by default per GDPR), so they reflect the consented subset — not all users.
+    The <b>RevenueCat</b> cards (Plus events / shards) come from the store webhook and stay 0 until there are real <b>non-sandbox</b> purchases and the RevenueCat webhook points at production.
+    “—” = no data yet; “n/a” = the collection could not be read.
   </div>
+
+  <!-- Paying users NOW — real, always-available data straight from the loaded users snapshot
+       (progress.premium_plan via premiumInfo). Not consent-gated, not webhook-dependent. -->
+  <section class="an2-grid" id="an2-paying" aria-label="Paying users right now" style="margin-bottom:14px">
+    <div class="an2-card"><div class="an2-kicker">Paying now</div><div class="an2-value" id="an2-pay-total" style="color:#4ade80">–</div><div class="an2-note">Active Plus + Pro across loaded users.</div><span class="an2-src">users · progress.premium_plan</span></div>
+    <div class="an2-card"><div class="an2-kicker">⭐ Plus (subscription)</div><div class="an2-value" id="an2-pay-plus" style="color:#fbbf24">–</div><div class="an2-note">Active recurring subscribers.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-kicker">💎 Pro (lifetime)</div><div class="an2-value" id="an2-pay-pro" style="color:#7dd3fc">–</div><div class="an2-note">One-time lifetime buyers.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-kicker">On trial</div><div class="an2-value" id="an2-pay-trial" style="color:#60a5fa">–</div><div class="an2-note">Currently in a free trial.</div><span class="an2-src">users</span></div>
+    <div class="an2-card"><div class="an2-kicker">Paid share</div><div class="an2-value" id="an2-pay-share">–</div><div class="an2-note">Paying ÷ loaded users.</div><span class="an2-src">derived</span></div>
+  </section>
+
+  <!-- Summary cards (Overview skin) -->
+  <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin:2px 0 8px">Paywall funnel (consented users, by day)</div>
+  <section class="an2-grid" id="an2-summary" aria-label="Paywall funnel summary" style="margin-bottom:14px">
+    <div class="an2-card"><div class="an2-kicker">Paywall shown</div><div class="an2-value" id="an2-shown">–</div><div class="an2-note">Times a paywall appeared.</div><span class="an2-src">paywall_funnel</span></div>
+    <div class="an2-card"><div class="an2-kicker">CTA clicks</div><div class="an2-value" id="an2-cta">–</div><div class="an2-note">Tapped the subscribe button.</div><span class="an2-src">paywall_funnel</span></div>
+    <div class="an2-card"><div class="an2-kicker">Trials started</div><div class="an2-value" id="an2-trial">–</div><div class="an2-note">Free-trial signals.</div><span class="an2-src">paywall_funnel</span></div>
+    <div class="an2-card"><div class="an2-kicker">Purchases</div><div class="an2-value" id="an2-purchase" style="color:#4ade80">–</div><div class="an2-note">Completed purchases.</div><span class="an2-src">paywall_funnel</span></div>
+    <div class="an2-card"><div class="an2-kicker">Overall conversion</div><div class="an2-value" id="an2-conv">–</div><div class="an2-note">Purchases ÷ shown.</div><span class="an2-src">derived</span></div>
+    <div class="an2-card"><div class="an2-kicker">Plus RC events</div><div class="an2-value" id="an2-rc">–</div><div class="an2-note">RevenueCat Plus events.</div><span class="an2-src">revenuecat_premium_events</span></div>
+    <div class="an2-card"><div class="an2-kicker">Shards purchases</div><div class="an2-value" id="an2-shards">–</div><div class="an2-note">RevenueCat shard transactions.</div><span class="an2-src">revenuecat_shard_transactions</span></div>
+    <div class="an2-card"><div class="an2-kicker">Period</div><div class="an2-value" id="an2-period" style="font-size:15px">–</div><div class="an2-note" id="an2-events-note">Events loaded.</div><span class="an2-src">UTC days</span></div>
+  </section>
+
+  <!-- Interactive daily trend (same engine as Overview) -->
+  <section class="admin-overview-trend" aria-label="Paywall daily trend" style="margin-bottom:14px;background:#0d0f17;border:1px solid #1e2230;border-radius:12px;padding:16px 18px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:#f1f5f9">Daily funnel trend</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:2px">Hover a point for the exact day. Scroll to zoom, drag to pan.</div>
+      </div>
+      <div id="analytics-trend-tabs" role="tablist" style="display:flex;flex-wrap:wrap;gap:6px">
+        <button type="button" class="overview-trend-tab is-active" data-an2-metric="shown" role="tab" aria-selected="true">Shown</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="cta" role="tab" aria-selected="false">CTA</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="trial" role="tab" aria-selected="false">Trials</button>
+        <button type="button" class="overview-trend-tab" data-an2-metric="purchase" role="tab" aria-selected="false">Purchases</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:10px">
+      <div id="analytics-trend-gran" style="display:flex;gap:6px" aria-label="Granularity">
+        <button type="button" class="overview-trend-chip is-active" data-an2-gran="day">Daily</button>
+        <button type="button" class="overview-trend-chip" data-an2-gran="week">Weekly</button>
+      </div>
+      <button type="button" id="analytics-trend-reset" class="overview-trend-chip" style="margin-left:auto">Reset zoom</button>
+    </div>
+    <div id="analytics-trend-status" style="font-size:12px;color:#6b7280;min-height:14px">Loading…</div>
+    <div style="margin-top:6px;position:relative;height:230px"><canvas id="analytics-trend-canvas"></canvas></div>
+  </section>
+
+  <!-- Per-source funnel breakdown -->
+  <section class="an2-grid" id="an2-funnels" aria-label="Funnel by paywall source" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:14px">
+    <!-- populated by loadAnalyticsFunnelV2 -->
+  </section>
   <div id="analytics-stats" style="display:none">
     <!-- Платформы и Premium -->
     <div data-i18n-es="📱 Plataformas" style="padding: 0 0 4px 0; font-size:10px; color:#555; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">📱 Платформы</div>
@@ -17947,8 +18051,8 @@
     if ((tab === 'users' || tab === 'analytics') && (!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
       void window.loadUsers();
     }
-    if (tab === 'analytics' && typeof window.loadRevenueAnalytics === 'function') {
-      void window.loadRevenueAnalytics();
+    if (tab === 'analytics' && typeof window.initAnalyticsFunnelV2 === 'function') {
+      window.initAnalyticsFunnelV2();
     }
     if (tab === 'onboarding-sources' && typeof window.loadOnboardingSources === 'function') {
       void window.loadOnboardingSources();
@@ -18184,7 +18288,754 @@
         }
       })();
     }
+    // Daily trend chart (visits / ios / android / purchases over last 30 days)
+    initOverviewTrend();
   };
+
+  // ── Overview daily-trend chart (interactive, Chart.js) ────────────────────
+  // We always fetch the widest window (90 days) once per metric, then slice/
+  // aggregate on the client so range and granularity switches are instant.
+  const OVERVIEW_TREND_MAX_DAYS = 90;
+  const OVERVIEW_TREND_META = {
+    visits:  { label: 'Visits',           accent: '#60a5fa', field: 'visits' },
+    ios:     { label: 'iOS downloads',     accent: '#a78bfa', field: 'clicks_ios' },
+    android: { label: 'Android downloads', accent: '#fbbf24', field: 'clicks_android' },
+    revenue: { label: 'Purchases',         accent: '#4ade80', field: null },
+  };
+  const _overviewTrend = {
+    metric: 'visits',
+    range: 7,          // 7 | 30 | 90 days shown
+    gran: 'day',       // 'day' | 'week'
+    wired: false,
+    site: null,        // { 'YYYY-MM-DD': { visits, clicks_ios, clicks_android } }
+    revenue: null,     // { 'YYYY-MM-DD': buys }
+    loadingSite: false,
+    loadingRevenue: false,
+    chart: null,       // Chart.js instance
+    chartLib: null,    // resolved { Chart } once loaded
+    libLoading: null,  // in-flight import promise
+  };
+
+  function overviewTrendDayKeys(n) {
+    // Last n days as 'YYYY-MM-DD' (UTC), oldest first, ending today.
+    const out = [];
+    const today = new Date();
+    for (let i = n - 1; i >= 0; i--) {
+      const d = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() - i));
+      out.push(d.toISOString().slice(0, 10));
+    }
+    return out;
+  }
+
+  function overviewTrendSetStatus(text) {
+    const el = document.getElementById('overview-trend-status');
+    if (el) el.textContent = text || '';
+  }
+
+  // Inject an external script and resolve once it loads. UMD builds expose
+  // their globals on window and self-register plugins onto window.Chart.
+  function overviewTrendLoadScript(src) {
+    return new Promise((resolve, reject) => {
+      // Reuse an existing tag if we already added it.
+      const existing = document.querySelector(`script[data-trend-lib="${src}"]`);
+      if (existing) {
+        if (existing.dataset.loaded === '1') return resolve();
+        existing.addEventListener('load', () => resolve());
+        existing.addEventListener('error', () => reject(new Error('load failed: ' + src)));
+        return;
+      }
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.setAttribute('data-trend-lib', src);
+      s.addEventListener('load', () => { s.dataset.loaded = '1'; resolve(); });
+      s.addEventListener('error', () => reject(new Error('load failed: ' + src)));
+      document.head.appendChild(s);
+    });
+  }
+
+  // Lazily load Chart.js (UMD) + zoom plugin (UMD) from unpkg. UMD avoids the
+  // bare-specifier problem the ESM zoom build has ('hammerjs', 'chart.js/helpers'),
+  // and <script src> is covered by the deployed CSP script-src allowing unpkg.
+  async function overviewTrendEnsureLib() {
+    if (_overviewTrend.chartLib) return _overviewTrend.chartLib;
+    if (_overviewTrend.libLoading) return _overviewTrend.libLoading;
+    _overviewTrend.libLoading = (async () => {
+      await overviewTrendLoadScript('https://unpkg.com/chart.js@4.4.3/dist/chart.umd.js');
+      const Chart = window.Chart;
+      if (!Chart) throw new Error('Chart global missing after load');
+      try {
+        await overviewTrendLoadScript('https://unpkg.com/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js');
+        // UMD plugin auto-registers when Chart is a global; register defensively too.
+        const zoom = window.ChartZoom || (window['chartjs-plugin-zoom']);
+        if (zoom && Chart.registry && !Chart.registry.plugins.get('zoom')) Chart.register(zoom);
+      } catch (ze) {
+        console.warn('zoom plugin load failed (chart still works, no zoom)', ze);
+      }
+      _overviewTrend.chartLib = { Chart };
+      return _overviewTrend.chartLib;
+    })();
+    return _overviewTrend.libLoading;
+  }
+
+  // Build the [{label, value}] series for the current metric/range/gran from cache.
+  function overviewTrendSeries() {
+    const { metric, range, gran } = _overviewTrend;
+    const meta = OVERVIEW_TREND_META[metric];
+    const source = metric === 'revenue' ? _overviewTrend.revenue : _overviewTrend.site;
+    if (!source) return null; // not loaded yet
+    const days = overviewTrendDayKeys(range);
+    const daily = days.map((day) => {
+      let value;
+      if (metric === 'revenue') value = Number(source[day] || 0);
+      else value = Number((source[day] || {})[meta.field] || 0);
+      return { label: day, value };
+    });
+    if (gran !== 'week') return daily;
+    // Aggregate into buckets of 7 days; label = first day of the bucket.
+    const weekly = [];
+    for (let i = 0; i < daily.length; i += 7) {
+      const chunk = daily.slice(i, i + 7);
+      weekly.push({ label: chunk[0].label, value: chunk.reduce((s, p) => s + p.value, 0) });
+    }
+    return weekly;
+  }
+
+  function overviewTrendPrettyDay(iso, gran) {
+    // 'YYYY-MM-DD' -> 'Mon, Jun 15' (UTC). For weeks: 'week of …'.
+    const d = new Date(iso + 'T00:00:00Z');
+    const s = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
+    return gran === 'week' ? ('Week of ' + s) : s;
+  }
+
+  async function overviewTrendRenderChart() {
+    const canvas = document.getElementById('overview-trend-canvas');
+    if (!canvas) return;
+    const series = overviewTrendSeries();
+    if (!series) { overviewTrendSetStatus('Loading…'); return; }
+    const meta = OVERVIEW_TREND_META[_overviewTrend.metric];
+    const total = series.reduce((s, p) => s + p.value, 0);
+    overviewTrendSetStatus(`${meta.label} — total over ${_overviewTrend.range} days: ${PAB_NUM(total)}`);
+
+    let lib;
+    try { lib = await overviewTrendEnsureLib(); }
+    catch (e) {
+      console.warn('Chart.js load failed, falling back to static SVG', e);
+      // Graceful fallback: draw the old static SVG so the user still sees data.
+      const host = canvas.parentElement;
+      if (host) host.innerHTML = pabSvgLineChart(series, { accent: meta.accent });
+      return;
+    }
+    const Chart = lib.Chart;
+    const labels = series.map((p) => p.label);
+    const data = series.map((p) => p.value);
+    const gran = _overviewTrend.gran;
+
+    if (_overviewTrend.chart) {
+      // Update in place for smooth transitions.
+      const ch = _overviewTrend.chart;
+      ch.data.labels = labels;
+      ch.data.datasets[0].data = data;
+      ch.data.datasets[0].label = meta.label;
+      ch.data.datasets[0].borderColor = meta.accent;
+      ch.data.datasets[0].backgroundColor = overviewTrendFill(canvas, meta.accent);
+      ch.data.datasets[0].pointHoverBackgroundColor = meta.accent;
+      ch._granularity = gran;
+      ch.resetZoom && ch.resetZoom();
+      ch.update();
+      return;
+    }
+
+    _overviewTrend.chart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: meta.label,
+          data,
+          borderColor: meta.accent,
+          backgroundColor: overviewTrendFill(canvas, meta.accent),
+          borderWidth: 2,
+          fill: true,
+          tension: 0.28,
+          pointRadius: 2.5,
+          pointHoverRadius: 5,
+          pointBackgroundColor: '#0d0f17',
+          pointBorderColor: meta.accent,
+          pointHoverBackgroundColor: meta.accent,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0b0e16',
+            borderColor: '#2a2f40',
+            borderWidth: 1,
+            titleColor: '#f1f5f9',
+            bodyColor: '#cbd5e1',
+            padding: 10,
+            displayColors: false,
+            callbacks: {
+              title: (items) => overviewTrendPrettyDay(items[0].label, _overviewTrend.chart?._granularity || _overviewTrend.gran),
+              label: (item) => {
+                const m = OVERVIEW_TREND_META[_overviewTrend.metric];
+                return `${m.label}: ${PAB_NUM(item.parsed.y)}`;
+              },
+            },
+          },
+          zoom: {
+            pan: { enabled: true, mode: 'x', modifierKey: null },
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              drag: { enabled: false },
+              mode: 'x',
+            },
+            limits: { x: { minRange: 3 } },
+          },
+        },
+        scales: {
+          x: {
+            grid: { color: '#161a26' },
+            ticks: {
+              color: '#6b7280', font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8,
+              callback: function (val) {
+                const raw = this.getLabelForValue(val); // 'YYYY-MM-DD'
+                return typeof raw === 'string' ? raw.slice(5) : raw; // MM-DD
+              },
+            },
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: '#161a26' },
+            ticks: { color: '#6b7280', font: { size: 10 }, precision: 0 },
+          },
+        },
+      },
+    });
+    _overviewTrend.chart._granularity = gran;
+  }
+
+  function overviewTrendFill(canvas, accent) {
+    try {
+      const ctx = canvas.getContext('2d');
+      const g = ctx.createLinearGradient(0, 0, 0, canvas.height || 230);
+      g.addColorStop(0, overviewTrendHexA(accent, 0.28));
+      g.addColorStop(1, overviewTrendHexA(accent, 0));
+      return g;
+    } catch (_) { return overviewTrendHexA(accent, 0.18); }
+  }
+  function overviewTrendHexA(hex, a) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex);
+    if (!m) return hex;
+    const n = parseInt(m[1], 16);
+    return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+  }
+
+  async function overviewTrendEnsureSite() {
+    if (_overviewTrend.site || _overviewTrend.loadingSite) return;
+    _overviewTrend.loadingSite = true;
+    try {
+      const days = overviewTrendDayKeys(OVERVIEW_TREND_MAX_DAYS);
+      const snaps = await Promise.all(days.map((day) => getDoc(doc(db, 'site_stats', `daily_${day}`))));
+      const map = {};
+      days.forEach((day, i) => { map[day] = snaps[i].exists() ? (snaps[i].data() || {}) : {}; });
+      _overviewTrend.site = map;
+    } catch (e) {
+      console.warn('overview trend site load failed', e);
+      overviewTrendSetStatus('Could not load daily site stats.');
+      _overviewTrend.site = {};
+    } finally {
+      _overviewTrend.loadingSite = false;
+      if (_overviewTrend.metric !== 'revenue') overviewTrendRenderChart();
+    }
+  }
+
+  async function overviewTrendEnsureRevenue() {
+    if (_overviewTrend.revenue || _overviewTrend.loadingRevenue) return;
+    _overviewTrend.loadingRevenue = true;
+    try {
+      const days = overviewTrendDayKeys(OVERVIEW_TREND_MAX_DAYS);
+      const from = days[0], to = days[days.length - 1];
+      const qy = query(collection(db, 'paywall_funnel'), where('day', '>=', from), where('day', '<=', to));
+      const snap = await getDocs(qy);
+      const byDay = {};
+      days.forEach((day) => { byDay[day] = 0; });
+      snap.forEach((docSnap) => {
+        const r = docSnap.data() || {};
+        if (r.dev === true) return; // exclude dev/test events, matching funnel default
+        if (r.step !== 'purchase_completed') return;
+        const dayK = String(r.day || (r.ts ? new Date(r.ts).toISOString().slice(0, 10) : ''));
+        if (dayK && byDay[dayK] != null) byDay[dayK] += 1;
+      });
+      _overviewTrend.revenue = byDay;
+    } catch (e) {
+      console.warn('overview trend revenue load failed', e);
+      overviewTrendSetStatus('Could not load daily purchases.');
+      _overviewTrend.revenue = {};
+    } finally {
+      _overviewTrend.loadingRevenue = false;
+      if (_overviewTrend.metric === 'revenue') overviewTrendRenderChart();
+    }
+  }
+
+  function overviewTrendLoadFor(metric) {
+    if (metric === 'revenue') overviewTrendEnsureRevenue();
+    else overviewTrendEnsureSite();
+  }
+
+  function overviewTrendSetActive(containerId, attr, value) {
+    document.querySelectorAll(`#${containerId} [${attr}]`).forEach((btn) => {
+      const on = btn.getAttribute(attr) === String(value);
+      btn.classList.toggle('is-active', on);
+      if (btn.hasAttribute('role')) btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+
+  function overviewTrendSelect(metric) {
+    if (metric === _overviewTrend.metric) return;
+    _overviewTrend.metric = metric;
+    overviewTrendSetActive('overview-trend-tabs', 'data-trend-metric', metric);
+    overviewTrendRenderChart();   // instant if data cached
+    overviewTrendLoadFor(metric); // fetch if this metric not loaded yet
+  }
+
+  function initOverviewTrend() {
+    if (!_overviewTrend.wired) {
+      const tabs = document.getElementById('overview-trend-tabs');
+      if (tabs) tabs.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('.overview-trend-tab');
+        if (btn) overviewTrendSelect(btn.getAttribute('data-trend-metric'));
+      });
+      const range = document.getElementById('overview-trend-range');
+      if (range) range.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('[data-trend-range]');
+        if (!btn) return;
+        const v = Number(btn.getAttribute('data-trend-range'));
+        if (v === _overviewTrend.range) return;
+        _overviewTrend.range = v;
+        overviewTrendSetActive('overview-trend-range', 'data-trend-range', v);
+        overviewTrendRenderChart();
+      });
+      const gran = document.getElementById('overview-trend-gran');
+      if (gran) gran.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('[data-trend-gran]');
+        if (!btn) return;
+        const v = btn.getAttribute('data-trend-gran');
+        if (v === _overviewTrend.gran) return;
+        _overviewTrend.gran = v;
+        overviewTrendSetActive('overview-trend-gran', 'data-trend-gran', v);
+        overviewTrendRenderChart();
+      });
+      const reset = document.getElementById('overview-trend-reset');
+      if (reset) reset.addEventListener('click', () => {
+        if (_overviewTrend.chart && _overviewTrend.chart.resetZoom) _overviewTrend.chart.resetZoom();
+      });
+      _overviewTrend.wired = true;
+    }
+    overviewTrendRenderChart();
+    overviewTrendLoadFor(_overviewTrend.metric);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // Analytics v2 — real paywall funnel, sourced from `paywall_funnel`.
+  // Reuses the Overview trend engine (Chart.js loader, day keys, formatting).
+  // Single fetch of the widest window (90d) → slice/aggregate on the client so
+  // range + granularity switches are instant, exactly like the Overview trend.
+  // ══════════════════════════════════════════════════════════════════════════
+  const AN2_MAX_DAYS = 90;
+  const AN2_NUM = (n) => Number(n || 0).toLocaleString('ru-RU');
+  // context → source bucket, mirroring app/firebase.ts paywallSourceForContext().
+  function an2SourceBucket(context) {
+    const c = String(context || '').toLowerCase();
+    if (c === 'settings' || c === 'manage') return 'settings';
+    if (c.includes('onboarding') || c === 'personal_plan' || c === 'intro_ended') return 'onboarding';
+    return 'automatic';
+  }
+  const AN2_METRIC_META = {
+    shown:    { label: 'Paywall shown', step: 'shown',              accent: '#60a5fa' },
+    cta:      { label: 'CTA clicks',    step: 'cta_click',          accent: '#a78bfa' },
+    trial:    { label: 'Trials',        step: 'trial_started',      accent: '#fbbf24' },
+    purchase: { label: 'Purchases',     step: 'purchase_completed', accent: '#4ade80' },
+  };
+  const _an2 = {
+    metric: 'shown',
+    range: 28,       // 7 | 28 | 90
+    gran: 'day',     // 'day' | 'week'
+    wired: false,
+    loaded: false,
+    loading: false,
+    // raw funnel rows over the loaded 90d window (already dev-filtered), sliced by range at render.
+    rows: null,      // { step, source, day }
+    // cached RC event ms timestamps (newest-first), re-filtered per range with no extra reads.
+    rcMs: null,      // number[] | null (null ⇒ unreadable)
+    shardMs: null,   // number[] | null
+    rc: 0,           // RevenueCat Plus events in current range (-1 ⇒ unreadable)
+    shards: 0,       // RevenueCat shard transactions in current range (-1 ⇒ unreadable)
+    chart: null,
+  };
+
+  function an2SetStatus(text) {
+    const el = document.getElementById('an2-status');
+    if (el) el.textContent = text || '';
+  }
+  function an2Set(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  // Fetch paywall_funnel for the widest window once, plus RC counts for the range.
+  async function an2Fetch() {
+    const days = overviewTrendDayKeys(AN2_MAX_DAYS);
+    const from = days[0], to = days[days.length - 1];
+    // paywall_funnel: create-only, keyed by `day` (YYYY-MM-DD). Admin can read it.
+    const snap = await getDocs(query(collection(db, 'paywall_funnel'), where('day', '>=', from), where('day', '<=', to)));
+    const rows = [];
+    snap.forEach((docSnap) => {
+      const r = docSnap.data() || {};
+      if (r.dev === true) return; // exclude dev/test builds — matches Overview + funnel default
+      const day = String(r.day || (r.ts ? new Date(r.ts).toISOString().slice(0, 10) : ''));
+      if (!day) return;
+      rows.push({ step: String(r.step || ''), source: an2SourceBucket(r.context), day });
+    });
+    _an2.rows = rows;
+  }
+
+  // RevenueCat ms timestamp. Both collections reliably write `eventTimestampMs`
+  // (functions/src/revenuecat_shards.ts); we also accept a few alternate field names
+  // and an ISO `createdAt` as a last resort. No timestamp ⇒ not counted for any period.
+  function an2RcMs(r) {
+    return Number(
+      r.eventTimestampMs || r.createdAtMs || r.purchasedAtMs
+      || r.event_timestamp_ms || r.purchased_at_ms || 0,
+    ) || (typeof r.createdAt === 'string' ? Date.parse(r.createdAt) : 0) || 0;
+  }
+  // Fetch the NEWEST RevenueCat docs once (ordered by eventTimestampMs desc, so the slice
+  // is the most-recent events — the only ones that can fall in a recent range, avoiding the
+  // arbitrary-slice under-count of an unordered limit). Cache the ms timestamps; range flips
+  // just re-filter the cache with no extra reads. Falls back to an unordered read if the
+  // ordered query is rejected (e.g. missing index), so the card degrades instead of breaking.
+  async function an2FetchRcColl(name) {
+    try {
+      const s = await getDocs(query(collection(db, name), orderBy('eventTimestampMs', 'desc'), limit(5000)));
+      return s.docs.map((d) => an2RcMs(d.data() || {})).filter((ms) => ms > 0);
+    } catch (e) {
+      try {
+        const s = await getDocs(query(collection(db, name), limit(5000)));
+        return s.docs.map((d) => an2RcMs(d.data() || {})).filter((ms) => ms > 0);
+      } catch (e2) { return null; } // null ⇒ could not read (permission / error)
+    }
+  }
+  async function an2FetchRc() {
+    _an2.rcMs = await an2FetchRcColl('revenuecat_premium_events');
+    _an2.shardMs = await an2FetchRcColl('revenuecat_shard_transactions');
+  }
+  // Count cached RC timestamps that fall within the selected day range.
+  function an2CountRcInRange() {
+    const days = overviewTrendDayKeys(_an2.range);
+    const fromMs = new Date(days[0] + 'T00:00:00Z').getTime();
+    const toMs = new Date(days[days.length - 1] + 'T23:59:59Z').getTime();
+    const countIn = (arr) => arr == null ? -1 : arr.reduce((n, ms) => n + (ms >= fromMs && ms <= toMs ? 1 : 0), 0);
+    _an2.rc = countIn(_an2.rcMs);
+    _an2.shards = countIn(_an2.shardMs);
+  }
+
+  // Rows within the current range window.
+  function an2RangeRows() {
+    if (!_an2.rows) return [];
+    const days = overviewTrendDayKeys(_an2.range);
+    const set = new Set(days);
+    return _an2.rows.filter((r) => set.has(r.day));
+  }
+
+  // Build [{label, value}] daily series for the active metric.
+  function an2Series() {
+    if (!_an2.rows) return null;
+    const meta = AN2_METRIC_META[_an2.metric];
+    const days = overviewTrendDayKeys(_an2.range);
+    const counts = Object.fromEntries(days.map((d) => [d, 0]));
+    _an2.rows.forEach((r) => {
+      if (r.step !== meta.step) return;
+      if (r.day in counts) counts[r.day] += 1;
+    });
+    const daily = days.map((d) => ({ label: d, value: counts[d] }));
+    if (_an2.gran !== 'week') return daily;
+    const weekly = [];
+    for (let i = 0; i < daily.length; i += 7) {
+      const chunk = daily.slice(i, i + 7);
+      weekly.push({ label: chunk[0].label, value: chunk.reduce((s, p) => s + p.value, 0) });
+    }
+    return weekly;
+  }
+
+  async function an2RenderChart() {
+    const canvas = document.getElementById('analytics-trend-canvas');
+    if (!canvas) return;
+    const series = an2Series();
+    const statusEl = document.getElementById('analytics-trend-status');
+    if (!series) { if (statusEl) statusEl.textContent = 'Loading…'; return; }
+    const meta = AN2_METRIC_META[_an2.metric];
+    const total = series.reduce((s, p) => s + p.value, 0);
+    if (statusEl) statusEl.textContent = `${meta.label} — total over ${_an2.range} days: ${AN2_NUM(total)}`;
+
+    let lib;
+    try { lib = await overviewTrendEnsureLib(); }
+    catch (e) {
+      const host = canvas.parentElement;
+      if (host && typeof pabSvgLineChart === 'function') host.innerHTML = pabSvgLineChart(series, { accent: meta.accent });
+      return;
+    }
+    const Chart = lib.Chart;
+    const labels = series.map((p) => p.label);
+    const data = series.map((p) => p.value);
+    const gran = _an2.gran;
+
+    if (_an2.chart) {
+      const ch = _an2.chart;
+      ch.data.labels = labels;
+      ch.data.datasets[0].data = data;
+      ch.data.datasets[0].label = meta.label;
+      ch.data.datasets[0].borderColor = meta.accent;
+      ch.data.datasets[0].backgroundColor = overviewTrendFill(canvas, meta.accent);
+      ch.data.datasets[0].pointBorderColor = meta.accent;
+      ch.data.datasets[0].pointHoverBackgroundColor = meta.accent;
+      ch._granularity = gran;
+      ch.resetZoom && ch.resetZoom();
+      ch.update();
+      return;
+    }
+
+    _an2.chart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: meta.label, data,
+          borderColor: meta.accent,
+          backgroundColor: overviewTrendFill(canvas, meta.accent),
+          borderWidth: 2, fill: true, tension: 0.28,
+          pointRadius: 2.5, pointHoverRadius: 5,
+          pointBackgroundColor: '#0d0f17', pointBorderColor: meta.accent, pointHoverBackgroundColor: meta.accent,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0b0e16', borderColor: '#2a2f40', borderWidth: 1,
+            titleColor: '#f1f5f9', bodyColor: '#cbd5e1', padding: 10, displayColors: false,
+            callbacks: {
+              title: (items) => overviewTrendPrettyDay(items[0].label, _an2.chart?._granularity || _an2.gran),
+              label: (item) => `${AN2_METRIC_META[_an2.metric].label}: ${AN2_NUM(item.parsed.y)}`,
+            },
+          },
+          zoom: {
+            pan: { enabled: true, mode: 'x', modifierKey: null },
+            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, drag: { enabled: false }, mode: 'x' },
+            limits: { x: { minRange: 3 } },
+          },
+        },
+        scales: {
+          x: { grid: { color: '#161a26' }, ticks: { color: '#6b7280', font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8,
+            callback: function (val) { const raw = this.getLabelForValue(val); return typeof raw === 'string' ? raw.slice(5) : raw; } } },
+          y: { beginAtZero: true, grid: { color: '#161a26' }, ticks: { color: '#6b7280', font: { size: 10 }, precision: 0 } },
+        },
+      },
+    });
+    _an2.chart._granularity = gran;
+  }
+
+  // Per-source funnel breakdown cards (settings / onboarding / automatic).
+  function an2RenderFunnels() {
+    const host = document.getElementById('an2-funnels');
+    if (!host) return;
+    const rows = an2RangeRows();
+    const BUCKETS = [
+      { key: 'onboarding', title: 'Onboarding paywall', accent: '#22d3ee' },
+      { key: 'automatic', title: 'Automatic paywall', accent: '#a78bfa' },
+      { key: 'settings', title: 'Settings paywall', accent: '#fbbf24' },
+    ];
+    const STEPS = [
+      { step: 'shown', label: 'Shown' },
+      { step: 'cta_click', label: 'CTA click' },
+      { step: 'trial_started', label: 'Trial started' },
+      { step: 'purchase_completed', label: 'Purchase' },
+    ];
+    const cards = BUCKETS.map((b) => {
+      const counts = {};
+      STEPS.forEach((s) => { counts[s.step] = 0; });
+      rows.forEach((r) => { if (r.source === b.key && r.step in counts) counts[r.step] += 1; });
+      const shown = counts.shown || 0;
+      const purchase = counts.purchase_completed || 0;
+      const conv = shown > 0 ? Math.round((purchase / shown) * 1000) / 10 : 0;
+      const anyData = STEPS.some((s) => counts[s.step] > 0);
+      const bars = STEPS.map((s) => {
+        const v = counts[s.step];
+        const pct = shown > 0 ? Math.round((v / shown) * 100) : 0;
+        const rate = shown > 0 ? `${Math.round((v / shown) * 1000) / 10}%` : '';
+        return `<div class="an2-step">
+          <div class="an2-step-top">
+            <span class="an2-step-label">${s.label}</span>
+            <span class="an2-step-num">${AN2_NUM(v)}${rate ? `<small>${rate}</small>` : ''}</span>
+          </div>
+          <div class="an2-step-track"><div class="an2-step-fill" style="width:${Math.max(v ? 3 : 0, pct)}%;background:linear-gradient(90deg,${b.accent},${b.accent}88)"></div></div>
+        </div>`;
+      }).join('');
+      return `<div class="an2-funnel">
+        <div class="an2-funnel-head">
+          <span class="an2-funnel-title">${b.title}</span>
+          <span class="an2-funnel-sub">conversion <b style="color:${b.accent}">${conv}%</b></span>
+        </div>
+        ${anyData ? bars : '<div class="an2-empty">No paywall_funnel events for this source in the selected period.</div>'}
+      </div>`;
+    }).join('');
+    host.innerHTML = cards;
+  }
+
+  function an2RenderSummary() {
+    const rows = an2RangeRows();
+    const count = (step) => rows.reduce((n, r) => n + (r.step === step ? 1 : 0), 0);
+    const shown = count('shown');
+    const cta = count('cta_click');
+    const trial = count('trial_started');
+    const purchase = count('purchase_completed');
+    // Conversion is only meaningful when there were paywalls shown. With zero shown,
+    // render an em-dash (not a hardcoded "0%", which reads like a real, terrible metric).
+    const conv = shown > 0 ? `${Math.round((purchase / shown) * 1000) / 10}%` : '—';
+    an2Set('an2-shown', AN2_NUM(shown));
+    an2Set('an2-cta', AN2_NUM(cta));
+    an2Set('an2-trial', AN2_NUM(trial));
+    an2Set('an2-purchase', AN2_NUM(purchase));
+    an2Set('an2-conv', conv);
+    // RC counters: -1 = collection unreadable (permission/error) → "n/a"; 0 = read fine, no
+    // qualifying purchases yet → em-dash so a genuine empty state doesn't look like a broken read.
+    an2Set('an2-rc', _an2.rc < 0 ? 'n/a' : (_an2.rc === 0 ? '—' : AN2_NUM(_an2.rc)));
+    an2Set('an2-shards', _an2.shards < 0 ? 'n/a' : (_an2.shards === 0 ? '—' : AN2_NUM(_an2.shards)));
+    const days = overviewTrendDayKeys(_an2.range);
+    an2Set('an2-period', `${days[0]} → ${days[days.length - 1]}`);
+    const note = document.getElementById('an2-events-note');
+    if (note) {
+      note.textContent = rows.length
+        ? `${AN2_NUM(rows.length)} funnel events (consented users only).`
+        : 'No consented funnel events in range yet.';
+    }
+  }
+
+  // Real paying users from the loaded users snapshot (window._users) via the existing
+  // premiumInfo/vipInfo classifiers — the same logic the Users table uses. Always available:
+  // not consent-gated, not webhook-dependent. Plus = active subscription; Pro = lifetime buyer.
+  function an2RenderPayingUsers() {
+    const users = Array.isArray(window._users) ? window._users : [];
+    if (!users.length) {
+      ['an2-pay-total','an2-pay-plus','an2-pay-pro','an2-pay-trial','an2-pay-share'].forEach((id) => an2Set(id, '—'));
+      const t = document.getElementById('an2-pay-total');
+      if (t) t.title = 'Load users first (Users tab) to populate paying counts.';
+      return;
+    }
+    let plus = 0, pro = 0, trial = 0, paying = 0;
+    users.forEach((u) => {
+      let info;
+      try { info = premiumInfo(u); } catch (_) { return; }
+      const vip = (function () { try { return vipInfo(u); } catch (_) { return { active: false }; } })();
+      const isPaidActive = info.active || vip.active;
+      if (!isPaidActive) return;
+      paying += 1;
+      if (info.isTrial) trial += 1;
+      const planRaw = String(info.plan || '');
+      const isLifetime = /lifetime|forever|one.?time|onetime|perpetual/i.test(planRaw);
+      if (info.active && isLifetime) pro += 1;
+      else plus += 1; // active subscription OR admin/vip Plus
+    });
+    an2Set('an2-pay-total', AN2_NUM(paying));
+    an2Set('an2-pay-plus', AN2_NUM(plus));
+    an2Set('an2-pay-pro', AN2_NUM(pro));
+    an2Set('an2-pay-trial', AN2_NUM(trial));
+    an2Set('an2-pay-share', users.length ? `${Math.round((paying / users.length) * 1000) / 10}%` : '—');
+    const note = document.querySelector('#an2-paying .an2-card .an2-note');
+    // (note text is static; leave as-is)
+  }
+
+  function an2RenderAll() {
+    an2RenderPayingUsers();
+    an2RenderSummary();
+    an2RenderFunnels();
+    void an2RenderChart();
+  }
+
+  window.loadAnalyticsFunnelV2 = async function loadAnalyticsFunnelV2(force = false) {
+    if (_an2.loading) return;
+    if (_an2.loaded && !force) { an2RenderAll(); return; }
+    _an2.loading = true;
+    an2SetStatus('Loading paywall funnel…');
+    try {
+      await an2Fetch();
+      await an2FetchRc();       // fetch newest RC docs once, cache their timestamps
+      an2CountRcInRange();      // count the ones inside the selected range
+      _an2.loaded = true;
+      const total = _an2.rows ? _an2.rows.length : 0;
+      an2SetStatus(total
+        ? `Loaded ${AN2_NUM(total)} paywall_funnel events (last ${AN2_MAX_DAYS} days). Showing the selected period.`
+        : `No paywall_funnel events yet. Events appear once users with analytics consent open a paywall.`);
+      an2RenderAll();
+    } catch (e) {
+      console.warn('loadAnalyticsFunnelV2', e);
+      _an2.loaded = false;
+      const msg = e?.message || String(e);
+      an2SetStatus(/permission/i.test(msg)
+        ? 'Cannot read paywall_funnel — admin permission missing for this collection.'
+        : `Could not load paywall funnel: ${msg}`);
+    } finally {
+      _an2.loading = false;
+    }
+  };
+
+  function initAnalyticsFunnelV2() {
+    if (!_an2.wired) {
+      const tabs = document.getElementById('analytics-trend-tabs');
+      if (tabs) tabs.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('.overview-trend-tab');
+        if (!btn) return;
+        const m = btn.getAttribute('data-an2-metric');
+        if (m === _an2.metric) return;
+        _an2.metric = m;
+        overviewTrendSetActive('analytics-trend-tabs', 'data-an2-metric', m);
+        void an2RenderChart();
+      });
+      const gran = document.getElementById('analytics-trend-gran');
+      if (gran) gran.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('[data-an2-gran]');
+        if (!btn) return;
+        const v = btn.getAttribute('data-an2-gran');
+        if (v === _an2.gran) return;
+        _an2.gran = v;
+        overviewTrendSetActive('analytics-trend-gran', 'data-an2-gran', v);
+        void an2RenderChart();
+      });
+      const reset = document.getElementById('analytics-trend-reset');
+      if (reset) reset.addEventListener('click', () => { if (_an2.chart && _an2.chart.resetZoom) _an2.chart.resetZoom(); });
+      const range = document.getElementById('an2-range');
+      if (range) range.addEventListener('change', () => {
+        _an2.range = Number(range.value) || 28;
+        // Everything is cached (funnel rows + RC timestamps) — just re-slice, no reads.
+        if (_an2.loaded) { an2CountRcInRange(); an2RenderAll(); }
+      });
+      const refresh = document.getElementById('an2-refresh');
+      if (refresh) refresh.addEventListener('click', () => window.loadAnalyticsFunnelV2(true));
+      _an2.wired = true;
+    }
+    // Paying-user cards come from the loaded users snapshot and don't depend on the funnel
+    // fetch — render them right away (they refresh again when users finish loading).
+    an2RenderPayingUsers();
+    void window.loadAnalyticsFunnelV2();
+  }
+  window.initAnalyticsFunnelV2 = initAnalyticsFunnelV2;
+  window.an2RenderPayingUsers = an2RenderPayingUsers;
 
   function adminStateHtml(kind, title, note, actionLabel, actionTab) {
     const safeTitle = escapeHtml(title || 'Status');
@@ -23487,6 +24338,8 @@
       </div>
     `;
     applyAnalyticsMode();
+    // Refresh the Analytics-v2 "Paying now" cards with the freshly-loaded users.
+    if (typeof an2RenderPayingUsers === 'function') { try { an2RenderPayingUsers(); } catch (_) {} }
   }
 
   // ── Analytics display mode: core vs all ─────────────────────────────────────

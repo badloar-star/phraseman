@@ -45,18 +45,16 @@ describe('dev free profile-card upgrade (behaviour)', () => {
 
   it('walks all the way to the max level and stays there', async () => {
     let last = 0;
-    for (let i = 0; i < 8; i += 1) {
+    for (let i = 0; i < 4; i += 1) {
       const snap = await devGrantProfileCardLevel();
       last = snap.level;
     }
-    expect(last).toBe(5);
+    expect(last).toBe(1);
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 
   it('reset returns the card to level 0 with default theme/motion/focus', async () => {
     await devGrantProfileCardLevel();
-    await devGrantProfileCardLevel();
-    await devGrantProfileCardLevel(); // level 3 → seeds gold/gleam defaults
     const reset = await devResetProfileCard();
     expect(reset.level).toBe(0);
     expect(reset.theme).toBe('classic');
@@ -85,9 +83,9 @@ describe('dev free profile-card upgrade is a no-op in release builds', () => {
   });
 
   it('reset does nothing in release', async () => {
-    await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '3');
+    await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '1');
     const snap = await devResetProfileCard();
-    expect(snap.level).toBe(3);
+    expect(snap.level).toBe(1);
   });
 });
 

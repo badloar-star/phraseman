@@ -38,6 +38,8 @@ async function gateShouldShow(params: {
   mode: 'force' | 'optional';
   currentBuild: string;
   targetBuild: string;
+  platformFilter?: string;
+  platform?: string;
 }): Promise<boolean> {
   const key = campaignDismissalKey('manual_update', params.campaignId);
   const alreadySeen = params.mode === 'optional' ? await isCampaignDismissed(key) : false;
@@ -47,6 +49,8 @@ async function gateShouldShow(params: {
     mode: params.mode,
     currentBuild: params.currentBuild,
     targetBuild: params.targetBuild,
+    platformFilter: params.platformFilter,
+    platform: params.platform,
     seenCampaignIds: alreadySeen ? [params.campaignId] : [],
   });
 }
@@ -110,6 +114,31 @@ describe('manual update modal — persistence & three modes', () => {
       expect(await gateShouldShow({ ...base, targetBuild: '81', currentBuild: '80' })).toBe(true);
       expect(await gateShouldShow({ ...base, targetBuild: '81', currentBuild: '81' })).toBe(false);
       expect(await gateShouldShow({ ...base, targetBuild: '80', currentBuild: '81' })).toBe(false);
+    });
+  });
+
+  describe('2b) platform target — iOS/Android/both', () => {
+    const base = {
+      enabled: true,
+      campaignId: 'manual_update_platform',
+      mode: 'optional' as const,
+      targetBuild: '',
+      currentBuild: '1.0.0',
+    };
+
+    it('empty platform filter keeps the old behavior: both platforms see it', async () => {
+      expect(await gateShouldShow({ ...base, platformFilter: '', platform: 'ios' })).toBe(true);
+      expect(await gateShouldShow({ ...base, platformFilter: '', platform: 'android' })).toBe(true);
+    });
+
+    it('ios-only campaign is hidden on Android', async () => {
+      expect(await gateShouldShow({ ...base, platformFilter: 'ios', platform: 'ios' })).toBe(true);
+      expect(await gateShouldShow({ ...base, platformFilter: 'ios', platform: 'android' })).toBe(false);
+    });
+
+    it('android-only campaign is hidden on iOS', async () => {
+      expect(await gateShouldShow({ ...base, platformFilter: 'android', platform: 'android' })).toBe(true);
+      expect(await gateShouldShow({ ...base, platformFilter: 'android', platform: 'ios' })).toBe(false);
     });
   });
 

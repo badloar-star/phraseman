@@ -33,9 +33,11 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId } from './stable_id';
 import {
   ensureAnonUser,
+  waitForAnonAuth,
   syncToCloud,
   restoreFromCloud,
   forceSyncToCloud,
+  quiesceSyncBeforeStableIdSwap,
   wipeLocalAccountData,
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
@@ -794,15 +796,47 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     return { result: 'cancelled' };
   }
 
-  // 1b. ДО signInWithCredential (пока ещё анонимны) ставим метку владения локальным
-  // анонимным аккаунтом — иначе серверный merge не сможет безопасно поглотить его
-  // после входа (анонимная сессия будет уничтожена). См. #11.
+  // 1a. Хвост A (холодный старт Android): дождаться готовности анонимной Firebase-сессии
+  // ДО линковки. Без этого на холодном старте auth.currentUser ещё null → linkWithCredential
+  // невозможен (uid не сохранится), а ensureStableAuthLink падал «local_stable_link_failed».
+  // waitForAnonAuth поллит до 20с; если так и не поднялась — продолжаем (ниже всё равно
+  // есть деградация к signInWithCredential), но в типичном случае это закрывает гонку.
+  try {
+    const anonReady = await waitForAnonAuth(20_000);
+    if (!anonReady) {
+      // Явно пробуем поднять анонимную сессию, прежде чем входить.
+      await ensureAnonUser();
+      await waitForAnonAuth(5_000);
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] waitForAnonAuth before link failed', e);
+  }
+
+  // 1b. ДО входа (пока ещё анонимны) ставим метку владения локальным анонимным
+  // аккаунтом — иначе серверный merge не сможет безопасно поглотить его, если вход
+  // всё же пойдёт по ветке signInWithCredential (анонимная сессия будет уничтожена). См. #11.
   const preSignInStableId = await getStableId();
   await stampAnonOwnershipBeforeSignIn(preSignInStableId);
 
-  // 2. Sign in to Firebase via credential
+  // 2. Связать credential с аккаунтом через Firebase.
+  //
+  // КОРЕНЬ потери привязки (исправление 2026-06-29): раньше тут безусловно звался
+  // auth.signInWithCredential(credential). Этот метод УНИЧТОЖАЕТ текущую анонимную
+  // сессию и переключает на отдельный provider-uid — то есть каждый вход Google/Apple
+  // делал пользователя «новым» с точки зрения Firebase, а stable_id/auth_links/серверный
+  // merge были компенсацией за разорванную связь. Firebase прямо требует обратного:
+  // для апгрейда анонима — currentUser.linkWithCredential(credential), который СОХРАНЯЕТ
+  // тот же uid (и все данные под ним). См. firebase.google.com/docs/auth/*/account-linking.
+  //
+  // Стратегия: если currentUser анонимный — сначала linkWithCredential (uid не меняется,
+  // привязка не рвётся). Если у этого Google/Apple уже есть отдельный аккаунт
+  // (auth/credential-already-in-use) или линк невозможен — деградируем к
+  // signInWithCredential (прежнее поведение); серверный merge по auth_links/anon_merge_claim
+  // доберёт остальное. Контракт и обработка ошибок сохранены 1:1.
+  // (далее по тексту «degrade to sign-in» = именно этот безопасный путь деградации.)
   let firebaseProviderUid: string;
   let firebaseEmail: string | null = cred.email;
+  let linkedInPlace = false; // true → анонимный uid сохранён (link), merge не нужен
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const authMod = require('@react-native-firebase/auth');
@@ -812,17 +846,58 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         : cred.appleNonce
           ? authMod.default.AppleAuthProvider.credential(cred.idToken, cred.appleNonce)
           : authMod.default.AppleAuthProvider.credential(cred.idToken);
-    const userCredential = await withTimeout<any>(
-      auth.signInWithCredential(credential),
-      LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
-      'signin_credential',
-    );
+
+    const anonUser = auth.currentUser;
+    const canTryLink = Boolean(anonUser?.isAnonymous && typeof anonUser?.linkWithCredential === 'function');
+
+    let userCredential: any = null;
+    if (canTryLink) {
+      try {
+        userCredential = await withTimeout<any>(
+          anonUser.linkWithCredential(credential),
+          LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
+          'link_credential',
+        );
+        linkedInPlace = true;
+        logAuthEvent('auth_signin_linked_in_place', { provider });
+      } catch (linkErr: any) {
+        const linkCode = String(linkErr?.code ?? '');
+        // Эти коды = «у этого провайдера уже есть отдельный аккаунт» либо «линк уже есть» —
+        // нормальная развилка, не баг: деградируем к signInWithCredential + серверный merge.
+        const EXPECTED_LINK_CONFLICT = new Set([
+          'auth/credential-already-in-use',
+          'auth/email-already-in-use',
+          'auth/provider-already-linked',
+          'auth/account-exists-with-different-credential',
+        ]);
+        if (!EXPECTED_LINK_CONFLICT.has(linkCode)) {
+          // Неожиданная ошибка линковки — логируем, но всё равно пробуем sign-in,
+          // чтобы не рвать вход (поведение не хуже прежнего безусловного sign-in).
+          if (__DEV__) console.warn('[auth_provider] linkWithCredential unexpected error → degrade to signIn', linkErr);
+          logAuthEvent('auth_signin_link_degraded', { provider, error: linkCode.slice(0, 60) || 'unknown' });
+        }
+        // Apple: при конфликте credential может быть одноразовым — у нас всё равно есть
+        // свежий credential из этого же sign-in, переиспользуем его для signInWithCredential.
+        userCredential = await withTimeout<any>(
+          auth.signInWithCredential(credential),
+          LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
+          'signin_credential',
+        );
+      }
+    } else {
+      userCredential = await withTimeout<any>(
+        auth.signInWithCredential(credential),
+        LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
+        'signin_credential',
+      );
+    }
+
     const fbUser = userCredential?.user ?? auth.currentUser;
     firebaseProviderUid = fbUser?.uid ?? '';
     if (!firebaseEmail) firebaseEmail = fbUser?.email ?? null;
     if (!firebaseProviderUid) throw new Error('firebase_no_uid');
   } catch (e: any) {
-    if (__DEV__) console.warn('[auth_provider] firebase signInWithCredential failed', e);
+    if (__DEV__) console.warn('[auth_provider] firebase sign-in/link failed', e);
     const code = e?.code ? String(e.code) : '';
     const msg = e?.message ? String(e.message) : 'unknown';
     const detail = code ? `${code}:${msg}` : msg;
@@ -932,10 +1007,19 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         remoteStableId: linkedLocal.stableUid,
         mergedFromStableId: localStableId,
       };
-    } else if (linkedLocal.source === 'firestore_fallback') {
-      captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_unverified');
-      return { result: 'error', error: 'auth_link_unverified' };
     } else {
+      // source === 'firestore_fallback' раньше РВАЛО вход ('auth_link_unverified' +
+      // Critical-алерт). Но этот источник = серверный callable был недоступен, поэтому
+      // клиент САМ записал якорь users/{stableId}.firebaseAuthUid И мост
+      // auth_links/{authUid} напрямую в Firestore (cloud_sync.ts, «Хвост B»). Привязка
+      // ФАКТИЧЕСКИ сделана — это деградация транспорта, а не провал входа. Пользователь
+      // видел «Не получилось войти», хотя всё записано. Теперь: не рвём вход, логируем
+      // warning-событие (без ложного Critical) и идём обычным путём
+      // created_new/linked_existing.
+      if (linkedLocal.source === 'firestore_fallback') {
+        if (__DEV__) console.warn('[auth_provider] stable link via direct Firestore write (callable unavailable) — continuing sign-in');
+        logAuthEvent('auth_signin_link_direct_write', { provider, stage: 'auth_link' });
+      }
       outcome = {
         kind: linkLookupCompleted && !linkLookupFound ? 'created_new' : 'linked_existing',
       };
@@ -967,6 +1051,10 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       const canonicalStableId = merge?.ok && merge.canonicalStableId
         ? merge.canonicalStableId
         : outcome.remoteStableId;
+
+      // Хвост D: погасить фоновый/отложенный sync ДО смены stable_id, иначе debounce-sync
+      // со старым прогрессом запишется в users/{новый canonical} и затрёт слитый аккаунт.
+      await quiesceSyncBeforeStableIdSwap();
 
       // Подменяем stable_id локально на канонический результат (слияние или remote).
       await setStableId(canonicalStableId);
@@ -1037,6 +1125,8 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       if (merge?.ok && canonicalStableId !== localStableId) {
         // Сервер выбрал canonical ≠ local (remote оказался сильнее и принадлежит нам):
         // подменяем stable_id и тянем слитый прогресс, как в swap-ветке.
+        // Хвост D: гасим фоновый sync перед сменой stable_id (см. swap-ветку выше).
+        await quiesceSyncBeforeStableIdSwap();
         await setStableId(canonicalStableId);
         invalidatePremiumCache();
         await wipeLocalAccountData();

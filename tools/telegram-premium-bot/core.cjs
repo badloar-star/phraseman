@@ -57,6 +57,35 @@ const MANUAL_ACTIVATION_MESSAGE_RU = [
   'Если доступ появился не сразу, не переживайте: иногда это занимает несколько часов.',
 ].join('\n');
 
+const PAYMENT_SUPPORT_EMAIL = 'support.phraseman@gmail.com';
+const TERMS_URL = 'https://knowlyapps.com/legal/terms/';
+const PRIVACY_URL = 'https://knowlyapps.com/legal/privacy/';
+
+const PAY_SUPPORT_MESSAGE_RU = [
+  'Поддержка платежей Phraseman Premium.',
+  '',
+  'Если Stars списались, но Premium не активирован, напишите:',
+  `Email: ${PAYMENT_SUPPORT_EMAIL}`,
+  '',
+  'В сообщении укажите ник в Phraseman, примерное время оплаты и сумму Stars.',
+  '',
+  'Если Telegram не даёт купить Stars или выбрать способ оплаты, попробуйте пополнить Stars через мобильный Telegram, @PremiumBot или web.telegram.org, затем вернитесь к счёту.',
+].join('\n');
+
+const TERMS_MESSAGE_RU = [
+  'Условия использования Phraseman:',
+  TERMS_URL,
+  '',
+  `По вопросам платежей: /paysupport или ${PAYMENT_SUPPORT_EMAIL}`,
+].join('\n');
+
+const PRIVACY_MESSAGE_RU = [
+  'Политика конфиденциальности Phraseman:',
+  PRIVACY_URL,
+  '',
+  `По вопросам платежей: /paysupport или ${PAYMENT_SUPPORT_EMAIL}`,
+].join('\n');
+
 const PAY_BUTTON_TEXT_RU = 'Оплатить Premium';
 const DEFAULT_HERO_IMAGE_URL = 'https://phraseman-ea0b3.web.app/assets/telegram-premium/phraseman-premium-hero.png';
 const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000;
@@ -210,6 +239,11 @@ function sanitizeNickname(value) {
   return String(value || '').replace(/\s+/g, ' ').trim().slice(0, 32);
 }
 
+function commandName(text) {
+  const match = /^\/([A-Za-z0-9_]+)(?:@[A-Za-z0-9_]+)?(?:\s|$)/.exec(String(text || '').trim());
+  return match?.[1]?.toLowerCase() || '';
+}
+
 function getStarsForPlan(config, plan) {
   return plan === 'yearly' ? config.yearlyStars : config.monthlyStars;
 }
@@ -259,7 +293,6 @@ function buildPremiumInvoice({ config, chatId, userId, plan, appNickname, payloa
     title: planInfo.title,
     description: planDescription(config, plan),
     payload: payload || buildInvoicePayload({ plan, userId, chatId, appNickname }),
-    provider_token: '',
     currency: 'XTR',
     prices: [{ label: planInfo.label, amount: getStarsForPlan(config, plan) }],
     start_parameter: `phraseman-premium-${plan}`,
@@ -454,7 +487,9 @@ async function sendPlanChoice(api, chatId, config, state, userId, appNickname) {
 
 async function sendMonthlyInvoiceLink(api, chatId, invoice) {
   if (typeof api.createInvoiceLink !== 'function') {
-    await api.sendInvoice(chatId, invoice);
+    const oneTimeInvoice = { ...invoice };
+    delete oneTimeInvoice.subscription_period;
+    await api.sendInvoice(chatId, oneTimeInvoice);
     return;
   }
   const link = await api.createInvoiceLink(invoice);
@@ -483,15 +518,16 @@ async function handleMessage(update, context) {
   }
 
   const text = String(message.text || '').trim();
-  if (text === '/myid') {
+  const command = commandName(text);
+  if (command === 'myid') {
     await sendMyId(api, chatId, user);
     return;
   }
-  if (text.startsWith('/admin_setup')) {
+  if (command === 'admin_setup') {
     await sendAdminSetup(api, chatId, context, userId, text);
     return;
   }
-  if (text === '/admin') {
+  if (command === 'admin') {
     if (!isAdmin(config, state, userId)) {
       await api.sendMessage(chatId, 'Нет доступа. Сначала включите админ-доступ через /admin_setup <код>.');
       return;
@@ -499,15 +535,31 @@ async function handleMessage(update, context) {
     await sendAdminHelp(api, chatId);
     return;
   }
-  if (text === '/orders') {
+  if (command === 'orders') {
     await sendOrdersList(api, chatId, context, userId);
     return;
   }
-  if (text.startsWith('/order')) {
+  if (command === 'order') {
     await sendOrderDetails(api, chatId, context, userId, text);
     return;
   }
-  if (text === '/start' || text === '/premium') {
+  if (command === 'paysupport') {
+    await api.sendMessage(chatId, PAY_SUPPORT_MESSAGE_RU);
+    return;
+  }
+  if (command === 'terms') {
+    await api.sendMessage(chatId, TERMS_MESSAGE_RU, {
+      reply_markup: { inline_keyboard: [[{ text: 'Открыть условия', url: TERMS_URL }]] },
+    });
+    return;
+  }
+  if (command === 'privacy') {
+    await api.sendMessage(chatId, PRIVACY_MESSAGE_RU, {
+      reply_markup: { inline_keyboard: [[{ text: 'Открыть политику', url: PRIVACY_URL }]] },
+    });
+    return;
+  }
+  if (command === 'start' || command === 'premium') {
     await sendStart(api, chatId, state, userId);
     return;
   }
@@ -676,9 +728,12 @@ module.exports = {
   DEFAULT_STATE_PATH,
   MANUAL_ACTIVATION_MESSAGE_RU,
   NICKNAME_PROMPT_RU,
+  PAY_SUPPORT_MESSAGE_RU,
   PAY_BUTTON_TEXT_RU,
   PLANS,
+  PRIVACY_MESSAGE_RU,
   START_MESSAGE_RU,
+  TERMS_MESSAGE_RU,
   buildInvoicePayload,
   buildAdminMenu,
   buildMainMenu,

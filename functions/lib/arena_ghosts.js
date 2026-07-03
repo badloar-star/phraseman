@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.arenaGhostRecordPlay = exports.arenaGhostCreateChallenge = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CHALLENGES = 'arena_ghost_challenges';
 const MAX_GHOST_QUESTIONS = 12;
@@ -108,7 +109,7 @@ function normalizeAnswer(raw, allowedIds) {
         points: Math.max(0, Math.min(MAX_SCORE_PER_QUESTION, readInt(raw.points, isCorrect ? 100 : 0))),
     };
 }
-exports.arenaGhostCreateChallenge = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaGhostCreateChallenge = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -147,7 +148,7 @@ exports.arenaGhostCreateChallenge = (0, https_1.onCall)({ region: REGION }, asyn
     await ref.set(challenge);
     return challenge;
 });
-exports.arenaGhostRecordPlay = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaGhostRecordPlay = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

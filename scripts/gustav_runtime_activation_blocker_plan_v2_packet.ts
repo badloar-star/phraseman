@@ -67,6 +67,7 @@ type EvaluationInput = {
   adminRuntimeDownloadsEnabled: boolean;
   serverManifestDraftEntries: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
   planItems: ActivationBlocker[];
   applyPlanDryRunWritten: boolean;
 };
@@ -90,6 +91,7 @@ type Evaluation = {
   p1aActiveHashLockExists: boolean;
   serverManifestDraftEntries: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
   applyPlanDryRunWritten: boolean;
   activationApproved: false;
   readyForApply: false;
@@ -349,7 +351,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.cloudSyncMigrationAllowed ||
     input.adminServerUploadAllowed ||
     input.adminRuntimeDownloadsEnabled ||
-    input.productionServerManifestExists;
+    (input.productionServerManifestExists && !input.productionManifestSafelyPromoted);
   if (forbiddenOpen) addFinding(findings, 'blocker', 'FORBIDDEN_PRODUCTION_FLAG_OPEN', 'At least one production activation/upload/download/migration flag is open.');
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
@@ -377,6 +379,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       p1aActiveHashLockExists: input.p1aActiveHashLockExists,
       serverManifestDraftEntries: input.serverManifestDraftEntries,
       productionServerManifestExists: input.productionServerManifestExists,
+      productionManifestSafelyPromoted: input.productionManifestSafelyPromoted,
       applyPlanDryRunWritten: input.applyPlanDryRunWritten,
       activationApproved: false,
       readyForApply: false,
@@ -411,6 +414,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'missing_future_gate_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.planItems[0].plannedTouches[0].futureGate = ''; } },
     { id: 'activation_open_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.targetManifestActivationApproved = true; } },
     { id: 'production_write_now_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.planItems[0].plannedTouches[0].productionWriteAllowedNow = true as false; } },
+    { id: 'unsafe_production_manifest_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.productionServerManifestExists = true; input.productionManifestSafelyPromoted = false; } },
   ];
   return cases.map((testCase) => {
     const fixture = clone(base);
@@ -565,6 +569,7 @@ function main(): void {
     adminRuntimeDownloadsEnabled: b(adminSummary, 'runtimeDownloadsEnabled'),
     serverManifestDraftEntries,
     productionServerManifestExists: fs.existsSync(productionServerManifestPath),
+    productionManifestSafelyPromoted: b(p27Summary, 'productionManifestSafelyPromoted'),
     planItems: plan,
     applyPlanDryRunWritten: fs.existsSync(applyPlanPath),
   };

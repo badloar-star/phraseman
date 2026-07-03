@@ -15,8 +15,10 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { PLAN_CONTENT_REMOTE_ENABLED } from './course_pack_loader';
 import {
+  ensureCachedCoursePackRow,
   evictCachedCoursePack,
   readVerifiedCoursePackDay,
+  type RowUrlBuilder,
 } from './course_pack_remote_loader';
 import { getAuthoredPlanContentDay } from './plan_content_registry';
 import type { PlanContentDay } from './plan_content_schema';
@@ -54,6 +56,7 @@ export async function resolveRemoteOrBundledPlanContentDay(
   planId: string,
   dayIndex: number,
   cacheKey?: string,
+  rowUrl?: RowUrlBuilder,
 ): Promise<PlanContentRemoteDay> {
   // Disabled, or no pack context: bundled is the only source.
   if (!remoteLoadingEnabled() || !cacheKey) {
@@ -62,8 +65,15 @@ export async function resolveRemoteOrBundledPlanContentDay(
   }
 
   let verified: PlanContentDay | null | { corrupt: true } = null;
+  const rowPath = rowPathFor(planId, dayIndex);
   try {
-    verified = await readVerifiedCoursePackDay<PlanContentDay>(cacheKey, rowPathFor(planId, dayIndex));
+    verified = await readVerifiedCoursePackDay<PlanContentDay>(cacheKey, rowPath);
+    if (!verified && rowUrl) {
+      const rowCached = await ensureCachedCoursePackRow(cacheKey, rowPath, rowUrl);
+      if (rowCached) {
+        verified = await readVerifiedCoursePackDay<PlanContentDay>(cacheKey, rowPath);
+      }
+    }
   } catch {
     verified = null;
   }

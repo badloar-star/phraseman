@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Path } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
+import { openPremiumPaywall } from '../paywall_navigation';
 import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
@@ -20,7 +20,6 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
 import { getLessonExamIcon } from '../../constants/generatedThemeIconAssets';
 import type { ThemeMode } from '../../constants/theme';
-import { monoIcon } from '../../constants/monoIcon';
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -31,7 +30,9 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
 import DialogsTabContent from '../../components/DialogsTabContent';
+import PlusBadge from '../../components/PlusBadge';
 import { isAiDialogEnabled, getFreeDialogsLifetime } from '../ai_dialog_flags';
+import { readPersonalPlanState } from '../personal_plan_state';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
@@ -44,6 +45,7 @@ import {
     type LessonsTabSnapshot,
 } from '../lessons_tab_state';
 import { getHomeMenuImages } from '../home_menu_icons';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
@@ -274,30 +276,26 @@ function LessonExamThemeIcon({ themeMode, size, label }: {
  * Показывается только на уроках, закрытых именно за пейволом (premiumRequired),
  * а не за прогрессом/уровнем — там остаётся обычный замочек.
  */
-function PremiumBadge({ label, themeMode }: {
-    label: string;
-    themeMode: ThemeMode;
-}) {
-    return (<View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 3,
-            paddingHorizontal: 8,
-            paddingVertical: 3,
-            borderRadius: 999,
-            overflow: 'hidden',
-            borderWidth: 0.5,
-            borderColor: GOLD_RICH.hairlineStrong,
-        }}>
-      <LinearGradient colors={GOLD_GRADIENTS.primaryButton} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
-      <Ionicons name="diamond" size={9} color={monoIcon(themeMode, GOLD_RICH.bronzeDark)}/>
-      <Text style={{ color: GOLD_RICH.bronzeDark, fontSize: 10, fontWeight: '900', letterSpacing: 0.4 }} maxFontSizeMultiplier={1}>
-        {label}
-      </Text>
-    </View>);
-}
 // Высоты элементов (должны точно совпадать с реальным рендером)
 const BOOK_H = 72; // высота книги
+const LESSON_CARD_WHITE_TEXT_SHADOW = {
+    textShadowColor: 'rgba(0,0,0,0.50)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+};
+const LESSON_CARD_ACCENT_TEXT_SHADOW = {
+    textShadowColor: 'rgba(0,0,0,0.46)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+};
+const LESSON_CARD_FILLED_META_TEXT = '#07110A';
+const LESSON_CARD_ACCENT_EDGE_SHADOW = {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.30,
+    shadowRadius: 4,
+    elevation: 2,
+};
 
 interface TabUnderlineButtonProps {
     label: string;
@@ -311,6 +309,9 @@ interface TabUnderlineButtonProps {
     badgeColor?: string;
     badgeTextColor?: string;
     badgeLabel?: string;
+    plusBadge?: boolean;
+    plusBadgeLabel?: string;
+    themeMode: ThemeMode;
 }
 
 /**
@@ -318,7 +319,7 @@ interface TabUnderlineButtonProps {
  * золотая полоска-дуга с выгибом вниз («улыбка»), без отдельной плашки.
  * Цвет акцента приходит от темы (золото / accent). Неактивная — чистый текст.
  */
-function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize, onPress, badge, badgeColor, badgeTextColor, badgeLabel }: TabUnderlineButtonProps) {
+function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize, onPress, badge, badgeColor, badgeTextColor, badgeLabel, plusBadge, plusBadgeLabel, themeMode }: TabUnderlineButtonProps) {
     // Дуга шириной по содержимому: оцениваем по длине надписи (моноширинного API нет).
     const arcWidth = Math.max(44, Math.round(label.length * Math.max(14, fontSize) * 0.62));
     const arcHeight = 9;
@@ -330,8 +331,17 @@ function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize
             accessibilityState={{ selected: active }}
             activeOpacity={0.7}
             onPress={onPress}
-            style={{ paddingTop: 10, paddingBottom: 12, alignItems: 'center', position: 'relative' }}
+            style={{ paddingTop: plusBadge ? 5 : 10, paddingBottom: 12, alignItems: 'center', position: 'relative' }}
         >
+            {plusBadge ? (
+                <PlusBadge
+                    themeMode={themeMode}
+                    size="xs"
+                    showIcon={false}
+                    label={plusBadgeLabel ?? 'Plus'}
+                    style={{ alignSelf: 'center', marginBottom: 2 }}
+                />
+            ) : null}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                 <Text style={{ color: active ? color : mutedColor, fontSize: Math.max(14, fontSize), fontWeight: active ? '800' : '600' }} numberOfLines={1}>
                     {label}
@@ -411,6 +421,7 @@ const LessonCard = React.memo(function LessonCard({
     textPrimary: _tp, textMuted,
 }: LessonCardProps) {
     const lockedCardHasLightFill = false;
+    const useFilledMetaText = isComplete && showLessonProgressFill;
     return (<Animated.View style={{
             marginTop: 5,
             marginHorizontal: 14,
@@ -506,20 +517,23 @@ const LessonCard = React.memo(function LessonCard({
                   borderTopLeftRadius: cardRadius,
                   borderTopRightRadius: cardRadius,
               }}/>)}
-          <View style={{
-                  position: 'absolute', left: 0, right: 0, top: 0,
-                  height: 2,
-                  backgroundColor: lessonAccent,
-                  opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
-              }}/>
+           <View style={{
+                   position: 'absolute', left: 0, right: 0, top: 0,
+                   height: 2,
+                   backgroundColor: lessonAccent,
+                   opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
+                   zIndex: 2,
+                   ...LESSON_CARD_ACCENT_EDGE_SHADOW,
+               }}/>
           {/* Content */}
           <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
               <Text style={{
-                  color: lessonMetaColor,
+                  color: useFilledMetaText ? LESSON_CARD_FILLED_META_TEXT : lessonMetaColor,
                   fontSize: f.label,
                   fontWeight: '700',
                   letterSpacing: 0.8,
+                  ...(useFilledMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
               }} maxFontSizeMultiplier={1}>
                 {triLang(lang, {
                     ru: `УРОК ${num}`,
@@ -534,11 +548,11 @@ const LessonCard = React.memo(function LessonCard({
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                 {premiumRequired
-                    ? <PremiumBadge themeMode={_themeMode} label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}/>
+                    ? <PlusBadge themeMode={_themeMode} label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}/>
                     : !isUnlocked
-                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : isCoralTheme ? rgbaHexCached(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'}/>
+                    ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHexCached(lessonAccent, 0.64) : isCoralTheme ? rgbaHexCached(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHexCached(bg, 0.40) : 'rgba(255,255,255,0.55)'} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
-                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent}/>
+                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
                         : progPct > 0
                             ? (<Text style={{
                                     color: isGoldTheme
@@ -547,9 +561,10 @@ const LessonCard = React.memo(function LessonCard({
                                             isCoralTheme
                                                 ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
                                                 : (isComplete ? lessonAccent : rgbaHexCached(lessonAccent, 0.82)),
-                                    fontSize: f.label,
-                                    fontWeight: '800',
-                                }} maxFontSizeMultiplier={1}>
+                                     fontSize: f.label,
+                                     fontWeight: '800',
+                                     ...LESSON_CARD_ACCENT_TEXT_SHADOW,
+                                 }} maxFontSizeMultiplier={1}>
                               {progPct}%
                             </Text>)
                             : null}
@@ -559,6 +574,7 @@ const LessonCard = React.memo(function LessonCard({
                 color: lessonTextColor,
                 fontSize: f.body,
                 fontWeight: '700',
+                ...LESSON_CARD_WHITE_TEXT_SHADOW,
             }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} maxFontSizeMultiplier={1}>
               {name}
             </Text>
@@ -571,7 +587,7 @@ const LessonCard = React.memo(function LessonCard({
 export default function LessonsTab() {
     const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
-    const insets = useSafeAreaInsets();
+    const insets = useStableSafeAreaInsets();
     const topFadeScroll = useTopFadeScroll();
     const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
@@ -610,10 +626,21 @@ export default function LessonsTab() {
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const { activeIdx, focusTick } = useTabNav();
+    const lessonsTabVisible = activeIdx === 1;
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
     const freeDialogsLifetime = getFreeDialogsLifetime();
     const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
+    const openLearningRoute = useCallback(() => {
+        hapticTap();
+        void readPersonalPlanState()
+            .then((state) => {
+                router.push((state ? '/personal_plan' : '/personal_plan_setup') as any);
+            })
+            .catch(() => {
+                router.push('/personal_plan_setup' as any);
+            });
+    }, [router]);
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
         level: string;
@@ -632,6 +659,7 @@ export default function LessonsTab() {
         lessonNum: number;
     }>(null);
     const mountedRef = useRef(true);
+    const lessonsStorageHydratedRef = useRef(false);
     const scoresLoadRef = useRef<{
         target: string;
         promise: Promise<LessonsTabSnapshot>;
@@ -641,10 +669,10 @@ export default function LessonsTab() {
         return () => { mountedRef.current = false; };
     }, []);
     useEffect(() => {
-        if (activeIdx === 1 && scrollRef.current) {
+        if (lessonsTabVisible && scrollRef.current) {
             scrollRef.current.scrollToOffset({ offset: 0, animated: false });
         }
-    }, [activeIdx]);
+    }, [lessonsTabVisible]);
     const loadScores = useCallback(async () => {
         try {
             let entry = scoresLoadRef.current;
@@ -683,13 +711,15 @@ export default function LessonsTab() {
         }
     }, [lessonCacheTarget, studyTarget]);
     useEffect(() => {
+        if (lessonsStorageHydratedRef.current) return;
+        lessonsStorageHydratedRef.current = true;
         void loadScores();
-    }, [focusTick, loadScores]);
+    }, [loadScores]);
     /** Свайп/тап на вкладку «Уроки» — те же кейсы, где layout focus не збільшує focusTick */
     useEffect(() => {
-        if (activeIdx === 1)
-            void loadScores();
-    }, [activeIdx, loadScores]);
+        if (!lessonsTabVisible) return;
+        void loadScores();
+    }, [focusTick, lessonsTabVisible, loadScores]);
     const lessons = lessonNamesForStudyTarget(lang, studyTarget);
     const premiumReachableLevelIndex = useMemo(() => {
         let idx = getCourseLevelIndex('A1');
@@ -783,13 +813,10 @@ export default function LessonsTab() {
     // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
     const openLessonPaywall = useCallback((lessonNum: number) => {
         const doneSoFar = scores.filter(score => score > 0).length;
-        router.push({
-            pathname: '/premium_modal',
-            params: {
-                context: lessonPaywallContext(lessonNum),
-                lessons_done: String(doneSoFar),
-            },
-        } as any);
+        openPremiumPaywall(router, {
+            context: lessonPaywallContext(lessonNum),
+            lessons_done: doneSoFar,
+        });
     }, [router, scores]);
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
@@ -806,9 +833,7 @@ export default function LessonsTab() {
           </TapScale>
           <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
             <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1}>
-              {dialogsEnabled
-                ? triLang(lang, { ru: 'Обучение', uk: 'Навчання', es: 'Aprender', 'pt-BR': 'Aprender', vi: 'Học', id: 'Belajar', tr: 'Öğren', pl: 'Nauka' })
-                : s.tabs.lessons}
+              {triLang(lang, { ru: 'Обучение', uk: 'Навчання', es: 'Aprender', 'pt-BR': 'Aprender', vi: 'Học', id: 'Belajar', tr: 'Öğren', pl: 'Nauka' })}
             </Text>
           </View>
           <View style={{ flexShrink: 0 }}>
@@ -816,9 +841,8 @@ export default function LessonsTab() {
           </View>
         </View>
 
-        {/* Переключатель страниц: Уроки | Диалоги (подчёркивание) */}
-        {dialogsEnabled ? (
-          <View style={{ flexDirection: 'row', gap: 22, paddingHorizontal: 18, borderBottomWidth: 1, borderBottomColor: t.border, marginBottom: 2 }}>
+        {/* Переключатель страниц: Уроки | Маршрут | Диалоги */}
+        <View style={{ flexDirection: 'row', gap: 16, paddingHorizontal: 18, borderBottomWidth: 1, borderBottomColor: t.border, marginBottom: 2 }}>
             <TabUnderlineButton
               label={s.tabs.lessons}
               active={page === 'lessons'}
@@ -826,8 +850,22 @@ export default function LessonsTab() {
               mutedColor={t.textMuted}
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
+              themeMode={themeMode}
               onPress={() => { if (page !== 'lessons') { hapticTap(); setPage('lessons'); } }}
             />
+            <TabUnderlineButton
+              label={triLang(lang, { ru: 'Маршрут', uk: 'Маршрут', es: 'Ruta', 'pt-BR': 'Rota', vi: 'Lộ trình', id: 'Rute', tr: 'Rota', pl: 'Trasa' })}
+              active={false}
+              color={t.textPrimary}
+              mutedColor={t.textMuted}
+              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              fontSize={f.body}
+              themeMode={themeMode}
+              plusBadge={!isPremium}
+              plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
+              onPress={openLearningRoute}
+            />
+            {dialogsEnabled ? (
             <TabUnderlineButton
               label={triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos', 'pt-BR': 'Diálogos', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi' })}
               active={page === 'dialogs'}
@@ -835,14 +873,15 @@ export default function LessonsTab() {
               mutedColor={t.textMuted}
               accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               fontSize={f.body}
+              themeMode={themeMode}
               badge={!isPremium}
               badgeColor={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : t.correctText}
               badgeLabel={`${freeDialogsLifetime} free`}
               onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
             />
+            ) : null}
           </View>
-        ) : null}
       </View>
 
       {/* Страница «Диалоги» */}
@@ -1334,13 +1373,10 @@ export default function LessonsTab() {
                     variant: 'primary' as const,
                     onPress: () => {
                         const doneSoFar = scores.filter(score => score > 0).length;
-                        router.push({
-                            pathname: '/premium_modal',
-                            params: {
-                                context: lessonPaywallContext(gateModal.lessonNum),
-                                lessons_done: String(doneSoFar),
-                            },
-                        } as any);
+                        openPremiumPaywall(router, {
+                            context: lessonPaywallContext(gateModal.lessonNum),
+                            lessons_done: doneSoFar,
+                        });
                     },
                 },
                 {

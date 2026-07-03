@@ -83,6 +83,7 @@ const kitchenCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-businessLight.webp'),
 };
 
 const kitchenLogos: ThemeAssetMap = {
@@ -93,6 +94,7 @@ const kitchenLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-businessLight.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-aurora.webp'),
@@ -107,6 +109,7 @@ const homeCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-businessLight.webp'),
 };
 
 const homeLogos: ThemeAssetMap = {
@@ -117,6 +120,7 @@ const homeLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
   business: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-business.webp'),
+  businessLight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-businessLight.webp'),
   midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-midnight.webp'),
   ember: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-ember.webp'),
   aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-aurora.webp'),

@@ -65,7 +65,7 @@ beforeEach(() => {
     mockStorage[k] = v;
     return Promise.resolve();
   });
-  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: Array<[string, string]>) => {
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
     for (const [k, v] of pairs) mockStorage[k] = v;
     return Promise.resolve();
   });
@@ -75,6 +75,30 @@ beforeEach(() => {
 describe('daily_tasks claim + completion events', () => {
   it('getTodayKey is stubbed to fixed calendar day', () => {
     expect(DailyTasks.getTodayKey()).toBe(FIXED_DAY);
+  });
+
+  it('selects old dated daily task storage keys for pruning while retaining the active key', () => {
+    const retained = dailyTasksProgressKey('2026-01-01', 'en');
+    const keys = [
+      retained,
+      'daily_tasks_all_shards_2026-01-01',
+      ...Array.from({ length: 440 }, (_, i) => {
+        const day = new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10);
+        return i % 2 === 0
+          ? dailyTasksProgressKey(day, 'en')
+          : `daily_tasks_v2::fr::lesson_visited_${day}`;
+      }),
+    ];
+
+    const remove = DailyTasks.selectDatedDailyTasksStorageKeysToRemove(
+      keys,
+      Date.parse('2026-07-31T00:00:00.000Z'),
+      [retained],
+    );
+
+    expect(remove).not.toContain(retained);
+    expect(remove.length).toBeGreaterThan(0);
+    expect(keys.length - remove.length).toBeLessThanOrEqual(421);
   });
 
   it('claimTaskWithReward claims once and returns awarded XP', async () => {
@@ -98,7 +122,7 @@ describe('daily_tasks claim + completion events', () => {
 
     const grant2 = jest.fn().mockResolvedValue(99);
     await expect(DailyTasks.claimTaskWithReward('da1', grant2)).resolves.toEqual({
-      claimed: false,
+      claimed: true,
       awardedXp: 0,
     });
     expect(grant2).not.toHaveBeenCalled();
@@ -143,7 +167,7 @@ describe('daily_tasks claim + completion events', () => {
     expect(saved.find((row) => row.taskId === 'da1')?.claimed).toBe(true);
   });
 
-  it('claimTaskWithReward does not claim when grant throws', async () => {
+  it('claimTaskWithReward keeps the local claim even when grant throws', async () => {
     const key = `daily_tasks_${FIXED_DAY}`;
     mockStorage[key] = JSON.stringify([
       { taskId: 'da1', current: 1, completed: true, claimed: false },
@@ -152,10 +176,11 @@ describe('daily_tasks claim + completion events', () => {
     ]);
 
     const grant = jest.fn().mockRejectedValue(new Error('network'));
-    await expect(DailyTasks.claimTaskWithReward('da1', grant)).resolves.toEqual({ claimed: false, awardedXp: 0 });
+    await expect(DailyTasks.claimTaskWithReward('da1', grant)).resolves.toEqual({ claimed: true, awardedXp: 0 });
 
     const after = JSON.parse(mockStorage[key] || '[]');
-    expect(after.find((p: { taskId: string }) => p.taskId === 'da1').claimed).toBe(false);
+    expect(after.find((p: { taskId: string }) => p.taskId === 'da1').claimed).toBe(true);
+    expect(emitAppEvent).toHaveBeenCalledWith('daily_task_reward_claimed', { taskId: 'da1' });
   });
 
   it('claimTaskWithReward refuses incomplete tasks', async () => {

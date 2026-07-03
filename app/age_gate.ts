@@ -4,8 +4,7 @@
  * Юридический смысл:
  *  - Оператор ирландский → цифровой возраст согласия 16 (один из строгих в ЕС).
  *  - Новых пользователей младше 16 не пускаем (мягкая блокировка в онбординге).
- *  - Существующих 13–15 не выкидываем, а переводим в «безопасный режим»
- *    (без ИИ-чата/соц/покупок) — см. ageBracket === 'teen_safe'.
+ *  - Age bracket is stored as consent metadata. After onboarding it must not disable app features.
  *  - Год рождения (не полная дата) — минимизация данных.
  *
  * Снапшот в памяти + гидрация из AsyncStorage (как notif/consent), чтобы фичи-гейты
@@ -20,9 +19,9 @@ export const MIN_FULL_ACCESS_AGE = 16;
 export const MIN_TEEN_SAFE_AGE = 13;
 
 export type AgeBracket =
-  | 'under13'    // младше 13 — доступа нет
-  | 'teen_safe'  // 13–15 — безопасный режим (без ИИ-чата/соц/покупок)
-  | 'adult'      // 16+ — полный доступ
+  | 'under13'    // stored consent metadata
+  | 'teen_safe'  // 13–15 — stored consent metadata
+  | 'adult'      // 16+ — confirmed in onboarding
   | 'unknown';   // ещё не спрашивали
 
 const BIRTH_YEAR_KEY = 'user_birth_year_v1';
@@ -59,14 +58,14 @@ export function getBirthYearSnapshot(): number | null {
   return birthYearMemory;
 }
 
-/** Полный доступ только для 'adult'. */
+/** Compatibility helper: app features are not age-blocked after onboarding. */
 export function isFullAccess(): boolean {
-  return bracketMemory === 'adult';
+  return true;
 }
 
-/** Подросток в безопасном режиме — рискованные фичи выключены. */
+/** Compatibility helper: teen-safe metadata no longer disables app features. */
 export function isTeenSafeMode(): boolean {
-  return bracketMemory === 'teen_safe';
+  return false;
 }
 
 /** Сделан ли уже ввод возраста (нужно ли показывать гейт/модал). */

@@ -47,7 +47,12 @@ const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 const FUNCTIONS_REGION = 'us-central1';
+const LOCAL_CLAIM_KEY_PREFIX = 'league_chest_claimed_';
+const LOCAL_CLAIM_MAX_KEYS = 32;
+const LOCAL_CLAIM_PRUNE_INTERVAL_MS = 12 * 60 * 60 * 1000;
 const leagueChestClaimInFlight = new Map<string, Promise<LeagueChestClaim>>();
+let lastLocalClaimPruneAt = 0;
+let localClaimPruneInFlight = false;
 
 function getCurrentWeekId(): string {
   const d = new Date();
@@ -231,7 +236,29 @@ function claimDocId(uid: string, weekId: string, groupId: string): string {
 }
 
 function localClaimKey(uid: string, weekId: string, groupId: string): string {
-  return `league_chest_claimed_${claimDocId(uid, weekId, groupId)}`;
+  return `${LOCAL_CLAIM_KEY_PREFIX}${claimDocId(uid, weekId, groupId)}`;
+}
+
+async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
+  const now = Date.now();
+  if (localClaimPruneInFlight || now - lastLocalClaimPruneAt < LOCAL_CLAIM_PRUNE_INTERVAL_MS) return;
+  localClaimPruneInFlight = true;
+  lastLocalClaimPruneAt = now;
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const claimKeys = keys
+      .filter((key) => key.startsWith(LOCAL_CLAIM_KEY_PREFIX))
+      .sort((a, b) => b.localeCompare(a));
+    if (claimKeys.length <= LOCAL_CLAIM_MAX_KEYS) return;
+    const keep = new Set(claimKeys.slice(0, LOCAL_CLAIM_MAX_KEYS));
+    keep.add(retainKey);
+    const remove = claimKeys.filter((key) => !keep.has(key));
+    if (remove.length > 0) await AsyncStorage.multiRemove(remove);
+  } catch {
+    // Best-effort local marker cleanup only.
+  } finally {
+    localClaimPruneInFlight = false;
+  }
 }
 
 function leagueChestClaimRequestKey(uid: string, weekId: string, groupId: string): string {
@@ -590,7 +617,10 @@ export async function ensureLeagueChestRewards(params: {
   const request = (async () => {
     try {
       const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
-      if (data.claimed) await AsyncStorage.setItem(claimKey, '1');
+      if (data.claimed) {
+        await AsyncStorage.setItem(claimKey, '1');
+        void pruneLocalClaimKeys(claimKey).catch(() => {});
+      }
       if (data.crown?.uid === myUid) {
         emitAppEvent('league_crown_updated', {
           uid: myUid,

@@ -121,22 +121,22 @@ describe('Gustav French curriculum contract', () => {
     expect(source).toContain('const canClaimTheoryXp = !isFrenchTarget || Boolean(frenchTheoryScreens?.length)');
     expect(source).toContain('if (canClaimTheoryXp) {');
     expect(source).toContain("updateTaskProgress('open_theory', 1, studyTarget)");
-    expect(source).toContain('if (xpClaimed || !canClaimTheoryXp) return');
+    expect(source).toContain('if (claimInFlightRef.current || xpClaimed || !xpClaimHydrated || !canClaimTheoryXp) return');
     expect(source).toContain('{canClaimTheoryXp ? (');
     expect(source).not.toContain('`theory_xp_claimed_${lessonId}`');
   });
 
-  it('blocks English lesson support surfaces for French until sourced support packets exist', () => {
+  it('opens sourced French lesson theory while keeping hint support gated from English fallback', () => {
     const gateSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_support_target_gate.ts'), 'utf8');
 
     expect(gateSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
     expect(gateSource).toContain("storageStudyTarget(studyTarget) !== 'fr'");
     expect(lessonSupportContentAvailableForTarget('en', 'lesson_theory', 1)).toBe(true);
-    expect(lessonSupportContentAvailableForTarget('fr', 'lesson_theory', 1)).toBe(false);
+    expect(lessonSupportContentAvailableForTarget('fr', 'lesson_theory', 1)).toBe(true);
     expect(lessonSupportContentAvailableForTarget('fr', 'lesson_hint', 1)).toBe(false);
 
     expect(lessonSupportContentGateForTarget('fr', 'lesson_theory', 1)).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
       surface: 'lesson_theory',
       lessonId: 1,
@@ -194,12 +194,14 @@ describe('Gustav French curriculum contract', () => {
     expect(source).not.toMatch(/es:\s*(?:spanishBackup|screen|example)/);
   });
 
-  it('does not show a blank lesson when French lesson rows are not source-gated yet', () => {
+  it('loads French lesson rows from server pack instead of showing the old review placeholder', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson1.tsx'), 'utf8');
 
-    expect(source).toContain('Французский материал ещё на проверке');
-    expect(source).toContain('не будет открывать английские фразы или интро как замену');
-    expect(source).toContain("router.replace('/(tabs)/lessons' as any)");
+    expect(source).toContain("import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime'");
+    expect(source).toContain('loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale)');
+    expect(source).toContain('remoteFrenchLessonRows ?? getLessonData(lessonId)');
+    expect(source).not.toContain('Французский материал ещё на проверке');
+    expect(source).not.toContain('не будет открывать английские фразы или интро как замену');
     expect(source).toContain('const hasPlayableLessonRows = effectiveTotal > 0');
     expect(source).toContain('if (!hasPlayableLessonRows) {');
     expect(source).toContain('if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return');

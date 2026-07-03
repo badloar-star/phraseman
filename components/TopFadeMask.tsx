@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View, type ViewStyle } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from './SafeLinearGradient';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
 const DEFAULT_FEATHER_HEIGHT = 36;
 
@@ -43,7 +43,7 @@ export default function TopFadeMask({
   zIndex = 5,
   style,
 }: TopFadeMaskProps) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   const maskOpacity = useRef(new Animated.Value(scrollY ? 0 : 1)).current;
   const shownRef = useRef(!scrollY);

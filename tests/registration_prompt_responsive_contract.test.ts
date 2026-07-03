@@ -30,4 +30,26 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     expect(src).toContain("flexWrap: 'wrap'");
     expect(src).toContain("width: '100%'");
   });
+
+  it('shows a visible busy state and locks dismissal during provider sign-in', () => {
+    const src = source();
+
+    expect(src).toContain('ActivityIndicator');
+    expect(src).toContain('testID="auth-prompt-busy"');
+    expect(src).toContain('accessibilityRole="progressbar"');
+    expect(src).toContain('signInBusyLabel');
+    expect(src).toContain('waitForAuthPromptBusyFrame');
+    expect(src).toContain('disabled={loadingProvider !== null}');
+
+    const signInStart = src.indexOf('const handleSignIn = useCallback');
+    expect(signInStart).toBeGreaterThan(-1);
+    const signInBody = src.slice(signInStart, src.indexOf('const handleResetAndRetry', signInStart));
+    expect(signInBody).toContain('await waitForAuthPromptBusyFrame();');
+
+    const laterStart = src.indexOf('const handleLater = useCallback');
+    expect(laterStart).toBeGreaterThan(-1);
+    const laterBody = src.slice(laterStart, src.indexOf('return (', laterStart));
+    expect(laterBody).toContain('if (loadingProvider !== null) return;');
+    expect(laterBody).toContain('[context, loadingProvider, onClose]');
+  });
 });

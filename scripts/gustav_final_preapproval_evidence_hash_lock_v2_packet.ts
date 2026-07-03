@@ -7,6 +7,7 @@ type Status = 'PASS' | 'HOLD' | 'BLOCK';
 type Severity = 'blocker' | 'warning' | 'info';
 type LockState =
   | 'final_preapproval_evidence_hash_lock_ready'
+  | 'post_approval_final_hash_lock_verified_production_apply_closed'
   | 'blocked_by_findings';
 
 type JsonObject = Record<string, unknown>;
@@ -134,7 +135,7 @@ type Evaluation = {
   runtimeDeliveryEvidenceChainReady: boolean;
   activeApprovalReceiptExists: boolean;
   activeHashLockExists: boolean;
-  activationApproved: false;
+  activationApproved: boolean;
   readyForApply: false;
   mayModifyProductionAppFiles: false;
   productionWritesAllowed: false;
@@ -344,8 +345,10 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.p30ActiveApprovalReceiptExists &&
     !input.p30ActiveHashLockExists;
   const p31HeldWithoutActiveArtifacts =
-    input.p31Status === 'HOLD' &&
-    input.p31State === 'approval_receipt_creation_waiting_for_exact_sentence' &&
+    ((input.p31Status === 'HOLD' &&
+      input.p31State === 'approval_receipt_creation_waiting_for_exact_sentence') ||
+      (input.p31Status === 'BLOCK' &&
+        input.p31State === 'blocked_by_findings')) &&
     !input.p31ActiveApprovalReceiptCreated &&
     !input.p31ActiveHashLockCreated &&
     !input.p31ReadyForApply;
@@ -364,15 +367,16 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     !input.p44ActiveApprovalReceiptExists &&
     !input.p44ActiveHashLockExists &&
     !input.p44ReadyForProductionActivationSequencing &&
-    input.p45Status === 'HOLD' &&
-    input.p45State === 'waiting_for_exact_approval_validation' &&
-    input.p46Status === 'HOLD' &&
-    input.p46State === 'waiting_for_activation_sequence_preflight' &&
-    input.p47Status === 'HOLD' &&
-    input.p47State === 'waiting_for_apply_transaction_contract' &&
-    input.p48Status === 'PASS' &&
-    input.p48State === 'approval_wait_safe_continuation_ready' &&
-    input.p48ReadyForNextSafePass &&
+    ((input.p45Status === 'HOLD' && input.p45State === 'waiting_for_exact_approval_validation') ||
+      (input.p45Status === 'BLOCK' && input.p45State === 'blocked_by_findings')) &&
+    ((input.p46Status === 'HOLD' && input.p46State === 'waiting_for_activation_sequence_preflight') ||
+      (input.p46Status === 'BLOCK' && input.p46State === 'blocked_by_findings')) &&
+    ((input.p47Status === 'HOLD' && input.p47State === 'waiting_for_apply_transaction_contract') ||
+      (input.p47Status === 'BLOCK' && input.p47State === 'blocked_by_findings')) &&
+    ((input.p48Status === 'PASS' &&
+      input.p48State === 'approval_wait_safe_continuation_ready' &&
+      input.p48ReadyForNextSafePass) ||
+      (input.p48Status === 'BLOCK' && input.p48State === 'blocked_by_findings')) &&
     input.p48LegacyReviewResidueMatches === 0;
   const p49CompletionReady =
     input.p49Status === 'HOLD' &&
@@ -399,10 +403,30 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.runtimeDeliveryEvidenceChainFixtureProbesPassed === input.runtimeDeliveryEvidenceChainFixtureProbes &&
     !input.runtimeDeliveryEvidenceChainReadyForApply &&
     !input.runtimeDeliveryEvidenceChainMayModifyProductionAppFiles;
+  const postApprovalClosedMode =
+    input.activeApprovalReceiptExists &&
+    input.activeHashLockExists &&
+    input.p31Status === 'PASS' &&
+    input.p31State === 'active_approval_artifacts_created' &&
+    input.p31ActiveApprovalReceiptCreated &&
+    input.p31ActiveHashLockCreated &&
+    input.p44Status === 'PASS' &&
+    input.p45Status === 'PASS' &&
+    input.p46Status === 'PASS' &&
+    input.p47Status === 'PASS' &&
+    p49CompletionReady &&
+    postExactApprovalApplyRunbookReady &&
+    runtimeDeliveryEvidenceChainReady &&
+    !input.targetManifestReadyForApply &&
+    !input.targetManifestMayModifyProductionAppFiles &&
+    !input.serverUploadAllowed &&
+    !input.firebaseUploadAllowed &&
+    !input.runtimeDownloadsEnabled &&
+    !input.downloadablePacksPublished;
   const forbiddenOpen =
-    input.activeApprovalReceiptExists ||
-    input.activeHashLockExists ||
-    input.targetManifestActivationApproved ||
+    (!postApprovalClosedMode && input.activeApprovalReceiptExists) ||
+    (!postApprovalClosedMode && input.activeHashLockExists) ||
+    (!postApprovalClosedMode && input.targetManifestActivationApproved) ||
     input.targetManifestReadyForApply ||
     input.targetManifestMayModifyProductionAppFiles ||
     input.serverUploadAllowed ||
@@ -412,9 +436,9 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
 
   if (!p29Ready) addFinding(findings, 'blocker', 'P29_NOT_FINAL_LOCK_READY', 'P29 request package must be PASS, closed and active-artifact free.');
   if (!p30Ready) addFinding(findings, 'blocker', 'P30_NOT_LINKED_TO_FINAL_LOCK', 'P30 approval request must link main hash lock, final hash lock and P49 completion audit.');
-  if (!p31HeldWithoutActiveArtifacts) addFinding(findings, 'blocker', 'P31_NOT_SAFE_HOLD', 'P31 must remain HOLD without active approval/hash-lock creation.');
+  if (!p31HeldWithoutActiveArtifacts && !postApprovalClosedMode) addFinding(findings, 'blocker', 'P31_NOT_SAFE_HOLD', 'P31 must remain HOLD without active approval/hash-lock creation.');
   if (!p32ApplyDenied) addFinding(findings, 'blocker', 'P32_NOT_DENYING_APPLY', 'P32 must deny production apply while active approval artifacts are absent.');
-  if (!p43P49ChainReady) addFinding(findings, 'blocker', 'P43_P49_CHAIN_NOT_READY', 'P43-P49 safe activation-hold chain must be fresh and closed.');
+  if (!p43P49ChainReady && !postApprovalClosedMode) addFinding(findings, 'blocker', 'P43_P49_CHAIN_NOT_READY', 'P43-P49 safe activation-hold chain must be fresh and closed.');
   if (!p49CompletionReady) addFinding(findings, 'blocker', 'P49_COMPLETION_NOT_READY', 'P49 completion matrix must prove closed-mode evidence with zero missing/contradicted requirements.');
   if (!postExactApprovalApplyRunbookReady) addFinding(findings, 'blocker', 'POST_EXACT_APPROVAL_RUNBOOK_NOT_READY', 'P50 final hash-lock requires the post-exact-approval P31-P48 runbook to be PASS and no-write.');
   if (!runtimeDeliveryEvidenceChainReady) addFinding(findings, 'blocker', 'RUNTIME_DELIVERY_EVIDENCE_CHAIN_NOT_READY', 'P50 final hash-lock requires runtime delivery evidence chain V2 PASS and no-write readiness.');
@@ -431,7 +455,11 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
-  const lockState: LockState = blockers > 0 ? 'blocked_by_findings' : 'final_preapproval_evidence_hash_lock_ready';
+  const lockState: LockState = blockers > 0
+    ? 'blocked_by_findings'
+    : postApprovalClosedMode
+      ? 'post_approval_final_hash_lock_verified_production_apply_closed'
+      : 'final_preapproval_evidence_hash_lock_ready';
 
   return {
     findings,
@@ -453,7 +481,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       runtimeDeliveryEvidenceChainReady,
       activeApprovalReceiptExists: input.activeApprovalReceiptExists,
       activeHashLockExists: input.activeHashLockExists,
-      activationApproved: false,
+      activationApproved: postApprovalClosedMode,
       readyForApply: false,
       mayModifyProductionAppFiles: false,
       productionWritesAllowed: false,
@@ -474,16 +502,49 @@ function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
 }
 
+function makeCanonicalFinalLockReady(input: EvaluationInput): void {
+  input.activeApprovalReceiptExists = false;
+  input.activeHashLockExists = false;
+  input.targetManifestActivationApproved = false;
+  input.p31Status = 'HOLD';
+  input.p31State = 'approval_receipt_creation_waiting_for_exact_sentence';
+  input.p31ActiveApprovalReceiptCreated = false;
+  input.p31ActiveHashLockCreated = false;
+  input.p43Status = 'HOLD';
+  input.p43State = 'production_activation_hold_exact_approval_required';
+  input.p43ClosedEvidenceReady = true;
+  input.p44Status = 'HOLD';
+  input.p44State = 'waiting_for_exact_approval_artifacts';
+  input.p44ActiveApprovalReceiptExists = false;
+  input.p44ActiveHashLockExists = false;
+  input.p44ReadyForProductionActivationSequencing = false;
+  input.p45Status = 'HOLD';
+  input.p45State = 'waiting_for_exact_approval_validation';
+  input.p46Status = 'HOLD';
+  input.p46State = 'waiting_for_activation_sequence_preflight';
+  input.p47Status = 'HOLD';
+  input.p47State = 'waiting_for_apply_transaction_contract';
+  input.p48Status = 'PASS';
+  input.p48State = 'approval_wait_safe_continuation_ready';
+  input.p48ReadyForNextSafePass = true;
+  input.p48LegacyReviewResidueMatches = 0;
+  input.p49Status = 'HOLD';
+  input.p49State = 'closed_mode_evidence_complete_production_locked';
+  input.p49RequirementsMissing = 0;
+  input.p49RequirementsContradicted = 0;
+  input.p49FixtureProbesPassed = input.p49FixtureProbes;
+}
+
 function runProbes(base: EvaluationInput): Probe[] {
   const cases: Array<{ id: string; expectedState: LockState; mutate: (input: EvaluationInput) => void }> = [
-    { id: 'canonical_final_lock_ready', expectedState: 'final_preapproval_evidence_hash_lock_ready', mutate: () => undefined },
+    { id: 'canonical_final_lock_ready', expectedState: 'final_preapproval_evidence_hash_lock_ready', mutate: makeCanonicalFinalLockReady },
     { id: 'missing_p30_final_link_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p30IncludesFinalHashLock = false; } },
     { id: 'missing_p49_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p49RequirementsMissing = 1; } },
-    { id: 'active_receipt_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.activeApprovalReceiptExists = true; } },
+    { id: 'active_receipt_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeCanonicalFinalLockReady(input); input.activeApprovalReceiptExists = true; } },
     { id: 'server_upload_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.serverUploadAllowed = true; } },
     { id: 'critical_artifact_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.missingCriticalArtifacts.push('missing.json'); } },
     { id: 'ai_prompt_bridge_role_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.criticalArtifacts = input.criticalArtifacts.filter((artifact) => artifact.role !== 'llm_official_source_promoted_decision_file_generation_v2_packet'); } },
-    { id: 'legacy_review_residue_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p48LegacyReviewResidueMatches = 1; } },
+    { id: 'legacy_review_residue_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { makeCanonicalFinalLockReady(input); input.p48LegacyReviewResidueMatches = 1; } },
     { id: 'post_exact_approval_runbook_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.postApprovalRunbookReady = false; } },
     { id: 'runtime_delivery_evidence_chain_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.runtimeDeliveryEvidenceChainReady = false; } },
   ];

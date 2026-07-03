@@ -6,12 +6,10 @@
  * друг жмёт → открывается invite-страница → редирект в нужный стор (Android несёт код через Install
  * Referrer; iOS кладёт код в буфер по клику). Над ссылкой — короткий зазывной текст на 8 языках.
  *
- * Android: добавляем ещё Play-ссылку с Install Referrer и app-deeplink (для уже установленного).
- * iOS: App Store-ссылка + та же https-ссылка с ref (Universal Link), плюс phraseman:// как запас.
+ * Platform-specific app/store routing lives on the invite page itself; the shared text intentionally contains
+ * exactly one public https link so messengers do not render a stack of competing links.
  */
-import { Platform } from 'react-native';
-import { STORE_URL_IOS } from './config';
-import { buildPlayStoreUrlWithInstallReferral, buildReferralShareLinks } from './referral_bootstrap';
+import { buildReferralShareLinks } from './referral_bootstrap';
 import { generateReferralCode, getReferralCode } from './referral_system';
 import type { Lang } from '../constants/i18n';
 
@@ -142,62 +140,18 @@ export async function buildCloudReferralInviteShare(params: {
   lang: InviteShareLang;
   userName: string;
 }): Promise<ReferralInviteShare | null> {
-  await generateReferralCode(params.userName || 'User');
-  const refCode = await getReferralCode();
-  if (!refCode) return null;
-  const { https: inviteHttps, app: appDeepLink } = buildReferralShareLinks(refCode);
+  // Кэш-код первым: Share должен открываться сразу после тапа. Серверный ensure
+  // (2 round-trip'а: auth-link + ensure-код) нужен только когда кода ещё нет —
+  // иначе на медленной сети системный шеринг открывался с многосекундной задержкой.
+  let refCode = await getReferralCode();
+  if (!refCode || refCode.trim().length < 4) {
+    refCode = await generateReferralCode(params.userName || 'User');
+  }
+  if (!refCode || refCode.trim().length < 4) return null;
+  const { https: inviteHttps } = buildReferralShareLinks(refCode);
   const { lang } = params;
-  // База: зазывная фраза + invite-ссылка ОТДЕЛЬНОЙ строкой (открывается в браузере).
-  const base = buildReferralInviteShare(lang, inviteHttps);
-
-  if (Platform.OS === 'ios') {
-    // iOS: добавляем App Store-ссылку (та же https-ссылка с ref — Universal Link несёт код).
-    const store = label(lang, {
-      ru: 'Скачай в App Store: ',
-      uk: 'Завантаж у App Store: ',
-      es: 'Descarga en App Store: ',
-      'pt-BR': 'Baixe na App Store: ',
-      vi: 'Tải trên App Store: ',
-      id: 'Unduh di App Store: ',
-      tr: 'App Store’dan indir: ',
-      pl: 'Pobierz z App Store: ',
-    });
-    return {
-      message: `${base.message}\n${store}\n${STORE_URL_IOS}`,
-      url: inviteHttps,
-    };
-  }
-  // web / прочее (не Android): зазывная фраза + кликабельная invite-ссылка — её и открывают в браузере.
-  if (Platform.OS !== 'android') return buildReferralInviteShare(lang, inviteHttps);
-  if (Platform.OS === 'android') {
-    // Android: добавляем строку для уже установленного приложения и Play-ссылку с Install Referrer.
-    const inApp = label(lang, {
-      ru: 'Уже установлено? Открой в приложении: ',
-      uk: 'Уже встановлено? Відкрий у застосунку: ',
-      es: '¿Ya instalada? Ábrela en la app: ',
-      'pt-BR': 'Já instalado? Abra no app: ',
-      vi: 'Đã cài? Mở trong ứng dụng: ',
-      id: 'Sudah terpasang? Buka di aplikasi: ',
-      tr: 'Zaten yüklü mü? Uygulamada aç: ',
-      pl: 'Już zainstalowane? Otwórz w aplikacji: ',
-    });
-    const install = label(lang, {
-      ru: 'Нет приложения — установи: ',
-      uk: 'Немає застосунку — встанови: ',
-      es: 'Si no la tienes, instálala: ',
-      'pt-BR': 'Não tem o app? Instale: ',
-      vi: 'Chưa có ứng dụng? Cài đặt: ',
-      id: 'Belum punya? Pasang: ',
-      tr: 'Uygulama yoksa yükle: ',
-      pl: 'Nie masz aplikacji? Zainstaluj: ',
-    });
-    const storeUrl = buildPlayStoreUrlWithInstallReferral(refCode);
-    return {
-      message: `${base.message}\n${inApp}\n${appDeepLink}\n${install}\n${storeUrl}`,
-      url: inviteHttps,
-    };
-  }
-  return base;
+  // One public invite URL is enough: the landing page handles app-open/store routing.
+  return buildReferralInviteShare(lang, inviteHttps);
 }
 
 /* expo-router route shim: utility module under app/ */

@@ -8,6 +8,7 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/generated_theme_icons/lesson-exam-coral.webp'),
   minimalDark: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
   business: require('../assets/images/generated_theme_icons/lesson-exam-business.webp'),
+  businessLight: require('../assets/images/generated_theme_icons/lesson-exam-businessLight.webp'),
   midnight: require('../assets/images/generated_theme_icons/lesson-exam-midnight.webp'),
   ember: require('../assets/images/generated_theme_icons/lesson-exam-ember.webp'),
   aurora: require('../assets/images/generated_theme_icons/lesson-exam-aurora.webp'),

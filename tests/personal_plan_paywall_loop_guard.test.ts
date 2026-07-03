@@ -54,18 +54,29 @@ describe('personal plan ↔ paywall ↔ thank-you loop is broken', () => {
     const idx = purchase.indexOf("router.replace('/personal_plan_thank_you' as any)");
     expect(idx).toBeGreaterThan(-1);
     // markNextNavigationAsReplace стоит НЕПОСРЕДСТВЕННО перед replace на thank-you,
-    // иначе пейвол остаётся в стеке «назад» под экраном «План включён».
+    // иначе пейвол остаётся в стеке «назад» под post-purchase auth host.
     const before = purchase.slice(Math.max(0, idx - 400), idx);
     expect(before).toContain('markNextNavigationAsReplace()');
-    expect(purchase).toContain("import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back'");
+    expect(purchase).toContain("import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back'");
   });
 
-  it('FIX 5: thank-you → plan marks replace so the celebration screen leaves the back stack (no thank-you↔plan loop)', () => {
+  it('FIX 5: auth host → plan marks replace so the host leaves the back stack (no auth-host↔plan loop)', () => {
     const idx = thankYou.indexOf("router.replace('/personal_plan' as any)");
     expect(idx).toBeGreaterThan(-1);
     const before = thankYou.slice(Math.max(0, idx - 400), idx);
     expect(before).toContain('markNextNavigationAsReplace()');
     expect(thankYou).toContain("import { markNextNavigationAsReplace } from './navigation_back'");
+  });
+
+  it('opens the auth prompt immediately instead of showing the removed full-screen thank-you CTA', () => {
+    expect(thankYou).toContain('RegistrationPromptModal');
+    expect(thankYou).toContain('visible={true}');
+    expect(thankYou).not.toContain('setAuthVisible(true)');
+    expect(thankYou).not.toContain('personal-plan-thank-you-auth');
+    expect(thankYou).not.toContain('personal-plan-thank-you-later');
+    expect(thankYou).not.toContain('TouchableOpacity');
+    expect(thankYou).not.toContain('ScreenGradient');
+    expect(thankYou).not.toContain('BounceView');
   });
 
   it('the forbidden store-receipt support copy is removed from the thank-you screen', () => {

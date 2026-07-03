@@ -687,15 +687,6 @@ export const premiumDialogSend = onCall({
     throw new HttpsError('invalid-argument', 'user_text_required');
   }
 
-  // Возрастной безопасный режим: ИИ-собеседник недоступен несовершеннолетним (<16).
-  // Клиент уже блокирует вход, но дублируем на сервере (defense-in-depth): если
-  // клиент честно сообщает возрастную группу подростка/ребёнка — отказываем.
-  const clientAgeBracket = text((data as { ageBracket?: unknown }).ageBracket, 16);
-  if (clientAgeBracket === 'teen_safe' || clientAgeBracket === 'under13') {
-    console.warn('premium_dialog rejected', { reason: 'age_restricted', ageBracket: clientAgeBracket });
-    throw new HttpsError('permission-denied', 'age_restricted');
-  }
-
   const db = admin.firestore();
   const authUid = request.auth.uid;
 

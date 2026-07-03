@@ -94,7 +94,12 @@ export async function fetchPlanContentDayForScreen(
     extraReason = reg ? 'network_unavailable' : 'remote_disabled';
   }
 
-  const result = await resolveRemoteOrBundledPlanContentDay(planId, dayIndex, cacheKey ?? undefined);
+  const result = await resolveRemoteOrBundledPlanContentDay(
+    planId,
+    dayIndex,
+    cacheKey ?? undefined,
+    cacheKey ? planContentRowUrl : undefined,
+  );
   recordPlanContentSource(telemetryFromRemoteDay(planId, dayIndex, surface, result, extraReason));
   return result;
 }
@@ -154,7 +159,12 @@ export async function fetchPlanContentDayForScreenServerFirst(
       const reg = getPlanContentRemoteRegistration();
       extraReason = reg ? 'network_unavailable' : 'remote_disabled';
     }
-    return resolveRemoteOrBundledPlanContentDay(planId, dayIndex, cacheKey ?? undefined);
+    return resolveRemoteOrBundledPlanContentDay(
+      planId,
+      dayIndex,
+      cacheKey ?? undefined,
+      cacheKey ? planContentRowUrl : undefined,
+    );
   })();
 
   // Race the server against the deadline. Whichever finishes first wins the

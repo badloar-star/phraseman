@@ -8,6 +8,10 @@ import {
   getLeagueChatKeyboardTopY,
   mergeLeagueChatOptimisticMessages,
 } from '../components/leagueChatPanelBehavior';
+import {
+  getKeyboardAwareComposerBottomPadding,
+  getKeyboardBottomInset,
+} from '../components/keyboardAvoidance';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -89,6 +93,12 @@ describe('league chat cache-first behavior', () => {
     expect(getLeagueChatKeyboardOverlapInset(480, 520)).toBe(0);
     expect(getLeagueChatKeyboardTopY({ screenY: 520, height: 280 }, 800)).toBe(520);
     expect(getLeagueChatKeyboardTopY({ height: 280 }, 800)).toBe(520);
+    expect(getKeyboardBottomInset({ screenY: 520, height: 280 }, 800)).toBe(280);
+    expect(getKeyboardBottomInset({ height: 280 }, 800)).toBe(280);
+    expect(getKeyboardBottomInset({ screenY: 800, height: 0 }, 800)).toBe(0);
+    expect(getKeyboardAwareComposerBottomPadding(280, 34, true)).toBe(8);
+    expect(getKeyboardAwareComposerBottomPadding(0, 34, true)).toBe(8);
+    expect(getKeyboardAwareComposerBottomPadding(0, 34)).toBe(38);
   });
 
   it('shows my sent message immediately as an optimistic league chat row', () => {
@@ -146,15 +156,18 @@ describe('league chat cache-first behavior', () => {
 
     expect(screenSource).toContain('presentationStyle="fullScreen"');
     expect(screenSource).toContain('testID="league-chat-fullscreen"');
-    expect(screenSource).toContain("behavior={Platform.OS === 'ios' ? 'padding' : 'height'}");
+    expect(screenSource).not.toContain("behavior={Platform.OS === 'ios' ? 'padding' : 'height'}");
+    expect(panelSource).toContain('useKeyboardAvoidanceMetrics()');
+    expect(panelSource).toContain('keyboardAvoidance.visible');
+    expect(panelSource).toContain('getKeyboardAwareComposerBottomPadding(');
+    expect(panelSource).toContain('marginBottom: keyboardBottomInset');
     expect(panelSource).toContain('onFocus={handleComposerFocus}');
     expect(panelSource).toContain("AppState.addEventListener('change'");
     expect(panelSource).toContain('inputRef.current?.blur()');
     expect(panelSource).toContain('Keyboard.dismiss()');
-    expect(panelSource).toContain('Math.max(18, insets.bottom + 14)');
+    expect(panelSource).toContain('normalizeSafeAreaBottomInset(insets.bottom)');
     expect(panelSource).toContain('testID="league-chat-composer"');
     expect(panelSource).not.toContain('measureInWindow');
-    expect(panelSource).not.toContain('keyboardBottomInset');
   });
 
   it('allows deleting only my own league chat messages for everyone', () => {
@@ -165,7 +178,9 @@ describe('league chat cache-first behavior', () => {
 
     expect(panelSource).toContain('deleteLeagueChatMessage');
     expect(panelSource).toContain('testID={`league-chat-delete-${m.id}`}');
-    expect(panelSource).toContain('message.authorUid !== myUid');
+    expect(panelSource).toContain('isOwnMessage(message)');
+    expect(panelSource).toContain('message.authorUid === effectiveMyUid');
+    expect(panelSource).toContain('message.authorAuthUid === resolvedMyAuthUid');
     expect(clientSource).toContain("('leagueChatDeleteMessage')");
     expect(functionSource).toContain('export const leagueChatDeleteMessage');
     expect(functionSource).toContain("status: 'deleted'");

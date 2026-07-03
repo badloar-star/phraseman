@@ -14,6 +14,16 @@ and misleads (many contain stale numbers).
 | Question | Answer lives in |
 |---|---|
 | What is done / what is next | `docs/gustav/state.json` |
+| Trusted Brain / reasoning contract | `docs/gustav/GUSTAV_TRUSTED_BRAIN_ARCHITECTURE.md` |
+| French trusted source library | `docs/gustav/trusted_sources/fr_trusted_sources.json` |
+| Full English-feature parity rule | `docs/gustav/GUSTAV_ENGLISH_FEATURE_PARITY_CONTRACT.md` |
+| English Feature Atlas + French Gap Matrix | `docs/gustav/generated/feature_parity/english_feature_atlas_french_gap_matrix.json` |
+| French builder work orders | `docs/gustav/generated/work_orders/fr_builder_work_orders.json` |
+| French research packets | `docs/gustav/generated/fr/research_best_practices/fr_feature_research_packets.json` |
+| French 32-lesson scope sequence | `docs/gustav/generated/fr/core_lessons_32/fr_lesson_scope_sequence_packet.json` |
+| French lesson reconciliation | `docs/gustav/generated/fr/core_lessons_32/fr_lesson_sequence_reconciliation_report.json` |
+| French lesson rebuild candidates | `docs/gustav/generated/fr/lessons/fr_lesson_rebuild_candidate_audit.json` |
+| Admin website parity | `docs/gustav/GUSTAV_ADMIN_WEBSITE_PARITY_PLAN.md` |
 | How to operate | this file |
 | Is the code healthy | `node node_modules/jest/bin/jest.js --watchman=false --testPathPattern="tests/gustav_"` (must be 100% green) |
 | Authoritative content counts | `state.json → authoritativeCounts` (1600 lesson rows, 178 AI prompt contracts; ignore any doc that says 164) |
@@ -51,6 +61,37 @@ and misleads (many contain stale numbers).
 8. **Commit atomically** (one logical change per commit, message in
    `type: description` format). Never `git stash`. Never create branches or
    worktrees — everyone works on the current branch.
+9. **English feature parity, not row fan-out.** Before calling any French
+   feature complete, read `GUSTAV_ENGLISH_FEATURE_PARITY_CONTRACT.md`. A
+   `flashcard`, `quiz`, `personal_practice`, `arena`, `collectible` or prompt
+   surface made by copying lesson rows is `HOLD`, not complete, unless the
+   English feature itself is proven to work that way. Gustav must audit the
+   English feature and create target-specific French content, prompts, server
+   paths, tests and audio coverage for that feature.
+10. **Visible progress window.** For long Gustav work, start or update
+    `python scripts/gustav_progress_window.py` (or `--no-window` in headless
+    mode). The window reads `docs/gustav/state.json` and
+    `docs/gustav/progress_state.json` and shows the current task/progress. It is
+    local-only and must not trigger browser, Firebase, app runtime or network
+    side effects.
+11. **Admin website is part of the target language.** Before French production
+    readiness, run `node scripts/gustav_admin_website_parity_atlas.mjs` and map
+    every English learning-content admin section/action in `admin/index.html` to
+    a French target-aware equivalent or explicit global-only exception.
+12. **Feature atlas first.** Before building new French content, run
+    `node scripts/gustav_feature_parity_matrix.mjs` and use the generated matrix
+    to choose the next builder. Do not promote a surface that is `BLOCK` or
+    `HOLD` in the matrix.
+13. **Trusted brain mode.** Gustav work uses `reasoningLevel=high` by default
+    and `reasoningLevel=deep` for atlas, syllabus, prompt, admin/server/storage,
+    activation or cross-surface decisions. Before generating content, validate
+    the trusted brain with `node scripts/gustav_validate_trusted_brain.mjs`.
+    Content without trusted-source evidence remains `HOLD`.
+14. **Work orders drive generation.** After the feature matrix, run
+    `node scripts/gustav_builder_work_orders.mjs`. Build French only from
+    `docs/gustav/generated/work_orders/fr_builder_work_orders.json`, starting
+    with the research packet work order. A builder without a work order is
+    planning drift and remains `HOLD`.
 
 ## System map (30-second version)
 
@@ -59,6 +100,10 @@ and misleads (many contain stale numbers).
   (flashcards 120, collectibles 33, personal-plan echo), `pack_candidates/fr/`
   (runtime slices actually uploaded to the server), `generated/fr/reviewer/`
   (decision files; v2 = current schema with 11 quality gates per row).
+- Existing 1600-row `quiz`, `flashcard` and `personal_practice` slices are
+  derived from the lesson ledger. They are seed coverage only, not full
+  English-feature parity, until feature-parity packets prove the French-specific
+  banks, prompts, audio and tests.
 - `scripts/gustav_*` — deterministic generators + packet validators. French
   text is currently **hardcoded inside generator scripts** (`TRANSLATIONS`,
   `FIELD_SPECS`, `PHRASE_FR`…). Roadmap Phase 2 moves it to data files.

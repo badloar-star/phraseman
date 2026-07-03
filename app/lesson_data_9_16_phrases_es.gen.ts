@@ -7825,8 +7825,8 @@ export const LESSON_16_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson16_phrase_27',
     english: "I do not look for problems",
-    russian: "Я не ищу проблемы",
-    ukrainian: "Я не шукаю проблеми",
+    russian: "Я не ищу проблем",
+    ukrainian: "Я не шукаю проблем",
     spanish: "No busco problemas.",
     words: [
       { text: 'No', correct: 'No', distractors: ['Sí', 'Nunca', 'Nada', 'Ni', 'Tampoco'], category: 'negacion' },

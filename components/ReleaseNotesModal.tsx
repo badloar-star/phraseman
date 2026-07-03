@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import {
   Animated,
@@ -12,10 +13,10 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import CompassDepthSurface from './CompassDepthSurface';
@@ -127,7 +128,8 @@ type Props = {
 function ReleaseNotesModal({ visible, onClose }: Props) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isCompassTheme = false;
   const cardAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
@@ -297,7 +299,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
       statusBarTranslucent
       onRequestClose={closeOnce}
     >
-      <View style={[styles.root, { paddingBottom: insets.bottom }]}>
+      <View style={[styles.root, { paddingBottom: bottomInset }]}>
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={closeOnce}

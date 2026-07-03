@@ -1,41 +1,59 @@
-// Гейт бесплатных ИИ-диалогов. Модель (запрос пользователя 2026-06-20):
-// бесплатно ПОЖИЗНЕННО доступен РОВНО ОДИН полный диалог (без лимита реплик
-// внутри него), общий на все режимы (сценарий / ситуация / свободный разговор).
-// После него — полный премиум-замок, без «3 реплики в день».
-//
-// Клиентский флаг — UX-слой (мгновенно прячет ввод и ведёт на пейвол). Источник
-// правды — сервер (premium_dialog CF), который держит тот же пожизненный флаг по
-// stable_id, поэтому переустановка/второе устройство попытку не возвращает.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// v2: переезд с дневного счётчика реплик (v1) на пожизненный «один диалог».
-// Старый ключ намеренно не читаем — у кого он был, тот получает свежую попытку
-// (разовая щедрость при миграции, не баг).
-export const FREE_DIALOG_USED_KEY = 'dialogs_free_lifetime_used_v2';
+import { getFreeDialogsLifetime } from './ai_dialog_flags';
 
-/** Потрачен ли единственный бесплатный диалог (пожизненно). */
-export async function hasUsedFreeDialog(): Promise<boolean> {
+// Client-side UX gate for the lifetime free AI-dialog allowance. The server
+// remains the source of truth; this local counter only hides input quickly and
+// keeps the app copy consistent with the configured free-dialog count.
+export const FREE_DIALOG_LEGACY_USED_KEY = 'dialogs_free_lifetime_used_v2';
+export const FREE_DIALOG_USED_KEY = 'dialogs_free_lifetime_count_v3';
+
+function parseStoredCount(raw: string | null): number {
+  const value = Math.floor(Number(raw));
+  return Number.isFinite(value) && value > 0 ? value : 0;
+}
+
+export async function getFreeDialogsUsed(): Promise<number> {
   try {
-    return (await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)) === '1';
+    const stored = await AsyncStorage.getItem(FREE_DIALOG_USED_KEY);
+    if (stored != null) return Math.min(getFreeDialogsLifetime(), parseStoredCount(stored));
+
+    // Migration from the previous one-free-dialog boolean. Users who already
+    // spent that attempt keep one spent dialog, and still receive the second
+    // attempt when the configured allowance is 2.
+    const legacyUsed = (await AsyncStorage.getItem(FREE_DIALOG_LEGACY_USED_KEY)) === '1';
+    return legacyUsed ? 1 : 0;
   } catch {
-    return false;
+    return 0;
   }
+}
+
+export async function getFreeDialogsLeft(): Promise<number> {
+  const limit = getFreeDialogsLifetime();
+  const used = await getFreeDialogsUsed();
+  return Math.max(0, limit - used);
+}
+
+/** Whether the non-premium lifetime free allowance has been fully spent. */
+export async function hasUsedFreeDialog(): Promise<boolean> {
+  return (await getFreeDialogsLeft()) <= 0;
 }
 
 /**
- * Отметить бесплатный диалог как использованный. Идемпотентно — повторный вызов
- * ничего не меняет. Зовётся на ПЕРВОЙ реплике пользователя (не при открытии
- * экрана), чтобы случайный вход-выход не сжигал попытку.
+ * Mark one free dialog as consumed. Called on the first successful user turn,
+ * so opening and closing a dialog never burns the allowance.
  */
 export async function markFreeDialogUsed(): Promise<void> {
   try {
-    await AsyncStorage.setItem(FREE_DIALOG_USED_KEY, '1');
+    const limit = getFreeDialogsLifetime();
+    const used = await getFreeDialogsUsed();
+    await AsyncStorage.setItem(FREE_DIALOG_USED_KEY, String(Math.min(limit, used + 1)));
   } catch {
-    // запись в локальное хранилище — best-effort; сервер всё равно источник правды
+    // Best-effort local UX state; the server remains authoritative.
   }
 }
 
-/** Остался ли у не-premium бесплатный диалог. true = можно начать. */
+/** true = a non-premium user can still start another free AI dialog. */
 export async function hasFreeDialogLeft(): Promise<boolean> {
-  return !(await hasUsedFreeDialog());
+  return (await getFreeDialogsLeft()) > 0;
 }

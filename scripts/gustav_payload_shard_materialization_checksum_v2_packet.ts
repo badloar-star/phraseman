@@ -479,11 +479,21 @@ function pathScoped(slice: SliceMaterializationContract): boolean {
   const runtimePrefix = `pack_candidates/fr/runtime_slices/${slice.sourceLocale}/${slice.surface}/`;
   const indexPrefix = `fr/${slice.sourceLocale}/${slice.surface}/`;
   const checksumPath = `audits/payload_checksum_fr_${slice.sourceLocale}_${slice.surface}.json`;
+  const scopedRuntimePath = (value: string) => {
+    const normalized = normalizePath(value);
+    const index = normalized.indexOf(runtimePrefix);
+    return index >= 0 ? normalized.slice(index) : normalized;
+  };
+  const scopedChecksumPath = (value: string) => {
+    const normalized = normalizePath(value);
+    const index = normalized.indexOf(checksumPath);
+    return index >= 0 ? normalized.slice(index) : normalized;
+  };
   return (
-    normalizePath(slice.futureArtifacts.sliceManifest).startsWith(runtimePrefix) &&
-    normalizePath(slice.futureArtifacts.entryIndex).startsWith(runtimePrefix) &&
-    normalizePath(slice.futureArtifacts.payloadShard).startsWith(runtimePrefix) &&
-    normalizePath(slice.futureArtifacts.checksumReport) === checksumPath &&
+    scopedRuntimePath(slice.futureArtifacts.sliceManifest).startsWith(runtimePrefix) &&
+    scopedRuntimePath(slice.futureArtifacts.entryIndex).startsWith(runtimePrefix) &&
+    scopedRuntimePath(slice.futureArtifacts.payloadShard).startsWith(runtimePrefix) &&
+    scopedChecksumPath(slice.futureArtifacts.checksumReport) === checksumPath &&
     normalizePath(slice.manifestIdentity.entryIndex).startsWith(indexPrefix)
   );
 }

@@ -1,6 +1,6 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -193,7 +193,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
   const params = useLocalSearchParams();
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   const nextType = firstParam(params.nextRendererType);
   const nextParams = firstParam(params.nextParams);

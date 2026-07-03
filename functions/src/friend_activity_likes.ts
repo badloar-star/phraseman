@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { buildUserNotification, userNotificationRef } from './user_notifications';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -40,6 +41,18 @@ function resolveSenderName(senderData: Record<string, unknown>, requestDisplayNa
     cleanDisplayName(senderProgress.user_name) ||
     'Friend'
   );
+}
+
+function resolveSenderAvatar(senderData: Record<string, unknown>): string {
+  const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
+    ? senderData.progress as Record<string, unknown>
+    : {};
+  return String(senderProgress.user_avatar ?? '').trim().slice(0, 200);
+}
+
+/** Тот же детерминированный id, что и у audit-дока — unlike удаляет ровно своё уведомление. */
+function likeNotificationId(today: string, senderStableId: string, eventId: string): string {
+  return `like_${today}_${senderStableId}_${eventId}`;
 }
 
 /**
@@ -129,10 +142,10 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     const eventData = (eventSnap?.data?.() ?? {}) as Record<string, unknown>;
     if (dailyLimitSnap.exists) {
       const dailyLimitData = dailyLimitSnap.data() ?? {};
-      const alreadyLikedSameTarget =
+      const alreadyLikedSameEvent =
         cleanDocId(dailyLimitData.targetUid) === targetStableId &&
         cleanDocId(dailyLimitData.eventId) === eventId;
-      if (alreadyLikedSameTarget) {
+      if (alreadyLikedSameEvent) {
         return {
           ok: true,
           date: today,
@@ -192,6 +205,18 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       ts: now,
       tsIso: nowIso,
     });
+
+    // Единый центр событий: «X поставил вам лайк» (раньше жило только в ленте друзей).
+    tx.set(
+      userNotificationRef(db, targetStableId, likeNotificationId(today, senderStableId, eventId)),
+      buildUserNotification({
+        type: 'activity_like',
+        fromUid: senderStableId,
+        fromName: senderName,
+        fromAvatar: resolveSenderAvatar(senderData),
+        nav: { kind: 'friends' },
+      }, now),
+    );
 
     if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
       tx.set(db.collection('league_groups').doc(leagueGroupId), {
@@ -292,6 +317,8 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
 
     tx.delete(dailyLimitRef);
     tx.delete(receivedRef);
+    // Лайк снят — событие из центра уведомлений тоже убираем.
+    tx.delete(userNotificationRef(db, targetStableId, likeNotificationId(today, senderStableId, eventId)));
 
     if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
       tx.set(db.collection('league_groups').doc(leagueGroupId), {

@@ -8,7 +8,7 @@ import type {
 import type { LessonPhrase } from './lesson_data_types';
 import { getLessonData } from './lesson_data_all';
 import { tasksForMinutes } from './personal_plan_catalog';
-import { PERSONAL_PLAN_PHRASE_LESSONS } from './personal_plan_phrase_lessons';
+import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
 import {
   getPersonalPlanQuizCoverage,
   getPersonalPlanQuizPhrases,
@@ -42,6 +42,7 @@ export type PersonalPlanDayQualityCode =
   | 'missing_word_option_reuses_phrase_token'
   | 'unsafe_missing_word_slot'
   | 'unsafe_missing_word_option'
+  | 'plan_quiz_disabled'
   | 'scaffold_day'
   | 'missing_required_phrase_ids'
   | 'missing_life_outcome'
@@ -93,7 +94,6 @@ export type PersonalPlanDayPassport = {
 };
 
 const BAD_COPY_PATTERNS = [
-  /обычн/i,
   /примен/i,
   /маршрут/i,
   /сцен/i,
@@ -115,8 +115,6 @@ const KEY_VOCAB_NOTE_CATEGORIES = new Set([
   'route-place',
   'route-task',
   'place',
-  'adjective',
-  'verb',
 ]);
 
 function addIssue(
@@ -193,7 +191,7 @@ function phrasesForDay(day: PlanDay): LessonPhrase[] {
       phrases.push(...lessonPhrases.filter((phrase) => required.size === 0 || required.has(String(phrase.id))));
     }
     if (task.destination.type === 'plan_phrase_lesson' || task.destination.type === 'plan_phrase_recall') {
-      const lesson = PERSONAL_PLAN_PHRASE_LESSONS[task.destination.lessonId];
+      const lesson = getPersonalPlanPhraseLesson(task.destination.lessonId);
       phrases.push(...(lesson?.phrases.slice(0, task.destination.requiredPhrases) ?? []));
     }
   }
@@ -224,7 +222,7 @@ function collectAvailableCoverageSources(day: PlanDay): Set<string> {
       }
     }
     if (task.destination.type === 'plan_phrase_lesson' || task.destination.type === 'plan_phrase_recall') {
-      const lesson = PERSONAL_PLAN_PHRASE_LESSONS[task.destination.lessonId];
+      const lesson = getPersonalPlanPhraseLesson(task.destination.lessonId);
       for (const phrase of lesson?.phrases.slice(0, task.destination.requiredPhrases) ?? []) {
         available.add(`plan_phrase:${task.destination.lessonId}:${String(phrase.id)}`);
       }
@@ -299,7 +297,7 @@ function validatePhraseDestination(
   task: PlanDailyTask,
   destination: Extract<PlanTaskDestination, { type: 'plan_phrase_lesson' | 'plan_phrase_recall' }>,
 ): void {
-  const lesson = PERSONAL_PLAN_PHRASE_LESSONS[destination.lessonId];
+  const lesson = getPersonalPlanPhraseLesson(destination.lessonId);
   if (!lesson) {
     addIssue(issues, plan, day, 'missing_phrase_lesson', `Missing phrase lesson "${destination.lessonId}"`, task);
     return;
@@ -475,11 +473,6 @@ export function validatePersonalPlanDay(
     addIssue(issues, plan, day, 'bad_copy', 'Day copy contains banned wording');
   }
 
-  const hasQuiz = day.tasks.some((task) => task.destination.type === 'quiz');
-  if (!hasQuiz) {
-    addIssue(issues, plan, day, 'missing_quiz', 'Every generated day must include a dedicated daily quiz task');
-  }
-
   for (const task of day.tasks) {
     if (task.destination.type === 'lesson' && (!task.destination.requiredPhraseIds || task.destination.requiredPhraseIds.length === 0)) {
       addIssue(issues, plan, day, 'missing_required_phrase_ids', 'Plan lesson task must declare exact lesson phrase ids', task);
@@ -488,6 +481,7 @@ export function validatePersonalPlanDay(
       validatePhraseDestination(issues, plan, day, task, task.destination);
     }
     if (task.destination.type === 'quiz') {
+      addIssue(issues, plan, day, 'plan_quiz_disabled', 'Personal plan days must not include quiz tasks', task);
       validateQuizDestination(issues, plan, day, task, task.destination);
     }
     if (task.destination.type === 'plan_exercise') {

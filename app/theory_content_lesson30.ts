@@ -125,12 +125,18 @@ export const LESSON30_THEORY: { titleRu: string; titleUk: string; sections: L1Se
           kind: 'examples',
           examples: [
             { en: 'The car that she drives is red.', ru: 'Машина, на которой она ездит, красная.', uk: 'Машина, якою вона їздить, червона.', hi: 'that' },
+            { en: 'Is this the app that helps you learn?', ru: 'Это то самое приложение, которое помогает тебе учиться?', uk: 'Це той самий додаток, який допомагає тобі вчитися?', hi: 'that' },
           ],
         },
         {
           kind: 'tip',
           ru: 'Если сомневаешься между who и which — that подойдёт и там, и там.',
           uk: 'Якщо вагаєшся між who і which — that підійде і там, і там.',
+        },
+        {
+          kind: 'tip',
+          ru: 'В helps you learn слово learn идёт без to: после help + кого-то действие часто ставят в простой форме. Helps you to learn тоже возможно, но короткая форма звучит естественно.',
+          uk: 'У helps you learn слово learn йде без to: після help + когось дію часто ставлять у простій формі. Helps you to learn теж можливо, але коротка форма звучить природно.',
         },
       ],
     },

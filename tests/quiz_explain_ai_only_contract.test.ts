@@ -15,7 +15,7 @@ describe('thematic quiz AI-only explanation contract', () => {
     expect(quizSource).not.toContain('staticExplanation');
 
     expect(quizSource).toContain('(isThematicQuiz || current.explanations)');
-    expect(quizSource).toContain('const loading = quizExplain.state !==');
+    expect(quizSource).toContain("const loading = quizExplain.state === 'idle' || quizExplain.state === 'loading'");
     expect(quizSource).toContain('{aiExplanation}');
   });
 
@@ -28,14 +28,28 @@ describe('thematic quiz AI-only explanation contract', () => {
     expect(quizSource).toContain('const explanation = explanationsArr[explanationIdx]');
   });
 
-  it('keeps retrying AI loading for pending or transient callable failures', () => {
+  it('keeps bounded AI retries for pending or transient callable failures', () => {
     const hookSource = read('app/use_quiz_explain.ts');
 
     expect(hookSource).toContain('const PENDING_RETRY_DELAY_MS');
     expect(hookSource).toContain('const TRANSIENT_RETRY_DELAY_MS');
+    expect(hookSource).toContain('const MAX_PENDING_RETRIES');
+    expect(hookSource).toContain('const MAX_TRANSIENT_RETRIES');
     expect(hookSource).toContain("if (res.status === 'pending') {");
     expect(hookSource).toContain('scheduleRetry(PENDING_RETRY_DELAY_MS)');
     expect(hookSource).toContain('scheduleRetry(TRANSIENT_RETRY_DELAY_MS)');
+    expect(hookSource).toContain("setState('unavailable')");
+    expect(hookSource).toContain('!activeRef.current');
+  });
+
+  it('keeps the thematic explanation card visible when AI is unavailable or incomplete', () => {
+    const quizSource = read('app/(tabs)/quizzes.tsx');
+
+    expect(quizSource).not.toContain("if (quizExplain.state === 'unavailable') return null;");
+    expect(quizSource).toContain("const missingReadyExplanation = quizExplain.state === 'ready' && !aiExplanation");
+    expect(quizSource).toContain("const unavailable = quizExplain.state === 'unavailable' || missingReadyExplanation");
+    expect(quizSource).toContain('testID="quiz-explain-retry-button"');
+    expect(quizSource).toContain('quizExplain.retry();');
   });
 
   it('sends the full option set so shuffled thematic choices reuse the same AI cache', () => {

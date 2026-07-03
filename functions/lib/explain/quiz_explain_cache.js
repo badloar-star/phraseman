@@ -70,8 +70,9 @@ exports.QUIZ_LOCK_TTL_MS = 30000;
 /** Bump to invalidate stale cached quiz explanations on read.
  *  The prompt is NOT part of the hash, so any prompt/voice change must bump this manually.
  *  v1 (2026-06-21): initial batched разбор — correct-option confirm + per-wrong-option line,
- *  in the easy/medium/hard voice (на «ты», тёплый, лёгкий юмор, без воды), keyed by exact option. */
-exports.QUIZ_SCHEMA_VERSION = 1;
+ *  in the easy/medium/hard voice (на «ты», тёплый, лёгкий юмор, без воды), keyed by exact option.
+ *  v2 (2026-06-30): never serve partial ready docs; every requested wrong option must have a line. */
+exports.QUIZ_SCHEMA_VERSION = 2;
 /** How long a judge-rejected batch serves nothing before one request may retry generation. */
 exports.QUIZ_REJECTED_RETRY_TTL_MS = 10 * 60000;
 function isCurrentSchema(data) {

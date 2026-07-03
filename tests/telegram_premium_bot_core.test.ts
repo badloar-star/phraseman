@@ -7,9 +7,12 @@
   buildStartReplyKeyboard,
   createInitialState,
   handleTelegramUpdate,
+  PAY_SUPPORT_MESSAGE_RU,
   PAY_BUTTON_TEXT_RU,
+  PRIVACY_MESSAGE_RU,
   readOrders,
   parseInvoicePayload,
+  TERMS_MESSAGE_RU,
 } = require('../tools/telegram-premium-bot/core.cjs');
 
 const MOJIBAKE_NO_ACCESS = 'ÃÂÃÂµÃ‘â€š ÃÂ´ÃÂ¾Ã‘ÂÃ‘â€šÃ‘Æ’ÃÂ¿ÃÂ°';
@@ -91,6 +94,41 @@ describe('telegram premium bot core', () => {
     expect(calls.find((call) => call.method === 'sendMessage')?.args[1]).toBe('Напишите Ваш ник ниже');
   });
 
+  it('shows payment support instructions from /paysupport', async () => {
+    const state = createInitialState();
+    const { api, calls, storage } = makeHarness();
+
+    await handleTelegramUpdate({
+      message: { chat: { id: 123 }, from: { id: 456 }, text: '/paysupport' },
+    }, { config, state, api, storage });
+
+    expect(calls[0].method).toBe('sendMessage');
+    expect(calls[0].args[1]).toBe(PAY_SUPPORT_MESSAGE_RU);
+    expect(calls[0].args[1]).toContain('support.phraseman@gmail.com');
+    expect(calls[0].args[1]).toContain('Stars');
+  });
+
+  it('shows legal links from /terms and /privacy commands', async () => {
+    const state = createInitialState();
+    const { api, calls, storage } = makeHarness();
+
+    await handleTelegramUpdate({
+      message: { chat: { id: 123 }, from: { id: 456 }, text: '/terms@PhrasemanPremiumBot' },
+    }, { config, state, api, storage });
+    await handleTelegramUpdate({
+      message: { chat: { id: 123 }, from: { id: 456 }, text: '/privacy' },
+    }, { config, state, api, storage });
+
+    expect(calls[0].method).toBe('sendMessage');
+    expect(calls[0].args[1]).toBe(TERMS_MESSAGE_RU);
+    expect(calls[0].args[1]).toContain('https://knowlyapps.com/legal/terms/');
+    expect(calls[0].args[2].reply_markup.inline_keyboard[0][0].url).toBe('https://knowlyapps.com/legal/terms/');
+    expect(calls[1].method).toBe('sendMessage');
+    expect(calls[1].args[1]).toBe(PRIVACY_MESSAGE_RU);
+    expect(calls[1].args[1]).toContain('https://knowlyapps.com/legal/privacy/');
+    expect(calls[1].args[2].reply_markup.inline_keyboard[0][0].url).toBe('https://knowlyapps.com/legal/privacy/');
+  });
+
   it('stores the app nickname and offers monthly and yearly plan buttons', async () => {
     const state = createInitialState();
     state.sessions['456'] = { step: 'awaiting_nickname' };
@@ -131,7 +169,7 @@ describe('telegram premium bot core', () => {
     });
 
     expect(invoice.currency).toBe('XTR');
-    expect(invoice.provider_token).toBe('');
+    expect(invoice).not.toHaveProperty('provider_token');
     expect(invoice.description).toContain('500 Stars');
     expect(invoice.description).toContain('Подписку можно отменить в любой момент');
     expect(invoice.description).not.toContain('5.99');
@@ -159,6 +197,7 @@ describe('telegram premium bot core', () => {
     });
 
     expect(invoice.currency).toBe('XTR');
+    expect(invoice).not.toHaveProperty('provider_token');
     expect(invoice.description).toContain('2500 Stars');
     expect(invoice.description).not.toContain('34.99');
     expect(invoice.description).not.toContain('2990');
@@ -190,6 +229,7 @@ describe('telegram premium bot core', () => {
       prices: [{ label: 'Phraseman Premium: месяц', amount: 500 }],
       subscription_period: 2592000,
     }));
+    expect(linkCall?.args[0]).not.toHaveProperty('provider_token');
     const messageCall = calls.find((call) => call.method === 'sendMessage');
     expect(messageCall?.args[1]).toContain('Месяц');
     expect(messageCall?.args[1]).toContain('Подписку можно отменить в любой момент');

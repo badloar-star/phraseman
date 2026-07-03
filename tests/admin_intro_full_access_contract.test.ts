@@ -1,35 +1,48 @@
 import fs from 'fs';
 import path from 'path';
 
-describe('admin intro full access controls', () => {
+describe('admin onboarding cleanup contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '_admin_settings_testers.tsx'), 'utf8');
   const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
+  const labs = fs.readFileSync(path.join(process.cwd(), 'components', 'admin_panel', 'sections', 'LabsSection.tsx'), 'utf8');
+  const legacyRoute = 'admin' + '_intro' + '_preview';
+  const legacyQaTab = 'onboarding' + '-qa';
+  const legacyQaTitle = 'Onboarding' + ' QA';
+  const legacyLabButton = 'admin-lab' + '-intro-preview';
+  const legacyIntroPrefix = 'admin-intro' + '-full-access';
 
-  it('adds intro full access activation, expiration, reset, and modal previews to onboarding admin section', () => {
-    expect(source).toContain('activateIntroFullAccessForAdmin');
-    expect(source).toContain('expireIntroFullAccessForAdmin');
-    expect(source).toContain('resetIntroFullAccessForAdmin');
-    expect(source).toContain('admin-intro-full-access-activate');
-    expect(source).toContain('admin-intro-full-access-expire');
-    expect(source).toContain('admin-intro-full-access-reset');
-    expect(source).toContain('admin-intro-full-access-preview-welcome');
-    expect(source).toContain('admin-intro-full-access-preview-ended');
+  it('keeps only the new onboarding launcher in tester settings', () => {
+    expect(source).toContain('admin-new-onboarding-reset');
+    expect(source).toContain('ADMIN_ONBOARDING_FLOW_VERSION_KEY');
+    expect(source).toContain('ADMIN_ONBOARDING_FLOW_VERSION');
+    expect(source).toContain("const ADMIN_ONBOARDING_FLOW_VERSION = 'clean_midnight_duo_order_2026_07_01'");
+    expect(source).toContain("['onboarding_step', 'welcome']");
+    expect(source).not.toContain("['onboarding_step', 'start']");
+    expect(source).not.toContain("['onboarding_step', 'studyTarget']");
+    expect(source).toContain("'onboarding_discovery_source'");
+    expect(source).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
+    expect(source).toContain('PERSONAL_PLAN_PENDING_ACTIVATION_KEY');
+
+    expect(source).not.toContain(`${legacyIntroPrefix}-activate`);
+    expect(source).not.toContain(`${legacyIntroPrefix}-expire`);
+    expect(source).not.toContain(`${legacyIntroPrefix}-reset`);
+    expect(source).not.toContain(`${legacyIntroPrefix}-preview-welcome`);
+    expect(source).not.toContain(`${legacyIntroPrefix}-preview-ended`);
+    expect(source).not.toContain(`router.push('/${legacyRoute}'`);
   });
 
-  it('keeps admin intro controls separate from real Premium and VIP flags', () => {
-    const start = source.indexOf('const activateIntroFullAccessQa');
-    const end = source.indexOf('const activateVipOnCurrentProfile', start);
-    const body = source.slice(start, end);
+  it('removes the legacy onboarding QA web-admin tab', () => {
+    const tabKeysMatch = adminIndex.match(/const ADMIN_TAB_KEYS = \[([^\]]+)\]/);
 
-    expect(source).toContain("emitAppEvent('intro_full_access_changed'");
-    expect(body).not.toContain("['premium_active'");
-    expect(body).not.toContain("['vip_active'");
+    expect(tabKeysMatch?.[1]).not.toContain(`'${legacyQaTab}'`);
+    expect(adminIndex).not.toContain(`switchTab('${legacyQaTab}')`);
+    expect(adminIndex).not.toContain(`tab-${legacyQaTab}`);
+    expect(adminIndex).not.toContain('loadOnboarding' + 'QaLive');
+    expect(adminIndex).not.toContain(legacyQaTitle);
   });
 
-  it('adds an Onboarding QA index tab to the web admin', () => {
-    expect(adminIndex).toContain("switchTab('onboarding-qa')");
-    expect(adminIndex).toContain('tab-onboarding-qa');
-    expect(adminIndex).toContain('intro_full_access_started_at_v1');
-    expect(adminIndex).toContain('/premium_modal?context=intro_ended');
+  it('removes the legacy intro preview route from admin labs', () => {
+    expect(labs).not.toContain(legacyLabButton);
+    expect(labs).not.toContain(`/${legacyRoute}`);
   });
 });

@@ -20,7 +20,7 @@ import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { GroupMember, getWeekId } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
-import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, isLifetimePlanLocal } from './premium_guard';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { emitAppEvent } from './events';
 import {
@@ -577,10 +577,13 @@ export async function getOrCreateLeagueGroup(
   const memberAvatar   = avatarRaw  ?? undefined;
   const memberFrame    = frameRaw   ?? undefined;
   const memberAura     = normalizeAvatarAuraId(auraRaw);
-  const [memberPremium, memberVip] = await Promise.all([
+  const [memberPremium, memberVip, memberLifetimeRaw] = await Promise.all([
     getVerifiedRealPremiumStatus().catch(() => false),
     getVerifiedVipStatus().catch(() => false),
+    isLifetimePlanLocal().catch(() => false),
   ]);
+  // «Pro» = lifetime только при активном премиум-доступе (иначе Plus/без плашки).
+  const memberLifetime = memberPremium && memberLifetimeRaw;
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
   const memberProfileCardLevel = normalizeProfileCardLevel(cardLevelRaw);
@@ -607,6 +610,7 @@ export async function getOrCreateLeagueGroup(
     profileCardPublicFocus: memberProfileCardPublicFocus,
     isPremium: memberPremium,
     isVip: memberVip,
+    isLifetime: memberLifetime,
     streak:    memberStreak,
     totalXp:   memberTotalXp,
     ...boostFields,
@@ -825,7 +829,7 @@ export async function fetchLeagueTopMembers(
       snap.docs
         .filter((doc: any) => normLeagueIdData(doc.data().leagueId) === normLeagueIdData(leagueId))
         .forEach((doc: any) => {
-          const members: Record<string, { name: string; points: number; uid: string; avatar?: string; frame?: string; aura?: string; isPremium?: boolean; isVip?: boolean; streak?: number; totalXp?: number }> =
+          const members: Record<string, { name: string; points: number; uid: string; avatar?: string; frame?: string; aura?: string; isPremium?: boolean; isVip?: boolean; isLifetime?: boolean; streak?: number; totalXp?: number }> =
             doc.data()?.members ?? {};
           Object.entries(members).forEach(([uid, m]) => {
             if ((m as any)?.identityHidden === true) return;
@@ -839,6 +843,7 @@ export async function fetchLeagueTopMembers(
               aura: normalizeAvatarAuraId(m.aura),
               isPremium: m.isPremium,
               isVip: m.isVip,
+              isLifetime: m.isLifetime,
               streak: m.streak,
               totalXp: m.totalXp,
             });
@@ -877,6 +882,7 @@ export async function fetchLeagueTopMembers(
                 aura: normalizeAvatarAuraId(d.aura),
                 isPremium: d.isPremium,
                 isVip: d.isVip,
+                isLifetime: d.isLifetime,
                 streak: d.streak,
                 totalXp: d.points,
               });
@@ -912,6 +918,7 @@ export async function fetchLeagueTopMembers(
                 aura: normalizeAvatarAuraId(d.aura),
                 isPremium: d.isPremium,
                 isVip: d.isVip,
+                isLifetime: d.isLifetime,
                 streak: d.streak,
                 totalXp: d.points,
               });
@@ -996,10 +1003,12 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
       PROFILE_CARD_MOTION_KEY,
       PROFILE_CARD_PUBLIC_FOCUS_KEY,
     ]);
-    const [memberPremium, memberVip] = await Promise.all([
+    const [memberPremium, memberVip, memberLifetimeRaw] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
+      isLifetimePlanLocal().catch(() => false),
     ]);
+    const memberLifetime = memberPremium && memberLifetimeRaw;
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
     const member = withoutUndefinedFields({
@@ -1015,6 +1024,7 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
       profileCardPublicFocus: normalizeProfileCardPublicFocus(cardFocusRaw),
       isPremium: memberPremium,
       isVip: memberVip,
+      isLifetime: memberLifetime,
       streak: streakRaw ? parseInt(streakRaw, 10) : 0,
       totalXp: memberTotalXp,
     });
@@ -1135,6 +1145,7 @@ function mapLeagueMembersToGroupList(
         uid: key,
         isPremium: m.isPremium ?? false,
         isVip: m.isVip ?? false,
+        isLifetime: m.isLifetime ?? false,
         avatar: m.avatar ?? undefined,
         frame: m.frame ?? undefined,
         aura: normalizeAvatarAuraId(m.aura),

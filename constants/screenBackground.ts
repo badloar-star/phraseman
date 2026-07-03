@@ -13,8 +13,10 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   // Sketch light paper tone
   // Graphite dark neutral tone
   minimalDark: ['#111318', '#08090D', '#010102'],
-  // «Бизнес»: строгий чисто-чёрный фон.
-  business: ['#0A0A0A', '#000000'],
+  // «Бизнес»: тёплый графит («графит и шампань»), без чистого чёрного.
+  business: ['#000000', '#000000'],
+  // «Бизнес светлый»: тёплая бумажная подложка.
+  businessLight: ['#FFFFFF', '#FFFFFF'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],

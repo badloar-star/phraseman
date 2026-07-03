@@ -277,8 +277,15 @@ const PREMIUM_GIFT_GENERIC_DESC_IDS = new Set<GiftId>([
 const isPremiumLevelGiftCopy = (id: GiftId): boolean =>
   id.startsWith('prem_') || id.startsWith('premium_');
 
+export function isPremiumLevelGiftId(gid: string | undefined): boolean {
+  return !!gid && isPremiumLevelGiftCopy(gid);
+}
+
 const stripPremiumGiftMarker = (value: string): string => {
   const stripped = value
+    .replace(/\s*\((?:plus|плюс)\)\s*/gi, ' ')
+    .replace(/(^|\s)(?:plus|плюс)[-\s]+/gi, '$1')
+    .replace(/\s+(?:plus|плюс)\b/gi, ' ')
     .replace(/\s*\((?:premium|премиум|преміум)\)\s*/gi, ' ')
     .replace(/(^|\s)(?:premium|премиум|преміум)[-\s]+/gi, '$1')
     .replace(/\s+(?:premium|премиум|преміум)\b/gi, ' ')
@@ -1066,7 +1073,7 @@ const grantLevelGiftShards = async (amount: number): Promise<void> => {
   const safe = Math.max(0, Math.floor(amount));
   if (safe <= 0) return;
   const before = await getShardsBalance();
-  await addShardsRaw(safe, 'level_gift');
+  await addShardsRaw(safe, 'level_gift', { skipServerAwait: true });
   const after = await getShardsBalance();
   // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
   // In production this branch is a no-op because addShardsRaw already persisted.
@@ -1326,15 +1333,15 @@ export const applyGift = async (
         break;
       }
       case 'prem_shards_10': {
-        await addShardsRaw(10, 'level_premium_gift');
+        await addShardsRaw(10, 'level_premium_gift', { skipServerAwait: true });
         break;
       }
       case 'prem_shards_15': {
-        await addShardsRaw(15, 'level_premium_gift');
+        await addShardsRaw(15, 'level_premium_gift', { skipServerAwait: true });
         break;
       }
       case 'prem_shards_20': {
-        await addShardsRaw(20, 'level_premium_gift');
+        await addShardsRaw(20, 'level_premium_gift', { skipServerAwait: true });
         break;
       }
       case 'prem_pack_48h': {

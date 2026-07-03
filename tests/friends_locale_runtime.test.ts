@@ -25,10 +25,13 @@ describe('friends tab locale runtime', () => {
 
     expect(source).toContain('testID="friends-empty-invite"');
     expect(source).toContain('testID="friends-empty-enter-code"');
-    expect(source).toContain("style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
-    expect(source).toContain("style={{ flex: 1, height: 58, backgroundColor: 'transparent'");
-    expect(source).toContain("style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
-    expect(source).toContain('numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}');
+    // minHeight + paddingVertical (не жёсткая height): кнопки растут под крупные шрифты.
+    expect(source).toContain("style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
+    expect(source).toContain("style={{ flex: 1, minHeight: 58, backgroundColor: 'transparent'");
+    // adjustsFontSizeToFit запрещён на кнопках (схлопывает текст в ноль — известная ловушка);
+    // вместо него перенос на 2 строки.
+    expect(source).toContain('numberOfLines={2}');
+    expect(source).not.toContain('adjustsFontSizeToFit minimumFontScale={0.78}');
   });
 
   it('keeps the friend search input free of hard-coded sample text', () => {
@@ -57,7 +60,7 @@ describe('friends tab locale runtime', () => {
     const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
 
     expect(source).toContain(
-      'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
+      'Получите 7 дней полного Plus-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
     );
     // Показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
     // ввёл бы friend-код, которого нет в referral_codes, и наград не было бы (C1).
@@ -72,7 +75,8 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain('void handleReferralInvite()');
     expect(source).toContain("router.push('/referral_code_entry' as any)");
     expect(source).toContain("router.push('/referrals' as any)");
-    expect(source).toContain('Рефералы');
+    // Вход в «Рефералы» — иконка-чип (megaphone) с accessibility-лейблом, без текстовой кнопки.
+    expect(source).toContain('Мои рефералы');
     expect(source).toContain('Ввести код');
     expect(source).not.toContain('Друзья видят твой прогресс');
   });

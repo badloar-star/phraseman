@@ -55,14 +55,19 @@ function currentEnglishByContentUnit(daysByPlan) {
   return map;
 }
 
-// 2) Parse the generated audio registry for (contentUnit, targetText, uri).
+// 2) Parse the generated audio registry for (contentUnit, targetText, status, uri).
 function loadAudioAssets() {
   const src = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_runtime_audio_assets.generated.ts'), 'utf8');
-  const re = /"contentUnitIds":\s*\[\s*"([^"]+)"\s*\][\s\S]*?"targetText":\s*"((?:[^"\\]|\\.)*)"[\s\S]*?"uri":\s*"([^"]+)"/g;
+  const re = /"contentUnitIds":\s*\[\s*"([^"]+)"\s*\][\s\S]*?"targetText":\s*"((?:[^"\\]|\\.)*)"[\s\S]*?"status":\s*"([^"]+)"[\s\S]*?"uri":\s*"([^"]+)"/g;
   const out = [];
   let m;
   while ((m = re.exec(src)) !== null) {
-    out.push({ contentUnit: m[1], targetText: JSON.parse(`"${m[2]}"`), uri: m[3] });
+    out.push({
+      contentUnit: m[1],
+      targetText: JSON.parse(`"${m[2]}"`),
+      status: m[3],
+      uri: m[4],
+    });
   }
   return out;
 }
@@ -80,6 +85,7 @@ async function main() {
   const stale = [];
   const orphanAudio = [];
   for (const a of assets) {
+    if (a.status !== 'approved') continue;
     const cur = current.get(a.contentUnit);
     if (cur === undefined) {
       orphanAudio.push(a);

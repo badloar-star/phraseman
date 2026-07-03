@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
  * _admin_speaking_lab.tsx — DEV/QA превью режима «Устно» (Speaking Mode).
  *
@@ -17,7 +18,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ENABLE_DEV_TOOLS } from './config';
 import { useTheme } from '../components/ThemeContext';
@@ -115,7 +115,7 @@ const PREVIEW_TARGET = 'I would like a cup of coffee, please';
 
 export default function AdminSpeakingLab() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const { lang } = useLang();
 

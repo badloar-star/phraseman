@@ -100,12 +100,16 @@ const NAME_AUTH_LINK_VERIFIED_TTL_MS = 5 * 60_000;
 const NAME_IDENTITY_READY_TTL_MS = 10 * 60_000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<T>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label}_timeout`)), ms);
+  });
   return Promise.race([
     promise,
-    new Promise<T>((_, reject) =>
-      setTimeout(() => reject(new Error(`${label}_timeout`)), ms),
-    ),
-  ]);
+    timeout,
+  ]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
 }
 
 let nameAuthLinkVerifiedKey = '';

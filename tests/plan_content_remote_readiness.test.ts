@@ -10,8 +10,11 @@ jest.mock('../app/course_pack_loader', () => ({
 
 // Mock the remote loader so we can simulate verified / corrupt / not-cached.
 const readVerified = jest.fn<Promise<unknown>, [string, string]>();
+const ensureCached = jest.fn<Promise<boolean>, [string, string, (inPackPath: string) => string]>(() => Promise.resolve(false));
 const evict = jest.fn<Promise<void>, [string]>(() => Promise.resolve());
 jest.mock('../app/course_pack_remote_loader', () => ({
+  ensureCachedCoursePackRow: (cacheKey: string, rowPath: string, rowUrl: (inPackPath: string) => string) =>
+    ensureCached(cacheKey, rowPath, rowUrl),
   readVerifiedCoursePackDay: (cacheKey: string, rowPath: string) => readVerified(cacheKey, rowPath),
   evictCachedCoursePack: (cacheKey: string) => evict(cacheKey),
 }));
@@ -30,6 +33,8 @@ describe('plan content remote readiness bridge', () => {
   beforeEach(() => {
     flagEnabled = false;
     readVerified.mockReset();
+    ensureCached.mockReset();
+    ensureCached.mockResolvedValue(false);
     evict.mockClear();
   });
 
@@ -43,6 +48,7 @@ describe('plan content remote readiness bridge', () => {
     const r = await resolveRemoteOrBundledPlanContentDay('echo', 1, 'cache-key');
     expect(r).toEqual({ day: BUNDLED_DAY, source: 'bundled_compatibility', recoveredFromCorruption: false });
     expect(readVerified).not.toHaveBeenCalled();
+    expect(ensureCached).not.toHaveBeenCalled();
   });
 
   it('returns bundled when no cacheKey is supplied (even if enabled)', async () => {
@@ -51,6 +57,7 @@ describe('plan content remote readiness bridge', () => {
     expect(r.source).toBe('bundled_compatibility');
     expect(r.day).toBe(BUNDLED_DAY);
     expect(readVerified).not.toHaveBeenCalled();
+    expect(ensureCached).not.toHaveBeenCalled();
   });
 
   it('returns the verified server day when enabled and the cache verifies', async () => {
@@ -60,6 +67,20 @@ describe('plan content remote readiness bridge', () => {
     const r = await resolveRemoteOrBundledPlanContentDay('echo', 1, 'cache-key');
     expect(r).toEqual({ day: SERVER_DAY, source: 'downloaded_pack', recoveredFromCorruption: false });
     expect(readVerified).toHaveBeenCalledWith('cache-key', 'plans/echo/day-001.json');
+  });
+
+  it('downloads the requested day row once when the pack index is ready but the day is missing', async () => {
+    flagEnabled = true;
+    const SERVER_DAY = { planId: 'echo', dayIndex: 1, topic: { ru: 'server' } };
+    const rowUrl = jest.fn((path: string) => `https://pack.test/${path}`);
+    readVerified.mockResolvedValueOnce(null).mockResolvedValueOnce(SERVER_DAY);
+    ensureCached.mockResolvedValueOnce(true);
+
+    const r = await resolveRemoteOrBundledPlanContentDay('echo', 1, 'cache-key', rowUrl);
+
+    expect(r).toEqual({ day: SERVER_DAY, source: 'downloaded_pack', recoveredFromCorruption: false });
+    expect(ensureCached).toHaveBeenCalledWith('cache-key', 'plans/echo/day-001.json', rowUrl);
+    expect(readVerified).toHaveBeenCalledTimes(2);
   });
 
   it('evicts and falls back to bundled when the server copy is corrupt', async () => {

@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_c.tsx — вариант C «Атриум» (рекомендация ресёрча; эксперимент paywall_ab).
 //
@@ -7,13 +8,12 @@
 // прогресса, перцентиль, сравнение, FAQ, повторный CTA в потоке). Плавающий
 // sticky-бар убран — основной кнопки достаточно, дублирующая плашка мешала.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, InteractionManager } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
-import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP, applyWinBackCopy, applyWinBackPlannedCopy } from './paywall_copy';
 import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
@@ -27,19 +27,19 @@ import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
-  PaywallPersonalTags, PaywallCloseButton,
+  PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
-  usePaywallScreenStackOptions,
+  usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
-import PaywallGreetingLine from '../components/paywall/PaywallGreetingLine';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
-import { MirrorCard, PercentileCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
+import { PersonalizationProofCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import {
-  ctaLabelFor, ctaSubLineFor, periodLabelFor, doubtersDividerLabel,
+  ctaLabelFor, ctaSubLineFor, periodLabelFor, doubtersDividerLabel, stickyStringsFor,
 } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -57,9 +57,11 @@ export default function PaywallC() {
   const screenOptions = usePaywallScreenStackOptions(isOnboarding);
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
-  const chrome = usePaywallChrome();
-  const insets = useSafeAreaInsets();
+  const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI });
+  const sticky = useStickyCta();
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
@@ -67,6 +69,29 @@ export default function PaywallC() {
   const [percentileLine, setPercentileLine] = useState<string | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const scrollDepthSent = useRef(new Set<number>());
+  const pendingScrollDepthRef = useRef(new Set<number>());
+  const scrollDepthFlushRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
+
+  const scheduleScrollDepthFlush = useCallback(() => {
+    if (scrollDepthFlushRef.current) return;
+    scrollDepthFlushRef.current = InteractionManager.runAfterInteractions(() => {
+      scrollDepthFlushRef.current = null;
+      const marks = Array.from(pendingScrollDepthRef.current).sort((a, b) => a - b);
+      pendingScrollDepthRef.current.clear();
+      for (const mark of marks) {
+        void trackEvent('paywall_scroll_depth', { context: ctx, paywall: VARIANT, depth: mark });
+      }
+    });
+  }, [ctx]);
+
+  useEffect(() => {
+    const pendingScrollDepth = pendingScrollDepthRef.current;
+    return () => {
+      scrollDepthFlushRef.current?.cancel();
+      scrollDepthFlushRef.current = null;
+      pendingScrollDepth.clear();
+    };
+  }, []);
 
   // Онбординг: перед уходом на следующий шаг проигрываем обратное осветление фона.
   const bgRef = useRef<PaywallBackgroundHandle>(null);
@@ -106,10 +131,10 @@ export default function PaywallC() {
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
-      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 2, false));
+      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 4, false));
     } catch { /* некритично */ }
     return () => { dead = true; };
-  }, [ctx, lang]);
+  }, [ctx, lang, source]);
 
   useEffect(() => {
     let dead = false;
@@ -123,15 +148,6 @@ export default function PaywallC() {
     return () => { dead = true; };
   }, [ctx, lang, mirror?.streak]);
 
-  const opacity = useRef(new Animated.Value(0)).current;
-  const slideY = useRef(new Animated.Value(20)).current;
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(opacity, { toValue: 1, duration: 260, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      Animated.spring(slideY, { toValue: 0, tension: MOTION_SPRING_LEGACY.panel.tension, friction: MOTION_SPRING_LEGACY.panel.friction, useNativeDriver: true }),
-    ]).start();
-  }, [opacity, slideY]);
-
   const hadPremiumEver = getStatsCache().hadPremiumEver;
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
@@ -143,58 +159,42 @@ export default function PaywallC() {
   const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
   const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
   const priceLine = price ? `${price}${period}` : '';
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
       <Stack.Screen options={screenOptions} />
       <SafeAreaView style={S.safe}>
-        <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
+        <View style={S.wrap}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             decelerationRate="normal"
-            contentContainerStyle={S.scrollContent}
+            contentContainerStyle={[S.scrollContent, isOnboarding && S.scrollOnboardingStickyPad]}
+            onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
             onScroll={(e) => {
+              if (isOnboarding) sticky.onScroll(e);
               const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
               const span = Math.max(1, contentSize.height - layoutMeasurement.height);
               const depth = Math.min(100, Math.round((contentOffset.y / span) * 100));
               for (const mark of SCROLL_DEPTH_MARKS) {
                 if (depth >= mark && !scrollDepthSent.current.has(mark)) {
                   scrollDepthSent.current.add(mark);
-                  void trackEvent('paywall_scroll_depth', { context: ctx, paywall: VARIANT, depth: mark });
+                  pendingScrollDepthRef.current.add(mark);
                 }
               }
+              if (pendingScrollDepthRef.current.size > 0) scheduleScrollDepthFlush();
             }}
             scrollEventThrottle={32}
           >
-            <PaywallCloseButton
-              onPress={() => { hapticTap(); closeWithDim('close'); }}
-              chrome={chrome}
-            />
+            {!isOnboarding ? (
+              <PaywallCloseButton
+                onPress={() => { hapticTap(); closeWithDim('close'); }}
+                chrome={chrome}
+              />
+            ) : null}
 
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
-
-            <Text style={[S.personal, { color: chrome.textMuted }]}>
-              {LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle)}
-            </Text>
-
-            {/* Личный тег — отдельным chip, не сливается с подзаголовком (P1-4). */}
-            {personalTag && (
-              <PaywallPersonalTags texts={[LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)]} chrome={chrome} />
-            )}
-
-            {/* Персональное обращение по имени + прогресс + цель (above the fold). */}
-            <PaywallGreetingLine lang={lang as Lang} chrome={chrome} profile={profile} mirror={mirror} />
-
-            {p.trialDays && (
-              <PaywallTrialTimeline
-                lang={lang as Lang}
-                chrome={chrome}
-                days={p.trialDays}
-                priceLabel={price || '…'}
-                periodLabel={period}
-              />
-            )}
 
             {p.offeringsFailed ? (
               <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
@@ -228,7 +228,7 @@ export default function PaywallC() {
               isLifetime={isLifetimeSel}
             />
 
-            <View style={S.ctaWrap}>
+            <View style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -241,13 +241,31 @@ export default function PaywallC() {
                 restoring={p.restoring}
                 onContinueFree={() => closeWithDim('continue_free')}
                 trustHasTrial={!!p.trialDays}
+                isOnboarding={isOnboarding}
               />
             </View>
 
             {/* ── галерея доказательств: скроллить НЕ обязательно ── */}
+            <PersonalizationProofCard
+              lang={lang as Lang}
+              chrome={chrome}
+              tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}
+              profile={profile}
+              mirror={mirror}
+              percentileLine={percentileLine}
+            />
+
+            {p.trialDays && (
+              <PaywallTrialTimeline
+                lang={lang as Lang}
+                chrome={chrome}
+                days={p.trialDays}
+                priceLabel={price || '…'}
+                periodLabel={period}
+              />
+            )}
+
             <PaywallSectionDivider label={doubtersDividerLabel(lang as Lang)} chrome={chrome} />
-            {mirror && <MirrorCard lang={lang as Lang} chrome={chrome} mirror={mirror} />}
-            {percentileLine && <PercentileCard lang={lang as Lang} chrome={chrome} line={percentileLine} />}
             <CompareCard lang={lang as Lang} chrome={chrome} />
             <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
@@ -264,6 +282,7 @@ export default function PaywallC() {
                 onRestore={() => { void p.handleRestore(); }}
                 restoring={p.restoring}
                 hideFooter
+                isOnboarding={isOnboarding}
               />
             </View>
 
@@ -276,9 +295,17 @@ export default function PaywallC() {
               trialDays={p.trialDays}
               isLifetime={isLifetimeSel}
             />
-            <View style={{ height: Math.max(insets.bottom, 10) }} />
+            <View style={{ height: Math.max(bottomInset, 10) }} />
           </ScrollView>
-        </Animated.View>
+          <PaywallStickyBar
+            visible={isOnboarding && sticky.visible && !p.ctaDisabled}
+            title={stickyCopy.title}
+            sub={stickyCopy.sub}
+            button={stickyCopy.button}
+            onPress={() => { void p.handlePurchase(); }}
+            chrome={chrome}
+          />
+        </View>
       </SafeAreaView>
     </PaywallBackground>
   );
@@ -288,12 +315,12 @@ const S = StyleSheet.create({
   root: { flex: 1 },
   safe: { flex: 1 },
   wrap: { flex: 1 },
-  scrollContent: { paddingHorizontal: 20, paddingBottom: 12 },
+  scrollContent: { paddingHorizontal: 22, paddingBottom: 14 },
+  scrollOnboardingStickyPad: { paddingBottom: 96 },
   title: {
-    fontSize: 27, fontWeight: '800', letterSpacing: -1.1,
-    lineHeight: 32, textAlign: 'center', marginTop: 14,
+    fontSize: 31, fontWeight: '900', letterSpacing: 0,
+    lineHeight: 36, textAlign: 'center', marginTop: 15,
   },
-  personal: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  ctaWrap: { marginTop: 16 },
-  repeatCta: { marginTop: 16 },
+  ctaWrap: { marginTop: 17 },
+  repeatCta: { marginTop: 18 },
 });

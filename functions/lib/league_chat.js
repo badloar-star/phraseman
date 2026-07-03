@@ -38,6 +38,8 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const league_chat_blocklist_generated_1 = require("./league_chat_blocklist.generated");
 const auth_identity_1 = require("./auth_identity");
+const callable_options_1 = require("./callable_options");
+const user_notifications_1 = require("./user_notifications");
 const REGION = 'us-central1';
 const MAX_MESSAGE_LENGTH = 420;
 const SEND_THROTTLE_MS = 12000;
@@ -228,7 +230,7 @@ async function grantRoomReadAccess(db, authUid, stableUid, room) {
         updatedAt: Date.now(),
     }, { merge: true });
 }
-exports.leagueChatAuthorizeRoom = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.leagueChatAuthorizeRoom = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -243,7 +245,7 @@ exports.leagueChatAuthorizeRoom = (0, https_1.onCall)({ region: REGION }, async 
     await grantRoomReadAccess(db, authUid, stableUid, { groupId, weekId, leagueId });
     return { ok: true };
 });
-exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -253,6 +255,7 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
     const groupId = String(request.data?.groupId ?? '').trim();
     const weekId = String(request.data?.weekId ?? '').trim();
     const leagueId = Math.trunc(Number(request.data?.leagueId) || 0);
+    const replyToMessageId = String(request.data?.replyToMessageId ?? '').trim().slice(0, 160);
     if (!text)
         throw new https_1.HttpsError('invalid-argument', 'empty_message');
     if (!groupId || !weekId)
@@ -270,6 +273,25 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
     const member = active.member || {};
     const progress = (active.userData?.progress || {});
     const moderation = moderate(text);
+    // Реплай как в Telegram: цитата денормализуется в сам док сообщения.
+    // Невалидная цель (чужая комната/удалено) → сообщение уходит без цитаты.
+    let replyTo = null;
+    if (replyToMessageId) {
+        const replySnap = await db.collection('league_chat_messages').doc(replyToMessageId).get();
+        const reply = replySnap.data() || {};
+        const sameRoom = String(reply.groupId || '') === groupId && String(reply.weekId || '') === weekId;
+        if (replySnap.exists && sameRoom && reply.status === 'visible') {
+            const i18n = (reply.i18n && typeof reply.i18n === 'object') ? reply.i18n : {};
+            const quoteText = String(reply.text || i18n.en || Object.values(i18n)[0] || '').slice(0, 140);
+            replyTo = {
+                messageId: replyToMessageId,
+                authorUid: String(reply.authorUid || '').slice(0, 160),
+                authorName: String(reply.authorName || '').slice(0, 48),
+                text: quoteText,
+                kind: reply.kind === 'system' ? 'system' : 'user',
+            };
+        }
+    }
     const base = {
         groupId,
         weekId,
@@ -283,6 +305,13 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
         normalizedText: moderation.normalizedText,
         moderationCategories: moderation.categories,
         moderationReasons: moderation.reasons,
+        ...(replyTo ? {
+            replyToMessageId: replyTo.messageId,
+            replyToAuthorUid: replyTo.authorUid,
+            replyToAuthorName: replyTo.authorName,
+            replyToText: replyTo.text,
+            replyToKind: replyTo.kind,
+        } : {}),
         platform: String(request.data?.platform || ''),
         appVersion: String(request.data?.appVersion || ''),
         createdAt: now,
@@ -303,9 +332,20 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
         status: 'visible',
         reportCount: 0,
     });
+    // Центр событий: «X ответил на ваше сообщение» — только живому юзеру и не себе.
+    if (replyTo && replyTo.kind === 'user' && replyTo.authorUid && replyTo.authorUid !== stableUid) {
+        await (0, user_notifications_1.userNotificationRef)(db, replyTo.authorUid).set((0, user_notifications_1.buildUserNotification)({
+            type: 'league_chat_reply',
+            fromUid: stableUid,
+            fromName: base.authorName,
+            fromAvatar: base.authorAvatar,
+            text: text.slice(0, 140),
+            nav: { kind: 'league_chat', groupId, weekId, leagueId, messageId: ref.id },
+        }, now)).catch(() => { });
+    }
     return { ok: true, status: 'sent', messageId: ref.id };
 });
-exports.leagueChatDeleteMessage = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.leagueChatDeleteMessage = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -343,7 +383,7 @@ exports.leagueChatDeleteMessage = (0, https_1.onCall)({ region: REGION }, async 
     });
     return { ok: true };
 });
-exports.leagueChatReportMessage = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.leagueChatReportMessage = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

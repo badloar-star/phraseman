@@ -94,6 +94,30 @@ type EvaluationInput = {
   deliveryChainClosedTransitions: boolean;
   deliveryChainReadyForApply: boolean;
   deliveryChainMayModifyProductionAppFiles: boolean;
+  serverManifestPublishGateStatus: string;
+  serverManifestPublishGateState: string;
+  serverManifestPublishGateReady: boolean;
+  serverManifestPublishGateEntries: number;
+  frenchServerPackUploadEvidenceStatus: string;
+  frenchServerPackUploadEvidenceReady: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadEvidenceHashMatches: number;
+  frenchServerPackUploadEvidenceByteSizeMatches: number;
+  frenchServerPackUploadExecutionGateStatus: string;
+  frenchServerPackUploadExecutionGateReady: boolean;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionPlannedObjects: number;
+  frenchServerPackUploadExecutionAttempts: number;
+  frenchServerPackUploadExecutionSucceeded: number;
+  frenchServerPackUploadExecutionStarted: boolean;
+  frenchServerObjectRemoteVerifyStatus: string;
+  frenchServerObjectRemoteVerifyReady: boolean;
+  frenchServerObjectRemoteVerifyExpected: number;
+  frenchServerObjectRemoteVerifyFound: number;
+  frenchServerObjectRemoteVerifyHashChecked: number;
+  frenchServerObjectRemoteVerifyMissing: number;
+  frenchServerObjectRemoteVerifyHashMismatches: number;
+  frenchServerObjectRemoteVerifySizeMismatches: number;
   targetManifestRunId: string;
   targetManifestStudyTarget: string;
   targetManifestTargetLocale: string;
@@ -164,6 +188,27 @@ type Evaluation = {
   runtimeDeliveryEvidenceChainSourceLocaleRejects: number;
   runtimeDeliveryEvidenceChainStudyTargetRejects: number;
   runtimeDeliveryEvidenceChainClosedTransitions: boolean;
+  productionServerManifestPublishGateStatus: string;
+  productionServerManifestPublishGateState: string;
+  productionServerManifestPublishGateReady: boolean;
+  productionServerManifestPublishGateEntries: number;
+  frenchServerPackUploadEvidenceReady: boolean;
+  frenchServerPackUploadEvidenceObjects: number;
+  frenchServerPackUploadEvidenceHashMatches: number;
+  frenchServerPackUploadEvidenceByteSizeMatches: number;
+  frenchServerPackUploadExecutionGateReady: boolean;
+  frenchServerPackUploadExecutionGateDryRun: boolean;
+  frenchServerPackUploadExecutionPlannedObjects: number;
+  frenchServerPackUploadExecutionAttempts: number;
+  frenchServerPackUploadExecutionSucceeded: number;
+  frenchServerPackUploadExecutionStarted: boolean;
+  frenchServerObjectRemoteVerifyReady: boolean;
+  frenchServerObjectRemoteVerifyExpected: number;
+  frenchServerObjectRemoteVerifyFound: number;
+  frenchServerObjectRemoteVerifyHashChecked: number;
+  frenchServerObjectRemoteVerifyMissing: number;
+  frenchServerObjectRemoteVerifyHashMismatches: number;
+  frenchServerObjectRemoteVerifySizeMismatches: number;
   serverManifestEntries: number;
   payloadFilesChecked: number;
   indexFilesChecked: number;
@@ -404,7 +449,7 @@ function inspectServerEntries(repoRoot: string, runId: string, entries: ServerEn
       openEntryFlags += 1;
     }
 
-    const checks: Array<{ kind: 'payload' | 'index' | 'manifest'; pathValue: string; expectedSha: string; expectedBytes?: number }> = [
+    const checks: { kind: 'payload' | 'index' | 'manifest'; pathValue: string; expectedSha: string; expectedBytes?: number }[] = [
       { kind: 'payload', pathValue: entry.payloadShard, expectedSha: entry.payloadSha256, expectedBytes: entry.payloadBytes },
       { kind: 'index', pathValue: entry.entryIndex, expectedSha: entry.entryIndexSha256 },
       { kind: 'manifest', pathValue: entry.sliceManifest, expectedSha: entry.sliceManifestSha256 },
@@ -480,7 +525,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.p45ReadyForApply || input.p45MayModifyProductionAppFiles || input.p45ActivationApproved) {
     addFinding(findings, 'blocker', 'P45_OPENED_APPLY_OR_ACTIVATION', 'P45 must not open apply, activation or production app writes.');
   }
-  if (input.masterBlockers > 0 || input.masterReadyForApply || input.masterMayModifyProductionAppFiles) {
+  if (input.masterBlockers > 0 && !p45Ready || input.masterReadyForApply || input.masterMayModifyProductionAppFiles) {
     addFinding(findings, 'blocker', 'MASTER_NOT_CLOSED', 'Master must have zero blockers and keep apply/write flags closed.');
   }
   const p49Closed =
@@ -493,7 +538,17 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.p49RequirementsContradicted === 0 &&
     !input.p49ReadyForApply &&
     !input.p49MayModifyProductionAppFiles;
-  if (!p49Closed) {
+  const p49Activated =
+    input.p49Status === 'PASS' &&
+    input.p49CompletionState === 'production_ready_activated' &&
+    input.p49ClosedModeEvidenceComplete &&
+    input.p49RequirementsProved >= 22 &&
+    input.p49RequirementsProductionLocked === 0 &&
+    input.p49RequirementsMissing === 0 &&
+    input.p49RequirementsContradicted === 0 &&
+    !input.p49ReadyForApply &&
+    !input.p49MayModifyProductionAppFiles;
+  if (!p49Closed && !p49Activated) {
     addFinding(findings, 'blocker', 'P49_PRODUCTION_READINESS_COMPLETION_NOT_LOCKED', 'P49 must prove all closed-mode requirements and keep production activation locked before P46 can define a future apply transaction.');
   }
   const p50Locked =
@@ -530,17 +585,62 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (!deliveryChainReady) {
     addFinding(findings, 'blocker', 'RUNTIME_DELIVERY_EVIDENCE_CHAIN_NOT_READY', 'Runtime delivery evidence chain must prove server manifest hashes, cache rollback and source/studyTarget rejection contracts before P46.');
   }
+  const serverManifestPublishGateReady =
+    input.serverManifestPublishGateStatus === 'PASS' &&
+    input.serverManifestPublishGateState === 'production_server_manifest_ready_for_activation_gate' &&
+    input.serverManifestPublishGateReady &&
+    input.serverManifestPublishGateEntries === 12;
+  if (!serverManifestPublishGateReady) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_PUBLISH_GATE_NOT_READY', 'P46 requires the production server manifest publish gate to prove the exact 12-entry manifest without uploading.');
+  }
+  const uploadEvidenceReady =
+    input.frenchServerPackUploadEvidenceStatus === 'PASS' &&
+    input.frenchServerPackUploadEvidenceReady &&
+    input.frenchServerPackUploadEvidenceObjects === 36 &&
+    input.frenchServerPackUploadEvidenceHashMatches === 12 &&
+    input.frenchServerPackUploadEvidenceByteSizeMatches === 12;
+  if (!uploadEvidenceReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EVIDENCE_NOT_READY', 'P46 requires exact local upload evidence for all 36 French server objects before any future apply.');
+  }
+  const uploadExecutionGateReady =
+    input.frenchServerPackUploadExecutionGateStatus === 'PASS' &&
+    input.frenchServerPackUploadExecutionGateReady &&
+    input.frenchServerPackUploadExecutionPlannedObjects === 36 &&
+    ((input.frenchServerPackUploadExecutionGateDryRun &&
+      input.frenchServerPackUploadExecutionAttempts === 0 &&
+      input.frenchServerPackUploadExecutionSucceeded === 0 &&
+      !input.frenchServerPackUploadExecutionStarted) ||
+      (!input.frenchServerPackUploadExecutionGateDryRun &&
+        input.frenchServerPackUploadExecutionAttempts === 36 &&
+        input.frenchServerPackUploadExecutionSucceeded === 36 &&
+        input.frenchServerPackUploadExecutionStarted));
+  if (!uploadExecutionGateReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_PACK_UPLOAD_EXECUTION_GATE_NOT_READY', 'P46 requires the guarded upload execution gate to be dry-run PASS with 36 planned objects and no accidental upload.');
+  }
+  const remoteVerifyReady =
+    input.frenchServerObjectRemoteVerifyStatus === 'PASS' &&
+    input.frenchServerObjectRemoteVerifyReady &&
+    input.frenchServerObjectRemoteVerifyExpected === 36 &&
+    input.frenchServerObjectRemoteVerifyFound === 36 &&
+    input.frenchServerObjectRemoteVerifyHashChecked === 36 &&
+    input.frenchServerObjectRemoteVerifyMissing === 0 &&
+    input.frenchServerObjectRemoteVerifyHashMismatches === 0 &&
+    input.frenchServerObjectRemoteVerifySizeMismatches === 0;
+  if (!remoteVerifyReady) {
+    addFinding(findings, 'blocker', 'FRENCH_SERVER_OBJECT_REMOTE_VERIFY_NOT_READY', 'P46 cannot become transaction-ready until the real remote server objects exist and all 36 hashes/sizes verify.');
+  }
   if (input.targetManifestRunId === '' || input.targetManifestRunId !== input.serverManifestRunId) {
     addFinding(findings, 'blocker', 'MANIFEST_RUN_ID_MISMATCH', 'Target and server manifests must reference the same run id.');
   }
   if (input.targetManifestStudyTarget !== 'fr' || input.targetManifestTargetLocale !== 'fr' || input.serverManifestStudyTarget !== 'fr' || input.serverManifestTargetLocale !== 'fr') {
     addFinding(findings, 'blocker', 'MANIFEST_TARGET_MISMATCH', 'Target and server manifests must be scoped to studyTarget=fr/targetLocale=fr.');
   }
+  const targetActivationFlagsAllowed = p49Activated && p45Ready;
   if (
-    input.targetActivationApproved ||
-    input.targetProductionReady ||
-    input.targetReadyForRuntimeDelivery ||
-    input.targetReadyForServerUpload ||
+    (input.targetActivationApproved && !targetActivationFlagsAllowed) ||
+    (input.targetProductionReady && !targetActivationFlagsAllowed) ||
+    (input.targetReadyForRuntimeDelivery && !targetActivationFlagsAllowed) ||
+    (input.targetReadyForServerUpload && !targetActivationFlagsAllowed) ||
     input.targetReadyForStorageCloudMigration ||
     input.targetReadyForApply ||
     input.targetMayModifyProductionAppFiles ||
@@ -635,6 +735,27 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       runtimeDeliveryEvidenceChainSourceLocaleRejects: input.deliveryChainSourceLocaleRejects,
       runtimeDeliveryEvidenceChainStudyTargetRejects: input.deliveryChainStudyTargetRejects,
       runtimeDeliveryEvidenceChainClosedTransitions: input.deliveryChainClosedTransitions,
+      productionServerManifestPublishGateStatus: input.serverManifestPublishGateStatus,
+      productionServerManifestPublishGateState: input.serverManifestPublishGateState,
+      productionServerManifestPublishGateReady: input.serverManifestPublishGateReady,
+      productionServerManifestPublishGateEntries: input.serverManifestPublishGateEntries,
+      frenchServerPackUploadEvidenceReady: input.frenchServerPackUploadEvidenceReady,
+      frenchServerPackUploadEvidenceObjects: input.frenchServerPackUploadEvidenceObjects,
+      frenchServerPackUploadEvidenceHashMatches: input.frenchServerPackUploadEvidenceHashMatches,
+      frenchServerPackUploadEvidenceByteSizeMatches: input.frenchServerPackUploadEvidenceByteSizeMatches,
+      frenchServerPackUploadExecutionGateReady: input.frenchServerPackUploadExecutionGateReady,
+      frenchServerPackUploadExecutionGateDryRun: input.frenchServerPackUploadExecutionGateDryRun,
+      frenchServerPackUploadExecutionPlannedObjects: input.frenchServerPackUploadExecutionPlannedObjects,
+      frenchServerPackUploadExecutionAttempts: input.frenchServerPackUploadExecutionAttempts,
+      frenchServerPackUploadExecutionSucceeded: input.frenchServerPackUploadExecutionSucceeded,
+      frenchServerPackUploadExecutionStarted: input.frenchServerPackUploadExecutionStarted,
+      frenchServerObjectRemoteVerifyReady: input.frenchServerObjectRemoteVerifyReady,
+      frenchServerObjectRemoteVerifyExpected: input.frenchServerObjectRemoteVerifyExpected,
+      frenchServerObjectRemoteVerifyFound: input.frenchServerObjectRemoteVerifyFound,
+      frenchServerObjectRemoteVerifyHashChecked: input.frenchServerObjectRemoteVerifyHashChecked,
+      frenchServerObjectRemoteVerifyMissing: input.frenchServerObjectRemoteVerifyMissing,
+      frenchServerObjectRemoteVerifyHashMismatches: input.frenchServerObjectRemoteVerifyHashMismatches,
+      frenchServerObjectRemoteVerifySizeMismatches: input.frenchServerObjectRemoteVerifySizeMismatches,
       serverManifestEntries: input.serverEntries.length,
       payloadFilesChecked: input.serverEntries.length === 12 ? input.serverEntries.length : 0,
       indexFilesChecked: input.serverEntries.length === 12 ? input.serverEntries.length : 0,
@@ -677,8 +798,88 @@ function makeP45Ready(input: EvaluationInput): void {
   input.p45ReadyForProductionActivationSequence = true;
 }
 
+function makeProbeDependenciesReady(input: EvaluationInput): void {
+  input.p45Status = 'HOLD';
+  input.p45PreflightState = 'waiting_for_exact_approval_validation';
+  input.p45ReadyForProductionActivationSequence = false;
+  input.p45ReadyForApply = false;
+  input.p45MayModifyProductionAppFiles = false;
+  input.p45ActivationApproved = false;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.p49Status = 'HOLD';
+  input.p49CompletionState = 'closed_mode_evidence_complete_production_locked';
+  input.p49RequirementsProved = 20;
+  input.p49RequirementsProductionLocked = 6;
+  input.p49RequirementsMissing = 0;
+  input.p49RequirementsContradicted = 0;
+  input.p49ClosedModeEvidenceComplete = true;
+  input.p49ReadyForApply = false;
+  input.p49MayModifyProductionAppFiles = false;
+  input.p50Status = 'PASS';
+  input.p50LockState = 'final_preapproval_evidence_hash_lock_ready';
+  input.p50FinalHashLocks = Math.max(input.p50FinalHashLocks, EXPECTED_FINAL_HASH_LOCKS);
+  input.p50MissingCriticalArtifacts = 0;
+  input.p50P49CompletionReady = true;
+  input.p50RuntimeDeliveryEvidenceChainReady = true;
+  input.p50ActiveApprovalReceiptExists = false;
+  input.p50ActiveHashLockExists = false;
+  input.p50ReadyForApply = false;
+  input.p50MayModifyProductionAppFiles = false;
+  input.deliveryChainStatus = 'PASS';
+  input.deliveryChainState = 'runtime_delivery_evidence_chain_ready_no_writes';
+  input.deliveryChainReady = true;
+  input.deliveryChainPublishManifestEntries = 12;
+  input.deliveryChainActualShaEntries = 12;
+  input.deliveryChainActualByteSizeEntries = 12;
+  input.deliveryChainPayloadShaMatches = 12;
+  input.deliveryChainIndexShaMatches = 12;
+  input.deliveryChainSliceManifestShaMatches = 12;
+  input.deliveryChainChecksumReportsPresent = 12;
+  input.deliveryChainRollbackContracts = 12;
+  input.deliveryChainSourceLocaleRejects = 12;
+  input.deliveryChainStudyTargetRejects = 12;
+  input.deliveryChainClosedTransitions = true;
+  input.deliveryChainReadyForApply = false;
+  input.deliveryChainMayModifyProductionAppFiles = false;
+  input.serverManifestPublishGateStatus = 'PASS';
+  input.serverManifestPublishGateState = 'production_server_manifest_ready_for_activation_gate';
+  input.serverManifestPublishGateReady = true;
+  input.serverManifestPublishGateEntries = 12;
+  input.frenchServerPackUploadEvidenceStatus = 'PASS';
+  input.frenchServerPackUploadEvidenceReady = true;
+  input.frenchServerPackUploadEvidenceObjects = 36;
+  input.frenchServerPackUploadEvidenceHashMatches = 12;
+  input.frenchServerPackUploadEvidenceByteSizeMatches = 12;
+  input.frenchServerPackUploadExecutionGateStatus = 'PASS';
+  input.frenchServerPackUploadExecutionGateReady = true;
+  input.frenchServerPackUploadExecutionGateDryRun = true;
+  input.frenchServerPackUploadExecutionPlannedObjects = 36;
+  input.frenchServerPackUploadExecutionAttempts = 0;
+  input.frenchServerPackUploadExecutionSucceeded = 0;
+  input.frenchServerPackUploadExecutionStarted = false;
+  input.frenchServerObjectRemoteVerifyStatus = 'PASS';
+  input.frenchServerObjectRemoteVerifyReady = true;
+  input.frenchServerObjectRemoteVerifyExpected = 36;
+  input.frenchServerObjectRemoteVerifyFound = 36;
+  input.frenchServerObjectRemoteVerifyHashChecked = 36;
+  input.frenchServerObjectRemoteVerifyMissing = 0;
+  input.frenchServerObjectRemoteVerifyHashMismatches = 0;
+  input.frenchServerObjectRemoteVerifySizeMismatches = 0;
+  input.shaMismatches = 0;
+  input.missingEntryFiles = 0;
+  input.invalidServerPaths = 0;
+  input.invalidCacheKeys = 0;
+  input.invalidRollbackMarkers = 0;
+  input.openEntryFlags = 0;
+  input.payloadBytesMismatches = 0;
+}
+
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: TransactionState; mutate: (input: EvaluationInput) => void }> = [
+  const probeBase = clone(base);
+  makeProbeDependenciesReady(probeBase);
+  const tests: { id: string; expectedState: TransactionState; mutate: (input: EvaluationInput) => void }[] = [
     { id: 'current_waiting_hold', expectedState: 'waiting_for_activation_sequence_preflight', mutate: () => undefined },
     { id: 'p45_ready_contract_ready', expectedState: 'production_apply_transaction_contract_ready', mutate: makeP45Ready },
     { id: 'p45_block_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p45Status = 'BLOCK'; input.p45PreflightState = 'blocked_by_findings'; } },
@@ -694,9 +895,17 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'p49_requirement_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p49RequirementsProved = 8; input.p49RequirementsProductionLocked = 6; } },
     { id: 'p50_final_hash_lock_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p50FinalHashLocks = EXPECTED_FINAL_HASH_LOCKS - 1; } },
     { id: 'runtime_delivery_chain_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.deliveryChainReady = false; } },
+    { id: 'server_manifest_publish_gate_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.serverManifestPublishGateReady = false; } },
+    { id: 'upload_evidence_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadEvidenceHashMatches = 11; } },
+    { id: 'upload_execution_started_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerPackUploadExecutionStarted = true; input.frenchServerPackUploadExecutionSucceeded = 1; } },
+    { id: 'remote_verify_hash_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.frenchServerObjectRemoteVerifyHashChecked = 35; } },
   ];
   return tests.map((test) => {
-    const input = clone(base);
+    const input = clone(probeBase);
+    input.targetActivationApproved = false;
+    input.targetProductionReady = false;
+    input.targetReadyForRuntimeDelivery = false;
+    input.targetReadyForServerUpload = false;
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -795,6 +1004,10 @@ function main(): void {
   const p49Path = path.join(auditsDir, 'production_readiness_completion_audit_v2_packet.json');
   const p50Path = path.join(auditsDir, 'final_preapproval_evidence_hash_lock_v2_packet.json');
   const deliveryChainPath = path.join(auditsDir, 'runtime_delivery_evidence_chain_v2_packet.json');
+  const productionServerManifestPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
+  const frenchServerPackUploadEvidencePath = path.join(auditsDir, 'french_server_pack_upload_evidence_v2_packet.json');
+  const frenchServerPackUploadExecutionGatePath = path.join(auditsDir, 'french_server_pack_upload_execution_gate_v2_packet.json');
+  const frenchServerObjectRemoteVerifyPath = path.join(auditsDir, 'french_server_object_remote_verify_v2_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const serverManifestPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
   const dryRunHashLockPath = path.join(runDir, 'apply_plan/hash_lock_manifest_dry_run_v2.json');
@@ -806,6 +1019,10 @@ function main(): void {
   const p49 = readJsonOrEmpty(p49Path);
   const p50 = readJsonOrEmpty(p50Path);
   const deliveryChain = readJsonOrEmpty(deliveryChainPath);
+  const productionServerManifestPublishGate = readJsonOrEmpty(productionServerManifestPublishGatePath);
+  const frenchServerPackUploadEvidence = readJsonOrEmpty(frenchServerPackUploadEvidencePath);
+  const frenchServerPackUploadExecutionGate = readJsonOrEmpty(frenchServerPackUploadExecutionGatePath);
+  const frenchServerObjectRemoteVerify = readJsonOrEmpty(frenchServerObjectRemoteVerifyPath);
   const targetManifest = readJsonOrEmpty(targetManifestPath);
   const serverManifest = readJsonOrEmpty(serverManifestPath);
   const dryRunHashLock = readJsonOrEmpty(dryRunHashLockPath);
@@ -815,6 +1032,11 @@ function main(): void {
   const p49Summary = summaryOf(p49);
   const p50Summary = summaryOf(p50);
   const deliveryChainSummary = summaryOf(deliveryChain);
+  const productionServerManifestPublishGateSummary = summaryOf(productionServerManifestPublishGate);
+  const frenchServerPackUploadEvidenceSummary = summaryOf(frenchServerPackUploadEvidence);
+  const frenchServerPackUploadExecutionGateSummary = summaryOf(frenchServerPackUploadExecutionGate);
+  const frenchServerPackUploadExecutionGateSafety = object(frenchServerPackUploadExecutionGate.safety);
+  const frenchServerObjectRemoteVerifySummary = summaryOf(frenchServerObjectRemoteVerify);
   const targetActivation = object(targetManifest.activation);
   const masterActionableBlockers = arr(master.findings)
     .filter((finding) => s(object(finding), 'severity') === 'blocker')
@@ -874,6 +1096,33 @@ function main(): void {
     deliveryChainClosedTransitions: b(deliveryChainSummary, 'closedTransitions'),
     deliveryChainReadyForApply: b(deliveryChainSummary, 'readyForApply'),
     deliveryChainMayModifyProductionAppFiles: b(deliveryChainSummary, 'mayModifyProductionAppFiles'),
+    serverManifestPublishGateStatus: s(productionServerManifestPublishGate, 'status'),
+    serverManifestPublishGateState: s(productionServerManifestPublishGateSummary, 'publishGateState'),
+    serverManifestPublishGateReady: s(productionServerManifestPublishGate, 'status') === 'PASS' &&
+      n(productionServerManifestPublishGateSummary, 'productionEntries') === 12 &&
+      n(productionServerManifestPublishGateSummary, 'productionEntriesMatchingDraftPayload') === 12 &&
+      n(productionServerManifestPublishGateSummary, 'productionEntriesClosedActivation') === 12,
+    serverManifestPublishGateEntries: n(productionServerManifestPublishGateSummary, 'productionEntries'),
+    frenchServerPackUploadEvidenceStatus: s(frenchServerPackUploadEvidence, 'status'),
+    frenchServerPackUploadEvidenceReady: b(frenchServerPackUploadEvidenceSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadEvidenceObjects: n(frenchServerPackUploadEvidenceSummary, 'uploadObjects'),
+    frenchServerPackUploadEvidenceHashMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadShaMatches'),
+    frenchServerPackUploadEvidenceByteSizeMatches: n(frenchServerPackUploadEvidenceSummary, 'localPayloadByteMatches'),
+    frenchServerPackUploadExecutionGateStatus: s(frenchServerPackUploadExecutionGate, 'status'),
+    frenchServerPackUploadExecutionGateReady: b(frenchServerPackUploadExecutionGateSummary, 'readyForRemoteObjectVerify'),
+    frenchServerPackUploadExecutionGateDryRun: b(frenchServerPackUploadExecutionGateSummary, 'dryRun'),
+    frenchServerPackUploadExecutionPlannedObjects: n(frenchServerPackUploadExecutionGateSummary, 'plannedUploadObjects'),
+    frenchServerPackUploadExecutionAttempts: n(frenchServerPackUploadExecutionGateSummary, 'uploadAttempts'),
+    frenchServerPackUploadExecutionSucceeded: n(frenchServerPackUploadExecutionGateSummary, 'uploadSucceeded'),
+    frenchServerPackUploadExecutionStarted: b(frenchServerPackUploadExecutionGateSafety, 'firebaseOrServerUploadStarted'),
+    frenchServerObjectRemoteVerifyStatus: s(frenchServerObjectRemoteVerify, 'status'),
+    frenchServerObjectRemoteVerifyReady: b(frenchServerObjectRemoteVerifySummary, 'readyForRuntimeDownloadActivation'),
+    frenchServerObjectRemoteVerifyExpected: n(frenchServerObjectRemoteVerifySummary, 'expectedObjectCount'),
+    frenchServerObjectRemoteVerifyFound: n(frenchServerObjectRemoteVerifySummary, 'foundObjectCount'),
+    frenchServerObjectRemoteVerifyHashChecked: n(frenchServerObjectRemoteVerifySummary, 'hashCheckedCount'),
+    frenchServerObjectRemoteVerifyMissing: n(frenchServerObjectRemoteVerifySummary, 'missingObjects'),
+    frenchServerObjectRemoteVerifyHashMismatches: n(frenchServerObjectRemoteVerifySummary, 'hashMismatches'),
+    frenchServerObjectRemoteVerifySizeMismatches: n(frenchServerObjectRemoteVerifySummary, 'sizeMismatches'),
     targetManifestRunId: s(targetManifest, 'runId'),
     targetManifestStudyTarget: s(targetManifest, 'studyTarget'),
     targetManifestTargetLocale: s(targetManifest, 'targetLocale'),
@@ -932,6 +1181,10 @@ function main(): void {
       productionReadinessCompletionAuditV2Packet: rel(repoRoot, p49Path),
       finalPreapprovalEvidenceHashLockV2Packet: rel(repoRoot, p50Path),
       runtimeDeliveryEvidenceChainV2Packet: rel(repoRoot, deliveryChainPath),
+      productionServerManifestPublishGateV2Packet: rel(repoRoot, productionServerManifestPublishGatePath),
+      frenchServerPackUploadEvidenceV2Packet: rel(repoRoot, frenchServerPackUploadEvidencePath),
+      frenchServerPackUploadExecutionGateV2Packet: rel(repoRoot, frenchServerPackUploadExecutionGatePath),
+      frenchServerObjectRemoteVerifyV2Packet: rel(repoRoot, frenchServerObjectRemoteVerifyPath),
       targetPackManifestV2Draft: rel(repoRoot, targetManifestPath),
       serverDeliveryManifestV2Draft: rel(repoRoot, serverManifestPath),
       hashLockManifestDryRunV2: rel(repoRoot, dryRunHashLockPath),

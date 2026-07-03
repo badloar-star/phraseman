@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * MistakeEli5Modal — bottom-sheet «Объяснить как для пятилетнего».
  *
@@ -19,13 +20,13 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import BilingualMistakeText from './BilingualMistakeText';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
@@ -43,7 +44,8 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Props) {
   const { theme: t, f } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
   const backdropOp = useRef(new Animated.Value(0)).current;
@@ -132,7 +134,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
               backgroundColor: t.bgCard,
               borderColor: t.border,
               shadowColor: t.accent,
-              paddingBottom: 20 + insets.bottom,
+              paddingBottom: 20 + bottomInset,
               transform: [{ translateY }],
             },
           ]}

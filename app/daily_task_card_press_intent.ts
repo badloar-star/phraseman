@@ -1,10 +1,8 @@
-export type DailyTaskCardPressIntent = 'navigate';
+export type DailyTaskCardPressIntent = 'expand' | 'navigate';
 
 export function getDailyTaskCardPressIntent(
   readyToNavigateTaskId: string | null,
   pressedTaskId: string,
 ): DailyTaskCardPressIntent {
-  void readyToNavigateTaskId;
-  void pressedTaskId;
-  return 'navigate';
+  return readyToNavigateTaskId === pressedTaskId ? 'navigate' : 'expand';
 }

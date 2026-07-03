@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -5,7 +6,6 @@ import { Image } from 'expo-image';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import TapScale from '../components/TapScale';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -42,6 +42,7 @@ import { emitAppEvent } from './events';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { oskolokImageForPackShards } from './oskolok';
 import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { arenaBilingualFirst } from '../constants/arena_i18n';
@@ -226,7 +227,8 @@ export default function DuelResultsScreen() {
   const isForfeited = forfeited === '1';
   const isOpponentForfeited = opponentForfeited === '1';
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const arenaShardAccent = '#A78BFA';
@@ -301,6 +303,7 @@ export default function DuelResultsScreen() {
   const [flyKind, setFlyKind] = useState<'xp' | 'shard' | 'shard_loss' | null>(null);
   const [session, setSession] = useState<ArenaSession | null>(null);
   const [rematchSecsLeft, setRematchSecsLeft] = useState<number | null>(null);
+  const [optimisticRematchOffer, setOptimisticRematchOffer] = useState<RematchOffer | null>(null);
   const rematchTimeoutToastRef = useRef(false);
   const rematchDeclineToastRef = useRef(false);
   const rematchNavigateRef = useRef(false);
@@ -324,6 +327,7 @@ export default function DuelResultsScreen() {
     arenaWinAchievementHandledRef.current = false;
     clubWarContributionRef.current = false;
     setClubWarResult(null);
+    setOptimisticRematchOffer(null);
   }, [sessionId]);
 
   const recordArenaWinAchievementOnce = useCallback(() => {
@@ -459,10 +463,26 @@ export default function DuelResultsScreen() {
   }, [isMockSession, isRoomRun, sessionId]);
 
   // ── Rematch: реакция на изменения rematchOffer ─────────────────────────────
-  const rematchOffer: RematchOffer | undefined = session?.rematchOffer;
+  const serverRematchOffer: RematchOffer | undefined = session?.rematchOffer;
+  const rematchOffer: RematchOffer | undefined = optimisticRematchOffer ?? serverRematchOffer;
   const isRematchInitiator = !!rematchOffer && rematchOffer.byUid === userId;
   const isRematchTarget = !!rematchOffer && rematchOffer.byUid !== userId;
   const rematchPending = rematchOffer?.status === 'pending' && (rematchOffer.ttlAt ?? 0) > Date.now();
+  const rematchAcceptedOptimistic = optimisticRematchOffer?.status === 'accepted';
+
+  useEffect(() => {
+    if (!optimisticRematchOffer || !serverRematchOffer) return;
+    if (
+      serverRematchOffer.newSessionId
+      || serverRematchOffer.status !== 'pending'
+      || (optimisticRematchOffer.status === 'pending' && serverRematchOffer.byUid === optimisticRematchOffer.byUid)
+    ) {
+      setOptimisticRematchOffer(null);
+    }
+  }, [
+    optimisticRematchOffer,
+    serverRematchOffer,
+  ]);
 
   // Локальный отсчёт секунд для pending offer
   useEffect(() => {
@@ -544,9 +564,18 @@ export default function DuelResultsScreen() {
       tr: "Oyuncu",
       pl: "Gracz",
     });
+    const now = Date.now();
+    setOptimisticRematchOffer({
+      byUid: userId,
+      byName: myName,
+      at: now,
+      ttlAt: now + REMATCH_TTL_MS,
+      status: 'pending',
+    });
     try {
       const ok = await createRematchOffer(sessionId, userId, myName);
       if (!ok) {
+        setOptimisticRematchOffer(null);
         emitAppEvent('action_toast', {
           type: 'info',
           messageRu: 'Реванш уже отправлен.',
@@ -557,6 +586,7 @@ export default function DuelResultsScreen() {
         logEvent('arena_rematch_offer_sent', {});
       }
     } catch {
+      setOptimisticRematchOffer(null);
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Реванш не отправился. Попробуй ещё раз.',
@@ -568,10 +598,15 @@ export default function DuelResultsScreen() {
 
   const handleRematchAccept = useCallback(async () => {
     if (isMockSession || !sessionId) return;
+    if (rematchOffer) {
+      setOptimisticRematchOffer({ ...rematchOffer, status: 'accepted' });
+      setRematchSecsLeft(null);
+    }
     try {
       await setRematchStatus(sessionId, 'accepted');
       logEvent('arena_rematch_accepted', {});
     } catch {
+      setOptimisticRematchOffer(null);
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Реванш не принялся. Попробуй снова.',
@@ -579,17 +614,21 @@ export default function DuelResultsScreen() {
         messageEs: 'No se ha podido aceptar la solicitud de revancha.',
       });
     }
-  }, [isMockSession, sessionId]);
+  }, [isMockSession, rematchOffer, sessionId]);
 
   const handleRematchDecline = useCallback(async () => {
     if (isMockSession || !sessionId) return;
+    if (rematchOffer) {
+      setOptimisticRematchOffer({ ...rematchOffer, status: 'declined' });
+      setRematchSecsLeft(null);
+    }
     try {
       await setRematchStatus(sessionId, 'declined');
       logEvent('arena_rematch_declined', {});
     } catch {
-      // ignore
+      setOptimisticRematchOffer(null);
     }
-  }, [isMockSession, sessionId]);
+  }, [isMockSession, rematchOffer, sessionId]);
 
   // При выходе «В Арену» — отменяем мой pending, чтобы не оставлять висеть
   const cancelMyPendingIfAny = useCallback(async () => {
@@ -2160,7 +2199,25 @@ export default function DuelResultsScreen() {
             </View>
           )}
 
-          {!rematchPending && (
+          {!isMockSession && !isForfeited && !opponentSurrendered && rematchAcceptedOptimistic && isRematchTarget && (
+            <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }]}>
+              <Ionicons name="sync-outline" size={20} color={t.textMuted} />
+              <Text style={[styles.rematchText, { color: t.textMuted, fontSize: f.h2 }]}>
+                {triLang(lang, {
+                  ru: 'Готовим реванш',
+                  uk: 'Готуємо реванш',
+                  es: 'Preparando revancha',
+                  'pt-BR': 'Preparando revanche',
+                  vi: 'Đang chuẩn bị tái đấu',
+                  id: 'Menyiapkan rematch',
+                  tr: 'Rövanş hazırlanıyor',
+                  pl: 'Przygotowujemy rewanż',
+                })}
+              </Text>
+            </View>
+          )}
+
+          {!rematchPending && !rematchAcceptedOptimistic && (
             isMockSession ? (
               <DuoPressable
                 onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })}
@@ -2339,7 +2396,7 @@ export default function DuelResultsScreen() {
               })}
             </Text>
           </View>
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 + insets.bottom }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 + bottomInset }} showsVerticalScrollIndicator={false}>
             {reviewItems.map((item, idx) => {
               const isRight = item.myAnswer === item.correct;
               return (
@@ -2441,7 +2498,8 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
   const [step, setStep] = useState<'ask' | 'thanks'>('ask');
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(60)).current;
-  const { bottom } = useSafeAreaInsets();
+  const { bottom } = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(bottom);
 
   useEffect(() => {
     // Окно монтируется только когда решено показать → помечаем показ сразу,
@@ -2489,7 +2547,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
             borderTopLeftRadius: 26,
             borderTopRightRadius: 26,
             padding: 28,
-            paddingBottom: Math.max(40, bottom + 20),
+            paddingBottom: Math.max(40, bottomInset + 20),
             borderTopWidth: 0.5,
             borderColor: t.border,
             alignItems: 'center',

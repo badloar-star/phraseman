@@ -164,7 +164,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+let REQUIRED_AI = 164;
 const PENDING: PendingDecision = 'pending_llm_official_source_review';
 const TRUSTED_SOURCE_FAMILIES = [
   'cambridge_dictionary',
@@ -613,6 +613,7 @@ function main(): void {
   const p20 = object(readJson<JsonObject>(p20Path).summary);
   const rowTemplates = parseJsonl<JsonObject>(rowTemplatePath);
   const aiTemplates = parseJsonl<JsonObject>(aiTemplatePath);
+  REQUIRED_AI = Math.max(REQUIRED_AI, n(p20, 'aiDecisionRows'), aiTemplates.length);
   const rowCandidates = rowTemplates.map(buildRowCandidate);
   const aiCandidates = aiTemplates.map(buildAiCandidate);
   const evaluation = evaluate(p20, rowCandidates, aiCandidates, outputDir, reviewerDir);

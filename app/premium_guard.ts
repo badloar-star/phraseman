@@ -50,6 +50,20 @@ export async function forcePremiumActive(): Promise<boolean> {
 }
 
 /**
+ * Локальный план — это разовая покупка «Навсегда» (non-consumable)?
+ *
+ * Видимое имя такого доступа — «Pro» (синяя палитра), в отличие от рекуррентного
+ * Plus. Источник правды — ключ `premium_plan` в AsyncStorage: его пишет
+ * persistStorePremiumLocally при подтверждении покупки/восстановления. VIP-гранты
+ * (опрос/рефералка/админка/промо) пишут `vip_plan`, а НЕ `premium_plan='lifetime'`,
+ * поэтому такой юзер остаётся Plus. Чистое чтение флага, без сетевых запросов.
+ */
+export async function isLifetimePlanLocal(): Promise<boolean> {
+  const plan = await AsyncStorage.getItem('premium_plan').catch(() => null);
+  return String(plan ?? '').trim().toLowerCase() === 'lifetime';
+}
+
+/**
  * StoreKit/Google has just confirmed a purchase or restore locally.
  * RevenueCat sandbox can lag for a few seconds, so this gives the local
  * premium flag the same bounded grace window as a fresh RC confirmation.

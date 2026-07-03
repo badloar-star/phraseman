@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { patchAppSnapshot } from './app_snapshot_store';
 import {
   lessonProgressKey,
   lessonSessionKey,
@@ -118,6 +119,17 @@ function applyPrimedFromStorageStrings(
   };
 }
 
+function publishLessonPrimeSummary(studyTarget?: RuntimeStudyTarget): void {
+  patchAppSnapshot((current) => ({
+    lessons: {
+      source: 'storage',
+      updatedAt: Date.now(),
+      primedCount: Object.keys(byLesson).length,
+      lastOpenedLesson: current.lessons?.lastOpenedLesson ?? null,
+    },
+  }));
+}
+
 export const LESSON_ID_MAX = 32;
 
 export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -142,6 +154,7 @@ export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: Runtim
       studyTarget,
     );
   }
+  publishLessonPrimeSummary(studyTarget);
 }
 
 export async function primeLessonScreenFromStorage(
@@ -156,6 +169,7 @@ export async function primeLessonScreenFromStorage(
     lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget),
   ]);
   applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
+  publishLessonPrimeSummary(studyTarget);
 }
 
 export function getLessonScreenPrimed(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): Primed | null {
@@ -175,6 +189,7 @@ export function touchLessonScreenPrimed(
     progress: patch.progress !== undefined ? patch.progress : cur.progress,
     override: patch.override !== undefined ? patch.override : cur.override,
   };
+  publishLessonPrimeSummary(studyTarget);
 }
 
 export function getInitialOrderAndCell(

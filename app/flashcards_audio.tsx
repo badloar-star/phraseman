@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -13,9 +14,10 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -24,6 +26,7 @@ import { triLang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
 import { peekFlashcardsCache } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -56,7 +59,7 @@ import {
 } from './flashcards_target_gate';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getUserSettingsSnapshot } from './user_settings_store';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 type Phase = 'select' | 'play' | 'done';
 type PauseOption = 900 | 1500 | 2300;
@@ -79,11 +82,13 @@ export default function FlashcardsAudioScreen() {
     filter?: string | string[];
     owned?: string | string[];
   }>();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { width } = useWindowDimensions();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const flashcardsAccess = useFeatureAccess('flashcards');
   const { theme: t, statusBarLight, f } = useTheme();
   const { speak, stop } = useAudio();
 
@@ -143,6 +148,20 @@ export default function FlashcardsAudioScreen() {
   const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runTokenRef = useRef(0);
   const transitionTokenRef = useRef(0);
+
+  const openFlashcardsPlusPaywall = useCallback((source: string) => {
+    // replace на пейвол из гейта = всегда mark, иначе экран остаётся в стеке «назад» → петля.
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: 'flashcard_autoplay', source },
+    } as any);
+  }, [router]);
+
+  useEffect(() => {
+    if (flashcardsAccess) return;
+    openFlashcardsPlusPaywall('flashcards_audio_direct');
+  }, [flashcardsAccess, openFlashcardsPlusPaywall]);
 
   const selectedSources = useMemo(
     () => sources.filter((source) => selectedIds.has(source.id)),
@@ -619,6 +638,10 @@ export default function FlashcardsAudioScreen() {
   }, []);
 
   const startSession = useCallback(async () => {
+    if (!flashcardsAccess) {
+      openFlashcardsPlusPaywall('flashcards_audio_start');
+      return;
+    }
     if (selectedSources.length === 0) {
       setLoadError(text.nothingSelected);
       void hapticError();
@@ -658,7 +681,9 @@ export default function FlashcardsAudioScreen() {
     }
   }, [
     cardContentLang,
+    flashcardsAccess,
     flipAnim,
+    openFlashcardsPlusPaywall,
     resetCardTransition,
     selectedSources,
     shuffle,
@@ -754,7 +779,7 @@ export default function FlashcardsAudioScreen() {
       <BouncyScrollView
         style={styles.scroll}
         decelerationRate="normal"
-        contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}
+        contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
         <View style={[styles.summaryPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
@@ -875,7 +900,7 @@ export default function FlashcardsAudioScreen() {
         ) : null}
       </BouncyScrollView>
 
-      <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 12), backgroundColor: t.bgPrimary, borderTopColor: t.border }]}>
+      <View style={[styles.footer, { paddingBottom: Math.max(bottomInset, 12), backgroundColor: t.bgPrimary, borderTopColor: t.border }]}>
         <TouchableOpacity
           testID="flashcards-audio-start"
           accessibilityLabel="qa-flashcards-audio-start"
@@ -961,7 +986,7 @@ export default function FlashcardsAudioScreen() {
     return (
       <>
         {renderHeader(backToSetup)}
-        <View style={[styles.player, { paddingBottom: Math.max(insets.bottom, 16) + 8 }]}>
+        <View style={[styles.player, { paddingBottom: Math.max(bottomInset, 16) + 8 }]}>
           <View style={styles.progressWrap}>
             <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
               <View style={[styles.progressFill, { backgroundColor: t.accent, width: `${Math.max(0, Math.min(1, progress)) * 100}%` }]} />
@@ -1051,7 +1076,7 @@ export default function FlashcardsAudioScreen() {
   const renderDone = () => (
     <>
       {renderHeader(backToSetup)}
-      <View style={[styles.doneWrap, { paddingBottom: Math.max(insets.bottom, 16) + 12 }]}>
+      <View style={[styles.doneWrap, { paddingBottom: Math.max(bottomInset, 16) + 12 }]}>
         <View style={[styles.donePanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
           <View style={[styles.doneIcon, { backgroundColor: t.correctBg }]}>
             <Ionicons name="checkmark-circle" size={46} color={t.correct} />

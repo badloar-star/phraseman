@@ -109,6 +109,12 @@ export interface LeagueChatMessage {
   pollVotes?: Record<string, number>;
   /** true — закреплённое сообщение (приветствие новичкам), рендерится сверху чата. */
   pinned?: boolean;
+  /** Реплай как в Telegram: денормализованная цитата исходного сообщения. */
+  replyToMessageId?: string;
+  replyToAuthorUid?: string;
+  replyToAuthorName?: string;
+  replyToText?: string;
+  replyToKind?: 'user' | 'system';
 }
 
 export interface LeagueChatPollOption {
@@ -400,7 +406,11 @@ export function subscribeLeagueChatMessages(
     );
 }
 
-export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string): Promise<'sent' | 'review' | 'blocked' | 'throttled' | 'offline'> {
+export async function sendLeagueChatMessage(
+  room: LeagueChatRoom,
+  text: string,
+  opts?: { replyToMessageId?: string },
+): Promise<'sent' | 'review' | 'blocked' | 'throttled' | 'offline'> {
   const now = Date.now();
   if (now - lastSendAt < SEND_THROTTLE_MS) return 'throttled';
 
@@ -416,7 +426,7 @@ export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string):
     await ensureStableAuthLink().catch(() => false);
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = callable<
-      { groupId: string; weekId: string; leagueId: number; stableId?: string; text: string; platform: string; appVersion: string },
+      { groupId: string; weekId: string; leagueId: number; stableId?: string; text: string; replyToMessageId?: string; platform: string; appVersion: string },
       { ok: boolean; status: 'sent' | 'review' | 'blocked'; messageId?: string }
     >('leagueChatSendMessage');
     const res = await fn({
@@ -425,6 +435,7 @@ export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string):
       leagueId: room.leagueId,
       stableId,
       text: cleanText,
+      ...(opts?.replyToMessageId ? { replyToMessageId: opts.replyToMessageId } : {}),
       platform: Platform.OS,
       appVersion: Constants.expoConfig?.version ?? 'unknown',
     });

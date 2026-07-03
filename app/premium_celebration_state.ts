@@ -21,7 +21,7 @@ const ADMIN_SEEN_KEY = 'premium_celebration_admin_seen_v1';
 
 // Какую анимацию показать у этого pending-празднования.
 //  - 'premium' → рекуррентный Plus (жёлтая)
-//  - 'pro'     → разовая покупка «Навсегда» = Pro (синяя)
+//  - 'pro'     → разовая покупка Phraseman Pro (синяя)
 // Зелёный Plus (бывший VIP) идёт отдельным путём через vip_celebration_state.ts.
 export type PremiumCelebrationVariant = 'premium' | 'pro';
 
@@ -64,7 +64,7 @@ export async function getPendingCelebrationMarker(): Promise<string | null> {
 
 /**
  * Вариант анимации для текущего pending-празднования. По умолчанию 'premium'
- * (жёлтый Plus). 'pro' выставляется при покупке плана «Навсегда» (lifetime).
+ * (жёлтый Plus). 'pro' выставляется при покупке плана Phraseman Pro (lifetime).
  */
 export async function getPendingCelebrationVariant(): Promise<PremiumCelebrationVariant> {
   try {

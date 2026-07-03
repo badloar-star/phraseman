@@ -43,6 +43,7 @@ export type ReferralInviteStatus = 'pending' | 'qualified' | 'rewarded' | 'skipp
 export type ReferralInvite = {
   refereeStableId: string;
   status: ReferralInviteStatus;
+  refereeName?: string;
   createdAtMs: number;
 };
 
@@ -54,10 +55,13 @@ export type ListMyInvitesResult = {
 };
 
 /** Список приглашений текущего пользователя (для бейджей и кнопки «Открыть»). */
-export async function callReferralListMyInvites(referrerStableId: string): Promise<ListMyInvitesResult> {
+export async function callReferralListMyInvites(
+  referrerStableId: string,
+  options: { force?: boolean } = {},
+): Promise<ListMyInvitesResult> {
   await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = callable<{ referrerStableId: string }, ListMyInvitesResult>('referralListMyInvites');
-  const res = await fn({ referrerStableId });
+  const fn = callable<{ referrerStableId: string; force?: boolean }, ListMyInvitesResult>('referralListMyInvites');
+  const res = await fn({ referrerStableId, force: options.force === true });
   return res.data;
 }
 

@@ -30,14 +30,24 @@ describe('useAudio TTS resiliency', () => {
   it('does not leave stalled phrase-audio downloads in the shared in-flight map forever', () => {
     expect(phraseAudioSource).toContain('DOWNLOAD_TIMEOUT_MS');
     expect(phraseAudioSource).toContain('downloadFileWithTimeout');
-    expect(phraseAudioSource).toContain('Promise.race([File.downloadFileAsync(url, file), timeout])');
+    expect(phraseAudioSource).toContain('Promise.race([');
+    expect(phraseAudioSource).toContain('File.downloadFileAsync(url, file)');
+    expect(phraseAudioSource).toContain('timeout,');
     expect(phraseAudioSource).toContain('inFlightDownloads.delete(key);');
   });
 
   it('restores the loud phrase audio mode on every generated clip playback', () => {
-    expect(phraseAudioSource).toContain("interruptionMode: 'duckOthers'");
-    expect(phraseAudioSource).toContain('await setAudioModeAsync(PHRASE_AUDIO_MODE);');
+    expect(phraseAudioSource).toContain('LOUD_PLAYBACK_AUDIO_MODE');
+    expect(phraseAudioSource).toContain('await setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE);');
     expect(phraseAudioSource).not.toContain('audioModeReady');
     expect(phraseAudioSource).toContain('player.volume = 1');
+  });
+
+  it('restores the loud playback mode before system TTS fallback too', () => {
+    expect(audioSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(audioSource).toContain('if (lastTextRef.current !== normalized) return;');
+    expect(audioSource.indexOf('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)')).toBeLessThan(
+      audioSource.indexOf('Speech.speak(normalized, speechOptions)'),
+    );
   });
 });

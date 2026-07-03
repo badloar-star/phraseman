@@ -13,6 +13,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -50,6 +51,7 @@ import { getShardsBalance } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import {
   FRIEND_GIFT_CATALOG,
+  classifyFriendGiftError,
   isFriendGiftsCloudEnabled,
   sendFriendGiftWithShards,
   type FriendGiftId,
@@ -57,6 +59,7 @@ import {
 import { checkAchievements } from './achievements';
 import { safeRouterBack } from './navigation_back';
 import { buildReferralShareLinks } from './referral_bootstrap';
+import { emitAppEvent } from './events';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -441,6 +444,20 @@ export default function FriendsScreen() {
       pl: gift.descPl,
     });
 
+  const emitFriendGiftErrorToast = (message: string) => {
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: message,
+      messageUk: message,
+      messageEs: message,
+      messagePtBr: message,
+      messageVi: message,
+      messageId: message,
+      messageTr: message,
+      messagePl: message,
+    });
+  };
+
   const handleSendGift = async (giftId: FriendGiftId) => {
     if (!giftTarget || giftBusyId) return;
     const gift = FRIEND_GIFT_CATALOG.find((x) => x.id === giftId);
@@ -455,33 +472,93 @@ export default function FriendsScreen() {
     }
     doHaptic();
     setGiftBusyId(giftId);
+    const target = giftTarget;
+    const sentGiftName = giftLabel(gift);
+    showFeedback(L('Отправляем подарок...', 'Надсилаємо подарунок...', 'Enviando regalo...', 'Enviando presente...', 'Đang gửi quà...', 'Mengirim hadiah...', 'Hediye gönderiliyor...', 'Wysyłanie prezentu...'));
+    emitAppEvent('action_toast', {
+      type: 'info',
+      messageRu: `Отправляем подарок: ${sentGiftName}`,
+      messageUk: `Надсилаємо подарунок: ${sentGiftName}`,
+      messageEs: `Enviando regalo: ${sentGiftName}`,
+      messagePtBr: `Enviando presente: ${sentGiftName}`,
+      messageVi: `Đang gửi quà: ${sentGiftName}`,
+      messageId: `Mengirim hadiah: ${sentGiftName}`,
+      messageTr: `Hediye gönderiliyor: ${sentGiftName}`,
+      messagePl: `Wysyłanie prezentu: ${sentGiftName}`,
+    });
     try {
       const res = await sendFriendGiftWithShards({
-        friendStableId: giftTarget.uid,
+        friendStableId: target.uid,
         giftId,
       });
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
       setGiftBalance(guardedBalance);
       setGiftTarget(null);
       showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: `Подарок отправлен: ${sentGiftName}`,
+        messageUk: `Подарунок надіслано: ${sentGiftName}`,
+        messageEs: `Regalo enviado: ${sentGiftName}`,
+        messagePtBr: `Presente enviado: ${sentGiftName}`,
+        messageVi: `Đã gửi quà: ${sentGiftName}`,
+        messageId: `Hadiah terkirim: ${sentGiftName}`,
+        messageTr: `Hediye gönderildi: ${sentGiftName}`,
+        messagePl: `Prezent wysłany: ${sentGiftName}`,
+      });
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
         result: 'success',
-        tags: { giftId, targetUid: giftTarget.uid, cost: gift.costShards },
+        tags: { giftId, targetUid: target.uid, cost: gift.costShards },
       });
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
+      const kind = classifyFriendGiftError(e);
+      if (kind !== 'unknown') {
+        const feedback =
+          kind === 'limit'
+            ? L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany')
+            : kind === 'not_enough_shards'
+            ? L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków')
+            : kind === 'not_friends' || kind === 'user_missing'
+            ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
+            : kind === 'auth' || kind === 'identity_changed'
+            ? L('Аккаунт ещё связывается с облаком. Подожди пару секунд и попробуй снова.', 'Акаунт ще зв’язується з хмарою. Зачекай кілька секунд і спробуй знову.', 'La cuenta aun se esta vinculando. Espera unos segundos e intentalo de nuevo.', 'A conta ainda esta vinculando. Espere alguns segundos e tente de novo.', 'Tài khoản đang liên kết đám mây. Chờ vài giây rồi thử lại.', 'Akun masih ditautkan ke cloud. Tunggu sebentar lalu coba lagi.', 'Hesap buluta bağlanıyor. Birkaç saniye bekleyip tekrar dene.', 'Konto nadal łączy się z chmurą. Poczekaj chwilę i spróbuj ponownie.')
+            : kind === 'network'
+            ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
+            : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
+        showFeedback(feedback);
+        emitFriendGiftErrorToast(feedback);
+        await trackActivity('friends:send_gift', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'error',
+          tags: { giftId, targetUid: target.uid, error: msg, kind },
+        });
+        return;
+      }
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
           ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no está activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Fragmen kurang atau pertemanan tidak lagi aktif', 'Yeterli parça yok veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
           : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không thể gửi quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Подарок не отправлен. Попробуй ещё раз.',
+        messageUk: 'Подарунок не надіслано. Спробуй ще раз.',
+        messageEs: 'No se pudo enviar el regalo. Inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível enviar o presente. Tente novamente.',
+        messageVi: 'Không gửi được quà. Hãy thử lại.',
+        messageId: 'Hadiah tidak dapat dikirim. Coba lagi.',
+        messageTr: 'Hediye gönderilemedi. Tekrar dene.',
+        messagePl: 'Nie udało się wysłać prezentu. Spróbuj ponownie.',
+      });
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
         result: 'error',
-        tags: { giftId, targetUid: giftTarget.uid, error: msg },
+        tags: { giftId, targetUid: target.uid, error: msg },
       });
     } finally {
       setGiftBusyId(null);
@@ -856,7 +933,11 @@ export default function FriendsScreen() {
     );
   };
 
-  // ── Full-screen loading ────────────────────────────────────────────────────
+  // ── Loading skeleton ────────────────────────────────────────────────────
+  // Геометрия повторяет финальный контент (заголовок секции + code-card + строки
+  // друзей), чтобы переход "загрузка → данные" не дёргал layout — вместо
+  // полноэкранного спиннера, который заменял весь контент (Performance Bible:
+  // "Instant first frame", B6).
 
   if (isLoading) {
     return (
@@ -870,9 +951,33 @@ export default function FriendsScreen() {
               {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
             </Text>
           </View>
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color={t.accent} />
-          </View>
+          <ScrollView style={styles.flex1} showsVerticalScrollIndicator={false}>
+            <ContentWrap>
+              <Text style={styles.sectionTitle}>
+                {L('Мой код', 'Мій код', 'Mi código', 'Meu código', 'Mã của tôi', 'Kode saya', 'Kodum', 'Mój kod')}
+              </Text>
+              <View style={styles.codeCard}>
+                <SkeletonBlock width={160} height={32} borderRadius={8} baseColor={t.bgSurface} />
+                <View style={styles.codeButtonRow}>
+                  <SkeletonBlock width={96} height={36} borderRadius={10} baseColor={t.bgSurface} />
+                  <SkeletonBlock width={96} height={36} borderRadius={10} baseColor={t.bgSurface} />
+                </View>
+              </View>
+
+              <Text style={styles.sectionTitle}>
+                {L('Мои друзья', 'Мої друзі', 'Mis amigos', 'Meus amigos', 'Bạn bè của tôi', 'Teman saya', 'Arkadaşlarım', 'Moi znajomi')}
+              </Text>
+              {[0, 1, 2].map((i) => (
+                <View key={`friends-skeleton-row-${i}`} style={styles.personRow}>
+                  <SkeletonBlock width={44} height={44} borderRadius={22} baseColor={t.bgSurface} />
+                  <View style={styles.personInfo}>
+                    <SkeletonBlock width="60%" height={15} borderRadius={4} baseColor={t.bgSurface} style={{ marginBottom: 6 }} />
+                    <SkeletonBlock width={64} height={12} borderRadius={4} baseColor={t.bgSurface} />
+                  </View>
+                </View>
+              ))}
+            </ContentWrap>
+          </ScrollView>
         </SafeAreaView>
       </ScreenGradient>
     );

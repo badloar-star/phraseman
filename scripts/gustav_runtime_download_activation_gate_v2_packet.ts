@@ -32,7 +32,7 @@ type RuntimeActivationContract = {
   requiredManifestTransitions: string[];
   requiredRollbackGuards: string[];
   disallowedTransitionsNow: {
-    productionStudyTargetFrEnabled: false;
+    productionStudyTargetFrEnabled: boolean;
     coursePackRemoteLoadingEnabled: false;
     frenchEmbeddedIndexEntryEnabled: false;
     productionServerManifestPublished: false;
@@ -64,7 +64,7 @@ type Report = {
     noActiveApprovalArtifacts: boolean;
     coursePackRemoteLoadingEnabled: false;
     planContentRemoteEnabled: boolean;
-    productionStudyTargetFrEnabled: false;
+    productionStudyTargetFrEnabled: boolean;
     frenchEmbeddedIndexEntries: number;
     embeddedIndexActivationApprovedFalse: number;
     serverManifestDraftEntries: number;
@@ -73,8 +73,10 @@ type Report = {
     manifestActivationApprovedFalse: number;
     manifestReadyForApplyFalse: number;
     productionServerManifestExists: boolean;
+    productionManifestSafelyPromoted: boolean;
     p1aApprovalReceiptExists: boolean;
     p1aActiveHashLockExists: boolean;
+    productionStudyTargetStaleFrenchRepairTested: boolean;
     requiredFutureGates: number;
     requiredCodeTransitions: number;
     requiredManifestTransitions: number;
@@ -213,11 +215,13 @@ function evaluate(input: {
   contract: RuntimeActivationContract;
   manifestDraftPath: string;
   productionManifestPath: string;
+  productionManifestPublishGatePath: string;
   activeApprovalReceiptPath: string;
   activeHashLockManifestPath: string;
   loaderPath: string;
   indexPath: string;
   studyTargetPath: string;
+  studyTargetSurfaceTestPath: string;
 }): { findings: Finding[]; summary: Report['summary'] } {
   const findings: Finding[] = [];
   const manifestDraft = fs.existsSync(input.manifestDraftPath) ? object(readJson<unknown>(input.manifestDraftPath)) : {};
@@ -225,6 +229,10 @@ function evaluate(input: {
   const loaderSource = fs.existsSync(input.loaderPath) ? readText(input.loaderPath) : '';
   const indexSource = fs.existsSync(input.indexPath) ? readText(input.indexPath) : '';
   const studyTargetSource = fs.existsSync(input.studyTargetPath) ? readText(input.studyTargetPath) : '';
+  const studyTargetSurfaceTestSource = fs.existsSync(input.studyTargetSurfaceTestPath) ? readText(input.studyTargetSurfaceTestPath) : '';
+  const productionManifestPublishGate = fs.existsSync(input.productionManifestPublishGatePath)
+    ? object(object(readJson<unknown>(input.productionManifestPublishGatePath)).summary)
+    : {};
 
   const runtimeActivationPreconditionsContracted =
     input.contract.requiredFutureGates.length >= 6 &&
@@ -243,21 +251,40 @@ function evaluate(input: {
   const manifestActivationApprovedFalse = entries.filter((entry) => b(entry, 'activationApproved') === false).length;
   const manifestReadyForApplyFalse = entries.filter((entry) => b(entry, 'readyForApply') === false).length;
   const productionServerManifestExists = fs.existsSync(input.productionManifestPath);
+  const productionManifestSafelyPromoted =
+    s(productionManifestPublishGate, 'publishGateState') === 'production_server_manifest_ready_for_activation_gate' &&
+    b(productionManifestPublishGate, 'productionManifestPresent') &&
+    b(productionManifestPublishGate, 'readyForRuntimeDownloadActivation') &&
+    b(productionManifestPublishGate, 'activationApproved') === false &&
+    b(productionManifestPublishGate, 'runtimeDownloadsEnabled') === false &&
+    b(productionManifestPublishGate, 'readyForApply') === false;
   const p1aApprovalReceiptExists = fs.existsSync(input.activeApprovalReceiptPath);
   const p1aActiveHashLockExists = fs.existsSync(input.activeHashLockManifestPath);
   const noActiveApprovalArtifacts = !p1aApprovalReceiptExists && !p1aActiveHashLockExists;
+  const productionStudyTargetStaleFrenchRepairTested =
+    /repairs a stale French production study target value back to English/.test(studyTargetSurfaceTestSource) &&
+    /AsyncStorage\.setItem\(STUDY_TARGET_STORAGE_KEY,\s*['"]fr['"]\)/.test(studyTargetSurfaceTestSource) &&
+    /getStoredStudyTarget\(['"]ru['"]\)/.test(studyTargetSurfaceTestSource) &&
+    /AsyncStorage\.getItem\(STUDY_TARGET_STORAGE_KEY\)\)\.resolves\.toBe\(['"]en['"]\)/.test(studyTargetSurfaceTestSource);
+  const productionStudyTargetFrenchPersistTested =
+    /persists French as a production study target for supported source locales/.test(studyTargetSurfaceTestSource) &&
+    /setStoredStudyTarget\(['"]fr['"],\s*['"]ru['"]\)/.test(studyTargetSurfaceTestSource) &&
+    /getStoredStudyTarget\(['"]ru['"]\)\)\.resolves\.toBe\(['"]fr['"]\)/.test(studyTargetSurfaceTestSource);
+  const frenchProductionTargetTransitionAllowed =
+    productionStudyTargetFrEnabled && !noActiveApprovalArtifacts && productionStudyTargetFrenchPersistTested;
 
   if (!runtimeActivationPreconditionsContracted) addFinding(findings, 'blocker', 'runtime_activation_preconditions_incomplete', 'Runtime activation preconditions are not fully contracted.');
   if (coursePackRemoteLoadingEnabled) addFinding(findings, 'blocker', 'remote_loader_opened_now', 'Legacy course pack remote loader must remain disabled before approved apply.', input.loaderPath);
-  if (productionStudyTargetFrEnabled) addFinding(findings, 'blocker', 'production_study_target_fr_opened_now', 'ProductionStudyTarget/STUDY_TARGETS must not include fr before approved apply.', input.studyTargetPath);
+  if (productionStudyTargetFrEnabled && !frenchProductionTargetTransitionAllowed) addFinding(findings, 'blocker', 'production_study_target_fr_opened_without_approval', 'ProductionStudyTarget/STUDY_TARGETS may include fr only after exact approval artifacts and French persistence tests.', input.studyTargetPath);
+  if (!productionStudyTargetFrEnabled && !productionStudyTargetStaleFrenchRepairTested) addFinding(findings, 'blocker', 'production_study_target_stale_fr_repair_test_missing', 'Production study target gate must prove stale study_target_v1=fr repairs back to en before activation.', input.studyTargetSurfaceTestPath);
   if (frenchEmbeddedIndexEntries !== 0) addFinding(findings, 'blocker', 'french_index_entry_opened_now', 'Embedded/downloadable index must not contain fr entries before approved apply.', input.indexPath);
   if (entries.length !== 12) addFinding(findings, 'blocker', 'manifest_entry_count_invalid', `Expected 12 manifest draft entries, got ${entries.length}.`, input.manifestDraftPath);
   if (manifestStudyTargetFr !== 12) addFinding(findings, 'blocker', 'manifest_target_mismatch', 'All manifest draft entries must be studyTarget=fr.', input.manifestDraftPath);
   if (manifestRuntimeDownloadsEnabledFalse !== 12) addFinding(findings, 'blocker', 'manifest_runtime_downloads_opened', 'All manifest draft entries must keep runtimeDownloadsEnabled=false.', input.manifestDraftPath);
   if (manifestActivationApprovedFalse !== 12) addFinding(findings, 'blocker', 'manifest_activation_opened', 'All manifest draft entries must keep activationApproved=false.', input.manifestDraftPath);
   if (manifestReadyForApplyFalse !== 12) addFinding(findings, 'blocker', 'manifest_ready_for_apply_opened', 'All manifest draft entries must keep readyForApply=false.', input.manifestDraftPath);
-  if (productionServerManifestExists) addFinding(findings, 'blocker', 'production_server_manifest_exists', 'Production server manifest must not exist before approved publish/apply.', input.productionManifestPath);
-  if (!noActiveApprovalArtifacts) addFinding(findings, 'blocker', 'approval_artifacts_opened_now', 'Exact approval receipt/hash-lock must not be active in this no-enable gate.');
+  if (productionServerManifestExists && !productionManifestSafelyPromoted) addFinding(findings, 'blocker', 'production_server_manifest_exists_without_publish_gate', 'Local server_delivery_manifest_v2.json must be validated by production_server_manifest_publish_gate_v2 before activation can proceed.', input.productionManifestPath);
+  if (!noActiveApprovalArtifacts && !productionStudyTargetFrEnabled) addFinding(findings, 'blocker', 'approval_artifacts_opened_before_target_activation', 'Exact approval receipt/hash-lock must be followed by the French production target transition.');
   if (input.contract.requiredFutureGates.length < 6) addFinding(findings, 'blocker', 'future_gate_coverage_too_small', 'Runtime activation gate must name all required future gates.');
   if (input.contract.requiredCodeTransitions.length < 4) addFinding(findings, 'blocker', 'code_transition_coverage_too_small', 'Runtime activation gate must name code transitions.');
   if (input.contract.requiredManifestTransitions.length < 4) addFinding(findings, 'blocker', 'manifest_transition_coverage_too_small', 'Runtime activation gate must name manifest transitions.');
@@ -279,7 +306,7 @@ function evaluate(input: {
       noActiveApprovalArtifacts,
       coursePackRemoteLoadingEnabled: false,
       planContentRemoteEnabled,
-      productionStudyTargetFrEnabled: false,
+      productionStudyTargetFrEnabled,
       frenchEmbeddedIndexEntries,
       embeddedIndexActivationApprovedFalse,
       serverManifestDraftEntries: entries.length,
@@ -288,8 +315,10 @@ function evaluate(input: {
       manifestActivationApprovedFalse,
       manifestReadyForApplyFalse,
       productionServerManifestExists,
+      productionManifestSafelyPromoted,
       p1aApprovalReceiptExists,
       p1aActiveHashLockExists,
+      productionStudyTargetStaleFrenchRepairTested,
       requiredFutureGates: input.contract.requiredFutureGates.length,
       requiredCodeTransitions: input.contract.requiredCodeTransitions.length,
       requiredManifestTransitions: input.contract.requiredManifestTransitions.length,
@@ -337,9 +366,11 @@ function renderMarkdown(report: Report): string {
     `- Runtime download activation gate ready: ${report.summary.runtimeDownloadActivationGateReady ? 'yes' : 'no'}`,
     `- Runtime downloads enabled now: ${report.summary.runtimeDownloadsEnabled ? 'yes' : 'no'}`,
     `- Production studyTarget fr enabled now: ${report.summary.productionStudyTargetFrEnabled ? 'yes' : 'no'}`,
+    `- Stale production study_target_v1=fr repair tested: ${report.summary.productionStudyTargetStaleFrenchRepairTested ? 'yes' : 'no'}`,
     `- French embedded index entries now: ${report.summary.frenchEmbeddedIndexEntries}`,
     `- Manifest draft entries: ${report.summary.serverManifestDraftEntries}`,
     `- Production server manifest exists: ${report.summary.productionServerManifestExists ? 'yes' : 'no'}`,
+    `- Production manifest safely promoted by publish gate: ${report.summary.productionManifestSafelyPromoted ? 'yes' : 'no'}`,
     `- Fixture probes: ${report.summary.fixtureProbesPassed}/${report.summary.fixtureProbes}`,
     `- Blockers: ${report.summary.blockers}`,
     '',
@@ -374,11 +405,13 @@ function main(): void {
   const input = {
     manifestDraftPath: path.join(runDir, 'pack_candidates', 'fr', 'server_delivery_manifest_v2_draft.json'),
     productionManifestPath: path.join(runDir, 'pack_candidates', 'fr', 'server_delivery_manifest_v2.json'),
+    productionManifestPublishGatePath: path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json'),
     activeApprovalReceiptPath: path.join(runDir, 'apply_plan', 'explicit_approval_receipt_v2.json'),
     activeHashLockManifestPath: path.join(runDir, 'apply_plan', 'hash_lock_manifest_v2.json'),
     loaderPath: path.join(repoRoot, 'app', 'course_pack_loader.ts'),
     indexPath: path.join(repoRoot, 'app', 'course_pack_index.ts'),
     studyTargetPath: path.join(repoRoot, 'app', 'study_target.ts'),
+    studyTargetSurfaceTestPath: path.join(repoRoot, 'tests', 'gustav_surface_target_switch.test.ts'),
   };
   const result = evaluate({ ...input, contract });
   const probes = makeProbes(contract, input);

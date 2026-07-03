@@ -103,7 +103,8 @@ describe('study_languages — профиль ответов по языку', ()
 describe('study_languages — активация языка', () => {
   it('активация французского пишет study_target_v1, префетчит пак и отмечает язык начатым', async () => {
     await applyStudyLanguageSelection('fr', 'ru');
-    expect(store['study_target_v1']).toBe('fr');
+    expect(store['study_target_v1']).toBeUndefined();
+    expect(store['dev_study_target_lang']).toBe('fr');
     expect(prefetchAndRecordStudyTargetServerPack).toHaveBeenCalledWith('fr', 'ru');
     expect(await getStartedStudyLanguages()).toEqual(['fr']);
   });

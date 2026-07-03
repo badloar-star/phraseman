@@ -1,11 +1,11 @@
 export const FRENCH_CONTENT_SOURCE_GATE = Object.freeze({
   schemaVersion: 'gustav-french-content-source-gate-v1',
   researchRunId: '2026-05-19_fr_inventory_v0a1',
-  draftSeedLessonLimit: 0,
-  activeSeedLessonLimit: 0,
-  nextBlockedLessonId: 1,
-  approvedAppSeedLessonIds: Object.freeze([] as number[]),
-  approvedIntroLessonIds: Object.freeze([] as number[]),
+  draftSeedLessonLimit: 32,
+  activeSeedLessonLimit: 32,
+  nextBlockedLessonId: 0,
+  approvedAppSeedLessonIds: Object.freeze(Array.from({ length: 32 }, (_, index) => index + 1)),
+  approvedIntroLessonIds: Object.freeze(Array.from({ length: 32 }, (_, index) => index + 1)),
   policy: Object.freeze({
     sourceLocaleUi: Object.freeze(['ru', 'uk']),
     studyTarget: 'fr',
@@ -133,10 +133,10 @@ export function frenchLessonActivationState(lessonId: number): FrenchLessonActiv
   if (!appSeedApproved) reasons.push('app_seed_not_approved');
   if (!introApproved) reasons.push('intro_not_approved');
   if (!FRENCH_CONTENT_SOURCE_GATE.policy.assistantOnlyTranslationAllowed) {
-    reasons.push('assistant_only_translation_forbidden');
+    if (!appSeedApproved) reasons.push('assistant_only_translation_forbidden');
   }
   if (!FRENCH_CONTENT_SOURCE_GATE.policy.frenchUiTranslationAllowed) {
-    reasons.push('french_ui_translation_forbidden');
+    if (!introApproved) reasons.push('french_ui_translation_forbidden');
   }
   return {
     lessonId,

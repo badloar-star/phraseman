@@ -40,3 +40,90 @@ export function createCoalescedAsyncRunner(run: () => Promise<void>): () => Prom
     return inFlight;
   };
 }
+
+export type ScheduledForegroundTaskHandle = {
+  cancel: () => void;
+};
+
+type ScheduledForegroundTask = {
+  key: string;
+  readyAt: number;
+  run: () => Promise<void> | void;
+  cancelled: boolean;
+};
+
+const FOREGROUND_TASK_GAP_MS = 80;
+const scheduledForegroundTasks = new Map<string, ScheduledForegroundTask>();
+let foregroundDrainTimer: ReturnType<typeof setTimeout> | null = null;
+let foregroundDrainInFlight = false;
+
+const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+function scheduleForegroundDrain(delayMs: number): void {
+  if (foregroundDrainTimer) clearTimeout(foregroundDrainTimer);
+  foregroundDrainTimer = setTimeout(() => {
+    foregroundDrainTimer = null;
+    if (foregroundDrainInFlight) {
+      scheduleForegroundDrain(FOREGROUND_TASK_GAP_MS);
+      return;
+    }
+    void drainForegroundTasks();
+  }, Math.max(0, delayMs));
+}
+
+async function drainForegroundTasks(): Promise<void> {
+  if (foregroundDrainInFlight) return;
+  foregroundDrainInFlight = true;
+  try {
+    while (scheduledForegroundTasks.size > 0) {
+      const now = Date.now();
+      let next: ScheduledForegroundTask | null = null;
+      for (const task of scheduledForegroundTasks.values()) {
+        if (!next || task.readyAt < next.readyAt) next = task;
+      }
+      if (!next) return;
+      if (next.readyAt > now) {
+        scheduleForegroundDrain(next.readyAt - now);
+        return;
+      }
+
+      scheduledForegroundTasks.delete(next.key);
+      if (!next.cancelled) {
+        await Promise.resolve(next.run()).catch(() => {});
+      }
+      if (scheduledForegroundTasks.size > 0) {
+        await wait(FOREGROUND_TASK_GAP_MS);
+      }
+    }
+  } finally {
+    foregroundDrainInFlight = false;
+    if (scheduledForegroundTasks.size > 0 && !foregroundDrainTimer) {
+      scheduleForegroundDrain(0);
+    }
+  }
+}
+
+export function scheduleCoalescedForegroundTask(
+  key: string,
+  run: () => Promise<void> | void,
+  delayMs = 0,
+): ScheduledForegroundTaskHandle {
+  const previous = scheduledForegroundTasks.get(key);
+  if (previous) previous.cancelled = true;
+  const task: ScheduledForegroundTask = {
+    key,
+    readyAt: Date.now() + Math.max(0, delayMs),
+    run,
+    cancelled: false,
+  };
+  scheduledForegroundTasks.set(key, task);
+  scheduleForegroundDrain(delayMs);
+  return {
+    cancel: () => {
+      task.cancelled = true;
+      if (scheduledForegroundTasks.get(key) === task) {
+        scheduledForegroundTasks.delete(key);
+      }
+    },
+  };
+}

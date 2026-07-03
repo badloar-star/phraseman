@@ -33,9 +33,9 @@ import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
+import { pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
 import { bumpStatsDaily } from './stats_daily_breakdown';
-import { registerXP } from './xp_manager';
+import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 // [SRS] Модуль интервального повторения (active_recall.ts).
@@ -51,6 +51,7 @@ import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPa
 import { isSpeakingEnabled } from './remote_flags';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { recordMistake } from './active_recall';
@@ -109,8 +110,9 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
@@ -257,6 +259,7 @@ const SETTINGS_KEY = 'user_settings';
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const LESSON_ENTER_MS = MOTION_DURATION.normal;
 const PRESS_IN_MS = 70;
+const ERROR_REPLAY_DELAY_ANSWERS = 2;
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
   const count = Math.min(phraseCount, TOTAL);
@@ -653,6 +656,7 @@ const LessonContent = React.memo(function LessonContent({
 }: LessonContentProps) {
   const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
+  const { bottomInset } = useScreen();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const progressCellCount = Math.max(1, totalCells);
   const linkedSliceCompact = isLinkedLessonSliceTask;
@@ -820,9 +824,12 @@ const LessonContent = React.memo(function LessonContent({
       if (lessonId >= hint.lessonTeaches) continue;
       if (!hint.detect(currentWord)) continue;
       if (!force) {
-        const seen = await AsyncStorage.getItem(hint.key);
+        // Ключ «подсказка уже показана» скоупится по языку-цели: en — легаси-ключ,
+        // fr — отдельный namespace, чтобы прогресс подсказок en/fr не смешивался.
+        const seenKey = grammarHintSeenKey(hint.key, studyTarget);
+        const seen = await AsyncStorage.getItem(seenKey);
         if (seen) continue;
-        await AsyncStorage.setItem(hint.key, '1');
+        await AsyncStorage.setItem(seenKey, '1');
       }
       const text = grammarHintLine(lang, hint, studyTarget);
       Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
@@ -1050,7 +1057,7 @@ const LessonContent = React.memo(function LessonContent({
         contentContainerStyle={{
           paddingHorizontal: lessonHorizontalPadding,
           paddingTop: linkedSliceCompact ? 2 : 10,
-          paddingBottom: linkedSliceCompact ? 4 : (status === 'result' ? 100 : 8),
+          paddingBottom: linkedSliceCompact ? 4 + bottomInset : (status === 'result' ? 100 + bottomInset : 8 + bottomInset),
           flexGrow: linkedSliceCompact ? 0 : undefined,
         }}
         decelerationRate="normal"
@@ -1376,7 +1383,7 @@ const LessonContent = React.memo(function LessonContent({
         </View>
 
         {/* ФУТЕР */}
-        <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
+        <View style={{ flexDirection: 'row', paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, borderTopWidth: 0.5, borderTopColor: t.border }}>
           {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
               Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
               нечего, кнопка висела бесполезно. */}
@@ -1432,14 +1439,14 @@ const LessonContent = React.memo(function LessonContent({
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
             <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
-                ru: 'На проверке',
-                uk: 'На перевірці',
-                es: 'En revisión',
-                'pt-BR': 'Em revisão',
+                ru: 'Теория',
+                uk: 'Теорія',
+                es: 'Teoría',
+                'pt-BR': 'Teoria',
                 vi: 'Đang duyệt',
                 id: 'Ditinjau',
                 tr: 'İncelemede',
-                pl: 'W weryfikacji',
+                pl: 'Teoria',
               }) : s.lesson.theory}
             </Text>
           </LessonPressable>
@@ -1888,6 +1895,33 @@ export default function LessonScreen() {
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
+  const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
+  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !isPlanPhraseLessonTask;
+  const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
+  const [remoteFrenchLessonLoadState, setRemoteFrenchLessonLoadState] = useState<'idle' | 'loading' | 'ready' | 'failed'>('idle');
+  const [remoteFrenchLessonReloadNonce, setRemoteFrenchLessonReloadNonce] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    if (!frenchRemoteLessonRequired) {
+      setRemoteFrenchLessonRows(null);
+      setRemoteFrenchLessonLoadState('idle');
+      return () => { cancelled = true; };
+    }
+    setRemoteFrenchLessonLoadState('loading');
+    setRemoteFrenchLessonRows(null);
+    loadFrenchRemoteLessonRows(lessonId, frenchRemoteSourceLocale)
+      .then((rows) => {
+        if (cancelled) return;
+        setRemoteFrenchLessonRows(rows);
+        setRemoteFrenchLessonLoadState(rows.length > 0 ? 'ready' : 'failed');
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setRemoteFrenchLessonRows([]);
+        setRemoteFrenchLessonLoadState('failed');
+      });
+    return () => { cancelled = true; };
+  }, [frenchRemoteLessonRequired, frenchRemoteSourceLocale, lessonId, remoteFrenchLessonReloadNonce]);
   const lessonStorageId = isPlanPhraseLessonTask
     ? `${isPlanPhraseRecallTask ? 'plan_phrase_recall_' : 'plan_phrase_'}${planPhraseLesson?.id ?? 'unknown'}`
     : lessonId;
@@ -1901,12 +1935,12 @@ export default function LessonScreen() {
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
-    () => (planPhraseLesson?.phrases ?? getLessonData(lessonId)).filter(p => {
+    () => (planPhraseLesson?.phrases ?? remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
       if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
       if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
       return p.words && p.words.length > 0;
     }),
-    [planPhraseLesson, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
+    [planPhraseLesson, remoteFrenchLessonRows, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
@@ -1964,6 +1998,7 @@ export default function LessonScreen() {
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
+  const lessonXpEstimateMultiplierRef = useRef(1);
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
@@ -2007,6 +2042,21 @@ export default function LessonScreen() {
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
   const lessonExitInFlightRef = useRef(false);
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
+
+  useEffect(() => {
+    let cancelled = false;
+    const lessonMultiplier = getLessonDifficultyMultiplier(lessonId);
+    lessonXpEstimateMultiplierRef.current = lessonMultiplier;
+    getCurrentMultiplierBreakdown()
+      .then((breakdown) => {
+        const multiplierWithoutOneShotChest = Math.max(1, breakdown.total - Math.max(0, breakdown.leagueChestM - 1));
+        if (!cancelled) lessonXpEstimateMultiplierRef.current = Math.max(1, multiplierWithoutOneShotChest * lessonMultiplier);
+      })
+      .catch(() => {
+        if (!cancelled) lessonXpEstimateMultiplierRef.current = lessonMultiplier;
+      });
+    return () => { cancelled = true; };
+  }, [lessonId]);
 
   // [IMMEDIATE ERROR REPLAY] Очередь ячеек с ошибками для повтора через 2-3 вопроса
   const errorQueueRef          = useRef<number[]>([]); // cellIndex ячеек где была ошибка
@@ -2632,8 +2682,8 @@ export default function LessonScreen() {
         override: restoredOverrideForUi,
       }, studyTargetRef.current);
 
-      // Загружаем счётчик подсказок 50/50 за сегодня
-      const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+      // Загружаем счётчик подсказок 50/50 за сегодня (en — легаси-ключ, fr — свой namespace)
+      const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
       const ffCount = await AsyncStorage.getItem(todayKey);
       setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
       // Подарок «+N подсказок» пишется в ключ с учётом языка-цели (fr — отдельный
@@ -2710,6 +2760,7 @@ export default function LessonScreen() {
         if (!visited.includes(lessonId)) {
           visited.push(lessonId);
           await AsyncStorage.setItem(lessonKey, JSON.stringify(visited));
+          void pruneDatedDailyTasksStorageKeys([lessonKey]).catch(() => {});
           updateMultipleTaskProgress(
             [{ type: 'different_lessons', increment: 1 }],
             { studyTarget: studyTargetRef.current },
@@ -2778,9 +2829,8 @@ export default function LessonScreen() {
           questionsSinceErrorRef.current = 0;
         }
       }
-      if (!isReplayRef.current) {
-        correctStreakRef.current = 0;
-      }
+      // Replay attempts can earn XP too, so a mistake must always break the combo.
+      correctStreakRef.current = 0;
       // [SRS] Записываем ошибку в хранилище интервального повторения.
       // phraseCanonicalAnswer(...) — ключ как при проверке (совпадает со слотами words).
       // phrase.russian — подсказка (русский/украинский перевод, будет показан на лицевой стороне карточки).
@@ -2820,7 +2870,7 @@ export default function LessonScreen() {
               spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
               mistakeMeta,
             );
-            logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta);
+            logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
             lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
             void recordPhraseMistake(
               canonKey,
@@ -2830,7 +2880,7 @@ export default function LessonScreen() {
               errWord,
               tokenRow?.category,
               phrase.spanish,
-              undefined,
+              stRm,
               isPlanPhraseLessonTask ? planMistakeContext : undefined,
             );
           }
@@ -2861,51 +2911,48 @@ export default function LessonScreen() {
         : 1.0;
       const xpAmount = Math.round(5 * comboM);
 
-      // XP начисляем только за «настоящее» прохождение, НЕ за повтор уже пройденного урока.
-      // Иначе повтор фармил XP: eventId на повторе свежий (новый attemptId + сброс ordinal),
-      // поэтому серверный дедуп его не ловил. Ветка неправильного ответа уже так гардит.
-      // Задачи дня / комбо / ачивки ниже срабатывают и на повторе — это намеренно.
-      if (userNameRef.current && !isReplayRef.current) {
-        const answerCell = overridePhraseCell ?? cellIndex;
-        const answerOrdinal = sessionAnswerCount.current;
-        const answerEventId = [
+      // Local-first XP: show the toast now and write the answer XP immediately.
+      const answerCell = overridePhraseCell ?? cellIndex;
+      const answerOrdinal = sessionAnswerCount.current;
+      const optimisticXpAmount = Math.max(1, Math.round(xpAmount * lessonXpEstimateMultiplierRef.current));
+
+      void registerXP(xpAmount, 'lesson_answer', userNameRef.current || '', lang, lessonId, {
+        eventId: [
           'lesson',
           safeProgressEventPart(lessonStorageId, 40),
           safeProgressEventPart(studyTargetRef.current),
-          safeProgressEventPart(serverAttemptIdRef.current || 'attempt'),
+          safeProgressEventPart(serverAttemptIdRef.current || 'local_attempt', 40),
           'answer',
-          answerCell,
-          safeProgressEventPart(phrase.id ?? answerCell, 32),
+          String(answerOrdinal),
+          String(answerCell),
+          safeProgressEventPart(phrase.id ?? answerCell, 50),
+          overridePhraseCell !== null ? 'replay' : 'main',
+        ].join(':'),
+        skipLeagueChestMultiplier: true,
+        payload: {
+          surface: 'lesson1_answer',
+          studyTarget: studyTargetRef.current,
+          lessonStorageId: String(lessonStorageId),
+          attemptId: serverAttemptIdRef.current || null,
           answerOrdinal,
-        ].join(':');
-        // Run XP registration in background — do NOT await (blocks JS thread on every answer → ANR)
-        registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId, {
-          eventId: answerEventId,
-          payload: {
-            lessonStorageId: String(lessonStorageId),
-            studyTarget: studyTargetRef.current,
-            cellIndex: answerCell,
-            phraseId: phrase.id ?? null,
-            answerOrdinal,
-            replay: overridePhraseCell !== null,
-            combo: correctStreakRef.current,
-            progress: np,
-          },
-        })
-          .then(xpResult => {
-            if (xpResult.finalDelta > 0) {
-              setXpToastAmount(xpResult.finalDelta);
-              setXpToastVisible(true);
-              xpToastAnim.setValue(0);
-              Animated.sequence([
-                Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
-                Animated.delay(900),
-                Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-              ]).start(() => setXpToastVisible(false));
-            }
-          })
-          .catch(() => {});
-      }
+          cellIndex: answerCell,
+          phraseId: phrase.id ?? null,
+          baseAnswerXp: xpAmount,
+          optimisticAnswerXp: optimisticXpAmount,
+          combo: correctStreakRef.current,
+          replay: overridePhraseCell !== null,
+          lessonReplay: isReplayRef.current,
+        },
+      }).catch(() => {});
+
+      setXpToastAmount(optimisticXpAmount);
+      setXpToastVisible(true);
+      xpToastAnim.setValue(0);
+      Animated.sequence([
+        Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
+        Animated.delay(900),
+        Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+      ]).start(() => setXpToastVisible(false));
       // [COMBO] Ачивки за серию правильных ответов
       checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
       // [TIME] Ачивки за ночное/утреннее обучение
@@ -2977,7 +3024,7 @@ export default function LessonScreen() {
     }
     fadeAnim.stopAnimation(() => {
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: false }).start();
     });
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
@@ -2985,9 +3032,18 @@ export default function LessonScreen() {
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
 
+    const pendingCycleEndReplay = nextCell === 0 && !isPlanPhraseLessonTask && errorQueueRef.current.length > 0;
+    if (pendingCycleEndReplay) {
+      // At the lesson boundary there may be no natural "two questions later".
+      // Prime the existing replay queue so the next tap opens the missed phrase
+      // before the congratulations screen.
+      questionsSinceErrorRef.current = Math.max(questionsSinceErrorRef.current, ERROR_REPLAY_DELAY_ANSWERS - 1);
+      persistErrorReplayToStorage(overridePhraseCell);
+    }
+
     // Урок закрывается по кругу позиций: дошли до последней позиции и ответили.
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
-    if (nextCell === 0) {
+    if (nextCell === 0 && !pendingCycleEndReplay) {
       if (isPlanPhraseLessonTask) return;
       const nextAttemptId = makeLessonServerAttemptId();
       serverAttemptIdRef.current = nextAttemptId;
@@ -3096,7 +3152,7 @@ export default function LessonScreen() {
     // [IMMEDIATE ERROR REPLAY] Определяем ДО того как двигать cellIndex
     questionsSinceErrorRef.current += 1;
     let replayCell: number | null = null;
-    if (questionsSinceErrorRef.current >= 2 && errorQueueRef.current.length > 0) {
+    if (questionsSinceErrorRef.current >= ERROR_REPLAY_DELAY_ANSWERS && errorQueueRef.current.length > 0) {
       replayCell = errorQueueRef.current[0];
       questionsSinceErrorRef.current = 0;
     }
@@ -3405,18 +3461,80 @@ export default function LessonScreen() {
   }, [status, settings.hardMode, showTapHint, selectedWords, phrase, studyTarget, phraseWordIdx, checkAnswer]);
 
   // Списать один дневной кредит. Раньше это был 50/50 (затемнение слов); теперь кредит
-  // тратится на «Объясни проще» ДО ответа (Фаза 5). Дневной счётчик и «подарок» те же,
-  // ключ AsyncStorage оставлен прежним (`fifty_fifty_*`), чтобы не сбрасывать историю.
+  // тратится на «Объясни проще» ДО ответа (Фаза 5). Дневной счётчик и «подарок» те же;
+  // для en ключ остаётся легаси `fifty_fifty_*` (история не сбрасывается), для fr —
+  // отдельный target-namespace (контракт Густава: en/fr не делят счётчики).
   const consumeExplainCredit = useCallback(() => {
     if (fiftyFiftyUsedToday >= 3 + bonusHints || !phrase) return;
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
-    const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+    const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
     AsyncStorage.setItem(todayKey, String(newCount));
   }, [fiftyFiftyUsedToday, bonusHints, phrase]);
 
-  const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows;
+  const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
+  const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
+  const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
+
+  if (frenchLessonRemotePending) {
+    return (
+      <TouchableWithoutFeedback onPress={undefined}>
+        <ScreenGradient>
+          <LessonArtBackdrop variant="practice" />
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+            <ActivityIndicator size="large" color={t.accent} />
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 18 }}>
+              {triLang(lang, {
+                ru: 'Загружаю французский урок',
+                uk: 'Завантажую французький урок',
+                es: 'Cargando la lección de francés',
+                'pt-BR': 'Carregando a aula de francês',
+                vi: 'Đang tải bài học tiếng Pháp',
+                id: 'Memuat pelajaran bahasa Prancis',
+                tr: 'Fransızca dersi yükleniyor',
+                pl: 'Ładowanie lekcji francuskiego',
+              })}
+            </Text>
+          </SafeAreaView>
+        </ScreenGradient>
+      </TouchableWithoutFeedback>
+    );
+  }
+
+  if (frenchLessonRemoteFailed) {
+    return (
+      <TouchableWithoutFeedback onPress={undefined}>
+        <ScreenGradient>
+          <LessonArtBackdrop variant="practice" />
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+              {triLang(lang, {
+                ru: 'Не удалось загрузить французский урок',
+                uk: 'Не вдалося завантажити французький урок',
+                es: 'No se pudo cargar la lección de francés',
+                'pt-BR': 'Não foi possível carregar a aula de francês',
+                vi: 'Không tải được bài học tiếng Pháp',
+                id: 'Pelajaran bahasa Prancis gagal dimuat',
+                tr: 'Fransızca ders yüklenemedi',
+                pl: 'Nie udało się załadować lekcji francuskiego',
+              })}
+            </Text>
+            <TapScale
+              accessibilityRole="button"
+              onPress={() => setRemoteFrenchLessonReloadNonce((value) => value + 1)}
+              scaleTo={0.96}
+              style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+              </Text>
+            </TapScale>
+          </SafeAreaView>
+        </ScreenGradient>
+      </TouchableWithoutFeedback>
+    );
+  }
 
   if (frenchLessonSourceGateBlocked) {
     return (
@@ -3426,20 +3544,20 @@ export default function LessonScreen() {
           <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
-                ru: 'Французский материал ещё на проверке',
-                uk: 'Французький матеріал ще на перевірці',
-                es: 'Material pendiente de revisión',
-                'pt-BR': 'Material aguardando revisão',
+                ru: 'Французский пакет не загружен',
+                uk: 'Французький пакет не завантажено',
+                es: 'El paquete de francés no está cargado',
+                'pt-BR': 'O pacote de francês não foi carregado',
                 vi: 'Nội dung đang chờ kiểm duyệt',
                 id: 'Materi menunggu peninjauan',
-                tr: 'Materyal inceleme bekliyor',
-                pl: 'Materiał czeka na weryfikację',
+                tr: 'Fransızca paketi yüklenmedi',
+                pl: 'Pakiet francuski nie został załadowany',
               })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body + 6, marginBottom: 18 }}>
               {triLang(lang, {
-                ru: 'Этот урок не будет открывать английские фразы или интро как замену. Он появится после French source gate.',
-                uk: 'Цей урок не відкриватиме англійські фрази або інтро як заміну. Він з’явиться після French source gate.',
+                ru: 'Проверь интернет и повтори загрузку. Английские фразы не используются как замена.',
+                uk: 'Перевір інтернет і повтори завантаження. Англійські фрази не використовуються як заміна.',
                 es: 'Este lesson no usará frases inglesas como reemplazo.',
                 'pt-BR': 'Este lesson não usará frases inglesas como substituição.',
                 vi: 'Bài này sẽ không dùng câu tiếng Anh thay thế.',

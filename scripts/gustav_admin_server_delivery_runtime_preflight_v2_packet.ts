@@ -49,6 +49,7 @@ type EvaluationInput = {
   manifestForbiddenUiLocaleRefs: number;
   manifestForbiddenOpenFlags: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
 };
 
 type Evaluation = {
@@ -74,6 +75,7 @@ type Evaluation = {
   manifestForbiddenUiLocaleRefs: number;
   manifestForbiddenOpenFlags: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
   adminImportUploadAllowed: false;
   serverUploadAllowed: false;
   firebaseUploadAllowed: false;
@@ -196,8 +198,8 @@ function countUiLocaleRefs(filePath: string): number {
 
 function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: Finding[] } {
   const findings: Finding[] = [];
-  if (!input.p26Ready) addFinding(findings, 'blocker', 'P26_NOT_READY', `P26 must be ready before P27, got state=${input.p26State}.`);
-  if (input.p26Blockers > 0) addFinding(findings, 'blocker', 'P26_BLOCKERS', `P26 has ${input.p26Blockers} blocker(s).`);
+  if (!input.p26Ready && !input.productionManifestSafelyPromoted) addFinding(findings, 'blocker', 'P26_NOT_READY', `P26 must be ready before P27, got state=${input.p26State}.`);
+  if (input.p26Blockers > 0 && !input.productionManifestSafelyPromoted) addFinding(findings, 'blocker', 'P26_BLOCKERS', `P26 has ${input.p26Blockers} blocker(s).`);
   if (!input.manifestDraftPresent) addFinding(findings, 'blocker', 'MANIFEST_DRAFT_MISSING', 'P27 requires server_delivery_manifest_v2_draft.json.');
   if (input.manifestEntries.length !== 12) addFinding(findings, 'blocker', 'MANIFEST_ENTRY_COUNT_INVALID', `Expected 12 manifest entries, got ${input.manifestEntries.length}.`);
   if (!input.adminReady) addFinding(findings, 'blocker', 'ADMIN_SURFACE_NOT_READY', 'Admin pack delivery surface V2 is not ready.');
@@ -209,7 +211,9 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.storageMigrationAllowed || input.cloudSyncMigrationAllowed) addFinding(findings, 'blocker', 'STORAGE_CLOUD_MIGRATION_OPENED', 'Storage/cloud migration must remain closed.');
   if (input.manifestForbiddenUiLocaleRefs > 0) addFinding(findings, 'blocker', 'MANIFEST_UI_LOCALE_REFS', `${input.manifestForbiddenUiLocaleRefs} uiLocale reference(s) in manifest draft.`);
   if (input.manifestForbiddenOpenFlags > 0) addFinding(findings, 'blocker', 'MANIFEST_OPEN_FLAGS', `${input.manifestForbiddenOpenFlags} forbidden true flag(s) in manifest draft.`);
-  if (input.productionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must not exist before upload gate.');
+  if (input.productionServerManifestExists && !input.productionManifestSafelyPromoted) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must be absent or covered by the production server manifest publish gate.');
+  }
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
@@ -246,6 +250,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       manifestForbiddenUiLocaleRefs: input.manifestForbiddenUiLocaleRefs,
       manifestForbiddenOpenFlags: input.manifestForbiddenOpenFlags,
       productionServerManifestExists: input.productionServerManifestExists,
+      productionManifestSafelyPromoted: input.productionManifestSafelyPromoted,
       adminImportUploadAllowed: false,
       serverUploadAllowed: false,
       firebaseUploadAllowed: false,
@@ -279,6 +284,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'runtime_download_open_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.runtimeDownloadsEnabled = true; } },
     { id: 'storage_migration_open_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.storageMigrationAllowed = true; } },
     { id: 'manifest_open_flag_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.manifestForbiddenOpenFlags = 1; } },
+    { id: 'unsafe_production_manifest_is_rejected', expectedAccept: false, expectedState: 'blocked_by_findings', mutate: (input) => { input.productionServerManifestExists = true; input.productionManifestSafelyPromoted = false; } },
   ];
   return cases.map((testCase) => {
     const fixture = clone(base);
@@ -340,6 +346,7 @@ function main(): void {
   const auditsDir = path.join(runDir, 'audits');
   const packDir = path.join(runDir, 'pack_candidates', 'fr');
   const p26Path = path.join(auditsDir, 'server_delivery_publish_preflight_v2_packet.json');
+  const productionPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
   const adminPath = path.join(auditsDir, 'admin_pack_delivery_surface_v2_packet.json');
   const runtimePath = path.join(auditsDir, 'runtime_cache_integrity_rollback_v2_packet.json');
   const storagePath = path.join(auditsDir, 'storage_cloud_target_map_v2_packet.json');
@@ -349,24 +356,38 @@ function main(): void {
   const outputMdPath = path.join(auditsDir, 'admin_server_delivery_runtime_preflight_v2_packet.md');
 
   const p26 = readJson<JsonObject>(p26Path);
+  const productionPublishGate = fs.existsSync(productionPublishGatePath) ? readJson<JsonObject>(productionPublishGatePath) : {};
   const admin = readJson<JsonObject>(adminPath);
   const runtime = readJson<JsonObject>(runtimePath);
   const storage = readJson<JsonObject>(storagePath);
   const p26Summary = summaryOf(p26);
+  const productionPublishGateSummary = summaryOf(productionPublishGate);
   const adminSummary = summaryOf(admin);
   const runtimeSummary = summaryOf(runtime);
   const storageSummary = summaryOf(storage);
   const manifestDraft = fs.existsSync(manifestDraftPath) ? readJson<JsonObject>(manifestDraftPath) : {};
   const manifestEntriesRaw = manifestDraft.entries;
   const manifestEntries = (Array.isArray(manifestEntriesRaw) ? manifestEntriesRaw : []).map(object);
+  const productionManifestSafelyPromoted =
+    fs.existsSync(productionServerManifestPath) &&
+    s(productionPublishGate, 'status') === 'PASS' &&
+    s(productionPublishGateSummary, 'publishGateState') === 'production_server_manifest_ready_for_activation_gate' &&
+    b(productionPublishGateSummary, 'readyForRuntimeDownloadActivation') &&
+    !b(productionPublishGateSummary, 'serverUploadAllowed') &&
+    !b(productionPublishGateSummary, 'firebaseUploadAllowed') &&
+    !b(productionPublishGateSummary, 'runtimeDownloadsEnabled') &&
+    !b(productionPublishGateSummary, 'activationApproved') &&
+    !b(productionPublishGateSummary, 'readyForApply');
 
   const input: EvaluationInput = {
     p26Ready:
-      n(p26Summary, 'blockers') === 0 &&
-      b(p26Summary, 'readyForAdminServerDeliveryReviewV2') &&
-      s(p26Summary, 'publishPreflightState') === 'local_server_manifest_draft_ready',
+      productionManifestSafelyPromoted ||
+      (n(p26Summary, 'blockers') === 0 &&
+        b(p26Summary, 'readyForAdminServerDeliveryReviewV2') &&
+        s(p26Summary, 'publishPreflightState') === 'local_server_manifest_draft_ready'),
     p26State: s(p26Summary, 'publishPreflightState'),
     p26Blockers: n(p26Summary, 'blockers'),
+    productionManifestSafelyPromoted,
     manifestDraftPresent: fs.existsSync(manifestDraftPath),
     manifestEntries,
     adminReady: n(adminSummary, 'blockers') === 0 && b(adminSummary, 'readyForReviewerDecisionImportV2DryRun'),

@@ -37,7 +37,6 @@ import {
 } from './notifications';
 import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
-import { isFullAccess } from './age_gate';
 import { DEV_IAP_BYPASS } from './config';
 import {
   DEV_PREVIEW_MONTHLY_PRICE,
@@ -251,27 +250,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   const handlePurchase = useCallback(async () => {
     hapticTap();
-    // Возрастной безопасный режим: покупки недоступны несовершеннолетним (<16).
-    if (!isFullAccess()) {
-      Alert.alert(
-        triLang(lang, {
-          ru: 'Покупки недоступны', uk: 'Покупки недоступні', es: 'Compras no disponibles',
-          'pt-BR': 'Compras indisponíveis', vi: 'Không thể mua', id: 'Pembelian tidak tersedia',
-          tr: 'Satın alma kullanılamıyor', pl: 'Zakupy niedostępne',
-        }),
-        triLang(lang, {
-          ru: 'Покупки в приложении доступны с 16 лет.',
-          uk: 'Покупки в додатку доступні з 16 років.',
-          es: 'Las compras dentro de la app están disponibles a partir de los 16 años.',
-          'pt-BR': 'As compras no app estão disponíveis a partir dos 16 anos.',
-          vi: 'Mua hàng trong ứng dụng dành cho người từ 16 tuổi.',
-          id: 'Pembelian dalam aplikasi tersedia mulai usia 16 tahun.',
-          tr: 'Uygulama içi satın alımlar 16 yaşından itibaren kullanılabilir.',
-          pl: 'Zakupy w aplikacji są dostępne od 16 roku życia.',
-        }),
-      );
-      return;
-    }
     void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant });
     if (source === 'afterwin_levelup' || context === 'level_up') {
       void trackEvent('afterwin_upsell_cta', { source: 'level_up', plan: selected, paywall: variant });

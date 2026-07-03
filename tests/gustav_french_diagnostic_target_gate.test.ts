@@ -10,31 +10,34 @@ import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French diagnostic target gate', () => {
-  it('blocks the English diagnostic bank for French while preserving English and Spanish dev behavior', () => {
+  it('opens French diagnostic from the remote French quiz pack while preserving English and Spanish dev behavior', () => {
     expect(diagnosticContentAvailableForTarget('en')).toBe(true);
     expect(diagnosticContentAvailableForTarget('es')).toBe(true);
-    expect(diagnosticContentAvailableForTarget('fr')).toBe(false);
+    expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
     expect(diagnosticContentGateForTarget('fr')).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_diagnostic_source_gate',
-      blockedRoutes: ['/diagnostic_test'],
+      reason: 'french_quiz_pack_diagnostic_available',
+      blockedRoutes: [],
     });
     expect(diagnosticContentGateForTarget('fr').requiredEvidence).toEqual(expect.arrayContaining([
-      'french_diagnostic_question_bank',
-      'french_cefr_placement_review',
-      'ru_uk_diagnostic_prompt_review',
-      'diagnostic_mistake_mapping_review',
+      'french_quiz_remote_server_pack',
+      'french_diagnostic_from_remote_quiz_runtime',
+      'target_scoped_diagnostic_progress',
+      'no_english_diagnostic_bank_fallback',
     ]));
   });
 
-  it('keeps diagnostic_test behind the French source gate before English questions can render or write', () => {
+  it('routes diagnostic_test through the French remote runtime before English questions can render or write', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'diagnostic_test.tsx'), 'utf8');
+    const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_diagnostic_remote_runtime.ts'), 'utf8');
 
     expect(source).toContain('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)');
     expect(source).toContain('FrenchDiagnosticUnavailable');
-    expect(source).toContain("'french_diagnostic_source_gate'");
-    expect(source).toContain('frenchDiagnosticBlocked ? [] : pickQuestions()');
+    expect(source).toContain('const isFrenchDiagnostic = storageStudyTarget(studyTarget) === \'fr\'');
+    expect(source).toContain('loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)');
+    expect(source).toContain('frenchDiagnosticBlocked || isFrenchDiagnostic ? [] : pickQuestions()');
+    expect(source).toContain("trackFeatureBlocked('diagnostic', 'start', 'diagnostic_questions_unavailable'");
     expect(source).toContain('if (frenchDiagnosticBlocked) {');
     expect(source).toContain('diagnosticLastKey(studyTarget)');
     expect(source).toContain('diagnosticOpenFlagKey(studyTarget)');
@@ -49,9 +52,14 @@ describe('Gustav French diagnostic target gate', () => {
     );
     expect(source).toContain("void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate'");
     expect(source).toContain("void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate'");
+    expect(runtimeSource).toContain("ensureFrenchRemoteQuizRows(sourceLocaleInput)");
+    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('easy'");
+    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('medium'");
+    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('hard'");
+    expect(runtimeSource).not.toContain('ACTIVE_DIAGNOSTIC_POOL');
   });
 
-  it('keeps the home diagnostic entry visible for French while the diagnostic runtime remains source-gated', () => {
+  it('keeps the home diagnostic entry visible for French with the diagnostic runtime open', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
     expect(home).toContain("key: 'attest'");
@@ -59,10 +67,10 @@ describe('Gustav French diagnostic target gate', () => {
     expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
     expect(home).toContain('testID={`home-activity-${item.key}`}');
     expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
-    expect(diagnosticContentAvailableForTarget('fr')).toBe(false);
+    expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
   });
 
-  it('gates the daily-task diagnostic entry point for French before opening diagnostic_test', () => {
+  it('keeps the daily-task diagnostic entry point target-aware before opening diagnostic_test', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
 
     expect(source).toContain("import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate'");

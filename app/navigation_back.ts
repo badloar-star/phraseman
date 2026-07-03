@@ -6,6 +6,11 @@ type SafeBackRouter = {
   replace: (fallback: any) => void;
 };
 
+type ModalDismissRouter = SafeBackRouter & {
+  canDismiss?: () => boolean;
+  dismiss?: (count?: number) => void;
+};
+
 // ──────────────────────────────────────────────────────────────────────────
 // Честная история навигации.
 //
@@ -31,6 +36,7 @@ let suppressNextRemember = false;
 // но в нашем массиве он остаётся, и «назад» из нового экрана возвращает на тот
 // самый заменённый экран (без query-параметров → пустой).
 let replaceTopOnNextRemember = false;
+let paywallDismissShouldReplace = false;
 let pendingNoopBackTimer: ReturnType<typeof setTimeout> | null = null;
 
 // Транзитные маршруты-редиректы, которые НЕ должны попадать в стек «назад».
@@ -135,10 +141,12 @@ export function rememberNavigationPath(path: string | null | undefined): void {
 
   // Диспетчер пейвола (premium_modal) — транзитный редирект: в стек его не кладём,
   // чтобы «назад/закрыть» с пейвола не возвращало на него (иначе он снова откроет пейвол).
-  // Но флаг suppressNextRemember всё равно гасим, чтобы не сбить следующий честный push.
+  // If the transient route was reached through router.replace, keep the replace marker
+  // alive for the real target (/paywall_a/b/c). Otherwise a blocked source screen remains
+  // under the paywall and immediately reopens it after close.
   if (isTransientRedirectPath(nextPath)) {
+    if (replaceTopOnNextRemember) paywallDismissShouldReplace = true;
     if (suppressNextRemember) suppressNextRemember = false;
-    if (replaceTopOnNextRemember) replaceTopOnNextRemember = false;
     clearPendingNoopBackTimer();
     return;
   }
@@ -165,6 +173,7 @@ export function rememberNavigationPath(path: string | null | undefined): void {
   // чтобы дальше отработала обычная логика push/сворачивания — итог идентичен
   // нативному стеку (заменённый экран в «назад» не появится).
   if (replaceTopOnNextRemember) {
+    if (isNonBackTargetPath(nextPath)) paywallDismissShouldReplace = true;
     replaceTopOnNextRemember = false;
     if (navigationStack.length > 0 && currentPath() !== nextPath) {
       navigationStack.pop();
@@ -229,5 +238,34 @@ export function safeRouterBack(
   // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
   // запушится заново и стек снова закольцуется.
   suppressNextRemember = true;
+  paywallDismissShouldReplace = false;
+  router.replace(safeTarget);
+}
+
+export function dismissPaywallModal(
+  router: ModalDismissRouter,
+  fallback: any = HOME_BACK_FALLBACK,
+): void {
+  clearPendingNoopBackTimer();
+
+  if (navigationStack.length > 0) {
+    navigationStack.pop();
+  }
+
+  while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
+    navigationStack.pop();
+  }
+  const target = currentPath() ?? fallback;
+  const safeTarget =
+    target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
+
+  const shouldReplace = paywallDismissShouldReplace;
+  paywallDismissShouldReplace = false;
+  suppressNextRemember = true;
+  if (!shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+    router.dismiss(1);
+    return;
+  }
+
   router.replace(safeTarget);
 }

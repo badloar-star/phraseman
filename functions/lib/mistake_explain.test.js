@@ -202,6 +202,32 @@ describe('explainMistake', () => {
         expect(eli5Again.fromCache).toBe(true);
         expect(eli5Again.text).toBe(eli5.text);
     });
+    it('ELI5: rejects wrong-language fresh text before live return, cache write, or billing', async () => {
+        await callExplain(validPayload); // warm the safe full breakdown first
+        const hash = hashFor(validPayload);
+        const before = docs.get(`${mistake_explain_cache_1.MISTAKE_COLLECTION}/${hash}`);
+        mockOkProvider('Today you keep a good small practice step with your phrases.');
+        await expect(callExplain({ ...validPayload, variant: 'eli5' })).rejects.toMatchObject({
+            code: 'unavailable',
+            message: 'mistake_explain_wrong_language',
+        });
+        const after = docs.get(`${mistake_explain_cache_1.MISTAKE_COLLECTION}/${hash}`);
+        expect(after).toMatchObject({
+            status: 'ready',
+            full: before?.full,
+        });
+        expect(after?.eli5).toBeUndefined();
+        expect(billingDocs()).toHaveLength(1);
+    });
+    it('ELI5-before-full: rejects wrong-language fresh text before materializing any ready doc', async () => {
+        mockOkProvider('Today you keep a good small practice step with your phrases.');
+        await expect(callExplain({ ...validPayload, variant: 'eli5' })).rejects.toMatchObject({
+            code: 'unavailable',
+            message: 'mistake_explain_wrong_language',
+        });
+        expect(cacheDocs().some((d) => d.status === 'ready')).toBe(false);
+        expect(billingDocs()).toHaveLength(0);
+    });
     it('persists ELI5 even when it is requested BEFORE the full breakdown (no money leak on repeat)', async () => {
         mockOkProvider('Маленькая правка: скажи "have", не "has". Для "I" подходит "have".');
         // ELI5 first — no full breakdown cached yet.

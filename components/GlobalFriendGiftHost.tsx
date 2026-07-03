@@ -17,6 +17,7 @@ import { emitAppEvent } from '../app/events';
 import { claimUnseenFriendGifts } from '../app/friend_gift_inbox';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const LAST_POLL_KEY = 'global_friend_gift_last_poll';
@@ -37,6 +38,7 @@ export default function GlobalFriendGiftHost() {
   const langRef = useRef(lang);
   langRef.current = lang;
   const runningRef = useRef(false);
+  const scheduledRef = useRef<{ cancel: () => void } | null>(null);
 
   const poll = async () => {
     if (runningRef.current) return;
@@ -74,11 +76,19 @@ export default function GlobalFriendGiftHost() {
   };
 
   useEffect(() => {
-    void poll();
+    const schedulePoll = () => {
+      scheduledRef.current?.cancel();
+      scheduledRef.current = scheduleCoalescedForegroundTask('global_friend_gift_poll', poll);
+    };
+    schedulePoll();
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void poll();
+      if (state === 'active') schedulePoll();
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledRef.current?.cancel();
+      scheduledRef.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

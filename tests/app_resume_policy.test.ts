@@ -1,6 +1,7 @@
 import {
   createCoalescedAsyncRunner,
   getForegroundRefreshKind,
+  scheduleCoalescedForegroundTask,
   shouldRunDeepForegroundRefresh,
   SHORT_BACKGROUND_CLOUD_REFRESH_MS,
 } from '../app/app_resume_policy';
@@ -48,6 +49,43 @@ describe('app resume policy', () => {
     await Promise.all([first, second, third]);
 
     expect(calls).toEqual(['run-1', 'run-2']);
+  });
+
+  it('coalesces foreground tasks by key and spaces different tasks', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(0);
+    try {
+      const calls: string[] = [];
+      scheduleCoalescedForegroundTask('same-key', () => { calls.push('old'); });
+      scheduleCoalescedForegroundTask('same-key', () => { calls.push('new'); });
+      scheduleCoalescedForegroundTask('other-key', () => { calls.push('other'); });
+
+      await jest.advanceTimersByTimeAsync(0);
+      expect(calls).toEqual(['new']);
+
+      await jest.advanceTimersByTimeAsync(79);
+      expect(calls).toEqual(['new']);
+
+      await jest.advanceTimersByTimeAsync(1);
+      expect(calls).toEqual(['new', 'other']);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('cancels scheduled foreground work before it runs', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(0);
+    try {
+      const calls: string[] = [];
+      const handle = scheduleCoalescedForegroundTask('cancel-me', () => { calls.push('cancelled'); }, 500);
+      handle.cancel();
+
+      await jest.advanceTimersByTimeAsync(500);
+      expect(calls).toEqual([]);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });
 

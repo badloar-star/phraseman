@@ -27,6 +27,11 @@ type DailyPhraseQuestOptionSource = {
 
 const AWARD_KEY_PREFIX = 'daily_phrase_quest_xp_awarded_v1';
 const ANSWER_KEY_PREFIX = 'daily_phrase_quest_answered_v1';
+const QUEST_MARKER_MAX_KEYS = 192;
+const QUEST_MARKER_TTL_MS = 120 * 24 * 60 * 60 * 1000;
+const QUEST_MARKER_PRUNE_INTERVAL_MS = 12 * 60 * 60 * 1000;
+let lastQuestMarkerPruneAt = 0;
+let questMarkerPruneInFlight = false;
 
 function hashString(value: string): number {
   let hash = 2166136261;
@@ -97,6 +102,58 @@ function answerKey(phraseId: string, date: string): string {
   return `${ANSWER_KEY_PREFIX}:${date}:${phraseId}`;
 }
 
+function questMarkerDateFromKey(key: string): string | null {
+  if (!key.startsWith(`${AWARD_KEY_PREFIX}:`) && !key.startsWith(`${ANSWER_KEY_PREFIX}:`)) return null;
+  const date = key.split(':')[1] ?? '';
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
+}
+
+export function selectDailyPhraseQuestMarkerKeysToRemove(
+  keys: readonly string[],
+  nowMs = Date.now(),
+  retainKeys: readonly string[] = [],
+): string[] {
+  const retain = new Set(retainKeys.filter(Boolean));
+  const markers = keys
+    .map((key) => ({ key, date: questMarkerDateFromKey(key) }))
+    .filter((item): item is { key: string; date: string } => item.date !== null)
+    .sort((a, b) => (b.date === a.date ? b.key.localeCompare(a.key) : b.date.localeCompare(a.date)));
+  if (markers.length === 0) return [];
+
+  const cutoffMs = nowMs - QUEST_MARKER_TTL_MS;
+  const remove = new Set<string>();
+  for (const marker of markers) {
+    const markerMs = Date.parse(`${marker.date}T00:00:00.000Z`);
+    if (Number.isFinite(markerMs) && markerMs < cutoffMs && !retain.has(marker.key)) {
+      remove.add(marker.key);
+    }
+  }
+
+  let kept = 0;
+  for (const marker of markers) {
+    if (remove.has(marker.key)) continue;
+    kept += 1;
+    if (kept > QUEST_MARKER_MAX_KEYS && !retain.has(marker.key)) remove.add(marker.key);
+  }
+  return [...remove];
+}
+
+async function pruneDailyPhraseQuestMarkers(retainKeys: readonly string[]): Promise<void> {
+  const now = Date.now();
+  if (questMarkerPruneInFlight || now - lastQuestMarkerPruneAt < QUEST_MARKER_PRUNE_INTERVAL_MS) return;
+  questMarkerPruneInFlight = true;
+  lastQuestMarkerPruneAt = now;
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const remove = selectDailyPhraseQuestMarkerKeysToRemove(keys, now, retainKeys);
+    if (remove.length > 0) await AsyncStorage.multiRemove(remove);
+  } catch {
+    // Best-effort marker cleanup only.
+  } finally {
+    questMarkerPruneInFlight = false;
+  }
+}
+
 export async function markDailyPhraseQuestAnswered(params: {
   phraseId: string;
   date: string;
@@ -105,7 +162,9 @@ export async function markDailyPhraseQuestAnswered(params: {
   const date = cleanText(params.date);
   if (!phraseId || !date) return;
 
-  await AsyncStorage.setItem(answerKey(phraseId, date), '1');
+  const key = answerKey(phraseId, date);
+  await AsyncStorage.setItem(key, '1');
+  void pruneDailyPhraseQuestMarkers([key]).catch(() => {});
 }
 
 export async function hasDailyPhraseQuestAnswered(params: {
@@ -153,6 +212,7 @@ export async function awardDailyPhraseQuestXpOnce(params: {
     throw new Error('daily_phrase_quest_xp_not_confirmed');
   }
   await AsyncStorage.setItem(key, '1');
+  void pruneDailyPhraseQuestMarkers([key]).catch(() => {});
   return { awarded: true, finalDelta: result.finalDelta };
 }
 

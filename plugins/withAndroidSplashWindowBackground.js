@@ -31,6 +31,7 @@ function patchStyles(stylesPath) {
   xml = upsertStyleItem(xml, 'AppTheme', 'android:statusBarColor', '@android:color/transparent');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:windowLightStatusBar', 'false');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:enforceStatusBarContrast', 'false', ' tools:targetApi="29"');
+  xml = upsertStyleItem(xml, 'AppTheme', 'android:enforceNavigationBarContrast', 'false', ' tools:targetApi="29"');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:windowLayoutInDisplayCutoutMode', 'shortEdges', ' tools:targetApi="28"');
   xml = upsertStyleItem(xml, 'AppTheme', 'android:navigationBarColor', '@color/splashscreen_background');
   xml = upsertStyleItem(xml, 'Theme.App.SplashScreen', 'windowSplashScreenBackground', '@color/splashscreen_background');

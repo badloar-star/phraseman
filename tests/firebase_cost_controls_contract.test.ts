@@ -56,6 +56,61 @@ describe('Firebase cost controls', () => {
     expect(friendsSource).not.toContain("'referral_code'");
   });
 
+  it('keeps Friends referral and quest cloud reads cached, single-flight, and TTL-gated', () => {
+    const friendsScreenSource = read('app/(tabs)/friends.tsx');
+    const referralVipSource = read('app/referral_vip.ts');
+    const referralCloudSource = read('app/referral_cloud.ts');
+    const friendQuestsSource = read('app/friend_quests.ts');
+    const serverReferralSource = read('functions/src/referral.ts');
+    const serverFriendGiftsSource = read('functions/src/friend_gifts.ts');
+
+    expect(friendsScreenSource).toContain('FRIENDS_REFERRAL_REFRESH_TTL_MS = 15 * 60 * 1000');
+    expect(friendsScreenSource).toContain('FRIENDS_QUEST_REFRESH_TTL_MS = 2 * 60 * 1000');
+    expect(friendsScreenSource).toContain('referralRefreshInFlightRef');
+    expect(friendsScreenSource).toContain('friendQuestRefreshInFlightRef');
+    expect(friendsScreenSource).toContain('getClaimableReferralState({ force: options.force })');
+    expect(friendsScreenSource).toContain('getActiveFriendQuest({ force: options.force })');
+    expect(friendsScreenSource).toContain('referralInvitesKey(prev) === referralInvitesKey(state.invites)');
+    expect(friendsScreenSource).toContain('friendQuestKey(prev) === friendQuestKey(next)');
+
+    expect(referralVipSource).toContain('REFERRAL_INVITES_CACHE_TTL_MS = 15 * 60 * 1000');
+    expect(referralVipSource).toContain('referralInvitesInFlight');
+    expect(referralVipSource).toContain('invalidateClaimableReferralStateCache');
+    expect(referralCloudSource).toContain('force: options.force === true');
+
+    expect(friendQuestsSource).toContain('FRIEND_QUEST_STATUS_CACHE_TTL_MS = 60 * 1000');
+    expect(friendQuestsSource).toContain('friendQuestStatusInFlight');
+    expect(friendQuestsSource).toContain('invalidateActiveFriendQuestCache');
+    expect(friendQuestsSource).toContain('force: options.force === true');
+
+    expect(serverReferralSource).toContain('LIST_MY_INVITES_SERVER_CACHE_TTL_MS = 60_000');
+    expect(serverReferralSource).toContain('listMyInvitesServerCache');
+    expect(serverReferralSource).toContain('const force = request.data?.force === true');
+
+    expect(serverFriendGiftsSource).toContain('FRIEND_GET_ACTIVE_QUEST_SERVER_CACHE_TTL_MS = 30_000');
+    expect(serverFriendGiftsSource).toContain('friendGetActiveQuestServerCache');
+    expect(serverFriendGiftsSource).toContain('const force = request.data?.force === true');
+  });
+
+  it('keeps new web and admin/background cost controls cheap by default', () => {
+    const adminPushSource = read('functions/src/admin_push_jobs.ts');
+    const helpBoardSource = read('functions/src/help_board.ts');
+    const siteStatsSource = read('functions/src/site_stats.ts');
+    const webStatsSource = read('knowly-www/assets/stats.js');
+    const startSource = read('knowly-www/assets/start.js');
+    const thanksSource = read('knowly-www/start/thanks/index.html');
+
+    expect(adminPushSource).toContain("schedule: '*/30 * * * *'");
+    expect(adminPushSource).not.toContain("schedule: '*/5 * * * *'");
+    expect(helpBoardSource).toContain("schedule: '0 * * * *'");
+    expect(siteStatsSource).toContain('const rawEvents = Array.isArray(body.events)');
+    expect(webStatsSource).toContain('{ events: initialEvents }');
+    expect(startSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
+    expect(startSource).toContain('PRICE_CACHE_TTL_MS = 60 * 60 * 1000');
+    expect(thanksSource).toContain('var MAX_ATTEMPTS = 12');
+    expect(thanksSource).toContain('function nextPollDelayMs()');
+  });
+
   it('keeps duplicate identity cleanup callable-driven but not scheduled', () => {
     const indexSource = read('functions/src/index.ts');
     const packageJson = read('functions/package.json');
@@ -117,7 +172,7 @@ describe('Firebase cost controls', () => {
     expect(rulesSource).toContain('allow create, update: if canonicalUserMatchesAuth(userId);');
   });
 
-  it('defers non-critical avatar/profile cosmetics while keeping paid economy sync immediate', () => {
+  it('defers non-critical avatar cosmetics while profile-card Pro purchase syncs immediately', () => {
     const avatarSource = read('app/avatar_select.tsx');
     const profileCardSource = read('app/profile_card_upgrade.tsx');
 
@@ -126,10 +181,10 @@ describe('Firebase cost controls', () => {
     expect(avatarSource).toContain("cost > 0 ? 'immediate' : 'deferred'");
     expect(avatarSource).toContain("purchasedAura ? 'immediate' : 'deferred'");
 
-    expect(profileCardSource).toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
-    expect(profileCardSource).toContain('syncToCloud({ deferMs: PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS })');
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('immediate'\)/g) ?? []).length).toBe(2);
-    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\('deferred'\)/g) ?? []).length).toBe(3);
+    expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
+    expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
+    expect((profileCardSource.match(/syncProfileCardDisplayToCloud\(\);/g) ?? []).length).toBe(2);
+    expect(profileCardSource).not.toContain("syncProfileCardDisplayToCloud('deferred')");
   });
 
   it('updates percentile stats daily and keeps full-scan friend/premium cron cadence modest', () => {
@@ -205,7 +260,7 @@ describe('Firebase cost controls', () => {
     expect(indexes).toContain('"collectionGroup": "daily_phrases"');
     expect(indexes).toContain('"fieldPath": "scheduledDate"');
 
-    expect(compassModalSource).toContain('useCompassVoice(visible ? day : null)');
+    expect(compassModalSource).toContain('useCompassVoice(visible && !isDayClosing ? day : null)');
 
     expect(arenaHillSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
     expect(arenaHillSource).toContain('ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000');

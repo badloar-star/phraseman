@@ -25,9 +25,24 @@ export const SUPPORT_CALLBACK_START = 'support:start';
 export const SUPPORT_CALLBACK_CANCEL = 'support:cancel';
 /** Префикс callback'а кнопки «Ответить» под пересланным сообщением. */
 export const SUPPORT_CALLBACK_REPLY_PREFIX = 'sr:';
+const PAYMENT_SUPPORT_EMAIL = 'support.phraseman@gmail.com';
 
 export const SUPPORT_PROMPT_RU = [
   'Напишите ваше сообщение — мы передадим его в центр поддержки.',
+  'Ответ придёт прямо в этот чат.',
+].join('\n');
+export const PAY_SUPPORT_PROMPT_RU = [
+  'Поддержка платежей Phraseman Premium.',
+  '',
+  'Если Stars списались, но Premium не активирован, напишите одним сообщением:',
+  '1. ваш ник в Phraseman',
+  '2. примерное время оплаты',
+  '3. сумму Stars',
+  '',
+  'Если Telegram не даёт купить Stars или выбрать способ оплаты, попробуйте пополнить Stars через мобильный Telegram, @PremiumBot или web.telegram.org, затем вернитесь к счёту.',
+  '',
+  `Email: ${PAYMENT_SUPPORT_EMAIL}`,
+  '',
   'Ответ придёт прямо в этот чат.',
 ].join('\n');
 const SUPPORT_SENT_RU = 'Сообщение отправлено в поддержку. Ответ придёт прямо в этот чат. Можно дописать ещё.';
@@ -110,6 +125,11 @@ export function parseReplyCommand(text: string): { targetUserId: string; replyTe
   const replyText = match[2].trim();
   if (!replyText) return null;
   return { targetUserId: match[1], replyText };
+}
+
+function commandName(text: string): string {
+  const match = /^\/([A-Za-z0-9_]+)(?:@[A-Za-z0-9_]+)?(?:\s|$)/.exec(String(text || '').trim());
+  return match?.[1]?.toLowerCase() || '';
 }
 
 export function supportThreadDocId(adminUserId: number | string, adminMessageId: number | string): string {
@@ -239,6 +259,7 @@ export async function startSupportDialog(
   chatId: number | string,
   user: SupportTelegramUser | undefined,
   deps: SupportDeps,
+  prompt: string = SUPPORT_PROMPT_RU,
 ): Promise<void> {
   const userId = user?.id;
   if (!userId) return;
@@ -249,7 +270,7 @@ export async function startSupportDialog(
     firstName: String(user?.first_name ?? ''),
     updatedAtMs: Date.now(),
   }, { merge: true });
-  await deps.sendMessage(token, chatId, SUPPORT_PROMPT_RU, {
+  await deps.sendMessage(token, chatId, prompt, {
     reply_markup: { inline_keyboard: [[{ text: 'Отмена', callback_data: SUPPORT_CALLBACK_CANCEL }]] },
   });
 }
@@ -357,10 +378,18 @@ export async function tryHandleSupportMessage(
   const userId = message.from?.id;
   if (!chatId || !userId) return false;
   const text = String(message.text ?? '').trim();
+  const command = commandName(text);
 
   // Вход в чат поддержки: кнопка или команда.
-  if (text === SUPPORT_BUTTON_TEXT_RU || text === '/support') {
-    await startSupportDialog(token, chatId, message.from, deps);
+  if (text === SUPPORT_BUTTON_TEXT_RU || command === 'support' || command === 'paysupport') {
+    await clearAdminAwaitingReply(userId);
+    await startSupportDialog(
+      token,
+      chatId,
+      message.from,
+      deps,
+      command === 'paysupport' ? PAY_SUPPORT_PROMPT_RU : SUPPORT_PROMPT_RU,
+    );
     return true;
   }
 

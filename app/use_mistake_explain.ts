@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { callExplainMistake } from './ai_mistake_explain_client';
+import {
+  hasShownAiMistakeLimitNoticeToday,
+  markAiMistakeLimitNoticeShownToday,
+  peekAiMistakeLimitNoticeShownToday,
+} from './ai_mistake_explain_limit_session';
 import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
@@ -74,7 +79,9 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     targetAnswer,
   } = input;
 
-  const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>('idle');
+  const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>(() =>
+    peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle',
+  );
   const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
   const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
 
@@ -90,7 +97,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   // Reset everything when the phrase or result changes.
   useEffect(() => {
-    setAiMistakeState('idle');
+    setAiMistakeState(peekAiMistakeLimitNoticeShownToday() ? 'hidden' : 'idle');
     setAiMistakeText(null);
     setAiMistakeRemaining(null);
     setEli5Open(false);
@@ -126,6 +133,12 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       if (!active || aiMistakeState === 'loading') return;
       if (withHaptic) hapticTap();
       const requestKey = phraseKey;
+      if (await hasShownAiMistakeLimitNoticeToday()) {
+        if (phraseKeyRef.current !== requestKey) return;
+        setAiMistakeState('hidden');
+        setAiMistakeText(null);
+        return;
+      }
       setAiMistakeState('loading');
       setAiMistakeText(null);
       try {
@@ -138,7 +151,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         if (phraseKeyRef.current !== requestKey) return;
         // Дневной free-кап генераций (сервер — источник правды): не «ошибка»,
         // а мягкое состояние с приглашением в Plus.
-        setAiMistakeState(isFreeDailyLimitError(error) ? 'limit' : 'error');
+        if (isFreeDailyLimitError(error)) {
+          await markAiMistakeLimitNoticeShownToday();
+          if (phraseKeyRef.current !== requestKey) return;
+          setAiMistakeState('limit');
+          return;
+        }
+        setAiMistakeState('error');
       }
     },
     [active, aiMistakeState, phraseKey, buildArgs],
@@ -174,7 +193,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   }, [active, phraseKey, aiMistakeState, explain]);
 
   return {
-    aiMistakeState,
+    aiMistakeState:
+      active && aiMistakeState === 'idle' && peekAiMistakeLimitNoticeShownToday()
+        ? 'hidden'
+        : aiMistakeState,
     aiMistakeText,
     aiMistakeRemaining,
     explain: () => void explain(true),

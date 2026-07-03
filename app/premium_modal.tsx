@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { InteractionManager, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 
+import { LinearGradient } from '../components/SafeLinearGradient';
 import {
-  refreshPaywallAbConfigInBackground,
-  resolvePaywallAbVariantSync,
-  type PaywallAbVariant,
-} from './paywall_variant';
-import { safeRouterBack } from './navigation_back';
+  openPremiumPaywall,
+  resolveCurrentPaywallRoute,
+} from './paywall_navigation';
+import PaywallA from './paywall_a';
+import PaywallB from './paywall_b';
+import PaywallC from './paywall_c';
 import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import {
   activatePendingPersonalPlanAfterPremium,
@@ -19,13 +21,11 @@ import { emitAppEvent } from './events';
 
 type RouteParams = Record<string, string | string[]>;
 
-const PAYWALL_ROUTES: Record<PaywallAbVariant, '/paywall_a' | '/paywall_b' | '/paywall_c'> = {
-  A: '/paywall_a',
-  B: '/paywall_b',
-  C: '/paywall_c',
-};
-
 const ACCESS_CHECK_TIMEOUT_MS = 700;
+
+type ScheduledNavigation = {
+  cancel: () => void;
+};
 
 function firstParam(raw: string | string[] | undefined): string {
   return Array.isArray(raw) ? (raw[0] ?? '') : (raw ?? '');
@@ -39,6 +39,24 @@ function withFallback<T>(promise: Promise<T>, fallback: T, ms: number): Promise<
   return Promise.race([promise, timeout]).finally(() => {
     if (timer !== undefined) clearTimeout(timer);
   });
+}
+
+function scheduleAfterRootNavigationReady(navigate: () => void): ScheduledNavigation {
+  let cancelled = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const task = InteractionManager.runAfterInteractions(() => {
+    timer = setTimeout(() => {
+      if (!cancelled) navigate();
+    }, 0);
+  });
+
+  return {
+    cancel: () => {
+      cancelled = true;
+      if (timer !== null) clearTimeout(timer);
+      task.cancel?.();
+    },
+  };
 }
 
 async function finishPersonalPlanActivation(router: ReturnType<typeof useRouter>): Promise<void> {
@@ -61,10 +79,9 @@ async function finishPersonalPlanActivation(router: ReturnType<typeof useRouter>
     return;
   }
 
-  // Экран «План включён» — только когда реально есть что показывать (план активирован
-  // сейчас ИЛИ уже сохранён ранее). Иначе уводим на главную, а не в post-purchase
-  // thank-you с обещанием «Premium активен, план сохранён» — это и замыкало петлю
-  // paywall→thank-you→plan→paywall для пользователя без плана.
+  // Post-purchase auth prompt host is shown only when there is a real activated
+  // or existing plan. Otherwise go home instead of creating a paywall/auth/plan
+  // loop for a user without a plan.
   if (!activated) {
     const existing = await readPersonalPlanState().catch(() => null);
     if (!existing) {
@@ -98,21 +115,19 @@ async function maybeFinishAlreadyPremiumPersonalPlan(
 /** Replace на целевой пейвол (или manage_subscription). Выносим из эффекта, чтобы вызвать
  *  как из effect #1 (обычный путь), так и из effect #2 (когда personal_plan-юзер НЕ премиум). */
 function replaceToPaywall(params: RouteParams, router: ReturnType<typeof useRouter>): void {
-  if (firstParam(params.manage) === '1') {
-    router.replace('/manage_subscription' as any);
-    return;
-  }
-  refreshPaywallAbConfigInBackground();
-  const { variant } = resolvePaywallAbVariantSync();
-  router.replace({
-    pathname: PAYWALL_ROUTES[variant],
-    params: { ...params },
-  } as any);
+  openPremiumPaywall(router, params, 'replace');
+}
+
+function renderPaywallRoute(route: ReturnType<typeof resolveCurrentPaywallRoute>) {
+  if (route === '/paywall_a') return <PaywallA />;
+  if (route === '/paywall_b') return <PaywallB />;
+  return <PaywallC />;
 }
 
 export default function PremiumModalDispatcher() {
   const router = useRouter();
   const params = useLocalSearchParams<RouteParams>();
+  const paywallRouteRef = useRef<ReturnType<typeof resolveCurrentPaywallRoute> | null>(null);
 
   // Готов ли корневой навигатор. При холодном старте прямо на /premium_modal (deep-link,
   // первый экран) Root Layout ещё НЕ смонтирован — навигация в этот момент бросает
@@ -122,8 +137,9 @@ export default function PremiumModalDispatcher() {
   const dispatchedRef = useRef(false);
 
   // Replace на целевой пейвол — РОВНО ОДИН раз и только после монтирования рут-навигатора.
-  // Вариант решается синхронно из кэша; A/B-конфиг обновляется в фоне. Подложка прозрачная,
-  // поэтому лишний кадр до replace не виден.
+  // Вариант решается синхронно из кэша; A/B-конфиг обновляется в фоне.
+  // Replace is scheduled after interactions; the root-state key can appear before
+  // Expo Router accepts navigation on cold deep links.
   //
   // ВАЖНО (анти-мерцание пейвола, аудит P2/P3 #17): для контекста personal_plan НЕ делаем
   // replace на пейвол здесь. Если юзер УЖЕ премиум, мы бы показали пейвол, а затем эффект
@@ -132,18 +148,23 @@ export default function PremiumModalDispatcher() {
   // не премиум → сам сделает replace на пейвол. Два replace больше не конфликтуют.
   const isPersonalPlanContext = firstParam(params.context) === 'personal_plan'
     && firstParam(params.manage) !== '1';
+  const isManageContext = firstParam(params.manage) === '1';
 
   useEffect(() => {
     if (!rootNavReady || dispatchedRef.current) return;
-    if (isPersonalPlanContext) return; // решает эффект проверки доступа ниже
+    if (!isManageContext) return;
     dispatchedRef.current = true;
-    replaceToPaywall(params, router);
+    const scheduled = scheduleAfterRootNavigationReady(() => {
+      replaceToPaywall(params, router);
+    });
+    return () => scheduled.cancel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rootNavReady]);
 
   useEffect(() => {
     if (!rootNavReady) return;
     let cancelled = false;
+    let scheduled: ScheduledNavigation | null = null;
     const run = async () => {
       if (firstParam(params.manage) === '1') return;
       if (!isPersonalPlanContext) return;
@@ -153,20 +174,41 @@ export default function PremiumModalDispatcher() {
       // Не премиум → показываем пейвол ИЗ ЭТОГО ЖЕ эффекта, без предварительного мелькания.
       const finished = await maybeFinishAlreadyPremiumPersonalPlan(params, router);
       if (cancelled || finished) return;
-      replaceToPaywall(params, router);
+      scheduled = scheduleAfterRootNavigationReady(() => {
+        if (!cancelled) replaceToPaywall(params, router);
+      });
     };
     void run();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      scheduled?.cancel();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rootNavReady]);
 
-  // Прозрачная подложка на один кадр до replace — без тёмного экрана и спиннера.
-  return <View style={styles.root} />;
+  // Пока диспетчер решает A/B/C или проверяет personal_plan-доступ, показываем
+  // тот же тип подложки, что и у paywall, а не прозрачный пустой экран: на Android
+  // transparentModal часто просвечивает в чёрный native-stack фон.
+  if (!isPersonalPlanContext && !isManageContext) {
+    if (paywallRouteRef.current === null) {
+      paywallRouteRef.current = resolveCurrentPaywallRoute();
+    }
+    return renderPaywallRoute(paywallRouteRef.current);
+  }
+
+  return (
+    <LinearGradient
+      colors={['#111827', '#18233D', '#101827']}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      style={styles.root}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: '#111827',
   },
 });

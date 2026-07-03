@@ -26,7 +26,7 @@ interface Props {
   trialDays: number | null;
   loading: boolean;
   disabled?: boolean;
-  /** Цена lifetime из стора (priceString). Показываем третью карточку «Навсегда»
+  /** Цена lifetime из стора (priceString). Показываем третью карточку Phraseman Pro
    *  ТОЛЬКО когда lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
@@ -50,6 +50,10 @@ export default function PaywallPlanCards({
     pl: '/ mies.',
   });
 
+  // Apple 3.1.2(c): списываемая сумма (billed amount) обязана быть самым крупным и
+  // заметным ценовым элементом. Поэтому у «Года» КРУПНО показываем полную цену за
+  // год (yearlyFull, напр. «$24.99»), а расчётную цену за месяц/день и триал уводим
+  // в мелкую подчинённую подпись под ценой. Раньше было наоборот — за это и отклонили.
   const yearSubParts: string[] = [];
   if (trialDays) {
     yearSubParts.push(triLang(lang, {
@@ -63,17 +67,8 @@ export default function PaywallPlanCards({
       pl: `Najpierw ${trialDays} dni za darmo`,
     }));
   }
-  if (yearlyFull) {
-    yearSubParts.push(triLang(lang, {
-      ru: `${yearlyFull} раз в год`,
-      uk: `${yearlyFull} раз на рік`,
-      es: `${yearlyFull} al año`,
-      'pt-BR': `${yearlyFull} por ano`,
-      vi: `${yearlyFull} mỗi năm`,
-      id: `${yearlyFull} per tahun`,
-      tr: `Yılda ${yearlyFull}`,
-      pl: `${yearlyFull} rocznie`,
-    }));
+  if (yearlyPerMonth) {
+    yearSubParts.push(`${yearlyPerMonth} ${perMonthLabel}`);
   }
   if (perDayLabel) {
     yearSubParts.push(triLang(lang, {
@@ -104,28 +99,35 @@ export default function PaywallPlanCards({
         onPress={() => onSelect(plan)}
         style={[S.card, {
           borderColor: sel ? tc.selectedCardBorder : cardBorder,
-          backgroundColor: 'transparent',
+          backgroundColor: sel ? `${tc.heroAccent}10` : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
       >
-        <View style={S.row1}>
-          <Ionicons
-            name={sel ? 'checkmark-circle' : 'ellipse-outline'}
-            size={20}
-            color={sel ? tc.heroAccent : uncheckedBorder}
-          />
-          <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
+        <View style={S.planHeader}>
+          <View style={S.nameWrap}>
+            <Ionicons
+              name={sel ? 'checkmark-circle' : 'ellipse-outline'}
+              size={24}
+              color={sel ? tc.heroAccent : uncheckedBorder}
+            />
+            <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
+          </View>
           {badge !== null && (
             <View style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
               <Text style={[S.saveBadgeText, { color: tc.savingsBadgeText }]}>{badge}</Text>
             </View>
           )}
-          <View style={S.priceWrap}>
-            <Text style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textMuted }]}>
-              {price || (loading ? '…' : '—')}
-            </Text>
-            {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
-          </View>
+        </View>
+        <View style={S.priceWrap}>
+          <Text
+            style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.82}
+          >
+            {price || (loading ? '…' : '—')}
+          </Text>
+          {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
         </View>
         {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
       </TouchableOpacity>
@@ -146,9 +148,11 @@ export default function PaywallPlanCards({
           tr: 'Yıl',
           pl: 'Rok',
         }),
-        yearlyPerMonth,
+        // Крупно — списываемая сумма за год (billed amount), без «/мес».
+        yearlyFull || yearlyPerMonth,
         yearSubParts.length ? yearSubParts.join(' · ') : null,
         savingsPct !== null && savingsPct > 0 ? `−${savingsPct}%` : null,
+        true, // hidePerMonth — это годовая сумма, а не цена за месяц
       )}
       {renderCard(
         'monthly',
@@ -168,17 +172,17 @@ export default function PaywallPlanCards({
       )}
       {lifetimeAvailable && renderCard(
         'lifetime',
-        triLang(lang, { ru: 'Навсегда', uk: 'Назавжди', es: 'Para siempre', 'pt-BR': 'Para sempre', vi: 'Trọn đời', id: 'Selamanya', tr: 'Sonsuza dek', pl: 'Na zawsze' }),
+        'Phraseman Pro',
         lifetimePrice || '',
         triLang(lang, {
-          ru: 'Один платёж · доступ навсегда',
-          uk: 'Один платіж · доступ назавжди',
-          es: 'Un solo pago · acceso para siempre',
-          'pt-BR': 'Pagamento único · acesso para sempre',
-          vi: 'Thanh toán một lần · truy cập trọn đời',
-          id: 'Sekali bayar · akses selamanya',
-          tr: 'Tek ödeme · sonsuza dek erişim',
-          pl: 'Jedna płatność · dostęp na zawsze',
+          ru: 'Разовая покупка',
+          uk: 'Разова покупка',
+          es: 'Compra única',
+          'pt-BR': 'Compra única',
+          vi: 'Mua một lần',
+          id: 'Pembelian sekali',
+          tr: 'Tek seferlik satın alma',
+          pl: 'Zakup jednorazowy',
         }),
         triLang(lang, { ru: 'разовый', uk: 'разовий', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
         true, // hidePerMonth — lifetime это не /мес
@@ -188,17 +192,18 @@ export default function PaywallPlanCards({
 }
 
 const S = StyleSheet.create({
-  wrap: { gap: 9, marginTop: 14 },
+  wrap: { gap: 11, marginTop: 16 },
   card: {
-    borderRadius: 16, borderWidth: 1.5, paddingHorizontal: 15, paddingVertical: 13,
-    shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.28, shadowRadius: 10, elevation: 4,
+    borderRadius: 18, borderWidth: 1.5, paddingHorizontal: 17, paddingVertical: 15,
+    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12, elevation: 5,
   },
-  row1: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  name: { fontSize: 14.5, fontWeight: '700' },
-  saveBadge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, marginLeft: 2 },
-  saveBadgeText: { fontSize: 10.5, fontWeight: '800', letterSpacing: 0.3 },
-  priceWrap: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'baseline', gap: 4 },
-  price: { fontSize: 16.5, fontWeight: '800', letterSpacing: -0.3, fontVariant: ['tabular-nums'] },
-  per: { fontSize: 10.5, fontWeight: '500' },
-  sub: { marginTop: 7, paddingLeft: 30, fontSize: 11, lineHeight: 15 },
+  planHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
+  nameWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0, flex: 1 },
+  name: { flexShrink: 1, fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
+  saveBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 },
+  saveBadgeText: { fontSize: 12, fontWeight: '900', letterSpacing: 0 },
+  priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5 },
+  price: { flexShrink: 1, fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
+  per: { fontSize: 13, fontWeight: '700' },
+  sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
 });

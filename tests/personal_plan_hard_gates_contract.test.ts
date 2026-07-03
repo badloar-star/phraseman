@@ -21,7 +21,7 @@ describe('personal plan hard gates contract', () => {
   it('keeps selected daily time as the initial slice while the full plan task list stays available', () => {
     const expectedTaskIds = allTasksForDay(day1).map((task) => task.id);
 
-    expect(expectedTaskIds).toHaveLength(8);
+    expect(expectedTaskIds).toHaveLength(7);
     expect(tasksForMinutes(day1, 5).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 3));
     expect(tasksForMinutes(day1, 10).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 4));
     expect(tasksForMinutes(day1, 15).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 5));
@@ -74,25 +74,15 @@ describe('personal plan hard gates contract', () => {
     }));
   });
 
-  it('rejects certified days that do not provide real quiz content', () => {
-    const certifiedWithoutQuiz: PlanDay = {
+  it('does not require certified days to provide quiz content', () => {
+    expect(day1.tasks.some((task) => task.destination.type === 'quiz')).toBe(false);
+
+    const issues = validatePersonalPlanDay(gavan as PersonalPlanDefinition, {
       ...day1,
       status: 'certified',
-      tasks: day1.tasks.map((task) => task.destination.type === 'quiz'
-        ? {
-          ...task,
-          destination: {
-            type: 'quiz',
-            quizId: 'missing_plan_quiz',
-            questionCount: 10,
-            level: 'easy',
-          },
-        }
-        : task),
-    };
-    const issues = validatePersonalPlanDay(gavan as PersonalPlanDefinition, certifiedWithoutQuiz);
+    });
 
-    expect(issues.map((issue) => issue.code)).toContain('missing_quiz');
+    expect(issues.map((issue) => issue.code)).not.toContain('missing_quiz');
   });
 
   it('rejects generated copy that still uses internal product words', () => {

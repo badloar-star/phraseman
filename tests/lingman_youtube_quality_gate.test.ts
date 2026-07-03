@@ -31,6 +31,15 @@ describe('lingman YouTube quality gate', () => {
     expect(source).toMatch(/height:\s*(4[4-9]|[5-9]\d)/);
   });
 
+  it('refreshes the home video badge on focus and app resume', () => {
+    const source = buttonSource();
+
+    expect(source).toContain('useIsFocused');
+    expect(source).toContain("AppState.addEventListener('change'");
+    expect(source).toContain("state !== 'active'");
+    expect(source).toContain('remote_config_changed');
+  });
+
   it('marks video notifications as seen from the player path, not from catalog load', () => {
     const catalog = catalogSource();
     const loadBody = catalog.match(/const load = useCallback[\s\S]*?\n  \}, \[\]\);/)?.[0] ?? '';

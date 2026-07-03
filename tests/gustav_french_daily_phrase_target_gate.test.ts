@@ -34,48 +34,89 @@ jest.mock('../app/config', () => ({
   IS_EXPO_GO: true,
 }));
 
+const mockFrenchCards = [
+  {
+    id: 'fr-ru-card-1',
+    en: 'Bonjour',
+    ru: 'Здравствуйте',
+    uk: '',
+    categoryId: 'situations',
+    isSystem: true,
+  },
+  {
+    id: 'fr-ru-card-2',
+    en: 'Merci beaucoup',
+    ru: 'Большое спасибо',
+    uk: '',
+    categoryId: 'situations',
+    isSystem: true,
+  },
+];
+
+jest.mock('../app/french_flashcard_remote_runtime', () => ({
+  ensureFrenchRemoteFlashcards: jest.fn(async () => {}),
+  getCachedFrenchRemoteFlashcards: jest.fn(() => mockFrenchCards),
+}));
+
 describe('Gustav French daily phrase target gate', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('blocks English daily phrase runtime for French until approved source evidence exists', async () => {
-    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(false);
+  it('opens French daily phrase from the remote system flashcard pack without English idiom fallback', async () => {
+    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(true);
     expect(dailyPhraseContentGateForTarget('fr')).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_daily_phrase_source_gate',
+      reason: 'french_flashcard_system_daily_phrase_available',
+      blockedSurfaces: [],
     });
     expect(dailyPhraseContentGateForTarget('fr').requiredEvidence).toEqual(expect.arrayContaining([
-      'french_daily_phrase_bank',
-      'ru_uk_daily_phrase_prompt_review',
+      'french_flashcard_system_bank',
+      'french_daily_phrase_from_remote_flashcards_runtime',
+      'target_scoped_daily_phrase_cache',
+      'no_english_idiom_bank_fallback',
     ]));
 
-    expect(getTodayPhraseSyncForTarget('fr')).toBeNull();
-    await expect(getTodayPhraseForTarget('fr')).resolves.toBeNull();
+    expect(getTodayPhraseSyncForTarget('fr', 'ru')).toMatchObject({
+      english: expect.any(String),
+      meaning: expect.any(String),
+      allowSave: true,
+    });
+    await expect(getTodayPhraseForTarget('fr', 'ru')).resolves.toMatchObject({
+      id: expect.stringContaining('fr-daily-'),
+      allowSave: true,
+    });
     await setDailyPhraseSavedOnServerForTarget('remote-phrase', true, 'fr');
     const unsubscribe = subscribeTodayPhraseForTarget(() => {
-      throw new Error('French daily phrase subscription must be gated');
+      throw new Error('French daily phrase subscription must not use English cloud subscription');
     }, 'fr');
     unsubscribe();
 
-    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
-    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.getItem).toHaveBeenCalledWith(dailyPhraseLastDateKey('fr'));
+    expect(AsyncStorage.setItem).toHaveBeenCalledWith(dailyPhraseKey('fr'), expect.any(String));
+    expect(AsyncStorage.setItem).toHaveBeenCalledWith(dailyPhraseLastDateKey('fr'), expect.any(String));
+    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith('daily_phrase_v3', expect.any(String));
   });
 
-  it('keeps the home daily phrase surface visible for French while the English phrase runtime remains source-gated', () => {
+  it('keeps the home daily phrase surface wired to the target-aware runtime', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const card = fs.readFileSync(path.join(ROOT, 'components', 'DailyPhraseCard.tsx'), 'utf8');
+    const system = fs.readFileSync(path.join(ROOT, 'app', 'daily_phrase_system.ts'), 'utf8');
 
     expect(home).toContain('<DailyPhraseCard variant="homeAdditional" />');
     expect(home).toContain(': <DailyPhraseCard />}');
     expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
     expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
     expect(card).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
-    expect(card).toContain('const gateCopy = frenchDailyPhraseGateCopy(lang)');
-    expect(card).toContain('accessibilityLabel={gateCopy.title}');
+    expect(card).toContain('getTodayPhraseSyncForTarget(studyTarget, lang)');
+    expect(card).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(card).not.toContain("if (studyTarget === 'fr')");
-    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(false);
+    expect(system).toContain("ensureFrenchRemoteFlashcards(sourceLocale)");
+    expect(system).toContain("dailyPhraseKey('fr')");
+    expect(system).toContain("dailyPhraseLastDateKey('fr')");
+    expect(system).not.toContain('IDIOMS.find');
+    expect(dailyPhraseContentAvailableForTarget('fr')).toBe(true);
   });
 
   it('keeps English legacy behavior and reserves scoped French storage keys for future approved packets', async () => {

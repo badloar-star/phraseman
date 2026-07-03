@@ -23,10 +23,12 @@ describe('ai_language_contract', () => {
     expect(resolveAiOutputLang('pt-BR', 'explain')).toBe('pt-BR');
     expect(resolveAiOutputLang('PT-br', 'explain')).toBe('pt-BR');
     expect(resolveAiOutputLang('uk', 'weekly_review')).toBe('uk');
+    expect(resolveAiOutputLang('tr', 'help_board')).toBe('tr');
   });
 
   it('fails closed for unsupported output languages', () => {
     expect(() => resolveAiOutputLang('xx', 'explain')).toThrow('explain_unsupported_language');
+    expect(() => resolveAiOutputLang('xx', 'help_board')).toThrow('help_board_unsupported_language');
   });
 
   it('preserves French study target separately from interface language', () => {

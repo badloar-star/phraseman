@@ -2,6 +2,7 @@ import type { Lang } from '../constants/i18n';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
+import { getCachedFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 export type FlashcardsSourceGatedSurface =
@@ -13,7 +14,7 @@ export type FlashcardsSourceGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
   surface: FlashcardsSourceGatedSurface;
-  reason?: 'french_flashcards_source_gate';
+  reason?: 'french_flashcards_source_gate' | 'french_flashcards_server_system_cards_available';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -40,12 +41,13 @@ export function flashcardsSourceGateForTarget(
     };
   }
 
+  const systemCardsEnabled = surface === 'system_cards';
   return {
-    enabled: false,
+    enabled: systemCardsEnabled,
     studyTarget: 'fr',
     surface,
-    reason: 'french_flashcards_source_gate',
-    blockedRoutes: ['/flashcards', '/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
+    reason: systemCardsEnabled ? 'french_flashcards_server_system_cards_available' : 'french_flashcards_source_gate',
+    blockedRoutes: systemCardsEnabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }
@@ -68,7 +70,9 @@ export function flashcardsCommunityPacksAvailableForTarget(studyTarget: RuntimeS
 export function flashcardsSystemCardsForTarget(
   cards: readonly CardItem[],
   studyTarget: RuntimeStudyTarget,
+  sourceLocale?: unknown,
 ): CardItem[] {
+  if (storageStudyTarget(studyTarget) === 'fr') return getCachedFrenchRemoteFlashcards(sourceLocale);
   if (!flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')) return [];
   return [...cards];
 }

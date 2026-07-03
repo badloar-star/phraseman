@@ -2,7 +2,7 @@
 // PaywallProofCards.tsx — «галерея доказательств» (ниже фолда, для сомневающихся):
 //   MirrorCard      — «Уже твоё»: зеркало прогресса (endowment, из v1)
 //   PercentileCard  — честное соцдоказательство из СВОИХ данных юзера
-//   CompareCard     — сжатое сравнение Free → Premium (5 строк, читаемый шрифт)
+//   CompareCard     — 4 крупные выгоды Plus без мелких чипов и псевдосравнений
 //   FaqCard         — 3 вопроса, бьющие в страх №1 («забуду отменить»)
 // Отзывы намеренно НЕ здесь: рендер только verified-отзывов через
 // paywall_testimonials (пока их нет — секции нет; не выдумываем).
@@ -13,21 +13,30 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ProgressMirror } from '../../app/paywall_progress_mirror';
+import type { PaywallProfile } from '../../app/paywall_profile';
 import type { PaywallChrome } from './paywallShared';
 import { hapticTap } from '../../hooks/use-haptics';
 
 // ── обёртка-карточка ──────────────────────────────────────────────────────────
-function ProofCard({ title, chrome, children }: { title: string; chrome: PaywallChrome; children: React.ReactNode }) {
+function ProofCard({ title, chrome, children }: { title?: string; chrome: PaywallChrome; children: React.ReactNode }) {
   return (
     <View style={[S.card, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-      <Text style={[S.cardTitle, { color: chrome.textMuted }]}>{title.toUpperCase()}</Text>
+      {title ? <Text style={[S.cardTitle, { color: chrome.textMuted }]}>{title.toUpperCase()}</Text> : null}
       {children}
     </View>
   );
 }
 
-// ── «Уже твоё» ────────────────────────────────────────────────────────────────
-export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: PaywallChrome; mirror: ProgressMirror }) {
+function formatMirrorValue(value: number): string {
+  const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
+  if (n < 1000) return String(n);
+  const thousands = n / 1000;
+  const rounded = thousands < 10 ? Math.round(thousands * 10) / 10 : Math.round(thousands);
+  const text = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+  return `${text}K`;
+}
+
+function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label: string }[] {
   const stats: { value: number; label: string }[] = [];
   if (mirror.phrases > 0) stats.push({ value: mirror.phrases, label: triLang(lang, {
     ru: 'фраз',
@@ -60,6 +69,12 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
     tr: 'gün seri',
     pl: 'dni serii',
   }) });
+  return stats;
+}
+
+// ── «Уже твоё» ────────────────────────────────────────────────────────────────
+export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: PaywallChrome; mirror: ProgressMirror }) {
+  const stats = mirrorStats(lang, mirror);
   if (!stats.length) return null;
   return (
     <ProofCard title={triLang(lang, {
@@ -75,21 +90,28 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
       <View style={S.mirrorRow}>
         {stats.slice(0, 4).map((s) => (
           <View key={s.label} style={[S.mirrorStat, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-            <Text style={[S.mirrorValue, { color: chrome.textPrimary }]}>{s.value.toLocaleString('ru-RU')}</Text>
+            <Text
+              style={[S.mirrorValue, { color: chrome.textPrimary }]}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.72}
+            >
+              {formatMirrorValue(s.value)}
+            </Text>
             <Text style={[S.mirrorLabel, { color: chrome.textMuted }]}>{s.label}</Text>
           </View>
         ))}
       </View>
       <Text style={[S.mirrorLine, { color: chrome.textPrimary }]}>
         {triLang(lang, {
-          ru: 'Plus держит этот темп.',
-          uk: 'Plus тримає цей темп.',
-          es: 'Plus mantiene este ritmo.',
-          'pt-BR': 'Plus mantém esse ritmo.',
-          vi: 'Plus giữ nhịp này.',
-          id: 'Plus menjaga ritme ini.',
-          tr: 'Plus bu tempoyu korur.',
-          pl: 'Plus utrzymuje to tempo.',
+          ru: 'Plus убирает лимиты — больше практики каждый день.',
+          uk: 'Plus прибирає ліміти — більше практики щодня.',
+          es: 'Plus quita límites: más práctica cada día.',
+          'pt-BR': 'Plus remove limites: mais prática todo dia.',
+          vi: 'Plus bỏ giới hạn: luyện tập nhiều hơn mỗi ngày.',
+          id: 'Plus menghapus batas: lebih banyak latihan tiap hari.',
+          tr: 'Plus sınırları kaldırır: her gün daha çok pratik.',
+          pl: 'Plus usuwa limity: więcej praktyki każdego dnia.',
         })}
       </Text>
     </ProofCard>
@@ -110,14 +132,107 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
       pl: 'Twoje miejsce',
     })} chrome={chrome}>
       <View style={S.pctRow}>
-        <Ionicons name="trending-up" size={22} color={chrome.textMuted} />
+        <Ionicons name="trending-up" size={25} color={chrome.textMuted} />
         <Text style={[S.pctText, { color: chrome.textPrimary }]}>{line}</Text>
       </View>
     </ProofCard>
   );
 }
 
-// ── что даёт Premium (стиль «итог + чипы» сверху, «польза-в-заголовке» снизу) ──
+export function PersonalizationProofCard({
+  lang,
+  chrome,
+  tagTexts = [],
+  profile,
+  mirror,
+  percentileLine,
+}: {
+  lang: Lang;
+  chrome: PaywallChrome;
+  tagTexts?: string[];
+  profile: PaywallProfile | null;
+  mirror: ProgressMirror | null;
+  percentileLine?: string | null;
+}) {
+  const stats = mirror ? mirrorStats(lang, mirror).slice(0, 4) : [];
+  const name = profile?.name?.trim() || '';
+  const hasPersonalSignal = tagTexts.some(Boolean);
+  const hasContent = hasPersonalSignal || stats.length > 0 || !!name || !!percentileLine;
+  if (!hasContent) return null;
+
+  const accent = chrome.tc.heroAccent;
+  const phraseValue = mirror?.phrases ? formatMirrorValue(mirror.phrases) : '';
+  const streakValue = mirror?.streak ? formatMirrorValue(mirror.streak) : '';
+  const progressLine = phraseValue || streakValue
+    ? `${name ? `${name}, ` : ''}${triLang(lang, {
+        ru: phraseValue && streakValue ? `у тебя уже ${phraseValue} фраз и ${streakValue} дн. серии.` : phraseValue ? `у тебя уже ${phraseValue} фраз.` : `у тебя уже ${streakValue} дн. серии.`,
+        uk: phraseValue && streakValue ? `у тебе вже ${phraseValue} фраз і ${streakValue} дн. серії.` : phraseValue ? `у тебе вже ${phraseValue} фраз.` : `у тебе вже ${streakValue} дн. серії.`,
+        es: phraseValue && streakValue ? `ya tienes ${phraseValue} frases y ${streakValue} días de racha.` : phraseValue ? `ya tienes ${phraseValue} frases.` : `ya tienes ${streakValue} días de racha.`,
+        'pt-BR': phraseValue && streakValue ? `você já tem ${phraseValue} frases e ${streakValue} dias seguidos.` : phraseValue ? `você já tem ${phraseValue} frases.` : `você já tem ${streakValue} dias seguidos.`,
+        vi: phraseValue && streakValue ? `bạn đã có ${phraseValue} cụm từ và chuỗi ${streakValue} ngày.` : phraseValue ? `bạn đã có ${phraseValue} cụm từ.` : `bạn đã có chuỗi ${streakValue} ngày.`,
+        id: phraseValue && streakValue ? `kamu sudah punya ${phraseValue} frasa dan runtutan ${streakValue} hari.` : phraseValue ? `kamu sudah punya ${phraseValue} frasa.` : `kamu sudah punya runtutan ${streakValue} hari.`,
+        tr: phraseValue && streakValue ? `şimdiden ${phraseValue} ifade ve ${streakValue} günlük seri var.` : phraseValue ? `şimdiden ${phraseValue} ifade var.` : `şimdiden ${streakValue} günlük seri var.`,
+        pl: phraseValue && streakValue ? `masz już ${phraseValue} fraz i ${streakValue} dni serii.` : phraseValue ? `masz już ${phraseValue} fraz.` : `masz już ${streakValue} dni serii.`,
+      })}`
+    : name
+      ? `${name}, ${triLang(lang, {
+          ru: 'Plus даёт больше практики без стопов.',
+          uk: 'Plus дає більше практики без стопів.',
+          es: 'Plus te da más práctica sin bloqueos.',
+          'pt-BR': 'O Plus dá mais prática sem travas.',
+          vi: 'Plus cho bạn luyện tập nhiều hơn, không bị chặn.',
+          id: 'Plus memberi lebih banyak latihan tanpa hambatan.',
+          tr: 'Plus engel olmadan daha çok pratik verir.',
+          pl: 'Plus daje więcej praktyki bez blokad.',
+        })}`
+    : null;
+  const practiceLine = triLang(lang, {
+    ru: 'Plus убирает паузы: продолжаешь говорить, повторять и добивать слабые места, пока есть силы.',
+    uk: 'Plus прибирає паузи: продовжуєш говорити, повторювати й добивати слабкі місця, поки є сили.',
+    es: 'Plus quita las pausas: sigues hablando, repasando y cerrando puntos débiles mientras tengas energía.',
+    'pt-BR': 'Plus tira as pausas: você continua falando, revisando e fechando pontos fracos enquanto tiver energia.',
+    vi: 'Plus bỏ các quãng dừng: bạn tiếp tục nói, ôn lại và xử lý điểm yếu khi còn sức.',
+    id: 'Plus menghapus jeda: lanjut bicara, mengulang, dan menutup titik lemah selama masih ada tenaga.',
+    tr: 'Plus duraklamaları kaldırır: enerjin varken konuşmaya, tekrara ve zayıf noktaları kapatmaya devam edersin.',
+    pl: 'Plus usuwa pauzy: mówisz, powtarzasz i domykasz słabe miejsca, dopóki masz siłę.',
+  });
+  return (
+    <ProofCard chrome={chrome}>
+      <View style={S.personalHeader}>
+        {progressLine && <Text style={[S.personalMain, { color: chrome.textPrimary }]}>{progressLine}</Text>}
+      </View>
+
+      {stats.length > 0 && (
+        <View style={[S.personalStats, { borderTopColor: `${accent}24`, borderBottomColor: `${accent}24` }]}>
+          {stats.map((s) => (
+            <View key={s.label} style={S.personalStat}>
+              <Text
+                style={[S.personalStatValue, { color: chrome.textPrimary }]}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.76}
+              >
+                {formatMirrorValue(s.value)}
+              </Text>
+              <Text style={[S.personalStatLabel, { color: chrome.textMuted }]} numberOfLines={1}>{s.label}</Text>
+            </View>
+          ))}
+        </View>
+      )}
+
+      <Text style={[S.personalSub, { color: chrome.textMuted }]}>{practiceLine}</Text>
+
+      {percentileLine && (
+        <View style={[S.personalPct, { borderTopColor: `${accent}20` }]}>
+          <Ionicons name="trending-up" size={18} color={accent} />
+          <Text style={[S.personalPctText, { color: chrome.textPrimary }]}>{percentileLine}</Text>
+        </View>
+      )}
+    </ProofCard>
+  );
+}
+
+// ── что даёт Plus: один тезис сверху, ниже 4 сильные выгоды ──────────────────
 // Тексты сверены с реальными лимитами в коде (см. ниже), без «тумана» и неправды:
 //   • Квизы: лимит 3/день ЛЮБОЙ сложности (quiz_daily_limit.ts: FREE_DAILY_QUIZ_LIMIT=3).
 //     НЕ «только Easy» — все уровни блокируются единым дневным лимитом, не сложностью.
@@ -125,47 +240,30 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
 //   • Энергия free: +1 за ~10 мин. Произношение/диалоги/тренер: закрыты/пробные.
 type LocCell = Record<Lang, string>;
 
-// Стиль 4 — компактные чипы-доказательства под главным итогом.
-type ValueChip = { icon: keyof typeof Ionicons.glyphMap; label: LocCell };
-const VALUE_CHIPS: ValueChip[] = [
-  { icon: 'chatbubbles-outline', label: { ru: 'Диалоги без лимита', uk: 'Діалоги без ліміту', es: 'Diálogos sin límite', 'pt-BR': 'Diálogos sem limite', vi: 'Hội thoại không giới hạn', id: 'Dialog tanpa batas', tr: 'Sınırsız diyalog', pl: 'Dialogi bez limitu' } },
-  { icon: 'mic-outline', label: { ru: 'Оценка речи', uk: 'Оцінка мовлення', es: 'Evaluación de voz', 'pt-BR': 'Avaliação da fala', vi: 'Chấm phát âm', id: 'Penilaian ucapan', tr: 'Konuşma puanı', pl: 'Ocena mowy' } },
-  { icon: 'locate-outline', label: { ru: 'Тренер ошибок', uk: 'Тренер помилок', es: 'Entrenador de errores', 'pt-BR': 'Treinador de erros', vi: 'Luyện điểm yếu', id: 'Pelatih kesalahan', tr: 'Hata antrenörü', pl: 'Trener błędów' } },
-  { icon: 'flash-outline', label: { ru: 'Безлимит квизов', uk: 'Безліміт квізів', es: 'Quizzes sin límite', 'pt-BR': 'Quizzes sem limite', vi: 'Quiz không giới hạn', id: 'Kuis tanpa batas', tr: 'Sınırsız quiz', pl: 'Quizy bez limitu' } },
-  { icon: 'book-outline', label: { ru: 'Весь уровень уроков', uk: 'Весь рівень уроків', es: 'Nivel completo', 'pt-BR': 'Nível completo', vi: 'Toàn bộ cấp độ', id: 'Seluruh level', tr: 'Tüm seviye', pl: 'Cały poziom' } },
-  { icon: 'map-outline', label: { ru: 'Личный план', uk: 'Особистий план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' } },
-];
-
 // Стиль 2 — карточки «польза в заголовке» (продаём результат, а не функцию).
 type ValueCard = { icon: keyof typeof Ionicons.glyphMap; title: LocCell; desc: LocCell };
 const VALUE_CARDS: ValueCard[] = [
   {
     icon: 'chatbubble-ellipses-outline',
-    title: { ru: 'Заговорить, а не зубрить', uk: 'Заговорити, а не зубрити', es: 'Hablar, no memorizar', 'pt-BR': 'Falar, não decorar', vi: 'Nói được, không học vẹt', id: 'Bicara, bukan menghafal', tr: 'Konuş, ezberleme', pl: 'Mówić, nie wkuwać' },
-    desc: { ru: 'Живые диалоги с ИИ без лимита — он поправит каждую реплику и подскажет фразу.', uk: 'Живі діалоги з ШІ без ліміту — він виправить кожну репліку й підкаже фразу.', es: 'Diálogos reales con IA sin límite: corrige cada frase y te sugiere qué decir.', 'pt-BR': 'Diálogos reais com IA sem limite: corrige cada fala e sugere o que dizer.', vi: 'Hội thoại thật với AI không giới hạn — sửa từng câu và gợi ý cách nói.', id: 'Dialog nyata dengan AI tanpa batas — mengoreksi tiap ucapan dan menyarankan frasa.', tr: 'Yapay zekâ ile sınırsız canlı diyalog — her cümleyi düzeltir ve ne diyeceğini önerir.', pl: 'Żywe dialogi z AI bez limitu — poprawia każdą wypowiedź i podpowiada frazę.' },
+    title: { ru: 'Диалоги для живой речи', uk: 'Діалоги для живої мови', es: 'Diálogos para hablar de verdad', 'pt-BR': 'Diálogos para fala real', vi: 'Hội thoại để nói thật', id: 'Dialog untuk bicara nyata', tr: 'Gerçek konuşma diyalogları', pl: 'Dialogi do żywej mowy' },
+    desc: { ru: 'Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.', uk: 'Тренуєш робочі й побутові ситуації: відповідаєш, уточнюєш, просиш повторити й доводиш репліку до нормальної мови.', es: 'Practicas situaciones de trabajo y vida diaria: respondes, aclaras, pides repetir y llevas la frase a una conversación normal.', 'pt-BR': 'Você pratica situações de trabalho e do dia a dia: responde, esclarece, pede para repetir e transforma a fala em conversa natural.', vi: 'Luyện tình huống công việc và đời thường: trả lời, hỏi rõ, xin nhắc lại và đưa câu nói về giao tiếp tự nhiên.', id: 'Latih situasi kerja dan harian: menjawab, memperjelas, minta diulang, dan membuat respons terasa alami.', tr: 'İş ve günlük durumları çalışırsın: cevap verir, netleştirir, tekrar istersin ve cümleyi doğal konuşmaya çevirirsin.', pl: 'Ćwiczysz sytuacje z pracy i życia: odpowiadasz, dopytujesz, prosisz o powtórzenie i doprowadzasz wypowiedź do naturalnej rozmowy.' },
   },
   {
     icon: 'mic-outline',
-    title: { ru: 'Слышать свой английский', uk: 'Чути свою англійську', es: 'Oír tu inglés', 'pt-BR': 'Ouvir seu inglês', vi: 'Nghe tiếng Anh của bạn', id: 'Dengar bahasa Inggrismu', tr: 'Kendi İngilizceni duy', pl: 'Słyszeć swój angielski' },
-    desc: { ru: 'Произноси вслух — приложение оценит речь и покажет, где звук уехал.', uk: 'Вимовляй уголос — застосунок оцінить мовлення й покаже, де звук поїхав.', es: 'Habla en voz alta: la app evalúa tu voz y muestra dónde falla el sonido.', 'pt-BR': 'Fale em voz alta: o app avalia sua fala e mostra onde o som escapou.', vi: 'Nói thành tiếng — ứng dụng chấm phát âm và chỉ chỗ sai.', id: 'Ucapkan dengan lantang — aplikasi menilai ucapan dan menunjukkan letak salahnya.', tr: 'Sesli konuş — uygulama konuşmanı puanlar ve sesin nerede kaydığını gösterir.', pl: 'Mów na głos — aplikacja oceni mowę i pokaże, gdzie dźwięk uciekł.' },
+    title: { ru: 'Устный ввод', uk: 'Усне введення', es: 'Entrada por voz', 'pt-BR': 'Entrada por voz', vi: 'Nhập bằng giọng nói', id: 'Input suara', tr: 'Sesli giriş', pl: 'Wprowadzanie głosem' },
+    desc: { ru: 'Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.', uk: 'Вимовляєш фразу вголос, а Phraseman оцінює, наскільки точно й правильно її сказано.', es: 'Dices la frase en voz alta y Phraseman evalúa qué tan precisa y correcta fue.', 'pt-BR': 'Você diz a frase em voz alta e o Phraseman avalia se ela foi dita com precisão e correção.', vi: 'Bạn nói câu đó thành tiếng, còn Phraseman đánh giá mức độ chính xác và đúng của câu nói.', id: 'Ucapkan frasa dengan suara, lalu Phraseman menilai seberapa tepat dan benar pengucapannya.', tr: 'Cümleyi sesli söylersin; Phraseman ne kadar doğru ve isabetli söylediğini değerlendirir.', pl: 'Wypowiadasz frazę na głos, a Phraseman ocenia, jak dokładnie i poprawnie została powiedziana.' },
   },
   {
     icon: 'navigate-outline',
-    title: { ru: 'Перестать топтаться на месте', uk: 'Перестати тупцювати на місці', es: 'Dejar de estancarte', 'pt-BR': 'Parar de empacar', vi: 'Hết giậm chân tại chỗ', id: 'Berhenti jalan di tempat', tr: 'Yerinde saymayı bırak', pl: 'Przestać dreptać w miejscu' },
-    desc: { ru: 'Тренер находит твои слабые фразы и собирает идеальный набор на повтор.', uk: 'Тренер знаходить твої слабкі фрази й збирає ідеальний набір на повтор.', es: 'El entrenador detecta tus frases débiles y arma el set ideal para repasar.', 'pt-BR': 'O treinador acha suas frases fracas e monta o conjunto ideal para revisar.', vi: 'Huấn luyện viên tìm cụm từ yếu và lập bộ ôn hoàn hảo cho bạn.', id: 'Pelatih menemukan frasa lemahmu dan menyusun set latihan ideal.', tr: 'Antrenör zayıf ifadelerini bulur ve tekrar için ideal seti kurar.', pl: 'Trener znajduje twoje słabe frazy i układa idealny zestaw do powtórki.' },
+    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
+    desc: { ru: 'Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.', uk: 'Помилкові й складні фрази повертаються в повторення, доки не стануть упевненими.', es: 'Las frases difíciles o con errores vuelven al repaso hasta que salgan con seguridad.', 'pt-BR': 'Frases difíceis ou com erro voltam para revisão até ficarem firmes.', vi: 'Câu khó hoặc câu sai quay lại phần ôn cho đến khi bạn nói chắc hơn.', id: 'Frasa sulit atau salah kembali diulang sampai terasa mantap.', tr: 'Hatalı ve zor ifadeler güvenli hale gelene kadar tekrara döner.', pl: 'Błędne i trudne frazy wracają do powtórki, aż staną się pewne.' },
   },
   {
     icon: 'infinite-outline',
-    title: { ru: 'Учиться без стоп-сигналов', uk: 'Навчатися без стоп-сигналів', es: 'Aprender sin frenos', 'pt-BR': 'Aprender sem freios', vi: 'Học không gặp đèn đỏ', id: 'Belajar tanpa rambu berhenti', tr: 'Dur işareti olmadan öğren', pl: 'Uczyć się bez stop-sygnałów' },
-    desc: { ru: 'Безлимит квизов и энергии, весь уровень уроков открыт сразу — без пауз.', uk: 'Безліміт квізів та енергії, весь рівень уроків відкрито одразу — без пауз.', es: 'Quizzes y energía sin límite y todo el nivel abierto al instante, sin pausas.', 'pt-BR': 'Quizzes e energia sem limite e o nível inteiro aberto na hora, sem pausas.', vi: 'Quiz và năng lượng không giới hạn, mở cả cấp độ ngay — không gián đoạn.', id: 'Kuis dan energi tanpa batas, seluruh level langsung terbuka — tanpa jeda.', tr: 'Sınırsız quiz ve enerji, tüm seviye hemen açık — molasız.', pl: 'Bez limitu quizów i energii, cały poziom otwarty od razu — bez przerw.' },
+    title: { ru: 'Без free-стопов', uk: 'Без free-стопів', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
+    desc: { ru: 'Уроки, квизы, энергия, карточки и личный план открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, квізи, енергія, картки й особистий план відкриті без безкоштовних денних стопів і порогів.', es: 'Lecciones, quizzes, energía, tarjetas y plan personal se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, quizzes, energia, cartões e plano pessoal abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, quiz, năng lượng, thẻ và kế hoạch cá nhân mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, kuis, energi, kartu, dan rencana pribadi terbuka tanpa batas harian mode gratis.', tr: 'Dersler, quizler, enerji, kartlar ve kişisel plan ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, quizy, energia, fiszki i plan osobisty są otwarte bez dziennych progów trybu free.' },
   },
 ];
-
-// Главный итог сверху (эмоция-результат). Подзаголовок намеренно без числа «2×» —
-// это недоказуемое обещание; вместо него — конкретная фокус-выгода.
-const HERO_LINE: LocCell = {
-  ru: 'Plus ведёт тебя к разговору', uk: 'Plus веде тебе до розмови', es: 'Plus te lleva a hablar', 'pt-BR': 'Plus te leva a falar', vi: 'Plus đưa bạn đến giao tiếp', id: 'Plus membawamu sampai bicara', tr: 'Plus seni konuşmaya götürür', pl: 'Plus prowadzi cię do rozmowy',
-};
 
 export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrome }) {
   const pick = (d: LocCell) => triLang(lang, d);
@@ -181,31 +279,24 @@ export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrom
       tr: 'Plus ne sunar',
       pl: 'Co daje Plus',
     })} chrome={chrome}>
-      {/* Стиль 4 — главный итог + чипы-доказательства */}
-      <View style={S.valHero}>
-        <View style={[S.valHeroBadge, { backgroundColor: `${accent}1A`, borderColor: `${accent}33` }]}>
-          <Ionicons name="rocket-outline" size={20} color={accent} />
-        </View>
-        <Text style={[S.valHeroLine, { color: chrome.textPrimary }]}>{pick(HERO_LINE)}</Text>
-      </View>
-      <View style={S.valChips}>
-        {VALUE_CHIPS.map((chip) => (
-          <View key={chip.label.ru} style={[S.valChip, { backgroundColor: `${accent}14`, borderColor: `${accent}26` }]}>
-            <Ionicons name={chip.icon} size={13} color={accent} style={S.valChipIcon} />
-            <Text style={[S.valChipText, { color: chrome.textPrimary }]} numberOfLines={1}>{pick(chip.label)}</Text>
-          </View>
-        ))}
-      </View>
-
-      {/* Стиль 2 — карточки «польза в заголовке» */}
-      <View style={S.valCards}>
-        {VALUE_CARDS.map((card) => (
-          <View key={card.title.ru} style={[S.valCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-            <View style={S.valCardHead}>
-              <Ionicons name={card.icon} size={17} color={accent} style={S.valCardIcon} />
-              <Text style={[S.valCardTitle, { color: chrome.textPrimary }]} numberOfLines={2}>{pick(card.title)}</Text>
+      <View style={S.valList}>
+        {VALUE_CARDS.map((card, index) => (
+          <View
+            key={card.title.ru}
+            style={[
+              S.valPoint,
+              index > 0 && { borderTopColor: `${accent}22`, borderTopWidth: StyleSheet.hairlineWidth },
+            ]}
+          >
+            <View style={S.valPointMark}>
+              <View style={[S.valPointIconShell, { backgroundColor: `${accent}16`, borderColor: `${accent}34` }]}>
+                <Ionicons name={card.icon} size={21} color={accent} />
+              </View>
             </View>
-            <Text style={[S.valCardDesc, { color: chrome.textMuted }]}>{pick(card.desc)}</Text>
+            <View style={S.valPointText}>
+              <Text style={[S.valCardTitle, { color: chrome.textPrimary }]}>{pick(card.title)}</Text>
+              <Text style={[S.valCardDesc, { color: chrome.textMuted }]}>{pick(card.desc)}</Text>
+            </View>
           </View>
         ))}
       </View>
@@ -279,14 +370,14 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co zawiera Plus?',
       }),
       a: triLang(lang, {
-        ru: 'Все уроки и уровни, безлимит энергии и карточек, все квизы, заморозка серии, занятия офлайн.',
-        uk: 'Усі уроки й рівні, безліміт енергії та карток, усі квізи, заморозка серії, заняття офлайн.',
-        es: 'Todas las lecciones y niveles, energía y tarjetas sin límite, todos los quizzes, protección de racha y modo offline.',
-        'pt-BR': 'Todas as lições e níveis, energia e cartões sem limite, todos os quizzes, proteção de sequência e modo offline.',
-        vi: 'Tất cả bài học và cấp độ, năng lượng và thẻ không giới hạn, mọi quiz, bảo vệ chuỗi và học offline.',
-        id: 'Semua pelajaran dan level, energi dan kartu tanpa batas, semua kuis, perlindungan runtutan, dan mode offline.',
-        tr: 'Tüm dersler ve seviyeler, sınırsız enerji ve kartlar, tüm quizler, seri koruması ve offline çalışma.',
-        pl: 'Wszystkie lekcje i poziomy, energia i fiszki bez limitu, wszystkie quizy, ochrona serii i nauka offline.',
+        ru: 'Уроки после бесплатного порога и все уровни, энергия без ожидания, квизы без free-лимита 3/день, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, личный план, расширенная статистика, безлимитные матчи Арены, заморозка серии, Plus-темы и Plus-аура профиля.',
+        uk: 'Уроки після безкоштовного порога й усі рівні, енергія без очікування, квізи без free-ліміту 3/день, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, особистий план, розширена статистика, безлімітні матчі Арени, заморозка серії, Plus-теми й Plus-аура профілю.',
+        es: 'Lecciones tras el tramo gratis y todos los niveles, energía sin esperas, quizzes sin el límite gratis de 3/día, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, plan personal, estadísticas avanzadas, duelos ilimitados de Arena, protección de racha, temas Plus y aura Plus de perfil.',
+        'pt-BR': 'Lições após a faixa grátis e todos os níveis, energia sem espera, quizzes sem o limite grátis de 3/dia, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, plano pessoal, estatísticas avançadas, duelos ilimitados na Arena, proteção de sequência, temas Plus e aura Plus no perfil.',
+        vi: 'Bài học sau phần miễn phí và mọi cấp độ, năng lượng không phải chờ, quiz không còn giới hạn miễn phí 3/ngày, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, kế hoạch cá nhân, thống kê nâng cao, trận Arena không giới hạn, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
+        id: 'Pelajaran setelah batas gratis dan semua level, energi tanpa menunggu, kuis tanpa batas gratis 3/hari, lebih dari 20 kartu, dialog AI dan skenario level, input suara dengan penilaian frasa, pelatih titik lemah, rencana pribadi, statistik lanjutan, duel Arena tanpa batas, pelindung streak, tema Plus, dan aura profil Plus.',
+        tr: 'Ücretsiz eşikten sonraki dersler ve tüm seviyeler, beklemesiz enerji, günde 3 ücretsiz quiz sınırı olmadan quizler, 20’den fazla kart, AI diyalogları ve seviye senaryoları, cümle puanlayan sesli giriş, zayıf nokta antrenörü, kişisel plan, gelişmiş istatistik, sınırsız Arena maçları, seri dondurma, Plus temaları ve Plus profil aurası.',
+        pl: 'Lekcje po darmowym progu i wszystkie poziomy, energia bez czekania, quizy bez limitu free 3/dzień, ponad 20 fiszek, dialogi AI i scenariusze poziomów, mówienie z oceną frazy, trener słabych miejsc, plan osobisty, rozszerzone statystyki, nielimitowane pojedynki Areny, ochrona serii, motywy Plus i aura profilu Plus.',
       }),
     },
   ];
@@ -316,7 +407,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
           >
             <View style={S.faqHead}>
               <Text style={[S.faqQText, { color: chrome.textPrimary }]}>{item.q}</Text>
-              <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={13} color={chrome.textMuted} />
+              <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={15} color={chrome.textMuted} />
             </View>
             {isOpen && <Text style={[S.faqA, { color: chrome.textMuted }]}>{item.a}</Text>}
           </TouchableOpacity>
@@ -327,37 +418,61 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
 }
 
 const S = StyleSheet.create({
-  card: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 13, marginTop: 12 },
-  cardTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 10 },
+  card: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  cardTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 12 },
 
-  mirrorRow: { flexDirection: 'row', gap: 8 },
-  mirrorStat: { flex: 1, borderRadius: 11, borderWidth: 1, paddingVertical: 9, alignItems: 'center' },
-  mirrorValue: { fontSize: 16, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
-  mirrorLabel: { fontSize: 9.5, marginTop: 2 },
-  mirrorLine: { fontSize: 12, marginTop: 10, lineHeight: 17 },
+  mirrorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 9 },
+  mirrorStat: {
+    flexGrow: 1, flexBasis: '47%', minWidth: '47%', minHeight: 74, borderRadius: 13, borderWidth: 1,
+    paddingVertical: 11, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center',
+  },
+  mirrorValue: {
+    alignSelf: 'stretch', textAlign: 'center',
+    fontSize: 21, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+  },
+  mirrorLabel: { fontSize: 11.5, marginTop: 4, textAlign: 'center' },
+  mirrorLine: { fontSize: 13.5, marginTop: 11, lineHeight: 19 },
 
-  pctRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  pctText: { flex: 1, fontSize: 12.5, lineHeight: 18 },
+  pctRow: { flexDirection: 'row', alignItems: 'center', gap: 11 },
+  pctText: { flex: 1, fontSize: 14, lineHeight: 20 },
 
-  // Стиль 4 — главный итог + чипы
-  valHero: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 },
-  valHeroBadge: { width: 38, height: 38, borderRadius: 11, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
-  valHeroLine: { flex: 1, fontSize: 14.5, fontWeight: '800', letterSpacing: -0.2, lineHeight: 19 },
-  valChips: { flexDirection: 'row', flexWrap: 'wrap', gap: 7 },
-  valChip: { flexDirection: 'row', alignItems: 'center', borderRadius: 20, borderWidth: 1, paddingVertical: 6, paddingHorizontal: 11 },
-  valChipIcon: { marginRight: 5 },
-  valChipText: { fontSize: 12, fontWeight: '600' },
+  personalHeader: { alignItems: 'stretch' },
+  personalMain: { fontSize: 17, lineHeight: 22, fontWeight: '900', letterSpacing: 0, textAlign: 'left' },
+  personalSub: { fontSize: 13.5, lineHeight: 19, marginTop: 8 },
+  personalStats: {
+    flexDirection: 'row',
+    marginTop: 14, paddingTop: 12, paddingBottom: 12,
+    borderTopWidth: StyleSheet.hairlineWidth, borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  personalStat: {
+    flex: 1, minWidth: 0,
+    paddingVertical: 1, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center',
+  },
+  personalStatValue: {
+    alignSelf: 'stretch', textAlign: 'center',
+    fontSize: 20.5, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+  },
+  personalStatLabel: { alignSelf: 'stretch', fontSize: 11.5, marginTop: 3, textAlign: 'center' },
+  personalPct: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 8,
+    marginTop: 12, paddingTop: 12, borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  personalPctText: { flex: 1, fontSize: 13.5, lineHeight: 19, fontWeight: '700' },
 
-  // Стиль 2 — карточки «польза в заголовке»
-  valCards: { marginTop: 14, gap: 9 },
-  valCard: { borderRadius: 13, borderWidth: 1, paddingHorizontal: 13, paddingVertical: 11 },
-  valCardHead: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 5 },
-  valCardIcon: { flexShrink: 0 },
-  valCardTitle: { flex: 1, fontSize: 13.5, fontWeight: '800', letterSpacing: -0.2 },
-  valCardDesc: { fontSize: 12, lineHeight: 16.5 },
+  // Польза в заголовке, без внутренних контейнеров
+  valList: { marginTop: 13 },
+  valPoint: { flexDirection: 'row', gap: 12, paddingVertical: 14 },
+  valPointMark: { width: 40, alignItems: 'center' },
+  valPointIconShell: {
+    width: 35, height: 35, borderRadius: 12, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  valPointText: { flex: 1, minWidth: 0 },
+  valCardTitle: { fontSize: 16.5, lineHeight: 21.5, fontWeight: '900', letterSpacing: 0, marginBottom: 4 },
+  valCardDesc: { fontSize: 14.2, lineHeight: 20.5 },
 
-  faqQ: { paddingVertical: 10 },
-  faqHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
-  faqQText: { flex: 1, fontSize: 12.5, fontWeight: '600' },
-  faqA: { fontSize: 11.5, lineHeight: 16.5, marginTop: 7 },
+  faqQ: { paddingVertical: 12 },
+  faqHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 9 },
+  faqQText: { flex: 1, fontSize: 14, fontWeight: '700' },
+  faqA: { fontSize: 13, lineHeight: 18.5, marginTop: 8 },
 });

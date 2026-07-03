@@ -1,8 +1,9 @@
 import { getPlanAudioAssetsForRuntime } from '../app/personal_plan_audio_asset_registry';
+import { validatePlanAudioAsset } from '../app/personal_plan_audio_asset_readiness';
 import { getPersonalPlanListenChooseItems } from '../app/personal_plan_listen_choose_items';
 
 describe('personal plan runtime audio registry source write', () => {
-  it('loads approved runtime audio assets from source without test-only registration', () => {
+  it('loads runtime audio assets from source without test-only registration', () => {
     const assets = getPlanAudioAssetsForRuntime();
 
     // Every runtime listen-audio asset maps to EXACTLY ONE content unit (1 mp3 = 1
@@ -10,7 +11,8 @@ describe('personal plan runtime audio registry source write', () => {
     // bloated contentUnitIds list, which made the "На слух" exercise play the wrong
     // sentence on ~98% of days. Guard against that regression returning.
     expect(assets.length).toBeGreaterThan(2000);
-    expect(assets.every((asset) => asset.status === 'approved' && asset.finalAssetReady === true)).toBe(true);
+    expect(assets.every((asset) => validatePlanAudioAsset(asset).validForAuthoring)).toBe(true);
+    expect(assets.filter((asset) => validatePlanAudioAsset(asset).productionReady).length).toBeGreaterThan(2000);
     expect(assets.every((asset) => asset.contentUnitIds.length === 1)).toBe(true);
     const contentUnitIds = assets.map((asset) => asset.contentUnitIds[0]);
     expect(new Set(contentUnitIds).size).toBe(contentUnitIds.length);

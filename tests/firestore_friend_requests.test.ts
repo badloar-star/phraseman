@@ -143,6 +143,7 @@ beforeEach(() => {
   authUidOverride = 'auth-uid-999';
   stableAuthLinkCalls = 0;
   stableAuthLinkResult = true;
+  require('@react-native-async-storage/async-storage').__reset?.();
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
   jest.mock('../app/user_id_policy', () => ({
@@ -194,6 +195,17 @@ test('R04: sendFriendRequest happy path creates pending request and returns sent
   expect(doc).toBeDefined();
   expect(doc?.status).toBe('pending');
   expect(typeof doc?.createdAt).toBe('number');
+});
+
+test('R04c: sendFriendRequest includes the sender display name for the recipient request row', async () => {
+  const storage = require('@react-native-async-storage/async-storage').default;
+  await storage.setItem('user_name', '  Roma   Prime  ');
+  const { sendFriendRequest } = require('../app/firestore_friend_requests');
+  const result: SendRequestResult = await sendFriendRequest('target-uid-222');
+
+  expect(result).toBe('sent');
+  const doc = mockDocs.get('users/target-uid-222/friend_requests/my-uid-111');
+  expect(doc?.fromName).toBe('Roma Prime');
 });
 
 test('R04b: sendFriendRequest links stable auth through callable, not direct user doc write', async () => {
@@ -311,7 +323,7 @@ test('S01: subscribeToFriends calls callback with FriendEntry array and returns 
 });
 
 test('S02: subscribeToIncomingRequests filters by status pending and returns unsubscribe fn', async () => {
-  mockDocs.set('users/my-uid-111/friend_requests/req-uid-666', { status: 'pending', createdAt: 900 });
+  mockDocs.set('users/my-uid-111/friend_requests/req-uid-666', { status: 'pending', createdAt: 900, fromName: 'Roma Prime' });
   mockDocs.set('users/my-uid-111/friend_requests/req-uid-777', { status: 'accepted', createdAt: 901 });
   const { subscribeToIncomingRequests } = require('../app/firestore_friend_requests');
   let received: FriendRequestEntry[] | null = null;
@@ -329,6 +341,7 @@ test('S02: subscribeToIncomingRequests filters by status pending and returns uns
   const pendingEntry = entries.find(r => r.fromUid === 'req-uid-666');
   expect(pendingEntry).toBeDefined();
   expect(pendingEntry?.createdAt).toBe(900);
+  expect(pendingEntry?.fromName).toBe('Roma Prime');
   // Accepted request must NOT appear.
   expect(entries.find(r => r.fromUid === 'req-uid-777')).toBeUndefined();
 });

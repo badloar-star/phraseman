@@ -25,7 +25,7 @@ let _customerInfoListenerAttached = false;
  * lifetime — это non-consumable (`$rc_lifetime` / `phraseman_lifetime`), который
  * появляется в Offering только после того, как продукт заведён в RevenueCat
  * (см. docs/guides/LIFETIME_SETUP_GUIDE.md). Пока продукта нет — `lifetime`
- * просто `undefined`, и кнопка «Навсегда» на пейволах не показывается.
+ * просто `undefined`, и кнопка Phraseman Pro на пейволах не показывается.
  */
 export function resolvePremiumPackages(
   availablePackages: PurchasesPackage[],

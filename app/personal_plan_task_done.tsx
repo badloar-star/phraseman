@@ -1,6 +1,6 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -28,7 +28,7 @@ export default function PersonalPlanTaskDoneScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { theme: t, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   const taskTitle = firstParam(params.taskTitle);
   const dayProgress = Number(firstParam(params.dayProgress) || '0');

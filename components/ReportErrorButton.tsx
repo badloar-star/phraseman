@@ -1,5 +1,7 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useState } from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   KeyboardAvoidingView,
   Modal,
@@ -13,10 +15,10 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import {
   ERROR_REPORT_COMMENT_MIN_LEN,
   ERROR_REPORT_FREE_TEXT_CATEGORY,
@@ -133,7 +135,8 @@ function ReportErrorButton({
 }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const maxSheetHeight = Math.max(360, Dimensions.get('window').height - insets.top - 12);
   const [visible, setVisible] = useState(false);
   const [comment, setComment] = useState('');
@@ -155,52 +158,65 @@ function ReportErrorButton({
   const commentTrimmed = comment.trim();
   const commentOk = commentTrimmed.length >= ERROR_REPORT_COMMENT_MIN_LEN;
 
-  const handleSend = async () => {
+  const handleSend = () => {
     if (sending) return;
     if (!commentOk) {
       setCommentRequiredError(true);
       return;
     }
+    const optimisticComment = commentTrimmed;
     setCommentRequiredError(false);
     setFailed(false);
-    setSending(true);
-    const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
-    const storedLang = (
-      (await AsyncStorage.getItem('app_lang')) ??
-      (await AsyncStorage.getItem('app_language')) ??
-      'ru'
-    );
-    const langRaw = storedLang === 'uk' || storedLang === 'es' ? storedLang : 'ru';
-    const result = await submitErrorReport(
-      {
-        screen,
-        category: ERROR_REPORT_FREE_TEXT_CATEGORY,
-        dataId,
-        dataText: dataText ?? dataId,
-        userAnswer,
-        comment: commentTrimmed,
-      },
-      nameRaw,
-      langRaw,
-    );
-    setSending(false);
-    if (result === 'invalid_comment') {
-      setCommentRequiredError(true);
-      return;
-    }
-    if (result === 'throttled') {
-      setThrottled(true);
-      return;
-    }
-    if (result === 'failed') {
-      setFailed(true);
-      return;
-    }
+    setThrottled(false);
     setSent(true);
-    setTimeout(() => {
-      setVisible(false);
+    setSending(true);
+
+    void (async () => {
+      let result: Awaited<ReturnType<typeof submitErrorReport>> = 'failed';
+      try {
+        const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
+        const storedLang = (
+          (await AsyncStorage.getItem('app_lang')) ??
+          (await AsyncStorage.getItem('app_language')) ??
+          'ru'
+        );
+        const langRaw = storedLang === 'uk' || storedLang === 'es' ? storedLang : 'ru';
+        result = await submitErrorReport(
+          {
+            screen,
+            category: ERROR_REPORT_FREE_TEXT_CATEGORY,
+            dataId,
+            dataText: dataText ?? dataId,
+            userAnswer,
+            comment: optimisticComment,
+          },
+          nameRaw,
+          langRaw,
+        );
+      } catch {
+        result = 'failed';
+      }
+      setSending(false);
+      if (result === 'invalid_comment') {
+        setSent(false);
+        setCommentRequiredError(true);
+        return;
+      }
+      if (result === 'throttled') {
+        setSent(false);
+        setThrottled(true);
+        return;
+      }
+      if (result === 'failed') {
+        setSent(false);
+        setFailed(true);
+        return;
+      }
       onSuccess?.(10);
-    }, 4000);
+      setTimeout(() => {
+        setVisible(false);
+      }, 900);
+    })();
   };
 
   const isFlag = variant === 'icon-flag';
@@ -270,7 +286,7 @@ function ReportErrorButton({
                 {
                   backgroundColor: t.bgCard,
                   borderColor: t.border,
-                  paddingBottom: 36 + insets.bottom,
+                  paddingBottom: 36 + bottomInset,
                   maxHeight: maxSheetHeight,
                   marginTop: insets.top + 8,
                 },
@@ -367,8 +383,16 @@ function ReportErrorButton({
                       pl: 'Jeśli błąd się potwierdzi, otrzymasz odłamek wiedzy.',
                     })}
                   </Text>
+                  {sending ? (
+                    <View style={styles.optimisticStatus}>
+                      <ActivityIndicator size="small" color={t.textSecond} />
+                      <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
+                        {triLang(lang, { ru: 'Отправляем в фоне', uk: 'Надсилаємо у фоні', es: 'Enviando en segundo plano', 'pt-BR': 'Enviando em segundo plano', vi: 'Đang gửi trong nền', id: 'Mengirim di latar belakang', tr: 'Arka planda gönderiliyor', pl: 'Wysyłanie w tle' })}
+                      </Text>
+                    </View>
+                  ) : null}
                   <TouchableOpacity
-                    onPress={() => { setVisible(false); onSuccess?.(10); }}
+                    onPress={() => setVisible(false)}
                     style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
@@ -459,11 +483,14 @@ function ReportErrorButton({
                       disabled={sending}
                       style={[styles.btnSend, { backgroundColor: !sending ? t.accent : t.border }]}
                     >
-                      <Text style={{ color: !sending ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
-                        {sending
-                          ? triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })
-                          : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
-                      </Text>
+                      <View style={styles.btnSendContent}>
+                        {sending ? <ActivityIndicator size="small" color={t.textPrimary} /> : null}
+                        <Text style={{ color: !sending ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
+                          {sending
+                            ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
+                            : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
+                        </Text>
+                      </View>
                     </TouchableOpacity>
                   </View>
                 </>
@@ -503,6 +530,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: 12, marginTop: 8 },
   btnCancel: { flex: 1, alignItems: 'center', paddingVertical: 14 },
   btnSend: { flex: 2, alignItems: 'center', paddingVertical: 14, borderRadius: 14 },
+  btnSendContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  optimisticStatus: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 4 },
   successBox: { alignItems: 'center', paddingVertical: 24, gap: 8 },
   successTitle: { fontWeight: '800' },
 });

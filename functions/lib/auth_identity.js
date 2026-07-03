@@ -44,6 +44,7 @@ exports.readAnonMergeClaim = readAnonMergeClaim;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
+const email_contacts_1 = require("./email_contacts");
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
 const LEADERBOARD = 'leaderboard';
@@ -184,6 +185,20 @@ async function assertStableOwner(db, authUid, stableId, options) {
         if (!existingStableId || existingStableId === stableId)
             return;
     }
+    // Диагностика: брошенный HttpsError НЕ попадает в functions:log сам по себе
+    // (виден только на клиенте через Crashlytics). Логируем причину отказа, чтобы
+    // массовые потери привязки (вход создаёт новый аккаунт) были видны на сервере.
+    // PII не пишем — только короткие идентификаторы для корреляции.
+    console.warn(JSON.stringify({
+        event: 'assert_stable_owner_mismatch',
+        authUid,
+        stableId,
+        userAuthUid: userAuthUid || null,
+        linkedStableId: linkedStableId || null,
+        linkedAuthUid: linkedAuthUid || null,
+        allowProviderRelink: options?.allowProviderRelink === true,
+        allowAnonRelink: options?.allowAnonRelink === true,
+    }));
     throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
 }
 /**
@@ -252,6 +267,24 @@ async function ensureProviderLinkedAuth(db, stableId, authUid, provider, metadat
         },
         updatedAt: now,
     }, { merge: true });
+    await (0, email_contacts_1.upsertEmailContact)(db, {
+        email: metadata?.email,
+        source: 'app',
+        provider,
+        providerUid: authUid,
+        stableId,
+        displayName: metadata?.displayName,
+        devicePlatform: metadata?.devicePlatform ?? 'web',
+        lastSignInAt: metadata?.lastSignInAt ?? now,
+    }).catch((error) => {
+        console.warn(JSON.stringify({
+            event: 'email_contact_app_upsert_failed',
+            stableId,
+            authUid,
+            provider,
+            message: String(error?.message ?? error).slice(0, 160),
+        }));
+    });
 }
 async function linkStableAuthUid(db, stableId, authUid) {
     const now = Date.now();
@@ -637,7 +670,28 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
     if (provider) {
         const existingLinkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);
         const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
-        if (linkedStableId && linkedStableId !== stableId) {
+        // Хвост E: auth_links может указывать на УДАЛЁННЫЙ users-док (осиротевшая
+        // привязка после deleteAccountAndWipe — серверная чистка fire-and-forget могла
+        // снести users/{stableId}, но не auth_links). Повторный вход тем же Google/Apple
+        // цеплялся за мёртвый id → resolveStableUidForAuth привязывал к пустому доку →
+        // пользователь на пустом «новом» аккаунте. Если целевой users-док НЕ существует,
+        // игнорируем осиротевшую привязку и идём обычным путём (на текущий stableId или
+        // на живой аккаунт по providerUid). providerUid криптографически принадлежит
+        // юзеру, мёртвый док всё равно пуст — захвата чужого нет.
+        const linkedUserExists = linkedStableId
+            ? Boolean((await db.collection(USERS).doc(linkedStableId).get().catch(() => null))?.exists)
+            : false;
+        if (linkedStableId && linkedStableId !== stableId && !linkedUserExists) {
+            console.warn(JSON.stringify({
+                event: 'auth_link_orphan_ignored',
+                authUid,
+                deadStableId: linkedStableId,
+                requestedStableId: stableId || null,
+                provider,
+            }));
+            // не используем мёртвый linkedStableId — провалимся к обычному resolve ниже.
+        }
+        else if (linkedStableId && linkedStableId !== stableId) {
             const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, { allowProviderRelink: true });
             await ensureAuthLinkDoc(db, authUid, linkedStableUid, provider, metadata);
             await ensureProviderLinkedAuth(db, linkedStableUid, authUid, provider, metadata);
@@ -720,6 +774,14 @@ exports.authStampAnonOwnership = (0, https_1.onCall)(callable_options_1.HOT_CALL
     const userSnap = await userRef.get().catch(() => null);
     const ownerAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
     if (stableId !== authUid && ownerAuthUid && ownerAuthUid !== authUid) {
+        // Диагностика отказа (см. комментарий в assertStableOwner): без лога этот
+        // permission-denied виден только на клиенте, не в functions:log.
+        console.warn(JSON.stringify({
+            event: 'stamp_anon_ownership_not_owner',
+            authUid,
+            stableId,
+            ownerAuthUid: ownerAuthUid || null,
+        }));
         throw new https_1.HttpsError('permission-denied', 'not_owner');
     }
     const now = Date.now();

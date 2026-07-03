@@ -222,8 +222,6 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
-// Минимум показа анимированного стартового сплэша (вход глифа + проезд блика + подзаголовок).
-const STARTUP_ANIM_MIN_MS = 1500;
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
 const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
@@ -1179,11 +1177,6 @@ function AppContent() {
   // нативный стек читает presentation при push, до тела экрана, поэтому флаг тут, в навигаторе.
   const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
-  // Гарантированное минимальное время показа анимированного стартового сплэша:
-  // без него быстрый прогрев схлопывает оверлей раньше, чем проигрываются вход/блик,
-  // и на экране остаётся только застывший нативный сплэш. Держим оверлей минимум
-  // до истечения таймера, чтобы анимация всегда успевала проявиться.
-  const [startupAnimMinElapsed, setStartupAnimMinElapsed] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   // Подарок лояльности:
   //   'offer'    = free-юзер: текст обновления + блок подарка + кнопка «Получить 3 дня».
@@ -1348,12 +1341,6 @@ function AppContent() {
       sub.remove();
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, []);
-
-  // Минимальная длительность показа анимированного сплэша (вход + блик ≈ 1.5 с).
-  useEffect(() => {
-    const t = setTimeout(() => setStartupAnimMinElapsed(true), STARTUP_ANIM_MIN_MS);
-    return () => clearTimeout(t);
   }, []);
 
   const nativeSplashCanHide = ready && (effectiveShowOnboarding || isBanned || firstContentReady);
@@ -2590,9 +2577,7 @@ function AppContent() {
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
-  const startupSplashVisible =
-    !ready ||
-    (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !startupAnimMinElapsed));
+  const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран. На iOS маскируем зазор коротким fade; Android остаётся
   // на 'none' (история крашей Fabric на transitions) — там зазор закрывает константный

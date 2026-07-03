@@ -54,6 +54,8 @@ import {
   lessonSessionKey,
   lessonPassCountKey,
   lessonProgressKey,
+  lessonTheorySectionsSeenKey,
+  lessonTheoryXpClaimedKey,
   lingmanCertificateKey,
   levelExamKey,
   mistakeLogKey,
@@ -490,6 +492,19 @@ describe('streak cloud restore safety', () => {
     expect(FRENCH_TARGET_SYNC_KEYS).toContain(achievementLessonPerfectPassesKey(1, 'fr'));
     expect(FRENCH_TARGET_SYNC_KEYS).toContain(achievementLessonPerfectPassesKey(32, 'fr'));
     expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(achievementLessonPerfectPassesKey(1, 'en'));
+  });
+
+  it('syncs theory section progress and XP claim guards per target', () => {
+    expect(SYNC_KEYS).toContain(lessonTheorySectionsSeenKey(1, 'en'));
+    expect(SYNC_KEYS).toContain(lessonTheorySectionsSeenKey(32, 'en'));
+    expect(SYNC_KEYS).toContain(lessonTheoryXpClaimedKey(1, 'en'));
+    expect(SYNC_KEYS).toContain(lessonTheoryXpClaimedKey(32, 'en'));
+    expect(FRENCH_TARGET_SYNC_KEYS).toContain(lessonTheorySectionsSeenKey(1, 'fr'));
+    expect(FRENCH_TARGET_SYNC_KEYS).toContain(lessonTheorySectionsSeenKey(32, 'fr'));
+    expect(FRENCH_TARGET_SYNC_KEYS).toContain(lessonTheoryXpClaimedKey(1, 'fr'));
+    expect(FRENCH_TARGET_SYNC_KEYS).toContain(lessonTheoryXpClaimedKey(32, 'fr'));
+    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(lessonTheorySectionsSeenKey(1, 'en'));
+    expect(FRENCH_TARGET_SYNC_KEYS).not.toContain(lessonTheoryXpClaimedKey(1, 'en'));
   });
 
   it('syncs English legacy and French scoped quiz achievement counters', () => {

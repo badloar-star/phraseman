@@ -10,7 +10,13 @@ const mockCallableInvoker = jest.fn(async () => ({
 }));
 
 const mockEnsureAnonUser = jest.fn(async () => 'stable-from-auth');
-const mockEnsureStableAuthLinkForStableId = jest.fn(async () => true);
+const mockEnsureStableAuthLinkForStableIdDetailed = jest.fn(async (stableUid: string) => ({
+  ok: true,
+  requestedStableId: stableUid,
+  stableUid,
+  authUid: 'auth-from-test',
+  source: 'callable',
+}));
 const mockReplaceShardsBalanceLocal = jest.fn(async () => undefined);
 const mockBumpLifetimeShardsSpent = jest.fn();
 const mockCheckAchievements = jest.fn();
@@ -31,7 +37,7 @@ jest.mock('../app/config', () => ({
 
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: mockEnsureAnonUser,
-  ensureStableAuthLinkForStableId: mockEnsureStableAuthLinkForStableId,
+  ensureStableAuthLinkForStableIdDetailed: mockEnsureStableAuthLinkForStableIdDetailed,
 }));
 
 jest.mock('../app/user_id_policy', () => ({
@@ -56,6 +62,13 @@ jest.mock('../app/achievements', () => ({
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockEnsureStableAuthLinkForStableIdDetailed.mockImplementation(async (stableUid: string) => ({
+    ok: true,
+    requestedStableId: stableUid,
+    stableUid,
+    authUid: 'auth-from-test',
+    source: 'callable',
+  }));
 });
 
 test('sendFriendGiftWithShards prepares auth before calling the gift function', async () => {
@@ -68,7 +81,9 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
   });
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);
-  expect(mockEnsureStableAuthLinkForStableId).toHaveBeenCalledWith('stable-from-auth');
+  expect(mockEnsureStableAuthLinkForStableIdDetailed).toHaveBeenCalledWith('stable-from-auth', {
+    lastSignInAt: expect.any(Number),
+  });
   expect(mockCallableInvoker).toHaveBeenCalledWith({
     senderStableId: 'stable-from-auth',
     friendStableId: 'friend-123',
@@ -84,6 +99,55 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
     op: 'spend',
     reason: 'friend_gift',
   });
+});
+
+test('sendFriendGiftWithShards does not call the gift function when auth link is unavailable', async () => {
+  mockEnsureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: false,
+    requestedStableId: 'stable-from-auth',
+    stableUid: '',
+    authUid: '',
+    source: 'unavailable',
+  });
+  const { sendFriendGiftWithShards } = require('../app/friend_gifts');
+
+  await expect(sendFriendGiftWithShards({
+    friendStableId: 'friend-123',
+    giftId: 'arena_extra_5',
+    senderDisplayName: 'Ada',
+  })).rejects.toThrow('friend_gift_auth_unavailable');
+
+  expect(mockCallableInvoker).not.toHaveBeenCalled();
+});
+
+test('sendFriendGiftWithShards stops when auth link resolves to another stable id', async () => {
+  mockEnsureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    requestedStableId: 'stable-from-auth',
+    stableUid: 'other-stable',
+    authUid: 'auth-from-test',
+    source: 'callable',
+  });
+  const { sendFriendGiftWithShards } = require('../app/friend_gifts');
+
+  await expect(sendFriendGiftWithShards({
+    friendStableId: 'friend-123',
+    giftId: 'arena_extra_5',
+    senderDisplayName: 'Ada',
+  })).rejects.toThrow('friend_gift_identity_changed');
+
+  expect(mockCallableInvoker).not.toHaveBeenCalled();
+});
+
+test('classifyFriendGiftError maps callable failures to actionable gift states', () => {
+  const { classifyFriendGiftError } = require('../app/friend_gifts');
+
+  expect(classifyFriendGiftError({ code: 'functions/permission-denied', message: 'stable_id_mismatch' })).toBe('auth');
+  expect(classifyFriendGiftError({ code: 'functions/failed-precondition', message: 'sender_stable_id_changed' })).toBe('identity_changed');
+  expect(classifyFriendGiftError({ code: 'functions/resource-exhausted', message: 'Daily gift limit reached' })).toBe('limit');
+  expect(classifyFriendGiftError({ code: 'functions/failed-precondition', message: 'Not enough shards' })).toBe('not_enough_shards');
+  expect(classifyFriendGiftError({ code: 'functions/not-found', message: 'User not found' })).toBe('user_missing');
+  expect(classifyFriendGiftError({ code: 'functions/unavailable', message: 'network timeout' })).toBe('network');
 });
 
 test('sendFriendGiftThanks calls the thanks function for the gift sender', async () => {

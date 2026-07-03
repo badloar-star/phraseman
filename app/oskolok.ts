@@ -38,6 +38,12 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '180': require('../assets/images/shards/business-180.webp'),
     '420': require('../assets/images/shards/business-420.webp'),
   },
+  businessLight: {
+    single: require('../assets/images/shards/businessLight-single.webp'),
+    '80': require('../assets/images/shards/businessLight-80.webp'),
+    '180': require('../assets/images/shards/businessLight-180.webp'),
+    '420': require('../assets/images/shards/businessLight-420.webp'),
+  },
   // Cinema themes use DALL-E object-cutout shard foreground assets.
   midnight: {
     single: require('../assets/images/shards/midnight-single.webp'),

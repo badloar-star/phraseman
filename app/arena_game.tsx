@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import {
   AppState, View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, useWindowDimensions,
@@ -12,7 +13,7 @@ import Reanimated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
@@ -34,6 +35,7 @@ import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticError, hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import DuoPressable from '../components/DuoPressable';
 import { IS_EXPO_GO } from './config';
@@ -84,7 +86,8 @@ export default function DuelGameScreen() {
   const fromLobbyFlow = fromLobby === '1';
   const router = useRouter();
   const { playCorrect } = useCorrectSound();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { width: winW, height: winH } = useWindowDimensions();
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -1130,7 +1133,7 @@ export default function DuelGameScreen() {
 
       {/* XP попап после ответа */}
       {xpPopup && (
-        <Animated.View style={[styles.xpPopup, { bottom: Math.max(160, insets.bottom + 140), transform: [{ translateY: xpPopupY }], opacity: xpPopupOpacity }]}>
+        <Animated.View style={[styles.xpPopup, { bottom: Math.max(160, bottomInset + 140), transform: [{ translateY: xpPopupY }], opacity: xpPopupOpacity }]}>
           <Text style={[styles.xpPopupBase, { color: t.correct }]}>
             +{xpPopup.base}  {arenaGameStr(lang, 'xpCorrect')}
           </Text>

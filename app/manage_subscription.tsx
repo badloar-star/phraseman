@@ -15,6 +15,7 @@ import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator,
   Linking, Platform, TextInput,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,7 +28,13 @@ import { triLang, type Lang } from '../constants/i18n';
 import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim } from './paywall_purchase';
-import { inferPremiumPlanFromProductId, revenueCatPremiumMetadata, persistStorePremiumLocally } from './premium_revenuecat_state';
+import {
+  inferPremiumPlanFromCustomerInfo,
+  inferPremiumPlanFromProductId,
+  revenueCatPremiumMetadata,
+  persistStorePremiumLocally,
+  type PremiumStorePlan,
+} from './premium_revenuecat_state';
 import { logCancelSurvey, logChangePlanStarted } from './firebase';
 import { trackEvent } from './analytics';
 import { safeRouterBack } from './navigation_back';
@@ -111,6 +118,22 @@ function formatDate(ms: number | null, lang: Lang): string | null {
   }
 }
 
+function normalizeStoredPremiumPlan(plan: unknown): PremiumStorePlan | null {
+  const normalized = String(plan ?? '').trim().toLowerCase();
+  if (normalized === 'annual') return 'yearly';
+  return normalized === 'monthly' || normalized === 'yearly' || normalized === 'lifetime'
+    ? normalized
+    : null;
+}
+
+function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStorePlan | null {
+  const fallback = normalizeStoredPremiumPlan(storedPlan);
+  if (String(productId ?? '').trim()) {
+    return inferPremiumPlanFromProductId(productId, fallback ?? 'monthly');
+  }
+  return fallback;
+}
+
 export default function ManageSubscription() {
   const router = useRouter();
   const { lang } = useLang();
@@ -128,6 +151,7 @@ export default function ManageSubscription() {
   ) => triLang(L, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 
   const [info, setInfo] = useState<CustomerInfo | null>(null);
+  const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(null);
   const [loading, setLoading] = useState(true);
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
   const [yearlyPkg, setYearlyPkg] = useState<import('react-native-purchases').PurchasesPackage | null>(null);
@@ -142,8 +166,17 @@ export default function ManageSubscription() {
       try {
         await initRevenueCat();
         await syncRevenueCatIdentity();
-        const ci = await Purchases.getCustomerInfo();
-        if (!dead) setInfo(ci);
+        const [ci, localPairs] = await Promise.all([
+          Purchases.getCustomerInfo(),
+          AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id']),
+        ]);
+        const storedPlan = localPairs.find(p => p[0] === 'premium_plan')?.[1];
+        const storedProductId = localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
+        const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
+        if (!dead) {
+          setInfo(ci);
+          setFallbackPlan(nextFallbackPlan);
+        }
         const o = await Purchases.getOfferings();
         const pkgs = resolvePremiumPackages(o.current?.availablePackages ?? []);
         if (!dead && pkgs.yearly) {
@@ -157,16 +190,18 @@ export default function ManageSubscription() {
   }, []);
 
   const metadata = info ? revenueCatPremiumMetadata(info) : {};
-  const currentPlan = inferPremiumPlanFromProductId(metadata.productId, 'monthly');
+  const currentPlan = inferPremiumPlanFromCustomerInfo(info, fallbackPlan);
   const nextDate = formatDate(metadata.expiryMs ?? null, L);
   const isLifetime = currentPlan === 'lifetime';
   const isMonthly = currentPlan === 'monthly';
 
   const planLabel = isLifetime
-    ? LP('Навсегда', 'Назавжди', 'De por vida', 'Para sempre', 'Trọn đời', 'Selamanya', 'Ömür boyu', 'Na zawsze')
+    ? 'Phraseman Pro'
     : currentPlan === 'yearly'
       ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
-      : LP('Месячная подписка', 'Місячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna');
+      : currentPlan === 'monthly'
+        ? LP('Месячная подписка', 'Місячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
+        : LP('Подписка Plus', 'Підписка Plus', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus');
 
   // ── смена плана: месячный → годовой (DEFERRED-проплейшн на Android) ──────────
   const handleChangePlan = useCallback(async () => {
@@ -176,6 +211,21 @@ export default function ManageSubscription() {
     void trackEvent('change_plan_started', { from: 'monthly', to: 'yearly' });
     setChanging(true);
     try {
+      const latestInfo = await Purchases.getCustomerInfo();
+      setInfo(latestInfo);
+      const latestPlan = inferPremiumPlanFromCustomerInfo(latestInfo, fallbackPlan);
+      if (latestPlan && latestPlan !== 'monthly') {
+        const latestMeta = revenueCatPremiumMetadata(latestInfo);
+        await persistStorePremiumLocally(latestPlan, latestMeta);
+        invalidatePremiumCache();
+        emitAppEvent('premium_activated');
+        void trackEvent('change_plan_completed', { from: 'monthly', to: latestPlan });
+        return;
+      }
+      if (latestPlan == null) {
+        void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly', error: 'active_plan_unknown' });
+        return;
+      }
       const opts = Platform.OS === 'android'
         ? { googleProductChangeInfo: { oldProductIdentifier: metadata.productId ?? '', prorationMode: PRORATION_MODE.DEFERRED } }
         : undefined;
@@ -193,7 +243,7 @@ export default function ManageSubscription() {
     } finally {
       setChanging(false);
     }
-  }, [changing, yearlyPkg, metadata.productId]);
+  }, [changing, yearlyPkg, metadata.productId, fallbackPlan]);
 
   // ── отмена: опрос → стор ────────────────────────────────────────────────────
   const submitCancel = useCallback(() => {

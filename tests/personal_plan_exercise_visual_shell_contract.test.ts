@@ -57,6 +57,12 @@ describe('personal plan exercise visual shell', () => {
     expect(source).toContain('accessibilityLabel="Засчитать произношение"');
   });
 
+  it('keeps the active progress cell on the answered prompt until next is pressed', () => {
+    expect(source).toContain("const progressRailCurrent = lastResult === 'correct'");
+    expect(source).toContain('current={progressRailCurrent}');
+    expect(source).not.toContain('current={correctIds.length}\n          target={targetCorrect}');
+  });
+
   it('applies plan recovery writes from the live exercise screen with the active study target', () => {
     expect(source).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");
     expect(source).toContain("import { createPlanRecoveryDefaultHandlers } from './personal_plan_recovery_default_handlers'");

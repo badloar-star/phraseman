@@ -5,7 +5,11 @@ import {
   REFERRAL_DEFAULTS,
   referralConfigFromData,
   buildReferralVipProgressPatch,
+  cleanReferralDisplayName,
+  referralDisplayNameFromUserData,
+  hasReferralExistingAccountActivity,
   hasCompletedFirstLesson,
+  isReferralAccountTooEstablishedForApply,
   isSnapshotMigrationWrite,
   referralClaimSlotsLeft,
   stackVipUntilMs,
@@ -164,6 +168,63 @@ describe('hasCompletedFirstLesson — квалификация = РЕАЛЬНО 
   it('поддерживает number и string значения pass_count', () => {
     expect(hasCompletedFirstLesson({ lesson1_pass_count: 1 as unknown as string })).toBe(true);
     expect(hasCompletedFirstLesson({ lesson1_pass_count: 0 as unknown as string })).toBe(false);
+  });
+});
+
+describe('referralApply new-account gate — регрессия: существующий аккаунт не принимает код', () => {
+  const MAX_AGE = 72 * 60 * 60 * 1000;
+
+  it('считает аккаунт старым по created_at в разных форматах', () => {
+    expect(isReferralAccountTooEstablishedForApply({ created_at: NOW - MAX_AGE - 1 }, NOW, MAX_AGE)).toBe(true);
+    expect(isReferralAccountTooEstablishedForApply({ created_at: String(NOW - MAX_AGE - 1) }, NOW, MAX_AGE)).toBe(true);
+    expect(isReferralAccountTooEstablishedForApply({ created_at: { toMillis: () => NOW - MAX_AGE - 1 } }, NOW, MAX_AGE)).toBe(true);
+  });
+
+  it('считает аккаунт существующим по реальной активности, даже если created_at свежий или отсутствует', () => {
+    expect(hasReferralExistingAccountActivity({ user_total_xp: '25' })).toBe(true);
+    expect(hasReferralExistingAccountActivity({ lesson1_pass_count: '1' })).toBe(true);
+    expect(hasReferralExistingAccountActivity({ lesson1_best_score: '2.5' })).toBe(true);
+    expect(hasReferralExistingAccountActivity({ lesson1_progress: JSON.stringify(['correct', 'empty']) })).toBe(true);
+    expect(hasReferralExistingAccountActivity({ 'lesson_progress_v2::fr::1': JSON.stringify(['wrong']) })).toBe(true);
+    expect(hasReferralExistingAccountActivity({ lesson1_words: JSON.stringify({ I: 1 }) })).toBe(true);
+    expect(isReferralAccountTooEstablishedForApply({ progress: { user_total_xp: '10' } }, NOW, MAX_AGE)).toBe(true);
+  });
+
+  it('разрешает свежий пустой аккаунт без учебной активности', () => {
+    expect(isReferralAccountTooEstablishedForApply({ created_at: NOW - 1000, progress: {} }, NOW, MAX_AGE)).toBe(false);
+    expect(hasReferralExistingAccountActivity({
+      user_total_xp: '0',
+      weekly_xp: '0',
+      streak_count: '0',
+      unlocked_lessons: JSON.stringify([1]),
+      lesson1_progress: JSON.stringify(['empty', 'empty']),
+      lesson1_pass_count: '0',
+      lesson1_best_score: '0',
+    })).toBe(false);
+  });
+});
+
+describe('referralListMyInvites display names — регрессия: не показываем технический stableId вместо имени', () => {
+  it('берёт реальное имя из progress.user_name раньше provider displayName', () => {
+    expect(referralDisplayNameFromUserData({
+      displayName: 'Google Name',
+      progress: { user_name: 'Roma' },
+    })).toBe('Roma');
+  });
+
+  it('использует displayName/name, если user_name нет', () => {
+    expect(referralDisplayNameFromUserData({ displayName: 'Alice' })).toBe('Alice');
+    expect(referralDisplayNameFromUserData({ name: 'Bob' })).toBe('Bob');
+  });
+
+  it('фильтрует автогенерированные placeholder-имена и чистит пробелы', () => {
+    expect(cleanReferralDisplayName('  Maria   Stone  ')).toBe('Maria Stone');
+    expect(cleanReferralDisplayName('User 12345')).toBe('');
+    expect(cleanReferralDisplayName('Друг #ABC123')).toBe('');
+    expect(referralDisplayNameFromUserData({
+      displayName: 'User 777',
+      progress: { user_name: 'Friend 1234' },
+    })).toBeNull();
   });
 });
 

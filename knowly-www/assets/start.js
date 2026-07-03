@@ -324,14 +324,25 @@
      по которому списываются деньги; меняются в админке «Сайт»). site-config.js
      webPrices — только офлайн-фоллбек до ответа сервера. */
   var remotePrices = null;
+  var remoteCurrency = 'usd';
+  var paypalRenderedCurrency = null;
+  var PRICE_CACHE_KEY = 'pm_web_prices_cache_v1';
+  var PRICE_CACHE_TTL_MS = 60 * 60 * 1000;
+
+  function normalizeCurrency(code) {
+    var c = String(code || 'usd').toLowerCase().slice(0, 3);
+    return /^[a-z]{3}$/.test(c) ? c : 'usd';
+  }
 
   function currencySymbol(code) {
+    code = normalizeCurrency(code);
     if (code === 'usd') return '$';
     if (code === 'eur') return '€';
     return String(code || '').toUpperCase() + ' ';
   }
 
   function formatPrices(currency, priceCents) {
+    currency = normalizeCurrency(currency);
     var s = currencySymbol(currency);
     var fmt = function (cents) { return s + (cents / 100).toFixed(2); };
     return {
@@ -353,15 +364,39 @@
     });
   }
 
+  function applyRemotePricePayload(data) {
+    if (!data || !data.ok || !data.priceCents) return false;
+    remoteCurrency = normalizeCurrency(data.currency);
+    remotePrices = formatPrices(remoteCurrency, data.priceCents);
+    updatePriceDom();
+    if (document.getElementById('paypal-buttons')) mountPaypal();
+    return true;
+  }
+
+  function readCachedRemotePrices() {
+    try {
+      var raw = localStorage.getItem(PRICE_CACHE_KEY);
+      if (!raw) return null;
+      var cached = JSON.parse(raw);
+      if (!cached || !cached.data || !cached.ts) return null;
+      return cached;
+    } catch (_) {
+      return null;
+    }
+  }
+
   function loadRemotePrices() {
     var endpoint = cfg().pricesEndpoint;
     if (!endpoint) return;
+    var cached = readCachedRemotePrices();
+    if (cached && applyRemotePricePayload(cached.data) && Date.now() - Number(cached.ts) < PRICE_CACHE_TTL_MS) return;
     fetch(endpoint)
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        if (!data || !data.ok || !data.priceCents) return;
-        remotePrices = formatPrices(String(data.currency || 'usd'), data.priceCents);
-        updatePriceDom(); /* если пейвол уже на экране — обновить цифры на месте */
+        if (!applyRemotePricePayload(data)) return;
+        try {
+          localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+        } catch (_) { /* cache is optional */ }
       })
       .catch(function () { /* остаёмся на фоллбеке из site-config */ });
   }
@@ -445,10 +480,18 @@
     var endpointCreate = cfg().paypalCreateEndpoint;
     var endpointCapture = cfg().paypalCaptureEndpoint;
     if (!endpointCreate || !endpointCapture) return;
+    var sdkCurrency = normalizeCurrency(remoteCurrency).toUpperCase();
+    var namespace = 'paypal_' + sdkCurrency.toLowerCase();
+
+    if (paypalRenderedCurrency === sdkCurrency && container.childNodes.length > 0) return;
+    paypalRenderedCurrency = sdkCurrency;
+    container.innerHTML = '';
 
     function renderButtons() {
-      if (!window.paypal || !window.paypal.Buttons) return;
-      window.paypal.Buttons({
+      var paypalSdk = window[namespace];
+      if (!paypalSdk || !paypalSdk.Buttons) return;
+      container.innerHTML = '';
+      paypalSdk.Buttons({
         style: { layout: 'horizontal', color: 'gold', shape: 'pill', label: 'paypal', height: 44, tagline: false },
         onClick: function (_data, actions) {
           clearError();
@@ -485,9 +528,16 @@
       }).render('#paypal-buttons');
     }
 
-    if (window.paypal) { renderButtons(); return; }
+    if (window[namespace]) { renderButtons(); return; }
+    var existing = document.querySelector('script[data-paypal-sdk-currency="' + sdkCurrency + '"]');
+    if (existing) {
+      existing.addEventListener('load', renderButtons, { once: true });
+      return;
+    }
     var s = document.createElement('script');
-    s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(clientId) + '&currency=USD&intent=capture&components=buttons';
+    s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(clientId) + '&currency=' + encodeURIComponent(sdkCurrency) + '&intent=capture&components=buttons';
+    s.setAttribute('data-namespace', namespace);
+    s.setAttribute('data-paypal-sdk-currency', sdkCurrency);
     s.async = true;
     s.onload = renderButtons;
     document.head.appendChild(s);

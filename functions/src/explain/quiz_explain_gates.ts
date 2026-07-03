@@ -66,7 +66,7 @@ export function validateQuizInput(input: Partial<QuizInput>): QuizInputValidatio
 export interface ParsedQuizBatch {
   ok: boolean;
   confirm: string;
-  /** Keyed by the EXACT wrong-option strings requested (subset the model returned). */
+  /** Keyed by the EXACT wrong-option strings requested. Ready batches must cover every requested option. */
   options: Record<string, string>;
 }
 
@@ -93,7 +93,10 @@ function clampLine(text: unknown): string {
 
 /**
  * Parse the model's STRICT-JSON batch reply into { confirm, options }.
- * Tolerates code-fenced JSON. Returns ok=false if JSON is unrecoverable or confirm is empty.
+ * Tolerates code-fenced JSON. Returns ok=false if JSON is unrecoverable, confirm is empty,
+ * or any requested wrong option is missing. We must not publish partial ready caches: the
+ * client maps explanations by selected option text, so a missing option would look like a
+ * disappeared explanation and every retry would keep reading the same broken cache.
  * Keys are matched to the requested wrong options case-insensitively so minor casing drift in
  * the model output still maps back to the canonical option string.
  */
@@ -130,5 +133,7 @@ export function parseQuizBatch(raw: string, requestedWrongOptions: string[]): Pa
   }
 
   if (!confirm) return { ok: false, confirm: '', options };
+  const hasEveryRequestedOption = requestedWrongOptions.every((d) => !!options[d]);
+  if (!hasEveryRequestedOption) return { ok: false, confirm, options };
   return { ok: true, confirm, options };
 }

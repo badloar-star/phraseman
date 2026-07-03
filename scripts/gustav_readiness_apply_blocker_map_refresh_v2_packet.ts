@@ -48,6 +48,7 @@ type EvaluationInput = {
   runtimeApprovalReceiptExists: boolean;
   runtimeActiveHashLockExists: boolean;
   productionServerManifestExists: boolean;
+  productionServerManifestSafelyPromoted: boolean;
   runtimeReadyForExplicitApprovalReceiptGate: boolean;
   runtimeActivationApproved: boolean;
   runtimeReadyForApply: boolean;
@@ -365,7 +366,9 @@ function evaluate(input: EvaluationInput): Finding[] {
   }
   if (input.runtimeDirtyWorktreeOverlaps < 0) addFinding(findings, 'blocker', 'RUNTIME_DIRTY_WORKTREE_OVERLAPS_INVALID', 'Dirty worktree overlap count must be available.');
   if (input.runtimeApprovalReceiptExists || input.runtimeActiveHashLockExists) addFinding(findings, 'blocker', 'RUNTIME_APPROVAL_ARTIFACTS_ALREADY_ACTIVE', 'Runtime plan must not see active approval receipt/hash lock in P37.');
-  if (input.productionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must not exist in P37.');
+  if (input.productionServerManifestExists && !input.productionServerManifestSafelyPromoted) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest may exist in P37 only after safe promotion is proven and apply/runtime activation remain closed.');
+  }
   if (!input.runtimeReadyForExplicitApprovalReceiptGate) addFinding(findings, 'blocker', 'RUNTIME_PLAN_NOT_READY_FOR_EXACT_APPROVAL_GATE', 'Runtime plan should be ready for exact approval gate while apply remains closed.');
   if (
     input.runtimeActivationApproved ||
@@ -564,6 +567,12 @@ function main(): void {
     runtimeApprovalReceiptExists: b(runtimeSummary, 'p1aApprovalReceiptExists'),
     runtimeActiveHashLockExists: b(runtimeSummary, 'p1aActiveHashLockExists'),
     productionServerManifestExists: b(runtimeSummary, 'productionServerManifestExists'),
+    productionServerManifestSafelyPromoted:
+      b(runtimeSummary, 'productionManifestSafelyPromoted') &&
+      !b(runtimeSummary, 'readyForApply') &&
+      !b(runtimeSummary, 'mayModifyProductionAppFiles') &&
+      !b(runtimeSummary, 'runtimeDownloadsEnabled') &&
+      !b(runtimeSummary, 'activationApproved'),
     runtimeReadyForExplicitApprovalReceiptGate: b(runtimeSummary, 'readyForExplicitApprovalReceiptGateV2'),
     runtimeActivationApproved: b(runtimeSummary, 'activationApproved'),
     runtimeReadyForApply: b(runtimeSummary, 'readyForApply'),

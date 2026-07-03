@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
@@ -10,7 +11,7 @@ import {
 import { Image } from 'expo-image';
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from '../components/ScreenGradient';
@@ -19,6 +20,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { usePremium } from '../components/PremiumContext';
+import { isLifetimePlanLocal } from './premium_guard';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
@@ -32,6 +34,7 @@ import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId 
 import { getLevelFromXP } from '../constants/theme';
 import { getRankImage, getRankImageDisplayScale, useArenaRank } from '../hooks/use-arena-rank';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { logFeatureOpened } from './firebase';
 import { trackFeatureOpened } from './user_stats';
 import { ensureAnonUser } from './cloud_sync';
@@ -166,8 +169,15 @@ export default function ArenaLeaderboardScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const arenaLeaderboardAccent = '#F59E0B';
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
+  const [myIsLifetime, setMyIsLifetime] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    void isLifetimePlanLocal().then((v) => { if (!cancelled) setMyIsLifetime(v); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [myIsPremium]);
   const myArena = useArenaRank();
 
   const [rows, setRows] = useState<ArenaLbRow[]>([]);
@@ -231,7 +241,7 @@ export default function ArenaLeaderboardScreen() {
       setMyAvatar(av[1] ?? '');
       setMyFrame(fr[1] ?? '');
       setMyAura(aura[1] ?? '');
-      setMyProfileCardLevel(Math.max(0, Math.min(5, parseInt(cardLevel[1] ?? '0', 10) || 0)));
+      setMyProfileCardLevel(Math.max(0, Math.min(1, parseInt(cardLevel[1] ?? '0', 10) || 0)));
       setMyProfileCardTheme(cardTheme[1] ?? '');
       const cached = await getCachedMyArenaRank();
       if (cached) setMyArenaPlace(cached);
@@ -253,6 +263,7 @@ export default function ArenaLeaderboardScreen() {
       totalXp: myTotalXp,
       isPremium: myIsPremium,
       isVip: myIsVip,
+      isLifetime: myIsLifetime,
       frame: myFrame,
       aura: myAura,
       avatarEmoji: myAvatar,
@@ -260,7 +271,7 @@ export default function ArenaLeaderboardScreen() {
       profileCardLevel: myProfileCardLevel,
       profileCardTheme: myProfileCardTheme,
     }),
-    [myArena, myAura, myAvatar, myFrame, myIsPremium, myIsVip, myName, myProfileCardLevel, myProfileCardTheme, myStableUid, myTotalXp, myUid, rows],
+    [myArena, myAura, myAvatar, myFrame, myIsPremium, myIsVip, myIsLifetime, myName, myProfileCardLevel, myProfileCardTheme, myStableUid, myTotalXp, myUid, rows],
   );
 
   // Подтягиваем актуальное место игрока в общем рейтинге арены, как только знаем,
@@ -502,8 +513,8 @@ export default function ArenaLeaderboardScreen() {
                 extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}|${myIsVip ? 1 : 0}`}
                 contentContainerStyle={{
                   paddingBottom: showMyRankFooter
-                    ? 16 + stickyRankBarHeight + insets.bottom
-                    : 24 + insets.bottom,
+                    ? 16 + stickyRankBarHeight + bottomInset
+                    : 24 + bottomInset,
                 }}
                 ListEmptyComponent={
                   loading ? null : loadError ? (
@@ -601,6 +612,7 @@ export default function ArenaLeaderboardScreen() {
                   const rowAura = isMe ? myAura : item.aura;
                   const rowIsPremium = isMe ? myIsPremium : item.isPremium;
                   const rowIsVip = isMe ? myIsVip : item.isVip;
+                  const rowIsLifetime = isMe ? myIsLifetime : item.isLifetime;
                   const rowEffectiveAura = getEffectiveAvatarAuraId(rowAura, rowIsPremium, rowIsVip);
                   const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
                   const leagueCrownCount = Math.max(0, Math.floor(Number(item.leagueCrown?.crownCount) || 0));
@@ -625,6 +637,7 @@ export default function ArenaLeaderboardScreen() {
                           friendUid: item.friendUid ?? '',
                           isPremium: rowIsPremium,
                           isVip: rowIsVip,
+                          isLifetime: rowIsLifetime,
                           leagueCrownExpiresAt: item.leagueCrown?.expiresAt,
                           leagueCrownCount: displayLeagueCrownCount,
                           profileCardLevel: item.profileCardLevel,
@@ -754,7 +767,7 @@ export default function ArenaLeaderboardScreen() {
                   elevation: 12,
                   paddingHorizontal: 16,
                   paddingTop: 8,
-                  paddingBottom: Math.max(8, insets.bottom),
+                  paddingBottom: Math.max(8, bottomInset),
                   backgroundColor: t.bgCard,
                   borderTopWidth: 1,
                   borderTopColor: t.border,

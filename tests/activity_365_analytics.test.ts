@@ -1,4 +1,6 @@
 import {
+  activity365MonthGridCells,
+  activity365ObservedMonthKeys,
   activity365NextStepKind,
   computeActivity365Analytics,
   levelForFilter,
@@ -161,5 +163,53 @@ describe('activity 365 analytics', () => {
     expect(valueForFilter(today, 'quizzes')).toBe(4);
     expect(levelForFilter(analytics.days, today, 'quizzes')).toBeGreaterThan(0);
     expect(levelForFilter(analytics.days, yesterday, 'quizzes')).toBe(0);
+  });
+
+  it('keeps the monthly calendar on observed months instead of future padding months', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {
+        '2026-06-29': { points: 20 },
+        '2026-06-30': { points: 35 },
+      },
+      fgDaily: {},
+      breakdown: {},
+      goal: 180,
+      now: new Date('2026-06-30T12:00:00Z'),
+    });
+
+    expect(analytics.days.some(day => day.future && day.date.startsWith('2027-06'))).toBe(true);
+
+    const monthKeys = activity365ObservedMonthKeys(analytics.days);
+    expect(monthKeys[monthKeys.length - 1]).toBe('2026-06');
+    expect(monthKeys).not.toContain('2027-06');
+  });
+
+  it('fills the visible month calendar with empty clickable past days while preserving XP days', () => {
+    const analytics = computeActivity365Analytics({
+      statsMap: {
+        '2026-06-29': { points: 20 },
+        '2026-06-30': { points: 35 },
+      },
+      fgDaily: {},
+      breakdown: {},
+      goal: 180,
+      now: new Date('2026-06-30T12:00:00Z'),
+    });
+
+    const grid = activity365MonthGridCells(analytics.days, '2026-06', '2026-06-30');
+    const monthDays = grid.cells.flatMap(cell => cell.day ? [cell.day] : []);
+
+    expect(grid.month).toBe(6);
+    expect(monthDays).toHaveLength(30);
+    expect(monthDays.find(day => day.date === '2026-06-01')).toMatchObject({
+      xp: 0,
+      active: false,
+      future: false,
+    });
+    expect(monthDays.find(day => day.date === '2026-06-29')).toMatchObject({
+      xp: 20,
+      active: true,
+      future: false,
+    });
   });
 });

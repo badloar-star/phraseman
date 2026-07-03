@@ -50,7 +50,9 @@ import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import TrainerSessionReport from './trainer_session_report';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import {
   markTrainerPlanTaskCompleted,
   readTrainerPlanTaskContext,
@@ -244,6 +246,7 @@ export default function TrainerWordsSession() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
@@ -318,6 +321,7 @@ export default function TrainerWordsSession() {
           }
         }
         setAccessReady(true);
+        await ensureFrenchRemotePersonalPractice(sourceLocale);
         const items = planTrainerContext.taskId
           ? await getTrainerPremiumItemsForPlanQueue(
               planTrainerContext.planInstanceId,
@@ -326,7 +330,7 @@ export default function TrainerWordsSession() {
               planTrainerContext.requiredItems,
               studyTarget,
             )
-          : await getDueItems('words', 20, studyTarget);
+          : await getDueItems('words', 20, studyTarget, sourceLocale);
         if (cancelled) return;
         allItemsRef.current = items;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
@@ -358,7 +362,7 @@ export default function TrainerWordsSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang, planTrainerContext, router, studyTarget, trainerGateOpen, reloadKey]);
+  }, [lang, planTrainerContext, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];

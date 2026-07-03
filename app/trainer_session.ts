@@ -4,7 +4,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { getEffectiveFreeTrainerSessions, FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT } from './remote_flags';
 import { getCanonicalUserId } from './user_id_policy';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { trainerFreeSessionKey, trainerSessionEntryKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 export const DAILY_FREE_SESSION_KEY = 'trainer_free_session_v1';
 export const TRAINER_SESSION_ENTRY_KEY = 'trainer_session_entry_v1';
@@ -42,7 +42,7 @@ export async function hasUsedFreeSessionToday(studyTarget?: RuntimeStudyTarget):
   // Закрытый source-gate (например, French) — тренировок нет, хранилище не трогаем.
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return true;
   try {
-    const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
+    const raw = await AsyncStorage.getItem(trainerFreeSessionKey(studyTarget));
     if (!raw) return false;
     const data = JSON.parse(raw) as { date: string; count: number };
     if (data.date !== todayKey()) return false;
@@ -55,14 +55,14 @@ export async function hasUsedFreeSessionToday(studyTarget?: RuntimeStudyTarget):
 export async function markFreeSessionUsed(studyTarget?: RuntimeStudyTarget): Promise<void> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return;
   try {
-    const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
+    const raw = await AsyncStorage.getItem(trainerFreeSessionKey(studyTarget));
     let data: { date: string; count: number } = { date: todayKey(), count: 0 };
     if (raw) {
       const parsed = JSON.parse(raw) as typeof data;
       if (parsed.date === todayKey()) data = parsed;
     }
     data.count += 1;
-    await AsyncStorage.setItem(DAILY_FREE_SESSION_KEY, JSON.stringify(data));
+    await AsyncStorage.setItem(trainerFreeSessionKey(studyTarget), JSON.stringify(data));
   } catch {}
 }
 
@@ -71,7 +71,7 @@ export async function getFreeSessionsLeftToday(studyTarget?: RuntimeStudyTarget)
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return 0;
   try {
     const cap = await dailyFreeSessionCap();
-    const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
+    const raw = await AsyncStorage.getItem(trainerFreeSessionKey(studyTarget));
     if (!raw) return cap;
     const data = JSON.parse(raw) as { date: string; count: number };
     if (data.date !== todayKey()) return cap;
@@ -101,7 +101,7 @@ export async function reserveTrainerSessionEntry(
       expiresAt: Date.now() + ENTRY_TTL_MS,
       nonce: `${Date.now()}_${Math.random().toString(36).slice(2)}`,
     };
-    await AsyncStorage.setItem(TRAINER_SESSION_ENTRY_KEY, JSON.stringify(entry));
+    await AsyncStorage.setItem(trainerSessionEntryKey(studyTarget), JSON.stringify(entry));
     return true;
   } catch {
     return false;
@@ -118,10 +118,10 @@ export async function consumeTrainerSessionEntry(
     const hasPremium = await getVerifiedPremiumStatus();
     if (hasPremium) return true;
 
-    const raw = await AsyncStorage.getItem(TRAINER_SESSION_ENTRY_KEY);
+    const raw = await AsyncStorage.getItem(trainerSessionEntryKey(studyTarget));
     if (!raw) return false;
     const entry = JSON.parse(raw) as Partial<TrainerSessionEntry>;
-    await AsyncStorage.removeItem(TRAINER_SESSION_ENTRY_KEY);
+    await AsyncStorage.removeItem(trainerSessionEntryKey(studyTarget));
 
     const valid =
       entry.route === route &&
@@ -131,7 +131,7 @@ export async function consumeTrainerSessionEntry(
     if (valid) await markFreeSessionUsed(studyTarget);
     return valid;
   } catch {
-    await AsyncStorage.removeItem(TRAINER_SESSION_ENTRY_KEY).catch(() => {});
+    await AsyncStorage.removeItem(trainerSessionEntryKey(studyTarget)).catch(() => {});
     return false;
   }
 }

@@ -36,9 +36,10 @@ interface LeagueChatReactionsProps {
   align: 'flex-start' | 'flex-end';
   t: ThemeColors;
   f: FontSizes;
+  compact?: boolean;
 }
 
-function LeagueChatReactions({ message, align, t, f }: LeagueChatReactionsProps) {
+function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueChatReactionsProps) {
   const [myReaction, setMyReaction] = useState<string | undefined>(undefined);
   const [counts, setCounts] = useState<Record<string, number>>(message.reactions || {});
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -84,8 +85,8 @@ function LeagueChatReactions({ message, align, t, f }: LeagueChatReactionsProps)
   );
 
   return (
-    <View style={{ alignItems: align, marginTop: 4, gap: 4 }}>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4, justifyContent: align }}>
+    <View style={{ alignItems: align, marginTop: compact ? 0 : 4, gap: 4, flexShrink: 1 }}>
+      <View style={{ flexDirection: 'row', flexWrap: compact ? 'nowrap' : 'wrap', gap: compact ? 3 : 4, justifyContent: align, alignItems: 'center' }}>
         {activeEmojis.map((emoji) => {
           const count = Math.max(0, Number(counts[emoji]) || 0);
           if (count <= 0 && myReaction !== emoji) return null;
@@ -100,7 +101,7 @@ function LeagueChatReactions({ message, align, t, f }: LeagueChatReactionsProps)
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 3,
-                paddingHorizontal: 7,
+                paddingHorizontal: compact ? 6 : 7,
                 paddingVertical: 3,
                 borderRadius: 999,
                 backgroundColor: mine ? t.accent : t.bgSurface,
@@ -129,7 +130,7 @@ function LeagueChatReactions({ message, align, t, f }: LeagueChatReactionsProps)
           onPress={() => setPaletteOpen((v) => !v)}
           activeOpacity={0.7}
           style={{
-            paddingHorizontal: 7,
+            paddingHorizontal: compact ? 6 : 7,
             paddingVertical: 3,
             borderRadius: 999,
             borderWidth: 0.5,

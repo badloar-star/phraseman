@@ -16,17 +16,17 @@ import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
 const ROOT = path.join(__dirname, '..');
 
 describe('Gustav French quiz target gate', () => {
-  it('blocks the English quiz bank for French while preserving English and Spanish dev behavior', () => {
+  it('opens French quizzes through the server pack while preserving bundled English and Spanish dev behavior', () => {
     expect(quizContentAvailableForTarget('en')).toBe(true);
     expect(quizContentAvailableForTarget('es')).toBe(true);
-    expect(quizContentAvailableForTarget('fr')).toBe(false);
+    expect(quizContentAvailableForTarget('fr')).toBe(true);
     expect(getQuizPhrases('easy', 10, 'ru', 'en').length).toBeGreaterThan(0);
     expect(getQuizPhrases('easy', 10, 'ru', 'fr')).toEqual([]);
     expect(quizContentGateForTarget('fr')).toMatchObject({
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_quiz_source_gate',
-      blockedRoutes: ['/quizzes', '/(tabs)/quizzes', '/quizzes_screen'],
+      reason: 'french_quiz_server_pack_available',
+      blockedRoutes: [],
     });
     expect(quizContentGateForTarget('fr').requiredEvidence).toEqual(expect.arrayContaining([
       'french_quiz_question_bank',
@@ -38,17 +38,17 @@ describe('Gustav French quiz target gate', () => {
     ]));
   });
 
-  it('keeps the home quiz entry visible for French while the quiz runtime remains source-gated', () => {
+  it('keeps the home quiz entry visible for French while bundled English quiz rows stay unavailable', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
     expect(home).toContain("testID: 'home-quick-quizzes'");
     expect(home).toContain('const visibleQuickItems = quickItems');
     expect(home).not.toContain("quickItems.filter((item) => item.key !== 'quizzes')");
-    expect(quizContentAvailableForTarget('fr')).toBe(false);
+    expect(quizContentAvailableForTarget('fr')).toBe(true);
     expect(getQuizPhrases('easy', 10, 'ru', 'fr')).toEqual([]);
   });
 
-  it('keeps the tabs quiz runtime behind the French quiz source gate before English questions can render', () => {
+  it('keeps the tabs quiz runtime target-aware before any English questions can render', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
 
     expect(source).toContain('quizContentAvailableForTarget(studyTarget)');
@@ -92,7 +92,7 @@ describe('Gustav French quiz target gate', () => {
   ])('keeps the %s inside the same gated tabs runtime', (_label, relativePath, importLine) => {
     const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
-    expect(quizContentGateForTarget('fr').blockedRoutes).toContain('/quizzes_screen');
+    expect(quizContentGateForTarget('fr').blockedRoutes).toEqual([]);
     expect(source).toContain(importLine);
     expect(source).toContain('<QuizzesScreen />');
     expect(source).not.toContain('getQuizPhrasesLoaded(');
@@ -187,7 +187,7 @@ describe('Gustav French quiz target gate', () => {
     expect(source.indexOf('if (frenchQuizBlocked) return;', e2eRemoveIndex)).toBeLessThan(e2eInjectIndex);
   });
 
-  it('keeps the bundled quiz loader target-aware so French cannot receive English fallback rows', () => {
+  it('keeps the bundled quiz loader target-aware so French uses only the remote server pack', () => {
     const dataSource = fs.readFileSync(path.join(ROOT, 'app', 'quiz_data.ts'), 'utf8');
     const loaderSource = fs.readFileSync(path.join(ROOT, 'app', 'quiz_phrases_loader.ts'), 'utf8');
     const directAppCallers = fs
@@ -202,8 +202,10 @@ describe('Gustav French quiz target gate', () => {
     expect(dataSource).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
     expect(dataSource).toContain('return [];');
     expect(loaderSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
+    expect(loaderSource).toContain("from './french_quiz_remote_runtime'");
     expect(loaderSource).toContain('studyTarget: QuizStudyTargetLang =');
-    expect(loaderSource).toContain("if (storageStudyTarget(studyTarget) === 'fr') return []");
+    expect(loaderSource).toContain("if (storageStudyTarget(studyTarget) === 'fr')");
+    expect(loaderSource).toContain('return getCachedFrenchRemoteQuizRows(difficulty, count, lang)');
     expect(loaderSource).toContain('return getQuizPhrases(difficulty, count, lang, studyTarget)');
     expect(directAppCallers).toEqual([]);
   });

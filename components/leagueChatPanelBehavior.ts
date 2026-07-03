@@ -20,6 +20,7 @@ export type LeagueChatMessageLike = {
   weekId: string;
   leagueId: number;
   authorUid: string;
+  authorAuthUid?: string;
   authorName: string;
   authorAvatar?: string;
   authorAura?: string;
@@ -27,6 +28,12 @@ export type LeagueChatMessageLike = {
   status: 'visible' | 'review' | 'blocked' | 'deleted';
   reportCount?: number;
   createdAt: number;
+  /** Реплай как в Telegram: денормализованная цитата исходного сообщения. */
+  replyToMessageId?: string;
+  replyToAuthorUid?: string;
+  replyToAuthorName?: string;
+  replyToText?: string;
+  replyToKind?: 'user' | 'system';
 };
 
 export type OptimisticLeagueChatMessage = LeagueChatMessageLike & {
@@ -36,6 +43,7 @@ export type OptimisticLeagueChatMessage = LeagueChatMessageLike & {
 type CreateOptimisticLeagueChatMessageInput = {
   clientId: string;
   authorUid: string;
+  authorAuthUid?: string | null;
   authorName?: string;
   authorAvatar?: string | null;
   authorAura?: string | null;
@@ -70,6 +78,7 @@ export function createOptimisticLeagueChatMessage(
     weekId: room.weekId,
     leagueId: room.leagueId,
     authorUid: input.authorUid,
+    authorAuthUid: input.authorAuthUid ?? undefined,
     authorName: input.authorName ?? '',
     authorAvatar: input.authorAvatar ?? undefined,
     authorAura: input.authorAura ?? undefined,

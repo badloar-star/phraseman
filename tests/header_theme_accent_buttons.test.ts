@@ -10,16 +10,16 @@ function read(relPath: string): string {
 }
 
 describe('header accent buttons (vector icons)', () => {
-  // Три кнопки шапки главного экрана рисуются вектором (Ionicons), один значок на
-  // все темы, цвет — акцент темы. Картинок-ассетов по темам больше нет.
   const videoSource = () => read(path.join('components', 'LingmanVideosButton.tsx'));
   const inboxSource = () => read(path.join('components', 'AppMessagesInbox.tsx'));
+  const chatHubSource = () => read(path.join('components', 'CommunityChatHubButton.tsx'));
   const homeSource = () => read(path.join('app', '(tabs)', 'home.tsx'));
 
   test('video, messages and league-chat buttons use vector Ionicons, not per-theme assets', () => {
     expect(videoSource()).toContain('play-circle-outline');
-    expect(inboxSource()).toContain('notifications-outline');
-    expect(homeSource()).toContain('chatbubbles-outline');
+    // Инбокс команды — конверт; колокольчик отдан центру событий (NotificationCenterButton).
+    expect(inboxSource()).toContain('mail-outline');
+    expect(chatHubSource()).toContain('chatbubbles-outline');
   });
 
   test('no header button references the old per-theme image assets', () => {
@@ -34,21 +34,40 @@ describe('header accent buttons (vector icons)', () => {
     expect(files.filter((f) => f.startsWith('message-button-'))).toHaveLength(0);
   });
 
-  test('video and messages buttons keep the same visual box (66x54 / 56x40)', () => {
-    for (const source of [videoSource(), inboxSource()]) {
-      expect(source).toContain('width: 66');
-      expect(source).toContain('height: 54');
-      expect(source).toContain('width: 56');
-      expect(source).toContain('height: 40');
+  test('video and messages buttons keep the same visual box (48x46 / 44x38)', () => {
+    for (const source of [videoSource(), inboxSource(), chatHubSource()]) {
+      expect(source).toContain('width: 48');
+      expect(source).toContain('height: 46');
+      expect(source).toContain('width: 44');
+      expect(source).toContain('height: 38');
     }
   });
 
-  test('league-chat button sits next to the messages inbox in the home header', () => {
+  test('video and messages unread indicators share one notification color token', () => {
+    const token = read(path.join('components', 'homeNotificationBadge.ts'));
+
+    expect(token).toContain('HOME_NOTIFICATION_BADGE_COLOR');
+    expect(videoSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
+    expect(inboxSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
+    expect(chatHubSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
+    expect(videoSource()).not.toContain('backgroundColor: chrome.accent');
+  });
+
+  test('league-chat button is a separate fullscreen chat hub next to the inbox', () => {
     const home = homeSource();
-    // Кнопка чата лиг идёт следом за инбоксом сообщений — три иконки рядом.
-    expect(home).toContain('home-league-chat-button');
-    expect(home.indexOf('<AppMessagesInbox />')).toBeLessThan(home.indexOf('home-league-chat-button'));
-    // Ведёт сразу в чат лиги (минуя экран лиги под fullScreen-модалкой).
-    expect(home).toContain("router.push('/league_screen?openChat=1')");
+    const chatHub = chatHubSource();
+
+    expect(home).toContain('<AppMessagesInbox />');
+    expect(home).toContain('<CommunityChatHubButton />');
+    expect(chatHub).toContain('home-league-chat-button');
+    expect(chatHub).toContain('community-chat-hub-fullscreen');
+    expect(chatHub).toContain("renderTab('help'");
+    expect(chatHub).toContain("renderTab('league'");
+    const helpTab = chatHub.indexOf("renderTab('help'");
+    const leagueTab = chatHub.indexOf("renderTab('league'");
+    expect(helpTab).toBeGreaterThanOrEqual(0);
+    expect(leagueTab).toBeGreaterThanOrEqual(0);
+    expect(helpTab).toBeLessThan(leagueTab);
+    expect(chatHub).not.toContain("router.push('/league_screen?openChat=1')");
   });
 });

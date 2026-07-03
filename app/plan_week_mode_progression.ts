@@ -3,10 +3,10 @@ import type { PlanTaskKind } from './personal_plan_catalog';
 /**
  * Week-by-week mode progression for generated plan days.
  *
- * Today every generated day exposes the same 9 task kinds regardless of how far the
+ * Today every generated day exposes the same generated task set regardless of how far the
  * learner is. That gives zero sense of progression. This module decides which exercise
  * modes are *unlocked* by a given week, so a day-1 learner is eased in (recognition
- * first) and harder production/speaking/quiz modes appear later.
+ * first) and harder production/speaking/recall modes appear later.
  *
  * Modes are additive: each week keeps everything earlier weeks unlocked and adds more.
  * Pure module — fully unit-testable.
@@ -26,11 +26,9 @@ const WEEK_UNLOCKS: Record<number, readonly PlanTaskKind[]> = {
   2: ['plan_listen_choose', 'plan_listen_build'],
   // Week 3 — add real production: speaking and free recall.
   3: ['plan_pronunciation_repeat', 'plan_phrase_recall'],
-  // Week 4+ — add the synthesis quiz.
-  4: ['plan_quiz'],
 };
 
-const MAX_PROGRESSION_WEEK = 4;
+const MAX_PROGRESSION_WEEK = 3;
 
 /**
  * Ordered set of task kinds unlocked by the given (1-based) week.

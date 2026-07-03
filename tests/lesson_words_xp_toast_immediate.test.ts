@@ -40,4 +40,10 @@ describe('lesson_words XP toast appears immediately on answer', () => {
     const tailFromCall = source.slice(callIdx);
     expect(tailFromCall).not.toContain('showXpToast');
   });
+
+  it('defers the XP toast hide state update out of native animation callbacks', () => {
+    expect(source).toContain("scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef");
+    expect(source).toContain('xpToastRunIdRef');
+    expect(source).not.toContain(').start(() => setXpToastVisible(false))');
+  });
 });

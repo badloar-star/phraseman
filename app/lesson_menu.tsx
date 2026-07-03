@@ -50,12 +50,18 @@ import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_g
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import {
+  countCompletedTheoryDrills,
+  parseTheorySeenProgress,
+  theoryOverallProgressPct,
+} from './theory_progress';
+import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
   lessonBestScoreKey,
   lessonPassCountKey,
   lessonPrepositionProgressKey,
   lessonProgressKey,
+  lessonTheorySectionsSeenKey,
   lessonTheoryXpClaimedKey,
   lessonWordsKey,
   storageStudyTarget,
@@ -79,6 +85,7 @@ type LessonMenuCache = {
   irregularLearned: number;
   prepositionAnswered: number;
   prepositionTotal: number;
+  theoryProgressPct: number;
   passCount: number;
 };
 
@@ -93,6 +100,27 @@ const emptyProgress = () => new Array(50).fill('empty');
 
 function countAnsweredProgress(progressArr: string[]): number {
   return progressArr.filter(x => x === 'correct' || x === 'replay_correct' || x === 'wrong').length;
+}
+
+// Тихая ревалидация: строковые массивы (progressArr) и плоские объекты (lockInfo)
+// приходят из AsyncStorage новыми ссылками при каждом фокусе, даже если контент не
+// изменился, — это лишний ре-рендер. Сравниваем перед setState.
+function stringArraysEqual(a: readonly string[], b: readonly string[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
+function shallowObjectsEqual<T extends Record<string, unknown>>(a: T | null, b: T | null): boolean {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) return false;
+  return aKeys.every(k => a[k] === b[k]);
 }
 
 function freshestProgressRaw(
@@ -177,6 +205,20 @@ function parsePrepositionAnswered(
   }
 }
 
+function parseTheoryMenuProgress(progressRaw: string | null, claimedRaw: string | null): number {
+  const claimed = claimedRaw === '1' || claimedRaw === 'true';
+  const seenProgress = parseTheorySeenProgress(progressRaw);
+  if (seenProgress.total > 0 || seenProgress.drillTotal > 0) {
+    return theoryOverallProgressPct(
+      seenProgress.seen.length,
+      seenProgress.total,
+      countCompletedTheoryDrills(seenProgress.drills),
+      seenProgress.drillTotal,
+    );
+  }
+  return claimed ? 100 : 0;
+}
+
 export async function prefetchLessonMenuCache(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
@@ -188,6 +230,8 @@ export async function prefetchLessonMenuCache(
     const wordsKey = lessonWordsKey(id, studyTarget);
     const irregularKey = irregularVerbsGlobalKey(studyTarget);
     const prepositionProgressKey = lessonPrepositionProgressKey(id, studyTarget);
+    const theoryClaimedKey = lessonTheoryXpClaimedKey(id, studyTarget);
+    const theorySectionsKey = lessonTheorySectionsSeenKey(id, studyTarget);
     const [entries, medalInfo] = await Promise.all([
       AsyncStorage.multiGet([
         progressKey,
@@ -195,6 +239,8 @@ export async function prefetchLessonMenuCache(
         wordsKey,
         irregularKey,
         prepositionProgressKey,
+        theoryClaimedKey,
+        theorySectionsKey,
       ]),
       loadMedalInfo(id, studyTarget),
     ]);
@@ -206,6 +252,7 @@ export async function prefetchLessonMenuCache(
       irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
       prepositionAnswered: prep.answered,
       prepositionTotal: prep.total,
+      theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null, map[theoryClaimedKey] ?? null),
       passCount: medalInfo.passCount,
     };
   } catch { /* prefetch should never block navigation */ }
@@ -300,11 +347,8 @@ export default function LessonMenu() {
   const [irregularLearned, setIrregularLearned] = useState(cachedMenu?.irregularLearned ?? 0);
   const [prepositionAnswered, setPrepositionAnswered] = useState(cachedMenu?.prepositionAnswered ?? 0);
   const [prepositionTotal, setPrepositionTotal] = useState(cachedMenu?.prepositionTotal ?? 0);
-  // Теория «пройдена» = XP за теорию урока забран (флаг theory_xp_claimed_{id}).
-  // Нужно, чтобы у плитки «Теория» появилась галочка/кольцо — юзеры жаловались,
-  // что теория «не ставит 100%» и думали, что из-за этого урок не закрывается
-  // (баг-репорты theory_lesson_*). Урок по-прежнему завершается по 50/50 упражнениям.
-  const [theoryClaimed, setTheoryClaimed] = useState(false);
+  // Кольцо теории отражает открытые разделы; старый XP-флаг нужен только как fallback.
+  const [theoryProgressPct, setTheoryProgressPct] = useState(cachedMenu?.theoryProgressPct ?? 0);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
   const [uiReady, setUiReady] = useState(Boolean(cachedMenu));
@@ -326,6 +370,7 @@ export default function LessonMenu() {
     if (!lockStateLoaded || !isLessonLocked || lockReason !== 'premium') return;
     if (premiumPaywallDispatchedRef.current) return;
     premiumPaywallDispatchedRef.current = true;
+    markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
       params: {
@@ -398,13 +443,19 @@ export default function LessonMenu() {
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
     setLockStateLoaded(false);
+    // Тихая ревалидация: lockInfo — плоский объект, getLessonLockInfo() всегда
+    // возвращает новую ссылку. Сравниваем перед setState, чтобы не дёргать
+    // зависимые эффекты (lessonPrepHint) на каждый фокус, если ничего не изменилось.
+    const setLockInfoQuiet = (next: Awaited<ReturnType<typeof getLessonLockInfo>> | null) => {
+      setLockInfo(prev => (shallowObjectsEqual(prev, next) ? prev : next));
+    };
     (async () => {
       try {
         const noLimits = await AsyncStorage.getItem('tester_no_limits');
         if (noLimits === 'true') {
           setIsLessonLocked(false);
           setLockReason('progress');
-          setLockInfo(null);
+          setLockInfoQuiet(null);
           return;
         }
 
@@ -413,7 +464,7 @@ export default function LessonMenu() {
         if (!premiumNow && requiresPremiumForLesson(lessonId)) {
           setIsLessonLocked(true);
           setLockReason('premium');
-          setLockInfo(await getLessonLockInfo(lessonId, studyTarget));
+          setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
           return;
         }
 
@@ -421,7 +472,7 @@ export default function LessonMenu() {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
           setIsLessonLocked(!premiumUnlocked);
           setLockReason(premiumUnlocked ? 'progress' : 'level');
-          setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
+          setLockInfoQuiet(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
           return;
         }
 
@@ -450,9 +501,9 @@ export default function LessonMenu() {
         if (!unlocked) {
           setLockReason('progress');
           const info = await getLessonLockInfo(lessonId, studyTarget);
-          setLockInfo(info);
+          setLockInfoQuiet(info);
         } else {
-          setLockInfo(null);
+          setLockInfoQuiet(null);
         }
       } finally {
         setLockStateLoaded(true);
@@ -466,6 +517,8 @@ export default function LessonMenu() {
     const wordsKey = lessonWordsKey(lessonId, studyTarget);
     const irregularKey = irregularVerbsGlobalKey(studyTarget);
     const prepositionProgressKey = lessonPrepositionProgressKey(lessonId, studyTarget);
+    const theoryClaimedKey = lessonTheoryXpClaimedKey(lessonId, studyTarget);
+    const theorySectionsKey = lessonTheorySectionsSeenKey(lessonId, studyTarget);
     AsyncStorage.multiGet([
       progressKey,
       bestScoreKey,
@@ -473,6 +526,11 @@ export default function LessonMenu() {
       const map = Object.fromEntries(entries) as Record<string, string | null>;
       const saved = freshestProgressRaw(lessonId, map[progressKey] ?? null, studyTarget);
       const bestRaw = map[bestScoreKey] ?? null;
+      // Тихая ревалидация: JSON.parse/new Array(...) даёт новую ссылку каждый раз,
+      // даже когда контент не изменился — сравниваем перед setState.
+      const setProgressArrQuiet = (next: string[]) => {
+        setProgressArr(prev => (stringArraysEqual(prev, next) ? prev : next));
+      };
       try {
         if (saved) {
           const p: string[] = JSON.parse(saved);
@@ -480,12 +538,12 @@ export default function LessonMenu() {
           const { score: effectiveScore, correctCount } = effectiveLessonStarScore(bestRaw, saved);
           setScore(effectiveScore);
           setProgress(Math.min(correctCount, denominator));
-          setProgressArr(p.length === 50 ? p : new Array(50).fill('empty'));
+          setProgressArrQuiet(p.length === 50 ? p : emptyProgress());
         } else {
           setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0);
-          setProgressArr(new Array(50).fill('empty'));
+          setProgressArrQuiet(emptyProgress());
         }
-      } catch { setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0); setProgressArr(new Array(50).fill('empty')); }
+      } catch { setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0); setProgressArrQuiet(emptyProgress()); }
       setDataLoaded(true);
     });
     loadMedalInfo(lessonId, studyTarget).then(info => setPassCount(info.passCount));
@@ -527,9 +585,12 @@ export default function LessonMenu() {
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
     });
-    AsyncStorage.getItem(lessonTheoryXpClaimedKey(lessonId, studyTarget))
-      .then(v => setTheoryClaimed(v === '1' || v === 'true'))
-      .catch(() => setTheoryClaimed(false));
+    AsyncStorage.multiGet([theoryClaimedKey, theorySectionsKey])
+      .then(entries => {
+        const map = Object.fromEntries(entries) as Record<string, string | null>;
+        setTheoryProgressPct(parseTheoryMenuProgress(map[theorySectionsKey] ?? null, map[theoryClaimedKey] ?? null));
+      })
+      .catch(() => setTheoryProgressPct(0));
   }, [lessonId, studyTarget]);
 
   useEffect(() => {
@@ -548,6 +609,7 @@ export default function LessonMenu() {
         setIrregularLearned(warm.irregularLearned);
         setPrepositionAnswered(warm.prepositionAnswered);
         setPrepositionTotal(warm.prepositionTotal);
+        setTheoryProgressPct(warm.theoryProgressPct);
         setPassCount(warm.passCount);
         setDataLoaded(true);
       } else {
@@ -623,14 +685,14 @@ export default function LessonMenu() {
       testID: 'lesson-menu-primary',
       label: frenchLessonSourceGated
         ? triLang(lang, {
-  ru: 'Материал на проверке',
-  uk: 'Матеріал на перевірці',
+  ru: 'Загрузка пакета',
+  uk: 'Завантаження пакета',
   es: 'Material pendiente',
-  "pt-BR": 'Material em revisão',
+  "pt-BR": 'Carregando pacote',
   vi: 'Nội dung đang chờ duyệt',
   id: 'Materi sedang ditinjau',
-  tr: 'Materyal inceleniyor',
-  pl: 'Materiał weryfikowany',
+  tr: 'Paket yükleniyor',
+  pl: 'Ładowanie pakietu',
 })
         : showReplayCta
         ? triLang(lang, {
@@ -887,14 +949,14 @@ export default function LessonMenu() {
       testID: 'lesson-menu-theory',
       label: frenchTheorySourceGated
         ? triLang(lang, {
-            ru: 'Теория на проверке',
-            uk: 'Теорія на перевірці',
-            es: 'Teoría en revisión',
-            "pt-BR": 'Teoria em revisão',
+            ru: 'Теория',
+            uk: 'Теорія',
+            es: 'Teoría',
+            "pt-BR": 'Teoria',
             vi: 'Lý thuyết đang được duyệt',
             id: 'Teori sedang ditinjau',
-            tr: 'Teori inceleniyor',
-            pl: 'Teoria w trakcie weryfikacji',
+            tr: 'Teori',
+            pl: 'Teoria',
           })
         : s.lessonMenu.theory,
       sub: frenchTheorySourceGated
@@ -919,11 +981,8 @@ export default function LessonMenu() {
   pl: 'Zasady i wyjaśnienia',
 }),
       icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
-      // Кольцо/галочка на теории: 100% когда XP за теорию забран, иначе 0%.
-      // Снимает путаницу «теория не ставит 100%» (баг-репорты). На теории «на
-      // проверке» кольца нет. Завершение урока по-прежнему по 50/50 упражнениям —
-      // это кольцо лишь отражает «теория прочитана», не гейтит закрытие урока.
-      pct: frenchTheorySourceGated ? undefined : (theoryClaimed ? 100 : 0),
+      // Кольцо отражает просмотренные разделы теории и не гейтит закрытие урока.
+      pct: frenchTheorySourceGated ? undefined : theoryProgressPct,
       onPress: () => {
         hapticTap();
         if (frenchTheorySourceGated) {

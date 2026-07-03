@@ -20,6 +20,7 @@ jest.mock('./callable_options', () => ({
     ENFORCE_APP_CHECK_OPENAI: false,
 }));
 const premium_dialog_1 = require("./premium_dialog");
+const { assertDialogReplyIsEnglish, assertDialogTranslationLanguage, asTargetLang, translationCacheId, } = premium_dialog_1.__premiumDialogTestHooks;
 describe('premium dialog prompt language isolation', () => {
     it('accepts every app UI language and fails closed on unknown values', () => {
         expect(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].map(premium_dialog_1.asInterfaceLang)).toEqual([
@@ -61,6 +62,19 @@ describe('premium dialog prompt language isolation', () => {
         // End-of-prompt reinjection re-states English-only.
         expect(prompt).toContain('reply ONLY in English');
     });
+    it('tells scenario mode to speak in-scene instead of narrating metadata', () => {
+        const prompt = (0, premium_dialog_1.buildScenarioSystemPrompt)('B1', {
+            interfaceLang: 'ru',
+            role: 'a worried neighbor',
+            setting: "a doorway where a neighbor asks about a missing cat near the learner's flat",
+            goalEn: 'ask whether the learner has seen the cat',
+            persona: 'Your name is Walter. You are worried but polite.',
+        });
+        expect(prompt).toContain('continue from the learner');
+        expect(prompt).toContain('NEVER describe the scenario from outside');
+        expect(prompt).toContain('NEVER say "the learner"');
+        expect(prompt).toContain('NEVER repeat the setting as narration');
+    });
     it('companion answers in English even when asked in the native language (no L1 meta-help leak)', () => {
         const prompt = (0, premium_dialog_1.buildCompanionSystemPrompt)('A2', { weakWords: ['reservation'] }, 'pl');
         expect(prompt).toContain('Polish (pl)');
@@ -70,6 +84,20 @@ describe('premium dialog prompt language isolation', () => {
         // New contract: even if asked in Polish, answer in English.
         expect(prompt).toContain('still ANSWER IN ENGLISH');
         expect(prompt).toContain('OUTPUT LANGUAGE (ABSOLUTE RULE)');
+    });
+    it('rejects a non-English live dialog reply before it can reach the client', () => {
+        expect(() => assertDialogReplyIsEnglish('Good morning! [[I would like coffee]].')).not.toThrow();
+        expect(() => assertDialogReplyIsEnglish('Привет, давай потренируем фразу.')).toThrow('dialog_provider_failed');
+    });
+    it('keeps translation cache keys and language guards separated by target UI language', () => {
+        const source = 'Could I have a coffee, please?';
+        expect(translationCacheId(source, 'ru')).not.toBe(translationCacheId(source, 'es'));
+        expect(asTargetLang('pt-BR')).toBe('pt-BR');
+        expect(() => asTargetLang('fr')).toThrow('premium_dialog_translate_unsupported_language');
+    });
+    it('rejects cached or fresh translations that do not match the requested UI language', () => {
+        expect(() => assertDialogTranslationLanguage('Сегодня хороший шаг.', 'ru')).not.toThrow();
+        expect(() => assertDialogTranslationLanguage('Today you keep a good small practice step.', 'ru')).toThrow('premium_dialog_translate_wrong_language');
     });
 });
 //# sourceMappingURL=premium_dialog_prompt.test.js.map

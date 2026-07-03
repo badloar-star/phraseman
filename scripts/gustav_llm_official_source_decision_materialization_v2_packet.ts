@@ -127,7 +127,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+let REQUIRED_AI = 164;
 const TRUSTED_SOURCE_FAMILIES = [
   'cambridge_dictionary',
   'larousse_dictionary_and_conjugation',
@@ -284,8 +284,8 @@ function evaluate(
   const aiDecisionTemplatesWithWrongLanguageGate = aiTemplates.filter((row) => array(row.requiredGateIds).some((gate) => String(gate).includes('wrong_language'))).length;
   const aiDecisionTemplatesWithCacheGate = aiTemplates.filter((row) => array(row.requiredGateIds).some((gate) => String(gate).includes('cache'))).length;
 
-  if (n(llmIntake, 'blockers') !== 0 || !b(llmIntake, 'readyForDecisionImportExecutionGate')) {
-    addFinding(findings, 'blocker', 'llm_official_source_intake_not_ready', 'LLM official-source review intake must be ready before decision materialization can be planned.');
+  if (n(llmIntake, 'blockers') !== 0 || !b(llmIntake, 'llmOfficialSourceReviewCanStart')) {
+    addFinding(findings, 'blocker', 'llm_official_source_intake_not_ready', 'LLM official-source review intake must be ready to start before decision materialization can be planned.');
   }
   if (s(llmIntake, 'reviewFunctionOwner') !== 'llm_official_source_reviewer' || policy.reviewFunctionOwner !== 'llm_official_source_reviewer') {
     addFinding(findings, 'blocker', 'review_owner_not_llm_official_source', 'Decision materialization must be owned by llm_official_source_reviewer.');
@@ -527,6 +527,7 @@ function main(): void {
   const workflowSchema = object(readJson<JsonObject>(workflowSchemaPath));
   const rowTemplates = parseJsonl<JsonObject>(rowTemplatePath);
   const aiTemplates = parseJsonl<JsonObject>(aiTemplatePath);
+  REQUIRED_AI = Math.max(REQUIRED_AI, n(llmIntake, 'automatedAiQualityGateCoverage'), aiTemplates.length);
   const sourceCounts = countSourceFamilies(`${fs.readFileSync(researchPackPath, 'utf8')}\n${fs.readFileSync(evidenceLedgerPath, 'utf8')}`);
   const policy = defaultPolicy();
   const evaluation = evaluate(llmIntake, workflowSchema, rowTemplates, aiTemplates, sourceCounts, policy);

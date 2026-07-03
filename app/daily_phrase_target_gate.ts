@@ -3,7 +3,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 export type DailyPhraseContentGate = {
   enabled: boolean;
   studyTarget: 'en' | 'fr';
-  reason: 'english_daily_phrase_bank_available' | 'french_daily_phrase_source_gate';
+  reason: 'english_daily_phrase_bank_available' | 'french_flashcard_system_daily_phrase_available' | 'french_daily_phrase_source_gate';
   blockedSurfaces: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -19,11 +19,16 @@ export function dailyPhraseContentGateForTarget(studyTarget?: RuntimeStudyTarget
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     return {
-      enabled: false,
+      enabled: true,
       studyTarget: 'fr',
-      reason: 'french_daily_phrase_source_gate',
-      blockedSurfaces: ['home_daily_phrase_card', 'phrase_of_day_notification', 'daily_phrase_flashcard_save'],
-      requiredEvidence: FRENCH_DAILY_PHRASE_REQUIRED_EVIDENCE,
+      reason: 'french_flashcard_system_daily_phrase_available',
+      blockedSurfaces: [],
+      requiredEvidence: [
+        'french_flashcard_system_bank',
+        'french_daily_phrase_from_remote_flashcards_runtime',
+        'target_scoped_daily_phrase_cache',
+        'no_english_idiom_bank_fallback',
+      ],
     };
   }
 

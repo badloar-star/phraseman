@@ -1,7 +1,9 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useTheme, getVolumetricShadow } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -11,11 +13,20 @@ import TapScale from '../TapScale';
 import ScreenGradient from '../ScreenGradient';
 import ReportErrorButton from '../ReportErrorButton';
 import BouncyScrollView from '../BouncyScrollView';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 
 import WordBankBuilder from './WordBankBuilder';
 import ThreeTileChoice from './ThreeTileChoice';
 import SpotTheSlip from './SpotTheSlip';
 import BinaryRecognition from './BinaryRecognition';
+import { splitTheoryHighlight } from './highlight';
+import {
+  countCompletedTheoryDrills,
+  parseTheorySeenProgress,
+  serializeTheorySeenProgress,
+  theoryOverallProgressPct,
+  type TheoryDrillProgressState,
+} from '../../app/theory_progress';
 
 /**
  * TheoryLessonView — рендер-движок раздела «Теория» в стиле «дорогой минимализм».
@@ -104,7 +115,9 @@ interface Props {
   metrics?: TheoryMetrics;
   /** Награда за прохождение, по умолчанию 25. */
   xpAmount?: number;
-  onClaimXP?: () => void;
+  initialClaimed?: boolean;
+  progressStorageKey?: string;
+  onClaimXP?: () => boolean | void | Promise<boolean | void>;
   onBack?: () => void;
 }
 
@@ -117,17 +130,6 @@ function withAlpha(color: string, alphaHex: string): string {
   }
   // rgba / именованные — возвращаем без изменений (подложка получит свой fallback).
   return color;
-}
-
-/**
- * Разбивает en по подстроке hi (первое вхождение, без регистрозависимости),
- * возвращает [до, совпадение, после]. Если hi не найдена — вся строка в [0].
- */
-function splitHighlight(en: string, hi?: string): [string, string, string] {
-  if (!hi) return [en, '', ''];
-  const idx = en.toLowerCase().indexOf(hi.toLowerCase());
-  if (idx < 0) return [en, '', ''];
-  return [en.slice(0, idx), en.slice(idx, idx + hi.length), en.slice(idx + hi.length)];
 }
 
 // ─── Аккордеон-раздел ────────────────────────────────────────────────────────
@@ -227,48 +229,162 @@ export default function TheoryLessonView({
   sections,
   metrics,
   xpAmount = 25,
+  initialClaimed = false,
+  progressStorageKey,
   onClaimXP,
   onBack,
 }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const accent = t.accent;
   const textOnGold = t.textOnGold ?? '#241A02';
+  const seenHydratedRef = useRef(false);
 
-  // Какие разделы открыты. По умолчанию первые два + те, у кого defaultOpen.
-  const [openSet, setOpenSet] = useState<Set<string>>(() => {
-    const init = new Set<string>();
-    sections.forEach((s, i) => {
-      if (s.defaultOpen ?? i < 2) init.add(s.num);
+  const sectionNums = useMemo(() => sections.map((section) => section.num), [sections]);
+  const sectionNumsKey = sectionNums.join('|');
+  const initialOpenNums = useMemo(
+    () => sections.filter((section, index) => section.defaultOpen ?? index < 2).map((section) => section.num),
+    [sections],
+  );
+  const initialOpenKey = initialOpenNums.join('|');
+  const drillIds = useMemo(() => {
+    const ids: string[] = [];
+    sections.forEach((section) => {
+      section.blocks.forEach((block, index) => {
+        if (block.kind === 'drill' && block.drill) ids.push(`${section.num}-${index}`);
+      });
     });
-    return init;
-  });
+    return ids;
+  }, [sections]);
+  const drillIdsKey = drillIds.join('|');
+
+  const [openSet, setOpenSet] = useState<Set<string>>(() => new Set(initialOpenNums));
+  const [seenSet, setSeenSet] = useState<Set<string>>(() => new Set(initialOpenNums));
+  const [drillProgress, setDrillProgress] = useState<Record<string, TheoryDrillProgressState>>({});
 
   const toggleSection = useCallback((num: string) => {
+    const willOpen = !openSet.has(num);
     setOpenSet((prev) => {
       const next = new Set(prev);
       if (next.has(num)) next.delete(num);
       else next.add(num);
       return next;
     });
+    if (willOpen) {
+      setSeenSet((prev) => {
+        if (prev.has(num)) return prev;
+        const next = new Set(prev);
+        next.add(num);
+        return next;
+      });
+    }
+  }, [openSet]);
+
+  useEffect(() => {
+    const defaultOpenSet = new Set(initialOpenKey ? initialOpenKey.split('|') : []);
+    setOpenSet(defaultOpenSet);
+    setSeenSet(defaultOpenSet);
+    setDrillProgress({});
+    seenHydratedRef.current = false;
+
+    let cancelled = false;
+    if (!progressStorageKey) {
+      seenHydratedRef.current = true;
+      return () => { cancelled = true; };
+    }
+
+    AsyncStorage.getItem(progressStorageKey)
+      .then((raw) => {
+        if (cancelled) return;
+        const saved = parseTheorySeenProgress(
+          raw,
+          sectionNumsKey ? sectionNumsKey.split('|') : [],
+          drillIdsKey ? drillIdsKey.split('|') : [],
+        );
+        if (saved.open.length > 0) {
+          setOpenSet(new Set(saved.open));
+        }
+        setSeenSet(new Set([...defaultOpenSet, ...saved.seen]));
+        setDrillProgress(saved.drills);
+      })
+      .catch(() => {
+        if (!cancelled) setSeenSet(new Set(defaultOpenSet));
+      })
+      .finally(() => {
+        if (!cancelled) seenHydratedRef.current = true;
+      });
+
+    return () => { cancelled = true; };
+  }, [lessonId, progressStorageKey, sectionNumsKey, initialOpenKey, drillIdsKey]);
+
+  const seenKey = useMemo(() => Array.from(seenSet).sort().join('|'), [seenSet]);
+  const openKey = useMemo(() => Array.from(openSet).sort().join('|'), [openSet]);
+  const drillProgressKey = useMemo(
+    () => JSON.stringify(Object.keys(drillProgress).sort().map((id) => [id, drillProgress[id]])),
+    [drillProgress],
+  );
+  useEffect(() => {
+    if (!progressStorageKey || !seenHydratedRef.current) return;
+    AsyncStorage.setItem(
+      progressStorageKey,
+      serializeTheorySeenProgress(seenSet, sections.length, openSet, drillProgress, drillIds.length),
+    ).catch(() => {});
+  }, [
+    progressStorageKey,
+    seenKey,
+    openKey,
+    drillProgressKey,
+    seenSet,
+    openSet,
+    sections.length,
+    drillProgress,
+    drillIds.length,
+  ]);
+
+  const updateDrillProgress = useCallback((drillId: string, state: TheoryDrillProgressState) => {
+    setDrillProgress((prev) => ({
+      ...prev,
+      [drillId]: {
+        ...(prev[drillId] ?? {}),
+        ...state,
+      },
+    }));
   }, []);
 
-  // XP: после тапа показываем визуальный отклик («Получено»), второй тап — выход.
-  const [claimed, setClaimed] = useState(false);
-  const handleClaimPress = useCallback(() => {
+  const [claimed, setClaimed] = useState(initialClaimed);
+  const [claimBusy, setClaimBusy] = useState(false);
+
+  useEffect(() => {
+    setClaimed(initialClaimed);
+    setClaimBusy(false);
+  }, [initialClaimed, lessonId]);
+
+  const seenCount = sections.reduce((acc, section) => acc + (seenSet.has(section.num) ? 1 : 0), 0);
+  const completedDrillCount = useMemo(
+    () => countCompletedTheoryDrills(drillProgress, drillIds),
+    [drillProgress, drillIds],
+  );
+  const progress = theoryOverallProgressPct(seenCount, sections.length, completedDrillCount, drillIds.length) / 100;
+  const allSectionsSeen = sections.length === 0 || seenCount >= sections.length;
+  const allDrillsDone = drillIds.length === 0 || completedDrillCount >= drillIds.length;
+  const allTheoryStepsDone = allSectionsSeen && allDrillsDone;
+
+  const handleClaimPress = useCallback(async () => {
     if (claimed) {
       onBack?.();
       return;
     }
-    setClaimed(true);
-    onClaimXP?.();
-  }, [claimed, onClaimXP, onBack]);
-
-  // Прогресс: «открытых из всех». Полоса заполняется по доле открытых разделов.
-  const openCount = sections.reduce((acc, s) => acc + (openSet.has(s.num) ? 1 : 0), 0);
-  const total = sections.length || 1;
-  const progress = Math.min(1, openCount / total);
+    if (!allTheoryStepsDone || claimBusy) return;
+    setClaimBusy(true);
+    try {
+      const result = await onClaimXP?.();
+      if (result !== false) setClaimed(true);
+    } finally {
+      setClaimBusy(false);
+    }
+  }, [allTheoryStepsDone, claimBusy, claimed, onClaimXP, onBack]);
 
   // Метрики (число разделов / примеров / тренировок).
   const computedMetrics: TheoryMetrics = useMemo(() => {
@@ -311,6 +427,8 @@ export default function TheoryLessonView({
                 accent={accent}
                 theme={drillTheme}
                 themeMode={themeMode}
+                initialProgress={drillProgress[key]}
+                onProgressChange={(state) => updateDrillProgress(key, { type: drill.type, ...state })}
               />
             );
           case 'word_bank':
@@ -321,15 +439,31 @@ export default function TheoryLessonView({
                 lang={lang}
                 accent={accent}
                 theme={drillTheme}
+                initialProgress={drillProgress[key]}
+                onProgressChange={(state) => updateDrillProgress(key, { type: drill.type, ...state })}
               />
             );
           case 'spot_slip':
             return (
-              <SpotTheSlip key={key} data={data} lang={lang} theme={drillTheme} />
+              <SpotTheSlip
+                key={key}
+                data={data}
+                lang={lang}
+                theme={drillTheme}
+                initialProgress={drillProgress[key]}
+                onProgressChange={(state) => updateDrillProgress(key, { type: drill.type, ...state })}
+              />
             );
           case 'binary':
             return (
-              <BinaryRecognition key={key} data={data} lang={lang} theme={drillTheme} />
+              <BinaryRecognition
+                key={key}
+                data={data}
+                lang={lang}
+                theme={drillTheme}
+                initialProgress={drillProgress[key]}
+                onProgressChange={(state) => updateDrillProgress(key, { type: drill.type, ...state })}
+              />
             );
           default:
             return null;
@@ -339,7 +473,7 @@ export default function TheoryLessonView({
         return null;
       }
     },
-    [lang, accent, drillTheme, themeMode],
+    [lang, accent, drillTheme, themeMode, drillProgress, updateDrillProgress],
   );
 
   // ─── Рендер блока ─────────────────────────────────────────────────────────
@@ -405,7 +539,7 @@ export default function TheoryLessonView({
           return (
             <View key={key} style={styles.examplesWrap}>
               {examples.map((ex, i) => {
-                const [before, match, after] = splitHighlight(ex.en, ex.hi);
+                const [before, match, after] = splitTheoryHighlight(ex.en, ex.hi);
                 return (
                   <View
                     key={`${key}-e${i}`}
@@ -462,9 +596,10 @@ export default function TheoryLessonView({
 
         case 'drill': {
           if (!block.drill) return null;
+          const drillId = key;
           return (
             <View key={key} style={[styles.drillWrap, { backgroundColor: t.bgSurface }]}>
-              {renderDrill(block.drill, `${key}-drill`)}
+              {renderDrill(block.drill, drillId)}
             </View>
           );
         }
@@ -487,6 +622,11 @@ export default function TheoryLessonView({
     uk: `+${xpAmount} XP отримано · Готово`,
     es: `+${xpAmount} XP recibido · Listo`,
   });
+  const lockedClaimLabel = triLang(lang, {
+    ru: `Открой все разделы · ${seenCount}/${sections.length}`,
+    uk: `Відкрий усі розділи · ${seenCount}/${sections.length}`,
+    es: `Abre todas las secciones · ${seenCount}/${sections.length}`,
+  });
 
   const metricLabels = {
     sections: triLang(lang, { ru: 'разделов', uk: 'розділів', es: 'secciones' }),
@@ -495,10 +635,25 @@ export default function TheoryLessonView({
   };
 
   const progressLabel = triLang(lang, {
-    ru: `Раздел ${openCount} из ${sections.length}`,
-    uk: `Розділ ${openCount} з ${sections.length}`,
-    es: `Sección ${openCount} de ${sections.length}`,
+    ru: `Просмотрено ${seenCount} из ${sections.length}`,
+    uk: `Переглянуто ${seenCount} з ${sections.length}`,
+    es: `Visto ${seenCount} de ${sections.length}`,
   });
+
+  const lockedClaimCtaLabel = allSectionsSeen && !allDrillsDone
+    ? triLang(lang, {
+        ru: `Выполни задания · ${completedDrillCount}/${drillIds.length}`,
+        uk: `Виконай завдання · ${completedDrillCount}/${drillIds.length}`,
+        es: `Completa las prácticas · ${completedDrillCount}/${drillIds.length}`,
+      })
+    : lockedClaimLabel;
+  const theoryProgressLabel = drillIds.length > 0
+    ? triLang(lang, {
+        ru: `Разделы ${seenCount}/${sections.length} · задания ${completedDrillCount}/${drillIds.length}`,
+        uk: `Розділи ${seenCount}/${sections.length} · завдання ${completedDrillCount}/${drillIds.length}`,
+        es: `Secciones ${seenCount}/${sections.length} · prácticas ${completedDrillCount}/${drillIds.length}`,
+      })
+    : progressLabel;
 
   const levelTag = triLang(lang, {
     ru: `Урок ${lessonId} · A1`,
@@ -536,7 +691,7 @@ export default function TheoryLessonView({
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,
-            { paddingBottom: 24 + insets.bottom },
+            { paddingBottom: 24 + bottomInset },
           ]}
         >
           {/* Hero */}
@@ -584,7 +739,7 @@ export default function TheoryLessonView({
                 ]}
               />
             </View>
-            <Text style={[styles.progressLabel, { color: t.textMuted }]}>{progressLabel}</Text>
+            <Text style={[styles.progressLabel, { color: t.textMuted }]}>{theoryProgressLabel}</Text>
           </View>
 
           {/* Разделы */}
@@ -606,22 +761,24 @@ export default function TheoryLessonView({
           <View style={styles.ctaBar}>
             <TapScale
               onPress={handleClaimPress}
+              disabled={claimBusy || (!claimed && !allTheoryStepsDone)}
               accessibilityRole="button"
-              accessibilityLabel={claimed ? claimedLabel : claimLabel}
+              accessibilityLabel={claimed ? claimedLabel : allTheoryStepsDone ? claimLabel : lockedClaimCtaLabel}
               style={[
                 styles.ctaBtn,
-                { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : t.gold },
+                { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : allTheoryStepsDone ? t.gold : t.bgSurface },
+                (!claimed && !allTheoryStepsDone) && { borderWidth: 1, borderColor: t.border },
                 getVolumetricShadow(themeMode, t, 2),
               ]}
             >
               <Ionicons
-                name={claimed ? 'checkmark-circle' : 'star'}
+                name={claimed ? 'checkmark-circle' : allTheoryStepsDone ? 'star' : 'lock-closed-outline'}
                 size={18}
-                color={textOnGold}
+                color={allTheoryStepsDone || claimed ? textOnGold : t.textMuted}
                 style={styles.ctaIcon}
               />
-              <Text style={[styles.ctaText, { color: textOnGold }]}>
-                {claimed ? claimedLabel : claimLabel}
+              <Text style={[styles.ctaText, { color: allTheoryStepsDone || claimed ? textOnGold : t.textMuted }]}>
+                {claimed ? claimedLabel : allTheoryStepsDone ? claimLabel : lockedClaimCtaLabel}
               </Text>
             </TapScale>
           </View>

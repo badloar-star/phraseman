@@ -1267,12 +1267,13 @@ export default function SettingsTestersFunctions() {
       pl: 'Skrót QA trenera French jest zablokowany do czasu danych source-gated.',
     }));
   };
-  const openTrainerQaRoute = (route: '/trainer' | '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session') => {
+  const openTrainerQaRoute = async (route: '/trainer' | '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session') => {
     if (!trainerQaRouteGateOpen) {
       emitFrenchTrainerQaBlockedToast();
       router.push('/trainer' as any);
       return;
     }
+    if (route !== '/trainer' && !(await prepareWeakTrainerQa())) return;
     router.push(route as any);
   };
 

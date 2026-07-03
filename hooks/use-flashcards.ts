@@ -52,6 +52,17 @@ function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
   return result;
 }
 
+/**
+ * Test-only: drop the module-level caches so a fresh AsyncStorage read happens next.
+ * The in-memory caches above intentionally persist for the app lifetime; unit tests that
+ * swap the AsyncStorage mock between cases must reset them so each case reads its own fixture.
+ */
+export function __resetFlashcardCacheForTests(): void {
+  cardsInMemoryByTarget = {};
+  loadInFlightByTarget = {};
+  writeQueue = Promise.resolve();
+}
+
 function parseStored(raw: string | null): Flashcard[] {
   if (!raw) return [];
   try {

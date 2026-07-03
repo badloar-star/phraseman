@@ -16,7 +16,7 @@ describe('client report delivery contract', () => {
     expect(source).not.toContain("void submitClientReportCallable('community_pack_report'");
   });
 
-  it('awaits lesson bug report writes before granting success and XP feedback', () => {
+  it('awaits lesson bug report writes before throttle and XP side effects', () => {
     const source = read('app/error_report.ts');
 
     expect(source).toContain("export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment' | 'failed'");
@@ -25,6 +25,15 @@ describe('client report delivery contract', () => {
       source.indexOf("await AsyncStorage.setItem(THROTTLE_KEY"),
     );
     expect(source).not.toContain("void submitClientReport('error_report'");
+  });
+
+  it('shows optimistic accepted UI while lesson bug report delivery continues in the background', () => {
+    const source = read('components/ReportErrorButton.tsx');
+
+    expect(source.indexOf('setSent(true);')).toBeLessThan(source.indexOf('void (async () =>'));
+    expect(source).toContain('Отправляем в фоне');
+    expect(source).toContain("onPress={() => setVisible(false)}");
+    expect(source.indexOf("onSuccess?.(10);")).toBeGreaterThan(source.indexOf("if (result === 'failed')"));
   });
 
   it('shows a retry state when lesson bug report delivery fails', () => {

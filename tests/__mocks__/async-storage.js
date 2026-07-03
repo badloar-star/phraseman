@@ -19,6 +19,7 @@ const api = {
       delete store[key];
     });
   }),
+  getAllKeys: jest.fn(async () => Object.keys(store)),
   clear: jest.fn(async () => {
     Object.keys(store).forEach((key) => {
       delete store[key];

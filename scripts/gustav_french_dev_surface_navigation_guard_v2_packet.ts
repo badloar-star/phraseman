@@ -42,6 +42,12 @@ type Report = {
     adminShortcutGuardsReady: boolean;
     aiDialogSourceGatesReady: boolean;
     destinationSelfGatesReady: boolean;
+    challengeSurfaceGuardsReady: boolean;
+    challengeSurfaceProbes: number;
+    dailySurfaceGuardsReady: boolean;
+    dailySurfaceProbes: number;
+    arenaSurfaceGuardsReady: boolean;
+    arenaSurfaceProbes: number;
     englishFallbackAbsent: boolean;
     productionActivationStillClosed: true;
     probesPassed: number;
@@ -167,6 +173,9 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Admin shortcut guards ready: ${report.summary.adminShortcutGuardsReady}`,
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
+    `- Challenge surface guards ready/probes: ${report.summary.challengeSurfaceGuardsReady}/${report.summary.challengeSurfaceProbes}`,
+    `- Daily surface guards ready/probes: ${report.summary.dailySurfaceGuardsReady}/${report.summary.dailySurfaceProbes}`,
+    `- Arena surface guards ready/probes: ${report.summary.arenaSurfaceGuardsReady}/${report.summary.arenaSurfaceProbes}`,
     `- English fallback absent: ${report.summary.englishFallbackAbsent}`,
     `- Production activation still closed: ${report.summary.productionActivationStillClosed}`,
     `- Probes: ${report.summary.probesPassed}/${report.summary.probes}`,
@@ -340,11 +349,64 @@ function main(): void {
   const destinationSelfGatesReady = probes
     .filter((probe) => ['quizzes_self_gate', 'diagnostic_self_gate', 'flashcards_self_gate', 'trainer_self_gate'].includes(probe.id))
     .every((probe) => probe.passed);
+  const challengeSurfaceProbeIds = [
+    'home_quizzes_visible',
+    'daily_tasks_fr_visible',
+    'daily_quiz_challenge_visibility_test_guarded',
+    'quiz_thematic_challenges_visible_while_source_gated',
+    'quiz_no_source_gate_category_hide',
+    'dialogs_tab_content_challenges_visible',
+  ];
+  const dailySurfaceProbeIds = [
+    'home_daily_visible',
+    'daily_tasks_fr_visible',
+    'daily_tasks_target_param',
+    'daily_tasks_screen_vocabulary_gate',
+    'daily_tasks_screen_trainer_gate',
+    'daily_tasks_screen_flashcards_gate',
+    'daily_tasks_screen_daily_phrase_gate',
+    'daily_tasks_screen_theory_gate',
+    'daily_task_navigation_vocabulary_gate',
+    'daily_task_navigation_trainer_gate',
+    'daily_task_navigation_flashcards_gate',
+    'daily_task_navigation_daily_phrase_gate',
+    'daily_task_navigation_theory_gate',
+  ];
+  const arenaSurfaceProbeIds = [
+    'trainer_arena_session_source_gate',
+    'trainer_arena_session_gate_copy',
+    'trainer_arena_session_gate_branch',
+    'admin_trainer_arena_shortcut_wrapped',
+    'admin_no_direct_arena_session_push',
+  ];
+  const challengeSurfaceProbes = probes.filter((probe) => challengeSurfaceProbeIds.includes(probe.id));
+  const dailySurfaceProbes = probes.filter((probe) => dailySurfaceProbeIds.includes(probe.id));
+  const arenaSurfaceProbes = probes.filter((probe) => arenaSurfaceProbeIds.includes(probe.id));
+  const challengeSurfaceGuardsReady =
+    challengeSurfaceProbes.length === challengeSurfaceProbeIds.length &&
+    challengeSurfaceProbes.every((probe) => probe.passed);
+  const dailySurfaceGuardsReady =
+    dailySurfaceProbes.length === dailySurfaceProbeIds.length &&
+    dailySurfaceProbes.every((probe) => probe.passed);
+  const arenaSurfaceGuardsReady =
+    arenaSurfaceProbes.length === arenaSurfaceProbeIds.length &&
+    arenaSurfaceProbes.every((probe) => probe.passed);
   const englishFallbackAbsent = probes
     .filter((probe) => probe.id.includes('no_direct') || probe.id.includes('no_') || probe.id === 'daily_tasks_target_param')
     .every((probe) => probe.passed);
+  if (!challengeSurfaceGuardsReady) {
+    addFinding(findings, 'blocker', 'challenge_surface_guards_not_ready', 'French challenge surfaces must remain visible and source-gated without requiring an extra remote-pack surface.');
+  }
+  if (!dailySurfaceGuardsReady) {
+    addFinding(findings, 'blocker', 'daily_surface_guards_not_ready', 'French daily surfaces must remain visible and route through source gates without English fallback.');
+  }
+  if (!arenaSurfaceGuardsReady) {
+    addFinding(findings, 'blocker', 'arena_surface_guards_not_ready', 'French arena trainer surfaces must self-gate and admin shortcuts must not deep-link around the gate.');
+  }
 
-  const status: Status = blockers > 0 ? 'BLOCK' : 'PASS';
+  const finalBlockers = findings.filter((finding) => finding.severity === 'blocker').length;
+  const finalWarnings = findings.filter((finding) => finding.severity === 'warning').length;
+  const status: Status = finalBlockers > 0 ? 'BLOCK' : 'PASS';
   const outputJson = path.join(runRoot, 'audits/french_dev_surface_navigation_guard_v2_packet.json');
   const outputMd = path.join(runRoot, 'audits/french_dev_surface_navigation_guard_v2_packet.md');
 
@@ -374,12 +436,18 @@ function main(): void {
       adminShortcutGuardsReady,
       aiDialogSourceGatesReady,
       destinationSelfGatesReady,
+      challengeSurfaceGuardsReady,
+      challengeSurfaceProbes: challengeSurfaceProbes.length,
+      dailySurfaceGuardsReady,
+      dailySurfaceProbes: dailySurfaceProbes.length,
+      arenaSurfaceGuardsReady,
+      arenaSurfaceProbes: arenaSurfaceProbes.length,
       englishFallbackAbsent,
       productionActivationStillClosed: true,
       probesPassed: probes.filter((probe) => probe.passed).length,
       probes: probes.length,
-      blockers,
-      warnings,
+      blockers: finalBlockers,
+      warnings: finalWarnings,
     },
     artifactHashes: Object.fromEntries(Object.entries(files).map(([key, filePath]) => [key, sha256(filePath)])),
     probes,
@@ -401,7 +469,7 @@ function main(): void {
   writeMarkdown(outputMd, report);
   console.log(`Gustav French dev surface navigation guard: ${status}`);
   console.log(`Probes: ${report.summary.probesPassed}/${report.summary.probes}`);
-  console.log(`Blockers: ${blockers}`);
+  console.log(`Blockers: ${finalBlockers}`);
   console.log(`Wrote ${rel(repoRoot, outputJson)}`);
   console.log(`Wrote ${rel(repoRoot, outputMd)}`);
 }

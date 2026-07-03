@@ -1,8 +1,8 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import BounceView from '../components/BounceView';
@@ -40,7 +40,7 @@ export default function PersonalPlanCompleteScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const [view, setView] = useState<CompleteView | null>(null);
   const [starting, setStarting] = useState(false);
 

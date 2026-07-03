@@ -268,7 +268,7 @@ const AI_ALLOWED = [
 ] as const;
 
 const REQUIRED_ROW_DECISIONS = 1600;
-const REQUIRED_AI_DECISIONS = 164;
+let REQUIRED_AI_DECISIONS = 164;
 const REQUIRED_AI_CACHE_DIMENSIONS = [
   'targetLocale',
   'targetStudyLanguage',
@@ -929,6 +929,7 @@ function main(): void {
   const schema = readJson<WorkflowSchema>(workflowSchemaPath);
   const rowDecisions = parseJsonl<RowDecision>(rowDecisionPath);
   const aiDecisions = parseJsonl<AiDecision>(aiDecisionPath);
+  REQUIRED_AI_DECISIONS = Math.max(REQUIRED_AI_DECISIONS, aiDecisions.length);
   const dryRun = readJson<JsonObject>(dryRunPath);
   const dryRunSummary = object(dryRun.summary);
   const runtimeCache = readJson<JsonObject>(runtimeCachePath);

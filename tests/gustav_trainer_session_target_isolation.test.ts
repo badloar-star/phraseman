@@ -53,14 +53,14 @@ describe('Gustav trainer session target isolation', () => {
     await expect(getFreeSessionsLeftToday('en')).resolves.toBe(0);
   });
 
-  it('blocks French trainer session storage while the French trainer source gate is closed', async () => {
-    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(0);
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'fr')).resolves.toBe(false);
-    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'fr')).resolves.toBe(false);
+  it('uses scoped French trainer session storage when the French trainer gate is open', async () => {
+    await expect(getFreeSessionsLeftToday('fr')).resolves.toBe(2);
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'fr')).resolves.toBe(true);
+    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'fr')).resolves.toBe(true);
 
     expect(AsyncStorage.getItem).not.toHaveBeenCalledWith('trainer_free_session_v1');
     expect(AsyncStorage.setItem).not.toHaveBeenCalledWith('trainer_session_entry_v1', expect.any(String));
-    expect(storage[trainerFreeSessionKey('fr')]).toBeUndefined();
+    expect(storage[trainerFreeSessionKey('fr')]).toContain('"count":1');
     expect(storage[trainerSessionEntryKey('fr')]).toBeUndefined();
   });
 

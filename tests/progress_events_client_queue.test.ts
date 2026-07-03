@@ -1,5 +1,6 @@
 const QUEUE_KEY = 'progress_server_event_queue_v1';
 const MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
+const BASELINE_KEY = 'progress_server_snapshot_baseline_v1';
 
 type CallableHandlers = Record<string, jest.Mock<Promise<unknown>, [unknown]>>;
 
@@ -103,6 +104,62 @@ describe('progress events client durable queue', () => {
     await expect(client.ensureProgressSnapshotMigrated()).rejects.toThrow('offline');
 
     expect(await AsyncStorage.getItem(MIGRATED_KEY)).toBeNull();
+  });
+
+  it('uses a frozen migration baseline for optimistic local XP updates', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => ({ data: { ok: true, migrated: true } })),
+      progressSubmitEvent: callableMock(async (event: unknown) => ({
+        data: progressResult({ eventId: (event as { eventId: string }).eventId }),
+      })),
+    };
+    const { AsyncStorage, client } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '42');
+
+    const baseline = await client.prepareProgressMigrationSnapshot();
+    await AsyncStorage.setItem('user_total_xp', '142');
+    await client.submitProgressEvent({
+      eventId: 'lesson:answer:optimistic',
+      type: 'lesson_answer',
+      payload: { xpDelta: 100 },
+    }, { migrationSnapshot: baseline });
+
+    expect(handlers.progressMigrateSnapshot.mock.calls[0][0]).toMatchObject({
+      stableId: 'stable-1',
+      progress: { user_total_xp: '42' },
+    });
+    expect(await AsyncStorage.getItem(BASELINE_KEY)).toBeNull();
+  });
+
+  it('queues the current event when migration is temporarily unavailable', async () => {
+    const handlers: CallableHandlers = {
+      progressMigrateSnapshot: callableMock(async () => {
+        throw new Error('offline');
+      }),
+      progressSubmitEvent: callableMock(async () => ({ data: progressResult() })),
+    };
+    const { AsyncStorage, client } = await loadClient(handlers);
+    await AsyncStorage.setItem('user_total_xp', '42');
+
+    const baseline = await client.prepareProgressMigrationSnapshot();
+    await AsyncStorage.setItem('user_total_xp', '142');
+    await expect(client.submitProgressEvent({
+      eventId: 'lesson:answer:migration-offline',
+      type: 'lesson_answer',
+      payload: { xpDelta: 100 },
+    }, { migrationSnapshot: baseline })).rejects.toThrow('offline');
+
+    const queued = JSON.parse(String(await AsyncStorage.getItem(QUEUE_KEY)));
+    expect(queued).toHaveLength(1);
+    expect(queued[0]).toMatchObject({
+      eventId: 'lesson:answer:migration-offline',
+      type: 'lesson_answer',
+      stableId: 'stable-1',
+      payload: { xpDelta: 100 },
+    });
+    expect(handlers.progressSubmitEvent).not.toHaveBeenCalled();
+    expect(await AsyncStorage.getItem(MIGRATED_KEY)).toBeNull();
+    expect(JSON.parse(String(await AsyncStorage.getItem(BASELINE_KEY)))).toMatchObject({ user_total_xp: '42' });
   });
 
   it('persists a failed event once and retries it later through flush', async () => {

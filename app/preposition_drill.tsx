@@ -1,9 +1,10 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Animated, Easing, InteractionManager, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
@@ -21,6 +22,7 @@ import ClozeGapText from '../components/ClozeGapText';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useAudio } from '../hooks/use-audio';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
@@ -92,7 +94,8 @@ export default function PrepositionDrillScreen() {
   const { lang } = useLang();
   const { theme: t, f, themeMode, ds } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const scrollRef = useRef<ScrollView>(null);
   const isLightTheme = false;
 
@@ -389,25 +392,23 @@ export default function PrepositionDrillScreen() {
       setAnsweredIds(nextAnswered);
       setWrongIds(nextWrong);
       saveProgress(nextAnswered, nextWrong);
-      if (userNameRef.current) {
-        registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current, lang, lessonId, {
-          eventId: [
-            'preposition',
-            safePrepositionEventPart(studyTarget),
-            String(lessonId),
-            'answer',
-            safePrepositionEventPart(item.id, 40),
-          ].join(':'),
-          payload: {
-            lessonId,
-            studyTarget,
-            itemId: item.id,
-            reviewMode,
-          },
-        })
-          .then(r => setXpToastAmount(r.finalDelta))
-          .catch(() => {});
-      }
+      registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current || '', lang, lessonId, {
+        eventId: [
+          'preposition',
+          safePrepositionEventPart(studyTarget),
+          String(lessonId),
+          'answer',
+          safePrepositionEventPart(item.id, 40),
+        ].join(':'),
+        payload: {
+          lessonId,
+          studyTarget,
+          itemId: item.id,
+          reviewMode,
+        },
+      })
+        .then(r => setXpToastAmount(r.finalDelta))
+        .catch(() => {});
     } else {
       hapticError();
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -457,7 +458,7 @@ export default function PrepositionDrillScreen() {
   };
 
   const scrollBottomPad =
-    insets.bottom + ds.spacing.xl + (effectiveOs === 'android' ? ds.spacing.lg + 8 : ds.spacing.sm);
+    bottomInset + ds.spacing.xl + (effectiveOs === 'android' ? ds.spacing.lg + 8 : ds.spacing.sm);
 
   /** Один слот `__` в шаблоне; после ответа показываем правильное слово в тексте (= item.correct), чтобы текст совпадал с блоком «Верно» и меньше ловить баги обрезки Android у `__`. */
   const renderSentenceCard = () => {
@@ -766,7 +767,7 @@ export default function PrepositionDrillScreen() {
               pointerEvents="none"
               style={{
                 position: 'absolute',
-                bottom: Math.max(24, insets.bottom + 18),
+                bottom: Math.max(24, bottomInset + 18),
                 alignSelf: 'center',
                 backgroundColor: isLightTheme ? '#92400E' : '#FFC800',
                 borderRadius: 20,

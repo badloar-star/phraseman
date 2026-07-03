@@ -33,7 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.webPrices = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -108,6 +109,8 @@ const { referralEnsureMyCode, referralApply, referralClaimVipReward, referralLis
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogReview } = require('./premium_dialog_review');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -117,6 +120,8 @@ const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
 const { compassGenerate } = require('./compass');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { helpBoardCreateTopic, helpBoardAddComment, helpBoardVote, helpBoardReport, helpBoardDeleteMyTopic, helpBoardAdminModerate, helpBoardGenerateCompassForTopic, helpBoardCompassRetryCron, } = require('./help_board');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -135,6 +140,8 @@ const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { notifyOnFriendRequestCreated, notifyOnFriendAccepted, userNotificationsCleanupCron, } = require('./user_notifications');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -197,12 +204,24 @@ exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
+exports.premiumDialogReview = premiumDialogReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.explainQuiz = explainQuiz;
 exports.compassGenerate = compassGenerate;
+exports.helpBoardCreateTopic = helpBoardCreateTopic;
+exports.helpBoardAddComment = helpBoardAddComment;
+exports.helpBoardVote = helpBoardVote;
+exports.helpBoardReport = helpBoardReport;
+exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
+exports.helpBoardAdminModerate = helpBoardAdminModerate;
+exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
+exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
+exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
+exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
+exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
@@ -289,7 +308,7 @@ function parseLeaderboardDocCf(data) {
         isPremium: !!data.isPremium,
         isVip: !!data.isVip,
         avatarEmoji,
-        profileCardLevel: Math.max(0, Math.min(5, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
+        profileCardLevel: Math.max(0, Math.min(1, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
         profileCardTheme: typeof data.profileCardTheme === 'string' && data.profileCardTheme.trim() ? data.profileCardTheme.trim().slice(0, 32) : 'classic',
         profileCardMotion: typeof data.profileCardMotion === 'string' && data.profileCardMotion.trim() ? data.profileCardMotion.trim().slice(0, 32) : 'none',
         profileCardPublicFocus: typeof data.profileCardPublicFocus === 'string' && data.profileCardPublicFocus.trim() ? data.profileCardPublicFocus.trim().slice(0, 32) : 'balanced',
@@ -372,6 +391,35 @@ function pickIncomingDisplayName(raw) {
         return null;
     // Защита от излишне длинных значений (firestore.rules ограничивает 120, но дублируем).
     return dn.slice(0, 120);
+}
+function readArenaNumber(raw, fallback = 0) {
+    const n = typeof raw === 'number' ? raw : Number(raw);
+    return Number.isFinite(n) ? n : fallback;
+}
+function readArenaProfileRank(data, preferLegacy = false) {
+    return {
+        tier: String((preferLegacy ? data['rank.tier'] ?? data.rank?.tier : data.rank?.tier ?? data['rank.tier']) ?? 'bronze'),
+        level: String((preferLegacy ? data['rank.level'] ?? data.rank?.level : data.rank?.level ?? data['rank.level']) ?? 'I'),
+        stars: Math.max(0, Math.trunc(readArenaNumber(preferLegacy ? data['rank.stars'] ?? data.rank?.stars : data.rank?.stars ?? data['rank.stars'], 0))),
+    };
+}
+function readArenaProfileStats(data) {
+    const nested = {
+        matchesPlayed: Math.max(0, Math.trunc(readArenaNumber(data.stats?.matchesPlayed, 0))),
+        matchesWon: Math.max(0, Math.trunc(readArenaNumber(data.stats?.matchesWon, 0))),
+        totalScore: Math.max(0, Math.trunc(readArenaNumber(data.stats?.totalScore, 0))),
+        winStreak: Math.max(0, Math.trunc(readArenaNumber(data.stats?.winStreak, 0))),
+        bestWinStreak: Math.max(0, Math.trunc(readArenaNumber(data.stats?.bestWinStreak, 0))),
+    };
+    const legacy = {
+        matchesPlayed: Math.max(0, Math.trunc(readArenaNumber(data['stats.matchesPlayed'] ?? data.stats?.matchesPlayed, 0))),
+        matchesWon: Math.max(0, Math.trunc(readArenaNumber(data['stats.matchesWon'] ?? data.stats?.matchesWon, 0))),
+        totalScore: Math.max(0, Math.trunc(readArenaNumber(data['stats.totalScore'] ?? data.stats?.totalScore, 0))),
+        winStreak: Math.max(0, Math.trunc(readArenaNumber(data['stats.winStreak'] ?? data.stats?.winStreak, 0))),
+        bestWinStreak: Math.max(0, Math.trunc(readArenaNumber(data['stats.bestWinStreak'] ?? data.stats?.bestWinStreak, 0))),
+    };
+    const preferLegacy = legacy.matchesPlayed > nested.matchesPlayed;
+    return { stats: preferLegacy ? legacy : nested, preferLegacy };
 }
 async function pickArenaQuestions(count) {
     const db = admin.firestore();
@@ -799,11 +847,14 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
             }
             else {
                 const data = profileSnap.data();
-                oldStars = data.rank?.stars ?? 0;
-                oldTier = data.rank?.tier ?? 'bronze';
-                oldLevel = data.rank?.level ?? 'I';
-                const curStreak = data.stats?.winStreak ?? 0;
-                const bestStreak = data.stats?.bestWinStreak ?? 0;
+                const oldStatsRead = readArenaProfileStats(data);
+                const oldRank = readArenaProfileRank(data, oldStatsRead.preferLegacy);
+                const oldStats = oldStatsRead.stats;
+                oldStars = oldRank.stars;
+                oldTier = oldRank.tier;
+                oldLevel = oldRank.level;
+                const curStreak = oldStats.winStreak;
+                const bestStreak = oldStats.bestWinStreak;
                 if (isFriendDuel) {
                     // Дружеский матч: звёзды и ранг не меняются, серия побед не трогается
                     newStars = oldStars;
@@ -862,9 +913,9 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                         seasonId: nowSeasonId,
                         seasonPeakRankIndex: newPeakRankIdx,
                         xp: (data.xp ?? 0) + xpDelta,
-                        'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-                        'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-                        'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
+                        'stats.matchesPlayed': oldStats.matchesPlayed + 1,
+                        'stats.matchesWon': oldStats.matchesWon + (won ? 1 : 0),
+                        'stats.totalScore': oldStats.totalScore + (p.score ?? 0),
                         'stats.winStreak': newStreak,
                         'stats.bestWinStreak': Math.max(bestStreak, newStreak),
                         ...dnPatch,
@@ -922,7 +973,7 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                     if (!profileSnap.exists)
                         return false;
                     const data = profileSnap.data();
-                    const curStreak = data?.stats?.winStreak ?? 0;
+                    const curStreak = data ? readArenaProfileStats(data).stats.winStreak : 0;
                     const newStreak = won ? curStreak + 1 : 0;
                     const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
                     const lastStreakShardAt = data?.lastStreakShardAt ?? 0;
@@ -1159,6 +1210,11 @@ Object.defineProperty(exports, "premiumExpiryCron", { enumerable: true, get: fun
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
+// ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
+var report_replies_1 = require("./report_replies");
+Object.defineProperty(exports, "adminReplyToReport", { enumerable: true, get: function () { return report_replies_1.adminReplyToReport; } });
+Object.defineProperty(exports, "claimReportReward", { enumerable: true, get: function () { return report_replies_1.claimReportReward; } });
+Object.defineProperty(exports, "adminDraftReportReply", { enumerable: true, get: function () { return report_replies_1.adminDraftReportReply; } });
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });
@@ -1166,6 +1222,7 @@ Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: func
 var promo_codes_1 = require("./promo_codes");
 Object.defineProperty(exports, "promoCodeRedeem", { enumerable: true, get: function () { return promo_codes_1.promoCodeRedeem; } });
 Object.defineProperty(exports, "promoCodeUpsert", { enumerable: true, get: function () { return promo_codes_1.promoCodeUpsert; } });
+Object.defineProperty(exports, "promoCodeBatchUpsert", { enumerable: true, get: function () { return promo_codes_1.promoCodeBatchUpsert; } });
 var openai_budget_dashboard_1 = require("./openai_budget_dashboard");
 Object.defineProperty(exports, "openAiBudgetDashboard", { enumerable: true, get: function () { return openai_budget_dashboard_1.openAiBudgetDashboard; } });
 var openai_dialog_model_config_1 = require("./openai_dialog_model_config");
@@ -1175,6 +1232,9 @@ var openai_jobs_config_1 = require("./openai_jobs_config");
 Object.defineProperty(exports, "openAiJobsConfig", { enumerable: true, get: function () { return openai_jobs_config_1.openAiJobsConfig; } });
 var admin_translate_1 = require("./admin_translate");
 Object.defineProperty(exports, "adminTranslateMessage", { enumerable: true, get: function () { return admin_translate_1.adminTranslateMessage; } });
+var admin_email_1 = require("./admin_email");
+Object.defineProperty(exports, "adminEmailBroadcast", { enumerable: true, get: function () { return admin_email_1.adminEmailBroadcast; } });
+Object.defineProperty(exports, "adminEmailContactsBackfill", { enumerable: true, get: function () { return admin_email_1.adminEmailContactsBackfill; } });
 var daily_phrases_1 = require("./daily_phrases");
 Object.defineProperty(exports, "dailyPhraseSetSaved", { enumerable: true, get: function () { return daily_phrases_1.dailyPhraseSetSaved; } });
 var website_contact_1 = require("./website_contact");
@@ -1183,4 +1243,15 @@ var site_stats_1 = require("./site_stats");
 Object.defineProperty(exports, "siteStatsTrack", { enumerable: true, get: function () { return site_stats_1.siteStatsTrack; } });
 var revenuecat_shards_1 = require("./revenuecat_shards");
 Object.defineProperty(exports, "revenueCatShardsWebhook", { enumerable: true, get: function () { return revenuecat_shards_1.revenueCatShardsWebhook; } });
+var admin_push_jobs_1 = require("./admin_push_jobs");
+Object.defineProperty(exports, "adminPushJobCreated", { enumerable: true, get: function () { return admin_push_jobs_1.adminPushJobCreated; } });
+Object.defineProperty(exports, "adminPushJobsCron", { enumerable: true, get: function () { return admin_push_jobs_1.adminPushJobsCron; } });
+// ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
+var web_checkout_1 = require("./web_checkout");
+Object.defineProperty(exports, "webCheckoutCreate", { enumerable: true, get: function () { return web_checkout_1.webCheckoutCreate; } });
+Object.defineProperty(exports, "stripeWebhook", { enumerable: true, get: function () { return web_checkout_1.stripeWebhook; } });
+Object.defineProperty(exports, "paypalOrderCreate", { enumerable: true, get: function () { return web_checkout_1.paypalOrderCreate; } });
+Object.defineProperty(exports, "paypalOrderCapture", { enumerable: true, get: function () { return web_checkout_1.paypalOrderCapture; } });
+Object.defineProperty(exports, "webOrderStatus", { enumerable: true, get: function () { return web_checkout_1.webOrderStatus; } });
+Object.defineProperty(exports, "webPrices", { enumerable: true, get: function () { return web_checkout_1.webPrices; } });
 //# sourceMappingURL=index.js.map

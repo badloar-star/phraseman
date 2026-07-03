@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
@@ -151,6 +151,12 @@ interface ThemeCtx {
   setFontSize:  (s: FontSize) => void;
   /** Множник розміру інтерфейсу від вікна (~0.82–1.22); шрифти f і ds вже помножені */
   uiScale:      number;
+  /**
+   * Плоский «инстаграм»-режим (темы business/businessLight): без теней и
+   * градиентов, волосяные разделители вместо рамок, тонкие иконки/текст,
+   * фиксированная типографика (масштаб и размер шрифта не применяются).
+   */
+  isFlat:       boolean;
   f:            Fonts;   // готовые размеры шрифтов, использовать везде как f.body, f.h2 и тд
   ds: {
     spacing: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number };
@@ -176,6 +182,7 @@ const ThemeContext = createContext<ThemeCtx>({
   fontSize:     'medium',
   setFontSize:  () => {},
   uiScale:      1,
+  isFlat:       false,
   f:            createFonts(FONT_SCALE.medium),
   ds: {
     spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 },
@@ -200,19 +207,24 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   aurora: AURORA,
   volt: VOLT,
   business: BUSINESS,
+  businessLight: BUSINESS_LIGHT,
 };
-const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'business', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
 /** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'business', 'ember', 'aurora', 'volt'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
-const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass']);
+// business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
+const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
-  const uiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
+  const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
   const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
+  // Плоский IG-режим: масштаб интерфейса не применяется, типографика фиксирована.
+  const isFlat = themeMode === 'business' || themeMode === 'businessLight';
+  const uiScale = isFlat ? 1 : windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
@@ -251,7 +263,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
-        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' || migrated === 'business';
+        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
@@ -324,8 +336,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const f = useMemo(
-    () => createFonts(FONT_SCALE[fontSize] * uiScale),
-    [fontSize, uiScale],
+    () => createFonts(FONT_SCALE[isFlat ? 'medium' : fontSize] * uiScale),
+    [fontSize, uiScale, isFlat],
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
   const isDark = true;
@@ -334,33 +346,48 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     const isLuxuryTheme = themeMode === 'gold';
     const isCompassTheme = false;
-    const radiusBase = isLuxuryTheme || isCompassTheme
-      ? { md: 10, lg: 12, xl: 14, xxl: 18 }
-      : { md: 12, lg: 16, xl: 20, xxl: 24 };
-    return {
-      spacing: { xs: px(4), sm: px(8), md: px(12), lg: px(16), xl: px(24), xxl: px(32) },
-      radius: { md: px(radiusBase.md), lg: px(radiusBase.lg), xl: px(radiusBase.xl), xxl: px(radiusBase.xxl) },
-      inputHeight: Math.max(44, px(52)),
-      buttonHeight: Math.max(44, px(52)),
-      fontFamily: APP_FONT_FAMILY,
-      shadow: {
-        soft: {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
-          shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
-          shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
-          elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
-        },
-        medium: {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
-          shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
-          shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
-          elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
-        },
-      },
+    const radiusBase = isFlat
+      // IG-плоскость: меньше скругления, плашки компактнее.
+      ? { md: 8, lg: 10, xl: 12, xxl: 16 }
+      : isLuxuryTheme || isCompassTheme
+        ? { md: 10, lg: 12, xl: 14, xxl: 18 }
+        : { md: 12, lg: 16, xl: 20, xxl: 24 };
+    const noShadow = {
+      shadowColor: 'transparent',
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0,
+      shadowRadius: 0,
+      elevation: 0,
     };
-  }, [uiScale, isDark, themeMode]);
+    return {
+      spacing: isFlat
+        ? { xs: 4, sm: 8, md: 10, lg: 14, xl: 20, xxl: 28 }
+        : { xs: px(4), sm: px(8), md: px(12), lg: px(16), xl: px(24), xxl: px(32) },
+      radius: { md: px(radiusBase.md), lg: px(radiusBase.lg), xl: px(radiusBase.xl), xxl: px(radiusBase.xxl) },
+      inputHeight: isFlat ? 44 : Math.max(44, px(52)),
+      buttonHeight: isFlat ? 44 : Math.max(44, px(52)),
+      fontFamily: APP_FONT_FAMILY,
+      shadow: isFlat
+        // Плоский режим: никакого объёма — теней нет вовсе.
+        ? { soft: noShadow, medium: noShadow }
+        : {
+          soft: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
+            shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
+            shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
+            elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
+          },
+          medium: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
+            shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
+            shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
+            elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
+          },
+        },
+    };
+  }, [uiScale, isDark, themeMode, isFlat]);
 
   const value = useMemo<ThemeCtx>(
     () => ({
@@ -374,10 +401,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       fontSize,
       setFontSize,
       uiScale,
+      isFlat,
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

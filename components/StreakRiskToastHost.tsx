@@ -15,12 +15,14 @@ import { AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { checkStreakLossPending } from '../app/hall_of_fame_utils';
+import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 
 const EVENING_HOUR = 17;
 const SHOWN_KEY = 'streak_risk_toast_shown';
 
 export default function StreakRiskToastHost() {
   const runningRef = useRef(false);
+  const scheduledRef = useRef<{ cancel: () => void } | null>(null);
 
   const check = async () => {
     if (runningRef.current) return;
@@ -56,11 +58,19 @@ export default function StreakRiskToastHost() {
   };
 
   useEffect(() => {
-    void check();
+    const scheduleCheck = () => {
+      scheduledRef.current?.cancel();
+      scheduledRef.current = scheduleCoalescedForegroundTask('streak_risk_toast_check', check);
+    };
+    scheduleCheck();
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void check();
+      if (state === 'active') scheduleCheck();
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledRef.current?.cancel();
+      scheduledRef.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

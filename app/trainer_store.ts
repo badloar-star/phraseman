@@ -14,11 +14,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flushMistakeLog, logMistake } from './mistake_log';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
+import { getCachedFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
-import { computePhraseAnalytics } from './phrase_analytics';
+import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot } from './pos_workout_engine';
-import { storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
+import { storageSourceLocale, storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
@@ -165,6 +166,25 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
     trainerStoreCache.set(key, []);
     return [];
   }
+}
+
+function mergeFrenchRemotePracticeItems(
+  localItems: TrainerItem[],
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): TrainerItem[] {
+  if (storageStudyTarget(studyTarget) !== 'fr') return localItems;
+  const remoteItems = getCachedFrenchRemotePersonalPractice(storageSourceLocale(sourceLocale));
+  if (remoteItems.length === 0) return localItems;
+  return uniqueTrainerItems([...localItems, ...remoteItems]);
+}
+
+async function loadTrainerItemsForSessions(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<TrainerItem[]> {
+  const items = await load(studyTarget);
+  return mergeFrenchRemotePracticeItems(items, studyTarget, sourceLocale);
 }
 
 function applyPlanMistakeContext(item: TrainerItem, context?: PersonalPlanMistakeContext): void {
@@ -473,9 +493,10 @@ export interface TrainerDashboard {
 export async function getTrainerDashboard(
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
+  analyticsStatsInput?: PhraseAnalyticsResult | null | Promise<PhraseAnalyticsResult | null>,
 ): Promise<TrainerDashboard> {
   const target = storageStudyTarget(studyTarget);
-  const items = await load(studyTarget);
+  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
   const posMastery = await getPosMasterySnapshot(studyTarget);
   const end = todayEnd();
   const sessionContentEnabled = trainerSessionContentAvailableForTarget(studyTarget);
@@ -508,10 +529,12 @@ export async function getTrainerDashboard(
   }
   const fallbackHardestCategory = [...categoryStats.entries()].sort((a, b) => b[1] - a[1])[0];
   const analyticsStats = sessionContentEnabled
-    ? target === 'fr'
-      ? await computeFrenchPhraseAnalytics({ sourceLocale })
-      : await computePhraseAnalytics()
-    : undefined;
+    ? analyticsStatsInput !== undefined
+      ? await Promise.resolve(analyticsStatsInput).catch(() => null)
+      : target === 'fr'
+        ? await computeFrenchPhraseAnalytics({ sourceLocale })
+        : await computePhraseAnalytics()
+    : null;
   const analyticsHardestCategory = analyticsStats?.categoryStats[0];
   const fallbackCategoryForTarget = target === 'fr' ? undefined : fallbackHardestCategory;
   const totalTracked = items.length;
@@ -549,9 +572,10 @@ export async function getDueItems(
   queue: TrainerQueue,
   limit = 20,
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = await load(studyTarget);
+  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
   const end = todayEnd();
   return items
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
@@ -563,10 +587,11 @@ export function getCachedDueItems(
   queue: TrainerQueue,
   limit = 20,
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
 ): TrainerItem[] {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
   const end = todayEnd();
-  return (trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [])
+  return mergeFrenchRemotePracticeItems(trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [], studyTarget, sourceLocale)
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
@@ -613,9 +638,10 @@ export async function getTrainerPremiumItems(
   mode: TrainerPremiumMode,
   limit = 12,
   studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = (await load(studyTarget)).map(withTrainerCategory);
+  const items = (await loadTrainerItemsForSessions(studyTarget, sourceLocale)).map(withTrainerCategory);
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
   const categoryPriority = await loadCategoryPriorityScores(studyTarget);

@@ -44,12 +44,86 @@ const BROAD_GROUP_QUERY_LIMIT = 500;
 const LEAGUE_GROUP_BOOST_COST_SHARDS = 50;
 const LEAGUE_GROUP_BOOST_MULTIPLIER = 2;
 const LEAGUE_GROUP_BOOST_DURATION_MS = 3 * 60 * 60 * 1000;
+const NAME_INDEX = 'name_index';
 function sanitizeString(value, max) {
     return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
+}
+function normalizeName(value) {
+    const name = sanitizeString(value, 48);
+    return { name, nameLower: name.toLowerCase() };
 }
 function readInt(value, fallback = 0) {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) ? n : fallback;
+}
+function readNestedString(data, path) {
+    let cur = data;
+    for (const key of path) {
+        if (!cur || typeof cur !== 'object')
+            return '';
+        cur = cur[key];
+    }
+    return typeof cur === 'string' ? cur.trim() : '';
+}
+function leagueFallbackName(stableUid) {
+    const suffix = sanitizeString(stableUid, 180).slice(-4).toUpperCase() || 'USER';
+    return `Player ${suffix}`;
+}
+async function leagueNameOwnerIsLive(db, uid) {
+    const cleanUid = sanitizeString(uid, 180);
+    if (!cleanUid)
+        return false;
+    const userSnap = await db.collection('users').doc(cleanUid).get().catch(() => null);
+    if (!userSnap?.exists)
+        return false;
+    const data = userSnap.data() ?? {};
+    if (data.identityHidden === true)
+        return false;
+    if (data.banned === true)
+        return false;
+    return true;
+}
+async function legacyLeagueNameHasOtherLiveOwner(db, stableUid, name, nameLower) {
+    const queries = [
+        db.collection('users').where('progress.user_name_lower', '==', nameLower).limit(5),
+        db.collection('users').where('progress.user_name', '==', name).limit(5),
+        db.collection('leaderboard').where('nameLower', '==', nameLower).limit(5),
+    ];
+    for (const query of queries) {
+        const snap = await query.get().catch(() => null);
+        for (const doc of snap?.docs ?? []) {
+            const ownerUid = sanitizeString(doc.id, 180);
+            if (!ownerUid || ownerUid === stableUid)
+                continue;
+            if (await leagueNameOwnerIsLive(db, ownerUid))
+                return true;
+        }
+    }
+    return false;
+}
+async function resolveAuthoritativeLeagueMemberName(db, stableUid, userData, leaderboardData, requestedName) {
+    const candidates = [
+        readNestedString(userData, ['progress', 'user_name']),
+        sanitizeString(leaderboardData?.name, 48),
+        requestedName,
+    ];
+    for (const candidate of candidates) {
+        const { name, nameLower } = normalizeName(candidate);
+        if (!nameLower)
+            continue;
+        const idxSnap = await db.collection(NAME_INDEX).doc(nameLower).get().catch(() => null);
+        const idxData = idxSnap?.data?.() ?? {};
+        const indexOwner = sanitizeString(idxData.uid, 180);
+        if (idxSnap?.exists && idxData.identityHidden !== true) {
+            if (indexOwner === stableUid)
+                return sanitizeString(idxData.name, 48) || name;
+            continue;
+        }
+        if (!(await legacyLeagueNameHasOtherLiveOwner(db, stableUid, name, nameLower))) {
+            return name;
+        }
+    }
+    return leagueFallbackName(stableUid);
 }
 function getWeekId() {
     const d = new Date();
@@ -83,12 +157,15 @@ function sanitizeMember(raw, stableUid) {
         avatar: sanitizeString(raw.avatar, 64) || null,
         frame: sanitizeString(raw.frame, 64) || null,
         aura: sanitizeString(raw.aura, 64) || null,
-        profileCardLevel: Math.max(0, Math.min(5, readInt(raw.profileCardLevel, 0))),
+        profileCardLevel: Math.max(0, Math.min(1, readInt(raw.profileCardLevel, 0))),
         profileCardTheme: sanitizeString(raw.profileCardTheme, 32) || 'classic',
         profileCardMotion: sanitizeString(raw.profileCardMotion, 32) || 'none',
         profileCardPublicFocus: sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced',
         isPremium: raw.isPremium === true,
         isVip: raw.isVip === true,
+        // isLifetime не доверяем телу запроса (анти-чит): серверное значение
+        // проставляет leagueJoinOrUpdateGroup через resolveIsLifetimePlan.
+        isLifetime: false,
         streak,
         totalXp,
     };
@@ -239,11 +316,19 @@ exports.leagueJoinOrUpdateGroup = (0, https_1.onCall)(callable_options_1.HOT_CAL
     if (weekId !== getWeekId())
         throw new https_1.HttpsError('failed-precondition', 'stale_week');
     const leagueId = Math.max(0, Math.min(50, readInt(request.data?.leagueId, 0)));
-    const member = sanitizeMember((request.data?.member || {}), stableUid);
+    const rawMember = (request.data?.member || {});
     const lbRef = db.collection('leaderboard').doc(stableUid);
+    const [userSnap, lbSnap] = await Promise.all([
+        db.collection('users').doc(stableUid).get().catch(() => null),
+        lbRef.get().catch(() => null),
+    ]);
+    const member = sanitizeMember(rawMember, stableUid);
+    member.name = await resolveAuthoritativeLeagueMemberName(db, stableUid, userSnap?.data(), lbSnap?.data(), rawMember.name);
+    // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{stableUid} — как isPremium.
+    // Тело запроса подделать нельзя; false при ошибке/недоступности.
+    member.isLifetime = await (0, premium_status_1.resolveIsLifetimePlan)(db, stableUid, Date.now(), authUid).catch(() => false);
     let groupId = null;
     let shouldCleanupDuplicates = false;
-    const lbSnap = await lbRef.get().catch(() => null);
     const savedGroupId = lbSnap?.data()?.groupId;
     if (typeof savedGroupId === 'string' && lbSnap?.data()?.groupWeekId === weekId && readInt(lbSnap?.data()?.leagueId) === leagueId) {
         const savedSnap = await db.collection('league_groups').doc(savedGroupId).get().catch(() => null);
@@ -328,12 +413,13 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     if (!groupId || groupWeekId !== getWeekId())
         return { ok: false, status: 'no_current_group' };
     const raw = (request.data?.member || {});
+    const userSnap = await db.collection('users').doc(stableUid).get().catch(() => null);
+    const userData = userSnap?.data();
     const updates = {
         [`members.${stableUid}.uid`]: stableUid,
+        [`members.${stableUid}.name`]: await resolveAuthoritativeLeagueMemberName(db, stableUid, userData, lbSnap.data(), raw.name),
         updatedAt: Date.now(),
     };
-    if (Object.prototype.hasOwnProperty.call(raw, 'name'))
-        updates[`members.${stableUid}.name`] = sanitizeString(raw.name, 48) || 'Player';
     // H6 (account-security): points/streak/totalXp/isPremium/isVip раньше принимались от
     // клиента → любой авторизованный запрос ставил себе 999M очков в лиге, фейковый
     // премиум-значок, фейковый стрик. Теперь читаем эти поля СЕРВЕРНО из users/{stableUid}
@@ -347,7 +433,7 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     if (Object.prototype.hasOwnProperty.call(raw, 'aura'))
         updates[`members.${stableUid}.aura`] = sanitizeString(raw.aura, 64) || null;
     if (Object.prototype.hasOwnProperty.call(raw, 'profileCardLevel'))
-        updates[`members.${stableUid}.profileCardLevel`] = Math.max(0, Math.min(5, readInt(raw.profileCardLevel, 0)));
+        updates[`members.${stableUid}.profileCardLevel`] = Math.max(0, Math.min(1, readInt(raw.profileCardLevel, 0)));
     if (Object.prototype.hasOwnProperty.call(raw, 'profileCardTheme'))
         updates[`members.${stableUid}.profileCardTheme`] = sanitizeString(raw.profileCardTheme, 32) || 'classic';
     if (Object.prototype.hasOwnProperty.call(raw, 'profileCardMotion'))
@@ -356,8 +442,7 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
         updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
     // Серверная резолюция чувствительных полей: читаем users/{stableUid}.progress и
     // RC-status через resolvePremiumAccess. Один read, всё в одном месте.
-    const userSnap = await db.collection('users').doc(stableUid).get().catch(() => null);
-    const progress = (userSnap?.data()?.progress ?? {});
+    const progress = (userData?.progress ?? {});
     const weekPointsServer = Math.max(0, Math.min(1000000000, readInt(progress.weekly_xp ?? progress.week_points_v2 ?? progress.week_points, 0)));
     const streakServer = Math.max(0, Math.min(100000, readInt(progress.streak_count, 0)));
     const totalXpServer = Math.max(0, Math.min(1000000000, readInt(progress.user_total_xp, 0)));
@@ -372,6 +457,13 @@ exports.leagueUpdateMyMember = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     }
     catch {
         // resolvePremiumAccess недоступна — не пишем поле (член группы сохранит старое значение).
+    }
+    try {
+        const isLifetimeServer = await (0, premium_status_1.resolveIsLifetimePlan)(db, stableUid, Date.now(), authUid);
+        updates[`members.${stableUid}.isLifetime`] = isLifetimeServer;
+    }
+    catch {
+        // resolveIsLifetimePlan недоступна — не пишем поле (сохранится старое значение).
     }
     const vipFromProgress = (0, premium_status_1.isVipActive)(progress);
     updates[`members.${stableUid}.isVip`] = vipFromProgress;
@@ -479,7 +571,7 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
             buyerFrame: sanitizeString(buyer.frame, 64) || null,
             buyerAura: sanitizeString(buyer.aura, 64) || null,
             buyerTotalXp: Math.max(0, readInt(buyer.totalXp, 0)),
-            buyerProfileCardLevel: Math.max(0, Math.min(5, readInt(buyer.profileCardLevel, 0))),
+            buyerProfileCardLevel: Math.max(0, Math.min(1, readInt(buyer.profileCardLevel, 0))),
             buyerProfileCardTheme: sanitizeString(buyer.profileCardTheme, 32) || 'classic',
             buyerProfileCardMotion: sanitizeString(buyer.profileCardMotion, 32) || 'none',
             buyerProfileCardPublicFocus: sanitizeString(buyer.profileCardPublicFocus, 32) || 'balanced',

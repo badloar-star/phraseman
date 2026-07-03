@@ -54,7 +54,7 @@ describe('reported content regressions', () => {
 
   it('uses a comparative Russian translation for lesson 14 phrase 45 better plan', () => {
     const phrase = LESSON_DATA[14].phrases.find((row) => row.id === 'lesson14_phrase_45');
-    const lessonHelpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
+    const lessonHelpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
     const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_intro_screens_lesson14_v2.ts'), 'utf8');
 
     expect(phrase?.russian).toBe('Нам нужен план получше');
@@ -166,7 +166,7 @@ describe('reported content regressions', () => {
   });
 
   it('explains why someone can appear in a question in lesson 21 theory', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
 
     expect(source).toContain('Anyone/anybody чаще звучит как нейтральный вопрос');
     expect(source).toContain('Someone и somebody — это не разные грамматические правила');
@@ -184,7 +184,7 @@ describe('reported content regressions', () => {
   });
 
   it('uses meaningful direct speech in lesson 27 reported speech theory', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
 
     expect(source).toContain("['I will call you', 'He said that he would call me']");
     expect(source).not.toContain("['I will call me', 'He said that he would call me']");
@@ -209,6 +209,27 @@ describe('reported content regressions', () => {
     // The first English chip must now offer "this" as the correct token.
     const firstPronoun = phrase?.wordsEn?.find((word) => word.correct === 'this');
     expect(firstPronoun).toBeTruthy();
+  });
+
+  it('teaches and accepts optional "to" after help for lesson 30 phrase 41', () => {
+    const phrase = LESSON_DATA[30].phrases.find((row) => row.id === 'lesson30_phrase_41');
+    const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_intro_screens_en_17_32.ts'), 'utf8');
+    const helpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const theorySource = fs.readFileSync(path.join(process.cwd(), 'app', 'theory_content_lesson30.ts'), 'utf8');
+
+    expect(phrase).toBeTruthy();
+    expect(phrase?.english).toBe('Is this the app that helps you learn?');
+    expect(
+      isCorrectAnswer(
+        'Is this the app that helps you to learn?',
+        phraseCanonicalAnswer(phrase!, 'en'),
+        phraseAnswerAlternatives(phrase!, 'en'),
+      ),
+    ).toBe(true);
+    expect(introSource).toContain('Почему learn без to');
+    expect(introSource).toContain('helps you to learn тоже возможен');
+    expect(helpSource).toContain('после help + кого-то действие часто стоит в простой форме');
+    expect(theorySource).toContain('после help + кого-то действие часто ставят в простой форме');
   });
 
   it('shows readable Cyrillic (no mojibake) for lesson 18 phrase 31 reserve a table', () => {
@@ -237,6 +258,31 @@ describe('reported content regressions', () => {
     expect(
       isCorrectAnswer('The chair is near the table', phraseCanonicalAnswer(p7!, 'en'), phraseAnswerAlternatives(p7!, 'en')),
     ).toBe(true);
+  });
+
+  it('keeps desk distinct from table in lesson 20 reported phrases', () => {
+    const keyOnDesk = LESSON_DATA[20].phrases.find((row) => row.id === 'lesson20_phrase_38');
+    const cupOnDesk = LESSON_DATA[20].phrases.find((row) => row.id === 'lesson20_phrase_45');
+    const phoneOnTable = LESSON_DATA[20].phrases.find((row) => row.id === 'lesson20_phrase_3');
+
+    expect(keyOnDesk?.english).toBe('There is a key on the desk.');
+    expect(keyOnDesk?.russian).toBe('На рабочем столе есть ключ.');
+    expect(keyOnDesk?.ukrainian).toBe('На робочому столі є ключ.');
+    expect(cupOnDesk?.english).toBe('The cup is on the desk.');
+    expect(cupOnDesk?.russian).toBe('Чашка на рабочем столе.');
+    expect(cupOnDesk?.ukrainian).toBe('Чашка на робочому столі.');
+    expect(phoneOnTable?.english).toBe('The phone is on the table.');
+    expect(phoneOnTable?.russian).toBe('Телефон на столе.');
+  });
+
+  it('uses genitive plural for lesson 16 phrase 27 problems prompt', () => {
+    const phrase = LESSON_DATA[16].phrases.find((row) => row.id === 'lesson16_phrase_27');
+    const helpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+
+    expect(phrase?.english).toBe('I do not look for problems');
+    expect(phrase?.russian).toBe('Я не ищу проблем');
+    expect(phrase?.ukrainian).toBe('Я не шукаю проблем');
+    expect(helpSource).toContain("['looking for problems', isUK ? 'шукаю проблем' : 'ищу проблем'");
   });
 
   it('uses "втрачати" (losing) not "витрачати" (spending) for lesson 22 phrase 27 hates losing money', () => {

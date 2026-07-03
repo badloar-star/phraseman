@@ -14,6 +14,7 @@ import { useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
+import PlusBadge from '../components/PlusBadge';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
@@ -87,7 +88,7 @@ function rewardIcon(r: BattlePassReward): keyof typeof Ionicons.glyphMap {
 }
 
 export default function ArenaBattlePassScreen() {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const hasPremium = useFeatureAccess('arena');
@@ -134,10 +135,8 @@ export default function ArenaBattlePassScreen() {
     } else if (r.kind === 'xp') {
       // Настоящее начисление XP через registerXP с детерминированным eventId (без дублей).
       const eventId = `arena_pass:${seasonId}:${track}:lvl${level}:xp`;
-      try {
-        const name = (await AsyncStorage.getItem('user_name'))?.trim() || 'Player';
-        await registerXP(r.amount, 'achievement_reward', name, lang, undefined, { eventId, payload: { surface: 'arena_battle_pass', level } });
-      } catch { /* XP не критичен — награда всё равно помечается забранной */ }
+      const name = (await AsyncStorage.getItem('user_name'))?.trim() || 'Player';
+      await registerXP(r.amount, 'achievement_reward', name, lang, undefined, { eventId, payload: { surface: 'arena_battle_pass', level } });
     }
   }, [seasonId, lang]);
 
@@ -145,18 +144,18 @@ export default function ArenaBattlePassScreen() {
     const tier = ladder.find((x) => x.level === level);
     if (!tier) return;
     await hapticSuccess();
-    await grantReward(tier.free, 'free', level);
     const next = await markFreeClaimed(level, seasonId);
     setClaimedFree(new Set(next));
+    void grantReward(tier.free, 'free', level).catch(() => {});
   }, [ladder, grantReward, seasonId]);
 
   const claimPremium = useCallback(async (level: number) => {
     const tier = ladder.find((x) => x.level === level);
     if (!tier?.premium) return;
     await hapticSuccess();
-    await grantReward(tier.premium, 'premium', level);
     const next = await markPremiumClaimed(level, seasonId);
     setClaimedPremium(new Set(next));
+    void grantReward(tier.premium, 'premium', level).catch(() => {});
   }, [ladder, grantReward, seasonId]);
 
   const openPaywall = useCallback(() => {
@@ -248,6 +247,7 @@ export default function ArenaBattlePassScreen() {
               onClaimFree={() => claimFree(s.level)}
               onClaimPremium={() => claimPremium(s.level)}
               onLockedPremium={openPaywall}
+              themeMode={themeMode}
             />
           );
         }) : null}
@@ -265,12 +265,13 @@ interface TierRowProps {
   lang: Lang;
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  themeMode: string;
   onClaimFree: () => void;
   onClaimPremium: () => void;
   onLockedPremium: () => void;
 }
 
-function TierRow({ level, state, freeReward, premiumReward, lang, t, f, onClaimFree, onClaimPremium, onLockedPremium }: TierRowProps) {
+function TierRow({ level, state, freeReward, premiumReward, lang, t, f, themeMode, onClaimFree, onClaimPremium, onLockedPremium }: TierRowProps) {
   const dim = !state.free.unlocked;
   return (
     <View style={[styles.tierRow, { borderColor: t.border, backgroundColor: t.bgCard, opacity: dim ? 0.55 : 1 }]}>
@@ -286,7 +287,7 @@ function TierRow({ level, state, freeReward, premiumReward, lang, t, f, onClaimF
         locked={false}
         onPress={onClaimFree}
         onLockedPress={() => {}}
-        lang={lang} t={t} f={f}
+        lang={lang} t={t} f={f} themeMode={themeMode}
       />
 
       {/* Премиум-награда */}
@@ -299,7 +300,7 @@ function TierRow({ level, state, freeReward, premiumReward, lang, t, f, onClaimF
           onPress={onClaimPremium}
           onLockedPress={onLockedPremium}
           isPremium
-          lang={lang} t={t} f={f}
+          lang={lang} t={t} f={f} themeMode={themeMode}
         />
       ) : <View style={styles.rewardCell} />}
     </View>
@@ -317,9 +318,10 @@ interface RewardCellProps {
   lang: Lang;
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  themeMode: string;
 }
 
-function RewardCell({ reward, claimable, claimed, locked, isPremium, onPress, onLockedPress, lang, t, f }: RewardCellProps) {
+function RewardCell({ reward, claimable, claimed, locked, isPremium, onPress, onLockedPress, lang, t, f, themeMode }: RewardCellProps) {
   const accent = isPremium ? t.gold : t.accent;
   const handle = locked ? onLockedPress : claimable ? onPress : undefined;
   return (
@@ -335,7 +337,11 @@ function RewardCell({ reward, claimable, claimed, locked, isPremium, onPress, on
         },
       ]}
     >
-      <Ionicons name={locked ? 'lock-closed' : rewardIcon(reward)} size={16} color={claimed ? t.textMuted : accent} />
+      {locked && isPremium ? (
+        <PlusBadge themeMode={themeMode} size="xs" />
+      ) : (
+        <Ionicons name={locked ? 'lock-closed' : rewardIcon(reward)} size={16} color={claimed ? t.textMuted : accent} />
+      )}
       <Text style={[styles.rewardText, { color: claimed ? t.textMuted : t.textPrimary, fontSize: f.caption }]} numberOfLines={2}>
         {rewardLabel(reward, lang)}
       </Text>

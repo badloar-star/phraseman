@@ -8,7 +8,7 @@ describe('admin revenue analytics contract', () => {
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
   const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
-  const onboardingSource = fs.readFileSync(path.join(root, 'components', 'onboarding.tsx'), 'utf8');
+  const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
 
   const countOccurrences = (haystack: string, needle: string): number => haystack.split(needle).length - 1;
@@ -38,19 +38,23 @@ describe('admin revenue analytics contract', () => {
     expect(premiumModalSource).toContain('params: { ...params }');
     expect(paywallASource).toContain('params.source');
     expect(paywallASource).toContain("|| 'direct'");
-    expect(onboardingSource).toContain("trackActivity('paywall:view'");
-    expect(onboardingSource).toContain("trackActivity('paywall:purchase_success'");
-    expect(onboardingSource).toContain("screen: 'onboarding'");
-    expect(onboardingSource).toContain("const obColor = 'main' as const");
-    expect(onboardingSource).toContain("writeToFirestore: true");
+    expect(onboardingSource).toContain("trackOnboarding('onboarding_plan_paywall_view'");
+    expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
+    expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
+    expect(onboardingSource).toContain("[PLAN_BILLING_KEY, 'yearly']");
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {
     [
       'id="revenue-range"',
+      'id="revenue-date-from"',
+      'id="revenue-date-to"',
+      'id="revenue-scale"',
       'id="revenue-platform"',
       'id="revenue-status"',
       'revenue-empty-state',
+      'revenueOnRangeChange(this.value)',
+      'revenueUseCustomRange()',
       'loadRevenueAnalytics(true)',
       'Paywall analytics',
       'paywall_settings_views',
@@ -72,6 +76,27 @@ describe('admin revenue analytics contract', () => {
     ].forEach((needle) => expect(adminHtml).toContain(needle));
   });
 
+  it('adds admin onboarding source statistics from app_activity', () => {
+    [
+      "switchTab('onboarding-sources')",
+      "id=\"tab-onboarding-sources\"",
+      "id=\"onboarding-source-range\"",
+      "id=\"onboarding-source-platform\"",
+      "loadOnboardingSources(true)",
+      "window.loadOnboardingSources",
+      "collection(db, 'app_activity')",
+      "row.action === 'onboarding_source_select'",
+      "Latest answer per user",
+      "onboarding_source_mix",
+      "'onboarding-sources'",
+      "Onboarding sources",
+    ].forEach((needle) => expect(adminHtml).toContain(needle));
+
+    expect(onboardingSource).toContain("trackOnboarding('onboarding_source_select'");
+    expect(onboardingSource).toContain("writeToFirestore: action === 'onboarding_source_select'");
+    expect(onboardingSource).toContain("consented: true");
+  });
+
   it('keeps analytics visible before Firestore data loads or when one query fails', () => {
     expect(adminHtml).toContain('function revenueFallbackCards');
     expect(adminHtml).toContain('function revenueSafeGetDocs');
@@ -88,12 +113,37 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('overflow-x: hidden');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #revenue-analytics-grid {');
     expect(adminHtml).toContain('flex-direction: column');
+    expect(adminHtml).toContain('class="rsv-scroll" tabindex="0"');
+    expect(adminHtml).toContain('class="rsv-track"');
     expect(adminHtml).toContain('class="rsv-bars"');
     expect(adminHtml).toContain("class=\"rsv-bar${isPeak ? ' is-peak' : ''}\"");
     expect(adminHtml).toContain('class="rsv-bar-track"');
+    expect(adminHtml).toContain('class="rsv-bar-label"');
+    expect(adminHtml).toContain('overflow-x: auto');
     expect(adminHtml).toContain('min-width: 0 !important');
     expect(adminHtml).not.toContain('min-width:18px;flex:1');
     expect(adminHtml).not.toContain('style="min-width:320px"');
+  });
+
+  it('supports selectable revenue date windows and adjustable chart scale', () => {
+    expect(adminHtml).toContain('function revenueSelectedRange');
+    expect(adminHtml).toContain('function revenueDaysFromRange');
+    expect(adminHtml).toContain('function revenueSeriesBucketMode');
+    expect(adminHtml).toContain('function revenueBuildDateBuckets');
+    expect(adminHtml).toContain('function revenueSeriesDayWidth');
+    expect(adminHtml).toContain('function revenueDateFromKey');
+    expect(adminHtml).toContain("const range = revenueSelectedRange()");
+    expect(adminHtml).toContain("const days = revenueDaysFromRange(range.fromKey, range.toKey)");
+    expect(adminHtml).toContain("if (n >= 180) return 'month'");
+    expect(adminHtml).toContain("if (n >= 60) return 'week'");
+    expect(adminHtml).toContain('const bucketed = revenueBuildDateBuckets(days)');
+    expect(adminHtml).toContain('const bucketKey = bucketed.dayToBucket[d]');
+    expect(adminHtml).toContain("const rows = await revenueFetchRows(range, platform)");
+    expect(adminHtml).toContain("['Period', `${range.fromKey} -> ${range.toKey}`]");
+    expect(adminHtml).toContain("['Buckets', bucketLabel]");
+    expect(adminHtml).toContain('title="Bar width"');
+    expect(adminHtml).toContain('style="width:${dayWidth}px;min-width:${dayWidth}px"');
+    expect(adminHtml).toContain('aria-label="${escapeHtml(title)} date scale from ${escapeHtml(firstFull)} to ${escapeHtml(lastFull)}"');
   });
 
   it('uses a compact zero-data revenue state instead of many empty charts', () => {
@@ -102,7 +152,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('class="revenue-zero-metrics"');
     expect(adminHtml).toContain('Expected events');
     expect(adminHtml).toContain('Tracking checklist');
-    expect(adminHtml).toContain('No matching events for ${rangeDays} day(s). Showing compact zero overview.');
+    expect(adminHtml).toContain('No matching events for ${range.fromKey} -> ${range.toKey}. Showing compact zero overview.');
     expect(adminHtml).toContain('grid.innerHTML = revenueZeroStateDashboard({');
     expect(adminHtml).toContain('data-revenue-chart="zero_state_overview"');
   });
@@ -159,6 +209,38 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain("analytics: 'core'");
     expect(adminHtml).toContain("'app-health': 'core'");
     expect(adminHtml).toContain("archive: 'system'");
+  });
+
+  it('keeps safety and consent sections registered with the admin router', () => {
+    const match = adminHtml.match(/const ADMIN_TAB_KEYS = \[([^\]]+)\]/);
+    expect(match).not.toBeNull();
+    const keys = Array.from((match?.[1] || '').matchAll(/'([^']+)'/g)).map((item) => item[1]);
+
+    for (const key of ['safety-flags', 'age-consent']) {
+      expect(keys).toContain(key);
+      expect(adminHtml).toContain(`onclick="switchTab('${key}')`);
+      expect(adminHtml).toContain(`id="tab-${key}"`);
+      expect(adminHtml).toContain(`tab==='${key}'`);
+    }
+    expect(adminHtml).toContain("'safety-flags': 'users'");
+    expect(adminHtml).toContain("'age-consent': 'users'");
+  });
+
+  it('keeps safety and consent loaders retryable after auth or permission failures', () => {
+    const safetyStart = adminHtml.indexOf('window.loadSafetyFlags = async function()');
+    const ageStart = adminHtml.indexOf('window.loadAgeConsent = async function()');
+    expect(safetyStart).toBeGreaterThan(0);
+    expect(ageStart).toBeGreaterThan(safetyStart);
+    const safetyLoader = adminHtml.slice(safetyStart, ageStart);
+    const ageLoader = adminHtml.slice(ageStart, adminHtml.indexOf('window.loadUserReports = async function()', ageStart));
+
+    expect(safetyLoader.indexOf('getIdToken(true)')).toBeLessThan(safetyLoader.indexOf("collection(db, 'safety_flags')"));
+    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = true')).toBeGreaterThan(safetyLoader.indexOf('filterSafetyFlags()'));
+    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = false')).toBeGreaterThan(safetyLoader.indexOf('catch(e)'));
+
+    expect(ageLoader.indexOf('getIdToken(true)')).toBeLessThan(ageLoader.indexOf("collection(db, 'user_consents')"));
+    expect(ageLoader.indexOf('window._ageConsentLoaded = true')).toBeGreaterThan(ageLoader.indexOf('box.innerHTML = `'));
+    expect(ageLoader.indexOf('window._ageConsentLoaded = false')).toBeGreaterThan(ageLoader.indexOf('catch(e)'));
   });
 
   it('compacts repeated loading and permission states into diagnostic cards', () => {
@@ -458,6 +540,12 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Loading clubs...');
     expect(adminHtml).toContain('Select a league to view mini groups and members.');
     expect(adminHtml).toContain('Move league');
+    expect(adminHtml).toContain('function isVisibleClubMember(member)');
+    expect(adminHtml).toContain('function visibleClubMemberEntries(members)');
+    expect(adminHtml).toContain('realCount: countVisibleClubMembers(members)');
+    expect(adminHtml).toContain('hidden tails');
+    expect(adminHtml).not.toContain('realCount: Object.keys(members).length');
+    expect(adminHtml).not.toContain('Object.keys(group.members || {}).map');
     expect(adminHtml).toContain('applyCleanDailyPhrasesChrome');
     expect(adminHtml).toContain('Loading daily phrases...');
     expect(adminHtml).toContain('No daily phrases for this filter.');

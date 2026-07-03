@@ -50,7 +50,7 @@ export function isStudyTarget(value: unknown): value is StudyTarget {
 }
 
 export function isProductionStudyTarget(value: unknown): value is ProductionStudyTarget {
-  return value === DEFAULT_STUDY_TARGET;
+  return typeof value === 'string' && STUDY_TARGETS.includes(value as ProductionStudyTarget);
 }
 
 export function isStudyTargetSourceLocale(value: unknown): value is SourceLocale {
@@ -66,7 +66,7 @@ export function defaultStudyTarget(): typeof DEFAULT_STUDY_TARGET {
   return DEFAULT_STUDY_TARGET;
 }
 
-export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): 'en-US' {
+export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): 'en-US' | 'fr-FR' {
   return STUDY_TARGET_META[studyTarget].ttsLocale;
 }
 

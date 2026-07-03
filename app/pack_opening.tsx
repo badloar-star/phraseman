@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
@@ -14,12 +15,12 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   buildMarketplaceOwnedCards,
@@ -43,6 +44,7 @@ import {
   frenchFlashcardsGateCopy,
 } from './flashcards_target_gate';
 import BouncyScrollView from '../components/BouncyScrollView';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
@@ -358,7 +360,8 @@ export default function PackOpeningScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const params = useLocalSearchParams<{ packId?: string }>();
   const packId = typeof params.packId === 'string' ? params.packId : '';
 
@@ -516,11 +519,47 @@ export default function PackOpeningScreen() {
   const allOpened = total > 0 && opened >= total;
 
   // ── Loading / error ────────────────────────────────────────────────────────
+  // Скелетон повторяет геометрию финального экрана (шапка + прогресс-бар + сетка
+  // карточек — cardWidth/cardHeight уже посчитаны выше useMemo'ом до этого return),
+  // чтобы не мигать пустым фоном перед церемонией открытия пака (Performance Bible: B6).
   if (loading) {
     return (
       <ScreenGradient artBackdrop="flashcards">
-        <View style={styles.fillCenter}>
+        <View style={{ flex: 1 }}>
           <Stack.Screen options={{ headerShown: false }} />
+
+          <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+            <View style={{ width: 26, height: 26 }} />
+            <View style={{ flex: 1, alignItems: 'center', gap: 6 }}>
+              <SkeletonBlock width={140} height={f.h3 ?? 18} borderRadius={4} baseColor={t.borderLight} />
+              <SkeletonBlock width={100} height={f.label ?? 12} borderRadius={4} baseColor={t.borderLight} />
+            </View>
+            <View style={{ width: 26 }} />
+          </View>
+
+          <View style={[styles.progressTrack, { backgroundColor: t.borderLight }]} />
+
+          <ScrollView
+            contentContainerStyle={{
+              paddingHorizontal: H_PADDING,
+              paddingTop: 12,
+              paddingBottom: 140,
+            }}
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.grid}>
+              {Array.from({ length: GRID_COLS * 3 }).map((_, idx) => (
+                <SkeletonBlock
+                  key={`pack-opening-skeleton-card-${idx}`}
+                  width={cardWidth}
+                  height={cardHeight}
+                  borderRadius={16}
+                  baseColor={t.borderLight}
+                  style={{ marginBottom: 14 }}
+                />
+              ))}
+            </View>
+          </ScrollView>
         </View>
       </ScreenGradient>
     );
@@ -645,7 +684,7 @@ export default function PackOpeningScreen() {
           styles.footer,
           {
             borderTopColor: t.borderLight,
-            paddingBottom: insets.bottom + 14,
+            paddingBottom: bottomInset + 14,
           },
         ]}
       >

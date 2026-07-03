@@ -4,7 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
-import { lessonTheoryXpClaimedKey } from './target_storage_keys';
+import { updateTaskProgress } from './daily_tasks';
+import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { legacyRuUk } from '../constants/i18n';
@@ -180,17 +181,40 @@ export default function LessonTheoryV2Screen() {
     contentKey === 'uk'
       ? 'am, is, are — каркас англійської фрази'
       : 'am, is, are — каркас английской фразы';
+  const claimStorageKey = useMemo(
+    () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
+    [lessonId, studyTarget],
+  );
+  const progressStorageKey = useMemo(
+    () => lessonTheorySectionsSeenKey(lessonId, studyTarget),
+    [lessonId, studyTarget],
+  );
+  const [initialClaimed, setInitialClaimed] = React.useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setInitialClaimed(false);
+    AsyncStorage.getItem(claimStorageKey)
+      .then((value) => {
+        if (!cancelled) setInitialClaimed(value === '1');
+      })
+      .catch(() => {});
+    if (hasNewTheory) {
+      updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
+    }
+    return () => { cancelled = true; };
+  }, [claimStorageKey, hasNewTheory, studyTarget]);
 
   const goBack = useCallback(
     () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
     [router, lessonId],
   );
 
-  const handleClaimXP = useCallback(async () => {
+  const handleClaimXP = useCallback(async (): Promise<boolean> => {
     try {
-      const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
-      const already = await AsyncStorage.getItem(key);
-      if (already === '1') return;
+      const already = await AsyncStorage.getItem(claimStorageKey);
+      if (already === '1') return true;
+      await AsyncStorage.setItem(claimStorageKey, '1');
       const userName = (await AsyncStorage.getItem('user_name')) ?? '';
       await registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
         eventId: [
@@ -202,11 +226,12 @@ export default function LessonTheoryV2Screen() {
         ].join(':'),
         payload: { lessonId, studyTarget, surface: 'lesson_theory' },
       });
-      await AsyncStorage.setItem(key, '1');
+      return true;
     } catch {
-      // Награда не должна ронять экран; повтор возможен при следующем заходе.
+      await AsyncStorage.removeItem(claimStorageKey).catch(() => {});
+      return false;
     }
-  }, [lessonId, studyTarget, lang]);
+  }, [claimStorageKey, lessonId, studyTarget, lang]);
 
   if (!hasNewTheory) return null;
 
@@ -218,6 +243,8 @@ export default function LessonTheoryV2Screen() {
       subtitle={subtitle}
       sections={sections}
       xpAmount={25}
+      initialClaimed={initialClaimed}
+      progressStorageKey={progressStorageKey}
       onClaimXP={handleClaimXP}
       onBack={goBack}
     />

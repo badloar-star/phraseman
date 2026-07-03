@@ -108,11 +108,13 @@ describe('Gustav personal practice target isolation', () => {
     expect(trainerSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
     expect(trainerSource).toContain('devSeedTrainer(studyTarget)');
     expect(trainerSource).toContain('personalTrainingEnabled={personalPracticeCoachEnabled}');
-    expect(trainerSource).toContain('getTrainerDashboard(studyTarget, sourceLocale)');
-    expect(trainerSource).toContain('loadResolvedPersonalTrainings({ studyTarget, sourceLocale })');
+    expect(trainerSource).toContain('prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale, force: true })');
+    const trainerPrefetchSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_practice_prefetch.ts'), 'utf8');
+    expect(trainerPrefetchSource).toContain('loadResolvedPersonalTrainings({ studyTarget, sourceLocale: normalizedSourceLocale })');
+    expect(trainerPrefetchSource).toContain('ensureFrenchRemotePersonalPractice(normalizedSourceLocale)');
     expect(trainerSource).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
     expect(trainerSource).toContain('trainerSessionEnabled');
-    expect(trainerSource).toContain('Promise.resolve(null)');
+    expect(trainerPrefetchSource).toContain('Promise.resolve(null)');
     expect(analyticsScreenSource).toContain('const analyticsSourceGateOpen = personalPracticeCoachEnabled');
     expect(analyticsScreenSource).toContain('!analyticsSourceGateOpen');
     expect(analyticsScreenSource).toContain('frenchPersonalPracticeGateCopy(lang)');
@@ -282,7 +284,7 @@ describe('Gustav personal practice target isolation', () => {
     expect((await computeFrenchPhraseAnalytics({ sourceLocale: 'ru' })).totalMistakes).toBe(0);
     expect((await computeFrenchPhraseAnalytics({ sourceLocale: 'uk' })).totalMistakes).toBe(1);
     expect((await getTrainerDashboard('fr', 'ru')).hardestCategory).toBeNull();
-    expect((await getTrainerDashboard('fr', 'uk')).hardestCategory).toBeNull();
+    expect((await getTrainerDashboard('fr', 'uk')).hardestCategory).toBe('to-be');
   });
 
   it('blocks English dev trainer seeds from populating French personal practice', async () => {

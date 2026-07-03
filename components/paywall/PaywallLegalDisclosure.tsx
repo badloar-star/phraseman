@@ -51,17 +51,17 @@ export default function PaywallLegalDisclosure({
         tr: 'Google Play → Abonelikler', pl: 'Google Play → Subskrypcje',
       });
 
-  // Разовая покупка (Навсегда) — нет автопродления.
+  // Phraseman Pro — разовая покупка без автопродления.
   if (isLifetime) {
     const txt = triLang(lang, {
-      ru: `Разовая покупка ${priceLabel} через ${store} — без подписки и автопродления. Действует бессрочно.`,
-      uk: `Разова покупка ${priceLabel} через ${store} — без підписки й автопродовження. Діє безстроково.`,
-      es: `Compra única de ${priceLabel} en ${store}, sin suscripción ni renovación automática. Acceso de por vida.`,
-      'pt-BR': `Compra única de ${priceLabel} na ${store}, sem assinatura nem renovação automática. Acesso vitalício.`,
-      vi: `Mua một lần ${priceLabel} qua ${store}, không đăng ký, không tự gia hạn. Truy cập trọn đời.`,
-      id: `Pembelian sekali ${priceLabel} via ${store}, tanpa langganan atau perpanjangan otomatis. Akses seumur hidup.`,
-      tr: `${store} üzerinden tek seferlik ${priceLabel} satın alma, abonelik ve otomatik yenileme yok. Ömür boyu erişim.`,
-      pl: `Jednorazowy zakup ${priceLabel} przez ${store}, bez subskrypcji i automatycznego odnawiania. Dostęp na zawsze.`,
+      ru: `Phraseman Pro: разовая покупка ${priceLabel} через ${store}, без подписки и автопродления.`,
+      uk: `Phraseman Pro: разова покупка ${priceLabel} через ${store}, без підписки й автопродовження.`,
+      es: `Phraseman Pro: compra única de ${priceLabel} en ${store}, sin suscripción ni renovación automática.`,
+      'pt-BR': `Phraseman Pro: compra única de ${priceLabel} na ${store}, sem assinatura nem renovação automática.`,
+      vi: `Phraseman Pro: mua một lần ${priceLabel} qua ${store}, không đăng ký, không tự gia hạn.`,
+      id: `Phraseman Pro: pembelian sekali ${priceLabel} via ${store}, tanpa langganan atau perpanjangan otomatis.`,
+      tr: `Phraseman Pro: ${store} üzerinden tek seferlik ${priceLabel} satın alma, abonelik ve otomatik yenileme yok.`,
+      pl: `Phraseman Pro: jednorazowy zakup ${priceLabel} przez ${store}, bez subskrypcji i automatycznego odnawiania.`,
     });
     return (
       <View style={S.wrap}>
@@ -104,6 +104,6 @@ export default function PaywallLegalDisclosure({
 }
 
 const S = StyleSheet.create({
-  wrap: { marginTop: 12, paddingHorizontal: 4 },
-  text: { fontSize: 10, lineHeight: 14.5, textAlign: 'center', opacity: 0.7 },
+  wrap: { marginTop: 14, paddingHorizontal: 4 },
+  text: { fontSize: 11.5, lineHeight: 16.5, textAlign: 'center', opacity: 0.72 },
 });

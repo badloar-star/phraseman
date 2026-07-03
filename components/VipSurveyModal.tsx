@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {
@@ -15,10 +16,10 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { submitVipSurveyFromApp, type SubmitVipSurveyResponse } from '../app/vip_survey';
 import {
@@ -38,7 +39,8 @@ type Props = {
 function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   const { lang } = useLang();
   const { f, isDark } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: windowHeight } = useWindowDimensions();
   const scrollRef = useRef<ScrollView>(null);
   const commentFocusedRef = useRef(false);
@@ -54,7 +56,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   const keyboardVisible = keyboardHeight > 0;
   const inputControlVisible = keyboardVisible || commentFocused;
   const panelKeyboardMaxHeight = keyboardVisible
-    ? Math.max(320, windowHeight - keyboardHeight - insets.top - insets.bottom - 22)
+    ? Math.max(320, windowHeight - keyboardHeight - insets.top - bottomInset - 22)
     : undefined;
 
   const clearCommentScrollTimers = () => {
@@ -274,7 +276,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
           {
             justifyContent: keyboardVisible ? 'flex-start' : 'center',
             paddingTop: insets.top + (keyboardVisible ? 8 : 18),
-            paddingBottom: insets.bottom + (keyboardVisible ? keyboardHeight + 8 : 18),
+            paddingBottom: bottomInset + (keyboardVisible ? keyboardHeight + 8 : 18),
           },
         ]}
       >

@@ -38,4 +38,18 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('getLoyaltyGiftState');
     expect(source).toContain("onAppEvent('loyalty_gift_changed'");
   });
+
+  it('clears in-memory entitlement state immediately when account deletion completes locally', () => {
+    const start = source.indexOf("onAppEvent('account_deleted'");
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf("onAppEvent('loyalty_gift_changed'", start));
+
+    expect(body).toContain('invalidatePremiumCache()');
+    expect(body).toContain('vipSnapshotStateRef.current = false');
+    expect(body).toContain('setIsPremium(false)');
+    expect(body).toContain('setIsVip(false)');
+    expect(body).toContain('setHasPremiumAccess(false)');
+    expect(body).toContain('setIsIntroFullAccess(false)');
+    expect(body).toContain("emitAppEvent('premium_access_changed', { active: false, source: 'none' })");
+  });
 });

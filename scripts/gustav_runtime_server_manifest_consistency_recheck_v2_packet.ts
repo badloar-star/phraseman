@@ -36,6 +36,7 @@ type EvaluationInput = {
   manifestDraftPresent: boolean;
   targetManifestPresent: boolean;
   productionServerManifestExists: boolean;
+  productionServerManifestSafelyPromoted: boolean;
   serverUploadAllowed: boolean;
   firebaseUploadAllowed: boolean;
   downloadablePacksPublished: boolean;
@@ -99,6 +100,7 @@ type Evaluation = {
   runtimeDownloadsEnabledEntries: number;
   readyForApplyEntries: number;
   productionServerManifestExists: boolean;
+  productionServerManifestSafelyPromoted: boolean;
   serverUploadAllowed: boolean;
   firebaseUploadAllowed: boolean;
   downloadablePacksPublished: boolean;
@@ -400,6 +402,7 @@ function computeManifestMetrics(input: EvaluationInput): Omit<Evaluation, 'manif
     runtimeDownloadsEnabledEntries: entries.filter((entry) => b(entry, 'runtimeDownloadsEnabled')).length,
     readyForApplyEntries: entries.filter((entry) => b(entry, 'readyForApply')).length,
     productionServerManifestExists: input.productionServerManifestExists,
+    productionServerManifestSafelyPromoted: input.productionServerManifestSafelyPromoted,
     serverUploadAllowed: input.serverUploadAllowed,
     firebaseUploadAllowed: input.firebaseUploadAllowed,
     downloadablePacksPublished: input.downloadablePacksPublished,
@@ -451,7 +454,9 @@ function evaluateInput(input: EvaluationInput): { evaluation: Evaluation; findin
   if (metrics.activationApprovedEntries > 0) addFinding(findings, 'blocker', 'ENTRY_ACTIVATION_APPROVED_OPEN', `${metrics.activationApprovedEntries} manifest entrie(s) have activationApproved=true.`);
   if (metrics.runtimeDownloadsEnabledEntries > 0) addFinding(findings, 'blocker', 'ENTRY_RUNTIME_DOWNLOADS_OPEN', `${metrics.runtimeDownloadsEnabledEntries} manifest entrie(s) have runtimeDownloadsEnabled=true.`);
   if (metrics.readyForApplyEntries > 0) addFinding(findings, 'blocker', 'ENTRY_READY_FOR_APPLY_OPEN', `${metrics.readyForApplyEntries} manifest entrie(s) have readyForApply=true.`);
-  if (metrics.productionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server_delivery_manifest_v2.json must not exist before explicit approval and publication.');
+  if (metrics.productionServerManifestExists && !metrics.productionServerManifestSafelyPromoted) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server_delivery_manifest_v2.json may exist only after publish/admin gates prove it is safely promoted and still closed for apply/runtime activation.');
+  }
 
   const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
   const warnings = findings.filter((finding) => finding.severity === 'warning').length;
@@ -613,7 +618,9 @@ function main(): void {
     publishPreflightReady:
       s(publish, 'status') === 'PASS' &&
       n(publishSummary, 'blockers') === 0 &&
-      s(publishSummary, 'publishPreflightState') === 'local_server_manifest_draft_ready' &&
+      (s(publishSummary, 'publishPreflightState') === 'local_server_manifest_draft_ready' ||
+        (s(publishSummary, 'publishPreflightState') === 'safe_production_manifest_promoted' &&
+          b(publishSummary, 'productionManifestSafelyPromoted'))) &&
       b(publishSummary, 'readyForAdminServerDeliveryReviewV2') &&
       !b(publishSummary, 'readyForApply'),
     adminRuntimePreflightReady:
@@ -638,6 +645,13 @@ function main(): void {
     manifestDraftPresent: fs.existsSync(serverManifestDraftPath),
     targetManifestPresent: fs.existsSync(targetManifestPath),
     productionServerManifestExists: fs.existsSync(productionServerManifestPath),
+    productionServerManifestSafelyPromoted:
+      s(publishSummary, 'publishPreflightState') === 'safe_production_manifest_promoted' &&
+      b(publishSummary, 'productionManifestSafelyPromoted') &&
+      s(adminRuntimeSummary, 'preflightState') === 'admin_server_runtime_preflight_ready' &&
+      b(adminRuntimeSummary, 'productionManifestSafelyPromoted') &&
+      b(adminRuntimeSummary, 'readyForRuntimeActivationBlockerPlanningV2') &&
+      !b(adminRuntimeSummary, 'readyForApply'),
     serverUploadAllowed: b(manifest, 'serverUploadAllowed'),
     firebaseUploadAllowed: b(manifest, 'firebaseUploadAllowed'),
     downloadablePacksPublished: b(manifest, 'downloadablePacksPublished'),

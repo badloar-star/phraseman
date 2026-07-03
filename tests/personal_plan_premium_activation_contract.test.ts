@@ -87,7 +87,7 @@ describe('personal plan premium activation contract', () => {
     expect(purchase).toContain('markCelebrationPending');
   });
 
-  it('sends a bought personal plan through thank-you support and the existing auth prompt', () => {
+  it('sends a bought personal plan directly to the existing auth prompt host', () => {
     const purchase = readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
     const layout = readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
     const thankYouPath = path.join(process.cwd(), 'app', 'personal_plan_thank_you.tsx');
@@ -98,46 +98,64 @@ describe('personal plan premium activation contract', () => {
     expect(layout).toContain('<Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />');
     expect(thankYou).toContain('RegistrationPromptModal');
     expect(thankYou).toContain('context="onboarding"');
-    expect(thankYou).toContain('setAuthVisible(true)');
+    expect(thankYou).toContain('visible={true}');
+    expect(thankYou).not.toContain('setAuthVisible(true)');
+    expect(thankYou).not.toContain('personal-plan-thank-you-auth');
+    expect(thankYou).not.toContain('personal-plan-thank-you-later');
+    expect(thankYou).not.toContain('TouchableOpacity');
   });
 
-  it('connects onboarding entry to pending personal plan paywall without changing the old standalone path', () => {
-    const onboarding = readFileSync(path.join(process.cwd(), 'components', 'onboarding.tsx'), 'utf8');
+  it('connects onboarding plan flow to pending personal plan paywall without restoring the old entry path', () => {
+    const onboarding = readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
     const layout = readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
 
-    expect(onboarding).toContain("type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails'");
-    expect(onboarding).not.toContain('planPhrase');
-    expect(onboarding).not.toContain('planPermission');
-    expect(onboarding).toContain("ONBOARDING_PLAN_MOCKUP_SOURCE = '.codex-tmp/onboarding-plan-theme-mockup-v3.html'");
-    expect(onboarding).toContain('PERSONAL_PLAN_ONBOARDING_PLANS');
-    expect(onboarding).toContain('resolveOnboardingPlanId');
-    expect(onboarding).toContain('selectedPlanMinutes');
+    expect(onboarding).toContain('export type CleanOnboardingStep =');
+    for (const step of ['goal', 'level', 'minutes', 'notifications', 'startMode', 'plusBenefits', 'onboardingPaywall', 'name']) {
+      expect(onboarding).toContain(`'${step}'`);
+    }
+    expect(onboarding).not.toContain("'miniAha'");
+    expect(onboarding).not.toContain("'trialReminder'");
+    expect(onboarding).not.toContain("'ageConsent'");
+    expect(onboarding).not.toContain("'promise'");
+    expect(onboarding).not.toContain("'planResult'");
+    expect(onboarding).not.toContain("if (step === 'planEntry')");
+    expect(onboarding).not.toContain('onboarding-plan-entry-screen');
+    expect(onboarding).toContain("'onboardingPaywall'");
+    expect(onboarding).not.toContain("'planPaywall'");
+    expect(onboarding).not.toContain("'planPicker'");
+    expect(onboarding).not.toContain("'planDetails'");
+    expect(onboarding).toContain('resolvePersonalPlanForGoal');
+    expect(onboarding).toContain('selectedMinutes');
     expect(onboarding).toContain('queuePendingPersonalPlanActivation');
-    expect(onboarding).toContain('activatePendingPersonalPlanAfterPremium');
-    expect(onboarding).toContain('hasPremiumAccess');
-    // CTA пейвола ДОЛЖЕН делать реальную покупку, а не подменять её стартом intro-доступа.
-    // Раньше ветка `if (hasPremiumAccess || introFullAccessStarted)` всегда срабатывала
-    // (onIntroFullAccessStart всегда true) → покупка пропускалась, экран просто перекидывал
-    // на ввод имени. Покупку пропускаем ТОЛЬКО при реальном Premium.
-    expect(onboarding).toContain('if (hasPremiumAccess && !FORCE_PREMIUM)');
+    expect(onboarding).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
+    // CTA Ð¿ÐµÐ¹Ð²Ð¾Ð»Ð° Ð”ÐžÐ›Ð–Ð•Ð Ð´ÐµÐ»Ð°Ñ‚ÑŒ Ñ€ÐµÐ°Ð»ÑŒÐ½ÑƒÑŽ Ð¿Ð¾ÐºÑƒÐ¿ÐºÑƒ, Ð° Ð½Ðµ Ð¿Ð¾Ð´Ð¼ÐµÐ½ÑÑ‚ÑŒ ÐµÑ‘ ÑÑ‚Ð°Ñ€Ñ‚Ð¾Ð¼ intro-Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°.
+    // Ð Ð°Ð½ÑŒÑˆÐµ Ð²ÐµÑ‚ÐºÐ° `if (hasPremiumAccess || introFullAccessStarted)` Ð²ÑÐµÐ³Ð´Ð° ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ð»Ð°
+    // (onIntroFullAccessStart Ð²ÑÐµÐ³Ð´Ð° true) â†’ Ð¿Ð¾ÐºÑƒÐ¿ÐºÐ° Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ°Ð»Ð°ÑÑŒ, ÑÐºÑ€Ð°Ð½ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð¿ÐµÑ€ÐµÐºÐ¸Ð´Ñ‹Ð²Ð°Ð»
+    // Ð½Ð° Ð²Ð²Ð¾Ð´ Ð¸Ð¼ÐµÐ½Ð¸. ÐŸÐ¾ÐºÑƒÐ¿ÐºÑƒ Ð¿Ñ€Ð¾Ð¿ÑƒÑÐºÐ°ÐµÐ¼ Ð¢ÐžÐ›Ð¬ÐšÐž Ð¿Ñ€Ð¸ Ñ€ÐµÐ°Ð»ÑŒÐ½Ð¾Ð¼ Premium.
     expect(onboarding).not.toContain('if (hasPremiumAccess || introFullAccessStarted)');
+    expect(onboarding).not.toContain('const paywallOpened = await onPersonalPlanPaywallStart?.();');
+    expect(onboarding).not.toContain('if (paywallOpened === false) {');
+    expect(onboarding).toContain('usePaywallPurchase');
+    expect(onboarding).toContain("source: 'onboarding_plan'");
     expect(onboarding).toContain("source: 'onboarding'");
     expect(onboarding).toContain('onPersonalPlanPaywallStart');
-    expect(onboarding).toContain('openSelectedPlanAbPaywall');
-    expect(onboarding).toContain("await AsyncStorage.setItem('onboarding_plan_billing', paywallPlan)");
-    expect(onboarding).toContain('Составить план под мою цель');
-    expect(onboarding).toContain('Просто посмотреть приложение');
-    expect(onboarding).toContain('Это мой план — вперёд');
-    expect(onboarding).toContain('Другие планы');
-    expect(onboarding).toContain('data-plan-result-cta');
-    expect(onboarding).not.toContain("onPress={() => goToStep('planPaywall')}");
+    expect(onboarding).toContain('[PLAN_BILLING_KEY, billing]');
+    expect(onboarding).not.toContain('Составить план под мою цель');
+    expect(onboarding).not.toContain('Просто посмотреть приложение');
+    expect(onboarding).toContain('testID="onboarding-plus-benefits-continue"');
+    expect(onboarding).not.toContain("onPress={() => go('planPaywall')}");
     expect(onboarding).not.toContain("planId: 'gavan',\n        minutesPerDay,");
-    expect(onboarding).toContain('planId: selectedPlanId');
-    expect(onboarding).toContain('minutesPerDay: selectedPlanMinutesForPlan');
-    expect(onboarding).toContain("goToStep('name')");
+    expect(onboarding).toContain('planId,');
+    expect(onboarding).toContain('minutesPerDay: selectedMinutes');
+    expect(onboarding).toContain("go('name')");
     expect(layout).toContain('handleOnboardingPersonalPlanPaywall');
     expect(layout).toContain("pathname: '/premium_modal'");
     expect(layout).toContain("context: 'personal_plan'");
+    const freeBranchStart = layout.indexOf("if (isFeatureFreeForEveryone('personal_plan')) {");
+    expect(freeBranchStart).toBeGreaterThan(-1);
+    const freeBranch = layout.slice(freeBranchStart, layout.indexOf('// ÐžÐÐ‘ÐžÐ Ð”Ð˜ÐÐ“', freeBranchStart));
+    expect(freeBranch).toContain('return false;');
+    expect(freeBranch).not.toContain("router.replace('/(tabs)/home' as any)");
   });
 
   it('keeps A/B paywalls wired to personal-plan activation after purchase or restore', () => {
@@ -152,20 +170,14 @@ describe('personal plan premium activation contract', () => {
     expect(purchase).not.toContain("router.replace('/(tabs)/home' as any)");
   });
 
-  it('keeps onboarding inline paywall purchase and restore pending states separate', () => {
-    const onboarding = readFileSync(path.join(process.cwd(), 'components', 'onboarding.tsx'), 'utf8');
+  it('keeps onboarding paywall state external to the full app paywalls', () => {
+    const onboarding = readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 
-    expect(onboarding).toContain('const [paywallPurchasing, setPaywallPurchasing] = useState(false)');
-    expect(onboarding).toContain('const [paywallRestoring, setPaywallRestoring] = useState(false)');
-    expect(onboarding).toContain('const paywallBusy = paywallPurchasing || paywallRestoring');
-    expect(onboarding).toContain('disabled={paywallBusy}');
-    expect(onboarding).toContain('pressedExternally={paywallPurchasing}');
-    expect(onboarding).toContain('setPaywallRestoring(true)');
-    expect(onboarding).toContain('setPaywallRestoring(false)');
-    expect(onboarding).toContain('<ActivityIndicator size="small" color={theme.ctaText} />');
-    expect(onboarding).toContain('<ActivityIndicator size="small" color={theme.textMuted} />');
-    expect(onboarding).toContain('accessibilityState={{ disabled: paywallBusy, busy: paywallRestoring }}');
-    expect(onboarding).toContain('styles.planPaywallTrustItemDisabled');
+    expect(onboarding).toContain('const [paywallBusy, setPaywallBusy] = useState(false)');
+    expect(onboarding).not.toContain('onPersonalPlanPaywallStart?.()');
+    expect(onboarding).toContain('queueSelectedPlan');
+    expect(onboarding).toContain('paywallRestoring');
+    expect(onboarding).not.toContain('styles.planPaywallTrustItemDisabled');
   });
 
   it('does not leave already-premium personal plan users on the paywall manage screen', () => {

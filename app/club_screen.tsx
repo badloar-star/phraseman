@@ -1,11 +1,12 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, ScrollView, TouchableOpacity, Modal, KeyboardAvoidingView, Platform, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -36,6 +37,9 @@ import {
   loadLeagueState,
   loadPendingResult,
   invalidateLeagueGroupCache,
+  getLeagueResultSignature,
+  tryAcquireLeagueResultModal,
+  markLeagueResultShown,
 } from './league_engine';
 import LeagueResultModal from './LeagueResultModal';
 import { logLeaguePromoted } from './firebase';
@@ -387,7 +391,7 @@ export default function ClubScreen() {
   // openChat=1 — открыть сразу чат лиги (кнопка чата в шапке главного экрана).
   const { openChat: openChatParam } = useLocalSearchParams<{ openChat?: string }>();
   const { theme: t, f, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const leagueCrownAccent = themeMode === 'gold'
     ? GOLD_RICH.metalGold
@@ -406,6 +410,7 @@ export default function ClubScreen() {
   const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
+  const [chatProfilePlayer, setChatProfile] = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
   const [myAuraId, setMyAuraId]           = useState('');
@@ -432,6 +437,7 @@ export default function ClubScreen() {
   // Единая точка закрытия чата: прямой вход с главной → возврат на главную;
   // обычный вход (с экрана лиги) → просто скрыть модалку.
   const closeChatModal = useCallback(() => {
+    setChatProfile(null);
     setChatModalVisible(false);
     if (directChatFromHomeRef.current) {
       directChatFromHomeRef.current = false;
@@ -612,7 +618,7 @@ export default function ClubScreen() {
   }, [rankDelta, ROW_HEIGHT_CLUB, myRowAnim]);
 
   const loadData = useCallback(async (opts?: { forceRemote?: boolean }) => {
-    const maybeShowPending = (result: LeagueResult | null) => {
+    const maybeShowPending = async (result: LeagueResult | null) => {
       if (!result) return;
       void checkAchievements({
         type: 'league_result',
@@ -625,6 +631,17 @@ export default function ClubScreen() {
         void clearPendingResult();
         return;
       }
+      // Межхостовый guard (league_engine, module-level): та же сигнатура результата
+      // могла уже быть забронирована home.tsx (или этим же экраном ранее) — не показываем
+      // второй раз. Источник правды — league_engine, локальный dismissedRef оставлен как
+      // быстрая защита внутри одного хоста.
+      if (!tryAcquireLeagueResultModal(getLeagueResultSignature(result))) {
+        return;
+      }
+      // Персистим «показано» СРАЗУ в момент показа (await, не фоном) — так kill
+      // приложения сразу после показа (до закрытия модалки юзером) не приводит
+      // к повторному показу при следующем запуске.
+      await markLeagueResultShown(result);
       if (isMountedRef.current) setPendingLeagueResult(result);
     };
     const applyLeagueOpen = (
@@ -645,7 +662,7 @@ export default function ClubScreen() {
       // Если пришёл свежий результат недели (после смены ISO-недели) — показываем модалку
       // прямо здесь. Раньше модалка жила только на home.tsx, поэтому захождение в Лиги
       // в понедельник не давало анимацию.
-      if (result) maybeShowPending(result);
+      if (result) void maybeShowPending(result);
       if (!fromRemote) return;
       // Считаем delta только когда данные пришли из Firestore (не кеш).
       const sorted = [...safeGroup].sort((a, b) => b.points - a.points);
@@ -679,7 +696,7 @@ export default function ClubScreen() {
       if (!isMountedRef.current) return;
       // Если на этом устройстве уже был сохранён pending (например, home.tsx посчитал
       // итоги недели, но юзер закрыл приложение до закрытия модалки) — показываем здесь.
-      if (cachedPending) maybeShowPending(cachedPending);
+      if (cachedPending) void maybeShowPending(cachedPending);
 
       const xpNum = parseInt(xp || '0', 10);
       const anonLevel = getXPProgress(xpNum).level;
@@ -1828,6 +1845,7 @@ export default function ClubScreen() {
                   uid: p.uid,
                   isPremium: p.isPremium ?? false,
                   isVip: p.isVip ?? false,
+                  isLifetime: p.isLifetime ?? false,
                   avatar: p.avatar,
                   frame: p.frame,
                   aura: p.isMe ? myAuraId : p.aura,
@@ -1988,14 +2006,31 @@ export default function ClubScreen() {
         presentationStyle="fullScreen"
         onRequestClose={closeChatModal}
       >
-        <KeyboardAvoidingView
+        <View
           testID="league-chat-fullscreen"
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={0}
           style={{ flex:1, backgroundColor:t.bgCard }}
         >
           <View style={{ flex:1, backgroundColor:t.bgCard }}>
             <View style={{ minHeight:64, paddingTop:insets.top + 8, paddingBottom:8, paddingHorizontal:12, flexDirection:'row', alignItems:'center', gap:10, borderBottomWidth:0.5, borderBottomColor:t.border, backgroundColor:t.bgCard }}>
+              <TapScale
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Назад',
+                  uk: 'Назад',
+                  es: 'Volver',
+                  'pt-BR': 'Voltar',
+                  vi: 'Quay lại',
+                  id: 'Kembali',
+                  tr: 'Geri',
+                  pl: 'Wstecz',
+                })}
+                hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                onPress={closeChatModal}
+                testID="league-chat-close"
+                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
+              >
+                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              </TapScale>
               <View style={{ flexDirection:'row', alignItems:'center', gap:10, flex:1, minWidth:0 }}>
                 <View style={{ width:42, height:42, borderRadius:21, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}>
                   <Ionicons name="chatbubbles-outline" size={21} color={leagueBonusPalette.accent} />
@@ -2018,16 +2053,6 @@ export default function ClubScreen() {
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel="Close"
-                activeOpacity={0.82}
-                onPress={closeChatModal}
-                testID="league-chat-close"
-                style={{ width:44, height:44, borderRadius:22, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
-              >
-                <Ionicons name="close" size={22} color={t.textPrimary} />
-              </TouchableOpacity>
             </View>
             <View style={{ flex:1, minHeight:0, backgroundColor:t.bgCard }}>
               <LeagueChatPanel
@@ -2047,7 +2072,7 @@ export default function ClubScreen() {
                       Math.max(0, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0)) > 0 &&
                       Number(leagueCrownsByUid[member.uid ?? '']?.expiresAt) > Date.now();
                     const crownCount = Math.max(1, Math.floor(Number(leagueCrownsByUid[member.uid ?? '']?.crownCount) || 0));
-                    setProfile({
+                    setChatProfile({
                       name: member.name,
                       points: member.isMe ? playerXP : (member.totalXp ?? member.points),
                       totalXp: member.isMe ? playerXP : (member.totalXp ?? undefined),
@@ -2056,6 +2081,7 @@ export default function ClubScreen() {
                       uid: member.uid,
                       isPremium: member.isPremium ?? false,
                       isVip: member.isVip ?? false,
+                      isLifetime: member.isLifetime ?? false,
                       avatar: member.avatar ?? author.avatar,
                       frame: member.frame,
                       aura: member.isMe ? myAuraId : (member.aura ?? author.aura),
@@ -2072,7 +2098,7 @@ export default function ClubScreen() {
                     });
                     return;
                   }
-                  setProfile({
+                  setChatProfile({
                     name: author.name,
                     points: 0,
                     isMe: !!arenaClubStableUid && author.uid === arenaClubStableUid,
@@ -2085,7 +2111,19 @@ export default function ClubScreen() {
               />
             </View>
           </View>
-        </KeyboardAvoidingView>
+        </View>
+        <UnifiedPlayerModal
+          player={chatProfilePlayer}
+          myInfo={{
+            name: userName,
+            avatar: myAvatarEmoji,
+            frame: myFrameId,
+            aura: myAuraId,
+            totalXP: playerXP,
+            leagueId: myLeagueId,
+          }}
+          onClose={() => setChatProfile(null)}
+        />
       </Modal>
 
       <UnifiedPlayerModal

@@ -6,11 +6,13 @@ User-facing Telegram bot for manual Premium purchases through Telegram Stars.
 
 1. User opens the bot and presses `Оплатить Premium`.
 2. Bot asks for the user's nickname in the Phraseman app.
-3. User chooses `1 месяц` or `1 год`.
-4. Bot sends a Telegram Stars invoice with `currency: "XTR"` and an empty `provider_token`.
-5. After `successful_payment`, the bot writes the order to `.codex-tmp/telegram-premium-bot/orders.jsonl`.
-6. Bot tells the user that Premium activation is manual and may take several hours.
-7. If `adminChatId` is configured, the bot sends the admin a pending activation notice.
+3. User chooses monthly or yearly Premium.
+4. Monthly flow creates a recurring Telegram Stars invoice link with `subscription_period: 2592000`.
+5. Yearly flow sends a one-time Telegram Stars invoice.
+6. All invoices use `currency: "XTR"` and omit `provider_token`.
+7. After `successful_payment`, the bot writes the order to `.codex-tmp/telegram-premium-bot/orders.jsonl`.
+8. Bot tells the user that Premium activation is manual and may take several hours.
+9. If `adminChatId` is configured, the bot sends the admin a pending activation notice.
 
 ## Admin Access
 
@@ -50,6 +52,18 @@ Admin commands:
 `/order <telegram_charge_id>` shows one payment with full details.
 
 After every successful payment, the admin receives a private report with nickname, plan, Stars amount, Telegram user, charge id, and manual activation status.
+
+## User Commands
+
+```text
+/start
+/premium
+/paysupport
+/terms
+/privacy
+```
+
+`/paysupport` opens payment support instructions. `/terms` and `/privacy` return the public legal links.
 
 ## Setup
 

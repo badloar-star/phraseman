@@ -20,6 +20,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
+import PlusBadge from '../components/PlusBadge';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
 import { areAllDailyTaskObjectivesDone, claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
@@ -31,6 +32,7 @@ import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
+import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
@@ -41,6 +43,7 @@ import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from '.
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import { useScreen } from '../hooks/use-screen';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 
 const safeDailyTaskEventPart = (value: unknown): string =>
@@ -1659,14 +1662,26 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
         tone: '#94A3B8',
     };
 };
+// Тихая ревалидация: tasks/progress приходят как новые массивы/объекты на каждый
+// фокус экрана (refreshTasksAndProgress), даже если контент из storage не изменился.
+// Сравниваем по значению (объекты небольшие) перед setState, чтобы не перерисовывать
+// список заданий без реальных изменений.
+function jsonEqualQuiet<T>(a: T, b: T): boolean {
+    if (a === b) return true;
+    try {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+    catch {
+        return false;
+    }
+}
 export default function DailyTasksScreen() {
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const isGoldTheme = themeMode === 'gold';
-    const isBusinessTheme = themeMode === 'business';
+    const isBusinessTheme = themeMode === 'business' || themeMode === 'businessLight';
     const goldAccent = GOLD_RICH.metalGold;
-    const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
     const goldSoftBg = GOLD_RICH.wash;
     const goldDivider = GOLD_RICH.hairlineQuiet;
@@ -1674,6 +1689,7 @@ export default function DailyTasksScreen() {
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    const { bottomInset } = useScreen();
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     // Не подставляем getTodayTasks() (всегда тир уровня 1) — иначе после обновления/холодного старта
@@ -1697,6 +1713,9 @@ export default function DailyTasksScreen() {
     const [rerollBusyId, setRerollBusyId] = useState<string | null>(null);
     /** Антидребезг клейма: свежий getTodayTasksSafe + registerXP не дают второго тапа «в никуда». */
     const [claimBusyId, setClaimBusyId] = useState<string | null>(null);
+    const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
+    const [readyToNavigateTaskId, setReadyToNavigateTaskId] = useState<string | null>(null);
+    const expandedTaskAnim = useRef(new Animated.Value(0)).current;
     const [trioClaimBusy, setTrioClaimBusy] = useState(false);
     const xpAnim = useRef(new Animated.Value(0)).current;
     const claimAnims = useRef<Record<string, Animated.Value>>({});
@@ -1740,6 +1759,18 @@ export default function DailyTasksScreen() {
         });
         return () => { appSub.remove(); stop(); };
     }, [premiumPulse, premiumSparkle, screenFocused]);
+    useEffect(() => {
+        setReadyToNavigateTaskId(null);
+        Animated.timing(expandedTaskAnim, {
+            toValue: expandedTaskId ? 1 : 0,
+            duration: expandedTaskId ? 240 : 170,
+            useNativeDriver: false,
+        }).start(({ finished }) => {
+            if (finished && expandedTaskId) {
+                setReadyToNavigateTaskId(expandedTaskId);
+            }
+        });
+    }, [expandedTaskAnim, expandedTaskId]);
     // Инициализируем анимации при изменении tasks (useEffect, не в теле рендера)
     useEffect(() => {
         (tasks ?? []).forEach(task => {
@@ -1782,22 +1813,23 @@ export default function DailyTasksScreen() {
                 const list = await getTodayTasksSafe(studyTarget);
                 if (gen !== refreshGen.current)
                     return;
-                setTasks(list);
+                setTasks((prev) => (jsonEqualQuiet(prev, list) ? prev : list));
                 // Список есть — скелетоны больше не нужны (прогресс/осколки/реролл
                 // догружаются ниже и не должны держать shimmer).
                 setLoadingTasks(false);
                 const p = await loadTodayProgress(list, studyTarget);
                 if (gen !== refreshGen.current)
                     return;
-                setProgress(mergePendingClaimProgress(p));
+                const mergedProgress = mergePendingClaimProgress(p);
+                setProgress((prev) => (jsonEqualQuiet(prev, mergedProgress) ? prev : mergedProgress));
                 const trio = await isDailyTasksAllShardsRewardClaimedForDay(getTodayKey());
                 if (gen !== refreshGen.current)
                     return;
-                setTrioShardsClaimed(trio);
+                setTrioShardsClaimed((prev) => (prev === trio ? prev : trio));
                 const left = await getDailyRerollsLeftToday(studyTarget);
                 if (gen !== refreshGen.current)
                     return;
-                setRerollsLeft(left);
+                setRerollsLeft((prev) => (prev === left ? prev : left));
             }
             catch {
                 if (gen !== refreshGen.current)
@@ -1912,12 +1944,15 @@ export default function DailyTasksScreen() {
         }
     }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router, studyTarget]);
     useFocusEffect(useCallback(() => {
+        setExpandedTaskId(null);
+        setReadyToNavigateTaskId(null);
+        expandedTaskAnim.setValue(0);
         // Показываем скелетоны только если ещё нет загруженных заданий: при первом
         // входе/холодном старте — да; при возврате на экран с уже готовым списком
         // не мигаем (список перерисуется тихо).
         setLoadingTasks((prev) => (tasks.length === 0 ? true : prev));
         refreshTasksAndProgress();
-    }, [refreshTasksAndProgress, tasks.length]));
+    }, [expandedTaskAnim, refreshTasksAndProgress, tasks.length]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
         return () => sub.remove();
@@ -1938,7 +1973,7 @@ export default function DailyTasksScreen() {
             ]).start();
         }
         try {
-            const { claimed } = await claimTaskWithReward(taskId, async () => {
+            const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
                 // registerXP сам резолвит имя из canonical UID + уровня, если userName пустой.
                 // Раньше тут был ранний return при !userName — это и был баг "опыт не начислен"
                 // когда пользователь жмёт Забрать до того, как AsyncStorage.getItem('user_name') резолвится.
@@ -1967,7 +2002,18 @@ export default function DailyTasksScreen() {
                     // Не блокируем выдачу награды из-за transient-сбоя XP-пайплайна.
                     throw new Error('daily_task_reward_failed');
                 }
-            }, { tasksForClaim: tasks, studyTarget });
+            }, {
+                tasksForClaim: tasks,
+                studyTarget,
+                onReserved: () => {
+                    emitAppEvent('action_toast', {
+                        type: 'success',
+                        messageRu: `+${xpBase} XP получено`,
+                        messageUk: `+${xpBase} XP отримано`,
+                        messageEs: `+${xpBase} XP recibido`,
+                    });
+                },
+            });
             pendingClaimIdsRef.current.delete(taskId);
             // Снимаем спиннер сразу после клейма: дальше могут быть медленные getTodayTasksSafe/loadTodayProgress.
             setClaimBusyId(null);
@@ -1990,6 +2036,14 @@ export default function DailyTasksScreen() {
                 ? (await getDailyRerollsLeftToday(studyTarget).catch(() => rerollsLeft)) >= DAILY_TASK_REROLL_MAX_PER_DAY
                 : false;
             checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).catch(() => { });
+            if (awardedXp > 0 && awardedXp !== xpBase) {
+                emitAppEvent('action_toast', {
+                    type: 'success',
+                    messageRu: `+${awardedXp} XP получено`,
+                    messageUk: `+${awardedXp} XP отримано`,
+                    messageEs: `+${awardedXp} XP recibido`,
+                });
+            }
         }
         catch {
             pendingClaimIdsRef.current.delete(taskId);
@@ -2035,7 +2089,7 @@ export default function DailyTasksScreen() {
             if (!synced) {
                 emitAppEvent('action_toast', {
                     type: 'info',
-                    messageRu: 'Осколки не загрузились. Попробуй ещё раз.',
+                    messageRu: 'Не получилось получить награду. Попробуй ещё раз.',
                     messageUk: 'Не вдалося отримати уламки. Спробуйте ще раз.',
                     messageEs: 'No se pudieron obtener fragmentos. Inténtalo de nuevo.',
                 });
@@ -2045,9 +2099,9 @@ export default function DailyTasksScreen() {
             setTrioShardsClaimed(false);
             emitAppEvent('action_toast', {
                 type: 'error',
-                messageRu: 'Осколки не загрузились. Проверь соединение.',
-                messageUk: 'Помилка під час отримання уламків.',
-                messageEs: 'Error al obtener fragmentos.',
+                messageRu: 'Не получилось получить награду. Попробуй ещё раз.',
+                messageUk: 'Не вдалося отримати нагороду. Спробуйте ще раз.',
+                messageEs: 'No se pudo obtener la recompensa. Inténtalo de nuevo.',
             });
         }
         finally {
@@ -2288,6 +2342,14 @@ export default function DailyTasksScreen() {
     };
     // Сортировка: готово к награде → в процессе → завершено
     const handleTaskCardPress = (task: DailyTask) => {
+        const intent = getDailyTaskCardPressIntent(readyToNavigateTaskId, task.id);
+        if (intent === 'expand') {
+            hapticTap();
+            expandedTaskAnim.setValue(0);
+            setReadyToNavigateTaskId(null);
+            setExpandedTaskId(task.id);
+            return;
+        }
         hapticTap();
         void handleTaskNav(task);
     };
@@ -2358,7 +2420,7 @@ export default function DailyTasksScreen() {
         </Animated.View>)}
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
@@ -2543,7 +2605,7 @@ export default function DailyTasksScreen() {
                 ? Math.min(100, (comboPlaysDisp / comboReq.minPlays) * 50 + (comboWinsDisp >= comboReq.minWins ? 50 : 0))
                 : Math.min((current / task.target) * 100, 100);
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
-            const { title: taskTitle } = localizedDailyTaskStrings(lang, task);
+            const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const meta = getDailyTaskUiMeta(task.type, lang);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
@@ -2567,13 +2629,27 @@ export default function DailyTasksScreen() {
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
             const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
+            const isExpanded = expandedTaskId === task.id && !completed && !claimed;
+            const expandedDescriptionLineHeight = f.body * 1.28;
+            const expandedDescriptionLines = Math.min(3, Math.max(1, Math.ceil(taskDesc.length / 32)));
+            const expandedDescriptionBlockHeight = Math.ceil(expandedDescriptionLineHeight * expandedDescriptionLines + 14);
+            const expandedCardTargetHeight = 92 + expandedDescriptionBlockHeight;
+            const expandedCardHeight = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [92, expandedCardTargetHeight] })
+                : 92;
+            const expandedPanelHeight = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [0, expandedDescriptionBlockHeight] })
+                : 0;
+            const expandedPanelTranslateY = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] })
+                : 0;
             return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null, null]}>
             <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskCardPress(task))}>
             <Animated.View style={[
                     dailyTaskStyles.taskCard,
                     dailyTaskStyles.taskCapsuleCard,
                     {
-                        minHeight: 92,
+                        height: expandedCardHeight as any,
                         borderColor: taskHairline,
                         backgroundColor: taskTrackColor,
                     }]}
@@ -2595,20 +2671,11 @@ export default function DailyTasksScreen() {
                 {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
                         position: 'absolute', bottom: -1, right: -1, zIndex: 10,
                         transform: [{ scale: premiumPulse }],
+                        opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }),
                         borderBottomRightRadius: 18, borderTopLeftRadius: 10,
                         overflow: 'hidden',
                     }}>
-                    <View style={{
-                        flexDirection: 'row', alignItems: 'center', gap: 4,
-                        backgroundColor: isGoldTheme ? '#16120A' : isBusinessTheme ? '#1C1C1C' : '#B8860B',
-                        borderWidth: 1, borderColor: isGoldTheme ? goldHairline : isBusinessTheme ? 'rgba(255,255,255,0.2)' : '#FFD700',
-                        borderBottomRightRadius: 18, borderTopLeftRadius: 10,
-                        paddingHorizontal: 10, paddingVertical: 5,
-                    }}>
-                      <Animated.Text style={{ fontSize: 11, opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }}>✨</Animated.Text>
-                      <Text style={{ color: isGoldTheme ? goldBright : isBusinessTheme ? '#F2F2F2' : '#FFD700', fontSize: 11, fontWeight: '800', letterSpacing: 0.5 }}>PREMIUM</Text>
-                      <Animated.Text style={{ fontSize: 11, opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [1, 0.6] }) }}>✨</Animated.Text>
-                    </View>
+                    <PlusBadge themeMode={themeMode} size="sm" />
                   </Animated.View>)}
 
                 {/* Верхняя строка: иконка + текст + XP */}
@@ -2663,6 +2730,20 @@ export default function DailyTasksScreen() {
                   </View>
                 </View>
 
+                {/* Раскрытое описание задания: настоящий текст «что делать» (taskDesc),
+                    появляется анимированно по первому тапу. */}
+                {isExpanded && (<Animated.View style={[
+                    dailyTaskStyles.taskExpandedPanel,
+                    {
+                        height: expandedPanelHeight as any,
+                        opacity: expandedTaskAnim,
+                        transform: [{ translateY: expandedPanelTranslateY as any }],
+                    },
+                ]}>
+                  <Text numberOfLines={expandedDescriptionLines} style={[dailyTaskStyles.taskExpandedDescription, { color: isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)', fontSize: f.body, lineHeight: expandedDescriptionLineHeight }]}>
+                    {taskDesc}
+                  </Text>
+                </Animated.View>)}
                 {false && (<View style={dailyTaskStyles.taskProgressBlock}>
                   <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
                     <View style={{
@@ -2964,6 +3045,19 @@ const dailyTaskStyles = StyleSheet.create({
     taskCapsuleTitle: {
         fontWeight: '900',
         letterSpacing: 0,
+    },
+    taskExpandedPanel: {
+        overflow: 'hidden',
+        paddingTop: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        gap: 14,
+        zIndex: 1,
+    },
+    taskExpandedDescription: {
+        fontWeight: '800',
+        marginLeft: 24,
+        marginRight: 18,
     },
     taskCapsuleIconPlate: {
         width: 56,

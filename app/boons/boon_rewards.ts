@@ -76,7 +76,7 @@ export async function markClaimed(storageKey: string, periodId: string): Promise
 /** Начислить осколки награды (через raw, чтобы задать произвольную сумму). */
 export async function grantBoonReward(reward: BoonReward, logReason: string): Promise<void> {
   if (reward.shards > 0) {
-    await addShardsRaw(reward.shards, logReason).catch(() => 0);
+    await addShardsRaw(reward.shards, logReason, { skipServerAwait: true }).catch(() => 0);
   }
 }
 

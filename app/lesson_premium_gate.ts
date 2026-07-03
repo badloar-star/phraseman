@@ -3,6 +3,8 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { markNextNavigationAsReplace } from './navigation_back';
+import { openPremiumPaywall } from './paywall_navigation';
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
 
@@ -42,13 +44,11 @@ export function openLessonPremiumPaywall(
   router: any,
   lessonId: number,
 ): void {
-  router.replace({
-    pathname: '/premium_modal',
-    params: {
-      context: lessonPaywallContext(lessonId),
-      lessons_done: String(Math.max(0, lessonId - 1)),
-    },
-  } as any);
+  markNextNavigationAsReplace();
+  openPremiumPaywall(router, {
+    context: lessonPaywallContext(lessonId),
+    lessons_done: Math.max(0, lessonId - 1),
+  }, 'replace');
 }
 
 /**

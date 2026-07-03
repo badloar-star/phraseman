@@ -6,86 +6,49 @@ import {
 } from '../app/french_content_source_gate';
 
 const ROOT = path.join(__dirname, '..');
+const APPROVED_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 
 describe('Gustav French lesson entry point gate', () => {
-  it('keeps French lesson runtime unavailable until the app seed is source-approved', () => {
-    expect(FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds).toEqual([]);
+  it('opens French lesson runtime after server-pack activation approval', () => {
+    expect(FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds).toEqual(APPROVED_LESSON_IDS);
+    expect(FRENCH_CONTENT_SOURCE_GATE.approvedIntroLessonIds).toEqual(APPROVED_LESSON_IDS);
     expect(frenchLessonRuntimeAvailableForTarget('en', 1)).toBe(true);
     expect(frenchLessonRuntimeAvailableForTarget('es', 1)).toBe(true);
-    expect(frenchLessonRuntimeAvailableForTarget('fr', 1)).toBe(false);
+    expect(frenchLessonRuntimeAvailableForTarget('fr', 1)).toBe(true);
+    expect(frenchLessonRuntimeAvailableForTarget('fr', 32)).toBe(true);
   });
 
-  it('blocks lesson_menu primary, continue, and intro replay before opening /lesson1 for French', () => {
+  it('lets lesson_menu primary, continue, and intro replay open /lesson1 for French', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
     expect(source).toContain("import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate'");
     expect(source).toContain("import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate'");
     expect(source).toContain('const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)');
-    expect(source).toContain("const frenchTheorySourceGated = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)");
-    expect(source).toContain("const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null)");
-    expect(source).toContain('Материал на проверке');
 
     const sharedOpenSlice = source.slice(
       source.indexOf('const openLessonFromMenu = useCallback'),
       source.indexOf('const handleStartLesson = useCallback'),
     );
-    expect(sharedOpenSlice).toContain('if (frenchLessonSourceGated)');
-    expect(sharedOpenSlice.indexOf("setSoonOpen('frenchLesson')")).toBeLessThan(
-      sharedOpenSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)'),
-    );
-    expect(sharedOpenSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)')).toBeLessThan(
-      sharedOpenSlice.indexOf("router.push({ pathname: '/lesson1'"),
-    );
+    expect(sharedOpenSlice).toContain('primeLessonScreenFromStorage(lessonId, studyTarget)');
+    expect(sharedOpenSlice).toContain("router.push({ pathname: '/lesson1'");
 
     const startSlice = source.slice(
       source.indexOf('const handleStartLesson = useCallback'),
       source.indexOf('const handleContinueLesson = openLessonFromMenu'),
     );
-    expect(startSlice).toContain('if (frenchLessonSourceGated)');
-    expect(startSlice.indexOf("setSoonOpen('frenchLesson')")).toBeLessThan(
-      startSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)'),
-    );
-    expect(startSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)')).toBeLessThan(
-      startSlice.indexOf("router.replace({ pathname: '/lesson1'"),
-    );
-
-    const continueSlice = source.slice(
-      source.indexOf('const handleContinueLesson = openLessonFromMenu'),
-      source.indexOf('const handleReplayIntroAndContinue = useCallback'),
-    );
-    expect(continueSlice).toContain('const handleContinueLesson = openLessonFromMenu');
+    expect(startSlice).toContain('primeLessonScreenFromStorage(lessonId, studyTarget)');
+    expect(startSlice).toContain("router.replace({ pathname: '/lesson1'");
 
     const replayIntroSlice = source.slice(
       source.indexOf('const handleReplayIntroAndContinue = useCallback'),
       source.indexOf('const handleLockedLessonPress = useCallback'),
     );
-    expect(replayIntroSlice).toContain('if (frenchLessonSourceGated)');
-    expect(replayIntroSlice.indexOf("setSoonOpen('frenchLesson')")).toBeLessThan(
-      replayIntroSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)'),
-    );
+    expect(replayIntroSlice).toContain('primeLessonScreenFromStorage(lessonId, studyTarget)');
+    expect(replayIntroSlice).toContain("router.push({");
+    expect(replayIntroSlice).toContain("pathname: '/lesson1'");
   });
 
-  it('blocks lesson_menu theory before opening /lesson_help for French', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
-
-    expect(source).toContain('Теория на проверке');
-
-    const theorySlice = source.slice(
-      source.indexOf("testID: 'lesson-menu-theory'"),
-      source.indexOf('];', source.indexOf("testID: 'lesson-menu-theory'")),
-    );
-    expect(theorySlice).toContain('if (frenchTheorySourceGated)');
-    expect(theorySlice).toContain("setSoonOpen('frenchTheory')");
-    expect(theorySlice).toContain('unavailable: frenchTheorySourceGated');
-    expect(theorySlice.indexOf("setSoonOpen('frenchTheory')")).toBeLessThan(
-      theorySlice.indexOf("router.push({ pathname: '/hint'"),
-    );
-    expect(theorySlice.indexOf("setSoonOpen('frenchTheory')")).toBeLessThan(
-      theorySlice.indexOf("router.push({ pathname: '/lesson_help'"),
-    );
-  });
-
-  it('keeps French lesson auxiliary sections visible but source-gated before opening English-only helpers', () => {
+  it('keeps French auxiliary sections from opening English-only helpers as substitutes', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
     expect(source).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
@@ -96,8 +59,6 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("testID: 'lesson-menu-words'"),
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
     );
-    expect(wordsSlice).toContain('sub: frenchAuxiliarySourceGated');
-    expect(wordsSlice).not.toContain('hidden:');
     expect(wordsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
     expect(wordsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
       wordsSlice.indexOf("router.push({ pathname: '/lesson_words'"),
@@ -107,9 +68,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
       source.indexOf("testID: 'lesson-menu-prepositions'"),
     );
-    expect(verbsSlice).toContain('sub: frenchAuxiliarySourceGated');
     expect(verbsSlice).toContain('hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
-    expect(verbsSlice).not.toContain('hideEnglishOnlyAuxiliary');
     expect(verbsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
     expect(verbsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
       verbsSlice.indexOf("router.push({ pathname: '/lesson_irregular_verbs'"),
@@ -126,38 +85,14 @@ describe('Gustav French lesson entry point gate', () => {
     );
   });
 
-  it('blocks daily task lesson and theory navigation before French source approval', () => {
+  it('lets daily task lesson and theory navigation rely on the opened French gates', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
 
     expect(source).toContain("import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate'");
     expect(source).toContain('const openLessonOrFrenchGate = async () =>');
-    expect(source).toContain('French урок ещё на source gate');
-    expect(source).toContain('English фразы не будут открыты как замена');
-    expect(source).toContain('French теория откроется после source gate');
-
-    const navSlice = source.slice(
-      source.indexOf('const openLessonOrFrenchGate = async () =>'),
-      source.indexOf('switch (task.type)'),
-    );
-    expect(navSlice).toContain('if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId))');
-    expect(navSlice.indexOf("router.replace('/(tabs)/lessons' as any)")).toBeLessThan(
-      navSlice.indexOf("router.push({ pathname: '/lesson1'"),
-    );
-
-    const lessonTaskSlice = source.slice(
-      source.indexOf("case 'total_answers':"),
-      source.indexOf("case 'verb_learned':"),
-    );
-    expect(lessonTaskSlice).toContain('await openLessonOrFrenchGate()');
-    expect(lessonTaskSlice).not.toContain("router.push({ pathname: '/lesson1'");
-
-    const theorySlice = source.slice(
-      source.indexOf("case 'open_theory':"),
-      source.indexOf("case 'flashcard_view':"),
-    );
-    expect(theorySlice).toContain("if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId))");
-    expect(theorySlice.indexOf("router.replace('/(tabs)/lessons' as any)")).toBeLessThan(
-      theorySlice.indexOf("router.push({ pathname: '/lesson_help'"),
-    );
+    expect(source).toContain('if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId))');
+    expect(source).toContain("router.push({ pathname: '/lesson1'");
+    expect(source).toContain("if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId))");
+    expect(source).toContain("router.push({ pathname: '/lesson_help'");
   });
 });

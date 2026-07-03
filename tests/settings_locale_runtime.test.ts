@@ -19,7 +19,14 @@ describe('settings planned locale runtime copy', () => {
   });
 
   it('keeps education settings labels explicit for planned locales', () => {
-    expect(SETTINGS_EDU_SOURCE).toContain(') => triLang(lang, { ru, uk, es,');
+    // settings_edu.tsx localizes rows through the L({ ... }) helper, giving an
+    // explicit string per planned locale (ru/uk/es/pt-BR/vi/id/tr/pl) rather than
+    // a runtime triLang fallback. Assert the helper shape and every locale key is present.
+    expect(SETTINGS_EDU_SOURCE).toContain('const L = (m: Record<string, string>): string => m[lang]');
+    expect(SETTINGS_EDU_SOURCE).toMatch(/label: L\(\{\s*\n\s*ru:/u);
+    for (const locale of ['ru', 'uk', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
+      expect(SETTINGS_EDU_SOURCE).toContain(`${locale}:`);
+    }
     expect(SETTINGS_EDU_SOURCE).toContain("'Verificação automática'");
     expect(SETTINGS_EDU_SOURCE).toContain("'Tự động kiểm tra'");
     expect(SETTINGS_EDU_SOURCE).toContain("'Periksa otomatis'");

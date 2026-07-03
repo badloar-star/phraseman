@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 /**
  * _admin_referral_lab.tsx — DEV/QA превью реферальных VIP-модалок.
  *
@@ -15,7 +16,6 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ENABLE_DEV_TOOLS } from './config';
 import { useTheme } from '../components/ThemeContext';
@@ -35,7 +35,7 @@ const ACTIVATED_VARIANTS: readonly ActivatedPreview[] = [
 
 export default function AdminReferralLab() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const { lang } = useLang();
 

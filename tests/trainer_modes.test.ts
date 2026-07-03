@@ -399,7 +399,7 @@ describe('trainer_store premium modes', () => {
     expect(items.map((i) => i.key)).toContain('hard');
   });
 
-  it('smart mix combines due, weak and fresh material without duplicates', async () => {
+  it('auto mix combines due, weak and fresh material without duplicates', async () => {
     seedTrainerStore([
       makeTrainerStoreItem({ key: 'due_phrase', queue: 'phrases', nextDue: NOW - 1000, mistakeCount: 1 }),
       makeTrainerStoreItem({ key: 'weak_word', queue: 'words', nextDue: NOW + MS_DAY, mistakeCount: 2, correctStreak: 0 }),

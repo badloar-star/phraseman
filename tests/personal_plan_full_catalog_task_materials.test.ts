@@ -6,7 +6,6 @@ import { getPersonalPlanMissingWordItems } from '../app/personal_plan_missing_wo
 import { getPersonalPlanPhraseLesson } from '../app/personal_plan_phrase_lessons';
 import { getPersonalPlanPhraseRecallItems } from '../app/personal_plan_phrase_recall_items';
 import { getPersonalPlanPronunciationRepeatItems } from '../app/personal_plan_pronunciation_repeat_items';
-import { getPersonalPlanQuizPhrases } from '../app/personal_plan_quizzes';
 
 describe('personal plan full catalog task materials', () => {
   it('provides launchable material for every task in every plan day', async () => {
@@ -63,10 +62,7 @@ describe('personal plan full catalog task materials', () => {
           }
 
           if (task.destination.type === 'quiz') {
-            const items = getPersonalPlanQuizPhrases(task.destination.quizId, 'Sam');
-            if (!items || items.length < task.destination.questionCount) {
-              gaps.push(`${prefix}: missing quiz material`);
-            }
+            gaps.push(`${prefix}: plan quiz tasks are not part of personal plans`);
           }
         }
       }
@@ -74,7 +70,7 @@ describe('personal plan full catalog task materials', () => {
 
     expect({ daysChecked, tasksChecked, gaps }).toEqual({
       daysChecked: 546,
-      tasksChecked: 4368,
+      tasksChecked: 3822,
       gaps: [],
     });
   });

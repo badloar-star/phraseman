@@ -9,7 +9,13 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { emitAppEvent, onAppEvent } from '../app/events';
-import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from '../app/premium_guard';
+import {
+  getVerifiedPremiumAccessStatus,
+  getVerifiedRealPremiumStatus,
+  getVerifiedVipStatus,
+  invalidatePremiumCache,
+} from '../app/premium_guard';
+import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import RewardCardV2 from './reward_v2/RewardCardV2';
@@ -39,8 +45,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Позже',
     },
     vip: {
-      kicker: 'VIP-доступ завершился',
-      title: 'VIP закончился',
+      kicker: 'Plus-доступ завершился',
+      title: 'Plus закончился',
       value: 'Пригласи друзей — получишь снова, по 7 дней за каждого.',
       cta: 'Продлить Plus',
       ghost: 'Позже',
@@ -55,8 +61,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Пізніше',
     },
     vip: {
-      kicker: 'VIP-доступ завершився',
-      title: 'VIP закінчився',
+      kicker: 'Plus-доступ завершився',
+      title: 'Plus закінчився',
       value: 'Запроси друзів — отримаєш знову, по 7 днів за кожного.',
       cta: 'Продовжити Plus',
       ghost: 'Пізніше',
@@ -71,8 +77,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Más tarde',
     },
     vip: {
-      kicker: 'Acceso VIP finalizado',
-      title: 'El VIP terminó',
+      kicker: 'Acceso Plus finalizado',
+      title: 'Plus terminó',
       value: 'Invita amigos y recupéralo: 7 días por cada uno.',
       cta: 'Pasar a Plus',
       ghost: 'Más tarde',
@@ -87,8 +93,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Depois',
     },
     vip: {
-      kicker: 'Acesso VIP encerrado',
-      title: 'O VIP acabou',
+      kicker: 'Acesso Plus encerrado',
+      title: 'O Plus acabou',
       value: 'Convide amigos e recupere: 7 dias por cada um.',
       cta: 'Assinar Plus',
       ghost: 'Depois',
@@ -103,8 +109,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Để sau',
     },
     vip: {
-      kicker: 'VIP đã kết thúc',
-      title: 'VIP đã hết hạn',
+      kicker: 'Plus đã kết thúc',
+      title: 'Plus đã hết hạn',
       value: 'Mời bạn bè để nhận lại — 7 ngày cho mỗi người.',
       cta: 'Nâng cấp Plus',
       ghost: 'Để sau',
@@ -119,8 +125,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Nanti',
     },
     vip: {
-      kicker: 'Akses VIP berakhir',
-      title: 'VIP berakhir',
+      kicker: 'Akses Plus berakhir',
+      title: 'Plus berakhir',
       value: 'Undang teman untuk mendapatkannya lagi — 7 hari per teman.',
       cta: 'Ambil Plus',
       ghost: 'Nanti',
@@ -135,8 +141,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Sonra',
     },
     vip: {
-      kicker: 'VIP erişimi sona erdi',
-      title: 'VIP bitti',
+      kicker: 'Plus erişimi sona erdi',
+      title: 'Plus bitti',
       value: 'Arkadaşlarını davet et, her biri için 7 gün daha kazan.',
       cta: 'Plus’a geç',
       ghost: 'Sonra',
@@ -151,8 +157,8 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
       ghost: 'Później',
     },
     vip: {
-      kicker: 'Dostęp VIP wygasł',
-      title: 'VIP się skończył',
+      kicker: 'Dostęp Plus wygasł',
+      title: 'Plus się skończył',
       value: 'Zaproś znajomych — odzyskasz po 7 dni za każdego.',
       cta: 'Przejdź na Plus',
       ghost: 'Później',
@@ -168,6 +174,14 @@ function EntitlementExpiredHost() {
 
   const maybeShow = useCallback(async (k: Kind) => {
     try {
+      invalidatePremiumCache();
+      const hasAnyPlusAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+      if (hasAnyPlusAccess) {
+        // A source can deactivate while another source still keeps Plus active
+        // (for example: promo VIP active, real premium inactive on startup).
+        await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]).catch(() => {});
+        return;
+      }
       const wasActive = await AsyncStorage.getItem(WAS_ACTIVE_KEY[k]);
       if (wasActive !== '1') return;
       await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]);
@@ -284,11 +298,13 @@ function EntitlementExpiredHost() {
       value={tx.value}
       ctaLabel={tx.cta}
       onCta={() => {
-        markShownAndClose();
-        router.push({
-          pathname: '/premium_modal',
-          params: { context: kind === 'premium' ? 'premium_expired' : 'vip_expired' },
-        } as never);
+        const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
+        navigateAfterModalClose(markShownAndClose, () => {
+          router.push({
+            pathname: '/premium_modal',
+            params: { context },
+          } as never);
+        });
       }}
       ghostLabel={tx.ghost}
       onGhost={markShownAndClose}

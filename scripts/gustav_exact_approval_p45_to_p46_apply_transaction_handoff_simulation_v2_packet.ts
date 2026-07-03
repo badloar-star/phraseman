@@ -54,6 +54,16 @@ type EvaluationInput = {
   p46AllowedFutureMutationSteps: number;
   p46RollbackSteps: number;
   p46P45ReadyProbePassed: boolean;
+  p46ProductionServerManifestPublishGateReady: boolean;
+  p46ProductionServerManifestPublishGateEntries: number;
+  p46FrenchServerPackUploadEvidenceReady: boolean;
+  p46FrenchServerPackUploadEvidenceObjects: number;
+  p46FrenchServerPackUploadExecutionGateReady: boolean;
+  p46FrenchServerPackUploadExecutionGateDryRun: boolean;
+  p46FrenchServerPackUploadExecutionStarted: boolean;
+  p46FrenchServerObjectRemoteVerifyReady: boolean;
+  p46FrenchServerObjectRemoteVerifyFound: number;
+  p46FrenchServerObjectRemoteVerifyHashChecked: number;
   p46ShaMismatches: number;
   p46MissingEntryFiles: number;
   p46InvalidServerPaths: number;
@@ -100,6 +110,16 @@ type Evaluation = {
   p46AllowedFutureMutationSteps: number;
   p46RollbackSteps: number;
   p46P45ReadyProbePassed: boolean;
+  p46ProductionServerManifestPublishGateReady: boolean;
+  p46ProductionServerManifestPublishGateEntries: number;
+  p46FrenchServerPackUploadEvidenceReady: boolean;
+  p46FrenchServerPackUploadEvidenceObjects: number;
+  p46FrenchServerPackUploadExecutionGateReady: boolean;
+  p46FrenchServerPackUploadExecutionGateDryRun: boolean;
+  p46FrenchServerPackUploadExecutionStarted: boolean;
+  p46FrenchServerObjectRemoteVerifyReady: boolean;
+  p46FrenchServerObjectRemoteVerifyFound: number;
+  p46FrenchServerObjectRemoteVerifyHashChecked: number;
   currentP45ToP46HandoffWouldOpenTransaction: boolean;
   simulatedPostP45P46WouldOpenTransaction: boolean;
   p46ContractCommandWouldExecuteByThisScript: boolean;
@@ -292,6 +312,16 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     input.p46DryRunHashLocks >= 60 &&
     input.p46AllowedFutureMutationSteps >= 3 &&
     input.p46RollbackSteps >= 2 &&
+    input.p46ProductionServerManifestPublishGateReady &&
+    input.p46ProductionServerManifestPublishGateEntries === 12 &&
+    input.p46FrenchServerPackUploadEvidenceReady &&
+    input.p46FrenchServerPackUploadEvidenceObjects === 36 &&
+    input.p46FrenchServerPackUploadExecutionGateReady &&
+    input.p46FrenchServerPackUploadExecutionGateDryRun &&
+    !input.p46FrenchServerPackUploadExecutionStarted &&
+    input.p46FrenchServerObjectRemoteVerifyReady &&
+    input.p46FrenchServerObjectRemoteVerifyFound === 36 &&
+    input.p46FrenchServerObjectRemoteVerifyHashChecked === 36 &&
     input.p46ShaMismatches === 0 &&
     input.p46MissingEntryFiles === 0 &&
     input.p46InvalidServerPaths === 0 &&
@@ -322,7 +352,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     addFinding(findings, 'blocker', 'P46_P45_READY_PROBE_MISSING', 'P46 must prove p45_ready_contract_ready advances to production_apply_transaction_contract_ready.');
   }
   if (!runtimeSliceIntegrityReady) {
-    addFinding(findings, 'blocker', 'P46_RUNTIME_SLICE_INTEGRITY_NOT_READY', 'P46 must prove 12 server entries, payload/index/manifest hashes, rollback markers and dry-run hash-lock coverage.');
+    addFinding(findings, 'blocker', 'P46_RUNTIME_SLICE_INTEGRITY_NOT_READY', 'P46 must prove 12 server entries, payload/index/manifest hashes, upload evidence, remote object verification, rollback markers and dry-run hash-lock coverage.');
   }
   if (!simulatedPostP45P46WouldOpenTransaction) {
     addFinding(findings, 'blocker', 'POST_P45_P46_TRANSACTION_SIMULATION_NOT_OPEN', 'A simulated sequence-ready P45 must open only the P46 no-write transaction contract.');
@@ -394,6 +424,16 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       p46AllowedFutureMutationSteps: input.p46AllowedFutureMutationSteps,
       p46RollbackSteps: input.p46RollbackSteps,
       p46P45ReadyProbePassed: input.p46P45ReadyProbePassed,
+      p46ProductionServerManifestPublishGateReady: input.p46ProductionServerManifestPublishGateReady,
+      p46ProductionServerManifestPublishGateEntries: input.p46ProductionServerManifestPublishGateEntries,
+      p46FrenchServerPackUploadEvidenceReady: input.p46FrenchServerPackUploadEvidenceReady,
+      p46FrenchServerPackUploadEvidenceObjects: input.p46FrenchServerPackUploadEvidenceObjects,
+      p46FrenchServerPackUploadExecutionGateReady: input.p46FrenchServerPackUploadExecutionGateReady,
+      p46FrenchServerPackUploadExecutionGateDryRun: input.p46FrenchServerPackUploadExecutionGateDryRun,
+      p46FrenchServerPackUploadExecutionStarted: input.p46FrenchServerPackUploadExecutionStarted,
+      p46FrenchServerObjectRemoteVerifyReady: input.p46FrenchServerObjectRemoteVerifyReady,
+      p46FrenchServerObjectRemoteVerifyFound: input.p46FrenchServerObjectRemoteVerifyFound,
+      p46FrenchServerObjectRemoteVerifyHashChecked: input.p46FrenchServerObjectRemoteVerifyHashChecked,
       currentP45ToP46HandoffWouldOpenTransaction: currentHandoffWouldOpenTransaction,
       simulatedPostP45P46WouldOpenTransaction,
       p46ContractCommandWouldExecuteByThisScript: input.commandWouldExecuteByThisScript,
@@ -425,10 +465,83 @@ function makePostP45Ready(input: EvaluationInput): void {
   input.p46Status = 'PASS';
   input.p46TransactionState = 'production_apply_transaction_contract_ready';
   input.p46ReadyForProductionApplyTransaction = true;
+  input.p46ProductionServerManifestPublishGateReady = true;
+  input.p46ProductionServerManifestPublishGateEntries = 12;
+  input.p46FrenchServerPackUploadEvidenceReady = true;
+  input.p46FrenchServerPackUploadEvidenceObjects = 36;
+  input.p46FrenchServerPackUploadExecutionGateReady = true;
+  input.p46FrenchServerPackUploadExecutionGateDryRun = true;
+  input.p46FrenchServerPackUploadExecutionStarted = false;
+  input.p46FrenchServerObjectRemoteVerifyReady = true;
+  input.p46FrenchServerObjectRemoteVerifyFound = 36;
+  input.p46FrenchServerObjectRemoteVerifyHashChecked = 36;
+}
+
+function makeProbeDependenciesReady(input: EvaluationInput): void {
+  input.p58Status = 'PASS';
+  input.p58Ready = true;
+  input.p58State = 'p45_sequence_command_preflight_ready_waiting_for_p44_validation';
+  input.p58FreshAfterP46 = true;
+  input.p58CommandAllowedNow = false;
+  input.p58CommandAllowedAfterP44Validation = true;
+  input.p58CommandExecutedByThisScript = false;
+  input.p45Status = 'HOLD';
+  input.p45PreflightState = 'waiting_for_exact_approval_validation';
+  input.p45ReadyForProductionActivationSequence = false;
+  input.p45ReadyForApply = false;
+  input.p45MayModifyProductionAppFiles = false;
+  input.p45ActivationApproved = false;
+  input.p46Status = 'HOLD';
+  input.p46TransactionState = 'waiting_for_activation_sequence_preflight';
+  input.p46ReadyForProductionApplyTransaction = false;
+  input.p46ReadyForApply = false;
+  input.p46MayModifyProductionAppFiles = false;
+  input.p46ActivationApproved = false;
+  input.p46ServerManifestEntries = 12;
+  input.p46PayloadFilesChecked = 12;
+  input.p46IndexFilesChecked = 12;
+  input.p46SliceManifestFilesChecked = 12;
+  input.p46DryRunHashLocks = Math.max(input.p46DryRunHashLocks, 60);
+  input.p46AllowedFutureMutationSteps = Math.max(input.p46AllowedFutureMutationSteps, 3);
+  input.p46RollbackSteps = Math.max(input.p46RollbackSteps, 2);
+  input.p46P45ReadyProbePassed = true;
+  input.p46ProductionServerManifestPublishGateReady = true;
+  input.p46ProductionServerManifestPublishGateEntries = 12;
+  input.p46FrenchServerPackUploadEvidenceReady = true;
+  input.p46FrenchServerPackUploadEvidenceObjects = 36;
+  input.p46FrenchServerPackUploadExecutionGateReady = true;
+  input.p46FrenchServerPackUploadExecutionGateDryRun = true;
+  input.p46FrenchServerPackUploadExecutionStarted = false;
+  input.p46FrenchServerObjectRemoteVerifyReady = true;
+  input.p46FrenchServerObjectRemoteVerifyFound = 36;
+  input.p46FrenchServerObjectRemoteVerifyHashChecked = 36;
+  input.p46ShaMismatches = 0;
+  input.p46MissingEntryFiles = 0;
+  input.p46InvalidServerPaths = 0;
+  input.p46InvalidCacheKeys = 0;
+  input.p46OpenEntryFlags = 0;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.targetManifestActivationApproved = false;
+  input.targetManifestReadyForApply = false;
+  input.targetManifestMayModifyProductionAppFiles = false;
+  input.serverManifestActivationApproved = false;
+  input.serverManifestReadyForApply = false;
+  input.serverManifestMayModifyProductionAppFiles = false;
+  input.serverUploadAllowed = false;
+  input.firebaseUploadAllowed = false;
+  input.downloadablePacksPublished = false;
+  input.runtimeDownloadsEnabled = false;
+  input.storageMigrationAllowed = false;
+  input.cloudSyncMigrationAllowed = false;
+  input.commandWouldExecuteByThisScript = false;
 }
 
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: HandoffState; mutate: (input: EvaluationInput) => void }> = [
+  const probeBase = clone(base);
+  makeProbeDependenciesReady(probeBase);
+  const tests: { id: string; expectedState: HandoffState; mutate: (input: EvaluationInput) => void }[] = [
     { id: 'canonical_waits_for_p45_sequence', expectedState: 'p45_to_p46_handoff_simulation_ready_waiting_for_p45_sequence', mutate: () => undefined },
     { id: 'post_p45_fixture_allows_p46_contract', expectedState: 'p45_to_p46_handoff_simulation_ready_for_p46_apply_transaction_contract', mutate: makePostP45Ready },
     { id: 'stale_p58_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p58FreshAfterP46 = false; } },
@@ -440,6 +553,8 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'server_entry_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46ServerManifestEntries = 11; } },
     { id: 'payload_hash_check_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46PayloadFilesChecked = 11; } },
     { id: 'dry_run_hash_lock_low_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46DryRunHashLocks = 1; } },
+    { id: 'p46_remote_verify_hash_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46FrenchServerObjectRemoteVerifyHashChecked = 35; } },
+    { id: 'p46_upload_execution_started_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46FrenchServerPackUploadExecutionStarted = true; } },
     { id: 'p46_sha_mismatch_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46ShaMismatches = 1; } },
     { id: 'p46_open_entry_flag_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46OpenEntryFlags = 1; } },
     { id: 'p46_ready_for_apply_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p46ReadyForApply = true; } },
@@ -450,7 +565,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'simulation_command_execution_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.commandWouldExecuteByThisScript = true; } },
   ];
   return tests.map((test) => {
-    const input = clone(base);
+    const input = clone(probeBase);
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -478,6 +593,8 @@ function renderMarkdown(report: Report): string {
     `- P45 status/state/sequence: ${report.summary.p45Status}/${report.summary.p45PreflightState}/${report.summary.p45ReadyForProductionActivationSequence ? 'yes' : 'no'}`,
     `- P46 status/state/transaction: ${report.summary.p46Status}/${report.summary.p46TransactionState}/${report.summary.p46ReadyForProductionApplyTransaction ? 'yes' : 'no'}`,
     `- P46 server/payload/index/manifest/hash-locks: ${report.summary.p46ServerManifestEntries}/${report.summary.p46PayloadFilesChecked}/${report.summary.p46IndexFilesChecked}/${report.summary.p46SliceManifestFilesChecked}/${report.summary.p46DryRunHashLocks}`,
+    `- P46 server publish/upload/remote: ${report.summary.p46ProductionServerManifestPublishGateReady ? 'yes' : 'no'}/${report.summary.p46FrenchServerPackUploadEvidenceReady ? 'yes' : 'no'}/${report.summary.p46FrenchServerPackUploadExecutionGateReady ? 'yes' : 'no'}/${report.summary.p46FrenchServerObjectRemoteVerifyReady ? 'yes' : 'no'}`,
+    `- P46 remote found/hash checked: ${report.summary.p46FrenchServerObjectRemoteVerifyFound}/${report.summary.p46FrenchServerObjectRemoteVerifyHashChecked}`,
     `- P46 future mutations/rollback/probe: ${report.summary.p46AllowedFutureMutationSteps}/${report.summary.p46RollbackSteps}/${report.summary.p46P45ReadyProbePassed ? 'yes' : 'no'}`,
     `- Current handoff would open transaction: ${report.summary.currentP45ToP46HandoffWouldOpenTransaction ? 'yes' : 'no'}`,
     `- Simulated post-P45 P46 would open transaction: ${report.summary.simulatedPostP45P46WouldOpenTransaction ? 'yes' : 'no'}`,
@@ -587,6 +704,16 @@ function main(): void {
     p46AllowedFutureMutationSteps: n(p46Summary, 'allowedFutureMutationSteps'),
     p46RollbackSteps: n(p46Summary, 'rollbackSteps'),
     p46P45ReadyProbePassed: probePassed(p46, 'p45_ready_contract_ready'),
+    p46ProductionServerManifestPublishGateReady: b(p46Summary, 'productionServerManifestPublishGateReady'),
+    p46ProductionServerManifestPublishGateEntries: n(p46Summary, 'productionServerManifestPublishGateEntries'),
+    p46FrenchServerPackUploadEvidenceReady: b(p46Summary, 'frenchServerPackUploadEvidenceReady'),
+    p46FrenchServerPackUploadEvidenceObjects: n(p46Summary, 'frenchServerPackUploadEvidenceObjects'),
+    p46FrenchServerPackUploadExecutionGateReady: b(p46Summary, 'frenchServerPackUploadExecutionGateReady'),
+    p46FrenchServerPackUploadExecutionGateDryRun: b(p46Summary, 'frenchServerPackUploadExecutionGateDryRun'),
+    p46FrenchServerPackUploadExecutionStarted: b(p46Summary, 'frenchServerPackUploadExecutionStarted'),
+    p46FrenchServerObjectRemoteVerifyReady: b(p46Summary, 'frenchServerObjectRemoteVerifyReady'),
+    p46FrenchServerObjectRemoteVerifyFound: n(p46Summary, 'frenchServerObjectRemoteVerifyFound'),
+    p46FrenchServerObjectRemoteVerifyHashChecked: n(p46Summary, 'frenchServerObjectRemoteVerifyHashChecked'),
     p46ShaMismatches: n(p46Summary, 'shaMismatches'),
     p46MissingEntryFiles: n(p46Summary, 'missingEntryFiles'),
     p46InvalidServerPaths: n(p46Summary, 'invalidServerPaths'),

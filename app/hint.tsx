@@ -25,7 +25,8 @@ import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { legacyRuUk } from '../constants/i18n';
 import { registerXP } from './xp_manager';
-import { lessonTheoryXpClaimedKey } from './target_storage_keys';
+import { updateTaskProgress } from './daily_tasks';
+import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 
 function L(
   lang: Lang,
@@ -92,6 +93,7 @@ function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySe
 
 function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const router = useRouter();
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
@@ -99,23 +101,74 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const sections = React.useMemo(() => buildTheorySections(content, lang), [content, lang]);
   const title = key === 'uk' ? content.titleUk : content.titleRu;
   const subtitle = undefined;
+  const claimStorageKey = React.useMemo(
+    () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
+    [lessonId, studyTarget],
+  );
+  const progressStorageKey = React.useMemo(
+    () => lessonTheorySectionsSeenKey(lessonId, studyTarget),
+    [lessonId, studyTarget],
+  );
+  const [initialClaimed, setInitialClaimed] = React.useState(false);
+  const [claimHydrated, setClaimHydrated] = React.useState(false);
+  const claimInFlightRef = React.useRef(false);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    setClaimHydrated(false);
+    setInitialClaimed(false);
+    AsyncStorage.getItem(claimStorageKey)
+      .then((value) => {
+        if (!cancelled) setInitialClaimed(value === '1');
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setClaimHydrated(true);
+      });
+    updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
+    return () => { cancelled = true; };
+  }, [claimStorageKey, studyTarget]);
 
   const goBack = React.useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
-  const handleClaimXP = React.useCallback(async () => {
+  const handleClaimXP = React.useCallback(async (): Promise<boolean> => {
+    if (claimInFlightRef.current) return false;
+    claimInFlightRef.current = true;
     try {
-      const storeKey = lessonTheoryXpClaimedKey(lessonId, studyTarget);
-      if ((await AsyncStorage.getItem(storeKey)) === '1') return;
+      if ((await AsyncStorage.getItem(claimStorageKey)) === '1') {
+        setInitialClaimed(true);
+        return true;
+      }
+      await AsyncStorage.setItem(claimStorageKey, '1');
       const userName = (await AsyncStorage.getItem('user_name')) ?? '';
       await registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
-        eventId: ['vocabulary', String(studyTarget ?? 'na'), String(lessonId), 'theory', 'claim'].join(':'),
+        eventId: [
+          'vocabulary',
+          String(studyTarget ?? 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
+          String(lessonId),
+          'theory',
+          'claim',
+        ].join(':'),
         payload: { lessonId, studyTarget, surface: 'lesson_theory' },
       });
-      await AsyncStorage.setItem(storeKey, '1');
+      return true;
     } catch {
-      // награда не должна ронять экран
+      await AsyncStorage.removeItem(claimStorageKey).catch(() => {});
+      return false;
+    } finally {
+      claimInFlightRef.current = false;
     }
-  }, [lessonId, studyTarget, lang]);
+  }, [claimStorageKey, lessonId, studyTarget, lang]);
+
+  if (!claimHydrated) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: t.textMuted }}>...</Text>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   return (
     <TheoryLessonView
@@ -125,6 +178,8 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
       subtitle={subtitle}
       sections={sections}
       xpAmount={25}
+      initialClaimed={initialClaimed}
+      progressStorageKey={progressStorageKey}
       onClaimXP={handleClaimXP}
       onBack={goBack}
     />

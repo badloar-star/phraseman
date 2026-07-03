@@ -19,17 +19,22 @@
 // Нативные модули (whisper.rn, expo-file-system) подключаются ТОЛЬКО лениво
 // внутри функций — чистые экспорты юнит-тестируемы без нативной среды.
 
-import { scorePlanPronunciationTranscript } from './personal_plan_pronunciation_scoring_client';
+import { Platform } from 'react-native';
 
-/** Спека модели: whisper tiny.en, 5-битная квантовка — баланс вес/качество. */
-export const NEURAL_JUDGE_MODEL = {
-  fileName: 'ggml-tiny.en-q5_1.bin',
-  url: 'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en-q5_1.bin',
-  /** Санити-минимум размера файла: битая/оборванная загрузка не считается моделью. */
-  minBytes: 30 * 1024 * 1024,
-  /** Подкаталог в documentDirectory (кэш ОС может чиститься — документы нет). */
-  directory: 'neural_judge',
-} as const;
+import { scorePlanPronunciationTranscript } from './personal_plan_pronunciation_scoring_client';
+import {
+  WHISPER_MODEL_DIRECTORY,
+  modelsToPrune,
+  resolveWhisperModel,
+  whisperLanguageFor,
+  type WhisperModelSpec,
+} from './speaking_whisper_models';
+
+/**
+ * Подкаталог в documentDirectory (кэш ОС может чиститься — документы нет).
+ * Реэкспорт из реестра, чтобы старые импортёры не сломались.
+ */
+export const NEURAL_JUDGE_DIRECTORY = WHISPER_MODEL_DIRECTORY;
 
 /** Потолок одного прогона судьи: короткая фраза, дальше — без поправки. */
 export const NEURAL_JUDGE_TIMEOUT_MS = 6000;
@@ -55,6 +60,10 @@ type WhisperContext = {
 
 /** Ленивый гардированный загрузчик whisper.rn: null, пока пакета нет в бинаре. */
 export function loadWhisperModule(): WhisperModule | null {
+  // iOS release builds currently disable whisper.rn autolinking because the
+  // 0.6.0 pod exports duplicate ggml headers. The model remains remote; iOS
+  // falls back to the system control pass until the native pod is fixed.
+  if (Platform.OS === 'ios') return null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require('whisper.rn');

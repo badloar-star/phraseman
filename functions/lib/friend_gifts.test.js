@@ -5,6 +5,14 @@ let autoId = 0;
 function makeRef(path) {
     return {
         path,
+        get: async () => {
+            const data = docs.get(path);
+            return { exists: data !== undefined, data: () => data };
+        },
+        set: async (data, opts) => {
+            const existing = docs.get(path) ?? {};
+            docs.set(path, opts?.merge ? deepMerge(existing, data) : { ...data });
+        },
         collection: (name) => ({
             doc: (id) => makeRef(`${path}/${name}/${id || `auto-${++autoId}`}`),
         }),
@@ -29,10 +37,33 @@ function deepMerge(target, source) {
     return result;
 }
 function buildDb() {
-    return {
-        collection: (name) => ({
-            doc: (id) => makeRef(`${name}/${id || `auto-${++autoId}`}`),
+    const collectionApi = (name) => ({
+        doc: (id) => makeRef(`${name}/${id || `auto-${++autoId}`}`),
+        where: (field, op, value) => ({
+            limit: (count) => ({
+                get: async () => {
+                    const prefix = `${name}/`;
+                    const matched = Array.from(docs.entries())
+                        .filter(([path, data]) => (path.startsWith(prefix) &&
+                        path.slice(prefix.length).split('/').length === 1 &&
+                        op === '==' &&
+                        data[field] === value))
+                        .slice(0, count)
+                        .map(([path, data]) => ({
+                        id: path.slice(prefix.length),
+                        ref: makeRef(path),
+                        data: () => data,
+                    }));
+                    return {
+                        empty: matched.length === 0,
+                        docs: matched,
+                    };
+                },
+            }),
         }),
+    });
+    return {
+        collection: collectionApi,
         runTransaction: async (fn) => {
             const writes = [];
             const tx = {
@@ -145,6 +176,21 @@ test('friendSendGift starts one weekly friend quest after a successful gift', as
     expect(docs.get('users/recipient/friend_quest_meta/current')).toMatchObject({ questId, status: 'active' });
     expect(docs.get('users/sender/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
     expect(docs.get('users/recipient/friend_quest_weekly/2026-W24')).toMatchObject({ questId });
+});
+test('friendSendGift repairs stale anonymous auth ownership before spending shards', async () => {
+    docs.set('users/sender', {
+        ...docs.get('users/sender'),
+        firebaseAuthUid: 'old-anon-auth',
+    });
+    const result = await sendGift();
+    expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });
+    expect(docs.get('users/sender')).toMatchObject({
+        firebaseAuthUid: 'auth-sender',
+        shards: 92,
+    });
+    expect(docs.get('auth_links/auth-sender')).toMatchObject({
+        stable_id: 'sender',
+    });
 });
 test('friendSendGift replays the same idempotency key without a second spend or gift', async () => {
     const first = await sendGift({ idempotencyKey: 'fg_test_1234567890' });

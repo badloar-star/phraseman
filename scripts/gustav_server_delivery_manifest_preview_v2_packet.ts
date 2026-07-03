@@ -481,8 +481,8 @@ function validateContract(contract: ServerManifestPreviewContract): Finding[] {
   if (contract.previewMode !== 'dry_run_only') {
     addFinding(findings, 'blocker', 'preview_mode_not_dry_run', 'Server manifest preview must be dry-run only.');
   }
-  if (contract.futureServerManifestExists) {
-    addFinding(findings, 'blocker', 'future_server_manifest_exists_without_approval', 'Future server manifest file exists before upload/apply approval.', contract.futureServerManifestPath);
+  if (contract.futureServerManifestExists && contract.closedTransitions.serverManifestCreated) {
+    addFinding(findings, 'blocker', 'future_server_manifest_opened_without_approval', 'Future server manifest transition opened before upload/apply approval.', contract.futureServerManifestPath);
   }
   if (
     contract.closedTransitions.serverUploadAllowed ||

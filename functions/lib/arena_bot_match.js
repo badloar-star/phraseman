@@ -50,6 +50,7 @@ const admin = __importStar(require("firebase-admin"));
 const arena_rank_progression_1 = require("./arena_rank_progression");
 const arena_season_1 = require("./arena_season");
 const arena_season_config_1 = require("./arena_season_config");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const DRAW_XP = 30;
 const PLACEHOLDER_NAMES = new Set([
@@ -73,6 +74,31 @@ function readRank(raw) {
         stars: Math.max(0, Math.trunc(readNumber(r.stars, 0))),
     };
 }
+function readProfileRank(data, preferLegacy = false) {
+    return {
+        tier: String((preferLegacy ? data['rank.tier'] ?? data.rank?.tier : data.rank?.tier ?? data['rank.tier']) ?? 'bronze'),
+        level: String((preferLegacy ? data['rank.level'] ?? data.rank?.level : data.rank?.level ?? data['rank.level']) ?? 'I'),
+        stars: Math.max(0, Math.trunc(readNumber(preferLegacy ? data['rank.stars'] ?? data.rank?.stars : data.rank?.stars ?? data['rank.stars'], 0))),
+    };
+}
+function readProfileStats(data) {
+    const nested = {
+        matchesPlayed: Math.max(0, Math.trunc(readNumber(data.stats?.matchesPlayed, 0))),
+        matchesWon: Math.max(0, Math.trunc(readNumber(data.stats?.matchesWon, 0))),
+        totalScore: Math.max(0, Math.trunc(readNumber(data.stats?.totalScore, 0))),
+        winStreak: Math.max(0, Math.trunc(readNumber(data.stats?.winStreak, 0))),
+        bestWinStreak: Math.max(0, Math.trunc(readNumber(data.stats?.bestWinStreak, 0))),
+    };
+    const legacy = {
+        matchesPlayed: Math.max(0, Math.trunc(readNumber(data['stats.matchesPlayed'] ?? data.stats?.matchesPlayed, 0))),
+        matchesWon: Math.max(0, Math.trunc(readNumber(data['stats.matchesWon'] ?? data.stats?.matchesWon, 0))),
+        totalScore: Math.max(0, Math.trunc(readNumber(data['stats.totalScore'] ?? data.stats?.totalScore, 0))),
+        winStreak: Math.max(0, Math.trunc(readNumber(data['stats.winStreak'] ?? data.stats?.winStreak, 0))),
+        bestWinStreak: Math.max(0, Math.trunc(readNumber(data['stats.bestWinStreak'] ?? data.stats?.bestWinStreak, 0))),
+    };
+    const preferLegacy = legacy.matchesPlayed > nested.matchesPlayed;
+    return { stats: preferLegacy ? legacy : nested, preferLegacy };
+}
 function replayBotMatchResult(history, profile) {
     const before = readRank(history.rankBefore);
     const after = readRank(history.rankAfter);
@@ -92,7 +118,7 @@ function replayBotMatchResult(history, profile) {
         idempotentReplay: true,
     };
 }
-exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const uid = request.auth.uid; // запись ТОЛЬКО в свой профиль
@@ -124,9 +150,11 @@ exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (req
         if (historySnap.exists) {
             return replayBotMatchResult(historySnap.data() ?? {}, data);
         }
-        const oldStars = data.rank?.stars ?? 0;
-        const oldTier = data.rank?.tier ?? 'bronze';
-        const oldLevel = data.rank?.level ?? 'I';
+        const oldStatsRead = readProfileStats(data);
+        const oldRank = readProfileRank(data, oldStatsRead.preferLegacy);
+        const oldStars = oldRank.stars;
+        const oldTier = oldRank.tier;
+        const oldLevel = oldRank.level;
         const wasCeiling = oldTier === 'legend' && oldLevel === 'III';
         // На потолке звёзды не двигаем — работает SR.
         const starDelta = isDraw ? 0 : (won ? 1 : isLast ? -1 : 0);
@@ -142,21 +170,24 @@ exports.arenaBotMatchRecord = (0, https_1.onCall)({ region: REGION }, async (req
             ? (0, arena_season_1.applySeasonRatingDelta)(curSr, curPeak, outcome, true, seasonCfg) // бот = половина победы
             : { sr: curSr, peakSR: curPeak };
         const newPeakRankIdx = Math.max(curPeakRankIdx, (0, arena_season_1.rankIndex)(newTier, newLevel));
-        const curStreak = data.stats?.winStreak ?? 0;
-        const bestStreak = data.stats?.bestWinStreak ?? 0;
+        const oldStats = oldStatsRead.stats;
+        const curStreak = oldStats.winStreak;
+        const bestStreak = oldStats.bestWinStreak;
         const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
         const rankChanged = newTier !== oldTier || newLevel !== oldLevel;
         const promoted = rankChanged && (0, arena_season_1.rankIndex)(newTier, newLevel) > (0, arena_season_1.rankIndex)(oldTier, oldLevel);
         const update = {
             userId: uid,
-            'rank.tier': newTier, 'rank.level': newLevel, 'rank.stars': newStars,
+            rank: { tier: newTier, level: newLevel, stars: newStars },
             sr: sr.sr, peakSR: sr.peakSR, seasonId: nowSeasonId, seasonPeakRankIndex: newPeakRankIdx,
             xp: (data.xp ?? 0) + xpDelta,
-            'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-            'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-            'stats.totalScore': (data.stats?.totalScore ?? 0) + myScore,
-            'stats.winStreak': newStreak,
-            'stats.bestWinStreak': Math.max(bestStreak, newStreak),
+            stats: {
+                matchesPlayed: oldStats.matchesPlayed + 1,
+                matchesWon: oldStats.matchesWon + (won ? 1 : 0),
+                totalScore: oldStats.totalScore + myScore,
+                winStreak: newStreak,
+                bestWinStreak: Math.max(bestStreak, newStreak),
+            },
             updatedAt: Date.now(),
         };
         if (incomingName)

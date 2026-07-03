@@ -169,6 +169,22 @@ describe('progress_events engine', () => {
     expect(applyProgressEvent({}, event, now).xpDelta).toBe(100);
   });
 
+  it('allows batched lesson completion XP up to the lesson daily cap', () => {
+    const event = normalizeProgressEvent({
+      eventId: 'lesson:7:attempt-1:complete_xp',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { lessonId: 7, xpDelta: 2500, batchedAnswerXp: true },
+    });
+
+    const result = applyProgressEvent({}, event, now);
+    const cappedResult = applyProgressEvent({}, event, now, { sourceXpToday: { lesson_complete: 7900 } });
+
+    expect(result.xpDelta).toBe(2500);
+    expect(result.progressPatch.lesson7_pass_count).toBeUndefined();
+    expect(cappedResult.xpDelta).toBe(100);
+  });
+
   it('preserves high-tier wager rewards', () => {
     const event = normalizeProgressEvent({
       eventId: 'wager:2026-06-01:5:100:win',

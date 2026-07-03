@@ -29,11 +29,12 @@
  * first and our entitlement merge is the last word on the app target.
  */
 
-const { withEntitlementsPlist, createRunOncePlugin } = require('@expo/config-plugins');
+const { withEntitlementsPlist, withXcodeProject, createRunOncePlugin, IOSConfig } = require('@expo/config-plugins');
 
 /** Shared App Group — MUST match constants.ts / the Swift + Kotlin code. */
 const APP_GROUP = 'group.app.phraseman.widget';
 const ENTITLEMENT_KEY = 'com.apple.security.application-groups';
+const REGISTER_APP_GROUPS_KEY = 'REGISTER_APP_GROUPS';
 
 /**
  * Merge APP_GROUP into the app target's application-groups entitlement without
@@ -49,14 +50,50 @@ function ensureAppGroup(entitlements) {
   return { ...entitlements, [ENTITLEMENT_KEY]: next };
 }
 
-const withIosDailyPhraseWidgetAppGroup = (config) =>
-  withEntitlementsPlist(config, (cfg) => {
+function setBuildSettingForTarget(project, targetUuid, key, value) {
+  const objects = project.hash?.project?.objects;
+  const nativeTarget = objects?.PBXNativeTarget?.[targetUuid];
+  const configListUuid = nativeTarget?.buildConfigurationList;
+  const configList = objects?.XCConfigurationList?.[configListUuid];
+  const buildConfigurations = Array.isArray(configList?.buildConfigurations)
+    ? configList.buildConfigurations
+    : [];
+
+  for (const ref of buildConfigurations) {
+    const buildConfig = objects?.XCBuildConfiguration?.[ref.value];
+    if (!buildConfig?.buildSettings) continue;
+    buildConfig.buildSettings[key] = value;
+  }
+}
+
+const withIosDailyPhraseWidgetAppGroup = (config) => {
+  config = withEntitlementsPlist(config, (cfg) => {
     cfg.modResults = ensureAppGroup(cfg.modResults);
     return cfg;
   });
 
-module.exports = createRunOncePlugin(
+  return withXcodeProject(config, (cfg) => {
+    const project = cfg.modResults;
+    const projectRoot = cfg.modRequest.projectRoot;
+    const projectName = IOSConfig.XcodeUtils.getProjectName(projectRoot);
+    const target = IOSConfig.XcodeUtils.getApplicationNativeTarget({ project, projectName });
+
+    // The apple-targets plugin sets REGISTER_APP_GROUPS for the extension target
+    // when it sees generated.entitlements. The host app target also needs the
+    // same explicit build setting so EAS/Xcode registers the shared container
+    // instead of shipping a widget that can only render its placeholder.
+    setBuildSettingForTarget(project, target.uuid, REGISTER_APP_GROUPS_KEY, 'YES');
+    return cfg;
+  });
+};
+
+const plugin = createRunOncePlugin(
   withIosDailyPhraseWidgetAppGroup,
   'withIosDailyPhraseWidgetAppGroup',
-  '0.1.0',
+  '0.2.0',
 );
+
+plugin._ensureAppGroup = ensureAppGroup;
+plugin._setBuildSettingForTarget = setBuildSettingForTarget;
+
+module.exports = plugin;

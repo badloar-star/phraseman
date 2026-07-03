@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 const source = readFileSync(join(__dirname, '..', 'app', 'referral_invite_share.ts'), 'utf8');
+const friendsSource = readFileSync(join(__dirname, '..', 'app', '(tabs)', 'friends.tsx'), 'utf8');
+const settingsSource = readFileSync(join(__dirname, '..', 'app', 'settings_invite_friend.tsx'), 'utf8');
 
 describe('referral invite share planned locale runtime copy', () => {
   it('does not route planned invite text through legacy RU/UK/ES branches', () => {
@@ -33,8 +35,18 @@ describe('referral invite share planned locale runtime copy', () => {
     expect(source).not.toContain('ÐžÑ‚ÐºÑ€Ð¾Ð¹');
     expect(source).not.toContain('Ð¿Ñ€Ð¸Ð³Ð»Ð°ÑˆÐµÐ½Ð¸Ðµ');
   });
-  it('keeps referral share focused on one public invite link for new installs', () => {
+  it('keeps referral share focused on one public invite link on every platform', () => {
     expect(source).toContain('buildReferralInviteShare');
-    expect(source).toMatch(/return buildReferralInviteShare\(lang, inviteHttps\);\s+if \(Platform\.OS === 'android'\)/);
+    expect(source).toContain('return buildReferralInviteShare(lang, inviteHttps);');
+    expect(source).not.toContain('Platform.OS');
+    expect(source).not.toContain('STORE_URL_IOS');
+    expect(source).not.toContain('buildPlayStoreUrlWithInstallReferral');
+    expect(source).not.toContain('phraseman://invite');
+    expect(source).not.toContain('Уже установлено?');
+    expect(source).not.toContain('Нет приложения');
+    expect(friendsSource).toContain('Share.share({ message: share.message })');
+    expect(settingsSource).toContain('Share.share({ message: cloud.message })');
+    expect(friendsSource).not.toContain('message: share.message, url: share.url');
+    expect(settingsSource).not.toContain('message: cloud.message, url: cloud.url');
   });
 });

@@ -228,6 +228,12 @@ function classifyActivationLock(input: ActivationLockInput): {
   if ((input.activationApproved || input.readyForApply || input.mayModifyProductionAppFiles) && !activationChainReady) {
     blockers.push('production_flags_open_before_p44_p47_chain');
   }
+  if (input.activationApproved !== input.readyForApply) {
+    blockers.push('non_atomic_activation_ready_for_apply_flags');
+  }
+  if (input.mayModifyProductionAppFiles && (!input.activationApproved || !input.readyForApply)) {
+    blockers.push('production_write_flag_open_without_activation_apply_pair');
+  }
 
   const pairState = activePairOneSided
     ? 'one_sided_active_artifact_blocked'
@@ -476,8 +482,9 @@ function main(): void {
     s(officialSource, 'status') === 'PASS' &&
     n(officialSourceSummary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
     n(officialSourceSummary, 'rowDecisionsWithSourceRefs') === 1600 &&
-    n(officialSourceSummary, 'acceptedAiOfficialSourceDecisionRows') === 164 &&
-    n(officialSourceSummary, 'aiDecisionsWithTrustedSourceRefUrls') === 164 &&
+    n(officialSourceSummary, 'acceptedAiOfficialSourceDecisionRows') > 0 &&
+    n(officialSourceSummary, 'aiDecisionsWithSourceRefs') === n(officialSourceSummary, 'acceptedAiOfficialSourceDecisionRows') &&
+    n(officialSourceSummary, 'aiDecisionsWithTrustedSourceRefUrls') === n(officialSourceSummary, 'acceptedAiOfficialSourceDecisionRows') &&
     n(officialSourceSummary, 'fixtureProbesPassed') === n(officialSourceSummary, 'fixtureProbes');
   const generationV2Ready = b(masterSummary, 'readyForGenerationV2');
   const decisionImportV2Ready = b(masterSummary, 'readyForDecisionImportV2');
@@ -494,23 +501,35 @@ function main(): void {
     n(p66Summary, 'generationBlockers') === 0 &&
     n(p66Summary, 'applyBlockers') === 1 &&
     !b(p66Summary, 'readyForApply');
-  const orderedApprovalWaitReady =
-    s(ordered, 'status') === 'PASS' &&
-    n(orderedSummary, 'stepsFailed') === 0 &&
-    !b(orderedSummary, 'readyForApply');
-  const exactApprovalWaitStateReady =
-    s(p65, 'status') === 'PASS' &&
-    s(p65Summary, 'waitState') === 'exact_approval_wait_state_ready' &&
-    b(p65Summary, 'closedEvidenceReady') &&
-    b(p65Summary, 'exactApprovalStillRequired') &&
-    b(p65Summary, 'approvalSourceIsCanonical') &&
-    !b(p65Summary, 'readyForApply');
-  const exactApprovalSourceContainsExactSentence = b(p65Summary, 'exactApprovalSourceContainsExactSentence');
   const exactApprovalValidationReady =
     s(p44, 'status') === 'PASS' &&
     s(p44Summary, 'validationState') === 'exact_approval_artifacts_validated_for_next_sequencing' &&
     b(p44Summary, 'readyForProductionActivationSequencing') &&
     b(p44Summary, 'activeApprovalArtifactsMatched');
+  const orderedApprovalWaitReady =
+    exactApprovalValidationReady ||
+    (
+      s(ordered, 'status') === 'PASS' &&
+      n(orderedSummary, 'stepsFailed') === 0 &&
+      !b(orderedSummary, 'readyForApply')
+    );
+  const exactApprovalWaitStateReady =
+    exactApprovalValidationReady ||
+    (
+      s(p65, 'status') === 'PASS' &&
+      s(p65Summary, 'waitState') === 'exact_approval_wait_state_ready' &&
+      b(p65Summary, 'closedEvidenceReady') &&
+      b(p65Summary, 'exactApprovalStillRequired') &&
+      b(p65Summary, 'approvalSourceIsCanonical') &&
+      !b(p65Summary, 'readyForApply')
+    );
+  const exactApprovalSourceContainsExactSentence =
+    b(p65Summary, 'exactApprovalSourceContainsExactSentence') ||
+    (
+      b(p44Summary, 'approvalSourceExists') &&
+      b(p44Summary, 'approvalSourceIsCanonical') &&
+      b(p44Summary, 'exactApprovalSentencePresent')
+    );
   const activationSequenceReady =
     s(p45, 'status') === 'PASS' &&
     b(p45Summary, 'readyForProductionActivationSequence');

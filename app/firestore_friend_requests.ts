@@ -1,5 +1,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -14,10 +15,12 @@ export type SendRequestResult =
 export interface FriendEntry {
   uid: string;
   createdAt: number;
+  displayName?: string;
 }
 
 export interface FriendRequestEntry {
   fromUid: string;
+  fromName?: string;
   status: 'pending' | 'accepted';
   createdAt: number;
 }
@@ -62,6 +65,41 @@ function logFriendsHealth(
     .catch(() => {});
 }
 
+function cleanFriendRequestDisplayName(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  return value.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim();
+}
+
+async function readUserDisplayNameFromFirestore(
+  db: NonNullable<ReturnType<typeof getFirestore>>,
+  uid: string,
+): Promise<string> {
+  try {
+    const snap = await db.collection('users').doc(uid).get();
+    const data = snap.exists ? snap.data?.() ?? {} : {};
+    const progress = data && typeof data.progress === 'object' && data.progress !== null
+      ? data.progress as Record<string, unknown>
+      : {};
+    return cleanFriendRequestDisplayName(progress.user_name)
+      || cleanFriendRequestDisplayName(data.displayName)
+      || cleanFriendRequestDisplayName(data.name);
+  } catch {
+    return '';
+  }
+}
+
+async function readMyFriendRequestDisplayName(
+  myUid?: string,
+  db?: NonNullable<ReturnType<typeof getFirestore>>,
+): Promise<string> {
+  try {
+    const localName = cleanFriendRequestDisplayName(await AsyncStorage.getItem('user_name'));
+    if (localName) return localName;
+  } catch {}
+  if (!myUid || !db) return '';
+  return readUserDisplayNameFromFirestore(db, myUid);
+}
+
 async function ensureFriendsStableAuthLink(
   action: string,
   tags: Record<string, string | number | boolean | null | undefined> = {},
@@ -82,7 +120,7 @@ async function ensureFriendsStableAuthLink(
  * Returns a typed result rather than throwing so the UI can render
  * appropriate copy without catching.
  *
- * Writes: users/{toUid}/friend_requests/{myUid} = { status: 'pending', createdAt }
+ * Writes: users/{toUid}/friend_requests/{myUid} = { status: 'pending', createdAt, fromName? }
  */
 export async function sendFriendRequest(toUid: string): Promise<SendRequestResult> {
   const myUid = await ensureAnonUser();
@@ -106,6 +144,7 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
   }
 
   try {
+    const senderNamePromise = readMyFriendRequestDisplayName(myUid, db);
     // Auth must be linked before Firestore writes — security rules check firebaseAuthUid.
     const authLinked = await ensureFriendsStableAuthLink('send_friend_request', { myUid, targetUid: toUid });
     if (!authLinked) return 'error';
@@ -155,12 +194,13 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
     }
 
     // Write the pending request.
+    const fromName = await senderNamePromise;
     await db
       .collection('users')
       .doc(toUid)
       .collection('friend_requests')
       .doc(myUid)
-      .set({ status: 'pending', createdAt: Date.now() });
+      .set({ status: 'pending', createdAt: Date.now(), ...(fromName ? { fromName } : {}) });
 
     return 'sent';
   } catch (e) {
@@ -203,12 +243,18 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   }
 
   // Batch: create both friend entries + delete the request doc.
+  const requestRef = db.collection('users').doc(myUid).collection('friend_requests').doc(fromUid);
+  const [requestSnap, myDisplayName] = await Promise.all([
+    requestRef.get(),
+    readMyFriendRequestDisplayName(myUid, db),
+  ]);
+  const fromName = cleanFriendRequestDisplayName(requestSnap.data?.()?.fromName);
   const batch = db.batch();
   const now = Date.now();
 
   batch.set(
     db.collection('users').doc(myUid).collection('friends').doc(fromUid),
-    { createdAt: now },
+    { createdAt: now, ...(fromName ? { displayName: fromName } : {}) },
   );
   // Reverse doc живёт на стороне ОТПРАВИТЕЛЯ заявки (fromUid) — это его друг-запись.
   // Помечаем acceptedAt, чтобы отправитель мог показать «X принял твою заявку»
@@ -216,10 +262,10 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   // там я САМ принял входящую, копия будет нейтральной «теперь вы друзья».
   batch.set(
     db.collection('users').doc(fromUid).collection('friends').doc(myUid),
-    { createdAt: now, acceptedAt: now },
+    { createdAt: now, acceptedAt: now, ...(myDisplayName ? { displayName: myDisplayName } : {}) },
   );
   // Удаляем request-документ после принятия — иначе он висит вечно и может блокировать повторные заявки.
-  batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(fromUid));
+  batch.delete(requestRef);
 
   try {
     await batch.commit();
@@ -365,12 +411,14 @@ export function subscribeToFriends(
     .then(myUid => {
       if (cancelled) return;
       if (!myUid) {
-        callback([], { fromCache: false });
+        // Auth ещё не готов (холодный старт/сеть) — это НЕ «друзей нет». fromCache:true,
+        // чтобы вызывающий не принял пустоту за серверную правду и не стёр показанный список.
+        callback([], { fromCache: true });
         return;
       }
       const db = getFirestore();
       if (!db) {
-        callback([], { fromCache: false });
+        callback([], { fromCache: true });
         return;
       }
       unsubscribe = db
@@ -385,6 +433,7 @@ export function subscribeToFriends(
             if (cancelled) return;
             const fromCache = snap.metadata?.fromCache === true;
             const friends: FriendEntry[] = snap.docs.map(doc => ({
+              displayName: cleanFriendRequestDisplayName(doc.data().displayName) || undefined,
               uid: doc.id,
               createdAt: (doc.data().createdAt as number) ?? 0,
             }));
@@ -410,9 +459,9 @@ export function subscribeToFriends(
 // ── subscribeToIncomingRequests ────────────────────────────────────────────
 
 /**
- * Real-time listener for входящих заявок со статусом pending.
- * Слушает всю подколлекцию и фильтрует на клиенте — без query по полю status
- * (меньше сюрпризов с индексами; документы «accepted» просто отбрасываются).
+ * Real-time listener for incoming pending requests.
+ * Firestore filters by status before snapshots reach JS, so accepted/declined
+ * history does not grow the work done on every update.
  */
 export function subscribeToIncomingRequests(
   callback: (requests: FriendRequestEntry[]) => void,
@@ -437,6 +486,7 @@ export function subscribeToIncomingRequests(
         .collection('users')
         .doc(myUid)
         .collection('friend_requests')
+        .where('status', '==', 'pending')
         .onSnapshot(
           (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
             if (cancelled) return;
@@ -444,15 +494,17 @@ export function subscribeToIncomingRequests(
               .map(doc => {
                 const data = doc.data();
                 const st = data.status as string | undefined;
+                const fromName = cleanFriendRequestDisplayName(data.fromName);
                 return {
                   fromUid: doc.id,
+                  fromName: fromName || undefined,
                   status: 'pending' as const,
                   createdAt: (data.createdAt as number) ?? 0,
                   _rawStatus: st,
                 };
               })
-              .filter(r => r._rawStatus === 'pending' || r._rawStatus === undefined)
-              .map(({ fromUid, status, createdAt }) => ({ fromUid, status, createdAt }));
+              .filter(r => r._rawStatus === 'pending')
+              .map(({ fromUid, fromName, status, createdAt }) => ({ fromUid, ...(fromName ? { fromName } : {}), status, createdAt }));
             callback(requests);
           },
           (err: Error) => {

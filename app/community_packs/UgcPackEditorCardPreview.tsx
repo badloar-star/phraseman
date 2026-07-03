@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
@@ -14,11 +15,11 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { Theme } from '../../constants/theme';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 
 type GradPair = readonly [string, string];
 
@@ -50,12 +51,13 @@ type Props = {
 
 function usePackCardPreviewHeight(): number {
   const { height: screenH } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   return useMemo(() => {
-    const reserved = 200 + insets.top + insets.bottom;
+    const reserved = 200 + insets.top + bottomInset;
     const hAvail = Math.max(220, screenH - reserved);
     return Math.min(224, Math.max(140, Math.round(hAvail * 0.45)));
-  }, [screenH, insets.top, insets.bottom]);
+  }, [screenH, insets.top, bottomInset]);
 }
 
 export default function UgcPackEditorCardPreview({

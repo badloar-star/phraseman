@@ -4,6 +4,7 @@ import path from 'path';
 describe('premium modal dispatcher contract', () => {
   const root = process.cwd();
   const dispatcher = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
+  const manageSubscription = fs.readFileSync(path.join(root, 'app', 'manage_subscription.tsx'), 'utf8');
   const purchase = fs.readFileSync(path.join(root, 'app', 'paywall_purchase.ts'), 'utf8');
 
   it('keeps /premium_modal as a dispatcher only, with no retired paywall UI', () => {
@@ -50,9 +51,10 @@ describe('premium modal dispatcher contract', () => {
   });
 
   it('keeps manage mode as a store subscription link, not as the retired paywall', () => {
-    expect(dispatcher).toContain('getSubscriptionManageUrl');
-    expect(dispatcher).toContain('apps.apple.com/account/subscriptions');
-    expect(dispatcher).toContain('play.google.com/store/account/subscriptions');
-    expect(dispatcher).toContain('safeRouterBack(router)');
+    expect(dispatcher).toContain("router.replace('/manage_subscription' as any)");
+    expect(manageSubscription).toContain('getStoreManageUrl');
+    expect(manageSubscription).toContain('apps.apple.com/account/subscriptions');
+    expect(manageSubscription).toContain('play.google.com/store/account/subscriptions');
+    expect(manageSubscription).toContain('safeRouterBack(router)');
   });
 });

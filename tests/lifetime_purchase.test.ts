@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// lifetime_purchase.test.ts — кнопка «Навсегда» (lifetime) на пейволах.
+// lifetime_purchase.test.ts — кнопка Phraseman Pro (lifetime) на пейволах.
 //
 // Покрывает «дремлющую» механику: код готов, но кнопка показывается ТОЛЬКО
 // когда (а) RevenueCat реально вернул lifetime-пакет И (б) админ-флаг включён.
@@ -23,7 +23,7 @@ function pkg(packageType: string, identifier: string, priceString = '€99,99'):
   } as unknown as PurchasesPackage;
 }
 
-describe('lifetime «Навсегда» — purchase plumbing', () => {
+describe('lifetime Phraseman Pro — purchase plumbing', () => {
   describe('inferPremiumPlanFromProductId', () => {
     it('распознаёт lifetime по product id', () => {
       expect(inferPremiumPlanFromProductId('phraseman_lifetime')).toBe('lifetime');

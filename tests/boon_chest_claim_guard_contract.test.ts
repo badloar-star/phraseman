@@ -5,6 +5,7 @@ const ROOT = path.join(__dirname, '..');
 
 describe('boon chest claim guard', () => {
   const modalSource = fs.readFileSync(path.join(ROOT, 'components', 'BoonChestModal.tsx'), 'utf8');
+  const rewardSource = fs.readFileSync(path.join(ROOT, 'app', 'boons', 'boon_rewards.ts'), 'utf8');
 
   it('does not let a reward chest close silently before claim', () => {
     const requestCloseStart = modalSource.indexOf('const requestClose = () => {');
@@ -32,5 +33,9 @@ describe('boon chest claim guard', () => {
 
     expect(perfect).toContain('if (grantedRef.current) return;');
     expect(perfect).toContain('await markPerfectWeekClaimed()');
+  });
+
+  it('grants modal boon shards through the local-first shard path', () => {
+    expect(rewardSource).toContain('addShardsRaw(reward.shards, logReason, { skipServerAwait: true })');
   });
 });

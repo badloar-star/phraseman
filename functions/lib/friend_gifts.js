@@ -37,6 +37,8 @@ exports.friendThankGift = exports.friendClaimQuestReward = exports.friendGetActi
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
+const auth_identity_1 = require("./auth_identity");
+const user_notifications_1 = require("./user_notifications");
 const REGION = 'us-central1';
 /**
  * Отправляет один Expo push. Best-effort: ошибки глотаем — получатель всё равно
@@ -323,6 +325,11 @@ exports.friendSendGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck: 
         throw new https_1.HttpsError('invalid-argument', 'Unsupported gift id');
     }
     const db = admin.firestore();
+    const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
+    const linkedSender = await (0, auth_identity_1.ensureStableLinkForAuth)(db, request.auth.uid, senderStableId, signInProvider);
+    if (linkedSender.stableUid !== senderStableId) {
+        throw new https_1.HttpsError('failed-precondition', 'sender_stable_id_changed');
+    }
     const senderRef = db.collection('users').doc(senderStableId);
     const recipientRef = db.collection('users').doc(friendStableId);
     const senderFriendRef = senderRef.collection('friends').doc(friendStableId);
@@ -488,6 +495,14 @@ exports.friendSendGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck: 
                 fromName: senderName,
             },
         });
+        // Центр событий: «X отправил вам подарок».
+        tx.set((0, user_notifications_1.userNotificationRef)(db, friendStableId, `gift_${sentGiftRef.id}`), (0, user_notifications_1.buildUserNotification)({
+            type: 'friend_gift_received',
+            fromUid: senderStableId,
+            fromName: senderName,
+            text: gift.labelRu,
+            nav: { kind: 'friends' },
+        }, now));
         tx.set(dailyLimitRef, {
             date: today,
             totalSent: totalSentToday + 1,
@@ -668,6 +683,22 @@ function buildQuestStatus(quest, userDataByUid) {
         rewardClaimedByUid: parseJsonObject(quest.rewardClaimedByUid),
     };
 }
+const FRIEND_GET_ACTIVE_QUEST_SERVER_CACHE_TTL_MS = 30000;
+const friendGetActiveQuestServerCache = new Map();
+function cacheFriendGetActiveQuest(stableId, data) {
+    const now = Date.now();
+    friendGetActiveQuestServerCache.set(stableId, {
+        expiresAtMs: now + FRIEND_GET_ACTIVE_QUEST_SERVER_CACHE_TTL_MS,
+        data,
+    });
+    if (friendGetActiveQuestServerCache.size > 1000) {
+        for (const [key, entry] of friendGetActiveQuestServerCache) {
+            if (entry.expiresAtMs <= now || friendGetActiveQuestServerCache.size > 900) {
+                friendGetActiveQuestServerCache.delete(key);
+            }
+        }
+    }
+}
 exports.friendGetActiveQuest = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
@@ -680,6 +711,7 @@ exports.friendGetActiveQuest = (0, https_1.onCall)({ region: REGION, enforceAppC
     const userRef = db.collection('users').doc(stableId);
     const currentRef = userRef.collection('friend_quest_meta').doc('current');
     const now = Date.now();
+    const force = request.data?.force === true;
     return db.runTransaction(async (tx) => {
         const [userSnap, currentSnap] = await Promise.all([
             tx.get(userRef),
@@ -690,17 +722,29 @@ exports.friendGetActiveQuest = (0, https_1.onCall)({ region: REGION, enforceAppC
         if (!userMatchesAuth(stableId, userSnap.data(), request.auth.uid)) {
             throw new https_1.HttpsError('permission-denied', 'User does not match auth');
         }
-        if (!currentSnap.exists)
-            return { ok: true, quest: null };
+        if (!currentSnap.exists) {
+            const data = { ok: true, quest: null };
+            cacheFriendGetActiveQuest(stableId, data);
+            return data;
+        }
         const current = currentSnap.data() ?? {};
         const questId = cleanId(current.questId);
         const expiresAtMs = parseProgressInt(current.expiresAtMs);
-        if (!questId || current.status !== 'active')
-            return { ok: true, quest: null };
+        if (!questId || current.status !== 'active') {
+            const data = { ok: true, quest: null };
+            cacheFriendGetActiveQuest(stableId, data);
+            return data;
+        }
+        const cached = force ? undefined : friendGetActiveQuestServerCache.get(stableId);
+        if (cached && cached.expiresAtMs > now)
+            return cached.data;
         const questRef = db.collection('friend_quests').doc(questId);
         const questSnap = await tx.get(questRef);
-        if (!questSnap.exists)
-            return { ok: true, quest: null };
+        if (!questSnap.exists) {
+            const data = { ok: true, quest: null };
+            cacheFriendGetActiveQuest(stableId, data);
+            return data;
+        }
         const quest = questSnap.data() ?? {};
         const participantUids = Array.isArray(quest.participantUids)
             ? quest.participantUids.map((uid) => String(uid)).filter(Boolean)
@@ -717,12 +761,20 @@ exports.friendGetActiveQuest = (0, https_1.onCall)({ region: REGION, enforceAppC
             if (otherUid) {
                 tx.set(otherRef.collection('friend_quest_meta').doc('current'), { status: 'expired', expiredAtMs: now }, { merge: true });
             }
-            return { ok: true, quest: { ...buildQuestStatus({ ...quest, status: 'expired' }, { [stableId]: userSnap.data(), [otherUid]: otherSnap?.data() }), status: 'expired' } };
+            const data = { ok: true, quest: { ...buildQuestStatus({ ...quest, status: 'expired' }, { [stableId]: userSnap.data(), [otherUid]: otherSnap?.data() }), status: 'expired' } };
+            cacheFriendGetActiveQuest(stableId, data);
+            if (otherUid)
+                cacheFriendGetActiveQuest(otherUid, data);
+            return data;
         }
-        return {
+        const data = {
             ok: true,
             quest: buildQuestStatus(quest, { [stableId]: userSnap.data(), [otherUid]: otherSnap?.data() }),
         };
+        cacheFriendGetActiveQuest(stableId, data);
+        if (otherUid)
+            cacheFriendGetActiveQuest(otherUid, data);
+        return data;
     });
 });
 exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
@@ -758,6 +810,7 @@ exports.friendClaimQuestReward = (0, https_1.onCall)({ region: REGION, enforceAp
         if (!userMatchesAuth(stableId, userDataByUid[stableId], request.auth.uid)) {
             throw new https_1.HttpsError('permission-denied', 'User does not match auth');
         }
+        participantUids.forEach((uid) => friendGetActiveQuestServerCache.delete(uid));
         const targetXp = parseProgressInt(quest.targetXp) || FRIEND_QUEST_TARGET_XP;
         const rewardShards = parseProgressInt(quest.rewardShards) || FRIEND_QUEST_REWARD_SHARDS;
         const rewardXp = parseProgressInt(quest.rewardXp) || FRIEND_QUEST_REWARD_XP;
@@ -867,6 +920,11 @@ exports.friendThankGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck:
         throw new https_1.HttpsError('invalid-argument', 'Valid sender, friend and gift required');
     }
     const db = admin.firestore();
+    const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
+    const linkedSender = await (0, auth_identity_1.ensureStableLinkForAuth)(db, request.auth.uid, senderStableId, signInProvider);
+    if (linkedSender.stableUid !== senderStableId) {
+        throw new https_1.HttpsError('failed-precondition', 'sender_stable_id_changed');
+    }
     const senderRef = db.collection('users').doc(senderStableId);
     const friendRef = db.collection('users').doc(friendStableId);
     const now = Date.now();
@@ -916,6 +974,14 @@ exports.friendThankGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck:
                 fromName: senderName,
             },
         });
+        // Центр событий: «X поблагодарил за подарок».
+        tx.set((0, user_notifications_1.userNotificationRef)(db, friendStableId, `gift_thanks_${senderStableId}_${idempotencyKey || now}`), (0, user_notifications_1.buildUserNotification)({
+            type: 'friend_gift_thanks',
+            fromUid: senderStableId,
+            fromName: senderName,
+            text: gift.labelRu,
+            nav: { kind: 'friends' },
+        }, now));
         if (idempotencyRef) {
             tx.set(idempotencyRef, {
                 createdAt: now,

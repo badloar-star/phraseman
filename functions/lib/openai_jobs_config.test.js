@@ -26,6 +26,8 @@ describe('openai_jobs_config — resolveJobConfig', () => {
         expect(weekly).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 0, enabled: true });
         const explain = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'explain');
         expect(explain).toEqual({ model: 'gpt-4o-mini', globalDailyCap: 3000, enabled: true });
+        const helpBoard = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'help_board');
+        expect(helpBoard).toEqual({ model: 'gpt-4.1-nano', globalDailyCap: 1000, enabled: true });
     });
     it('reads per-job overrides from doc', async () => {
         const db = fakeDb({ stats: { model: 'gpt-4.1-mini', globalDailyCap: 1000, enabled: true } });

@@ -1,6 +1,6 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, Easing, PanResponder, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import { router, usePathname } from 'expo-router';
 import { useTheme } from './ThemeContext';
@@ -30,7 +30,7 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
   const pathname = usePathname();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   const [visible, setVisible] = useState(false);
   const translateY = useRef(new Animated.Value(-160)).current;

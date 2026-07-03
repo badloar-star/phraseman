@@ -14,10 +14,9 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Modal, View, Text, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Image as ExpoImage } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -39,16 +38,25 @@ import { triLang } from '../constants/i18n';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
-const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 // H-ENTER: верхняя граница на весь провайдер-вход, чтобы кнопки модалки (включая
 // «Позже»/закрытие) не залипли навсегда, если сеть оборвалась после выбора аккаунта.
 const SIGN_IN_OVERALL_TIMEOUT_MS = 45_000;
+
+function waitForAuthPromptBusyFrame(): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof requestAnimationFrame === 'function') {
+      requestAnimationFrame(() => resolve());
+    } else {
+      setTimeout(resolve, 0);
+    }
+  });
+}
 
 interface Props {
   visible: boolean;
   /** Контекст показа — для аналитики. 'home_banner' — открыт из persistent
    *  баннера на Home для незалогиненных юзеров с XP ≥ 1000. */
-  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner';
+  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner' | 'compass';
   /** Кастомный заголовок (опц., иначе используется дефолт под контекст). */
   title?: string;
   /** Кастомный подзаголовок (опц.). */
@@ -205,6 +213,16 @@ function RegistrationPromptModal({
   const labelGoogle = triLang(lang, { ru: 'Войти через Google', uk: 'Війти з Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' });
   const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
   const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
+  const signInBusyLabel = triLang(lang, {
+    ru: 'Входим... подожди пару секунд',
+    uk: 'Входимо... зачекай кілька секунд',
+    es: 'Iniciando sesión... espera unos segundos',
+    'pt-BR': 'Entrando... aguarde alguns segundos',
+    vi: 'Đang đăng nhập... chờ vài giây',
+    id: 'Sedang masuk... tunggu beberapa detik',
+    tr: 'Giriş yapılıyor... birkaç saniye bekle',
+    pl: 'Logowanie... poczekaj kilka sekund',
+  });
   const labelPrivacy = triLang(lang, {
     ru: 'Твой email остаётся у тебя — никакого спама.',
     uk: 'Твій email залишається в тебе — жодного спаму.',
@@ -218,10 +236,12 @@ function RegistrationPromptModal({
 
   const handleSignIn = useCallback(
     async (provider: AuthProviderId) => {
+      if (loadingProvider !== null) return;
       setLoadingProvider(provider);
       logEvent('auth_prompt_click', { context, provider });
       if (__DEV__) console.log('[RegistrationPromptModal] handleSignIn start, provider=', provider);
       try {
+        await waitForAuthPromptBusyFrame();
         // H-ENTER: общий таймаут на весь вход (см. SIGN_IN_OVERALL_TIMEOUT_MS).
         // Без него зависший Firestore-await внутри signInWithProvider навсегда запирал
         // модалку (loadingProvider не сбрасывался → все кнопки disabled).
@@ -345,7 +365,7 @@ function RegistrationPromptModal({
         setLoadingProvider(null);
       }
     },
-    [context, lang, onClose, onSignedIn, showInlineError],
+    [context, lang, loadingProvider, onClose, onSignedIn, showInlineError],
   );
 
   // Аварийная кнопка для DEV: полный wipe identity-state (Keychain stable_id +
@@ -368,10 +388,11 @@ function RegistrationPromptModal({
   }, [showInlineError]);
 
   const handleLater = useCallback(async () => {
+    if (loadingProvider !== null) return;
     logEvent('auth_prompt_dismissed', { context });
     await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
     onClose();
-  }, [context, onClose]);
+  }, [context, loadingProvider, onClose]);
 
   return (
     <Modal
@@ -404,26 +425,16 @@ function RegistrationPromptModal({
             keyboardShouldPersistTaps="handled"
           >
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
-          {context === 'onboarding' ? (
-            <ExpoImage
-              source={AUTH_QUICK_START_ICON}
-              style={styles.authIcon}
-              contentFit="contain"
-              cachePolicy="memory-disk"
-              accessible={false}
+          <View style={[styles.medallion, { borderColor: `${TRUST_ACCENT}55` }]}>
+            <LinearGradient
+              pointerEvents="none"
+              colors={[`${TRUST_ACCENT}30`, 'transparent']}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
+              style={StyleSheet.absoluteFill}
             />
-          ) : (
-            <View style={[styles.medallion, { borderColor: `${TRUST_ACCENT}55` }]}>
-              <LinearGradient
-                pointerEvents="none"
-                colors={[`${TRUST_ACCENT}30`, 'transparent']}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-                style={StyleSheet.absoluteFill}
-              />
-              <Ionicons name={headerIcon} size={34} color={TRUST_ACCENT} />
-            </View>
-          )}
+            <Ionicons name={headerIcon} size={34} color={TRUST_ACCENT} />
+          </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1, lineHeight: titleLineHeight }]}>
             {finalTitle}
           </Text>
@@ -452,6 +463,25 @@ function RegistrationPromptModal({
               </View>
             )}
           </View>
+
+          {loadingProvider !== null && (
+            <View
+              testID="auth-prompt-busy"
+              accessibilityRole="progressbar"
+              style={[
+                styles.busyPanel,
+                {
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                },
+              ]}
+            >
+              <ActivityIndicator size="small" color={t.accent} />
+              <Text style={[styles.busyText, { color: t.textSecond, fontSize: f.caption }]}>
+                {signInBusyLabel}
+              </Text>
+            </View>
+          )}
 
           {!googleAvail && !appleAvail && (
             <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
@@ -573,11 +603,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 12,
   },
-  authIcon: {
-    width: 76,
-    height: 76,
-    marginBottom: 10,
-  },
   title: {
     fontWeight: '800',
     textAlign: 'center',
@@ -590,6 +615,24 @@ const styles = StyleSheet.create({
   buttons: {
     width: '100%',
     marginBottom: 12,
+  },
+  busyPanel: {
+    width: '100%',
+    minHeight: 42,
+    borderRadius: 12,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  busyText: {
+    flex: 1,
+    fontWeight: '700',
+    textAlign: 'left',
   },
   laterButton: {
     paddingVertical: 10,

@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * ExplainSheet — bottom-sheet «Объясни как для 5-летнего» (план 04, Фаза 5).
  *
@@ -25,12 +26,12 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from '../app/analytics';
@@ -44,6 +45,7 @@ import {
   type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
+import AiLimitUpsellCard from './AiLimitUpsellCard';
 
 interface Props {
   visible: boolean;
@@ -68,11 +70,13 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
   const effLang = lang || ctxLang;
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   // Запрос стартует только когда шторка видима (cache-read бесплатен и быстр).
   const state = useExplainRequest({ phraseEn, phraseMeaning, lang: effLang }, visible);
   const display = resolveExplainDisplay(state, effLang, phraseMeaning);
+  const explainFreeLimitReached = !state.loading && state.status === 'exhausted';
 
   // ── Слайд снизу + fade бэкдропа (legacy Animated, как в NoEnergyModal) ─────
   const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
@@ -149,7 +153,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
               backgroundColor: t.bgCard,
               borderColor: t.border,
               shadowColor: t.accent,
-              paddingBottom: 20 + insets.bottom,
+              paddingBottom: 20 + bottomInset,
               transform: [{ translateY }],
             },
           ]}
@@ -196,7 +200,23 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {display.showSkeleton ? (
+            {explainFreeLimitReached ? (
+              <AiLimitUpsellCard
+                lang={asLang(effLang)}
+                title={triLang(asLang(effLang), {
+                  ru: 'Бесплатные объяснения закончились',
+                  uk: 'Безкоштовні пояснення закінчилися',
+                  es: 'Las explicaciones gratis se agotaron',
+                  'pt-BR': 'As explicações grátis acabaram',
+                  vi: 'Phần giải thích miễn phí đã hết',
+                  id: 'Penjelasan gratis sudah habis',
+                  tr: 'Ücretsiz açıklamalar bitti',
+                  pl: 'Darmowe wyjaśnienia się skończyły',
+                })}
+                paywallContext="ai_explain"
+                testID="explain-free-limit-card"
+              />
+            ) : display.showSkeleton ? (
               <View style={styles.skeleton}>
                 <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
                   {loadingLineForLang(effLang)}
@@ -257,9 +277,11 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
           </ScrollView>
 
           {/* Футер: «Непонятно объяснили» */}
-          <View style={[styles.footer, { borderTopColor: t.border }]}>
-            <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
-          </View>
+          {!explainFreeLimitReached ? (
+            <View style={[styles.footer, { borderTopColor: t.border }]}>
+              <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
+            </View>
+          ) : null}
         </Animated.View>
       </View>
     </Modal>

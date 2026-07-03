@@ -6712,6 +6712,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
     russian: 'Это то самое приложение, которое помогает тебе учиться?',
     ukrainian: 'Це той самий додаток, який допомагає тобі вчитися?',
     spanish: '¿Es esta la aplicación que te ayuda a aprender?',
+    alternatives: ['Is this the app that helps you to learn?'],
     words: [
       { text: 'Это', correct: 'Это', distractors: ['Этот', 'Эта', 'Эти', 'я', 'ты'], category: 'pronouns' },
       { text: 'приложение', correct: 'приложение', distractors: ['приложения', 'приложению', 'приложением', 'время', 'день'], category: 'nouns' },

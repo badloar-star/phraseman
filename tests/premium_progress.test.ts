@@ -99,6 +99,25 @@ describe('premium progress helpers', () => {
     expect(isPremiumAccessProgressActive(progress, now)).toBe(true);
   });
 
+  it('recognizes lifetime promo VIP as active Plus access', () => {
+    const progress = {
+      vip_active: 'true',
+      vip_plan: 'promo_lifetime',
+      vip_from: String(now - 1000),
+      vip_until: '0',
+      vip_admin_override: 'true',
+      promo_vip_last_code: 'FOREVER',
+    };
+
+    expect(getVipProgressState(progress, now)).toMatchObject({
+      active: true,
+      plan: 'promo_lifetime',
+      source: 'vip',
+      untilValue: '0',
+    });
+    expect(isPremiumAccessProgressActive(progress, now)).toBe(true);
+  });
+
   it('keeps real Premium active when VIP is granted on top', () => {
     const progress = {
       premium_plan: 'yearly',

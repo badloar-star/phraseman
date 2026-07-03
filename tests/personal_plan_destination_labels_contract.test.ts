@@ -11,7 +11,7 @@ function label(destination: PlanTaskDestination): string {
 
 describe('personal plan destination labels', () => {
   it('names every plan mode with clear user-facing Russian copy', () => {
-    expect(label({ type: 'lesson', lessonId: 1, requiredPhrases: 6 })).toBe('Урок · 6 фраз');
+    expect(label({ type: 'lesson', lessonId: 1, requiredPhrases: 6 })).toBe('Тренировка · 6 фраз');
     expect(label({ type: 'plan_phrase_lesson', lessonId: 'gavan_day1', requiredPhrases: 5, afterLessonId: 1 })).toBe('Фразы дня · 5');
     expect(label({ type: 'plan_phrase_recall', lessonId: 'gavan_day1', requiredPhrases: 4, afterLessonId: 1 })).toBe('Повтор · 4 фразы');
     expect(label({

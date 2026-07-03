@@ -55,7 +55,8 @@ export function computeBotMatchRankDelta(
   isLast: boolean,
   isDraw: boolean,
 ): Pick<BotArenaMatchResult, 'newStars' | 'newTier' | 'newLevel' | 'rankChanged' | 'promoted'> {
-  let newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
+  const atCeiling = oldTier === 'legend' && oldLevel === 'III';
+  let newStars = (isDraw || atCeiling) ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
   let newTier = oldTier;
   let newLevel = oldLevel;
 

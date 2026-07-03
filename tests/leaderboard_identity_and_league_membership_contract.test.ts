@@ -170,6 +170,27 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(leagues).toContain('name: memberName || undefined');
   });
 
+  test('server league membership never trusts client-supplied nickname over reservation ownership', () => {
+    const source = read('functions/src/league_groups.ts');
+
+    expect(source).toContain('const NAME_INDEX = ');
+    expect(source).toContain('async function resolveAuthoritativeLeagueMemberName');
+    expect(source).toContain("db.collection(NAME_INDEX).doc(nameLower).get()");
+    expect(source).toContain('legacyLeagueNameHasOtherLiveOwner');
+    expect(source).toContain('leagueFallbackName(stableUid)');
+
+    const updateStart = source.indexOf('export const leagueUpdateMyMember');
+    expect(updateStart).toBeGreaterThanOrEqual(0);
+    const updateBody = source.slice(updateStart, source.indexOf('\nexport const leagueSyncMyBoost', updateStart));
+    expect(updateBody).toContain('resolveAuthoritativeLeagueMemberName(');
+    expect(updateBody).not.toContain("updates[`members.${stableUid}.name`] = sanitizeString(raw.name");
+
+    const joinStart = source.indexOf('export const leagueJoinOrUpdateGroup');
+    expect(joinStart).toBeGreaterThanOrEqual(0);
+    const joinBody = source.slice(joinStart, source.indexOf('\nexport const leagueUpdateMyMember', joinStart));
+    expect(joinBody).toContain('member.name = await resolveAuthoritativeLeagueMemberName(');
+  });
+
   test('weekly league client caches no-op member syncs without bypassing server ownership', () => {
     const leagues = read('app/firestore_leagues.ts');
 

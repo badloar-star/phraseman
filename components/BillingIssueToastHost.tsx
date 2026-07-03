@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { IS_EXPO_GO } from '../app/config';
 import { revenueCatBillingIssueAtMs } from '../app/premium_revenuecat_state';
+import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 
 const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000;
 const LAST_SHOWN_KEY = 'billing_issue_toast_last_shown';
@@ -23,17 +24,25 @@ const LAST_SHOWN_KEY = 'billing_issue_toast_last_shown';
 const LAST_ISSUE_AT_KEY = 'billing_issue_toast_last_issue_at';
 const RC_TIMEOUT_MS = 8000;
 
+function withNullableTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
 export default function BillingIssueToastHost() {
   const runningRef = useRef(false);
+  const scheduledRef = useRef<{ cancel: () => void } | null>(null);
 
   const check = async () => {
     if (IS_EXPO_GO || runningRef.current) return;
     runningRef.current = true;
     try {
-      const info = await Promise.race([
-        Purchases.getCustomerInfo(),
-        new Promise<null>((resolve) => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
-      ]).catch(() => null);
+      const info = await withNullableTimeout(Purchases.getCustomerInfo(), RC_TIMEOUT_MS).catch(() => null);
       if (!info) return;
 
       const issueAt = revenueCatBillingIssueAtMs(info);
@@ -77,11 +86,19 @@ export default function BillingIssueToastHost() {
   };
 
   useEffect(() => {
-    void check();
+    const scheduleCheck = () => {
+      scheduledRef.current?.cancel();
+      scheduledRef.current = scheduleCoalescedForegroundTask('billing_issue_toast_check', check);
+    };
+    scheduleCheck();
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void check();
+      if (state === 'active') scheduleCheck();
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledRef.current?.cancel();
+      scheduledRef.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

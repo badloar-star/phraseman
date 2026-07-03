@@ -169,7 +169,9 @@ describe('compass_social_news — сбор соц-сводки', () => {
     expect(news.lines.length).toBeLessThanOrEqual(3);
     // Все 6 событий собраны (для markSeen), но строк ≤3.
     expect(news.events.length).toBe(6);
+    expect(news.allLines).toHaveLength(6);
     expect(news.lines[news.lines.length - 1]).toMatch(/ещё\s+3/);
+    expect(news.allLines[news.allLines.length - 1]).not.toMatch(/ещё\s+\d+/);
   });
 
   it('Expo Go / cloud off → пустая сводка без чтения', async () => {

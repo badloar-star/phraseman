@@ -2,7 +2,7 @@
 // когда Firebase недоступен (заблокированный регион без VPN). spendShards ходит в
 // Firestore-транзакцию БЕЗ таймаута → состояние «Подождите…» держится вечно.
 //
-// Фикс: applyShardDeltaToCloud оборачивает транзакцию в таймаут. При зависшем облаке
+// Фикс: applyShardDeltaToCloud оборачивает cloud read/write в таймаут. При зависшем облаке
 // списание уходит в локальную ветку — покупка завершается, а синк догоняет в фоне.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,26 +11,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 (global as { __DEV__?: boolean }).__DEV__ = false;
 
 // Никогда не резолвящийся промис = заблокированный Firebase: запрос ушёл, ответа нет.
-const hangingTransaction = jest.fn(() => new Promise(() => {}));
+const hangingGet = jest.fn(() => new Promise(() => {}));
+const forbiddenTransaction = jest.fn(() => Promise.reject(new Error('runTransaction must not be used for shard timeout fallback')));
 
 // Полный chainable-мок Firestore: любой .collection()/.doc() возвращает объект с теми же
 // методами, а .add()/.set()/.get() резолвятся пусто. Так тест проверяет ИМЕННО таймаут
 // транзакции, а не спотыкается о неполный мок (например на фоновом логе shard_log).
-function makeChainableRef(): any {
+function makeChainableRef(path = ''): any {
   const ref: any = {
-    collection: jest.fn(() => makeChainableRef()),
-    doc: jest.fn(() => makeChainableRef()),
+    __path: path,
+    collection: jest.fn((name: string) => makeChainableRef(path ? `${path}/${name}` : name)),
+    doc: jest.fn((id: string) => makeChainableRef(path ? `${path}/${id}` : id)),
     add: jest.fn(async () => ({ id: 'log1' })),
     set: jest.fn(async () => undefined),
-    get: jest.fn(async () => ({ exists: false, data: () => ({}) })),
+    get: jest.fn(() => (/^users\/[^/]+$/.test(path) ? hangingGet() : Promise.resolve({ exists: false, data: () => ({}) }))),
   };
   return ref;
 }
 
 const mockFirestore = Object.assign(
   jest.fn(() => ({
-    collection: jest.fn(() => makeChainableRef()),
-    runTransaction: hangingTransaction,
+    collection: jest.fn((name: string) => makeChainableRef(name)),
+    runTransaction: forbiddenTransaction,
   })),
   { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } },
 );
@@ -91,7 +93,8 @@ describe('spendShards when Firebase is unreachable (blocked region)', () => {
     await expect(spendPromise).resolves.toBe(true);
     // Списание прошло локально: 50 − 30 = 20.
     await expect(getShardsBalance()).resolves.toBe(20);
-    // Транзакция действительно запускалась (а не была пропущена) и зависла.
-    expect(hangingTransaction).toHaveBeenCalled();
+    // Cloud read действительно запускался (а не был пропущен), завис и ушёл в timeout fallback.
+    expect(hangingGet).toHaveBeenCalled();
+    expect(forbiddenTransaction).not.toHaveBeenCalled();
   }, 30000);
 });

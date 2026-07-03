@@ -17,6 +17,7 @@
 - [AUDIENCE.md](./AUDIENCE.md) — кто наша аудитория 40+/50+, что любит/отталкивает.
 - [FORMAT_CHAIN.md](./FORMAT_CHAIN.md) — анатомия цепочки фраз + структура видео + ресёрч-чек.
 - [PHRASEMAN_INTEGRATION.md](./PHRASEMAN_INTEGRATION.md) — нативные упоминания приложения (не реклама).
+- [QUIZ_ATTRACTION_GENERATION_RULES.md](./QUIZ_ATTRACTION_GENERATION_RULES.md) — правила коротких quiz-attraction паков для WEDNESDAY/CapCut: двухсловные фразы, hook-first, comment-bait traps.
 - [RESEARCH_NICHE.md](./RESEARCH_NICHE.md) — сводный ресёрч ниши, форматов, удержания, монтажа.
 - [CHECKLIST.md](./CHECKLIST.md) — финальная проверка перед отдачей сценария.
 - [memory/](./memory/) — память: учебный план, реестр фраз, состояние серий.

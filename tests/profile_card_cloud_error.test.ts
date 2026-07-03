@@ -56,11 +56,11 @@ describe('upgradeProfileCardLevel — cloud error must not double-charge', () =>
   });
 
   it('applies the server result (and never spends locally) on a successful CF call', async () => {
-    callCf.mockResolvedValue({ data: { ok: true, alreadyApplied: false, level: 1, balance: 970, spent: 30 } });
+    callCf.mockResolvedValue({ data: { ok: true, alreadyApplied: false, level: 1, balance: 800, spent: 200 } });
 
     const res = await upgradeProfileCardLevel();
 
-    expect(res).toEqual({ ok: true, level: 1, balance: 970 });
+    expect(res).toEqual({ ok: true, level: 1, balance: 800 });
     expect(spendShards).not.toHaveBeenCalled();
     await expect(AsyncStorage.getItem('profile_card_level')).resolves.toBe('1');
     // Must forward the client's stableId so the CF reads the same shard doc.
@@ -72,11 +72,11 @@ describe('upgradeProfileCardLevel — cloud error must not double-charge', () =>
   });
 
   it('surfaces server insufficient without spending locally', async () => {
-    callCf.mockResolvedValue({ data: { ok: false, reason: 'insufficient', level: 0, balance: 20, cost: 30 } });
+    callCf.mockResolvedValue({ data: { ok: false, reason: 'insufficient', level: 0, balance: 20, cost: 200 } });
 
     const res = await upgradeProfileCardLevel();
 
-    expect(res).toMatchObject({ ok: false, reason: 'insufficient', need: 10, balance: 20 });
+    expect(res).toMatchObject({ ok: false, reason: 'insufficient', need: 180, balance: 20 });
     expect(spendShards).not.toHaveBeenCalled();
   });
 });

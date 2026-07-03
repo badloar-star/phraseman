@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View,
@@ -14,7 +15,7 @@ import {
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -24,6 +25,7 @@ import TopFadeMask from '../components/TopFadeMask';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { MOTION_SCALE } from '../constants/motion';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
@@ -385,7 +387,8 @@ export default function LessonIntroScreens({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: screenH } = useWindowDimensions();
   const isLight = false;
   const isCompassTheme = false;
@@ -499,7 +502,7 @@ export default function LessonIntroScreens({
     };
   }, [revealedCount, allRevealed, hintFade, hintBob]);
 
-  // CTA «Начать урок» — длинный плавный fade-in + долгий expo-out scale + breathing pulse
+  // CTA «Начать тренировку» — длинный плавный fade-in + долгий expo-out scale + breathing pulse
   useEffect(() => {
     if (!ctaReady) {
       fadeBtn.setValue(0);
@@ -595,14 +598,14 @@ export default function LessonIntroScreens({
   headerBottomRef.current = headerBottom;
   const scrollTopPadding = headerBottom + INTRO_FIRST_CARD_GAP;
   const startLabel = triLang(lang, {
-    ru: 'Начать урок',
-    uk: 'Почати урок',
-    es: 'Empezar la lección',
-    'pt-BR': 'Começar a lição',
-    vi: 'Bắt đầu bài học',
-    id: 'Mulai pelajaran',
-    tr: 'Derse başla',
-    pl: 'Rozpocznij lekcję',
+    ru: 'Начать тренировку',
+    uk: 'Почати тренування',
+    es: 'Comenzar práctica',
+    'pt-BR': 'Começar treino',
+    vi: 'Bắt đầu luyện tập',
+    id: 'Mulai latihan',
+    tr: 'Alıştırmaya başla',
+    pl: 'Zacznij trening',
   });
   const tapHintLabel = triLang(lang, {
     ru: 'Коснитесь, чтобы увидеть дальше',
@@ -841,7 +844,7 @@ export default function LessonIntroScreens({
                 </Animated.View>
               )}
 
-              <View style={{ height: 28 + insets.bottom }} />
+              <View style={{ height: 28 + bottomInset }} />
             </Pressable>
           </BouncyScrollView>
         </Animated.View>

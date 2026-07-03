@@ -6,15 +6,22 @@ import type { QuizDifficulty, QuizPhrase, QuizStudyTargetLang } from './quiz_dat
 import { getQuizPhrases } from './quiz_data';
 import { storageStudyTarget } from './target_storage_keys';
 import type { Lang } from '../constants/i18n';
+import {
+  ensureFrenchRemoteQuizRows,
+  getCachedFrenchRemoteQuizRows,
+  prefetchFrenchRemoteQuizRows,
+} from './french_quiz_remote_runtime';
 
-/** @deprecated No-op; data is bundled. Kept for call-site compatibility. */
-export async function ensureQuizPhrasesLoaded(): Promise<void> {
-  // intentionally empty
+export async function ensureQuizPhrasesLoaded(lang: Lang = 'ru', studyTarget: QuizStudyTargetLang = 'en'): Promise<void> {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    await ensureFrenchRemoteQuizRows(lang);
+  }
 }
 
-/** @deprecated No-op; data is bundled. */
-export function prefetchQuizPhrases(): void {
-  // intentionally empty
+export function prefetchQuizPhrases(lang: Lang = 'ru', studyTarget: QuizStudyTargetLang = 'en'): void {
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    prefetchFrenchRemoteQuizRows(lang);
+  }
 }
 
 export function getQuizPhrasesLoaded(
@@ -23,7 +30,9 @@ export function getQuizPhrasesLoaded(
   lang: Lang = 'ru',
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
-  if (storageStudyTarget(studyTarget) === 'fr') return [];
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return getCachedFrenchRemoteQuizRows(difficulty, count, lang);
+  }
   return getQuizPhrases(difficulty, count, lang, studyTarget);
 }
 

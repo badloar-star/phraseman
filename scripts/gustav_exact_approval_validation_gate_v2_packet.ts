@@ -304,8 +304,27 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     addFinding(findings, 'blocker', 'ACTIVE_HASH_LOCK_INCOMPLETE', 'Active hash lock must carry at least the main and final dry-run critical hash coverage.');
   }
 
+  const targetActivationApprovedAllowed =
+    input.targetManifestActivationApproved &&
+    activeArtifactsPresent &&
+    input.approvalSourceExists &&
+    input.approvalSourceIsCanonical &&
+    input.exactApprovalSentencePresent &&
+    input.activeApprovalReceiptApprovalSourceIsCanonical &&
+    input.activeHashLockApprovalSourceIsCanonical &&
+    input.activeApprovalSourcePathsMatch &&
+    input.activeApprovalReceiptTargetLocale === 'fr' &&
+    input.activeHashLockTargetLocale === 'fr' &&
+    input.activeApprovalReceiptRunId === input.currentRunId &&
+    input.activeHashLockRunId === input.currentRunId &&
+    input.activeApprovalReceiptRunId === input.activeHashLockRunId &&
+    input.activeApprovalReceiptRequiredSentenceMatches &&
+    input.activeHashLockReferencesDryRun &&
+    input.activeHashLockReferencesFinalDryRun &&
+    input.activeHashLockCriticalHashes >= input.dryRunHashLocks + input.finalDryRunHashLocks;
+
   if (
-    input.targetManifestActivationApproved ||
+    (input.targetManifestActivationApproved && !targetActivationApprovedAllowed) ||
     input.targetManifestReadyForApply ||
     input.targetManifestMayModifyProductionAppFiles ||
     input.serverUploadAllowed ||
@@ -473,6 +492,13 @@ function runProbes(base: EvaluationInput): Probe[] {
   ];
   return tests.map((test) => {
     const input = clone(base);
+    input.activeApprovalReceiptExists = false;
+    input.activeHashLockExists = false;
+    input.approvalSourceExists = false;
+    input.exactApprovalSentencePresent = false;
+    input.targetManifestActivationApproved = false;
+    input.targetManifestReadyForApply = false;
+    input.targetManifestMayModifyProductionAppFiles = false;
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {

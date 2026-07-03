@@ -7,9 +7,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { dailyPhraseContentAvailableForTarget } from './daily_phrase_target_gate';
+import {
+  ensureFrenchRemoteFlashcards,
+  getCachedFrenchRemoteFlashcards,
+} from './french_flashcard_remote_runtime';
 import { IDIOMS, Idiom, type IdiomSourceLocaleMap } from './idioms_data';
 import type { SourceLocale } from './source_locales';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import {
+  dailyPhraseKey,
+  dailyPhraseLastDateKey,
+  storageSourceLocale,
+  storageStudyTarget,
+  type RuntimeSourceLocale,
+  type RuntimeStudyTarget,
+} from './target_storage_keys';
+import type { CardItem } from './flashcards/types';
 
 export interface DailyPhrase {
   id: string;
@@ -104,6 +116,65 @@ function phraseFromIdiom(idiom: Idiom, date = todayKey()): DailyPhrase {
     active: true,
     order: idiom.id,
   };
+}
+
+function phraseFromFrenchFlashcard(card: CardItem, date = todayKey()): DailyPhrase {
+  const sourceLocales = card.sourceLocales as Partial<Record<'ru' | 'uk', string>> | undefined;
+  const ru = card.ru?.trim() || sourceLocales?.ru?.trim() || '';
+  const uk = card.uk?.trim() || sourceLocales?.uk?.trim() || '';
+  const sourceText = ru || uk;
+  const targetText = card.en?.trim();
+  return {
+    id: `fr-daily-${card.id}`,
+    english: targetText,
+    literal: ru || sourceText,
+    meaning: ru || sourceText,
+    text: card.description?.trim() || ru || sourceText,
+    literal_uk: uk || sourceText,
+    meaning_uk: uk || sourceText,
+    text_uk: card.description?.trim() || uk || sourceText,
+    sourceLocales: undefined,
+    date,
+    scheduledDate: date,
+    allowSave: true,
+    active: true,
+    order: getDayIndex(),
+  };
+}
+
+function frenchFlashcardForDay(sourceLocale: RuntimeSourceLocale): DailyPhrase | null {
+  const cards = getCachedFrenchRemoteFlashcards(sourceLocale)
+    .filter((card) => card.isSystem && card.en?.trim() && (card.ru?.trim() || card.uk?.trim()));
+  if (cards.length === 0) return null;
+  const idx = getDayIndex() % cards.length;
+  const card = cards[idx];
+  return card ? phraseFromFrenchFlashcard(card) : null;
+}
+
+async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Promise<DailyPhrase | null> {
+  const sourceLocale = storageSourceLocale(sourceLocaleInput);
+  const today = todayKey();
+  const phraseKey = dailyPhraseKey('fr');
+  const lastDateKey = dailyPhraseLastDateKey('fr');
+  const cachedDate = await AsyncStorage.getItem(lastDateKey).catch(() => null);
+  if (cachedDate === today) {
+    const cached = await AsyncStorage.getItem(phraseKey).catch(() => null);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached) as DailyPhrase;
+        if (parsed?.id?.startsWith('fr-daily-') && parsed.english?.trim()) return parsed;
+      } catch {
+        // ignore corrupt French daily cache and rebuild from the remote pack below
+      }
+    }
+  }
+
+  await ensureFrenchRemoteFlashcards(sourceLocale);
+  const phrase = frenchFlashcardForDay(sourceLocale);
+  if (!phrase) return null;
+  await AsyncStorage.setItem(phraseKey, JSON.stringify(phrase));
+  await AsyncStorage.setItem(lastDateKey, today);
+  return phrase;
 }
 
 function normalizeRemotePhrase(id: string, raw: RemoteDailyPhraseDoc, date: string): DailyPhrase | null {
@@ -262,8 +333,14 @@ export function getTodayPhraseSync(): DailyPhrase {
   return phraseFromIdiom(idiom);
 }
 
-export function getTodayPhraseSyncForTarget(studyTarget?: RuntimeStudyTarget): DailyPhrase | null {
+export function getTodayPhraseSyncForTarget(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocaleInput?: RuntimeSourceLocale,
+): DailyPhrase | null {
   if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return frenchFlashcardForDay(storageSourceLocale(sourceLocaleInput));
+  }
   return getTodayPhraseSync();
 }
 
@@ -294,8 +371,14 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   }
 };
 
-export const getTodayPhraseForTarget = async (studyTarget?: RuntimeStudyTarget): Promise<DailyPhrase | null> => {
+export const getTodayPhraseForTarget = async (
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocaleInput?: RuntimeSourceLocale,
+): Promise<DailyPhrase | null> => {
   if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
+  if (storageStudyTarget(studyTarget) === 'fr') {
+    return getTodayFrenchPhrase(sourceLocaleInput);
+  }
   return getTodayPhrase();
 };
 

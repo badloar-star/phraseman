@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -9,12 +10,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import { submitUserIdea, type IdeaCategory } from './ideas_client';
@@ -32,7 +34,8 @@ export default function IdeasSubmitScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   const L = (
     ru: string,
@@ -157,7 +160,7 @@ export default function IdeasSubmitScreen() {
   };
   const hintStyle = { color: t.textSecond, fontSize: f.caption, marginTop: 6 };
 
-  const scrollBottomPad = 120 + Math.max(insets.bottom, 16);
+  const scrollBottomPad = 120 + Math.max(bottomInset, 16);
   const submitTextColor = canSend ? t.correctText : t.textSecond;
 
   return (

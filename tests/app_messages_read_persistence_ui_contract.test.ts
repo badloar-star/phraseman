@@ -17,9 +17,37 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).toContain('onPress={() => selectMessage(message)}');
   });
 
+  it('keeps unread dots outside the text flow so inbox rows stay centered', () => {
+    expect(inboxSource).toContain('{message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}');
+    expect(inboxSource).toContain("position: 'absolute'");
+    expect(inboxSource).toContain('left: -14');
+    expect(inboxSource).not.toContain('readDotSpace');
+    expect(inboxSource).not.toMatch(/messageMetaRow:[\s\S]*?paddingLeft: 16[\s\S]*?messageDate:/);
+    expect(inboxSource).not.toMatch(/messagePreview:[\s\S]*?paddingLeft: 16[\s\S]*?messagePreviewRead:/);
+    expect(inboxSource).not.toMatch(/messageRowActions:[\s\S]*?paddingLeft: 16[\s\S]*?messageRowCta:/);
+  });
+
   it('opens the Firestore messages subscription only while the inbox modal is visible', () => {
     expect(inboxSource).toContain('if (!visible) return;');
     expect(inboxSource).toContain('subscribeUserAppMessages');
-    expect(inboxSource).toContain('}, [hasPremiumAccess, visible]);');
+    expect(inboxSource).toContain('}, [applyAppMessagesSnapshot, visible]);');
+  });
+
+  it('refreshes the closed inbox badge from cache plus a throttled one-shot poll', () => {
+    expect(inboxSource).toContain("AppState.addEventListener('change'");
+    expect(inboxSource).toContain("state === 'active'");
+    expect(inboxSource).toContain('readCachedAppMessagesSnapshot');
+    expect(inboxSource).toContain('refreshAppMessagesSnapshotOnce');
+    expect(inboxSource).toContain('if (!isScreenFocused || visible) return;');
+  });
+
+  it('claims report-reply rewards optimistically without a visible network wait', () => {
+    expect(inboxSource).toContain('claimReportReplyShardsOptimistically');
+    expect(inboxSource).toContain('optimisticReportClaimIdsRef');
+    expect(inboxSource).toContain('markReplyClaimedLocally(message.id);');
+    expect(inboxSource).not.toContain('await claimReportReplyShards');
+    expect(inboxSource).not.toContain('claimErrorId');
+    expect(inboxSource).not.toContain('ActivityIndicator');
+    expect(inboxSource).not.toContain('disabled={claiming}');
   });
 });

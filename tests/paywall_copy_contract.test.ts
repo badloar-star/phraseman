@@ -1,17 +1,21 @@
 import { PREMIUM_CONTEXT_VALUES, type PremiumContext } from '../app/premium_context';
 import {
+  PAYWALL_COPY,
+  PAYWALL_PLANNED_COPY,
   getPaywallCopy,
   getHeroPlannedCopy,
   CONTEXT_BENEFITS,
+  CONTEXT_BENEFITS_PLANNED,
   getContextBenefitPlanned,
   PREMIUM_HERO_ART,
+  normalizePremiumContext,
   makeLP,
 } from '../app/paywall_copy';
 
 // Уникальные контексты (в union есть дубль dialog_limit — Set убирает).
 const CONTEXTS = Array.from(new Set(PREMIUM_CONTEXT_VALUES)) as PremiumContext[];
 
-describe('paywall_copy — контракт покрытия 26 контекстов', () => {
+describe('paywall_copy — контракт покрытия premium-контекстов', () => {
   it.each(CONTEXTS)('контекст "%s": заголовок и сабтайтл непустые (ru/uk/es)', (ctx) => {
     const copy = getPaywallCopy(ctx);
     for (const k of ['titleRu', 'titleUk', 'titleEs', 'subtitleRu', 'subtitleUk', 'subtitleEs'] as const) {
@@ -31,6 +35,39 @@ describe('paywall_copy — контракт покрытия 26 контекст
   it.each(CONTEXTS)('контекст "%s": есть hero-art (accent)', (ctx) => {
     expect(PREMIUM_HERO_ART[ctx]).toBeDefined();
     expect(PREMIUM_HERO_ART[ctx].accent).toMatch(/^#?[0-9a-fA-F]{3,8}$/);
+  });
+
+  it.each(CONTEXTS)('контекст "%s": есть прямые copy/benefits без generic-fallback', (ctx) => {
+    expect(PAYWALL_COPY[ctx]).toBeDefined();
+    expect(PAYWALL_PLANNED_COPY[ctx]).toBeDefined();
+    expect(CONTEXT_BENEFITS[ctx]).toBeDefined();
+    expect(CONTEXT_BENEFITS[ctx]?.length).toBeGreaterThanOrEqual(3);
+    expect(CONTEXT_BENEFITS_PLANNED[ctx]).toBeDefined();
+    expect(CONTEXT_BENEFITS_PLANNED[ctx]?.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it.each([
+    ['lesson_b1', 'course_after_lesson3'],
+    ['ai_voice_input', 'speaking'],
+    ['dialog_analysis', 'dialog_limit'],
+    ['dialog_locked_level', 'dialog_limit'],
+    ['flashcard_training', 'flashcard_limit'],
+    ['flashcard_autoplay', 'flashcard_limit'],
+    ['flashcard_autoplay', 'flashcard_training'],
+  ] as [PremiumContext, PremiumContext][])('контекст "%s" не шарит старый текст "%s"', (fresh, legacy) => {
+    expect(PAYWALL_COPY[fresh]).not.toBe(PAYWALL_COPY[legacy]);
+    expect(PAYWALL_PLANNED_COPY[fresh]).not.toBe(PAYWALL_PLANNED_COPY[legacy]);
+    expect(CONTEXT_BENEFITS[fresh]).not.toBe(CONTEXT_BENEFITS[legacy]);
+    expect(CONTEXT_BENEFITS_PLANNED[fresh]).not.toBe(CONTEXT_BENEFITS_PLANNED[legacy]);
+  });
+
+  it('новые paywall-контексты нормализуются в себя, а не в старый экран', () => {
+    expect(normalizePremiumContext('lesson_b1')).toBe('lesson_b1');
+    expect(normalizePremiumContext('ai_voice_input')).toBe('ai_voice_input');
+    expect(normalizePremiumContext('dialog_analysis')).toBe('dialog_analysis');
+    expect(normalizePremiumContext('dialog_locked_level')).toBe('dialog_locked_level');
+    expect(normalizePremiumContext('flashcard_training')).toBe('flashcard_training');
+    expect(normalizePremiumContext('flashcard_autoplay')).toBe('flashcard_autoplay');
   });
 
   it('generic всегда есть как фолбэк', () => {

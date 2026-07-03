@@ -6,7 +6,7 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
 const layout = read('app/_layout.tsx');
 const purchase = read('app/paywall_purchase.ts');
-const onboarding = read('components/onboarding.tsx');
+const onboarding = read('components/CleanOnboarding.tsx');
 
 /** Убирает построчные // комментарии — чтобы текст пояснений не давал ложных
  *  срабатываний при поиске исполняемого кода (router.replace / await и т.п.). */
@@ -101,12 +101,13 @@ describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
 
   it('onboarding mounts at name synchronously (no resolving-gate, no getStableId await) on fast path', () => {
     expect(onboarding).toContain('startAtNameStep');
-    // peekStableId — синхронный кэш, без await/Keychain
-    expect(onboarding).toContain('peekStableId');
     const code = stripLineComments(onboarding);
-    // onboardingEntryReady стартует true на быстром пути → пустой resolving-экран пропущен
-    expect(code).toContain('useState(synchronousNameEntry)');
-    // начальный шаг = 'name' на быстром пути
-    expect(code).toMatch(/synchronousNameEntry\s*\?\s*'name'/);
+    // The fast path no longer needs any stable-id read at all, so there is no
+    // Keychain/AsyncStorage identity await before the first name-step paint.
+    expect(code).not.toContain('getStableId');
+    // начальный шаг = 'name' на быстром пути без отдельного resolving gate
+    expect(code).toContain("useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome')");
+    expect(code).toContain("if (startAtNameStep) {");
+    expect(code).toContain("setStep('name')");
   });
 });

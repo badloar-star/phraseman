@@ -72,13 +72,14 @@ const DEFAULT: DuelRankInfo = {
 };
 
 function duelRankInfoFromArenaProfile(data: ArenaProfile): DuelRankInfo {
-  const tier = data.rank?.tier ?? 'bronze';
-  const level = data.rank?.level ?? 'I';
-  const stars = (data.rank?.stars ?? 0) as 0 | 1 | 2 | 3;
+  const profile = sanitizeArenaProfileForRating(data) ?? data;
+  const tier = profile.rank?.tier ?? 'bronze';
+  const level = profile.rank?.level ?? 'I';
+  const stars = (profile.rank?.stars ?? 0) as 0 | 1 | 2 | 3;
   return {
     tier, level, stars,
-    xp: data.xp ?? 0,
-    games: data.stats?.matchesPlayed ?? 0,
+    xp: profile.xp ?? 0,
+    games: profile.stats?.matchesPlayed ?? 0,
     rankIndex: rankToIndex(tier, level),
     label: `${RANK_NAMES[tier]} ${level}`,
     emoji: RANK_EMOJIS[tier],
@@ -126,9 +127,10 @@ export function useArenaRank(options: { enabled?: boolean } = {}): ArenaRankHook
           if (!cancelled) setInfo((prev) => prev ?? DEFAULT);
           return;
         }
+        if (cancelled) return;
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const db = require('@react-native-firebase/firestore').default();
-        unsub = db.collection('arena_profiles').doc(uid).onSnapshot(
+        const nextUnsub = db.collection('arena_profiles').doc(uid).onSnapshot(
           (snap: { exists: boolean; data: () => ArenaProfile }) => {
             if (!snap?.exists) {
               if (!cancelled) setInfo(DEFAULT);
@@ -142,6 +144,11 @@ export function useArenaRank(options: { enabled?: boolean } = {}): ArenaRankHook
             if (__DEV__) console.warn('[use-arena-rank] onSnapshot error:', error);
           }
         );
+        if (cancelled) {
+          nextUnsub();
+          return;
+        }
+        unsub = nextUnsub;
       } catch {
         if (!cancelled) setInfo((prev) => prev ?? DEFAULT);
       }

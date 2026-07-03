@@ -1,12 +1,12 @@
 {
   "schemaVersion": "gustav-run-validator-report-v0",
-  "generatedAt": "2026-06-27T13:46:00.716Z",
+  "generatedAt": "2026-07-02T18:34:32.292Z",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
       "C:\\appsprojects\\phraseman\\scripts\\gustav_validate_run.ts",
       "--run",
-      "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1"
+      "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
     ],
     "cwd": "C:\\appsprojects\\phraseman",
     "nodeVersion": "v24.14.0"
@@ -15,7 +15,7 @@
   "runId": "2026-05-19_fr_inventory_v0a1",
   "status": "PASS",
   "summary": {
-    "checks": 27122,
+    "checks": 27132,
     "blockers": 0,
     "warnings": 0
   },

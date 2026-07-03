@@ -34,7 +34,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { markNextNavigationAsReplace } from './navigation_back';
+import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
 import {
   applyStudyLanguageSelection,
@@ -53,10 +54,10 @@ type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type WelcomeStep = 'welcome' | 'goal' | 'level';
 
 const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
-  en: require('../assets/images/flow_clean_202607/language_en.png'),
-  fr: require('../assets/images/flow_clean_202607/language_fr.png'),
+  en: require('../assets/images/language_flags/language_en.webp'),
+  fr: require('../assets/images/language_flags/language_fr_dev.webp'),
+  es: require('../assets/images/language_flags/language_es_dev.webp'),
 };
-const FLAG_EMOJI: Record<StudyTargetLang, string> = { en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸' };
 
 /** Название языка в винительной форме для вопросов («Зачем тебе …?»). */
 const LANGUAGE_ACCUSATIVE: Record<'ru' | 'uk', Record<StudyTargetLang, string>> = {
@@ -95,7 +96,9 @@ export default function LanguageWelcomeScreen() {
   const { hasPremiumAccess } = usePremium();
   const params = useLocalSearchParams<{ target?: string }>();
   const rawTarget = Array.isArray(params.target) ? params.target[0] : params.target;
-  const target: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
+  const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
+  const target: StudyTargetLang | null =
+    parsedTarget && (ENABLE_DEV_STUDY_TARGET_LANG || parsedTarget === 'en') ? parsedTarget : null;
   const sourceUi: 'ru' | 'uk' = lang === 'uk' ? 'uk' : 'ru';
   const tr = useCallback((ru: string, uk: string) => (sourceUi === 'uk' ? uk : ru), [sourceUi]);
 
@@ -104,12 +107,16 @@ export default function LanguageWelcomeScreen() {
   const [level, setLevel] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
+  const goBackSafely = useCallback(() => {
+    safeRouterBack(router, '/settings_language' as any);
+  }, [router]);
+
   // Эффект-гейт: невалидный язык → назад; фри с ≥1 начатым языком → пейвол.
   useEffect(() => {
     let cancelled = false;
     void (async () => {
       if (!target || !isStudyTargetSourceUiLang(lang)) {
-        router.back();
+        goBackSafely();
         return;
       }
       const started = await getStartedStudyLanguages();
@@ -125,7 +132,7 @@ export default function LanguageWelcomeScreen() {
       }
     })();
     return () => { cancelled = true; };
-  }, [target, lang, hasPremiumAccess, router]);
+  }, [target, lang, hasPremiumAccess, router, goBackSafely]);
 
   const languageName = target && isStudyTargetSourceUiLang(lang)
     ? studyTargetLabelForSourceUiLang(target, lang)
@@ -151,12 +158,12 @@ export default function LanguageWelcomeScreen() {
         }
         await saveLanguageProfile(target, { goal, level });
         await applyStudyLanguageSelection(target, lang);
-        router.back();
+        goBackSafely();
       } finally {
         setBusy(false);
       }
     })();
-  }, [target, goal, level, busy, hasPremiumAccess, lang, router]);
+  }, [target, goal, level, busy, hasPremiumAccess, lang, router, goBackSafely]);
 
   if (!target) return <View style={styles.safe} />;
 
@@ -227,7 +234,7 @@ export default function LanguageWelcomeScreen() {
           onPress={() => {
             if (step === 'level') { setStep('goal'); return; }
             if (step === 'goal') { setStep('welcome'); return; }
-            router.back();
+            goBackSafely();
           }}
           hitSlop={10}
           accessibilityRole="button"
@@ -250,7 +257,7 @@ export default function LanguageWelcomeScreen() {
               {flagAsset ? (
                 <Image source={flagAsset} style={styles.flagImage} resizeMode="contain" />
               ) : (
-                <Text style={styles.flagEmoji}>{FLAG_EMOJI[target]}</Text>
+                <Ionicons name="flag-outline" size={60} color="#C6D3FF" />
               )}
             </View>
             <Text style={styles.title}>
@@ -313,16 +320,16 @@ const styles = StyleSheet.create({
   scrollContent: { paddingHorizontal: 22, paddingTop: 10, paddingBottom: 28, flexGrow: 1 },
   welcomeBlock: { alignItems: 'center', paddingTop: 26 },
   flagHalo: {
-    width: 132,
-    height: 132,
-    borderRadius: 66,
-    backgroundColor: 'rgba(123,140,255,0.14)',
+    width: 180,
+    height: 112,
+    borderRadius: 24,
+    backgroundColor: 'rgba(255,255,255,0.08)',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 24,
+    overflow: 'hidden',
   },
-  flagImage: { width: 96, height: 96 },
-  flagEmoji: { fontSize: 72 },
+  flagImage: { width: 160, height: 100 },
   title: { color: '#F7FAFF', fontSize: 32, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
   subtitle: { color: '#C6D3FF', fontSize: 16, lineHeight: 24, textAlign: 'center' },
   question: { color: '#F7FAFF', fontSize: 26, fontWeight: '800', marginBottom: 18, marginTop: 8 },

@@ -12,9 +12,13 @@ describe('deferred redirect route contract', () => {
     const source = read('components/DeferredRedirect.tsx');
 
     expect(source).toContain('useEffect');
+    expect(source).toContain('useRootNavigationState');
+    expect(source).toContain('rootNavigationReady');
+    expect(source).toContain('InteractionManager.runAfterInteractions');
     expect(source).toContain('setTimeout');
     expect(source).toContain('router.replace(href)');
     expect(source).toContain('return <View');
+    expect(source.indexOf('if (!rootNavigationReady) return')).toBeLessThan(source.indexOf('router.replace(href)'));
     expect(source.indexOf('useEffect')).toBeLessThan(source.indexOf('router.replace(href)'));
     expect(source.indexOf('router.replace(href)')).toBeLessThan(source.indexOf('return <View'));
   });
@@ -26,7 +30,6 @@ describe('deferred redirect route contract', () => {
     'app/league_screen.tsx',
     'app/lesson_verbs.tsx',
     'app/pos_analytics_audit.tsx',
-    'app/admin_intro_preview.tsx',
     'app/admin_review_test.tsx',
     'app/settings_testers.tsx',
   ])('%s avoids calling router.replace in render', (relativePath) => {

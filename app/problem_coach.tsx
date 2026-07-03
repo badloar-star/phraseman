@@ -63,6 +63,7 @@ export default function ProblemCoach() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
   const [wrongCount, setWrongCount] = useState(0);
+  const [practiceThoughtSeen, setPracticeThoughtSeen] = useState(false);
 
   const step = diagnosisTraining?.steps[state.stepIndex];
   const shuffledOptionsByStepId = useMemo(() => {
@@ -104,6 +105,10 @@ export default function ProblemCoach() {
     return () => { cancelled = true; };
   }, [diagnosisTraining, router, sourceLocale, studyTarget]);
 
+  useEffect(() => {
+    setPracticeThoughtSeen(false);
+  }, [diagnosisTraining?.id]);
+
   const handleBack = () => {
     hapticTap();
     safeRouterBack(router, '/trainer' as any);
@@ -114,6 +119,7 @@ export default function ProblemCoach() {
     const option = visibleOptions[idx];
     if (!option) return;
 
+    setPracticeThoughtSeen(true);
     setSelectedIndex(idx);
     setSelectedOptionId(option.id);
     const nextState = applyDiagnosisAnswer(diagnosisTraining, state, option.id);
@@ -365,6 +371,7 @@ export default function ProblemCoach() {
     const mainColor = feedback?.correct ? '#34D399' : '#FF5B5B';
     const softColor = feedback?.correct ? 'rgba(52,211,153,0.11)' : 'rgba(255,91,91,0.11)';
     const borderColor = feedback?.correct ? 'rgba(52,211,153,0.34)' : 'rgba(255,91,91,0.34)';
+    const shouldShowPracticeThought = !practiceThoughtSeen && !hasAnswered;
 
     return (
       <View style={[styles.panel, cardStyle]}>
@@ -389,23 +396,25 @@ export default function ProblemCoach() {
           {renderScore()}
         </View>
 
-        <View style={[styles.infoBox, { borderColor: accentBorder, backgroundColor: accentSoft }]}>
-          <Text style={[styles.infoTitle, { color: t.accent, fontSize: f.label }]}>
-            {triLang(lang, {
-              ru: 'Мысль',
-              uk: 'Думка',
-              es: 'Idea',
-              'pt-BR': 'Ideia',
-              vi: 'Ý chính',
-              id: 'Ide',
-              tr: 'Düşünce',
-              pl: 'Myśl',
-            })}
-          </Text>
-          <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
-            {copy(step.explanationBlock)}
-          </Text>
-        </View>
+        {shouldShowPracticeThought && (
+          <View style={[styles.infoBox, { borderColor: accentBorder, backgroundColor: accentSoft }]}>
+            <Text style={[styles.infoTitle, { color: t.accent, fontSize: f.label }]}>
+              {triLang(lang, {
+                ru: 'Мысль',
+                uk: 'Думка',
+                es: 'Idea',
+                'pt-BR': 'Ideia',
+                vi: 'Ý chính',
+                id: 'Ide',
+                tr: 'Düşünce',
+                pl: 'Myśl',
+              })}
+            </Text>
+            <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
+              {copy(step.explanationBlock)}
+            </Text>
+          </View>
+        )}
 
         <Text style={[styles.questionText, { color: t.textPrimary, fontSize: f.sub }]}>
           {copy(step.microTask)}

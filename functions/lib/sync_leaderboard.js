@@ -78,7 +78,7 @@ async function syncLeaderboardFromUsers() {
             const aura = typeof progress['user_avatar_aura'] === 'string' && progress['user_avatar_aura'].trim()
                 ? progress['user_avatar_aura'].trim()
                 : null;
-            const profileCardLevel = Math.max(0, Math.min(5, parseInt(progress['profile_card_level'] ?? '0') || 0));
+            const profileCardLevel = Math.max(0, Math.min(1, parseInt(progress['profile_card_level'] ?? '0') || 0));
             const profileCardTheme = typeof progress['profile_card_theme'] === 'string' && progress['profile_card_theme'].trim()
                 ? progress['profile_card_theme'].trim().slice(0, 32)
                 : 'classic';

@@ -212,6 +212,9 @@ type Report = {
   };
 };
 
+const EXPECTED_ROW_DECISION_ROWS_V2 = 1600;
+const EXPECTED_AI_DECISION_ROWS_V2 = 178;
+
 type JsonObject = Record<string, unknown>;
 
 const SOURCE_LOCALES = ['ru', 'uk'] as const;
@@ -538,7 +541,7 @@ function buildProductionBlockers(evidence: ProductionBlockerEvidence): Contract[
       area: 'reviewer',
       status: blockerStatus(evidence.llmOfficialSourcePromotionReady && evidence.officialSourceCoverageReady),
       evidence: evidence.llmOfficialSourcePromotionReady && evidence.officialSourceCoverageReady
-        ? `LLM official-source promoted decisions and coverage are PASS: 1600 row decisions and 164 AI decisions accepted, with no import/apply/activation flags opened (${evidence.refs.officialSourceCoverage}).`
+        ? `LLM official-source promoted decisions and coverage are PASS: ${EXPECTED_ROW_DECISION_ROWS_V2} row decisions and ${EXPECTED_AI_DECISION_ROWS_V2} AI decisions accepted, with no import/apply/activation flags opened (${evidence.refs.officialSourceCoverage}).`
         : 'Reviewer V2 row and AI templates exist, but LLM official-source decisions are not fully covered yet.',
       nextUnblockArtifact: 'audits/reviewer_decision_import_v2_dry_run.json',
     },
@@ -547,7 +550,7 @@ function buildProductionBlockers(evidence: ProductionBlockerEvidence): Contract[
       area: 'reviewer_import',
       status: blockerStatus(evidence.reviewerDecisionImportV2DryRunReady),
       evidence: evidence.reviewerDecisionImportV2DryRunReady
-        ? `Reviewer Decision Import V2 dry-run is PASS for 1600 row decisions and 164 AI decisions, ready for payload shard materialization gate, without production writes (${evidence.refs.reviewerDecisionImport}).`
+        ? `Reviewer Decision Import V2 dry-run is PASS for ${EXPECTED_ROW_DECISION_ROWS_V2} row decisions and ${EXPECTED_AI_DECISION_ROWS_V2} AI decisions, ready for payload shard materialization gate, without production writes (${evidence.refs.reviewerDecisionImport}).`
         : 'AI prompt reviewer decisions need their own dry-run before any cache/prompt activation.',
       nextUnblockArtifact: 'audits/ai_reviewer_decision_import_v2_dry_run.json',
     },
@@ -667,8 +670,8 @@ function buildContract(repoRoot: string, runDir: string): Contract {
     noProductionOpen(adminApprovalImportSchema.summary);
   const llmOfficialSourcePromotionReady =
     isPass(llmOfficialSourcePromotion.packet) &&
-    n(llmOfficialSourcePromotion.summary, 'acceptedRowDecisionRows') === 1600 &&
-    n(llmOfficialSourcePromotion.summary, 'acceptedAiDecisionRows') >= 164 &&
+    n(llmOfficialSourcePromotion.summary, 'acceptedRowDecisionRows') === EXPECTED_ROW_DECISION_ROWS_V2 &&
+    n(llmOfficialSourcePromotion.summary, 'acceptedAiDecisionRows') >= EXPECTED_AI_DECISION_ROWS_V2 &&
     n(llmOfficialSourcePromotion.summary, 'rejectedFreshAiReturnOrCacheOpenRows') === 0 &&
     n(llmOfficialSourcePromotion.summary, 'targetOutputBeforeQualityOpenRows') === 0 &&
     b(llmOfficialSourcePromotion.summary, 'readyForReviewerDecisionImportV2DryRunRefresh') &&
@@ -676,16 +679,16 @@ function buildContract(repoRoot: string, runDir: string): Contract {
   const officialSourceCoverageReady =
     isPass(officialSourceCoverage.packet) &&
     s(officialSourceCoverage.summary, 'coverageState') === 'official_source_content_coverage_complete_no_import' &&
-    n(officialSourceCoverage.summary, 'acceptedRowOfficialSourceDecisionRows') === 1600 &&
-    n(officialSourceCoverage.summary, 'acceptedAiOfficialSourceDecisionRows') >= 164 &&
-    n(officialSourceCoverage.summary, 'rowDecisionsWithAllRequiredGatesPassed') === 1600 &&
-    n(officialSourceCoverage.summary, 'aiDecisionsWithCoreLanguageGatesPassed') >= 164 &&
+    n(officialSourceCoverage.summary, 'acceptedRowOfficialSourceDecisionRows') === EXPECTED_ROW_DECISION_ROWS_V2 &&
+    n(officialSourceCoverage.summary, 'acceptedAiOfficialSourceDecisionRows') >= EXPECTED_AI_DECISION_ROWS_V2 &&
+    n(officialSourceCoverage.summary, 'rowDecisionsWithAllRequiredGatesPassed') === EXPECTED_ROW_DECISION_ROWS_V2 &&
+    n(officialSourceCoverage.summary, 'aiDecisionsWithCoreLanguageGatesPassed') >= EXPECTED_AI_DECISION_ROWS_V2 &&
     b(officialSourceCoverage.summary, 'readyForReviewerDecisionImportDryRunRefresh') &&
     noProductionOpen(officialSourceCoverage.summary);
   const reviewerDecisionImportV2DryRunReady =
     isPass(reviewerDecisionImport.packet) &&
-    n(reviewerDecisionImport.summary, 'acceptedRowDecisionRows') === 1600 &&
-    n(reviewerDecisionImport.summary, 'acceptedAiDecisionRows') >= 164 &&
+    n(reviewerDecisionImport.summary, 'acceptedRowDecisionRows') === EXPECTED_ROW_DECISION_ROWS_V2 &&
+    n(reviewerDecisionImport.summary, 'acceptedAiDecisionRows') >= EXPECTED_AI_DECISION_ROWS_V2 &&
     n(reviewerDecisionImport.summary, 'rowWrongTargetRows') === 0 &&
     n(reviewerDecisionImport.summary, 'aiWrongTargetRows') === 0 &&
     n(reviewerDecisionImport.summary, 'rowWrongSourceLocaleRows') === 0 &&
@@ -909,11 +912,11 @@ function validateContract(contract: Contract): Finding[] {
   if (!reviewer.reviewerWorkflowV2SchemaPresent || !reviewer.rowDecisionTemplateV2Present || !reviewer.aiDecisionTemplateV2Present) {
     addFinding(findings, 'blocker', 'reviewer_v2_artifacts_missing', 'Reviewer Workflow V2 row and AI artifacts must exist before P12.');
   }
-  if (reviewer.rowDecisionTemplateRows !== 1600) {
-    addFinding(findings, 'blocker', 'row_decision_template_v2_count_invalid', `Expected 1600 V2 row reviewer slots, found ${reviewer.rowDecisionTemplateRows}.`);
+  if (reviewer.rowDecisionTemplateRows !== EXPECTED_ROW_DECISION_ROWS_V2) {
+    addFinding(findings, 'blocker', 'row_decision_template_v2_count_invalid', `Expected ${EXPECTED_ROW_DECISION_ROWS_V2} V2 row reviewer slots, found ${reviewer.rowDecisionTemplateRows}.`);
   }
-  if (reviewer.aiDecisionTemplateRows < 160) {
-    addFinding(findings, 'blocker', 'ai_decision_template_v2_count_invalid', `Expected at least 160 AI reviewer slots, found ${reviewer.aiDecisionTemplateRows}.`);
+  if (reviewer.aiDecisionTemplateRows < EXPECTED_AI_DECISION_ROWS_V2) {
+    addFinding(findings, 'blocker', 'ai_decision_template_v2_count_invalid', `Expected at least ${EXPECTED_AI_DECISION_ROWS_V2} AI reviewer slots, found ${reviewer.aiDecisionTemplateRows}.`);
   }
   const pack = contract.packArtifactInventory;
   if (!pack.targetPackManifestDraftPresent || !pack.runtimeServerContractPresent || !pack.storageCloudMapPresent) {
@@ -1196,8 +1199,8 @@ function main(): void {
   const readyForGenerationV2 =
     blockers === 0 &&
     contract.upstreamStorageCloudContract.readyForAdminPackDeliverySurfaceV2 &&
-    contract.reviewerArtifactInventory.rowDecisionTemplateRows === 1600 &&
-    contract.reviewerArtifactInventory.aiDecisionTemplateRows >= 164;
+    contract.reviewerArtifactInventory.rowDecisionTemplateRows === EXPECTED_ROW_DECISION_ROWS_V2 &&
+    contract.reviewerArtifactInventory.aiDecisionTemplateRows >= EXPECTED_AI_DECISION_ROWS_V2;
 
   const report: Report = {
     schemaVersion: 'gustav-admin-reviewer-delivery-surface-v2-packet-v0',

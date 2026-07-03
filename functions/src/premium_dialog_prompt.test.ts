@@ -84,6 +84,21 @@ describe('premium dialog prompt language isolation', () => {
     expect(prompt).toContain('reply ONLY in English');
   });
 
+  it('tells scenario mode to speak in-scene instead of narrating metadata', () => {
+    const prompt = buildScenarioSystemPrompt('B1', {
+      interfaceLang: 'ru',
+      role: 'a worried neighbor',
+      setting: "a doorway where a neighbor asks about a missing cat near the learner's flat",
+      goalEn: 'ask whether the learner has seen the cat',
+      persona: 'Your name is Walter. You are worried but polite.',
+    });
+
+    expect(prompt).toContain('continue from the learner');
+    expect(prompt).toContain('NEVER describe the scenario from outside');
+    expect(prompt).toContain('NEVER say "the learner"');
+    expect(prompt).toContain('NEVER repeat the setting as narration');
+  });
+
   it('companion answers in English even when asked in the native language (no L1 meta-help leak)', () => {
     const prompt = buildCompanionSystemPrompt('A2', { weakWords: ['reservation'] }, 'pl');
 

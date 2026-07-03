@@ -3,8 +3,15 @@ import {
   buildSpeakingStartOptions,
   iosTaskHintForTarget,
 } from '../app/speaking_recognition_options';
+import { Platform } from 'react-native';
 
 describe('speaking recognition start options', () => {
+  const originalOS = Platform.OS;
+
+  afterEach(() => {
+    (Platform as any).OS = originalOS;
+  });
+
   it('includes the full phrase plus unique word tokens as contextualStrings', () => {
     const ctx = buildContextualStrings('I would like a coffee');
     expect(ctx[0]).toBe('I would like a coffee');
@@ -39,11 +46,48 @@ describe('speaking recognition start options', () => {
     expect(opts.continuous).toBe(false);
   });
 
+  it('overrides the iOS session mode away from "measurement" so the mic keeps system gain', () => {
+    (Platform as any).OS = 'ios';
+
+    const opts = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi' });
+    const category = opts.iosCategory as { category: string; categoryOptions: string[]; mode?: string };
+    // Дефолт библиотеки — mode 'measurement': отключает системную обработку входа
+    // (AGC) → «слышит только если орать», и выход тоже тихий. Контракт: наш режим.
+    expect(category.category).toBe('playAndRecord');
+    expect(category.categoryOptions).toEqual(expect.arrayContaining(['defaultToSpeaker', 'allowBluetooth']));
+    expect(category.mode).toBe('default');
+  });
+
+  it('lets surfaces without replay opt out of persisting the recording', () => {
+    (Platform as any).OS = 'ios';
+
+    // Дефолт — писать (нужно SpeakingPanel: «Моя запись» + контрольный прогон).
+    const on = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi' });
+    expect(on.recordingOptions).toEqual({ persist: true });
+    // План и ИИ-диалог файл не читают — выключают запись, чтобы не копить wav.
+    const off = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', persistRecording: false });
+    expect(off.recordingOptions).toBeUndefined();
+  });
+
   it('omits requiresOnDeviceRecognition unless onDevice is true', () => {
     const off = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi' });
     expect(off.requiresOnDeviceRecognition).toBeUndefined();
     const on = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', onDevice: true });
     expect(on.requiresOnDeviceRecognition).toBe(true);
+  });
+
+  it('does not force a specific Android speech service when on-device support is reported', () => {
+    (Platform as any).OS = 'android';
+
+    const opts = buildSpeakingStartOptions({ lang: 'en-US', targetText: 'hi', onDevice: true });
+
+    expect(opts.requiresOnDeviceRecognition).toBeUndefined();
+    expect(opts.androidRecognitionServicePackage).toBeUndefined();
+    expect(opts.androidIntentOptions).toEqual({
+      EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 800,
+      EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1500,
+      EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 3000,
+    });
   });
 
   it('respects the volume meter toggle and cadence', () => {

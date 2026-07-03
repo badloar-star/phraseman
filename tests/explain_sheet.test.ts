@@ -25,6 +25,7 @@ jest.mock('../app/explain_phrase_client', () => ({
 }));
 
 import {
+  canReuseExplainRequestState,
   resolveExplainDisplay,
   loadingLineForLang,
   splitExplainSegments,
@@ -56,6 +57,32 @@ const baseState: ExplainRequestState = {
 };
 
 describe('useExplainRequest: resolveExplainDisplay (чистая логика тела шторки)', () => {
+  it('reuses only successful resolved explanations for instant reopen', () => {
+    expect(canReuseExplainRequestState({
+      ...baseState,
+      status: 'ok',
+      text: 'ready explanation',
+    })).toBe(true);
+
+    expect(canReuseExplainRequestState({
+      ...baseState,
+      status: 'pending',
+      text: 'fallback',
+    })).toBe(false);
+
+    expect(canReuseExplainRequestState({
+      ...baseState,
+      status: 'ok',
+      text: '',
+    })).toBe(false);
+
+    expect(canReuseExplainRequestState({
+      ...baseState,
+      status: 'error',
+      error: true,
+    })).toBe(false);
+  });
+
   it('во время генерации (cache MISS) показывает скелетон, без текста', () => {
     const out = resolveExplainDisplay({ ...baseState, loading: true }, 'ru', 'значение');
     expect(out.showSkeleton).toBe(true);
@@ -250,6 +277,13 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('display.degraded');
     expect(src).toContain('state.retry()');
     expect(src).toContain('Попробовать ещё раз');
+  });
+
+  it('на exhausted-пути показывает лимитную upsell-плашку вместо fallback/retry', () => {
+    expect(src).toContain('explainFreeLimitReached');
+    expect(src).toContain('AiLimitUpsellCard');
+    expect(src).toContain('testID="explain-free-limit-card"');
+    expect(src).toContain('Бесплатные объяснения закончились');
   });
 });
 

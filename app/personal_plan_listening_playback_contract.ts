@@ -1,5 +1,6 @@
 import type { PersonalPlanListenChooseItem, PersonalPlanListenChooseBlockedReason } from './personal_plan_listen_choose_items';
 import type { PersonalPlanListenBuildItem, PersonalPlanListenBuildBlockedReason } from './personal_plan_listen_build_items';
+import { LOUD_PLAYBACK_AUDIO_MODE, type LoudPlaybackAudioMode } from './audio_playback_mode';
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
 import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 
@@ -18,14 +19,10 @@ export type PlanListeningPlaybackSource =
       uri: string;
       playerSource: string | { assetId: number };
       options: {
-        downloadFirst: true;
+        downloadFirst: false;
         updateInterval: 250;
       };
-      audioMode: {
-        playsInSilentMode: true;
-        shouldPlayInBackground: false;
-        interruptionMode: 'duckOthers';
-      };
+      audioMode: LoudPlaybackAudioMode;
       issues: [];
     }
   | {
@@ -50,10 +47,9 @@ export function buildPlanListeningPlaybackSource(
       issues: ['missing_audio_uri'],
     };
   }
-  // Prefer the server-hosted clip (streamed + disk-cached by expo-audio) so the
-  // ~126 MB of mp3 no longer ship in the binary. Fall back to the bundled local
-  // asset only if this uri isn't in the uploaded map yet (keeps the app working
-  // before/while the upload script runs). Mirrors hooks/phrase_audio_player.ts.
+  // Prefer the server-hosted clip so the ~126 MB of mp3 no longer ship in the
+  // binary. Keep `downloadFirst` off: expo-audio otherwise creates a player with
+  // source=null and replaces it later, so a quick first tap can be silent.
   const remoteUrl = getPlanAudioUrl(uri);
   const assetModule = remoteUrl ? undefined : getPersonalPlanRuntimeAudioAssetModule(uri);
   const playerSource: string | { assetId: number } = remoteUrl
@@ -67,14 +63,10 @@ export function buildPlanListeningPlaybackSource(
     uri,
     playerSource,
     options: {
-      downloadFirst: true,
+      downloadFirst: false,
       updateInterval: 250,
     },
-    audioMode: {
-      playsInSilentMode: true,
-      shouldPlayInBackground: false,
-      interruptionMode: 'duckOthers',
-    },
+    audioMode: LOUD_PLAYBACK_AUDIO_MODE,
     issues: [],
   };
 }

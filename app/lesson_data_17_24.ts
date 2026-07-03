@@ -1633,7 +1633,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
     ukrainian: "Ти можеш забронювати столик?",
     spanish: "¿Puedes reservar una mesa?",
     words: [
-      { text: 'Â¿', correct: 'Â¿', distractors: ['?', '.', ',', '!', ';'], category: 'puntuacion' },
+      { text: '¿', correct: '¿', distractors: ['?', '.', ',', '!', ';'], category: 'puntuacion' },
       { text: 'Puedes', correct: 'Puedes', distractors: ['Puedo', 'Puede', 'Podemos', 'Pueden', 'Quieres'], category: 'modal' },
       { text: 'reservar', correct: 'reservar', distractors: ['llamar', 'enviar', 'revisar', 'abrir', 'esperar'], category: 'imperativo' },
       { text: 'una', correct: 'una', distractors: ['un', 'el', 'la', 'los', 'las'], category: 'articulo' },
@@ -3252,12 +3252,12 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson20_phrase_1',
     english: "I have a bag.",
-    russian: "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ ÑÑƒÐ¼ÐºÐ°.",
-    ukrainian: "Ð£ Ð¼ÐµÐ½Ðµ Ñ” ÑÑƒÐ¼ÐºÐ°.",
+    russian: "У меня есть сумка.",
+    ukrainian: "У мене є сумка.",
     spanish: "Tengo una bolsa.",
     words: [
-      { text: "Ð¼ÐµÐ½Ñ", correct: "Ð¼ÐµÐ½Ñ", distractors: ["Ñ‚ÐµÐ±Ñ", "Ð½ÐµÐ³Ð¾", "Ð½ÐµÑ‘", "Ð½Ð°Ñ", "Ð½Ð¸Ñ…"] },
-      { text: "ÑÑƒÐ¼ÐºÐ°", correct: "ÑÑƒÐ¼ÐºÐ°", distractors: ["Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½", "ÐºÐ»ÑŽÑ‡", "Ð±Ð¸Ð»ÐµÑ‚", "Ð¿Ð°ÑÐ¿Ð¾Ñ€Ñ‚", "Ð·Ð°Ñ€ÑÐ´ÐºÐ°"] },
+      { text: "меня", correct: "меня", distractors: ["тебя", "него", "неё", "нас", "них"] },
+      { text: "сумка", correct: "сумка", distractors: ["телефон", "ключ", "билет", "паспорт", "зарядка"] },
     ],
     wordsEn: [
       { text: "I", correct: "I", distractors: ["you", "he", "she", "we", "they"] },
@@ -3896,8 +3896,8 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson20_phrase_38',
     english: "There is a key on the desk.",
-    russian: "На столе есть ключ.",
-    ukrainian: "На столі є ключ.",
+    russian: "На рабочем столе есть ключ.",
+    ukrainian: "На робочому столі є ключ.",
     spanish: "Hay una llave sobre el escritorio.",
     words: [
       { text: "столе", correct: "столе", distractors: ["стуле", "кровати", "полке", "диване", "окне"] },
@@ -4027,8 +4027,8 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson20_phrase_45',
     english: "The cup is on the desk.",
-    russian: "Чашка на столе.",
-    ukrainian: "Чашка на столі.",
+    russian: "Чашка на рабочем столе.",
+    ukrainian: "Чашка на робочому столі.",
     spanish: "La taza está sobre el escritorio.",
     words: [
       { text: "Чашка", correct: "Чашка", distractors: ["сумка", "коробка", "комната", "полка", "зарядка"] },

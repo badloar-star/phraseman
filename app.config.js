@@ -155,7 +155,16 @@ module.exports = function buildExpoConfig({ config } = {}) {
   // Speaking mode (premium): on-device speech recognition for pronunciation
   // practice. The plugin injects the mic + speech-recognition usage descriptions
   // at prebuild. Added once, guarded so a plugin already present in app.json wins.
-  expoConfig.plugins = [...(expoConfig.plugins || []), 'expo-audio'];
+  expoConfig.plugins = [...(expoConfig.plugins || [])];
+  for (const pluginName of ['expo-asset', 'expo-audio']) {
+    if (!expoConfig.plugins.some((plugin) => (
+      Array.isArray(plugin)
+        ? plugin[0] === pluginName
+        : plugin === pluginName
+    ))) {
+      expoConfig.plugins.push(pluginName);
+    }
+  }
   if (!expoConfig.plugins.some((plugin) => (
     Array.isArray(plugin)
       ? plugin[0] === 'expo-speech-recognition'

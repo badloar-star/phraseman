@@ -29,6 +29,11 @@ import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
+import {
+  cancelScheduledAnimatedStateUpdates,
+  scheduleTrackedAnimatedStateUpdate,
+  type ScheduledAnimatedStateUpdate,
+} from '../components/animationScheduling';
 import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { loadFlashcards } from '../hooks/use-flashcards';
@@ -54,9 +59,11 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   lessonWordsKey,
   lessonWordsShardsGrantedKey,
+  storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
+import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
 
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
@@ -1624,7 +1631,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'writing', ru: 'Писал', uk: 'Писав', es: 'escribiendo', pos: 'verbs' },
     { en: 'waiting', ru: 'Ждал', uk: 'Чекав', es: 'esperando', pos: 'verbs' },
     { en: 'watching', ru: 'Смотрел', uk: 'Дивився', es: 'viendo', pos: 'verbs' },
-    { en: 'looking for', ru: 'Искать', uk: 'Шукати', es: 'buscando', pos: 'verbs' },
+    { en: 'looking for', ru: 'Искал', uk: 'Шукав', es: 'buscando', pos: 'verbs' },
     { en: 'talking', ru: 'Разговаривал', uk: 'Розмовляв', es: 'hablando', pos: 'verbs' },
     { en: 'driving', ru: 'Ехал / вёл машину', uk: 'Їхав / вів машину', es: 'conduciendo', pos: 'verbs' },
     { en: 'cleaning', ru: 'Убирал', uk: 'Прибирав', es: 'limpiando', pos: 'verbs' },
@@ -2701,10 +2708,26 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   /** Снизу вверх + фейд; исчезновение — фейд и лёгкий подъём */
   const xpTranslateY = useRef(new Animated.Value(44)).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
+  const xpToastAnimRef = useRef<Animated.CompositeAnimation | null>(null);
+  const xpToastRunIdRef = useRef(0);
+  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
+  useEffect(() => {
+    return () => {
+      xpToastRunIdRef.current += 1;
+      xpToastAnimRef.current?.stop();
+      xpToastAnimRef.current = null;
+      cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    };
+  }, []);
+
   const showXpToast = (amount: number = POINTS_PER_CORRECT) => {
     const safeAmount = Number.isFinite(amount) && amount >= 0
       ? Math.round(amount)
       : POINTS_PER_CORRECT;
+    const runId = xpToastRunIdRef.current + 1;
+    xpToastRunIdRef.current = runId;
+    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    xpToastAnimRef.current?.stop();
     setXpToastAmount(safeAmount);
     const rise = 44;
     const easeIn = Easing.out(Easing.cubic);
@@ -2712,7 +2735,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     xpTranslateY.setValue(rise);
     xpOpacity.setValue(0);
     setXpToastVisible(true);
-    Animated.sequence([
+    const toastAnim = Animated.sequence([
       Animated.parallel([
         Animated.timing(xpTranslateY, { toValue: 0, duration: 420, easing: easeIn, useNativeDriver: true }),
         Animated.timing(xpOpacity, { toValue: 1, duration: 400, easing: easeIn, useNativeDriver: true }),
@@ -2722,7 +2745,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         Animated.timing(xpOpacity, { toValue: 0, duration: 480, easing: easeOut, useNativeDriver: true }),
         Animated.timing(xpTranslateY, { toValue: -12, duration: 480, easing: easeOut, useNativeDriver: true }),
       ]),
-    ]).start(() => setXpToastVisible(false));
+    ]);
+    xpToastAnimRef.current = toastAnim;
+    toastAnim.start(({ finished }) => {
+      if (!finished || xpToastRunIdRef.current !== runId) return;
+      xpToastAnimRef.current = null;
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
+        if (xpToastRunIdRef.current === runId) setXpToastVisible(false);
+      });
+    });
   };
 
   // Блокировка: не даём запустить обработку дважды
@@ -3367,9 +3398,33 @@ export default function LessonWords() {
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);
   const frenchVocabularyBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
+  const isFrenchLessonWords = storageStudyTarget(studyTarget) === 'fr';
+  const frenchSourceLocale = lang === 'uk' ? 'uk' : 'ru';
+  const [frenchRemoteWords, setFrenchRemoteWords] = useState<Word[] | null>(null);
+  useEffect(() => {
+    if (!isFrenchLessonWords || frenchVocabularyBlocked) {
+      setFrenchRemoteWords(null);
+      return;
+    }
+    let cancelled = false;
+    setFrenchRemoteWords(null);
+    loadFrenchRemoteLessonWordBank(lessonId, frenchSourceLocale)
+      .then(items => {
+        if (!cancelled) setFrenchRemoteWords(items as Word[]);
+      })
+      .catch(() => {
+        if (!cancelled) setFrenchRemoteWords([]);
+      });
+    return () => { cancelled = true; };
+  }, [frenchSourceLocale, frenchVocabularyBlocked, isFrenchLessonWords, lessonId]);
+  const frenchRemoteWordsLoading = isFrenchLessonWords && !frenchVocabularyBlocked && frenchRemoteWords === null;
   const words = useMemo(
-    () => frenchVocabularyBlocked ? [] : prioritizeQaFocusWords(lessonWordBank(lessonId), qaFocusWords),
-    [frenchVocabularyBlocked, lessonId, qaFocusWords],
+    () => {
+      if (frenchVocabularyBlocked) return [];
+      if (isFrenchLessonWords) return prioritizeQaFocusWords(frenchRemoteWords ?? [], qaFocusWords);
+      return prioritizeQaFocusWords(lessonWordBank(lessonId), qaFocusWords);
+    },
+    [frenchRemoteWords, frenchVocabularyBlocked, isFrenchLessonWords, lessonId, qaFocusWords],
   );
   const storageKey = lessonWordsKey(lessonId, studyTarget);
   const wordsShardGrantKey = lessonWordsShardsGrantedKey(lessonId, studyTarget);
@@ -3453,6 +3508,12 @@ export default function LessonWords() {
             lang={lang}
             onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
           />
+        ) : frenchRemoteWordsLoading ? (
+          <View testID="lesson-words-french-remote-loading" style={{ flex:1, justifyContent:'center', alignItems:'center', padding:20 }}>
+            <Text style={{ color:sx.muted, fontSize:f.bodyLg }}>
+              {pickTriLang(lang, { ru: 'Загружаем французский словарь...', uk: 'Завантажуємо французький словник...', es: 'Cargando vocabulario francés...', 'pt-BR': 'Carregando vocabulário francês...', vi: 'Đang tải từ vựng tiếng Pháp...', id: 'Memuat kosakata Prancis...', tr: 'Fransizca kelime listesi yukleniyor...', pl: 'Ladowanie francuskiego slownictwa...' })}
+            </Text>
+          </View>
         ) : tab === 'list' ? (
           <WordList
             words={words}

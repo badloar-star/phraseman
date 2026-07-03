@@ -445,8 +445,6 @@ export function useDuelMock(
     if (hasAnsweredRef.current) return;
     hasAnsweredRef.current = true;
 
-    if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null; }
-
     const idx = qIndexRef.current;
     const q = questionsRef.current[idx];
     if (!q) return;

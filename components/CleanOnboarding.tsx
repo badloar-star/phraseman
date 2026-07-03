@@ -5,7 +5,6 @@ import {
   Alert,
   Animated,
   AppState,
-  BackHandler,
   Image,
   ImageSourcePropType,
   Keyboard,
@@ -83,8 +82,8 @@ const ONBOARDING_ASSETS = {
   sourceGoogle: require('../assets/images/flow_clean_202607/source_google.png'),
   sourceFriends: require('../assets/images/flow_clean_202607/source_friends.png'),
   sourceOther: require('../assets/images/flow_clean_202607/source_other.png'),
-  languageEn: require('../assets/images/flow_clean_202607/language_en.png'),
-  languageFr: require('../assets/images/flow_clean_202607/language_fr.png'),
+  languageEn: require('../assets/images/language_flags/language_en.webp'),
+  languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
   levelA0: require('../assets/images/flow_clean_202607/level_a0.png'),
   levelA1: require('../assets/images/flow_clean_202607/level_a1.png'),
   levelA2: require('../assets/images/flow_clean_202607/level_a2.png'),
@@ -1182,7 +1181,7 @@ function CleanOnboarding({
       await queueSelectedPlan(selectedBillingPlan);
       trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: selectedBillingPlan });
       // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
-      // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert), гейт <16 и
+      // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert) и
       // навигацию при успехе (finishPersonalPlanActivationFlow → шаг «Имя»).
       await paywallHandlePurchase();
     } finally {
@@ -1539,7 +1538,12 @@ function CleanOnboarding({
   );
 
   const renderOnboardingPaywall = () => {
-    const yearlyLabel = yearlyPerMonth ? `${yearlyPerMonth} / мес` : yearlyPrice || 'Год';
+    // Apple 3.1.2(c): списываемая сумма (billed amount) должна быть самым крупным
+    // и заметным ценовым элементом. Поэтому у «Года» КРУПНО показываем полную цену
+    // за год ($24.99 в год), а расчётную цену за месяц ($2.08 / мес) — мелкой
+    // подписью снизу. Для «Месяца» списываемая сумма и есть месячная цена.
+    const yearlyLabel = yearlyPrice ? `${yearlyPrice} в год` : 'Год';
+    const yearlySubLabel = yearlyPerMonth ? `${yearlyPerMonth} / мес` : undefined;
     const monthlyLabel = monthlyPrice ? `${monthlyPrice} / мес` : 'Месяц';
     const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? 'Разовая покупка' : 'Разовый доступ');
     return (
@@ -1590,7 +1594,7 @@ function CleanOnboarding({
             plan="yearly"
             title="Год"
             price={paywallLoading ? 'Загрузка цены...' : yearlyLabel}
-            subprice={yearlyPrice ? `${yearlyPrice} в год` : undefined}
+            subprice={paywallLoading ? undefined : yearlySubLabel}
             badge="лучший старт"
             selected={selectedBillingPlan === 'yearly'}
             onPress={choosePaywallPlan}
@@ -1628,25 +1632,12 @@ function CleanOnboarding({
       onBack={back}
       footer={(
         <PrimaryButton
-          label={ageAnswer === 'no' ? 'Выйти' : 'Сохранить и начать'}
+          label="Сохранить и начать"
           onPress={() => {
             Keyboard.dismiss();
-            if (ageAnswer === 'no') {
-              // Apple запрещает программно закрывать приложение — exitApp() на iOS
-              // это no-op. На Android закрываем, на iOS честно просим закрыть вручную.
-              if (Platform.OS === 'ios') {
-                Alert.alert(
-                  'Пока рано',
-                  'Приложением можно пользоваться с 16 лет. Закрой его, пожалуйста, смахнув вверх — и возвращайся, когда подрастёшь.',
-                );
-                return;
-              }
-              BackHandler.exitApp();
-              return;
-            }
             void finish();
           }}
-          loading={ageAnswer === 'no' ? false : finishBusy}
+          loading={finishBusy}
           testID="onboarding-finish"
         />
       )}
@@ -2162,8 +2153,8 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.18)',
   },
   languageAsset: {
-    width: 66,
-    height: 66,
+    width: 76,
+    height: 48,
   },
   languageTitle: {
     color: '#FFFFFF',

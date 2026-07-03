@@ -1,21 +1,10 @@
 "use strict";
-// ═══════════════════════════════════════════════════════════════════════════
-// compass_chat_cron.ts — дневной пост Компаса в чат каждой активной лиги.
+// Daily Compass post for league chats.
 //
-// Каждый день в 09:00 UTC крон проходит по всем группам ТЕКУЩЕЙ недели и пишет
-// в league_chat_messages ровно ОДНО системное сообщение на группу (kind:'system',
-// authorUid = LEAGUE_CHAT_SYSTEM_UID). Контент детерминирован по дню (см.
-// compass_chat_content.pickCompassPostForDay) и несёт карту i18n со всеми
-// языками — клиент рендерит свой.
-//
-// Стоимость: 1 write на группу/день. Read у юзеров не добавляется — пост
-// читается тем же realtime-слушателем чата.
-//
-// Идемпотентность: id документа детерминирован (`compass_{weekId}_{groupId}_{daySeed}`),
-// поэтому повторный запуск крона в тот же день НЕ создаёт дубль (set, не add).
-//
-// Паттерн пагинации/батчинга скопирован с league_finalize_cron.ts.
-// ═══════════════════════════════════════════════════════════════════════════
+// The cron creates exactly one Compass system message per active league group
+// per UTC day. The content is generated once per product day and cached in
+// league_compass_daily/{YYYY-MM-DD}; every group receives the same approved
+// post, so reruns are idempotent and do not burn extra model calls.
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -52,19 +41,27 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.compassChatRunNow = exports.compassChatDailyCron = void 0;
 exports.compassPostDocId = compassPostDocId;
-exports.compassIcebreakerDocId = compassIcebreakerDocId;
-exports.compassSummaryDocId = compassSummaryDocId;
 exports.runCompassChatDailyPost = runCompassChatDailyPost;
 const admin = __importStar(require("firebase-admin"));
+const params_1 = require("firebase-functions/params");
 const scheduler_1 = require("firebase-functions/v2/scheduler");
 const https_1 = require("firebase-functions/v2/https");
+const explain_provider_1 = require("./explain/explain_provider");
+const openai_jobs_config_1 = require("./openai_jobs_config");
 const compass_chat_content_1 = require("./compass_chat_content");
+const callable_options_1 = require("./callable_options");
+const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const LEAGUE_CHAT_SYSTEM_UID = '__league_system__';
 const PAGE_SIZE = 200;
 const BATCH_LIMIT = 400;
-/** Сколько участников максимум перечислять в дневной сводке достижений. */
-const MAX_SUMMARY_NAMES = 12;
-/** ISO weekId текущей недели (UTC) — совпадает с league_groups.getWeekId. */
+const MIN_MEMBERS_FOR_POST = 2;
+const DAILY_COLLECTION = 'league_compass_daily';
+const BILLING_COLLECTION = 'league_compass_daily_billing';
+const DAILY_SCHEMA_VERSION = 1;
+const GENERATION_LOCK_TTL_MS = 90000;
+const REJECTED_RETRY_TTL_MS = 10 * 60000;
+const GEN_MAX_TOKENS = 2200;
+const GEN_TEMPERATURE = 0.9;
 function getCurrentWeekId(now = new Date()) {
     const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
     const day = date.getUTCDay() || 7;
@@ -73,23 +70,10 @@ function getCurrentWeekId(now = new Date()) {
     const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
     return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
 }
-/** Детерминированный id поста: один и тот же день+группа → один документ (без дублей). */
 function compassPostDocId(weekId, groupId, daySeed) {
     const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
     return `compass_${weekId}_${safeGroup}_${daySeed}`;
 }
-/** Стабильный id закреплённого приветствия (один на группу, без daySeed). */
-function compassIcebreakerDocId(weekId, groupId) {
-    const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
-    return `compass_pin_${weekId}_${safeGroup}`;
-}
-/** Стабильный id дневной сводки достижений (один на группу/день). */
-function compassSummaryDocId(weekId, groupId, daySeed) {
-    const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
-    return `compass_sum_${weekId}_${safeGroup}_${daySeed}`;
-}
-/** Минимальный размер группы для поста — не засорять одиночные/пустые комнаты. */
-const MIN_MEMBERS_FOR_POST = 2;
 function membersMap(data) {
     const members = data?.members;
     if (!members || typeof members !== 'object' || Array.isArray(members))
@@ -99,36 +83,7 @@ function membersMap(data) {
 function countMembers(data) {
     return Object.values(membersMap(data)).filter((m) => m?.identityHidden !== true).length;
 }
-/** Снимок очков участников (uid → points) для сравнения «кто продвинулся за день». */
-function pointsSnapshot(data) {
-    const snap = {};
-    for (const [uid, m] of Object.entries(membersMap(data))) {
-        if (m?.identityHidden === true)
-            continue;
-        snap[uid] = Math.max(0, Math.trunc(Number(m?.points ?? 0)) || 0);
-    }
-    return snap;
-}
-/** Имена участников, чьи очки выросли с прошлого снимка (= были активны сегодня). */
-function advancedMemberNames(data, prev) {
-    if (!prev || typeof prev !== 'object')
-        return [];
-    const names = [];
-    for (const [uid, m] of Object.entries(membersMap(data))) {
-        if (m?.identityHidden === true)
-            continue;
-        const now = Math.max(0, Math.trunc(Number(m?.points ?? 0)) || 0);
-        const before = Math.max(0, Math.trunc(Number(prev[uid] ?? 0)) || 0);
-        if (now > before) {
-            const name = String(m?.name ?? '').trim();
-            if (name)
-                names.push(name);
-        }
-    }
-    return names.slice(0, MAX_SUMMARY_NAMES);
-}
-/** Документ чат-сообщения из поста Компаса. */
-function buildMessagePayload(post, groupId, weekId, leagueId, createdAt, extra) {
+function buildMessagePayload(post, groupId, weekId, leagueId, createdAt) {
     const payload = {
         groupId,
         weekId,
@@ -138,13 +93,12 @@ function buildMessagePayload(post, groupId, weekId, leagueId, createdAt, extra) 
         kind: 'system',
         systemType: post.systemType,
         compassKind: post.kind,
-        text: post.i18n.ru, // дефолтный текст; клиент рендерит i18n[lang]
+        text: post.i18n.ru,
         i18n: post.i18n,
         status: 'visible',
         reportCount: 0,
         createdAt,
         updatedAt: createdAt,
-        ...(extra || {}),
     };
     if (post.poll) {
         payload.poll = post.poll;
@@ -152,20 +106,160 @@ function buildMessagePayload(post, groupId, weekId, leagueId, createdAt, extra) 
     }
     return payload;
 }
-/**
- * Ядро дневной публикации Компаса. Вынесено, чтобы запускать из планировщика
- * и из ручного админ-триггера (compassChatRunNow) одним и тем же кодом.
- */
+function getOpenAiApiKey() {
+    try {
+        return String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    }
+    catch {
+        return String(process.env.OPENAI_API_KEY || '').trim();
+    }
+}
+function dailyRef(db, dayKey) {
+    return db.collection(DAILY_COLLECTION).doc(dayKey);
+}
+function readReadyPost(data) {
+    if (!data || data.schemaVersion !== DAILY_SCHEMA_VERSION || data.status !== 'ready')
+        return null;
+    return (0, compass_chat_content_1.normalizeGeneratedCompassPost)(data.post);
+}
+async function readCachedDailyPost(db, dayKey) {
+    const snap = await dailyRef(db, dayKey).get().catch(() => null);
+    const data = snap?.data();
+    const post = readReadyPost(data);
+    return post ? { post, source: 'cache', model: data?.model } : null;
+}
+async function claimDailyGenerationLock(db, dayKey, nowMs) {
+    const ref = dailyRef(db, dayKey);
+    return db.runTransaction(async (tx) => {
+        const snap = await tx.get(ref);
+        const data = snap.data();
+        if (readReadyPost(data))
+            return false;
+        const updatedAtMs = Number(data?.updatedAtMs ?? data?.createdAtMs ?? 0);
+        const ageMs = nowMs - updatedAtMs;
+        if (data?.schemaVersion === DAILY_SCHEMA_VERSION && data.status === 'pending' && ageMs < GENERATION_LOCK_TTL_MS) {
+            return false;
+        }
+        if (data?.schemaVersion === DAILY_SCHEMA_VERSION && data.status === 'rejected' && ageMs < REJECTED_RETRY_TTL_MS) {
+            return false;
+        }
+        tx.set(ref, {
+            schemaVersion: DAILY_SCHEMA_VERSION,
+            status: 'pending',
+            reason: null,
+            createdAtMs: data?.createdAtMs || nowMs,
+            updatedAtMs: nowMs,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        return true;
+    });
+}
+function errorReason(err) {
+    const anyErr = err;
+    return String(anyErr?.code || anyErr?.message || err || 'unknown').slice(0, 160);
+}
+async function markDailyGenerationRejected(db, dayKey, reason, meta) {
+    const nowMs = Date.now();
+    await dailyRef(db, dayKey).set({
+        schemaVersion: DAILY_SCHEMA_VERSION,
+        status: 'rejected',
+        reason,
+        model: meta?.model || null,
+        promptTokens: meta?.promptTokens ?? null,
+        completionTokens: meta?.completionTokens ?? null,
+        updatedAtMs: nowMs,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+}
+async function resolveDailyCompassPost(db, now, daySeed) {
+    const dayKey = (0, compass_chat_content_1.getUtcDayKey)(now);
+    const fallback = (0, compass_chat_content_1.pickCompassPostForDay)(daySeed);
+    const cached = await readCachedDailyPost(db, dayKey);
+    if (cached)
+        return cached;
+    const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'compass');
+    if (!jobCfg.enabled)
+        return { post: fallback, source: 'fallback_disabled', model: jobCfg.model };
+    const apiKey = getOpenAiApiKey();
+    if (!apiKey)
+        return { post: fallback, source: 'fallback_missing_key', model: jobCfg.model };
+    const nowMs = Date.now();
+    const claimed = await claimDailyGenerationLock(db, dayKey, nowMs);
+    if (!claimed)
+        return { post: fallback, source: 'fallback_pending', model: jobCfg.model };
+    let gen = null;
+    try {
+        gen = await (0, explain_provider_1.openAiChat)({
+            apiKey,
+            model: jobCfg.model,
+            messages: [{ role: 'user', content: (0, compass_chat_content_1.buildLeagueCompassDailyPrompt)({ dayKey, seed: daySeed }) }],
+            maxTokens: GEN_MAX_TOKENS,
+            temperature: GEN_TEMPERATURE,
+        });
+        const post = (0, compass_chat_content_1.normalizeGeneratedCompassPost)(gen.text);
+        if (!post) {
+            await markDailyGenerationRejected(db, dayKey, 'invalid_generated_post', {
+                model: jobCfg.model,
+                promptTokens: gen.promptTokens,
+                completionTokens: gen.completionTokens,
+            });
+            return { post: fallback, source: 'fallback_failed', model: jobCfg.model };
+        }
+        await dailyRef(db, dayKey).set({
+            schemaVersion: DAILY_SCHEMA_VERSION,
+            status: 'ready',
+            reason: null,
+            post,
+            model: jobCfg.model,
+            promptTokens: gen.promptTokens,
+            completionTokens: gen.completionTokens,
+            updatedAtMs: Date.now(),
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        await db.collection(BILLING_COLLECTION).doc().set({
+            dayKey,
+            model: jobCfg.model,
+            kind: post.kind,
+            promptTokens: gen.promptTokens,
+            completionTokens: gen.completionTokens,
+            published: true,
+            createdAtMs: Date.now(),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { post, source: 'ai', model: jobCfg.model };
+    }
+    catch (err) {
+        const reason = errorReason(err);
+        console.error('league compass daily generation failed', { dayKey, reason });
+        await markDailyGenerationRejected(db, dayKey, reason, {
+            model: jobCfg.model,
+            promptTokens: gen?.promptTokens,
+            completionTokens: gen?.completionTokens,
+        }).catch((writeErr) => console.error('league compass rejected write failed', writeErr));
+        await db.collection(BILLING_COLLECTION).doc().set({
+            dayKey,
+            model: jobCfg.model,
+            promptTokens: gen?.promptTokens ?? 0,
+            completionTokens: gen?.completionTokens ?? 0,
+            published: false,
+            reason,
+            createdAtMs: Date.now(),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        }).catch((billingErr) => console.error('league compass billing write failed', billingErr));
+        return { post: fallback, source: 'fallback_failed', model: jobCfg.model };
+    }
+}
 async function runCompassChatDailyPost(now = new Date()) {
     const db = admin.firestore();
     const weekId = getCurrentWeekId(now);
     const daySeed = (0, compass_chat_content_1.getDaySeed)(now);
-    const post = (0, compass_chat_content_1.pickCompassPostForDay)(daySeed);
+    const dayKey = (0, compass_chat_content_1.getUtcDayKey)(now);
+    const resolved = await resolveDailyCompassPost(db, now, daySeed);
+    const post = resolved.post;
     const createdAt = Date.now();
-    console.log(`compassChatDailyCron: weekId=${weekId} daySeed=${daySeed} kind=${post.kind}`);
+    console.log(`compassChatDailyCron: weekId=${weekId} dayKey=${dayKey} kind=${post.kind} source=${resolved.source}`);
     let processed = 0;
     let written = 0;
-    let summaries = 0;
     let skipped = 0;
     let lastDoc = null;
     let batch = db.batch();
@@ -198,40 +292,27 @@ async function runCompassChatDailyPost(now = new Date()) {
                 continue;
             }
             const leagueId = Math.max(0, Math.trunc(Number(data.leagueId ?? 0)));
-            const messages = db.collection('league_chat_messages');
-            // 1) Дневной пост Компаса (слово/факт/вопрос/опрос). id детерминирован →
-            //    повторный запуск перезапишет тем же контентом (идемпотентно).
-            batch.set(messages.doc(compassPostDocId(weekId, doc.id, daySeed)), buildMessagePayload(post, doc.id, weekId, leagueId, createdAt), { merge: false });
+            batch.set(db.collection('league_chat_messages').doc(compassPostDocId(weekId, doc.id, daySeed)), buildMessagePayload(post, doc.id, weekId, leagueId, createdAt), { merge: false });
             batchCount++;
             written++;
-            // 2) Закреплённое приветствие новичкам — один документ на группу (pinned).
-            batch.set(messages.doc(compassIcebreakerDocId(weekId, doc.id)), buildMessagePayload((0, compass_chat_content_1.buildIcebreakerPost)(), doc.id, weekId, leagueId, createdAt, { pinned: true }), { merge: false });
-            batchCount++;
-            written++;
-            // 3) Дневная сводка достижений: кто продвинулся со вчерашнего снимка очков.
-            const prevSnap = (data.compassPointsSnapshot && typeof data.compassPointsSnapshot === 'object'
-                ? data.compassPointsSnapshot
-                : undefined);
-            const advanced = advancedMemberNames(data, prevSnap);
-            const summary = (0, compass_chat_content_1.buildDailySummaryPost)(advanced);
-            if (summary) {
-                batch.set(messages.doc(compassSummaryDocId(weekId, doc.id, daySeed)), buildMessagePayload(summary, doc.id, weekId, leagueId, createdAt), { merge: false });
-                batchCount++;
-                written++;
-                summaries++;
-            }
-            // Обновляем снимок очков на группе для сравнения завтра (admin SDK,
-            // правила не блокируют). Отдельное поле — не трогает members.
-            batch.set(db.collection('league_groups').doc(doc.id), { compassPointsSnapshot: pointsSnapshot(data), compassPointsSnapshotDay: daySeed }, { merge: true });
-            batchCount++;
             if (batchCount >= BATCH_LIMIT) {
                 await flushBatch();
             }
         }
     }
     await flushBatch();
-    console.log(`compassChatDailyCron: processed=${processed} groups, written=${written}, summaries=${summaries}, skipped=${skipped}`);
-    return { weekId, daySeed, kind: post.kind, processed, written, summaries, skipped };
+    console.log(`compassChatDailyCron: processed=${processed} groups, written=${written}, skipped=${skipped}`);
+    return {
+        weekId,
+        daySeed,
+        dayKey,
+        kind: post.kind,
+        source: resolved.source,
+        processed,
+        written,
+        summaries: 0,
+        skipped,
+    };
 }
 exports.compassChatDailyCron = (0, scheduler_1.onSchedule)({
     schedule: 'every day 09:00',
@@ -239,14 +320,11 @@ exports.compassChatDailyCron = (0, scheduler_1.onSchedule)({
     timeoutSeconds: 540,
     memory: '512MiB',
     region: 'us-central1',
+    secrets: [OPENAI_API_KEY],
 }, async () => {
     await runCompassChatDailyPost(new Date());
 });
-/**
- * Ручной триггер для проверки в деве/проде. Только админ (custom claim admin).
- * Запускает ту же публикацию, что и планировщик, и возвращает статистику.
- */
-exports.compassChatRunNow = (0, https_1.onCall)({ region: 'us-central1', timeoutSeconds: 540, memory: '512MiB' }, async (request) => {
+exports.compassChatRunNow = (0, https_1.onCall)({ region: 'us-central1', enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI, timeoutSeconds: 540, memory: '512MiB', secrets: [OPENAI_API_KEY] }, async (request) => {
     if (request.auth?.token?.admin !== true) {
         throw new https_1.HttpsError('permission-denied', 'admin_required');
     }

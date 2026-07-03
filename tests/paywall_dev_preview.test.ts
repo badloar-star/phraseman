@@ -2,7 +2,7 @@
 // paywall_dev_preview.test.ts — плейсхолдеры пейвола для dev-сборки.
 //
 // Фиксирует: dev-превью даёт непустые цены + валидный lifetime-пакет + активный
-// таймер, чтобы кнопка «Навсегда» и блок urgency были видны в Metro (DEV_IAP_BYPASS),
+// таймер, чтобы кнопка Phraseman Pro и блок urgency были видны в Metro (DEV_IAP_BYPASS),
 // где RevenueCat не опрашивается. Реальные расчёты пейвола должны принимать эти
 // строки без NaN/пустых значений.
 // ════════════════════════════════════════════════════════════════════════════
@@ -50,7 +50,7 @@ describe('paywall dev preview placeholders', () => {
     expect(DEV_PREVIEW_URGENCY.remainingFormatted).toMatch(/^\d{2}:\d{2}:\d{2}$/);
   });
 
-  it('фейковый lifetime-пакет распознаётся как lifetime (кнопка «Навсегда»)', () => {
+  it('фейковый lifetime-пакет распознаётся как lifetime (кнопка Phraseman Pro)', () => {
     const out = resolvePremiumPackages([DEV_PREVIEW_LIFETIME_PACKAGE]);
     expect(out.lifetime?.product.identifier).toBe('phraseman_premium_lifetime_v1');
   });

@@ -348,7 +348,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+let REQUIRED_AI = 164;
 const PENDING: PendingDecision = 'pending_llm_official_source_review';
 const REVIEWER = 'llm_official_source_reviewer';
 const TRUSTED_SOURCE_FAMILIES = [
@@ -1250,6 +1250,14 @@ function main(): void {
   const researchPack = readJson<JsonObject>(researchPackPath);
   const aiPromptContract = readJson<AiPromptContractV2>(aiPromptContractPath);
   const aiPromptReport = readJson<JsonObject>(aiPromptContractPacketPath);
+  REQUIRED_AI = Math.max(
+    REQUIRED_AI,
+    n(object(aiPromptReport.summary), 'aiPromptEntrypointContracts'),
+    aiPromptContract.entrypointContracts.length,
+    n(p22, 'aiCandidateProposals'),
+    aiCandidates.length,
+    aiTemplates.length,
+  );
   const sourceMap = trustedSourcesById(researchPack);
 
   const manifestRowTarget = path.resolve(repoRoot, p22Manifest.futureDecisionFiles.rowDecisionsReviewedV2);

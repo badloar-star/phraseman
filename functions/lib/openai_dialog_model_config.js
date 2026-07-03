@@ -39,6 +39,7 @@ exports.resolveConfiguredDialogModel = resolveConfiguredDialogModel;
 exports.resolveConfiguredDialogQuota = resolveConfiguredDialogQuota;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_dialog_model';
@@ -125,7 +126,7 @@ async function resolveConfiguredDialogQuota(db) {
         return quotaFromData(undefined);
     }
 }
-exports.openAiDialogModelConfig = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.openAiDialogModelConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }
@@ -160,7 +161,7 @@ exports.openAiDialogModelConfig = (0, https_1.onCall)({ region: REGION }, async 
         updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
     };
 });
-exports.openAiDialogQuotaConfig = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.openAiDialogQuotaConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }

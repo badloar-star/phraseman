@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -17,13 +18,13 @@ import {
   type CustomAvatarGradient,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLevelGiftRewardIcon, type LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import type { ThemeMode } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import AvatarAura from './AvatarAura';
 import CustomAvatarBadge from './CustomAvatarBadge';
@@ -323,7 +324,8 @@ function LeagueChestOpenModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const scale = useRef(new Animated.Value(0.72)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const crownFloat = useRef(new Animated.Value(0)).current;
@@ -414,7 +416,7 @@ function LeagueChestOpenModal({
             styles.center,
             {
               paddingTop: Math.max(18, insets.top + 8),
-              paddingBottom: Math.max(18, insets.bottom + 8),
+              paddingBottom: Math.max(18, bottomInset + 8),
               paddingLeft: Math.max(18, insets.left + 8),
               paddingRight: Math.max(18, insets.right + 8),
             },

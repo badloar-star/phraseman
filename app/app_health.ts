@@ -20,7 +20,12 @@ const DEFAULT_THROTTLE_MS = 30 * 60 * 1000;
 const MAX_MESSAGE_LEN = 500;
 const MAX_STACK_LEN = 4000;
 const THROTTLE_CACHE_LIMIT = 128;
+const THROTTLE_STORAGE_LIMIT = 192;
+const THROTTLE_STORAGE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+const THROTTLE_PRUNE_INTERVAL_MS = 6 * 60 * 60 * 1000;
 const healthThrottleCache = new Map<string, number>();
+let lastThrottlePruneAt = 0;
+let throttlePruneInFlight = false;
 
 function normalizeError(error: unknown) {
   if (error instanceof Error) {
@@ -65,6 +70,41 @@ function rememberThrottle(key: string, lastAt: number) {
   if (oldest) healthThrottleCache.delete(oldest);
 }
 
+async function pruneStoredThrottleKeys(now: number): Promise<void> {
+  if (throttlePruneInFlight || now - lastThrottlePruneAt < THROTTLE_PRUNE_INTERVAL_MS) return;
+  throttlePruneInFlight = true;
+  lastThrottlePruneAt = now;
+  try {
+    const keys = await AsyncStorage.getAllKeys().catch(() => []);
+    const throttleKeys = keys.filter((key) => key.startsWith(THROTTLE_PREFIX));
+    if (throttleKeys.length === 0) return;
+
+    const rows = await AsyncStorage.multiGet(throttleKeys).catch(() => []);
+    const keep: Array<{ key: string; at: number }> = [];
+    const remove: string[] = [];
+    for (const [key, value] of rows) {
+      const at = parseInt(value || '0', 10) || 0;
+      if (!at || now - at > THROTTLE_STORAGE_TTL_MS) {
+        remove.push(key);
+      } else {
+        keep.push({ key, at });
+      }
+    }
+
+    keep.sort((a, b) => b.at - a.at);
+    if (keep.length > THROTTLE_STORAGE_LIMIT) {
+      remove.push(...keep.slice(THROTTLE_STORAGE_LIMIT).map((entry) => entry.key));
+    }
+
+    if (remove.length > 0) {
+      await AsyncStorage.multiRemove(remove).catch(() => {});
+      remove.forEach((key) => healthThrottleCache.delete(key));
+    }
+  } finally {
+    throttlePruneInFlight = false;
+  }
+}
+
 async function shouldSend(fingerprint: string, severity: AppHealthSeverity, sampleRate?: number) {
   if (severity === 'info') return false;
   if (sampleRate != null && sampleRate < 1 && Math.random() > sampleRate) return false;
@@ -82,6 +122,7 @@ async function shouldSend(fingerprint: string, severity: AppHealthSeverity, samp
 
   rememberThrottle(key, now);
   await AsyncStorage.setItem(key, String(now)).catch(() => {});
+  void pruneStoredThrottleKeys(now).catch(() => {});
   return true;
 }
 

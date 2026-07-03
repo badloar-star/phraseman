@@ -5,7 +5,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, TouchableOpacity, ImageBackground, Animated, Easing,
+  View, Text, Platform, StyleSheet, TouchableOpacity, Animated, Easing,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
   type ViewStyle, type StyleProp,
 } from 'react-native';
@@ -41,22 +41,20 @@ export interface PaywallChrome {
 }
 
 /** Цветовая обвязка пейвола, адаптивная к теме (паттерн v2). */
-export function usePaywallChrome(): PaywallChrome {
+export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
   const { themeMode } = useTheme();
   return useMemo(() => ({
-    tc: getPaywallThemeConfig(themeMode),
-    themeMode,
-    bgColors: screenBgTuple(themeMode),
+    tc: getPaywallThemeConfig(overrideThemeMode ?? themeMode),
+    themeMode: overrideThemeMode ?? themeMode,
+    bgColors: screenBgTuple(overrideThemeMode ?? themeMode),
     textPrimary: '#FFFFFF',
     textMuted: 'rgba(255,255,255,0.62)',
     divider: 'rgba(255,255,255,0.06)',
     cardBg: 'rgba(255,255,255,0.035)',
     cardBorder: 'rgba(255,255,255,0.08)',
     uncheckedBorder: 'rgba(255,255,255,0.22)',
-  }), [themeMode]);
+  }), [overrideThemeMode, themeMode]);
 }
-
-const ONBOARDING_BG = require('../../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
 
 /**
  * Опции навигации экрана пейвола, зависящие от источника.
@@ -81,8 +79,8 @@ export function paywallScreenStackOptions(isOnboarding: boolean) {
     // (пользователь обходит paywall_purchase без выбора), оставляем gesture off.
     return { presentation: 'card', animation: 'none', animationDuration: 0, gestureEnabled: false } as const;
   }
-  // H10: вне онбординга пейвол открывается как modal — пользователь должен иметь
-  // возможность смахнуть его вниз на iOS. Глобальный gestureEnabled:false блокировал.
+  // Outside onboarding the paywall is a real bottom modal: it opens from the
+  // bottom, closes down, and can be dismissed with the native modal gesture.
   return { presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true } as const;
 }
 
@@ -154,13 +152,20 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
 
   if (isOnboarding) {
     return (
-      <ImageBackground source={ONBOARDING_BG} style={[{ flex: 1 }, style]} resizeMode="cover">
+      <LinearGradient
+        colors={['#010102', '#050713', '#0A1025']}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={[{ flex: 1 }, style]}
+      >
+        <View pointerEvents="none" style={S.onboardingLiquidGlowA} />
+        <View pointerEvents="none" style={S.onboardingLiquidGlowB} />
         <Animated.View
           pointerEvents="none"
-          style={[StyleSheet.absoluteFill, { backgroundColor: '#000', opacity: dim }]}
+          style={[StyleSheet.absoluteFill, { backgroundColor: '#010102', opacity: dim }]}
         />
         {children}
-      </ImageBackground>
+      </LinearGradient>
     );
   }
   return (
@@ -181,6 +186,8 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   quiz_medium: 'extension-puzzle',
   quiz_hard: 'flame',
   flashcard_limit: 'albums',
+  flashcard_training: 'school',
+  flashcard_autoplay: 'play-circle',
   streak: 'flame',
   theme: 'color-palette',
   club: 'people',
@@ -188,6 +195,9 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   trainer_limit: 'barbell',
   smart_trainer: 'sparkles',
   dialog_limit: 'compass-outline',
+  dialog_locked_level: 'lock-closed',
+  dialog_analysis: 'chatbubbles',
+  ai_voice_input: 'mic-circle',
   speaking: 'mic',
   diagnosis_training: 'pulse',
   mastery: 'ribbon',
@@ -201,6 +211,11 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   premium_expired: 'refresh-circle',
   vip_expired: 'star',
   notification_upsell: 'notifications',
+  language_add: 'globe',
+  ai_explain: 'bulb',
+  weekly_review: 'calendar',
+  compass_day_closing: 'moon',
+  avatar_aura: 'color-wand',
   generic: 'diamond',
 };
 
@@ -217,7 +232,7 @@ export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chro
       {isDialogLimit ? (
         <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
       ) : (
-        <Ionicons name={contextGlyph(ctx)} size={28} color={tc.heroAccent} />
+        <Ionicons name={contextGlyph(ctx)} size={32} color={tc.heroAccent} />
       )}
     </View>
   );
@@ -244,7 +259,7 @@ export function PaywallSocialRow({ lang, chrome }: { lang: Lang; chrome: Paywall
     <View style={S.socialRow}>
       <View style={S.starsRow}>
         {[0, 1, 2, 3, 4].map((i) => (
-          <Ionicons key={i} name="star" size={11} color={chrome.tc.socialProofStarColor} />
+          <Ionicons key={i} name="star" size={13} color={chrome.tc.socialProofStarColor} />
         ))}
       </View>
       <Text style={[S.socialText, { color: chrome.tc.socialProofText }]}>
@@ -267,7 +282,7 @@ export function PaywallSectionDivider({ label, chrome }: { label: string; chrome
 
 /**
  * Баннер «не удалось загрузить цены» с кнопкой ретрая. Показывается, когда
- * офферинги RevenueCat не загрузились — иначе кнопки (включая «Навсегда») молча
+ * офферинги RevenueCat не загрузились — иначе кнопки (включая Phraseman Pro) молча
  * пропадают, и пользователь думает, что приложение сломано.
  */
 export function PaywallPriceRetry({ lang, chrome, onRetry }: {
@@ -325,7 +340,7 @@ export function PaywallCloseButton({ onPress, chrome, style }: {
       style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }, style]}
       hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
     >
-      <Ionicons name="close" size={14} color={chrome.textMuted} />
+      <Ionicons name="close" size={18} color={chrome.textMuted} />
     </TouchableOpacity>
   );
 }
@@ -408,6 +423,15 @@ export function PaywallStickyBar({
         <Text style={[S.stickySub, { color: chrome.textMuted }]} numberOfLines={2}>{sub}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
+        {chrome.themeMode === 'midnight' ? (
+          <LinearGradient
+            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+        ) : null}
         <Text style={[S.stickyBtnText, { color: tc.ctaText }]}>{button}</Text>
       </TouchableOpacity>
     </View>
@@ -456,7 +480,7 @@ export function PaywallPersonalTags({ texts, chrome }: { texts: string[]; chrome
     <View style={S.tagWrap}>
       {texts.map((t, i) => (
         <View key={i} style={[S.tagChip, { backgroundColor: `${tc.heroAccent}14`, borderColor: `${tc.heroAccent}33` }]}>
-          <Ionicons name="sparkles" size={12} color={tc.heroAccent} style={{ marginRight: 6 }} />
+          <Ionicons name="sparkles" size={14} color={tc.heroAccent} style={{ marginRight: 7 }} />
           <Text style={[S.tagText, { color: textPrimary }]} numberOfLines={2}>{t}</Text>
         </View>
       ))}
@@ -465,50 +489,72 @@ export function PaywallPersonalTags({ texts, chrome }: { texts: string[]; chrome
 }
 
 const S = StyleSheet.create({
+  onboardingLiquidGlowA: {
+    position: 'absolute',
+    left: -130,
+    top: -100,
+    width: 330,
+    height: 330,
+    borderRadius: 165,
+    backgroundColor: 'rgba(91,124,255,0.26)',
+    opacity: 0.9,
+    transform: [{ rotate: '18deg' }],
+  },
+  onboardingLiquidGlowB: {
+    position: 'absolute',
+    right: -150,
+    bottom: -130,
+    width: 380,
+    height: 380,
+    borderRadius: 190,
+    backgroundColor: 'rgba(169,91,255,0.24)',
+    opacity: 0.86,
+    transform: [{ rotate: '-12deg' }],
+  },
   closeBtn: {
-    alignSelf: 'flex-end', marginBottom: 6,
-    width: 28, height: 28, borderRadius: 14, borderWidth: 1,
+    alignSelf: 'flex-end', marginBottom: 7,
+    width: 36, height: 36, borderRadius: 18, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
   priceRetryBox: {
     alignSelf: 'stretch', alignItems: 'center', gap: 12,
-    paddingVertical: 20, paddingHorizontal: 18, marginTop: 8,
-    borderRadius: 14, borderWidth: 1,
+    paddingVertical: 22, paddingHorizontal: 19, marginTop: 10,
+    borderRadius: 16, borderWidth: 1,
   },
-  priceRetryText: { fontSize: 14, lineHeight: 20, textAlign: 'center' },
-  priceRetryBtn: { paddingVertical: 10, paddingHorizontal: 28, borderRadius: 12 },
-  priceRetryBtnText: { fontSize: 15, fontWeight: '800' },
-  tagWrap: { gap: 7, marginTop: 12, alignSelf: 'stretch' },
+  priceRetryText: { fontSize: 15.5, lineHeight: 22, textAlign: 'center' },
+  priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
+  priceRetryBtnText: { fontSize: 16.5, fontWeight: '900' },
+  tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
-    maxWidth: '100%', paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1,
+    maxWidth: '100%', paddingHorizontal: 13, paddingVertical: 8, borderRadius: 18, borderWidth: 1,
   },
-  tagText: { flexShrink: 1, fontSize: 11.5, fontWeight: '600' },
-  testimonialCard: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 13, marginTop: 12 },
-  testimonialTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 9 },
-  testimonialText: { fontSize: 12.5, lineHeight: 18, fontStyle: 'italic' },
-  testimonialAuthor: { fontSize: 10.5, marginTop: 4 },
+  tagText: { flexShrink: 1, fontSize: 13, fontWeight: '700' },
+  testimonialCard: { borderRadius: 18, borderWidth: 1, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
+  testimonialTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 10 },
+  testimonialText: { fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
+  testimonialAuthor: { fontSize: 12, marginTop: 5 },
   glyphCap: {
-    alignSelf: 'center', width: 60, height: 60, borderRadius: 30, borderWidth: 1,
+    alignSelf: 'center', width: 70, height: 70, borderRadius: 35, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
-    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.35, shadowRadius: 18, elevation: 6,
+    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 20, elevation: 7,
   },
-  glyphCompassImage: { height: 54, width: 54 },
-  socialRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, marginTop: 12 },
-  starsRow: { flexDirection: 'row', gap: 1.5 },
-  socialText: { fontSize: 11.5, fontWeight: '600' },
-  dividerRow: { flexDirection: 'row', alignItems: 'center', gap: 9, marginTop: 22, marginBottom: 2 },
+  glyphCompassImage: { height: 62, width: 62 },
+  socialRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14 },
+  starsRow: { flexDirection: 'row', gap: 2 },
+  socialText: { fontSize: 13, fontWeight: '700' },
+  dividerRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 24, marginBottom: 3 },
   dividerLine: { flex: 1, height: StyleSheet.hairlineWidth },
-  dividerText: { fontSize: 10, fontWeight: '700', letterSpacing: 1.6 },
+  dividerText: { fontSize: 11.5, fontWeight: '800', letterSpacing: 0 },
   sticky: {
     position: 'absolute', left: 10, right: 10, bottom: 12, zIndex: 50,
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 18, borderWidth: 1, paddingVertical: 10, paddingLeft: 15, paddingRight: 10,
+    borderRadius: 20, borderWidth: 1, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
     shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 22, elevation: 14,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },
-  stickyTitle: { fontSize: 12.5, fontWeight: '800' },
-  stickySub: { fontSize: 10.5, marginTop: 1, fontVariant: ['tabular-nums'] },
-  stickyBtn: { borderRadius: 14, paddingVertical: 11, paddingHorizontal: 18 },
-  stickyBtnText: { fontSize: 13, fontWeight: '800' },
+  stickyTitle: { fontSize: 14, fontWeight: '900' },
+  stickySub: { fontSize: 12, marginTop: 2, fontVariant: ['tabular-nums'] },
+  stickyBtn: { borderRadius: 15, paddingVertical: 12, paddingHorizontal: 19, overflow: 'hidden' },
+  stickyBtnText: { fontSize: 14.5, fontWeight: '900' },
 });

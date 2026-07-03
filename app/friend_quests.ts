@@ -7,6 +7,14 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { replaceShardsBalanceLocal } from './shards_system';
 
 const FUNCTIONS_REGION = 'us-central1';
+const FRIEND_QUEST_STATUS_CACHE_TTL_MS = 60 * 1000;
+
+let friendQuestStatusCache: {
+  stableId: string;
+  updatedAtMs: number;
+  data: FriendQuestStatusResponse;
+} | null = null;
+const friendQuestStatusInFlight = new Map<string, Promise<FriendQuestStatusResponse>>();
 const friendQuestClaimInFlight = new Map<string, Promise<FriendQuestClaimResponse>>();
 
 export type FriendQuestStatus = 'active' | 'ready' | 'completed' | 'expired';
@@ -70,11 +78,40 @@ async function getStableIdForQuest(): Promise<string> {
   return stableId;
 }
 
-export async function getActiveFriendQuest(): Promise<FriendQuestStatusResponse> {
+export function invalidateActiveFriendQuestCache(stableId?: string): void {
+  if (!stableId || friendQuestStatusCache?.stableId === stableId) {
+    friendQuestStatusCache = null;
+  }
+}
+
+export async function getActiveFriendQuest(options: { force?: boolean } = {}): Promise<FriendQuestStatusResponse> {
   const stableId = await getStableIdForQuest();
-  const fn = callable<{ stableId: string }, FriendQuestStatusResponse>('friendGetActiveQuest');
-  const res = await fn({ stableId });
-  return res.data;
+  const now = Date.now();
+  if (
+    !options.force
+    && friendQuestStatusCache?.stableId === stableId
+    && now - friendQuestStatusCache.updatedAtMs < FRIEND_QUEST_STATUS_CACHE_TTL_MS
+  ) {
+    return friendQuestStatusCache.data;
+  }
+  const existing = !options.force ? friendQuestStatusInFlight.get(stableId) : null;
+  if (existing) return existing;
+
+  const fn = callable<{ stableId: string; force?: boolean }, FriendQuestStatusResponse>('friendGetActiveQuest');
+  const request = (async () => {
+    const res = await fn({ stableId, force: options.force === true });
+    friendQuestStatusCache = {
+      stableId,
+      updatedAtMs: Date.now(),
+      data: res.data,
+    };
+    return res.data;
+  })().finally(() => {
+    friendQuestStatusInFlight.delete(stableId);
+  });
+
+  friendQuestStatusInFlight.set(stableId, request);
+  return request;
 }
 
 export async function claimFriendQuestReward(questId: string): Promise<FriendQuestClaimResponse> {
@@ -96,6 +133,7 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
     if (Number.isFinite(res.data.callerXp)) {
       await mirrorCallerXpWithoutRollback(res.data.callerXp as number);
     }
+    invalidateActiveFriendQuestCache(stableId);
     return res.data;
   })().finally(() => {
     friendQuestClaimInFlight.delete(key);

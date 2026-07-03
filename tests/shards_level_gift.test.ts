@@ -2,9 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   rollGift,
   applyGift,
+  ALL_LEVEL_GIFT_DEFS,
   GIFT_POOL,
   GiftDef,
   getBonusHintsToday,
+  giftDisplayTitleForLang,
   giftLocaleStrings,
   giftRarityUiLabel,
 } from '../app/level_gift_system';
@@ -98,6 +100,16 @@ describe('level_gift_system — shards_3', () => {
   it('giftRarityUiLabel — рядок редкости для es', () => {
     expect(giftRarityUiLabel('epic', 'es')).toContain('Épico');
     expect(giftRarityUiLabel('common', 'ru')).toBeTruthy();
+  });
+
+  it('premium shard gifts keep Plus as a badge, not as title text', () => {
+    const gift = ALL_LEVEL_GIFT_DEFS.find((g: GiftDef) => g.id === 'prem_shards_15')!;
+
+    expect(giftDisplayTitleForLang(gift, 'ru')).toBe('+15 осколков');
+    expect(giftDisplayTitleForLang(gift, 'es')).toBe('+15 fragmentos');
+    expect(giftDisplayTitleForLang(gift, 'pt-BR')).toBe('+15 fragmentos');
+    expect(giftDisplayTitleForLang(gift, 'ru')).not.toMatch(/плюс/i);
+    expect(giftDisplayTitleForLang(gift, 'es')).not.toMatch(/plus/i);
   });
 });
 

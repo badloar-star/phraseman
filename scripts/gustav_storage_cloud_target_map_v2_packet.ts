@@ -51,6 +51,12 @@ type StorageCloudContract = {
     frenchTargetSyncKeyFactoryRefs: number;
     frenchTargetSyncKeysRejectEnglishRefs: boolean;
     frenchTargetSyncKeysRejectSpanishRefs: boolean;
+    frenchTargetSyncKeysRejectUiLocaleRefs: boolean;
+    frenchTargetSyncKeysStrictRuntimeScopeTested: boolean;
+    frenchTargetSyncKeysRejectUiLocaleSegmentsTested: boolean;
+    frenchTargetSyncKeysRejectLegacyFlatKeysTested: boolean;
+    studyTargetSelectionKeysExcludedFromRuntimeSyncTested: boolean;
+    frenchTargetSyncKeysRejectEnglishLegacyDuplicatesTested: boolean;
     syncKeysIncludesFrenchTargetSyncKeys: boolean;
     syncStudyTargetsIncludeEnglishFrench: boolean;
     frenchSyncSourceLocalesIncludeRuUkOnly: boolean;
@@ -120,6 +126,12 @@ type Report = {
     frenchTargetSyncKeyFactoryRefs: number;
     frenchTargetSyncKeysRejectEnglishRefs: boolean;
     frenchTargetSyncKeysRejectSpanishRefs: boolean;
+    frenchTargetSyncKeysRejectUiLocaleRefs: boolean;
+    frenchTargetSyncKeysStrictRuntimeScopeTested: boolean;
+    frenchTargetSyncKeysRejectUiLocaleSegmentsTested: boolean;
+    frenchTargetSyncKeysRejectLegacyFlatKeysTested: boolean;
+    studyTargetSelectionKeysExcludedFromRuntimeSyncTested: boolean;
+    frenchTargetSyncKeysRejectEnglishLegacyDuplicatesTested: boolean;
     syncKeysIncludesFrenchTargetSyncKeys: boolean;
     syncStudyTargetsIncludeEnglishFrench: boolean;
     frenchSyncSourceLocalesIncludeRuUkOnly: boolean;
@@ -305,6 +317,9 @@ function testedSurfaces(repoRoot: string): StorageCloudContract['testedSurfaces'
       const evidence = [
         source.includes('assertTargetKey') ? 'raw-target-sensitive firewall assertions' : '',
         source.includes('FRENCH_TARGET_SYNC_KEYS') ? 'French cloud sync allowlist assertions' : '',
+        source.includes('FRENCH_TARGET_KEY_RE') ? 'French cloud sync runtime namespace regex assertions' : '',
+        source.includes('LEGACY_FLAT_FRENCH_KEYS') ? 'French cloud sync legacy flat key rejection assertions' : '',
+        source.includes('study target selection keys are local-only') ? 'study target selection keys stay local-only assertions' : '',
         source.includes('personalPracticeTrainingProgressKey') ? 'personal practice sourceLocale scoped assertions' : '',
         source.includes('statsDailyBreakdownKey') || source.includes('userStatsKey') ? 'target stats isolation assertions' : '',
         source.includes('lessonIntroShownKey') ? 'intro local-only policy assertions' : '',
@@ -395,6 +410,7 @@ function buildContract(repoRoot: string, runDir: string): StorageCloudContract {
   const scopedFactories = scopedStorageKeyFactories(targetStorageSource, keyFactories);
   const frenchSyncSlice = sourceSlice(cloudSyncSource, 'export const FRENCH_TARGET_SYNC_KEYS', '] as const;');
   const syncKeysSlice = sourceSlice(cloudSyncSource, 'export const SYNC_KEYS', '] as const;');
+  const cloudSyncValidityTestSource = readText(path.join(repoRoot, SOURCE_FILES.cloudSyncSyncKeysValidityTest));
   const accountWipeSlice = functionBody(cloudSyncSource, 'accountLocalDataKeysForToday');
   const addTodaySlice = functionBody(cloudSyncSource, 'addTodayDailyTaskSnapshots');
   const removeSnapshotsSlice = functionBody(cloudSyncSource, 'removeCloudOnlyDailyTaskSnapshots');
@@ -441,6 +457,23 @@ function buildContract(repoRoot: string, runDir: string): StorageCloudContract {
       frenchTargetSyncKeyFactoryRefs: (frenchSyncSlice.match(/Key\(/g) ?? []).length,
       frenchTargetSyncKeysRejectEnglishRefs: !/Key\([^)]*'en'/.test(frenchSyncSlice),
       frenchTargetSyncKeysRejectSpanishRefs: !/::es|'es'|\.es\b/.test(frenchSyncSlice),
+      frenchTargetSyncKeysRejectUiLocaleRefs: !/(::es|'es'|::pt-BR|'pt-BR'|::vi|'vi'|::id|'id'|::tr|'tr'|::pl|'pl')/.test(frenchSyncSlice),
+      frenchTargetSyncKeysStrictRuntimeScopeTested:
+        cloudSyncValidityTestSource.includes('FRENCH_TARGET_KEY_RE') &&
+        cloudSyncValidityTestSource.includes('FRENCH_TARGET_SYNC_KEYS is strictly French target scoped'),
+      frenchTargetSyncKeysRejectUiLocaleSegmentsTested:
+        cloudSyncValidityTestSource.includes('FORBIDDEN_FRENCH_TARGET_LOCALE_SEGMENTS') &&
+        cloudSyncValidityTestSource.includes('(^|::)'),
+      frenchTargetSyncKeysRejectLegacyFlatKeysTested:
+        cloudSyncValidityTestSource.includes('LEGACY_FLAT_FRENCH_KEYS') &&
+        cloudSyncValidityTestSource.includes('daily_tasks_progress'),
+      studyTargetSelectionKeysExcludedFromRuntimeSyncTested:
+        cloudSyncValidityTestSource.includes('study target selection keys are local-only') &&
+        cloudSyncValidityTestSource.includes("not.toContain('study_target_v1')") &&
+        cloudSyncValidityTestSource.includes("not.toContain('dev_study_target_lang')"),
+      frenchTargetSyncKeysRejectEnglishLegacyDuplicatesTested:
+        cloudSyncValidityTestSource.includes('do not duplicate English legacy sync keys') &&
+        cloudSyncValidityTestSource.includes('legacyEnglishKeys'),
       syncKeysIncludesFrenchTargetSyncKeys: syncKeysSlice.includes('...FRENCH_TARGET_SYNC_KEYS'),
       syncStudyTargetsIncludeEnglishFrench: /\['en',\s*'fr'\]\s+as const/.test(cloudSyncSource),
       frenchSyncSourceLocalesIncludeRuUkOnly: /FRENCH_SYNC_SOURCE_LOCALES\s*=\s*\['ru',\s*'uk'\]\s+as const/.test(cloudSyncSource),
@@ -602,6 +635,21 @@ function makeProbes(contract: StorageCloudContract): Probe[] {
       mutate: (draft) => { draft.cloudSyncContract.syncKeysIncludesFrenchTargetSyncKeys = false; },
     },
     {
+      id: 'french_sync_runtime_scope_test_missing_rejected',
+      expectedAccept: false,
+      mutate: (draft) => { draft.cloudSyncContract.frenchTargetSyncKeysStrictRuntimeScopeTested = false; },
+    },
+    {
+      id: 'french_sync_legacy_flat_key_test_missing_rejected',
+      expectedAccept: false,
+      mutate: (draft) => { draft.cloudSyncContract.frenchTargetSyncKeysRejectLegacyFlatKeysTested = false; },
+    },
+    {
+      id: 'study_target_selection_cloud_exclusion_test_missing_rejected',
+      expectedAccept: false,
+      mutate: (draft) => { draft.cloudSyncContract.studyTargetSelectionKeysExcludedFromRuntimeSyncTested = false; },
+    },
+    {
       id: 'french_daily_cloud_snapshot_missing_rejected',
       expectedAccept: false,
       mutate: (draft) => { draft.cloudSyncContract.frenchCloudDailyTaskSnapshotKeysAreTargetScoped = false; },
@@ -658,6 +706,10 @@ function renderMarkdown(report: Report): string {
     `- Scoped storage key factories: ${report.summary.scopedStorageKeyFactories}`,
     `- AI-derived storage factories: ${report.summary.aiDerivedStorageFactories}`,
     `- French sync key factory refs: ${report.summary.frenchTargetSyncKeyFactoryRefs}`,
+    `- French sync strict runtime scope tested: ${report.summary.frenchTargetSyncKeysStrictRuntimeScopeTested ? 'yes' : 'no'}`,
+    `- French sync UI locale rejection tested: ${report.summary.frenchTargetSyncKeysRejectUiLocaleSegmentsTested ? 'yes' : 'no'}`,
+    `- French sync legacy flat key rejection tested: ${report.summary.frenchTargetSyncKeysRejectLegacyFlatKeysTested ? 'yes' : 'no'}`,
+    `- Study target selection keys excluded from cloud sync: ${report.summary.studyTargetSelectionKeysExcludedFromRuntimeSyncTested ? 'yes' : 'no'}`,
     `- Sync keys include French target keys: ${report.summary.syncKeysIncludesFrenchTargetSyncKeys ? 'yes' : 'no'}`,
     `- French daily cloud snapshots scoped: ${report.summary.frenchCloudDailyTaskSnapshotKeysAreTargetScoped ? 'yes' : 'no'}`,
     `- Sticky restore uses French target keys: ${report.summary.stickyRestoreUsesFrenchTargetSyncKeys ? 'yes' : 'no'}`,
@@ -798,6 +850,12 @@ function main(): void {
       frenchTargetSyncKeyFactoryRefs: contract.cloudSyncContract.frenchTargetSyncKeyFactoryRefs,
       frenchTargetSyncKeysRejectEnglishRefs: contract.cloudSyncContract.frenchTargetSyncKeysRejectEnglishRefs,
       frenchTargetSyncKeysRejectSpanishRefs: contract.cloudSyncContract.frenchTargetSyncKeysRejectSpanishRefs,
+      frenchTargetSyncKeysRejectUiLocaleRefs: contract.cloudSyncContract.frenchTargetSyncKeysRejectUiLocaleRefs,
+      frenchTargetSyncKeysStrictRuntimeScopeTested: contract.cloudSyncContract.frenchTargetSyncKeysStrictRuntimeScopeTested,
+      frenchTargetSyncKeysRejectUiLocaleSegmentsTested: contract.cloudSyncContract.frenchTargetSyncKeysRejectUiLocaleSegmentsTested,
+      frenchTargetSyncKeysRejectLegacyFlatKeysTested: contract.cloudSyncContract.frenchTargetSyncKeysRejectLegacyFlatKeysTested,
+      studyTargetSelectionKeysExcludedFromRuntimeSyncTested: contract.cloudSyncContract.studyTargetSelectionKeysExcludedFromRuntimeSyncTested,
+      frenchTargetSyncKeysRejectEnglishLegacyDuplicatesTested: contract.cloudSyncContract.frenchTargetSyncKeysRejectEnglishLegacyDuplicatesTested,
       syncKeysIncludesFrenchTargetSyncKeys: contract.cloudSyncContract.syncKeysIncludesFrenchTargetSyncKeys,
       syncStudyTargetsIncludeEnglishFrench: contract.cloudSyncContract.syncStudyTargetsIncludeEnglishFrench,
       frenchSyncSourceLocalesIncludeRuUkOnly: contract.cloudSyncContract.frenchSyncSourceLocalesIncludeRuUkOnly,

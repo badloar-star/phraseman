@@ -170,11 +170,17 @@ export default function SettingsNotifications() {
   );
 
   const persist = async (next: NotifSettings) => {
+    const previous = s;
     setS(next);
-    await saveNotifSettings(next);
-    await scheduleNotifications(next, lang as Lang, 0, { studyTarget });
     setSaved(true);
     setTimeout(() => setSaved(false), 1400);
+    try {
+      await saveNotifSettings(next);
+      await scheduleNotifications(next, lang as Lang, 0, { studyTarget });
+    } catch {
+      setS(previous);
+      setSaved(false);
+    }
   };
 
   const days = DAYS_BY_LANG[lang as Lang] ?? DAYS_BY_LANG.ru;
@@ -237,7 +243,7 @@ export default function SettingsNotifications() {
         <TapScale
           onPress={() => {
           hapticTap();
-          // Экран открывается из вкладки «Настройки» — fallback на settings, не на home.
+          // Экран открывается из вкладки «Настройки» — возвращаемся на settings, не на home.
           safeRouterBack(router, '/(tabs)/settings' as any);
         }}
           style={{

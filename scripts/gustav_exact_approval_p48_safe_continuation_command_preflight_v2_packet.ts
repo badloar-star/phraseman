@@ -33,6 +33,9 @@ type EvaluationInput = {
   p63P62Ready: boolean;
   p63CurrentHandoffWouldOpenSafeContinuation: boolean;
   p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation: boolean;
+  p63P47RemoteVerifyReady: boolean;
+  p63P47RemoteVerifyFound: number;
+  p63P47RemoteVerifyHashChecked: number;
   p63CommandExecutedByThisScript: boolean;
   p63ReadyForApply: boolean;
   p63MayModifyProductionAppFiles: boolean;
@@ -88,6 +91,9 @@ type Evaluation = {
   p63P62Ready: boolean;
   p63CurrentHandoffWouldOpenSafeContinuation: boolean;
   p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation: boolean;
+  p63P47RemoteVerifyReady: boolean;
+  p63P47RemoteVerifyFound: number;
+  p63P47RemoteVerifyHashChecked: number;
   p63CommandExecutedByThisScript: boolean;
   p48Status: string;
   p48ContinuationState: string;
@@ -264,6 +270,9 @@ function p63Accepted(input: EvaluationInput): boolean {
     input.p63P62Ready &&
     input.p63CurrentHandoffWouldOpenSafeContinuation &&
     input.p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation &&
+    input.p63P47RemoteVerifyReady &&
+    input.p63P47RemoteVerifyFound === 36 &&
+    input.p63P47RemoteVerifyHashChecked === 36 &&
     !input.p63CommandExecutedByThisScript &&
     !input.p63ReadyForApply &&
     !input.p63MayModifyProductionAppFiles &&
@@ -382,6 +391,9 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
       p63P62Ready: input.p63P62Ready,
       p63CurrentHandoffWouldOpenSafeContinuation: input.p63CurrentHandoffWouldOpenSafeContinuation,
       p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation: input.p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation,
+      p63P47RemoteVerifyReady: input.p63P47RemoteVerifyReady,
+      p63P47RemoteVerifyFound: input.p63P47RemoteVerifyFound,
+      p63P47RemoteVerifyHashChecked: input.p63P47RemoteVerifyHashChecked,
       p63CommandExecutedByThisScript: input.p63CommandExecutedByThisScript,
       p48Status: input.p48Status,
       p48ContinuationState: input.p48ContinuationState,
@@ -422,13 +434,73 @@ function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
 }
 
+function makeProbeDependenciesReady(input: EvaluationInput): void {
+  input.p63Status = 'PASS';
+  input.p63Ready = true;
+  input.p63State = 'p47_to_p48_safe_continuation_handoff_ready_for_p48_safe_continuation_refresh';
+  input.p63FreshAfterP48 = true;
+  input.p63P62Ready = true;
+  input.p63CurrentHandoffWouldOpenSafeContinuation = true;
+  input.p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation = true;
+  input.p63P47RemoteVerifyReady = true;
+  input.p63P47RemoteVerifyFound = 36;
+  input.p63P47RemoteVerifyHashChecked = 36;
+  input.p63CommandExecutedByThisScript = false;
+  input.p63ReadyForApply = false;
+  input.p63MayModifyProductionAppFiles = false;
+  input.p63ActivationApproved = false;
+  input.p63ServerUploadAllowed = false;
+  input.p63FirebaseUploadAllowed = false;
+  input.p63DownloadablePacksPublished = false;
+  input.p63RuntimeDownloadsEnabled = false;
+  input.p63StorageMigrationAllowed = false;
+  input.p63CloudSyncMigrationAllowed = false;
+  input.p63FixtureProbes = Math.max(input.p63FixtureProbes, 1);
+  input.p63FixtureProbesPassed = input.p63FixtureProbes;
+  input.p48Status = 'PASS';
+  input.p48ContinuationState = 'approval_wait_safe_continuation_ready';
+  input.p48ReadyForNextSafePass = true;
+  input.p48SafeContinuationWorkItems = Math.max(input.p48SafeContinuationWorkItems, 6);
+  input.p48RemainingProductionLockedItems = Math.max(input.p48RemainingProductionLockedItems, 4);
+  input.p48OfficialSourceRows = 1600;
+  input.p48OfficialSourceAi = 164;
+  input.p48OfficialSourceRowsWithRefs = 1600;
+  input.p48OfficialSourceRowsWithGates = 1600;
+  input.p48ReadinessGenerationBlockers = 0;
+  input.p48ReadinessApplyBlockers = Math.max(input.p48ReadinessApplyBlockers, 1);
+  input.p48LegacyReviewResidueMatches = 0;
+  input.p48ActiveApprovalReceiptExists = false;
+  input.p48ActiveHashLockExists = false;
+  input.p48ReadyForApply = false;
+  input.p48MayModifyProductionAppFiles = false;
+  input.p48ActivationApproved = false;
+  input.p48ProductionWritesAllowed = false;
+  input.p48ServerUploadAllowed = false;
+  input.p48FirebaseUploadAllowed = false;
+  input.p48DownloadablePacksPublished = false;
+  input.p48RuntimeDownloadsEnabled = false;
+  input.p48StorageMigrationAllowed = false;
+  input.p48CloudSyncMigrationAllowed = false;
+  input.p48FixtureProbes = Math.max(input.p48FixtureProbes, 1);
+  input.p48FixtureProbesPassed = input.p48FixtureProbes;
+  input.masterBlockers = 0;
+  input.masterReadyForApply = false;
+  input.masterMayModifyProductionAppFiles = false;
+  input.commandTargetsFr = true;
+  input.commandRunPathMatchesCurrentRun = true;
+  input.commandWouldExecuteByThisScript = false;
+}
+
 function runProbes(base: EvaluationInput): Probe[] {
-  const tests: Array<{ id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }> = [
+  const probeBase = clone(base);
+  makeProbeDependenciesReady(probeBase);
+  const tests: { id: string; expectedState: PreflightState; mutate: (input: EvaluationInput) => void }[] = [
     { id: 'canonical_allows_p48_safe_continuation_refresh_command', expectedState: 'p48_safe_continuation_command_preflight_ready_for_refresh_command', mutate: () => undefined },
     { id: 'stale_p63_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63FreshAfterP48 = false; } },
     { id: 'p63_state_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63State = 'blocked_by_findings'; } },
     { id: 'p63_current_handoff_closed_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63CurrentHandoffWouldOpenSafeContinuation = false; } },
     { id: 'p63_simulated_handoff_closed_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation = false; } },
+    { id: 'p63_p47_remote_verify_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63P47RemoteVerifyHashChecked = 35; } },
     { id: 'p63_command_execution_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63CommandExecutedByThisScript = true; } },
     { id: 'p63_probe_gap_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p63FixtureProbesPassed = Math.max(0, input.p63FixtureProbes - 1); } },
     { id: 'p48_missing_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.p48Status = 'BLOCK'; input.p48ContinuationState = 'blocked_by_findings'; } },
@@ -449,7 +521,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     { id: 'safe_continuation_command_execution_rejected', expectedState: 'blocked_by_findings', mutate: (input) => { input.commandWouldExecuteByThisScript = true; } },
   ];
   return tests.map((test) => {
-    const input = clone(base);
+    const input = clone(probeBase);
     test.mutate(input);
     const result = evaluate(input).evaluation;
     return {
@@ -474,6 +546,7 @@ function renderMarkdown(report: Report): string {
     '',
     `- Preflight state: \`${report.summary.preflightState}\``,
     `- P63 ready/state/current/sim/executed: ${report.summary.p63Ready ? 'yes' : 'no'}/${report.summary.p63State}/${report.summary.p63CurrentHandoffWouldOpenSafeContinuation ? 'yes' : 'no'}/${report.summary.p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation ? 'yes' : 'no'}/${report.summary.p63CommandExecutedByThisScript ? 'yes' : 'no'}`,
+    `- P63 P47 remote verify ready/found/hash checked: ${report.summary.p63P47RemoteVerifyReady ? 'yes' : 'no'}/${report.summary.p63P47RemoteVerifyFound}/${report.summary.p63P47RemoteVerifyHashChecked}`,
     `- P48 status/state/next-safe: ${report.summary.p48Status}/${report.summary.p48ContinuationState}/${report.summary.p48ReadyForNextSafePass ? 'yes' : 'no'}`,
     `- P48 work/locked: ${report.summary.p48SafeContinuationWorkItems}/${report.summary.p48RemainingProductionLockedItems}`,
     `- P48 official-source rows/AI/refs/gates: ${report.summary.p48OfficialSourceRows}/${report.summary.p48OfficialSourceAi}/${report.summary.p48OfficialSourceRowsWithRefs}/${report.summary.p48OfficialSourceRowsWithGates}`,
@@ -566,6 +639,9 @@ function main(): void {
     p63P62Ready: b(p63Summary, 'p62Ready'),
     p63CurrentHandoffWouldOpenSafeContinuation: b(p63Summary, 'currentP47ToP48HandoffWouldOpenSafeContinuation'),
     p63SimulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation: b(p63Summary, 'simulatedP62CommandReadyWouldOpenOnlyP48SafeContinuation'),
+    p63P47RemoteVerifyReady: b(p63Summary, 'p47FrenchServerObjectRemoteVerifyReady'),
+    p63P47RemoteVerifyFound: n(p63Summary, 'p47FrenchServerObjectRemoteVerifyFound'),
+    p63P47RemoteVerifyHashChecked: n(p63Summary, 'p47FrenchServerObjectRemoteVerifyHashChecked'),
     p63CommandExecutedByThisScript: b(p63Summary, 'p48SafeContinuationCommandWouldExecuteByThisScript'),
     p63ReadyForApply: b(p63Summary, 'readyForApply'),
     p63MayModifyProductionAppFiles: b(p63Summary, 'mayModifyProductionAppFiles'),

@@ -175,10 +175,10 @@ export async function syncWidgetData(options?: {
   try {
     if (!PhraseWidget.isAvailable()) return false;
 
-    const phrase = await getTodayPhraseForTarget(options?.studyTarget);
+    const lang: DailyPhraseInterfaceLang = options?.lang ?? 'ru';
+    const phrase = await getTodayPhraseForTarget(options?.studyTarget, lang);
     if (!phrase) return false;
 
-    const lang: DailyPhraseInterfaceLang = options?.lang ?? 'ru';
     const mode: ThemeMode = options?.themeMode ?? 'dark';
     const now = options?.now ?? Date.now();
     const payload = buildWidgetPayload(phrase, lang, mode, now);

@@ -21,7 +21,7 @@ describe('ai dialog callable error mapping', () => {
     const error = { code: 'functions/resource-exhausted', message: 'dialog_free_limit' };
 
     expect(classifyPremiumDialogError(error)).toBe('free_limit');
-    expect(getPremiumDialogErrorMessage(error)).toContain('Бесплатный диалог');
+    expect(getPremiumDialogErrorMessage(error)).toContain('Пробный диалог');
   });
 
   it('does not show free quota copy when local Premium is active', () => {
@@ -29,7 +29,7 @@ describe('ai dialog callable error mapping', () => {
 
     const message = getPremiumDialogErrorMessage(error, { hasPremiumAccess: true, lang: 'uk' });
 
-    expect(message).toContain('Premium активний');
+    expect(message).toContain('Повний доступ активний');
     expect(message).not.toContain('Ð‘ÐµÑÐ¿Ð»Ð°Ñ‚Ð½Ñ‹Ð¹');
   });
 
@@ -37,6 +37,14 @@ describe('ai dialog callable error mapping', () => {
     expect(classifyPremiumDialogError({ code: 'functions/unavailable', message: 'dialog_provider_failed' }))
       .toBe('provider_unavailable');
     expect(classifyPremiumDialogError(new Error('network request failed'))).toBe('network');
+  });
+
+  it('maps server age restriction instead of calling it a network failure', () => {
+    const error = { code: 'functions/permission-denied', message: 'age_restricted' };
+
+    expect(classifyPremiumDialogError(error)).toBe('age_restricted');
+    expect(getPremiumDialogErrorMessage(error, { lang: 'ru' })).toContain('16');
+    expect(getPremiumDialogErrorMessage(error, { lang: 'ru' })).not.toContain('интернет');
   });
 
   it('serves planned locale error messages without falling back to Russian', () => {

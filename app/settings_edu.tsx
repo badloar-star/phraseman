@@ -298,7 +298,7 @@ export default function SettingsEdu() {
                     // Preview the real OpenAI "fable" clip (this exact phrase has
                     // one in PHRASE_AUDIO_URL_MAP) so the user hears the actual
                     // app voice and its true loudness, not the robotic expo-speech
-                    // fallback. Falls back to TTS automatically if the clip misses.
+                    // voice. Reverts to TTS automatically if the clip is missing.
                     speakAudio('a dark horse', rate, { language: 'en-US' });
                   }}
                   minimumTrackTintColor={t.textSecond}

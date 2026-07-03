@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { patchAppSnapshot } from './app_snapshot_store';
 
 const SETTINGS_KEY = 'user_settings';
 // Lower bound raised from 0.5 to 0.8: at 0.5 the pre-generated voice clips slow
@@ -21,6 +22,16 @@ export const DEFAULT_SETTINGS = {
 export type UserSettings = typeof DEFAULT_SETTINGS;
 
 let memory: UserSettings = { ...DEFAULT_SETTINGS };
+
+function publishSettingsSnapshot(source: 'storage' | 'local'): void {
+  patchAppSnapshot({
+    settings: {
+      source,
+      updatedAt: Date.now(),
+      ...memory,
+    },
+  });
+}
 
 export function normalizeSpeechRate(value: unknown): number {
   const n = typeof value === 'number' ? value : Number(value);
@@ -54,6 +65,7 @@ export async function hydrateUserSettingsFromStorage(): Promise<void> {
   } catch {
     memory = { ...DEFAULT_SETTINGS };
   }
+  publishSettingsSnapshot('storage');
 }
 
 export const loadSettings = async (): Promise<UserSettings> => {
@@ -63,6 +75,7 @@ export const loadSettings = async (): Promise<UserSettings> => {
 
 export async function saveSettings(s: UserSettings): Promise<void> {
   memory = normalizeSettings(s);
+  publishSettingsSnapshot('local');
   try {
     await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory));
   } catch {}
@@ -70,6 +83,7 @@ export async function saveSettings(s: UserSettings): Promise<void> {
 
 export function applyUserSettingsNow(s: UserSettings): void {
   memory = normalizeSettings(s);
+  publishSettingsSnapshot('local');
   void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).catch(() => {});
 }
 

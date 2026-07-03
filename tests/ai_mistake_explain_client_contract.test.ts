@@ -3,6 +3,8 @@ import path from 'path';
 
 const clientSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_mistake_explain_client.ts'), 'utf8');
 const cardSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AiMistakeCard.tsx'), 'utf8');
+const limitCardSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AiLimitUpsellCard.tsx'), 'utf8');
+const hookSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'use_mistake_explain.ts'), 'utf8');
 
 describe('AI mistake explanation client contract', () => {
   it('calls the protected explainMistake callable with App Check initialized', () => {
@@ -18,11 +20,18 @@ describe('AI mistake explanation client contract', () => {
     expect(clientSource).toContain("'eli5'");
   });
 
-  it('keeps the smart card inline and exposes the simple-explain footer action', () => {
+  it('keeps the smart card inline and shows the free-limit upsell card', () => {
     expect(cardSource).toContain('testID="ai-mistake-card"');
-    expect(cardSource).toContain('testID="ai-mistake-simple-button"');
-    expect(cardSource).toContain('onOpenSimple');
+    expect(cardSource).toContain('AiLimitUpsellCard');
+    expect(cardSource).toContain('testID="ai-mistake-limit-card"');
+    expect(limitCardSource).toContain('Получить фулл доступ');
     expect(cardSource).toContain('AiMistakeCardState');
+  });
+
+  it('suppresses repeat mistake-limit notices after the first one shown today', () => {
+    expect(hookSource).toContain('hasShownAiMistakeLimitNoticeToday');
+    expect(hookSource).toContain("setAiMistakeState('hidden')");
+    expect(hookSource).toContain('markAiMistakeLimitNoticeShownToday');
   });
 
   it('no longer shows a daily quota line on the card', () => {

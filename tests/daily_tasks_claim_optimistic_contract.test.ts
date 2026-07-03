@@ -7,14 +7,19 @@ describe('daily tasks claim optimistic UI contract', () => {
   it('marks a task reward claimed in UI before the async reward pipeline resolves', () => {
     const start = source.indexOf('const handleClaim = async');
     const claimCall = source.indexOf('await claimTaskWithReward', start);
+    const claimEnd = source.indexOf('pendingClaimIdsRef.current.delete(taskId)', claimCall);
     const beforeClaimCall = source.slice(start, claimCall);
+    const claimOptions = source.slice(claimCall, claimEnd);
 
     expect(start).toBeGreaterThan(0);
     expect(claimCall).toBeGreaterThan(start);
+    expect(claimEnd).toBeGreaterThan(claimCall);
     expect(beforeClaimCall).toContain('pendingClaimIdsRef.current.add(taskId)');
     expect(beforeClaimCall).toContain('setProgress((prev) => markTaskClaimedForUi(prev, taskId))');
     expect(beforeClaimCall).toContain('showClaimedXpBadge(xpBase)');
     expect(beforeClaimCall).not.toContain('await getTodayTasksSafe');
+    expect(claimOptions).toContain('onReserved: () =>');
+    expect(claimOptions).toContain("emitAppEvent('action_toast'");
   });
 
   it('marks the all-tasks bonus claimed before waiting on cloud/local shard sync', () => {

@@ -414,6 +414,79 @@ export function levelForFilter(days: Activity365Day[], day: Activity365Day, filt
   return levelForValue(valueForFilter(day, filter), thr, false);
 }
 
+export function activity365ObservedMonthKeys(days: Activity365Day[]): string[] {
+  const keys = new Set<string>();
+  for (const day of days) {
+    if (day.future) continue;
+    keys.add(day.date.slice(0, 7));
+  }
+  return Array.from(keys).sort();
+}
+
+const EMPTY_ACTIVITY_365_METRICS: Activity365Day['metrics'] = {
+  lessons: 0,
+  quizzes: 0,
+  review: 0,
+  arena: 0,
+  wordsLearned: 0,
+  phrasesLearned: 0,
+  flashcardsSaved: 0,
+  dailyTasksClaimed: 0,
+  planTasksCompleted: 0,
+};
+
+export function emptyActivity365Day(date: string, future = false): Activity365Day {
+  return {
+    date,
+    level: 0,
+    xp: 0,
+    minutes: 0,
+    active: false,
+    future,
+    metrics: { ...EMPTY_ACTIVITY_365_METRICS },
+  };
+}
+
+export function latestObservedActivity365Date(days: readonly Activity365Day[]): string | null {
+  let latest: string | null = null;
+  for (const day of days) {
+    if (day.future) continue;
+    if (!latest || day.date > latest) latest = day.date;
+  }
+  return latest;
+}
+
+export function activity365MonthGridCells(
+  days: readonly Activity365Day[],
+  monthKey: string | null,
+  todayKey: string | null = latestObservedActivity365Date(days),
+): { year: number; month: number; cells: Array<{ day: Activity365Day | null }> } {
+  if (!monthKey) return { year: 0, month: 0, cells: [] };
+  const monthParts = monthKey.split('-').map((x) => parseInt(x, 10));
+  const yy = monthParts[0] ?? NaN;
+  const mm = monthParts[1] ?? NaN;
+  if (!Number.isFinite(yy) || !Number.isFinite(mm) || mm < 1 || mm > 12) {
+    return { year: 0, month: 0, cells: [] };
+  }
+
+  const byDate = new Map<string, Activity365Day>();
+  for (const day of days) {
+    if (day.date.startsWith(`${monthKey}-`)) byDate.set(day.date, day);
+  }
+
+  const daysInMonth = new Date(yy, mm, 0).getDate();
+  const jsFirstDow = new Date(yy, mm - 1, 1).getDay();
+  const leadBlanks = (jsFirstDow + 6) % 7;
+  const cells: Array<{ day: Activity365Day | null }> = [];
+  for (let i = 0; i < leadBlanks; i++) cells.push({ day: null });
+  for (let dn = 1; dn <= daysInMonth; dn++) {
+    const dateKey = `${monthKey}-${String(dn).padStart(2, '0')}`;
+    const future = todayKey ? dateKey > todayKey : false;
+    cells.push({ day: byDate.get(dateKey) ?? emptyActivity365Day(dateKey, future) });
+  }
+  return { year: yy, month: mm, cells };
+}
+
 export function computeActivity365Analytics(params: {
   statsMap: Record<string, unknown>;
   fgDaily: Record<string, number>;

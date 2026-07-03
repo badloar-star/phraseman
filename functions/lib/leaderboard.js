@@ -65,6 +65,13 @@ function readProgressMs(data, key) {
 function usesSettingsRenameRules(requestData) {
     return requestData?.source === 'settings';
 }
+function usesOnboardingRenameRules(requestData) {
+    return requestData?.source === 'onboarding';
+}
+function readProgressFlag(data, key) {
+    const raw = data?.progress?.[key];
+    return raw === true || raw === '1' || raw === 'true';
+}
 function assertValidName(name) {
     if (name.length < 2 || name.length > 32) {
         throw new https_1.HttpsError('invalid-argument', 'name_length');
@@ -244,8 +251,13 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
             const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');
             const isNameChange = Boolean(currentNameLower && currentNameLower !== nameLower);
             const enforceSettingsCooldown = usesSettingsRenameRules(request.data);
+            const isOnboardingReservation = usesOnboardingRenameRules(request.data);
+            const isInitialNameSet = !currentNameLower;
+            const freeChangeAvailable = readProgressFlag(userData, 'nickname_free_change_available');
+            const consumesFreeChange = isNameChange && enforceSettingsCooldown && freeChangeAvailable;
+            const grantsFreeChange = isOnboardingReservation || isInitialNameSet;
             const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
-            if (isNameChange && previousChangeAt > 0 && enforceSettingsCooldown) {
+            if (isNameChange && previousChangeAt > 0 && enforceSettingsCooldown && !freeChangeAvailable) {
                 const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
                 if (now < nextChangeAt) {
                     cooldownUntil = nextChangeAt;
@@ -291,6 +303,8 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
                     user_name_lower: nameLower,
                     nickname_changed_at: String(nicknameChangedAt),
                     nickname_change_available_at: String(nicknameChangedAt + NICKNAME_CHANGE_COOLDOWN_MS),
+                    ...(grantsFreeChange ? { nickname_free_change_available: '1' } : {}),
+                    ...(consumesFreeChange ? { nickname_free_change_available: '0' } : {}),
                 },
                 updatedAt: now,
             }, { merge: true });

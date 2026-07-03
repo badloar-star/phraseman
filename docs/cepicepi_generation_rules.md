@@ -15,6 +15,7 @@ These rules are mandatory for future Chains / "Цепи" CapCut generations.
 - Chains are built as progressive phrase expansions: a short base phrase grows step by step with natural details.
 - Do not make every phrase start with the same construction. Use varied subjects, verbs, places, time markers, and reasons.
 - For 800-phrase packages, all 800 English phrases and all 800 Russian translations must be unique after normalization. No cycling, cloning, or padding smaller sets.
+- English/Russian phrase pairs must pass the semantic translation alignment gate before TTS or CapCut insertion. Russian is a learning mirror, not a loose subtitle: if English contains a useful meaning unit such as `my`, `your`, time, place, negation, modal meaning, quantity, reason, or an important adjective/noun, Russian must show it; if Russian adds one, English must contain it. Example fail: `I need my jacket` / `Мне нужна куртка`; repair as `Мне нужна моя куртка` or rewrite English to `I need a jacket`.
 
 ## Three-Part Lesson Structure
 
@@ -32,7 +33,9 @@ These rules are mandatory for future Chains / "Цепи" CapCut generations.
 - Voices must sound pleasant and human, not robotic Windows-style TTS.
 - English voice 1 and English voice 2 must be distinct but both clear and attractive.
 - Russian voice must be natural, warm, and clear.
-- If generated audio is too long for a fixed slot, fit it carefully without making it sound unnaturally rushed.
+- Audio must play at natural speed. Never slow down, stretch, or time-warp generated speech to fill a CapCut slot.
+- CapCut phrase audio segments must keep `speed = 1`, `is_tone_modify = false`, and `source_timerange.duration == target_timerange.duration == the real WAV/material duration`. A longer `target_timerange.duration` is a slowdown/stretch bug and the QA gate must fail.
+- If generated audio is too long for a fixed slot, regenerate shorter wording or a naturally faster TTS take. Do not solve it by slowing other clips, stretching clips, or changing CapCut playback speed without explicit user approval.
 
 ## On-Screen Text
 
@@ -41,6 +44,7 @@ These rules are mandatory for future Chains / "Цепи" CapCut generations.
 - If a text block cannot fit cleanly, shorten or rephrase it while preserving meaning.
 - This rule applies to Russian, English, IPA/transcription, captions, CTA, intro, and transition text.
 - Preserve the template's existing positions, sizes, fonts, and styles unless the user explicitly asks to change them.
+- When replacing any CapCut text material, update the rich-text payload so `content.styles[0].range == [0, newText.length]`. Preserve the template font, size, fill, shadow, background, position, and scale; only the text and the full-text style range may change. The QA gate must fail if any new characters fall outside the styled range.
 - Never change text segment `target_timerange`, `source_timerange`, `render_timerange`, start, duration, or placement while replacing generated phrase text. Text blocks are sacred timeline structure. The QA gate must compare phrase text tracks against the locked-good template and fail on any timing difference.
 - Text must not jump between phrases. Align to the first correctly placed phrase elements.
 
@@ -71,7 +75,11 @@ These rules are mandatory for future Chains / "Цепи" CapCut generations.
 - Verify every phrase background segment is visible and opaque.
 - Verify no visible preset/intro/template overlay covers phrase backgrounds.
 - Verify text has no mid-word line breaks.
+- Verify every replaced text payload has full-length style coverage: `styles[0].range` starts at `0` and ends at the exact new text length.
 - Verify CTA/STA text has no `????` replacement, mojibake, or unsupported-font rendering.
+- Verify phrase audio is not slowed or stretched: every generated phrase audio segment has `speed = 1`, `is_tone_modify = false`, equal source/target durations, and duration matching the real WAV/material duration within tolerance.
 - Verify phrase audio/text mapping matches the part rules.
+- Verify semantic translation alignment: no missing English meaning units in Russian and no extra Russian meaning units unsupported by English.
 - Verify background track count, segment count, source uniqueness/reuse, and timing alignment.
+- Run `node scripts/chains_capcut_contract_check.mjs --draft-dir "<CapCut draft folder>" --template-dir "<locked-good/source template folder>" --report "<qa report path>"` before saying the project is ready. `status` must be `ready`, `styleRangeErrorCount` must be `0`, and `audioStretchErrorCount` must be `0`.
 - Create or update a QA report and contact sheet for visual background review before claiming the work is ready.

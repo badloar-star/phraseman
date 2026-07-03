@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.openAiBudgetDashboard = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 90;
@@ -185,7 +186,7 @@ function aggregate(rows, rangeDays) {
         models: group('model'),
     };
 }
-exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }

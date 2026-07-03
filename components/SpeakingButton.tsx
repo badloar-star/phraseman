@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 import { useFeatureAccess } from './PremiumContext';
+import PlusBadge from './PlusBadge';
 import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
 import { isSpeakingEnabled } from '../app/remote_flags';
@@ -60,7 +61,7 @@ export function SpeakingButton({
   onPass,
 }: SpeakingButtonProps) {
   const router = useRouter();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const isPremium = useFeatureAccess('speaking');
   const [open, setOpen] = useState(false);
 
@@ -96,8 +97,8 @@ export function SpeakingButton({
           <View style={{ position: 'relative' }}>
             <Ionicons name="mic-outline" size={26} color={t.textSecond} />
             {!isPremium && (
-              <View style={{ position: 'absolute', top: -4, right: -8 }}>
-                <Ionicons name="lock-closed" size={12} color={t.accent} />
+              <View style={{ position: 'absolute', top: -8, right: -22 }}>
+                <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
               </View>
             )}
           </View>
@@ -126,7 +127,7 @@ export function SpeakingButton({
         >
           <Ionicons name="mic" size={18} color={t.accent} />
           <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '600' }}>{label}</Text>
-          {!isPremium && <Ionicons name="lock-closed" size={13} color={t.textMuted} />}
+          {!isPremium && <PlusBadge themeMode={themeMode} size="xs" />}
         </Pressable>
       )}
 

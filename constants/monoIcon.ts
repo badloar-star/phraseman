@@ -20,25 +20,41 @@ import type { ThemeMode } from './theme';
 
 export const MONO_ICON = {
   /** Основной светлый тон иконки на тёмном фоне business. */
-  light: '#F2F2F2',
+  light: '#F5F5F5',
   /** Приглушённый серый (вторичные/неактивные иконки). */
-  muted: '#9A9A9A',
-  /** Тёмный тон — для иконок на СВЕТЛОЙ (белой) подложке. */
-  onLight: '#0A0A0A',
+  muted: '#737373',
+  /** Тёмный тон — для иконок на СВЕТЛОЙ/яркой (белой или синей CTA) подложке. */
+  onLight: '#000000',
 } as const;
 
-export const isBusinessMode = (themeMode: ThemeMode): boolean => themeMode === 'business';
+/** Нейтральные тона для СВЕТЛОЙ бизнес-темы (businessLight): фон светлый → иконки тёмные. */
+export const MONO_ICON_ON_LIGHT_THEME = {
+  light: '#262626',
+  muted: '#8E8E8E',
+  onLight: '#262626',
+} as const;
+
+export const isBusinessMode = (themeMode: ThemeMode): boolean =>
+  themeMode === 'business' || themeMode === 'businessLight';
 
 /**
- * Возвращает нейтральный цвет иконки в теме business, иначе — исходный `color`.
+ * Возвращает нейтральный цвет иконки в темах business/businessLight, иначе —
+ * исходный `color`. Для businessLight переданный тёмный нейтрал автоматически
+ * зеркалится в тёмный аналог (светлые иконки на светлом фоне нечитаемы).
  * @param themeMode текущая тема
  * @param color исходный (возможно цветной) цвет иконки
- * @param mono нейтральный тон для business (по умолчанию светлый #F2F2F2)
+ * @param mono нейтральный тон для business (по умолчанию светлый #F5F5F5)
  */
 export function monoIcon(
   themeMode: ThemeMode,
   color: string,
   mono: string = MONO_ICON.light,
 ): string {
-  return isBusinessMode(themeMode) ? mono : color;
+  if (themeMode === 'businessLight') {
+    if (mono === MONO_ICON.light) return MONO_ICON_ON_LIGHT_THEME.light;
+    if (mono === MONO_ICON.muted) return MONO_ICON_ON_LIGHT_THEME.muted;
+    if (mono === MONO_ICON.onLight) return MONO_ICON_ON_LIGHT_THEME.onLight;
+    return mono;
+  }
+  return themeMode === 'business' ? mono : color;
 }

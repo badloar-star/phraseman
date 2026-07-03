@@ -47,10 +47,11 @@ const https_1 = require("firebase-functions/v2/https");
 const admin = __importStar(require("firebase-admin"));
 const arena_season_1 = require("./arena_season");
 const league_chest_1 = require("./league_chest");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const LEGEND_RANK_INDEX = (0, arena_season_1.rankIndex)('legend', 'III'); // 23
 // ─── Топ-100 ─────────────────────────────────────────────────────────────────
-exports.arenaSeasonGetTop = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaSeasonGetTop = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -100,7 +101,7 @@ exports.arenaSeasonGetTop = (0, https_1.onCall)({ region: REGION }, async (reque
     return { seasonId, startsAt, endsAtMs: (0, arena_season_1.quarterEndMs)(new Date()), myPlace, mySR, entries };
 });
 // ─── Выдача награды ──────────────────────────────────────────────────────────
-exports.arenaSeasonClaimReward = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaSeasonClaimReward = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const uid = request.auth.uid;

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from '../app/cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from '../app/premium_guard';
 import {
+  inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
   revenueCatPremiumMetadata,
@@ -27,6 +28,18 @@ describe('premium RevenueCat state sync', () => {
     expect(inferPremiumPlanFromProductId('premium_12_months')).toBe('yearly');
     expect(inferPremiumPlanFromProductId('premium_monthly')).toBe('monthly');
     expect(inferPremiumPlanFromProductId('unknown', 'yearly')).toBe('yearly');
+  });
+
+  it('does not treat unknown active store state as monthly', () => {
+    expect(inferPremiumPlanFromCustomerInfo({
+      entitlements: { active: {} },
+      activeSubscriptions: [],
+    } as any)).toBeNull();
+
+    expect(inferPremiumPlanFromCustomerInfo({
+      entitlements: { active: {} },
+      activeSubscriptions: ['phraseman_premium_yearly_2999'],
+    } as any)).toBe('yearly');
   });
 
   it('extracts trial metadata from the active premium entitlement', () => {

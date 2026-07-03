@@ -10,15 +10,24 @@ import type { Lang } from '../constants/i18n';
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
 export type AppMessageLang = Lang;
-export type AppMessageKind = 'message' | 'poll' | 'vip_survey';
+export type AppMessageKind = 'message' | 'poll' | 'vip_survey' | 'report_reply';
 
 export const APP_MESSAGES_COLLECTION = 'app_messages';
 export const APP_MESSAGE_STATES_COLLECTION = 'app_message_states';
+/** Персональные сообщения юзеру (ответы на репорты) — пишет ТОЛЬКО CF adminReplyToReport. */
+export const USER_MESSAGES_COLLECTION = 'user_messages';
 export const APP_MESSAGE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+/** Ответ на репорт живёт дольше рассылок: в нём может лежать невостребованная награда. */
+export const REPORT_REPLY_TTL_MS = 365 * 24 * 60 * 60 * 1000;
+export const APP_MESSAGES_BACKGROUND_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
 const APP_MESSAGES_CACHE_KEY = 'app_messages_cache_v1';
+const APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY = 'app_messages_last_background_refresh_ms_v1';
 const LOCAL_APP_MESSAGES_KEY = 'app_messages_local_preview_v1';
 const LOCAL_APP_MESSAGE_STATES_KEY = 'app_message_local_preview_states_v1';
+const APP_MESSAGES_BACKGROUND_FETCH_LIMIT = 80;
+const REPORT_REPLY_PENDING_CLAIMS_KEY = 'app_messages_report_reply_pending_claims_v1';
+const REPORT_REPLY_PENDING_CLAIMS_CAP = 200;
 
 export type AppMessagePollOption = {
   id: string;
@@ -54,6 +63,12 @@ export type AppMessageVipSurvey = {
   reviewUrlAndroid: string;
 };
 
+/** Награда в ответе на репорт: осколки к клейму через CF claimReportReward. */
+export type AppMessageReportReply = {
+  shards: number;
+  claimed: boolean;
+};
+
 export type AppMessage = {
   id: string;
   kind: AppMessageKind;
@@ -85,6 +100,7 @@ export type AppMessage = {
   targetAppVersions: string[];
   poll: AppMessagePoll | null;
   vipSurvey: AppMessageVipSurvey | null;
+  reportReply: AppMessageReportReply | null;
 };
 
 export type AppMessageState = {
@@ -107,6 +123,12 @@ export type AppMessageWithState = AppMessage & {
 export type AppMessagesSnapshot = {
   messages: AppMessageWithState[];
   unreadCount: number;
+};
+
+export type PendingReportReplyShardClaim = {
+  messageId: string;
+  amount: number;
+  creditedAtMs: number;
 };
 
 type FirestoreFactory = {
@@ -154,6 +176,71 @@ function cleanPollCounts(value: unknown): Record<string, number> {
     out[optionId] = Number.isFinite(n) && n > 0 ? n : 0;
   });
   return out;
+}
+
+function normalizePendingReportReplyShardClaim(value: unknown): PendingReportReplyShardClaim | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const row = value as Record<string, unknown>;
+  const messageId = cleanPollOptionId(row.messageId, '');
+  if (!messageId) return null;
+  const amount = Math.max(0, Math.floor(Number(row.amount) || 0));
+  if (amount <= 0) return null;
+  const creditedAtMs = toMs(row.creditedAtMs, Date.now());
+  return { messageId, amount, creditedAtMs };
+}
+
+export async function readPendingReportReplyShardClaims(): Promise<PendingReportReplyShardClaim[]> {
+  try {
+    const raw = await AsyncStorage.getItem(REPORT_REPLY_PENDING_CLAIMS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    const byId = new Map<string, PendingReportReplyShardClaim>();
+    parsed.forEach((row) => {
+      const claim = normalizePendingReportReplyShardClaim(row);
+      if (claim) byId.set(claim.messageId, claim);
+    });
+    return [...byId.values()].slice(-REPORT_REPLY_PENDING_CLAIMS_CAP);
+  } catch {
+    return [];
+  }
+}
+
+async function writePendingReportReplyShardClaims(claims: PendingReportReplyShardClaim[]): Promise<void> {
+  const byId = new Map<string, PendingReportReplyShardClaim>();
+  claims.forEach((claim) => {
+    const normalized = normalizePendingReportReplyShardClaim(claim);
+    if (normalized) byId.set(normalized.messageId, normalized);
+  });
+  const next = [...byId.values()].slice(-REPORT_REPLY_PENDING_CLAIMS_CAP);
+  if (next.length === 0) {
+    await AsyncStorage.removeItem(REPORT_REPLY_PENDING_CLAIMS_KEY).catch(() => {});
+    return;
+  }
+  await AsyncStorage.setItem(REPORT_REPLY_PENDING_CLAIMS_KEY, JSON.stringify(next));
+}
+
+async function addPendingReportReplyShardClaim(messageId: string, amount: number): Promise<boolean> {
+  const clean = cleanPollOptionId(messageId, '');
+  const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
+  if (!clean || safeAmount <= 0) return false;
+  const pending = await readPendingReportReplyShardClaims();
+  if (pending.some((claim) => claim.messageId === clean)) return false;
+  await writePendingReportReplyShardClaims([
+    ...pending,
+    { messageId: clean, amount: safeAmount, creditedAtMs: Date.now() },
+  ]);
+  return true;
+}
+
+async function removePendingReportReplyShardClaim(messageId: string): Promise<boolean> {
+  const clean = cleanPollOptionId(messageId, '');
+  if (!clean) return false;
+  const pending = await readPendingReportReplyShardClaims();
+  const next = pending.filter((claim) => claim.messageId !== clean);
+  if (next.length === pending.length) return false;
+  await writePendingReportReplyShardClaims(next);
+  return true;
 }
 
 function currentAppVersion(): string {
@@ -264,8 +351,15 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const poll = normalizeAppMessagePoll(data, titleRu, messageRu);
   const kindRaw = cleanText(data.kind, poll ? 'poll' : 'message');
   const kind: AppMessageKind =
-    kindRaw === 'poll' && poll ? 'poll' : kindRaw === 'vip_survey' ? 'vip_survey' : 'message';
+    kindRaw === 'poll' && poll ? 'poll'
+    : kindRaw === 'vip_survey' ? 'vip_survey'
+    : kindRaw === 'report_reply' ? 'report_reply'
+    : 'message';
   const vipSurvey = kind === 'vip_survey' ? normalizeAppMessageVipSurvey(data) : null;
+  const replyShards = Math.max(0, Math.floor(Number(data.shards ?? 0) || 0));
+  const reportReply: AppMessageReportReply | null = kind === 'report_reply'
+    ? { shards: replyShards, claimed: data.claimed === true }
+    : null;
   const targetAppVersions = cleanAppVersionList(
     data.targetAppVersions ?? data.appVersions ?? data.appVersion,
   );
@@ -301,7 +395,30 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     targetAppVersions,
     poll,
     vipSurvey,
+    reportReply,
   };
+}
+
+/**
+ * Нормализация ПЕРСОНАЛЬНОГО сообщения из users/{uid}/user_messages (ответ на репорт).
+ * Документ хранит один title/body уже на языке юзера (написан админом/ИИ по его репорту),
+ * поэтому текст раскладывается во все языковые поля без перевода. TTL длинный: внутри
+ * может лежать невостребованная награда.
+ */
+export function normalizeUserAppMessage(id: string, data: Record<string, unknown>, nowMs = Date.now()): AppMessage {
+  const title = cleanText(data.title, '');
+  const body = cleanText(data.body, '');
+  const createdAtMs = toMs(data.createdAtMs ?? data.createdAt, nowMs);
+  return normalizeAppMessage(id, {
+    ...data,
+    kind: 'report_reply',
+    audience: 'all',
+    expiresAtMs: toMs(data.expiresAtMs, createdAtMs + REPORT_REPLY_TTL_MS),
+    titleRu: title, titleUk: title, titleEs: title, titlePtBr: title,
+    titleVi: title, titleId: title, titleTr: title, titlePl: title,
+    messageRu: body, messageUk: body, messageEs: body, messagePtBr: body,
+    messageVi: body, messageId: body, messageTr: body, messagePl: body,
+  }, nowMs);
 }
 
 export function normalizeAppMessageState(messageId: string, data: Record<string, unknown>): AppMessageState {
@@ -405,8 +522,10 @@ export function mergeAppMessagesWithStates(
   messages: AppMessage[],
   states: AppMessageState[],
   nowMs = Date.now(),
+  pendingReportReplyClaimIds: readonly string[] = [],
 ): AppMessagesSnapshot {
   const stateByMessage = new Map(states.map((state) => [state.messageId, state]));
+  const pendingReportReplyClaims = new Set(pendingReportReplyClaimIds);
   const merged = messages
     .filter((message) => {
       const state = stateByMessage.get(message.id);
@@ -418,8 +537,12 @@ export function mergeAppMessagesWithStates(
       const state = stateByMessage.get(message.id);
       const readAtMs = state?.readAtMs ?? null;
       const dismissedAtMs = state?.dismissedAtMs ?? null;
+      const reportReply = pendingReportReplyClaims.has(message.id) && message.reportReply
+        ? { ...message.reportReply, claimed: true }
+        : message.reportReply;
       return {
         ...message,
+        reportReply,
         readAtMs,
         dismissedAtMs,
         reaction: state?.reaction ?? null,
@@ -431,6 +554,21 @@ export function mergeAppMessagesWithStates(
     messages: merged,
     unreadCount: merged.reduce((n, message) => n + (message.unread ? 1 : 0), 0),
   };
+}
+
+export function applyPendingReportReplyClaimsToSnapshot(
+  snapshot: AppMessagesSnapshot,
+  pendingClaims: readonly PendingReportReplyShardClaim[],
+): AppMessagesSnapshot {
+  if (!pendingClaims.length) return snapshot;
+  const pendingIds = new Set(pendingClaims.map((claim) => claim.messageId));
+  let changed = false;
+  const messages = snapshot.messages.map((message) => {
+    if (!pendingIds.has(message.id) || !message.reportReply || message.reportReply.claimed) return message;
+    changed = true;
+    return { ...message, reportReply: { ...message.reportReply, claimed: true } };
+  });
+  return changed ? { ...snapshot, messages } : snapshot;
 }
 
 export function filterAppMessagesSnapshotForAudience(
@@ -591,13 +729,18 @@ async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
     if (!raw) return { messages: [], unreadCount: 0 };
     const parsed = JSON.parse(raw) as AppMessagesSnapshot;
     if (!Array.isArray(parsed.messages)) return { messages: [], unreadCount: 0 };
-    return {
+    const snapshot = {
       messages: parsed.messages,
       unreadCount: Math.max(0, Math.floor(Number(parsed.unreadCount || 0))),
     };
+    return applyPendingReportReplyClaimsToSnapshot(snapshot, await readPendingReportReplyShardClaims());
   } catch {
     return { messages: [], unreadCount: 0 };
   }
+}
+
+export async function readCachedAppMessagesSnapshot(): Promise<AppMessagesSnapshot> {
+  return readCachedSnapshot();
 }
 
 async function writeCachedSnapshot(snapshot: AppMessagesSnapshot): Promise<void> {
@@ -608,29 +751,133 @@ async function writeCachedSnapshot(snapshot: AppMessagesSnapshot): Promise<void>
   }
 }
 
+async function readLastBackgroundRefreshMs(): Promise<number> {
+  try {
+    const raw = await AsyncStorage.getItem(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY);
+    const n = Math.floor(Number(raw || 0));
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  } catch {
+    return 0;
+  }
+}
+
+async function writeLastBackgroundRefreshMs(ms: number): Promise<void> {
+  try {
+    await AsyncStorage.setItem(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY, String(Math.max(0, Math.floor(ms))));
+  } catch {
+    // Best-effort throttle only.
+  }
+}
+
+export async function refreshAppMessagesSnapshotOnce(options: {
+  force?: boolean;
+  minIntervalMs?: number;
+  nowMs?: number;
+} = {}): Promise<AppMessagesSnapshot> {
+  const rawNowMs = Math.floor(Number(options.nowMs ?? Date.now()));
+  const nowMs = Number.isFinite(rawNowMs) ? rawNowMs : Date.now();
+  const rawMinIntervalMs = Math.floor(Number(options.minIntervalMs ?? APP_MESSAGES_BACKGROUND_REFRESH_INTERVAL_MS));
+  const minIntervalMs = Number.isFinite(rawMinIntervalMs)
+    ? Math.max(0, rawMinIntervalMs)
+    : APP_MESSAGES_BACKGROUND_REFRESH_INTERVAL_MS;
+  const cached = await readCachedSnapshot();
+
+  if (!options.force) {
+    const lastRefreshMs = await readLastBackgroundRefreshMs();
+    if (lastRefreshMs > 0 && nowMs - lastRefreshMs < minIntervalMs) {
+      return cached;
+    }
+  }
+
+  const firestoreFactory = await getFirestoreModule();
+  const uid = await getCanonicalUserId().catch(() => null);
+  if (!firestoreFactory || !uid) return cached;
+
+  try {
+    const db = firestoreFactory();
+    const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates, pendingClaims] = await Promise.all([
+      db
+        .collection(APP_MESSAGES_COLLECTION)
+        .orderBy('createdAtMs', 'desc')
+        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+        .get(),
+      db
+        .collection('users')
+        .doc(uid)
+        .collection(USER_MESSAGES_COLLECTION)
+        .orderBy('createdAtMs', 'desc')
+        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+        .get()
+        // Подколлекции может не быть / rules ещё не задеплоены — глобальная лента важнее.
+        .catch(() => ({ docs: [] })),
+      db
+        .collection('users')
+        .doc(uid)
+        .collection(APP_MESSAGE_STATES_COLLECTION)
+        .get(),
+      readLocalPreviewMessages(),
+      readLocalPreviewStates(),
+      readPendingReportReplyShardClaims(),
+    ]);
+    const messages = (messagesSnap.docs || []).map((docSnap: any) =>
+      normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs),
+    );
+    const userMessages = (userMessagesSnap.docs || []).map((docSnap: any) =>
+      normalizeUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs),
+    );
+    const states = (statesSnap.docs || []).map((docSnap: any) =>
+      normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
+    );
+    const snapshot = mergeAppMessagesWithStates(
+      [...messages, ...userMessages, ...localMessages],
+      [...states, ...localStates],
+      nowMs,
+      pendingClaims.map((claim) => claim.messageId),
+    );
+    await writeCachedSnapshot(snapshot);
+    await writeLastBackgroundRefreshMs(nowMs);
+    return snapshot;
+  } catch {
+    return cached;
+  }
+}
+
 export function subscribeUserAppMessages(
   onChange: (snapshot: AppMessagesSnapshot) => void,
   onError?: (error: unknown) => void,
 ): { remove: () => void } {
   let disposed = false;
   let unsubscribeMessages: null | (() => void) = null;
+  let unsubscribeUserMessages: null | (() => void) = null;
   let unsubscribeStates: null | (() => void) = null;
   let messages: AppMessage[] = [];
+  let userMessages: AppMessage[] = [];
   let states: AppMessageState[] = [];
   let localMessages: AppMessage[] = [];
   let localStates: AppMessageState[] = [];
+  let pendingReportReplyClaims: PendingReportReplyShardClaim[] = [];
 
   const emit = () => {
-    const snapshot = mergeAppMessagesWithStates([...messages, ...localMessages], [...states, ...localStates]);
+    const snapshot = mergeAppMessagesWithStates(
+      [...messages, ...userMessages, ...localMessages],
+      [...states, ...localStates],
+      Date.now(),
+      pendingReportReplyClaims.map((claim) => claim.messageId),
+    );
     onChange(snapshot);
     void writeCachedSnapshot(snapshot);
   };
 
   const reloadLocal = () => {
-    void Promise.all([readLocalPreviewMessages(), readLocalPreviewStates()]).then(([nextMessages, nextStates]) => {
+    void Promise.all([
+      readLocalPreviewMessages(),
+      readLocalPreviewStates(),
+      readPendingReportReplyShardClaims(),
+    ]).then(([nextMessages, nextStates, nextPendingClaims]) => {
       if (disposed) return;
       localMessages = nextMessages;
       localStates = nextStates;
+      pendingReportReplyClaims = nextPendingClaims;
       emit();
     });
   };
@@ -653,7 +900,7 @@ export function subscribeUserAppMessages(
     unsubscribeMessages = db
       .collection(APP_MESSAGES_COLLECTION)
       .orderBy('createdAtMs', 'desc')
-      .limit(80)
+      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
       .onSnapshot(
         (snap: any) => {
           messages = (snap.docs || []).map((docSnap: any) =>
@@ -663,6 +910,25 @@ export function subscribeUserAppMessages(
         },
         (error: unknown) => {
           onError?.(error);
+        },
+      );
+
+    unsubscribeUserMessages = db
+      .collection('users')
+      .doc(uid)
+      .collection(USER_MESSAGES_COLLECTION)
+      .orderBy('createdAtMs', 'desc')
+      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+      .onSnapshot(
+        (snap: any) => {
+          userMessages = (snap.docs || []).map((docSnap: any) =>
+            normalizeUserAppMessage(docSnap.id, docSnap.data?.() ?? {}),
+          );
+          emit();
+        },
+        () => {
+          // Персональная лента опциональна: ошибка (нет rules/коллекции) не должна
+          // ронять подписку на глобальные сообщения.
         },
       );
 
@@ -688,6 +954,7 @@ export function subscribeUserAppMessages(
       disposed = true;
       localSub.remove();
       unsubscribeMessages?.();
+      unsubscribeUserMessages?.();
       unsubscribeStates?.();
     },
   };
@@ -815,6 +1082,91 @@ export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
   } catch {
     // Best-effort: при сбое в худшем случае анимация повторится один раз.
   }
+}
+
+/**
+ * Report-reply shard claims are local-first: the UI can mark the reward claimed and
+ * credit the local wallet before the callable confirms/deduplicates the remote doc.
+ * Confirmation may raise the local wallet, but never lowers an optimistic balance.
+ */
+async function reconcileReportReplyClaimBalance(serverBalance: number): Promise<void> {
+  const safeBalance = Math.max(0, Math.floor(Number(serverBalance) || 0));
+  const { keepShardsBalanceLocalAtLeast } = require('./shards_system') as typeof import('./shards_system');
+  await keepShardsBalanceLocalAtLeast(safeBalance, 'report_reply_claim').catch(() => {});
+}
+
+function isAlreadyClaimedReportReplyError(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? '');
+  const message = String((error as { message?: unknown })?.message ?? '');
+  return code.includes('already-exists') || message.includes('already claimed');
+}
+
+export async function claimReportReplyShards(
+  messageId: string,
+  options: { reconcileLocalBalance?: boolean } = {},
+): Promise<{ amount: number; balance: number }> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('cloud_disabled');
+  const clean = String(messageId ?? '').trim();
+  if (!clean) throw new Error('message_id_required');
+
+  // Lazy require — модуль functions не должен грузиться (и падать в Expo Go) на импорте.
+  const { getApp } = require('@react-native-firebase/app');
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const { initFirebaseAppCheckIfAvailable } = require('./app_check_init');
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+
+  const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'claimReportReward');
+  const res = await fn({ messageId: clean });
+  const amount = Math.max(0, Math.floor(Number((res?.data as any)?.amount) || 0));
+  const balance = Math.max(0, Math.floor(Number((res?.data as any)?.balance) || 0));
+
+  // Keep local optimistic rewards: server confirmation may raise local balance, never lower it here.
+  if (options.reconcileLocalBalance !== false) {
+    await reconcileReportReplyClaimBalance(balance);
+  }
+
+  return { amount, balance };
+}
+
+export async function claimReportReplyShardsOptimistically(
+  messageId: string,
+  amount: number,
+): Promise<boolean> {
+  const clean = cleanPollOptionId(messageId, '');
+  const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
+  if (!clean || safeAmount <= 0) return false;
+  const queued = await addPendingReportReplyShardClaim(clean, safeAmount).catch(() => false);
+  emitAppEvent('app_messages_local_changed');
+  if (queued) {
+    const { addShardsLocalOnlyForPendingServerClaim } = require('./shards_system') as typeof import('./shards_system');
+    await addShardsLocalOnlyForPendingServerClaim(safeAmount, 'report_reply_claim').catch(() => 0);
+  }
+  void resumePendingReportReplyShardClaims();
+  return true;
+}
+
+export async function resumePendingReportReplyShardClaims(): Promise<{ resolved: number; pending: number }> {
+  const claims = await readPendingReportReplyShardClaims();
+  if (claims.length === 0) return { resolved: 0, pending: 0 };
+  let resolved = 0;
+  let pending = 0;
+  for (const claim of claims) {
+    try {
+      const result = await claimReportReplyShards(claim.messageId);
+      await removePendingReportReplyShardClaim(claim.messageId);
+      await reconcileReportReplyClaimBalance(result.balance);
+      resolved += 1;
+    } catch (error) {
+      if (isAlreadyClaimedReportReplyError(error)) {
+        await removePendingReportReplyShardClaim(claim.messageId);
+        resolved += 1;
+      } else {
+        pending += 1;
+      }
+    }
+  }
+  if (resolved > 0) emitAppEvent('app_messages_local_changed');
+  return { resolved, pending };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

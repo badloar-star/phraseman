@@ -2966,7 +2966,12 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'teacher':       ['engineer','programmer','lawyer','consultant','analyst'],
     'very':          ['quite','so','really','rather','extremely'],
   };
-  const disambigPool = DISAMBIG_POOLS[correctWord.toLowerCase()];
+  // Look up the curated pool by the word's own casing first (keys like 'TV', 'CV',
+  // 'Monday', 'Europe', 'French' are stored capitalised), then fall back to the
+  // lowercase key for the common lowercase entries. Using only toLowerCase() left
+  // every capitalised key (TV, CV, months, weekdays, Europe, French, Nobody) dead,
+  // so those words silently lost their hand-picked distractors.
+  const disambigPool = DISAMBIG_POOLS[correctWord] ?? DISAMBIG_POOLS[correctWord.toLowerCase()];
   if (disambigPool) {
     // Next-word trap: for articles and to-be words, include next phrase word as a distractor
     // so that users who try to skip the article/verb still get caught.

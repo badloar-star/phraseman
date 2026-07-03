@@ -4,6 +4,7 @@ export const LEVEL_GIFT_IMAGE_THEMES = [
   'gold',
   'minimalDark',
   'business',
+  'businessLight',
 ] as const;
 
 export const LEVEL_GIFT_IMAGE_VARIANTS = [
@@ -30,7 +31,8 @@ const THEME_BASE: Record<LevelGiftImageTheme, [string, string]> = {
   dark: ['#12301C', '#041008'],
   gold: ['#3A260C', '#100904'],
   minimalDark: ['#152033', '#04070C'],
-  business: ['#12314A', '#060A10'],
+  business: ['#121212', '#0A0B0D'],
+  businessLight: ['#FFFFFF', '#EFEFEF'],
 };
 
 const VARIANT_ACCENT: Record<LevelGiftImageVariant, string> = {

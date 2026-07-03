@@ -330,6 +330,7 @@ export interface GroupMember {
   isBot?:    boolean;
   isPremium?: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   avatar?:   string;
   frame?:    string;
   aura?:     string;

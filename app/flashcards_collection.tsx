@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,11 +26,13 @@ import {
     type ViewToken,
 } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import PlusBadge from '../components/PlusBadge';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
@@ -92,6 +95,7 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
   flashcardsSystemCardsForTarget,
 } from './flashcards_target_gate';
+import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
 import { safeRouterBack } from './navigation_back';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
@@ -293,6 +297,20 @@ export default function FlashcardsScreen() {
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
+  const [flashcardPackTick, setFlashcardPackTick] = useState(0);
+  useEffect(() => {
+    if (storageStudyTarget(studyTarget) !== 'fr') return;
+    prefetchFrenchRemoteFlashcards(lang);
+    let cancelled = false;
+    ensureFrenchRemoteFlashcards(lang)
+      .then(() => {
+        if (!cancelled) setFlashcardPackTick((value) => value + 1);
+      })
+      .catch(() => {
+        if (!cancelled) setFlashcardPackTick((value) => value + 1);
+      });
+    return () => { cancelled = true; };
+  }, [lang, studyTarget]);
   const router   = useRouter();
   const params   = useLocalSearchParams<{ cat?: string; pack?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
@@ -303,7 +321,8 @@ export default function FlashcardsScreen() {
   packRouteRef.current = packDeeplink;
 
   const s        = STR[strLang];
-  const insets   = useSafeAreaInsets();
+  const insets   = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { height: screenH, width: screenW } = useWindowDimensions();
   /**
@@ -318,13 +337,13 @@ export default function FlashcardsScreen() {
     return base;
   }, [f.h3, screenW]);
   const { CARD_H, PEEK } = useMemo(() => {
-    const reserved = 200 + insets.top + insets.bottom;
+    const reserved = 200 + insets.top + bottomInset;
     const hAvail = Math.max(220, screenH - reserved);
     /** Компактніша висота картки: раніше max 280px / ~52% екрана було зайвим. × uiScale — узгоджено з темою. */
     const cardH = Math.min(224, Math.max(140, Math.round(hAvail * 0.45 * uiScale)));
     const peek = Math.max(30, Math.round(cardH * 0.19));
     return { CARD_H: cardH, PEEK: peek };
-  }, [screenH, insets.top, insets.bottom, uiScale]);
+  }, [screenH, insets.top, bottomInset, uiScale]);
   const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
   /** На хаб карток (або pop у стеку), а не на головне меню — зручніше при відкритті з підбірки / набору. */
   const leaveCollection = useCallback(() => {
@@ -482,8 +501,8 @@ export default function FlashcardsScreen() {
     return customCards ?? [];
   }, [officialPacksEnabled, packDeeplink, marketCards, customCards]);
   const systemCardsForTarget = useMemo(
-    () => flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget),
-    [studyTarget],
+    () => flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang),
+    [flashcardPackTick, lang, studyTarget],
   );
   const cards = useMemo(() => {
     if (activeCat === 'custom') {
@@ -552,18 +571,32 @@ export default function FlashcardsScreen() {
   }, [activeCat, currentMarketPack?.isCommunityUgc, packDeeplink]);
 
   const openSwipeGame = useCallback(() => {
+    if (!isPremium) {
+      router.push({
+        pathname: '/premium_modal',
+        params: { context: 'flashcard_training', source: 'flashcards_collection_training' },
+      } as any);
+      return;
+    }
     const paramsForSwipe: { source?: string; filter?: string } = {};
     if (swipeSourceId) paramsForSwipe.source = swipeSourceId;
     if (swipeSourceId && activeFilter !== 'all') paramsForSwipe.filter = activeFilter;
     router.push({ pathname: '/flashcards_swipe', params: paramsForSwipe } as any);
-  }, [activeFilter, router, swipeSourceId]);
+  }, [activeFilter, isPremium, router, swipeSourceId]);
 
   const openAudioMode = useCallback(() => {
+    if (!isPremium) {
+      router.push({
+        pathname: '/premium_modal',
+        params: { context: 'flashcard_autoplay', source: 'flashcards_collection_audio' },
+      } as any);
+      return;
+    }
     const paramsForAudio: { source?: string; filter?: string } = {};
     if (swipeSourceId) paramsForAudio.source = swipeSourceId;
     if (swipeSourceId && activeFilter !== 'all') paramsForAudio.filter = activeFilter;
     router.push({ pathname: '/flashcards_audio', params: paramsForAudio } as any);
-  }, [activeFilter, router, swipeSourceId]);
+  }, [activeFilter, isPremium, router, swipeSourceId]);
 
   const packPremiumVisual = useMemo(() => {
     if (!currentMarketPack) return null;
@@ -1524,7 +1557,7 @@ export default function FlashcardsScreen() {
           style={{
             position: 'absolute',
             right: 14,
-            bottom: Math.max(insets.bottom, 8) + 20,
+            bottom: Math.max(bottomInset, 8) + 20,
             zIndex: 60,
             borderRadius: 12,
             borderWidth: 1,
@@ -1700,6 +1733,9 @@ export default function FlashcardsScreen() {
                   })}
                 </Text>
               </View>
+              {!isPremium && (
+                <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
+              )}
             </View>
           </TouchableOpacity>
 
@@ -1764,6 +1800,9 @@ export default function FlashcardsScreen() {
                   })}
                 </Text>
               </View>
+              {!isPremium && (
+                <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
+              )}
             </View>
           </TouchableOpacity>
           </View>
@@ -1889,6 +1928,7 @@ export default function FlashcardsScreen() {
                 longPressedId={longPressedId}
                 t={t}
                 f={f}
+                themeMode={themeMode}
                 sourceLabels={s.source as Record<string, string>}
                 deleteLabel={s.delete}
                 voiceLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Odsłuchaj' })}
@@ -1977,7 +2017,7 @@ export default function FlashcardsScreen() {
           style={{
             position: 'absolute',
             right: 14,
-            bottom: Math.max(insets.bottom, 8) + 20,
+            bottom: Math.max(bottomInset, 8) + 20,
             zIndex: 60,
             borderRadius: 12,
             borderWidth: 1,

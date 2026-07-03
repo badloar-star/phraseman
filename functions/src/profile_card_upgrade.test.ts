@@ -134,13 +134,13 @@ describe('profileCardUpgrade', () => {
   });
 
   it('charges the exact next-level cost and raises the authoritative level (progress field)', async () => {
-    docs.set('users/u1', { shards: 100, progress: { profile_card_level: 0 } });
+    docs.set('users/u1', { shards: 250, progress: { profile_card_level: 0 } });
 
     const res = await callUpgrade({ expectedLevel: 0 });
 
-    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 1, spent: 30, balance: 70 });
+    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 1, spent: 200, balance: 50 });
     const u = docs.get('users/u1') as Record<string, any>;
-    expect(u.shards).toBe(70);
+    expect(u.shards).toBe(50);
     // The badge reads progress.profile_card_level (sync_leaderboard.ts), so the CF must
     // write THERE — not a dead root field that nothing renders from.
     expect(u.progress.profile_card_level).toBe(1);
@@ -149,18 +149,18 @@ describe('profileCardUpgrade', () => {
   it('reads the doc under the client stableId, not the auth uid (the shop-bug fix)', async () => {
     // Shards live under the stableId doc; the auth-uid doc is empty (or absent). Before the
     // fix the CF resolved to the auth uid → balance 0 → false "insufficient" → shard shop.
-    docs.set('users/stable-1', { shards: 100, progress: { profile_card_level: 0 } });
+    docs.set('users/stable-1', { shards: 250, progress: { profile_card_level: 0 } });
     // (no users/auth-1 doc on purpose)
 
     const res = await callUpgrade({ expectedLevel: 0, stableId: 'stable-1' }, 'auth-1');
 
-    expect(res).toMatchObject({ ok: true, level: 1, spent: 30, balance: 70 });
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 200, balance: 50 });
     expect((docs.get('users/stable-1') as Record<string, any>).progress.profile_card_level).toBe(1);
     expect(docs.get('users/auth-1')).toBeUndefined();
   });
 
   it('preserves sibling progress keys when upgrading', async () => {
-    docs.set('users/u1', { shards: 100, progress: { profile_card_level: 0, streak_count: '7', user_total_xp: '999' } });
+    docs.set('users/u1', { shards: 250, progress: { profile_card_level: 0, streak_count: '7', user_total_xp: '999' } });
 
     await callUpgrade({ expectedLevel: 0 });
 
@@ -169,45 +169,45 @@ describe('profileCardUpgrade', () => {
   });
 
   it('refuses to upgrade when shards are insufficient and spends nothing', async () => {
-    docs.set('users/u1', { shards: 20, progress: { profile_card_level: 0 } });
+    docs.set('users/u1', { shards: 190, progress: { profile_card_level: 0 } });
 
     const res = await callUpgrade({ expectedLevel: 0 });
 
-    expect(res).toMatchObject({ ok: false, reason: 'insufficient', level: 0, balance: 20, cost: 30 });
+    expect(res).toMatchObject({ ok: false, reason: 'insufficient', level: 0, balance: 190, cost: 200 });
     const u = docs.get('users/u1') as Record<string, any>;
-    expect(u.shards).toBe(20);
+    expect(u.shards).toBe(190);
     expect(u.progress.profile_card_level).toBe(0);
   });
 
   it('is idempotent: a duplicate call after the server already advanced does not double-charge', async () => {
-    // Server already at level 2, but client still thinks it is at level 1 (retry / race).
-    docs.set('users/u1', { shards: 500, progress: { profile_card_level: 2 } });
+    // Server already has Pro, but client still thinks it is at level 0 (retry / race).
+    docs.set('users/u1', { shards: 500, progress: { profile_card_level: 1 } });
+
+    const res = await callUpgrade({ expectedLevel: 0 });
+
+    expect(res).toMatchObject({ ok: true, alreadyApplied: true, level: 1, spent: 0 });
+    const u = docs.get('users/u1') as Record<string, any>;
+    expect(u.shards).toBe(500);
+    expect(u.progress.profile_card_level).toBe(1);
+  });
+
+  it('returns max at Pro without charging', async () => {
+    docs.set('users/u1', { shards: 999, progress: { profile_card_level: 1 } });
 
     const res = await callUpgrade({ expectedLevel: 1 });
 
-    expect(res).toMatchObject({ ok: true, alreadyApplied: true, level: 2, spent: 0 });
-    const u = docs.get('users/u1') as Record<string, any>;
-    expect(u.shards).toBe(500);
-    expect(u.progress.profile_card_level).toBe(2);
-  });
-
-  it('returns max at level 5 without charging', async () => {
-    docs.set('users/u1', { shards: 999, progress: { profile_card_level: 5 } });
-
-    const res = await callUpgrade({ expectedLevel: 5 });
-
-    expect(res).toMatchObject({ ok: false, reason: 'max', level: 5 });
+    expect(res).toMatchObject({ ok: false, reason: 'max', level: 1 });
     const u = docs.get('users/u1') as Record<string, any>;
     expect(u.shards).toBe(999);
-    expect(u.progress.profile_card_level).toBe(5);
+    expect(u.progress.profile_card_level).toBe(1);
   });
 
   it('uses the server cost table, not a client-supplied cost', async () => {
-    docs.set('users/u1', { shards: 1000, progress: { profile_card_level: 3 } });
+    docs.set('users/u1', { shards: 1000, progress: { profile_card_level: 0 } });
 
-    // Even though the client could try to pass a bogus cheap cost, the server uses level 4 = 160.
-    const res = await callUpgrade({ expectedLevel: 3, cost: 1 });
+    // Even though the client could try to pass a bogus cheap cost, the server uses Pro = 200.
+    const res = await callUpgrade({ expectedLevel: 0, cost: 1 });
 
-    expect(res).toMatchObject({ ok: true, level: 4, spent: 160, balance: 840 });
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 200, balance: 800 });
   });
 });

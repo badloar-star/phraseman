@@ -806,6 +806,30 @@ function main(): void {
     code.startsWith('language_isolation_regression_recheck_v2_') ||
     code.startsWith('runtime_delivery_evidence_chain_v2_') ||
     code.startsWith('explicit_approval_receipt_hash_lock_gate_v2_') ||
+    code.startsWith('production_activation_hold_exact_approval_required_v2_') ||
+    code.startsWith('exact_approval_validation_gate_v2_') ||
+    code.startsWith('production_activation_sequence_preflight_v2_') ||
+    code.startsWith('production_apply_transaction_contract_v2_') ||
+    code.startsWith('post_apply_rollback_guard_contract_v2_') ||
+    code.startsWith('approval_wait_safe_continuation_v2_') ||
+    code.startsWith('production_readiness_completion_audit_v2_') ||
+    code.startsWith('final_preapproval_evidence_hash_lock_v2_') ||
+    code.startsWith('exact_approval_source_firewall_v2_') ||
+    code.startsWith('exact_approval_source_intake_transition_v2_') ||
+    code.startsWith('exact_approval_active_artifact_pair_simulation_v2_') ||
+    code.startsWith('exact_approval_p31_create_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p44_validation_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p44_to_p45_sequence_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p45_sequence_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p46_apply_transaction_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p47_rollback_guard_command_preflight_v2_') ||
+    code.startsWith('exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_') ||
+    code.startsWith('exact_approval_p48_safe_continuation_command_preflight_v2_') ||
+    code.startsWith('safe_preapproval_continuation_v2_') ||
+    code.startsWith('final_production_readiness_gap_v2_') ||
+    code.startsWith('post_exact_approval_apply_runbook_v2_') ||
     code.startsWith('nonproduction_blocker_closure_plan_v2_') ||
     code.startsWith('nonproduction_evidence_refresh_v2_') ||
     code.startsWith('exact_approval_wait_state_v2_');

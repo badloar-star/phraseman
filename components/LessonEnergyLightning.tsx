@@ -1,11 +1,10 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { View, StyleSheet, Text, Pressable, useWindowDimensions } from 'react-native';
 import { useTheme } from './ThemeContext';
 import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
-import { useEnergy } from './EnergyContext';
+import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
-import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
 
 const ENERGY_ICON_SIZE = 30;
 
@@ -23,36 +22,16 @@ interface Props {
 function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { isUnlimited } = useEnergy();
+  const { formattedTime: timeUntilNextEnergy } = useEnergyCountdown();
   const { hasPremiumAccess } = usePremium();
   const { width: windowWidth } = useWindowDimensions();
 
   const filledColor = t.gold;
-  const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
   const energyLayout = getAdaptiveEnergyIconLayout({
     slotCount: maxEnergy,
     iconSize: ENERGY_ICON_SIZE,
     maxWidth: Math.min(156, Math.max(ENERGY_ICON_SIZE, windowWidth * 0.38)),
   });
-
-  // Update timer every second when energy is not at max
-  useEffect(() => {
-    if (hasPremiumAccess || energyCount >= maxEnergy) {
-      setTimeUntilNextEnergy(null);
-      return;
-    }
-
-    const updateTimer = async () => {
-      const timeMs = await getTimeUntilNextRecovery();
-      if (timeMs !== null) {
-        const formatted = formatTimeUntilRecovery(timeMs);
-        setTimeUntilNextEnergy(formatted);
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, [energyCount, hasPremiumAccess, maxEnergy]);
 
   if (hasPremiumAccess) return null;
 

@@ -21,9 +21,10 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'crypto';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import * as logger from 'firebase-functions/logger';
-import { defineSecret } from 'firebase-functions/params';
+import { defineSecret, defineString } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 
+import { upsertEmailContact } from './email_contacts';
 import { buildPromoVipPatch } from './promo_codes';
 
 const REGION = 'us-central1';
@@ -38,6 +39,9 @@ const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
 const PAYPAL_CLIENT_ID = defineSecret('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = defineSecret('PAYPAL_CLIENT_SECRET');
 const PHRASEMAN_PREMIUM_BOT_TOKEN = defineSecret('PHRASEMAN_PREMIUM_BOT_TOKEN');
+const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
+const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 type WebPlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -182,6 +186,15 @@ function cleanShortText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
+function htmlEscape(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 /** utm/answers от клиента: маленький безопасный JSON-слепок для атрибуции. */
 function cleanAttribution(value: unknown): Record<string, unknown> | null {
   if (typeof value !== 'object' || value === null) return null;
@@ -223,6 +236,17 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
     createdAt: FieldValue.serverTimestamp(),
     createdAtIso: new Date().toISOString(),
   });
+  await upsertEmailContact(db, {
+    email: input.email,
+    source: 'site',
+    provider: input.provider,
+    orderId: ref.id,
+    plan: input.plan,
+    amountCents: input.amountCents,
+    currency: input.currency,
+  }).catch((e) => {
+    logger.warn('web_checkout email contact upsert failed', e);
+  });
   return ref.id;
 }
 
@@ -257,6 +281,136 @@ async function notifyAdminsTelegram(order: FirebaseFirestore.DocumentData): Prom
       body: JSON.stringify({ chat_id: chatId, text }),
     }).catch(() => undefined),
   ));
+}
+
+async function markActivationEmailStatus(
+  orderId: unknown,
+  patch: Record<string, unknown>,
+): Promise<void> {
+  const id = cleanShortText(orderId, 120);
+  if (!id) return;
+  try {
+    await getFirestore().collection(ORDERS_COLLECTION).doc(id).set({
+      ...patch,
+      customerEmailUpdatedAt: FieldValue.serverTimestamp(),
+      customerEmailUpdatedAtIso: new Date().toISOString(),
+    }, { merge: true });
+  } catch (e) {
+    logger.warn('web_checkout activation email status update failed', e);
+  }
+}
+
+async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promise<boolean> {
+  const orderId = cleanShortText(order.orderId, 120);
+  const activationCode = cleanShortText(order.activationCode, 48);
+  const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
+  if (!activationCode || !to) return false;
+
+  const key = resendApiKey.value();
+  if (!key) {
+    await markActivationEmailStatus(orderId, {
+      customerEmailStatus: 'skipped_no_resend_key',
+      customerEmailSentTo: to,
+    });
+    return false;
+  }
+
+  const support = webCheckoutSupportEmail.value() || 'support.phraseman@gmail.com';
+  const plan = cleanShortText(order.planDuration || order.plan || 'Premium', 80) || 'Premium';
+  const subject = `Ваш код активации Phraseman: ${activationCode}`;
+  const text = [
+    'Спасибо за оплату Phraseman Premium!',
+    '',
+    `Ваш код активации: ${activationCode}`,
+    '',
+    'Как включить Premium:',
+    '1. Откройте приложение Phraseman.',
+    '2. Перейдите в Настройки -> Промокоды.',
+    '3. Вставьте код и нажмите "Активировать".',
+    '',
+    `Тариф: ${plan}.`,
+    `Если что-то не получилось, напишите: ${support}`,
+  ].join('\n');
+  const html = [
+    '<div style="font-family:Arial,sans-serif;line-height:1.55;color:#111827">',
+    '<h1 style="font-size:22px;margin:0 0 12px">Ваш код активации Phraseman</h1>',
+    '<p>Спасибо за оплату Phraseman Premium.</p>',
+    `<div style="font-size:28px;font-weight:800;letter-spacing:2px;background:#fff7d6;border:1px solid #e8c566;border-radius:10px;padding:18px 20px;margin:18px 0;color:#111827">${htmlEscape(activationCode)}</div>`,
+    '<p><b>Как включить Premium:</b></p>',
+    '<ol><li>Откройте приложение Phraseman.</li><li>Перейдите в Настройки -> Промокоды.</li><li>Вставьте код и нажмите "Активировать".</li></ol>',
+    `<p style="color:#4b5563">Тариф: ${htmlEscape(plan)}.</p>`,
+    `<p style="color:#4b5563">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`,
+    '</div>',
+  ].join('');
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+        to: [to],
+        subject,
+        text,
+        html,
+      }),
+    });
+    const bodyText = await response.text();
+    if (!response.ok) {
+      logger.warn('web_checkout activation email failed', bodyText.slice(0, 500));
+      await markActivationEmailStatus(orderId, {
+        customerEmailStatus: 'failed',
+        customerEmailSentTo: to,
+        customerEmailError: bodyText.slice(0, 500),
+      });
+      return false;
+    }
+    let providerId = '';
+    try {
+      const parsed = JSON.parse(bodyText) as { id?: string };
+      providerId = cleanShortText(parsed.id, 120);
+    } catch {
+      providerId = '';
+    }
+    await markActivationEmailStatus(orderId, {
+      customerEmailStatus: 'sent',
+      customerEmailSentAt: FieldValue.serverTimestamp(),
+      customerEmailSentAtIso: new Date().toISOString(),
+      customerEmailSentTo: to,
+      customerEmailProviderId: providerId || null,
+      customerEmailError: FieldValue.delete(),
+    });
+    return true;
+  } catch (e) {
+    await markActivationEmailStatus(orderId, {
+      customerEmailStatus: 'failed',
+      customerEmailSentTo: to,
+      customerEmailError: String(e).slice(0, 500),
+    });
+    logger.warn('web_checkout activation email error', e);
+    return false;
+  }
+}
+
+async function handlePaidOrderSideEffects(
+  db: FirebaseFirestore.Firestore,
+  order: FirebaseFirestore.DocumentData,
+): Promise<void> {
+  await upsertEmailContact(db, {
+    email: order.email || order.customerEmail || order.payerEmail,
+    source: 'site',
+    provider: order.provider,
+    orderId: order.orderId,
+    plan: order.plan,
+    amountCents: order.amountCents,
+    currency: order.currency,
+  }).catch((e) => {
+    logger.warn('web_checkout paid email contact upsert failed', e);
+  });
+  await Promise.all([
+    notifyAdminsTelegram(order).catch((e) => logger.error('web order admin notify failed', e)),
+    sendActivationEmail(order).catch((e) => logger.error('web order activation email failed', e)),
+  ]);
 }
 
 const PAID_STATUSES = new Set(['paid_pending_activation', 'paid_pending_manual_activation', 'activated']);
@@ -605,7 +759,7 @@ export const stripeWebhook = onRequest(
         email: cleanEmail(details?.email) ?? cleanEmail(session.customer_email) ?? undefined,
       });
       if (paid) {
-        await notifyAdminsTelegram(paid).catch((e) => logger.error('web order admin notify failed', e));
+        await handlePaidOrderSideEffects(db, paid);
       }
       res.status(200).send('ok');
     } catch (e) {
@@ -768,7 +922,7 @@ export const paypalOrderCapture = onRequest(
         payerEmail: cleanEmail(data.payer?.email_address) ?? undefined,
       });
       if (paid) {
-        await notifyAdminsTelegram(paid).catch((e) => logger.error('web order admin notify failed', e));
+        await handlePaidOrderSideEffects(db, paid);
       }
       // Код возвращаем сразу — страница «спасибо» покажет его без ожидания вебхуков.
       let activationCode: string | null = (paid?.activationCode as string | undefined) ?? null;

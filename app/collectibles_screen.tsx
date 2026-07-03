@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // «Сокровищница» — коллекция карточек-фраз (идиомы/сленг/пословицы).
 // Концепция v2 (утв. 2026-06-10): 30 сетов × 10 + секретная 11-я; залоченные
 // карточки видны, но «чисто серые» (grayscale-арт + замок, НЕ «?»); открытые
@@ -18,7 +19,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import CollectibleArtFrame, { type CollectibleArtTier } from '../components/CollectibleArtFrame';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
@@ -29,6 +30,7 @@ import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { onAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -310,7 +312,8 @@ function CardDetailModal({
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { speak } = useAudio();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   if (!target) return null;
   const { card, set } = target;
@@ -501,7 +504,7 @@ function CardDetailModal({
             }), cardText.origin)}
           </ScrollView>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingTop: 8, paddingBottom: Math.max(insets.bottom, 14) }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingTop: 8, paddingBottom: Math.max(bottomInset, 14) }}>
             <TapScale
               onPress={() => {
                 if (index > 0) onNavigate(siblings[index - 1]);

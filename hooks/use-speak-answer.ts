@@ -12,9 +12,31 @@
 
 import { useCallback } from 'react';
 import { useAudio } from './use-audio';
+import { hasPhraseAudio } from './phrase_audio_player';
 import { getUserSettingsSnapshot } from '../app/user_settings_store';
 import { ttsLocaleForStudyTarget } from '../app/phrase_target_utils';
 import type { StudyTargetLang } from '../app/study_target_lang_dev';
+
+const ANSWER_SPEECH_MIN_WAIT_TIMEOUT_MS = 1800;
+const ANSWER_SPEECH_MAX_WAIT_TIMEOUT_MS = 6500;
+const ANSWER_SPEECH_FIRST_CLIP_GRACE_MS = 4500;
+const ANSWER_SPEECH_SYSTEM_TTS_GRACE_MS = 600;
+
+function answerSpeechWaitTimeoutMs(text: string, rate: number | undefined, mayUseFirstClipDownload: boolean): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const safeRate = typeof rate === 'number' && Number.isFinite(rate) && rate > 0 ? rate : 1;
+  const startupGraceMs = mayUseFirstClipDownload
+    ? ANSWER_SPEECH_FIRST_CLIP_GRACE_MS
+    : ANSWER_SPEECH_SYSTEM_TTS_GRACE_MS;
+  const spokenMs = (700 + words * 380) / Math.max(0.5, safeRate);
+  return Math.min(
+    ANSWER_SPEECH_MAX_WAIT_TIMEOUT_MS,
+    Math.max(
+      ANSWER_SPEECH_MIN_WAIT_TIMEOUT_MS,
+      Math.ceil(startupGraceMs + spokenMs),
+    ),
+  );
+}
 
 export function useSpeakAnswer() {
   const { speak, stop } = useAudio();
@@ -22,12 +44,36 @@ export function useSpeakAnswer() {
   // Проговорить правильный ответ вслух. Тихо ничего не делает, если текст пуст
   // или пользователь выключил озвучку в настройках.
   const speakAnswer = useCallback(
-    (text: string, studyTarget: StudyTargetLang) => {
+    (text: string, studyTarget: StudyTargetLang): Promise<void> => {
       const line = (text ?? '').trim();
-      if (!line) return;
+      if (!line) return Promise.resolve();
       const settings = getUserSettingsSnapshot();
-      if (!settings.voiceOut) return;
-      speak(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+      if (!settings.voiceOut) return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        const language = ttsLocaleForStudyTarget(studyTarget);
+        const mayUseFirstClipDownload = language.toLowerCase().startsWith('en')
+          && !(settings.speechVoiceId ?? '').trim()
+          && hasPhraseAudio(line);
+        let settled = false;
+        let timer: ReturnType<typeof setTimeout> | null = null;
+        const finish = () => {
+          if (settled) return;
+          settled = true;
+          if (timer) clearTimeout(timer);
+          resolve();
+        };
+        timer = setTimeout(finish, answerSpeechWaitTimeoutMs(line, settings.speechRate, mayUseFirstClipDownload));
+        try {
+          speak(line, settings.speechRate, {
+            language,
+            onDone: finish,
+            onStopped: finish,
+            onError: finish,
+          });
+        } catch {
+          finish();
+        }
+      });
     },
     [speak],
   );

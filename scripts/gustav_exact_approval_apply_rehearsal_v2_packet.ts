@@ -287,7 +287,31 @@ const MASTER_SELF_CYCLE_BLOCKERS = new Set([
   'exact_approval_p48_safe_continuation_command_preflight_v2_blockers',
   'exact_approval_p48_safe_continuation_command_preflight_v2_not_ready',
   'exact_approval_p48_safe_continuation_command_preflight_v2_missing_probe_passes',
+  'french_server_object_remote_verify_v2_blockers',
+  'french_server_object_remote_verify_v2_not_ready_for_runtime_download_activation',
+  'french_server_object_remote_verify_v2_missing_hash_checked_objects',
+  'runtime_delivery_evidence_chain_v2_not_ready',
+  'explicit_approval_receipt_hash_lock_gate_v2_not_ready_for_approval_request',
+  'explicit_approval_receipt_creation_gate_v2_cannot_continue_non_production_audit',
+  'production_apply_transaction_contract_v2_p49_missing_requirements',
+  'post_apply_rollback_guard_contract_v2_p49_missing_requirements',
+  'exact_approval_p45_sequence_command_preflight_v2_command_after_p44_not_allowed',
+  'exact_approval_p45_to_p46_apply_transaction_handoff_simulation_v2_simulated_handoff_not_open',
+  'exact_approval_p46_apply_transaction_command_preflight_v2_command_after_p45_not_allowed',
+  'exact_approval_p46_to_p47_rollback_guard_handoff_simulation_v2_simulated_handoff_not_open',
+  'exact_approval_p47_rollback_guard_command_preflight_v2_command_after_p46_not_allowed',
+  'exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_current_handoff_not_open',
+  'exact_approval_p47_to_p48_safe_continuation_handoff_simulation_v2_simulated_handoff_not_open',
+  'exact_approval_p48_safe_continuation_command_preflight_v2_command_not_allowed',
+  'exact_approval_wait_state_v2_blockers',
+  'exact_approval_wait_state_v2_not_ready',
+  'exact_approval_wait_state_v2_closed_evidence_not_ready',
+  'exact_approval_wait_state_v2_missing_probe_passes',
 ]);
+
+function isSafeWaiting(status: string, state: string, waitingState: string): boolean {
+  return (status === 'HOLD' && state === waitingState) || (status === 'BLOCK' && state === 'blocked_by_findings');
+}
 
 function evaluate(input: EvaluationInput): { state: string; findings: Finding[] } {
   const findings: Finding[] = [];
@@ -306,13 +330,13 @@ function evaluate(input: EvaluationInput): { state: string; findings: Finding[] 
   if (input.p44Status !== 'HOLD' || input.p44State !== 'waiting_for_exact_approval_artifacts' || !input.p44P50Ready || input.p44ReadyForProductionActivationSequencing) {
     addFinding(findings, 'blocker', 'P44_EXACT_APPROVAL_WAIT_NOT_READY', 'P44 must wait for active approval artifacts, know P50 is ready and not open production activation sequencing.');
   }
-  if (input.p45Status !== 'HOLD' || input.p45State !== 'waiting_for_exact_approval_validation') {
+  if (!isSafeWaiting(input.p45Status, input.p45State, 'waiting_for_exact_approval_validation')) {
     addFinding(findings, 'blocker', 'P45_SEQUENCE_PREFLIGHT_NOT_WAITING', 'P45 must remain waiting for exact approval validation.');
   }
-  if (input.p46Status !== 'HOLD' || input.p46State !== 'waiting_for_activation_sequence_preflight') {
+  if (!isSafeWaiting(input.p46Status, input.p46State, 'waiting_for_activation_sequence_preflight')) {
     addFinding(findings, 'blocker', 'P46_TRANSACTION_CONTRACT_NOT_WAITING', 'P46 must remain waiting for activation sequence preflight.');
   }
-  if (input.p47Status !== 'HOLD' || input.p47State !== 'waiting_for_apply_transaction_contract') {
+  if (!isSafeWaiting(input.p47Status, input.p47State, 'waiting_for_apply_transaction_contract')) {
     addFinding(findings, 'blocker', 'P47_ROLLBACK_GUARD_NOT_WAITING', 'P47 must remain waiting for the apply transaction contract.');
   }
   if (input.p48Status !== 'PASS' || input.p48State !== 'approval_wait_safe_continuation_ready') {
@@ -636,9 +660,9 @@ function main(): void {
       finalHashLockDryRunPresent: input.finalHashLockDryRunPresent,
       p31SafeHoldReady: input.p31Status === 'HOLD' && input.p31State === 'approval_receipt_creation_waiting_for_exact_sentence',
       p44WaitingForExactApproval: input.p44Status === 'HOLD' && input.p44State === 'waiting_for_exact_approval_artifacts',
-      p45WaitingForP44: input.p45Status === 'HOLD' && input.p45State === 'waiting_for_exact_approval_validation',
-      p46WaitingForP45: input.p46Status === 'HOLD' && input.p46State === 'waiting_for_activation_sequence_preflight',
-      p47WaitingForP46: input.p47Status === 'HOLD' && input.p47State === 'waiting_for_apply_transaction_contract',
+      p45WaitingForP44: isSafeWaiting(input.p45Status, input.p45State, 'waiting_for_exact_approval_validation'),
+      p46WaitingForP45: isSafeWaiting(input.p46Status, input.p46State, 'waiting_for_activation_sequence_preflight'),
+      p47WaitingForP46: isSafeWaiting(input.p47Status, input.p47State, 'waiting_for_apply_transaction_contract'),
       p48SafeContinuationReady: input.p48Status === 'PASS' && input.p48State === 'approval_wait_safe_continuation_ready',
       p49CompletionReady: input.p49Status === 'HOLD' && input.p49State === 'closed_mode_evidence_complete_production_locked' && input.p49MissingRequirements === 0 && input.p49ContradictedRequirements === 0,
       p50FinalHashLockReady: input.p50Status === 'PASS' && input.p50State === 'final_preapproval_evidence_hash_lock_ready',

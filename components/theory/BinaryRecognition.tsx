@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroBinaryInteraction } from '../../app/lesson_data_types';
+import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
 /**
  * «Финал-чек» — Binary Recognition. Выбор из двух фраз.
@@ -16,16 +17,31 @@ interface Props {
   lang: Lang;
   theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
   onSolved?: () => void;
+  initialProgress?: TheoryDrillProgressState;
+  onProgressChange?: (state: TheoryDrillProgressState) => void;
 }
 
-export default function BinaryRecognition({ data, lang, theme, onSolved }: Props) {
-  const [answered, setAnswered] = useState<'A' | 'B' | null>(null);
+function readAnswered(progress: TheoryDrillProgressState | undefined): 'A' | 'B' | null {
+  return progress?.answered === 'A' || progress?.answered === 'B' ? progress.answered : null;
+}
+
+export default function BinaryRecognition({ data, lang, theme, onSolved, initialProgress, onProgressChange }: Props) {
+  const [answered, setAnswered] = useState<'A' | 'B' | null>(() => readAnswered(initialProgress));
   const correctKey = data.correct;
+
+  useEffect(() => {
+    setAnswered(readAnswered(initialProgress));
+  }, [initialProgress]);
 
   const choose = useCallback(
     (key: 'A' | 'B') => {
       if (answered) return;
       setAnswered(key);
+      onProgressChange?.({
+        type: 'binary',
+        status: key === correctKey ? 'solved' : 'answered',
+        answered: key,
+      });
       if (key === correctKey) {
         hapticSuccess();
         onSolved?.();
@@ -33,7 +49,7 @@ export default function BinaryRecognition({ data, lang, theme, onSolved }: Props
         hapticError();
       }
     },
-    [answered, correctKey, onSolved],
+    [answered, correctKey, onProgressChange, onSolved],
   );
 
   const renderBtn = (key: 'A' | 'B', label: string) => {

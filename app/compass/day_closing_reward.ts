@@ -8,8 +8,9 @@
  * Локальный guard-ключ на день дублирует идемпотентность на случай оффлайна.
  *
  * ИЗОЛЯЦИЯ: начисление только при compassEconomyOn(); при выключенном крыле
- * серия всё равно ведётся (это память ритуала, не экономика). Ошибки глотаем —
- * награда не должна ломать закрытие дня.
+ * серия всё равно ведётся (это память ритуала, не экономика). Award-guard пишем
+ * только после попытки начисления, чтобы transient XP-сбой не помечал награду
+ * полученной навсегда.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../../constants/i18n';
@@ -67,19 +68,14 @@ export async function awardDayClosingOnce(params: {
   const guard = awardedKey(studyTarget, ritual.dateKey);
   const already = await AsyncStorage.getItem(guard).catch(() => null);
   if (already != null) return { xp, streak: streak.count, awarded: false };
-  await AsyncStorage.setItem(guard, '1').catch(() => {});
-
   if (compassEconomyOn()) {
-    try {
-      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
-      await registerXP(xp, 'daily_task_reward', userName, lang, undefined, {
-        eventId: `compass:day_close:${storageStudyTarget(studyTarget)}:${ritual.dateKey}`,
-        payload: { studyTarget, dateKey: ritual.dateKey, kind: 'compass_day_closing' },
-      });
-    } catch {
-      // best-effort: XP не должен блокировать закрытие дня
-    }
+    const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+    await registerXP(xp, 'daily_task_reward', userName, lang, undefined, {
+      eventId: `compass:day_close:${storageStudyTarget(studyTarget)}:${ritual.dateKey}`,
+      payload: { studyTarget, dateKey: ritual.dateKey, kind: 'compass_day_closing' },
+    });
   }
 
+  await AsyncStorage.setItem(guard, '1').catch(() => {});
   return { xp, streak: streak.count, awarded: true };
 }

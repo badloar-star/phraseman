@@ -1,7 +1,7 @@
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '../components/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -28,7 +28,7 @@ export default function PersonalPlanTheoryScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { theme: t } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
 
   const planId = firstParam(params.planId);
   const dayIndex = Number(firstParam(params.dayIndex) || '1');

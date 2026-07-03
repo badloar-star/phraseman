@@ -40,6 +40,7 @@ exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = export
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -258,7 +259,7 @@ function shardLedgerMeta(op, reason, updatedAtMs) {
  * Отправка набора на модерацию (создаёт документ в community_pack_submissions).
  * Доверие к authorStableId — как к клиентским путям users/{stableId} в текущей архитектуре; усиление через auth-мост — отдельная задача.
  */
-exports.communitySubmitPackForReview = (0, https_1.onCall)(async (request) => {
+exports.communitySubmitPackForReview = (0, https_1.onCall)({ enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }
@@ -354,7 +355,7 @@ exports.communitySubmitPackForReview = (0, https_1.onCall)(async (request) => {
  * Модерация: approve | reject | request_changes. Только custom claim admin.
  * Опциональный moderatorMessage (и legacy rejectReason) — в заявке и в inbox автора.
  */
-exports.communityModerateSubmission = (0, https_1.onCall)(async (request) => {
+exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }
@@ -562,7 +563,7 @@ function buildSellerInboxModerationRow(params) {
  * Админ: снять набор с витрины на доработку или удалить (мягко). Inbox автору — как при модерации заявок.
  * Явный регион us-central1 — как getFunctions в админке и в приложении.
  */
-exports.communityAdminModeratePack = (0, https_1.onCall)({ region: 'us-central1' }, async (request) => {
+exports.communityAdminModeratePack = (0, https_1.onCall)({ region: 'us-central1', enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     }
@@ -656,7 +657,7 @@ exports.communityAdminModeratePack = (0, https_1.onCall)({ region: 'us-central1'
 /**
  * Карточки набора, если пользователь — автор (кроме admin_removed) или покупатель.
  */
-exports.communityFetchPackCardsIfAccessible = (0, https_1.onCall)({ region: 'us-central1' }, async (request) => {
+exports.communityFetchPackCardsIfAccessible = (0, https_1.onCall)({ region: 'us-central1', enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }
@@ -700,7 +701,7 @@ exports.communityFetchPackCardsIfAccessible = (0, https_1.onCall)({ region: 'us-
 /**
  * Покупка опубликованного набора: списание у покупателя, начисление автору (за вычетом внутриигровой комиссии), запись покупки, inbox продавцу.
  */
-exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
+exports.communityPurchasePack = (0, https_1.onCall)({ enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }
@@ -830,7 +831,7 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
  * Список непрочитанных событий продажи для автора (для модалки при входе).
  * Доверие к authorStableId — как у communityPurchasePack.
  */
-exports.communityListSellerInbox = (0, https_1.onCall)(async (request) => {
+exports.communityListSellerInbox = (0, https_1.onCall)({ enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }
@@ -856,7 +857,7 @@ exports.communityListSellerInbox = (0, https_1.onCall)(async (request) => {
 /**
  * Пометить события inbox как просмотренные (для модалки «уже показали»).
  */
-exports.communityMarkSellerInboxSeen = (0, https_1.onCall)(async (request) => {
+exports.communityMarkSellerInboxSeen = (0, https_1.onCall)({ enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }

@@ -19,7 +19,7 @@ import {
 import { Image } from 'expo-image';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
-  isEnergyBonusGiftId, rollF2pLevelGiftForUser,
+  isEnergyBonusGiftId, isPremiumLevelGiftId, rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
@@ -33,6 +33,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
+import PlusBadge from './PlusBadge';
 import {
   RewardModalPanelBackdrop,
   rewardModalPanelBorder,
@@ -252,6 +253,10 @@ function LevelGiftModal({
     const applyP: Promise<ApplyGiftResult> = g.choices?.length || storesOnly
       ? Promise.resolve({ success: true })
       : (async () => {
+          const claimP = (onGiftClaimed ? onGiftClaimed(g) : markGiftClaimed(level))
+            .then(() => saveClaimedGiftRarity(level, g.rarity))
+            .catch(() => {});
+          await claimP;
           const result = await applyGift(
             g,
             userName,
@@ -260,12 +265,11 @@ function LevelGiftModal({
             setEnergyFn,
             { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
           );
-          if (onGiftClaimed) {
-            await onGiftClaimed(g);
-          } else {
-            await markGiftClaimed(level);
+          if (result.success) {
+            // Already claimed optimistically before applying the reward effect.
+          } else if (!onGiftClaimed) {
+            await saveUnclaimedGift(level, g);
           }
-          await saveClaimedGiftRarity(level, g.rarity);
           return result;
         })();
     const applyResultP: Promise<ApplyGiftResult> = applyP.catch(() => ({ success: false }));
@@ -339,41 +343,49 @@ function LevelGiftModal({
   const handleChoice = async (chosen: GiftDef) => {
     if (choiceBusy) return;
     setChoiceBusy(true);
-    try {
-      if (storesOnly) {
-        await saveUnclaimedGift(level, chosen);
-        setGift(chosen);
-        void hapticSuccess();
-        onClose(false);
-        return;
-      }
-      const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
-      const result = await applyGift(
-        chosen,
-        userName,
-        energy,
-        maxEnergy,
-        setEnergyFn,
-        { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
-      );
-      if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
-      if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
-      setAppliedResult(result);
-      if (onGiftClaimed) {
-        await onGiftClaimed(chosen);
-      } else {
-        await markGiftClaimed(level);
-      }
-      await saveClaimedGiftRarity(level, chosen.rarity);
-      setGift(chosen);
-      void hapticSuccess();
-      onClose(true);
-      if (isCosmeticGiftId(chosen.id)) {
-        setTimeout(() => router.push('/avatar_select' as any), 80);
-      }
-    } finally {
-      setChoiceBusy(false);
+    setGift(chosen);
+    void hapticSuccess();
+    if (storesOnly) {
+      void saveUnclaimedGift(level, chosen).catch(() => {});
+      onClose(false);
+      return;
     }
+    setAppliedResult({ success: true });
+    onClose(true);
+    if (isCosmeticGiftId(chosen.id)) {
+      setTimeout(() => router.push('/avatar_select' as any), 80);
+    }
+    void (async () => {
+      try {
+        const claimP = (onGiftClaimed ? onGiftClaimed(chosen) : markGiftClaimed(level))
+          .then(() => saveClaimedGiftRarity(level, chosen.rarity))
+          .catch(() => {});
+        await claimP;
+        const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
+        const result = await applyGift(
+          chosen,
+          userName,
+          energy,
+          maxEnergy,
+          setEnergyFn,
+          { ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }), studyTarget },
+        );
+        if (isVisibleRef.current) {
+          if (result.xpBoostAlreadyActive) setXpBoostAlreadyActive(true);
+          if (result.energyBoostAlreadyActive) setEnergyBoostAlreadyActive(true);
+          setAppliedResult(result);
+        }
+        if (result.success) {
+          // Already claimed optimistically before applying the reward effect.
+        } else if (!onGiftClaimed) {
+          await saveUnclaimedGift(level, chosen);
+        }
+      } catch {
+        // The user already saw the optimistic choice; keep retry paths/background logs quiet.
+      } finally {
+        if (isVisibleRef.current) setChoiceBusy(false);
+      }
+    })();
   };
 
   if (!visible || !gift) return null;
@@ -382,6 +394,7 @@ function LevelGiftModal({
   const palette     = paletteForRarity(rarity);
   const accent      = palette.accent;
   const rarityLabel = giftRarityUiLabel(rarity, lang);
+  const showPlusBadge = applyAsPremium === true || isPremiumLevelGiftId(gift.id);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
@@ -651,9 +664,12 @@ function LevelGiftModal({
                 </Text>
               </View>
 
-              <Text style={{ color: '#FFFFFF', fontSize: f.h2 + 4, fontWeight: '900', marginBottom: 6, textAlign: 'center' }}>
-                {gift ? giftDisplayTitleForLang(gift, lang) : ''}
-              </Text>
+              <View style={{ alignItems: 'center', marginBottom: 6, gap: 6 }}>
+                <Text style={{ color: '#FFFFFF', fontSize: f.h2 + 4, fontWeight: '900', textAlign: 'center' }}>
+                  {gift ? giftDisplayTitleForLang(gift, lang) : ''}
+                </Text>
+                {showPlusBadge ? <PlusBadge themeMode={themeMode} size="xs" testID="level-gift-plus-badge" /> : null}
+              </View>
               <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body + 6, textAlign: 'center', marginBottom: storesOnly ? 10 : (gift?.id && isEnergyBonusGiftId(gift.id)) || xpBoostAlreadyActive ? 12 : 24 }}>
                 {gift ? giftDisplayDescForLang(gift, lang) : ''}
               </Text>

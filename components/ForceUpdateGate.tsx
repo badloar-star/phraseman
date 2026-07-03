@@ -14,6 +14,7 @@ import {
   getManualUpdateCampaignId,
   getManualUpdateCta,
   getManualUpdateMode,
+  getManualUpdatePlatform,
   getManualUpdateTargetBuild,
   getManualUpdateTitle,
   getMinAppVersion,
@@ -147,6 +148,7 @@ async function readManualState(lang: string, userId: string | null): Promise<Gat
 
   const campaignId = getManualUpdateCampaignId().trim();
   const mode = getManualUpdateMode();
+  const platformFilter = getManualUpdatePlatform();
   const targetBuild = getManualUpdateTargetBuild().trim();
   const dismissedKey = campaignDismissalKey('manual_update', campaignId);
   const alreadySeen = mode === 'optional' ? await isCampaignDismissed(dismissedKey) : false;
@@ -156,6 +158,8 @@ async function readManualState(lang: string, userId: string | null): Promise<Gat
     mode,
     currentBuild: currentComparableForTarget(targetBuild),
     targetBuild,
+    platformFilter,
+    platform: Platform.OS,
     seenCampaignIds: alreadySeen ? [campaignId] : [],
   });
   if (!shouldShow) return null;

@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman onboarding v4</title>
+  <style>
+    :root {
+      --bg: #010102;
+      --text: #fff;
+      --muted: rgba(255,255,255,.68);
+      --quiet: rgba(255,255,255,.48);
+      --stroke: rgba(143,160,255,.22);
+      --stroke2: rgba(255,255,255,.12);
+      --glass: rgba(255,255,255,.075);
+      --glass2: rgba(255,255,255,.105);
+      --blue: #5B7CFF;
+      --accent: #8FA0FF;
+      --violet: #A95BFF;
+      --gold: #F2BE58;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 58% 25% at 18% -4%, rgba(91,124,255,.34), transparent 70%),
+        radial-gradient(ellipse 48% 25% at 86% 2%, rgba(169,91,255,.32), transparent 72%),
+        radial-gradient(ellipse 70% 22% at 52% 106%, rgba(143,160,255,.20), transparent 72%),
+        linear-gradient(180deg, #10121b 0%, #05060c 42%, #010102 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(116deg, transparent 0%, rgba(255,255,255,.055) 22%, transparent 39%),
+        linear-gradient(244deg, transparent 10%, rgba(143,160,255,.060) 38%, transparent 64%);
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1540px, calc(100vw - 36px));
+      margin: 0 auto;
+      padding: 26px 0 42px;
+    }
+
+    .topbar, .hero, .note, .screenCard {
+      border: 1px solid var(--stroke);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.034)),
+        rgba(8,10,18,.72);
+      box-shadow: 0 24px 78px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.14);
+      backdrop-filter: blur(30px) saturate(160%);
+    }
+
+    .topbar {
+      min-height: 74px;
+      border-radius: 28px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(242,190,88,.30);
+      box-shadow: 0 16px 40px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .logo img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      transform: scale(1.14);
+      border-radius: 14px;
+    }
+
+    .brand strong { display: block; font-size: 17px; line-height: 1.05; }
+    .brand span { display: block; margin-top: 4px; color: var(--quiet); font-size: 12px; font-weight: 850; }
+
+    .topchips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px; }
+
+    .chip, .approve {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0 14px;
+      font-size: 12px;
+      font-weight: 950;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.075);
+      white-space: nowrap;
+    }
+
+    .approve {
+      cursor: pointer;
+      min-width: 130px;
+      background: linear-gradient(135deg, var(--blue), var(--accent) 48%, var(--violet));
+      box-shadow: 0 16px 38px rgba(91,124,255,.30), inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .hero {
+      margin-top: 18px;
+      min-height: 246px;
+      border-radius: 30px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: #DDE3FF;
+      background: rgba(143,160,255,.16);
+      border: 1px solid rgba(143,160,255,.28);
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: 48px;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .shine {
+      color: transparent;
+      background: linear-gradient(90deg, #fff, #bec8ff 42%, #e6c5ff 78%, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 680;
+    }
+
+    .routeMap {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-content: start;
+    }
+
+    .route {
+      min-height: 136px;
+      border-radius: 22px;
+      padding: 13px;
+      background: rgba(255,255,255,.064);
+      border: 1px solid rgba(255,255,255,.105);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.11);
+    }
+
+    .route b {
+      display: block;
+      min-height: 34px;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .route span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.24;
+      font-weight: 720;
+    }
+
+    .route .plan {
+      margin-top: 10px;
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border-radius: 999px;
+      color: #EEF1FF;
+      background: linear-gradient(135deg, rgba(91,124,255,.30), rgba(169,91,255,.24));
+      border: 1px solid rgba(143,160,255,.35);
+      font-size: 10px;
+      font-weight: 950;
+    }
+
+    .screens {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .screenCard {
+      height: 740px;
+      min-height: 740px;
+      border-radius: 30px;
+      padding: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone {
+      height: 100%;
+      border-radius: 25px;
+      padding: 16px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 13px;
+      background:
+        radial-gradient(ellipse 60% 24% at 80% 0%, rgba(169,91,255,.27), transparent 74%),
+        radial-gradient(ellipse 54% 22% at 8% 100%, rgba(91,124,255,.24), transparent 74%),
+        linear-gradient(180deg, #171a25 0%, #080a12 58%, #010102 100%);
+      border: 3px solid rgba(255,255,255,.085);
+      box-shadow: inset 0 0 0 1px rgba(143,160,255,.14), inset 0 1px 0 rgba(255,255,255,.10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: calc(50% - 35px);
+      width: 70px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.25);
+      z-index: 2;
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      inset: -24%;
+      background: linear-gradient(125deg, transparent 18%, rgba(255,255,255,.12) 34%, transparent 49%);
+      opacity: .52;
+      pointer-events: none;
+    }
+
+    .phone > * { position: relative; z-index: 1; }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 12px;
+    }
+
+    .mini {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .mini img {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      object-fit: cover;
+      transform: scale(1.12);
+      border: 1px solid rgba(242,190,88,.28);
+    }
+
+    .mini strong { display: block; font-size: 12px; line-height: 1; }
+    .mini span { display: block; margin-top: 3px; color: var(--quiet); font-size: 10px; font-weight: 850; }
+
+    .step {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      box-shadow: 0 12px 26px rgba(91,124,255,.28), inset 0 1px 0 rgba(255,255,255,.24);
+    }
+
+    .phone h3 {
+      margin: 2px 0 0;
+      font-size: 25px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      min-height: 38px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 720;
+    }
+
+    .content {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .choices { display: grid; gap: 9px; }
+    .choices.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .choice, .glass, .planRow, .payPlan, .trialCell, .field, .consent, .wheel {
+      background: rgba(255,255,255,.074);
+      border: 1px solid rgba(255,255,255,.115);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .choice {
+      min-height: 64px;
+      border-radius: 18px;
+      padding: 11px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      overflow: hidden;
+    }
+
+    .choice.selected {
+      background: linear-gradient(135deg, rgba(91,124,255,.30), rgba(169,91,255,.24));
+      border-color: rgba(143,160,255,.46);
+      box-shadow: 0 16px 34px rgba(91,124,255,.16), inset 0 1px 0 rgba(255,255,255,.16);
+    }
+
+    .choice b, .payPlan b, .planRow b, .field b, .consent b {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .choice span, .payPlan span, .planRow span, .field span, .consent span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 720;
+    }
+
+    .mapPill {
+      width: fit-content;
+      min-height: 25px;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 7px;
+      padding: 0 8px;
+      border-radius: 999px;
+      color: #EEF1FF;
+      background: rgba(143,160,255,.16);
+      border: 1px solid rgba(143,160,255,.28);
+      font-size: 10px;
+      font-weight: 950;
+    }
+
+    .glass {
+      border-radius: 21px;
+      padding: 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.115), rgba(255,255,255,.050)),
+        rgba(16,20,34,.72);
+      border-color: rgba(143,160,255,.22);
+      backdrop-filter: blur(22px) saturate(155%);
+    }
+
+    .miniSession {
+      display: grid;
+      gap: 9px;
+    }
+
+    .micro {
+      min-height: 88px;
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.070);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .microTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .microTop b { font-size: 12px; line-height: 1.15; }
+    .microTop span {
+      min-width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+    }
+
+    .wave {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.070);
+    }
+
+    .bar {
+      width: 5px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), var(--violet));
+      box-shadow: 0 0 14px rgba(143,160,255,.40);
+    }
+
+    .b1 { height: 14px; }
+    .b2 { height: 26px; }
+    .b3 { height: 34px; }
+    .b4 { height: 22px; }
+
+    .tokens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .token {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(143,160,255,.18);
+      border: 1px solid rgba(143,160,255,.30);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .answerBox {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(91,124,255,.26), rgba(169,91,255,.20));
+      border: 1px solid rgba(143,160,255,.34);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .planRows { display: grid; gap: 8px; }
+
+    .planRow {
+      min-height: 58px;
+      border-radius: 17px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .num {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+    }
+
+    .promise {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 18px;
+      color: #F4F6FF;
+      background: linear-gradient(135deg, rgba(91,124,255,.18), rgba(169,91,255,.16));
+      border: 1px solid rgba(143,160,255,.28);
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 760;
+    }
+
+    .payHeader { text-align: center; }
+    .payGlyph {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 9px;
+      display: grid;
+      place-items: center;
+      border-radius: 21px;
+      background: rgba(143,160,255,.14);
+      border: 1px solid rgba(143,160,255,.28);
+      box-shadow: 0 0 24px rgba(143,160,255,.18);
+    }
+
+    .payGlyph img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 14px;
+      transform: scale(1.12);
+    }
+
+    .payHeader h3 { font-size: 23px; }
+    .payHeader .sub { min-height: 0; }
+
+    .tags {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      min-height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      padding: 0 7px;
+      color: #EEF1FF;
+      background: rgba(143,160,255,.16);
+      border: 1px solid rgba(143,160,255,.28);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .payPlans { display: grid; gap: 7px; }
+
+    .payPlan {
+      min-height: 60px;
+      border-radius: 17px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .payPlan.primary {
+      background: linear-gradient(135deg, rgba(91,124,255,.28), rgba(169,91,255,.22));
+      border-color: rgba(143,160,255,.48);
+    }
+
+    .price {
+      text-align: right;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .trial {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .trialCell {
+      min-height: 62px;
+      border-radius: 16px;
+      padding: 9px;
+      text-align: center;
+    }
+
+    .trialCell b { display: block; font-size: 11px; line-height: 1.15; }
+    .trialCell span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.2; font-weight: 720; }
+
+    .legal {
+      color: var(--quiet);
+      font-size: 10px;
+      line-height: 1.35;
+      text-align: center;
+      font-weight: 650;
+    }
+
+    .field {
+      min-height: 58px;
+      border-radius: 17px;
+      padding: 11px 12px;
+    }
+
+    .field.value {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .wheel {
+      height: 168px;
+      border-radius: 21px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      position: relative;
+    }
+
+    .wheel::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: calc(50% - 21px);
+      height: 42px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(91,124,255,.28), rgba(169,91,255,.22));
+      border: 1px solid rgba(143,160,255,.42);
+      z-index: 0;
+    }
+
+    .age {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      color: var(--quiet);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .age.selected {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 950;
+    }
+
+    .consent {
+      min-height: 64px;
+      border-radius: 18px;
+      padding: 11px;
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .check {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      box-shadow: 0 10px 20px rgba(91,124,255,.25);
+    }
+
+    .check::after {
+      content: "";
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+
+    .cta {
+      min-height: 56px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 19px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.1;
+      font-weight: 950;
+      letter-spacing: 0;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 46%, var(--violet) 100%);
+      box-shadow:
+        0 13px 0 rgba(69, 69, 157, .36),
+        0 24px 48px rgba(91,124,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.36);
+    }
+
+    .ghost {
+      min-height: 24px;
+      margin-top: 7px;
+      color: var(--quiet);
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .progress {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .progress div {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(143,160,255,.18);
+    }
+
+    .progress div:first-child {
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+      box-shadow: 0 0 18px rgba(143,160,255,.34);
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .note {
+      min-height: 124px;
+      border-radius: 24px;
+      padding: 16px;
+    }
+
+    .note b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .note span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 680;
+    }
+
+    @media (max-width: 1280px) {
+      .hero { grid-template-columns: 1fr; }
+      .routeMap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100vw - 20px, 460px); padding-top: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; border-radius: 24px; }
+      .topchips { justify-content: flex-start; }
+      h1 { font-size: 34px; }
+      .hero { border-radius: 24px; padding: 18px; }
+      .routeMap, .screens, .notes { grid-template-columns: 1fr; }
+      .screenCard { height: 735px; min-height: 735px; }
+      .choices.two { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo"><img src="/files/phraseman-icon.png" alt="Phraseman" /></div>
+        <div>
+          <strong>Phraseman</strong>
+          <span>v4 · план, mini-сессия, полный paywall</span>
+        </div>
+      </div>
+      <div class="topchips">
+        <span class="chip">8 экранов + день 2</span>
+        <span class="chip">цель ведёт к плану</span>
+        <button class="approve" data-choice="approve-v4" onclick="window.toggleSelect && toggleSelect(this)">Утвердить v4</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">логика продукта</span>
+        <h1><span class="shine">Сначала выбираем путь.</span><br />Потом даём вкус метода.</h1>
+        <p class="lead">Один ответ на цель выбирает правильный план. Mini-aha показывает не фразу, а маленькую сессию из реальных механик.</p>
+      </div>
+      <div class="routeMap">
+        <div class="route"><b>Кино и сериалы</b><span>ловить живую речь</span><div class="plan">Эфир</div></div>
+        <div class="route"><b>Обычная жизнь</b><span>отвечать вслух</span><div class="plan">Реплика</div></div>
+        <div class="route"><b>Поездки</b><span>кафе, отель, дорога</span><div class="plan">Атлас</div></div>
+        <div class="route"><b>Нужные фразы</b><span>держать под рукой</span><div class="plan">Запас</div></div>
+        <div class="route"><b>Для себя</b><span>спокойный темп</span><div class="plan">Фокус</div></div>
+      </div>
+    </section>
+
+    <section class="screens">
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>старт</span></div></div>
+            <div class="step">1</div>
+          </div>
+          <div>
+            <h3>Какой язык выбираешь?</h3>
+            <p class="sub">Соберу путь под твой день.</p>
+          </div>
+          <div class="content">
+            <div class="choices">
+              <div class="choice selected"><b>English</b><span>кино, работа, поездки</span></div>
+              <div class="choice"><b>Français</b><span>кафе, город, разговор</span></div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Выбрать язык</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>цель</span></div></div>
+            <div class="step">2</div>
+          </div>
+          <div>
+            <h3>Зачем тебе английский?</h3>
+            <p class="sub">Ответ сразу выбирает план.</p>
+          </div>
+          <div class="content">
+            <div class="choices two">
+              <div class="choice selected"><b>Понимать кино</b><span>живая речь</span><div class="mapPill">план Эфир</div></div>
+              <div class="choice"><b>Говорить в жизни</b><span>короткие ответы</span><div class="mapPill">план Реплика</div></div>
+              <div class="choice"><b>Ехать спокойно</b><span>город и дорога</span><div class="mapPill">план Атлас</div></div>
+              <div class="choice"><b>Собрать фразы</b><span>на каждый день</span><div class="mapPill">план Запас</div></div>
+              <div class="choice"><b>Заниматься для себя</b><span>мягкий ритм</span><div class="mapPill">план Фокус</div></div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Выбрать цель</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>старт</span></div></div>
+            <div class="step">3</div>
+          </div>
+          <div>
+            <h3>С чего начнём?</h3>
+            <p class="sub">Уровень меняет сложность.</p>
+          </div>
+          <div class="content">
+            <div class="choices">
+              <div class="choice"><b>A0</b><span>нужны первые фразы</span></div>
+              <div class="choice selected"><b>A1</b><span>собираю простые фразы</span></div>
+              <div class="choice"><b>A2</b><span>понимаю, хочу говорить</span></div>
+              <div class="choice"><b>B1</b><span>нужен живой ритм</span></div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Выбрать уровень</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>темп</span></div></div>
+            <div class="step">4</div>
+          </div>
+          <div>
+            <h3>Сколько времени в день?</h3>
+            <p class="sub">Темп выбирает число раундов.</p>
+          </div>
+          <div class="content">
+            <div class="choices">
+              <div class="choice"><b>5 минут</b><span>2–3 раунда</span></div>
+              <div class="choice selected"><b>10 минут</b><span>3–4 раунда</span></div>
+              <div class="choice"><b>15 минут</b><span>4–5 раундов</span></div>
+              <div class="choice"><b>20 минут</b><span>полный дневной блок</span></div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Выбрать темп</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>mini-сессия</span></div></div>
+            <div class="step">5</div>
+          </div>
+          <div>
+            <h3>Попробуй метод</h3>
+            <p class="sub">Один смысл. Три касания.</p>
+          </div>
+          <div class="content">
+            <div class="glass miniSession">
+              <div class="micro">
+                <div class="microTop"><b>Услышь фразу</b><span>1</span></div>
+                <div class="wave">
+                  <div class="bar b1"></div><div class="bar b3"></div><div class="bar b2"></div><div class="bar b4"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b1"></div>
+                </div>
+              </div>
+              <div class="micro">
+                <div class="microTop"><b>Выбери смысл</b><span>2</span></div>
+                <div class="answerBox">Попросить повторить</div>
+              </div>
+              <div class="micro">
+                <div class="microTop"><b>Собери ответ</b><span>3</span></div>
+                <div class="tokens">
+                  <div class="token">Can</div><div class="token">you</div><div class="token">say</div><div class="token">that</div><div class="token">again?</div>
+                </div>
+              </div>
+            </div>
+            <div class="promise">Mini-сессия должна брать механику из выбранного плана: audio choice, build, natural choice или repeat.</div>
+          </div>
+          <div>
+            <button class="cta">Показать план</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>план</span></div></div>
+            <div class="step">6</div>
+          </div>
+          <div>
+            <h3>План Эфир готов</h3>
+            <p class="sub">Для кино и живой речи.</p>
+          </div>
+          <div class="content">
+            <div class="glass">
+              <div class="tags">
+                <div class="tag">12 недель</div>
+                <div class="tag">A1 старт</div>
+                <div class="tag">10 минут</div>
+              </div>
+              <div class="promise">Обещание: сначала ты ловишь смысл, потом собираешь фразу, потом отвечаешь коротко.</div>
+              <div class="planRows" style="margin-top: 10px;">
+                <div class="planRow"><div class="num">1</div><div><b>День 1</b><span>переспросить спокойно</span></div></div>
+                <div class="planRow"><div class="num">2</div><div><b>Сегодня</b><span>услышать, выбрать, собрать</span></div></div>
+                <div class="planRow"><div class="num">3</div><div><b>Завтра</b><span>коротко ответить на слух</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Открыть полный доступ</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>paywall A/B/C</span></div></div>
+            <div class="step">7</div>
+          </div>
+          <div class="payHeader">
+            <div class="payGlyph"><img src="/files/phraseman-icon.png" alt="" /></div>
+            <h3>Открой полный доступ</h3>
+            <p class="sub">План Эфир уже собран.</p>
+          </div>
+          <div class="content">
+            <div class="tags">
+              <div class="tag">все планы</div>
+              <div class="tag">звук</div>
+              <div class="tag">повтор</div>
+            </div>
+            <div class="payPlans">
+              <div class="payPlan primary"><div><b>Год</b><span>3 дня всё открыто</span></div><div class="price">из стора</div></div>
+              <div class="payPlan"><div><b>Месяц</b><span>гибкий старт</span></div><div class="price">из стора</div></div>
+              <div class="payPlan"><div><b>Навсегда</b><span>один доступ</span></div><div class="price">если есть</div></div>
+            </div>
+            <div class="trial">
+              <div class="trialCell"><b>Сегодня</b><span>план открыт</span></div>
+              <div class="trialCell"><b>За день</b><span>напомним</span></div>
+              <div class="trialCell"><b>Потом</b><span>доступ продлится</span></div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Открыть полный доступ</button>
+            <div class="ghost">Восстановить · Terms · Privacy</div>
+            <div class="legal">Полный юридический блок остаётся из готового paywall. Меняем только фон, форму карточек и градиент CTA для onboarding.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Phraseman</strong><span>профиль</span></div></div>
+            <div class="step">8</div>
+          </div>
+          <div>
+            <h3>Как тебя звать?</h3>
+            <p class="sub">Имя, возраст и согласие — в одном спокойном шаге.</p>
+          </div>
+          <div class="content">
+            <div class="field value">Алекс</div>
+            <div class="wheel">
+              <div class="age">15</div>
+              <div class="age">16</div>
+              <div class="age selected">17</div>
+              <div class="age">18</div>
+              <div class="age">19</div>
+            </div>
+            <div class="consent">
+              <div class="check"></div>
+              <div><b>Принимаю Terms of Use</b><span>и ознакомился с Privacy Policy</span></div>
+            </div>
+            <div class="promise">Если возраст меньше 13: отдельный путь для родителя или мягкая остановка до сбора данных.</div>
+          </div>
+          <div>
+            <button class="cta">Начать план</button>
+            <div class="progress"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="screenCard">
+        <div class="phone">
+          <div class="top">
+            <div class="mini"><img src="/files/phraseman-icon.png" alt="" /><div><strong>Compass</strong><span>день 2</span></div></div>
+            <div class="step">C</div>
+          </div>
+          <div>
+            <h3>Маршрут на сегодня</h3>
+            <p class="sub">Compass выбирает сессии как обычно.</p>
+          </div>
+          <div class="content">
+            <div class="glass">
+              <div class="planRows">
+                <div class="planRow"><div class="num">1</div><div><b>Разогреть слух</b><span>короткий audio-раунд</span></div></div>
+                <div class="planRow"><div class="num">2</div><div><b>Собрать фразу</b><span>один живой смысл</span></div></div>
+                <div class="planRow"><div class="num">3</div><div><b>Вернуть вчерашнее</b><span>мягкий повтор</span></div></div>
+              </div>
+            </div>
+            <div class="glass">
+              <div class="promise" style="margin-top:0;">Вижу, ты учишься без аккаунта. Это нормально. Привязка сохранит твой путь, если сменишь телефон.</div>
+            </div>
+          </div>
+          <div>
+            <button class="cta">Привязать аккаунт</button>
+            <div class="ghost">Позже · показать после сессии</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="notes">
+      <div class="note"><b>Mini-aha</b><span>Не одна фраза. Нужна мини-сессия на 2–3 касания, иначе ценность не ощущается.</span></div>
+      <div class="note"><b>Правильный план</b><span>Цель выбирает план: Эфир, Реплика, Атлас, Запас или Фокус. Уровень и минуты задают темп.</span></div>
+      <div class="note"><b>Paywall</b><span>Оставляем готовые A/B/C блоки: plan cards, trial timeline, CTA, legal, restore. Меняем onboarding chrome.</span></div>
+      <div class="note"><b>Legal</b><span>Одна галочка подходит для Terms + Privacy notice. Отдельные согласия нужны для отдельной обработки.</span></div>
+    </section>
+  </main>
+</body>
+</html>

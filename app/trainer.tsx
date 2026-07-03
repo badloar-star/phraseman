@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Image } from 'expo-image';
@@ -12,27 +12,27 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { TrainerLoadingView } from '../components/TrainerLoadStates';
 import CompassBevel from '../components/CompassBevel';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
-import { clearTrainerStore, devSeedTrainer, getTrainerDashboard, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
+import { clearTrainerStore, devSeedTrainer, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
 import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { getVerifiedPremiumStatus } from './premium_guard';
-import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
-import { computePhraseAnalytics, type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
+import PlusBadge from '../components/PlusBadge';
+import { type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
+import WeeklyReviewCard from './WeeklyReviewCard';
 import { getDiagnosisTraining } from './diagnosis_trainings';
-import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
+import type { ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
-import { storageStudyTarget } from './target_storage_keys';
+import { getCachedTrainerPracticeSnapshot, prefetchTrainerPracticeSnapshot } from './trainer_practice_prefetch';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
@@ -544,6 +544,19 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
       {inner}
     </TouchableOpacity>);
 }
+// Тихая ревалидация: dashboard/analytics/resolvedPersonalTrainings приходят как новые
+// объектные ссылки на каждый фокус экрана, даже когда контент не изменился. Сравниваем
+// по значению (JSON.stringify — объекты небольшие) перед setState, чтобы не перерисовывать
+// экран и не мигать карточками аналитики без реальных изменений данных.
+function jsonEqualQuiet<T>(a: T, b: T): boolean {
+    if (a === b) return true;
+    try {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+    catch {
+        return false;
+    }
+}
 function TrainerScreenInner() {
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
@@ -553,14 +566,15 @@ function TrainerScreenInner() {
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
     const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
-    const [dashboard, setDashboard] = useState<TrainerDashboard>(EMPTY_TRAINER_DASHBOARD);
-    const [loading, setLoading] = useState(true);
-    const [initialDataReady, setInitialDataReady] = useState(false);
+    const prefetchedPractice = getCachedTrainerPracticeSnapshot(studyTarget, sourceLocale);
+    const initialDataReadyRef = useRef(prefetchedPractice != null);
+    const [dashboard, setDashboard] = useState<TrainerDashboard>(() => prefetchedPractice?.dashboard ?? EMPTY_TRAINER_DASHBOARD);
+    const [initialDataReady, setInitialDataReady] = useState(() => initialDataReadyRef.current);
     const [loadError, setLoadError] = useState(false);
     const [seeding, setSeeding] = useState(false);
-    const [hasPremium, setHasPremium] = useState(false);
-    const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
-    const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
+    const [hasPremium, setHasPremium] = useState(() => prefetchedPractice?.hasPremium ?? false);
+    const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(() => prefetchedPractice?.analytics ?? null);
+    const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(() => prefetchedPractice?.resolvedPersonalTrainings ?? null);
     const [analyticsTab, setAnalyticsTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
     const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
     const trainerSessionEnabled = trainerSessionContentAvailableForTarget(studyTarget);
@@ -568,35 +582,26 @@ function TrainerScreenInner() {
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const loadData = useCallback(async () => {
-        setLoading(true);
         try {
-            const [dash, premium, analyticsResult, resolved] = await Promise.all([
-                getTrainerDashboard(studyTarget, sourceLocale),
-                getVerifiedPremiumStatus().catch(() => false),
-                trainerSessionEnabled
-                    ? storageStudyTarget(studyTarget) === 'fr'
-                        ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
-                        : computePhraseAnalytics().catch(() => null)
-                    : Promise.resolve(null),
-                personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
-            ]);
-            setDashboard(dash);
-            setHasPremium(premium);
-            setAnalytics(analyticsResult);
-            setResolvedPersonalTrainings(resolved);
+            const snapshot = await prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale, force: true });
+            // Тихая ревалидация: snapshot.* приходит новыми ссылками на каждый фокус даже
+            // когда содержимое не изменилось — сравниваем перед setState, чтобы не мигать
+            // аналитикой/карточками на повторном фокусе экрана.
+            setDashboard(prev => (jsonEqualQuiet(prev, snapshot.dashboard) ? prev : snapshot.dashboard));
+            setHasPremium(snapshot.hasPremium);
+            setAnalytics(prev => (jsonEqualQuiet(prev, snapshot.analytics) ? prev : snapshot.analytics));
+            setResolvedPersonalTrainings(prev => (jsonEqualQuiet(prev, snapshot.resolvedPersonalTrainings) ? prev : snapshot.resolvedPersonalTrainings));
+            initialDataReadyRef.current = true;
+            setInitialDataReady(true);
             setLoadError(false);
         }
         catch {
             // Keep the previous dashboard on refresh failure so the scroll layout does not collapse.
             // Surface a retry affordance only when we never managed an initial load — otherwise the
             // stale-but-valid dashboard stays on screen and a transient refresh hiccup is invisible.
-            setLoadError(prev => prev || !initialDataReady);
+            setLoadError(prev => prev || !initialDataReadyRef.current);
         }
-        finally {
-            setInitialDataReady(true);
-            setLoading(false);
-        }
-    }, [personalPracticeCoachEnabled, sourceLocale, studyTarget, trainerSessionEnabled, initialDataReady]);
+    }, [sourceLocale, studyTarget]);
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
@@ -618,6 +623,7 @@ function TrainerScreenInner() {
         windowDays: 30,
     };
     const hasAnalyticsMistakes = shownAnalytics.totalMistakes > 0;
+    const showTrainerModePlusBadge = !hasPremium && !isFeatureFreeForEveryone('trainer_modes');
     const openPremium = useCallback((context = 'trainer') => {
         hapticTap();
         router.push({ pathname: '/premium_modal', params: { context } } as any);
@@ -657,9 +663,6 @@ function TrainerScreenInner() {
         hapticTap();
         router.push('/(tabs)/lessons' as any);
     }, [router]);
-    if (loading && !initialDataReady) {
-        return <TrainerLoadingView lang={lang} accent={trainerAccent}/>;
-    }
     if (loadError && !initialDataReady) {
         return (<ScreenGradient>
           <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-error">
@@ -807,7 +810,8 @@ function TrainerScreenInner() {
                       <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
                         {optionTitle(option, lang)}
                       </Text>
-                      {isNext ? (<View style={[styles.nextBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22', borderRadius: trainerPillRadius, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent' }]}>
+                      {showTrainerModePlusBadge ? <PlusBadge themeMode={themeMode} size="xs" /> : null}
+                      {isNext && option.id !== 'context' ? (<View style={[styles.nextBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22', borderRadius: trainerPillRadius, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent' }]}>
                           <Text style={{ color: optionAccent, fontSize: f.label, fontWeight: '900' }}>
                             {triLang(lang, {
                         ru: 'лучший старт',
@@ -883,6 +887,8 @@ function TrainerScreenInner() {
                     <Ionicons name="expand-outline" size={18} color={t.textMuted}/>
                   </TouchableOpacity>
                 </View>
+
+                <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
 
                 {/* Вкладки */}
                 <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>

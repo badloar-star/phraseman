@@ -31,6 +31,7 @@ import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './G
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
+import PlusBadge from './PlusBadge';
 import { GiftBox3D, paletteForRarity, GIFT_PALETTES } from './level_gift_box';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
@@ -47,6 +48,7 @@ import {
   markGiftClaimed,
   saveClaimedGiftRarity,
   saveUnclaimedDualGift,
+  saveUnclaimedGift,
   setLevelHadDualClaim,
   type PremPair,
 } from '../app/level_gift_inventory';
@@ -219,6 +221,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const idleRight = useRef<Animated.CompositeAnimation | null>(null);
   const idleAll   = useRef<Animated.CompositeAnimation | null>(null);
   const glowLoop  = useRef<Animated.CompositeAnimation | null>(null);
+  const f2pApplyPromiseRef = useRef<Promise<ApplyGiftResult> | null>(null);
+  const premApplyPromiseRef = useRef<Promise<ApplyGiftResult> | null>(null);
   const doneClosingRef = useRef(false);
   /** Только false→true по `visible` — иначе лишний сброс `opened` (Strict Mode / смена deps) убирает уже открытые сундуки. */
   const wasVisibleRef = useRef(false);
@@ -241,6 +245,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       idleLeft.current?.stop();
       idleRight.current?.stop();
       glowLoop.current?.stop();
+      f2pApplyPromiseRef.current = null;
+      premApplyPromiseRef.current = null;
       return;
     }
     const justOpened = !wasVisibleRef.current;
@@ -252,6 +258,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       setClaimNowBusy(false);
       setF2pAppliedMeta({ success: true });
       setPremAppliedMeta({ success: true });
+      f2pApplyPromiseRef.current = null;
+      premApplyPromiseRef.current = null;
       resetAnims();
       if (USE_ELITE_DUAL_LEVEL_GIFT_MODAL) {
         Animated.spring(modalEntrance, {
@@ -383,6 +391,36 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     [reloadEnergy],
   );
 
+  const persistDualGiftOutcome = async (
+    f2p: GiftDef,
+    prem: GiftDef,
+    f2pResult: ApplyGiftResult,
+    premResult: ApplyGiftResult,
+  ) => {
+    const f2pOk = f2pResult.success === true;
+    const premOk = premResult.success === true;
+    if (f2pOk && premOk) {
+      await markDualGiftClaimed(level);
+      await markGiftClaimed(level);
+      await setLevelHadDualClaim(level);
+      const best = f2p.rarity === 'epic' || prem.rarity === 'epic'
+        ? 'epic' : f2p.rarity === 'rare' || prem.rarity === 'rare' ? 'rare' : 'common';
+      await saveClaimedGiftRarity(level, best);
+      return;
+    }
+    if (f2pOk) {
+      await saveUnclaimedGift(level, prem);
+      await saveClaimedGiftRarity(level, f2p.rarity);
+      return;
+    }
+    if (premOk) {
+      await saveUnclaimedGift(level, f2p);
+      await saveClaimedGiftRarity(level, prem.rarity);
+      return;
+    }
+    await saveUnclaimedDualGift(level, { f2p, prem });
+  };
+
   const runOpenAnim = (which: BoxKey, g: GiftDef) => {
     const shakeA = which === 'f2p' ? fShake : pShake;
     const scaleA = which === 'f2p' ? fScale : pScale;
@@ -420,12 +458,16 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         });
         if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
         else void hapticTap();
-        void (async () => {
-          if (storesOnly) return;
-          const result = await applyGift(g, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget });
+        if (storesOnly) return;
+        const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget })
+          .catch(() => ({ success: false }));
+        if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
+        else premApplyPromiseRef.current = applyResultP;
+        void applyResultP.then((result) => {
+          if (!wasVisibleRef.current) return;
           if (which === 'f2p') setF2pAppliedMeta(result);
           else setPremAppliedMeta(result);
-        })();
+        });
       });
     });
   };
@@ -454,22 +496,36 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const handleDone = async (openAvatar = false) => {
     if (!f2pGift || !premGift || doneClosingRef.current) return;
     doneClosingRef.current = true;
+    setClaimNowBusy(true);
     void hapticSuccess();
     if (storesOnly) {
       await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift });
       onClose(false);
       return;
     }
-    await markDualGiftClaimed(level);
-    await markGiftClaimed(level);
-    await setLevelHadDualClaim(level);
-    const best = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
-      ? 'epic' : f2pGift.rarity === 'rare' || premGift.rarity === 'rare' ? 'rare' : 'common';
-    await saveClaimedGiftRarity(level, best);
+    const f2p = f2pGift;
+    const prem = premGift;
     onClose(true);
     if (openAvatar) {
       setTimeout(() => router.push('/avatar_select' as any), 80);
     }
+    void (async () => {
+      try {
+        const [f2pResult, premResult] = await Promise.all([
+          f2pApplyPromiseRef.current ?? Promise.resolve(f2pAppliedMeta),
+          premApplyPromiseRef.current ?? Promise.resolve(premAppliedMeta),
+        ]);
+        if (wasVisibleRef.current) {
+          setF2pAppliedMeta(f2pResult);
+          setPremAppliedMeta(premResult);
+        }
+        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);
+      } catch {
+        // The modal already closed optimistically; failed parts stay retryable through persist fallback.
+      } finally {
+        if (wasVisibleRef.current) setClaimNowBusy(false);
+      }
+    })();
   };
 
   const handleUseNow = async (openAvatar = false) => {
@@ -477,26 +533,29 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     setClaimNowBusy(true);
     doneClosingRef.current = true;
     void hapticSuccess();
-    try {
-      const [f2pResult, premResult] = await Promise.all([
-        applyGift(f2pGift, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
-        applyGift(premGift, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
-      ]);
-      setF2pAppliedMeta(f2pResult);
-      setPremAppliedMeta(premResult);
-      await markDualGiftClaimed(level);
-      await markGiftClaimed(level);
-      await setLevelHadDualClaim(level);
-      const best = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
-        ? 'epic' : f2pGift.rarity === 'rare' || premGift.rarity === 'rare' ? 'rare' : 'common';
-      await saveClaimedGiftRarity(level, best);
-      onClose(true);
-      if (openAvatar) {
+    const f2p = f2pGift;
+    const prem = premGift;
+    onClose(true);
+    if (openAvatar) {
         setTimeout(() => router.push('/avatar_select' as any), 80);
       }
-    } finally {
-      setClaimNowBusy(false);
-    }
+    void (async () => {
+      try {
+        const [f2pResult, premResult] = await Promise.all([
+          applyGift(f2p, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
+          applyGift(prem, userName, energy, maxEnergy, setEnergyFn, { isPremium: true, studyTarget }).catch(() => ({ success: false })),
+        ]);
+        if (wasVisibleRef.current) {
+          setF2pAppliedMeta(f2pResult);
+          setPremAppliedMeta(premResult);
+        }
+        await persistDualGiftOutcome(f2p, prem, f2pResult, premResult);
+      } catch {
+        // The modal has already closed optimistically; do not surface background storage noise.
+      } finally {
+        if (wasVisibleRef.current) setClaimNowBusy(false);
+      }
+    })();
   };
 
   if (!visible || !f2pGift || !premGift) return null;
@@ -960,6 +1019,14 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, 
       >
         {giftDisplayTitleForLang(gift, lang)}
       </Text>
+      {premVisual ? (
+        <PlusBadge
+          themeMode={themeMode}
+          size="xs"
+          testID="level-gift-dual-peek-plus-badge"
+          style={{ marginTop: 5, alignSelf: 'center' }}
+        />
+      ) : null}
     </Animated.View>
   );
 }
@@ -1023,7 +1090,10 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} contentFit="contain" />
         <View style={{ flex: 1 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftDisplayTitleForLang(g, lang)}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900', flexShrink: 1 }}>{giftDisplayTitleForLang(g, lang)}</Text>
+            {premVisual ? <PlusBadge themeMode={themeMode} size="xs" testID="level-gift-dual-result-plus-badge" /> : null}
+          </View>
           {!!giftDisplayDescForLang(g, lang) && (
             <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>{giftDisplayDescForLang(g, lang)}</Text>
           )}

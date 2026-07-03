@@ -36,13 +36,13 @@ beforeEach(() => {
 });
 
 describe('Gustav French trainer target gate', () => {
-  it('blocks French trainer session reads even when the isolated trainer bucket has rows', async () => {
+  it('opens French trainer session reads from the isolated trainer bucket', async () => {
     await recordPhraseMistake('Je suis ici', 'Я здесь', 'Я тут', 1, 'suis', 'verbe_etre', undefined, 'fr');
 
     expect(mockStorage[trainerStoreKey('fr')]).toContain('Je suis ici');
-    expect(trainerSessionContentAvailableForTarget('fr')).toBe(false);
+    expect(trainerSessionContentAvailableForTarget('fr')).toBe(true);
     await expect(getDueItems('phrases', 15, 'fr')).resolves.toEqual([]);
-    await expect(getTrainerPremiumItems('smart_mix', 12, 'fr')).resolves.toEqual([]);
+    await expect(getTrainerPremiumItems('smart_mix', 12, 'fr')).resolves.toHaveLength(1);
     await expect(getTrainerCounts('fr')).resolves.toEqual({ words: 0, phrases: 0, arena: 0 });
 
     const dashboard = await getTrainerDashboard('fr', 'ru');
@@ -81,9 +81,9 @@ describe('Gustav French trainer target gate', () => {
     const screenSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer.tsx'), 'utf8');
 
     expect(storeSource).toContain('storageStudyTarget(studyTarget) ===');
+    expect(storeSource).toContain('getCachedFrenchRemotePersonalPractice');
+    expect(storeSource).toContain('mergeFrenchRemotePracticeItems');
     expect(storeSource).not.toContain("studyTarget === 'fr'");
-    expect(screenSource).toContain("import { storageStudyTarget } from './target_storage_keys'");
-    expect(screenSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
     expect(screenSource).not.toContain("studyTarget === 'fr'");
   });
 });

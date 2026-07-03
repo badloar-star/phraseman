@@ -88,6 +88,7 @@ type RegressionInput = {
   manifestRuntimeDownloadsEnabledEntries: number;
   manifestReadyForApplyEntries: number;
   productionServerManifestExists: boolean;
+  productionServerManifestSafelyPromoted: boolean;
   readyForApply: boolean;
   mayModifyProductionAppFiles: boolean;
 };
@@ -175,6 +176,7 @@ type Report = {
     manifestRuntimeDownloadsEnabledEntries: number;
     manifestReadyForApplyEntries: number;
     productionServerManifestExists: boolean;
+    productionServerManifestSafelyPromoted: boolean;
     readyForNextNonProductionReadinessApplyBlockerMapRefresh: boolean;
     readyForApply: false;
     mayModifyProductionAppFiles: false;
@@ -358,7 +360,9 @@ function evaluate(input: RegressionInput): Finding[] {
   if (input.manifestCacheKeyScopedEntries !== EXPECTED_MANIFEST_ENTRIES) addFinding(findings, 'blocker', 'MANIFEST_CACHE_KEY_SCOPE_DRIFT', 'Every manifest cacheKey must be source-locale scoped.');
   if (input.manifestForbiddenUiLocaleRefs > 0) addFinding(findings, 'blocker', 'MANIFEST_UI_LOCALE_IDENTITY_PRESENT', 'Server manifest must not use UI locale as identity dimension.');
   if (input.manifestTopLevelUploadFlagsOpen > 0 || input.manifestActivationApprovedEntries > 0 || input.manifestRuntimeDownloadsEnabledEntries > 0 || input.manifestReadyForApplyEntries > 0) addFinding(findings, 'blocker', 'MANIFEST_PUBLICATION_OR_APPLY_OPEN', 'Server manifest must not open upload, runtime download, activation or apply flags.');
-  if (input.productionServerManifestExists) addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest must not exist before explicit approval/publication.');
+  if (input.productionServerManifestExists && !input.productionServerManifestSafelyPromoted) {
+    addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'Production server manifest may exist only after safe promotion is proven and apply/runtime activation remain closed.');
+  }
   if (input.readyForApply || input.mayModifyProductionAppFiles) addFinding(findings, 'blocker', 'APPLY_OR_PRODUCTION_FILE_WRITE_OPEN', 'P36 must not open apply or production app file modification.');
 
   return findings;
@@ -575,6 +579,11 @@ function main(): void {
     manifestRuntimeDownloadsEnabledEntries: manifestEntries.filter((entry) => b(entry, 'runtimeDownloadsEnabled')).length,
     manifestReadyForApplyEntries: manifestEntries.filter((entry) => b(entry, 'readyForApply')).length,
     productionServerManifestExists: fs.existsSync(productionServerManifestPath),
+    productionServerManifestSafelyPromoted:
+      s(adminRuntimeSummary, 'preflightState') === 'admin_server_runtime_preflight_ready' &&
+      b(adminRuntimeSummary, 'productionManifestSafelyPromoted') &&
+      b(adminRuntimeSummary, 'readyForRuntimeActivationBlockerPlanningV2') &&
+      !b(adminRuntimeSummary, 'readyForApply'),
     readyForApply: false,
     mayModifyProductionAppFiles: false,
   };

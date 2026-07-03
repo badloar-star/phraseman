@@ -197,7 +197,7 @@ type Report = {
 };
 
 const REQUIRED_ROWS = 1600;
-const REQUIRED_AI = 164;
+let REQUIRED_AI = 164;
 const PENDING: PendingDecision = 'pending_llm_official_source_review';
 const TRUSTED_SOURCE_FAMILIES = [
   'cambridge_dictionary',
@@ -762,6 +762,13 @@ function main(): void {
   const aiCandidates = parseJsonl<AiCandidate>(aiCandidatePath);
   const rowTemplates = parseJsonl<RowTemplate>(rowTemplatePath);
   const aiTemplates = parseJsonl<AiTemplate>(aiTemplatePath);
+  REQUIRED_AI = Math.max(
+    REQUIRED_AI,
+    n(p20, 'aiDecisionRows'),
+    n(p21, 'aiCandidateProposals'),
+    aiCandidates.length,
+    aiTemplates.length,
+  );
   const promotionManifest = buildManifest(runId, repoRoot, runDir, rowReviewedPath, aiReviewedPath);
   const evaluation = evaluate(
     p19,

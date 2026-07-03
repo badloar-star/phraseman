@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  AppState,
   Dimensions,
   Easing,
   Modal,
@@ -23,7 +24,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon } from '../constants/monoIcon';
 import { consumeVipCelebration } from '../app/vip_celebration_state';
 import {
-  AppMessageWithState,
+  type AppMessageWithState,
+  type AppMessagesSnapshot,
   buildAppMessagePreview,
   dismissAppMessage,
   filterAppMessagesSnapshotForAudience,
@@ -33,16 +35,21 @@ import {
   pickAppMessageText,
   setAppMessageReaction,
   setAppMessagePollVote,
+  claimReportReplyShardsOptimistically,
   subscribeUserAppMessages,
   readAnimatedMessageIds,
   markMessageIdsAnimated,
+  readCachedAppMessagesSnapshot,
+  refreshAppMessagesSnapshotOnce,
 } from '../app/app_messages';
 import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
 import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
+import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 
 const BLUR_RENDER_GRACE_MS = 450;
+const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000;
 
 function inboxText(lang: Lang) {
   return {
@@ -66,22 +73,37 @@ function inboxText(lang: Lang) {
     like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
     dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
     poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
-    vipSurvey: triLang(lang, { ru: 'VIP-опрос', uk: 'VIP-опитування', es: 'VIP survey', 'pt-BR': 'VIP survey', vi: 'VIP survey', id: 'VIP survey', tr: 'VIP survey', pl: 'VIP survey' }),
+    vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', es: 'Plus survey', 'pt-BR': 'Plus survey', vi: 'Plus survey', id: 'Plus survey', tr: 'Plus survey', pl: 'Plus survey' }),
     vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', es: 'Take survey', 'pt-BR': 'Take survey', vi: 'Take survey', id: 'Take survey', tr: 'Take survey', pl: 'Take survey' }),
     vipSurveyHint: triLang(lang, {
-      ru: 'Ответьте на несколько вопросов и активируйте месяц VIP.',
-      uk: 'Дайте відповідь на кілька запитань і активуйте місяць VIP.',
-      es: 'Answer a few questions and activate one month of VIP.',
-      'pt-BR': 'Answer a few questions and activate one month of VIP.',
-      vi: 'Answer a few questions and activate one month of VIP.',
-      id: 'Answer a few questions and activate one month of VIP.',
-      tr: 'Answer a few questions and activate one month of VIP.',
-      pl: 'Answer a few questions and activate one month of VIP.',
+      ru: 'Ответьте на несколько вопросов и активируйте месяц Plus.',
+      uk: 'Дайте відповідь на кілька запитань і активуйте місяць Plus.',
+      es: 'Answer a few questions and activate one month of Plus.',
+      'pt-BR': 'Answer a few questions and activate one month of Plus.',
+      vi: 'Answer a few questions and activate one month of Plus.',
+      id: 'Answer a few questions and activate one month of Plus.',
+      tr: 'Answer a few questions and activate one month of Plus.',
+      pl: 'Answer a few questions and activate one month of Plus.',
     }),
     dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', es: 'Dismiss notification', 'pt-BR': 'Dismiss notification', vi: 'Dismiss notification', id: 'Dismiss notification', tr: 'Dismiss notification', pl: 'Dismiss notification' }),
     pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
     pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', es: 'Tu eleccion', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
     pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
+    helpBoard: triLang(lang, { ru: 'Help Board', uk: 'Help Board', es: 'Help Board', 'pt-BR': 'Help Board', vi: 'Help Board', id: 'Help Board', tr: 'Help Board', pl: 'Help Board' }),
+    leagueChat: triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' }),
+    inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
+    reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
+    claimShards: (n: number) => triLang(lang, {
+      ru: `Забрать осколки (+${n})`,
+      uk: `Забрати уламки (+${n})`,
+      es: `Reclamar fragmentos (+${n})`,
+      'pt-BR': `Resgatar fragmentos (+${n})`,
+      vi: `Nhận mảnh (+${n})`,
+      id: `Ambil shard (+${n})`,
+      tr: `Parçaları al (+${n})`,
+      pl: `Odbierz odłamki (+${n})`,
+    }),
+    claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
 
@@ -118,12 +140,15 @@ function AppMessagesInbox() {
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
   const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
+  const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
   const [renderButton, setRenderButton] = useState(isScreenFocused);
+  const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
   const fade = useRef(new Animated.Value(0)).current;
   const panel = useRef(new Animated.Value(18)).current;
   const badgePulse = useRef(new Animated.Value(1)).current;
   const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const blurRenderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const badgeRefreshInFlightRef = useRef(false);
 
   // ── «Письмо прилетает в иконку» — анимация + звук при новом сообщении ────────
   const { playMessageReceived } = useMessageReceivedCue();
@@ -144,7 +169,10 @@ function AppMessagesInbox() {
   useEffect(() => {
     let cancelled = false;
     void readAnimatedMessageIds().then((ids) => {
-      if (!cancelled) animatedIdsRef.current = new Set(ids);
+      if (!cancelled) {
+        animatedIdsRef.current = new Set(ids);
+        setAnimatedIdsReady(true);
+      }
     });
     return () => { cancelled = true; };
   }, []);
@@ -232,15 +260,49 @@ function AppMessagesInbox() {
     [messages, selectedId],
   );
 
+  const applyAppMessagesSnapshot = useCallback((snapshot: AppMessagesSnapshot) => {
+    const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
+    setMessages(filtered.messages);
+    setUnreadCount(filtered.unreadCount);
+  }, [hasPremiumAccess]);
+
   useEffect(() => {
     if (!visible) return;
     const sub = subscribeUserAppMessages((snapshot) => {
-      const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
-      setMessages(filtered.messages);
-      setUnreadCount(filtered.unreadCount);
+      applyAppMessagesSnapshot(snapshot);
     });
     return () => sub.remove();
-  }, [hasPremiumAccess, visible]);
+  }, [applyAppMessagesSnapshot, visible]);
+
+  useEffect(() => {
+    if (!isScreenFocused || visible) return;
+    let cancelled = false;
+
+    const refreshBadge = async () => {
+      if (badgeRefreshInFlightRef.current) return;
+      badgeRefreshInFlightRef.current = true;
+      try {
+        const cached = await readCachedAppMessagesSnapshot();
+        if (!cancelled) applyAppMessagesSnapshot(cached);
+        const refreshed = await refreshAppMessagesSnapshotOnce({
+          minIntervalMs: BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
+        });
+        if (!cancelled) applyAppMessagesSnapshot(refreshed);
+      } finally {
+        badgeRefreshInFlightRef.current = false;
+      }
+    };
+
+    void refreshBadge();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void refreshBadge();
+    });
+
+    return () => {
+      cancelled = true;
+      appSub.remove();
+    };
+  }, [applyAppMessagesSnapshot, isScreenFocused, visible]);
 
   useEffect(() => {
     if (!hasPremiumAccess || !surveyTarget) return;
@@ -258,19 +320,42 @@ function AppMessagesInbox() {
   }, [messages, selectedId]);
 
   useEffect(() => {
-    if (unreadCount <= 0) {
+    // Пульс бейджа крутится только когда экран виден И приложение на переднем
+    // плане: freezeOnBlur:false держит ушедшие экраны живыми — без гарда луп грел
+    // бы телефон в фоне.
+    if (unreadCount <= 0 || !isScreenFocused) {
       badgePulse.setValue(1);
       return;
     }
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(badgePulse, { toValue: 1.08, duration: 650, useNativeDriver: true }),
-        Animated.timing(badgePulse, { toValue: 1, duration: 650, useNativeDriver: true }),
-      ]),
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [badgePulse, unreadCount]);
+
+    let loop: Animated.CompositeAnimation | null = null;
+    const start = () => {
+      if (loop) return;
+      loop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(badgePulse, { toValue: 1.08, duration: 650, useNativeDriver: true }),
+          Animated.timing(badgePulse, { toValue: 1, duration: 650, useNativeDriver: true }),
+        ]),
+      );
+      loop.start();
+    };
+    const stop = () => {
+      loop?.stop();
+      loop = null;
+      badgePulse.setValue(1);
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      loop?.stop();
+      loop = null;
+    };
+  }, [badgePulse, unreadCount, isScreenFocused]);
 
   // Новое сообщение прилетело: конверт «влетает» в иконку + звук — РОВНО ОДИН раз на
   // сообщение. Срабатывает для ID, которых ещё нет в сохранённом наборе animatedIds.
@@ -279,6 +364,7 @@ function AppMessagesInbox() {
   // Прочитано/непрочитано роли не играет — привязка только к факту «было ли письмо».
   const didBaselineRef = useRef(false);
   useEffect(() => {
+    if (!animatedIdsReady) return;
     const animated = animatedIdsRef.current;
     if (!animated) return; // набор ещё не загружен из AsyncStorage
 
@@ -308,7 +394,7 @@ function AppMessagesInbox() {
     // Реально новое сообщение и экран виден → проигрываем прилёт ровно один раз.
     consume();
     playEnvelopeFlight();
-  }, [messages, isScreenFocused, visible, playEnvelopeFlight]);
+  }, [animatedIdsReady, messages, isScreenFocused, visible, playEnvelopeFlight]);
 
   useEffect(() => () => {
     if (flyTimer.current) clearTimeout(flyTimer.current);
@@ -336,8 +422,8 @@ function AppMessagesInbox() {
 
   const openInbox = () => {
     hapticTap();
-    setVisible(true);
     setSelectedId(null);
+    setVisible(true);
   };
 
   const closeInbox = () => {
@@ -383,6 +469,23 @@ function AppMessagesInbox() {
     );
     hapticTap();
     void setAppMessagePollVote(selected.id, optionId);
+  };
+
+  // Local UI overlay: hide the CTA immediately; persistence is handled in the background.
+  const markReplyClaimedLocally = (messageId: string) => {
+    setMessages((prev) => prev.map((m) => (
+      m.id === messageId && m.reportReply ? { ...m, reportReply: { ...m.reportReply, claimed: true } } : m
+    )));
+  };
+
+  const claimReportReward = (message: AppMessageWithState) => {
+    const reward = message.reportReply;
+    if (!reward || reward.shards <= 0 || reward.claimed) return;
+    if (optimisticReportClaimIdsRef.current.has(message.id)) return;
+    optimisticReportClaimIdsRef.current.add(message.id);
+    hapticTap();
+    markReplyClaimedLocally(message.id);
+    void claimReportReplyShardsOptimistically(message.id, reward.shards);
   };
 
   const dismissSurveyMessage = (messageId: string) => {
@@ -527,9 +630,9 @@ function AppMessagesInbox() {
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor, borderColor: rowBorderColor }]}
               >
+                {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 <View style={styles.messageRowTop}>
                   <View style={styles.messageTitleWrap}>
-                    {message.unread ? <View style={styles.unreadDot} /> : <View style={styles.readDotSpace} />}
                     <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]} numberOfLines={messageRead ? 1 : 2}>
                       {text.title}
                     </Text>
@@ -541,6 +644,19 @@ function AppMessagesInbox() {
                       <Ionicons name="sparkles-outline" size={11} color={vipSurveyAccent} />
                       <Text style={[styles.vipSurveyBadgeText, { color: vipSurveyAccent }]}>{copy.vipSurvey}</Text>
                     </View>
+                  ) : message.kind === 'report_reply' ? (
+                    <>
+                      <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
+                        <Ionicons name="chatbox-ellipses-outline" size={11} color={chrome.soft} />
+                        <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
+                      </View>
+                      {(message.reportReply?.shards ?? 0) > 0 && !message.reportReply?.claimed ? (
+                        <View style={[styles.pollBadge, { borderColor: 'rgba(99,217,143,0.5)', backgroundColor: 'rgba(99,217,143,0.10)' }]}>
+                          <Ionicons name="diamond-outline" size={11} color={monoIcon(themeMode, '#63D98F')} />
+                          <Text style={[styles.pollBadgeText, { color: '#63D98F' }]}>+{message.reportReply?.shards}</Text>
+                        </View>
+                      ) : null}
+                    </>
                   ) : message.poll ? (
                     <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
                       <Ionicons name="stats-chart-outline" size={11} color={chrome.soft} />
@@ -647,6 +763,41 @@ function AppMessagesInbox() {
     );
   };
 
+  // Карточка награды в ответе на репорт: кнопка «Забрать осколки» → CF claimReportReward.
+  // Никаких модалок при начислении — вся выдача живёт здесь, в уведомлении.
+  const renderReportReplyClaim = (message: AppMessageWithState) => {
+    if (message.kind !== 'report_reply') return null;
+    const reward = message.reportReply;
+    if (!reward || reward.shards <= 0) return null;
+    return (
+      <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(99,217,143,0.30)' }]}>
+        <View style={styles.vipSurveyCardTop}>
+          <View style={[styles.vipSurveyIcon, { backgroundColor: 'rgba(99,217,143,0.14)' }]}>
+            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={monoIcon(themeMode, '#63D98F')} />
+          </View>
+          <View style={styles.vipSurveyTextWrap}>
+            <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>
+              {reward.claimed ? copy.claimed : `+${reward.shards}`}
+            </Text>
+          </View>
+        </View>
+        {!reward.claimed ? (
+          <TouchableOpacity
+            testID="report-reply-claim-cta"
+            activeOpacity={0.86}
+            accessibilityRole="button"
+            accessibilityLabel={copy.claimShards(reward.shards)}
+            onPress={() => { void claimReportReward(message); }}
+            style={[styles.vipSurveyButton, { backgroundColor: '#2E9E63' }]}
+          >
+            <Ionicons name="diamond-outline" size={17} color="#FFFFFF" />
+            <Text style={[styles.vipSurveyButtonText, { color: '#FFFFFF' }]}>{copy.claimShards(reward.shards)}</Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    );
+  };
+
   const renderVipSurveyCta = (message: AppMessageWithState) => {
     if (message.kind !== 'vip_survey') return null;
     return (
@@ -699,6 +850,7 @@ function AppMessagesInbox() {
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
           {renderVipSurveyCta(selected)}
+          {renderReportReplyClaim(selected)}
           {renderPoll(selected)}
 
           {selected.kind === 'vip_survey' ? null : <View style={styles.reactions}>
@@ -752,7 +904,8 @@ function AppMessagesInbox() {
       >
         <Animated.View style={{ transform: [{ scale: iconReceiveScale }] }}>
           <View style={[styles.headerIcon, styles.headerIconWrap]}>
-            <Ionicons name="notifications-outline" size={30} color={bellColor} />
+            {/* Конверт: колокольчик теперь у центра событий (NotificationCenterButton). */}
+            <Ionicons name="mail-outline" size={30} color={bellColor} />
           </View>
         </Animated.View>
         {unreadCount > 0 && (
@@ -866,14 +1019,14 @@ export default memo(AppMessagesInbox);
 
 const styles = StyleSheet.create({
   headerButton: {
-    width: 66,
-    height: 54,
+    width: 48,
+    height: 46,
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerIcon: {
-    width: 56,
-    height: 40,
+    width: 44,
+    height: 38,
   },
   headerIconWrap: {
     alignItems: 'center',
@@ -919,20 +1072,20 @@ const styles = StyleSheet.create({
   },
   badge: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: 1,
+    right: 1,
     minWidth: 18,
     height: 18,
     paddingHorizontal: 4,
     borderRadius: 9,
-    backgroundColor: '#EF4444',
+    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#FFF',
   },
   badgeText: {
-    color: '#FFFFFF',
+    color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
     fontSize: 10,
     fontWeight: '900',
   },
@@ -988,9 +1141,11 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   messageRow: {
+    position: 'relative',
     borderRadius: 16,
     borderWidth: 0.5,
     padding: 13,
+    overflow: 'visible',
   },
   messageRowRead: {
     paddingHorizontal: 11,
@@ -1007,17 +1162,15 @@ const styles = StyleSheet.create({
     minWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
   },
   unreadDot: {
+    position: 'absolute',
+    top: 19,
+    left: -14,
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#EF4444',
-  },
-  readDotSpace: {
-    width: 8,
-    height: 8,
+    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
   },
   messageTitle: {
     flex: 1,
@@ -1032,7 +1185,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   messageMetaRow: {
-    paddingLeft: 16,
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
@@ -1072,7 +1224,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   messagePreview: {
-    paddingLeft: 16,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: '600',
@@ -1084,7 +1235,6 @@ const styles = StyleSheet.create({
   },
   messageRowActions: {
     marginTop: 10,
-    paddingLeft: 16,
     alignItems: 'flex-start',
   },
   messageRowCta: {

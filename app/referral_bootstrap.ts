@@ -9,6 +9,7 @@ import {
 } from './referral_cloud';
 import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
+import { hasLocalReferralExistingAccountActivity } from './referral_account_activity';
 
 const INVITE_HTTPS_BASE = 'https://knowlyapps.com/phraseman/invite';
 
@@ -37,6 +38,7 @@ export function buildPlayStoreUrlWithInstallReferral(code: string): string {
 }
 
 const PENDING_REF_KEY = 'pending_referral_code';
+const PENDING_REF_SOURCE_KEY = 'pending_referral_source';
 
 /** Сохраняет pending-код; `source` — аналитика. */
 export async function captureReferralCodeIfNew(
@@ -49,9 +51,14 @@ export async function captureReferralCodeIfNew(
   const sid = await getCanonicalUserId();
   if (sid) {
     const applied = await AsyncStorage.getItem(appliedStorageKey(sid));
-    if (applied === c) return;
+    if (applied === c) {
+      await AsyncStorage.removeItem(PENDING_REF_KEY);
+      await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
+      return;
+    }
   }
   await AsyncStorage.setItem(PENDING_REF_KEY, c);
+  await AsyncStorage.setItem(PENDING_REF_SOURCE_KEY, source);
   logEvent('referral_deeplink_captured', { ref_len: c.length, src: source });
 }
 
@@ -155,6 +162,7 @@ export async function tryApplyPendingReferral(): Promise<ReferralApplyStatus | n
   const code = (await AsyncStorage.getItem(PENDING_REF_KEY) ?? '').trim().toUpperCase();
   if (!code) {
     await AsyncStorage.removeItem(LEGACY_APPLIED_KEY);
+    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
     return null;
   }
   const stableId = await getCanonicalUserId();
@@ -165,11 +173,18 @@ export async function tryApplyPendingReferral(): Promise<ReferralApplyStatus | n
   const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
   if (appliedFor === code) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
+    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
     return 'already';
+  }
+  if (await hasLocalReferralExistingAccountActivity()) {
+    await AsyncStorage.removeItem(PENDING_REF_KEY);
+    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
+    return 'too_old';
   }
   const status = await applyReferralCodeNow(stableId, code);
   if (TERMINAL_APPLY_STATUSES.has(status)) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
+    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
   }
   return status;
 }
@@ -188,11 +203,13 @@ export async function applyManualReferralCode(codeRaw: string): Promise<Referral
     const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
     if (appliedFor === code) return 'already';
   }
+  if (await hasLocalReferralExistingAccountActivity()) return 'too_old';
   await captureReferralCodeIfNew(code, 'manual_code');
   if (!stableId) return 'needs_link';
   const status = await applyReferralCodeNow(stableId, code);
   if (TERMINAL_APPLY_STATUSES.has(status)) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
+    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
   }
   return status;
 }

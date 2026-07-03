@@ -1,8 +1,8 @@
 ﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { getStreakFreezeCostShards } from '../remote_flags';
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
@@ -17,7 +17,7 @@ import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName } from '../league_engine';
+import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
@@ -39,32 +39,36 @@ import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { HELPFUL_REPORTS_CONFIRMED_KEY, SPECIAL_TITLES, TITLES, getEarnedSpecialTitles, getTitleString } from '../../constants/titles';
 import { GREETINGS_ES } from '../../constants/greetings_es';
 import { triLang, type Lang } from '../../constants/i18n';
+import {
+    buildHomeFeatureTips,
+    clampHomeFeatureTipIndex,
+    clampHomeFeatureTipReplayCount,
+    HOME_FEATURE_TIPS_DONE_KEY,
+    HOME_FEATURE_TIPS_INDEX_KEY,
+    HOME_FEATURE_TIPS_REPLAY_COUNT_KEY,
+    HOME_FEATURE_TIPS_RESET_EVENT,
+} from '../home_feature_tips';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
-import PremiumCard from '../../components/PremiumCard';
-import VipGreenUserName from '../../components/VipGreenUserName';
+import PlusBadge from '../../components/PlusBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
-import CircularProgress from '../../components/CircularProgress';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements, loadAchievementStates } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import EnergyIcon from '../../components/EnergyIcon';
-import { getAdaptiveEnergyIconLayout } from '../../components/energyIconLayout';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
+import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import { activatePendingPersonalPlanAfterPremium, clearPendingPersonalPlanActivation, readPendingPersonalPlanActivation } from '../personal_plan_activation';
+import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
-import PremiumGoldUserName from '../../components/PremiumGoldUserName';
-import LeagueCrownName from '../../components/LeagueCrownName';
 import GoldBevel from '../../components/GoldBevel';
 import CompassBevel from '../../components/CompassBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
@@ -73,8 +77,13 @@ import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration } from '../home_screen_hydration';
+import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import AppMessagesInbox from '../../components/AppMessagesInbox';
+import CommunityChatHubButton from '../../components/CommunityChatHubButton';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
+import NotificationCenterButton from '../../components/NotificationCenterButton';
+import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
@@ -86,13 +95,14 @@ import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_
 import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
+import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
 import {
     addDaysToDateKey,
     readCurrentStreakWeekMarkers,
     recordStreakWeekMarker,
     type StreakWeekDayMarkerKind,
 } from '../streak_week_markers';
-import { lessonNameForStudyTarget, lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
+import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
 import { useLeagueChatUnread } from '../use_league_chat_unread';
@@ -109,14 +119,12 @@ const USE_ELITE_HOME_STATUS = true;
 // Rollback: set false to return to the previous elite home status card.
 const HOME_STATUS_DENSE_PROGRESS_EXPERIMENT = true;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
-const HOME_ANIMATION_USE_NATIVE_DRIVER = false;
+const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
 // Бесконечный shimmer прогресс-бара гоняем на НАТИВНОМ драйвере: это чистый transform
 // (translateX), безопасный для Fabric, и он НЕ должен крутиться на JS-потоке всю сессию —
 // иначе главный экран (всегда смонтирован) греет телефон и тормозит нажатия кнопок.
 const HOME_SHIMMER_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
-const FREE_HOME_PLAN_CTA_MODE_KEY = 'free_home_plan_cta_mode_v1';
-type FreeHomePlanCtaMode = 'choosePlan' | 'continueLesson';
 const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
@@ -214,6 +222,19 @@ const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
 const STATS_PULSE_HINT_DONE_KEY = 'phraseman_home_stats_pulse_hint_done_v1';
 const STATS_PULSE_MIN_USAGE_MS = 3 * 60 * 60 * 1000;
 const STATS_PULSE_RECHECK_MIN_MS = 30_000;
+const HOME_ONBOARDING_DONE_KEY = 'onboarding_done';
+// Контент карточек-подсказок и ключи хранения — app/home_feature_tips.ts
+// (общие с settings.tsx; повторные показы переключают юмористические наборы).
+function getHomeFeatureTipTouchPoint(event: GestureResponderEvent): { x: number; y: number } | null {
+    const nativeEvent = event.nativeEvent as typeof event.nativeEvent & {
+        changedTouches?: Array<{ pageX?: number; pageY?: number }>;
+        touches?: Array<{ pageX?: number; pageY?: number }>;
+    };
+    const touch = nativeEvent.changedTouches?.[0] ?? nativeEvent.touches?.[0] ?? nativeEvent;
+    const x = typeof touch.pageX === 'number' ? touch.pageX : null;
+    const y = typeof touch.pageY === 'number' ? touch.pageY : null;
+    return x == null || y == null ? null : { x, y };
+}
 function localCalendarDay(): string {
     const d = new Date();
     const y = d.getFullYear();
@@ -288,6 +309,21 @@ function parseStoredStreak(raw: string | null): number {
     catch {
         return 0;
     }
+}
+function formatHomeCompactXpValue(value: number, compactFrom = 10_000): string {
+    const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
+    if (n < compactFrom)
+        return String(n);
+    const thousands = n / 1000;
+    if (n < 100_000) {
+        const truncated = Math.floor(thousands * 10) / 10;
+        return `${Number.isInteger(truncated) ? truncated.toFixed(0) : truncated.toFixed(1)}K`;
+    }
+    return `${Math.floor(thousands)}K`;
+}
+function formatHomeXpProgressLabel(xpInLevel: number, xpNeeded: number): string {
+    const compactFrom = Math.max(xpInLevel, xpNeeded) >= 10_000 ? 1_000 : 10_000;
+    return `${formatHomeCompactXpValue(xpInLevel, compactFrom)} / ${formatHomeCompactXpValue(xpNeeded, compactFrom)} XP`;
 }
 type HomeMenuIconAlign = {
     x: number;
@@ -374,7 +410,9 @@ export default function HomeScreen() {
     const { theme: t, isDark, f, themeMode } = useTheme();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
-    const insets = useSafeAreaInsets();
+    const trainerPracticeSourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
+    const insets = useStableSafeAreaInsets();
+    const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
     const topFadeScroll = useTopFadeScroll();
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
@@ -394,10 +432,29 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    useEffect(() => {
+        const task = InteractionManager.runAfterInteractions(() => {
+            void prefetchTrainerPracticeSnapshot({
+                studyTarget,
+                sourceLocale: trainerPracticeSourceLocale,
+            });
+        });
+        return () => {
+            task.cancel();
+        };
+    }, [studyTarget, trainerPracticeSourceLocale]);
+    const appSnapshot = useAppSnapshotSelector((snapshot) => ({
+        profile: snapshot.profile,
+        progress: snapshot.progress,
+    }), (a, b) => a.profile === b.profile && a.progress === b.progress);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
-    const [userName, setUserName] = useState(() => hh?.userName ?? '');
-    const [streak, setStreak] = useState(() => hh?.streak ?? 0);
-    const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? 0);
+    const snapshotName = appSnapshot.profile?.name ?? '';
+    const snapshotStreak = appSnapshot.progress?.streak ?? 0;
+    const snapshotTotalXp = appSnapshot.profile?.totalXp ?? 0;
+    const snapshotShards = appSnapshot.progress?.shards ?? 0;
+    const [userName, setUserName] = useState(() => hh?.userName ?? snapshotName);
+    const [streak, setStreak] = useState(() => hh?.streak ?? snapshotStreak);
+    const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? snapshotStreak);
     const homeStreakDaysLabel = displayStreak === 1
         ? triLang(lang, {
             ru: 'день',
@@ -411,8 +468,8 @@ export default function HomeScreen() {
         })
         : s.home.streakDays;
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
-    const [totalXP, setTotalXP] = useState(() => hh?.totalXP ?? 0);
-    const [homeStatsReady, setHomeStatsReady] = useState(() => !!(homeStatsLoadedOnce && hh));
+    const [totalXP, setTotalXP] = useState(() => hh?.totalXP ?? snapshotTotalXp);
+    const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
     // true только когда загрузка ОБОРВАЛАСЬ и показывать нечего (первый запуск + оффлайн).
     // Если есть кэш/hydration — баннер НЕ показываем: экран деградирует до кэша молча.
     const [loadFailedNoData, setLoadFailedNoData] = useState(false);
@@ -432,10 +489,20 @@ export default function HomeScreen() {
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
-    const [freeHomePlanCtaMode, setFreeHomePlanCtaMode] = useState<FreeHomePlanCtaMode>('choosePlan');
-    const freeHomePlanCtaStartXRef = useRef<number | null>(null);
-    const freeHomePlanCtaDxRef = useRef(0);
-    const freeHomePlanCtaSwipedRef = useRef(false);
+    // Сколько раз юзер запрашивал повторный показ подсказок (0 = первый показ,
+    // 1..5 = юмористические наборы №2..№6). Двигается кнопкой в настройках.
+    const [homeFeatureTipsReplayCount, setHomeFeatureTipsReplayCount] = useState(0);
+    const homeFeatureTips = useMemo(
+        () => buildHomeFeatureTips(lang, homeFeatureTipsReplayCount),
+        [lang, homeFeatureTipsReplayCount],
+    );
+    const [homeFeatureTipIndex, setHomeFeatureTipIndex] = useState(0);
+    const [homeFeatureTipsDone, setHomeFeatureTipsDone] = useState(false);
+    const [homeFeatureTipsHydrated, setHomeFeatureTipsHydrated] = useState(false);
+    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
+    const homeFeatureTipTouchStartRef = useRef<{ x: number; y: number } | null>(null);
+    const homeFeatureTipSwipeHandledRef = useRef(false);
+    const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
     // Початкове значення підбираємо за поточною мовою інтерфейсу,
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
     const [, setGreeting] = useState(() => triLang(lang, {
@@ -479,6 +546,7 @@ export default function HomeScreen() {
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
     const [reviveModalVisible, setReviveModalVisible] = useState(false);
     const reviveOverlayVisible = useOverlayVisible('streakRevive', reviveModalVisible);
+    const [homeProfilePlayer, setHomeProfilePlayer] = useState<PlayerInfo | null>(null);
     const [titleModalVisible, setTitleModalVisible] = useState(false);
     const [selectedTitleKey, setSelectedTitleKey] = useState<string | null>(null);
     const selectedTitleHydratedRef = useRef(false);
@@ -490,7 +558,7 @@ export default function HomeScreen() {
     // Premium celebration: после IAP-покупки или admin-grant с timestamp новее last seen.
     const [celebrationVisible, setCelebrationVisible] = useState(false);
     const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
-    // Какую анимацию покупки показать: 'premium' (жёлтый Plus, подписка) или 'pro' (синий, «Навсегда»).
+    // Какую анимацию покупки показать: 'premium' (жёлтый Plus, подписка) или 'pro' (синий Phraseman Pro).
     const [celebrationVariant, setCelebrationVariant] = useState<PremiumCelebrationVariant>('premium');
     // Гард сессии: pending теперь гасится только в onClose, поэтому isCelebrationPending()
     // остаётся true до показа. Этот ref не даёт повторно ставить модалку/таймер на каждом
@@ -637,7 +705,7 @@ export default function HomeScreen() {
             /* keep previous summary */
         }
     }, [studyTarget]);
-    const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? 0);
+    const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
     const [homeLeagueCrownCount, setHomeLeagueCrownCount] = useState(() => hh?.homeLeagueCrownCount ?? 0);
@@ -654,6 +722,22 @@ export default function HomeScreen() {
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
+
+    useEffect(() => {
+        if (homeStatsLoadedOnce) return;
+        const profile = appSnapshot.profile;
+        const progress = appSnapshot.progress;
+        if (!profile && !progress) return;
+        setHomeStatsReady(true);
+        if (profile?.name) setUserName((current) => current || profile.name);
+        if (profile && totalXP === 0 && profile.totalXp > 0) setTotalXP(profile.totalXp);
+        if (progress && streak === 0 && progress.streak > 0) {
+            setStreak(progress.streak);
+            setDisplayStreak((current) => current || progress.streak);
+        }
+        if (progress && shardsBalance === 0 && progress.shards > 0) setShardsBalance(progress.shards);
+    }, [appSnapshot.profile, appSnapshot.progress, shardsBalance, streak, totalXP]);
+
     const streakTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
     const leagueResultVisible = useOverlayVisible('leagueResult', pendingLeagueResult != null);
@@ -725,6 +809,7 @@ export default function HomeScreen() {
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
         eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
         let shimmerLoop: Animated.CompositeAnimation | null = null;
+        let shimmerStopTimer: ReturnType<typeof setTimeout> | null = null;
         const startShimmer = () => {
             if (shimmerLoop) return;
             shimmerLoop = Animated.loop(Animated.sequence([
@@ -733,8 +818,13 @@ export default function HomeScreen() {
                 Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
             ]));
             shimmerLoop.start();
+            shimmerStopTimer = setTimeout(stopShimmer, 7600);
         };
         const stopShimmer = () => {
+            if (shimmerStopTimer) {
+                clearTimeout(shimmerStopTimer);
+                shimmerStopTimer = null;
+            }
             shimmerLoop?.stop();
             shimmerLoop = null;
         };
@@ -749,18 +839,17 @@ export default function HomeScreen() {
             stopShimmer();
         };
     }, [activeIdx, eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
-    // Миграция v2: пороги XP удвоены — умножаем сохранённый XP на 2 (один раз).
-    // Новые пользователи помечаются как "мигрированные" в handleOnboardingDone (_layout.tsx),
-    // поэтому сюда попадают только старые пользователи со старой формулой XP.
-    // Legacy marker only. Real XP restore runs in xp_manager.migrateXPFormulaV2().
+    // Миграция xp_migration_v2 переехала из экрана в xp_manager.migrateXPFormulaV2()
+    // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
+    // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
+    // фраза дня, подвал) монтируются вторым проходом после первого кадра.
+    const [belowFoldReady, setBelowFoldReady] = useState(false);
     useEffect(() => {
-        (async () => {
-            const migrated = await AsyncStorage.getItem('xp_migration_v2');
-            if (migrated)
-                return;
-            await AsyncStorage.setItem('xp_migration_v2', '1');
-        })();
-    }, [studyTarget]);
+        const task = InteractionManager.runAfterInteractions(() => {
+            setBelowFoldReady(true);
+        });
+        return () => { task?.cancel?.(); };
+    }, []);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -891,64 +980,142 @@ export default function HomeScreen() {
                 clearTimeout(energyTooltipTimer.current);
         };
     }, []);
-    // Debounce-флаг: если loadData уже выполняется — не запускаем повторно.
-    // Устраняет 3 одновременных вызова (focusTick + activeIdx + AppState) при возврате на главную.
-    // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
+    // Домашние подсказки: finite-серия карточек вместо старого CTA плана.
     useEffect(() => {
         let cancelled = false;
-        AsyncStorage.getItem(FREE_HOME_PLAN_CTA_MODE_KEY)
-            .then((value) => {
+        AsyncStorage.multiGet([HOME_FEATURE_TIPS_INDEX_KEY, HOME_FEATURE_TIPS_DONE_KEY, HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, HOME_ONBOARDING_DONE_KEY])
+            .then((pairs) => {
                 if (cancelled) return;
-                setFreeHomePlanCtaMode(value === 'continueLesson' ? 'continueLesson' : 'choosePlan');
+                const stored = new Map(pairs);
+                const nextIndex = clampHomeFeatureTipIndex(Number(stored.get(HOME_FEATURE_TIPS_INDEX_KEY) ?? 0), homeFeatureTips.length);
+                setHomeFeatureTipIndex(nextIndex);
+                setHomeFeatureTipsDone(stored.get(HOME_FEATURE_TIPS_DONE_KEY) === '1');
+                setHomeFeatureTipsReplayCount(clampHomeFeatureTipReplayCount(Number(stored.get(HOME_FEATURE_TIPS_REPLAY_COUNT_KEY) ?? 0)));
+                setHomeOnboardingDone(stored.get(HOME_ONBOARDING_DONE_KEY) === '1');
+                setHomeFeatureTipsHydrated(true);
             })
-            .catch(() => {});
+            .catch(() => {
+                if (cancelled) return;
+                setHomeFeatureTipsHydrated(true);
+            });
         return () => {
             cancelled = true;
         };
-    }, []);
-    const setFreeHomePlanCtaModePersisted = useCallback((mode: FreeHomePlanCtaMode) => {
-        setFreeHomePlanCtaMode(mode);
-        AsyncStorage.setItem(FREE_HOME_PLAN_CTA_MODE_KEY, mode).catch(() => {});
-    }, []);
-    const handleFreeHomePlanCtaTouchStart = useCallback((event: any) => {
-        if (hasPremiumAccess) return;
-        freeHomePlanCtaStartXRef.current = event?.nativeEvent?.touches?.[0]?.pageX ?? null;
-        freeHomePlanCtaDxRef.current = 0;
-        freeHomePlanCtaSwipedRef.current = false;
-    }, [hasPremiumAccess]);
-    const handleFreeHomePlanCtaTouchMove = useCallback((event: any) => {
-        if (hasPremiumAccess || freeHomePlanCtaStartXRef.current == null) return;
-        const pageX = event?.nativeEvent?.touches?.[0]?.pageX;
-        if (typeof pageX !== 'number') return;
-        freeHomePlanCtaDxRef.current = pageX - freeHomePlanCtaStartXRef.current;
-    }, [hasPremiumAccess]);
-    const handleFreeHomePlanCtaTouchEnd = useCallback(() => {
-        if (hasPremiumAccess) return;
-        const dx = freeHomePlanCtaDxRef.current;
-        freeHomePlanCtaStartXRef.current = null;
-        freeHomePlanCtaDxRef.current = 0;
-        if (Math.abs(dx) < 44) return;
-        if (dx < 0 && lastLesson != null) {
-            freeHomePlanCtaSwipedRef.current = true;
-            setFreeHomePlanCtaModePersisted('continueLesson');
-            hapticTap();
+    }, [homeFeatureTips.length]);
+    const persistHomeFeatureTipIndex = useCallback((nextIndex: number) => {
+        const clamped = clampHomeFeatureTipIndex(nextIndex, homeFeatureTips.length);
+        setHomeFeatureTipIndex(clamped);
+        AsyncStorage.setItem(HOME_FEATURE_TIPS_INDEX_KEY, String(clamped)).catch(() => {});
+    }, [homeFeatureTips.length]);
+    const completeHomeFeatureTips = useCallback(() => {
+        setHomeFeatureTipsDone(true);
+        AsyncStorage.multiSet([
+            [HOME_FEATURE_TIPS_DONE_KEY, '1'],
+            [HOME_FEATURE_TIPS_INDEX_KEY, String(Math.max(0, homeFeatureTips.length - 1))],
+        ]).catch(() => {});
+    }, [homeFeatureTips.length]);
+    const advanceHomeFeatureTip = useCallback(() => {
+        if (homeFeatureTipsDone) return;
+        const nextIndex = homeFeatureTipIndex + 1;
+        if (nextIndex >= homeFeatureTips.length) {
+            completeHomeFeatureTips();
+            return;
         }
-        else if (dx > 0) {
-            freeHomePlanCtaSwipedRef.current = true;
-            setFreeHomePlanCtaModePersisted('choosePlan');
-            hapticTap();
-        }
-        if (freeHomePlanCtaSwipedRef.current) {
-            setTimeout(() => {
-                freeHomePlanCtaSwipedRef.current = false;
-            }, 220);
-        }
-    }, [hasPremiumAccess, lastLesson, setFreeHomePlanCtaModePersisted]);
-    const handleFreeHomeChoosePlanPress = useCallback(() => {
-        if (freeHomePlanCtaSwipedRef.current) return;
+        persistHomeFeatureTipIndex(nextIndex);
+    }, [completeHomeFeatureTips, homeFeatureTipIndex, homeFeatureTips.length, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
+    const previousHomeFeatureTip = useCallback(() => {
+        if (homeFeatureTipsDone) return;
+        persistHomeFeatureTipIndex(homeFeatureTipIndex - 1);
+    }, [homeFeatureTipIndex, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
+    const handleHomeFeatureTipNext = useCallback(() => {
         hapticTap();
-        router.push('/personal_plan_setup' as any);
-    }, [router]);
+        advanceHomeFeatureTip();
+    }, [advanceHomeFeatureTip]);
+    const handleHomeFeatureTipPrevious = useCallback(() => {
+        hapticTap();
+        previousHomeFeatureTip();
+    }, [previousHomeFeatureTip]);
+    const handleHomeFeatureTipPress = useCallback(() => {
+        if (homeFeatureTipSwipeHandledRef.current) {
+            homeFeatureTipSwipeHandledRef.current = false;
+            return;
+        }
+        handleHomeFeatureTipNext();
+    }, [handleHomeFeatureTipNext]);
+    const handleHomeFeatureTipTouchStart = useCallback((event: GestureResponderEvent) => {
+        homeFeatureTipSwipeHandledRef.current = false;
+        homeFeatureTipTouchStartRef.current = getHomeFeatureTipTouchPoint(event);
+    }, []);
+    const handleHomeFeatureTipTouchCancel = useCallback(() => {
+        homeFeatureTipTouchStartRef.current = null;
+    }, []);
+    const handleHomeFeatureTipTouchEnd = useCallback((event: GestureResponderEvent) => {
+        const start = homeFeatureTipTouchStartRef.current;
+        const end = getHomeFeatureTipTouchPoint(event);
+        homeFeatureTipTouchStartRef.current = null;
+        if (!start || !end) return;
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+        const absX = Math.abs(dx);
+        const absY = Math.abs(dy);
+        if (absX >= 42 && absX > absY * 1.2) {
+            homeFeatureTipSwipeHandledRef.current = true;
+            if (dx < 0) {
+                handleHomeFeatureTipNext();
+            } else {
+                handleHomeFeatureTipPrevious();
+            }
+            return;
+        }
+        if (absX <= 12 && absY <= 12) {
+            homeFeatureTipSwipeHandledRef.current = true;
+            handleHomeFeatureTipNext();
+            return;
+        }
+        if (absX > 12 || absY > 12) {
+            homeFeatureTipSwipeHandledRef.current = true;
+        }
+    }, [handleHomeFeatureTipNext, handleHomeFeatureTipPrevious]);
+    const resetHomeFeatureTipsFromHome = useCallback(() => {
+        hapticTap();
+        setHomeFeatureTipIndex(0);
+        setHomeFeatureTipsDone(false);
+        setHomeFeatureTipsHydrated(true);
+        setHomeOnboardingDone(true);
+        AsyncStorage.multiSet([
+            [HOME_FEATURE_TIPS_INDEX_KEY, '0'],
+            [HOME_FEATURE_TIPS_DONE_KEY, '0'],
+            [HOME_ONBOARDING_DONE_KEY, '1'],
+        ]).catch(() => {});
+    }, []);
+    useEffect(() => {
+        const sub = DeviceEventEmitter.addListener(HOME_FEATURE_TIPS_RESET_EVENT, (nextReplayCount?: number) => {
+            if (typeof nextReplayCount === 'number') {
+                setHomeFeatureTipsReplayCount(clampHomeFeatureTipReplayCount(nextReplayCount));
+            }
+            setHomeFeatureTipIndex(0);
+            setHomeFeatureTipsDone(false);
+            setHomeFeatureTipsHydrated(true);
+            setHomeOnboardingDone(true);
+        });
+        return () => sub.remove();
+    }, []);
+    useEffect(() => {
+        const shouldPulse = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
+        if (!shouldPulse) {
+            homeFeatureTipHintPulse.stopAnimation();
+            homeFeatureTipHintPulse.setValue(0);
+            return;
+        }
+        const loop = Animated.loop(Animated.sequence([
+            Animated.timing(homeFeatureTipHintPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+            Animated.timing(homeFeatureTipHintPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        ]));
+        loop.start();
+        return () => {
+            loop.stop();
+        };
+    }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone]);
     // Открыть «Личный план» с проверкой доступа: фри без премиума → пейвол (не сам план).
     // Сам экран плана тоже защищён входным замком — это лишь чтобы не мелькал экран.
     const openPersonalPlan = useCallback(() => {
@@ -959,11 +1126,9 @@ export default function HomeScreen() {
             router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
         }
     }, [planAccess, router]);
-    const handleFreeHomeContinueLessonPress = useCallback(() => {
-        if (freeHomePlanCtaSwipedRef.current || lastLesson == null) return;
-        hapticTap();
-        router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } });
-    }, [lastLesson, router]);
+    // Debounce-флаг: если loadData уже выполняется — не запускаем повторно.
+    // Устраняет 3 одновременных вызова (focusTick + activeIdx + AppState) при возврате на главную.
+    // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
     const loadingRef = useRef(false);
     const needsReloadRef = useRef(false);
     const deferredReloadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1123,8 +1288,14 @@ export default function HomeScreen() {
             // — иначе фри-юзер, нажавший «продолжить бесплатно» на пейволе, получил бы готовый
             // план бесплатно (pending ставится до развилки покупки). Премиум читаем из storage
             // (getVerifiedRealPremiumStatus), а не из React-стейта: при холодном старте стейт
-            // ещё может не подтянуться. Нет премиума → чистим очередь (план не положен).
-            // activate сама чистит очередь, так что для уже-активного плана это no-op.
+            // ещё может не подтянуться. Нет премиума → очередь НЕ чистим: она должна дожить
+            // (а) до будущей покупки премиума, чтобы активация всё же доехала, и
+            // (б) до опросника setup, который использует её для префилла ответов.
+            // Раньше здесь стирали очередь безвозвратно — план терялся навсегда даже для
+            // юзеров, купивших премиум позже. activate сама чистит очередь при успехе, так
+            // что для уже-активного плана и для настоящей активации это остаётся no-op —
+            // и без премиума эта ветка просто ничего не делает на каждый loadData (без
+            // побочных эффектов и без спама повторных попыток).
             try {
                 const existingPlanState = await readPersonalPlanState();
                 if (existingPlanState == null) {
@@ -1133,8 +1304,6 @@ export default function HomeScreen() {
                         const hasRealPremium = await getVerifiedRealPremiumStatus().catch(() => false);
                         if (hasRealPremium) {
                             await activatePendingPersonalPlanAfterPremium();
-                        } else {
-                            await clearPendingPersonalPlanActivation();
                         }
                     }
                 }
@@ -1375,6 +1544,27 @@ export default function HomeScreen() {
                 homeLeagueChest,
                 personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget);
+            patchAppSnapshot({
+                profile: {
+                    source: 'local',
+                    updatedAt: Date.now(),
+                    name: name ?? '',
+                    avatar: avatarSnap,
+                    frame: frameSnap,
+                    aura: normalizeAvatarAuraId(savedAuraSnap) ?? undefined,
+                    totalXp: xpSnap,
+                    level: getLevelFromXP(xpSnap),
+                    premiumActive: premiumSignals.get('premium_active') === 'true',
+                    vipActive: isVip,
+                },
+                progress: {
+                    source: 'local',
+                    updatedAt: Date.now(),
+                    streak: currentStreakNum,
+                    shards: shardsBal,
+                    studyTarget: String(studyTarget ?? 'en'),
+                },
+            });
             if (mountedRef.current)
                 markHomeStatsReady();
             const taskList = await getTodayTasksSafe(studyTarget);
@@ -1438,18 +1628,18 @@ export default function HomeScreen() {
                 setHomeLeagueChest((prev) => prev ?? buildFallbackHomeLeagueChest(lang));
             }
             if (leaguePending && mountedRef.current) {
-                const pendingSig = JSON.stringify({
-                    prevLeagueId: leaguePending.prevLeagueId,
-                    newLeagueId: leaguePending.newLeagueId,
-                    myRank: leaguePending.myRank,
-                    totalInGroup: leaguePending.totalInGroup,
-                    promoted: leaguePending.promoted,
-                    demoted: leaguePending.demoted,
-                });
+                const pendingSig = getLeagueResultSignature(leaguePending);
                 // Если пользователь уже закрыл модалку в этой сессии — больше не показываем,
                 // даже если состав группы (totalInGroup/myRank) поменялся после refetch.
                 if (dismissedLeagueResultThisSessionRef.current || dismissedLeagueResultRef.current === pendingSig) {
                     await clearPendingResult();
+                }
+                // Межхостовый guard (league_engine, module-level): та же сигнатура могла уже
+                // быть забронирована club_screen.tsx (или этим же хостом ранее) — не показываем
+                // второй раз. Источник правды — league_engine; локальные рефы выше остаются
+                // как быстрая защита внутри этого хоста.
+                else if (!tryAcquireLeagueResultModal(pendingSig)) {
+                    // ничего не делаем — показ уже произошёл (или произойдёт) на другом хосте
                 }
                 else {
                     void checkAchievements({
@@ -1459,6 +1649,9 @@ export default function HomeScreen() {
                         promoted: leaguePending.promoted,
                         newLeagueId: leaguePending.newLeagueId,
                     });
+                    // Персистим «показано» СРАЗУ (await, не фоном) — kill приложения сразу
+                    // после показа не должен приводить к повторному показу при следующем запуске.
+                    await markLeagueResultShown(leaguePending);
                     setPendingLeagueResult(leaguePending);
                 }
             }
@@ -1920,6 +2113,7 @@ export default function HomeScreen() {
         ];
         const visibleActivityQuickItems = activityQuickItems;
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
+        const homeXpProgressLabel = formatHomeXpProgressLabel(xpInLevel, xpNeeded);
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
@@ -1945,29 +2139,68 @@ export default function HomeScreen() {
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
         const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance), themeMode);
-        const homeHeaderShardIconSize = 38;
-        const homeHeaderShardIconWidth = isCompassTheme ? 48 : homeHeaderShardIconSize;
-        const homeHeaderAccessLayout = !showHomeEnergy;
-        const homeHeaderEnergyClusterMaxWidth = Math.max(112, CONTENT_W - 184);
-        const homeHeaderEnergySlots = Math.max(1, energyMax + Math.max(0, energyBonus));
-        const homeEnergyLayout = getAdaptiveEnergyIconLayout({
-            slotCount: homeHeaderEnergySlots,
-            iconSize: energyMax > 6 ? 34 : 38,
-            maxWidth: homeHeaderEnergyClusterMaxWidth,
-            minIconSize: 22,
-        });
-        const homeEnergyIconSize = homeEnergyLayout.iconSize;
-        const homeEnergyIconOverlap = homeEnergyLayout.marginLeft;
-        const homeEnergyIconsWidth = homeEnergyLayout.width;
-        const homeEnergyTimerInlineReserve = !energyUnlimited && energyCount < energyMax && timeUntilNextEnergy ? 96 : 0;
-        const homeEnergyHeaderStacked = homeEnergyIconsWidth + homeEnergyTimerInlineReserve > homeHeaderEnergyClusterMaxWidth;
+        const homeHeaderShardIconSize = 34;
+        const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
+        // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
+        // освобождает место, вся шапка помещается в один ряд.
+        const homeEnergyIconSize = 30;
+        const homeEnergyCountLabel = `${Math.max(0, energyCount)}/${Math.max(1, energyMax)}`;
         const homeLeagueChestPct = homeLeagueChest
             ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
             : 0;
         const homeLeagueChestReady = homeLeagueChestPct >= 100;
         const homeLeagueChestAccent = homeLeagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
         const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
-        const hasActivePersonalPlan = personalPlanSnapshot != null || hasActivePersonalPlanState;
+        const openHomeProfile = () => {
+            hapticTap();
+            setHomeProfilePlayer({
+                name: userName || 'Phraseman',
+                points: Math.max(0, totalXP),
+                totalXp: Math.max(0, totalXP),
+                isMe: true,
+                avatar: userAvatar,
+                frame: userFrame,
+                aura: userAvatarAura ?? undefined,
+                streak,
+                leagueId: engineLeague?.id ?? 0,
+                isPremium,
+                isVip,
+                leagueCrownExpiresAt: homeLeagueCrownExpiresAt,
+                leagueCrownCount: homeLeagueCrownCount,
+            });
+        };
+        const renderHomeProfileButton = () => (
+            <TouchableOpacity
+                testID="home-profile-card-button"
+                activeOpacity={0.78}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                    ru: 'Моя карточка профиля',
+                    uk: 'Моя картка профілю',
+                    es: 'Mi tarjeta de perfil',
+                    'pt-BR': 'Meu cartão de perfil',
+                    vi: 'Thẻ hồ sơ của tôi',
+                    id: 'Kartu profil saya',
+                    tr: 'Profil kartım',
+                    pl: 'Moja karta profilu',
+                })}
+                onPress={openHomeProfile}
+                style={{ width: 48, height: 46, alignItems: 'center', justifyContent: 'center' }}
+            >
+                <View style={{ width: 44, height: 38, alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name="person-circle-outline" size={30} color={isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                </View>
+            </TouchableOpacity>
+        );
+        const showHomeFeatureTipCard = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+        const currentHomeFeatureTip = homeFeatureTips[clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length)] ?? homeFeatureTips[0];
+        const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent;
+        const showHomeFeatureTipTapHint = homeFeatureTipIndex === 0;
+        const homeFeatureTipHintOpacity = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [0.72, 0.98] });
+        const homeFeatureTipHintScale = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.035] });
+        const homeFeatureTipA11y = currentHomeFeatureTip
+            ? `${currentHomeFeatureTip.title}. ${currentHomeFeatureTip.body}`
+            : '';
         const experimentalStatusStreakWidth = eliteStatsCompact ? 74 : 86;
         const experimentalStatusTopRowHeight = eliteStatsCompact ? 72 : 86;
         const experimentalStatusWeekDotSize = eliteStatsCompact ? 28 : 31;
@@ -2012,7 +2245,7 @@ export default function HomeScreen() {
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 10 }}>
                     <Text style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
-                      {xpInLevel} / {xpNeeded} XP
+                      {homeXpProgressLabel}
                     </Text>
                   </View>
 
@@ -2059,7 +2292,7 @@ export default function HomeScreen() {
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
-                  return (<View key={i} style={{ alignItems: 'center', gap: 6, width: experimentalStatusWeekDotSize + 5 }}>
+                  return (<View key={i} style={{ alignItems: 'center', gap: 6, minWidth: experimentalStatusWeekDotSize + 5 }}>
                     <View style={{
                     width: experimentalStatusWeekDotSize,
                     height: experimentalStatusWeekDotSize,
@@ -2073,7 +2306,9 @@ export default function HomeScreen() {
                 }}>
                       {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={weekDotTheme.checkColor}/>)}
                     </View>
-                    <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
+                    {/* Метка дня («Пн», «Ср»…) не обрезается в многоточие: ширина по
+                        содержимому + разрешаем не сжимать (numberOfLines убран). */}
+                    <Text allowFontScaling={false} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16, textAlign: 'center' }}>
                       {d}
                     </Text>
                   </View>);
@@ -2093,76 +2328,43 @@ export default function HomeScreen() {
             </Animated.View>);
         return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
-          {/* ХЕДЕР */}
+          {/* ХЕДЕР: один ряд. Слева — письмо (новости команды) + бюст (карточка профиля).
+              Справа — энергия (1 иконка + цифры), осколки, видео, чаты, колокольчик (центр событий).
+              Имя убрано с главной: оно есть в карточке профиля по тапу на бюст. */}
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
-              {/* Иконки (шарды+видео+инбокс) — при отсутствии энергии выходят отдельной строкой наверху */}
-              {homeHeaderAccessLayout && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginBottom: 6 }}>
-                  <TouchableOpacity activeOpacity={0.75} onPress={() => {
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 0 }}>
+                <AppMessagesInbox />
+                {renderHomeProfileButton()}
+                <View style={{ flex: 1, minWidth: 0 }} />
+                {showHomeEnergy && (
+                  <View ref={energyIconRef} collapsable={false} style={{ flexShrink: 0 }}>
+                    <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                      <EnergyIcon filled={energyCount > 0} themeColor={energyCount > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
+                      <Text style={{ color: t.heroTextPrimary, fontSize: 14, fontWeight: '900' }} numberOfLines={1}>
+                        {homeEnergyCountLabel}
+                      </Text>
+                      {energyBonus > 0 && (
+                        <Text style={{ color: BONUS_ENERGY_COLOR, fontSize: 13, fontWeight: '900' }} numberOfLines={1}>
+                          {`+${energyBonus}`}
+                        </Text>
+                      )}
+                    </TouchableOpacity>
+                  </View>
+                )}
+                <TouchableOpacity activeOpacity={0.75} onPress={() => {
                     hapticTap();
                     router.push('/shards_shop');
-                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
-                      <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
-                    </Animated.View>
-                  </TouchableOpacity>
-                  <LingmanVideosButton />
-                  <AppMessagesInbox />
-                  <TouchableOpacity
-                    testID="home-league-chat-button"
-                    activeOpacity={0.78}
-                    accessibilityRole="button"
-                    accessibilityLabel={triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' })}
-                    onPress={() => { hapticTap(); router.push('/league_screen?openChat=1'); }}
-                    style={{ width: 50, height: 54, alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <View style={{ width: 44, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                      <Ionicons name="chatbubbles-outline" size={30} color={t.accent} />
-                    </View>
-                    {homeLeagueChatUnreadCount > 0 && (
-                      <View style={{ position: 'absolute', top: 0, right: 0, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: '#E9505F', borderWidth: 1, borderColor: t.bgCard }}>
-                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}</Text>
-                      </View>
-                    )}
-                  </TouchableOpacity>
-                </View>
-              )}
-              {/* Строка 1: имя (ник) + энергия на одном уровне (когда энергия видна) */}
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <View pointerEvents="box-none" style={{ flex: 1, minWidth: 0 }}>
-                  {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
-                      <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
-                    </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>{userName || 'Phraseman'}</Text>)}
-                </View>
-                {!homeHeaderAccessLayout && showHomeEnergy && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
-                  <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
-                <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: homeEnergyHeaderStacked ? 'column' : 'row', alignItems: homeEnergyHeaderStacked ? 'flex-end' : 'center', gap: homeEnergyHeaderStacked ? 2 : 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 0, width: homeEnergyIconsWidth, maxWidth: '100%' }}>
-                    {Array.from({ length: energyMax }).map((_, i) => (<View key={i} style={{ marginLeft: i > 0 ? homeEnergyIconOverlap : 0 }}>
-                        <EnergyIcon filled={i < energyCount} themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
-                      </View>))}
-                    {energyBonus > 0 && Array.from({ length: energyBonus }).map((_, i) => (<View key={`bonus_${i}`} style={{ marginLeft: homeEnergyIconOverlap }}>
-                        <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={themeMode === 'business' ? undefined : BONUS_ENERGY_COLOR}/>
-                      </View>))}
-                  </View>
-                  {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: homeEnergyHeaderStacked ? Math.max(10, f.label - 1) : f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: homeEnergyHeaderStacked ? 0 : 6, flexShrink: 1, maxWidth: '100%', textAlign: 'right' }} numberOfLines={1}>
-                      {`+1 ${triLang(lang, {
-                    ru: 'через',
-                    uk: 'через',
-                    es: 'en',
-                    'pt-BR': "em",
-                    vi: "trong",
-                    id: "di",
-                    tr: "içinde",
-                    pl: "w",
-                })} ${timeUntilNextEnergy}`}
-                    </Text>)}
+                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
+                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
+                  </Animated.View>
                 </TouchableOpacity>
-                  </View>
-                </View>)}
+                <LingmanVideosButton />
+                <CommunityChatHubButton />
+                <NotificationCenterButton />
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -2171,40 +2373,6 @@ export default function HomeScreen() {
                 opacity: shardsBonusAnim,
                 transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
             }}>{shardsBonusText}</Animated.Text>
-              {/* Строка 2: шарды + видео + инбокс — отдельной строкой ниже (когда энергия видна) */}
-              {!homeHeaderAccessLayout && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 6 }}>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => {
-                hapticTap();
-                router.push('/shards_shop');
-            }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
-                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
-                  </Animated.View>
-                </TouchableOpacity>
-                <LingmanVideosButton />
-                <AppMessagesInbox />
-                <TouchableOpacity
-                  testID="home-league-chat-button"
-                  activeOpacity={0.78}
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: 'Чат лиги', uk: 'Чат ліги', es: 'Chat de liga', 'pt-BR': 'Chat da liga', vi: 'Chat liga', id: 'Chat liga', tr: 'Lig sohbeti', pl: 'Czat ligi' })}
-                  onPress={() => { hapticTap(); router.push('/league_screen?openChat=1'); }}
-                  style={{ width: 50, height: 54, alignItems: 'center', justifyContent: 'center' }}
-                >
-                  <View style={{ width: 44, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name="chatbubbles-outline" size={30} color={t.accent} />
-                  </View>
-                  {homeLeagueChatUnreadCount > 0 && (
-                    <View style={{ position: 'absolute', top: 0, right: 0, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: '#E9505F', borderWidth: 1, borderColor: t.bgCard }}>
-                      <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{formatLeagueChatUnreadBadge(homeLeagueChatUnreadCount)}</Text>
-                    </View>
-                  )}
-                </TouchableOpacity>
-              </View>
-              )}
-
             </View>
           </View>
 
@@ -2287,7 +2455,7 @@ export default function HomeScreen() {
 
                   <View style={{ marginBottom: 15 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 7 }}>
-                      <Text style={{ color: t.textMuted, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{xpInLevel} / {xpNeeded} XP</Text>
+                      <Text style={{ color: t.textMuted, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{homeXpProgressLabel}</Text>
                       {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
                             <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
                           </View>)}
@@ -2427,7 +2595,7 @@ export default function HomeScreen() {
                   <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.progressMetal : [isLightTheme ? t.accent : t.gold, isLightTheme ? t.accent : t.gold]} locations={undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${Math.min(100, Math.round(progress * 100))}%` as any, height: '100%', borderRadius: 5 }}/>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{xpInLevel} / {xpNeeded} XP</Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{homeXpProgressLabel}</Text>
                   {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
                       <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
                     </View>)}
@@ -2558,7 +2726,7 @@ export default function HomeScreen() {
               </View>
               <View style={{ alignItems: 'flex-end', gap: 2 }}>
                 {!hasPremiumAccess
-                        ? <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFB74D', fontSize: 11, fontWeight: '700' }}>Plus</Text>
+                        ? <PlusBadge themeMode={themeMode} size="xs" />
                         : hasPremiumAccess && !premiumFreezeUsed
                             ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 12, fontWeight: '700' }}>
                         {triLang(lang, {
@@ -2579,286 +2747,84 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>)}
 
-          {/* ПРОДОЛЖИТЬ УРОК */}
-
-          {personalPlanSnapshot ? (
-            <PersonalPlanHomeRouteCard snapshot={personalPlanSnapshot} compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT} onPress={openPersonalPlan} />
-          ) : hasActivePersonalPlan ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-personal-plan-card" activeOpacity={0.88} onPress={openPersonalPlan} style={{
-                        marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
-                        marginBottom: 12,
-                        borderRadius: isGoldTheme ? 18 : 24,
-                        overflow: 'hidden',
-                        ...({}),
-                    }}>
-                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
-                        minHeight: 124,
-                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
-                        borderWidth: 1,
-                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
-                        paddingHorizontal: 20,
-                        paddingVertical: 18,
-                        overflow: 'hidden',
-                    }}>
-                  {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-                  {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-                  <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.16 : 0.12, backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.accent }]} pointerEvents="none"/>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                    <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeIconPlateBg, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : lightPanelBorder }}>
-                      <Ionicons name="map-outline" size={32} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+          {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
+          {showHomeFeatureTipCard && currentHomeFeatureTip ? (
+            <TouchableOpacity
+              testID="home-feature-tip-card"
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={homeFeatureTipA11y}
+              accessibilityHint={triLang(lang, { ru: 'Коснись, чтобы перейти дальше. Смахни вправо или влево, чтобы листать подсказки.', uk: 'Торкнися, щоб перейти далі. Проведи вправо або вліво, щоб гортати підказки.', es: 'Toca para avanzar. Desliza a la derecha o a la izquierda para cambiar de consejo.', 'pt-BR': 'Toque para avançar. Deslize para a direita ou esquerda para trocar a dica.', vi: 'Chạm để tiếp tục. Vuốt sang phải hoặc trái để đổi mẹo.', id: 'Ketuk untuk lanjut. Geser kanan atau kiri untuk mengganti tips.', tr: 'İlerlemek için dokun. İpuçları arasında sağa veya sola kaydır.', pl: 'Dotknij, aby przejść dalej. Przesuń w prawo lub w lewo, aby zmieniać wskazówki.' })}
+              activeOpacity={0.86}
+              onPress={handleHomeFeatureTipPress}
+              onTouchStart={handleHomeFeatureTipTouchStart}
+              onTouchEnd={handleHomeFeatureTipTouchEnd}
+              onTouchCancel={handleHomeFeatureTipTouchCancel}
+              style={{
+                marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
+                marginBottom: 12,
+                borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                overflow: 'hidden',
+                ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+              }}
+            >
+              <LinearGradient
+                colors={homeThemePanelGradient}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
+                  minHeight: 124,
+                  borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                  borderWidth: 1,
+                  borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
+                  paddingHorizontal: 18,
+                  paddingVertical: 16,
+                  overflow: 'hidden',
+                }}
+              >
+                {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
+                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
+                <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.11 : 0.08, backgroundColor: homeFeatureTipAccent }]} pointerEvents="none"/>
+                <View style={{ gap: 9, justifyContent: 'center', minHeight: 92 }}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }} numberOfLines={2}>
+                    {currentHomeFeatureTip.title}
+                  </Text>
+                  <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(14, f.body), fontWeight: '800', lineHeight: Math.max(20, f.body + 6) }} numberOfLines={5}>
+                    {currentHomeFeatureTip.body}
+                  </Text>
+                  {(showHomeFeatureTipTapHint || currentHomeFeatureTip.icon) ? (
+                    <View style={{ minHeight: 18, justifyContent: 'center' }}>
+                      {showHomeFeatureTipTapHint ? (
+                        <Animated.Text
+                          style={{
+                            color: homeThemePanelMuted,
+                            fontSize: 10,
+                            fontWeight: '800',
+                            lineHeight: 12,
+                            opacity: homeFeatureTipHintOpacity,
+                            textAlign: 'center',
+                            transform: [{ scale: homeFeatureTipHintScale }],
+                          }}
+                          numberOfLines={1}
+                        >
+                          тапни по подсказке
+                        </Animated.Text>
+                      ) : null}
+                      {currentHomeFeatureTip.icon ? (
+                        <Ionicons
+                          name={currentHomeFeatureTip.icon}
+                          size={17}
+                          color={homeFeatureTipAccent}
+                          style={{ position: 'absolute', right: 0, bottom: 0, opacity: 0.62 }}
+                        />
+                      ) : null}
                     </View>
-                    <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
-                        {s.home.continueBtn}
-                      </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2}>
-                        {triLang(lang, {
-                        ru: 'Твой персональный план',
-                        uk: 'Твій персональний план',
-                        es: 'Tu plan personal',
-                        'pt-BR': "Seu plano pessoal",
-                        vi: "Kế hoạch cá nhân của bạn",
-                        id: "Rencana personalmu",
-                        tr: "Kişisel planın",
-                        pl: "Twój osobisty plan",
-                    })}
-                      </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
-                        {triLang(lang, {
-                        ru: 'Открыть маршрут на сегодня',
-                        uk: 'Відкрити маршрут на сьогодні',
-                        es: 'Abrir la ruta de hoy',
-                        'pt-BR': "Abrir a rota de hoje",
-                        vi: "Mở lộ trình hôm nay",
-                        id: "Buka rute hari ini",
-                        tr: "Bugünkü rotayı aç",
-                        pl: "Otwórz dzisiejszą trasę",
-                    })}
-                      </Text>
-                    </View>
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>) : (<PremiumCard testID="home-personal-plan-card" level={3} onPress={openPersonalPlan} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : t.bgSurface2, borderWidth: 1, borderColor: t.border }}>
-                  <Ionicons name="map-outline" size={25} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
-
+                  ) : null}
                 </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {s.home.continueBtn}
-                  </Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }}>
-                    {triLang(lang, {
-                        ru: 'Твой персональный план',
-                        uk: 'Твій персональний план',
-                        es: 'Tu plan personal',
-                        'pt-BR': "Seu plano pessoal",
-                        vi: "Kế hoạch cá nhân của bạn",
-                        id: "Rencana personalmu",
-                        tr: "Kişisel planın",
-                        pl: "Twój osobisty plan",
-                    })}
-                  </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
-                    {triLang(lang, {
-                        ru: 'Открыть маршрут на сегодня',
-                        uk: 'Відкрити маршрут на сьогодні',
-                        es: 'Abrir la ruta de hoy',
-                        'pt-BR': "Abrir a rota de hoje",
-                        vi: "Mở lộ trình hôm nay",
-                        id: "Buka rute hari ini",
-                        tr: "Bugünkü rotayı aç",
-                        pl: "Otwórz dzisiejszą trasę",
-                    })}
-                  </Text>
-                </View>
-
-              </PremiumCard>))
-          : (hasPremiumAccess || freeHomePlanCtaMode === 'choosePlan' || lastLesson == null) ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-choose-personal-plan" activeOpacity={0.88} onPress={hasPremiumAccess ? () => { hapticTap(); router.push('/personal_plan_setup' as any); } : handleFreeHomeChoosePlanPress} onTouchStart={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchStart} onTouchMove={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchMove} onTouchEnd={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} onTouchCancel={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} style={{
-                        marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
-                        marginBottom: 12,
-                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
-                        overflow: 'hidden',
-                        ...({}),
-                    }}>
-                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
-                        minHeight: 124,
-                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
-                        borderWidth: 1,
-                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
-                        paddingHorizontal: 20,
-                        paddingVertical: 18,
-                        overflow: 'hidden',
-                    }}>
-                  {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-                  {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-                  <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.14 : 0.11, backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.accent }]} pointerEvents="none"/>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                    <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeIconPlateBg, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : lightPanelBorder }}>
-                      <Ionicons name="sparkles-outline" size={32} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
-
-                    </View>
-                    <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, lineHeight: 15 }} numberOfLines={1}>
-                        {hasPremiumAccess ? 'Plus' : triLang(lang, {
-                        ru: 'Мой план',
-                        uk: 'Мій план',
-                        es: 'Mi plan',
-                        'pt-BR': "Meu plano",
-                        vi: "Kế hoạch của tôi",
-                        id: "Rencanaku",
-                        tr: "Planım",
-                        pl: "Mój plan",
-                    })}
-                      </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(21, f.h2), fontWeight: '900', lineHeight: Math.max(25, f.h2 + 4), marginTop: 3 }} numberOfLines={3}>
-                        {triLang(lang, {
-                        ru: 'Составь свой маршрут',
-                        uk: 'Вибрати свій план навчання',
-                        es: 'Elegir mi plan de estudio',
-                        'pt-BR': "Escolher meu plano de estudo",
-                        vi: "Chọn kế hoạch học của tôi",
-                        id: "Pilih rencana belajarku",
-                        tr: "Kendi öğrenme planımı seç",
-                        pl: "Wybierz mój plan nauki",
-                    })}
-                      </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
-                        {triLang(lang, {
-                        ru: '3 вопроса — и план под тебя',
-                        uk: '3 питання — і маршрут готовий',
-                        es: '3 preguntas y la ruta está lista',
-                        'pt-BR': "3 perguntas e a rota fica pronta",
-                        vi: "3 câu hỏi là có lộ trình",
-                        id: "3 pertanyaan, rute siap",
-                        tr: "3 soru, rota hazır",
-                        pl: "3 pytania i trasa gotowa",
-                    })}
-                      </Text>
-                    </View>
-                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeChevronBg }}>
-                      <Ionicons name="chevron-forward" size={24} color={homeThemePanelAccent}/>
-                    </View>
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>) : (<PremiumCard testID="home-choose-personal-plan" level={3} onPress={hasPremiumAccess ? () => { hapticTap(); router.push('/personal_plan_setup' as any); } : handleFreeHomeChoosePlanPress} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : t.bgSurface2, borderWidth: 1, borderColor: t.border }}>
-                  <Ionicons name="sparkles-outline" size={25} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0 }}>
-                    {hasPremiumAccess ? 'Plus' : triLang(lang, {
-                        ru: 'Мой план',
-                        uk: 'Мій план',
-                        es: 'Mi plan',
-                        'pt-BR': "Meu plano",
-                        vi: "Kế hoạch của tôi",
-                        id: "Rencanaku",
-                        tr: "Planım",
-                        pl: "Mój план",
-                    })}
-                  </Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }} numberOfLines={2}>
-                    {triLang(lang, {
-                        ru: 'Составь свой маршрут',
-                        uk: 'Вибрати свій план навчання',
-                        es: 'Elegir mi plan de estudio',
-                        'pt-BR': "Escolher meu plano de estudo",
-                        vi: "Chọn kế hoạch học của tôi",
-                        id: "Pilih rencana belajarku",
-                        tr: "Kendi öğrenme planımı seç",
-                        pl: "Wybierz mój plan nauki",
-                    })}
-                  </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
-                    {triLang(lang, {
-                        ru: '3 вопроса — и план под тебя',
-                        uk: '3 питання — і маршрут готовий',
-                        es: '3 preguntas y la ruta está lista',
-                        'pt-BR': "3 perguntas e a rota fica pronta",
-                        vi: "3 câu hỏi là có lộ trình",
-                        id: "3 pertanyaan, rute siap",
-                        tr: "3 soru, rota hazır",
-                        pl: "3 pytania i trasa gotowa",
-                    })}
-                  </Text>
-                </View>
-                <Ionicons name="chevron-forward" size={20} color={t.textGhost}/>
-              </PremiumCard>))
-          : lastLesson != null ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-continue-lesson" activeOpacity={0.88} onPress={handleFreeHomeContinueLessonPress} onTouchStart={handleFreeHomePlanCtaTouchStart} onTouchMove={handleFreeHomePlanCtaTouchMove} onTouchEnd={handleFreeHomePlanCtaTouchEnd} onTouchCancel={handleFreeHomePlanCtaTouchEnd} style={{
-                        marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
-                        marginBottom: 12,
-                        borderRadius: isGoldTheme ? 18 : 24,
-                        overflow: 'hidden',
-                        ...({}),
-                    }}>
-                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
-                        minHeight: 124,
-                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
-                        borderWidth: 1,
-                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
-                        paddingHorizontal: 20,
-                        paddingVertical: 18,
-                        overflow: 'hidden',
-                    }}>
-                  {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-                  {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-                  <Image source={menuImages.lesson} style={{ position: 'absolute', right: 72, bottom: -20, width: 132, height: 132, opacity: isLightTheme ? 0.08 : 0.12 }} resizeMode="contain" pointerEvents="none" accessible={false} />
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                    <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={70} sw={8} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isCompassTheme ? compassSubtleTrack : homeThemeTrackBg} innerBg={homeThemeIconPlateBg} textColor={isPaperHomeTheme ? homeThemePanelText : '#FFFFFF'} fontSize={12}/>
-                    </View>
-                    <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
-                        {s.home.continueBtn}
-                      </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1}>
-                        {`${triLang(lang, {
-                        ru: 'Урок',
-                        uk: 'Урок',
-                        es: 'Lección',
-                        'pt-BR': "Lição",
-                        vi: "Bài học",
-                        id: "Pelajaran",
-                        tr: "Ders",
-                        pl: "Lekcja",
-                    })} ${lastLesson.id}`}
-                      </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
-                        {lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}
-                      </Text>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 9 }}>
-                        <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: 14, fontWeight: '900', lineHeight: 18 }}>★ {lastLesson.score}</Text>
-                        <View style={{ width: 3, height: 3, borderRadius: 1.5, backgroundColor: t.textGhost }}/>
-                        <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: 14, fontWeight: '900', lineHeight: 18 }}>{lastLesson.progress}/50</Text>
-                      </View>
-                    </View>
-                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeChevronBg }}>
-                      <Ionicons name="chevron-forward" size={24} color={homeThemePanelAccent}/>
-                    </View>
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>) : (<PremiumCard testID="home-continue-lesson" level={3} onPress={handleFreeHomeContinueLessonPress} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isSketchLightTheme ? 'rgba(56,52,44,0.56)' : t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {s.home.continueBtn}
-                  </Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }}>
-                    {`${triLang(lang, {
-                        ru: 'Урок',
-                        uk: 'Урок',
-                        es: 'Lección',
-                        'pt-BR': "Lição",
-                        vi: "Bài học",
-                        id: "Pelajaran",
-                        tr: "Ders",
-                        pl: "Lekcja",
-                    })} ${lastLesson.id} — ${lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}`}
-                  </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>
-                </View>
-                <Ionicons name="chevron-forward" size={20} color={t.textGhost}/>
-              </PremiumCard>)) : null}
+              </LinearGradient>
+            </TouchableOpacity>
+          ) : null}
           </Animated.View>)}
 
           {/* Persistent баннер "Сохрани прогресс" — для незалогиненных юзеров с XP ≥ 1000.
@@ -2867,6 +2833,9 @@ export default function HomeScreen() {
             <SaveProgressBanner />
           </View>
 
+          {/* D4: секции ниже первого экрана (быстрый доступ, SRS-ряд, тренер, фраза дня,
+              подвал) монтируются вторым проходом — belowFoldReady/InteractionManager. */}
+          {belowFoldReady && (<>
           {/* БЫСТРЫЙ ДОСТУП: уроки + квизы + карточки */}
           <Animated.View style={sectionStyle(3)}>
           <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
@@ -2958,7 +2927,7 @@ export default function HomeScreen() {
             </Text>
           </View>
           <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 8 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); router.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); router.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
@@ -3139,7 +3108,7 @@ export default function HomeScreen() {
 
           {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
           <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); router.push('/trainer'); }} style={{
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); router.push('/trainer'); }} style={{
                 borderRadius: isGoldTheme ? 14 : 16,
                 borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
                 borderColor: USE_ELITE_HOME_STATUS
@@ -3451,6 +3420,7 @@ export default function HomeScreen() {
             })}/>
           </View>
           </Animated.View>
+          </>)}
 
       </BouncyScrollView>);
     };
@@ -3584,7 +3554,7 @@ export default function HomeScreen() {
 
       {/* Баннер сбоя — только когда грузить было нечего (первый запуск + оффлайн). */}
       {loadFailedNoData ? (
-        <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + insets.bottom, alignItems: 'center' }}>
+        <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + bottomInset, alignItems: 'center' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: t.bgCard, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: t.accent + '40' }}>
             <Ionicons name="cloud-offline-outline" size={22} color={t.textMuted} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: 13, fontWeight: '600' }}>
@@ -3710,6 +3680,20 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </Modal>
 
+      <PlayerProfileModal
+        player={homeProfilePlayer}
+        myInfo={{
+            name: userName || 'Phraseman',
+            avatar: userAvatar,
+            frame: userFrame,
+            aura: userAvatarAura ?? undefined,
+            totalXP,
+            leagueId: engineLeague?.id ?? 0,
+            streak,
+        }}
+        onClose={() => setHomeProfilePlayer(null)}
+      />
+
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
@@ -3814,16 +3798,11 @@ export default function HomeScreen() {
             void consumeVipCelebration(marker);
         }}/>
       {pendingLeagueResult && (<LeagueResultModal visible={leagueResultVisible} result={pendingLeagueResult} onClose={() => {
-                const sig = JSON.stringify({
-                    prevLeagueId: pendingLeagueResult.prevLeagueId,
-                    newLeagueId: pendingLeagueResult.newLeagueId,
-                    myRank: pendingLeagueResult.myRank,
-                    totalInGroup: pendingLeagueResult.totalInGroup,
-                    promoted: pendingLeagueResult.promoted,
-                    demoted: pendingLeagueResult.demoted,
-                });
+                const sig = getLeagueResultSignature(pendingLeagueResult);
                 // Сначала ставим оба гарда СИНХРОННО (до любого await), чтобы
                 // параллельно стартующий loadData не успел показать модалку заново.
+                // consumed_sig в AsyncStorage уже записан markLeagueResultShown в момент
+                // показа (см. ветку setPendingLeagueResult выше) — здесь только локальные рефы.
                 dismissedLeagueResultRef.current = sig;
                 dismissedLeagueResultThisSessionRef.current = true;
                 setPendingLeagueResult(null);

@@ -1,34 +1,30 @@
-/**
- * Контракт контента дневных постов Компаса в чате лиги.
- *
- * Ключевые гарантии (от которых зависит дешевизна и качество фичи):
- *  - контент ДЕТЕРМИНИРОВАН по дню (один и тот же seed → один и тот же пост),
- *    без Math.random() — иначе крон-повтор дал бы разный пост и/или дубли;
- *  - каждый пост локализован НА ВСЕ 8 языков интерфейса (без дыр → без
- *    fallback на чужой язык);
- *  - опросы имеют валидную структуру (≥2 варианта, уникальные ключи).
- */
 import {
-  buildDailySummaryPost,
-  buildIcebreakerPost,
+  buildLeagueCompassDailyPrompt,
   COMPASS_CHAT_LANGS,
   getDaySeed,
+  hasForbiddenDailyLabel,
+  hasForbiddenProgressSummaryClaim,
+  normalizeGeneratedCompassPost,
   pickCompassPostForDay,
   type CompassChatLang,
 } from '../functions/src/compass_chat_content';
 
 const ALL_LANGS = COMPASS_CHAT_LANGS as readonly CompassChatLang[];
 
-function assertFullyLocalized(map: Partial<Record<CompassChatLang, string>>, label: string): void {
+const localized = (text: string) => ALL_LANGS.reduce((acc, lang) => {
+  acc[lang] = `${text} (${lang})`;
+  return acc;
+}, {} as Record<CompassChatLang, string>);
+
+function assertFullyLocalized(map: Partial<Record<CompassChatLang, string>>): void {
   for (const lang of ALL_LANGS) {
     const value = map[lang];
     expect(typeof value === 'string' && value.length > 0).toBe(true);
   }
-  void label;
 }
 
 describe('compass_chat_content', () => {
-  it('getDaySeed детерминирован для одной даты и растёт на 1 в день', () => {
+  it('getDaySeed is deterministic for one UTC date and increments by one per UTC day', () => {
     const day1 = new Date(Date.UTC(2026, 5, 28, 9, 0, 0));
     const day1Late = new Date(Date.UTC(2026, 5, 28, 23, 59, 0));
     const day2 = new Date(Date.UTC(2026, 5, 29, 1, 0, 0));
@@ -36,79 +32,105 @@ describe('compass_chat_content', () => {
     expect(getDaySeed(day2)).toBe(getDaySeed(day1) + 1);
   });
 
-  it('pickCompassPostForDay детерминирован (один seed → один и тот же пост)', () => {
+  it('fallback post selection is deterministic for one seed', () => {
     const a = pickCompassPostForDay(100);
     const b = pickCompassPostForDay(100);
     expect(a).toEqual(b);
   });
 
-  it('за 7 дней цикла встречаются разные форматы (не один и тот же)', () => {
+  it('fallback post selection does not repeat the same weekday every week', () => {
+    const mondaySeed = getDaySeed(new Date(Date.UTC(2026, 5, 29, 9, 0, 0)));
+    for (let dayOffset = 0; dayOffset < 7; dayOffset += 1) {
+      const thisWeek = pickCompassPostForDay(mondaySeed + dayOffset);
+      const nextWeek = pickCompassPostForDay(mondaySeed + dayOffset + 7);
+      expect(nextWeek.i18n.ru).not.toBe(thisWeek.i18n.ru);
+    }
+  });
+
+  it('fallback rotation contains varied conversation formats and never says word/phrase of day', () => {
     const kinds = new Set<string>();
-    for (let seed = 0; seed < 7; seed++) {
-      kinds.add(pickCompassPostForDay(seed).kind);
-    }
-    expect(kinds.size).toBeGreaterThanOrEqual(3);
-  });
-
-  it('каждый выбранный пост локализован на все 8 языков', () => {
-    for (let seed = 0; seed < 14; seed++) {
+    for (let seed = 0; seed < 14; seed += 1) {
       const post = pickCompassPostForDay(seed);
-      assertFullyLocalized(post.i18n, `post#${seed}`);
-    }
-  });
-
-  it('опросы валидны: ≥2 варианта, уникальные ключи, локализованные подписи', () => {
-    for (let seed = 0; seed < 14; seed++) {
-      const post = pickCompassPostForDay(seed);
-      if (post.kind !== 'poll') continue;
-      expect(Array.isArray(post.poll)).toBe(true);
-      const poll = post.poll!;
-      expect(poll.length).toBeGreaterThanOrEqual(2);
-      const keys = poll.map((o) => o.key);
-      expect(new Set(keys).size).toBe(keys.length);
-      for (const option of poll) {
-        assertFullyLocalized(option.label, `poll#${seed}:${option.key}`);
+      kinds.add(post.kind);
+      assertFullyLocalized(post.i18n);
+      expect(Object.values(post.i18n).some(hasForbiddenDailyLabel)).toBe(false);
+      if (post.poll) {
+        expect(post.kind).toBe('poll');
+        expect(post.poll.length).toBeGreaterThanOrEqual(2);
+        expect(new Set(post.poll.map((option) => option.key)).size).toBe(post.poll.length);
+        for (const option of post.poll) assertFullyLocalized(option.label);
       }
     }
+    expect([...kinds]).toEqual(expect.arrayContaining(['discussion', 'language_fact', 'mini_challenge', 'poll']));
   });
 
-  it('обрабатывает отрицательные/большие seed без падения', () => {
-    expect(() => pickCompassPostForDay(-5)).not.toThrow();
-    expect(() => pickCompassPostForDay(999999)).not.toThrow();
-    expect(pickCompassPostForDay(-7).kind).toBe(pickCompassPostForDay(0).kind);
-  });
-});
-
-describe('buildIcebreakerPost', () => {
-  it('закреплённое приветствие локализовано на все 8 языков', () => {
-    const post = buildIcebreakerPost();
-    expect(post.kind).toBe('icebreaker');
-    assertFullyLocalized(post.i18n, 'icebreaker');
+  it('prompt is explicit about one daily league-chat post and the Daily Phrase conflict', () => {
+    const prompt = buildLeagueCompassDailyPrompt({ dayKey: '2026-06-29', seed: 123 });
+    expect(prompt).toContain('write ONE fresh system post');
+    expect(prompt).toContain('Daily Phrase');
+    expect(prompt).toContain('Do not use the labels');
+    expect(prompt).toContain('NEVER write progress summaries');
+    expect(prompt).toContain('NEVER include learner names');
+    for (const lang of ALL_LANGS) expect(prompt).toContain(`"${lang}"`);
   });
 });
 
-describe('buildDailySummaryPost', () => {
-  it('возвращает null, если хвалить некого', () => {
-    expect(buildDailySummaryPost([])).toBeNull();
-    expect(buildDailySummaryPost(['', '  '])).toBeNull();
-  });
-
-  it('сводка локализована на все 8 языков и содержит имена', () => {
-    const post = buildDailySummaryPost(['Олег', 'Марина']);
+describe('normalizeGeneratedCompassPost', () => {
+  it('accepts a fully localized generated discussion post', () => {
+    const post = normalizeGeneratedCompassPost({
+      kind: 'discussion',
+      i18n: localized('Compass asks: what English phrase feels most useful today? Write one small answer'),
+    });
     expect(post).not.toBeNull();
-    assertFullyLocalized(post!.i18n, 'summary');
-    expect(post!.i18n.ru).toContain('Олег');
-    expect(post!.i18n.ru).toContain('Марина');
+    expect(post!.kind).toBe('discussion');
+    assertFullyLocalized(post!.i18n);
   });
 
-  it('при >3 именах показывает «и ещё N» (overflow) на каждом языке', () => {
-    const names = ['A', 'B', 'C', 'D', 'E'];
-    const post = buildDailySummaryPost(names)!;
-    // первые 3 имени видны, остаток (2) — в формулировке «ещё»/«more»/«+»
-    expect(post.i18n.ru).toContain('и ещё 2');
-    expect(post.i18n.es).toContain('2 más');
-    expect(post.i18n['pt-BR']).toContain('mais 2');
-    // 4-е имя НЕ перечислено напрямую
-    expect(post.i18n.ru).not.toContain('D,');
+  it('accepts poll JSON wrapped in text, with localized option labels', () => {
+    const raw = `Here is JSON:
+{
+  "kind": "poll",
+  "i18n": ${JSON.stringify(localized('Compass poll: what blocks your speaking most? Pick one honest answer'))},
+  "poll": [
+    { "key": "pronunciation", "label": ${JSON.stringify(localized('Pronunciation'))} },
+    { "key": "shyness", "label": ${JSON.stringify(localized('Shyness'))} }
+  ]
+}`;
+    const post = normalizeGeneratedCompassPost(raw);
+    expect(post).not.toBeNull();
+    expect(post!.kind).toBe('poll');
+    expect(post!.poll).toHaveLength(2);
+  });
+
+  it('rejects generated content that collides with the home Daily Phrase naming', () => {
+    const post = normalizeGeneratedCompassPost({
+      kind: 'discussion',
+      i18n: {
+        ...localized('Compass asks: what phrase would you use today?'),
+        ru: 'Фраза дня — write one sentence in English.',
+      },
+    });
+    expect(post).toBeNull();
+  });
+
+  it('rejects generated progress summaries that would repeat fake weekly achievement copy', () => {
+    const badText = 'Заглянул в ваши успехи за сегодня: вперёд продвинулись Александр и Анастасия. Если вы пока нет — день ещё не кончился, я подожду.';
+    expect(hasForbiddenProgressSummaryClaim(badText)).toBe(true);
+    expect(normalizeGeneratedCompassPost({
+      kind: 'discussion',
+      i18n: {
+        ...localized('Compass asks: what tiny English sentence feels useful today?'),
+        ru: badText,
+      },
+    })).toBeNull();
+  });
+
+  it('rejects incomplete localization and malformed polls', () => {
+    expect(normalizeGeneratedCompassPost({ kind: 'discussion', i18n: { ru: 'Only Russian text is not enough' } })).toBeNull();
+    expect(normalizeGeneratedCompassPost({
+      kind: 'poll',
+      i18n: localized('Compass poll: choose one answer for speaking practice today'),
+      poll: [{ key: 'a', label: localized('Only one option') }],
+    })).toBeNull();
   });
 });

@@ -1,38 +1,52 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  FREE_DIALOG_LEGACY_USED_KEY,
   FREE_DIALOG_USED_KEY,
+  getFreeDialogsLeft,
+  getFreeDialogsUsed,
+  hasFreeDialogLeft,
   hasUsedFreeDialog,
   markFreeDialogUsed,
-  hasFreeDialogLeft,
 } from '../app/dialogs_limit_session';
 
-// Модель: ровно ОДИН пожизненный бесплатный диалог, общий на все режимы.
-describe('dialogs_limit_session (lifetime one free dialog)', () => {
+describe('dialogs_limit_session (lifetime free dialog counter)', () => {
   beforeEach(async () => {
     await AsyncStorage.removeItem(FREE_DIALOG_USED_KEY);
+    await AsyncStorage.removeItem(FREE_DIALOG_LEGACY_USED_KEY);
   });
 
-  it('starts with the free dialog available', async () => {
+  it('starts with two free dialogs available by default', async () => {
+    expect(await getFreeDialogsUsed()).toBe(0);
+    expect(await getFreeDialogsLeft()).toBe(2);
     expect(await hasUsedFreeDialog()).toBe(false);
     expect(await hasFreeDialogLeft()).toBe(true);
   });
 
-  it('consumes the single free dialog once marked', async () => {
+  it('consumes free dialogs one by one', async () => {
     await markFreeDialogUsed();
+    expect(await getFreeDialogsUsed()).toBe(1);
+    expect(await getFreeDialogsLeft()).toBe(1);
+    expect(await hasFreeDialogLeft()).toBe(true);
+
+    await markFreeDialogUsed();
+    expect(await getFreeDialogsUsed()).toBe(2);
+    expect(await getFreeDialogsLeft()).toBe(0);
     expect(await hasUsedFreeDialog()).toBe(true);
     expect(await hasFreeDialogLeft()).toBe(false);
   });
 
-  it('is idempotent: marking twice still leaves it used (no second free dialog)', async () => {
+  it('caps extra marks at the configured lifetime allowance', async () => {
     await markFreeDialogUsed();
     await markFreeDialogUsed();
-    expect(await hasFreeDialogLeft()).toBe(false);
+    await markFreeDialogUsed();
+    expect(await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)).toBe('2');
+    expect(await getFreeDialogsLeft()).toBe(0);
   });
 
-  it('does NOT reset across "days" — it is lifetime, not daily', async () => {
-    await markFreeDialogUsed();
-    // No date logic exists anymore; the flag is a plain persisted boolean.
-    expect(await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)).toBe('1');
-    expect(await hasFreeDialogLeft()).toBe(false);
+  it('migrates the old boolean flag as one spent dialog', async () => {
+    await AsyncStorage.setItem(FREE_DIALOG_LEGACY_USED_KEY, '1');
+    expect(await getFreeDialogsUsed()).toBe(1);
+    expect(await getFreeDialogsLeft()).toBe(1);
+    expect(await hasFreeDialogLeft()).toBe(true);
   });
 });

@@ -13,6 +13,7 @@ import {
   hasDailyPhraseQuestXpAwarded,
   isDailyPhraseQuestAnswerCorrect,
   markDailyPhraseQuestAnswered,
+  selectDailyPhraseQuestMarkerKeysToRemove,
 } from '../app/daily_phrase_quest';
 import { registerXP as registerXPMock } from '../app/xp_manager';
 import type { DailyPhrase } from '../app/daily_phrase_system';
@@ -144,5 +145,26 @@ describe('Daily Phrase Quest', () => {
     await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-13', lang: 'ru' });
 
     expect(registerXP).toHaveBeenCalledTimes(2);
+  });
+
+  it('selects stale quest marker keys for pruning while retaining the active key', () => {
+    const retained = 'daily_phrase_quest_xp_awarded_v1:2026-01-01:old-but-active';
+    const keys = [
+      retained,
+      ...Array.from({ length: 210 }, (_, i) => {
+        const day = new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10);
+        return `daily_phrase_quest_answered_v1:${day}:phrase-${i}`;
+      }),
+    ];
+
+    const remove = selectDailyPhraseQuestMarkerKeysToRemove(
+      keys,
+      Date.parse('2026-07-31T00:00:00.000Z'),
+      [retained],
+    );
+
+    expect(remove).not.toContain(retained);
+    expect(remove.length).toBeGreaterThan(0);
+    expect(keys.length - remove.length).toBeLessThanOrEqual(193);
   });
 });

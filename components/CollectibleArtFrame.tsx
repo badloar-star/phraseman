@@ -8,7 +8,7 @@
 // блик включается лишь для tier >= rare, искры — только legendary/secret.
 // Уважает «Уменьшить движение» (reduce motion) — тогда всё статично.
 import React, { memo, useEffect, useState } from 'react';
-import { AccessibilityInfo, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import { AccessibilityInfo, AppState, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -22,6 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
 import CollectibleArt from './CollectibleArt';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import {
   collectibleFrameProfile,
   collectibleTierColor,
@@ -51,14 +52,40 @@ interface CollectibleArtFrameProps {
 const Sheen = memo(function Sheen({ w, h, radius, delay }: { w: number; h: number; radius: number; delay: number }) {
   const sweep = useSharedValue(0);
   const band = Math.max(28, w * 0.42);
+  const isFocused = useIsScreenFocused();
 
+  // Грид «Сокровищницы» держит десятки таких лупов сразу, а freezeOnBlur:false
+  // переживает уход с экрана — гардим фокусом экрана и AppState (паттерн AvatarAura).
   useEffect(() => {
-    sweep.value = withDelay(
-      delay,
-      withRepeat(withTiming(1, { duration: 5200, easing: Easing.inOut(Easing.ease) }), -1, false),
-    );
-    return () => cancelAnimation(sweep);
-  }, [sweep, delay]);
+    if (!isFocused) {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+      sweep.value = withDelay(
+        delay,
+        withRepeat(withTiming(1, { duration: 5200, easing: Easing.inOut(Easing.ease) }), -1, false),
+      );
+    };
+    const stop = () => {
+      cancelAnimation(sweep);
+      sweep.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(sweep);
+    };
+  }, [sweep, delay, isFocused]);
 
   const bandStyle = useAnimatedStyle(() => {
     // Блик бежит только в первой трети цикла, остальное — пауза за краем.
@@ -84,13 +111,37 @@ const Sheen = memo(function Sheen({ w, h, radius, delay }: { w: number; h: numbe
 /* ── мерцающая искорка в углу (для legendary/secret) ───────── */
 const Sparkle = memo(function Sparkle({ color, delay, style }: { color: string; delay: number; style: StyleProp<ViewStyle> }) {
   const v = useSharedValue(0);
+  const isFocused = useIsScreenFocused();
   useEffect(() => {
-    v.value = withDelay(
-      delay,
-      withRepeat(withSequence(withTiming(1, { duration: 700 }), withTiming(0, { duration: 900 })), -1, false),
-    );
-    return () => cancelAnimation(v);
-  }, [v, delay]);
+    if (!isFocused) {
+      cancelAnimation(v);
+      v.value = 0;
+      return;
+    }
+
+    const start = () => {
+      cancelAnimation(v);
+      v.value = 0;
+      v.value = withDelay(
+        delay,
+        withRepeat(withSequence(withTiming(1, { duration: 700 }), withTiming(0, { duration: 900 })), -1, false),
+      );
+    };
+    const stop = () => {
+      cancelAnimation(v);
+      v.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(v);
+    };
+  }, [v, delay, isFocused]);
   const s = useAnimatedStyle(() => ({ opacity: v.value, transform: [{ scale: 0.5 + v.value * 0.7 }] }));
   return (
     <Animated.View pointerEvents="none" style={[{ position: 'absolute' }, style, s]}>
@@ -112,6 +163,7 @@ function CollectibleArtFrame({
   style,
 }: CollectibleArtFrameProps) {
   const [reduceMotion, setReduceMotion] = useState(false);
+  const isFocused = useIsScreenFocused();
   useEffect(() => {
     let mounted = true;
     void AccessibilityInfo.isReduceMotionEnabled().then((v) => { if (mounted) setReduceMotion(v); });
@@ -125,16 +177,35 @@ function CollectibleArtFrame({
   const fxOn = animated && !reduceMotion;
 
   // Пульсация свечения (epic/legendary/secret) — мягко дышит тень.
+  // Луп живёт только на видимом экране и активном приложении (паттерн AvatarAura).
   const pulse = useSharedValue(0);
   useEffect(() => {
-    if (fxOn && p.pulse) {
-      pulse.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.inOut(Easing.ease) }), -1, true);
-    } else {
+    if (!fxOn || !p.pulse || !isFocused) {
       cancelAnimation(pulse);
       pulse.value = 0;
+      return;
     }
-    return () => cancelAnimation(pulse);
-  }, [fxOn, p.pulse, pulse]);
+
+    const start = () => {
+      cancelAnimation(pulse);
+      pulse.value = 0;
+      pulse.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.inOut(Easing.ease) }), -1, true);
+    };
+    const stop = () => {
+      cancelAnimation(pulse);
+      pulse.value = 0;
+    };
+
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      cancelAnimation(pulse);
+    };
+  }, [fxOn, p.pulse, pulse, isFocused]);
 
   const glowStyle = useAnimatedStyle(() => {
     if (p.glow <= 0) return { shadowOpacity: 0, shadowRadius: 0 };

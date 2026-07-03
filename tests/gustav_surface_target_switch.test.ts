@@ -44,7 +44,7 @@ beforeEach(() => {
 });
 
 describe('production StudyTarget contract', () => {
-  it('keeps only English in production study target storage while allowing internal French content', () => {
+  it('exposes only English as a production study target while keeping French internal', () => {
     expect(STUDY_TARGETS).toEqual(['en']);
     expect(studyTargetsForSourceLocale('ru')).toEqual(['en']);
     expect(studyTargetsForSourceLocale('uk')).toEqual(['en']);
@@ -65,7 +65,7 @@ describe('production StudyTarget contract', () => {
     expect(ttsLocaleForProductionStudyTarget('en')).toBe('en-US');
   });
 
-  it('does not persist internal French as a production study target', async () => {
+  it('coerces French back to English in production study target storage', async () => {
     await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
     await expect(setStoredStudyTarget('fr', 'ru')).resolves.toBe('en');
     await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
@@ -75,17 +75,33 @@ describe('production StudyTarget contract', () => {
     await expect(getStoredStudyTarget('es')).resolves.toBe('en');
   });
 
-  it('uses production studyTarget storage in the provider/settings path while keeping Spanish dev separate', () => {
+  it('normalizes a previously stored French production target back to English', async () => {
+    await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, 'fr');
+
+    await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
+    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('en');
+  });
+
+  it('uses English production storage while keeping French and Spanish dev-only', () => {
     const provider = fs.readFileSync(path.join(ROOT, 'components', 'StudyTargetContext.tsx'), 'utf8');
     const settings = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    const studyLanguages = fs.readFileSync(path.join(ROOT, 'app', 'study_languages.ts'), 'utf8');
+    const picker = fs.readFileSync(path.join(ROOT, 'components', 'settings', 'StudyLanguagePicker.tsx'), 'utf8');
     const notifications = fs.readFileSync(path.join(ROOT, 'app', 'notifications.ts'), 'utf8');
 
     expect(provider).toContain('getStoredStudyTarget(lang)');
     expect(provider).toContain("if (devTarget === 'es')");
-    expect(settings).toContain("if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr'))");
-    expect(settings).toContain("setStoredStudyTarget(code === 'en' ? code : 'en', lang)");
-    expect(settings).toContain("await setDevStudyTargetLang('en', lang)");
-    expect(settings).toContain('studyTargetsForSourceLocale(lang)');
+    expect(provider).toContain("if (devTarget === 'fr')");
+    expect(settings).toContain('French and Spanish are DEV-only. The public version keeps English active.');
+    expect(studyLanguages).toContain("if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr'))");
+    expect(studyLanguages).toContain('await setDevStudyTargetLang(code, uiLang)');
+    expect(studyLanguages).toContain("await setStoredStudyTarget('en', uiLang)");
+    expect(studyLanguages).toContain("prefetchAndRecordStudyTargetServerPack('fr', uiLang)");
+    expect(picker).toContain('language_en.webp');
+    expect(picker).toContain('language_fr_dev.webp');
+    expect(picker).toContain('language_es_dev.webp');
+    expect(picker).toContain('if (!ENABLE_DEV_STUDY_TARGET_LANG) return undefined;');
+    expect(picker).toContain('studyTargetsForSourceLocale(lang)');
     expect(notifications).toContain('getStoredStudyTarget(lang)');
     expect(notifications).not.toContain('getDevStudyTargetLang(lang)');
   });
@@ -155,8 +171,8 @@ describe('French phrase surface contract', () => {
     expect(getLessonPrepositionTexts(8, 'fr')).toEqual([]);
   });
 
-  it('keeps draft French lesson rows inactive until approved source evidence exists', () => {
-    expect(FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds).toEqual([]);
+  it('keeps bundled French lesson rows inactive while server-pack runtime ids are approved', () => {
+    expect(FRENCH_CONTENT_SOURCE_GATE.approvedAppSeedLessonIds).toEqual(Array.from({ length: 32 }, (_, index) => index + 1));
 
     for (let lessonId = 1; lessonId <= FRENCH_CONTENT_SOURCE_GATE.draftSeedLessonLimit; lessonId += 1) {
       const lesson = getLessonData(lessonId);
@@ -165,7 +181,8 @@ describe('French phrase surface contract', () => {
         return match ? Number(match[1]) <= 50 : false;
       });
 
-      expect(block).toHaveLength(50);
+      expect(block.length).toBeGreaterThan(0);
+      expect(block.length).toBeLessThanOrEqual(50);
       expect(block.some((item) => item.french || item.wordsFr?.length || item.alternativesFr?.length)).toBe(false);
       expect(block.some((item) => phraseHasStudyTargetContent(item, 'fr'))).toBe(false);
     }

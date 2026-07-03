@@ -674,7 +674,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'plan_phrase_lesson',
         'route_phrases',
         isMissionDay ? `Живая практика: ${topic}` : `Фразы на сегодня: ${topic}`,
-        'Соберём несколько фраз под тему дня на уже знакомой конструкции.',
+        'Соберём несколько фраз под тему дня на уже знакомой фразовой схеме.',
         5,
         [10, 15, 20],
         { type: 'plan_phrase_lesson', lessonId: `${planId}_d${String(dayIndex).padStart(3, '0')}_content_unit`, requiredPhrases: 5, afterLessonId: 1 },
@@ -783,17 +783,6 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
           recallScope,
           sourceDayIndex: recallSourceDayIndex,
         },
-      ),
-      buildTask(
-        planId,
-        dayIndex,
-        'plan_quiz',
-        'extra',
-        'Вызов дня',
-        'Проверь фразы дня и часть старых фраз.',
-        4,
-        requiredMinutesForKind(planId, 'plan_quiz'),
-        { type: 'quiz', quizId: `${planId}_day_${dayIndex}_quiz`, questionCount: 10, level: quizLevel },
       ),
     ],
   };
@@ -912,7 +901,7 @@ const voyazhDay5: PlanDay = {
   title: 'Заселиться в отель',
   focus: 'Научиться спокойно заселиться в отель: сказать про бронирование, показать паспорт, попросить ключ, уточнить завтрак, этаж и доступ к Wi-Fi.',
   phraseGoal: 'Шесть коротких hotel check-in фраз: hotel reservation, passport, room key, breakfast included, second floor, wifi access.',
-  theory: 'День держится на travel-конструкциях I have, Here is, Can I get, Is, The room is, I need. Сначала основной сценарий заселения, потом выбор естественной фразы, сборка, missing word, слух и quiz.',
+  theory: 'День держится на travel-конструкциях I have, Here is, Can I get, Is, The room is, I need. Сначала основной сценарий заселения, потом выбор естественной фразы, сборка, missing word, слух и recall.',
   lifeOutcome: 'После дня можно подойти к стойке отеля, подтвердить бронирование, показать паспорт, получить ключ, уточнить завтрак, этаж номера и Wi-Fi.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1077,7 +1066,7 @@ const mitapDay5: PlanDay = {
   title: 'Спросить про deadline',
   focus: 'Научиться спокойно уточнять срок рабочей задачи: подтвердить deadline, спросить due date, проверить пятницу, назвать финальную дату и договориться о переносе.',
   phraseGoal: 'Шесть коротких deadline-фраз: confirm the deadline, when due, Friday okay, final date, move the deadline, send by Friday.',
-  theory: 'День держится на рабочих вопросах Can we confirm, When is this due, Is Friday okay, I need, Can we move, I will send. Сначала смысл, потом естественный выбор, сборка, missing word, слух и quiz.',
+  theory: 'День держится на рабочих вопросах Can we confirm, When is this due, Is Friday okay, I need, Can we move, I will send. Сначала смысл, потом естественный выбор, сборка, missing word, слух и recall.',
   lifeOutcome: 'После дня можно на созвоне или в чате уточнить срок задачи, понять финальную дату, попросить перенос и пообещать отправить результат к пятнице.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1092,7 +1081,7 @@ const mitapDay6: PlanDay = {
   title: 'Исправить рабочую ошибку',
   focus: 'Научиться спокойно исправлять рабочую ошибку: назвать проблему, указать не тот файл, исправить число, отправить обновленную версию и попросить использовать последнюю версию.',
   phraseGoal: 'Шесть коротких repair-фраз для рабочей ситуации: small mistake, wrong file, fix the number, updated version, latest version, correct it now.',
-  theory: 'День держится на спокойных repair-конструкциях There is, This is, I need to, Can I, Please use, I will. Сначала смысл, потом recall, естественный выбор, missing word, слух и quiz.',
+  theory: 'День держится на спокойных repair-конструкциях There is, This is, I need to, Can I, Please use, I will. Сначала смысл, потом recall, естественный выбор, missing word и слух.',
   lifeOutcome: 'После дня можно без паники исправить ошибку в рабочем чате или на созвоне: признать небольшую ошибку, заменить файл или число, отправить обновленную версию и попросить команду брать последнюю.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1350,17 +1339,6 @@ const gavanDay1: PlanDay = {
       [15, 20],
       { type: 'plan_phrase_recall', lessonId: 'gavan_day1_short_replies', requiredPhrases: 4, afterLessonId: 1 },
     ),
-    buildTask(
-      'gavan',
-      1,
-      'plan_quiz',
-      'quiz',
-      'Проверь короткие ответы',
-      '10 быстрых выборов по фразам дня. Без вопросов To Be: только то, что уже разобрали.',
-      4,
-      [20],
-      { type: 'quiz', quizId: 'gavan_day1_short_replies_quiz', questionCount: 10, level: 'easy' },
-    ),
   ],
 };
 
@@ -1370,7 +1348,7 @@ const gavanDay1Generated: PlanDay = {
   title: 'Короткие ответы',
   focus: 'Научиться отвечать спокойно и коротко, когда нужно подтвердить, не спорить и не зависнуть.',
   phraseGoal: 'Шесть коротких фраз для обычного разговора: где ты, все нормально, непонятно, вы правы, я готов.',
-  theory: 'День держится на простых конструкциях I am, You are, It is. Сначала говорим готовую фразу целиком, потом тренируем точные слова внутри нее.',
+  theory: 'День держится на простых фразах I am, You are, It is. Сначала говорим готовую фразу целиком, потом тренируем точные слова внутри нее.',
   lifeOutcome: 'После дня можно коротко подтвердить, что ты здесь, что все нормально, что человек прав, что ты готов или что что-то пока непонятно.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1430,7 +1408,7 @@ const gavanDay5Generated: PlanDay = {
   title: 'Сказать, что документа нет',
   focus: 'Научиться спокойно сказать, что нужного документа нет: предложить принести позже, показать цифровую копию, попросить больше времени и уточнить, что можно сделать сейчас.',
   phraseGoal: 'Шесть коротких office-life фраз: no document, bring later, digital copy, more time, do now, send tomorrow.',
-  theory: 'День держится на практичных конструкциях I do not have, Can I bring, I have, I need, What can I do, I will send. Сначала смысл ситуации, потом выбор, сборка, missing word, слух и quiz.',
+  theory: 'День держится на практичных конструкциях I do not have, Can I bring, I have, I need, What can I do, I will send. Сначала смысл ситуации, потом выбор, сборка, missing word, слух и recall.',
   lifeOutcome: 'После дня можно в офисе, банке или сервисе не растеряться, если документа нет: объяснить ситуацию, предложить копию, попросить время и договориться отправить документ завтра.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1595,7 +1573,7 @@ const impulsDay5Generated: PlanDay = {
   title: 'Взять короткую паузу',
   focus: 'Научиться не зависать, когда нужен момент на мысль: спокойно попросить секунду, минутку, короткую паузу и обещать ответ после нее.',
   phraseGoal: 'Шесть коротких buy-time фраз: one second, think for a moment, short pause, answer in a minute, answer after the pause, give me a moment.',
-  theory: 'День держится на спокойных паузах в речи. Сначала говорим основную фразу целиком, потом тренируем выбор, сборку на слух, пропуск слова, квиз, произношение и recall.',
+  theory: 'День держится на спокойных паузах в речи. Сначала говорим основную фразу целиком, потом тренируем выбор, сборку на слух, пропуск слова, произношение и recall.',
   lifeOutcome: 'После дня можно не молчать в ступоре, а взять короткую паузу по-английски и сразу показать собеседнику, что ответ будет через момент.',
   curriculum: {
     lessonPrerequisites: [1],
@@ -1820,7 +1798,7 @@ const echoDay5Generated: PlanDay = {
   title: 'Понять главное сообщение',
   focus: 'Научиться ловить главный смысл услышанного: понять основное сообщение, ключевую мысль, срочность на сегодня, план и короткую версию.',
   phraseGoal: 'Шесть коротких listening-фраз: main message, key point, need today, confirm plan, short version, reply after listen.',
-  theory: 'День держится на listening-first реакции: The main message, I understand, You need, I can confirm, Please send, I will reply. Сначала ловим общий смысл, потом тренируем выбор, сборку на слух, missing word, quiz и recall.',
+  theory: 'День держится на listening-first реакции: The main message, I understand, You need, I can confirm, Please send, I will reply. Сначала ловим общий смысл, потом тренируем выбор, сборку на слух, missing word и recall.',
   lifeOutcome: 'После дня можно после услышанной фразы коротко подтвердить, что главное понятно: уловить основной смысл, срочность, план и попросить короткую версию, если нужно.',
   curriculum: {
     lessonPrerequisites: [1],

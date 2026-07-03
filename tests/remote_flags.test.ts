@@ -23,8 +23,11 @@ import {
   getMinAppVersion,
   getManualUpdateCampaignId,
   getManualUpdateMode,
+  getManualUpdatePlatform,
   getManualUpdateTargetBuild,
+  matchesManualUpdatePlatform,
   normalizeManualUpdateMode,
+  normalizeManualUpdatePlatform,
   shouldShowManualUpdate,
   parsePromoUntilMs,
   shouldShowPromoBanner,
@@ -50,9 +53,9 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('free_daily_quiz_limit')).toBe(3);
       expect(getRemoteNumber('arena_daily_max')).toBe(5);
       expect(getRemoteNumber('max_energy')).toBe(5);
-      expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(34);
-      expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(33);
-      expect(getRemoteNumber('onboarding_ab_quiz_pct')).toBe(33);
+      expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
+      expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
+      expect(getRemoteNumber('onboarding_ab_quiz_pct')).toBe(0);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
@@ -228,16 +231,16 @@ describe('remote_flags', () => {
       const v1 = getOnboardingAbVariant('user-123');
       const v2 = getOnboardingAbVariant('user-123');
       expect(v1).toBe(v2);
-      expect(['welcome', 'builder', 'quiz']).toContain(v1);
+      expect(v1).toBe('current');
     });
 
-    it('can force each onboarding entry through remote split', () => {
+    it('ignores the retired welcome/builder/quiz split', () => {
       applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 100, onboarding_ab_builder_pct: 0, onboarding_ab_quiz_pct: 0 } });
-      expect(getOnboardingAbVariant('x')).toBe('welcome');
+      expect(getOnboardingAbVariant('x')).toBe('current');
       applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 100, onboarding_ab_quiz_pct: 0 } });
-      expect(getOnboardingAbVariant('x')).toBe('builder');
+      expect(getOnboardingAbVariant('x')).toBe('current');
       applyRemoteConfigSnapshot({ numbers: { onboarding_ab_welcome_pct: 0, onboarding_ab_builder_pct: 0, onboarding_ab_quiz_pct: 100 } });
-      expect(getOnboardingAbVariant('x')).toBe('quiz');
+      expect(getOnboardingAbVariant('x')).toBe('current');
     });
   });
 
@@ -361,6 +364,13 @@ describe('remote_flags', () => {
         expect(normalizeManualUpdateMode('')).toBe('optional');
       });
 
+      it('normalizes platform to ios/android or both', () => {
+        expect(normalizeManualUpdatePlatform('ios')).toBe('ios');
+        expect(normalizeManualUpdatePlatform('ANDROID')).toBe('android');
+        expect(normalizeManualUpdatePlatform('both')).toBe('');
+        expect(normalizeManualUpdatePlatform('')).toBe('');
+      });
+
       it('does not show without enabled flag or campaign_id', () => {
         expect(shouldShowManualUpdate({
           enabled: false,
@@ -375,6 +385,24 @@ describe('remote_flags', () => {
           mode: 'optional',
           currentBuild: '1.0.0',
           targetBuild: '',
+        })).toBe(false);
+      });
+
+      it('respects optional platform targeting while keeping empty filter as both platforms', () => {
+        expect(matchesManualUpdatePlatform({ platformFilter: '', platform: 'ios' })).toBe(true);
+        expect(matchesManualUpdatePlatform({ platformFilter: '', platform: 'android' })).toBe(true);
+        expect(matchesManualUpdatePlatform({ platformFilter: 'ios', platform: 'ios' })).toBe(true);
+        expect(matchesManualUpdatePlatform({ platformFilter: 'ios', platform: 'android' })).toBe(false);
+        expect(matchesManualUpdatePlatform({ platformFilter: 'android', platform: 'android' })).toBe(true);
+
+        expect(shouldShowManualUpdate({
+          enabled: true,
+          campaignId: 'upd-ios',
+          mode: 'optional',
+          currentBuild: '1.0.0',
+          targetBuild: '',
+          platformFilter: 'ios',
+          platform: 'android',
         })).toBe(false);
       });
 
@@ -436,12 +464,14 @@ describe('remote_flags', () => {
             manual_update_campaign_id: 'upd-2026-06-26',
             manual_update_mode: 'force',
             manual_update_target_build: '1.5.44',
+            manual_update_platform: 'ios',
           },
         });
         expect(isManualUpdateEnabled()).toBe(true);
         expect(getManualUpdateCampaignId()).toBe('upd-2026-06-26');
         expect(getManualUpdateMode()).toBe('force');
         expect(getManualUpdateTargetBuild()).toBe('1.5.44');
+        expect(getManualUpdatePlatform()).toBe('ios');
         expect(getMinAppVersion()).toBe('');
       });
     });

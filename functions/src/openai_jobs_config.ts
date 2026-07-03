@@ -14,14 +14,15 @@
 // ════════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'help_board';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -54,6 +55,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Тематические квизы: батч-«разбор» 1-на-вопрос (вопросов мало, повторяются между учениками) →
   // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
   quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
+  help_board: { model: 'gpt-4.1-nano', globalDailyCap: 1000 },
 };
 
 export interface JobConfig {
@@ -121,7 +123,7 @@ export function assertJobEnabled(cfg: JobConfig, job: OpenAiJob): void {
 }
 
 // ── Admin CF: чтение/запись конфига всех джобов ─────────────────────────────
-export const openAiJobsConfig = onCall({ region: REGION }, async (request) => {
+export const openAiJobsConfig = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
   }

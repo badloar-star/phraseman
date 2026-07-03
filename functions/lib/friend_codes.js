@@ -37,6 +37,7 @@ exports.friendEnsureMyCode = void 0;
 const admin = __importStar(require("firebase-admin"));
 const crypto = __importStar(require("node:crypto"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -103,7 +104,7 @@ async function assertNotBanned(db, stableId) {
         throw new https_1.HttpsError('permission-denied', 'user_banned');
     }
 }
-exports.friendEnsureMyCode = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.friendEnsureMyCode = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

@@ -7,6 +7,7 @@ type Severity = 'blocker' | 'warning' | 'info';
 type PublishPreflightState =
   | 'blocked_by_findings'
   | 'closed_missing_local_payloads'
+  | 'safe_production_manifest_promoted'
   | 'local_server_manifest_draft_ready';
 
 type Finding = {
@@ -112,6 +113,7 @@ type EvaluationInput = {
   forbiddenUiLocaleRefs: number;
   forbiddenOpenFlags: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
 };
 
 type Evaluation = {
@@ -132,6 +134,7 @@ type Evaluation = {
   forbiddenUiLocaleRefs: number;
   forbiddenOpenFlags: number;
   productionServerManifestExists: boolean;
+  productionManifestSafelyPromoted: boolean;
   serverUploadAllowed: false;
   firebaseUploadAllowed: false;
   downloadablePacksPublished: false;
@@ -195,6 +198,11 @@ function rel(repoRoot: string, filePath: string): string {
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
+}
+
+function readJsonIfExists<T>(filePath: string): T | null {
+  if (!fs.existsSync(filePath)) return null;
+  return readJson<T>(filePath);
 }
 
 function writeJson(filePath: string, value: unknown): void {
@@ -354,7 +362,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
   if (input.forbiddenOpenFlags > 0) {
     addFinding(findings, 'blocker', 'FORBIDDEN_OPEN_FLAGS', `${input.forbiddenOpenFlags} forbidden open flag(s) found.`);
   }
-  if (input.productionServerManifestExists) {
+  if (input.productionServerManifestExists && !input.productionManifestSafelyPromoted) {
     addFinding(findings, 'blocker', 'PRODUCTION_SERVER_MANIFEST_EXISTS', 'P26 must not create pack_candidates/fr/server_delivery_manifest_v2.json.');
   }
 
@@ -379,6 +387,7 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     forbiddenUiLocaleRefs: input.forbiddenUiLocaleRefs,
     forbiddenOpenFlags: input.forbiddenOpenFlags,
     productionServerManifestExists: input.productionServerManifestExists,
+    productionManifestSafelyPromoted: input.productionManifestSafelyPromoted,
     serverUploadAllowed: false,
     firebaseUploadAllowed: false,
     downloadablePacksPublished: false,
@@ -388,7 +397,14 @@ function evaluate(input: EvaluationInput): { evaluation: Evaluation; findings: F
     readyForApply: false,
     mayModifyProductionAppFiles: false,
     readyForAdminServerDeliveryReviewV2: accepted,
-    publishPreflightState: blockers > 0 ? 'blocked_by_findings' : input.p25Ready ? 'local_server_manifest_draft_ready' : 'closed_missing_local_payloads',
+    publishPreflightState:
+      blockers > 0
+        ? 'blocked_by_findings'
+        : input.productionServerManifestExists && input.productionManifestSafelyPromoted
+          ? 'safe_production_manifest_promoted'
+          : input.p25Ready
+            ? 'local_server_manifest_draft_ready'
+            : 'closed_missing_local_payloads',
     blockers,
     warnings,
   };
@@ -409,7 +425,7 @@ function runProbes(base: EvaluationInput): Probe[] {
     {
       id: 'canonical_manifest_draft_is_accepted',
       expectedAccept: true,
-      expectedState: 'local_server_manifest_draft_ready',
+      expectedState: base.productionServerManifestExists && base.productionManifestSafelyPromoted ? 'safe_production_manifest_promoted' : 'local_server_manifest_draft_ready',
       mutate: () => undefined,
     },
     {
@@ -438,11 +454,21 @@ function runProbes(base: EvaluationInput): Probe[] {
       },
     },
     {
-      id: 'production_server_manifest_is_rejected',
+      id: 'unsafe_production_server_manifest_is_rejected',
       expectedAccept: false,
       expectedState: 'blocked_by_findings',
       mutate: (input) => {
         input.productionServerManifestExists = true;
+        input.productionManifestSafelyPromoted = false;
+      },
+    },
+    {
+      id: 'safe_promoted_production_server_manifest_is_accepted',
+      expectedAccept: true,
+      expectedState: 'safe_production_manifest_promoted',
+      mutate: (input) => {
+        input.productionServerManifestExists = true;
+        input.productionManifestSafelyPromoted = true;
       },
     },
     {
@@ -522,6 +548,7 @@ function main(): void {
   const packDir = path.join(runDir, 'pack_candidates', 'fr');
   const p15Path = path.join(auditsDir, 'server_delivery_manifest_preview_v2_packet.json');
   const p25Path = path.join(auditsDir, 'closed_local_payload_materialization_v2_packet.json');
+  const productionManifestPublishGatePath = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
   const targetManifestPath = path.join(packDir, 'target_pack_manifest_v2_draft.json');
   const draftManifestPath = path.join(packDir, 'server_delivery_manifest_v2_draft.json');
   const productionServerManifestPath = path.join(packDir, 'server_delivery_manifest_v2.json');
@@ -530,7 +557,18 @@ function main(): void {
 
   const p15 = readJson<JsonObject>(p15Path);
   const p25 = readJson<JsonObject>(p25Path);
+  const productionManifestPublishGate = readJsonIfExists<JsonObject>(productionManifestPublishGatePath);
   const p25Summary = summaryOf(p25);
+  const productionManifestPublishGateSummary = productionManifestPublishGate ? summaryOf(productionManifestPublishGate) : {};
+  const productionManifestSafelyPromoted =
+    productionManifestPublishGate !== null &&
+    s(productionManifestPublishGate, 'status') === 'PASS' &&
+    s(productionManifestPublishGateSummary, 'publishGateState') === 'production_server_manifest_ready_for_activation_gate' &&
+    b(productionManifestPublishGateSummary, 'productionManifestPresent') &&
+    b(productionManifestPublishGateSummary, 'readyForRuntimeDownloadActivation') &&
+    !b(productionManifestPublishGateSummary, 'readyForApply') &&
+    !b(productionManifestPublishGateSummary, 'activationApproved') &&
+    !b(productionManifestPublishGateSummary, 'runtimeDownloadsEnabled');
   const previewEntriesRaw = object(p15.contract).serverManifestPreviewEntries;
   const previewEntries = (Array.isArray(previewEntriesRaw) ? previewEntriesRaw : []) as PreviewEntry[];
   const localSlicesRaw = p25.slices;
@@ -581,6 +619,7 @@ function main(): void {
     forbiddenUiLocaleRefs: countPattern(draftManifestPath, 'uiLocale'),
     forbiddenOpenFlags: countForbiddenOpenFlags(draftManifestPath),
     productionServerManifestExists: fs.existsSync(productionServerManifestPath),
+    productionManifestSafelyPromoted,
   };
   const { evaluation, findings } = evaluate(evaluationInput);
   const probes = runProbes(evaluationInput);
@@ -605,6 +644,7 @@ function main(): void {
     inputs: {
       serverDeliveryManifestPreviewV2Packet: rel(repoRoot, p15Path),
       closedLocalPayloadMaterializationV2Packet: rel(repoRoot, p25Path),
+      productionServerManifestPublishGateV2Packet: fs.existsSync(productionManifestPublishGatePath) ? rel(repoRoot, productionManifestPublishGatePath) : 'missing',
       targetPackManifestV2Draft: rel(repoRoot, targetManifestPath),
     },
     outputs: {
@@ -622,6 +662,7 @@ function main(): void {
     artifactHashes: {
       serverDeliveryManifestPreviewV2Packet: sha256(p15Path),
       closedLocalPayloadMaterializationV2Packet: sha256(p25Path),
+      ...(fs.existsSync(productionManifestPublishGatePath) ? { productionServerManifestPublishGateV2Packet: sha256(productionManifestPublishGatePath) } : {}),
       targetPackManifestV2Draft: sha256(targetManifestPath),
       serverDeliveryManifestV2Draft: sha256(draftManifestPath),
       serverManifestEntriesCombined: sha256Text(entries.map((entry) => `${entry.runtimeSliceId}:${entry.payloadSha256}:${entry.payloadBytes}`).join('\n')),

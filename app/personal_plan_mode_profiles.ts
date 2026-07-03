@@ -3,7 +3,7 @@ import type { PersonalPlanId, PlanMinutesChoice, PlanTaskKind } from './personal
 /**
  * Per-plan mode emphasis profiles (Ф3 of the plan rebuild).
  *
- * Every generated day carries the same 7 plan-native tail tasks. What makes the
+ * Every generated day carries the same 6 plan-native tail tasks. What makes the
  * five plans FEEL different is (a) which tasks lead the day and (b) which tasks
  * are part of the short 5/10/15-minute sessions. This module is the single
  * source of truth for both.
@@ -15,7 +15,7 @@ import type { PersonalPlanId, PlanMinutesChoice, PlanTaskKind } from './personal
  * Pure module — no React/native imports, fully unit-testable.
  */
 
-/** The 7 plan-native tail kinds every generated day carries (order varies). */
+/** The 6 plan-native tail kinds every generated day carries (order varies). */
 export const PLAN_TAIL_KINDS = [
   'plan_missing_word',
   'plan_choose_natural_phrase',
@@ -23,7 +23,6 @@ export const PLAN_TAIL_KINDS = [
   'plan_listen_build',
   'plan_pronunciation_repeat',
   'plan_phrase_recall',
-  'plan_quiz',
 ] as const satisfies readonly PlanTaskKind[];
 
 type TailKind = (typeof PLAN_TAIL_KINDS)[number];
@@ -44,7 +43,6 @@ export type PlanModeProfile = {
 const ALL: readonly PlanMinutesChoice[] = [5, 10, 15, 20];
 const FROM_10: readonly PlanMinutesChoice[] = [10, 15, 20];
 const FROM_15: readonly PlanMinutesChoice[] = [15, 20];
-const FROM_20: readonly PlanMinutesChoice[] = [20];
 
 /**
  * ЭФИР (echo) — кино/сериалы без субтитров. Слух ведёт, речь рядом:
@@ -52,10 +50,10 @@ const FROM_20: readonly PlanMinutesChoice[] = [20];
  */
 const echoProfile: PlanModeProfile = {
   tailOrders: [
-    ['plan_listen_choose', 'plan_listen_build', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_build', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_listen_build', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_build', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_phrase_recall', 'plan_quiz'],
+    ['plan_listen_choose', 'plan_listen_build', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_phrase_recall'],
+    ['plan_listen_build', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_phrase_recall'],
+    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_listen_build', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_phrase_recall'],
+    ['plan_listen_build', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_phrase_recall'],
   ],
   requiredFor: {
     plan_listen_choose: ALL,
@@ -64,7 +62,6 @@ const echoProfile: PlanModeProfile = {
     plan_choose_natural_phrase: FROM_10,
     plan_missing_word: FROM_10,
     plan_phrase_recall: FROM_15,
-    plan_quiz: FROM_20,
   },
 };
 
@@ -74,10 +71,10 @@ const echoProfile: PlanModeProfile = {
  */
 const impulsProfile: PlanModeProfile = {
   tailOrders: [
-    ['plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_listen_choose', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_pronunciation_repeat', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_choose_natural_phrase', 'plan_missing_word', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
+    ['plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall'],
+    ['plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_listen_choose', 'plan_phrase_recall'],
+    ['plan_pronunciation_repeat', 'plan_missing_word', 'plan_choose_natural_phrase', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall'],
+    ['plan_choose_natural_phrase', 'plan_missing_word', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_listen_build', 'plan_phrase_recall'],
   ],
   requiredFor: {
     plan_pronunciation_repeat: ALL,
@@ -86,7 +83,6 @@ const impulsProfile: PlanModeProfile = {
     plan_listen_choose: FROM_10,
     plan_listen_build: FROM_10,
     plan_phrase_recall: FROM_15,
-    plan_quiz: FROM_20,
   },
 };
 
@@ -96,10 +92,10 @@ const impulsProfile: PlanModeProfile = {
  */
 const voyazhProfile: PlanModeProfile = {
   tailOrders: [
-    ['plan_pronunciation_repeat', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_missing_word', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_choose_natural_phrase', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_listen_build', 'plan_missing_word', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_choose', 'plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
+    ['plan_pronunciation_repeat', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_missing_word', 'plan_phrase_recall'],
+    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_missing_word', 'plan_listen_build', 'plan_phrase_recall'],
+    ['plan_choose_natural_phrase', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_listen_build', 'plan_missing_word', 'plan_phrase_recall'],
+    ['plan_listen_choose', 'plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_phrase_recall'],
   ],
   requiredFor: {
     plan_pronunciation_repeat: ALL,
@@ -108,7 +104,6 @@ const voyazhProfile: PlanModeProfile = {
     plan_listen_build: FROM_10,
     plan_missing_word: FROM_10,
     plan_phrase_recall: FROM_15,
-    plan_quiz: FROM_20,
   },
 };
 
@@ -118,10 +113,10 @@ const voyazhProfile: PlanModeProfile = {
  */
 const gavanProfile: PlanModeProfile = {
   tailOrders: [
-    ['plan_missing_word', 'plan_phrase_recall', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_listen_choose', 'plan_listen_build', 'plan_quiz'],
-    ['plan_phrase_recall', 'plan_missing_word', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_quiz'],
-    ['plan_missing_word', 'plan_pronunciation_repeat', 'plan_phrase_recall', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_listen_choose', 'plan_quiz'],
-    ['plan_phrase_recall', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_quiz'],
+    ['plan_missing_word', 'plan_phrase_recall', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_listen_choose', 'plan_listen_build'],
+    ['plan_phrase_recall', 'plan_missing_word', 'plan_pronunciation_repeat', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build'],
+    ['plan_missing_word', 'plan_pronunciation_repeat', 'plan_phrase_recall', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_listen_choose'],
+    ['plan_phrase_recall', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build'],
   ],
   requiredFor: {
     plan_missing_word: ALL,
@@ -130,7 +125,6 @@ const gavanProfile: PlanModeProfile = {
     plan_choose_natural_phrase: FROM_10,
     plan_listen_choose: FROM_10,
     plan_listen_build: FROM_15,
-    plan_quiz: FROM_20,
   },
 };
 
@@ -140,10 +134,10 @@ const gavanProfile: PlanModeProfile = {
  */
 const mitapProfile: PlanModeProfile = {
   tailOrders: [
-    ['plan_missing_word', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_choose_natural_phrase', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_phrase_recall', 'plan_quiz'],
-    ['plan_listen_build', 'plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_phrase_recall', 'plan_quiz'],
+    ['plan_missing_word', 'plan_listen_choose', 'plan_pronunciation_repeat', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_phrase_recall'],
+    ['plan_listen_choose', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_build', 'plan_choose_natural_phrase', 'plan_phrase_recall'],
+    ['plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_choose_natural_phrase', 'plan_listen_build', 'plan_phrase_recall'],
+    ['plan_listen_build', 'plan_choose_natural_phrase', 'plan_pronunciation_repeat', 'plan_missing_word', 'plan_listen_choose', 'plan_phrase_recall'],
   ],
   requiredFor: {
     plan_missing_word: ALL,
@@ -152,7 +146,6 @@ const mitapProfile: PlanModeProfile = {
     plan_choose_natural_phrase: FROM_10,
     plan_listen_build: FROM_10,
     plan_phrase_recall: FROM_15,
-    plan_quiz: FROM_20,
   },
 };
 

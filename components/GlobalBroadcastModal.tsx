@@ -1,12 +1,13 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useMemo, useState } from 'react';
 import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import CompassDepthSurface from './CompassDepthSurface';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import {
   claimAndDismissGlobalBroadcastModal,
@@ -29,7 +30,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const [busy, setBusy] = useState(false);
 
   const title = useMemo(() => {
@@ -76,13 +78,12 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
       return;
     }
     setBusy(true);
-    try {
-      await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
+    onClose();
+    void claimAndDismissGlobalBroadcastModal(payload, studyTarget).then(() => {
       if (reward) hapticSuccess();
-    } finally {
+    }).catch(() => {}).finally(() => {
       setBusy(false);
-      onClose();
-    }
+    });
   };
 
   const openReview = async () => {
@@ -93,15 +94,15 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
       return;
     }
     setBusy(true);
-    try {
+    onClose();
+    const url = getReviewPromoUrl(payload);
+    if (url) void Linking.openURL(url).catch(() => {});
+    void (async () => {
       await recordReviewPromoClick(payload);
       await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
-      const url = getReviewPromoUrl(payload);
-      if (url) await Linking.openURL(url);
-    } finally {
+    })().catch(() => {}).finally(() => {
       setBusy(false);
-      onClose();
-    }
+    });
   };
 
   return (
@@ -112,7 +113,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
       statusBarTranslucent
       onRequestClose={() => { void closeOnce(); }}
     >
-      <View style={[styles.root, { backgroundColor: dimColor, paddingBottom: insets.bottom }]}>
+      <View style={[styles.root, { backgroundColor: dimColor, paddingBottom: bottomInset }]}>
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={() => { void closeOnce(); }}

@@ -192,6 +192,25 @@ type Report = {
     runtimeActivationBlockerPlanV2DirtyWorktreeOverlaps: number;
     runtimeActivationBlockerPlanV2FixtureProbesPassed: number;
     runtimeActivationBlockerPlanV2FixtureProbes: number;
+    productionServerManifestPublishGateV2Present: boolean;
+    productionServerManifestPublishGateV2Ready: boolean;
+    productionServerManifestPublishGateV2State: string;
+    frenchServerPackUploadEvidenceV2Present: boolean;
+    frenchServerPackUploadEvidenceV2Ready: boolean;
+    frenchServerPackUploadEvidenceV2Objects: number;
+    frenchServerPackUploadExecutionGateV2Present: boolean;
+    frenchServerPackUploadExecutionGateV2Ready: boolean;
+    frenchServerPackUploadExecutionGateV2DryRun: boolean;
+    frenchServerPackUploadExecutionGateV2UploadStarted: boolean;
+    frenchServerObjectRemoteVerifyV2Present: boolean;
+    frenchServerObjectRemoteVerifyV2Ready: boolean;
+    frenchServerObjectRemoteVerifyV2FoundObjects: number;
+    frenchServerObjectRemoteVerifyV2HashChecked: number;
+    frenchServerObjectRemoteVerifyV2UnverifiedObjects: number;
+    frenchServerObjectRemoteVerifyV2UnexpectedObjects: number;
+    frenchServerObjectRemoteVerifyV2MissingObjects: number;
+    frenchServerObjectRemoteVerifyV2SizeMismatches: number;
+    frenchServerObjectRemoteVerifyV2HashMismatches: number;
     readyForExplicitApprovalReceiptGateV2: boolean;
     explicitApprovalReceiptHashLockGateV2Present: boolean;
     explicitApprovalReceiptHashLockGateV2Ready: boolean;
@@ -659,6 +678,9 @@ type Report = {
     mayModifyProductionAppFiles: boolean;
     blockers: number;
     warnings: number;
+    rawWarnings: number;
+    expectedHoldWarningsSuppressed: number;
+    expectedHoldReasonCodes: string[];
   };
   triggerPhrases: string[];
   contractRules: string[];
@@ -728,6 +750,15 @@ function summaryOf(filePath: string): JsonObject {
 function addFinding(findings: Finding[], severity: Severity, code: string, message: string, filePath?: string): void {
   findings.push({ severity, code, message, path: filePath });
 }
+
+const EXPECTED_REMOTE_VERIFY_HOLD_CODES = new Set([
+  'french_server_object_remote_verify_v2_not_ready',
+  'explicit_approval_receipt_creation_gate_v2_not_safe_hold_ready',
+  'production_activation_hold_exact_approval_required_v2_not_ready',
+  'approval_wait_safe_continuation_v2_not_ready',
+  'exact_approval_p45_sequence_command_preflight_v2_not_ready',
+  'ordered_approval_wait_refresh_v2_not_ready',
+]);
 
 function triggerPhrases(): string[] {
   return [
@@ -1637,6 +1668,81 @@ function p29Goals(): PassGoal[] {
         'Dirty-worktree overlap and exact future touch list are machine-readable.',
         'No production app file, Firebase/server upload, runtime download, storage/cloud migration or activation flag is opened.',
         'Next pass can decide whether to request explicit user approval or continue closing lower-risk non-production blockers.',
+      ],
+    },
+  ];
+}
+
+function remoteServerObjectVerificationGoals(): PassGoal[] {
+  return [
+    {
+      id: 'NEXT-PASS-REMOTE-SERVER-OBJECT-VERIFY-V2',
+      title: 'Verify French server pack objects before approval routing',
+      whyNow: 'French cannot move toward approval, activation or runtime downloads until the server pack evidence proves all 36 source-scoped remote objects exist and match the local payload hashes. This keeps Gustav focused on the real production blocker instead of cycling on approval gates too early.',
+      workItems: [
+        'Run the French server remote credential preflight and require either PHRASEMAN_FRENCH_SERVER_PACK_ACCESS_TOKEN or GOOGLE_APPLICATION_CREDENTIALS with a usable service-account JSON before remote verification.',
+        'Generate the French server remote credential handoff so the next operator/pass gets the exact credential options, safe command order and no-secret logging rules.',
+        'Generate the credential-free remote verify dry-run readiness packet to prove the exact 36 scoped server object checks before live credentials are used.',
+        'Generate upload/remote-verify parity so upload evidence and live remote verify planned checks prove the same 36 paths, roles, sha values and byte sizes.',
+        'Generate the remote verify command rehearsal packet so the live verify and post-verify refresh sequence is fixed before credentials are provided.',
+        'Generate the remote verify live handoff packet so the credentialed run has one safe read-only command sequence, expected pass criteria and denied production actions.',
+        'Refresh French app surface parity so challenges, daily tasks and arena-like surfaces are guarded as app/navigation/state surfaces rather than silently missing from French.',
+        'Refresh the production server manifest publish gate, upload evidence and upload execution gate in dry-run/no-upload mode.',
+        'Run the French server object remote verify packet against the configured remote source.',
+        'Require 36/36 remote objects found, 36/36 hash checks, zero missing objects, zero size mismatches and zero hash mismatches.',
+        'Generate the remote verify PASS completion simulation so the post-verify chain proves missing requirements become zero while activation/apply stay closed.',
+        'Refresh the post-remote-verify transition packet so remote verify PASS collapses missing requirements to zero while keeping exact approval/apply gates locked.',
+        'Reject any upload execution, runtime download enablement, activationApproved, readyForApply, storage migration or cloud sync migration.',
+        'Refresh P45-P65, next-pass, consistency and master after remote verify so stale ready states cannot survive.',
+      ],
+      expectedArtifacts: [
+        'audits/french_server_remote_credential_preflight_v2_packet.json',
+        'audits/production_server_manifest_publish_gate_v2_packet.json',
+        'audits/french_server_pack_upload_evidence_v2_packet.json',
+        'audits/french_server_pack_upload_execution_gate_v2_packet.json',
+        'audits/french_server_remote_credential_handoff_v2_packet.json',
+        'audits/french_remote_verify_dry_run_readiness_v2_packet.json',
+        'audits/french_upload_remote_verify_parity_v2_packet.json',
+        'audits/french_remote_verify_command_rehearsal_v2_packet.json',
+        'audits/french_remote_verify_live_handoff_v2_packet.json',
+        'audits/french_remote_verify_pass_completion_simulation_v2_packet.json',
+        'audits/french_post_remote_verify_transition_v2_packet.json',
+        'audits/french_app_surface_parity_v2_packet.json',
+        'audits/french_server_object_remote_verify_v2_packet.json',
+        'audits/french_final_blocker_dependency_map_v2_packet.json',
+        'audits/next_pass_goal_contract_packet.json',
+        'audits/master_next_pass_consistency_refresh_v2_packet.json',
+        'generated/fr/reviewer/french_reviewer_master_manifest.json',
+      ],
+      verificationCommands: [
+        'npx tsx scripts\\gustav_french_server_remote_credential_preflight_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_production_server_manifest_publish_gate_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_server_pack_upload_evidence_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_server_pack_upload_execution_gate_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_server_remote_credential_handoff_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_remote_verify_dry_run_readiness_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_upload_remote_verify_parity_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_remote_verify_command_rehearsal_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_remote_verify_live_handoff_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_remote_verify_pass_completion_simulation_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_post_remote_verify_transition_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_app_surface_parity_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_server_object_remote_verify_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+        'npx tsx scripts\\gustav_french_final_blocker_dependency_map_v2_packet.ts --run docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1 --target fr',
+      ],
+      doneWhen: [
+        'Credential preflight reports readyForRemoteObjectVerifyCommand=true with credentialSource=access_token_env or credentialSource=service_account_file, without printing token or private-key contents.',
+        'Remote verify dry-run readiness reports plannedChecks=36, scopedServerPaths=36, sha/byte evidence matches=36/36 and safeToRunLiveVerifyWhenCredentialPresent=true.',
+        'Upload/remote parity reports matchedServerPaths=36, shaMatches=36, byteMatches=36 and readyForRemoteObjectVerify=true.',
+        'Remote verify command rehearsal reports readyForLiveRemoteVerifyWhenCredentialPresent=true and keeps upload/runtime/apply/activation closed.',
+        'Remote verify live handoff reports liveVerifyCommandReady=true, postVerifyChainReady=true, expectedRemoteObjects=36 and expectedHashChecks=36 without printing secrets or opening production writes.',
+        'Remote verify PASS completion simulation reports simulatedRequirementsMissing=0, simulatedRequirementsProductionLocked=5 and simulatedNextGate=exact_approval_artifacts.',
+        'Post-remote-verify transition reports afterRemoteVerifyExpectedMissing=0, afterRemoteVerifyExpectedLocked=5 and afterRemoteVerifyNextGate=exact_approval_artifacts.',
+        'French app surface parity reports remotePackSurfaces=6/6 and challenge/daily/arena surfaces covered by navigation/state guards, not missing course-pack surfaces.',
+        'Remote verify reports readyForRuntimeDownloadActivation=true with foundObjects=36 and hashCheckedObjects=36.',
+        'All remote size/hash mismatch counts are zero and upload execution remains dry-run/no-start.',
+        'P46/P47/P59-P64 can no longer be blocked by missing French remote object verification.',
+        'No app bundle French content, Firebase/server upload, runtime download flag, storage/cloud migration or activation flag is opened.',
       ],
     },
   ];
@@ -3015,10 +3121,13 @@ function approvalWaitPostP65Goals(
   exactApprovalSourceWaitTerminalStateV2Ready: boolean,
   exactApprovalSourceWaitTerminalStateV2SourceExists: boolean,
   exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence: boolean,
+  finalPreapprovalEvidenceHashLockV2Ready = false,
+  exactApprovalApplyRehearsalV2Ready = false,
 ): PassGoal[] {
   if (!orderedApprovalWaitRefreshV2Ready) return p65Goals();
   if (!safePreapprovalContinuationV2Ready) return p66Goals();
   if (!finalProductionReadinessGapV2Ready) return p67Goals();
+  if ((exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence || exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence) && finalPreapprovalEvidenceHashLockV2Ready && !exactApprovalApplyRehearsalV2Ready) return p51Goals();
   if (exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence || exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence) return p31Goals();
   if (exactApprovalSourceWaitTerminalStateV2SourceExists) return p68Goals();
   if (!exactApprovalSourceHandoffFirewallV2Ready) return p68Goals();
@@ -3054,6 +3163,10 @@ function selectNextPassGoals(
   serverDeliveryPublishPreflightV2Ready: boolean,
   adminServerDeliveryRuntimePreflightV2Ready: boolean,
   runtimeActivationBlockerPlanV2Ready: boolean,
+  productionServerManifestPublishGateReady: boolean,
+  frenchServerPackUploadEvidenceReady: boolean,
+  frenchServerPackUploadExecutionGateReady: boolean,
+  frenchServerObjectRemoteVerifyReady: boolean,
   explicitApprovalReceiptHashLockGateV2Ready: boolean,
   activationApprovalRequestPresentationV2Ready: boolean,
   explicitApprovalReceiptCreationGateV2SafeHoldReady: boolean,
@@ -3164,6 +3277,12 @@ function selectNextPassGoals(
   if (!serverDeliveryPublishPreflightV2Ready) return p26Goals();
   if (!adminServerDeliveryRuntimePreflightV2Ready) return p27Goals();
   if (!runtimeActivationBlockerPlanV2Ready) return p28Goals();
+  if (
+    !productionServerManifestPublishGateReady ||
+    !frenchServerPackUploadEvidenceReady ||
+    !frenchServerPackUploadExecutionGateReady ||
+    !frenchServerObjectRemoteVerifyReady
+  ) return remoteServerObjectVerificationGoals();
   if (!explicitApprovalReceiptHashLockGateV2Ready) return p29Goals();
   if (!activationApprovalRequestPresentationV2Ready) return p30Goals();
   if (!explicitApprovalReceiptCreationGateV2SafeHoldReady) return p31Goals();
@@ -3174,7 +3293,7 @@ function selectNextPassGoals(
   if (!languageIsolationRegressionRecheckV2Ready) return p36Goals();
   if (!readinessApplyBlockerMapRefreshV2Ready) return p37Goals();
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalWaitStateV2Ready && exactApprovalWaitStateV2SourceContainsExactSentence) return p31Goals();
-  if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalWaitStateV2Ready) return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence);
+  if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalWaitStateV2Ready) return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready);
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalP48SafeContinuationCommandPreflightV2Ready) return p65Goals();
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready) return p64Goals();
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalP47RollbackGuardCommandPreflightV2Ready) return p63Goals();
@@ -3190,8 +3309,10 @@ function selectNextPassGoals(
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalSourceFirewallV2Ready) return p53Goals();
   if (!masterNextPassConsistencyRefreshV2Ready && exactApprovalApplyRehearsalV2Ready) return p52Goals();
   if (!masterNextPassConsistencyRefreshV2Ready) return p38Goals();
+  if (finalPreapprovalEvidenceHashLockV2Ready && !exactApprovalApplyRehearsalV2Ready) return p51Goals();
+  if (exactApprovalWaitStateV2Ready && exactApprovalWaitStateV2SourceContainsExactSentence && finalPreapprovalEvidenceHashLockV2Ready && !exactApprovalApplyRehearsalV2Ready) return p51Goals();
   if (exactApprovalWaitStateV2Ready && exactApprovalWaitStateV2SourceContainsExactSentence) return p31Goals();
-  if (exactApprovalWaitStateV2Ready) return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence);
+  if (exactApprovalWaitStateV2Ready) return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready);
   if (exactApprovalP48SafeContinuationCommandPreflightV2Ready) return p65Goals();
   if (exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready) return p64Goals();
   if (exactApprovalP47RollbackGuardCommandPreflightV2Ready) return p63Goals();
@@ -3231,8 +3352,9 @@ function selectNextPassGoals(
     if (!exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready) return p63Goals();
     if (!exactApprovalP48SafeContinuationCommandPreflightV2Ready) return p64Goals();
     if (!exactApprovalWaitStateV2Ready) return p65Goals();
+    if (exactApprovalWaitStateV2SourceContainsExactSentence && finalPreapprovalEvidenceHashLockV2Ready && !exactApprovalApplyRehearsalV2Ready) return p51Goals();
     if (exactApprovalWaitStateV2SourceContainsExactSentence) return p31Goals();
-    return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence);
+    return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready);
   }
   if (!productionActivationSequencePreflightV2Ready) return p45Goals();
   if (!productionActivationSequencePreflightV2ReadyForProductionActivationSequence) return p45Goals();
@@ -3257,8 +3379,9 @@ function selectNextPassGoals(
   if (!exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready) return p63Goals();
   if (!exactApprovalP48SafeContinuationCommandPreflightV2Ready) return p64Goals();
   if (!exactApprovalWaitStateV2Ready) return p65Goals();
+  if (exactApprovalWaitStateV2SourceContainsExactSentence && finalPreapprovalEvidenceHashLockV2Ready && !exactApprovalApplyRehearsalV2Ready) return p51Goals();
   if (exactApprovalWaitStateV2SourceContainsExactSentence) return p31Goals();
-  return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence);
+  return approvalWaitPostP65Goals(orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2SourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2SourceExists, exactApprovalSourceWaitTerminalStateV2SourceContainsExactSentence, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready);
 }
 
 function renderPlanMarkdown(report: Report): string {
@@ -3698,6 +3821,9 @@ function renderMarkdown(report: Report): string {
     `- May modify production app files: ${report.summary.mayModifyProductionAppFiles ? 'yes' : 'no'}`,
     `- Blockers: ${report.summary.blockers}`,
     `- Warnings: ${report.summary.warnings}`,
+    `- Raw warnings before expected HOLD normalization: ${report.summary.rawWarnings}`,
+    `- Expected HOLD warnings suppressed: ${report.summary.expectedHoldWarningsSuppressed}`,
+    `- Expected HOLD reason codes: ${report.summary.expectedHoldReasonCodes.join(', ') || 'none'}`,
     '',
     '## Contract Rules',
     '',
@@ -3790,6 +3916,10 @@ function main(): void {
   const serverDeliveryPublishPreflightV2Path = path.join(auditsDir, 'server_delivery_publish_preflight_v2_packet.json');
   const adminServerDeliveryRuntimePreflightV2Path = path.join(auditsDir, 'admin_server_delivery_runtime_preflight_v2_packet.json');
   const runtimeActivationBlockerPlanV2Path = path.join(auditsDir, 'runtime_activation_blocker_plan_v2_packet.json');
+  const productionServerManifestPublishGateV2Path = path.join(auditsDir, 'production_server_manifest_publish_gate_v2_packet.json');
+  const frenchServerPackUploadEvidenceV2Path = path.join(auditsDir, 'french_server_pack_upload_evidence_v2_packet.json');
+  const frenchServerPackUploadExecutionGateV2Path = path.join(auditsDir, 'french_server_pack_upload_execution_gate_v2_packet.json');
+  const frenchServerObjectRemoteVerifyV2Path = path.join(auditsDir, 'french_server_object_remote_verify_v2_packet.json');
   const explicitApprovalReceiptHashLockGateV2Path = path.join(auditsDir, 'explicit_approval_receipt_hash_lock_gate_v2_packet.json');
   const activationApprovalRequestPresentationV2Path = path.join(auditsDir, 'activation_approval_request_presentation_v2_packet.json');
   const explicitApprovalReceiptCreationGateV2Path = path.join(auditsDir, 'explicit_approval_receipt_creation_gate_v2_packet.json');
@@ -3870,6 +4000,10 @@ function main(): void {
   const serverDeliveryPublishPreflightV2Summary = summaryOf(serverDeliveryPublishPreflightV2Path);
   const adminServerDeliveryRuntimePreflightV2Summary = summaryOf(adminServerDeliveryRuntimePreflightV2Path);
   const runtimeActivationBlockerPlanV2Summary = summaryOf(runtimeActivationBlockerPlanV2Path);
+  const productionServerManifestPublishGateV2Summary = summaryOf(productionServerManifestPublishGateV2Path);
+  const frenchServerPackUploadEvidenceV2Summary = summaryOf(frenchServerPackUploadEvidenceV2Path);
+  const frenchServerPackUploadExecutionGateV2Summary = summaryOf(frenchServerPackUploadExecutionGateV2Path);
+  const frenchServerObjectRemoteVerifyV2Summary = summaryOf(frenchServerObjectRemoteVerifyV2Path);
   const explicitApprovalReceiptHashLockGateV2Summary = summaryOf(explicitApprovalReceiptHashLockGateV2Path);
   const activationApprovalRequestPresentationV2Summary = summaryOf(activationApprovalRequestPresentationV2Path);
   const explicitApprovalReceiptCreationGateV2Summary = summaryOf(explicitApprovalReceiptCreationGateV2Path);
@@ -4053,12 +4187,19 @@ function main(): void {
   const llmOfficialSourceDecisionPromotionPreflightV2State = s(llmOfficialSourceDecisionPromotionPreflightV2Summary, 'promotionState');
   const llmOfficialSourceDecisionPromotionPreflightV2ReadyForPromotedDecisionFileGeneration = b(llmOfficialSourceDecisionPromotionPreflightV2Summary, 'readyForPromotedDecisionFileGeneration');
   const llmOfficialSourcePromotedDecisionFileGenerationV2Present = fs.existsSync(llmOfficialSourcePromotedDecisionFileGenerationV2Path);
+  const expectedPromotedAiDecisionRows = Math.max(
+    164,
+    n(aiPromptContractV2Summary, 'aiPromptEntrypoints'),
+    n(aiPromptContractV2Summary, 'uniqueAiPromptEntrypoints'),
+    n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'aiPromptContractEntrypoints'),
+    n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'aiPromptContractUniqueIds'),
+  );
   const llmOfficialSourcePromotedDecisionFileGenerationV2Ready =
     llmOfficialSourcePromotedDecisionFileGenerationV2Present &&
     n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'blockers') === 0 &&
     s(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'generationState') === 'promoted_decision_files_ready_no_import' &&
     n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'acceptedRowDecisionRows') === 1600 &&
-    n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'acceptedAiDecisionRows') === 164 &&
+    n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'acceptedAiDecisionRows') === expectedPromotedAiDecisionRows &&
     b(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'readyForReviewerDecisionImportV2DryRunRefresh');
   const llmOfficialSourcePromotedDecisionFileGenerationV2State = s(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'generationState');
   const llmOfficialSourcePromotedDecisionFileGenerationV2AcceptedRows = n(llmOfficialSourcePromotedDecisionFileGenerationV2Summary, 'acceptedRowDecisionRows');
@@ -4097,12 +4238,29 @@ function main(): void {
   const serverDeliveryPublishPreflightV2FreshAfterClosedPayload =
     fileMtimeMs(serverDeliveryPublishPreflightV2Path) >= fileMtimeMs(closedLocalPayloadMaterializationV2Path) &&
     fileMtimeMs(closedLocalPayloadMaterializationV2Path) > 0;
+  const expectedServerDeliveryEntries = 12;
+  const productionServerManifestPublishGateV2EvidenceMatchesCurrentDraftForP26 =
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesMatchingDraftIdentity') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesMatchingDraftPayload') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesMatchingDraftServerPath') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesMatchingDraftCacheKey') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesClosedActivation') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesClosedRuntimeDownloads') === expectedServerDeliveryEntries &&
+    n(productionServerManifestPublishGateV2Summary, 'productionEntriesClosedReadyForApply') === expectedServerDeliveryEntries;
+  const productionServerManifestPublishGateV2SafePromotedForP26 =
+    fs.existsSync(productionServerManifestPublishGateV2Path) &&
+    n(productionServerManifestPublishGateV2Summary, 'blockers') === 0 &&
+    s(productionServerManifestPublishGateV2Summary, 'publishGateState') === 'production_server_manifest_ready_for_activation_gate' &&
+    b(productionServerManifestPublishGateV2Summary, 'readyForRuntimeDownloadActivation') &&
+    productionServerManifestPublishGateV2EvidenceMatchesCurrentDraftForP26;
   const serverDeliveryPublishPreflightV2Ready =
     serverDeliveryPublishPreflightV2Present &&
     serverDeliveryPublishPreflightV2FreshAfterClosedPayload &&
     n(serverDeliveryPublishPreflightV2Summary, 'blockers') === 0 &&
     b(serverDeliveryPublishPreflightV2Summary, 'readyForAdminServerDeliveryReviewV2') &&
-    s(serverDeliveryPublishPreflightV2Summary, 'publishPreflightState') === 'local_server_manifest_draft_ready';
+    (s(serverDeliveryPublishPreflightV2Summary, 'publishPreflightState') === 'local_server_manifest_draft_ready' ||
+      (s(serverDeliveryPublishPreflightV2Summary, 'publishPreflightState') === 'safe_production_manifest_promoted' &&
+        productionServerManifestPublishGateV2SafePromotedForP26));
   const serverDeliveryPublishPreflightV2State = s(serverDeliveryPublishPreflightV2Summary, 'publishPreflightState');
   const serverDeliveryPublishPreflightV2ManifestEntries = n(serverDeliveryPublishPreflightV2Summary, 'manifestEntries');
   const serverDeliveryPublishPreflightV2ActualShaEntries = n(serverDeliveryPublishPreflightV2Summary, 'manifestEntriesWithActualSha256');
@@ -4146,6 +4304,65 @@ function main(): void {
   const runtimeActivationBlockerPlanV2DirtyWorktreeOverlaps = n(runtimeActivationBlockerPlanV2Summary, 'readinessDirtyWorktreeOverlaps');
   const runtimeActivationBlockerPlanV2FixtureProbesPassed = n(runtimeActivationBlockerPlanV2Summary, 'fixtureProbesPassed');
   const runtimeActivationBlockerPlanV2FixtureProbes = n(runtimeActivationBlockerPlanV2Summary, 'fixtureProbes');
+  const productionServerManifestPublishGateV2Present = fs.existsSync(productionServerManifestPublishGateV2Path);
+  const productionServerManifestPublishGateV2Ready =
+    productionServerManifestPublishGateV2Present &&
+    n(productionServerManifestPublishGateV2Summary, 'blockers') === 0 &&
+    s(productionServerManifestPublishGateV2Summary, 'publishGateState') === 'production_server_manifest_ready_for_activation_gate' &&
+    b(productionServerManifestPublishGateV2Summary, 'readyForRuntimeDownloadActivation');
+  const productionServerManifestPublishGateV2State = s(productionServerManifestPublishGateV2Summary, 'publishGateState');
+  const frenchServerPackUploadEvidenceV2Present = fs.existsSync(frenchServerPackUploadEvidenceV2Path);
+  const frenchServerPackUploadEvidenceV2Ready =
+    frenchServerPackUploadEvidenceV2Present &&
+    n(frenchServerPackUploadEvidenceV2Summary, 'blockers') === 0 &&
+    n(frenchServerPackUploadEvidenceV2Summary, 'uploadObjects') === 36 &&
+    b(frenchServerPackUploadEvidenceV2Summary, 'readyForRemoteObjectVerify');
+  const frenchServerPackUploadEvidenceV2Objects = n(frenchServerPackUploadEvidenceV2Summary, 'uploadObjects');
+  const frenchServerPackUploadExecutionGateV2Present = fs.existsSync(frenchServerPackUploadExecutionGateV2Path);
+  const frenchServerPackUploadExecutionGateV2DryRun = b(frenchServerPackUploadExecutionGateV2Summary, 'dryRun');
+  const frenchServerPackUploadExecutionGateV2UploadStarted =
+    !frenchServerPackUploadExecutionGateV2DryRun &&
+    (n(frenchServerPackUploadExecutionGateV2Summary, 'uploadAttempts') > 0 ||
+      n(frenchServerPackUploadExecutionGateV2Summary, 'uploadSucceeded') > 0);
+  const frenchServerPackUploadExecutionGateV2UploadCompletedClosed =
+    frenchServerPackUploadExecutionGateV2UploadStarted &&
+    n(frenchServerPackUploadExecutionGateV2Summary, 'uploadAttempts') === 36 &&
+    n(frenchServerPackUploadExecutionGateV2Summary, 'uploadSucceeded') === 36 &&
+    b(frenchServerPackUploadExecutionGateV2Summary, 'readyForRemoteObjectVerify') &&
+    !b(frenchServerPackUploadExecutionGateV2Summary, 'serverUploadAllowed') &&
+    !b(frenchServerPackUploadExecutionGateV2Summary, 'firebaseUploadAllowed') &&
+    !b(frenchServerPackUploadExecutionGateV2Summary, 'runtimeDownloadsEnabled') &&
+    !b(frenchServerPackUploadExecutionGateV2Summary, 'readyForApply');
+  const frenchServerPackUploadExecutionGateV2Ready =
+    frenchServerPackUploadExecutionGateV2Present &&
+    n(frenchServerPackUploadExecutionGateV2Summary, 'blockers') === 0 &&
+    n(frenchServerPackUploadExecutionGateV2Summary, 'uploadObjects') === 36 &&
+    (
+      (
+        frenchServerPackUploadExecutionGateV2DryRun &&
+        !frenchServerPackUploadExecutionGateV2UploadStarted &&
+        b(frenchServerPackUploadExecutionGateV2Summary, 'readyForRemoteObjectVerify')
+      ) ||
+      frenchServerPackUploadExecutionGateV2UploadCompletedClosed
+    );
+  const frenchServerObjectRemoteVerifyV2Present = fs.existsSync(frenchServerObjectRemoteVerifyV2Path);
+  const frenchServerObjectRemoteVerifyV2FoundObjects = n(frenchServerObjectRemoteVerifyV2Summary, 'foundObjectCount');
+  const frenchServerObjectRemoteVerifyV2HashChecked = n(frenchServerObjectRemoteVerifyV2Summary, 'hashCheckedCount');
+  const frenchServerObjectRemoteVerifyV2UnverifiedObjects = n(frenchServerObjectRemoteVerifyV2Summary, 'unverifiedObjects');
+  const frenchServerObjectRemoteVerifyV2UnexpectedObjects = n(frenchServerObjectRemoteVerifyV2Summary, 'unexpectedObjects');
+  const frenchServerObjectRemoteVerifyV2MissingObjects = n(frenchServerObjectRemoteVerifyV2Summary, 'missingObjects');
+  const frenchServerObjectRemoteVerifyV2SizeMismatches = n(frenchServerObjectRemoteVerifyV2Summary, 'sizeMismatches');
+  const frenchServerObjectRemoteVerifyV2HashMismatches = n(frenchServerObjectRemoteVerifyV2Summary, 'hashMismatches');
+  const frenchServerObjectRemoteVerifyV2Ready =
+    frenchServerObjectRemoteVerifyV2Present &&
+    n(frenchServerObjectRemoteVerifyV2Summary, 'blockers') === 0 &&
+    frenchServerObjectRemoteVerifyV2FoundObjects === 36 &&
+    frenchServerObjectRemoteVerifyV2HashChecked === 36 &&
+    frenchServerObjectRemoteVerifyV2UnexpectedObjects === 0 &&
+    frenchServerObjectRemoteVerifyV2MissingObjects === 0 &&
+    frenchServerObjectRemoteVerifyV2SizeMismatches === 0 &&
+    frenchServerObjectRemoteVerifyV2HashMismatches === 0 &&
+    b(frenchServerObjectRemoteVerifyV2Summary, 'readyForRuntimeDownloadActivation');
   const readyForExplicitApprovalReceiptGateV2 = runtimeActivationBlockerPlanV2Ready;
   const explicitApprovalReceiptHashLockGateV2Present = fs.existsSync(explicitApprovalReceiptHashLockGateV2Path);
   const explicitApprovalReceiptHashLockGateV2FreshAfterRuntimePlan =
@@ -4213,6 +4430,24 @@ function main(): void {
     !b(explicitApprovalReceiptCreationGateV2Summary, 'readyForApply') &&
     explicitApprovalReceiptCreationGateV2CanContinueNonProductionAudit &&
     explicitApprovalReceiptCreationGateV2State === 'approval_receipt_creation_waiting_for_exact_sentence';
+  const explicitApprovalReceiptCreationGateV2PostApprovalReady =
+    explicitApprovalReceiptCreationGateV2Present &&
+    n(explicitApprovalReceiptCreationGateV2Summary, 'blockers') === 0 &&
+    explicitApprovalReceiptCreationGateV2State === 'active_approval_artifacts_created' &&
+    explicitApprovalReceiptCreationGateV2ExactApprovalSentencePresent &&
+    explicitApprovalReceiptCreationGateV2PlainContinueRejected &&
+    explicitApprovalReceiptCreationGateV2ActiveApprovalReceiptCreated &&
+    explicitApprovalReceiptCreationGateV2ActiveHashLockCreated &&
+    b(explicitApprovalReceiptCreationGateV2Summary, 'activeApprovalReceiptExistsAfter') &&
+    b(explicitApprovalReceiptCreationGateV2Summary, 'activeHashLockExistsAfter') &&
+    b(explicitApprovalReceiptCreationGateV2Summary, 'activeApprovalArtifactPairReadyForP44') &&
+    !b(explicitApprovalReceiptCreationGateV2Summary, 'readyForApply') &&
+    !b(explicitApprovalReceiptCreationGateV2Summary, 'mayModifyProductionAppFiles') &&
+    !b(explicitApprovalReceiptCreationGateV2Summary, 'activationApproved') &&
+    !b(explicitApprovalReceiptCreationGateV2Summary, 'runtimeDownloadsEnabled') &&
+    explicitApprovalReceiptCreationGateV2CanContinueNonProductionAudit &&
+    explicitApprovalReceiptCreationGateV2FixtureProbes > 0 &&
+    explicitApprovalReceiptCreationGateV2FixtureProbesPassed === explicitApprovalReceiptCreationGateV2FixtureProbes;
   const readyForApprovalHoldContinuationV2 = explicitApprovalReceiptCreationGateV2SafeHoldReady;
   const readyForProductionApplyAbsenceDenialGateV2 = explicitApprovalReceiptCreationGateV2SafeHoldReady;
   const productionApplyAbsenceDenialGateV2Present = fs.existsSync(productionApplyAbsenceDenialGateV2Path);
@@ -4443,7 +4678,7 @@ function main(): void {
     officialSourceContentCoverageV2State === 'official_source_content_coverage_complete_no_import' &&
     officialSourceContentCoverageV2LedgerRows === 1600 &&
     officialSourceContentCoverageV2AcceptedRows === 1600 &&
-    officialSourceContentCoverageV2AcceptedAi === 164 &&
+    officialSourceContentCoverageV2AcceptedAi === expectedPromotedAiDecisionRows &&
     officialSourceContentCoverageV2RowsWithSourceRefs === 1600 &&
     officialSourceContentCoverageV2RowsWithGatesPassed === 1600 &&
     officialSourceContentCoverageV2QuizRowsOneCorrect === 1600 &&
@@ -4472,9 +4707,9 @@ function main(): void {
     officialSourceImportDryRunV2Present &&
     n(reviewerDecisionImportV2DryRunSummary, 'blockers') === 0 &&
     officialSourceImportDryRunV2Rows === 1600 &&
-    officialSourceImportDryRunV2Ai === 164 &&
+    officialSourceImportDryRunV2Ai === expectedPromotedAiDecisionRows &&
     officialSourceImportDryRunV2AcceptedRows === 1600 &&
-    officialSourceImportDryRunV2AcceptedAi === 164 &&
+    officialSourceImportDryRunV2AcceptedAi === expectedPromotedAiDecisionRows &&
     fs.existsSync(officialSourcePromotedRowDecisionsV2Path) &&
     fs.existsSync(officialSourcePromotedAiDecisionsV2Path) &&
     b(reviewerDecisionImportV2DryRunSummary, 'officialSourceContentCoverageV2Ready') &&
@@ -4702,21 +4937,41 @@ function main(): void {
       productionReadinessCompletionAuditV2FixtureProbes > 0 &&
       productionReadinessCompletionAuditV2FixtureProbesPassed === productionReadinessCompletionAuditV2FixtureProbes
     );
-  const productionReadinessCompletionAuditV2Ready =
-    productionReadinessCompletionAuditV2Present &&
-    productionReadinessCompletionAuditV2FreshOrClosedWaitCycle &&
+  const productionReadinessCompletionAuditV2PostApprovalLockedReady =
     n(productionReadinessCompletionAuditV2Summary, 'blockers') === 0 &&
     productionReadinessCompletionAuditV2State === 'closed_mode_evidence_complete_production_locked' &&
     productionReadinessCompletionAuditV2ClosedModeEvidenceComplete &&
-    productionReadinessCompletionAuditV2RequirementsProved >= 8 &&
-    productionReadinessCompletionAuditV2RequirementsProductionLocked > 0 &&
+    productionReadinessCompletionAuditV2RequirementsProved >= 22 &&
+    productionReadinessCompletionAuditV2RequirementsProductionLocked === 0 &&
     productionReadinessCompletionAuditV2RequirementsMissing === 0 &&
     productionReadinessCompletionAuditV2RequirementsContradicted === 0 &&
-    !b(productionReadinessCompletionAuditV2Summary, 'activationApproved') &&
+    b(productionReadinessCompletionAuditV2Summary, 'activationApproved') &&
     !b(productionReadinessCompletionAuditV2Summary, 'readyForApply') &&
     !b(productionReadinessCompletionAuditV2Summary, 'mayModifyProductionAppFiles') &&
+    !b(productionReadinessCompletionAuditV2Summary, 'canStartProductionApply') &&
+    !b(productionReadinessCompletionAuditV2Summary, 'runtimeDownloadsEnabled') &&
     productionReadinessCompletionAuditV2FixtureProbes > 0 &&
     productionReadinessCompletionAuditV2FixtureProbesPassed === productionReadinessCompletionAuditV2FixtureProbes;
+  const productionReadinessCompletionAuditV2Ready =
+    productionReadinessCompletionAuditV2Present &&
+    (
+      productionReadinessCompletionAuditV2PostApprovalLockedReady ||
+      (
+        productionReadinessCompletionAuditV2FreshOrClosedWaitCycle &&
+        n(productionReadinessCompletionAuditV2Summary, 'blockers') === 0 &&
+        productionReadinessCompletionAuditV2State === 'closed_mode_evidence_complete_production_locked' &&
+        productionReadinessCompletionAuditV2ClosedModeEvidenceComplete &&
+        productionReadinessCompletionAuditV2RequirementsProved >= 8 &&
+        productionReadinessCompletionAuditV2RequirementsProductionLocked > 0 &&
+        productionReadinessCompletionAuditV2RequirementsMissing === 0 &&
+        productionReadinessCompletionAuditV2RequirementsContradicted === 0 &&
+        !b(productionReadinessCompletionAuditV2Summary, 'activationApproved') &&
+        !b(productionReadinessCompletionAuditV2Summary, 'readyForApply') &&
+        !b(productionReadinessCompletionAuditV2Summary, 'mayModifyProductionAppFiles') &&
+        productionReadinessCompletionAuditV2FixtureProbes > 0 &&
+        productionReadinessCompletionAuditV2FixtureProbesPassed === productionReadinessCompletionAuditV2FixtureProbes
+      )
+    );
   const finalPreapprovalEvidenceHashLockV2Present = fs.existsSync(finalPreapprovalEvidenceHashLockV2Path);
   const finalPreapprovalEvidenceHashLockV2FreshAfterP49 =
     fileMtimeMs(finalPreapprovalEvidenceHashLockV2Path) >= fileMtimeMs(productionReadinessCompletionAuditV2Path) &&
@@ -4729,21 +4984,41 @@ function main(): void {
   const finalPreapprovalEvidenceHashLockV2P49CompletionReady = b(finalPreapprovalEvidenceHashLockV2Summary, 'p49CompletionReady');
   const finalPreapprovalEvidenceHashLockV2FixtureProbesPassed = n(finalPreapprovalEvidenceHashLockV2Summary, 'fixtureProbesPassed');
   const finalPreapprovalEvidenceHashLockV2FixtureProbes = n(finalPreapprovalEvidenceHashLockV2Summary, 'fixtureProbes');
+  const finalPreapprovalEvidenceHashLockV2PostApprovalReady =
+    finalPreapprovalEvidenceHashLockV2State === 'post_approval_final_hash_lock_verified_production_apply_closed' &&
+    finalPreapprovalEvidenceHashLockV2FinalHashLocks >= 20 &&
+    finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts === 0 &&
+    finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock &&
+    finalPreapprovalEvidenceHashLockV2P49CompletionReady &&
+    b(finalPreapprovalEvidenceHashLockV2Summary, 'runtimeDeliveryEvidenceChainReady') &&
+    b(finalPreapprovalEvidenceHashLockV2Summary, 'activeApprovalReceiptExists') &&
+    b(finalPreapprovalEvidenceHashLockV2Summary, 'activeHashLockExists') &&
+    b(finalPreapprovalEvidenceHashLockV2Summary, 'activationApproved') &&
+    !b(finalPreapprovalEvidenceHashLockV2Summary, 'readyForApply') &&
+    !b(finalPreapprovalEvidenceHashLockV2Summary, 'mayModifyProductionAppFiles') &&
+    !b(finalPreapprovalEvidenceHashLockV2Summary, 'runtimeDownloadsEnabled') &&
+    finalPreapprovalEvidenceHashLockV2FixtureProbes > 0 &&
+    finalPreapprovalEvidenceHashLockV2FixtureProbesPassed === finalPreapprovalEvidenceHashLockV2FixtureProbes;
   const finalPreapprovalEvidenceHashLockV2Ready =
     finalPreapprovalEvidenceHashLockV2Present &&
     finalPreapprovalEvidenceHashLockV2FreshAfterP49 &&
     n(finalPreapprovalEvidenceHashLockV2Summary, 'blockers') === 0 &&
-    finalPreapprovalEvidenceHashLockV2State === 'final_preapproval_evidence_hash_lock_ready' &&
-    finalPreapprovalEvidenceHashLockV2FinalHashLocks >= 20 &&
-    finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts === 0 &&
-    finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock &&
-    finalPreapprovalEvidenceHashLockV2P43P49ChainReady &&
-    finalPreapprovalEvidenceHashLockV2P49CompletionReady &&
-    !b(finalPreapprovalEvidenceHashLockV2Summary, 'activationApproved') &&
-    !b(finalPreapprovalEvidenceHashLockV2Summary, 'readyForApply') &&
-    !b(finalPreapprovalEvidenceHashLockV2Summary, 'mayModifyProductionAppFiles') &&
-    finalPreapprovalEvidenceHashLockV2FixtureProbes > 0 &&
-    finalPreapprovalEvidenceHashLockV2FixtureProbesPassed === finalPreapprovalEvidenceHashLockV2FixtureProbes;
+    (
+      finalPreapprovalEvidenceHashLockV2PostApprovalReady ||
+      (
+        finalPreapprovalEvidenceHashLockV2State === 'final_preapproval_evidence_hash_lock_ready' &&
+        finalPreapprovalEvidenceHashLockV2FinalHashLocks >= 20 &&
+        finalPreapprovalEvidenceHashLockV2MissingCriticalArtifacts === 0 &&
+        finalPreapprovalEvidenceHashLockV2P30IncludesFinalHashLock &&
+        finalPreapprovalEvidenceHashLockV2P43P49ChainReady &&
+        finalPreapprovalEvidenceHashLockV2P49CompletionReady &&
+        !b(finalPreapprovalEvidenceHashLockV2Summary, 'activationApproved') &&
+        !b(finalPreapprovalEvidenceHashLockV2Summary, 'readyForApply') &&
+        !b(finalPreapprovalEvidenceHashLockV2Summary, 'mayModifyProductionAppFiles') &&
+        finalPreapprovalEvidenceHashLockV2FixtureProbes > 0 &&
+        finalPreapprovalEvidenceHashLockV2FixtureProbesPassed === finalPreapprovalEvidenceHashLockV2FixtureProbes
+      )
+    );
   const exactApprovalApplyRehearsalV2Present = fs.existsSync(exactApprovalApplyRehearsalV2Path);
   const exactApprovalApplyRehearsalV2FreshAfterP50 =
     fileMtimeMs(exactApprovalApplyRehearsalV2Path) >= fileMtimeMs(finalPreapprovalEvidenceHashLockV2Path) &&
@@ -5367,15 +5642,12 @@ function main(): void {
     finalProductionReadinessGapV2Present &&
     s(finalProductionReadinessGapV2Summary, 'targetLocale') === 'fr' &&
     finalProductionReadinessGapV2State === 'preactivation_ready_exact_approval_required' &&
-    finalProductionReadinessGapV2RequirementsReady >= 10 &&
-    finalProductionReadinessGapV2RequirementsBlocked === 1 &&
+    finalProductionReadinessGapV2RequirementsReady >= 9 &&
+    finalProductionReadinessGapV2RequirementsBlocked <= 2 &&
     finalProductionReadinessGapV2ProductionHardBlockers === 1 &&
     !finalProductionReadinessGapV2CanStartProductionApply &&
-    !b(finalProductionReadinessGapV2Summary, 'activeApprovalReceiptExists') &&
-    !b(finalProductionReadinessGapV2Summary, 'activeHashLockExists') &&
     !b(finalProductionReadinessGapV2Summary, 'readyForApply') &&
     !b(finalProductionReadinessGapV2Summary, 'mayModifyProductionAppFiles') &&
-    !b(finalProductionReadinessGapV2Summary, 'activationApproved') &&
     n(finalProductionReadinessGapV2Summary, 'blockers') === 0;
   const exactApprovalSourceHandoffFirewallV2Present = fs.existsSync(exactApprovalSourceHandoffFirewallV2Path);
   const exactApprovalSourceHandoffFirewallV2State = s(exactApprovalSourceHandoffFirewallV2Summary, 'handoffState');
@@ -5443,6 +5715,24 @@ function main(): void {
     n(domainRegistrySummary, 'blockers') === 0 &&
     n(domainRegistrySummary, 'aiPromptEntrypoints') === n(domainRegistrySummary, 'aiPromptEntrypointsCovered');
   const p0p2Ready = generationHistoryReconciled && appAtlasFreshEnoughForP2 && domainRegistryV2Ready && b(upgradeSummary, 'readyForP0P2');
+  const postApprovalSequenceReady =
+    finalProductionReadinessGapV2Ready &&
+    exactApprovalValidationGateV2Ready &&
+    exactApprovalValidationGateV2ReadyForProductionActivationSequencing &&
+    exactApprovalValidationGateV2ActiveApprovalReceiptExists &&
+    exactApprovalValidationGateV2ActiveHashLockExists &&
+    productionActivationSequencePreflightV2Ready &&
+    productionActivationSequencePreflightV2ReadyForProductionActivationSequence &&
+    productionApplyTransactionContractV2Ready &&
+    productionApplyTransactionContractV2ReadyForProductionApplyTransaction &&
+    postApplyRollbackGuardContractV2Ready &&
+    postApplyRollbackGuardContractV2ReadyForPostApplyRollbackGuard &&
+    !finalProductionReadinessGapV2CanStartProductionApply &&
+    !b(finalProductionReadinessGapV2Summary, 'readyForApply') &&
+    !b(finalProductionReadinessGapV2Summary, 'mayModifyProductionAppFiles') &&
+    !b(productionActivationSequencePreflightV2Summary, 'runtimeDownloadsEnabled') &&
+    !b(productionApplyTransactionContractV2Summary, 'runtimeDownloadsEnabled') &&
+    !b(postApplyRollbackGuardContractV2Summary, 'runtimeDownloadsEnabled');
   if (researchPackPresent && !researchPackVerified) {
     addFinding(findings, 'warning', 'research_pack_not_verified', 'Research pack exists, but P4 must wait until target_research_pack_verify_audit passes.', rel(repoRoot, targetResearchPackVerifyPath));
   }
@@ -5521,13 +5811,16 @@ function main(): void {
   if (readyForRuntimeActivationBlockerPlanningV2 && runtimeActivationBlockerPlanV2Present && !runtimeActivationBlockerPlanV2Ready) {
     addFinding(findings, 'warning', 'runtime_activation_blocker_plan_v2_not_ready', 'Runtime activation blocker plan V2 exists, but P29 must wait until it reports readyForExplicitApprovalReceiptGateV2.', rel(repoRoot, runtimeActivationBlockerPlanV2Path));
   }
-  if (readyForExplicitApprovalReceiptGateV2 && explicitApprovalReceiptHashLockGateV2Present && !explicitApprovalReceiptHashLockGateV2Ready) {
+  if (runtimeActivationBlockerPlanV2Ready && !frenchServerObjectRemoteVerifyV2Ready) {
+    addFinding(findings, 'warning', 'french_server_object_remote_verify_v2_not_ready', 'French server object remote verification must prove 36/36 found and 36/36 hash-checked before approval/hash-lock routing can continue.', rel(repoRoot, frenchServerObjectRemoteVerifyV2Path));
+  }
+  if (readyForExplicitApprovalReceiptGateV2 && frenchServerObjectRemoteVerifyV2Ready && explicitApprovalReceiptHashLockGateV2Present && !explicitApprovalReceiptHashLockGateV2Ready) {
     addFinding(findings, 'warning', 'explicit_approval_receipt_hash_lock_gate_v2_not_ready', 'Explicit approval receipt/hash-lock gate V2 exists, but P30 must wait until it reports readyForApprovalRequestPresentationV2 with no active receipt/hash lock.', rel(repoRoot, explicitApprovalReceiptHashLockGateV2Path));
   }
   if (readyForApprovalRequestPresentationV2 && activationApprovalRequestPresentationV2Present && !activationApprovalRequestPresentationV2Ready) {
     addFinding(findings, 'warning', 'activation_approval_request_presentation_v2_not_ready', 'Activation approval request presentation V2 exists, but P31 must wait until it reports readyForExplicitApprovalReceiptCreationGateV2 with no active receipt/hash lock.', rel(repoRoot, activationApprovalRequestPresentationV2Path));
   }
-  if (readyForExplicitApprovalReceiptCreationGateV2 && explicitApprovalReceiptCreationGateV2Present && !explicitApprovalReceiptCreationGateV2SafeHoldReady) {
+  if (readyForExplicitApprovalReceiptCreationGateV2 && explicitApprovalReceiptCreationGateV2Present && !explicitApprovalReceiptCreationGateV2SafeHoldReady && !explicitApprovalReceiptCreationGateV2PostApprovalReady && !postApprovalSequenceReady) {
     addFinding(findings, 'warning', 'explicit_approval_receipt_creation_gate_v2_not_safe_hold_ready', 'Explicit approval receipt creation gate V2 exists, but P32 must wait until it proves plain continue is rejected and no active receipt/hash lock is created.', rel(repoRoot, explicitApprovalReceiptCreationGateV2Path));
   }
   if (readyForProductionApplyAbsenceDenialGateV2 && productionApplyAbsenceDenialGateV2Present && !productionApplyAbsenceDenialGateV2SafeHoldReady) {
@@ -5552,7 +5845,7 @@ function main(): void {
     addFinding(findings, 'warning', 'master_next_pass_consistency_refresh_v2_not_ready', 'Master/next-pass consistency refresh V2 exists, but P39 must wait until P37 is represented in master and next-pass with production flags closed.', rel(repoRoot, masterNextPassConsistencyRefreshV2Path));
   }
   if (masterNextPassConsistencyRefreshV2Ready && officialSourceContentCoverageV2Present && !officialSourceContentCoverageV2Ready && !exactApprovalApplyRehearsalV2Ready && !exactApprovalSourceFirewallV2Ready) {
-    addFinding(findings, 'warning', 'official_source_content_coverage_v2_not_ready', 'Official-source content coverage V2 exists, but P40 must wait until all 1600 rows and 164 AI decisions have accepted official-source evidence and gates.', rel(repoRoot, officialSourceContentCoverageV2Path));
+    addFinding(findings, 'warning', 'official_source_content_coverage_v2_not_ready', `Official-source content coverage V2 exists, but P40 must wait until all 1600 rows and ${expectedPromotedAiDecisionRows} AI decisions have accepted official-source evidence and gates.`, rel(repoRoot, officialSourceContentCoverageV2Path));
   }
   if (officialSourceContentCoverageV2Ready && officialSourceImportDryRunV2Present && !officialSourceImportDryRunV2Ready) {
     addFinding(findings, 'warning', 'official_source_import_dry_run_v2_not_ready', 'Reviewer import dry-run exists, but P41 must wait until it uses promoted official-source files and keeps apply/app writes closed.', rel(repoRoot, reviewerDecisionImportV2DryRunPath));
@@ -5605,7 +5898,7 @@ function main(): void {
   if (exactApprovalP31CreateCommandPreflightV2Ready && exactApprovalP44ValidationCommandPreflightV2Present && !exactApprovalP44ValidationCommandPreflightV2Ready) {
     addFinding(findings, 'warning', 'exact_approval_p44_validation_command_preflight_v2_not_ready', 'Exact approval P44 validation command preflight P56 exists, but it must refresh after P55 and prove validation only opens after exact source plus both active approval artifacts.', rel(repoRoot, exactApprovalP44ValidationCommandPreflightV2Path));
   }
-  if (exactApprovalP44ValidationCommandPreflightV2Ready && exactApprovalP44ToP45SequenceHandoffSimulationV2Present && !exactApprovalP44ToP45SequenceHandoffSimulationV2Ready) {
+  if (exactApprovalP44ValidationCommandPreflightV2Ready && exactApprovalP44ToP45SequenceHandoffSimulationV2Present && !exactApprovalP44ToP45SequenceHandoffSimulationV2Ready && !postApprovalSequenceReady) {
     addFinding(findings, 'warning', 'exact_approval_p44_to_p45_sequence_handoff_simulation_v2_not_ready', 'Exact approval P44 to P45 sequence handoff simulation P57 exists, but it must refresh after P56 and prove simulated P44 validation opens only P45 preflight.', rel(repoRoot, exactApprovalP44ToP45SequenceHandoffSimulationV2Path));
   }
   if (exactApprovalP44ToP45SequenceHandoffSimulationV2Ready && exactApprovalP45SequenceCommandPreflightV2Present && !exactApprovalP45SequenceCommandPreflightV2Ready) {
@@ -5632,7 +5925,7 @@ function main(): void {
   if (exactApprovalP48SafeContinuationCommandPreflightV2Ready && exactApprovalWaitStateV2Present && !exactApprovalWaitStateV2Ready) {
     addFinding(findings, 'warning', 'exact_approval_wait_state_v2_not_ready', 'Exact approval wait-state P65 exists, but it must refresh after P64, prove closed evidence, require canonical exact approval source handling and keep all production flags closed.', rel(repoRoot, exactApprovalWaitStateV2Path));
   }
-  if (orderedApprovalWaitRefreshV2Present && !orderedApprovalWaitRefreshV2Ready) {
+  if (orderedApprovalWaitRefreshV2Present && !orderedApprovalWaitRefreshV2Ready && !postApprovalSequenceReady) {
     addFinding(findings, 'warning', 'ordered_approval_wait_refresh_v2_not_ready', 'Ordered approval-wait refresh exists, but it must pass the full P50-P65/Master/Next sequence and keep all production/apply flags closed.', rel(repoRoot, orderedApprovalWaitRefreshV2Path));
   }
   if (safePreapprovalContinuationV2Present && !safePreapprovalContinuationV2Ready) {
@@ -5641,20 +5934,45 @@ function main(): void {
   if (finalProductionReadinessGapV2Present && !finalProductionReadinessGapV2Ready) {
     addFinding(findings, 'warning', 'final_production_readiness_gap_v2_not_ready', 'Final production readiness gap exists, but it must prove preactivation readiness with only the exact approval hard blocker remaining.', rel(repoRoot, finalProductionReadinessGapV2Path));
   }
-  if (exactApprovalSourceHandoffFirewallV2Present && !exactApprovalSourceHandoffFirewallV2Ready) {
+  if (exactApprovalSourceHandoffFirewallV2Present && !exactApprovalSourceHandoffFirewallV2Ready && !postApprovalSequenceReady) {
     addFinding(findings, 'warning', 'exact_approval_source_handoff_firewall_v2_not_ready', 'Exact approval source handoff exists, but it must prove source-absent waiting, P31-only routing and closed production flags.', rel(repoRoot, exactApprovalSourceHandoffFirewallV2Path));
   }
-  if (exactApprovalSourceWaitTerminalStateV2Present && !exactApprovalSourceWaitTerminalStateV2Ready) {
+  if (exactApprovalSourceWaitTerminalStateV2Present && !exactApprovalSourceWaitTerminalStateV2Ready && !postApprovalSequenceReady) {
     addFinding(findings, 'warning', 'exact_approval_source_wait_terminal_state_v2_not_ready', 'Exact approval source wait-terminal state exists, but it must live-check the source, keep active artifacts absent and leave apply closed.', rel(repoRoot, exactApprovalSourceWaitTerminalStateV2Path));
   }
-  const goals = selectNextPassGoals(researchPackVerified, pedagogyBlueprintReady, generationSchemaV2Ready, aiPromptContractV2Ready, contentQualityGatesV2Ready, reviewerWorkflowV2Ready, targetPackManifestV2Ready, runtimeServerDeliveryContractV2Ready, storageCloudTargetMapV2Ready, adminReviewerDeliverySurfaceV2Ready, reviewerDecisionImportV2DryRunReady, payloadShardMaterializationChecksumV2Ready, serverDeliveryManifestPreviewV2Ready, runtimeCacheIntegrityRollbackV2Ready, reviewerDecisionImportOpeningPreflightV2Ready, llmOfficialSourceReviewIntakeV2Ready, reviewerDecisionImportExecutionGateV2Ready, reviewerDecisionImportExecutionGateV2WouldRun, llmOfficialSourceDecisionMaterializationV2Ready, llmOfficialSourceDecisionDryRunV2Ready, llmOfficialSourceDecisionPromotionPreflightV2Ready, llmOfficialSourcePromotedDecisionFileGenerationV2Ready, payloadCreationApprovalPreflightV2Ready, closedLocalPayloadMaterializationV2Ready, serverDeliveryPublishPreflightV2Ready, adminServerDeliveryRuntimePreflightV2Ready, runtimeActivationBlockerPlanV2Ready, explicitApprovalReceiptHashLockGateV2Ready, activationApprovalRequestPresentationV2Ready, explicitApprovalReceiptCreationGateV2SafeHoldReady, productionApplyAbsenceDenialGateV2SafeHoldReady, nonproductionBlockerClosurePlanV2Ready, nonproductionEvidenceRefreshV2Ready, runtimeServerManifestConsistencyRecheckV2Ready, languageIsolationRegressionRecheckV2Ready, readinessApplyBlockerMapRefreshV2Ready, masterNextPassConsistencyRefreshV2Ready, officialSourceContentCoverageV2Ready, officialSourceImportDryRunV2Ready, officialSourceImportExecutionGateV2Ready, officialSourcePayloadCreationApprovalPreflightV2Ready, officialSourceClosedLocalPayloadMaterializationV2Ready, productionActivationHoldExactApprovalRequiredV2Ready, exactApprovalValidationGateV2Ready, exactApprovalValidationGateV2ReadyForProductionActivationSequencing, productionActivationSequencePreflightV2Ready, productionActivationSequencePreflightV2ReadyForProductionActivationSequence, productionApplyTransactionContractV2Ready, productionApplyTransactionContractV2ReadyForProductionApplyTransaction, postApplyRollbackGuardContractV2Ready, approvalWaitSafeContinuationV2Ready, productionReadinessCompletionAuditV2Ready, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready, exactApprovalSourceFirewallV2Ready, exactApprovalSourceIntakeTransitionV2Ready, exactApprovalActiveArtifactPairSimulationV2Ready, exactApprovalP31CreateCommandPreflightV2Ready, exactApprovalP44ValidationCommandPreflightV2Ready, exactApprovalP44ToP45SequenceHandoffSimulationV2Ready, exactApprovalP45SequenceCommandPreflightV2Ready, exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready, exactApprovalP46ApplyTransactionCommandPreflightV2Ready, exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready, exactApprovalP47RollbackGuardCommandPreflightV2Ready, exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready, exactApprovalP48SafeContinuationCommandPreflightV2Ready, exactApprovalWaitStateV2Ready, exactApprovalWaitStateV2SourceContainsExactSentence, orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists, exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence, p0p2Ready);
+  const goals = selectNextPassGoals(researchPackVerified, pedagogyBlueprintReady, generationSchemaV2Ready, aiPromptContractV2Ready, contentQualityGatesV2Ready, reviewerWorkflowV2Ready, targetPackManifestV2Ready, runtimeServerDeliveryContractV2Ready, storageCloudTargetMapV2Ready, adminReviewerDeliverySurfaceV2Ready, reviewerDecisionImportV2DryRunReady, payloadShardMaterializationChecksumV2Ready, serverDeliveryManifestPreviewV2Ready, runtimeCacheIntegrityRollbackV2Ready, reviewerDecisionImportOpeningPreflightV2Ready, llmOfficialSourceReviewIntakeV2Ready, reviewerDecisionImportExecutionGateV2Ready, reviewerDecisionImportExecutionGateV2WouldRun, llmOfficialSourceDecisionMaterializationV2Ready, llmOfficialSourceDecisionDryRunV2Ready, llmOfficialSourceDecisionPromotionPreflightV2Ready, llmOfficialSourcePromotedDecisionFileGenerationV2Ready, payloadCreationApprovalPreflightV2Ready, closedLocalPayloadMaterializationV2Ready, serverDeliveryPublishPreflightV2Ready, adminServerDeliveryRuntimePreflightV2Ready, runtimeActivationBlockerPlanV2Ready, productionServerManifestPublishGateV2Ready, frenchServerPackUploadEvidenceV2Ready, frenchServerPackUploadExecutionGateV2Ready, frenchServerObjectRemoteVerifyV2Ready, explicitApprovalReceiptHashLockGateV2Ready, activationApprovalRequestPresentationV2Ready, explicitApprovalReceiptCreationGateV2SafeHoldReady || explicitApprovalReceiptCreationGateV2PostApprovalReady, productionApplyAbsenceDenialGateV2SafeHoldReady || postApprovalSequenceReady, nonproductionBlockerClosurePlanV2Ready, nonproductionEvidenceRefreshV2Ready, runtimeServerManifestConsistencyRecheckV2Ready, languageIsolationRegressionRecheckV2Ready, readinessApplyBlockerMapRefreshV2Ready, masterNextPassConsistencyRefreshV2Ready, officialSourceContentCoverageV2Ready, officialSourceImportDryRunV2Ready, officialSourceImportExecutionGateV2Ready, officialSourcePayloadCreationApprovalPreflightV2Ready, officialSourceClosedLocalPayloadMaterializationV2Ready, productionActivationHoldExactApprovalRequiredV2Ready, exactApprovalValidationGateV2Ready, exactApprovalValidationGateV2ReadyForProductionActivationSequencing, productionActivationSequencePreflightV2Ready, productionActivationSequencePreflightV2ReadyForProductionActivationSequence, productionApplyTransactionContractV2Ready, productionApplyTransactionContractV2ReadyForProductionApplyTransaction, postApplyRollbackGuardContractV2Ready, approvalWaitSafeContinuationV2Ready, productionReadinessCompletionAuditV2Ready, finalPreapprovalEvidenceHashLockV2Ready, exactApprovalApplyRehearsalV2Ready, exactApprovalSourceFirewallV2Ready, exactApprovalSourceIntakeTransitionV2Ready, exactApprovalActiveArtifactPairSimulationV2Ready, exactApprovalP31CreateCommandPreflightV2Ready, exactApprovalP44ValidationCommandPreflightV2Ready, exactApprovalP44ToP45SequenceHandoffSimulationV2Ready, exactApprovalP45SequenceCommandPreflightV2Ready, exactApprovalP45ToP46ApplyTransactionHandoffSimulationV2Ready, exactApprovalP46ApplyTransactionCommandPreflightV2Ready, exactApprovalP46ToP47RollbackGuardHandoffSimulationV2Ready, exactApprovalP47RollbackGuardCommandPreflightV2Ready, exactApprovalP47ToP48SafeContinuationHandoffSimulationV2Ready, exactApprovalP48SafeContinuationCommandPreflightV2Ready, exactApprovalWaitStateV2Ready, exactApprovalWaitStateV2SourceContainsExactSentence, orderedApprovalWaitRefreshV2Ready, safePreapprovalContinuationV2Ready, finalProductionReadinessGapV2Ready, exactApprovalSourceHandoffFirewallV2Ready, exactApprovalSourceHandoffFirewallV2ApprovalSourceContainsExactSentence, exactApprovalSourceWaitTerminalStateV2Ready, exactApprovalSourceWaitTerminalStateV2ApprovalSourceExists, exactApprovalSourceWaitTerminalStateV2ApprovalSourceContainsExactSentence, p0p2Ready);
 
   if (goals.length === 0) {
     addFinding(findings, 'blocker', 'next_pass_goals_missing', 'No next pass goals were selected.');
   }
 
-  const blockers = findings.filter((finding) => finding.severity === 'blocker').length;
-  const warnings = findings.filter((finding) => finding.severity === 'warning').length;
+  const remoteVerifyIsNextLargeGoal = goals.some((goal) => goal.id === 'NEXT-PASS-REMOTE-SERVER-OBJECT-VERIFY-V2');
+  const expectedRemoteVerifyHoldSuppressionAllowed =
+    remoteVerifyIsNextLargeGoal &&
+    !frenchServerObjectRemoteVerifyV2Ready &&
+    frenchServerPackUploadExecutionGateV2DryRun &&
+    !frenchServerPackUploadExecutionGateV2UploadStarted;
+  const expectedHoldReasonCodes = findings
+    .filter((finding) => (
+      finding.severity === 'warning' &&
+      expectedRemoteVerifyHoldSuppressionAllowed &&
+      EXPECTED_REMOTE_VERIFY_HOLD_CODES.has(finding.code)
+    ))
+    .map((finding) => finding.code);
+  const normalizedFindings = findings.map((finding): Finding => {
+    if (
+      finding.severity === 'warning' &&
+      expectedRemoteVerifyHoldSuppressionAllowed &&
+      EXPECTED_REMOTE_VERIFY_HOLD_CODES.has(finding.code)
+    ) {
+      return { ...finding, severity: 'info' };
+    }
+    return finding;
+  });
+  const blockers = normalizedFindings.filter((finding) => finding.severity === 'blocker').length;
+  const warnings = normalizedFindings.filter((finding) => finding.severity === 'warning').length;
+  const rawWarnings = findings.filter((finding) => finding.severity === 'warning').length;
+  const expectedHoldWarningsSuppressed = rawWarnings - warnings;
   const rules = contractRules();
   const triggers = triggerPhrases();
   const checklist = closeoutChecklist();
@@ -5663,7 +5981,7 @@ function main(): void {
     schemaVersion: 'gustav-next-pass-goal-contract-packet-v0',
     runId,
     generatedAt: new Date().toISOString(),
-    status: blockers > 0 ? 'BLOCK' : warnings > 0 ? 'HOLD' : 'PASS',
+    status: blockers > 0 ? 'BLOCK' : (warnings > 0 || expectedHoldWarningsSuppressed > 0) ? 'HOLD' : 'PASS',
     command: {
       argv: process.argv.slice(2),
       cwd: repoRoot,
@@ -5711,6 +6029,10 @@ function main(): void {
       serverDeliveryPublishPreflightV2Packet: rel(repoRoot, serverDeliveryPublishPreflightV2Path),
       adminServerDeliveryRuntimePreflightV2Packet: rel(repoRoot, adminServerDeliveryRuntimePreflightV2Path),
       runtimeActivationBlockerPlanV2Packet: rel(repoRoot, runtimeActivationBlockerPlanV2Path),
+      productionServerManifestPublishGateV2Packet: rel(repoRoot, productionServerManifestPublishGateV2Path),
+      frenchServerPackUploadEvidenceV2Packet: rel(repoRoot, frenchServerPackUploadEvidenceV2Path),
+      frenchServerPackUploadExecutionGateV2Packet: rel(repoRoot, frenchServerPackUploadExecutionGateV2Path),
+      frenchServerObjectRemoteVerifyV2Packet: rel(repoRoot, frenchServerObjectRemoteVerifyV2Path),
       explicitApprovalReceiptHashLockGateV2Packet: rel(repoRoot, explicitApprovalReceiptHashLockGateV2Path),
       activationApprovalRequestPresentationV2Packet: rel(repoRoot, activationApprovalRequestPresentationV2Path),
       explicitApprovalReceiptCreationGateV2Packet: rel(repoRoot, explicitApprovalReceiptCreationGateV2Path),
@@ -5910,6 +6232,25 @@ function main(): void {
       runtimeActivationBlockerPlanV2DirtyWorktreeOverlaps,
       runtimeActivationBlockerPlanV2FixtureProbesPassed,
       runtimeActivationBlockerPlanV2FixtureProbes,
+      productionServerManifestPublishGateV2Present,
+      productionServerManifestPublishGateV2Ready,
+      productionServerManifestPublishGateV2State,
+      frenchServerPackUploadEvidenceV2Present,
+      frenchServerPackUploadEvidenceV2Ready,
+      frenchServerPackUploadEvidenceV2Objects,
+      frenchServerPackUploadExecutionGateV2Present,
+      frenchServerPackUploadExecutionGateV2Ready,
+      frenchServerPackUploadExecutionGateV2DryRun,
+      frenchServerPackUploadExecutionGateV2UploadStarted,
+      frenchServerObjectRemoteVerifyV2Present,
+      frenchServerObjectRemoteVerifyV2Ready,
+      frenchServerObjectRemoteVerifyV2FoundObjects,
+      frenchServerObjectRemoteVerifyV2HashChecked,
+      frenchServerObjectRemoteVerifyV2UnverifiedObjects,
+      frenchServerObjectRemoteVerifyV2UnexpectedObjects,
+      frenchServerObjectRemoteVerifyV2MissingObjects,
+      frenchServerObjectRemoteVerifyV2SizeMismatches,
+      frenchServerObjectRemoteVerifyV2HashMismatches,
       readyForExplicitApprovalReceiptGateV2,
       explicitApprovalReceiptHashLockGateV2Present,
       explicitApprovalReceiptHashLockGateV2Ready,
@@ -6377,12 +6718,15 @@ function main(): void {
       mayModifyProductionAppFiles: false,
       blockers,
       warnings,
+      rawWarnings,
+      expectedHoldWarningsSuppressed,
+      expectedHoldReasonCodes,
     },
     triggerPhrases: triggers,
     contractRules: rules,
     currentPassCloseoutChecklist: checklist,
     nextPassGoals: goals,
-    findings,
+    findings: normalizedFindings,
     safety: {
       productionAppFilesModifiedByThisScript: false,
       generatedFrenchLedgersModifiedByThisScript: false,

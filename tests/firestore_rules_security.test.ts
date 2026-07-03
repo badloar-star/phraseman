@@ -23,10 +23,14 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('auth_links/$(request.auth.uid)');
     expect(rules).toContain('data.stable_id == userId');
     expect(rules).toContain('stableUserMatchesAuth(userId) || authLinkMapsToUser(userId)');
-    // Read/delete stay owner/admin; update is owner/admin AND must not touch premium fields.
-    // The update rule may AND additional guards (e.g. hasNoShardWrites()), so match the
-    // owner + premium-guard prefix instead of pinning the exact (and growing) full line.
-    expect(rules).toContain('allow read, delete: if userDocOwnerMatchesAuth(userId);');
+    // Read is owner/admin OR the doc does not exist yet (empty read is safe and must
+    // not break the 1.5.41 sign-in transaction's tx.get on a brand-new localStableId —
+    // see userDocMissing). delete stays strictly owner/admin. update is owner/admin AND
+    // must not touch premium fields. The update rule may AND additional guards
+    // (e.g. hasNoShardWrites()), so match the owner + premium-guard prefix instead of
+    // pinning the exact (and growing) full line.
+    expect(rules).toContain('allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
+    expect(rules).toContain('allow delete: if userDocOwnerMatchesAuth(userId);');
     expect(rules).toMatch(
       /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
@@ -43,6 +47,29 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(
       /function newDocHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.keys\(\)\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
     );
+  });
+
+  // ── Missing-doc read guard (1.5.41 sign-in transaction fix, R1) ──────────
+  // Корень потери аккаунта на 1.5.41 (после halt-rollback с 1.5.44): клиентская
+  // транзакция входа делает tx.get(users/{новый localStableId}); пока этот док не
+  // существует и на него не указывает ни firebaseAuthUid, ни auth_links — старое
+  // правило read возвращало PERMISSION_DENIED, что валило ВСЮ транзакцию
+  // (transaction_[firestore/unknown]) и вход → пользователю казалось, что создан
+  // новый аккаунт. userDocMissing разрешает read ТОЛЬКО когда документа нет:
+  // пустое чтение ничего не раскрывает, а транзакция доходит до конца и клиент
+  // свапается на привязанный stable_id. Существующие чужие доки остаются закрыты.
+  test('read of a non-existent user doc is allowed (so the 1.5.41 sign-in tx survives)', () => {
+    expect(rules).toContain('function userDocMissing(userId) {');
+    // Разрешение только для аутентифицированного и ТОЛЬКО для отсутствующего дока.
+    expect(rules).toMatch(
+      /function userDocMissing\(userId\) \{[\s\S]*?request\.auth != null[\s\S]*?!exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(userId\)\)/,
+    );
+    // read объединяет владельца И missing-doc; delete этого послабления НЕ получает.
+    expect(rules).toContain('allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
+    expect(rules).not.toContain('allow delete: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
+    // update тоже НЕ должен получать missing-doc послабление (создание идёт через
+    // allow create + newUserDocOwnerMatchesAuth, который требует firebaseAuthUid==auth.uid).
+    expect(rules).not.toMatch(/allow update:[\s\S]*?userDocMissing\(userId\)/);
   });
 
   // ── Paywall-bypass guard (premium/VIP self-grant) ────────────────────────
@@ -267,6 +294,34 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
   });
 
+  test('website checkout admin page can save prices and manage web orders only as admin', () => {
+    const checkoutBlock = rules.match(/match \/web_checkout\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(checkoutBlock).not.toBeNull();
+    expect(checkoutBlock![0]).toContain('allow read, create, update: if isAdmin();');
+    expect(checkoutBlock![0]).toContain('allow delete: if false;');
+    expect(checkoutBlock![0]).not.toContain('request.auth != null');
+
+    const orderBlock = rules.match(/match \/web_premium_orders\/\{orderId\} \{[\s\S]*?\n    \}/);
+    expect(orderBlock).not.toBeNull();
+    expect(orderBlock![0]).toContain('allow read, update: if isAdmin();');
+    expect(orderBlock![0]).toContain('allow create, delete: if false;');
+    expect(orderBlock![0]).not.toContain('request.auth != null');
+  });
+
+  test('admin email contacts and campaigns are server-created with admin read/update', () => {
+    const contactsBlock = rules.match(/match \/email_contacts\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(contactsBlock).not.toBeNull();
+    expect(contactsBlock![0]).toContain('allow read, update, delete: if isAdmin();');
+    expect(contactsBlock![0]).toContain('allow create: if false;');
+    expect(contactsBlock![0]).not.toContain('request.auth != null');
+
+    const campaignsBlock = rules.match(/match \/email_campaigns\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(campaignsBlock).not.toBeNull();
+    expect(campaignsBlock![0]).toContain('allow read, update, delete: if isAdmin();');
+    expect(campaignsBlock![0]).toContain('allow create: if false;');
+    expect(campaignsBlock![0]).not.toContain('request.auth != null');
+  });
+
   test('arena_rooms updates are field-restricted', () => {
     expect(rules).toContain('match /arena_rooms/{roomId} {');
     expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
@@ -315,14 +370,36 @@ describe('firestore.rules security baseline', () => {
     expect(authLinksBlock![0]).toContain('allow read: if isAdmin() || ownsAuthLinkDoc();');
     expect(authLinksBlock![0]).toContain('allow create: if ownsAuthLinkDoc()');
     expect(authLinksBlock![0]).toContain('&& stableIdOwnedByThisAuth(request.resource.data.stable_id);');
-    expect(authLinksBlock![0]).toContain('allow update: if ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain('allow update: if (');
     expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)");
     expect(authLinksBlock![0]).toContain("request.resource.data.provider in ['google', 'apple']");
     expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)");
     expect(authLinksBlock![0]).toContain("'providerUid', 'provider', 'linkedAt'");
     expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
+    expect(authLinksBlock![0]).toContain('|| authLinkLegacyUpdateOk();');
     expect(authLinksBlock![0]).not.toContain('allow read: if request.auth != null;');
     expect(authLinksBlock![0]).not.toContain('allow update: if request.auth != null');
+  });
+
+  // ── updatedAt в whitelist auth_links update (2026-07-02) ─────────────────
+  // Клиентский fallback (cloud_sync, «Хвост B») пишет auth_links c полем updatedAt.
+  // Раньше updatedAt отсутствовал в hasOnly([...]) → на ПОВТОРНОМ входе update молча
+  // DENIED, и мост provider→stableId не обновлялся. updatedAt должен быть в whitelist.
+  test('auth_links update whitelist includes updatedAt for the client fallback write', () => {
+    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
+    expect(authLinksBlock).not.toBeNull();
+    expect(authLinksBlock![0]).toContain("'providerUid', 'provider', 'linkedAt', 'updatedAt'");
+  });
+
+  test('auth_links keep a narrow legacy update path for the 1.5.41 sign-in transaction', () => {
+    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
+    expect(authLinksBlock).not.toBeNull();
+    expect(authLinksBlock![0]).toContain('function authLinkLegacyUpdateOk()');
+    expect(authLinksBlock![0]).toContain('return ownsAuthLinkDoc()');
+    expect(authLinksBlock![0]).toContain(".hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])");
+    expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
+    expect(authLinksBlock![0]).toContain('|| stableIdOwnedByThisAuth(request.resource.data.stable_id)');
+    expect(authLinksBlock![0]).toContain('|| authLinkLegacyUpdateOk();');
   });
 });
 
@@ -361,6 +438,10 @@ describe('firestore.rules friend system (Phase 1)', () => {
 
   test('friend_requests create requires status == pending', () => {
     expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?request\.resource\.data\.status == 'pending'/);
+  });
+
+  test('friend_requests create permits only a bounded sender display name', () => {
+    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?fromName[\s\S]*?request\.resource\.data\.fromName is string[\s\S]*?request\.resource\.data\.fromName\.size\(\) <= 40/);
   });
 
   test('friend_requests forbids self-targeting', () => {

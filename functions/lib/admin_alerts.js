@@ -33,7 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminAlertOnConfigWritten = exports.adminAlertOnUgcRefund = exports.adminAlertOnCancelSurvey = exports.adminAlertContentReportDigest = exports.adminAlertOnContentReport = exports.adminAlertOnCriticalError = exports.adminAlertOnUserReport = void 0;
+exports.adminAlertOnConfigWritten = exports.adminAlertOnUgcRefund = exports.adminAlertOnCancelSurvey = exports.adminAlertContentReportDigest = exports.adminAlertOnContentReport = exports.adminAlertOnCriticalError = exports.adminAlertOnUserReport = exports.ADMIN_ALERT_BOT_TOKEN = void 0;
+exports.sendTelegramAlert = sendTelegramAlert;
 exports.formatContentReportAlert = formatContentReportAlert;
 exports.formatContentReportAlertSafe = formatContentReportAlertSafe;
 const admin = __importStar(require("firebase-admin"));
@@ -54,7 +55,7 @@ const scheduler_1 = require("firebase-functions/v2/scheduler");
 const REGION = 'us-central1';
 const TELEGRAM_API = 'https://api.telegram.org';
 const ALERTS_DOC = 'admin_config/alerts';
-const ADMIN_ALERT_BOT_TOKEN = (0, params_1.defineSecret)('ADMIN_ALERT_BOT_TOKEN');
+exports.ADMIN_ALERT_BOT_TOKEN = (0, params_1.defineSecret)('ADMIN_ALERT_BOT_TOKEN');
 function db() {
     return admin.firestore();
 }
@@ -138,7 +139,7 @@ async function markSent(type) {
     }
 }
 // ── 1. New complaint about a user (user_reports) ─────────────────────────────
-exports.adminAlertOnUserReport = (0, firestore_1.onDocumentCreated)({ document: 'user_reports/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+exports.adminAlertOnUserReport = (0, firestore_1.onDocumentCreated)({ document: 'user_reports/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
     const cfg = await readAlertsConfig();
     if (!alertTypeEnabled(cfg, 'userReport'))
         return;
@@ -151,12 +152,12 @@ exports.adminAlertOnUserReport = (0, firestore_1.onDocumentCreated)({ document: 
         `Причина: ${reason}\n` +
         `От: ${reporter}\n\n` +
         `<i>Открой админку → User reports.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     if (ok)
         await markSent('userReport');
 });
 // ── 2. Critical app error (app_errors, severity=critical) ────────────────────
-exports.adminAlertOnCriticalError = (0, firestore_1.onDocumentCreated)({ document: 'app_errors/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+exports.adminAlertOnCriticalError = (0, firestore_1.onDocumentCreated)({ document: 'app_errors/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
     const data = event.data?.data() || {};
     const severity = String(data.severity || '').toLowerCase();
     if (severity !== 'critical')
@@ -179,7 +180,7 @@ exports.adminAlertOnCriticalError = (0, firestore_1.onDocumentCreated)({ documen
         `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
         `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
         `\n<i>Открой админку → App Health.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     if (ok)
         await markSent('criticalError');
 });
@@ -242,7 +243,7 @@ function formatContentReportAlertSafe(data) {
     }
     return text;
 }
-exports.adminAlertOnContentReport = (0, firestore_1.onDocumentCreated)({ document: 'error_reports/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+exports.adminAlertOnContentReport = (0, firestore_1.onDocumentCreated)({ document: 'error_reports/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
     const cfg = await readAlertsConfig();
     if (!alertTypeEnabled(cfg, 'contentReportDigest'))
         return;
@@ -277,12 +278,12 @@ exports.adminAlertOnContentReport = (0, firestore_1.onDocumentCreated)({ documen
     if (!immediate)
         return;
     const text = formatContentReportAlertSafe(event.data?.data() || {});
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     if (ok)
         await markSent('contentReportDigest');
 });
 // Hourly digest now only covers the overflow beyond the immediate-send cap.
-exports.adminAlertContentReportDigest = (0, scheduler_1.onSchedule)({ schedule: '0 * * * *', timeZone: 'UTC', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async () => {
+exports.adminAlertContentReportDigest = (0, scheduler_1.onSchedule)({ schedule: '0 * * * *', timeZone: 'UTC', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async () => {
     const cfg = await readAlertsConfig();
     if (!cfg || cfg.enabled === false)
         return;
@@ -302,7 +303,7 @@ exports.adminAlertContentReportDigest = (0, scheduler_1.onSchedule)({ schedule: 
     const text = `📝 <b>Content-репорты за час</b>\n\n` +
         `Ещё <b>${pending}</b> сверх мгновенных алертов — полные тексты в админке.\n\n` +
         `<i>Открой админку → Reports.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     if (ok)
         await markSent('contentReportDigest');
 });
@@ -355,15 +356,15 @@ async function recordSpikeEvent(kindLabel) {
     const text = `📉 <b>Всплеск отмен/рефандов</b>\n\n` +
         `${escapeHtml(kindLabel)}: <b>${windowCount}</b> за последний час (порог ${threshold}).\n\n` +
         `<i>Проверь монетизацию — Cancel surveys / UGC purchases.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text);
     if (ok)
         await markSent('cancelRefundSpike');
 }
-exports.adminAlertOnCancelSurvey = (0, firestore_1.onDocumentCreated)({ document: 'subscription_cancel_surveys/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async () => {
+exports.adminAlertOnCancelSurvey = (0, firestore_1.onDocumentCreated)({ document: 'subscription_cancel_surveys/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async () => {
     await recordSpikeEvent('Отмены подписки');
 });
 // UGC purchase refunds are a soft-update (status -> 'refunded'); watch writes.
-exports.adminAlertOnUgcRefund = (0, firestore_1.onDocumentWritten)({ document: 'community_pack_purchases/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+exports.adminAlertOnUgcRefund = (0, firestore_1.onDocumentWritten)({ document: 'community_pack_purchases/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
     const before = event.data?.before?.data() || {};
     const after = event.data?.after?.data() || {};
     const becameRefunded = before.status !== 'refunded' && after.status === 'refunded';
@@ -374,7 +375,7 @@ exports.adminAlertOnUgcRefund = (0, firestore_1.onDocumentWritten)({ document: '
 // ── 5. Test ping from the admin UI ───────────────────────────────────────────
 // The "Test" button in the admin Alerts tab writes admin_config/alerts.testPing.
 // This trigger reacts to that change and sends a confirmation message.
-exports.adminAlertOnConfigWritten = (0, firestore_1.onDocumentWritten)({ document: 'admin_config/alerts', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+exports.adminAlertOnConfigWritten = (0, firestore_1.onDocumentWritten)({ document: 'admin_config/alerts', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
     const before = (event.data?.before?.data() || {});
     const after = (event.data?.after?.data() || {});
     const ping = Number(after.testPing || 0);
@@ -385,7 +386,7 @@ exports.adminAlertOnConfigWritten = (0, firestore_1.onDocumentWritten)({ documen
     const text = `✅ <b>Тест алертов Phraseman</b>\n\n` +
         `Бот подключён. Алерты будут приходить сюда.\n` +
         `<i>${new Date(ping).toISOString()}</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, after);
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, after);
     try {
         await event.data?.after?.ref.set({ testPingHandled: ping, testPingResult: ok ? 'sent' : 'failed', testPingResultAt: Date.now() }, { merge: true });
     }

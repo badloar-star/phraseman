@@ -51,11 +51,11 @@ describe('computeBotMatchRankDelta — потолок Легенда III (рег
     }
   });
 
-  it('Легенда III с 0–1 звездой копит звёзды как обычно', () => {
+  it('Легенда III сразу считается потолком: звёзды больше не двигаются, дальше работает SR', () => {
     expect(computeBotMatchRankDelta(0, 'legend', 'III', WON.won, WON.isLast, WON.isDraw))
-      .toMatchObject({ newTier: 'legend', newLevel: 'III', newStars: 1, rankChanged: false });
+      .toMatchObject({ newTier: 'legend', newLevel: 'III', newStars: 0, rankChanged: false });
     expect(computeBotMatchRankDelta(1, 'legend', 'III', WON.won, WON.isLast, WON.isDraw))
-      .toMatchObject({ newTier: 'legend', newLevel: 'III', newStars: 2, rankChanged: false });
+      .toMatchObject({ newTier: 'legend', newLevel: 'III', newStars: 1, rankChanged: false });
   });
 });
 

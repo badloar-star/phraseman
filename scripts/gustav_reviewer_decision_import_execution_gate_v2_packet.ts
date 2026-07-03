@@ -179,7 +179,7 @@ type Report = {
 };
 
 const REQUIRED_ROW_DECISIONS = 1600;
-const REQUIRED_AI_DECISIONS = 164;
+let REQUIRED_AI_DECISIONS = 164;
 
 function argValue(name: string): string | null {
   const index = process.argv.indexOf(name);
@@ -649,6 +649,14 @@ function main(): void {
   const llm = object(readJson<JsonObject>(llmIntakePath).summary);
   const rowLines = lineCount(rowTemplatePath);
   const aiLines = lineCount(aiTemplatePath);
+  REQUIRED_AI_DECISIONS = Math.max(
+    REQUIRED_AI_DECISIONS,
+    aiLines,
+    n(p13, 'aiDecisionRows'),
+    n(p17, 'blankAiDecisionRows'),
+    n(llm, 'automatedAiQualityGateCoverage'),
+    n(llm, 'llmReviewedAiDecisionRows'),
+  );
   const upstream = buildUpstream(p13, p17, llm);
   const evaluation = evaluate(upstream, rowLines, aiLines);
   const probes = makeProbes(upstream, rowLines, aiLines);

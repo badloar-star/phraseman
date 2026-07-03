@@ -1,6 +1,6 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, PanResponder, Pressable, ScrollView, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from './LangContext';
@@ -52,7 +52,7 @@ async function readState(lang: string): Promise<MaintenanceState> {
 export default function MaintenanceGate() {
   const { lang } = useLang();
   const { themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const translateX = useRef(new Animated.Value(0)).current;
   const [state, setState] = useState<MaintenanceState>({
     block: false,

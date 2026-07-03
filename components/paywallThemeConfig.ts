@@ -212,40 +212,76 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#E9B949',
   },
 
-  // ── BUSINESS (strict graphite mono) ───────────────────────────────────────
+  // ── BUSINESS (graphite and champagne) ─────────────────────────────────────
   business: {
-    heroAccent: '#FFFFFF',
+    heroAccent: '#0095F6',
 
-    selectedCardBorder: '#FFFFFF',
-    selectedCardBg: 'rgba(255,255,255,0.10)',
-    unselectedCardBg: 'rgba(36,36,36,0.88)',
+    selectedCardBorder: '#0095F6',
+    selectedCardBg: 'rgba(0,149,246,0.12)',
+    unselectedCardBg: 'rgba(26,26,26,0.88)',
     selectedCardShadow: '#000000',
 
-    savingsBadgeBg: '#F2F2F2',
-    savingsBadgeText: '#0A0A0A',
+    savingsBadgeBg: '#0095F6',
+    savingsBadgeText: '#FFFFFF',
 
-    popularBadgeBg: '#FFFFFF',
-    popularBadgeText: '#0A0A0A',
+    popularBadgeBg: '#0095F6',
+    popularBadgeText: '#FFFFFF',
 
-    ctaBg: '#FFFFFF',
-    ctaText: '#0A0A0A',
+    ctaBg: '#0095F6',
+    ctaText: '#FFFFFF',
     ctaShadow: '#000000',
 
-    pillBg: 'rgba(255,255,255,0.08)',
-    pillText: '#F2F2F2',
-    pillBorder: 'rgba(255,255,255,0.12)',
+    pillBg: 'rgba(0,149,246,0.10)',
+    pillText: '#E6E6E6',
+    pillBorder: 'rgba(0,149,246,0.22)',
 
     urgencyBg: 'rgba(255,255,255,0.06)',
-    urgencyTimerText: '#F2F2F2',
-    urgencyLabelText: '#9A9A9A',
-    urgencyStrikethroughColor: '#5E5E5E',
-    urgencyCurrentPriceText: '#F2F2F2',
+    urgencyTimerText: '#F5F5F5',
+    urgencyLabelText: '#737373',
+    urgencyStrikethroughColor: '#4D4D4D',
+    urgencyCurrentPriceText: '#E6E6E6',
 
-    expandBtnText: '#F2F2F2',
+    expandBtnText: '#F5F5F5',
     expandBtnBorder: 'rgba(255,255,255,0.12)',
 
-    socialProofText: '#9A9A9A',
-    socialProofStarColor: '#F2F2F2',
+    socialProofText: '#737373',
+    socialProofStarColor: '#E6E6E6',
+  },
+
+  // ── BUSINESS LIGHT (ivory and champagne) ──────────────────────────────────
+  businessLight: {
+    heroAccent: '#0095F6',
+
+    selectedCardBorder: '#0095F6',
+    selectedCardBg: 'rgba(0,149,246,0.10)',
+    unselectedCardBg: 'rgba(255,255,255,0.92)',
+    selectedCardShadow: 'rgba(0,0,0,0)',
+
+    savingsBadgeBg: '#0095F6',
+    savingsBadgeText: '#FFFFFF',
+
+    popularBadgeBg: '#0095F6',
+    popularBadgeText: '#FFFFFF',
+
+    ctaBg: '#0095F6',
+    ctaText: '#FFFFFF',
+    ctaShadow: 'rgba(0,0,0,0)',
+
+    pillBg: 'rgba(0,149,246,0.10)',
+    pillText: '#0095F6',
+    pillBorder: 'rgba(0,149,246,0.24)',
+
+    urgencyBg: 'rgba(0,0,0,0.05)',
+    urgencyTimerText: '#262626',
+    urgencyLabelText: '#8E8E8E',
+    urgencyStrikethroughColor: '#C7C7C7',
+    urgencyCurrentPriceText: '#0095F6',
+
+    expandBtnText: '#262626',
+    expandBtnBorder: 'rgba(0,0,0,0.12)',
+
+    socialProofText: '#8E8E8E',
+    socialProofStarColor: '#0095F6',
   },
 
   // ── COMPASS (warm charcoal / champagne) ───────────────────────────────────

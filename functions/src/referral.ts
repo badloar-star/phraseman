@@ -184,6 +184,114 @@ export function hasCompletedFirstLesson(
   return false;
 }
 
+function parseMs(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.floor(value);
+  if (typeof value === 'string' && value.trim()) {
+    const n = Number(value);
+    return Number.isFinite(n) ? Math.floor(n) : 0;
+  }
+  if (value instanceof Date) {
+    const n = value.getTime();
+    return Number.isFinite(n) ? Math.floor(n) : 0;
+  }
+  if (value && typeof value === 'object' && typeof (value as { toMillis?: unknown }).toMillis === 'function') {
+    const n = Number((value as { toMillis: () => number }).toMillis());
+    return Number.isFinite(n) ? Math.floor(n) : 0;
+  }
+  return 0;
+}
+
+function positiveNumber(value: unknown): boolean {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0;
+}
+
+export function cleanReferralDisplayName(value: unknown): string {
+  const s = String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
+  if (!s) return '';
+  if (/^(?:user|юзер|player|игрок|friend|друг)\s*#?\s*[a-z0-9_-]{3,}$/i.test(s)) return '';
+  return s;
+}
+
+export function referralDisplayNameFromUserData(
+  userData: admin.firestore.DocumentData | undefined,
+): string | null {
+  if (!userData || typeof userData !== 'object') return null;
+  const progress = userData.progress && typeof userData.progress === 'object'
+    ? userData.progress as Record<string, unknown>
+    : {};
+  return cleanReferralDisplayName(progress.user_name)
+    || cleanReferralDisplayName(userData.displayName)
+    || cleanReferralDisplayName(userData.name)
+    || null;
+}
+
+function jsonObjectHasPositiveNumber(value: unknown): boolean {
+  if (value == null) return false;
+  try {
+    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return false;
+    return Object.values(parsed as Record<string, unknown>).some((v) => {
+      if (positiveNumber(v)) return true;
+      if (v && typeof v === 'object') {
+        return Object.values(v as Record<string, unknown>).some(positiveNumber);
+      }
+      return false;
+    });
+  } catch {
+    return false;
+  }
+}
+
+function lessonProgressHasAnswered(value: unknown): boolean {
+  try {
+    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
+    if (!Array.isArray(parsed)) return false;
+    return parsed.some((cell) => cell === 'correct' || cell === 'replay_correct' || cell === 'wrong');
+  } catch {
+    return false;
+  }
+}
+
+export function hasReferralExistingAccountActivity(
+  progress: Record<string, unknown> | undefined,
+): boolean {
+  if (!progress || typeof progress !== 'object') return false;
+  if (positiveNumber(progress.user_total_xp)) return true;
+  if (positiveNumber(progress.weekly_xp)) return true;
+  if (positiveNumber(progress.streak_count)) return true;
+  if (jsonObjectHasPositiveNumber(progress.daily_stats)) return true;
+  if (jsonObjectHasPositiveNumber(progress.stats_daily_breakdown_v1)) return true;
+  if (jsonObjectHasPositiveNumber(progress.stats_daily_breakdown)) return true;
+
+  for (const [key, value] of Object.entries(progress)) {
+    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_(?:best_score|pass_count)$/.test(key) && positiveNumber(value)) {
+      return true;
+    }
+    if ((/^lesson\d+_progress$/.test(key) || /^lesson_progress_v2::fr::\d+$/.test(key)) && lessonProgressHasAnswered(value)) {
+      return true;
+    }
+    if (/^(?:lesson_progress_v2::fr::)?lesson\d+_words$/.test(key) && jsonObjectHasPositiveNumber(value)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export function isReferralAccountTooEstablishedForApply(
+  userData: admin.firestore.DocumentData | undefined,
+  nowMs: number,
+  maxAccountAgeMs: number = REFEREE_MAX_ACCOUNT_AGE_MS,
+): boolean {
+  if (!userData) return false;
+  const createdAtMs = parseMs(userData.created_at);
+  if (maxAccountAgeMs > 0 && createdAtMs > 0 && nowMs - createdAtMs > maxAccountAgeMs) {
+    return true;
+  }
+  const progress = (userData as { progress?: Record<string, unknown> }).progress;
+  return hasReferralExistingAccountActivity(progress);
+}
+
 function hasLesson1DoneProgress(
   root: admin.firestore.DocumentData | undefined,
 ): boolean {
@@ -478,14 +586,12 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     }
     if (REFEREE_MAX_ACCOUNT_AGE_MS > 0) {
       const userSnap = await tx.get(userRef);
-      if (userSnap.exists) {
-        const c = userSnap.data()?.created_at;
-        if (typeof c === 'number' && c > 0) {
-          const age = Date.now() - c;
-          if (age > REFEREE_MAX_ACCOUNT_AGE_MS) {
-            throw new HttpsError('failed-precondition', 'REFERRAL_REFEREE_ACCOUNT_TOO_OLD');
-          }
-        }
+      if (userSnap.exists && isReferralAccountTooEstablishedForApply(
+        userSnap.data(),
+        Date.now(),
+        REFEREE_MAX_ACCOUNT_AGE_MS,
+      )) {
+        throw new HttpsError('failed-precondition', 'REFERRAL_REFEREE_ACCOUNT_TOO_OLD');
       }
     }
     const codeSnap = await tx.get(codeRef);
@@ -557,9 +663,36 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
 type InviteState = {
   refereeStableId: string;
   status: AttributionStatus;
+  /** Safe public display name for this invitee, when the user has a real name. */
+  refereeName?: string;
   /** ms, для сортировки «новые сверху» на клиенте. */
   createdAtMs: number;
 };
+
+type ListMyInvitesResponse = {
+  ok: true;
+  invites: InviteState[];
+  qualifiedCount: number;
+  claimableVipDays: number;
+};
+
+const LIST_MY_INVITES_SERVER_CACHE_TTL_MS = 60_000;
+const listMyInvitesServerCache = new Map<string, { expiresAtMs: number; data: ListMyInvitesResponse }>();
+
+function cacheListMyInvites(referrerStableId: string, data: ListMyInvitesResponse): void {
+  const now = Date.now();
+  listMyInvitesServerCache.set(referrerStableId, {
+    expiresAtMs: now + LIST_MY_INVITES_SERVER_CACHE_TTL_MS,
+    data,
+  });
+  if (listMyInvitesServerCache.size > 1000) {
+    for (const [key, entry] of listMyInvitesServerCache) {
+      if (entry.expiresAtMs <= now || listMyInvitesServerCache.size > 900) {
+        listMyInvitesServerCache.delete(key);
+      }
+    }
+  }
+}
 
 /**
  * Список приглашений этого referrer'а для экрана друзей (бейджи + кнопка «Получить»).
@@ -577,6 +710,10 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
   }
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
+  const cacheKey = referrerStableId;
+  const force = request.data?.force === true;
+  const cached = force ? undefined : listMyInvitesServerCache.get(cacheKey);
+  if (cached && cached.expiresAtMs > Date.now()) return cached.data;
 
   const snap = await db
     .collection(REFERRAL_ATTRIBUTIONS)
@@ -584,27 +721,40 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
     .limit(200)
     .get();
 
+  const profileSnaps = snap.docs.length
+    ? await db.getAll(...snap.docs.map((d) => db.collection(USERS).doc(d.id)))
+    : [];
+  const nameByStableId = new Map<string, string>();
+  for (const userSnap of profileSnaps) {
+    const name = referralDisplayNameFromUserData(userSnap.data());
+    if (name) nameByStableId.set(userSnap.id, name);
+  }
+
   const invites: InviteState[] = snap.docs.map((d) => {
     const row = d.data() as { status?: string; createdAt?: admin.firestore.Timestamp };
     const createdAtMs =
       row.createdAt && typeof row.createdAt.toMillis === 'function'
         ? row.createdAt.toMillis()
         : 0;
+    const refereeName = nameByStableId.get(d.id);
     return {
       refereeStableId: d.id,
       status: (row.status as AttributionStatus) ?? 'pending',
+      ...(refereeName ? { refereeName } : {}),
       createdAtMs,
     };
   });
 
   const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
   const cfg = await resolveReferralConfig(db);
-  return {
+  const result: ListMyInvitesResponse = {
     ok: true,
     invites,
     qualifiedCount,
     claimableVipDays: qualifiedCount * cfg.rewardDays,
   };
+  cacheListMyInvites(cacheKey, result);
+  return result;
 });
 
 type ClaimedFriend = {
@@ -631,6 +781,7 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
 
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
+  listMyInvitesServerCache.delete(referrerStableId);
 
   // Тюнинг из «Пульта» (дней награды + капы). Читаем ДО транзакции (отд. документ).
   const cfg = await resolveReferralConfig(db);

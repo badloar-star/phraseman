@@ -16,6 +16,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import CompassDepthSurface from '../components/CompassDepthSurface';
+import PlusBadge from '../components/PlusBadge';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -38,7 +39,6 @@ interface WeeklyReviewCardProps {
   embedded?: boolean;
 }
 
-const GOLD = '#C9A227';
 const GOLD_SOFT = '#E8D5A3';
 
 export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout = false, embedded = false }: WeeklyReviewCardProps) {
@@ -188,10 +188,10 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
           {hiddenCount > 0 && (
             <TouchableOpacity
               activeOpacity={0.88}
-              onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as never); }}
+              onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'weekly_review' } } as never); }}
               style={[styles.teaser, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'rgba(201,162,39,0.3)' }]}
             >
-              <Ionicons name="lock-closed" size={14} color={GOLD} />
+              <PlusBadge themeMode={themeMode} size="xs" />
               <Text style={[styles.teaserText, { color: isCompassTheme ? COMPASS_RICH.textDark : GOLD_SOFT, fontSize: f.sub }]}>
                 {triLang(lang, {
                   ru: 'Полные подсказки и план — в Plus', uk: 'Повні підказки й план — у Plus', es: 'Guía completa y plan — en Plus',

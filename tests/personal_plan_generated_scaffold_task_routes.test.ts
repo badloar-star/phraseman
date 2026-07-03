@@ -20,7 +20,6 @@ describe('generated personal plan scaffold task routes', () => {
       'plan_choose_natural_phrase',
       'plan_listen_build',
       'plan_phrase_recall',
-      'plan_quiz',
     ];
 
     expect(allTasksForDay(day).map((task) => task.kind)).toEqual(expectedKinds);

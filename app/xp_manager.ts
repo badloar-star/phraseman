@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
-import { ensureAnonUser, syncToCloud } from './cloud_sync';
+import { ensureAnonUser, markCloudSyncPending } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
@@ -24,11 +24,12 @@ import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultip
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import { patchAppSnapshot } from './app_snapshot_store';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
-  mirrorProgressResultToLocal,
+  prepareProgressMigrationSnapshot,
   submitProgressEvent,
-  type ProgressEventResult,
+  type ProgressEventRequest,
   type ProgressEventType,
 } from './progress_events_client';
 import {
@@ -112,6 +113,7 @@ interface XPResult {
 export type RegisterXPOptions = {
   eventId?: string;
   payload?: Record<string, unknown>;
+  skipLeagueChestMultiplier?: boolean;
 };
 
 function progressEventTypeForSource(source: XPSource): ProgressEventType | null {
@@ -147,6 +149,64 @@ function progressServerRequired(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 }
 
+const LOCAL_PROGRESS_EVENT_LEDGER_KEY = 'progress_local_event_applied_v1';
+const LOCAL_PROGRESS_EVENT_LEDGER_MAX = 240;
+
+function patchProfileXpSnapshot(totalXp: number): void {
+  const safeTotalXp = Math.max(0, Math.floor(Number(totalXp) || 0));
+  try {
+    patchAppSnapshot((current) => current.profile ? {
+      profile: {
+        ...current.profile,
+        totalXp: safeTotalXp,
+        level: getLevelFromXP(safeTotalXp),
+        source: 'local',
+        updatedAt: Date.now(),
+      },
+    } : {});
+  } catch {
+    // Snapshot is a UI cache only; AsyncStorage remains the source of truth.
+  }
+}
+
+async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
+  const safeId = typeof eventId === 'string' ? eventId.trim() : '';
+  if (!safeId) return true;
+  try {
+    const raw = await AsyncStorage.getItem(LOCAL_PROGRESS_EVENT_LEDGER_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    const ids = Array.isArray(parsed)
+      ? parsed.filter((item): item is string => typeof item === 'string' && item.length > 0)
+      : [];
+    if (ids.includes(safeId)) return false;
+    ids.push(safeId);
+    await AsyncStorage.setItem(
+      LOCAL_PROGRESS_EVENT_LEDGER_KEY,
+      JSON.stringify(ids.slice(-LOCAL_PROGRESS_EVENT_LEDGER_MAX)),
+    );
+  } catch {
+    // If the tiny local ledger fails, keep the reward flow alive.
+  }
+  return true;
+}
+
+function submitProgressEventOptimistically(
+  request: ProgressEventRequest,
+  migrationSnapshot: Promise<Record<string, string> | null> | null,
+  logLabel: string,
+): void {
+  void (async () => {
+    const snapshot = migrationSnapshot ? await migrationSnapshot : null;
+    return submitProgressEvent(request, { migrationSnapshot: snapshot });
+  })()
+    .then(() => {
+      emitAppEvent('xp_changed');
+    })
+    .catch((serverError) => {
+      DebugLogger.error(logLabel, serverError, 'warning');
+    });
+}
+
 /**
  * ЕДИНЫЙ МЕНЕДЖЕР ОПЫТА (XP Manager)
  * Центральный узел для всех изменений XP в приложении.
@@ -169,7 +229,23 @@ export const getLessonDifficultyMultiplier = (lessonNumber: number): number => {
 // Сериализует все вызовы registerXP — предотвращает race condition на user_total_xp
 // при быстрых параллельных ответах (fire-and-forget без await).
 let _xpLock: Promise<unknown> = Promise.resolve();
-const XP_CLOUD_SYNC_DEFER_MS = 3500;
+const XP_LOCK_WAIT_TIMEOUT_MS = 1200;
+
+function waitForPreviousXpLock(lock: Promise<unknown>): Promise<void> {
+  return new Promise((resolve) => {
+    let settled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      if (timer) clearTimeout(timer);
+      resolve();
+    };
+    timer = setTimeout(finish, XP_LOCK_WAIT_TIMEOUT_MS);
+    (timer as any)?.unref?.();
+    lock.then(finish, finish);
+  });
+}
 
 export const registerXP = async (
   amount: number,
@@ -180,9 +256,12 @@ export const registerXP = async (
   options?: RegisterXPOptions,
 ): Promise<XPResult> => {
   if (amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
-  const result = _xpLock.then(async () => {
+  const result = waitForPreviousXpLock(_xpLock).then(async () => {
   let resolvedName = userName;
-  let serverAward: ProgressEventResult | null = null;
+  let appliedDelta = amount;
+  let scoreWritten = false;
+  let totalXpWritten = false;
+  let weeklyXpWritten = false;
   try {
     if (!resolvedName) {
       const [canonicalUid, xpStored] = await Promise.all([
@@ -196,6 +275,9 @@ export const registerXP = async (
     }
     let finalDelta = amount;
     let totalMultiplier = 1;
+    let progressEventRequest: ProgressEventRequest | null = null;
+    let progressEventMigrationSnapshot: Promise<Record<string, string> | null> | null = null;
+    let progressEventLogLabel = 'xp_manager.ts:registerXP:server_queued';
 
     // 1. Множители применяются к заработку (уроки, квизы, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
@@ -225,7 +307,9 @@ export const registerXP = async (
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
       const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
-      const leagueChestM = await consumeLeagueChestXpOverrideMultiplier();
+      const leagueChestM = options?.skipLeagueChestMultiplier
+        ? 1
+        : await consumeLeagueChestXpOverrideMultiplier();
 
       // Ж) Weekly Boons: «Двойной четверг» (×2) + «Ранняя пташка» (×1.1 до 10:00).
       // Аддитивный вклад в ту же формулу, что и остальные множители.
@@ -233,6 +317,7 @@ export const registerXP = async (
 
       totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
       finalDelta = Math.round(amount * totalMultiplier);
+      appliedDelta = finalDelta;
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
       try {
         const db = firestore();
@@ -249,43 +334,10 @@ export const registerXP = async (
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {
         const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
-        try {
-          serverAward = await submitProgressEvent({
-            eventId: options?.eventId,
-            type: eventType,
-            payload: {
-              xpDelta: finalDelta,
-              baseAmount: amount,
-              source,
-              lessonId: lessonNumber ?? null,
-              lessonNumber: lessonNumber ?? null,
-              localTotalBeforeServer,
-              multiplier: totalMultiplier,
-              ...(options?.payload ?? {}),
-            },
-          });
-          finalDelta = serverAward.xpDelta;
-        } catch (serverError) {
-          // Событие встало в очередь (offline/network). Продолжаем с локальным XP —
-          // сервер синхронизируется при следующем запросе через flushPendingProgressEvents.
-          // severity 'warning' → НЕ пишется в Firestore (это ожидаемый offline-кейс).
-          DebugLogger.error('xp_manager.ts:registerXP:server_queued', serverError, 'warning');
-        }
-      }
-      if (giftState.consumeBank && finalDelta > 0) {
-        await consumeGiftXpBank(amount).catch(() => 0);
-      }
-    }
-
-    // 2. Обновляем основные структуры данных через hall_of_fame_utils
-    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
-    const fallbackEventType = progressEventTypeForSource(source);
-    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !serverAward) {
-      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
-      try {
-        serverAward = await submitProgressEvent({
+        progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
+        progressEventRequest = {
           eventId: options?.eventId,
-          type: fallbackEventType,
+          type: eventType,
           payload: {
             xpDelta: finalDelta,
             baseAmount: amount,
@@ -296,58 +348,82 @@ export const registerXP = async (
             multiplier: totalMultiplier,
             ...(options?.payload ?? {}),
           },
-        });
-        finalDelta = serverAward.xpDelta;
-      } catch (serverError) {
-        DebugLogger.error('xp_manager.ts:registerXP:server_queued_fallback', serverError, 'warning');
+        };
+      }
+      if (giftState.consumeBank && finalDelta > 0) {
+        await consumeGiftXpBank(amount).catch(() => 0);
       }
     }
-    await addOrUpdateScore(resolvedName, finalDelta, lang);
-    if (serverAward) {
-      await mirrorProgressResultToLocal(serverAward);
+
+    // 2. Обновляем основные структуры данных через hall_of_fame_utils
+    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
+    const fallbackEventType = progressEventTypeForSource(source);
+    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !progressEventRequest) {
+      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
+      progressEventMigrationSnapshot = prepareProgressMigrationSnapshot().catch(() => null);
+      progressEventLogLabel = 'xp_manager.ts:registerXP:server_queued_fallback';
+      progressEventRequest = {
+        eventId: options?.eventId,
+        type: fallbackEventType,
+        payload: {
+          xpDelta: finalDelta,
+          baseAmount: amount,
+          source,
+          lessonId: lessonNumber ?? null,
+          lessonNumber: lessonNumber ?? null,
+          localTotalBeforeServer,
+          multiplier: totalMultiplier,
+          ...(options?.payload ?? {}),
+        },
+      };
+    }
+    if (finalDelta > 0 && !(await reserveLocalProgressEvent(options?.eventId))) {
+      if (progressEventRequest) {
+        submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
+      }
+      return { finalDelta: 0, multiplier: totalMultiplier, isBonus: false };
     }
 
     // 3. Обновляем глобальный счетчик user_total_xp (XP никогда не уходит в минус)
-    const currentTotal = serverAward
-      ? Math.max(0, serverAward.totalXp - finalDelta)
-      : await storageGetNumber('user_total_xp', 0);
-    const newTotal = serverAward
-      ? serverAward.totalXp
-      : Math.max(0, currentTotal + finalDelta);
-    if (!serverAward) {
-      await storageSetString('user_total_xp', String(newTotal));
-      // Offline: streak_count не приходит через mirrorProgressResultToLocal —
-      // обновляем локально сами чтобы UI показывал правильный стрик сразу.
-      if (finalDelta > 0) {
-        const todayKey = new Date().toISOString().slice(0, 10);
-        const lastDate = await AsyncStorage.getItem('last_active_date');
-        if (lastDate !== todayKey) {
-          const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
-          const yesterday = new Date();
-          yesterday.setDate(yesterday.getDate() - 1);
-          const yKey = yesterday.toISOString().slice(0, 10);
-          const next = lastDate === yKey ? prevStreak + 1 : 1;
-          await AsyncStorage.multiSet([
-            ['streak_count', String(next)],
-            ['last_active_date', todayKey],
-            ['streak_last_date', todayKey],
-          ]);
-        }
+    const currentTotal = await storageGetNumber('user_total_xp', 0);
+    const newTotal = Math.max(0, currentTotal + finalDelta);
+    let scoreAvatar: string | undefined;
+    await storageSetString('user_total_xp', String(newTotal));
+    patchProfileXpSnapshot(newTotal);
+    totalXpWritten = true;
+    // Offline: streak_count не приходит через mirrorProgressResultToLocal —
+    // обновляем локально сами чтобы UI показывал правильный стрик сразу.
+    if (finalDelta > 0) {
+      const todayKey = new Date().toISOString().slice(0, 10);
+      const lastDate = await AsyncStorage.getItem('last_active_date');
+      if (lastDate !== todayKey) {
+        const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yKey = yesterday.toISOString().slice(0, 10);
+        const next = lastDate === yKey ? prevStreak + 1 : 1;
+        await AsyncStorage.multiSet([
+          ['streak_count', String(next)],
+          ['last_active_date', todayKey],
+          ['streak_last_date', todayKey],
+        ]);
       }
     }
     // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
     // ignores delta <= 0 and self-heals stale week period. Synced to Firestore
     // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
-    if (finalDelta > 0 && !serverAward) {
+    if (finalDelta > 0) {
       await addWeeklyXp(finalDelta);
-      refreshWeeklyRecapNotificationAfterXpChange(lang);
-    } else if (finalDelta > 0) {
+      weeklyXpWritten = true;
       refreshWeeklyRecapNotificationAfterXpChange(lang);
     }
 
     // 3.1. Уведомляем все подписчики о смене XP
     if (finalDelta > 0) {
       emitAppEvent('xp_changed');
+    }
+    if (progressEventRequest) {
+      submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel);
     }
 
     // 3.2. Детектируем level-up прямо здесь — надёжнее чем в home.tsx через listener
@@ -359,6 +435,7 @@ export const registerXP = async (
         const currentAvatar = await storageGetString('user_avatar');
         const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
         const newFr = getBestFrameForLevel(newLvl);
+        scoreAvatar = newAv;
         // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни текущего начисления
         const queueRaw = await storageGetString('pending_level_up_queue');
         let queue: number[] = [];
@@ -380,8 +457,14 @@ export const registerXP = async (
         checkAchievements({ type: 'level_reached', level: newLvl }).catch(() => {});
       } else {
         await storageSetString('user_prev_xp', String(newTotal));
+        scoreAvatar = (await storageGetString('user_avatar')) ?? String(getBestAvatarForLevel(newLvl));
       }
     }
+
+    scoreWritten = true;
+    void addOrUpdateScore(resolvedName, finalDelta, lang, scoreAvatar).catch((scoreError) => {
+      DebugLogger.error('xp_manager.ts:registerXP:addOrUpdateScore', scoreError, 'warning');
+    });
 
     // 4. Ремонт цепочки: любая активность с XP восстанавливает цепочку
     if (isEarnedXP && finalDelta > 0) {
@@ -397,33 +480,36 @@ export const registerXP = async (
     // Пропускаем если source === 'achievement_reward', чтобы не создавать рекурсию:
     // checkAchievements → registerXP('achievement_reward') → checkAchievements → ...
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
-      await checkAchievements({ type: 'xp', totalXP: newTotal });
-      await checkAchievements({ type: 'time_of_day' });
+      checkAchievements({ type: 'xp', totalXP: newTotal }).catch(() => {});
+      checkAchievements({ type: 'time_of_day' }).catch(() => {});
     }
     if (finalDelta > 0 && source === 'wager_win') {
-      await checkAchievements({ type: 'wager_win' });
+      checkAchievements({ type: 'wager_win' }).catch(() => {});
     }
 
-    // Синхронизируем прогресс в облако (fire-and-forget)
-    syncToCloud({ deferMs: XP_CLOUD_SYNC_DEFER_MS }).catch(() => {});
+    // XP is local-first. Mark cloud sync as pending; the app-level
+    // background/inactive flush decides when to send the phone's state.
+    markCloudSyncPending();
 
     // Public profile is local-first: user sees XP immediately, server snapshot refreshes rarely.
     if (finalDelta > 0) {
-      const streakVal = (await storageGetNumber('streak_count', 0)) || undefined;
-      const frameId = await storageGetString('user_frame');
-      const lsRaw = await storageGetString('league_state_v3');
-      let leagueId: number | undefined;
-      try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
-      syncPublicProfileSnapshot({
-        reason: 'daily_xp',
-        name: resolvedName,
-        totalXp: newTotal,
-        lang,
-        avatar: String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
-        streak: streakVal,
-        leagueId,
-        frame: frameId ?? undefined,
-      }).catch(() => {});
+      void (async () => {
+        const streakVal = (await storageGetNumber('streak_count', 0)) || undefined;
+        const frameId = await storageGetString('user_frame');
+        const lsRaw = await storageGetString('league_state_v3');
+        let leagueId: number | undefined;
+        try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
+        await syncPublicProfileSnapshot({
+          reason: 'daily_xp',
+          name: resolvedName,
+          totalXp: newTotal,
+          lang,
+          avatar: String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
+          streak: streakVal,
+          leagueId,
+          frame: frameId ?? undefined,
+        });
+      })().catch(() => {});
     }
 
     return {
@@ -433,13 +519,39 @@ export const registerXP = async (
     };
   } catch (error) {
     DebugLogger.error('xp_manager.ts:registerXP', error, 'critical');
-    if (serverAward) {
-      return { finalDelta: serverAward.xpDelta, multiplier: 1, isBonus: serverAward.xpDelta !== amount };
+    const fallbackDelta = Number.isFinite(appliedDelta) ? appliedDelta : amount;
+    // Fallback: the XP counter is the source of truth. Optional surfaces
+    // (leaderboards, boosts, achievements, notifications) must not be able to
+    // make a completed lesson look like it awarded nothing.
+    if (!totalXpWritten && fallbackDelta !== 0) {
+      try {
+        const currentTotal = await storageGetNumber('user_total_xp', 0);
+        const fallbackTotal = Math.max(0, currentTotal + fallbackDelta);
+        await storageSetString('user_total_xp', String(fallbackTotal));
+        patchProfileXpSnapshot(fallbackTotal);
+        totalXpWritten = true;
+      } catch (storageError) {
+        if (__DEV__) console.warn('[xp_manager]', storageError);
+      }
     }
-    // Fallback: пишем как есть в случае критического сбоя (не сетевая ошибка —
-    // сетевые перехвачены раньше и событие уже в очереди).
-    try { await addOrUpdateScore(resolvedName, amount, lang); } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
-    return { finalDelta: amount, multiplier: 1, isBonus: false };
+    if (fallbackDelta > 0 && !weeklyXpWritten) {
+      try {
+        await addWeeklyXp(fallbackDelta);
+        weeklyXpWritten = true;
+      } catch (weeklyError) {
+        if (__DEV__) console.warn('[xp_manager]', weeklyError);
+      }
+    }
+    if (fallbackDelta > 0) {
+      emitAppEvent('xp_changed');
+    }
+    if (!scoreWritten) {
+      scoreWritten = true;
+      void addOrUpdateScore(resolvedName, fallbackDelta, lang).catch((scoreError) => {
+        if (__DEV__) console.warn('[xp_manager]', scoreError);
+      });
+    }
+    return { finalDelta: fallbackDelta, multiplier: 1, isBonus: false };
   }
   });
   _xpLock = result.catch(() => {});
@@ -456,6 +568,13 @@ const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
  */
 export const migrateXPFormulaV2 = async (): Promise<void> => {
   try {
+    // Legacy-маркер «xp_migration_v2»: раньше ставился one-shot эффектом при маунте
+    // home.tsx (D4 — миграциям не место в экране). Сам XP он не меняет — маркер
+    // читают handleOnboardingDone (_layout.tsx) и cloud_sync.
+    const legacyMigrationMarker = await AsyncStorage.getItem('xp_migration_v2');
+    if (!legacyMigrationMarker) {
+      await AsyncStorage.setItem('xp_migration_v2', '1');
+    }
     // Если пользователь уже прошёл миграцию xp_migration_v2 (home.tsx) — он уже на новой формуле.
     // Просто помечаем как мигрированного, не трогаем XP.
     // Do not trust legacy markers here; they may have been set before the
@@ -492,7 +611,7 @@ export const migrateXPFormulaV2 = async (): Promise<void> => {
 
     emitAppEvent('xp_changed');
     emitAppEvent('xp_updated', { total: newXP, delta: 0 });
-    syncToCloud({ forceNow: true }).catch(() => {});
+    markCloudSyncPending();
   } catch (e) {
     if (__DEV__) console.warn('[xp_manager]', e);
   }

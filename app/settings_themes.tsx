@@ -9,6 +9,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
+import PlusBadge from '../components/PlusBadge';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
@@ -47,7 +48,6 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
   { mode: 'volt', labelRU: 'Вольт', labelUK: 'Вольт', labelES: 'Volt', labelPtBr: 'Volt', labelVi: 'Volt', labelId: 'Volt', labelTr: 'Volt', labelPl: 'Volt', bg: '#010200', accent: '#D6FF3D', text: '#FFFFFF', preview2: '#B8F222', preview3: '#2EE08C', premiumOnly: true },
   { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937', premiumOnly: true },
-  { mode: 'business', labelRU: 'Бизнес', labelUK: 'Бізнес', labelES: 'Negocios', labelPtBr: 'Negócios', labelVi: 'Doanh nghiệp', labelId: 'Bisnis', labelTr: 'İş', labelPl: 'Biznes', bg: '#0A0A0A', accent: '#FFFFFF', text: '#F2F2F2', preview2: '#9A9A9A', preview3: '#1C1C1C', premiumOnly: true },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
   { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF6464', text: '#FFFFFF', preview2: '#FF6464', preview3: '#3A2A2E', premiumOnly: true },
   { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', bg: '#050504', accent: '#D7AD56', text: '#FFF7E6', preview2: '#F1CC72', preview3: '#18140D', rewardOnly: true },
@@ -57,8 +57,6 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
   switch (item.mode) {
     case 'minimalDark':
       return ['#A8CBFF', item.accent, '#2F5C9B'];
-    case 'business':
-      return ['#F2F2F2', '#9A9A9A', '#3A3A3A'];
     case 'midnight':
     case 'ember':
     case 'aurora':
@@ -283,7 +281,7 @@ export default function SettingsThemes() {
                     <View style={{ flex: 1 }} />
 
                     {locked ? (
-                      <Ionicons name="lock-closed" size={14} color={row.mutedColor} style={{ opacity: 0.8 }} />
+                      <PlusBadge themeMode={themeMode} size="xs" />
                     ) : active ? (
                       <Ionicons name="checkmark-circle" size={18} color={row.activeIconColor} />
                     ) : (

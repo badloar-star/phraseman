@@ -37,6 +37,7 @@ exports.friendUnlikeActivity = exports.friendLikeActivity = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
+const user_notifications_1 = require("./user_notifications");
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
 /** Stable doc id for a profile-level (eventless) like, so daily-limit + audit + toggle agree. */
@@ -68,6 +69,16 @@ function resolveSenderName(senderData, requestDisplayName) {
         cleanDisplayName(senderData.displayName) ||
         cleanDisplayName(senderProgress.user_name) ||
         'Friend');
+}
+function resolveSenderAvatar(senderData) {
+    const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
+        ? senderData.progress
+        : {};
+    return String(senderProgress.user_avatar ?? '').trim().slice(0, 200);
+}
+/** Тот же детерминированный id, что и у audit-дока — unlike удаляет ровно своё уведомление. */
+function likeNotificationId(today, senderStableId, eventId) {
+    return `like_${today}_${senderStableId}_${eventId}`;
 }
 /**
  * Validates the call envelope (auth + ids) and that the claimed sender stable id is
@@ -145,9 +156,9 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
         const eventData = (eventSnap?.data?.() ?? {});
         if (dailyLimitSnap.exists) {
             const dailyLimitData = dailyLimitSnap.data() ?? {};
-            const alreadyLikedSameTarget = cleanDocId(dailyLimitData.targetUid) === targetStableId &&
+            const alreadyLikedSameEvent = cleanDocId(dailyLimitData.targetUid) === targetStableId &&
                 cleanDocId(dailyLimitData.eventId) === eventId;
-            if (alreadyLikedSameTarget) {
+            if (alreadyLikedSameEvent) {
                 return {
                     ok: true,
                     date: today,
@@ -202,6 +213,14 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
             ts: now,
             tsIso: nowIso,
         });
+        // Единый центр событий: «X поставил вам лайк» (раньше жило только в ленте друзей).
+        tx.set((0, user_notifications_1.userNotificationRef)(db, targetStableId, likeNotificationId(today, senderStableId, eventId)), (0, user_notifications_1.buildUserNotification)({
+            type: 'activity_like',
+            fromUid: senderStableId,
+            fromName: senderName,
+            fromAvatar: resolveSenderAvatar(senderData),
+            nav: { kind: 'friends' },
+        }, now));
         if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
             tx.set(db.collection('league_groups').doc(leagueGroupId), {
                 groupBoost: {
@@ -289,6 +308,8 @@ exports.friendUnlikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppC
         }, { merge: true });
         tx.delete(dailyLimitRef);
         tx.delete(receivedRef);
+        // Лайк снят — событие из центра уведомлений тоже убираем.
+        tx.delete((0, user_notifications_1.userNotificationRef)(db, targetStableId, likeNotificationId(today, senderStableId, eventId)));
         if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
             tx.set(db.collection('league_groups').doc(leagueGroupId), {
                 groupBoost: {

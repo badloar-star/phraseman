@@ -65,7 +65,7 @@ export const arenaSeasonRolloverCron = functions.scheduler.onSchedule(
       if (snap.empty) break;
       const writer = db.bulkWriter();
       for (const doc of snap.docs) {
-        const dd = doc.data() as {
+        const dd = doc.data() as Record<string, unknown> & {
           rank?: { tier?: string; level?: string };
           seasonId?: string; peakSR?: number; seasonPeakRankIndex?: number;
         };
@@ -88,13 +88,12 @@ export const arenaSeasonRolloverCron = functions.scheduler.onSchedule(
         }
 
         const rolled = applySeasonRollback(
-          dd.rank?.tier ?? 'bronze', dd.rank?.level ?? 'I',
+          String(dd.rank?.tier ?? dd['rank.tier'] ?? 'bronze'),
+          String(dd.rank?.level ?? dd['rank.level'] ?? 'I'),
           seasonCfg.rollbackSteps, seasonCfg.floorIndex,
         );
         writer.set(doc.ref, {
-          'rank.tier': rolled.tier,
-          'rank.level': rolled.level,
-          'rank.stars': 0,
+          rank: { tier: rolled.tier, level: rolled.level, stars: 0 },
           sr: 0,
           peakSR: 0,
           seasonId: nowSeasonId,

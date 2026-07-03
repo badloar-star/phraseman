@@ -1,249 +1,487 @@
 "use strict";
-// ═══════════════════════════════════════════════════════════════════════════
-// compass_chat_content.ts — контент дневных постов Компаса в чате лиги.
-//
-// Принцип стоимости: Компас пишет ОДИН пост в день на группу. Пост — это
-// системное сообщение (kind:'system'), которое читается тем же realtime-
-// слушателем, что и обычные сообщения → НИКАКИХ дополнительных reads на юзера.
-//
-// Локализация: пост несёт карту i18n со всеми 8 языками интерфейса
-// (ru/uk/es/pt-BR/vi/id/tr/pl). Клиент рендерит строку своего языка, поэтому
-// серверу НЕ нужно знать язык группы и не нужен перевод в рантайме.
-//
-// Тон Компаса (КАНОН): от первого лица, по-человечески, БЕЗ слоганов/пафоса/
-// вранья о юзере/вины. Короткий хвост-вопрос, чтобы был лёгкий повод ответить.
-//
-// Контент детерминирован по дате (seed = номер дня), поэтому одна и та же дата
-// даёт один и тот же пост во всех группах — без AI-вызовов и без рандома.
-// ═══════════════════════════════════════════════════════════════════════════
+// League chat Compass content: one daily conversation starter for every active
+// league group. AI is the preferred source; curated fallback keeps the cron safe.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.COMPASS_CHAT_LANGS = void 0;
+exports.LEAGUE_COMPASS_GENERATED_KINDS = exports.COMPASS_CHAT_LANGS = void 0;
 exports.getDaySeed = getDaySeed;
+exports.getUtcDayKey = getUtcDayKey;
 exports.pickCompassPostForDay = pickCompassPostForDay;
-exports.buildIcebreakerPost = buildIcebreakerPost;
-exports.buildDailySummaryPost = buildDailySummaryPost;
+exports.hasForbiddenDailyLabel = hasForbiddenDailyLabel;
+exports.hasForbiddenProgressSummaryClaim = hasForbiddenProgressSummaryClaim;
+exports.normalizeGeneratedCompassPost = normalizeGeneratedCompassPost;
+exports.buildLeagueCompassDailyPrompt = buildLeagueCompassDailyPrompt;
 exports.COMPASS_CHAT_LANGS = [
     'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
 ];
-// ── Слова дня ───────────────────────────────────────────────────────────────
-const WORDS_OF_DAY = [
-    {
-        ru: 'Сегодня принёс вам слово overwhelmed — это когда всего навалилось и голова кругом. «I felt overwhelmed at work today». Узнаёте состояние? Расскажите, когда последний раз так было.',
-        uk: 'Сьогодні приніс вам слово overwhelmed — це коли всього навалилося й голова обертом. «I felt overwhelmed at work today». Упізнаєте стан? Розкажіть, коли востаннє так було.',
-        es: 'Hoy os traigo la palabra overwhelmed — es cuando todo se te junta y la cabeza da vueltas. «I felt overwhelmed at work today». ¿Os suena? Contadme cuándo fue la última vez.',
-        'pt-BR': 'Hoje trouxe a palavra overwhelmed — é quando tudo se acumula e a cabeça roda. «I felt overwhelmed at work today». Reconhecem? Contem quando foi a última vez.',
-        vi: 'Hôm nay tôi mang đến từ overwhelmed — là khi mọi thứ dồn đến và đầu óc quay cuồng. «I felt overwhelmed at work today». Bạn thấy quen không? Kể xem lần gần nhất là khi nào.',
-        id: 'Hari ini saya bawa kata overwhelmed — saat semua menumpuk dan kepala pening. «I felt overwhelmed at work today». Kenal rasanya? Cerita dong kapan terakhir kali.',
-        tr: 'Bugün size overwhelmed kelimesini getirdim — her şeyin üst üste binip kafanın dönmesi. «I felt overwhelmed at work today». Tanıdık geldi mi? En son ne zaman böyle oldu, anlatın.',
-        pl: 'Dziś przynoszę wam słowo overwhelmed — to gdy wszystko się nawarstwia i głowa pęka. «I felt overwhelmed at work today». Znacie to? Napiszcie, kiedy ostatnio tak było.',
-    },
-    {
-        ru: 'Слово дня — cozy. Тёплое, уютное, когда хочется завернуться в плед. «A cozy little café». Где для вас самое cozy место? Назовите по-английски, как сможете.',
-        uk: 'Слово дня — cozy. Тепле, затишне, коли хочеться загорнутись у плед. «A cozy little café». Де для вас найзатишніше місце? Назвіть англійською, як зможете.',
-        es: 'Palabra del día — cozy. Cálido, acogedor, de envolverse en una manta. «A cozy little café». ¿Cuál es vuestro sitio más cozy? Decidlo en inglés, como podáis.',
-        'pt-BR': 'Palavra do dia — cozy. Quentinho, aconchegante, de se enrolar numa manta. «A cozy little café». Qual é o lugar mais cozy pra vocês? Digam em inglês, como der.',
-        vi: 'Từ của ngày — cozy. Ấm áp, dễ chịu, kiểu muốn cuộn trong chăn. «A cozy little café». Nơi cozy nhất với bạn là đâu? Nói bằng tiếng Anh, sao cũng được.',
-        id: 'Kata hari ini — cozy. Hangat, nyaman, ingin berselimut. «A cozy little café». Tempat paling cozy buat kamu di mana? Sebut pakai bahasa Inggris, semampunya.',
-        tr: 'Günün kelimesi — cozy. Sıcak, rahat, battaniyeye sarılasın gibi. «A cozy little café». Sizin için en cozy yer neresi? İngilizce söyleyin, nasıl olursa.',
-        pl: 'Słowo dnia — cozy. Ciepłe, przytulne, jak otulić się kocem. «A cozy little café». Jakie jest wasze najbardziej cozy miejsce? Powiedzcie po angielsku, jak umiecie.',
-    },
-    {
-        ru: 'Слово дня — to nail it, «сделать идеально, попасть в точку». «You nailed that presentation». Что у вас недавно получилось на отлично? Похвалитесь — это полезно.',
-        uk: 'Слово дня — to nail it, «зробити ідеально, влучити в ціль». «You nailed that presentation». Що вам нещодавно вдалося на відмінно? Похваліться — це корисно.',
-        es: 'Frase del día — to nail it, «clavarlo, hacerlo perfecto». «You nailed that presentation». ¿Qué os ha salido genial últimamente? Presumid un poco, viene bien.',
-        'pt-BR': 'Expressão do dia — to nail it, «mandar bem, acertar em cheio». «You nailed that presentation». O que deu certo pra vocês há pouco? Contem, faz bem.',
-        vi: 'Cụm của ngày — to nail it, «làm hoàn hảo, trúng phóc». «You nailed that presentation». Gần đây bạn làm tốt việc gì? Khoe đi, có ích lắm.',
-        id: 'Frasa hari ini — to nail it, «berhasil sempurna, tepat sasaran». «You nailed that presentation». Apa yang baru-baru ini kamu kerjakan dengan bagus? Pamer dikit, bagus kok.',
-        tr: 'Günün kalıbı — to nail it, «tam isabet, kusursuz yapmak». «You nailed that presentation». Son zamanlarda neyi çok iyi yaptınız? Övünün biraz, faydası var.',
-        pl: 'Zwrot dnia — to nail it, «zrobić idealnie, trafić w punkt». «You nailed that presentation». Co wam ostatnio wyszło świetnie? Pochwalcie się, to pomaga.',
-    },
+exports.LEAGUE_COMPASS_GENERATED_KINDS = [
+    'discussion',
+    'language_fact',
+    'mini_challenge',
+    'poll',
 ];
-// ── Факты про английский ──────────────────────────────────────────────────────
-const FACTS = [
+const MAX_TEXT_CHARS = 420;
+const MAX_POLL_LABEL_CHARS = 90;
+const FALLBACK_POSTS = [
     {
-        ru: 'Забавное: у слова set больше 400 значений — больше любого другого английского слова. Так что если вы в нём путаетесь — вы не одни. Какое слово бесит вас больше всего?',
-        uk: 'Цікаве: у слова set понад 400 значень — більше за будь-яке інше англійське слово. Тож якщо ви в ньому плутаєтесь — ви не самі. Яке слово дратує вас найбільше?',
-        es: 'Curioso: la palabra set tiene más de 400 significados — más que cualquier otra en inglés. Si os lía, no sois los únicos. ¿Qué palabra os saca de quicio?',
-        'pt-BR': 'Curioso: a palavra set tem mais de 400 significados — mais que qualquer outra em inglês. Se confunde vocês, não estão sozinhos. Que palavra mais irrita vocês?',
-        vi: 'Thú vị: từ set có hơn 400 nghĩa — nhiều hơn bất kỳ từ tiếng Anh nào. Nên nếu bạn rối với nó, bạn không cô đơn đâu. Từ nào làm bạn bực nhất?',
-        id: 'Menarik: kata set punya lebih dari 400 arti — terbanyak dari semua kata Inggris. Jadi kalau kamu bingung, kamu tidak sendiri. Kata apa yang paling bikin kesal?',
-        tr: 'İlginç: set kelimesinin 400’den fazla anlamı var — başka hiçbir İngilizce kelimede yok. Kafanız karışıyorsa yalnız değilsiniz. Sizi en çok hangi kelime çıldırtıyor?',
-        pl: 'Ciekawostka: słowo set ma ponad 400 znaczeń — więcej niż jakiekolwiek inne angielskie słowo. Jeśli was myli, nie jesteście sami. Które słowo wkurza was najbardziej?',
-    },
-    {
-        ru: 'Любопытно: самое длинное английское слово без повторов букв — uncopyrightable (15 букв). Я сам не сразу его выговорил. А какое английское слово вам труднее всего произнести?',
-        uk: 'Цікаво: найдовше англійське слово без повторів літер — uncopyrightable (15 літер). Я сам не одразу його вимовив. А яке англійське слово вам найважче вимовити?',
-        es: 'Curiosidad: la palabra inglesa más larga sin letras repetidas es uncopyrightable (15 letras). A mí tampoco me salió a la primera. ¿Cuál os cuesta más pronunciar?',
-        'pt-BR': 'Curiosidade: a palavra inglesa mais longa sem letras repetidas é uncopyrightable (15 letras). Nem eu falei de primeira. Qual é mais difícil de pronunciar pra vocês?',
-        vi: 'Thú vị: từ tiếng Anh dài nhất không lặp chữ cái là uncopyrightable (15 chữ). Tôi cũng đâu nói trôi ngay. Còn bạn, từ nào khó phát âm nhất?',
-        id: 'Menarik: kata Inggris terpanjang tanpa huruf berulang adalah uncopyrightable (15 huruf). Saya juga tak langsung bisa. Kata mana yang paling sulit kamu ucapkan?',
-        tr: 'İlginç: harfleri tekrarsız en uzun İngilizce kelime uncopyrightable (15 harf). Ben de ilk seferde diyemedim. Sizin telaffuzu en zor kelimeniz hangisi?',
-        pl: 'Ciekawostka: najdłuższe angielskie słowo bez powtórzeń liter to uncopyrightable (15 liter). Mnie też nie wyszło od razu. Które słowo najtrudniej wam wymówić?',
-    },
-];
-// ── Открытые вопросы (icebreaker) ─────────────────────────────────────────────
-const QUESTIONS = [
-    {
-        ru: 'Простой вопрос на сегодня: на каком фильме или сериале вы реально подтянули английский? Мне правда интересно — поделитесь.',
-        uk: 'Просте питання на сьогодні: на якому фільмі чи серіалі ви справді підтягнули англійську? Мені дійсно цікаво — поділіться.',
-        es: 'Pregunta sencilla de hoy: ¿con qué película o serie mejorasteis de verdad el inglés? Me interesa de verdad — contadme.',
-        'pt-BR': 'Pergunta simples de hoje: com qual filme ou série vocês realmente melhoraram o inglês? Tenho curiosidade de verdade — contem.',
-        vi: 'Câu hỏi đơn giản hôm nay: bạn giỏi tiếng Anh lên nhờ phim hay series nào? Tôi tò mò thật đấy — chia sẻ nhé.',
-        id: 'Pertanyaan sederhana hari ini: lewat film atau serial apa kamu benar-benar jago bahasa Inggris? Saya penasaran beneran — cerita ya.',
-        tr: 'Bugünün basit sorusu: İngilizcenizi gerçekten hangi film ya da diziyle ilerlettiniz? Cidden merak ediyorum — anlatın.',
-        pl: 'Proste pytanie na dziś: przy jakim filmie albo serialu naprawdę podciągnęliście angielski? Serio mnie to ciekawi — napiszcie.',
-    },
-    {
-        ru: 'Скажите честно: что было самым трудным в английском лично для вас? У каждого своё больное место — может, вместе и легче.',
-        uk: 'Скажіть чесно: що було найважчим в англійській саме для вас? У кожного своє болюче місце — може, разом і легше.',
-        es: 'Decidme con sinceridad: ¿qué fue lo más difícil del inglés para vosotros? Cada uno tiene su punto débil — juntos quizá pesa menos.',
-        'pt-BR': 'Digam com sinceridade: o que foi mais difícil no inglês pra vocês? Cada um tem seu ponto fraco — juntos talvez pese menos.',
-        vi: 'Nói thật nhé: với riêng bạn, điều khó nhất trong tiếng Anh là gì? Ai cũng có điểm yếu — cùng nhau có lẽ nhẹ hơn.',
-        id: 'Jujur ya: apa yang paling sulit dari bahasa Inggris buat kamu? Tiap orang punya titik lemah — bareng-bareng mungkin lebih ringan.',
-        tr: 'Açıkça söyleyin: İngilizcede sizin için en zor olan neydi? Herkesin bir zayıf noktası var — birlikte belki daha kolaydır.',
-        pl: 'Powiedzcie szczerze: co było dla was najtrudniejsze w angielskim? Każdy ma swój słaby punkt — razem może lżej.',
-    },
-];
-// ── Квизы с кнопками (poll) ───────────────────────────────────────────────────
-const POLLS = [
-    {
-        kind: 'poll',
+        kind: 'discussion',
         systemType: 'generic',
         i18n: {
-            ru: 'Маленькая проверка, без подвоха. Как сказать «Я живу здесь с понедельника»? Жмите вариант — вечером посмотрим, кто как ответил.',
-            uk: 'Маленька перевірка, без підступу. Як сказати «Я живу тут з понеділка»? Тисніть варіант — увечері подивимось, хто як відповів.',
-            es: 'Una pequeña prueba, sin trampa. ¿Cómo se dice «Vivo aquí desde el lunes»? Pulsad una opción — por la tarde vemos quién respondió qué.',
-            'pt-BR': 'Um testezinho, sem pegadinha. Como dizer «Moro aqui desde segunda»? Toquem numa opção — à noite vemos quem respondeu o quê.',
-            vi: 'Một bài kiểm tra nhỏ, không bẫy đâu. Nói «Tôi sống ở đây từ thứ Hai» thế nào? Bấm một đáp án — tối xem ai chọn gì nhé.',
-            id: 'Tes kecil, tanpa jebakan. Bagaimana mengatakan «Saya tinggal di sini sejak Senin»? Tekan satu pilihan — nanti malam kita lihat siapa jawab apa.',
-            tr: 'Küçük bir test, tuzak yok. «Pazartesiden beri burada yaşıyorum» nasıl denir? Bir şık seçin — akşam kimin ne dediğine bakarız.',
-            pl: 'Mały sprawdzian, bez podchwytliwości. Jak powiedzieć «Mieszkam tu od poniedziałku»? Kliknijcie opcję — wieczorem zobaczymy, kto co wybrał.',
+            ru: 'Компас подкинул тему: какое английское слово звучит серьёзно, а значит что-то совсем бытовое? Мой кандидат — “deadline”: звучит как финал фильма, а это просто четверг.',
+            uk: 'Компас підкинув тему: яке англійське слово звучить серйозно, а означає щось зовсім буденне? Мій кандидат — “deadline”: звучить як фінал фільму, а це просто четвер.',
+            es: 'Compass trae tema: ¿qué palabra inglesa suena muy seria, pero significa algo cotidiano? Mi candidata es “deadline”: suena a final de película, y solo es jueves.',
+            'pt-BR': 'Compass trouxe pauta: que palavra em inglês parece séria, mas é bem cotidiana? Meu voto é “deadline”: soa como final de filme, mas é só quinta-feira.',
+            vi: 'Compass gợi chuyện: từ tiếng Anh nào nghe rất nghiêm trọng nhưng lại rất đời thường? Tôi chọn “deadline”: nghe như đoạn cuối phim, thật ra chỉ là thứ Năm.',
+            id: 'Compass bawa topik: kata Inggris apa yang terdengar serius, padahal sehari-hari banget? Pilihan saya “deadline”: terdengar seperti akhir film, padahal cuma hari Kamis.',
+            tr: 'Compass konu attı: Hangi İngilizce kelime çok ciddi duyulup aslında günlük bir şey? Adayım “deadline”: film finali gibi, ama sadece perşembe.',
+            pl: 'Compass podrzuca temat: które angielskie słowo brzmi poważnie, a znaczy coś zwyczajnego? Mój typ to “deadline”: brzmi jak finał filmu, a to tylko czwartek.',
         },
-        poll: [
-            {
-                key: 'a',
-                label: { ru: 'I live here since Monday', uk: 'I live here since Monday', es: 'I live here since Monday', 'pt-BR': 'I live here since Monday', vi: 'I live here since Monday', id: 'I live here since Monday', tr: 'I live here since Monday', pl: 'I live here since Monday' },
-            },
-            {
-                key: 'b',
-                label: { ru: "I've lived here since Monday", uk: "I've lived here since Monday", es: "I've lived here since Monday", 'pt-BR': "I've lived here since Monday", vi: "I've lived here since Monday", id: "I've lived here since Monday", tr: "I've lived here since Monday", pl: "I've lived here since Monday" },
-                correct: true,
-            },
-        ],
+    },
+    {
+        kind: 'language_fact',
+        systemType: 'generic',
+        i18n: {
+            ru: 'Английский любит короткие слова с длинной карьерой. “Get” может быть “получить”, “добраться”, “понять” и ещё вагон. Какое “маленькое” слово вас чаще всего сбивает?',
+            uk: 'Англійська любить короткі слова з довгою карʼєрою. “Get” може бути “отримати”, “дістатися”, “зрозуміти” і ще купа всього. Яке “маленьке” слово вас найчастіше збиває?',
+            es: 'El inglés adora palabras pequeñas con carreras enormes. “Get” puede ser recibir, llegar, entender y más. ¿Qué palabra “pequeña” os confunde más?',
+            'pt-BR': 'O inglês adora palavras pequenas com carreiras enormes. “Get” pode ser receber, chegar, entender e mais um monte. Que palavra “pequena” mais confunde você?',
+            vi: 'Tiếng Anh mê những từ ngắn nhưng làm rất nhiều việc. “Get” có thể là nhận, đến nơi, hiểu và còn nữa. Từ “nhỏ” nào làm bạn rối nhất?',
+            id: 'Bahasa Inggris suka kata kecil dengan pekerjaan besar. “Get” bisa berarti menerima, sampai, mengerti, dan banyak lagi. Kata “kecil” apa yang paling bikin bingung?',
+            tr: 'İngilizce kısa ama çok iş yapan kelimeleri sever. “Get” almak, varmak, anlamak ve daha fazlası olabilir. Hangi “küçük” kelime sizi en çok şaşırtıyor?',
+            pl: 'Angielski kocha krótkie słowa z wielką karierą. “Get” może znaczyć dostać, dotrzeć, zrozumieć i więcej. Które “małe” słowo myli was najbardziej?',
+        },
+    },
+    {
+        kind: 'mini_challenge',
+        systemType: 'generic',
+        i18n: {
+            ru: 'Мини-вызов от Компаса: опишите своё утро одним английским предложением. Можно криво, можно смешно. “I woke up and negotiated with my alarm” уже засчитываю.',
+            uk: 'Міні-виклик від Компаса: опишіть свій ранок одним англійським реченням. Можна криво, можна смішно. “I woke up and negotiated with my alarm” уже зараховую.',
+            es: 'Mini-reto de Compass: describid vuestra mañana en una frase en inglés. Puede salir torcido o gracioso. “I woke up and negotiated with my alarm” cuenta.',
+            'pt-BR': 'Mini-desafio do Compass: descreva sua manhã em uma frase em inglês. Pode sair torto, pode sair engraçado. “I woke up and negotiated with my alarm” vale.',
+            vi: 'Thử thách nhỏ từ Compass: mô tả buổi sáng của bạn bằng một câu tiếng Anh. Sai cũng được, buồn cười cũng được. “I woke up and negotiated with my alarm” tính.',
+            id: 'Tantangan kecil dari Compass: jelaskan pagimu dalam satu kalimat bahasa Inggris. Boleh miring, boleh lucu. “I woke up and negotiated with my alarm” dihitung.',
+            tr: 'Compass’tan mini görev: Sabahınızı tek bir İngilizce cümleyle anlatın. Yamuk da olur, komik de. “I woke up and negotiated with my alarm” kabul.',
+            pl: 'Mini-wyzwanie od Compass: opiszcie swój poranek jednym angielskim zdaniem. Może być krzywo, może być zabawnie. “I woke up and negotiated with my alarm” zaliczam.',
+        },
     },
     {
         kind: 'poll',
         systemType: 'generic',
         i18n: {
-            ru: 'Решайте сами: про что сделать слова на следующей неделе? Жмите вариант — выберу тему по большинству.',
-            uk: 'Вирішуйте самі: про що зробити слова наступного тижня? Тисніть варіант — оберу тему за більшістю.',
-            es: 'Decidid vosotros: ¿de qué tema hago las palabras la próxima semana? Pulsad una opción — elijo por mayoría.',
-            'pt-BR': 'Decidam vocês: sobre qual tema faço as palavras na próxima semana? Toquem numa opção — escolho pela maioria.',
-            vi: 'Bạn quyết định: tuần sau làm từ vựng theo chủ đề nào? Bấm một đáp án — tôi chọn theo số đông.',
-            id: 'Kalian yang putuskan: minggu depan kata-katanya bertema apa? Tekan satu pilihan — saya ikut suara terbanyak.',
-            tr: 'Karar sizin: gelecek hafta kelimeleri hangi konuda yapayım? Bir şık seçin — çoğunluğa göre seçerim.',
-            pl: 'Wy decydujcie: o czym zrobić słówka w przyszłym tygodniu? Kliknijcie opcję — wybiorę większością.',
+            ru: 'Быстрый опрос: что чаще всего мешает заговорить по-английски вслух? Жмите честно — я потом притворюсь, что не видел вариант “всё сразу”.',
+            uk: 'Швидке опитування: що найчастіше заважає заговорити англійською вголос? Тисніть чесно — я потім зроблю вигляд, що не бачив варіант “усе одразу”.',
+            es: 'Encuesta rápida: ¿qué os frena más al hablar inglés en voz alta? Votad con sinceridad; luego fingiré no haber visto “todo a la vez”.',
+            'pt-BR': 'Enquete rápida: o que mais trava você na hora de falar inglês em voz alta? Vote com sinceridade; depois finjo que não vi “tudo ao mesmo tempo”.',
+            vi: 'Khảo sát nhanh: điều gì cản bạn nói tiếng Anh thành tiếng nhiều nhất? Chọn thật nhé; lát nữa tôi sẽ giả vờ không thấy “tất cả cùng lúc”.',
+            id: 'Polling cepat: apa yang paling menghambat saat bicara bahasa Inggris keras-keras? Jawab jujur; nanti saya pura-pura tidak melihat “semuanya sekaligus”.',
+            tr: 'Hızlı anket: İngilizceyi sesli konuşurken sizi en çok ne durduruyor? Dürüstçe seçin; sonra “hepsi birden” seçeneğini görmemiş gibi yaparım.',
+            pl: 'Szybka ankieta: co najbardziej blokuje was przy mówieniu po angielsku na głos? Głosujcie szczerze; potem udam, że nie widziałem “wszystko naraz”.',
         },
         poll: [
-            { key: 'travel', label: { ru: '✈️ Путешествия', uk: '✈️ Подорожі', es: '✈️ Viajes', 'pt-BR': '✈️ Viagens', vi: '✈️ Du lịch', id: '✈️ Travel', tr: '✈️ Seyahat', pl: '✈️ Podróże' } },
-            { key: 'work', label: { ru: '💼 Работа', uk: '💼 Робота', es: '💼 Trabajo', 'pt-BR': '💼 Trabalho', vi: '💼 Công việc', id: '💼 Kerja', tr: '💼 İş', pl: '💼 Praca' } },
-            { key: 'series', label: { ru: '🎬 Сериалы', uk: '🎬 Серіали', es: '🎬 Series', 'pt-BR': '🎬 Séries', vi: '🎬 Phim bộ', id: '🎬 Serial', tr: '🎬 Diziler', pl: '🎬 Seriale' } },
+            {
+                key: 'pronunciation',
+                label: {
+                    ru: 'Произношение',
+                    uk: 'Вимова',
+                    es: 'Pronunciación',
+                    'pt-BR': 'Pronúncia',
+                    vi: 'Phát âm',
+                    id: 'Pengucapan',
+                    tr: 'Telaffuz',
+                    pl: 'Wymowa',
+                },
+            },
+            {
+                key: 'word_order',
+                label: {
+                    ru: 'Порядок слов',
+                    uk: 'Порядок слів',
+                    es: 'Orden de palabras',
+                    'pt-BR': 'Ordem das palavras',
+                    vi: 'Thứ tự từ',
+                    id: 'Urutan kata',
+                    tr: 'Kelime sırası',
+                    pl: 'Szyk słów',
+                },
+            },
+            {
+                key: 'shyness',
+                label: {
+                    ru: 'Стеснение',
+                    uk: 'Соромʼязливість',
+                    es: 'Vergüenza',
+                    'pt-BR': 'Vergonha',
+                    vi: 'Ngại nói',
+                    id: 'Malu',
+                    tr: 'Çekinmek',
+                    pl: 'Nieśmiałość',
+                },
+            },
+            {
+                key: 'all_at_once',
+                label: {
+                    ru: 'Всё сразу',
+                    uk: 'Усе одразу',
+                    es: 'Todo a la vez',
+                    'pt-BR': 'Tudo ao mesmo tempo',
+                    vi: 'Tất cả cùng lúc',
+                    id: 'Semuanya sekaligus',
+                    tr: 'Hepsi birden',
+                    pl: 'Wszystko naraz',
+                },
+            },
         ],
     },
+    {
+        kind: 'mini_challenge',
+        systemType: 'generic',
+        i18n: {
+            ru: 'Сегодня играем в “одна фраза — три настроения”. Напишите “I am fine” как радостно, устало или подозрительно. Английский сразу становится живым, почти с бровями.',
+            uk: 'Сьогодні граємо в “одна фраза — три настрої”. Напишіть “I am fine” радісно, втомлено або підозріло. Англійська одразу стає живою, майже з бровами.',
+            es: 'Hoy jugamos a “una frase, tres humores”. Escribid “I am fine” alegre, cansado o sospechoso. El inglés se vuelve vivo, casi con cejas.',
+            'pt-BR': 'Hoje é “uma frase, três humores”. Escreva “I am fine” feliz, cansado ou desconfiado. O inglês fica vivo, quase com sobrancelhas.',
+            vi: 'Hôm nay chơi “một câu, ba tâm trạng”. Viết “I am fine” theo kiểu vui, mệt hoặc nghi ngờ. Tiếng Anh sống động hẳn, gần như có lông mày.',
+            id: 'Hari ini main “satu kalimat, tiga suasana”. Tulis “I am fine” dengan nada senang, capek, atau curiga. Bahasa Inggris langsung hidup, hampir punya alis.',
+            tr: 'Bugün oyun: “bir cümle, üç ruh hâli”. “I am fine” cümlesini mutlu, yorgun ya da şüpheli yazın. İngilizce hemen canlanır, neredeyse kaş çıkarır.',
+            pl: 'Dziś gramy w “jedno zdanie, trzy nastroje”. Napiszcie “I am fine” radośnie, zmęczenie albo podejrzliwie. Angielski od razu żyje, prawie ma brwi.',
+        },
+    },
+    {
+        kind: 'poll',
+        systemType: 'generic',
+        i18n: {
+            ru: 'Выбираем тему для мини-разговора: что сегодня проще обсудить по-английски? Победивший вариант заберу в следующий заход Компаса.',
+            uk: 'Обираємо тему для міні-розмови: що сьогодні простіше обговорити англійською? Переможний варіант заберу в наступний захід Компаса.',
+            es: 'Elegimos tema para una mini-charla: ¿qué es más fácil comentar hoy en inglés? Me llevo la opción ganadora para la próxima ronda de Compass.',
+            'pt-BR': 'Vamos escolher tema para uma mini-conversa: o que é mais fácil discutir hoje em inglês? Levo a opção vencedora para a próxima rodada do Compass.',
+            vi: 'Chọn chủ đề cho cuộc trò chuyện nhỏ: hôm nay nói tiếng Anh về gì dễ nhất? Tôi sẽ lấy lựa chọn thắng cho lượt Compass tiếp theo.',
+            id: 'Pilih tema obrolan mini: hari ini paling mudah membahas apa dalam bahasa Inggris? Pilihan menang saya bawa ke giliran Compass berikutnya.',
+            tr: 'Mini sohbet için konu seçiyoruz: Bugün İngilizce konuşması en kolay şey ne? Kazanan seçeneği bir sonraki Compass turuna taşırım.',
+            pl: 'Wybieramy temat mini-rozmowy: o czym dziś najłatwiej pogadać po angielsku? Zwycięską opcję zabiorę do następnej rundy Compass.',
+        },
+        poll: [
+            {
+                key: 'food',
+                label: {
+                    ru: 'Еда',
+                    uk: 'Їжа',
+                    es: 'Comida',
+                    'pt-BR': 'Comida',
+                    vi: 'Đồ ăn',
+                    id: 'Makanan',
+                    tr: 'Yemek',
+                    pl: 'Jedzenie',
+                },
+            },
+            {
+                key: 'travel',
+                label: {
+                    ru: 'Путешествия',
+                    uk: 'Подорожі',
+                    es: 'Viajes',
+                    'pt-BR': 'Viagens',
+                    vi: 'Du lịch',
+                    id: 'Perjalanan',
+                    tr: 'Seyahat',
+                    pl: 'Podróże',
+                },
+            },
+            {
+                key: 'work',
+                label: {
+                    ru: 'Работа',
+                    uk: 'Робота',
+                    es: 'Trabajo',
+                    'pt-BR': 'Trabalho',
+                    vi: 'Công việc',
+                    id: 'Kerja',
+                    tr: 'İş',
+                    pl: 'Praca',
+                },
+            },
+            {
+                key: 'series',
+                label: {
+                    ru: 'Сериалы',
+                    uk: 'Серіали',
+                    es: 'Series',
+                    'pt-BR': 'Séries',
+                    vi: 'Phim bộ',
+                    id: 'Serial',
+                    tr: 'Diziler',
+                    pl: 'Seriale',
+                },
+            },
+        ],
+    },
+    {
+        kind: 'discussion',
+        systemType: 'generic',
+        i18n: {
+            ru: 'Вопрос от Компаса: какую английскую фразу вы бы хотели говорить автоматически, без внутреннего совещания на десять человек? Пишите фразу — соберём народный список.',
+            uk: 'Питання від Компаса: яку англійську фразу ви хотіли б говорити автоматично, без внутрішньої наради на десять людей? Пишіть фразу — зберемо народний список.',
+            es: 'Pregunta de Compass: ¿qué frase inglesa queréis decir en automático, sin reunión interna de diez personas? Escribidla; hacemos lista popular.',
+            'pt-BR': 'Pergunta do Compass: que frase em inglês você queria dizer no automático, sem reunião interna com dez pessoas? Escreva a frase; montamos a lista da turma.',
+            vi: 'Câu hỏi từ Compass: bạn muốn câu tiếng Anh nào bật ra tự động, không cần họp nội bộ mười người? Viết câu đó nhé; ta gom thành danh sách chung.',
+            id: 'Pertanyaan dari Compass: frasa Inggris apa yang ingin kamu ucapkan otomatis, tanpa rapat batin sepuluh orang? Tulis frasanya; kita bikin daftar bersama.',
+            tr: 'Compass sorusu: Hangi İngilizce cümleyi otomatik söylemek isterdiniz, içeride on kişilik toplantı yapmadan? Cümleyi yazın; ortak liste çıkaralım.',
+            pl: 'Pytanie od Compass: którą angielską frazę chcecie mówić automatycznie, bez wewnętrznej narady dziesięciu osób? Napiszcie ją; zrobimy listę grupy.',
+        },
+    },
 ];
-// ── Ротация по дню ────────────────────────────────────────────────────────────
-/** Номер дня от эпохи (UTC) — детерминированный seed без Math.random(). */
+const FORBIDDEN_DAILY_LABELS = [
+    'слово дня',
+    'фраза дня',
+    'вислів дня',
+    'головна фраза дня',
+    'word of the day',
+    'phrase of the day',
+    'palabra del día',
+    'frase del día',
+    'palavra do dia',
+    'frase do dia',
+    'günün kelimesi',
+    'günün ifadesi',
+    'słowo dnia',
+    'fraza dnia',
+];
+const FORBIDDEN_PROGRESS_SUMMARY_CLAIMS = [
+    'заглянул в ваши успехи',
+    'заглянула в ваши успехи',
+    'ваши успехи за сегодня',
+    'продвинулись',
+    'дневную цель',
+    'день ещё не кончился',
+    'день еще не кончился',
+    'я подожду',
+    'закрыли цель',
+    'закрыли дневную цель',
+    'ваші успіхи за сьогодні',
+    'денну ціль',
+    'день ще не закінчився',
+    'your progress today',
+    'daily goal',
+    'today’s progress',
+    "today's progress",
+    'meta diaria',
+    'progreso de hoy',
+    'meta diária',
+    'progresso de hoje',
+];
+const LINK_RE = /\b(?:https?:\/\/|www\.|t\.me\/|telegram\.me\/|discord\.gg\/|discord\.com\/invite\/)\S*/i;
+function at(items, seed) {
+    const idx = ((seed % items.length) + items.length) % items.length;
+    return items[idx];
+}
+function fallbackIndexForSeed(seed) {
+    const weekDrift = Math.floor(seed / 7) * 3;
+    const monthDrift = Math.floor(seed / 29);
+    return seed + weekDrift + monthDrift;
+}
 function getDaySeed(now = new Date()) {
     return Math.floor(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) / 86400000);
 }
-/**
- * Выбор поста дня. Чередуем форматы по дню недели цикла, чтобы Компас не был
- * однообразным: слово → факт → вопрос → опрос → слово → факт → вопрос (7 дней).
- */
+function getUtcDayKey(now = new Date()) {
+    return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()))
+        .toISOString()
+        .slice(0, 10);
+}
 function pickCompassPostForDay(seed) {
-    const rotation = ['word_of_day', 'fact', 'question', 'poll', 'word_of_day', 'question', 'fact'];
-    const kind = rotation[((seed % rotation.length) + rotation.length) % rotation.length];
-    const at = (arr) => arr[((seed % arr.length) + arr.length) % arr.length];
-    switch (kind) {
-        case 'word_of_day':
-            return { kind, systemType: 'generic', i18n: at(WORDS_OF_DAY) };
-        case 'fact':
-            return { kind, systemType: 'generic', i18n: at(FACTS) };
-        case 'question':
-            return { kind, systemType: 'generic', i18n: at(QUESTIONS) };
-        case 'poll':
-            return at(POLLS);
-        default:
-            return { kind: 'question', systemType: 'generic', i18n: at(QUESTIONS) };
+    return at(FALLBACK_POSTS, fallbackIndexForSeed(seed));
+}
+function hasForbiddenDailyLabel(text) {
+    const lower = String(text || '').toLocaleLowerCase();
+    return FORBIDDEN_DAILY_LABELS.some((needle) => lower.includes(needle));
+}
+function hasForbiddenProgressSummaryClaim(text) {
+    const lower = String(text || '').toLocaleLowerCase();
+    return FORBIDDEN_PROGRESS_SUMMARY_CLAIMS.some((needle) => lower.includes(needle));
+}
+function cleanText(value, maxChars) {
+    const text = String(value ?? '').replace(/\s+/g, ' ').trim();
+    if (text.length < 12 || text.length > maxChars)
+        return '';
+    if (LINK_RE.test(text))
+        return '';
+    if (hasForbiddenDailyLabel(text))
+        return '';
+    if (hasForbiddenProgressSummaryClaim(text))
+        return '';
+    return text;
+}
+function normalizeI18n(value, maxChars) {
+    if (!value || typeof value !== 'object' || Array.isArray(value))
+        return null;
+    const src = value;
+    const out = {};
+    for (const lang of exports.COMPASS_CHAT_LANGS) {
+        const text = cleanText(src[lang], maxChars);
+        if (!text)
+            return null;
+        out[lang] = text;
+    }
+    return out;
+}
+function cleanKind(value) {
+    const kind = String(value ?? '').trim();
+    return exports.LEAGUE_COMPASS_GENERATED_KINDS.includes(kind)
+        ? kind
+        : null;
+}
+function extractJsonObject(raw) {
+    const trimmed = raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+    if (trimmed.startsWith('{') && trimmed.endsWith('}'))
+        return trimmed;
+    const start = trimmed.indexOf('{');
+    const end = trimmed.lastIndexOf('}');
+    if (start >= 0 && end > start)
+        return trimmed.slice(start, end + 1);
+    return trimmed;
+}
+function parseMaybeJson(raw) {
+    if (raw && typeof raw === 'object' && !Array.isArray(raw))
+        return raw;
+    if (typeof raw !== 'string')
+        return null;
+    try {
+        const parsed = JSON.parse(extractJsonObject(raw));
+        return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+            ? parsed
+            : null;
+    }
+    catch {
+        return null;
     }
 }
-// ── Приветствие-закреп для новичков (icebreaker) ─────────────────────────────
-//
-// Пишется один раз на группу (закреплённое сообщение). Снимает «паралич чистого
-// листа»: даёт новичку простой повод написать первое сообщение.
-const ICEBREAKER = {
-    ru: 'Привет, я Компас — буду рядом по дороге к английскому. Чтобы влиться, напишите одну строчку: откуда вы и зачем взялись за язык. Мне правда интересно.',
-    uk: 'Привіт, я Компас — буду поруч на шляху до англійської. Щоб влитися, напишіть один рядок: звідки ви і навіщо взялися за мову. Мені справді цікаво.',
-    es: 'Hola, soy Compass — os acompañaré en el camino del inglés. Para romper el hielo, escribid una línea: de dónde sois y por qué estudiáis inglés. Me interesa de verdad.',
-    'pt-BR': 'Oi, sou o Compass — vou estar com vocês na jornada do inglês. Pra começar, escrevam uma linha: de onde são e por que estudam inglês. Tenho curiosidade de verdade.',
-    vi: 'Chào, mình là Compass — sẽ đồng hành cùng bạn trên đường học tiếng Anh. Để làm quen, hãy viết một dòng: bạn đến từ đâu và vì sao học tiếng Anh. Mình thật sự tò mò.',
-    id: 'Hai, saya Compass — akan menemani perjalanan bahasa Inggris kalian. Biar cair, tulis satu baris: kalian dari mana dan kenapa belajar bahasa Inggris. Saya penasaran beneran.',
-    tr: 'Merhaba, ben Compass — İngilizce yolculuğunuzda yanınızda olacağım. Buzları kırmak için bir satır yazın: nerelisiniz ve neden İngilizce öğreniyorsunuz. Cidden merak ediyorum.',
-    pl: 'Cześć, jestem Compass — będę z wami na drodze do angielskiego. Żeby przełamać lody, napiszcie jedną linijkę: skąd jesteście i po co uczycie się angielskiego. Naprawdę mnie to ciekawi.',
-};
-/** Закреплённый приветственный пост Компаса (один на группу). */
-function buildIcebreakerPost() {
-    return { kind: 'icebreaker', systemType: 'member_joined', i18n: ICEBREAKER };
-}
-// ── Дневная сводка достижений ────────────────────────────────────────────────
-//
-// «Сегодня дневную цель закрыли: Олег, Марина и ещё 6 🎉» — соц-доказательство и
-// мягкий FOMO. Имена считаются сервером (батч), показываются 1 постом на группу.
-const MAX_NAMES_IN_SUMMARY = 3;
-function joinNames(names, lang) {
-    const head = names.slice(0, MAX_NAMES_IN_SUMMARY);
-    const extra = names.length - head.length;
-    const list = head.join(', ');
-    if (extra <= 0)
-        return list;
-    const more = {
-        ru: `${list} и ещё ${extra}`,
-        uk: `${list} і ще ${extra}`,
-        es: `${list} y ${extra} más`,
-        'pt-BR': `${list} e mais ${extra}`,
-        vi: `${list} và ${extra} người nữa`,
-        id: `${list} dan ${extra} lainnya`,
-        tr: `${list} ve ${extra} kişi daha`,
-        pl: `${list} i jeszcze ${extra}`,
-    };
-    return more[lang];
-}
-/**
- * Локализованная сводка «кто сегодня был активен / закрыл цель».
- * names — отображаемые имена участников (уже отфильтрованы/обрезаны вызывающим
- * до разумного числа, напр. 12). Возвращает null, если хвалить некого.
- */
-function buildDailySummaryPost(names) {
-    const clean = names.map((n) => String(n || '').trim()).filter(Boolean);
-    if (clean.length === 0)
+function normalizePollOptions(rawOptions) {
+    if (!Array.isArray(rawOptions) || rawOptions.length < 2 || rawOptions.length > 4)
         return null;
-    const tpl = (who, lang) => {
-        const map = {
-            ru: `Заглянул в ваши успехи за сегодня: вперёд продвинулись ${who} 🎉 Если вы пока нет — день ещё не кончился, я подожду.`,
-            uk: `Зазирнув у ваші успіхи за сьогодні: вперед просунулися ${who} 🎉 Якщо ви ще ні — день не скінчився, я зачекаю.`,
-            es: `Eché un vistazo a vuestros avances de hoy: han progresado ${who} 🎉 Si tú todavía no, el día no ha acabado, te espero.`,
-            'pt-BR': `Dei uma olhada nos avanços de hoje: progrediram ${who} 🎉 Se você ainda não, o dia não acabou, eu espero.`,
-            vi: `Tôi ngó qua thành quả hôm nay: đã tiến lên có ${who} 🎉 Nếu bạn chưa, ngày chưa hết đâu, tôi chờ.`,
-            id: `Saya intip kemajuan hari ini: yang maju ada ${who} 🎉 Kalau kamu belum, hari belum usai, saya tunggu.`,
-            tr: `Bugünkü ilerlemenize göz attım: öne çıkanlar ${who} 🎉 Sen henüz değilsen, gün bitmedi, beklerim.`,
-            pl: `Zajrzałem w wasze dzisiejsze postępy: do przodu ruszyli ${who} 🎉 Jeśli ciebie jeszcze nie ma, dzień się nie skończył, poczekam.`,
-        };
-        return map[lang];
-    };
-    const i18n = exports.COMPASS_CHAT_LANGS.reduce((acc, lang) => {
-        acc[lang] = tpl(joinNames(clean, lang), lang);
-        return acc;
-    }, {});
-    return { kind: 'daily_summary', systemType: 'chest_unlocked', i18n };
+    const out = [];
+    const seen = new Set();
+    for (let i = 0; i < rawOptions.length; i += 1) {
+        const raw = rawOptions[i];
+        if (!raw || typeof raw !== 'object' || Array.isArray(raw))
+            return null;
+        const row = raw;
+        const fallbackKey = String.fromCharCode(97 + i);
+        const key = String(row.key ?? fallbackKey)
+            .toLowerCase()
+            .replace(/[^a-z0-9_-]/g, '')
+            .slice(0, 24) || fallbackKey;
+        if (seen.has(key))
+            return null;
+        seen.add(key);
+        const label = normalizeI18n(row.label, MAX_POLL_LABEL_CHARS);
+        if (!label)
+            return null;
+        out.push({ key, label, ...(row.correct === true ? { correct: true } : {}) });
+    }
+    return out;
+}
+function normalizeGeneratedCompassPost(raw) {
+    const parsed = parseMaybeJson(raw);
+    if (!parsed)
+        return null;
+    const kind = cleanKind(parsed.kind);
+    if (!kind)
+        return null;
+    const i18n = normalizeI18n(parsed.i18n, MAX_TEXT_CHARS);
+    if (!i18n)
+        return null;
+    const post = { kind, systemType: 'generic', i18n };
+    if (kind === 'poll') {
+        const poll = normalizePollOptions(parsed.poll ?? parsed.options);
+        if (!poll)
+            return null;
+        post.poll = poll;
+    }
+    return post;
+}
+function buildLeagueCompassDailyPrompt(input) {
+    const formatHint = at([
+        'open discussion with a funny English example',
+        'mini challenge where learners write one English sentence',
+        'light poll with 2-4 short options',
+        'surprising but safe English-language fact plus a question',
+        'tiny speaking prompt that makes beginners comfortable',
+        'false friends / confusing short words / everyday phrasing',
+        'pronunciation or listening pain point, framed playfully',
+    ], input.seed);
+    return [
+        'You are "Compass", the lively host of a small league chat inside the Phraseman language app.',
+        'Your job today: write ONE fresh system post that starts a friendly discussion about English.',
+        '',
+        'PRODUCT CONTEXT',
+        '- The chat is a weekly league room: learners are trying to speak, compare progress, and feel less alone.',
+        '- Learners may be beginners, busy adults, or shy speakers. Some are 50+. Be warm and concrete.',
+        '- This is not a classroom lecture. You are the person who nudges the room into talking.',
+        '- The app already has a separate "Daily Phrase" card. Do not compete with it.',
+        '',
+        'TODAY',
+        `- UTC date key: ${input.dayKey}.`,
+        `- Variety hint for this date: ${formatHint}.`,
+        '',
+        'VOICE',
+        '- Warm, alive, lightly funny. One small joke is welcome; never clownish.',
+        '- Speak as Compass in first person only when it feels natural.',
+        '- Invite replies. End with a question, challenge, or poll that is easy to answer.',
+        '- Make beginners safe: "crooked English is allowed" energy, but do not say it every time.',
+        '- No shame, no guilt, no fake urgency, no productivity pressure.',
+        '- Avoid corporate motivational slogans and generic "keep going" filler.',
+        '- Do not over-explain grammar. One practical example is enough.',
+        '',
+        'CONTENT IDEAS',
+        '- Odd English phrases people actually use.',
+        '- False friends, short confusing words, pronunciation traps, tiny speaking wins.',
+        '- "Write one sentence" mini games.',
+        '- Polls about what blocks speaking, what topic to practice, or which phrase feels more natural.',
+        '- Funny but useful comparisons: literal translation vs natural English.',
+        '- Everyday scenarios: work chat, cafe, travel, messages, awkward small talk.',
+        '',
+        'STRICT DO-NOT-SAY LIST',
+        '- Do not use the labels "word of the day", "phrase of the day", "Слово дня", "Фраза дня", or local equivalents.',
+        '- Do not mention app internals, cron, AI, OpenAI, prompts, scores, XP, subscriptions, premium, or admin tools.',
+        '- Do not invent facts that need citation. If unsure, use a practical language observation instead.',
+        '- NEVER write progress summaries, daily-goal summaries, leaderboard updates, or named learner achievements. You have no member progress data.',
+        '- NEVER say you looked at learners’ progress, saw who moved forward, or will wait for unfinished learners.',
+        '- NEVER include learner names unless the user prompt explicitly gives real names. This prompt gives none.',
+        '- No external links, handles, emails, phone numbers, politics, insults, sexual content, or medical/legal/financial advice.',
+        '',
+        'LOCALIZATION',
+        '- Return all 8 interface languages: ru, uk, es, pt-BR, vi, id, tr, pl.',
+        '- The framing text must be in each interface language.',
+        '- English examples stay in English in every locale.',
+        '- Keep the meaning aligned across locales, but natural for each language.',
+        '- Each main text should be 1-3 short sentences, maximum 420 characters.',
+        '',
+        'POST TYPES',
+        '- kind "discussion": a question or topic that invites text replies.',
+        '- kind "language_fact": a safe, practical observation about English plus a question.',
+        '- kind "mini_challenge": asks learners to write a tiny English answer.',
+        '- kind "poll": includes 2-4 options. Poll options should be short.',
+        '- Choose exactly one kind value from: "discussion", "language_fact", "mini_challenge", "poll".',
+        '',
+        'OUTPUT JSON ONLY. No markdown, no code fence, no comments.',
+        'Use this exact shape:',
+        '{',
+        '  "kind": "discussion",',
+        '  "i18n": {',
+        '    "ru": "...",',
+        '    "uk": "...",',
+        '    "es": "...",',
+        '    "pt-BR": "...",',
+        '    "vi": "...",',
+        '    "id": "...",',
+        '    "tr": "...",',
+        '    "pl": "..."',
+        '  },',
+        '  "poll": [',
+        '    { "key": "a", "label": { "ru": "...", "uk": "...", "es": "...", "pt-BR": "...", "vi": "...", "id": "...", "tr": "...", "pl": "..." } },',
+        '    { "key": "b", "label": { "ru": "...", "uk": "...", "es": "...", "pt-BR": "...", "vi": "...", "id": "...", "tr": "...", "pl": "..." } }',
+        '  ]',
+        '}',
+        '',
+        'If kind is not "poll", omit "poll".',
+    ].join('\n');
 }
 //# sourceMappingURL=compass_chat_content.js.map

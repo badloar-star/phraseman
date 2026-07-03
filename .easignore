@@ -119,11 +119,11 @@ assets/images/quizzes/medals/*sheet.png
 assets/images/personal_plan_tasks/*.png
 
 # Local builds
-android/app/build/
-ios/build/
+/android/app/build/
+/ios/build/
 
 # Let EAS regenerate android/ via expo prebuild for clean dependency resolution
-android/
+/android/
 
 # Personal-plan listening audio now streams from Firebase Storage (plan-audio/**)
 # and is disk-cached on device — see app/plan_audio_url_map.generated.ts. The local

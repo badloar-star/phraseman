@@ -70,6 +70,7 @@ async function applyCachedConfig(): Promise<void> {
     if (!raw) return;
     const parsed = JSON.parse(raw) as RawConfig;
     applyRemoteConfigSnapshot(sanitizeRaw(parsed));
+    emitAppEvent('remote_config_changed');
   } catch {
     // Cache is best-effort.
   }
@@ -81,19 +82,27 @@ async function applyCachedConfig(): Promise<void> {
  */
 const REMOTE_CONFIG_FETCH_TIMEOUT_MS = 3000;
 
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label}_timeout`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
 export async function loadRemoteConfig(): Promise<void> {
   await applyCachedConfig();
   const factory = await getFirestoreModule();
   if (!factory) return;
   try {
     const db = factory();
-    const timeout = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('remote_config_timeout')), REMOTE_CONFIG_FETCH_TIMEOUT_MS),
-    );
-    const snap = await Promise.race([
+    const snap = await withTimeout(
       db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get(),
-      timeout,
-    ]);
+      REMOTE_CONFIG_FETCH_TIMEOUT_MS,
+      'remote_config',
+    );
     if (snap.exists) applyAndCache(snap.data());
   } catch {
     // Keep cache/defaults on any failure (offline, timeout, permission).

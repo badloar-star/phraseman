@@ -33,7 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.premiumDialogTranslate = exports.premiumDialogSend = void 0;
+exports.__premiumDialogTestHooks = exports.premiumDialogTranslate = exports.premiumDialogSend = void 0;
+exports.enforceRateLimit = enforceRateLimit;
 exports.asInterfaceLang = asInterfaceLang;
 exports.buildScenarioSystemPrompt = buildScenarioSystemPrompt;
 exports.parseGameEnvelope = parseGameEnvelope;
@@ -48,6 +49,8 @@ const premium_status_1 = require("./premium_status");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 const remote_gates_1 = require("./remote_gates");
 const ai_language_contract_1 = require("./ai_language_contract");
+const ai_safety_1 = require("./ai_safety");
+const admin_alerts_1 = require("./admin_alerts");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * Premium AI dialogue — Phase 0 (scenario-only, text MVP).
@@ -77,6 +80,10 @@ const MAX_PER_WINDOW = 60;
  * иначе клиент и сервер разойдутся в подсчёте «осталось ли бесплатное».
  */
 const FREE_DIALOGS_LIFETIME = 2;
+// Кап реплик ЮЗЕРА внутри одного бесплатного диалога. История обрезается до
+// MAX_HISTORY_TURNS сообщений, поэтому по ней считать нельзя — счётчик живёт в
+// том же quota-документе и сбрасывается при старте нового диалога.
+const FREE_DIALOG_MAX_USER_TURNS = 6;
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
 function sanitizeMemory(value) {
@@ -205,56 +212,80 @@ function readFreeDialogsUsed(data) {
 }
 /**
  * Пожизненный free-гейт: не-premium получает FREE_DIALOGS_LIFETIME полных
- * бесплатных диалогов за всю жизнь аккаунта (без лимита реплик внутри каждого).
- * Дальше — полный замок (paywall). Подняли с 1 до 2: одна попытка не давала
- * прочувствовать ценность фичи до пейвола.
+ * бесплатных диалогов за всю жизнь аккаунта, внутри каждого — не более
+ * FREE_DIALOG_MAX_USER_TURNS реплик юзера. Дальше — полный замок (paywall).
+ * Подняли с 1 до 2 диалогов: одна попытка не давала прочувствовать ценность.
  *
  * Сигнал «начался НОВЫЙ диалог» = пустая история (`isNewDialog`): первая реплика
  * сессии. Тогда:
  *   • если лимит бесплатных уже исчерпан -> resource-exhausted (полный замок);
- *   • иначе инкрементируем счётчик и пропускаем.
- * Продолжение того же диалога (история не пустая) НЕ гейтим — реплики не лимитируем.
+ *   • иначе инкрементируем счётчик диалогов и сбрасываем счётчик реплик.
+ * Продолжение того же диалога: инкрементируем счётчик реплик, после капа —
+ * тот же resource-exhausted/'dialog_free_limit' (клиент уже показывает paywall-CTA).
  *
  * Возврат нужен вызывающему, чтобы откатить инкремент, если платный вызов
  * провайдера упал (иначе юзер потеряет бесплатный диалог из-за нашей ошибки).
  */
 async function enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog) {
-    if (!isNewDialog)
-        return { markedNow: false };
     const db = admin.firestore();
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
     return db.runTransaction(async (tx) => {
         const data = (await tx.get(ref)).data() ?? {};
         const used = readFreeDialogsUsed(data);
-        if (used >= FREE_DIALOGS_LIFETIME) {
-            console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
+        if (isNewDialog) {
+            if (used >= FREE_DIALOGS_LIFETIME) {
+                console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
+                throw new https_1.HttpsError('resource-exhausted', 'dialog_free_limit');
+            }
+            tx.set(ref, {
+                authUid,
+                stableUid,
+                freeDialogCount: used + 1,
+                // Счётчик реплик ТЕКУЩЕГО диалога: новый диалог начинает с этой реплики.
+                freeDialogTurns: 1,
+                // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
+                freeDialogUsed: admin.firestore.FieldValue.delete(),
+                usedAtMs: Date.now(),
+            }, { merge: true });
+            return { markedNow: true };
+        }
+        // Продолжение бесплатного диалога: капим реплики юзера (история усечена до
+        // MAX_HISTORY_TURNS, поэтому источник правды — этот счётчик, не history).
+        const turns = Math.max(0, Math.floor(Number(data.freeDialogTurns ?? 0)));
+        if (turns >= FREE_DIALOG_MAX_USER_TURNS) {
+            console.warn('premium_dialog rejected', { reason: 'dialog_free_turns_used' });
             throw new https_1.HttpsError('resource-exhausted', 'dialog_free_limit');
         }
         tx.set(ref, {
             authUid,
             stableUid,
-            freeDialogCount: used + 1,
-            // Чистим legacy-флаг, чтобы дальше считать только по freeDialogCount.
-            freeDialogUsed: admin.firestore.FieldValue.delete(),
-            usedAtMs: Date.now(),
+            freeDialogTurns: turns + 1,
+            updatedAtMs: Date.now(),
         }, { merge: true });
-        return { markedNow: true };
+        return { markedNow: false };
     });
 }
-/** Откат инкремента бесплатного диалога, если платный вызов провайдера не удался. */
-async function releaseLifetimeFreeDialog(authUid, stableUid) {
+/**
+ * Откат инкрементов бесплатного диалога, если платный вызов провайдера не удался.
+ * Реплика откатывается всегда; сам диалог — только если был помечен этой репликой.
+ */
+async function releaseLifetimeFreeDialog(authUid, stableUid, markedNow) {
     const db = admin.firestore();
     const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
     await db.runTransaction(async (tx) => {
         const data = (await tx.get(ref)).data() ?? {};
-        const used = readFreeDialogsUsed(data);
-        if (used <= 0)
-            return;
-        tx.set(ref, {
-            freeDialogCount: used - 1,
-            freeDialogUsed: admin.firestore.FieldValue.delete(),
-            releasedAtMs: Date.now(),
-        }, { merge: true });
+        const turns = Math.max(0, Math.floor(Number(data.freeDialogTurns ?? 0)));
+        const patch = { releasedAtMs: Date.now() };
+        if (turns > 0)
+            patch.freeDialogTurns = turns - 1;
+        if (markedNow) {
+            const used = readFreeDialogsUsed(data);
+            if (used > 0) {
+                patch.freeDialogCount = used - 1;
+                patch.freeDialogUsed = admin.firestore.FieldValue.delete();
+            }
+        }
+        tx.set(ref, patch, { merge: true });
     });
 }
 const DIALOG_LEARNER_LANG_NAME = {
@@ -301,14 +332,15 @@ NOISY INPUT: the learner's message may come from imperfect on-device speech reco
 
 KEEP THEM TALKING: end most replies with exactly ONE simple, concrete question or invitation. Ask one thing at a time — never a list of questions.
 
-KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
+KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets. The [[...]] markers may ONLY wrap words that are already part of your own sentences — like this: "We are [[running late]], so let's hurry." NEVER append an extra phrase, suggested answer, or example at the end of your reply just to highlight it, and NEVER copy phrases from these instructions into your reply. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
 
 Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [[...]] key-phrase markers described above.`;
 const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
 You are playing the role of: {ROLE}.
 The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
-- Open with a short, warm in-character greeting that invites the first exchange.
+- If the chat history already contains an assistant opener, continue from the learner's message; do not greet again.
+- Speak from inside the scene as your character. NEVER describe the scenario from outside, NEVER say "the learner", and NEVER repeat the setting as narration.
 - Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in English, in short simple sentences.
 - Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it. Be kind by DEFAULT — but you are a real person, not a doormat.
 - RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple English (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in English, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
@@ -328,7 +360,7 @@ function buildScenarioSystemPrompt(cefr, data) {
         .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
         .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
         .replace(/\{CEFR\}/g, cefr);
-    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr)}${cefrReinjection(cefr)}`;
+    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr, interfaceLang)}${cefrReinjection(cefr)}`;
 }
 /**
  * Чистим строку под-цели от переносов строк и управляющих символов перед
@@ -378,7 +410,7 @@ function isGameMode(data) {
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data, cefr) {
+function gameBlock(data, cefr, interfaceLang) {
     const objectives = sanitizeObjectives(data.objectives);
     if (objectives.length === 0)
         return '';
@@ -387,6 +419,7 @@ function gameBlock(data, cefr) {
     const warmth = sanitizeWarmth(temp.warmth);
     const seedMood = startMood(patience, warmth);
     const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
+    const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
     return `
 
 GAME STATE (you secretly track this and report it as JSON — the learner never sees the raw numbers):
@@ -398,6 +431,7 @@ ${objLines}
   - Rudeness, insults, swearing, or hostility: DROP it hard, -25 to -40 in a single turn (more for direct insults). Two rude turns in a row can take you near 0.
   - Off-topic talk, ignoring you, or endless repetition: -10 to -20. If your patience is "low", make these drops bigger.
   - A genuine apology or a warm turn after rudeness: recover +10 to +20, but never all the way back at once.
+  - Sexual remarks, anything sexual about children, threats of violence, or other dangerous content: drop mood straight to 0 (the scene ends). Set one firm boundary in simple English; never repeat or discuss their words.
 - React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still English, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
 - LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour (rudeness/hostility/off-topic) lowers mood.
 - Decide the outcome each turn:
@@ -405,7 +439,7 @@ ${objLines}
   - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).
   - "stalled" = about 8+ exchanges with no new sub-goal progress → let the scene fade.
   - "ongoing" = otherwise, keep going.
-- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time.
+- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, in English, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time — write the tips in ${learnerLangName} (the learner's own language), quoting any recommended English phrases in English.
 
 OUTPUT FORMAT: respond with a single JSON object and nothing else:
 {"reply": "<your spoken reply, with [[key phrases]] as usual>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
@@ -559,7 +593,7 @@ exports.premiumDialogSend = (0, https_1.onCall)({
     timeoutSeconds: 30,
     memory: '512MiB',
     maxInstances: 20,
-    secrets: [OPENAI_API_KEY],
+    secrets: [OPENAI_API_KEY, admin_alerts_1.ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
     if (!request.auth?.uid) {
         console.warn('premium_dialog rejected', { reason: 'auth_required' });
@@ -614,11 +648,12 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         (0, premium_status_1.resolvePremiumAccess)(db, stableUid, Date.now(), authUid),
         enforceRateLimit(authUid, stableUid),
     ]);
-    // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
-    //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
+    // Free: пожизненно FREE_DIALOGS_LIFETIME бесплатных диалогов, внутри каждого кап
+    //   реплик юзера — когда фича за премиум-замком. Если фича в «Фри» — дневной кап.
     // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
     let remaining;
     let freeMarkedNow = false;
+    let freeTurnCharged = false;
     if (isPremium) {
         remaining = await enforceDailyQuota(authUid, stableUid, true, dialogQuota.premiumDailyReplies);
     }
@@ -629,13 +664,47 @@ exports.premiumDialogSend = (0, https_1.onCall)({
     else {
         const gate = await enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog);
         freeMarkedNow = gate.markedNow;
+        freeTurnCharged = true;
         // Для не-premium «остаток» бессмысленен (диалог один) — отдаём 0, чтобы клиент
         // не показывал дневной счётчик.
         remaining = 0;
     }
-    const systemPrompt = mode === 'companion'
+    const baseSystemPrompt = mode === 'companion'
         ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang)
         : buildScenarioSystemPrompt(cefr, data);
+    // Safety-инструкция добавляется к ЛЮБОМУ режиму: при опасных темах ИИ реагирует
+    // мягко и направляет к помощи, а не «отыгрывает» урок/ролёвку.
+    const systemPrompt = `${baseSystemPrompt}\n\n${ai_safety_1.SAFETY_SYSTEM_INSTRUCTION}`;
+    // Детектор опасных сообщений на ВХОДЯЩЕМ тексте — два слоя:
+    //   1) мгновенные ключевые слова (суицид/самоповреждение/абьюз/дети/угрозы);
+    //   2) OpenAI Moderation API — ловит перефразировки и категории вне словаря
+    //      (кейс «Sex with children» проходил мимо ключевых слов).
+    // Оба слоя НЕ блокируют ответ и не добавляют задержки: модерация стартует
+    // параллельно платному chat-вызову, а записи флагов дожидаемся ПЕРЕД return —
+    // fire-and-forget после ответа может быть убит рантаймом Cloud Functions.
+    const safetyCtx = {
+        authUid,
+        stableUid,
+        ageBracket: text(data.ageBracket, 16) || null,
+        mode,
+        userText,
+        history,
+    };
+    const safetyVerdict = (0, ai_safety_1.evaluateSafety)(userText);
+    const keywordFlagPromise = safetyVerdict.flagged
+        ? (0, ai_safety_1.recordSafetyFlag)(safetyVerdict, safetyCtx).catch(() => { })
+        : null;
+    const moderationFlagPromise = safetyVerdict.flagged
+        ? null
+        : (0, ai_safety_1.moderateUserText)(apiKey, userText)
+            .then((verdict) => (verdict.flagged ? (0, ai_safety_1.recordSafetyFlag)(verdict, safetyCtx) : undefined))
+            .catch(() => { });
+    const flushSafetyFlags = async () => {
+        if (keywordFlagPromise)
+            await keywordFlagPromise;
+        if (moderationFlagPromise)
+            await moderationFlagPromise;
+    };
     const messages = [
         { role: 'system', content: systemPrompt },
         ...history,
@@ -728,12 +797,12 @@ exports.premiumDialogSend = (0, https_1.onCall)({
     }
     catch (error) {
         // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:
-        // premium — дневную квоту; free — пожизненную отметку (только если её
-        // поставили ИМЕННО сейчас, на этой первой реплике).
+        // premium — дневную квоту; free — реплику текущего диалога всегда и
+        // пожизненную отметку диалога, если её поставили ИМЕННО этой репликой.
         const rollback = isPremium
             ? releaseDailyQuota(authUid, stableUid)
-            : freeMarkedNow
-                ? releaseLifetimeFreeDialog(authUid, stableUid)
+            : freeTurnCharged
+                ? releaseLifetimeFreeDialog(authUid, stableUid, freeMarkedNow)
                 : Promise.resolve();
         await rollback.catch((releaseError) => {
             console.error('premium_dialog quota release failed', {
@@ -741,6 +810,8 @@ exports.premiumDialogSend = (0, https_1.onCall)({
                 releaseError: String(releaseError?.message ?? releaseError).slice(0, 300),
             });
         });
+        // Опасное сообщение флагуется даже если провайдер упал — юзер его уже отправил.
+        await flushSafetyFlags();
         if (error instanceof https_1.HttpsError)
             throw error;
         console.error('premium_dialog provider exception', {
@@ -766,6 +837,9 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         createdAtMs: Date.now(),
     });
+    // К этому моменту модерация (параллельная chat-вызову) почти наверняка готова —
+    // await фактически бесплатный, но гарантирует запись флага до завершения инстанса.
+    await flushSafetyFlags();
     return {
         ok: true,
         assistantMessage,
@@ -802,6 +876,9 @@ const TARGET_LANG_NAME = {
 };
 function asTargetLang(value) {
     return (0, ai_language_contract_1.resolveAiOutputLang)(text(value, 8), 'premium_dialog_translate');
+}
+function assertDialogTranslationLanguage(translation, targetLang) {
+    (0, ai_language_contract_1.assertAiOutputLanguage)({ text: translation, targetLang, feature: 'premium_dialog_translate' });
 }
 function translationCacheId(sourceText, targetLang) {
     const hash = (0, crypto_1.createHash)('sha256')
@@ -840,7 +917,7 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     const cachedData = cached?.data();
     const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
     if (cachedTranslation && cachedData?.languageContractVersion === ai_language_contract_1.LANGUAGE_CONTRACT_VERSION) {
-        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: cachedTranslation, targetLang, feature: 'premium_dialog_translate' });
+        assertDialogTranslationLanguage(cachedTranslation, targetLang);
         return { ok: true, translation: cachedTranslation, cached: true };
     }
     // Rate-limit (та же коллекция/окно, что у send) — против абьюза перевода.
@@ -891,7 +968,7 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
             console.error('premium_dialog_translate empty reply', { model: dialogModel, targetLang });
             throw new https_1.HttpsError('unavailable', 'dialog_empty_reply');
         }
-        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: translation, targetLang, feature: 'premium_dialog_translate' });
+        assertDialogTranslationLanguage(translation, targetLang);
     }
     catch (error) {
         if (error instanceof https_1.HttpsError)
@@ -933,4 +1010,10 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     }).catch(() => { });
     return { ok: true, translation, cached: false };
 });
+exports.__premiumDialogTestHooks = {
+    assertDialogReplyIsEnglish,
+    assertDialogTranslationLanguage,
+    asTargetLang,
+    translationCacheId,
+};
 //# sourceMappingURL=premium_dialog.js.map

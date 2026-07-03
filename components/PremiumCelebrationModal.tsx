@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * PremiumCelebrationModal — ВАУ-празднование покупки Premium/VIP (2026-06-13).
  *
@@ -11,7 +12,7 @@
  * Хаптик: на каждую строку — hapticTap (cooldown 80мс, см. use-haptics);
  * НЕ hapticSuccess/Impact — у них cooldown 4.5с, они бы «съелись».
  */
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated as RNAnim,
   Modal,
@@ -36,16 +37,15 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import AuroraBackground from './premium_celebration/AuroraBackground';
 import {
   CELEBRATION_FEATURES,
   CELEBRATION_PALETTES,
-  VIP_EXTRA_FEATURE,
   type CelebrationFeature,
   type CelebrationVariant,
 } from './premium_celebration/celebrationContent';
@@ -142,15 +142,13 @@ function FeatureRow({ feature, lang, lit, palette, f }: {
 
 function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: PremiumCelebrationModalProps) {
   const { width: winW, height: winH } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { f } = useTheme();
   const { lang } = useLang();
   const palette = CELEBRATION_PALETTES[variant];
 
-  const features = useMemo<CelebrationFeature[]>(
-    () => (variant === 'vip' ? [VIP_EXTRA_FEATURE, ...CELEBRATION_FEATURES] : CELEBRATION_FEATURES),
-    [variant],
-  );
+  const features = CELEBRATION_FEATURES;
 
   const scrollRef = useRef<ScrollView>(null);
   const [litCount, setLitCount] = useState(0);
@@ -169,7 +167,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
     setHeroH((prev) => (Math.abs(prev - h) > 1 ? h : prev));
   }, []);
 
-  const ctaBottom = 28 + insets.bottom;
+  const ctaBottom = 28 + bottomInset;
   const reelBottom = ctaBottom + 78;
   // Лента начинается ПОД фактическим низом hero + зазор. HERO_OFFSET остаётся
   // лишь как fallback до первого замера, чтобы лента не прыгала на 1-м кадре.
@@ -360,7 +358,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
             </Text>
             <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
               {variant === 'pro'
-                ? triLang(lang, { ru: 'Доступ навсегда: энергия и все функции — без подписки', uk: 'Доступ назавжди: енергія й усі функції — без підписки', es: 'Acceso para siempre: energía y todo, sin suscripción', 'pt-BR': 'Acesso para sempre: energia e tudo, sem assinatura', vi: 'Truy cập trọn đời: năng lượng và mọi tính năng', id: 'Akses selamanya: energi dan semua fitur', tr: 'Sonsuza dek erişim: enerji ve tüm özellikler', pl: 'Dostęp na zawsze: energia i wszystkie funkcje' })
+                ? triLang(lang, { ru: 'Phraseman Pro: разовая покупка, энергия и все функции — без подписки', uk: 'Phraseman Pro: разова покупка, енергія й усі функції — без підписки', es: 'Phraseman Pro: compra única, energía y todo, sin suscripción', 'pt-BR': 'Phraseman Pro: compra única, energia e tudo, sem assinatura', vi: 'Phraseman Pro: mua một lần, năng lượng và mọi tính năng', id: 'Phraseman Pro: pembelian sekali, energi dan semua fitur', tr: 'Phraseman Pro: tek seferlik satın alma, enerji ve tüm özellikler', pl: 'Phraseman Pro: zakup jednorazowy, energia i wszystkie funkcje' })
                 : variant === 'vip'
                 ? triLang(lang, { ru: 'Plus-доступ открыт: энергия и все функции', uk: 'Plus-доступ відкрито: енергія й усі функції', es: 'Acceso Plus: energía y todo desbloqueado', 'pt-BR': 'Acesso Plus: energia e tudo liberado', vi: 'Plus: năng lượng và mọi tính năng', id: 'Akses Plus: energi dan semua fitur', tr: 'Plus: enerji ve tüm özellikler', pl: 'Dostęp Plus: energia i wszystkie funkcje' })
                 : triLang(lang, { ru: 'Всё открыто. Прокачивайся без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}

@@ -104,10 +104,10 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   }
 }
 
-function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+function withTimeout<T>(promise: Promise<T>, ms: number, label = 'paywall_config_auth'): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   const timeout = new Promise<never>((_, reject) => {
-    timeoutId = setTimeout(() => reject(new Error('paywall_config_auth_timeout')), ms);
+    timeoutId = setTimeout(() => reject(new Error(`${label}_timeout`)), ms);
   });
   return Promise.race([promise, timeout]).finally(() => {
     if (timeoutId !== undefined) clearTimeout(timeoutId);
@@ -144,13 +144,11 @@ async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
   const factory = await getFirestoreModule();
   if (factory) {
     try {
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('paywall_config_timeout')), 3000),
-      );
-      const snap = await Promise.race([
+      const snap = await withTimeout(
         factory().collection(CONFIG_DOC_COLLECTION).doc(CONFIG_DOC_ID).get(),
-        timeout,
-      ]);
+        3000,
+        'paywall_config',
+      );
       if (snap.exists) {
         _config = sanitizeConfig(snap.data());
         void AsyncStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({

@@ -70,4 +70,25 @@ describe('admin settings VIP profile control', () => {
     expect(celebrationContent).toContain("rowText: '#EAFFF4'");
     expect(celebrationContent).toContain("ctaText: '#04140d'");
   });
+
+  it('keeps Plus celebration benefits current and concise', () => {
+    expect(celebrationContent).toContain('Все уроки открыты');
+    expect(celebrationContent).toContain('AI-диалоги');
+    expect(celebrationContent).toContain('Голос с оценкой фразы');
+    expect(celebrationContent).toContain('Недельный обзор');
+    expect(celebrationContent).toContain('Компас дня');
+    expect(celebrationContent).toContain('Plus-темы и аура');
+
+    expect(celebrationContent).not.toContain('Тема Neon');
+    expect(celebrationContent).not.toContain('Золотое имя');
+    expect(celebrationContent).not.toContain('Второй язык');
+    expect(celebrationContent).not.toContain('Несколько языков');
+    expect(celebrationContent).not.toContain('Реферальные награды');
+    expect(celebrationContent).not.toContain('Дни доступа за друзей');
+    expect(celebrationContent).not.toContain('промокод');
+    expect(celebration).not.toContain('VIP_EXTRA_FEATURE');
+
+    const featureRows = celebrationContent.match(/^  \{ emoji:/gm) ?? [];
+    expect(featureRows.length).toBeLessThanOrEqual(18);
+  });
 });

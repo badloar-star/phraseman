@@ -68,4 +68,11 @@ describe('level gift reward icons', () => {
     expect(preloadSource).toContain('...LEVEL_GIFT_REWARD_ICON_SOURCES');
     expect(preloadSource).toContain('...OSKOLOK_IMAGE_SOURCES');
   });
+
+  it('uses concrete reward icons in the gifts inventory card art slot', () => {
+    const inventorySource = fs.readFileSync(path.join(process.cwd(), 'app', 'level_gifts_inventory.tsx'), 'utf8');
+
+    expect(inventorySource).not.toContain("import LevelGiftArt");
+    expect(inventorySource).toContain('getLevelGiftRewardIcon(primaryGift.id, themeMode)');
+  });
 });

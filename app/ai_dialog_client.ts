@@ -6,7 +6,6 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { triLang, type Lang } from '../constants/i18n';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { getAgeBracketSnapshot } from './age_gate';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -45,7 +44,6 @@ export interface PremiumDialogRequest {
   memory?: DialogMemory;
   isPremium?: boolean;
   /** Возрастная группа для серверного safety-флага и возрастного гейта. */
-  ageBracket?: string;
   /**
    * «Диалог как игра» (scenario): под-цели [{id, en}] и темперамент собеседника.
    * Если переданы — сервер включает игровой режим (mood/исход в ответе).
@@ -73,6 +71,7 @@ export type PremiumDialogErrorKind =
   | 'premium_limit'
   | 'rate_limited'
   | 'auth_required'
+  | 'age_restricted'
   | 'provider_unavailable'
   | 'network'
   | 'unknown';
@@ -86,6 +85,7 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   if (text.includes('dialog_premium_cap')) return 'premium_limit';
   if (text.includes('dialog_rate_limited') || text.includes('resource-exhausted')) return 'rate_limited';
   if (text.includes('auth_required') || text.includes('unauthenticated')) return 'auth_required';
+  if (text.includes('age_restricted')) return 'age_restricted';
   if (
     text.includes('dialog_provider_failed') ||
     text.includes('dialog_empty_reply') ||
@@ -160,6 +160,17 @@ export function getPremiumDialogErrorMessage(
         tr: 'Diyaloğa devam etmek için hesaba giriş yapman gerekiyor.',
         pl: 'Musisz zalogować się na konto, aby kontynuować dialog.',
       });
+    case 'age_restricted':
+      return triLang(lang, {
+        ru: 'ИИ-диалоги доступны только с 16 лет. Сейчас этот режим закрыт настройками безопасности.',
+        uk: 'AI-діалоги доступні лише з 16 років. Зараз цей режим закрито налаштуваннями безпеки.',
+        es: 'Los diálogos con IA están disponibles solo desde los 16 años. Este modo está bloqueado por seguridad.',
+        'pt-BR': 'Os diálogos com IA estão disponíveis apenas a partir dos 16 anos. Este modo está bloqueado por segurança.',
+        vi: 'Đối thoại AI chỉ dành cho người từ 16 tuổi. Chế độ này đang bị khóa vì an toàn.',
+        id: 'Dialog AI hanya tersedia untuk usia 16+. Mode ini dikunci demi keamanan.',
+        tr: 'AI diyalogları yalnızca 16 yaş ve üzeri için açıktır. Bu mod güvenlik nedeniyle kapalı.',
+        pl: 'Dialogi AI są dostępne tylko od 16 lat. Ten tryb jest teraz zablokowany ze względów bezpieczeństwa.',
+      });
     case 'provider_unavailable':
       return triLang(lang, {
         ru: 'Сейчас не получилось получить ответ. Попробуй ещё раз чуть позже.',
@@ -219,8 +230,7 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
 export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
   // Возрастная группа берётся из единого источника (age_gate) и уходит на сервер
   // для safety-флага и возрастного гейта (defense-in-depth поверх клиентского блока).
-  const reqWithAge: PremiumDialogRequest = { ...req, ageBracket: req.ageBracket ?? getAgeBracketSnapshot() };
-  const key = premiumDialogSendRequestKey(reqWithAge);
+  const key = premiumDialogSendRequestKey(req);
   const existing = premiumDialogSendInFlight.get(key);
   if (existing) return existing;
 
@@ -230,7 +240,7 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
     );
-    const res = await fn(reqWithAge);
+    const res = await fn(req);
     return res.data;
   })().finally(() => {
     premiumDialogSendInFlight.delete(key);
@@ -250,7 +260,6 @@ export interface PremiumDialogReviewRequest {
   interfaceLang?: Lang;
   scenarioId?: string;
   goalEn?: string;
-  ageBracket?: string;
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */
@@ -289,11 +298,7 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
 export async function callPremiumDialogReview(
   req: PremiumDialogReviewRequest,
 ): Promise<PremiumDialogReviewResponse> {
-  const reqWithAge: PremiumDialogReviewRequest = {
-    ...req,
-    ageBracket: req.ageBracket ?? getAgeBracketSnapshot(),
-  };
-  const key = premiumDialogReviewRequestKey(reqWithAge);
+  const key = premiumDialogReviewRequestKey(req);
   const existing = premiumDialogReviewInFlight.get(key);
   if (existing) return existing;
 
@@ -303,7 +308,7 @@ export async function callPremiumDialogReview(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
     );
-    const res = await fn(reqWithAge);
+    const res = await fn(req);
     return res.data;
   })().finally(() => {
     premiumDialogReviewInFlight.delete(key);

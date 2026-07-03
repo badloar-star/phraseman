@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * Unified player/bot profile card.
  * Used in Hall of Fame AND Clubs — same component, no differences.
@@ -9,7 +10,6 @@
  *   onClose     — called when modal should close (parent sets player to null immediately)
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'expo-router';
 import {
   Animated,
   Easing,
@@ -26,7 +26,6 @@ import { Image } from 'expo-image';
 import firestore from '@react-native-firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
@@ -43,7 +42,7 @@ import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { arenaTierLabel } from '../app/arena_rating';
 import type { RankTier } from '../app/types/arena';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
-import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -56,11 +55,12 @@ import {
   type FriendActivityLikeTodayState,
 } from '../app/friend_activity_likes';
 import { getCanonicalUserId } from '../app/user_id_policy';
+import { isLifetimePlanLocal } from '../app/premium_guard';
 import { hapticTap } from '../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardMotionFx from './ProfileCardMotionFx';
-import { profileCardLevelLabel } from './profileCardLabel';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
@@ -70,12 +70,8 @@ import {
   getProfileCardLevelDef,
   getProfileCardSnapshot,
   PROFILE_CARD_LEVEL_NAME_RU,
-  normalizeProfileCardMotion,
   normalizeProfileCardLevel,
-  normalizeProfileCardPublicFocus,
-  normalizeProfileCardTheme,
   profileCardLevelRoman,
-  PROFILE_CARD_MAX_LEVEL,
   ProfileCardMotion,
   ProfileCardSnapshot,
   ProfileCardTheme,
@@ -96,6 +92,8 @@ export interface PlayerInfo {
   friendUid?: string;
   isPremium?: boolean;
   isVip?: boolean;
+  /** Разовая покупка «Навсегда» (premium_plan==='lifetime') → показываем «Pro» вместо «Plus». */
+  isLifetime?: boolean;
   leagueCrownExpiresAt?: number;
   leagueCrownCount?: number;
   profileCardLevel?: number;
@@ -124,6 +122,10 @@ const RANK_TIER_EMOJIS: Record<string, string> = {
   bronze: '🥉', silver: '🥈', gold: '🥇', platinum: '💎',
   diamond: '👑', master: '🔥', grandmaster: '⚡', legend: '🌟',
 };
+
+// Синяя «дорогая» палитра Pro-плашки (зеркало celebrationContent.ts → pro.main).
+const PRO_BADGE_BLUE = '#38BDF8';
+const PRO_BADGE_TEXT = '#04101f';
 
 type ProfileCardVisual = {
   theme: ProfileCardTheme;
@@ -170,54 +172,31 @@ const PROFILE_CARD_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardVisual, 'th
     surfaceBorder: 'rgba(250,204,21,0.25)',
     shadowColor: '#FACC15',
   },
-  crystal: {
-    gradient: ['#06131A', '#0D2732', '#111827'],
-    accent: '#67E8F9',
-    accentSoft: 'rgba(103,232,249,0.15)',
-    accentStrong: 'rgba(103,232,249,0.42)',
-    secondary: '#E0F2FE',
-    surface: 'rgba(103,232,249,0.07)',
-    surfaceBorder: 'rgba(103,232,249,0.22)',
-    shadowColor: '#22D3EE',
-  },
-  ember: {
-    gradient: ['#1A090B', '#2A1112', '#15161B'],
-    accent: '#FB7185',
-    accentSoft: 'rgba(251,113,133,0.15)',
-    accentStrong: 'rgba(251,113,133,0.42)',
-    secondary: '#FED7AA',
-    surface: 'rgba(251,113,133,0.07)',
-    surfaceBorder: 'rgba(251,113,133,0.22)',
-    shadowColor: '#FB7185',
-  },
-  aurora: {
-    gradient: ['#080B1E', '#14233D', '#1B1230'],
-    accent: '#A78BFA',
-    accentSoft: 'rgba(167,139,250,0.15)',
-    accentStrong: 'rgba(34,211,238,0.36)',
-    secondary: '#22D3EE',
-    surface: 'rgba(167,139,250,0.075)',
-    surfaceBorder: 'rgba(167,139,250,0.22)',
-    shadowColor: '#A78BFA',
-  },
 };
 
 function normalizeProfileCardSnapshotForLevel(raw: Partial<ProfileCardSnapshot> & Partial<PlayerInfo>): ProfileCardSnapshot {
   const level = normalizeProfileCardLevel(raw.profileCardLevel ?? raw.level);
-  const theme = level >= 2 ? normalizeProfileCardTheme(raw.profileCardTheme ?? raw.theme) : 'classic';
-  const motion = level >= 3 ? normalizeProfileCardMotion(raw.profileCardMotion ?? raw.motion) : 'none';
-  const publicFocus = level >= 4 ? normalizeProfileCardPublicFocus(raw.profileCardPublicFocus ?? raw.publicFocus) : 'balanced';
+  const theme = level >= 1 ? 'gold' : 'classic';
+  const motion = 'none';
+  const publicFocus = 'balanced';
   return { level, theme, motion, publicFocus };
 }
 
 function getProfileCardVisual(snapshot: ProfileCardSnapshot): ProfileCardVisual {
-  const theme = snapshot.level >= 2 ? snapshot.theme : 'classic';
-  const motion = snapshot.level >= 5 && snapshot.motion === 'elite'
-    ? 'elite'
-    : snapshot.level >= 3
-      ? snapshot.motion
-      : 'none';
+  const theme = snapshot.level >= 1 ? 'gold' : 'classic';
+  const motion = 'none';
   return { theme, motion, ...PROFILE_CARD_VISUALS[theme] };
+}
+
+function formatProfileCompactNumber(value: number): string {
+  const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
+  if (n < 1000) return String(n);
+  const thousands = n / 1000;
+  if (n < 10000) {
+    const oneDecimal = Math.floor(thousands * 10) / 10;
+    return `${Number.isInteger(oneDecimal) ? oneDecimal.toFixed(0) : oneDecimal.toFixed(1)}K`;
+  }
+  return `${Math.floor(thousands)}K`;
 }
 
 type BodyProps = {
@@ -251,19 +230,16 @@ function PlayerProfileModalBody({
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const router = useRouter();
   const isCompassTheme = false;
-  const profileUpgradeAccent = '#FACC15';
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isMe = player.isMe;
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
+  const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(() => new Set());
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
-  // Owner-only upgrade entry + modal. Card visuals (gradient/motion/badge) render
-  // for everyone regardless of this flag; only the "upgrade my card" controls are gated.
-  const showProfileCardControls = ENABLE_PROFILE_CARD;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   // Profile-level activity like the current user has already placed today (toggle state).
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -287,6 +263,17 @@ function PlayerProfileModalBody({
   const club = CLUBS[Math.max(0, Math.min(leagueIdx, CLUBS.length - 1))];
   const showPremium = isMe ? myIsPremium : (player.isPremium ?? false);
   const showVip = isMe ? myIsVip : (player.isVip ?? false);
+  // «Pro» = разовая покупка «Навсегда» (lifetime). Для себя читаем локальный план,
+  // для чужих — денормализованный флаг из публичного профиля. Показываем Pro только
+  // при активном премиум-доступе (showPremium), иначе плашки нет вовсе.
+  const [myIsLifetime, setMyIsLifetime] = useState(false);
+  useEffect(() => {
+    if (!isMe) return;
+    let cancelled = false;
+    void isLifetimePlanLocal().then((v) => { if (!cancelled) setMyIsLifetime(v); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [isMe]);
+  const showPro = showPremium && (isMe ? myIsLifetime : (player.isLifetime ?? false));
   const storedAuraId = isMe ? myInfo.aura : player.aura;
   const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium, showVip);
   const usesPremiumAura = effectiveAuraId === PREMIUM_AVATAR_AURA_ID;
@@ -301,9 +288,6 @@ function PlayerProfileModalBody({
   const hasLeagueCrown = leagueCrownCount > 0 || Math.max(Number(player.leagueCrownExpiresAt) || 0, remoteCrown.expiresAt) > Date.now();
   const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
   const rawProfileCardLevel = player.profileCardLevel;
-  const rawProfileCardTheme = player.profileCardTheme;
-  const rawProfileCardMotion = player.profileCardMotion;
-  const rawProfileCardPublicFocus = player.profileCardPublicFocus;
 
   useEffect(() => {
     if (!crownUid) {
@@ -363,6 +347,7 @@ function PlayerProfileModalBody({
     CLOUD_SYNC_ENABLED &&
     !IS_EXPO_GO;
   const isAlreadyFriend = !!friendRequestTargetUid && friendUids.has(friendRequestTargetUid);
+  const isFriendRequestSent = !!friendRequestTargetUid && friendRequestSentUids.has(friendRequestTargetUid);
 
   // Profile-level activity like: tappable on ANY user's card (friend or not), just not your
   // own. The like is bound to the person (not an event), one per day across everyone, toggleable.
@@ -378,9 +363,6 @@ function PlayerProfileModalBody({
     if (!isMe) {
       setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel({
         profileCardLevel: rawProfileCardLevel,
-        profileCardTheme: rawProfileCardTheme,
-        profileCardMotion: rawProfileCardMotion,
-        profileCardPublicFocus: rawProfileCardPublicFocus,
       }));
       return () => {
         cancelled = true;
@@ -399,9 +381,6 @@ function PlayerProfileModalBody({
   }, [
     isMe,
     rawProfileCardLevel,
-    rawProfileCardTheme,
-    rawProfileCardMotion,
-    rawProfileCardPublicFocus,
     player.uid,
     player.friendUid,
   ]);
@@ -409,6 +388,7 @@ function PlayerProfileModalBody({
   useEffect(() => {
     setFriendRequestBusy(false);
     setRemoveFriendConfirmOpen(false);
+    setFriendRequestSentUids(new Set());
   }, [player.uid, player.friendUid]);
 
   useEffect(() => {
@@ -417,15 +397,39 @@ function PlayerProfileModalBody({
       return;
     }
     return subscribeToFriends((rows) => {
-      setFriendUids(new Set(rows.map((row) => row.uid)));
+      const nextFriendUids = new Set(rows.map((row) => row.uid));
+      setFriendUids(nextFriendUids);
+      setFriendRequestSentUids(prev => {
+        const next = new Set([...prev].filter(uid => !nextFriendUids.has(uid)));
+        return next.size === prev.size ? prev : next;
+      });
     });
   }, [showAddFriend]);
 
   const handleAddFriendPress = useCallback(async () => {
     if (!friendRequestTargetUid || friendRequestBusy) return;
+    const targetUid = friendRequestTargetUid;
     setFriendRequestBusy(true);
+    setFriendRequestSentUids(prev => {
+      const next = new Set(prev);
+      next.add(targetUid);
+      return next;
+    });
+    onFriendRequestToast(
+      triLang(lang as Lang, {
+        ru: 'Заявка отправлена!',
+        uk: 'Заявку надіслано!',
+        es: '¡Solicitud enviada!',
+        'pt-BR': 'Solicitação enviada!',
+        vi: 'Đã gửi lời mời!',
+        id: 'Permintaan terkirim!',
+        tr: 'İstek gönderildi!',
+        pl: 'Zaproszenie wysłane!',
+      }),
+      'info',
+    );
     try {
-      const result = await sendFriendRequest(friendRequestTargetUid);
+      const result = await sendFriendRequest(targetUid);
       if (result === 'sent') {
         void invalidateFriendsActivityCache();
         onFriendRequestToast(
@@ -442,6 +446,16 @@ function PlayerProfileModalBody({
           'info',
         );
       } else if (result === 'already_friends') {
+        setFriendRequestSentUids(prev => {
+          const next = new Set(prev);
+          next.delete(targetUid);
+          return next;
+        });
+        setFriendUids(prev => {
+          const next = new Set(prev);
+          next.add(targetUid);
+          return next;
+        });
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Уже друзья',
@@ -470,6 +484,11 @@ function PlayerProfileModalBody({
           'info',
         );
       } else if (result === 'self') {
+        setFriendRequestSentUids(prev => {
+          const next = new Set(prev);
+          next.delete(targetUid);
+          return next;
+        });
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Это твой профиль',
@@ -484,6 +503,11 @@ function PlayerProfileModalBody({
           'info',
         );
       } else {
+        setFriendRequestSentUids(prev => {
+          const next = new Set(prev);
+          next.delete(targetUid);
+          return next;
+        });
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Не отправилось. Попробуй позже',
@@ -498,30 +522,56 @@ function PlayerProfileModalBody({
           'error',
         );
       }
+    } catch {
+      setFriendRequestSentUids(prev => {
+        const next = new Set(prev);
+        next.delete(targetUid);
+        return next;
+      });
+      onFriendRequestToast(
+        triLang(lang as Lang, {
+          ru: 'Не отправилось. Попробуй позже',
+          uk: 'Не вдалося надіслати. Спробуйте пізніше',
+          es: 'No se pudo enviar. Inténtalo más tarde',
+          'pt-BR': 'Não foi possível enviar. Tente mais tarde',
+          vi: 'Không gửi được. Hãy thử lại sau',
+          id: 'Tidak dapat dikirim. Coba lagi nanti',
+          tr: 'Gönderilemedi. Daha sonra tekrar dene',
+          pl: 'Nie udało się wysłać. Spróbuj później',
+        }),
+        'error',
+      );
     } finally {
       setFriendRequestBusy(false);
     }
   }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
 
   const handleFriendButtonPress = useCallback(() => {
-    if (!friendRequestTargetUid || friendRequestBusy) return;
+    if (!friendRequestTargetUid || friendRequestBusy || isFriendRequestSent) return;
     hapticTap();
     if (isAlreadyFriend) {
       setRemoveFriendConfirmOpen(true);
       return;
     }
     void handleAddFriendPress();
-  }, [friendRequestTargetUid, friendRequestBusy, isAlreadyFriend, handleAddFriendPress]);
+  }, [friendRequestTargetUid, friendRequestBusy, isAlreadyFriend, isFriendRequestSent, handleAddFriendPress]);
 
   const handleRemoveFriendConfirm = useCallback(() => {
     if (!friendRequestTargetUid || friendRequestBusy) return;
+    const removedUid = friendRequestTargetUid;
+    const wasFriend = friendUids.has(removedUid);
     setRemoveFriendConfirmOpen(false);
     setFriendRequestBusy(true);
-    deleteFriend(friendRequestTargetUid)
+    setFriendUids((prev) => {
+      const next = new Set(prev);
+      next.delete(removedUid);
+      return next;
+    });
+    deleteFriend(removedUid)
       .then(() => {
         setFriendUids((prev) => {
           const next = new Set(prev);
-          next.delete(friendRequestTargetUid);
+          next.delete(removedUid);
           return next;
         });
         void invalidateFriendsActivityCache();
@@ -540,6 +590,13 @@ function PlayerProfileModalBody({
         );
       })
       .catch(() => {
+        if (wasFriend) {
+          setFriendUids((prev) => {
+            const next = new Set(prev);
+            next.add(removedUid);
+            return next;
+          });
+        }
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Ошибка удаления. Попробуй ещё раз',
@@ -555,7 +612,7 @@ function PlayerProfileModalBody({
         );
       })
       .finally(() => setFriendRequestBusy(false));
-  }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
+  }, [friendRequestTargetUid, friendRequestBusy, friendUids, lang, onFriendRequestToast]);
 
   const handleToggleLike = useCallback(() => {
     if (!canLike || !likeTargetUid || likeInFlightRef.current) return;
@@ -643,163 +700,17 @@ function PlayerProfileModalBody({
       });
   }, [canLike, likeTargetUid, likedThisProfile, myInfo.name, lang, onFriendRequestToast]);
 
-  const arenaLabelText = duelRank
-    ? `${arenaTierLabel(duelRank.tier as RankTier, lang as Lang)} ${duelRank.level}`
-    : triLang(lang as Lang, {
-      ru: 'Арена не сыграна',
-      uk: 'Арена не зіграна',
-      es: 'Arena sin partidas',
-      'pt-BR': "Arena sem partidas",
-      vi: "Đấu trường chưa có trận",
-      id: "Arena tanpa pertandingan",
-      tr: "Maçsız Arena",
-      pl: "Arena bez meczów",
-    });
-  const profileFocusConfig = (() => {
-    const focus = profileCardSnapshot.publicFocus;
-    if (focus === 'arena') {
-      return {
-        icon: 'flash-outline' as const,
-        label: triLang(lang as Lang, {
-          ru: 'Фокус арены',
-          uk: 'Фокус арени',
-          es: 'Enfoque arena',
-          'pt-BR': "Foco na Arena",
-          vi: "Tập trung Đấu trường",
-          id: "Fokus arena",
-          tr: "Arena odağı",
-          pl: "Fokus na Arenę",
-        }),
-        value: arenaLabelText,
-        detail: duelRank ? `${duelRank.xp} XP` : triLang(lang as Lang, {
-          ru: 'Готов к первому рангу',
-          uk: 'Готовий до першого рангу',
-          es: 'Listo para el primer rango',
-          'pt-BR': "Pronto para o primeiro rank",
-          vi: "Sẵn sàng cho hạng đầu tiên",
-          id: "Siap untuk peringkat pertama",
-          tr: "İlk rütbeye hazır",
-          pl: "Gotowe na pierwszy ranking",
-        }),
-      };
-    }
-    if (focus === 'streak') {
-      return {
-        icon: 'flame-outline' as const,
-        label: triLang(lang as Lang, {
-          ru: 'Фокус серии',
-          uk: 'Фокус серії',
-          es: 'Enfoque racha',
-          'pt-BR': "Foco na sequência",
-          vi: "Tập trung chuỗi",
-          id: "Fokus rangkaian",
-          tr: "Seri odağı",
-          pl: "Fokus na serię",
-        }),
-        value: streak !== null ? `${streak}` : '0',
-        detail: triLang(lang as Lang, {
-          ru: 'дней подряд',
-          uk: 'днів поспіль',
-          es: 'días seguidos',
-          'pt-BR': "dias seguidos",
-          vi: "ngày liên tiếp",
-          id: "hari berturut-turut",
-          tr: "gün üst üste",
-          pl: "dni z rzędu",
-        }),
-      };
-    }
-    if (focus === 'league') {
-      return {
-        icon: 'shield-checkmark-outline' as const,
-        label: triLang(lang as Lang, {
-          ru: 'Фокус лиги',
-          uk: 'Фокус ліги',
-          es: 'Enfoque liga',
-          'pt-BR': "Foco na liga",
-          vi: "Tập trung giải đấu",
-          id: "Fokus liga",
-          tr: "Lig odağı",
-          pl: "Fokus na ligę",
-        }),
-        value: clubTierShortName(club, lang as Lang),
-        detail: triLang(lang as Lang, {
-          ru: 'текущая лига',
-          uk: 'поточна ліга',
-          es: 'liga actual',
-          'pt-BR': "liga atual",
-          vi: "giải đấu hiện tại",
-          id: "liga saat ini",
-          tr: "mevcut lig",
-          pl: "obecna liga",
-        }),
-      };
-    }
-    if (focus === 'xp') {
-      return {
-        icon: 'trending-up-outline' as const,
-        label: triLang(lang as Lang, {
-          ru: 'Фокус опыта',
-          uk: 'Фокус досвіду',
-          es: 'Enfoque XP',
-          'pt-BR': "Foco em XP",
-          vi: "Tập trung XP",
-          id: "Fokus XP",
-          tr: "XP odağı",
-          pl: "Fokus na XP",
-        }),
-        value: xp.toLocaleString(),
-        detail: `Lv.${level} · ${getTitleString(level, lang)}`,
-      };
-    }
-    return {
-      icon: 'diamond-outline' as const,
-      label: triLang(lang as Lang, {
-        ru: 'Сбалансированный профиль',
-        uk: 'Збалансований профіль',
-        es: 'Perfil equilibrado',
-        'pt-BR': "Perfil equilibrado",
-        vi: "Hồ sơ cân bằng",
-        id: "Profil seimbang",
-        tr: "Dengeli profil",
-        pl: "Zrównoważony profil",
-      }),
-      value: `Lv.${level} · ${clubTierShortName(club, lang as Lang)}`,
-      detail: streak !== null ? `${streak} ${triLang(lang as Lang, {
-        ru: 'дней подряд',
-        uk: 'днів поспіль',
-        es: 'días seguidos',
-        'pt-BR': "dias seguidos",
-        vi: "ngày liên tiếp",
-        id: "hari berturut-turut",
-        tr: "gün üst üste",
-        pl: "dni z rzędu",
-      })}` : arenaLabelText,
-    };
-  })();
-  const prestigeFacts = [
-    { label: 'XP', value: xp.toLocaleString() },
-    { label: triLang(lang as Lang, {
-      ru: 'Титул',
-      uk: 'Титул',
-      es: 'Título',
-      'pt-BR': "Título",
-      vi: "Danh hiệu",
-      id: "Gelar",
-      tr: "Unvan",
-      pl: "Tytuł",
-    }), value: getTitleString(level, lang) },
-    { label: triLang(lang as Lang, {
-      ru: 'Карточка',
-      uk: 'Картка',
-      es: 'Tarjeta',
-      'pt-BR': "Cartão",
-      vi: "Thẻ",
-      id: "Kartu",
-      tr: "Kart",
-      pl: "Karta",
-    }), value: profileCardLevelLabel(profileCardLevel as 0|1|2|3|4|5, lang === 'ru') },
-  ];
+  const compactXp = formatProfileCompactNumber(xp);
+  const profileChainLabel = triLang(lang as Lang, {
+    ru: 'цепочка',
+    uk: 'ланцюжок',
+    es: 'racha',
+    'pt-BR': "sequência",
+    vi: "chuỗi",
+    id: "rangkaian",
+    tr: "seri",
+    pl: "seria",
+  });
 
   return (
     <>
@@ -871,7 +782,7 @@ function PlayerProfileModalBody({
           <Pressable
             testID="player-profile-add-friend"
             onPress={handleFriendButtonPress}
-            disabled={friendRequestBusy}
+            disabled={friendRequestBusy || isFriendRequestSent}
             style={{
               position: 'absolute',
               top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
@@ -889,7 +800,7 @@ function PlayerProfileModalBody({
                 : (prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairline : 'rgba(255,255,255,0.14)'),
               overflow: compassProfileSurface ? 'hidden' : 'visible',
               ...(compassProfileSurface ? compassShadow(1) : null),
-              opacity: friendRequestBusy ? 0.55 : 1,
+              opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
             }}
             accessibilityRole="button"
             accessibilityLabel={triLang(lang as Lang, {
@@ -905,7 +816,7 @@ function PlayerProfileModalBody({
           >
             {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
             <Ionicons
-              name={isAlreadyFriend ? 'person-remove-outline' : 'person-add-outline'}
+              name={isAlreadyFriend ? 'person-remove-outline' : isFriendRequestSent ? 'checkmark-circle-outline' : 'person-add-outline'}
               size={22}
               color={isAlreadyFriend ? (compassProfileSurface ? COMPASS_RICH.peach : (t.wrong ?? t.accent)) : compassProfileSurface ? COMPASS_RICH.champagne : t.accent}
             />
@@ -919,7 +830,7 @@ function PlayerProfileModalBody({
               end={{ x: 1, y: 1 }}
               style={StyleSheet.absoluteFill}
             />
-            {profileCardLevel >= 2 && (
+            {profileCardLevel > 0 && (
               <View pointerEvents="none" style={{
                 position: 'absolute',
                 left: 18,
@@ -944,31 +855,42 @@ function PlayerProfileModalBody({
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: 24, paddingBottom: Math.max(96, insets.bottom + 72) }}
+          contentContainerStyle={{ padding: 24, paddingBottom: Math.max(96, bottomInset + 72) }}
         >
         <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: prestigeActive ? cardVisual.accentStrong : t.border, alignSelf: 'center', marginBottom: 20 }} />
         {showPremium && (
+          // Pro (разовая «Навсегда») — синяя «дорогая» плашка с 💎; иначе Plus —
+          // золотая со звёздами. Внутренний доступ один и тот же (premium), меняется
+          // только видимое имя/цвет — как в PremiumCelebrationModal (pro=синий).
           <Animated.View style={{
             opacity: shimmerOpacity,
             alignSelf: 'center',
             marginBottom: 12,
-            backgroundColor: t.gold,
+            backgroundColor: showPro ? PRO_BADGE_BLUE : t.gold,
             borderRadius: 20,
             paddingHorizontal: 18,
             paddingVertical: 5,
             flexDirection: 'row',
             alignItems: 'center',
             gap: 6,
-            shadowColor: t.gold,
+            shadowColor: showPro ? PRO_BADGE_BLUE : t.gold,
             shadowOpacity: 0.6,
             shadowRadius: 8,
             elevation: 6,
           }}>
-            <Ionicons name="star" size={13} color={t.correctText} />
-            <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.label, letterSpacing: 1 }}>
-              PREMIUM
+            {showPro ? (
+              <Ionicons name="diamond" size={13} color={PRO_BADGE_TEXT} />
+            ) : (
+              <Ionicons name="star" size={13} color={t.correctText} />
+            )}
+            <Text style={{ color: showPro ? PRO_BADGE_TEXT : t.correctText, fontWeight: '800', fontSize: f.label, letterSpacing: 1 }}>
+              {showPro ? 'PRO' : 'PLUS'}
             </Text>
-            <Ionicons name="star" size={13} color={t.correctText} />
+            {showPro ? (
+              <Ionicons name="diamond" size={13} color={PRO_BADGE_TEXT} />
+            ) : (
+              <Ionicons name="star" size={13} color={t.correctText} />
+            )}
           </Animated.View>
         )}
         {profileCardLevel > 0 && (
@@ -992,7 +914,7 @@ function PlayerProfileModalBody({
           }}>
             <Ionicons name="sparkles" size={13} color="#111827" />
             <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
-              {profileCardLevelRoman(profileCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[profileCardLevel as 0|1|2|3|4|5] : cardDef.name}
+              {profileCardLevelRoman(profileCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[profileCardLevel] : cardDef.name}
             </Text>
           </LinearGradient>
         )}
@@ -1011,16 +933,7 @@ function PlayerProfileModalBody({
               {hasLeagueCrown && (
                 <View style={{ marginTop: 10, maxWidth: '100%' }}>
                   <LeagueCrownName
-                    text={`${player.name}${isMe ? triLang(lang as Lang, {
-                      ru: ' (ты)',
-                      uk: ' (ти)',
-                      es: ' (tú)',
-                      'pt-BR': " (você)",
-                      vi: " (bạn)",
-                      id: " (kamu)",
-                      tr: " (sen)",
-                      pl: " (ty)",
-                    }) : ''}`}
+                    text={player.name}
                     fontSize={f.h2}
                     iconScale={1.8}
                     count={displayLeagueCrownCount}
@@ -1032,16 +945,7 @@ function PlayerProfileModalBody({
                 { fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 },
                 { isPremium: showPremium, isVip: showVip, themeMode },
               )}>
-                {player.name}{isMe ? triLang(lang as Lang, {
-                  ru: ' (ты)',
-                  uk: ' (ти)',
-                  es: ' (tú)',
-                  'pt-BR': " (você)",
-                  vi: " (bạn)",
-                  id: " (kamu)",
-                  tr: " (sen)",
-                  pl: " (ty)",
-                }) : ''}
+                {player.name}
               </Text>
               )}
               <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>
@@ -1052,15 +956,11 @@ function PlayerProfileModalBody({
           </View>
         </View>
         <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
-          <View style={[{ flex: 1, minWidth: 0, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
-            <Text
-              style={{ fontSize: f.numMd, fontWeight: '700', color: t.gold, maxWidth: '100%' }}
-              numberOfLines={1}
-            >
-              {xp.toLocaleString()}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-              {triLang(lang as Lang, {
+          {[
+            {
+              key: 'xp',
+              value: compactXp,
+              label: triLang(lang as Lang, {
                 ru: 'опыт',
                 uk: 'досвід',
                 es: 'experiencia',
@@ -1069,15 +969,13 @@ function PlayerProfileModalBody({
                 id: "pengalaman",
                 tr: "deneyim",
                 pl: "doświadczenie",
-              })}
-            </Text>
-          </View>
-          <View style={[{ flex: 1, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
-            <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.textPrimary }}>
-              {`Lv.${level}`}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-              {triLang(lang as Lang, {
+              }),
+              color: t.gold,
+            },
+            {
+              key: 'level',
+              value: `Lv.${level}`,
+              label: triLang(lang as Lang, {
                 ru: 'уровень',
                 uk: 'рівень',
                 es: 'nivel',
@@ -1086,27 +984,42 @@ function PlayerProfileModalBody({
                 id: "level",
                 tr: "seviye",
                 pl: "poziom",
-              })}
-            </Text>
-          </View>
-          {streak !== null && (
-            <View style={[{ flex: 1, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
-              {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
-              <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.textPrimary }}>🔥{streak}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-                {triLang(lang as Lang, {
-                  ru: 'дней подряд',
-                  uk: 'днів поспіль',
-                  es: 'días seguidos',
-                  'pt-BR': "dias seguidos",
-                  vi: "ngày liên tiếp",
-                  id: "hari berturut-turut",
-                  tr: "gün üst üste",
-                  pl: "dni z rzędu",
-                })}
+              }),
+              color: t.textPrimary,
+            },
+            {
+              key: 'streak',
+              value: String(streak ?? 0),
+              label: profileChainLabel,
+              color: t.textPrimary,
+            },
+          ].map((metric) => (
+            <View key={metric.key} style={{ flex: 1, minWidth: 0, alignItems: 'center' }}>
+              <View style={[{
+                width: '100%',
+                minHeight: 46,
+                borderRadius: 12,
+                paddingHorizontal: 8,
+                paddingVertical: 8,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }, prestigeSurfaceStyle]}>
+                {compassProfileSurface && <CompassDepthSurface radius={12} quiet />}
+                <Text
+                  style={{ color: metric.color, fontSize: f.numMd, fontWeight: '800', width: '100%', textAlign: 'center' }}
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.62}
+                  maxFontSizeMultiplier={1}
+                >
+                  {metric.value}
+                </Text>
+              </View>
+              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', marginTop: 6 }} numberOfLines={1}>
+                {metric.label}
               </Text>
             </View>
-          )}
+          ))}
         </View>
         <Pressable
           testID="player-profile-activity-like"
@@ -1194,97 +1107,6 @@ function PlayerProfileModalBody({
             </Text>
           </View>
         </View>
-        {profileCardLevel >= 4 && (
-          <LinearGradient
-            colors={[cardVisual.accentSoft, 'rgba(255,255,255,0.035)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-              borderRadius: 16,
-              borderWidth: 1,
-              borderColor: cardVisual.accentStrong,
-              padding: 14,
-              marginBottom: 10,
-            }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: cardVisual.accentSoft, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: cardVisual.accentStrong }}>
-                <Ionicons name={profileFocusConfig.icon} size={18} color={cardVisual.accent} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: cardVisual.accent, fontSize: f.caption, fontWeight: '900' }}>
-                  {profileFocusConfig.label}
-                </Text>
-                <Text
-                  style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 1 }}
-                >
-                  {profileFocusConfig.value}
-                </Text>
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
-                {profileFocusConfig.detail}
-              </Text>
-            </View>
-            <View style={{ flexDirection: 'row', gap: 8 }}>
-              {prestigeFacts.map((fact) => (
-                <View
-                  key={fact.label}
-                  style={{
-                    flex: 1,
-                    minWidth: 0,
-                    borderRadius: 12,
-                    paddingHorizontal: 9,
-                    paddingVertical: 8,
-                    backgroundColor: 'rgba(0,0,0,0.14)',
-                    borderWidth: 1,
-                    borderColor: 'rgba(255,255,255,0.08)',
-                  }}
-                >
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} numberOfLines={1}>
-                    {fact.label}
-                  </Text>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', marginTop: 2 }}
-                  >
-                    {fact.value}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </LinearGradient>
-        )}
-        {profileCardLevel >= 5 && (
-          <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 10,
-            borderRadius: 16,
-            borderWidth: 1,
-            borderColor: cardVisual.accentStrong,
-            backgroundColor: 'rgba(0,0,0,0.18)',
-            padding: 13,
-            marginBottom: 10,
-          }}>
-            <Ionicons name="ribbon-outline" size={22} color={cardVisual.secondary} />
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: cardVisual.secondary, fontSize: f.caption, fontWeight: '900' }}>
-                ELITE SIGNATURE
-              </Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', marginTop: 2 }}>
-                {triLang(lang as Lang, {
-                  ru: 'Максимальная карточка с персональным entrance-эффектом.',
-                  uk: 'Максимальна картка з персональним entrance-ефектом.',
-                  es: 'Tarjeta máxima con efecto de entrada personal.',
-                  'pt-BR': "Cartão máximo com efeito de entrada pessoal.",
-                  vi: "Thẻ tối đa với hiệu ứng vào cá nhân.",
-                  id: "Kartu maksimum dengan efek masuk pribadi.",
-                  tr: "Kişisel giriş efektli maksimum kart.",
-                  pl: "Maksymalna karta z osobistym efektem wejścia.",
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
         {isMe && multipliers && (
           <View style={[{ borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
@@ -1469,60 +1291,6 @@ function PlayerProfileModalBody({
               <Text style={{ color: t.textMuted, fontSize: f.sub }}>{seasonBadge.seasonId}</Text>
             </View>
           </View>
-        )}
-        {isMe && showProfileCardControls && (
-          <TouchableOpacity
-            testID="player-profile-card-upgrade-open"
-            activeOpacity={0.84}
-            onPress={() => {
-              hapticTap();
-              // Прокачка теперь на отдельном полноэкранном экране (старое окно снесено).
-              // Закрываем профиль и переходим туда — экран сам перечитает актуальный уровень.
-              onClose();
-              router.push('/profile_card_upgrade' as any);
-            }}
-            style={{
-              marginTop: 2,
-              borderRadius: compassProfileSurface ? 9 : 16,
-              borderWidth: 1,
-              borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairlineStrong : 'rgba(250,204,21,0.38)',
-              backgroundColor: prestigeActive ? cardVisual.accentSoft : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(250,204,21,0.10)',
-              paddingVertical: 13,
-              paddingHorizontal: 14,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              overflow: compassProfileSurface ? 'hidden' : 'visible',
-              ...(compassProfileSurface ? compassShadow(1) : null),
-            }}
-          >
-            {compassProfileSurface && <CompassDepthSurface radius={9} selected />}
-            <Ionicons name={profileCardLevel >= PROFILE_CARD_MAX_LEVEL ? 'sparkles' : 'color-wand-outline'} size={18} color={prestigeActive ? cardVisual.accent : compassProfileSurface ? COMPASS_RICH.champagne : profileUpgradeAccent} />
-            <Text style={{ color: prestigeActive ? cardVisual.accent : compassProfileSurface ? COMPASS_RICH.champagne : profileUpgradeAccent, fontSize: f.body, fontWeight: '900' }}>
-              {profileCardLevel >= PROFILE_CARD_MAX_LEVEL
-                ? triLang(lang as Lang, {
-                  ru: 'Карточка максимального уровня',
-                  uk: 'Картка максимального рівня',
-                  es: 'Tarjeta al nivel máximo',
-                  'pt-BR': "Cartão no nível máximo",
-                  vi: "Thẻ ở cấp tối đa",
-                  id: "Kartu level maksimum",
-                  tr: "Maksimum seviyede kart",
-                  pl: "Karta na maksymalnym poziomie",
-                })
-                : triLang(lang as Lang, {
-                  ru: 'Улучшить карточку',
-                  uk: 'Покращити картку',
-                  es: 'Mejorar tarjeta',
-                  'pt-BR': "Melhorar cartão",
-                  vi: "Nâng cấp thẻ",
-                  id: "Tingkatkan kartu",
-                  tr: "Kartı yükselt",
-                  pl: "Ulepsz kartę",
-                })}
-            </Text>
-          </TouchableOpacity>
         )}
         </ScrollView>
       </Animated.View>

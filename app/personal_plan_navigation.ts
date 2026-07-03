@@ -20,7 +20,7 @@ export function planTaskDestinationLabel(destination: PlanTaskDestination): stri
     return `${count} фраз`;
   };
 
-  if (destination.type === 'lesson') return `Урок · ${phraseLabel(destination.requiredPhrases)}`;
+  if (destination.type === 'lesson') return `Тренировка · ${phraseLabel(destination.requiredPhrases)}`;
   if (destination.type === 'plan_phrase_lesson') return `Фразы дня · ${destination.requiredPhrases}`;
   if (destination.type === 'plan_phrase_recall') return `Повтор · ${phraseLabel(destination.requiredPhrases)}`;
   if (destination.type === 'plan_exercise') {

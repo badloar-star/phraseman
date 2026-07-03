@@ -68,14 +68,14 @@ describe('quiz_explain_gates — batch parsing', () => {
   });
 
   it('tolerates a ```json fenced reply', () => {
-    const raw = '```json\n{"confirm":"Отлично!","options":{"Cup":"это чашка"}}\n```';
+    const raw = '```json\n{"confirm":"Отлично!","options":{"Cup":"это чашка","Bowl":"это миска","Chair":"это стул"}}\n```';
     const r = parseQuizBatch(raw, wrongOptions);
     expect(r.ok).toBe(true);
     expect(r.options['Cup']).toBe('это чашка');
   });
 
   it('maps keys case-insensitively', () => {
-    const raw = JSON.stringify({ confirm: 'Да', options: { cup: 'чашка' } });
+    const raw = JSON.stringify({ confirm: 'Да', options: { cup: 'чашка', bowl: 'миска', chair: 'стул' } });
     const r = parseQuizBatch(raw, wrongOptions);
     expect(r.options['Cup']).toBe('чашка');
   });
@@ -92,6 +92,22 @@ describe('quiz_explain_gates — batch parsing', () => {
     expect(r.confirm.length).toBeLessThanOrEqual(MAX_QUIZ_EXPLANATION_CHARS);
     expect(r.options.Cup.length).toBeLessThanOrEqual(MAX_QUIZ_EXPLANATION_CHARS);
     expect(r.confirm).toMatch(/…$/);
+  });
+
+  it('fails when any requested wrong option is missing so a partial ready cache is not published', () => {
+    const raw = JSON.stringify({
+      confirm: 'Да, это Knife.',
+      options: {
+        Cup: '"Cup" — это чашка, а не нож.',
+      },
+    });
+
+    const r = parseQuizBatch(raw, wrongOptions);
+
+    expect(r.ok).toBe(false);
+    expect(r.confirm).toContain('Knife');
+    expect(r.options.Cup).toContain('чашка');
+    expect(r.options.Bowl).toBeUndefined();
   });
 
   it('fails on unparseable JSON', () => {

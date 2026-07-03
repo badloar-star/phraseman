@@ -14,6 +14,7 @@ import {
   FREE_FLASHCARD_LIMIT,
   FLASHCARDS_KEY,
   Flashcard,
+  __resetFlashcardCacheForTests,
 } from '../../hooks/use-flashcards';
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -40,6 +41,12 @@ const makeFullCard = (en: string): Flashcard => ({
 describe('use-flashcards', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // clearAllMocks restores the manual AsyncStorage mock's default impl (reads a shared
+    // singleton store); drain that store so a prior case's writes don't leak into this one.
+    (mockStorage as unknown as { __reset?: () => void }).__reset?.();
+    // The module keeps in-memory caches for the app lifetime; reset them so each case
+    // reads its own AsyncStorage fixture instead of a value cached by a previous case.
+    __resetFlashcardCacheForTests();
   });
 
   // ── loadFlashcards ─────────────────────────────────────────────────────────

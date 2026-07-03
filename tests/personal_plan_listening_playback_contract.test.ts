@@ -51,18 +51,21 @@ function buildItem(overrides: Partial<PersonalPlanListenBuildItem> = {}): Person
 }
 
 describe('personal plan listening playback contract', () => {
-  it('builds an in-app downloadable playback source for approved audio', () => {
+  it('builds an in-app streaming playback source for approved audio', () => {
     expect(buildPlanListeningPlaybackSource(item())).toEqual({
       source: 'in_app_audio',
       uri: 'https://cdn.example.test/gavan/d1/p1.mp3',
       playerSource: 'https://cdn.example.test/gavan/d1/p1.mp3',
       options: {
-        downloadFirst: true,
+        downloadFirst: false,
         updateInterval: 250,
       },
       audioMode: {
         playsInSilentMode: true,
         shouldPlayInBackground: false,
+        allowsRecording: false,
+        allowsBackgroundRecording: false,
+        shouldRouteThroughEarpiece: false,
         interruptionMode: 'duckOthers',
       },
       issues: [],

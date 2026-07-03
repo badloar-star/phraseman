@@ -54,19 +54,6 @@ function boardTitle(lang: string): string {
   });
 }
 
-function defaultDescription(lang: string): string {
-  return triLang(lang as never, {
-    ru: 'Здесь — те, кто помогает нам ловить баги. Пришли отчёт об ошибке или жалобу: если она подтвердится, ты попадёшь в топ.',
-    uk: 'Тут — ті, хто допомагає нам ловити баги. Надішли звіт про помилку або скаргу: якщо вона підтвердиться, ти потрапиш у топ.',
-    es: 'Aquí están quienes nos ayudan a cazar errores. Envía un reporte o una queja: si se confirma, entrarás en el top.',
-    'pt-BR': 'Aqui estão quem nos ajuda a caçar bugs. Envie um relato ou reclamação: se confirmado, você entra no top.',
-    vi: 'Đây là những người giúp chúng tôi tìm lỗi. Gửi báo cáo lỗi hoặc khiếu nại: nếu được xác nhận, bạn sẽ vào top.',
-    id: 'Ini para pemburu bug. Kirim laporan atau keluhan: jika terkonfirmasi, kamu masuk top.',
-    tr: 'Hata avında bize yardım edenler burada. Bir hata bildir veya şikâyet gönder: onaylanırsa top listeye girersin.',
-    pl: 'Oto ci, którzy pomagają nam łapać błędy. Wyślij zgłoszenie lub skargę: jeśli się potwierdzi, trafisz do topki.',
-  });
-}
-
 function helpedLabel(count: number, lang: string): string {
   return triLang(lang as never, {
     ru: `Помог с ${count} ${pluralRu(count, 'багом', 'багами', 'багами')}`,
@@ -259,7 +246,9 @@ export default function TopHelpersScreen() {
     [myUid, t, f, lang, openCard],
   );
 
-  const descText = description.trim() || defaultDescription(lang);
+  // Описание — ТОЛЬКО из админки (remote_config/app.texts.top_helpers_description).
+  // Пусто → блок описания не показываем. Никакого зашитого текста в коде.
+  const descText = description.trim();
 
   return (
     <View style={{ flex: 1 }}>
@@ -314,20 +303,22 @@ export default function TopHelpersScreen() {
               extraData={myUid}
               contentContainerStyle={{ paddingBottom: bottomInset + 24 }}
               ListHeaderComponent={
-                <View
-                  style={{
-                    marginHorizontal: 12,
-                    marginTop: 4,
-                    marginBottom: 12,
-                    padding: 14,
-                    borderRadius: 16,
-                    backgroundColor: t.bgCard,
-                    borderWidth: 0.5,
-                    borderColor: t.border,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.4 }}>{descText}</Text>
-                </View>
+                descText ? (
+                  <View
+                    style={{
+                      marginHorizontal: 12,
+                      marginTop: 4,
+                      marginBottom: 12,
+                      padding: 14,
+                      borderRadius: 16,
+                      backgroundColor: t.bgCard,
+                      borderWidth: 0.5,
+                      borderColor: t.border,
+                    }}
+                  >
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.4 }}>{descText}</Text>
+                  </View>
+                ) : null
               }
               ListEmptyComponent={
                 loading ? null : (
@@ -335,14 +326,14 @@ export default function TopHelpersScreen() {
                     <Ionicons name="ribbon-outline" size={40} color={t.textMuted} />
                     <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 12 }}>
                       {triLang(lang, {
-                        ru: 'Пока никто не в топе. Пришли отчёт об ошибке — стань первым!',
-                        uk: 'Поки нікого немає. Надішли звіт про помилку — стань першим!',
-                        es: 'Aún no hay nadie. ¡Envía un reporte y sé el primero!',
-                        'pt-BR': 'Ninguém ainda. Envie um relato e seja o primeiro!',
-                        vi: 'Chưa có ai. Gửi báo cáo lỗi để dẫn đầu!',
-                        id: 'Belum ada. Kirim laporan bug jadi yang pertama!',
-                        tr: 'Henüz kimse yok. Bir hata bildir, ilk sen ol!',
-                        pl: 'Jeszcze nikogo. Wyślij zgłoszenie i bądź pierwszy!',
+                        ru: 'Пока никого нет.',
+                        uk: 'Поки нікого немає.',
+                        es: 'Aún no hay nadie.',
+                        'pt-BR': 'Ninguém ainda.',
+                        vi: 'Chưa có ai.',
+                        id: 'Belum ada siapa pun.',
+                        tr: 'Henüz kimse yok.',
+                        pl: 'Jeszcze nikogo nie ma.',
                       })}
                     </Text>
                   </View>

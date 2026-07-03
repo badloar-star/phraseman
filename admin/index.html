@@ -9981,6 +9981,7 @@
   </div>
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
+  <div class="tab" onclick="switchTab('daily-digest')" title="ИИ-сводка «что случилось за сутки»: репорты, отмены, ошибки, safety — одним взглядом" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
@@ -9996,6 +9997,7 @@
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
   <div class="tab" onclick="switchTab('safety-flags')" style="background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.4);color:#fca5a5;font-weight:700" data-i18n-es="Seguridad">🆘 Safety</div>
   <div class="tab" onclick="switchTab('age-consent')" data-i18n-es="Edad y consentimiento">🔞 Age & consent</div>
+  <div class="tab" onclick="switchTab('compliance-radar')" title="Юр-риски в одном месте: дети <16 без согласия, открытые safety-флаги, тяжёлые юрисдикции" style="background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.4);color:#fca5a5;font-weight:700">🛡 Compliance</div>
   <div class="tab" onclick="switchTab('explain-reports')" data-i18n-es="Explicaciones">Explain reports</div>
   <div class="tab" onclick="switchTab('explain-cache')" data-i18n-es="Caché de explicaciones">Explain cache</div>
   <div class="tab" onclick="switchTab('compass')" data-i18n-es="Brújula">🧭 Компас</div>
@@ -11594,6 +11596,25 @@
     <span class="reports-count" id="ac-count"></span>
   </div>
   <div id="ac-summary"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- COMPLIANCE RADAR TAB (юр-риски одним экраном: дети без согласия, safety, юрисдикции) -->
+<div id="tab-compliance-radar" class="reports-tab">
+  <div class="reports-toolbar">
+    <button onclick="loadComplianceRadar(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <span class="reports-count" id="cr-count"></span>
+  </div>
+  <div id="cr-content"><div class="reports-empty">⏳ Загрузка...</div></div>
+</div>
+
+<!-- DAILY DIGEST TAB (ИИ-сводка «что случилось за сутки» для владельца) -->
+<div id="tab-daily-digest" class="reports-tab">
+  <div class="reports-toolbar">
+    <button id="dd-generate" onclick="generateDailyDigest()" style="background:rgba(139,124,255,0.18);border:1px solid rgba(139,124,255,0.45);color:#c4b5fd;font-weight:700">✨ Сгенерировать за сутки</button>
+    <button onclick="loadDailyDigest(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <span class="reports-count" id="dd-count"></span>
+  </div>
+  <div id="dd-content"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
 <!-- IDEAS TAB (Идеи пользователей — год премиума за принятую идею) -->
@@ -13904,6 +13925,13 @@
       _fnAdminDraftReportReply = httpsCallable(functionsUs, 'adminDraftReportReply');
     }
     return _fnAdminDraftReportReply;
+  }
+  let _fnAdminGenerateDailyDigest = null;
+  function getAdminGenerateDailyDigestCallable() {
+    if (!_fnAdminGenerateDailyDigest) {
+      _fnAdminGenerateDailyDigest = httpsCallable(functionsUs, 'adminGenerateDailyDigest');
+    }
+    return _fnAdminGenerateDailyDigest;
   }
   let _fnAdminEmailBroadcast = null;
   function getAdminEmailBroadcastCallable() {
@@ -18418,6 +18446,8 @@
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
     if(tab==='safety-flags' && !window._safetyFlagsLoaded) loadSafetyFlags();
     if(tab==='age-consent' && !window._ageConsentLoaded) loadAgeConsent();
+    if(tab==='compliance-radar' && !window._complianceRadarLoaded && typeof loadComplianceRadar === 'function') loadComplianceRadar(false);
+    if(tab==='daily-digest' && !window._dailyDigestLoaded && typeof loadDailyDigest === 'function') loadDailyDigest(false);
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
     if(tab==='compass' && !window._compassAdminLoaded) loadCompassAdmin();
@@ -25563,6 +25593,152 @@
     }
   };
 
+  // ═══ COMPLIANCE RADAR — юр-риски одним экраном (светофор) ═══════════════════
+  // Читает user_consents (возраст+согласие) и safety_flags. Считает главную
+  // красную зону: дети <16 без согласия на аналитику. Плюс открытые safety-флаги
+  // и грубую разбивку «тяжёлых» юрисдикций по языку (страну мы не храним).
+  window.loadComplianceRadar = async function(force) {
+    const box = document.getElementById('cr-content');
+    if (!box) return;
+    if (!force && window._complianceRadarLoaded) return;
+    box.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      await auth.currentUser?.getIdToken(true).catch(() => null);
+      const [consentSnap, safetySnap] = await Promise.all([
+        getDocs(query(collection(db, 'user_consents'), limit(8000))),
+        getDocs(query(collection(db, 'safety_flags'), orderBy('createdAtMs', 'desc'), limit(1000))),
+      ]);
+      const consents = consentSnap.docs.map(d => d.data());
+      const flags = safetySnap.docs.map(d => d.data());
+
+      // Дети <16 = teen_safe (13–15) или under13. Без согласия = analyticsConsent !== 'granted'.
+      const minors = consents.filter(c => c.ageBracket === 'teen_safe' || c.ageBracket === 'under13');
+      const minorsNoConsent = minors.filter(c => c.analyticsConsent !== 'granted').length;
+      const under13 = consents.filter(c => c.ageBracket === 'under13').length;
+      const openFlags = flags.filter(f => !f.handled).length;
+      const openMinorFlags = flags.filter(f => !f.handled && (f.ageBracket === 'teen_safe' || f.ageBracket === 'under13')).length;
+
+      // «Тяжёлые» юрисдикции по языку интерфейса (грубо, страну не храним):
+      // ЕС/EEA (GDPR: согласие с 16) — по языкам ЕС; прочее — справочно.
+      const EU_LANGS = new Set(['pl', 'es', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'ro', 'el', 'cs', 'hu', 'sv', 'da', 'fi', 'sk', 'bg', 'hr', 'lt', 'lv', 'et', 'sl']);
+      const langCounts = {};
+      consents.forEach(c => { const l = (c.lang || c.userLanguage || 'unknown'); langCounts[l] = (langCounts[l] || 0) + 1; });
+      const euUsers = Object.entries(langCounts).filter(([l]) => EU_LANGS.has(l)).reduce((n, [, c]) => n + c, 0);
+
+      const countEl = document.getElementById('cr-count');
+      if (countEl) countEl.textContent = `${consents.length} согласий · ${flags.length} флагов`;
+
+      // Светофор по главному риску.
+      const riskLevel = (minorsNoConsent > 0 || openMinorFlags > 0) ? 'red'
+        : (openFlags > 0 || under13 > 0) ? 'amber' : 'green';
+      const riskBanner = {
+        red:   { c:'#f87171', bg:'#1a0a0a', icon:'🔴', txt:'Есть критические зоны — разберись в первую очередь.' },
+        amber: { c:'#fbbf24', bg:'#1a1606', icon:'🟡', txt:'Есть на что посмотреть, но критики нет.' },
+        green: { c:'#4ade80', bg:'#0f1a12', icon:'🟢', txt:'Красных зон не видно. Держим так.' },
+      }[riskLevel];
+
+      const bigCard = (label, n, color, sub, danger) => `
+        <div style="flex:1;min-width:180px;background:${danger && n>0 ? '#1a0a0a' : '#161a1f'};border:1px solid ${danger && n>0 ? color+'66' : 'rgba(255,255,255,0.08)'};${danger && n>0 ? 'border-left:3px solid '+color+';' : ''}border-radius:11px;padding:15px">
+          <div style="font-size:28px;font-weight:800;color:${color}">${n.toLocaleString('ru-RU')}</div>
+          <div style="font-size:12.5px;color:#e5e7eb;margin-top:2px">${label}</div>
+          <div style="font-size:11px;opacity:.6;margin-top:4px">${sub}</div>
+        </div>`;
+
+      box.innerHTML = `
+        <div style="background:${riskBanner.bg};border:1px solid ${riskBanner.c}55;border-radius:11px;padding:14px 16px;margin-bottom:16px;color:${riskBanner.c};font-weight:600;font-size:14px">
+          ${riskBanner.icon} <b>Статус соответствия:</b> ${riskBanner.txt}
+        </div>
+        <div style="font-weight:700;opacity:.85;margin:2px 0 9px">🔴 Красная зона — дети</div>
+        <div style="display:flex;gap:11px;flex-wrap:wrap">
+          ${bigCard('Дети &lt;16 без согласия на аналитику', minorsNoConsent, '#f87171', 'GDPR/COPPA: собирать данные детей без согласия нельзя', true)}
+          ${bigCard('Пользователей младше 13', under13, '#fbbf24', 'Самая защищённая категория (COPPA)', true)}
+          ${bigCard('Открытых safety-флагов от детей', openMinorFlags, '#f87171', 'Опасные сообщения от несовершеннолетних', true)}
+        </div>
+        <div style="font-weight:700;opacity:.85;margin:20px 0 9px">🆘 Безопасность</div>
+        <div style="display:flex;gap:11px;flex-wrap:wrap">
+          ${bigCard('Открытых safety-флагов всего', openFlags, openFlags>0?'#fbbf24':'#4ade80', 'Не помечены как «принято действие»', true)}
+          ${bigCard('Всего детей в базе (13–15 и &lt;13)', minors.length, '#93c5fd', 'Всего несовершеннолетних с записью согласия', false)}
+        </div>
+        <div style="font-weight:700;opacity:.85;margin:20px 0 9px">🌍 Юрисдикции (по языку интерфейса, грубо)</div>
+        <div style="display:flex;gap:11px;flex-wrap:wrap">
+          ${bigCard('Пользователей из ЕС/EEA', euUsers, '#a78bfa', 'GDPR: согласие с 16 лет, право на удаление/экспорт', false)}
+        </div>
+        <div style="margin-top:16px;padding:12px 14px;background:#12151d;border:1px solid #1e2230;border-radius:9px;font-size:12px;color:#9ca3af;line-height:1.6">
+          <b style="color:#c4b5fd">Что делать:</b> если «дети &lt;16 без согласия» &gt; 0 — проверь, что для несовершеннолетних аналитика реально выключена на клиенте. Открытые safety-флаги от детей закрывай в разделе <a href="#" onclick="switchTab('safety-flags');return false" style="color:#818cf8">🆘 Safety</a> с обязательной отметкой действия. Страна берётся приблизительно по языку — точной геолокации в базе нет.
+        </div>`;
+      window._complianceRadarLoaded = true;
+    } catch (e) {
+      window._complianceRadarLoaded = false;
+      box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  // ═══ DAILY DIGEST — ИИ-сводка «что случилось за сутки» ══════════════════════
+  function renderDigestDoc(box, data) {
+    if (!data) {
+      box.innerHTML = '<div class="reports-empty" style="padding:22px">За сегодня дайджеста ещё нет. Нажми «✨ Сгенерировать за сутки» — ИИ прочитает репорты, отмены, ошибки и safety за последние 24 часа и напишет короткую сводку.</div>';
+      return;
+    }
+    const f = data.facts || {};
+    const when = data.generatedAtMs ? new Date(data.generatedAtMs).toLocaleString('ru-RU') : (data.generatedAt || '—');
+    const stat = (label, n, color) => `<div style="flex:1;min-width:110px;background:#161a1f;border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:11px 13px">
+        <div style="font-size:22px;font-weight:800;color:${color}">${Number(n||0).toLocaleString('ru-RU')}</div>
+        <div style="font-size:11.5px;opacity:.7">${label}</div></div>`;
+    const summaryHtml = escapeHtml(data.summary || '').replace(/\n/g, '<br>');
+    box.innerHTML = `
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+        ${stat('Репортов за сутки', f.reports?.total, '#60a5fa')}
+        ${stat('Открытых репортов', f.reports?.open, '#fbbf24')}
+        ${stat('Отмен подписки', f.cancels?.total, '#f87171')}
+        ${stat('Крит. ошибок', f.appErrors?.critical, '#f87171')}
+        ${stat('Открытых safety', f.safety?.open, f.safety?.open>0?'#f87171':'#4ade80')}
+      </div>
+      <div style="background:linear-gradient(180deg,#161a24,#13161f);border:1px solid #252b38;border-left:3px solid #8b7cff;border-radius:12px;padding:18px 20px;font-size:14.5px;line-height:1.7;color:#d7dae3">${summaryHtml || '<span style="opacity:.6">Пусто</span>'}</div>
+      <div style="margin-top:12px;font-size:11.5px;color:#6b7280">Сгенерировано: ${escapeHtml(String(when))} · модель: ${escapeHtml(String(data.model || '—'))} · за ${escapeHtml(String(data.dayKey || ''))}</div>`;
+  }
+
+  window.loadDailyDigest = async function(force) {
+    const box = document.getElementById('dd-content');
+    if (!box) return;
+    if (!force && window._dailyDigestLoaded) return;
+    box.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      await auth.currentUser?.getIdToken(true).catch(() => null);
+      const dayKey = new Date().toISOString().slice(0, 10);
+      const snap = await getDoc(doc(db, 'admin_digests', dayKey));
+      renderDigestDoc(box, snap.exists() ? snap.data() : null);
+      const countEl = document.getElementById('dd-count');
+      if (countEl) countEl.textContent = snap.exists() ? 'дайджест за сегодня' : 'ещё не создан';
+      window._dailyDigestLoaded = true;
+    } catch (e) {
+      window._dailyDigestLoaded = false;
+      box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.generateDailyDigest = async function() {
+    const box = document.getElementById('dd-content');
+    const btn = document.getElementById('dd-generate');
+    if (!box) return;
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ ИИ думает…'; }
+    box.innerHTML = '<div class="reports-empty">✨ ИИ читает события за сутки и пишет сводку… (10–20 сек)</div>';
+    try {
+      const call = getAdminGenerateDailyDigestCallable();
+      const res = await call({});
+      const data = res?.data || null;
+      renderDigestDoc(box, data);
+      const countEl = document.getElementById('dd-count');
+      if (countEl) countEl.textContent = data?.empty ? 'сутки тихие' : 'обновлено только что';
+      showToast(data?.empty ? 'За сутки заметных событий нет' : '✅ Дайджест готов', 'ok');
+    } catch (e) {
+      const msg = (e && (e.message || e.code)) || String(e);
+      box.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(msg)}</div>`;
+      showToast('Не удалось: ' + msg, 'err');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '✨ Сгенерировать за сутки'; }
+    }
+  };
+
   window.loadUserReports = async function() {
     window._userReportsLoaded = true;
     const list = document.getElementById('ur-list');
@@ -29395,6 +29571,65 @@
     if (!silent) window.loadPaywallFunnel();
   };
 
+  // Нормальная CDF без библиотек (Abramowitz & Stegun 7.1.26). Нужна, чтобы
+  // перевести z-оценку двухпропорционного теста в понятную «вероятность, что
+  // лидер реально конвертит лучше», а не просто в «звёздочки значимости».
+  function normalCdf(z) {
+    const t = 1 / (1 + 0.2316419 * Math.abs(z));
+    const d = 0.3989422804014327 * Math.exp(-z * z / 2);
+    let p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+    p = 1 - p;
+    return z >= 0 ? p : 1 - p;
+  }
+
+  /**
+   * Считает достоверность превосходства лидера над вторым по конверсии вариантом
+   * (двухпропорционный z-тест на долю покупок от показов). Возвращает null, если
+   * данных мало (нужно ≥2 варианта с ≥30 показами). Чистая функция.
+   * @returns {null | { leader, runnerUp, confidence, leaderRate, runnerRate, enough }}
+   */
+  function paywallAbSignificance(agg, VAR, best) {
+    const eligible = VAR.filter(v => agg[v] && agg[v].shown >= 30)
+      .map(v => ({ v, n: agg[v].shown, x: agg[v].purchase_completed, rate: agg[v].purchase_completed / agg[v].shown }))
+      .sort((a, b) => b.rate - a.rate);
+    if (eligible.length < 2) return null;
+    const leader = best ? eligible.find(e => e.v === best) || eligible[0] : eligible[0];
+    const runnerUp = eligible.find(e => e.v !== leader.v);
+    if (!runnerUp) return null;
+    const p1 = leader.rate, p2 = runnerUp.rate;
+    const pPool = (leader.x + runnerUp.x) / (leader.n + runnerUp.n);
+    const se = Math.sqrt(pPool * (1 - pPool) * (1 / leader.n + 1 / runnerUp.n));
+    // se=0 (например, 0 покупок у обоих) → достоверности нет.
+    const z = se > 0 ? (p1 - p2) / se : 0;
+    const confidence = normalCdf(z); // односторонняя: P(лидер ≥ второго)
+    // «Достаточно данных для вывода» — эвристика: хотя бы ~30 покупок суммарно
+    // у пары, иначе даже высокий % шаток.
+    const enough = (leader.x + runnerUp.x) >= 30;
+    return { leader: leader.v, runnerUp: runnerUp.v, confidence, leaderRate: p1, runnerRate: p2, enough };
+  }
+
+  /** Рисует человеческий вердикт по значимости (или подсказку «данных мало»). */
+  function paywallAbVerdictHtml(stats, varName) {
+    if (!stats) {
+      return '<div style="font-size:12px;color:#6b7280;margin:0 0 16px;padding:8px 11px;background:#12151d;border:1px solid #1e2230;border-radius:8px">📊 Достоверность: нужно минимум два экрана с 30+ показами. Подожди, пока наберётся статистика.</div>';
+    }
+    const pctConf = (stats.confidence * 100);
+    const lead = varName[stats.leader] || stats.leader;
+    const runner = varName[stats.runnerUp] || stats.runnerUp;
+    let verdict, color, bg, icon;
+    if (!stats.enough || pctConf < 80) {
+      color = '#fbbf24'; bg = '#1a1606'; icon = '⏳';
+      verdict = `Рано делать вывод — «${escapeHtml(lead)}» пока впереди «${escapeHtml(runner)}», но достоверность лишь ${pctConf.toFixed(0)}%. Нужно больше данных.`;
+    } else if (pctConf < 95) {
+      color = '#a3e635'; bg = '#131a06'; icon = '📈';
+      verdict = `«${escapeHtml(lead)}» вероятно лучше «${escapeHtml(runner)}» — достоверность ${pctConf.toFixed(0)}%. Близко к надёжному, но лучше добрать ещё немного.`;
+    } else {
+      color = '#4ade80'; bg = '#0f1a12'; icon = '✅';
+      verdict = `«${escapeHtml(lead)}» побеждает «${escapeHtml(runner)}» с достоверностью ${pctConf.toFixed(1)}%. Можно смело катить «${escapeHtml(lead)}» на всех.`;
+    }
+    return `<div style="font-size:12.5px;color:${color};margin:0 0 16px;padding:9px 12px;background:${bg};border:1px solid ${color}44;border-radius:8px;line-height:1.5">${icon} <b>Достоверность:</b> ${verdict}</div>`;
+  }
+
   window.loadPaywallFunnel = async function() {
     const box = document.getElementById('pab-funnel');
     const status = document.getElementById('pab-funnel-status');
@@ -29463,6 +29698,10 @@
       // лучший вариант по доле покупок (минимум показов, чтобы не выстрелил случайный 1/1)
       let best = null, bestRate = -1;
       VAR.forEach(v => { const x = agg[v]; if (x.shown >= 30) { const rate = x.purchase_completed / x.shown; if (rate > bestRate) { bestRate = rate; best = v; } } });
+      // ── Статистическая значимость: лидер против второго по конверсии ──────────
+      // Двухпропорционный z-тест (перевод z→«вероятность, что лидер реально лучше»
+      // = нормальная CDF). Без внешних библиотек: аппроксимация Abramowitz-Stegun.
+      const abStats = paywallAbSignificance(agg, VAR, best);
       const varName = { A:'Компакт', B:'Стори', C:'Атриум ★', v1:'Архив v1' };
       const varColor = { A:'#60a5fa', B:'#a78bfa', C:'#fbbf24', v1:'#9ca3af' };
       const rows = VAR.map(v => {
@@ -29500,7 +29739,8 @@
             <th style="padding:8px 10px;text-align:right">% покупок</th>
           </tr></thead><tbody>${rows}</tbody>
         </table></div>
-        <div style="font-size:11.5px;color:#6b7280;margin:10px 0 16px">Всего событий за период: ${total.toLocaleString('ru-RU')}${dropped ? ` · скрыто моих/тестовых: ${dropped}` : ''}. «% покупок» считается надёжно от 30 показов.</div>
+        <div style="font-size:11.5px;color:#6b7280;margin:10px 0 10px">Всего событий за период: ${total.toLocaleString('ru-RU')}${dropped ? ` · скрыто моих/тестовых: ${dropped}` : ''}. «% покупок» считается надёжно от 30 показов.</div>
+        ${paywallAbVerdictHtml(abStats, varName)}
         <div style="font-size:12px;color:#8b919c;margin-bottom:6px">Откуда люди приходили на экран (число покупок):</div>
         <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12.5px">
           <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:11px">
@@ -33917,6 +34157,68 @@
     }
   };
 
+  /**
+   * Предиктор оттока: превращает сырые причины отмен в конкретные действия и
+   * показывает, какая причина растёт. Группируем reason'ы в 3 рычага:
+   *   too_expensive        → скидка / региональная цена
+   *   not_enough_value / not_using_enough → онбординг, показать ценность
+   *   technical_issues     → чинить баги (связать с App Health)
+   * found_better_app / other идут в справку, без прямого действия.
+   * Тренд: доля причины за последние 14 дней против предыдущих 14 — стрелка.
+   */
+  function cancelChurnActionsHtml(all, counts) {
+    if (!all || !all.length) return '';
+    const now = Date.now();
+    const DAY = 86400000;
+    const inWindow = (row, from, to) => {
+      const ts = row.createdAtMs || (row.createdAt && Date.parse(row.createdAt)) || 0;
+      return ts >= from && ts < to;
+    };
+    const recent = all.filter(r => inWindow(r, now - 14 * DAY, now));
+    const prev = all.filter(r => inWindow(r, now - 28 * DAY, now - 14 * DAY));
+    const shareOf = (arr, keys) => {
+      if (!arr.length) return null;
+      const hit = arr.filter(r => keys.includes(r.reason)).length;
+      return hit / arr.length;
+    };
+    const trendArrow = (keys) => {
+      const a = shareOf(recent, keys), b = shareOf(prev, keys);
+      if (a == null || b == null) return '';
+      const diff = (a - b) * 100;
+      if (Math.abs(diff) < 3) return '<span style="color:#6b7280">→ стабильно</span>';
+      return diff > 0
+        ? `<span style="color:#f87171">▲ +${diff.toFixed(0)}% за 2 недели</span>`
+        : `<span style="color:#4ade80">▼ ${diff.toFixed(0)}% за 2 недели</span>`;
+    };
+    const sum = (keys) => keys.reduce((n, k) => n + (counts[k] || 0), 0);
+    const total = all.length || 1;
+    const segs = [
+      { keys: ['too_expensive'], icon: '💸', title: 'Цена кусается', color: '#fbbf24',
+        action: 'Предложи скидку уходящим или включи региональные цены по странам (Paywall A/B).' },
+      { keys: ['not_enough_value', 'not_using_enough'], icon: '🧭', title: 'Не увидели ценность', color: '#60a5fa',
+        action: 'Усиль онбординг и триггерные письма «вот что ты упускаешь». Покажи прогресс и результат.' },
+      { keys: ['technical_issues'], icon: '🛠', title: 'Технические проблемы', color: '#f87171',
+        action: 'Разбери баги в App Health — этот отток чинится кодом, а не маркетингом.' },
+    ];
+    const cards = segs.map(s => {
+      const n = sum(s.keys);
+      const share = (n / total * 100).toFixed(0);
+      return `<div style="background:#12151d;border:1px solid ${s.color}33;border-left:3px solid ${s.color};border-radius:9px;padding:12px 14px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+          <span style="font-weight:700;color:#e5e7eb">${s.icon} ${s.title}</span>
+          <span style="font-family:monospace;color:${s.color};font-weight:800">${n} · ${share}%</span>
+        </div>
+        <div style="font-size:11.5px;margin:5px 0 7px">${trendArrow(s.keys)}</div>
+        <div style="font-size:12.5px;color:#9ca3af;line-height:1.5">${s.action}</div>
+      </div>`;
+    }).join('');
+    return `<div style="margin-top:16px">
+      <div style="font-size:13px;color:#c4b5fd;font-weight:700;margin-bottom:9px">🔮 Предиктор оттока — куда бить</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">${cards}</div>
+      <div style="font-size:11px;color:#6b7280;margin-top:8px">Стрелка сравнивает долю причины за последние 14 дней с предыдущими 14. Растёт красным — занимайся в первую очередь.</div>
+    </div>`;
+  }
+
   window.renderCancelSurveys = function renderCancelSurveys() {
     applyCleanCancelSurveysChrome();
     const list = document.getElementById('cs-list');
@@ -33956,7 +34258,7 @@
     summary.innerHTML = [
       `<div class="stat-card"><div class="label">Total</div><div class="value">${_cancelSurveysAll.length}</div><div class="hint">survey rows</div></div>`,
       ...topCards,
-    ].join('');
+    ].join('') + cancelChurnActionsHtml(_cancelSurveysAll, counts);
 
     if (count) count.textContent = `${rows.length} / ${_cancelSurveysAll.length}`;
     if (!rows.length) {

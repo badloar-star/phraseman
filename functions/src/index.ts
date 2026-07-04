@@ -1466,3 +1466,6 @@ export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
 export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture, webOrderStatus, webPrices } from './web_checkout';
+
+// ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
+export { webLeadCapture, webLeadNudgeCron } from './web_leads';

@@ -218,6 +218,8 @@ interface NewOrderInput {
   currency: string;
   utm: Record<string, unknown> | null;
   answers: Record<string, unknown> | null;
+  /** Подарочная покупка (/gift/): код перешлёт покупатель, автопродления нет. */
+  gift?: boolean;
 }
 
 async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderInput): Promise<string> {
@@ -228,6 +230,7 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
     plan: input.plan,
     planDuration: PLAN_LABELS[input.plan],
     email: input.email,
+    gift: input.gift === true,
     appNickname: input.nickname || null,
     amountCents: input.amountCents,
     currency: input.currency,
@@ -262,6 +265,7 @@ async function notifyAdminsTelegram(order: FirebaseFirestore.DocumentData): Prom
   const amount = ((Number(order.amountCents) || 0) / 100).toFixed(2);
   const text = [
     '💳 Новая ВЕБ-оплата Phraseman Premium',
+    ...(order.gift === true ? ['🎁 ПОДАРОК: код перешлёт покупатель, автопродления нет'] : []),
     `Провайдер: ${order.provider}`,
     `Тариф: ${order.planDuration || order.plan}`,
     `Сумма: ${amount} ${String(order.currency || 'usd').toUpperCase()}`,
@@ -317,28 +321,38 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
 
   const support = webCheckoutSupportEmail.value() || 'support.phraseman@gmail.com';
   const plan = cleanShortText(order.planDuration || order.plan || 'Premium', 80) || 'Premium';
-  const subject = `Ваш код активации Phraseman: ${activationCode}`;
+  const isGift = order.gift === true;
+  const subject = isGift
+    ? `Ваш подарочный код Phraseman: ${activationCode}`
+    : `Ваш код активации Phraseman: ${activationCode}`;
   const text = [
-    'Спасибо за оплату Phraseman Premium!',
+    isGift ? 'Спасибо за подарок — Phraseman Premium!' : 'Спасибо за оплату Phraseman Premium!',
     '',
-    `Ваш код активации: ${activationCode}`,
+    isGift ? `Подарочный код: ${activationCode}` : `Ваш код активации: ${activationCode}`,
     '',
-    'Как включить Premium:',
+    ...(isGift
+      ? [
+        'Перешлите этот код тому, кому дарите (запиской, сообщением — как удобно).',
+        '',
+        'Как получателю включить Premium:',
+      ]
+      : ['Как включить Premium:']),
     '1. Откройте приложение Phraseman.',
     '2. Перейдите в Настройки -> Промокоды.',
     '3. Вставьте код и нажмите "Активировать".',
     '',
-    `Тариф: ${plan}.`,
+    `Тариф: ${plan}.${isGift ? ' Разовый платёж, ничего не спишется повторно.' : ''}`,
     `Если что-то не получилось, напишите: ${support}`,
   ].join('\n');
   const html = [
     '<div style="font-family:Arial,sans-serif;line-height:1.55;color:#111827">',
-    '<h1 style="font-size:22px;margin:0 0 12px">Ваш код активации Phraseman</h1>',
-    '<p>Спасибо за оплату Phraseman Premium.</p>',
+    isGift
+      ? '<h1 style="font-size:22px;margin:0 0 12px">Ваш подарочный код Phraseman</h1><p>Спасибо за подарок! Перешлите код тому, кому дарите, — запиской или сообщением.</p>'
+      : '<h1 style="font-size:22px;margin:0 0 12px">Ваш код активации Phraseman</h1><p>Спасибо за оплату Phraseman Premium.</p>',
     `<div style="font-size:28px;font-weight:800;letter-spacing:2px;background:#fff7d6;border:1px solid #e8c566;border-radius:10px;padding:18px 20px;margin:18px 0;color:#111827">${htmlEscape(activationCode)}</div>`,
-    '<p><b>Как включить Premium:</b></p>',
+    isGift ? '<p><b>Как получателю включить Premium:</b></p>' : '<p><b>Как включить Premium:</b></p>',
     '<ol><li>Откройте приложение Phraseman.</li><li>Перейдите в Настройки -> Промокоды.</li><li>Вставьте код и нажмите "Активировать".</li></ol>',
-    `<p style="color:#4b5563">Тариф: ${htmlEscape(plan)}.</p>`,
+    `<p style="color:#4b5563">Тариф: ${htmlEscape(plan)}.${isGift ? ' Разовый платёж, ничего не спишется повторно.' : ''}</p>`,
     `<p style="color:#4b5563">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`,
     '</div>',
   ].join('');
@@ -491,24 +505,27 @@ async function stripeCreateSession(params: {
   orderId: string;
   amountCents: number;
   currency: string;
+  gift?: boolean;
 }): Promise<{ id: string; url: string }> {
   const form = new URLSearchParams();
-  const productName = `Phraseman Premium — ${PLAN_LABELS[params.plan]}`;
-  form.set('mode', params.plan === 'lifetime' ? 'payment' : 'subscription');
+  // Подарок — всегда разовый платёж: дарителю нельзя вешать автопродление.
+  const oneTime = params.plan === 'lifetime' || params.gift === true;
+  const productName = `Phraseman Premium — ${PLAN_LABELS[params.plan]}${params.gift ? ' (подарок)' : ''}`;
+  form.set('mode', oneTime ? 'payment' : 'subscription');
   form.set('line_items[0][quantity]', '1');
   form.set('line_items[0][price_data][currency]', params.currency);
   form.set('line_items[0][price_data][unit_amount]', String(params.amountCents));
   form.set('line_items[0][price_data][product_data][name]', productName);
-  if (params.plan !== 'lifetime') {
+  if (!oneTime) {
     form.set('line_items[0][price_data][recurring][interval]', params.plan === 'monthly' ? 'month' : 'year');
   }
   form.set('customer_email', params.email);
   form.set('client_reference_id', params.orderId);
   form.set('metadata[orderId]', params.orderId);
-  if (params.plan !== 'lifetime') form.set('subscription_data[metadata][orderId]', params.orderId);
+  if (!oneTime) form.set('subscription_data[metadata][orderId]', params.orderId);
   form.set('allow_promotion_codes', 'true');
-  form.set('success_url', `${SITE_ORIGIN}/start/thanks/?provider=stripe&session_id={CHECKOUT_SESSION_ID}`);
-  form.set('cancel_url', `${SITE_ORIGIN}/start/?canceled=1`);
+  form.set('success_url', `${SITE_ORIGIN}/start/thanks/?provider=stripe&session_id={CHECKOUT_SESSION_ID}${params.gift ? '&gift=1' : ''}`);
+  form.set('cancel_url', `${SITE_ORIGIN}${params.gift ? '/gift/' : '/start/'}?canceled=1`);
 
   const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {
     method: 'POST',
@@ -557,6 +574,7 @@ export const webCheckoutCreate = onRequest(
     const config = await readConfig(db);
     const amountCents = config.priceCents[plan];
 
+    const gift = body.gift === true;
     try {
       const orderId = await createOrderDoc(db, {
         provider: 'stripe',
@@ -567,8 +585,9 @@ export const webCheckoutCreate = onRequest(
         currency: config.currency,
         utm: cleanAttribution(body.utm),
         answers: cleanAttribution(body.answers),
+        gift,
       });
-      const session = await stripeCreateSession({ plan, email, orderId, amountCents, currency: config.currency });
+      const session = await stripeCreateSession({ plan, email, orderId, amountCents, currency: config.currency, gift });
       await db.collection(ORDERS_COLLECTION).doc(orderId).update({
         stripeSessionId: session.id,
         updatedAt: FieldValue.serverTimestamp(),
@@ -833,6 +852,7 @@ export const paypalOrderCreate = onRequest(
         currency: config.currency,
         utm: cleanAttribution(body.utm),
         answers: cleanAttribution(body.answers),
+        gift: body.gift === true,
       });
       const token = await paypalAccessToken(config.paypalLive);
       const resp = await fetch(`${paypalBase(config.paypalLive)}/v2/checkout/orders`, {

@@ -21,6 +21,7 @@ import {
   scorePlanPronunciationTranscript,
 } from '../app/personal_plan_pronunciation_scoring_client';
 import {
+  normalizeSpokenWord,
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
@@ -42,6 +43,18 @@ import {
   type SpokenWordEntry,
 } from '../app/speaking_word_report';
 import {
+  judgeSingleWord,
+  isDrillableStatus,
+  type WordDrillVerdict,
+} from '../app/speaking_word_drill';
+import {
+  initWordDrillState,
+  openWord,
+  closeWord,
+  markWordClean,
+  type WordDrillState,
+} from '../app/speaking_word_drill_state';
+import {
   ensureNeuralModel,
   isNeuralJudgeSupported,
   isNeuralModelReady,
@@ -61,6 +74,7 @@ import {
   type LoudnessSample,
 } from '../app/speaking_prosody';
 import SpeakingScoreRing from './SpeakingScoreRing';
+import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { isSpeechRecognitionAvailable } from '../app/personal_plan_speech_module';
@@ -266,6 +280,23 @@ export function SpeakingPanel({
   const [wordReport, setWordReport] = useState<SpokenWordEntry[] | null>(null);
   // Одна конкретная подсказка «что тянет балл вниз» (самая важная проблема).
   const [hint, setHint] = useState<SpeakingHint | null>(null);
+  // Тренировка слов: какое слово карты открыто и какие уже «дочинены» до зелёного.
+  const [drill, setDrill] = useState<WordDrillState>(() => initWordDrillState());
+  // Локальные переопределения статуса слов после дрилла: index → 'clean'. Живут
+  // поверх wordReport, чтобы «дочиненное» слово стало зелёным в карте, не
+  // трогая исходный отчёт попытки.
+  const [drillCleaned, setDrillCleaned] = useState<ReadonlySet<number>>(() => new Set<number>());
+  // Состояние карточки открытого слова: готов / пишу / проверяю / вердикт.
+  type WordCardPhase = 'idle' | 'listening' | 'scoring' | 'clean' | 'fuzzy' | 'no_speech';
+  const [wordPhase, setWordPhase] = useState<WordCardPhase>('idle');
+  const [wordVerdict, setWordVerdict] = useState<WordDrillVerdict | null>(null);
+  // «Фраза идеальна»: показать раз, когда ВСЕ проблемные слова стали зелёными.
+  const [phrasePerfect, setPhrasePerfect] = useState(false);
+  // Одиночная запись слова живёт в своём наборе слушателей / hold-рекордере,
+  // чтобы не пересекаться с фразовой сессией.
+  const wordListenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  const wordHoldRecRef = useRef<HoldRecording | null>(null);
+  const wordFinishingRef = useRef(false);
   // uri сохранённой записи попытки (событие audioend) — питает «Мою запись»
   // и контрольный прогон без подсказки цели.
   const recordingUriRef = useRef<string | null>(null);
@@ -400,6 +431,12 @@ export function SpeakingPanel({
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
       const passed = honestScore >= biased.threshold;
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
+      // Новая оценка попытки → сбрасываем прошлую тренировку слов начисто.
+      setDrill(initWordDrillState());
+      setDrillCleaned(new Set<number>());
+      setWordPhase('idle');
+      setWordVerdict(null);
+      setPhrasePerfect(false);
       const prosody = analyzeProsody(prosodySamplesRef.current);
       const stress = stressFeedback(prosody, expectedStressPosition(targetText));
       setWordReport(report);
@@ -423,6 +460,200 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
     },
     [targetText, onPass],
+  );
+
+  // ===== Тренировка слов: послушать / повторить / оценить ОДНО слово =====
+  //
+  // Слова карты (только жёлтые/красные) нажимаемы. Тап открывает карточку слова;
+  // «Послушать» произносит слово (TTS), «Повторить» пишет короткую реплику на
+  // одно слово и оценивает её через judgeSingleWord. При «чисто» слово в карте
+  // зеленеет. Микрофон карточки и микрофон всей фразы не работают одновременно.
+
+  const cleanupWordListeners = useCallback(() => {
+    wordListenersRef.current.forEach((sub) => sub?.remove?.());
+    wordListenersRef.current = [];
+  }, []);
+
+  // Индексы слов, которые ПОСЛЕ попытки были проблемными (жёлтый/красный) — по
+  // ним ведётся драка за 100% и по ним считается «фраза идеальна».
+  const problemIndices = useMemo(() => {
+    if (!wordReport) return [] as number[];
+    const out: number[] = [];
+    wordReport.forEach((w, i) => {
+      if (isDrillableStatus(w.status)) out.push(i);
+    });
+    return out;
+  }, [wordReport]);
+
+  // Слово стало чистым: помечаем в дрилл-стейте и в наложении цвета, при полном
+  // закрытии всех проблемных слов — салют «фраза идеальна» (один раз).
+  const markCleanedWord = useCallback(
+    (index: number) => {
+      setDrill((prev) => {
+        const next = markWordClean(prev, index);
+        return next;
+      });
+      setDrillCleaned((prev) => {
+        if (prev.has(index)) return prev;
+        const nextSet = new Set(prev);
+        nextSet.add(index);
+        // Проверяем «все проблемные закрыты» на СВЕЖЕМ наборе очищенных.
+        const allDone =
+          problemIndices.length > 0 && problemIndices.every((i) => nextSet.has(i));
+        if (allDone) {
+          setPhrasePerfect(true);
+          hapticSuccess();
+        }
+        return nextSet;
+      });
+    },
+    [problemIndices],
+  );
+
+  // «Послушать»: произносим ОДНО слово системным TTS (студийных клипов на одно
+  // слово нет; TTS покрывает любое слово). Та же гигиена громкого режима, что и
+  // у эталона фразы.
+  const speakWord = useCallback(
+    (word: string) => {
+      hapticTap();
+      try {
+        replayPlayerRef.current?.pause();
+      } catch {
+        /* no-op */
+      }
+      void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+        .catch(() => undefined)
+        .finally(() => {
+          try {
+            Speech.stop();
+            Speech.speak(word, { language: recognitionLocale });
+          } catch {
+            /* no-op */
+          }
+        });
+    },
+    [recognitionLocale],
+  );
+
+  // Общий хвост оценки одного слова: из услышанного текста строим вердикт и
+  // применяем к карте. index — позиция слова в токенах/отчёте.
+  const applyWordResult = useCallback(
+    (index: number, heardTranscript: string) => {
+      if (!mountedRef.current) return;
+      const target = tokens[index] ?? '';
+      const heard = heardTranscript.trim();
+      if (!heard) {
+        setWordPhase('no_speech');
+        setWordVerdict(null);
+        hapticError();
+        restoreLoudPlaybackMode();
+        return;
+      }
+      const verdict = judgeSingleWord({ target, heardTranscript: heard });
+      setWordVerdict(verdict);
+      if (verdict.status === 'clean') {
+        setWordPhase('clean');
+        hapticSuccess();
+        markCleanedWord(index);
+      } else {
+        setWordPhase('fuzzy');
+        hapticError();
+      }
+      restoreLoudPlaybackMode();
+    },
+    [tokens, markCleanedWord],
+  );
+
+  // Запись+распознавание одного слова СИСТЕМНЫМ движком (iOS + Android-фолбэк).
+  // Короткая самодостаточная сессия со своими слушателями — не пересекается с
+  // фразовой. Слово biasing'уем на цель (одно слово в contextualStrings через
+  // buildSpeakingStartOptions с targetText = слово).
+  const recordWordSystem = useCallback(
+    async (index: number) => {
+      if (!speech) {
+        setWordPhase('no_speech');
+        return;
+      }
+      const target = tokens[index] ?? '';
+      cleanupWordListeners();
+      let best = '';
+      let bestScore = -1;
+      const consider = (candidate: string) => {
+        const c = candidate.trim();
+        if (!c) return;
+        // Балл кандидата = фонетическая близость к целевому слову.
+        const sim = judgeSingleWord({ target, heardTranscript: c }).status === 'clean' ? 2 : 1;
+        const len = normalizeSpokenWord(c).length > 0 ? sim : 0;
+        if (len > bestScore) {
+          bestScore = len;
+          best = c;
+        }
+      };
+      let settled = false;
+      const settle = () => {
+        if (settled) return;
+        settled = true;
+        cleanupWordListeners();
+        applyWordResult(index, best);
+      };
+      const resultSub = speech.addListener('result', (event: any) => {
+        const alts: Array<{ transcript?: string }> = Array.isArray(event?.results)
+          ? event.results
+          : [];
+        for (const alt of alts) consider(String(alt?.transcript ?? ''));
+      });
+      const endSub = speech.addListener('end', () => settle());
+      const errorSub = speech.addListener('error', () => settle());
+      const noMatchSub = speech.addListener('nomatch', () => {
+        if (mountedRef.current) {
+          settled = true;
+          cleanupWordListeners();
+          setWordPhase('no_speech');
+          setWordVerdict(null);
+          hapticError();
+        }
+      });
+      wordListenersRef.current = [resultSub, endSub, errorSub, noMatchSub].filter(
+        Boolean,
+      ) as Array<{ remove?: () => void }>;
+      try {
+        const permission = await speech.requestPermissionsAsync();
+        if (!mountedRef.current) return;
+        if (!permission?.granted) {
+          cleanupWordListeners();
+          setWordPhase('no_speech');
+          return;
+        }
+      } catch {
+        cleanupWordListeners();
+        if (mountedRef.current) setWordPhase('no_speech');
+        return;
+      }
+      let onDevice = false;
+      try {
+        onDevice = (await speech.supportsOnDeviceRecognition?.()) === true;
+      } catch {
+        onDevice = false;
+      }
+      if (!mountedRef.current) return;
+      try {
+        speech.start(
+          buildSpeakingStartOptions({
+            lang: recognitionLocale,
+            targetText: target,
+            interimResults: true,
+            volumeMeter: false,
+            onDevice,
+            persistRecording: false,
+          }),
+        );
+        playRecordStart();
+      } catch {
+        cleanupWordListeners();
+        if (mountedRef.current) setWordPhase('no_speech');
+      }
+    },
+    [speech, tokens, recognitionLocale, cleanupWordListeners, applyWordResult, playRecordStart],
   );
 
   const finishAttempt = useCallback(
@@ -773,6 +1004,114 @@ export function SpeakingPanel({
     setStatus('idle');
   }, []);
 
+  // ===== Запись одного слова на Android-whisper (зажми-говори), в обход
+  // системного распознавателя — тот же путь, что и для фразы =====
+  const startWordHold = useCallback(
+    (index: number) => {
+      if (!holdMode) return;
+      if (wordHoldRecRef.current) return;
+      wordFinishingRef.current = false;
+      try {
+        replayPlayerRef.current?.pause();
+      } catch {
+        /* no-op */
+      }
+      try {
+        Speech.stop();
+      } catch {
+        /* no-op */
+      }
+      setWordPhase('listening');
+      setWordVerdict(null);
+      hapticTap();
+      wordHoldRecRef.current = startHoldRecording();
+    },
+    [holdMode],
+  );
+
+  const endWordHold = useCallback(
+    async (index: number) => {
+      const rec = wordHoldRecRef.current;
+      if (!rec) return;
+      if (wordFinishingRef.current) return;
+      wordFinishingRef.current = true;
+      wordHoldRecRef.current = null;
+      setWordPhase('scoring');
+      let wavUri: string | null = null;
+      try {
+        wavUri = await rec.stop();
+      } catch {
+        wavUri = null;
+      }
+      if (!mountedRef.current) {
+        deleteHoldRecording(wavUri);
+        return;
+      }
+      if (!wavUri) {
+        setWordPhase('no_speech');
+        setWordVerdict(null);
+        hapticError();
+        return;
+      }
+      const target = tokens[index] ?? '';
+      const verdict = await judgeWithNeuralEngine({
+        wavUri,
+        targetText: target,
+        locale: recognitionLocale,
+      });
+      deleteHoldRecording(wavUri);
+      if (!mountedRef.current) return;
+      applyWordResult(index, (verdict?.transcript ?? '').trim());
+    },
+    [tokens, recognitionLocale, applyWordResult],
+  );
+
+  // Единая точка «повторить слово» для UI: на системном пути — tap-to-record,
+  // на Android-whisper — начало press-and-hold задаёт startWordHold/endWordHold
+  // напрямую (см. обработчики кнопки в разметке карточки).
+  const startWordAttempt = useCallback(
+    (index: number) => {
+      if (status === 'listening') return; // фразовый микрофон занят — взаимная блокировка
+      setWordVerdict(null);
+      setWordPhase('listening');
+      void recordWordSystem(index);
+    },
+    [status, recordWordSystem],
+  );
+
+  // Тап по слову карты: открыть/закрыть карточку. Только жёлтые/красные слова
+  // (и ещё не «дочиненные») кликабельны — это гарантирует вызывающий JSX.
+  const onTapWord = useCallback(
+    (index: number) => {
+      hapticTap();
+      // Останавливаем незавершённую запись слова при переключении.
+      try {
+        wordHoldRecRef.current?.cancel();
+      } catch {
+        /* no-op */
+      }
+      wordHoldRecRef.current = null;
+      cleanupWordListeners();
+      setWordPhase('idle');
+      setWordVerdict(null);
+      setDrill((prev) => openWord(prev, index));
+    },
+    [cleanupWordListeners],
+  );
+
+  const closeWordCard = useCallback(() => {
+    try {
+      wordHoldRecRef.current?.cancel();
+    } catch {
+      /* no-op */
+    }
+    wordHoldRecRef.current = null;
+    cleanupWordListeners();
+    setWordPhase('idle');
+    setWordVerdict(null);
+    setDrill((prev) => closeWord(prev));
+  }, [cleanupWordListeners]);
+
   useEffect(() => {
     mountedRef.current = true;
     return () => {
@@ -791,6 +1130,15 @@ export function SpeakingPanel({
         /* no-op */
       }
       holdRecRef.current = null;
+      // Тренировка слов: снимаем слушатели одиночного слова и отменяем его запись.
+      wordListenersRef.current.forEach((sub) => sub?.remove?.());
+      wordListenersRef.current = [];
+      try {
+        wordHoldRecRef.current?.cancel();
+      } catch {
+        /* no-op */
+      }
+      wordHoldRecRef.current = null;
       try {
         replayPlayerRef.current?.remove();
       } catch {
@@ -959,8 +1307,8 @@ export function SpeakingPanel({
   const statusLine = (() => {
     if (preparingModelView && (status === 'idle' || status === 'requesting')) {
       return L(lang, {
-        ru: 'Готовим распознавание… это разово',
-        uk: 'Готуємо розпізнавання… це одноразово',
+        ru: 'Готовим распознавание… нужно один раз',
+        uk: 'Готуємо розпізнавання… потрібно один раз',
         es: 'Preparando el reconocimiento… solo una vez',
         'pt-BR': 'Preparando o reconhecimento… só uma vez',
         vi: 'Đang chuẩn bị nhận dạng… chỉ một lần',
@@ -1065,6 +1413,14 @@ export function SpeakingPanel({
   const micDisabled =
     status === 'requesting' || status === 'scoring' || status === 'unavailable' || preparingModelView;
 
+  // Открытое для тренировки слово (индекс + текст) — считаем один раз, чтобы
+  // карточка и её обработчики работали с чистыми number/string.
+  const openWordIndex = drill.openIndex;
+  const openWordText =
+    openWordIndex != null && openWordIndex >= 0 && openWordIndex < tokens.length
+      ? tokens[openWordIndex]
+      : null;
+
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
       <Pressable style={styles.backdrop} onPress={handleClose}>
@@ -1101,18 +1457,30 @@ export function SpeakingPanel({
               const reveal = matched[i] || status === 'passed' || entry != null;
               // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
               const masked = tok.replace(/[\p{L}\p{N}]/gu, '_');
-              const color = entry
-                ? entry.status === 'clean'
+              // Слово «дочинено» тренировкой → показываем его чистым (зелёным),
+              // даже если исходно было жёлтым/красным.
+              const cleaned = drillCleaned.has(i);
+              const effectiveStatus = entry
+                ? cleaned
+                  ? 'clean'
+                  : entry.status
+                : null;
+              // Тренируемо: показан результат, слово было проблемным и ещё не
+              // закрыто. По таким словам можно нажать и открыть карточку.
+              const drillable =
+                showResult && entry != null && isDrillableStatus(entry.status) && !cleaned;
+              const isOpen = drill.openIndex === i;
+              const color = effectiveStatus
+                ? effectiveStatus === 'clean'
                   ? theme.correct
-                  : entry.status === 'fuzzy'
+                  : effectiveStatus === 'fuzzy'
                   ? warnColor
                   : theme.wrong
                 : reveal
                 ? theme.correct
                 : theme.textMuted;
-              return (
+              const wordText = (
                 <Text
-                  key={`spk-tok-${i}`}
                   style={[
                     styles.phraseWord,
                     {
@@ -1120,14 +1488,82 @@ export function SpeakingPanel({
                       opacity: reveal ? 1 : 0.6,
                       letterSpacing: reveal ? 0 : 2,
                     },
+                    drillable && {
+                      textDecorationLine: 'underline',
+                      textDecorationStyle: 'dotted',
+                    },
+                    drillable && isOpen && { fontWeight: '800' as const },
                   ]}
                 >
                   {reveal ? tok : masked}
                   {i < tokens.length - 1 ? ' ' : ''}
                 </Text>
               );
+              if (!drillable) {
+                return <React.Fragment key={`spk-tok-${i}`}>{wordText}</React.Fragment>;
+              }
+              return (
+                <Pressable
+                  key={`spk-tok-${i}`}
+                  onPress={() => onTapWord(i)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel={L(lang, {
+                    ru: `Тренировать слово ${tok}`,
+                    uk: `Тренувати слово ${tok}`,
+                    es: `Practicar la palabra ${tok}`,
+                    'pt-BR': `Praticar a palavra ${tok}`,
+                    vi: `Luyện từ ${tok}`,
+                    id: `Latih kata ${tok}`,
+                    tr: `${tok} kelimesini çalış`,
+                    pl: `Ćwicz słowo ${tok}`,
+                  })}
+                >
+                  {wordText}
+                </Pressable>
+              );
             })}
           </View>
+
+          {/* Карточка тренировки открытого слова: послушать / повторить / вердикт. */}
+          {showResult && openWordIndex != null && openWordText != null && (
+            <WordDrillCard
+              word={openWordText}
+              lang={lang}
+              theme={theme}
+              warnColor={warnColor}
+              phase={wordPhase}
+              verdict={wordVerdict}
+              holdMode={holdModeView}
+              // При showResult фразовый микрофон уже не слушает — блокировки не нужно.
+              micBusy={false}
+              onListen={() => speakWord(openWordText)}
+              onRepeatTap={() => startWordAttempt(openWordIndex)}
+              onHoldStart={() => startWordHold(openWordIndex)}
+              onHoldEnd={() => {
+                void endWordHold(openWordIndex);
+              }}
+              onPlayMine={recordingUri != null ? playMyRecording : undefined}
+              onClose={closeWordCard}
+            />
+          )}
+
+          {/* Все проблемные слова закрыты до зелёного — тёплая плашка (балл фразы
+              не меняется, попытка не перезачитывается). */}
+          {showResult && phrasePerfect && (
+            <Text style={[styles.perfectLine, { color: theme.correct }]}>
+              {L(lang, {
+                ru: '✓ Фраза идеальна — все слова чисто',
+                uk: '✓ Фраза ідеальна — усі слова чисто',
+                es: '✓ Frase perfecta: todas las palabras limpias',
+                'pt-BR': '✓ Frase perfeita — todas as palavras limpas',
+                vi: '✓ Cụm từ hoàn hảo — mọi từ đều rõ',
+                id: '✓ Frasa sempurna — semua kata jelas',
+                tr: '✓ İfade kusursuz — tüm kelimeler temiz',
+                pl: '✓ Fraza idealna — wszystkie słowa czysto',
+              })}
+            </Text>
+          )}
 
           {/* While recording: live equalizer. After scoring: the result ring
               takes its place (Rosetta-style, percent in the center). */}
@@ -1384,6 +1820,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: '700' },
   diffSound: { fontSize: 12, marginTop: -10, marginBottom: 10, textAlign: 'center' },
   hintLine: { fontSize: 13, textAlign: 'center', marginTop: -12, marginBottom: 12 },
+  perfectLine: { fontSize: 14, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
   listenRow: { flexDirection: 'row', gap: 10, marginBottom: 14 },
   listenBtn: {
     flexDirection: 'row',

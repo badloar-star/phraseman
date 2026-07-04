@@ -42,6 +42,17 @@ window.KNOWLY_SITE = {
     } catch (_) { /* noop */ }
     return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webPrices';
   })(),
+  /* Захват email из квиза («куда прислать план?») — письмо с планом + до двух
+     догоняющих писем неоплатившим (functions/src/web_leads.ts). */
+  leadEndpoint: (function () {
+    try {
+      var h = window.location.hostname;
+      if (h === 'localhost' || h === '127.0.0.1') {
+        return 'http://127.0.0.1:5001/phraseman-ea0b3/us-central1/webLeadCapture';
+      }
+    } catch (_) { /* noop */ }
+    return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webLeadCapture';
+  })(),
   checkoutEndpoint: (function () {
     try {
       var h = window.location.hostname;
@@ -66,6 +77,9 @@ window.KNOWLY_SITE = {
   /* PayPal Client ID (публичный, LIVE-приложение «knowlyapps» из PayPal Developer Dashboard).
      Пусто = кнопка PayPal скрыта. Серверный режим: web_checkout/config.paypalLive (админка «Сайт»). */
   paypalClientId: 'ATnteMlsxgXXXZjVclzsfJqHNQ3U4tth9fkoMS26opImYEsRmeO082QxM9np-tiB8xcAB3rJY0z2qq0l',
-  /* Meta Pixel ID (из Meta Events Manager). Пусто = пиксель не грузится. */
+  /* Meta Pixel ID (из Meta Events Manager). Пусто = пиксель не грузится.
+     ⚠️ ВЛАДЕЛЬЦУ: вставь сюда ID пикселя — без него реклама не видит покупок
+     (PageView шлёт stats.js на всех страницах; Lead/InitiateCheckout — квиз;
+     Purchase с суммой — страница «спасибо»). */
   metaPixelId: '',
 };

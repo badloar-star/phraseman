@@ -524,7 +524,8 @@ async function stripeCreateSession(params: {
   form.set('metadata[orderId]', params.orderId);
   if (!oneTime) form.set('subscription_data[metadata][orderId]', params.orderId);
   form.set('allow_promotion_codes', 'true');
-  form.set('success_url', `${SITE_ORIGIN}/start/thanks/?provider=stripe&session_id={CHECKOUT_SESSION_ID}${params.gift ? '&gift=1' : ''}`);
+  // plan в URL — чтобы страница «спасибо» отправила Purchase с суммой в пиксель.
+  form.set('success_url', `${SITE_ORIGIN}/start/thanks/?provider=stripe&session_id={CHECKOUT_SESSION_ID}&plan=${params.plan}${params.gift ? '&gift=1' : ''}`);
   form.set('cancel_url', `${SITE_ORIGIN}${params.gift ? '/gift/' : '/start/'}?canceled=1`);
 
   const resp = await fetch('https://api.stripe.com/v1/checkout/sessions', {

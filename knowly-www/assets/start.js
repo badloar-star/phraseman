@@ -1,10 +1,21 @@
-/* Квиз-воронка /start/: 7 вопросов → персональный план → пейвол (Stripe/PayPal).
-   Всё состояние в памяти + ответы дублируются в sessionStorage (переживает reload).
-   UTM первого касания хранится в localStorage и прикрепляется к заказу. */
+/* Квиз-воронка /start/: 7 вопросов → персональный план → email → пейвол
+   (Stripe/PayPal). Всё состояние в памяти + ответы дублируются в sessionStorage
+   (переживает reload). UTM первого касания хранится в localStorage и
+   прикрепляется к заказу.
+
+   Режимы (data-quiz-mode на <body>):
+     - (нет)/quiz — обычный квиз на /start/;
+     - paywall    — /premium/: сразу пейвол, без квиза;
+     - gift       — /gift/: пейвол-подарок (разовый платёж, код дарителю).
+
+   Meta Pixel грузит stats.js (общий для всех страниц); здесь только события. */
 (function () {
   'use strict';
 
   var cfg = function () { return window.KNOWLY_SITE || {}; };
+
+  /* quiz | paywall | gift — выставляется в DOMContentLoaded из <body data-quiz-mode>. */
+  var MODE = 'quiz';
 
   /* ───────── analytics ───────── */
 
@@ -12,7 +23,7 @@
     try {
       var endpoint = cfg().statsEndpoint;
       if (!endpoint) return;
-      var body = JSON.stringify({ type: type, page: '/start/' });
+      var body = JSON.stringify({ type: type, page: location.pathname || '/start/' });
       if (navigator.sendBeacon && navigator.sendBeacon(endpoint, body)) return;
       fetch(endpoint, { method: 'POST', body: body, keepalive: true }).catch(function () {});
     } catch (_) { /* не ломаем страницу */ }
@@ -20,22 +31,6 @@
 
   function fbq() {
     if (window.fbq) window.fbq.apply(null, arguments);
-  }
-
-  function initMetaPixel() {
-    var id = cfg().metaPixelId;
-    if (!id || window.fbq) return;
-    /* стандартный загрузчик Meta Pixel */
-    !(function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
-      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    window.fbq('init', id);
-    window.fbq('track', 'PageView');
   }
 
   /* ───────── UTM первого касания ───────── */
@@ -122,6 +117,7 @@
     },
     { id: 'build', type: 'build' },
     { id: 'result', type: 'result' },
+    { id: 'email', type: 'email' },
     { id: 'paywall', type: 'paywall' },
   ];
 
@@ -152,6 +148,7 @@
 
   function saveState(next) {
     state = next;
+    if (MODE !== 'quiz') return; // /premium/ и /gift/ не должны «сдвигать» сохранённый квиз
     try { sessionStorage.setItem('pm_quiz', JSON.stringify(next)); } catch (_) { /* noop */ }
   }
 
@@ -196,7 +193,7 @@
   }
 
   function backButton() {
-    if (state.step <= 0) return null;
+    if (MODE !== 'quiz' || state.step <= 0) return null;
     return h('button', { class: 'qback', type: 'button', onclick: function () { go(Math.max(0, state.step - 1)); } }, ['← Назад']);
   }
 
@@ -314,6 +311,78 @@
         class: 'btn-gold', type: 'button',
         onclick: function () { go(state.step + 1); },
       }, ['Открыть доступ к плану →']),
+      backButton(),
+    ]);
+  }
+
+  /* ───────── email-шаг («куда прислать план?») ───────── */
+
+  var LEAD_EMAIL_KEY = 'pm_lead_email';
+
+  function savedLeadEmail() {
+    try { return localStorage.getItem(LEAD_EMAIL_KEY) || ''; } catch (_) { return ''; }
+  }
+
+  function rememberLeadEmail(email) {
+    try { localStorage.setItem(LEAD_EMAIL_KEY, email); } catch (_) { /* noop */ }
+  }
+
+  /* Огонь-и-забыли: письмо с планом шлёт сервер, страницу не блокируем. */
+  function submitLead(email) {
+    try {
+      var endpoint = cfg().leadEndpoint;
+      if (!endpoint) return;
+      fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify({ email: email, answers: state.answers, utm: readUtm(), page: location.pathname }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (_) { /* noop */ }
+  }
+
+  function renderEmail() {
+    var emailInput = h('input', {
+      id: 'qlead-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com',
+    });
+    if (savedLeadEmail()) emailInput.value = savedLeadEmail();
+    var errBox = h('div', { class: 'qerr', role: 'alert' });
+
+    function goNext() { go(state.step + 1); }
+
+    function submit() {
+      var email = String(emailInput.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        errBox.textContent = 'Похоже, в email опечатка — проверьте адрес.';
+        errBox.classList.add('show');
+        emailInput.focus();
+        return;
+      }
+      rememberLeadEmail(email);
+      submitLead(email);
+      track('lead_submit');
+      fbq('track', 'Lead');
+      goNext();
+    }
+
+    emailInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
+
+    return h('div', { class: 'qscreen' }, [
+      h('p', { class: 'kicker' }, ['Почти готово']),
+      h('h1', {}, ['Куда прислать ваш ', h('span', { class: 'gold-accent' }, ['план?'])]),
+      h('p', { class: 'sub' }, ['Пришлём план письмом — чтобы не потерялся. А на следующем экране покажем, как открыть его целиком.']),
+      h('div', { class: 'qpay-fields qlead-fields' }, [
+        h('div', { class: 'field' }, [
+          h('label', { for: 'qlead-email' }, ['Ваш email']),
+          emailInput,
+        ]),
+      ]),
+      errBox,
+      h('button', { class: 'btn-gold', type: 'button', onclick: submit }, ['Прислать план и продолжить →']),
+      h('button', {
+        class: 'qskip-link', type: 'button',
+        onclick: function () { track('lead_skip'); goNext(); },
+      }, ['Продолжить без письма →']),
+      h('p', { class: 'qsecure' }, ['Никакого спама: план и максимум пара полезных писем. Отписка — в один клик из любого письма.']),
       backButton(),
     ]);
   }
@@ -442,6 +511,7 @@
       utm: readUtm(),
       answers: state.answers,
       page: location.pathname,
+      gift: MODE === 'gift',
     };
   }
 
@@ -516,7 +586,9 @@
             .then(function (r) { return r.json(); })
             .then(function (res) {
               if (res && res.ok) {
-                location.href = '/start/thanks/?provider=paypal&order=' + encodeURIComponent(data.orderID);
+                location.href = '/start/thanks/?provider=paypal&order=' + encodeURIComponent(data.orderID)
+                  + '&plan=' + encodeURIComponent(paywallState.plan)
+                  + (MODE === 'gift' ? '&gift=1' : '');
                 return;
               }
               throw new Error('paypal_capture_failed');
@@ -561,50 +633,160 @@
     return opt;
   }
 
+  var MODE_COPY = {
+    quiz: {
+      kicker: 'Последний шаг',
+      h1a: 'Откройте свой план ', h1b: 'целиком',
+      sub: 'Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором ваших ошибок.',
+    },
+    paywall: {
+      kicker: 'Phraseman Premium',
+      h1a: 'Откройте Phraseman ', h1b: 'целиком',
+      sub: 'Все планы и темы, без лимитов энергии, ИИ-диалоги с разбором ваших ошибок. Активация — кодом в приложении за минуту.',
+    },
+    gift: {
+      kicker: 'Подарок',
+      h1a: 'Подарите ', h1b: 'Phraseman Premium',
+      sub: 'Один платёж — и вы получите код активации. Перешлите его тому, кому дарите: он введёт код в приложении, и Premium включится сразу. Автопродления нет.',
+    },
+  };
+
+  /* Строка под заголовком пейвола из ответов квиза — чтобы квиз не был декорацией. */
+  function personalPitch() {
+    if (MODE !== 'quiz') return null;
+    var a = state.answers || {};
+    var goal = GOAL_META[a.goal];
+    if (!goal) return null;
+    var extra = a.pain === 'quit'
+      ? ' Плюс серия и лиги — страховка от «брошу через неделю».'
+      : a.pain === 'forget'
+        ? ' Плюс умные повторения — страховка от «выучил и забыл».'
+        : '';
+    return h('p', { class: 'qpersonal' }, [
+      'В вашем плане «' + goal.name + '» — фразы, которые нужны в ' + goal.scen + '. В Premium он открывается целиком.' + extra,
+    ]);
+  }
+
+  function comparisonTable() {
+    var rows = [
+      { t: 'Уроки, фразы дня, дуэли и лиги', free: '✓', prem: '✓' },
+      { t: 'Все планы и темы: Поездка, Работа, Переезд…', free: '—', prem: '✓' },
+      { t: 'Энергия на уроки', free: 'дневной лимит', prem: 'без лимитов' },
+      { t: 'ИИ-диалоги с разбором ваших ошибок', free: '—', prem: '✓' },
+    ];
+    return h('div', { class: 'qcompare', 'aria-label': 'Сравнение Бесплатно и Premium' }, [
+      h('div', { class: 'qcompare-row qcompare-head' }, [
+        h('span', {}, ['']),
+        h('span', {}, ['Бесплатно']),
+        h('span', { class: 'qcompare-gold' }, ['Premium']),
+      ]),
+    ].concat(rows.map(function (r) {
+      return h('div', { class: 'qcompare-row' }, [
+        h('span', {}, [r.t]),
+        h('span', { class: 'qcompare-dim' }, [r.free]),
+        h('span', { class: 'qcompare-gold' }, [r.prem]),
+      ]);
+    })));
+  }
+
+  /* РФ определяем по таймзоне устройства — язык браузера бывает русским и вне РФ,
+     где обычные карты работают. Ошибиться не страшно: это просто заметная подсказка. */
+  function isLikelyRussia() {
+    try {
+      var tz = String((Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || '');
+      return /^Europe\/(Moscow|Kaliningrad|Samara|Saratov|Volgograd|Kirov|Astrakhan|Ulyanovsk)$|^Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr)$/.test(tz);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function ruBanner() {
+    if (!isLikelyRussia()) return null;
+    return h('div', { class: 'qru' }, [
+      h('span', { class: 'qru-flag', 'aria-hidden': 'true' }, ['🇷🇺']),
+      h('span', {}, [
+        h('b', {}, ['Карта российского банка? ']),
+        'Оплата через Telegram — без VPN, около двух минут. ',
+        h('a', { href: '/russia/', onclick: function () { track('ru_telegram_click'); } }, ['Оплатить через Telegram →']),
+      ]),
+    ]);
+  }
+
+  function payBadges() {
+    return h('div', { class: 'qpay-methods', 'aria-label': 'Способы оплаты' },
+      ['Visa', 'Mastercard', 'Apple Pay', 'Google Pay', 'PayPal'].map(function (m) {
+        return h('span', {}, [m]);
+      }));
+  }
+
+  function paywallFaq(isGift) {
+    return h('div', { class: 'qfaq-mini' }, [
+      isGift
+        ? h('details', {}, [h('summary', {}, ['Как подарить?']), h('p', {}, ['Сразу после оплаты вы увидите код активации (и он придёт на ваш email). Перешлите код тому, кому дарите, — запиской, сообщением, открыткой. Получатель введёт его в приложении: Настройки → Промокоды — и Premium включится мгновенно.'])])
+        : h('details', {}, [h('summary', {}, ['Как активируется Premium?']), h('p', {}, ['Сразу после оплаты вы увидите личный код активации (и он сохранится у нас — не потеряется). Введите его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установите его, ссылки будут на следующем экране.'])]),
+      h('details', {}, [h('summary', {}, ['На каких устройствах работает?']), h('p', {}, ['На всех, где вы вошли в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.'])]),
+      isGift
+        ? h('details', {}, [h('summary', {}, ['Спишется ли что-то ещё?']), h('p', {}, ['Нет. Подарочная оплата всегда разовая: один платёж — один код на выбранный срок. Никаких автопродлений ни у вас, ни у получателя. В первые 7 дней вернём оплату полностью без вопросов.'])])
+        : h('details', {}, [h('summary', {}, ['Как работает продление и отмена?']), h('p', {}, ['Оплата картой продлевается автоматически (месяц/месяц или год/год) — отключить можно в любой момент одним письмом в поддержку, сделаем сразу. Оплата через PayPal — разовая, на выбранный срок, ничего не спишется само. В первые 7 дней вернём оплату полностью без вопросов.'])]),
+      h('details', {}, [h('summary', {}, ['Что-то пойдёт не так — я не потеряю деньги?']), h('p', {}, ['Нет. Каждая оплата сохраняется у нас вместе с кодом, а команда видит её мгновенно. Если код не сработает или потеряется — напишите в поддержку, восстановим за пару часов.'])]),
+    ]);
+  }
+
   function renderPaywall() {
     var p = prices();
+    var copy = MODE_COPY[MODE] || MODE_COPY.quiz;
+    var isGift = MODE === 'gift';
     setTimeout(function () {
       track('paywall_view');
       mountPaypal();
     }, 0);
+    var emailInput = h('input', { id: 'qpay-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com' });
+    if (savedLeadEmail()) emailInput.value = savedLeadEmail();
     return h('div', { class: 'qscreen' }, [
-      h('p', { class: 'kicker' }, ['Последний шаг']),
-      h('h1', {}, ['Откройте свой план ', h('span', { class: 'gold-accent' }, ['целиком'])]),
-      h('p', { class: 'sub' }, ['Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором ваших ошибок.']),
+      h('p', { class: 'kicker' }, [copy.kicker]),
+      h('h1', {}, [copy.h1a, h('span', { class: 'gold-accent' }, [copy.h1b])]),
+      h('p', { class: 'sub' }, [copy.sub]),
+      personalPitch(),
+      comparisonTable(),
       h('div', { class: 'qplans' }, [
-        planOption('monthly', 'Месяц', 'попробовать в своём темпе', p.monthly.label, 'в месяц', null),
-        planOption('yearly', 'Год', 'самый популярный выбор', p.yearly.label, p.yearly.perMonth ? '≈ ' + p.yearly.perMonth + '/мес' : 'в год', 'Выгоднее 58%'),
+        planOption('monthly', 'Месяц', isGift ? 'разовый платёж — 31 день' : 'попробовать в своём темпе', p.monthly.label, isGift ? 'один раз' : 'в месяц', null),
+        planOption('yearly', 'Год', isGift ? 'разовый платёж — целый год' : 'самый популярный выбор', p.yearly.label, p.yearly.perMonth ? '≈ ' + p.yearly.perMonth + '/мес' : 'в год', 'Выгоднее 58%'),
         planOption('lifetime', 'Навсегда', 'один платёж — доступ навсегда', p.lifetime.label, 'один раз', null),
       ]),
       h('div', { class: 'qpay-fields' }, [
         h('div', { class: 'field' }, [
-          h('label', { for: 'qpay-email' }, ['Email — для чека и активации']),
-          h('input', { id: 'qpay-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com' }),
+          h('label', { for: 'qpay-email' }, [isGift ? 'Ваш email — сюда придёт код и чек' : 'Email — для чека и активации']),
+          emailInput,
         ]),
-        h('div', { class: 'field' }, [
+        isGift ? null : h('div', { class: 'field' }, [
           h('label', { for: 'qpay-nick' }, ['Ник в приложении (если уже установили — необязательно)']),
           h('input', { id: 'qpay-nick', type: 'text', placeholder: 'например, Maks_42' }),
         ]),
+      ]),
+      ruBanner(),
+      h('div', { class: 'qguarantee' }, [
+        h('span', {}, ['🛡️']),
+        h('span', {}, ['7 дней гарантии: не подойдёт — вернём деньги без вопросов. Просто напишите в поддержку.']),
       ]),
       h('div', { class: 'qpay-buttons' }, [
         h('button', { class: 'btn-gold', type: 'button', id: 'qpay-card-btn', onclick: startCardCheckout }, ['Оплатить картой']),
         h('div', { id: 'paypal-buttons' }),
       ]),
+      payBadges(),
       h('div', { class: 'qerr', id: 'qpay-error', role: 'alert' }),
-      h('p', { class: 'qpay-alt' }, [
+      isLikelyRussia() ? null : h('p', { class: 'qpay-alt' }, [
         'Карта российского банка? ',
         h('a', { href: '/russia/' }, ['Оплата через Telegram →']),
       ]),
-      h('div', { class: 'qguarantee' }, [
-        h('span', {}, ['🛡️']),
-        h('span', {}, ['7 дней гарантии: не подойдёт — вернём деньги без вопросов. Просто напишите в поддержку.']),
-      ]),
-      h('p', { class: 'qsecure' }, ['Оплата проходит на защищённых страницах Stripe / PayPal. Мы не видим и не храним данные карты. Сразу после оплаты вы получите личный код активации.']),
-      h('div', { class: 'qfaq-mini' }, [
-        h('details', {}, [h('summary', {}, ['Как активируется Premium?']), h('p', {}, ['Сразу после оплаты вы увидите личный код активации (и он сохранится у нас — не потеряется). Введите его в приложении: Настройки → Промокоды — Premium включится мгновенно. Код вводится один раз: при продлении подписки доступ дальше продлевается автоматически. Если приложения ещё нет — сначала установите его, ссылки будут на следующем экране.'])]),
-        h('details', {}, [h('summary', {}, ['На каких устройствах работает?']), h('p', {}, ['На всех, где вы вошли в свой аккаунт Phraseman: iPhone, iPad и Android. Код вводится один раз на любом из них.'])]),
-        h('details', {}, [h('summary', {}, ['Как работает продление и отмена?']), h('p', {}, ['Оплата картой продлевается автоматически (месяц/месяц или год/год) — отключить можно в любой момент одним письмом в поддержку, сделаем сразу. Оплата через PayPal — разовая, на выбранный срок, ничего не спишется само. В первые 7 дней вернём оплату полностью без вопросов.'])]),
-        h('details', {}, [h('summary', {}, ['Что-то пойдёт не так — я не потеряю деньги?']), h('p', {}, ['Нет. Каждая оплата сохраняется у нас вместе с кодом, а команда видит её мгновенно. Если код не сработает или потеряется — напишите в поддержку, восстановим за пару часов.'])]),
+      h('p', { class: 'qsecure' }, ['Оплата проходит на защищённых страницах Stripe / PayPal. Мы не видим и не храним данные карты. Сразу после оплаты вы получите личный код активации' + (isGift ? ' — его можно подарить.' : '.')]),
+      paywallFaq(isGift),
+      isGift ? null : h('p', { class: 'qskip' }, [
+        'Пока не готовы решить? ',
+        h('a', {
+          href: '/download/',
+          onclick: function () { track('paywall_skip_download'); },
+        }, ['Скачайте приложение бесплатно →']),
+        ' Premium подождёт.',
       ]),
       backButton(),
     ]);
@@ -621,17 +803,25 @@
           : step.type === 'proof' ? renderProof()
             : step.type === 'build' ? renderBuild()
               : step.type === 'result' ? renderResult()
-                : renderPaywall();
+                : step.type === 'email' ? renderEmail()
+                  : renderPaywall();
     root.appendChild(screen);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     root = document.getElementById('quiz-root');
+    MODE = document.body.getAttribute('data-quiz-mode') || 'quiz';
+    if (MODE !== 'quiz') {
+      /* /premium/ и /gift/ — сразу пейвол; ответы квиза (если проходили) подтянутся. */
+      state = {
+        step: QUIZ.findIndex(function (s) { return s.id === 'paywall'; }),
+        answers: state.answers || {},
+      };
+    }
     captureUtm();
-    initMetaPixel();
     loadRemotePrices();
     /* «строим план» не должен продолжаться после reload с середины */
-    if (QUIZ[state.step] && QUIZ[state.step].id === 'build') {
+    if (MODE === 'quiz' && QUIZ[state.step] && QUIZ[state.step].id === 'build') {
       saveState({ step: state.step + 1, answers: state.answers });
     }
     render();

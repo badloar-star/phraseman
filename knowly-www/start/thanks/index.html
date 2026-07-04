@@ -16,10 +16,10 @@
   />
   <link rel="stylesheet" href="/assets/phraseman.css?v=wow4" />
   <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
-  <link rel="stylesheet" href="/assets/start.css?v=2" />
+  <link rel="stylesheet" href="/assets/start.css?v=3" />
   <script src="/assets/theme.js?v=1"></script>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
-  <script src="/assets/stats.js?v=1" defer></script>
+  <script src="/assets/stats.js?v=2" defer></script>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
@@ -157,7 +157,25 @@
             fetch(cfg.statsEndpoint, { method: 'POST', body: body, keepalive: true }).catch(function () {});
           }
         }
-        if (window.fbq) window.fbq('track', 'Purchase');
+        /* Purchase с суммой: план приходит в URL (?plan=), цена — из кэша
+           серверных цен пейвола или из офлайн-фоллбека site-config. */
+        if (window.fbq) {
+          var plan = new URLSearchParams(location.search).get('plan') || '';
+          var value = 0;
+          var currency = 'USD';
+          try {
+            var cached = JSON.parse(localStorage.getItem('pm_web_prices_cache_v1') || 'null');
+            var cents = cached && cached.data && cached.data.priceCents && cached.data.priceCents[plan];
+            if (cents > 0) {
+              value = cents / 100;
+              currency = String(cached.data.currency || 'usd').toUpperCase();
+            }
+          } catch (_) { /* noop */ }
+          if (!value && cfg.webPrices && cfg.webPrices[plan] && cfg.webPrices[plan].amount) {
+            value = cfg.webPrices[plan].amount;
+          }
+          window.fbq('track', 'Purchase', value > 0 ? { value: value, currency: currency } : undefined);
+        }
         document.querySelectorAll('[data-store="ios"]').forEach(function (a) { if (cfg.storeIos) a.href = cfg.storeIos; });
         document.querySelectorAll('[data-store="android"]').forEach(function (a) { if (cfg.storeAndroid) a.href = cfg.storeAndroid; });
       } catch (_) { /* noop */ }
@@ -173,6 +191,18 @@
         var codeEl = document.getElementById('activation-code');
         codeEl.textContent = code;
         show('state-code');
+        /* Подарочная покупка (/gift/): тот же код, но подсказки — про получателя. */
+        if (params.get('gift') === '1') {
+          var giftSub = document.querySelector('#state-code .sub');
+          if (giftSub) giftSub.textContent = 'Это подарочный код: перешлите его тому, кому дарите, — запиской или сообщением. Код также отправлен вам на email и сохранён у нас, так что потерять его невозможно.';
+          var giftStep2 = document.querySelectorAll('#state-code .russia-step')[1];
+          if (giftStep2) {
+            var giftStrong = giftStep2.querySelector('strong');
+            var giftP = giftStep2.querySelector('p');
+            if (giftStrong) giftStrong.textContent = 'Получатель вводит код';
+            if (giftP) giftP.innerHTML = 'В приложении: <b>Настройки → Промокоды</b> — вставить код и нажать «Активировать».';
+          }
+        }
         var btn = document.getElementById('copy-code-btn');
         btn.addEventListener('click', function () {
           try {

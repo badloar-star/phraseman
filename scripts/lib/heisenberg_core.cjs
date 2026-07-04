@@ -10,14 +10,21 @@ try {
   ts = null;
 }
 
-const ACTIVE_APP_LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
-const PLANNED_APP_LOCALES = [];
+const heisenbergLocales = require('./heisenberg_locales.cjs');
+
+// All locale lists come from the single registry; add new languages there.
+const {
+  LOCALE_REGISTRY,
+  ACTIVE_APP_LOCALES,
+  PLANNED_APP_LOCALES,
+  LEGACY_INLINE_APP_LOCALES,
+  DEFAULT_SOURCE_LOCALES,
+  HEISENBERG_BATCH_SOURCE_LOCALES,
+  STRUCTURED_BATCH_SOURCE_LOCALES,
+  AMBIGUOUS_EXACT_LOCALE_KEYS,
+} = heisenbergLocales;
 const REGISTERED_INTERFACE_SOURCE_LOCALES = [...ACTIVE_APP_LOCALES, ...PLANNED_APP_LOCALES];
 const KNOWN_APP_LOCALES = ACTIVE_APP_LOCALES;
-const LEGACY_INLINE_APP_LOCALES = ['ru', 'uk', 'es'];
-const DEFAULT_SOURCE_LOCALES = ['ru', 'uk', 'es'];
-const HEISENBERG_BATCH_SOURCE_LOCALES = ['es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
-const STRUCTURED_BATCH_SOURCE_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter((locale) => locale !== 'es');
 const STRUCTURED_BATCH_QUIZ_FIELDS = [
   'prompt',
   'explanations[0]',
@@ -136,7 +143,6 @@ for (const locale of EXTRACTABLE_SOURCE_LOCALES) {
   LOCALE_KEY_ALIASES.set(locale.toLowerCase(), locale);
   LOCALE_KEY_ALIASES.set(locale.replace(/-/g, '_').toLowerCase(), locale);
 }
-const AMBIGUOUS_EXACT_LOCALE_KEYS = new Set(['id']);
 
 const ES_SIDECAR_COVERAGE_FILES = {
   'app/achievements.ts': ['app/achievements_es_locale.ts'],
@@ -231,58 +237,17 @@ const SKIP_PATH_PARTS = [
   'scripts/missing_edits_dump',
   'scripts/out',
   'docs/heisenberg',
+  // Compiled build output duplicating functions/src; scanning it double-counts
+  // every server string and audits stale artifacts.
+  'functions/lib',
   'qa-artifacts/ota-export-check',
   'subscription-recovery/node_modules',
   'tmp',
 ];
 
-const LOCALIZED_KEY_EXACT = new Set([
-  'ru',
-  'uk',
-  'es',
-  'russian',
-  'ukrainian',
-  'spanish',
-  'trru',
-  'truk',
-  'tres',
-  'textru',
-  'textuk',
-  'textes',
-  'titleru',
-  'titleuk',
-  'titlees',
-  'subtitleru',
-  'subtitleuk',
-  'subtitlees',
-  'labelru',
-  'labeluk',
-  'labeles',
-  'tagru',
-  'taguk',
-  'tages',
-  'descru',
-  'descuk',
-  'desces',
-  'descriptionru',
-  'descriptionuk',
-  'descriptiones',
-  'messageru',
-  'messageuk',
-  'messagees',
-  'nameru',
-  'nameuk',
-  'namees',
-  'explainru',
-  'explainuk',
-  'explaines',
-  'explanations',
-  'explanationsuk',
-  'explanationses',
-  'linesru',
-  'linesuk',
-  'lineses',
-]);
+const LOCALIZED_KEY_EXACT = heisenbergLocales.buildLocalizedKeyExact();
+const LEGACY_INLINE_SUFFIX_REGEXES = heisenbergLocales.buildLegacyInlineSuffixRegexes();
+const LOCALE_VARIABLE_MAP = heisenbergLocales.buildVariableLocaleMap();
 
 const RESEARCH_SOURCES = [
   {
@@ -492,11 +457,7 @@ const TEXT_FIELD_MARKER_BASES = [
 ];
 
 const TEXT_FIELD_MARKER_BASE_PATTERN = TEXT_FIELD_MARKER_BASES.join('|');
-const FIELD_MARKER_REGEX = {
-  ru: new RegExp(`\\b(?:(?:${TEXT_FIELD_MARKER_BASE_PATTERN})(?:RU|Ru)|(?:${TEXT_FIELD_MARKER_BASE_PATTERN})_ru|russian)\\b`, 'g'),
-  uk: new RegExp(`\\b(?:(?:${TEXT_FIELD_MARKER_BASE_PATTERN})(?:UK|Uk)|(?:${TEXT_FIELD_MARKER_BASE_PATTERN})_uk|ukrainian)\\b`, 'g'),
-  es: new RegExp(`\\b(?:(?:${TEXT_FIELD_MARKER_BASE_PATTERN})(?:ES|Es)|(?:${TEXT_FIELD_MARKER_BASE_PATTERN})_es|spanish)\\b`, 'g'),
-};
+const FIELD_MARKER_REGEX = heisenbergLocales.buildFieldMarkerRegexMap(TEXT_FIELD_MARKER_BASE_PATTERN);
 
 function normalizePath(value) {
   return value.replace(/\\/g, '/');
@@ -598,9 +559,9 @@ function isExplicitLocaleKey(name) {
   const raw = String(name);
   const lower = raw.toLowerCase();
   if (LOCALIZED_KEY_EXACT.has(lower)) return true;
-  if (/(^|[_-])(ru|uk|es)$/i.test(raw)) return true;
-  if (/(RU|UK|ES)$/.test(raw)) return true;
-  if (/(Ru|Uk|Es)$/.test(raw)) return true;
+  if (LEGACY_INLINE_SUFFIX_REGEXES.separated.test(raw)) return true;
+  if (LEGACY_INLINE_SUFFIX_REGEXES.upper.test(raw)) return true;
+  if (LEGACY_INLINE_SUFFIX_REGEXES.title.test(raw)) return true;
   return false;
 }
 
@@ -654,11 +615,7 @@ function inferLocaleFromKey(name, contextLocale) {
   const lower = raw.toLowerCase();
   const exactLocale = inferExactLocaleKey(raw);
   if (exactLocale) return exactLocale;
-  if (lower === 'ru' || lower.endsWith('ru') || lower === 'russian') return 'ru';
-  if (lower === 'uk' || lower.endsWith('uk') || lower === 'ukrainian') return 'uk';
-  if (lower === 'es' || lower.endsWith('es') || lower === 'spanish') return 'es';
-  if (lower === 'explanations') return 'ru';
-  return null;
+  return heisenbergLocales.inferLegacyInlineLocaleFromKey(lower);
 }
 
 function propertyName(node) {
@@ -1045,17 +1002,7 @@ function extractLocalizedItemsFromText(rel, text) {
     }
 
     if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name)) {
-      const variableLocale = {
-        RU: 'ru',
-        UK: 'uk',
-        ES: 'es',
-        PT_BR: 'pt-BR',
-        PTBR: 'pt-BR',
-        VI: 'vi',
-        ID: 'id',
-        TR: 'tr',
-        PL: 'pl',
-      }[node.name.text];
+      const variableLocale = LOCALE_VARIABLE_MAP[node.name.text];
       if (variableLocale && node.initializer && ts.isObjectLiteralExpression(node.initializer)) {
         collectObjectStrings(items, seen, rel, surface, sf, node.initializer, variableLocale, node.name.text);
         return;
@@ -2130,9 +2077,11 @@ function buildRunbook(targetLocale, outDir) {
 }
 
 module.exports = {
+  LOCALE_REGISTRY,
   KNOWN_APP_LOCALES,
   ACTIVE_APP_LOCALES,
   PLANNED_APP_LOCALES,
+  LEGACY_INLINE_APP_LOCALES,
   REGISTERED_INTERFACE_SOURCE_LOCALES,
   DEFAULT_SOURCE_LOCALES,
   HEISENBERG_BATCH_SOURCE_LOCALES,

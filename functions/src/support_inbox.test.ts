@@ -5,6 +5,8 @@ import {
   isHumanEmail,
   rawEmailToDoc,
   composeReplyWithSignature,
+  escapeHtml,
+  plainToHtmlEmail,
   selectForBatchGenerate,
   selectForBatchSend,
   buildReplyPrompt,
@@ -128,6 +130,34 @@ describe('composeReplyWithSignature', () => {
   });
   test('тримит тело', () => {
     expect(composeReplyWithSignature('  Тело  ', 'Sig')).toBe('Тело\n\nSig');
+  });
+});
+
+describe('escapeHtml', () => {
+  test('экранирует все опасные символы', () => {
+    expect(escapeHtml('<b>&"\'</b>')).toBe('&lt;b&gt;&amp;&quot;&#39;&lt;/b&gt;');
+  });
+  test('обычный текст не меняется', () => {
+    expect(escapeHtml('Привет, мир 123')).toBe('Привет, мир 123');
+  });
+});
+
+describe('plainToHtmlEmail', () => {
+  test('**жирный** превращается в <strong>', () => {
+    expect(plainToHtmlEmail('Команда **хорошего настроения**')).toContain(
+      'Команда <strong>хорошего настроения</strong>',
+    );
+  });
+  test('переносы строк становятся <br>', () => {
+    expect(plainToHtmlEmail('строка1\nстрока2')).toContain('строка1<br>строка2');
+  });
+  test('HTML-инъекция экранируется (звёздочки применяются уже после экранирования)', () => {
+    const html = plainToHtmlEmail('<script>alert(1)</script>');
+    expect(html).toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(html).not.toContain('<script>');
+  });
+  test('оборачивает в div со стилями', () => {
+    expect(plainToHtmlEmail('x')).toMatch(/^<div style=.+>x<\/div>$/);
   });
 });
 

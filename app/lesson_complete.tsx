@@ -30,9 +30,10 @@ import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
 import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
 import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
-import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
+import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
+import { logAppWarning } from './app_health';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
 import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
@@ -68,8 +69,6 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   silver: require('../assets/images/levels/serebro.webp'),
   gold: require('../assets/images/levels/zoloto.webp'),
 };
-
-const BONUS = 500;
 
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -602,51 +601,21 @@ export default function LessonComplete() {
 
   const grantBonus = useCallback(async () => {
       const suppress = { suppressEarnEvent: true } as const;
-      try {
-        const shardKeys: ShardSource[] = [];
-        const key = lessonBonusGrantedKey(lessonId, studyTarget);
-        const already = await AsyncStorage.getItem(key);
-      if (!already) {
-        const name = await AsyncStorage.getItem('user_name');
+      const shardKeys: ShardSource[] = [];
 
-
-        // Рассчитываем переменную награду
-        const reward = calculateRewardWithBonus(BONUS);
-        
-        const xpResult = await registerXP(reward.totalXP, 'bonus_chest', name || '', lang, lessonId, {
-          eventId: [
-            'bonus_chest',
-            'lesson',
-            safeLessonCompleteEventPart(studyTarget),
-            String(lessonId),
-            'first_complete',
-          ].join(':'),
-          payload: {
-            surface: 'lesson_complete',
-            studyTarget,
-            lessonId,
-            baseBonus: BONUS,
-            totalReward: reward.totalXP,
-            hasBonusWon: reward.hasBonusWon,
-            bonusXP: reward.bonusXP,
-          },
-        });
-        if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
-          throw new Error('lesson_bonus_xp_not_confirmed');
-        }
-
-        // Показываем карточку бонуса если был выигран
-        if (reward.hasBonusWon) {
-          setBonusXP(reward.bonusXP);
+      // Бонус первого прохождения (сундук XP + осколки lesson_first).
+      // Модуль сам логирует сбой и ставит выдачу в retry-очередь — раньше
+      // ошибка здесь молча съедала ВСЕ награды экрана (пустой catch).
+      const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
+      if (firstBonus.status === 'granted') {
+        if (firstBonus.hasBonusWon) {
+          setBonusXP(firstBonus.bonusXP);
           setShowBonus(true);
         }
-
-        // Осколки за первое прохождение урока (единоразово)
-        const nFirst = await addShards('lesson_first', suppress);
-        if (nFirst > 0) shardKeys.push('lesson_first');
-
-        await AsyncStorage.setItem(key, '1');
+        if (firstBonus.shardsGranted) shardKeys.push('lesson_first');
       }
+
+      try {
       // [ACHIEVEMENT] Считаем сколько уроков завершено + проверяем идеальность
       let lessonCount = 0;
       let perfectCount = 0;
@@ -744,8 +713,20 @@ export default function LessonComplete() {
           scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(() => {});
         } catch {}
       }
-    } catch {}
+    } catch (e) {
+      // Ошибка в пост-наградах (ачивки/осколки за идеальность/тему/стрик) —
+      // не молчим: телеметрия позволяет расследовать «не засчитался бонус».
+      logAppWarning('lesson_complete:post_rewards_failed', e, {
+        tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
+      });
+    }
   }, [lang, lessonId, studyTarget]);
+
+  useEffect(() => {
+    // Доначисляем бонусы, зависшие из-за прошлых сбоев (сеть/лимит XP).
+    // Идемпотентно: guard-ключ + стабильный eventId в леджере.
+    void retryPendingLessonBonusGrants();
+  }, []);
 
   useEffect(() => {
     // Появление иконки

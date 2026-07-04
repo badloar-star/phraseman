@@ -49,42 +49,56 @@ describe('heisenberg translation factory core', () => {
     expect(result.ok).toBe(true);
   });
 
-  it('holds on placeholder loss, dropped protected English, mojibake and leakage', () => {
+  it('hard-holds on placeholder loss, mojibake and Cyrillic leakage', () => {
     const noPlaceholder = core.runDeterministicChecks({
       sourceText: BASE_ROW.sourceText,
       targetLocale: 'pl',
       translation: GOOD_POLISH.replace('{name}', 'kolega'),
     });
     expect(noPlaceholder.ok).toBe(false);
-    expect(noPlaceholder.reasons.map((r: any) => r.code)).toContain('placeholder-mismatch');
-
-    const droppedEnglish = core.runDeterministicChecks({
-      sourceText: BASE_ROW.sourceText,
-      targetLocale: 'pl',
-      translation: GOOD_POLISH.replace('break the ice', 'przełamać lody'),
-    });
-    expect(droppedEnglish.reasons.map((r: any) => r.code)).toContain('protected-english-missing');
+    expect(noPlaceholder.hardReasons.map((r: any) => r.code)).toContain('placeholder-mismatch');
 
     const mojibake = core.runDeterministicChecks({
       sourceText: BASE_ROW.sourceText,
       targetLocale: 'pl',
       translation: `${GOOD_POLISH} ï¿½`,
     });
-    expect(mojibake.reasons.map((r: any) => r.code)).toContain('mojibake');
+    expect(mojibake.ok).toBe(false);
+    expect(mojibake.hardReasons.map((r: any) => r.code)).toContain('mojibake');
 
     const cyrillicLeak = core.runDeterministicChecks({
       sourceText: 'Plain source with "break the ice" and {name}.',
       targetLocale: 'pl',
       translation: 'To znaczy "break the ice" oraz {name}, но часть осталась по-русски.',
     });
-    expect(cyrillicLeak.reasons.map((r: any) => r.code)).toContain('unexpected-cyrillic');
+    expect(cyrillicLeak.ok).toBe(false);
+    expect(cyrillicLeak.hardReasons.map((r: any) => r.code)).toContain('unexpected-cyrillic');
+  });
+
+  it('soft-flags dropped quoted snippets, weak language signal and identical cognates for the judge', () => {
+    const droppedEnglish = core.runDeterministicChecks({
+      sourceText: BASE_ROW.sourceText,
+      targetLocale: 'pl',
+      translation: GOOD_POLISH.replace('break the ice', 'przełamać lody'),
+    });
+    expect(droppedEnglish.ok).toBe(true);
+    expect(droppedEnglish.reasons.find((r: any) => r.code === 'protected-english-missing')?.severity).toBe('soft');
 
     const wrongLanguage = core.runDeterministicChecks({
       sourceText: BASE_ROW.sourceText,
       targetLocale: 'pl',
       translation: 'This is just English text that mentions "break the ice" together with {name} placeholder.',
     });
-    expect(wrongLanguage.reasons.map((r: any) => r.code)).toContain('weak-language-signal');
+    expect(wrongLanguage.ok).toBe(true);
+    expect(wrongLanguage.reasons.find((r: any) => r.code === 'weak-language-signal')?.severity).toBe('soft');
+
+    const cognate = core.runDeterministicChecks({
+      sourceText: 'restaurante',
+      targetLocale: 'pt-BR',
+      translation: 'restaurante',
+    });
+    expect(cognate.ok).toBe(true);
+    expect(cognate.reasons.find((r: any) => r.code === 'identical-to-source')?.severity).toBe('soft');
   });
 
   it('treats malformed or HOLD judge output as HOLD, never GO', () => {
@@ -128,6 +142,19 @@ describe('heisenberg translation factory core', () => {
     });
     expect(hold.status).toBe('HOLD');
     expect(hold.holdReasons.map((r: any) => r.code)).toContain('judge-hold:accuracy');
+
+    const pending = core.buildFilledRow({
+      blockRow: BASE_ROW,
+      translation: GOOD_POLISH,
+      translatorNotes: '',
+      backTranslation: null,
+      judge: null,
+      model: 'claude-agent',
+      generatedAt: '2026-07-04T00:00:00.000Z',
+    });
+    expect(pending.status).toBe('PENDING_JUDGE');
+    expect(pending.holdReasons).toEqual([]);
+    expect(pending.reviewerImportAllowed).toBe(false);
   });
 
   it('validates block rows and summarizes results', () => {

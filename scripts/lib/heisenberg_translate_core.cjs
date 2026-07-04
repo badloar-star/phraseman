@@ -35,22 +35,31 @@ function quotedEnglishSnippets(text) {
   return [...out].sort();
 }
 
-// Deterministic quality gates for one translated row. Every failure is a
-// hard HOLD reason; the LLM judge can only add reasons, never remove these.
+// Deterministic quality gates for one translated row.
+//
+// severity 'hard' = unquestionable defect, blocks the row on its own.
+// severity 'soft' = heuristic suspicion the LLM judge must resolve — needed
+// because es→pt-BR cognates are legitimately identical, quoted source-language
+// words look like "protected English", and the stop-word language signal
+// under-fires on ordinary UI sentences.
 function runDeterministicChecks({ sourceText, targetLocale, translation }) {
   const reasons = [];
   const text = String(translation || '').trim();
   const source = String(sourceText || '').trim();
 
   if (!text) {
-    reasons.push({ code: 'empty-translation', message: 'Translation is empty.' });
+    reasons.push({ code: 'empty-translation', severity: 'hard', message: 'Translation is empty.' });
     return { ok: false, reasons };
   }
   if (semanticCore.hasMojibake(text)) {
-    reasons.push({ code: 'mojibake', message: 'Translation contains broken encoding.' });
+    reasons.push({ code: 'mojibake', severity: 'hard', message: 'Translation contains broken encoding.' });
   }
   if (text === source) {
-    reasons.push({ code: 'identical-to-source', message: 'Translation is identical to the source text.' });
+    reasons.push({
+      code: 'identical-to-source',
+      severity: 'soft',
+      message: 'Translation is identical to the source text (may be a cognate or an untranslated copy).',
+    });
   }
 
   const sourcePlaceholders = extractPlaceholders(source);
@@ -58,6 +67,7 @@ function runDeterministicChecks({ sourceText, targetLocale, translation }) {
   if (JSON.stringify(sourcePlaceholders) !== JSON.stringify(targetPlaceholders)) {
     reasons.push({
       code: 'placeholder-mismatch',
+      severity: 'hard',
       message: `Placeholders differ: source ${JSON.stringify(sourcePlaceholders)} vs translation ${JSON.stringify(targetPlaceholders)}.`,
     });
   }
@@ -66,7 +76,8 @@ function runDeterministicChecks({ sourceText, targetLocale, translation }) {
     if (!semanticCore.containsTerm(text, snippet)) {
       reasons.push({
         code: 'protected-english-missing',
-        message: `Quoted English snippet "${snippet}" is missing from the translation.`,
+        severity: 'soft',
+        message: `Quoted ASCII snippet "${snippet}" is missing from the translation (verify it was not English study material).`,
       });
     }
   }
@@ -77,6 +88,7 @@ function runDeterministicChecks({ sourceText, targetLocale, translation }) {
     if (signal && signal.ok === false) {
       reasons.push({
         code: 'weak-language-signal',
+        severity: 'soft',
         message: `Text does not look like ${targetLocale} (no diacritics/stop-word evidence).`,
       });
     }
@@ -85,11 +97,12 @@ function runDeterministicChecks({ sourceText, targetLocale, translation }) {
     // Cyrillic inside a non-Cyrillic target locale means source-language leakage,
     // unless the source itself intentionally quotes Cyrillic.
     if (!semanticCore.hasCyrillic(source)) {
-      reasons.push({ code: 'unexpected-cyrillic', message: 'Translation leaked Cyrillic text.' });
+      reasons.push({ code: 'unexpected-cyrillic', severity: 'hard', message: 'Translation leaked Cyrillic text.' });
     }
   }
 
-  return { ok: reasons.length === 0, reasons };
+  const hardReasons = reasons.filter((reason) => reason.severity === 'hard');
+  return { ok: hardReasons.length === 0, reasons, hardReasons };
 }
 
 const JUDGE_LENSES = ['accuracy', 'naturalness', 'integrity'];
@@ -120,25 +133,32 @@ function judgeOverall(judge) {
   return JUDGE_LENSES.every((lens) => judge[lens].verdict === 'GO') ? 'GO' : 'HOLD';
 }
 
-// Final row assembly. A row may become GO only when both the deterministic
-// checks and every judge lens agree; the factory can never emit approvals.
+// Final row assembly. A row may become GO only when the deterministic checks
+// find no hard defect AND every judge lens agrees; without a judge the best a
+// row can reach is PENDING_JUDGE. The factory can never emit approvals.
 function buildFilledRow({ blockRow, translation, translatorNotes, backTranslation, judge, model, generatedAt }) {
   const deterministic = runDeterministicChecks({
     sourceText: blockRow.sourceText,
     targetLocale: blockRow.targetLocale,
     translation,
   });
-  const overallJudge = judgeOverall(judge);
-  const status = deterministic.ok && overallJudge === 'GO' ? 'GO' : 'HOLD';
-  const holdReasons = [
-    ...deterministic.reasons,
-    ...(overallJudge === 'HOLD'
-      ? JUDGE_LENSES.filter((lens) => judge?.[lens]?.verdict !== 'GO').map((lens) => ({
+  const softFlags = deterministic.reasons.filter((reason) => reason.severity === 'soft');
+  const holdReasons = [...deterministic.hardReasons];
+  let status;
+  if (judge) {
+    if (judgeOverall(judge) === 'HOLD') {
+      holdReasons.push(
+        ...JUDGE_LENSES.filter((lens) => judge?.[lens]?.verdict !== 'GO').map((lens) => ({
           code: `judge-hold:${lens}`,
+          severity: 'hard',
           message: String(judge?.[lens]?.note || 'judge returned invalid output'),
-        }))
-      : []),
-  ];
+        })),
+      );
+    }
+    status = holdReasons.length > 0 ? 'HOLD' : 'GO';
+  } else {
+    status = holdReasons.length > 0 ? 'HOLD' : 'PENDING_JUDGE';
+  }
   return {
     schema: FILLED_ROW_SCHEMA_VERSION,
     id: blockRow.id,
@@ -156,6 +176,7 @@ function buildFilledRow({ blockRow, translation, translatorNotes, backTranslatio
     judge: judge ?? null,
     status,
     holdReasons,
+    softFlags,
     machineGenerated: true,
     model,
     generatedAt,

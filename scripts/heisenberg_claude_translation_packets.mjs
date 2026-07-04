@@ -116,9 +116,13 @@ function listBlockFiles(blocksPath) {
     .map((name) => path.join(abs, name));
 }
 
+// Extraction noise: source rows that are actually code expressions, not copy.
+const CODE_NOISE_RE = /typeof\s|===|!==|\?\.|\bundefined\b/;
+
 function loadRows(args) {
   const rows = [];
   let excluded = 0;
+  let codeNoise = 0;
   for (const file of listBlockFiles(args.blocks)) {
     for (const row of parseJsonl(file)) {
       if (translateCore.validateBlockRow(row).length > 0) continue;
@@ -127,10 +131,14 @@ function loadRows(args) {
         excluded += 1;
         continue;
       }
+      if (CODE_NOISE_RE.test(String(row.sourceText))) {
+        codeNoise += 1;
+        continue;
+      }
       rows.push(row);
     }
   }
-  return { rows, excluded };
+  return { rows, excluded, codeNoise };
 }
 
 function strideSample(rows, sample) {
@@ -142,7 +150,7 @@ function strideSample(rows, sample) {
 }
 
 function emit(args) {
-  const { rows: allRows, excluded } = loadRows(args);
+  const { rows: allRows, excluded, codeNoise } = loadRows(args);
   let rows = strideSample(allRows, args.sample);
   if (args.limit > 0) rows = rows.slice(0, args.limit);
   const outDir = absFromRoot(args.outDir);
@@ -162,6 +170,7 @@ function emit(args) {
     blocks: args.blocks,
     rowsTotalInScope: allRows.length,
     rowsExcludedOperatorSurfaces: excluded,
+    rowsExcludedCodeNoise: codeNoise,
     rowsEmitted: rows.length,
     packetSize: args.packetSize,
     sample: args.sample || null,
@@ -187,6 +196,18 @@ function ingest(args) {
     }
   }
 
+  // Judge verdicts arrive as separate files (judged/*.jsonl) written by
+  // independent reviewer agents; join them to filled rows by id.
+  const judgedById = new Map();
+  const judgedDir = path.join(outDir, 'judged');
+  if (fs.existsSync(judgedDir)) {
+    for (const name of fs.readdirSync(judgedDir).filter((n) => n.endsWith('.jsonl')).sort()) {
+      for (const verdict of parseJsonl(path.join(judgedDir, name))) {
+        if (verdict && verdict.id && verdict.judge) judgedById.set(verdict.id, verdict.judge);
+      }
+    }
+  }
+
   const generatedAt = new Date().toISOString();
   const accepted = [];
   const held = [];
@@ -209,17 +230,10 @@ function ingest(args) {
         translation: String(filled.targetText || ''),
         translatorNotes: filled.translatorNotes ?? null,
         backTranslation: filled.backTranslation ?? null,
-        judge: filled.judge ?? null,
+        judge: filled.judge ?? judgedById.get(filled.id) ?? null,
         model: filled.model || 'claude-agent',
         generatedAt,
       });
-      // Without a judge object the row can be at most deterministically clean;
-      // record it as PENDING_JUDGE instead of GO so review stays mandatory.
-      if (row.status === 'HOLD' && !filled.judge) {
-        const deterministicOnly = row.holdReasons.filter((r) => !String(r.code).startsWith('judge-'));
-        if (deterministicOnly.length === 0) row.status = 'PENDING_JUDGE';
-        row.holdReasons = deterministicOnly;
-      }
       (row.status === 'HOLD' ? held : accepted).push(row);
     }
   }

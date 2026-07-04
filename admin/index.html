@@ -11884,10 +11884,10 @@
     <button onclick="loadSupportInbox(true)" style="background:#2a2a3a;color:#aaa">↻ Обновить список</button>
     <span class="reports-count" id="gsi-count"></span>
   </div>
-  <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
-    <span style="font-size:12.5px;color:#9ca3af;font-weight:600">✍️ Подпись (добавляется в конец каждого ответа):</span>
-    <input id="gsi-signature" type="text" placeholder="напр. Phraseman Support" style="flex:1;min-width:220px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:7px;padding:7px 10px;font-size:13px">
-    <button onclick="supportSaveSignature()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 13px;border-radius:7px;cursor:pointer;font-weight:600;font-size:12.5px">Сохранить подпись</button>
+  <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap">
+    <span style="font-size:12.5px;color:#9ca3af;font-weight:600;padding-top:7px;flex-shrink:0">✍️ Подпись (добавляется в конец каждого ответа):</span>
+    <textarea id="gsi-signature" rows="4" placeholder="напр.&#10;Warm regards,&#10;The Phraseman Team 🦉&#10;Phraseman by Knowly · knowlyapps.com" style="flex:1;min-width:260px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:7px;padding:7px 10px;font-size:13px;line-height:1.45;font-family:inherit;resize:vertical;white-space:pre-wrap"></textarea>
+    <button onclick="supportSaveSignature()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 13px;border-radius:7px;cursor:pointer;font-weight:600;font-size:12.5px;flex-shrink:0;align-self:flex-start">Сохранить подпись</button>
   </div>
   <div id="gsi-list"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>

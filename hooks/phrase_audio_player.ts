@@ -323,8 +323,16 @@ export async function playPhraseByText(
       }
     };
 
+    // Кол-во пришедших статусов: первый 'idle' — это НАЧАЛЬНОЕ состояние до
+    // загрузки, он нормален. 'idle' ПОСЛЕ него = ExoPlayer упал в STATE_IDLE
+    // (ошибка декода / исчерпан нативный слот): expo-audio не эмитит отдельного
+    // события ошибки, поэтому это единственный точный признак сбоя (см. нативный
+    // AudioPlayer.kt: STATE_IDLE→"idle", onPlayerError не проброшен).
+    let statusTicks = 0;
+
     const sub = player.addListener('playbackStatusUpdate', (status) => {
       if (finished) return;
+      statusTicks += 1;
       // Реальный старт воспроизведения — только теперь гасим watchdog и сообщаем
       // onStart. КРИТИЧНО: onStart НЕ вызываем сразу после createAudioPlayer —
       // иначе вызывающая сторона снимет свой fallback-таймер для плеера, который
@@ -333,6 +341,13 @@ export async function playPhraseByText(
         started = true;
         clearCurrentWatchdog();
         if (!superseded()) cb?.onStart?.();
+      }
+      // Точное само-лечение (не ждём таймер): плеер вернулся в 'idle' уже ПОСЛЕ
+      // первого статуса, но так и не заиграл → это сбой натива. Освобождаем слот
+      // и уходим в TTS немедленно, а не через CLIP_PLAY_WATCHDOG_MS.
+      if (!started && statusTicks > 1 && status.playbackState === 'idle') {
+        teardown(true);
+        return;
       }
       if (status.didJustFinish) {
         const wasSuperseded = superseded();

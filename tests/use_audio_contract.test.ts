@@ -80,4 +80,14 @@ describe('useAudio TTS resiliency', () => {
     // A failed start reports onError so use-audio.ts falls back to system TTS.
     expect(phraseAudioSource).toContain("cb?.onError?.(new Error('phrase clip failed to start'))");
   });
+
+  it('frees a failed native player immediately on the ExoPlayer idle-error signal', () => {
+    // expo-audio emits no explicit player-error event; a native decode failure /
+    // exhausted player slot surfaces only as playbackState 'idle' AFTER the first
+    // status. Detect that precisely and release the slot at once, not after the
+    // timeout — root-cause release, with the watchdog only as a last resort.
+    expect(phraseAudioSource).toContain("status.playbackState === 'idle'");
+    expect(phraseAudioSource).toContain('statusTicks');
+    expect(phraseAudioSource).toMatch(/statusTicks > 1 && status\.playbackState === 'idle'/);
+  });
 });

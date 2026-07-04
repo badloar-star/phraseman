@@ -5000,6 +5000,228 @@
       .detail { width: 100% !important; border-left: none !important; }
       #ar-detail-panel { width: 96vw !important; max-width: 96vw !important; padding: 18px !important; max-height: 90vh !important; }
     }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       CONTROL PANEL POLISH  (spec: admin-control-panel-polish)
+       Эталонный слой «Пульта». Всё заскоуплено под #tab-control-panel,
+       чтобы пережить body[data-admin-skin="onboarding"] (id > attr+tag).
+       Self-contained: только CSS/эмодзи, без внешних ресурсов.
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* — Единый вид карточек (R1,R2) — */
+    #tab-control-panel .cp-card {
+      background: #14141f;
+      border: 1px solid #2a2a3a;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      will-change: transform;
+    }
+    /* Опасная зона (Force-update, Обслуживание) — тёплый акцент рамки */
+    #tab-control-panel .cp-card.cp-card-danger { background: #1a1414; border-color: #3a2a2a; }
+    /* — Реакция карточки на наведение (R4) — */
+    #tab-control-panel .cp-card:hover {
+      transform: translateY(-3px);
+      border-color: #3a3a4e;
+      box-shadow: 0 10px 30px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(129,140,248,.12);
+    }
+    #tab-control-panel .cp-card.cp-card-danger:hover {
+      border-color: #5a3a3a;
+      box-shadow: 0 10px 30px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(248,113,113,.18);
+    }
+
+    /* — Единый заголовок карточки (R2) — */
+    #tab-control-panel .cp-card-title {
+      font-size: 15px; font-weight: 800; letter-spacing: .01em;
+      display: flex; align-items: center; gap: 9px; line-height: 1.25;
+    }
+    #tab-control-panel .cp-card-sub {
+      font-size: 12.5px; color: #9ca3af; margin-top: 6px; line-height: 1.5;
+    }
+    /* «Стена текста» приглушается, действия — акцентны (R14) */
+    #tab-control-panel .cp-card p,
+    #tab-control-panel .cp-muted { color: #8b919c; }
+
+    /* — Строка тумблера-рубильника (R3) — */
+    #tab-control-panel .cp-switch-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 11px 8px; border-top: 1px solid #23232f;
+      border-radius: 10px; transition: background .15s ease;
+    }
+    #tab-control-panel .cp-switch-row:hover { background: rgba(255,255,255,.025); }
+    #tab-control-panel .cp-switch-ico {
+      flex: none; width: 30px; height: 30px; border-radius: 9px;
+      display: grid; place-items: center; font-size: 15px;
+      background: rgba(129,140,248,.10); border: 1px solid rgba(129,140,248,.18);
+    }
+
+    /* — Кнопки Пульта: hover + вдавливание (R5). id-scope бьёт skin button{} — */
+    #tab-control-panel .cp-btn {
+      transition: transform .12s ease, background .15s ease,
+                  border-color .15s ease, box-shadow .15s ease;
+    }
+    #tab-control-panel .cp-btn:hover {
+      filter: brightness(1.12);
+      border-color: #4b5563;
+      box-shadow: 0 6px 16px -8px rgba(0,0,0,.6);
+    }
+    #tab-control-panel .cp-btn:active { transform: translateY(1px) scale(.985); }
+
+    /* — Плавный переключатель вместо системного чекбокса (R6) — */
+    #tab-control-panel input.cp-toggle {
+      -webkit-appearance: none; appearance: none;
+      position: relative; width: 42px; height: 24px; margin: 0;
+      border-radius: 999px; background: #2a2a3a; border: 1px solid #3a3a4e;
+      cursor: pointer; outline: none; flex: none;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    #tab-control-panel input.cp-toggle::after {
+      content: ""; position: absolute; top: 50%; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%;
+      transform: translateY(-50%); background: #cbd5e1;
+      transition: transform .2s ease, background .2s ease;
+    }
+    #tab-control-panel input.cp-toggle:checked { background: #16a34a; border-color: #22c55e; }
+    #tab-control-panel input.cp-toggle:checked::after { transform: translate(18px,-50%); background: #fff; }
+    /* «Опасные» тумблеры (force/обслуживание) — красный «вкл» */
+    #tab-control-panel input.cp-toggle.cp-toggle-danger:checked { background: #dc2626; border-color: #ef4444; }
+    #tab-control-panel input.cp-toggle:disabled { opacity: .45; cursor: default; }
+    #tab-control-panel input.cp-toggle:focus-visible { box-shadow: 0 0 0 3px rgba(129,140,248,.35); }
+
+    /* — Метка состояния тумблера как чип (R12) —
+         color с !important: перебивает generic-правило скина onboarding,
+         которое красит текст в muted через !important (иначе чип всегда серый). */
+    #tab-control-panel .cp-bool-chip {
+      font-size: 11px; font-weight: 800; min-width: 44px; text-align: center;
+      padding: 3px 8px; border-radius: 999px; letter-spacing: .02em;
+      background: rgba(148,163,184,.12); color: #9ca3af !important;
+      border: 1px solid rgba(148,163,184,.2);
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    /* Вкл — зелёный чип; выкл — нейтральный */
+    #tab-control-panel .cp-bool-chip[data-on="1"] {
+      background: rgba(34,197,94,.14); color: #86efac !important; border-color: rgba(34,197,94,.35);
+    }
+    /* Опасные тумблеры (force/обслуживание) в положении «Вкл» — красный чип.
+       Класс-маркер вместо :has()/~ :checked — надёжно при программной установке. */
+    #tab-control-panel .cp-bool-chip-danger[data-on="1"] {
+      background: rgba(248,113,113,.14); color: #fca5a5 !important; border-color: rgba(248,113,113,.4);
+    }
+
+    /* — Статус-чип на месте бывших «голых» надписей (R11) — */
+    /* color с !important — та же причина, что у .cp-bool-chip (skin onboarding). */
+    #tab-control-panel .cp-status-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+      background: rgba(148,163,184,.1); border: 1px solid rgba(148,163,184,.2);
+      color: #9ca3af !important; vertical-align: middle; max-width: 100%;
+    }
+    #tab-control-panel .cp-status-chip:empty { display: none; }
+    #tab-control-panel .cp-status-chip::before {
+      content: "•"; font-size: 13px; line-height: 1; opacity: .9;
+    }
+    #tab-control-panel .cp-status-chip[data-type="loading"]::before { content: "⏳"; }
+    #tab-control-panel .cp-status-chip[data-type="success"]::before { content: "✓"; }
+    #tab-control-panel .cp-status-chip[data-type="error"]::before   { content: "⚠"; }
+    #tab-control-panel .cp-status-chip[data-type="info"]::before    { content: "ℹ"; }
+    #tab-control-panel .cp-status-chip[data-type="success"] { color:#86efac !important; border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.08); }
+    #tab-control-panel .cp-status-chip[data-type="error"]   { color:#fca5a5 !important; border-color:rgba(248,113,113,.35); background:rgba(248,113,113,.08); }
+    #tab-control-panel .cp-status-chip[data-type="loading"] { color:#93c5fd !important; border-color:rgba(96,165,250,.3);  background:rgba(96,165,250,.08); }
+
+    /* — Секционные разделители-группы (R13) — */
+    #tab-control-panel .cp-group-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: #6b7280; margin: 26px 2px 12px;
+    }
+    #tab-control-panel .cp-group-label::after {
+      content: ""; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(148,163,184,.25), transparent);
+    }
+    #tab-control-panel .cp-group-label:first-child { margin-top: 4px; }
+
+    /* — Живой заголовок секции (R8): переливающийся градиент — */
+    #tab-control-panel .admin-overview-title {
+      background: linear-gradient(90deg,#fbbf24,#f472b6,#818cf8,#fbbf24);
+      background-size: 300% 100%;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      animation: cpTitleShimmer 8s linear infinite;
+    }
+    @keyframes cpTitleShimmer { to { background-position: 300% 0; } }
+
+    /* — Появление карточек при открытии вкладки, stagger (R7) — */
+    #tab-control-panel.reports-tab.active .cp-card,
+    #tab-control-panel.reports-tab.active .cp-hub-card {
+      animation: cpCardIn .42s cubic-bezier(.22,.61,.36,1) both;
+    }
+    @keyframes cpCardIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(1){animation-delay:.02s}
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(2){animation-delay:.06s}
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(3){animation-delay:.10s}
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(4){animation-delay:.14s}
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(5){animation-delay:.18s}
+    #tab-control-panel.reports-tab.active .cp-card:nth-of-type(n+6){animation-delay:.22s}
+
+    /* — Хаб-карточки внизу: та же реакция на hover (R4,R5) — */
+    #tab-control-panel .cp-hub-card {
+      background: #14141f; border: 1px solid #2a2a3a; border-radius: 12px; padding: 16px;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    #tab-control-panel .cp-hub-card:hover {
+      transform: translateY(-3px); border-color: #3a3a4e;
+      box-shadow: 0 10px 26px -14px rgba(0,0,0,.7);
+    }
+
+    /* — Тосты (R10): единый всплывающий чип с иконкой — */
+    #cp-toast-host {
+      position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+      display: flex; flex-direction: column; gap: 10px;
+      max-width: min(360px, 90vw); pointer-events: none;
+    }
+    #cp-toast-host .cp-toast {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 14px; border-radius: 12px;
+      background: #1b1b27; border: 1px solid #2f2f40; color: #e5e7eb;
+      font-size: 13px; font-weight: 600; line-height: 1.35;
+      box-shadow: 0 14px 40px -12px rgba(0,0,0,.75);
+      animation: cpToastIn .28s cubic-bezier(.22,.61,.36,1) both;
+      pointer-events: auto;
+    }
+    #cp-toast-host .cp-toast.cp-toast-hide { animation: cpToastOut .26s ease forwards; }
+    #cp-toast-host .cp-toast .cp-toast-ico {
+      flex: none; width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center; font-size: 13px; font-weight: 800;
+    }
+    #cp-toast-host .cp-toast[data-type="success"] { border-color: rgba(34,197,94,.4); }
+    #cp-toast-host .cp-toast[data-type="success"] .cp-toast-ico { background: rgba(34,197,94,.16); color:#86efac; }
+    #cp-toast-host .cp-toast[data-type="error"]   { border-color: rgba(248,113,113,.4); }
+    #cp-toast-host .cp-toast[data-type="error"] .cp-toast-ico { background: rgba(248,113,113,.16); color:#fca5a5; }
+    #cp-toast-host .cp-toast[data-type="loading"] .cp-toast-ico { background: rgba(96,165,250,.16); color:#93c5fd; }
+    #cp-toast-host .cp-toast[data-type="info"] .cp-toast-ico { background: rgba(148,163,184,.16); color:#cbd5e1; }
+    @keyframes cpToastIn  { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform:none; } }
+    @keyframes cpToastOut { to   { opacity:0; transform: translateY(8px) scale(.98); } }
+
+    /* — R9: уважение prefers-reduced-motion. Отключаем декоративное движение,
+         оставляем мгновенные состояния; функциональность сохраняется. — */
+    @media (prefers-reduced-motion: reduce) {
+      #tab-control-panel .admin-overview-title { animation: none; }
+      #tab-control-panel.reports-tab.active .cp-card,
+      #tab-control-panel.reports-tab.active .cp-hub-card { animation: none; }
+      #tab-control-panel .cp-card:hover,
+      #tab-control-panel .cp-hub-card:hover { transform: none; }
+      #tab-control-panel .cp-btn:active { transform: none; }
+      #cp-toast-host .cp-toast { animation: none; }
+      #tab-control-panel .cp-card,
+      #tab-control-panel .cp-hub-card,
+      #tab-control-panel .cp-btn,
+      #tab-control-panel input.cp-toggle,
+      #tab-control-panel input.cp-toggle::after { transition-duration: .001ms; }
+    }
   </style>
 </head>
 <body data-admin-skin="onboarding">
@@ -10059,67 +10281,81 @@
     </div>
   </section>
 
+  <div class="cp-group-label">⚡ Рубильники и фичи</div>
+
   <!-- Рубильники фич: булевы флаги remote_config/app.bools (живой kill-switch) -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#fbbf24">🎛 Рубильники фич</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#fbbf24">🎛 Рубильники фич</div>
+    <div class="cp-card-sub">
       Аварийное включение/выключение функций <b>без релиза и OTA</b> — изменения подхватываются клиентами за секунды.
       Уже начатые покупки/доступы не отзываются.
     </div>
-    <div id="cp-toggles-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+    <div style="margin-top:8px"><span id="cp-toggles-status" class="cp-status-chip">Загрузка…</span></div>
 
     <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🎤</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Режим «Устно»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Произношение/говорение в уроках и тренере.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-speaking_enabled" onchange="saveControlPanelBool('speaking_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-speaking_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-speaking_enabled" class="cp-toggle" onchange="saveControlPanelBool('speaking_enabled', this.checked)" disabled/><span id="cp-bool-label-speaking_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">💎</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Сокровищница» (коллекционные)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Дроп коллекционных фраз из уроков и арены.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-collectibles_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" class="cp-toggle" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled/><span id="cp-bool-label-collectibles_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🧒</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Объясни как для 5-летнего»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Кнопка объяснения фразы (платный ИИ).</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-explain_enabled" onchange="saveControlPanelBool('explain_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-explain_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-explain_enabled" class="cp-toggle" onchange="saveControlPanelBool('explain_enabled', this.checked)" disabled/><span id="cp-bool-label-explain_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🎁</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Реферальная программа</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Нужна задеплоенная invite-страница.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-referral_enabled" onchange="saveControlPanelBool('referral_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-referral_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-referral_enabled" class="cp-toggle" onchange="saveControlPanelBool('referral_enabled', this.checked)" disabled/><span id="cp-bool-label-referral_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🏆</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Лиги: переход по XP</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Временный переход вверх по порогу XP.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-league_xp_promotion_enabled" onchange="saveControlPanelBool('league_xp_promotion_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-league_xp_promotion_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-league_xp_promotion_enabled" class="cp-toggle" onchange="saveControlPanelBool('league_xp_promotion_enabled', this.checked)" disabled/><span id="cp-bool-label-league_xp_promotion_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">♾️</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Покажется только когда продукт заведён в RevenueCat. Купившие сохраняют доступ.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-lifetime_button_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" class="cp-toggle" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled/><span id="cp-bool-label-lifetime_button_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">💡</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Раздел «Идеи»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»). Sell-switch: включай на время акции.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-ideas_enabled" onchange="saveControlPanelBool('ideas_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-ideas_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-ideas_enabled" class="cp-toggle" onchange="saveControlPanelBool('ideas_enabled', this.checked)" disabled/><span id="cp-bool-label-ideas_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row" style="align-items:flex-start">
+        <div class="cp-switch-ico">🎟️</div>
         <div style="flex:1;min-width:0">
           <div style="font-size:13.5px;font-weight:700;color:#fbbf24">Промокоды в настройках</div>
           <div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл = в приложении появляется раздел «Промокоды», а сервер принимает активацию. Выкл = скрыто и callable вернёт promo_disabled.</div>
-          <button type="button" onclick="switchTab('promo-codes')" title="Открыть генератор, одноразовые коды, свои коды и список промокодов" style="margin-top:8px;background:#172033;border:1px solid #334155;color:#bfdbfe;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:800;min-height:36px">Открыть раздел Промокоды</button>
+          <button type="button" class="cp-btn" onclick="switchTab('promo-codes')" title="Открыть генератор, одноразовые коды, свои коды и список промокодов" style="margin-top:8px;background:#172033;border:1px solid #334155;color:#bfdbfe;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:800;min-height:36px">Открыть раздел Промокоды</button>
         </div>
-        <label title="Включить или выключить промокоды для всех пользователей" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_codes_enabled" onchange="saveControlPanelBool('promo_codes_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-promo_codes_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label title="Включить или выключить промокоды для всех пользователей" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_codes_enabled" class="cp-toggle" onchange="saveControlPanelBool('promo_codes_enabled', this.checked)" disabled/><span id="cp-bool-label-promo_codes_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🤖</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Арена: боты-соперники</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию. Выкл → матчатся только реальные игроки, при пустой очереди соперник не подставляется.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-arena_bots_enabled" onchange="saveControlPanelBool('arena_bots_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-arena_bots_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-arena_bots_enabled" class="cp-toggle" onchange="saveControlPanelBool('arena_bots_enabled', this.checked)" disabled/><span id="cp-bool-label-arena_bots_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🚪</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Онбординг: новый плановый вход</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Новый первый экран начинается с бренда, кнопки «Начать» и входа для существующего аккаунта. Дальше: язык, цель, уровень, время, mini aha, план, пейвол, имя и согласия.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-onboarding_plan_only_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" class="cp-toggle" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled/><span id="cp-bool-label-onboarding_plan_only_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">⏳</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Пейволы: таймеры срочности</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — на пейволах показывается блок обратного отсчёта «старой цены» (и плашка «цена сохранена»). Выкл → блок срочности скрыт на всех пейволах A/B/C у всех живьём, без релиза.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-paywall_timers_enabled" onchange="saveControlPanelBool('paywall_timers_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-paywall_timers_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-paywall_timers_enabled" class="cp-toggle" onchange="saveControlPanelBool('paywall_timers_enabled', this.checked)" disabled/><span id="cp-bool-label-paywall_timers_enabled" class="cp-bool-chip">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">▶️</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Кнопка «Видео» на главной</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — иконка-плей в шапке главной ведёт на экран видео канала. Выкл → кнопка скрыта у всех живьём, без релиза. Какой канал показывать — в карточке «📺 YouTube-канал» (вкладка Remote Config).</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-video_button_enabled" onchange="saveControlPanelBool('video_button_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-video_button_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-video_button_enabled" class="cp-toggle" onchange="saveControlPanelBool('video_button_enabled', this.checked)" disabled/><span id="cp-bool-label-video_button_enabled" class="cp-bool-chip">…</span></label>
       </div>
     </div>
   </div>
@@ -10127,9 +10363,9 @@
   <!-- 🗓 НЕДЕЛЬНЫЕ БОНУСЫ (Weekly Boons) — RAW JSON (только просмотр). Основной
        редактор — структурный виджет выше; здесь только сырое значение для сверки,
        чтобы два редактора не затирали правки друг друга (last-save-wins). -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#fbbf24">🗓 Недельные бонусы — RAW JSON (просмотр)</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#fbbf24">🗓 Недельные бонусы — RAW JSON (просмотр)</div>
+    <div class="cp-card-sub">
       Сырое значение <code style="color:#a78bfa">weekly_boons_config</code> для сверки/отладки.
       Редактируй расписание <b>структурным виджетом выше</b> — он основной. Это поле только показывает,
       что реально сохранено (пусто = встроенный дефолт).
@@ -10137,23 +10373,26 @@
     <textarea id="cp-boons-json" rows="8" readonly spellcheck="false"
       style="width:100%;margin-top:12px;background:#121219;border:1px solid #2a2a3a;color:#9ca3af;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
     <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
-      <button type="button" onclick="loadControlPanelBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать сырое значение</button>
-      <span id="cp-boons-status" style="font-size:12px;color:#6b7280"></span>
+      <button type="button" class="cp-btn" onclick="loadControlPanelBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать сырое значение</button>
+      <span id="cp-boons-status" class="cp-status-chip"></span>
     </div>
   </div>
 
+  <div class="cp-group-label">🚦 Обновления и обслуживание</div>
+
   <!-- 🚀 FORCE-UPDATE: принудительное обновление по минимальной версии -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#f87171">🚀 Принудительное обновление (force-update)</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card cp-card-danger">
+    <div class="cp-card-title" style="color:#f87171">🚀 Принудительное обновление (force-update)</div>
+    <div class="cp-card-sub">
       Когда <b style="color:#f87171">включено</b> и версия приложения <b>ниже</b> указанной — у пользователя
       полноэкранный блок «обнови приложение» с кнопкой в стор. <b style="color:#fbbf24">Осторожно:</b> при
       пустой версии блок не покажется (защита). Версия в формате <code style="color:#a78bfa">1.2.3</code>.
       Применяется у всех живьём (onSnapshot), без релиза.
     </div>
-    <div style="display:flex;align-items:center;gap:14px;padding:12px 0 4px;margin-top:6px;border-top:1px solid #23232f">
+    <div class="cp-switch-row" style="margin-top:6px">
+      <div class="cp-switch-ico" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.2)">🚀</div>
       <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Force-update включён</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Главный выключатель. Выкл = блок никогда не показывается.</div></div>
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-force_update_enabled" onchange="saveControlPanelBool('force_update_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-force_update_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-force_update_enabled" class="cp-toggle cp-toggle-danger" onchange="saveControlPanelBool('force_update_enabled', this.checked)" disabled/><span id="cp-bool-label-force_update_enabled" class="cp-bool-chip cp-bool-chip-danger">…</span></label>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Минимальная версия (semver, напр. 1.2.3)
@@ -10174,8 +10413,8 @@
           <div style="font-size:11.5px;color:#9ca3af;margin-top:2px">Показывается по решению админа независимо от min_app_version и наличия обновы в repo.</div>
         </div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none">
-          <input type="checkbox" id="cp-bool-manual_update_enabled" onchange="saveManualUpdateConfig(false)" disabled style="width:42px;height:24px;cursor:pointer"/>
-          <span id="cp-bool-label-manual_update_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span>
+          <input type="checkbox" id="cp-bool-manual_update_enabled" class="cp-toggle cp-toggle-danger" onchange="saveManualUpdateConfig(false)" disabled/>
+          <span id="cp-bool-label-manual_update_enabled" class="cp-bool-chip cp-bool-chip-danger">…</span>
         </label>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px">
@@ -10206,9 +10445,9 @@
           <input type="text" id="cp-manual-update-cta-ru" placeholder="Обновить" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
       </div>
       <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap">
-        <button type="button" onclick="saveManualUpdateConfig(false)" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">Сохранить manual modal</button>
-        <button type="button" onclick="saveManualUpdateConfig(true)" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Показать окно обновления</button>
-        <button type="button" onclick="disableManualUpdateModal()" style="background:#1f2937;border:1px solid #374151;color:#fca5a5;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">Выключить manual modal</button>
+        <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(false)" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">Сохранить manual modal</button>
+        <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(true)" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Показать окно обновления</button>
+        <button type="button" class="cp-btn" onclick="disableManualUpdateModal()" style="background:#1f2937;border:1px solid #374151;color:#fca5a5;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">Выключить manual modal</button>
       </div>
       <div style="font-size:11.5px;color:#9ca3af;margin-top:8px;line-height:1.45">
         Force-режим держит окно на экране, пока пользователь не обновится. Voluntary-режим сохраняет просмотр по campaign_id и не повторяется.
@@ -10216,15 +10455,17 @@
     </div>
 
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
-      <button type="button" onclick="saveForceUpdateConfig()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить версию и ссылки</button>
-      <span id="cp-force-status" style="font-size:12px;color:#6b7280"></span>
+      <button type="button" class="cp-btn" onclick="saveForceUpdateConfig()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить версию и ссылки</button>
+      <span id="cp-force-status" class="cp-status-chip"></span>
     </div>
   </div>
 
+  <div class="cp-group-label">🎉 Промо и монетизация</div>
+
   <!-- 🎟 ПРОМОКОДЫ-НАГРАДЫ: код → дни премиума (создаёт админ, активирует юзер) -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#a78bfa">🎟 Промокоды-награды</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#a78bfa">🎟 Промокоды-награды</div>
+    <div class="cp-card-sub">
       Создай код (напр. <code style="color:#a78bfa">WELCOME7</code>) — юзер вводит его в приложении и получает
       <b>дни Плюс</b>. Это НЕ скидка на цену подписки (её задают сторы), а выдача доступа за код.
       Кап и срок — необязательны (0/пусто = без лимита/бессрочно). Правка существующего кода не сбрасывает счётчик активаций.
@@ -10244,24 +10485,25 @@
       <input type="text" id="cp-promo-note" placeholder="Заметка (необязательно)" style="flex:1;min-width:160px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
     </div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
-      <button type="button" onclick="savePromoCode()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Создать / обновить код</button>
-      <button type="button" onclick="loadPromoCodes()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить список</button>
-      <button type="button" onclick="switchTab('promo-codes')" title="Открыть простой раздел для генерации пачек, одноразовых и своих промокодов" style="background:#172033;border:1px solid #334155;color:#bfdbfe;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Открыть большой раздел</button>
-      <span id="cp-promo-status" style="font-size:12px;color:#6b7280"></span>
+      <button type="button" class="cp-btn" onclick="savePromoCode()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Создать / обновить код</button>
+      <button type="button" class="cp-btn" onclick="loadPromoCodes()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить список</button>
+      <button type="button" class="cp-btn" onclick="switchTab('promo-codes')" title="Открыть простой раздел для генерации пачек, одноразовых и своих промокодов" style="background:#172033;border:1px solid #334155;color:#bfdbfe;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Открыть большой раздел</button>
+      <span id="cp-promo-status" class="cp-status-chip"></span>
     </div>
     <div id="cp-promo-list" style="margin-top:12px;display:flex;flex-direction:column;gap:6px"></div>
   </div>
 
   <!-- 🎉 ПРОМО-БАННЕР (акция): управляемая плашка в приложении -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#a78bfa">🎉 Промо-баннер (акция)</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#a78bfa">🎉 Промо-баннер (акция)</div>
+    <div class="cp-card-sub">
       Плашка-акция вверху приложения. Текст по языкам, необязательная ссылка по тапу и срок окончания
       (пусто = бессрочно). Сама скидка настраивается в сторах отдельно — баннер только зовёт.
     </div>
-    <div style="display:flex;align-items:center;gap:14px;padding:12px 0 4px;margin-top:6px;border-top:1px solid #23232f">
+    <div class="cp-switch-row" style="margin-top:6px">
+      <div class="cp-switch-ico">🎉</div>
       <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Промо-баннер включён</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл = баннер скрыт у всех.</div></div>
-      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_banner_enabled" onchange="saveControlPanelBool('promo_banner_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-promo_banner_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_banner_enabled" class="cp-toggle" onchange="saveControlPanelBool('promo_banner_enabled', this.checked)" disabled/><span id="cp-bool-label-promo_banner_enabled" class="cp-bool-chip">…</span></label>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇷🇺 Текст (RU)
@@ -10291,20 +10533,20 @@
         </select></label>
     </div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
-      <button type="button" onclick="savePromoBanner()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить баннер</button>
-      <span id="cp-promo-banner-status" style="font-size:12px;color:#6b7280"></span>
+      <button type="button" class="cp-btn" onclick="savePromoBanner()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить баннер</button>
+      <span id="cp-promo-banner-status" class="cp-status-chip"></span>
     </div>
   </div>
 
   <!-- 💎 ПРЕМИУМ / ФРИ: единый контроль платных фич, лимитов и поурочной разблокировки -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#fbbf24">💎 Плюс / Фри — что платно, а что бесплатно</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#fbbf24">💎 Плюс / Фри — что платно, а что бесплатно</div>
+    <div class="cp-card-sub">
       Для каждой функции выбери <b style="color:#a78bfa">Плюс</b> (за пейволом, как сейчас) или
       <b style="color:#4ade80">Фри</b> (бесплатно для всех — замок снимается живьём, без релиза). Где есть число —
       задай размер бесплатного лимита. Уже купившие Плюс сохраняют доступ в любом случае.
     </div>
-    <div id="cp-prem-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+    <div style="margin-top:8px"><span id="cp-prem-status" class="cp-status-chip">Загрузка…</span></div>
 
     <!-- Список фич: премиум/фри-тумблеры (рендерится из CP_PREMIUM_FEATURES) -->
     <div style="margin-top:14px">
@@ -10328,28 +10570,28 @@
       </div>
       <div id="cp-prem-lessons" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:7px"></div>
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-        <button type="button" onclick="cpPremLessonsAllFree()" style="background:#064e3b;border:1px solid #065f46;color:#6ee7b7;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Все бесплатно</button>
-        <button type="button" onclick="cpPremLessonsResetThreshold()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Сбросить к порогу</button>
-        <button type="button" onclick="cpPremLessonsAllPremium()" style="background:#3b0764;border:1px solid #5b21b6;color:#d8b4fe;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Все плюс</button>
+        <button type="button" class="cp-btn" onclick="cpPremLessonsAllFree()" style="background:#064e3b;border:1px solid #065f46;color:#6ee7b7;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Все бесплатно</button>
+        <button type="button" class="cp-btn" onclick="cpPremLessonsResetThreshold()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Сбросить к порогу</button>
+        <button type="button" class="cp-btn" onclick="cpPremLessonsAllPremium()" style="background:#3b0764;border:1px solid #5b21b6;color:#d8b4fe;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Все плюс</button>
       </div>
     </div>
 
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <button type="button" onclick="saveControlPanelPremium()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить всё</button>
-      <button type="button" onclick="loadControlPanelPremium()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
+      <button type="button" class="cp-btn" onclick="saveControlPanelPremium()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить всё</button>
+      <button type="button" class="cp-btn" onclick="loadControlPanelPremium()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
     </div>
   </div>
 
   <!-- 🎁 WEEKLY BOONS: бонусы дня недели для фри-юзеров (расписание + вкл/выкл) -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#f472b6">🎁 Бонусы дня недели (Weekly Boons)</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#f472b6">🎁 Бонусы дня недели (Weekly Boons)</div>
+    <div class="cp-card-sub">
       Для каждого дня недели выбери бонус (или «—нет—»). Можно поставить <b style="color:#f9a8d4">несколько через ротацию</b>
       — тогда бонусы чередуются по неделям (одна суббота — один, следующая — другой). Ниже — общий
       вкл/выкл каждого бонуса и постоянных модификаторов. Пишется в <code style="color:#818cf8">remote_config/app.texts.weekly_boons_config</code>,
       клиенты подхватывают за секунды.
     </div>
-    <div id="wb-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+    <div style="margin-top:8px"><span id="wb-status" class="cp-status-chip">Загрузка…</span></div>
 
     <div style="margin-top:14px">
       <div style="font-size:13px;font-weight:800;color:#cbd5e1">📅 Расписание по дням</div>
@@ -10370,19 +10612,21 @@
     </div>
 
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <button type="button" onclick="saveWeeklyBoons()" style="background:#9d174d;border:1px solid #db2777;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить расписание</button>
-      <button type="button" onclick="loadWeeklyBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
-      <button type="button" onclick="resetWeeklyBoonsDefault()" style="background:#3f3f46;border:1px solid #52525b;color:#d4d4d8;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">↩️ Дефолт</button>
+      <button type="button" class="cp-btn" onclick="saveWeeklyBoons()" style="background:#9d174d;border:1px solid #db2777;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:800;min-height:40px">💾 Сохранить расписание</button>
+      <button type="button" class="cp-btn" onclick="loadWeeklyBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">🔄 Перечитать</button>
+      <button type="button" class="cp-btn" onclick="resetWeeklyBoonsDefault()" style="background:#3f3f46;border:1px solid #52525b;color:#d4d4d8;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px">↩️ Дефолт</button>
     </div>
   </div>
 
+  <div class="cp-group-label">🧠 Инфраструктура и ИИ</div>
+
   <!-- 🤖 ИИ: модель и дневные лимиты диалога (Theo). Бэкенд admin_runtime_config. -->
-  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#a78bfa">🤖 Управление ИИ</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#a78bfa">🤖 Управление ИИ</div>
+    <div class="cp-card-sub">
       Модель и дневные лимиты ИИ-диалога (Theo) — прямой контроль расходов OpenAI <b>без релиза</b>. Применяется на сервере за секунды.
     </div>
-    <div id="cp-ai-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+    <div style="margin-top:8px"><span id="cp-ai-status" class="cp-status-chip">Загрузка…</span></div>
 
     <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">
       <label style="display:grid;gap:5px;min-width:200px;color:#cbd5e1;font-size:12px;font-weight:700">
@@ -10402,44 +10646,46 @@
         Plus: ответов/день
         <input id="cp-ai-premium-daily" type="number" min="0" max="10000" step="1" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;min-height:38px">
       </label>
-      <button type="button" onclick="saveControlPanelAi()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить</button>
-      <button type="button" onclick="loadControlPanelAi()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
-      <button type="button" onclick="switchTab('openai-budget')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📊 Бюджет OpenAI →</button>
+      <button type="button" class="cp-btn" onclick="saveControlPanelAi()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить</button>
+      <button type="button" class="cp-btn" onclick="loadControlPanelAi()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
+      <button type="button" class="cp-btn" onclick="switchTab('openai-budget')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📊 Бюджет OpenAI →</button>
     </div>
 
     <!-- AI-джобы: weekly_review / stats_insights / explain — модель + дневной кап + выключатель -->
     <div style="margin-top:16px;border-top:1px solid #2a2a3a;padding-top:14px">
       <div style="font-size:13px;font-weight:800;color:#cbd5e1">Фоновые ИИ-функции (модель · кап/день · вкл)</div>
-      <div id="cp-aijobs-status" style="font-size:12px;color:#6b7280;margin-top:6px">Загрузка…</div>
+      <div style="margin-top:6px"><span id="cp-aijobs-status" class="cp-status-chip">Загрузка…</span></div>
       <div id="cp-aijobs-rows" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
       <div style="margin-top:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;color:#cbd5e1;font-size:12.5px;font-weight:700">
-          <input type="checkbox" id="cp-aijob-dialog-enabled" style="width:38px;height:22px;cursor:pointer"/> ИИ-диалог (Theo) включён
+          <input type="checkbox" id="cp-aijob-dialog-enabled" class="cp-toggle"/> ИИ-диалог (Theo) включён
         </label>
-        <button type="button" onclick="saveControlPanelAiJobs()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить функции</button>
-        <button type="button" onclick="loadControlPanelAiJobs()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
+        <button type="button" class="cp-btn" onclick="saveControlPanelAiJobs()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить функции</button>
+        <button type="button" class="cp-btn" onclick="loadControlPanelAiJobs()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
       </div>
     </div>
   </div>
 
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
-  <div style="background:#1a1414;border:1px solid #3a2a2a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#f87171">🚨 Режим обслуживания</div>
-    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+  <div class="cp-card cp-card-danger">
+    <div class="cp-card-title" style="color:#f87171">🚨 Режим обслуживания</div>
+    <div class="cp-card-sub">
       На случай инцидента/срочного объявления. <b>Баннер</b> — мягкая плашка сверху (приложение работает).
       <b>Блок</b> — полноэкранный «идёт обслуживание» (приложение недоступно). Включается у всех <b>без релиза</b>.
       <br><span style="color:#fbbf24">Жёсткий блок делает приложение недоступным — используйте осознанно.</span>
     </div>
-    <div id="cp-maint-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+    <div style="margin-top:8px"><span id="cp-maint-status" class="cp-status-chip">Загрузка…</span></div>
 
     <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #3a2a2a">
+      <div class="cp-switch-row" style="border-top-color:#3a2a2a">
+        <div class="cp-switch-ico" style="background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.18)">📢</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Мягкий баннер</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Плашка сверху, приложение работает.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-banner" onchange="saveControlPanelMaintenance()" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-maint-banner-label" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-banner" class="cp-toggle cp-toggle-danger" onchange="saveControlPanelMaintenance()" disabled/><span id="cp-maint-banner-label" class="cp-bool-chip cp-bool-chip-danger">…</span></label>
       </div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #3a2a2a">
+      <div class="cp-switch-row" style="border-top-color:#3a2a2a">
+        <div class="cp-switch-ico" style="background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.18)">🛑</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#f87171">Жёсткий блок</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Полноэкранный «идёт обслуживание», приложение недоступно.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-block" onchange="saveControlPanelMaintenance()" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-maint-block-label" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-block" class="cp-toggle cp-toggle-danger" onchange="saveControlPanelMaintenance()" disabled/><span id="cp-maint-block-label" class="cp-bool-chip cp-bool-chip-danger">…</span></label>
       </div>
     </div>
 
@@ -10454,35 +10700,37 @@
         <input type="text" id="cp-maint-campaign" placeholder="maintenance_2026_06_26_a" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
         <span style="font-size:11px;color:#6b7280">Новый campaign_id снова покажет плашку тем, кто закрыл старую.</span></label>
     </div>
-    <button type="button" onclick="saveControlPanelMaintenance()" style="margin-top:10px;background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить текст</button>
+    <button type="button" class="cp-btn" onclick="saveControlPanelMaintenance()" style="margin-top:10px;background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить текст</button>
   </div>
+
+  <div class="cp-group-label">🔗 Другие живые рычаги</div>
 
   <!-- Хаб: переходы к остальным живым рычагам -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
-    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+    <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">⚙️ Remote Config</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Лимиты free-тарифа, экономика, энергия, A/B-сплиты, флаги (рефералка, «Устно», лиги).</div>
-      <button type="button" onclick="switchTab('remote-config')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+      <button type="button" class="cp-btn" onclick="switchTab('remote-config')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
-    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+    <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">🧪 Paywall A/B</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Сплит трафика по новым вариантам пейвола (A / B / C) и рейтинг в шапке. Старый экран больше не показывается.</div>
-      <button type="button" onclick="switchTab('paywall-ab')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+      <button type="button" class="cp-btn" onclick="switchTab('paywall-ab')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
-    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+    <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">💬 Сообщения в приложении</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Баннеры/уведомления внутри приложения с включением и выключением на лету.</div>
-      <button type="button" onclick="switchTab('app-messages')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+      <button type="button" class="cp-btn" onclick="switchTab('app-messages')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
-    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+    <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">🔔 Alerts</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Настройка админских оповещений (Telegram-бот).</div>
-      <button type="button" onclick="switchTab('alerts')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+      <button type="button" class="cp-btn" onclick="switchTab('alerts')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
-    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+    <div class="cp-hub-card">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">📣 Push</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Массовая отправка push-уведомлений пользователям.</div>
-      <button type="button" onclick="switchTab('push-notify')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+      <button type="button" class="cp-btn" onclick="switchTab('push-notify')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
   </div>
 </div>
@@ -11445,6 +11693,7 @@
       <option value="read" data-i18n-es="Leídos">Прочитанные</option>
       <option value="" data-i18n-es="Todos">Все</option>
     </select>
+    <button type="button" id="wi-mark-all" onclick="markAllWebsiteRead()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80" title="Все видимые (по фильтру) непрочитанные обращения → «прочитано»" data-i18n-es="✔ Marcar todo leído">✔ Пометить все прочитанными</button>
     <span class="reports-count" id="wi-count"></span>
   </div>
   <p style="padding:0 24px 12px;font-size:12px;color:#64748b;max-width:960px;line-height:1.55" data-i18n-es="Técnico: colección website_contact_inbox, escritura mediante la función submitWebsiteContact. Duplicado por email si RESEND_API_KEY está en la configuración de functions.">
@@ -11585,6 +11834,7 @@
       <option value="illicit">illicit</option>
     </select>
     <button onclick="loadSafetyFlags()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button id="sf-mark-all" onclick="markAllSafetyHandled()" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80" title="Все видимые (по фильтру) необработанные флаги → «обработано»" data-i18n-es="✔ Marcar todo procesado">✔ Отметить все обработанными</button>
     <span class="reports-count" id="sf-count"></span>
   </div>
   <div id="sf-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -11716,6 +11966,7 @@
       <option value="other">Другое</option>
     </select>
     <button onclick="loadExplainReports()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button id="xr-mark-all" onclick="markAllExplainDone()" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80" title="Все видимые (по фильтру) неразобранные жалобы → «разобрано»" data-i18n-es="✔ Marcar todas resueltas">✔ Пометить все готовыми</button>
     <span class="reports-count" id="xr-count"></span>
   </div>
   <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
@@ -23294,6 +23545,31 @@
     } catch(e) { showToast('Ошибка обновления: ' + e.message, 'err'); }
   };
 
+  /**
+   * Пакетное обновление статусов через writeBatch чанками ≤400 (лимит Firestore 500).
+   * Первое общее применение массовых кнопок разделов-очередей. Ошибка чанка учитывается
+   * как ошибки по всем его записям, но НЕ прерывает следующие чанки (требования 5, 8).
+   * @param {string} coll — имя коллекции.
+   * @param {string[]} ids — id документов к обновлению.
+   * @param {object} patch — поля-патч (одинаковые для всех; метки времени вычисляются один раз вызывающим).
+   * @returns {Promise<{ okN: number, errN: number }>}
+   */
+  async function bulkUpdateStatusChunked(coll, ids, patch) {
+    let okN = 0, errN = 0;
+    for (let i = 0; i < ids.length; i += 400) {
+      const chunk = ids.slice(i, i + 400);
+      try {
+        const batch = writeBatch(db);
+        chunk.forEach(id => batch.update(doc(db, coll, id), patch));
+        await batch.commit();
+        okN += chunk.length;
+      } catch (e) {
+        errN += chunk.length;
+      }
+    }
+    return { okN, errN };
+  }
+
   window.markAllVisibleReportsFixed = async function() {
     const openList = getFilteredReportsList().filter(r => r.status !== 'fixed' && r.status !== 'archived');
     if (!openList.length) {
@@ -23310,15 +23586,11 @@
     const prevLabel = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = '⏳…'; }
     try {
-      let okN = 0, errN = 0;
-      for (const r of openList) {
-        try {
-          await applyReportStatusFix(r, 'fixed', { silent: true });
-          okN++;
-        } catch (e) {
-          errN++;
-        }
-      }
+      // Те же поля, что ставит applyReportStatusFix (коллекция error_reports): status:'fixed', fixedAt:<ISO>.
+      // applyReportStatusFix не имеет побочных эффектов помимо смены статуса (награды убраны 2026-07),
+      // поэтому цикл updateDoc безопасно заменён на writeBatch чанками ≤400 (требования 21, 22).
+      const { okN, errN } = await bulkUpdateStatusChunked('error_reports', openList.map(r => r.id), { status: 'fixed', fixedAt: new Date().toISOString() });
+      openList.forEach(r => { r.status = 'fixed'; });
       filterReports();
       void updateTabBadges(true);
       showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Пофикшено: ${okN}`);
@@ -25525,14 +25797,19 @@
     }
   };
 
-  window.filterSafetyFlags = function() {
+  // Единый источник «видимых по фильтру» флагов — используется и рендером, и массовой кнопкой.
+  function getFilteredSafetyFlags() {
     const handled = document.getElementById('sf-filter-handled').value;
     const category = document.getElementById('sf-filter-category').value;
     let arr = _allSafetyFlags;
     if (handled === 'open') arr = arr.filter(r => !r.handled);
     else if (handled === 'handled') arr = arr.filter(r => !!r.handled);
     if (category) arr = arr.filter(r => r.category === category);
-    renderSafetyFlags(arr);
+    return arr;
+  }
+
+  window.filterSafetyFlags = function() {
+    renderSafetyFlags(getFilteredSafetyFlags());
   };
 
   function renderSafetyFlags(flags) {
@@ -25574,6 +25851,31 @@
       filterSafetyFlags();
     } catch(e) {
       alert('Ошибка: ' + (e.message || e));
+    }
+  };
+
+  // Массово: всем видимым (по фильтру) НЕ-обработанным флагам → handled:true (как markSafetyHandled), writeBatch.
+  window.markAllSafetyHandled = async function() {
+    const targets = getFilteredSafetyFlags().filter(r => !r.handled);
+    if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
+    const ok = await showConfirmModal({
+      title: `Отметить обработанными все ${targets.length} показанные записи?`,
+      desc: 'Меняется только статус (handled). Это можно отменить по одной на карточке.',
+      confirmLabel: 'Отметить обработанными',
+    });
+    if (!ok) return;
+    const btn = document.getElementById('sf-mark-all');
+    const prevLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
+    try {
+      const handledAt = new Date().toISOString();
+      const { okN, errN } = await bulkUpdateStatusChunked('safety_flags', targets.map(r => r.id), { handled: true, handledAt });
+      targets.forEach(r => { r.handled = true; r.handledAt = handledAt; });
+      filterSafetyFlags();
+      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+      logAction('safety_flag_bulk_handled', 'admin', { count: okN, errors: errN, filteredCount: targets.length });
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
     }
   };
 
@@ -26041,17 +26343,20 @@
       const ok = await showConfirmModal({ title: 'Массовое действие', desc: `${ids.length} жалоб будут помечены «${action === 'archived' ? 'в архив' : action}».`, confirmLabel: 'Применить' });
       if (!ok) return;
     }
-    let done = 0;
-    for (const id of ids) {
-      try {
-        await updateDoc(doc(db, 'user_reports', id), { status: action, reviewedAt: new Date().toISOString() });
-        done++;
-      } catch (_) { /* continue */ }
+    const btn = document.querySelector(`#ur-bulk-bar button[onclick*="urBulkAction('${action}')"]`);
+    const prevLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
+    try {
+      // Отобранные галочками жалобы (user_reports): те же поля, что цикл updateDoc выше —
+      // status:<action>, reviewedAt:<ISO>. Переведено на writeBatch чанками ≤400 (требования 23, 24).
+      const { okN, errN } = await bulkUpdateStatusChunked('user_reports', ids, { status: action, reviewedAt: new Date().toISOString() });
+      logAction('user_report_bulk', 'bulk', { action, count: okN, errors: errN });
+      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано ${okN} жалоб`);
+      void updateTabBadges(true);
+      loadUserReports();
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
     }
-    logAction('user_report_bulk', 'bulk', { action, count: done });
-    showToast(`✅ Обработано ${done} жалоб`);
-    void updateTabBadges(true);
-    loadUserReports();
   };
 
   // Preset moderator messages — quick-pick chips in the warn/ban modals.
@@ -26321,13 +26626,43 @@
     }
   };
 
-  window.filterExplainReports = function() {
+  // Единый источник «видимых по фильтру» записей жалоб — используется рендером и массовой кнопкой.
+  function getFilteredExplainEntries() {
     const status = document.getElementById('xr-filter-status').value;
     const reason = document.getElementById('xr-filter-reason').value;
     let arr = window._explainEntries;
     if (status) arr = arr.filter(r => (r.status || 'new') === status);
     if (reason) arr = arr.filter(r => r.reason === reason);
-    renderExplainReports(arr);
+    return arr;
+  }
+
+  window.filterExplainReports = function() {
+    renderExplainReports(getFilteredExplainEntries());
+  };
+
+  // Массово: всем видимым (по фильтру) записям со status!=='done' → status:'done' (как xrAction 'done'), writeBatch.
+  window.markAllExplainDone = async function() {
+    const targets = getFilteredExplainEntries().filter(r => (r.status || 'new') !== 'done');
+    if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
+    const ok = await showConfirmModal({
+      title: `Пометить готовыми все ${targets.length} показанные записи?`,
+      desc: 'Меняется только статус (done). Это можно отменить по одной на карточке.',
+      confirmLabel: 'Пометить готовыми',
+    });
+    if (!ok) return;
+    const btn = document.getElementById('xr-mark-all');
+    const prevLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
+    try {
+      const reviewedAtMs = Date.now();
+      const { okN, errN } = await bulkUpdateStatusChunked('explain_report_entries', targets.map(r => r.id), { status: 'done', reviewedAtMs });
+      targets.forEach(r => { r.status = 'done'; r.reviewedAtMs = reviewedAtMs; });
+      filterExplainReports();
+      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+      logAction('explain_report_bulk_done', 'admin', { count: okN, errors: errN, filteredCount: targets.length });
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
+    }
   };
 
   function xrCacheChip(hash) {
@@ -27693,15 +28028,84 @@
     { key: 'compass_topic_map_enabled',     label: 'Карта тем в результатах',      def: true,  hint: 'Блок «Твой Компас».' },
   ];
 
+  // ── Control Panel polish: единые тосты + статус-чипы (spec: admin-control-panel-polish) ──
+  // Тост-система (R10): ленивый контейнер, стек с ограничением, замена loading-тоста.
+  window.cpToast = function(msg, type) {
+    try {
+      msg = (msg == null ? '' : String(msg)).trim();
+      if (!msg) return;
+      type = type || 'info';
+      let host = document.getElementById('cp-toast-host');
+      if (!host) {
+        host = document.createElement('div');
+        host.id = 'cp-toast-host';
+        document.body.appendChild(host);
+      }
+      // Заменяем существующий loading-тост (не копим), иначе ограничиваем стек.
+      if (type === 'loading') {
+        const prev = host.querySelector('.cp-toast[data-type="loading"]');
+        if (prev) prev.remove();
+      }
+      while (host.children.length >= 4) host.removeChild(host.firstChild);
+      const ICONS = { success: '✓', error: '⚠', loading: '⏳', info: 'ℹ' };
+      const el = document.createElement('div');
+      el.className = 'cp-toast';
+      el.setAttribute('data-type', type);
+      const ico = document.createElement('span');
+      ico.className = 'cp-toast-ico';
+      ico.textContent = ICONS[type] || 'ℹ';
+      const txt = document.createElement('span');
+      txt.className = 'cp-toast-txt';
+      txt.textContent = msg;
+      el.appendChild(ico); el.appendChild(txt);
+      host.appendChild(el);
+      // loading держится до замены; остальные авто-угасают.
+      if (type !== 'loading') {
+        const ttl = type === 'error' ? 4200 : 2800;
+        setTimeout(function() {
+          el.classList.add('cp-toast-hide');
+          setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 280);
+        }, ttl);
+      }
+      return el;
+    } catch (_) { /* тост не должен ронять сохранение */ }
+  };
+
+  // Единый writer статус-чипов (R11): ставит data-type по цвету + дублирует тостом.
+  // Только слой отображения — данные и логику save/load не трогает.
+  function cpStatusTypeFromColor(color) {
+    const c = String(color || '').toLowerCase();
+    if (/#(4ade80|22c55e|16a34a|86efac|6ee7b7|34d399|10b981)/.test(c)) return 'success';
+    if (/#(f87171|ef4444|dc2626|fca5a5|f43f5e|e11d48)/.test(c)) return 'error';
+    return null; // нейтральные («Загрузка…», серый) → info-чип без тоста
+  }
+  window.__cpStatus = function(el, msg, color) {
+    if (!el) return;
+    const text = (msg == null ? '' : String(msg));
+    el.textContent = text;
+    if (!el.classList.contains('cp-status-chip')) el.classList.add('cp-status-chip');
+    const type = cpStatusTypeFromColor(color);
+    const isLoading = /загруз|loading|сохран[яе]|saving|…/i.test(text) && !type;
+    el.setAttribute('data-type', type || (isLoading ? 'loading' : 'info'));
+    // Цвет больше не «голый» — вид задаёт чип; сбрасываем инлайновый color.
+    el.style.color = '';
+    // Тост только для явных исходов (успех/ошибка), не для стартовых «Загрузка…».
+    if (type) window.cpToast(text, type);
+  };
+
   function cpSetStatus(msg, color) {
-    const el = document.getElementById('cp-toggles-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-toggles-status'), msg, color);
   }
   function cpRenderToggle(key, on) {
     const cb = document.getElementById('cp-bool-' + key);
     const lbl = document.getElementById('cp-bool-label-' + key);
     if (cb) { cb.checked = !!on; cb.disabled = false; }
-    if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
+    if (lbl) {
+      lbl.textContent = on ? 'Вкл' : 'Выкл';
+      lbl.style.color = '';
+      lbl.classList.add('cp-bool-chip');
+      lbl.setAttribute('data-on', on ? '1' : '0');
+    }
   }
 
   window.loadControlPanel = async function() {
@@ -28084,8 +28488,7 @@
   // saveWeeklyBoons из той же секции пишет это поле). Здесь только read-only зеркало,
   // чтобы два редактора не затирали правки друг друга.
   function cpBoonsStatus(msg, color) {
-    const el = document.getElementById('cp-boons-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-boons-status'), msg, color);
   }
   window.loadControlPanelBoons = async function() {
     try {
@@ -28100,8 +28503,7 @@
 
   // ── Force-update (флаг + min_app_version + ссылки на сторы) ─────────────────
   function cpForceStatus(msg, color) {
-    const el = document.getElementById('cp-force-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-force-status'), msg, color);
   }
   window.loadControlPanelForceUpdate = async function() {
     try {
@@ -28114,7 +28516,7 @@
       const cb = document.getElementById('cp-bool-force_update_enabled');
       const lbl = document.getElementById('cp-bool-label-force_update_enabled');
       if (cb) { cb.checked = on; cb.disabled = false; }
-      if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#f87171' : '#9ca3af'; }
+      if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = ''; lbl.setAttribute('data-on', on ? '1' : '0'); }
       const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
       set('cp-force-min-version', texts.min_app_version);
       set('cp-force-url-ios', texts.store_url_ios);
@@ -28123,7 +28525,7 @@
       const manualCb = document.getElementById('cp-bool-manual_update_enabled');
       const manualLbl = document.getElementById('cp-bool-label-manual_update_enabled');
       if (manualCb) { manualCb.checked = manualOn; manualCb.disabled = false; }
-      if (manualLbl) { manualLbl.textContent = manualOn ? 'Вкл' : 'Выкл'; manualLbl.style.color = manualOn ? '#fbbf24' : '#9ca3af'; }
+      if (manualLbl) { manualLbl.textContent = manualOn ? 'Вкл' : 'Выкл'; manualLbl.style.color = ''; manualLbl.setAttribute('data-on', manualOn ? '1' : '0'); }
       set('cp-manual-update-mode', texts.manual_update_mode || 'optional');
       set('cp-manual-update-platform', texts.manual_update_platform);
       set('cp-manual-update-campaign', texts.manual_update_campaign_id);
@@ -28219,7 +28621,7 @@
       if (cb) cb.checked = willEnable;
       await window.saveControlPanelBool('manual_update_enabled', willEnable);
       const lbl = document.getElementById('cp-bool-label-manual_update_enabled');
-      if (lbl) { lbl.textContent = willEnable ? 'Вкл' : 'Выкл'; lbl.style.color = willEnable ? '#fbbf24' : '#9ca3af'; }
+      if (lbl) { lbl.textContent = willEnable ? 'Вкл' : 'Выкл'; lbl.style.color = ''; lbl.setAttribute('data-on', willEnable ? '1' : '0'); }
       cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят за секунды.' : '✅ Manual update сохранен и выключен.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка manual update: ' + (e && e.message ? e.message : e), '#f87171');
@@ -28239,7 +28641,7 @@
     const el = document.getElementById(id);
     if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
   }
-  function cpPromoStatus(msg, color) { promoSetStatus('cp-promo-status', msg, color); }
+  function cpPromoStatus(msg, color) { window.__cpStatus(document.getElementById('cp-promo-status'), msg, color); }
   function promoAdminStatus(msg, color) { promoSetStatus('promo-admin-status', msg, color); }
   function promoCopyStatus(msg, color) { promoSetStatus('promo-copy-status', msg, color); }
 
@@ -28665,8 +29067,7 @@
 
   // ── Промо-баннер (флаг promo_banner_enabled + тексты promo_banner_*) ────────
   function cpPromoBannerStatus(msg, color) {
-    const el = document.getElementById('cp-promo-banner-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-promo-banner-status'), msg, color);
   }
   window.loadControlPanelPromoBanner = async function() {
     try {
@@ -28768,8 +29169,7 @@
   const CP_LESSON_COUNT = 32;
 
   function cpPremSetStatus(msg, color) {
-    const el = document.getElementById('cp-prem-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-prem-status'), msg, color);
   }
 
   function cpPremParseIdList(raw) {
@@ -29010,8 +29410,7 @@
   var _wbState = { schedule: {}, enabled: {}, modifiersEnabled: {} };
 
   function wbSetStatus(msg, color) {
-    var el = document.getElementById('wb-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('wb-status'), msg, color);
   }
   function wbSlotArray(day) {
     var v = _wbState.schedule[String(day)];
@@ -29152,8 +29551,7 @@
 
   // ── Пульт: управление ИИ (Theo) — те же CF, что во вкладке OpenAI budget ───
   function cpAiSetStatus(msg, color) {
-    const el = document.getElementById('cp-ai-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-ai-status'), msg, color);
   }
   window.loadControlPanelAi = async function() {
     cpAiSetStatus('Загрузка…');
@@ -29202,8 +29600,7 @@
     { key: 'explain', label: 'Объяснение фразы' },
   ];
   function cpAiJobsSetStatus(msg, color) {
-    const el = document.getElementById('cp-aijobs-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-aijobs-status'), msg, color);
   }
   window.loadControlPanelAiJobs = async function() {
     cpAiJobsSetStatus('Загрузка…');
@@ -29257,14 +29654,18 @@
 
   // ── Пульт: режим обслуживания (флаги + текст в remote_config/app) ──────────
   function cpMaintSetStatus(msg, color) {
-    const el = document.getElementById('cp-maint-status');
-    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+    window.__cpStatus(document.getElementById('cp-maint-status'), msg, color);
   }
   function cpMaintRenderToggle(id, on) {
     const cb = document.getElementById(id);
     const lbl = document.getElementById(id + '-label');
     if (cb) { cb.checked = !!on; cb.disabled = false; }
-    if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#f87171' : '#9ca3af'; }
+    if (lbl) {
+      lbl.textContent = on ? 'Вкл' : 'Выкл';
+      lbl.style.color = '';
+      lbl.classList.add('cp-bool-chip');
+      lbl.setAttribute('data-on', on ? '1' : '0');
+    }
   }
   window.loadControlPanelMaintenance = async function() {
     cpMaintSetStatus('Загрузка…');

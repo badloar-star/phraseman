@@ -1747,3 +1747,76 @@ h2 {
     animation: none;
   }
 }
+
+/* ── QR-код «с компьютера — наведи камеру» (только широкие экраны) ────────── */
+.qr-hint {
+  display: none;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  max-width: 430px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.qr-hint img {
+  border-radius: 10px;
+  background: #fff;
+  padding: 4px;
+  flex: none;
+}
+@media (min-width: 1000px) {
+  .qr-hint { display: flex; }
+}
+
+/* ── Демо произношения на главной (#try) ──────────────────────────────────── */
+.demo-card {
+  max-width: 560px;
+  padding: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: center;
+  margin-inline: auto;
+}
+.demo-phrase {
+  font-size: clamp(1.3rem, 3.4vw, 1.7rem);
+  font-weight: 750;
+  margin: 0 0 6px;
+}
+.demo-translation {
+  color: var(--muted);
+  font-size: 14.5px;
+  margin: 0 0 20px;
+}
+.demo-mic {
+  min-width: 220px;
+}
+.demo-mic:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+.demo-status {
+  min-height: 22px;
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.demo-status-good { color: #7ddb8a; font-weight: 650; }
+.demo-status-warn { color: var(--muted); }
+.demo-cta {
+  margin: 10px 0 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+.demo-cta a { color: var(--gold); }
+.demo-note {
+  margin: 18px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}

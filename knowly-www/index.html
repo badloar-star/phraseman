@@ -29,13 +29,14 @@
     href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow4" />
+  <link rel="stylesheet" href="/assets/phraseman.css?v=wow5" />
   <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
   <script src="/assets/theme.js?v=2"></script>
   <link rel="preload" as="image" href="/assets/phraseman-screen-home.webp" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=2" defer></script>
   <script src="/assets/fx.js?v=4" defer></script>
+  <script src="/assets/demo.js?v=1" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,6 +86,16 @@
         "@type": "Question",
         "name": "Я в России — как купить Premium?",
         "acceptedAnswer": { "@type": "Answer", "text": "Через Telegram-бота @PhrasemanPremiumBot: оплата Telegram Stars работает с картами российских банков без VPN. Подробная инструкция на knowlyapps.com/russia/" }
+      },
+      {
+        "@type": "Question",
+        "name": "Что даёт Premium и сколько это стоит?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги с разбором ошибок. Тарифы: месяц, год или разовый платёж «навсегда» — актуальные цены на knowlyapps.com/premium/. Premium можно подарить: knowlyapps.com/gift/" }
+      },
+      {
+        "@type": "Question",
+        "name": "С какого возраста подходит Phraseman?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Приложение рассчитано на пользователей от 16 лет. Планы начинаются с самых основ, темп подстраивается под вас." }
       }
     ]
   }
@@ -135,6 +146,10 @@
             </a>
           </div>
           <p class="under-cta">Бесплатно. <b>Без регистрации</b> — первый урок через 30 секунд.</p>
+          <div class="qr-hint" aria-label="QR-код для скачивания">
+            <img src="/assets/qr-download.svg" alt="QR-код: скачать Phraseman" width="92" height="92" loading="lazy" />
+            <span>С компьютера? Наведите камеру телефона на код —<br />и сразу окажетесь в магазине приложений.</span>
+          </div>
           <ul class="trust-chips" aria-label="Почему нам можно доверять">
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
@@ -230,6 +245,38 @@
           <div class="step"><h3>Скачайте и выберите план</h3><p>Поездка, работа, переезд или разговорный — план подстраивается под вашу цель.</p></div>
           <div class="step"><h3>Проходите короткие уроки</h3><p>Фразы, произношение, карточки и вызовы — около 15 минут в день.</p></div>
           <div class="step"><h3>Возвращайтесь за серией</h3><p>Серия, энергия, лиги и подарки — механики, ради которых хочется открыть приложение завтра.</p></div>
+        </div>
+      </section>
+
+      <!-- Живое демо: скрыто, demo.js показывает его только если браузер умеет
+           распознавать речь. Честность: демо работает через распознавание браузера,
+           в приложении — на устройстве (дисклеймер внутри). -->
+      <section id="try" class="block reveal" hidden>
+        <p class="eyebrow">Попробуйте прямо здесь</p>
+        <h2>Скажите фразу — <span class="gold-accent">вас услышат</span></h2>
+        <p class="sub">Так выглядит главная механика Phraseman: произносите фразу вслух —
+          и сразу видите, насколько получилось.</p>
+        <div class="demo-card">
+          <p class="demo-phrase" id="demo-phrase">Could I get a coffee, please?</p>
+          <p class="demo-translation">«Можно мне кофе, пожалуйста?»</p>
+          <button class="btn-gold demo-mic" id="demo-mic" type="button">🎙️ Сказать вслух</button>
+          <p class="demo-status" id="demo-status" role="status"></p>
+          <p class="demo-cta" id="demo-cta" hidden>В приложении таких фраз 10 000+ —
+            <a href="/start/">подобрать мой план →</a></p>
+          <p class="demo-note">Демо использует распознавание речи вашего браузера.
+            В приложении распознавание работает прямо на телефоне — голос никуда не отправляется.</p>
+        </div>
+      </section>
+
+      <section id="timeline" class="block reveal">
+        <p class="eyebrow">Реалистичные ожидания</p>
+        <h2>Что будет при 15 минутах <span class="gold-accent">в день</span></h2>
+        <p class="sub">Без обещаний «свободный английский за месяц». Вот честная траектория,
+          если просто не пропускать дни.</p>
+        <div class="steps">
+          <div class="step"><h3>Недели 1–2</h3><p>Первые ~100 живых фраз, привычка заниматься и первые фразы, сказанные вслух, — уже не страшно.</p></div>
+          <div class="step"><h3>Недели 3–6</h3><p>Готовые фразы для своей цели: заказать, спросить дорогу, ответить коллеге. Понимание на слух заметно легче.</p></div>
+          <div class="step"><h3>Месяц 3 и дальше</h3><p>Устойчивая база: сотни фраз в долгой памяти, речь без ступора в знакомых ситуациях. Дальше — уровень за уровнем.</p></div>
         </div>
       </section>
 
@@ -339,6 +386,19 @@
             <p>Через Telegram-бота: оплата Telegram Stars работает с картами российских банков без VPN.
               <a href="/russia/" style="color:var(--gold)">Подробная инструкция →</a></p>
           </details>
+          <details>
+            <summary>Что даёт Premium и сколько это стоит?</summary>
+            <p>Premium открывает все планы и темы, снимает лимиты энергии и включает ИИ-диалоги
+              с разбором ваших ошибок. Тарифы: месяц, год или разовый платёж «навсегда» —
+              актуальные цены на странице <a href="/premium/" style="color:var(--gold)">Premium →</a>.
+              А ещё Premium можно <a href="/gift/" style="color:var(--gold)">подарить</a> —
+              код активации придёт вам на email.</p>
+          </details>
+          <details>
+            <summary>С какого возраста подходит?</summary>
+            <p>Приложение рассчитано на пользователей от 16 лет. Взрослым любого возраста —
+              добро пожаловать: планы начинаются с самых основ, а темп подстраивается под вас.</p>
+          </details>
         </div>
       </section>
 
@@ -377,6 +437,8 @@
       </a>
       <nav class="flinks" aria-label="Ссылки">
         <a href="/download/">Скачать</a>
+        <a href="/premium/">Premium</a>
+        <a href="/gift/">Подарить</a>
         <a href="/guides/">Гайды</a>
         <a href="/contact/">Поддержка</a>
         <a href="/legal/privacy/">Конфиденциальность</a>

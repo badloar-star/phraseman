@@ -417,10 +417,37 @@ export async function getQuestionsByLevel(
     .get();
 
   const all: ArenaQuestion[] = snap.docs.map((d: any) => d.data() as ArenaQuestion);
-  return shuffleArray(all).slice(0, count);
+  // Дедуп по видимому содержанию (текст+варианты+правильный), а не по id: в банке
+  // arena_questions встречаются документы с разными id и одинаковым содержанием.
+  // Без этого реальный матч мог показать 2+ визуально идентичных вопроса подряд
+  // (баг «в разборе вопросов 3–7 одинаковые»). Мок-путь уже дедупит так же.
+  return shuffleArray(dedupQuestionsByContent(all)).slice(0, count);
 }
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
+
+/** Ключ по видимому содержанию: text||sorted(options)||correct, lower. Пустой текст → ''. */
+function questionContentKey(q: Partial<ArenaQuestion>): string {
+  const text = typeof q.question === 'string' ? q.question.trim().toLowerCase() : '';
+  const correct = typeof q.correct === 'string' ? q.correct.trim().toLowerCase() : '';
+  const opts = Array.isArray(q.options)
+    ? q.options.map((x) => String(x).trim().toLowerCase()).sort().join('¦')
+    : '';
+  return text === '' ? '' : `${text}||${opts}||${correct}`;
+}
+
+/** Дедуп по содержанию, порядок сохраняется (первый — победитель). Пустой ключ не схлопывается. */
+function dedupQuestionsByContent(items: ArenaQuestion[]): ArenaQuestion[] {
+  const seen = new Set<string>();
+  const out: ArenaQuestion[] = [];
+  for (const q of items) {
+    const key = questionContentKey(q);
+    if (key !== '' && seen.has(key)) continue;
+    if (key !== '') seen.add(key);
+    out.push(q);
+  }
+  return out;
+}
 
 function shuffleArray<T>(arr: T[]): T[] {
   const result = [...arr];

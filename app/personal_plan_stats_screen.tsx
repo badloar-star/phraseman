@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TopFadeMask from '../components/TopFadeMask';
@@ -12,8 +12,12 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
-import { getPlanById } from './personal_plan_catalog';
+import { useAudio } from '../hooks/use-audio';
+import { getPlanById, type PersonalPlanDefinition, type PlanDay } from './personal_plan_catalog';
 import { readPersonalPlanState } from './personal_plan_state';
+import { phrasesForPlanDay, type PlanDayPhrase } from './personal_plan_day_phrases';
+import { openPersonalPlanTask } from './personal_plan_navigation';
+import { allTasksForDay } from './personal_plan_catalog';
 import { readCompletedPlanTasks } from './personal_plan_progress';
 import { buildPersonalPlanStats, type PersonalPlanStatsSummary } from './personal_plan_stats';
 import { readPlanWeakSpotView, type PlanWeakSpotView } from './personal_plan_weak_spot_reader';
@@ -121,6 +125,7 @@ function WeekBar({
  * первым кадром; без неё каждый заход начинался с «Нет данных о плане». */
 let planStatsWarm: {
   planInstanceId: string;
+  plan: PersonalPlanDefinition;
   stats: PersonalPlanStatsSummary;
   weakSpots: PlanWeakSpotView | null;
   xpLedger: PlanXpLedgerEntry | null;
@@ -133,6 +138,11 @@ export default function PersonalPlanStatsScreen() {
   const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => planStatsWarm?.stats ?? null);
   const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => planStatsWarm?.weakSpots ?? null);
   const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => planStatsWarm?.xpLedger ?? null);
+  const [plan, setPlan] = useState<PersonalPlanDefinition | null>(() => planStatsWarm?.plan ?? null);
+  const [planInstanceId, setPlanInstanceId] = useState<string | null>(() => planStatsWarm?.planInstanceId ?? null);
+  // Открытый на просмотр прошлый день (read-only): тема, фразы, задания + «пройти
+  // заново». null = лист закрыт.
+  const [reviewDay, setReviewDay] = useState<PlanDay | null>(null);
   const [loading, setLoading] = useState(() => planStatsWarm == null);
   const chrome = useMemo(() => resolveChrome(themeMode, t), [themeMode, t]);
   const isGold = themeMode === 'gold';
@@ -169,6 +179,7 @@ export default function PersonalPlanStatsScreen() {
     const nextXpLedger = await readPlanXpLedger(state.planInstanceId).catch(() => null);
     planStatsWarm = {
       planInstanceId: state.planInstanceId,
+      plan,
       stats: nextStats,
       weakSpots: nextWeakSpots,
       xpLedger: nextXpLedger,
@@ -176,6 +187,8 @@ export default function PersonalPlanStatsScreen() {
     setStats(nextStats);
     setWeakSpots(nextWeakSpots);
     setXpLedger(nextXpLedger);
+    setPlan(plan);
+    setPlanInstanceId(state.planInstanceId);
     setLoading(false);
     Animated.parallel([
       Animated.timing(fade, { toValue: 1, duration: 380, useNativeDriver: true }),
@@ -209,6 +222,50 @@ export default function PersonalPlanStatsScreen() {
     }, 120);
     return () => clearTimeout(timer);
   }, [stats, currentDayIndex]);
+
+  // ——— Просмотр прошлого дня (read-only) + повтор ———
+  const { speak, stop: stopAudio } = useAudio();
+  // Тап по дню на шкале: открыть просмотр (только для разблокированных дней —
+  // будущее не подглядываем). Фразы дня резолвим лениво при открытии.
+  const openDayReview = useCallback((dayIndex: number) => {
+    if (!plan) return;
+    const day = plan.days.find((d) => d.dayIndex === dayIndex);
+    if (!day) return;
+    hapticTap();
+    setReviewDay(day);
+  }, [plan]);
+
+  const closeDayReview = useCallback(() => {
+    stopAudio();
+    setReviewDay(null);
+  }, [stopAudio]);
+
+  const reviewPhrases = useMemo<PlanDayPhrase[]>(
+    () => (reviewDay ? phrasesForPlanDay(reviewDay) : []),
+    [reviewDay],
+  );
+
+  const playReviewPhrase = useCallback((en: string) => {
+    if (!en) return;
+    hapticTap();
+    speak(en);
+  }, [speak]);
+
+  // «Пройти этот день заново»: безопасно — markPersonalPlanTaskCompleted
+  // идемпотентен (уже пройденные задачи не переписываются, счётчик не задваивается),
+  // а currentDayIndex двигается ТОЛЬКО вперёд, так что открыть прошлый день на
+  // повтор не может откатить прогресс. Открываем первое реальное задание дня.
+  const replayDay = useCallback(() => {
+    if (!plan || !reviewDay) return;
+    const tasks = allTasksForDay(reviewDay);
+    const firstTask = tasks[0];
+    if (!firstTask) return;
+    hapticTap();
+    stopAudio();
+    const day = reviewDay;
+    setReviewDay(null);
+    openPersonalPlanTask(router, plan, day, firstTask, planInstanceId ?? undefined, 'push');
+  }, [plan, reviewDay, planInstanceId, router, stopAudio]);
 
   if (!stats) {
     return (
@@ -335,8 +392,13 @@ export default function PersonalPlanStatsScreen() {
                 contentContainerStyle={styles.dayRail}
               >
                 {stats.days.map((item) => (
-                  <View
+                  <TouchableOpacity
                     key={`day-${item.dayIndex}`}
+                    activeOpacity={item.isUnlocked ? 0.7 : 1}
+                    disabled={!item.isUnlocked}
+                    onPress={() => openDayReview(item.dayIndex)}
+                    accessibilityRole="button"
+                    accessibilityLabel={`День ${item.dayIndex}${item.isCompleted ? ', пройден' : ''}${item.isUnlocked ? ', открыть просмотр' : ', закрыт'}`}
                     style={[
                       styles.dayCard,
                       {
@@ -357,7 +419,7 @@ export default function PersonalPlanStatsScreen() {
                     <View style={[styles.dayMiniBar, { backgroundColor: chrome.surface }]}>
                       <View style={[styles.dayMiniProgress, { width: `${item.progressPct}%`, backgroundColor: item.isCompleted ? chrome.accent2 : chrome.accent }]} />
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 ))}
               </ScrollView>
             </LinearGradient>
@@ -389,7 +451,104 @@ export default function PersonalPlanStatsScreen() {
         </BouncyWrap>
         </Reanimated.View>
       </LinearGradient>
+
+      <DayReviewSheet
+        day={reviewDay}
+        phrases={reviewPhrases}
+        chrome={chrome}
+        canReplay={plan != null && reviewDay != null && allTasksForDay(reviewDay).length > 0}
+        onPlayPhrase={playReviewPhrase}
+        onReplayDay={replayDay}
+        onClose={closeDayReview}
+      />
     </View>
+  );
+}
+
+function DayReviewSheet({
+  day, phrases, chrome, canReplay, onPlayPhrase, onReplayDay, onClose,
+}: {
+  day: PlanDay | null;
+  phrases: PlanDayPhrase[];
+  chrome: StatsChrome;
+  canReplay: boolean;
+  onPlayPhrase: (en: string) => void;
+  onReplayDay: () => void;
+  onClose: () => void;
+}) {
+  const visible = day != null;
+  return (
+    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+      <View style={styles.sheetBackdrop}>
+        <TouchableOpacity style={styles.sheetBackdropTap} activeOpacity={1} onPress={onClose} />
+        <LinearGradient colors={chrome.card} style={[styles.sheet, { borderColor: chrome.border }]}>
+          {day != null && (
+            <>
+              <View style={styles.sheetHeader}>
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.sheetKicker, { color: chrome.accent }]}>День {day.dayIndex}</Text>
+                  <Text style={[styles.sheetTitle, { color: chrome.text }]} numberOfLines={2}>{day.title}</Text>
+                  {!!day.focus && (
+                    <Text style={[styles.sheetFocus, { color: chrome.muted }]} numberOfLines={2}>{day.focus}</Text>
+                  )}
+                </View>
+                <TouchableOpacity onPress={onClose} accessibilityRole="button" accessibilityLabel="Закрыть" style={styles.sheetClose} activeOpacity={0.7}>
+                  <Ionicons name="close" size={22} color={chrome.muted} />
+                </TouchableOpacity>
+              </View>
+
+              <ScrollView style={styles.sheetScroll} contentContainerStyle={styles.sheetScrollBody} showsVerticalScrollIndicator={false}>
+                {!!day.phraseGoal && (
+                  <Text style={[styles.sheetGoal, { color: chrome.text, borderColor: chrome.border, backgroundColor: chrome.surface }]}>
+                    {day.phraseGoal}
+                  </Text>
+                )}
+
+                <Text style={[styles.sheetSectionLabel, { color: chrome.accent }]}>
+                  Фразы дня{phrases.length > 0 ? ` · ${phrases.length}` : ''}
+                </Text>
+                {phrases.length > 0 ? (
+                  phrases.map((p) => (
+                    <TouchableOpacity
+                      key={p.id}
+                      onPress={() => onPlayPhrase(p.english)}
+                      activeOpacity={0.7}
+                      accessibilityRole="button"
+                      accessibilityLabel={`Произнести: ${p.english}`}
+                      style={[styles.phraseRow, { borderColor: chrome.border }]}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <Text style={[styles.phraseEn, { color: chrome.text }]}>{p.english}</Text>
+                        {!!p.russian && <Text style={[styles.phraseRu, { color: chrome.muted }]}>{p.russian}</Text>}
+                      </View>
+                      <Ionicons name="volume-high" size={18} color={chrome.accent} />
+                    </TouchableOpacity>
+                  ))
+                ) : (
+                  <Text style={[styles.sheetEmpty, { color: chrome.muted }]}>
+                    В этот день не было новых фраз — тренировка/квиз.
+                  </Text>
+                )}
+              </ScrollView>
+
+              {canReplay && (
+                <TouchableOpacity onPress={onReplayDay} activeOpacity={0.85} style={styles.replayBtn}>
+                  <LinearGradient
+                    colors={[chrome.accent, chrome.accent2]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.replayBtnInner}
+                  >
+                    <Ionicons name="refresh" size={18} color={chrome.bg[2]} />
+                    <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              )}
+            </>
+          )}
+        </LinearGradient>
+      </View>
+    </Modal>
   );
 }
 
@@ -455,4 +614,31 @@ const styles = StyleSheet.create({
   dayCardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', textTransform: 'uppercase' },
   dayMiniBar: { width: '80%', height: 4, borderRadius: 2, overflow: 'hidden', marginTop: 6 },
   dayMiniProgress: { height: '100%', borderRadius: 2 },
+
+  // ——— Лист просмотра прошлого дня ———
+  sheetBackdrop: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.55)' },
+  sheetBackdropTap: { ...StyleSheet.absoluteFillObject },
+  sheet: {
+    borderTopLeftRadius: 22, borderTopRightRadius: 22, borderWidth: 1, borderBottomWidth: 0,
+    paddingTop: 16, paddingHorizontal: 18, paddingBottom: 24, maxHeight: '82%',
+  },
+  sheetHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginBottom: 10 },
+  sheetKicker: { fontSize: 12, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5 },
+  sheetTitle: { fontSize: 20, lineHeight: 25, fontWeight: '900', marginTop: 2 },
+  sheetFocus: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 3 },
+  sheetClose: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  sheetScroll: { flexGrow: 0 },
+  sheetScrollBody: { paddingBottom: 4, gap: 8 },
+  sheetGoal: { fontSize: 14, lineHeight: 20, fontWeight: '700', borderWidth: 1, borderRadius: 12, padding: 12, marginBottom: 4 },
+  sheetSectionLabel: { fontSize: 12, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6, marginBottom: 2 },
+  phraseRow: {
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+    borderWidth: 1, borderRadius: 12, paddingVertical: 11, paddingHorizontal: 13,
+  },
+  phraseEn: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
+  phraseRu: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },
+  sheetEmpty: { fontSize: 14, lineHeight: 20, fontWeight: '600', paddingVertical: 10 },
+  replayBtn: { marginTop: 14, borderRadius: 14, overflow: 'hidden' },
+  replayBtnInner: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15 },
+  replayBtnText: { fontSize: 16, lineHeight: 20, fontWeight: '900' },
 });

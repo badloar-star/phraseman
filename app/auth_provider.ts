@@ -48,7 +48,8 @@ import {
   type StableAuthLinkEnsureResult,
 } from './cloud_sync';
 import { invalidatePremiumCache } from './premium_guard';
-import { loadShardsFromCloud } from './shards_system';
+import { loadShardsFromCloud, forceSyncShardsToCloud } from './shards_system';
+import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
@@ -320,6 +321,22 @@ const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
  * await restoreFromCloud/syncToCloud не разрешался → onboarding блокировал даже «Позже».
  */
 const SIGNIN_CLOUD_SYNC_TIMEOUT_MS = 20_000;
+
+/**
+ * Best-effort долив аварийной копии «Сменить аккаунт» после restoreFromCloud.
+ * Внутри проверяется совпадение stableId и доливаются только отсутствующие
+ * ключи, поэтому вызов безопасен на любом пути входа. Вход не валим никогда.
+ */
+async function tryRestoreAccountSwitchBackup(stage: string): Promise<void> {
+  try {
+    const res = await restoreAccountSwitchEmergencyBackupIfSafe();
+    if (res.status === 'restored') {
+      logAuthEvent('auth_switch_backup_restored', { stage, keys: res.restoredKeys });
+    }
+  } catch {
+    // восстановление — best effort
+  }
+}
 
 const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
 const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS + 60_000;
@@ -1083,6 +1100,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // Без этого вызова первый же addShards/spendShards перезапишет правильный
       // облачный баланс мусором с прежнего stable_id.
       await loadShardsFromCloud().catch(() => {});
+      await tryRestoreAccountSwitchBackup('swap_restore');
 
       // Если в облаке тоже автоген/пусто — попробуем дать человеческий ник из Google.
       await markOnboardedAfterSignIn();
@@ -1134,6 +1152,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         await syncRevenueCatAfterAuthLink();
         await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore');
         await loadShardsFromCloud().catch(() => {});
+        await tryRestoreAccountSwitchBackup('keeplocal_restore');
       } else if (merge?.ok) {
         // canonical == local: премиум/VIP-блок remote слит в наш local-док сервером.
         // Инвалидируем кэш и тянем слитое состояние в AsyncStorage (иначе VIP не виден).
@@ -1176,6 +1195,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     }
     // Шарды отдельным каналом (users/{uid}.shards): подтягиваем под актуальный stable_id.
     await loadShardsFromCloud().catch(() => {});
+    await tryRestoreAccountSwitchBackup('linked_restore');
     // Если в облаке/локально оказался автоген — попробуем подставить displayName из Google.
     await markOnboardedAfterSignIn();
     await syncRevenueCatAfterAuthLink();
@@ -1200,6 +1220,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   // Шарды: для нового аккаунта в облаке их ещё нет — функция просто вернётся,
   // но лучше явный вызов для симметрии и на случай pre-seeding из бэкенда.
   await loadShardsFromCloud().catch(() => {});
+  await tryRestoreAccountSwitchBackup('created_restore');
   await markOnboardedAfterSignIn();
   await syncRevenueCatAfterAuthLink();
   if (await hasMeaningfulLocalProgress()) {
@@ -1276,9 +1297,23 @@ async function hasMeaningfulLocalProgress(): Promise<boolean> {
  */
 export type SignOutSwitchResult =
   | { ok: true; synced: boolean }
+  | { ok: false; reason: 'sync_failed' }
   | { ok: false; reason: 'unknown'; detail?: string };
 
-export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchResult> {
+export type SignOutSwitchOptions = {
+  /**
+   * Разрешить wipe даже если forceSyncToCloud провалился (нет сети / таймаут).
+   * По умолчанию false: прогресс, не доехавший до облака, стирать нельзя —
+   * switch отменяется, юзер остаётся в своём аккаунте и может повторить при сети.
+   * true передаётся только после явного подтверждения пользователем
+   * «сменить без сохранения» — тогда пишем аварийную копию и продолжаем.
+   */
+  allowWipeWithoutSync?: boolean;
+};
+
+export async function signOutAndWipeForAccountSwitch(
+  options?: SignOutSwitchOptions,
+): Promise<SignOutSwitchResult> {
   if (!CLOUD_SYNC_ENABLED) {
     // В Expo Go / без облака просто чистим локально — ничего терять не можем.
     try {
@@ -1292,10 +1327,19 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
   }
   try {
     // 1. Гарантируем что весь локальный прогресс ушёл в облако.
+    //    Осколки синкаются отдельным путём и в forceSyncToCloud не входят —
+    //    без этого вызова баланс офлайн-сессии терялся при смене аккаунта.
+    await forceSyncShardsToCloud().catch(() => {});
     const synced = await forceSyncToCloud();
     if (!synced) {
-      logAuthEvent('auth_signout_wipe_sync_failed_continue', { stage: 'sync' });
       await saveAccountSwitchEmergencyBackup('force_sync_failed_before_account_switch');
+      if (!options?.allowWipeWithoutSync) {
+        // Прогресс НЕ в облаке — стирать локальные данные нельзя. Отменяем switch:
+        // юзер остаётся в своём аккаунте, данные целы, можно повторить при сети.
+        logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'sync' });
+        return { ok: false, reason: 'sync_failed' };
+      }
+      logAuthEvent('auth_signout_wipe_sync_failed_continue', { stage: 'sync' });
     }
     // 2. Выходим из Google и Firebase Auth.
     await signOutCurrentProvider();

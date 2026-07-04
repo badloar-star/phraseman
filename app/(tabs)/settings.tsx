@@ -1521,14 +1521,14 @@ export default function SettingsMain() {
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
               {L(
-                'Перед выходом попробуем сохранить всё в облако. Если сервер не ответит — сделаем аварийную копию на устройстве и всё равно дадим выбрать аккаунт.',
-                'Перед виходом спробуємо зберегти все в хмарі. Якщо сервер не відповість — зробимо аварійну копію на пристрої й усе одно дамо вибрати акаунт.',
-                'Antes de cerrar sesión intentaremos guardar todo en la nube. Si el servidor no responde, haremos una copia de emergencia en el dispositivo y podrás elegir cuenta.',
-                'Antes de sair, vamos tentar salvar tudo na nuvem. Se o servidor não responder, criaremos uma cópia de emergência no dispositivo e você poderá escolher a conta.',
-                'Trước khi đăng xuất, chúng tôi sẽ thử lưu mọi thứ lên đám mây. Nếu máy chủ không phản hồi, chúng tôi sẽ tạo bản sao khẩn cấp trên thiết bị và vẫn cho bạn chọn tài khoản.',
-                'Sebelum keluar, kami akan mencoba menyimpan semuanya ke cloud. Jika server tidak merespons, kami membuat salinan darurat di perangkat dan tetap membiarkan kamu memilih akun.',
-                'Çıkmadan önce her şeyi buluta kaydetmeyi deneyeceğiz. Sunucu yanıt vermezse cihazda acil bir kopya oluşturup yine de hesap seçmene izin vereceğiz.',
-                'Przed wylogowaniem spróbujemy zapisać wszystko w chmurze. Jeśli serwer nie odpowie, zrobimy awaryjną kopię na urządzeniu i nadal pozwolimy wybrać konto.',
+                'Перед выходом сохраним всё в облако. Если сервер не ответит — отменим смену аккаунта, чтобы твой прогресс не потерялся.',
+                'Перед виходом збережемо все в хмарі. Якщо сервер не відповість — скасуємо зміну акаунту, щоб твій прогрес не загубився.',
+                'Antes de cerrar sesión guardaremos todo en la nube. Si el servidor no responde, cancelaremos el cambio de cuenta para que no pierdas tu progreso.',
+                'Antes de sair, salvaremos tudo na nuvem. Se o servidor não responder, cancelaremos a troca de conta para que seu progresso não se perca.',
+                'Trước khi đăng xuất, chúng tôi sẽ lưu mọi thứ lên đám mây. Nếu máy chủ không phản hồi, việc đổi tài khoản sẽ bị hủy để tiến độ của bạn không bị mất.',
+                'Sebelum keluar, kami akan menyimpan semuanya ke cloud. Jika server tidak merespons, pergantian akun dibatalkan agar progresmu tidak hilang.',
+                'Çıkmadan önce her şeyi buluta kaydedeceğiz. Sunucu yanıt vermezse, ilerlemen kaybolmasın diye hesap değişimini iptal edeceğiz.',
+                'Przed wylogowaniem zapiszemy wszystko w chmurze. Jeśli serwer nie odpowie, anulujemy zmianę konta, aby Twój postęp nie przepadł.',
               )}
             </Text>
 
@@ -1550,6 +1550,43 @@ export default function SettingsMain() {
                   setSwitchAccountStage('wiping');
                   const res = await signOutAndWipeForAccountSwitch();
                   setSwitchAccountStage('idle');
+                  if (!res.ok && res.reason === 'sync_failed') {
+                    // Прогресс не доехал до облака — switch отменён, данные целы.
+                    // Даём выбор: повторить при сети или явно сменить без сохранения.
+                    Alert.alert(
+                      L('Прогресс не сохранён', 'Прогрес не збережено', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
+                      L(
+                        'Не удалось сохранить прогресс в облако — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
+                        'Не вдалося зберегти прогрес у хмарі — схоже, немає з\'єднання. Зміну акаунту скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
+                        'No pudimos guardar tu progreso en la nube: parece que no hay conexión. El cambio de cuenta se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
+                        'Não foi possível salvar seu progresso na nuvem — parece que não há conexão. A troca de conta foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
+                        'Không thể lưu tiến độ lên đám mây — có vẻ mất kết nối. Việc đổi tài khoản đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
+                        'Kami tidak bisa menyimpan progres ke cloud — sepertinya tidak ada koneksi. Pergantian akun dibatalkan dan semuanya tetap aman. Periksa internet lalu coba lagi.',
+                        'İlerlemen buluta kaydedilemedi — bağlantı yok gibi görünüyor. Hesap değişimi iptal edildi, her şey yerinde. İnterneti kontrol edip tekrar dene.',
+                        'Nie udało się zapisać postępu w chmurze — wygląda na brak połączenia. Zmiana konta została anulowana, wszystko zostało na miejscu. Sprawdź internet i spróbuj ponownie.',
+                      ),
+                      [
+                        {
+                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          style: 'cancel',
+                        },
+                        {
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          style: 'destructive',
+                          onPress: async () => {
+                            setSwitchAccountStage('wiping');
+                            const forced = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
+                            setSwitchAccountStage('idle');
+                            if (forced.ok) {
+                              setLinkedAuth(null);
+                              setAuthPromptVisible(true);
+                            }
+                          },
+                        },
+                      ],
+                    );
+                    return;
+                  }
                   if (!res.ok) {
                     showInfoAlert(
                       L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),

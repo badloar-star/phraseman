@@ -1137,7 +1137,14 @@ export default function DuelGameScreen() {
                   {['A', 'B', 'C', 'D'][i]}
                 </Text>
               </View>
-              <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }]} numberOfLines={2}>
+              <Text
+                style={[styles.optionText, { color: t.textPrimary, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }]}
+                numberOfLines={2}
+                // Длинный двуязычный вариант ужимается, а не обрезается: игрок
+                // под таймером обязан видеть ответ целиком (класс бага флешкарт).
+                adjustsFontSizeToFit
+                minimumFontScale={0.7}
+              >
                 {arenaBilingualFirst(option, lang)}
               </Text>
               {isCorrect && <Text style={{ color: t.correct, fontSize: 20 }}>✓</Text>}

@@ -2863,6 +2863,10 @@ function QuizGame({
                     {isCompassTheme && !on ? <CompassDepthSurface radius={9} quiet /> : null}
                     <Text
                       numberOfLines={planQuizId ? 2 : undefined}
+                      // План-режим режет варианты до 2 строк: длинный текст
+                      // ужимаем, а не обрезаем многоточием (класс бага флешкарт).
+                      adjustsFontSizeToFit={!!planQuizId}
+                      minimumFontScale={0.7}
                       style={{ color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.22, fontWeight: on ? '700' : '600' }}
                     >{ch}</Text>
                   </DuoPressable>

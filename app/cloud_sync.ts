@@ -1505,6 +1505,35 @@ function loginBonusMergeValue(localRaw: string | null, cloudRaw: string | null |
   return null;
 }
 
+// Ключи косметики/команд, которые админка/облако могут выдать поверх client-owned
+// состояния. Строками (а не импортом из constants), чтобы не тянуть лишнюю зависимость.
+const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
+const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
+const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+const ADMIN_ENERGY_COMMAND_KEY = 'admin_energy_command';
+
+/**
+ * Union-merge двух owned-мап вида {[id]: true} (JSON-строки). Возвращает merged JSON,
+ * если облако добавляет хотя бы один id, которого нет локально; иначе null (менять нечего).
+ * Так админская выдача ауры догоняет устройство, а локально купленные ауры не теряются.
+ */
+function mergeOwnedFlagMap(localRaw: string | null, cloudRaw: string | null | undefined): string | null {
+  if (cloudRaw === null || cloudRaw === undefined || !String(cloudRaw).trim()) return null;
+  const cloud = safeParseObject(cloudRaw);
+  const cloudIds = Object.keys(cloud).filter((k) => cloud[k] === true || cloud[k] === 'true');
+  if (!cloudIds.length) return null;
+  const local = safeParseObject(localRaw);
+  const merged: Record<string, true> = {};
+  for (const k of Object.keys(local)) {
+    if (local[k] === true || local[k] === 'true') merged[k] = true;
+  }
+  let changed = false;
+  for (const id of cloudIds) {
+    if (!merged[id]) { merged[id] = true; changed = true; }
+  }
+  return changed ? JSON.stringify(merged) : null;
+}
+
 async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string | null>): Promise<[string, string][]> {
   const pairs: [string, string][] = [];
 
@@ -1833,6 +1862,32 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     if (mergedLoginBonus !== null) {
       stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
     }
+
+    // Косметика, выданная из админки/облака (аура «Нимб» бета-тестерам, арена-ауры и т.п.),
+    // должна догонять устройство ДАЖЕ когда локальный XP ≥ облачного (обычный случай у
+    // активного юзера). Иначе owned-ключи не в sticky → админская выдача не появляется, а
+    // при следующем пуше клиент затирает её локальным значением. Owned мержим объединением
+    // (union), чтобы не потерять локально купленные ауры; активную ауру и gift-флаг из облака
+    // применяем как есть (админ авто-надевает выданную).
+    const mergedOwnedAuras = mergeOwnedFlagMap(
+      await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY),
+      cloudData[AVATAR_AURA_OWNED_KEY],
+    );
+    if (mergedOwnedAuras !== null) stickyPairs.push([AVATAR_AURA_OWNED_KEY, mergedOwnedAuras]);
+    const cloudActiveAura = cloudData[USER_AVATAR_AURA_KEY];
+    if (cloudActiveAura != null && String(cloudActiveAura).trim() !== '') {
+      stickyPairs.push([USER_AVATAR_AURA_KEY, String(cloudActiveAura)]);
+    }
+    const cloudGiftAura = cloudData[AVATAR_AURA_GIFT_OWNED_KEY];
+    if (cloudGiftAura != null && String(cloudGiftAura).trim() !== '') {
+      stickyPairs.push([AVATAR_AURA_GIFT_OWNED_KEY, String(cloudGiftAura)]);
+    }
+    // Разовая админ-команда на энергию (client-owned energy_state) — тоже мимо sticky не
+    // доедет. Тянем её из облака; energy_system применит один раз по метке at.
+    const cloudEnergyCmd = cloudData[ADMIN_ENERGY_COMMAND_KEY];
+    if (cloudEnergyCmd != null && String(cloudEnergyCmd).trim() !== '') {
+      stickyPairs.push([ADMIN_ENERGY_COMMAND_KEY, String(cloudEnergyCmd)]);
+    }
     stickyPairs.push(...await buildFrenchTargetStickyRestorePairs(cloudData));
     const cloudDaily = currentCloudDailyTasksProgress(cloudData);
     const restoredDailyTaskTargets: Array<'en' | 'fr'> = [];
@@ -2035,6 +2090,7 @@ export async function restoreFromCloud(): Promise<boolean> {
 export const __cloudSyncTestHooks = {
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,
+  mergeOwnedFlagMap,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────

@@ -26,6 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import {
+  ARENA_PASS_AURA_PREFIX,
   AVATAR_AURA_BUY_COST,
   AVATAR_AURA_GIFT_OWNED_KEY,
   AVATAR_AURA_OWNED_KEY,
@@ -961,7 +962,7 @@ export default function AvatarSelect() {
                           ? (
                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                               <Ionicons name="lock-closed" size={9} color={t.textMuted} />
-                              <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Арена</Text>
+                              <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>{aura.id.startsWith(ARENA_PASS_AURA_PREFIX) ? 'Арена' : 'Награда'}</Text>
                             </View>
                           )
                         : aura.unlockLevel !== undefined

@@ -50,4 +50,34 @@ describe('useAudio TTS resiliency', () => {
       audioSource.indexOf('Speech.speak(normalized, speechOptions)'),
     );
   });
+
+  // Regression: phrase clips died after ~half a lesson because createAudioPlayer
+  // makes a raw native player that is NOT auto-released; a stuck/failed one kept
+  // its native slot forever until an app restart, and the caller's fallback timer
+  // was cleared by an onStart that fired before the clip actually played.
+  it('frees every native phrase player through a registry so slots cannot leak', () => {
+    expect(phraseAudioSource).toContain('const livePlayers = new Set<AudioPlayer>()');
+    expect(phraseAudioSource).toContain('function disposePlayer');
+    expect(phraseAudioSource).toContain('livePlayers.add(player)');
+    expect(phraseAudioSource).toContain('livePlayers.delete(player)');
+    // stopPhraseAudio must sweep any orphaned live players, not only currentPlayer.
+    expect(phraseAudioSource).toContain('for (const player of Array.from(livePlayers)) disposePlayer(player)');
+  });
+
+  it('only reports onStart once the clip is actually loaded and playing', () => {
+    // onStart must NOT fire right after createAudioPlayer — otherwise the caller
+    // clears its CLIP_START_TIMEOUT fallback for a player that will never sound.
+    expect(phraseAudioSource).toContain('status.isLoaded && status.playing');
+    expect(phraseAudioSource).toContain('if (!superseded()) cb?.onStart?.();');
+    // The create call must not be immediately followed by an onStart invocation.
+    expect(phraseAudioSource).not.toMatch(/createAudioPlayer\([^)]*\);[\s\S]{0,120}cb\?\.onStart\?\.\(\);/);
+  });
+
+  it('self-heals a stalled clip via a start watchdog that falls back to TTS', () => {
+    expect(phraseAudioSource).toContain('CLIP_PLAY_WATCHDOG_MS');
+    expect(phraseAudioSource).toContain('currentWatchdog = setTimeout(');
+    expect(phraseAudioSource).toContain('if (!started) teardown(true)');
+    // A failed start reports onError so use-audio.ts falls back to system TTS.
+    expect(phraseAudioSource).toContain("cb?.onError?.(new Error('phrase clip failed to start'))");
+  });
 });

@@ -32,6 +32,14 @@ const CACHE_TARGET_BYTES = 80 * 1024 * 1024;
 const CACHE_MAX_FILES = 2000;
 const CACHE_TARGET_FILES = 1800;
 const CACHE_SWEEP_INTERVAL_MS = 10 * 60 * 1000;
+// If a created native player never reports itself loaded+playing within this
+// window, we treat the clip as failed: free the native player and let the caller
+// fall back to TTS. Without this, an exhausted native player slot (accumulated
+// over a lesson) leaves a silent player that never emits didJustFinish — the clip
+// dies with no fallback, and only an app restart frees the slot. Generous enough
+// to cover a cold first-play + short buffering; the caller has its own longer
+// CLIP_START_TIMEOUT backstop.
+const CLIP_PLAY_WATCHDOG_MS = 3500;
 
 function clampPlaybackRate(rate: number | undefined): number {
   if (typeof rate !== 'number' || !isFinite(rate)) return 1;
@@ -43,6 +51,40 @@ let currentPlayer: AudioPlayer | null = null;
 // при остановке/смене фразы — иначе каждый прерванный клип оставляет висящую
 // подписку (утечка, копящаяся за урок: десятки фраз → десятки слушателей).
 let currentSub: { remove: () => void } | null = null;
+// Watchdog текущего плеера: если клип не заиграл вовремя (исчерпан нативный лимит
+// плееров / клип не декодировался), снимаем плеер и уходим в фолбэк.
+let currentWatchdog: ReturnType<typeof setTimeout> | null = null;
+
+// Каждый createAudioPlayer — сырой нативный AudioPlayer БЕЗ авто-release
+// (в отличие от useAudioPlayer). Если хоть один путь пропустит remove(), нативный
+// плеер утекает, и после ~N клипов за урок ОС отказывает новым — звук фразы глохнет
+// (эффекты живут: у них один постоянный пул-плеер). Держим реестр всех живых
+// плееров и гарантированно освобождаем каждый — реестр как страховка от утечки в
+// гоночных путях, а не только текущий currentPlayer.
+const livePlayers = new Set<AudioPlayer>();
+
+// Безопасно освободить нативный плеер и убрать его из реестра. Идемпотентно.
+function disposePlayer(player: AudioPlayer | null): void {
+  if (!player) return;
+  livePlayers.delete(player);
+  try {
+    player.pause();
+  } catch {
+    // ignore
+  }
+  try {
+    player.remove();
+  } catch {
+    // ignore
+  }
+}
+
+function clearCurrentWatchdog(): void {
+  if (currentWatchdog != null) {
+    clearTimeout(currentWatchdog);
+    currentWatchdog = null;
+  }
+}
 const inFlightDownloads = new Map<string, Promise<string | null>>();
 let lastCacheSweepAt = 0;
 let cacheSweepInFlight = false;
@@ -197,19 +239,20 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
 export function stopPhraseAudio(): void {
   // Invalidate any in-flight playPhraseByText so a pending download won't start.
   playGeneration += 1;
+  clearCurrentWatchdog();
   // Снимаем слушатель ДО player.remove(), иначе подписка остаётся висеть.
   if (currentSub) {
     try { currentSub.remove(); } catch {}
     currentSub = null;
   }
   if (currentPlayer) {
-    try {
-      currentPlayer.pause();
-      currentPlayer.remove();
-    } catch {
-      // ignore
-    }
+    disposePlayer(currentPlayer);
     currentPlayer = null;
+  }
+  // Страховка: если гоночный путь оставил живой плеер вне currentPlayer, освободить
+  // и его — иначе нативные слоты копятся до отказа за урок.
+  if (livePlayers.size > 0) {
+    for (const player of Array.from(livePlayers)) disposePlayer(player);
   }
 }
 
@@ -243,6 +286,7 @@ export async function playPhraseByText(
   try {
     const player = createAudioPlayer(source);
     currentPlayer = player;
+    livePlayers.add(player);
     // Play the clip at full volume. Without this the player can default below
     // the level the old expo-speech path used (which always passed volume: 1),
     // making phrases sound quieter than before the OpenAI-clip switch.
@@ -259,26 +303,61 @@ export async function playPhraseByText(
     } catch {
       // older/edge runtimes: ignore, play at natural rate
     }
-    cb?.onStart?.();
+
     let finished = false;
+    let started = false;
+    // Общий разбор клипа: снять подписку/watchdog и освободить нативный плеер.
+    // fromWatchdog=true → это провал старта (плеер завис/не декодировался).
+    const teardown = (fromWatchdog: boolean) => {
+      if (finished) return;
+      finished = true;
+      clearCurrentWatchdog();
+      try { sub.remove(); } catch {}
+      if (currentSub === sub) currentSub = null;
+      disposePlayer(player);
+      if (currentPlayer === player) currentPlayer = null;
+      // Провал старта на актуальном клипе → сообщаем ошибку, чтобы вызывающая
+      // сторона ушла в системный TTS (иначе фраза молча пропадает).
+      if (fromWatchdog && !superseded()) {
+        cb?.onError?.(new Error('phrase clip failed to start'));
+      }
+    };
+
     const sub = player.addListener('playbackStatusUpdate', (status) => {
       if (finished) return;
+      // Реальный старт воспроизведения — только теперь гасим watchdog и сообщаем
+      // onStart. КРИТИЧНО: onStart НЕ вызываем сразу после createAudioPlayer —
+      // иначе вызывающая сторона снимет свой fallback-таймер для плеера, который
+      // на исчерпанном нативном слоте никогда не заиграет → вечная тишина.
+      if (!started && status.isLoaded && status.playing) {
+        started = true;
+        clearCurrentWatchdog();
+        if (!superseded()) cb?.onStart?.();
+      }
       if (status.didJustFinish) {
+        const wasSuperseded = superseded();
+        // Естественное завершение: разбираем плеер и (если ещё актуальны)
+        // сообщаем onDone. wasSuperseded-клип не должен триггерить авто-переход.
         finished = true;
-        // Only report completion if this play is still the active one — a
-        // superseded clip's late finish must not re-trigger caller auto-advance.
-        if (!superseded()) cb?.onDone?.();
-        try { sub?.remove(); } catch {}
+        clearCurrentWatchdog();
+        try { sub.remove(); } catch {}
         if (currentSub === sub) currentSub = null;
-        if (currentPlayer === player) {
-          try { player.remove(); } catch {}
-          currentPlayer = null;
-        }
+        disposePlayer(player);
+        if (currentPlayer === player) currentPlayer = null;
+        if (!wasSuperseded) cb?.onDone?.();
       }
     });
     // Регистрируем активную подписку, чтобы stopPhraseAudio() мог её снять при
     // прерывании (смена фразы) — а не только естественное завершение клипа.
     currentSub = sub;
+    // Watchdog старта: если клип не заиграл вовремя, освобождаем нативный плеер и
+    // уходим в фолбэк. Это и есть само-лечение от «звук глохнет после половины
+    // урока»: ни один зависший плеер не остаётся навсегда занимать слот/синглтон.
+    clearCurrentWatchdog();
+    currentWatchdog = setTimeout(() => {
+      currentWatchdog = null;
+      if (!started) teardown(true);
+    }, CLIP_PLAY_WATCHDOG_MS);
     player.play();
     return true;
   } catch (e) {

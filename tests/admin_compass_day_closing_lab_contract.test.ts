@@ -74,4 +74,16 @@ describe('admin compass day closing lab', () => {
     expect(modal).toContain('ignoreCompassFlag = false');
     expect(modal).toContain('(!ignoreCompassFlag && !compassOn()) || !day');
   });
+
+  it('keeps Compass modal actions above Android system navigation', () => {
+    expect(modal).toContain("import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen'");
+    expect(modal).toContain("import { useStableSafeAreaInsets } from '../stable_safe_area_metrics'");
+    expect(modal).toContain('const bottomInset = normalizeSafeAreaBottomInset(insets.bottom)');
+    expect(modal).toContain('const sheetBottomGap = Math.max(18, bottomInset + 10)');
+    // Backdrop несёт safe-area отступ снизу (кнопки не под системной навигацией
+    // Android). Обёрнут в Reanimated.View ради свайп-затемнения фона — важно, что
+    // paddingBottom: sheetBottomGap по-прежнему на backdrop-слое.
+    expect(modal).toContain('styles.backdrop, { paddingBottom: sheetBottomGap }');
+    expect(modal).not.toContain("backdrop: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: 12, paddingBottom: 18");
+  });
 });

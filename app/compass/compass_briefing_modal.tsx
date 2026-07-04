@@ -19,13 +19,25 @@
  * ИЗОЛЯЦИЯ: компонент рендерит null, если Компас выключен или дня нет. Вызывающий
  * экран (home) монтирует его за флагом — при off ничего не появляется.
  */
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import Reanimated, {
+  Easing as REasing,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { compassOn } from './compass_flags';
 import type { CompassDay, CompassTask, CompassTaskKind } from './compass_brain';
 import DayClosingPanel from './compass_day_closing_panel';
@@ -34,7 +46,6 @@ import {
   CompassGrabber,
   CompassEyebrow,
   CompassVoice,
-  CompassLede,
   CompassPickList,
   CompassPickRow,
   CompassSoftSection,
@@ -51,6 +62,7 @@ import {
   buildCompassInduction,
 } from './compass_copy';
 import { COMPASS_SOCIAL_COLLAPSE, COMPASS_SOCIAL_HEADER, COMPASS_SOCIAL_SHOW_ALL } from './compass_social_copy';
+import { compassIconSource } from '../../constants/weeklyCompassIcons';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -115,12 +127,78 @@ export default function CompassBriefingModal({
   onAccountLinkPress,
   ignoreCompassFlag = false,
 }: CompassBriefingModalProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
+  const insets = useStableSafeAreaInsets();
+  const { height: winH } = useWindowDimensions();
   const accent = t.accent;
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const sheetBottomGap = Math.max(18, bottomInset + 10);
   const dayClosing = day?.type === 'day_closing' ? day.dayClosing : undefined;
   const isDayClosing = !!dayClosing;
   const [socialExpanded, setSocialExpanded] = useState(false);
+
+  // ── Смахни-вниз-чтобы-закрыть (жест + «дорогая» анимация ухода) ──────────
+  // Лист живёт под пальцем: тянешь вниз — едет за пальцем, фон гаснет; вверх —
+  // резиновое сопротивление (лист не отрывается от низа). На отпускании: если
+  // утащил за порог ИЛИ бросил с ускорением — лист СНАЧАЛА чуть приподнимается
+  // (overshoot вверх), ПОТОМ увесисто уезжает вниз за экран (ease-in) и зовёт
+  // onLater. Иначе — упруго пружинит на место. Перф-канон: анимации one-shot,
+  // без фоновых циклов (withRepeat здесь нет). Жест обёрнут в свой
+  // GestureHandlerRootView — RN Modal рендерит отдельный корень, где родительский
+  // root-view не действует (тот же приём, что в CardPackShardPaywallModal).
+  const dragY = useSharedValue(0);
+  // Дистанция ухода: гарантированно за нижнюю кромку самого высокого листа.
+  const swipeOffDistance = useMemo(() => Math.max(560, winH * 0.9), [winH]);
+  const onLaterRef = useRef(onLater);
+  onLaterRef.current = onLater;
+  const dismissBySwipe = useCallback(() => {
+    void hapticTap();
+    onLaterRef.current();
+  }, []);
+
+  const swipeGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activeOffsetY(8)
+        .failOffsetX([-28, 28])
+        .onUpdate((e) => {
+          'worklet';
+          // Вниз — 1:1 за пальцем; вверх — сильное сопротивление (резина).
+          dragY.value = e.translationY < 0 ? e.translationY * 0.14 : e.translationY;
+        })
+        .onEnd((e) => {
+          'worklet';
+          const shouldClose = dragY.value > 90 || e.velocityY > 850;
+          if (shouldClose) {
+            // «Дорого»: подскок вверх на 22px (130мс), затем увесистый уход вниз.
+            dragY.value = withSequence(
+              withTiming(-22, { duration: 130, easing: REasing.out(REasing.cubic) }),
+              withTiming(swipeOffDistance, { duration: 300, easing: REasing.in(REasing.cubic) }, (finished) => {
+                if (finished) runOnJS(dismissBySwipe)();
+              }),
+            );
+          } else {
+            // Не дотянул — упруго возвращается (лёгкий перелёт, как easeOutBack).
+            dragY.value = withSpring(0, { damping: 16, stiffness: 180, mass: 0.9 });
+          }
+        }),
+    [dragY, dismissBySwipe, swipeOffDistance],
+  );
+
+  const sheetSwipeStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: dragY.value }],
+  }));
+  const backdropSwipeStyle = useAnimatedStyle(() => {
+    // Фон гаснет пропорционально уводу вниз (0..1 по высоте листа).
+    const frac = Math.min(1, Math.max(0, dragY.value / (winH * 0.5)));
+    return { opacity: 1 - frac * 0.9 };
+  });
+
+  // Сброс сдвига на каждый показ (иначе после ухода лист остался бы уехавшим).
+  useEffect(() => {
+    if (visible) dragY.value = 0;
+  }, [visible, day, dragY]);
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
   // Хук вызывается всегда (правила хуков) и сам безопасно обрабатывает day=null.
   const comment = useCompassVoice(visible && !isDayClosing ? day : null);
@@ -152,7 +230,8 @@ export default function CompassBriefingModal({
   if ((!ignoreCompassFlag && !compassOn()) || !day) return null;
 
   const title = triLang(lang, isDayClosing ? COMPASS_DAY_CLOSING_TITLE : COMPASS_BRIEFING_TITLE);
-  const dayLabel = !isDayClosing && day.planDayIndex ? `${title} · ${dayWord(lang)} ${day.planDayIndex}` : title;
+  // Надзаголовок — только имя Компаса, без «· День N» (правило юзера: убрать день из модалов).
+  const dayLabel = title;
 
   // Приветственные дни (первый день / возврат) — живое обращение Компаса.
   const greeting = isDayClosing ? [] : buildCompassGreeting(day, lang);
@@ -181,9 +260,17 @@ export default function CompassBriefingModal({
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onLater}>
-      <View style={styles.backdrop}>
-        <View style={[styles.sheet, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-          {!isDayClosing && <CompassGrabber t={t} />}
+      <GestureHandlerRootView style={styles.root}>
+        <Reanimated.View style={[styles.backdrop, { paddingBottom: sheetBottomGap }, backdropSwipeStyle]}>
+          <Reanimated.View style={[styles.sheet, { backgroundColor: t.bgCard, borderColor: t.border }, sheetSwipeStyle]}>
+            {/* Хват-полоска + шапка = зона свайпа. Тянешь отсюда — лист едет вниз; */}
+            {/* задачи-скролл ниже остаётся прокручиваемым. День-закрытие свой grabber */}
+            {/* не рисует, поэтому даём тонкую невидимую зону-хват сверху панели. */}
+            <GestureDetector gesture={swipeGesture}>
+              <View style={styles.grabZone}>
+                {!isDayClosing ? <CompassGrabber t={t} /> : <View style={styles.grabZoneClosing} />}
+              </View>
+            </GestureDetector>
 
           <ScrollView
             style={styles.scroll}
@@ -203,7 +290,7 @@ export default function CompassBriefingModal({
               </Animated.View>
             ) : (
               <Animated.View style={revealHead}>
-                <CompassEyebrow t={t} icon="compass-outline" text={dayLabel} accent={accent} />
+                <CompassEyebrow t={t} icon="compass-outline" iconSource={compassIconSource(themeMode)} text={dayLabel} accent={accent} />
 
                 {isWelcome ? (
                   <View style={styles.greeting}>
@@ -226,10 +313,11 @@ export default function CompassBriefingModal({
               <Animated.View style={revealBody}>
                 {/* Индакшн «с чего здорово начать» — как строка-выбор в списке. */}
                 {induction && day.inductionFeature && (
-                  <CompassPickList style={styles.pickTop}>
+                  <CompassPickList t={t} accent={accent} style={styles.pickTop}>
                     <CompassPickRow
                       t={t}
                       accent={accent}
+                      first
                       icon={INDUCTION_ICON[day.inductionFeature]}
                       title={induction.cta}
                       meta={induction.text}
@@ -241,12 +329,13 @@ export default function CompassBriefingModal({
                 {/* Задачи дня — плоский список-ВЫБОР. Только обычные дни (в welcome */}
                 {/* ведёт живой текст + индакшн). Тап по задаче = переход в её экран. */}
                 {!isWelcome && day.tasks.length > 0 && (
-                  <CompassPickList style={styles.pickTop}>
+                  <CompassPickList t={t} accent={accent} style={styles.pickTop}>
                     {day.tasks.map((task, i) => (
                       <CompassPickRow
                         key={`${task.kind}-${i}`}
                         t={t}
                         accent={accent}
+                        first={i === 0}
                         icon={TASK_ICON[task.kind]}
                         title={triLang(lang, COMPASS_TASK_TITLE[task.kind])}
                         meta={`${task.minutes} ${minutesLabel}`}
@@ -307,21 +396,6 @@ export default function CompassBriefingModal({
                   </CompassSoftSection>
                 )}
 
-                {/* Вопрос-приглашение в конце welcome-дня (над «Поехали»). */}
-                {isWelcome && (
-                  <CompassLede t={t} center>
-                    {triLang(lang, {
-                      ru: 'С чего хочешь начать?',
-                      uk: 'З чого хочеш почати?',
-                      es: '¿Por dónde quieres empezar?',
-                      'pt-BR': 'Por onde você quer começar?',
-                      vi: 'Bạn muốn bắt đầu từ đâu?',
-                      id: 'Mau mulai dari mana?',
-                      tr: 'Nereden başlamak istersin?',
-                      pl: 'Od czego chcesz zacząć?',
-                    })}
-                  </CompassLede>
-                )}
               </Animated.View>
             )}
           </ScrollView>
@@ -344,28 +418,21 @@ export default function CompassBriefingModal({
               <CompassLaterLink t={t} label={laterLabel} onPress={onLater} />
             </>
           )}
-        </View>
-      </View>
+          </Reanimated.View>
+        </Reanimated.View>
+      </GestureHandlerRootView>
     </Modal>
   );
 }
 
-function dayWord(lang: string): string {
-  return triLang(lang as never, {
-    ru: 'День',
-    uk: 'День',
-    es: 'Día',
-    'pt-BR': 'Dia',
-    vi: 'Ngày',
-    id: 'Hari',
-    tr: 'Gün',
-    pl: 'Dzień',
-  });
-}
-
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: 12, paddingBottom: 18, backgroundColor: 'rgba(0,0,0,0.55)' },
-  sheet: { width: '100%', maxWidth: 520, maxHeight: '88%', alignSelf: 'center', borderRadius: 26, borderWidth: StyleSheet.hairlineWidth, padding: 22, paddingBottom: 18 },
+  root: { flex: 1 },
+  backdrop: { flex: 1, justifyContent: 'flex-end', paddingHorizontal: 12, backgroundColor: 'rgba(0,0,0,0.55)' },
+  sheet: { width: '100%', maxWidth: 520, maxHeight: '88%', alignSelf: 'center', borderRadius: 26, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 22, paddingBottom: 18 },
+  // Зона хвата сверху листа — широкая мишень для пальца (тянуть вниз). Внутри —
+  // видимый grabber (брифинг) или тонкая невидимая полоса (день-закрытие).
+  grabZone: { paddingTop: 12, paddingBottom: 2, alignItems: 'center' },
+  grabZoneClosing: { height: 12, alignSelf: 'stretch' },
   scroll: { flexGrow: 0 },
   scrollBody: { paddingBottom: 2 },
   greeting: { gap: 9, marginTop: 15 },

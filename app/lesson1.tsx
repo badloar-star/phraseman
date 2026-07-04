@@ -503,6 +503,9 @@ interface LessonContentProps {
   handleWordPress: (word: string) => void;
   undoLastWord: () => void;
   onSpeakingFillAnswer: (text: string) => void;
+  /** Заморозить/разморозить авто-переход к следующей фразе, пока открыта панель
+   *  «Скажи вслух» (иначе таймер уводит урок, пока юзер слушает/перезаписывает). */
+  onSpeakingActiveChange?: (active: boolean) => void;
   goNext: () => void;
   handleTypedSubmit: () => void;
   typedText: string;
@@ -587,6 +590,7 @@ const LessonContent = React.memo(function LessonContent({
   handleWordPress,
   undoLastWord,
   onSpeakingFillAnswer,
+  onSpeakingActiveChange,
   goNext,
   handleTypedSubmit,
   typedText,
@@ -693,8 +697,19 @@ const LessonContent = React.memo(function LessonContent({
       router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
       return;
     }
+    // Замораживаем авто-переход у родителя: панель произносит эталон в фоне и даёт
+    // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
+    // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
+    onSpeakingActiveChange?.(true);
     setSpeakingOpen(true);
-  }, [speakingIsPremium, router]);
+  }, [speakingIsPremium, router, onSpeakingActiveChange]);
+
+  const closeSpeaking = useCallback(() => {
+    setSpeakingOpen(false);
+    // Не перезапускаем авто-переход автоматически — юзер сам жмёт «Далее», когда
+    // готов (кнопка lesson1-next доступна в состоянии result).
+    onSpeakingActiveChange?.(false);
+  }, [onSpeakingActiveChange]);
 
   // [50/50] Затемняет неправильные плитки до ответа. Тратит тот же дневной кредит, что и «Объясни».
   const [fiftyFiftyActive, setFiftyFiftyActive] = useState(false);
@@ -1685,7 +1700,7 @@ const LessonContent = React.memo(function LessonContent({
               void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
             }}
             onFillAnswer={onSpeakingFillAnswer}
-            onClose={() => setSpeakingOpen(false)}
+            onClose={closeSpeaking}
           />
         )}
 
@@ -2033,6 +2048,19 @@ export default function LessonScreen() {
   const hintPulseAnim = useRef(new Animated.Value(0.4)).current;
   const hintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
   const autoTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Пока в дочернем LessonContent открыта панель «Скажи вслух», авто-переход к
+  // следующей фразе заморожен: юзер хочет остаться на фразе (переслушать эталон/
+  // свою запись, перезаписать). Флаг синхронный — колбэк таймера читает его без
+  // устаревания. Дочерний компонент дёргает setSpeakingAdvanceSuspended.
+  const speakingSuspendRef = useRef(false);
+  const setSpeakingAdvanceSuspended = useCallback((suspended: boolean) => {
+    speakingSuspendRef.current = suspended;
+    // Открытие панели должно погасить уже заряженный 4-сек таймер немедленно.
+    if (suspended && autoTimer.current) {
+      clearTimeout(autoTimer.current);
+      autoTimer.current = null;
+    }
+  }, []);
   const replayAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
@@ -3141,8 +3169,15 @@ export default function LessonScreen() {
       return;
     }
 
-    if (settings.autoAdvance && isRight) {
-      autoTimer.current = setTimeout(() => goNext(np), 4000);
+    // Панель «Скажи вслух» открыта → не заряжаем авто-переход (юзер хочет остаться
+    // на фразе: переслушать эталон/запись, перезаписать). И даже если таймер
+    // как-то был заряжен, колбэк ещё раз проверит флаг перед прыжком.
+    if (settings.autoAdvance && isRight && !speakingSuspendRef.current) {
+      autoTimer.current = setTimeout(() => {
+        autoTimer.current = null;
+        if (speakingSuspendRef.current) return;
+        goNext(np);
+      }, 4000);
     }
   }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
@@ -3611,6 +3646,7 @@ export default function LessonScreen() {
             handleWordPress={handleWordPress}
             undoLastWord={undoLastWord}
             onSpeakingFillAnswer={handleSpeakingFillAnswer}
+            onSpeakingActiveChange={setSpeakingAdvanceSuspended}
             goNext={goNext}
             handleTypedSubmit={handleTypedSubmit}
             typedText={typedText}

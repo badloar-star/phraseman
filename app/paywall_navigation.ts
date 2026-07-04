@@ -1,3 +1,5 @@
+import { InteractionManager } from 'react-native';
+
 import { refreshPaywallAbConfigInBackground, resolvePaywallAbVariantSync, type PaywallAbVariant } from './paywall_variant';
 
 type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c';
@@ -28,6 +30,35 @@ function normalizePaywallParams(params: PaywallNavigationParams = {}): Record<st
     }
   }
   return normalized;
+}
+
+export type ScheduledNavigation = {
+  cancel: () => void;
+};
+
+/**
+ * Откладывает навигацию до момента, когда корневой навигатор реально готов её принять.
+ * Гейта по rootNavState.key НЕДОСТАТОЧНО: на холодном deep-link key появляется раньше,
+ * чем Expo Router принимает replace/push — навигация в этот момент бросает
+ * «Attempted to navigate before mounting the Root Layout» (крэш билда 1.5.50).
+ * Поэтому: runAfterInteractions + макротик. Та же схема, что в premium_modal.
+ */
+export function scheduleAfterRootNavigationReady(navigate: () => void): ScheduledNavigation {
+  let cancelled = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const task = InteractionManager.runAfterInteractions(() => {
+    timer = setTimeout(() => {
+      if (!cancelled) navigate();
+    }, 0);
+  });
+
+  return {
+    cancel: () => {
+      cancelled = true;
+      if (timer !== null) clearTimeout(timer);
+      task.cancel?.();
+    },
+  };
 }
 
 export function resolveCurrentPaywallRoute(): PaywallRoute {

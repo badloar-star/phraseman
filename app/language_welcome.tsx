@@ -29,14 +29,18 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { openPremiumPaywall } from './paywall_navigation';
+import {
+  openPremiumPaywall,
+  scheduleAfterRootNavigationReady,
+  type ScheduledNavigation,
+} from './paywall_navigation';
 import {
   applyStudyLanguageSelection,
   getStartedStudyLanguages,
@@ -111,28 +115,46 @@ export default function LanguageWelcomeScreen() {
     safeRouterBack(router, '/settings_language' as any);
   }, [router]);
 
+  // Готов ли корневой навигатор. Экран достижим deep-link'ом (см. шапку) — на холодном
+  // старте навигация до монтирования Root Layout бросает assertIsReady (крэш 1.5.50
+  // в premium_modal). Ждём key И откладываем сами навигации ниже.
+  const rootNavState = useRootNavigationState();
+  const rootNavReady = Boolean(rootNavState?.key);
+
   // Эффект-гейт: невалидный язык → назад; фри с ≥1 начатым языком → пейвол.
+  // ОБЕ навигации — только после rootNavReady и через scheduleAfterRootNavigationReady:
+  // key появляется раньше, чем роутер реально принимает replace на холодном deep-link.
   useEffect(() => {
+    if (!rootNavReady) return;
     let cancelled = false;
+    let scheduled: ScheduledNavigation | null = null;
     void (async () => {
       if (!target || !isStudyTargetSourceUiLang(lang)) {
-        goBackSafely();
+        scheduled = scheduleAfterRootNavigationReady(() => {
+          if (!cancelled) goBackSafely();
+        });
         return;
       }
       const started = await getStartedStudyLanguages();
       if (cancelled) return;
       if (started.includes(target)) return; // уже начат — экран просто освежит план
       if (shouldGateExtraLanguage({ target, startedLanguages: started, hasPremiumAccess })) {
-        markNextNavigationAsReplace();
-        openPremiumPaywall(router, {
-          context: 'language_add',
-          source: 'language_welcome_gate',
-          language: target,
-        }, 'replace');
+        scheduled = scheduleAfterRootNavigationReady(() => {
+          if (cancelled) return;
+          markNextNavigationAsReplace();
+          openPremiumPaywall(router, {
+            context: 'language_add',
+            source: 'language_welcome_gate',
+            language: target,
+          }, 'replace');
+        });
       }
     })();
-    return () => { cancelled = true; };
-  }, [target, lang, hasPremiumAccess, router, goBackSafely]);
+    return () => {
+      cancelled = true;
+      scheduled?.cancel();
+    };
+  }, [rootNavReady, target, lang, hasPremiumAccess, router, goBackSafely]);
 
   const languageName = target && isStudyTargetSourceUiLang(lang)
     ? studyTargetLabelForSourceUiLang(target, lang)

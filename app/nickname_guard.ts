@@ -21,8 +21,15 @@ export function createRandomNickname(now = Date.now(), random = Math.random()): 
  *  • 'ok'/'taken' → имя в индексе есть (свой слот либо чужой живой) → метим синк;
  *    'error'/'cooldown' → НЕ метим → повтор при следующем ensureLocalNickname.
  * Best-effort: любые исключения не должны ломать вызывающий код.
+ *
+ * ВАЖНО про source: 'onboarding' передаём ТОЛЬКО при реальной смене/первой установке
+ * имени (justChanged) — на сервере source:'onboarding' каждый раз ПЕРЕВЫДАЁТ бесплатную
+ * смену ника (grantsFreeChange, leaderboard.ts:269). Повторная сверка того же имени с
+ * этим source возвращала бы юзеру бесплатную смену после каждого переименования в
+ * настройках, обнуляя 14-дневный кулдаун. Без source настоящий первый сет всё равно
+ * получит бесплатную смену через isInitialNameSet на сервере.
  */
-async function reconcileNameIndex(name: string, oldName: string): Promise<void> {
+async function reconcileNameIndex(name: string, oldName: string, justChanged: boolean): Promise<void> {
   const target = name.trim();
   if (target.length < 2) return;
   try {
@@ -30,7 +37,11 @@ async function reconcileNameIndex(name: string, oldName: string): Promise<void> 
     if (alreadySynced === target) return;
 
     const { reserveNameDetailed } = await import('./firestore_leaderboard');
-    const { status } = await reserveNameDetailed(target, oldName.trim(), { source: 'onboarding' });
+    const { status } = await reserveNameDetailed(
+      target,
+      oldName.trim(),
+      justChanged ? { source: 'onboarding' } : {},
+    );
     // 'ok' — наш слот; 'taken' — имя принадлежит живому владельцу (возможно, нам же на
     // другом устройстве), в индексе оно ЕСТЬ. В обоих случаях дальше ретраить незачем.
     if (status === 'ok' || status === 'taken') {
@@ -47,7 +58,8 @@ export async function ensureLocalNickname(candidate?: string | null): Promise<st
   const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
   const finalName = trimmedCandidate || stored || createRandomNickname();
 
-  if (finalName !== stored) {
+  const justChanged = finalName !== stored;
+  if (justChanged) {
     await AsyncStorage.setItem('user_name', finalName);
     // Имя изменилось → прежняя метка синка недействительна.
     await AsyncStorage.removeItem(NAME_INDEX_SYNCED_KEY).catch(() => {});
@@ -55,7 +67,7 @@ export async function ensureLocalNickname(candidate?: string | null): Promise<st
 
   // Пытаемся довести имя до серверного индекса при каждом запуске, пока не подтвердится.
   // Не блокирует критический путь: ensureLocalNickname уже вызывается вне рендера.
-  await reconcileNameIndex(finalName, stored);
+  await reconcileNameIndex(finalName, stored, justChanged);
 
   return finalName;
 }

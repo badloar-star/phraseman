@@ -106,6 +106,11 @@ export function allMapHexes(): Hex[] {
 // Date.now()/Math.random() здесь запрещены по построению: одна и та же
 // раскладка обязана воспроизводиться из mapSeed документа матча.
 
+/** Сидированный PRNG для детерминированных решений (боты, карта). */
+export function createSeededRand(seed: string): () => number {
+  return mulberry32(hashSeed(seed));
+}
+
 function hashSeed(seed: string): number {
   let h = 0x811c9dc5;
   for (let i = 0; i < seed.length; i += 1) {

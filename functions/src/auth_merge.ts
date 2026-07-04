@@ -342,6 +342,53 @@ type MergeResult = {
  * Idempotent: if the two are already merged (one hidden → other), returns the
  * canonical id without rewriting.
  */
+const AUTH_LINKS_COL = 'auth_links';
+
+/**
+ * Genuine ownership = the caller controls this account through a trustworthy
+ * signal — its firebaseAuthUid is the caller, or a provider link (Google/Apple)
+ * binds it to the caller, or auth_links/{authUid} points at it. It deliberately
+ * does NOT accept the anonymous-reinstall relink escape (assertStableOwner line
+ * ~173), which trusts a stable_id that is publicly readable as a leaderboard
+ * document id. A fresh anon_merge_claim proves a device held an anonymous LOSER
+ * but must NEVER make an account the merge survivor (see the "never overwrite an
+ * owned account" test). Used to gate every path that rebinds
+ * users/{id}.firebaseAuthUid to the caller (#11 / #12 account-takeover).
+ */
+async function callerGenuinelyOwns(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  stableId: string,
+  data?: Record<string, unknown> | null,
+): Promise<boolean> {
+  const userData =
+    data ?? ((await db.collection(USERS).doc(stableId).get().catch(() => null))?.data() as Record<string, unknown> | undefined) ?? {};
+  if (cleanStr((userData as { firebaseAuthUid?: unknown }).firebaseAuthUid) === authUid) return true;
+  const linkedAuth = (userData as { linkedAuth?: unknown }).linkedAuth;
+  if (linkedAuth && typeof linkedAuth === 'object') {
+    const providerUid = cleanStr((linkedAuth as { providerUid?: unknown }).providerUid);
+    if (providerUid && providerUid === authUid) return true;
+  }
+  const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
+  if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId) return true;
+  return false;
+}
+
+/** Throw permission-denied unless the caller GENUINELY owns the account it is
+ *  about to be bound to. Shared by every merge branch that would rewrite
+ *  users/{id}.firebaseAuthUid, so a leaked stable_id alone can never seize a
+ *  stranger's account. */
+async function assertGenuineOwnerForBind(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  stableId: string,
+  data?: Record<string, unknown> | null,
+): Promise<void> {
+  if (await callerGenuinelyOwns(db, authUid, stableId, data)) return;
+  console.warn(JSON.stringify({ event: 'merge_bind_denied', authUid, stableId }));
+  throw new HttpsError('permission-denied', 'stable_id_mismatch');
+}
+
 export async function mergeStableAccounts(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -355,6 +402,7 @@ export async function mergeStableAccounts(
 
   // Same id (or already-canonicalized to the same target) → nothing to merge.
   if (a === b) {
+    await assertGenuineOwnerForBind(db, authUid, a);
     await linkStableAuthUid(db, a, authUid);
     return { canonicalStableId: a, mergedFromStableId: null, alreadyMerged: true };
   }
@@ -378,6 +426,7 @@ export async function mergeStableAccounts(
 
   // Already merged into the same canonical → idempotent no-op.
   if (canonA === canonB) {
+    await assertGenuineOwnerForBind(db, authUid, canonA);
     await linkStableAuthUid(db, canonA, authUid);
     return { canonicalStableId: canonA, mergedFromStableId: null, alreadyMerged: true };
   }
@@ -390,7 +439,13 @@ export async function mergeStableAccounts(
   // anonymous token to stamp with, so cannot absorb a stranger's account.
   // resolveStableUidForAuth self-heals firebaseAuthUid; here we tolerate a mismatch
   // and defer the decision until the XP winner is known.
-  const opts = { allowProviderRelink: true };
+  // repairLinks:false — the ownership PROBE must be READ-ONLY. Previously
+  // resolveStableUidForAuth rebound users/{id}.firebaseAuthUid as a side effect of
+  // the probe, so a permissive anon-relink resolve seized a victim's account before
+  // the ownership gates even ran (and that rebind was not rolled back on a later
+  // throw). The genuine rebind now happens ONLY in the final transaction / the
+  // gated branch links below.
+  const opts = { allowProviderRelink: true, repairLinks: false };
   const resolveOwnershipSafe = async (id: string): Promise<{ owned: boolean; id: string }> => {
     try {
       return { owned: true, id: await resolveStableUidForAuth(db, authUid, id, opts) };
@@ -424,15 +479,20 @@ export async function mergeStableAccounts(
   }
 
   if (winnerId === loserId) {
+    await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData as Record<string, unknown>);
     await linkStableAuthUid(db, winnerId, authUid);
     return { canonicalStableId: winnerId, mergedFromStableId: null, alreadyMerged: true };
   }
 
-  // The surviving account MUST be owned — never let an unowned account become the
-  // canonical survivor, and never overwrite an owned account with an unowned one.
-  if (!winnerOwned) {
-    throw new HttpsError('permission-denied', 'stable_id_mismatch');
-  }
+  // The surviving account MUST be GENUINELY owned by the caller — by a trustworthy
+  // signal (firebaseAuthUid / provider link / auth_links), NOT merely "ownable" via
+  // the anonymous-reinstall relink escape, which trusts a stable_id that is publicly
+  // readable as a leaderboard document id. A leaked stable_id must never let an
+  // attacker seize a stranger's account (#11 / #12). A fresh anon_merge_claim proves
+  // a device held an anonymous LOSER but can NEVER make an account the survivor
+  // (guarded by the "never overwrite an owned account" test). winnerOwned above came
+  // from the permissive probe and is intentionally no longer trusted here.
+  await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData as Record<string, unknown>);
   // The loser, if not owned, is only absorbable with a fresh self-stamped anon
   // claim whose authUid matches the loser doc's own firebaseAuthUid (the anon uid
   // that held it). No claim / stale / mismatched → reject.

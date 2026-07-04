@@ -45,12 +45,18 @@ export function prevDateKey(dateKey: string): string {
 
 /**
  * Переход серии закрытых дней. Идемпотентно по дню: повторное закрытие того же
- * dateKey не растит серию. Вчера закрывал → +1; пропуск → серия начинается с 1.
+ * dateKey не растит серию. Вчера закрывал → +1. Серия ЩАДЯЩАЯ: один пропущенный
+ * вечер её не сжигает (позавчера закрывал → тоже +1) — иначе бейдж у любого, кто
+ * не заходит каждый вечер, вечно показывал бы «1» и демотивировал. Два и больше
+ * пропусков подряд → серия начинается с 1.
  */
 export function nextDayClosingStreak(prev: DayClosingStreak, dateKey: string): DayClosingStreak {
   if (!dateKey) return prev;
   if (prev.lastDateKey === dateKey) return prev;
-  const continues = prev.lastDateKey != null && prev.lastDateKey === prevDateKey(dateKey);
+  const yesterday = prevDateKey(dateKey);
+  const continues =
+    prev.lastDateKey != null &&
+    (prev.lastDateKey === yesterday || prev.lastDateKey === prevDateKey(yesterday));
   return {
     count: continues ? prev.count + 1 : 1,
     lastDateKey: dateKey,

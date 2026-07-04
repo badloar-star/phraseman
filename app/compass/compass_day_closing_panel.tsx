@@ -17,14 +17,14 @@
  * только пока открыта модалка, паттерн одобрен в NoEnergyModal).
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Svg, { Circle } from 'react-native-svg';
 import PremiumGoldButton from '../../components/PremiumGoldButton';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import { hapticCelebrate } from '../../hooks/use-haptics';
+import { hapticCelebrate, hapticTap } from '../../hooks/use-haptics';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { CompassEyebrow, CompassStreakPill, CompassVoice, CompassPrimaryButton, CompassLaterLink } from './compass_sheet_kit';
 import type { DayClosingRitual } from './day_closing_ritual';
@@ -35,12 +35,12 @@ import {
   type DayClosingStreak,
 } from './day_closing_reward_rules';
 import {
-  COMPASS_DAY_COMMENT,
   COMPASS_DAY_CLOSING_TITLE,
   COMPASS_DAY_CLOSING_TOMORROW,
   COMPASS_DAY_CLOSING_CLOSE,
   COMPASS_DAY_CLOSING_CLOSE_REWARD,
-  COMPASS_DAY_CLOSING_DONE,
+  COMPASS_DAY_CLOSING_COMMENTS,
+  COMPASS_DAY_CLOSING_DONE_VARIANTS,
   COMPASS_DAY_CLOSING_STREAK,
   COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL,
   COMPASS_DAY_CLOSING_REPEAT,
@@ -48,7 +48,8 @@ import {
   COMPASS_DAY_CLOSING_PREMIUM_BODY,
   COMPASS_OPEN_ACCESS,
   COMPASS_LATER,
-  type CompassText,
+  compassFocusCategoryLabel,
+  pickCompassDailyVariant,
 } from './compass_copy';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -57,33 +58,14 @@ const RING_SIZE = 84;
 const RING_RADIUS = 34;
 const RING_STROKE = 6;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
-/** Длительность анимации закрытия дня до автозакрытия модалки. */
-const CELEBRATION_MS = 1700;
-
-/** Человеческие подписи категорий фокуса (8 языков UI). */
-const FOCUS_CATEGORY_LABEL: Record<string, CompassText> = {
-  verb: { ru: 'глаголы', uk: 'дієслова', es: 'verbos', 'pt-BR': 'verbos', vi: 'động từ', id: 'kata kerja', tr: 'fiiller', pl: 'czasowniki' },
-  noun: { ru: 'существительные', uk: 'іменники', es: 'sustantivos', 'pt-BR': 'substantivos', vi: 'danh từ', id: 'kata benda', tr: 'isimler', pl: 'rzeczowniki' },
-  pronoun: { ru: 'местоимения', uk: 'займенники', es: 'pronombres', 'pt-BR': 'pronomes', vi: 'đại từ', id: 'kata ganti', tr: 'zamirler', pl: 'zaimki' },
-  adjective: { ru: 'прилагательные', uk: 'прикметники', es: 'adjetivos', 'pt-BR': 'adjetivos', vi: 'tính từ', id: 'kata sifat', tr: 'sıfatlar', pl: 'przymiotniki' },
-  adverb: { ru: 'наречия', uk: 'прислівники', es: 'adverbios', 'pt-BR': 'advérbios', vi: 'trạng từ', id: 'kata keterangan', tr: 'zarflar', pl: 'przysłówki' },
-  preposition: { ru: 'предлоги', uk: 'прийменники', es: 'preposiciones', 'pt-BR': 'preposições', vi: 'giới từ', id: 'preposisi', tr: 'edatlar', pl: 'przyimki' },
-  syntax: { ru: 'порядок слов', uk: 'порядок слів', es: 'orden de palabras', 'pt-BR': 'ordem das palavras', vi: 'trật tự từ', id: 'urutan kata', tr: 'kelime sırası', pl: 'szyk zdania' },
-  article: { ru: 'артикли', uk: 'артиклі', es: 'artículos', 'pt-BR': 'artigos', vi: 'mạo từ', id: 'artikel', tr: 'artikeller', pl: 'przedimki' },
-  existential: { ru: 'there is / there are', uk: 'there is / there are', es: 'there is / there are', 'pt-BR': 'there is / there are', vi: 'there is / there are', id: 'there is / there are', tr: 'there is / there are', pl: 'there is / there are' },
-  'to-be': { ru: 'глагол to be', uk: 'дієслово to be', es: 'el verbo to be', 'pt-BR': 'o verbo to be', vi: 'động từ to be', id: 'kata kerja to be', tr: 'to be fiili', pl: 'czasownik to be' },
-  conjunction: { ru: 'союзы', uk: 'сполучники', es: 'conjunciones', 'pt-BR': 'conjunções', vi: 'liên từ', id: 'konjungsi', tr: 'bağlaçlar', pl: 'spójniki' },
-  modal: { ru: 'модальные глаголы', uk: 'модальні дієслова', es: 'verbos modales', 'pt-BR': 'verbos modais', vi: 'động từ khuyết thiếu', id: 'kata kerja modal', tr: 'modal fiiller', pl: 'czasowniki modalne' },
-  phrasal_particle: { ru: 'частицы phrasal verbs', uk: 'частки phrasal verbs', es: 'partículas de phrasal verbs', 'pt-BR': 'partículas de phrasal verbs', vi: 'tiểu từ phrasal verbs', id: 'partikel phrasal verbs', tr: 'phrasal verb ekleri', pl: 'partykuły phrasal verbs' },
-  modifier: { ru: 'уточняющие слова', uk: 'уточнювальні слова', es: 'palabras modificadoras', 'pt-BR': 'palavras modificadoras', vi: 'từ bổ nghĩa', id: 'kata pewatas', tr: 'niteleyiciler', pl: 'określniki' },
-  determiner: { ru: 'указатели (determiners)', uk: 'вказівники (determiners)', es: 'determinantes', 'pt-BR': 'determinantes', vi: 'từ hạn định', id: 'determiner', tr: 'belirteçler', pl: 'określniki (determiners)' },
-};
+/**
+ * Длительность празднования до автозакрытия модалки. Было 1700мс — человек не
+ * успевал прочитать «День закрыт…» и серию; кульминация обрезалась.
+ */
+const CELEBRATION_MS = 2600;
 
 function focusCategoryLabel(category: string | undefined, lang: Lang): string {
-  if (!category) return '';
-  const known = FOCUS_CATEGORY_LABEL[category];
-  if (known) return triLang(lang, known);
-  return category.replace(/_/g, ' ');
+  return compassFocusCategoryLabel(category, lang);
 }
 
 /** Полный текст фокуса на завтра (что именно повторить). */
@@ -267,11 +249,13 @@ export interface DayClosingPanelProps {
   onUpgrade?: () => void;
   /** «Позже» на запертой витрине (день всё равно помечается показанным). */
   onLater: () => void;
+  /** Тап по «Фокусу на завтра» (полный режим): открыть экран этого шага. */
+  onFocusPress?: () => void;
   /** Dev-лаборатория: играть анимацию, но НЕ начислять XP и не писать серию. */
   preview?: boolean;
 }
 
-export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLater, preview = false }: DayClosingPanelProps) {
+export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLater, onFocusPress, preview = false }: DayClosingPanelProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -280,7 +264,12 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
   const rewardXp = useMemo(() => computeDayClosingRewardXp(dayClosing), [dayClosing]);
 
   const [streak, setStreak] = useState<DayClosingStreak>({ count: 0, lastDateKey: null });
+  // Пока серия не прочитана из хранилища, бейдж не показываем: иначе гонка
+  // рисовала «Дней подряд: 1» человеку с реальной серией.
+  const [streakLoaded, setStreakLoaded] = useState(false);
   const [phase, setPhase] = useState<'idle' | 'closing'>('idle');
+  // Начисление сорвалось → не рисуем вылет «+XP» (честность празднования).
+  const [xpAwardFailed, setXpAwardFailed] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Анимации награды — все одноразовые, стартуют только по нажатию кнопки.
@@ -292,7 +281,9 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
   useEffect(() => {
     let cancelled = false;
     void loadDayClosingStreak().then((s) => {
-      if (!cancelled) setStreak(s);
+      if (cancelled) return;
+      setStreak(s);
+      setStreakLoaded(true);
     });
     return () => {
       cancelled = true;
@@ -311,7 +302,11 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
     setPhase('closing');
     void hapticCelebrate();
     if (!preview) {
-      void awardDayClosingOnce({ studyTarget, ritual: dayClosing, lang }).catch(() => {});
+      // Начисление локальное и быстрое; если всё же сорвалось — гасим «+XP»
+      // (вылет стартует на 650мс, ответ успевает раньше), чтобы праздник не врал.
+      void awardDayClosingOnce({ studyTarget, ritual: dayClosing, lang }).catch(() => {
+        setXpAwardFailed(true);
+      });
     }
     Animated.parallel([
       Animated.timing(overlayFade, { toValue: 1, duration: 220, useNativeDriver: true }),
@@ -344,12 +339,18 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
   const xpOpacity = xpFly.interpolate({ inputRange: [0, 0.15, 0.75, 1], outputRange: [0, 1, 1, 0] });
 
   // До закрытия — текущая серия; во время празднования — уже с сегодняшним днём.
+  // Бейдж: только когда серия прочитана И больше одного дня — вечное «Дней
+  // подряд: 1» демотивирует, а не радует.
   const streakShown = phase === 'closing' ? closedStreak : streak.count;
-  const streakBadge = streakShown > 0
+  const streakBadge = streakLoaded && streakShown > 1
     ? triLang(lang, COMPASS_DAY_CLOSING_STREAK).replace('{days}', String(streakShown))
     : null;
 
   const title = triLang(lang, COMPASS_DAY_CLOSING_TITLE);
+  // Голос и финальная строка — ротация по дню (не одна вечная фраза).
+  const voiceComment = triLang(lang, pickCompassDailyVariant(COMPASS_DAY_CLOSING_COMMENTS, dayClosing.dateKey));
+  const doneText = triLang(lang, pickCompassDailyVariant(COMPASS_DAY_CLOSING_DONE_VARIANTS, dayClosing.dateKey));
+  const focusTappable = !locked && phase === 'idle' && !!onFocusPress;
 
   return (
     <View style={styles.wrap}>
@@ -362,11 +363,12 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
         right={streakBadge ? <CompassStreakPill t={t} accent={accent} text={streakBadge} /> : undefined}
       />
 
-      {/* Голос Компаса — крупный заголовок-герой (комментарий дня закрытия). */}
-      <CompassVoice t={t}>{triLang(lang, COMPASS_DAY_COMMENT.day_closing)}</CompassVoice>
+      {/* Голос Компаса — крупный заголовок-герой (ротация по дню, не одна фраза). */}
+      <CompassVoice t={t}>{voiceComment}</CompassVoice>
 
-      {/* Метрики итога — крупно, БЕЗ сетки-в-рамке, делит вертикальная линия. */}
-      <View style={styles.metrics}>
+      {/* Метрики итога — крупно, в мягкой подложке БЕЗ обводки (смена фона), */}
+      {/* колонки делит вертикальная линия. */}
+      <View style={[styles.metrics, { backgroundColor: accent + '14' }]}>
         {dayClosing.highlights.map((item, i) => (
           <View
             key={item.kind}
@@ -386,8 +388,16 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
         ))}
       </View>
 
-      {/* Фокус на завтра — плоская строка с иконкой за линией (не рамка-панель). */}
-      <View style={[styles.focus, { borderTopColor: t.border }]}>
+      {/* Фокус на завтра — строка с иконкой в мягкой подложке БЕЗ обводки (смена фона). */}
+      {/* Полный режим: строка НАЖИМАЕТСЯ — «первый шаг уже выбран» получает ручку */}
+      {/* (открыть экран шага прямо сейчас), а не остаётся обещанием без действия. */}
+      <TouchableOpacity
+        activeOpacity={focusTappable ? 0.78 : 1}
+        disabled={!focusTappable}
+        onPressIn={focusTappable ? () => hapticTap() : undefined}
+        onPress={focusTappable ? onFocusPress : undefined}
+        style={[styles.focus, { backgroundColor: accent + '14' }]}
+      >
         <View style={[styles.focusIcon, { backgroundColor: accent + '1F' }]}>
           <Ionicons name={locked ? 'lock-closed-outline' : 'repeat-outline'} size={17} color={accent} />
         </View>
@@ -400,7 +410,8 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             {locked ? triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_BODY) : dayClosingFocusNote(dayClosing, lang)}
           </Text>
         </View>
-      </View>
+        {focusTappable ? <Ionicons name="chevron-forward" size={17} color={t.textMuted} style={styles.focusChevron} /> : null}
+      </TouchableOpacity>
 
       {locked ? (
         <View style={[styles.lockedFooter, { borderTopColor: t.border }]}>
@@ -452,14 +463,16 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             <Animated.View style={[styles.needle, { transform: [{ rotate: needleRotate }] }]}>
               <Ionicons name="navigate" size={26} color={accent} />
             </Animated.View>
-            <Animated.Text
-              style={[styles.xpFly, { color: accent, opacity: xpOpacity, transform: [{ translateY: xpTranslate }] }]}
-            >
-              +{rewardXp} XP
-            </Animated.Text>
+            {!xpAwardFailed && (
+              <Animated.Text
+                style={[styles.xpFly, { color: accent, opacity: xpOpacity, transform: [{ translateY: xpTranslate }] }]}
+              >
+                +{rewardXp} XP
+              </Animated.Text>
+            )}
           </View>
-          <Text style={[styles.doneText, { color: t.textPrimary }]}>{triLang(lang, COMPASS_DAY_CLOSING_DONE)}</Text>
-          {closedStreak > 1 && (
+          <Text style={[styles.doneText, { color: t.textPrimary }]}>{doneText}</Text>
+          {streakLoaded && closedStreak > 1 && (
             <Text style={[styles.doneStreak, { color: t.textSecond }]}>
               {triLang(lang, COMPASS_DAY_CLOSING_STREAK).replace('{days}', String(closedStreak))}
             </Text>
@@ -472,14 +485,15 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
 
 const styles = StyleSheet.create({
   wrap: {},
-  metrics: { flexDirection: 'row', marginTop: 24 },
+  metrics: { flexDirection: 'row', marginTop: 24, borderRadius: 16, paddingVertical: 14, paddingHorizontal: 4 },
   metric: { flex: 1, minHeight: 58, paddingHorizontal: 8, justifyContent: 'center' },
   metricValue: { fontSize: 33, lineHeight: 36, fontWeight: '900', letterSpacing: -0.5 },
   metricMask: { width: 34, height: 20, borderRadius: 6, opacity: 0.9 },
   metricLabel: { marginTop: 8, fontSize: 12.5, lineHeight: 15, fontWeight: '600' },
-  focus: { marginTop: 24, paddingTop: 20, borderTopWidth: StyleSheet.hairlineWidth, flexDirection: 'row', alignItems: 'flex-start', gap: 13 },
+  focus: { marginTop: 16, padding: 16, borderRadius: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 13 },
   focusIcon: { width: 34, height: 34, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   focusText: { flex: 1, minWidth: 0 },
+  focusChevron: { alignSelf: 'center' },
   focusTitle: { fontSize: 12, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5 },
   focusBody: { marginTop: 7, fontSize: 17, lineHeight: 23, fontWeight: '800' },
   focusNote: { marginTop: 6, fontSize: 13.5, lineHeight: 18, fontWeight: '600' },

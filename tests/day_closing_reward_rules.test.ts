@@ -19,7 +19,7 @@ describe('day closing reward rules', () => {
     expect(prevDateKey('garbage')).toBe('');
   });
 
-  it('grows the streak only on consecutive days and is idempotent per day', () => {
+  it('grows the streak on consecutive days and is idempotent per day', () => {
     const empty = { count: 0, lastDateKey: null };
     const day1 = nextDayClosingStreak(empty, '2026-07-01');
     expect(day1).toEqual({ count: 1, lastDateKey: '2026-07-01' });
@@ -30,9 +30,21 @@ describe('day closing reward rules', () => {
     const day2 = nextDayClosingStreak(day1, '2026-07-02');
     expect(day2).toEqual({ count: 2, lastDateKey: '2026-07-02' });
 
-    // Пропуск дня → серия начинается заново с 1.
+    // Пропуск ДВУХ и более вечеров → серия начинается заново с 1.
     const afterGap = nextDayClosingStreak(day2, '2026-07-05');
     expect(afterGap).toEqual({ count: 1, lastDateKey: '2026-07-05' });
+  });
+
+  it('forgives a single missed evening (streak survives one-day gap)', () => {
+    // Щадящая серия: один пропущенный вечер не сжигает серию — иначе у любого,
+    // кто не заходит каждый вечер, бейдж вечно показывал бы «1».
+    const day2 = { count: 2, lastDateKey: '2026-07-02' };
+    const afterOneMiss = nextDayClosingStreak(day2, '2026-07-04');
+    expect(afterOneMiss).toEqual({ count: 3, lastDateKey: '2026-07-04' });
+
+    // Два пропущенных вечера подряд — уже разрыв.
+    const afterTwoMisses = nextDayClosingStreak(afterOneMiss, '2026-07-07');
+    expect(afterTwoMisses).toEqual({ count: 1, lastDateKey: '2026-07-07' });
   });
 
   it('parses stored streaks defensively', () => {

@@ -38,6 +38,7 @@ import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import type { Theme } from '../../constants/theme';
 import { compassOn } from './compass_flags';
 import type { CompassDay, CompassTask, CompassTaskKind } from './compass_brain';
 import DayClosingPanel from './compass_day_closing_panel';
@@ -50,6 +51,7 @@ import {
   CompassPickRow,
   CompassSoftSection,
   CompassLaterLink,
+  compassOnAccentColor,
 } from './compass_sheet_kit';
 import {
   COMPASS_BRIEFING_TITLE,
@@ -60,6 +62,7 @@ import {
   COMPASS_DAY_CLOSING_TITLE,
   buildCompassGreeting,
   buildCompassInduction,
+  compassKnownFocusCategoryLabel,
 } from './compass_copy';
 import { COMPASS_SOCIAL_COLLAPSE, COMPASS_SOCIAL_HEADER, COMPASS_SOCIAL_SHOW_ALL } from './compass_social_copy';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
@@ -82,6 +85,31 @@ const INDUCTION_ICON: Record<NonNullable<CompassDay['inductionFeature']>, Ionico
   daily_tasks: 'sparkles-outline',
 };
 
+/**
+ * Голос Компаса с мягким кросс-фейдом при подмене текста: живой ИИ-комментарий
+ * приходит асинхронно и раньше «прыгал» посреди чтения. One-shot анимации по
+ * событию смены текста, без фоновых циклов (перф-канон).
+ */
+function FadingVoiceComment({ t, text }: { t: Theme; text: string }) {
+  const opacity = useRef(new Animated.Value(1)).current;
+  const [shown, setShown] = useState(text);
+  const shownRef = useRef(text);
+  useEffect(() => {
+    if (text === shownRef.current) return;
+    Animated.timing(opacity, { toValue: 0, duration: 130, useNativeDriver: true }).start(({ finished }) => {
+      if (!finished) return;
+      shownRef.current = text;
+      setShown(text);
+      Animated.timing(opacity, { toValue: 1, duration: 220, useNativeDriver: true }).start();
+    });
+  }, [text, opacity]);
+  return (
+    <Animated.View style={{ opacity }}>
+      <CompassVoice t={t}>{shown}</CompassVoice>
+    </Animated.View>
+  );
+}
+
 interface CompassBriefingModalProps {
   visible: boolean;
   day: CompassDay | null;
@@ -102,6 +130,8 @@ interface CompassBriefingModalProps {
   socialAllLines?: string[];
   /** Мост к полному доступу с запертого вечернего ритуала (free-tier). */
   onDayClosingUpgrade?: () => void;
+  /** Тап по «Фокусу на завтра» в полном вечернем ритуале (открыть экран шага). */
+  onDayClosingFocusPress?: () => void;
   accountReminder?: {
     eyebrow: string;
     title: string;
@@ -121,6 +151,7 @@ export default function CompassBriefingModal({
   onTaskPress,
   onInductionPress,
   onDayClosingUpgrade,
+  onDayClosingFocusPress,
   socialLines,
   socialAllLines,
   accountReminder,
@@ -139,15 +170,22 @@ export default function CompassBriefingModal({
   const [socialExpanded, setSocialExpanded] = useState(false);
 
   // ── Смахни-вниз-чтобы-закрыть (жест + «дорогая» анимация ухода) ──────────
-  // Лист живёт под пальцем: тянешь вниз — едет за пальцем, фон гаснет; вверх —
-  // резиновое сопротивление (лист не отрывается от низа). На отпускании: если
-  // утащил за порог ИЛИ бросил с ускорением — лист СНАЧАЛА чуть приподнимается
-  // (overshoot вверх), ПОТОМ увесисто уезжает вниз за экран (ease-in) и зовёт
-  // onLater. Иначе — упруго пружинит на место. Перф-канон: анимации one-shot,
-  // без фоновых циклов (withRepeat здесь нет). Жест обёрнут в свой
-  // GestureHandlerRootView — RN Modal рендерит отдельный корень, где родительский
-  // root-view не действует (тот же приём, что в CardPackShardPaywallModal).
+  // Лист живёт под пальцем: тянешь вниз — едет за пальцем, фон гаснет; вверх (за
+  // grabber) — резиновое сопротивление. На отпускании: утащил за порог ИЛИ бросил
+  // с ускорением — лист чуть приподнимается и увесисто уезжает вниз (onLater);
+  // иначе упруго пружинит на место. Перф-канон: анимации one-shot, без фоновых
+  // циклов. Жест обёрнут в свой GestureHandlerRootView — RN Modal рендерит
+  // отдельный корень (приём из CardPackShardPaywallModal).
+  //
+  // ДВА жеста-источника:
+  //  • grabber-зона (как раньше): вниз 1:1, вверх резина;
+  //  • ВЕСЬ лист, когда скролл задач стоит вверху: привычный жест «потянуть лист
+  //    из любого места». Работает одновременно с нативным скроллом
+  //    (Gesture.Native + simultaneousWithExternalGesture): скролл не вверху или
+  //    палец идёт вверх → жест листа молчит и скролл живёт как обычно.
   const dragY = useSharedValue(0);
+  const scrollAtTop = useSharedValue(true);
+  const dragFromTop = useSharedValue(false);
   // Дистанция ухода: гарантированно за нижнюю кромку самого высокого листа.
   const swipeOffDistance = useMemo(() => Math.max(560, winH * 0.9), [winH]);
   const onLaterRef = useRef(onLater);
@@ -186,6 +224,43 @@ export default function CompassBriefingModal({
     [dragY, dismissBySwipe, swipeOffDistance],
   );
 
+  // Нативный жест скролла задач — «внешний» для листового пана (см. ниже).
+  const scrollNativeGesture = useMemo(() => Gesture.Native(), []);
+  const sheetSwipeGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activeOffsetY(14)
+        .failOffsetX([-28, 28])
+        .simultaneousWithExternalGesture(scrollNativeGesture)
+        .onStart(() => {
+          'worklet';
+          // Жест листа засчитывается, только если начался при скролле вверху.
+          dragFromTop.value = scrollAtTop.value;
+        })
+        .onUpdate((e) => {
+          'worklet';
+          if (!dragFromTop.value) return;
+          // Только вниз и только пока скролл вверху; движение вверх — скроллу.
+          dragY.value = e.translationY > 0 && scrollAtTop.value ? e.translationY : 0;
+        })
+        .onEnd((e) => {
+          'worklet';
+          if (!dragFromTop.value) return;
+          const shouldClose = dragY.value > 90 || (dragY.value > 0 && e.velocityY > 850);
+          if (shouldClose) {
+            dragY.value = withSequence(
+              withTiming(-22, { duration: 130, easing: REasing.out(REasing.cubic) }),
+              withTiming(swipeOffDistance, { duration: 300, easing: REasing.in(REasing.cubic) }, (finished) => {
+                if (finished) runOnJS(dismissBySwipe)();
+              }),
+            );
+          } else if (dragY.value !== 0) {
+            dragY.value = withSpring(0, { damping: 16, stiffness: 180, mass: 0.9 });
+          }
+        }),
+    [dragY, scrollAtTop, dragFromTop, dismissBySwipe, swipeOffDistance, scrollNativeGesture],
+  );
+
   const sheetSwipeStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: dragY.value }],
   }));
@@ -195,24 +270,33 @@ export default function CompassBriefingModal({
     return { opacity: 1 - frac * 0.9 };
   });
 
+  // Тип дня как идентичность контента: эффекты показа привязаны к НЕМУ, а не к
+  // объекту day — мигание hasPremiumAccess при фоновом cloud-refresh пересоздавало
+  // объект и перезапускало reveal-каскад с хаптиком прямо на глазах у читающего.
+  const dayKind = day?.type ?? null;
+
   // Сброс сдвига на каждый показ (иначе после ухода лист остался бы уехавшим).
   useEffect(() => {
-    if (visible) dragY.value = 0;
-  }, [visible, day, dragY]);
-  // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
+    if (visible) {
+      dragY.value = 0;
+      scrollAtTop.value = true;
+    }
+  }, [visible, dayKind, dragY, scrollAtTop]);
+  // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт
+  // (с мягким кросс-фейдом в FadingVoiceComment и анти-поздней подменой в хуке).
   // Хук вызывается всегда (правила хуков) и сам безопасно обрабатывает day=null.
   const comment = useCompassVoice(visible && !isDayClosing ? day : null);
 
   // Тактильный «стук» Компаса при появлении брифинга: мягкий tap. Один раз на показ.
   useEffect(() => {
-    if (visible && day) void hapticTap();
-  }, [visible, day]);
+    if (visible && dayKind) void hapticTap();
+  }, [visible, dayKind]);
 
   // ОДНОРАЗОВАЯ анимация показа (перф-канон: без циклов на фоне): содержимое
   // проявляется каскадом (голос → блоки → задачи). Сброс на каждый показ.
   const reveal = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    if (!visible || !day) return;
+    if (!visible || !dayKind) return;
     reveal.setValue(0);
     Animated.timing(reveal, {
       toValue: 1,
@@ -221,7 +305,7 @@ export default function CompassBriefingModal({
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [visible, day, reveal]);
+  }, [visible, dayKind, reveal]);
 
   useEffect(() => {
     if (!visible || isDayClosing) setSocialExpanded(false);
@@ -262,21 +346,28 @@ export default function CompassBriefingModal({
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onLater}>
       <GestureHandlerRootView style={styles.root}>
         <Reanimated.View style={[styles.backdrop, { paddingBottom: sheetBottomGap }, backdropSwipeStyle]}>
+          <GestureDetector gesture={sheetSwipeGesture}>
           <Reanimated.View style={[styles.sheet, { backgroundColor: t.bgCard, borderColor: t.border }, sheetSwipeStyle]}>
-            {/* Хват-полоска + шапка = зона свайпа. Тянешь отсюда — лист едет вниз; */}
-            {/* задачи-скролл ниже остаётся прокручиваемым. День-закрытие свой grabber */}
-            {/* не рисует, поэтому даём тонкую невидимую зону-хват сверху панели. */}
+            {/* Хват-полоска + шапка = приоритетная зона свайпа (с резиной вверх). */}
+            {/* Плюс ВЕСЬ лист тянется вниз, пока скролл задач стоит вверху — жест */}
+            {/* «потянуть лист из любого места» работает привычно. День-закрытие */}
+            {/* свой grabber не рисует — тонкая невидимая зона-хват сверху панели. */}
             <GestureDetector gesture={swipeGesture}>
               <View style={styles.grabZone}>
                 {!isDayClosing ? <CompassGrabber t={t} /> : <View style={styles.grabZoneClosing} />}
               </View>
             </GestureDetector>
 
+          <GestureDetector gesture={scrollNativeGesture}>
           <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.scrollBody}
             showsVerticalScrollIndicator={false}
             bounces={false}
+            scrollEventThrottle={16}
+            onScroll={(e) => {
+              scrollAtTop.value = e.nativeEvent.contentOffset.y <= 1;
+            }}
           >
             {isDayClosing && dayClosing ? (
               <Animated.View style={revealHead}>
@@ -285,6 +376,7 @@ export default function CompassBriefingModal({
                   onClose={onStart}
                   onUpgrade={onDayClosingUpgrade}
                   onLater={onLater}
+                  onFocusPress={onDayClosingFocusPress}
                   preview={ignoreCompassFlag}
                 />
               </Animated.View>
@@ -304,7 +396,7 @@ export default function CompassBriefingModal({
                     ))}
                   </View>
                 ) : (
-                  <CompassVoice t={t}>{comment}</CompassVoice>
+                  <FadingVoiceComment t={t} text={comment} />
                 )}
               </Animated.View>
             )}
@@ -328,20 +420,25 @@ export default function CompassBriefingModal({
 
                 {/* Задачи дня — плоский список-ВЫБОР. Только обычные дни (в welcome */}
                 {/* ведёт живой текст + индакшн). Тап по задаче = переход в её экран. */}
+                {/* Метка: минуты + ЛИЧНАЯ тема задачи (слабое место), когда она есть — */}
+                {/* иначе строки выглядели одинаковым шаблоном каждый день. */}
                 {!isWelcome && day.tasks.length > 0 && (
                   <CompassPickList t={t} accent={accent} style={styles.pickTop}>
-                    {day.tasks.map((task, i) => (
-                      <CompassPickRow
-                        key={`${task.kind}-${i}`}
-                        t={t}
-                        accent={accent}
-                        first={i === 0}
-                        icon={TASK_ICON[task.kind]}
-                        title={triLang(lang, COMPASS_TASK_TITLE[task.kind])}
-                        meta={`${task.minutes} ${minutesLabel}`}
-                        onPress={onTaskPress ? () => onTaskPress(task) : undefined}
-                      />
-                    ))}
+                    {day.tasks.map((task, i) => {
+                      const topicLabel = compassKnownFocusCategoryLabel(task.weakTopic, lang);
+                      return (
+                        <CompassPickRow
+                          key={`${task.kind}-${i}`}
+                          t={t}
+                          accent={accent}
+                          first={i === 0}
+                          icon={TASK_ICON[task.kind]}
+                          title={triLang(lang, COMPASS_TASK_TITLE[task.kind])}
+                          meta={topicLabel ? `${task.minutes} ${minutesLabel} · ${topicLabel}` : `${task.minutes} ${minutesLabel}`}
+                          onPress={onTaskPress ? () => onTaskPress(task) : undefined}
+                        />
+                      );
+                    })}
                   </CompassPickList>
                 )}
 
@@ -390,7 +487,7 @@ export default function CompassBriefingModal({
                         onPress={onAccountLinkPress}
                         style={[styles.accountCta, { backgroundColor: accent }]}
                       >
-                        <Text style={styles.accountCtaText}>{accountReminder.cta}</Text>
+                        <Text style={[styles.accountCtaText, { color: compassOnAccentColor(accent) }]}>{accountReminder.cta}</Text>
                       </TouchableOpacity>
                     )}
                   </CompassSoftSection>
@@ -399,6 +496,7 @@ export default function CompassBriefingModal({
               </Animated.View>
             )}
           </ScrollView>
+          </GestureDetector>
 
           {/* Низ листа — только для брифинга (вечерний ритуал носит свои внутри панели). */}
           {/* Welcome-дни: «Поехали» осмысленный старт (CTA-текст) + «Позже». */}
@@ -412,13 +510,14 @@ export default function CompassBriefingModal({
                   onPress={onStart}
                   style={[styles.letsGo, { backgroundColor: accent }]}
                 >
-                  <Text style={styles.letsGoText}>{letsGoLabel}</Text>
+                  <Text style={[styles.letsGoText, { color: compassOnAccentColor(accent) }]}>{letsGoLabel}</Text>
                 </TouchableOpacity>
               )}
               <CompassLaterLink t={t} label={laterLabel} onPress={onLater} />
             </>
           )}
           </Reanimated.View>
+          </GestureDetector>
         </Reanimated.View>
       </GestureHandlerRootView>
     </Modal>
@@ -445,7 +544,7 @@ const styles = StyleSheet.create({
   accountTitle: { fontSize: 15.5, lineHeight: 21, fontWeight: '900' },
   accountBody: { fontSize: 13.5, lineHeight: 19, fontWeight: '600', marginTop: 5 },
   accountCta: { marginTop: 12, borderRadius: 12, paddingVertical: 11, alignItems: 'center' },
-  accountCtaText: { color: '#10131b', fontSize: 14, lineHeight: 18, fontWeight: '900' },
+  accountCtaText: { fontSize: 14, lineHeight: 18, fontWeight: '900' },
   letsGo: { marginTop: 8, borderRadius: 16, paddingVertical: 15, alignItems: 'center' },
-  letsGoText: { fontSize: 16, fontWeight: '800', color: '#10131b' },
+  letsGoText: { fontSize: 16, fontWeight: '800' },
 });

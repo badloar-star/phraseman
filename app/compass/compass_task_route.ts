@@ -14,10 +14,42 @@
  * ИЗОЛЯЦИЯ: модуль не читает сигналы и не зависит от состояния — только маппинг.
  */
 import type { CompassDay, CompassTask } from './compass_brain';
+import type { DayClosingRitual } from './day_closing_ritual';
 
 export interface CompassRoute {
   pathname: string;
   params?: Record<string, string>;
+}
+
+/**
+ * Куда ведёт «Фокус на завтра» из вечернего ритуала. Раньше строка была
+ * ненажимаемой — обещание «первый шаг уже выбран» без ручки. Теперь тап
+ * открывает экран, где этот шаг реально делается (маршруты те же, что у задач):
+ *  - слабая фраза / слабое место → /trainer («Моя практика», разбор);
+ *  - очередь повторений / точечное повторение → /flashcards_swipe;
+ *  - продолжение плана → /personal_plan;
+ *  - сложный раунд → /(tabs)/quizzes (реальный таб квизов);
+ *  - остальное (свежие фразы, карточки, одна фраза) → /flashcards_swipe | /personal_plan.
+ */
+export function dayClosingFocusRoute(ritual: Pick<DayClosingRitual, 'focus' | 'repeatKind'>): CompassRoute {
+  const kind = ritual.focus.kind;
+  switch (kind) {
+    case 'weak_phrase':
+    case 'weak_area':
+      return { pathname: '/trainer' };
+    case 'due':
+    case 'targeted_review':
+    case 'fresh_phrases':
+    case 'cards':
+      return { pathname: '/flashcards_swipe' };
+    case 'plan':
+      return { pathname: '/personal_plan' };
+    case 'round':
+      return { pathname: '/(tabs)/quizzes' };
+    case 'one_phrase':
+    default:
+      return { pathname: '/personal_plan' };
+  }
 }
 
 /**

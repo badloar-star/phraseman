@@ -8,9 +8,19 @@ import {
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 
-const EVENING_START_HOUR = 18;
+export const EVENING_START_HOUR = 18;
 const FREE_USED_KEY = 'compass_day_closing_free_used_v1';
 const SEEN_PREFIX = 'compass_day_closing_seen_v1';
+/** Дата (UTC-ключ) последнего ПОКАЗА запертой витрины free-tier. */
+const LOCKED_LAST_KEY = 'compass_day_closing_locked_last_v1';
+/**
+ * Каденс запертой витрины: не каждый вечер, а раз в N дней. Ежедневный
+ * авто-пейвол раздражает и обесценивает сам ритуал — редкий показ работает
+ * как напоминание-мост, а не как назойливый баннер.
+ */
+export const LOCKED_SHOWCASE_COOLDOWN_DAYS = 3;
+/** Ключ даты установки (мс, строкой). Ставится в app/_layout.tsx при первом запуске. */
+const INSTALL_DATE_KEY = 'install_date';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const RECENT_MISTAKE_WINDOW_MS = 30 * DAY_MS;
 const FRESH_RECALL_WINDOW_MS = 7 * DAY_MS;
@@ -115,6 +125,41 @@ export function utcDateKey(nowMs: number): string {
 
 export function isDayClosingWindow(nowMs: number): boolean {
   return new Date(nowMs).getHours() >= EVENING_START_HOUR;
+}
+
+/**
+ * UTC-ключ «дня, который закрываем». Якорь — НАЧАЛО вечернего окна (18:00
+ * локально), а не сам nowMs: в западных поясах (UTC-4…-8) UTC-полночь падает
+ * ВНУТРЬ вечернего окна, и utcDateKey(now) после неё указывает на пустое
+ * «завтра» — итог дня показывал нули или не показывался вовсе. Якорь 18:00
+ * держит один и тот же ключ на весь вечер.
+ */
+export function dayClosingWindowKey(nowMs: number): string {
+  const anchor = new Date(nowMs);
+  anchor.setHours(EVENING_START_HOUR, 0, 0, 0);
+  return utcDateKey(anchor.getTime());
+}
+
+/** Разница в днях между UTC-ключами yyyy-mm-dd (b − a). Битые ключи → «очень много». */
+export function dateKeyDiffDays(a: string, b: string): number {
+  const pa = Date.parse(`${a}T00:00:00Z`);
+  const pb = Date.parse(`${b}T00:00:00Z`);
+  if (!Number.isFinite(pa) || !Number.isFinite(pb)) return Number.MAX_SAFE_INTEGER;
+  return Math.round((pb - pa) / DAY_MS);
+}
+
+/**
+ * Первый день после установки: дата установки совпадает с сегодняшней (по тому же
+ * UTC-ключу, что и dateKey ритуала). В этот день вечерний итог не показываем совсем —
+ * человек только поставил приложение, «итоги дня» для него ещё пусты по смыслу.
+ * installRaw — сырое значение ключа install_date (мс, строкой) из AsyncStorage.
+ * Пустое/битое значение считаем «не первый день» (не блокируем): отсутствие метки
+ * не должно навсегда прятать ритуал у старых установок без этого ключа.
+ */
+export function isInstallDay(installRaw: string | null, nowMs: number): boolean {
+  const installAt = parseInt(installRaw ?? '', 10);
+  if (!Number.isFinite(installAt) || installAt <= 0) return false;
+  return utcDateKey(installAt) === utcDateKey(nowMs);
 }
 
 function readNumber(value: unknown): number {
@@ -228,15 +273,24 @@ function readMistakeStats(raw: string | null, nowMs: number): {
   };
 }
 
+/**
+ * Fallback-фокус «на завтра», когда нет конкретной зацепки (очереди повторений,
+ * слабой фразы, слабого места). Тянем его из ТОГО, что человек реально делал
+ * сегодня — фразы/карточки/план/раунды, — чтобы «на завтра» продолжало сегодняшнее,
+ * а не звучало как онбординг новичка. one_phrase остаётся только для по-настоящему
+ * пустого случая (активность была лишь в арене или в одном XP) — с нейтральным
+ * вечерним текстом, а не «начни с одной фразы».
+ */
 function chooseRepeatKind(row: {
   phrasesLearned: number;
   flashcardsSaved: number;
   planTasksCompleted: number;
   quizzesCompleted: number;
+  dailyTasksClaimed: number;
 }): DayClosingRitual['repeatKind'] {
   if (row.phrasesLearned > 0) return 'fresh_phrases';
   if (row.flashcardsSaved > 0) return 'cards';
-  if (row.planTasksCompleted > 0) return 'plan';
+  if (row.planTasksCompleted > 0 || row.dailyTasksClaimed > 0) return 'plan';
   if (row.quizzesCompleted > 0) return 'round';
   return 'one_phrase';
 }
@@ -247,6 +301,7 @@ function chooseFocus(input: {
     flashcardsSaved: number;
     planTasksCompleted: number;
     quizzesCompleted: number;
+    dailyTasksClaimed: number;
   };
   recall: ReturnType<typeof readRecallStats>;
   mistakes: ReturnType<typeof readMistakeStats>;
@@ -302,9 +357,15 @@ export async function markDayClosingSeen(params: {
   studyTarget: RuntimeStudyTarget;
   dateKey: string;
   hasPremiumAccess: boolean;
+  /**
+   * Показ был запертой витриной (free после первого раза): помечаем дату, чтобы
+   * следующая витрина пришла не раньше, чем через LOCKED_SHOWCASE_COOLDOWN_DAYS.
+   */
+  locked?: boolean;
 }): Promise<void> {
   const pairs: [string, string][] = [[dayClosingSeenKey(params.studyTarget, params.dateKey), '1']];
   if (!params.hasPremiumAccess) pairs.push([FREE_USED_KEY, '1']);
+  if (params.locked) pairs.push([LOCKED_LAST_KEY, params.dateKey]);
   await AsyncStorage.multiSet(pairs).catch(() => {});
 }
 
@@ -316,35 +377,59 @@ export async function loadDayClosingRitual(params: {
   const { studyTarget, nowMs, hasPremiumAccess } = params;
   if (!isDayClosingWindow(nowMs)) return null;
 
-  const dateKey = utcDateKey(nowMs);
-  const [seen, freeUsed, dailyStatsRaw, breakdownRaw, streakRaw, recallRaw, mistakesRaw] = await AsyncStorage.multiGet([
+  // Ключ дня — якорь начала вечернего окна (18:00 локально), стабилен на весь
+  // вечер. Когда UTC-полночь уже прошла внутри окна (западные пояса), сегодняшнее
+  // UTC-ведро nowKey отличается — активность вечера легла туда, и её надо ДОБАВИТЬ.
+  const dateKey = dayClosingWindowKey(nowMs);
+  const nowKey = utcDateKey(nowMs);
+  const mergeNowBucket = nowKey !== dateKey;
+  const [seen, freeUsed, lockedLast, dailyStatsRaw, breakdownRaw, streakRaw, recallRaw, mistakesRaw, installRaw] = await AsyncStorage.multiGet([
     dayClosingSeenKey(studyTarget, dateKey),
     FREE_USED_KEY,
+    LOCKED_LAST_KEY,
     'daily_stats',
     statsDailyBreakdownKey(studyTarget),
     'streak_count',
     activeRecallItemsKey(studyTarget),
     mistakeLogKey(studyTarget),
+    INSTALL_DATE_KEY,
   ]).catch(() => [] as [string, string | null][]);
 
-  const values = new Map<string, string | null>([seen, freeUsed, dailyStatsRaw, breakdownRaw, streakRaw, recallRaw, mistakesRaw].filter(Boolean) as [string, string | null][]);
+  const values = new Map<string, string | null>([seen, freeUsed, lockedLast, dailyStatsRaw, breakdownRaw, streakRaw, recallRaw, mistakesRaw, installRaw].filter(Boolean) as [string, string | null][]);
   if (values.get(dayClosingSeenKey(studyTarget, dateKey)) != null) return null;
+  // Первый день после установки — вечерний итог не показываем совсем: у нового
+  // человека «итоги дня» ещё пусты по смыслу, а модалка в самый первый вечер
+  // ощущается навязчиво. Проверяем и по nowMs, и по якорному ключу дня.
+  const installRawValue = values.get(INSTALL_DATE_KEY) ?? null;
+  if (isInstallDay(installRawValue, nowMs)) return null;
+  const installAt = parseInt(installRawValue ?? '', 10);
+  if (Number.isFinite(installAt) && installAt > 0 && utcDateKey(installAt) === dateKey) return null;
   // Бесплатный после первого полного ритуала НЕ теряет вечер молча: получает ту
   // же модалку, но запертую (цифры спрятаны, фокус-тизер, мост к полному доступу).
   const locked = shouldBlockDayClosingForFree({ hasPremiumAccess, freeUsed: values.get(FREE_USED_KEY) ?? null });
+  // Каденс запертой витрины: НЕ каждый вечер. Ежедневный авто-пейвол раздражает —
+  // после показа витрины молчим LOCKED_SHOWCASE_COOLDOWN_DAYS дней.
+  if (locked) {
+    const lastLockedShown = values.get(LOCKED_LAST_KEY) ?? null;
+    if (lastLockedShown && dateKeyDiffDays(lastLockedShown, dateKey) < LOCKED_SHOWCASE_COOLDOWN_DAYS) {
+      return null;
+    }
+  }
 
   const dailyStats = parseJsonObject<DailyStatsStore>(values.get('daily_stats') ?? null);
   const breakdown = parseJsonObject<DailyBreakdownStore>(values.get(statsDailyBreakdownKey(studyTarget)) ?? null);
-  const row = breakdown[dateKey] ?? {};
-  const xpToday = dayPoints(dailyStats[dateKey]);
+  const rowMain = breakdown[dateKey] ?? {};
+  const rowNow = mergeNowBucket ? breakdown[nowKey] ?? {} : {};
+  const pickRow = (key: keyof DailyBreakdownRow): number => readNumber(rowMain[key]) + readNumber(rowNow[key]);
+  const xpToday = dayPoints(dailyStats[dateKey]) + (mergeNowBucket ? dayPoints(dailyStats[nowKey]) : 0);
   const base = {
     xpToday,
     streak: readNumber(values.get('streak_count')),
-    phrasesLearned: readNumber(row.phrases_learned),
-    flashcardsSaved: readNumber(row.flashcards_saved),
-    quizzesCompleted: readNumber(row.quizzes_completed),
-    dailyTasksClaimed: readNumber(row.daily_tasks_claimed),
-    planTasksCompleted: readNumber(row.plan_tasks_completed),
+    phrasesLearned: pickRow('phrases_learned'),
+    flashcardsSaved: pickRow('flashcards_saved'),
+    quizzesCompleted: pickRow('quizzes_completed'),
+    dailyTasksClaimed: pickRow('daily_tasks_claimed'),
+    planTasksCompleted: pickRow('plan_tasks_completed'),
   };
 
   const hasActivity =
@@ -354,8 +439,8 @@ export async function loadDayClosingRitual(params: {
     base.quizzesCompleted > 0 ||
     base.dailyTasksClaimed > 0 ||
     base.planTasksCompleted > 0 ||
-    readNumber(row.arena_wins) > 0 ||
-    readNumber(row.arena_losses) > 0;
+    pickRow('arena_wins') > 0 ||
+    pickRow('arena_losses') > 0;
   if (!hasActivity) return null;
 
   const highlights = buildHighlights(base);

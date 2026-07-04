@@ -134,6 +134,166 @@ export const COMPASS_DAY_COMMENT: Record<CompassDayType, CompassText> = {
   },
 };
 
+/**
+ * Детерминированная «ротация дня»: стабильный выбор варианта по ключу даты.
+ * Один день → один и тот же текст (кэш-дружелюбно, без Math.random внутри),
+ * разные дни → разные варианты. Чистая функция, тестируема.
+ */
+export function pickCompassDailyVariant<T>(variants: readonly T[], dateKey: string): T {
+  let hash = 0;
+  for (let i = 0; i < dateKey.length; i += 1) hash = (hash * 31 + dateKey.charCodeAt(i)) >>> 0;
+  return variants[hash % variants.length];
+}
+
+/**
+ * Голос вечернего ритуала — НЕ одна вечная фраза, а ротация по дню (иначе
+ * «живой наставник» умирает на третий вечер). Все варианты — канон Библии.
+ */
+export const COMPASS_DAY_CLOSING_COMMENTS: CompassText[] = [
+  {
+    ru: 'Собрал итог и первый шаг на завтра.',
+    uk: 'Зібрав підсумок і перший крок на завтра.',
+    es: 'Reuní resultado y primer paso para mañana.',
+    'pt-BR': 'Juntei resultado e primeiro passo de amanhã.',
+    vi: 'Đã gom kết quả và bước đầu ngày mai.',
+    id: 'Merangkum hasil dan langkah pertama besok.',
+    tr: 'Sonuç ve yarının ilk adımı hazır.',
+    pl: 'Zebrano wynik i pierwszy krok na jutro.',
+  },
+  {
+    ru: 'День поработал на тебя. Смотри, что вышло.',
+    uk: 'День попрацював на тебе. Дивись, що вийшло.',
+    es: 'El día trabajó para ti. Mira el resultado.',
+    'pt-BR': 'O dia trabalhou para você. Veja o resultado.',
+    vi: 'Hôm nay đã có ích cho bạn. Xem kết quả nhé.',
+    id: 'Hari ini bekerja untukmu. Lihat hasilnya.',
+    tr: 'Bugün senin için çalıştı. Sonuca bak.',
+    pl: 'Dzień pracował dla ciebie. Zobacz efekt.',
+  },
+  {
+    ru: 'Ещё один день в копилку. Вот итог.',
+    uk: 'Ще один день у скарбничку. Ось підсумок.',
+    es: 'Otro día a tu favor. Aquí el resumen.',
+    'pt-BR': 'Mais um dia a seu favor. Eis o resumo.',
+    vi: 'Thêm một ngày tích lũy. Đây là tổng kết.',
+    id: 'Satu hari lagi terkumpul. Ini ringkasannya.',
+    tr: 'Bir gün daha birikti. İşte özet.',
+    pl: 'Kolejny dzień do skarbonki. Oto podsumowanie.',
+  },
+  {
+    ru: 'Ты сегодня продвинулся. Я всё записал.',
+    uk: 'Ти сьогодні просунувся. Я все записав.',
+    es: 'Hoy avanzaste. Lo anoté todo.',
+    'pt-BR': 'Você avançou hoje. Anotei tudo.',
+    vi: 'Hôm nay bạn đã tiến bộ. Mình ghi lại hết rồi.',
+    id: 'Kamu maju hari ini. Semua kucatat.',
+    tr: 'Bugün ilerledin. Hepsini not ettim.',
+    pl: 'Dziś zrobiłeś postęp. Wszystko zapisałem.',
+  },
+  {
+    ru: 'Хороший ход. Итог дня — ниже.',
+    uk: 'Гарний хід. Підсумок дня — нижче.',
+    es: 'Buen ritmo. El resumen está abajo.',
+    'pt-BR': 'Bom ritmo. O resumo está abaixo.',
+    vi: 'Nhịp tốt. Tổng kết ở bên dưới.',
+    id: 'Langkah bagus. Ringkasan di bawah.',
+    tr: 'İyi gidiyorsun. Özet aşağıda.',
+    pl: 'Dobre tempo. Podsumowanie poniżej.',
+  },
+  {
+    ru: 'День сделан. Завтрашний шаг уже готов.',
+    uk: 'День зроблено. Завтрашній крок уже готовий.',
+    es: 'Día hecho. El paso de mañana ya está listo.',
+    'pt-BR': 'Dia feito. O passo de amanhã já está pronto.',
+    vi: 'Ngày đã xong. Bước ngày mai đã sẵn sàng.',
+    id: 'Hari selesai. Langkah besok sudah siap.',
+    tr: 'Gün tamam. Yarının adımı hazır.',
+    pl: 'Dzień zrobiony. Jutrzejszy krok już czeka.',
+  },
+];
+
+/** Финальные строки празднования закрытия дня — тоже ротация, не одна фраза. */
+export const COMPASS_DAY_CLOSING_DONE_VARIANTS: CompassText[] = [
+  {
+    ru: 'День закрыт. Увидимся утром.',
+    uk: 'День закрито. Побачимось уранці.',
+    es: 'Día cerrado. Nos vemos mañana.',
+    'pt-BR': 'Dia fechado. Até amanhã cedo.',
+    vi: 'Ngày đã khép lại. Hẹn sáng mai.',
+    id: 'Hari selesai. Sampai jumpa pagi.',
+    tr: 'Gün kapandı. Sabah görüşürüz.',
+    pl: 'Dzień zamknięty. Do zobaczenia rano.',
+  },
+  {
+    ru: 'День закрыт. Отдыхай спокойно.',
+    uk: 'День закрито. Відпочивай спокійно.',
+    es: 'Día cerrado. Descansa tranquilo.',
+    'pt-BR': 'Dia fechado. Descanse tranquilo.',
+    vi: 'Ngày đã khép lại. Nghỉ ngơi thoải mái nhé.',
+    id: 'Hari selesai. Istirahatlah dengan tenang.',
+    tr: 'Gün kapandı. Rahatça dinlen.',
+    pl: 'Dzień zamknięty. Odpoczywaj spokojnie.',
+  },
+  {
+    ru: 'Готово. Завтра продолжим с нужного места.',
+    uk: 'Готово. Завтра продовжимо з потрібного місця.',
+    es: 'Listo. Mañana seguimos donde toca.',
+    'pt-BR': 'Pronto. Amanhã seguimos do ponto certo.',
+    vi: 'Xong. Mai ta tiếp tục đúng chỗ cần.',
+    id: 'Selesai. Besok lanjut dari titik yang pas.',
+    tr: 'Tamam. Yarın kaldığımız yerden süreriz.',
+    pl: 'Gotowe. Jutro ruszymy z właściwego miejsca.',
+  },
+  {
+    ru: 'День в копилке. До встречи.',
+    uk: 'День у скарбничці. До зустрічі.',
+    es: 'Día guardado. Hasta pronto.',
+    'pt-BR': 'Dia guardado. Até logo.',
+    vi: 'Ngày đã được cất giữ. Hẹn gặp lại.',
+    id: 'Hari tersimpan. Sampai jumpa.',
+    tr: 'Gün kasada. Görüşürüz.',
+    pl: 'Dzień w skarbonce. Do zobaczenia.',
+  },
+];
+
+/**
+ * Вечерние варианты голоса брифинга (после 19:00 локального времени) для
+ * обычных дней: «план дня» в 23:00 звучал утренним тоном — вечером Компас
+ * говорит по-вечернему. Ротация по дню.
+ */
+export const COMPASS_EVENING_COMMENTS: CompassText[] = [
+  {
+    ru: 'Вечер — тихое время. Пара фраз, и день твой.',
+    uk: 'Вечір — тихий час. Пара фраз, і день твій.',
+    es: 'La noche es tranquila. Dos frases y el día es tuyo.',
+    'pt-BR': 'A noite é calma. Duas frases e o dia é seu.',
+    vi: 'Buổi tối yên tĩnh. Vài câu là trọn ngày.',
+    id: 'Malam itu tenang. Dua frasa, harimu lengkap.',
+    tr: 'Akşam sakin bir zaman. Birkaç ifade yeter.',
+    pl: 'Wieczór to spokojny czas. Dwie frazy i dzień twój.',
+  },
+  {
+    ru: 'Ещё не поздно. Один короткий шаг сегодня.',
+    uk: 'Ще не пізно. Один короткий крок сьогодні.',
+    es: 'Aún hay tiempo. Un paso corto hoy.',
+    'pt-BR': 'Ainda dá tempo. Um passo curto hoje.',
+    vi: 'Vẫn còn kịp. Một bước ngắn hôm nay.',
+    id: 'Belum terlambat. Satu langkah kecil hari ini.',
+    tr: 'Henüz geç değil. Bugün kısa bir adım.',
+    pl: 'Jeszcze nie jest późno. Jeden krótki krok dziś.',
+  },
+  {
+    ru: 'Спокойный вечерний темп. Выбери, что по силам.',
+    uk: 'Спокійний вечірній темп. Обери, що до снаги.',
+    es: 'Ritmo tranquilo de noche. Elige lo que te venga bien.',
+    'pt-BR': 'Ritmo calmo de noite. Escolha o que der.',
+    vi: 'Nhịp tối nhẹ nhàng. Chọn việc vừa sức.',
+    id: 'Tempo malam yang santai. Pilih yang sanggup.',
+    tr: 'Sakin akşam temposu. Sana uyanı seç.',
+    pl: 'Spokojne wieczorne tempo. Wybierz, co ci pasuje.',
+  },
+];
+
 /** Подпись задачи дня по виду (короткая человеческая цель, copy-style планов). */
 export const COMPASS_TASK_TITLE = {
   lesson_dive: {
@@ -397,6 +557,46 @@ export const COMPASS_DAY_CLOSING_PLUS_ITEMS: CompassText[] = [
   { ru: 'Защита серии', uk: 'Захист серії', es: 'Protección de racha', 'pt-BR': 'Proteção de sequência', vi: 'Bảo vệ chuỗi', id: 'Perlindungan rangkaian', tr: 'Seri koruması', pl: 'Ochrona serii' },
 ];
 
+/**
+ * Человеческие подписи категорий фокуса (8 языков UI). Единый словарь для
+ * вечернего ритуала И меток задач брифинга (раньше жил в панели ритуала).
+ */
+export const COMPASS_FOCUS_CATEGORY_LABEL: Record<string, CompassText> = {
+  verb: { ru: 'глаголы', uk: 'дієслова', es: 'verbos', 'pt-BR': 'verbos', vi: 'động từ', id: 'kata kerja', tr: 'fiiller', pl: 'czasowniki' },
+  noun: { ru: 'существительные', uk: 'іменники', es: 'sustantivos', 'pt-BR': 'substantivos', vi: 'danh từ', id: 'kata benda', tr: 'isimler', pl: 'rzeczowniki' },
+  pronoun: { ru: 'местоимения', uk: 'займенники', es: 'pronombres', 'pt-BR': 'pronomes', vi: 'đại từ', id: 'kata ganti', tr: 'zamirler', pl: 'zaimki' },
+  adjective: { ru: 'прилагательные', uk: 'прикметники', es: 'adjetivos', 'pt-BR': 'adjetivos', vi: 'tính từ', id: 'kata sifat', tr: 'sıfatlar', pl: 'przymiotniki' },
+  adverb: { ru: 'наречия', uk: 'прислівники', es: 'adverbios', 'pt-BR': 'advérbios', vi: 'trạng từ', id: 'kata keterangan', tr: 'zarflar', pl: 'przysłówki' },
+  preposition: { ru: 'предлоги', uk: 'прийменники', es: 'preposiciones', 'pt-BR': 'preposições', vi: 'giới từ', id: 'preposisi', tr: 'edatlar', pl: 'przyimki' },
+  syntax: { ru: 'порядок слов', uk: 'порядок слів', es: 'orden de palabras', 'pt-BR': 'ordem das palavras', vi: 'trật tự từ', id: 'urutan kata', tr: 'kelime sırası', pl: 'szyk zdania' },
+  article: { ru: 'артикли', uk: 'артиклі', es: 'artículos', 'pt-BR': 'artigos', vi: 'mạo từ', id: 'artikel', tr: 'artikeller', pl: 'przedimki' },
+  existential: { ru: 'there is / there are', uk: 'there is / there are', es: 'there is / there are', 'pt-BR': 'there is / there are', vi: 'there is / there are', id: 'there is / there are', tr: 'there is / there are', pl: 'there is / there are' },
+  'to-be': { ru: 'глагол to be', uk: 'дієслово to be', es: 'el verbo to be', 'pt-BR': 'o verbo to be', vi: 'động từ to be', id: 'kata kerja to be', tr: 'to be fiili', pl: 'czasownik to be' },
+  conjunction: { ru: 'союзы', uk: 'сполучники', es: 'conjunciones', 'pt-BR': 'conjunções', vi: 'liên từ', id: 'konjungsi', tr: 'bağlaçlar', pl: 'spójniki' },
+  modal: { ru: 'модальные глаголы', uk: 'модальні дієслова', es: 'verbos modales', 'pt-BR': 'verbos modais', vi: 'động từ khuyết thiếu', id: 'kata kerja modal', tr: 'modal fiiller', pl: 'czasowniki modalne' },
+  phrasal_particle: { ru: 'частицы phrasal verbs', uk: 'частки phrasal verbs', es: 'partículas de phrasal verbs', 'pt-BR': 'partículas de phrasal verbs', vi: 'tiểu từ phrasal verbs', id: 'partikel phrasal verbs', tr: 'phrasal verb ekleri', pl: 'partykuły phrasal verbs' },
+  modifier: { ru: 'уточняющие слова', uk: 'уточнювальні слова', es: 'palabras modificadoras', 'pt-BR': 'palavras modificadoras', vi: 'từ bổ nghĩa', id: 'kata pewatas', tr: 'niteleyiciler', pl: 'określniki' },
+  determiner: { ru: 'указатели (determiners)', uk: 'вказівники (determiners)', es: 'determinantes', 'pt-BR': 'determinantes', vi: 'từ hạn định', id: 'determiner', tr: 'belirteçler', pl: 'określniki (determiners)' },
+};
+
+/** Подпись категории: известная — по словарю, неизвестная — «как есть» без подчёркиваний. */
+export function compassFocusCategoryLabel(category: string | undefined, lang: Lang): string {
+  if (!category) return '';
+  const known = COMPASS_FOCUS_CATEGORY_LABEL[category];
+  if (known) return triLang(lang, known);
+  return category.replace(/_/g, ' ');
+}
+
+/**
+ * Строгая версия для меток задач брифинга: ТОЛЬКО известные категории (null для
+ * прочего) — иначе в метку утекали бы сырые слаги вроде «recall».
+ */
+export function compassKnownFocusCategoryLabel(category: string | undefined, lang: Lang): string | null {
+  if (!category) return null;
+  const known = COMPASS_FOCUS_CATEGORY_LABEL[category];
+  return known ? triLang(lang, known) : null;
+}
+
 export const COMPASS_DAY_CLOSING_HIGHLIGHT_LABEL: Record<
   'phrases' | 'xp' | 'plan' | 'tasks' | 'cards' | 'rounds' | 'streak',
   CompassText
@@ -436,54 +636,54 @@ export const COMPASS_DAY_CLOSING_REPEAT: Record<
   CompassText
 > = {
   fresh_phrases: {
-    ru: 'Начни с 3 свежих фраз.',
-    uk: 'Почни з 3 свіжих фраз.',
-    es: 'Empieza con 3 frases frescas.',
-    'pt-BR': 'Comece com 3 frases frescas.',
-    vi: 'Bắt đầu với 3 câu mới.',
-    id: 'Mulai dengan 3 frasa segar.',
-    tr: '3 taze ifadeyle başla.',
-    pl: 'Zacznij od 3 świeżych fraz.',
+    ru: 'Закрепим сегодняшние фразы.',
+    uk: 'Закріпимо сьогоднішні фрази.',
+    es: 'Reforzamos las frases de hoy.',
+    'pt-BR': 'Reforçamos as frases de hoje.',
+    vi: 'Củng cố những câu hôm nay.',
+    id: 'Kuatkan frasa hari ini.',
+    tr: 'Bugünün ifadelerini pekiştirelim.',
+    pl: 'Utrwalimy dzisiejsze frazy.',
   },
   cards: {
-    ru: 'Открой сохранённые карточки.',
-    uk: 'Відкрий збережені картки.',
-    es: 'Abre las tarjetas guardadas.',
-    'pt-BR': 'Abra os cartões salvos.',
-    vi: 'Mở các thẻ đã lưu.',
-    id: 'Buka kartu tersimpan.',
-    tr: 'Kayıtlı kartları aç.',
-    pl: 'Otwórz zapisane fiszki.',
+    ru: 'Прогоним сохранённые карточки.',
+    uk: 'Проженемо збережені картки.',
+    es: 'Repasamos las tarjetas guardadas.',
+    'pt-BR': 'Revisamos os cartões salvos.',
+    vi: 'Ôn lại các thẻ đã lưu.',
+    id: 'Ulangi kartu tersimpan.',
+    tr: 'Kayıtlı kartları tekrar edelim.',
+    pl: 'Powtórzymy zapisane fiszki.',
   },
   plan: {
-    ru: 'Продолжи личный план.',
-    uk: 'Продовж особистий план.',
-    es: 'Continúa el plan personal.',
-    'pt-BR': 'Continue o plano pessoal.',
+    ru: 'Продолжим личный план.',
+    uk: 'Продовжимо особистий план.',
+    es: 'Seguimos con el plan personal.',
+    'pt-BR': 'Seguimos com o plano pessoal.',
     vi: 'Tiếp tục kế hoạch cá nhân.',
     id: 'Lanjutkan rencana pribadi.',
-    tr: 'Kişisel plana devam et.',
-    pl: 'Kontynuuj plan osobisty.',
+    tr: 'Kişisel plana devam edelim.',
+    pl: 'Kontynuujemy plan osobisty.',
   },
   round: {
-    ru: 'Разбери один сложный раунд.',
-    uk: 'Розбери один складний раунд.',
-    es: 'Revisa una ronda difícil.',
-    'pt-BR': 'Revise uma rodada difícil.',
+    ru: 'Разберём сложный раунд.',
+    uk: 'Розберемо складний раунд.',
+    es: 'Repasamos una ronda difícil.',
+    'pt-BR': 'Revisamos uma rodada difícil.',
     vi: 'Xem lại một vòng khó.',
     id: 'Ulas satu ronde sulit.',
-    tr: 'Zor bir turu incele.',
-    pl: 'Przejrzyj jedną trudną rundę.',
+    tr: 'Zor bir turu inceleyelim.',
+    pl: 'Przejrzymy trudną rundę.',
   },
   one_phrase: {
-    ru: 'Начни с одной фразы.',
-    uk: 'Почни з однієї фрази.',
-    es: 'Empieza con una frase.',
-    'pt-BR': 'Comece com uma frase.',
-    vi: 'Bắt đầu bằng một câu.',
-    id: 'Mulai dari satu frasa.',
-    tr: 'Bir ifadeyle başla.',
-    pl: 'Zacznij od jednej frazy.',
+    ru: 'Завтра закрепим сегодняшнее — коротко.',
+    uk: 'Завтра закріпимо сьогоднішнє — коротко.',
+    es: 'Mañana afianzamos lo de hoy, en corto.',
+    'pt-BR': 'Amanhã fixamos o de hoje, rapidinho.',
+    vi: 'Mai củng cố lại hôm nay, ngắn thôi.',
+    id: 'Besok kuatkan yang hari ini, singkat.',
+    tr: 'Yarın bugünü kısaca pekiştiririz.',
+    pl: 'Jutro krótko utrwalimy dzisiejsze.',
   },
 };
 

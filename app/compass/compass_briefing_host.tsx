@@ -11,7 +11,8 @@
  * Показ «раз в день» хранится локально (AsyncStorage), чтобы не всплывать при
  * каждом возврате на главную.
  */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 import { usePathname, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
@@ -30,7 +31,7 @@ import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '
 import { compassOn } from './compass_flags';
 import { loadCompassUserPrefs, type CompassUserPrefs } from './compass_user_prefs';
 import { useCompassDay } from './use_compass_day';
-import { compassTaskRoute, type CompassRoute } from './compass_task_route';
+import { compassTaskRoute, dayClosingFocusRoute, type CompassRoute } from './compass_task_route';
 import { compassInductionRoute } from './compass_induction_route';
 import { resolvePronunciationRoute } from './compass_pronunciation_route';
 import CompassBriefingModal from './compass_briefing_modal';
@@ -41,10 +42,13 @@ import {
 } from './compass_social_news';
 import type { CompassTask, CompassDay } from './compass_brain';
 import {
+  EVENING_START_HOUR,
+  isDayClosingWindow,
   loadDayClosingRitual,
   markDayClosingSeen,
   type DayClosingRitual,
 } from './day_closing_ritual';
+import { awardDayClosingOnce } from './day_closing_reward';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 
 const SEEN_KEY_PREFIX = 'compass_briefing_seen_';
@@ -95,6 +99,15 @@ let _compassBriefingAutoShownForDay: string | null = null;
 let _compassDayClosingClosedForKey: string | null = null;
 let _compassDayClosingAutoShownForKey: string | null = null;
 
+// Кэш соц-сводки на день (JS-сессия): грузим Firestore один раз ДО показа листа —
+// блок «Кстати…» больше не впрыгивает в открытый модал со сдвигом высоты.
+let _socialNewsForDay: {
+  dayKey: string;
+  lines: string[];
+  allLines: string[];
+  events: CompassSocialEvent[];
+} | null = null;
+
 // Признак «брифинг СЕЙЧАС на экране» — читается тостом-фолбэком соц-сводки, чтобы
 // не показать тост одновременно с блоком «Кстати…» в открытой модалке. Живёт в
 // модуле (как и латчи) — общий на JS-сессию.
@@ -113,10 +126,15 @@ interface CompassBriefingHostProps {
 }
 
 export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefingHostProps) {
-  // ВАЖНО: фиксируем `now`, иначе при отсутствии nowMs `Date.now()` даёт новое
-  // значение на каждом рендере → эффекты с `now` в deps (здесь и в useCompassDay)
-  // зацикливаются на setState → "Maximum update depth exceeded".
-  const now = useMemo(() => nowMs ?? Date.now(), [nowMs]);
+  // Часы хоста. ВАЖНО: `now` стабилен между рендерами (иначе эффекты с ним в deps
+  // зациклились бы — "Maximum update depth exceeded"). Раньше он замораживался на
+  // маунте навсегда: сидишь в приложении с 17:30 — вечер наступил, а ритуал не
+  // появлялся до перезапуска; после полуночи dayKey оставался вчерашним. Теперь
+  // `now` обновляется по СОБЫТИЯМ (одноразовый таймер до ближайшей границы 18:00 /
+  // полуночи + возврат из фона) — без опроса и фоновых циклов.
+  const mountNowRef = useRef(Date.now());
+  const [nowOverride, setNowOverride] = useState<number | null>(null);
+  const now = nowMs ?? nowOverride ?? mountNowRef.current;
   const router = useRouter();
   const pathname = usePathname();
   const { hasPremiumAccess } = usePremium();
@@ -130,6 +148,10 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const [socialAllLines, setSocialAllLines] = useState<string[]>([]);
   const [socialEvents, setSocialEvents] = useState<CompassSocialEvent[]>([]);
   const [dayClosing, setDayClosing] = useState<DayClosingRitual | null>(null);
+  // Вердикт по вечернему ритуалу получен (в т.ч. «ритуала не будет»). Пока его
+  // нет — брифинг не показываем: иначе гонка двух асинхронных загрузок давала
+  // «брифинг открылся и на глазах превратился в Итог дня».
+  const [dayClosingResolved, setDayClosingResolved] = useState(false);
   const [accountReminderEligible, setAccountReminderEligible] = useState(false);
   const [accountPromptVisible, setAccountPromptVisible] = useState(false);
   const dayKey = todayKey(now);
@@ -145,15 +167,47 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const [userPrefs, setUserPrefs] = useState<CompassUserPrefs | null>(null);
   const dayClosingRuntimeKey = dayClosing ? `day_closing_${studyTarget ?? 'default'}_${dayClosing.dateKey}` : null;
   const compassSuppressedByRoute = isCompassBriefingSuppressedPath(pathname);
+  // День для модала. hasPremium берём из снимка ритуала (dayClosing.isPremium),
+  // а не из живого hasPremiumAccess: мигание премиума при cloud-refresh пересоздавало
+  // объект и перезапускало reveal-каскад открытого листа.
   const modalDay = useMemo<CompassDay | null>(() => {
     if (!dayClosing) return day;
     return {
       type: 'day_closing',
       tasks: [],
-      hasPremium: hasPremiumAccess,
+      hasPremium: dayClosing.isPremium,
       dayClosing,
     };
-  }, [day, dayClosing, hasPremiumAccess]);
+  }, [day, dayClosing]);
+
+  // Одноразовый таймер до ближайшей границы суток (вечернее окно 18:00 / полночь):
+  // сработал → обновили `now` → эффект перепланирует следующую границу. Это цепочка
+  // one-shot таймеров по событию, не фоновый цикл.
+  useEffect(() => {
+    if (nowMs != null || !compassOn()) return;
+    const evening = new Date(now);
+    evening.setHours(EVENING_START_HOUR, 0, 0, 500);
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 500);
+    const next = [evening.getTime(), midnight.getTime()].filter((ts) => ts > now).sort((a, b) => a - b)[0];
+    if (!next) return;
+    const id = setTimeout(() => setNowOverride(Date.now()), Math.max(1000, next - now));
+    return () => clearTimeout(id);
+  }, [nowMs, now]);
+
+  // Возврат из фона: если сменилась дата или наступил вечер — обновляем часы
+  // (иначе ритуал/брифинг жили по времени последнего маунта).
+  useEffect(() => {
+    if (nowMs != null || !compassOn()) return;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      const fresh = Date.now();
+      const dayChanged = new Date(now).toDateString() !== new Date(fresh).toDateString();
+      const eveningEntered = !isDayClosingWindow(now) && isDayClosingWindow(fresh);
+      if (dayChanged || eveningEntered) setNowOverride(fresh);
+    });
+    return () => sub.remove();
+  }, [nowMs, now]);
 
   // Один показ в день: проверяем локальный маркер. Не гейтим премиумом — само
   // решение «показывать ли» учитывает премиум ниже (приветственные дни видны всем,
@@ -213,35 +267,61 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   }, []);
 
   // Вечерний ритуал: только локальный снимок дня (AsyncStorage), без signal_bus,
-  // без ИИ-голоса и без облачных чтений. Free-tier получает его один раз за всё время.
+  // без ИИ-голоса и без облачных чтений. Free-tier: полный один раз, дальше
+  // запертая витрина раз в несколько дней (каденс внутри loadDayClosingRitual).
   useEffect(() => {
     if (!compassOn() || onboardingDone !== true || userPrefs?.dayClosing !== true) {
       setDayClosing(null);
+      // Вердикт «ритуала не будет» известен, как только прочитаны prefs/онбординг.
+      setDayClosingResolved(onboardingDone !== null && userPrefs !== null);
       return;
     }
     let cancelled = false;
+    setDayClosingResolved(false);
     void (async () => {
       const ritual = await loadDayClosingRitual({ studyTarget, nowMs: now, hasPremiumAccess }).catch(() => null);
-      if (!cancelled) setDayClosing(ritual);
+      if (cancelled) return;
+      // Анти-мигание: не пересоздаём объект, если ритуал по сути тот же (мигание
+      // hasPremiumAccess при cloud-refresh дёргало контент открытого листа).
+      setDayClosing((prev) =>
+        prev && ritual && prev.dateKey === ritual.dateKey && prev.locked === ritual.locked ? prev : ritual,
+      );
+      setDayClosingResolved(true);
     })();
     return () => {
       cancelled = true;
     };
   }, [studyTarget, now, hasPremiumAccess, onboardingDone, userPrefs]);
 
-  // Соц-сводка «Кстати…»: грузим РОВНО когда брифинг стал видимым (не раньше —
-  // незачем читать Firestore, если модалка сегодня не покажется). Помечаем seen
-  // только при закрытии (handleStart/handleLater/handleTaskPress → markSeen),
-  // чтобы тост-фолбэк не задвоил, если юзер закрыл, не посмотрев.
+  // Соц-сводка «Кстати…»: грузим, когда брифинг ВОТ-ВОТ покажется (те же условия,
+  // что и авто-показ) — данные обычно успевают за время slide-in + reveal-каскада,
+  // и блок больше не впрыгивает в открытый лист со сдвигом высоты. Кэш на день
+  // (модульный) страхует от повторных чтений Firestore при ремаунте/мигании
+  // премиума. Помечаем seen только при закрытии (markSeen), чтобы тост-фолбэк
+  // не задвоил, если юзер закрыл, не посмотрев.
+  const briefingEligible =
+    !dayClosing &&
+    dayClosingResolved &&
+    userPrefs?.briefing === true &&
+    onboardingDone === true &&
+    checkedSeen &&
+    !loading &&
+    !!day &&
+    (day.type === 'first_day' || day.type === 'comeback' || hasPremiumAccess);
   useEffect(() => {
-    if (!compassOn() || !visible || dayClosing) return;
+    if (!compassOn() || dayClosing) return;
+    if (!visible && !briefingEligible) return;
+    if (_socialNewsForDay?.dayKey === dayKey) {
+      setSocialLines(_socialNewsForDay.lines);
+      setSocialAllLines(_socialNewsForDay.allLines);
+      setSocialEvents(_socialNewsForDay.events);
+      return;
+    }
     let cancelled = false;
-    setSocialLines([]);
-    setSocialAllLines([]);
-    setSocialEvents([]);
     void (async () => {
       const news = await collectCompassSocialNews(lang, now).catch(() => ({ lines: [], allLines: [], events: [] }));
       if (cancelled) return;
+      _socialNewsForDay = { dayKey, ...news };
       setSocialLines(news.lines);
       setSocialAllLines(news.allLines);
       setSocialEvents(news.events);
@@ -249,7 +329,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     return () => {
       cancelled = true;
     };
-  }, [visible, lang, now]);
+  }, [visible, briefingEligible, lang, now, dayKey, dayClosing]);
 
   useEffect(() => {
     if (!compassOn()) return;
@@ -287,12 +367,18 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const markSeen = useCallback(() => {
     if (dayClosing && dayClosingRuntimeKey) {
       _compassDayClosingClosedForKey = dayClosingRuntimeKey;
+      // Вечер закрыт — «утренний» брифинг сегодня уже не к месту: латчим и его,
+      // иначе сразу после «Увидимся утром» всплывал ВТОРОЙ модал с планом дня.
+      _compassBriefingClosedForDay = dayKey;
+      void AsyncStorage.setItem(dayKey, '1').catch(() => {});
       void markDayClosingSeen({
         studyTarget,
         dateKey: dayClosing.dateKey,
         hasPremiumAccess,
+        locked: !!dayClosing.locked,
       }).catch(() => {});
-      setDayClosing(null);
+      // НЕ обнуляем dayClosing: пока модалка уезжает (slide-out), контент листа
+      // не должен на глазах подменяться брифингом. Латчи выше держат «не показывать».
       return;
     }
     // Вызывается ТОЛЬКО при намеренном закрытии юзером (Начать/Позже/тап по задаче).
@@ -348,6 +434,9 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     // приветствие). comeback/план-дни проходят дальше как обычно.
     const suppressWelcome = welcomeMet === true && day?.type === 'first_day';
     if (suppressWelcome) return;
+    // Анти-гонка: пока вердикт по вечернему ритуалу не готов, брифинг не показываем —
+    // иначе он успевал открыться и на глазах превращался в «Итог дня».
+    if (!dayClosingResolved) return;
     // Восстановление после ремаунта: авто-показ за сегодня уже был, юзер не закрывал —
     // вернуть видимость, не перезапуская проверку условий.
     if (_compassBriefingAutoShownForDay === dayKey) {
@@ -372,50 +461,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       _compassBriefingAutoShownForDay = dayKey;
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey, welcomeMet, dayClosing, dayClosingRuntimeKey, compassSuppressedByRoute, userPrefs]);
-
-  const handleStart = useCallback(() => {
-    if (dayClosing) {
-      // Праздничную вибрацию уже сыграла панель ритуала (hapticCelebrate в момент
-      // нажатия «Закрыть день»); здесь только помечаем и закрываем.
-      markSeen();
-      setVisible(false);
-      return;
-    }
-    // Кульминация брифинга — сильный тёплый отклик на ФАКТ старта дня.
-    // Приветственные дни (первая встреча / возврат) заслуживают праздничной
-    // двойной вибрации; обычный день — обычный «успех». Анти-наложение и
-    // уважение к настройке хаптика — внутри слоя use-haptics.
-    const isWelcomeStart = day?.type === 'first_day' || day?.type === 'comeback';
-    void (isWelcomeStart ? hapticCelebrate() : hapticSuccess());
-    markAccountReminderSeen();
-    markSeen();
-    setVisible(false);
-    onStartDay?.();
-  }, [dayClosing, markSeen, onStartDay, day, markAccountReminderSeen]);
-
-  const handleLater = useCallback(() => {
-    if (dayClosing) {
-      markSeen();
-      setVisible(false);
-      return;
-    }
-    markAccountReminderSeen();
-    markSeen();
-    setVisible(false);
-  }, [dayClosing, markSeen, markAccountReminderSeen]);
-
-  // Мост к полному доступу с запертого вечернего ритуала: день помечаем
-  // показанным, модалку закрываем БЕЗ гонки с навигацией (navigateAfterModalClose)
-  // и открываем пейвол со своим контекстом. Путь /premium_modal входит в
-  // COMPASS_BRIEFING_SUPPRESSED_PATHS — брифинг не всплывёт поверх пейвола.
-  const handleDayClosingUpgrade = useCallback(() => {
-    markSeen();
-    navigateAfterModalClose(
-      () => setVisible(false),
-      () => router.push({ pathname: '/premium_modal', params: { context: 'compass_day_closing' } } as never),
-    );
-  }, [markSeen, router]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone, dayKey, welcomeMet, dayClosing, dayClosingRuntimeKey, compassSuppressedByRoute, userPrefs, dayClosingResolved]);
 
   const resolveSourceGatedRoute = useCallback((route: CompassRoute): CompassRoute => {
     if (
@@ -463,6 +509,76 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     }
     return route;
   }, [lang, studyTarget]);
+
+  const pushRoute = useCallback((route: CompassRoute) => {
+    router.push(route.params ? { pathname: route.pathname, params: route.params } as never : route.pathname as never);
+  }, [router]);
+
+  const handleStart = useCallback(() => {
+    if (dayClosing) {
+      // Праздничную вибрацию уже сыграла панель ритуала (hapticCelebrate в момент
+      // нажатия «Закрыть день»); здесь только помечаем и закрываем.
+      markSeen();
+      setVisible(false);
+      return;
+    }
+    // Кульминация брифинга — сильный тёплый отклик на ФАКТ старта дня.
+    // Приветственные дни (первая встреча / возврат) заслуживают праздничной
+    // двойной вибрации; обычный день — обычный «успех». Анти-наложение и
+    // уважение к настройке хаптика — внутри слоя use-haptics.
+    const isWelcomeStart = day?.type === 'first_day' || day?.type === 'comeback';
+    void (isWelcomeStart ? hapticCelebrate() : hapticSuccess());
+    markAccountReminderSeen();
+    markSeen();
+    setVisible(false);
+    // «Поехали» у welcome-дня БЕЗ полного доступа раньше вёл прямо в пейвол
+    // (тёплое знакомство → холодный душ оплатой). Теперь бесплатный старт ведёт
+    // в индакшн-фичу дня — осмысленный первый шаг; план остаётся премиум-путём.
+    if (isWelcomeStart && !hasPremiumAccess) {
+      const feature = day?.inductionFeature;
+      pushRoute(resolveSourceGatedRoute(feature ? compassInductionRoute(feature) : { pathname: '/(tabs)/lessons' }));
+      return;
+    }
+    onStartDay?.();
+  }, [dayClosing, markSeen, onStartDay, day, markAccountReminderSeen, hasPremiumAccess, resolveSourceGatedRoute, pushRoute]);
+
+  const handleLater = useCallback(() => {
+    if (dayClosing) {
+      markSeen();
+      setVisible(false);
+      return;
+    }
+    markAccountReminderSeen();
+    markSeen();
+    setVisible(false);
+  }, [dayClosing, markSeen, markAccountReminderSeen]);
+
+  // Мост к полному доступу с запертого вечернего ритуала: день помечаем
+  // показанным, модалку закрываем БЕЗ гонки с навигацией (navigateAfterModalClose)
+  // и открываем пейвол со своим контекстом. Путь /premium_modal входит в
+  // COMPASS_BRIEFING_SUPPRESSED_PATHS — брифинг не всплывёт поверх пейвола.
+  const handleDayClosingUpgrade = useCallback(() => {
+    markSeen();
+    navigateAfterModalClose(
+      () => setVisible(false),
+      () => router.push({ pathname: '/premium_modal', params: { context: 'compass_day_closing' } } as never),
+    );
+  }, [markSeen, router]);
+
+  // Тап по «Фокусу на завтра» в полном вечернем ритуале: шаг получает ручку —
+  // открываем его экран прямо сейчас. День при этом закрываем честно: XP
+  // начисляется идемпотентно (awardDayClosingOnce), день помечается показанным.
+  const handleDayClosingFocusPress = useCallback(() => {
+    if (!dayClosing || dayClosing.locked) return;
+    void hapticSuccess();
+    void awardDayClosingOnce({ studyTarget, ritual: dayClosing, lang }).catch(() => {});
+    const route = resolveSourceGatedRoute(dayClosingFocusRoute(dayClosing));
+    markSeen();
+    navigateAfterModalClose(
+      () => setVisible(false),
+      () => pushRoute(route),
+    );
+  }, [dayClosing, studyTarget, lang, resolveSourceGatedRoute, markSeen, pushRoute]);
 
   // Тап по конкретной задаче дня: помечаем показ, закрываем и открываем её экран.
   // Для «повтори вслух» пытаемся открыть задачу произношения текущего дня плана
@@ -587,6 +703,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
         onTaskPress={handleTaskPress}
         onInductionPress={handleInductionPress}
         onDayClosingUpgrade={handleDayClosingUpgrade}
+        onDayClosingFocusPress={handleDayClosingFocusPress}
       />
       <RegistrationPromptModal
         visible={accountPromptVisible}

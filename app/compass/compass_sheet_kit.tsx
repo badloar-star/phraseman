@@ -12,7 +12,8 @@
  * Анимации показа/награды живут в конкретных модалах (одноразовые, по событию).
  */
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { Theme } from '../../constants/theme';
@@ -25,6 +26,24 @@ export function CompassGrabber({ t }: { t: Theme }) {
 }
 
 /**
+ * Цвет текста НА акцентной подложке: светлый акцент → тёмные чернила, тёмный
+ * акцент → белый. Раньше #10131b был прошит на все темы — на тёмном акценте
+ * контраст проседал.
+ */
+export function compassOnAccentColor(accent: string): string {
+  const hex = (accent ?? '').replace('#', '');
+  const full = hex.length === 3 ? hex.split('').map((c) => c + c).join('') : hex.slice(0, 6);
+  if (full.length !== 6 || !/^[0-9a-fA-F]{6}$/.test(full)) return '#10131b';
+  const int = parseInt(full, 16);
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  // Быстрая аппроксимация относительной люминантности sRGB.
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return lum > 0.55 ? '#10131b' : '#ffffff';
+}
+
+/**
  * Надзаголовок-строка: иконка-марка + текст («Компас · день N» / «Итог дня») +
  * необязательный правый слот (пилюля серии, глиф темы). ЗАМЕНЯЕТ старую шапку с
  * бейджем-в-рамке и глифом темы.
@@ -32,21 +51,28 @@ export function CompassGrabber({ t }: { t: Theme }) {
 export function CompassEyebrow({
   t,
   icon,
+  iconSource,
   text,
   accent,
   right,
 }: {
   t: Theme;
   icon: IoniconName;
+  /** Настоящий ассет-иконка компаса (по теме). Если задан — рисуется вместо Ionicon. */
+  iconSource?: ImageSourcePropType;
   text: string;
   accent: string;
   right?: React.ReactNode;
 }) {
   return (
     <View style={styles.eyebrow}>
-      <View style={[styles.mark, { backgroundColor: accent + '1F' }]}>
-        <Ionicons name={icon} size={17} color={accent} />
-      </View>
+      {iconSource ? (
+        <Image source={iconSource} style={styles.markImage} contentFit="contain" />
+      ) : (
+        <View style={[styles.mark, { backgroundColor: accent + '1F' }]}>
+          <Ionicons name={icon} size={17} color={accent} />
+        </View>
+      )}
       <Text style={[styles.eyebrowText, { color: accent }]} numberOfLines={1}>
         {text}
       </Text>
@@ -78,11 +104,23 @@ export function CompassLede({ t, children, center }: { t: Theme; children: React
 }
 
 /**
- * Плоский список-ВЫБОР (задачи дня / первые шаги). Строки разделены линией, не
- * рамками. Тап по строке = переход. ЗАМЕНЯЕТ три обведённые плашки задач.
+ * Список-ВЫБОР (задачи дня / первые шаги) в мягкой подложке БЕЗ обводки: единый
+ * контейнер со сменой фона (лёгкий акцентный тон), строки внутри разделены тонкой
+ * линией. Даёт блоку визуальные границы без рамки-коробки — текст не «слипается».
  */
-export function CompassPickList({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
-  return <View style={[styles.pickList, style]}>{children}</View>;
+export function CompassPickList({
+  t,
+  accent,
+  children,
+  style,
+}: {
+  t: Theme;
+  accent?: string;
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+}) {
+  const fill = (accent ?? t.textPrimary) + '14';
+  return <View style={[styles.pickList, { backgroundColor: fill }, style]}>{children}</View>;
 }
 
 export function CompassPickRow({
@@ -93,6 +131,7 @@ export function CompassPickRow({
   meta,
   onPress,
   showArrow = true,
+  first = false,
   testID,
 }: {
   t: Theme;
@@ -102,6 +141,8 @@ export function CompassPickRow({
   meta?: string;
   onPress?: () => void;
   showArrow?: boolean;
+  /** Первая строка в подложке — без верхней линии-разделителя. */
+  first?: boolean;
   testID?: string;
 }) {
   const interactive = !!onPress;
@@ -112,7 +153,7 @@ export function CompassPickRow({
       disabled={!interactive}
       onPressIn={interactive ? () => hapticTap() : undefined}
       onPress={onPress}
-      style={[styles.pickRow, { borderTopColor: t.border }]}
+      style={[styles.pickRow, first ? styles.pickRowFirst : { borderTopColor: t.border }]}
     >
       <Ionicons name={icon} size={20} color={accent} style={styles.pickIcon} />
       <View style={styles.pickBody}>
@@ -131,9 +172,9 @@ export function CompassPickRow({
 }
 
 /**
- * Мягкая секция за линией (соц-сводка «Кстати», напоминание аккаунта, индакшн).
- * ЗАМЕНЯЕТ обведённые блоки social/accountReminder/induction — теперь это
- * контент, отделённый hairline-разделителем, а не вложенная коробка.
+ * Мягкая секция (соц-сводка «Кстати», напоминание аккаунта, индакшн) в подложке
+ * БЕЗ обводки: лёгкий акцентный фон вместо рамки-коробки. Даёт блоку границы,
+ * чтобы текст не «слипался» с соседними секциями.
  */
 export function CompassSoftSection({
   t,
@@ -151,7 +192,7 @@ export function CompassSoftSection({
   testID?: string;
 }) {
   return (
-    <View testID={testID} style={[styles.soft, { borderTopColor: t.border }]}>
+    <View testID={testID} style={[styles.soft, { backgroundColor: accent + '14' }]}>
       {eyebrow ? (
         <View style={styles.softHead}>
           {eyebrowIcon ? <Ionicons name={eyebrowIcon} size={14} color={accent} /> : null}
@@ -190,7 +231,7 @@ export function CompassPrimaryButton({
       onPress={onPress}
       style={[styles.cta, { backgroundColor: accent, opacity: disabled ? 0.55 : 1 }, style]}
     >
-      <Text style={styles.ctaText}>{label}</Text>
+      <Text style={[styles.ctaText, { color: compassOnAccentColor(accent) }]}>{label}</Text>
     </TouchableOpacity>
   );
 }
@@ -215,6 +256,7 @@ const styles = StyleSheet.create({
   grabber: { width: 38, height: 5, borderRadius: 999, alignSelf: 'center', marginBottom: 16 },
   eyebrow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   mark: { width: 30, height: 30, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
+  markImage: { width: 30, height: 30, borderRadius: 9 },
   eyebrowText: { flexShrink: 1, fontSize: 12.5, fontWeight: '700', letterSpacing: 0.6, textTransform: 'uppercase' },
   eyebrowRight: { marginLeft: 'auto' },
   streakPill: { flexDirection: 'row', alignItems: 'center', gap: 4, borderWidth: 1, borderRadius: 999, paddingHorizontal: 9, paddingVertical: 4, maxWidth: 165 },
@@ -222,17 +264,18 @@ const styles = StyleSheet.create({
   voice: { fontSize: 25, lineHeight: 31, fontWeight: '800', letterSpacing: -0.2, marginTop: 15 },
   lede: { fontSize: 15, lineHeight: 22, fontWeight: '600', marginTop: 11 },
   center: { textAlign: 'center' },
-  pickList: { marginTop: 20, borderRadius: 16, overflow: 'hidden' },
+  pickList: { marginTop: 20, borderRadius: 16, overflow: 'hidden', paddingHorizontal: 4 },
   pickRow: { flexDirection: 'row', alignItems: 'center', gap: 13, paddingVertical: 14, paddingHorizontal: 12, borderTopWidth: StyleSheet.hairlineWidth },
+  pickRowFirst: { borderTopWidth: 0 },
   pickIcon: { width: 22, textAlign: 'center' },
   pickBody: { flex: 1, minWidth: 0, gap: 2 },
   pickTitle: { fontSize: 15, fontWeight: '700' },
   pickMeta: { fontSize: 12.5, fontWeight: '500' },
-  soft: { marginTop: 18, paddingTop: 16, borderTopWidth: StyleSheet.hairlineWidth },
+  soft: { marginTop: 18, padding: 16, borderRadius: 16 },
   softHead: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 7 },
   softLabel: { flexShrink: 1, fontSize: 11.5, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.4 },
   cta: { marginTop: 24, borderRadius: 16, paddingVertical: 15, alignItems: 'center' },
-  ctaText: { fontSize: 16, fontWeight: '800', color: '#10131b' },
+  ctaText: { fontSize: 16, fontWeight: '800' },
   laterWrap: { alignItems: 'center', marginTop: 14 },
   laterText: { fontSize: 13, fontWeight: '600', paddingVertical: 4, paddingHorizontal: 6 },
 });

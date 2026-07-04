@@ -192,9 +192,15 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     if (banDoc.exists) return;
   } catch {}
 
+  // nameLower ДОЛЖЕН обновляться вместе с name. Иначе при merge:true профиль
+  // получает новое name, но старый nameLower (напр. name="Дладуд" +
+  // nameLower="тлдь") — рассинхрон, из-за которого поиск/индекс не находят юзера.
+  // Нормализуем так же, как серверный nameReserve → normalizeName: trim, ≤32, lower.
+  const nameLower = name.slice(0, 32).toLowerCase();
   const publicPayload = {
     uid: stableId,
     name,
+    nameLower,
     lang,
     totalXp,
     level,

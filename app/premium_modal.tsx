@@ -21,7 +21,11 @@ import { emitAppEvent } from './events';
 
 type RouteParams = Record<string, string | string[]>;
 
-const ACCESS_CHECK_TIMEOUT_MS = 700;
+// 700мс покрывали только локальный кэш: оплатившему юзеру на медленной сети
+// (холодный старт после переустановки, RC отвечает секунды) показывался пейвол
+// вместо thank-you. 2500мс — компромисс: хватает на один медленный RTT, а
+// неплатящий видит пейвол лишь на пару секунд позже в худшем случае.
+const ACCESS_CHECK_TIMEOUT_MS = 2500;
 
 type ScheduledNavigation = {
   cancel: () => void;

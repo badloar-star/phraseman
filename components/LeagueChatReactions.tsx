@@ -129,6 +129,8 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
           testID={`league-chat-react-add-${message.id}`}
           onPress={() => setPaletteOpen((v) => !v)}
           activeOpacity={0.7}
+          // Кнопка ~20-24px — hitSlop добивает зону нажатия до комфортных ~40px.
+          hitSlop={{ top: 9, bottom: 9, left: 9, right: 9 }}
           style={{
             paddingHorizontal: compact ? 6 : 7,
             paddingVertical: 3,
@@ -162,6 +164,7 @@ function LeagueChatReactions({ message, align, t, f, compact = false }: LeagueCh
               testID={`league-chat-react-pick-${message.id}-${emoji}`}
               onPress={() => react(emoji)}
               activeOpacity={0.7}
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               style={{ paddingHorizontal: 5, paddingVertical: 2 }}
             >
               <Text style={{ fontSize: Math.max(15, f.caption + 4) }}>{emoji}</Text>

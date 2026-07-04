@@ -1833,7 +1833,9 @@ function AppContent() {
           await resumePendingShardGrants().catch(() => {});
         })();
         prefetchArenaRatingCache();
-        const freshShards = await AsyncStorage.getItem('shards_balance');
+        // .catch: единственный незащищённый await в цепочке — его сбой молча
+        // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
+        const freshShards = await AsyncStorage.getItem('shards_balance').catch(() => null);
         const parsedShards = Number(freshShards);
         if (Number.isFinite(parsedShards) && parsedShards >= 0) {
           const balance = Math.floor(parsedShards);
@@ -1871,8 +1873,24 @@ function AppContent() {
         })();
         if (bootRestoreSucceeded || bootHasLocalProgress) {
           await syncToCloud().catch(() => {});
-        } else if (__DEV__) {
-          console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
+        } else {
+          if (__DEV__) {
+            console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
+          }
+          // Переустановка + упавший restore: юзер видит нулевой прогресс без
+          // единого объяснения («всё пропало!»). Говорим, что прогресс цел и
+          // подтянется при сети — тихий провал превращаем в понятный сигнал.
+          emitAppEvent('action_toast', {
+            type: 'info',
+            messageRu: 'Не удалось загрузить прогресс из облака. Проверь интернет — он подтянется автоматически.',
+            messageUk: 'Не вдалося завантажити прогрес із хмари. Перевір інтернет — він підтягнеться автоматично.',
+            messageEs: 'No pudimos cargar tu progreso desde la nube. Revisa tu conexión: se cargará automáticamente.',
+            messagePtBr: 'Não foi possível carregar seu progresso da nuvem. Verifique a internet — ele será carregado automaticamente.',
+            messageVi: 'Không tải được tiến độ từ đám mây. Kiểm tra internet — nó sẽ tự tải lại.',
+            messageId: 'Tidak bisa memuat progres dari cloud. Periksa internet — akan dimuat otomatis.',
+            messageTr: 'İlerleme buluttan yüklenemedi. İnterneti kontrol et — otomatik yüklenecek.',
+            messagePl: 'Nie udało się wczytać postępu z chmury. Sprawdź internet — wczyta się automatycznie.',
+          });
         }
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
@@ -1898,7 +1916,14 @@ function AppContent() {
         void import('./idea_decision_modals')
           .then((m) => m.flushIdeaDecisionModals())
           .catch(() => {});
-        void import('./referral_bootstrap')
+        // iOS: инвайт-страница кладёт ссылку в буфер при переходе в App Store —
+        // читаем ОДИН раз (бережём системный промпт вставки), потом применяем pending-код.
+        // ВАЖНО: до 2026-07-04 checkClipboardForReferralOnce нигде не вызывался — весь
+        // iOS-путь атрибуции рефералов был мёртвым кодом.
+        void import('./referral_clipboard')
+          .then((m) => m.checkClipboardForReferralOnce())
+          .catch(() => {})
+          .then(() => import('./referral_bootstrap'))
           .then((m) => m.tryApplyPendingReferral())
           .catch(() => {});
       }).catch(() => {});

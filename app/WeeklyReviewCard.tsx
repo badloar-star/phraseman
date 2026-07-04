@@ -62,9 +62,15 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
           : false;
     if (shouldAutoGenerate) {
       setBusy(true);
-      const generated = await generateWeeklyReview({ lang, studyTarget, isPremium });
-      setState(generated);
-      setBusy(false);
+      try {
+        const generated = await generateWeeklyReview({ lang, studyTarget, isPremium });
+        setState(generated);
+      } catch {
+        // Оставляем прежнее состояние (cached/none) — карточка живая, не «генерируем».
+      } finally {
+        // Без finally исключение генерации замораживало карточку в «генерируем» навсегда.
+        setBusy(false);
+      }
     }
   }, [lang, studyTarget, isPremium]);
 
@@ -73,9 +79,14 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
   const onManualRefresh = useCallback(async () => {
     hapticTap();
     setBusy(true);
-    const generated = await generateWeeklyReview({ lang, studyTarget, isPremium, force: true });
-    setState(generated);
-    setBusy(false);
+    try {
+      const generated = await generateWeeklyReview({ lang, studyTarget, isPremium, force: true });
+      setState(generated);
+    } catch {
+      // Прежнее состояние остаётся видимым; busy снимается — можно повторить.
+    } finally {
+      setBusy(false);
+    }
   }, [lang, studyTarget, isPremium]);
 
   const openLesson = useCallback((microDiagnosisId: string) => {

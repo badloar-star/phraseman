@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Animated, AppState, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -58,21 +59,43 @@ function HomeTheoAdvisorCard({ advice, onAction, embedded = false, label }: Prop
     setIsExpanded(embedded);
   }, [advice.id, embedded]);
 
+  // Главная смонтирована постоянно (freeze не глушит уже запущенные лупы):
+  // без focus/AppState-гарда «плавание» карточки крутилось всегда — вклад в
+  // нагрев. Тот же паттерн, что у пульса карточек квизов (quizzes.tsx).
+  const focused = useIsScreenFocused();
+
   useEffect(() => {
-    if (reduceMotion) {
+    if (reduceMotion || !focused) {
       float.stopAnimation();
       float.setValue(0);
       return;
     }
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(float, { toValue: 1, duration: 1650, useNativeDriver: true }),
-        Animated.timing(float, { toValue: 0, duration: 1650, useNativeDriver: true }),
-      ]),
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [float, reduceMotion]);
+    let loop: Animated.CompositeAnimation | null = null;
+    const start = () => {
+      if (loop) return;
+      loop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(float, { toValue: 1, duration: 1650, useNativeDriver: true }),
+          Animated.timing(float, { toValue: 0, duration: 1650, useNativeDriver: true }),
+        ]),
+      );
+      loop.start();
+    };
+    const stop = () => {
+      loop?.stop();
+      loop = null;
+      float.setValue(0);
+    };
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      stop();
+    };
+  }, [float, reduceMotion, focused]);
 
   useEffect(() => {
     if (!isExpanded) {

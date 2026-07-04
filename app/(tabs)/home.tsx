@@ -404,6 +404,114 @@ function buildFallbackHomeLeagueChest(lang: Lang) {
         leaderPoints: 0,
     };
 }
+
+// ── Титулы: кэш вне рендера ──────────────────────────────────────────────────
+// Главная — самый часто перерисовываемый экран (энергия/XP/фокус). Раньше на
+// КАЖДЫЙ рендер строились ~60 объектов титулов + локализация, хотя модалка
+// титулов закрыта. Одноэлементный кэш по входам убирает эту работу; hook в
+// середину 4000-строчного рендера ставить нельзя (порядок хуков).
+type HomeTitlesArgs = {
+    level: number;
+    totalXP: number;
+    streak: number;
+    helpfulReportsConfirmed: number;
+    dailyAllDoneStreak: number;
+    earnedAchievementIds: unknown;
+    lang: string;
+    selectedTitleKey: string | null;
+};
+type HomeTitlesComputation = {
+    allTitles: TitleModalRow[];
+    earnedTitles: TitleModalRow[];
+    currentTitleKey: string;
+};
+let homeTitlesCacheKey = '';
+let homeTitlesCacheAchievementsRef: unknown = null;
+let homeTitlesCacheValue: HomeTitlesComputation | null = null;
+
+function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
+    const cacheKey = [
+        args.level, args.totalXP, args.streak, args.helpfulReportsConfirmed,
+        args.dailyAllDoneStreak, args.lang, args.selectedTitleKey ?? '',
+    ].join('|');
+    if (
+        homeTitlesCacheValue &&
+        homeTitlesCacheKey === cacheKey &&
+        homeTitlesCacheAchievementsRef === args.earnedAchievementIds
+    ) {
+        return homeTitlesCacheValue;
+    }
+
+    const earnedSpecialTitles = getEarnedSpecialTitles({
+        level: args.level,
+        totalXP: args.totalXP,
+        streak: args.streak,
+        helpfulReportsConfirmed: args.helpfulReportsConfirmed,
+        dailyAllDoneStreak: args.dailyAllDoneStreak,
+        earnedAchievementIds: args.earnedAchievementIds as never,
+    });
+    const earnedSpecialTitleIds = new Set(earnedSpecialTitles.map((title) => title.id));
+    const lang = args.lang;
+    const level = args.level;
+    const levelTitleRows: TitleModalRow[] = TITLES.map((item) => ({
+        key: `level:${item.minLevel}-${item.maxLevel}`,
+        titleEN: item.titleEN,
+        subtitle: item.minLevel === item.maxLevel
+            ? triLang(lang, {
+                ru: `Уровень ${item.minLevel}`,
+                uk: `Рівень ${item.minLevel}`,
+                es: `Nivel ${item.minLevel}`,
+                'pt-BR': `Nivel ${item.minLevel}`,
+                vi: `Cap ${item.minLevel}`,
+                id: `Level ${item.minLevel}`,
+                tr: `Seviye ${item.minLevel}`,
+                pl: `Poziom ${item.minLevel}`,
+            })
+            : triLang(lang, {
+                ru: `Уровни ${item.minLevel}-${item.maxLevel}`,
+                uk: `Рівні ${item.minLevel}-${item.maxLevel}`,
+                es: `Niveles ${item.minLevel}-${item.maxLevel}`,
+                'pt-BR': `Niveis ${item.minLevel}-${item.maxLevel}`,
+                vi: `Cap ${item.minLevel}-${item.maxLevel}`,
+                id: `Level ${item.minLevel}-${item.maxLevel}`,
+                tr: `Seviye ${item.minLevel}-${item.maxLevel}`,
+                pl: `Poziomy ${item.minLevel}-${item.maxLevel}`,
+            }),
+        colorLight: item.colorLight,
+        colorDark: item.colorDark,
+        unlocked: level >= item.minLevel,
+        current: false,
+        kind: 'level',
+    }));
+    const specialTitleRows: TitleModalRow[] = SPECIAL_TITLES.map((item) => ({
+        key: `special:${item.id}`,
+        titleEN: item.titleEN,
+        subtitle: item.unlockText,
+        colorLight: item.colorLight,
+        colorDark: item.colorDark,
+        unlocked: earnedSpecialTitleIds.has(item.id),
+        current: false,
+        kind: 'special',
+    }));
+    const allTitleRows = [...levelTitleRows, ...specialTitleRows];
+    const fallbackLevelTitle = TITLES.find((item) => level >= item.minLevel && level <= item.maxLevel) ?? (level < TITLES[0].minLevel ? TITLES[0] : TITLES[TITLES.length - 1]);
+    const fallbackTitleKey = fallbackLevelTitle ? `level:${fallbackLevelTitle.minLevel}-${fallbackLevelTitle.maxLevel}` : levelTitleRows[0]?.key ?? '';
+    const selectedTitleRow = args.selectedTitleKey
+        ? allTitleRows.find((title) => title.key === args.selectedTitleKey && title.unlocked) ?? null
+        : null;
+    const currentTitleKey = selectedTitleRow?.key ?? fallbackTitleKey;
+    const allTitles = allTitleRows.map((title) => ({
+        ...title,
+        current: title.key === currentTitleKey,
+    }));
+    const earnedTitles = allTitles.filter((title) => title.unlocked);
+
+    homeTitlesCacheKey = cacheKey;
+    homeTitlesCacheAchievementsRef = args.earnedAchievementIds;
+    homeTitlesCacheValue = { allTitles, earnedTitles, currentTitleKey };
+    return homeTitlesCacheValue;
+}
+
 export default function HomeScreen() {
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
@@ -3443,69 +3551,17 @@ export default function HomeScreen() {
     const energyArrowLeft = Math.min(ENERGY_TOOLTIP_W - 26, Math.max(12, Math.round(energyIconCenterX - energyTooltipLeftClamped - 7)));
     const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
     const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : isCompassTheme ? 'rgba(242,196,141,0.12)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
-    const earnedSpecialTitles = getEarnedSpecialTitles({
+    // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
+    const { allTitles, earnedTitles, currentTitleKey } = computeHomeTitles({
         level,
         totalXP,
         streak,
         helpfulReportsConfirmed: specialTitleStats.helpfulReportsConfirmed,
         dailyAllDoneStreak: specialTitleStats.dailyAllDoneStreak,
         earnedAchievementIds: specialTitleStats.earnedAchievementIds,
+        lang,
+        selectedTitleKey,
     });
-    const earnedSpecialTitleIds = new Set(earnedSpecialTitles.map((title) => title.id));
-    const levelTitleRows: TitleModalRow[] = TITLES.map((item) => ({
-        key: `level:${item.minLevel}-${item.maxLevel}`,
-        titleEN: item.titleEN,
-        subtitle: item.minLevel === item.maxLevel
-            ? triLang(lang, {
-                ru: `Уровень ${item.minLevel}`,
-                uk: `Рівень ${item.minLevel}`,
-                es: `Nivel ${item.minLevel}`,
-                'pt-BR': `Nivel ${item.minLevel}`,
-                vi: `Cap ${item.minLevel}`,
-                id: `Level ${item.minLevel}`,
-                tr: `Seviye ${item.minLevel}`,
-                pl: `Poziom ${item.minLevel}`,
-            })
-            : triLang(lang, {
-                ru: `Уровни ${item.minLevel}-${item.maxLevel}`,
-                uk: `Рівні ${item.minLevel}-${item.maxLevel}`,
-                es: `Niveles ${item.minLevel}-${item.maxLevel}`,
-                'pt-BR': `Niveis ${item.minLevel}-${item.maxLevel}`,
-                vi: `Cap ${item.minLevel}-${item.maxLevel}`,
-                id: `Level ${item.minLevel}-${item.maxLevel}`,
-                tr: `Seviye ${item.minLevel}-${item.maxLevel}`,
-                pl: `Poziomy ${item.minLevel}-${item.maxLevel}`,
-            }),
-        colorLight: item.colorLight,
-        colorDark: item.colorDark,
-        unlocked: level >= item.minLevel,
-        current: false,
-        kind: 'level',
-    }));
-    const specialTitleRows: TitleModalRow[] = SPECIAL_TITLES.map((item) => ({
-        key: `special:${item.id}`,
-        titleEN: item.titleEN,
-        subtitle: item.unlockText,
-        colorLight: item.colorLight,
-        colorDark: item.colorDark,
-        unlocked: earnedSpecialTitleIds.has(item.id),
-        current: false,
-        kind: 'special',
-    }));
-    const allTitleRows = [...levelTitleRows, ...specialTitleRows];
-    const fallbackLevelTitle = TITLES.find((item) => level >= item.minLevel && level <= item.maxLevel) ?? (level < TITLES[0].minLevel ? TITLES[0] : TITLES[TITLES.length - 1]);
-    const fallbackTitleKey = fallbackLevelTitle ? `level:${fallbackLevelTitle.minLevel}-${fallbackLevelTitle.maxLevel}` : levelTitleRows[0]?.key ?? '';
-    const selectedTitleRow = selectedTitleKey
-        ? allTitleRows.find((title) => title.key === selectedTitleKey && title.unlocked) ?? null
-        : null;
-    const currentTitleKey = selectedTitleRow?.key ?? fallbackTitleKey;
-    const allTitles = allTitleRows.map((title) => ({
-        ...title,
-        current: title.key === currentTitleKey,
-    }));
-    const earnedTitles = [
-        ...allTitles.filter((title) => title.unlocked),
-    ];
     const visibleTitles = earnedTitles;
     const selectHomeTitle = (item: TitleModalRow) => {
         if (!item.unlocked)

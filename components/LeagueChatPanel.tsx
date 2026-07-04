@@ -1216,6 +1216,8 @@ function LeagueChatPanel({
                           setReplyTarget(m as LeagueChatMessage);
                           inputRef.current?.focus();
                         }}
+                        // Иконка 14px + padding 3 ≈ 20px — hitSlop добивает зону до ~40px.
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         style={{ padding: 3, opacity: 0.72 }}
                       >
                         <Ionicons name="arrow-undo-outline" size={14} color={t.textMuted} />
@@ -1228,6 +1230,7 @@ function LeagueChatPanel({
                         accessibilityRole="button"
                         accessibilityLabel={`qa-league-chat-report-${m.id}`}
                         onPress={() => openReportModal(m)}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         style={{ padding: 3, opacity: 0.72 }}
                       >
                         <Ionicons name="flag-outline" size={14} color={t.textMuted} />
@@ -1257,6 +1260,7 @@ function LeagueChatPanel({
   tr: 'Katılımcıyı gizle',
   pl: 'Ukryj uczestnika',
 })}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                         style={{
                           width: 24,
                           height: 24,
@@ -1285,6 +1289,7 @@ function LeagueChatPanel({
                       accessibilityLabel="Delete message"
                       disabled={Boolean(deletingMessageIds[m.id])}
                       onPress={() => deleteOwnMessage(m)}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                       style={{
                         width: 24,
                         height: 24,
@@ -1338,6 +1343,7 @@ function LeagueChatPanel({
                 accessibilityRole="button"
                 accessibilityLabel="qa-league-chat-reply-cancel"
                 onPress={() => { hapticTap(); setReplyTarget(null); }}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={{ width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' }}
               >
                 <Ionicons name="close" size={18} color={t.textMuted} />

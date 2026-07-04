@@ -40,6 +40,7 @@ import {
 import {
   buildSpokenWordReport,
   firstSoundHint,
+  maskSpokenWordKeepInitial,
   type SpokenWordEntry,
 } from '../app/speaking_word_report';
 import {
@@ -603,13 +604,25 @@ export function SpeakingPanel({
         }
       };
       let settled = false;
+      // Watchdog по образцу фразового пути (7с): раньше тренировка слова была
+      // ЕДИНСТВЕННЫМ путём распознавания без таймера — зависший Android-движок
+      // оставлял вечный спиннер «слушаю».
+      let wordWatchdog: ReturnType<typeof setTimeout> | null = null;
+      const clearWordWatchdog = () => {
+        if (wordWatchdog) {
+          clearTimeout(wordWatchdog);
+          wordWatchdog = null;
+        }
+      };
       const settle = () => {
         if (settled) return;
         settled = true;
+        clearWordWatchdog();
         cleanupWordListeners();
         applyWordResult(index, best);
       };
       const resultSub = speech.addListener('result', (event: any) => {
+        clearWordWatchdog(); // признак жизни движка — таймер больше не нужен
         const alts: Array<{ transcript?: string }> = Array.isArray(event?.results)
           ? event.results
           : [];
@@ -620,6 +633,7 @@ export function SpeakingPanel({
       const noMatchSub = speech.addListener('nomatch', () => {
         if (mountedRef.current) {
           settled = true;
+          clearWordWatchdog();
           cleanupWordListeners();
           setWordPhase('no_speech');
           setWordVerdict(null);
@@ -650,6 +664,16 @@ export function SpeakingPanel({
       }
       if (!mountedRef.current) return;
       try {
+        wordWatchdog = setTimeout(() => {
+          wordWatchdog = null;
+          if (!mountedRef.current) return;
+          try {
+            speech.abort();
+          } catch {
+            /* no-op */
+          }
+          settle(); // best='' -> честное «не расслышал» вместо вечного спиннера
+        }, 7000);
         speech.start(
           buildSpeakingStartOptions({
             lang: recognitionLocale,
@@ -662,6 +686,7 @@ export function SpeakingPanel({
         );
         playRecordStart();
       } catch {
+        clearWordWatchdog();
         cleanupWordListeners();
         if (mountedRef.current) setWordPhase('no_speech');
       }
@@ -1560,17 +1585,18 @@ export function SpeakingPanel({
           {/* Целевая фраза СКРЫТА за чёрточками по буквам — юзер не видит ответ
               заранее (иначе нет смысла учиться). Слово «загорается» (становится
               читаемым) только когда юзер правильно его произнёс. После оценки
-              фраза раскрывается ЦЕЛИКОМ как пословная карта попытки:
-              зелёный — чисто, жёлтый — нечётко, красный — не прозвучало. */}
+              фраза раскрывается как пословная карта попытки: зелёный — чисто,
+              жёлтый — нечётко. КРАСНОЕ (не прозвучало) текстом НЕ раскрываем —
+              только первая буква + маска, иначе со второй попытки эталон
+              читается с экрана (анти-чит, фидбек бета-теста). Полностью красное
+              слово открывают: проход фразы, живое совпадение в новой попытке
+              или карточка тренировки слова. */}
           <View style={styles.phraseWrap} accessibilityRole="text">
             {tokens.map((tok, i) => {
               const entry =
                 showResult && wordReport && wordReport.length === tokens.length
                   ? wordReport[i]
                   : null;
-              const reveal = matched[i] || status === 'passed' || entry != null;
-              // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
-              const masked = tok.replace(/[\p{L}\p{N}]/gu, '_');
               // Слово «дочинено» тренировкой → показываем его чистым (зелёным),
               // даже если исходно было жёлтым/красным.
               const cleaned = drillCleaned.has(i);
@@ -1579,6 +1605,15 @@ export function SpeakingPanel({
                   ? 'clean'
                   : entry.status
                 : null;
+              // Анти-чит: missed-слово не раскрываем — только первая буква.
+              const missedMasked =
+                effectiveStatus === 'missed' && !matched[i] && status !== 'passed';
+              const reveal =
+                (matched[i] || status === 'passed' || entry != null) && !missedMasked;
+              // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
+              const masked = missedMasked
+                ? maskSpokenWordKeepInitial(tok)
+                : tok.replace(/[\p{L}\p{N}]/gu, '_');
               // Тренируемо: показан результат, слово было проблемным и ещё не
               // закрыто. По таким словам можно нажать и открыть карточку.
               const drillable =
@@ -1599,7 +1634,9 @@ export function SpeakingPanel({
                     styles.phraseWord,
                     {
                       color,
-                      opacity: reveal ? 1 : 0.6,
+                      // Красная маска — полной яркости: это кликабельная цель
+                      // «жми и тренируй», а не фоновая чёрточка.
+                      opacity: reveal || missedMasked ? 1 : 0.6,
                       letterSpacing: reveal ? 0 : 2,
                     },
                   ]}

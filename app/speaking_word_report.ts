@@ -68,6 +68,25 @@ export function buildSpokenWordReport(input: BuildSpokenWordReportInput): Spoken
   });
 }
 
+/**
+ * Анти-чит маска пропущенного (красного) слова: видна только первая буква,
+ * остальные буквы/цифры → «_», пунктуация (апострофы, дефисы) остаётся.
+ * "think" → "t____", "don't" → "d__'_". Полный текст missed-слов после
+ * неудачной попытки не показываем — иначе эталон читается с экрана и вторая
+ * попытка превращается в чтение вслух (фидбек бета-теста).
+ */
+export function maskSpokenWordKeepInitial(word: string): string {
+  let initialShown = false;
+  return Array.from(word)
+    .map((ch) => {
+      if (!/[\p{L}\p{N}]/u.test(ch)) return ch;
+      if (initialShown) return '_';
+      initialShown = true;
+      return ch;
+    })
+    .join('');
+}
+
 /** First concrete sound hint in the report, for the "/TH/ instead of /S/" line. */
 export function firstSoundHint(
   report: readonly SpokenWordEntry[],

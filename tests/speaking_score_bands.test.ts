@@ -46,12 +46,21 @@ describe('speaking hint priority', () => {
     expect(hint.kind).toBe('say_clearer');
   });
 
-  it('missed words beat fuzzy words', () => {
+  it('missed words beat fuzzy words and come out MASKED (anti-cheat)', () => {
     const hint = buildSpeakingHint({
       ...base,
       report: [clean('I'), missed('think'), fuzzy('so')],
     });
-    expect(hint).toEqual({ kind: 'missed_words', words: ['think'] });
+    // Missed-слова не сливаются текстом — первая буква + «_» по буквам.
+    expect(hint).toEqual({ kind: 'missed_words', words: ['t____'] });
+  });
+
+  it('fuzzy words stay UNMASKED — the user already said them, no leak', () => {
+    const hint = buildSpeakingHint({
+      ...base,
+      report: [clean('I'), fuzzy('think')],
+    });
+    expect(hint).toEqual({ kind: 'fuzzy_words', words: ['think'] });
   });
 
   it('fuzzy words beat completeness and prosody', () => {

@@ -6,7 +6,7 @@
 //
 // Pure, no React/native imports, fully unit-testable.
 
-import type { SpokenWordEntry } from './speaking_word_report';
+import { maskSpokenWordKeepInitial, type SpokenWordEntry } from './speaking_word_report';
 import type { StressFeedback } from './speaking_prosody';
 
 export type SpeakingBand = 'excellent' | 'good' | 'almost' | 'rough';
@@ -93,8 +93,17 @@ export type BuildSpeakingHintInput = {
 export function buildSpeakingHint(input: BuildSpeakingHintInput): SpeakingHint {
   if (input.honestyFlagged) return { kind: 'say_clearer' };
 
+  // Missed-слова в подсказку идут ЗАМАСКИРОВАННЫМИ (первая буква + «_»):
+  // пословная карта прячет красные слова от подглядывания, и подсказка не
+  // должна сливать их текстом. Fuzzy-слова ниже не маскируем — юзер их уже
+  // произнёс, утечки эталона нет.
   const missed = input.report.filter((w) => w.status === 'missed').map((w) => w.target);
-  if (missed.length > 0) return { kind: 'missed_words', words: missed.slice(0, HINT_WORDS_CAP) };
+  if (missed.length > 0) {
+    return {
+      kind: 'missed_words',
+      words: missed.slice(0, HINT_WORDS_CAP).map(maskSpokenWordKeepInitial),
+    };
+  }
 
   const fuzzy = input.report.filter((w) => w.status === 'fuzzy').map((w) => w.target);
   if (fuzzy.length > 0) return { kind: 'fuzzy_words', words: fuzzy.slice(0, HINT_WORDS_CAP) };

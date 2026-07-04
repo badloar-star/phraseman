@@ -25,10 +25,30 @@ export function tokenizeRecallPhrase(phrase: string): string[] {
   return cleanPhrase(englishRecallSurface(phrase)).split(/\s+/).filter(Boolean);
 }
 
+/**
+ * Плитка первого слова фразы всегда шла с заглавной (это просто начало предложения) —
+ * а раз остальные плитки строчные, заглавная «кричала», что это правильный первый блок,
+ * и подсказывала ответ (репорты юзеров про We/When/This). Убираем подсказку: строчим
+ * ПЕРВОЕ слово, но бережно — не трогаем «I»/«I'm…» и слова, которые заглавные не только
+ * из-за начала (имена/аббревиатуры вроде USA, English), у которых заглавная есть и внутри.
+ * Проверка ответа регистронезависима, так что это чисто визуально и ничего не ломает.
+ */
+function deCapitalizeSentenceStart(word: string): string {
+  if (!word) return word;
+  if (word === 'I' || /^I['’]/.test(word)) return word; // I, I'm, I'll, I've, I'd
+  // Заглавная только на первой букве (Hello) → это лишь начало предложения, строчим.
+  // Если заглавные есть и дальше (USA, iPhone, McDonald) — оставляем как есть.
+  const rest = word.slice(1);
+  const firstIsUpper = word[0] !== word[0]!.toLowerCase();
+  const restHasUpper = rest !== rest.toLowerCase();
+  if (firstIsUpper && !restHasUpper) return word[0]!.toLowerCase() + rest;
+  return word;
+}
+
 export function shuffleWordBankTiles(phrase: string): WordBankTile[] {
   const words = tokenizeRecallPhrase(phrase);
   return words
-    .map((text, slot) => ({ slot, text }))
+    .map((text, slot) => ({ slot, text: slot === 0 ? deCapitalizeSentenceStart(text) : text }))
     .sort(() => Math.random() - 0.5);
 }
 

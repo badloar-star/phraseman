@@ -2075,10 +2075,15 @@ function QuizGame({
       });
     };
 
-    if (settings.autoAdvance) {
+    // Автопереход — только на ВЕРНОМ ответе. На ошибке показываем разбор и ждём тап
+    // юзера (даже если autoAdvance включён): иначе разбор промаха мелькал и исчезал до
+    // того, как его успевали прочитать (репорт юзера про квиз выше своего уровня —
+    // «разбор появляется на слишком малое время»). На верном ответе разбирать нечего —
+    // автопереход остаётся быстрым.
+    if (settings.autoAdvance && isRight) {
       autoAdvanceTimerRef.current = setTimeout(doNext, autoDelay);
     }
-    // Если autoAdvance выключен — ждём тапа (обработается в handleTap)
+    // autoAdvance выключен ИЛИ ответ неверный — ждём тапа (обработается в handleTap)
   };
 
   const handleChoice = (ci: number) => {

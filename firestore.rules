@@ -1524,8 +1524,15 @@ service cloud.firestore {
     }
 
     // Friends list: users/{ownerUid}/friends/{friendUid}.
+    // Read is scoped to the list owner OR the friend named in the doc (whose id is
+    // their own uid) — the latter keeps legitimate reverse-edge reads
+    // users/{friendUid}/friends/{myUid} working (friend-list dedupe/repair, arena
+    // invites). A blanket `request.auth != null` here let ANY signed-in user
+    // enumerate every user's whole social graph + friend display names (IDOR).
     match /users/{ownerUid}/friends/{friendUid} {
-      allow read: if request.auth != null;
+      allow read: if canonicalUserMatchesAuth(ownerUid)
+        || canonicalUserMatchesAuth(friendUid)
+        || isAdmin();
       allow create: if request.auth != null && ownerUid != friendUid && (
         canonicalUserMatchesAuth(ownerUid) ||
         (canonicalUserMatchesAuth(friendUid) &&
@@ -1829,7 +1836,13 @@ service cloud.firestore {
     // Все записи создаёт/обновляет Cloud Function (Admin SDK).
     // Клиент читает участников своей комнаты.
     match /arena_room_members/{memberId} {
-      allow read: if request.auth != null;
+      // Read scoped to members of the SAME room — the member doc id is
+      // `${code}_${authUid}`, so the requester must already have a member doc in
+      // this room (resource.data.code). A blanket `request.auth != null` let any
+      // signed-in user read the roster (display names/avatars) of ANY room by
+      // enumerating room codes (IDOR). Client query already filters code+active.
+      allow read: if isAdmin() || (request.auth != null
+        && exists(/databases/$(database)/documents/arena_room_members/$(resource.data.code + '_' + request.auth.uid)));
       allow create, update, delete: if isAdmin();
     }
 
@@ -1837,7 +1850,13 @@ service cloud.firestore {
     // Сообщения пишет только Cloud Function (после rate-limit + фильтрации).
     // Клиент читает только видимые сообщения (status==visible) своей комнаты.
     match /arena_room_chat/{roomCode}/messages/{msgId} {
-      allow read: if request.auth != null;
+      // Read scoped to VISIBLE messages for members of THIS room (member doc id is
+      // `${roomCode}_${authUid}`). Previously any signed-in user could read every
+      // room's chat — including moderation-hidden messages — by guessing room codes
+      // (IDOR). The client query already filters status=='visible'.
+      allow read: if isAdmin() || (request.auth != null
+        && resource.data.status == 'visible'
+        && exists(/databases/$(database)/documents/arena_room_members/$(roomCode + '_' + request.auth.uid)));
       allow create, update, delete: if isAdmin();
     }
 

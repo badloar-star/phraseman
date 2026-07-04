@@ -229,7 +229,13 @@ export const getLessonDifficultyMultiplier = (lessonNumber: number): number => {
 // Сериализует все вызовы registerXP — предотвращает race condition на user_total_xp
 // при быстрых параллельных ответах (fire-and-forget без await).
 let _xpLock: Promise<unknown> = Promise.resolve();
-const XP_LOCK_WAIT_TIMEOUT_MS = 1200;
+// Таймаут — только страховка от «зависшего» предыдущего вызова (внутри лока
+// НЕТ ожидаемых сетевых операций — всё AsyncStorage; сервер fire-and-forget).
+// 1200мс были малы: медленный storage бюджетного Android при серии быстрых
+// ответов превышал их, вызовы шли параллельно, и read-modify-write
+// user_total_xp терял одно из начислений. 10с закрывает окно гонки, оставаясь
+// защитой от вечного дедлока.
+const XP_LOCK_WAIT_TIMEOUT_MS = 10_000;
 
 function waitForPreviousXpLock(lock: Promise<unknown>): Promise<void> {
   return new Promise((resolve) => {

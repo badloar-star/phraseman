@@ -9936,9 +9936,10 @@
 
     <div class="h-sec">
       <div class="h-sec-title">Users</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Список всех пользователей приложения. Нажми на строку — откроется карточка пользователя с деталями и кнопками действий (выдать Плюс, забанить, начислить осколки и т.д.).</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">По умолчанию раздел открывается как <b>поиск</b> — весь список НЕ грузится (10k+ юзеров вешают вкладку). Введи UID или имя — найдём нужного из базы. Нажми на строку — откроется карточка пользователя с деталями и кнопками действий (выдать Плюс, забанить, начислить осколки и т.д.).</div>
       <div class="h-btn-list">
-        <div class="h-btn"><div class="h-btn-name">Поле поиска (Search name or UID)</div><div class="h-btn-desc">Введи имя или ID пользователя — таблица сразу отфильтруется. Работает по любому фрагменту.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Поле поиска (Search name or UID)</div><div class="h-btn-desc">Введи имя или ID (или их часть) — найдём пользователя прямо в базе, не загружая всех. Регистр имени важен: «таня» и «Таня» — пробуем оба.</div></div>
+        <div class="h-btn"><div class="h-btn-name">📋 Загрузить всех / 🔍 Только поиск</div><div class="h-btn-desc">Переключатель. «Загрузить всех» — тянет полный список постранично (по 50, следующая страница подгружается наперёд), нужен для сортировки по XP/ревеню и экспорта. «Только поиск» — вернуться в лёгкий режим поиска и освободить память.</div></div>
         <div class="h-btn"><div class="h-btn-name">Фильтры (Sort by, язык, план, тема, платформа, аккаунт, версия)</div><div class="h-btn-desc">Уточни список: только iOS / только Plus / только русскоязычные — можно комбинировать сколько угодно фильтров.</div></div>
         <div class="h-btn"><div class="h-btn-name">Hide duplicates</div><div class="h-btn-desc">Скрывает пользователей с одинаковым именем — удобно для уникального списка.</div></div>
         <div class="h-btn"><div class="h-btn-name">Duplicates</div><div class="h-btn-desc">Показывает людей с одинаковыми именами, но разными ID — помогает найти двойников одного человека.</div></div>
@@ -11082,6 +11083,7 @@
       <span data-i18n-es="Ocultar duplicados">Hide duplicates</span>
     </label>
     <button onclick="showDuplicatesPanel()" title="Show duplicate names with different UIDs" data-i18n-es="Duplicados" data-i18n-es-title="Mostrar todos los duplicados (mismos nombres, UID distintos)">Duplicates</button>
+    <button id="btn-load-all-users" onclick="toggleLoadAllUsers()" title="Загрузить полный список всех пользователей постранично (по 50). По умолчанию раздел работает как поиск — без загрузки всех." data-i18n-es="Cargar todos" data-i18n-es-title="Cargar la lista completa de usuarios por páginas (de a 50). Por defecto la sección funciona como búsqueda, sin cargar a todos." style="background:#1f2937;color:#c4b5fd;border:1px solid #3a3a5a">📋 Загрузить всех</button>
     <button onclick="showEmailExportModal()" style="margin-left:auto" title="Copy or download the email list" data-i18n-es="Lista de emails" data-i18n-es-title="Copiar o descargar la lista de emails">Email list</button>
     <button onclick="exportUsersCSV()" data-i18n-es="CSV">CSV</button>
   </div>
@@ -14184,7 +14186,7 @@
 <script src="french-quizzes-workflow.js"></script>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
@@ -16767,6 +16769,10 @@
   }
 
   window.loadUsers = async function(options = {}) {
+    // Любой вызов loadUsers = «нужен полный список» (кнопка «Загрузить всех»,
+    // либо разделы premium/vip/analytics/экспорт). Помечаем режим, чтобы
+    // renderTable рисовал таблицу, а не поисковую заглушку.
+    window._usersLoadAllMode = true;
     const hadSnapshot = restoreAdminUsersSnapshot();
     const loadingEl = document.getElementById('loading');
     const tableEl = document.getElementById('users-table');
@@ -16807,19 +16813,10 @@
         bannedSnap.forEach(doc => _bannedUids.add(doc.id));
       } catch (e) { console.warn('banned_users skipped', e); }
       // База большая (10k+): один getDocs(users) вешает вкладку, грузим страницами.
-      const userDocs = [];
-      let cursor = null;
-      while (true) {
-        const pageQuery = cursor
-          ? query(collection(db, 'users'), orderBy('__name__'), startAfter(cursor), limit(1000))
-          : query(collection(db, 'users'), orderBy('__name__'), limit(1000));
-        const pageSnap = await getDocs(pageQuery);
-        pageSnap.forEach(d => userDocs.push(d));
-        if (pageSnap.size < 1000) break;
-        cursor = pageSnap.docs[pageSnap.docs.length - 1];
-      }
-      const users = [];
-      userDocs.forEach(doc => {
+      // ПРОГРЕССИВНО: как только пришла ПЕРВАЯ страница — сразу рисуем таблицу
+      // (первые 50 из PAGE_SIZE), остальное догружаем в фоне и «идём на страницу
+      // вперёд» — админ уже листает первую, пока подтягиваются следующие.
+      const mapUserDoc = (doc) => {
         const p = doc.data().progress || {};
         const lessons = tryJson(p.unlocked_lessons,[]);
         const flashcards = tryJson(p.flashcards,[]);
@@ -16828,7 +16825,7 @@
         const leagueState = tryJson(p.league_state_v3,{});
         const dailyTasks = tryJson(p.daily_tasks_progress, null);
         const xp = parseInt(p.user_total_xp)||0;
-        users.push({
+        return {
           uid: doc.id,
           name: p.user_name || (titleFor(parseInt(p.user_total_xp)||0) + ' #' + uidToNum(doc.id)),
           xp,
@@ -16863,8 +16860,36 @@
           identityHidden: doc.data().identityHidden === true,
           canonicalStableId: doc.data().canonicalStableId || null,
           raw: p,
-        });
-      });
+        };
+      };
+      // Метка этой загрузки — если админ переключит режим/уйдёт, старые
+      // фоновые страницы не должны затирать актуальный кэш.
+      const loadToken = (window._usersLoadToken = (window._usersLoadToken || 0) + 1);
+      const users = [];
+      let cursor = null;
+      let firstPagePainted = false;
+      const PAGE = 1000;
+      while (true) {
+        const pageQuery = cursor
+          ? query(collection(db, 'users'), orderBy('__name__'), startAfter(cursor), limit(PAGE))
+          : query(collection(db, 'users'), orderBy('__name__'), limit(PAGE));
+        const pageSnap = await getDocs(pageQuery);
+        if (loadToken !== window._usersLoadToken) return; // загрузка отменена/заменена
+        pageSnap.forEach(d => users.push(mapUserDoc(d)));
+        // Публикуем прогресс в кэш и рисуем первую страницу сразу.
+        window._users = users;
+        window._usersFreshlyLoaded = true;
+        if (!firstPagePainted) {
+          firstPagePainted = true;
+          updateStats(users);
+          renderTable();
+        } else if (statusEl && !options.background) {
+          statusEl.textContent = users.length + ' пользователей — догружаю…';
+        }
+        if (pageSnap.size < PAGE) break;
+        cursor = pageSnap.docs[pageSnap.docs.length - 1];
+      }
+      if (loadToken !== window._usersLoadToken) return;
       window._users = users;
       window._usersFreshlyLoaded = true; // данные пришли из сети в этой сессии (не старый снепшот)
       saveAdminUsersSnapshot(users);
@@ -17002,6 +17027,25 @@
   window.renderTable = function() {
     const qRaw = document.getElementById('search').value.trim();
     const q=qRaw.toLowerCase();
+    // Поисковый режим (по умолчанию): полный список НЕ загружен.
+    // Пустой запрос → показываем поисковую заглушку, не рисуем таблицу.
+    // Есть запрос → делаем точечный серверный поиск (usersSearchLookup),
+    // а таблицу рисуем только по тем, кого поиск подгрузил в кэш.
+    if (!window._usersLoadAllMode && !window._usersFreshlyLoaded) {
+      if (!qRaw) {
+        window._usersSearchLastQuery = '';
+        window._usersSearchMatchUids = new Set(); // сброс совпадений прошлого запроса
+        if (typeof window.renderUsersSearchState === 'function') window.renderUsersSearchState();
+        return;
+      }
+      // Запускаем серверный поиск только когда запрос ИЗМЕНИЛСЯ — иначе
+      // перерисовка из самого поиска зациклила бы дебаунс каждые 260мс.
+      if (window._usersSearchLastQuery !== qRaw && typeof window.usersSearchLookup === 'function') {
+        window._usersSearchLastQuery = qRaw;
+        window._usersSearchMatchUids = new Set(); // старые совпадения не должны залипать
+        window.usersSearchLookup(qRaw);
+      }
+    }
     const sb=window._sortBy;
     // sync select to current sort state
     const selSort=document.getElementById('sort-by');
@@ -17024,7 +17068,18 @@
       });
       us = Array.from(nameMap.values());
     }
-    if(q) us=us.filter(u=>u.name.toLowerCase().includes(q)||u.uid.toLowerCase().includes(q));
+    if(q) {
+      // В поисковом режиме серверный поиск (usersSearchLookup) кладёт uid найденных
+      // в _usersSearchMatchUids — их пропускаем ВСЕГДА, даже если users.user_name
+      // не содержит запрос (ник в базе бывает рассинхронен: в users «Тлдь»,
+      // а актуальное имя «Дладуд» — только в public_profiles).
+      const matchUids = (!window._usersLoadAllMode && !window._usersFreshlyLoaded && window._usersSearchMatchUids) || null;
+      us = us.filter(u =>
+        u.name.toLowerCase().includes(q) ||
+        u.uid.toLowerCase().includes(q) ||
+        (matchUids && matchUids.has(u.uid))
+      );
+    }
     if(fl) us=us.filter(u=>u.lang===fl);
     if(fp==='premium') us=us.filter(isUserPremiumActive);
     if(fp==='free') us=us.filter(u=>!isUserPremiumActive(u));
@@ -17082,10 +17137,22 @@
       }
       document.getElementById('users-table').style.display='none';
       document.getElementById('tbody').innerHTML = '';
+      const pgBarEmpty = document.getElementById('pagination-bar');
+      if (pgBarEmpty) pgBarEmpty.style.display = 'none';
       let emptyEl = document.getElementById('users-empty-state');
       if (!emptyEl) { emptyEl = document.createElement('div'); emptyEl.id='users-empty-state'; emptyEl.style.cssText='text-align:center;padding:60px 0;color:#555;font-size:15px'; document.getElementById('tab-users').appendChild(emptyEl); }
       emptyEl.style.display='block';
-      emptyEl.textContent = '🔍 Пользователи не найдены по текущим фильтрам';
+      // В поисковом режиме, пока идёт серверный поиск, показываем «ищу…»,
+      // а «не найдено» — только когда запрос завершился без результата.
+      const searchMode = !window._usersLoadAllMode && !window._usersFreshlyLoaded;
+      const lookupBusy = window._usersSearchTimer || window._usersSearchInFlight === qRaw || window._usersNameLookupInFlight === qRaw;
+      if (searchMode && qRaw && lookupBusy) {
+        emptyEl.textContent = '🔍 Ищу «' + qRaw + '»…';
+      } else if (searchMode && qRaw) {
+        emptyEl.textContent = '🔍 Пользователь «' + qRaw + '» не найден. Проверь UID или имя (регистр важен).';
+      } else {
+        emptyEl.textContent = '🔍 Пользователи не найдены по текущим фильтрам';
+      }
       return;
     }
     const emptyEl = document.getElementById('users-empty-state');
@@ -17149,6 +17216,223 @@
     window._currentPage = (window._currentPage || 0) + delta;
     renderTable();
     document.getElementById('tab-users').scrollTop = 0;
+  };
+
+  // ── Поисковый режим раздела «Users» ────────────────────────────────────────
+  // По умолчанию НЕ грузим весь список (10k+ юзеров вешают вкладку). Раздел
+  // работает как поиск: вводишь UID / имя — точечно тянем из Firestore.
+  // Полный постраничный список включается кнопкой «📋 Загрузить всех».
+  window._usersLoadAllMode = window._usersLoadAllMode || false;
+
+  // Пустая поисковая заглушка + сброс таблицы.
+  window.renderUsersSearchState = function renderUsersSearchState() {
+    const loadAll = window._usersLoadAllMode || window._usersFreshlyLoaded;
+    // Кнопка-переключатель показывает текущий режим.
+    const btn = document.getElementById('btn-load-all-users');
+    if (btn) {
+      if (loadAll) {
+        btn.textContent = '🔍 Только поиск';
+        btn.title = 'Вернуться в режим поиска — освободить память, не держать весь список.';
+        btn.style.background = '#0f2a1a';
+        btn.style.color = '#86efac';
+        btn.style.borderColor = '#2f5a3a';
+      } else {
+        btn.textContent = '📋 Загрузить всех';
+        btn.title = 'Загрузить полный список всех пользователей постранично (по 50). По умолчанию раздел работает как поиск — без загрузки всех.';
+        btn.style.background = '#1f2937';
+        btn.style.color = '#c4b5fd';
+        btn.style.borderColor = '#3a3a5a';
+      }
+    }
+    if (loadAll) {
+      // Полный режим (список уже загружен, напр. другим разделом) — рисуем таблицу.
+      // renderTable в загруженном режиме сюда не возвращается, рекурсии нет.
+      if (Array.isArray(window._users) && window._users.length && typeof window.renderTable === 'function') {
+        window.renderTable();
+      }
+      return;
+    }
+    const qRaw = (document.getElementById('search')?.value || '').trim();
+    if (qRaw) return;    // есть запрос — пусть работает поиск, заглушку не показываем
+    // Пустой запрос в режиме поиска: прячем таблицу и статы, показываем подсказку.
+    const tableEl = document.getElementById('users-table');
+    if (tableEl) tableEl.style.display = 'none';
+    const tbody = document.getElementById('tbody');
+    if (tbody) tbody.innerHTML = '';
+    const pgBar = document.getElementById('pagination-bar');
+    if (pgBar) pgBar.style.display = 'none';
+    const statsEl = document.getElementById('stats-bar');
+    if (statsEl) statsEl.style.display = 'none';
+    const loadingEl = document.getElementById('loading');
+    if (loadingEl) loadingEl.style.display = 'none';
+    let emptyEl = document.getElementById('users-empty-state');
+    if (!emptyEl) {
+      emptyEl = document.createElement('div');
+      emptyEl.id = 'users-empty-state';
+      emptyEl.style.cssText = 'text-align:center;padding:60px 0;color:#555;font-size:15px';
+      document.getElementById('tab-users').appendChild(emptyEl);
+    }
+    emptyEl.style.display = 'block';
+    emptyEl.innerHTML =
+      '<div style="max-width:560px;margin:0 auto;line-height:1.6">'
+      + '<div style="font-size:34px;margin-bottom:10px">🔍</div>'
+      + '<div style="color:#cbd5e1;font-size:16px;font-weight:700;margin-bottom:6px">Поиск пользователя</div>'
+      + '<div style="color:#94a3b8;font-size:14px">Введи <b>UID</b>, <b>имя</b> (или их часть) в поле поиска слева — '
+      + 'найдём нужного, не загружая весь список.</div>'
+      + '<div style="color:#64748b;font-size:13px;margin-top:14px">Нужен весь список для сортировки по XP, ревеню и т.д.? '
+      + 'Нажми <b style="color:#c4b5fd">📋 Загрузить всех</b> — откроется постранично по 50.</div>'
+      + '</div>';
+    const statusEl = document.getElementById('status-text');
+    if (statusEl) statusEl.textContent = 'Поиск — список не загружен';
+  };
+
+  // Переключатель «Загрузить всех» ↔ «Только поиск».
+  window.toggleLoadAllUsers = function toggleLoadAllUsers() {
+    if (window._usersLoadAllMode || window._usersFreshlyLoaded) {
+      // Выходим из полного режима → назад в поиск, освобождаем память.
+      window._usersLoadAllMode = false;
+      window._usersFreshlyLoaded = false;
+      window._users = [];
+      window._currentPage = 0;
+      window._lastFilteredCount = -1;
+      const searchEl = document.getElementById('search');
+      if (searchEl) searchEl.value = '';
+      window.renderUsersSearchState();
+      return;
+    }
+    // Включаем полный постраничный список.
+    window._usersLoadAllMode = true;
+    if (typeof window.loadUsers === 'function') void window.loadUsers();
+  };
+
+  // Гарантирует, что загружен ПОЛНЫЙ список (для экспорта/дубликатов/рассылок).
+  // В поисковом режиме window._users содержит лишь несколько найденных — для
+  // этих операций нужен весь список, поэтому при необходимости грузим его.
+  window.ensureFullUsersLoaded = function ensureFullUsersLoaded(cb) {
+    if (window._usersFreshlyLoaded && Array.isArray(window._users) && window._users.length) {
+      if (typeof cb === 'function') cb(window._users);
+      return;
+    }
+    window._usersLoadAllMode = true;
+    showToast('Загружаю полный список пользователей…');
+    Promise.resolve(typeof window.loadUsers === 'function' ? window.loadUsers() : null)
+      .then(() => { if (typeof cb === 'function') cb(window._users || []); })
+      .catch(() => showToast('Не удалось загрузить пользователей', 'err'));
+  };
+
+  // Точечный серверный поиск для поискового режима (без загрузки всех).
+  // Ищем ШИРОКО, потому что ник в базе бывает рассинхронен между коллекциями:
+  //   • users.progress.user_name           — основное имя (по нему рисуется таблица)
+  //   • public_profiles.name / nameLower    — публичный профиль
+  //   • leaderboard.name / nameLower        — таблица лидеров
+  //   • name_index/{nameLower}              — индекс уникальных ников
+  // Юзер вроде «Дладуд» может лежать в users как «Тлдь», а актуальное имя —
+  // только в public_profiles. Поэтому собираем uid из всех источников и
+  // подтягиваем настоящий документ users/{uid}. Множество найденных uid
+  // (_usersSearchMatchUids) renderTable пропускает в таблицу, даже если
+  // users.user_name не содержит введённый запрос.
+  window._usersSearchSeq = 0;
+  window._usersSearchMatchUids = new Set();
+  window.usersSearchLookup = function usersSearchLookup(qRaw) {
+    const clean = String(qRaw || '').trim();
+    if (!clean) return;
+    if (window._usersSearchTimer) clearTimeout(window._usersSearchTimer);
+    window._usersSearchTimer = setTimeout(async () => {
+      window._usersSearchTimer = null; // дебаунс отработал — запрос «в полёте», не «ждёт ввода»
+      const seq = ++window._usersSearchSeq;
+      const statusEl = document.getElementById('status-text');
+      if (statusEl) statusEl.textContent = '🔍 Ищу «' + clean + '»…';
+      window._usersSearchInFlight = clean;
+
+      const lower = clean.toLowerCase();
+      const cap = lower.charAt(0).toUpperCase() + lower.slice(1);
+      const nameVariants = [...new Set([clean, cap, lower])]; // == в Firestore регистрозависим
+      const matchUids = new Set(); // uid, найденные любым способом
+      const readyRows = [];        // уже готовые строки юзера (из users)
+
+      // 1) По UID: точный + префикс (range по __name__). U+F8FF — верхняя граница.
+      try {
+        // Верхняя граница — очень высокий кодпоинт (U+F8FF): диапазон
+        // [clean … clean+U+F8FF] ловит и точный UID, и все UID с этим префиксом.
+        const end = clean + String.fromCharCode(0xf8ff); // was: clean + '';
+        const uidSnap = await getDocs(query(
+          collection(db, 'users'),
+          orderBy('__name__'),
+          startAt(clean),
+          endAt(end),
+          limit(25),
+        )).catch(() => null);
+        if (uidSnap) uidSnap.forEach(d => { const r = userRowFromDocSnap(d); if (r) { readyRows.push(r); matchUids.add(r.uid); } });
+      } catch (e) { console.warn('users uid search skipped', e); }
+
+      // 2) По имени в users.progress.user_name (== варианты регистра).
+      try {
+        const snaps = await Promise.all(nameVariants.map(v => getDocs(query(
+          collection(db, 'users'),
+          where('progress.user_name', '==', v),
+          limit(10),
+        )).catch(() => null)));
+        snaps.forEach(s => { if (s) s.forEach(d => { const r = userRowFromDocSnap(d); if (r) { readyRows.push(r); matchUids.add(r.uid); } }); });
+      } catch (e) { console.warn('users name search skipped', e); }
+
+      // 3) По имени в users.progress.user_name_lower (регистронезависимо, если поле есть).
+      try {
+        const s = await getDocs(query(
+          collection(db, 'users'),
+          where('progress.user_name_lower', '==', lower),
+          limit(10),
+        )).catch(() => null);
+        if (s) s.forEach(d => { const r = userRowFromDocSnap(d); if (r) { readyRows.push(r); matchUids.add(r.uid); } });
+      } catch (e) { console.warn('users name_lower search skipped', e); }
+
+      // 4) По публичным коллекциям — там может лежать актуальный ник, которого
+      //    нет в users. Берём оттуда только uid, документ юзера подтянем ниже.
+      const collectUidsFromField = (snap) => { if (snap) snap.forEach(d => { const u = d.data()?.uid || d.id; if (u) matchUids.add(u); }); };
+      try {
+        // public_profiles: docId == uid; поля name / nameLower
+        const ppSnaps = await Promise.all([
+          ...nameVariants.map(v => getDocs(query(collection(db, 'public_profiles'), where('name', '==', v), limit(10))).catch(() => null)),
+          getDocs(query(collection(db, 'public_profiles'), where('nameLower', '==', lower), limit(10))).catch(() => null),
+        ]);
+        ppSnaps.forEach(collectUidsFromField);
+      } catch (e) { console.warn('public_profiles search skipped', e); }
+      try {
+        // leaderboard: docId == uid; поля name / nameLower
+        const lbSnaps = await Promise.all([
+          ...nameVariants.map(v => getDocs(query(collection(db, 'leaderboard'), where('name', '==', v), limit(10))).catch(() => null)),
+          getDocs(query(collection(db, 'leaderboard'), where('nameLower', '==', lower), limit(10))).catch(() => null),
+        ]);
+        lbSnaps.forEach(collectUidsFromField);
+      } catch (e) { console.warn('leaderboard search skipped', e); }
+      try {
+        // name_index/{nameLower} — прямой документ по ключу.
+        const idxDoc = await getDoc(doc(db, 'name_index', lower)).catch(() => null);
+        if (idxDoc && idxDoc.exists()) { const u = idxDoc.data()?.uid; if (u) matchUids.add(u); }
+      } catch (e) { console.warn('name_index search skipped', e); }
+
+      // 5) Подтягиваем настоящие документы users/{uid} для тех uid, которых
+      //    ещё нет среди готовых строк (нашли только в профиле/лидерборде).
+      const haveUids = new Set(readyRows.map(r => r.uid));
+      const missing = [...matchUids].filter(u => u && !haveUids.has(u)).slice(0, 30);
+      try {
+        const docs = await Promise.all(missing.map(u => getDoc(doc(db, 'users', u)).catch(() => null)));
+        docs.forEach(d => { if (d && d.exists()) { const r = userRowFromDocSnap(d); if (r) readyRows.push(r); } });
+      } catch (e) { console.warn('users backfill by uid skipped', e); }
+
+      if (seq !== window._usersSearchSeq) return; // пришёл более свежий запрос — тот и обновит статус
+      window._usersSearchInFlight = '';           // этот запрос завершён
+      window._usersSearchMatchUids = matchUids;   // renderTable пропустит эти uid в таблицу
+
+      // Кладём найденных в кэш без дублей.
+      if (!window._users) window._users = [];
+      readyRows.forEach(r => {
+        const idx = window._users.findIndex(u => u.uid === r.uid);
+        if (idx >= 0) window._users[idx] = r; else window._users.push(r);
+      });
+      if (statusEl) statusEl.textContent = matchUids.size ? ('Найдено: ' + matchUids.size) : 'Ничего не найдено';
+      // Перерисовать таблицу текущим фильтром (запрос уже стоит в поле).
+      if (typeof window.renderTable === 'function') window.renderTable();
+    }, 260);
   };
 
   // ── Reusable CSV export ───────────────────────────────────────────────────
@@ -17253,6 +17537,11 @@
   };
 
   window.exportUsersCSV = function() {
+    // CSV — это выгрузка всей базы; в поисковом режиме сперва грузим полный список.
+    if (!window._usersFreshlyLoaded && typeof window.ensureFullUsersLoaded === 'function') {
+      window.ensureFullUsersLoaded(() => window.exportUsersCSV());
+      return;
+    }
     const users = window._pagedUsers || window._users || [];
     if (!users.length) { showToast('Нет данных для экспорта', 'warn'); return; }
     const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
@@ -17283,6 +17572,11 @@
   // Открывает модалку со списком email-адресов всех зарегистрированных юзеров.
   // Можно: скопировать в буфер, скачать .txt, скачать .csv.
   window.showEmailExportModal = function() {
+    // Список email — это выгрузка всей базы; в поисковом режиме грузим полный список.
+    if (!window._usersFreshlyLoaded && typeof window.ensureFullUsersLoaded === 'function') {
+      window.ensureFullUsersLoaded(() => window.showEmailExportModal());
+      return;
+    }
     const all = window._users || [];
     if (!all.length) {
       // Сами подгружаем пользователей и открываем модалку заново, без отказа.
@@ -18869,8 +19163,16 @@
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
     }
-    if (tab === 'users' && (!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
-      void window.loadUsers();
+    if (tab === 'users') {
+      // По умолчанию раздел «Users» работает как ПОИСК — НЕ грузим весь список
+      // (10k+ юзеров вешают вкладку). Показываем поисковую заглушку.
+      // Полную загрузку включает кнопка «📋 Загрузить всех» (toggleLoadAllUsers),
+      // которая выставляет window._usersLoadAllMode = true.
+      if (window._usersLoadAllMode && (!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
+        void window.loadUsers();
+      } else if (typeof window.renderUsersSearchState === 'function') {
+        window.renderUsersSearchState();
+      }
     }
     if (tab === 'analytics' && typeof window.renderAnalytics === 'function') {
       // Раздел сам подтянет пользователей и уберёт заглушку, если кэша ещё нет.
@@ -34143,6 +34445,11 @@
 
   // ── Duplicates panel ─────────────────────────────────────────────────────────
   window.showDuplicatesPanel = function() {
+    // Дубликаты имеют смысл только на ПОЛНОМ списке — в поисковом режиме грузим его.
+    if (!window._usersFreshlyLoaded && typeof window.ensureFullUsersLoaded === 'function') {
+      window.ensureFullUsersLoaded(() => window.showDuplicatesPanel());
+      return;
+    }
     const all = window._users || [];
     // Group by normalized name
     const nameMap = new Map();

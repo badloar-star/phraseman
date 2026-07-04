@@ -846,6 +846,8 @@ export default function FlashcardsSwipeScreen() {
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
+  // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
+  const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const planFlashcardsCompletionTracked = useRef(false);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
@@ -1841,24 +1843,47 @@ export default function FlashcardsSwipeScreen() {
       if (settlingRef.current) return;
       settlingRef.current = true;
       setSettling(true);
+      // Идемпотентное завершение: гарантированно один раз сбрасывает settling и
+      // продвигает карточку. Нужен страховочный таймаут, потому что колбэк
+      // Animated.timing().start() на Android может не выстрелить (GC/фон/дроп кадра) —
+      // тогда settlingRef навсегда остался бы true и все следующие свайпы/кнопки
+      // блокировались бы (юзер «застревает на первой карточке»).
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        if (settleGuardRef.current) {
+          clearTimeout(settleGuardRef.current);
+          settleGuardRef.current = null;
+        }
+        position.setValue({ x: 0, y: 0 });
+        after();
+        settlingRef.current = false;
+        setSettling(false);
+      };
+      // 190мс анимация + запас; если штатный колбэк не пришёл — доводим руками.
+      settleGuardRef.current = setTimeout(finish, 450);
       Animated.timing(position, {
         toValue: { x: direction === 'right' ? width * 1.15 : -width * 1.15, y: 0 },
         duration: 190,
         useNativeDriver: true,
       }).start(() => {
         position.stopAnimation(() => {
-          position.setValue({ x: 0, y: 0 });
-          after();
-          requestAnimationFrame(() => {
-            position.setValue({ x: 0, y: 0 });
-            settlingRef.current = false;
-            setSettling(false);
-          });
+          finish();
         });
       });
     },
     [position, width],
   );
+
+  // Гасим страховочный таймер settleCard при размонтировании, чтобы не дёргать
+  // setState после ухода с экрана.
+  useEffect(() => () => {
+    if (settleGuardRef.current) {
+      clearTimeout(settleGuardRef.current);
+      settleGuardRef.current = null;
+    }
+  }, []);
 
   const applyAnswer = useCallback(
     (prompt: Prompt, saysMatch: boolean) => {

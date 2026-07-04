@@ -6,7 +6,26 @@ import {
   type DigestSourceRows,
 } from './admin_daily_digest';
 
-const EMPTY_ROWS: DigestSourceRows = { reports: [], cancels: [], appErrors: [], safety: [] };
+// Полный пустой набор источников (все ключи обязательны в новом DigestSourceRows).
+const EMPTY_ROWS: DigestSourceRows = {
+  reports: [],
+  cancels: [],
+  appErrors: [],
+  safety: [],
+  newUsers: [],
+  purchases: [],
+  paywallPurchases: [],
+  ideas: [],
+  queues: {
+    userReports: [],
+    packReports: [],
+    explainReports: [],
+    websiteInbox: [],
+    supportInbox: [],
+    helpBoard: [],
+    leagueModeration: [],
+  },
+};
 
 describe('aggregateDigestFacts', () => {
   test('пустые источники → нули и пустой дайджест', () => {
@@ -15,6 +34,10 @@ describe('aggregateDigestFacts', () => {
     expect(facts.cancels.total).toBe(0);
     expect(facts.appErrors.total).toBe(0);
     expect(facts.safety.total).toBe(0);
+    expect(facts.growth.newUsers).toBe(0);
+    expect(facts.revenue.newPaying).toBe(0);
+    expect(facts.ideas.total).toBe(0);
+    expect(facts.queues).toEqual([]);
     expect(isDigestEmpty(facts)).toBe(true);
   });
 
@@ -33,6 +56,22 @@ describe('aggregateDigestFacts', () => {
     expect(facts.reports.byCategory).toEqual({ audio: 3, typo: 1 });
     expect(facts.reports.topScreens[0]).toEqual({ screen: 'lesson', count: 3 });
     expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('репорты: samples — только открытые с непустым комментарием, текст обрезан', () => {
+    const long = 'y'.repeat(400);
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      reports: [
+        { status: 'new', category: 'bug', screen: 'lesson', comment: 'звук не играет' },
+        { status: 'new', category: 'bug', screen: 'quiz', comment: long },
+        { status: 'new', category: 'bug', screen: 'home' }, // без комментария — не sample
+        { status: 'fixed', category: 'bug', screen: 'home', comment: 'уже неважно' }, // закрыт — не sample
+      ],
+    });
+    expect(facts.reports.samples.length).toBe(2);
+    expect(facts.reports.samples[0]).toEqual({ screen: 'lesson', category: 'bug', comment: 'звук не играет' });
+    expect(facts.reports.samples.every((s) => s.comment.length <= 220)).toBe(true);
   });
 
   test('отмены: считает по причине и берёт до 5 непустых сэмплов, режет до 160 символов', () => {
@@ -55,13 +94,21 @@ describe('aggregateDigestFacts', () => {
     expect(facts.cancels.sampleTexts.length).toBe(2);
   });
 
-  test('app_errors: total и critical', () => {
+  test('app_errors: total, critical и группировка по fingerprint с частотой', () => {
     const facts = aggregateDigestFacts({
       ...EMPTY_ROWS,
-      appErrors: [{ severity: 'warning' }, { severity: 'critical' }, { severity: 'critical' }],
+      appErrors: [
+        { severity: 'warning', context: 'audio load', message: 'timeout', feature: 'lesson', fingerprint: 'fp-audio' },
+        { severity: 'critical', context: 'audio load', message: 'timeout', feature: 'lesson', fingerprint: 'fp-audio' },
+        { severity: 'critical', context: 'sync fail', message: 'network', feature: 'sync', fingerprint: 'fp-sync' },
+      ],
     });
     expect(facts.appErrors.total).toBe(3);
     expect(facts.appErrors.critical).toBe(2);
+    // топ-группа — та, что встречается чаще (fp-audio: 2)
+    expect(facts.appErrors.topGroups[0].count).toBe(2);
+    expect(facts.appErrors.topGroups[0].context).toBe('audio load');
+    expect(facts.appErrors.topGroups.length).toBe(2);
   });
 
   test('safety: open = не handled, категории', () => {
@@ -80,6 +127,69 @@ describe('aggregateDigestFacts', () => {
     expect(isDigestEmpty(facts)).toBe(false);
   });
 
+  test('рост: новые пользователи считаются и делают дайджест непустым', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      newUsers: [{ platform: 'ios' }, { platform: 'android' }, {}],
+    });
+    expect(facts.growth.newUsers).toBe(3);
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('деньги: классификация RC-событий + paywall-сигнал', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      purchases: [
+        { eventType: 'INITIAL_PURCHASE', periodType: 'NORMAL' },
+        { eventType: 'NON_RENEWING_PURCHASE', periodType: 'NORMAL' },
+        { eventType: 'RENEWAL', periodType: 'NORMAL' },
+        { eventType: 'REFUND', periodType: 'NORMAL' },
+        { eventType: 'INITIAL_PURCHASE', periodType: 'TRIAL' },
+      ],
+      paywallPurchases: [{ day: '2026-07-04' }, { day: '2026-07-04' }],
+    });
+    expect(facts.revenue.newPaying).toBe(3); // 2 initial/non-renewing + 1 trial-initial
+    expect(facts.revenue.renewals).toBe(1);
+    expect(facts.revenue.refunds).toBe(1);
+    expect(facts.revenue.trials).toBe(1);
+    expect(facts.revenue.paywallPurchases).toBe(2);
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('идеи: считает, группирует по категории, кладёт содержимое (обрезанное)', () => {
+    const longDesc = 'z'.repeat(500);
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      ideas: [
+        { title: 'Тёмная тема', description: 'сделайте тёмную тему', benefit: 'глазам легче', category: 'feature', userName: 'Аня' },
+        { title: 'Скидка', description: longDesc, benefit: '', category: 'monetization', userName: 'Боб' },
+      ],
+    });
+    expect(facts.ideas.total).toBe(2);
+    expect(facts.ideas.byCategory).toEqual({ feature: 1, monetization: 1 });
+    expect(facts.ideas.items[0].title).toBe('Тёмная тема');
+    expect(facts.ideas.items.every((i) => i.description.length <= 300)).toBe(true);
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('очереди: только непустые попадают строками, с заметкой по частой причине', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      queues: {
+        ...EMPTY_ROWS.queues,
+        userReports: [{ reason: 'offensive_nickname' }, { reason: 'offensive_nickname' }],
+        supportInbox: [{ subject: 'не могу войти' }],
+      },
+    });
+    const names = facts.queues.map((q) => q.name);
+    expect(facts.queues.length).toBe(2);
+    expect(names.some((n) => n.includes('юзеров'))).toBe(true);
+    const ur = facts.queues.find((q) => q.name.includes('юзеров'));
+    expect(ur?.total).toBe(2);
+    expect(ur?.note).toContain('offensive_nickname');
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
   test('unknown-ключ для отсутствующих полей', () => {
     const facts = aggregateDigestFacts({ ...EMPTY_ROWS, reports: [{ status: 'new' }] });
     expect(facts.reports.byCategory).toEqual({ unknown: 1 });
@@ -92,6 +202,10 @@ describe('buildDigestPrompt / utcDayKey', () => {
     const prompt = buildDigestPrompt(facts);
     const parsed = JSON.parse(prompt);
     expect(parsed.reports.total).toBe(1);
+    // новые блоки присутствуют в payload для ИИ
+    expect(parsed.growth).toBeDefined();
+    expect(parsed.revenue).toBeDefined();
+    expect(parsed.ideas).toBeDefined();
   });
 
   test('utcDayKey — YYYY-MM-DD по UTC', () => {

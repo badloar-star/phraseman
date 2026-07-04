@@ -39,8 +39,8 @@ const SAFE_NAME_POOL = BOT_NAME_POOL.filter((n) => !/bot|npc|ai/i.test(n));
 
 const PUSH_ID_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-/** Верхний индекс ранга для lerp точности (Bronze I → Legend III ≈ 0..11). */
-const RANK_INDEX_MAX = 11;
+/** Верхний индекс ранга для lerp точности (Bronze I = 0 … Legend III = 23, как rankToIndex). */
+const RANK_INDEX_MAX = 23;
 
 /** Шанс «пропустить» идеальный захват при всех верных ответах (человечность). */
 const SKIP_PERFECT_CHANCE = 0.3;

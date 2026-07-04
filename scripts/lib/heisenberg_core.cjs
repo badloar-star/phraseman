@@ -237,6 +237,9 @@ const SKIP_PATH_PARTS = [
   'scripts/missing_edits_dump',
   'scripts/out',
   'docs/heisenberg',
+  // Generated Gustav study-target packs (fr) are not source-locale product
+  // input; the fr arena bank alone holds 200k+ items and drowns the scan.
+  'docs/gustav/generated',
   // Compiled build output duplicating functions/src; scanning it double-counts
   // every server string and audits stale artifacts.
   'functions/lib',
@@ -1208,7 +1211,9 @@ function inventoryFiles(root, files) {
     totals.filesScanned += 1;
     totals.bytesScanned += Buffer.byteLength(text, 'utf8');
     totals.localizedItems += items.length;
-    allItems.push(...items);
+    // No spread push: giant data files (100k+ extracted items) overflow the
+    // call stack when every item becomes a function argument.
+    for (const item of items) allItems.push(item);
     summaries.push({
       file: rel,
       surface,

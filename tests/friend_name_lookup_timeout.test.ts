@@ -50,10 +50,21 @@ test('lookupUserByNickname uses the fast name-index callable with a bounded time
     FRIEND_NAME_LOOKUP_CALLABLE_MS,
   } = require('../app/firestore_friends');
 
+  // Клиент прокидывает полный публичный профиль из ответа сервера (users.progress).
+  // Мок отдаёт только uid/source/name, поэтому числовые/строковые поля профиля пустые.
   await expect(lookupUserByNickname('  @Roma  ')).resolves.toEqual({
     uid: 'target-user',
     source: 'name_index',
     name: 'Roma',
+    profile: {
+      name: 'Roma',
+      totalXp: 0,
+      level: 0,
+      avatar: '',
+      frame: '',
+      aura: '',
+      isPremium: false,
+    },
   });
 
   expect(mockEnsureAnonUser).toHaveBeenCalledTimes(1);

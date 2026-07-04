@@ -25,6 +25,14 @@ const EMPTY_ROWS: DigestSourceRows = {
     helpBoard: [],
     leagueModeration: [],
   },
+  community: {
+    referrals: [],
+    packPurchases: [],
+    promoRedemptions: [],
+    surveyResponses: [],
+    packSubmissions: [],
+    arenaRooms: [],
+  },
 };
 
 describe('aggregateDigestFacts', () => {
@@ -38,6 +46,9 @@ describe('aggregateDigestFacts', () => {
     expect(facts.revenue.newPaying).toBe(0);
     expect(facts.ideas.total).toBe(0);
     expect(facts.queues).toEqual([]);
+    expect(facts.community.referrals.total).toBe(0);
+    expect(facts.community.packPurchases.total).toBe(0);
+    expect(facts.community.packSubmissions.total).toBe(0);
     expect(isDigestEmpty(facts)).toBe(true);
   });
 
@@ -187,6 +198,29 @@ describe('aggregateDigestFacts', () => {
     const ur = facts.queues.find((q) => q.name.includes('юзеров'));
     expect(ur?.total).toBe(2);
     expect(ur?.note).toContain('offensive_nickname');
+    expect(isDigestEmpty(facts)).toBe(false);
+  });
+
+  test('community: рефералы/покупки-паков/промо/опрос/сабмишены/арена считаются и делают дайджест непустым', () => {
+    const facts = aggregateDigestFacts({
+      ...EMPTY_ROWS,
+      community: {
+        referrals: [{ status: 'qualified' }, { status: 'pending' }, { status: 'qualified' }],
+        packPurchases: [{ packId: 'p1', priceShards: 50 }, { packId: 'p2', priceShards: 30 }],
+        promoRedemptions: [{ code: 'SUMMER' }, { code: 'SUMMER' }, { code: 'WELCOME' }],
+        surveyResponses: [{ uid: 'u1' }],
+        packSubmissions: [{ title: 'Идиомы делового английского', submissionKind: 'new' }],
+        arenaRooms: [{ title: 'Дуэль' }, { title: 'Блиц' }],
+      },
+    });
+    expect(facts.community.referrals.total).toBe(3);
+    expect(facts.community.referrals.byStatus).toEqual({ qualified: 2, pending: 1 });
+    expect(facts.community.packPurchases.total).toBe(2);
+    expect(facts.community.packPurchases.shardsSpent).toBe(80);
+    expect(facts.community.promoRedemptions.byCode).toEqual({ SUMMER: 2, WELCOME: 1 });
+    expect(facts.community.surveyResponses.total).toBe(1);
+    expect(facts.community.packSubmissions.titles).toContain('Идиомы делового английского');
+    expect(facts.community.arenaRooms.total).toBe(2);
     expect(isDigestEmpty(facts)).toBe(false);
   });
 

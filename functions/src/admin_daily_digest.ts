@@ -63,6 +63,21 @@ export interface DigestSourceRows {
     helpBoard: Array<{ title?: string }>;
     leagueModeration: Array<{ status?: string }>;
   };
+  /** Активность сообщества/маркетинга за 24ч (рефералы, покупки контента, промо, паки, опрос, арена). */
+  community: {
+    /** referral_attributions: новые привязки рефералов (+ статус). */
+    referrals: Array<{ status?: string }>;
+    /** community_pack_purchases: покупки UGC-паков за 💎. */
+    packPurchases: Array<{ packId?: string; priceShards?: number }>;
+    /** promo_redemptions (collectionGroup): активации промокодов. */
+    promoRedemptions: Array<{ code?: string }>;
+    /** vip_survey_responses: ответы на Plus-опрос. */
+    surveyResponses: Array<{ uid?: string }>;
+    /** community_pack_submissions: новые паки, поданные на модерацию. */
+    packSubmissions: Array<{ title?: string; submissionKind?: string }>;
+    /** arena_rooms_live: созданные кастомные комнаты арены (эфемерны, TTL 24ч). */
+    arenaRooms: Array<{ title?: string }>;
+  };
 }
 
 // ── Тип фактов, уходящих в ИИ ──────────────────────────────────────────────────
@@ -101,6 +116,15 @@ export interface DigestFacts {
   };
   // Новые идеи с содержимым — чтобы ИИ оценил, на что стоит обратить внимание.
   ideas: { total: number; byCategory: Record<string, number>; items: DigestIdea[] };
+  // Активность сообщества/маркетинга за сутки (рефералы, UGC-покупки, промо, паки, опрос, арена).
+  community: {
+    referrals: { total: number; byStatus: Record<string, number> };
+    packPurchases: { total: number; shardsSpent: number };
+    promoRedemptions: { total: number; byCode: Record<string, number> };
+    surveyResponses: { total: number };
+    packSubmissions: { total: number; titles: string[] };
+    arenaRooms: { total: number };
+  };
   // Прочие очереди — компактные строки «раздел: сколько накопилось».
   queues: DigestQueueLine[];
 }
@@ -201,6 +225,20 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
     { name: 'Очередь модерации чата лиг', total: q.leagueModeration.length, note: '' },
   ].filter((l) => l.total > 0);
 
+  const c = rows.community;
+  const shardsSpent = c.packPurchases.reduce((sum, p) => sum + (Number(p.priceShards) || 0), 0);
+  const community = {
+    referrals: { total: c.referrals.length, byStatus: countBy(c.referrals, (r) => r.status) },
+    packPurchases: { total: c.packPurchases.length, shardsSpent },
+    promoRedemptions: { total: c.promoRedemptions.length, byCode: countBy(c.promoRedemptions, (r) => r.code) },
+    surveyResponses: { total: c.surveyResponses.length },
+    packSubmissions: {
+      total: c.packSubmissions.length,
+      titles: c.packSubmissions.slice(0, 5).map((s) => clip(s.title, 80)).filter((t) => t.length > 0),
+    },
+    arenaRooms: { total: c.arenaRooms.length },
+  };
+
   return {
     windowHours,
     reports: {
@@ -240,6 +278,7 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
       byCategory: countBy(rows.ideas, (i) => i.category),
       items: ideaItems,
     },
+    community,
     queues: queueLines,
   };
 }
@@ -264,24 +303,32 @@ export function isDigestEmpty(facts: DigestFacts): boolean {
     facts.revenue.refunds === 0 &&
     facts.revenue.paywallPurchases === 0 &&
     facts.ideas.total === 0 &&
-    facts.queues.length === 0
+    facts.queues.length === 0 &&
+    facts.community.referrals.total === 0 &&
+    facts.community.packPurchases.total === 0 &&
+    facts.community.promoRedemptions.total === 0 &&
+    facts.community.surveyResponses.total === 0 &&
+    facts.community.packSubmissions.total === 0 &&
+    facts.community.arenaRooms.total === 0
   );
 }
 
 const DIGEST_SYSTEM_PROMPT = [
   'Ты — толковый операционный помощник основателя мобильного приложения для изучения английского.',
-  'Тебе дают СВОДКУ событий за последние сутки в JSON: рост (новые юзеры), деньги (покупки/продления/возвраты/пробные), новые идеи пользователей (с текстом), репорты (с примерами жалоб), ошибки приложения (сгруппированы: что именно ломается), safety-флаги и очереди модерации/обращений.',
-  'Напиши ПОЛЕЗНЫЙ утренний отчёт НА РУССКОМ обычным текстом (без markdown-заголовков, без таблиц).',
+  'Тебе дают ПОЛНУЮ СВОДКУ событий за последние сутки в JSON — она сканирует ВСЕ разделы админки: рост (новые юзеры), деньги (покупки/продления/возвраты/пробные), community (рефералы, покупки UGC-паков за 💎, активации промокодов, ответы на Plus-опрос, новые паки на модерацию, кастомные комнаты арены), новые идеи пользователей (с текстом), репорты (с примерами жалоб), ошибки приложения (сгруппированы: что именно ломается), safety-флаги и очереди модерации/обращений.',
+  'Напиши ПОЛЕЗНЫЙ утренний отчёт НА РУССКОМ обычным текстом (без markdown-заголовков, без таблиц). Охвати ВСЁ, где за сутки была активность; пустые разделы просто не упоминай.',
   'Строгие правила содержания:',
   '— Называй КОНКРЕТИКУ, а не только числа. Про репорты: перескажи суть тревожных жалоб (из samples), а не «17 репортов». Про ошибки: назови топ-группы (context/message из topGroups) — что чинить. Про идеи: кратко перескажи 1-3 самые толковые (из items) и скажи, стоит ли обратить внимание и почему.',
   '— Деньги и рост — отдельным блоком: сколько новых людей, сколько новых платящих/продлений/возвратов/пробных. Если возвраты > 0 — подсветь. Помни: сумма выручки не дана (RevenueCat не присылает цену) — не выдумывай деньги, говори про КОЛИЧЕСТВО событий.',
+  '— Community: если была активность (рефералы, покупки паков за 💎 с shardsSpent, промокоды по byCode, ответы опроса, новые паки на модерацию с titles, комнаты арены) — коротко перечисли что и сколько. Новые паки на модерацию (packSubmissions) — это очередь на разбор, подсвети.',
   '— Очереди: если где-то накопилось (queues) — назови где и сколько, чтобы владелец знал, что разобрать.',
   'Структура ответа:',
   '1) Одна строка-итог: спокойно всё или есть на что смотреть в первую очередь.',
   '2) Блок «📈 Рост и деньги:» — 1-3 строки числами (новые люди, платящие, продления, возвраты, пробные; если нули — «продаж/новых не было»).',
-  '3) Блок «⚠️ На что смотреть:» — маркеры «•» по приоритету: safety → возвраты/отмены → критические ошибки (какие) → тревожные репорты (о чём) → всё остальное. Группируй одинаковое, называй числа И суть.',
-  '4) Блок «💡 Идеи:» — если были: 1-3 самые дельные своими словами + вердикт «стоит/не стоит смотреть». Если идей нет — пропусти блок.',
-  '5) Блок «✅ Сделай сегодня:» — 1-5 конкретных действий по приоритету; если делать нечего — так и скажи.',
+  '3) Блок «⚠️ На что смотреть:» — маркеры «•» по приоритету: safety → возвраты/отмены → критические ошибки (какие) → тревожные репорты (о чём) → очереди/паки на модерацию → всё остальное. Группируй одинаковое, называй числа И суть.',
+  '4) Блок «🌐 Сообщество и продажи контента:» — если была community-активность: рефералы, покупки паков (сколько 💎 потрачено), промокоды, опрос, новые паки, арена. Если пусто — пропусти блок.',
+  '5) Блок «💡 Идеи:» — если были: 1-3 самые дельные своими словами + вердикт «стоит/не стоит смотреть». Если идей нет — пропусти блок.',
+  '6) Блок «✅ Сделай сегодня:» — 1-5 конкретных действий по приоритету; если делать нечего — так и скажи.',
   'Тон: спокойный, по делу, как толковый коллега. Без воды и канцелярита. Безопасность — всегда наверх, если есть. Не выдумывай того, чего нет в данных; если сутки реально тихие — честно так и скажи коротко.',
 ].join('\n');
 
@@ -373,10 +420,42 @@ export async function loadDigestSources(
     }
   };
 
+  // referral_attributions.createdAt — Firestore Timestamp (serverTimestamp), НЕ число.
+  const loadReferrals = async (): Promise<Array<{ status?: string }>> => {
+    try {
+      const sinceTs = admin.firestore.Timestamp.fromMillis(since);
+      const snap = await db
+        .collection('referral_attributions')
+        .where('createdAt', '>=', sinceTs)
+        .limit(limitPer)
+        .get();
+      return snap.docs.map((d) => ({ status: d.data().status as string }));
+    } catch (e) {
+      console.warn('admin_daily_digest: read referral_attributions failed', e);
+      return [];
+    }
+  };
+
+  // promo_redemptions — подколлекция под users/{uid}; читаем collectionGroup по redeemedAtMs.
+  const loadPromoRedemptions = async (): Promise<Array<{ code?: string }>> => {
+    try {
+      const snap = await db
+        .collectionGroup('promo_redemptions')
+        .where('redeemedAtMs', '>=', since)
+        .limit(limitPer)
+        .get();
+      return snap.docs.map((d) => ({ code: (d.data().code as string) || d.id }));
+    } catch (e) {
+      console.warn('admin_daily_digest: read promo_redemptions (collectionGroup) failed', e);
+      return [];
+    }
+  };
+
   const [
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
     userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration,
+    referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,
   ] = await Promise.all([
     // — Основные (у всех есть числовой createdAtMs) —
     byMs('error_reports', 'createdAtMs', (d) => {
@@ -414,12 +493,23 @@ export async function loadDigestSources(
     byMs('support_inbox', 'receivedAtMs', (d) => ({ subject: d.data().subject as string })),
     byMs('help_board_topics', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt здесь числовое (Date.now())
     byMs('league_chat_moderation_queue', 'createdAt', (d) => ({ status: d.data().status as string })), // createdAt числовое
+    // — Community / маркетинг (разные поля времени) —
+    loadReferrals(), // referral_attributions.createdAt = Timestamp
+    byMs('community_pack_purchases', 'createdAt', (d) => ({ packId: d.data().packId as string, priceShards: d.data().priceShards as number })), // createdAt числовое
+    loadPromoRedemptions(), // collectionGroup promo_redemptions.redeemedAtMs
+    byMs('vip_survey_responses', 'updatedAtMs', (d) => ({ uid: (d.data().uid as string) || d.id })),
+    byMs('community_pack_submissions', 'submittedAt', (d) => {
+      const x = d.data();
+      return { title: (x.payload?.titleRu as string) || (x.title as string), submissionKind: x.submissionKind as string };
+    }),
+    byMs('arena_rooms_live', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt числовое, TTL 24ч
   ]);
 
   return {
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
     queues: { userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration },
+    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
   };
 }
 

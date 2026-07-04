@@ -22,6 +22,10 @@ describe('website checkout PayPal currency contract', () => {
   it('bumps the start page asset version so browsers pick up the checkout fix', () => {
     const html = read('knowly-www/start/index.html');
 
-    expect(html).toContain('/assets/start.js?v=2');
+    // Смысл гарда — кэш-бастинг: версия должна быть >= 2 (v=2 — фикс валют PayPal,
+    // v=3 — email-шаг + режимы paywall/gift). Точное число растёт с релизами.
+    const match = html.match(/\/assets\/start\.js\?v=(\d+)/);
+    expect(match).not.toBeNull();
+    expect(Number(match![1])).toBeGreaterThanOrEqual(2);
   });
 });

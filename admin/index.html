@@ -9953,8 +9953,8 @@
     </div>
 
     <div class="h-sec">
-      <div class="h-sec-title">Testers</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Отдельная страница со списком тестировщиков. Открывается в новом файле (testers.html).</div>
+      <div class="h-sec-title">Телеграм оплата</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Отдельная страница со списком оплативших через Telegram. Открывается в новом файле (testers.html).</div>
     </div>
 
     <div class="h-sec">
@@ -10206,8 +10206,10 @@
   <div class="tab" onclick="switchTab('daily-digest')" title="ИИ-сводка «что случилось за сутки»: репорты, отмены, ошибки, safety — одним взглядом" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
+  <div class="tab" onclick="switchTab('ideas-decided')" title="Архив решённых идей: принятые (выдан год Плюс) и отклонённые — с текстом, отправленным пользователю" style="background:rgba(74,222,128,0.10);border:1px solid rgba(74,222,128,0.30);color:#86efac;font-weight:700">✅ Идеи: решённые</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
-  <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Testers">Testers</div>
+  <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Pago Telegram">Телеграм оплата</div>
+  <div class="tab" onclick="location.href='beta_testers.html'" title="Бета-тестеры: список, выдача ауры «Нимб», Plus навсегда, управление энергией" style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700">🔵 Бета тестеры</div>
   <div class="tab" onclick="location.href='full.html'" title="plan_content: server vs bundled, fallback frequency, situations and percents, with dates" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.35);color:#818cf8;font-weight:700">📊 FULL</div>
   <div class="tab" onclick="location.href='site.html'" title="Сайт knowlyapps.com: цены веб-оплаты, заказы Stripe/PayPal, коды активации, воронка /start/" style="background:rgba(232,197,102,0.12);border:1px solid rgba(232,197,102,0.4);color:#e8c566;font-weight:700">🌐 Сайт</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
@@ -10245,6 +10247,7 @@
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
+  <div class="tab" onclick="switchTab('french-quizzes')" title="French quiz pack preview, draft publish, and rollback workflow">French quizzes</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
   <div class="tab" onclick="switchTab('league-chat')" data-i18n-es="Chat de ligas">League chat</div>
   <div class="tab" onclick="switchTab('arena-ranks')" data-i18n-es="Arena - Top">Arena - Top</div>
@@ -11168,6 +11171,7 @@
     </label>
     <button type="button" id="btn-mark-all-fixed" onclick="markAllVisibleReportsFixed()" style="background:#1a3a1a;border:1px solid #2a5a2a;color:#4ade80" title="Все открытые репорты из текущего фильтра — статус «пофикшено» (без наград: они едут через ответ юзеру)" data-i18n-es="✅ Todo arreglado" data-i18n-es-title="Todos los reportes abiertos del filtro actual: estado arreglado (sin recompensas)">✅ Пофикшено все</button>
     <button type="button" id="btn-reply-all-ai" onclick="replyAllVisibleReportsAI()" style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa" title="ИИ пишет каждому автору вежливый ответ → уведомление с кнопкой «Забрать осколки» (+1 💎). Только неотвеченные репорты с валидным uid из текущего фильтра." data-i18n-es="🤖 Responder a todos (IA)" data-i18n-es-title="La IA escribe una respuesta a cada autor → notificación con botón para reclamar fragmentos">🤖 Ответить всем (ИИ)</button>
+    <button type="button" id="btn-reply-all-prepared" onclick="sendAllPreparedReplies()" style="background:#0f2a1a;border:1px solid #1e4a2f;color:#4ade80" title="Разослать ВСЕ готовые ответы (подготовлены заранее, показаны под каждым репортом). Каждому — свой текст и своя награда 💎. Пропускает уже отвеченные и репорты без готового ответа.">📨 Отправить готовые ответы</button>
     <span class="reports-count" id="reports-count"></span>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:-6px 0 16px 0;padding-bottom:4px;border-bottom:1px solid #2a2a3a">
@@ -11767,6 +11771,10 @@
           <select id="email-bulk-audience" onchange="updateAdminEmailBulkCount()">
             <option value="current">Текущий фильтр</option>
             <option value="all">Все имейлы</option>
+            <option value="plus">💚 Plus / Pro (платные)</option>
+            <option value="active">🔥 Активные (заходили за 30 дней)</option>
+            <option value="free">Бесплатные (приложение, не Plus)</option>
+            <option value="dormant">💤 Спящие (30+ дней без входа)</option>
             <option value="app">Имейлы из приложения</option>
             <option value="site">Имейлы из сайта</option>
           </select>
@@ -11915,6 +11923,28 @@
   <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
 </div>
 
+<!-- IDEAS DECIDED TAB (Архив решённых идей: принятые + отклонённые) -->
+<div id="tab-ideas-decided" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="idea-decided-filter-status" onchange="filterDecidedIdeas()">
+      <option value="" data-i18n-es="Todas (aceptadas y rechazadas)">Все решённые</option>
+      <option value="approved" data-i18n-es="Aceptadas">Принятые</option>
+      <option value="rejected" data-i18n-es="Rechazadas">Отклонённые</option>
+    </select>
+    <select id="idea-decided-filter-category" onchange="filterDecidedIdeas()">
+      <option value="" data-i18n-es="Todas las categorías">Все категории</option>
+      <option value="feature">Новая фича</option>
+      <option value="improvement">Улучшение</option>
+      <option value="monetization">Монетизация</option>
+      <option value="content">Контент</option>
+      <option value="other">Другое</option>
+    </select>
+    <button onclick="loadDecidedIdeas()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <span class="reports-count" id="idea-decided-count"></span>
+  </div>
+  <div id="idea-decided-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
 <!-- TOP HELPERS BOARD TAB (Топ хелперов) -->
 <div id="tab-helpers-board" class="reports-tab">
   <h2 style="margin:4px 0 10px">🏆 Топ хелперов</h2>
@@ -11927,11 +11957,11 @@
   <!-- Описание борда + тумблер вкл/выкл (remote_config/app, без OTA) -->
   <div style="margin-bottom:14px;padding:12px;border:1px solid #2a2a3a;border-radius:8px">
     <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:4px">Описание борда (видно юзерам вверху раздела, без пересборки):</label>
-    <textarea id="hb-desc" rows="3" style="width:100%;max-width:720px;box-sizing:border-box;background:#15151f;color:#ddd;border:1px solid #2a2a3a;border-radius:6px;padding:8px"></textarea>
+    <textarea id="thb-desc" rows="3" style="width:100%;max-width:720px;box-sizing:border-box;background:#15151f;color:#ddd;border:1px solid #2a2a3a;border-radius:6px;padding:8px"></textarea>
     <div style="margin-top:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
       <button onclick="saveHelpersDescription()">💾 Сохранить описание</button>
       <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:#ddd">
-        <input type="checkbox" id="hb-enabled" onchange="saveControlPanelBool('top_helpers_enabled', this.checked)" style="width:42px;height:24px;cursor:pointer"/>
+        <input type="checkbox" id="thb-enabled" onchange="saveControlPanelBool('top_helpers_enabled', this.checked)" style="width:42px;height:24px;cursor:pointer"/>
         Раздел включён (виден в приложении)
       </label>
     </div>
@@ -11939,14 +11969,14 @@
 
   <div class="reports-toolbar">
     <button onclick="loadHelpersBoard(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
-    <input type="text" id="hb-search" placeholder="UID или имя" oninput="renderHelpersBoard()" style="background:#15151f;color:#ddd;border:1px solid #2a2a3a;border-radius:6px;padding:6px 10px"/>
-    <span class="reports-count" id="hb-count"></span>
+    <input type="text" id="thb-search" placeholder="UID или имя" oninput="renderHelpersBoard()" style="background:#15151f;color:#ddd;border:1px solid #2a2a3a;border-radius:6px;padding:6px 10px"/>
+    <span class="reports-count" id="thb-count"></span>
   </div>
 
   <div class="table-wrap">
     <table>
       <thead><tr><th>#</th><th>Имя</th><th>UID</th><th>Подтверждено</th><th>Статус</th><th>Действия</th></tr></thead>
-      <tbody id="hb-body"><tr><td colspan="6" class="reports-empty">Нажми «Обновить»</td></tr></tbody>
+      <tbody id="thb-body"><tr><td colspan="6" class="reports-empty">Нажми «Обновить»</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -12111,7 +12141,7 @@
   <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5" data-i18n-es="Fuente Plus real: RC metadata + progress.premium_plan. Los Plus admin están en la pestaña Plus separada.">
     Здесь только настоящий Plus: RC metadata (<code data-i18n-es="premium_rc_period_type">premium_rc_period_type</code>, <code data-i18n-es="premium_rc_product_id">premium_rc_product_id</code>) + store-поля <code style="color:#a78bfa" data-i18n-es="users.progress.premium_plan">users.progress.premium_plan</code>. Админская выдача вынесена отдельно во вкладку <strong style="color:#4ade80">💚 Plus</strong> и пишет только <code>progress.vip_*</code>.
   </p>
-  <div id="pr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Carga primero los usuarios.">Загрузите пользователей сначала.</div></div>
+  <div id="pr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Cargando usuarios…">⏳ Загружаю пользователей…</div></div>
   <!-- 08.06 NEW -->
   <div style="padding:0 24px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;max-width:1040px;border-top:1px solid rgba(99,102,241,0.2);margin-top:8px">
     <div class="report-card" style="border-color:rgba(99,102,241,0.4)">
@@ -12174,7 +12204,7 @@
   <p style="padding:0 24px 12px;font-size:13px;color:#8fbfa3;max-width:1040px;line-height:1.5">
     Plus (админский) — это админский доступ с привилегиями Plus, но без настоящего Plus-статуса: в приложении остаётся возможность купить Plus, имя/аура зелёные, paywall не блокирует. Выдача и отзыв пишут только <code>users.progress.vip_active</code>, <code>vip_from</code>, <code>vip_until</code>, <code>vip_admin_override</code>, <code>vip_admin_grant_at</code>. RevenueCat и реальные Plus-поля не трогаются.
   </p>
-  <div id="vip-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Carga primero los usuarios.">Загрузите пользователей сначала.</div></div>
+  <div id="vip-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Cargando usuarios…">⏳ Загружаю пользователей…</div></div>
   <!-- 08.06 NEW -->
   <div style="padding:0 24px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;max-width:1040px;border-top:1px solid rgba(16,185,129,0.2);margin-top:8px">
     <div class="report-card" style="border-color:rgba(16,185,129,0.4)">
@@ -12240,7 +12270,7 @@
   <p>
     Read-only money diagnostic. It compares real Plus from RevenueCat/store fields with admin Plus in <code>progress.vip_*</code>, then highlights overlaps, legacy <code>admin_grant</code>, stale flags, and duplicate-looking user documents.
   </p>
-  <div id="pradar-list" style="padding:0 24px 32px"><div class="reports-empty">Load users first to inspect Plus anomalies.</div></div>
+  <div id="pradar-list" style="padding:0 24px 32px"><div class="reports-empty">⏳ Загружаю пользователей…</div></div>
 </div>
 
 <!-- PROMO CODES TAB -->
@@ -12957,6 +12987,17 @@
   <p data-i18n-es="Fuente: daily_phrases. La app toma la tarjeta por scheduledDate para el día actual y escucha cambios en tiempo real. Las fechas pasadas están bloqueadas para arrastrar; la cola desde hoy se puede reordenar con el asa ↕. allowSave=false oculta el botón de guardar en mis tarjetas." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:1180px;line-height:1.5">
     <span data-i18n-es="Fuente:">Источник:</span> <code style="color:#a78bfa" data-i18n-es="daily_phrases">daily_phrases</code>. <span data-i18n-es="La app toma la tarjeta por">Приложение берет карточку по</span> <code data-i18n-es="scheduledDate">scheduledDate</code> <span data-i18n-es="para el día actual y escucha cambios en tiempo real. Las fechas pasadas están bloqueadas para arrastrar; la cola desde hoy se puede reordenar con drag-and-drop por el asa">для текущего дня и слушает изменения в реальном времени. Прошлые даты заблокированы для перетаскивания; очередь с сегодняшнего дня можно менять drag-and-drop за ручку</span> <strong data-i18n-es="↕">↕</strong>. <code data-i18n-es="allowSave=false">allowSave=false</code> <span data-i18n-es="oculta el botón de guardar en mis tarjetas.">скрывает кнопку «сохранить себе в карточки».</span>
   </p>
+  <div data-gustav-admin-surface="french-daily-phrases" style="padding:0 24px 12px;max-width:1180px">
+    <div class="reports-toolbar" style="margin:0 0 10px;padding:10px 0;gap:8px;flex-wrap:wrap">
+      <button type="button" id="fdp-preview-btn" onclick="renderFrenchDailyPhrasesAdmin()" title="Refresh French Daily Phrase gate status and preview one accepted source-backed row">Preview French rows</button>
+      <button type="button" id="fdp-draft-btn" onclick="frenchDailyPhraseAdminCreateDraft()" title="Create a guarded French Daily Phrase publication draft. This does not activate the pack." style="background:#4ade80;border:1px solid #22c55e;color:#07110A;font-weight:900">Create French draft</button>
+      <button type="button" id="fdp-approval-btn" onclick="frenchDailyPhraseAdminRequestApproval()" title="Check whether French Daily Phrase activation approval can be requested. Activation remains explicit.">Check French approval</button>
+      <button type="button" id="fdp-rollback-btn" onclick="frenchDailyPhraseAdminCreateRollback()" title="Create a French Daily Phrase rollback draft without deleting historical payloads." style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5">Rollback French draft</button>
+    </div>
+    <div id="fdp-status" style="margin-bottom:10px"></div>
+    <div id="fdp-preview" style="margin-bottom:10px"></div>
+    <pre id="fdp-output" class="reports-empty" style="white-space:pre-wrap;max-width:1180px">Open Daily phrases to load French Daily Phrase gate state. activationApproved=false</pre>
+  </div>
   <div id="dp-summary" style="padding:0 24px 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px"></div>
   <div class="table-wrap" style="padding:0 24px 32px">
     <table id="dp-table" style="display:none">
@@ -12977,6 +13018,26 @@
     </table>
     <div id="dp-empty" class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div>
   </div>
+</div>
+
+<!-- FRENCH QUIZZES TAB -->
+<div id="tab-french-quizzes" class="reports-tab" aria-labelledby="fq-title" data-gustav-admin-surface="french-standard-quizzes">
+  <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
+    <button type="button" id="fq-preview-btn" onclick="renderFrenchQuizzesAdmin()" title="Refresh gate status and preview one reviewed French quiz row">Preview rows</button>
+    <button type="button" id="fq-draft-btn" onclick="frenchQuizAdminCreateDraft()" title="Create a guarded publication draft. This does not activate the pack." style="background:#4ade80;border:1px solid #22c55e;color:#07110A;font-weight:900">Create publication draft</button>
+    <button type="button" id="fq-approval-btn" onclick="frenchQuizAdminRequestApproval()" title="Check whether activation approval can be requested. It remains blocked while gates hold.">Check activation approval</button>
+    <button type="button" id="fq-rollback-btn" onclick="frenchQuizAdminCreateRollback()" title="Create a rollback draft after confirmation. This does not delete historical payloads." style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5">Rollback draft</button>
+  </div>
+  <div style="padding:0 24px 12px;max-width:1180px">
+    <h2 id="fq-title" style="margin:4px 0 8px;color:#fff;font-size:20px">French quizzes</h2>
+    <p style="margin:0;color:#aaa;font-size:13px;line-height:1.55">
+      Standard French quiz pack control surface. Use preview first, create a draft only after gates are green, and keep activation locked until the final production-readiness gate passes.
+      <code style="color:#a78bfa">activationApproved=false</code>
+    </p>
+  </div>
+  <div id="fq-status" style="padding:0 24px 12px"></div>
+  <div id="fq-preview" style="padding:0 24px 12px"></div>
+  <pre id="fq-output" class="reports-empty" style="margin:0 24px 32px;white-space:pre-wrap;max-width:1180px">Open the tab to load French quiz gate state.</pre>
 </div>
 
 <!-- ARENA LIVE TAB -->
@@ -13999,7 +14060,7 @@
   </div>
 
   <div class="analytics-grid" id="analytics-grid">
-    <div class="loading" data-i18n-es="Carga primero los usuarios">Загрузите пользователей сначала</div>
+    <div class="loading" data-i18n-es="Cargando usuarios…">⏳ Загружаю пользователей…</div>
   </div>
 </div>
 
@@ -14118,6 +14179,9 @@
   })();
 </script>
 
+<script src="french-daily-phrases-workflow.js"></script>
+<script src="french-daily-phrases-admin.js"></script>
+<script src="french-quizzes-workflow.js"></script>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
@@ -14277,7 +14341,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -16802,6 +16866,7 @@
         });
       });
       window._users = users;
+      window._usersFreshlyLoaded = true; // данные пришли из сети в этой сессии (не старый снепшот)
       saveAdminUsersSnapshot(users);
       updateStats(users);
       renderTable();
@@ -16833,6 +16898,72 @@
 
   window.loadUsersFull = function() {
     return loadUsers();
+  };
+
+  // ── Единый мост «раздел сам грузит пользователей» ──────────────────────────
+  // Любой раздел, которому нужен кэш window._users, вызывает ensureUsersLoaded()
+  // вместо статичной заглушки «сначала загрузите пользователей». Он:
+  //  • если кэш уже есть — сразу рисует раздел;
+  //  • если кэша нет — показывает честный статус загрузки и грузит сам
+  //    (переиспользуя уже идущую загрузку, без дублей параллельных запросов);
+  //  • если загрузка упала — показывает кнопку «Повторить», которая работает
+  //    прямо здесь, а не отсылает админа на другую вкладку.
+  window._usersLoadPromise = window._usersLoadPromise || null;
+
+  window.loadUsersOnce = function loadUsersOnce(options = {}) {
+    // Совпадающая (in-flight) загрузка переиспользуется, чтобы четыре раздела,
+    // открытые подряд, не дёргали Firestore параллельно.
+    // options.revalidate — сходить в сеть даже при заполненном кэше (тихое фоновое
+    // обновление старого снепшота), но всё так же переиспользуя идущую загрузку.
+    if (Array.isArray(window._users) && window._users.length && !options.force && !options.revalidate) {
+      return Promise.resolve(window._users);
+    }
+    if (window._usersLoadPromise) return window._usersLoadPromise;
+    if (typeof window.loadUsers !== 'function') return Promise.resolve(window._users || []);
+    const p = Promise.resolve(window.loadUsers(options))
+      .then(() => window._users || [])
+      .finally(() => { if (window._usersLoadPromise === p) window._usersLoadPromise = null; });
+    window._usersLoadPromise = p;
+    return p;
+  };
+
+  // renderFn — функция, которая рисует конкретный раздел из window._users.
+  // listEl — контейнер, куда писать статус загрузки/ошибки (id или элемент).
+  window.ensureUsersLoaded = function ensureUsersLoaded(renderFn, listEl, opts = {}) {
+    const el = typeof listEl === 'string' ? document.getElementById(listEl) : listEl;
+    const draw = () => { try { if (typeof renderFn === 'function') renderFn(); } catch (e) { console.warn('section render failed', e); } };
+    if (Array.isArray(window._users) && window._users.length) {
+      // Данные есть — рисуем сразу для мгновенности.
+      draw();
+      // …но если это ещё старый снепшот (свежая сетевая загрузка в этой сессии
+      // не проходила), тихо обновляем в фоне и перерисовываем раздел актуальными
+      // данными. Иначе разделы показывали бы устаревшие цифры до ручного «Обновить».
+      if (!window._usersFreshlyLoaded && !opts.force && typeof window.loadUsers === 'function') {
+        window.loadUsersOnce({ background: true, revalidate: true }).then(() => draw()).catch(() => {});
+      }
+      return;
+    }
+    if (el) {
+      el.innerHTML = '<div class="reports-empty">⏳ Загружаю пользователей…</div>';
+    }
+    window.loadUsersOnce(opts).then((users) => {
+      if (Array.isArray(users) && users.length) {
+        draw();
+      } else if (el) {
+        // Загрузка прошла, но база реально пустая — честно так и скажем.
+        el.innerHTML = '<div class="reports-empty">Пользователей пока нет.</div>';
+      }
+    }).catch((e) => {
+      console.warn('ensureUsersLoaded failed', e);
+      if (el) {
+        const rid = 'reload-users-' + Math.random().toString(36).slice(2, 8);
+        el.innerHTML = '<div class="reports-empty">🔄 Не удалось загрузить пользователей. '
+          + '<button id="' + rid + '" style="margin-left:8px;padding:4px 12px;border-radius:6px;'
+          + 'border:1px solid #6366f1;background:#1a1a24;color:#c4b5fd;cursor:pointer">Повторить</button></div>';
+        const btn = document.getElementById(rid);
+        if (btn) btn.addEventListener('click', () => window.ensureUsersLoaded(renderFn, el, { force: true }));
+      }
+    });
   };
 
   function updateStats(users) {
@@ -17153,7 +17284,16 @@
   // Можно: скопировать в буфер, скачать .txt, скачать .csv.
   window.showEmailExportModal = function() {
     const all = window._users || [];
-    if (!all.length) { showToast('Сначала загрузите пользователей', 'warn'); return; }
+    if (!all.length) {
+      // Сами подгружаем пользователей и открываем модалку заново, без отказа.
+      showToast('Загружаю пользователей…');
+      if (typeof window.loadUsersOnce === 'function') {
+        window.loadUsersOnce()
+          .then((users) => { if (Array.isArray(users) && users.length) window.showEmailExportModal(); })
+          .catch(() => showToast('Не удалось загрузить пользователей', 'err'));
+      }
+      return;
+    }
 
     const withEmail = all.filter(u => u.linkedAuth && u.linkedAuth.email);
     const byProvider = { google: 0, apple: 0, other: 0 };
@@ -17296,6 +17436,8 @@
       uids: [],
       orderIds: [],
       lastSeenMs: 0,
+      isPlus: false,
+      lastActiveMs: 0,
     };
     if (!existing.sources.includes(source)) existing.sources.push(source);
     if (row.context && !existing.contexts.includes(row.context)) existing.contexts.push(row.context);
@@ -17303,6 +17445,8 @@
     if (row.orderId && !existing.orderIds.includes(row.orderId)) existing.orderIds.push(row.orderId);
     existing.name = existing.name || row.name || '';
     existing.provider = existing.provider || row.provider || '';
+    existing.isPlus = existing.isPlus || !!row.isPlus;
+    existing.lastActiveMs = Math.max(existing.lastActiveMs || 0, row.lastActiveMs || 0);
     existing.lastSeenMs = Math.max(existing.lastSeenMs || 0, row.lastSeenMs || 0);
     existing.lastSeenLabel = row.lastSeenMs >= (existing.lastSeenMs || 0) ? (row.lastSeenLabel || '') : existing.lastSeenLabel;
     map.set(email, existing);
@@ -17315,12 +17459,16 @@
       const email = adminEmailNormalize(linked.email);
       if (!email || adminEmailIsApplePrivateRelay(email)) return;
       const provider = linked.provider || (u.firebaseAuthUid ? 'firebase_auth' : 'app');
+      const isPlus = typeof isUserPremiumActive === 'function' ? isUserPremiumActive(u) : false;
+      const lastActiveMs = adminEmailMillis(u.lastActiveAt) || adminEmailMillis(u.updatedAt) || 0;
       addAdminEmailRow(map, {
         email,
         source: 'app',
         uid: u.uid || '',
         name: u.name || linked.displayName || '',
         provider,
+        isPlus,
+        lastActiveMs,
         context: [provider, u.name || '', u.uid ? String(u.uid).slice(0, 12) : ''].filter(Boolean).join(' · '),
         lastSeenMs: adminEmailMillis(linked.linkedAt) || adminEmailMillis(u.updatedAt) || adminEmailMillis(u.createdAt),
         lastSeenLabel: 'app',
@@ -17463,11 +17611,24 @@
     renderAdminEmails();
   };
 
+  const EMAIL_ACTIVE_WINDOW_DAYS = 30;
+  function emailRowMatchesAudience(row, audience) {
+    const activeCutoff = Date.now() - EMAIL_ACTIVE_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+    switch (audience) {
+      case 'app': return row.sources.includes('app');
+      case 'site': return row.sources.includes('site');
+      case 'plus': return !!row.isPlus;
+      case 'free': return row.sources.includes('app') && !row.isPlus;
+      case 'active': return (row.lastActiveMs || 0) >= activeCutoff;
+      case 'dormant': return row.sources.includes('app') && (row.lastActiveMs || 0) > 0 && (row.lastActiveMs || 0) < activeCutoff;
+      case 'all':
+      default: return true;
+    }
+  }
   function filterAdminEmailRows(source, queryText) {
     const q = String(queryText || '').trim().toLowerCase();
     return (window._adminEmailRows || []).filter((row) => {
-      if (source === 'app' && !row.sources.includes('app')) return false;
-      if (source === 'site' && !row.sources.includes('site')) return false;
+      if (!emailRowMatchesAudience(row, source)) return false;
       if (!q) return true;
       const hay = [row.email, row.name, row.provider, ...(row.contexts || []), ...(row.uids || []), ...(row.orderIds || [])]
         .join(' ')
@@ -17818,9 +17979,9 @@
     try {
       const cfg = await getDoc(doc(db, 'remote_config', 'app'));
       const data = cfg.exists() ? (cfg.data() || {}) : {};
-      const descEl = document.getElementById('hb-desc');
+      const descEl = document.getElementById('thb-desc');
       if (descEl) descEl.value = (data.texts && data.texts.top_helpers_description) || '';
-      const enEl = document.getElementById('hb-enabled');
+      const enEl = document.getElementById('thb-enabled');
       if (enEl) enEl.checked = !(data.bools && data.bools.top_helpers_enabled === false);
     } catch (e) { console.warn('helpers cfg', e); }
     // Весь борд (без limit — админ видит всех; в приложении только топ-10).
@@ -17830,16 +17991,16 @@
       renderHelpersBoard();
       if (typeof showToast === 'function') showToast(`Загружено: ${window._helpersBoard.length}`);
     } catch (e) {
-      const tbody = document.getElementById('hb-body');
+      const tbody = document.getElementById('thb-body');
       if (tbody) tbody.innerHTML = `<tr><td colspan="6" class="reports-empty">❌ ${escapeHtml(e.message)}</td></tr>`;
     }
   };
 
   window.renderHelpersBoard = function() {
-    const q = (document.getElementById('hb-search')?.value || '').toLowerCase();
+    const q = (document.getElementById('thb-search')?.value || '').toLowerCase();
     const rows = (window._helpersBoard || []).filter(u =>
       !q || (u.uid||'').toLowerCase().includes(q) || (u.displayName||'').toLowerCase().includes(q));
-    const tbody = document.getElementById('hb-body');
+    const tbody = document.getElementById('thb-body');
     if (tbody) tbody.innerHTML = rows.length ? rows.map((u, i) => `
       <tr>
         <td>${i+1}</td>
@@ -17852,12 +18013,12 @@
           <button onclick="grantHelperPlus('${u.uid}')">💚 Plus</button>
         </td>
       </tr>`).join('') : '<tr><td colspan="6" class="reports-empty">Пусто</td></tr>';
-    const c = document.getElementById('hb-count');
+    const c = document.getElementById('thb-count');
     if (c) c.textContent = `${rows.length} чел.`;
   };
 
   window.saveHelpersDescription = async function() {
-    const text = document.getElementById('hb-desc')?.value || '';
+    const text = document.getElementById('thb-desc')?.value || '';
     try {
       await saveControlPanelTexts({ top_helpers_description: text });
       if (typeof showToast === 'function') showToast('Описание сохранено');
@@ -18680,6 +18841,8 @@
     if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
     const dpTabEl = document.getElementById('tab-daily-phrases');
     if (dpTabEl) dpTabEl.classList.toggle('active', tab === 'daily-phrases');
+    const fqTabEl = document.getElementById('tab-french-quizzes');
+    if (fqTabEl) fqTabEl.classList.toggle('active', tab === 'french-quizzes');
     const arenaLiveTabEl = document.getElementById('tab-arena-live');
     if (arenaLiveTabEl) arenaLiveTabEl.classList.toggle('active', tab === 'arena-live');
     const arenaBetsTabEl = document.getElementById('tab-arena-bets');
@@ -18697,14 +18860,21 @@
     if (tab === 'ideas' && typeof window.loadUserIdeas === 'function') {
       void window.loadUserIdeas();
     }
+    if (tab === 'ideas-decided' && typeof window.loadDecidedIdeas === 'function') {
+      void window.loadDecidedIdeas();
+    }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
     }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
     }
-    if ((tab === 'users' || tab === 'analytics') && (!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
+    if (tab === 'users' && (!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
       void window.loadUsers();
+    }
+    if (tab === 'analytics' && typeof window.renderAnalytics === 'function') {
+      // Раздел сам подтянет пользователей и уберёт заглушку, если кэша ещё нет.
+      window.renderAnalytics(window._users || []);
     }
     if (tab === 'analytics' && typeof window.initAnalyticsFunnelV2 === 'function') {
       window.initAnalyticsFunnelV2();
@@ -18827,6 +18997,12 @@
     if (tab === 'daily-phrases' && !window._dailyPhrasesLoaded && typeof window.loadDailyPhrases === 'function') {
       void window.loadDailyPhrases(false);
     }
+    if (tab === 'daily-phrases' && typeof window.renderFrenchDailyPhrasesAdmin === 'function') {
+      window.renderFrenchDailyPhrasesAdmin();
+    }
+    if (tab === 'french-quizzes' && typeof window.renderFrenchQuizzesAdmin === 'function') {
+      window.renderFrenchQuizzesAdmin();
+    }
     const pushTab = document.getElementById('tab-push-notify');
     if (pushTab) pushTab.classList.toggle('active', tab === 'push-notify');
     if (tab === 'push-notify' && !window._pushJobsLoaded && typeof window.loadPushJobs === 'function') {
@@ -18835,6 +19011,255 @@
     try {
       if (options.markSeen !== false && typeof markAdminTabSeenForBadges === 'function') markAdminTabSeenForBadges(tab);
     } catch (_) { /* noop */ }
+  };
+
+  const FRENCH_QUIZZES_ADMIN_EVIDENCE = Object.freeze({
+    progress: Object.freeze({
+      summary: Object.freeze({
+        totalRows: 840,
+        acceptedRows: 840,
+        rejectedRows: 0,
+        sourceLocales: ['ru', 'uk'],
+      }),
+    }),
+    finalGate: Object.freeze({
+      status: 'HOLD_NOT_PRODUCTION_READY',
+      productionReady: false,
+      activationApproved: false,
+      gates: Object.freeze([
+        Object.freeze({ gateId: 'content_hard_audit', status: 'PASS' }),
+        Object.freeze({ gateId: 'semantic_smell_audit', status: 'PASS' }),
+        Object.freeze({ gateId: 'llm_review_decisions', status: 'PASS' }),
+        Object.freeze({ gateId: 'runtime_full_sentence_adapter', status: 'PASS' }),
+        Object.freeze({ gateId: 'server_pack_dryrun_validation', status: 'PASS' }),
+        Object.freeze({ gateId: 'server_pack_upload_rehearsal', status: 'PASS' }),
+        Object.freeze({ gateId: 'rollback_runtime_off_switch', status: 'PASS' }),
+        Object.freeze({ gateId: 'admin_workflow_map', status: 'PASS' }),
+        Object.freeze({ gateId: 'admin_workflow_handlers', status: 'PASS' }),
+        Object.freeze({ gateId: 'admin_surface_wiring', status: 'PASS' }),
+        Object.freeze({ gateId: 'admin_preview_publish_rollback', status: 'HOLD', blocker: 'HOLD_ADMIN_IMPLEMENTATION_REQUIRED' }),
+        Object.freeze({ gateId: 'rollback_activation_governance', status: 'HOLD', blocker: 'HOLD_ADMIN_ROLLBACK_WORKFLOW_REQUIRED' }),
+      ]),
+    }),
+  });
+
+  const FRENCH_QUIZZES_ADMIN_SAMPLE_ROW = Object.freeze({
+    entryId: 'fr-standard-quiz-preview-row',
+    questionId: 'fr-standard-quiz-preview-question',
+    studyTarget: 'fr',
+    surface: 'quiz',
+    sourcePrompt_ru: 'Preview sample: choose the natural French sentence.',
+    sourcePrompt_uk: 'Preview sample: choose the natural French sentence.',
+    choices: Object.freeze(['Je veux un cafe.', 'Je suis un cafe.', 'J ai un cafe.', 'Je vais un cafe.']),
+    correct: 0,
+    answer: 'Je veux un cafe.',
+    explanations_ru: Object.freeze([
+      'Correct preview choice: vouloir can take a direct object.',
+      'Incorrect: etre does not express wanting a coffee.',
+      'Incorrect: avoir changes the meaning to having a coffee.',
+      'Incorrect: aller does not take the noun this way.',
+    ]),
+    explanations_uk: Object.freeze([
+      'Correct preview choice: vouloir can take a direct object.',
+      'Incorrect: etre does not express wanting a coffee.',
+      'Incorrect: avoir changes the meaning to having a coffee.',
+      'Incorrect: aller does not take the noun this way.',
+    ]),
+    officialSourceCoverage: Object.freeze([
+      Object.freeze({ sourceId: 'larousse-vouloir', label: 'Larousse: vouloir', url: 'https://www.larousse.fr/dictionnaires/francais/vouloir/' }),
+    ]),
+  });
+
+  function frenchQuizAdminApi() {
+    return window.PhrasemanFrenchQuizzesWorkflow;
+  }
+
+  function frenchQuizAdminEvidence() {
+    return window.FRENCH_QUIZZES_ADMIN_EVIDENCE || FRENCH_QUIZZES_ADMIN_EVIDENCE;
+  }
+
+  function frenchQuizAdminSampleRow() {
+    return window.FRENCH_QUIZZES_ADMIN_SAMPLE_ROW || FRENCH_QUIZZES_ADMIN_SAMPLE_ROW;
+  }
+
+  function frenchQuizAdminEscape(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, (ch) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[ch]));
+  }
+
+  function frenchQuizAdminWriteOutput(payload) {
+    const output = document.getElementById('fq-output');
+    if (!output) return;
+    output.textContent = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
+  }
+
+  function frenchQuizAdminDocRef(writePath) {
+    const segments = String(writePath || '').split('/').filter(Boolean);
+    if (!segments.length || segments.length % 2 !== 0 || segments.some((part) => part === '.' || part === '..')) {
+      throw new Error('Unsafe or invalid Firestore document path for French quiz admin write.');
+    }
+    return doc(db, ...segments);
+  }
+
+  async function frenchQuizAdminCommitDraft(draft, action) {
+    if (!draft || !draft.writePath) throw new Error('Draft writePath is required.');
+    if (draft.activationApproved !== false || draft.productionReady !== false) {
+      throw new Error('French quiz admin drafts must keep activationApproved=false and productionReady=false.');
+    }
+    const adminEmail = auth.currentUser?.email || 'unknown';
+    const nowIso = new Date().toISOString();
+    const batch = writeBatch(db);
+    batch.set(frenchQuizAdminDocRef(draft.writePath), {
+      ...draft,
+      updatedAt: nowIso,
+      updatedBy: adminEmail,
+      committedFrom: 'admin/index.html#french-quizzes',
+    }, { merge: false });
+    batch.set(doc(collection(db, 'admin_log')), {
+      action,
+      targetUid: 'content/fr/quiz',
+      details: {
+        writePath: draft.writePath,
+        contentVersion: draft.contentVersion || draft.currentContentVersion || null,
+        previousContentVersion: draft.previousContentVersion || null,
+        activationApproved: false,
+        productionReady: false,
+        auditEvent: draft.auditEvent || null,
+      },
+      adminEmail,
+      ts: nowIso,
+    });
+    await batch.commit();
+    return {
+      ...draft,
+      committed: true,
+      committedAt: nowIso,
+      committedBy: adminEmail,
+      activationApproved: false,
+      productionReady: false,
+    };
+  }
+
+  window.renderFrenchQuizzesAdmin = function renderFrenchQuizzesAdmin() {
+    const api = frenchQuizAdminApi();
+    const statusEl = document.getElementById('fq-status');
+    const previewEl = document.getElementById('fq-preview');
+    if (!statusEl || !previewEl) return;
+    if (!api) {
+      statusEl.innerHTML = '<div class="reports-empty">French quiz workflow module is not loaded.</div>';
+      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: 'workflow_module_missing' });
+      return;
+    }
+    const evidence = frenchQuizAdminEvidence();
+    const status = api.buildStatusModel(evidence);
+    const gates = ((evidence.finalGate && evidence.finalGate.gates) || []);
+    const gateRows = gates.map((gate) => {
+      const ok = gate.status === 'PASS';
+      const color = ok ? '#4ade80' : '#fbbf24';
+      const blocker = gate.blocker ? ` <span style="color:#777">${frenchQuizAdminEscape(gate.blocker)}</span>` : '';
+      return `<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #242838;padding:7px 0">
+        <strong style="width:58px;color:${color}">${frenchQuizAdminEscape(gate.status)}</strong>
+        <span style="color:#e5e7eb">${frenchQuizAdminEscape(gate.gateId)}${blocker}</span>
+      </div>`;
+    }).join('');
+    statusEl.innerHTML = `<div class="report-card" style="max-width:1180px;margin:0;border-radius:8px">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px">
+        <strong style="color:#fff">Status: ${frenchQuizAdminEscape(status.status)}</strong>
+        <span style="color:#aaa">Rows: ${Number(status.summary.totalRows || 0)}</span>
+        <span style="color:#aaa">Accepted: ${Number(status.summary.acceptedRows || 0)}</span>
+        <span style="color:#fbbf24">Production ready: ${status.productionReady ? 'true' : 'false'}</span>
+        <span style="color:#fbbf24">Activation approved: ${status.activationApproved ? 'true' : 'false'}</span>
+      </div>
+      ${gateRows}
+    </div>`;
+
+    const preview = api.buildRowPreview(frenchQuizAdminSampleRow(), 'ru');
+    const choices = preview.choices.map((choice, index) => {
+      const mark = index === preview.correct ? 'correct' : 'option';
+      return `<li><strong>${mark}</strong>: ${frenchQuizAdminEscape(choice)}<br><span style="color:#999">${frenchQuizAdminEscape(preview.explanations[index])}</span></li>`;
+    }).join('');
+    previewEl.innerHTML = `<div class="report-card" style="max-width:1180px;margin:0;border-radius:8px">
+      <strong style="color:#fff">Preview row</strong>
+      <div style="margin-top:8px;color:#ddd">${frenchQuizAdminEscape(preview.prompt)}</div>
+      <ol style="margin:10px 0 0 20px;color:#ddd;line-height:1.55">${choices}</ol>
+      <div style="margin-top:10px;color:#999">Evidence: ${frenchQuizAdminEscape((preview.sourceEvidence[0] && preview.sourceEvidence[0].label) || 'source evidence required')}</div>
+    </div>`;
+    frenchQuizAdminWriteOutput({
+      status: status.status,
+      productionReady: false,
+      activationApproved: false,
+      blockedGates: status.blockedGates,
+    });
+  };
+
+  window.frenchQuizAdminCreateDraft = async function frenchQuizAdminCreateDraft() {
+    const api = frenchQuizAdminApi();
+    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
+    const ok = window.confirm('Create a guarded French quiz publication draft? This writes only adminContentDrafts and keeps activationApproved=false.');
+    if (!ok) return frenchQuizAdminWriteOutput({ status: 'cancelled', activationApproved: false });
+    try {
+      const draft = api.createPublicationDraft({
+        evidence: frenchQuizAdminEvidence(),
+        permissions: ['content_publish_draft'],
+        owner: 'admin-ui',
+        reason: 'French standard quiz production-readiness draft review.',
+        contentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
+        sourceLocales: ['ru', 'uk'],
+        rolloutPercent: 0,
+      });
+      const committed = await frenchQuizAdminCommitDraft(draft, 'french_quiz_publication_draft');
+      frenchQuizAdminWriteOutput(committed);
+      if (typeof showToast === 'function') showToast('French quiz publication draft created.');
+    } catch (error) {
+      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
+      if (typeof showToast === 'function') showToast('French quiz draft failed: ' + (error && error.message ? error.message : String(error)), 'err');
+    }
+  };
+
+  window.frenchQuizAdminRequestApproval = function frenchQuizAdminRequestApproval() {
+    const api = frenchQuizAdminApi();
+    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
+    try {
+      const result = api.requestActivationApproval({
+        evidence: frenchQuizAdminEvidence(),
+        permissions: ['content_publish'],
+        owner: 'admin-ui',
+        reason: 'Check whether French quiz activation can be requested.',
+        contentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
+        confirmText: 'REQUEST FRENCH QUIZ ACTIVATION',
+      });
+      frenchQuizAdminWriteOutput({ ...result, activationApproved: false });
+    } catch (error) {
+      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
+    }
+  };
+
+  window.frenchQuizAdminCreateRollback = async function frenchQuizAdminCreateRollback() {
+    const api = frenchQuizAdminApi();
+    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
+    const ok = window.confirm('Create a rollback draft for French quizzes? This does not delete historical payloads.');
+    if (!ok) return frenchQuizAdminWriteOutput({ status: 'cancelled', activationApproved: false });
+    try {
+      const draft = api.createRollbackDraft({
+        permissions: ['content_rollback'],
+        owner: 'admin-ui',
+        reason: 'French standard quiz rollback rehearsal.',
+        currentContentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
+        previousContentVersion: 'fr-standard-quizzes-disabled-baseline',
+        confirmText: 'ROLL BACK FRENCH QUIZZES',
+      });
+      const committed = await frenchQuizAdminCommitDraft(draft, 'french_quiz_rollback_draft');
+      frenchQuizAdminWriteOutput(committed);
+      if (typeof showToast === 'function') showToast('French quiz rollback draft created.');
+    } catch (error) {
+      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
+      if (typeof showToast === 'function') showToast('French quiz rollback draft failed: ' + (error && error.message ? error.message : String(error)), 'err');
+    }
   };
 
   function normalizeAdminTabSearch(value) {
@@ -19809,6 +20234,7 @@
     overview: 'Overview',
     'mod-queue': 'Moderation queue',
     ideas: 'Ideas',
+    'ideas-decided': 'Decided ideas',
     users: 'Users',
     testers: 'Testers',
     full: 'Full analytics',
@@ -19844,6 +20270,7 @@
     'community-packs': 'Community',
     'card-packs': 'Card packs',
     'daily-phrases': 'Daily phrases',
+    'french-quizzes': 'French quizzes',
     clubs: 'Clubs',
     'league-chat': 'League chat',
     'arena-ranks': 'Arena - Top',
@@ -19896,6 +20323,7 @@
     overview: 'chart',
     'mod-queue': 'flag',
     ideas: 'lightbulb',
+    'ideas-decided': 'clipboard',
     full: 'chart',
     site: 'globe',
     analytics: 'chart',
@@ -19925,6 +20353,7 @@
     'community-packs': 'package',
     'card-packs': 'layers',
     'daily-phrases': 'message',
+    'french-quizzes': 'clipboard',
     'push-notify': 'bell',
     clubs: 'trophy',
     'league-chat': 'message',
@@ -19974,6 +20403,7 @@
     'age-consent': 'core',
     overview: 'core',
     'mod-queue': 'users',
+    'ideas-decided': 'users',
     analytics: 'core',
     'onboarding-sources': 'core',
     'openai-budget': 'revenue',
@@ -19999,6 +20429,7 @@
     refunds: 'revenue',
     'community-packs': 'community',
     'card-packs': 'community',
+    'french-quizzes': 'community',
     'push-notify': 'community',
     clubs: 'arena',
     'league-chat': 'arena',
@@ -20475,6 +20906,12 @@
     return n ? new Date(n).toLocaleString(ADMIN_DATE_LOCALE) : '—';
   }
   function lcText(row) { return row.text || row.messageText || ''; }
+  // Служебное сообщение (сгенерировано системой/Компасом, а не человеком).
+  // Дублирует канонический классификатор из app/league_chat_system.ts
+  // (isSystemLeagueChatMessage): kind==='system' или зарезервированный uid.
+  function lcIsSystemMessage(m) {
+    return m && (m.kind === 'system' || m.authorUid === '__league_system__');
+  }
   function lcSetKpi(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = String(value ?? '—');
@@ -20556,8 +20993,12 @@
     messages.forEach(m => {
       const gid = String(m.groupId || '');
       if (!gid) return;
+      // Сообщения Компаса/системы не показываем в карточках комнат: считаем
+      // и превьюим только реальные сообщения людей.
+      if (lcIsSystemMessage(m)) return;
       const row = byRoom.get(gid) || { id: gid, groupId: gid, weekId: String(m.weekId || ''), leagueId: m.leagueId, memberCount: 0, messageCount: 0, visibleCount: 0, deletedCount: 0, reportCount: 0, lastMessageAt: 0, lastText: '' };
       row.messageCount += 1;
+      row.humanCount = Number(row.humanCount || 0) + 1;
       if (m.status === 'visible') row.visibleCount += 1;
       if (m.status === 'deleted') row.deletedCount += 1;
       row.reportCount += Number(m.reportCount || 0);
@@ -20569,7 +21010,11 @@
       }
       byRoom.set(gid, row);
     });
-    return Array.from(byRoom.values()).sort((a, b) => Number(b.lastMessageAt || b.updatedAt || 0) - Number(a.lastMessageAt || a.updatedAt || 0));
+    // Убираем пустые комнаты (нет ни одного человеческого сообщения) —
+    // никаких карточек «Сообщений пока нет».
+    return Array.from(byRoom.values())
+      .filter(r => Number(r.humanCount || 0) > 0)
+      .sort((a, b) => Number(b.lastMessageAt || b.updatedAt || 0) - Number(a.lastMessageAt || a.updatedAt || 0));
   }
   window.loadLeagueChatAdmin = async function(force=false) {
     if (window._leagueChatLoaded && !force) { renderLeagueChatAdmin(); return; }
@@ -20584,12 +21029,16 @@
         loadLeagueChatCollection('league_chat_bans', 'updatedAt', 300).catch(() => []),
       ]);
       const currentWeek = lcCurrentWeekId();
+      // Вкладки Messages/Archive/Rooms показывают живую переписку — сообщения
+      // Компаса/системы из них убираем, оставляем только сообщения людей.
+      // (Rooms всё равно строит превью по людям через lcBuildRooms.)
+      const humanMessages = messages.filter(r => !lcIsSystemMessage(r));
       window._leagueChatCache = {
         queue: queueAll.filter(r => r.status === 'review' || r.decision === 'pending'),
         blocked: queueAll.filter(r => r.status === 'blocked' || r.decision === 'auto_blocked'),
         reports,
-        messages,
-        archive: messages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
+        messages: humanMessages,
+        archive: humanMessages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
         rooms: lcBuildRooms(groups, messages),
         bans,
       };
@@ -21040,7 +21489,7 @@
     'explain-reports': '💡 Explain reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Plus',
     'vip': '💚 Plus', 'plus-radar': 'Plus Radar', 'cancel-surveys': '📉 Cancel surveys', 'review-promo': '📝 Plus survey',
     'referrals': '🔗 Referrals', 'app-messages': '💬 Messages', 'ugc-purchases': '🛒 UGC purchases',
-    'community-packs': '🧩 Community', 'card-packs': '🃏 Card packs', 'daily-phrases': '📅 Daily phrases',
+    'community-packs': '🧩 Community', 'card-packs': '🃏 Card packs', 'daily-phrases': '📅 Daily phrases', 'french-quizzes': 'French quizzes',
     'push-notify': '🔔 Push', 'clubs': '🏆 Clubs', 'league-chat': '💬 League chat',
     'arena-ranks': '🥇 Arena — Top', 'arena-live': '🔴 Arena — Live', 'arena-bets': '🎲 Arena bets',
     'arena-rooms': '🚪 Rooms', 'archive': '📦 Archive', 'audit': '📜 Audit log',
@@ -21288,12 +21737,16 @@
         loadLeagueChatCollection('league_chat_bans', 'updatedAt', 300).catch(() => []),
       ]);
       const currentWeek = lcCurrentWeekId();
+      // Вкладки Messages/Archive/Rooms показывают живую переписку — сообщения
+      // Компаса/системы из них убираем, оставляем только сообщения людей.
+      // (Rooms всё равно строит превью по людям через lcBuildRooms.)
+      const humanMessages = messages.filter(r => !lcIsSystemMessage(r));
       window._leagueChatCache = {
         queue: queueAll.filter(r => r.status === 'review' || r.decision === 'pending'),
         blocked: queueAll.filter(r => r.status === 'blocked' || r.decision === 'auto_blocked'),
         reports,
-        messages,
-        archive: messages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
+        messages: humanMessages,
+        archive: humanMessages.filter(r => currentWeek && String(r.weekId || '') !== currentWeek),
         rooms: lcBuildRooms(groups, messages),
         bans,
       };
@@ -23147,6 +23600,8 @@
 
             ${r.comment ? `<div class="report-comment" style="margin-top:6px">💬 ${escapeHtml(r.comment)}</div>` : ''}
 
+            ${renderPreparedReplyBox(r)}
+
             <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;font-size:11px">
               <span style="color:#9b9;background:#1a2a1a;border:1px solid #2a3a2a;border-radius:4px;padding:2px 6px">👤 ${userName}</span>
               ${uidRaw && uidRaw !== '—' ? `<span style="color:#777;background:#1a1a2a;border:1px solid #2a2a3a;border-radius:4px;padding:2px 6px">uid: …${escapeHtml(String(uidRaw).slice(-6))}</span>` : ''}
@@ -23642,6 +24097,348 @@
     return res;
   }
 
+  // Готовые ответы на репорты, подготовленные ЛЛМ-сессией (Claude Code) на выгрузку
+  // 2026-07-04. Кнопка «📋 Мой готовый ответ» в модалке подставляет их по reportId —
+  // админ читает/редактирует/шлёт вручную. Verdict определяется по shards (>0 = подтвердилось).
+  const PREPARED_REPORT_REPLIES = {
+    "zbBzu6J5TaNbtKO6lAOW": {
+      "title": "Твой прогресс никуда не пропал",
+      "body": "Спасибо, что написал, и извини за испуг! Твои достижения привязаны к аккаунту в облаке — при входе они подтягиваются обратно, так что данные не потеряны. Иногда после переустановки прогресс возвращается не сразу: дай приложению минуту с интернетом или перезайди — и всё встанет на место. Если через день что-то всё ещё будет нулевым, черкни нам, разберёмся лично.",
+      "shards": 2
+    },
+    "lQpMGlnxEsLwF24dL7oB": {
+      "title": "Спасибо за репорт про поле ввода",
+      "body": "Спасибо, что заметила! Мы поняли, о чём речь — в упражнении «вспомни фразу» поле иногда не давало печатать. Уже разбираемся с этим, чтобы починить в одном из ближайших обновлений. За внимательность держи награду в этом сообщении.",
+      "shards": 1
+    },
+    "oMgkstlB0I9A4crmkjtW": {
+      "title": "Спасибо! Дадим время на разбор",
+      "body": "Спасибо за тёплые слова и точное наблюдение! Ты права: когда включён быстрый автопереход, разбор ошибки мелькал и исчезал. Мы поправили это — теперь после ошибки приложение ждёт твоего касания, чтобы ты успела всё прочитать; изменения придут со следующим обновлением. Награда за подсказку — в этом сообщении.",
+      "shards": 2
+    },
+    "lIeRWQ412x5nE3BWRJGg": {
+      "title": "Про слова с одной изменённой буквой",
+      "body": "Понимаем, что бесит — спасибо, что честно написал. Такие «почти правильные» варианты стоят специально: они учат замечать мелкие ошибки, из-за которых носитель понимает фразу иначе. Мысль про отдельную цель обучения для тех, кому это не нужно, хорошая — передадим её в работу. Награду за этот отзыв не даём, но за идею спасибо!",
+      "shards": 0
+    },
+    "Kjbj0OKeTDzQbQrQ2Lfw": {
+      "title": "Осколки против кристаллов",
+      "body": "Спасибо, повеселил формулировкой про «одни неприятности»! Название валюты — вкусовщина, но мы записали твоё предложение и подумаем над ним. Это пожелание, а не баг, так что награды тут нет — но идею услышали.",
+      "shards": 0
+    },
+    "qMhe1G9zSpGMCTU82ymm": {
+      "title": "Ответ на три твоих вопроса",
+      "body": "Спасибо, что собрал всё в одном месте! По устному режиму: проблему со звуком мы уже нашли и починили, придёт со следующим обновлением. Созданные карточки попадают в «Сохранённые» после того, как ты добавишь их в свою колоду — проверь фильтр в разделе карточек. А над озвучкой русского перевода поработаем, чтобы звучала естественнее; награда за устный режим — в этом сообщении.",
+      "shards": 1
+    },
+    "CVorQJbG77BZnjqdwyqc": {
+      "title": "Про сброс в рейтинге лиги",
+      "body": "Добрый день и спасибо, что написали! Тут всё в порядке: рейтинг лиги обнуляется каждую неделю у всех участников — это очки текущей недели, они начинаются заново с понедельника. Ваш общий опыт, уровень и достижения при этом никуда не деваются, теряются только недельные очки лиги. Так что стартуете новую неделю с чистого листа наравне со всеми — это задумано, не ошибка.",
+      "shards": 0
+    },
+    "mWA7x42xRaqAyoBLPA2m": {
+      "title": "Про «the documents»",
+      "body": "Спасибо, что написала! Тут фраза «We check documents» — про документы вообще, в общем смысле, и артикль не нужен. «The documents» тоже было бы правильно, но только если речь о конкретных, уже известных документах — а здесь имеется в виду общее действие. Так что вариант в приложении верный, поэтому награды за этот случай нет, но вопрос хороший!",
+      "shards": 0
+    },
+    "36WbOn9pY9Gzvv7VFS6O": {
+      "title": "Спасибо! Чиним разбор ошибки",
+      "body": "Спасибо, что сообщил! «Разбор промаха недоступен» иногда выскакивал из-за временного сбоя связи с сервером и потом застревал даже после обновления. Мы это поправили — теперь такие сбои не «залипают», и разбор будет открываться как надо; изменения придут с ближайшим обновлением. Награда за находку — в этом сообщении.",
+      "shards": 2
+    },
+    "Sv6YvnYk0sqpvXDxffFA": {
+      "title": "Про артикль a/the в этой фразе",
+      "body": "Отличный вопрос, ты рассуждаешь верно! «I know a man whose phone is lost» — здесь «a», потому что мы впервые вводим человека, о котором слушатель ещё не знает; придаточное «whose phone is lost» его описывает, но не делает уже известным. «The man» тоже возможно, если о нём уже шла речь — но как базовый учебный вариант «a» правильный. Награды за этот случай нет, но копаешь ты в нужную сторону!",
+      "shards": 0
+    },
+    "gLguMpJcuTHtpHMFw54K": {
+      "title": "Хорошо, что нашла ошибку сама!",
+      "body": "Спасибо, что вернулась и написала — ты сама всё верно разглядела: в этой фразе нужно «quota» (квота), а не «quote». Приложение ждало именно «quota», поэтому вариант с «quote» и не проходил. Здесь всё работает как надо, так что награды нет — но внимательность у тебя отличная!",
+      "shards": 0
+    },
+    "r66lbxpE8SjtKY8hxn8G": {
+      "title": "Про «одинаковые варианты»",
+      "body": "Спасибо, что написала! В этой конкретной фразе разница была в одном слове — «quota» вместо «quote», её легко пропустить, ты потом и сама её нашла. Если в квизе тебе где-то действительно встретятся два полностью одинаковых варианта — пришли, пожалуйста, скриншот, мы такое сразу поправим. Пока повода для награды нет, но спасибо за бдительность!",
+      "shards": 0
+    },
+    "EBnbtoaFaElM4XgX3gss": {
+      "title": "Спасибо, смотрим прогресс теории",
+      "body": "Спасибо, что заметил! Мы разбираемся, почему после прохождения теории в этом уроке прогресс иногда остаётся на нуле вместо 100%. Как найдём причину — починим в одном из обновлений. За внимательный репорт держи награду в этом сообщении.",
+      "shards": 1
+    },
+    "KarcqsaEx1kSB8QPxwGo": {
+      "title": "Спасибо! Чиним разбор ошибки",
+      "body": "Спасибо, что написал! «Не получилось получить разбор промаха» иногда возникало из-за временного сбоя связи с сервером и потом повторялось даже после обновления. Мы это поправили — теперь такие сбои не застревают, и разбор будет открываться нормально; изменения придут с ближайшим обновлением. Награда за находку — в этом сообщении.",
+      "shards": 2
+    },
+    "5iyqIYm99Txtaek7MM9Y": {
+      "title": "Спасибо! Кракозябры уберём",
+      "body": "Спасибо, что показал — да, вместо русского текста там вылезли «кракозябры» из-за сбоя кодировки в старой сборке. В свежей версии текст уже правильный, так что со следующим обновлением приложения всё будет читаемо. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "sGo8M7UAKWMilgko03hj": {
+      "title": "Спасибо, это мы уже поправили",
+      "body": "Верно подмечено — заглавная «We» действительно выдавала начало фразы. Мы это чиним: первое слово-плитка теперь показывается строчными, чтобы не подсказывать. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо, что не поленился написать!",
+      "shards": 0
+    },
+    "ZvTseJEab7R0GJCo2b47": {
+      "title": "Спасибо, звук поправили",
+      "body": "Спасибо, что заметил! Обрыв фразы сразу после верного ответа — это тот же сбой со звуком, что мы уже нашли и починили. Со следующим обновлением фразы будут проговариваться до конца. Награду за озвучку мы тебе уже начислили ранее, так что здесь без осколков — но спасибо!",
+      "shards": 0
+    },
+    "dIGXFix5sgXuQCUdNx7P": {
+      "title": "Про like и enjoy",
+      "body": "Спасибо, дельное замечание! Ты права: сейчас теория объясняет, что и «like», и «enjoy» берут -ing, но не разбирает, когда какое естественнее. Мы добавим подсказку об этом различии, чтобы упражнения не превращались в угадайку. Это доработка, а не ошибка, так что награды тут нет — но спасибо за идею!",
+      "shards": 0
+    },
+    "BLynZQno8E0zY9Q55Gam": {
+      "title": "Спасибо, это мы уже поправили",
+      "body": "Верно подмечено — заглавная «When» действительно кричала, что она правильная. Мы это чиним: первое слово-плитка теперь строчными, чтобы не подсказывать. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо, что не поленился написать!",
+      "shards": 0
+    },
+    "bOgcCUfGm6HFLvLr5PwC": {
+      "title": "Спасибо! Заглавная буква больше не подскажет",
+      "body": "Спасибо за подробное объяснение — ты абсолютно прав: заглавная «This» выдавала начало фразы тем, кто сначала собирает предложение в голове. Мы это поправили: теперь первое слово-плитка показывается строчными, чтобы не подсказывать ответ; изменения придут со следующим обновлением. Награду за эту вдумчивую находку положили в это сообщение.",
+      "shards": 2
+    },
+    "P5bAIOXlIfB9PQQnIPAF": {
+      "title": "Про «лишнее stop»",
+      "body": "Спасибо, что написала! Мы проверили содержимое урока — там «Stop talking» без дублей, лишнего «stop» в тексте нет. Похоже, это могло быть разовым сбоем отображения на экране. Если повторится — пришли, пожалуйста, скриншот, тогда точно поймаем причину; пока повода для награды нет, но спасибо за внимательность!",
+      "shards": 0
+    },
+    "rq5UQHTxcQY0ryFI2uT2": {
+      "title": "Спасибо, проверяем плитки",
+      "body": "Спасибо, что подробно описала! Мы разбираемся с тем, как в этом задании подбираются слова-плитки, чтобы нужное слово всегда было в наборе и не дублировалось лишнее. Как поправим — придёт с обновлением. За внимательный репорт держи награду в этом сообщении.",
+      "shards": 1
+    },
+    "aMGBsYcEWDsdtVa7B7X6": {
+      "title": "Спасибо, смотрим про «cannot»",
+      "body": "Спасибо, что заметил и написал так аккуратно! Мы проверяем, почему при выборе «Cannot» иногда получается «Can not» — в самой фразе слово одно, так что дело в том, как оно показывается. Как разберёмся — поправим в обновлении. За находку держи награду в этом сообщении.",
+      "shards": 1
+    },
+    "SkZTFJePF9iLNVcJpnb2": {
+      "title": "Спасибо! Кракозябры уберём",
+      "body": "Спасибо, что показала — да, вместо русского предложения там вылезли странные символы из-за сбоя кодировки в старой сборке. В свежей версии текст уже правильный, так что со следующим обновлением приложения всё будет читаться нормально. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "uJw07tLlOdBRfKz8uk5x": {
+      "title": "Спасибо! Перевод сделаем естественнее",
+      "body": "Ты права — «Ничего не так» звучит неестественно и правда путает. Мы поменяли перевод на «Всё в порядке», так будет понятнее; изменение придёт со следующим обновлением. Награду за меткое замечание положили в это сообщение.",
+      "shards": 1
+    },
+    "qt7h5G3GTCahBU9Sxk15": {
+      "title": "Про окончание -s после does not",
+      "body": "Спасибо, что написал! Тут небольшая тонкость правила: после «does not» глагол идёт в начальной форме, без -s — поэтому правильно «She does not remember», а «remembers» уже с ошибкой. Само «does» забирает это окончание на себя. Так что приложение здесь право, награды за этот случай нет — зато ты закрепил важное правило!",
+      "shards": 0
+    },
+    "8g2PEs4ql5BBHA2wJO9T": {
+      "title": "Про ответ «I'm good, you?»",
+      "body": "Спасибо, что написал! Мы проверили — фраза «I'm good, you?» («Всё хорошо, а ты?») по содержанию верная и полная, это нормальный живой разговорный ответ. Возможно, на экране она показалась обрезанной — если такое повторится, пришли скриншот, посмотрим внимательнее. Пока повода для награды нет, но спасибо за внимательность!",
+      "shards": 0
+    },
+    "6T9iunbpdbYAmmDL6OIR": {
+      "title": "Про артикль a/the с доктором",
+      "body": "Хороший вопрос! «They called a doctor who lives nearby» — здесь «a», потому что доктора вводят впервые, слушатель ещё не знает, о ком речь; придаточное «who lives nearby» его описывает, но не делает заранее известным. «The doctor» уместно, если о нём уже говорили раньше. Как базовый учебный вариант «a» правильный, поэтому награды за этот случай нет — но рассуждаешь ты верно!",
+      "shards": 0
+    },
+    "sP1yMd5UbtyiYvVx83nk": {
+      "title": "Спасибо! Чиним застревание карточек",
+      "body": "Спасибо, что сообщила! Мы нашли, почему тренировка иногда застревала на первой карточке и не шла дальше, и уже поправили это — со следующим обновлением карточки будут листаться нормально. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "4yOjsXrO8MSVjfdYStzt": {
+      "title": "Про аттестацию и перевод",
+      "body": "Спасибо, что написали, и извините за неудобство. Аттестация специально идёт на английском без перевода — это и есть проверка того, что вы понимаете язык сами; темы грамматики в ней подписаны по-русски, а вопросы собраны из всех пройденных уроков. Нам стоило объяснить это прямо в приложении — виноваты, поправим. Если попадутся конкретные слова, которых точно не было в уроках, пришлите их — проверим и уберём; награду за подробный отзыв положили в это сообщение.",
+      "shards": 1
+    },
+    "g1KFTLzVoU3gnJSQdDkZ": {
+      "title": "Спасибо, звук в уроке поправили",
+      "body": "Спасибо, что вернулся с уточнением! Пропажа проговаривания фраз в уроке — это тот же сбой со звуком, что мы уже нашли и починили. Со следующим обновлением фразы снова будут озвучиваться с самого начала урока. Награду за озвучку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо за терпение!",
+      "shards": 0
+    },
+    "Oj2SaUynBmQcxXGvyvdV": {
+      "title": "Спасибо! Звук поправлен",
+      "body": "Спасибо за подробный репорт — ты точно описал, где именно пропадала озвучка. Это сбой со звуком, который мы уже нашли и починили: со следующим обновлением фразы будут проговариваться до конца, и через нижнее меню тоже. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "g9yypM7ZGmklEFkie40Q": {
+      "title": "Спасибо! Микрофон поправили",
+      "body": "Спасибо, что написал и указал модель телефона — это помогло. Проблему, когда микрофон сразу выключался и не давал произнести фразу, мы уже нашли и починили. Со следующим обновлением запись должна работать нормально. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "MkdHGJarL896hHFnhgpi": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что сообщил! Ситуацию, когда микрофон включается, но фраза не произносится и ничего не происходит, мы уже нашли и починили. Со следующим обновлением всё должно заработать. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо!",
+      "shards": 0
+    },
+    "Thtz6MDE9DFuxAOToI8M": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что описала, как именно кнопка «Сказать фразу» сбоит. Проблему со звуком и распознаванием мы уже нашли и починили — со следующим обновлением должно работать стабильно. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо за терпение!",
+      "shards": 0
+    },
+    "KTe5vH2dToIUvXBTwKnU": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что уточнила про кнопку «Послушать фразу». Тишину при воспроизведении мы уже нашли и починили — со следующим обновлением звук вернётся. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо, что подробно всё описываешь!",
+      "shards": 0
+    },
+    "ynvwsHbWHYVSAxDy0od3": {
+      "title": "Спасибо! Звук и микрофон поправили",
+      "body": "Спасибо, что так подробно описала — и тишину при «Послушать фразу», и микрофон, который гаснет через секунду. Оба сбоя со звуком мы уже нашли и починили; со следующим обновлением всё должно заработать как надо. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "roLuUl2hdV6GZzkIyqeK": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что сообщила! Проблему, когда не работает ни прослушивание, ни запись фразы, мы уже нашли и починили. Со следующим обновлением звук должен заработать. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо!",
+      "shards": 0
+    },
+    "JVbw4SU3ecd1x8wSQil8": {
+      "title": "Спасибо! Запись голоса поправили",
+      "body": "Спасибо, что написала и даже проверила разрешения — это правильный шаг. Проблему, когда поле краснеет и запись сбрасывается, мы уже нашли и починили; со следующим обновлением запись голоса должна работать, и ты сможешь спокойно повторять за диктором. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "VJdu8MpbGSrRv2B7YuvX": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что сообщил! То, что ничего не повторяется вслух, — это тот же сбой со звуком, который мы уже нашли и починили. Со следующим обновлением проговаривание вернётся. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо!",
+      "shards": 0
+    },
+    "Yrad1HWrjaEQiiQPuTiE": {
+      "title": "Спасибо! Звук поправлен",
+      "body": "Спасибо, что написал! Ситуацию, когда не получается сказать фразу и ничего не происходит, мы уже нашли и починили. Со следующим обновлением всё должно заработать. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "mdpPf7pGno7RMj5C9Nfl": {
+      "title": "Спасибо, звук поправлен",
+      "body": "Спасибо, что заметила! Обрыв предложений в «Моей практике» — это тот же сбой со звуком, который мы уже нашли и починили. Со следующим обновлением фразы будут проговариваться до конца. Награду за эту находку мы тебе уже начислили ранее, поэтому здесь без осколков — спасибо!",
+      "shards": 0
+    },
+    "aMytfiRsdlwIP5ZPhQmu": {
+      "title": "Спасибо! Звук в практике поправили",
+      "body": "Спасибо, что написала! Отсутствие звукового сопровождения в «Моих практиках» — это сбой со звуком, который мы уже нашли и починили. Со следующим обновлением озвучка вернётся. Награду за находку положили в это сообщение.",
+      "shards": 2
+    },
+    "WBFf8fmaRBNBWZBSVdBf": {
+      "title": "Спасибо! Звук поправлен",
+      "body": "Спасибо, что сообщил! То, что фразы читаются не до конца, — это сбой со звуком, который мы уже нашли и починили. Со следующим обновлением фразы будут проговариваться целиком. Награду за находку положили в это сообщение.",
+      "shards": 2
+    }
+  };
+
+
+  // Текущее (возможно отредактированное) состояние готовых ответов по reportId.
+  // Инициализируется из PREPARED_REPORT_REPLIES, но админ может править прямо в карточке —
+  // и «Отправить готовые ответы» рассылает именно это состояние.
+  const _preparedReplyState = {};
+  function getPreparedReply(reportId) {
+    if (_preparedReplyState[reportId]) return _preparedReplyState[reportId];
+    const base = PREPARED_REPORT_REPLIES[reportId];
+    if (!base) return null;
+    _preparedReplyState[reportId] = { title: base.title || '', body: base.body || '', shards: Math.max(0, Math.min(100, Math.floor(Number(base.shards) || 0))) };
+    return _preparedReplyState[reportId];
+  }
+
+  function renderPreparedReplyBox(r) {
+    const prep = getPreparedReply(r.id);
+    if (!prep) return '';
+    const id = encodeURIComponent(String(r.id));
+    const already = !!r.replyMessageId;
+    const noUid = !r.uid || r.uid === '—' || r.uid === 'unknown' || r.uid === 'test_uid_abc123';
+    const rewardBadge = prep.shards > 0
+      ? '<span style="color:#4ade80;background:#0d2318;border:1px solid #1e4a2f;border-radius:5px;padding:2px 7px;font-size:11px;font-weight:700">✅ подтвердилось · +' + prep.shards + ' 💎</span>'
+      : '<span style="color:#f0a0a0;background:#2a1518;border:1px solid #4a2530;border-radius:5px;padding:2px 7px;font-size:11px;font-weight:700">без награды</span>';
+    const statusNote = already
+      ? '<span style="color:#4ade80;font-size:11px;font-weight:700">💬 уже отправлено</span>'
+      : (noUid ? '<span style="color:#f0a0a0;font-size:11px;font-weight:700">нет uid — не отправить</span>' : '');
+    return ''
+      + '<div class="prepared-reply-box" data-prep-id="' + id + '" style="margin-top:10px;background:#0f1c14;border:1px solid #1e4a2f;border-left:3px solid #4ade80;border-radius:10px;padding:10px 12px' + (already ? ';opacity:.6' : '') + '">'
+      + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">'
+      + '<span style="color:#4ade80;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px">📋 Готовый ответ</span>'
+      + rewardBadge + statusNote + '</div>'
+      + '<input class="prep-title" data-prep-id="' + id + '" value="' + escapeHtml(prep.title) + '" ' + (already ? 'disabled' : '') + ' placeholder="Заголовок" style="width:100%;box-sizing:border-box;background:#0a140d;border:1px solid #1e4a2f;color:#e5f2e9;border-radius:7px;padding:7px 9px;font-size:13px;font-weight:700;margin-bottom:6px">'
+      + '<textarea class="prep-body" data-prep-id="' + id + '" rows="3" ' + (already ? 'disabled' : '') + ' placeholder="Текст ответа" style="width:100%;box-sizing:border-box;background:#0a140d;border:1px solid #1e4a2f;color:#cfe6d8;border-radius:7px;padding:7px 9px;font-size:13px;line-height:1.4;resize:vertical;margin-bottom:6px">' + escapeHtml(prep.body) + '</textarea>'
+      + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
+      + '<label style="color:#9fbfa8;font-size:12px;display:flex;align-items:center;gap:5px">💎 награда <input class="prep-shards" data-prep-id="' + id + '" type="number" min="0" max="100" value="' + prep.shards + '" ' + (already ? 'disabled' : '') + ' style="width:56px;background:#0a140d;border:1px solid #1e4a2f;color:#e5f2e9;border-radius:6px;padding:4px 6px"></label>'
+      + ((already || noUid) ? '' : '<button type="button" class="prep-send-one" data-prep-id="' + id + '" style="background:#0d2318;border:1px solid #1e4a2f;color:#4ade80;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">📨 Отправить этому</button>')
+      + '</div></div>';
+  }
+
+  (function bindPreparedReplyEditing() {
+    const list = document.getElementById('reports-list');
+    if (!list) return;
+    const sync = (el) => {
+      const id = decodeURIComponent(el.getAttribute('data-prep-id') || '');
+      if (!id) return;
+      const st = getPreparedReply(id);
+      if (!st) return;
+      if (el.classList.contains('prep-title')) st.title = el.value;
+      else if (el.classList.contains('prep-body')) st.body = el.value;
+      else if (el.classList.contains('prep-shards')) st.shards = Math.max(0, Math.min(100, Math.floor(Number(el.value) || 0)));
+    };
+    list.addEventListener('input', (e) => {
+      const el = e.target;
+      if (el && el.classList && (el.classList.contains('prep-title') || el.classList.contains('prep-body') || el.classList.contains('prep-shards'))) sync(el);
+    });
+    list.addEventListener('click', async (e) => {
+      const btn = e.target.closest && e.target.closest('.prep-send-one');
+      if (!btn) return;
+      e.preventDefault();
+      const id = decodeURIComponent(btn.getAttribute('data-prep-id') || '');
+      const report = _allReports.find(r => r.id === id);
+      const st = getPreparedReply(id);
+      if (!report || !st) { showToast('Готовый ответ не найден', 'warn'); return; }
+      if (report.replyMessageId) { showToast('На этот репорт уже отвечено', 'warn'); return; }
+      if (!st.title.trim() || !st.body.trim()) { showToast('Заполни заголовок и текст', 'warn'); return; }
+      btn.disabled = true; const prev = btn.textContent; btn.textContent = '⏳ Отправляю…';
+      try {
+        await sendReportReplyToUser(report, { title: st.title.trim(), body: st.body.trim(), shards: st.shards });
+        showToast(st.shards > 0 ? ('📨 Отправлено · +' + st.shards + ' 💎') : '📨 Отправлено (без награды)', 'ok');
+        logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, shards: st.shards, via: 'prepared_one' });
+        filterReports();
+      } catch (err) {
+        btn.disabled = false; btn.textContent = prev;
+        showToast('Не отправилось: ' + (err.message || err), 'err');
+      }
+    });
+  })();
+
+  window.sendAllPreparedReplies = async function() {
+    const list = getFilteredReportsList().filter(r => {
+      const st = getPreparedReply(r.id);
+      const noUid = !r.uid || r.uid === '—' || r.uid === 'unknown' || r.uid === 'test_uid_abc123';
+      return st && !r.replyMessageId && !noUid && st.title.trim() && st.body.trim();
+    });
+    if (!list.length) { showToast('Нет готовых ответов к отправке (в текущем фильтре)', 'warn'); return; }
+    const totalShards = list.reduce((a, r) => a + getPreparedReply(r.id).shards, 0);
+    const rewarded = list.filter(r => getPreparedReply(r.id).shards > 0).length;
+    const ok = await showConfirmModal({
+      title: '📨 Отправить ' + list.length + ' готовых ответов?',
+      desc: 'Каждый автор получит свой ответ в колокольчик. Наград: ' + rewarded + ' из ' + list.length + ' (всего +' + totalShards + ' 💎). Отправляется ровно то, что показано под репортами (с твоими правками). Откатить нельзя.',
+      confirmLabel: 'Отправить всем',
+    });
+    if (!ok) return;
+    const btn = document.getElementById('btn-reply-all-prepared');
+    const prevLabel = btn ? btn.textContent : '';
+    let okN = 0, errN = 0;
+    try {
+      for (let i = 0; i < list.length; i++) {
+        const r = list[i];
+        const st = getPreparedReply(r.id);
+        if (btn) { btn.disabled = true; btn.textContent = '⏳ ' + (i + 1) + '/' + list.length + '…'; }
+        try {
+          await sendReportReplyToUser(r, { title: st.title.trim(), body: st.body.trim(), shards: st.shards });
+          okN++;
+        } catch (e) {
+          errN++;
+          console.warn('sendAllPreparedReplies failed for', r.id, e);
+        }
+      }
+      filterReports();
+      showToast(errN ? ('📨 Отправлено: ' + okN + ', ошибок: ' + errN) : ('📨 Отправлено всем: ' + okN + ' (+' + totalShards + ' 💎)'), errN ? 'warn' : 'ok');
+      logAction('reply_to_report_bulk', 'admin', { count: okN, errors: errN, via: 'prepared', totalShards });
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
+    }
+  };
+
   window.openReportReplyModal = async function(reportId) {
     const report = _allReports.find(r => r.id === reportId);
     if (!report) { showToast('Репорт не найден. Нажмите «Обновить».', 'warn'); return; }
@@ -23668,7 +24465,10 @@
           </label>
         </div>
         <input id="rr-fixnote" placeholder="Что исправили / почему отклонили (для ИИ, юзер не увидит)" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:10px">
-        <button type="button" id="rr-generate" style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:10px">🤖 Сгенерировать ответ</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <button type="button" id="rr-prepared" style="background:#0f2a1a;border:1px solid #1e4a2f;color:#4ade80;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">📋 Мой готовый ответ</button>
+          <button type="button" id="rr-generate" style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">🤖 Сгенерировать ответ</button>
+        </div>
         <input id="rr-title" placeholder="Заголовок уведомления" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:8px">
         <textarea id="rr-body" rows="5" placeholder="Текст ответа юзеру" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:12px;resize:vertical"></textarea>
         <div style="display:flex;gap:8px;justify-content:flex-end">
@@ -23687,6 +24487,36 @@
     wrap.querySelectorAll('input[name="rr-verdict"]').forEach(el => el.addEventListener('change', () => {
       wrap.querySelector('#rr-shards').value = readVerdict() === 'confirmed' ? '1' : '0';
     }));
+
+    // Подставить готовый ответ, подготовленный ЛЛМ-сессией по этому reportId (если есть).
+    // Заполняет заголовок/текст/осколки и вердикт (shards>0 = подтвердилось) — админ читает,
+    // при желании правит и шлёт. Ничего не отправляется автоматически.
+    const applyPrepared = () => {
+      const prep = PREPARED_REPORT_REPLIES[report.id];
+      if (!prep) return false;
+      wrap.querySelector('#rr-title').value = prep.title || '';
+      wrap.querySelector('#rr-body').value = prep.body || '';
+      const sh = Math.max(0, Math.min(100, Math.floor(Number(prep.shards) || 0)));
+      wrap.querySelector('#rr-shards').value = String(sh);
+      const verdictVal = sh > 0 ? 'confirmed' : 'rejected';
+      const radio = wrap.querySelector(`input[name="rr-verdict"][value="${verdictVal}"]`);
+      if (radio) radio.checked = true;
+      return true;
+    };
+    const preparedBtn = wrap.querySelector('#rr-prepared');
+    if (!PREPARED_REPORT_REPLIES[report.id]) {
+      // Нет готового ответа для этого репорта — гасим кнопку, чтобы не путала.
+      preparedBtn.style.opacity = '0.4';
+      preparedBtn.style.cursor = 'default';
+      preparedBtn.title = 'Для этого репорта готового ответа нет — используй «🤖 Сгенерировать» или впиши вручную';
+    } else {
+      preparedBtn.addEventListener('click', () => {
+        applyPrepared();
+        showToast('Готовый ответ подставлен — проверь и отправь', 'ok');
+      });
+      // Сразу подставляем при открытии, чтобы админ видел готовый текст без лишнего клика.
+      applyPrepared();
+    }
 
     wrap.querySelector('#rr-generate').addEventListener('click', async () => {
       const btn = wrap.querySelector('#rr-generate');
@@ -24893,9 +25723,20 @@
   };
 
   // ── CLUB NAMES ────────────────────────────────────────────────────────────────
+  // Экспортируем в window: раздел «Аналитика» и switch вызывают его как
+  // window.renderAnalytics(...) (см. строку с typeof window.renderAnalytics).
+  window.renderAnalytics = renderAnalytics;
   function renderAnalytics(users) {
     const n = users.length;
-    if(!n) return;
+    if (!n) {
+      // Раньше тут был молчаливый return, из-за которого статичная заглушка
+      // «Загрузите пользователей сначала» висела вечно. Теперь раздел сам
+      // грузит пользователей и перерисовывает себя.
+      if (typeof window.ensureUsersLoaded === 'function') {
+        window.ensureUsersLoaded(() => renderAnalytics(window._users || []), 'analytics-grid');
+      }
+      return;
+    }
     // Арена: один раз в начале — иначе два `const arenaN` (core / full) дают TDZ ReferenceError
     const arenaAll = Object.values(_arenaProfiles);
     const arenaN = arenaAll.length;
@@ -26494,6 +27335,23 @@
     return _fnDecideUserIdea;
   }
 
+  let _fnDraftIdeaDecision = null;
+  function getDraftIdeaDecisionCallable() {
+    if (!_fnDraftIdeaDecision) {
+      _fnDraftIdeaDecision = httpsCallable(functionsUs, 'adminDraftIdeaDecision');
+    }
+    return _fnDraftIdeaDecision;
+  }
+
+  // Названия языков для подписи «ИИ сгенерирует на языке пользователя».
+  const IDEA_LANG_LABELS = {
+    ru: 'рус', uk: 'укр', es: 'исп', pt: 'порт', vi: 'вьет', id: 'индонез', tr: 'тур', pl: 'пол', en: 'англ',
+  };
+  function ideaLangLabel(code) {
+    const c = String(code || 'ru').toLowerCase();
+    return IDEA_LANG_LABELS[c] || IDEA_LANG_LABELS[c.slice(0, 2)] || c;
+  }
+
   window.loadUserIdeas = async function() {
     window._userIdeasLoaded = true;
     const list = document.getElementById('idea-list');
@@ -26541,16 +27399,18 @@
       const plat = escapeHtml(r.platform || '—');
       const id = r.id;
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '';
+      const langLbl = escapeHtml(ideaLangLabel(r.lang));
 
       const actions = decided
         ? `<div style="font-size:11px;color:#666;margin-top:6px">${status === 'approved' ? '✅ год Плюс выдан' : '✖️ отклонена'}${decidedBy ? ' · ' + decidedBy : ''}</div>`
         : `<div style="margin-top:10px">
-             <textarea id="idea-msg-${id}" placeholder="Текст модалки для пользователя (можно изменить). Пусто = стандартный текст." style="width:100%;min-height:64px;background:#0f1320;border:1px solid #2a3550;color:#dbe3f4;border-radius:8px;padding:8px 10px;font-size:12px;resize:vertical;box-sizing:border-box"></textarea>
-             <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+             <textarea id="idea-msg-${id}" placeholder="Текст модалки для пользователя. Нажми «✨ ИИ» — текст сгенерируется сразу на языке пользователя. Пусто = стандартный текст." style="width:100%;min-height:64px;background:#0f1320;border:1px solid #2a3550;color:#dbe3f4;border-radius:8px;padding:8px 10px;font-size:12px;resize:vertical;box-sizing:border-box"></textarea>
+             <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center">
                <button data-idea="${id}" data-decision="approve" style="background:#0d2a12;border:1px solid #1f5a2a;color:#4ade80;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">🎉 Принять (год Плюс)</button>
                <button data-idea="${id}" data-decision="reject" style="background:#2a0d0d;border:1px solid #5a1f1f;color:#f87171;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✖️ Отклонить</button>
-               <button data-idea-fill="${id}" data-which="approve" type="button" style="background:#1a2330;border:1px solid #2a3550;color:#8ab4f8;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer">вставить текст «принято»</button>
-               <button data-idea-fill="${id}" data-which="reject" type="button" style="background:#1a2330;border:1px solid #2a3550;color:#8ab4f8;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer">вставить текст «отклонено»</button>
+               <button data-idea-ai="${id}" data-which="approve" type="button" title="ИИ напишет текст «принято» сразу на языке пользователя (${langLbl})" style="background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer">✨ ИИ: принято</button>
+               <button data-idea-ai="${id}" data-which="reject" type="button" title="ИИ напишет текст «отклонено» сразу на языке пользователя (${langLbl})" style="background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer">✨ ИИ: отклонено</button>
+               <span style="font-size:10.5px;color:#6b7280">язык: ${langLbl}</span>
              </div>
            </div>`;
 
@@ -26576,12 +27436,36 @@
         decideUserIdea(btn.dataset.idea, btn.dataset.decision, btn);
       });
     });
-    list.querySelectorAll('button[data-idea-fill]').forEach(btn => {
+    list.querySelectorAll('button[data-idea-ai]').forEach(btn => {
       btn.addEventListener('click', () => {
-        const target = document.getElementById('idea-msg-' + btn.dataset.ideaFill);
-        if (target) target.value = btn.dataset.which === 'approve' ? IDEA_DEFAULT_APPROVE_RU : IDEA_DEFAULT_REJECT_RU;
+        generateIdeaDecisionText(btn.dataset.ideaAi, btn.dataset.which, btn);
       });
     });
+  }
+
+  // ИИ генерирует текст модалки решения СРАЗУ на языке пользователя (idea.lang)
+  // и вставляет его в textarea. Админ может отредактировать перед отправкой.
+  async function generateIdeaDecisionText(ideaId, which, btn) {
+    if (!ideaId || !btn) return;
+    const decision = which === 'approve' ? 'approve' : 'reject';
+    const target = document.getElementById('idea-msg-' + ideaId);
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '⏳ ИИ пишет…';
+    try {
+      const res = await getDraftIdeaDecisionCallable()({ ideaId, decision });
+      const msg = res && res.data && typeof res.data.message === 'string' ? res.data.message.trim() : '';
+      if (!msg) throw new Error('пустой ответ ИИ');
+      if (target) { target.value = msg; target.focus(); }
+      if (typeof showToast === 'function') showToast('✨ Текст сгенерирован на языке пользователя', 'ok');
+    } catch (e) {
+      const m = (e && (e.message || e.code)) || String(e);
+      if (typeof showToast === 'function') showToast('❌ ИИ: ' + m, 'err');
+      else alert('Ошибка ИИ: ' + m);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = label;
+    }
   }
 
   async function decideUserIdea(ideaId, decision, btn) {
@@ -26612,6 +27496,104 @@
       else alert('Ошибка: ' + msg);
       filterUserIdeas();
     }
+  }
+
+  // ── ИДЕИ: РЕШЁННЫЕ — архив принятых + отклонённых ────────────────────────────
+  // Read-only архив по той же коллекции user_ideas (status: approved|rejected).
+  // Показывает точный текст, отправленный пользователю (decisionMessageRu),
+  // кто и когда решил. Ничего не отправляет — только просмотр истории.
+  window._decidedIdeasLoaded = false;
+  window._allDecidedIdeas = [];
+
+  window.loadDecidedIdeas = async function() {
+    window._decidedIdeasLoaded = true;
+    const list = document.getElementById('idea-decided-list');
+    if (!list) return;
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      // Всегда тянем свежие данные с сервера — чтобы точный текст, отправленный
+      // пользователю (decisionMessageRu), и статус были актуальны.
+      const snap = await getDocs(query(collection(db, 'user_ideas'), orderBy('createdAtMs', 'desc'), limit(500)));
+      const all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      window._allDecidedIdeas = all.filter(r => {
+        const s = r.status || 'pending';
+        return s === 'approved' || s === 'rejected';
+      });
+      filterDecidedIdeas();
+    } catch (e) {
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterDecidedIdeas = function() {
+    const status = document.getElementById('idea-decided-filter-status').value;
+    const category = document.getElementById('idea-decided-filter-category').value;
+    let arr = window._allDecidedIdeas;
+    if (status) arr = arr.filter(r => (r.status || '') === status);
+    if (category) arr = arr.filter(r => (r.category || 'other') === category);
+    renderDecidedIdeas(arr);
+  };
+
+  function renderDecidedIdeas(ideas) {
+    const list = document.getElementById('idea-decided-list');
+    const countEl = document.getElementById('idea-decided-count');
+    if (!list) return;
+    if (countEl) countEl.textContent = `${ideas.length} идей`;
+    if (!ideas.length) { list.innerHTML = '<div class="reports-empty">📭 Решённых идей нет</div>'; return; }
+
+    // Свежерешённые сверху (по времени решения, затем по времени создания).
+    const sorted = ideas.slice().sort((a, b) => {
+      const ad = Number(a.decidedAt || a.createdAtMs || 0);
+      const bd = Number(b.decidedAt || b.createdAtMs || 0);
+      return bd - ad;
+    });
+
+    list.innerHTML = sorted.map(r => {
+      const status = r.status || '';
+      const approved = status === 'approved';
+      const statusColor = approved ? '#4ade80' : '#6b7280';
+      const statusTxt = approved ? 'принята' : 'отклонена';
+      const catLabel = escapeHtml(IDEA_CATEGORY_LABELS[r.category] || r.category || '—');
+      const title = escapeHtml(r.title || '—');
+      const desc = escapeHtml(r.description || '');
+      const benefit = escapeHtml(r.benefit || '');
+      const createdDate = escapeHtml(r.createdAt ? String(r.createdAt).slice(0, 10) : '—');
+      const decidedDate = escapeHtml(r.decidedAtIso ? String(r.decidedAtIso).slice(0, 10) : '—');
+      const uShort = r.uid ? escapeHtml(String(r.uid).slice(-8)) : '—';
+      const uName = escapeHtml(r.userName || '?');
+      const plat = escapeHtml(r.platform || '—');
+      const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '—';
+      // Точный текст, который ушёл пользователю в модалку (decisionMessageRu).
+      const sentMsg = escapeHtml(String(r.decisionMessageRu || '').trim());
+
+      const decisionLine = approved
+        ? `✅ Принята — год Плюс выдан`
+        : `✖️ Отклонена`;
+
+      return `
+        <div class="report-card" style="border-left:3px solid ${statusColor};display:block">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:18px">${approved ? '✅' : '✖️'}</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
+              <div style="color:#666;font-size:11px">${uName} · uid ${uShort} · ${plat} · создана ${createdDate}</div>
+            </div>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
+          </div>
+          <div style="font-size:13px;color:#cbd5e1;white-space:pre-wrap;line-height:1.5;margin-bottom:${benefit ? '8px' : '0'}">${desc}</div>
+          ${benefit ? `<div style="font-size:12px;color:#93a4bd;white-space:pre-wrap;line-height:1.5"><b style="color:#7c93b4">Польза:</b> ${benefit}</div>` : ''}
+          <div style="margin-top:10px;padding-top:8px;border-top:1px solid #1e2230;font-size:11px;color:#8a97ad">
+            ${decisionLine} · решил: ${decidedBy} · ${decidedDate}
+          </div>
+          ${sentMsg
+            ? `<div style="margin-top:8px;background:#0f1320;border:1px solid #2a3550;border-radius:8px;padding:8px 10px">
+                 <div style="font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#7c93b4;margin-bottom:4px">✉️ Текст, отправленный пользователю</div>
+                 <div style="font-size:12.5px;color:#dbe3f4;white-space:pre-wrap;line-height:1.5">${sentMsg}</div>
+               </div>`
+            : `<div style="margin-top:8px;font-size:11px;color:#6b7280;font-style:italic">Отправлен стандартный текст (админ не переопределял).</div>`}
+        </div>`;
+    }).join('');
   }
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
@@ -34015,9 +34997,9 @@
     const search = (document.getElementById('pr-search')?.value || '').trim().toLowerCase();
     const all = window._users || [];
     if (!all.length) {
-      list.innerHTML = '<div class="reports-empty">⚠️ Сначала загрузите пользователей (вкладка Users).</div>';
-      summary.innerHTML = '';
+      if (summary) summary.innerHTML = '';
       if (cnt) cnt.textContent = '';
+      window.ensureUsersLoaded(window.renderPremiumList, list);
       return;
     }
     const premUsers = all.map(u => ({ u, b: _premBucket(u) })).filter(x => x.b.isPremium);
@@ -34123,9 +35105,9 @@
     const all = window._users || [];
     if (!list || !summary) return;
     if (!all.length) {
-      list.innerHTML = '<div class="reports-empty">Load Users first to inspect Plus accounts.</div>';
       summary.innerHTML = '';
       if (count) count.textContent = '';
+      window.ensureUsersLoaded(window.renderPremiumList, list);
       return;
     }
     const premiumUsers = all.map(u => ({ u, b: _premBucket(u) })).filter(x => x.b.isPremium);
@@ -34209,9 +35191,9 @@
     const all = window._users || [];
     if (!list || !summary) return;
     if (!all.length) {
-      list.innerHTML = '<div class="reports-empty">⚠️ Сначала загрузите пользователей (вкладка Users).</div>';
       summary.innerHTML = '';
       if (cnt) cnt.textContent = '';
+      window.ensureUsersLoaded(window.renderVipList, list);
       return;
     }
     const vipUsers = all.map(u => ({ u, vip: vipInfo(u), premium: premiumInfo(u) })).filter(x => x.vip.hasVip || x.vip.active || x.vip.legacy);
@@ -34625,11 +35607,11 @@
     const users = window._users || [];
     if (!list || !summary) return;
     if (!users.length) {
-      list.innerHTML = '<div class="reports-empty">Load Users first to inspect Plus anomalies.</div>';
       summary.innerHTML = '';
       if (count) count.textContent = '';
       window._plusRadarRows = [];
       window._plusRadarVisibleRows = [];
+      window.ensureUsersLoaded(window.renderPlusRadar, list);
       return;
     }
     const rows = buildPlusRadarRows(users);

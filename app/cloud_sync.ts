@@ -318,6 +318,10 @@ export const SYNC_KEYS = [
   'custom_avatar_gift_owned_v1',
   'avatar_aura_owned_v1',
   'avatar_aura_gift_owned_v1',
+  // Команда админки на разовое изменение энергии (обнулить/налить). Клиент применяет
+  // её один раз по метке at (см. energy_system.applyAdminEnergyCommand) — energy_state
+  // остаётся client-owned, команда лишь одноразовый триггер из облака на устройство.
+  'admin_energy_command',
   // «Сокровищница»: server-owned (см. SERVER_OWNED_PROGRESS_KEYS) — в SYNC_KEYS
   // только ради restoreFromCloud; в исходящий патч не попадают.
   'collectibles_owned_v1',

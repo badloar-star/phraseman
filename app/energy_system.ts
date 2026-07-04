@@ -16,9 +16,45 @@ const ENERGY_PER_LESSON = 1;
 /** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
 export const ENERGY_RECOVERY_INTERVAL_MS = 10 * 60 * 1000;
 
+/**
+ * Подарок «Энергия +N до полуночи» (level_gift_system: BONUS_ENERGY_KEY).
+ * Пока бонус активен — потолок энергии временно поднят на bonus.amount, а сами
+ * слоты сразу заполняются при выдаче (см. applyEnergyBonusN). Читаем ключ напрямую,
+ * чтобы не тянуть level_gift_system и не создавать циклический импорт.
+ */
+const BONUS_ENERGY_KEY = 'energy_gift_bonus';
+
+/** Активный доп-запас слотов от подарка (0, если бонуса нет или он истёк). Чистит протухший. */
+async function readBonusEnergyExtra(): Promise<number> {
+  try {
+    const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
+    if (!raw) return 0;
+    const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
+    const expiresAt = Number(b?.expiresAt) || 0;
+    if (Date.now() >= expiresAt) {
+      await AsyncStorage.removeItem(BONUS_ENERGY_KEY).catch(() => {});
+      return 0;
+    }
+    return Math.max(0, Math.floor(Number(b?.amount) || 0));
+  } catch {
+    return 0;
+  }
+}
+
 /** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */
 function MAX_ENERGY_VALUE(): number {
   return getMaxEnergy();
+}
+
+/**
+ * Эффективный потолок энергии = базовый максимум + активные бонусные слоты подарка.
+ * Используется везде, где раньше стоял голый MAX_ENERGY_VALUE(), чтобы подарочные
+ * слоты реально давали запас и восстанавливались, а после полуночи срезались.
+ */
+export async function getEffectiveMaxEnergyValue(): Promise<number> {
+  const base = MAX_ENERGY_VALUE();
+  const bonus = await readBonusEnergyExtra();
+  return base + bonus;
 }
 
 // Время восстановления 1 единицы энергии фиксированное:
@@ -54,8 +90,52 @@ const DEFAULT_STATE: EnergyState = {
  * Получить текущее состояние энергии из хранилища.
  * Если данные отсутствуют, инициализирует с максимальной энергией.
  */
+/**
+ * Разовая команда админки на изменение энергии.
+ * Админка пишет в облако users/{uid}.progress.admin_energy_command (в SYNC_KEYS),
+ * оттуда ключ 'admin_energy_command' доезжает на устройство. Клиент применяет команду
+ * РОВНО ОДИН РАЗ — по метке `at`: если at новее применённого, меняет energy_state и
+ * запоминает applied at. Так энергия остаётся client-owned, а команда — одноразовый
+ * триггер (обнулить / налить до максимума), который не повторяется при каждом синке.
+ */
+const ADMIN_ENERGY_COMMAND_KEY = 'admin_energy_command';
+const ADMIN_ENERGY_COMMAND_APPLIED_KEY = 'admin_energy_command_applied_at';
+
+type AdminEnergyCommand = { op?: 'drain' | 'fill'; at?: number };
+
+/** Применяет разовую админ-команду к energy_state, если она новее уже применённой. */
+async function applyAdminEnergyCommand(): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(ADMIN_ENERGY_COMMAND_KEY);
+    if (!raw) return;
+    const cmd = JSON.parse(raw) as AdminEnergyCommand;
+    const at = Number(cmd?.at) || 0;
+    if (!at || (cmd?.op !== 'drain' && cmd?.op !== 'fill')) return;
+
+    const appliedRaw = await AsyncStorage.getItem(ADMIN_ENERGY_COMMAND_APPLIED_KEY);
+    const appliedAt = Number(appliedRaw) || 0;
+    if (at <= appliedAt) return; // уже применена — не повторяем
+
+    const maxE = await getEffectiveMaxEnergyValue();
+    const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+    const prev = stored ? (JSON.parse(stored) as EnergyState) : { ...DEFAULT_STATE, lastRecoveryTime: Date.now() };
+    const next: EnergyState = {
+      ...prev,
+      current: cmd.op === 'fill' ? maxE : 0,
+      // При обнулении сбрасываем отсчёт восстановления от текущего момента,
+      // чтобы юзер не получил «пачку» энергии за прошедшее время сразу же.
+      lastRecoveryTime: cmd.op === 'drain' ? Date.now() : prev.lastRecoveryTime,
+    };
+    await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
+    await AsyncStorage.setItem(ADMIN_ENERGY_COMMAND_APPLIED_KEY, String(at));
+  } catch (error) {
+    DebugLogger.error('energy_system.ts:applyAdminEnergyCommand', error, 'warning');
+  }
+}
+
 export async function getEnergyState(): Promise<EnergyState> {
   try {
+    await applyAdminEnergyCommand();
     const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
     if (!stored) {
       // Инициализация: первый раз у пользователя
@@ -67,7 +147,7 @@ export async function getEnergyState(): Promise<EnergyState> {
       return initialState;
     }
     const parsed = JSON.parse(stored) as EnergyState;
-    const maxE = MAX_ENERGY_VALUE();
+    const maxE = await getEffectiveMaxEnergyValue();
     if (!Number.isFinite(parsed.current) || parsed.current < 0) parsed.current = maxE;
     else if (parsed.current > maxE) parsed.current = maxE;
     return parsed;
@@ -86,12 +166,15 @@ export async function checkAndRecover(): Promise<EnergyState> {
   try {
     let state = await getEnergyState();
     const now = Date.now();
-    const recoveryIntervalMs = await getCurrentRecoveryIntervalMs();
+    const [recoveryIntervalMs, effectiveMax] = await Promise.all([
+      getCurrentRecoveryIntervalMs(),
+      getEffectiveMaxEnergyValue(),
+    ]);
     const timeSinceLastRecovery = now - state.lastRecoveryTime;
 
     if (timeSinceLastRecovery >= recoveryIntervalMs) {
       const recoveryCount = Math.floor(timeSinceLastRecovery / recoveryIntervalMs);
-      const newCurrent = Math.min(state.current + recoveryCount, MAX_ENERGY_VALUE());
+      const newCurrent = Math.min(state.current + recoveryCount, effectiveMax);
 
       state = {
         ...state,
@@ -139,12 +222,13 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
       return false;
     }
 
+    const effectiveMax = await getEffectiveMaxEnergyValue();
     const newState: EnergyState = {
       ...state,
       current: state.current - amount,
       // Сбрасываем таймер восстановления при первой трате с максимума,
       // чтобы countdown показывал корректное время (а не 0)
-      lastRecoveryTime: state.current >= MAX_ENERGY_VALUE() ? Date.now() : state.lastRecoveryTime,
+      lastRecoveryTime: state.current >= effectiveMax ? Date.now() : state.lastRecoveryTime,
     };
 
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
@@ -161,7 +245,7 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
 export async function addEnergy(amount: number = 1): Promise<EnergyState> {
   try {
     let state = await getEnergyState();
-    const newCurrent = Math.min(state.current + amount, MAX_ENERGY_VALUE());
+    const newCurrent = Math.min(state.current + amount, await getEffectiveMaxEnergyValue());
 
     state = {
       ...state,
@@ -200,12 +284,13 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
  */
 export async function getTimeUntilNextRecovery(): Promise<number> {
   try {
-    const [state, recoveryIntervalMs] = await Promise.all([
+    const [state, recoveryIntervalMs, effectiveMax] = await Promise.all([
       checkAndRecover(),
       getCurrentRecoveryIntervalMs(),
+      getEffectiveMaxEnergyValue(),
     ]);
 
-    if (state.current >= MAX_ENERGY_VALUE()) {
+    if (state.current >= effectiveMax) {
       return 0;
     }
 

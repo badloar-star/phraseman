@@ -117,6 +117,7 @@ const ALLOWLIST_FILES = new Set([
 const FIREBASE_CLIENT_CONFIG_FILES = new Set([
   'admin/index.html',
   'admin/testers.html',
+  'admin/beta_testers.html',
   'admin/full.html',
   'admin/site.html',
 ]);

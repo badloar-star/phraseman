@@ -28,7 +28,8 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
   const isStormAura = aura?.effect === 'storm';
   const isStarVortexAura = aura?.effect === 'starvortex';
   const isVoidAmethystAura = aura?.effect === 'voidamethyst';
-  const isRichEffect = isFlameAura || isStormAura || isStarVortexAura || isVoidAmethystAura;
+  const isNimbusAura = aura?.effect === 'nimbus';
+  const isRichEffect = isFlameAura || isStormAura || isStarVortexAura || isVoidAmethystAura || isNimbusAura;
   const isFocused = useIsScreenFocused();
   const shouldAnimate = animate && isFocused && (((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42));
 
@@ -59,7 +60,7 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
         ]))
         : Animated.loop(Animated.timing(auraPhase, {
           toValue: 1,
-          duration: isStormAura ? 3200 : isStarVortexAura ? 4600 : isVoidAmethystAura ? 4000 : 2600,
+          duration: isStormAura ? 3200 : isStarVortexAura ? 4600 : isVoidAmethystAura ? 4000 : isNimbusAura ? 3800 : 2600,
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: true,
         }));
@@ -80,7 +81,7 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
       appSub.remove();
       stop();
     };
-  }, [auraPhase, isPremiumAura, isStormAura, isStarVortexAura, isVoidAmethystAura, isVipAura, shouldAnimate]);
+  }, [auraPhase, isPremiumAura, isStormAura, isStarVortexAura, isVoidAmethystAura, isNimbusAura, isVipAura, shouldAnimate]);
 
   if (!aura || size < 36) {
     return (
@@ -177,6 +178,91 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
             borderWidth: 1,
             borderColor: bright,
             opacity: 0.42,
+          }}
+        />
+        <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+          {children}
+        </View>
+      </View>
+    );
+  }
+
+  if (isNimbusAura) {
+    // Дышащий нимб: два слоя мягкого синего свечения (внешний медленно «дышит»,
+    // внутренний светлее и в противофазе) + тонкое кольцо-обод. Без полосок и вихрей.
+    const outer = Math.round(size * 1.36);
+    const ring = Math.max(1, Math.round(size * 0.035));
+    const main = aura.color;
+    const bright = aura.color2 ?? '#7DD3FC';
+    const inner = aura.color3 ?? '#E0F2FE';
+    const outerScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.9, 1.06, 0.9] });
+    const outerOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.32, 0.6, 0.32] });
+    const innerScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1.02, 0.86, 1.02] });
+    const innerOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.5, 0.26, 0.5] });
+    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.6, 0.92, 0.6] });
+
+    return (
+      <View
+        style={[
+          {
+            width: outer,
+            height: outer,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          style,
+        ]}
+      >
+        <Animated.View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            width: outer,
+            height: outer,
+            borderRadius: outer / 2,
+            backgroundColor: aura.softColor,
+            opacity: outerOpacity,
+            transform: [{ scale: outerScale }],
+          }}
+        />
+        <Animated.View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            width: Math.round(outer * 0.82),
+            height: Math.round(outer * 0.82),
+            borderRadius: Math.round(outer * 0.41),
+            backgroundColor: inner,
+            opacity: innerOpacity,
+            transform: [{ scale: innerScale }],
+          }}
+        />
+        <Animated.View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            width: size + 4,
+            height: size + 4,
+            borderRadius: (size + 4) / 2,
+            borderWidth: ring,
+            borderColor: main,
+            opacity: rimOpacity,
+            shadowColor: main,
+            shadowOpacity: 0.5,
+            shadowRadius: 10,
+            elevation: 6,
+          }}
+        />
+        <View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            width: size + 2,
+            height: size + 2,
+            borderRadius: (size + 2) / 2,
+            borderWidth: 1,
+            borderColor: bright,
+            opacity: 0.5,
           }}
         />
         <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>

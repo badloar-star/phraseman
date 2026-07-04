@@ -5,6 +5,8 @@ export const AVATAR_AURA_BUY_COST = 35;
 export const NO_AVATAR_AURA_ID = 'none';
 export const PREMIUM_AVATAR_AURA_ID = 'aura-premium';
 export const VIP_AVATAR_AURA_ID = 'aura-vip';
+/** Аура «Нимб» — синее дышащее свечение. Выдаётся только вручную из админки бета-тестерам. */
+export const BETA_NIMBUS_AURA_ID = 'aura-nimbus';
 
 export type AvatarAuraEffect =
   | 'flame'
@@ -16,7 +18,8 @@ export type AvatarAuraEffect =
   | 'gravity'
   | 'plasma'
   | 'ether'
-  | 'absolute';
+  | 'absolute'
+  | 'nimbus';
 
 /** Префикс id аур, которые выдаёт Боевой пропуск Арены (сезонные награды премиум-трека). */
 export const ARENA_PASS_AURA_PREFIX = 'aura-arena-';
@@ -57,6 +60,9 @@ export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: 'aura-flame-51', nameRu: 'Пламя', nameUk: 'Полумʼя', nameEs: 'Llama', namePtBr: 'Chama', nameVi: 'Ngọn lửa', nameId: 'Api', nameTr: 'Alev', namePl: 'Płomień', color: '#F97316', color2: '#FACC15', color3: '#FDBA74', softColor: 'rgba(249,115,22,0.23)', unlockLevel: 51, effect: 'flame' },
   { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', rewardOnly: true, effect: 'starvortex' },
   { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', rewardOnly: true, effect: 'voidamethyst' },
+
+  // ── Нимб — синее «дышащее» свечение. Награда бета-тестера, выдаётся вручную из админки. ──
+  { id: BETA_NIMBUS_AURA_ID, nameRu: 'Нимб', nameUk: 'Німб', nameEs: 'Nimbo', namePtBr: 'Nimbo', nameVi: 'Hào quang', nameId: 'Nimbus', nameTr: 'Hâle', namePl: 'Nimb', color: '#38BDF8', color2: '#7DD3FC', color3: '#E0F2FE', softColor: 'rgba(56,189,248,0.30)', rewardOnly: true, effect: 'nimbus' },
 
   // ── Ауры Боевого пропуска Арены (2 эксклюзивные, на финальных вехах премиум-трека) ──
   // D · Звёздный вихрь — космос: 3 орбиты + созвездие.

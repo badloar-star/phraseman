@@ -11874,6 +11874,7 @@
     <button onclick="supportPullMail()" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">🔄 Проверить почту</button>
     <button onclick="supportGenerateAll()" style="background:rgba(139,124,255,0.15);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700" title="ИИ-черновики для всех новых писем без ответа (до 25 за раз)">✨ Сгенерировать всем</button>
     <button onclick="supportSendAllDrafts()" style="background:rgba(96,165,250,0.13);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;font-weight:700" title="Отправить все готовые черновики по новым письмам">📤 Отправить все черновики</button>
+    <button id="gsi-archive-all" onclick="supportArchiveAllVisible()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#9ca3af;font-weight:700" title="Все показанные (по фильтру) письма, кроме архивных → «в архив»">🗄 Архивировать все показанные</button>
     <select id="gsi-filter-status" onchange="renderSupportInbox()">
       <option value="new">Новые</option>
       <option value="answered">Отвеченные</option>
@@ -26224,6 +26225,42 @@
     }
   };
 
+  // Массово: все показанные (по фильтру gsi-filter-status) письма со status!=='archived' → 'archived'.
+  // Статус меняется НЕ прямым updateDoc, а серверным callable adminSupportSetStatus (как supportSetStatus),
+  // поэтому writeBatch неприменим — вызываем существующий callable в цикле (требования 5, 26, 27).
+  window.supportArchiveAllVisible = async function() {
+    const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
+    let rows = _supportInboxAll.slice();
+    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
+    const targets = rows.filter(r => (r.status || 'new') !== 'archived');
+    if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
+    const ok = await showConfirmModal({
+      title: `Архивировать все ${targets.length} показанные письма?`,
+      desc: 'Меняется только статус (archived). Это можно вернуть по одному письму.',
+      confirmLabel: 'Архивировать',
+    });
+    if (!ok) return;
+    const btn = document.getElementById('gsi-archive-all');
+    const prevLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
+    const setStatus = supportCallable('adminSupportSetStatus');
+    let okN = 0, errN = 0;
+    try {
+      for (const r of targets) {
+        try {
+          await setStatus({ messageDocId: r.id, status: 'archived' });
+          okN++;
+        } catch (e) {
+          errN++;
+        }
+      }
+      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
+      await window.loadSupportInbox(true);
+    }
+  };
+
   window.supportSaveSignature = async function() {
     const input = document.getElementById('gsi-signature');
     const signature = input ? input.value : '';
@@ -30887,13 +30924,42 @@
     }
   };
 
-  window.filterWebsiteInbox = function filterWebsiteInbox() {
-    applyCleanWebsiteInboxChrome();
+  // Единый источник «видимых по фильтру» обращений — используется рендером и массовой кнопкой.
+  function getFilteredWebsiteInbox() {
     const selector = document.getElementById('wi-filter-status');
     const status = selector ? selector.value : '';
     let rows = _allWebsiteInbox;
     if (status) rows = rows.filter((row) => (row.status || 'new') === status);
-    renderWebsiteInbox(rows);
+    return rows;
+  }
+
+  window.filterWebsiteInbox = function filterWebsiteInbox() {
+    applyCleanWebsiteInboxChrome();
+    renderWebsiteInbox(getFilteredWebsiteInbox());
+  };
+
+  // Массово: всем видимым (по фильтру) обращениям со status!=='read' → status:'read' (как одиночная «Mark read»), writeBatch.
+  window.markAllWebsiteRead = async function() {
+    const targets = getFilteredWebsiteInbox().filter((row) => (row.status || 'new') !== 'read');
+    if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
+    const ok = await showConfirmModal({
+      title: `Пометить прочитанными все ${targets.length} показанные записи?`,
+      desc: 'Меняется только статус (read). Это можно отменить по одной на карточке.',
+      confirmLabel: 'Пометить прочитанными',
+    });
+    if (!ok) return;
+    const btn = document.getElementById('wi-mark-all');
+    const prevLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
+    try {
+      const readAt = new Date().toISOString();
+      const { okN, errN } = await bulkUpdateStatusChunked('website_contact_inbox', targets.map((row) => row.id), { status: 'read', readAt });
+      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+      await window.loadWebsiteInbox(true);
+      updateTabBadges(true);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
+    }
   };
 
   renderWebsiteInbox = function renderWebsiteInbox(rows) {

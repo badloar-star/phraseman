@@ -376,8 +376,10 @@ function RegistrationPromptModal({
   const handleResetAndRetry = useCallback(async () => {
     setLoadingProvider('google');
     try {
-      const reset = await signOutAndWipeForAccountSwitch();
-      if (reset.ok === false) throw new Error(reset.detail || reset.reason || 'account_switch_reset_failed');
+      // DEV-кнопка сброса identity: wipe — сама цель, поэтому не отменяем его
+      // при провале синка (обычный флоу «Сменить аккаунт» — отменяет).
+      const reset = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
+      if (reset.ok === false) throw new Error(('detail' in reset && reset.detail) || reset.reason || 'account_switch_reset_failed');
       showInlineError(
         'Сброс выполнен',
         'Identity-state очищен. Теперь нажми "Войти через Google" — должен появиться picker аккаунтов.',

@@ -417,7 +417,7 @@ type HomeTitlesArgs = {
     helpfulReportsConfirmed: number;
     dailyAllDoneStreak: number;
     earnedAchievementIds: unknown;
-    lang: string;
+    lang: Lang;
     selectedTitleKey: string | null;
 };
 type HomeTitlesComputation = {

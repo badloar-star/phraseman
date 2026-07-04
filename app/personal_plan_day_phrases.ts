@@ -15,13 +15,17 @@ export type PlanDayPhrase = {
   id: string;
   english: string;
   russian: string;
+  /** Испанский перевод-подсказка (локаль es); пусто, пока фраза не покрыта. */
+  spanish?: string;
 };
 
 function toDisplayPhrase(phrase: LessonPhrase): PlanDayPhrase {
+  const spanish = (phrase.spanish ?? '').trim();
   return {
     id: String(phrase.id),
     english: (phrase.english ?? '').trim(),
     russian: (phrase.russian ?? '').trim(),
+    ...(spanish ? { spanish } : {}),
   };
 }
 

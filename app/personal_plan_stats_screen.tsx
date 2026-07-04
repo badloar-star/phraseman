@@ -10,6 +10,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
+import { useLang } from '../components/LangContext';
 import type { ThemeMode } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -476,6 +477,7 @@ function DayReviewSheet({
   onReplayDay: () => void;
   onClose: () => void;
 }) {
+  const { lang } = useLang();
   const visible = day != null;
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
@@ -519,7 +521,12 @@ function DayReviewSheet({
                     >
                       <View style={{ flex: 1 }}>
                         <Text style={[styles.phraseEn, { color: chrome.text }]}>{p.english}</Text>
-                        {!!p.russian && <Text style={[styles.phraseRu, { color: chrome.muted }]}>{p.russian}</Text>}
+                        {(() => {
+                          const translation = lang === 'es' ? (p.spanish || p.russian) : p.russian;
+                          return !!translation && (
+                            <Text style={[styles.phraseTranslation, { color: chrome.muted }]}>{translation}</Text>
+                          );
+                        })()}
                       </View>
                       <Ionicons name="volume-high" size={18} color={chrome.accent} />
                     </TouchableOpacity>
@@ -636,7 +643,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, borderRadius: 12, paddingVertical: 11, paddingHorizontal: 13,
   },
   phraseEn: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
-  phraseRu: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },
+  phraseTranslation: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },
   sheetEmpty: { fontSize: 14, lineHeight: 20, fontWeight: '600', paddingVertical: 10 },
   replayBtn: { marginTop: 14, borderRadius: 14, overflow: 'hidden' },
   replayBtnInner: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15 },

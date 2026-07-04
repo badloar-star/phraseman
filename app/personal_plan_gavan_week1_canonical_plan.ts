@@ -115,6 +115,8 @@ type PhraseRow = [
   string[],
   string,
   string,
+  // Испанский перевод фразы (локаль es); доносится до UI через
+  // runtime bridge → LessonPhrase.spanish.
   string?,
 ];
 
@@ -147,14 +149,14 @@ function phrase(
   row: PhraseRow,
 ): GavanCanonicalPhrase {
   const id = `gavan-week1-day${dayIndex}:phrase-${index}`;
-  const [english, ru, newWords, firstSeenConstructions, correctRu, wrongRu, es] = row;
+  const [english, ru, newWords, firstSeenConstructions, correctRu, wrongRu, spanish] = row;
   const covers = [...newWords, ...firstSeenConstructions];
 
   return {
     id,
     english,
     ru,
-    ...(es ? { es } : {}),
+    ...(spanish ? { es: spanish } : {}),
     newWords,
     firstSeenConstructions,
     explanationCards: [card(id, covers, correctRu, wrongRu)],

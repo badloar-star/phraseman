@@ -500,7 +500,7 @@ export async function loadDigestSources(
     byMs('vip_survey_responses', 'updatedAtMs', (d) => ({ uid: (d.data().uid as string) || d.id })),
     byMs('community_pack_submissions', 'submittedAt', (d) => {
       const x = d.data();
-      return { title: (x.payload?.titleRu as string) || (x.title as string), submissionKind: x.submissionKind as string };
+      return { title: (x.payload?.titleRu as string) || (x.payload?.titleEs as string) || (x.title as string), submissionKind: x.submissionKind as string };
     }),
     byMs('arena_rooms_live', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt числовое, TTL 24ч
   ]);

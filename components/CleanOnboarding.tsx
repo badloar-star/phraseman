@@ -132,6 +132,7 @@ export type CleanOnboardingStep =
   | 'notifications'
   | 'plusBenefits'
   | 'startMode'
+  | 'planComparison'
   | 'onboardingPaywall'
   | 'name';
 
@@ -150,6 +151,7 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'notifications',
   'plusBenefits',
   'startMode',
+  'planComparison',
   'onboardingPaywall',
   'name',
 ];
@@ -223,11 +225,12 @@ const STEP_PROGRESS_INDEX: Partial<Record<CleanOnboardingStep, number>> = {
   notifications: SHOW_ONBOARDING_LANGUAGE_STEP ? 6 : 5,
   plusBenefits: SHOW_ONBOARDING_LANGUAGE_STEP ? 7 : 6,
   startMode: SHOW_ONBOARDING_LANGUAGE_STEP ? 8 : 7,
-  onboardingPaywall: SHOW_ONBOARDING_LANGUAGE_STEP ? 9 : 8,
-  name: SHOW_ONBOARDING_LANGUAGE_STEP ? 10 : 9,
+  planComparison: SHOW_ONBOARDING_LANGUAGE_STEP ? 9 : 8,
+  onboardingPaywall: SHOW_ONBOARDING_LANGUAGE_STEP ? 10 : 9,
+  name: SHOW_ONBOARDING_LANGUAGE_STEP ? 11 : 10,
 };
 
-const PROGRESS_TOTAL = SHOW_ONBOARDING_LANGUAGE_STEP ? 10 : 9;
+const PROGRESS_TOTAL = SHOW_ONBOARDING_LANGUAGE_STEP ? 11 : 10;
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
@@ -283,6 +286,20 @@ const PLUS_THREE_MONTH_PROMISES = [
     body: 'Короткая сессия, которую реально держать неделя за неделей.',
   },
 ] as const;
+
+// Экран сравнения Free vs Plus (planComparison). Реальные киллер-фичи Plus из боевой
+// копирайт-выкладки пейвола (paywall_copy.ts → CONTEXT_BENEFITS). У Free — прочерк
+// (эти фичи только в Plus), у Plus — галочка, появляется каскадом сверху вниз.
+// Слово «ИИ» в приложении не используем — «разговорная практика» вместо «диалоги с ИИ».
+const PLAN_COMPARISON_BENEFITS: { icon: IoniconName; title: string }[] = [
+  { icon: 'flash-outline', title: 'Безлимит энергии' },
+  { icon: 'mic-outline', title: 'Практика произношения' },
+  { icon: 'chatbubbles-outline', title: 'Разговорная практика' },
+  { icon: 'bulb-outline', title: 'Разбор ошибок' },
+  { icon: 'map-outline', title: 'Персональный план' },
+  { icon: 'locate-outline', title: 'Тренер слабых мест' },
+  { icon: 'stats-chart-outline', title: 'Аналитика 365 дней' },
+];
 
 function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
   const language = targetLabel(target, 'accusative');
@@ -848,6 +865,51 @@ function PlusBenefitRow({
   );
 }
 
+// Строка экрана сравнения Free/Plus: слева иконка+название, две колонки FREE/PLUS.
+// У Free — прочерк, у Plus — галочка, которая «ставится» с лёгким overshoot; вся
+// строка подъезжает снизу. Каскад задаётся index (как в PlusBenefitRow).
+function PlanComparisonRow({
+  icon,
+  title,
+  index = 0,
+}: {
+  icon: IoniconName;
+  title: string;
+  index?: number;
+}) {
+  const anim = useRef(new Animated.Value(0)).current;
+  const check = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const delay = 140 + index * 220;
+    const a = Animated.sequence([
+      Animated.delay(delay),
+      Animated.parallel([
+        Animated.timing(anim, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(check, { toValue: 1, friction: 5, tension: 120, delay: 140, useNativeDriver: true }),
+      ]),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [anim, check, index]);
+  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
+  return (
+    <Animated.View style={[styles.cmpRow, { opacity: anim, transform: [{ translateY }] }]}>
+      <View style={styles.cmpLabelCell}>
+        <Ionicons name={icon} size={20} color="#5B67D8" style={styles.cmpIcon} />
+        <Text style={styles.cmpLabel}>{title}</Text>
+      </View>
+      <View style={styles.cmpCell}>
+        <View style={styles.cmpDash} />
+      </View>
+      <View style={styles.cmpCell}>
+        <Animated.View style={[styles.cmpCheckWrap, { transform: [{ scale: check }] }]}>
+          <Ionicons name="checkmark" size={16} color="#22B07D" />
+        </Animated.View>
+      </View>
+    </Animated.View>
+  );
+}
+
 function PaywallPlanCard({
   plan,
   title,
@@ -1154,11 +1216,19 @@ function CleanOnboarding({
     ]);
   }, [planId, selectedBillingPlan, selectedMinutes]);
 
+  // Выбор Free → сразу к имени. Выбор Plus → сначала лёгкий экран сравнения выгод
+  // (planComparison), и только с него — к ценам. Подготовку плана и трекинг пейвола
+  // делаем на переходе «сравнение → цены» (continueFromPlanComparison), а не здесь,
+  // чтобы экран сравнения открывался мгновенно, без busy-состояния.
   const openPaywallOrName = useCallback(async () => {
     if (!plusSelected) {
       go('name');
       return;
     }
+    go('planComparison');
+  }, [go, plusSelected]);
+
+  const continueFromPlanComparison = useCallback(async () => {
     if (paywallBusy) return;
     setPaywallBusy(true);
     try {
@@ -1169,7 +1239,7 @@ function CleanOnboarding({
     } finally {
       setPaywallBusy(false);
     }
-  }, [go, paywallBusy, planId, plusSelected, queueSelectedPlan, selectedMinutes]);
+  }, [go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
 
   const continueFromOnboardingPaywall = useCallback(async () => {
     if (paywallBusy || paywallPurchasing) return;
@@ -1537,6 +1607,31 @@ function CleanOnboarding({
     </ScreenFrame>
   );
 
+  // Экран сравнения выгод Free/Plus между выбором «Plus» и ценами. Светлый, с
+  // анимированными галочками по очереди. Реальные киллер-фичи из пейвола.
+  const renderPlanComparison = () => (
+    <ScreenFrame
+      step="planComparison"
+      title="С Plus открыто всё"
+      onBack={back}
+      light
+      plainTitle
+      footer={<PrimaryButton label="Хочу так" onPress={() => void continueFromPlanComparison()} loading={paywallBusy} testID="onboarding-plan-comparison-continue" />}
+    >
+      <Text style={styles.cmpSubtitle}>Вот что добавится к бесплатному</Text>
+      <View style={styles.cmpHeaderRow}>
+        <View style={styles.cmpLabelCell} />
+        <Text style={styles.cmpHeaderFree}>FREE</Text>
+        <Text style={styles.cmpHeaderPlus}>PLUS</Text>
+      </View>
+      <View style={styles.cmpList}>
+        {PLAN_COMPARISON_BENEFITS.map((item, index) => (
+          <PlanComparisonRow key={item.title} index={index} icon={item.icon} title={item.title} />
+        ))}
+      </View>
+    </ScreenFrame>
+  );
+
   const renderOnboardingPaywall = () => {
     // Apple 3.1.2(c): списываемая сумма (billed amount) должна быть самым крупным
     // и заметным ценовым элементом. Поэтому у «Года» КРУПНО показываем полную цену
@@ -1725,6 +1820,7 @@ function CleanOnboarding({
       case 'notifications': return renderNotifications();
       case 'startMode': return renderStartMode();
       case 'plusBenefits': return renderPlusBenefits();
+      case 'planComparison': return renderPlanComparison();
       case 'onboardingPaywall': return renderOnboardingPaywall();
       case 'name': return renderName();
       default: return renderWelcome();
@@ -2386,6 +2482,80 @@ const styles = StyleSheet.create({
   },
   plusBenefitTitleLight: {
     color: '#101828',
+  },
+  cmpSubtitle: {
+    color: '#59647A',
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '600',
+    marginTop: 2,
+    marginBottom: 14,
+  },
+  cmpHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingBottom: 4,
+  },
+  cmpHeaderFree: {
+    width: 52,
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#8A93A6',
+  },
+  cmpHeaderPlus: {
+    width: 52,
+    textAlign: 'center',
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 0.4,
+    color: '#9B7CFF',
+  },
+  cmpList: {
+    marginTop: 2,
+  },
+  cmpRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 12,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'rgba(16,24,40,0.08)',
+  },
+  cmpLabelCell: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  cmpIcon: {
+    width: 22,
+  },
+  cmpLabel: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#1B2333',
+  },
+  cmpCell: {
+    width: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cmpDash: {
+    width: 16,
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: '#C4CBD8',
+  },
+  cmpCheckWrap: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#E4F7EE',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   plusBenefitSubtitle: {
     color: '#B7BDCE',

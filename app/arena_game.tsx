@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import {
   AppState, View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, useWindowDimensions,
-  InteractionManager,
+  InteractionManager, BackHandler, Platform,
 } from 'react-native';
 import Reanimated, {
   cancelAnimation,
@@ -212,6 +212,22 @@ export default function DuelGameScreen() {
       sub.remove();
     };
   }, [phase]);
+
+  // Android: системный «Назад» посреди живого матча = тот же диалог сдачи,
+  // что и экранная кнопка выхода. Раньше back мгновенно уходил с экрана без
+  // записи forfeit — соперник зависал в матче, ставка не разрешалась.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      const p = phaseRef.current;
+      const liveMatch = p === 'question' || p === 'reveal' || p === 'countdown';
+      if (!liveMatch) return false; // лобби/финиш/абор — обычное поведение back
+      // Открыт диалог — back закрывает его (продолжить матч), иначе открывает.
+      setShowExitConfirm((visible) => !visible);
+      return true;
+    });
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     if (phase !== 'premeet') {

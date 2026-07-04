@@ -9,7 +9,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
+    Alert,
     Animated,
+    BackHandler,
+    Platform,
     ScrollView,
     Share,
     Text, TouchableOpacity,
@@ -447,6 +450,44 @@ export default function ExamScreen() {
   const certificateSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
 
   const [phase, setPhase]           = useState<Phase>('intro');
+  const phaseBackRef = useRef<Phase>('intro');
+  phaseBackRef.current = phase;
+
+  // Android: системный «Назад» посреди идущего экзамена раньше мгновенно
+  // уносил с экрана — часовая попытка терялась без единого вопроса.
+  // Теперь во время quiz/review/countdown back требует подтверждения.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      const p = phaseBackRef.current;
+      if (p !== 'quiz' && p !== 'review' && p !== 'countdown') return false;
+      Alert.alert(
+        t3('Выйти из экзамена?', 'Вийти з іспиту?', '¿Salir del examen?', 'Sair do exame?', 'Thoát bài kiểm tra?', 'Keluar dari ujian?', 'Sınavdan çıkılsın mı?', 'Wyjść z egzaminu?'),
+        t3(
+          'Текущая попытка будет потеряна, ответы не сохранятся.',
+          'Поточну спробу буде втрачено, відповіді не збережуться.',
+          'Perderás el intento actual y tus respuestas no se guardarán.',
+          'A tentativa atual será perdida e as respostas não serão salvas.',
+          'Lần làm bài hiện tại sẽ mất, câu trả lời không được lưu.',
+          'Percobaan saat ini akan hilang dan jawaban tidak disimpan.',
+          'Mevcut deneme kaybolacak, cevaplar kaydedilmeyecek.',
+          'Bieżąca próba zostanie utracona, odpowiedzi nie zostaną zapisane.',
+        ),
+        [
+          { text: t3('Продолжить экзамен', 'Продовжити іспит', 'Seguir con el examen', 'Continuar o exame', 'Tiếp tục làm bài', 'Lanjutkan ujian', 'Sınava devam et', 'Kontynuuj egzamin'), style: 'cancel' },
+          {
+            text: t3('Выйти', 'Вийти', 'Salir', 'Sair', 'Thoát', 'Keluar', 'Çık', 'Wyjdź'),
+            style: 'destructive',
+            onPress: () => safeRouterBack(router),
+          },
+        ],
+      );
+      return true;
+    });
+    return () => sub.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- t3/router стабильны в рамках экрана
+  }, []);
+
   const [lessonsCompleted, setCompleted] = useState(0);
   const [certificate, setCertificate] = useState<LingmanCertificate | null>(null);
   const [nameModalVisible, setNameModalVisible] = useState(false);

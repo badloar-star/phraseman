@@ -149,6 +149,13 @@ const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { constellationSubmitAction } = require('./constellations/submit');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { tryMatchConstellationUser, constellationQueueCron } = require('./constellations/queue') as {
+  tryMatchConstellationUser: (userId: string) => Promise<void>;
+  constellationQueueCron: () => Promise<void>;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
@@ -272,6 +279,30 @@ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
+exports.constellationSubmitAction = constellationSubmitAction;
+
+// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
+// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
+// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
+export const onConstellationQueueWrite = functions.firestore.onDocumentWritten(
+  'constellation_queue/{userId}',
+  async (event) => {
+    const after = event.data?.after;
+    if (!after?.exists) return;
+    const data = after.data() as { matchId?: string } | undefined;
+    if (data?.matchId) return;
+    try {
+      await tryMatchConstellationUser(event.params.userId as string);
+    } catch (e) {
+      console.warn('onConstellationQueueWrite', e);
+    }
+  },
+);
+
+export const constellationCron = functions.scheduler.onSchedule(
+  { schedule: 'every 1 minutes', timeZone: 'UTC' },
+  async () => { await constellationQueueCron(); },
+);
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

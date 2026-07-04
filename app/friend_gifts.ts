@@ -3,6 +3,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
 import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 import { replaceShardsBalanceLocal } from './shards_system';
 
@@ -232,13 +233,18 @@ export async function sendFriendGiftWithShards(data: {
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
       FriendGiftSendResponse
     >('friendSendGift');
-    const res = await fn({
-      senderStableId,
-      friendStableId: data.friendStableId,
-      giftId: data.giftId,
-      senderDisplayName: data.senderDisplayName ?? '',
-      idempotencyKey,
-    });
+    // 30с вместо ~70с дефолта; повтор после таймаута безопасен — сервер
+    // дедуплицирует по idempotencyKey.
+    const res = await withCallableTimeout(
+      fn({
+        senderStableId,
+        friendStableId: data.friendStableId,
+        giftId: data.giftId,
+        senderDisplayName: data.senderDisplayName ?? '',
+        idempotencyKey,
+      }),
+      'friendSendGift',
+    );
     if (Number.isFinite(res.data.senderBalanceAfter)) {
       await replaceShardsBalanceLocal(res.data.senderBalanceAfter, {
         updatedAtMs: res.data.shardsUpdatedAtMs,
@@ -291,13 +297,16 @@ export async function sendFriendGiftThanks(data: {
       { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string; idempotencyKey: string },
       { ok: boolean; idempotencyKey?: string; idempotentReplay?: boolean }
     >('friendThankGift');
-    const res = await fn({
-      senderStableId,
-      friendStableId: data.friendStableId,
-      giftId: data.giftId,
-      senderDisplayName: data.senderDisplayName ?? '',
-      idempotencyKey,
-    });
+    const res = await withCallableTimeout(
+      fn({
+        senderStableId,
+        friendStableId: data.friendStableId,
+        giftId: data.giftId,
+        senderDisplayName: data.senderDisplayName ?? '',
+        idempotencyKey,
+      }),
+      'friendThankGift',
+    );
     return res.data;
   })().finally(() => {
     friendGiftThanksInFlight.delete(key);

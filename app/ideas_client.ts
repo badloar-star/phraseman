@@ -2,6 +2,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -61,18 +62,22 @@ export async function submitUserIdea(input: IdeaInput): Promise<SubmitUserIdeaRe
   await warmIdeasAppCheck();
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const fn = getSubmitUserIdeaCallable();
-  const res = await fn({
-    payload: {
-      title: input.title,
-      description: input.description,
-      benefit: input.benefit,
-      category: input.category,
-      lang: input.lang,
-      userName: input.userName ?? null,
-      platform: Platform.OS,
-      appVersion,
-    },
-  });
+  // 30с вместо ~70с дефолта: отправка идеи не должна висеть минуту на плохой сети.
+  const res = await withCallableTimeout(
+    fn({
+      payload: {
+        title: input.title,
+        description: input.description,
+        benefit: input.benefit,
+        category: input.category,
+        lang: input.lang,
+        userName: input.userName ?? null,
+        platform: Platform.OS,
+        appVersion,
+      },
+    }),
+    'submitUserIdea',
+  );
   return res.data;
 }
 

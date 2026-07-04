@@ -37,6 +37,7 @@ import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import MaintenanceGate from '../components/MaintenanceGate';
 import ForceUpdateGate from '../components/ForceUpdateGate';
+import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
@@ -2889,6 +2890,10 @@ function AppContent() {
         </View>
       </View>
     )}
+
+    {/* Глобальный баннер офлайна: единственное место, где приложение говорит
+        «нет сети» — экраны сами это не различают (NetInfo в проекте нет). */}
+    {ready && <OfflineBanner lang={lang} />}
 
     <StartupSplashHold visible={startupSplashVisible} />
 

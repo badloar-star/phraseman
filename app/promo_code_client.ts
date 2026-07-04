@@ -9,6 +9,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const promoRedeemInFlight = new Map<string, Promise<PromoRedeemResult>>();
@@ -64,7 +65,8 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
         getFunctions(getApp(), FUNCTIONS_REGION),
         'promoCodeRedeem',
       );
-      const res = await fn({ code });
+      // 30с вместо ~70с дефолта: кнопка «Применить» не висит минуту на плохой сети.
+      const res = await withCallableTimeout(fn({ code }), 'promoCodeRedeem');
       const data = res.data;
       if (data?.ok) {
         return {

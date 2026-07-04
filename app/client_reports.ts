@@ -1,5 +1,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -66,7 +67,9 @@ export async function submitClientReport(
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   await warmClientReportAppCheck();
   const fn = getSubmitClientReportCallable();
-  const res = await fn({ kind, payload });
+  // 30с вместо ~70с дефолта RN Firebase: на висящей сети кнопка «Отправить»
+  // не должна крутить спиннер больше минуты.
+  const res = await withCallableTimeout(fn({ kind, payload }), 'submitClientReport');
   return res.data;
 }
 

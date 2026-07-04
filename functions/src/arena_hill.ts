@@ -7,6 +7,13 @@ const THRONES = 'arena_hill_thrones';
 const PLAYER_WINS = 'arena_hill_player_wins'; // {dayKey}_{stableUid} → { wins, name, updatedAt }
 const MAX_SESSION_AGE_MS = 2 * 60 * 60 * 1000;
 const THRONE_REWARD_SHARDS = 10;
+// Defense-in-depth: bound the daily win counter so a client that fabricates wins
+// (isWin is client-asserted — see the security note on arenaHillRecordAttempt)
+// cannot inflate the throne score to an absurd value. Set far above any real
+// day of play so a legitimate grinder is never capped. NOTE: this bounds score
+// inflation only; fully closing the fake-win farm requires server-side bot-match
+// adjudication (the server must decide the winner instead of trusting isWin).
+const MAX_DAILY_WINS = 1000;
 
 type DailyTopEntry = {
   uid: string;
@@ -140,9 +147,9 @@ export const arenaHillRecordAttempt = onCall({ region: REGION, enforceAppCheck: 
     // Записываем сессию как обработанную
     tx.set(sessionRef, { dayKey: today, stableUid, sessionId, isWin, createdAt: now });
 
-    // Обновляем счётчик побед игрока
+    // Обновляем счётчик побед игрока (с дневным потолком против накрутки счёта)
     const prevWins = readInt(playerSnap.data()?.wins, 0);
-    const newWins = isWin ? prevWins + 1 : prevWins;
+    const newWins = isWin && prevWins < MAX_DAILY_WINS ? prevWins + 1 : prevWins;
     tx.set(playerWinsRef, { dayKey: today, stableUid, name, wins: newWins, updatedAt: now }, { merge: true });
 
     const current = throneSnap.exists ? throneSnap.data() || {} : null;

@@ -230,6 +230,7 @@ export interface SpeakingPanelProps {
 
 type SpeechModule = {
   requestPermissionsAsync: () => Promise<{ granted: boolean }>;
+  getPermissionsAsync?: () => Promise<{ granted: boolean }>;
   start: (opts: Record<string, unknown>) => void;
   stop: () => void;
   abort: () => void;
@@ -930,6 +931,26 @@ export function SpeakingPanel({
   const [holdModelReady, setHoldModelReady] = useState(false);
   const holdRecRef = useRef<HoldRecording | null>(null);
   const holdFinishingRef = useRef(false);
+  // PCM-рекордер hold-пути НЕ запрашивает разрешение микрофона сам: без гранта
+  // init/start «пишут» тишину, и каждая попытка кончается «не расслышал» —
+  // мёртвая петля без единого системного диалога. Грант проверяем заранее
+  // (без диалога), сам диалог показываем при первом зажатии.
+  const holdMicGrantedRef = useRef(false);
+  const holdPressActiveRef = useRef(false);
+  const wordHoldPressActiveRef = useRef(false);
+
+  const ensureHoldMicPermission = useCallback(async (): Promise<boolean> => {
+    if (holdMicGrantedRef.current) return true;
+    if (!speech) return false;
+    try {
+      const perm = await speech.requestPermissionsAsync();
+      const granted = perm?.granted === true;
+      holdMicGrantedRef.current = granted;
+      return granted;
+    } catch {
+      return false;
+    }
+  }, [speech]);
   // true = мы в hold-режиме И модель готова: кнопка работает как push-to-talk.
   // ПОВЕДЕНЧЕСКИЙ флаг: реальная запись/распознавание. В превью всегда false
   // (holdSupported требует !isPreview) — микрофон не трогается.
@@ -943,6 +964,7 @@ export function SpeakingPanel({
     if (!holdMode) return;
     if (holdRecRef.current) return; // уже держим
     holdFinishingRef.current = false;
+    holdPressActiveRef.current = true;
     // Глушим эталон/реплей, чтобы микрофон не поймал хвост воспроизведения.
     try {
       replayPlayerRef.current?.pause();
@@ -960,12 +982,35 @@ export function SpeakingPanel({
     setHint(null);
     setStatus('listening');
     hapticTap();
-    holdRecRef.current = startHoldRecording();
-  }, [holdMode]);
+    if (holdMicGrantedRef.current) {
+      holdRecRef.current = startHoldRecording();
+      return;
+    }
+    // Первого гранта ещё нет: показываем системный диалог вместо записи в тишину.
+    void (async () => {
+      const granted = await ensureHoldMicPermission();
+      if (!mountedRef.current) return;
+      if (!granted) {
+        setStatus('denied'); // штатный blocked-UI с кнопкой «Открыть настройки»
+        return;
+      }
+      // Диалог перехватил касание — палец уже отпущен: юзер зажмёт снова.
+      if (!holdPressActiveRef.current) {
+        setStatus('idle');
+        return;
+      }
+      holdRecRef.current = startHoldRecording();
+    })();
+  }, [holdMode, ensureHoldMicPermission]);
 
   const endHold = useCallback(async () => {
+    holdPressActiveRef.current = false;
     const rec = holdRecRef.current;
-    if (!rec) return;
+    if (!rec) {
+      // Отпустили, пока ждали диалог разрешения — вернуть панель в исходное.
+      setStatus((s) => (s === 'listening' ? 'idle' : s));
+      return;
+    }
     if (holdFinishingRef.current) return;
     holdFinishingRef.current = true;
     holdRecRef.current = null;
@@ -1023,6 +1068,7 @@ export function SpeakingPanel({
       if (!holdMode) return;
       if (wordHoldRecRef.current) return;
       wordFinishingRef.current = false;
+      wordHoldPressActiveRef.current = true;
       try {
         replayPlayerRef.current?.pause();
       } catch {
@@ -1036,15 +1082,38 @@ export function SpeakingPanel({
       setWordPhase('listening');
       setWordVerdict(null);
       hapticTap();
-      wordHoldRecRef.current = startHoldRecording();
+      if (holdMicGrantedRef.current) {
+        wordHoldRecRef.current = startHoldRecording();
+        return;
+      }
+      // Тот же гейт, что и у фразы: без гранта PCM-рекордер пишет тишину.
+      void (async () => {
+        const granted = await ensureHoldMicPermission();
+        if (!mountedRef.current) return;
+        if (!granted) {
+          setWordPhase('no_speech'); // как системный word-путь при отказе
+          setWordVerdict(null);
+          return;
+        }
+        if (!wordHoldPressActiveRef.current) {
+          setWordPhase('idle');
+          return;
+        }
+        wordHoldRecRef.current = startHoldRecording();
+      })();
     },
-    [holdMode],
+    [holdMode, ensureHoldMicPermission],
   );
 
   const endWordHold = useCallback(
     async (index: number) => {
+      wordHoldPressActiveRef.current = false;
       const rec = wordHoldRecRef.current;
-      if (!rec) return;
+      if (!rec) {
+        // Отпустили, пока ждали диалог разрешения — вернуть карточку в исходное.
+        setWordPhase((p) => (p === 'listening' ? 'idle' : p));
+        return;
+      }
       if (wordFinishingRef.current) return;
       wordFinishingRef.current = true;
       wordHoldRecRef.current = null;
@@ -1170,6 +1239,22 @@ export function SpeakingPanel({
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
   const [holdModelFailed, setHoldModelFailed] = useState(false);
+
+  // Предварительная проверка гранта микрофона для hold-режима — БЕЗ диалога.
+  // Если разрешение уже выдано (онбординг/прошлый запуск), первое зажатие
+  // начинает запись мгновенно, без асинхронного крюка.
+  useEffect(() => {
+    if (!holdSupported || !speech) return;
+    let alive = true;
+    speech.getPermissionsAsync?.()
+      .then((perm) => {
+        if (alive && perm?.granted === true) holdMicGrantedRef.current = true;
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [holdSupported, speech]);
 
   // Уровень B / основной движок Android: греем модель whisper при открытии панели
   // (качается один раз, в documentDirectory). Без пакета whisper.rn в бинаре или

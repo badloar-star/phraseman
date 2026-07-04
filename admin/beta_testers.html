@@ -325,6 +325,27 @@
       return active && (until === '0' || /admin_vip|lifetime|forever/.test(plan));
     }
 
+    // Канонизация UID: после миграции/слияния аккаунта найденный документ может быть
+    // осиротевшим (identityHidden=true + canonicalStableId → живой). Писать надо в живой,
+    // иначе выдача (Plus/аура/энергия) уходит в мёртвый документ и на устройстве не видна.
+    // Тот же механизм, что resolveAdminVipWriteTarget в index.html.
+    async function resolveWriteUid(uid) {
+      const requested = String(uid || '').trim();
+      if (!requested) return requested;
+      try {
+        const snap = await getDoc(doc(db, 'users', requested));
+        if (!snap.exists()) return requested;
+        const data = snap.data() || {};
+        const hidden = data.identityHidden === true;
+        const canonical = String(data.canonicalStableId || '').trim();
+        if (!hidden || !canonical || canonical === requested) return requested;
+        const canonSnap = await getDoc(doc(db, 'users', canonical));
+        return canonSnap.exists() ? canonical : requested;
+      } catch {
+        return requested;
+      }
+    }
+
     // ── Список бета-тестеров ────────────────────────────────────────────────
     async function loadBetaList() {
       $('status').textContent = 'загрузка списка…';
@@ -454,12 +475,15 @@
       const btns = $('detail-body').querySelectorAll('button[data-act]');
       btns.forEach((b) => b.disabled = true);
       try {
-        if (act === 'set-beta') await setBeta(uid, true);
-        else if (act === 'unset-beta') await setBeta(uid, false);
-        else if (act === 'grant-plus') await grantPlusForever(uid);
-        else if (act === 'energy-fill') await sendEnergyCommand(uid, 'fill');
-        else if (act === 'energy-drain') await sendEnergyCommand(uid, 'drain');
-        await openCard(uid); // перерисуем карточку с новым состоянием
+        // Пишем в КАНОНИЧЕСКИЙ (живой) документ аккаунта, а не в осиротевший после миграции.
+        const writeUid = await resolveWriteUid(uid);
+        if (writeUid !== uid) toast('Запись в актуальный аккаунт: ' + writeUid, 'ok');
+        if (act === 'set-beta') await setBeta(writeUid, true);
+        else if (act === 'unset-beta') await setBeta(writeUid, false);
+        else if (act === 'grant-plus') await grantPlusForever(writeUid);
+        else if (act === 'energy-fill') await sendEnergyCommand(writeUid, 'fill');
+        else if (act === 'energy-drain') await sendEnergyCommand(writeUid, 'drain');
+        await openCard(writeUid); // перерисуем карточку по фактически записанному документу
         await loadBetaList();
       } catch (e) {
         toast('Ошибка: ' + e.message, 'err');

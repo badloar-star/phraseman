@@ -39,7 +39,10 @@ const base = path.basename(String(filePath));
 //  - plan content days (plan audio, keyed by content unit)
 //  - lessons, idioms (phrase audio, keyed by English text; words/flashcards/daily
 //    phrases resolve through the same phrase-audio map)
-const AUDIO_BEARING = /^(plan_content_(echo|gavan|impuls|mitap|voyazh)|lesson_data_\d+_\d+|idioms_data|quiz_data)\.ts$/;
+//  - the GENERATED lesson phrase files (lessons 1-16 live there, not in the
+//    lesson_data_1_8.ts wrapper) — editing these is the common way a phrase word
+//    changes, so they MUST trigger the check.
+const AUDIO_BEARING = /^(plan_content_(echo|gavan|impuls|mitap|voyazh)|lesson_data_\d+_\d+(_phrases_es\.gen)?|idioms_data|quiz_data)\.ts$/;
 
 if (!AUDIO_BEARING.test(base)) process.exit(0);
 
@@ -53,12 +56,26 @@ let report = {};
 try {
   report = JSON.parse(res.stdout || '{}');
 } catch {
-  process.exit(0); // checker couldn't run — don't block
+  report = {}; // checker couldn't run — fall through to the deep audit
 }
+
+// Deep text↔audio audit: catches the case the english-only checker misses —
+// the displayed line (wordsEn slots / alternatives) drifting from the recorded
+// mp3, and mp3s orphaned by an edit. Detection only; spends nothing.
+const auditRes = spawnSync('node', [path.join('scripts', 'audit_phrase_audio_sync.mjs'), '--json'], {
+  cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32',
+});
+let audit = { findings: {} };
+try { audit = JSON.parse(auditRes.stdout || '{}'); } catch { audit = { findings: {} }; }
 
 const planDrift = report.planDrift || [];
 const phraseMissing = report.phraseMissing || [];
-if (planDrift.length === 0 && phraseMissing.length === 0) process.exit(0);
+const saysOld = (audit.findings && audit.findings.AUDIO_SAYS_OLD) || [];
+const orphans = (audit.findings && audit.findings.ORPHAN) || [];
+
+if (planDrift.length === 0 && phraseMissing.length === 0 && saysOld.length === 0 && orphans.length === 0) {
+  process.exit(0);
+}
 
 const parts = [];
 if (planDrift.length) {
@@ -70,6 +87,16 @@ if (phraseMissing.length) {
   parts.push(`MISSING PHRASE AUDIO: ${phraseMissing.length} English text(s) have NO audio (new/changed phrase not yet generated):`);
   for (const m of phraseMissing.slice(0, 25)) parts.push(`  • [${m.sourceFile}] "${m.text}"`);
   parts.push('  Fix: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio.mjs "<text>"  (then upload + patch the phrase-audio url map)');
+}
+if (saysOld.length) {
+  parts.push(`AUDIO SAYS OLD TEXT: ${saysOld.length} phrase(s) show a new word but the mp3 speaks the old one:`);
+  for (const s of saysOld.slice(0, 25)) parts.push(`  • ${s.id}: shows "${s.shown}"  ← mp3 speaks "${s.voiced}"`);
+  parts.push('  Fix: PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/regen_phrase_audio_storage.mjs  (regenerates + uploads + patches the map + deletes the old mp3)');
+}
+if (orphans.length) {
+  parts.push(`ORPHAN AUDIO: ${orphans.length} mp3(s) no phrase references anymore (accumulating on Storage):`);
+  for (const o of orphans.slice(0, 25)) parts.push(`  • ${o.id || ''} "${o.key}"`);
+  parts.push('  Fix: node scripts/cleanup_orphan_phrase_audio.mjs --apply  (removes them from the map + Storage)');
 }
 const msg = `AUDIO OUT OF SYNC after this edit. The mp3 must be regenerated + re-uploaded (and the old one replaced) so the spoken audio matches the text.\n\n${parts.join('\n')}`;
 

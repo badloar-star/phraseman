@@ -788,10 +788,13 @@ export default function DuelResultsScreen() {
         if (mounted) setResultSaved(true);
         logEvent('arena_result_loaded_from_server', { won: data.won ? 1 : 0 });
 
-        // Дуэль из приглашения: сервер начисляет/возвращает ставку осколков — подтягиваем баланс в UI.
-        if (sessionId?.startsWith('invite_')) {
-          loadShardsFromCloud().catch(() => {});
-        }
+        // Свести кошелёк осколков с облаком после матча. loadShardsFromCloud
+        // мержит по метке времени: если локальная награда за победу свежее —
+        // не затирает её, а дожимает локальный баланс в облако, закрывая окно
+        // рассинхрона (иначе следующее начисление вне Арены строит дельту от
+        // отставшего облака и обваливает баланс — пропажа осколков 2026-07-04).
+        // Раньше синк был только для invite-дуэлей; теперь и для рейтинг-матчей.
+        loadShardsFromCloud().catch(() => {});
       } catch {
         if (!mounted) return;
         emitAppEvent('action_toast', {

@@ -374,6 +374,7 @@ const applyShardDeltaToCloud = async (
   type: 'earn' | 'spend',
   reason: string,
   localFallbackBase: number,
+  localBaseMeta?: ShardBalanceMeta | null,
 ): Promise<{ ok: true; balance: number; balanceBefore: number; updatedAtMs: number } | { ok: false; reason: 'unavailable' } | { ok: false; reason: 'insufficient'; cloudBalance: number }> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'unavailable' };
@@ -381,10 +382,28 @@ const applyShardDeltaToCloud = async (
     if (!uid) return { ok: false, reason: 'unavailable' };
     const db = firestore();
     const userRef = db.collection('users').doc(uid);
-    const updatedAtMs = Date.now();
     const snap = await runWithTimeout(userRef.get(), SHARD_CLOUD_TX_TIMEOUT_MS);
     const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
-    const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
+    const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
+    const localFloor = Math.max(0, Math.floor(localFallbackBase));
+    // Last-write-guard: облако авторитетно ТОЛЬКО если его метка не старше локальной.
+    // Если локальная операция новее облачной (фоновый sync ещё не доехал —
+    // напр. награда за победу в Арене), нельзя строить дельту от отставшего
+    // облачного баланса: это обвалит кошелёк (см. пропажу ~200 осколков после
+    // «Арена → урок», аудит 2026-07-04). В этом случае берём больший из двух —
+    // локаль не занижаем, но и не теряем реальные серверные начисления.
+    const localMetaIsNewer = localBaseMeta != null
+      && (cloudUpdatedAt === null || localBaseMeta.updatedAtMs > cloudUpdatedAt);
+    const base = cloudShards === null
+      ? localFloor
+      : (localMetaIsNewer ? Math.max(cloudShards, localFloor) : cloudShards);
+    // Метка результата должна быть строго новее локальной базы, иначе
+    // timestamp-guard в replaceShardsBalanceLocal отвергнет зеркалирование и
+    // локаль разойдётся с облаком. В норме Date.now() и так новее локальной
+    // метки прошлой операции; страхуемся на случай гонки/скачка часов.
+    const updatedAtMs = localMetaIsNewer && localBaseMeta
+      ? Math.max(Date.now(), localBaseMeta.updatedAtMs + 1)
+      : Date.now();
     const next = base + delta;
     if (next < 0) {
       // Облако — источник истины. Возвращаем фактический облачный баланс, чтобы
@@ -423,7 +442,8 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     const amount = SHARD_REWARDS[source];
     if (!Number.isFinite(amount) || amount <= 0) return 0;
     const localBase = await getShardsBalance();
-    const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', source, localBase);
+    const localBaseMeta = await readBalanceMeta();
+    const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', source, localBase, localBaseMeta);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'earn', reason: source };
       await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
@@ -716,7 +736,8 @@ export const addShardsRaw = async (
     }
 
     const localBase = await getShardsBalance();
-    const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', logReason, localBase);
+    const localBaseMeta = await readBalanceMeta();
+    const cloudApplied = await applyShardDeltaToCloud(amount, 'earn', logReason, localBase, localBaseMeta);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'earn', reason: logReason };
       await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);
@@ -783,7 +804,8 @@ export const spendShards = async (
     const spendAmount = Math.floor(amount);
     if (spendAmount <= 0) return false;
     const localBase = await getShardsBalance();
-    const cloudApplied = await applyShardDeltaToCloud(-spendAmount, 'spend', reason, localBase);
+    const localBaseMeta = await readBalanceMeta();
+    const cloudApplied = await applyShardDeltaToCloud(-spendAmount, 'spend', reason, localBase, localBaseMeta);
     if (cloudApplied.ok) {
       const meta: ShardBalanceMeta = { updatedAtMs: cloudApplied.updatedAtMs, op: 'spend', reason };
       await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);

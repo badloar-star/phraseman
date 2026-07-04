@@ -273,8 +273,10 @@ describe('core shard cloud mirror freshness', () => {
   it('does not let an older cloud earn response lower a newer local wallet', async () => {
     const fs = firestore as any;
     fs.__testState.userDocExists = true;
+    // Облако отстало: 10 БЕЗ метки (фоновый sync свежей награды ещё не доехал).
     fs.__testState.userShards = 10;
 
+    // Локаль свежее: 80 с явно новой меткой.
     mockStorage.shards_balance = '80';
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 9_000_000_000_000,
@@ -284,15 +286,20 @@ describe('core shard cloud mirror freshness', () => {
 
     await expect(addShardsRaw(2, 'achievement:test')).resolves.toBe(2);
 
-    expect(fs.__testState.userShards).toBe(12);
-    expect(mockStorage.shards_balance).toBe('80');
+    // Last-write-guard: локаль новее → база = max(cloud 10, local 80) = 80.
+    // Начисляем +2 → 82. Отставшее облако НЕ обваливает кошелёк до 12.
+    // Облако и локаль сходятся на 82.
+    expect(fs.__testState.userShards).toBe(82);
+    expect(mockStorage.shards_balance).toBe('82');
   });
 
   it('does not let an older cloud spend response lower a newer local wallet', async () => {
     const fs = firestore as any;
     fs.__testState.userDocExists = true;
+    // Облако отстало: 50 БЕЗ метки (фоновый sync свежей награды ещё не доехал).
     fs.__testState.userShards = 50;
 
+    // Локаль свежее: 80 с явно новой меткой (напр. только что начислена награда).
     mockStorage.shards_balance = '80';
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 9_000_000_000_000,
@@ -302,7 +309,10 @@ describe('core shard cloud mirror freshness', () => {
 
     await expect(spendShards(10, 'card_pack')).resolves.toBe(true);
 
-    expect(fs.__testState.userShards).toBe(40);
-    expect(mockStorage.shards_balance).toBe('80');
+    // Last-write-guard: локаль новее → база = max(cloud 50, local 80) = 80.
+    // Списываем 10 от 80 → 70. Отставшее облако НЕ занижает кошелёк до 40.
+    // Облако и локаль сходятся на 70 (никакого рассинхрона 40/80).
+    expect(fs.__testState.userShards).toBe(70);
+    expect(mockStorage.shards_balance).toBe('70');
   });
 });

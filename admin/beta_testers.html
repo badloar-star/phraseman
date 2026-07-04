@@ -581,8 +581,26 @@
     $('detail-overlay').addEventListener('click', closePanel);
 
     getRedirectResult(auth).catch(() => {});
-    onAuthStateChanged(auth, (user) => {
-      if (user) showApp(); else showLogin();
+    onAuthStateChanged(auth, async (user) => {
+      // Require the admin custom claim — NOT merely a signed-in Google account.
+      // The Firestore rules already block premium/shard self-grants, but this page
+      // must match the index.html/testers.html admin gate so a non-admin can't even
+      // reach the panel (and its cosmetic aura/beta self-write).
+      if (!user) { showLogin(); return; }
+      try {
+        const token = await user.getIdTokenResult(true);
+        if (token.claims.admin === true) {
+          showApp();
+        } else {
+          await signOut(auth);
+          showLogin();
+          $('login-error').textContent = 'Нет admin-доступа.';
+        }
+      } catch (e) {
+        await signOut(auth).catch(() => {});
+        showLogin();
+        $('login-error').textContent = 'Ошибка проверки доступа.';
+      }
     });
   </script>
 </body>

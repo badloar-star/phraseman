@@ -160,14 +160,19 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   const titleId = (sourceLang === 'id' ? titleSingle : String(raw.titleId ?? '').trim()).slice(0, 200);
   const titleTr = (sourceLang === 'tr' ? titleSingle : String(raw.titleTr ?? '').trim()).slice(0, 200);
   const titlePl = (sourceLang === 'pl' ? titleSingle : String(raw.titlePl ?? '').trim()).slice(0, 200);
-  const descriptionRu = sourceLang === 'ru' ? descSingle : String(raw.descriptionRu ?? '').trim();
-  const descriptionUk = sourceLang === 'uk' ? descSingle : String(raw.descriptionUk ?? '').trim();
-  const descriptionEs = sourceLang === 'es' ? descSingle : String(raw.descriptionEs ?? '').trim();
-  const descriptionPtBr = sourceLang === 'pt-BR' ? descSingle : String(raw.descriptionPtBr ?? '').trim();
-  const descriptionVi = sourceLang === 'vi' ? descSingle : String(raw.descriptionVi ?? '').trim();
-  const descriptionId = sourceLang === 'id' ? descSingle : String(raw.descriptionId ?? '').trim();
-  const descriptionTr = sourceLang === 'tr' ? descSingle : String(raw.descriptionTr ?? '').trim();
-  const descriptionPl = sourceLang === 'pl' ? descSingle : String(raw.descriptionPl ?? '').trim();
+  // Per-field length caps: only card COUNT (10–50) and titles (200) were bounded,
+  // so an authenticated user could inflate a submission doc toward Firestore's 1MB
+  // limit with huge card/description strings. Cap generously — far above any real
+  // card/description — so legitimate content is never clipped (DoS / storage abuse).
+  const DESC_MAX = 3500;
+  const descriptionRu = (sourceLang === 'ru' ? descSingle : String(raw.descriptionRu ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionUk = (sourceLang === 'uk' ? descSingle : String(raw.descriptionUk ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionEs = (sourceLang === 'es' ? descSingle : String(raw.descriptionEs ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionPtBr = (sourceLang === 'pt-BR' ? descSingle : String(raw.descriptionPtBr ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionVi = (sourceLang === 'vi' ? descSingle : String(raw.descriptionVi ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionId = (sourceLang === 'id' ? descSingle : String(raw.descriptionId ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionTr = (sourceLang === 'tr' ? descSingle : String(raw.descriptionTr ?? '').trim()).slice(0, DESC_MAX);
+  const descriptionPl = (sourceLang === 'pl' ? descSingle : String(raw.descriptionPl ?? '').trim()).slice(0, DESC_MAX);
   if (!titleRu && !titleUk && !titleEs && !titlePtBr && !titleVi && !titleId && !titleTr && !titlePl) {
     throw new HttpsError('invalid-argument', 'title required');
   }
@@ -178,18 +183,19 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   if (n < CARD_MIN || n > CARD_MAX) {
     throw new HttpsError('invalid-argument', `Cards must be ${CARD_MIN}–${CARD_MAX}`);
   }
+  const CARD_FIELD_MAX = 1000; // generous per-card string cap (see DESC_MAX note above)
   const cards = raw.cards.map((c, i) => {
-    const id = String(c?.id ?? `c${i + 1}`).trim() || `c${i + 1}`;
-    const en = String(c?.en ?? '').trim();
-    const ru = String(c?.ru ?? '').trim();
-    const uk = String(c?.uk ?? '').trim();
-    const es = String(c?.es ?? '').trim();
+    const id = (String(c?.id ?? `c${i + 1}`).trim() || `c${i + 1}`).slice(0, 200);
+    const en = String(c?.en ?? '').trim().slice(0, CARD_FIELD_MAX);
+    const ru = String(c?.ru ?? '').trim().slice(0, CARD_FIELD_MAX);
+    const uk = String(c?.uk ?? '').trim().slice(0, CARD_FIELD_MAX);
+    const es = String(c?.es ?? '').trim().slice(0, CARD_FIELD_MAX);
     const sourceLocales = {
-      'pt-BR': String(c?.sourceLocales?.['pt-BR'] ?? '').trim(),
-      vi: String(c?.sourceLocales?.vi ?? '').trim(),
-      id: String(c?.sourceLocales?.id ?? '').trim(),
-      tr: String(c?.sourceLocales?.tr ?? '').trim(),
-      pl: String(c?.sourceLocales?.pl ?? '').trim(),
+      'pt-BR': String(c?.sourceLocales?.['pt-BR'] ?? '').trim().slice(0, CARD_FIELD_MAX),
+      vi: String(c?.sourceLocales?.vi ?? '').trim().slice(0, CARD_FIELD_MAX),
+      id: String(c?.sourceLocales?.id ?? '').trim().slice(0, CARD_FIELD_MAX),
+      tr: String(c?.sourceLocales?.tr ?? '').trim().slice(0, CARD_FIELD_MAX),
+      pl: String(c?.sourceLocales?.pl ?? '').trim().slice(0, CARD_FIELD_MAX),
     };
     const hasSource = !!(ru || es || Object.values(sourceLocales).some(Boolean));
     if (!c?.id || !String(c.en).trim() || !hasSource) {

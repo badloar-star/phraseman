@@ -354,7 +354,12 @@ export const nameReleaseMine = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   const candidates = new Set<string>();
 
-  const names = Array.isArray(request.data?.names) ? request.data.names : [];
+  // Cap the client-supplied names hint: it is only a supplement — the authoritative
+  // candidates are re-derived below from the caller's own leaderboard doc and a
+  // limit(20) uid-index query. Without a cap, a huge names array forced one
+  // sequential Firestore read per entry (cost/DoS amplification). Legitimate clients
+  // release at most a handful of their own past names, so slice(0, 20) is ample.
+  const names = (Array.isArray(request.data?.names) ? request.data.names : []).slice(0, 20);
   for (const n of names) {
     const { nameLower } = normalizeName(n);
     if (nameLower) candidates.add(nameLower);

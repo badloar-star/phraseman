@@ -1,6 +1,7 @@
 import {
   judgeSingleWord,
   isDrillableStatus,
+  effectivePhraseScore,
   WORD_DRILL_CLEAN_SIMILARITY,
 } from '../app/speaking_word_drill';
 
@@ -59,5 +60,57 @@ describe('speaking word drill — isDrillableStatus', () => {
     expect(isDrillableStatus('fuzzy')).toBe(true);
     expect(isDrillableStatus('missed')).toBe(true);
     expect(isDrillableStatus('clean')).toBe(false);
+  });
+});
+
+describe('speaking word drill — effectivePhraseScore', () => {
+  const T = 75;
+
+  it('leaves the score unchanged when nothing has been fixed', () => {
+    expect(
+      effectivePhraseScore({ baseScore: 40, totalProblems: 3, fixedProblems: 0, passThreshold: T }),
+    ).toBe(40);
+  });
+
+  it('leaves the score unchanged when there were no problem words', () => {
+    expect(
+      effectivePhraseScore({ baseScore: 88, totalProblems: 0, fixedProblems: 0, passThreshold: T }),
+    ).toBe(88);
+  });
+
+  it('lifts the score partway as some problem words are fixed', () => {
+    const partial = effectivePhraseScore({
+      baseScore: 40,
+      totalProblems: 4,
+      fixedProblems: 2,
+      passThreshold: T,
+    });
+    expect(partial).toBeGreaterThan(40);
+    expect(partial).toBeLessThan(T);
+  });
+
+  it('reaches an excellent-band pass when every problem word is fixed', () => {
+    const full = effectivePhraseScore({
+      baseScore: 40,
+      totalProblems: 3,
+      fixedProblems: 3,
+      passThreshold: T,
+    });
+    expect(full).toBeGreaterThanOrEqual(T); // фраза теперь засчитана
+    expect(full).toBeGreaterThanOrEqual(90); // и в полосе «отлично»
+  });
+
+  it('is monotonic and never drops below the base score', () => {
+    const base = 60;
+    const a = effectivePhraseScore({ baseScore: base, totalProblems: 3, fixedProblems: 1, passThreshold: T });
+    const b = effectivePhraseScore({ baseScore: base, totalProblems: 3, fixedProblems: 2, passThreshold: T });
+    expect(a).toBeGreaterThanOrEqual(base);
+    expect(b).toBeGreaterThanOrEqual(a);
+  });
+
+  it('never exceeds 100', () => {
+    expect(
+      effectivePhraseScore({ baseScore: 98, totalProblems: 2, fixedProblems: 2, passThreshold: T }),
+    ).toBeLessThanOrEqual(100);
   });
 });

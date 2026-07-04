@@ -45,6 +45,7 @@ import {
 import {
   judgeSingleWord,
   isDrillableStatus,
+  effectivePhraseScore,
   type WordDrillVerdict,
 } from '../app/speaking_word_drill';
 import {
@@ -297,6 +298,9 @@ export function SpeakingPanel({
   const wordListenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const wordHoldRecRef = useRef<HoldRecording | null>(null);
   const wordFinishingRef = useRef(false);
+  // Гард: onPass по «фраза дотянута тренировкой до идеала» шлём хосту только раз
+  // за попытку (иначе повторные пометки чистого слова дёрнули бы success ещё раз).
+  const passedNotifiedRef = useRef(false);
   // uri сохранённой записи попытки (событие audioend) — питает «Мою запись»
   // и контрольный прогон без подсказки цели.
   const recordingUriRef = useRef<string | null>(null);
@@ -437,6 +441,7 @@ export function SpeakingPanel({
       setWordPhase('idle');
       setWordVerdict(null);
       setPhrasePerfect(false);
+      passedNotifiedRef.current = false;
       const prosody = analyzeProsody(prosodySamplesRef.current);
       const stress = stressFeedback(prosody, expectedStressPosition(targetText));
       setWordReport(report);
@@ -503,11 +508,18 @@ export function SpeakingPanel({
         if (allDone) {
           setPhrasePerfect(true);
           hapticSuccess();
+          // Фраза дотянута тренировкой до идеала: если попытка изначально НЕ была
+          // засчитана, сообщаем хосту об успехе один раз (юзер реально произнёс
+          // каждое слово чисто). Балл — канонический «отлично».
+          if (status !== 'passed' && !passedNotifiedRef.current) {
+            passedNotifiedRef.current = true;
+            onPass?.({ score: Math.max(score ?? 0, 95), transcript: targetText });
+          }
         }
         return nextSet;
       });
     },
-    [problemIndices],
+    [problemIndices, status, score, onPass, targetText],
   );
 
   // «Послушать»: произносим ОДНО слово системным TTS (студийных клипов на одно
@@ -1290,11 +1302,28 @@ export function SpeakingPanel({
   // На успехе фраза засчитана — микрофон больше не нужен (иначе юзер «застревает»
   // на экране с микрофоном и «Сказать ещё раз», не понимая, что уже готово).
   // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
-  const passed = status === 'passed';
   const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
   const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
-  const band = score != null ? speakingBand(score, passThreshold) : null;
-  const hintLine = hint ? speakingHintText(hint, lang) : null;
+  // Тренировка слов ДВИГАЕТ балл фразы: каждое дочиненное проблемное слово честно
+  // поднимает результат от исходного к полному проходу; когда закрыты ВСЕ
+  // проблемные слова — фраза звучит идеально (все слова чисто), балл дотягивается
+  // до «отлично». Кольцо/процент/вердикт читают ИМЕННО этот эффективный балл.
+  const effectiveScore = useMemo(() => {
+    if (score == null) return score;
+    const fixed = problemIndices.filter((i) => drillCleaned.has(i)).length;
+    return effectivePhraseScore({
+      baseScore: score,
+      totalProblems: problemIndices.length,
+      fixedProblems: fixed,
+      passThreshold,
+    });
+  }, [score, problemIndices, drillCleaned, passThreshold]);
+  // Фраза считается пройденной, когда эффективный балл дотянулся до порога —
+  // будь то исходно, либо после тренировки слов.
+  const effectivePassed = effectiveScore != null && effectiveScore >= passThreshold;
+  const passed = effectivePassed;
+  const band = effectiveScore != null ? speakingBand(effectiveScore, passThreshold) : null;
+  const hintLine = hint && !effectivePassed ? speakingHintText(hint, lang) : null;
   // Android hold-режим поддержан, но модель whisper ещё качается (и не провалилась)
   // — кнопка ждёт, статус честно объясняет паузу вместо тихого зависания.
   const preparingModel = holdSupported && !holdModelReady && !holdModelFailed;
@@ -1488,11 +1517,6 @@ export function SpeakingPanel({
                       opacity: reveal ? 1 : 0.6,
                       letterSpacing: reveal ? 0 : 2,
                     },
-                    drillable && {
-                      textDecorationLine: 'underline',
-                      textDecorationStyle: 'dotted',
-                    },
-                    drillable && isOpen && { fontWeight: '800' as const },
                   ]}
                 >
                   {reveal ? tok : masked}
@@ -1502,11 +1526,21 @@ export function SpeakingPanel({
               if (!drillable) {
                 return <React.Fragment key={`spk-tok-${i}`}>{wordText}</React.Fragment>;
               }
+              // Тонкая подчёркивающая линия ЧУТЬ НИЖЕ слова (свой бордер, а не
+              // textDecoration — тот жирный и перечёркивает низ букв). Отступ снизу
+              // отводит линию от базовой линии, чтобы она не наезжала на буквы.
               return (
                 <Pressable
                   key={`spk-tok-${i}`}
                   onPress={() => onTapWord(i)}
                   hitSlop={8}
+                  style={[
+                    styles.drillWord,
+                    {
+                      borderBottomColor: color,
+                      borderBottomWidth: isOpen ? StyleSheet.hairlineWidth * 2 : StyleSheet.hairlineWidth,
+                    },
+                  ]}
                   accessibilityRole="button"
                   accessibilityLabel={L(lang, {
                     ru: `Тренировать слово ${tok}`,
@@ -1548,8 +1582,9 @@ export function SpeakingPanel({
             />
           )}
 
-          {/* Все проблемные слова закрыты до зелёного — тёплая плашка (балл фразы
-              не меняется, попытка не перезачитывается). */}
+          {/* Все проблемные слова закрыты до зелёного — тёплая плашка. Кольцо и
+              вердикт выше уже дотянуты до прохода (effectiveScore), эта строка —
+              явное подтверждение «готово». */}
           {showResult && phrasePerfect && (
             <Text style={[styles.perfectLine, { color: theme.correct }]}>
               {L(lang, {
@@ -1568,24 +1603,24 @@ export function SpeakingPanel({
           {/* While recording: live equalizer. After scoring: the result ring
               takes its place (Rosetta-style, percent in the center). */}
           <View style={styles.waveWrap}>
-            {showResult && score != null ? (
+            {showResult && effectiveScore != null ? (
               <View
                 style={styles.ringWrap}
                 accessibilityRole="text"
                 accessibilityLabel={L(lang, {
-                  ru: `Результат ${score} процентов из ${passThreshold} нужных, ${status === 'passed' ? 'засчитано' : 'не засчитано'}`,
-                  uk: `Результат ${score} відсотків із ${passThreshold} потрібних, ${status === 'passed' ? 'зараховано' : 'не зараховано'}`,
-                  es: `Resultado ${score} por ciento de ${passThreshold} necesarios, ${status === 'passed' ? 'aprobado' : 'no aprobado'}`,
-                  'pt-BR': `Resultado ${score} por cento de ${passThreshold} necessários, ${status === 'passed' ? 'aprovado' : 'não aprovado'}`,
-                  vi: `Kết quả ${score} phần trăm trên ${passThreshold} cần thiết, ${status === 'passed' ? 'đã đạt' : 'chưa đạt'}`,
-                  id: `Hasil ${score} persen dari ${passThreshold} yang diperlukan, ${status === 'passed' ? 'lulus' : 'belum lulus'}`,
-                  tr: `Sonuç gerekli ${passThreshold} üzerinden yüzde ${score}, ${status === 'passed' ? 'geçti' : 'geçmedi'}`,
-                  pl: `Wynik ${score} procent z wymaganych ${passThreshold}, ${status === 'passed' ? 'zaliczone' : 'niezaliczone'}`,
+                  ru: `Результат ${effectiveScore} процентов из ${passThreshold} нужных, ${effectivePassed ? 'засчитано' : 'не засчитано'}`,
+                  uk: `Результат ${effectiveScore} відсотків із ${passThreshold} потрібних, ${effectivePassed ? 'зараховано' : 'не зараховано'}`,
+                  es: `Resultado ${effectiveScore} por ciento de ${passThreshold} necesarios, ${effectivePassed ? 'aprobado' : 'no aprobado'}`,
+                  'pt-BR': `Resultado ${effectiveScore} por cento de ${passThreshold} necessários, ${effectivePassed ? 'aprovado' : 'não aprovado'}`,
+                  vi: `Kết quả ${effectiveScore} phần trăm trên ${passThreshold} cần thiết, ${effectivePassed ? 'đã đạt' : 'chưa đạt'}`,
+                  id: `Hasil ${effectiveScore} persen dari ${passThreshold} yang diperlukan, ${effectivePassed ? 'lulus' : 'belum lulus'}`,
+                  tr: `Sonuç gerekli ${passThreshold} üzerinden yüzde ${effectiveScore}, ${effectivePassed ? 'geçti' : 'geçmedi'}`,
+                  pl: `Wynik ${effectiveScore} procent z wymaganych ${passThreshold}, ${effectivePassed ? 'zaliczone' : 'niezaliczone'}`,
                 })}
               >
                 <SpeakingScoreRing
-                  score={score}
-                  color={status === 'passed' ? theme.correct : theme.wrong}
+                  score={effectiveScore}
+                  color={effectivePassed ? theme.correct : theme.wrong}
                   trackColor={theme.border}
                   textColor={theme.textPrimary}
                   innerBg={theme.card}
@@ -1621,7 +1656,7 @@ export function SpeakingPanel({
               styles.status,
               {
                 color:
-                  status === 'passed'
+                  (showResult && effectivePassed) || status === 'passed'
                     ? theme.correct
                     : status === 'failed' || status === 'denied' || status === 'unavailable' || status === 'stalled'
                     ? theme.wrong
@@ -1638,8 +1673,9 @@ export function SpeakingPanel({
           )}
 
           {/* Конкретный звук внутри слова, когда его удалось запеленговать.
-              Символы фонем языконезависимы — одна строка на все локали. */}
-          {showResult && soundHint && (
+              Символы фонем языконезависимы — одна строка на все локали.
+              Прячем, когда фраза уже дотянута тренировкой до прохода. */}
+          {showResult && !effectivePassed && soundHint && (
             <Text style={[styles.diffSound, { color: theme.textMuted }]}>
               {L(lang, {
                 ru: `звук /${soundHint.hint.expected}/ вместо /${soundHint.hint.said}/ в «${soundHint.word}»`,
@@ -1821,6 +1857,9 @@ const styles = StyleSheet.create({
   diffSound: { fontSize: 12, marginTop: -10, marginBottom: 10, textAlign: 'center' },
   hintLine: { fontSize: 13, textAlign: 'center', marginTop: -12, marginBottom: 12 },
   perfectLine: { fontSize: 14, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
+  // Подчёркиваемое (тренируемое) слово: тонкая линия чуть ниже букв. paddingBottom
+  // отводит бордер от базовой линии, чтобы не перечёркивать хвосты букв (g, y, p).
+  drillWord: { paddingBottom: 3 },
   listenRow: { flexDirection: 'row', gap: 10, marginBottom: 14 },
   listenBtn: {
     flexDirection: 'row',

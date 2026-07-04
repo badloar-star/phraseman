@@ -117,6 +117,34 @@ export function isDrillableStatus(status: 'clean' | 'fuzzy' | 'missed'): boolean
   return status === 'fuzzy' || status === 'missed';
 }
 
+export interface EffectivePhraseScoreInput {
+  /** The original phrase score (0..100) from the scored attempt. */
+  baseScore: number;
+  /** How many words started fuzzy/missed after the attempt. */
+  totalProblems: number;
+  /** How many of those problem words the learner has drilled to clean. */
+  fixedProblems: number;
+  /** The phrase pass threshold (e.g. 75). */
+  passThreshold: number;
+}
+
+/**
+ * The phrase score AFTER word drilling: each fixed problem word honestly lifts
+ * the result from the original score toward a full pass, and clearing EVERY
+ * problem word means every word now sounds clean → the phrase lands in the
+ * "excellent" band (>=95). With no problems or no fixes the score is unchanged.
+ *
+ * Monotonic and clamped: never drops below the base score, never exceeds 100.
+ */
+export function effectivePhraseScore(input: EffectivePhraseScoreInput): number {
+  const { baseScore, totalProblems, fixedProblems, passThreshold } = input;
+  if (totalProblems <= 0 || fixedProblems <= 0) return baseScore;
+  if (fixedProblems >= totalProblems) return Math.max(baseScore, 95);
+  const target = Math.max(baseScore, passThreshold);
+  const lifted = Math.round(baseScore + ((target - baseScore) * fixedProblems) / totalProblems);
+  return Math.min(100, Math.max(baseScore, lifted));
+}
+
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {
   return null;

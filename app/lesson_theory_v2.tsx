@@ -8,7 +8,7 @@ import { updateTaskProgress } from './daily_tasks';
 import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
-import { legacyRuUk } from '../constants/i18n';
+import { legacyRuUk, triLang } from '../constants/i18n';
 import TheoryLessonView, {
   type TheorySection,
   type TheoryBlock,
@@ -20,7 +20,7 @@ function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] : (value ?? '');
 }
 
-type ContentLang = 'ru' | 'uk';
+type ContentLang = 'ru' | 'uk' | 'es';
 
 /**
  * Дополнительные интерактивы (drill) по номеру раздела урока 1.
@@ -42,7 +42,7 @@ function drillsForSection(num: string): TheoryDrill[] {
           after: 'ready',
           options: ['am', 'is', 'are'],
           answer: 'is',
-          why: { ru: 'She — это he/she/it, поэтому is.' },
+          why: { ru: 'She — это he/she/it, поэтому is.', es: 'She es del grupo he/she/it, por eso is.' },
         },
       ];
 
@@ -51,9 +51,9 @@ function drillsForSection(num: string): TheoryDrill[] {
       return [
         {
           type: 'word_bank',
-          prompt: { ru: 'Она готова' },
+          prompt: { ru: 'Она готова', es: 'Ella está lista' },
           answer: ['She', 'is', 'ready'],
-          slotLabels: [{ ru: 'кто' }, { ru: 'связка' }, { ru: 'описание' }],
+          slotLabels: [{ ru: 'кто', es: 'quién' }, { ru: 'связка', es: 'verbo' }, { ru: 'описание', es: 'descripción' }],
           distractors: ['He', 'busy'],
         },
       ];
@@ -65,8 +65,8 @@ function drillsForSection(num: string): TheoryDrill[] {
           type: 'spot_slip',
           chips: ['I', 'are', 'ready'],
           answerIndex: 1,
-          hint: { ru: 'Тут не та форма. Тапни лишнее.' },
-          fix: { ru: 'С I всегда am: I am ready.' },
+          hint: { ru: 'Тут не та форма. Тапни лишнее.', es: 'Aquí hay una forma incorrecta. Toca la palabra que sobra.' },
+          fix: { ru: 'С I всегда am: I am ready.', es: 'Con I siempre va am: I am ready.' },
         },
       ];
 
@@ -75,11 +75,11 @@ function drillsForSection(num: string): TheoryDrill[] {
       return [
         {
           type: 'binary',
-          question: { ru: 'Где верно?' },
+          question: { ru: 'Где верно?', es: '¿Cuál es correcta?' },
           optionA: 'He are busy',
           optionB: 'He is busy',
           correct: 'B',
-          explain: { ru: 'С he/she/it нужно is.' },
+          explain: { ru: 'С he/she/it нужно is.', es: 'Con he/she/it se usa is.' },
         },
       ];
 
@@ -88,26 +88,34 @@ function drillsForSection(num: string): TheoryDrill[] {
   }
 }
 
-/** Конвертирует один L1Block (двуязычный контент) в TheoryBlock движка. */
+/** Конвертирует один L1Block (трёхъязычный контент) в TheoryBlock движка. */
 function adaptBlock(block: L1Block, key: ContentLang): TheoryBlock | null {
   switch (block.kind) {
     case 'body':
     case 'tip':
       return {
         kind: block.kind,
-        text: key === 'uk' ? (block.uk ?? block.ru ?? '') : (block.ru ?? ''),
+        text:
+          key === 'es'
+            ? (block.es ?? block.ru ?? '')
+            : key === 'uk'
+              ? (block.uk ?? block.ru ?? '')
+              : (block.ru ?? ''),
       };
 
     case 'formula':
       // Движок сам красит средний элемент массива (am / is / are) акцентом.
-      return { kind: 'formula', formula: block.formula ?? [] };
+      return {
+        kind: 'formula',
+        formula: (key === 'es' ? (block.formulaEs ?? block.formula) : block.formula) ?? [],
+      };
 
     case 'examples':
       return {
         kind: 'examples',
         examples: (block.examples ?? []).map((e) => ({
           en: e.en,
-          ru: key === 'uk' ? e.uk : e.ru,
+          translation: key === 'es' ? (e.es || e.ru) : key === 'uk' ? e.uk : e.ru,
           hi: e.hi,
         })),
       };
@@ -133,7 +141,7 @@ function adaptSection(section: L1Section, key: ContentLang): TheorySection {
   }
   return {
     num: section.num,
-    title: key === 'uk' ? section.titleUk : section.titleRu,
+    title: key === 'es' ? section.titleEs : key === 'uk' ? section.titleUk : section.titleRu,
     exampleCount: section.exampleCount,
     defaultOpen: section.defaultOpen,
     blocks,
@@ -168,19 +176,26 @@ export default function LessonTheoryV2Screen() {
     }
   }, [hasNewTheory, lessonId, router]);
 
-  // Язык контента: только ru / uk (остальные → ru как fallback).
-  const contentKey: ContentLang = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  // Язык контента: es явный, остальные через legacyRuUk (ru как fallback).
+  const contentKey: ContentLang =
+    lang === 'es' ? 'es' : legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
 
   const sections = useMemo(
     () => (hasNewTheory ? adaptLesson1Theory(contentKey) : []),
     [hasNewTheory, contentKey],
   );
 
-  const title = contentKey === 'uk' ? LESSON1_THEORY.titleUk : LESSON1_THEORY.titleRu;
-  const subtitle =
-    contentKey === 'uk'
-      ? 'am, is, are — каркас англійської фрази'
-      : 'am, is, are — каркас английской фразы';
+  const title =
+    contentKey === 'es'
+      ? LESSON1_THEORY.titleEs
+      : contentKey === 'uk'
+        ? LESSON1_THEORY.titleUk
+        : LESSON1_THEORY.titleRu;
+  const subtitle = triLang(lang, {
+    ru: 'am, is, are — каркас английской фразы',
+    uk: 'am, is, are — каркас англійської фрази',
+    es: 'am, is, are — la base de la frase en inglés',
+  });
   const claimStorageKey = useMemo(
     () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
     [lessonId, studyTarget],
@@ -238,7 +253,6 @@ export default function LessonTheoryV2Screen() {
   return (
     <TheoryLessonView
       lessonId={lessonId}
-      kicker="Грамматика"
       title={title}
       subtitle={subtitle}
       sections={sections}

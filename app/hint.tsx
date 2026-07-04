@@ -48,42 +48,61 @@ function L(
 function drillsForSection(num: string): TheoryBlock[] {
   switch (num) {
     case '02':
-      return [{ kind: 'drill', drill: { type: 'choice', before: 'She', after: 'ready', options: ['am', 'is', 'are'], answer: 'is', why: { ru: 'She — это he/she/it, поэтому идёт is.' } } }];
+      return [{ kind: 'drill', drill: { type: 'choice', before: 'She', after: 'ready', options: ['am', 'is', 'are'], answer: 'is', why: { ru: 'She — это he/she/it, поэтому идёт is.', es: 'She es del grupo he/she/it, por eso va is.' } } }];
     case '05':
-      return [{ kind: 'drill', drill: { type: 'word_bank', prompt: { ru: 'Она готова' }, answer: ['She', 'is', 'ready'], slotLabels: [{ ru: 'кто' }, { ru: 'связка' }, { ru: 'описание' }], distractors: ['He', 'busy'] } }];
+      return [{ kind: 'drill', drill: { type: 'word_bank', prompt: { ru: 'Она готова', es: 'Ella está lista' }, answer: ['She', 'is', 'ready'], slotLabels: [{ ru: 'кто', es: 'quién' }, { ru: 'связка', es: 'verbo' }, { ru: 'описание', es: 'descripción' }], distractors: ['He', 'busy'] } }];
     case '14':
-      return [{ kind: 'drill', drill: { type: 'spot_slip', chips: ['I', 'are', 'ready'], answerIndex: 1, hint: { ru: 'Тут не та форма. Тапни лишнее слово.' }, fix: { ru: 'С I всегда am: I am ready.' } } }];
+      return [{ kind: 'drill', drill: { type: 'spot_slip', chips: ['I', 'are', 'ready'], answerIndex: 1, hint: { ru: 'Тут не та форма. Тапни лишнее слово.', es: 'Aquí hay una forma incorrecta. Toca la palabra que sobra.' }, fix: { ru: 'С I всегда am: I am ready.', es: 'Con I siempre va am: I am ready.' } } }];
     case '15':
-      return [{ kind: 'drill', drill: { type: 'binary', question: { ru: 'Где верно?' }, optionA: 'He are busy', optionB: 'He is busy', correct: 'B', explain: { ru: 'С he / she / it нужно is.' } } }];
+      return [{ kind: 'drill', drill: { type: 'binary', question: { ru: 'Где верно?', es: '¿Cuál es correcta?' }, optionA: 'He are busy', optionB: 'He is busy', correct: 'B', explain: { ru: 'С he / she / it нужно is.', es: 'Con he / she / it se usa is.' } } }];
     default:
       return [];
   }
 }
 
+/** Язык контента теории: es явный, остальные через legacyRuUk (ru fallback). */
+type TheoryContentLang = 'ru' | 'uk' | 'es';
+
+function theoryContentLang(lang: Lang): TheoryContentLang {
+  if (lang === 'es') return 'es';
+  return legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+}
+
 /** Преобразует контент любого урока в формат движка теории по текущему языку. */
 function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySection[] {
-  const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  const key = theoryContentLang(lang);
+  const pickText = (b: { ru?: string; uk?: string; es?: string }): string | undefined => {
+    if (key === 'es') return b.es ?? b.ru;
+    if (key === 'uk') return b.uk ?? b.ru;
+    return b.ru;
+  };
   return content.sections.map((s) => {
     const blocks: TheoryBlock[] = s.blocks.map((b): TheoryBlock => {
       if (b.kind === 'examples') {
         return {
           kind: 'examples',
-          examples: (b.examples ?? []).map((e) => ({ en: e.en, ru: key === 'uk' ? e.uk : e.ru, hi: e.hi })),
+          examples: (b.examples ?? []).map((e) => ({
+            en: e.en,
+            translation: key === 'es' ? (e.es || e.ru) : key === 'uk' ? e.uk : e.ru,
+            hi: e.hi,
+          })),
         };
       }
-      if (b.kind === 'formula') return { kind: 'formula', formula: b.formula };
+      if (b.kind === 'formula') {
+        return { kind: 'formula', formula: key === 'es' ? (b.formulaEs ?? b.formula) : b.formula };
+      }
       if (b.kind === 'fix') return { kind: 'fix', fixes: b.fixes };
       // drill: тренировка прямо из данных урока (уроки 2-32)
       if (b.kind === 'drill') return { kind: 'drill', drill: b.drill as TheoryBlock['drill'] };
       // body / tip
-      return { kind: b.kind, text: key === 'uk' ? (b.uk ?? b.ru) : b.ru };
+      return { kind: b.kind, text: pickText(b) };
     });
     // Для урока 1 тренировки добавляются из drillsForSection (исторически);
     // для остальных drill уже лежат в данных, дубль не добавляем.
     const legacyDrills = content === LESSON1_THEORY ? drillsForSection(s.num) : [];
     return {
       num: s.num,
-      title: key === 'uk' ? s.titleUk : s.titleRu,
+      title: key === 'es' ? s.titleEs : key === 'uk' ? s.titleUk : s.titleRu,
       exampleCount: s.exampleCount,
       defaultOpen: s.defaultOpen,
       blocks: [...blocks, ...legacyDrills],
@@ -96,10 +115,10 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const key = legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  const key = theoryContentLang(lang);
   const content = getTheoryContent(lessonId) ?? LESSON1_THEORY;
   const sections = React.useMemo(() => buildTheorySections(content, lang), [content, lang]);
-  const title = key === 'uk' ? content.titleUk : content.titleRu;
+  const title = key === 'es' ? content.titleEs : key === 'uk' ? content.titleUk : content.titleRu;
   const subtitle = undefined;
   const claimStorageKey = React.useMemo(
     () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
@@ -173,7 +192,6 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   return (
     <TheoryLessonView
       lessonId={lessonId}
-      kicker="Грамматика"
       title={title}
       subtitle={subtitle}
       sections={sections}

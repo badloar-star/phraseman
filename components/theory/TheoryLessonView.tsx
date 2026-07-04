@@ -52,8 +52,8 @@ export interface TheoryFormulaPart {
 export interface TheoryExample {
   /** Английская строка. */
   en: string;
-  /** Перевод (приглушённый). */
-  ru: string;
+  /** Перевод на текущем языке интерфейса (приглушённый), уже разрешённый адаптером. */
+  translation: string;
   /** Подстрока en для подсветки акцентом (напр. 'is'). */
   hi?: string;
 }
@@ -558,7 +558,7 @@ export default function TheoryLessonView({
                       )}
                       {after}
                     </Text>
-                    <Text style={[styles.exampleRu, { color: t.textMuted }]}>{ex.ru}</Text>
+                    <Text style={[styles.exampleTranslation, { color: t.textMuted }]}>{ex.translation}</Text>
                   </View>
                 );
               })}
@@ -973,7 +973,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     paddingRight: 10,
   },
-  exampleRu: {
+  exampleTranslation: {
     fontSize: 14,
     lineHeight: 22,
     textAlign: 'right',

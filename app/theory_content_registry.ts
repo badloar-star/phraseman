@@ -1,7 +1,7 @@
 // Реестр контента новой «Теории»: lessonId → структурированная тема урока.
 //
 // Каждый theory_content_lessonN.ts экспортирует LESSONn_THEORY одного вида
-// ({ titleRu, titleUk, sections: L1Section[] }). Здесь они собраны в карту,
+// ({ titleRu, titleUk, titleEs, sections: L1Section[] }). Здесь они собраны в карту,
 // чтобы экран теории (LessonTheoryNew в hint.tsx) мог отрисовать любой урок.
 
 import type { L1Section } from './theory_content_lesson1';
@@ -42,6 +42,7 @@ import { LESSON32_THEORY } from './theory_content_lesson32';
 export interface LessonTheoryContent {
   titleRu: string;
   titleUk: string;
+  titleEs: string;
   sections: L1Section[];
 }
 

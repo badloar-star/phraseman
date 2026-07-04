@@ -137,7 +137,63 @@ npm run heisenberg -- --lang de --audit-only
 npm run heisenberg:batch:audit
 npm run heisenberg:gate
 npm run heisenberg:semantic-audit
+npm run heisenberg:prompt-language-audit
+npm run heisenberg:raw-strings
+npm run heisenberg:translate -- --blocks docs/heisenberg/<locale>/<run-id>/translation_blocks --locale <locale>
 ```
+
+## Locale Registry (single source of truth)
+
+All locale lists, localized key markers, field-marker regexes, locale variable
+names, and semantic language signals are derived from
+`scripts/lib/heisenberg_locales.cjs`. Adding a new interface/source language
+must be ONE entry in `LOCALE_REGISTRY` (code, English name, key word, status
+flags, language signal words/diacritics). Do not hardcode locale lists in
+pipeline scripts; require the registry instead.
+`tests/heisenberg_locale_registry.test.ts` locks the derived structures.
+
+## Prompt Language Contract Audit
+
+`npm run heisenberg:prompt-language-audit` (read-only) verifies that every
+active app locale is wired into the AI output-language contract and the
+server-side user-facing copy maps: `functions/src/explain/explain_prompts.ts`
+(`PROMPT_LANGUAGES`), `functions/src/ai_language_contract.ts`
+(`AiOutputLang`), and locale Records in `re_engage_push.ts`,
+`premium_expiry_reminder.ts`, `compass_chat_content.ts`. A missing locale in
+any of these maps means users of that locale silently fall back to Russian —
+this audit turns that silent fallback into an explicit `HOLD`. Run it (strict)
+whenever a locale is added to the registry.
+
+## Raw String Audit
+
+`npm run heisenberg:raw-strings` (read-only) inverts the extractor logic: any
+user-visible string literal in `app/` or `components/` that is NOT behind a
+locale key or `triLang(...)`-style call is a finding. Cyrillic literals are
+`blocker-candidate` (hardcoded Russian that every non-Russian user sees);
+Latin sentence literals are warnings. This catches the class of bug the
+locale-key extractor is structurally blind to (e.g. hardcoded RU buttons in
+`components/CleanOnboarding.tsx`). Findings are the localization backlog for
+those files; triage acceptable dev-only strings into the script allowlist.
+
+## Translation Factory
+
+`npm run heisenberg:translate` fills `translation_blocks/*.jsonl` with
+machine-translation candidates through a fail-closed verification chain:
+
+1. translate (structured LLM output, hard no-invention rules);
+2. independent back-translation (source text hidden);
+3. three-lens LLM judge (accuracy / naturalness / integrity), strict HOLD bias;
+4. deterministic local checks: mojibake, placeholder parity, protected quoted
+   English preserved, target-language signal, no Cyrillic leakage.
+
+A row is `GO` only when every layer agrees; otherwise it is `HOLD` with
+explicit reasons. Output rows carry `machineGenerated=true` and permanently
+`reviewerImportAllowed=false`, `productionApplyAllowed=false`,
+`activationApproved=false`: the factory produces content candidates for the
+existing external review flow and can never approve or apply anything itself.
+Default mode is a dry-run cost plan; live spend requires `--execute`,
+`--limit` (max 100 rows per launch) and `PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1`
+per the repo OpenAI dev-spend guard.
 
 ## What It Generates
 

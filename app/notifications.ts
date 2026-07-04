@@ -9,6 +9,7 @@ import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhraseForTarget } from './daily_phrase_system';
 import { reserveArenaGameEntry } from './arena_access_gate';
+import { scheduleAfterRootNavigationReady } from './paywall_navigation';
 import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } from './weekly_xp';
 import { getStoredStudyTarget } from './study_target';
 import { lessonPassCountKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
@@ -2179,12 +2180,21 @@ export const schedulePhraseOfDayNotification = async (
 export const setupNotificationTapHandler = (
   router: { push: (route: any) => void; replace?: (route: any) => void }
 ): (() => void) => {
+  // Тап по пушу на ХОЛОДНОМ старте прилетает до монтирования Root Layout —
+  // прямой router.push/replace здесь крэшил приложение классом
+  // «Attempted to navigate before mounting the Root Layout» (билд 1.5.50).
+  // Каждая навигация обязана идти через scheduleAfterRootNavigationReady.
+  const scheduleNav = (navigate: () => void) => {
+    scheduleAfterRootNavigationReady(navigate);
+  };
   const navTabHome = () => {
-    if (typeof router.replace === 'function') {
-      router.replace('/(tabs)/home');
-      return;
-    }
-    router.push('/(tabs)/home');
+    scheduleNav(() => {
+      if (typeof router.replace === 'function') {
+        router.replace('/(tabs)/home');
+        return;
+      }
+      router.push('/(tabs)/home');
+    });
   };
   let subscription: any = null;
   getNotifications().then(N => {
@@ -2197,9 +2207,11 @@ export const setupNotificationTapHandler = (
           if (data.sessionId && data.userId) {
             void (async () => {
               await reserveArenaGameEntry(String(data.sessionId), 'notification');
-              router.push({
-                pathname: '/arena_game' as any,
-                params: { sessionId: data.sessionId, userId: data.userId },
+              scheduleNav(() => {
+                router.push({
+                  pathname: '/arena_game' as any,
+                  params: { sessionId: data.sessionId, userId: data.userId },
+                });
               });
             })();
           }
@@ -2217,17 +2229,21 @@ export const setupNotificationTapHandler = (
         case 'streak_at_risk':
         case 'inactive_return':
         case 'inactive_long':
-          if (typeof router.replace === 'function') {
-            router.replace('/(tabs)/lessons' as any);
-          } else {
-            router.push('/(tabs)/lessons' as any);
-          }
+          scheduleNav(() => {
+            if (typeof router.replace === 'function') {
+              router.replace('/(tabs)/lessons' as any);
+            } else {
+              router.push('/(tabs)/lessons' as any);
+            }
+          });
           break;
         case 'intro_expiring':
         case 'upsell_d4':
         case 'upsell_d7':
         case 'upsell_d14':
-          router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
+          scheduleNav(() => {
+            router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
+          });
           break;
         default:
           navTabHome();

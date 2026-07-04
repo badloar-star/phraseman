@@ -193,7 +193,10 @@ export const KNOWLY_LEGAL_TERMS_URL = 'https://knowlyapps.com/legal/terms/';
 
 // ── Update check ──────────────────────────────────────────────────────────────
 // version.json: { "versionCode": N, "message": "…" }. Пустая строка = проверка отключена.
-export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json';
+// ОТКЛЮЧЕНО: модал «Это Компас. У меня кое-что новое» (UpdateModal) больше не показываем.
+// Пустой URL → checkForUpdate() сразу возвращает null, модал не рендерится (см. app/update_check.ts).
+// Чтобы вернуть проверку — впиши URL обратно и подними versionCode в репо phraseman-version.
+export const UPDATE_CHECK_URL = '';
 
 // ── Разовый бонус осколков за волну релиза — ОТКЛЮЧЁН (0 = никогда не показывать).
 // android.versionCode / ios.buildNumber для справки синхронизировали с волнами, когда фича была активна.

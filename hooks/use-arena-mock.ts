@@ -105,6 +105,38 @@ function shuffleArray<T>(arr: T[]): T[] {
   return result;
 }
 
+/**
+ * Ключ дедупликации по ВИДИМОМУ содержанию вопроса (текст + варианты + правильный),
+ * не по id. В банке `arena_questions` встречаются документы с разными id и полностью
+ * одинаковым содержанием — без дедупликации бот-матч показывал 4–7 визуально
+ * идентичных копий (баг «в разборе вопросов 3–7 одинаковые»).
+ *
+ * Ключ включает набор options, поэтому вопросы с одним текстом, но разными
+ * вариантами (разные задания) НЕ схлопываются. Пустой текст → пустой ключ (уникальны по id).
+ */
+function questionContentKey(q: Partial<ArenaQuestion>): string {
+  const text = typeof q.question === 'string' ? q.question.trim().toLowerCase() : '';
+  const correct = typeof q.correct === 'string' ? q.correct.trim().toLowerCase() : '';
+  const opts = Array.isArray(q.options)
+    ? q.options.map((x) => String(x).trim().toLowerCase()).sort().join('¦')
+    : '';
+  return text === '' ? '' : `${text}||${opts}||${correct}`;
+}
+
+/** Дедуп по видимому содержанию вопроса, сохраняя порядок (первый — победитель). */
+function dedupQuestionsByContent(items: ArenaQuestion[]): ArenaQuestion[] {
+  const seen = new Set<string>();
+  const out: ArenaQuestion[] = [];
+  for (const q of items) {
+    const key = questionContentKey(q);
+    // Пустой ключ не схлопываем — такие вопросы уникальны по id.
+    if (key !== '' && seen.has(key)) continue;
+    if (key !== '') seen.add(key);
+    out.push(q);
+  }
+  return out;
+}
+
 async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
   const db = getDb();
   if (!db) return [];
@@ -121,12 +153,16 @@ async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
     ...snapB.docs.map((d: any) => d.data() as ArenaQuestion),
   ];
 
-  return shuffleArray(all).slice(0, MOCK_QUESTIONS_PER_MATCH);
+  // Дедуп по содержанию — фикс «одинаковые вопросы 3–7 в разборе бот-матча».
+  return shuffleArray(dedupQuestionsByContent(all)).slice(0, MOCK_QUESTIONS_PER_MATCH);
 }
 
 const MAX_MOCK_TIEBREAK_EXTRA = 25;
 
-async function fetchOneMoreMockQuestion(excludeIds: Set<string>): Promise<ArenaQuestion | null> {
+async function fetchOneMoreMockQuestion(
+  excludeIds: Set<string>,
+  excludeContentKeys: Set<string> = new Set(),
+): Promise<ArenaQuestion | null> {
   const db = getDb();
   if (!db) return null;
   const pivot = Math.random();
@@ -141,7 +177,10 @@ async function fetchOneMoreMockQuestion(excludeIds: Set<string>): Promise<ArenaQ
   ];
   for (const q of shuffleArray(all)) {
     const id = q.id ?? '';
-    if (id && !excludeIds.has(id)) return q;
+    if (!id || excludeIds.has(id)) continue;
+    // Не выдаём тай-брейк, повторяющий по смыслу уже показанный вопрос.
+    if (excludeContentKeys.has(questionContentKey(q))) continue;
+    return q;
   }
   return null;
 }
@@ -338,7 +377,10 @@ export function useDuelMock(
         setPhase('finished');
         return;
       }
-      void fetchOneMoreMockQuestion(new Set(qs.map((q) => q.id))).then((extra) => {
+      void fetchOneMoreMockQuestion(
+        new Set(qs.map((q) => q.id)),
+        new Set(qs.map((q) => questionContentKey(q))),
+      ).then((extra) => {
         if (!extra) {
           setPhase('finished');
           return;

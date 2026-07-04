@@ -188,3 +188,72 @@ describe('matchmaking cost controls', () => {
     expect(source).toContain('lastPublishedSearchingCount = n;');
   });
 });
+
+// ─── Content-dedup of arena questions ─────────────────────────────────────────
+// Регрессия бага «в разборе вопросов Арены 3–7 одинаковые»: банк arena_questions
+// содержит документы с разными id и полностью одинаковым содержанием. Выбор вопросов
+// на матч дедупит по content-ключу (текст + отсортированные варианты + правильный),
+// НЕ по doc id. Ключ включает options, поэтому вопросы с одним текстом и разными
+// вариантами (разные задания) НЕ схлопываются.
+
+// Зеркало questionContentKey / dedupByContent из matchmaking.ts.
+function contentKey(d: { question?: unknown; options?: unknown; correct?: unknown }): string {
+  const q = typeof d.question === 'string' ? d.question.trim().toLowerCase() : '';
+  const c = typeof d.correct === 'string' ? d.correct.trim().toLowerCase() : '';
+  const opts = Array.isArray(d.options)
+    ? d.options.map((x) => String(x).trim().toLowerCase()).sort().join('¦')
+    : '';
+  return q === '' ? '' : `${q}||${opts}||${c}`;
+}
+
+function dedupByContentMirror<T extends { id: string; question?: unknown; options?: unknown; correct?: unknown }>(
+  docs: T[],
+): T[] {
+  const seen = new Set<string>();
+  const out: T[] = [];
+  for (const d of docs) {
+    const key = contentKey(d);
+    if (key !== '' && seen.has(key)) continue;
+    if (key !== '') seen.add(key);
+    out.push(d);
+  }
+  return out;
+}
+
+describe('arena question content dedup', () => {
+  test('collapses full duplicates that differ only by doc id', () => {
+    const docs = [
+      { id: 'a1_353', question: 'What does look after mean?', options: ['Искать', 'Присматривать', 'Смотреть на', 'Видеть'], correct: 'Присматривать' },
+      { id: 'dup_a', question: 'What does look after mean?', options: ['Искать', 'Присматривать', 'Смотреть на', 'Видеть'], correct: 'Присматривать' },
+      { id: 'dup_b', question: 'What does look after mean?', options: ['Видеть', 'Смотреть на', 'Присматривать', 'Искать'], correct: 'Присматривать' }, // те же варианты, другой порядок
+    ];
+    const out = dedupByContentMirror(docs);
+    expect(out.map((d) => d.id)).toEqual(['a1_353']); // остаётся первый
+  });
+
+  test('keeps same-text questions that have different option sets (different tasks)', () => {
+    const docs = [
+      { id: 'b1_003', question: 'Which sentence is incorrect?', options: ['She enjoys reading.', 'She enjoys to read before bed.', 'He reads daily.', 'They read books.'], correct: 'She enjoys to read before bed.' },
+      { id: 'b1_011', question: 'Which sentence is incorrect?', options: ['He took a break.', 'He suggested to take a break.', 'She rested.', 'We paused.'], correct: 'He suggested to take a break.' },
+    ];
+    const out = dedupByContentMirror(docs);
+    expect(out.map((d) => d.id)).toEqual(['b1_003', 'b1_011']); // оба сохранены
+  });
+
+  test('does not collapse empty-question docs together', () => {
+    const docs = [
+      { id: 'x1', question: '', options: [], correct: '' },
+      { id: 'x2', question: '', options: [], correct: '' },
+    ];
+    expect(dedupByContentMirror(docs).map((d) => d.id)).toEqual(['x1', 'x2']);
+  });
+
+  test('pickQuestions in source actually dedups by content before slicing', () => {
+    const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+    // dedup применяется в пути выбора и в тай-брейке
+    expect(source).toContain('dedupByContent');
+    expect(source).toContain('questionContentKey');
+    // ключ включает options (иначе схлопнул бы разные задания с одним текстом)
+    expect(source).toMatch(/options[\s\S]{0,80}\.sort\(\)/);
+  });
+});

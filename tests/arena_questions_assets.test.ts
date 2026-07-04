@@ -63,7 +63,15 @@ function validateDeck(
       expect(Number.isFinite(q.rand as number)).toBe(true);
     }
 
-    const dedupeKey = `${q.question}|||${[...opts].sort().join('¦')}`;
+    // Полный content-ключ (текст + отсортированные варианты + правильный) — та же
+    // гранулярность, что у runtime-дедупа выбора вопросов (matchmaking.ts /
+    // arena_rooms.ts / hooks/use-arena-mock.ts). Ловит визуально идентичные дубли,
+    // из-за которых в «Разборе вопросов» матча вопросы 3–7 были одинаковыми, но НЕ
+    // схлопывает вопросы с одним текстом и разными вариантами (это разные задания).
+    const dedupeKey = `${(q.question as string).trim().toLowerCase()}|||${[...opts]
+      .map((o) => o.trim().toLowerCase())
+      .sort()
+      .join('¦')}|||${(q.correct as string).trim().toLowerCase()}`;
     keyCounts.set(dedupeKey, (keyCounts.get(dedupeKey) ?? 0) + 1);
   }
 

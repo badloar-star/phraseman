@@ -149,7 +149,7 @@ const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
+const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -268,6 +268,7 @@ exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
+exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
@@ -1451,6 +1452,7 @@ export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialo
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminTranslateMessage } from './admin_translate';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
+export { emailUnsubscribe } from './email_unsubscribe';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 

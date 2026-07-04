@@ -9,6 +9,7 @@ import {
   normalizeEmailContactEmail,
   upsertEmailContact,
 } from './email_contacts';
+import { loadSuppressedEmails, unsubscribeUrlFor } from './email_unsubscribe';
 
 const REGION = 'us-central1';
 const MAX_RECIPIENTS = 5000;
@@ -71,22 +72,53 @@ export function normalizeBroadcastPayload(data: unknown): NormalizedAdminEmailBr
   return { emails, subject, text, audienceLabel };
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/**
+ * HTML-версия письма с явной UTF-8-разметкой. Без неё кириллица в некоторых
+ * клиентах (Gmail) может превратиться в «?». HTML гарантирует charset=utf-8.
+ */
+function buildHtmlBody(text: string, unsubscribeUrl: string): string {
+  const safeBody = escapeHtml(text).replace(/\n/g, '<br>');
+  const safeUrl = escapeHtml(unsubscribeUrl);
+  return `<!doctype html><html><head><meta charset="utf-8"></head>` +
+    `<body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111">` +
+    `<div>${safeBody}</div>` +
+    `<hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0">` +
+    `<div style="font-size:12px;color:#6b7280">Phraseman · ` +
+    `<a href="${safeUrl}" style="color:#6b7280">Отписаться от рассылки</a></div>` +
+    `</body></html>`;
+}
+
 async function sendResendEmail(params: {
   apiKey: string;
   from: string;
   to: string;
   subject: string;
   text: string;
+  unsubscribeUrl: string;
 }): Promise<{ ok: boolean; id?: string; error?: string }> {
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${params.apiKey}`, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${params.apiKey}`, 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({
         from: params.from,
         to: [params.to],
         subject: params.subject,
         text: params.text,
+        html: buildHtmlBody(params.text, params.unsubscribeUrl),
+        // RFC 8058: почтовые клиенты (Gmail/Apple) показывают кнопку «Отписаться».
+        headers: {
+          'List-Unsubscribe': `<${params.unsubscribeUrl}>`,
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+        },
       }),
     });
     const body = await response.text();
@@ -105,21 +137,28 @@ async function sendResendEmail(params: {
 async function sendBroadcastEmails(payload: NormalizedAdminEmailBroadcast, campaignId: string): Promise<{
   sentCount: number;
   failedCount: number;
+  suppressedCount: number;
   errors: string[];
 }> {
   const apiKey = resendApiKey.value();
   if (!apiKey) throw new HttpsError('failed-precondition', 'resend_key_missing');
   const from = adminEmailFrom.value() || 'Phraseman <onboarding@resend.dev>';
-  const text = `${payload.text}\n\n--\nPhraseman`;
   let sentCount = 0;
   let failedCount = 0;
   const errors: string[] = [];
 
-  for (let index = 0; index < payload.emails.length; index += SEND_CONCURRENCY) {
-    const chunk = payload.emails.slice(index, index + SEND_CONCURRENCY);
-    const results = await Promise.all(chunk.map((email) =>
-      sendResendEmail({ apiKey, from, to: email, subject: payload.subject, text }),
-    ));
+  // Убираем отписавшихся ДО отправки — это обязательное требование для рассылок.
+  const suppressed = await loadSuppressedEmails(admin.firestore());
+  const recipients = payload.emails.filter((email) => !suppressed.has(email));
+  const suppressedCount = payload.emails.length - recipients.length;
+
+  for (let index = 0; index < recipients.length; index += SEND_CONCURRENCY) {
+    const chunk = recipients.slice(index, index + SEND_CONCURRENCY);
+    const results = await Promise.all(chunk.map((email) => {
+      const unsubscribeUrl = unsubscribeUrlFor(email);
+      const text = `${payload.text}\n\n--\nPhraseman\nОтписаться от рассылки: ${unsubscribeUrl}`;
+      return sendResendEmail({ apiKey, from, to: email, subject: payload.subject, text, unsubscribeUrl });
+    }));
     results.forEach((result, offset) => {
       const email = chunk[offset];
       if (result.ok) {
@@ -133,13 +172,14 @@ async function sendBroadcastEmails(payload: NormalizedAdminEmailBroadcast, campa
       await admin.firestore().collection('email_campaigns').doc(campaignId).set({
         sentCount,
         failedCount,
+        suppressedCount,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAtIso: new Date().toISOString(),
       }, { merge: true });
     }
   }
 
-  return { sentCount, failedCount, errors };
+  return { sentCount, failedCount, suppressedCount, errors };
 }
 
 type BackfillResult = 'app' | 'site' | 'skipped_invalid' | 'skipped_relay' | null;
@@ -397,6 +437,7 @@ export const adminEmailBroadcast = onCall({
       status,
       sentCount: summary.sentCount,
       failedCount: summary.failedCount,
+      suppressedCount: summary.suppressedCount,
       errors: summary.errors,
       finishedAt: admin.firestore.FieldValue.serverTimestamp(),
       finishedAtIso: new Date().toISOString(),
@@ -413,6 +454,7 @@ export const adminEmailBroadcast = onCall({
       requestedCount: payload.emails.length,
       sentCount: summary.sentCount,
       failedCount: summary.failedCount,
+      suppressedCount: summary.suppressedCount,
       ts: new Date().toISOString(),
     });
     return { ok: true, campaignId: campaignRef.id, ...summary };

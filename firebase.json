@@ -51,7 +51,9 @@
         { "source": "/phrase/legal/terms/**", "destination": "/legal/terms/", "type": 301 }
       ],
       "rewrites": [
-        { "source": "/phraseman/duel/**", "destination": "/phraseman/duel/index.html" }
+        { "source": "/phraseman/duel/**", "destination": "/phraseman/duel/index.html" },
+        { "source": "/unsubscribe", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } },
+        { "source": "/unsubscribe/**", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } }
       ],
       "headers": [
         {

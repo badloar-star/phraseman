@@ -6585,8 +6585,8 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_22',
     english: "Nothing is wrong",
-    russian: "Ничего не так",
-    ukrainian: "Нічого не так",
+    russian: "Всё в порядке",
+    ukrainian: "Все гаразд",
     spanish: "No hay nada malo.",
     words: [
       { text: "No", correct: "No", distractors: ["Sí", "Ni", "Ya", "Aún", "Tampoco"] },

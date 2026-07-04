@@ -15,7 +15,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Alert, InteractionManager } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import Purchases, { type PurchasesPackage } from 'react-native-purchases';
+import Purchases, { PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { isLifetimeButtonEnabled, isPaywallTimersEnabled } from './remote_flags';
@@ -63,6 +63,36 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
 const ONBOARDING_TRIAL_REMINDER_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
+
+/**
+ * Покупка ушла на внешнее подтверждение (iOS «Ask to Buy» у ребёнка, банковское
+ * 3-D Secure). Это НЕ ошибка: платить повторно не нужно — доступ включится сам,
+ * когда платёж подтвердят (слушатель customerInfo / TRANSFER-вебхук).
+ */
+function showPurchasePendingAlert(lang: Lang): void {
+  Alert.alert(
+    triLang(lang, {
+      ru: 'Покупка ждёт подтверждения',
+      uk: 'Покупка чекає підтвердження',
+      es: 'Compra pendiente de aprobación',
+      'pt-BR': 'Compra aguardando aprovação',
+      vi: 'Giao dịch đang chờ xác nhận',
+      id: 'Pembelian menunggu persetujuan',
+      tr: 'Satın alma onay bekliyor',
+      pl: 'Zakup czeka na zatwierdzenie',
+    }),
+    triLang(lang, {
+      ru: 'Оплата ожидает подтверждения — например, родителя или банка. Как только её подтвердят, доступ включится сам. Покупать повторно не нужно.',
+      uk: 'Оплата очікує підтвердження — наприклад, батьків або банку. Щойно її підтвердять, доступ увімкнеться сам. Купувати повторно не потрібно.',
+      es: 'El pago espera aprobación, por ejemplo de tus padres o del banco. En cuanto lo aprueben, el acceso se activará solo. No necesitas comprar de nuevo.',
+      'pt-BR': 'O pagamento aguarda aprovação — por exemplo, dos pais ou do banco. Assim que for aprovado, o acesso será ativado sozinho. Não é preciso comprar de novo.',
+      vi: 'Thanh toán đang chờ xác nhận — ví dụ từ phụ huynh hoặc ngân hàng. Ngay khi được xác nhận, quyền truy cập sẽ tự bật. Không cần mua lại.',
+      id: 'Pembayaran menunggu persetujuan — misalnya dari orang tua atau bank. Begitu disetujui, akses akan aktif otomatis. Tidak perlu membeli lagi.',
+      tr: 'Ödeme onay bekliyor — örneğin ebeveyn veya banka onayı. Onaylanır onaylanmaz erişim kendiliğinden açılacak. Tekrar satın almana gerek yok.',
+      pl: 'Płatność czeka na zatwierdzenie — np. przez rodzica lub bank. Gdy tylko zostanie zatwierdzona, dostęp włączy się sam. Nie musisz kupować ponownie.',
+    }),
+  );
+}
 
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
@@ -300,6 +330,21 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const pkgTrial = getTrialInfo(pkg);
       const { customerInfo } = await Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
+      // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
+      // deferred-исход / аномалия sandbox без этой проверки давали локальный
+      // «премиум», которого нет на сервере, — доступ потом «отваливался».
+      const hasActiveEntitlement = Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0;
+      const hasActiveSubscription = (customerInfo?.activeSubscriptions ?? []).length > 0;
+      if (!hasActiveEntitlement && !hasActiveSubscription) {
+        // error-тег вместо отдельного имени события: тип AnalyticsEvent живёт в
+        // analytics.ts, который сейчас правит другая сессия — не трогаем.
+        void trackEvent('purchase_failed', {
+          context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
+          error: 'no_active_entitlement_after_purchase',
+        });
+        showPurchasePendingAlert(lang);
+        return;
+      }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
       await persistStorePremiumLocally(confirmedPlan, metadata);
@@ -359,9 +404,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       dismissPaywallModal(router);
     } catch (err: unknown) {
+      const errCode = String((err as { code?: unknown })?.code ?? '');
       if ((err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant });
         logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
+      } else if (errCode === PURCHASES_ERROR_CODE.PAYMENT_PENDING_ERROR) {
+        // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
+        // ветка падала в общий «Не удалось оформить» — юзер путался и платил
+        // повторно. Доступ включится сам после подтверждения платежа.
+        void trackEvent('purchase_failed', {
+          context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
+          error: 'payment_pending',
+        });
+        showPurchasePendingAlert(lang);
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
@@ -446,6 +501,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
         await persistStorePremiumLocally(plan, metadata);
         if (context !== 'personal_plan') {
+          // То же празднование, что при покупке: без него после переустановки
+          // юзер не понимал, что доступ вернулся, и порой оформлял заново.
+          await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
           emitAppEvent('premium_activated');
           void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
         }

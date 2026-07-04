@@ -67,8 +67,31 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
-export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code' | 'name_index';
-export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource; name?: string };
+export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code' | 'name_index' | 'referral_code';
+/** Публичный профиль, который сервер возвращает сразу при поиске по нику (из users.progress). */
+export type LookupUserProfile = {
+  name?: string;
+  totalXp?: number;
+  level?: number;
+  avatar?: string;
+  frame?: string;
+  aura?: string;
+  isPremium?: boolean;
+};
+export type InviteCodeLookupResult = {
+  uid: string;
+  source: InviteCodeLookupSource;
+  name?: string;
+  profile?: LookupUserProfile;
+};
+
+/**
+ * Firestore: referral_codes/{code} → { ownerStableId }. Читаема auth-клиентом (firestore.rules).
+ * Поиск друга ПРИНИМАЕТ и реферальный код: пользователю на виду именно он (кнопки «Пригласить»,
+ * карточка «Твой код для друзей» на /referrals, share-ссылка), а friend-код почти не показывается.
+ * Люди логично вводят тот код, что видят. friend-код и реферальный оба ведут к одному владельцу.
+ */
+export const REFERRAL_CODE_INDEX_COLLECTION = 'referral_codes';
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const FUNCTIONS_REGION = 'us-central1';
@@ -302,6 +325,24 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     /* Best-effort legacy lookup for old users whose friend_code_index was never backfilled. */
   }
 
+  // Реферальный код как код друга. Пользователю на виду именно РЕФЕРАЛЬНЫЙ код (кнопки
+  // «Пригласить», карточка «Твой код для друзей» на /referrals, share-ссылка), а friend-код
+  // почти не показывается — поэтому люди вводят в поиск реферальный и раньше получали
+  // «код не найден» (поиск смотрел только friend_code_index). referral_codes/{code} →
+  // { ownerStableId } читаем auth-клиентом (firestore.rules:986). ownerStableId — это тот
+  // же users/{uid}. Так любой из двух кодов юзера ведёт к нему же.
+  try {
+    const refSnap = await db.collection(REFERRAL_CODE_INDEX_COLLECTION).doc(normalized).get();
+    if (refSnap.exists) {
+      const uid = (refSnap.data?.()?.ownerStableId as string | undefined)?.trim();
+      if (uid) {
+        if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
+      }
+    }
+  } catch {
+    /* Best-effort: referral_codes может быть недоступен (правила/сеть) — не роняем поиск. */
+  }
+
   return null;
 }
 
@@ -319,17 +360,44 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
   try {
     const fn = callable<
       { stableId?: string; query: string },
-      { ok: boolean; user: { uid: string; source?: 'name_index'; name?: string } | null }
+      {
+        ok: boolean;
+        user: {
+          uid: string;
+          source?: 'name_index';
+          name?: string;
+          totalXp?: number;
+          level?: number;
+          avatar?: string;
+          frame?: string;
+          aura?: string;
+          isPremium?: boolean;
+        } | null;
+      }
     >('friendLookupUser', { timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS });
     const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
     const data = res?.data;
-    const uid = data?.user?.uid;
-    const name = typeof data?.user?.name === 'string'
-      ? data.user.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
+    const u = data?.user;
+    const uid = u?.uid;
+    const name = typeof u?.name === 'string'
+      ? u.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
       : '';
-    return typeof uid === 'string' && uid.trim()
-      ? { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}) }
-      : null;
+    if (typeof uid !== 'string' || !uid.trim()) return null;
+    // Сервер вернул полный профиль из users.progress — прокидываем в UI, чтобы карточка
+    // показала имя/уровень/аватар без догрузки из leaderboard (у многих его нет).
+    const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) && v > 0 ? Math.floor(v) : 0);
+    const strf = (v: unknown, max: number): string =>
+      typeof v === 'string' ? v.normalize('NFKC').trim().slice(0, max) : '';
+    const profile: LookupUserProfile = {
+      ...(name ? { name } : {}),
+      totalXp: num(u?.totalXp),
+      level: num(u?.level),
+      avatar: strf(u?.avatar, 64),
+      frame: strf(u?.frame, 64),
+      aura: strf(u?.aura, 64),
+      isPremium: u?.isPremium === true,
+    };
+    return { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}), profile };
   } catch {
     return null;
   }

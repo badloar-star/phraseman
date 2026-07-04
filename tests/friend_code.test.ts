@@ -397,12 +397,14 @@ test('Test F: lookupUserByFriendCode returns null when target user is banned', a
   expect(result).toBeNull();
 });
 
-test('Test E2: lookupUserByFriendCode ignores removed referral_codes fallback when friend index misses', async () => {
+test('Test E2: lookupUserByFriendCode resolves a REFERRAL code to its owner when friend index misses', async () => {
+  // Пользователю на виду реферальный код (карточка «Твой код для друзей», share-ссылка).
+  // Поиск обязан принять и его: referral_codes/{code} → ownerStableId → тот же users/{uid}.
   mockDocs.set('referral_codes/XYZL2A', { ownerStableId: 'ref-owner-stable' });
   mockDocs.set('users/ref-owner-stable', { name: 'Referral Owner' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('XYZL2A');
-  expect(result).toBeNull();
+  expect(result).toEqual({ uid: 'ref-owner-stable', source: 'referral_code' });
 });
 
 test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code when index was not backfilled', async () => {
@@ -412,7 +414,8 @@ test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code w
   expect(result).toEqual({ uid: 'legacy-code-owner', source: 'legacy_friend_code' });
 });
 
-test('Test F2: lookupUserByFriendCode does not read removed referral owner records', async () => {
+test('Test F2: lookupUserByFriendCode does not return a BANNED referral owner', async () => {
+  // Реферальный код резолвится, но владелец забанен → тихо «не найден» (как для friend-кода).
   mockDocs.set('referral_codes/BANREF', { ownerStableId: 'banned-ref' });
   mockDocs.set('users/banned-ref', { name: 'Banned Referral' });
   mockDocs.set('banned_users/banned-ref', { reason: 'x' });

@@ -222,6 +222,8 @@ const SKIP_DIRS = new Set([
   '.claude',
   '.codex-tmp',
   '.next',
+  // Design-brainstorm HTML artifacts; not product copy.
+  '.superpowers',
   '.turbo',
   '.vscode',
   'android',
@@ -407,6 +409,33 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'components/MasteryReplayModal.tsx',
   'components/StudyTargetContext.tsx',
   'hooks/use-speak-answer.ts',
+  // Verified 2026-07-04: study-target markers are dev-gated state/selection logic
+  // (ENABLE_DEV_STUDY_TARGET_LANG / setDevStudyTargetLang); UI strings stay keyed
+  // off the interface lang. lesson_intro_rich picks the STUDIED phrase (trES) from
+  // spanishStudyActive — study content by design, same class as lesson1/review.
+  'app/language_welcome.tsx',
+  'app/lesson_intro_rich.tsx',
+  'app/study_languages.ts',
+  'app/trainer_phrases_session.tsx',
+  'components/CleanOnboarding.tsx',
+  'components/settings/StudyLanguagePicker.tsx',
+  // Verified 2026-07-04: French study-target (Gustav) runtime + owner-only admin
+  // workflows. Their RU/UK fields are source-locale explanations of FRENCH course
+  // content for learners, never Spanish-UI copy: triple isolation confirmed
+  // (ENABLE_DEV_STUDY_TARGET_LANG excludes fr from store builds, Spanish UI flag
+  // is off, and quiz_phrases_loader dispatch never mixes fr rows into the es UI
+  // path). Same class as app/french_lesson_curriculum.ts above.
+  'admin/french-daily-phrases-admin.js',
+  'admin/french-daily-phrases-workflow.js',
+  'admin/french-flashcard-packs-workflow.js',
+  'admin/french-quizzes-workflow.js',
+  'app/french_daily_phrase_remote_runtime.ts',
+  'app/french_flashcard_remote_runtime.ts',
+  'app/french_lesson_remote_runtime.ts',
+  'app/french_lesson_words_remote_runtime.ts',
+  'app/french_personal_practice_remote_runtime.ts',
+  'app/french_quiz_remote_runtime.ts',
+  'app/french_target_remote_registration.ts',
 ]);
 
 const TEXT_FIELD_MARKER_BASES = [
@@ -548,6 +577,12 @@ function classifySurface(rel) {
   if (/^docs\//.test(file)) return 'docs';
   if (/^exports\//.test(file)) return 'docs';
   if (/^lingman-scenarist-pipeline\//.test(file)) return 'docs';
+  // Non-product text: feature specs, content-pipeline sources (MASON/LINGMAN/VIRAL),
+  // and generated video/render artifacts. RU/UK strings here are authoring input,
+  // not UI copy, so they must not enter existing-locale coverage contracts.
+  if (/^specs\//.test(file)) return 'docs';
+  if (/^content\//.test(file)) return 'docs';
+  if (/^output\//.test(file)) return 'docs';
   if (/^scripts\/|^tools\//.test(file)) return 'scripts-tools';
   return 'app-other';
 }

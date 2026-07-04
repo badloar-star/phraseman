@@ -442,6 +442,18 @@ async function generateCheckedMistakeText(
   return gen;
 }
 
+/**
+ * Пометку 'rejected' в кэше ставим ТОЛЬКО когда модель реально выдала не тот язык
+ * (assertAiOutputLanguage → HttpsError с '..._wrong_language'). Провайдерские/сетевые
+ * сбои (`mistake_explain_provider_failed`, таймауты, 5xx) — временные: если писать их как
+ * rejected, юзер видит «Не получилось получить разбор» и после рефреша тоже (кэш отдаёт
+ * протухшую пометку). Такие ошибки НЕ кэшируем — пусть следующий заход попробует заново.
+ */
+function isLanguageRejection(error: unknown): boolean {
+  const message = String((error as { message?: unknown })?.message ?? '');
+  return message.includes('wrong_language');
+}
+
 /** Persist a checked FULL breakdown as the global ready doc (merge:true → idempotent under races). */
 async function persistReadyMistake(
   mistakeHash: string,
@@ -543,7 +555,10 @@ export const explainMistake = onCall({
       try {
         fullGen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
       } catch (error) {
-        if (claimed) await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+        // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера.
+        if (claimed && isLanguageRejection(error)) {
+          await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
+        }
         throw error;
       }
       const latest = claimed ? null : await readCachedMistakeExplanation(mistakeHash);
@@ -577,7 +592,9 @@ export const explainMistake = onCall({
   try {
     gen = await generateCheckedMistakeText(apiKey, model, payload, buildFullMessages(payload));
   } catch (error) {
-    if (claimed) {
+    // Кэшируем rejected только для реального «не тот язык», не для временных сбоев провайдера —
+    // иначе юзер получает залипшую ошибку «Не получилось получить разбор» даже после рефреша.
+    if (claimed && isLanguageRejection(error)) {
       await writeRejectedMistakeExplanation(mistakeHash, 'non_target_language');
     }
     throw error;

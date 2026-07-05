@@ -39,7 +39,7 @@ import {
 import { isSpeechRecognitionAvailable, loadPlanSpeechModule } from './personal_plan_speech_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { useCorrectSound } from '../hooks/use-correct-sound';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticSuccess, hapticTap, hapticWarning } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { VoiceEqualizer } from './voice_equalizer';
 import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
@@ -1442,6 +1442,103 @@ function PlanExerciseFeedbackInline({
   );
 }
 
+/**
+ * Плитка выбора ответа с фидбэком «как в онбординге» (components/onboarding_aha/
+ * ChipsAssembly.tsx): неверный тап НЕ красит плитку и НЕ блокирует её — только
+ * быстрый shake (±6px, 6 шагов) + warning-хаптик. Верную плитку родитель
+ * подсвечивает зелёным и блокирует (ответ закрыт). Так юзер может тут же ткнуть
+ * правильный вариант на месте, без кнопки «попробовать ещё раз».
+ */
+function PlanChoiceTile({
+  option,
+  isRight,
+  disabled,
+  showPressed,
+  accent,
+  bgColor,
+  borderColor,
+  textColor,
+  borderWidth,
+  useGridOptions,
+  onCorrect,
+  onWrong,
+  styles: s,
+}: {
+  option: string;
+  isRight: boolean;
+  disabled: boolean;
+  showPressed: boolean;
+  accent: string;
+  bgColor: string;
+  borderColor: string;
+  textColor: string;
+  borderWidth: number;
+  useGridOptions: boolean;
+  /** Тап по этой плитке верный — родитель фиксирует результат. */
+  onCorrect: () => void;
+  /** Тап по этой плитке неверный — родитель пишет ошибку (один раз). */
+  onWrong: () => void;
+  styles: ReturnType<typeof StyleSheet.create>;
+}) {
+  const shakeAnim = useRef(new Animated.Value(0)).current;
+
+  const runShake = useCallback(() => {
+    shakeAnim.setValue(0);
+    Animated.sequence([
+      Animated.timing(shakeAnim, { toValue: 1, duration: 43, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -1, duration: 43, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 1, duration: 43, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -1, duration: 43, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 1, duration: 43, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 0, duration: 45, useNativeDriver: true }),
+    ]).start();
+  }, [shakeAnim]);
+
+  const handlePress = useCallback(() => {
+    if (isRight) {
+      onCorrect();
+    } else {
+      void hapticWarning();
+      runShake();
+      onWrong();
+    }
+  }, [isRight, onCorrect, onWrong, runShake]);
+
+  const shakeStyle = {
+    transform: [
+      { translateX: shakeAnim.interpolate({ inputRange: [-1, 1], outputRange: [-6, 6] }) },
+    ],
+  };
+
+  return (
+    <Animated.View style={[shakeStyle, useGridOptions ? undefined : { alignSelf: 'stretch' }]}>
+      <DuoPressable
+        accessibilityLabel={`Выбрать ответ: ${option}`}
+        withHaptic={false}
+        disabled={disabled}
+        edgeHeight={5}
+        edgeColor={showPressed ? accent : 'rgba(0,0,0,0.30)'}
+        wrapStyle={useGridOptions ? s.optionGridWrap : undefined}
+        style={[
+          useGridOptions ? s.optionGridSurface : s.option,
+          { backgroundColor: bgColor, borderColor, borderWidth },
+        ]}
+        onPress={handlePress}
+      >
+        <Text
+          style={[
+            useGridOptions ? s.optionGridText : s.optionText,
+            { color: textColor, fontWeight: showPressed ? '700' : (useGridOptions ? '500' : '600') },
+          ]}
+          numberOfLines={useGridOptions ? 1 : undefined}
+        >
+          {option}
+        </Text>
+      </DuoPressable>
+    </Animated.View>
+  );
+}
+
 export default function PersonalPlanExerciseScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
@@ -1801,26 +1898,33 @@ export default function PersonalPlanExerciseScreen() {
     if (!item || !session || saving || done) return;
     if (!('correctAnswer' in item)) return;
     const isCorrect = answer === item.correctAnswer;
+    // Первая попытка на этом item уже записана как 'wrong' — доклик в правильный
+    // вариант правит только экран (звук/переход), но не пишет вторую попытку.
+    const alreadyRecorded = lastResult === 'wrong';
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
+    // Хаптик ошибки даёт сама плитка (warning-хаптик + shake на каждый неверный
+    // тап, как в онбординге) — здесь его НЕ дублируем. Успех озвучиваем тут.
     if (isCorrect) {
       hapticSuccess();
       playCorrect();
       speakCurrentPhrase();
-    } else hapticError();
+    }
 
-    await submitAndStorePlanExerciseAnswer(session, {
-      result: isCorrect ? 'correct' : 'wrong',
-      contentUnitId: item.id,
-      expectedAnswer: item.correctAnswer,
-      selectedAnswer: answer,
-      grammarTags: item.grammarTags,
-      vocabularyTags: item.vocabularyTags,
-      mistakeTags: isCorrect ? [] : [isListeningMode ? 'listen_choose' : isChoiceMode ? 'choose_natural_phrase' : 'missing_word'],
-    }, {
-      recoveryWrite,
-    }).catch(() => undefined);
+    if (!alreadyRecorded) {
+      await submitAndStorePlanExerciseAnswer(session, {
+        result: isCorrect ? 'correct' : 'wrong',
+        contentUnitId: item.id,
+        expectedAnswer: item.correctAnswer,
+        selectedAnswer: answer,
+        grammarTags: item.grammarTags,
+        vocabularyTags: item.vocabularyTags,
+        mistakeTags: isCorrect ? [] : [isListeningMode ? 'listen_choose' : isChoiceMode ? 'choose_natural_phrase' : 'missing_word'],
+      }, {
+        recoveryWrite,
+      }).catch(() => undefined);
+    }
 
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
@@ -2358,6 +2462,9 @@ export default function PersonalPlanExerciseScreen() {
                   />
                 </View>
               ) : lastResult === 'wrong' && usesOptionFeedback ? (
+                // Кнопка «Попробовать ещё раз» убрана: плитки остаются активными,
+                // правильный вариант выбирается прямо на месте (как в онбординге).
+                // Остаётся только ИИ-разбор ошибки.
                 <View style={styles.inlineFeedbackHost}>
                   <AiMistakeCard
                     lang={lang}
@@ -2368,15 +2475,6 @@ export default function PersonalPlanExerciseScreen() {
                     targetAnswer={mistakeTargetAnswer}
                     userAnswer={mistakeUserAnswer}
                   />
-                  <TouchableOpacity
-                    onPress={() => void next()}
-                    activeOpacity={0.85}
-                    style={[styles.retryAfterMistake, { borderColor: accent }]}
-                  >
-                    <Text style={{ color: accent, fontWeight: '700' }}>
-                      {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
-                    </Text>
-                  </TouchableOpacity>
                 </View>
               ) : (
                 <View style={styles.optionsSpacer} />
@@ -2384,63 +2482,52 @@ export default function PersonalPlanExerciseScreen() {
 
               <View style={useGridOptions ? styles.optionsGrid : styles.options}>
                 {choiceOptions.map((option: string) => {
-                  const isSelected = selected === option;
                   const isCorrect = option === currentCorrectAnswer;
-                  const isWrong = lastResult && isSelected && !isCorrect;
-                  const isRight = lastResult && isSelected && isCorrect;
+                  // Верную плитку подсвечиваем зелёным (как в макете «привычка»).
+                  // Неверную НЕ красим — фидбэк ошибки = shake + хаптик (как в
+                  // онбординге). Красная подсветка неверного варианта убрана.
+                  const isRight = lastResult === 'correct' && selected === option && isCorrect;
                   const on = flashKey === option;
                   const borderColor = isRight
                     ? t.correct
-                    : isWrong
-                    ? t.wrong
                     : on
-                    ? accent
-                    : isSelected
                     ? accent
                     : t.border;
                   const bgColor = isRight
                     ? t.correctBg
-                    : isWrong
-                    ? t.wrongBg
                     : on
                     ? accent
                     : t.bgCard;
                   const textColor = isRight
                     ? t.correct
-                    : isWrong
-                    ? t.wrong
                     : on
                     ? (t.correctText ?? '#fff')
                     : t.textPrimary;
                   return (
-                    <DuoPressable
+                    <PlanChoiceTile
                       key={option}
-                      accessibilityLabel={`Выбрать ответ: ${option}`}
-                      withHaptic={false}
-                      disabled={Boolean(lastResult) || saving}
-                      edgeHeight={5}
-                      edgeColor={on ? accent : 'rgba(0,0,0,0.30)'}
-                      wrapStyle={useGridOptions ? styles.optionGridWrap : undefined}
-                      style={[
-                        useGridOptions ? styles.optionGridSurface : styles.option,
-                        { backgroundColor: bgColor, borderColor, borderWidth: on ? 1.5 : (useGridOptions ? 0.5 : 1) },
-                      ]}
-                      onPress={() => {
+                      option={option}
+                      isRight={isCorrect}
+                      // Блокируем всё только когда ответ уже закрыт верно. До этого
+                      // все плитки кликабельны — неверную можно тапнуть (тряхнётся),
+                      // и тут же выбрать правильную на месте.
+                      disabled={lastResult === 'correct' || saving}
+                      showPressed={on}
+                      accent={accent}
+                      bgColor={bgColor}
+                      borderColor={borderColor}
+                      textColor={textColor}
+                      borderWidth={on ? 1.5 : (useGridOptions ? 0.5 : 1)}
+                      useGridOptions={useGridOptions}
+                      onCorrect={() => {
                         flash(option);
-                        // Результат (success/error) даёт submit — отдельный tap убран.
                         void submit(option);
                       }}
-                    >
-                      <Text
-                        style={[
-                          useGridOptions ? styles.optionGridText : styles.optionText,
-                          { color: textColor, fontWeight: on ? '700' : (useGridOptions ? '500' : '600') },
-                        ]}
-                        numberOfLines={useGridOptions ? 1 : undefined}
-                      >
-                        {option}
-                      </Text>
-                    </DuoPressable>
+                      onWrong={() => {
+                        void submit(option);
+                      }}
+                      styles={styles}
+                    />
                   );
                 })}
               </View>

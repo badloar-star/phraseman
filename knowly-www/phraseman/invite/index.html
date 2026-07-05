@@ -322,6 +322,19 @@
           : tr('hintAndroid', 'On Android the install link also carries the invite code through Google Play.');
       }
 
+      // «Открыть в Phraseman» (scheme-диплинк): подсказка hint всегда ссылалась на эту
+      // кнопку, но самой кнопки на странице не было. Нужна для случая «приложение уже
+      // установлено»: Universal Link не сработал (браузер), а scheme открывает приложение
+      // напрямую и передаёт код через phraseman://invite?ref=…
+      if (ref && (isiOS || isAndroid)) {
+        var openApp = document.createElement('a');
+        openApp.id = 'openapp';
+        openApp.href = 'phraseman://invite?ref=' + encodeURIComponent(ref);
+        openApp.textContent = tr('openApp', 'Open in Phraseman');
+        var actions = document.querySelector('.actions');
+        actions.insertBefore(openApp, store);
+      }
+
       // iOS: App Store не передаёт параметры установки (нет Install Referrer),
       // поэтому при переходе в стор кладём инвайт-ссылку в буфер — приложение
       // прочитает её при первом запуске (промпт «Разрешить вставку»).

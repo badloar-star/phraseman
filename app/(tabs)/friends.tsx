@@ -44,7 +44,7 @@ import {
 } from '../profile_card_system';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends } from '../firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -275,6 +275,36 @@ function placeholderFriendProfile(uid: string, fallbackName?: string): FriendPro
     frame: String(getBestFrameForLevel(1).id),
     aura: undefined,
   };
+}
+
+/**
+ * Строит FriendProfile из серверного профиля поиска (users.progress). Это ПЕРВИЧНЫЙ
+ * источник: сервер вернул имя/уровень/XP/аватар сразу, поэтому карточка друга не
+ * зависит от leaderboard/arena (у многих юзеров записи там нет → раньше был прочерк
+ * и уровень 1). Уровень считается из totalXp самой аватаркой.
+ */
+function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined): FriendProfile | null {
+  if (!lp) return null;
+  const name = cleanFriendDisplayName(lp.name);
+  const totalXp = typeof lp.totalXp === 'number' && lp.totalXp > 0 ? Math.floor(lp.totalXp) : 0;
+  const avatar = (lp.avatar ?? '').trim();
+  const aura = normalizeAvatarAuraId((lp.aura ?? '').trim());
+  // Совсем пусто — профиля нет (не перекрываем возможный leaderboard-результат).
+  if (!name && totalXp <= 0 && !avatar) return null;
+  const levelForAssets = totalXp > 0 ? getLevelFromXP(totalXp) : (lp.level && lp.level > 0 ? lp.level : 1);
+  return normalizePublicFriendProfile({
+    uid,
+    name,
+    totalXp,
+    weeklyXp: 0,
+    streak: 0,
+    isPremium: lp.isPremium === true,
+    isVip: false,
+    isLifetime: false,
+    avatar: avatar || String(getBestAvatarForLevel(levelForAssets)),
+    frame: (lp.frame ?? '').trim() || String(getBestFrameForLevel(levelForAssets).id),
+    aura,
+  });
 }
 
 function profileWithLookupDisplayName(
@@ -2338,7 +2368,12 @@ export default function FriendsTabScreen() {
         return;
       }
       const fetched = await fetchFriendProfileFromFirestore(result.uid);
-      const displayProfile = profileWithLookupDisplayName(result.uid, fetched, result.name);
+      // Серверный профиль (из users.progress) — ПЕРВИЧНЫЙ источник имени/уровня/аватара.
+      // Объединяем с leaderboard/arena: серверный имеет приоритет (mergePublicFriendProfiles
+      // берёт запись с бОльшим totalXp как primary). Так карточка не показывает прочерк/ур.1.
+      const lookupProfile = friendProfileFromLookup(result.uid, result.profile);
+      const merged = mergePublicFriendProfiles(fetched, lookupProfile) ?? lookupProfile ?? fetched;
+      const displayProfile = profileWithLookupDisplayName(result.uid, merged, result.name || result.profile?.name);
       if (!displayProfile) {
         await trackActivity('friends:search_result', {
           feature: 'friends',

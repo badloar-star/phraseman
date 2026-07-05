@@ -260,8 +260,7 @@ function ReportErrorButton({
         ) : (
           <Text
             style={[styles.triggerText, { color: textColor ?? t.textSecond, fontSize: f.sub }]}
-            numberOfLines={1}
-            ellipsizeMode="tail"
+            numberOfLines={2}
           >
             {triLang(lang, {
               ru: 'Нашёл ошибку?',
@@ -507,7 +506,9 @@ export default memo(ReportErrorButton);
 
 const styles = StyleSheet.create({
   trigger: { paddingVertical: 4, paddingHorizontal: 8, opacity: 0.7 },
-  triggerText: { flexShrink: 1, maxWidth: 220 },
+  // Без жёсткого maxWidth/обрезания: при крупном системном шрифте «Нашёл ошибку?»
+  // не влезало в 220px и резалось в «нашёл ошиб…». numberOfLines={2} даёт перенос.
+  triggerText: { flexShrink: 1 },
   triggerFlag: {
     paddingVertical: 4,
     paddingHorizontal: 4,

@@ -1341,11 +1341,9 @@ const LessonContent = React.memo(function LessonContent({
                             handleWordPress(word);
                           }, 170);
                         }
-                        // [FeedbackKit] Плитка уже имеет 3D-нажатие (DuoPressable),
-                        // поэтому НЕ оборачиваем в PressableScale — только добавляем
-                        // тихий клик касания. fk.tap сам даёт тот же light haptic
-                        // (общий кулдаун 80мс исключает двойную вибрацию).
-                        requestAnimationFrame(() => { fk.tap(); });
+                        // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
+                        // (звук только на управляющих кнопках). Оставляем родную вибрацию.
+                        void hapticTap();
                       }}
                     >
                       <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={1}>{displayText}</Text>

@@ -202,6 +202,56 @@ describe('loadShardsFromCloud balance freshness', () => {
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBe(3_000);
   });
 
+  // Регресс: пропажа осколков после restore/обновления (баг Vitalii, shard_log 540→501).
+  // restoreFromCloud (cloud_sync.ts) кладёт СТАРОЕ теневое `progress.shards_balance`
+  // в локаль, НЕ трогая метку. Метка остаётся «свежей» (op:'replace', ts новее облака),
+  // из-за чего обычный timestamp-guard пропускал восстановление, и заниженное число
+  // закреплялось. Авторитетный облачный баланс (канал A) СТРОГО ВЫШЕ → должен победить.
+  it('restores authoritative higher cloud balance over a restore-clobbered local value', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 540; // канал A: реальный заработанный баланс
+    fs.__testState.userShardsUpdatedAtMs = 1_000; // облачная метка отстала (фоновый sync)
+    fs.__testState.userShardsUpdatedOp = 'earn';
+    fs.__testState.userShardsUpdatedReason = 'arena_win';
+
+    // Локаль испорчена restore'ом: старое теневое число + метка-артефакт (op:'replace').
+    mockStorage.shards_balance = '501';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 9_999, // «новее» облака, но это не реальная операция
+      op: 'replace',
+      reason: 'cloud_restore',
+    });
+
+    await loadShardsFromCloud();
+
+    expect(mockStorage.shards_balance).toBe('540');
+    expect(fs.__testState.userShards).toBe(540); // и в облако заниженное НЕ записали
+  });
+
+  // Обратная защита: настоящую свежую локальную трату (op:'spend') НЕ роняем,
+  // даже если облако выше (облако просто ещё не догнало списание).
+  it('keeps a genuine newer local spend even when cloud balance is higher', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 100;
+    fs.__testState.userShardsUpdatedAtMs = 1_000;
+    fs.__testState.userShardsUpdatedOp = 'earn';
+    fs.__testState.userShardsUpdatedReason = 'legacy';
+
+    mockStorage.shards_balance = '70';
+    mockStorage.shards_balance_meta_v1 = JSON.stringify({
+      updatedAtMs: 2_000,
+      op: 'spend',
+      reason: 'card_pack',
+    });
+
+    await loadShardsFromCloud();
+
+    expect(mockStorage.shards_balance).toBe('70');
+    expect(fs.__testState.userShards).toBe(70); // локальная трата ушла в облако
+  });
+
   it('tracks webhook-granted store purchase shards as non-achievement balance', async () => {
     const fs = firestore as any;
     fs.__testState.userDocExists = true;

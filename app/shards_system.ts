@@ -187,6 +187,19 @@ const localWriteStamp = (op: ShardBalanceMeta['op'], reason: string): ShardBalan
   reason,
 });
 
+/**
+ * Похоже ли локальное состояние баланса на «артефакт restore», а не на реальную
+ * пользовательскую операцию? cloud_sync.ts при restoreFromCloud кладёт старое теневое
+ * `progress.shards_balance` в локальный STORAGE_KEY, НЕ обновляя `shards_balance_meta_v1`.
+ * Реальная свежая операция всегда помечена op:'earn'/'spend' — её ронять нельзя.
+ * Артефакт restore/reconcile — это op:'replace'/'admin' либо полное отсутствие метки.
+ * Используется в loadShardsFromCloud, чтобы отличить «локаль законно потрачена ниже
+ * облака» (не трогаем) от «локаль занижена теневым restore» (авторитетное облако побеждает).
+ */
+const isLocalRestoreArtifact = (meta: ShardBalanceMeta | null): boolean => (
+  meta === null || meta.op === 'replace' || meta.op === 'admin'
+);
+
 const normalizeShardBalanceOp = (value: unknown): ShardBalanceMeta['op'] => (
   value === 'earn' || value === 'spend' || value === 'admin' || value === 'replace'
     ? value
@@ -1139,8 +1152,7 @@ export const loadShardsFromCloud = async (): Promise<void> => {
       changed = true;
       appliedMeta = meta;
     } else if (
-      (cloudUpdatedAt !== null && (!localMeta || cloudUpdatedAt >= localMeta.updatedAtMs))
-      || (cloudUpdatedAt === null && !localMeta && cloudShards > local)
+      cloudUpdatedAt !== null && (!localMeta || cloudUpdatedAt >= localMeta.updatedAtMs)
     ) {
       // Cloud wins only when it is newer than the local shard operation.
       const meta: ShardBalanceMeta = {
@@ -1158,7 +1170,64 @@ export const loadShardsFromCloud = async (): Promise<void> => {
       }
       changed = true;
       appliedMeta = meta;
-    } else if (localMeta && (cloudUpdatedAt === null || localMeta.updatedAtMs > cloudUpdatedAt)) {
+    } else if (isLocalRestoreArtifact(localMeta) && cloudShards > local) {
+      // Authoritative-cloud-wins (fix: пропажа осколков после restore/обновления).
+      // `users/{uid}.shards` (канал A) — append-safe авторитет: каждый earn/spend идёт
+      // через него с монотонной меткой. Второй, теневой канал — `progress.shards_balance`
+      // из cloud_sync.ts — переносится БЕЗ метки и при restoreFromCloud слепо кладёт
+      // СТАРОЕ число в локальный STORAGE_KEY ДО вызова loadShardsFromCloud, НЕ трогая
+      // `shards_balance_meta_v1`. Локальная метка остаётся от прошлой операции и может
+      // оказаться «новее» облачной → timestamp-guard выше не срабатывает, и заниженное
+      // после-restore число закрепляется (660→498, 516→500, 540→501 — по shard_log).
+      // Ключевой разделитель: настоящая свежая локальная трата помечена op:'spend'/'earn'
+      // (её ронять нельзя — тест «older cloud over newer local spend»). Артефакт restore —
+      // это op:'replace'/'admin' ЛИБО отсутствие метки. Только в этом случае, если
+      // авторитетный облачный баланс СТРОГО БОЛЬШЕ, восстанавливаем его: терять
+      // заработанные осколки при простом чтении из облака нельзя.
+      const meta: ShardBalanceMeta = {
+        updatedAtMs: Math.max(cloudUpdatedAt ?? 0, localMeta?.updatedAtMs ?? 0) + 1,
+        op: data.shards_updated_op === 'earn' || data.shards_updated_op === 'spend' ? data.shards_updated_op : 'replace',
+        reason: typeof data.shards_updated_reason === 'string' ? data.shards_updated_reason : 'cloud_restore',
+      };
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(cloudShards)],
+        [BALANCE_META_KEY, JSON.stringify(meta)],
+      ]);
+      setShardsBalanceMemory(cloudShards);
+      if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        await bumpStorePurchasedShardsTotal(cloudShards - local);
+      }
+      changed = true;
+      appliedMeta = meta;
+    } else if (
+      cloudUpdatedAt === null && !localMeta && cloudShards > local
+    ) {
+      // Ни у облака, ни у локали нет метки, но облако выше — безопасно поднять локаль.
+      const meta: ShardBalanceMeta = {
+        updatedAtMs: Date.now(),
+        op: data.shards_updated_op === 'earn' || data.shards_updated_op === 'spend' ? data.shards_updated_op : 'replace',
+        reason: typeof data.shards_updated_reason === 'string' ? data.shards_updated_reason : 'cloud_restore',
+      };
+      await AsyncStorage.multiSet([
+        [STORAGE_KEY, String(cloudShards)],
+        [BALANCE_META_KEY, JSON.stringify(meta)],
+      ]);
+      setShardsBalanceMemory(cloudShards);
+      if (isStorePurchaseReason(meta.reason) && cloudShards > local) {
+        await bumpStorePurchasedShardsTotal(cloudShards - local);
+      }
+      changed = true;
+      appliedMeta = meta;
+    } else if (
+      localMeta
+      && (cloudUpdatedAt === null || localMeta.updatedAtMs > cloudUpdatedAt)
+      // Не проталкивать в облако локаль, которая НИЖЕ авторитетного облачного баланса,
+      // когда локаль — артефакт restore (op:'replace'/'admin'). Именно эта ветка раньше
+      // закрепляла просадку: restore обнулял локаль до старого теневого числа, метка
+      // оставалась «свежей», и мы записывали заниженный баланс обратно в канал A.
+      // Настоящую трату (op:'spend', local < cloud из-за отставшего облака) — пушим как прежде.
+      && !(isLocalRestoreArtifact(localMeta) && local < cloudShards)
+    ) {
       await syncShardsToCloud(local, localMeta);
     }
     if (changed) {

@@ -12,7 +12,7 @@ import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
@@ -2651,13 +2651,11 @@ function AppContent() {
       ? ({ animation: 'fade', animationDuration: 140 } as const)
       : ({ animation: 'none', animationDuration: 0 } as const);
 
-  return (
-    // Фон корня — константа темы: сплэш закрывает старт отдельным оверлеем,
-    // а перекраска фона по асинхронным флагам давала «чёрный кадр».
-    <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
-    <MaintenanceGate />
-    <PromoBanner />
-
+  // Перф: дерево из ~80 <Stack.Screen> зависит ТОЛЬКО от темы + onboardingPaywallActive,
+  // а НЕ от pathname/params. Без useMemo каждая смена вкладки (usePathname меняется)
+  // пересоздавала все 80 JSX-элементов экранов → тяжёлый ре-рендер корня → фриз тапа 3-10с.
+  // Мемоизация разрывает эту связь: смена вкладки больше не трогает дерево стека.
+  const stackTree = useMemo(() => (
     <Stack
       initialRouteName="(tabs)"
       screenOptions={{
@@ -2777,6 +2775,22 @@ function AppContent() {
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
     </Stack>
+  ), [
+    tTheme.bgPrimary,
+    onboardingPaywallActive,
+    defaultScreenAnimationOptions,
+    pushScreenAnimationOptions,
+    bottomModalAnimationOptions,
+  ]);
+
+  return (
+    // Фон корня — константа темы: сплэш закрывает старт отдельным оверлеем,
+    // а перекраска фона по асинхронным флагам давала «чёрный кадр».
+    <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
+    <MaintenanceGate />
+    <PromoBanner />
+
+    {stackTree}
 
     {postOnboardingGoldBridgeVisible && (
       <Animated.View

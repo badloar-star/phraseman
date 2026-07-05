@@ -479,6 +479,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => { cancelled = true; };
     }, [arenaTabVisible]));
     useEffect(() => {
+        // Перф: чтение профиля с диска — только когда таб Arena виден (не на премаунте).
+        if (!arenaTabVisible) return;
         let cancelled = false;
         (async () => {
             const map = new Map(await AsyncStorage.multiGet([
@@ -503,7 +505,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => {
             cancelled = true;
         };
-    }, [defaultPlayerName]);
+    }, [arenaTabVisible, defaultPlayerName]);
     const fallbackThroneTop = useCallback((): ArenaHillTopEntry[] => {
         if (!hillThrone)
             return [];
@@ -592,6 +594,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => clearTimeout(timer);
     }, [isTab, autoSearch, playAgainTs, router]);
     useEffect(() => {
+        // Перф: тяжёлая auth+сеть инициализация (ensureArenaAuthUid/ensureAnonUser + счётчики)
+        // не должна стартовать на фоновом премаунте таба. arenaTabVisible = !isTab || activeIdx===2,
+        // поэтому deep-link открытие лобби (isTab=false, вкл. autoSearch) гейт пропускает.
+        if (!arenaTabVisible) return;
         const task = InteractionManager.runAfterInteractions(() => {
             ensureArenaAuthUid().then((uid) => {
                 if (uid) {
@@ -610,7 +616,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             })();
         });
         return () => task.cancel();
-    }, [autoSearch, playAgainTs, handleFindMatch]);
+    }, [arenaTabVisible, autoSearch, playAgainTs, handleFindMatch]);
     useEffect(() => {
         if (!arenaTabVisible) {
             return;
@@ -1592,6 +1598,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
         });
     }, [arenaFriends, arenaFriendPickUid]);
     useEffect(() => {
+        // Перф: каскад «профиль на каждого друга» (до 3 Firestore-чтений на друга) не должен
+        // стартовать на фоновом премаунте таба и не должен бить залпом по всем друзьям сразу.
+        if (!arenaTabVisible)
+            return;
         if (arenaFriends.length === 0)
             return;
         const db = (() => {
@@ -1610,7 +1620,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
         let cancelled = false;
         void (async () => {
             await startFriendsTabSwrPrime();
-            const results = await Promise.all(arenaFriends.map(async (f) => {
+            // Ограничиваем конкурентность до 6 (worker-pool): порядок результатов неважен —
+            // ниже они складываются в map по uid.
+            const fetchOneArenaFriendProfile = async (f: FriendEntry) => {
             try {
                 const cachedProfile = peekProfilesCache()[f.uid]?.profile;
                 if (cachedProfile) {
@@ -1664,7 +1676,18 @@ export default function DuelLobbyScreen({ isTab = false }: {
             catch {
                 return null;
             }
-            }));
+            };
+            const friendsToFetch = arenaFriends;
+            const results = new Array<Awaited<ReturnType<typeof fetchOneArenaFriendProfile>>>(friendsToFetch.length);
+            let cursor = 0;
+            const worker = async () => {
+                while (cursor < friendsToFetch.length && !cancelled) {
+                    const index = cursor++;
+                    results[index] = await fetchOneArenaFriendProfile(friendsToFetch[index]);
+                }
+            };
+            const poolSize = Math.max(1, Math.min(6, friendsToFetch.length));
+            await Promise.all(Array.from({ length: poolSize }, () => worker()));
             if (cancelled)
                 return;
             const map: Record<string, {
@@ -1679,7 +1702,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             setArenaFriendProfiles(map);
         })();
         return () => { cancelled = true; };
-    }, [arenaFriends, defaultPlayerName]);
+    }, [arenaTabVisible, arenaFriends, defaultPlayerName]);
     const othersInQueueBadge = queueOthersCount > 0 ? (<View style={[
             styles.queueActivityBadge,
             {

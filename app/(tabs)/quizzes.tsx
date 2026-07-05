@@ -904,6 +904,8 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   const startInFlightRef = useRef(false);
   const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [quizPackTick, setQuizPackTick] = useState(0);
+  // Перф: гейт парсинга банка фраз квизов по фокусу — не грузить на фоновом премаунте.
+  const levelSelectFocused = useIsScreenFocused();
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -918,6 +920,9 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
   );
 
   useEffect(() => {
+    // Пока таб «Квизы» невидим (фоновый премаунт) — не парсим весь банк фраз.
+    // При открытии/фокусе (или смене lang/studyTarget на видимом экране) — грузим.
+    if (!levelSelectFocused) return;
     prefetchQuizPhrases(lang, studyTarget);
     let cancelled = false;
     ensureQuizPhrasesLoaded(lang, studyTarget)
@@ -928,7 +933,7 @@ function LevelSelect({ onSelect, sourceGated = false }: { onSelect:(selection:Qu
         if (!cancelled) setQuizPackTick((value) => value + 1);
       });
     return () => { cancelled = true; };
-  }, [lang, studyTarget]);
+  }, [levelSelectFocused, lang, studyTarget]);
 
   const releaseStartInFlight = useCallback(() => {
     if (startInFlightTimeoutRef.current) {

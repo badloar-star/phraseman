@@ -514,6 +514,31 @@ async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfi
   }
 }
 
+/**
+ * Перф: map с ограничением конкурентности. Раньше loadProfiles делал
+ * Promise.all по ВСЕМ друзьям сразу — десятки одновременных Firestore-чтений
+ * залпом в момент открытия таба «Друзья» = удар по JS-потоку и сети.
+ * Результат сохраняет ПОРЯДОК входного массива (result[i] ⟷ items[i]),
+ * т.к. вызывающий код читает fetched[i] по индексу toFetch[i].
+ */
+async function mapWithConcurrency<T, R>(
+  items: readonly T[],
+  limit: number,
+  fn: (item: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  const result = new Array<R>(items.length);
+  let cursor = 0;
+  const worker = async (): Promise<void> => {
+    while (cursor < items.length) {
+      const index = cursor++;
+      result[index] = await fn(items[index], index);
+    }
+  };
+  const size = Math.max(1, Math.min(limit, items.length));
+  await Promise.all(Array.from({ length: size }, () => worker()));
+  return result;
+}
+
 
 // ── XP Bar ────────────────────────────────────────────────────────────────────
 
@@ -538,7 +563,7 @@ async function loadProfiles(
 
   if (toFetch.length > 0) {
     await ensureAnonUser();
-    const fetched = await Promise.all(toFetch.map(fetchFriendProfileFromFirestore));
+    const fetched = await mapWithConcurrency(toFetch, 6, (uid) => fetchFriendProfileFromFirestore(uid));
     const fetchedProfiles = fetched.filter((p): p is FriendProfile => p !== null);
     const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid));
     const newEntries: Record<string, ProfileCacheEntry> = {};
@@ -2081,11 +2106,26 @@ export default function FriendsTabScreen() {
 
   // ── My code + my data ──────────────────────────────────────────────────────
 
+  // mountedRef ставится ВСЕГДА на маунт/анмаунт (его читают другие эффекты) —
+  // независимо от гейта видимости таба.
   useEffect(() => {
     mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  // Кэш-чтение кода дёшево и нужно для мгновенного первого кадра — негейтнуто.
+  useEffect(() => {
     void readCachedMyInviteCodeForFriends().then(cached => {
       if (mountedRef.current && cached) setMyCode(prev => prev ?? cached);
     });
+  }, []);
+
+  // Перф: тяжёлые СЕТЕВЫЕ вызовы (syncMyInviteCode c retry до 15с, fetchMyProfile,
+  // startFriendsTabSwrPrime, cleanupStaleFriendData) НЕ должны стартовать на фоновом
+  // премаунте таба — иначе грузят сеть и греют телефон до открытия. Гейт по
+  // friendsTabVisible: при открытии таба (переход false→true) вызовы выполнятся.
+  useEffect(() => {
+    if (!friendsTabVisible) return;
     void syncMyInviteCode();
     const task = InteractionManager.runAfterInteractions(() => {
       void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
@@ -2104,8 +2144,8 @@ export default function FriendsTabScreen() {
       });
       void cleanupStaleFriendData();
     });
-    return () => { mountedRef.current = false; task.cancel(); };
-  }, [syncMyInviteCode]);
+    return () => { task.cancel(); };
+  }, [friendsTabVisible, syncMyInviteCode]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {

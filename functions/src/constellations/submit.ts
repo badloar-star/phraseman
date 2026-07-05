@@ -193,11 +193,21 @@ export async function handleConstellationSubmit(
       return { ok: true };
     }
 
+    if (type === 'tick') {
+      // Клиент увидел, что дедлайн фазы истёк, и просит форсировать переход.
+      // Идемпотентно и безопасно: реальный перевод фазы делает проверка ниже
+      // (deadlineElapsed), а не сам клиент — читер не ускорит раунд.
+      pushActionId({});
+      return { ok: true, phaseCheck: match.phase, deadlineTick: true };
+    }
+
     throw new HttpsError('invalid-argument', `unknown type ${type}`);
   });
 
-  // Ранний фаст-форвард фазы: все люди сходили/ответили → не ждём таймер (A3).
+  // Переход фазы: (а) фаст-форвард — все люди сходили/ответили (A3), либо
+  // (б) tick — истёк дедлайн фазы (клиент не ждёт минутный watchdog-cron).
   const phaseCheck = (result as { phaseCheck?: string }).phaseCheck;
+  const isDeadlineTick = (result as { deadlineTick?: boolean }).deadlineTick === true;
   if (phaseCheck) {
     try {
       const [matchSnap, serverSnap] = await db.getAll(matchRef, serverRef);
@@ -215,7 +225,10 @@ export async function handleConstellationSubmit(
         const humanSlotsAlive = humanDocs
           .filter((d) => server.state.players[d.slot]?.status === 'alive')
           .map((d) => d.slot as PlayerSlot);
-        if (allHumansDoneForPhase(match, humanDocs, humanSlotsAlive)) {
+        // Переходим, если все люди готовы ЛИБО дедлайн фазы уже истёк
+        // (с запасом 500мс на рассинхрон часов клиент/сервер).
+        const deadlineElapsed = isDeadlineTick && Date.now() >= match.phaseDeadlineAt - 500;
+        if (deadlineElapsed || allHumansDoneForPhase(match, humanDocs, humanSlotsAlive)) {
           if (match.phase === 'choose') await advanceToAnswer(matchId);
           else await resolveCurrentRound(matchId);
         }
@@ -226,6 +239,7 @@ export async function handleConstellationSubmit(
   }
 
   delete (result as Record<string, unknown>).phaseCheck;
+  delete (result as Record<string, unknown>).deadlineTick;
   return result;
 }
 

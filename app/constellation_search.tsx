@@ -49,6 +49,15 @@ type ScreenState =
   | { kind: 'error' }
   | { kind: 'starfall'; matchId: string };
 
+/** Цвета слотов игроков (совпадают с CONSTELLATION_SLOT_COLORS матча). */
+const SLOT_COLORS = ['#8B7BFF', '#37E0C8', '#FFB454', '#FF6B8A'] as const;
+/** Орбитальные соперники: угол/радиус/цвет для точек вокруг ядра. */
+const ORBIT_DOTS = [
+  { angle: 20, radius: 92, color: SLOT_COLORS[1] },
+  { angle: 165, radius: 92, color: SLOT_COLORS[2] },
+  { angle: 270, radius: 78, color: SLOT_COLORS[3] },
+] as const;
+
 export default function ConstellationSearchScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
@@ -60,7 +69,6 @@ export default function ConstellationSearchScreen() {
   const [state, setState] = useState<ScreenState>({ kind: 'searching' });
   const [elapsedSec, setElapsedSec] = useState(0);
   const [searchingCount, setSearchingCount] = useState(0);
-  const [dots, setDots] = useState('…');
   // Поэтапное подключение: слот 0 — ты (сразу), остальные «находятся» в
   // случайные моменты (презентация ожидания; реальный состав придёт с матчем).
   const [slotsFilled, setSlotsFilled] = useState(1);
@@ -70,6 +78,40 @@ export default function ConstellationSearchScreen() {
   const unsubsRef = useRef<Array<() => void>>([]);
   const starfallPlayer = useAudioPlayer(SND_STARFALL);
   const goldAnim = useRef(new Animated.Value(0)).current;
+
+  // Анимации «зарождения звезды». Все гейтятся фокусом (Performance Bible):
+  // при уходе с экрана циклы останавливаются, не жгут кадры в фоне.
+  const corePulse = useRef(new Animated.Value(0)).current;
+  const sweepSpin = useRef(new Animated.Value(0)).current;
+  const progAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (!focused || state.kind !== 'searching') return;
+    const pulse = Animated.loop(Animated.sequence([
+      Animated.timing(corePulse, { toValue: 1, duration: 1200, useNativeDriver: true }),
+      Animated.timing(corePulse, { toValue: 0, duration: 1200, useNativeDriver: true }),
+    ]));
+    const spin = Animated.loop(
+      Animated.timing(sweepSpin, { toValue: 1, duration: 3400, useNativeDriver: true }),
+    );
+    pulse.start();
+    spin.start();
+    return () => { pulse.stop(); spin.stop(); };
+  }, [focused, state.kind, corePulse, sweepSpin]);
+
+  // Полоса сборки тянется к «числу собранных слотов» (плавно, JS-драйвер для width).
+  useEffect(() => {
+    Animated.timing(progAnim, {
+      toValue: slotsFilled / 4,
+      duration: 600,
+      useNativeDriver: false,
+    }).start();
+  }, [slotsFilled, progAnim]);
+
+  const coreScale = corePulse.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1.06] });
+  const coreOpacity = corePulse.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1] });
+  const sweepDeg = sweepSpin.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
+  const progWidth = progAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
 
   const cleanupSubs = useCallback(() => {
     for (const u of unsubsRef.current) {
@@ -163,7 +205,6 @@ export default function ConstellationSearchScreen() {
     if (!focused || state.kind !== 'searching') return;
     const id = setInterval(() => {
       setElapsedSec((s) => s + 1);
-      setDots((d) => (d.length >= 3 ? '.' : d + '.'));
     }, 1000);
     return () => clearInterval(id);
   }, [focused, state.kind]);
@@ -205,53 +246,96 @@ export default function ConstellationSearchScreen() {
 
       {state.kind === 'searching' ? (
         <View style={styles.center}>
-          <View style={[styles.radar, { borderColor: `${t.accent}55` }]}>
-            <View style={[styles.radarCore, { backgroundColor: t.accent }]} />
+          {/* Зарождение звезды: разгорающееся ядро + орбиты соперников (концепт B). */}
+          <View style={styles.forge}>
+            <Animated.View style={[styles.orbitRing, styles.orbitOuter, { borderColor: `${t.accent}22` }]} />
+            <View style={[styles.orbitRing, styles.orbitInner, { borderColor: `${t.accent}18` }]} />
+            <Animated.View
+              style={[
+                styles.orbitSweep,
+                { transform: [{ rotate: sweepDeg }] },
+              ]}
+              pointerEvents="none"
+            >
+              <View style={styles.sweepBlade} />
+            </Animated.View>
+            {/* Орбитальные точки-соперники: появляются по мере «сбора». */}
+            {ORBIT_DOTS.map((dot, i) => (
+              i < slotsFilled - 1 ? (
+                <Animated.View
+                  key={i}
+                  style={[
+                    styles.orbDot,
+                    {
+                      backgroundColor: dot.color,
+                      transform: [
+                        { rotate: `${dot.angle}deg` },
+                        { translateX: dot.radius },
+                      ],
+                    },
+                  ]}
+                />
+              ) : null
+            ))}
+            <Animated.View style={[styles.forgeCore, { transform: [{ scale: coreScale }], opacity: coreOpacity }]}>
+              <View style={styles.coreInner} />
+            </Animated.View>
           </View>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-            {title}{dots}
+
+          <Text style={[styles.kicker, { color: '#F6B24B' }]}>
+            {triLang(lang, {
+              ru: 'МАТЧ РОЖДАЕТСЯ', uk: 'МАТЧ НАРОДЖУЄТЬСЯ', es: 'NACE LA PARTIDA',
+              'pt-BR': 'A PARTIDA NASCE', vi: 'TRẬN ĐẤU HÌNH THÀNH', id: 'MATCH LAHIR',
+              tr: 'MAÇ DOĞUYOR', pl: 'MECZ SIĘ RODZI',
+            })}
           </Text>
-          <View style={styles.slotRow}>
+          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {title}
+          </Text>
+
+          {/* Полоса сборки. */}
+          <View style={[styles.progTrack, { backgroundColor: `${t.textSecond}22` }]}>
+            <Animated.View style={[styles.progFill, { width: progWidth }]} />
+          </View>
+
+          {/* Ряд мини-аватаров: заполняется поэтапно. */}
+          <View style={styles.miniRow}>
             {[0, 1, 2, 3].map((i) => {
               const filled = i < slotsFilled;
               return (
                 <View
                   key={i}
-                  style={[styles.slot, {
-                    borderColor: filled ? t.accent : t.border,
-                    borderStyle: filled ? 'solid' : 'dashed',
-                    backgroundColor: filled ? `${t.accent}22` : 'transparent',
-                  }]}
+                  style={[
+                    styles.mini,
+                    filled
+                      ? { backgroundColor: SLOT_COLORS[i] }
+                      : { backgroundColor: 'transparent', borderColor: t.border, borderWidth: 1.5, borderStyle: 'dashed' },
+                  ]}
                 >
-                  {filled ? (
-                    <Ionicons name={i === 0 ? 'person' : 'person-add'} size={17} color={t.accent} />
-                  ) : (
-                    <Text style={{ color: t.textSecond, fontSize: f.caption }}>…</Text>
-                  )}
+                  {filled
+                    ? <Text style={styles.miniText}>{i === 0 ? 'Т' : ''}</Text>
+                    : <Text style={{ color: t.textSecond, fontSize: f.caption }}>…</Text>}
+                  {filled && i !== 0 ? (
+                    <Ionicons name="person" size={15} color="#fff" style={{ position: 'absolute' }} />
+                  ) : null}
                 </View>
               );
             })}
           </View>
+
           <Text style={[styles.sub, { color: t.textSecond, fontSize: f.caption }]}>
             {triLang(lang, {
-              ru: `игроки: ${slotsFilled}/4`, uk: `гравці: ${slotsFilled}/4`,
-              es: `jugadores: ${slotsFilled}/4`, 'pt-BR': `jogadores: ${slotsFilled}/4`,
-              vi: `người chơi: ${slotsFilled}/4`, id: `pemain: ${slotsFilled}/4`,
-              tr: `oyuncular: ${slotsFilled}/4`, pl: `gracze: ${slotsFilled}/4`,
+              ru: `${searchingCount} в поиске · ${elapsedSec}с`,
+              uk: `${searchingCount} у пошуку · ${elapsedSec}с`,
+              es: `${searchingCount} buscando · ${elapsedSec}s`,
+              'pt-BR': `${searchingCount} buscando · ${elapsedSec}s`,
+              vi: `${searchingCount} đang tìm · ${elapsedSec}s`,
+              id: `${searchingCount} mencari · ${elapsedSec}s`,
+              tr: `${searchingCount} arıyor · ${elapsedSec}sn`,
+              pl: `${searchingCount} szuka · ${elapsedSec}s`,
             })}
           </Text>
-          <Text style={[styles.sub, { color: t.textSecond, fontSize: f.caption }]}>
-            {triLang(lang, {
-              ru: `в поиске сейчас: ${searchingCount} · ${elapsedSec}с`,
-              uk: `у пошуку зараз: ${searchingCount} · ${elapsedSec}с`,
-              es: `buscando ahora: ${searchingCount} · ${elapsedSec}s`,
-              'pt-BR': `buscando agora: ${searchingCount} · ${elapsedSec}s`,
-              vi: `đang tìm: ${searchingCount} · ${elapsedSec}s`,
-              id: `sedang mencari: ${searchingCount} · ${elapsedSec}s`,
-              tr: `şu an arıyor: ${searchingCount} · ${elapsedSec}sn`,
-              pl: `szuka teraz: ${searchingCount} · ${elapsedSec}s`,
-            })}
-          </Text>
+
           <TouchableOpacity
             testID="constellation-search-cancel"
             style={[styles.cancelBtn, { borderColor: t.border }]}
@@ -409,30 +493,97 @@ const styles = StyleSheet.create({
     gap: 16,
     paddingHorizontal: 32,
   },
-  radar: {
-    width: 74,
-    height: 74,
-    borderRadius: 37,
-    borderWidth: 1.5,
+  // «Зарождение звезды»
+  forge: {
+    width: 200,
+    height: 200,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 4,
   },
-  radarCore: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
+  orbitRing: {
+    position: 'absolute',
+    borderRadius: 999,
+    borderWidth: 1,
   },
-  slotRow: {
+  orbitOuter: { width: 200, height: 200 },
+  orbitInner: { width: 148, height: 148, borderStyle: 'dashed' },
+  orbitSweep: {
+    position: 'absolute',
+    width: 200,
+    height: 200,
+    alignItems: 'center',
+  },
+  sweepBlade: {
+    position: 'absolute',
+    top: 0,
+    width: 2,
+    height: 100,
+    backgroundColor: 'rgba(255,209,102,0.55)',
+    shadowColor: '#FFD166',
+    shadowOpacity: 0.9,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+  },
+  orbDot: {
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+  },
+  forgeCore: {
+    width: 82,
+    height: 82,
+    borderRadius: 41,
+    backgroundColor: '#FFD166',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#FFD166',
+    shadowOpacity: 0.9,
+    shadowRadius: 30,
+    shadowOffset: { width: 0, height: 0 },
+  },
+  coreInner: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#FFF3D0',
+    opacity: 0.85,
+  },
+  kicker: {
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 3,
+    marginTop: 8,
+  },
+  progTrack: {
+    width: 210,
+    height: 6,
+    borderRadius: 6,
+    overflow: 'hidden',
+    marginTop: 6,
+  },
+  progFill: {
+    height: '100%',
+    borderRadius: 6,
+    backgroundColor: '#F6B24B',
+  },
+  miniRow: {
     flexDirection: 'row',
     gap: 12,
+    marginTop: 4,
   },
-  slot: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    borderWidth: 1.5,
+  mini: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  miniText: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 15,
   },
   title: {
     fontWeight: '800',

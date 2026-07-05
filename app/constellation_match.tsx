@@ -30,6 +30,7 @@ import {
   submitAnswer,
   submitChooseTarget,
   submitEmote,
+  submitPhaseTick,
   submitUseShield,
   subscribeConstellationMatch,
   subscribeMyConstellationPlayer,
@@ -92,6 +93,25 @@ export default function ConstellationMatchScreen() {
     const id = setInterval(() => setNowSec(Math.floor(Date.now() / 1000)), 1000);
     return () => clearInterval(id);
   }, [focused]);
+
+  // Анти-зависание: когда дедлайн фазы истёк, клиент сам просит сервер
+  // форсировать переход раунда — не ждём минутный watchdog-cron (иначе фаза
+  // «висит» до ~60с для одинокого игрока против ботов). Идемпотентно по
+  // раунду+фазе; сервер проверяет дедлайн сам. Дёргаем один раз на фазу.
+  const tickSentRef = useRef<string>('');
+  useEffect(() => {
+    if (!focused || !match || !uid) return;
+    if (match.stage !== 'active') return;
+    const deadlineSec = Math.ceil(match.phaseDeadlineAt / 1000);
+    if (nowSec < deadlineSec) return;
+    const tickKey = `${match.round}:${match.phase}`;
+    if (tickSentRef.current === tickKey) return;
+    tickSentRef.current = tickKey;
+    void submitPhaseTick(matchId, uid, match.round, match.phase).catch(() => {
+      // Не вышло — сбросим маркер, чтобы следующий тик повторил попытку.
+      tickSentRef.current = '';
+    });
+  }, [focused, match, uid, matchId, nowSec]);
 
   const myPublic: ConstellationMatchPlayer | null = useMemo(
     () => match?.players.find((p) => p.uid === uid) ?? null,

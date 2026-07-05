@@ -134,8 +134,9 @@ export function chooseBotTarget(
 ): string | null {
   const targets = legalTargets(state, slot);
   if (targets.length === 0) return null;
-  const suboptimal = rand() < 0.1;
-  if (suboptimal) return targets[Math.floor(rand() * targets.length)];
+  // Небольшая доля «неоптимальных» ходов, чтобы бот не был идеальной машиной,
+  // но РЕДКО (5%) — раньше 10% давали ощущение «бот тупит и не захватывает».
+  if (rand() < 0.05) return targets[Math.floor(rand() * targets.length)];
 
   // 1. Добивание: дом живого соперника с 1 ядром в пределах досягаемости.
   const finisher = targets.find((key) => state.players.some(
@@ -143,26 +144,30 @@ export function chooseBotTarget(
   ));
   if (finisher) return finisher;
 
-  // 2. Полярная звезда, если доступна и ещё не наша.
+  // 2. Полярная звезда, если доступна и ещё не наша (почти всегда идём за ней).
   if (targets.includes(POLAR_KEY) && state.stars[POLAR_KEY].owner !== slot) {
-    if (rand() < 0.75) return POLAR_KEY;
+    if (rand() < 0.85) return POLAR_KEY;
   }
 
-  // 3. Расширение: предпочитаем дорогие кольца и нейтральные звёзды, избегаем
-  //    брони — взвешенный случайный выбор, чтобы ходы не были механическими.
-  const ringWeight = { outer: 1, middle: 2, inner: 3, polar: 4 } as const;
+  // 3. Расширение. Ключевая правка: бот СНАЧАЛА берёт лёгкие достижимые цели —
+  //    нейтральные звёзды без брони (высокий шанс успешного захвата), а не
+  //    кидается на дорогие армированные и проваливает их («не захватывает»).
+  //    Вес: нейтральные +3, каждый уровень брони −1.5, дорогое кольцо — лёгкий
+  //    бонус (амбиция), но он не перебивает штраф за броню.
+  const ringWeight = { outer: 0.4, middle: 0.8, inner: 1.2, polar: 1.6 } as const;
   const weighted = targets.map((key) => {
     const star = state.stars[key];
-    const base = ringWeight[ringOf(parseHexKey(key))];
-    const neutralBonus = star.owner === null ? 1 : 0;
-    const armorPenalty = star.radiance;
-    return { key, weight: Math.max(0.2, base + neutralBonus - armorPenalty + rand() * 0.5) };
+    const neutralBonus = star.owner === null ? 3 : 0;
+    const enemyOwnedBonus = star.owner !== null && star.owner !== slot ? 0.6 : 0;
+    const armorPenalty = star.radiance * 1.5;
+    const ambition = ringWeight[ringOf(parseHexKey(key))];
+    return {
+      key,
+      weight: Math.max(0.15, neutralBonus + enemyOwnedBonus + ambition - armorPenalty + rand() * 0.4),
+    };
   });
-  const total = weighted.reduce((s, w) => s + w.weight, 0);
-  let roll = rand() * total;
-  for (const w of weighted) {
-    roll -= w.weight;
-    if (roll <= 0) return w.key;
-  }
-  return weighted[weighted.length - 1].key;
+  // Идём к цели с наибольшим весом (не чисто случайно) — но со «слегка» случайным
+  // тай-брейком, добавленным выше. Так бот целенаправленно расширяется.
+  weighted.sort((a, b) => b.weight - a.weight);
+  return weighted[0].key;
 }

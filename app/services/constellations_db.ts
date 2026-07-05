@@ -156,7 +156,7 @@ export async function findMyActiveConstellationMatch(
 
 // ── Ходы: callable constellationSubmitAction ────────────────────────────────
 
-type SubmitType = 'choose_target' | 'use_shield' | 'answer' | 'emote';
+type SubmitType = 'choose_target' | 'use_shield' | 'answer' | 'emote' | 'tick';
 
 interface SubmitPayload {
   matchId: string;
@@ -235,4 +235,22 @@ export async function submitEmote(
   emoteId: string,
 ): Promise<ConstellationAnswerResult> {
   return submit({ matchId, stableId, type: 'emote', emoteId });
+}
+
+/**
+ * Клиент увидел, что дедлайн фазы истёк → просит сервер форсировать переход
+ * (резолв раунда / переход к ответам). Так игрок не ждёт минутный watchdog-cron
+ * при «зависшей» фазе (одинокий игрок против ботов). Сервер проверяет дедлайн
+ * сам — читер не ускорит раунд. actionId по раунду+фазе делает вызов идемпотентным.
+ */
+export async function submitPhaseTick(
+  matchId: string,
+  stableId: string,
+  round: number,
+  phase: string,
+): Promise<ConstellationAnswerResult> {
+  return submit(
+    { matchId, stableId, type: 'tick' },
+    `tick_${round}_${phase}`,
+  );
 }

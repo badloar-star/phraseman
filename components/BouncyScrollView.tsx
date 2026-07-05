@@ -145,7 +145,18 @@ function applyEdgePull(
   }
 }
 
-export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScroll {
+export function useBouncy({
+  dimension,
+  onScrollWorklet,
+}: {
+  dimension?: number;
+  /**
+   * Доп. worklet, вызывается из onAnimatedScroll на UI-потоке с текущим contentOffset.y.
+   * Для экранов, которым помимо резинки нужен свой скролл-эффект (fade шапки и т.п.)
+   * без второго обработчика и без JS-моста. Тело обязано быть worklet'ом.
+   */
+  onScrollWorklet?: (y: number) => void;
+} = {}): BouncyScroll {
   const { height: screenH } = useWindowDimensions();
   const dim = dimension ?? screenH;
   const isAndroid = Platform.OS === 'android';
@@ -215,6 +226,7 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
         e.layoutMeasurement.height,
         e.contentSize.height,
       );
+      if (onScrollWorklet) onScrollWorklet(e.contentOffset.y);
     },
   });
 

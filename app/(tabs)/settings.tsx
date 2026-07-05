@@ -10,6 +10,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
@@ -327,10 +328,25 @@ export default function SettingsMain() {
 
 
   const scrollRef = useRef<any>(null);
-  const scrollY = useRef(new Animated.Value(0)).current;
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6, поэтому JS
+  // дёргаем только при пересечении порога, а не каждый кадр — скролл идёт UI-потоком.
+  const topFadeShown = useSharedValue(false);
+  const topFadeOnScroll = topFadeScroll?.onScroll;
+  const notifyTopFade = useCallback((y: number) => {
+    topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
+  }, [topFadeOnScroll]);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
+    onScrollWorklet: (y: number) => {
+      'worklet';
+      const shown = y > 6;
+      if (shown !== topFadeShown.value) {
+        topFadeShown.value = shown;
+        runOnJS(notifyTopFade)(y);
+      }
+    },
+  });
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { activeIdx, focusTick, goHome } = useTabNav();
   const SETTINGS_TAB_IDX = 4;
@@ -956,7 +972,7 @@ export default function SettingsMain() {
   return (
     <ScreenGradient>
       <BouncyWrap style={bouncyStyle}>
-      <Animated.ScrollView
+      <Reanimated.ScrollView
         testID="screen-settings"
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
@@ -967,10 +983,7 @@ export default function SettingsMain() {
         bounces
         alwaysBounceVertical
         overScrollMode="always"
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
-        )}
+        onScroll={onAnimatedScroll}
       >
 
         {/* Хедер */}
@@ -1385,7 +1398,7 @@ export default function SettingsMain() {
           </TouchableOpacity>
         </View>
 
-      </Animated.ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
 
 

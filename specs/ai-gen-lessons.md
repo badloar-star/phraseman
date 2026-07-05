@@ -1,11 +1,14 @@
 # ИИ-генерация: Единый генеративный урок (Маршрут + основные уроки)
 
-> Часть скоординированного набора из 6 спек. Соседние спеки: `ai-gen-audio-tts.md`,
-> `ai-gen-admin-panel.md`, `ai-gen-phrase-of-day.md`, `ai-gen-arena-questions.md`,
-> `ai-gen-personal-plan.md` (имена — предполагаемые сиблинги; сверять при интеграции).
-> Смежные ЖИВЫЕ спеки в репо: `specs/smart-route.md` (движок сессии, оживляется),
-> `specs/speaking-club.md` (голосовой режим Loora-style), `specs/feedback-kit.md`
-> (празднования/звук/хаптик, волны 1–2 уже в master).
+> Часть скоординированного набора из 6 спек. Реальные соседние файлы:
+> `ai-gen-arena.md`, `ai-gen-daily-phrase.md`, `ai-gen-practice.md`,
+> `ai-gen-quizzes.md`, `ai-gen-admin-control.md`, индекс `ai-gen-master-index.md`.
+> TTS-контракт пока НЕ вынесен в отдельный файл (`ai-gen-audio-tts.md` НЕ существует) —
+> либо написать его, либо инлайнить контракт TTS здесь (см. master-index C6/§5).
+> Смежные ЖИВЫЕ спеки в репо: `specs/smart-route.md` (движок сессии — спека готова, но
+> `app/smart_route/` ещё НЕ построен: greenfield, не «оживление»; заморозка ⛔ снимается),
+> `specs/speaking-club.md` (голосовой режим — ВОЛНА 1 УЖЕ В КОДЕ, см. 10.37*),
+> `specs/feedback-kit.md` (празднования/звук/хаптик, волны 1–2 уже в master).
 
 ---
 
@@ -13,8 +16,8 @@
 
 **Единый генеративный урок** — это один режим прохождения, который заменяет и «Маршрут»
 (smart-route), и старые «основные уроки»/«Мою практику» как основную поверхность обучения.
-Под капотом работает ОДИН общий движок сессии (оживлённый `SessionEngine` из
-`app/smart_route/`), который на лету собирает урок из 7+ типов шагов (включая голосовые),
+Под капотом работает ОДИН общий движок сессии (`SessionEngine` из `app/smart_route/` —
+строится С НУЛЯ по `smart-route.md §2`), который на лету собирает урок из 7+ типов шагов (включая голосовые),
 упорядочивает их по правилам, исследованным у Duolingo, и наполняет контент ИИ-генерацией с
 серверным кэшем «сгенерировать один раз — раздавать вечно». Каждый промпт с первого дня
 двуязычен по ОБЕИМ осям (`AiOutputLang` — язык интерфейса/объяснений, `StudyTarget` —
@@ -388,11 +391,15 @@ closed: любой HOLD-без-note → трактуется как HOLD (не �
 10.34. `pronunciation` → `{ phraseId, english, audioHash, recognitionAvailable }`. Хостит `SpeakingPanel.tsx`; XP тут НЕ списывать (дизайн-решение); фолбэк на `phrase_recall`, если распознавания нет.
 10.35. `listen_build` → `{ phraseId, english, audioHash, audioMode:'mp3'|'tts', tokens, distractors[] }`. СОБСТВЕННЫЙ компонент поверх `hooks/use-audio` + TTS-фолбэк — НЕ MP3-only из planning-движка (критичный trap).
 10.36. `srs_repair` → тянет `active_recall.getDueItems(cap:7)`, регенерит в ДРУГОЙ форме (fill_gap↔multi_choice); дедуп по `phrase.id`; возврат к ошибке через 2–3 шага, максимум 1 возврат.
-10.37. Голосовой шаг `speak_reply` (Loora-style, из `speaking-club.md`) → `{ prompt, expectedIntents[], audioHash, recognitionAvailable }`. Анти-чит маски/распознавание — из спикинг-спеки.
+10.37. Голосовой шаг `speak_reply` (Loora-style) → `{ missionId?, prompt, targetPhrases[], objectives[], audioHash, recognitionAvailable }`. **ВАЖНО (сверено с кодом): «Разговорный клуб» — НЕ концепт, а ВОЛНА 1 УЖЕ В ПРОДЕ** (коммит `b687f4b80` + мультиязычность `998e0131d`): `functions/src/speaking_club.ts` (`speakingClubSend`/`speakingClubReview`, квоты `speaking_club_quotas`, модерация 2 слоя, язык-замок en|fr, App Check), `app/speaking_club_session.tsx` (hold-to-talk, watchdog 7с, авто-озвучка, чек-лист целей, итог звёзды 0–3), `app/speaking_club_home.tsx` (FeatureGate `speaking_club`), `app/speaking_club_missions.ts` (8 миссий Акта I под грамматику уроков). Голосовой шаг урока ПЕРЕИСПОЛЬЗУЕТ этот живой слой, а НЕ проектирует заново.
+10.37a. Целевые фразы голосового шага брать через существующую `missionTargetPhrases(lessonId, studyTarget)` (`speaking_club_missions.ts:215`), которая тянет их из `getLessonData(lessonId)` в РАНТАЙМЕ для en И fr — тот же механизм «фразы из контента урока», что нужен генеративному уроку. НЕ дублировать извлечение фраз.
+10.37b. Objectives строить через существующую `buildMissionObjectives(mission, targetPhrases)` (`speaking_club_missions.ts:229`) → `phrase_N` objectives; сервер (`speakingClubSend`) уже отмечает произнесённые фразы в `objectivesMet`. Голосовой шаг урока подаёт свои `targetPhrases` в этот же контракт.
+10.37c. Диалоговый бэкенд голосового шага — переиспользовать `speakingClubSend`/`speakingClubReview` (scenario-промпт + game-конверт диалогов, review-паттерн praise+corrections+tip на языке интерфейса с учётом фраз урока), а не заводить новый LLM-путь. Квоты/модерация/язык-замок наследуются из `speaking_club_quotas`. НЕ изобретать параллельный голосовой сервис.
+10.37d. Экономика: голосовой шаг в уроке XP/звёзды НЕ начисляет (как `pronunciation`, item 10.34) — единственный владелец экономики урока = путь завершения урока (см. C8/star-inflation). Клубные осколки/квоты — отдельный контур, в урок не течёт.
 10.38. Новые «исследованные» режимы (Blitz/Match Madness из мокапа Fable) регистрируются как доп. типы шагов с собственным контрактом; движок трактует их как production-шаги в ритме.
 
 ### Client (движок сессии)
-10.39. Оживить `app/smart_route/session_engine.ts` и `session_builder.ts` как ЕДИНЫЙ движок для Маршрута И основных уроков.
+10.39. Построить `app/smart_route/session_engine.ts` и `session_builder.ts` **С НУЛЯ по `smart-route.md §2`** как ЕДИНЫЙ движок для Маршрута И основных уроков. **Поправка (сверено с кодом): `app/smart_route/` НЕ существует — это greenfield-постройка, а НЕ «оживление».** Предварительно подтвердить у владельца снятие ⛔-заморозки `smart-route.md`. Голосовые шаги движка (10.37*) при этом опираются на УЖЕ готовый speaking_club-слой.
 10.40. Старые экраны урока/плана убрать за DEV-флаг (не удалять): `__DEV__`-гейт на маршрутизацию.
 10.41. `word_phrase_index.ts` строить на mount из существующего матчера (`phraseTextForCoverage`~405, `coverageTokenCandidates`~2161, `IRREGULAR_SURFACE_TO_BASE`~2084).
 10.42. Content window = уроки `1..currentOpen` (без спойлера курса).
@@ -492,8 +499,8 @@ closed: любой HOLD-без-note → трактуется как HOLD (не �
 3. **Промпты + судья (10.13–10.29, 10.81–10.83):** билдеры обеих осей.
 4. **Серверный конвейер (10.63–10.73, 10.84–10.86):** копия explain_quiz + lease + cron.
 5. **Аудио-связка (10.4, 10.73, 10.104):** зависит от `ai-gen-audio-tts.md` (TTS-раз, pointer-контракт).
-6. **Движок клиента (10.39–10.62, 10.87–10.90):** оживить smart-route, storage-traps.
-7. **Голосовые/новые режимы (10.37–10.38):** зависят от `speaking-club.md`.
+6. **Движок клиента (10.39–10.62, 10.87–10.90):** построить smart-route С НУЛЯ (greenfield), storage-traps.
+7. **Голосовые/новые режимы (10.37–10.38):** голосовые ПЕРЕИСПОЛЬЗУЮТ уже готовый код `speaking_club.ts`/`speaking_club_missions.ts` (`missionTargetPhrases`/`buildMissionObjectives`/`speakingClubSend`), а не строятся с нуля; новые режимы (Blitz) — свои контракты.
 8. **Офлайн + деградация (10.97–10.104):** после базового движка.
 9. **Admin (10.74–10.79):** зависит от `ai-gen-admin-panel.md`.
 10. **Migration rollout (10.93–10.96):** последним, за флагами.

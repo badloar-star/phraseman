@@ -23,6 +23,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { getLevelFromXP } from './xp_levels';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -50,36 +51,72 @@ interface TopHelperProjection {
   isVip?: boolean;
   isLifetime?: boolean;
   profileCardLevel?: number;
+  /** Настоящий игровой уровень (не флаг карточки). Рисуется на аватарке борда. */
+  gameLevel?: number;
   profileCardTheme?: string;
   leagueCrownExpiresAt?: number;
   leagueCrownCount?: number;
 }
 
-/** Достаём публичные поля профиля из leaderboard/{uid} (мягко, без падений). */
+function firstNonEmptyString(...vals: unknown[]): string {
+  for (const v of vals) {
+    if (typeof v === 'string' && v.trim()) return v.trim();
+  }
+  return '';
+}
+
+/**
+ * Достаём публичные поля профиля для проекции борда из ТРЁХ источников по приоритету.
+ *
+ * ИСТОЧНИКИ ПРОФИЛЯ (аудит 2026-07-04):
+ *   1) users/{uid}.progress.user_* — первичный, но у многих активных юзеров ПУСТ
+ *      (имя/уровень живут только в AsyncStorage на устройстве, на сервер не синкаются).
+ *   2) leaderboard/{uid} — вторичная проекция; ПРОПУСКАЕТ юзеров без имени/с xp<50.
+ *   3) error_reports/{id} (репорт, за который юзер попал в хелперы) — САМЫЙ НАДЁЖНЫЙ:
+ *      клиент кладёт userName/userLevel/userXP/userPremium прямо в документ репорта.
+ * Без источника (3) реальные юзеры («Стелла» ур.50 и т.п.) показывались как «—» ур.1.
+ *
+ * ВАЖНО про уровень: progress.profile_card_level / leaderboard.profileCardLevel — это
+ * ФЛАГ карточки (0..1), НЕ игровой уровень. Настоящий уровень (gameLevel) берём из
+ * progress.user_level → getLevelFromXP(report.userXP) → report.userLevel.
+ *
+ * @param lb     leaderboard/{uid} (может отсутствовать)
+ * @param prog   users/{uid}.progress
+ * @param report документ репорта с полями userName/userLevel/userXP/userPremium
+ */
 function readLeaderboardProjection(
-  data: FirebaseFirestore.DocumentData | undefined,
+  lb: FirebaseFirestore.DocumentData | undefined,
+  prog?: FirebaseFirestore.DocumentData | undefined,
+  report?: FirebaseFirestore.DocumentData | undefined,
 ): TopHelperProjection {
-  const d = data ?? {};
-  const name =
-    (typeof d.displayName === 'string' && d.displayName.trim()) ||
-    (typeof d.name === 'string' && d.name.trim()) ||
-    '';
-  const avatar = typeof d.avatar === 'string' && d.avatar.trim() ? d.avatar.trim() : '';
-  const aura = typeof d.aura === 'string' && d.aura.trim() ? d.aura.trim() : '';
-  const frame = typeof d.frame === 'string' && d.frame.trim() ? d.frame.trim() : '';
+  const d = lb ?? {};
+  const p = prog ?? {};
+  const r = report ?? {};
+  const name = firstNonEmptyString(p.user_name, d.displayName, d.name, r.userName);
+  const avatar = firstNonEmptyString(p.user_avatar, d.avatar, r.userAvatar);
+  const aura = firstNonEmptyString(p.user_avatar_aura, d.aura, r.userAvatarAura);
+  const frame = firstNonEmptyString(p.user_avatar_frame, d.frame, r.userAvatarFrame);
+  // Настоящий игровой уровень: progress.user_level → getLevelFromXP(report.userXP) → report.userLevel.
+  const reportXp = Math.floor(Number(r.userXP) || 0);
+  const gameLevel = Math.max(
+    0,
+    Math.floor(Number(p.user_level) || 0)
+      || (reportXp > 0 ? getLevelFromXP(reportXp) : 0)
+      || Math.floor(Number(r.userLevel) || 0),
+  );
   const proj: TopHelperProjection = {
-    isPremium: !!d.isPremium,
+    isPremium: !!d.isPremium || !!r.userPremium,
     isVip: !!d.isVip,
     isLifetime: !!d.isLifetime,
     profileCardLevel: Math.max(0, Math.floor(Number(d.profileCardLevel) || 0)),
   };
+  if (gameLevel > 0) proj.gameLevel = gameLevel;
   if (name) proj.displayName = name.slice(0, 60);
   if (avatar) proj.avatar = avatar.slice(0, 64);
   if (aura) proj.aura = aura.slice(0, 64);
   if (frame) proj.frame = frame.slice(0, 64);
-  if (typeof d.profileCardTheme === 'string' && d.profileCardTheme.trim()) {
-    proj.profileCardTheme = d.profileCardTheme.trim().slice(0, 64);
-  }
+  const theme = firstNonEmptyString(d.profileCardTheme, p.profile_card_theme);
+  if (theme) proj.profileCardTheme = theme.slice(0, 64);
   const crownCount = Math.max(0, Math.floor(Number(d.leagueCrownCount) || 0));
   if (crownCount > 0) proj.leagueCrownCount = crownCount;
   if (Number(d.leagueCrownExpiresAt) > 0) {
@@ -164,10 +201,20 @@ export const adminReplyToReport = onCall(
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);
     const auditRef = db.collection('admin_log').doc();
     const helperRef = db.collection(TOP_HELPERS_COLLECTION).doc(uid);
-    // Публичный профиль для проекции борда (то же, что читает Зал славы). Читаем ДО
-    // транзакции: leaderboard редко меняется, а лишний tx.get на каждый ответ — трата.
-    const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
-    const helperProjection = readLeaderboardProjection(leaderboardSnap.data());
+    // Публичный профиль для проекции борда из 3 источников (см. readLeaderboardProjection):
+    // users.progress → leaderboard → САМ РЕПОРТ (userName/userLevel/userXP). Репорт —
+    // самый надёжный источник имени/уровня для хелпера. Читаем ДО транзакции параллельно.
+    const [leaderboardSnap, userProfileSnap, reportProfileSnap] = await Promise.all([
+      db.collection('leaderboard').doc(uid).get(),
+      userRef.get(),
+      reportRef.get(),
+    ]);
+    const userProgress = (userProfileSnap.data()?.progress ?? {}) as FirebaseFirestore.DocumentData;
+    const helperProjection = readLeaderboardProjection(
+      leaderboardSnap.data(),
+      userProgress,
+      reportProfileSnap.data(),
+    );
     // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{uid} — leaderboard-документ
     // премиум-поля не обновляет, поэтому опираться на него для Pro нельзя.
     helperProjection.isLifetime = await resolveIsLifetimePlan(db, uid, nowMs).catch(() => false);
@@ -333,6 +380,10 @@ const DRAFT_SYSTEM_PROMPT = [
   'Обязательно: поблагодари за репорт. Если подтвердился — скажи, что ошибка исправлена',
   'и в этом сообщении его ждёт награда. Если не подтвердился — мягко объясни почему,',
   'без канцелярита и без обвинений. Пиши от лица команды («мы»), тепло и по-человечески.',
+  'ВАЖНО: каждый юзер видит ТОЛЬКО своё сообщение и не знает о других юзерах, их репортах',
+  'или каких-либо «соседних сообщениях». Никогда не ссылайся на другие сообщения, на других',
+  'людей или на то, что кто-то уже сообщал об этой проблеме. Пиши так, будто это единственный',
+  'разговор с этим человеком.',
   'Без эмодзи-спама (максимум один), без ссылок, без обещаний сроков.',
   'Ответ верни строго JSON-объектом: {"title": "...", "body": "..."}.',
   'title — до 60 знаков, body — до 500 знаков.',
@@ -379,16 +430,33 @@ export const adminDraftReportReply = onCall(
       responseFormat: { type: 'json_object' },
     });
 
+    // Модель может вернуть НЕ JSON, а прозу/отказ (например, отказалась
+    // формулировать ответ на репорт с чувствительным содержимым). Тогда JSON.parse
+    // падает, и раньше админ видел глухое «INTERNAL» без причины. Отдаём понятную
+    // ошибку с обрезанным сырым текстом модели, чтобы было видно, ЧТО она ответила
+    // (в т.ч. текст отказа), и админ мог написать ответ вручную.
+    const raw = String(result.text || '').trim();
+    if (!raw) {
+      throw new HttpsError('failed-precondition', 'ИИ вернул пустой ответ — сформулируй ответ вручную.');
+    }
     let title = '';
     let body = '';
     try {
-      const parsed = JSON.parse(result.text) as { title?: unknown; body?: unknown };
+      const parsed = JSON.parse(raw) as { title?: unknown; body?: unknown };
       title = cleanString(parsed.title, REPLY_TITLE_MAX);
       body = cleanString(parsed.body, REPLY_BODY_MAX);
     } catch {
-      throw new HttpsError('internal', 'draft_parse_failed');
+      throw new HttpsError(
+        'failed-precondition',
+        `ИИ не вернул черновик (возможно, отказ). Ответ модели: ${raw.slice(0, 300)}`,
+      );
     }
-    if (!title || !body) throw new HttpsError('internal', 'draft_empty');
+    if (!title || !body) {
+      throw new HttpsError(
+        'failed-precondition',
+        `ИИ вернул неполный черновик (нет заголовка или текста). Ответ модели: ${raw.slice(0, 300)}`,
+      );
+    }
 
     return { ok: true, title, body };
   },

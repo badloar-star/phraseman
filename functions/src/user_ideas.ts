@@ -1,9 +1,12 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { openAiChat } from './explain/explain_provider';
 
 const REGION = 'us-central1';
+const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const IDEAS_COLLECTION = 'user_ideas';
 const RATE_COLLECTION = 'user_idea_rate_limits';
 const IDEA_INBOX = 'idea_inbox';
@@ -283,5 +286,125 @@ export const adminDecideUserIdea = onCall(
     });
 
     return { ok: true };
+  },
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3) Админ: ИИ-черновик текста модалки решения (СРАЗУ на языке пользователя)
+// ─────────────────────────────────────────────────────────────────────────────
+/** Человекочитаемое название языка для промпта (чтобы модель точно поняла). */
+const IDEA_LANG_NAMES: Record<string, string> = {
+  ru: 'Russian',
+  uk: 'Ukrainian',
+  es: 'Spanish',
+  pt: 'Portuguese',
+  vi: 'Vietnamese',
+  id: 'Indonesian',
+  tr: 'Turkish',
+  pl: 'Polish',
+  en: 'English',
+};
+
+const IDEA_DECISION_MSG_MAX = 900;
+
+const IDEA_DRAFT_SYSTEM_PROMPT = [
+  'You write a short in-app modal message for a user of Phraseman, an English-learning app.',
+  'The user submitted a product idea. The team has made a decision on it.',
+  'Write a warm, human, 2-4 sentence message addressed to the user (informal "you"),',
+  'STRICTLY in the language given in the "language" field — do not mix languages.',
+  'If decision is "approve": thank them warmly, say the idea is accepted and going into development,',
+  'and that as a thank-you we open full Premium access for a whole year. Sound genuinely glad.',
+  'If decision is "reject": thank them for the idea, gently say we are not taking it into work for now,',
+  'and encourage them to keep sending ideas. No excuses, no blame, no bureaucratic tone.',
+  'Speak as the team ("we"). No links, no deadlines, at most one emoji.',
+  'Return STRICTLY a JSON object: {"message": "..."} with the message in the target language only.',
+].join(' ');
+
+/**
+ * adminDraftIdeaDecision — ИИ-черновик текста модалки решения по идее.
+ * Пишет текст СРАЗУ на языке пользователя (idea.lang), чтобы админу не нужно
+ * было переводить. Админ может отредактировать перед отправкой в adminDecideUserIdea.
+ *
+ * data: { ideaId: string; decision: 'approve' | 'reject' }
+ * Возвращает: { ok: true, message: string, lang: string }
+ */
+export const adminDraftIdeaDecision = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK_SENSITIVE,
+    timeoutSeconds: 30,
+    memory: '256MiB',
+    maxInstances: 10,
+    secrets: [OPENAI_API_KEY],
+  },
+  async (request) => {
+    if (!request.auth?.token?.admin) {
+      throw new HttpsError('permission-denied', 'Admin only');
+    }
+
+    const ideaId = text(request.data?.ideaId, 180);
+    const decision = enumText(request.data?.decision, ['approve', 'reject'] as const, 'reject');
+    if (!ideaId) throw new HttpsError('invalid-argument', 'ideaId_required');
+
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+
+    const db = admin.firestore();
+    const snap = await db.collection(IDEAS_COLLECTION).doc(ideaId).get();
+    if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
+    const idea = snap.data() as Record<string, unknown>;
+
+    const langCode = (text(idea.lang, 8) || 'ru').toLowerCase();
+    const languageName = IDEA_LANG_NAMES[langCode] || IDEA_LANG_NAMES[langCode.slice(0, 2)] || 'Russian';
+
+    const userPayload = JSON.stringify({
+      language: languageName,
+      decision,
+      idea: {
+        title: text(idea.title, 120),
+        description: text(idea.description, 1500),
+        benefit: text(idea.benefit, 600),
+        category: text(idea.category, 40),
+      },
+    });
+
+    const result = await openAiChat({
+      apiKey,
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: IDEA_DRAFT_SYSTEM_PROMPT },
+        { role: 'user', content: userPayload },
+      ],
+      maxTokens: 400,
+      temperature: 0.6,
+      responseFormat: { type: 'json_object' },
+    });
+
+    // Модель может вернуть НЕ JSON, а прозу/отказ. Тогда JSON.parse падает, и раньше
+    // админ видел глухое «INTERNAL» без причины. Отдаём понятную ошибку с обрезанным
+    // сырым текстом модели, чтобы было видно её ответ (в т.ч. текст отказа), и админ
+    // мог написать сообщение вручную.
+    const raw = String(result.text || '').trim();
+    if (!raw) {
+      throw new HttpsError('failed-precondition', 'ИИ вернул пустой ответ — сформулируй сообщение вручную.');
+    }
+    let message = '';
+    try {
+      const parsed = JSON.parse(raw) as { message?: unknown };
+      message = text(parsed.message, IDEA_DECISION_MSG_MAX);
+    } catch {
+      throw new HttpsError(
+        'failed-precondition',
+        `ИИ не вернул черновик (возможно, отказ). Ответ модели: ${raw.slice(0, 300)}`,
+      );
+    }
+    if (!message) {
+      throw new HttpsError(
+        'failed-precondition',
+        `ИИ вернул пустое сообщение. Ответ модели: ${raw.slice(0, 300)}`,
+      );
+    }
+
+    return { ok: true, message, lang: langCode };
   },
 );

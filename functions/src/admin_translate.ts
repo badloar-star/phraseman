@@ -129,11 +129,16 @@ export const adminTranslateMessage = onCall({
     throw new HttpsError('unavailable', 'translate_failed');
   }
 
+  // Модель может вернуть не-JSON (проза/отказ). Раньше админ видел глухое «INTERNAL»
+  // без причины — отдаём понятную ошибку с обрезанным сырым ответом модели.
   let parsed: Record<string, unknown>;
   try {
     parsed = JSON.parse(gen.text || '{}') as Record<string, unknown>;
   } catch {
-    throw new HttpsError('internal', 'translate_bad_json');
+    throw new HttpsError(
+      'failed-precondition',
+      `ИИ не вернул перевод в нужном формате. Ответ модели: ${String(gen.text || '').trim().slice(0, 300)}`,
+    );
   }
 
   const translations: Record<string, string[]> = {};

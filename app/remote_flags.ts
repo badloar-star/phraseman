@@ -129,7 +129,11 @@ export type RemoteBoolKey =
   // kill-switch: борд показывается, админ может выключить его в «Пульте» живьём
   // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
   // заглушку. Данные борда — публичная проекция top_helpers/{uid}.
-  | 'top_helpers_enabled';
+  | 'top_helpers_enabled'
+  // Игра «Созвездия» (specs/constellations.md, I1). Дефолт FALSE — режим тёмный,
+  // пока владелец не включит в «Пульте»; выключение живьём прячет вход у всех
+  // (kill-switch) — дуэльный код при этом не трогается вообще.
+  | 'constellations_enabled';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -209,7 +213,11 @@ export type RemoteTextKey =
   // Прямая ссылка на канал (кнопка «открыть в YouTube» в шапке). Пусто →
   // строится из handle: https://www.youtube.com/@handle/videos. Должна быть
   // https и на youtube.com, иначе приложение её отбросит и построит из handle.
-  | 'youtube_channel_url';
+  | 'youtube_channel_url'
+  // Позиция входа «Созвездий» в лобби арены (I1): secondary (ниже дуэлей) →
+  // primary (главная кнопка, дуэли ниже) → only (дуэлей нет). Любое другое
+  // значение читается как secondary. Меняется из «Пульта» живьём, откат тем же путём.
+  | 'constellations_placement';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -341,6 +349,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,
+  // «Созвездия»: дефолт false — режим не виден, пока не включён из «Пульта».
+  constellations_enabled: false,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -384,6 +394,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   youtube_channel_name: '',
   youtube_channel_url: '',
   youtube_pinned_videos: '',
+  constellations_placement: 'secondary',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -876,6 +887,17 @@ export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enab
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
 export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
+
+// ── «Созвездия» (specs/constellations.md, I1) ────────────────────────────────
+export const isConstellationsEnabled = () => getRemoteBool('constellations_enabled');
+
+export type ConstellationsPlacement = 'secondary' | 'primary' | 'only';
+
+/** Позиция входа в лобби арены; любое кривое значение из конфига = secondary. */
+export function getConstellationsPlacement(): ConstellationsPlacement {
+  const raw = getRemoteText('constellations_placement').trim().toLowerCase();
+  return raw === 'primary' || raw === 'only' ? raw : 'secondary';
+}
 /**
  * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
  * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже

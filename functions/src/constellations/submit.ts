@@ -13,6 +13,7 @@
 
 import * as admin from 'firebase-admin';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
+import { resolveStableUidForAuth } from '../auth_identity';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import { resolveConstellationConfig } from './config';
 import { legalTargets, type PlayerSlot } from './engine';
@@ -231,7 +232,13 @@ export async function handleConstellationSubmit(
 
 /** Callable: единственная точка входа ходов клиента (регистрируется в index.ts). */
 export const constellationSubmitAction = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  const uid = request.auth?.uid;
-  if (!uid) throw new HttpsError('unauthenticated', 'auth required');
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth required');
+  // Очередь/матчи ключуются stable userId (как users/{stableId}); auth uid — только
+  // подпись. Клиент шлёт stableId, сервер проверяет владение (паттерн profileCardUpgrade).
+  const uid = await resolveStableUidForAuth(
+    db,
+    request.auth.uid,
+    (request.data as { stableId?: unknown } | undefined)?.stableId,
+  );
   return handleConstellationSubmit(uid, (request.data ?? {}) as SubmitActionData);
 });

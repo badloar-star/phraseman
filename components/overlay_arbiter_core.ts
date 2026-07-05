@@ -22,6 +22,7 @@ export type OverlayKey =
   | 'perfectWeekReward'
   | 'boonActivated'
   | 'compassBriefing'
+  | 'lessonResultsSequence'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
   | 'collectibleDrop'
@@ -65,6 +66,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'comebackDay',
   'boonActivated',
   'compassBriefing',
+  // lessonResultsSequence — полноэкранная секвенция наград на lesson_complete (FeedbackKit
+  // §2.1). Стоит ВЫШЕ всего каскада этого экрана (lessonCompleteNotif → collectibleDrop →
+  // coachToast): празднование играет ПЕРВЫМ, модалки наград ждут его завершения в очереди.
+  'lessonResultsSequence',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
   'collectibleDrop',
@@ -216,6 +221,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   perfectWeekReward: false,
   boonActivated: false,
   compassBriefing: false,
+  lessonResultsSequence: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,
   collectibleDrop: false,

@@ -157,7 +157,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-      'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+      'perfectWeekReward', 'compassBriefing', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
       'collectibleDrop', 'arenaInvite',
     ];
     for (const k of protectedKeys) {
@@ -255,7 +255,12 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'arenaSeasonResult', 'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
-    'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+    'perfectWeekReward', 'compassBriefing',
+    // lessonResultsSequence — секвенция наград lesson_complete: закрывается ТОЛЬКО
+    // тапом юзера по CTA (доступна ≤3с, спек FeedbackKit §2.1) — выселять нельзя,
+    // иначе празднование обрывается на середине, пока юзер его смотрит.
+    'lessonResultsSequence',
+    'lessonCompleteNotif', 'arenaRoomConfirm',
     'collectibleDrop', 'arenaInvite',
   ];
 

@@ -55,6 +55,7 @@ import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
+import ResultsSequence from '../components/feedback/ResultsSequence';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -69,6 +70,20 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   silver: require('../assets/images/levels/serebro.webp'),
   gold: require('../assets/images/levels/zoloto.webp'),
 };
+
+// ── ResultsSequence (FeedbackKit, спек §2/§2.1) ──────────────────────────────
+// Маппинг медали в 0-3 звезды секвенции. Лестница медалей строгая (getMedalTier:
+// bronze ≥ 2.5, silver ≥ 4.5, gold = 5.0), поэтому соответствие однозначно.
+const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
+  none: 0,
+  bronze: 1,
+  silver: 2,
+  gold: 3,
+};
+// Витринное значение XP-тикера секвенции — то же «+500 XP», что и статичная
+// плашка бонуса ниже (s.lessonComplete.bonus). Только визуал: начисление XP
+// живёт в уроке/грантах, этот экран экономику не трогает.
+const RESULTS_SEQUENCE_XP = 500;
 
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -508,14 +523,29 @@ export default function LessonComplete() {
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
   const activeNotifVisible = useOverlayVisible('lessonCompleteNotif', activeNotif != null);
 
+  // ── Секвенция наград (FeedbackKit §2.1): играет ПЕРВОЙ в очереди арбитра ────
+  // Слот запрашивается сразу с монтирования (ownState = !seqDone), чтобы более
+  // поздние кандидаты (coach-toast регистрируется коммитом позже, medal-notif —
+  // через 1200мс) вставали в очередь ЗА секвенцией. Рендерим её только когда
+  // медаль/оценка загружены (resultsReady) — иначе звёзды/бейдж стартуют пустыми.
+  // Закрытие (CTA/тап/back) выставляет seqDone → слот освобождается → дальше
+  // штатный каскад: medal-notif → collectible drop → review → coach-toast.
+  // Чисто визуальный слой: экономика (saveMedalProgress/submitProgressEvent/
+  // syncToCloud/tryUnlock*) не трогается.
+  const [resultsReady, setResultsReady] = useState(false);
+  const [seqDone, setSeqDone] = useState(false);
+  const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
+  const sequenceShowing = resultsSequenceVisible && resultsReady;
+
   // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
   // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
   const pendingReview = useRef(false);
   useEffect(() => {
-    if (activeNotif || !pendingReview.current) return;
+    // Ревью ждёт и закрытия секвенции наград (seqDone), и тишины очереди нотификаций.
+    if (!seqDone || activeNotif || !pendingReview.current) return;
     pendingReview.current = false;
     setShowReview(true);
-  }, [activeNotif]);
+  }, [activeNotif, seqDone]);
 
   // Дроп карточки «Сокровищницы»: сервер решает (шанс/кап/без дублей), мы лишь
   // показываем сюрприз ПОСЛЕ всей очереди наград — никогда поверх других модалок.
@@ -523,12 +553,13 @@ export default function LessonComplete() {
   const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
   const collectibleDropVisible = useOverlayVisible('collectibleDrop', shownCardDrop != null);
   useEffect(() => {
-    if (!pendingCardDrop || shownCardDrop || activeNotif) return;
+    // Окно «тишины» стартует только после закрытия секвенции наград (seqDone).
+    if (!seqDone || !pendingCardDrop || shownCardDrop || activeNotif) return;
     // 900мс непрерывной «тишины»: пауза между нотификациями очереди 400мс —
     // таймер переживает её только когда очередь действительно опустела.
     const timer = setTimeout(() => setShownCardDrop(pendingCardDrop), 900);
     return () => clearTimeout(timer);
-  }, [pendingCardDrop, shownCardDrop, activeNotif]);
+  }, [pendingCardDrop, shownCardDrop, activeNotif, seqDone]);
 
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
@@ -728,7 +759,12 @@ export default function LessonComplete() {
     void retryPendingLessonBonusGrants();
   }, []);
 
+  // Вводная анимация медали (spring + fade + покачивание) стартует ПОСЛЕ закрытия
+  // секвенции наград: до seqDone статичный контент скрыт (scale/opacity = 0), и
+  // крутить Animated.loop под полноэкранным оверлеем незачем (перф-бюджет §2.1).
+  // Награды/оценка при этом идут с монтирования как раньше — см. эффект ниже.
   useEffect(() => {
+    if (!seqDone) return;
     // Появление иконки
     Animated.spring(scaleAnim, { toValue: 1, friction: 4, useNativeDriver: true }).start();
     // Текст чуть позже
@@ -743,7 +779,14 @@ export default function LessonComplete() {
       ])
     );
     const bounceStartTimer = setTimeout(() => bounce.start(), 400);
+    return () => {
+      clearTimeout(fadeInTimer);
+      clearTimeout(bounceStartTimer);
+      bounce.stop();
+    };
+  }, [seqDone, bounceAnim, fadeAnim, scaleAnim]);
 
+  useEffect(() => {
     let cancelled = false;
     void (async () => {
       const canApply = await canApplyCompletionRewards();
@@ -773,6 +816,7 @@ export default function LessonComplete() {
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
+        setResultsReady(true);
         return;
       }
       try {
@@ -805,6 +849,7 @@ export default function LessonComplete() {
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
         setMedalImproved(medalUpgraded);
+        setResultsReady(true);
         if (correct >= 45 && p.filter(x => x === 'wrong').length === 0 && newPassCount > 0) {
           checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount, studyTarget }).catch(() => {});
         }
@@ -842,18 +887,16 @@ export default function LessonComplete() {
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
+        setResultsReady(true);
       }
     })();
     const cefr = CEFR_FOR_LESSON(lessonId);
     setLessonCefr(cefr);
     return () => {
       cancelled = true;
-      clearTimeout(fadeInTimer);
-      clearTimeout(bounceStartTimer);
       clearLessonCompleteNotifTimer();
-      bounce.stop();
     };
-  }, [bounceAnim, canApplyCompletionRewards, clearLessonCompleteNotifTimer, fadeAnim, grantBonus, lessonId, params.unlocked, router, scaleAnim, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -942,6 +985,11 @@ export default function LessonComplete() {
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (sequenceShowing) {
+        // «Назад» во время секвенции наград = закрыть её (эквивалент CTA), не уходя с экрана.
+        setSeqDone(true);
+        return true;
+      }
       if (showPremiumBanner) {
         setShowPremiumBanner(false);
         premiumBannerAnim.setValue(0);
@@ -969,6 +1017,7 @@ export default function LessonComplete() {
     });
     return () => sub.remove();
   }, [
+    sequenceShowing,
     showPremiumBanner,
     premiumBannerAnim,
     shownCardDrop,
@@ -981,6 +1030,8 @@ export default function LessonComplete() {
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
+      {/* Кнопка «Назад» прячется под секвенцией: выход из празднования — CTA/тап/back. */}
+      {!sequenceShowing && (
       <TapScale
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
@@ -1005,6 +1056,7 @@ export default function LessonComplete() {
         {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
         <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary} />
       </TapScale>
+      )}
       <ContentWrap>
       <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
@@ -1233,7 +1285,31 @@ export default function LessonComplete() {
 
       </BouncyScrollView>
       </ContentWrap>
-      {showBonus && (
+      {/* Секвенция наград (FeedbackKit §2.1) поверх экрана: фон прозрачный — сквозь него
+          виден ScreenGradient, а статичный контент до seqDone скрыт (scale/opacity = 0).
+          Монтируется только здесь и полностью демонтируется по закрытию (перф-бюджет);
+          тап по экрану пропускает анимацию (внутри компонента), CTA закрывает. */}
+      {sequenceShowing && (
+        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
+          <ResultsSequence
+            stars={RESULTS_STARS_BY_TIER[medalTier]}
+            xp={RESULTS_SEQUENCE_XP}
+            title={c.title}
+            subtitle={c.subtitle(lessonId)}
+            badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
+              <Image
+                source={MEDAL_IMAGES_COMPLETE[medalTier]}
+                style={{ width: 110, height: 110 }}
+                contentFit="contain"
+              />
+            ) : undefined}
+            intensity="full"
+            onCtaPrimary={() => setSeqDone(true)}
+            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+          />
+        </View>
+      )}
+      {showBonus && seqDone && (
         <BonusXPCard
           bonusXP={bonusXP}
           onDismiss={() => setShowBonus(false)}
@@ -1265,7 +1341,7 @@ export default function LessonComplete() {
         />
       )}
       <RegistrationPromptModal
-        visible={showAuthPrompt}
+        visible={showAuthPrompt && seqDone}
         context="lesson1"
         onClose={() => setShowAuthPrompt(false)}
       />

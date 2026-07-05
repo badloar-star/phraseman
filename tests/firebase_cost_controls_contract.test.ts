@@ -51,9 +51,12 @@ describe('Firebase cost controls', () => {
     expect(inviteSource).toContain('const onSendInvite = useCallback(async () => {');
     expect(inviteSource).toContain('await buildCloudReferralInviteShare');
     expect(inviteSource).not.toContain('isReferralCloudEnabled');
-    // Синк друзей не читает реферальные коллекции.
+    // Синк друзей не читает реферальные коллекции. ЕДИНСТВЕННОЕ разрешённое чтение
+    // referral_codes — явный поиск по введённому коду (lookupInviteCode, dd94792b0:
+    // друг вводит РЕФЕРАЛЬНЫЙ код вместо friend-кода — иначе «код не найден»).
+    // Это одно чтение по прямому действию пользователя, не фоновый синк.
+    expect(friendsSource).toContain("REFERRAL_CODE_INDEX_COLLECTION = 'referral_codes'");
     expect(friendsSource).not.toContain("collection('referral_codes')");
-    expect(friendsSource).not.toContain("'referral_code'");
   });
 
   it('keeps Friends referral and quest cloud reads cached, single-flight, and TTL-gated', () => {

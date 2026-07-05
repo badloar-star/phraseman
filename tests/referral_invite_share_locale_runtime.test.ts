@@ -35,9 +35,23 @@ describe('referral invite share planned locale runtime copy', () => {
     expect(source).not.toContain('ÐžÑ‚ÐºÑ€Ð¾Ð¹');
     expect(source).not.toContain('Ð¿Ñ€Ð¸Ð³Ð»Ð°ÑˆÐµÐ½Ð¸Ðµ');
   });
+  it('shows the referral code as plain text in the message (manual entry fallback)', () => {
+    // Код обязан быть в сообщении открытым текстом: без него другу нечего ввести вручную,
+    // когда авто-атрибуция (deeplink/буфер/Install Referrer) не сработала.
+    expect(source).toContain("ru: 'Мой код: '");
+    expect(source).toContain("uk: 'Мій код: '");
+    expect(source).toContain("es: 'Mi código: '");
+    expect(source).toContain("'pt-BR': 'Meu código: '");
+    expect(source).toContain("vi: 'Mã của mình: '");
+    expect(source).toContain("id: 'Kode saya: '");
+    expect(source).toContain("tr: 'Kodum: '");
+    expect(source).toContain("pl: 'Mój kod: '");
+    expect(source).toContain('${codeLine}${open}');
+  });
+
   it('keeps referral share focused on one public invite link on every platform', () => {
     expect(source).toContain('buildReferralInviteShare');
-    expect(source).toContain('return buildReferralInviteShare(lang, inviteHttps);');
+    expect(source).toContain('return buildReferralInviteShare(lang, inviteHttps, refCode);');
     expect(source).not.toContain('Platform.OS');
     expect(source).not.toContain('STORE_URL_IOS');
     expect(source).not.toContain('buildPlayStoreUrlWithInstallReferral');

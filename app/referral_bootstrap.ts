@@ -9,7 +9,6 @@ import {
 } from './referral_cloud';
 import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
-import { hasLocalReferralExistingAccountActivity } from './referral_account_activity';
 
 const INVITE_HTTPS_BASE = 'https://knowlyapps.com/phraseman/invite';
 
@@ -176,11 +175,10 @@ export async function tryApplyPendingReferral(): Promise<ReferralApplyStatus | n
     await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
     return 'already';
   }
-  if (await hasLocalReferralExistingAccountActivity()) {
-    await AsyncStorage.removeItem(PENDING_REF_KEY);
-    await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
-    return 'too_old';
-  }
+  // БЫВШИЙ локальный activity-гейт удалён (фикс воронки 2026-07-04): он навсегда стирал
+  // pending-код, как только друг проходил урок 1 — ровно то, что просит текст приглашения.
+  // «Слишком старый аккаунт» теперь решает ТОЛЬКО сервер (по неподделываемому createTime
+  // документа); его вердикт 'too_old' терминален и снимет pending ниже.
   const status = await applyReferralCodeNow(stableId, code);
   if (TERMINAL_APPLY_STATUSES.has(status)) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
@@ -203,7 +201,7 @@ export async function applyManualReferralCode(codeRaw: string): Promise<Referral
     const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
     if (appliedFor === code) return 'already';
   }
-  if (await hasLocalReferralExistingAccountActivity()) return 'too_old';
+  // Локальный activity-гейт удалён: вердикт «слишком старый» выносит сервер (см. tryApplyPendingReferral).
   await captureReferralCodeIfNew(code, 'manual_code');
   if (!stableId) return 'needs_link';
   const status = await applyReferralCodeNow(stableId, code);

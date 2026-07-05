@@ -99,10 +99,14 @@ function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): st
 }
 
 /**
- * Базовый вид: зазывная фраза + invite-ссылка ОТДЕЛЬНОЙ строкой (кликабельна и открывается в браузере).
- * Используется на web и как ядро для мобильных вариантов.
+ * Базовый вид: зазывная фраза + КОД открытым текстом + invite-ссылка ОТДЕЛЬНОЙ строкой
+ * (кликабельна и открывается в браузере). Используется на web и как ядро для мобильных.
+ *
+ * Код обязан быть виден в сообщении: до 2026-07-04 он жил только внутри URL (?ref=…),
+ * и когда авто-атрибуция не срабатывала (iOS без буфера, Android без Install Referrer),
+ * другу физически нечего было ввести вручную — «введи мой код» без кода.
  */
-function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string): ReferralInviteShare {
+function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, refCode: string): ReferralInviteShare {
   const body = pickBody(lang, inviteHttps);
   // Явно проговариваем условие и взаимный бонус — чтобы друг понял, что сделать.
   const condition = label(lang, {
@@ -115,6 +119,16 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string): R
     tr: 'Uygulamayı kur, kodumu gir ve bir dersi tamamen bitir — ikimiz de 7 gün tam erişim kazanırız.',
     pl: 'Zainstaluj aplikację, wpisz mój kod i ukończ jedną lekcję — oboje dostaniemy po 7 dni pełnego dostępu.',
   });
+  const codeLabel = label(lang, {
+    ru: 'Мой код: ',
+    uk: 'Мій код: ',
+    es: 'Mi código: ',
+    'pt-BR': 'Meu código: ',
+    vi: 'Mã của mình: ',
+    id: 'Kode saya: ',
+    tr: 'Kodum: ',
+    pl: 'Mój kod: ',
+  });
   const open = label(lang, {
     ru: 'Открой приглашение: ',
     uk: 'Відкрий запрошення: ',
@@ -125,8 +139,10 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string): R
     tr: 'Davet bağlantısını aç: ',
     pl: 'Otwórz zaproszenie: ',
   });
+  const code = refCode.trim().toUpperCase();
+  const codeLine = code.length >= 4 ? `${codeLabel}${code}\n\n` : '';
   return {
-    message: `${body}\n\n${condition}\n\n${open}\n${inviteHttps}`,
+    message: `${body}\n\n${condition}\n\n${codeLine}${open}\n${inviteHttps}`,
     url: inviteHttps,
   };
 }
@@ -151,7 +167,7 @@ export async function buildCloudReferralInviteShare(params: {
   const { https: inviteHttps } = buildReferralShareLinks(refCode);
   const { lang } = params;
   // One public invite URL is enough: the landing page handles app-open/store routing.
-  return buildReferralInviteShare(lang, inviteHttps);
+  return buildReferralInviteShare(lang, inviteHttps, refCode);
 }
 
 /* expo-router route shim: utility module under app/ */

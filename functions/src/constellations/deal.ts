@@ -55,14 +55,28 @@ function parseRaw(id: string, data: Record<string, unknown>): RawQuestion | null
 }
 
 async function fetchFromCache(level: string, limit: number): Promise<RawQuestion[]> {
+  // rand-пивот (12.2): без него .limit всегда брал одни и те же первые N доков
+  // кэша → повторы. Берём случайное окно и оборачиваемся при нехватке.
+  const pivot = Math.random();
+  const base = () => db.collection('constellation_quizzes')
+    .where('status', '==', 'ready')
+    .where('level', '==', level);
   try {
-    const snap = await db.collection('constellation_quizzes')
-      .where('status', '==', 'ready')
-      .where('level', '==', level)
-      .limit(limit)
-      .get();
+    const [snapA, snapB] = await Promise.all([
+      base().where('rand', '>=', pivot).orderBy('rand').limit(limit).get(),
+      base().where('rand', '<', pivot).orderBy('rand').limit(limit).get(),
+    ]);
+    let docs = [...snapA.docs, ...snapB.docs];
+    // Страховка на документы без поля rand (старый кэш) — добираем простым запросом.
+    if (docs.length < limit) {
+      const plain = await base().limit(limit).get();
+      docs = [...docs, ...plain.docs];
+    }
     const out: RawQuestion[] = [];
-    for (const doc of snap.docs) {
+    const seenIds = new Set<string>();
+    for (const doc of docs) {
+      if (seenIds.has(doc.id)) continue;
+      seenIds.add(doc.id);
       const data = doc.data() as Record<string, unknown>;
       // Кэш хранит correctIndex; нормализуем к correctText для общего пути.
       const options = Array.isArray(data.options) ? data.options.map((o) => String(o)) : [];
@@ -123,18 +137,61 @@ export async function fetchQuestionPool(
 ): Promise<RawQuestion[]> {
   const fetchLimit = Math.max(need * 4, 24);
   const cache = await fetchFromCache(level, fetchLimit);
-  const pool = cache.length >= need ? cache : [...cache, ...await fetchFromBank(level, fetchLimit)];
+  let pool = cache.length >= need ? cache : [...cache, ...await fetchFromBank(level, fetchLimit)];
 
-  const seen = new Set<string>();
-  const out: RawQuestion[] = [];
-  for (const q of pool) {
-    if (excludeIds.has(q.id)) continue;
-    const key = contentKey(q);
-    if (key !== '' && seen.has(key)) continue;
-    if (key !== '') seen.add(key);
-    out.push(q);
+  const dedup = (src: RawQuestion[]): RawQuestion[] => {
+    const seen = new Set<string>();
+    const out: RawQuestion[] = [];
+    for (const q of src) {
+      if (excludeIds.has(q.id)) continue;
+      const key = contentKey(q);
+      if (key !== '' && seen.has(key)) continue;
+      if (key !== '') seen.add(key);
+      out.push(q);
+    }
+    return out;
+  };
+
+  let out = dedup(pool);
+  // 12.3: если ПОСЛЕ дедупа не хватило (много исключённых/дублей) — второй проход
+  // из банка большим лимитом. Раньше банк подхватывался только если cache<need,
+  // а не когда после дедупа осталось меньше need.
+  if (out.length < need) {
+    const extra = await fetchFromBank(level, fetchLimit * 2);
+    pool = [...pool, ...extra];
+    out = dedup(pool);
   }
   return out;
+}
+
+/**
+ * Прогрев кэша вопросов на этапе поиска (идея владельца): пока идёт подбор,
+ * фоном проверяем, что для уровней матча в кэше достаточно ready-вопросов, и
+ * при нехватке запускаем досыпку. Так в матче выдача — всегда мгновенное чтение
+ * из кэша, никто не ждёт генерацию во время игры.
+ *
+ * Сейчас генерация квизов ещё не подключена (этап 12.4) — прогрев гарантирует
+ * наличие через банк arena_questions (fetchFromBank). Когда появится OpenAI-
+ * генерация, сюда добавится триггер догенерации до cacheTargetPerLevel.
+ */
+export async function warmQuestionCache(levels: readonly string[], perLevel: number): Promise<void> {
+  const unique = [...new Set(levels)];
+  await Promise.all(unique.map(async (level) => {
+    try {
+      const readyCount = await db.collection('constellation_quizzes')
+        .where('status', '==', 'ready')
+        .where('level', '==', level)
+        .count().get()
+        .then((s) => s.data().count ?? 0)
+        .catch(() => 0);
+      if (readyCount >= perLevel) return; // кэша хватает — греть нечего
+      // Кэша мало — прогреваем банк (fetchFromBank прогревает индекс/кэш Firestore).
+      // Когда будет генерация: здесь триггерить догенерацию (readyCount → perLevel).
+      await fetchFromBank(level, Math.min(perLevel, 48));
+    } catch {
+      // прогрев best-effort — матч в любом случае возьмёт из банка на выдаче
+    }
+  }));
 }
 
 /**

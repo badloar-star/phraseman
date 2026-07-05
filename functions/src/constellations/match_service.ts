@@ -21,7 +21,7 @@ import {
   type BotProfile,
 } from './bots';
 import { resolveConstellationConfig, type ConstellationConfig } from './config';
-import { appendRecentQids, fetchQuestionPool, readRecentQids, toDealtQuestion } from './deal';
+import { appendRecentQids, fetchQuestionPool, readRecentQids, toDealtQuestion, warmQuestionCache } from './deal';
 import {
   createInitialMatchState,
   detectConflicts,
@@ -300,6 +300,18 @@ export async function createConstellationMatch(humans: HumanEntry[]): Promise<st
   });
 
   await notifyMatchFound(humans, matchId);
+
+  // Прогрев кэша вопросов, пока идёт фаза выбора (12с) — чтобы выдача в раунде
+  // была мгновенной, никто не ждал вопросы во время матча (идея владельца).
+  // Прогреваем все уровни, возможные для ранга этого матча. Best-effort, не блокирует.
+  const warmLevels = [
+    levelForRing('outer', matchRankIndex),
+    levelForRing('middle', matchRankIndex),
+    levelForRing('inner', matchRankIndex),
+    levelForRing('polar', matchRankIndex),
+  ];
+  void warmQuestionCache(warmLevels, cfg.quizzes.cacheTargetPerLevel).catch(() => {});
+
   return matchId;
 }
 

@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   zoomCtl: {
     position: 'absolute',
     right: 8,
-    bottom: 10,
+    top: 8, // верх карты — не перекрывает квиз/шторку снизу (баг «точки внизу»)
     gap: 7,
   },
   zbtn: {

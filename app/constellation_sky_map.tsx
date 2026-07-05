@@ -117,6 +117,15 @@ function SkyMapInner({
     return map;
   }, [players]);
 
+  // Инициал владельца — «аватарка» на захваченном гексе (просьба владельца:
+  // гексы заполняются аватаром хозяина). Настоящую картинку в SVG не тянем
+  // (URL-аватары), используем первую букву имени в цветном круге.
+  const initialBySlot = useMemo(() => {
+    const map = new Map<number, string>();
+    for (const p of players) map.set(p.slot, (p.name?.[0] ?? '?').toUpperCase());
+    return map;
+  }, [players]);
+
   const constellationLines = useMemo(() => {
     const lines: Array<{ x1: number; y1: number; x2: number; y2: number; owner: number }> = [];
     for (const c of cells) {
@@ -220,7 +229,6 @@ function SkyMapInner({
               strokeOpacity={hl ? 1 : c.owner !== null ? 0.8 : 0.55}
               strokeWidth={hl ? 2.2 : 1}
               strokeDasharray={hl ? '5 3' : undefined}
-              onPress={onStarPress ? () => onStarPress(c.key) : undefined}
             />
             <Polyline
               points={`${pts[4][0]},${pts[4][1]} ${pts[5][0]},${pts[5][1]} ${pts[0][0]},${pts[0][1]}`}
@@ -257,6 +265,18 @@ function SkyMapInner({
             <Circle cx={c.top[0]} cy={c.top[1]} r={r * 3} fill={`url(#halo${gi})`}
               opacity={c.owner !== null || isPolar ? 0.8 : 0.35} />
             <Circle cx={c.top[0]} cy={c.top[1]} r={r} fill={`url(#glow${gi})`} />
+            {/* Аватарка владельца (инициал в цветном круге) на захваченном гексе */}
+            {c.owner !== null && !isPolar ? (
+              <>
+                <Circle cx={c.top[0]} cy={c.top[1]} r={8}
+                  fill={CONSTELLATION_SLOT_COLORS[c.owner]} fillOpacity={0.9}
+                  stroke="#EAF2FF" strokeOpacity={0.85} strokeWidth={1} />
+                <SvgText x={c.top[0]} y={c.top[1] + 3.5} fontSize={9} fontWeight="800"
+                  textAnchor="middle" fill="#0A0F26">
+                  {initialBySlot.get(c.owner) ?? '?'}
+                </SvgText>
+              </>
+            ) : null}
             {flareColor ? (
               <>
                 <Line x1={c.top[0] - flare} y1={c.top[1]} x2={c.top[0] + flare} y2={c.top[1]}
@@ -306,6 +326,21 @@ function SkyMapInner({
         const color = flashKey === '0,0' ? POLAR_GOLD : '#EAF2FF';
         return <CaptureBurst key={flashKey} x={x} y={y} color={color} />;
       })() : null}
+
+      {/* ХИТ-СЛОЙ (последним = поверх всех гексов): прозрачные круги ловят тап
+          по каждой звезде одинаково. Раньше onPress висел на верхней грани,
+          которую перекрывали соседние гексы (painter's algorithm) — оттого
+          «два нажимаются, третий нет». Радиус крупнее грани — легче попасть. */}
+      {onStarPress ? cells.map((c) => (
+        <Circle
+          key={`hit${c.key}`}
+          cx={c.top[0]}
+          cy={c.top[1]}
+          r={HEX_SIZE * 0.95}
+          fill="transparent"
+          onPress={() => onStarPress(c.key)}
+        />
+      )) : null}
     </Svg>
   );
 }

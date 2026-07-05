@@ -3,6 +3,7 @@ import { createInitialMatchState, legalTargets } from './engine';
 import { createSeededRand } from './hex';
 import {
   botAnswerPlan,
+  botStyle,
   chooseBotTarget,
   synthesizeBotProfiles,
 } from './bots';
@@ -132,14 +133,36 @@ describe('constellations/bots — выбор цели (стратегия)', () 
     expect(finisher).toBeGreaterThan(15); // почти всегда добивает
   });
 
-  test('Полярная в приоритете, когда доступна', () => {
+  test('Полярная в приоритете у ЦЕНТРОВОГО стиля', () => {
     const state = makeState();
     state.stars['1,0'] = { owner: 0, radiance: 0 }; // сосед Полярной
     const rand = createSeededRand('target-4');
     let polar = 0;
     for (let i = 0; i < 20; i += 1) {
-      if (chooseBotTarget(state, 0, rand) === '0,0') polar += 1;
+      if (chooseBotTarget(state, 0, rand, 'centrist') === '0,0') polar += 1;
     }
     expect(polar).toBeGreaterThan(10);
+  });
+
+  test('разнообразие стилей: центровой тянется в центр СИЛЬНЕЕ расширенца', () => {
+    const state = makeState();
+    state.stars['1,0'] = { owner: 0, radiance: 0 }; // сосед Полярной
+    const countPolar = (style: 'centrist' | 'expander' | 'aggressor') => {
+      const rand = createSeededRand(`div-${style}`);
+      let n = 0;
+      for (let i = 0; i < 40; i += 1) if (chooseBotTarget(state, 0, rand, style) === '0,0') n += 1;
+      return n;
+    };
+    // Центровой идёт в Полярную заметно чаще расширенца (не все боты в центр).
+    expect(countPolar('centrist')).toBeGreaterThan(countPolar('expander'));
+  });
+
+  test('botStyle детерминирован по uid и даёт разные стили разным ботам', () => {
+    // Один uid → всегда один стиль.
+    expect(botStyle('AbCdEfGh1234')).toBe(botStyle('AbCdEfGh1234'));
+    // На пуле uid встречаются РАЗНЫЕ стили (не все одинаковые).
+    const seen = new Set<string>();
+    for (let i = 0; i < 30; i += 1) seen.add(botStyle(`bot-uid-${i}-xyz`));
+    expect(seen.size).toBeGreaterThan(1);
   });
 });

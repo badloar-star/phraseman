@@ -16,6 +16,7 @@
 import * as admin from 'firebase-admin';
 import {
   botAnswerPlan,
+  botStyle,
   chooseBotTarget,
   synthesizeBotProfiles,
   type BotProfile,
@@ -379,7 +380,10 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
     const player = state.players[slot];
     const bot = botBySlot.get(slot);
     if (bot) {
-      const target = player.status === 'alive' ? chooseBotTarget(state, slot, rand) : null;
+      // Стиль бота по его uid — разные боты играют по-разному (не все в центр).
+      const target = player.status === 'alive'
+        ? chooseBotTarget(state, slot, rand, botStyle(bot.uid))
+        : null;
       // Бот играет козырь, когда дом под угрозой (человечность, A5a).
       const shieldStarKey = player.status === 'alive' && !player.shieldUsed
         && player.cores <= 1 && rand() < 0.6 ? player.homeStarKey : null;

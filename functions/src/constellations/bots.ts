@@ -127,30 +127,42 @@ const POLAR_KEY = '0,0';
  * дорогим кольцам → случайная легальная. Иногда (10%) ходит «неоптимально» —
  * идеальные машины палятся.
  */
+/** Стиль бота — определяет ЛИЧНОСТЬ поведения (разнообразие, не «все в центр»). */
+export type BotStyle = 'centrist' | 'expander' | 'aggressor';
+
+/** Детерминированный стиль по uid бота — стабилен весь матч, у ботов РАЗНЫЕ. */
+export function botStyle(uid: string): BotStyle {
+  const styles: BotStyle[] = ['centrist', 'expander', 'aggressor'];
+  let h = 0;
+  for (let i = 0; i < uid.length; i += 1) h = (h * 31 + uid.charCodeAt(i)) >>> 0;
+  return styles[h % styles.length];
+}
+
 export function chooseBotTarget(
   state: MatchState,
   slot: PlayerSlot,
   rand: () => number,
+  style: BotStyle = 'expander',
 ): string | null {
   const targets = legalTargets(state, slot);
   if (targets.length === 0) return null;
-  // Небольшая доля «неоптимальных» ходов, чтобы бот не был идеальной машиной,
-  // но РЕДКО (5%) — раньше 10% давали ощущение «бот тупит и не захватывает».
+  // Небольшая доля «неоптимальных» ходов, чтобы бот не был идеальной машиной.
   if (rand() < 0.05) return targets[Math.floor(rand() * targets.length)];
 
-  // 1. Добивание: дом живого соперника с 1 ядром в пределах досягаемости.
+  // 1. Добивание: дом живого соперника с 1 ядром — берут ВСЕ стили (это выгодно).
   const finisher = targets.find((key) => state.players.some(
     (p) => p.status === 'alive' && p.slot !== slot && p.homeStarKey === key && p.cores === 1,
   ));
   if (finisher) return finisher;
 
-  // 2. Полярная звезда, если доступна и ещё не наша (почти всегда идём за ней).
-  if (targets.includes(POLAR_KEY) && state.stars[POLAR_KEY].owner !== slot) {
-    if (rand() < 0.85) return POLAR_KEY;
+  // 2. Полярная — тянет ТОЛЬКО центрового сильно; расширенец/агрессор идут туда
+  //    редко (разнообразие: не все рвутся в центр, жалоба владельца).
+  const polarPull = style === 'centrist' ? 0.85 : style === 'aggressor' ? 0.2 : 0.15;
+  if (targets.includes(POLAR_KEY) && state.stars[POLAR_KEY].owner !== slot && rand() < polarPull) {
+    return POLAR_KEY;
   }
 
-  // Лидер по числу звёзд (1.7): бот, если сам не лидер, охотнее кусает лидера,
-  //    иначе игрок безнаказанно вырывается против пассивных ботов.
+  // Лидер по числу звёзд (1.7): агрессор кусает лидера сильнее всех.
   const starCounts = new Map<PlayerSlot, number>();
   for (const star of Object.values(state.stars)) {
     if (star.owner !== null) starCounts.set(star.owner, (starCounts.get(star.owner) ?? 0) + 1);
@@ -160,26 +172,28 @@ export function chooseBotTarget(
   for (const [s, c] of starCounts) if (c > leaderCount) { leaderCount = c; leaderSlot = s; }
   const iAmLeader = leaderSlot === slot;
 
-  // 3. Расширение. Ключевая правка: бот СНАЧАЛА берёт лёгкие достижимые цели —
-  //    нейтральные звёзды без брони (высокий шанс успешного захвата), а не
-  //    кидается на дорогие армированные и проваливает их («не захватывает»).
-  //    Вес: нейтральные +3, каждый уровень брони −1.5, дорогое кольцо — лёгкий
-  //    бонус (амбиция); звезда лидера — доп-вес (ганк), если бот сам не лидер.
+  // 3. Расширение со СТИЛЕВЫМИ весами — разные боты играют по-разному:
+  //   centrist  — тянется к дорогим кольцам (центр);
+  //   expander  — жадный до нейтральных звёзд по краю (безопасный рост);
+  //   aggressor — предпочитает чужие звёзды и ганк лидера (конфликт).
   const ringWeight = { outer: 0.4, middle: 0.8, inner: 1.2, polar: 1.6 } as const;
+  const styleWeights = {
+    centrist: { neutral: 2, enemy: 0.4, gank: 1, ambitionMul: 2.2 },
+    expander: { neutral: 3.5, enemy: 0.3, gank: 0.8, ambitionMul: 0.7 },
+    aggressor: { neutral: 1.5, enemy: 2.2, gank: 3, ambitionMul: 1 },
+  }[style];
   const weighted = targets.map((key) => {
     const star = state.stars[key];
-    const neutralBonus = star.owner === null ? 3 : 0;
-    const enemyOwnedBonus = star.owner !== null && star.owner !== slot ? 0.6 : 0;
-    const gankLeaderBonus = !iAmLeader && star.owner === leaderSlot ? 2 : 0;
+    const neutralBonus = star.owner === null ? styleWeights.neutral : 0;
+    const enemyOwnedBonus = star.owner !== null && star.owner !== slot ? styleWeights.enemy : 0;
+    const gankLeaderBonus = !iAmLeader && star.owner === leaderSlot ? styleWeights.gank : 0;
     const armorPenalty = star.radiance * 1.5;
-    const ambition = ringWeight[ringOf(parseHexKey(key))];
+    const ambition = ringWeight[ringOf(parseHexKey(key))] * styleWeights.ambitionMul;
     return {
       key,
-      weight: Math.max(0.15, neutralBonus + enemyOwnedBonus + gankLeaderBonus + ambition - armorPenalty + rand() * 0.4),
+      weight: Math.max(0.15, neutralBonus + enemyOwnedBonus + gankLeaderBonus + ambition - armorPenalty + rand() * 0.5),
     };
   });
-  // Идём к цели с наибольшим весом (не чисто случайно) — но со «слегка» случайным
-  // тай-брейком, добавленным выше. Так бот целенаправленно расширяется.
   weighted.sort((a, b) => b.weight - a.weight);
   return weighted[0].key;
 }

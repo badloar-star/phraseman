@@ -134,6 +134,9 @@ export default function ConstellationSearchScreen() {
       if (handled || !match) return;
       handled = true;
       try { unsub(); } catch {}
+      // Матч найден → визуально «собрали 4/4», короткая пауза «Все в сборе!»,
+      // потом вход. Раньше был мгновенный переход — «бац» без ощущения сбора.
+      setSlotsFilled(4);
       if (match.starfall?.golden) {
         setState({ kind: 'starfall', matchId });
         try {
@@ -144,7 +147,7 @@ export default function ConstellationSearchScreen() {
         Animated.timing(goldAnim, { toValue: 1, duration: 700, useNativeDriver: true }).start();
         setTimeout(() => goToMatch(matchId), STARFALL_ANNOUNCE_MS);
       } else {
-        goToMatch(matchId);
+        setTimeout(() => goToMatch(matchId), 850);
       }
     });
     unsubsRef.current.push(unsub);
@@ -209,16 +212,17 @@ export default function ConstellationSearchScreen() {
     return () => clearInterval(id);
   }, [focused, state.kind]);
 
-  // Слоты 2–4 «подключаются» в случайные адекватные моменты (4–10с, 11–18с, 20–27с) —
-  // к моменту серверного добора (~30с) экран уже собрал лобби визуально.
+  // Слоты 2–4 «подключаются» БЫСТРО (1.5с / 3.5с / 6с) — раньше были 4/11/20с,
+  // и при быстром матче игрок видел «1 из 4», а потом «бац» — игра. Теперь сбор
+  // визуально успевает даже при мгновенном матче на 4 живых.
   useEffect(() => {
     if (state.kind !== 'searching') return;
     const delays = [
-      4000 + Math.random() * 6000,
-      11000 + Math.random() * 7000,
-      20000 + Math.random() * 7000,
+      1500 + Math.random() * 800,
+      3200 + Math.random() * 1000,
+      5500 + Math.random() * 1200,
     ];
-    const timers = delays.map((ms, i) => setTimeout(() => setSlotsFilled(2 + i), ms));
+    const timers = delays.map((ms, i) => setTimeout(() => setSlotsFilled((v) => Math.max(v, 2 + i)), ms));
     return () => timers.forEach(clearTimeout);
   }, [state.kind]);
 

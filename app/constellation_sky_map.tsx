@@ -13,6 +13,13 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useMemo } from 'react';
+import Animated, {
+  Easing,
+  useAnimatedProps,
+  useSharedValue,
+  withTiming,
+  type SharedValue,
+} from 'react-native-reanimated';
 import Svg, {
   Circle,
   Defs,
@@ -291,15 +298,68 @@ function SkyMapInner({
           stroke="url(#beamG)" strokeWidth={3} strokeDasharray="7 5" />
       ) : null}
 
-      {/* вспышка захвата (резолв) */}
+      {/* синематик захвата (2.6): ударная волна + искры, анимировано reanimated */}
       {flashKey ? (() => {
         const h = parseHexKey(flashKey);
         if (!h) return null;
         const [x, y] = topPx(h);
-        return <Circle cx={x} cy={y} r={18} fill="none" stroke="#EAF2FF" strokeOpacity={0.8} strokeWidth={2} />;
+        const color = flashKey === '0,0' ? POLAR_GOLD : '#EAF2FF';
+        return <CaptureBurst key={flashKey} x={x} y={y} color={color} />;
       })() : null}
     </Svg>
   );
+}
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const AnimatedLine = Animated.createAnimatedComponent(Line);
+
+/** Ударная волна захвата: 2 расходящихся кольца + 6 искр. Одноразово, гаснет ~900мс. */
+function CaptureBurst({ x, y, color }: { x: number; y: number; color: string }) {
+  const p = useSharedValue(0);
+  React.useEffect(() => {
+    p.value = 0;
+    p.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
+  }, [x, y, p]);
+
+  const ring1 = useAnimatedProps(() => ({
+    r: 8 + p.value * 30,
+    opacity: (1 - p.value) * 0.9,
+  }));
+  const ring2 = useAnimatedProps(() => ({
+    r: 8 + p.value * 20,
+    opacity: (1 - p.value) * 0.7,
+  }));
+  return (
+    <>
+      <AnimatedCircle cx={x} cy={y} fill="none" stroke={color} strokeWidth={2.5} animatedProps={ring1} />
+      <AnimatedCircle cx={x} cy={y} fill="none" stroke={color} strokeWidth={1.5} animatedProps={ring2} />
+      {[0, 60, 120, 180, 240, 300].map((deg) => (
+        <BurstSpark key={deg} x={x} y={y} deg={deg} color={color} progress={p} />
+      ))}
+    </>
+  );
+}
+
+/** Одна искра ударной волны — свой хук useAnimatedProps (не в цикле). */
+function BurstSpark(
+  { x, y, deg, color, progress }: { x: number; y: number; deg: number; color: string; progress: SharedValue<number> },
+) {
+  const rad = (deg * Math.PI) / 180;
+  const dx = Math.cos(rad);
+  const dy = Math.sin(rad);
+  const props = useAnimatedProps(() => {
+    const d = progress.value * 26;
+    const inner = 6 + d * 0.7;
+    const outer = 10 + d;
+    return {
+      x1: x + dx * inner,
+      y1: y + dy * inner,
+      x2: x + dx * outer,
+      y2: y + dy * outer,
+      opacity: (1 - progress.value) * 0.85,
+    };
+  });
+  return <AnimatedLine stroke={color} strokeWidth={1.6} strokeLinecap="round" animatedProps={props} />;
 }
 
 export const ConstellationSkyMap = memo(SkyMapInner);

@@ -834,6 +834,14 @@ const QuizOverlay = memo(function QuizOverlay({
   const { theme: t, f } = useTheme();
   const budgetFrac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
   const budgetLow = secondsLeft <= 5;
+  // Микрофидбек плиток (2.9): подсветка выбранной до прихода правила/след. вопроса.
+  const [pickedIndex, setPickedIndex] = useState<number | null>(null);
+  useEffect(() => { setPickedIndex(null); }, [qIndex]);
+  const handlePick = useCallback((i: number) => {
+    if (busy) return;
+    setPickedIndex(i);
+    onAnswer(i);
+  }, [busy, onAnswer]);
   return (
     <View style={[quizStyles.box, { backgroundColor: 'rgba(8,13,30,0.97)', borderColor: isDuel ? '#FFD166' : '#2A3A6A' }]}>
       {/* Полоса бюджета фазы (2.3): игрок видит, сколько времени тает, прямо
@@ -884,18 +892,30 @@ const QuizOverlay = memo(function QuizOverlay({
         </View>
       ) : (
         <View style={quizStyles.opts}>
-          {options.map((opt, i) => (
-            <TouchableOpacity
-              key={i}
-              testID={`constellation-opt-${i}`}
-              style={[quizStyles.opt, { borderColor: '#1E2A4A', opacity: busy ? 0.55 : 1 }]}
-              disabled={busy}
-              onPress={() => onAnswer(i)}
-              activeOpacity={0.85}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>{opt}</Text>
-            </TouchableOpacity>
-          ))}
+          {options.map((opt, i) => {
+            const picked = pickedIndex === i;
+            // Пока busy (ответ ушёл) подсвечиваем выбранную нейтрально-акцентно;
+            // цвет верно/неверно придёт мгновенно следом с правилом (2.9).
+            const bColor = picked ? '#8B7BFF' : '#1E2A4A';
+            const bg = picked ? 'rgba(139,123,255,0.16)' : 'transparent';
+            return (
+              <TouchableOpacity
+                key={i}
+                testID={`constellation-opt-${i}`}
+                style={[quizStyles.opt, {
+                  borderColor: bColor,
+                  backgroundColor: bg,
+                  borderWidth: picked ? 1.5 : 1,
+                  opacity: busy && !picked ? 0.5 : 1,
+                }]}
+                disabled={busy}
+                onPress={() => handlePick(i)}
+                activeOpacity={0.85}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: picked ? '800' : '600' }}>{opt}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       )}
     </View>

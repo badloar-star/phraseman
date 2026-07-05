@@ -9,10 +9,14 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { LinearGradient } from 'expo-linear-gradient';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
+
+// Маскот-Компас — настоящий ассет (золото-бирюзовый компас в пузыре речи).
+const COMPASS_IMG = require('../assets/images/theo/theo-phrase-compass-v1.webp');
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -33,15 +37,15 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     art: 'capture',
-    kicker: (l) => triLang(l, { ru: 'СОЗВЕЗДИЯ', uk: 'СУЗІР’Я', es: 'CONSTELACIONES', 'pt-BR': 'CONSTELAÇÕES', vi: 'CHÒM SAO', id: 'RASI BINTANG', tr: 'TAKIMYILDIZLARI', pl: 'GWIAZDOZBIORY' }),
-    title: (l) => triLang(l, { ru: 'Захватывай звёзды', uk: 'Захоплюй зірки', es: 'Captura estrellas', 'pt-BR': 'Capture estrelas', vi: 'Chiếm lấy các sao', id: 'Rebut bintang', tr: 'Yıldızları ele geçir', pl: 'Zdobywaj gwiazdy' }),
-    body: (l) => triLang(l, { ru: 'Четверо игроков зажигают звёзды на небе. Чем больше твоё созвездие — тем больше очков. Кто набрал больше за 10 раундов, тот и победил.', uk: 'Четверо гравців запалюють зірки на небі. Що більше сузір’я — то більше очок. Хто набрав більше за 10 раундів, той переміг.', es: 'Cuatro jugadores encienden estrellas. Cuanto mayor tu constelación, más puntos. Gana quien más suma en 10 rondas.', 'pt-BR': 'Quatro jogadores acendem estrelas. Quanto maior sua constelação, mais pontos. Vence quem somar mais em 10 rodadas.', vi: 'Bốn người thắp sáng các sao. Chòm sao càng lớn, càng nhiều điểm. Ai nhiều điểm nhất sau 10 vòng sẽ thắng.', id: 'Empat pemain menyalakan bintang. Makin besar rasimu, makin banyak poin. Yang terbanyak dalam 10 ronde menang.', tr: 'Dört oyuncu yıldızları yakar. Takımyıldızın büyüdükçe puanın artar. 10 turda en çok toplayan kazanır.', pl: 'Czterej gracze zapalają gwiazdy. Im większy gwiazdozbiór, tym więcej punktów. Wygrywa ten, kto zbierze najwięcej w 10 rundach.' }),
+    kicker: (l) => triLang(l, { ru: 'Привет! Я Компас', uk: 'Привіт! Я Компас', es: '¡Hola! Soy la Brújula', 'pt-BR': 'Oi! Sou a Bússola', vi: 'Chào! Tôi là La Bàn', id: 'Hai! Aku Kompas', tr: 'Merhaba! Ben Pusula', pl: 'Cześć! Jestem Kompas' }),
+    title: (l) => triLang(l, { ru: 'Зажигай звёзды', uk: 'Запалюй зірки', es: 'Enciende estrellas', 'pt-BR': 'Acenda estrelas', vi: 'Thắp sáng các sao', id: 'Nyalakan bintang', tr: 'Yıldızları yak', pl: 'Zapalaj gwiazdy' }),
+    body: (l) => triLang(l, { ru: 'Вас четверо на ночном небе. Отвечай на вопросы — и звёзды загораются твоим цветом. Кто зажёг больше за игру, тот и звезда вечера.', uk: 'Вас четверо на нічному небі. Відповідай на питання — і зірки загоряються твоїм кольором. Хто запалив більше, той і зірка вечора.', es: 'Sois cuatro en el cielo nocturno. Responde y las estrellas brillan con tu color. Quien encienda más, gana la noche.', 'pt-BR': 'São quatro no céu noturno. Responda e as estrelas brilham na sua cor. Quem acender mais ganha a noite.', vi: 'Bốn người trên bầu trời đêm. Trả lời đúng và sao sáng lên màu của bạn. Ai thắp nhiều nhất sẽ thắng.', id: 'Kalian berempat di langit malam. Jawab dan bintang menyala warnamu. Yang paling banyak menang.', tr: 'Gece göğünde dördünüz varsınız. Cevapla, yıldızlar senin renginle parlasın. En çok yakan kazanır.', pl: 'Jest was czworo na nocnym niebie. Odpowiadaj, a gwiazdy zapłoną twoim kolorem. Kto zapali więcej, wygrywa.' }),
   },
   {
     art: 'answer',
-    kicker: (l) => triLang(l, { ru: 'КАК ЗАХВАТИТЬ', uk: 'ЯК ЗАХОПИТИ', es: 'CÓMO CAPTURAR', 'pt-BR': 'COMO CAPTURAR', vi: 'CÁCH CHIẾM', id: 'CARA MEREBUT', tr: 'NASIL ELE GEÇİRİLİR', pl: 'JAK ZDOBYĆ' }),
-    title: (l) => triLang(l, { ru: 'Отвечай верно', uk: 'Відповідай вірно', es: 'Responde bien', 'pt-BR': 'Responda certo', vi: 'Trả lời đúng', id: 'Jawab benar', tr: 'Doğru cevapla', pl: 'Odpowiadaj dobrze' }),
-    body: (l) => triLang(l, { ru: 'Тапни звезду рядом со своей и ответь на вопрос по‑английски. Верно — звезда твоя. Ошибся — покажем правило и запомнишь. Даже проиграв, ты учишься!', uk: 'Тапни зірку поруч і відповідай англійською. Вірно — зірка твоя. Помилився — покажемо правило. Навіть програвши, ти вчишся!', es: 'Toca una estrella cercana y responde en inglés. Aciertas y es tuya. Fallas y te mostramos la regla. ¡Hasta perdiendo, aprendes!', 'pt-BR': 'Toque numa estrela próxima e responda em inglês. Acertou, é sua. Errou, mostramos a regra. Até perdendo, você aprende!', vi: 'Chạm sao gần đó và trả lời bằng tiếng Anh. Đúng thì là của bạn. Sai thì hiện quy tắc. Thua vẫn học được!', id: 'Ketuk bintang di dekatmu dan jawab dalam bahasa Inggris. Benar jadi milikmu. Salah, kami tunjukkan aturannya. Kalah pun tetap belajar!', tr: 'Yakındaki yıldıza dokun ve İngilizce cevapla. Doğruysa senindir. Yanlışsa kuralı gösteririz. Kaybetsen bile öğrenirsin!', pl: 'Dotknij pobliskiej gwiazdy i odpowiedz po angielsku. Dobrze — jest twoja. Źle — pokażemy zasadę. Nawet przegrywając, uczysz się!' }),
+    kicker: (l) => triLang(l, { ru: 'Как это работает', uk: 'Як це працює', es: 'Cómo funciona', 'pt-BR': 'Como funciona', vi: 'Cách chơi', id: 'Cara mainnya', tr: 'Nasıl oluyor', pl: 'Jak to działa' }),
+    title: (l) => triLang(l, { ru: 'Отвечай — забирай', uk: 'Відповідай — забирай', es: 'Responde y conquista', 'pt-BR': 'Responda e conquiste', vi: 'Trả lời và chiếm', id: 'Jawab dan rebut', tr: 'Cevapla ve al', pl: 'Odpowiadaj i zdobywaj' }),
+    body: (l) => triLang(l, { ru: 'Выбери звезду рядом со своей, ответь по‑английски — и она твоя. Ошибёшься? Не страшно: я подскажу правило, и в следующий раз получится. Тут учишься, даже когда проигрываешь.', uk: 'Обери зірку поруч, відповідай англійською — і вона твоя. Помилився? Не біда: я підкажу правило. Тут вчишся, навіть коли програєш.', es: 'Elige una estrella cercana, responde en inglés y será tuya. ¿Fallaste? Tranquilo, te soplo la regla. Aquí aprendes incluso perdiendo.', 'pt-BR': 'Escolha uma estrela ao lado, responda em inglês e ela é sua. Errou? Calma, eu te dou a regra. Aqui você aprende até perdendo.', vi: 'Chọn sao gần bạn, trả lời tiếng Anh và nó là của bạn. Sai ư? Đừng lo, tôi nhắc quy tắc. Ở đây thua vẫn học được.', id: 'Pilih bintang di sebelahmu, jawab Inggris, jadi milikmu. Salah? Santai, kubisikkan aturannya. Di sini kalah pun belajar.', tr: 'Yanındaki yıldızı seç, İngilizce cevapla, senin olsun. Yanıldın mı? Merak etme, kuralı fısıldarım. Burada kaybederken bile öğrenirsin.', pl: 'Wybierz gwiazdę obok, odpowiedz po angielsku i jest twoja. Błąd? Spokojnie, podpowiem zasadę. Tu uczysz się nawet przegrywając.' }),
   },
 ];
 
@@ -79,17 +83,13 @@ export default function ConstellationIntroScreen() {
       </TouchableOpacity>
 
       <View style={styles.body}>
-        {/* Компас ведёт */}
-        <View style={styles.compassRow}>
-          <View style={styles.compass}><Text style={styles.compassIcon}>🧭</Text></View>
-          <Text style={[styles.compassName, { color: '#8B7BFF' }]}>{triLang(lang, {
-            ru: 'Компас', uk: 'Компас', es: 'Brújula', 'pt-BR': 'Bússola', vi: 'La Bàn', id: 'Kompas', tr: 'Pusula', pl: 'Kompas',
-          })}</Text>
-        </View>
-
-        <View style={styles.art}>
-          <IntroArt kind={slide.art} />
-        </View>
+        {/* Компас-маскот ведёт онбординг — настоящий ассет, крупно в центре.
+            На 1-м слайде он представляется, на 2-м — рядом иллюстрация действия. */}
+        {idx === 0 ? (
+          <Image source={COMPASS_IMG} style={styles.compassHero} contentFit="contain" transition={160} />
+        ) : (
+          <View style={styles.art}><IntroArt kind={slide.art} /></View>
+        )}
 
         <Text style={styles.kicker}>{slide.kicker(lang)}</Text>
         <Text style={[styles.title, { color: t.textPrimary }]}>{slide.title(lang)}</Text>
@@ -147,14 +147,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   skip: { position: 'absolute', right: 20, zIndex: 10 },
   body: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30 },
-  compassRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 20 },
-  compass: {
-    width: 34, height: 34, borderRadius: 12,
-    backgroundColor: 'rgba(139,123,255,0.18)', borderWidth: 1, borderColor: 'rgba(139,123,255,0.4)',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  compassIcon: { fontSize: 18 },
-  compassName: { fontSize: 13, fontWeight: '800' },
+  compassHero: { width: 150, height: 150, marginBottom: 24 },
   art: { height: 130, marginBottom: 24 },
   kicker: { fontSize: 11, letterSpacing: 3, color: '#F6A93B', fontWeight: '700' },
   title: { fontSize: 25, fontWeight: '800', marginTop: 10, textAlign: 'center' },

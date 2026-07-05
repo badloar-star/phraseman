@@ -13,6 +13,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Image } from 'expo-image';
 import { useAudioPlayer } from 'expo-audio';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -40,6 +41,8 @@ import { CONSTELLATION_INTRO_SEEN_KEY } from './constellation_intro';
 // Джингл «Звездопада» (F2a — единственный звук v1). Пока — торжественный
 // ассет приложения; фирменный джингл заменит его тем же require.
 const SND_STARFALL = require('../assets/audio/ob_plan_ready.mp3');
+// Маскот-Компас — настоящий ассет (не эмодзи).
+const COMPASS_IMG = require('../assets/images/theo/theo-phrase-compass-v1.webp');
 const STARFALL_SFX_VOLUME = 0.18;
 /** Сколько держим золотое объявление до входа в матч. */
 const STARFALL_ANNOUNCE_MS = 3200;
@@ -391,9 +394,7 @@ export default function ConstellationSearchScreen() {
           {/* Живая подсказка (голос Компаса). Иконка Компаса НАД плашкой справа,
               плашка крупная — текст не втискивается (просьба владельца). */}
           <View style={styles.hintWrap}>
-            <View style={styles.hintCompass}>
-              <Text style={styles.hintCompassIcon}>🧭</Text>
-            </View>
+            <Image source={COMPASS_IMG} style={styles.hintCompass} contentFit="contain" />
             <View style={styles.hintCard}>
               <Text style={[styles.hintTitle, { color: '#8B7BFF' }]}>
                 {SEARCH_HINTS[hintIdx].title(lang)}
@@ -669,19 +670,12 @@ const styles = StyleSheet.create({
   },
   hintCompass: {
     alignSelf: 'flex-end',
-    width: 40,
-    height: 40,
-    borderRadius: 14,
-    backgroundColor: 'rgba(139,123,255,0.18)',
-    borderWidth: 1,
-    borderColor: 'rgba(139,123,255,0.4)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-    marginBottom: -14,
+    width: 48,
+    height: 48,
+    marginRight: 8,
+    marginBottom: -16,
     zIndex: 2,
   },
-  hintCompassIcon: { fontSize: 20 },
   hintCard: {
     backgroundColor: 'rgba(12,18,44,0.86)',
     borderWidth: 1,

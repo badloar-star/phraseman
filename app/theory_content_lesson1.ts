@@ -27,7 +27,20 @@ export interface L1Block {
   formula?: string[]
   /** Испанский вариант formula, когда базовые части содержат русские слова. */
   formulaEs?: string[]
-  examples?: { en: string; ru: string; uk: string; es: string; hi?: string }[]
+  examples?: {
+    en: string
+    ru: string
+    uk: string
+    es: string
+    hi?: string
+    /**
+     * Когда en — не английская фраза, а русская метка категории (см. секцию 07),
+     * это украинский/испанский вариант той метки для главной (жирной) строки.
+     * Если не задано, движок использует en как есть (для обычных EN-примеров).
+     */
+    labelUk?: string
+    labelEs?: string
+  }[]
   fixes?: { wrong: string; right: string }[]
   drill?: L1Drill
 }
@@ -279,10 +292,10 @@ export const LESSON1_THEORY: L1Theory = {
         {
           kind: 'examples',
           examples: [
-            { en: 'Состояние человека', ru: 'как человек себя чувствует или в каком состоянии находится — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry', uk: 'як людина себе почуває або в якому стані знаходиться — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry', es: 'cómo se siente una persona o en qué estado está — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry' },
-            { en: 'Качество или оценка', ru: 'какой кто-то или что-то — important, cheap, free, serious, strong, kind, smart, broken, empty', uk: 'який хтось або щось — important, cheap, free, serious, strong, kind, smart, broken, empty', es: 'cómo es alguien o algo — important, cheap, free, serious, strong, kind, smart, broken, empty' },
-            { en: 'Место', ru: 'где кто-то или что-то находится — here, outside, inside, near', uk: 'де хтось або щось знаходиться — here, outside, inside, near', es: 'dónde está alguien o algo — here, outside, inside, near' },
-            { en: 'Ситуация или связь', ru: 'отношение, роль или общее положение дел — together, safe, friends, right, late, fine', uk: 'відношення, роль або загальний стан справ — together, safe, friends, right, late, fine', es: 'relación, papel o situación general — together, safe, friends, right, late, fine' },
+            { en: 'Состояние человека', labelUk: 'Стан людини', labelEs: 'Estado de una persona', ru: 'как человек себя чувствует или в каком состоянии находится — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry', uk: 'як людина себе почуває або в якому стані знаходиться — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry', es: 'cómo se siente una persona o en qué estado está — ready, busy, calm, happy, okay, tired, sick, sad, nervous, hungry, angry' },
+            { en: 'Качество или оценка', labelUk: 'Якість або оцінка', labelEs: 'Cualidad o valoración', ru: 'какой кто-то или что-то — important, cheap, free, serious, strong, kind, smart, broken, empty', uk: 'який хтось або щось — important, cheap, free, serious, strong, kind, smart, broken, empty', es: 'cómo es alguien o algo — important, cheap, free, serious, strong, kind, smart, broken, empty' },
+            { en: 'Место', labelUk: 'Місце', labelEs: 'Lugar', ru: 'где кто-то или что-то находится — here, outside, inside, near', uk: 'де хтось або щось знаходиться — here, outside, inside, near', es: 'dónde está alguien o algo — here, outside, inside, near' },
+            { en: 'Ситуация или связь', labelUk: 'Ситуація або зв’язок', labelEs: 'Situación o relación', ru: 'отношение, роль или общее положение дел — together, safe, friends, right, late, fine', uk: 'відношення, роль або загальний стан справ — together, safe, friends, right, late, fine', es: 'relación, papel o situación general — together, safe, friends, right, late, fine' },
           ],
         },
       ],

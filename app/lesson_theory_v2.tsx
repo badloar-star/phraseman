@@ -114,7 +114,7 @@ function adaptBlock(block: L1Block, key: ContentLang): TheoryBlock | null {
       return {
         kind: 'examples',
         examples: (block.examples ?? []).map((e) => ({
-          en: e.en,
+          en: key === 'es' ? (e.labelEs ?? e.en) : key === 'uk' ? (e.labelUk ?? e.en) : e.en,
           translation: key === 'es' ? (e.es || e.ru) : key === 'uk' ? e.uk : e.ru,
           hi: e.hi,
         })),

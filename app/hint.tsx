@@ -82,7 +82,7 @@ function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySe
         return {
           kind: 'examples',
           examples: (b.examples ?? []).map((e) => ({
-            en: e.en,
+            en: key === 'es' ? (e.labelEs ?? e.en) : key === 'uk' ? (e.labelUk ?? e.en) : e.en,
             translation: key === 'es' ? (e.es || e.ru) : key === 'uk' ? e.uk : e.ru,
             hi: e.hi,
           })),

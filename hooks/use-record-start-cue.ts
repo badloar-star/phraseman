@@ -1,5 +1,6 @@
 import { useAudioPlayer } from 'expo-audio';
 import { useCallback, useEffect } from 'react';
+import { Platform } from 'react-native';
 
 import { hapticMediumImpact } from './use-haptics';
 
@@ -40,6 +41,10 @@ export function useRecordStartCue() {
     // Tactile half of the cue: a medium impact reads as "something started",
     // distinct from the light tap used for ordinary button presses.
     void hapticMediumImpact();
+    // On Android the start chime steals audio focus / smears the first word while
+    // the recognizer warms up (same reason personal_plan_exercise gates it). The
+    // haptic above is the confirmation there; the sound only plays on iOS.
+    if (Platform.OS === 'android') return;
     try {
       player.volume = RECORD_START_VOLUME;
       player.seekTo(0);

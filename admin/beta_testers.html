@@ -235,7 +235,7 @@
       </header>
       <main>
         <div class="toolbar">
-          <input id="assign-uid" type="search" placeholder="UID, ник или email — найти и открыть">
+          <input id="assign-uid" type="search" placeholder="UID, ник или email (можно начало: ivan@) — найти">
           <button id="assign-btn" type="button" class="btn-primary">Найти и открыть</button>
           <button id="refresh" type="button">Обновить список</button>
         </div>
@@ -472,15 +472,36 @@
         const direct = await getDoc(doc(db, 'users', term));
         if (direct.exists()) { clearSearchResults(); openCard(term); return; }
 
-        // 2) собираем кандидатов по нику и по email (email — как во вкладке «Юзеры»)
+        // 2) собираем кандидатов по нику и по email.
+        // Email (как во вкладке «Юзеры») ищем в нескольких полях, без учёта регистра,
+        // с ПРЕФИКСНЫМ поиском (range-запрос): 'ivan@' найдёт 'ivan@gmail.com'.
+        // Firestore не умеет искать подстроку из середины — только точное совпадение и префикс.
+        const looksLikeEmail = term.includes('@');
+        const searches = [];
+        // По нику — только если это не явный email (у ников не бывает «@»).
+        if (!looksLikeEmail) {
+          searches.push(getDocs(query(collection(db, 'users'), where('progress.user_name', '==', term), limit(25))));
+        }
+        // Email в разных полях + нижний регистр для case-insensitive совпадения.
+        // Префиксный range: [t .. t+HI], где HI — максимальный код-поинт,
+        // чтобы 'ivan@' поймал 'ivan@gmail.com'. Точное совпадение — частный случай.
+        const HI = String.fromCharCode(0xf8ff);
+        const terms = Array.from(new Set([term, term.toLowerCase()]));
+        for (const field of ['linkedAuth.email', 'email', 'lowerEmail']) {
+          for (const t of terms) {
+            searches.push(getDocs(query(
+              collection(db, 'users'),
+              where(field, '>=', t),
+              where(field, '<=', t + HI),
+              limit(25),
+            )).catch(() => ({ docs: [] })));
+          }
+        }
         const byUid = new Map();
-        const [byName, byEmail] = await Promise.all([
-          getDocs(query(collection(db, 'users'), where('progress.user_name', '==', term), limit(25))),
-          term.includes('@')
-            ? getDocs(query(collection(db, 'users'), where('linkedAuth.email', '==', term), limit(25)))
-            : Promise.resolve({ docs: [] }),
-        ]);
-        [...byName.docs, ...byEmail.docs].forEach((d) => { if (!byUid.has(d.id)) byUid.set(d.id, candidateOf(d)); });
+        const results = await Promise.all(searches);
+        results.forEach((snap) => {
+          (snap.docs || []).forEach((d) => { if (!byUid.has(d.id)) byUid.set(d.id, candidateOf(d)); });
+        });
         const cands = Array.from(byUid.values());
 
         if (!cands.length) { toast('Не найдено по UID, нику и email: ' + term, 'err'); return; }

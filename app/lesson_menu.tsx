@@ -638,7 +638,9 @@ export default function LessonMenu() {
     }
     void (async () => {
       await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
+      // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
+      // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
+      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
     })();
   }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 

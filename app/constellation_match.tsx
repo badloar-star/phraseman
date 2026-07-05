@@ -36,10 +36,9 @@ import {
   subscribeMyConstellationPlayer,
 } from './services/constellations_db';
 import { ensureArenaAuthUid } from './user_id_policy';
-import {
-  ConstellationSkyMap,
-  CONSTELLATION_SLOT_COLORS,
-} from './constellation_sky_map';
+import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
+import { ConstellationZoomMap } from './constellation_zoom_map';
+import { starName } from './constellation_star_names';
 import { hexKey, neighborsInMap, parseHexKey, ringOf } from './constellations_hex';
 import type {
   ConstellationMatch,
@@ -359,11 +358,11 @@ export default function ConstellationMatchScreen() {
         ))}
       </View>
 
-      {/* Карта: объём нарисован внутри SVG (грани/высоты) — без RN-perspective,
-          он смещал и обрезал проекцию на устройстве. Геометрия — по aspect viewBox. */}
+      {/* Карта: объём нарисован внутри SVG (грани/высоты). Обёрнута в зум/пан
+          (2.5) — два пальца масштабируют/двигают, кнопки ＋/－/центр дублируют. */}
       <View style={styles.mapBox}>
         <View style={styles.mapFrame}>
-          <ConstellationSkyMap
+          <ConstellationZoomMap
             stars={match.stars}
             homes={match.homes}
             players={match.players}
@@ -630,12 +629,34 @@ const TargetSheet = memo(function TargetSheet({
     pl: { outer: 'Zewnętrzny pierścień', middle: 'Środkowy pierścień', inner: 'Wewnętrzny pierścień', polar: 'Gwiazda Polarna' }[ring],
   });
 
+  // Сложность звезды (пипсы 1–4): по кольцу + Сияние. outer=1 … polar=4, +Сияние.
+  const baseDiff = { outer: 1, middle: 2, inner: 3, polar: 4 }[ring];
+  const difficulty = Math.min(4, baseDiff + (star.radiance > 0 ? 1 : 0));
+  const name = starName(starKey);
+
   return (
     <View style={[sheetStyles.sheet, { backgroundColor: 'rgba(8,13,30,0.96)', borderColor: '#2A3A6A' }]}>
       <View style={sheetStyles.head}>
-        <Text style={[sheetStyles.title, { color: t.textPrimary, fontSize: f.sub + 1 }]}>
-          {isHome && owner && owner.cores === 1 ? '🔥 ' : '⭐ '}{ringName}
-        </Text>
+        <View style={{ flex: 1 }}>
+          <Text style={[sheetStyles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {isHome && owner && owner.cores === 1 ? '🔥 ' : ''}{name}
+          </Text>
+          <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>
+            {ringName}{owner ? ` · ${owner.name}` : ''}
+          </Text>
+          {/* Сложность пипсами (2.1) */}
+          <View style={sheetStyles.diffRow}>
+            {[0, 1, 2, 3].map((i) => (
+              <View
+                key={i}
+                style={[
+                  sheetStyles.pip,
+                  { backgroundColor: i < difficulty ? '#FFD166' : 'rgba(150,170,230,0.2)' },
+                ]}
+              />
+            ))}
+          </View>
+        </View>
         <TouchableOpacity onPress={onClose} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
           <Ionicons name="close" size={20} color={t.textSecond} />
         </TouchableOpacity>
@@ -1012,8 +1033,10 @@ const sheetStyles = StyleSheet.create({
     borderRadius: 20,
     padding: 16,
   },
-  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  head: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' },
   title: { fontWeight: '800' },
+  diffRow: { flexDirection: 'row', gap: 4, marginTop: 6 },
+  pip: { width: 16, height: 6, borderRadius: 3 },
   meta: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginVertical: 12 },
   chip: {
     borderWidth: 1,

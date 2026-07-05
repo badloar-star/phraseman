@@ -26,6 +26,7 @@ import Svg, {
 } from 'react-native-svg';
 import type { ConstellationMatchPlayer, ConstellationStar } from './types/constellations';
 import { allMapHexes, hexKey, parseHexKey, ringOf, type ConstellationRing, type Hex } from './constellations_hex';
+import { starName } from './constellation_star_names';
 
 /** Цвета слотов игроков — единые для карты, HUD и легенды. */
 export const CONSTELLATION_SLOT_COLORS = ['#5AC8FA', '#FF7A9E', '#B08CFF', '#FFC65C'] as const;
@@ -270,6 +271,14 @@ function SkyMapInner({
               <SvgText x={c.top[0]} y={c.top[1] + 21} fontSize={9} textAnchor="middle"
                 fill={CONSTELLATION_SLOT_COLORS[c.owner]} opacity={0.95}>
                 {'●'.repeat(Math.max(0, cores))}
+              </SvgText>
+            ) : null}
+            {/* Подпись имени (2.1): у Полярной и домов — «якорные» звёзды поля.
+                У рядовых звёзд имя показывать не будем (шум); оно есть в шторке. */}
+            {(isPolar || isHome) ? (
+              <SvgText x={c.top[0]} y={c.top[1] - (isPolar ? 20 : 15)} fontSize={8.5}
+                textAnchor="middle" fill="#C7D4F0" opacity={0.75} fontWeight="600">
+                {starName(c.key)}
               </SvgText>
             ) : null}
           </React.Fragment>

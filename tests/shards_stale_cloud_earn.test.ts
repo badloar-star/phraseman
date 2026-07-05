@@ -1,49 +1,37 @@
 // Регрессия на баг-репорт 2026-07-04 (Анастасия): «поиграла в Арене, потом сделала
-// урок — 200 осколков куда-то сдуло». Корень: applyShardDeltaToCloud при онлайне
-// строил дельту от ОБЛАЧНОГО баланса, игнорируя локальный. Если фоновая синхронизация
-// награды за победу в Арене ещё не доехала до облака (таймаут 6с / оффлайн / гонка),
-// облако отставало. Первое же начисление за урок (+1..+2) читало отставшее облако
-// (напр. 50) и возвращало 50+2 = 52 → mirrorServerShardBalanceLocal обваливал локаль
-// с 250 до 52. Потеря ~200 осколков.
+// урок — 200 осколков куда-то сдуло». Корень: прежний applyShardDeltaToCloud делал
+// клиентский read-modify-write и строил дельту от ОБЛАЧНОГО баланса. Если фоновая
+// синхронизация награды за Арену ещё не доехала (таймаут/оффлайн/гонка), облако
+// отставало, и earn за урок обваливал локаль до cloud+delta.
 //
-// Фикс: last-write-guard в applyShardDeltaToCloud. Если локальная метка НОВЕЕ облачной,
-// базой для дельты берём max(cloudShards, localBase) — облако не занижает свежую локаль.
+// K3: класс бага устранён структурно. Клиент больше не читает облако и не строит
+// дельту сам — он вызывает атомарный callable shardsApplyDelta, который в одной
+// транзакции читает АВТОРИТЕТНЫЙ серверный баланс и прибавляет дельту. Двух путей
+// записи (canonical `shards` + теневой progress.shards_balance наперегонки) больше
+// нет, поэтому «отставшего облака» в earn-пути не существует. Клиент лишь зеркалит
+// возвращённый сервером баланс.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 (global as { __DEV__?: boolean }).__DEV__ = false;
 
-// Облако отстало: shards=50 со СТАРОЙ меткой. Локаль будет 250 со СВЕЖЕЙ меткой.
-const STALE_CLOUD_UPDATED_AT = 1_000;
-const cloudUserGet = jest.fn(async () => ({
-  exists: true,
-  data: () => ({ shards: 50, shards_updated_at_ms: STALE_CLOUD_UPDATED_AT }),
-}));
-// Ловим последнюю запись в облако, чтобы проверить, что туда ушёл ПРАВИЛЬНЫЙ баланс.
-const cloudUserSet = jest.fn(async (_data?: { shards?: number }) => undefined);
-
-function makeChainableRef(path = ''): any {
-  const isUserDoc = /^users\/[^/]+$/.test(path);
-  const ref: any = {
-    __path: path,
-    collection: jest.fn((name: string) => makeChainableRef(path ? `${path}/${name}` : name)),
-    doc: jest.fn((id: string) => makeChainableRef(path ? `${path}/${id}` : id)),
-    add: jest.fn(async () => ({ id: 'log1' })),
-    set: jest.fn((data?: { shards?: number }) => (isUserDoc ? cloudUserSet(data) : Promise.resolve(undefined))),
-    get: jest.fn(() => (isUserDoc ? cloudUserGet() : Promise.resolve({ exists: false, data: () => ({}) }))),
-  };
-  return ref;
-}
-
-const mockFirestore = Object.assign(
-  jest.fn(() => ({
-    collection: jest.fn((name: string) => makeChainableRef(name)),
-    runTransaction: jest.fn(() => Promise.reject(new Error('runTransaction not used here'))),
-  })),
-  { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } },
+// Мок callable: сервер — источник истины. Возвращает пост-транзакционный баланс.
+// Тест задаёт, что «на сервере» после атомарного +delta получилось N.
+const applyDeltaResult = jest.fn();
+const callable = jest.fn((payload: { delta: number; type: string }) =>
+  Promise.resolve({ data: applyDeltaResult(payload) }),
 );
+const httpsCallable = jest.fn(() => callable);
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('@react-native-firebase/firestore', () => ({ __esModule: true, default: mockFirestore }));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable,
+}));
+jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
+jest.mock('@react-native-firebase/firestore', () => ({
+  __esModule: true,
+  default: Object.assign(jest.fn(() => ({})), { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } }),
+}));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -56,6 +44,12 @@ jest.mock('../app/storage_mutex', () => ({
   withStorageLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
 }));
 jest.mock('../app/achievements', () => ({ checkAchievements: jest.fn() }));
+jest.mock('../app/shards_delta_queue', () => ({
+  enqueueShardDelta: jest.fn(async () => undefined),
+  newShardOpId: jest.fn(() => 'op-earn-abcdef12'),
+  readShardDeltaQueue: jest.fn(async () => []),
+  removeShardDeltas: jest.fn(async () => undefined),
+}));
 
 import { addShards, getShardsBalance } from '../app/shards_system';
 
@@ -80,38 +74,47 @@ beforeEach(() => {
   });
 });
 
-describe('earn does not collapse a fresher local balance to a stale cloud one', () => {
+describe('earn mirrors the authoritative server balance (no stale-cloud collapse)', () => {
   beforeEach(() => {
-    // Локаль: 250 осколков (награда за победу в Арене уже начислена), метка СВЕЖАЯ —
-    // сильно новее облачной STALE_CLOUD_UPDATED_AT.
+    // Локаль: 250 (награда за Арену уже начислена локально), метка свежая.
     mockStorage[STORAGE_KEY] = '250';
     mockStorage[BALANCE_META_KEY] = JSON.stringify({
-      updatedAtMs: STALE_CLOUD_UPDATED_AT + 5_000_000,
+      updatedAtMs: 6_000_000,
       op: 'earn',
       reason: 'arena_win',
     });
   });
 
-  it('lesson_perfect (+2) → 252, NOT 52 (stale cloud=50 ignored because local meta is newer)', async () => {
-    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
-    expect(gained).toBe(2);
-    // Главная проверка: баланс НЕ обвалился до 52. Он = локаль(250) + награда(2).
-    await expect(getShardsBalance()).resolves.toBe(252);
-    expect(cloudUserGet).toHaveBeenCalled();
-    // В облако ушёл корректный (не отставший) баланс.
-    const setCalls = cloudUserSet.mock.calls;
-    const lastSetArg = setCalls.length > 0 ? setCalls[setCalls.length - 1][0] : undefined;
-    expect(lastSetArg?.shards).toBe(252);
-  });
-
-  it('still trusts cloud when the cloud meta is NEWER than local (legit server credit)', async () => {
-    // Облако свежее: метка новее локальной → облако авторитетно, дельта от 50.
-    cloudUserGet.mockResolvedValueOnce({
-      exists: true,
-      data: () => ({ shards: 50, shards_updated_at_ms: STALE_CLOUD_UPDATED_AT + 9_000_000 }),
+  it('server transaction returns 252 (its own 250 + 2) → local mirrors 252, NOT 52', async () => {
+    // Сервер атомарно читает СВОЙ баланс (250 — награда за Арену уже дошла в его
+    // транзакции) и прибавляет 2. Клиент зеркалит результат.
+    applyDeltaResult.mockReturnValue({
+      ok: true,
+      alreadyApplied: false,
+      insufficient: false,
+      balance: 252,
+      shardsUpdatedAtMs: 7_000_000,
     });
     const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
     expect(gained).toBe(2);
-    await expect(getShardsBalance()).resolves.toBe(52);
+    await expect(getShardsBalance()).resolves.toBe(252);
+    // Клиент вызвал callable с величиной 2 и type earn (знак ставит сервер).
+    expect(callable).toHaveBeenCalledWith(
+      expect.objectContaining({ delta: 2, type: 'earn', opId: 'op-earn-abcdef12' }),
+    );
+  });
+
+  it('idempotent replay (alreadyApplied) mirrors the server balance without double-count', async () => {
+    // Повтор с тем же opId: сервер уже применил дельту, возвращает текущий баланс.
+    applyDeltaResult.mockReturnValue({
+      ok: true,
+      alreadyApplied: true,
+      insufficient: false,
+      balance: 252,
+      shardsUpdatedAtMs: 7_000_000,
+    });
+    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
+    expect(gained).toBe(2);
+    await expect(getShardsBalance()).resolves.toBe(252);
   });
 });

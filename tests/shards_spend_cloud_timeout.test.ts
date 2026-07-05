@@ -1,44 +1,31 @@
 // Регрессия на баг content-репорта: покупка карточек за осколки виснет навсегда,
 // когда Firebase недоступен (заблокированный регион без VPN). spendShards ходит в
-// Firestore-транзакцию БЕЗ таймаута → состояние «Подождите…» держится вечно.
+// облако БЕЗ таймаута → состояние «Подождите…» держится вечно.
 //
-// Фикс: applyShardDeltaToCloud оборачивает cloud read/write в таймаут. При зависшем облаке
-// списание уходит в локальную ветку — покупка завершается, а синк догоняет в фоне.
+// K3: единственная точка серверной записи — callable shardsApplyDelta (атомарная
+// транзакция + идемпотентность). applyShardDeltaToCloud оборачивает вызов callable
+// в таймаут: при зависшем Firebase списание уходит в локальную ветку — покупка
+// завершается, дельта кладётся в офлайн-очередь и догоняет сервер позже.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // В RN-рантайме __DEV__ всегда определён; в jest — нет. Задаём явно (как релизный
 // билд), иначе `if (__DEV__) console.warn` внутри catch-блоков бросает ReferenceError.
 (global as { __DEV__?: boolean }).__DEV__ = false;
 
-// Никогда не резолвящийся промис = заблокированный Firebase: запрос ушёл, ответа нет.
-const hangingGet = jest.fn(() => new Promise(() => {}));
-const forbiddenTransaction = jest.fn(() => Promise.reject(new Error('runTransaction must not be used for shard timeout fallback')));
-
-// Полный chainable-мок Firestore: любой .collection()/.doc() возвращает объект с теми же
-// методами, а .add()/.set()/.get() резолвятся пусто. Так тест проверяет ИМЕННО таймаут
-// транзакции, а не спотыкается о неполный мок (например на фоновом логе shard_log).
-function makeChainableRef(path = ''): any {
-  const ref: any = {
-    __path: path,
-    collection: jest.fn((name: string) => makeChainableRef(path ? `${path}/${name}` : name)),
-    doc: jest.fn((id: string) => makeChainableRef(path ? `${path}/${id}` : id)),
-    add: jest.fn(async () => ({ id: 'log1' })),
-    set: jest.fn(async () => undefined),
-    get: jest.fn(() => (/^users\/[^/]+$/.test(path) ? hangingGet() : Promise.resolve({ exists: false, data: () => ({}) }))),
-  };
-  return ref;
-}
-
-const mockFirestore = Object.assign(
-  jest.fn(() => ({
-    collection: jest.fn((name: string) => makeChainableRef(name)),
-    runTransaction: forbiddenTransaction,
-  })),
-  { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } },
-);
+// Никогда не резолвящийся callable = заблокированный Firebase: запрос ушёл, ответа нет.
+const hangingCallable = jest.fn(() => new Promise(() => {}));
+const httpsCallable = jest.fn(() => hangingCallable);
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('@react-native-firebase/firestore', () => ({ __esModule: true, default: mockFirestore }));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable,
+}));
+jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
+jest.mock('@react-native-firebase/firestore', () => ({
+  __esModule: true,
+  default: Object.assign(jest.fn(() => ({})), { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } }),
+}));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
@@ -47,12 +34,18 @@ jest.mock('../app/lifetime_profile_stats', () => ({
   bumpLifetimeShardsEarned: jest.fn(),
   bumpLifetimeShardsSpent: jest.fn(),
 }));
-// withStorageLock просто исполняет переданную функцию (без реального мьютекса в тесте).
 jest.mock('../app/storage_mutex', () => ({
   withStorageLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
 }));
-// Динамический import('./achievements') после списания — мокаем, чтобы не тянуть реальный модуль.
 jest.mock('../app/achievements', () => ({ checkAchievements: jest.fn() }));
+// Офлайн-очередь мокаем: проверяем, что зависшая операция ставится в неё для сверки.
+const enqueueShardDelta = jest.fn(async () => undefined);
+jest.mock('../app/shards_delta_queue', () => ({
+  enqueueShardDelta,
+  newShardOpId: jest.fn(() => 'op-timeout-12345678'),
+  readShardDeltaQueue: jest.fn(async () => []),
+  removeShardDeltas: jest.fn(async () => undefined),
+}));
 
 import { getShardsBalance, spendShards } from '../app/shards_system';
 
@@ -85,16 +78,17 @@ describe('spendShards when Firebase is unreachable (blocked region)', () => {
 
     const spendPromise = spendShards(30, 'card_pack');
 
-    // Прокручиваем таймеры за оба порога: сначала зависшая транзакция списания (6с),
-    // затем зависший фоновый синк локального баланса (ещё 6с) — оба теперь с таймаутом.
-    await jest.advanceTimersByTimeAsync(7000);
+    // Прокручиваем таймер за порог зависшего callable (6с) → timeout fallback.
     await jest.advanceTimersByTimeAsync(7000);
 
     await expect(spendPromise).resolves.toBe(true);
     // Списание прошло локально: 50 − 30 = 20.
     await expect(getShardsBalance()).resolves.toBe(20);
-    // Cloud read действительно запускался (а не был пропущен), завис и ушёл в timeout fallback.
-    expect(hangingGet).toHaveBeenCalled();
-    expect(forbiddenTransaction).not.toHaveBeenCalled();
+    // Callable действительно вызывался (а не был пропущен), завис и ушёл в timeout.
+    expect(hangingCallable).toHaveBeenCalled();
+    // Дельта поставлена в офлайн-очередь для последующей идемпотентной сверки.
+    expect(enqueueShardDelta).toHaveBeenCalledWith(
+      expect.objectContaining({ opId: 'op-timeout-12345678', delta: 30, type: 'spend' }),
+    );
   }, 30000);
 });

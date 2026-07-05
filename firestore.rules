@@ -61,6 +61,10 @@ service cloud.firestore {
     // Осколки (shards) пишутся только Admin SDK через Cloud Functions.
     // Клиент НЕ должен менять баланс напрямую — обход возможен через updateDoc({shards: N}).
     // Admin SDK игнорирует эти правила, поэтому блокировка не затрагивает CF-логику.
+    // K3 (аудит 2026-07-04): единая точка записи баланса — callable shardsApplyDelta
+    // (runTransaction + идемпотентность по opId). Прежний клиентский read-modify-write
+    // был нетранзакционным (TOCTOU) и вдобавок падал на этом правиле — теперь earn/spend
+    // проходят через сервер, а это правило гарантирует, что клиент не пишет shards в обход.
     function hasNoShardWrites() {
       return isAdmin()
         || !request.resource.data.diff(resource.data).affectedKeys().hasAny([

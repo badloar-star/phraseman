@@ -27,7 +27,7 @@ import {
   LOYALTY_GIFT_CLAIMED_KEY,
 } from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { resumePendingDailyTasksAllShardsClaims } from './shards_system';
+import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
 import { ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS } from './account_delete_timeout';
@@ -1658,6 +1658,8 @@ async function doSyncToCloud(): Promise<void> {
   try {
     await resumePendingDailyTasksAllShardsClaims().catch(() => {});
     await resumePendingReportReplyShardClaims().catch(() => {});
+    // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
+    await resumePendingShardDeltas().catch(() => {});
     await repairDevSeededStreakInStorage();
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};

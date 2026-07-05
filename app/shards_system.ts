@@ -10,6 +10,12 @@ import { withStorageLock } from './storage_mutex';
 import { getCanonicalUserId } from './user_id_policy';
 import { emitAppEvent } from './events';
 import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from './lifetime_profile_stats';
+import {
+  enqueueShardDelta,
+  newShardOpId,
+  readShardDeltaQueue,
+  removeShardDeltas,
+} from './shards_delta_queue';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
@@ -382,60 +388,84 @@ const runWithTimeout = async <T>(promise: Promise<T>, ms: number): Promise<T> =>
   }
 };
 
+type ShardsApplyDeltaResponse = {
+  ok: boolean;
+  alreadyApplied: boolean;
+  insufficient: boolean;
+  balance: number;
+  shardsUpdatedAtMs?: number | null;
+};
+
+// K3: единственная точка серверной записи баланса — callable shardsApplyDelta
+// (runTransaction под Admin SDK, обходит hasNoShardWrites; идемпотентность по
+// opId). Заменяет прежний нетранзакционный read-modify-write, который терял
+// дельту при гонке двух устройств (TOCTOU) и вдобавок писал `shards` напрямую —
+// а это заблокировано firestore.rules, т.е. запись всегда падала латентно.
+const callShardsApplyDelta = async (
+  opId: string,
+  delta: number,
+  type: 'earn' | 'spend',
+  reason: string,
+  stableId: string,
+): Promise<ShardsApplyDeltaResponse> => {
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
+    getFunctions: (...args: unknown[]) => unknown;
+    httpsCallable: (
+      fns: unknown,
+      name: string,
+    ) => (data: unknown) => Promise<{ data: ShardsApplyDeltaResponse }>;
+  };
+  const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
+  const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'shardsApplyDelta');
+  const cfResult = await cfCall({ opId, delta, type, reason, stableId });
+  return cfResult.data;
+};
+
+/**
+ * Атомарно применить дельту осколков на сервере (earn: delta>0, spend: delta<0).
+ * opId делает вызов идемпотентным — повтор (ретрай/офлайн-очередь) с тем же opId
+ * не удвоит дельту.
+ *
+ * Совместимо по форме результата с прежним applyShardDeltaToCloud, поэтому все
+ * вызывающие (addShards / addShardsRaw / spendShards) не менялись: 'unavailable'
+ * уводит в локальную оптимистичную ветку (+ enqueue для последующей сверки),
+ * 'insufficient' сверяет локаль с облаком.
+ */
 const applyShardDeltaToCloud = async (
   delta: number,
   type: 'earn' | 'spend',
   reason: string,
-  localFallbackBase: number,
-  localBaseMeta?: ShardBalanceMeta | null,
-): Promise<{ ok: true; balance: number; balanceBefore: number; updatedAtMs: number } | { ok: false; reason: 'unavailable' } | { ok: false; reason: 'insufficient'; cloudBalance: number }> => {
+  _localFallbackBase: number,
+  _localBaseMeta?: ShardBalanceMeta | null,
+  opIdOverride?: string,
+): Promise<
+  | { ok: true; balance: number; balanceBefore: number; updatedAtMs: number; opId: string }
+  | { ok: false; reason: 'unavailable'; opId: string }
+  | { ok: false; reason: 'insufficient'; cloudBalance: number; opId: string }
+> => {
+  const opId = opIdOverride ?? newShardOpId();
   try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'unavailable' };
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'unavailable', opId };
     const uid = await getCanonicalUserId();
-    if (!uid) return { ok: false, reason: 'unavailable' };
-    const db = firestore();
-    const userRef = db.collection('users').doc(uid);
-    const snap = await runWithTimeout(userRef.get(), SHARD_CLOUD_TX_TIMEOUT_MS);
-    const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
-    const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
-    const localFloor = Math.max(0, Math.floor(localFallbackBase));
-    // Last-write-guard: облако авторитетно ТОЛЬКО если его метка не старше локальной.
-    // Если локальная операция новее облачной (фоновый sync ещё не доехал —
-    // напр. награда за победу в Арене), нельзя строить дельту от отставшего
-    // облачного баланса: это обвалит кошелёк (см. пропажу ~200 осколков после
-    // «Арена → урок», аудит 2026-07-04). В этом случае берём больший из двух —
-    // локаль не занижаем, но и не теряем реальные серверные начисления.
-    const localMetaIsNewer = localBaseMeta != null
-      && (cloudUpdatedAt === null || localBaseMeta.updatedAtMs > cloudUpdatedAt);
-    const base = cloudShards === null
-      ? localFloor
-      : (localMetaIsNewer ? Math.max(cloudShards, localFloor) : cloudShards);
-    // Метка результата должна быть строго новее локальной базы, иначе
-    // timestamp-guard в replaceShardsBalanceLocal отвергнет зеркалирование и
-    // локаль разойдётся с облаком. В норме Date.now() и так новее локальной
-    // метки прошлой операции; страхуемся на случай гонки/скачка часов.
-    const updatedAtMs = localMetaIsNewer && localBaseMeta
-      ? Math.max(Date.now(), localBaseMeta.updatedAtMs + 1)
-      : Date.now();
-    const next = base + delta;
-    if (next < 0) {
-      // Облако — источник истины. Возвращаем фактический облачный баланс, чтобы
-      // вызывающий мог сверить локальный (возможно завышенный) баланс с реальным.
-      return { ok: false, reason: 'insufficient', cloudBalance: base };
-    }
-    await runWithTimeout(
-      userRef.set({
-        shards: next,
-        shards_updated_at_ms: updatedAtMs,
-        shards_updated_op: type,
-        shards_updated_reason: reason,
-      }, { merge: true }),
+    if (!uid) return { ok: false, reason: 'unavailable', opId };
+    // delta приходит со знаком (spend отрицательна). Callable принимает величину +
+    // type, знак ставит сервер сам.
+    const magnitude = Math.abs(Math.trunc(delta));
+    if (magnitude <= 0) return { ok: false, reason: 'unavailable', opId };
+    const data = await runWithTimeout(
+      callShardsApplyDelta(opId, magnitude, type, reason, uid),
       SHARD_CLOUD_TX_TIMEOUT_MS,
     );
-    const balanceBefore = next - delta;
-    return { ok: true, balance: next, balanceBefore, updatedAtMs };
+    if (data.insufficient) {
+      return { ok: false, reason: 'insufficient', cloudBalance: Math.max(0, Math.floor(Number(data.balance) || 0)), opId };
+    }
+    if (!data.ok) return { ok: false, reason: 'unavailable', opId };
+    const balance = Math.max(0, Math.floor(Number(data.balance) || 0));
+    const updatedAtMs = parseUpdatedAtMs(data.shardsUpdatedAtMs) ?? Date.now();
+    const balanceBefore = data.alreadyApplied ? balance : balance - delta;
+    return { ok: true, balance, balanceBefore, updatedAtMs, opId };
   } catch {
-    return { ok: false, reason: 'unavailable' };
+    return { ok: false, reason: 'unavailable', opId };
   }
 };
 
@@ -477,7 +507,9 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     });
     setShardsBalanceMemory(newBalance);
     void bumpLifetimeShardsEarned(amount);
-    await syncShardsToCloud(newBalance, meta);
+    // K3: сервер недоступен — дельта применена локально, серверную сверку кладём
+    // в идемпотентную очередь (тот же opId → без удвоения при ретрае).
+    await enqueuePendingShardDelta(cloudApplied.opId, amount, 'earn', source);
     logShardTransaction('earn', amount, source, newBalance, newBalance - amount);
     await emitShardsBalanceUpdated(newBalance, meta);
     if (!opts?.suppressEarnEvent) {
@@ -488,6 +520,25 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     DebugLogger.error('shards_system.ts:addShards', error, 'warning');
     return 0;
   }
+};
+
+/** Best-effort постановка неотправленной дельты в очередь серверной сверки (K3). */
+const enqueuePendingShardDelta = async (
+  opId: string,
+  amount: number,
+  type: 'earn' | 'spend',
+  reason: string,
+): Promise<void> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  const magnitude = Math.abs(Math.trunc(amount));
+  if (magnitude <= 0) return;
+  await enqueueShardDelta({
+    opId,
+    delta: magnitude,
+    type,
+    reason,
+    createdAtMs: Date.now(),
+  }).catch(() => {});
 };
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
@@ -738,7 +789,11 @@ export const addShardsRaw = async (
         await bumpStorePurchasedShardsTotal(amount);
       }
       void bumpLifetimeShardsEarned(amount);
-      void syncShardsToCloud(newBalance, meta);
+      // K3: skipServerAwait — мгновенный UI без ожидания Firestore. Дельту в
+      // идемпотентную очередь и запускаем фоновую сверку (атомарный callable),
+      // вместо прежнего нетранзакционного syncShardsToCloud.
+      await enqueuePendingShardDelta(newShardOpId(), amount, 'earn', logReason);
+      void resumePendingShardDeltas();
       void logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
       await emitShardsBalanceUpdated(newBalance, meta);
       if (options.showEarnModal) {
@@ -778,16 +833,9 @@ export const addShardsRaw = async (
       await bumpStorePurchasedShardsTotal(amount);
     }
     void bumpLifetimeShardsEarned(amount);
-    const runServerWrites = (): void => {
-      void syncShardsToCloud(newBalance, meta);
-      void logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
-    };
-    if (options?.skipServerAwait) {
-      runServerWrites();
-    } else {
-      await syncShardsToCloud(newBalance, meta);
-      logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
-    }
+    // K3: сервер недоступен — ставим дельту в идемпотентную очередь сверки.
+    await enqueuePendingShardDelta(cloudApplied.opId, amount, 'earn', logReason);
+    logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
     await emitShardsBalanceUpdated(newBalance, meta);
     if (options?.showEarnModal) {
       const k = options.earnModalKey ?? logReason ?? 'generic_raw';
@@ -855,14 +903,13 @@ export const spendShards = async (
     setShardsBalanceMemory(newBalance);
     await consumeStorePurchasedShardsOnSpend(spendAmount);
     void bumpLifetimeShardsSpent(spendAmount);
-    const runServerWrites = (): void => {
-      void syncShardsToCloud(newBalance, meta);
-      void logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
-    };
+    // K3: сервер недоступен — списание применено локально, серверную сверку в
+    // идемпотентную очередь (тот же opId → без двойного списания при ретрае).
+    await enqueuePendingShardDelta(cloudApplied.opId, spendAmount, 'spend', reason);
     if (options?.skipServerAwait) {
-      runServerWrites();
+      void resumePendingShardDeltas();
+      void logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
     } else {
-      await syncShardsToCloud(newBalance, meta);
       logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
     }
     await emitShardsBalanceUpdated(newBalance, meta);
@@ -1119,6 +1166,69 @@ export const forceSyncShardsToCloud = async (): Promise<void> => {
   } catch (e) {
     if (__DEV__) console.warn('[shards_system] forceSyncShardsToCloud', e);
   }
+};
+
+// ── K3: проиграть офлайн-очередь дельт осколков ────────────────────────────
+// Каждую неотправленную дельту повторяем через идемпотентный callable
+// shardsApplyDelta (тот же opId → сервер не удвоит). Успешно подтверждённые
+// (или уже применённые) убираем из очереди и зеркалим серверный баланс локально.
+// Вызывается при старте (cloud_sync boot) и после skipServerAwait-операций.
+let resumeShardDeltasInFlight: Promise<{ resolved: number; pending: number }> | null = null;
+
+export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pending: number }> => {
+  if (resumeShardDeltasInFlight) return resumeShardDeltasInFlight;
+  resumeShardDeltasInFlight = (async () => {
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { resolved: 0, pending: 0 };
+    try {
+      const queue = await readShardDeltaQueue();
+      if (queue.length === 0) return { resolved: 0, pending: 0 };
+      const uid = await getCanonicalUserId().catch(() => null);
+      if (!uid) return { resolved: 0, pending: queue.length };
+      const confirmed: string[] = [];
+      let latestBalance: number | null = null;
+      let latestUpdatedAtMs = 0;
+      let pending = 0;
+      for (const entry of queue) {
+        try {
+          const data = await runWithTimeout(
+            callShardsApplyDelta(entry.opId, entry.delta, entry.type, entry.reason, uid),
+            SHARD_CLOUD_TX_TIMEOUT_MS,
+          );
+          // insufficient на spend: серверу не хватило (баланс уже был списан другим
+          // путём / рассинхрон). Операцию всё равно снимаем — повторять её нет
+          // смысла, а loadShardsFromCloud приведёт локаль к облаку.
+          if (data.ok || data.insufficient) {
+            confirmed.push(entry.opId);
+            const balance = Math.max(0, Math.floor(Number(data.balance) || 0));
+            const upd = parseUpdatedAtMs(data.shardsUpdatedAtMs) ?? 0;
+            if (upd >= latestUpdatedAtMs) {
+              latestUpdatedAtMs = upd;
+              latestBalance = balance;
+            }
+          } else {
+            pending += 1;
+          }
+        } catch {
+          pending += 1;
+        }
+      }
+      if (confirmed.length > 0) await removeShardDeltas(confirmed);
+      if (latestBalance !== null) {
+        await replaceShardsBalanceLocal(latestBalance, {
+          updatedAtMs: latestUpdatedAtMs || Date.now(),
+          op: 'replace',
+          reason: 'shard_delta_queue_reconcile',
+        }).catch(() => {});
+      }
+      return { resolved: confirmed.length, pending };
+    } catch (error) {
+      DebugLogger.error('shards_system.ts:resumePendingShardDeltas', error, 'warning');
+      return { resolved: 0, pending: 0 };
+    } finally {
+      resumeShardDeltasInFlight = null;
+    }
+  })();
+  return resumeShardDeltasInFlight;
 };
 
 // ── Загрузить осколки из облака (при первом входе / смене устройства) ─────

@@ -6,6 +6,30 @@ jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({})),
   httpsCallable: jest.fn((_functions, name: string) => {
+    // K3: shardsApplyDelta симулирует серверную атомарную транзакцию над
+    // fs.__testState.userShards — единственный источник истины. Клиент присылает
+    // положительную величину + type; знак ставит «сервер».
+    if (name === 'shardsApplyDelta') {
+      return jest.fn(async (payload: { delta: number; type: 'earn' | 'spend'; opId: string }) => {
+        const fs = require('@react-native-firebase/firestore').default as any;
+        fs.__testState.appliedOpIds = fs.__testState.appliedOpIds || new Set<string>();
+        const current = fs.__testState.userShards ?? 0;
+        if (fs.__testState.appliedOpIds.has(payload.opId)) {
+          return { data: { ok: true, alreadyApplied: true, insufficient: false, balance: current, shardsUpdatedAtMs: fs.__testState.userShardsUpdatedAtMs } };
+        }
+        const signed = payload.type === 'earn' ? payload.delta : -payload.delta;
+        const next = current + signed;
+        if (next < 0) {
+          return { data: { ok: false, alreadyApplied: false, insufficient: true, balance: current, shardsUpdatedAtMs: fs.__testState.userShardsUpdatedAtMs } };
+        }
+        const shardsUpdatedAtMs = Date.now();
+        fs.__testState.appliedOpIds.add(payload.opId);
+        fs.__testState.userShards = next;
+        fs.__testState.userShardsUpdatedAtMs = shardsUpdatedAtMs;
+        fs.__testState.userShardsUpdatedOp = payload.type;
+        return { data: { ok: true, alreadyApplied: false, insufficient: false, balance: next, shardsUpdatedAtMs } };
+      });
+    }
     if (name !== 'dailyTasksAllShardsClaim') {
       return jest.fn(async () => ({ data: {} }));
     }
@@ -319,49 +343,35 @@ describe('addShardsRaw local-first mode', () => {
   });
 });
 
-describe('core shard cloud mirror freshness', () => {
-  it('does not let an older cloud earn response lower a newer local wallet', async () => {
+describe('core shard cloud mirror: server transaction is authoritative (K3)', () => {
+  // K3: прежний «стале-облако vs свежая локаль» рассинхрон устранён структурно.
+  // Нет двух путей записи (canonical `shards` + теневой progress.shards_balance
+  // наперегонки) — earn/spend идут ЕДИНОЙ атомарной транзакцией shardsApplyDelta.
+  // Сервер читает свой баланс и прибавляет дельту; клиент зеркалит результат.
+  // Прежний client-side max(cloud, local)-guard больше не нужен и не участвует.
+  it('earn applies the delta atomically on the server balance and mirrors it locally', async () => {
     const fs = firestore as any;
     fs.__testState.userDocExists = true;
-    // Облако отстало: 10 БЕЗ метки (фоновый sync свежей награды ещё не доехал).
-    fs.__testState.userShards = 10;
-
-    // Локаль свежее: 80 с явно новой меткой.
+    // Серверный (авторитетный) баланс = 80. Локальный кэш неважен — сервер решает.
+    fs.__testState.userShards = 80;
     mockStorage.shards_balance = '80';
-    mockStorage.shards_balance_meta_v1 = JSON.stringify({
-      updatedAtMs: 9_000_000_000_000,
-      op: 'earn',
-      reason: 'newer_local_reward',
-    });
 
     await expect(addShardsRaw(2, 'achievement:test')).resolves.toBe(2);
 
-    // Last-write-guard: локаль новее → база = max(cloud 10, local 80) = 80.
-    // Начисляем +2 → 82. Отставшее облако НЕ обваливает кошелёк до 12.
-    // Облако и локаль сходятся на 82.
+    // Транзакция: 80 + 2 = 82. Локаль зеркалит.
     expect(fs.__testState.userShards).toBe(82);
     expect(mockStorage.shards_balance).toBe('82');
   });
 
-  it('does not let an older cloud spend response lower a newer local wallet', async () => {
+  it('spend applies the delta atomically on the server balance and mirrors it locally', async () => {
     const fs = firestore as any;
     fs.__testState.userDocExists = true;
-    // Облако отстало: 50 БЕЗ метки (фоновый sync свежей награды ещё не доехал).
-    fs.__testState.userShards = 50;
-
-    // Локаль свежее: 80 с явно новой меткой (напр. только что начислена награда).
+    fs.__testState.userShards = 80;
     mockStorage.shards_balance = '80';
-    mockStorage.shards_balance_meta_v1 = JSON.stringify({
-      updatedAtMs: 9_000_000_000_000,
-      op: 'earn',
-      reason: 'newer_local_reward',
-    });
 
     await expect(spendShards(10, 'card_pack')).resolves.toBe(true);
 
-    // Last-write-guard: локаль новее → база = max(cloud 50, local 80) = 80.
-    // Списываем 10 от 80 → 70. Отставшее облако НЕ занижает кошелёк до 40.
-    // Облако и локаль сходятся на 70 (никакого рассинхрона 40/80).
+    // Транзакция: 80 − 10 = 70. Локаль зеркалит.
     expect(fs.__testState.userShards).toBe(70);
     expect(mockStorage.shards_balance).toBe('70');
   });

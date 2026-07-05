@@ -20,6 +20,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import Animated, {
+  Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
@@ -80,6 +83,8 @@ export default function ConstellationMatchScreen() {
   const [flashKey, setFlashKey] = useState<string | null>(null);
   const [toast, setToast] = useState('');
   const [exitAsk, setExitAsk] = useState(false);
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const countdownDoneRef = useRef(false);
   const navigatedRef = useRef(false);
   const prevRoundRef = useRef(0);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -107,6 +112,29 @@ export default function ConstellationMatchScreen() {
     const unsubMe = subscribeMyConstellationPlayer(matchId, uid, setMe);
     return () => { unsubMatch(); unsubMe(); };
   }, [matchId, uid]);
+
+  // Отсчёт 3-2-1 перед первым раундом — задаёт ритм и «привлекает внимание».
+  // Один раз при первом появлении активного матча.
+  useEffect(() => {
+    if (countdownDoneRef.current || !match || match.stage !== 'active') return;
+    countdownDoneRef.current = true;
+    let n = 3;
+    setCountdown(n);
+    hapticMediumImpact();
+    const id = setInterval(() => {
+      n -= 1;
+      if (n <= 0) {
+        clearInterval(id);
+        setCountdown(0); // «GO!»
+        hapticSuccess();
+        setTimeout(() => setCountdown(null), 700);
+      } else {
+        setCountdown(n);
+        hapticMediumImpact();
+      }
+    }, 850);
+    return () => clearInterval(id);
+  }, [match]);
 
   // Секундный тик дедлайна фазы (гейт фокусом, очистка — owner-контракт).
   useEffect(() => {
@@ -321,6 +349,7 @@ export default function ConstellationMatchScreen() {
       <ConstellationStarfield count={38} />
 
       {/* HUD: выход, раунд, таймер фазы, фаза */}
+      {/* (countdown-оверлей ниже, поверх всего) */}
       <View style={[styles.hud, { paddingTop: insets.top + 8 }]}>
         <TouchableOpacity
           testID="constellation-match-exit"
@@ -400,6 +429,7 @@ export default function ConstellationMatchScreen() {
           isFalling={iAmFalling}
           secondsLeft={secondsLeft}
           phaseTotalSec={isChoose ? 12 : 38}
+          deadlineMs={match.phaseDeadlineAt}
         />
       ) : null}
 
@@ -585,6 +615,9 @@ export default function ConstellationMatchScreen() {
         </View>
       ) : null}
 
+      {/* Отсчёт 3-2-1 перед игрой — пульсирующий, привлекает внимание */}
+      {countdown !== null ? <RoundCountdown value={countdown} lang={lang} /> : null}
+
       {/* Тост ошибки сети (0.5) */}
       {toast ? (
         <View style={[styles.toast, { bottom: insets.bottom + 90 }]} pointerEvents="none">
@@ -642,6 +675,33 @@ export default function ConstellationMatchScreen() {
 
 // ── Баннер фазы + кольцевой таймер (2.2/2.3) ─────────────────────────────────
 
+// ── Отсчёт 3-2-1 перед игрой ─────────────────────────────────────────────────
+
+const RoundCountdown = memo(function RoundCountdown({ value, lang }: { value: number; lang: Lang }) {
+  // Каждая цифра «влетает» с масштабом и гаснет — пульсирующий ритм.
+  const s = useSharedValue(0.4);
+  useEffect(() => {
+    s.value = 0.4;
+    s.value = withTiming(1, { duration: 300, easing: Easing.out(Easing.back(2)) });
+  }, [value, s]);
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: s.value }],
+    opacity: Math.min(1, s.value + 0.2),
+  }));
+  const isGo = value === 0;
+  const goText = triLang(lang, {
+    ru: 'В БОЙ!', uk: 'В БІЙ!', es: '¡YA!', 'pt-BR': 'JÁ!',
+    vi: 'BẮT ĐẦU!', id: 'MULAI!', tr: 'BAŞLA!', pl: 'START!',
+  });
+  return (
+    <View style={styles.cdOverlay} pointerEvents="none">
+      <Animated.Text style={[styles.cdText, animStyle, isGo ? styles.cdGo : null]}>
+        {isGo ? goText : String(value)}
+      </Animated.Text>
+    </View>
+  );
+});
+
 interface PhaseBannerProps {
   lang: Lang;
   isChoose: boolean;
@@ -649,17 +709,33 @@ interface PhaseBannerProps {
   isFalling: boolean;
   secondsLeft: number;
   phaseTotalSec: number;
+  deadlineMs: number;
 }
 
 const RING_R = 20;
 const RING_C = 2 * Math.PI * RING_R;
+const AnimatedRingCircle = Animated.createAnimatedComponent(Circle);
 
 const PhaseBanner = memo(function PhaseBanner({
-  lang, isChoose, isDuel, isFalling, secondsLeft, phaseTotalSec,
+  lang, isChoose, isDuel, isFalling, secondsLeft, phaseTotalSec, deadlineMs,
 }: PhaseBannerProps) {
-  const frac = Math.max(0, Math.min(1, secondsLeft / Math.max(1, phaseTotalSec)));
   const low = secondsLeft <= 5;
   const ringColor = low ? '#FF6B8A' : isChoose ? '#8B7BFF' : '#F6A93B';
+
+  // Плавное кольцо таймера (жалоба «рывками»): анимируем непрерывно от текущей
+  // доли до 0 за оставшееся время, а не скачками раз в секунду от secondsLeft.
+  const ringProg = useSharedValue(1);
+  useEffect(() => {
+    const remainMs = Math.max(0, deadlineMs - Date.now());
+    const total = Math.max(1, phaseTotalSec * 1000);
+    ringProg.value = Math.max(0, Math.min(1, remainMs / total));
+    if (remainMs > 0) {
+      ringProg.value = withTiming(0, { duration: remainMs, easing: Easing.linear });
+    }
+  }, [deadlineMs, phaseTotalSec, ringProg]);
+  const ringAnimProps = useAnimatedProps(() => ({
+    strokeDashoffset: RING_C * (1 - ringProg.value),
+  }));
 
   const label = isFalling
     ? triLang(lang, {
@@ -711,10 +787,10 @@ const PhaseBanner = memo(function PhaseBanner({
         <View style={styles.bannerTimer}>
           <Svg width={44} height={44}>
             <Circle cx={22} cy={22} r={RING_R} fill="none" stroke="rgba(150,170,230,0.15)" strokeWidth={4} />
-            <Circle
+            <AnimatedRingCircle
               cx={22} cy={22} r={RING_R} fill="none" stroke={ringColor} strokeWidth={4}
               strokeLinecap="round" strokeDasharray={RING_C}
-              strokeDashoffset={RING_C * (1 - frac)}
+              animatedProps={ringAnimProps}
               transform="rotate(-90 22 22)"
             />
           </Svg>
@@ -988,6 +1064,22 @@ const QuizOverlay = memo(function QuizOverlay({
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  cdOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(4,7,18,0.55)',
+    zIndex: 100,
+  },
+  cdText: {
+    fontSize: 96,
+    fontWeight: '900',
+    color: '#EAF2FF',
+    textShadowColor: 'rgba(139,123,255,0.7)',
+    textShadowRadius: 30,
+    textShadowOffset: { width: 0, height: 0 },
+  },
+  cdGo: { fontSize: 58, color: '#FFD166', letterSpacing: 2 },
   hud: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -27909,9 +27909,12 @@
       const desc = escapeHtml(r.description || '');
       const benefit = escapeHtml(r.benefit || '');
       const date = escapeHtml(r.createdAt ? String(r.createdAt).slice(0, 10) : '—');
-      const uShort = r.uid ? escapeHtml(String(r.uid).slice(-8)) : '—';
-      const uName = escapeHtml(r.userName || '?');
-      const plat = escapeHtml(r.platform || '—');
+      const uidFull = r.uid ? String(r.uid).trim() : '';
+      const uidFullEsc = escapeHtml(uidFull);
+      const uShort = uidFull ? escapeHtml(uidFull.slice(-8)) : '—';
+      const cachedU = uidFull ? (window._users || []).find(u => u.uid === uidFull) : null;
+      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || '?');
+      const plat = escapeHtml(r.platform || (cachedU && cachedU.platform) || '—');
       const id = r.id;
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '';
       const langLbl = escapeHtml(ideaLangLabel(r.lang));
@@ -27937,7 +27940,7 @@
             <span style="font-size:18px">💡</span>
             <div style="flex:1">
               <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
-              <div style="color:#666;font-size:11px">${uName} · uid ${uShort} · ${plat} · ${date}</div>
+              <div style="color:#666;font-size:11px">${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px">${uName} · uid ${uShort}</button>` : `${uName} · uid ${uShort}`} · ${plat} · ${date}</div>
             </div>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
@@ -27960,6 +27963,13 @@
     });
     list.querySelectorAll('button[data-idea-tone]').forEach(btn => {
       btn.addEventListener('click', () => setIdeaTone(btn.dataset.ideaTone));
+    });
+    list.querySelectorAll('button.idea-author-open').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const uid = btn.getAttribute('data-open');
+        if (uid) void loadUserToCacheAndOpen(uid);
+      });
     });
     // Проставить бейджи уже заданных тонов (при перерисовке списка).
     list.querySelectorAll('span[data-idea-tone-badge]').forEach(span => {
@@ -28117,9 +28127,12 @@
       const benefit = escapeHtml(r.benefit || '');
       const createdDate = escapeHtml(r.createdAt ? String(r.createdAt).slice(0, 10) : '—');
       const decidedDate = escapeHtml(r.decidedAtIso ? String(r.decidedAtIso).slice(0, 10) : '—');
-      const uShort = r.uid ? escapeHtml(String(r.uid).slice(-8)) : '—';
-      const uName = escapeHtml(r.userName || '?');
-      const plat = escapeHtml(r.platform || '—');
+      const uidFull = r.uid ? String(r.uid).trim() : '';
+      const uidFullEsc = escapeHtml(uidFull);
+      const uShort = uidFull ? escapeHtml(uidFull.slice(-8)) : '—';
+      const cachedU = uidFull ? (window._users || []).find(u => u.uid === uidFull) : null;
+      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || '?');
+      const plat = escapeHtml(r.platform || (cachedU && cachedU.platform) || '—');
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '—';
       // Точный текст, который ушёл пользователю в модалку (decisionMessageRu).
       const sentMsg = escapeHtml(String(r.decisionMessageRu || '').trim());
@@ -28134,7 +28147,7 @@
             <span style="font-size:18px">${approved ? '✅' : '✖️'}</span>
             <div style="flex:1">
               <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
-              <div style="color:#666;font-size:11px">${uName} · uid ${uShort} · ${plat} · создана ${createdDate}</div>
+              <div style="color:#666;font-size:11px">${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px">${uName} · uid ${uShort}</button>` : `${uName} · uid ${uShort}`} · ${plat} · создана ${createdDate}</div>
             </div>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
             <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
@@ -28152,6 +28165,14 @@
             : `<div style="margin-top:8px;font-size:11px;color:#6b7280;font-style:italic">Отправлен стандартный текст (админ не переопределял).</div>`}
         </div>`;
     }).join('');
+
+    list.querySelectorAll('button.idea-author-open').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const uid = btn.getAttribute('data-open');
+        if (uid) void loadUserToCacheAndOpen(uid);
+      });
+    });
   }
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────

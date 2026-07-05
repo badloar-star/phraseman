@@ -45,11 +45,11 @@ describe('dev free profile-card upgrade (behaviour)', () => {
 
   it('walks all the way to the max level and stays there', async () => {
     let last = 0;
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 8; i += 1) {
       const snap = await devGrantProfileCardLevel();
       last = snap.level;
     }
-    expect(last).toBe(1);
+    expect(last).toBe(5);
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 

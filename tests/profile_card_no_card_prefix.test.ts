@@ -8,10 +8,14 @@ describe('profile card label has no "CARD" prefix', () => {
     expect(profileCardLevelLabel(0, true)).toBe('Стандарт');
     expect(profileCardLevelLabel(1, true)).toBe('Phraseman Pro');
     expect(profileCardLevelLabel(1, false)).toBe('Lv I');
+    expect(profileCardLevelLabel(2, true)).toBe('Изумруд');
+    expect(profileCardLevelLabel(3, false)).toBe('Lv III');
+    expect(profileCardLevelLabel(5, true)).toBe('Легенда');
+    expect(profileCardLevelLabel(5, false)).toBe('Lv V');
   });
 
   it('never emits the word "CARD"', () => {
-    ([0, 1] as ProfileCardLevel[]).forEach((lvl) => {
+    ([0, 1, 2, 3, 4, 5] as ProfileCardLevel[]).forEach((lvl) => {
       expect(profileCardLevelLabel(lvl, true)).not.toMatch(/CARD/i);
       expect(profileCardLevelLabel(lvl, false)).not.toMatch(/CARD/i);
     });

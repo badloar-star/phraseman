@@ -1297,13 +1297,18 @@ function ActivityTab({
       return;
     }
     if (force) setRefreshing(true); else setLoading(true);
-    const [result, likeState] = await Promise.all([
-      fetchFriendsActivityFeed(friendUids, force),
-      fetchTodayActivityLikeState(),
-    ]);
-    setEvents(result);
-    setTodayLike(likeState);
-    if (force) setRefreshing(false); else setLoading(false);
+    try {
+      const [result, likeState] = await Promise.all([
+        fetchFriendsActivityFeed(friendUids, force),
+        fetchTodayActivityLikeState(),
+      ]);
+      setEvents(result);
+      setTodayLike(likeState);
+    } catch {
+      // Сеть/бэкенд упали — оставляем прежнюю ленту, спиннер гасим в finally.
+    } finally {
+      if (force) setRefreshing(false); else setLoading(false);
+    }
     // Check "liked by friend" achievement
     void (async () => {
       try {

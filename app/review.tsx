@@ -737,6 +737,9 @@ export default function ReviewScreen() {
   const [nextSlot, setNextSlot]   = useState(0);
   const [meaningOptions, setMeaningOptions] = useState<string[]>([]);
   const [typeText, setTypeText]   = useState('');
+  // Ref to the recall-type input, so we can auto-focus it the moment a typing
+  // card becomes active — the keyboard opens itself, no extra tap to start.
+  const typeInputRef = useRef<TextInput>(null);
   const [pickedChoice, setPickedChoice] = useState<string | null>(null);
   const [status,    setStatus]    = useState<Status>('playing');
   const [wasCorrect,  setWasCorrect]  = useState(false);
@@ -1074,6 +1077,18 @@ export default function ReviewScreen() {
     // Результат (success/error) идёт из finishCard — лишний tap убран.
     finishCard(ok, typeText.trim() || null);
   }, [status, burning, mode, items, index, typeText, finishCard]);
+
+  // Авто-фокус на поле ввода, как только карточка-набор становится активной:
+  // клавиатура открывается сама, юзер печатает сразу — без лишнего тапа по полю.
+  // Ключ по index+mode+status: срабатывает на КАЖДОЙ новой наборной карточке,
+  // а не только при первом монтировании (одного autoFocus тут мало).
+  useEffect(() => {
+    if (mode !== 'recall_type' || status !== 'playing' || burning) return;
+    // Небольшая задержка — даём слайду/раскладке завершиться, иначе фокус на
+    // iOS иногда «съедается» during-layout и клавиатура не поднимается.
+    const id = setTimeout(() => typeInputRef.current?.focus(), 120);
+    return () => clearTimeout(id);
+  }, [mode, status, index, burning]);
 
   /** Общий слайд влево → смена контента → spring в ноль (и для «Далее», и после сжигания). */
   const runSlideToNext = useCallback((
@@ -1710,6 +1725,7 @@ export default function ReviewScreen() {
           {mode === 'recall_type' && (
             <View style={{ marginBottom: isPlanPracticeTask ? 8 : 16 }}>
               <TextInput
+                ref={typeInputRef}
                 value={typeText}
                 onChangeText={setTypeText}
                 editable={status === 'playing'}

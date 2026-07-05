@@ -1694,6 +1694,15 @@ function AddFriendModal({
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const searchReady = isFriendSearchReady(codeInput);
   const codeMode = isFriendCodeQuery(codeInput);
+  // Юзер открыл модалку «добавить друга» именно чтобы ввести имя — открываем
+  // клавиатуру сами. Задержка ждёт slide-анимацию pageSheet: без неё фокус на
+  // iOS теряется и клавиатура не поднимается.
+  const searchInputRef = useRef<TextInput>(null);
+  useEffect(() => {
+    if (!visible) return;
+    const id = setTimeout(() => searchInputRef.current?.focus(), 320);
+    return () => clearTimeout(id);
+  }, [visible]);
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
@@ -1735,6 +1744,7 @@ function AddFriendModal({
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TextInput
+                  ref={searchInputRef}
                   testID="friends-code-input"
                   accessibilityLabel="Friend name input"
                   style={{

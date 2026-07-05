@@ -75,7 +75,8 @@ import {
   stressFeedback,
   type LoudnessSample,
 } from '../app/speaking_prosody';
-import SpeakingScoreRing from './SpeakingScoreRing';
+import SpeakingScoreStars from './SpeakingScoreStars';
+import { starsForScore } from '../app/speaking_score_stars';
 import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -1185,11 +1186,13 @@ export function SpeakingPanel({
     [status, recordWordSystem],
   );
 
-  // Тап по слову карты: открыть/закрыть карточку. Только жёлтые/красные слова
-  // (и ещё не «дочиненные») кликабельны — это гарантирует вызывающий JSX.
+  // Тап по слову карты: открыть карточку И СРАЗУ проиграть эталон слова. Каждый
+  // тап (в т.ч. повторный по уже открытому слову) переигрывает звук — отдельная
+  // кнопка «Послушать» больше не нужна. Закрытие — только крестиком в карточке.
+  // Только жёлтые/красные слова (и ещё не «дочиненные») кликабельны — это
+  // гарантирует вызывающий JSX.
   const onTapWord = useCallback(
     (index: number) => {
-      hapticTap();
       // Останавливаем незавершённую запись слова при переключении.
       try {
         wordHoldRecRef.current?.cancel();
@@ -1201,8 +1204,12 @@ export function SpeakingPanel({
       setWordPhase('idle');
       setWordVerdict(null);
       setDrill((prev) => openWord(prev, index));
+      // Проигрываем эталон слова (speakWord даёт свою тактильную отдачу и гигиену
+      // громкого режима) — вместо отдельного hapticTap.
+      const tok = tokens[index];
+      if (tok) speakWord(tok);
     },
-    [cleanupWordListeners],
+    [cleanupWordListeners, tokens, speakWord],
   );
 
   const closeWordCard = useCallback(() => {
@@ -1693,7 +1700,6 @@ export function SpeakingPanel({
               holdMode={holdModeView}
               // При showResult фразовый микрофон уже не слушает — блокировки не нужно.
               micBusy={false}
-              onListen={() => speakWord(openWordText)}
               onRepeatTap={() => startWordAttempt(openWordIndex)}
               onHoldStart={() => startWordHold(openWordIndex)}
               onHoldEnd={() => {
@@ -1730,35 +1736,45 @@ export function SpeakingPanel({
                 style={styles.ringWrap}
                 accessibilityRole="text"
                 accessibilityLabel={L(lang, {
-                  ru: `Результат ${effectiveScore} процентов из ${passThreshold} нужных, ${effectivePassed ? 'засчитано' : 'не засчитано'}`,
-                  uk: `Результат ${effectiveScore} відсотків із ${passThreshold} потрібних, ${effectivePassed ? 'зараховано' : 'не зараховано'}`,
-                  es: `Resultado ${effectiveScore} por ciento de ${passThreshold} necesarios, ${effectivePassed ? 'aprobado' : 'no aprobado'}`,
-                  'pt-BR': `Resultado ${effectiveScore} por cento de ${passThreshold} necessários, ${effectivePassed ? 'aprovado' : 'não aprovado'}`,
-                  vi: `Kết quả ${effectiveScore} phần trăm trên ${passThreshold} cần thiết, ${effectivePassed ? 'đã đạt' : 'chưa đạt'}`,
-                  id: `Hasil ${effectiveScore} persen dari ${passThreshold} yang diperlukan, ${effectivePassed ? 'lulus' : 'belum lulus'}`,
-                  tr: `Sonuç gerekli ${passThreshold} üzerinden yüzde ${effectiveScore}, ${effectivePassed ? 'geçti' : 'geçmedi'}`,
-                  pl: `Wynik ${effectiveScore} procent z wymaganych ${passThreshold}, ${effectivePassed ? 'zaliczone' : 'niezaliczone'}`,
+                  ru: `${starsForScore(effectiveScore, passThreshold)} из 3 звёзд, ${effectivePassed ? 'засчитано' : 'не засчитано'}`,
+                  uk: `${starsForScore(effectiveScore, passThreshold)} з 3 зірок, ${effectivePassed ? 'зараховано' : 'не зараховано'}`,
+                  es: `${starsForScore(effectiveScore, passThreshold)} de 3 estrellas, ${effectivePassed ? 'aprobado' : 'no aprobado'}`,
+                  'pt-BR': `${starsForScore(effectiveScore, passThreshold)} de 3 estrelas, ${effectivePassed ? 'aprovado' : 'não aprovado'}`,
+                  vi: `${starsForScore(effectiveScore, passThreshold)} trên 3 sao, ${effectivePassed ? 'đã đạt' : 'chưa đạt'}`,
+                  id: `${starsForScore(effectiveScore, passThreshold)} dari 3 bintang, ${effectivePassed ? 'lulus' : 'belum lulus'}`,
+                  tr: `3 yıldızdan ${starsForScore(effectiveScore, passThreshold)} yıldız, ${effectivePassed ? 'geçti' : 'geçmedi'}`,
+                  pl: `${starsForScore(effectiveScore, passThreshold)} z 3 gwiazdek, ${effectivePassed ? 'zaliczone' : 'niezaliczone'}`,
                 })}
               >
-                <SpeakingScoreRing
+                <SpeakingScoreStars
                   score={effectiveScore}
-                  color={effectivePassed ? theme.correct : theme.wrong}
-                  trackColor={theme.border}
-                  textColor={theme.textPrimary}
-                  innerBg={theme.card}
+                  passThreshold={passThreshold}
+                  color={theme.accent}
+                  emptyColor={theme.border}
                   animate={!isPreview}
                 />
                 <Text style={[styles.ringTarget, { color: theme.textMuted }]}>
-                  {L(lang, {
-                    ru: `нужно ${passThreshold}%`,
-                    uk: `потрібно ${passThreshold}%`,
-                    es: `se necesita ${passThreshold}%`,
-                    'pt-BR': `precisa de ${passThreshold}%`,
-                    vi: `cần ${passThreshold}%`,
-                    id: `butuh ${passThreshold}%`,
-                    tr: `%${passThreshold} gerekli`,
-                    pl: `potrzeba ${passThreshold}%`,
-                  })}
+                  {effectivePassed
+                    ? L(lang, {
+                        ru: 'идём дальше',
+                        uk: 'йдемо далі',
+                        es: 'seguimos',
+                        'pt-BR': 'vamos em frente',
+                        vi: 'đi tiếp',
+                        id: 'lanjut',
+                        tr: 'devam',
+                        pl: 'idziemy dalej',
+                      })
+                    : L(lang, {
+                        ru: 'ещё разок — соберём звёзды',
+                        uk: 'ще разок — зберемо зірки',
+                        es: 'otra vez: a por las estrellas',
+                        'pt-BR': 'mais uma — vamos às estrelas',
+                        vi: 'thử lại — gom sao nào',
+                        id: 'sekali lagi — kumpulkan bintang',
+                        tr: 'bir daha — yıldızları topla',
+                        pl: 'jeszcze raz — zbierzmy gwiazdki',
+                      })}
                 </Text>
               </View>
             ) : (

@@ -19,9 +19,14 @@ describe('speaking word drill state (pure reducer)', () => {
     expect(s.openIndex).toBe(3);
   });
 
-  it('toggles the same word closed on a second tap', () => {
-    const s = openWord(openWord(initWordDrillState(), 3), 3);
-    expect(s.openIndex).toBeNull();
+  it('keeps the same word open on a second tap (panel replays audio, no close)', () => {
+    const first = openWord(initWordDrillState(), 3);
+    const second = openWord(first, 3);
+    // Re-tapping the open word must NOT close it — closing is done via the
+    // card's ✕ button. The audio replay happens in the panel, not here.
+    expect(second.openIndex).toBe(3);
+    // Same reference when nothing changes, so React can skip a re-render.
+    expect(second).toBe(first);
   });
 
   it('switches to a different word (only one card open at a time)', () => {

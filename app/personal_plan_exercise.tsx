@@ -55,7 +55,7 @@ import {
   startHoldRecording,
   type HoldRecording,
 } from './speaking_hold_recorder';
-import SpeakingScoreRing from '../components/SpeakingScoreRing';
+import SpeakingScoreStars from '../components/SpeakingScoreStars';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
@@ -582,9 +582,19 @@ function PlanPronunciationRecorder({
     setTranscript('');
     setBlocked(null);
     scoredRef.current = false;
-    setPronunciationListening(true);
-    holdRecRef.current = startHoldRecording();
-  }, [holdMode, clearTargetPlaybackTimers, stopAudio, targetAudioPlayer, targetAudioPlayerSource, setBlocked]);
+    // НЕ показываем «Говори» синхронно: AudioRecord прогревается ~100-300мс, и
+    // слово, сказанное в этот зазор, терялось. Показываем listening + cue только
+    // когда пришёл ПЕРВЫЙ реальный аудио-чанк (мик реально пишет). Аудио до этого
+    // момента всё равно сохраняется рекордером, поэтому первое слово не теряется.
+    holdRecRef.current = startHoldRecording({
+      onFirstAudio: () => {
+        // Быстрый тап: палец отпущен раньше, чем мик прогрелся — не зажигаем UI.
+        if (holdFinishingRef.current || holdRecRef.current == null) return;
+        setPronunciationListening(true);
+        playRecordStart();
+      },
+    });
+  }, [holdMode, clearTargetPlaybackTimers, stopAudio, targetAudioPlayer, targetAudioPlayerSource, setBlocked, playRecordStart]);
 
   const endHold = useCallback(async () => {
     const rec = holdRecRef.current;
@@ -1119,15 +1129,14 @@ function PlanPronunciationRecorder({
           кольцо-результат с процентом по центру. */}
       {showRing ? (
         <View style={styles.recorderRingWrap}>
-          <SpeakingScoreRing
+          <SpeakingScoreStars
             score={pronunciationScore!.score}
-            color={pronunciationScore!.passed ? ringTheme.correct : ringTheme.wrong}
-            trackColor={ringTheme.border}
-            textColor={ringTheme.textPrimary}
-            innerBg={ringTheme.bgCard}
+            passThreshold={PLAN_PRONUNCIATION_PASS_THRESHOLD}
+            color={accent}
+            emptyColor={ringTheme.border}
           />
           <Text style={[styles.recorderRingTarget, { color: mutedText }]}>
-            нужно {PLAN_PRONUNCIATION_PASS_THRESHOLD}%
+            {pronunciationScore!.passed ? 'идём дальше' : 'ещё разок — соберём звёзды'}
           </Text>
         </View>
       ) : pronunciationListening ? (

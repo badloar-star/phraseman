@@ -20,7 +20,6 @@ export interface WordDrillCardProps {
   holdMode: boolean;
   /** The phrase mic is live — the word mic is locked out (mutual exclusion). */
   micBusy: boolean;
-  onListen: () => void;
   onRepeatTap: () => void;
   onHoldStart: () => void;
   onHoldEnd: () => void;
@@ -47,7 +46,6 @@ export function WordDrillCard({
   verdict,
   holdMode,
   micBusy,
-  onListen,
   onRepeatTap,
   onHoldStart,
   onHoldEnd,
@@ -221,26 +219,6 @@ export function WordDrillCard({
       )}
 
       <View style={styles.actionsRow}>
-        <Pressable
-          onPress={onListen}
-          accessibilityRole="button"
-          style={[styles.pill, { borderColor: theme.border }]}
-        >
-          <Ionicons name="volume-high" size={16} color={theme.accent} />
-          <Text style={[styles.pillText, { color: theme.textPrimary }]}>
-            {L(lang, {
-              ru: 'Послушать',
-              uk: 'Послухати',
-              es: 'Escuchar',
-              'pt-BR': 'Ouvir',
-              vi: 'Nghe',
-              id: 'Dengar',
-              tr: 'Dinle',
-              pl: 'Posłuchaj',
-            })}
-          </Text>
-        </Pressable>
-
         <Pressable
           {...repeatHandlers}
           disabled={busy || micBusy}

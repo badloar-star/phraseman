@@ -20,12 +20,14 @@ export function initWordDrillState(): WordDrillState {
 }
 
 /**
- * Open the card for `index`. Tapping the already-open word closes it (toggle);
- * tapping a different word switches to it (only one card open at a time).
+ * Open the card for `index`. Tapping the already-open word keeps it open (the
+ * panel replays the reference audio on every tap); tapping a different word
+ * switches to it (only one card open at a time). Closing is done explicitly via
+ * the card's ✕ button, not by re-tapping the word.
  */
 export function openWord(state: WordDrillState, index: number): WordDrillState {
-  const nextOpen = state.openIndex === index ? null : index;
-  return { openIndex: nextOpen, cleaned: state.cleaned };
+  if (state.openIndex === index) return state;
+  return { openIndex: index, cleaned: state.cleaned };
 }
 
 /** Close any open card without changing what has been cleaned. */

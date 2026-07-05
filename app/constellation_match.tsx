@@ -225,9 +225,14 @@ export default function ConstellationMatchScreen() {
 
   const confirmTarget = useCallback(() => {
     if (!sheetKey || !uid || busy) return;
+    // Оптимистично: закрываем шторку и вибрируем СРАЗУ, не ждём сервер (раньше
+    // «Зажечь звезду» висело ~3с до ответа). Результат придёт через onSnapshot;
+    // при ошибке — тост, шторка уже закрыта (ход просто не засчитается).
+    const key = sheetKey;
+    hapticMediumImpact();
+    setSheetKey(null);
     setBusy(true);
-    void submitChooseTarget(matchId, uid, sheetKey)
-      .then(() => { hapticMediumImpact(); setSheetKey(null); })
+    void submitChooseTarget(matchId, uid, key)
       .catch(() => { hapticError(); showToast(netErrText()); })
       .finally(() => setBusy(false));
   }, [sheetKey, uid, busy, matchId, showToast, netErrText]);

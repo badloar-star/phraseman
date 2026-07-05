@@ -70,7 +70,10 @@ export const CONSTELLATION_DEFAULTS = {
   rebirth: { correctToRespawn: 2, minRoundsLeftToFall: 4, maxPerMatch: 1, homeCores: 2, shieldRounds: 1 },
 
   // ── Матчмейкинг (B1–B3) ────────────────────────────────────────────────
-  matchmaking: { botFillDelaySec: 30, minHumans: 1 },
+  // botFillDelaySec 8с (было 30): одиночный игрок против ботов ждал ПОЛНЫЕ 30с —
+  // мгновенный матч собирается только при 4 живых, иначе ждём добора ботами.
+  // 8с даёт шанс живому сопернику, но не мучает ожиданием. Крутится из админки.
+  matchmaking: { botFillDelaySec: 8, minHumans: 1 },
 
   // ── Человечность ботов (B4) + управление из админки ────────────────────
   // enabled: kill-switch ботов (false → добора ботами нет, только живые).

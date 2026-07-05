@@ -805,6 +805,18 @@ const PhaseBanner = memo(function PhaseBanner({
     strokeDashoffset: RING_C * (1 - ringProg.value),
   }));
 
+  // Входная анимация баннера при СМЕНЕ фазы (deadlineMs) — «влетает» сверху и
+  // пружинит, привлекает внимание к тому, что происходит (просьба владельца).
+  const enter = useSharedValue(0);
+  useEffect(() => {
+    enter.value = 0;
+    enter.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.back(1.4)) });
+  }, [deadlineMs, enter]);
+  const enterStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (1 - enter.value) * -18 }, { scale: 0.9 + enter.value * 0.1 }],
+    opacity: enter.value,
+  }));
+
   const label = isFalling
     ? triLang(lang, {
       ru: 'ПАДАЮЩАЯ ЗВЕЗДА', uk: 'ПАДАЮЧА ЗІРКА', es: 'ESTRELLA FUGAZ', 'pt-BR': 'ESTRELA CADENTE',
@@ -851,7 +863,7 @@ const PhaseBanner = memo(function PhaseBanner({
 
   return (
     <View style={styles.bannerRow} pointerEvents="none">
-      <View style={[styles.bannerPill, { borderColor: `${ringColor}66` }]}>
+      <Animated.View style={[styles.bannerPill, { borderColor: `${ringColor}66` }, enterStyle]}>
         <View style={styles.bannerTimer}>
           <Svg width={44} height={44}>
             <Circle cx={22} cy={22} r={RING_R} fill="none" stroke="rgba(150,170,230,0.15)" strokeWidth={4} />
@@ -868,7 +880,7 @@ const PhaseBanner = memo(function PhaseBanner({
           <Text style={[styles.bannerLabel, { color: '#EAF2FF' }]}>{label}</Text>
           <Text style={styles.bannerHint}>{hint}</Text>
         </View>
-      </View>
+      </Animated.View>
     </View>
   );
 });
@@ -1038,8 +1050,18 @@ const QuizOverlay = memo(function QuizOverlay({
     setPickedIndex(i);
     onAnswer(i);
   }, [busy, onAnswer]);
+  // Вход: квиз «выезжает» снизу при появлении нового вопроса (привлекает внимание).
+  const enter = useSharedValue(0);
+  useEffect(() => {
+    enter.value = 0;
+    enter.value = withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) });
+  }, [qIndex, enter]);
+  const enterStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (1 - enter.value) * 40 }],
+    opacity: enter.value,
+  }));
   return (
-    <View style={[quizStyles.box, {
+    <Animated.View style={[quizStyles.box, enterStyle, {
       backgroundColor: 'rgba(8,13,30,0.97)',
       borderColor: isDuel ? '#FFD166' : '#2A3A6A',
       bottom: 14 + bottomInset, // над системной навигацией Android (жалоба)
@@ -1124,7 +1146,7 @@ const QuizOverlay = memo(function QuizOverlay({
           })}
         </View>
       )}
-    </View>
+    </Animated.View>
   );
 });
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { FlashList } from '@shopify/flash-list';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -180,6 +181,8 @@ function buildArenaFriendProfilesFromSnapshot(snapshot: AppSnapshotFriends | und
     }
     return out;
 }
+// Зазор между чипами друзей: FlashList не поддерживает gap в contentContainerStyle.
+const ArenaFriendChipGap = () => <View style={{ width: 10 }} />;
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function DuelLobbyScreen({ isTab = false }: {
     isTab?: boolean;
@@ -2436,8 +2439,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
 
                   {friendRoomId && (<View testID="arena-friend-panel" style={[styles.arenaFriendsPanel, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                       {arenaFriends.length > 0 ? (<>
-                          <ScrollView testID="arena-friends-scroll" decelerationRate="normal" horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent}>
-                            {arenaFriends.map(friend => {
+                          <FlashList testID="arena-friends-scroll" decelerationRate="normal" horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent} data={arenaFriends} keyExtractor={friend => friend.uid} ItemSeparatorComponent={ArenaFriendChipGap} extraData={{ arenaFriendProfiles, arenaInviteSendingUid, arenaInvitedFriendUids, arenaFriendPickUid }} renderItem={({ item: friend }) => {
                         const profile = arenaFriendProfiles[friend.uid];
                         const totalXp = profile?.totalXp ?? 0;
                         const level = getLevelFromXP(totalXp);
@@ -2446,7 +2448,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         const sending = arenaInviteSendingUid === friend.uid;
                         const invited = arenaInvitedFriendUids.has(friend.uid);
                         const selected = arenaFriendPickUid === friend.uid;
-                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending || invited }} key={friend.uid} onPress={() => {
+                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending || invited }} onPress={() => {
                                 if (sending || invited)
                                     return;
                                 hapticTap();
@@ -2483,8 +2485,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                         : `Lv ${level}`}
                                   </Text>
                                 </TouchableOpacity>);
-                    })}
-                          </ScrollView>
+                    }}/>
                           {arenaFriendPickUid != null && (<DuoPressable testID={`arena-send-friend-invite-${arenaFriendPickUid}`} accessibilityLabel="qa-arena-send-friend-invite" accessibilityRole="button" accessibilityState={{
                             disabled: arenaInviteSendingUid != null || !friendRoomReady,
                             busy: arenaInviteSendingUid != null || !friendRoomReady,
@@ -3156,7 +3157,6 @@ const styles = StyleSheet.create({
     },
     arenaFriendsScrollContent: {
         paddingHorizontal: 12,
-        gap: 10,
     },
     arenaFriendChip: {
         width: 86,

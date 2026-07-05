@@ -95,7 +95,7 @@ function MemberRow({
       <View style={{
         width: 34, height: 34, borderRadius: 17,
         backgroundColor: isHost ? `${hostAccent}22` : t.bgSurface,
-        borderWidth: 1.5, borderColor: isHost ? hostAccent : (member.ready ? readyAccent : t.border),
+        borderWidth: (isHost || member.ready) ? 1.5 : 0, borderColor: isHost ? hostAccent : (member.ready ? readyAccent : 'transparent'),
         alignItems: 'center', justifyContent: 'center', marginRight: 10,
       }}>
         <Text style={{ fontSize: 16 }}>{isHost ? '👑' : (member.ready ? '✓' : '?')}</Text>
@@ -118,7 +118,7 @@ function MemberRow({
       <View style={{
         paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8,
         backgroundColor: member.ready ? `${readyAccent}22` : t.bgSurface,
-        borderWidth: 1, borderColor: member.ready ? readyAccent : t.border,
+        borderWidth: member.ready ? 1 : 0, borderColor: member.ready ? readyAccent : 'transparent',
         marginRight: meIsHost && !isMe && !isHost ? 8 : 0,
       }}>
         <Text style={{ fontSize: f.caption - 1, fontWeight: '800', color: member.ready ? readyAccent : t.textMuted }}>
@@ -614,7 +614,7 @@ export default function ArenaRoomScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TapScale
             onPress={() => safeRouterBack(router, '/(tabs)/arena' as any)}
-            style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TapScale>
@@ -650,7 +650,7 @@ export default function ArenaRoomScreen() {
           {room && (
             <TapScale
               onPress={handleOpenChat}
-              style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}
+              style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}
             >
               <Ionicons name="chatbubble-ellipses-outline" size={20} color={unreadChat > 0 ? t.accent : t.textMuted} />
               {unreadChat > 0 && (
@@ -696,12 +696,12 @@ export default function ArenaRoomScreen() {
                 maxLength={6}
                 placeholder="A7K2"
                 placeholderTextColor={t.textGhost}
-                style={{ flex: 1, height: 52, borderRadius: 14, borderWidth: 1, borderColor: t.border, color: t.textPrimary, backgroundColor: t.bgSurface, paddingHorizontal: 14, fontSize: f.h2, fontWeight: '900', letterSpacing: 2, textAlign: 'center' }}
+                style={{ flex: 1, height: 52, borderRadius: 14, color: t.textPrimary, backgroundColor: t.bgSurface, paddingHorizontal: 14, fontSize: f.h2, fontWeight: '900', letterSpacing: 2, textAlign: 'center' }}
               />
               <TapScale
                 onPress={handleJoin}
                 disabled={loadingRoom || !codeInput}
-                style={{ paddingHorizontal: 16, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: codeInput ? t.accent + '22' : t.bgSurface, borderWidth: 1, borderColor: codeInput ? t.accent : t.border, flexDirection: 'row', gap: 6 }}
+                style={{ paddingHorizontal: 16, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: codeInput ? t.accent + '22' : t.bgSurface, borderWidth: codeInput ? 1 : 0, borderColor: codeInput ? t.accent : 'transparent', flexDirection: 'row', gap: 6 }}
               >
                 <Ionicons name="enter-outline" size={20} color={codeInput ? t.accent : t.textMuted} />
                 <Text style={{ color: codeInput ? t.accent : t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
@@ -781,8 +781,8 @@ export default function ArenaRoomScreen() {
 
         {/* Карточка активной комнаты */}
         {room && (
-          <View style={{ borderRadius: 18, borderWidth: 1.5, borderColor: t.accent + '55', backgroundColor: t.bgCard, overflow: 'hidden' }}>
-            <LinearGradient colors={[t.accent + '15', 'transparent']} style={{ padding: 16, gap: 12 }}>
+          <View style={{ borderRadius: 18, backgroundColor: t.bgCard, overflow: 'hidden' }}>
+            <LinearGradient colors={[t.accent + '20', t.accent + '08']} style={{ padding: 16, gap: 12 }}>
 
               {/* Код + хост-действия */}
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -911,7 +911,7 @@ export default function ArenaRoomScreen() {
                 >
                   <LinearGradient
                     colors={canStart ? arenaCtaColors : [t.bgSurface, t.bgSurface]}
-                    style={{ height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, borderWidth: canStart ? 0 : 1, borderColor: t.border }}
+                    style={{ height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}
                   >
                     <Ionicons name="play" size={22} color={canStart ? '#FFFFFF' : t.textMuted} />
                     <Text style={{ color: canStart ? '#FFFFFF' : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
@@ -947,7 +947,7 @@ export default function ArenaRoomScreen() {
                 >
                   <LinearGradient
                     colors={myReady ? arenaReadyColors : [t.bgSurface, t.bgSurface]}
-                    style={{ height: 54, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, borderWidth: myReady ? 0 : 1.5, borderColor: t.border }}
+                    style={{ height: 54, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}
                   >
                     <Ionicons name={myReady ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={myReady ? '#fff' : t.textMuted} />
                     <Text style={{ color: myReady ? '#fff' : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
@@ -1211,7 +1211,7 @@ export default function ArenaRoomScreen() {
               placeholderTextColor={t.textGhost}
               multiline
               maxLength={300}
-              style={{ flex: 1, borderRadius: 20, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 14, paddingVertical: 10, fontSize: f.body, maxHeight: 100 }}
+              style={{ flex: 1, borderRadius: 20, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 14, paddingVertical: 10, fontSize: f.body, maxHeight: 100 }}
               onSubmitEditing={handleSendChat}
             />
             <TapScale

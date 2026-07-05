@@ -1536,7 +1536,7 @@ export default function DuelResultsScreen() {
             pl: "Wróć",
           })}
           onPress={() => { void goBackFromResults(); }}
-          style={[styles.topBackBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
+          style={[styles.topBackBtn, { backgroundColor: t.bgCard }]}
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
         </TapScale>
@@ -1630,7 +1630,7 @@ export default function DuelResultsScreen() {
               </View>
             )}
             {!isSpecialChallenge && clubWarResult?.ok && !clubWarResult.duplicate && (clubWarResult.addedPoints ?? 0) > 0 && (
-              <View style={[styles.clubWarBadge, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+              <View style={[styles.clubWarBadge, { backgroundColor: t.bgSurface }]}>
                 <Ionicons name="people-circle-outline" size={16} color={t.accent} />
                 <Text style={[styles.clubWarText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
                   {triLang(lang, {
@@ -1647,7 +1647,7 @@ export default function DuelResultsScreen() {
               </View>
             )}
             {isRoomRun && (
-              <View style={[styles.clubWarBadge, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+              <View style={[styles.clubWarBadge, { backgroundColor: t.bgSurface }]}>
                 <Ionicons name="people-outline" size={16} color={t.accent} />
                 <Text style={[styles.clubWarText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
                   {triLang(lang, {
@@ -2168,7 +2168,7 @@ export default function DuelResultsScreen() {
                   </Text>
                 </DuoPressable>
                 <TouchableOpacity
-                  style={[styles.homeBtn, { flex: 1, borderColor: t.border, height: 60 }]}
+                  style={[styles.homeBtn, { flex: 1, height: 60, backgroundColor: t.bgCard }]}
                   onPress={handleRematchDecline}
                   activeOpacity={0.8}
                 >
@@ -2190,7 +2190,7 @@ export default function DuelResultsScreen() {
           )}
 
           {!isMockSession && !isForfeited && !opponentSurrendered && rematchPending && isRematchInitiator && (
-            <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }]}>
+            <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="time-outline" size={20} color={t.textMuted} />
               <Text style={[styles.rematchText, { color: t.textMuted, fontSize: f.h2 }]}>
                 {triLang(lang, {
@@ -2218,7 +2218,7 @@ export default function DuelResultsScreen() {
           )}
 
           {!isMockSession && !isForfeited && !opponentSurrendered && rematchAcceptedOptimistic && isRematchTarget && (
-            <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }]}>
+            <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="sync-outline" size={20} color={t.textMuted} />
               <Text style={[styles.rematchText, { color: t.textMuted, fontSize: f.h2 }]}>
                 {triLang(lang, {
@@ -2327,7 +2327,7 @@ export default function DuelResultsScreen() {
           )}
 
           <TouchableOpacity
-            style={[styles.homeBtn, { borderColor: t.border }]}
+            style={[styles.homeBtn, {}]}
             onPress={async () => { await cancelMyPendingIfAny(); router.replace('/(tabs)/arena' as any); }}
             activeOpacity={0.8}
           >
@@ -2346,7 +2346,7 @@ export default function DuelResultsScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.homeBtn, { borderColor: t.border, marginTop: 4 }]}
+            style={[styles.homeBtn, { marginTop: 4 }]}
             onPress={async () => { await cancelMyPendingIfAny(); router.replace('/(tabs)/home' as any); }}
             activeOpacity={0.8}
           >
@@ -2366,7 +2366,7 @@ export default function DuelResultsScreen() {
 
           {reviewItems.length > 0 && (
             <TouchableOpacity
-              style={[styles.homeBtn, { borderColor: t.border, marginTop: 4 }]}
+              style={[styles.homeBtn, { marginTop: 4 }]}
               onPress={() => setShowReview(true)}
               activeOpacity={0.8}
             >
@@ -2566,8 +2566,6 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
             borderTopRightRadius: 26,
             padding: 28,
             paddingBottom: Math.max(40, bottomInset + 20),
-            borderTopWidth: 0.5,
-            borderColor: t.border,
             alignItems: 'center',
             transform: [{ translateY: sheetY }],
           }}
@@ -2583,7 +2581,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
                 <TouchableOpacity
-                  style={{ flex: 1, minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: t.border }}
+                  style={{ flex: 1, minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5 }}
                   onPress={handleNo}
                   activeOpacity={0.85}
                 >
@@ -2641,7 +2639,6 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    borderWidth: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: -4,
@@ -2704,7 +2701,6 @@ const styles = StyleSheet.create({
   clubWarBadge: {
     marginTop: 10,
     borderRadius: 14,
-    borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 9,
     flexDirection: 'row',
@@ -2774,7 +2770,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   homeBtn: {
-    borderRadius: 18, height: 52, borderWidth: 1,
+    borderRadius: 18, height: 52,
     alignItems: 'center', justifyContent: 'center',
   },
 });

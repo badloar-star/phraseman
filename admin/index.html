@@ -33623,6 +33623,48 @@
       </div>`).join('');
   }
 
+  // График расходов по дням за выбранный период. Инлайновый SVG (без внешних
+  // библиотек — CSP не пускает CDN). series = [{date, costUsd, calls, totalTokens}].
+  function openAiBudgetSeriesChart(series, totals) {
+    const data = Array.isArray(series) ? series : [];
+    if (!data.length) {
+      return `<div class="chart-card"><h3>Расход по дням</h3>
+        <div class="reports-empty" style="padding:12px 0">Нет данных за период.</div></div>`;
+    }
+    const max = data.reduce((m, d) => Math.max(m, Number(d.costUsd) || 0), 0);
+    const W = 720, H = 180, padL = 8, padR = 8, padB = 22, padT = 8;
+    const n = data.length;
+    const bw = (W - padL - padR) / n;
+    const barW = Math.max(1, bw * 0.7);
+    const totalUsd = Number(totals?.costUsd) || data.reduce((s, d) => s + (Number(d.costUsd) || 0), 0);
+    const peak = data.reduce((best, d) => ((Number(d.costUsd) || 0) > (Number(best.costUsd) || 0) ? d : best), data[0]);
+    // Подписи дат: не чаще ~8 штук, чтобы не слипались.
+    const labelStep = Math.max(1, Math.ceil(n / 8));
+    const bars = data.map((d, i) => {
+      const v = Number(d.costUsd) || 0;
+      const h = max > 0 ? (v / max) * (H - padB - padT) : 0;
+      const x = padL + i * bw + (bw - barW) / 2;
+      const y = H - padB - h;
+      const title = `${d.date}: ${openAiBudgetUsd(v)} · ${openAiBudgetNum(d.calls)} calls`;
+      const lbl = (i % labelStep === 0 || i === n - 1)
+        ? `<text x="${(x + barW / 2).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="9" fill="#6b7280">${escapeHtml(String(d.date).slice(5))}</text>`
+        : '';
+      return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" rx="1.5" fill="#8b5cf6"><title>${escapeHtml(title)}</title></rect>${lbl}`;
+    }).join('');
+    return `<div class="chart-card" style="grid-column:1/-1">
+      <h3>Расход по дням</h3>
+      <div class="tab-desc" style="font-size:12px;color:#888;margin-bottom:8px">
+        Сумма за период: <b style="color:#fbbf24">${openAiBudgetUsd(totalUsd)}</b> · пик ${escapeHtml(String(peak.date).slice(5))} — ${openAiBudgetUsd(peak.costUsd)}. Все ${n} дней; наведи на столбик для деталей.
+      </div>
+      <div class="table-wrap" style="overflow-x:auto">
+        <svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="min-width:520px;display:block">
+          <line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}" stroke="#2a2a3a" stroke-width="1"/>
+          ${bars}
+        </svg>
+      </div>
+    </div>`;
+  }
+
   function openAiBudgetRowsTable(title, hint, rows) {
     const body = Array.isArray(rows) && rows.length
       ? rows.map((r) => `
@@ -33713,17 +33755,18 @@
       summary.innerHTML = openAiBudgetSummaryCards([
         ['OpenAI estimated month', openAiBudgetUsd(totals.estimatedMonthUsd, 3), `period: ${openAiBudgetUsd(totals.costUsd, 4)}`],
         ['Selected period', String(data.rangeDays || rangeDays) + ' days', topFeature],
-        ['Paid calls', openAiBudgetNum(totals.calls), 'cache hits cost $0'],
+        ['Paid calls', openAiBudgetNum(totals.calls), 'все ИИ-фичи (11 источников)'],
         ['Tokens', openAiBudgetNum(totals.totalTokens), `${openAiBudgetNum(totals.inputTokens)} in / ${openAiBudgetNum(totals.outputTokens)} out`],
         ['Users', openAiBudgetNum(totals.uniqueUsers), 'unique uid/authUid in logs'],
       ]);
       if (status) {
         status.textContent = errors.length
           ? `Loaded with limited collections: ${errors.map((e) => e.collection).join(', ')}.`
-          : `OpenAI estimated month refreshed. Theo default price table includes gpt-4.1-nano.`;
+          : `Суммарно по всем 11 billing-коллекциям. Кэш-ввод считается по полной цене (небольшая переоценка); точный счёт — в кабинете OpenAI.`;
       }
       grid.innerHTML = [
-        openAiBudgetRowsTable('Feature costs', 'Theo, explain misses, and legacy weekly/stats callables.', featureRows),
+        openAiBudgetSeriesChart(data.series, totals),
+        openAiBudgetRowsTable('Feature costs', 'Все ИИ-фичи: Компас, объяснения, квизы, клуб, доска помощи, легаси.', featureRows),
         openAiBudgetRowsTable('Model costs', 'Prices per 1M tokens; exact invoice remains OpenAI billing source of truth.', modelRows),
         openAiBudgetRecentCard(data.recent || []),
       ].join('');

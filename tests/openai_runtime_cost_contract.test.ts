@@ -183,9 +183,25 @@ describe('OpenAI runtime cost controls', () => {
     expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
     expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
     expect(budgetFn).toContain("request.auth?.token?.admin");
-    expect(budgetFn).toContain("openAiBudgetSafeGetDocs('premium_dialog_billing'");
-    expect(budgetFn).toContain("openAiBudgetSafeGetDocs('explain_billing'");
-    expect(budgetFn).toContain("openAiBudgetSafeGetDocs('weekly_review_billing'");
-    expect(budgetFn).toContain("openAiBudgetSafeGetDocs('stats_insights_billing'");
+    // Дашборд должен покрывать ВСЕ billing-коллекции проекта (раньше было 4 из 11,
+    // из-за чего суммарная цифра недосчитывала >60% трат). Проверяем каждую.
+    const REQUIRED_BILLING_COLLECTIONS = [
+      'premium_dialog_billing',
+      'explain_billing',
+      'weekly_review_billing',
+      'stats_insights_billing',
+      'compass_billing',
+      'league_compass_daily_billing',
+      'help_board_compass_billing',
+      'choice_explain_billing',
+      'quiz_explain_billing',
+      'mistake_explain_billing',
+      'speaking_club_billing',
+    ];
+    for (const collectionName of REQUIRED_BILLING_COLLECTIONS) {
+      expect(budgetFn).toContain(`collection: '${collectionName}'`);
+    }
+    // График расхода по дням (series) отдаётся клиенту.
+    expect(budgetFn).toContain('series');
   });
 });

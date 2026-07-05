@@ -10233,6 +10233,7 @@
   <div class="tab" onclick="switchTab('plus-radar')" title="Find duplicate or suspicious Plus access cases">Plus Radar</div>
   <div class="tab" onclick="switchTab('promo-codes')">Промокоды</div>
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
+  <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('review-promo')">Plus survey</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
   <div class="tab" onclick="switchTab('help-board')" data-i18n-es="Help Board">Help Board</div>
@@ -10360,6 +10361,11 @@
         <div class="cp-switch-ico">▶️</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Кнопка «Видео» на главной</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — иконка-плей в шапке главной ведёт на экран видео канала. Выкл → кнопка скрыта у всех живьём, без релиза. Какой канал показывать — в карточке «📺 YouTube-канал» (вкладка Remote Config).</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-video_button_enabled" class="cp-toggle" onchange="saveControlPanelBool('video_button_enabled', this.checked)" disabled/><span id="cp-bool-label-video_button_enabled" class="cp-bool-chip">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🎁</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — новый юзер после онбординга получает 72ч полного доступа и приветственный модал. Выкл → новые юзеры больше НЕ получают ни подарок, ни модал (у всех живьём, без релиза). Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-intro_full_access_enabled" class="cp-toggle" onchange="saveControlPanelBool('intro_full_access_enabled', this.checked)" disabled/><span id="cp-bool-label-intro_full_access_enabled" class="cp-bool-chip">…</span></label>
       </div>
     </div>
   </div>
@@ -10790,24 +10796,24 @@
       <div class="admin-overview-note">All-time unique sessions since tracking started.</div>
     </div>
     <div class="admin-overview-card">
-      <div class="admin-overview-kicker">iOS downloads today</div>
+      <div class="admin-overview-kicker">iOS store clicks today</div>
       <div class="admin-overview-value" id="overview-site-ios-today">-</div>
-      <div class="admin-overview-note">Clicks on App Store badge today.</div>
+      <div class="admin-overview-note">App Store badge clicks today — clicks, not installs.</div>
     </div>
     <div class="admin-overview-card">
-      <div class="admin-overview-kicker">iOS downloads total</div>
+      <div class="admin-overview-kicker">iOS store clicks total</div>
       <div class="admin-overview-value" id="overview-site-ios-total">-</div>
-      <div class="admin-overview-note">All-time App Store badge clicks.</div>
+      <div class="admin-overview-note">All-time App Store badge clicks — clicks, not installs.</div>
     </div>
     <div class="admin-overview-card">
-      <div class="admin-overview-kicker">Android downloads today</div>
+      <div class="admin-overview-kicker">Android store clicks today</div>
       <div class="admin-overview-value" id="overview-site-android-today">-</div>
-      <div class="admin-overview-note">Clicks on Google Play badge today.</div>
+      <div class="admin-overview-note">Google Play badge clicks today — clicks, not installs.</div>
     </div>
     <div class="admin-overview-card">
-      <div class="admin-overview-kicker">Android downloads total</div>
+      <div class="admin-overview-kicker">Android store clicks total</div>
       <div class="admin-overview-value" id="overview-site-android-total">-</div>
-      <div class="admin-overview-note">All-time Google Play badge clicks.</div>
+      <div class="admin-overview-note">All-time Google Play badge clicks — clicks, not installs.</div>
     </div>
   </section>
 
@@ -11301,6 +11307,39 @@
       </div>
       <div id="yt-pin-add-status" style="font-size:11.5px;color:#9ca3af;min-height:16px;margin-bottom:10px"></div>
       <div id="yt-pin-list" style="display:flex;flex-direction:column;gap:8px"><div style="font-size:12px;color:#6b7280">Загрузка…</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Опросы за осколки (shard-survey) ══ -->
+<div id="tab-surveys" class="reports-tab">
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+    <h2 style="margin:0;font-size:18px;color:#e4e4e7">📊 Опросы за осколки</h2>
+    <select id="ss-survey-select" onchange="window.onShardSurveySelect && window.onShardSurveySelect()" style="min-width:220px"></select>
+    <button type="button" onclick="window.loadShardSurveys && window.loadShardSurveys()">↻ Обновить список</button>
+    <button type="button" onclick="window.openShardSurveyEditor && window.openShardSurveyEditor(null)" style="background:rgba(52,211,153,0.14);border-color:rgba(52,211,153,0.4);color:#6ee7b7">＋ Создать опрос</button>
+    <button type="button" onclick="window.exportShardSurveyCsv && window.exportShardSurveyCsv()">⬇ CSV</button>
+  </div>
+  <div id="ss-status" style="color:#a1a1aa;font-size:13px;margin-bottom:10px">Выбери опрос…</div>
+
+  <!-- Сводка ответов (аналитика) -->
+  <div id="ss-summary" style="margin-bottom:20px"></div>
+
+  <!-- Лента сырых ответов -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    <h3 style="margin:0;font-size:15px;color:#d4d4d8">Лента ответов</h3>
+    <input id="ss-feed-search" type="text" placeholder="поиск по комментариям…" oninput="window.renderShardSurveyFeed && window.renderShardSurveyFeed()" style="flex:1;max-width:320px"/>
+  </div>
+  <div id="ss-feed"></div>
+
+  <!-- Редактор опроса (модалка-инлайн) -->
+  <div id="ss-editor" style="display:none;margin-top:20px;padding:16px;border:1px solid rgba(228,228,231,0.12);border-radius:12px;background:rgba(22,24,30,0.6)">
+    <h3 style="margin:0 0 12px;font-size:15px;color:#e4e4e7">Редактор опроса</h3>
+    <div id="ss-editor-body"></div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button type="button" onclick="window.saveShardSurvey && window.saveShardSurvey()" style="background:rgba(52,211,153,0.16);border-color:rgba(52,211,153,0.45);color:#6ee7b7;font-weight:700">💾 Сохранить</button>
+      <button type="button" onclick="window.closeShardSurveyEditor && window.closeShardSurveyEditor()">Отмена</button>
+      <span id="ss-editor-status" style="color:#a1a1aa;font-size:13px;align-self:center"></span>
     </div>
   </div>
 </div>
@@ -13039,6 +13078,20 @@
   </div>
   <div id="fq-status" style="padding:0 24px 12px"></div>
   <div id="fq-preview" style="padding:0 24px 12px"></div>
+  <div id="fr-language-pack-readiness" data-gustav-admin-surface="official_fr_course_pack_status fr_llm_reviewer_queue_status fr_admin_diagnostics" style="padding:0 24px 12px;max-width:1180px">
+    <div class="report-card" style="margin:0;border-radius:8px">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+        <div>
+          <strong style="color:#fff">French language pack readiness</strong>
+          <div style="margin-top:4px;color:#999;font-size:12px;line-height:1.45">
+            Read-only status for studyTarget=fr. sourceLocale=ru|uk stays explicit. course-packs/fr upload, reviewer import, runtime downloads and activation stay closed.
+          </div>
+        </div>
+        <button type="button" onclick="renderFrenchLanguagePackReadiness()" title="Refresh the read-only Gustav French language-pack readiness panel without writing admin state">Refresh readiness</button>
+      </div>
+      <div id="fr-language-pack-readiness-status" style="margin-top:12px"></div>
+    </div>
+  </div>
   <pre id="fq-output" class="reports-empty" style="margin:0 24px 32px;white-space:pre-wrap;max-width:1180px">Open the tab to load French quiz gate state.</pre>
 </div>
 
@@ -13110,7 +13163,7 @@
   </div>
   <div id="ref-summary-stats" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p data-i18n-es="referral_attributions: quién invitó a quién, estado y fragmentos acreditados. Haz clic en una fila para abrir el perfil del invitado (como en Usuarios). Botones: abrir referidor o invitado." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    <code style="color:#a78bfa" data-i18n-es="referral_attributions">referral_attributions</code>: <span data-i18n-es="quién invitó a quién, estado y fragmentos acreditados.">кто кого пригласил, статус, начисленные осколки.</span>
+    <code style="color:#a78bfa" data-i18n-es="referral_attributions">referral_attributions</code>: <span data-i18n-es="quién invitó a quién, estado y días VIP acreditados.">кто кого пригласил, статус и выданные дни VIP (7+7). Цепочка: <b>pending</b> — код введён, ждём урок 1 → <b>qualified</b> — урок 1 пройден, приглашённому дни выданы, реферер ещё не нажал «Открыть» → <b>rewarded</b> — оба получили дни.</span>
     <span data-i18n-es="Haz clic en una fila para abrir el perfil del">Клик по строке — профиль</span> <strong data-i18n-es="invitado">приглашённого</strong> <span data-i18n-es="(como en Usuarios). Botones: abrir referidor o invitado.">(как на вкладке «Пользователи»). Кнопки — открыть реферера или приглашённого.</span>
   </p>
   <div id="ref-loading" class="loading" data-i18n-es="⏳ Cargando…" style="display:none;padding:0 24px">⏳ Загрузка…</div>
@@ -13126,9 +13179,10 @@
           <th data-i18n-es="Referidor">Реферер</th>
           <th data-i18n-es="Invitado">Приглашённый</th>
           <th data-i18n-es="Estado">Статус</th>
-          <th data-i18n-es="💎 invit.">💎 пригл.</th>
-          <th data-i18n-es="💎 ref.">💎 реф.</th>
+          <th data-i18n-es="VIP invit. (días)">VIP пригл., дн.</th>
+          <th data-i18n-es="VIP ref. (días)">VIP реф., дн.</th>
           <th data-i18n-es="Aplicado">Применено</th>
+          <th data-i18n-es="Lección 1">Урок 1</th>
           <th data-i18n-es="Recompensa">Награда</th>
           <th data-i18n-es="Acciones">Действия</th>
         </tr>
@@ -14343,7 +14397,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','help-board','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -15386,9 +15440,18 @@
   }
   function refStatusLabel(st) {
     if (st === 'pending') return '⏳ ждёт урок 1';
-    if (st === 'rewarded') return '✅ выдано';
+    if (st === 'qualified') return '🎓 урок 1 пройден — ждёт «Открыть» у реферера';
+    if (st === 'rewarded') return '✅ выдано обоим';
     if (st === 'skipped_referrer_cap') return '✅ (лимит реф. в мес.)';
     return st || '—';
+  }
+  /** Награда в строке: приоритет — дни VIP (текущая механика), фолбэк — легаси-осколки. */
+  function refRewardCell(vipDays, shardBonus) {
+    const days = Number(vipDays);
+    if (Number.isFinite(days) && days > 0) return `${Math.floor(days)} дн.`;
+    const shards = Number(shardBonus);
+    if (Number.isFinite(shards) && shards > 0) return `💎 ${Math.floor(shards)}`;
+    return '—';
   }
   window.renderReferralsTable = function renderReferralsTable() {
     const tbody = document.getElementById('ref-tbody');
@@ -15415,9 +15478,10 @@
           <div class="uid-small" style="max-width:220px;overflow:hidden;text-overflow:ellipsis" title="${escapeHtml(r.refereeId)}">${escapeHtml(r.refereeId)}</div>
         </td>
         <td style="font-size:12px;white-space:normal;max-width:160px">${refStatusLabel(r.status)}</td>
-        <td style="text-align:right">${r.refereeShardBonus != null ? toSafeNumber(r.refereeShardBonus, 0) : '—'}</td>
-        <td style="text-align:right">${r.referrerShardBonus != null ? toSafeNumber(r.referrerShardBonus, 0) : '—'}</td>
+        <td style="text-align:right;color:#4ade80">${refRewardCell(r.refereeVipDays, r.refereeShardBonus)}</td>
+        <td style="text-align:right;color:#c084fc">${refRewardCell(r.referrerVipDays, r.referrerShardBonus)}</td>
         <td style="font-size:11px;color:#888;white-space:normal;max-width:130px">${fdateAny(r.createdAt)}</td>
+        <td style="font-size:11px;color:#888;white-space:normal;max-width:130px">${fdateAny(r.qualifiedAt)}</td>
         <td style="font-size:11px;color:#888;white-space:normal;max-width:130px">${fdateAny(r.rewardedAt)}</td>
         <td class="ref-act-td" style="vertical-align:top"></td>
       </tr>`,
@@ -15437,7 +15501,7 @@
       if (!cell) return;
       const row = (window._referralsRows || []).find(r => r.refereeId === ref);
       const status = row?.status || '';
-      const canRevoke = status === 'rewarded' || status === 'pending';
+      const canRevoke = status === 'rewarded' || status === 'qualified' || status === 'pending';
       cell.innerHTML = `<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
         <button type="button" class="ref-open-btn" data-open="${escapeHtml(rfr)}" style="background:#2a1a3a;border:1px solid #4a2a5a;color:#c084fc;border-radius:6px;padding:4px 10px;font-size:10px;cursor:pointer;font-weight:600;white-space:nowrap">Реферер</button>
         <button type="button" class="ref-open-btn" data-open="${escapeHtml(ref)}" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;border-radius:6px;padding:4px 10px;font-size:10px;cursor:pointer;font-weight:600;white-space:nowrap">Приглашённый</button>
@@ -15487,9 +15551,13 @@
         refCode: x.refCode || '—',
         referrerId: x.referrerStableId || '',
         status: x.status || '—',
+        // Текущая механика — дни VIP (7+7); shard-поля оставлены как легаси-фолбэк.
+        refereeVipDays: x.refereeVipDays,
+        referrerVipDays: x.referrerVipDays,
         refereeShardBonus: x.refereeShardBonus,
         referrerShardBonus: x.referrerShardBonus,
         createdAt: x.createdAt,
+        qualifiedAt: x.qualifiedAt,
         rewardedAt: x.rewardedAt,
       };
     };
@@ -15513,8 +15581,9 @@
       });
       window._referralsLoaded = true;
       const pending = rows.filter((r) => r.status === 'pending').length;
+      const qualified = rows.filter((r) => r.status === 'qualified').length;
       const done = rows.filter((r) => r.status === 'rewarded' || r.status === 'skipped_referrer_cap').length;
-      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · в ожидании урока: ${pending} · с наградой: ${done}`;
+      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · ждут урок: ${pending} · урок пройден (не забрано): ${qualified} · выдано: ${done}`;
       if (window._referralsHasMore && !fullSnapshotHint) stLine += ' · догрузка порциями по ' + REFERRALS_PAGE;
       if (st) st.textContent = stLine;
       if (moreBtn) moreBtn.style.display = window._referralsHasMore && !fullSnapshotHint ? 'inline-block' : 'none';
@@ -15523,22 +15592,23 @@
       rows.forEach((r) => {
         if (!r.referrerId) return;
         if (r.status !== 'rewarded' && r.status !== 'skipped_referrer_cap') return;
-        const o = sumByRef.get(r.referrerId) || { n: 0, shards: 0 };
+        const o = sumByRef.get(r.referrerId) || { n: 0, days: 0 };
         o.n += 1;
-        o.shards += toSafeNumber(r.referrerShardBonus, 0);
+        o.days += toSafeNumber(r.referrerVipDays, 0);
         sumByRef.set(r.referrerId, o);
       });
       const top = [...sumByRef.entries()]
-        .map(([uid, v]) => ({ uid, n: v.n, shards: v.shards, name: window._refNameCache[uid] || uid.slice(0, 8) }))
+        .map(([uid, v]) => ({ uid, n: v.n, days: v.days, name: window._refNameCache[uid] || uid.slice(0, 8) }))
         .sort((a, b) => b.n - a.n)
         .slice(0, 20);
       const sumEl = document.getElementById('ref-summary-stats');
       if (sumEl) {
         sumEl.innerHTML = [
           { k: 'Связей (доков)', v: String(rows.length) },
-          { k: 'Ожидают L1', v: String(pending) },
-          { k: 'С наградой', v: String(done) },
-          { k: 'Уник. реф. (с бонусом)', v: String(sumByRef.size) },
+          { k: 'Ожидают урок 1', v: String(pending) },
+          { k: 'Урок пройден, не забрано', v: String(qualified) },
+          { k: 'Выдано (реферер получил)', v: String(done) },
+          { k: 'Уник. рефереров с наградой', v: String(sumByRef.size) },
         ]
           .map(
             (s) =>
@@ -15549,14 +15619,14 @@
       const agg = document.getElementById('ref-aggregates');
       if (agg) {
         agg.innerHTML = `
-        <div style="font-size:10px;color:#666;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:0.4px">Топ рефереров: завершённые приглашения и суммарные осколки рефереру (по <code>referrerShardBonus</code>)</div>
+        <div style="font-size:10px;color:#666;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:0.4px">Топ рефереров: завершённые приглашения и суммарные дни VIP рефереру (по <code>referrerVipDays</code>)</div>
         <div style="overflow-x:auto">
         <table style="width:100%;min-width:520px;border-collapse:collapse;background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;overflow:hidden">
           <thead><tr>
             <th style="text-align:left;padding:8px 12px;font-size:11px;color:#666">#</th>
             <th style="text-align:left;padding:8px 12px;font-size:11px;color:#666">Реферер</th>
             <th style="text-align:right;padding:8px 12px;font-size:11px;color:#666">Завершено</th>
-            <th style="text-align:right;padding:8px 12px;font-size:11px;color:#666">Сумма 💎 реф.</th>
+            <th style="text-align:right;padding:8px 12px;font-size:11px;color:#666">Дней VIP реф.</th>
             <th style="text-align:left;padding:8px 12px;font-size:11px;color:#666">UID</th>
           </tr></thead>
           <tbody>
@@ -15567,7 +15637,7 @@
             <td style="padding:8px 12px;color:#555;font-size:12px">${i + 1}</td>
             <td style="padding:8px 12px;font-weight:600">${escapeHtml(r.name)}</td>
             <td style="padding:8px 12px;text-align:right;font-weight:700;color:#4ade80">${r.n}</td>
-            <td style="padding:8px 12px;text-align:right;color:#34d399">${r.shards}</td>
+            <td style="padding:8px 12px;text-align:right;color:#34d399">${r.days}</td>
             <td style="padding:8px 8px 8px 12px;font-size:10px;font-family:monospace;color:#666;word-break:break-all">${escapeHtml(r.uid)}</td>
           </tr>`,
           )
@@ -17514,14 +17584,25 @@
     ], 'cancel_surveys');
   };
   window.exportReferralsCSV = function() {
+    const csvDate = (ts) => {
+      try {
+        if (ts && typeof ts.toDate === 'function') return ts.toDate().toISOString();
+        if (ts && ts.seconds != null) return new Date(ts.seconds * 1000).toISOString();
+      } catch (e) { /* */ }
+      return ts ? String(ts) : '';
+    };
     exportToCsv(window._referralsRows || [], [
+      { header: 'Code', get: r => r.refCode || '' },
       { header: 'Referee UID', get: r => r.refereeId || '' },
+      { header: 'Referee', get: r => r.refereeName || '' },
       { header: 'Referrer UID', get: r => r.referrerId || '' },
+      { header: 'Referrer', get: r => r.referrerName || '' },
       { header: 'Статус', get: r => r.status || '' },
-      { header: 'Shards referrer', get: r => r.referrerShards ?? '' },
-      { header: 'Shards referee', get: r => r.refereeShards ?? '' },
-      { header: 'Applied', get: r => r.appliedAt || r.createdAt || '' },
-      { header: 'Rewarded', get: r => r.rewardedAt || '' },
+      { header: 'VIP days referee', get: r => r.refereeVipDays ?? '' },
+      { header: 'VIP days referrer', get: r => r.referrerVipDays ?? '' },
+      { header: 'Applied', get: r => csvDate(r.createdAt) },
+      { header: 'Lesson1 passed', get: r => csvDate(r.qualifiedAt) },
+      { header: 'Rewarded', get: r => csvDate(r.rewardedAt) },
     ], 'referrals');
   };
   window.exportUserReportsCSV = function() {
@@ -19278,6 +19359,9 @@
     if (tab === 'cancel-surveys' && !window._cancelSurveysLoaded && typeof window.loadCancelSurveys === 'function') {
       void window.loadCancelSurveys(false);
     }
+    if (tab === 'surveys' && typeof window.loadShardSurveys === 'function') {
+      void window.loadShardSurveys();
+    }
     if (tab === 'review-promo' && !isLocalAdminVisualTestMode() && !window._vipSurveyLoaded && typeof window.loadVipSurveyResponses === 'function') {
       void window.loadVipSurveyResponses(false);
     }
@@ -19372,6 +19456,68 @@
     ]),
   });
 
+  const FRENCH_LANGUAGE_PACK_READINESS = Object.freeze({
+    studyTarget: 'fr',
+    sourceStudyTarget: 'en',
+    sourceLocales: Object.freeze(['ru', 'uk']),
+    activationApproved: false,
+    readyForApply: false,
+    serverUploadAllowed: false,
+    firebaseUploadAllowed: false,
+    reviewerDecisionImportAllowed: false,
+    runtimeDownloadsEnabled: false,
+    storageMigrationAllowed: false,
+    cloudSyncMigrationAllowed: false,
+    officialCoursePackStatus: Object.freeze({
+      surfaceId: 'official_fr_course_pack_status',
+      serverPaths: Object.freeze([
+        'course-packs/fr/ru/lesson/fr-lessons-core32-v1.pending/',
+        'course-packs/fr/uk/lesson/fr-lessons-core32-v1.pending/',
+      ]),
+      serverUploadAllowed: false,
+      runtimeDownloadsEnabled: false,
+      activationApproved: false,
+    }),
+    llmReviewerQueueStatus: Object.freeze({
+      surfaceId: 'fr_llm_reviewer_queue_status',
+      requestArtifact: 'fr_lesson_llm_review_requests',
+      decisionArtifact: 'fr_lesson_llm_review reviewer_decision',
+      totalRows: 1600,
+      acceptedRows: 870,
+      pendingOrMissingDecisionRows: 337,
+      regenerationRows: 303,
+      skippedRows: 90,
+      sourceLocaleRows: Object.freeze([
+        Object.freeze({ sourceLocale: 'ru', rows: 800, reviewerDecisionImportAllowed: false }),
+        Object.freeze({ sourceLocale: 'uk', rows: 800, reviewerDecisionImportAllowed: false }),
+      ]),
+    }),
+    diagnostics: Object.freeze({
+      surfaceId: 'fr_admin_diagnostics',
+      runtimeReadiness: 'HOLD_RUNTIME_DELIVERY_NOT_READY',
+      storageCloudIsolation: 'PASS_ISOLATION_READY_GLOBAL_FRENCH_HOLD',
+      serverDelivery: 'HOLD_SERVER_PAYLOADS_NOT_READY',
+      audioReadiness: 'HOLD_AUDIO_FILES_MISSING audio checksum status pending',
+      sourceLocaleRequired: true,
+    }),
+    sections: Object.freeze([
+      Object.freeze({ id: 'core_lessons_32', label: 'Core lessons', scope: '32 lessons x 50 phrases', status: 'HOLD', reason: 'LLM trusted-source review, audio, server payloads and runtime delivery still pending.' }),
+      Object.freeze({ id: 'lesson_theory_intro_vocab', label: 'Theory, intro, vocabulary', scope: '32 lesson-native theory/intro/vocab surfaces', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Local French surface is mapped; production waits for global delivery gates.' }),
+      Object.freeze({ id: 'vocabulary_word_training', label: 'Vocabulary word training', scope: 'French-native lesson vocabulary, not English row copy', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Tracked through theory/vocab/intro parity gate.' }),
+      Object.freeze({ id: 'preposition_drills', label: 'Preposition drills', scope: 'French preposition practice bank', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Grammar drill bridge is ready locally.' }),
+      Object.freeze({ id: 'conjugation_drills', label: 'Conjugation drills', scope: 'French conjugation and verb-pattern practice', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'French equivalent of English irregular/preposition-style drills is isolated.' }),
+      Object.freeze({ id: 'standard_quiz_banks', label: 'Standard quizzes', scope: 'French-native questions, distractors and explanations', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Quiz bank surface exists; activation remains closed.' }),
+      Object.freeze({ id: 'arena_questions', label: 'Arena questions', scope: 'French arena parity questions', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Arena bridge is ready locally.' }),
+      Object.freeze({ id: 'personal_practice', label: 'Personal practice', scope: 'Active recall/trainer/server pack declaration', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Problem coach and native diagnosis bank remain future holds.' }),
+      Object.freeze({ id: 'flashcards', label: 'Flashcards', scope: 'French flashcard surface', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Surface bridge is ready locally.' }),
+      Object.freeze({ id: 'collectibles', label: 'Collectible cards', scope: 'French collectible candidate bridge', status: 'PASS_CANDIDATE_GLOBAL_FRENCH_HOLD', reason: 'Candidate bridge only; no production activation.' }),
+      Object.freeze({ id: 'daily_phrases', label: 'Daily phrases', scope: 'French daily phrase surface', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Daily phrase workflow remains separate from official course-pack activation.' }),
+      Object.freeze({ id: 'ai_prompts', label: 'AI prompts', scope: 'mistake explain, weekly review, stats, premium dialog and quiz explanations', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Prompt/cache language contract is explicit for studyTarget=fr.' }),
+      Object.freeze({ id: 'admin_surfaces', label: 'Admin surfaces', scope: 'course-pack status, LLM reviewer queue, diagnostics', status: 'HOLD', reason: 'This read-only surface proves sourceLocale=ru|uk; writes and activation remain closed.' }),
+      Object.freeze({ id: 'server_runtime_storage_cloud', label: 'Server/runtime/storage/cloud', scope: 'downloadable packs and isolation gates', status: 'HOLD', reason: 'No upload, runtime download or storage/cloud migration is allowed yet.' }),
+    ]),
+  });
+
   function frenchQuizAdminApi() {
     return window.PhrasemanFrenchQuizzesWorkflow;
   }
@@ -19399,6 +19545,43 @@
     if (!output) return;
     output.textContent = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
   }
+
+  function frenchLanguagePackReadinessModel() {
+    return window.FRENCH_LANGUAGE_PACK_READINESS || FRENCH_LANGUAGE_PACK_READINESS;
+  }
+
+  window.renderFrenchLanguagePackReadiness = function renderFrenchLanguagePackReadiness() {
+    const target = document.getElementById('fr-language-pack-readiness-status');
+    if (!target) return;
+    const model = frenchLanguagePackReadinessModel();
+    const rows = model.sections.map((section) => {
+      const ok = String(section.status || '').startsWith('PASS');
+      const color = ok ? '#4ade80' : '#fbbf24';
+      return `<div style="display:grid;grid-template-columns:minmax(160px,230px) minmax(120px,210px) 1fr;gap:10px;border-top:1px solid #242838;padding:9px 0;align-items:start">
+        <strong style="color:#e5e7eb">${frenchQuizAdminEscape(section.label)}</strong>
+        <span style="color:${color};font-weight:800">${frenchQuizAdminEscape(section.status)}</span>
+        <span style="color:#aaa;line-height:1.45">${frenchQuizAdminEscape(section.scope)}<br><span style="color:#777">${frenchQuizAdminEscape(section.reason)}</span></span>
+      </div>`;
+    }).join('');
+    const reviewerRows = model.llmReviewerQueueStatus.sourceLocaleRows.map((row) =>
+      `<span style="display:inline-block;margin-right:8px;color:#aaa">sourceLocale=${frenchQuizAdminEscape(row.sourceLocale)} rows=${Number(row.rows || 0)} reviewerDecisionImportAllowed=${row.reviewerDecisionImportAllowed ? 'true' : 'false'}</span>`
+    ).join('');
+    target.innerHTML = `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <span style="color:#aaa">studyTarget=${frenchQuizAdminEscape(model.studyTarget)}</span>
+      <span style="color:#aaa">sourceLocale=${frenchQuizAdminEscape(model.sourceLocales.join('|'))}</span>
+      <span style="color:#fbbf24">activationApproved=${model.activationApproved ? 'true' : 'false'}</span>
+      <span style="color:#fbbf24">serverUploadAllowed=${model.serverUploadAllowed ? 'true' : 'false'}</span>
+      <span style="color:#fbbf24">runtimeDownloadsEnabled=${model.runtimeDownloadsEnabled ? 'true' : 'false'}</span>
+      <span style="color:#fbbf24">reviewerDecisionImportAllowed=${model.reviewerDecisionImportAllowed ? 'true' : 'false'}</span>
+    </div>
+    <div style="color:#999;font-size:12px;line-height:1.5;margin-bottom:10px">
+      Official pack paths: ${model.officialCoursePackStatus.serverPaths.map(frenchQuizAdminEscape).join(' | ')}<br>
+      LLM queue: ${frenchQuizAdminEscape(model.llmReviewerQueueStatus.decisionArtifact)}; total=${Number(model.llmReviewerQueueStatus.totalRows || 0)}, accepted=${Number(model.llmReviewerQueueStatus.acceptedRows || 0)}, missing=${Number(model.llmReviewerQueueStatus.pendingOrMissingDecisionRows || 0)}, regenerate=${Number(model.llmReviewerQueueStatus.regenerationRows || 0)}, skipped=${Number(model.llmReviewerQueueStatus.skippedRows || 0)}<br>
+      ${reviewerRows}<br>
+      Diagnostics: runtime readiness=${frenchQuizAdminEscape(model.diagnostics.runtimeReadiness)}, storage/cloud isolation=${frenchQuizAdminEscape(model.diagnostics.storageCloudIsolation)}, server delivery=${frenchQuizAdminEscape(model.diagnostics.serverDelivery)}, audio=${frenchQuizAdminEscape(model.diagnostics.audioReadiness)}
+    </div>
+    ${rows}`;
+  };
 
   function frenchQuizAdminDocRef(writePath) {
     const segments = String(writePath || '').split('/').filter(Boolean);
@@ -19452,6 +19635,7 @@
     const statusEl = document.getElementById('fq-status');
     const previewEl = document.getElementById('fq-preview');
     if (!statusEl || !previewEl) return;
+    renderFrenchLanguagePackReadiness();
     if (!api) {
       statusEl.innerHTML = '<div class="reports-empty">French quiz workflow module is not loaded.</div>';
       frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: 'workflow_module_missing' });
@@ -19683,8 +19867,8 @@
   const OVERVIEW_TREND_MAX_DAYS = 90;
   const OVERVIEW_TREND_META = {
     visits:  { label: 'Visits',           accent: '#60a5fa', field: 'visits' },
-    ios:     { label: 'iOS downloads',     accent: '#a78bfa', field: 'clicks_ios' },
-    android: { label: 'Android downloads', accent: '#fbbf24', field: 'clicks_android' },
+    ios:     { label: 'iOS store clicks',     accent: '#a78bfa', field: 'clicks_ios' },
+    android: { label: 'Android store clicks', accent: '#fbbf24', field: 'clicks_android' },
     revenue: { label: 'Purchases',         accent: '#4ade80', field: null },
   };
   const _overviewTrend = {
@@ -24403,6 +24587,33 @@
   // 2026-07-04. Кнопка «📋 Мой готовый ответ» в модалке подставляет их по reportId —
   // админ читает/редактирует/шлёт вручную. Verdict определяется по shards (>0 = подтвердилось).
   const PREPARED_REPORT_REPLIES = {
+    // ── Выгрузка 2026-07-05 (5 репортов) ──────────────────────────────────────
+    "0ZPi23cTkvVt1NtAetbO": {
+      "title": "Спасибо, поправили!",
+      "body": "Вы правы — первое слово в наборе не должно выделяться заглавной буквой и подсказывать ответ. Мы это убрали, и с ближайшим обновлением приложения плитки будут ровными. В этом сообщении Вас ждёт награда — заберите её 🙂",
+      "shards": 1
+    },
+    "1KXtuIlE0LxcGJl6ImKR": {
+      "title": "Уже заметили — спасибо!",
+      "body": "Спасибо, что снова обратили внимание! Это та же история с заглавной первой буквой в наборе — мы её уже поправили, и в следующем обновлении всё будет ровно. Награду за неё Вы уже получили в соседнем сообщении, поэтому здесь мы её не дублируем.",
+      "shards": 0
+    },
+    "R355UORYO1gYON56ZlHO": {
+      "title": "Спасибо, отличная находка!",
+      "body": "Вы абсолютно правы: в этом уроке keep означает «держать, хранить» (Where does he keep keys?), а перевод по ошибке показывал «продолжать». Мы это поправили — теперь там оба значения, и с ближайшим обновлением всё встанет на место. Держите награду за внимательность 🙂",
+      "shards": 2
+    },
+    "o3MTfdMfB8mSnkNw3lcx": {
+      "title": "Дякуємо, розбираємось зі звуком",
+      "body": "Дякуємо за детальний опис — і про звук, що згасає, і про акцент. Схоже, що коли студійна озвучка обривається, застосунок перемикається на голос телефону, а він у Вас британський. Ми вже працюємо над тим, щоб озвучка не пропадала й лишався американський голос. У цьому повідомленні — невелика подяка від нас 🙂",
+      "shards": 2
+    },
+    "mL63y18tZA29R5ic8JL9": {
+      "title": "Здесь всё работает верно",
+      "body": "Спасибо, что написали! Здесь всё правильно: нужное слово — graduation, а grade — это слово-ловушка, которое специально стоит рядом и похоже по написанию. Когда Вы нажимаете такую ловушку, приложение честно показывает верный вариант. Так что ошибки нет — это просто задание на внимательность 🙂",
+      "shards": 0
+    },
+
     "zbBzu6J5TaNbtKO6lAOW": {
       "title": "Твой прогресс никуда не пропал",
       "body": "Спасибо, что написал, и извини за испуг! Твои достижения привязаны к аккаунту в облаке — при входе они подтягиваются обратно, так что данные не потеряны. Иногда после переустановки прогресс возвращается не сразу: дай приложению минуту с интернетом или перезайди — и всё встанет на место. Если через день что-то всё ещё будет нулевым, черкни нам, разберёмся лично.",
@@ -27685,6 +27896,8 @@
 
     window._ideaMap = {};
     ideas.forEach(r => { window._ideaMap[r.id] = r; });
+    // Тон/подсказка для ИИ, заданная админом per-idea (не персистится, живёт в сессии).
+    window._ideaTone = window._ideaTone || {};
 
     list.innerHTML = ideas.map(r => {
       const status = r.status || 'pending';
@@ -27712,6 +27925,8 @@
                <button data-idea="${id}" data-decision="reject" style="background:#2a0d0d;border:1px solid #5a1f1f;color:#f87171;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✖️ Отклонить</button>
                <button data-idea-ai="${id}" data-which="approve" type="button" title="ИИ напишет текст «принято» сразу на языке пользователя (${langLbl})" style="background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer">✨ ИИ: принято</button>
                <button data-idea-ai="${id}" data-which="reject" type="button" title="ИИ напишет текст «отклонено» сразу на языке пользователя (${langLbl})" style="background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer">✨ ИИ: отклонено</button>
+               <button data-idea-tone="${id}" type="button" title="Задать тон/подсказку для ИИ (стиль сообщения). Применяется к кнопкам ✨ ИИ." style="background:#2a2130;border:1px solid #5a4a6a;color:#e0b3ff;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer">🎨 Задать тон</button>
+               <span data-idea-tone-badge="${id}" style="font-size:10.5px;color:#a78bfa;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
                <span style="font-size:10.5px;color:#6b7280">язык: ${langLbl}</span>
              </div>
            </div>`;
@@ -27743,6 +27958,46 @@
         generateIdeaDecisionText(btn.dataset.ideaAi, btn.dataset.which, btn);
       });
     });
+    list.querySelectorAll('button[data-idea-tone]').forEach(btn => {
+      btn.addEventListener('click', () => setIdeaTone(btn.dataset.ideaTone));
+    });
+    // Проставить бейджи уже заданных тонов (при перерисовке списка).
+    list.querySelectorAll('span[data-idea-tone-badge]').forEach(span => {
+      renderIdeaToneBadge(span.dataset.ideaToneBadge);
+    });
+  }
+
+  // Обновляет визуальный бейдж рядом с кнопкой «Задать тон» для конкретной идеи.
+  function renderIdeaToneBadge(ideaId) {
+    if (!ideaId) return;
+    const span = document.querySelector('span[data-idea-tone-badge="' + ideaId + '"]');
+    if (!span) return;
+    const tone = (window._ideaTone && window._ideaTone[ideaId]) || '';
+    span.textContent = tone ? '🎨 ' + tone : '';
+    span.title = tone || '';
+  }
+
+  // Спрашивает у админа тон/подсказку для ИИ и сохраняет её per-idea (в сессии).
+  // Пустой ввод / «Отмена» — сбрасывает тон. Тон применяется при нажатии ✨ ИИ.
+  function setIdeaTone(ideaId) {
+    if (!ideaId) return;
+    window._ideaTone = window._ideaTone || {};
+    const current = window._ideaTone[ideaId] || '';
+    const input = window.prompt(
+      'Тон / подсказка для ИИ (стиль сообщения пользователю).\n' +
+      'Например: «тепло и по-дружески», «коротко и по делу», «извинись за задержку».\n' +
+      'Язык ответа не меняется — пиши подсказку как удобно.\n\n' +
+      'Пусто = убрать тон.',
+      current,
+    );
+    if (input === null) return; // Отмена — ничего не меняем.
+    const tone = String(input).trim();
+    if (tone) window._ideaTone[ideaId] = tone;
+    else delete window._ideaTone[ideaId];
+    renderIdeaToneBadge(ideaId);
+    if (typeof showToast === 'function') {
+      showToast(tone ? '🎨 Тон задан — примени через ✨ ИИ' : 'Тон сброшен', 'ok');
+    }
   }
 
   // ИИ генерирует текст модалки решения СРАЗУ на языке пользователя (idea.lang)
@@ -27755,7 +28010,8 @@
     btn.disabled = true;
     btn.textContent = '⏳ ИИ пишет…';
     try {
-      const res = await getDraftIdeaDecisionCallable()({ ideaId, decision });
+      const toneHint = (window._ideaTone && window._ideaTone[ideaId]) || '';
+      const res = await getDraftIdeaDecisionCallable()({ ideaId, decision, toneHint });
       const msg = res && res.data && typeof res.data.message === 'string' ? res.data.message.trim() : '';
       if (!msg) throw new Error('пустой ответ ИИ');
       if (target) { target.value = msg; target.focus(); }
@@ -29219,6 +29475,7 @@
   ];
   const RC_BOOL_FIELDS = [
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: true },
+    { key: 'ai_global_disable', label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ (галочка = ИИ выключен у всех)', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: true },
@@ -29323,6 +29580,7 @@
   // Рубильники фич: булевы флаги remote_config/app.bools, читаемые клиентом
   // онлайн (onSnapshot). Дефолты держим в синхроне с app/remote_flags.ts.
   const CP_FEATURE_TOGGLES = [
+    { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги, разговорный клуб, комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков и арены.' },
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
@@ -29335,6 +29593,7 @@
     { key: 'onboarding_plan_only_enabled', label: 'Онбординг: новый плановый вход', def: true, hint: 'Новый порядок: бренд → язык → цель → уровень → время → mini aha → план → пейвол → имя → 16+ и согласия.' },
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
+    { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: true,  hint: 'Вкл по умолчанию (kill-switch). Выкл → новые юзеры после онбординга больше НЕ получают 72ч полного доступа и приветственный модал (у всех живьём, без релиза). Уже выданные подарки не отбираются — активные докатывают свои часы. Включение возвращает подарок будущим новичкам.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
@@ -34546,6 +34805,316 @@
     }
     return _fnAdminGrant;
   }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // Опросы за осколки (shard-survey): сводка, лента, редактор, CSV.
+  // Читает shard_surveys / shard_survey_stats / shard_survey_responses.
+  // Пишет конфиг через callable adminWriteShardSurvey.
+  // ══════════════════════════════════════════════════════════════════════════
+  let _fnWriteShardSurvey = null;
+  function getWriteShardSurveyFn() {
+    if (!_fnWriteShardSurvey && typeof httpsCallable === 'function' && functionsUs) {
+      _fnWriteShardSurvey = httpsCallable(functionsUs, 'adminWriteShardSurvey');
+    }
+    return _fnWriteShardSurvey;
+  }
+
+  const SS_LANGS = ['ru','uk','es','pt-BR','vi','id','tr','pl'];
+  let _ssSurveys = [];        // список конфигов
+  let _ssStats = {};          // surveyId -> stats
+  let _ssResponses = [];      // сырые ответы выбранного опроса
+  let _ssCurrentId = null;    // выбранный surveyId
+
+  function ssEsc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+  }
+
+  window.loadShardSurveys = async function loadShardSurveys() {
+    const statusEl = document.getElementById('ss-status');
+    try {
+      if (statusEl) statusEl.textContent = 'Загрузка опросов…';
+      const [surveysSnap, statsSnap] = await Promise.all([
+        getDocs(collection(db, 'shard_surveys')),
+        getDocs(collection(db, 'shard_survey_stats')),
+      ]);
+      _ssSurveys = surveysSnap.docs.map((d) => ({ surveyId: d.id, ...d.data() }));
+      _ssStats = {};
+      statsSnap.docs.forEach((d) => { _ssStats[d.id] = d.data(); });
+
+      const sel = document.getElementById('ss-survey-select');
+      if (sel) {
+        sel.innerHTML = _ssSurveys.length
+          ? _ssSurveys.map((s) => {
+              const total = (_ssStats[s.surveyId] && _ssStats[s.surveyId].totalResponses) || 0;
+              const flag = s.enabled ? '🟢' : '⚪️';
+              return `<option value="${ssEsc(s.surveyId)}">${flag} ${ssEsc(s.surveyId)} (${total})</option>`;
+            }).join('')
+          : '<option value="">— нет опросов —</option>';
+      }
+      if (_ssSurveys.length) {
+        _ssCurrentId = (_ssCurrentId && _ssSurveys.some((s) => s.surveyId === _ssCurrentId))
+          ? _ssCurrentId : _ssSurveys[0].surveyId;
+        if (sel) sel.value = _ssCurrentId;
+        await window.onShardSurveySelect();
+      } else {
+        if (statusEl) statusEl.textContent = 'Опросов пока нет. Создай первый.';
+        document.getElementById('ss-summary').innerHTML = '';
+        document.getElementById('ss-feed').innerHTML = '';
+      }
+    } catch (e) {
+      if (statusEl) statusEl.textContent = 'Ошибка загрузки: ' + (e && e.message ? e.message : e);
+    }
+  };
+
+  window.onShardSurveySelect = async function onShardSurveySelect() {
+    const sel = document.getElementById('ss-survey-select');
+    _ssCurrentId = sel ? sel.value : _ssCurrentId;
+    if (!_ssCurrentId) return;
+    renderShardSurveySummary();
+    await loadShardSurveyResponses();
+  };
+
+  function renderShardSurveySummary() {
+    const box = document.getElementById('ss-summary');
+    const survey = _ssSurveys.find((s) => s.surveyId === _ssCurrentId);
+    const stats = _ssStats[_ssCurrentId];
+    if (!box || !survey) return;
+    const total = (stats && stats.totalResponses) || 0;
+    let html = `<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px">
+      <div><b style="font-size:22px;color:#6ee7b7">${total}</b><div style="color:#a1a1aa;font-size:12px">всего ответов</div></div>
+      <div style="align-self:center"><button type="button" onclick="window.openShardSurveyEditor && window.openShardSurveyEditor('${ssEsc(survey.surveyId)}')">✎ Редактировать</button></div>
+      <div style="align-self:center"><button type="button" onclick="window.toggleShardSurveyEnabled && window.toggleShardSurveyEnabled()">${survey.enabled ? '⏸ Выключить' : '▶ Включить'}</button></div>
+    </div>`;
+    const questions = Array.isArray(survey.questions) ? survey.questions : [];
+    const per = (stats && stats.perQuestion) || {};
+    for (const q of questions) {
+      const qText = (q.text && q.text.ru) || q.id;
+      html += `<div style="margin-bottom:14px"><div style="color:#e4e4e7;font-weight:600;margin-bottom:6px">${ssEsc(qText)}</div>`;
+      if (q.type === 'text') {
+        const cnt = (per[q.id] && per[q.id].comment) || 0;
+        html += `<div style="color:#a1a1aa;font-size:13px">${cnt} текстовых ответов — см. ленту ниже</div>`;
+      } else {
+        const counts = per[q.id] || {};
+        const opts = Array.isArray(q.options) ? q.options : [];
+        const qTotal = opts.reduce((acc, o) => acc + (counts[o.id] || 0), 0) || 0;
+        for (const o of opts) {
+          const c = counts[o.id] || 0;
+          const pct = qTotal ? Math.round((c / qTotal) * 100) : 0;
+          const label = (o.label && o.label.ru) || o.id;
+          html += `<div style="display:flex;align-items:center;gap:8px;margin:3px 0">
+            <div style="width:150px;color:#d4d4d8;font-size:13px">${ssEsc(label)}</div>
+            <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden;height:16px"><div style="width:${pct}%;height:100%;background:#6ee7b7"></div></div>
+            <div style="width:70px;text-align:right;color:#a1a1aa;font-size:12px">${c} · ${pct}%</div>
+          </div>`;
+        }
+      }
+      html += '</div>';
+    }
+    box.innerHTML = html;
+  }
+
+  async function loadShardSurveyResponses() {
+    const statusEl = document.getElementById('ss-status');
+    try {
+      if (statusEl) statusEl.textContent = 'Загрузка ответов…';
+      const qy = query(
+        collection(db, 'shard_survey_responses'),
+        where('surveyId', '==', _ssCurrentId),
+        orderBy('submittedAtMs', 'desc'),
+        limit(300),
+      );
+      const snap = await getDocs(qy);
+      _ssResponses = snap.docs.map((d) => d.data());
+      if (statusEl) statusEl.textContent = `Опрос: ${_ssCurrentId} · ответов загружено: ${_ssResponses.length}`;
+      window.renderShardSurveyFeed();
+    } catch (e) {
+      // orderBy может потребовать индекс — фоллбэк без сортировки.
+      try {
+        const snap = await getDocs(query(collection(db, 'shard_survey_responses'), where('surveyId', '==', _ssCurrentId), limit(300)));
+        _ssResponses = snap.docs.map((d) => d.data());
+        window.renderShardSurveyFeed();
+        if (statusEl) statusEl.textContent = `Опрос: ${_ssCurrentId} · ответов: ${_ssResponses.length} (без сортировки — нужен индекс)`;
+      } catch (e2) {
+        if (statusEl) statusEl.textContent = 'Ошибка ответов: ' + (e2 && e2.message ? e2.message : e2);
+      }
+    }
+  }
+
+  window.renderShardSurveyFeed = function renderShardSurveyFeed() {
+    const box = document.getElementById('ss-feed');
+    if (!box) return;
+    const search = (document.getElementById('ss-feed-search') || {}).value || '';
+    const needle = search.trim().toLowerCase();
+    const survey = _ssSurveys.find((s) => s.surveyId === _ssCurrentId);
+    const questions = survey && Array.isArray(survey.questions) ? survey.questions : [];
+    const rows = _ssResponses.filter((r) => {
+      if (!needle) return true;
+      const ans = r.answers || {};
+      return Object.values(ans).some((a) => a && a.comment && String(a.comment).toLowerCase().includes(needle));
+    });
+    if (!rows.length) { box.innerHTML = '<div style="color:#71717a;font-size:13px">Нет ответов.</div>'; return; }
+    box.innerHTML = rows.map((r) => {
+      const when = r.submittedAtMs ? new Date(r.submittedAtMs).toLocaleString() : '';
+      const ans = r.answers || {};
+      const lines = questions.map((q) => {
+        const a = ans[q.id];
+        if (!a) return '';
+        let val;
+        if (q.type === 'text') val = ssEsc(a.comment || '');
+        else {
+          const opt = (q.options || []).find((o) => o.id === a.optionId);
+          val = ssEsc((opt && opt.label && opt.label.ru) || a.optionId || '');
+          if (a.comment) val += ' — «' + ssEsc(a.comment) + '»';
+        }
+        const qLabel = (q.text && q.text.ru) || q.id;
+        return `<div style="font-size:13px;margin:2px 0"><span style="color:#71717a">${ssEsc(qLabel)}:</span> <span style="color:#d4d4d8">${val}</span></div>`;
+      }).join('');
+      return `<div style="padding:10px 12px;border:1px solid rgba(228,228,231,0.08);border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.02)">
+        <div style="color:#a1a1aa;font-size:12px;margin-bottom:4px">${ssEsc(when)} · ${ssEsc(r.platform || '')} · ${ssEsc(r.appVersion || '')}</div>
+        ${lines}
+      </div>`;
+    }).join('');
+  };
+
+  window.exportShardSurveyCsv = function exportShardSurveyCsv() {
+    const survey = _ssSurveys.find((s) => s.surveyId === _ssCurrentId);
+    if (!survey || !_ssResponses.length) { alert('Нет данных для выгрузки.'); return; }
+    const questions = Array.isArray(survey.questions) ? survey.questions : [];
+    const header = ['uid', 'date', 'platform', 'appVersion'].concat(questions.map((q) => q.id));
+    // Защита от CSV-инъекции формул Excel/Sheets: значения, начинающиеся с
+    // = + - @ (и таб/CR), при открытии таблицы исполнились бы как формула.
+    // Префиксуем апострофом — таблица покажет их как текст (аудит 2026-07-05).
+    const csvCell = (v) => {
+      let s = String(v == null ? '' : v);
+      if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+      return '"' + s.replace(/"/g, '""') + '"';
+    };
+    const lines = [header.map(csvCell).join(',')];
+    for (const r of _ssResponses) {
+      const ans = r.answers || {};
+      const row = [
+        r.uid || '', r.submittedAtMs ? new Date(r.submittedAtMs).toISOString() : '', r.platform || '', r.appVersion || '',
+      ].concat(questions.map((q) => {
+        const a = ans[q.id];
+        if (!a) return '';
+        return q.type === 'text' ? (a.comment || '') : (a.comment ? `${a.optionId} (${a.comment})` : (a.optionId || ''));
+      }));
+      lines.push(row.map(csvCell).join(','));
+    }
+    const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `survey_${_ssCurrentId}.csv`; a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  window.toggleShardSurveyEnabled = async function toggleShardSurveyEnabled() {
+    const survey = _ssSurveys.find((s) => s.surveyId === _ssCurrentId);
+    if (!survey) return;
+    const fn = getWriteShardSurveyFn();
+    if (!fn) { alert('Callable недоступна.'); return; }
+    try {
+      await fn({ survey: { ...survey, enabled: !survey.enabled } });
+      await window.loadShardSurveys();
+    } catch (e) { alert('Ошибка: ' + (e && e.message ? e.message : e)); }
+  };
+
+  // ── Редактор ──────────────────────────────────────────────────────────────
+  let _ssEditing = null;
+
+  window.openShardSurveyEditor = function openShardSurveyEditor(surveyId) {
+    const existing = surveyId ? _ssSurveys.find((s) => s.surveyId === surveyId) : null;
+    _ssEditing = existing
+      ? JSON.parse(JSON.stringify(existing))
+      : { surveyId: '', enabled: false, title: { ru: '' }, subtitle: { ru: '' }, rewardShards: 3, minDaysBetweenSurveys: 7, audience: { tier: 'any' }, questions: [{ id: 'q1', type: 'single_choice', text: { ru: '' }, options: [{ id: 'opt1', label: { ru: '' } }, { id: 'opt2', label: { ru: '' } }] }] };
+    renderShardSurveyEditor();
+    document.getElementById('ss-editor').style.display = 'block';
+    document.getElementById('ss-editor-status').textContent = '';
+  };
+
+  window.closeShardSurveyEditor = function closeShardSurveyEditor() {
+    _ssEditing = null;
+    document.getElementById('ss-editor').style.display = 'none';
+  };
+
+  function renderShardSurveyEditor() {
+    const body = document.getElementById('ss-editor-body');
+    const s = _ssEditing;
+    if (!body || !s) return;
+    let html = `
+      <label style="display:block;margin-bottom:8px">surveyId (a-z0-9_):<br><input type="text" value="${ssEsc(s.surveyId)}" oninput="window._ssSet('surveyId', this.value)" ${s.surveyId && _ssSurveys.some((x)=>x.surveyId===s.surveyId) ? 'disabled' : ''} style="width:280px"/></label>
+      <label style="display:block;margin-bottom:8px">Заголовок (ru):<br><input type="text" value="${ssEsc(s.title && s.title.ru || '')}" oninput="window._ssSetLoc('title', this.value)" style="width:400px"/></label>
+      <label style="display:block;margin-bottom:8px">Подзаголовок (ru):<br><input type="text" value="${ssEsc(s.subtitle && s.subtitle.ru || '')}" oninput="window._ssSetLoc('subtitle', this.value)" style="width:400px"/></label>
+      <label style="display:inline-block;margin-right:16px">Награда 💎 (1-20):<input type="number" min="1" max="20" value="${Number(s.rewardShards)||3}" oninput="window._ssSet('rewardShards', Number(this.value))" style="width:70px"/></label>
+      <label style="display:inline-block;margin-right:16px">Пауза, дней:<input type="number" min="0" value="${Number(s.minDaysBetweenSurveys)||7}" oninput="window._ssSet('minDaysBetweenSurveys', Number(this.value))" style="width:70px"/></label>
+      <label style="display:inline-block;margin-right:16px">Аудитория:
+        <select onchange="window._ssSetAudience(this.value)">
+          <option value="any" ${(!s.audience||s.audience.tier==='any')?'selected':''}>все</option>
+          <option value="free" ${s.audience&&s.audience.tier==='free'?'selected':''}>free</option>
+          <option value="premium" ${s.audience&&s.audience.tier==='premium'?'selected':''}>premium</option>
+        </select>
+      </label>
+      <label style="display:inline-block"><input type="checkbox" ${s.enabled?'checked':''} onchange="window._ssSet('enabled', this.checked)"/> включён</label>
+      <hr style="border-color:rgba(228,228,231,0.1);margin:12px 0"/>
+      <div style="font-weight:600;color:#e4e4e7;margin-bottom:8px">Вопросы</div>`;
+    (s.questions || []).forEach((q, qi) => {
+      html += `<div style="border:1px solid rgba(228,228,231,0.1);border-radius:8px;padding:10px;margin-bottom:8px">
+        <label>id:<input type="text" value="${ssEsc(q.id)}" oninput="window._ssSetQ(${qi},'id',this.value)" style="width:120px"/></label>
+        <label style="margin-left:8px">тип:
+          <select onchange="window._ssSetQType(${qi}, this.value)">
+            <option value="single_choice" ${q.type==='single_choice'?'selected':''}>выбор</option>
+            <option value="text" ${q.type==='text'?'selected':''}>текст</option>
+          </select>
+        </label>
+        <button type="button" onclick="window._ssDelQ(${qi})" style="float:right">✕</button>
+        <br><label style="display:block;margin-top:6px">текст (ru):<input type="text" value="${ssEsc(q.text&&q.text.ru||'')}" oninput="window._ssSetQLoc(${qi},this.value)" style="width:380px"/></label>`;
+      if (q.type !== 'text') {
+        (q.options || []).forEach((o, oi) => {
+          html += `<div style="margin:3px 0 3px 16px"><label>вариант id:<input type="text" value="${ssEsc(o.id)}" oninput="window._ssSetOpt(${qi},${oi},'id',this.value)" style="width:100px"/></label>
+            <label style="margin-left:6px">текст:<input type="text" value="${ssEsc(o.label&&o.label.ru||'')}" oninput="window._ssSetOptLoc(${qi},${oi},this.value)" style="width:220px"/></label>
+            <button type="button" onclick="window._ssDelOpt(${qi},${oi})">✕</button></div>`;
+        });
+        html += `<button type="button" onclick="window._ssAddOpt(${qi})" style="margin-left:16px">＋ вариант</button>`;
+      }
+      html += '</div>';
+    });
+    html += `<button type="button" onclick="window._ssAddQ()">＋ вопрос</button>`;
+    body.innerHTML = html;
+  }
+
+  // Мутаторы редактора (иммутабельность не критична для локального черновика админки).
+  window._ssSet = (k, v) => { _ssEditing[k] = v; };
+  window._ssSetLoc = (k, v) => { _ssEditing[k] = { ...(_ssEditing[k]||{}), ru: v }; };
+  window._ssSetAudience = (tier) => { _ssEditing.audience = { ...(_ssEditing.audience||{}), tier }; };
+  window._ssSetQ = (qi, k, v) => { _ssEditing.questions[qi][k] = v; };
+  window._ssSetQLoc = (qi, v) => { _ssEditing.questions[qi].text = { ...(_ssEditing.questions[qi].text||{}), ru: v }; };
+  window._ssSetQType = (qi, type) => {
+    _ssEditing.questions[qi].type = type;
+    if (type === 'text') _ssEditing.questions[qi].options = [];
+    else if (!(_ssEditing.questions[qi].options||[]).length) _ssEditing.questions[qi].options = [{ id:'opt1', label:{ru:''} },{ id:'opt2', label:{ru:''} }];
+    renderShardSurveyEditor();
+  };
+  window._ssDelQ = (qi) => { _ssEditing.questions.splice(qi,1); renderShardSurveyEditor(); };
+  window._ssAddQ = () => { const n=(_ssEditing.questions.length+1); _ssEditing.questions.push({ id:'q'+n, type:'single_choice', text:{ru:''}, options:[{id:'opt1',label:{ru:''}},{id:'opt2',label:{ru:''}}] }); renderShardSurveyEditor(); };
+  window._ssSetOpt = (qi, oi, k, v) => { _ssEditing.questions[qi].options[oi][k] = v; };
+  window._ssSetOptLoc = (qi, oi, v) => { _ssEditing.questions[qi].options[oi].label = { ...(_ssEditing.questions[qi].options[oi].label||{}), ru: v }; };
+  window._ssDelOpt = (qi, oi) => { _ssEditing.questions[qi].options.splice(oi,1); renderShardSurveyEditor(); };
+  window._ssAddOpt = (qi) => { const n=(_ssEditing.questions[qi].options.length+1); _ssEditing.questions[qi].options.push({ id:'opt'+n, label:{ru:''} }); renderShardSurveyEditor(); };
+
+  window.saveShardSurvey = async function saveShardSurvey() {
+    const st = document.getElementById('ss-editor-status');
+    const fn = getWriteShardSurveyFn();
+    if (!fn) { if (st) st.textContent = 'Callable недоступна.'; return; }
+    try {
+      if (st) st.textContent = 'Сохранение…';
+      await fn({ survey: _ssEditing });
+      if (st) st.textContent = 'Сохранено ✓';
+      window.closeShardSurveyEditor();
+      await window.loadShardSurveys();
+    } catch (e) {
+      if (st) st.textContent = 'Ошибка: ' + (e && e.message ? e.message : e);
+    }
+  };
 
   const REWARD_TYPES = [
     { value: 'shards',          label: '💎 Осколки знаний (1-10000)', needsAmount: true },

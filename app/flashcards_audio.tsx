@@ -805,7 +805,8 @@ export default function FlashcardsAudioScreen() {
               style={[
                 styles.shuffleButton,
                 {
-                  borderColor: shuffle ? t.accent : t.border,
+                  borderColor: shuffle ? t.accent : 'transparent',
+                  borderWidth: shuffle ? 1 : 0,
                   backgroundColor: shuffle ? `${t.accent}22` : t.bgSurface,
                 },
               ]}
@@ -832,7 +833,6 @@ export default function FlashcardsAudioScreen() {
                     style={[
                       styles.pauseChip,
                       {
-                        borderColor: active ? t.accent : t.border,
                         backgroundColor: active ? t.accent : t.bgSurface,
                       },
                     ]}
@@ -858,7 +858,7 @@ export default function FlashcardsAudioScreen() {
         {!loadingSources && sources.length === 0 ? (
           <View style={[styles.emptyPanel, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>{loadError || text.empty}</Text>
-            <TapScale onPress={() => void loadSources(false)} style={[styles.secondaryButton, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+            <TapScale onPress={() => void loadSources(false)} style={[styles.secondaryButton, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="refresh" size={18} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800' }}>{text.reload}</Text>
             </TapScale>
@@ -941,7 +941,7 @@ export default function FlashcardsAudioScreen() {
               styles.cardFace,
               {
                 backgroundColor: t.bgCard,
-                borderColor: t.border,
+                
                 transform: [{ perspective: 900 }, { rotateY: frontFaceRotate }],
               },
             ]}
@@ -963,7 +963,7 @@ export default function FlashcardsAudioScreen() {
               styles.cardFaceBack,
               {
                 backgroundColor: t.bgCard,
-                borderColor: t.border,
+                
                 transform: [{ perspective: 900 }, { rotateY: backFaceRotate }],
               },
             ]}
@@ -1057,10 +1057,10 @@ export default function FlashcardsAudioScreen() {
           </View>
 
           <View style={styles.controlRow}>
-            <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
+            <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
               <Ionicons name="play-skip-back" size={20} color={t.textSecond} />
             </TapScale>
-            <TapScale onPress={replayCurrentSide} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            <TapScale onPress={replayCurrentSide} style={[styles.iconButton, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="refresh" size={21} color={t.textSecond} />
             </TapScale>
             <TapScale
@@ -1072,10 +1072,10 @@ export default function FlashcardsAudioScreen() {
             >
               <Ionicons name={isPlaying ? 'pause' : 'play'} size={28} color={t.correctText} />
             </TapScale>
-            <TapScale onPress={goToNextCard} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            <TapScale onPress={goToNextCard} style={[styles.iconButton, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="play-skip-forward" size={20} color={t.textSecond} />
             </TapScale>
-            <TapScale onPress={backToSetup} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            <TapScale onPress={backToSetup} style={[styles.iconButton, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="stop" size={21} color={t.textSecond} />
             </TapScale>
           </View>
@@ -1099,7 +1099,7 @@ export default function FlashcardsAudioScreen() {
               <Ionicons name="play" size={18} color={t.correctText} />
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{text.again}</Text>
             </TapScale>
-            <TapScale onPress={backToSetup} style={[styles.doneButton, { backgroundColor: t.bgSurface, borderColor: t.border, borderWidth: 1 }]}>
+            <TapScale onPress={backToSetup} style={[styles.doneButton, { backgroundColor: t.bgSurface }]}>
               <Ionicons name="options-outline" size={18} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{text.settings}</Text>
             </TapScale>
@@ -1206,7 +1206,6 @@ const styles = StyleSheet.create({
     minHeight: 36,
     maxWidth: 132,
     borderRadius: 13,
-    borderWidth: 1,
     paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1228,7 +1227,6 @@ const styles = StyleSheet.create({
     minWidth: 52,
     height: 34,
     borderRadius: 12,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1246,7 +1244,6 @@ const styles = StyleSheet.create({
   secondaryButton: {
     minHeight: 42,
     borderRadius: 14,
-    borderWidth: 1,
     paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1329,7 +1326,6 @@ const styles = StyleSheet.create({
   },
   cardFace: {
     ...StyleSheet.absoluteFillObject,
-    borderWidth: 1,
     borderRadius: 24,
     padding: 22,
     alignItems: 'center',
@@ -1377,7 +1373,6 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 17,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -2083,7 +2083,7 @@ export default function FlashcardsSwipeScreen() {
       <View style={styles.topBar}>
         <TapScale
           onPress={() => safeRouterBack(router, '/flashcards' as any)}
-          style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+          style={[styles.iconButton, { backgroundColor: t.bgSurface }]}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           accessibilityLabel={triLang(lang, {
             ru: 'Назад',
@@ -2171,7 +2171,7 @@ export default function FlashcardsSwipeScreen() {
                 style={[
                   styles.sourceRow,
                   selected
-                    ? { backgroundColor: `${selectedAccent}22`, borderWidth: 1.2, borderColor: selectedAccent }
+                    ? { backgroundColor: `${selectedAccent}2E` }
                     : { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) },
                 ]}
               >
@@ -2211,7 +2211,7 @@ export default function FlashcardsSwipeScreen() {
       <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
         <TapScale
           onPress={exitTraining}
-          style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border, alignSelf: 'flex-start' }]}
+          style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, alignSelf: 'flex-start' }]}
           accessibilityLabel={triLang(lang, {
             ru: 'Выйти из тренировки',
             uk: 'Вийти з тренування',
@@ -2233,7 +2233,7 @@ export default function FlashcardsSwipeScreen() {
           <Text style={[styles.doneSubtitle, isPlanFlashcardsTask && styles.planDoneSubtitle, { color: t.textMuted, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
             {cleanSession ? text.cleanDoneSub : text.learnedDoneSub}
           </Text>
-          <View style={[styles.doneScorePill, isPlanFlashcardsTask && styles.planDoneScorePill, { backgroundColor: `${t.accent}20`, borderColor: t.border }]}>
+          <View style={[styles.doneScorePill, isPlanFlashcardsTask && styles.planDoneScorePill, { backgroundColor: `${t.accent}20` }]}>
             <Ionicons name="flash-outline" size={16} color={t.accent} />
             <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
               {text.scoreLabel}: {stats.score}
@@ -2267,7 +2267,7 @@ export default function FlashcardsSwipeScreen() {
             </DuoPressable>
             <TouchableOpacity
               onPress={openSettings}
-              style={[styles.secondaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.bgCard, borderColor: t.border }]}
+              style={[styles.secondaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.bgCard }]}
               accessibilityLabel={text.toSets}
             >
               <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
@@ -2295,7 +2295,7 @@ export default function FlashcardsSwipeScreen() {
         <View style={[styles.playHeader, isPlanFlashcardsTask && styles.planPlayHeader]}>
           <TapScale
             onPress={exitTraining}
-            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
               uk: 'Вийти з тренування',
@@ -2329,7 +2329,7 @@ export default function FlashcardsSwipeScreen() {
           </View>
           <TouchableOpacity
             onPress={openSettings}
-            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={text.settings}
           >
             <Ionicons name="options-outline" size={isPlanFlashcardsTask ? 19 : 21} color={t.textPrimary} />
@@ -2349,7 +2349,6 @@ export default function FlashcardsSwipeScreen() {
                   width: cardWidth,
                   minHeight: cardHeight,
                   backgroundColor: t.bgSurface2,
-                  borderColor: t.border,
                 },
               ]}
             />
@@ -2364,7 +2363,8 @@ export default function FlashcardsSwipeScreen() {
                 width: cardWidth,
                 minHeight: cardHeight,
                 backgroundColor: t.bgSurface,
-                borderColor: feedback ? (feedback.kind === 'wrong' ? t.wrong : t.gold) : t.border,
+                borderColor: feedback ? (feedback.kind === 'wrong' ? t.wrong : t.gold) : 'transparent',
+                borderWidth: feedback ? 1.2 : 0,
                 shadowColor: t.cardShadow,
               },
               {
@@ -2413,7 +2413,7 @@ export default function FlashcardsSwipeScreen() {
                   pl: 'Odsłuchaj fiszkę',
                 })}
               >
-                <View style={[styles.speakButton, isPlanFlashcardsTask && styles.planSpeakButton, { borderColor: t.border, backgroundColor: t.bgCard }]}>
+                <View style={[styles.speakButton, isPlanFlashcardsTask && styles.planSpeakButton, { backgroundColor: t.bgCard }]}>
                   <Ionicons name="volume-high-outline" size={isPlanFlashcardsTask ? 16 : 18} color={t.textSecond} />
                 </View>
               </View>
@@ -2502,7 +2502,7 @@ export default function FlashcardsSwipeScreen() {
           <>
             <TouchableOpacity
               onPress={revealCurrent}
-              style={[styles.revealButton, isPlanFlashcardsTask && styles.planRevealButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+              style={[styles.revealButton, isPlanFlashcardsTask && styles.planRevealButton, { backgroundColor: t.bgSurface }]}
             >
               <Ionicons name="eye-outline" size={18} color={t.textSecond} />
               <Text style={[styles.revealText, { color: t.textSecond, fontSize: f.caption }]}>{text.reveal}</Text>
@@ -2555,7 +2555,7 @@ export default function FlashcardsSwipeScreen() {
 
   const renderQuickStart = () => (
     <View style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
-      <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22`, borderColor: t.border }]}>
+      <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22` }]}>
         <Ionicons name="sparkles-outline" size={30} color={t.accent} />
       </View>
       <Text style={[styles.quickStartTitle, { color: t.textPrimary, fontSize: f.h2, marginTop: 18 }]}>{text.smartQueue}</Text>
@@ -2567,7 +2567,7 @@ export default function FlashcardsSwipeScreen() {
     <View style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
       <TapScale
         onPress={() => safeRouterBack(router, '/flashcards' as any)}
-        style={[styles.noCardsBack, styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+        style={[styles.noCardsBack, styles.iconButton, { backgroundColor: t.bgSurface }]}
         accessibilityLabel={triLang(lang, {
           ru: 'Назад',
           uk: 'Назад',
@@ -2582,7 +2582,7 @@ export default function FlashcardsSwipeScreen() {
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
       </TapScale>
       <View style={[styles.noCardsPanel, { backgroundColor: glassFill(t.bgSurface, 0.46), borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }]}>
-        <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22`, borderColor: t.border }]}>
+        <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22` }]}>
           <Ionicons name="albums-outline" size={30} color={t.accent} />
         </View>
         <Text style={[styles.quickStartTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{text.noCardsTitle}</Text>
@@ -2649,7 +2649,6 @@ const styles = StyleSheet.create({
     width: 76,
     height: 76,
     borderRadius: 24,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2678,7 +2677,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 14,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2918,13 +2916,11 @@ const styles = StyleSheet.create({
   },
   cardBack: {
     position: 'absolute',
-    borderWidth: 1,
     borderRadius: 24,
     transform: [{ scale: 0.96 }, { translateY: 14 }],
     opacity: 0.55,
   },
   trainingCard: {
-    borderWidth: 1.2,
     borderRadius: 24,
     padding: 18,
     justifyContent: 'space-between',
@@ -2992,7 +2988,6 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 14,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -3090,7 +3085,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     minHeight: 42,
     borderRadius: 15,
-    borderWidth: 1,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -3188,7 +3182,6 @@ const styles = StyleSheet.create({
   },
   doneScorePill: {
     marginTop: 14,
-    borderWidth: 1,
     borderRadius: 999,
     paddingVertical: 7,
     paddingHorizontal: 12,
@@ -3261,7 +3254,6 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 50,
     borderRadius: 16,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

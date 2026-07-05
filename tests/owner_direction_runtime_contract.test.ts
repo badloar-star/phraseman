@@ -149,6 +149,9 @@ describe('owner runtime direction contract', () => {
       'app/arena_lobby.tsx': 2,
       'app/arena_results.tsx': 1,
       'app/club_screen.tsx': 1,
+      // «Созвездия»: секундный тик экрана поиска (elapsed + «…»), ≥1000мс,
+      // гейт useIsScreenFocused, очистка на blur/unmount (осознанно, спек F2).
+      'app/constellation_search.tsx': 1,
       'app/diagnostic_test.tsx': 1,
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
@@ -263,6 +266,9 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_invites.ts': 2,
       'app/services/arena_pulse.ts': 1,
       'app/services/arena_rooms_live.ts': 4,
+      // «Созвездия»: live-подписки режима (моя запись очереди, счётчик поиска,
+      // матч, мой player-док) — все отписываются в вызывающем коде (спек F2/F3).
+      'app/services/constellations_db.ts': 4,
       'app/services/league_chest_rewards.ts': 3,
       'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,

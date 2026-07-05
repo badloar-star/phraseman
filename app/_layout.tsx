@@ -2732,6 +2732,9 @@ function AppContent() {
       <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="arena_rating" />
       <Stack.Screen name="arena_leaderboard" />
+      {/* «Созвездия» (specs/constellations.md): поиск живёт с дефолтным freeze —
+          подписка очереди работает и в фоне, редирект в матч случится при возврате. */}
+      <Stack.Screen name="constellation_search" options={{ animation: 'none' }} />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />

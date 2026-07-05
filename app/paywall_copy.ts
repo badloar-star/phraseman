@@ -31,6 +31,8 @@ export type PremiumHeroArt = {
 
 export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   arena: { accent: '#58D6FF', accent2: '#A7FF4F', shardAmount: 180 },
+  // «Созвездия»: небесная пара — азур + золото Полярной (C5).
+  constellations: { accent: '#7FB2FF', accent2: '#FFD166', shardAmount: 180 },
   no_energy: { accent: '#FFE86A', accent2: '#64B4FF', shardAmount: 80 },
   course_after_lesson3: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   lesson_b1: { accent: '#38BDF8', accent2: '#FACC15', shardAmount: 180 },

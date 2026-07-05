@@ -18,6 +18,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   Pressable,
   ScrollView,
@@ -27,6 +28,14 @@ import {
   View,
   type ImageSourcePropType,
 } from 'react-native';
+import Reanimated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-router';
@@ -55,7 +64,7 @@ import {
 } from './study_target_lang_dev';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-type WelcomeStep = 'welcome' | 'goal' | 'level';
+type WelcomeStep = 'welcome' | 'goal' | 'level' | 'done';
 
 const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
   en: require('../assets/images/language_flags/language_en.webp'),
@@ -67,6 +76,29 @@ const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
 const LANGUAGE_ACCUSATIVE: Record<'ru' | 'uk', Record<StudyTargetLang, string>> = {
   ru: { en: 'английский', fr: 'французский', es: 'испанский' },
   uk: { en: 'англійська', fr: 'французька', es: 'іспанська' },
+};
+
+/**
+ * Персональное напутствие для экрана-подтверждения — по выбранной цели (goal).
+ * Ключи совпадают с id GOAL_OPTIONS; fallback — на случай неизвестной цели.
+ */
+const DONE_ENCOURAGEMENT: Record<'ru' | 'uk', Record<string, string>> = {
+  ru: {
+    series: 'План под тебя готов. Пара минут в день — и любимые сериалы зазвучат понятнее уже на этой неделе.',
+    everyday: 'План под тебя готов. Пара минут в день — и первые живые фразы для разговора появятся уже на этой неделе.',
+    travel: 'План под тебя готов. Пара минут в день — и в поездке ты будешь понимать и отвечать увереннее.',
+    words: 'План под тебя готов. Пара минут в день — и нужные фразы начнут оставаться в памяти уже на этой неделе.',
+    mind: 'План под тебя готов. Пара минут в день — и первые фразы зазвучат уже на этой неделе.',
+    default: 'План под тебя готов. Пара минут в день — и первые фразы зазвучат уже на этой неделе.',
+  },
+  uk: {
+    series: 'План під тебе готовий. Пара хвилин на день — і улюблені серіали звучатимуть зрозуміліше вже цього тижня.',
+    everyday: 'План під тебе готовий. Пара хвилин на день — і перші живі фрази для розмови зʼявляться вже цього тижня.',
+    travel: 'План під тебе готовий. Пара хвилин на день — і в подорожі ти розумітимеш і відповідатимеш упевненіше.',
+    words: 'План під тебе готовий. Пара хвилин на день — і потрібні фрази почнуть залишатися в памʼяті вже цього тижня.',
+    mind: 'План під тебе готовий. Пара хвилин на день — і перші фрази зазвучать уже цього тижня.',
+    default: 'План під тебе готовий. Пара хвилин на день — і перші фрази зазвучать уже цього тижня.',
+  },
 };
 
 type ChoiceOption = {
@@ -180,16 +212,49 @@ export default function LanguageWelcomeScreen() {
         }
         await saveLanguageProfile(target, { goal, level });
         await applyStudyLanguageSelection(target, lang);
-        goBackSafely();
+        setStep('done'); // язык активирован → экран-подтверждение, а не молчаливый выход
+      } catch {
+        // Сохранение/активация упали (сеть/сторедж) — без catch это был бы немой
+        // провал + unhandled rejection. Говорим пользователю и оставляем на шаге,
+        // чтобы он мог нажать ещё раз (setBusy(false) в finally уже разблокирует CTA).
+        Alert.alert(
+          tr('Не получилось', 'Не вдалося'),
+          tr(
+            'Не удалось сохранить выбор языка. Проверь соединение и попробуй ещё раз.',
+            'Не вдалося зберегти вибір мови. Перевір зʼєднання та спробуй ще раз.',
+          ),
+        );
       } finally {
         setBusy(false);
       }
     })();
-  }, [target, goal, level, busy, hasPremiumAccess, lang, router, goBackSafely]);
+  }, [target, goal, level, busy, hasPremiumAccess, lang, router, tr]);
+
+  // Кнопка на экране-подтверждении: язык уже активен — уводим в обучение (главная).
+  const startLearning = useCallback(() => {
+    void hapticTap();
+    router.replace('/(tabs)/home' as any);
+  }, [router]);
 
   if (!target) return <View style={styles.safe} />;
 
   const flagAsset = FLAG_ASSETS[target];
+
+  if (step === 'done') {
+    const encouragement =
+      DONE_ENCOURAGEMENT[sourceUi][goal ?? 'default'] ?? DONE_ENCOURAGEMENT[sourceUi].default;
+    return (
+      <DoneCelebration
+        flagAsset={flagAsset}
+        languageName={languageName}
+        eyebrow={tr('Новый язык выбран', 'Нову мову вибрано')}
+        encouragement={encouragement}
+        buttonLabel={tr('Начать учить', 'Почати вчитися')}
+        onStart={startLearning}
+      />
+    );
+  }
+
   const stepIndex = step === 'welcome' ? 0 : step === 'goal' ? 1 : 2;
 
   const renderOptions = (
@@ -326,6 +391,111 @@ export default function LanguageWelcomeScreen() {
   );
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DoneCelebration — финальный экран-подтверждение выбора языка.
+// Разовая анимация появления (ореол + флаг spring + галочка + текст), затем
+// покой: НИКАКИХ withRepeat(-1)/Animated.loop (Performance Bible). Кнопка уводит
+// в обучение; язык к этому моменту уже активирован родительским экраном.
+// ─────────────────────────────────────────────────────────────────────────────
+interface DoneCelebrationProps {
+  flagAsset?: ImageSourcePropType;
+  languageName: string;
+  eyebrow: string;
+  encouragement: string;
+  buttonLabel: string;
+  onStart: () => void;
+}
+
+function DoneCelebration({
+  flagAsset,
+  languageName,
+  eyebrow,
+  encouragement,
+  buttonLabel,
+  onStart,
+}: DoneCelebrationProps) {
+  const badge = useSharedValue(0); // ореол + флаг: появление
+  const check = useSharedValue(0); // галочка: pop с overshoot
+  const copy = useSharedValue(0); // текст + кнопка: мягкое проявление
+
+  useEffect(() => {
+    badge.value = withTiming(1, { duration: 460, easing: Easing.out(Easing.cubic) });
+    check.value = withDelay(
+      360,
+      withSequence(
+        withTiming(1.18, { duration: 240, easing: Easing.out(Easing.quad) }),
+        withTiming(1, { duration: 220, easing: Easing.inOut(Easing.ease) }),
+      ),
+    );
+    copy.value = withDelay(300, withTiming(1, { duration: 480, easing: Easing.out(Easing.cubic) }));
+  }, [badge, check, copy]);
+
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: badge.value * 0.55,
+    transform: [{ scale: 0.4 + badge.value * 0.6 }],
+  }));
+  const flagStyle = useAnimatedStyle(() => ({
+    opacity: badge.value,
+    transform: [{ scale: 0.6 + badge.value * 0.4 }],
+  }));
+  const checkStyle = useAnimatedStyle(() => ({
+    opacity: check.value === 0 ? 0 : 1,
+    transform: [{ scale: check.value }],
+  }));
+  const copyStyle = useAnimatedStyle(() => ({
+    opacity: copy.value,
+    transform: [{ translateY: (1 - copy.value) * 12 }],
+  }));
+
+  return (
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.doneBody}>
+        <View style={styles.badgeWrap}>
+          <Reanimated.View style={[styles.doneHalo, haloStyle]} />
+          <Reanimated.View style={[styles.doneBadge, flagStyle]}>
+            {flagAsset ? (
+              <Image source={flagAsset} style={styles.doneFlag} resizeMode="contain" />
+            ) : (
+              <Ionicons name="flag-outline" size={54} color="#C6D3FF" />
+            )}
+            <Reanimated.View style={[styles.doneCheck, checkStyle]}>
+              <Ionicons name="checkmark" size={20} color="#07111F" />
+            </Reanimated.View>
+          </Reanimated.View>
+        </View>
+
+        <Reanimated.View style={[styles.doneCopy, copyStyle]}>
+          <Text style={styles.doneEyebrow}>{eyebrow}</Text>
+          <Text style={styles.doneTitle}>{languageName}</Text>
+          <Text style={styles.doneText}>{encouragement}</Text>
+        </Reanimated.View>
+      </View>
+
+      <View style={styles.footer}>
+        <Reanimated.View style={copyStyle}>
+          <Pressable
+            testID="language-welcome-done-start"
+            onPressIn={() => { void hapticTap(); }}
+            onPress={onStart}
+            accessibilityRole="button"
+            style={({ pressed }) => [styles.primaryButtonOuter, pressed && styles.pressed]}
+          >
+            <LinearGradient
+              colors={['#E3ECFF', '#7B8CFF', '#C95CFF']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.primaryButton}
+            >
+              <Text style={styles.primaryButtonText}>{buttonLabel}</Text>
+            </LinearGradient>
+          </Pressable>
+        </Reanimated.View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: '#07111F' },
   header: {
@@ -386,4 +556,44 @@ const styles = StyleSheet.create({
   primaryButtonText: { color: '#07111F', fontSize: 17, fontWeight: '800' },
   pressed: { opacity: 0.85 },
   disabled: { opacity: 0.55 },
+
+  // Экран-подтверждение (step === 'done').
+  doneBody: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28 },
+  badgeWrap: { width: 168, height: 168, alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
+  doneHalo: {
+    position: 'absolute',
+    width: 168,
+    height: 168,
+    borderRadius: 84,
+    backgroundColor: 'rgba(123,140,255,0.22)',
+  },
+  doneBadge: {
+    width: 116,
+    height: 116,
+    borderRadius: 58,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(198,211,255,0.22)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'visible',
+  },
+  doneFlag: { width: 84, height: 60, borderRadius: 8 },
+  doneCheck: {
+    position: 'absolute',
+    right: -2,
+    bottom: -2,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#8AB9FF',
+    borderWidth: 3,
+    borderColor: '#07111F',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  doneCopy: { alignItems: 'center', marginTop: 22 },
+  doneEyebrow: { color: '#8AB9FF', fontSize: 14, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
+  doneTitle: { color: '#F7FAFF', fontSize: 30, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
+  doneText: { color: '#C6D3FF', fontSize: 16, lineHeight: 24, textAlign: 'center', maxWidth: 320 },
 });

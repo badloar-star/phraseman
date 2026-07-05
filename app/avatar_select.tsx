@@ -303,7 +303,7 @@ export default function AvatarSelect() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const avatarAccent = '#A78BFA';
   const { lang } = useLang();
@@ -801,7 +801,7 @@ export default function AvatarSelect() {
         )}
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: bottomInset + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: bottomInset + 18 }} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Карточка профиля</Text>
@@ -974,7 +974,7 @@ export default function AvatarSelect() {
             })}
           </ScrollView>
         </View>
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
 

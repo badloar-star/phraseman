@@ -355,7 +355,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   top_helpers_enabled: true,
   // «Созвездия»: в ПРОДЕ дефолт false — режим тёмный, пока не включён из «Пульта».
   // В dev-сборках (__DEV__) включён всегда: владелец видит карточку без крутки конфига.
-  constellations_enabled: __DEV__,
+  // typeof-гард: в jest/node __DEV__ не определён — там действует прод-дефолт false.
+  constellations_enabled: typeof __DEV__ !== 'undefined' && __DEV__,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {

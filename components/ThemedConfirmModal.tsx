@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
@@ -66,7 +66,15 @@ function ThemedConfirmModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      <View
+      {/* Тап по затемнённому фону = отмена. На iOS нет аппаратной кнопки «назад»,
+          так что тап-снаружи — привычный способ закрыть диалог одним касанием.
+          Тап по самой карточке НЕ закрывает (Pressable ниже гасит всплытие). */}
+      <Pressable
+        onPress={() => {
+          hapticTap();
+          onCancel();
+        }}
+        accessibilityLabel={cancelLabel}
         style={{
           flex: 1,
           backgroundColor: dim,
@@ -75,6 +83,7 @@ function ThemedConfirmModal({
           padding: 24,
         }}
       >
+        <Pressable onPress={(e) => e.stopPropagation()} style={{ width: '100%', maxWidth: 360 }}>
         <LinearGradient
           testID={testIDPrefix ? `${testIDPrefix}-modal` : undefined}
           colors={modalColors}
@@ -85,7 +94,6 @@ function ThemedConfirmModal({
             borderRadius: modalRadius,
             padding: 22,
             width: '100%',
-            maxWidth: 360,
             borderWidth: 1,
             borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairline : t.border,
             overflow: 'hidden',
@@ -191,7 +199,8 @@ function ThemedConfirmModal({
             </TouchableOpacity>
           </View>
         </LinearGradient>
-      </View>
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 }

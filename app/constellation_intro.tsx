@@ -97,9 +97,9 @@ export default function ConstellationIntroScreen() {
           <View style={styles.art}><IntroArt kind={slide.art} /></View>
         )}
 
-        <Text style={styles.kicker}>{slide.kicker(lang)}</Text>
-        <Text style={[styles.title, { color: t.textPrimary }]}>{slide.title(lang)}</Text>
-        <Text style={[styles.desc, { color: t.textSecond }]}>{slide.body(lang)}</Text>
+        <Text style={[styles.kicker, { fontSize: f.caption - 2 }]}>{slide.kicker(lang)}</Text>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 + 3 }]}>{slide.title(lang)}</Text>
+        <Text style={[styles.desc, { color: t.textSecond, fontSize: f.body }]}>{slide.body(lang)}</Text>
       </View>
 
       <View style={[styles.foot, { paddingBottom: insets.bottom + 20 }]}>
@@ -109,7 +109,7 @@ export default function ConstellationIntroScreen() {
           ))}
         </View>
         <TouchableOpacity style={styles.cta} onPress={next} activeOpacity={0.85}>
-          <Text style={styles.ctaText}>
+          <Text style={[styles.ctaText, { fontSize: f.body + 2 }]}>
             {last
               ? triLang(lang, { ru: '⭐ Играть', uk: '⭐ Грати', es: '⭐ Jugar', 'pt-BR': '⭐ Jogar', vi: '⭐ Chơi', id: '⭐ Main', tr: '⭐ Oyna', pl: '⭐ Graj' })
               : triLang(lang, { ru: 'Дальше →', uk: 'Далі →', es: 'Siguiente →', 'pt-BR': 'Próximo →', vi: 'Tiếp →', id: 'Lanjut →', tr: 'İleri →', pl: 'Dalej →' })}

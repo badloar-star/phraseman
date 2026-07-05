@@ -254,7 +254,7 @@ export default function ConstellationResultsScreen() {
                 {result?.players.find((r) => r.uid === p.uid)?.points ?? p.liveScore ?? p.bonusPoints}
               </Text>
               {match.starfall.golden && p.starfallEarned > 0 ? (
-                <Text style={styles.podShards}>◆ {p.starfallEarned}</Text>
+                <Text style={[styles.podShards, { fontSize: f.caption - 3 }]}>◆ {p.starfallEarned}</Text>
               ) : null}
             </View>
           ))}

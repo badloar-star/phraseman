@@ -7,7 +7,10 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { FlashList } from '@shopify/flash-list';
-import Reanimated from 'react-native-reanimated';
+import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
+
+// FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
+const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -1570,7 +1573,7 @@ function ActivityTab({
 
   // D3: лента виртуализирована — FlashList и есть скроллер таба (эталон: flashcards_collection.tsx).
   return (
-    <FlashList
+    <AnimatedFlashList
       {...(scrollProps ?? {})}
       testID="friends-activity-list"
       data={showFeed ? feedItems : []}
@@ -1810,9 +1813,24 @@ export default function FriendsTabScreen() {
   const { goHome, activeIdx, focusTick } = useTabNav();
   const friendsTabVisible = activeIdx === 3;
   const insets = useStableSafeAreaInsets();
-  const scrollY = useRef(new Animated.Value(0)).current;
   const topFadeScroll = useTopFadeScroll();
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6 — будим JS
+  // только на пересечении порога, сам скролл идёт UI-потоком (onAnimatedScroll).
+  const topFadeShown = useSharedValue(false);
+  const topFadeOnScroll = topFadeScroll?.onScroll;
+  const notifyTopFade = useCallback((y: number) => {
+    topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
+  }, [topFadeOnScroll]);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
+    onScrollWorklet: (y: number) => {
+      'worklet';
+      const shown = y > 6;
+      if (shown !== topFadeShown.value) {
+        topFadeShown.value = shown;
+        runOnJS(notifyTopFade)(y);
+      }
+    },
+  });
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
   const sentGiftChrome = false
@@ -2942,10 +2960,7 @@ export default function FriendsTabScreen() {
     bounces: true,
     alwaysBounceVertical: true,
     overScrollMode: 'always' as const,
-    onScroll: Animated.event(
-      [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-      { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
-    ),
+    onScroll: onAnimatedScroll,
   };
 
   const listHeader = (
@@ -3279,7 +3294,7 @@ export default function FriendsTabScreen() {
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
       {activeTab === 'friends' ? (
-        <FlashList
+        <AnimatedFlashList
           {...listScrollProps}
           testID="friends-list"
           data={sortedFriends}

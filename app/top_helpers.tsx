@@ -42,6 +42,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { safeRouterBack } from './navigation_back';
 import { logFeatureOpened } from './firebase';
 import { loadTopHelpers, type TopHelperRow } from './firestore_top_helpers';
+import SkeletonBlock from '../components/SkeletonShimmer';
 
 const HELPERS_AVATAR_SIZE = 52;
 const HELPERS_ACCENT = '#F59E0B';
@@ -54,25 +55,72 @@ function boardTitle(lang: string): string {
   });
 }
 
-function helpedLabel(count: number, lang: string): string {
+/**
+ * Титул баг-хелпера по числу подтверждённых находок (Набор A «Охотники», 10 уровней).
+ * Индекс уровня общий для всех языков — меняется только перевод строки.
+ */
+const HELPER_TITLE_TIERS: { min: number; titles: Record<string, string> }[] = [
+  { min: 100, titles: { ru: 'Легенда Phraseman', uk: 'Легенда Phraseman', es: 'Leyenda de Phraseman', 'pt-BR': 'Lenda do Phraseman', vi: 'Huyền thoại Phraseman', id: 'Legenda Phraseman', tr: 'Phraseman Efsanesi', pl: 'Legenda Phraseman' } },
+  { min: 61, titles: { ru: 'Хранитель качества', uk: 'Охоронець якості', es: 'Guardián de la calidad', 'pt-BR': 'Guardião da qualidade', vi: 'Người giữ chất lượng', id: 'Penjaga kualitas', tr: 'Kalite Muhafızı', pl: 'Strażnik jakości' } },
+  { min: 41, titles: { ru: 'Легенда отладки', uk: 'Легенда налагодження', es: 'Leyenda del debug', 'pt-BR': 'Lenda da depuração', vi: 'Huyền thoại gỡ lỗi', id: 'Legenda debug', tr: 'Hata Ayıklama Efsanesi', pl: 'Legenda debugowania' } },
+  { min: 26, titles: { ru: 'Гроза ошибок', uk: 'Гроза помилок', es: 'Azote de errores', 'pt-BR': 'Terror dos erros', vi: 'Khắc tinh của lỗi', id: 'Momok bug', tr: 'Hataların Kâbusu', pl: 'Postrach błędów' } },
+  { min: 16, titles: { ru: 'Мастер багов', uk: 'Майстер багів', es: 'Maestro de bugs', 'pt-BR': 'Mestre dos bugs', vi: 'Bậc thầy săn lỗi', id: 'Master bug', tr: 'Hata Ustası', pl: 'Mistrz bugów' } },
+  { min: 11, titles: { ru: 'Ветеран', uk: 'Ветеран', es: 'Veterano', 'pt-BR': 'Veterano', vi: 'Cựu binh', id: 'Veteran', tr: 'Veteran', pl: 'Weteran' } },
+  { min: 7, titles: { ru: 'Знаток', uk: 'Знавець', es: 'Experto', 'pt-BR': 'Especialista', vi: 'Chuyên gia', id: 'Ahli', tr: 'Uzman', pl: 'Znawca' } },
+  { min: 4, titles: { ru: 'Охотник за багами', uk: 'Мисливець за багами', es: 'Cazador de bugs', 'pt-BR': 'Caçador de bugs', vi: 'Thợ săn lỗi', id: 'Pemburu bug', tr: 'Hata Avcısı', pl: 'Łowca bugów' } },
+  { min: 2, titles: { ru: 'Следопыт', uk: 'Слідопит', es: 'Rastreador', 'pt-BR': 'Rastreador', vi: 'Người theo dấu', id: 'Penjejak', tr: 'İz Sürücü', pl: 'Tropiciel' } },
+  { min: 1, titles: { ru: 'Первопроходец', uk: 'Першопрохідець', es: 'Pionero', 'pt-BR': 'Pioneiro', vi: 'Người tiên phong', id: 'Perintis', tr: 'Öncü', pl: 'Pionier' } },
+];
+
+function helperTitle(count: number, lang: string): string {
+  const tier = HELPER_TITLE_TIERS.find((tr) => count >= tr.min) ?? HELPER_TITLE_TIERS[HELPER_TITLE_TIERS.length - 1];
+  return triLang(lang as never, tier.titles as never);
+}
+
+/** Короткая подпись под счётчиком багов справа. */
+function caughtLabel(lang: string): string {
   return triLang(lang as never, {
-    ru: `Помог с ${count} ${pluralRu(count, 'багом', 'багами', 'багами')}`,
-    uk: `Допоміг з ${count} ${count === 1 ? 'багом' : 'багами'}`,
-    es: `Ayudó con ${count} ${count === 1 ? 'error' : 'errores'}`,
-    'pt-BR': `Ajudou com ${count} ${count === 1 ? 'bug' : 'bugs'}`,
-    vi: `Đã giúp ${count} lỗi`,
-    id: `Membantu ${count} bug`,
-    tr: `${count} hata ile yardım etti`,
-    pl: `Pomógł z ${count} ${count === 1 ? 'błędem' : 'błędami'}`,
+    ru: 'поймано', uk: 'спіймано', es: 'atrapados', 'pt-BR': 'capturados',
+    vi: 'đã bắt', id: 'tertangkap', tr: 'yakalandı', pl: 'złapane',
   });
 }
 
-function pluralRu(n: number, one: string, few: string, many: string): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-  return many;
+// Плейсхолдер-строки на время первой загрузки: форма совпадает с реальной
+// строкой борда (место + аватар + имя/титул), чтобы переход «загрузка → данные»
+// шёл без скачка лэйаута и пустого экрана.
+function HelperSkeletonRows({ borderColor, bgCard }: { borderColor: string; bgCard: string }) {
+  return (
+    <View>
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <View
+          key={i}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 16,
+            paddingVertical: 12,
+            borderBottomWidth: 0.5,
+            borderBottomColor: borderColor,
+            backgroundColor: bgCard,
+          }}
+        >
+          <View style={{ width: 36, alignItems: 'center' }}>
+            <SkeletonBlock width={16} height={16} borderRadius={4} />
+          </View>
+          <SkeletonBlock
+            width={HELPERS_AVATAR_SIZE}
+            height={HELPERS_AVATAR_SIZE}
+            borderRadius={HELPERS_AVATAR_SIZE / 2}
+            style={{ marginRight: 10 }}
+          />
+          <View style={{ flex: 1, gap: 6 }}>
+            <SkeletonBlock width={`${60 - i * 4}%`} height={13} />
+            <SkeletonBlock width={`${40 - i * 3}%`} height={10} />
+          </View>
+        </View>
+      ))}
+    </View>
+  );
 }
 
 export default function TopHelpersScreen() {
@@ -112,7 +160,7 @@ export default function TopHelpersScreen() {
     (item: TopHelperRow) => {
       hapticTap();
       const isMe = !!myUid && item.uid === myUid;
-      const lvl = item.profileCardLevel ?? 1;
+      const lvl = item.gameLevel && item.gameLevel > 0 ? item.gameLevel : 1;
       const avatar = String(item.avatar?.trim() || getBestAvatarForLevel(lvl));
       setProfilePlayer({
         name: item.displayName,
@@ -145,7 +193,9 @@ export default function TopHelpersScreen() {
       const crownCount = Math.max(0, Math.floor(Number(item.leagueCrownCount) || 0));
       const hasLeagueCrown = crownCount > 0 || Number(item.leagueCrownExpiresAt) > Date.now();
       const displayCrownCount = hasLeagueCrown ? Math.max(1, crownCount) : 0;
-      const avatar = String(item.avatar?.trim() || getBestAvatarForLevel(item.profileCardLevel ?? 1));
+      // Настоящий игровой уровень (не profileCardLevel — тот флаг 0..1). Фолбэк 1.
+      const gameLvl = item.gameLevel && item.gameLevel > 0 ? item.gameLevel : 1;
+      const avatar = String(item.avatar?.trim() || getBestAvatarForLevel(gameLvl));
 
       return (
         <Pressable
@@ -174,21 +224,32 @@ export default function TopHelpersScreen() {
           >
             {item.place}
           </Text>
-          <PremiumAvatarHalo
-            enabled={rowUsesPremiumAura}
-            avatarSize={HELPERS_AVATAR_SIZE}
-            maskColor={isMe ? t.accentBg : t.bgCard}
-            style={{ marginRight: 10 }}
-            animateShimmer={false}
+          {/* Фикс-слот под аватар: аура рисуется поверх (выходя за центр), но НЕ толкает
+              имя вправо. Без этого строки с аурой были шире и съезжали. */}
+          <View
+            style={{
+              width: HELPERS_AVATAR_SIZE,
+              height: HELPERS_AVATAR_SIZE,
+              marginRight: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            <AvatarView
-              avatar={avatar}
-              level={item.profileCardLevel ?? 1}
-              size={HELPERS_AVATAR_SIZE}
-              auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
-              animateAura={false}
-            />
-          </PremiumAvatarHalo>
+            <PremiumAvatarHalo
+              enabled={rowUsesPremiumAura}
+              avatarSize={HELPERS_AVATAR_SIZE}
+              maskColor={isMe ? t.accentBg : t.bgCard}
+              animateShimmer={false}
+            >
+              <AvatarView
+                avatar={avatar}
+                level={gameLvl}
+                size={HELPERS_AVATAR_SIZE}
+                auraId={rowUsesPremiumAura ? undefined : rowEffectiveAura}
+                animateAura={false}
+              />
+            </PremiumAvatarHalo>
+          </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
               <View style={{ flexShrink: 1, minWidth: 0 }}>
@@ -213,8 +274,8 @@ export default function TopHelpersScreen() {
               </View>
               <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} />
             </View>
-            <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
-              {helpedLabel(item.confirmed, lang)}
+            <Text numberOfLines={1} style={{ color: HELPERS_ACCENT, fontSize: f.label, marginTop: 2, fontWeight: '700' }}>
+              {helperTitle(item.confirmed, lang)}
             </Text>
           </View>
           {isMe && (
@@ -234,11 +295,13 @@ export default function TopHelpersScreen() {
               </Text>
             </View>
           )}
-          <View style={{ alignItems: 'center', justifyContent: 'center', minWidth: 44 }}>
-            <Text style={{ fontSize: 18, fontWeight: '900', color: isTop3 ? t.gold : t.textPrimary }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', minWidth: 52 }}>
+            <Text style={{ fontSize: 20, fontWeight: '900', color: isTop3 ? t.gold : t.textPrimary }}>
               {item.confirmed}
             </Text>
-            <Ionicons name="ribbon" size={14} color={isTop3 ? t.gold : t.textMuted} />
+            <Text style={{ fontSize: Math.max(9, f.caption - 2), color: t.textMuted, marginTop: 1, textTransform: 'uppercase', letterSpacing: 0.4 }}>
+              {caughtLabel(lang)}
+            </Text>
           </View>
         </Pressable>
       );
@@ -320,7 +383,9 @@ export default function TopHelpersScreen() {
                 ) : null
               }
               ListEmptyComponent={
-                loading ? null : (
+                loading ? (
+                  <HelperSkeletonRows borderColor={t.border} bgCard={t.bgCard} />
+                ) : (
                   <View style={{ padding: 24, alignItems: 'center' }}>
                     <Ionicons name="ribbon-outline" size={40} color={t.textMuted} />
                     <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 12 }}>

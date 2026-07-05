@@ -21,7 +21,10 @@ export const PROFILE_CARD_MAX_LEVEL = 5;
 export const PROFILE_CARD_UPGRADE_COST = 200;
 
 export type ProfileCardLevel = 0 | 1 | 2 | 3 | 4 | 5;
-export type ProfileCardTheme = 'classic' | 'gold' | 'emerald' | 'sapphire' | 'amethyst' | 'legend';
+// РЕШЕНИЕ 2026-07-05: линейка по luxury-ресёрчу — чистые «электрические» свечения на
+// почти чёрном (без золота/фиолета/камней). Рост редкости, вершина уходит в стелс-платину.
+// steel → teal → azure → crimson → platinum(holo).
+export type ProfileCardTheme = 'classic' | 'steel' | 'teal' | 'azure' | 'crimson' | 'platinum';
 export type ProfileCardMotion = 'none';
 export type ProfileCardPublicFocus = 'balanced';
 
@@ -37,11 +40,11 @@ export const PROFILE_CARD_LEVEL_COSTS: Record<Exclude<ProfileCardLevel, 0>, numb
 
 export function themeForProfileCardLevel(level: ProfileCardLevel): ProfileCardTheme {
   switch (level) {
-    case 1: return 'gold';
-    case 2: return 'emerald';
-    case 3: return 'sapphire';
-    case 4: return 'amethyst';
-    case 5: return 'legend';
+    case 1: return 'steel';
+    case 2: return 'teal';
+    case 3: return 'azure';
+    case 4: return 'crimson';
+    case 5: return 'platinum';
     default: return 'classic';
   }
 }
@@ -85,66 +88,66 @@ export const PROFILE_CARD_LEVELS: ProfileCardLevelDef[] = [
     level: 1,
     name: 'Phraseman Pro',
     cost: PROFILE_CARD_LEVEL_COSTS[1],
-    unlockRu: 'Pro-карточка: золотой кант, световой проход и бейдж в списках',
-    unlockUk: 'Pro-картка: золотий кант, світловий прохід і бейдж у списках',
-    unlockEs: 'Tarjeta Pro: borde dorado, brillo y insignia en las listas',
-    'unlockPt-BR': 'Cartão Pro: borda dourada, brilho e selo nas listas',
-    unlockVi: 'Thẻ Pro: viền vàng, ánh sáng lướt và huy hiệu trong danh sách',
-    unlockId: 'Kartu Pro: tepi emas, kilau, dan lencana di daftar',
-    unlockTr: 'Pro kart: altın kenar, ışık geçişi ve listelerde rozet',
-    unlockPl: 'Karta Pro: złota krawędź, błysk i odznaka na listach',
+    unlockRu: 'Pro-карточка: серебристо-стальное свечение и бейдж в списках',
+    unlockUk: 'Pro-картка: сріблясто-сталеве сяйво і бейдж у списках',
+    unlockEs: 'Tarjeta Pro: resplandor acero-plata e insignia en las listas',
+    'unlockPt-BR': 'Cartão Pro: brilho aço-prata e selo nas listas',
+    unlockVi: 'Thẻ Pro: ánh sáng thép-bạc và huy hiệu trong danh sách',
+    unlockId: 'Kartu Pro: cahaya baja-perak dan lencana di daftar',
+    unlockTr: 'Pro kart: çelik-gümüş parıltı ve listelerde rozet',
+    unlockPl: 'Karta Pro: stalowo-srebrna poświata i odznaka na listach',
   },
   {
     level: 2,
-    name: 'Emerald',
+    name: 'Teal',
     cost: PROFILE_CARD_LEVEL_COSTS[2],
-    unlockRu: 'Изумруд: живое свечение канта и блок «Выучено» на карточке',
-    unlockUk: 'Смарагд: живе сяйво канта і блок «Вивчено» на картці',
-    unlockEs: 'Esmeralda: borde luminoso vivo y bloque «Aprendido» en la tarjeta',
-    'unlockPt-BR': 'Esmeralda: borda com brilho vivo e bloco «Aprendido» no cartão',
-    unlockVi: 'Ngọc lục bảo: viền phát sáng sống động và khối «Đã học» trên thẻ',
-    unlockId: 'Zamrud: tepi bercahaya hidup dan blok «Dipelajari» di kartu',
-    unlockTr: 'Zümrüt: canlı parlayan kenar ve kartta «Öğrenilen» bloğu',
-    unlockPl: 'Szmaragd: żywa poświata krawędzi i blok «Nauczone» na karcie',
+    unlockRu: 'Teal: чистое бирюзовое свечение и блок «Выучено» на карточке',
+    unlockUk: 'Teal: чисте бірюзове сяйво і блок «Вивчено» на картці',
+    unlockEs: 'Teal: resplandor turquesa puro y bloque «Aprendido» en la tarjeta',
+    'unlockPt-BR': 'Teal: brilho turquesa puro e bloco «Aprendido» no cartão',
+    unlockVi: 'Teal: ánh sáng ngọc lam thuần và khối «Đã học» trên thẻ',
+    unlockId: 'Teal: cahaya toska murni dan blok «Dipelajari» di kartu',
+    unlockTr: 'Teal: saf turkuaz parıltı ve kartta «Öğrenilen» bloğu',
+    unlockPl: 'Teal: czysta turkusowa poświata i blok «Nauczone» na karcie',
   },
   {
     level: 3,
-    name: 'Sapphire',
+    name: 'Azure',
     cost: PROFILE_CARD_LEVEL_COSTS[3],
-    unlockRu: 'Сапфир: дышащее сияние, падающая звезда и блок «Арена»',
-    unlockUk: 'Сапфір: дихаюче сяйво, падаюча зірка і блок «Арена»',
-    unlockEs: 'Zafiro: brillo que respira, estrella fugaz y bloque «Arena»',
-    'unlockPt-BR': 'Safira: brilho pulsante, estrela cadente e bloco «Arena»',
-    unlockVi: 'Lam ngọc: ánh sáng phập phồng, sao băng và khối «Đấu trường»',
-    unlockId: 'Safir: cahaya bernafas, bintang jatuh, dan blok «Arena»',
-    unlockTr: 'Safir: nefes alan parıltı, kayan yıldız ve «Arena» bloğu',
-    unlockPl: 'Szafir: oddychający blask, spadająca gwiazda i blok «Arena»',
+    unlockRu: 'Azure: электрик-синее свечение, падающая звезда и блок «Арена»',
+    unlockUk: 'Azure: електрик-синє сяйво, падаюча зірка і блок «Арена»',
+    unlockEs: 'Azure: resplandor azul eléctrico, estrella fugaz y bloque «Arena»',
+    'unlockPt-BR': 'Azure: brilho azul elétrico, estrela cadente e bloco «Arena»',
+    unlockVi: 'Azure: ánh sáng xanh điện, sao băng và khối «Đấu trường»',
+    unlockId: 'Azure: cahaya biru listrik, bintang jatuh, dan blok «Arena»',
+    unlockTr: 'Azure: elektrik mavisi parıltı, kayan yıldız ve «Arena» bloğu',
+    unlockPl: 'Azure: elektryzujący błękit, spadająca gwiazda i blok «Arena»',
   },
   {
     level: 4,
-    name: 'Amethyst',
+    name: 'Crimson',
     cost: PROFILE_CARD_LEVEL_COSTS[4],
-    unlockRu: 'Аметист: живая туманность, мерцающие звёзды и блок «Путь»',
-    unlockUk: 'Аметист: жива туманність, мерехтливі зорі і блок «Шлях»',
-    unlockEs: 'Amatista: nebulosa viva, estrellas titilantes y bloque «Camino»',
-    'unlockPt-BR': 'Ametista: nebulosa viva, estrelas cintilantes e bloco «Jornada»',
-    unlockVi: 'Thạch anh tím: tinh vân sống động, sao lấp lánh và khối «Hành trình»',
-    unlockId: 'Kecubung: nebula hidup, bintang berkelip, dan blok «Perjalanan»',
-    unlockTr: 'Ametist: canlı bulutsu, parıldayan yıldızlar ve «Yolculuk» bloğu',
-    unlockPl: 'Ametyst: żywa mgławica, migoczące gwiazdy i blok «Droga»',
+    unlockRu: 'Crimson: глубокий малиновый жар, мерцающие звёзды и блок «Путь»',
+    unlockUk: 'Crimson: глибокий малиновий жар, мерехтливі зорі і блок «Шлях»',
+    unlockEs: 'Crimson: brasa carmesí profunda, estrellas titilantes y bloque «Camino»',
+    'unlockPt-BR': 'Crimson: brasa carmesim profunda, estrelas cintilantes e bloco «Jornada»',
+    unlockVi: 'Crimson: ánh đỏ thẫm rực, sao lấp lánh và khối «Hành trình»',
+    unlockId: 'Crimson: bara merah tua, bintang berkelip, dan blok «Perjalanan»',
+    unlockTr: 'Crimson: derin kızıl kor, parıldayan yıldızlar ve «Yolculuk» bloğu',
+    unlockPl: 'Crimson: głęboki karmazynowy żar, migoczące gwiazdy i blok «Droga»',
   },
   {
     level: 5,
-    name: 'Legend',
+    name: 'Platinum',
     cost: PROFILE_CARD_LEVEL_COSTS[5],
-    unlockRu: 'Легенда: звёздное небо, золотой перелив и именной номер легенды',
-    unlockUk: 'Легенда: зоряне небо, золотий перелив і іменний номер легенди',
-    unlockEs: 'Leyenda: cielo estrellado, destello dorado y número de leyenda propio',
-    'unlockPt-BR': 'Lenda: céu estrelado, brilho dourado e número de lenda próprio',
-    unlockVi: 'Huyền thoại: bầu trời sao, ánh vàng chuyển sắc và số huyền thoại riêng',
-    unlockId: 'Legenda: langit berbintang, kilau emas, dan nomor legenda pribadi',
-    unlockTr: 'Efsane: yıldızlı gökyüzü, altın parıltı ve kişisel efsane numarası',
-    unlockPl: 'Legenda: gwiaździste niebo, złoty połysk i własny numer legendy',
+    unlockRu: 'Platinum: платиново-белое сияние, перелив и именной номер легенды',
+    unlockUk: 'Platinum: платиново-біле сяйво, перелив і іменний номер легенди',
+    unlockEs: 'Platinum: resplandor blanco platino, tornasol y número de leyenda propio',
+    'unlockPt-BR': 'Platinum: brilho branco platina, tornassol e número de lenda próprio',
+    unlockVi: 'Platinum: ánh trắng bạch kim, chuyển sắc và số huyền thoại riêng',
+    unlockId: 'Platinum: cahaya putih platina, kilau warna, dan nomor legenda pribadi',
+    unlockTr: 'Platinum: platin-beyaz parıltı, yanardöner ve kişisel efsane numarası',
+    unlockPl: 'Platinum: platynowo-biała poświata, opalizacja i własny numer legendy',
   },
 ];
 
@@ -171,15 +174,18 @@ export function getNextProfileCardLevel(level: ProfileCardLevel): ProfileCardLev
   return level >= PROFILE_CARD_MAX_LEVEL ? null : ((level + 1) as ProfileCardLevel);
 }
 
-export type ProfileCardFxKind = 'none' | 'sheen' | 'emerald' | 'sapphire' | 'amethyst' | 'legend';
+// Каждый уровень включает эффекты предыдущих + свой. Имена = уровни glow-линейки.
+// steel: только редкий блик; teal: +дышащее нижнее свечение; azure: +падающая звезда;
+// crimson: +мерцающие звёзды; platinum: +голо-перелив (стелс-вершина).
+export type ProfileCardFxKind = 'none' | 'steel' | 'teal' | 'azure' | 'crimson' | 'platinum';
 
 export function fxKindForProfileCard(level: ProfileCardLevel, _motion: ProfileCardMotion): ProfileCardFxKind {
   switch (level) {
-    case 1: return 'sheen';
-    case 2: return 'emerald';
-    case 3: return 'sapphire';
-    case 4: return 'amethyst';
-    case 5: return 'legend';
+    case 1: return 'steel';
+    case 2: return 'teal';
+    case 3: return 'azure';
+    case 4: return 'crimson';
+    case 5: return 'platinum';
     default: return 'none';
   }
 }
@@ -187,10 +193,10 @@ export function fxKindForProfileCard(level: ProfileCardLevel, _motion: ProfileCa
 export const PROFILE_CARD_LEVEL_NAME_RU: Record<ProfileCardLevel, string> = {
   0: 'Стандарт',
   1: 'Phraseman Pro',
-  2: 'Изумруд',
-  3: 'Сапфир',
-  4: 'Аметист',
-  5: 'Легенда',
+  2: 'Teal',
+  3: 'Azure',
+  4: 'Crimson',
+  5: 'Platinum',
 };
 
 export type ProfileCardSellingText = {
@@ -236,14 +242,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   1: [
     { isNew: true, text: {
-      ru: 'Золотая Pro-карточка и мягкий световой проход',
-      uk: 'Золота Pro-картка і м’який світловий прохід',
-      es: 'Tarjeta Pro dorada y brillo suave',
-      'pt-BR': 'Cartão Pro dourado e brilho suave',
-      vi: 'Thẻ Pro vàng và ánh sáng lướt nhẹ',
-      id: 'Kartu Pro emas dan kilau lembut',
-      tr: 'Altın Pro kart ve yumuşak ışık geçişi',
-      pl: 'Złota karta Pro i delikatny błysk',
+      ru: 'Стальное свечение карточки снизу и мягкий редкий блик',
+      uk: 'Сталеве сяйво картки знизу і м’який рідкісний блиск',
+      es: 'Resplandor acero desde abajo y brillo suave ocasional',
+      'pt-BR': 'Brilho aço vindo de baixo e reflexo suave ocasional',
+      vi: 'Ánh thép hắt từ dưới và tia sáng nhẹ thưa thớt',
+      id: 'Cahaya baja dari bawah dan kilau lembut sesekali',
+      tr: 'Alttan çelik parıltı ve seyrek yumuşak ışık',
+      pl: 'Stalowa poświata od dołu i rzadki miękki błysk',
     } },
     { isNew: true, text: {
       ru: 'Бейдж I рядом с именем в друзьях, арене и клубе',
@@ -268,14 +274,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   2: [
     { isNew: true, text: {
-      ru: 'Изумрудная карточка с живым свечением канта',
-      uk: 'Смарагдова картка з живим сяйвом канта',
-      es: 'Tarjeta esmeralda con borde de brillo vivo',
-      'pt-BR': 'Cartão esmeralda com borda de brilho vivo',
-      vi: 'Thẻ ngọc lục bảo với viền phát sáng sống động',
-      id: 'Kartu zamrud dengan tepi bercahaya hidup',
-      tr: 'Canlı parlayan kenarlı zümrüt kart',
-      pl: 'Szmaragdowa karta z żywą poświatą krawędzi',
+      ru: 'Чистое бирюзовое свечение снизу и сверху карточки',
+      uk: 'Чисте бірюзове сяйво знизу і зверху картки',
+      es: 'Resplandor turquesa puro abajo y arriba de la tarjeta',
+      'pt-BR': 'Brilho turquesa puro embaixo e no topo do cartão',
+      vi: 'Ánh ngọc lam thuần hắt từ dưới và trên thẻ',
+      id: 'Cahaya toska murni dari bawah dan atas kartu',
+      tr: 'Kartın altında ve üstünde saf turkuaz parıltı',
+      pl: 'Czysta turkusowa poświata u dołu i u góry karty',
     } },
     { isNew: true, text: {
       ru: 'Новый блок на карточке: выученные слова и фразы',
@@ -300,14 +306,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   3: [
     { isNew: true, text: {
-      ru: 'Сапфировая карточка: дышащее сияние и падающая звезда',
-      uk: 'Сапфірова картка: дихаюче сяйво і падаюча зірка',
-      es: 'Tarjeta zafiro: brillo que respira y estrella fugaz',
-      'pt-BR': 'Cartão safira: brilho pulsante e estrela cadente',
-      vi: 'Thẻ lam ngọc: ánh sáng phập phồng và sao băng',
-      id: 'Kartu safir: cahaya bernafas dan bintang jatuh',
-      tr: 'Safir kart: nefes alan parıltı ve kayan yıldız',
-      pl: 'Szafirowa karta: oddychający blask i spadająca gwiazda',
+      ru: 'Электрик-синее свечение, дышащий свет и падающая звезда',
+      uk: 'Електрик-синє сяйво, дихаюче світло і падаюча зірка',
+      es: 'Resplandor azul eléctrico, luz que respira y estrella fugaz',
+      'pt-BR': 'Brilho azul elétrico, luz pulsante e estrela cadente',
+      vi: 'Ánh xanh điện, ánh sáng phập phồng và sao băng',
+      id: 'Cahaya biru listrik, sinar bernafas, dan bintang jatuh',
+      tr: 'Elektrik mavisi parıltı, nefes alan ışık ve kayan yıldız',
+      pl: 'Elektryzujący błękit, oddychające światło i spadająca gwiazda',
     } },
     { isNew: true, text: {
       ru: 'Новый блок на карточке: победы на арене и процент побед',
@@ -332,14 +338,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   4: [
     { isNew: true, text: {
-      ru: 'Аметистовая карточка: живая туманность и мерцающие звёзды',
-      uk: 'Аметистова картка: жива туманність і мерехтливі зорі',
-      es: 'Tarjeta amatista: nebulosa viva y estrellas titilantes',
-      'pt-BR': 'Cartão ametista: nebulosa viva e estrelas cintilantes',
-      vi: 'Thẻ thạch anh tím: tinh vân sống động và sao lấp lánh',
-      id: 'Kartu kecubung: nebula hidup dan bintang berkelip',
-      tr: 'Ametist kart: canlı bulutsu ve parıldayan yıldızlar',
-      pl: 'Ametystowa karta: żywa mgławica i migoczące gwiazdy',
+      ru: 'Глубокий малиновый жар снизу и мерцающие звёзды',
+      uk: 'Глибокий малиновий жар знизу і мерехтливі зорі',
+      es: 'Brasa carmesí profunda abajo y estrellas titilantes',
+      'pt-BR': 'Brasa carmesim profunda embaixo e estrelas cintilantes',
+      vi: 'Ánh đỏ thẫm rực từ dưới và sao lấp lánh',
+      id: 'Bara merah tua dari bawah dan bintang berkelip',
+      tr: 'Alttan derin kızıl kor ve parıldayan yıldızlar',
+      pl: 'Głęboki karmazynowy żar u dołu i migoczące gwiazdy',
     } },
     { isNew: true, text: {
       ru: 'Новый блок на карточке: дней в Phraseman и рекордная серия',
@@ -364,14 +370,14 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
   ],
   5: [
     { isNew: true, text: {
-      ru: 'Легендарная карточка: звёздное небо и золотой перелив имени',
-      uk: 'Легендарна картка: зоряне небо і золотий перелив імені',
-      es: 'Tarjeta legendaria: cielo estrellado y nombre con destello dorado',
-      'pt-BR': 'Cartão lendário: céu estrelado e nome com brilho dourado',
-      vi: 'Thẻ huyền thoại: bầu trời sao và tên ánh vàng chuyển sắc',
-      id: 'Kartu legendaris: langit berbintang dan nama berkilau emas',
-      tr: 'Efsanevi kart: yıldızlı gökyüzü ve altın parıltılı isim',
-      pl: 'Legendarna karta: gwiaździste niebo i złociście mieniące się imię',
+      ru: 'Платиново-белое сияние, звёздное небо и перелив имени',
+      uk: 'Платиново-біле сяйво, зоряне небо і перелив імені',
+      es: 'Resplandor blanco platino, cielo estrellado y nombre tornasolado',
+      'pt-BR': 'Brilho branco platina, céu estrelado e nome tornassolado',
+      vi: 'Ánh trắng bạch kim, bầu trời sao và tên chuyển sắc',
+      id: 'Cahaya putih platina, langit berbintang, dan nama berkilau warna',
+      tr: 'Platin-beyaz parıltı, yıldızlı gökyüzü ve yanardöner isim',
+      pl: 'Platynowo-biała poświata, gwiaździste niebo i opalizujące imię',
     } },
     { isNew: true, text: {
       ru: 'Именной номер легенды — выдаётся по порядку и навсегда твой',
@@ -416,7 +422,7 @@ export async function getProfileCardLegendNo(): Promise<number | null> {
 }
 
 const PROFILE_CARD_THEME_SET: ReadonlySet<string> = new Set<ProfileCardTheme>([
-  'classic', 'gold', 'emerald', 'sapphire', 'amethyst', 'legend',
+  'classic', 'steel', 'teal', 'azure', 'crimson', 'platinum',
 ]);
 
 export function normalizeProfileCardTheme(value: unknown): ProfileCardTheme {
@@ -612,62 +618,81 @@ export type ProfileCardThemeColors = {
   accentStrong: string;
   secondary: string;
   shadowColor: string;
+  /** Цвет свечения, поднимающегося от нижней кромки карточки. */
+  glowBottom: string;
+  /** Цвет мягкого ореола у верхней кромки (за аватаром). */
+  glowTop: string;
 };
 
+// Луксори-линейка по ресёрчу: чистые «электрические» свечения на почти-чёрном.
+// steel → teal → azure → crimson → platinum(стелс-вершина). Без золота/фиолета/камней.
 export const PROFILE_CARD_THEME_COLORS: Record<ProfileCardTheme, ProfileCardThemeColors> = {
   classic: {
     accent: '#94A3B8',
-    accentSoft: 'rgba(148,163,184,0.14)',
-    accentStrong: 'rgba(148,163,184,0.38)',
+    accentSoft: 'rgba(148,163,184,0.12)',
+    accentStrong: 'rgba(148,163,184,0.34)',
     secondary: '#CBD5E1',
     shadowColor: '#000000',
+    glowBottom: '#4D6E9E',
+    glowTop: '#33445E',
   },
-  gold: {
-    accent: '#FACC15',
-    accentSoft: 'rgba(250,204,21,0.16)',
-    accentStrong: 'rgba(250,204,21,0.48)',
-    secondary: '#FFF2A8',
-    shadowColor: '#FACC15',
+  steel: {
+    accent: '#9FB4CC',
+    accentSoft: 'rgba(77,110,158,0.12)',
+    accentStrong: 'rgba(159,180,204,0.4)',
+    secondary: '#C7D3E2',
+    shadowColor: '#4D6E9E',
+    glowBottom: '#4D6E9E',
+    glowTop: '#33445E',
   },
-  emerald: {
-    accent: '#34D399',
-    accentSoft: 'rgba(52,211,153,0.16)',
-    accentStrong: 'rgba(52,211,153,0.48)',
-    secondary: '#A7F3D0',
-    shadowColor: '#34D399',
+  teal: {
+    accent: '#4FE0C8',
+    accentSoft: 'rgba(18,183,158,0.13)',
+    accentStrong: 'rgba(79,224,200,0.42)',
+    secondary: '#9FF3E4',
+    shadowColor: '#12B79E',
+    glowBottom: '#12B79E',
+    glowTop: '#0C5F55',
   },
-  sapphire: {
-    accent: '#38BDF8',
-    accentSoft: 'rgba(56,189,248,0.16)',
-    accentStrong: 'rgba(56,189,248,0.48)',
-    secondary: '#BAE6FD',
-    shadowColor: '#38BDF8',
+  azure: {
+    accent: '#5AA6FF',
+    accentSoft: 'rgba(46,123,255,0.14)',
+    accentStrong: 'rgba(90,166,255,0.44)',
+    secondary: '#A9CBFF',
+    shadowColor: '#2E7BFF',
+    glowBottom: '#2E7BFF',
+    glowTop: '#1A3F8C',
   },
-  amethyst: {
-    accent: '#A78BFA',
-    accentSoft: 'rgba(167,139,250,0.16)',
-    accentStrong: 'rgba(167,139,250,0.48)',
-    secondary: '#DDD6FE',
-    shadowColor: '#A78BFA',
+  crimson: {
+    accent: '#FF6B7E',
+    accentSoft: 'rgba(226,51,80,0.13)',
+    accentStrong: 'rgba(255,107,126,0.44)',
+    secondary: '#FFAAB5',
+    shadowColor: '#E23350',
+    glowBottom: '#E23350',
+    glowTop: '#7A1730',
   },
-  legend: {
-    accent: '#F2DFA7',
-    accentSoft: 'rgba(242,223,167,0.14)',
-    accentStrong: 'rgba(242,223,167,0.5)',
-    secondary: '#FFF7DC',
-    shadowColor: '#F2DFA7',
+  platinum: {
+    accent: '#EDEFF4',
+    accentSoft: 'rgba(199,208,222,0.1)',
+    accentStrong: 'rgba(237,239,244,0.42)',
+    secondary: '#FFFFFF',
+    shadowColor: '#C7D0DE',
+    glowBottom: '#C7D0DE',
+    glowTop: '#8792A6',
   },
 };
 
-/** Диагональный градиент фона карточки по теме (тот же на модалке профиля и превью
- * апгрейда). Глубокие, насыщенные вверху → почти чёрные внизу: «дорогой» вид без обводок. */
+/** Базовый тёмный фон карточки: почти чёрный сверху → чуть теплее/холоднее в тон снизу.
+ * Цветное свечение рисуется ПОВЕРХ этого фона (glowBottom/glowTop), а не в градиенте —
+ * поэтому здесь глубокие near-black тона, слегка подкрашенные в оттенок темы. */
 export const PROFILE_CARD_GRADIENTS: Record<ProfileCardTheme, [string, string, string]> = {
-  classic: ['#23262C', '#1B1E23', '#16181D'],
-  gold: ['#453313', '#231807', '#0F0B05'],
-  emerald: ['#11402A', '#0A2818', '#05140C'],
-  sapphire: ['#103B63', '#092743', '#04101F'],
-  amethyst: ['#38206B', '#1F1145', '#0D0724'],
-  legend: ['#2B2140', '#171021', '#191108'],
+  classic: ['#0F1013', '#0A0B0E', '#070709'],
+  steel: ['#0C0E12', '#08090C', '#060708'],
+  teal: ['#08110F', '#060C0B', '#040807'],
+  azure: ['#080B14', '#06080F', '#04050A'],
+  crimson: ['#120A0C', '#0C0708', '#070405'],
+  platinum: ['#0D0D0F', '#0A0A0C', '#08080A'],
 };
 
 export type ProfileCardSurfaceColors = { surface: string; surfaceBorder: string };
@@ -676,12 +701,12 @@ export type ProfileCardSurfaceColors = { surface: string; surfaceBorder: string 
  * ПРАВИЛО владельца: НИКАКИХ обводок у контейнеров — только тон, отличный от фона.
  * surfaceBorder оставлен в типе для совместимости, но в UI не рисуется. */
 export const PROFILE_CARD_SURFACES: Record<ProfileCardTheme, ProfileCardSurfaceColors> = {
-  classic: { surface: 'rgba(255,255,255,0.07)', surfaceBorder: 'transparent' },
-  gold: { surface: 'rgba(250,204,21,0.12)', surfaceBorder: 'transparent' },
-  emerald: { surface: 'rgba(52,211,153,0.12)', surfaceBorder: 'transparent' },
-  sapphire: { surface: 'rgba(56,189,248,0.12)', surfaceBorder: 'transparent' },
-  amethyst: { surface: 'rgba(167,139,250,0.13)', surfaceBorder: 'transparent' },
-  legend: { surface: 'rgba(242,223,167,0.12)', surfaceBorder: 'transparent' },
+  classic: { surface: 'rgba(255,255,255,0.06)', surfaceBorder: 'transparent' },
+  steel: { surface: 'rgba(77,110,158,0.12)', surfaceBorder: 'transparent' },
+  teal: { surface: 'rgba(18,183,158,0.12)', surfaceBorder: 'transparent' },
+  azure: { surface: 'rgba(46,123,255,0.13)', surfaceBorder: 'transparent' },
+  crimson: { surface: 'rgba(226,51,80,0.12)', surfaceBorder: 'transparent' },
+  platinum: { surface: 'rgba(199,208,222,0.1)', surfaceBorder: 'transparent' },
 };
 
 export function resolveProfileCardDisplay(input: {

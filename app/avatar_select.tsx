@@ -144,14 +144,9 @@ const buildProfileCardPreviewVisual = (theme: ProfileCardTheme): Omit<ProfileCar
   ...PROFILE_CARD_SURFACES[theme],
 });
 
-const PROFILE_CARD_PREVIEW_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardPreviewVisual, 'theme' | 'motion'>> = {
-  classic: buildProfileCardPreviewVisual('classic'),
-  gold: buildProfileCardPreviewVisual('gold'),
-  emerald: buildProfileCardPreviewVisual('emerald'),
-  sapphire: buildProfileCardPreviewVisual('sapphire'),
-  amethyst: buildProfileCardPreviewVisual('amethyst'),
-  legend: buildProfileCardPreviewVisual('legend'),
-};
+const PROFILE_CARD_PREVIEW_VISUALS = Object.fromEntries(
+  (Object.keys(PROFILE_CARD_THEME_COLORS) as ProfileCardTheme[]).map((theme) => [theme, buildProfileCardPreviewVisual(theme)]),
+) as Record<ProfileCardTheme, Omit<ProfileCardPreviewVisual, 'theme' | 'motion'>>;
 
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
 const decodeOwnedStyle = (value?: string | null): { gradientId: string; logoColor: CustomAvatarLogoColor } => {

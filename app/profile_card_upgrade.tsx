@@ -495,6 +495,8 @@ export default function ProfileCardUpgradeScreen() {
                   accent={vis.colors.accent}
                   secondary={vis.colors.secondary}
                   accentSoft={vis.colors.accentSoft}
+                  glowBottom={vis.colors.glowBottom}
+                  glowTop={vis.colors.glowTop}
                   enabled={selectedLevel >= 1}
                 />
             </View>

@@ -59,7 +59,7 @@ describe('dev free profile-card upgrade (behaviour)', () => {
 
     const down = await devLowerProfileCardLevel();
     expect(down.level).toBe(1);
-    expect(down.theme).toBe('gold');
+    expect(down.theme).toBe('steel');
 
     const down2 = await devLowerProfileCardLevel();
     expect(down2.level).toBe(0);

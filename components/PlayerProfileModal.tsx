@@ -150,6 +150,8 @@ type ProfileCardVisual = {
   surface: string;
   surfaceBorder: string;
   shadowColor: string;
+  glowBottom: string;
+  glowTop: string;
 };
 
 const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
@@ -172,14 +174,9 @@ const buildCardVisual = (theme: ProfileCardTheme): Omit<ProfileCardVisual, 'them
   ...PROFILE_CARD_SURFACES[theme],
 });
 
-const PROFILE_CARD_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>> = {
-  classic: buildCardVisual('classic'),
-  gold: buildCardVisual('gold'),
-  emerald: buildCardVisual('emerald'),
-  sapphire: buildCardVisual('sapphire'),
-  amethyst: buildCardVisual('amethyst'),
-  legend: buildCardVisual('legend'),
-};
+const PROFILE_CARD_VISUALS = Object.fromEntries(
+  (Object.keys(PROFILE_CARD_THEME_COLORS) as ProfileCardTheme[]).map((theme) => [theme, buildCardVisual(theme)]),
+) as Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>>;
 
 function normalizeProfileCardSnapshotForLevel(raw: Partial<ProfileCardSnapshot> & Partial<PlayerInfo>): ProfileCardSnapshot {
   const level = normalizeProfileCardLevel(raw.profileCardLevel ?? raw.level);
@@ -1089,18 +1086,16 @@ function PlayerProfileModalBody({
               end={{ x: 1, y: 1 }}
               style={StyleSheet.absoluteFill}
             />
-            {/* Глубина без обводок: два мягких тональных пятна цвета уровня. */}
-            <View pointerEvents="none" style={{ position: 'absolute', top: -70, left: -50, width: 240, height: 240, borderRadius: 120, backgroundColor: cardVisual.accentSoft }} />
-            <View pointerEvents="none" style={{ position: 'absolute', top: 150, right: -90, width: 300, height: 300, borderRadius: 150, backgroundColor: cardVisual.accentSoft, opacity: 0.45 }} />
-            {/* Единый движок анимаций (тот же, что в превью «Моя карточка») — чтобы
-                владелец и другие игроки видели ОДИН и тот же эффект уровня. Заменил
-                старые inline Animated glint/частицы. */}
+            {/* Свечение снизу+сверху и все эффекты уровня рисует единый движок —
+                чтобы владелец и другие игроки видели ОДИН визуал. */}
             <ProfileCardMotionFx
               kind={fxKindForProfileCard(displaySnapshot.level, displaySnapshot.motion)}
               radius={30}
               accent={cardVisual.accent}
               secondary={cardVisual.secondary}
               accentSoft={cardVisual.accentSoft}
+              glowBottom={cardVisual.glowBottom}
+              glowTop={cardVisual.glowTop}
             />
           </Animated.View>
         )}

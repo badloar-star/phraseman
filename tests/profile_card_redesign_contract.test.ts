@@ -30,11 +30,11 @@ describe('fxKindForProfileCard — a distinct living effect per paid level', () 
   // Контракт: у каждого платного уровня СВОЙ эффект, база — без анимации.
   it('keeps the base card still and gives every paid level its own effect', () => {
     expect(fxKindForProfileCard(0, 'none')).toBe('none');
-    expect(fxKindForProfileCard(1, 'none')).toBe('sheen');
-    expect(fxKindForProfileCard(2, 'none')).toBe('emerald');
-    expect(fxKindForProfileCard(3, 'none')).toBe('sapphire');
-    expect(fxKindForProfileCard(4, 'none')).toBe('amethyst');
-    expect(fxKindForProfileCard(5, 'none')).toBe('legend');
+    expect(fxKindForProfileCard(1, 'none')).toBe('steel');
+    expect(fxKindForProfileCard(2, 'none')).toBe('teal');
+    expect(fxKindForProfileCard(3, 'none')).toBe('azure');
+    expect(fxKindForProfileCard(4, 'none')).toBe('crimson');
+    expect(fxKindForProfileCard(5, 'none')).toBe('platinum');
   });
 
   it('every paid level has a unique fx kind', () => {
@@ -46,7 +46,7 @@ describe('fxKindForProfileCard — a distinct living effect per paid level', () 
 describe('themes — a distinct visual identity per level', () => {
   it('maps every level to its own theme with its own colors and gradient', () => {
     const themes = ALL_LEVELS.map((lvl) => themeForProfileCardLevel(lvl));
-    expect(themes).toEqual(['classic', 'gold', 'emerald', 'sapphire', 'amethyst', 'legend']);
+    expect(themes).toEqual(['classic', 'steel', 'teal', 'azure', 'crimson', 'platinum']);
     expect(new Set(themes).size).toBe(themes.length);
     const accents = themes.map((theme) => PROFILE_CARD_THEME_COLORS[theme].accent);
     expect(new Set(accents).size).toBe(accents.length);
@@ -62,10 +62,10 @@ describe('PROFILE_CARD_LEVEL_NAME_RU — the 5-level ladder', () => {
   it('has a name for every level of the ladder', () => {
     expect(PROFILE_CARD_LEVEL_NAME_RU[0]).toBe('Стандарт');
     expect(PROFILE_CARD_LEVEL_NAME_RU[1]).toBe('Phraseman Pro');
-    expect(PROFILE_CARD_LEVEL_NAME_RU[2]).toBe('Изумруд');
-    expect(PROFILE_CARD_LEVEL_NAME_RU[3]).toBe('Сапфир');
-    expect(PROFILE_CARD_LEVEL_NAME_RU[4]).toBe('Аметист');
-    expect(PROFILE_CARD_LEVEL_NAME_RU[5]).toBe('Легенда');
+    expect(PROFILE_CARD_LEVEL_NAME_RU[2]).toBe('Teal');
+    expect(PROFILE_CARD_LEVEL_NAME_RU[3]).toBe('Azure');
+    expect(PROFILE_CARD_LEVEL_NAME_RU[4]).toBe('Crimson');
+    expect(PROFILE_CARD_LEVEL_NAME_RU[5]).toBe('Platinum');
     expect(Object.keys(PROFILE_CARD_LEVEL_NAME_RU).sort()).toEqual(['0', '1', '2', '3', '4', '5']);
   });
 });

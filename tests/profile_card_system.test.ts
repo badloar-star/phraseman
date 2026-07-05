@@ -58,7 +58,7 @@ describe('profile_card_system', () => {
 
     await expect(getProfileCardSnapshot()).resolves.toEqual({
       level: 5,
-      theme: 'legend',
+      theme: 'platinum',
       motion: 'none',
       publicFocus: 'balanced',
     });
@@ -86,7 +86,7 @@ describe('profile_card_system', () => {
     });
     expect(mockSpendShards).toHaveBeenCalledWith(PROFILE_CARD_UPGRADE_COST, 'profile_card_upgrade');
     await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('1');
-    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('gold');
+    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('steel');
     await expect(AsyncStorage.getItem(PROFILE_CARD_MOTION_KEY)).resolves.toBe('none');
     await expect(AsyncStorage.getItem(PROFILE_CARD_PUBLIC_FOCUS_KEY)).resolves.toBe('balanced');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
@@ -102,7 +102,7 @@ describe('profile_card_system', () => {
       balance: 0,
     });
     expect(mockSpendShards).toHaveBeenCalledWith(PROFILE_CARD_LEVEL_COSTS[2], 'profile_card_upgrade');
-    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('emerald');
+    await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('teal');
   });
 
   it('does not offer a paid upgrade after Legend (V)', async () => {

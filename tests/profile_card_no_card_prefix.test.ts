@@ -20,9 +20,9 @@ describe('profile card label has no "CARD" prefix', () => {
     expect(profileCardLevelLabel(0, true)).toBe('Стандарт');
     expect(profileCardLevelLabel(1, true)).toBe('Phraseman Pro');
     expect(profileCardLevelLabel(1, false)).toBe('Lv I');
-    expect(profileCardLevelLabel(2, true)).toBe('Изумруд');
+    expect(profileCardLevelLabel(2, true)).toBe('Teal');
     expect(profileCardLevelLabel(3, false)).toBe('Lv III');
-    expect(profileCardLevelLabel(5, true)).toBe('Легенда');
+    expect(profileCardLevelLabel(5, true)).toBe('Platinum');
     expect(profileCardLevelLabel(5, false)).toBe('Lv V');
   });
 

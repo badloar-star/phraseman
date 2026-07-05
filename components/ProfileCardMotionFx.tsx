@@ -23,6 +23,10 @@ type Props = {
   accent: string;
   secondary: string;
   accentSoft: string;
+  /** Цвет свечения снизу (обязателен для glow-линейки; fallback — accent). */
+  glowBottom?: string;
+  /** Цвет ореола сверху (fallback — accentSoft-тон). */
+  glowTop?: string;
   enabled?: boolean;
 };
 
@@ -147,32 +151,49 @@ function SheenBand({ radius, colors }: { radius: number; colors?: SheenColors })
   );
 }
 
-/** «Дышащее» свечение: мягкий градиент цвета уровня от верхней кромки, плавно
- * набирает и отпускает яркость. Никаких рамок — только тон (правило владельца). */
-function GlowPulse({ radius, color, maxOpacity = 0.5 }: { radius: number; color: string; maxOpacity?: number }) {
-  const progress = useFxLoop(3200);
+/** Свечение от НИЖНЕЙ кромки карточки (главный «дорогой» приём с референсов): яркий
+ * цвет у низа → растворяется к центру, мягко «дышит». Никаких рамок — только свет. */
+function BottomGlow({ radius, bottom, accent }: { radius: number; bottom: string; accent: string }) {
+  const progress = useFxLoop(5000);
   const style = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 0.5, 1], [0.2, maxOpacity, 0.2]),
+    opacity: interpolate(progress.value, [0, 0.5, 1], [0.72, 1, 0.72]),
   }));
   return (
     <Reanimated.View
       pointerEvents="none"
       style={[
-        {
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 150,
-          borderTopLeftRadius: radius,
-          borderTopRightRadius: radius,
-          overflow: 'hidden',
-        },
+        { position: 'absolute', left: 0, right: 0, bottom: 0, height: '62%', borderRadius: radius, overflow: 'hidden' },
         style,
       ]}
     >
       <LinearGradient
-        colors={[`${color}47`, `${color}14`, 'transparent']}
+        colors={['transparent', `${bottom}3D`, `${bottom}8A`]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      {/* тонкая светящаяся линия у самого низа */}
+      <View style={{ position: 'absolute', left: '8%', right: '8%', bottom: 0, height: 2, borderRadius: 2, backgroundColor: accent, opacity: 0.85 }} />
+    </Reanimated.View>
+  );
+}
+
+/** Мягкий ореол у ВЕРХНЕЙ кромки (за аватаром) — карта подсвечена с двух сторон. */
+function TopGlow({ radius, top }: { radius: number; top: string }) {
+  const progress = useFxLoop(6000);
+  const style = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0, 0.5, 1], [0.55, 0.82, 0.55]),
+  }));
+  return (
+    <Reanimated.View
+      pointerEvents="none"
+      style={[
+        { position: 'absolute', left: 0, right: 0, top: 0, height: '46%', borderRadius: radius, overflow: 'hidden' },
+        style,
+      ]}
+    >
+      <LinearGradient
+        colors={[`${top}6E`, `${top}1F`, 'transparent']}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
         style={StyleSheet.absoluteFill}
@@ -281,46 +302,13 @@ function TwinkleStars({ radius }: { radius: number }) {
   );
 }
 
-/** Живая туманность: два мягких цветовых пятна медленно дрейфуют по карточке. */
-function DriftBlobs({ radius, accentSoft, secondary }: { radius: number; accentSoft: string; secondary: string }) {
-  const progress = useFxLoop(16000);
-  const styleA = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: interpolate(progress.value, [0, 0.5, 1], [0, 30, 0]) },
-      { translateY: interpolate(progress.value, [0, 0.5, 1], [0, 16, 0]) },
-    ],
-  }));
-  const styleB = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: interpolate(progress.value, [0, 0.5, 1], [0, -26, 0]) },
-      { translateY: interpolate(progress.value, [0, 0.5, 1], [0, -12, 0]) },
-    ],
-  }));
-  return (
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: 'hidden' }]}>
-      <Reanimated.View
-        style={[
-          { position: 'absolute', left: '-12%', top: '-18%', width: '62%', height: '58%', borderRadius: 999, backgroundColor: accentSoft },
-          styleA,
-        ]}
-      />
-      <Reanimated.View
-        style={[
-          { position: 'absolute', right: '-14%', bottom: '-20%', width: '56%', height: '52%', borderRadius: 999, backgroundColor: secondary, opacity: 0.1 },
-          styleB,
-        ]}
-      />
-    </View>
-  );
-}
-
-// Золото→циан→фиолет: голографический проход «Легенды» вместо белого блика.
-// Той же деликатности, что и обычный шиин — переливается, а не светит.
-const LEGEND_SHEEN_COLORS: SheenColors = [
+// Платиновый голографический проход вершины — холодный перелив бело-голубо-розовый,
+// той же деликатности, что и обычный шиин (переливается, а не светит).
+const PLATINUM_SHEEN_COLORS: SheenColors = [
   'transparent',
-  'rgba(255,210,74,0.13)',
-  'rgba(103,232,249,0.12)',
-  'rgba(192,132,252,0.13)',
+  'rgba(191,227,255,0.12)',
+  'rgba(255,217,228,0.12)',
+  'rgba(214,224,255,0.12)',
   'transparent',
 ];
 
@@ -340,47 +328,59 @@ function useReduceMotion(): boolean {
   return reduce;
 }
 
-function ProfileCardMotionFxBase({ kind, radius, accent, secondary, accentSoft, enabled = true }: Props) {
+function ProfileCardMotionFxBase({ kind, radius, accent, secondary, accentSoft, glowBottom, glowTop, enabled = true }: Props) {
   const reduceMotion = useReduceMotion();
-  if (!enabled || reduceMotion || kind === 'none') return null;
+  if (!enabled || kind === 'none') return null;
+  const bottom = glowBottom ?? accent;
+  const top = glowTop ?? accentSoft;
+
+  // Свечение снизу+сверху — статичная основа ВСЕХ уровней (видна и при reduce-motion).
+  const glow = (
+    <>
+      <BottomGlow radius={radius} bottom={bottom} accent={accent} />
+      <TopGlow radius={radius} top={top} />
+    </>
+  );
+
+  // При reduce-motion оставляем только статичное свечение, без блика/звёзд/кометы.
+  if (reduceMotion) return glow;
+
   switch (kind) {
-    case 'sheen':
-      return <SheenBand radius={radius} />;
-    case 'emerald':
-      // Изумруд: живое свечение канта + мягкий блик.
+    case 'steel':
+      // Сталь: свечение + редкий деликатный блик.
+      return (<>{glow}<SheenBand radius={radius} /></>);
+    case 'teal':
+      // Teal: свечение (дышит ярче) + блик.
+      return (<>{glow}<SheenBand radius={radius} /></>);
+    case 'azure':
+      // Azure: свечение + падающая звезда + блик.
       return (
         <>
-          <GlowPulse radius={radius} color={accent} />
+          {glow}
+          <CometStreak radius={radius} tint={secondary} />
           <SheenBand radius={radius} />
         </>
       );
-    case 'sapphire':
-      // Сапфир: дышащее сияние + падающая звезда.
+    case 'crimson':
+      // Crimson: свечение + мерцающие звёзды + блик.
       return (
         <>
-          <GlowPulse radius={radius} color={accent} />
-          <CometStreak radius={radius} tint={secondary} />
+          {glow}
+          <TwinkleStars radius={radius} />
+          <SheenBand radius={radius} />
         </>
       );
-    case 'amethyst':
-      // Аметист: живая туманность + мерцающие звёзды.
+    case 'platinum':
+      // Platinum (вершина): свечение + звёзды + голографический перелив.
       return (
         <>
-          <DriftBlobs radius={radius} accentSoft={accentSoft} secondary={secondary} />
+          {glow}
           <TwinkleStars radius={radius} />
-        </>
-      );
-    case 'legend':
-      // Легенда: звёздное небо + голографический (золото/циан/фиолет) проход + кант.
-      return (
-        <>
-          <TwinkleStars radius={radius} />
-          <GlowPulse radius={radius} color={accent} maxOpacity={0.45} />
-          <SheenBand radius={radius} colors={LEGEND_SHEEN_COLORS} />
+          <SheenBand radius={radius} colors={PLATINUM_SHEEN_COLORS} />
         </>
       );
     default:
-      return <SheenBand radius={radius} />;
+      return glow;
   }
 }
 

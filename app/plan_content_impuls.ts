@@ -265,6 +265,19 @@ export const IMPULS_DAY_2: PlanContentDay = {
     {
       id: 'impuls_d2_p1',
       english: 'Hi there. I am happy.',
+      // «Я рад» — неоднозначная фраза: носитель скажет её многими способами.
+      // Принимаем любой естественный вариант, иначе задание «вспомни без подсказок»
+      // невозможно угадать (репорт пользователя 2026-07-05).
+      alternatives: [
+        'Hi. I am happy.',
+        'Hi there. I am glad.',
+        'Hi. I am glad.',
+        'Hi there. I am happy to be here.',
+        'Hi. I am happy to be here.',
+        'Hi there. I am glad to be here.',
+        'Hello. I am happy.',
+        'Hello. I am glad.',
+      ],
       meaning: { ru: 'Привет. Я рад.', uk: 'Привіт. Я радий.', es: 'Hola. Estoy contento.' , 'pt-BR': 'Olá. Estou feliz.', vi: 'Xin chào. Tôi hạnh phúc.', id: 'Halo. saya senang.', tr: 'Merhaba. Mutluyum.', pl: 'Cześć. jestem szczęśliwy.'},
       constructions: ['to-be', 'pronouns'],
       explanation: {

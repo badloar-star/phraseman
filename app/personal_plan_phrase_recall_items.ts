@@ -11,6 +11,8 @@ export type PersonalPlanPhraseRecallItem = {
   promptUk: string;
   promptEs?: string;
   targetText: string;
+  /** Легитимные альтернативные формулировки — принимаются как правильный ответ. */
+  alternatives?: string[];
   source: PersonalPlanPhraseRecallItemSource;
   contentUnitId?: string;
   previousSelectedAnswer?: string;
@@ -31,6 +33,12 @@ function normalizeKey(value: string | undefined): string {
 
 function phraseTags(phrase: LessonPhrase | undefined): string[] {
   return phrase?.words.map((word) => word.category).filter(Boolean) as string[] ?? [];
+}
+
+/** Легитимные альтернативные формулировки фразы (без дублей и пустых). */
+function phraseAlternatives(phrase: LessonPhrase | undefined): string[] {
+  const alts = (phrase?.alternatives ?? []).map((alt) => alt.trim()).filter(Boolean);
+  return alts.length > 0 ? Array.from(new Set(alts)) : [];
 }
 
 function recallExplanation(targetText: string): LessonTeachingNote {
@@ -106,6 +114,7 @@ export async function getPersonalPlanPhraseRecallItems(
       promptUk: phrase?.ukrainian ?? phrase?.russian ?? 'Вспомни фразу.',
       ...(phrase?.spanish ? { promptEs: phrase.spanish } : { promptEs: 'Recuerda la frase.' }),
       targetText,
+      alternatives: phraseAlternatives(phrase),
       source: 'wrong_attempt',
       contentUnitId,
       previousSelectedAnswer: event.selectedAnswerKnown ? event.selectedAnswer : undefined,
@@ -131,6 +140,7 @@ export async function getPersonalPlanPhraseRecallItems(
       promptUk: phrase.ukrainian,
       ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
       targetText: phrase.english,
+      alternatives: phraseAlternatives(phrase),
       source: 'fallback',
       contentUnitId: String(phrase.id),
       grammarTags: phraseTags(phrase),

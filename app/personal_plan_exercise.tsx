@@ -1965,7 +1965,11 @@ export default function PersonalPlanExerciseScreen() {
 
   const submitRecall = async () => {
     if (!item || !session || saving || done || !isRecallMode || !('targetText' in item)) return;
-    const evaluation = evaluateRecallAnswer(typedAnswer, item.targetText);
+    const evaluation = evaluateRecallAnswer(
+      typedAnswer,
+      item.targetText,
+      'alternatives' in item ? item.alternatives : undefined,
+    );
     const isCorrect = evaluation.ok;
     setSaving(true);
     setSelected(typedAnswer.trim());

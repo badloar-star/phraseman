@@ -82,6 +82,12 @@ export type PlanContentPhrase = {
   id: string;
   /** Living, conversational English. */
   english: string;
+  /**
+   * Легитимные альтернативные формулировки на английском. Нужны для фраз с
+   * неоднозначным переводом («Я рад» → I'm glad / I'm happy / glad to see you):
+   * в режиме «Вспомни фразу» любой из этих вариантов засчитывается как верный.
+   */
+  alternatives?: string[];
   /** Source-language meanings. ru required; uk/es optional. */
   meaning: LocalizedText;
   /** Grammar constructions this phrase uses (tags from lesson_grammar_map). */

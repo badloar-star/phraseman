@@ -111,6 +111,7 @@ export function contentPhraseToLessonPhrase(phrase: PlanContentPhrase): LessonPh
   return {
     id: phrase.id,
     english: phrase.english,
+    ...(phrase.alternatives && phrase.alternatives.length > 0 ? { alternatives: phrase.alternatives } : {}),
     russian: phrase.meaning.ru,
     ukrainian: phrase.meaning.uk ?? phrase.meaning.ru,
     ...(phrase.meaning.es ? { spanish: phrase.meaning.es } : {}),

@@ -113,9 +113,18 @@ export function meaningChoiceIsCorrect(picked: string, correctTranslation: strin
   return picked.trim().toLowerCase() === correctTranslation.trim().toLowerCase();
 }
 
-export function evaluateRecallAnswer(userAnswer: string, phrase: string): EvalResult {
+export function evaluateRecallAnswer(
+  userAnswer: string,
+  phrase: string,
+  alternatives?: string[],
+): EvalResult {
   const target = cleanPhrase(englishRecallSurface(phrase));
-  const ok = isCorrectAnswer(userAnswer, target);
+  // Неоднозначные фразы («Я рад» → I'm glad / I'm happy / glad to see you)
+  // нельзя вспомнить дословно: принимаем любой из легитимных вариантов.
+  const cleanedAlternatives = (alternatives ?? [])
+    .map((alt) => cleanPhrase(englishRecallSurface(alt)))
+    .filter((alt) => alt.length > 0);
+  const ok = isCorrectAnswer(userAnswer, target, cleanedAlternatives);
   return {
     ok,
     normalizedUser: userAnswer.trim(),

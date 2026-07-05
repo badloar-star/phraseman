@@ -11,6 +11,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import { glassFill } from '../components/GlassSurface';
 import { triLang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticError, hapticTap } from '../hooks/use-haptics';
@@ -216,8 +217,9 @@ export default function ProblemCoach() {
   );
 
   const cardStyle = {
-    backgroundColor: false ? '#FFFFFF' : t.bgCard,
-    borderColor: t.borderHighlight,
+    backgroundColor: glassFill(t.bgSurface, 0.46),
+    borderTopWidth: 1,
+    borderTopColor: glassFill(t.accent, 0.14),
     ...getVolumetricShadow(themeMode, t, 2),
   };
   const accentSoft = `${t.accent}18`;
@@ -420,7 +422,7 @@ export default function ProblemCoach() {
           {copy(step.microTask)}
         </Text>
 
-        <View style={[styles.sentenceBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+        <View style={[styles.sentenceBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
           <Text style={[styles.sentenceText, { color: t.textPrimary, fontSize: Math.max(17, f.body) }]}>
             {step.sentence}
           </Text>
@@ -574,7 +576,7 @@ export default function ProblemCoach() {
             pl: 'Mini-praktyka zakończona',
           })}
       </Text>
-      <View style={[styles.resultScoreBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+      <View style={[styles.resultScoreBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
         <Text style={[styles.resultScoreLabel, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, {
             ru: 'РЕЗУЛЬТАТ',
@@ -655,7 +657,6 @@ const styles = StyleSheet.create({
   introCard: {
     borderRadius: 18,
     overflow: 'hidden',
-    borderWidth: 0.5,
     flexDirection: 'row',
   },
   stripe: {
@@ -687,7 +688,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   panel: {
-    borderWidth: 0.5,
     borderRadius: 18,
     padding: 18,
     gap: 16,
@@ -724,7 +724,7 @@ const styles = StyleSheet.create({
   },
   scoreText: { fontWeight: '800', fontSize: 14 },
   questionText: { fontWeight: '800', lineHeight: 24 },
-  sentenceBox: { borderWidth: 0.5, borderRadius: 16, padding: 18 },
+  sentenceBox: { borderRadius: 16, padding: 18 },
   sentenceText: { fontWeight: '800', lineHeight: 27 },
   optionsList: { gap: 10 },
   optionButton: {
@@ -784,7 +784,7 @@ const styles = StyleSheet.create({
   resultIconWrap: { alignItems: 'center' },
   resultIcon: { width: 74, height: 74, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
   resultTitle: { fontWeight: '900', textAlign: 'center' },
-  resultScoreBox: { borderWidth: 1, borderRadius: 18, padding: 14, alignItems: 'center', gap: 4 },
+  resultScoreBox: { borderRadius: 18, padding: 14, alignItems: 'center', gap: 4 },
   resultScoreLabel: { fontWeight: '900', letterSpacing: 1.2 },
   resultScoreValue: { fontSize: 21, fontWeight: '900' },
 });

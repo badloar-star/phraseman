@@ -437,6 +437,12 @@ function applyLessonFields(progress, patch, event) {
     const passed = boolish(event.payload.passed) || score >= 2.5;
     if (passed) {
         patch[passKey] = String(Math.max(0, readInt(progress[passKey], 0)) + 1);
+        if (lessonId === 1) {
+            // Live-маркер для реферальной квалификации: ставится ТОЛЬКО здесь (живое passed-событие).
+            // Миграция снапшота (buildMigrationPatch) его сознательно НЕ переносит — по нему
+            // referralApply отличает реальное прохождение урока 1 от подсунутого pass_count.
+            patch[lessonFieldKey(1, 'pass_live', target)] = '1';
+        }
         setUnlocked(progress, patch, lessonId + 1, target);
     }
     if (Array.isArray(event.payload.progress)) {

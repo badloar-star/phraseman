@@ -18,6 +18,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { aiGloballyDisabled } from './remote_gates';
 import { resolveJobConfig } from './openai_jobs_config';
 import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolvePromptLangKey } from './explain/explain_prompts';
@@ -92,6 +93,10 @@ export const compassGenerate = onCall(
     const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'compass');
 
     const db = admin.firestore();
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
     const jobCfg = await resolveJobConfig(db, 'compass');
     const authUid = request.auth.uid;
     const stableUid = await resolveStableUidForAuth(db, authUid);

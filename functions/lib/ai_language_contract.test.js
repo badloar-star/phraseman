@@ -27,6 +27,10 @@ describe('ai_language_contract', () => {
         expect((0, ai_language_contract_1.resolveStudyTarget)('en')).toBe('en');
         expect((0, ai_language_contract_1.resolveStudyTarget)('xx')).toBe('en');
     });
+    it('maps study targets to their human names (single source of truth)', () => {
+        expect((0, ai_language_contract_1.studyTargetName)('en')).toBe('English');
+        expect((0, ai_language_contract_1.studyTargetName)('fr')).toBe('French');
+    });
     it('rejects visible JSON fields that look like the wrong language', () => {
         expect(() => (0, ai_language_contract_1.assertAiJsonTextFieldsLanguage)({
             targetLang: 'ru',

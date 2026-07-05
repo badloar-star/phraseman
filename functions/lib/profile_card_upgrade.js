@@ -2,20 +2,24 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // profile_card_upgrade.ts — серверная валидация прокачки карточки профиля.
 //
-// Зачем: карточка профиля стала ПУБЛИЧНЫМ статусом (Pro-бейдж в строках
+// Зачем: карточка профиля стала ПУБЛИЧНЫМ статусом (бейдж уровня в строках
 // лидербордов/арены/клуба + полная карточка в профиле). Раньше уровень писался
 // клиентом без серверной сверки траты осколков → подделанный клиент мог выставить
-// себе level 1, не потратив ничего, и красоваться в чужих лидербордах.
+// себе уровень, не потратив ничего, и красоваться в чужих лидербордах.
 //
 // Эта callable — единственный доверенный путь поднять уровень: атомарно проверяет
 // серверный баланс осколков, списывает РОВНО стоимость следующего уровня (таблица
 // цен живёт на сервере, клиент её не диктует) и инкрементит авторитетный
-// users/{uid}.profile_card_level. Баланс осколков и так серверо-авторитетен
+// users/{uid}.progress.profile_card_level. Баланс осколков и так серверо-авторитетен
 // (users/{uid}.shards под транзакцией), поэтому переиспользуем тот же документ.
 //
 // Идемпотентность по уровню: вход содержит expectedLevel (текущий уровень глазами
 // клиента). Если серверный уровень уже >= expectedLevel+1, апгрейд уже случился —
 // возвращаем текущее состояние без двойного списания.
+//
+// РЕШЕНИЕ 2026-07-05 (владелец): лестница из 5 уровней. Уровень V («Легенда»)
+// дополнительно получает порядковый номер легенды из глобального счётчика
+// stats/profile_card_legends — номер выдаётся один раз и навсегда.
 // ═══════════════════════════════════════════════════════════════════════════
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -56,14 +60,21 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
-const PROFILE_CARD_MAX_LEVEL = 1;
+const PROFILE_CARD_MAX_LEVEL = 5;
+const PROFILE_CARD_LEGEND_LEVEL = 5;
+const PROFILE_CARD_LEGEND_COUNTER_DOC = 'profile_card_legends';
 /**
  * Стоимость ПЕРЕХОДА на уровень N (индекс = целевой уровень). Должна совпадать с
- * клиентской таблицей PROFILE_CARD_LEVELS в app/profile_card_system.ts. Источник
+ * клиентской таблицей PROFILE_CARD_LEVEL_COSTS в app/profile_card_system.ts
+ * (парность держит tests/profile_card_upgrade_dev_gate.test.ts). Источник
  * истины по списанию — здесь, на сервере.
  */
 const PROFILE_CARD_LEVEL_COST = {
     1: 200,
+    2: 450,
+    3: 800,
+    4: 1400,
+    5: 2400,
 };
 function readShardBalance(value) {
     const n = Math.trunc(Number(value));
@@ -75,11 +86,15 @@ function readCardLevel(value) {
         return 0;
     return Math.max(0, Math.min(PROFILE_CARD_MAX_LEVEL, n));
 }
+function readLegendNo(value) {
+    const n = Math.trunc(Number(value));
+    return Number.isFinite(n) && n > 0 ? n : null;
+}
 /**
  * Callable: поднять уровень карточки профиля на +1 за осколки.
  *
  * Вход:  { expectedLevel?: number }  — текущий уровень глазами клиента (для идемпотентности)
- * Ответ: UpgradeResult
+ * Ответ: UpgradeResult (для уровня V дополнительно legendNo — номер легенды)
  */
 exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     if (!request.auth?.uid)
@@ -95,6 +110,7 @@ exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE
         ? null
         : readCardLevel(expectedLevelRaw);
     const userRef = db.collection('users').doc(uid);
+    const legendCounterRef = db.collection('stats').doc(PROFILE_CARD_LEGEND_COUNTER_DOC);
     const result = await db.runTransaction(async (tx) => {
         const userSnap = await tx.get(userRef);
         const data = userSnap.data() ?? {};
@@ -104,8 +120,10 @@ exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE
         const progress = (data.progress ?? {});
         const currentLevel = readCardLevel(progress.profile_card_level);
         const balance = readShardBalance(data.shards);
+        const storedLegendNo = readLegendNo(progress.profile_card_legend_no);
         // Идемпотентность: клиент думал, что на expectedLevel, но сервер уже выше —
         // значит апгрейд уже применён (повторный/гонка). Не списываем второй раз.
+        // (Номер легенды при таком повторе доедет штатным restore из users.progress.)
         if (expectedLevel !== null && currentLevel > expectedLevel) {
             return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };
         }
@@ -117,6 +135,15 @@ exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE
         if (balance < cost) {
             return { ok: false, reason: 'insufficient', level: currentLevel, balance, cost };
         }
+        // «Легенда»: порядковый номер из глобального счётчика. Читаем ДО первой записи —
+        // Firestore-транзакция требует все чтения раньше записей.
+        let legendNo = storedLegendNo;
+        if (nextLevel === PROFILE_CARD_LEGEND_LEVEL && legendNo === null) {
+            const counterSnap = await tx.get(legendCounterRef);
+            const issued = Math.max(0, Math.trunc(Number(counterSnap.data()?.issued)) || 0);
+            legendNo = issued + 1;
+            tx.set(legendCounterRef, { issued: legendNo, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+        }
         const newBalance = balance - cost;
         tx.set(userRef, {
             shards: newBalance,
@@ -125,10 +152,18 @@ exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE
             shards_updated_reason: 'profile_card_upgrade',
             // Nested under progress so sync_leaderboard mirrors it to the public badge.
             // { merge: true } deep-merges nested objects, so sibling progress keys are kept.
-            progress: { profile_card_level: nextLevel },
+            progress: {
+                profile_card_level: nextLevel,
+                ...(nextLevel === PROFILE_CARD_LEGEND_LEVEL && legendNo !== null
+                    ? { profile_card_legend_no: legendNo }
+                    : {}),
+            },
             profile_card_level_updated_at: admin.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
-        return { ok: true, alreadyApplied: false, level: nextLevel, balance: newBalance, spent: cost };
+        return {
+            ok: true, alreadyApplied: false, level: nextLevel, balance: newBalance, spent: cost,
+            ...(nextLevel === PROFILE_CARD_LEGEND_LEVEL && legendNo !== null ? { legendNo } : {}),
+        };
     });
     return result;
 });

@@ -54,12 +54,13 @@ const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
+const remote_gates_1 = require("./remote_gates");
 const openai_jobs_config_1 = require("./openai_jobs_config");
 const explain_budget_1 = require("./explain/explain_budget");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const explain_provider_1 = require("./explain/explain_provider");
-const explain_judge_1 = require("./explain/explain_judge");
 const compass_prompts_1 = require("./compass/compass_prompts");
+const compass_judge_1 = require("./compass/compass_judge");
 const ai_language_contract_1 = require("./ai_language_contract");
 const compass_cache_1 = require("./compass/compass_cache");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
@@ -97,6 +98,11 @@ exports.compassGenerate = (0, https_1.onCall)({
     const level = Math.max(0, Math.min(10, Math.floor(Number(data.level) || 0)));
     const lang = (0, ai_language_contract_1.resolveAiOutputLang)(asText(data.lang, 12) || 'ru', 'compass');
     const db = admin.firestore();
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    if (await (0, remote_gates_1.aiGloballyDisabled)(db))
+        throw new https_1.HttpsError('failed-precondition', 'ai_globally_disabled');
     const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'compass');
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
@@ -155,8 +161,10 @@ exports.compassGenerate = (0, https_1.onCall)({
     }
     const comment = gen.text.trim();
     // 6) Лёгкая проверка (язык/связность/безопасность). Fail-closed.
+    // ВАЖНО: судья Компаса, НЕ фразовый judgeExplanation — тот бракует день-комментарий как
+    // off_topic («не про английскую фразу»), из-за чего раньше реджектился весь кэш.
     const verdict = comment
-        ? await (0, explain_judge_1.judgeExplanation)({ text: comment, phraseEn: signature, lang, apiKey })
+        ? await (0, compass_judge_1.judgeCompassComment)({ text: comment, langKey, apiKey })
         : { ok: false, reason: 'empty', promptTokens: 0, completionTokens: 0 };
     if (verdict.ok) {
         await (0, compass_cache_1.writeReadyCompass)(hash, comment, { lang, model: jobCfg.model });

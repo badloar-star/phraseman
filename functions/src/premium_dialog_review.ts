@@ -5,6 +5,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
+import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -58,6 +59,8 @@ interface DialogReviewRequest {
   scenarioId?: unknown;
   goalEn?: unknown;
   ageBracket?: unknown;
+  /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
+  studyTarget?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -101,9 +104,10 @@ function stripKeyPhraseMarkers(value: string): string {
   return value.replace(/\[\[|\]\]/g, '');
 }
 
-function buildReviewSystemPrompt(cefr: string, learnerLangName: string, goalEn: string): string {
+function buildReviewSystemPrompt(cefr: string, learnerLangName: string, goalEn: string, studyTarget: StudyTarget = 'en'): string {
   const goalLine = goalEn ? `\nThe scenario goal was: ${goalEn}.` : '';
-  return `You are a warm, encouraging English tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's English.${goalLine}
+  const targetName = studyTargetName(studyTarget);
+  return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
 Review ONLY the learner's lines. Respond with a single JSON object and nothing else:
@@ -113,10 +117,10 @@ Rules:
 - "praise": 1-2 warm, specific sentences in ${learnerLangName} about what the learner genuinely did well (a phrase they used, politeness, persistence). Never invent things they did not say, never use empty flattery.
 - "corrections": go through EVERY learner line. For each line with a language mistake add one item:
   - "original": the learner's line exactly as they wrote it (shorten to the broken part if the line is long);
-  - "corrected": the natural English a friendly native speaker would use for the same idea, kept at level ${cefr};
+  - "corrected": the natural ${targetName} a friendly native speaker would use for the same idea, kept at level ${cefr};
   - "note": ONE short, kind sentence in ${learnerLangName} explaining the fix in everyday words — no grammar jargon, no mockery, never shame the learner.
   Skip lines that are already fine. At most ${MAX_CORRECTIONS} items — if there are more mistakes, pick the most useful ones.
-- "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended English phrase in English.
+- "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
 - If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.`;
 }
@@ -195,6 +199,7 @@ export const premiumDialogReview = onCall({
   const interfaceLang = asInterfaceLang(data.interfaceLang);
   const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
   const goalEn = text(data.goalEn, 200);
+  const studyTarget = resolveStudyTarget(data.studyTarget);
 
   const transcript = history
     .map((t) => `${t.role === 'user' ? 'Learner' : 'Partner'}: ${stripKeyPhraseMarkers(t.content)}`)
@@ -218,7 +223,7 @@ export const premiumDialogReview = onCall({
         // Разбор — аналитическая задача: низкая температура ради точности цитат.
         temperature: 0.3,
         messages: [
-          { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn) },
+          { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget) },
           { role: 'user', content: transcript },
         ],
         ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),

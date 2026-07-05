@@ -33,12 +33,15 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminDecideUserIdea = exports.submitUserIdea = void 0;
+exports.adminDraftIdeaDecision = exports.adminDecideUserIdea = exports.submitUserIdea = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
+const explain_provider_1 = require("./explain/explain_provider");
 const REGION = 'us-central1';
+const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const IDEAS_COLLECTION = 'user_ideas';
 const RATE_COLLECTION = 'user_idea_rate_limits';
 const IDEA_INBOX = 'idea_inbox';
@@ -257,5 +260,146 @@ exports.adminDecideUserIdea = (0, https_1.onCall)({
         writeIdeaInbox(tx, db, targetUid, decision, texts, ideaId, now);
     });
     return { ok: true };
+});
+// ─────────────────────────────────────────────────────────────────────────────
+// 3) Админ: ИИ-черновик текста модалки решения (СРАЗУ на языке пользователя)
+// ─────────────────────────────────────────────────────────────────────────────
+/** Человекочитаемое название языка для промпта (чтобы модель точно поняла). */
+const IDEA_LANG_NAMES = {
+    ru: 'Russian',
+    uk: 'Ukrainian',
+    es: 'Spanish',
+    pt: 'Portuguese',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    tr: 'Turkish',
+    pl: 'Polish',
+    en: 'English',
+};
+const IDEA_DECISION_MSG_MAX = 900;
+const IDEA_DRAFT_SYSTEM_PROMPT = [
+    'You write a short in-app modal message for a user of Phraseman, an English-learning app.',
+    'The user submitted a product idea. The team has made a decision on it.',
+    'Write a warm, human, 2-4 sentence message addressed to the user (informal "you"),',
+    'STRICTLY in the language given in the "language" field — do not mix languages.',
+    'If decision is "approve": thank them warmly, say the idea is accepted and going into development,',
+    'and that as a thank-you we open full Premium access for a whole year. Sound genuinely glad.',
+    'If decision is "reject": thank them for the idea, gently say we are not taking it into work for now,',
+    'and encourage them to keep sending ideas. No excuses, no blame, no bureaucratic tone.',
+    'Speak as the team ("we"). No links, no deadlines, at most one emoji.',
+    'Return STRICTLY a JSON object: {"message": "..."} with the message in the target language only.',
+].join(' ');
+// Максимальная длина подсказки-тона от админа. Тон задаётся на любом языке
+// (обычно русском) и влияет ТОЛЬКО на стиль/содержание, но не на язык ответа —
+// сообщение пользователю всё равно пишется на его языке (idea.lang).
+const IDEA_TONE_HINT_MAX = 600;
+/**
+ * adminDraftIdeaDecision — ИИ-черновик текста модалки решения по идее.
+ * Пишет текст СРАЗУ на языке пользователя (idea.lang), чтобы админу не нужно
+ * было переводить. Админ может отредактировать перед отправкой в adminDecideUserIdea.
+ *
+ * data: { ideaId: string; decision: 'approve' | 'reject' }
+ * Возвращает: { ok: true, message: string, lang: string }
+ */
+exports.adminDraftIdeaDecision = (0, https_1.onCall)({
+    region: REGION,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_SENSITIVE,
+    timeoutSeconds: 30,
+    memory: '256MiB',
+    maxInstances: 10,
+    secrets: [OPENAI_API_KEY],
+}, async (request) => {
+    if (!request.auth?.token?.admin) {
+        throw new https_1.HttpsError('permission-denied', 'Admin only');
+    }
+    const ideaId = text(request.data?.ideaId, 180);
+    const decision = enumText(request.data?.decision, ['approve', 'reject'], 'reject');
+    const toneHint = text(request.data?.toneHint, IDEA_TONE_HINT_MAX);
+    if (!ideaId)
+        throw new https_1.HttpsError('invalid-argument', 'ideaId_required');
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey)
+        throw new https_1.HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+    const db = admin.firestore();
+    const snap = await db.collection(IDEAS_COLLECTION).doc(ideaId).get();
+    if (!snap.exists)
+        throw new https_1.HttpsError('not-found', 'idea_not_found');
+    const idea = snap.data();
+    const langCode = (text(idea.lang, 8) || 'ru').toLowerCase();
+    const languageName = IDEA_LANG_NAMES[langCode] || IDEA_LANG_NAMES[langCode.slice(0, 2)] || 'Russian';
+    const userPayload = JSON.stringify({
+        language: languageName,
+        decision,
+        // Тон — первоклассное поле payload'а: модель видит его вместе с идеей и
+        // обязана применить. Пустая строка, если админ тон не задал.
+        admin_tone_instruction: toneHint || '',
+        idea: {
+            title: text(idea.title, 120),
+            description: text(idea.description, 1500),
+            benefit: text(idea.benefit, 600),
+            category: text(idea.category, 40),
+        },
+    });
+    // Диагностика: видно, дошёл ли тон до функции и какой длины (в Cloud Logs).
+    console.log('[draftIdeaDecision]', JSON.stringify({
+        ideaId, decision, lang: langCode,
+        toneLen: toneHint.length, tone: toneHint.slice(0, 200),
+    }));
+    // Базовый промпт. Если задан тон — он идёт ПОСЛЕДНИМ сообщением (после payload),
+    // максимально императивно: модель сильнее слушает последнее указание, а базовый
+    // сценарий явно объявляется переопределяемым тоном.
+    const messages = [
+        { role: 'system', content: IDEA_DRAFT_SYSTEM_PROMPT },
+        { role: 'user', content: userPayload },
+    ];
+    if (toneHint) {
+        messages.push({
+            role: 'system',
+            content: [
+                '=== OVERRIDE: ADMIN TONE INSTRUCTION (HIGHEST PRIORITY) ===',
+                'The admin explicitly set a custom instruction for THIS reply. It OVERRIDES the default',
+                'thank-you/rejection wording and the suggested sentence structure above. Rewrite the',
+                'message so it clearly, obviously reflects this instruction — a reader must be able to',
+                'tell the tone/content changed. Do NOT fall back to the generic template.',
+                'Only these hard limits still apply: write in the target language, 2-4 sentences,',
+                'at most one emoji, no links.',
+                'If the instruction is written in another language, apply its MEANING but still WRITE',
+                'the final message in the target language.',
+                'ADMIN INSTRUCTION -> ' + toneHint,
+            ].join('\n'),
+        });
+    }
+    const result = await (0, explain_provider_1.openAiChat)({
+        apiKey,
+        model: 'gpt-4o-mini',
+        messages,
+        maxTokens: 400,
+        // С тоном даём модели больше свободы отклониться от шаблона; без тона —
+        // сдержаннее (стабильный дефолт).
+        temperature: toneHint ? 0.9 : 0.6,
+        responseFormat: { type: 'json_object' },
+    });
+    // Модель может вернуть НЕ JSON, а прозу/отказ. Тогда JSON.parse падает, и раньше
+    // админ видел глухое «INTERNAL» без причины. Отдаём понятную ошибку с обрезанным
+    // сырым текстом модели, чтобы было видно её ответ (в т.ч. текст отказа), и админ
+    // мог написать сообщение вручную.
+    const raw = String(result.text || '').trim();
+    if (!raw) {
+        throw new https_1.HttpsError('failed-precondition', 'ИИ вернул пустой ответ — сформулируй сообщение вручную.');
+    }
+    if (toneHint)
+        console.log('[draftIdeaDecision] raw ->', raw.slice(0, 400));
+    let message = '';
+    try {
+        const parsed = JSON.parse(raw);
+        message = text(parsed.message, IDEA_DECISION_MSG_MAX);
+    }
+    catch {
+        throw new https_1.HttpsError('failed-precondition', `ИИ не вернул черновик (возможно, отказ). Ответ модели: ${raw.slice(0, 300)}`);
+    }
+    if (!message) {
+        throw new https_1.HttpsError('failed-precondition', `ИИ вернул пустое сообщение. Ответ модели: ${raw.slice(0, 300)}`);
+    }
+    return { ok: true, message, lang: langCode };
 });
 //# sourceMappingURL=user_ideas.js.map

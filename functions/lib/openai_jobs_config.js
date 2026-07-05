@@ -56,7 +56,7 @@ const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
-exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board'];
+exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'help_board', 'digest', 'support', 'constellations'];
 exports.ALLOWED_JOB_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
@@ -77,6 +77,16 @@ const JOB_DEFAULTS = {
     // кэш прогревается быстро. Та же дешёвая модель и кап, что у choice (родственная фича).
     quiz: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
     help_board: { model: 'gpt-4.1-nano', globalDailyCap: 1000 },
+    // Дайджест для владельца: раз в сутки, один вызов на весь проект. Кап символический
+    // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
+    // осмысленно расставлять приоритеты, а не просто пересчитывать.
+    digest: { model: 'gpt-4.1-mini', globalDailyCap: 50 },
+    // Ответы поддержки: дешёвая модель, один вызов на черновик. Кап скромный —
+    // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
+    support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
+    // Квизы «Созвездий»: генерация вопросов с судьёй-валидатором дистракторов.
+    // Дешёвая модель, щедрый кап (кэш досыпается фоном), kill-switch → только кэш+банк.
+    constellations: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
 };
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);

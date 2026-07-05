@@ -139,13 +139,57 @@ describe('profileCardUpgrade', () => {
         expect(u.shards).toBe(500);
         expect(u.progress.profile_card_level).toBe(1);
     });
-    it('returns max at Pro without charging', async () => {
-        docs.set('users/u1', { shards: 999, progress: { profile_card_level: 1 } });
-        const res = await callUpgrade({ expectedLevel: 1 });
-        expect(res).toMatchObject({ ok: false, reason: 'max', level: 1 });
+    it('returns max at Legend (V) without charging', async () => {
+        docs.set('users/u1', { shards: 9999, progress: { profile_card_level: 5 } });
+        const res = await callUpgrade({ expectedLevel: 5 });
+        expect(res).toMatchObject({ ok: false, reason: 'max', level: 5 });
         const u = docs.get('users/u1');
-        expect(u.shards).toBe(999);
-        expect(u.progress.profile_card_level).toBe(1);
+        expect(u.shards).toBe(9999);
+        expect(u.progress.profile_card_level).toBe(5);
+    });
+    it('charges the ladder prices level by level (200/450/800/1400/2400)', async () => {
+        const total = 200 + 450 + 800 + 1400 + 2400;
+        docs.set('users/u1', { shards: total, progress: { profile_card_level: 0 } });
+        const expected = [
+            { level: 1, spent: 200 },
+            { level: 2, spent: 450 },
+            { level: 3, spent: 800 },
+            { level: 4, spent: 1400 },
+            { level: 5, spent: 2400 },
+        ];
+        for (const step of expected) {
+            const res = await callUpgrade({ expectedLevel: step.level - 1 });
+            expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: step.level, spent: step.spent });
+        }
+        const u = docs.get('users/u1');
+        expect(u.shards).toBe(0);
+        expect(u.progress.profile_card_level).toBe(5);
+    });
+    it('refuses a mid-ladder step when shards cover only the previous price', async () => {
+        // 200 was enough for I, but II costs 450 — no charge, no level bump.
+        docs.set('users/u1', { shards: 449, progress: { profile_card_level: 1 } });
+        const res = await callUpgrade({ expectedLevel: 1 });
+        expect(res).toMatchObject({ ok: false, reason: 'insufficient', level: 1, balance: 449, cost: 450 });
+        expect(docs.get('users/u1').progress.profile_card_level).toBe(1);
+    });
+    it('assigns sequential Legend numbers from the global counter, once per player', async () => {
+        docs.set('users/u1', { shards: 2400, progress: { profile_card_level: 4 } });
+        docs.set('users/u2', { shards: 2400, progress: { profile_card_level: 4 } });
+        const first = await callUpgrade({ expectedLevel: 4 }, 'u1');
+        const second = await callUpgrade({ expectedLevel: 4, stableId: 'u2' }, 'auth-x');
+        expect(first).toMatchObject({ ok: true, level: 5, spent: 2400, legendNo: 1 });
+        expect(second).toMatchObject({ ok: true, level: 5, spent: 2400, legendNo: 2 });
+        expect(docs.get('users/u1').progress.profile_card_legend_no).toBe(1);
+        expect(docs.get('users/u2').progress.profile_card_legend_no).toBe(2);
+        expect(docs.get('stats/profile_card_legends').issued).toBe(2);
+    });
+    it('does not attach a legend number to non-Legend upgrades', async () => {
+        docs.set('users/u1', { shards: 450, progress: { profile_card_level: 1 } });
+        const res = await callUpgrade({ expectedLevel: 1 });
+        expect(res).toMatchObject({ ok: true, level: 2, spent: 450 });
+        expect(res.legendNo).toBeUndefined();
+        expect(docs.get('users/u1').progress.profile_card_legend_no).toBeUndefined();
+        expect(docs.get('stats/profile_card_legends')).toBeUndefined();
     });
     it('uses the server cost table, not a client-supplied cost', async () => {
         docs.set('users/u1', { shards: 1000, progress: { profile_card_level: 0 } });

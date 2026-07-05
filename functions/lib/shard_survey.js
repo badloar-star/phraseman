@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminWriteShardSurvey = exports.submitShardSurvey = exports.getActiveShardSurvey = void 0;
+exports.adminDeleteShardSurvey = exports.adminWriteShardSurvey = exports.submitShardSurvey = exports.getActiveShardSurvey = void 0;
 // ════════════════════════════════════════════════════════════════════════════
 // shard_survey.ts — опросы за осколки: submit / getActive / admin-write.
 //
@@ -53,7 +53,11 @@ const SURVEYS = 'shard_surveys';
 const RESPONSES = 'shard_survey_responses';
 const STATS = 'shard_survey_stats';
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
+const RATE_COLLECTION = 'shard_survey_rate_limits';
 const DAY_MS = 24 * 60 * 60 * 1000;
+// Анти-спам: не больше N сабмитов опросов в сутки на пользователя (спека §2.2).
+// Легальный поток — единицы опросов в день; 20 покрывает ретраи с запасом.
+const SUBMIT_MAX_PER_DAY = 20;
 function text(value, max) {
     return String(value ?? '').trim().slice(0, max);
 }
@@ -143,6 +147,9 @@ exports.getActiveShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
                     title: (0, shard_survey_core_1.resolveLocalized)(config.title, lang),
                     subtitle: (0, shard_survey_core_1.resolveLocalized)(config.subtitle, lang),
                     rewardShards: config.rewardShards,
+                    accentColor: config.accentColor,
+                    finalTitle: (0, shard_survey_core_1.resolveLocalized)(config.finalScreen.title, lang),
+                    finalSubtitle: (0, shard_survey_core_1.resolveLocalized)(config.finalScreen.subtitle, lang),
                     questions: config.questions.map((q) => ({
                         id: q.id,
                         type: q.type,
@@ -178,13 +185,26 @@ exports.submitShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_
     const userRef = db.collection(USERS).doc(stableUid);
     const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`survey_${surveyId}`);
     const statsRef = db.collection(STATS).doc(surveyId);
+    const rateRef = db.collection(RATE_COLLECTION).doc(stableUid);
     const result = await db.runTransaction(async (tx) => {
-        const [responseSnap, userSnap, claimSnap, statsSnap] = await Promise.all([
+        const [responseSnap, userSnap, claimSnap, statsSnap, rateSnap] = await Promise.all([
             tx.get(responseRef),
             tx.get(userRef),
             tx.get(claimRef),
             tx.get(statsRef),
+            tx.get(rateRef),
         ]);
+        // Rate-limit: не больше SUBMIT_MAX_PER_DAY сабмитов в сутки на пользователя.
+        const rateDecision = (0, shard_survey_core_1.evaluateSubmitRateLimit)(rateSnap.data(), SUBMIT_MAX_PER_DAY, DAY_MS, nowMs);
+        if (rateDecision.limited) {
+            throw new https_1.HttpsError('resource-exhausted', 'rate_limited');
+        }
+        tx.set(rateRef, {
+            uid: stableUid,
+            windowStartMs: rateDecision.nextWindowStartMs,
+            count: rateDecision.nextCount,
+            updatedAtMs: nowMs,
+        }, { merge: true });
         const responseBase = {
             surveyId,
             uid: stableUid,
@@ -274,10 +294,30 @@ exports.adminWriteShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLA
         minDaysBetweenSurveys: parsed.minDaysBetweenSurveys,
         audience: parsed.audience,
         questions: parsed.questions,
+        accentColor: parsed.accentColor,
+        finalScreen: parsed.finalScreen,
         createdAtMs,
         updatedAtMs: nowMs,
         updatedBy: authUid,
     }, { merge: true });
     return { ok: true, surveyId: parsed.surveyId };
+});
+// ────────────────────────────────────────────────────────────────────────────
+// adminDeleteShardSurvey — удалить конфиг опроса (из админ-экрана).
+// Доступ: admin claim. Удаляет только конфиг; ответы/статы остаются (история).
+// ────────────────────────────────────────────────────────────────────────────
+exports.adminDeleteShardSurvey = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
+    const authUid = request.auth?.uid;
+    if (!authUid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    if (request.auth?.token?.admin !== true) {
+        throw new https_1.HttpsError('permission-denied', 'admin_required');
+    }
+    const surveyId = text(request.data?.surveyId, 80);
+    if (!surveyId)
+        throw new https_1.HttpsError('invalid-argument', 'survey_id_required');
+    const db = admin.firestore();
+    await db.collection(SURVEYS).doc(surveyId).delete();
+    return { ok: true, surveyId };
 });
 //# sourceMappingURL=shard_survey.js.map

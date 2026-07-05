@@ -85,8 +85,12 @@ function isCurrentSchema(data: { schemaVersion?: number } | undefined | null): b
  * doc, but a genuinely different wrong answer is correctly a different doc — the breakdown
  * references the specific words the learner got wrong.
  */
-export function mistakeHashFor(targetEn: string, userAnswer: string, langKey: string): string {
-  const seed = `${String(langKey ?? '').trim().toLowerCase()}|${normalizePhrase(targetEn)}|${normalizePhrase(userAnswer)}`;
+export function mistakeHashFor(targetEn: string, userAnswer: string, langKey: string, studyTarget = 'en'): string {
+  // studyTarget in the key so a fr-learner's breakdown never collides with an en one on the same
+  // strings. 'en' emits no segment ⇒ existing English docs keep their hash (see phraseHashFor).
+  const target = String(studyTarget ?? 'en').trim().toLowerCase() || 'en';
+  const targetSegment = target === 'en' ? '' : `${target}::`;
+  const seed = `${targetSegment}${String(langKey ?? '').trim().toLowerCase()}|${normalizePhrase(targetEn)}|${normalizePhrase(userAnswer)}`;
   return createHash('sha256').update(seed).digest('hex').slice(0, 40);
 }
 

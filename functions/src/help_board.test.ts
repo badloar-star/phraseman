@@ -42,6 +42,7 @@ import {
   moderateHelpBoardText,
   normalizeHelpBoardScope,
   parseCompassEnvelope,
+  resolveShouldPost,
   validateCompassAnswer,
 } from './help_board';
 
@@ -130,27 +131,52 @@ describe('help_board contract helpers', () => {
     expect(prompt).toContain('ALWAYS write in Russian');
     // Предупреждение за грубость + безопасная реакция.
     expect(prompt).toContain('repeated behaviour leads to losing access');
-    expect(prompt).toContain('never repeat or discuss their words');
-    // Методика обучения и юмор сохранены.
-    expect(prompt).toContain('Diagnose the likely confusion');
-    expect(prompt).toContain('light wit is welcome');
-    // JSON-конверт с вердиктом тона.
-    expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous"');
+    expect(prompt).toContain('Never repeat or discuss their words');
+    // Методика обучения (диагностика ошибки) сохранена.
+    expect(prompt).toContain('diagnose the likely confusion');
+    // Явная установка на юмор + разные голоса под режимы.
+    expect(prompt).toContain('You are genuinely funny');
+    expect(prompt).toContain('the funny professor');
+    expect(prompt).toContain('the charming showman');
+    // Гардрейлы юмора: только в genuine/offtopic, не в rude/dangerous.
+    expect(prompt).toContain('jokes are welcome ONLY in genuine and offtopic');
+    expect(prompt).toContain('humor STRICTLY OFF');
+    // JSON-конверт с вердиктом тона и решением «постить ли».
+    expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous", "shouldPost": true|false');
     expect(prompt).toContain('does not invite a dialog with Compass');
+    // Характер Компаса: сам решает, отвечать ли (STEP 3).
+    expect(prompt).toContain('genuine → shouldPost: true, ALWAYS');
+    expect(prompt).toContain('offtopic → shouldPost: true ONLY if');
+    expect(prompt).toContain('prefer false');
   });
 
   it('parses the Compass envelope defensively', () => {
     expect(parseCompassEnvelope('{"tone":"rude","answer":"Так у нас не разговаривают."}'))
-      .toEqual({ tone: 'rude', answer: 'Так у нас не разговаривают.' });
+      .toEqual({ tone: 'rude', answer: 'Так у нас не разговаривают.', shouldPost: true });
     expect(parseCompassEnvelope('```json\n{"tone":"offtopic","answer":"Привет!"}\n```'))
-      .toEqual({ tone: 'offtopic', answer: 'Привет!' });
+      .toEqual({ tone: 'offtopic', answer: 'Привет!', shouldPost: true });
     // Не-JSON → весь текст = ответ, tone genuine (лучше показать, чем молчать).
     expect(parseCompassEnvelope('Просто текст ответа без конверта'))
-      .toEqual({ tone: 'genuine', answer: 'Просто текст ответа без конверта' });
+      .toEqual({ tone: 'genuine', answer: 'Просто текст ответа без конверта', shouldPost: true });
     // Неизвестный tone → genuine.
     expect(parseCompassEnvelope('{"tone":"angry","answer":"текст"}').tone).toBe('genuine');
     // Пустой answer в JSON → фолбэк на сырой текст.
     expect(parseCompassEnvelope('{"tone":"rude","answer":""}').answer).toContain('"tone"');
+    // shouldPost: явный false читается, отсутствие поля → true (не молчим зря).
+    expect(parseCompassEnvelope('{"tone":"offtopic","shouldPost":false,"answer":"Ничего по делу."}').shouldPost).toBe(false);
+    expect(parseCompassEnvelope('{"tone":"offtopic","shouldPost":true,"answer":"Есть что сказать."}').shouldPost).toBe(true);
+    expect(parseCompassEnvelope('{"tone":"genuine","answer":"Ответ без поля shouldPost."}').shouldPost).toBe(true);
+  });
+
+  it('Compass decides whether to post by topic character (resolveShouldPost)', () => {
+    // Вопросы по языку и грубые/опасные темы — отвечает ВСЕГДА, даже если модель
+    // прислала shouldPost:false (модерация/де-эскалация не пропускаются).
+    expect(resolveShouldPost('genuine', false)).toBe(true);
+    expect(resolveShouldPost('rude', false)).toBe(true);
+    expect(resolveShouldPost('dangerous', false)).toBe(true);
+    // Оффтоп — решает сам Компас: если сказать нечего, молчит.
+    expect(resolveShouldPost('offtopic', false)).toBe(false);
+    expect(resolveShouldPost('offtopic', true)).toBe(true);
   });
 
   it('validates Compass output deterministically (replaces the off_topic LLM judge)', () => {

@@ -4,7 +4,8 @@
 // Источник v1: кэш constellation_quizzes (status ready), при нехватке —
 // бесшовный fallback на банк arena_questions того же уровня (D3). Правильный
 // индекс НИКОГДА не уходит в клиентские доки: публичная часть — в
-// constellation_players, correct+rule — только в constellation_server (D6).
+// constellation_players, correct — только в constellation_server (D6).
+// Разборы (rule/explanation) убраны из режима целиком — только вопросы.
 //
 // Варианты перемешиваются сидированно (matchId+round+qid): у обоих дуэлянтов
 // ОДИН И ТОТ ЖЕ порядок вариантов — честная скорость.
@@ -21,7 +22,6 @@ const db = admin.firestore();
 export interface DealtQuestion {
   public: DealtQuestionPublic;
   correctIndex: number;
-  rule: string;
 }
 
 interface RawQuestion {
@@ -29,7 +29,6 @@ interface RawQuestion {
   question: string;
   options: string[];
   correctText: string;
-  rule: string;
   level: string;
 }
 
@@ -47,11 +46,8 @@ function parseRaw(id: string, data: Record<string, unknown>): RawQuestion | null
   const correctText = typeof data.correct === 'string' ? data.correct : '';
   if (!question || options.length < 2 || !correctText) return null;
   if (!options.some((o) => o.trim() === correctText.trim())) return null;
-  const rule = typeof data.rule === 'string'
-    ? data.rule
-    : typeof data.explanation === 'string' ? data.explanation : '';
   const level = typeof data.level === 'string' ? data.level : '';
-  return { id, question, options, correctText, rule, level };
+  return { id, question, options, correctText, level };
 }
 
 async function fetchFromCache(level: string, limit: number): Promise<RawQuestion[]> {
@@ -196,7 +192,7 @@ export async function warmQuestionCache(levels: readonly string[], perLevel: num
 
 /**
  * Готовит вопрос к выдаче: сидированно перемешивает варианты и разделяет
- * публичную часть (в player-док) и correct+rule (в server-док).
+ * публичную часть (в player-док) и correct (в server-док).
  */
 export function toDealtQuestion(raw: RawQuestion, shuffleSeed: string): DealtQuestion {
   const rand = createSeededRand(shuffleSeed);
@@ -215,7 +211,6 @@ export function toDealtQuestion(raw: RawQuestion, shuffleSeed: string): DealtQue
       level: raw.level,
     },
     correctIndex: Math.max(0, correctIndex),
-    rule: raw.rule,
   };
 }
 

@@ -356,6 +356,43 @@ function mergeShards(winner, loser) {
  * Idempotent: if the two are already merged (one hidden → other), returns the
  * canonical id without rewriting.
  */
+const AUTH_LINKS_COL = 'auth_links';
+/**
+ * Genuine ownership = the caller controls this account through a trustworthy
+ * signal — its firebaseAuthUid is the caller, or a provider link (Google/Apple)
+ * binds it to the caller, or auth_links/{authUid} points at it. It deliberately
+ * does NOT accept the anonymous-reinstall relink escape (assertStableOwner line
+ * ~173), which trusts a stable_id that is publicly readable as a leaderboard
+ * document id. A fresh anon_merge_claim proves a device held an anonymous LOSER
+ * but must NEVER make an account the merge survivor (see the "never overwrite an
+ * owned account" test). Used to gate every path that rebinds
+ * users/{id}.firebaseAuthUid to the caller (#11 / #12 account-takeover).
+ */
+async function callerGenuinelyOwns(db, authUid, stableId, data) {
+    const userData = data ?? (await db.collection(USERS).doc(stableId).get().catch(() => null))?.data() ?? {};
+    if (cleanStr(userData.firebaseAuthUid) === authUid)
+        return true;
+    const linkedAuth = userData.linkedAuth;
+    if (linkedAuth && typeof linkedAuth === 'object') {
+        const providerUid = cleanStr(linkedAuth.providerUid);
+        if (providerUid && providerUid === authUid)
+            return true;
+    }
+    const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
+    if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId)
+        return true;
+    return false;
+}
+/** Throw permission-denied unless the caller GENUINELY owns the account it is
+ *  about to be bound to. Shared by every merge branch that would rewrite
+ *  users/{id}.firebaseAuthUid, so a leaked stable_id alone can never seize a
+ *  stranger's account. */
+async function assertGenuineOwnerForBind(db, authUid, stableId, data) {
+    if (await callerGenuinelyOwns(db, authUid, stableId, data))
+        return;
+    console.warn(JSON.stringify({ event: 'merge_bind_denied', authUid, stableId }));
+    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+}
 async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date.now()) {
     const a = cleanStr(stableIdA);
     const b = cleanStr(stableIdB);
@@ -363,6 +400,7 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
         throw new https_1.HttpsError('invalid-argument', 'stable_ids_required');
     // Same id (or already-canonicalized to the same target) → nothing to merge.
     if (a === b) {
+        await assertGenuineOwnerForBind(db, authUid, a);
         await (0, auth_identity_1.linkStableAuthUid)(db, a, authUid);
         return { canonicalStableId: a, mergedFromStableId: null, alreadyMerged: true };
     }
@@ -381,6 +419,7 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
         : b;
     // Already merged into the same canonical → idempotent no-op.
     if (canonA === canonB) {
+        await assertGenuineOwnerForBind(db, authUid, canonA);
         await (0, auth_identity_1.linkStableAuthUid)(db, canonA, authUid);
         return { canonicalStableId: canonA, mergedFromStableId: null, alreadyMerged: true };
     }
@@ -392,7 +431,13 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
     // anonymous token to stamp with, so cannot absorb a stranger's account.
     // resolveStableUidForAuth self-heals firebaseAuthUid; here we tolerate a mismatch
     // and defer the decision until the XP winner is known.
-    const opts = { allowProviderRelink: true };
+    // repairLinks:false — the ownership PROBE must be READ-ONLY. Previously
+    // resolveStableUidForAuth rebound users/{id}.firebaseAuthUid as a side effect of
+    // the probe, so a permissive anon-relink resolve seized a victim's account before
+    // the ownership gates even ran (and that rebind was not rolled back on a later
+    // throw). The genuine rebind now happens ONLY in the final transaction / the
+    // gated branch links below.
+    const opts = { allowProviderRelink: true, repairLinks: false };
     const resolveOwnershipSafe = async (id) => {
         try {
             return { owned: true, id: await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, id, opts) };
@@ -423,14 +468,19 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
         loserOwned = resA.owned;
     }
     if (winnerId === loserId) {
+        await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData);
         await (0, auth_identity_1.linkStableAuthUid)(db, winnerId, authUid);
         return { canonicalStableId: winnerId, mergedFromStableId: null, alreadyMerged: true };
     }
-    // The surviving account MUST be owned — never let an unowned account become the
-    // canonical survivor, and never overwrite an owned account with an unowned one.
-    if (!winnerOwned) {
-        throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
-    }
+    // The surviving account MUST be GENUINELY owned by the caller — by a trustworthy
+    // signal (firebaseAuthUid / provider link / auth_links), NOT merely "ownable" via
+    // the anonymous-reinstall relink escape, which trusts a stable_id that is publicly
+    // readable as a leaderboard document id. A leaked stable_id must never let an
+    // attacker seize a stranger's account (#11 / #12). A fresh anon_merge_claim proves
+    // a device held an anonymous LOSER but can NEVER make an account the survivor
+    // (guarded by the "never overwrite an owned account" test). winnerOwned above came
+    // from the permissive probe and is intentionally no longer trusted here.
+    await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData);
     // The loser, if not owned, is only absorbable with a fresh self-stamped anon
     // claim whose authUid matches the loser doc's own firebaseAuthUid (the anon uid
     // that held it). No claim / stale / mismatched → reject.

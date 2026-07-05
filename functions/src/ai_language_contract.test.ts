@@ -15,6 +15,7 @@ import {
   assertAiJsonTextFieldsLanguage,
   resolveAiOutputLang,
   resolveStudyTarget,
+  studyTargetName,
 } from './ai_language_contract';
 
 describe('ai_language_contract', () => {
@@ -35,6 +36,11 @@ describe('ai_language_contract', () => {
     expect(resolveStudyTarget('fr')).toBe('fr');
     expect(resolveStudyTarget('en')).toBe('en');
     expect(resolveStudyTarget('xx')).toBe('en');
+  });
+
+  it('maps study targets to their human names (single source of truth)', () => {
+    expect(studyTargetName('en')).toBe('English');
+    expect(studyTargetName('fr')).toBe('French');
   });
 
   it('rejects visible JSON fields that look like the wrong language', () => {

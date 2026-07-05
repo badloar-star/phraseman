@@ -28,11 +28,12 @@ import {
 } from './explain/explain_cache';
 import { reserveExplainBudget, refundExplainBudgetReservation, enforceFreeJobGenLimit, type ExplainBudgetReservation } from './explain/explain_budget';
 import { resolveJobConfig } from './openai_jobs_config';
+import { aiGloballyDisabled } from './remote_gates';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
 import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
-import { resolveAiOutputLang } from './ai_language_contract';
+import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -61,6 +62,8 @@ interface ExplainRequestData {
   phraseEn?: unknown;
   phraseMeaning?: unknown;
   lang?: unknown;
+  /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
+  studyTarget?: unknown;
 }
 
 function asText(value: unknown, max: number): string {
@@ -118,8 +121,13 @@ export const explainPhrase = onCall({
   const phraseEn = asText(data.phraseEn, 1000);
   const phraseMeaning = asText(data.phraseMeaning, 2000);
   const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'explain');
+  const studyTarget = resolveStudyTarget(data.studyTarget);
 
   const db = admin.firestore();
+  // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+  // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+  // показывает забавную плашку.
+  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
   const jobCfg = await resolveJobConfig(db, 'explain');
   const authUid = request.auth.uid;
@@ -147,7 +155,7 @@ export const explainPhrase = onCall({
   // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
   // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
   const langKey = resolvePromptLangKey(lang);
-  const phraseHash = phraseHashFor(phraseEn, langKey);
+  const phraseHash = phraseHashFor(phraseEn, langKey, studyTarget);
 
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedExplanation(phraseHash);
@@ -196,7 +204,7 @@ export const explainPhrase = onCall({
     gen = await openAiChat({
       apiKey,
       model: jobCfg.model,
-      messages: [{ role: 'user', content: buildExplainPrompt(phraseEn, phraseMeaning, lang) }],
+      messages: [{ role: 'user', content: buildExplainPrompt(phraseEn, phraseMeaning, lang, studyTarget) }],
       maxTokens: GEN_MAX_TOKENS,
       temperature: GEN_TEMPERATURE,
     });
@@ -209,7 +217,7 @@ export const explainPhrase = onCall({
   // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
   const sanitized = sanitizeExplanationOutput(gen.text);
   const judgeText = sanitized;
-  const verdict = await judgeExplanation({ text: judgeText, phraseEn, lang, apiKey });
+  const verdict = await judgeExplanation({ text: judgeText, phraseEn, lang, apiKey, studyTarget });
 
   // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
   //    text regardless of verdict — we risk showing raw text to one user, never to all.

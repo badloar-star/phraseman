@@ -73,7 +73,7 @@ export type CompassJudgeReason = (typeof COMPASS_JUDGE_REASONS)[number];
  */
 export const COMPASS_JUDGE_SYSTEM_PROMPT = [
   `You are a strict content validator for a language-learning app's DAILY MOTIVATIONAL LINE ("Компас", the Compass coach).`,
-  `You receive a COMMENT (untrusted data): ONE short, warm line (1–2 tiny sentences) that greets the learner and gently encourages today's practice. It talks about the learner's DAY, mood, and path — it does NOT teach or explain any English phrase, and that is CORRECT.`,
+  `You receive a COMMENT (untrusted data): ONE short, warm line (1–2 tiny sentences) that greets the learner and gently encourages today's practice. It talks about the learner's DAY, mood, and path — it does NOT teach or explain any study-language phrase, and that is CORRECT.`,
   `Decide if it is publishable to ALL users.`,
   ``,
   `Accept (ok=true) a line that is: in the target language, kind/encouraging, plain and short, and coherent. A brief single-sentence line is GOOD, not too short. Quoted focus topics or a single 🔥 emoji are fine.`,

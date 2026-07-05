@@ -15,6 +15,15 @@ describe('remote_gates — pickRemoteBool (серверное чтение featu
     expect(pickRemoteBool({ gate_ai_dialog_premium: true }, 'gate_ai_dialog_premium', false)).toBe(true);
   });
 
+  it('ai_global_disable — дефолт FALSE (ИИ работает), пока админ не поставит TRUE', () => {
+    // Ключа нет / нет конфига → ИИ включён (fallback false).
+    expect(pickRemoteBool(undefined, 'ai_global_disable', false)).toBe(false);
+    expect(pickRemoteBool({}, 'ai_global_disable', false)).toBe(false);
+    // Админ включил рубильник → true.
+    expect(pickRemoteBool({ ai_global_disable: true }, 'ai_global_disable', false)).toBe(true);
+    expect(pickRemoteBool({ ai_global_disable: 'true' }, 'ai_global_disable', false)).toBe(true);
+  });
+
   it('приводит строковые "true"/"false"/"1"/"0"', () => {
     expect(pickRemoteBool({ k: 'false' }, 'k', true)).toBe(false);
     expect(pickRemoteBool({ k: 'true' }, 'k', false)).toBe(true);

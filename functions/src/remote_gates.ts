@@ -57,3 +57,13 @@ export function pickRemoteBool(
 ): boolean {
   return coerceBool(bools?.[key]) ?? fallback;
 }
+
+/**
+ * Глобальный рубильник всего ИИ (remote flag `ai_global_disable`). TRUE = весь ИИ
+ * выключен админом в «Пульте». Серверный дубль клиентского isAiGloballyDisabled —
+ * чтобы клиентский гейт нельзя было обойти прямым вызовом callable. Дефолт FALSE
+ * (ИИ работает). При ошибке чтения → FALSE (не блокируем ИИ из-за сбоя конфига).
+ */
+export async function aiGloballyDisabled(db: FirebaseFirestore.Firestore): Promise<boolean> {
+  return resolveRemoteBool(db, 'ai_global_disable', false);
+}

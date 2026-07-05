@@ -6,8 +6,8 @@
 // ответа по correctByQid из закрытого constellation_server, серверные тайминги,
 // отклонение нечеловеческих (<minAnswerMs), идемпотентность по actionId.
 //
-// Ответ на 'answer' возвращает correct/correctIndex/rule — микро-обучение в
-// мёртвое время раунда (F3/D10): раскрытие ПОСЛЕ фиксации ответа безопасно.
+// Ответ на 'answer' возвращает correct/correctIndex — раскрытие ПОСЛЕ фиксации
+// ответа безопасно. Разборы (rule) в режиме нет — только сам факт верно/неверно.
 // Ранний фаст-форвард (A3): последний сходивший человек триггерит переход фазы.
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -169,7 +169,6 @@ export async function handleConstellationSubmit(
         ok: true,
         correct,
         correctIndex: key?.correctIndex ?? -1,
-        rule: key?.rule ?? '',
         done,
         phaseCheck: 'answer',
       };

@@ -6,7 +6,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
-import { assertAiJsonTextFieldsLanguage } from './ai_language_contract';
+import { assertAiJsonTextFieldsLanguage, studyTargetName, type StudyTarget } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -360,10 +360,11 @@ const LANG_NAMES: Record<SupportedLang, string> = {
   pl: 'Polish',
 };
 
-function buildSystemPrompt(lang: SupportedLang): string {
+function buildSystemPrompt(lang: SupportedLang, studyTarget: StudyTarget = 'en'): string {
   const langName = LANG_NAMES[lang];
-  return `You are "Компас", a warm, encouraging English tutor inside the Phraseman app.
-You are writing the learner's mistake review for their English practice.
+  const targetName = studyTargetName(studyTarget);
+  return `You are "Компас", a warm, encouraging ${targetName} tutor inside the Phraseman app.
+You are writing the learner's mistake review for their ${targetName} practice.
 
 ABSOLUTE RULES:
 - Write ENTIRELY in ${langName}. Every word of greeting and paragraphs must be in ${langName}.
@@ -498,7 +499,7 @@ export const weeklyReviewGenerate = onCall({
   await enforceRateLimit(authUid, stableUid);
 
   const messages = [
-    { role: 'system' as const, content: buildSystemPrompt(briefing.lang) },
+    { role: 'system' as const, content: buildSystemPrompt(briefing.lang, briefing.studyTarget) },
     { role: 'user' as const, content: JSON.stringify(briefing) },
   ];
 

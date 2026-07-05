@@ -178,15 +178,18 @@ describe('explainMistake', () => {
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
-  it('is free for everyone — no daily cap blocks repeated breakdowns', async () => {
+  it('free users hit the daily cap after 3 distinct breakdowns', async () => {
     await callExplain(validPayload);
     await callExplain({ ...validPayload, userAnswer: 'I has table' });
     await callExplain({ ...validPayload, userAnswer: 'I has booking' });
-    await callExplain({ ...validPayload, userAnswer: 'I has seat' });
 
-    // Four DISTINCT mistakes → four generations, none blocked.
-    expect(global.fetch).toHaveBeenCalledTimes(4);
-    expect(billingDocs()).toHaveLength(4);
+    // Cap is 3/day for free users — the 4th distinct mistake is blocked.
+    await expect(callExplain({ ...validPayload, userAnswer: 'I has seat' })).rejects.toMatchObject({
+      code: 'resource-exhausted',
+      message: 'explain_free_daily_limit',
+    });
+    expect(global.fetch).toHaveBeenCalledTimes(3);
+    expect(billingDocs()).toHaveLength(3);
   });
 
   it('serves the SAME mistake from the warm cache on the second call ($0, no provider hit)', async () => {

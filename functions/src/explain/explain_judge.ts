@@ -21,6 +21,7 @@ import {
   JUDGE_REASONS,
   type JudgeReason,
 } from './explain_prompts';
+import type { StudyTarget } from '../ai_language_contract';
 
 const JUDGE_MODEL = 'gpt-4o-mini';
 const JUDGE_MAX_TOKENS = 30;
@@ -41,6 +42,8 @@ export interface JudgeParams {
   phraseEn: string;
   lang: string;
   apiKey: string;
+  /** Language being LEARNED (StudyTarget). Defaults to 'en' for backward compatibility. */
+  studyTarget?: StudyTarget;
 }
 
 /**
@@ -124,7 +127,7 @@ function parseJudgeReply(raw: string): { ok: boolean; reason: JudgeReason } | nu
  * On ANY parse/shape failure of the model reply ⇒ ok:false, reason:'incoherent' (fail-closed).
  */
 export async function judgeExplanation(params: JudgeParams): Promise<JudgeVerdict> {
-  const { text, lang, apiKey } = params;
+  const { text, lang, apiKey, studyTarget = 'en' } = params;
 
   const heuristic = heuristicPreFilter(text, lang);
   if (heuristic) {
@@ -139,7 +142,7 @@ export async function judgeExplanation(params: JudgeParams): Promise<JudgeVerdic
       model: JUDGE_MODEL,
       messages: [
         { role: 'system', content: JUDGE_SYSTEM_PROMPT },
-        { role: 'user', content: buildJudgeUserPrompt(text, lang) },
+        { role: 'user', content: buildJudgeUserPrompt(text, lang, studyTarget) },
       ],
       maxTokens: JUDGE_MAX_TOKENS,
       temperature: JUDGE_TEMPERATURE,

@@ -70,9 +70,11 @@ function getCurrentWeekId(now = new Date()) {
     const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
     return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
 }
-function compassPostDocId(weekId, groupId, daySeed) {
+function compassPostDocId(weekId, groupId) {
     const safeGroup = String(groupId).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64) || 'group';
-    return `compass_${weekId}_${safeGroup}_${daySeed}`;
+    // Keyed by weekId only (no daySeed): one Compass message per group per week.
+    // Reruns within the same week hit the same doc id → idempotent, never duplicates.
+    return `compass_${weekId}_${safeGroup}`;
 }
 function membersMap(data) {
     const members = data?.members;
@@ -171,8 +173,10 @@ async function markDailyGenerationRejected(db, dayKey, reason, meta) {
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
 }
-async function resolveDailyCompassPost(db, now, daySeed) {
-    const dayKey = (0, compass_chat_content_1.getUtcDayKey)(now);
+async function resolveDailyCompassPost(db, now, daySeed, weekId) {
+    // Content is generated once per week and cached under the weekId, so every
+    // group in that week receives the same approved post and reruns are free.
+    const dayKey = weekId;
     const fallback = (0, compass_chat_content_1.pickCompassPostForDay)(daySeed);
     const cached = await readCachedDailyPost(db, dayKey);
     if (cached)
@@ -254,10 +258,10 @@ async function runCompassChatDailyPost(now = new Date()) {
     const weekId = getCurrentWeekId(now);
     const daySeed = (0, compass_chat_content_1.getDaySeed)(now);
     const dayKey = (0, compass_chat_content_1.getUtcDayKey)(now);
-    const resolved = await resolveDailyCompassPost(db, now, daySeed);
+    const resolved = await resolveDailyCompassPost(db, now, daySeed, weekId);
     const post = resolved.post;
     const createdAt = Date.now();
-    console.log(`compassChatDailyCron: weekId=${weekId} dayKey=${dayKey} kind=${post.kind} source=${resolved.source}`);
+    console.log(`compassChatWeeklyCron: weekId=${weekId} dayKey=${dayKey} kind=${post.kind} source=${resolved.source}`);
     let processed = 0;
     let written = 0;
     let skipped = 0;
@@ -292,7 +296,7 @@ async function runCompassChatDailyPost(now = new Date()) {
                 continue;
             }
             const leagueId = Math.max(0, Math.trunc(Number(data.leagueId ?? 0)));
-            batch.set(db.collection('league_chat_messages').doc(compassPostDocId(weekId, doc.id, daySeed)), buildMessagePayload(post, doc.id, weekId, leagueId, createdAt), { merge: false });
+            batch.set(db.collection('league_chat_messages').doc(compassPostDocId(weekId, doc.id)), buildMessagePayload(post, doc.id, weekId, leagueId, createdAt), { merge: false });
             batchCount++;
             written++;
             if (batchCount >= BATCH_LIMIT) {
@@ -315,7 +319,10 @@ async function runCompassChatDailyPost(now = new Date()) {
     };
 }
 exports.compassChatDailyCron = (0, scheduler_1.onSchedule)({
-    schedule: 'every day 09:00',
+    // Compass posts to league chat once per week (Monday 09:00 UTC), not daily.
+    // Weekly cadence keeps the chat from feeling spammy; dedup is keyed by weekId
+    // so any accidental extra fire within the same week overwrites the same doc.
+    schedule: 'every monday 09:00',
     timeZone: 'UTC',
     timeoutSeconds: 540,
     memory: '512MiB',

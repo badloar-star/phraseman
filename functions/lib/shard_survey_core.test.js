@@ -202,4 +202,36 @@ describe('resolveLocalized', () => {
         expect((0, shard_survey_core_1.resolveLocalized)({ ru: 'Р' }, 'es')).toBe('Р');
     });
 });
+describe('evaluateSubmitRateLimit', () => {
+    const DAY = 24 * 60 * 60 * 1000;
+    const now = 1000000000;
+    it('первый сабмит (нет rate-дока) — не лимитит, count→1', () => {
+        const r = (0, shard_survey_core_1.evaluateSubmitRateLimit)(undefined, 20, DAY, now);
+        expect(r.limited).toBe(false);
+        expect(r.nextCount).toBe(1);
+        expect(r.nextWindowStartMs).toBe(now);
+    });
+    it('в пределах окна инкрементит count', () => {
+        const r = (0, shard_survey_core_1.evaluateSubmitRateLimit)({ windowStartMs: now - 1000, count: 5 }, 20, DAY, now);
+        expect(r.limited).toBe(false);
+        expect(r.nextCount).toBe(6);
+        expect(r.nextWindowStartMs).toBe(now - 1000);
+    });
+    it('на пределе (count===max) — лимитит', () => {
+        const r = (0, shard_survey_core_1.evaluateSubmitRateLimit)({ windowStartMs: now - 1000, count: 20 }, 20, DAY, now);
+        expect(r.limited).toBe(true);
+        expect(r.nextCount).toBe(20);
+    });
+    it('окно истекло — счётчик сбрасывается, новое окно', () => {
+        const r = (0, shard_survey_core_1.evaluateSubmitRateLimit)({ windowStartMs: now - DAY - 1, count: 20 }, 20, DAY, now);
+        expect(r.limited).toBe(false);
+        expect(r.nextCount).toBe(1);
+        expect(r.nextWindowStartMs).toBe(now);
+    });
+    it('битые данные rate-дока трактуются как нули', () => {
+        const r = (0, shard_survey_core_1.evaluateSubmitRateLimit)({ windowStartMs: NaN, count: undefined }, 20, DAY, now);
+        expect(r.limited).toBe(false);
+        expect(r.nextCount).toBe(1);
+    });
+});
 //# sourceMappingURL=shard_survey_core.test.js.map

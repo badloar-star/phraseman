@@ -42,6 +42,7 @@ const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 const premium_dialog_1 = require("./premium_dialog");
+const ai_language_contract_1 = require("./ai_language_contract");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * premiumDialogReview — финальный «разбор полётов» завершённого ИИ-диалога.
@@ -102,9 +103,10 @@ function sanitizeReviewHistory(value) {
 function stripKeyPhraseMarkers(value) {
     return value.replace(/\[\[|\]\]/g, '');
 }
-function buildReviewSystemPrompt(cefr, learnerLangName, goalEn) {
+function buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget = 'en') {
     const goalLine = goalEn ? `\nThe scenario goal was: ${goalEn}.` : '';
-    return `You are a warm, encouraging English tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's English.${goalLine}
+    const targetName = (0, ai_language_contract_1.studyTargetName)(studyTarget);
+    return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
 Review ONLY the learner's lines. Respond with a single JSON object and nothing else:
@@ -114,10 +116,10 @@ Rules:
 - "praise": 1-2 warm, specific sentences in ${learnerLangName} about what the learner genuinely did well (a phrase they used, politeness, persistence). Never invent things they did not say, never use empty flattery.
 - "corrections": go through EVERY learner line. For each line with a language mistake add one item:
   - "original": the learner's line exactly as they wrote it (shorten to the broken part if the line is long);
-  - "corrected": the natural English a friendly native speaker would use for the same idea, kept at level ${cefr};
+  - "corrected": the natural ${targetName} a friendly native speaker would use for the same idea, kept at level ${cefr};
   - "note": ONE short, kind sentence in ${learnerLangName} explaining the fix in everyday words — no grammar jargon, no mockery, never shame the learner.
   Skip lines that are already fine. At most ${MAX_CORRECTIONS} items — if there are more mistakes, pick the most useful ones.
-- "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended English phrase in English.
+- "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
 - If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.`;
 }
@@ -185,6 +187,7 @@ exports.premiumDialogReview = (0, https_1.onCall)({
     const interfaceLang = (0, premium_dialog_1.asInterfaceLang)(data.interfaceLang);
     const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
     const goalEn = text(data.goalEn, 200);
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const transcript = history
         .map((t) => `${t.role === 'user' ? 'Learner' : 'Partner'}: ${stripKeyPhraseMarkers(t.content)}`)
         .join('\n');
@@ -205,7 +208,7 @@ exports.premiumDialogReview = (0, https_1.onCall)({
                 // Разбор — аналитическая задача: низкая температура ради точности цитат.
                 temperature: 0.3,
                 messages: [
-                    { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn) },
+                    { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget) },
                     { role: 'user', content: transcript },
                 ],
                 ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),

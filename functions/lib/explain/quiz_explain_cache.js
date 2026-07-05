@@ -88,9 +88,13 @@ function normalizeQuizOption(option) {
  * cache, but a genuinely different option SET is correctly a different doc — the разбор references
  * the specific options. Pass the CANONICAL langKey from resolvePromptLangKey().
  */
-function quizHashFor(correctEn, allChoices, langKey) {
+function quizHashFor(correctEn, allChoices, langKey, studyTarget = 'en') {
     const normalizedChoices = [...new Set(allChoices.map(normalizeQuizOption).filter(Boolean))].sort();
-    const seed = `${String(langKey ?? '').trim().toLowerCase()}|${(0, explain_cache_1.normalizePhrase)(correctEn)}|${normalizedChoices.join('|')}`;
+    // studyTarget in the key so a fr-learner never gets the en-cached разбор for the same string.
+    // 'en' emits no segment ⇒ existing English docs keep their hash (see phraseHashFor rationale).
+    const target = String(studyTarget ?? 'en').trim().toLowerCase() || 'en';
+    const targetSegment = target === 'en' ? '' : `${target}::`;
+    const seed = `${targetSegment}${String(langKey ?? '').trim().toLowerCase()}|${(0, explain_cache_1.normalizePhrase)(correctEn)}|${normalizedChoices.join('|')}`;
     return (0, crypto_1.createHash)('sha256').update(seed).digest('hex').slice(0, 40);
 }
 function docRef(quizHash) {

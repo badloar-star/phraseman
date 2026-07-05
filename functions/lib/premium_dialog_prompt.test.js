@@ -20,7 +20,7 @@ jest.mock('./callable_options', () => ({
     ENFORCE_APP_CHECK_OPENAI: false,
 }));
 const premium_dialog_1 = require("./premium_dialog");
-const { assertDialogReplyIsEnglish, assertDialogTranslationLanguage, asTargetLang, translationCacheId, } = premium_dialog_1.__premiumDialogTestHooks;
+const { assertDialogReplyMatchesTarget, assertDialogTranslationLanguage, asTargetLang, translationCacheId, } = premium_dialog_1.__premiumDialogTestHooks;
 describe('premium dialog prompt language isolation', () => {
     it('accepts every app UI language and fails closed on unknown values', () => {
         expect(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].map(premium_dialog_1.asInterfaceLang)).toEqual([
@@ -85,19 +85,71 @@ describe('premium dialog prompt language isolation', () => {
         expect(prompt).toContain('still ANSWER IN ENGLISH');
         expect(prompt).toContain('OUTPUT LANGUAGE (ABSOLUTE RULE)');
     });
-    it('rejects a non-English live dialog reply before it can reach the client', () => {
-        expect(() => assertDialogReplyIsEnglish('Good morning! [[I would like coffee]].')).not.toThrow();
-        expect(() => assertDialogReplyIsEnglish('Привет, давай потренируем фразу.')).toThrow('dialog_provider_failed');
+    it('rejects a non-English live dialog reply before it can reach the client (default en target)', () => {
+        expect(() => assertDialogReplyMatchesTarget('Good morning! [[I would like coffee]].')).not.toThrow();
+        expect(() => assertDialogReplyMatchesTarget('Привет, давай потренируем фразу.')).toThrow('dialog_provider_failed');
     });
     it('keeps translation cache keys and language guards separated by target UI language', () => {
         const source = 'Could I have a coffee, please?';
         expect(translationCacheId(source, 'ru')).not.toBe(translationCacheId(source, 'es'));
+        expect(translationCacheId(source, 'ru', 'en')).not.toBe(translationCacheId(source, 'ru', 'fr'));
         expect(asTargetLang('pt-BR')).toBe('pt-BR');
         expect(() => asTargetLang('fr')).toThrow('premium_dialog_translate_unsupported_language');
     });
     it('rejects cached or fresh translations that do not match the requested UI language', () => {
         expect(() => assertDialogTranslationLanguage('Сегодня хороший шаг.', 'ru')).not.toThrow();
         expect(() => assertDialogTranslationLanguage('Today you keep a good small practice step.', 'ru')).toThrow('premium_dialog_translate_wrong_language');
+    });
+});
+describe('premium dialog — study-target (French) parametrization', () => {
+    it('builds a French scenario prompt that instructs French output, not English (DoD 3)', () => {
+        const prompt = (0, premium_dialog_1.buildScenarioSystemPrompt)('A2', {
+            interfaceLang: 'ru',
+            studyTarget: 'fr',
+            role: 'a friendly barista',
+            setting: 'a cafe',
+            goalEn: 'order coffee',
+        });
+        expect(prompt).toContain('ALWAYS in French');
+        expect(prompt).toContain('This is French practice');
+        expect(prompt).toContain('reply ONLY in French');
+        // The English-target wording must NOT appear for a French learner.
+        expect(prompt).not.toContain('ALWAYS in English');
+        expect(prompt).not.toContain('This is English practice');
+        // The native-language profile stays the learner's UI language.
+        expect(prompt).toContain('Russian (ru)');
+    });
+    it('builds a French companion prompt that answers in French (DoD 3)', () => {
+        const prompt = (0, premium_dialog_1.buildCompanionSystemPrompt)('A2', { weakWords: ['réservation'] }, 'pl', 'fr');
+        expect(prompt).toContain('French-speaking friend');
+        expect(prompt).toContain('still ANSWER IN FRENCH');
+        expect(prompt).not.toContain('still ANSWER IN ENGLISH');
+    });
+    it('the English scenario prompt is unchanged when studyTarget defaults or is en (DoD 4)', () => {
+        const base = {
+            interfaceLang: 'ru',
+            role: 'a friendly barista',
+            setting: 'a cafe',
+            goalEn: 'order coffee',
+        };
+        const withoutTarget = (0, premium_dialog_1.buildScenarioSystemPrompt)('A2', base);
+        const withEnTarget = (0, premium_dialog_1.buildScenarioSystemPrompt)('A2', { ...base, studyTarget: 'en' });
+        expect(withEnTarget).toBe(withoutTarget);
+        expect(withoutTarget).toContain('ALWAYS in English');
+    });
+    it('the reply guard passes French for a fr target (DoD 3)', () => {
+        // A natural French reply (Latin script, no English stopword flood) is accepted.
+        expect(() => assertDialogReplyMatchesTarget('Bonjour ! [[Je voudrais un café]].', 'fr')).not.toThrow();
+        expect(() => assertDialogReplyMatchesTarget('Très bien, et vous, comment allez-vous aujourd’hui ?', 'fr')).not.toThrow();
+    });
+    it('the reply guard rejects a Cyrillic (learner-language) reply for both en and fr targets (DoD 3)', () => {
+        // The learner writing in their own language must never come back as the assistant reply.
+        expect(() => assertDialogReplyMatchesTarget('Привет, давай потренируем фразу вместе.', 'fr')).toThrow('dialog_provider_failed');
+        expect(() => assertDialogReplyMatchesTarget('Привет, давай потренируем фразу вместе.', 'en')).toThrow('dialog_provider_failed');
+    });
+    it('the reply guard rejects an English-stopword-flooded reply for a fr target (DoD 3)', () => {
+        // Enough English function words in a row = the model drifted to English during French practice.
+        expect(() => assertDialogReplyMatchesTarget('The coffee is good and you are in the shop with your friend today for the week.', 'fr')).toThrow('dialog_provider_failed');
     });
 });
 //# sourceMappingURL=premium_dialog_prompt.test.js.map

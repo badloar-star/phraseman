@@ -295,10 +295,11 @@ const LANG_NAMES = {
     tr: 'Turkish',
     pl: 'Polish',
 };
-function buildSystemPrompt(lang) {
+function buildSystemPrompt(lang, studyTarget = 'en') {
     const langName = LANG_NAMES[lang];
-    return `You are "Компас", a warm, encouraging English tutor inside the Phraseman app.
-You are writing the learner's mistake review for their English practice.
+    const targetName = (0, ai_language_contract_1.studyTargetName)(studyTarget);
+    return `You are "Компас", a warm, encouraging ${targetName} tutor inside the Phraseman app.
+You are writing the learner's mistake review for their ${targetName} practice.
 
 ABSOLUTE RULES:
 - Write ENTIRELY in ${langName}. Every word of greeting and paragraphs must be in ${langName}.
@@ -417,7 +418,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
     // generation so a provider failure does not lock the user out for a week.
     await enforceRateLimit(authUid, stableUid);
     const messages = [
-        { role: 'system', content: buildSystemPrompt(briefing.lang) },
+        { role: 'system', content: buildSystemPrompt(briefing.lang, briefing.studyTarget) },
         { role: 'user', content: JSON.stringify(briefing) },
     ];
     const response = await fetch(OPENAI_CHAT_URL, {

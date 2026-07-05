@@ -6,7 +6,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
-import { resolveRemoteBool } from './remote_gates';
+import { resolveRemoteBool, aiGloballyDisabled } from './remote_gates';
 import { assertAiStudyLanguage, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
@@ -299,6 +299,10 @@ export const speakingClubSend = onCall({
   }
 
   const db = admin.firestore();
+  // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+  // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+  // показывает забавную плашку.
+  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   const authUid = request.auth.uid;
   const studyTarget = resolveStudyTarget(data.studyTarget);
 
@@ -620,6 +624,10 @@ export const speakingClubReview = onCall({
   }
 
   const db = admin.firestore();
+  // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+  // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+  // показывает забавную плашку.
+  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
 

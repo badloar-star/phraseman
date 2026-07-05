@@ -369,6 +369,41 @@ async function notifyPlayers(players, sessionId) {
     }
 }
 // ─── Questions ────────────────────────────────────────────────────────────────
+/**
+ * Ключ дедупликации по ВИДИМОМУ содержанию вопроса, а не по doc id. В банке
+ * `arena_questions` встречаются документы с разными id, но полностью одинаковым
+ * содержанием (текст + варианты + правильный). Без дедупликации один матч мог
+ * вытянуть 4–7 визуально идентичных копий (баг «в разборе вопросов 3–7 одинаковые»).
+ *
+ * ВАЖНО: ключ включает набор вариантов (options), поэтому вопросы с одним текстом,
+ * но РАЗНЫМИ вариантами/дистракторами (это разные задания) НЕ схлопываются. Пустой
+ * ключ означает «нет текста» → такие документы уникальны по id, их не дедупим.
+ */
+function questionContentKey(d) {
+    const q = typeof d.question === 'string' ? d.question.trim().toLowerCase() : '';
+    const c = typeof d.correct === 'string' ? d.correct.trim().toLowerCase() : '';
+    const opts = Array.isArray(d.options)
+        ? d.options.map((x) => String(x).trim().toLowerCase()).sort().join('¦')
+        : '';
+    return q === '' ? '' : `${q}||${opts}||${c}`;
+}
+/** Дедуп по смыслу вопроса, сохраняя порядок; первый победитель остаётся. */
+function dedupByContent(docs) {
+    const seen = new Set();
+    const out = [];
+    for (const doc of docs) {
+        const data = doc.data();
+        const key = questionContentKey(data);
+        // Пустой ключ (нет текста) не схлопываем — такие документы уникальны по id,
+        // дедупим только осмысленные вопросы.
+        if (key !== '' && seen.has(key))
+            continue;
+        if (key !== '')
+            seen.add(key);
+        out.push({ id: doc.id, data });
+    }
+    return out;
+}
 async function pickQuestions(level, count) {
     // Assign a random float [0,1) to each question at upload time (field: rand).
     // We pick a random pivot and fetch count*4 docs starting from it;
@@ -389,24 +424,27 @@ async function pickQuestions(level, count) {
             .limit(count * 4)
             .get(),
     ]);
-    let ids = [
-        ...snapA.docs.map(d => d.id),
-        ...snapB.docs.map(d => d.id),
+    let docs = [
+        ...snapA.docs,
+        ...snapB.docs,
     ];
     // Страховка: документы БЕЗ поля `rand` Firestore не возвращает в rand-запросе
     // (исторически так было у всего банка A1 → bronze-матчи падали). Если набралось
     // меньше нужного — добираем простым запросом по level без rand-фильтра.
     // Backfill rand (scripts/backfill_rand_a1_firestore.mjs) устраняет саму причину.
-    if (ids.length < count) {
+    // Дедуп по content-ключу ниже гарантирует, что merge двух наборов не создаст повтор.
+    if (docs.length < count * 2) {
         const plain = await db.collection('arena_questions')
             .where('level', '==', level)
             .limit(count * 4)
             .get();
-        ids = Array.from(new Set([...ids, ...plain.docs.map(d => d.id)]));
+        docs = [...docs, ...plain.docs];
     }
-    const out = shuffleArray(ids).slice(0, count);
+    // Дедуп по СМЫСЛУ вопроса — фикс «одинаковые вопросы 3–7 в разборе матча».
+    const uniqueIds = dedupByContent(docs).map(d => d.id);
+    const out = shuffleArray(uniqueIds).slice(0, count);
     if (out.length < count) {
-        console.error(`pickQuestions: insufficient ids for level=${level} need=${count} got=${out.length}`);
+        console.error(`pickQuestions: insufficient unique ids for level=${level} need=${count} got=${out.length}`);
         throw new Error(`Insufficient arena_questions for level ${level} (need ${count}, got ${out.length})`);
     }
     return out;
@@ -432,13 +470,12 @@ async function pickOneQuestionExcluding(level, exclude) {
             .limit(limit)
             .get(),
     ]);
-    const pooled = shuffleArray([
-        ...snapA.docs.map((d) => d.id),
-        ...snapB.docs.map((d) => d.id),
-    ]);
-    for (const id of pooled) {
-        if (!exclude.has(id))
-            return id;
+    // Дедуп кандидатов по смыслу вопроса — чтобы тай-брейк не выдал контент-дубль
+    // уже показанного вопроса (тот же баг «одинаковые вопросы», но на добор-вопросе).
+    const pooled = shuffleArray(dedupByContent([...snapA.docs, ...snapB.docs]));
+    for (const cand of pooled) {
+        if (!exclude.has(cand.id))
+            return cand.id;
     }
     return null;
 }

@@ -68,6 +68,17 @@ describe('normalizePhrase + phraseHashFor — deterministic, dedup-friendly', ()
         expect((0, explain_cache_1.phraseHashFor)('Hello', 'RU')).toBe((0, explain_cache_1.phraseHashFor)('Hello', 'ru'));
         expect((0, explain_cache_1.phraseHashFor)('Hello', ' ru ')).toBe((0, explain_cache_1.phraseHashFor)('Hello', 'ru'));
     });
+    it('SAME phrase+lang in DIFFERENT study targets → DIFFERENT cache keys (DoD 5)', () => {
+        // Одна и та же строка может быть и английской, и французской фразой — француз
+        // не должен получить английское объяснение из кэша.
+        const en = (0, explain_cache_1.phraseHashFor)('content', 'ru', 'en');
+        const fr = (0, explain_cache_1.phraseHashFor)('content', 'ru', 'fr');
+        expect(en).not.toBe(fr);
+    });
+    it('the English key is unchanged: default target === explicit en === legacy 2-arg (DoD 4)', () => {
+        // 'en' не добавляет сегмент → существующий английский кэш сохраняется побайтово.
+        expect((0, explain_cache_1.phraseHashFor)('It sounds good', 'ru')).toBe((0, explain_cache_1.phraseHashFor)('It sounds good', 'ru', 'en'));
+    });
 });
 describe('resolvePromptLangKey — канонический язык для промпта И ключа кэша', () => {
     // Один резолвер на генерацию и кэш-ключ: ключ всегда совпадает с языком текста в доке.

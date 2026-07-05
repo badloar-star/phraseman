@@ -149,7 +149,7 @@ const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey } = require('./shard_survey');
+const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDeleteShardSurvey } = require('./shard_survey');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -286,6 +286,7 @@ exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
 exports.submitShardSurvey = submitShardSurvey;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
+exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
 exports.shardsApplyDelta = shardsApplyDelta;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;

@@ -435,6 +435,44 @@ describe('mergeStableAccounts', () => {
         });
         await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-15', 'stable-anon-rich', 'stable-mine', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
     });
+    // ── Account-takeover regressions (#11 / #12): a leaked stable_id (public as a
+    //    leaderboard doc id) must NEVER let a caller who does not own the account
+    //    rebind it to their own auth uid. ─────────────────────────────────────────
+    it('#11: a===b — attacker with NO users doc cannot rebind a stranger account', async () => {
+        // Attacker signed in fresh (attacker-uid), has no users doc of their own.
+        // They pass a victim stable_id (harvested from the public leaderboard) as BOTH
+        // ids to hit the a===b short-circuit. Must be rejected, and the victim's
+        // firebaseAuthUid must be left untouched.
+        const { db, store } = makeDbStub({
+            users: {
+                'victim-anon': { firebaseAuthUid: 'victim-uid', progress: { user_total_xp: '4200' } },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'attacker-uid', 'victim-anon', 'victim-anon', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+        expect(store.users['victim-anon'].firebaseAuthUid).toBe('victim-uid'); // NOT rebound
+    });
+    it('#12: attacker with no users doc cannot win-merge a purely-anonymous victim', async () => {
+        // Two purely-anonymous victim accounts harvested from the leaderboard. Attacker
+        // has no users doc, so the old anon-relink probe reported owned:true. The winner
+        // gate now requires GENUINE ownership → rejected, and neither victim is rebound.
+        const { db, store } = makeDbStub({
+            users: {
+                'victim-a': { firebaseAuthUid: 'victim-a-uid', progress: { user_total_xp: '9000' } },
+                'victim-b': { firebaseAuthUid: 'victim-b-uid', progress: { user_total_xp: '100' } },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'attacker-uid', 'victim-a', 'victim-b', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+        expect(store.users['victim-a'].firebaseAuthUid).toBe('victim-a-uid'); // NOT rebound
+        expect(store.users['victim-b'].firebaseAuthUid).toBe('victim-b-uid'); // NOT rebound
+    });
+    it('legit: idempotent a===b still works for the genuine owner', async () => {
+        const { db } = makeDbStub({
+            users: { 'stable-own': { firebaseAuthUid: 'google-99', progress: { user_total_xp: '7' } } },
+        });
+        const res = await (0, auth_merge_1.mergeStableAccounts)(db, 'google-99', 'stable-own', 'stable-own', NOW);
+        expect(res.alreadyMerged).toBe(true);
+        expect(res.canonicalStableId).toBe('stable-own');
+    });
 });
 // ── Integration: repointReferralOnMerge ──────────────────────────────────────
 describe('repointReferralOnMerge — перенос реферальных данных loser → winner', () => {

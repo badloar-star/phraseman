@@ -20,6 +20,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { aiGloballyDisabled } from './remote_gates';
 import {
   quizHashFor,
   readCachedQuizExplanation,
@@ -35,7 +36,7 @@ import { buildQuizPrompt, quizBatchToJudgeText } from './explain/quiz_explain_pr
 import { resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
-import { resolveAiOutputLang } from './ai_language_contract';
+import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -66,6 +67,8 @@ interface QuizRequestData {
   /** The wrong options (distractors), as shown to the user. */
   wrongOptions?: unknown;
   lang?: unknown;
+  /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
+  studyTarget?: unknown;
 }
 
 function asText(value: unknown, max: number): string {
@@ -95,8 +98,13 @@ export const explainQuiz = onCall({
   const questionPrompt = asText(data.questionPrompt, 2000);
   const rawWrongOptions = Array.isArray(data.wrongOptions) ? data.wrongOptions : [];
   const lang = resolveAiOutputLang(asText(data.lang, 12) || 'ru', 'quiz');
+  const studyTarget = resolveStudyTarget(data.studyTarget);
 
   const db = admin.firestore();
+  // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+  // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+  // показывает забавную плашку.
+  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   const jobCfg = await resolveJobConfig(db, 'quiz');
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
@@ -124,7 +132,7 @@ export const explainQuiz = onCall({
 
   // Cache key = (correct phrase, sorted FULL option-set, CANONICAL language).
   const langKey = resolvePromptLangKey(lang);
-  const quizHash = quizHashFor(correctEn, [correctEn, ...wrongOptions], langKey);
+  const quizHash = quizHashFor(correctEn, [correctEn, ...wrongOptions], langKey, studyTarget);
 
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedQuizExplanation(quizHash);
@@ -170,7 +178,7 @@ export const explainQuiz = onCall({
     gen = await openAiChat({
       apiKey,
       model: jobCfg.model,
-      messages: [{ role: 'user', content: buildQuizPrompt(correctEn, questionPrompt, wrongOptions, lang) }],
+      messages: [{ role: 'user', content: buildQuizPrompt(correctEn, questionPrompt, wrongOptions, lang, studyTarget) }],
       maxTokens: GEN_MAX_TOKENS,
       temperature: GEN_TEMPERATURE,
       responseFormat: { type: 'json_object' },
@@ -186,7 +194,7 @@ export const explainQuiz = onCall({
   // 7. Judge the assembled batch text (language / coherence / safety). Fail-closed.
   const judgeText = quizBatchToJudgeText(parsed.confirm, parsed.options);
   const verdict = parsed.ok && judgeText
-    ? await judgeExplanation({ text: judgeText, phraseEn: correctEn, lang, apiKey })
+    ? await judgeExplanation({ text: judgeText, phraseEn: correctEn, lang, apiKey, studyTarget })
     : { ok: false, reason: 'incoherent' as const, promptTokens: 0, completionTokens: 0 };
 
   // 8. Verdict gates the SHARED CACHE. Live caller still receives whatever was generated.

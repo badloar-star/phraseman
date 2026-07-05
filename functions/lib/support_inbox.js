@@ -57,6 +57,8 @@ exports.hasUsableBody = hasUsableBody;
 exports.isHumanEmail = isHumanEmail;
 exports.rawEmailToDoc = rawEmailToDoc;
 exports.composeReplyWithSignature = composeReplyWithSignature;
+exports.escapeHtml = escapeHtml;
+exports.plainToHtmlEmail = plainToHtmlEmail;
 exports.selectForBatchGenerate = selectForBatchGenerate;
 exports.selectForBatchSend = selectForBatchSend;
 exports.buildReplyPrompt = buildReplyPrompt;
@@ -171,6 +173,31 @@ function composeReplyWithSignature(replyBody, signature) {
     if (!sig)
         return body;
     return `${body}\n\n${sig}`;
+}
+/**
+ * Экранирует спецсимволы HTML, чтобы текст пользователя/подписи не сломал разметку
+ * и не стал вектором инъекции. Чистая функция.
+ */
+function escapeHtml(input) {
+    return String(input ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+/**
+ * Превращает plain-text письмо (тело + подпись) в безопасный HTML для sendMail.html.
+ * Поддерживает лёгкий Markdown в подписи: **жирный** → <strong>. Переносы строк →
+ * <br>. Сначала экранируем HTML (защита от инъекции), потом применяем **bold** уже
+ * по экранированному тексту — звёздочки спецсимволами не являются, порядок безопасен.
+ * Чистая функция (без сети/состояния).
+ */
+function plainToHtmlEmail(text) {
+    const escaped = escapeHtml(String(text ?? ''));
+    const withBold = escaped.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+    const withBreaks = withBold.replace(/\r\n|\r|\n/g, '<br>');
+    return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;color:#111;white-space:normal">${withBreaks}</div>`;
 }
 /**
  * Отбирает письма для пакетной генерации «всем»: статус 'new' и без черновика,
@@ -338,6 +365,7 @@ async function sendReplyViaSmtp(appPassword, to, subject, text, inReplyToMessage
         to,
         subject: replySubject,
         text,
+        html: plainToHtmlEmail(text),
         inReplyTo: inReplyToMessageId || undefined,
         references: inReplyToMessageId || undefined,
     });

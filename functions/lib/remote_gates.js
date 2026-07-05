@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolveRemoteBool = resolveRemoteBool;
 exports.pickRemoteBool = pickRemoteBool;
+exports.aiGloballyDisabled = aiGloballyDisabled;
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
 function coerceBool(value) {
@@ -41,5 +42,14 @@ async function resolveRemoteBool(db, key, fallback) {
 /** Чистая функция для тестов: извлекает bool-флаг из объекта bools. */
 function pickRemoteBool(bools, key, fallback) {
     return coerceBool(bools?.[key]) ?? fallback;
+}
+/**
+ * Глобальный рубильник всего ИИ (remote flag `ai_global_disable`). TRUE = весь ИИ
+ * выключен админом в «Пульте». Серверный дубль клиентского isAiGloballyDisabled —
+ * чтобы клиентский гейт нельзя было обойти прямым вызовом callable. Дефолт FALSE
+ * (ИИ работает). При ошибке чтения → FALSE (не блокируем ИИ из-за сбоя конфига).
+ */
+async function aiGloballyDisabled(db) {
+    return resolveRemoteBool(db, 'ai_global_disable', false);
 }
 //# sourceMappingURL=remote_gates.js.map

@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.heuristicPreFilter = heuristicPreFilter;
+exports.coerceJudgeVerdict = coerceJudgeVerdict;
+exports.parseJsonJudgeReply = parseJsonJudgeReply;
 exports.judgeExplanation = judgeExplanation;
 /**
  * AI-judge for "Explain like I'm five" — Validation level 3 (meaning/safety).
@@ -34,8 +36,11 @@ function heuristicPreFilter(text, lang) {
     const reason = (0, explain_gates_1.heuristicReject)(text, lang);
     return reason; // 'empty' | 'too_short' | 'non_target_language' are all in JUDGE_REASONS
 }
-/** Coerce a parsed judge object into a safe verdict, or null if it is not a usable verdict. */
-function verdictFromParsed(parsed) {
+/**
+ * Coerce a parsed judge object into a safe verdict, or null if it is not a usable verdict.
+ * `reasonSet` is the caller's allowed reject-reason enum (Compass reuses this with its own enum).
+ */
+function coerceJudgeVerdict(parsed, reasonSet, fallbackReason) {
     if (!parsed || typeof parsed !== 'object')
         return null;
     const obj = parsed;
@@ -47,23 +52,24 @@ function verdictFromParsed(parsed) {
         return { ok: true, reason: 'ok' };
     }
     // Failing verdict: keep the reason only if it is in the fixed enum (and not the passing value);
-    // anything else (echoed phrase, invented reason) collapses to 'incoherent'.
-    const reason = REASON_SET.has(rawReason) && rawReason !== 'ok'
+    // anything else (echoed phrase, invented reason) collapses to the caller's fallback.
+    const reason = reasonSet.has(rawReason) && rawReason !== 'ok'
         ? rawReason
-        : 'incoherent';
+        : fallbackReason;
     return { ok: false, reason };
 }
 /**
- * Parse the model's JSON reply fail-closed. Accepts a clean JSON object or one embedded in extra
+ * Parse a strict-JSON judge reply fail-closed. Accepts a clean JSON object or one embedded in extra
  * prose (extracts the first {...} block). Anything unparseable ⇒ null (caller treats as ok:false).
+ * Generic over the reject-reason enum so Compass and Explain share the exact same fail-closed parser.
  */
-function parseJudgeReply(raw) {
+function parseJsonJudgeReply(raw, reasonSet, fallbackReason) {
     const s = String(raw ?? '').trim();
     if (!s)
         return null;
     const tryParse = (candidate) => {
         try {
-            return verdictFromParsed(JSON.parse(candidate));
+            return coerceJudgeVerdict(JSON.parse(candidate), reasonSet, fallbackReason);
         }
         catch {
             return null;
@@ -80,13 +86,17 @@ function parseJudgeReply(raw) {
     }
     return null;
 }
+/** Explain-judge reply parser: the shared fail-closed parser bound to the Explain reason enum. */
+function parseJudgeReply(raw) {
+    return parseJsonJudgeReply(raw, REASON_SET, 'incoherent');
+}
 /**
  * Judge a generated explanation. Returns a fail-closed verdict.
  * Heuristic first (0 tokens on obvious garbage); otherwise one cheap gpt-4o-mini call.
  * On ANY parse/shape failure of the model reply ⇒ ok:false, reason:'incoherent' (fail-closed).
  */
 async function judgeExplanation(params) {
-    const { text, lang, apiKey } = params;
+    const { text, lang, apiKey, studyTarget = 'en' } = params;
     const heuristic = heuristicPreFilter(text, lang);
     if (heuristic) {
         // Obvious garbage — reject without spending a judge call.
@@ -99,7 +109,7 @@ async function judgeExplanation(params) {
             model: JUDGE_MODEL,
             messages: [
                 { role: 'system', content: explain_prompts_1.JUDGE_SYSTEM_PROMPT },
-                { role: 'user', content: (0, explain_prompts_1.buildJudgeUserPrompt)(text, lang) },
+                { role: 'user', content: (0, explain_prompts_1.buildJudgeUserPrompt)(text, lang, studyTarget) },
             ],
             maxTokens: JUDGE_MAX_TOKENS,
             temperature: JUDGE_TEMPERATURE,

@@ -87,18 +87,25 @@ export function normalizePhrase(phraseEn: string): string {
 }
 
 /**
- * Deterministic 40-hex cache id for a (phrase, LANGUAGE) pair.
+ * Deterministic 40-hex cache id for a (phrase, OUTPUT-LANGUAGE, STUDY-LANGUAGE) triple.
  *
  * langKey is REQUIRED (audit bug 2026-06-10): the cached text is written in one language, so the
  * key must include it — hashing the phrase alone let an es-user receive the ru-cached explanation.
  * Pass the CANONICAL key from resolvePromptLangKey() (explain_prompts), never the raw client lang —
  * both the generation CF and the report CF must derive the key the same way to hit the same doc.
- * Side effect of the key change: all pre-2026-06-10 docs (keyed without lang) are orphaned —
- * unreachable by reads, regenerated under new keys. Acceptable: the cache was just invalidated.
+ *
+ * studyTarget (the language being LEARNED) is ALSO part of the key (2026-07-04): the same string can
+ * exist as an English phrase AND a French phrase; a fr-learner must never be served the en-cached
+ * explanation of that string. To keep the huge existing English cache valid, 'en' produces the SAME
+ * hash as before (no target segment); only non-en targets get a `target::` prefix — so English docs
+ * are untouched while French docs live in their own namespace.
+ * Side effect of the 2026-06-10 key change: all pre-2026-06-10 docs (keyed without lang) are orphaned.
  */
-export function phraseHashFor(phraseEn: string, langKey: string): string {
+export function phraseHashFor(phraseEn: string, langKey: string, studyTarget = 'en'): string {
+  const target = String(studyTarget ?? 'en').trim().toLowerCase() || 'en';
+  const targetSegment = target === 'en' ? '' : `${target}::`;
   return createHash('sha256')
-    .update(`${String(langKey ?? '').trim().toLowerCase()}|${normalizePhrase(phraseEn)}`)
+    .update(`${targetSegment}${String(langKey ?? '').trim().toLowerCase()}|${normalizePhrase(phraseEn)}`)
     .digest('hex')
     .slice(0, 40);
 }

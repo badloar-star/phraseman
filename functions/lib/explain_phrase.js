@@ -58,6 +58,7 @@ const premium_status_1 = require("./premium_status");
 const explain_cache_1 = require("./explain/explain_cache");
 const explain_budget_1 = require("./explain/explain_budget");
 const openai_jobs_config_1 = require("./openai_jobs_config");
+const remote_gates_1 = require("./remote_gates");
 const explain_gates_1 = require("./explain/explain_gates");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const explain_provider_1 = require("./explain/explain_provider");
@@ -127,7 +128,13 @@ exports.explainPhrase = (0, https_1.onCall)({
     const phraseEn = asText(data.phraseEn, 1000);
     const phraseMeaning = asText(data.phraseMeaning, 2000);
     const lang = (0, ai_language_contract_1.resolveAiOutputLang)(asText(data.lang, 12) || 'ru', 'explain');
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const db = admin.firestore();
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    if (await (0, remote_gates_1.aiGloballyDisabled)(db))
+        throw new https_1.HttpsError('failed-precondition', 'ai_globally_disabled');
     // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
     const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'explain');
     const authUid = request.auth.uid;
@@ -154,7 +161,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
     // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
-    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn, langKey);
+    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn, langKey, studyTarget);
     // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
     const cached = await (0, explain_cache_1.readCachedExplanation)(phraseHash);
     if (cached?.status === 'ready' && cached.text) {
@@ -199,7 +206,7 @@ exports.explainPhrase = (0, https_1.onCall)({
         gen = await (0, explain_provider_1.openAiChat)({
             apiKey,
             model: jobCfg.model,
-            messages: [{ role: 'user', content: (0, explain_prompts_1.buildExplainPrompt)(phraseEn, phraseMeaning, lang) }],
+            messages: [{ role: 'user', content: (0, explain_prompts_1.buildExplainPrompt)(phraseEn, phraseMeaning, lang, studyTarget) }],
             maxTokens: GEN_MAX_TOKENS,
             temperature: GEN_TEMPERATURE,
         });
@@ -212,7 +219,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
     const sanitized = (0, explain_gates_1.sanitizeExplanationOutput)(gen.text);
     const judgeText = sanitized;
-    const verdict = await (0, explain_judge_1.judgeExplanation)({ text: judgeText, phraseEn, lang, apiKey });
+    const verdict = await (0, explain_judge_1.judgeExplanation)({ text: judgeText, phraseEn, lang, apiKey, studyTarget });
     // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
     //    text regardless of verdict — we risk showing raw text to one user, never to all.
     if (verdict.ok) {

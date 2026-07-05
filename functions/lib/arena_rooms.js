@@ -153,9 +153,26 @@ async function fetchRoomQuestions(db) {
         const seen = new Set(docs.map((d) => d.id));
         docs = [...docs, ...((plain?.docs ?? []).filter((d) => !seen.has(d.id)))];
     }
+    // Дедуп по ВИДИМОМУ содержанию вопроса (текст + варианты + правильный), а не по
+    // doc id: в банке `arena_questions` есть документы с разными id и полностью
+    // одинаковым содержанием, из-за чего комната показывала визуально одинаковые
+    // вопросы (баг «одинаковые вопросы 3–7»). Набор options в ключе → вопросы с одним
+    // текстом, но разными вариантами (разные задания) не схлопываются.
+    const seenContent = new Set();
     const questions = docs
         .map((doc) => normalizeQuestion(doc.data(), doc.id))
         .filter(Boolean)
+        .filter((q) => {
+        const text = (q.question ?? '').trim().toLowerCase();
+        if (text === '')
+            return true; // пустышки уникальны по id, не схлопываем
+        const opts = (q.options ?? []).map((x) => String(x).trim().toLowerCase()).sort().join('¦');
+        const key = `${text}||${opts}||${(q.correct ?? '').trim().toLowerCase()}`;
+        if (seenContent.has(key))
+            return false;
+        seenContent.add(key);
+        return true;
+    })
         .sort(() => Math.random() - 0.5)
         .slice(0, QUESTIONS_PER_ROOM);
     return questions.length > 0 ? questions : FALLBACK_ROOM_QUESTIONS;

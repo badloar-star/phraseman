@@ -145,8 +145,8 @@ export interface ConstellationServerDoc {
   state: MatchState;
   ratingBySlot: Record<number, number>;
   bots: ServerBotEntry[];
-  /** Правильные ответы и правила выданных вопросов текущего раунда. */
-  correctByQid: Record<string, { correctIndex: number; rule: string }>;
+  /** Правильные ответы выданных вопросов текущего раунда. */
+  correctByQid: Record<string, { correctIndex: number }>;
   /** Активные дуэли раунда: пары и общие вопросы. */
   duels: Array<{ starKey: string; slots: [PlayerSlot, PlayerSlot]; qids: string[] }>;
   /** Осколки событий Звездопада по слотам (кап matchCap — при начислении). */

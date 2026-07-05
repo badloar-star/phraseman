@@ -54,6 +54,7 @@ const params_1 = require("firebase-functions/params");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
+const remote_gates_1 = require("./remote_gates");
 const choice_explain_cache_1 = require("./explain/choice_explain_cache");
 const explain_budget_1 = require("./explain/explain_budget");
 const openai_jobs_config_1 = require("./openai_jobs_config");
@@ -96,7 +97,13 @@ exports.explainChoice = (0, https_1.onCall)({
     const phraseMeaning = asText(data.phraseMeaning, 2000);
     const rawDistractors = Array.isArray(data.distractors) ? data.distractors : [];
     const lang = (0, ai_language_contract_1.resolveAiOutputLang)(asText(data.lang, 12) || 'ru', 'choice');
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const db = admin.firestore();
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    if (await (0, remote_gates_1.aiGloballyDisabled)(db))
+        throw new https_1.HttpsError('failed-precondition', 'ai_globally_disabled');
     const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'choice');
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
@@ -122,7 +129,7 @@ exports.explainChoice = (0, https_1.onCall)({
     }
     // Cache key = (correct phrase, sorted option-set, CANONICAL language).
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
-    const choiceHash = (0, choice_explain_cache_1.choiceHashFor)(correctEn, distractors, langKey);
+    const choiceHash = (0, choice_explain_cache_1.choiceHashFor)(correctEn, distractors, langKey, studyTarget);
     // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
     const cached = await (0, choice_explain_cache_1.readCachedChoiceExplanation)(choiceHash);
     if (cached?.status === 'ready' && cached.confirm) {
@@ -165,7 +172,7 @@ exports.explainChoice = (0, https_1.onCall)({
         gen = await (0, explain_provider_1.openAiChat)({
             apiKey,
             model: jobCfg.model,
-            messages: [{ role: 'user', content: (0, choice_explain_prompts_1.buildChoicePrompt)(correctEn, phraseMeaning, distractors, lang) }],
+            messages: [{ role: 'user', content: (0, choice_explain_prompts_1.buildChoicePrompt)(correctEn, phraseMeaning, distractors, lang, studyTarget) }],
             maxTokens: GEN_MAX_TOKENS,
             temperature: GEN_TEMPERATURE,
             responseFormat: { type: 'json_object' },
@@ -180,7 +187,7 @@ exports.explainChoice = (0, https_1.onCall)({
     // 7. Judge the assembled batch text (language / coherence / safety). Fail-closed.
     const judgeText = (0, choice_explain_prompts_1.choiceBatchToJudgeText)(parsed.confirm, parsed.distractors);
     const verdict = parsed.ok && judgeText
-        ? await (0, explain_judge_1.judgeExplanation)({ text: judgeText, phraseEn: correctEn, lang, apiKey })
+        ? await (0, explain_judge_1.judgeExplanation)({ text: judgeText, phraseEn: correctEn, lang, apiKey, studyTarget })
         : { ok: false, reason: 'incoherent', promptTokens: 0, completionTokens: 0 };
     // 8. Verdict gates the SHARED CACHE. Live caller still receives whatever was generated.
     if (verdict.ok) {

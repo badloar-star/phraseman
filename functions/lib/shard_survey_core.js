@@ -12,9 +12,11 @@ exports.MIN_DAYS_BETWEEN_SURVEYS_FLOOR = exports.DEFAULT_MIN_DAYS_BETWEEN_SURVEY
 exports.parseLocalizedString = parseLocalizedString;
 exports.resolveLocalized = resolveLocalized;
 exports.parseSurveyConfig = parseSurveyConfig;
+exports.parseHexColor = parseHexColor;
 exports.validateAnswers = validateAnswers;
 exports.matchesAudience = matchesAudience;
 exports.passesCooldown = passesCooldown;
+exports.evaluateSubmitRateLimit = evaluateSubmitRateLimit;
 exports.incrementStats = incrementStats;
 exports.validateSurveyConfigForWrite = validateSurveyConfigForWrite;
 exports.SUPPORTED_SURVEY_LANGS = [
@@ -131,6 +133,11 @@ function parseSurveyConfig(value) {
         return null;
     const rewardShards = Math.min(exports.REWARD_SHARDS_MAX, Math.max(exports.REWARD_SHARDS_MIN, toInt(raw.rewardShards, 3)));
     const minDaysBetweenSurveys = Math.max(exports.MIN_DAYS_BETWEEN_SURVEYS_FLOOR, toInt(raw.minDaysBetweenSurveys, exports.DEFAULT_MIN_DAYS_BETWEEN_SURVEYS));
+    const finalRaw = asRecord(raw.finalScreen);
+    const finalScreen = {
+        title: parseLocalizedString(finalRaw.title) ?? { ru: '' },
+        subtitle: parseLocalizedString(finalRaw.subtitle) ?? { ru: '' },
+    };
     return {
         surveyId,
         enabled: toBool(raw.enabled),
@@ -140,10 +147,17 @@ function parseSurveyConfig(value) {
         minDaysBetweenSurveys,
         audience: parseAudience(raw.audience),
         questions,
+        accentColor: parseHexColor(raw.accentColor),
+        finalScreen,
         createdAtMs: toInt(raw.createdAtMs, 0),
         updatedAtMs: toInt(raw.updatedAtMs, 0),
         updatedBy: text(raw.updatedBy, 80),
     };
+}
+/** #rgb / #rrggbb → нормализованный HEX; иначе '' (дефолтный цвет карточки). */
+function parseHexColor(value) {
+    const s = text(value, 9);
+    return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s) ? s : '';
 }
 /**
  * Валидация ответов пользователя по вопросам ЭТОГО опроса.
@@ -197,6 +211,19 @@ function passesCooldown(lastSurveyAtMs, minDaysBetweenSurveys, nowMs) {
         return true;
     const elapsedDays = (nowMs - lastSurveyAtMs) / (24 * 60 * 60 * 1000);
     return elapsedDays >= minDaysBetweenSurveys;
+}
+/**
+ * Решение rate-limit по скользящему суточному окну (чистая функция для тестов).
+ * Возвращает { limited, nextCount, nextWindowStartMs } на основе текущего rate-дока.
+ */
+function evaluateSubmitRateLimit(rate, maxPerWindow, windowMs, nowMs) {
+    const windowStartMs = Number(rate?.windowStartMs) || 0;
+    const sameWindow = nowMs - windowStartMs < windowMs;
+    const count = sameWindow ? (Number(rate?.count) || 0) : 0;
+    if (count >= maxPerWindow) {
+        return { limited: true, nextCount: count, nextWindowStartMs: sameWindow ? windowStartMs : nowMs };
+    }
+    return { limited: false, nextCount: count + 1, nextWindowStartMs: sameWindow ? windowStartMs : nowMs };
 }
 function incrementStats(prev, answers, nowMs) {
     const base = {

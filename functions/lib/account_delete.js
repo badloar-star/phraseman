@@ -362,6 +362,7 @@ async function deleteDirectDocs(db, stableUid, authUid, ctx) {
         'league_chat_members',
         'help_board_rate_limits',
         'help_board_restrictions',
+        'shard_survey_rate_limits',
         'user_consents',
         'referral_owners',
         'referral_attributions',

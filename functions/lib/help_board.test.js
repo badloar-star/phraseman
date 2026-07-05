@@ -59,6 +59,34 @@ describe('help_board contract helpers', () => {
         expect((0, help_board_1.moderateHelpBoardText)('helloooooooooooo what is this', 200).reasons).toContain('spam_pattern');
         expect((0, help_board_1.moderateHelpBoardText)('How do I use present perfect with since?', 200).status).toBe('clean');
     });
+    it('does NOT block innocent learning topics on 1-2 char blocklist garbage (regression: "Blocked by moderation")', () => {
+        // Мусорные термы блоклиста ("a**"→"a", "am", "cu", "xx") вырождались в
+        // 1-2 символа и по word-boundary матчили ЛЮБОЙ текст со словами "a"/"am".
+        expect((0, help_board_1.moderateHelpBoardText)('When should I use who versus whom in a sentence?', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('Hello everyone, I am new here', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('What does the idiom break a leg mean?', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('Как правильно использовать a lot of в предложении?', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('I am confused about past simple', 4000).status).toBe('clean');
+    });
+    it('still blocks real profanity after the min-length filter', () => {
+        expect((0, help_board_1.moderateHelpBoardText)('you are a fucking idiot', 4000).status).toBe('blocked');
+        expect((0, help_board_1.moderateHelpBoardText)('иди на хуй отсюда', 4000).status).toBe('blocked');
+    });
+    it('does not block innocent @mentions, dates or number sequences as contact (regression)', () => {
+        // HANDLE_RE убран из юзерского гейта; PHONE_RE ужесточён под реальные телефоны.
+        expect((0, help_board_1.moderateHelpBoardText)('Ask @teacher for help with grammar', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('How to say numbers: 1 2 3 4 5 6 7 8 in English', 4000).status).toBe('clean');
+        expect((0, help_board_1.moderateHelpBoardText)('The date 2024-05-14 — how to read it aloud?', 4000).status).toBe('clean');
+    });
+    it('does not compact-match a blocklist term inside a longer innocent word (regression)', () => {
+        // "house" не должен ловиться внутри "warehouse"/"household".
+        expect((0, help_board_1.moderateHelpBoardText)('How do I describe a warehouse and a household?', 4000).status).toBe('clean');
+    });
+    it('routes soft signals (real phone / link) to review, not silent auto-block', () => {
+        // Один «мягкий» триггер больше не топит тему — она уходит человеку на ревью.
+        expect((0, help_board_1.moderateHelpBoardText)('Call me at +1 415 555 0199 anytime', 4000).status).toBe('review');
+        expect((0, help_board_1.moderateHelpBoardText)('Check my blog at https://example.com/mypage', 4000).status).toBe('review');
+    });
     it('prompts Compass as the tone-aware brain: 4 modes, board language, answer once', () => {
         const prompt = (0, help_board_1.buildHelpBoardCompassPrompt)({
             title: 'Past Simple or Present Perfect?',
@@ -76,26 +104,50 @@ describe('help_board contract helpers', () => {
         expect(prompt).toContain('ALWAYS write in Russian');
         // Предупреждение за грубость + безопасная реакция.
         expect(prompt).toContain('repeated behaviour leads to losing access');
-        expect(prompt).toContain('never repeat or discuss their words');
-        // Методика обучения и юмор сохранены.
-        expect(prompt).toContain('Diagnose the likely confusion');
-        expect(prompt).toContain('light wit is welcome');
-        // JSON-конверт с вердиктом тона.
-        expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous"');
+        expect(prompt).toContain('Never repeat or discuss their words');
+        // Методика обучения (диагностика ошибки) сохранена.
+        expect(prompt).toContain('diagnose the likely confusion');
+        // Явная установка на юмор + разные голоса под режимы.
+        expect(prompt).toContain('You are genuinely funny');
+        expect(prompt).toContain('the funny professor');
+        expect(prompt).toContain('the charming showman');
+        // Гардрейлы юмора: только в genuine/offtopic, не в rude/dangerous.
+        expect(prompt).toContain('jokes are welcome ONLY in genuine and offtopic');
+        expect(prompt).toContain('humor STRICTLY OFF');
+        // JSON-конверт с вердиктом тона и решением «постить ли».
+        expect(prompt).toContain('{"tone": "genuine|offtopic|rude|dangerous", "shouldPost": true|false');
         expect(prompt).toContain('does not invite a dialog with Compass');
+        // Характер Компаса: сам решает, отвечать ли (STEP 3).
+        expect(prompt).toContain('genuine → shouldPost: true, ALWAYS');
+        expect(prompt).toContain('offtopic → shouldPost: true ONLY if');
+        expect(prompt).toContain('prefer false');
     });
     it('parses the Compass envelope defensively', () => {
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"rude","answer":"Так у нас не разговаривают."}'))
-            .toEqual({ tone: 'rude', answer: 'Так у нас не разговаривают.' });
+            .toEqual({ tone: 'rude', answer: 'Так у нас не разговаривают.', shouldPost: true });
         expect((0, help_board_1.parseCompassEnvelope)('```json\n{"tone":"offtopic","answer":"Привет!"}\n```'))
-            .toEqual({ tone: 'offtopic', answer: 'Привет!' });
+            .toEqual({ tone: 'offtopic', answer: 'Привет!', shouldPost: true });
         // Не-JSON → весь текст = ответ, tone genuine (лучше показать, чем молчать).
         expect((0, help_board_1.parseCompassEnvelope)('Просто текст ответа без конверта'))
-            .toEqual({ tone: 'genuine', answer: 'Просто текст ответа без конверта' });
+            .toEqual({ tone: 'genuine', answer: 'Просто текст ответа без конверта', shouldPost: true });
         // Неизвестный tone → genuine.
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"angry","answer":"текст"}').tone).toBe('genuine');
         // Пустой answer в JSON → фолбэк на сырой текст.
         expect((0, help_board_1.parseCompassEnvelope)('{"tone":"rude","answer":""}').answer).toContain('"tone"');
+        // shouldPost: явный false читается, отсутствие поля → true (не молчим зря).
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"offtopic","shouldPost":false,"answer":"Ничего по делу."}').shouldPost).toBe(false);
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"offtopic","shouldPost":true,"answer":"Есть что сказать."}').shouldPost).toBe(true);
+        expect((0, help_board_1.parseCompassEnvelope)('{"tone":"genuine","answer":"Ответ без поля shouldPost."}').shouldPost).toBe(true);
+    });
+    it('Compass decides whether to post by topic character (resolveShouldPost)', () => {
+        // Вопросы по языку и грубые/опасные темы — отвечает ВСЕГДА, даже если модель
+        // прислала shouldPost:false (модерация/де-эскалация не пропускаются).
+        expect((0, help_board_1.resolveShouldPost)('genuine', false)).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('rude', false)).toBe(true);
+        expect((0, help_board_1.resolveShouldPost)('dangerous', false)).toBe(true);
+        // Оффтоп — решает сам Компас: если сказать нечего, молчит.
+        expect((0, help_board_1.resolveShouldPost)('offtopic', false)).toBe(false);
+        expect((0, help_board_1.resolveShouldPost)('offtopic', true)).toBe(true);
     });
     it('validates Compass output deterministically (replaces the off_topic LLM judge)', () => {
         const ru = 'Отличный вопрос! Present Perfect не дружит с yesterday: скажи "I saw him yesterday".';

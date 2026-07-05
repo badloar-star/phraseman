@@ -33,8 +33,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
-exports.webPrices = void 0;
+exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportSendReply = exports.adminSupportGenerateReply = exports.adminSupportPull = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.constellationCron = exports.onConstellationQueueWrite = void 0;
+exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -52,6 +52,10 @@ const { resetWeeklyXp } = require('./reset_weekly_xp');
 const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runReEngagePush } = require('./re_engage_push');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { runPremiumExpiryReminder } = require('./premium_expiry_reminder');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./support_inbox');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -111,6 +115,8 @@ const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require('./premium_dialog_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { speakingClubSend, speakingClubReview } = require('./speaking_club');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -133,9 +139,19 @@ const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDeleteShardSurvey } = require('./shard_survey');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { shardsApplyDelta } = require('./shards_apply_delta');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
+const { constellationSubmitAction } = require('./constellations/submit');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { constellationAdmin } = require('./constellations/admin');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { tryMatchConstellationUser, constellationQueueCron, fillConstellationAfterDelay } = require('./constellations/queue');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -205,6 +221,8 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
+exports.speakingClubSend = speakingClubSend;
+exports.speakingClubReview = speakingClubReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -238,12 +256,69 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.submitShardSurvey = submitShardSurvey;
+exports.getActiveShardSurvey = getActiveShardSurvey;
+exports.adminWriteShardSurvey = adminWriteShardSurvey;
+exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
+exports.shardsApplyDelta = shardsApplyDelta;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
+exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 exports.compassChatDailyCron = compassChatDailyCron;
 exports.compassChatRunNow = compassChatRunNow;
+exports.constellationSubmitAction = constellationSubmitAction;
+exports.constellationAdmin = constellationAdmin;
+// ─── «Созвездия» (specs/constellations.md): очередь + минутный cron ──────────
+// Мгновенный подбор на записи в очередь (B2); cron добирает ботами после
+// bot_fill_delay (B3) и служит watchdog'ом фаз (edge «матч завис», ≤60с).
+exports.onConstellationQueueWrite = functions.firestore.onDocumentWritten(
+// timeoutSeconds 90: после мгновенной попытки функция «досыпает» до
+// bot_fill_delay (30с) и добирает матч ботами точно в срок — игрок не ждёт
+// минутный cron (он остаётся страховкой).
+{ document: 'constellation_queue/{userId}', timeoutSeconds: 90 }, async (event) => {
+    const beforeExists = !!event.data?.before.exists;
+    const after = event.data?.after;
+    const afterData = after?.exists ? after.data() : undefined;
+    const beforeData = beforeExists ? event.data?.before.data() : undefined;
+    // Живой счётчик «в поиске»: активная запись = существует и ещё без matchId.
+    // Обновляем инкрементально на каждое изменение — клиент видит ненулевое
+    // число мгновенно, не дожидаясь минутного cron (он лишь сверяет точное).
+    const wasSearching = beforeExists && !beforeData?.matchId;
+    const isSearching = !!after?.exists && !afterData?.matchId;
+    const delta = (isSearching ? 1 : 0) - (wasSearching ? 1 : 0);
+    if (delta !== 0) {
+        try {
+            await admin.firestore().doc('app_meta/constellation_searching').set({
+                searchingCount: admin.firestore.FieldValue.increment(delta),
+                updatedAt: Date.now(),
+            }, { merge: true });
+        }
+        catch (e) {
+            console.warn('constellation searching increment', e);
+        }
+    }
+    if (!after?.exists || afterData?.matchId)
+        return;
+    // Дальше — только на СОЗДАНИЕ новой записи поиска (не на server-side update).
+    if (beforeExists)
+        return;
+    const userId = event.params.userId;
+    try {
+        await tryMatchConstellationUser(userId);
+    }
+    catch (e) {
+        console.warn('onConstellationQueueWrite tryMatch', e);
+    }
+    try {
+        await fillConstellationAfterDelay(userId);
+    }
+    catch (e) {
+        console.warn('onConstellationQueueWrite botFill', e);
+    }
+});
+exports.constellationCron = functions.scheduler.onSchedule({ schedule: 'every 1 minutes', timeZone: 'UTC' }, async () => { await constellationQueueCron(); });
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
@@ -477,6 +552,24 @@ exports.reEngagePushCron = functions.scheduler.onSchedule({ schedule: '0 10 * * 
     if (summary.candidates > 0 && summary.sent === 0) {
         console.error(`reEngagePushCron: ${summary.candidates} candidates found but 0 pushes sent — all chunks failed.`);
     }
+});
+// Runs daily at 09:00 UTC. Scans users/, finds paid subscriptions/VIP whose
+// concrete expiry is ~3 days out, and sends a warm localized "your Plus renews
+// soon" push. Profilaxis of churn (complements premiumExpiryCron, which only
+// deactivates already-expired access). Perpetual access is skipped — nothing to
+// renew. 1GiB + 540s: full paginated users/ scan, same shape as premiumExpiryCron.
+exports.premiumExpiryReminderCron = functions.scheduler.onSchedule({ schedule: '0 9 * * *', timeZone: 'UTC', region: 'us-central1', memory: '1GiB', timeoutSeconds: 540 }, async () => {
+    const summary = await runPremiumExpiryReminder();
+    console.log('premiumExpiryReminderCron', JSON.stringify(summary));
+    if (summary.candidates > 0 && summary.sent === 0) {
+        console.error(`premiumExpiryReminderCron: ${summary.candidates} candidates found but 0 pushes sent — check Expo Push API.`);
+    }
+});
+// Runs daily at 08:00 UTC. Pulls unread support emails from support.phraseman@gmail.com
+// via IMAP into support_inbox (first run backfills ~50). Cheap: one run/day. Needs the
+// GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
+exports.gmailSupportPullCron = functions.scheduler.onSchedule({ schedule: '0 8 * * *', timeZone: 'UTC', region: 'us-central1', memory: '512MiB', timeoutSeconds: 300, secrets: [GMAIL_SUPPORT_APP_PASSWORD] }, async () => {
+    await runSupportInboxPullCron();
 });
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
 exports.onMatchmakingWrite = functions.firestore.onDocumentWritten('matchmaking_queue/{userId}', async (event) => {
@@ -1210,6 +1303,16 @@ Object.defineProperty(exports, "premiumExpiryCron", { enumerable: true, get: fun
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
+// ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
+var admin_daily_digest_1 = require("./admin_daily_digest");
+Object.defineProperty(exports, "adminGenerateDailyDigest", { enumerable: true, get: function () { return admin_daily_digest_1.adminGenerateDailyDigest; } });
+// ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
+var support_inbox_1 = require("./support_inbox");
+Object.defineProperty(exports, "adminSupportPull", { enumerable: true, get: function () { return support_inbox_1.adminSupportPull; } });
+Object.defineProperty(exports, "adminSupportGenerateReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportGenerateReply; } });
+Object.defineProperty(exports, "adminSupportSendReply", { enumerable: true, get: function () { return support_inbox_1.adminSupportSendReply; } });
+Object.defineProperty(exports, "adminSupportSaveSignature", { enumerable: true, get: function () { return support_inbox_1.adminSupportSaveSignature; } });
+Object.defineProperty(exports, "adminSupportSetStatus", { enumerable: true, get: function () { return support_inbox_1.adminSupportSetStatus; } });
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─
 var report_replies_1 = require("./report_replies");
 Object.defineProperty(exports, "adminReplyToReport", { enumerable: true, get: function () { return report_replies_1.adminReplyToReport; } });
@@ -1235,6 +1338,8 @@ Object.defineProperty(exports, "adminTranslateMessage", { enumerable: true, get:
 var admin_email_1 = require("./admin_email");
 Object.defineProperty(exports, "adminEmailBroadcast", { enumerable: true, get: function () { return admin_email_1.adminEmailBroadcast; } });
 Object.defineProperty(exports, "adminEmailContactsBackfill", { enumerable: true, get: function () { return admin_email_1.adminEmailContactsBackfill; } });
+var email_unsubscribe_1 = require("./email_unsubscribe");
+Object.defineProperty(exports, "emailUnsubscribe", { enumerable: true, get: function () { return email_unsubscribe_1.emailUnsubscribe; } });
 var daily_phrases_1 = require("./daily_phrases");
 Object.defineProperty(exports, "dailyPhraseSetSaved", { enumerable: true, get: function () { return daily_phrases_1.dailyPhraseSetSaved; } });
 var website_contact_1 = require("./website_contact");
@@ -1254,4 +1359,8 @@ Object.defineProperty(exports, "paypalOrderCreate", { enumerable: true, get: fun
 Object.defineProperty(exports, "paypalOrderCapture", { enumerable: true, get: function () { return web_checkout_1.paypalOrderCapture; } });
 Object.defineProperty(exports, "webOrderStatus", { enumerable: true, get: function () { return web_checkout_1.webOrderStatus; } });
 Object.defineProperty(exports, "webPrices", { enumerable: true, get: function () { return web_checkout_1.webPrices; } });
+// ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
+var web_leads_1 = require("./web_leads");
+Object.defineProperty(exports, "webLeadCapture", { enumerable: true, get: function () { return web_leads_1.webLeadCapture; } });
+Object.defineProperty(exports, "webLeadNudgeCron", { enumerable: true, get: function () { return web_leads_1.webLeadNudgeCron; } });
 //# sourceMappingURL=index.js.map

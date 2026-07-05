@@ -100,7 +100,11 @@ function compileTerms(terms) {
             compactMatch: termCompacted.length >= 5,
         };
     })
-        .filter((term) => term.normalized && !ALLOWED_NORMALIZED_TERMS.has(term.normalized));
+        // Мусор блоклиста ("a**"→"a", "am", "cu", "xx" после лит-нормализации)
+        // вырождается в 1-2 символа и по word-boundary матчил ЛЮБОЙ текст со
+        // словами "a"/"I am" → ложный blocked на невинных сообщениях. Дропаем
+        // термы короче 3 символов (легитимные секс/identity-термы все ≥3).
+        .filter((term) => term.compacted.length >= 3 && !ALLOWED_NORMALIZED_TERMS.has(term.normalized));
     termCache.set(terms, compiled);
     return compiled;
 }

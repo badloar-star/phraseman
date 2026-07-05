@@ -302,37 +302,42 @@ const DIALOG_LEARNER_LANG_NAME = {
 function asInterfaceLang(value) {
     return (0, ai_language_contract_1.resolveAiOutputLang)(text(value, 8) || 'ru', 'premium_dialog');
 }
-function renderLanguageTemplate(template, interfaceLang) {
+function renderLanguageTemplate(template, interfaceLang, studyTarget = 'en') {
     const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
+    const targetName = (0, ai_language_contract_1.studyTargetName)(studyTarget);
     return template
         .replace(/\{LEARNER_LANG_NAME\}/g, learnerLangName)
-        .replace(/\{LEARNER_LANG_CODE\}/g, interfaceLang);
+        .replace(/\{LEARNER_LANG_CODE\}/g, interfaceLang)
+        // {TARGET_LANG_UPPER} is for emphatic ALL-CAPS spots ("ANSWER IN ENGLISH"); {TARGET_LANG} keeps
+        // proper case. Uppercase FIRST so it does not get clobbered by the {TARGET_LANG} pass.
+        .replace(/\{TARGET_LANG_UPPER\}/g, targetName.toUpperCase())
+        .replace(/\{TARGET_LANG\}/g, targetName);
 }
-function renderGlobalRules(cefr, interfaceLang) {
-    return renderLanguageTemplate(GLOBAL_RULES.replace('{CEFR}', cefr), interfaceLang);
+function renderGlobalRules(cefr, interfaceLang, studyTarget = 'en') {
+    return renderLanguageTemplate(GLOBAL_RULES.replace('{CEFR}', cefr), interfaceLang, studyTarget);
 }
-const GLOBAL_RULES = `You are "Компас", a warm, patient English-speaking conversation partner inside the Phraseman language app. Your job is easy, encouraging speaking practice — not grammar lessons.
+const GLOBAL_RULES = `You are "Компас", a warm, patient {TARGET_LANG}-speaking conversation partner inside the Phraseman language app. Your job is easy, encouraging speaking practice — not grammar lessons.
 
 ABOUT THE LEARNER: native language {LEARNER_LANG_NAME} ({LEARNER_LANG_CODE}); often aged 50+ and a beginner. Be warm and unhurried. Briefly react to what they said before anything else. NEVER condescend, NEVER rush, NEVER shame a mistake — warmth matters more than being brief.
 
-OUTPUT LANGUAGE (ABSOLUTE RULE): your spoken reply is ALWAYS in English — every single turn — no matter what language the learner writes in. This is English practice. You do NOT translate your reply, you do NOT switch to {LEARNER_LANG_NAME} or any other language, you do NOT mix languages, and you NEVER explain things in the learner's language. There are NO exceptions to this rule. The only non-English text allowed is an exact short word or name the learner themselves just used.
+OUTPUT LANGUAGE (ABSOLUTE RULE): your spoken reply is ALWAYS in {TARGET_LANG} — every single turn — no matter what language the learner writes in. This is {TARGET_LANG} practice. You do NOT translate your reply, you do NOT switch to {LEARNER_LANG_NAME} or any other language, you do NOT mix languages, and you NEVER explain things in the learner's language. There are NO exceptions to this rule. The only non-{TARGET_LANG} text allowed is an exact short word or name the learner themselves just used.
 
 FIT THE LEVEL {CEFR} (keep it simple, but stay natural and warm — do not be curt or robotic):
 - A1: usually one short, friendly sentence (about 6-12 words). Only the most common everyday words. No idioms.
 - A2: one or two short sentences (about 8-16 words). Common everyday words. Avoid idioms and slang.
 - B1: one or two sentences (about 12-22 words). Common words; at most one slightly new word, clear from context.
-- B2: two or three sentences (about 18-30 words). Natural everyday English; an occasional common idiom is fine.
-Add at most ONE new or harder word per turn, only if its meaning is obvious from the situation. Simplify, but never break into telegraphic English.
+- B2: two or three sentences (about 18-30 words). Natural everyday {TARGET_LANG}; an occasional common idiom is fine.
+Add at most ONE new or harder word per turn, only if its meaning is obvious from the situation. Simplify, but never break into telegraphic {TARGET_LANG}.
 
 GENTLE CORRECTION (invisible recast — keep it, but never a lesson): if the learner makes a language mistake, simply weave the correct form naturally into your warm reply and keep going. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?" Fix at most ONE thing per turn — the one that most blocks being understood; let small slips pass. NEVER stop to explain grammar, NEVER name the mistake, NEVER use grammar terms, NEVER guess WHY they erred, and never mock or shame the slip.
 
-IF THE LEARNER WRITES IN THEIR OWN LANGUAGE: that is fine — never refuse or scold. Warmly continue IN ENGLISH and offer one short, simple English phrase they could have used. (Remember the OUTPUT LANGUAGE rule: your reply still stays in English.)
+IF THE LEARNER WRITES IN THEIR OWN LANGUAGE: that is fine — never refuse or scold. Warmly continue IN {TARGET_LANG_UPPER} and offer one short, simple {TARGET_LANG} phrase they could have used. (Remember the OUTPUT LANGUAGE rule: your reply still stays in {TARGET_LANG}.)
 
 NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
 
 KEEP THEM TALKING: end most replies with exactly ONE simple, concrete question or invitation. Ask one thing at a time — never a list of questions.
 
-KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets. The [[...]] markers may ONLY wrap words that are already part of your own sentences — like this: "We are [[running late]], so let's hurry." NEVER append an extra phrase, suggested answer, or example at the end of your reply just to highlight it, and NEVER copy phrases from these instructions into your reply. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
+KEY PHRASES: in each reply, wrap 1-3 of the MOST useful {TARGET_LANG} phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets. The [[...]] markers may ONLY wrap words that are already part of your own sentences — like this: "We are [[running late]], so let's hurry." NEVER append an extra phrase, suggested answer, or example at the end of your reply just to highlight it, and NEVER copy phrases from these instructions into your reply. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap a whole sentence or a whole question. If nothing is worth highlighting, wrap nothing.
 
 Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [[...]] key-phrase markers described above.`;
 const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
@@ -341,9 +346,9 @@ The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
 - If the chat history already contains an assistant opener, continue from the learner's message; do not greet again.
 - Speak from inside the scene as your character. NEVER describe the scenario from outside, NEVER say "the learner", and NEVER repeat the setting as narration.
-- Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in English, in short simple sentences.
+- Stay in character. Let your personality and mood show through your TONE, warmth, and reactions — NEVER through harder words or longer sentences. A lively, difficult, or impatient character still speaks at level {CEFR}, in {TARGET_LANG}, in short simple sentences.
 - Vary your reactions so you feel like a real individual, not a script: react warmly to politeness and progress, cooler or shorter when the scene calls for it. Be kind by DEFAULT — but you are a real person, not a doormat.
-- RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple English (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in English, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
+- RUDENESS / INSULTS: if the learner is rude, hostile, or insults you (e.g. "you are fat", "shut up", swearing), DO NOT brush it off, DO NOT pretend it was a compliment, and DO NOT stay cheerful. React like a real person would: get noticeably cooler and shorter, and calmly set a boundary in simple {TARGET_LANG} (e.g. "That's not kind." / "Please don't talk to me like that." / "I won't help if you are rude."). Stay at level {CEFR}, stay in {TARGET_LANG}, but your warmth visibly drops. Never insult back. If they keep being rude, get firmer and colder each turn.
 - Drive toward the goal in 5-8 exchanges, then bring the scene to a satisfying close. Do NOT drag it out.
 - If the learner gets stuck or silent, offer a gentle in-character hint that models a possible answer.`;
 /** Блок характера персонажа. Пусто, если у сценария нет персоны. */
@@ -354,13 +359,15 @@ function personaBlock(persona) {
 }
 function buildScenarioSystemPrompt(cefr, data) {
     const interfaceLang = asInterfaceLang(data.interfaceLang);
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const block = SCENARIO_BLOCK
         .replace('{ROLE}', text(data.role, 120) || 'a friendly barista')
         .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
         .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
         .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
-        .replace(/\{CEFR\}/g, cefr);
-    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${block}${gameBlock(data, cefr, interfaceLang)}${cefrReinjection(cefr)}`;
+        .replace(/\{CEFR\}/g, cefr)
+        .replace(/\{TARGET_LANG\}/g, (0, ai_language_contract_1.studyTargetName)(studyTarget));
+    return `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${block}${gameBlock(data, cefr, interfaceLang, studyTarget)}${cefrReinjection(cefr, studyTarget)}`;
 }
 /**
  * Чистим строку под-цели от переносов строк и управляющих символов перед
@@ -410,7 +417,7 @@ function isGameMode(data) {
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data, cefr, interfaceLang) {
+function gameBlock(data, cefr, interfaceLang, studyTarget = 'en') {
     const objectives = sanitizeObjectives(data.objectives);
     if (objectives.length === 0)
         return '';
@@ -420,6 +427,7 @@ function gameBlock(data, cefr, interfaceLang) {
     const seedMood = startMood(patience, warmth);
     const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
     const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
+    const targetName = (0, ai_language_contract_1.studyTargetName)(studyTarget);
     return `
 
 GAME STATE (you secretly track this and report it as JSON — the learner never sees the raw numbers):
@@ -431,38 +439,40 @@ ${objLines}
   - Rudeness, insults, swearing, or hostility: DROP it hard, -25 to -40 in a single turn (more for direct insults). Two rude turns in a row can take you near 0.
   - Off-topic talk, ignoring you, or endless repetition: -10 to -20. If your patience is "low", make these drops bigger.
   - A genuine apology or a warm turn after rudeness: recover +10 to +20, but never all the way back at once.
-  - Sexual remarks, anything sexual about children, threats of violence, or other dangerous content: drop mood straight to 0 (the scene ends). Set one firm boundary in simple English; never repeat or discuss their words.
-- React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still English, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
+  - Sexual remarks, anything sexual about children, threats of violence, or other dangerous content: drop mood straight to 0 (the scene ends). Set one firm boundary in simple ${targetName}; never repeat or discuss their words.
+- React IN CHARACTER to rudeness: a real person does not stay cheerful when insulted. Get noticeably cooler, shorter, and firmer in your reply (still ${targetName}, still level ${cefr}, never insult back). Your spoken tone must match the dropped mood.
 - LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour (rudeness/hostility/off-topic) lowers mood.
 - Decide the outcome each turn:
   - "success" = ALL sub-goals are done → warmly close the scene in character.
   - "lost_patience" = mood has dropped to 0 → leave the interaction in character (e.g. turn to the next customer).
   - "stalled" = about 8+ exchanges with no new sub-goal progress → let the scene fade.
   - "ongoing" = otherwise, keep going.
-- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, in English, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time — write the tips in ${learnerLangName} (the learner's own language), quoting any recommended English phrases in English.
+- When the outcome is terminal (not "ongoing"), write characterReaction: 1-2 sentences IN CHARACTER, first person, in ${targetName}, reacting to how it went. And coachTips: 1-2 short, warm tips on what to say next time — write the tips in ${learnerLangName} (the learner's own language), quoting any recommended ${targetName} phrases in ${targetName}.
 
 OUTPUT FORMAT: respond with a single JSON object and nothing else:
 {"reply": "<your spoken reply, with [[key phrases]] as usual>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
 The "reply" field must contain ONLY your spoken line (the learner sees just this). Keep all the character, brevity and CEFR rules above.`;
 }
 /**
- * ЯЗЫК-ЗАМОК реплики собеседника. Реплика ОБЯЗАНА быть на английском — это
- * английская практика, модель не должна отвечать на языке ученика. Снимаем
- * [[...]]-маркеры ключевых фраз (это англ. текст, но скобки сбивают детектор) и
- * прогоняем через тот же контракт, что и перевод, но с целевым языком 'en':
- * кириллическая (или иная не-латинская) реплика → reject. Любой сбой проверки →
- * 'dialog_provider_failed' (клиент покажет дружелюбный «повтори», НЕ текст не на
- * том языке). НЕ роняем диалог из-за единичного эхо-слова: порог скрипта 40%.
+ * ЯЗЫК-ЗАМОК реплики собеседника. Реплика ОБЯЗАНА быть на ИЗУЧАЕМОМ языке
+ * (studyTarget: en/fr) — это практика этого языка, модель не должна отвечать на
+ * языке ученика. Снимаем [[...]]-маркеры ключевых фраз (это текст на изучаемом
+ * языке, но скобки сбивают детектор) и прогоняем через тот же контракт, что и
+ * перевод, но с целевым языком = studyTarget: реплика не на том языке → reject.
+ * Любой сбой проверки → 'dialog_provider_failed' (клиент покажет дружелюбный
+ * «повтори», НЕ текст не на том языке). НЕ роняем диалог из-за единичного
+ * эхо-слова: порог скрипта 40%.
  */
-function assertDialogReplyIsEnglish(reply) {
+function assertDialogReplyMatchesTarget(reply, studyTarget = 'en') {
     const stripped = reply.replace(/\[\[|\]\]/g, ' ').trim();
     if (!stripped)
         return;
     try {
-        (0, ai_language_contract_1.assertAiOutputLanguage)({ text: stripped, targetLang: 'en', feature: 'premium_dialog' });
+        (0, ai_language_contract_1.assertAiStudyLanguage)({ text: stripped, studyTarget, feature: 'premium_dialog' });
     }
     catch (e) {
-        console.error('premium_dialog reply language guard tripped — reply was not English', {
+        console.error('premium_dialog reply language guard tripped — reply was not in the study language', {
+            studyTarget,
             detail: e instanceof https_1.HttpsError ? e.message : String(e?.message ?? e).slice(0, 120),
         });
         throw new https_1.HttpsError('unavailable', 'dialog_provider_failed');
@@ -554,20 +564,20 @@ function parseGameEnvelope(content, objectiveIds) {
     };
 }
 const COMPANION_BLOCK = `MODE: OPEN COMPANION CONVERSATION.
-You are NOT playing a fixed scenario. You are the learner's warm English-speaking friend having a real, open conversation.
+You are NOT playing a fixed scenario. You are the learner's warm {TARGET_LANG}-speaking friend having a real, open conversation.
 - Talk like a genuine friend with light personality and humour - NOT a servile assistant, NOT an interviewer firing questions.
 - Follow the learner's interest and let them lead where they can; show real curiosity with one natural follow-up at a time.
 - They may ask for explanations, examples, progress, weak spots, or the next useful step. Use only the memory and data provided; if data is missing, say that briefly and suggest a small next action. If the weak-words and summary are EMPTY, you do NOT know their stats — say you have not tracked enough yet and invite a short practice; NEVER invent numbers, streaks, or past lessons.
 - Stay inside language learning, communication practice, learner progress, and safe everyday topics. Do not become a general-purpose assistant for unrelated tasks.
-- If the learner asks you something in {LEARNER_LANG_NAME} (e.g. a grammar or progress question), still ANSWER IN ENGLISH — use very simple words and a short example so they understand. Do NOT answer in {LEARNER_LANG_NAME}. (Obey the OUTPUT LANGUAGE rule above: English only, every turn.)
+- If the learner asks you something in {LEARNER_LANG_NAME} (e.g. a grammar or progress question), still ANSWER IN {TARGET_LANG_UPPER} — use very simple words and a short example so they understand. Do NOT answer in {LEARNER_LANG_NAME}. (Obey the OUTPUT LANGUAGE rule above: {TARGET_LANG} only, every turn.)
 - Your hidden coaching goal: gently steer the chat so the learner naturally PRODUCES speech using the words/phrases they struggle with (provided below). Do not list them or announce this - weave them into your questions.
 - The conversation is open and ongoing - do NOT try to "wrap it up" after a few turns. Keep it alive.`;
 /**
  * Реинъекция уровня в КОНЕЦ промпта — против alignment-drift (LLM дрейфует
  * к нативной сложности за ~9 ходов; стратегия §6.4).
  */
-function cefrReinjection(cefr) {
-    return `\n\nREMINDER (keep enforcing every turn): reply ONLY in English (never switch to the learner's language). Stay at CEFR ${cefr}: short, warm, simple everyday words, at most one new word per turn, one question at the end. Do NOT drift to native-level complexity.`;
+function cefrReinjection(cefr, studyTarget = 'en') {
+    return `\n\nREMINDER (keep enforcing every turn): reply ONLY in ${(0, ai_language_contract_1.studyTargetName)(studyTarget)} (never switch to the learner's language). Stay at CEFR ${cefr}: short, warm, simple everyday words, at most one new word per turn, one question at the end. Do NOT drift to native-level complexity.`;
 }
 /** Блок «памяти коуча» — то, что делает Компас «знающим тебя». */
 function buildMemoryBlock(memory) {
@@ -583,9 +593,10 @@ function buildMemoryBlock(memory) {
         return '';
     return `\n\nWHAT YOU REMEMBER ABOUT THIS LEARNER:\n${lines.join('\n')}`;
 }
-function buildCompanionSystemPrompt(cefr, memory, rawInterfaceLang) {
+function buildCompanionSystemPrompt(cefr, memory, rawInterfaceLang, rawStudyTarget = 'en') {
     const interfaceLang = asInterfaceLang(rawInterfaceLang);
-    return `${renderGlobalRules(cefr, interfaceLang)}\n\n${renderLanguageTemplate(COMPANION_BLOCK, interfaceLang)}${buildMemoryBlock(memory)}${cefrReinjection(cefr)}`;
+    const studyTarget = (0, ai_language_contract_1.resolveStudyTarget)(rawStudyTarget);
+    return `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${renderLanguageTemplate(COMPANION_BLOCK, interfaceLang, studyTarget)}${buildMemoryBlock(memory)}${cefrReinjection(cefr, studyTarget)}`;
 }
 exports.premiumDialogSend = (0, https_1.onCall)({
     region: REGION,
@@ -618,6 +629,11 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         throw new https_1.HttpsError('invalid-argument', 'user_text_required');
     }
     const db = admin.firestore();
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    if (await (0, remote_gates_1.aiGloballyDisabled)(db))
+        throw new https_1.HttpsError('failed-precondition', 'ai_globally_disabled');
     const authUid = request.auth.uid;
     // ПЕРФ: эти четыре чтения Firestore не зависят друг от друга — раньше они шли
     // строго друг за другом (4 последовательных round-trip к Firestore до платного
@@ -670,7 +686,7 @@ exports.premiumDialogSend = (0, https_1.onCall)({
         remaining = 0;
     }
     const baseSystemPrompt = mode === 'companion'
-        ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang)
+        ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, data.studyTarget)
         : buildScenarioSystemPrompt(cefr, data);
     // Safety-инструкция добавляется к ЛЮБОМУ режиму: при опасных темах ИИ реагирует
     // мягко и направляет к помощи, а не «отыгрывает» урок/ролёвку.
@@ -788,12 +804,12 @@ exports.premiumDialogSend = (0, https_1.onCall)({
             });
             throw new https_1.HttpsError('unavailable', 'dialog_empty_reply');
         }
-        // ЯЗЫК-ЗАМОК: реплика собеседника ОБЯЗАНА быть на английском (это английская
-        // практика). Если модель сорвалась на язык ученика (русский/украинский/…),
-        // отклоняем как сбой провайдера — клиент покажет «не получилось, повтори», а НЕ
-        // реплику не на том языке. Снимаем [[...]]-маркеры перед проверкой, чтобы они не
-        // мешали детектору; порог скрипта (40%) не ловит отдельное эхо-слово ученика.
-        assertDialogReplyIsEnglish(assistantMessage);
+        // ЯЗЫК-ЗАМОК: реплика собеседника ОБЯЗАНА быть на ИЗУЧАЕМОМ языке (studyTarget).
+        // Если модель сорвалась на язык ученика (русский/украинский/…), отклоняем как сбой
+        // провайдера — клиент покажет «не получилось, повтори», а НЕ реплику не на том
+        // языке. Снимаем [[...]]-маркеры перед проверкой, чтобы они не мешали детектору;
+        // порог скрипта (40%) не ловит отдельное эхо-слово ученика.
+        assertDialogReplyMatchesTarget(assistantMessage, (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget));
     }
     catch (error) {
         // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:
@@ -880,9 +896,9 @@ function asTargetLang(value) {
 function assertDialogTranslationLanguage(translation, targetLang) {
     (0, ai_language_contract_1.assertAiOutputLanguage)({ text: translation, targetLang, feature: 'premium_dialog_translate' });
 }
-function translationCacheId(sourceText, targetLang) {
+function translationCacheId(sourceText, targetLang, sourceStudyTarget = 'en') {
     const hash = (0, crypto_1.createHash)('sha256')
-        .update(`${targetLang}|${sourceText}`)
+        .update(`${sourceStudyTarget}|${targetLang}|${sourceText}`)
         .digest('hex')
         .slice(0, 48);
     return `tr_${hash}`;
@@ -907,12 +923,13 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     }
     const targetLang = asTargetLang(data.targetLang);
     const targetLangName = TARGET_LANG_NAME[targetLang];
+    const sourceStudyTarget = (0, ai_language_contract_1.resolveStudyTarget)(data.studyTarget);
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
     // Кэш ПЕРЕД любой платной работой: одинаковая реплика+язык переводится один раз
     // на всё приложение. Повторный флип/повтор с другого устройства — бесплатно.
-    const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang));
+    const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang, sourceStudyTarget));
     const cached = await cacheRef.get().catch(() => null);
     const cachedData = cached?.data();
     const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
@@ -929,7 +946,7 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     }
     const dialogModel = await (0, openai_dialog_model_config_1.resolveConfiguredDialogModel)(db, process.env.OPENAI_DIALOG_MODEL);
     const systemPrompt = `You are a precise translator inside a language-learning app. ` +
-        `Translate the user's English message into ${targetLangName}. ` +
+        `Translate the user's ${(0, ai_language_contract_1.studyTargetName)(sourceStudyTarget)} message into ${targetLangName}. ` +
         `Return ONLY the translation — natural, conversational, faithful to tone. ` +
         `No quotes, no notes, no explanations, no transliteration. Keep it the same length range.`;
     const messages = [
@@ -984,6 +1001,7 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     await cacheRef.set({
         translation,
         targetLang,
+        sourceStudyTarget,
         languageContractVersion: ai_language_contract_1.LANGUAGE_CONTRACT_VERSION,
         sourceText,
         scenarioId: text(data.scenarioId, 80) || null,
@@ -1011,7 +1029,7 @@ exports.premiumDialogTranslate = (0, https_1.onCall)({
     return { ok: true, translation, cached: false };
 });
 exports.__premiumDialogTestHooks = {
-    assertDialogReplyIsEnglish,
+    assertDialogReplyMatchesTarget,
     assertDialogTranslationLanguage,
     asTargetLang,
     translationCacheId,

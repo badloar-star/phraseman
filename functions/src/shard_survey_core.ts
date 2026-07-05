@@ -48,6 +48,10 @@ export type ShardSurveyConfig = {
   minDaysBetweenSurveys: number;
   audience: SurveyAudience;
   questions: SurveyQuestion[];
+  /** HEX-цвет плашки задания (#rrggbb). Пусто → дефолтный цвет карточки. */
+  accentColor: string;
+  /** Финальный экран после последнего вопроса (свой текст). */
+  finalScreen: { title: LocalizedString; subtitle: LocalizedString };
   createdAtMs: number;
   updatedAtMs: number;
   updatedBy: string;
@@ -181,6 +185,12 @@ export function parseSurveyConfig(value: unknown): ShardSurveyConfig | null {
     toInt(raw.minDaysBetweenSurveys, DEFAULT_MIN_DAYS_BETWEEN_SURVEYS),
   );
 
+  const finalRaw = asRecord(raw.finalScreen);
+  const finalScreen = {
+    title: parseLocalizedString(finalRaw.title) ?? { ru: '' },
+    subtitle: parseLocalizedString(finalRaw.subtitle) ?? { ru: '' },
+  };
+
   return {
     surveyId,
     enabled: toBool(raw.enabled),
@@ -190,10 +200,18 @@ export function parseSurveyConfig(value: unknown): ShardSurveyConfig | null {
     minDaysBetweenSurveys,
     audience: parseAudience(raw.audience),
     questions,
+    accentColor: parseHexColor(raw.accentColor),
+    finalScreen,
     createdAtMs: toInt(raw.createdAtMs, 0),
     updatedAtMs: toInt(raw.updatedAtMs, 0),
     updatedBy: text(raw.updatedBy, 80),
   };
+}
+
+/** #rgb / #rrggbb → нормализованный HEX; иначе '' (дефолтный цвет карточки). */
+export function parseHexColor(value: unknown): string {
+  const s = text(value, 9);
+  return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(s) ? s : '';
 }
 
 export type ValidateAnswersResult =
@@ -266,6 +284,25 @@ export function passesCooldown(
   if (lastSurveyAtMs <= 0 || minDaysBetweenSurveys <= 0) return true;
   const elapsedDays = (nowMs - lastSurveyAtMs) / (24 * 60 * 60 * 1000);
   return elapsedDays >= minDaysBetweenSurveys;
+}
+
+/**
+ * Решение rate-limit по скользящему суточному окну (чистая функция для тестов).
+ * Возвращает { limited, nextCount, nextWindowStartMs } на основе текущего rate-дока.
+ */
+export function evaluateSubmitRateLimit(
+  rate: { windowStartMs?: number; count?: number } | undefined,
+  maxPerWindow: number,
+  windowMs: number,
+  nowMs: number,
+): { limited: boolean; nextCount: number; nextWindowStartMs: number } {
+  const windowStartMs = Number(rate?.windowStartMs) || 0;
+  const sameWindow = nowMs - windowStartMs < windowMs;
+  const count = sameWindow ? (Number(rate?.count) || 0) : 0;
+  if (count >= maxPerWindow) {
+    return { limited: true, nextCount: count, nextWindowStartMs: sameWindow ? windowStartMs : nowMs };
+  }
+  return { limited: false, nextCount: count + 1, nextWindowStartMs: sameWindow ? windowStartMs : nowMs };
 }
 
 /**

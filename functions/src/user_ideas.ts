@@ -320,6 +320,11 @@ const IDEA_DRAFT_SYSTEM_PROMPT = [
   'Return STRICTLY a JSON object: {"message": "..."} with the message in the target language only.',
 ].join(' ');
 
+// Максимальная длина подсказки-тона от админа. Тон задаётся на любом языке
+// (обычно русском) и влияет ТОЛЬКО на стиль/содержание, но не на язык ответа —
+// сообщение пользователю всё равно пишется на его языке (idea.lang).
+const IDEA_TONE_HINT_MAX = 600;
+
 /**
  * adminDraftIdeaDecision — ИИ-черновик текста модалки решения по идее.
  * Пишет текст СРАЗУ на языке пользователя (idea.lang), чтобы админу не нужно
@@ -344,6 +349,7 @@ export const adminDraftIdeaDecision = onCall(
 
     const ideaId = text(request.data?.ideaId, 180);
     const decision = enumText(request.data?.decision, ['approve', 'reject'] as const, 'reject');
+    const toneHint = text(request.data?.toneHint, IDEA_TONE_HINT_MAX);
     if (!ideaId) throw new HttpsError('invalid-argument', 'ideaId_required');
 
     const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
@@ -360,6 +366,9 @@ export const adminDraftIdeaDecision = onCall(
     const userPayload = JSON.stringify({
       language: languageName,
       decision,
+      // Тон — первоклассное поле payload'а: модель видит его вместе с идеей и
+      // обязана применить. Пустая строка, если админ тон не задал.
+      admin_tone_instruction: toneHint || '',
       idea: {
         title: text(idea.title, 120),
         description: text(idea.description, 1500),
@@ -368,15 +377,45 @@ export const adminDraftIdeaDecision = onCall(
       },
     });
 
+    // Диагностика: видно, дошёл ли тон до функции и какой длины (в Cloud Logs).
+    console.log('[draftIdeaDecision]', JSON.stringify({
+      ideaId, decision, lang: langCode,
+      toneLen: toneHint.length, tone: toneHint.slice(0, 200),
+    }));
+
+    // Базовый промпт. Если задан тон — он идёт ПОСЛЕДНИМ сообщением (после payload),
+    // максимально императивно: модель сильнее слушает последнее указание, а базовый
+    // сценарий явно объявляется переопределяемым тоном.
+    const messages: Array<{ role: 'system' | 'user'; content: string }> = [
+      { role: 'system', content: IDEA_DRAFT_SYSTEM_PROMPT },
+      { role: 'user', content: userPayload },
+    ];
+    if (toneHint) {
+      messages.push({
+        role: 'system',
+        content: [
+          '=== OVERRIDE: ADMIN TONE INSTRUCTION (HIGHEST PRIORITY) ===',
+          'The admin explicitly set a custom instruction for THIS reply. It OVERRIDES the default',
+          'thank-you/rejection wording and the suggested sentence structure above. Rewrite the',
+          'message so it clearly, obviously reflects this instruction — a reader must be able to',
+          'tell the tone/content changed. Do NOT fall back to the generic template.',
+          'Only these hard limits still apply: write in the target language, 2-4 sentences,',
+          'at most one emoji, no links.',
+          'If the instruction is written in another language, apply its MEANING but still WRITE',
+          'the final message in the target language.',
+          'ADMIN INSTRUCTION -> ' + toneHint,
+        ].join('\n'),
+      });
+    }
+
     const result = await openAiChat({
       apiKey,
       model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: IDEA_DRAFT_SYSTEM_PROMPT },
-        { role: 'user', content: userPayload },
-      ],
+      messages,
       maxTokens: 400,
-      temperature: 0.6,
+      // С тоном даём модели больше свободы отклониться от шаблона; без тона —
+      // сдержаннее (стабильный дефолт).
+      temperature: toneHint ? 0.9 : 0.6,
       responseFormat: { type: 'json_object' },
     });
 
@@ -388,6 +427,7 @@ export const adminDraftIdeaDecision = onCall(
     if (!raw) {
       throw new HttpsError('failed-precondition', 'ИИ вернул пустой ответ — сформулируй сообщение вручную.');
     }
+    if (toneHint) console.log('[draftIdeaDecision] raw ->', raw.slice(0, 400));
     let message = '';
     try {
       const parsed = JSON.parse(raw) as { message?: unknown };

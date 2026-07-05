@@ -7,6 +7,14 @@ import {
   peekAiMistakeLimitNoticeShownToday,
 } from './ai_mistake_explain_limit_session';
 import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_token_resolver';
+import {
+  aiOffline,
+  isAiOfflineError,
+  aiOfflineToast,
+  aiErrorToast,
+  aiGlobalBudgetToast,
+  isAiGlobalBudgetError,
+} from './ai_kill_switch_copy';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -149,13 +157,38 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeState('ready');
       } catch (error) {
         if (phraseKeyRef.current !== requestKey) return;
+        // Глобальный рубильник ИИ: inline-разбор грузится АВТОМАТИЧЕСКИ после
+        // ошибки — по ТЗ авто-вызовы тихие. Прячем карточку, без плашки.
+        if (aiOffline() || isAiOfflineError(error)) {
+          setAiMistakeState('hidden');
+          setAiMistakeText(null);
+          return;
+        }
         // Дневной free-кап генераций (сервер — источник правды): не «ошибка»,
-        // а мягкое состояние с приглашением в Plus.
+        // а мягкое состояние с приглашением в Plus (забавный текст + кнопка Plus).
         if (isFreeDailyLimitError(error)) {
           await markAiMistakeLimitNoticeShownToday();
           if (phraseKeyRef.current !== requestKey) return;
           setAiMistakeState('limit');
           return;
+        }
+        // Любая другая ошибка ИИ (включая исчерпание ГЛОБАЛЬНОГО бюджета ИИ).
+        // Inline-разбор грузится АВТОМАТИЧЕСКИ (withHaptic === false) — по ТЗ
+        // авто-вызовы тихие: прячем карточку без плашки. При РУЧНОМ повторе
+        // (кнопка) показываем забавную плашку.
+        if (!withHaptic) {
+          setAiMistakeState('hidden');
+          setAiMistakeText(null);
+          return;
+        }
+        // Глобальный бюджет иссяк — свой набор текстов («Свет мигнул на весь
+        // квартал»). Кладём готовый текст, карточка в state='error' его покажет.
+        // Прочие ошибки — карточка сама возьмёт aiErrorToast (aiMistakeText=null).
+        if (isAiGlobalBudgetError(error)) {
+          const budget = aiGlobalBudgetToast(interfaceLang);
+          setAiMistakeText(`${budget.title}\n${budget.message}`);
+        } else {
+          setAiMistakeText(null);
         }
         setAiMistakeState('error');
       }
@@ -178,9 +211,20 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       if (phraseKeyRef.current !== requestKey) return;
       setEli5Text(res.text);
       setEli5State('ready');
-    } catch {
+    } catch (error) {
       if (phraseKeyRef.current !== requestKey) return;
-      setEli5State('error');
+      // ELI5 открывается по нажатию (ручной вызов) — вместо сухой «ошибки»
+      // показываем забавную заглушку прямо в модалке. Рубильник, глобальный
+      // бюджет ИИ и прочие ошибки дают разные наборы текстов.
+      const copy =
+        aiOffline() || isAiOfflineError(error)
+          ? aiOfflineToast(interfaceLang, 'explain')
+          : isAiGlobalBudgetError(error)
+            ? aiGlobalBudgetToast(interfaceLang)
+            : aiErrorToast(interfaceLang);
+      setEli5Text(`${copy.title}\n\n${copy.message}`);
+      setEli5State('ready');
+      return;
     } finally {
       eli5InFlightRef.current = false;
     }

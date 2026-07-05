@@ -7,6 +7,7 @@ import { useTheme } from './ThemeContext';
 import BilingualMistakeText from './BilingualMistakeText';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
+import { aiErrorToast, aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -36,6 +37,18 @@ export default function AiMistakeCard({
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
+
+  // Забавные заглушки. Выбираем один вариант на всё время показа состояния —
+  // иначе рандом «прыгал» бы при каждом ре-рендере. Личный лимит: заголовок +
+  // сообщение сливаем в один текст, кнопку Plus рисует AiLimitUpsellCard.
+  const limitCopy = React.useMemo(
+    () => (state === 'limit' ? aiPersonalLimitToast(lang) : null),
+    [state, lang],
+  );
+  const errorCopy = React.useMemo(
+    () => (state === 'error' ? aiErrorToast(lang) : null),
+    [state, lang],
+  );
 
   if (state === 'hidden') return null;
 
@@ -67,16 +80,10 @@ export default function AiMistakeCard({
     if (state === 'ready' && explanation) return explanation;
     if (state === 'limit') return '';
     if (state === 'error') {
-      return triLang(lang, {
-        ru: 'Не получилось получить объяснение. Попробуй ещё раз позже.',
-        uk: 'Не вдалося отримати пояснення. Спробуй ще раз пізніше.',
-        es: 'No se pudo obtener la explicación. Inténtalo más tarde.',
-        'pt-BR': 'Não foi possível obter a explicação. Tente de novo mais tarde.',
-        vi: 'Chưa lấy được giải thích. Thử lại sau nhé.',
-        id: 'Penjelasan belum bisa dimuat. Coba lagi nanti.',
-        tr: 'Açıklama alınamadı. Daha sonra tekrar dene.',
-        pl: 'Nie udało się pobrać wyjaśnienia. Spróbuj później.',
-      });
+      // Готовый текст от хука (напр. глобальный бюджет ИИ иссяк) имеет приоритет;
+      // иначе — забавная плашка обычной ошибки.
+      if (explanation) return explanation;
+      if (errorCopy) return `${errorCopy.title}\n${errorCopy.message}`;
     }
     return triLang(lang, {
       ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',
@@ -121,19 +128,10 @@ export default function AiMistakeCard({
           nativeColor={t.textSecond}
           style={{ fontSize: f.body, lineHeight: 20 }}
         />
-      ) : state === 'limit' ? (
+      ) : state === 'limit' && limitCopy ? (
         <AiLimitUpsellCard
           lang={lang}
-          title={triLang(lang, {
-            ru: 'Бесплатные разборы ошибок на сегодня закончились',
-            uk: 'Безкоштовні розбори помилок на сьогодні закінчилися',
-            es: 'Los análisis de errores gratis de hoy se agotaron',
-            'pt-BR': 'As análises de erros grátis de hoje acabaram',
-            vi: 'Phần phân tích lỗi miễn phí hôm nay đã hết',
-            id: 'Analisis kesalahan gratis hari ini sudah habis',
-            tr: 'Bugünkü ücretsiz hata analizleri bitti',
-            pl: 'Darmowe analizy błędów na dziś się skończyły',
-          })}
+          title={`${limitCopy.title}\n${limitCopy.message}`}
           paywallContext="ai_explain"
           testID="ai-mistake-limit-card"
         />

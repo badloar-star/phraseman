@@ -22,6 +22,14 @@ import {
 } from './explain_phrase_client';
 import { triLang, type Lang } from '../constants/i18n';
 import { SOURCE_LOCALES } from './source_locales';
+import {
+  aiOffline,
+  isAiOfflineError,
+  aiOfflineToast,
+  aiErrorToast,
+  aiGlobalBudgetToast,
+  isAiGlobalBudgetError,
+} from './ai_kill_switch_copy';
 
 /**
  * Сузить произвольную строку языка до Lang для triLang (контракт клиента — string,
@@ -65,6 +73,7 @@ function explainRequestKey(req: ExplainPhraseRequest): string {
     phraseEn: String(req.phraseEn ?? '').trim(),
     phraseMeaning: String(req.phraseMeaning ?? '').trim(),
     lang: String(req.lang ?? '').trim(),
+    studyTarget: String(req.studyTarget ?? 'en').trim(),
   });
 }
 
@@ -246,22 +255,29 @@ export function useExplainRequest(
       rememberExplainResult(key, nextState);
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
       setState(nextState);
-    } catch {
-      // Сетевой/транспортный сбой — сервер ничего не вернул. UI покажет мягкий
-      // fallback через resolveExplainDisplay. Никаких сырых стеков пользователю.
+    } catch (error) {
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
+      // Ручной вызов — вместо сухой ошибки показываем забавную плашку прямо в
+      // листе разбора (статус 'ok', чтобы UI отрисовал текст как обычный ответ).
+      // Рубильник, исчерпание глобального бюджета ИИ и прочие сбои — свои наборы.
+      const copy =
+        aiOffline() || isAiOfflineError(error)
+          ? aiOfflineToast(req.lang, 'explain')
+          : isAiGlobalBudgetError(error)
+            ? aiGlobalBudgetToast(req.lang)
+            : aiErrorToast(req.lang);
       setState({
         loading: false,
-        text: '',
-        status: 'error',
+        text: `${copy.title}\n\n${copy.message}`,
+        status: 'ok',
         fromCache: false,
-        error: true,
+        error: false,
       });
     }
     // req раскладываем по полям: иначе новый объект-литерал на каждый рендер
     // дёргал бы эффект бесконечно.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, req.phraseEn, req.phraseMeaning, req.lang]);
+  }, [key, req.phraseEn, req.phraseMeaning, req.lang, req.studyTarget]);
 
   useEffect(() => {
     if (!enabled) return;

@@ -17,6 +17,11 @@ export const DEFAULT_SETTINGS = {
   autoAdvance: false,
   haptics: true,
   immediateCheck: false,
+  // FeedbackKit: тумблер «Звуки эффектов» (клики/верно-ошибка/награды/гроза).
+  // Читается синхронно через getUserSettingsSnapshot() внутри app/feedback/feedback_kit.
+  // ВНИМАНИЕ: имя намеренно uiSounds — легаси-ключи appSoundsEnabled/
+  // ceremonySoundsEnabled/appSoundsVolume принудительно чистятся в normalizeSettings.
+  uiSounds: true,
 };
 
 export type UserSettings = typeof DEFAULT_SETTINGS;

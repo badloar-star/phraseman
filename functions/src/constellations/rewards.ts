@@ -57,7 +57,13 @@ export function resolveStarDeltaWithNewbieGuard(
   return matchesPlayedBefore < cfg.newbieProtectionMatches ? 0 : delta;
 }
 
-/** Выплата ставки (C3): 1 место ×winMultiplier, 2 — возврат, 3-4 — сгорела. */
+/**
+ * Выплата ставки (C3): 1 место ×winMultiplier, 2 — возврат, 3-4 — сгорела.
+ * ВАЖНО: ставка СПИСЫВАЕТСЯ при входе в матч (createConstellationMatch), поэтому
+ * чистый итог для игрока = payout − wager: 1 место +wager×2, 2 место 0 (возврат
+ * компенсирует списание), 3-4 −wager. Менять эту функцию — только вместе со
+ * списанием, иначе экономика ставок рассинхронизируется.
+ */
 function wagerPayout(place: number, wager: number, cfg: ConstellationConfig): number {
   if (wager <= 0) return 0;
   if (place === 1) return wager * cfg.wager.winMultiplier;

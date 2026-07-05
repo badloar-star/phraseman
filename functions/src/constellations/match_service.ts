@@ -264,7 +264,14 @@ export async function createConstellationMatch(humans: HumanEntry[]): Promise<st
     updatedAt: now,
   };
 
+  // Ставку (C3) списываем АТОМАРНО при создании матча из users.shards с записью
+  // в shard_log (аудит: раньше ставка не списывалась — победитель ×3 чистыми,
+  // проигравший ничего не терял → бесконечный доход). Выплата wager при финале
+  // (wagerPayout) остаётся: 1 место ×3, 2 — возврат, 3-4 — сгорела.
+  const wagerHumans = humans.filter((h) => (h.wager ?? 0) > 0);
+
   await db.runTransaction(async (tx) => {
+    // Все чтения ДО записей (требование транзакций Firestore).
     for (const human of humans) {
       const qRef = db.collection('constellation_queue').doc(human.userId);
       const qSnap = await tx.get(qRef);
@@ -272,8 +279,42 @@ export async function createConstellationMatch(humans: HumanEntry[]): Promise<st
         throw new Error(`Player ${human.userId} already matched — abort`);
       }
     }
+    const wagerBalances = new Map<string, number>();
+    for (const human of wagerHumans) {
+      const uRef = db.collection('users').doc(human.userId);
+      const uSnap = await tx.get(uRef);
+      const balance = Number((uSnap.data() as { shards?: number } | undefined)?.shards ?? 0);
+      if (balance < (human.wager ?? 0)) {
+        throw new Error(`Player ${human.userId} insufficient shards for wager ${human.wager} (has ${balance})`);
+      }
+      wagerBalances.set(human.userId, balance);
+    }
+
     tx.set(matchRef, matchDoc);
     tx.set(db.collection(SERVER).doc(matchId), serverDoc);
+    // Списание ставок + журнал (тот же леджер, что и начисление в finalize).
+    for (const human of wagerHumans) {
+      const wager = human.wager ?? 0;
+      const before = wagerBalances.get(human.userId) ?? 0;
+      const after = before - wager;
+      const uRef = db.collection('users').doc(human.userId);
+      tx.set(uRef, {
+        shards: after,
+        shards_updated_at_ms: now,
+        shards_updated_op: 'spend',
+        shards_updated_reason: 'constellation_wager',
+        updatedAt: now,
+      }, { merge: true });
+      tx.set(uRef.collection('shard_log').doc(), {
+        ts: new Date(now).toISOString(),
+        type: 'spend',
+        amount: -wager,
+        reason: 'constellation_wager',
+        balanceBefore: before,
+        balanceAfter: after,
+        matchId,
+      });
+    }
     participants.forEach((p, slot) => {
       if (!p.human) return;
       const playerDoc: ConstellationPlayerDoc = {

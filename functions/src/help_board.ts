@@ -8,7 +8,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolveJobConfig } from './openai_jobs_config';
 import { openAiChat } from './explain/explain_provider';
 import { reserveExplainBudget, refundExplainBudgetReservation, type ExplainBudgetReservation } from './explain/explain_budget';
-import { resolveAiOutputLang, resolveStudyTarget, type AiOutputLang, type StudyTarget } from './ai_language_contract';
+import { resolveAiOutputLang, resolveStudyTarget, studyTargetName, type AiOutputLang, type StudyTarget } from './ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from './admin_alerts';
 import {
@@ -69,6 +69,20 @@ type ModCategory =
   | 'length'
   | 'safety';
 
+/**
+ * Жёсткие категории — авто-blocked (реальная опасность/токсичность). Остальные
+ * (link, contact, spam, length, identity) идут в 'review' к оператору, а не в
+ * молчаливый авто-отказ: ложное срабатывание loose-регулярок (телефон-как-дата,
+ * @упоминание, ссылка на ресурс) больше не топит невинную тему.
+ */
+const HARD_BLOCK_CATEGORIES: ReadonlySet<ModCategory> = new Set<ModCategory>([
+  'profanity',
+  'sexual',
+  'hate',
+  'threat',
+  'safety',
+]);
+
 interface HelpBoardScope {
   targetLang: StudyTarget;
   uiLang: AiOutputLang;
@@ -108,15 +122,30 @@ function containsAnyTerm(normalized: string, terms: readonly string[]): boolean 
   return terms.some((term) => {
     const t = normalizeTermText(term);
     if (!t || t === 'pass') return false;
-    if (padded.includes(` ${t} `)) return true;
     const compactTerm = t.replace(/\s+/g, '');
-    return compactTerm.length >= 5 && compacted.includes(compactTerm);
+    // Мусор блоклиста: "a**"→"a", "am", "cu", "xx" после лит-нормализации
+    // вырождаются в 1-2 символа и блокировали ЛЮБОЙ текст со словами
+    // "a" / "I am" (прод: невинные темы борда = "Blocked by moderation").
+    if (compactTerm.length < 3) return false;
+    if (padded.includes(` ${t} `)) return true;
+    // Compact-матч (обход "h0us3") НО с границей: "house" не должен ловиться
+    // внутри "warehouse"/"household" (прод: ложный blocked невинных тем).
+    if (compactTerm.length < 5) return false;
+    const idx = compacted.indexOf(compactTerm);
+    if (idx < 0) return false;
+    const before = idx === 0 ? '' : compacted[idx - 1];
+    const after = compacted[idx + compactTerm.length] ?? '';
+    const isLetter = (c: string) => c !== '' && /[a-zа-яёіїєґ0-9]/i.test(c);
+    return !isLetter(before) && !isLetter(after);
   });
 }
 
 const LINK_RE = /\b(?:https?:\/\/|www\.|t\.me\/|telegram\.me\/|discord\.gg\/|discord\.com\/invite\/|wa\.me\/|chat\.whatsapp\.com\/|bit\.ly\/|tinyurl\.com\/|linktr\.ee\/|instagram\.com\/|tiktok\.com\/|youtube\.com\/|youtu\.be\/)\S*/i;
 const EMAIL_RE = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
-const PHONE_RE = /(?:\+?\d[\s().-]?){8,}/;
+// Телефон: требуем международный `+` со структурой ИЛИ 10+ подряд идущих цифр.
+// Старый /(?:\+?\d[\s().-]?){8,}/ ловил даты (2024-05-14) и числовые ряды
+// («1 2 3 4 5 6 7 8») → ложный «контакт»-блок невинных тем про числа.
+const PHONE_RE = /\+\d[\d\s().-]{7,}\d|\d{10,}/;
 const HANDLE_RE = /(^|\s)@[a-z0-9_]{3,32}\b/i;
 
 export function helpBoardBoardKey(targetLang: StudyTarget, uiLang: AiOutputLang): string {
@@ -168,7 +197,10 @@ export function moderateHelpBoardText(text: string, maxLength: number): {
 
   if (text.length > maxLength) { categories.push('length'); reasons.push('text_too_long'); }
   if (LINK_RE.test(text)) { categories.push('link'); reasons.push('external_link'); }
-  if (EMAIL_RE.test(text) || PHONE_RE.test(text) || HANDLE_RE.test(text)) { categories.push('contact'); reasons.push('external_contact'); }
+  // HANDLE_RE УБРАН из юзерского гейта: «спроси @teacher», «читай @linguist»
+  // — ссылка на аккаунт ≠ попытка контакта, а темы блокировались. Реальные
+  // ссылки всё равно ловит LINK_RE; @-хэндлы в ответах ИИ проверяет validateCompassAnswer.
+  if (EMAIL_RE.test(text) || PHONE_RE.test(text)) { categories.push('contact'); reasons.push('external_contact'); }
   if (/(.)\1{8,}/u.test(text)) { categories.push('spam'); reasons.push('spam_pattern'); }
   if (containsAnyTerm(normalizedText, LEAGUE_CHAT_BLOCK_TERMS)) { categories.push('profanity'); reasons.push('blocked_term'); }
   if (containsAnyTerm(normalizedText, LEAGUE_CHAT_SEXUAL_TERMS)) { categories.push('sexual'); reasons.push('sexual_content'); }
@@ -180,12 +212,15 @@ export function moderateHelpBoardText(text: string, maxLength: number): {
 
   const uniqueCategories = Array.from(new Set(categories));
   const uniqueReasons = Array.from(new Set(reasons));
-  const status = uniqueCategories.some((c) => c !== 'identity') ? 'blocked' : uniqueCategories.includes('identity') ? 'review' : 'clean';
+  // Жёсткие категории → авто-blocked. Мягкие (link/contact/spam/length/identity)
+  // → review к оператору, а не молчаливый авто-отказ: один ложный триггер
+  // (напр. телефон/линк) больше не топит невинную тему — её увидит человек.
+  const status = uniqueCategories.some((c) => HARD_BLOCK_CATEGORIES.has(c))
+    ? 'blocked'
+    : uniqueCategories.length > 0
+      ? 'review'
+      : 'clean';
   return { status, categories: uniqueCategories, reasons: uniqueReasons, normalizedText };
-}
-
-function languageName(targetLang: StudyTarget): string {
-  return targetLang === 'fr' ? 'French' : 'English';
 }
 
 /** Человеческое имя языка сообщества для промпта (коды AiOutputLang). */
@@ -218,7 +253,7 @@ export function buildHelpBoardCompassPrompt(input: {
   targetLang: StudyTarget;
   uiLang: AiOutputLang;
 }): string {
-  const learnerLanguage = languageName(input.targetLang);
+  const learnerLanguage = studyTargetName(input.targetLang);
   const communityLanguage = uiLanguageName(input.uiLang);
   return [
     `You are Compass ("Компас"), the resident brain and host of the Help Board community inside the Phraseman app. The board studies ${learnerLanguage}. You read every new topic first and you set the tone for the whole community.`,

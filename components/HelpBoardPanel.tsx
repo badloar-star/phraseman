@@ -249,6 +249,10 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
   const [toast, setToast] = useState<{ message: string; kind: ToastKind } | null>(null);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const commentScrollRef = useRef<ScrollView | null>(null);
+  // Синхронный замок отправки темы: setTopicSubmitting(true) применяется
+  // асинхронно, поэтому два быстрых тапа в одном тике проходили оба. Ref
+  // блокирует второй вход мгновенно.
+  const topicSubmitInFlightRef = useRef(false);
 
   const canWrite = true;
   const commentComposerBottomPadding = getKeyboardAwareComposerBottomPadding(
@@ -349,7 +353,8 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     }
     const title = titleDraft.trim();
     const text = questionDraft.trim();
-    if (title.length < 4 || text.length < 8 || topicSubmitting) return;
+    if (title.length < 4 || text.length < 8 || topicSubmitting || topicSubmitInFlightRef.current) return;
+    topicSubmitInFlightRef.current = true;
     hapticTap();
     const now = Date.now();
     const optimisticId = `optimistic-${now}`;
@@ -383,21 +388,25 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
     setQuestionDraft('');
     setComposerOpen(false);
     setTopicSubmitting(true);
-    const status = await createHelpBoardTopic({ scope, title, text });
-    setTopicSubmitting(false);
-    if (status === 'created') {
-      setTimeout(() => {
+    try {
+      const status = await createHelpBoardTopic({ scope, title, text });
+      if (status === 'created') {
+        setTimeout(() => {
+          setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
+        }, 15_000);
+      } else if (status === 'review') {
         setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-      }, 15_000);
-    } else if (status === 'review') {
-      setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-      showToast('Sent to review', 'info');
-    } else if (status === 'restricted') {
-      setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-      showToast(copy.restricted, 'error');
-    } else {
-      setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
-      showToast(topicSubmitErrorMessage(status), 'error');
+        showToast('Sent to review', 'info');
+      } else if (status === 'restricted') {
+        setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
+        showToast(copy.restricted, 'error');
+      } else {
+        setOptimisticTopics((cur) => cur.filter((topic) => topic.id !== optimisticId));
+        showToast(topicSubmitErrorMessage(status), 'error');
+      }
+    } finally {
+      setTopicSubmitting(false);
+      topicSubmitInFlightRef.current = false;
     }
   }, [canWrite, copy.restricted, questionDraft, scope, showToast, titleDraft, topicSubmitting]);
 
@@ -864,6 +873,14 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
 
       <Modal visible={composerOpen} transparent animationType="fade" onRequestClose={() => setComposerOpen(false)}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, justifyContent: 'center', padding: 18, backgroundColor: 'rgba(0,0,0,0.55)' }}>
+          {/* keyboardShouldPersistTaps='handled': при поднятой клавиатуре ПЕРВЫЙ
+              тап по «Отправить»/«Отмена» сразу срабатывает, а не гасится
+              dismiss-ом клавиатуры (иначе нужен второй тап — прод-жалоба). */}
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+          >
           <View style={{ borderRadius: 18, borderWidth: 0.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 14, gap: 10 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}>{copy.ask}</Text>
             <TextInput
@@ -892,6 +909,7 @@ function HelpBoardPanel({ onToast, deepLink, onDeepLinkConsumed }: HelpBoardPane
               </TouchableOpacity>
             </View>
           </View>
+          </ScrollView>
         </KeyboardAvoidingView>
       </Modal>
       {reportModal}

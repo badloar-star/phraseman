@@ -79,6 +79,39 @@ describe('help_board contract helpers', () => {
     expect(moderateHelpBoardText('How do I use present perfect with since?', 200).status).toBe('clean');
   });
 
+  it('does NOT block innocent learning topics on 1-2 char blocklist garbage (regression: "Blocked by moderation")', () => {
+    // Мусорные термы блоклиста ("a**"→"a", "am", "cu", "xx") вырождались в
+    // 1-2 символа и по word-boundary матчили ЛЮБОЙ текст со словами "a"/"am".
+    expect(moderateHelpBoardText('When should I use who versus whom in a sentence?', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('Hello everyone, I am new here', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('What does the idiom break a leg mean?', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('Как правильно использовать a lot of в предложении?', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('I am confused about past simple', 4000).status).toBe('clean');
+  });
+
+  it('still blocks real profanity after the min-length filter', () => {
+    expect(moderateHelpBoardText('you are a fucking idiot', 4000).status).toBe('blocked');
+    expect(moderateHelpBoardText('иди на хуй отсюда', 4000).status).toBe('blocked');
+  });
+
+  it('does not block innocent @mentions, dates or number sequences as contact (regression)', () => {
+    // HANDLE_RE убран из юзерского гейта; PHONE_RE ужесточён под реальные телефоны.
+    expect(moderateHelpBoardText('Ask @teacher for help with grammar', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('How to say numbers: 1 2 3 4 5 6 7 8 in English', 4000).status).toBe('clean');
+    expect(moderateHelpBoardText('The date 2024-05-14 — how to read it aloud?', 4000).status).toBe('clean');
+  });
+
+  it('does not compact-match a blocklist term inside a longer innocent word (regression)', () => {
+    // "house" не должен ловиться внутри "warehouse"/"household".
+    expect(moderateHelpBoardText('How do I describe a warehouse and a household?', 4000).status).toBe('clean');
+  });
+
+  it('routes soft signals (real phone / link) to review, not silent auto-block', () => {
+    // Один «мягкий» триггер больше не топит тему — она уходит человеку на ревью.
+    expect(moderateHelpBoardText('Call me at +1 415 555 0199 anytime', 4000).status).toBe('review');
+    expect(moderateHelpBoardText('Check my blog at https://example.com/mypage', 4000).status).toBe('review');
+  });
+
   it('prompts Compass as the tone-aware brain: 4 modes, board language, answer once', () => {
     const prompt = buildHelpBoardCompassPrompt({
       title: 'Past Simple or Present Perfect?',

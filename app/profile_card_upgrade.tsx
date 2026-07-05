@@ -41,6 +41,7 @@ import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   devGrantProfileCardLevel,
+  devLowerProfileCardLevel,
   devResetProfileCard,
   fxKindForProfileCard,
   getNextProfileCardLevel,
@@ -290,6 +291,20 @@ export default function ProfileCardUpgradeScreen() {
       setSnapshot(next);
       setSelectedLevel(getNextProfileCardLevel(next.level) ?? PROFILE_CARD_MAX_LEVEL);
       notify('info', `DEV: уровень ${profileCardLevelRoman(next.level)} бесплатно`);
+    } finally {
+      setBusy(false);
+    }
+  }, [busy, notify]);
+
+  const handleDevLower = useCallback(async () => {
+    if (!__DEV__ || busy) return;
+    setBusy(true);
+    try {
+      const next = await devLowerProfileCardLevel();
+      setSnapshot(next);
+      // Показываем уровень, который только что «сняли» — удобно гонять туда-сюда.
+      setSelectedLevel(getNextProfileCardLevel(next.level) ?? PROFILE_CARD_MAX_LEVEL);
+      notify('info', `DEV: уровень ${profileCardLevelRoman(next.level)}`);
     } finally {
       setBusy(false);
     }
@@ -570,9 +585,13 @@ export default function ProfileCardUpgradeScreen() {
 
           {__DEV__ ? (
             <View style={{ flexDirection: 'row', gap: 8, marginTop: 18 }}>
+              <TouchableOpacity testID="profile-card-dev-lower" disabled={busy || currentLevel === 0} onPress={handleDevLower} activeOpacity={0.86}
+                style={{ flex: 1, borderRadius: 12, paddingVertical: 11, alignItems: 'center', borderWidth: 1, borderColor: '#F59E0B', backgroundColor: 'rgba(245,158,11,0.12)', opacity: busy || currentLevel === 0 ? 0.5 : 1 }}>
+                <Text style={{ color: '#F59E0B', fontSize: f.sub, fontWeight: '900' }}>DEV: −1</Text>
+              </TouchableOpacity>
               <TouchableOpacity testID="profile-card-dev-grant" disabled={busy || !nextLevel} onPress={handleDevGrant} activeOpacity={0.86}
                 style={{ flex: 1, borderRadius: 12, paddingVertical: 11, alignItems: 'center', borderWidth: 1, borderColor: '#22C55E', backgroundColor: 'rgba(34,197,94,0.12)', opacity: busy || !nextLevel ? 0.5 : 1 }}>
-                <Text style={{ color: '#22C55E', fontSize: f.sub, fontWeight: '900' }}>DEV: +1 бесплатно</Text>
+                <Text style={{ color: '#22C55E', fontSize: f.sub, fontWeight: '900' }}>DEV: +1</Text>
               </TouchableOpacity>
               <TouchableOpacity testID="profile-card-dev-reset" disabled={busy || currentLevel === 0} onPress={handleDevReset} activeOpacity={0.86}
                 style={{ borderRadius: 12, paddingVertical: 11, paddingHorizontal: 16, alignItems: 'center', borderWidth: 1, borderColor: '#94A3B8', backgroundColor: 'rgba(148,163,184,0.12)', opacity: busy || currentLevel === 0 ? 0.5 : 1 }}>

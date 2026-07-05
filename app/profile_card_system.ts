@@ -587,6 +587,15 @@ export async function devGrantProfileCardLevel(): Promise<ProfileCardSnapshot> {
   return getProfileCardSnapshot();
 }
 
+export async function devLowerProfileCardLevel(): Promise<ProfileCardSnapshot> {
+  if (!__DEV__) return getProfileCardSnapshot();
+  const current = await getProfileCardLevel();
+  if (current <= 0) return getProfileCardSnapshot();
+  await applyProfileCardLevelLocally((current - 1) as ProfileCardLevel);
+  emitAppEvent('xp_changed');
+  return getProfileCardSnapshot();
+}
+
 export async function devResetProfileCard(): Promise<ProfileCardSnapshot> {
   if (!__DEV__) return getProfileCardSnapshot();
   await applyProfileCardLevelLocally(0);

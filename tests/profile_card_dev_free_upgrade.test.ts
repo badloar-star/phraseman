@@ -3,6 +3,7 @@ import { spendShards } from '../app/shards_system';
 import {
   PROFILE_CARD_LEVEL_KEY,
   devGrantProfileCardLevel,
+  devLowerProfileCardLevel,
   devResetProfileCard,
   getProfileCardSnapshot,
 } from '../app/profile_card_system';
@@ -53,6 +54,23 @@ describe('dev free profile-card upgrade (behaviour)', () => {
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 
+  it('lowers the level by one WITHOUT spending and stops at 0', async () => {
+    await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '2');
+
+    const down = await devLowerProfileCardLevel();
+    expect(down.level).toBe(1);
+    expect(down.theme).toBe('gold');
+
+    const down2 = await devLowerProfileCardLevel();
+    expect(down2.level).toBe(0);
+    expect(down2.theme).toBe('classic');
+
+    // Уже на нуле — ниже не уходит.
+    const down3 = await devLowerProfileCardLevel();
+    expect(down3.level).toBe(0);
+    expect(mockSpendShards).not.toHaveBeenCalled();
+  });
+
   it('reset returns the card to level 0 with default theme/motion/focus', async () => {
     await devGrantProfileCardLevel();
     const reset = await devResetProfileCard();
@@ -82,6 +100,12 @@ describe('dev free profile-card upgrade is a no-op in release builds', () => {
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 
+  it('never lowers the level when __DEV__ is false', async () => {
+    await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '3');
+    const snap = await devLowerProfileCardLevel();
+    expect(snap.level).toBe(3);
+  });
+
   it('reset does nothing in release', async () => {
     await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '1');
     const snap = await devResetProfileCard();
@@ -103,21 +127,27 @@ describe('dev free profile-card upgrade (wiring)', () => {
 
   it('exposes the dev helpers from the system module, each guarded by __DEV__', () => {
     expect(system).toContain('export async function devGrantProfileCardLevel');
+    expect(system).toContain('export async function devLowerProfileCardLevel');
     expect(system).toContain('export async function devResetProfileCard');
-    // Both helpers must short-circuit in release builds.
+    // All helpers must short-circuit in release builds.
     const grantBody = system.slice(system.indexOf('devGrantProfileCardLevel'));
     expect(grantBody).toMatch(/if \(!__DEV__\) return getProfileCardSnapshot\(\);/);
+    const lowerBody = system.slice(system.indexOf('devLowerProfileCardLevel'));
+    expect(lowerBody).toMatch(/if \(!__DEV__\) return getProfileCardSnapshot\(\);/);
   });
 
   it('renders the dev buttons only behind __DEV__ on the upgrade screen', () => {
     expect(screen).toMatch(/\{__DEV__ \? \(/);
+    expect(screen).toContain('testID="profile-card-dev-lower"');
     expect(screen).toContain('testID="profile-card-dev-grant"');
     expect(screen).toContain('testID="profile-card-dev-reset"');
+    expect(screen).toContain('onPress={handleDevLower}');
     expect(screen).toContain('onPress={handleDevGrant}');
     expect(screen).toContain('onPress={handleDevReset}');
   });
 
   it('the dev handlers are themselves __DEV__-guarded so they cannot fire in release', () => {
+    expect(screen).toMatch(/handleDevLower[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
     expect(screen).toMatch(/handleDevGrant[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
     expect(screen).toMatch(/handleDevReset[\s\S]{0,160}if \(!__DEV__ \|\| busy\) return;/);
   });

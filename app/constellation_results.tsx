@@ -347,7 +347,7 @@ export default function ConstellationResultsScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.ghost, { borderColor: t.border }]}
-            onPress={() => router.dismissAll ? router.dismissAll() : router.back()}
+            onPress={() => router.dismissTo('/(tabs)/home' as any)}
           >
             <Ionicons name="home" size={16} color={t.textSecond} />
           </TouchableOpacity>

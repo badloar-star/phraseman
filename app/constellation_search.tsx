@@ -26,6 +26,7 @@ import { useLang } from '../components/LangContext';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { canStartArenaMatch } from './arena_access_gate';
+import { safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
 import {
   joinConstellationQueue,
@@ -280,7 +281,7 @@ export default function ConstellationSearchScreen() {
   const handleCancel = useCallback(() => {
     cleanupSubs();
     if (uidRef.current) void leaveConstellationQueue(uidRef.current);
-    router.back();
+    safeRouterBack(router, '/arena_lobby' as any);
   }, [cleanupSubs, router]);
 
   const title = triLang(lang, {
@@ -466,7 +467,7 @@ export default function ConstellationSearchScreen() {
               })}
             </Text>
           </DuoPressable>
-          <TouchableOpacity style={[styles.cancelBtn, { borderColor: t.border }]} onPress={() => router.back()}>
+          <TouchableOpacity style={[styles.cancelBtn, { borderColor: t.border }]} onPress={() => safeRouterBack(router, '/arena_lobby' as any)}>
             <Text style={{ color: t.textSecond, fontSize: f.body }}>
               {triLang(lang, {
                 ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
@@ -487,7 +488,7 @@ export default function ConstellationSearchScreen() {
               tr: 'Bağlantı yok', pl: 'Brak połączenia',
             })}
           </Text>
-          <TouchableOpacity style={[styles.cancelBtn, { borderColor: t.border }]} onPress={() => router.back()}>
+          <TouchableOpacity style={[styles.cancelBtn, { borderColor: t.border }]} onPress={() => safeRouterBack(router, '/arena_lobby' as any)}>
             <Text style={{ color: t.textSecond, fontSize: f.body }}>
               {triLang(lang, {
                 ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',

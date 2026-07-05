@@ -123,6 +123,8 @@ export async function handleConstellationSubmit(
 
     if (type === 'use_shield') {
       if (match.phase !== 'choose') throw new HttpsError('failed-precondition', 'not choose phase');
+      // shieldPerMatch — живая ручка (аудит): ≤0 → щиты выключены (kill-switch).
+      if (cfg.shieldPerMatch <= 0) throw new HttpsError('failed-precondition', 'shields disabled');
       const starKey = asId(data.starKey, 'starKey');
       const p = server.state.players[slot];
       if (p.status !== 'alive') throw new HttpsError('failed-precondition', 'player not alive');

@@ -392,7 +392,12 @@ export function resolveRound(
   const events: RoundEvent[] = [];
 
   // 1. Щиты (A5a): бесплатный козырь, не тратит ход, виден всем.
+  // shieldPerMatch — живая ручка (аудит: раньше не читалась): ≤0 полностью
+  // выключает щиты (kill-switch из админки). shieldUsed остаётся булевым флагом
+  // «щит(ы) исчерпаны» — при лимите 1 семантика прежняя.
+  const shieldsAllowed = cfg.shieldPerMatch > 0;
   for (const shield of input.shields) {
+    if (!shieldsAllowed) break;
     const player = state.players[shield.slot];
     const star = state.stars[shield.starKey];
     if (!player || player.status !== 'alive' || player.shieldUsed) continue;

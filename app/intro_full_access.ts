@@ -7,6 +7,7 @@ import {
 } from './notifications';
 import type { Lang } from '../constants/i18n';
 import { persistGiftAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
+import { isIntroFullAccessEnabled } from './remote_flags';
 
 export const INTRO_FULL_ACCESS_DURATION_MS = 72 * 60 * 60 * 1000;
 
@@ -41,6 +42,13 @@ export async function startIntroFullAccessAfterOnboarding(
   nowMs: number = Date.now(),
   lang: Lang = 'ru',
 ): Promise<void> {
+  // Kill-switch из «Пульта»: когда админ выключил приветственный подарок, новые
+  // юзеры НЕ получают ни 72ч доступа, ни модал. Гейт стоит здесь — в точке ВЫДАЧИ,
+  // поэтому уже выданные подарки не отбираются (их стор заполнен, они докатывают
+  // свои часы). Стор не пишем → getIntroFullAccessState вернёт active:false и
+  // welcomeUnseen:false, значит приветственный модал тоже не покажется.
+  if (!isIntroFullAccessEnabled()) return;
+
   // Подарок выдаётся РОВНО ОДИН РАЗ за всю жизнь установки: если отметка о старте
   // уже есть (даже если 72ч давно истекли) — повторно не выдаём. Для проверки в
   // разработке отметку стирает кнопка «Онбординг — просмотреть повторно» в админке

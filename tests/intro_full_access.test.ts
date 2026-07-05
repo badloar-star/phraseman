@@ -18,9 +18,19 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   }),
 }));
 
+// Управляемый из тестов kill-switch подарка. Дефолт true (как в проде), тест
+// про выключение переставляет его в false. jest.resetModules() не сбрасывает
+// объект мока (фабрика замыкается на эту внешнюю ссылку), поэтому beforeEach
+// возвращает флаг в true явно.
+const remoteFlags = { introFullAccessEnabled: true };
+jest.mock('../app/remote_flags', () => ({
+  isIntroFullAccessEnabled: () => remoteFlags.introFullAccessEnabled,
+}));
+
 beforeEach(() => {
   jest.resetModules();
   Object.keys(asyncStore).forEach((key) => delete asyncStore[key]);
+  remoteFlags.introFullAccessEnabled = true;
 });
 
 describe('intro full access gift', () => {
@@ -122,6 +132,43 @@ describe('intro full access gift', () => {
       active: false,
       startedAt: null,
       expiredUnseen: false,
+    });
+  });
+
+  it('does not grant the gift or show the welcome modal when the admin kill-switch is off', async () => {
+    remoteFlags.introFullAccessEnabled = false;
+    const access = require('../app/intro_full_access');
+    const now = Date.UTC(2026, 5, 6, 10, 0, 0);
+
+    await access.startIntroFullAccessAfterOnboarding(now);
+
+    // Ничего не выдано: подарок неактивен, приветственный/финальный модал не всплывут.
+    await expect(access.getIntroFullAccessState(now + 60_000)).resolves.toMatchObject({
+      active: false,
+      startedAt: null,
+      endsAt: null,
+      welcomeUnseen: false,
+      expiredUnseen: false,
+    });
+    await expect(access.shouldShowIntroFullAccessWelcome(now + 60_000)).resolves.toBe(false);
+  });
+
+  it('does not revoke a gift already granted while the switch was on', async () => {
+    const access = require('../app/intro_full_access');
+    const start = 1000;
+
+    // Подарок выдан, пока флаг был включён.
+    await access.startIntroFullAccessAfterOnboarding(start);
+    await expect(access.getIntroFullAccessState(start + 60_000)).resolves.toMatchObject({
+      active: true,
+      startedAt: start,
+    });
+
+    // Админ выключает подарок — активный доступ НЕ отбирается, юзер докатывает 72ч.
+    remoteFlags.introFullAccessEnabled = false;
+    await expect(access.getIntroFullAccessState(start + 60_000)).resolves.toMatchObject({
+      active: true,
+      startedAt: start,
     });
   });
 });

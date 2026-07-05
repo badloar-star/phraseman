@@ -136,7 +136,15 @@ export type RemoteBoolKey =
   // Игра «Созвездия» (specs/constellations.md, I1). Дефолт FALSE — режим тёмный,
   // пока владелец не включит в «Пульте»; выключение живьём прячет вход у всех
   // (kill-switch) — дуэльный код при этом не трогается вообще.
-  | 'constellations_enabled';
+  | 'constellations_enabled'
+  // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
+  // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
+  // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
+  // подарок, ни модал (startIntroFullAccessAfterOnboarding раньше выходит). Уже
+  // выданный подарок НЕ отбирается — активные докатывают свои 72ч, их модалы не
+  // трогаются (гейт стоит только в точке ВЫДАЧИ). Включение возвращает подарок
+  // будущим новичкам. Гейт в app/intro_full_access.ts.
+  | 'intro_full_access_enabled';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -357,6 +365,11 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // В dev-сборках (__DEV__) включён всегда: владелец видит карточку без крутки конфига.
   // typeof-гард: в jest/node __DEV__ не определён — там действует прод-дефолт false.
   constellations_enabled: typeof __DEV__ !== 'undefined' && __DEV__,
+  // Подарок «3 дня полного доступа» новым юзерам: дефолт TRUE = kill-switch
+  // (новые получают подарок и модал как сейчас). Админ ставит false в «Пульте» →
+  // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
+  // Уже выданные подарки не отбираются (гейт только в точке выдачи).
+  intro_full_access_enabled: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -896,6 +909,14 @@ export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 
 // ── «Созвездия» (specs/constellations.md, I1) ────────────────────────────────
 export const isConstellationsEnabled = () => getRemoteBool('constellations_enabled');
+
+/**
+ * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт true =
+ * kill-switch (новые получают подарок как сейчас). false (из «Пульта») → новые
+ * юзеры больше не получают ни подарок, ни приветственный модал; уже выданные
+ * подарки не отбираются. Гейт применяется в app/intro_full_access.ts (точка выдачи).
+ */
+export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
 
 export type ConstellationsPlacement = 'secondary' | 'primary' | 'only';
 

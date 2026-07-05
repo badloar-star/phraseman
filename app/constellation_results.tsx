@@ -20,7 +20,10 @@ import { triLang } from '../constants/i18n';
 import { subscribeConstellationMatch, subscribeConstellationResult } from './services/constellations_db';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
-import { parseHexKey } from './constellations_hex';
+import { buildMapLayout } from './constellations_hex';
+
+/** Радиус гекса для раскладки контура на результатах (масштабируется под viewBox). */
+const RESULT_HEX_SIZE = 27;
 import type { ConstellationMatch, ConstellationResult } from './types/constellations';
 
 /** Детерминированное имя созвездия от сида матча (одно у всех участников). */
@@ -43,13 +46,46 @@ function constellationName(seed: string, lang: string): string {
       animal: ['Лисиці', 'Сови', 'Рисі', 'Ластівки', 'Черепахи', 'Пантери', 'Видри', 'Бабки'],
       pattern: (a, b) => `Сузір’я ${a} ${b}`,
     },
+    // ES: чтобы избежать рассогласования рода (del + женское + мужское прил.),
+    // паттерн без артикля рода: «Constelación: Zorro Astuto» — грамматически нейтрально.
     es: {
       adj: ['Astuto', 'Valiente', 'Silencioso', 'Veloz', 'Sabio', 'Audaz', 'Boreal', 'Ígneo'],
-      animal: ['Zorro', 'Búho', 'Lince', 'Vencejo', 'Galápago', 'Pantera', 'Nutria', 'Libélula'],
-      pattern: (a, b) => `Constelación del ${b} ${a}`,
+      animal: ['Zorro', 'Búho', 'Lince', 'Halcón', 'Lobo', 'Puma', 'Cuervo', 'Dragón'],
+      pattern: (a, b) => `Constelación: ${b} ${a}`,
+    },
+    en: {
+      adj: ['Sly', 'Brave', 'Silent', 'Swift', 'Wise', 'Bold', 'Northern', 'Fiery'],
+      animal: ['Fox', 'Owl', 'Lynx', 'Swift', 'Wolf', 'Panther', 'Raven', 'Dragon'],
+      pattern: (a, b) => `The ${a} ${b} Constellation`,
+    },
+    'pt-BR': {
+      adj: ['Astuta', 'Corajosa', 'Silenciosa', 'Veloz', 'Sábia', 'Ousada', 'Boreal', 'Ígnea'],
+      animal: ['Raposa', 'Coruja', 'Onça', 'Falcão', 'Lobo', 'Pantera', 'Corvo', 'Dragão'],
+      pattern: (a, b) => `Constelação: ${b} ${a}`,
+    },
+    vi: {
+      adj: ['Ranh Mãnh', 'Dũng Cảm', 'Lặng Lẽ', 'Nhanh Nhẹn', 'Khôn Ngoan', 'Táo Bạo', 'Phương Bắc', 'Rực Lửa'],
+      animal: ['Cáo', 'Cú', 'Linh Miêu', 'Chim Én', 'Sói', 'Báo', 'Quạ', 'Rồng'],
+      pattern: (a, b) => `Chòm Sao ${b} ${a}`,
+    },
+    id: {
+      adj: ['Licik', 'Berani', 'Sunyi', 'Gesit', 'Bijak', 'Nekat', 'Utara', 'Berapi'],
+      animal: ['Rubah', 'Burung Hantu', 'Lynx', 'Walet', 'Serigala', 'Panther', 'Gagak', 'Naga'],
+      pattern: (a, b) => `Rasi ${b} ${a}`,
+    },
+    tr: {
+      adj: ['Kurnaz', 'Cesur', 'Sessiz', 'Hızlı', 'Bilge', 'Atılgan', 'Kuzeyli', 'Ateşli'],
+      animal: ['Tilki', 'Baykuş', 'Vaşak', 'Kırlangıç', 'Kurt', 'Panter', 'Karga', 'Ejderha'],
+      pattern: (a, b) => `${a} ${b} Takımyıldızı`,
+    },
+    pl: {
+      adj: ['Sprytnego', 'Odważnego', 'Cichego', 'Szybkiego', 'Mądrego', 'Zuchwałego', 'Północnego', 'Ognistego'],
+      animal: ['Lisa', 'Sowy', 'Rysia', 'Jaskółki', 'Wilka', 'Pantery', 'Kruka', 'Smoka'],
+      pattern: (a, b) => `Gwiazdozbiór ${a} ${b}`,
     },
   };
-  const dict = table[lang] ?? table.ru;
+  // Fallback — английский (не русский): турок не должен видеть кириллицу.
+  const dict = table[lang] ?? table.en;
   return dict.pattern(dict.adj[adjIdx], dict.animal[animalIdx]);
 }
 
@@ -89,20 +125,22 @@ export default function ConstellationResultsScreen() {
     [match, uid],
   );
 
-  // Контур моего созвездия: центры моих звёзд, соединённые по порядку обхода.
+  // Контур моего созвездия: центры моих звёзд той же геометрией, что карта матча
+  // (единый buildMapLayout — иначе контур не совпадал с тем, что игрок видел, 0.3).
   const myOutline = useMemo(() => {
     if (!match || mySlot === null) return [];
+    // Раскладка карты + масштаб/сдвиг под viewBox 320×190.
+    const layout = buildMapLayout(RESULT_HEX_SIZE, 6);
+    const scale = Math.min(320 / layout.width, 190 / layout.height);
+    const dx = 320 / 2;
+    const dy = 190 / 2;
     const pts: Array<{ x: number; y: number }> = [];
     for (const [key, star] of Object.entries(match.stars)) {
       if (star.owner !== mySlot) continue;
-      const h = parseHexKey(key);
-      if (!h) continue;
-      pts.push({
-        x: 26 * Math.sqrt(3) * (h.q + h.r / 2) + 160,
-        y: 26 * 1.3 * h.r + 95,
-      });
+      const c = layout.centers[key];
+      if (!c) continue;
+      pts.push({ x: c.x * scale + dx, y: c.y * scale + dy });
     }
-    // Обход по углу вокруг центроида — контур без самопересечений.
     if (pts.length < 2) return pts;
     const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
     const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;

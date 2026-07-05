@@ -18,7 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { BackHandler, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DuoPressable from '../components/DuoPressable';
 import { useTheme } from '../components/ThemeContext';
@@ -74,8 +74,25 @@ export default function ConstellationMatchScreen() {
   const [lastRule, setLastRule] = useState<{ correct: boolean; rule: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [flashKey, setFlashKey] = useState<string | null>(null);
+  const [toast, setToast] = useState('');
+  const [exitAsk, setExitAsk] = useState(false);
   const navigatedRef = useRef(false);
   const prevRoundRef = useRef(0);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToast(''), 2600);
+  }, []);
+  useEffect(() => () => { if (toastTimerRef.current) clearTimeout(toastTimerRef.current); }, []);
+
+  const netErrText = useCallback(() => triLang(lang, {
+    ru: 'Нет связи — попробуй ещё раз', uk: 'Немає зв’язку — спробуй ще раз',
+    es: 'Sin conexión — inténtalo de nuevo', 'pt-BR': 'Sem conexão — tente de novo',
+    vi: 'Mất kết nối — thử lại', id: 'Tidak ada koneksi — coba lagi',
+    tr: 'Bağlantı yok — tekrar dene', pl: 'Brak połączenia — spróbuj ponownie',
+  }), [lang]);
 
   useEffect(() => { void ensureArenaAuthUid().then(setUid); }, []);
 
@@ -188,27 +205,54 @@ export default function ConstellationMatchScreen() {
     setBusy(true);
     void submitChooseTarget(matchId, uid, sheetKey)
       .then(() => { hapticMediumImpact(); setSheetKey(null); })
-      .catch(() => hapticError())
+      .catch(() => { hapticError(); showToast(netErrText()); })
       .finally(() => setBusy(false));
-  }, [sheetKey, uid, busy, matchId]);
+  }, [sheetKey, uid, busy, matchId, showToast, netErrText]);
 
   const onAnswer = useCallback((answerIndex: number) => {
     if (!me || !uid || busy) return;
     const qIndex = me.answers.length;
     setBusy(true);
-    void submitAnswer(matchId, uid, qIndex, answerIndex)
-      .then((res) => {
-        if (res.correct) hapticSuccess(); else hapticError();
-        setLastRule({ correct: !!res.correct, rule: res.rule ?? '' });
-      })
-      .catch(() => hapticError())
+    // Идемпотентный ретрай: ОДИН actionId на обе попытки (оффлайн F7 — сабмит
+    // не задвоится сервером). При провале обеих — явный тост «нет связи».
+    const actionId = `ans_${matchId}_r${me.round}_q${qIndex}`;
+    const apply = (res: { correct?: boolean; rule?: string }) => {
+      if (res.correct) hapticSuccess(); else hapticError();
+      setLastRule({ correct: !!res.correct, rule: res.rule ?? '' });
+    };
+    void submitAnswer(matchId, uid, qIndex, answerIndex, actionId)
+      .then(apply)
+      .catch(() => submitAnswer(matchId, uid, qIndex, answerIndex, actionId)
+        .then(apply)
+        .catch(() => { hapticError(); showToast(netErrText()); }))
       .finally(() => setBusy(false));
-  }, [me, uid, busy, matchId]);
+  }, [me, uid, busy, matchId, showToast, netErrText]);
 
   const onEmote = useCallback((emoteId: string) => {
     if (!uid) return;
     void submitEmote(matchId, uid, emoteId).catch(() => {});
   }, [matchId, uid]);
+
+  // Выход из матча (0.6): матч живёт на сервере, ход будет пропускаться, звёзды
+  // остаются, можно вернуться. Явный router.replace на арену (стек после серии
+  // replace непредсказуем — back() увёл бы не туда).
+  const doExit = useCallback(() => {
+    setExitAsk(false);
+    navigatedRef.current = true;
+    router.replace('/(tabs)/arena' as any);
+  }, [router]);
+
+  // Перехват Android hardware back → тот же диалог выхода (пока матч активен).
+  useEffect(() => {
+    if (!focused) return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigatedRef.current) return false;
+      if (match?.stage === 'finished') return false;
+      setExitAsk(true);
+      return true; // поглощаем — не уводим с экрана без подтверждения
+    });
+    return () => sub.remove();
+  }, [focused, match?.stage]);
 
   // Последний свежий эмоут для пузыря.
   const activeEmote = useMemo(() => {
@@ -246,8 +290,16 @@ export default function ConstellationMatchScreen() {
     <View style={styles.root}>
       <LinearGradient colors={skyColors} style={StyleSheet.absoluteFill} />
 
-      {/* HUD: раунд, таймер фазы, фаза */}
+      {/* HUD: выход, раунд, таймер фазы, фаза */}
       <View style={[styles.hud, { paddingTop: insets.top + 8 }]}>
+        <TouchableOpacity
+          testID="constellation-match-exit"
+          onPress={() => setExitAsk(true)}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          style={styles.exitBtn}
+        >
+          <Ionicons name="close" size={18} color={t.textSecond} />
+        </TouchableOpacity>
         <View style={[styles.roundBox, { borderColor: t.border }]}>
           <Text style={[styles.roundText, { color: t.textSecond, fontSize: f.caption }]}>
             {triLang(lang, {
@@ -473,7 +525,7 @@ export default function ConstellationMatchScreen() {
               })}
             </Text>
           </DuoPressable>
-          <TouchableOpacity onPress={() => router.back()} style={[styles.outGhost, { borderColor: t.border }]}>
+          <TouchableOpacity onPress={() => router.replace('/(tabs)/arena' as any)} style={[styles.outGhost, { borderColor: t.border }]}>
             <Text style={{ color: t.textSecond, fontSize: f.body }}>
               {triLang(lang, {
                 ru: 'В арену', uk: 'До арени', es: 'A la arena', 'pt-BR': 'Para a arena',
@@ -481,6 +533,58 @@ export default function ConstellationMatchScreen() {
               })}
             </Text>
           </TouchableOpacity>
+        </View>
+      ) : null}
+
+      {/* Тост ошибки сети (0.5) */}
+      {toast ? (
+        <View style={[styles.toast, { bottom: insets.bottom + 90 }]} pointerEvents="none">
+          <Text style={styles.toastText}>{toast}</Text>
+        </View>
+      ) : null}
+
+      {/* Диалог выхода (0.6) */}
+      {exitAsk ? (
+        <View style={styles.exitOverlay}>
+          <View style={[styles.exitCard, { backgroundColor: '#0E1734' }]}>
+            <Text style={[styles.exitTitle, { color: t.textPrimary, fontSize: f.sub }]}>
+              {triLang(lang, {
+                ru: 'Выйти из матча?', uk: 'Вийти з матчу?', es: '¿Salir de la partida?',
+                'pt-BR': 'Sair da partida?', vi: 'Rời trận?', id: 'Keluar dari match?',
+                tr: 'Maçtan çık?', pl: 'Wyjść z meczu?',
+              })}
+            </Text>
+            <Text style={[styles.exitSub, { color: t.textSecond, fontSize: f.caption }]}>
+              {triLang(lang, {
+                ru: 'Ход будет пропускаться, звёзды остаются. Можно вернуться в матч.',
+                uk: 'Хід пропускатиметься, зірки лишаються. Можна повернутись.',
+                es: 'Se saltará tu turno, las estrellas quedan. Puedes volver.',
+                'pt-BR': 'Sua vez será pulada, as estrelas ficam. Você pode voltar.',
+                vi: 'Lượt của bạn bị bỏ qua, sao vẫn còn. Có thể quay lại.',
+                id: 'Giliranmu dilewati, bintang tetap. Bisa kembali.',
+                tr: 'Sıran atlanır, yıldızlar kalır. Geri dönebilirsin.',
+                pl: 'Twoja tura zostanie pominięta, gwiazdy zostają. Możesz wrócić.',
+              })}
+            </Text>
+            <View style={styles.exitBtns}>
+              <TouchableOpacity onPress={() => setExitAsk(false)} style={[styles.exitAction, { borderColor: t.border }]}>
+                <Text style={{ color: t.textPrimary, fontWeight: '700', fontSize: f.body }}>
+                  {triLang(lang, {
+                    ru: 'Остаться', uk: 'Лишитись', es: 'Quedarme', 'pt-BR': 'Ficar',
+                    vi: 'Ở lại', id: 'Tetap', tr: 'Kal', pl: 'Zostań',
+                  })}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={doExit} style={[styles.exitAction, { backgroundColor: '#FF6B8A', borderColor: '#FF6B8A' }]}>
+                <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>
+                  {triLang(lang, {
+                    ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair',
+                    vi: 'Rời', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź',
+                  })}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       ) : null}
     </View>
@@ -680,6 +784,50 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
     paddingHorizontal: 14,
+  },
+  exitBtn: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(120,140,220,0.10)',
+  },
+  toast: {
+    position: 'absolute',
+    left: 24,
+    right: 24,
+    alignItems: 'center',
+    paddingVertical: 11,
+    paddingHorizontal: 16,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,107,138,0.92)',
+  },
+  toastText: { color: '#fff', fontWeight: '700', textAlign: 'center' },
+  exitOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(4,7,18,0.72)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 28,
+  },
+  exitCard: {
+    width: '100%',
+    maxWidth: 340,
+    borderRadius: 20,
+    padding: 22,
+    gap: 10,
+  },
+  exitTitle: { fontWeight: '800' },
+  exitSub: { lineHeight: 19 },
+  exitBtns: { flexDirection: 'row', gap: 10, marginTop: 8 },
+  exitAction: {
+    flex: 1,
+    height: 46,
+    borderRadius: 13,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   roundBox: {
     borderWidth: 1,

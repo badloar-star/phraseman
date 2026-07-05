@@ -135,12 +135,13 @@ export function botFocusBoost(state: MatchState, slot: PlayerSlot, targetKey: st
   if (!me || me.status !== 'alive') return 0;
   // Защита: мой дом уязвим (ядер ≤1) — я собран.
   if (me.cores <= 1) return 0.15;
-  // Атака ва-банк: добиваю чужой дом с последним ядром.
+  // Атака ва-банк: добиваю чужой дом с последним ядром. 0.12→0.18 (аудит:
+  // троим ботам не хватало точности скоординированно снести одинокого лидера).
   if (targetKey) {
     const victim = state.players.find(
       (p) => p.status === 'alive' && p.slot !== slot && p.homeStarKey === targetKey && p.cores === 1,
     );
-    if (victim) return 0.12;
+    if (victim) return 0.18;
   }
   return 0;
 }
@@ -194,6 +195,18 @@ export function chooseBotTarget(
     });
     // 75% времени защищаемся; изредка всё же жадничаем (человечность).
     if (threat && rand() < 0.75) return threat;
+  }
+
+  // 1c. Долгое удержание центра соперником (аудит: одинокий лидер держал
+  // Полярную всю игру, боты её избегали). Если центр в чужих руках ≥2 раунда
+  // ПОДРЯД и он в наших легальных целях — атакуем ОБЯЗАТЕЛЬНО, невзирая на стиль.
+  const polarOwner = state.stars[POLAR_KEY]?.owner;
+  if (
+    targets.includes(POLAR_KEY)
+    && polarOwner !== null && polarOwner !== undefined && polarOwner !== slot
+    && (state.players[polarOwner]?.polarRoundsHeld ?? 0) >= 2
+  ) {
+    return POLAR_KEY;
   }
 
   // 2. Полярная — тянет ТОЛЬКО центрового сильно; расширенец/агрессор идут туда

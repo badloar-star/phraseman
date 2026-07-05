@@ -179,6 +179,22 @@ describe('constellations/bots — выбор цели (стратегия)', () 
     }
     expect(defended).toBeGreaterThan(18); // ~75% времени защищается
   });
+
+  test('долго удерживаемый центр соперником (≥2 раунда) → бот атакует ОБЯЗАТЕЛЬНО (аудит)', () => {
+    const state = makeState();
+    // Бот slot0 владеет соседом центра → Полярная в его легальных целях.
+    state.stars['1,0'] = { owner: 0, radiance: 0 };
+    // Центр держит slot1 уже 2 раунда подряд.
+    state.stars['0,0'] = { owner: 1, radiance: 0 };
+    state.players[1] = { ...state.players[1], polarRoundsHeld: 2 };
+    const rand = createSeededRand('polar-forced');
+    let atk = 0;
+    for (let i = 0; i < 30; i += 1) {
+      if (chooseBotTarget(state, 0, rand, 'expander') === '0,0') atk += 1;
+    }
+    // Даже «расширенец» (который обычно избегает центр) обязан атаковать почти всегда.
+    expect(atk).toBeGreaterThan(27);
+  });
 });
 
 describe('constellations/bots — адаптация точности под давление (аудит)', () => {

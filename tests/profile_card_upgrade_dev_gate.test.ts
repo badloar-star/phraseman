@@ -4,13 +4,16 @@ import path from 'path';
 /**
  * Profile card UI was rebuilt 2026-06 from a broken bottom-sheet (ProfileCardUpgradeModal,
  * deleted) into a full-screen route (app/profile_card_upgrade.tsx) reached from gated entry
- * points. DECISION 2026-06-21: the feature is held back from the store release and ships
- * DEV-ONLY until the level previews are polished — ENABLE_PROFILE_CARD is now derived from
- * the dev/QA signals and hard-cut by IS_STORE_RELEASE. These checks lock in that every
- * entry point reads that single flag (so the whole feature appears/disappears together) and
- * that the flag stays dev-gated, not a bare `true`.
+ * points.
+ *
+ * DECISION 2026-07-05 (owner): the feature SHIPS. The old 2026-06-21 hold ("previews look
+ * too similar") is resolved by the 5-level ladder — every level has a visually distinct
+ * card. ENABLE_PROFILE_CARD is now a bare `true` (release), and the upgrade screen must
+ * NOT hide behind ENABLE_DEV_TOOLS anymore. These checks lock in that every entry point
+ * reads the single ENABLE_PROFILE_CARD flag (so the whole feature appears/disappears
+ * together) and that the flag stays on for release.
  */
-describe('profile card upgrade dev gate', () => {
+describe('profile card upgrade gate (release decision 2026-07-05)', () => {
   const avatarScreen = fs.readFileSync(
     path.join(process.cwd(), 'app', 'avatar_select.tsx'),
     'utf8',
@@ -21,7 +24,6 @@ describe('profile card upgrade dev gate', () => {
   );
 
   it('gates the upgrade entry point behind the ENABLE_PROFILE_CARD flag', () => {
-    expect(avatarScreen).toContain("import { ENABLE_PROFILE_CARD } from './config';");
     expect(avatarScreen).toContain('const showProfileCardSection = ENABLE_PROFILE_CARD;');
     // The entry row that opens the full-screen upgrade flow is rendered only when the
     // kill-switch is on, and navigates to the rebuilt route.
@@ -38,61 +40,52 @@ describe('profile card upgrade dev gate', () => {
     expect(upgradeScreen).not.toContain('ENABLE_DEV_TOOLS');
   });
 
-  it('keeps the feature gated to dev and hard-off in store releases', () => {
-    // 2026-06-21: the profile card is intentionally NOT in the store release yet — it ships
-    // dev-only until the level previews are polished. The flag must therefore be derived from
-    // the dev/QA signals AND hard-cut by IS_STORE_RELEASE, never a bare `true`.
+  it('keeps the feature ON for release (owner decision 2026-07-05)', () => {
+    // The card ladder is a released, monetized feature now. If someone needs to pull it
+    // from a build, that is an owner decision — change this test together with the flag.
     const config = fs.readFileSync(path.join(process.cwd(), 'app', 'config.ts'), 'utf8');
-    expect(config).not.toMatch(/export const ENABLE_PROFILE_CARD = true;/);
-    expect(config).toMatch(/export const ENABLE_PROFILE_CARD\s*=[\s\S]*!IS_STORE_RELEASE/);
+    expect(config).toMatch(/export const ENABLE_PROFILE_CARD = true;/);
   });
 });
 
 /**
  * The shard cost of each card level lives in TWO places: the client table
- * PROFILE_CARD_LEVELS (app/profile_card_system.ts) drives what the user is shown, and the
- * server table PROFILE_CARD_LEVEL_COST (functions/src/profile_card_upgrade.ts) is what
+ * PROFILE_CARD_LEVEL_COSTS (app/profile_card_system.ts) drives what the user is shown, and
+ * the server table PROFILE_CARD_LEVEL_COST (functions/src/profile_card_upgrade.ts) is what
  * actually gets charged. If they desync, the client promises one price and the server
  * charges another. This parity check fails loudly on the next one-sided reprice.
  */
 describe('profile card cost parity (client ↔ Cloud Function)', () => {
-  function clientCosts(): Record<number, number> {
-    const src = fs.readFileSync(path.join(process.cwd(), 'app', 'profile_card_system.ts'), 'utf8');
-    const costMatch = src.match(/PROFILE_CARD_UPGRADE_COST\s*=\s*(\d+)/);
-    const oneStepCost = Number(costMatch?.[1] ?? 0);
-    const block = src.slice(src.indexOf('PROFILE_CARD_LEVELS'));
+  function parseCostTable(src: string, tableName: string): Record<number, number> {
+    const start = src.indexOf(tableName);
+    expect(start).toBeGreaterThanOrEqual(0);
+    const block = src.slice(start, src.indexOf('}', start) + 1);
+    const oneStepCost = Number(src.match(/PROFILE_CARD_UPGRADE_COST\s*=\s*(\d+)/)?.[1] ?? 0);
     const costs: Record<number, number> = {};
-    const re = /level:\s*(\d)\s*,[\s\S]*?cost:\s*(\d+|PROFILE_CARD_UPGRADE_COST)/g;
+    const re = /(\d)\s*:\s*(\d+|PROFILE_CARD_UPGRADE_COST)/g;
     let m: RegExpExecArray | null;
     while ((m = re.exec(block))) {
-      const level = Number(m[1]);
-      const cost = m[2] === 'PROFILE_CARD_UPGRADE_COST' ? oneStepCost : Number(m[2]);
-      if (level === 1 && costs[level] === undefined) costs[level] = cost;
+      costs[Number(m[1])] = m[2] === 'PROFILE_CARD_UPGRADE_COST' ? oneStepCost : Number(m[2]);
     }
     return costs;
   }
 
-  function serverCosts(): Record<number, number> {
-    const src = fs.readFileSync(
-      path.join(process.cwd(), 'functions', 'src', 'profile_card_upgrade.ts'),
-      'utf8',
-    );
-    const block = src.slice(src.indexOf('PROFILE_CARD_LEVEL_COST'));
-    const costs: Record<number, number> = {};
-    const re = /(\d)\s*:\s*(\d+)/g;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(block))) {
-      const level = Number(m[1]);
-      if (level === 1 && costs[level] === undefined) costs[level] = Number(m[2]);
-    }
-    return costs;
-  }
+  const clientSrc = fs.readFileSync(path.join(process.cwd(), 'app', 'profile_card_system.ts'), 'utf8');
+  const serverSrc = fs.readFileSync(
+    path.join(process.cwd(), 'functions', 'src', 'profile_card_upgrade.ts'),
+    'utf8',
+  );
 
-  it('charges the same price on both sides for the single Pro level', () => {
-    const client = clientCosts();
-    const server = serverCosts();
-    expect(Object.keys(client).sort()).toEqual(['1']);
+  it('charges the same price on both sides for every ladder level', () => {
+    const client = parseCostTable(clientSrc, 'PROFILE_CARD_LEVEL_COSTS');
+    const server = parseCostTable(serverSrc, 'PROFILE_CARD_LEVEL_COST');
+    expect(Object.keys(client).sort()).toEqual(['1', '2', '3', '4', '5']);
     expect(server).toEqual(client);
-    expect(client[1]).toBe(200);
+    expect(client).toEqual({ 1: 200, 2: 450, 3: 800, 4: 1400, 5: 2400 });
+  });
+
+  it('client and server agree on the max level', () => {
+    expect(clientSrc).toMatch(/export const PROFILE_CARD_MAX_LEVEL = 5;/);
+    expect(serverSrc).toMatch(/const PROFILE_CARD_MAX_LEVEL = 5;/);
   });
 });

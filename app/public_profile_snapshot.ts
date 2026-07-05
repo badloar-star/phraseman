@@ -6,6 +6,7 @@ import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import {
+  PROFILE_CARD_LEGEND_NO_KEY,
   PROFILE_CARD_LEVEL_KEY,
   PROFILE_CARD_MOTION_KEY,
   PROFILE_CARD_PUBLIC_FOCUS_KEY,
@@ -15,6 +16,7 @@ import {
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from './profile_card_system';
+import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { isLifetimePlanLocal } from './premium_guard';
 
@@ -137,21 +139,44 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     PROFILE_CARD_THEME_KEY,
     PROFILE_CARD_MOTION_KEY,
     PROFILE_CARD_PUBLIC_FOCUS_KEY,
+    PROFILE_CARD_LEGEND_NO_KEY,
   ]).catch(() => [
     [PROFILE_CARD_LEVEL_KEY, null],
     [PROFILE_CARD_THEME_KEY, null],
     [PROFILE_CARD_MOTION_KEY, null],
     [PROFILE_CARD_PUBLIC_FOCUS_KEY, null],
+    [PROFILE_CARD_LEGEND_NO_KEY, null],
   ] as [string, string | null][]);
   const rawProfileLevel = profilePairs[0]?.[1] ?? null;
   const rawTheme = profilePairs[1]?.[1] ?? null;
   const rawMotion = profilePairs[2]?.[1] ?? null;
   const rawFocus = profilePairs[3]?.[1] ?? null;
+  const rawLegendNo = profilePairs[4]?.[1] ?? null;
 
   const profileCardLevel = normalizeProfileCardLevel(rawProfileLevel);
   const profileCardTheme = normalizeProfileCardTheme(rawTheme);
   const profileCardMotion = normalizeProfileCardMotion(rawMotion);
   const profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
+  const legendNoParsed = Math.floor(Number(rawLegendNo));
+  const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
+
+  // Блоки статистики уровней II+ («Выучено»/«Арена»/«Путь») — денормализуем в публичный
+  // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
+  // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
+  // нет — поля не пишем (карточка у других просто не покажет строку, без вранья).
+  const lifetimeStats = profileCardLevel >= 2
+    ? await readLifetimeProfileStatsCache().catch(() => null)
+    : null;
+  const cardStatsPayload = lifetimeStats
+    ? {
+        cardWordsLearned: Math.max(0, Math.floor(lifetimeStats.wordsLearned)),
+        cardPhrasesLearned: Math.max(0, Math.floor(lifetimeStats.phrasesLearned)),
+        cardArenaWins: Math.max(0, Math.floor(lifetimeStats.arenaWins)),
+        cardArenaMatches: Math.max(0, Math.floor(lifetimeStats.arenaWins + lifetimeStats.arenaLosses)),
+        cardAppDays: Math.max(0, Math.floor(lifetimeStats.appDaysUnion)),
+        cardLongestStreak: Math.max(0, Math.floor(lifetimeStats.longestStreakDays)),
+      }
+    : null;
   const weekPoints = Math.max(0, Math.trunc(input.weekPoints ?? parseWeekPointsForWeek(weekRaw)));
   const isPremium = input.isPremium ?? cache.isPremium ?? false;
   const isVip = input.isVip ?? cache.isVip ?? false;
@@ -177,6 +202,8 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
+    profileCardLegendNo,
+    ...(cardStatsPayload ?? {}),
   });
 
   const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
@@ -217,6 +244,8 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
+    ...(profileCardLegendNo !== null ? { profileCardLegendNo } : {}),
+    ...(cardStatsPayload ?? {}),
     displayHash,
     updatedAt: now,
     updatedReason: input.reason,

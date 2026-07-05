@@ -64,7 +64,7 @@ import PlusBadge from '../components/PlusBadge';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { ENABLE_DEV_TOOLS, ENABLE_PROFILE_CARD } from './config';
+import { ENABLE_PROFILE_CARD } from './config';
 import { getShardsBalance, spendShards } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { actionToastTri, emitAppEvent } from './events';
@@ -81,7 +81,11 @@ import {
   getProfileCardLevelDef,
   getProfileCardSnapshot,
   normalizeProfileCardLevel,
+  PROFILE_CARD_GRADIENTS,
   PROFILE_CARD_LEVEL_NAME_RU,
+  PROFILE_CARD_SURFACES,
+  PROFILE_CARD_THEME_COLORS,
+  themeForProfileCardLevel,
   type ProfileCardLevel,
   type ProfileCardMotion,
   type ProfileCardSnapshot,
@@ -132,27 +136,21 @@ const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
   publicFocus: 'balanced',
 };
 
+// Цвета/градиенты уровней живут в profile_card_system.ts — один источник для
+// превью здесь, экрана апгрейда и модалки профиля.
+const buildProfileCardPreviewVisual = (theme: ProfileCardTheme): Omit<ProfileCardPreviewVisual, 'theme' | 'motion'> => ({
+  gradient: PROFILE_CARD_GRADIENTS[theme],
+  ...PROFILE_CARD_THEME_COLORS[theme],
+  ...PROFILE_CARD_SURFACES[theme],
+});
+
 const PROFILE_CARD_PREVIEW_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardPreviewVisual, 'theme' | 'motion'>> = {
-  classic: {
-    gradient: ['#202329', '#252931', '#202329'],
-    accent: '#94A3B8',
-    accentSoft: 'rgba(148,163,184,0.14)',
-    accentStrong: 'rgba(148,163,184,0.38)',
-    secondary: '#CBD5E1',
-    surface: 'rgba(255,255,255,0.055)',
-    surfaceBorder: 'rgba(148,163,184,0.16)',
-    shadowColor: '#000000',
-  },
-  gold: {
-    gradient: ['#161106', '#2A210D', '#111827'],
-    accent: '#FACC15',
-    accentSoft: 'rgba(250,204,21,0.16)',
-    accentStrong: 'rgba(250,204,21,0.48)',
-    secondary: '#FFF2A8',
-    surface: 'rgba(250,204,21,0.075)',
-    surfaceBorder: 'rgba(250,204,21,0.25)',
-    shadowColor: '#FACC15',
-  },
+  classic: buildProfileCardPreviewVisual('classic'),
+  gold: buildProfileCardPreviewVisual('gold'),
+  emerald: buildProfileCardPreviewVisual('emerald'),
+  sapphire: buildProfileCardPreviewVisual('sapphire'),
+  amethyst: buildProfileCardPreviewVisual('amethyst'),
+  legend: buildProfileCardPreviewVisual('legend'),
 };
 
 const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
@@ -182,14 +180,14 @@ const normalizeProfileCardSnapshotForPreview = (snapshot?: Partial<ProfileCardSn
   const level = normalizeProfileCardLevel(snapshot?.level);
   return {
     level,
-    theme: level >= 1 ? 'gold' : 'classic',
+    theme: themeForProfileCardLevel(level),
     motion: 'none',
     publicFocus: 'balanced',
   };
 };
 
 const getProfileCardPreviewVisual = (snapshot: ProfileCardSnapshot): ProfileCardPreviewVisual => {
-  const theme = snapshot.level >= 1 ? 'gold' : 'classic';
+  const theme = themeForProfileCardLevel(snapshot.level);
   const motion = 'none';
   return { theme, motion, ...PROFILE_CARD_PREVIEW_VISUALS[theme] };
 };
@@ -334,7 +332,7 @@ export default function AvatarSelect() {
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(DEFAULT_PROFILE_CARD_SNAPSHOT);
 
   const activeCustom = useMemo(() => parseCustomAvatarValue(activeAvatar), [activeAvatar]);
-  const showProfileCardSection = ENABLE_PROFILE_CARD && ENABLE_DEV_TOOLS;
+  const showProfileCardSection = ENABLE_PROFILE_CARD;
   const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
   const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
   const profileCardVisual = useMemo(() => getProfileCardPreviewVisual(profileCardSnapshot), [profileCardSnapshot]);

@@ -23,6 +23,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import firestore from '@react-native-firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -42,7 +43,8 @@ import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { arenaTierLabel } from '../app/arena_rating';
 import type { RankTier } from '../app/types/arena';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
+import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
+import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -67,11 +69,17 @@ import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
   fxKindForProfileCard,
+  getProfileCardLegendNo,
   getProfileCardLevelDef,
   getProfileCardSnapshot,
+  PROFILE_CARD_GRADIENTS,
   PROFILE_CARD_LEVEL_NAME_RU,
+  PROFILE_CARD_MAX_LEVEL,
+  PROFILE_CARD_SURFACES,
+  PROFILE_CARD_THEME_COLORS,
   normalizeProfileCardLevel,
   profileCardLevelRoman,
+  themeForProfileCardLevel,
   ProfileCardMotion,
   ProfileCardSnapshot,
   ProfileCardTheme,
@@ -151,41 +159,51 @@ const PROFILE_HEADER_ACTION_TOP = 14;
 const PROFILE_HEADER_ACTION_RIGHT = 14;
 const PROFILE_HEADER_ACTION_GAP = 10;
 
+// Цвета/градиенты/подложки живут в profile_card_system.ts (одни и те же на модалке
+// профиля и превью апгрейда — владелец и другие игроки видят ОДИН визуал уровня).
+const buildCardVisual = (theme: ProfileCardTheme): Omit<ProfileCardVisual, 'theme' | 'motion'> => ({
+  gradient: PROFILE_CARD_GRADIENTS[theme],
+  ...PROFILE_CARD_THEME_COLORS[theme],
+  ...PROFILE_CARD_SURFACES[theme],
+});
+
 const PROFILE_CARD_VISUALS: Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>> = {
-  classic: {
-    gradient: ['#202329', '#252931', '#202329'],
-    accent: '#94A3B8',
-    accentSoft: 'rgba(148,163,184,0.14)',
-    accentStrong: 'rgba(148,163,184,0.38)',
-    secondary: '#CBD5E1',
-    surface: 'rgba(255,255,255,0.055)',
-    surfaceBorder: 'rgba(148,163,184,0.16)',
-    shadowColor: '#000000',
-  },
-  gold: {
-    gradient: ['#161106', '#2A210D', '#111827'],
-    accent: '#FACC15',
-    accentSoft: 'rgba(250,204,21,0.16)',
-    accentStrong: 'rgba(250,204,21,0.48)',
-    secondary: '#FFF2A8',
-    surface: 'rgba(250,204,21,0.075)',
-    surfaceBorder: 'rgba(250,204,21,0.25)',
-    shadowColor: '#FACC15',
-  },
+  classic: buildCardVisual('classic'),
+  gold: buildCardVisual('gold'),
+  emerald: buildCardVisual('emerald'),
+  sapphire: buildCardVisual('sapphire'),
+  amethyst: buildCardVisual('amethyst'),
+  legend: buildCardVisual('legend'),
 };
 
 function normalizeProfileCardSnapshotForLevel(raw: Partial<ProfileCardSnapshot> & Partial<PlayerInfo>): ProfileCardSnapshot {
   const level = normalizeProfileCardLevel(raw.profileCardLevel ?? raw.level);
-  const theme = level >= 1 ? 'gold' : 'classic';
+  const theme = themeForProfileCardLevel(level);
   const motion = 'none';
   const publicFocus = 'balanced';
   return { level, theme, motion, publicFocus };
 }
 
 function getProfileCardVisual(snapshot: ProfileCardSnapshot): ProfileCardVisual {
-  const theme = snapshot.level >= 1 ? 'gold' : 'classic';
+  const theme = themeForProfileCardLevel(snapshot.level);
   const motion = 'none';
   return { theme, motion, ...PROFILE_CARD_VISUALS[theme] };
+}
+
+/** Публичные блоки статистики, открываемые уровнями карточки (II+). null = скрыть строку. */
+type ProfileCardStats = {
+  wordsLearned: number | null;
+  phrasesLearned: number | null;
+  arenaWins: number | null;
+  arenaMatches: number | null;
+  appDays: number | null;
+  longestStreak: number | null;
+  legendNo: number | null;
+};
+
+function readPublicCardStatNumber(value: unknown): number | null {
+  const n = Math.floor(Number(value));
+  return Number.isFinite(n) && n >= 0 ? n : null;
 }
 
 function formatProfileCompactNumber(value: number): string {
@@ -230,6 +248,7 @@ function PlayerProfileModalBody({
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const router = useRouter();
   const isCompassTheme = false;
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useStableSafeAreaInsets();
@@ -240,6 +259,7 @@ function PlayerProfileModalBody({
   const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(() => new Set());
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
+  const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   // Profile-level activity like the current user has already placed today (toggle state).
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
@@ -384,6 +404,75 @@ function PlayerProfileModalBody({
     player.uid,
     player.friendUid,
   ]);
+
+  // Блоки статистики уровней II+ («Выучено»/«Арена»/«Путь»/«Легенда»). Для себя —
+  // локальные lifetime-статы (кэш мгновенно, полный пересчёт добегает следом); для
+  // других — денормализованные card*-поля из public_profiles, которые пишет
+  // public_profile_snapshot.ts при уровне карточки II+.
+  useEffect(() => {
+    let cancelled = false;
+    setCardStats(null);
+    if (profileCardLevel < 2) {
+      return () => { cancelled = true; };
+    }
+    if (isMe) {
+      void (async () => {
+        const legendNo = profileCardLevel >= 5 ? await getProfileCardLegendNo().catch(() => null) : null;
+        const apply = (s: Awaited<ReturnType<typeof readLifetimeProfileStatsCache>>) => {
+          if (cancelled || !s) return;
+          setCardStats({
+            wordsLearned: s.wordsLearned,
+            phrasesLearned: s.phrasesLearned,
+            arenaWins: s.arenaWins,
+            arenaMatches: s.arenaWins + s.arenaLosses,
+            appDays: s.appDaysUnion,
+            longestStreak: s.longestStreakDays,
+            legendNo,
+          });
+        };
+        apply(await readLifetimeProfileStatsCache().catch(() => null));
+        // Полный пересчёт освежит кэш и цифры, если снимок устарел.
+        InteractionManager.runAfterInteractions(() => {
+          if (cancelled) return;
+          void loadLifetimeProfileStats().then(apply).catch(() => {});
+        });
+      })();
+      return () => { cancelled = true; };
+    }
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+      return () => { cancelled = true; };
+    }
+    const publicIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
+    void (async () => {
+      for (const id of publicIds) {
+        try {
+          const snap = await firestore().collection('public_profiles').doc(id).get();
+          if (cancelled) return;
+          if (!snap.exists) continue;
+          const d = (snap.data() ?? {}) as Record<string, unknown>;
+          setCardStats({
+            wordsLearned: readPublicCardStatNumber(d.cardWordsLearned),
+            phrasesLearned: readPublicCardStatNumber(d.cardPhrasesLearned),
+            arenaWins: readPublicCardStatNumber(d.cardArenaWins),
+            arenaMatches: readPublicCardStatNumber(d.cardArenaMatches),
+            appDays: readPublicCardStatNumber(d.cardAppDays),
+            longestStreak: readPublicCardStatNumber(d.cardLongestStreak),
+            legendNo: readPublicCardStatNumber(d.profileCardLegendNo),
+          });
+          return;
+        } catch { /* пробуем следующий id */ }
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [isMe, profileCardLevel, player.friendUid, player.uid]);
+
+  const handleOpenUpgrade = useCallback(() => {
+    hapticTap();
+    // Сначала закрываем модал (родитель обнуляет player), потом пушим маршрут —
+    // иначе экран апгрейда отрисуется ПОД прозрачным RN-модалом.
+    onClose();
+    router.push('/profile_card_upgrade' as any);
+  }, [onClose, router]);
 
   useEffect(() => {
     setFriendRequestBusy(false);
@@ -822,6 +911,49 @@ function PlayerProfileModalBody({
             />
           </Pressable>
         ) : null}
+        {isMe && ENABLE_PROFILE_CARD && profileCardLevel < PROFILE_CARD_MAX_LEVEL ? (
+          // Маленькая круглая кнопка апгрейда на СВОЕЙ карточке — вход в лестницу
+          // уровней. Золото + мягкий пульс (переиспользуем shimmer-луп плашки PLUS).
+          <TouchableOpacity
+            testID="player-profile-upgrade-card"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang as Lang, {
+              ru: 'Улучшить карточку',
+              uk: 'Покращити картку',
+              es: 'Mejorar tarjeta',
+              'pt-BR': 'Melhorar cartão',
+              vi: 'Nâng cấp thẻ',
+              id: 'Tingkatkan kartu',
+              tr: 'Kartı yükselt',
+              pl: 'Ulepsz kartę',
+            })}
+            hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+            onPress={handleOpenUpgrade}
+            style={{
+              position: 'absolute',
+              top: PROFILE_HEADER_ACTION_TOP,
+              left: PROFILE_HEADER_ACTION_RIGHT,
+              zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+              height: PROFILE_HEADER_ACTION_SIZE,
+              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(250,204,21,0.16)',
+              borderWidth: 1,
+              borderColor: 'rgba(250,204,21,0.55)',
+              shadowColor: '#FACC15',
+              shadowOpacity: 0.5,
+              shadowRadius: 8,
+              shadowOffset: { width: 0, height: 0 },
+              elevation: 6,
+            }}
+          >
+            <Animated.View style={{ opacity: shimmerOpacity }}>
+              <Ionicons name="arrow-up" size={22} color={monoIcon(themeMode, '#FACC15')} />
+            </Animated.View>
+          </TouchableOpacity>
+        ) : null}
         {prestigeActive && (
           <>
             <LinearGradient
@@ -922,14 +1054,17 @@ function PlayerProfileModalBody({
           <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
             <View style={{ width: 44 }} />
             <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
-              <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
-                <AvatarView
-                  avatar={avatarStr}
-                  totalXP={safeTotalXp}
-                  size={76}
-                  auraId={usesPremiumAura ? undefined : effectiveAuraId}
-                />
-              </PremiumAvatarHalo>
+              {/* Уровень III+ обещает «усиленную рамку аватара» — кольцо цвета уровня. */}
+              <View style={profileCardLevel >= 3 ? { padding: 3, borderRadius: 999, borderWidth: 2, borderColor: cardVisual.accentStrong } : null}>
+                <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
+                  <AvatarView
+                    avatar={avatarStr}
+                    totalXP={safeTotalXp}
+                    size={76}
+                    auraId={usesPremiumAura ? undefined : effectiveAuraId}
+                  />
+                </PremiumAvatarHalo>
+              </View>
               {hasLeagueCrown && (
                 <View style={{ marginTop: 10, maxWidth: '100%' }}>
                   <LeagueCrownName
@@ -1107,6 +1242,123 @@ function PlayerProfileModalBody({
             </Text>
           </View>
         </View>
+        {/* Блоки, открываемые уровнями карточки: II «Выучено», III «Арена», IV «Путь», V «Легенда». */}
+        {profileCardLevel >= 2 && cardStats && (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null) && (
+          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
+            <Ionicons name="book" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
+            <View>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {(cardStats.wordsLearned ?? 0).toLocaleString()} · {(cardStats.phrasesLearned ?? 0).toLocaleString()}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                {triLang(lang as Lang, {
+                  ru: 'выучено: слова · фразы',
+                  uk: 'вивчено: слова · фрази',
+                  es: 'aprendido: palabras · frases',
+                  'pt-BR': 'aprendido: palavras · frases',
+                  vi: 'đã học: từ · cụm từ',
+                  id: 'dipelajari: kata · frasa',
+                  tr: 'öğrenilen: kelime · kalıp',
+                  pl: 'nauczone: słowa · frazy',
+                })}
+              </Text>
+            </View>
+          </View>
+        )}
+        {profileCardLevel >= 3 && cardStats && cardStats.arenaWins !== null && (
+          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
+            <Ionicons name="podium" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
+            <View>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {cardStats.arenaWins.toLocaleString()} · {
+                  cardStats.arenaMatches && cardStats.arenaMatches > 0
+                    ? `${Math.round((cardStats.arenaWins / cardStats.arenaMatches) * 100)}%`
+                    : '—'
+                }
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                {triLang(lang as Lang, {
+                  ru: 'арена: победы · винрейт',
+                  uk: 'арена: перемоги · вінрейт',
+                  es: 'arena: victorias · % de victorias',
+                  'pt-BR': 'arena: vitórias · % de vitórias',
+                  vi: 'đấu trường: thắng · tỷ lệ thắng',
+                  id: 'arena: menang · rasio menang',
+                  tr: 'arena: galibiyet · kazanma %',
+                  pl: 'arena: wygrane · % wygranych',
+                })}
+              </Text>
+            </View>
+          </View>
+        )}
+        {profileCardLevel >= 4 && cardStats && cardStats.appDays !== null && (
+          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
+            <Ionicons name="compass" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
+            <View>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {cardStats.appDays.toLocaleString()} · 🔥{(cardStats.longestStreak ?? 0).toLocaleString()}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                {triLang(lang as Lang, {
+                  ru: 'дней в Phraseman · рекордная серия',
+                  uk: 'днів у Phraseman · рекордна серія',
+                  es: 'días en Phraseman · racha récord',
+                  'pt-BR': 'dias no Phraseman · sequência recorde',
+                  vi: 'ngày dùng Phraseman · chuỗi kỷ lục',
+                  id: 'hari di Phraseman · rentetan rekor',
+                  tr: 'Phraseman günleri · rekor seri',
+                  pl: 'dni w Phraseman · rekordowa seria',
+                })}
+              </Text>
+            </View>
+          </View>
+        )}
+        {profileCardLevel >= 5 && (
+          <View style={[
+            { flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 },
+            prestigeSurfaceStyle,
+            { borderWidth: 1, borderColor: cardVisual.accentStrong },
+          ]}>
+            <Text style={{ fontSize: f.numLg }}>👑</Text>
+            <View>
+              <Text style={{ color: cardVisual.secondary, fontSize: f.body, fontWeight: '900' }}>
+                {cardStats?.legendNo
+                  ? triLang(lang as Lang, {
+                      ru: `Легенда №${cardStats.legendNo}`,
+                      uk: `Легенда №${cardStats.legendNo}`,
+                      es: `Leyenda #${cardStats.legendNo}`,
+                      'pt-BR': `Lenda #${cardStats.legendNo}`,
+                      vi: `Huyền thoại #${cardStats.legendNo}`,
+                      id: `Legenda #${cardStats.legendNo}`,
+                      tr: `Efsane #${cardStats.legendNo}`,
+                      pl: `Legenda #${cardStats.legendNo}`,
+                    })
+                  : triLang(lang as Lang, {
+                      ru: 'Легенда',
+                      uk: 'Легенда',
+                      es: 'Leyenda',
+                      'pt-BR': 'Lenda',
+                      vi: 'Huyền thoại',
+                      id: 'Legenda',
+                      tr: 'Efsane',
+                      pl: 'Legenda',
+                    })}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                {triLang(lang as Lang, {
+                  ru: 'высший уровень карточки',
+                  uk: 'найвищий рівень картки',
+                  es: 'nivel máximo de la tarjeta',
+                  'pt-BR': 'nível máximo do cartão',
+                  vi: 'cấp thẻ cao nhất',
+                  id: 'level kartu tertinggi',
+                  tr: 'en yüksek kart seviyesi',
+                  pl: 'najwyższy poziom karty',
+                })}
+              </Text>
+            </View>
+          </View>
+        )}
         {isMe && multipliers && (
           <View style={[{ borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>

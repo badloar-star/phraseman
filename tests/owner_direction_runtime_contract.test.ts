@@ -106,7 +106,8 @@ describe('owner runtime direction contract', () => {
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
       'app/profile_card_upgrade.tsx': 1,
-      'app/xp_manager.ts': 1,
+      // xp_manager потерял свой forceNow-вызов в b687f4b80 (MVP «Разговорного клуба») —
+      // аллоулист приведён к факту 2026-07-05.
     };
     const pattern = /(?:\b\w+\.)?syncToCloud\s*\(\s*\{\s*forceNow\s*:\s*true\s*\}/g;
     const found: Record<string, number> = {};
@@ -152,6 +153,8 @@ describe('owner runtime direction contract', () => {
       // «Созвездия»: секундный тик экрана поиска (elapsed + «…»), ≥1000мс,
       // гейт useIsScreenFocused, очистка на blur/unmount (осознанно, спек F2).
       'app/constellation_search.tsx': 1,
+      // «Созвездия»: секундный тик дедлайна фазы матча — те же гарантии (спек F3/A3).
+      'app/constellation_match.tsx': 1,
       'app/diagnostic_test.tsx': 1,
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
@@ -992,7 +995,9 @@ describe('owner runtime direction contract', () => {
 
     expect(profileUpgrade).toContain('upgradeProfileCardLevel()');
     expect(profileUpgrade).toContain('testID="profile-card-upgrade-submit"');
-    expect(profileUpgrade).toContain('disabled={busy || !nextDef}');
+    // 2026-07-05: лестница из 5 уровней — CTA дополнительно заперта на уже купленных
+    // и ещё не доступных уровнях, но busy-гейт (visibly pending) остаётся первым.
+    expect(profileUpgrade).toContain('disabled={busy || isOwned || isLockedAhead || !isNextPurchasable}');
     expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
 
     expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');

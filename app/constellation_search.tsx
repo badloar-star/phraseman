@@ -326,22 +326,11 @@ export default function ConstellationSearchScreen() {
             >
               <View style={styles.sweepBlade} />
             </Animated.View>
-            {/* Орбитальные точки-соперники: появляются по мере «сбора». */}
+            {/* Орбитальные точки-соперники: pop-in scale 0→1 в момент «нашёлся»
+                (8.7 — раньше появлялись мгновенно, «моргало»). */}
             {ORBIT_DOTS.map((dot, i) => (
               i < slotsFilled - 1 ? (
-                <Animated.View
-                  key={i}
-                  style={[
-                    styles.orbDot,
-                    {
-                      backgroundColor: dot.color,
-                      transform: [
-                        { rotate: `${dot.angle}deg` },
-                        { translateX: dot.radius },
-                      ],
-                    },
-                  ]}
-                />
+                <OrbDot key={i} dot={dot} reduceMotion={reduceMotion} />
               ) : null
             ))}
             <Animated.View style={[styles.forgeCore, { transform: [{ scale: coreScale }], opacity: coreOpacity }]}>
@@ -349,7 +338,7 @@ export default function ConstellationSearchScreen() {
             </Animated.View>
           </View>
 
-          <Text style={[styles.kicker, { color: '#F6B24B' }]}>
+          <Text style={[styles.kicker, { color: '#F6B24B', fontSize: f.caption - 2 }]}>
             {triLang(lang, {
               ru: 'МАТЧ РОЖДАЕТСЯ', uk: 'МАТЧ НАРОДЖУЄТЬСЯ', es: 'NACE LA PARTIDA',
               'pt-BR': 'A PARTIDA NASCE', vi: 'TRẬN ĐẤU HÌNH THÀNH', id: 'MATCH LAHIR',
@@ -408,10 +397,10 @@ export default function ConstellationSearchScreen() {
           <View style={styles.hintWrap}>
             <Image source={COMPASS_IMG} style={styles.hintCompass} contentFit="contain" />
             <View style={styles.hintCard}>
-              <Text style={[styles.hintTitle, { color: '#8B7BFF' }]}>
+              <Text style={[styles.hintTitle, { color: '#8B7BFF', fontSize: f.caption - 1 }]}>
                 {SEARCH_HINTS[hintIdx].title(lang)}
               </Text>
-              <Text style={[styles.hintBody, { color: t.textSecond }]}>
+              <Text style={[styles.hintBody, { color: t.textSecond, fontSize: f.caption }]}>
                 {SEARCH_HINTS[hintIdx].body(lang)}
               </Text>
             </View>
@@ -513,7 +502,12 @@ export default function ConstellationSearchScreen() {
       {state.kind === 'starfall' ? (
         <Animated.View style={[styles.center, { opacity: goldAnim }]} pointerEvents="none">
           <View style={styles.goldWash} />
-          <Text style={styles.starfallTitle}>ЗВЕЗДОПАД!</Text>
+          {/* Метеоры (8.6): одноразовые падающие полосы поверх золотого washa.
+              Гейт reduce-motion — при укачивании только статичный washa+текст. */}
+          {!reduceMotion ? <MeteorShower /> : null}
+          <Animated.Text style={[styles.starfallTitle, { transform: [{ scale: reduceMotion ? 1 : goldAnim.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }] }]}>
+            ЗВЕЗДОПАД!
+          </Animated.Text>
           <Text style={[styles.starfallSub, { fontSize: f.body }]}>
             {triLang(lang, {
               ru: 'Золотой матч: звёзды платят осколками',
@@ -529,6 +523,71 @@ export default function ConstellationSearchScreen() {
         </Animated.View>
       ) : null}
     </View>
+  );
+}
+
+/** Один метеор: одноразовый пролёт по диагонали (не цикл — экран живёт 3.2с). */
+function Meteor({ startX, delay, len }: { startX: number; delay: number; len: number }) {
+  const p = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(p, {
+      toValue: 1, duration: 900, delay, useNativeDriver: true,
+    }).start();
+  }, [p, delay]);
+  const translateX = p.interpolate({ inputRange: [0, 1], outputRange: [0, 120] });
+  const translateY = p.interpolate({ inputRange: [0, 1], outputRange: [-40, 220] });
+  const opacity = p.interpolate({ inputRange: [0, 0.15, 0.85, 1], outputRange: [0, 1, 1, 0] });
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={{
+        position: 'absolute', left: startX, top: 0,
+        width: len, height: 2, borderRadius: 2, backgroundColor: '#FFE9A8',
+        opacity,
+        transform: [{ translateX }, { translateY }, { rotate: '55deg' }],
+      }}
+    />
+  );
+}
+
+/** Дождь метеоров Звездопада (8.6): фикс-пул одноразовых пролётов, разные задержки. */
+function MeteorShower() {
+  const meteors = useMemo(() => (
+    [0, 1, 2, 3, 4, 5].map((i) => {
+      const seed = Math.sin(i * 71.3) * 10000;
+      const frac = (n: number) => n - Math.floor(n);
+      return { startX: 20 + frac(seed) * 240, delay: Math.round(frac(seed * 2.1) * 700), len: 26 + frac(seed * 3.3) * 30 };
+    })
+  ), []);
+  return (
+    <View style={StyleSheet.absoluteFill} pointerEvents="none">
+      {meteors.map((m, i) => <Meteor key={i} startX={m.startX} delay={m.delay} len={m.len} />)}
+    </View>
+  );
+}
+
+/** Орбитальная точка-соперник с pop-in (scale 0→1) в момент появления (8.7). */
+function OrbDot({ dot, reduceMotion }: { dot: (typeof ORBIT_DOTS)[number]; reduceMotion: boolean }) {
+  const pop = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
+  useEffect(() => {
+    if (reduceMotion) { pop.setValue(1); return; }
+    Animated.spring(pop, { toValue: 1, useNativeDriver: true, friction: 5, tension: 140 }).start();
+  }, [pop, reduceMotion]);
+  return (
+    <Animated.View
+      style={[
+        styles.orbDot,
+        {
+          backgroundColor: dot.color,
+          opacity: pop,
+          transform: [
+            { rotate: `${dot.angle}deg` },
+            { translateX: dot.radius },
+            { scale: pop },
+          ],
+        },
+      ]}
+    />
   );
 }
 

@@ -1,9 +1,9 @@
 // ════════════════════════════════════════════════════════════════════════════
 // constellation_intro.tsx — онбординг первого входа в «Созвездия» (F6, гибрид).
 //
-// Быстрый и понятный, БЕЗ воды (решение владельца): 2 слайда голосом Компаса
-// («что это» + «как играть»), потом сразу в матч. Показывается ОДИН раз —
-// флаг в AsyncStorage. Дальше вход ведёт прямо на поиск.
+// Быстрый и понятный, БЕЗ воды (решение владельца): 3 слайда голосом Компаса
+// («что это» + «как играть» + «щит/дуэль/второй шанс»), потом сразу в матч.
+// Показывается ОДИН раз — флаг в AsyncStorage. Дальше вход ведёт на поиск.
 //
 // Голос — маскот Компас (🧭). Космический тёмный тон, живой звёздный фон.
 // ════════════════════════════════════════════════════════════════════════════
@@ -28,7 +28,7 @@ import { hapticLightImpact } from '../hooks/use-haptics';
 export const CONSTELLATION_INTRO_SEEN_KEY = 'constellation_intro_seen_v1';
 
 interface Slide {
-  art: 'capture' | 'answer';
+  art: 'capture' | 'answer' | 'rescue';
   kicker: (l: Lang) => string;
   title: (l: Lang) => string;
   body: (l: Lang) => string;
@@ -46,6 +46,12 @@ const SLIDES: Slide[] = [
     kicker: (l) => triLang(l, { ru: 'Как это работает', uk: 'Як це працює', es: 'Cómo funciona', 'pt-BR': 'Como funciona', vi: 'Cách chơi', id: 'Cara mainnya', tr: 'Nasıl oluyor', pl: 'Jak to działa' }),
     title: (l) => triLang(l, { ru: 'Отвечай — забирай', uk: 'Відповідай — забирай', es: 'Responde y conquista', 'pt-BR': 'Responda e conquiste', vi: 'Trả lời và chiếm', id: 'Jawab dan rebut', tr: 'Cevapla ve al', pl: 'Odpowiadaj i zdobywaj' }),
     body: (l) => triLang(l, { ru: 'Выбери звезду рядом со своей, ответь по‑английски — и она твоя. Ошибёшься? Не страшно: я подскажу правило, и в следующий раз получится. Тут учишься, даже когда проигрываешь.', uk: 'Обери зірку поруч, відповідай англійською — і вона твоя. Помилився? Не біда: я підкажу правило. Тут вчишся, навіть коли програєш.', es: 'Elige una estrella cercana, responde en inglés y será tuya. ¿Fallaste? Tranquilo, te soplo la regla. Aquí aprendes incluso perdiendo.', 'pt-BR': 'Escolha uma estrela ao lado, responda em inglês e ela é sua. Errou? Calma, eu te dou a regra. Aqui você aprende até perdendo.', vi: 'Chọn sao gần bạn, trả lời tiếng Anh và nó là của bạn. Sai ư? Đừng lo, tôi nhắc quy tắc. Ở đây thua vẫn học được.', id: 'Pilih bintang di sebelahmu, jawab Inggris, jadi milikmu. Salah? Santai, kubisikkan aturannya. Di sini kalah pun belajar.', tr: 'Yanındaki yıldızı seç, İngilizce cevapla, senin olsun. Yanıldın mı? Merak etme, kuralı fısıldarım. Burada kaybederken bile öğrenirsin.', pl: 'Wybierz gwiazdę obok, odpowiedz po angielsku i jest twoja. Błąd? Spokojnie, podpowiem zasadę. Tu uczysz się nawet przegrywając.' }),
+  },
+  {
+    art: 'rescue',
+    kicker: (l) => triLang(l, { ru: 'Не бойся проиграть', uk: 'Не бійся програти', es: 'No temas perder', 'pt-BR': 'Não tema perder', vi: 'Đừng sợ thua', id: 'Jangan takut kalah', tr: 'Kaybetmekten korkma', pl: 'Nie bój się przegrać' }),
+    title: (l) => triLang(l, { ru: 'Щит, дуэль и второй шанс', uk: 'Щит, дуель і другий шанс', es: 'Escudo, duelo y revancha', 'pt-BR': 'Escudo, duelo e revanche', vi: 'Khiên, đấu và cơ hội hai', id: 'Perisai, duel, kesempatan kedua', tr: 'Kalkan, düello, ikinci şans', pl: 'Tarcza, pojedynek i druga szansa' }),
+    body: (l) => triLang(l, { ru: 'Раз за игру можно поставить щит — звезду не отнимут. Если двое метят в одну звезду — быстрый блиц-поединок решит, чья она. А выбьют тебя — станешь падающей звездой: ответь верно и вернись в игру.', uk: 'Раз за гру постав щит — зірку не заберуть. Якщо двоє цілять в одну зірку — швидкий бліц вирішить, чия вона. Виб’ють тебе — станеш падаючою зіркою: відповідай вірно і повертайся.', es: 'Una vez por partida pon un escudo: nadie te quita esa estrella. Si dos van por la misma, un duelo rápido decide. ¿Te eliminan? Serás estrella fugaz: acierta y vuelves.', 'pt-BR': 'Uma vez por partida use um escudo: ninguém tira essa estrela. Se dois querem a mesma, um duelo rápido decide. Foi eliminado? Vira estrela cadente: acerte e volte.', vi: 'Mỗi ván được đặt một khiên — không ai lấy được sao đó. Hai người cùng nhắm một sao? Đấu nhanh phân thắng bại. Bị loại? Thành sao băng: trả lời đúng để trở lại.', id: 'Sekali per game pasang perisai — bintang itu aman. Kalau dua orang incar bintang sama, duel cepat menentukan. Tersingkir? Jadi bintang jatuh: jawab benar dan kembali.', tr: 'Oyun başına bir kalkan koy — o yıldız alınmaz. İkisi aynı yıldızı isterse hızlı düello karar verir. Elendin mi? Kayan yıldız olursun: doğru cevapla ve dön.', pl: 'Raz na grę postaw tarczę — nikt nie zabierze tej gwiazdy. Dwóch celuje w tę samą? Szybki pojedynek rozstrzyga. Wybito cię? Zostajesz spadającą gwiazdą: odpowiedz dobrze i wróć.' }),
   },
 ];
 
@@ -114,8 +120,24 @@ export default function ConstellationIntroScreen() {
   );
 }
 
-/** Мини-иллюстрация слайда (созвездие / вопрос). */
-function IntroArt({ kind }: { kind: 'capture' | 'answer' }) {
+/** Мини-иллюстрация слайда (созвездие / вопрос / щит-возрождение). */
+function IntroArt({ kind }: { kind: 'capture' | 'answer' | 'rescue' }) {
+  if (kind === 'rescue') {
+    // Звезда под щитом (кольцо) + падающий след — «защита и второй шанс».
+    return (
+      <Svg width={150} height={130} viewBox="0 0 150 130">
+        {/* защитное кольцо-щит */}
+        <Circle cx={75} cy={62} r={34} fill="none" stroke="#FFD166" strokeOpacity={0.55} strokeWidth={2} />
+        <Circle cx={75} cy={62} r={34} fill="#FFD166" opacity={0.08} />
+        {/* звезда в центре */}
+        <Circle cx={75} cy={62} r={18} fill="#8B7BFF" opacity={0.25} />
+        <Circle cx={75} cy={62} r={7} fill="#EAF2FF" />
+        {/* падающий след (возрождение) */}
+        <Line x1={112} y1={20} x2={92} y2={44} stroke="#37E0C8" strokeOpacity={0.7} strokeWidth={2} strokeLinecap="round" />
+        <Circle cx={92} cy={44} r={3} fill="#37E0C8" />
+      </Svg>
+    );
+  }
   if (kind === 'capture') {
     const pts = [[40, 40], [95, 30], [120, 75], [80, 95], [45, 80]];
     return (

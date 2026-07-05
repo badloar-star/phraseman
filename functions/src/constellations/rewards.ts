@@ -24,6 +24,8 @@ export interface RewardInput {
   matchesPlayedBefore: number;// сколько матчей режима сыграно ДО этого
   perfectCaptures: number;
   livingHumans: number;       // сколько людей дожили (для анти-фарма)
+  dustToday: number;          // пыли уже начислено сегодня (дневной кап)
+  starfallToday: number;      // звездопада уже начислено сегодня (дневной кап)
   cfg: ConstellationConfig;
 }
 
@@ -33,10 +35,14 @@ export interface MatchRewards {
   starDelta: number;
   srDelta: number;
   collectibleEligible: boolean;
+  /** Фактически начислено ПОСЛЕ анти-фарма и дневного капа (для pity-счётчиков). */
+  dustGranted: number;
+  starfallGranted: number;
 }
 
 const ZERO_REWARDS: MatchRewards = {
   xp: 0, shards: 0, starDelta: 0, srDelta: 0, collectibleEligible: false,
+  dustGranted: 0, starfallGranted: 0,
 };
 
 /** Индекс места 1..4 → индекс массива 0..3 (с клипом). */
@@ -80,11 +86,19 @@ export function computeMatchRewards(input: RewardInput): MatchRewards {
 
   // Анти-бот-фарм: < 2 живых людей → пыль и звездопад вдвое (C1).
   const antiFarm = input.livingHumans < 2;
-  const dust = antiFarm ? Math.floor(input.dustEarned / 2) : input.dustEarned;
-  const starfall = antiFarm ? Math.floor(input.starfallEarned / 2) : input.starfallEarned;
+  const dustAfterFarm = antiFarm ? Math.floor(input.dustEarned / 2) : input.dustEarned;
+  const starfallAfterFarm = antiFarm ? Math.floor(input.starfallEarned / 2) : input.starfallEarned;
+
+  // Дневной кап (аудит: dailyCap объявлен, но не применялся). Обрезаем по
+  // остатку дневного лимита; пыль и звездопад — разные лимиты.
+  const dustRoom = Math.max(0, cfg.polarDust.dailyCap - input.dustToday);
+  const starfallRoom = Math.max(0, cfg.starfall.dailyCap - input.starfallToday);
+  const dustGranted = Math.min(dustAfterFarm, dustRoom);
+  const starfallGranted = Math.min(starfallAfterFarm, starfallRoom);
 
   const placeShards = cfg.rewards.shardsByPlace[idx] ?? 0;
-  const shards = placeShards + dust + starfall + wagerPayout(input.place, input.wager, cfg);
+  const shards = placeShards + dustGranted + starfallGranted
+    + wagerPayout(input.place, input.wager, cfg);
 
   const rawStar = cfg.rewards.starDeltaByPlace[idx] ?? 0;
   const rawSr = cfg.rewards.srDeltaByPlace[idx] ?? 0;
@@ -97,5 +111,7 @@ export function computeMatchRewards(input: RewardInput): MatchRewards {
     starDelta,
     srDelta,
     collectibleEligible: true, // туториал отсекается вызывающим кодом (не-туториал)
+    dustGranted,
+    starfallGranted,
   };
 }

@@ -820,12 +820,23 @@ export async function finalizeConstellationMatch(matchId: string): Promise<void>
     // Читаем профили и статистику режима игроков-людей ВНУТРИ транзакции.
     const profileRefs = new Map(humanUids.map((u) => [u, db.collection('arena_profiles').doc(u)]));
     const userRefs = new Map(humanUids.map((u) => [u, db.collection('users').doc(u)]));
+    const pityRefs = new Map(humanUids.map((u) => [u, db.collection(PITY).doc(u)]));
     const profileSnaps = new Map<string, FirebaseFirestore.DocumentSnapshot>();
     const userSnaps = new Map<string, FirebaseFirestore.DocumentSnapshot>();
+    const pitySnaps = new Map<string, FirebaseFirestore.DocumentSnapshot>();
     for (const u of humanUids) {
       profileSnaps.set(u, await tx.get(profileRefs.get(u) as FirebaseFirestore.DocumentReference));
       userSnaps.set(u, await tx.get(userRefs.get(u) as FirebaseFirestore.DocumentReference));
+      pitySnaps.set(u, await tx.get(pityRefs.get(u) as FirebaseFirestore.DocumentReference));
     }
+    // Дневной кап пыли/звездопада (аудит): сколько уже начислено сегодня.
+    const todayKey = dayKeyUtc(now);
+    const dailyUsage = (uid: string): { dust: number; starfall: number } => {
+      const d = pitySnaps.get(uid)?.data() as
+        | { dayKey?: string; dustToday?: number; starfallToday?: number } | undefined;
+      if (!d || d.dayKey !== todayKey) return { dust: 0, starfall: 0 };
+      return { dust: Number(d.dustToday ?? 0), starfall: Number(d.starfallToday ?? 0) };
+    };
 
     const rewardByUid = new Map<string, ReturnType<typeof computeMatchRewards>>();
     for (const player of state.players) {
@@ -835,6 +846,7 @@ export async function finalizeConstellationMatch(matchId: string): Promise<void>
         (uSnap?.data() as { constellation_stats?: { matchesPlayed?: number } } | undefined)
           ?.constellation_stats?.matchesPlayed ?? 0,
       );
+      const usage = dailyUsage(player.uid);
       const reward = computeMatchRewards({
         place: placeByUid.get(player.uid) ?? 4,
         isBot: false,
@@ -845,8 +857,20 @@ export async function finalizeConstellationMatch(matchId: string): Promise<void>
         matchesPlayedBefore: matchesBefore,
         perfectCaptures: player.perfectCaptures,
         livingHumans,
+        dustToday: usage.dust,
+        starfallToday: usage.starfall,
         cfg,
       });
+      // Обновляем дневные счётчики pity (аудит: дневной кап теперь считается).
+      if (reward.dustGranted > 0 || reward.starfallGranted > 0) {
+        const pRef = pityRefs.get(player.uid) as FirebaseFirestore.DocumentReference;
+        tx.set(pRef, {
+          dayKey: todayKey,
+          dustToday: usage.dust + reward.dustGranted,
+          starfallToday: usage.starfall + reward.starfallGranted,
+          updatedAt: now,
+        }, { merge: true });
+      }
       rewardByUid.set(player.uid, reward);
 
       // ── Ранг/★/SR/XP в arena_profiles (общий с ареной ранг, E1/E2).

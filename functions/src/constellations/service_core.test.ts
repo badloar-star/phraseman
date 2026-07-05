@@ -117,11 +117,26 @@ describe('constellations/service_core — сборка входа резолва
         answers: [{ qIndex: 0, correct: true, timeMs: 3000 }], // второй не отвечен
         perfectOverride: null,
       },
-    ], []);
+    ], [], CFG);
     expect(input.attacks).toEqual([
       { slot: 0, target: '2,0', correctAll: true, perfect: true },
       { slot: 1, target: '2,-2', correctAll: false, perfect: false },
     ]);
+  });
+
+  test('идеальный захват требует и верности, и скорости: медленно, но верно → не идеально', () => {
+    // questionMaxSec=15 → порог 7500мс. Верно, но среднее время выше порога.
+    const input = buildRoundInput([
+      {
+        slot: 0, kind: 'attack', target: '2,0', shieldStarKey: null, questionCount: 2,
+        answers: [
+          { qIndex: 0, correct: true, timeMs: 9000 },
+          { qIndex: 1, correct: true, timeMs: 9000 },
+        ],
+        perfectOverride: null,
+      },
+    ], [], CFG);
+    expect(input.attacks[0]).toEqual({ slot: 0, target: '2,0', correctAll: true, perfect: false });
   });
 
   test('perfectOverride ботов приглушает идеальный захват', () => {
@@ -131,7 +146,7 @@ describe('constellations/service_core — сборка входа резолва
         answers: [{ qIndex: 0, correct: true, timeMs: 5000 }],
         perfectOverride: false,
       },
-    ], []);
+    ], [], CFG);
     expect(input.attacks[0]).toEqual({ slot: 0, target: '2,0', correctAll: true, perfect: false });
   });
 
@@ -141,7 +156,7 @@ describe('constellations/service_core — сборка входа резолва
         slot: 2, kind: 'idle', target: null, shieldStarKey: '-3,0', questionCount: 0,
         answers: [], perfectOverride: null,
       },
-    ], []);
+    ], [], CFG);
     expect(input.shields).toEqual([{ slot: 2, starKey: '-3,0' }]);
   });
 
@@ -160,7 +175,7 @@ describe('constellations/service_core — сборка входа резолва
         answers: [{ qIndex: 0, correct: false, timeMs: 2000 }],
         perfectOverride: null,
       },
-    ], [{ starKey: '0,0', slots: [0, 3] }]);
+    ], [{ starKey: '0,0', slots: [0, 3] }], CFG);
     expect(input.duels).toEqual([{ starKey: '0,0', slots: [0, 3], winner: 0 }]);
   });
 
@@ -174,7 +189,7 @@ describe('constellations/service_core — сборка входа резолва
         slot: 1, kind: 'duel', target: '0,0', shieldStarKey: null, questionCount: 4,
         answers: [], perfectOverride: null,
       },
-    ], [{ starKey: '0,0', slots: [0, 1] }]);
+    ], [{ starKey: '0,0', slots: [0, 1] }], CFG);
     expect(input.duels[0].winner).toBeNull();
   });
 
@@ -188,7 +203,7 @@ describe('constellations/service_core — сборка входа резолва
         slot: 3, kind: 'falling', target: null, shieldStarKey: null, questionCount: 1,
         answers: [], perfectOverride: null,
       },
-    ], []);
+    ], [], CFG);
     expect(input.falling).toEqual([
       { slot: 2, answeredCorrect: true },
       { slot: 3, answeredCorrect: false },

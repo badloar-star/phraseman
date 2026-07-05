@@ -26,7 +26,8 @@ export interface DuelScore {
   suddenDeath: boolean;
 }
 
-const MAIN_QUESTIONS = 3;
+/** Основных вопросов в дуэли по умолчанию (переопределяется cfg.duel.targetScore). */
+export const DEFAULT_MAIN_QUESTIONS = 3;
 const NOT_ANSWERED: DuelAnswer = { correct: false, timeMs: Number.MAX_SAFE_INTEGER };
 
 function answerAt(answers: readonly DuelAnswer[], i: number): DuelAnswer {
@@ -53,16 +54,19 @@ function suddenDeathWinner(a: DuelAnswer, b: DuelAnswer): 0 | 1 | null {
 export function scoreDuel(
   answersA: readonly DuelAnswer[],
   answersB: readonly DuelAnswer[],
+  mainQuestions: number = DEFAULT_MAIN_QUESTIONS,
 ): DuelScore {
+  // Защита от нулей/дробей из runtime-конфига: минимум 1 основной вопрос.
+  const total = Math.max(1, Math.floor(mainQuestions));
   const points: [number, number] = [0, 0];
-  let decidedAtQuestion = MAIN_QUESTIONS - 1;
+  let decidedAtQuestion = total - 1;
 
-  for (let i = 0; i < MAIN_QUESTIONS; i += 1) {
+  for (let i = 0; i < total; i += 1) {
     const [da, db] = pointDeltas(answerAt(answersA, i), answerAt(answersB, i));
     points[0] += da;
     points[1] += db;
     decidedAtQuestion = i;
-    const remaining = MAIN_QUESTIONS - 1 - i;
+    const remaining = total - 1 - i;
     // Отрыв недостижим оставшимися вопросами (макс по +1 обоим) → досрочно.
     if (Math.abs(points[0] - points[1]) > remaining) break;
   }
@@ -76,12 +80,12 @@ export function scoreDuel(
     };
   }
 
-  // Ничья по знанию → внезапная смерть (4-й вопрос): здесь скорость решает.
-  const winner = suddenDeathWinner(answerAt(answersA, MAIN_QUESTIONS), answerAt(answersB, MAIN_QUESTIONS));
+  // Ничья по знанию → внезапная смерть (доп. вопрос): здесь скорость решает.
+  const winner = suddenDeathWinner(answerAt(answersA, total), answerAt(answersB, total));
   return {
     winner,
     points,
-    decidedAtQuestion: MAIN_QUESTIONS,
+    decidedAtQuestion: total,
     suddenDeath: true,
   };
 }

@@ -125,6 +125,22 @@ export interface DuelRecordInput {
 
 const NOT_ANSWERED_TIME = Number.MAX_SAFE_INTEGER;
 
+/** Порог «быстро» для идеального захвата: среднее время ниже половины лимита. */
+export const PERFECT_SPEED_FRACTION = 0.5;
+
+/**
+ * Среднее время ответов ниже порога? Пустой список ответов (не отвечал) — не быстро.
+ * timeMs у не-ответа = NOT_ANSWERED_TIME, что естественно проваливает порог.
+ */
+function isFastEnough(
+  answers: ReadonlyArray<{ timeMs: number }>,
+  thresholdMs: number,
+): boolean {
+  if (answers.length === 0) return false;
+  const sum = answers.reduce((acc, a) => acc + a.timeMs, 0);
+  return sum / answers.length < thresholdMs;
+}
+
 function duelAnswersFor(record: SlotRoundRecord | undefined, questionCount: number): DuelAnswer[] {
   const out: DuelAnswer[] = [];
   for (let i = 0; i < questionCount; i += 1) {
@@ -142,6 +158,7 @@ function duelAnswersFor(record: SlotRoundRecord | undefined, questionCount: numb
 export function buildRoundInput(
   records: readonly SlotRoundRecord[],
   duels: readonly DuelRecordInput[],
+  cfg: ConstellationConfig,
 ): RoundInput {
   const bySlot = new Map<PlayerSlot, SlotRoundRecord>();
   for (const r of records) bySlot.set(r.slot, r);
@@ -149,6 +166,11 @@ export function buildRoundInput(
   const shields = records
     .filter((r) => r.shieldStarKey)
     .map((r) => ({ slot: r.slot, starKey: r.shieldStarKey as string }));
+
+  // «Идеальный захват» = верно И быстро (аудит-фикс): среднее время ответов
+  // ниже половины лимита вопроса. Боты сохраняют право «смазать» через
+  // perfectOverride===false (человечность B4); у людей override === null.
+  const perfectSpeedMs = cfg.questionMaxSec * 1000 * PERFECT_SPEED_FRACTION;
 
   const attacks = records
     .filter((r) => r.kind === 'attack' && r.target)
@@ -161,19 +183,25 @@ export function buildRoundInput(
           break;
         }
       }
+      const fastEnough = isFastEnough(r.answers, perfectSpeedMs);
+      // Бот явно «смазал» (false) → не идеально. Иначе (человек null / бот true)
+      // идеальность требует и полной верности, и достаточной скорости.
+      const notSmudged = r.perfectOverride !== false;
       return {
         slot: r.slot,
         target: r.target as string,
         correctAll,
-        perfect: correctAll && (r.perfectOverride ?? true),
+        perfect: correctAll && notSmudged && fastEnough,
       };
     });
 
+  // Основных вопросов в дуэли — из конфига (targetScore); +1 на внезапную смерть.
+  const mainQ = Math.max(1, Math.floor(cfg.duel.targetScore));
+  const duelSlots = mainQ + 1;
   const duelOutcomes = duels.map((duel) => {
-    // 4 вопроса: 3 основных + внезапная смерть (scoreDuel сам решит, нужна ли она).
-    const a = duelAnswersFor(bySlot.get(duel.slots[0]), 4);
-    const b = duelAnswersFor(bySlot.get(duel.slots[1]), 4);
-    const score = scoreDuel(a, b);
+    const a = duelAnswersFor(bySlot.get(duel.slots[0]), duelSlots);
+    const b = duelAnswersFor(bySlot.get(duel.slots[1]), duelSlots);
+    const score = scoreDuel(a, b, mainQ);
     return {
       starKey: duel.starKey,
       slots: duel.slots,

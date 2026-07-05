@@ -409,6 +409,9 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
 
   // План раздачи: дуэли (общие вопросы), одиночные атаки, падающие звёзды.
   const assignments: Assignment[] = [];
+  // Число вопросов дуэли из конфига: targetScore основных + 1 внезапная смерть
+  // (A4a; Сияние в дуэли не считается, набор общий — underdog-скидка тут не к месту).
+  const duelQuestionCount = Math.max(1, Math.floor(cfg.duel.targetScore)) + 1;
   for (const duel of conflicts.duels) {
     const spec = attackQuestionSpec(state, duel.starKey, matchRankIndex, cfg);
     for (let i = 0; i < 2; i += 1) {
@@ -416,7 +419,7 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
         slot: duel.slots[i],
         kind: 'duel',
         target: duel.starKey,
-        count: 4, // 3 основных + внезапная смерть (A4a; Сияние в дуэли не считается)
+        count: duelQuestionCount,
         level: spec.level,
         duelStarKey: duel.starKey,
         duelOppSlot: duel.slots[1 - i],
@@ -487,7 +490,7 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
       if (usedQids.has(raw.id)) continue;
       usedQids.add(raw.id);
       const dealt = toDealtQuestion(raw, `${matchId}:r${round}:q${picked.length}:${raw.id}`);
-      correctByQid[raw.id] = { correctIndex: dealt.correctIndex, rule: dealt.rule };
+      correctByQid[raw.id] = { correctIndex: dealt.correctIndex };
       picked.push(dealt.public);
       qids.push(raw.id);
     }
@@ -497,7 +500,7 @@ export async function advanceToAnswer(matchId: string): Promise<void> {
         if (picked.length >= count) break;
         if (qids.includes(raw.id)) continue;
         const dealt = toDealtQuestion(raw, `${matchId}:r${round}:q${picked.length}:${raw.id}`);
-        correctByQid[raw.id] = { correctIndex: dealt.correctIndex, rule: dealt.rule };
+        correctByQid[raw.id] = { correctIndex: dealt.correctIndex };
         picked.push(dealt.public);
         qids.push(raw.id);
       }
@@ -635,7 +638,7 @@ export async function resolveCurrentRound(matchId: string): Promise<void> {
       });
     }
 
-    const input = buildRoundInput(records, server.duels.map((d) => ({ starKey: d.starKey, slots: d.slots })));
+    const input = buildRoundInput(records, server.duels.map((d) => ({ starKey: d.starKey, slots: d.slots })), cfg);
     const resolution = resolveRound(server.state, input, cfg);
     finished = resolution.state.stage === 'finished';
 

@@ -29,6 +29,9 @@ import {
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import { monoIcon } from '../constants/monoIcon';
+import fk from './feedback/feedback_kit';
+import VictoryBurst from '../components/feedback/VictoryBurst';
+import { theoryChapterDoneTitle, theoryChapterDoneSubtitle } from './feedback/feedback_i18n';
 import {
   Body,
   Example,
@@ -345,6 +348,10 @@ export default function LessonHelp() {
   const [xpClaimed, setXpClaimed] = useState(false);
   const [xpClaimHydrated, setXpClaimHydrated] = useState(false);
   const [xpShown, setXpShown] = useState(false);
+  // [FeedbackKit] Мини-победа «Глава закрыта» на СУЩЕСТВУЮЩЕЕ событие завершения
+  // теории — успешный клейм XP (спек §10.2: трекинга дочитанности нет, отдельную
+  // «отметку прочтения» НЕ создаём; показываем только ощущение, без записи состояния).
+  const [chapterBurstShown, setChapterBurstShown] = useState(false);
   const [earnedXP, setEarnedXP] = useState(0);
   const [previewXP, setPreviewXP] = useState(25);
   const claimInFlightRef = useRef(false);
@@ -410,6 +417,9 @@ export default function LessonHelp() {
         }
         setEarnedXP(result.finalDelta);
         setXpShown(true);
+        // [FeedbackKit] Глава закрыта — мини-победа со звуком (одноразово: клейм
+        // защищён xpClaimed + ключом хранилища, повторно не сработает).
+        setChapterBurstShown(true);
         xpAnim.setValue(0);
         Animated.sequence([
           Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
@@ -461,7 +471,7 @@ export default function LessonHelp() {
         borderBottomWidth: 0.5,
         borderBottomColor: t.border,
       }}>
-        <TapScale onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)} style={{ marginRight: 12, padding: 4 }}>
+        <TapScale onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
         </TapScale>
         <View style={{ flex: 1 }}>
@@ -559,7 +569,7 @@ export default function LessonHelp() {
         {canClaimTheoryXp ? (
         <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
           <TouchableOpacity
-            onPress={handleClaimXP}
+            onPress={() => { fk.tap(); void handleClaimXP(); }}
             disabled={xpClaimed || !xpClaimHydrated}
             style={{
               flexDirection: 'row',
@@ -611,6 +621,16 @@ export default function LessonHelp() {
         ) : null}
       </ScrollView>
     </ContentWrap>
+    {/* [FeedbackKit] «Глава закрыта» — мини-победа поверх экрана теории на
+        успешный клейм XP. Без записи прогресса дочитанности (спек §10.2). */}
+    <VictoryBurst
+      visible={chapterBurstShown}
+      title={theoryChapterDoneTitle(lang)}
+      subtitle={theoryChapterDoneSubtitle(lang)}
+      heroEmoji="📖"
+      celebrateSound="chord"
+      onDone={() => setChapterBurstShown(false)}
+    />
     </SafeAreaView>
     </ScreenGradient>
   );

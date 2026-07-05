@@ -24,9 +24,10 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { useCorrectSound } from '../hooks/use-correct-sound';
+import fk from './feedback/feedback_kit';
+import VictoryBurst from '../components/feedback/VictoryBurst';
+import { verbLearnedDoneTitle, verbFormsSubtitle } from './feedback/feedback_i18n';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
@@ -214,7 +215,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   studyTarget?: RuntimeStudyTarget;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  const { playCorrect } = useCorrectSound();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode } = useTheme();
   const router = useRouter();
@@ -250,6 +250,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   const [btnStates, setBtnStates] = useState<BtnState[]>(['idle', 'idle', 'idle', 'idle']);
   const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
   const [feedbackCorrect, setFeedbackCorrect] = useState(true);
+  // [FeedbackKit] Локальная серия подряд-верных ОТВЕТОВ по формам (для лесенки
+  // комбо/стингеров) — только ощущения, экономику/SRS не трогает.
+  const fkComboRef = useRef(0);
+  // [FeedbackKit] Мини-победа «Глагол освоен»: показываем формы освоенного
+  // глагола (base–past–part). null = скрыта; ставится при чистом проходе глагола.
+  const [learnedBurst, setLearnedBurst] = useState<{ base: string; past: string; pp: string } | null>(null);
   const hadErrorThisVerb = useRef(false);
   // «Шаткий» проход: была ошибка ИЛИ глагол ещё незрелый (узнавание) — короткий SRS-интервал.
   const shakyThisVerb = useRef(false);
@@ -380,10 +386,17 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     if (voiceOut) speakAudio(correct, speechRate, { language: 'en-US' });
 
     if (isCorrect) {
-      void hapticSuccess();
-      playCorrect();
+      // [FeedbackKit] Ранее: hapticSuccess + correct-звук. fk.correct даёт тот же
+      // haptic + тёплый «дин-дон»; fk.combo — лесенку нот/стингеры серии.
+      fkComboRef.current += 1;
+      fk.correct();
+      fk.combo(fkComboRef.current);
     } else {
-      void hapticError();
+      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
+      const brokeFrom = fkComboRef.current;
+      fkComboRef.current = 0;
+      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
+      else fk.wrong();
       hadErrorThisVerb.current = true;
       shakyThisVerb.current = true;
 
@@ -431,6 +444,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
           .catch(() => {});
         if (noErrors) {
           // Correct — mark as learned
+          // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
+          // освоения (чистый проход всех трёх форм). Только ощущение; счёт/XP ниже.
+          setLearnedBurst({ base: verb.base, past: verb.past, pp: verb.pp });
           const newCount = 3;
           const newCounts = { ...counts, [verb.base]: newCount };
           setCounts(newCounts);
@@ -541,7 +557,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         </TouchableOpacity>
         <TouchableOpacity
           style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
-          onPress={() => { hapticTap(); onReset(); }}
+          onPress={() => { fk.tap(); onReset(); }}
           activeOpacity={0.8}
         >
           <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
@@ -789,6 +805,17 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         />
       )}
 
+      {/* [FeedbackKit] Мини-победа «Глагол освоен» — поверх экрана тренировки,
+          формы base–past–part, уходит сама/по тапу. Монтируется только на показ. */}
+      <VictoryBurst
+        visible={learnedBurst !== null}
+        title={verbLearnedDoneTitle(lang)}
+        subtitle={learnedBurst ? verbFormsSubtitle(learnedBurst.base, learnedBurst.past, learnedBurst.pp) : undefined}
+        heroEmoji="⚡"
+        celebrateSound="medal"
+        autoHideMs={1600}
+        onDone={() => setLearnedBurst(null)}
+      />
     </View>
   );
 }
@@ -1073,7 +1100,7 @@ export default function LessonIrregularVerbs() {
         <ContentWrap>
           {/* Header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 13, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-            <TapScale onPress={() => { hapticTap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
+            <TapScale onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{lessonId}. {title}</Text>

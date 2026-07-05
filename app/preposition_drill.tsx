@@ -19,9 +19,10 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useAudio } from '../hooks/use-audio';
+import fk from './feedback/feedback_kit';
+import VictoryBurst from '../components/feedback/VictoryBurst';
+import { prepDrillDoneTitle, prepDrillDoneSubtitle } from './feedback/feedback_i18n';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
@@ -105,8 +106,12 @@ export default function PrepositionDrillScreen() {
   const [itemIdx, setItemIdx] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
-  const { playCorrect } = useCorrectSound();
   const [correctCount, setCorrectCount] = useState(0);
+  // [FeedbackKit] Локальная серия подряд-верных ответов (лесенка комбо) — только
+  // ощущения; экономику/прогресс не трогает. + мини-победа на финал прогона.
+  const fkComboRef = useRef(0);
+  const [victoryShown, setVictoryShown] = useState(false);
+  const victoryFiredRef = useRef(false);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [reviewMode, setReviewMode] = useState(false);
@@ -277,8 +282,14 @@ export default function PrepositionDrillScreen() {
     })();
   }, [done, reviewMode, total, wrongIds.length, lessonId, lang, studyTarget]);
 
+  // [FeedbackKit] Мини-победа на финал прогона — один раз при первом достижении
+  // конца (guard victoryFiredRef). Показываем и на обычном прогоне, и на review;
+  // перфект (0 ошибок в основном прогоне) отмечаем усиленным празднованием ниже.
   useEffect(() => {
     if (!done) return;
+    if (victoryFiredRef.current) return;
+    victoryFiredRef.current = true;
+    setVictoryShown(true);
   }, [done]);
   const speakSentenceEn = useCallback((template: string, prep: string) => {
     if (!voiceOut) return;
@@ -382,9 +393,13 @@ export default function PrepositionDrillScreen() {
     setSelected(option);
     setIsCorrect(ok);
     speakSentenceEn(item.sentenceTemplate, item.correct);
+    // [FeedbackKit] Вердикт ответа (звук+вибра). Ранее: hapticSuccess+correct /
+    // hapticError. fk.correct/fk.wrong дают тот же haptic + тёплый/мягкий звук,
+    // fk.combo — лесенку серии. Экономика/прогресс ниже считаются как раньше.
     if (ok) {
-      hapticSuccess();
-      playCorrect();
+      fkComboRef.current += 1;
+      fk.correct();
+      fk.combo(fkComboRef.current);
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -410,7 +425,11 @@ export default function PrepositionDrillScreen() {
         .then(r => setXpToastAmount(r.finalDelta))
         .catch(() => {});
     } else {
-      hapticError();
+      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
+      const brokeFrom = fkComboRef.current;
+      fkComboRef.current = 0;
+      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
+      else fk.wrong();
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = wrongIds.includes(item.id) ? wrongIds : [...wrongIds, item.id];
       setAnsweredIds(nextAnswered);
@@ -446,6 +465,10 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
+    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
+    fkComboRef.current = 0;
+    victoryFiredRef.current = false;
+    setVictoryShown(false);
   };
 
   const restartAll = () => {
@@ -455,6 +478,10 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
+    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
+    fkComboRef.current = 0;
+    victoryFiredRef.current = false;
+    setVictoryShown(false);
   };
 
   const scrollBottomPad =
@@ -601,7 +628,7 @@ export default function PrepositionDrillScreen() {
                     })}
                   </Text>
                   <TouchableOpacity
-                    onPress={goNext}
+                    onPress={() => { fk.tap(); goNext(); }}
                     style={{ marginTop: ds.spacing.sm, backgroundColor: '#2E7D52', borderRadius: ds.radius.md, paddingVertical: ds.spacing.sm, alignItems: 'center' }}
                   >
                     <Text style={{ color: '#fff', fontWeight: '700', fontSize: f.body }}>
@@ -704,7 +731,7 @@ export default function PrepositionDrillScreen() {
               </Text>
 
               <TouchableOpacity
-                onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+                onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
                 style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
               >
                 <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
@@ -722,7 +749,7 @@ export default function PrepositionDrillScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => { hapticTap(); restartAll(); }}
+                onPress={() => { fk.tap(); restartAll(); }}
                 activeOpacity={0.8}
                 style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
               >
@@ -743,7 +770,7 @@ export default function PrepositionDrillScreen() {
 
               {wrongIds.length > 0 && !reviewMode && (
                 <TouchableOpacity
-                  onPress={() => { hapticTap(); restartWrong(); }}
+                  onPress={() => { fk.tap(); restartWrong(); }}
                   style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14, borderWidth: 1, borderColor: t.border }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
@@ -784,6 +811,23 @@ export default function PrepositionDrillScreen() {
               </Text>
             </Animated.View>
           )}
+          {/* [FeedbackKit] Мини-победа на финал прогона. Перфект (основной прогон
+              без ошибок) — усиленное празднование: аккорд + больше конфетти. Сам
+              бонус/XP перфекта НЕ трогаем (см. эффект perfect-bonus выше). */}
+          {(() => {
+            const perfectRun = !reviewMode && total > 0 && wrongIds.length === 0;
+            return (
+              <VictoryBurst
+                visible={victoryShown}
+                title={prepDrillDoneTitle(lang)}
+                subtitle={prepDrillDoneSubtitle(lang, correctCount, total)}
+                heroEmoji={perfectRun ? '🏆' : '🎯'}
+                celebrateSound={perfectRun ? 'chord' : 'medal'}
+                confettiCount={perfectRun ? 120 : 60}
+                onDone={() => setVictoryShown(false)}
+              />
+            );
+          })()}
         </View>
         </ContentWrap>
 

@@ -42,6 +42,11 @@ export interface VictoryBurstProps {
   celebrateSound?: Extract<MilestoneKind, 'medal' | 'chord'>;
   /** Эмодзи-герой по центру карточки. */
   heroEmoji?: string;
+  /**
+   * Число частиц конфетти (усиление для «перфект»-финалов). Дефолт 60;
+   * ConfettiBurst сам капит на ≤120 и делит на слабых устройствах (Perf Bible).
+   */
+  confettiCount?: number;
 }
 
 export function VictoryBurst({
@@ -53,6 +58,7 @@ export function VictoryBurst({
   autoHideMs = 2200,
   celebrateSound = 'medal',
   heroEmoji = '🎉',
+  confettiCount = 60,
 }: VictoryBurstProps) {
   const { theme: t } = useTheme();
   const shown = useSharedValue(0);
@@ -107,7 +113,7 @@ export function VictoryBurst({
         pointerEvents="none"
         style={[StyleSheet.absoluteFill, { backgroundColor: '#000' }, backdropStyle]}
       />
-      <ConfettiBurst count={60} durationMs={1100} seed={7} />
+      <ConfettiBurst count={confettiCount} durationMs={1100} seed={7} />
       <Animated.View
         style={[
           styles.card,

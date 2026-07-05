@@ -34,8 +34,9 @@ import {
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from '../components/animationScheduling';
-import { hapticTap, hapticSuccess, hapticError } from '../hooks/use-haptics';
-import { useCorrectSound } from '../hooks/use-correct-sound';
+import fk from './feedback/feedback_kit';
+import VictoryBurst from '../components/feedback/VictoryBurst';
+import { wordsSessionDoneTitle, wordsSessionDoneSubtitle } from './feedback/feedback_i18n';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -2687,7 +2688,6 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
 function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  const { playCorrect } = useCorrectSound();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme:t, f, themeMode } = useTheme();
@@ -2723,6 +2723,14 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
   const wordMistakeCountRef = useRef<Record<string, number>>({});
+  // [FeedbackKit] Локальная серия подряд-верных ответов ТОЛЬКО для ощущений
+  // (лесенка комбо/стингеры). НЕ участвует в экономике/XP — те считаются выше
+  // по своим правилам. Свой счётчик, т.к. в lesson_words нет combo-формулы.
+  const fkComboRef = useRef(0);
+  // [FeedbackKit] Показ VictoryBurst на финал сессии — один раз (guard от
+  // повторного показа при ре-рендерах, пока allDone держится true).
+  const [victoryShown, setVictoryShown] = useState(false);
+  const victoryFiredRef = useRef(false);
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
   const [voiceOut,   setVoiceOut]   = useState(true);
@@ -2827,6 +2835,19 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   }, [allDone, lang, studyTarget]);
 
   const validQueue = useMemo(() => sanitizeTrainingQueue(queue), [queue]);
+
+  // [FeedbackKit] Мини-победа на финал сессии Training — один раз при первом
+  // достижении завершения (guard victoryFiredRef; сбрасывается в startPractice).
+  // Только ощущение поверх существующего экрана итога — экономику не трогает.
+  const sessionFinished = allDone || (validQueue.length === 0 && learnedCnt >= words.length);
+  useEffect(() => {
+    if (!sessionFinished) return;
+    if (victoryFiredRef.current) return;
+    if (!sessionTouchedRef.current) return; // не показываем, если вошли в уже пройденный раздел без ответов
+    victoryFiredRef.current = true;
+    setVictoryShown(true);
+  }, [sessionFinished]);
+
   const currentItem: TrainingQueueItem | undefined = validQueue[qIdx % Math.max(validQueue.length, 1)];
   const current: Card | undefined = useMemo(
     () => currentItem ? buildCard(currentItem.word, currentItem.roundIndex, words, lang) : undefined,
@@ -2854,12 +2875,24 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
+    // [FeedbackKit] Серия ДО обновления этим ответом — нужна, чтобы отличить
+    // обрыв заметной серии (comboBreak) от обычной ошибки (wrong). Только для
+    // ОЩУЩЕНИЙ; экономика/прогресс ниже её не читают.
+    const fkStreakBefore = fkComboRef.current;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
-    // Раньше на главном экране урока был только общий tap, без сигнала результата.
-    if (isRight) void hapticSuccess(); else void hapticError();
+    // [FeedbackKit] Ранее: hapticSuccess/hapticError + correct-звук; теперь
+    // fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
-      playCorrect();
+      fkComboRef.current = fkStreakBefore + 1;
+      fk.correct();
+      fk.combo(fkComboRef.current);
+    } else {
+      fkComboRef.current = 0;
+      if (fkStreakBefore >= 3) fk.comboBreak(fkStreakBefore);
+      else fk.wrong();
+    }
+    if (isRight) {
       // Тост опыта — СРАЗУ после ответа, синхронно: не ждём ни задержку
       // обратной связи (setTimeout ниже), ни сетевой round-trip registerXP.
       const prevCountNow = Math.min(Math.max(Number(countsRef.current[wordEn] ?? 0), 0), REQUIRED);
@@ -3016,6 +3049,11 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setCoachToast(null);
     wrongMistakesRef.current = [];
     locked.current = false;
+    // [FeedbackKit] Новый прогон — сбрасываем серию ощущений и разрешаем показать
+    // финальную мини-победу снова.
+    fkComboRef.current = 0;
+    victoryFiredRef.current = false;
+    setVictoryShown(false);
   };
 
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
@@ -3057,7 +3095,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           testID="lesson-words-repeat"
           style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
           onPress={() => {
-            hapticTap();
+            fk.tap();
             setPracticeRepeatConfirm(true);
           }}
           activeOpacity={0.8}
@@ -3120,6 +3158,16 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         />
       )}
       {xpToastOverlay}
+      {/* [FeedbackKit] Мини-победа «Слова закреплены» — карточка с пружиной,
+          звук/конфетти, уходит сама или по тапу. Монтируется только на показ. */}
+      <VictoryBurst
+        visible={victoryShown}
+        title={wordsSessionDoneTitle(lang)}
+        subtitle={wordsSessionDoneSubtitle(lang, learnedCnt, words.length)}
+        heroEmoji="📚"
+        celebrateSound="medal"
+        onDone={() => setVictoryShown(false)}
+      />
     </View>
   );
 

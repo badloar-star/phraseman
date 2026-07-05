@@ -301,6 +301,21 @@ export function SpeakingPanel({
   const wordListenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const wordHoldRecRef = useRef<HoldRecording | null>(null);
   const wordFinishingRef = useRef(false);
+  // Авто-переход: после «чисто» карточка сама открывает СЛЕДУЮЩЕЕ проблемное
+  // слово (жёлтое/красное) и озвучивает его эталон. Таймер даёт увидеть «Чисто!»
+  // и услышать салют перед прыжком; снимается при закрытии карточки/анмаунте/
+  // ручном переключении, чтобы не открыть слово после ухода пользователя.
+  const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Ref на «открыть слово и озвучить его эталон». Ref, а не прямой вызов, чтобы
+  // markCleanedWord (объявлен выше по файлу) не зависел от speakWord/onTapWord
+  // (объявлены ниже) и не тянул их в свои зависимости.
+  const advanceToWordRef = useRef<((index: number) => void) | null>(null);
+  const clearAutoAdvance = useCallback(() => {
+    if (autoAdvanceRef.current != null) {
+      clearTimeout(autoAdvanceRef.current);
+      autoAdvanceRef.current = null;
+    }
+  }, []);
   // Гард: onPass по «фраза дотянута тренировкой до идеала» шлём хосту только раз
   // за попытку (иначе повторные пометки чистого слова дёрнули бы success ещё раз).
   const passedNotifiedRef = useRef(false);
@@ -439,6 +454,7 @@ export function SpeakingPanel({
       const passed = honestScore >= biased.threshold;
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
       // Новая оценка попытки → сбрасываем прошлую тренировку слов начисто.
+      clearAutoAdvance();
       setDrill(initWordDrillState());
       setDrillCleaned(new Set<number>());
       setWordPhase('idle');
@@ -467,7 +483,7 @@ export function SpeakingPanel({
       }
       restoreLoudPlaybackMode();
     },
-    [targetText, onPass],
+    [targetText, onPass, clearAutoAdvance],
   );
 
   // ===== Тренировка слов: послушать / повторить / оценить ОДНО слово =====
@@ -518,11 +534,27 @@ export function SpeakingPanel({
             passedNotifiedRef.current = true;
             onPass?.({ score: Math.max(score ?? 0, 95), transcript: targetText });
           }
+        } else {
+          // Ещё есть незакрытые проблемные слова: карточка сама переходит к
+          // следующему (по порядку фразы, начиная за только что дочиненным, с
+          // «заворотом» к более ранним пропущенным) — открывает его и озвучивает
+          // эталон, чтобы юзер сразу услышал, что повторять. Небольшая пауза даёт
+          // увидеть «Чисто!» и услышать салют до прыжка.
+          const remaining = problemIndices.filter((i) => !nextSet.has(i));
+          const nextIndex =
+            remaining.find((i) => i > index) ?? remaining[0] ?? null;
+          if (nextIndex != null) {
+            clearAutoAdvance();
+            autoAdvanceRef.current = setTimeout(() => {
+              autoAdvanceRef.current = null;
+              advanceToWordRef.current?.(nextIndex);
+            }, 900);
+          }
         }
         return nextSet;
       });
     },
-    [problemIndices, status, score, onPass, targetText],
+    [problemIndices, status, score, onPass, targetText, clearAutoAdvance],
   );
 
   // «Послушать»: произносим ОДНО слово системным TTS (студийных клипов на одно
@@ -622,12 +654,25 @@ export function SpeakingPanel({
         cleanupWordListeners();
         applyWordResult(index, best);
       };
+      // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
+      // — на редких OEM 'start' не эмитится), а не сразу после speech.start()
+      // (прогрев ~100-300мс терял начало слова).
+      let cuePlayed = false;
+      const playCueOnce = () => {
+        if (cuePlayed) return;
+        cuePlayed = true;
+        playRecordStart();
+      };
       const resultSub = speech.addListener('result', (event: any) => {
         clearWordWatchdog(); // признак жизни движка — таймер больше не нужен
+        playCueOnce();
         const alts: Array<{ transcript?: string }> = Array.isArray(event?.results)
           ? event.results
           : [];
         for (const alt of alts) consider(String(alt?.transcript ?? ''));
+      });
+      const startSub = speech.addListener('start', () => {
+        playCueOnce();
       });
       const endSub = speech.addListener('end', () => settle());
       const errorSub = speech.addListener('error', () => settle());
@@ -641,7 +686,7 @@ export function SpeakingPanel({
           hapticError();
         }
       });
-      wordListenersRef.current = [resultSub, endSub, errorSub, noMatchSub].filter(
+      wordListenersRef.current = [resultSub, startSub, endSub, errorSub, noMatchSub].filter(
         Boolean,
       ) as Array<{ remove?: () => void }>;
       try {
@@ -685,7 +730,7 @@ export function SpeakingPanel({
             persistRecording: false,
           }),
         );
-        playRecordStart();
+        // cue теперь в слушателе 'start' — играет, когда движок реально слушает.
       } catch {
         clearWordWatchdog();
         cleanupWordListeners();
@@ -817,10 +862,20 @@ export function SpeakingPanel({
       }
     };
 
+    // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
+    // — на редких OEM 'start' не эмитится), а не сразу после speech.start()
+    // (прогрев ~100-300мс терял начало фразы).
+    let cuePlayed = false;
+    const playCueOnce = () => {
+      if (cuePlayed) return;
+      cuePlayed = true;
+      playRecordStart();
+    };
     const resultSub = speech.addListener('result', (event: any) => {
       // Первый результат = движок точно жив (на редких OEM 'start' не эмитится,
       // а сразу приходит result) — на всякий случай тоже снимаем watchdog.
       clearWatchdog();
+      playCueOnce();
       const alternatives: Array<{ transcript?: string; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }> = Array.isArray(event?.results)
         ? event.results
         : [];
@@ -849,6 +904,7 @@ export function SpeakingPanel({
     // нескольких секунд и означало вечное «Готовимся слушать…».)
     const startSub = speech.addListener('start', () => {
       clearWatchdog();
+      playCueOnce();
     });
     const endSub = speech.addListener('end', () => {
       // Скорим по самому полному варианту, а не по последнему обрывку.
@@ -936,8 +992,8 @@ export function SpeakingPanel({
           persistRecording: true,
         }),
       );
-      // Mic is live now -> canonical "recording started" cue (sound + haptic).
-      playRecordStart();
+      // cue перенесён в слушатель 'start' — играет по реальному старту движка,
+      // а не сразу после speech.start() (иначе терялось начало фразы).
     } catch {
       clearWatchdog();
       if (mountedRef.current) setStatus('unavailable');
@@ -1101,6 +1157,7 @@ export function SpeakingPanel({
     (index: number) => {
       if (!holdMode) return;
       if (wordHoldRecRef.current) return;
+      clearAutoAdvance(); // юзер начал повторять — висящий авто-переход отменяем
       wordFinishingRef.current = false;
       wordHoldPressActiveRef.current = true;
       try {
@@ -1142,7 +1199,7 @@ export function SpeakingPanel({
         wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
       })();
     },
-    [holdMode, ensureHoldMicPermission, playRecordStart],
+    [holdMode, ensureHoldMicPermission, playRecordStart, clearAutoAdvance],
   );
 
   const endWordHold = useCallback(
@@ -1193,11 +1250,12 @@ export function SpeakingPanel({
   const startWordAttempt = useCallback(
     (index: number) => {
       if (status === 'listening') return; // фразовый микрофон занят — взаимная блокировка
+      clearAutoAdvance(); // юзер начал повторять — висящий авто-переход отменяем
       setWordVerdict(null);
       setWordPhase('listening');
       void recordWordSystem(index);
     },
-    [status, recordWordSystem],
+    [status, recordWordSystem, clearAutoAdvance],
   );
 
   // Тап по слову карты: открыть карточку И СРАЗУ проиграть эталон слова. Каждый
@@ -1207,6 +1265,8 @@ export function SpeakingPanel({
   // гарантирует вызывающий JSX.
   const onTapWord = useCallback(
     (index: number) => {
+      // Ручной тап отменяет висящий авто-переход: пользователь сам выбрал слово.
+      clearAutoAdvance();
       // Останавливаем незавершённую запись слова при переключении.
       try {
         wordHoldRecRef.current?.cancel();
@@ -1223,10 +1283,25 @@ export function SpeakingPanel({
       const tok = tokens[index];
       if (tok) speakWord(tok);
     },
-    [cleanupWordListeners, tokens, speakWord],
+    [cleanupWordListeners, tokens, speakWord, clearAutoAdvance],
   );
 
+  // Авто-переход к следующему слову после «чисто» = ровно тот же открыть+озвучить,
+  // что и ручной тап. Держим в ref, чтобы markCleanedWord (выше) мог вызвать это,
+  // не завися от onTapWord (ниже). Проверяем mounted и что карточка ещё открыта:
+  // пользователь мог закрыть её или уйти за время паузы.
+  useEffect(() => {
+    advanceToWordRef.current = (index: number) => {
+      if (!mountedRef.current) return;
+      onTapWord(index);
+    };
+    return () => {
+      advanceToWordRef.current = null;
+    };
+  }, [onTapWord]);
+
   const closeWordCard = useCallback(() => {
+    clearAutoAdvance();
     try {
       wordHoldRecRef.current?.cancel();
     } catch {
@@ -1244,6 +1319,7 @@ export function SpeakingPanel({
     return () => {
       mountedRef.current = false;
       clearWatchdog();
+      clearAutoAdvance();
       cleanupListeners();
       try {
         speech?.abort();
@@ -1280,7 +1356,7 @@ export function SpeakingPanel({
       deleteRecordingFile(recordingUriRef.current);
       restoreLoudPlaybackMode();
     };
-  }, [speech, cleanupListeners, clearWatchdog]);
+  }, [speech, cleanupListeners, clearWatchdog, clearAutoAdvance]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».

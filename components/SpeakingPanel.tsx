@@ -1006,10 +1006,18 @@ export function SpeakingPanel({
     setScore(null);
     setWordReport(null);
     setHint(null);
-    setStatus('listening');
+    // «requesting» = мик прогревается; на «listening» + cue переходим только когда
+    // пришёл первый реальный аудио-чанк (иначе первое слово терялось в cold-start
+    // AudioRecord ~100-300мс). Захваченное до этого аудио рекордер сохраняет.
+    setStatus('requesting');
     hapticTap();
+    const onHoldFirstAudio = () => {
+      if (!holdPressActiveRef.current || holdRecRef.current == null) return;
+      setStatus('listening');
+      playRecordStart();
+    };
     if (holdMicGrantedRef.current) {
-      holdRecRef.current = startHoldRecording();
+      holdRecRef.current = startHoldRecording({ onFirstAudio: onHoldFirstAudio });
       return;
     }
     // Первого гранта ещё нет: показываем системный диалог вместо записи в тишину.
@@ -1025,16 +1033,16 @@ export function SpeakingPanel({
         setStatus('idle');
         return;
       }
-      holdRecRef.current = startHoldRecording();
+      holdRecRef.current = startHoldRecording({ onFirstAudio: onHoldFirstAudio });
     })();
-  }, [holdMode, ensureHoldMicPermission]);
+  }, [holdMode, ensureHoldMicPermission, playRecordStart]);
 
   const endHold = useCallback(async () => {
     holdPressActiveRef.current = false;
     const rec = holdRecRef.current;
     if (!rec) {
       // Отпустили, пока ждали диалог разрешения — вернуть панель в исходное.
-      setStatus((s) => (s === 'listening' ? 'idle' : s));
+      setStatus((s) => (s === 'listening' || s === 'requesting' ? 'idle' : s));
       return;
     }
     if (holdFinishingRef.current) return;
@@ -1105,11 +1113,17 @@ export function SpeakingPanel({
       } catch {
         /* no-op */
       }
-      setWordPhase('listening');
+      // Держим 'idle' пока мик прогревается; на 'listening' + cue — только когда
+      // пришёл первый реальный аудио-чанк (иначе терялось первое слово в cold-start).
       setWordVerdict(null);
       hapticTap();
+      const onWordFirstAudio = () => {
+        if (!wordHoldPressActiveRef.current || wordHoldRecRef.current == null) return;
+        setWordPhase('listening');
+        playRecordStart();
+      };
       if (holdMicGrantedRef.current) {
-        wordHoldRecRef.current = startHoldRecording();
+        wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
         return;
       }
       // Тот же гейт, что и у фразы: без гранта PCM-рекордер пишет тишину.
@@ -1125,10 +1139,10 @@ export function SpeakingPanel({
           setWordPhase('idle');
           return;
         }
-        wordHoldRecRef.current = startHoldRecording();
+        wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
       })();
     },
-    [holdMode, ensureHoldMicPermission],
+    [holdMode, ensureHoldMicPermission, playRecordStart],
   );
 
   const endWordHold = useCallback(

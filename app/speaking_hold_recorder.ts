@@ -123,16 +123,32 @@ const SILENT_STOP: HoldRecording = {
   isActive: () => false,
 };
 
+/** Options for a hold-recording session. */
+export interface StartHoldRecordingOptions {
+  /**
+   * Fired once, when the FIRST real PCM chunk arrives — i.e. the mic is actually
+   * capturing. AudioRecord needs ~100-300ms to spin up after start(); showing
+   * «Говори» before this drops the user's first word. Callers should flip the
+   * "listening" UI / cue on this callback, not synchronously after start.
+   */
+  onFirstAudio?: () => void;
+}
+
 /**
  * Begin recording immediately. Returns a controller whose `stop()` yields the
  * WAV uri. Returns a no-op controller (stop→null) when unsupported, so callers
  * can always `await rec.stop()` and branch on null → fall back to the system
  * recognizer. NEVER throws.
+ *
+ * `opts.onFirstAudio` fires when capture is genuinely live (first PCM chunk),
+ * so the UI can delay «Говори» until the mic is actually recording — the audio
+ * captured before that point is still kept, so no leading word is lost.
  */
-export function startHoldRecording(): HoldRecording {
+export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecording {
   const native = loadLiveAudioStream();
   const fs = loadFs();
   if (!native || !fs) return SILENT_STOP;
+  let firstAudioFired = false;
 
   const chunks: Uint8Array[] = [];
   let dataSub: { remove?: () => void } | undefined;
@@ -220,7 +236,19 @@ export function startHoldRecording(): HoldRecording {
     dataSub = native.on('data', (base64Chunk: string) => {
       if (settled) return;
       const bytes = base64ToBytes(base64Chunk);
-      if (bytes.length > 0) chunks.push(bytes);
+      if (bytes.length > 0) {
+        chunks.push(bytes);
+        // Первый реальный чанк = мик пишет по-настоящему. Сообщаем один раз,
+        // чтобы UI показал «Говори» именно сейчас, а не в момент cold-start.
+        if (!firstAudioFired) {
+          firstAudioFired = true;
+          try {
+            opts?.onFirstAudio?.();
+          } catch {
+            /* колбэк UI не должен ронять запись */
+          }
+        }
+      }
     });
     native.start();
     maxHoldTimer = setTimeout(() => {

@@ -43,6 +43,15 @@ describe('graceful degradation without the native package', () => {
     await expect(rec.stop()).resolves.toBeNull();
   });
 
+  it('accepts onFirstAudio option without throwing; never fires it in degraded path', async () => {
+    const onFirstAudio = jest.fn();
+    const rec = startHoldRecording({ onFirstAudio });
+    expect(rec.isActive()).toBe(false);
+    await expect(rec.stop()).resolves.toBeNull();
+    // No native capture in jest → no first chunk → callback must not fire.
+    expect(onFirstAudio).not.toHaveBeenCalled();
+  });
+
   it('deleteHoldRecording never throws (no fs, nullish, or normal uri)', () => {
     expect(() => deleteHoldRecording(null)).not.toThrow();
     expect(() => deleteHoldRecording('file:///tmp/attempt.wav')).not.toThrow();

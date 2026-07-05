@@ -205,44 +205,41 @@ export async function handleConstellationSubmit(
   });
 
   // Переход фазы: (а) фаст-форвард — все люди сходили/ответили (A3), либо
-  // (б) tick — истёк дедлайн фазы (клиент не ждёт минутный watchdog-cron).
-  // ВАЖНО: клиенту НЕ нужно ждать резолв раунда — он придёт через onSnapshot.
-  // Раньше submit СИНХРОННО ждал advanceToAnswer/resolveCurrentRound (тяжёлые
-  // транзакции) перед ответом → тап «зажечь звезду» висел 3с. Теперь запускаем
-  // переход в ФОНЕ и сразу отвечаем клиенту (мгновенный отклик на ход).
+  // (б) tick — истёк дедлайн фазы. СИНХРОННО await (иначе в Cloud Functions фон
+  // после return убивается платформой → раунд ЗАВИСАЛ, ждал минутный watchdog).
+  // Лаг «зажечь звезду» решается на клиенте оптимистично (шторка закрывается
+  // сразу); этот await наступает только когда ВСЕ готовы — тап не блокирует.
   const phaseCheck = (result as { phaseCheck?: string }).phaseCheck;
   const isDeadlineTick = (result as { deadlineTick?: boolean }).deadlineTick === true;
   delete (result as Record<string, unknown>).phaseCheck;
   delete (result as Record<string, unknown>).deadlineTick;
 
   if (phaseCheck) {
-    void (async () => {
-      try {
-        const [matchSnap, serverSnap] = await db.getAll(matchRef, serverRef);
-        const match = matchSnap.data() as ConstellationMatchDoc | undefined;
-        const server = serverSnap.data() as ServerDocShape | undefined;
-        if (match && server && match.stage === 'active' && match.phase === phaseCheck) {
-          const humanSnaps = server.humanUids.length > 0
-            ? await db.getAll(...server.humanUids.map(
-              (u) => db.collection(PLAYERS).doc(`${matchId}_${u}`),
-            ))
-            : [];
-          const humanDocs = humanSnaps
-            .map((s) => s.data() as ConstellationPlayerDoc | undefined)
-            .filter((d): d is ConstellationPlayerDoc => !!d);
-          const humanSlotsAlive = humanDocs
-            .filter((d) => server.state.players[d.slot]?.status === 'alive')
-            .map((d) => d.slot as PlayerSlot);
-          const deadlineElapsed = isDeadlineTick && Date.now() >= match.phaseDeadlineAt - 500;
-          if (deadlineElapsed || allHumansDoneForPhase(match, humanDocs, humanSlotsAlive)) {
-            if (match.phase === 'choose') await advanceToAnswer(matchId);
-            else await resolveCurrentRound(matchId);
-          }
+    try {
+      const [matchSnap, serverSnap] = await db.getAll(matchRef, serverRef);
+      const match = matchSnap.data() as ConstellationMatchDoc | undefined;
+      const server = serverSnap.data() as ServerDocShape | undefined;
+      if (match && server && match.stage === 'active' && match.phase === phaseCheck) {
+        const humanSnaps = server.humanUids.length > 0
+          ? await db.getAll(...server.humanUids.map(
+            (u) => db.collection(PLAYERS).doc(`${matchId}_${u}`),
+          ))
+          : [];
+        const humanDocs = humanSnaps
+          .map((s) => s.data() as ConstellationPlayerDoc | undefined)
+          .filter((d): d is ConstellationPlayerDoc => !!d);
+        const humanSlotsAlive = humanDocs
+          .filter((d) => server.state.players[d.slot]?.status === 'alive')
+          .map((d) => d.slot as PlayerSlot);
+        const deadlineElapsed = isDeadlineTick && Date.now() >= match.phaseDeadlineAt - 500;
+        if (deadlineElapsed || allHumansDoneForPhase(match, humanDocs, humanSlotsAlive)) {
+          if (match.phase === 'choose') await advanceToAnswer(matchId);
+          else await resolveCurrentRound(matchId);
         }
-      } catch (e) {
-        console.warn('constellation fast-forward (async) failed — watchdog подстрахует', e);
       }
-    })();
+    } catch (e) {
+      console.warn('constellation fast-forward failed — watchdog подстрахует', e);
+    }
   }
   return result;
 }

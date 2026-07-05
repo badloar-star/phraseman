@@ -73,6 +73,8 @@ export interface SkyMapProps {
   players: ConstellationMatchPlayer[];
   /** Легальные цели фазы выбора — подсветка пунктиром. */
   highlightKeys?: readonly string[];
+  /** Тапнутый гекс (открыта шторка) — яркая выделенная рамка. */
+  selectedKey?: string | null;
   /** Моя выбранная цель — золотой луч от моей ближайшей звезды. */
   myTargetKey?: string | null;
   mySlot?: number | null;
@@ -92,7 +94,7 @@ interface CellRender {
 }
 
 function SkyMapInner({
-  stars, homes, players, highlightKeys, myTargetKey, mySlot, onStarPress, flashKey,
+  stars, homes, players, highlightKeys, selectedKey, myTargetKey, mySlot, onStarPress, flashKey,
 }: SkyMapProps) {
   const cells = useMemo((): CellRender[] => {
     const list = allMapHexes().map((hex) => {
@@ -214,6 +216,7 @@ function SkyMapInner({
         const side = c.owner !== null ? SLOT_SIDE[c.owner] : '#0C1530';
         const side2 = c.owner !== null ? SLOT_DARK[c.owner] : '#080E22';
         const hl = highlightKeys?.includes(c.key);
+        const sel = selectedKey === c.key; // тапнутый гекс — яркое выделение
         const quad = (a: [number, number], b: [number, number]) =>
           `${a[0]},${a[1]} ${b[0]},${b[1]} ${b[0]},${b[1] + depth} ${a[0]},${a[1] + depth}`;
         return (
@@ -224,11 +227,11 @@ function SkyMapInner({
             <Polygon points={quad(pts[3], pts[4])} fill="#060B1C" fillOpacity={0.6} />
             <Polygon
               points={pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')}
-              fill={c.owner !== null ? `url(#top${c.owner})` : 'url(#topNeutral)'}
-              stroke={hl ? '#EAF2FF' : c.owner !== null ? CONSTELLATION_SLOT_COLORS[c.owner] : '#2B3C66'}
-              strokeOpacity={hl ? 1 : c.owner !== null ? 0.8 : 0.55}
-              strokeWidth={hl ? 2.2 : 1}
-              strokeDasharray={hl ? '5 3' : undefined}
+              fill={sel ? 'rgba(255,209,102,0.28)' : c.owner !== null ? `url(#top${c.owner})` : 'url(#topNeutral)'}
+              stroke={sel ? '#FFD166' : hl ? '#EAF2FF' : c.owner !== null ? CONSTELLATION_SLOT_COLORS[c.owner] : '#2B3C66'}
+              strokeOpacity={sel ? 1 : hl ? 1 : c.owner !== null ? 0.8 : 0.55}
+              strokeWidth={sel ? 3 : hl ? 2.2 : 1}
+              strokeDasharray={sel ? undefined : hl ? '5 3' : undefined}
             />
             <Polyline
               points={`${pts[4][0]},${pts[4][1]} ${pts[5][0]},${pts[5][1]} ${pts[0][0]},${pts[0][1]}`}
@@ -290,24 +293,41 @@ function SkyMapInner({
                 stroke={POLAR_GOLD} strokeOpacity={0.5} strokeWidth={1.4} />
             ) : null}
             {c.radiance > 0 ? (
-              <SvgText x={c.top[0] + 11} y={c.top[1] - 10} fontSize={10} fill="#EAF2FF">
+              <SvgText x={c.top[0] + 11} y={c.top[1] - 10} fontSize={11} fill="#EAF2FF">
                 {c.radiance >= 2 ? '✦✦' : '✦'}
               </SvgText>
             ) : null}
+            {/* Ядра дома — маленькие точки-пипсы ПОД аватаром (не текст ●●●,
+                который выглядел мусором и путался с аватаркой владельца). */}
             {cores !== null && c.owner !== null ? (
-              <SvgText x={c.top[0]} y={c.top[1] + 21} fontSize={9} textAnchor="middle"
-                fill={CONSTELLATION_SLOT_COLORS[c.owner]} opacity={0.95}>
-                {'●'.repeat(Math.max(0, cores))}
-              </SvgText>
+              <>
+                {Array.from({ length: Math.max(0, cores) }).map((_, k) => (
+                  <Circle key={`core${k}`}
+                    cx={c.top[0] + (k - (cores - 1) / 2) * 5}
+                    cy={c.top[1] + 15}
+                    r={1.8}
+                    fill={CONSTELLATION_SLOT_COLORS[c.owner as number]} />
+                ))}
+              </>
             ) : null}
-            {/* Подпись имени (2.1): у Полярной и домов — «якорные» звёзды поля.
-                У рядовых звёзд имя показывать не будем (шум); оно есть в шторке. */}
-            {(isPolar || isHome) ? (
-              <SvgText x={c.top[0]} y={c.top[1] - (isPolar ? 20 : 15)} fontSize={8.5}
-                textAnchor="middle" fill="#C7D4F0" opacity={0.75} fontWeight="600">
-                {starName(c.key)}
-              </SvgText>
-            ) : null}
+            {/* Подпись имени: Полярная и дома — «якорные» звёзды. Крупнее (было
+                8.5px «не видно»), с тёмной подложкой-обводкой чтобы читалось. */}
+            {(isPolar || isHome) ? (() => {
+              const ny = isPolar ? c.top[1] + 30 : c.top[1] - 17;
+              return (
+                <>
+                  {/* тёмная обводка снизу — читаемость на любом фоне */}
+                  <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
+                    fill="none" stroke="#05060E" strokeWidth={3} fontWeight="700">
+                    {starName(c.key)}
+                  </SvgText>
+                  <SvgText x={c.top[0]} y={ny} fontSize={11} textAnchor="middle"
+                    fill="#EAF2FF" fontWeight="700">
+                    {starName(c.key)}
+                  </SvgText>
+                </>
+              );
+            })() : null}
           </React.Fragment>
         );
       })}

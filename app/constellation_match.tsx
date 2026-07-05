@@ -355,25 +355,39 @@ export default function ConstellationMatchScreen() {
         ) : null}
       </View>
 
-      {/* Полоса игроков */}
+      {/* Полоса игроков: аватар + ник + счёт + статус «сходил». Ник реальный
+          у всех (твой чип подсвечен рамкой), не «Ты». */}
       <View style={styles.playersRow}>
-        {match.players.map((p) => (
-          <View key={p.slot} style={[styles.playerChip, { borderColor: t.border }]}>
-            <View style={[styles.playerAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
-              <Text style={styles.playerAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
+        {match.players.map((p) => {
+          const isMe = p.uid === uid;
+          return (
+            <View
+              key={p.slot}
+              style={[styles.playerChip, {
+                borderColor: isMe ? CONSTELLATION_SLOT_COLORS[p.slot] : t.border,
+                borderWidth: isMe ? 1.5 : 1,
+                backgroundColor: isMe ? `${CONSTELLATION_SLOT_COLORS[p.slot]}18` : 'rgba(12,18,44,0.7)',
+              }]}
+            >
+              <View style={[styles.playerAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
+                <Text style={styles.playerAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
+                {/* Индикатор «сходил в раунде»: галочка в углу аватара (было
+                    непонятной точкой). */}
+                {p.roundDone ? (
+                  <View style={styles.playerDone}>
+                    <Ionicons name="checkmark" size={9} color="#0A0F26" />
+                  </View>
+                ) : null}
+              </View>
+              <View style={styles.playerInfo}>
+                <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.playerName, { color: isMe ? CONSTELLATION_SLOT_COLORS[p.slot] : t.textSecond }]}>
+                  {p.name}
+                </Text>
+                <Text style={[styles.playerScore, { color: t.textPrimary }]}>{p.liveScore ?? p.bonusPoints}</Text>
+              </View>
             </View>
-            <View style={styles.playerInfo}>
-              <Text numberOfLines={1} style={[styles.playerName, { color: t.textSecond }]}>
-                {p.uid === uid ? triLang(lang, {
-                  ru: 'Ты', uk: 'Ти', es: 'Tú', 'pt-BR': 'Você',
-                  vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty',
-                }) : p.name}
-              </Text>
-              <Text style={[styles.playerScore, { color: t.textPrimary }]}>{p.liveScore ?? p.bonusPoints}</Text>
-            </View>
-            <View style={[styles.playerDot, p.roundDone && styles.playerDotDone]} />
-          </View>
-        ))}
+          );
+        })}
       </View>
 
       {/* Крупный баннер фазы + кольцевой таймер (2.2/2.3): всегда ясно, что
@@ -398,6 +412,7 @@ export default function ConstellationMatchScreen() {
             homes={match.homes}
             players={match.players}
             highlightKeys={isChoose && !shieldMode ? legalTargets : undefined}
+            selectedKey={sheetKey}
             myTargetKey={myTargetThisRound}
             mySlot={mySlot}
             onStarPress={onStarPress}
@@ -1087,43 +1102,43 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 5,
+    gap: 6,
     borderWidth: 1,
-    borderRadius: 11,
-    paddingHorizontal: 6,
-    paddingVertical: 5,
-    backgroundColor: 'rgba(5,9,20,0.45)',
+    borderRadius: 12,
+    paddingHorizontal: 7,
+    paddingVertical: 6,
+    backgroundColor: 'rgba(12,18,44,0.7)',
   },
   playerAva: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  playerAvaText: { color: '#06122B', fontWeight: '800', fontSize: 9 },
-  playerInfo: { flex: 1 },
-  playerName: { fontSize: 9, lineHeight: 11 },
-  playerScore: { fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  playerDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#5E6B8F',
+  playerAvaText: { color: '#06122B', fontWeight: '800', fontSize: 12 },
+  playerDone: {
+    position: 'absolute',
+    right: -2,
+    bottom: -2,
+    width: 13,
+    height: 13,
+    borderRadius: 7,
+    backgroundColor: '#63E6A4',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  playerDotDone: { backgroundColor: '#63E6A4' },
+  playerInfo: { flex: 1, minWidth: 0 },
+  playerName: { fontSize: 11, fontWeight: '600' },
+  playerScore: { fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
   mapBox: {
     flex: 1,
     minHeight: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   mapFrame: {
-    // Геометрия строго по viewBox карты (360×400): вписываемся без обрезки.
-    width: '100%',
-    maxWidth: 430,
-    aspectRatio: 360 / 400,
-    maxHeight: '100%',
+    // Карта занимает ВСЮ доступную область (жалоба «игровая область маленькая»);
+    // SVG сам вписывает viewBox через preserveAspectRatio, зум работает поверх.
+    flex: 1,
   },
   emoteBubble: {
     position: 'absolute',

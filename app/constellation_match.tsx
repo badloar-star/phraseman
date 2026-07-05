@@ -26,7 +26,9 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
-import { hapticError, hapticMediumImpact, hapticSuccess } from '../hooks/use-haptics';
+import {
+  hapticCelebrate, hapticError, hapticHeavyImpact, hapticMediumImpact, hapticSuccess, hapticWarning,
+} from '../hooks/use-haptics';
 import {
   submitAnswer,
   submitChooseTarget,
@@ -151,9 +153,18 @@ export default function ConstellationMatchScreen() {
         setFlashKey(capture.starKey);
         setTimeout(() => setFlashKey(null), 1100);
       }
-      if (match.roundEvents.length > 0) hapticMediumImpact();
+      // Хаптика различает исход (8.1): победа и поражение больше не одинаковы.
+      // Приоритет: выбит → тяжёлый удар; стал падающим → тревога; мой захват/
+      // выбивание врага → празднование; иначе есть события → нейтральный удар.
+      const myWin = mySlot !== null && match.roundEvents.some(
+        (e) => (e.type === 'capture' || e.type === 'duel_capture' || e.type === 'eliminated') && e.slot === mySlot,
+      );
+      if (myPublic?.status === 'out') hapticHeavyImpact();
+      else if (myPublic?.status === 'falling') hapticWarning();
+      else if (myWin) hapticCelebrate();
+      else if (match.roundEvents.length > 0) hapticMediumImpact();
     }
-  }, [match]);
+  }, [match, mySlot, myPublic]);
 
   // Финиш → экран результатов.
   useEffect(() => {

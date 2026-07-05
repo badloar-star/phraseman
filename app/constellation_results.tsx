@@ -18,6 +18,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { subscribeConstellationMatch, subscribeConstellationResult } from './services/constellations_db';
+import { hapticCelebrate, hapticSuccess } from '../hooks/use-haptics';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { CONSTELLATION_SLOT_COLORS } from './constellation_sky_map';
 import { buildMapLayout } from './constellations_hex';
@@ -114,6 +115,16 @@ export default function ConstellationResultsScreen() {
     () => result?.players.find((p) => p.uid === uid) ?? null,
     [result, uid],
   );
+
+  // Хаптика финала (8.2): празднование за 1 место, успех за призовое — весь
+  // экран результатов раньше был без единой вибрации. Один раз на появление.
+  const celebratedRef = React.useRef(false);
+  useEffect(() => {
+    if (!myReward || celebratedRef.current) return;
+    celebratedRef.current = true;
+    if (myReward.place === 1) hapticCelebrate();
+    else if (myReward.place <= 3) hapticSuccess();
+  }, [myReward]);
 
   const ranked = useMemo(() => {
     if (!match) return [];

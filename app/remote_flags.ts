@@ -353,8 +353,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
   // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
   top_helpers_enabled: true,
-  // «Созвездия»: дефолт false — режим не виден, пока не включён из «Пульта».
-  constellations_enabled: false,
+  // «Созвездия»: в ПРОДЕ дефолт false — режим тёмный, пока не включён из «Пульта».
+  // В dev-сборках (__DEV__) включён всегда: владелец видит карточку без крутки конфига.
+  constellations_enabled: __DEV__,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {

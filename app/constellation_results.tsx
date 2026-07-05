@@ -238,11 +238,11 @@ export default function ConstellationResultsScreen() {
                 backgroundColor: (p.place ?? 4) === 1 ? 'rgba(255,209,102,0.07)' : 'rgba(5,9,20,0.5)',
               }]}
             >
-              <Text style={[styles.podPlace, { color: t.textSecond }]}>#{p.place ?? '–'}</Text>
+              <Text style={[styles.podPlace, { color: t.textSecond, fontSize: f.caption - 3 }]}>#{p.place ?? '–'}</Text>
               <View style={[styles.podAva, { backgroundColor: CONSTELLATION_SLOT_COLORS[p.slot] }]}>
                 <Text style={styles.podAvaText}>{(p.name[0] ?? '?').toUpperCase()}</Text>
               </View>
-              <Text numberOfLines={1} style={[styles.podName, { color: t.textPrimary }]}>
+              <Text numberOfLines={1} style={[styles.podName, { color: t.textPrimary, fontSize: f.caption - 2 }]}>
                 {p.uid === uid
                   ? triLang(lang, {
                     ru: 'Ты', uk: 'Ти', es: 'Tú', 'pt-BR': 'Você',
@@ -250,7 +250,7 @@ export default function ConstellationResultsScreen() {
                   })
                   : p.name}
               </Text>
-              <Text style={styles.podPts}>
+              <Text style={[styles.podPts, { fontSize: f.caption }]}>
                 {result?.players.find((r) => r.uid === p.uid)?.points ?? p.liveScore ?? p.bonusPoints}
               </Text>
               {match.starfall.golden && p.starfallEarned > 0 ? (
@@ -264,13 +264,13 @@ export default function ConstellationResultsScreen() {
         {myReward ? (
           <View style={styles.rewardRow}>
             <View style={styles.rewardChip}>
-              <Text style={styles.rewardVal}>+{myReward.xpGained}</Text>
-              <Text style={[styles.rewardLab, { color: t.textSecond }]}>XP</Text>
+              <Text style={[styles.rewardVal, { fontSize: f.h2 }]}>+{myReward.xpGained}</Text>
+              <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>XP</Text>
             </View>
             {myReward.shardsGained > 0 ? (
               <View style={styles.rewardChip}>
-                <Text style={[styles.rewardVal, { color: '#FFD166' }]}>◆ {myReward.shardsGained}</Text>
-                <Text style={[styles.rewardLab, { color: t.textSecond }]}>
+                <Text style={[styles.rewardVal, { color: '#FFD166', fontSize: f.h2 }]}>◆ {myReward.shardsGained}</Text>
+                <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>
                   {triLang(lang, {
                     ru: 'осколки', uk: 'уламки', es: 'fragmentos', 'pt-BR': 'fragmentos',
                     vi: 'mảnh', id: 'pecahan', tr: 'parça', pl: 'odłamki',
@@ -280,10 +280,10 @@ export default function ConstellationResultsScreen() {
             ) : null}
             {myReward.starDelta !== 0 ? (
               <View style={styles.rewardChip}>
-                <Text style={[styles.rewardVal, { color: myReward.starDelta > 0 ? '#63E6A4' : '#FF7A9E' }]}>
+                <Text style={[styles.rewardVal, { color: myReward.starDelta > 0 ? '#63E6A4' : '#FF7A9E', fontSize: f.h2 }]}>
                   {myReward.starDelta > 0 ? '+' : ''}{myReward.starDelta}★
                 </Text>
-                <Text style={[styles.rewardLab, { color: t.textSecond }]}>
+                <Text style={[styles.rewardLab, { color: t.textSecond, fontSize: f.caption - 3 }]}>
                   {triLang(lang, {
                     ru: 'ранг', uk: 'ранг', es: 'rango', 'pt-BR': 'rank',
                     vi: 'hạng', id: 'peringkat', tr: 'rütbe', pl: 'ranga',

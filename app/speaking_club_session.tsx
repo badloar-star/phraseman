@@ -638,8 +638,6 @@ export default function SpeakingClubSession() {
                 height: 40,
                 borderRadius: 20,
                 backgroundColor: t.bgCard,
-                borderWidth: 0.5,
-                borderColor: t.border,
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginRight: 10,
@@ -676,8 +674,6 @@ export default function SpeakingClubSession() {
                   paddingVertical: 8,
                   borderRadius: 12,
                   backgroundColor: t.bgCard,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
                 }}
               >
                 <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }}>
@@ -765,7 +761,7 @@ export default function SpeakingClubSession() {
                     borderBottomRightRadius: isAi ? 14 : 4,
                     ...(isAi
                       ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
-                      : { borderWidth: 0.5, borderColor: t.border }),
+                      : {}),
                     paddingHorizontal: 12,
                     paddingVertical: 8,
                   }}
@@ -786,7 +782,7 @@ export default function SpeakingClubSession() {
             })}
 
             {sending && (
-              <AiTypingBubble bubbleColor={t.bgCard} borderColor={t.border} dotColor={t.textMuted} glowColor={t.accent} />
+              <AiTypingBubble bubbleColor={t.bgCard} borderColor={'transparent'} dotColor={t.textMuted} glowColor={t.accent} />
             )}
 
             {!!errorMessage && (
@@ -920,7 +916,7 @@ export default function SpeakingClubSession() {
                       hapticTap();
                       setKeyboardMode(false);
                     }}
-                    style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}
+                    style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Ionicons name="mic" size={20} color={t.textPrimary} />
                   </TouchableOpacity>
@@ -934,8 +930,6 @@ export default function SpeakingClubSession() {
                       minHeight: 44,
                       borderRadius: 14,
                       backgroundColor: t.bgCard,
-                      borderWidth: 0.5,
-                      borderColor: t.border,
                       color: t.textPrimary,
                       paddingHorizontal: 12,
                       fontSize: f.body,
@@ -963,7 +957,7 @@ export default function SpeakingClubSession() {
                         hapticTap();
                         setKeyboardMode(true);
                       }}
-                      style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}
+                      style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}
                     >
                       <Ionicons name="chatbox-ellipses-outline" size={20} color={t.textSecond} />
                     </TouchableOpacity>

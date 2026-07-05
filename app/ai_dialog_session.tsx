@@ -1327,8 +1327,6 @@ export default function AiDialogSession() {
                 paddingVertical: 5,
                 borderRadius: 12,
                 backgroundColor: t.bgCard,
-                borderWidth: 0.5,
-                borderColor: t.border,
               }}
             >
               <Ionicons name="language-outline" size={13} color={t.textSecond} />
@@ -1372,8 +1370,6 @@ export default function AiDialogSession() {
                 justifyContent: 'center',
                 paddingHorizontal: 14,
                 backgroundColor: t.bgCard,
-                borderWidth: 0.5,
-                borderColor: t.border,
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }}>
@@ -1406,8 +1402,6 @@ export default function AiDialogSession() {
               height: 36,
               borderRadius: 18,
               backgroundColor: t.bgCard,
-              borderWidth: 0.5,
-              borderColor: t.border,
               marginLeft: 6,
             }}
           />
@@ -1424,8 +1418,6 @@ export default function AiDialogSession() {
               marginTop: 8,
               alignSelf: 'flex-start',
               backgroundColor: t.bgCard,
-              borderWidth: 0.5,
-              borderColor: t.border,
               borderRadius: 11,
               paddingHorizontal: 9,
               paddingVertical: 4,
@@ -1778,7 +1770,7 @@ export default function AiDialogSession() {
                 </View>
                 <AiTypingBubble
                   bubbleColor={t.bgCard}
-                  borderColor={t.border}
+                  borderColor={'transparent'}
                   dotColor={t.accent}
                   glowColor={t.accent + '18'}
                 />
@@ -1984,8 +1976,6 @@ export default function AiDialogSession() {
                       paddingVertical: 13,
                       alignItems: 'center',
                       backgroundColor: t.bgSurface,
-                      borderWidth: 0.5,
-                      borderColor: t.border,
                     }}
                   >
                     <Text style={{ color: t.textPrimary, fontWeight: '900', fontSize: f.body }}>
@@ -2011,13 +2001,13 @@ export default function AiDialogSession() {
                   backgroundColor: t.bgCard,
                   borderRadius: 18,
                   padding: 18,
-                  borderWidth: 2,
+                  borderWidth: outcome === 'success' || outcome === 'lost_patience' ? 2 : 0,
                   borderColor:
                     outcome === 'success'
                       ? t.correct
                       : outcome === 'lost_patience'
                         ? t.wrong
-                        : t.border,
+                        : 'transparent',
                   marginTop: 6,
                   marginBottom: 6,
                 }}
@@ -2214,8 +2204,6 @@ export default function AiDialogSession() {
                       paddingVertical: 13,
                       alignItems: 'center',
                       backgroundColor: t.bgSurface,
-                      borderWidth: 0.5,
-                      borderColor: t.border,
                     }}
                   >
                     <Text style={{ color: t.textPrimary, fontWeight: '900', fontSize: f.body }}>
@@ -2422,8 +2410,8 @@ export default function AiDialogSession() {
                     paddingVertical: 7,
                     marginBottom: 8,
                     borderRadius: 16,
-                    borderWidth: 0.5,
-                    borderColor: conversationMode ? t.accent : t.border,
+                    borderWidth: conversationMode ? 1 : 0,
+                    borderColor: conversationMode ? t.accent : 'transparent',
                     backgroundColor: conversationMode ? t.accent : t.bgSurface,
                   }}
                 >
@@ -2506,8 +2494,6 @@ export default function AiDialogSession() {
                   flex: 1,
                   backgroundColor: t.bgCard,
                   borderRadius: 22,
-                  borderWidth: 0.5,
-                  borderColor: t.border,
                   paddingHorizontal: 18,
                   paddingVertical: Platform.OS === 'ios' ? 12 : 8,
                   color: t.textPrimary,
@@ -2561,8 +2547,8 @@ export default function AiDialogSession() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: voiceInputStatus === 'listening' ? t.accent : t.bgSurface,
-                  borderWidth: 0.5,
-                  borderColor: voiceInputStatus === 'listening' ? t.accent : t.border,
+                  borderWidth: 0,
+                  borderColor: 'transparent',
                   opacity: sending || voiceInputStatus === 'requesting' ? 0.55 : 1,
                   position: 'relative',
                 }}

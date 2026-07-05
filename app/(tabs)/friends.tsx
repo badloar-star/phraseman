@@ -2106,26 +2106,12 @@ export default function FriendsTabScreen() {
 
   // ── My code + my data ──────────────────────────────────────────────────────
 
-  // mountedRef ставится ВСЕГДА на маунт/анмаунт (его читают другие эффекты) —
-  // независимо от гейта видимости таба.
+  // Предзагрузка при премаунте (задумано): данные готовы ДО того как юзер откроет таб.
   useEffect(() => {
     mountedRef.current = true;
-    return () => { mountedRef.current = false; };
-  }, []);
-
-  // Кэш-чтение кода дёшево и нужно для мгновенного первого кадра — негейтнуто.
-  useEffect(() => {
     void readCachedMyInviteCodeForFriends().then(cached => {
       if (mountedRef.current && cached) setMyCode(prev => prev ?? cached);
     });
-  }, []);
-
-  // Перф: тяжёлые СЕТЕВЫЕ вызовы (syncMyInviteCode c retry до 15с, fetchMyProfile,
-  // startFriendsTabSwrPrime, cleanupStaleFriendData) НЕ должны стартовать на фоновом
-  // премаунте таба — иначе грузят сеть и греют телефон до открытия. Гейт по
-  // friendsTabVisible: при открытии таба (переход false→true) вызовы выполнятся.
-  useEffect(() => {
-    if (!friendsTabVisible) return;
     void syncMyInviteCode();
     const task = InteractionManager.runAfterInteractions(() => {
       void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
@@ -2144,8 +2130,8 @@ export default function FriendsTabScreen() {
       });
       void cleanupStaleFriendData();
     });
-    return () => { task.cancel(); };
-  }, [friendsTabVisible, syncMyInviteCode]);
+    return () => { mountedRef.current = false; task.cancel(); };
+  }, [syncMyInviteCode]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {

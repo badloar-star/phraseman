@@ -711,13 +711,10 @@ export default function LessonsTab() {
         }
     }, [lessonCacheTarget, studyTarget]);
     useEffect(() => {
-        // Перф: первая гидратация очков с диска — только когда таб «Уроки» виден.
-        // На фоновом премаунте не читаем AsyncStorage до открытия таба.
-        if (!lessonsTabVisible) return;
         if (lessonsStorageHydratedRef.current) return;
         lessonsStorageHydratedRef.current = true;
         void loadScores();
-    }, [lessonsTabVisible, loadScores]);
+    }, [loadScores]);
     /** Свайп/тап на вкладку «Уроки» — те же кейсы, где layout focus не збільшує focusTick */
     useEffect(() => {
         if (!lessonsTabVisible) return;

@@ -993,6 +993,68 @@ function targetScopedRestoreInfo(key: string): { domain: string; id: string } | 
   }
 }
 
+// K2: owned/purchased-ключи (покупки за осколки / выдачи), которые restore в ветке
+// «облако победило» НЕЛЬЗЯ слепо перезаписывать облаком: офлайн-покупка (пак флешкарт,
+// аура, аватар, карточка Сокровищницы), ещё не доехавшая до облака, исчезала бы.
+// Владение строго аддитивно — мержим объединением (union), как mergeOwnedFlagMap
+// в sticky-ветке. Базовые имена; матчатся и target-scoped варианты
+// (flashcards_v2::fr::flashcards_owned_packs_v1 и т.п.).
+const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
+  'avatar_aura_owned_v1',          // {[id]: true}
+  'custom_avatar_owned_v1',        // {[id]: 'gradient:logoColor'}
+  'collectibles_owned_v1',         // {[id]: count}
+  'flashcards_owned_packs_v1',     // ["packId", ...]
+  'community_owned_pack_ids_v1',   // ["packId", ...]
+  'flashcards_market_dev_owned_v1',// ["packId", ...]
+]);
+
+function isOwnedUnionRestoreKey(key: string): boolean {
+  if (OWNED_UNION_RESTORE_BASE_KEYS.has(key)) return true;
+  const scoped = targetScopedRestoreInfo(key);
+  return scoped !== null && OWNED_UNION_RESTORE_BASE_KEYS.has(scoped.id);
+}
+
+function parseOwnedRestoreJson(raw: string | null | undefined): unknown {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Union-merge owned-значения при restore: массив id — объединение множеств;
+ * объект-мапа — ключи из обоих источников (числа берут max — счётчик карточек
+ * Сокровищницы не должен регрессировать; прочие конфликты решает облако).
+ * При нечитаемом локальном значении возвращает облачное как есть.
+ */
+function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | undefined): string {
+  const local = parseOwnedRestoreJson(localValue);
+  if (local === null) return cloudValue;
+  const cloud = parseOwnedRestoreJson(cloudValue);
+  if (Array.isArray(local) || Array.isArray(cloud)) {
+    const cloudIds = Array.isArray(cloud) ? cloud.filter((x): x is string => typeof x === 'string') : [];
+    const localIds = Array.isArray(local) ? local.filter((x): x is string => typeof x === 'string') : [];
+    return JSON.stringify([...new Set([...cloudIds, ...localIds])]);
+  }
+  if (!cloud || typeof cloud !== 'object' || !local || typeof local !== 'object') return cloudValue;
+  const cloudMap = cloud as Record<string, unknown>;
+  const localMap = local as Record<string, unknown>;
+  const merged: Record<string, unknown> = { ...cloudMap };
+  for (const [id, localVal] of Object.entries(localMap)) {
+    if (!(id in merged)) {
+      merged[id] = localVal;
+      continue;
+    }
+    const cloudNum = merged[id];
+    if (typeof localVal === 'number' && typeof cloudNum === 'number' && localVal > cloudNum) {
+      merged[id] = localVal;
+    }
+  }
+  return JSON.stringify(merged);
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
@@ -1003,6 +1065,10 @@ function mergeLessonRestoreValue(
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
   if (MONOTONIC_COUNTER_RESTORE_KEY_SET.has(key)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+  }
+  // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
+  if (isOwnedUnionRestoreKey(key)) {
+    return mergeOwnedRestoreValue(cloudValue, localValue);
   }
   const scoped = targetScopedRestoreInfo(key);
   const restoreId = scoped?.id ?? key;
@@ -1049,7 +1115,9 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     if (val === null || val === undefined) continue;
     const localValue = localMap[key];
     const storageValue = cloudProgressStorageValue(key, val);
-    if (RESTORE_MERGE_KEY_SET.has(key)) {
+    // K2: owned-ключи (fr-scoped паки флешкарт и т.п.) мержим union'ом и в sticky-ветке —
+    // покупка на другом девайсе догоняет устройство, локальная офлайн-покупка не теряется.
+    if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key)) {
       const merged = mergeLessonRestoreValue(key, storageValue, localValue);
       if (merged !== localValue) pairs.push([key, merged]);
       continue;
@@ -1874,6 +1942,23 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       cloudData[AVATAR_AURA_OWNED_KEY],
     );
     if (mergedOwnedAuras !== null) stickyPairs.push([AVATAR_AURA_OWNED_KEY, mergedOwnedAuras]);
+    // K2: остальные owned-ключи (паки флешкарт, аватары, Сокровищница) — тот же принцип:
+    // покупка/выдача с другого девайса догоняет устройство и в local-wins ветке. Union;
+    // ауры уже обработаны выше, fr-scoped ключи идут через buildFrenchTargetStickyRestorePairs.
+    const stickyOwnedKeys = getRuntimeSyncKeys().filter((k) =>
+      isOwnedUnionRestoreKey(k) && k !== AVATAR_AURA_OWNED_KEY && targetScopedRestoreInfo(k) === null,
+    );
+    if (stickyOwnedKeys.length > 0) {
+      const localOwnedMap = Object.fromEntries(
+        await AsyncStorage.multiGet(stickyOwnedKeys),
+      ) as Record<string, string | null>;
+      for (const key of stickyOwnedKeys) {
+        const cloudVal = cloudData[key];
+        if (cloudVal === null || cloudVal === undefined || String(cloudVal).trim() === '') continue;
+        const merged = mergeOwnedRestoreValue(cloudProgressStorageValue(key, cloudVal), localOwnedMap[key]);
+        if (merged !== localOwnedMap[key]) stickyPairs.push([key, merged]);
+      }
+    }
     const cloudActiveAura = cloudData[USER_AVATAR_AURA_KEY];
     if (cloudActiveAura != null && String(cloudActiveAura).trim() !== '') {
       stickyPairs.push([USER_AVATAR_AURA_KEY, String(cloudActiveAura)]);
@@ -1958,8 +2043,11 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   }
 
   const pairs: [string, string][] = [];
+  // K2: owned-ключи тоже читаем локально — иначе mergeOwnedRestoreValue получит
+  // undefined и «union» выродится в слепую перезапись облаком.
+  const ownedUnionRuntimeKeys = getRuntimeSyncKeys().filter(isOwnedUnionRestoreKey);
   const localLessonRestoreMap = Object.fromEntries(
-    await AsyncStorage.multiGet([...RESTORE_MERGE_KEY_SET, ...MONOTONIC_COUNTER_RESTORE_KEYS]),
+    await AsyncStorage.multiGet([...RESTORE_MERGE_KEY_SET, ...MONOTONIC_COUNTER_RESTORE_KEYS, ...ownedUnionRuntimeKeys]),
   ) as Record<string, string | null>;
   const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
   const cloudConsumedSig = cloudData['league_result_consumed_sig'];
@@ -2097,6 +2185,8 @@ export const __cloudSyncTestHooks = {
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,
   mergeOwnedFlagMap,
+  mergeOwnedRestoreValue,
+  isOwnedUnionRestoreKey,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────

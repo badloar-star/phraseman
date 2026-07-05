@@ -52,6 +52,7 @@ function parseArgs(argv) {
     limit: 0,
     sample: 0,
     filledDir: '',
+    excludeDone: [],
   };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -64,6 +65,7 @@ function parseArgs(argv) {
     else if (arg === '--limit') args.limit = Number(argv[++i] || 0);
     else if (arg === '--sample') args.sample = Number(argv[++i] || 0);
     else if (arg === '--filled-dir') args.filledDir = argv[++i] || '';
+    else if (arg === '--exclude-done') args.excludeDone.push(argv[++i] || '');
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!args.mode) throw new Error('Pass --emit or --ingest');
@@ -150,7 +152,16 @@ function strideSample(rows, sample) {
 }
 
 function emit(args) {
-  const { rows: allRows, excluded, codeNoise } = loadRows(args);
+  const { rows: loadedRows, excluded, codeNoise } = loadRows(args);
+  // Resume support: skip rows already accepted in earlier runs (ledgers of
+  // GO/PENDING rows passed via --exclude-done, repeatable).
+  const doneIds = new Set();
+  for (const ledger of args.excludeDone) {
+    const abs = absFromRoot(ledger);
+    if (!fs.existsSync(abs)) throw new Error(`--exclude-done ledger not found: ${ledger}`);
+    for (const row of parseJsonl(abs)) if (row?.id) doneIds.add(row.id);
+  }
+  const allRows = doneIds.size > 0 ? loadedRows.filter((row) => !doneIds.has(row.id)) : loadedRows;
   let rows = strideSample(allRows, args.sample);
   if (args.limit > 0) rows = rows.slice(0, args.limit);
   const outDir = absFromRoot(args.outDir);
@@ -171,6 +182,7 @@ function emit(args) {
     rowsTotalInScope: allRows.length,
     rowsExcludedOperatorSurfaces: excluded,
     rowsExcludedCodeNoise: codeNoise,
+    rowsExcludedAlreadyDone: doneIds.size,
     rowsEmitted: rows.length,
     packetSize: args.packetSize,
     sample: args.sample || null,

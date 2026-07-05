@@ -758,8 +758,8 @@ const RoundCountdown = memo(function RoundCountdown({ value, lang }: { value: nu
   }));
   const isGo = value === 0;
   const goText = triLang(lang, {
-    ru: 'В БОЙ!', uk: 'В БІЙ!', es: '¡YA!', 'pt-BR': 'JÁ!',
-    vi: 'BẮT ĐẦU!', id: 'MULAI!', tr: 'BAŞLA!', pl: 'START!',
+    ru: 'ПОЕХАЛИ!', uk: 'ПОЇХАЛИ!', es: '¡VAMOS!', 'pt-BR': 'VAMOS!',
+    vi: 'BẮT ĐẦU!', id: 'AYO!', tr: 'HADI!', pl: 'RUSZAMY!',
   });
   return (
     <View style={styles.cdOverlay} pointerEvents="none">

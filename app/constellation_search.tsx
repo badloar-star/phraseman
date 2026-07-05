@@ -64,7 +64,7 @@ const SEARCH_HINTS: Hint[] = [
   },
   {
     title: (l) => triLang(l, { ru: 'Полярная', uk: 'Полярна', es: 'Estrella Polar', 'pt-BR': 'Estrela Polar', vi: 'Sao Bắc Cực', id: 'Bintang Kutub', tr: 'Kutup Yıldızı', pl: 'Gwiazda Polarna' }),
-    body: (l) => triLang(l, { ru: 'Звезда в центре приносит очки каждый раунд. За неё дерутся все.', uk: 'Зірка в центрі дає очки щораунду. За неї б’ються всі.', es: 'La estrella central da puntos cada ronda. Todos pelean por ella.', 'pt-BR': 'A estrela central dá pontos toda rodada. Todos brigam por ela.', vi: 'Sao trung tâm cho điểm mỗi vòng. Ai cũng tranh giành.', id: 'Bintang tengah beri poin tiap ronde. Semua memperebutkannya.', tr: 'Merkez yıldız her tur puan verir. Herkes onun için savaşır.', pl: 'Środkowa gwiazda daje punkty co rundę. Walczą o nią wszyscy.' }),
+    body: (l) => triLang(l, { ru: 'Звезда в центре приносит очки каждый раунд. К ней стремятся все.', uk: 'Зірка в центрі дає очки щораунду. До неї прагнуть усі.', es: 'La estrella central da puntos cada ronda. Todos van por ella.', 'pt-BR': 'A estrela central dá pontos toda rodada. Todos querem ela.', vi: 'Sao trung tâm cho điểm mỗi vòng. Ai cũng muốn có nó.', id: 'Bintang tengah beri poin tiap ronde. Semua mengincarnya.', tr: 'Merkez yıldız her tur puan verir. Herkes onu ister.', pl: 'Środkowa gwiazda daje punkty co rundę. Wszyscy do niej dążą.' }),
   },
   {
     title: (l) => triLang(l, { ru: 'Не сдавайся', uk: 'Не здавайся', es: 'No te rindas', 'pt-BR': 'Não desista', vi: 'Đừng bỏ cuộc', id: 'Jangan menyerah', tr: 'Pes etme', pl: 'Nie poddawaj się' }),
